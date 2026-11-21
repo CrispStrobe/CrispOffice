@@ -92,6 +92,19 @@ Word object members are unavailable in `vba-excel`.
 
 ## Preparing source text for Word
 
+`Space` / `Space$`, `String` / `String$`, `ChrW` / `ChrW$`, and `AscW` also
+construct source-known text. They support padding, repeated first UTF-16 units,
+Unicode characters and signed code-unit inspection. For example,
+`String$(3, "-") & Space(1) & ChrW(8364)` produces `"--- €"`. Use paired
+surrogate units to construct supplementary characters; isolated surrogates,
+XML-invalid controls and structural line breaks remain refused at Word
+publication. `String` accepts a nonempty String character argument; numeric
+code-page conversion is deliberately unsupported. Exact bounds and coercion
+rules are in the [shared construction contract](VBA_MACROS.md#text-construction-and-unicode-code-units).
+The [runnable construction module](../packages/quds_office_engine/example/macros/word_text_construction.bas)
+requires two body paragraphs and an independent primary header and emits five
+ordinary insertion/formatting operations.
+
 Word macros can now use shared binary `InStr`, `InStrRev`, and `Replace`, plus
 `Trim`, `LTrim`, `RTrim` and their `$` forms. They process String literals,
 local values, array elements and helper results known during compilation.
@@ -141,6 +154,8 @@ geometry has its separate mapping below.
 | --- | --- | --- |
 | `range.InsertBefore text` | `docx.replaceText` | `start: 0`, `end: 0`, `text` |
 | `paragraph.Style = value` or `range.Style = value` | `docx.paragraphStyle` | Exactly one primary style `name` or supported `builtin` constant |
+| `paragraph.Shading.BackgroundPatternColor = value` or selected `range.Shading.BackgroundPatternColor = value` | `docx.paragraphShading` | `color`: uppercase RGB hex or `auto` |
+| `paragraph.Shading.BackgroundPatternColorIndex = value` or selected `range.Shading.BackgroundPatternColorIndex = value` | `docx.paragraphShading` | Fixed palette RGB hex, or `auto` for `wdAuto` |
 | `range.Font.Bold = value` | `docx.runFormat` | `bold: value` |
 | `range.Font.Italic = value` | `docx.runFormat` | `italic: value` |
 | `range.Font.Size = value` | `docx.runFormat` | `size: value` in points |
@@ -277,6 +292,64 @@ the local checks and reproducible portable smoke test.
 Primary references: Microsoft's [Paragraph.Style](https://learn.microsoft.com/en-us/office/vba/api/word.paragraph.style),
 [Range.Style](https://learn.microsoft.com/en-us/office/vba/api/word.range.style)
 and [WdBuiltinStyle](https://learn.microsoft.com/en-us/office/vba/api/word.wdbuiltinstyle).
+
+### Paragraph background shading
+
+An explicitly selected `Paragraph.Shading` or paragraph-selected
+`Range.Shading` exposes two write-only background properties. `Dim shade As
+Shading`, `Set` aliases, nested `With`, and required `ByVal Shading` helper
+parameters retain the selected paragraph identity. Rebinding a helper's object
+parameter does not change its caller's binding. The existing body and
+independently owned header/footer paragraph selectors apply, including empty
+paragraphs; shading changes the paragraph background rather than its text.
+
+```vb
+Sub Paint(ByVal shade As Shading)
+    shade.BackgroundPatternColor = RGB(230, 238, 250)
+End Sub
+
+Sub Main()
+    Dim shade As Shading
+    Set shade = ActiveDocument.Paragraphs(1).Shading
+    Paint shade
+    With ActiveDocument.Paragraphs(2).Range.Shading
+        .BackgroundPatternColorIndex = wdYellow
+    End With
+    ActiveDocument.Paragraphs(3).Shading.BackgroundPatternColor = wdColorAutomatic
+End Sub
+```
+
+| Property | Accepted source value | Native result |
+| --- | --- | --- |
+| `BackgroundPatternColor` | Exact integer `0..16777215`, `RGB(r,g,b)`, or a named `WdColor` | Explicit six-digit RGB background |
+| `BackgroundPatternColor` | `wdColorAutomatic = -16777216` | Explicit `w:fill="auto"` background |
+| `BackgroundPatternColorIndex` | Exact integer `1..16` or fixed `WdColorIndex` name | Same fixed RGB palette as highlighting |
+| `BackgroundPatternColorIndex` | `wdAuto = 0` | Explicit `w:fill="auto"` background |
+
+All 60 named `WdColor` constants are recognized in Word source. Their packed
+RGB values also work with the existing `Font.Color` setter; its previous RGB-only
+contract still refuses the automatic sentinel. ColorIndex is a separate numeric
+space: for example `wdBlue = 2` and `wdColorBlue = 16711680`. `wdByAuthor`,
+mixed-state values, fractional values, implicit Boolean/String coercions and
+unknown indices are refused. Automatic shading is an explicit no-fill model
+override, so a later save/reopen does not reveal an inherited background.
+
+Each assignment emits one `docx.paragraphShading` step with `paragraph`, the
+existing optional story identity, and `color`. The native operation handles
+solid backgrounds only and validates source ownership before publication.
+It preserves unedited paragraph/run formatting, foreign metadata and native
+namespace aliases. Same-value assignments still create direct background
+ownership. Patterned or ambiguous source shading is refused instead of being
+silently flattened. This contract does not implement texture or foreground
+setters, character shading, table/cell Shading objects, whole-story ranges,
+live property reads or automatic style creation.
+
+The [complete shading module](../packages/quds_office_engine/example/macros/word_shading.bas)
+performs seven operations against three body paragraphs and independently owned
+primary header/footer paragraphs. Compile, validate and run it with the existing
+`compile-word-vba`, `validate-word-vba` and `run-word-vba` CLI commands.
+See the [local qualification record](validation/word-vba-format-controls-20261121/README.md)
+for executed checks and remaining host boundaries.
 
 ### Section page setup
 

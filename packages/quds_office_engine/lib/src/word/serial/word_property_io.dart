@@ -503,6 +503,28 @@ abstract final class WordPropertyIo {
     return prefix;
   }
 
+  /// Change a solid paragraph background without replacing its opaque metadata.
+  /// Callers must validate the native texture and theme attributes first.
+  static void mergeParagraphShading(XmlElement properties, String color) {
+    final existing = properties.childElements
+        .where(
+          (node) =>
+              node.localName == 'shd' &&
+              _wordName(node.namespaceUri, node.prefix),
+        )
+        .firstOrNull;
+    _mergeWordAttributes(properties, 'shd', const {'fill'}, {'fill': color});
+    if (existing == null ||
+        !existing.attributes.any(
+          (attribute) =>
+              attribute.localName == 'val' &&
+              _wordName(attribute.namespaceUri, attribute.prefix),
+        )) {
+      _mergeWordAttributes(properties, 'shd', const {'val'}, {'val': 'clear'});
+    }
+    orderChildren(properties);
+  }
+
   /// Change the owned language attribute while preserving native metadata.
   static void mergeLanguage(
     XmlElement runProperties,

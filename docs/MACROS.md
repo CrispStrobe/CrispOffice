@@ -222,6 +222,18 @@ Missing/ambiguous styles, unresolved inheritance and effective numbering changes
 are refused atomically. See the [style contract](VBA_WORD_MACROS.md#existing-paragraph-styles)
 and `example/macros/word_styles.bas` for the exact bounded behavior.
 
+Native `docx.paragraphShading` requires an explicit zero-based `paragraph`,
+optional ordinary story fields, and `color` as six uppercase RGB hex digits
+or the exact String `auto`. Automatic is an explicit native background override
+and a no-fill value in the renderer; it does not remove direct ownership.
+The operation supports solid paragraph backgrounds, including empty paragraphs,
+while preserving unowned XML metadata and earlier plan edits. It checks native
+source/style ambiguity and unsupported shading before mutation and retains
+validation-only execution, recording/replay, policy and whole-run rollback.
+See the [shading contract](VBA_WORD_MACROS.md#paragraph-background-shading)
+and `example/macros/word_shading.bas`. The older `paragraphFormat.shading`
+field retains its existing independent contract.
+
 Native `docx.runFormat` additionally accepts Boolean `allCaps`, `smallCaps`,
 `superscript`, and `subscript` fields. A single native call must not provide both
 script-mode fields. Enabling a mode selects it; disabling it preserves an

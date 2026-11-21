@@ -17,9 +17,7 @@ Matcher _error([String? code]) {
       .having((e) => e.moduleName, 'module', 'WordShading')
       .having((e) => e.line, 'line', greaterThan(0))
       .having((e) => e.column, 'column', greaterThan(0));
-  return code == null
-      ? matcher
-      : matcher.having((e) => e.code, 'code', code);
+  return code == null ? matcher : matcher.having((e) => e.code, 'code', code);
 }
 
 const _shade = 'ActiveDocument.Paragraphs(1).Shading';
@@ -52,7 +50,9 @@ void main() {
     test('packed RGB and automatic: $expression', () {
       expect(
         _compile('$_shade.BackgroundPatternColor = $expression')
-            .steps.single.arguments,
+            .steps
+            .single
+            .arguments,
         {'paragraph': 0, 'color': color},
       );
     });
@@ -95,35 +95,64 @@ End With
   // Exact reference colors from Microsoft's WdColor enum. Test both new
   // background writes and the existing packed-RGB Font.Color path.
   for (final (name, rgb) in <(String, String)>[
-    ('wdColorAqua', '33CCCC'), ('wdColorBlack', '000000'),
-    ('wdColorBlue', '0000FF'), ('wdColorBlueGray', '666699'),
-    ('wdColorBrightGreen', '00FF00'), ('wdColorBrown', '993300'),
-    ('wdColorDarkBlue', '000080'), ('wdColorDarkGreen', '003300'),
-    ('wdColorDarkRed', '800000'), ('wdColorDarkTeal', '003366'),
-    ('wdColorDarkYellow', '808000'), ('wdColorGold', 'FFCC00'),
-    ('wdColorGray05', 'F3F3F3'), ('wdColorGray10', 'E6E6E6'),
-    ('wdColorGray125', 'E0E0E0'), ('wdColorGray15', 'D9D9D9'),
-    ('wdColorGray20', 'CCCCCC'), ('wdColorGray25', 'C0C0C0'),
-    ('wdColorGray30', 'B3B3B3'), ('wdColorGray35', 'A6A6A6'),
-    ('wdColorGray375', 'A0A0A0'), ('wdColorGray40', '999999'),
-    ('wdColorGray45', '8C8C8C'), ('wdColorGray50', '808080'),
-    ('wdColorGray55', '737373'), ('wdColorGray60', '666666'),
-    ('wdColorGray625', '606060'), ('wdColorGray65', '595959'),
-    ('wdColorGray70', '4C4C4C'), ('wdColorGray75', '404040'),
-    ('wdColorGray80', '333333'), ('wdColorGray85', '262626'),
-    ('wdColorGray875', '202020'), ('wdColorGray90', '191919'),
-    ('wdColorGray95', '0C0C0C'), ('wdColorGreen', '008000'),
-    ('wdColorIndigo', '333399'), ('wdColorLavender', 'CC99FF'),
-    ('wdColorLightBlue', '3366FF'), ('wdColorLightGreen', 'CCFFCC'),
-    ('wdColorLightOrange', 'FF9900'), ('wdColorLightTurquoise', 'CCFFFF'),
-    ('wdColorLightYellow', 'FFFF99'), ('wdColorLime', '99CC00'),
-    ('wdColorOliveGreen', '333300'), ('wdColorOrange', 'FF6600'),
-    ('wdColorPaleBlue', '99CCFF'), ('wdColorPink', 'FF00FF'),
-    ('wdColorPlum', '993366'), ('wdColorRed', 'FF0000'),
-    ('wdColorRose', 'FF99CC'), ('wdColorSeaGreen', '339966'),
-    ('wdColorSkyBlue', '00CCFF'), ('wdColorTan', 'FFCC99'),
-    ('wdColorTeal', '008080'), ('wdColorTurquoise', '00FFFF'),
-    ('wdColorViolet', '800080'), ('wdColorWhite', 'FFFFFF'),
+    ('wdColorAqua', '33CCCC'),
+    ('wdColorBlack', '000000'),
+    ('wdColorBlue', '0000FF'),
+    ('wdColorBlueGray', '666699'),
+    ('wdColorBrightGreen', '00FF00'),
+    ('wdColorBrown', '993300'),
+    ('wdColorDarkBlue', '000080'),
+    ('wdColorDarkGreen', '003300'),
+    ('wdColorDarkRed', '800000'),
+    ('wdColorDarkTeal', '003366'),
+    ('wdColorDarkYellow', '808000'),
+    ('wdColorGold', 'FFCC00'),
+    ('wdColorGray05', 'F3F3F3'),
+    ('wdColorGray10', 'E6E6E6'),
+    ('wdColorGray125', 'E0E0E0'),
+    ('wdColorGray15', 'D9D9D9'),
+    ('wdColorGray20', 'CCCCCC'),
+    ('wdColorGray25', 'C0C0C0'),
+    ('wdColorGray30', 'B3B3B3'),
+    ('wdColorGray35', 'A6A6A6'),
+    ('wdColorGray375', 'A0A0A0'),
+    ('wdColorGray40', '999999'),
+    ('wdColorGray45', '8C8C8C'),
+    ('wdColorGray50', '808080'),
+    ('wdColorGray55', '737373'),
+    ('wdColorGray60', '666666'),
+    ('wdColorGray625', '606060'),
+    ('wdColorGray65', '595959'),
+    ('wdColorGray70', '4C4C4C'),
+    ('wdColorGray75', '404040'),
+    ('wdColorGray80', '333333'),
+    ('wdColorGray85', '262626'),
+    ('wdColorGray875', '202020'),
+    ('wdColorGray90', '191919'),
+    ('wdColorGray95', '0C0C0C'),
+    ('wdColorGreen', '008000'),
+    ('wdColorIndigo', '333399'),
+    ('wdColorLavender', 'CC99FF'),
+    ('wdColorLightBlue', '3366FF'),
+    ('wdColorLightGreen', 'CCFFCC'),
+    ('wdColorLightOrange', 'FF9900'),
+    ('wdColorLightTurquoise', 'CCFFFF'),
+    ('wdColorLightYellow', 'FFFF99'),
+    ('wdColorLime', '99CC00'),
+    ('wdColorOliveGreen', '333300'),
+    ('wdColorOrange', 'FF6600'),
+    ('wdColorPaleBlue', '99CCFF'),
+    ('wdColorPink', 'FF00FF'),
+    ('wdColorPlum', '993366'),
+    ('wdColorRed', 'FF0000'),
+    ('wdColorRose', 'FF99CC'),
+    ('wdColorSeaGreen', '339966'),
+    ('wdColorSkyBlue', '00CCFF'),
+    ('wdColorTan', 'FFCC99'),
+    ('wdColorTeal', '008080'),
+    ('wdColorTurquoise', '00FFFF'),
+    ('wdColorViolet', '800080'),
+    ('wdColorWhite', 'FFFFFF'),
     ('wdColorYellow', 'FFFF00'),
   ]) {
     test('Word named RGB constant $name', () {
@@ -135,8 +164,10 @@ ActiveDocument.Paragraphs(1).Range.Font.Color = $name
     });
   }
 
-  test('typed aliases, nested With, named ByVal and rebinding retain targets', () {
-    final plan = _source('''
+  test(
+    'typed aliases, nested With, named ByVal and rebinding retain targets',
+    () {
+      final plan = _source('''
 Option Explicit
 Sub Paint(ByVal target As Shading, Optional ByVal color As Long = 255)
   target.BackgroundPatternColor = color
@@ -158,45 +189,66 @@ Sub Main()
   retained.BackgroundPatternColor = wdColorTurquoise
 End Sub
 ''');
-    expect(plan.steps.map((s) => s.arguments), [
-      {'paragraph': 1, 'color': '0000FF'},
-      {'paragraph': 1, 'color': 'FF0000'},
-      {'paragraph': 2, 'color': 'auto'},
-      {'paragraph': 1, 'color': '00FFFF'},
-    ]);
-  });
+      expect(plan.steps.map((s) => s.arguments), [
+        {'paragraph': 1, 'color': '0000FF'},
+        {'paragraph': 1, 'color': 'FF0000'},
+        {'paragraph': 2, 'color': 'auto'},
+        {'paragraph': 1, 'color': '00FFFF'},
+      ]);
+    },
+  );
 
   for (final (collection, variant, story) in [
-    ('Headers', 1, 'header'), ('Headers', 2, 'firstHeader'),
-    ('Headers', 3, 'evenHeader'), ('Footers', 1, 'footer'),
-    ('Footers', 2, 'firstFooter'), ('Footers', 3, 'evenFooter'),
+    ('Headers', 1, 'header'),
+    ('Headers', 2, 'firstHeader'),
+    ('Headers', 3, 'evenHeader'),
+    ('Footers', 1, 'footer'),
+    ('Footers', 2, 'firstFooter'),
+    ('Footers', 3, 'evenFooter'),
   ]) {
     test('shading retains independent $story identity', () {
       final step = _compile('''
 ThisDocument.Sections(2).$collection($variant).Range.Paragraphs(3).Shading.BackgroundPatternColorIndex = wdYellow
 ''').steps.single;
       expect(step.arguments, {
-        'paragraph': 2, 'section': 1, 'story': story, 'color': 'FFFF00',
+        'paragraph': 2,
+        'section': 1,
+        'story': story,
+        'color': 'FFFF00',
       });
     });
   }
 
-  for (final expression in ['True', '"255"', '0.5', '-1', '16777216', 'Null', 'Empty']) {
+  for (final expression in ['True', '"255"', '0.5', 'Null', 'Empty']) {
     test('reject invalid RGB value $expression', () {
-      expect(() => _compile('$_shade.BackgroundPatternColor = $expression'),
-          throwsA(_error('vba_type_error')));
+      expect(
+        () => _compile('$_shade.BackgroundPatternColor = $expression'),
+        throwsA(_error('vba_type_error')),
+      );
+    });
+  }
+  for (final expression in ['-1', '16777216']) {
+    test('reject unsupported packed RGB color $expression', () {
+      expect(
+        () => _compile('$_shade.BackgroundPatternColor = $expression'),
+        throwsA(_error('vba_unsupported')),
+      );
     });
   }
   for (final expression in ['True', '"7"', '0.5', 'Null', 'Empty']) {
     test('reject invalid palette type $expression', () {
-      expect(() => _compile('$_shade.BackgroundPatternColorIndex = $expression'),
-          throwsA(_error('vba_type_error')));
+      expect(
+        () => _compile('$_shade.BackgroundPatternColorIndex = $expression'),
+        throwsA(_error('vba_type_error')),
+      );
     });
   }
   for (final expression in ['-1', 'wdByAuthor', '17', 'wdColorAutomatic']) {
     test('reject unsupported palette value $expression', () {
-      expect(() => _compile('$_shade.BackgroundPatternColorIndex = $expression'),
-          throwsA(_error('vba_unsupported')));
+      expect(
+        () => _compile('$_shade.BackgroundPatternColorIndex = $expression'),
+        throwsA(_error('vba_unsupported')),
+      );
     });
   }
 
@@ -209,8 +261,10 @@ ThisDocument.Sections(2).$collection($variant).Range.Paragraphs(3).Shading.Backg
     'ThisDocument.Sections(1).Headers(1).Range.Shading.BackgroundPatternColor = 0',
   ]) {
     test('unsupported member/read is checked even when unreachable: $body', () {
-      expect(() => _compile('If False Then\n$body\nEnd If'),
-          throwsA(_error('vba_unsupported')));
+      expect(
+        () => _compile('If False Then\n$body\nEnd If'),
+        throwsA(_error('vba_unsupported')),
+      );
     });
   }
   for (final body in [
@@ -220,22 +274,29 @@ ThisDocument.Sections(2).$collection($variant).Range.Paragraphs(3).Shading.Backg
     'ActiveDocument.Paragraphs(1).Shading(1).BackgroundPatternColor = 0',
   ]) {
     test('bad binding/type is checked in an unused helper: $body', () {
-      expect(() => _source('Sub NeverUsed()\n$body\nEnd Sub\nSub Main()\nEnd Sub'),
-          throwsA(_error()));
+      expect(
+        () => _source('Sub NeverUsed()\n$body\nEnd Sub\nSub Main()\nEnd Sub'),
+        throwsA(_error()),
+      );
     });
   }
 
   for (final name in ['Shading', 'wdColorAutomatic', 'wdColorRed']) {
     test('new Word names cannot be shadowed: $name', () {
-      expect(() => _compile('Dim $name As Long'),
-          throwsA(_error('vba_name_error')));
+      expect(
+        () => _compile('Dim $name As Long'),
+        throwsA(_error('vba_name_error')),
+      );
     });
   }
   test('custom spacing pair cannot be split by a shading write', () {
-    expect(() => _compile('''
+    expect(
+      () => _compile('''
 ActiveDocument.Paragraphs(1).Format.LineSpacingRule = wdLineSpaceExactly
 $_shade.BackgroundPatternColorIndex = wdYellow
 ActiveDocument.Paragraphs(1).Format.LineSpacing = 18
-'''), throwsA(_error('vba_unsupported')));
+'''),
+      throwsA(_error('vba_unsupported')),
+    );
   });
 }

@@ -100,11 +100,11 @@ End Sub
   );
 
   test(
-    'later patterned shading refuses without publishing a valid prefix',
+    'patterned source shading refuses without publishing any transaction',
     () async {
       final package = OpcPackage.openBytes(portable.wordShadingInput());
       final part = package.getPart('/word/document.xml')!;
-      const original = '<w:shd w:val="clear" w:color="auto" w:fill="DDEEFF"/>';
+      const original = '<w:shd w:val="clear" w:fill="DDEEFF"/>';
       expect(part.readText(), contains(original));
       part.writeText(
         part.readText().replaceFirst(
@@ -120,7 +120,16 @@ $_first.BackgroundPatternColorIndex = wdRed
 $_second.BackgroundPatternColorIndex = wdYellow
 ''');
       for (final action in [session.validate, session.run]) {
-        await expectLater(action(plan), throwsA(_failure(1)));
+        await expectLater(
+          action(plan),
+          throwsA(
+            isA<OfficeMacroException>().having(
+              (error) => error.tool,
+              'tool',
+              'docx.paragraphShading',
+            ),
+          ),
+        );
         expect(session.bytes, input);
         expect(session.revision, 0);
       }
