@@ -5,6 +5,14 @@ and [MISSION.md](MISSION.md) honest as coverage changes.
 
 ## Mail, Calendar, People and standalone Office — scoped 18 November 2026
 
+**21 November synchronization continuation:** native IMAP, EWS, Gmail and
+Microsoft 365 expose explicit resumable folder-header synchronization, atomic
+durable checkpoints and an offline paginated membership view. See
+[the contract](roadmaps/mail/durable-sync.md) and
+[local qualification](validation/mail-sync-foundation-20261121/README.md).
+Background/body retention, unified account queries and the complete shared
+workspace remain the next boundaries.
+
 **19 November EWS priority:** [Exchange Server on premises](roadmaps/mail/exchange-ews.md)
 now has a native mail/submission provider and Studio entry, with explicit HTTPS,
 NTLMv2, bounded sync/MIME, guarded mailbox changes and EWS Sent filing. See its

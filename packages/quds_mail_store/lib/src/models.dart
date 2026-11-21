@@ -173,6 +173,52 @@ final class MailCachedMailboxView {
   );
 }
 
+/// The most recent successfully committed synchronization page for a mailbox.
+/// [hasMore] describes that page's provider continuation, not whether the server
+/// has changed since [updatedAt]. [headerCount] counts retained authoritative
+/// memberships, independently of foreground browse windows and body caching.
+final class MailMailboxSyncSummary {
+  const MailMailboxSyncSummary({
+    required this.mailbox,
+    required this.revision,
+    required this.updatedAt,
+    required this.hasMore,
+    required this.headerCount,
+  });
+
+  final MailMailbox mailbox;
+  final int revision;
+  final DateTime updatedAt;
+  final bool hasMore;
+  final int headerCount;
+}
+
+/// One transactionally consistent page of synchronized headers and checkpoint
+/// metadata. Headers use stable local-message-ID ascending order; dates and
+/// other presentation sorting may be applied by the host to a loaded page.
+///
+/// [hasMoreHeaders] describes local pagination, separately from the provider's
+/// continuation in [hasMore]. Neither field promises cached body availability.
+final class MailMailboxSyncSnapshot {
+  MailMailboxSyncSnapshot({
+    required this.summary,
+    required List<MailHeaderRecord> headers,
+    required this.offset,
+    required this.hasMoreHeaders,
+  }) : headers = List.unmodifiable(headers);
+
+  final MailMailboxSyncSummary summary;
+  final List<MailHeaderRecord> headers;
+  final int offset;
+  final bool hasMoreHeaders;
+
+  MailMailbox get mailbox => summary.mailbox;
+  int get revision => summary.revision;
+  DateTime get updatedAt => summary.updatedAt;
+  bool get hasMore => summary.hasMore;
+  int get headerCount => summary.headerCount;
+}
+
 /// The result of one bounded local mailbox-cache cleanup transaction.
 /// [hasMore] reports more eligible work; editor-pinned bodies are reported by
 /// [retainedBodies] instead, so repeating cleanup never loops on protected data.

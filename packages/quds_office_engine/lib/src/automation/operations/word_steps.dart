@@ -2,6 +2,7 @@ import 'package:quds_office_engine/quds_office_engine.dart';
 import 'package:quds_office_engine/src/word/serial/word_property_io.dart';
 
 import 'step_input.dart';
+import 'word_header_footer_guard.dart';
 import 'word_list_steps.dart';
 import 'word_page_setup_steps.dart';
 import 'word_section_start_steps.dart';
@@ -735,7 +736,11 @@ Iterable<WmlParagraph> _paragraphs(WmlDocument doc, StepInput s) {
   if (story == 'footnote' || story == 'endnote') {
     return _note(doc, s, story).allParagraphs;
   }
-  return _headerParagraphs(s.item('section', doc.sections, fallback: 0), story);
+  return editableWordHeaderFooterParagraphs(
+    doc,
+    s.item('section', doc.sections, fallback: 0),
+    story,
+  );
 }
 
 Iterable<WmlVisual> _visuals(WmlDocument doc, StepInput s) {

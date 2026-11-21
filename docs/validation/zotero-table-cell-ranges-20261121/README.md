@@ -1,5 +1,22 @@
 # Zotero research-content replacement within a table cell
 
+## Current publication reconciliation
+
+Remote main subsequently advanced to `4a1eaa69e7a068e354bdd851ec9b0323b89ae300`
+through qualified Mail PR #291, which also incorporates the captured Word VBA
+and Zotero implementation heads. This branch incorporates that main plus the
+captured `9cfad3920f9afb3ca1620df429fa41e33f3db8e6` Mail Close-control fix.
+All three earlier deferred captured heads are therefore included in the new
+combined source. Their original cutoff dispositions and raw audit remain
+historical evidence, superseded by this later reconciliation.
+
+A meaningful saved-Mail regression now asserts exactly one localized Close
+action across saved and account views, then verifies dismissal and reader
+disposal. Targeted qualification of this combined source is in progress.
+The frozen 2,551-case result below remains bound to `a6095c30`; source additions
+and changed shared Word/Mail dependencies require the explicit impact review
+and targeted repeat receipt, rather than an identical-source claim.
+
 ## Result and publication
 
 Add Note and Add Annotation can replace a consecutive range of ordinary
@@ -22,7 +39,8 @@ The remote branch is `codex/zotero-parity-20261121-next`. Incremental checkpoint
 | Incoming-history reconciliation and increment plan | `674ce9701e185971388fc2e517d305689ccba471` |
 | Complete implementation, tests and user-facing documentation; frozen qualification source | `a6095c304ad2d6935f2ae6f8b74412038d19f142` |
 | Qualification evidence and final intake dispositions | `149a8ae46d6dad02d21040c3587389f3c954a577` |
-| Incorporation of the later main update | The subsequent merge checkpoint containing the applicability record below |
+| Incorporation of screenshot main | `b45703affe7249b0cfe6ae16c4f9017f8cd0f378` |
+| Incorporation of qualified Mail/Word main and the captured Close fix | The subsequent combined-source checkpoint |
 
 [PR #289](https://github.com/CrispStrobe/quds_office_suite/pull/289) records final
 publication and main readback. The starting main was
@@ -49,11 +67,11 @@ replay script are retained in [intake/](intake/).
 The later refresh captured 341 external heads and found **three post-intake
 branch advances** outside that completed inventory: Word VBA, Mail sync and a
 Mail Close-control fix. Their exact heads and review dispositions are retained
-in [final-intake/](final-intake/README.md). They are preserved separately for
-their own acceptance and are not included in this Zotero publication. The raw
-final audit still reports three uncovered heads and exit code 1; it is not
-relabeled as a fully integrated final inventory. This report distinguishes
-completion of the bounded initial intake from concurrent work arriving later.
+in [final-intake/](final-intake/README.md). At that cutoff they were preserved
+separately pending their own acceptance. The later combined-main reconciliation
+above includes all three; the raw historical final audit still reports three
+uncovered heads and exit code 1 and is not rewritten. A separate replay against
+the final combined commit records the newer coverage result.
 
 To replay the completed initial inventory against the current merge:
 
@@ -175,16 +193,17 @@ paths; rerunning those scripts requires their recorded workspace/runtime layout
 or deliberate path relocation. The archive verifier itself is portable and
 does not require the original SDK.
 
-## Later main update: App Store screenshots
+## Historical main update: App Store screenshots
 
 After qualification and the captured final intake, remote main advanced to
 `eb286fb7254d6850c9f33b46e8aa65e2ea32f7f0` through PR #290. It adds six App Store
 screenshots and changes the standalone `app_store_screenshots_gate.dart`.
-This main update is incorporated before publication, preserving its seven
-files exactly. It does not include the three historical deferred branch heads.
+This main update was incorporated in `b45703af`, preserving its seven files
+exactly. That particular checkpoint did not include the three historical
+deferred branch heads; the subsequent reconciliation above does.
 
-The screenshot gate is one of the broadly recorded 2,978 inputs, so the current
-combined tree is **not** described as having an identical complete source map.
+The screenshot gate is one of the broadly recorded 2,978 inputs, so that
+checkpoint is **not** described as having an identical complete source map.
 Exactly **2,977 inputs remain unchanged**; that one unselected gate is the
 explicit exception. All 119 executed suite files, Zotero product files,
 fixtures, manifests and locks remain unchanged. The gate's imports are
@@ -198,17 +217,19 @@ the macOS screenshot gate or of the full populations is claimed. The exact
 seven incoming file identities and the single recorded-source exception are
 retained in [main-applicability.json](main-applicability.json).
 
-On the combined main tree, verify the archive plus this precisely bounded
-source reconciliation using:
+On the screenshot-only checkpoint `b45703af`, verify the archive plus that
+precisely bounded source reconciliation using:
 
 ```bash
 python3 docs/validation/zotero-table-cell-ranges-20261121/verify_main_applicability.py --repo .
 ```
 
-The original strict verifier intentionally rejects the combined tree's changed
+The original strict verifier intentionally rejects that checkpoint's changed
 screenshot gate unless `--archive-only` is selected. Neither verifier silently
 accepts further source drift. Ancestry, merge tree and remote main readback are
-recorded separately in PR #289's publication receipt.
+recorded separately in PR #289's publication receipt. This historical verifier
+also rejects the later combined Word/Mail source, whose broader delta and new
+targeted runs have their own reconciliation record.
 
 ## Remaining parity work
 

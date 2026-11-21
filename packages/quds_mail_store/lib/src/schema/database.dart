@@ -14,7 +14,7 @@ final class MailStoreDatabase extends GeneratedDatabase {
   final MailStoreFaultInjector? faultInjector;
 
   @override
-  int get schemaVersion => 7;
+  int get schemaVersion => 8;
 
   @override
   Iterable<TableInfo<Table, Object?>> get allTables => const [];
@@ -44,11 +44,14 @@ final class MailStoreDatabase extends GeneratedDatabase {
       for (final statement in schemaV7) {
         await customStatement(statement);
       }
+      for (final statement in schemaV8) {
+        await customStatement(statement);
+      }
       // Include the version in the same transaction as schema creation.
-      await customStatement('PRAGMA user_version = 7');
+      await customStatement('PRAGMA user_version = 8');
     }),
     onUpgrade: (_, from, to) async {
-      if (from < 1 || from > 6 || to != 7) {
+      if (from < 1 || from > 7 || to != 8) {
         throw const MailStoreStorageException(MailProblemCode.unsupported);
       }
       await transaction(() async {
@@ -77,11 +80,16 @@ final class MailStoreDatabase extends GeneratedDatabase {
             await customStatement(statement);
           }
         }
-        for (final statement in schemaV7) {
+        if (from < 7) {
+          for (final statement in schemaV7) {
+            await customStatement(statement);
+          }
+        }
+        for (final statement in schemaV8) {
           await customStatement(statement);
         }
         await faultInjector?.call(MailStoreCheckpoint.migrationCreated);
-        await customStatement('PRAGMA user_version = 7');
+        await customStatement('PRAGMA user_version = 8');
       });
     },
     beforeOpen: (_) async {
@@ -249,4 +257,21 @@ const schemaV5 = <String>[
     FOREIGN KEY(account,message) REFERENCES messages(account,id)
   )''',
   'CREATE INDEX mailbox_view_message ON mailbox_view_members(account,message)',
+];
+
+/// Completion is only known after a page commits under this schema. Older
+/// cursors remain intact but deliberately do not gain an invented checkpoint.
+const schemaV8 = <String>[
+  '''CREATE TABLE mailbox_sync_state (
+    account TEXT NOT NULL, mailbox TEXT NOT NULL,
+    revision INTEGER NOT NULL CHECK(typeof(revision) = 'integer' AND
+      revision BETWEEN 1 AND 9007199254740991),
+    updated_at INTEGER NOT NULL CHECK(typeof(updated_at) = 'integer' AND
+      updated_at BETWEEN 0 AND 8640000000000000),
+    has_more INTEGER NOT NULL CHECK(typeof(has_more) = 'integer' AND
+      has_more IN (0,1)),
+    PRIMARY KEY(account,mailbox),
+    FOREIGN KEY(account,mailbox) REFERENCES mailboxes(account,id)
+      ON DELETE CASCADE
+  )''',
 ];

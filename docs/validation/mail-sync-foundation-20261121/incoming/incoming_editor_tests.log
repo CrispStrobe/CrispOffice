@@ -1,0 +1,113 @@
+00:00 +0: loading /workspace/scratch/1fa88bd5b735/quds_office_suite/packages/quds_office_editor/test/word_zotero_multiparagraph_controller_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: addNote replaces body paragraphs with forward selection history
+00:00 +1: addNote replaces body paragraphs with backward selection history
+00:00 +2: addNote replaces footnote paragraphs with forward selection history
+00:00 +3: addNote replaces footnote paragraphs with backward selection history
+00:00 +4: addNote replaces endnote paragraphs with forward selection history
+00:00 +5: addNote replaces endnote paragraphs with backward selection history
+00:00 +6: addAnnotation replaces body paragraphs with forward selection history
+00:00 +7: addAnnotation replaces body paragraphs with backward selection history
+00:00 +8: addAnnotation replaces footnote paragraphs with forward selection history
+00:00 +9: addAnnotation replaces footnote paragraphs with backward selection history
+00:00 +10: addAnnotation replaces endnote paragraphs with forward selection history
+00:00 +11: addAnnotation replaces endnote paragraphs with backward selection history
+00:00 +12: body paragraph-separator endpoints map to their native boundaries
+00:00 +13: body replacement of whole endpoint paragraphs retains one selection history
+00:00 +14: body replacement of empty endpoint paragraphs retains one selection history
+00:00 +15: body replacement supports empty intervening paragraphs
+00:00 +16: body research blocks preserve native owners after spanning replacement
+00:00 +17: body ordinary citation commands keep multi-paragraph selections non-insertable
+00:00 +18: body start endpoint change refuses a completed replacement without partial application
+00:00 +19: body end endpoint change refuses a completed replacement without partial application
+00:00 +20: body composition change refuses a completed replacement without partial application
+00:00 +21: body content revision change refuses a completed replacement without partial application
+00:00 +22: body spanning selection refuses a protected citation
+00:00 +23: body spanning selection refuses a protected native field
+00:00 +24: body spanning selection refuses a protected comment
+00:00 +25: body spanning selection refuses a protected bookmark
+00:00 +26: body spanning selection refuses a protected content control
+00:00 +27: footnote paragraph-separator endpoints map to their native boundaries
+00:00 +28: footnote replacement of whole endpoint paragraphs retains one selection history
+00:00 +29: footnote replacement of empty endpoint paragraphs retains one selection history
+00:00 +30: footnote replacement supports empty intervening paragraphs
+00:00 +31: footnote research blocks preserve native owners after spanning replacement
+00:00 +32: footnote ordinary citation commands keep multi-paragraph selections non-insertable
+00:00 +33: footnote start endpoint change refuses a completed replacement without partial application
+00:00 +34: footnote end endpoint change refuses a completed replacement without partial application
+00:00 +35: footnote composition change refuses a completed replacement without partial application
+00:00 +36: footnote content revision change refuses a completed replacement without partial application
+00:00 +37: footnote spanning selection refuses a protected citation
+00:00 +38: footnote spanning selection refuses a protected native field
+00:00 +39: footnote spanning selection refuses a protected comment
+00:00 +40: footnote spanning selection refuses a protected bookmark
+00:00 +41: footnote spanning selection refuses a protected content control
+00:00 +42: endnote paragraph-separator endpoints map to their native boundaries
+00:00 +43: endnote replacement of whole endpoint paragraphs retains one selection history
+00:00 +44: endnote replacement of empty endpoint paragraphs retains one selection history
+00:00 +45: endnote replacement supports empty intervening paragraphs
+00:00 +46: endnote research blocks preserve native owners after spanning replacement
+00:00 +47: endnote ordinary citation commands keep multi-paragraph selections non-insertable
+00:00 +48: endnote start endpoint change refuses a completed replacement without partial application
+00:00 +49: endnote end endpoint change refuses a completed replacement without partial application
+00:00 +50: endnote composition change refuses a completed replacement without partial application
+00:00 +51: endnote content revision change refuses a completed replacement without partial application
+00:00 +52: endnote spanning selection refuses a protected citation
+00:00 +53: endnote spanning selection refuses a protected native field
+00:00 +54: endnote spanning selection refuses a protected comment
+00:00 +55: endnote spanning selection refuses a protected bookmark
+00:00 +56: endnote spanning selection refuses a protected content control
+00:00 +57: authored note 1 visible start preserves its marker before plain research
+00:00 +58: authored note 1 visible start preserves its marker before heading research
+00:00 +59: authored note 1 visible start preserves its marker before table research
+00:00 +60: authored note 2 visible start preserves its marker before plain research
+00:00 +61: authored note 2 visible start preserves its marker before heading research
+00:00 +62: authored note 2 visible start preserves its marker before table research
+00:00 +63: a reopened DOCX supports another spanning replacement between untouched citations
+00:00 +64: addNote replaces plain table-cell paragraphs with forward selection history
+00:00 +65: addNote replaces plain table-cell paragraphs with backward selection history
+00:00 +66: addNote replaces merged table-cell paragraphs with forward selection history
+00:00 +67: addNote replaces merged table-cell paragraphs with backward selection history
+00:00 +68: addNote replaces nested table-cell paragraphs with forward selection history
+00:01 +69: addNote replaces nested table-cell paragraphs with backward selection history
+00:01 +70: addAnnotation replaces plain table-cell paragraphs with forward selection history
+00:01 +71: addAnnotation replaces plain table-cell paragraphs with backward selection history
+00:01 +72: addAnnotation replaces merged table-cell paragraphs with forward selection history
+00:01 +73: addAnnotation replaces merged table-cell paragraphs with backward selection history
+00:01 +74: addAnnotation replaces nested table-cell paragraphs with forward selection history
+00:01 +75: addAnnotation replaces nested table-cell paragraphs with backward selection history
+00:01 +76: cell replacement retains heading or list structure and cell owners: <h2>Heading</h2><p>Paragraph</p>
+00:01 +77: cell replacement retains heading or list structure and cell owners: <ol start="3"><li>First</li><li>Second</li></ol>
+00:01 +78: cell paragraph-separator endpoints retain the unselected suffix
+00:01 +79: a typed paragraph cell accepts rich paragraph blocks: <h2>Heading</h2><p>Paragraph</p>
+00:01 +80: a typed paragraph cell accepts rich paragraph blocks: <ol><li>First</li><li>Second</li></ol>
+00:01 +81: completed cell replacement rejects changed cell ownership without a revision
+00:01 +82: completed cell replacement rejects changed row ownership without a revision
+00:01 +83: completed cell replacement rejects changed table ownership without a revision
+00:01 +84: completed cell replacement rejects changed block list ownership without a revision
+00:01 +85: completed cell replacement rejects changed continuation ownership without a revision
+00:01 +86: table-cell range refuses different cell before publishing changes
+00:01 +87: table-cell range refuses different row before publishing changes
+00:01 +88: table-cell range refuses body to cell before publishing changes
+00:01 +89: table-cell range refuses outer to inner cell before publishing changes
+00:01 +90: table-cell range refuses shared cell list before publishing changes
+00:01 +91: table-cell range refuses shared table before publishing changes
+00:01 +92: table-cell range refuses continuation before publishing changes
+00:01 +93: table-cell range refuses control ancestor before publishing changes
+00:01 +94: table-cell range refuses frame ancestor before publishing changes
+00:01 +95: table-cell range refuses selected table band before publishing changes
+00:01 +96: table-containing payload refuses inside a cell without leaking staged preferences
+00:01 +97: body spanning selection refuses section boundary
+00:01 +98: body spanning selection refuses different table cells
+00:01 +99: direct addNote replaces a cell-local selection
+00:01 +100: direct addNote cancels a cell-local selection
+00:01 +101: direct addAnnotation replaces a cell-local selection
+00:01 +102: direct addAnnotation cancels a cell-local selection
+00:01 +103: direct research command replaces a multi-paragraph target in story 0
+00:01 +104: direct research command cancels a multi-paragraph target in story 0
+00:01 +105: direct research command replaces a multi-paragraph target in story 1
+00:01 +106: direct research command cancels a multi-paragraph target in story 1
+00:01 +107: direct research command replaces a multi-paragraph target in story 2
+00:02 +108: direct research command cancels a multi-paragraph target in story 2
+00:02 +109: (tearDownAll)
+00:02 +109: All tests passed!
