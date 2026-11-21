@@ -1,0 +1,224 @@
+{
+  "accepted_executions": 4635,
+  "archives_verified": 2,
+  "case_identity": [
+    "repository-relative suite path",
+    "test name",
+    "visible occurrence ordinal within suite and name (testStart order)"
+  ],
+  "distinct_case_names": 4635,
+  "distinct_cases": 4635,
+  "distinct_suites": 239,
+  "members_verified": 116,
+  "production_commit": "d1125df123c68ff4bedcc0d163e6d4fb06bb0e18",
+  "production_tree": "eba5a73fb140a33425d1a3a6a5b45615cee39040",
+  "repeated_executions": 0,
+  "runs": [
+    {
+      "distinct_case_names": 319,
+      "distinct_cases": 319,
+      "hidden_successes_omitted": 12,
+      "name": "engine/zotero-01",
+      "passed": 319,
+      "suites": 12
+    },
+    {
+      "distinct_case_names": 311,
+      "distinct_cases": 311,
+      "hidden_successes_omitted": 12,
+      "name": "engine/zotero-02",
+      "passed": 311,
+      "suites": 12
+    },
+    {
+      "distinct_case_names": 400,
+      "distinct_cases": 400,
+      "hidden_successes_omitted": 12,
+      "name": "engine/zotero-03",
+      "passed": 400,
+      "suites": 12
+    },
+    {
+      "distinct_case_names": 320,
+      "distinct_cases": 320,
+      "hidden_successes_omitted": 12,
+      "name": "engine/zotero-04",
+      "passed": 320,
+      "suites": 12
+    },
+    {
+      "distinct_case_names": 106,
+      "distinct_cases": 106,
+      "hidden_successes_omitted": 7,
+      "name": "engine/zotero-05",
+      "passed": 106,
+      "suites": 7
+    },
+    {
+      "distinct_case_names": 166,
+      "distinct_cases": 166,
+      "hidden_successes_omitted": 12,
+      "name": "engine/odt-01",
+      "passed": 166,
+      "suites": 12
+    },
+    {
+      "distinct_case_names": 290,
+      "distinct_cases": 290,
+      "hidden_successes_omitted": 12,
+      "name": "engine/odt-02",
+      "passed": 290,
+      "suites": 12
+    },
+    {
+      "distinct_case_names": 244,
+      "distinct_cases": 244,
+      "hidden_successes_omitted": 12,
+      "name": "engine/odt-03",
+      "passed": 244,
+      "suites": 12
+    },
+    {
+      "distinct_case_names": 198,
+      "distinct_cases": 198,
+      "hidden_successes_omitted": 12,
+      "name": "engine/odt-04",
+      "passed": 198,
+      "suites": 12
+    },
+    {
+      "distinct_case_names": 182,
+      "distinct_cases": 182,
+      "hidden_successes_omitted": 10,
+      "name": "engine/odt-05",
+      "passed": 182,
+      "suites": 10
+    },
+    {
+      "distinct_case_names": 247,
+      "distinct_cases": 247,
+      "hidden_successes_omitted": 14,
+      "name": "engine/word_tables_layout_notes-01",
+      "passed": 247,
+      "suites": 12
+    },
+    {
+      "distinct_case_names": 115,
+      "distinct_cases": 115,
+      "hidden_successes_omitted": 12,
+      "name": "engine/word_tables_layout_notes-02",
+      "passed": 115,
+      "suites": 12
+    },
+    {
+      "distinct_case_names": 172,
+      "distinct_cases": 172,
+      "hidden_successes_omitted": 12,
+      "name": "engine/word_tables_layout_notes-03",
+      "passed": 172,
+      "suites": 12
+    },
+    {
+      "distinct_case_names": 87,
+      "distinct_cases": 87,
+      "hidden_successes_omitted": 6,
+      "name": "engine/word_tables_layout_notes-04",
+      "passed": 87,
+      "suites": 6
+    },
+    {
+      "distinct_case_names": 77,
+      "distinct_cases": 77,
+      "hidden_successes_omitted": 8,
+      "name": "engine/word_pdf",
+      "passed": 77,
+      "suites": 8
+    },
+    {
+      "distinct_case_names": 204,
+      "distinct_cases": 204,
+      "hidden_successes_omitted": 5,
+      "name": "engine/word_numeric",
+      "passed": 204,
+      "suites": 3
+    },
+    {
+      "distinct_case_names": 219,
+      "distinct_cases": 219,
+      "hidden_successes_omitted": 18,
+      "name": "editor_zotero_odt_1",
+      "passed": 219,
+      "suites": 12
+    },
+    {
+      "distinct_case_names": 196,
+      "distinct_cases": 196,
+      "hidden_successes_omitted": 14,
+      "name": "editor_zotero_odt_2",
+      "passed": 196,
+      "suites": 12
+    },
+    {
+      "distinct_case_names": 317,
+      "distinct_cases": 317,
+      "hidden_successes_omitted": 18,
+      "name": "editor_zotero_odt_3",
+      "passed": 317,
+      "suites": 12
+    },
+    {
+      "distinct_case_names": 102,
+      "distinct_cases": 102,
+      "hidden_successes_omitted": 12,
+      "name": "editor_zotero_odt_4",
+      "passed": 102,
+      "suites": 12
+    },
+    {
+      "distinct_case_names": 129,
+      "distinct_cases": 129,
+      "hidden_successes_omitted": 7,
+      "name": "editor_zotero_odt_5",
+      "passed": 129,
+      "suites": 5
+    },
+    {
+      "distinct_case_names": 41,
+      "distinct_cases": 41,
+      "hidden_successes_omitted": 4,
+      "name": "studio_zotero_odt_1",
+      "passed": 41,
+      "suites": 4
+    },
+    {
+      "distinct_case_names": 108,
+      "distinct_cases": 108,
+      "hidden_successes_omitted": 10,
+      "name": "combined-mail-search-final",
+      "passed": 108,
+      "suites": 6
+    },
+    {
+      "distinct_case_names": 76,
+      "distinct_cases": 76,
+      "hidden_successes_omitted": 21,
+      "name": "combined-table-margin-editor-final",
+      "passed": 76,
+      "suites": 9
+    },
+    {
+      "distinct_case_names": 9,
+      "distinct_cases": 9,
+      "hidden_successes_omitted": 1,
+      "name": "combined-table-margin-ruler-final",
+      "passed": 9,
+      "suites": 1
+    }
+  ],
+  "source_check": {
+    "checked": true,
+    "status": "verified",
+    "tracked_files": 1527
+  },
+  "verified": true
+}

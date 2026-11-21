@@ -1,5 +1,20 @@
 # Zotero validation
 
+## 21 November 2026 — table margins and complete captured intake
+
+The [table-layout qualification](validation/zotero-table-layout-20261121/README.md)
+delivers native table margins, bounded editable ODT padding, exact serialized
+content-width guards and referenced image-only endnotes. It reconciles all 396
+captured refs, including newer Zotero, numeric VBA and Mail refresh work.
+**4,635 distinct cases across 239 suites pass on source-bound local runs**, with
+zero failures/skips; 29 changed Dart files pass formatting and strict analysis.
+Nine active citations survive two actual LibreOffice saves and an intervening
+DOCX/ODT cycle. The evidence verifier checks raw events, 116 archive members and
+1,527 tracked source inputs. The recorded converter is a LibreOffice development
+build; installed Zotero/Word/supported-release LibreOffice acceptance remains
+separate. Earlier counts below retain their own scopes and are not added to this
+fresh total. GitHub Actions were neither queried nor awaited.
+
 ## 21 November 2026 — combined native round-trip completion
 
 The [combined completion record](validation/zotero-roundtrip-complete-20261121/README.md)
