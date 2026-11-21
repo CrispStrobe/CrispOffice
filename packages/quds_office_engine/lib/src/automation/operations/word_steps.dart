@@ -6,6 +6,7 @@ import 'word_header_footer_guard.dart';
 import 'word_list_steps.dart';
 import 'word_page_setup_steps.dart';
 import 'word_section_start_steps.dart';
+import 'word_shading_steps.dart';
 import 'word_spacing_steps.dart';
 import 'word_structure_steps.dart';
 import 'word_style_steps.dart';
@@ -18,6 +19,7 @@ const wordOperations = <String, List<String>>{
   'heading': ['paragraph', 'level', ..._storyFields],
   'applyStyle': ['paragraph', 'style', ..._storyFields],
   'paragraphStyle': ['paragraph', 'name', 'builtin', ..._storyFields],
+  'paragraphShading': ['paragraph', 'color', ..._storyFields],
   'characterStyle': ['paragraph', 'run', 'style', ..._storyFields],
   'tableStyle': ['table', 'style'],
   'styleDefinition': ['style', 'type', 'rPr', 'pPr', 'tblPr', 'tcPr'],
@@ -162,6 +164,16 @@ void applyStep(
       WordStyles.apply(paragraph(), style, document: doc);
     case 'paragraphStyle':
       setWordParagraphStyle(doc, paragraph(), s);
+    case 'paragraphShading':
+      // Validate ownership before the general paragraph selector traverses
+      // the model, so malformed shared/cyclic trees cannot hide a target.
+      final targets = wordShadingTargets(doc);
+      setWordParagraphShading(
+        doc,
+        paragraph(),
+        color: s.string('color'),
+        targets: targets,
+      );
     case 'characterStyle':
       final id = s.string('style');
       _sourceStyle(doc, id, 'character');

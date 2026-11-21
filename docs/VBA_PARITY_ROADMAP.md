@@ -43,6 +43,17 @@ and [the native macro contract](MACROS.md).
 
 ## Ordered milestones and acceptance
 
+The latest bounded continuation adds typed Word `Shading` objects for selected
+paragraph backgrounds, two background-color setters and named `WdColor`
+constants, with sparse native ownership and explicit automatic overrides.
+The shared source language adds `Space`/`String` construction and
+`ChrW`/`AscW` UTF-16 operations. These extend Stages 2 and 4 using the same
+compile-to-plan boundary; document reads, live execution and embedded VBA
+projects remain separate milestones. See the
+[shading contract](VBA_WORD_MACROS.md#paragraph-background-shading),
+[text-construction contract](VBA_MACROS.md#text-construction-and-unicode-code-units),
+and [source-specific local qualification](validation/word-vba-format-controls-20261121/README.md).
+
 | Stage | Concrete deliverable | Acceptance required before claiming support |
 | --- | --- | --- |
 | 1. Source-data array lifecycle | Local dynamic arrays, `ReDim`, `Preserve`, `Erase`, `Option Base`; reuse fixed-array indexing and iteration | Typed defaults, preserve/shrink/regrow semantics, unallocated diagnostics, enumeration locks, shared resource budgets, CLI/MCP transaction tests, VM/JavaScript agreement |

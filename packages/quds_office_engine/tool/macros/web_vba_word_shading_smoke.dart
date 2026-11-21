@@ -59,7 +59,7 @@ Uint8List wordShadingInput() {
   );
   final package = OpcPackage.openBytes(WordSerializer().writeBytes(document));
   final main = package.getPart('/word/document.xml')!;
-  const initial = '<w:shd w:val="clear" w:color="auto" w:fill="334455"/>';
+  const initial = '<w:shd w:val="clear" w:fill="334455"/>';
   _check(main.readText().contains(initial), 'Fixture shading was not emitted');
   main.writeText(
     main.readText().replaceFirst(
@@ -111,7 +111,7 @@ List<Map<String, Object?>> wordShadingState(Uint8List bytes) {
       {
         'text': paragraph.text,
         'fill': paragraph.properties.shadingFill,
-        'spacingAfter': paragraph.properties.spacingAfter,
+        'spacingAfterTwips': (paragraph.properties.spacingAfter * 20).round(),
         'runs': [
           for (final run in paragraph.inlines.whereType<WmlRun>())
             {
@@ -123,6 +123,30 @@ List<Map<String, Object?>> wordShadingState(Uint8List bytes) {
             },
         ],
       },
+  ];
+}
+
+List<String?> wordShadingNativeFills(Uint8List bytes) {
+  final package = OpcPackage.openBytes(bytes);
+  final document = XmlDocument.parse(
+    package.getPart('/word/document.xml')!.readText(),
+  ).root!.firstChild('body', namespaceUri: _w)!;
+  final storyRoots = <XmlElement>[
+    document,
+    for (final prefix in ['header', 'footer'])
+      for (final part in package.parts.where(
+        (part) =>
+            part.uri.startsWith('/word/$prefix') && part.uri.endsWith('.xml'),
+      ))
+        XmlDocument.parse(package.getPart(part.uri)!.readText()).root!,
+  ];
+  return [
+    for (final root in storyRoots)
+      for (final paragraph in root.childrenNamed('p', namespaceUri: _w))
+        paragraph
+            .firstChild('pPr', namespaceUri: _w)
+            ?.firstChild('shd', namespaceUri: _w)
+            ?.getAttribute('fill', namespaceUri: _w),
   ];
 }
 
@@ -159,7 +183,8 @@ void assertWordShadingPackage(Uint8List bytes) {
 
 void assertWordShadingExample(Uint8List bytes) {
   final original = wordShadingState(wordShadingInput());
-  const expectedFills = ['123456', 'auto', 'C0C0C0', '00FFFF', 'auto'];
+  // Automatic is an explicit native override; the rendering model uses null.
+  const expectedFills = <String?>['123456', null, 'C0C0C0', '00FFFF', null];
   final expected = [
     for (var i = 0; i < original.length; i++)
       {...original[i], 'fill': expectedFills[i]},
@@ -168,6 +193,11 @@ void assertWordShadingExample(Uint8List bytes) {
   _check(
     jsonEncode(actual) == jsonEncode(expected),
     'Shading changed text, another format or the wrong paragraph: $actual',
+  );
+  _check(
+    jsonEncode(wordShadingNativeFills(bytes)) ==
+        jsonEncode(['123456', 'auto', 'C0C0C0', '00FFFF', 'auto']),
+    'Shading lost explicit native colors or an automatic direct override',
   );
   assertWordShadingPackage(bytes);
 }
@@ -184,7 +214,7 @@ Future<Map<String, Object?>> runWordShadingExample(String source) async {
   );
   final guard = (await WordPackagePreservation.capture(input, 'shading.docm'))!;
   final session = OfficeMacroSession(input, format: OfficeMacroFormat.docx);
-  session.startRecording('Word paragraph shading');
+  session.startRecording('Playback is separate from native recording');
   final validation = await session.validate(plan);
   _check(
     validation.validatedOnly &&
@@ -194,12 +224,11 @@ Future<Map<String, Object?>> runWordShadingExample(String source) async {
     'Shading validation published a detached edit',
   );
   final run = await session.run(OfficeMacro.parse(plan.encode()));
-  final recording = session.stopRecording();
   _check(
     run.completedSteps == 7 &&
         session.revision == 1 &&
-        recording.steps.length == 7,
-    'Shading did not publish and record one complete transaction',
+        session.stopRecording().steps.isEmpty,
+    'Shading did not publish one transaction or recorded macro playback',
   );
   var saved = session.bytes;
   for (var cycle = 0; cycle < 3; cycle++) {
@@ -209,6 +238,13 @@ Future<Map<String, Object?>> runWordShadingExample(String source) async {
       saved = WordSerializer().writeBytes(WordDeserializer().readBytes(saved));
     }
   }
+  final recorder = OfficeMacroSession(input, format: OfficeMacroFormat.docx);
+  recorder.startRecording('Word paragraph shading');
+  for (final step in plan.steps) {
+    await recorder.callTool(step.tool, step.arguments);
+  }
+  final recording = recorder.stopRecording();
+  _check(recording.steps.length == 7, 'Native shading edits were not recorded');
   final replay = OfficeMacroSession(input, format: OfficeMacroFormat.docx);
   await replay.run(OfficeMacro.parse(recording.encode()));
   assertWordShadingExample(replay.bytes);
@@ -238,6 +274,7 @@ Future<Map<String, Object?>> runWordShadingExample(String source) async {
     'opaquePayloadsPreserved': true,
     'plan': [for (final step in plan.steps) step.toJson()],
     'state': wordShadingState(saved),
+    'nativeFills': wordShadingNativeFills(saved),
     'nativePartSha256': {
       for (final part in parts)
         part.uri: sha256

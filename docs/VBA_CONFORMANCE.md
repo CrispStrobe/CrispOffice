@@ -138,6 +138,22 @@ results and static scalar/object boundaries. Expectations
 were authored from the cited specification or stated dialect policy before
 running the implementation. See [the Variant contract](VBA_MACROS.md#variant-states-and-explicit-conversions).
 
+The later `office_vba_text_construction_test.dart` suite extends shared String
+checks with Space/String repetition, signed ChrW/AscW UTF-16 units, strict
+argument and allocation limits, surrogate recombination and publication guards.
+These are independently authored source-contract tests, separate from the
+versioned JSON corpus above. The runnable Word construction example is checked
+on both the VM and compiled JavaScript. The full signed ChrW lower bound and
+String-only character operand are explicit dialect choices in the
+[construction contract](VBA_MACROS.md#text-construction-and-unicode-code-units).
+
+`office_vba_word_shading_test.dart` and its native/integration suites qualify
+typed Shading selectors, exact named colors/palette values, sparse native
+background ownership, explicit automatic overrides, source refusals and atomic
+publication. They are separate from the original paragraph corpus and do not
+claim general Range, texture, character-shading or Office-host parity. See the
+[shading contract](VBA_WORD_MACROS.md#paragraph-background-shading).
+
 The Word suite independently specifies `ThisDocument`, Document/Paragraph/Range
 aliases and `ByVal`, prefix insertion and evaluation order, nested `With`,
 font and paragraph formatting, named alignment constants, exact half-point and

@@ -4,6 +4,7 @@ library;
 import 'dart:io';
 
 import 'package:quds_office_engine/quds_office_automation.dart';
+import 'package:quds_office_engine/quds_office_engine.dart';
 import 'package:test/test.dart';
 
 import '../tool/macros/web_vba_text_construction_smoke.dart' as portable;
@@ -19,11 +20,9 @@ OfficeMacro _source(String source) => const OfficeVbaMacroLanguage().compile(
 
 OfficeMacro _compile(String body) => _source('Sub Main()\n$body\nEnd Sub');
 
-Object? _value(String expression) =>
-    _compile('Worksheets(1).Range("A1").Value2 = $expression')
-        .steps
-        .single
-        .arguments['value'];
+Object? _value(String expression) => _compile(
+  'Worksheets(1).Range("A1").Value2 = $expression',
+).steps.single.arguments['value'];
 
 TypeMatcher<OfficeVbaCompileException> _error(String code) =>
     isA<OfficeVbaCompileException>()
@@ -137,7 +136,7 @@ void main() {
     ]) {
       test('length rejects $bad without implicit conversion', () {
         _reject('Space($bad)', 'vba_type_error');
-        _reject(r'Space$(' + bad + ')', 'vba_type_error');
+        _reject('Space\$($bad)', 'vba_type_error');
         _reject('String($bad, "x")', 'vba_type_error');
       });
     }
@@ -152,7 +151,7 @@ void main() {
     ]) {
       test('ChrW rejects $bad without truncation or wrapping', () {
         _reject('ChrW($bad)', 'vba_type_error');
-        _reject(r'ChrW$(' + bad + ')', 'vba_type_error');
+        _reject('ChrW\$($bad)', 'vba_type_error');
       });
     }
     for (final bad in ['42', '256', '-1', 'CVar(42)']) {
@@ -336,7 +335,25 @@ End Sub
     },
   );
 
-  for (final expression in ['ChrW(0)', 'ChrW(13)', 'ChrW(9)', 'ChrW(55357)']) {
+  test(
+    'ChrW can construct a supported Word tab without a new paragraph',
+    () async {
+      final session = OfficeMacroSession(
+        (DocxDocumentBuilder()..paragraph('Report')).build(),
+        format: OfficeMacroFormat.docx,
+      );
+      await session.run(
+        portable.textConstructionPlan(
+          'ActiveDocument.Paragraphs(1).Range.InsertBefore ChrW(9)',
+        ),
+      );
+      final document = WordDeserializer().readBytes(session.bytes);
+      expect(document.paragraphs, hasLength(1));
+      expect(document.paragraphs.single.text, '\tReport');
+    },
+  );
+
+  for (final expression in ['ChrW(0)', 'ChrW(13)', 'ChrW(55357)']) {
     test(
       'generated forbidden Word text retains publication guard: $expression',
       () {
