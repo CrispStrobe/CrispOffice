@@ -18,11 +18,15 @@ class StudioSavedMailView extends StatefulWidget {
     super.key,
     required this.strings,
     this.onAccounts,
+    this.onClose,
     this.accountNotice,
   });
 
   final StudioStrings strings;
   final VoidCallback? onAccounts;
+
+  /// Closes an embedded pane; standalone dialogs fall back to their route.
+  final VoidCallback? onClose;
   final String? accountNotice;
 
   @override
@@ -127,7 +131,7 @@ class _StudioSavedMailViewState extends State<StudioSavedMailView> {
             icon: const Icon(Icons.manage_accounts_outlined),
           ),
         IconButton(
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: widget.onClose ?? () => Navigator.of(context).pop(),
           tooltip: widget.strings.close,
           icon: const Icon(Icons.close),
         ),

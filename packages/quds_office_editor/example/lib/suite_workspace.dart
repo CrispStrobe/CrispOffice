@@ -1043,6 +1043,17 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           shortcut: _fileShortcut(LogicalKeyboardKey.keyP),
           onSelected: enabled ? _exportPdf : null,
         ),
+        if (_app == SuiteApp.word)
+          StudioMenuAction(
+            id: 'export-zotero-odt',
+            label: _t(
+              'Export Zotero ODT…',
+              'Zotero-ODT exportieren…',
+              'تصدير ODT مع بيانات Zotero…',
+            ),
+            icon: Icons.file_download_outlined,
+            onSelected: _canExportZoteroOdt ? _exportZoteroOdt : null,
+          ),
       ],
       <StudioMenuAction>[
         StudioMenuAction(
@@ -3221,6 +3232,16 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             _t('Export PDF', StudioStrings.de('Export PDF'), 'تصدير PDF'),
             _exportPdf,
           ),
+          if (_app == SuiteApp.word)
+            _cmd(
+              Icons.file_download_outlined,
+              _t(
+                'Export Zotero ODT',
+                'Zotero-ODT exportieren',
+                'تصدير ODT مع بيانات Zotero',
+              ),
+              _canExportZoteroOdt ? _exportZoteroOdt : null,
+            ),
           _cmd(
             Icons.refresh,
             _t(
@@ -6922,6 +6943,64 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
           _saveProgress = 0;
         });
       }
+    }
+  }
+
+  bool get _canExportZoteroOdt =>
+      _app == SuiteApp.word && _fileActionsAvailable && !_zoteroOpen;
+
+  Future<void> _exportZoteroOdt() async {
+    if (!_canExportZoteroOdt) return;
+    final document = _word.document;
+    final fileName = StudioFiles.zoteroOdtExportName(_wordName);
+    setState(() => _savePhase = _SavePhase.saving);
+    try {
+      // The worker receives a detached snapshot. Edits made while the file
+      // picker is open remain dirty in the active DOCX document.
+      final bytes = await compute(
+        OdtDocumentWriter.writeEditableZoteroBytes,
+        document,
+        debugLabel: 'Export Zotero ODT',
+      );
+      if (!mounted) return;
+      final exported = await StudioFiles.save(
+        bytes: bytes,
+        fileName: fileName,
+        ensureExtension: true,
+        onStage: (stage) {
+          if (!mounted) return;
+          setState(() {
+            _savePhase = stage == StudioSaveStage.picking
+                ? _SavePhase.picking
+                : _SavePhase.saving;
+          });
+        },
+      );
+      if (exported && mounted) {
+        _toast(
+          _t(
+            'Exported ODT with Zotero fields.',
+            'ODT mit Zotero-Feldern exportiert.',
+            'تم تصدير ODT مع حقول Zotero.',
+          ),
+        );
+      }
+    } catch (error) {
+      if (mounted) {
+        final message = _t(
+          'Could not export Zotero ODT.',
+          'Zotero-ODT konnte nicht exportiert werden.',
+          'تعذر تصدير ODT مع بيانات Zotero.',
+        );
+        final detail = error is FormatException
+            ? error.message
+            : error is UnsupportedError
+            ? error.message
+            : null;
+        _toast(detail == null ? message : '$message $detail');
+      }
+    } finally {
+      if (mounted) setState(() => _savePhase = _SavePhase.idle);
     }
   }
 

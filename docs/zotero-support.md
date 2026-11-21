@@ -7,6 +7,8 @@ document CSL processor through its HTTP Citing Protocol. CrispCloud uses the
 same engine and editor source through its guarded vendor manifest.
 Supported native ODT files can also be converted into editable Word documents
 with active citations and saved as DOCX.
+The separate **File → Export Zotero ODT…** action creates an ODT copy with
+supported native Zotero marks and preferences for LibreOffice.
 
 ## Native Zotero document formatting
 
@@ -1142,7 +1144,8 @@ document tools above use the separate HTTP Citing Protocol.
 | Existing DOCX fields | Preserve Zotero codes, unknown JSON members, source data and rich cached text, including multi-run simple fields | Nested, locked and opaque replacement is refused; multi-paragraph replacement is limited to complete native bibliography ranges |
 | Native Zotero document preferences | Read and write Zotero's XML/JSON preferences in chunked `ZOTERO_PREF_*` custom properties; translate native `Field` and wire `Http` types | Unknown preferences and unrelated properties are retained; malformed, duplicate, incomplete or ambiguously owned data is refused |
 | Document transfer | Native export/import callbacks, temporary metadata hyperlinks, DOCX save/reopen and ODT carrier export; native reformatting before applying an import | The qualified incoming carrier route uses DOCX; direct native ODT conversion has the separate envelope below; installed-plugin acceptance remains open |
-| Native ODT import | Supported paragraphs/styles, external links, authored notes, simple lists and supported merged/nested tables become an editable Word document; independent script formatting in retained LibreOffice prose; canonical Zotero citations/bibliographies and preferences remain active through DOCX saves | All-or-nothing bounded conversion; unsupported used structure/formatting and active content-sensitive defaults refuse; ordinary ODT export still writes cached results |
+| Native ODT import | Supported paragraphs/styles, external links, authored notes, simple lists and supported merged/nested tables become an editable Word document; independent script formatting in retained LibreOffice prose; canonical Zotero citations/bibliographies and preferences remain active through DOCX saves | All-or-nothing bounded conversion; unsupported used structure/formatting and active content-sensitive defaults refuse |
+| Editable Zotero ODT export | Explicit copy export writes citation ReferenceMarks, bibliography TextSections and ReferenceMark preferences with exact supported ownership; rich body/cell/decimal-note fields remain active | Ordinary ODT export still writes cached results; the explicit path refuses unsupported active fields, and installed-plugin acceptance remains separate |
 
 New citations use complex Word fields with `ADDIN ZOTERO_ITEM CSL_CITATION`
 codes, durable Zotero item URIs, and embedded CSL item snapshots. New linked
@@ -1505,6 +1508,31 @@ compiled application builds and Microsoft Word/LibreOffice interoperability
 remain separate acceptance steps. Historical evidence retains its original
 source identity.
 
+## Export an editable Zotero ODT copy
+
+In Studio Word, choose **File → Export Zotero ODT…**, or **Export Zotero ODT**
+on the File ribbon. Choose a new destination for the `.odt` copy. The operation
+preserves supported active citation marks, complete bibliography sections and
+Zotero document preferences; it does not need Zotero running. The active Word
+file keeps its normal DOCX save destination and remains dirty if it has unsaved
+changes. Cancelling the picker makes no document change.
+
+The export supports complete unlocked fields in body paragraphs, visible body
+table cells, and uniquely anchored authored footnotes/endnotes with ordinary
+decimal numbering. Unsupported fields refuse before the save picker opens,
+with a reason. Examples include incomplete or locked packets, fields in
+headers/controls/note tables, partial bibliographies, and ambiguous note owners.
+Choose a document style with Zotero first if the document has active fields but
+no saved preferences.
+
+Ordinary ODT export still writes visible citation caches. This explicit action
+adds native Zotero metadata within the existing writer's formatting envelope;
+it does not promise arbitrary Word formatting preservation or that every
+exported document fits Quds' narrower ODT import subset. The
+[native-output contract](roadmaps/zotero/native-odt-output.md) gives the precise
+scope. Local round-trip tests and the recorded LibreOfficeDev file-save check
+are separate from installed Zotero plugin acceptance on a release host.
+
 ## Open a native LibreOffice ODT
 
 Studio **Open** accepts `.odt` files. A supported file opens in Writer with
@@ -1512,8 +1540,9 @@ editable paragraphs and active Zotero fields. The normal Zotero document tools
 can then edit or refresh those fields with desktop Zotero running. The first
 save proposes a `.docx` filename and asks for a destination; it does not reuse
 the original ODT path. Keep the resulting DOCX to retain active citations and
-document preferences. **Export as ODT** keeps its existing visible cached-result
-behavior and does not write native editable Zotero marks.
+document preferences. Ordinary **Export as ODT** keeps its visible cached-result
+behavior. Use the separate [Export Zotero ODT](#export-an-editable-zotero-odt-copy)
+action to preserve supported native editable marks in an ODT copy.
 
 The importer accepts a bounded subset:
 
@@ -1547,10 +1576,11 @@ must be absent or agree with its origin; other covered-cell styling remains
 outside this subset. Repeated rows/cells remain unsupported. The document-wide
 cell and paragraph limits include generated continuations and nested tables.
 
-This merged-table increment has source review and regression cases saved in
-the [work record](validation/zotero-odt-merged-tables-20261121/README.md).
-Its local Dart/Flutter execution is pending after executor disk exhaustion;
-the earlier style/import test results do not qualify this new behavior.
+The original merged-table [work record](validation/zotero-odt-merged-tables-20261121/README.md)
+retains its earlier execution blocker. The subsequent
+[editable-output qualification](validation/zotero-editable-odt-20261121/README.md)
+executes those engine/editor regressions and preserves the actual results.
+Imported decimal endnotes now retain their numbering through DOCX reopening.
 
 Unsupported used formatting or structure rejects the whole import before it
 replaces the active document. Examples include drawings/images, comments,

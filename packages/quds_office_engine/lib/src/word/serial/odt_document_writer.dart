@@ -15,6 +15,7 @@ import '../model/word_bookmarks.dart';
 import '../model/word_fields.dart';
 import '../model/word_notes.dart';
 import '../properties/wml_properties.dart';
+import 'odt_writer_zotero.dart';
 
 /// Bounded new-document ODT writer for the shared Word model.
 ///
@@ -26,13 +27,32 @@ import '../properties/wml_properties.dart';
 /// results; their native instructions and editable metadata are not exported.
 abstract final class OdtDocumentWriter {
   /// Serializes [document] as a new ODT package.
-  static Uint8List writeBytes(WmlDocument document) {
-    final layout = _OdtLayout(document);
+  static Uint8List writeBytes(WmlDocument document) => _writeBytes(document);
+
+  /// Exports a separate ODT copy with editable native Zotero references.
+  ///
+  /// Every active field must have complete supported ownership in the body,
+  /// visible body table cells or uniquely anchored authored-note paragraphs.
+  /// Bibliographies use native TextSections, citations use ReferenceMarks and
+  /// preferences use native ODF metadata. Unsafe/unsupported fields refuse the
+  /// complete export before bytes are returned. Note-table fields are excluded
+  /// because the ordinary writer flattens note tables for its Writer consumer.
+  /// The document, its package and its normal DOCX save destination are unchanged.
+  /// Ordinary [writeBytes] retains its cached-result export behavior.
+  static Uint8List writeEditableZoteroBytes(WmlDocument document) =>
+      _writeBytes(document, zotero: OdtWriterZoteroPlan(document));
+
+  static Uint8List _writeBytes(
+    WmlDocument document, {
+    OdtWriterZoteroPlan? zotero,
+  }) {
+    final layout = _OdtLayout(document, zotero: zotero);
     final body = _bodyXml(layout);
     final styles = _stylesXml(document, layout);
     final content = _contentXml(body, layout);
     final manifest = _manifestXml(layout.media);
-    final meta = _metaXml(document);
+    zotero?.verifyComplete();
+    final meta = _metaXml(document, zotero: zotero);
     final zip = ZipWriter();
     zip.addFile(
       'mimetype',
@@ -465,6 +485,7 @@ abstract final class OdtDocumentWriter {
   }) {
     for (var index = 0; index < blocks.length; index++) {
       final block = blocks[index];
+      layout.zotero?.beforeBlock(w, block);
       final start = sectionStart?.consumed == false ? sectionStart : null;
       if (block is WmlParagraph &&
           block.properties.numId != null &&
@@ -486,6 +507,7 @@ abstract final class OdtDocumentWriter {
       } else {
         _writeBlock(w, block, layout, sectionStart: start);
       }
+      layout.zotero?.afterBlock(w, block);
     }
   }
 
@@ -716,6 +738,8 @@ abstract final class OdtDocumentWriter {
       String? textOverride,
       String? nativeField,
     }) {
+      if (layout.zotero?.hasInlineBoundary(inline) == true) closeLink();
+      layout.zotero?.beforeInline(w, inline);
       // Writer can lose the tail of a second adjacent equal-target hyperlink
       // at a script boundary when converting separate text:a elements to DOCX.
       // One anchor with independently styled spans represents the same range
@@ -760,6 +784,7 @@ abstract final class OdtDocumentWriter {
           hyperlinkAlreadyOpen: target != null,
         );
       }
+      layout.zotero?.afterInline(w, inline);
     }
 
     startParagraph();
@@ -770,6 +795,7 @@ abstract final class OdtDocumentWriter {
         writeOdfText(w, ' ');
       }
     }
+    layout.zotero?.beforeParagraph(w, paragraph);
     if (pageField) {
       _writePageNumberInlines(w, paragraph, writeInline);
     } else {
@@ -779,6 +805,7 @@ abstract final class OdtDocumentWriter {
       _writeParagraphInlines(paragraph.inlines, fieldPlan.fields, writeInline);
     }
     closeLink();
+    layout.zotero?.afterParagraph(w, paragraph);
     w.writeEndElement();
   }
 
@@ -1291,7 +1318,18 @@ abstract final class OdtDocumentWriter {
     // LibreOffice treats an empty fixed label as automatic numbering. Keep
     // empty character data, using only a nonprinting metadata label to suppress
     // the extra numeral beside an independently authored custom mark.
-    w.writeAttribute('text:label', label.isEmpty ? '\u2060' : label);
+    final automaticLabel =
+        !reference.noteRefCustomMark &&
+        label ==
+            '${layout.notes.emitted.keys.where((key) => key.$1 == reference.noteRefEndnote).length}';
+    if (layout.zotero?.hasFieldsInNote(note) == true && !automaticLabel) {
+      throw UnsupportedError(
+        'Editable Zotero ODT requires ordinary decimal numbering for cited notes.',
+      );
+    }
+    if (layout.zotero == null || !automaticLabel) {
+      w.writeAttribute('text:label', label.isEmpty ? '\u2060' : label);
+    }
     w.writeText(label);
     w.writeEndElement();
     w.writeStartElement('note-body', prefix: 'text');
@@ -1356,11 +1394,22 @@ abstract final class OdtDocumentWriter {
     _OdtSectionStart? sectionStart,
   }) {
     final cells = _OdtTableCells(table);
+    final inferredColumns = cells.columnCount - BigInt.from(table.grid.length);
+    // The explicit Zotero path retains the native grid's absolute geometry.
+    // Using the ordinary 100%-width export fallback would rescale its columns
+    // in Writer and falls outside the bounded native ODT reader's contract.
+    final zoteroWidth = layout.zotero == null
+        ? null
+        : table.grid.fold<double>(
+                0,
+                (sum, width) => sum + double.parse(width.toStringAsFixed(2)),
+              ) +
+              inferredColumns.toDouble() * 120;
     w.writeStartElement('table', prefix: 'table');
     w.writeAttribute('table:name', 'Table${layout.tableCount++}');
     w.writeAttribute(
       'table:style-name',
-      layout.tableStyle(sectionStart: sectionStart),
+      layout.tableStyle(sectionStart: sectionStart, width: zoteroWidth),
     );
     for (final width in table.grid) {
       w.writeStartElement('table-column', prefix: 'table');
@@ -1369,7 +1418,6 @@ abstract final class OdtDocumentWriter {
       }
       w.writeEndElement();
     }
-    final inferredColumns = cells.columnCount - BigInt.from(table.grid.length);
     if (inferredColumns > BigInt.zero) {
       w.writeEmptyElement(
         'table-column',
@@ -1424,7 +1472,13 @@ abstract final class OdtDocumentWriter {
           layout.commentsAllowed = false;
         }
         try {
-          if (cell.blocks.isEmpty) {
+          if (placement.covered &&
+              layout.zotero != null &&
+              _emptyCoveredCell(cell)) {
+            // Word requires empty continuation paragraphs. ODF represents the
+            // same empty position with an empty covered-cell element. Keep any
+            // genuinely stored content rather than silently discarding it.
+          } else if (cell.blocks.isEmpty) {
             _writePlainParagraph(w, '');
           } else {
             if (placement.covered) {
@@ -1438,7 +1492,11 @@ abstract final class OdtDocumentWriter {
           layout.commentsAllowed = commentsAllowed;
         }
         w.writeEndElement();
-        _writeCoveredCells(w, placement.columns - 1);
+        _writeCoveredCells(
+          w,
+          placement.columns - 1,
+          explicitPositions: layout.zotero != null && placement.columns <= 32,
+        );
       }
       _writeOmittedCells(
         w,
@@ -1451,8 +1509,34 @@ abstract final class OdtDocumentWriter {
     w.writeEndElement();
   }
 
-  static void _writeCoveredCells(XmlWriter w, int count) {
+  static bool _emptyCoveredCell(WmlTableCell cell) => cell.blocks.every(
+    (block) =>
+        block is WmlParagraph &&
+        block.properties.fieldInstruction == null &&
+        block.properties.bookmarkName == null &&
+        block.contentControlWrappers.isEmpty &&
+        block.inlines.every(
+          (inline) =>
+              inline is WmlRun &&
+              inline.text.isEmpty &&
+              !inline.isAtomic &&
+              inline.commentIds.isEmpty &&
+              inline.hyperlink == null,
+        ),
+  );
+
+  static void _writeCoveredCells(
+    XmlWriter w,
+    int count, {
+    bool explicitPositions = false,
+  }) {
     if (count <= 0) return;
+    if (explicitPositions) {
+      for (var index = 0; index < count; index++) {
+        w.writeEmptyElement('covered-table-cell', prefix: 'table');
+      }
+      return;
+    }
     w.writeEmptyElement(
       'covered-table-cell',
       prefix: 'table',
@@ -1563,7 +1647,7 @@ abstract final class OdtDocumentWriter {
     return w.toXml();
   }
 
-  static String _metaXml(WmlDocument document) {
+  static String _metaXml(WmlDocument document, {OdtWriterZoteroPlan? zotero}) {
     final w = XmlWriter();
     w.writeStartDocument();
     w.writeStartElement('document-meta', prefix: 'office');
@@ -1586,6 +1670,7 @@ abstract final class OdtDocumentWriter {
     value('creation-date', 'meta', document.properties.createdIso);
     value('date', 'dc', document.properties.modifiedIso);
     value('generator', 'meta', 'CrispOffice');
+    zotero?.writePreferences(w);
     w.writeEndElement();
     w.writeEndElement();
     return w.toXml();
@@ -1916,16 +2001,20 @@ class _OdtSectionStart {
 }
 
 class _OdtLayout {
-  _OdtLayout(this.document, {_OdtLayout? sharedMedia})
-    : sections = document.sections.isEmpty
-          ? <WmlSection>[WmlSection()]
-          : document.sections,
-      media = sharedMedia?.media ?? <String>[],
-      _mediaBytes = sharedMedia?._mediaBytes ?? <String, Uint8List>{},
-      notes = sharedMedia?.notes ?? _OdtNotes(document),
-      comments = sharedMedia?.comments ?? _OdtComments(document),
-      bookmarks = sharedMedia?.bookmarks ?? _OdtBookmarks(document),
-      noteBodiesAllowed = sharedMedia == null;
+  _OdtLayout(
+    this.document, {
+    _OdtLayout? sharedMedia,
+    OdtWriterZoteroPlan? zotero,
+  }) : sections = document.sections.isEmpty
+           ? <WmlSection>[WmlSection()]
+           : document.sections,
+       media = sharedMedia?.media ?? <String>[],
+       _mediaBytes = sharedMedia?._mediaBytes ?? <String, Uint8List>{},
+       notes = sharedMedia?.notes ?? _OdtNotes(document),
+       comments = sharedMedia?.comments ?? _OdtComments(document),
+       bookmarks = sharedMedia?.bookmarks ?? _OdtBookmarks(document),
+       zotero = zotero ?? sharedMedia?.zotero,
+       noteBodiesAllowed = sharedMedia == null;
 
   final WmlDocument document;
   final List<WmlSection> sections;
@@ -1937,6 +2026,7 @@ class _OdtLayout {
   final _OdtNotes notes;
   final _OdtComments comments;
   final _OdtBookmarks bookmarks;
+  final OdtWriterZoteroPlan? zotero;
   bool noteBodiesAllowed;
   bool commentsAllowed = true;
   bool inCommentBody = false;
@@ -1974,7 +2064,8 @@ class _OdtLayout {
     final color = props.color.toLowerCase();
     final highlight = props.highlight?.toLowerCase();
     final key =
-        '${props.bold}|${props.italic}|${props.underline.index}|${props.strike}|$color|${props.fontSizeHalfPoints}|${props.asciiFont}|$highlight|${props.vertAlign.index}';
+        '${props.bold}|${props.italic}|${props.underline.index}|${props.strike}|$color|${props.fontSizeHalfPoints}|${props.asciiFont}|$highlight|${props.vertAlign.index}'
+        '${zotero == null ? '' : '|${props.smallCaps}|${props.allCaps}|${props.csFont}'}';
     return _runStyles.putIfAbsent(key, () {
       final name = 'T${_runStyles.length + 1}';
       final buffer = StringBuffer(
@@ -1983,6 +2074,22 @@ class _OdtLayout {
       );
       if (props.bold) buffer.write(' fo:font-weight="bold"');
       if (props.italic) buffer.write(' fo:font-style="italic"');
+      if (zotero != null) {
+        if (props.smallCaps) buffer.write(' fo:font-variant="small-caps"');
+        if (props.allCaps) buffer.write(' fo:text-transform="uppercase"');
+        if (props.csFont.isNotEmpty) {
+          buffer.write(' style:font-family-complex="${_escape(props.csFont)}"');
+        }
+        buffer.write(
+          ' style:font-size-complex="${props.fontSizePoints.toStringAsFixed(1)}pt"',
+        );
+        buffer.write(
+          ' style:font-weight-complex="${props.bold ? 'bold' : 'normal'}"',
+        );
+        buffer.write(
+          ' style:font-style-complex="${props.italic ? 'italic' : 'normal'}"',
+        );
+      }
       if (props.underline != WmlUnderline.none) {
         buffer.write(' style:text-underline-style="solid"');
         buffer.write(' style:text-underline-type="single"');
@@ -2001,9 +2108,11 @@ class _OdtLayout {
         buffer.write(' fo:background-color="#$highlight"');
       }
       if (props.vertAlign == WmlVertAlign.superscript) {
-        buffer.write(' style:text-position="super 58%"');
+        buffer.write(
+          ' style:text-position="super ${zotero == null ? 58 : 65}%"',
+        );
       } else if (props.vertAlign == WmlVertAlign.subscript) {
-        buffer.write(' style:text-position="sub 58%"');
+        buffer.write(' style:text-position="sub ${zotero == null ? 58 : 65}%"');
       }
       buffer.write('/></style:style>');
       _styleBuffers.add(buffer.toString());
@@ -2207,7 +2316,7 @@ class _OdtLayout {
     return decimal.contains('e') ? null : decimal;
   }
 
-  String tableStyle({_OdtSectionStart? sectionStart}) {
+  String tableStyle({_OdtSectionStart? sectionStart, double? width}) {
     final name = 'Tab${tableCount + 1}';
     String styleXml() {
       final buffer = StringBuffer(
@@ -2216,9 +2325,16 @@ class _OdtLayout {
       if (sectionStart?.masterPage case final master?) {
         buffer.write(' style:master-page-name="$master"');
       }
+      final absoluteWidth = width != null && width > 0
+          ? _paragraphDecimal(width)
+          : null;
+      buffer.write('><style:table-properties');
       buffer.write(
-        '><style:table-properties style:rel-width="100%" table:align="margins"',
+        absoluteWidth == null
+            ? ' style:rel-width="100%"'
+            : ' style:width="${absoluteWidth}pt"',
       );
+      buffer.write(' table:align="margins"');
       if (sectionStart?.breakBefore == true) {
         buffer.write(' fo:break-before="page"');
       }

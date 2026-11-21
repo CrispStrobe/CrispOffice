@@ -421,6 +421,14 @@ M07 or the document-snapshot work in M08.
 - [x] Bind cached mailbox reads to stable account identities and durable visited-folder views, without credentials or provider construction. Preserve local drafts/Outbox and expose missing bodies explicitly.
 - [x] Persist foreground read/flag commands and their recovery evidence separately from drafts and outgoing-message submission. See [command-journal.md](command-journal.md).
 - [ ] Add general durable synchronization commands and repository-driven foreground account/folder sessions, then provider-side Drafts synchronization with explicit conflicts. Cached browse windows and the flag journal do not complete this boundary.
+- [x] Implement account-scoped plain-text signatures, independent new/reply defaults
+  and literal Quick Text with additive schema 10 persistence, revision guards
+  and connected/offline composer integration. See [compose-tools.md](compose-tools.md).
+- [ ] Execute and qualify the writing-tools model, migration, adapter and widget
+  regressions on the pinned toolchain; source review and authored tests are
+  recorded, but the current executor could not run them.
+- [ ] Add multiple sender identities/alias routing and full-message templates;
+  saved writing tools do not change transport identities or recipient fields.
 - [ ] Initial canonical body supports paragraphs, line breaks, emphasis, lists and links; add tables/inline images only with serializer/round-trip tests.
 - [ ] Generate multipart plain/HTML with deterministic boundaries and transfer encodings; preserve quoted original content as data.
 - [ ] Generate ASCII-safe wire MIME for the current text-oriented enough_mail SMTP API. Encode display names/subjects/filenames and payloads correctly. Handle non-ASCII mailbox local parts through negotiated SMTPUTF8 or explicit unsupported feedback.
