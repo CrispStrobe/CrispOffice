@@ -582,18 +582,79 @@ final class WordProofingSession extends ChangeNotifier {
   Set<String> get ignoredRuleIds => Set.unmodifiable(_ignoredRules);
   bool get hasIgnoredOccurrences => _ignoredOnce.isNotEmpty;
 
-  /// Findings to paint. While an edit's republish is pending, findings of
-  /// paragraphs whose text changed are dropped without capturing the
-  /// document; unchanged paragraphs keep their underlines.
+  /// Findings to paint. While an edit's republish is pending, unchanged
+  /// paragraphs keep their underlines without capturing the document. In a
+  /// paragraph whose text changed, marks in the unchanged text before the
+  /// edit stay, marks in the unchanged text after it move with it, and marks
+  /// touching the edited range (including a word extended at either end)
+  /// are dropped until the next check, so typing
+  /// does not make the paragraph's other underlines blink.
   Map<WmlParagraph, List<OfficeProofingFinding>> get findingsByParagraph {
     if (_pendingPublish == null) return UnmodifiableMapView(_findings);
     return _provisionalFindings ??= UnmodifiableMapView(
       HashMap<WmlParagraph, List<OfficeProofingFinding>>.identity()..addAll({
         for (final entry in _findings.entries)
-          if (_findingTexts[entry.key] == entry.key.text)
-            entry.key: entry.value,
+          if (_provisionalMarks(
+                entry.value,
+                _findingTexts[entry.key],
+                entry.key.text,
+              )
+              case final kept? when kept.isNotEmpty)
+            entry.key: kept,
       }),
     );
+  }
+
+  static List<OfficeProofingFinding>? _provisionalMarks(
+    List<OfficeProofingFinding> findings,
+    String? before,
+    String now,
+  ) {
+    if (before == null) return null;
+    if (before == now) return findings;
+    return List.unmodifiable(_remapFindings(findings, before, now));
+  }
+
+  /// [findings] of [before] that lie in text [now] left unchanged, moved to
+  /// their offsets in [now]; findings touching the changed range are dropped.
+  static List<OfficeProofingFinding> _remapFindings(
+    Iterable<OfficeProofingFinding> findings,
+    String before,
+    String now,
+  ) {
+    final limit = before.length < now.length ? before.length : now.length;
+    var prefix = 0;
+    while (prefix < limit &&
+        before.codeUnitAt(prefix) == now.codeUnitAt(prefix)) {
+      prefix++;
+    }
+    var suffix = 0;
+    while (suffix < limit - prefix &&
+        before.codeUnitAt(before.length - 1 - suffix) ==
+            now.codeUnitAt(now.length - 1 - suffix)) {
+      suffix++;
+    }
+    final shift = now.length - before.length;
+    final changedEnd = before.length - suffix;
+    return [
+      for (final finding in findings)
+        if (finding.end < prefix)
+          finding
+        else if (finding.start > changedEnd)
+          OfficeProofingFinding(
+            documentId: finding.documentId,
+            blockId: finding.blockId,
+            revision: finding.revision,
+            providerId: finding.providerId,
+            start: finding.start + shift,
+            end: finding.end + shift,
+            originalText: finding.originalText,
+            ruleId: finding.ruleId,
+            message: finding.message,
+            category: finding.category,
+            replacements: finding.replacements,
+          ),
+    ];
   }
 
   set enabled(bool value) {
@@ -2020,7 +2081,7 @@ final class WordProofingSession extends ChangeNotifier {
               )
             : reusable
             ? _mergeKinds(previous.reports[index], ordinary)
-            : ordinary;
+            : _carryOver(previous, snapshot, missing, ordinary) ?? ordinary;
         if (!current()) return _summary;
         paragraphReports.add(report);
       }
@@ -2128,6 +2189,60 @@ final class WordProofingSession extends ChangeNotifier {
     if (trigger != _Trigger.explicit && trigger != _Trigger.background) {
       _armBackground(captured);
     }
+  }
+
+  /// While only some provider groups recheck an edited paragraph (spelling at
+  /// word completion), the other groups' results for its previous text stay
+  /// visible where that text is unchanged, so grammar marks do not vanish
+  /// until the pause. They do not count as checked: the cache entry keeps
+  /// only the groups that ran, and the pause pass replaces them.
+  OfficeProofingReport? _carryOver(
+    _CachedParagraph? previous,
+    _ParagraphSnapshot snapshot,
+    Set<_Kind> ran,
+    OfficeProofingReport fresh,
+  ) {
+    if (previous == null ||
+        previous.includesManual ||
+        ran.containsAll(_available(_Kind.values.toSet())) ||
+        previous.reports.length != 1 ||
+        snapshot.segments.length != 1) {
+      return null;
+    }
+    final old = previous.reports.single;
+    final segment = snapshot.segments.single;
+    if (old.request.startOffset != 0 ||
+        segment.start != 0 ||
+        old.request.language != segment.language) {
+      return null;
+    }
+    final ranIds = {for (final result in fresh.results) result.providerId};
+    final carried = [
+      for (final result in old.results)
+        if (!ranIds.contains(result.providerId) &&
+            result.status == OfficeProofingStatus.success &&
+            _service.providers.any(
+              (provider) =>
+                  provider.id == result.providerId &&
+                  !ran.contains(_kindOf(provider)),
+            ))
+          OfficeProofingResult(
+            request: fresh.request,
+            providerId: result.providerId,
+            status: result.status,
+            message: result.message,
+            findings: _remapFindings(
+              result.findings,
+              old.request.text,
+              segment.text,
+            ),
+          ),
+    ];
+    if (carried.isEmpty) return null;
+    return _mergeKinds(
+      OfficeProofingReport(request: fresh.request, results: carried),
+      fresh,
+    );
   }
 
   /// [addition]'s provider results added to [base] for the same text, in

@@ -1,145 +1,15 @@
-# Word proofing scheduling
+# When as-you-type proofing runs (21 November 2026)
 
-Word proofing separates checks of text being edited from checks of the rest of
-the document. Hosts configure the behavior through `WordProofingSchedule` on
-`WordProofingSession.schedule`; Studio persists the corresponding writing
-preferences. The defaults below describe scheduling policy, not measured
-response-time guarantees.
+The owner asked for proofing "in sensible intervals, not after each
+keystroke", modelled on what other editors do, and for settings. This
+document compares how established editors schedule checking (with sources),
+describes the resulting scheduler in `WordProofingSession`, lists the
+settings, and records the measurements.
 
-## Automatic modes and defaults
+Earlier typing work (lazy republication, coalesced status, time-sliced passes)
+is in [typing-proofing-20261120](../performance/typing-proofing-20261120.md).
 
-| Setting | Default | Behavior |
-| --- | --- | --- |
-| `mode` | `WordProofingMode.whileTyping` | Complete words trigger spelling; complete sentences and pauses trigger the enabled provider groups. |
-| `checkSpelling` | `true` | Enable automatic calls to spelling-only providers. |
-| `checkGrammar` | `true` | Enable automatic calls to grammar, style and mixed-category providers. |
-| `pause` | 1,500 ms | Restart the pause timer after each content edit. |
-| `backgroundCheck` | `true` | Check otherwise unchecked document text after loading and during idle time. |
-| `backgroundIdle` | 3 seconds | Idle interval used to schedule remaining document work after the pause check. |
-| `hideTypingErrors` | `true` | Hide findings touching the typing caret until the word completes or the caret leaves. |
-
-`WordProofingMode.onPause` suppresses word and sentence completion checks; it
-still checks after a pause and allows the configured background work.
-`WordProofingMode.manual` disables automatic checks. The session's `enabled`
-switch remains a separate automatic-checking control. Explicit **Check document**
-and **F7** checks remain available when automatic checking is disabled, including
-when either provider-group preference is off.
-
-Studio accepts pause values from 300 to 5,000 ms and normalizes persisted values
-through its settings schema. The public schedule also exposes `backgroundIdle`
-for embedding hosts; Studio does not persist or expose that interval as a
-setting. Its existing `proofing.checkAsYouType` preference remains independent
-of the new mode, spelling, grammar, pause, background and typing-error choices.
-
-## Triggers, scope and ordering
-
-Word completion uses the collapsed caret after the edit's synchronous work has
-finished. An edit counts as typing when the caret moves by exactly the length
-change of its paragraph. Corrections, replacements, undo and edits elsewhere
-therefore do not automatically hide findings as though a word were being typed.
-Whitespace and punctuation complete a word; letters, combining marks, numbers,
-apostrophes, underscores and hyphens keep it open. Sentence-final punctuation
-or Enter at offset zero after typing completes a sentence or paragraph.
-Deletion at the caret can keep a word in progress but does not complete it.
-
-Completion work starts after `WordProofingTiming.wordCompletion` (150 ms). A
-pending word check can become a sentence check, but further completions do not
-postpone that pending timer. Continued typing therefore does not indefinitely
-delay checks of completed words. Pause and idle timers are postponed by new
-input.
-
-| Trigger | Provider groups | Paragraph scope |
-| --- | --- | --- |
-| Completed word | Enabled spelling-only providers | The typing paragraph. |
-| Completed sentence or paragraph | Both enabled groups | Edited, newly inserted or incompletely checked paragraphs; when no results are cached and background checking is enabled, this may be the initial document-wide pass. |
-| Typing pause | Both enabled groups | Edited or incompletely checked paragraphs; the initial pass may cover the document when background checking is enabled and no cached results exist. |
-| Background idle | Both enabled groups | Remaining unchecked paragraphs, with the typing/caret paragraph first, then visible paragraphs, then increasing distance from the caret. |
-| Explicit check | All ordinary providers; manual providers when requested | Document-wide coverage, reusing valid ordinary cached results. |
-
-Automatic checks skip provider groups that are not configured and avoid
-sending an empty selection for already settled groups. Letters alone do not
-start a forced pass during continuous typing.
-
-Automatic background work never invokes the separate manual provider service.
-An explicit pass that includes manual providers checks them again instead of
-treating an earlier automatic pass as manual coverage. Unsupported-language
-results are retained as settled results so they do not cause repeated automatic
-calls for unchanged text.
-
-## Provider API
-
-`OfficeProofingProvider.categories` declares the categories a provider can
-produce. A provider declaring exactly `{OfficeProofingCategory.spelling}` is in
-the spelling group. All other providers, including mixed-category providers and
-providers using the default set of every category, are in the grammar group.
-This lets existing provider subclasses retain their full checks at sentence and
-pause boundaries. A provider whose category getter throws is also treated as a
-grammar provider.
-
-`GermanSpellingProvider`, the platform spelling adapter and the Hunspell adapter
-declare their spelling-only category. Hosts adding a dictionary provider should
-make the same declaration only when its findings are exclusively spelling
-findings. A mixed grammar/spelling provider remains indivisible: automatic
-grammar selection governs its whole call, including any spelling findings it
-returns.
-
-`OfficeProofingService.check` accepts the optional `only` provider predicate.
-The scheduler uses this to select a provider group without creating another
-service or changing ownership. Service validation, timeout handling and result
-merging continue to apply to the selected providers.
-
-## Results, interaction and lifecycle
-
-Changing `session.schedule` cancels pending automatic timers and schedules work
-under the new policy when automatic checking is enabled. It preserves checked
-results. Disabling typing-error suppression immediately releases the hidden
-typing position. Caret movement can reveal a cached finding without making
-another provider call. A finding beginning at the caret belongs to the next
-word and remains visible; a finding containing or ending at the caret, including
-a zero-width finding there, can be hidden. Explicit checks release the typing
-position and show all findings.
-
-Content edits invalidate the active generation. Results are accepted only for
-the current document, revision and provider configuration. Unchanged paragraphs
-reuse cached reports; a spelling-only pass does not count as a completed grammar
-check. Document replacement clears document-owned cached state. Language
-detection runs for the selected sentence/pause/background scope rather than for
-each completed word.
-
-Checks of the text being typed publish their results when finished and do not
-show the **Checking…** indicator. If their visible marks do not change and results
-already exist, they update the summary without notifying the session's ordinary
-listeners; `silentPassCount` records those passes and status has its own notifier.
-Background, explicit and initial document-wide passes can show **Checking…**
-after `WordProofingTiming.checkingIndicatorDelay` (1 second). Passes yield between
-units of work after the `sliceBudget` (4 ms) is consumed; a synchronous provider
-call itself cannot be preempted by this budget. Slow or blocking providers should
-use the existing worker/isolate transports where appropriate.
-
-These choices reduce repeated paragraph work and keep pending checks separate
-from the UI's progress indicator. They do not establish comparative performance
-against other editors. The earlier investigation and its measurement limits are
-recorded in [typing latency and proofing](../performance/typing-proofing-20261120.md).
-Any performance claim for a later build needs a new target-specific run.
-
-## Regression coverage
-
-The scheduler contract is exercised by
-`packages/quds_office_editor/test/word_typing_proofing_schedule_test.dart`, with
-the session, incremental, capture-cache, priority, manual and draft proofing
-suites covering adjacent behavior. Provider and Studio settings suites cover
-category routing and preference persistence. Execution results for an integrated
-build belong in its source-bound validation record; this document is the API
-contract, not a test receipt.
-
-## Host migration
-
-This replaces the earlier continuous-typing maximum-delay schedule. Embedding
-hosts should configure `schedule` rather than the removed `maxDelay` parameter
-or internal caret-deferral controls. The existing `debounce` constructor
-argument maps to the schedule pause for compatibility.
-
-## Comparative source notes
+## 1. How other editors schedule checking
 
 Researched 21 November 2026. Source links are pinned to these commits:
 Chromium `0cfae948c88a`, LibreOffice core `a418b990c2ec`, LanguageTool
@@ -227,16 +97,73 @@ every change and relies on a sentence cache
 ([package.nls.json](https://github.com/valentjn/vscode-ltex/blob/74484ff6e0f1f810fc24d57ba51286c347b31cf3/package.nls.json#L536),
 [LtexTextDocumentService.kt L134-L150](https://github.com/valentjn/ltex-ls/blob/7c031d792110a824951aa003acd3ada158a515b4/src/main/kotlin/org/bsplines/ltexls/server/LtexTextDocumentService.kt#L134-L150)).
 
-The surveyed implementations use different policies. The cited Blink and
-Writer code illustrates interruptible idle work and special treatment of the
-caret's word; the LanguageTool and LTEX examples use other trigger and caching
-choices. These observations motivate Quds' separate completion, pause and
-background policies without establishing a universal editor design or a timing
-promise for Microsoft Word, Google Docs or any other product. The comparison
-records the incoming branch's cited source research, not a new measured
-interoperability or performance test of these editors.
+**What this means.** Every editor with documented internals uses two tiers:
+cheap checks of the text near the caret right after an edit, and an idle-time
+pass over the rest that any input preempts and that resumes where it stopped,
+visible text first. Nobody flags the word being typed (Blink clears it,
+Writer holds it until the cursor leaves). Grammar is per sentence and runs
+after sentence end or a pause of about 1–1.5 s (Blink's cold delay 1000 ms, the
+LanguageTool add-on 1500 ms), and Writer delays grammar marks in the paragraph
+being edited. Stale results are dropped, and checked text is cached.
 
-## Studio settings keys
+## 2. The scheduler
+
+`WordProofingSession` (`packages/quds_office_editor/lib/src/proofing/word_proofing.dart`).
+Providers declare their categories
+(`OfficeProofingProvider.categories`); a provider that reports only
+`spelling` (German lexicon, Hunspell, platform spelling) is in the *spelling*
+group, every other provider (German and Arabic writing rules, Harper, spaCy,
+GECToR) in the *grammar* group. `OfficeProofingService.check(…, only:)` runs one
+group; a paragraph's cached reports record which groups they contain, and a
+later pass adds only the missing group to results for the same text.
+
+| Trigger (default mode "While typing") | Providers | Scope | Delay | Shows "Checking…" |
+|---|---|---|---|---|
+| **Word completed**: a space or punctuation typed at the caret | Spelling | The paragraph being typed | 150 ms, not postponed by further typing | Never |
+| **Sentence completed**: `. ! ? … ؟ 。` typed, or Enter after typing | Spelling + grammar | Edited paragraphs | 150 ms | Never |
+| **Pause**: no edit for the pause (default 1.5 s) | Spelling + grammar | Edited paragraphs (typed in, changed elsewhere by paste/undo/replace, or new) | Pause | Never |
+| **Idle**: no input for 3 s | Spelling + grammar | Every unchecked paragraph: visible pages and their neighbours first, then outward from the caret | 3 s since the last input | After 1 s |
+| **Load / configuration change** (nothing cached yet) | Spelling + grammar | Whole document | Pause | After 1 s |
+| **Check document / F7** | All, including manual providers | Whole document | Immediate | After 1 s |
+
+Rules:
+
+- **No forced passes during continuous typing.** The 2.5 s deadline is gone.
+  Letters alone never start a check; only completing a word or sentence, a
+  pause, or idle time does.
+- **The word being typed is never flagged.** An edit counts as typing when
+  the caret moved by exactly the length change of its paragraph (typing or
+  deleting at the caret; undo, corrections and replacements do not). While
+  the caret stays there, any finding that contains it or ends at it stays
+  hidden, including existing marks on that word; a caret move shows them
+  from the cache without a provider call. A finding that merely starts at
+  the caret (the next word) is shown. Explicit checks show everything.
+- **Language detection** runs only for the text a sentence, pause, idle or
+  explicit pass is about to check, never per word. Until then an edited
+  paragraph is routed with its previous detection when that was a single
+  language and script.
+- **Idle-time work yields to input.** Background passes run in 4 ms slices;
+  any edit cancels the pass at the next slice and restarts the idle timer;
+  results already checked stay cached, so the next idle pass resumes.
+- **Status without flicker.** Checks of the typed text never publish a
+  "checking" state; a settled result stays on screen while they run, and a
+  check that changes no mark on screen does not notify listeners at all
+  (the Studio otherwise rebuilds its chrome per notification). "Checking…"
+  appears only for idle, load and explicit passes that run for 1 s.
+- **Stable underlines.** While an edited paragraph waits for its check, marks
+  in its unchanged text stay painted (moved with the text after the edit);
+  only marks touching the edited range disappear. A spelling-only word check
+  keeps the paragraph's previous grammar marks where the text is unchanged
+  until the next grammar check replaces them (they do not count as checked).
+- **Modes.** "When I pause" disables the word and sentence triggers.
+  "Only when I click Check document" disables every automatic check
+  (`WordProofingSchedule.automatic`); explicit checks are unchanged.
+- **Hosts** can provide the visible paragraphs (`visibleParagraphs:`; the Word
+  controller passes the lines of the visible page and its neighbours).
+  Hosts that notify before moving the caret (history batches) are handled by
+  reading the caret in a microtask after the edit.
+
+## 3. Settings
 
 `WordProofingSession.schedule` takes a `WordProofingSchedule`; assigning it
 takes effect at once (pending checks are rescheduled, results kept). The
@@ -256,7 +183,9 @@ The ribbon's **Check as you type** switch (`proofing.checkAsYouType`) stays;
 turning it on from "Only when I click Check document" selects the recommended
 mode. Invalid stored values fall back to their defaults one by one.
 
-## Additional scheduling regression cases
+## 4. Evidence
+
+### Tests
 
 `packages/quds_office_editor/test/word_typing_proofing_schedule_test.dart`
 (fake time, a spelling-only and a grammar provider): the loaded document is
@@ -287,10 +216,89 @@ Updated expectations of the old schedule: the notes pane waited 1 s for the
 old 600 ms pause; an inline-correction test expected the interrupted third
 paragraph to be rechecked at the next pause instead of in idle time.
 
-## Measurement boundary
+### Typing benchmark
 
-No new comparative typing measurements are supplied by this integration. The
-benchmark harness records current-run scheduling and notification counters, but
-its presence is not a performance result. The earlier timing investigation
-linked above retains its original source, debug-runtime and load qualifications;
-new target-specific measurements are required for claims about this final build.
+`example/test/studio_typing_proofing_benchmark_test.dart`
+(`QUDS_TYPING_BENCHMARK=1`; described in
+[typing-proofing-20261120](../performance/typing-proofing-20261120.md)): the full
+Studio, 180 paragraphs / 21 pages of German, English and Arabic, 300 characters
+typed through the IME path into paragraph 91 (about 40 words, several sentence
+ends, a 100-character burst and a 1.2 s pause). It now also reports the
+session's own pass count (`sessionPasses`; the older `proofingPasses` only sees
+passes that publish "checking") and per-keystroke rates. The benchmark's
+counting provider forwards `categories`, so the Studio's German spelling
+provider runs on the word schedule.
+
+"Before" is `84046975` (main at the branch point: 600 ms idle pause, 2.5 s
+deadline); "after" is this branch. Debug JIT widget test with fake time.
+
+#### Local (MacBook, three alternating rounds, 1-minute load 5–9)
+
+Values are rounds 1 / 2 / 3.
+
+| Metric | Before | After |
+|---|---|---|
+| Passes started (`sessionPasses`) | 11 / 11 / 11 | 41 / 41 / 41 (one per completed word or sentence, 3 at pauses) |
+| Passes per keystroke | 0.037 | 0.137 |
+| Provider calls (paragraph × provider) | 22 | 44 (word checks call only the spelling provider) |
+| Provider calls per keystroke | 0.073 | 0.147 |
+| Provider time, total (ms) | 110 / 109 / 110 | 118 / 128 / 119 |
+| Language detection calls | 11 | **3** (only at sentence ends and pauses) |
+| Session notifications | 22 | **6** (0.02 per keystroke; checks that change no mark are silent) |
+| Writing-status label changes | 7 | **5** (0.017 per keystroke; issue counts only, never "Checking…") |
+| Studio workspace / ribbon rebuilds | 13 | **10** |
+| Keystroke handler p50 / p95 (ms) | 3.9 / 5.7 · 3.9 / 5.9 · 3.9 / 5.7 | 3.8 / 6.0 · 4.0 / 7.3 · 3.9 / 6.5 |
+| Frame after keystroke p50 / p95 (ms) | 6.2 / 10.4 · 6.0 / 10.4 · 6.0 / 10.7 | 6.2 / 9.6 · 6.5 / 11.4 · 6.1 / 8.6 |
+| Keystrokes over 16.7 ms (handler + frame) | 21 / 21 / 22 | 19 / 25 / 18 |
+| Timer work between keystrokes p50 / p95 (ms) | 0.3 / 3.5 · 0.3 / 4.1 · 0.3 / 3.8 | 0.3 / 6.5 · 0.3 / 7.6 · 0.3 / 6.5 |
+| Proofing session cost per keystroke p50 / p95 (ms) | 0.03 / 0.04 | 0.03 / 0.04 |
+| Findings at the end | 66 | 65 (the misspelling at the caret stays hidden until the caret leaves) |
+
+Reading the table:
+
+- The old scheduler checked continuous typing every 2.5 s, whatever was typed,
+  and flagged unfinished words at the caret; the new one checks a word once,
+  when it is completed, which is what Blink and Writer do. That is more, but
+  much smaller, passes (one spelling call for one paragraph), so provider calls
+  double while provider time stays within 10–15 %.
+- Everything the user sees got calmer: 6 instead of 22 notifications (each one
+  rebuilds the Studio chrome), 5 instead of 7 status changes, no "Checking…",
+  no underline blinking in the paragraph being typed, and language detection
+  only 3 times.
+- Handler and frame times are unchanged within noise (frame p95 is equal or
+  lower); timer work between keystrokes p95 rises by about 3 ms because word
+  checks now run in those gaps instead of every 2.5 s.
+
+An intermediate version that notified after every word check measured frame
+p95 25–34 ms and 49–73 slow keystrokes: each notification rebuilt the
+workspace, and underlines elsewhere in the typed paragraph disappeared on
+every keystroke and came back with every check. Keeping unaffected marks
+(moved with the text) and skipping notifications that change no mark removed
+both.
+
+#### Hosted runners (workflow `Typing proofing benchmark`, run 44875203604)
+
+Base `84046975`, branch `3de1a21f` (the scheduler of this change). Three runs
+per job; each variant ran on its own runner VM. The counters were identical
+in every run and match the local runs: passes 11 → 41, provider calls 22 →
+44, language detection 11 → 3, session notifications 22 → 6, status label
+changes 7 → 5, workspace rebuilds 13 → 10, findings 66 → 65.
+
+| Runner | Variant | Handler p50 / p95 (ms) | Frame p50 / p95 (ms) | Timer work p50 / p95 (ms) | Slow keystrokes | Provider time (ms) |
+|---|---|---|---|---|---|---|
+| ubuntu-latest | before | 3.9 / 6.6 · 3.8 / 6.5 · 3.8 / 6.9 | 5.7 / 13.1 · 5.3 / 12.2 · 5.3 / 13.3 | 0.3 / 5.4 · 0.3 / 5.2 · 0.3 / 5.0 | 27 · 23 · 26 | 165 · 133 · 135 |
+| ubuntu-latest | after | 4.3 / 8.3 · 4.3 / 7.3 · 4.1 / 7.1 | 6.3 / 11.8 · 6.3 / 11.1 · 6.0 / 10.8 | 0.4 / 8.9 · 0.5 / 9.1 · 0.4 / 8.9 | 28 · 26 · 23 | 156 · 155 · 165 |
+| macos-latest | before | 6.1 / 13.1 · 6.2 / 11.3 · 5.5 / 11.6 | 10.7 / 24.7 · 10.4 / 28.9 · 9.6 / 28.2 | 0.7 / 7.7 · 0.7 / 11.6 · 0.6 / 7.8 | 169 · 177 · 123 | 198 · 230 · 158 |
+| macos-latest | after | 6.1 / 15.8 · 5.7 / 11.6 · 7.7 / 20.4 | 10.7 / 26.7 · 9.0 / 21.5 · 14.9 / 40.9 | 0.7 / 13.5 · 0.6 / 11.5 · 1.0 / 15.8 | 167 · 118 · 259 | 185 · 179 · 243 |
+
+On the stable Ubuntu runners, frame p95 is about 1.5 ms lower and handler p95
+about 0.8 ms higher. Timer work between keystrokes p95 rises by about 4 ms
+because word checks now run in those gaps. Slow keystrokes are unchanged. The
+shared macOS runners vary more within one job than between variants, and
+their third "after" run was an outlier. Treat the timing differences as
+within noise. The measured effect is in the counters.
+
+The `Studio example tests` jobs of the same run fail only
+`dump_gallery_shots_test` on the branch. The baseline fails the same test,
+plus `studio_mail_cached_host_test`. The other 1780 tests pass on the branch.
+
