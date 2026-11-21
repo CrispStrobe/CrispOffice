@@ -43,8 +43,27 @@ import 'studio_mail_reply.dart';
 import 'studio_mail_strings.dart';
 import 'studio_mail_workspace_strings.dart';
 import 'studio_mail_submission.dart';
+import 'studio_mail_sync_dialog.dart';
+import 'studio_mail_sync_strings.dart';
 import 'studio_saved_mail.dart';
 import 'studio_strings.dart';
+
+StudioMailDraftAccount _imapLocalIdentity(mail.MailAccount account) {
+  final incoming = account.incoming.serverConfig;
+  final authentication = account.incoming.authentication;
+  return StudioMailDraftAccount(
+    provider: 'imap',
+    endpoint: Uri(
+      scheme: incoming.socketType == mail.SocketType.ssl ? 'imaps' : 'imap',
+      host: incoming.hostname,
+      port: incoming.port,
+    ).toString(),
+    login: authentication is mail.UserNameBasedAuthentication
+        ? authentication.userName
+        : account.email,
+    sender: account.email,
+  );
+}
 
 /// IMAP/SMTP client with optional host-managed account persistence.
 ///
@@ -698,20 +717,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     try {
       await _draftStoreClosing;
       if (!_currentSession(client, generation)) return false;
-      final incoming = account.incoming.serverConfig;
-      final authentication = account.incoming.authentication;
-      final identity = StudioMailDraftAccount(
-        provider: 'imap',
-        endpoint: Uri(
-          scheme: incoming.socketType == mail.SocketType.ssl ? 'imaps' : 'imap',
-          host: incoming.hostname,
-          port: incoming.port,
-        ).toString(),
-        login: authentication is mail.UserNameBasedAuthentication
-            ? authentication.userName
-            : account.email,
-        sender: account.email,
-      );
+      final identity = _imapLocalIdentity(account);
       candidate = await (widget.draftStoreFactory ?? openStudioMailDraftStore)(
         identity,
       );
@@ -1119,7 +1125,10 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       _pendingClient = client;
       final loader =
           widget.messageLoaderFactory?.call(account) ??
-          NativeStudioMailMessageLoader(account);
+          NativeStudioMailMessageLoader(
+            account,
+            persistentAccount: _imapLocalIdentity(account).account,
+          );
       candidateLoader = loader;
       _pendingLoader = loader;
       await client.connect();
@@ -2423,6 +2432,80 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     }
   }
 
+  Future<void> _openSynchronization() async {
+    final client = _client;
+    final owner = _draftStore;
+    final loader = _messageLoader;
+    final selected = _messageMailbox;
+    final store = switch (owner) {
+      StudioMailMailboxStoreOwner value => value.mailboxStore,
+      _ => null,
+    };
+    if (client == null ||
+        selected == null ||
+        selected.path != _mailbox?.path ||
+        store == null ||
+        store is! StudioMailSyncStore ||
+        loader is! StudioMailMailboxSynchronizer ||
+        (loader as StudioMailMailboxSynchronizer).account != store.account ||
+        _busy ||
+        _dialogOpen) {
+      return;
+    }
+    final syncStore = store as StudioMailSyncStore;
+    final synchronizer = loader as StudioMailMailboxSynchronizer;
+    final generation = _sessionGeneration;
+    final mailboxGeneration = _mailboxGeneration;
+    final frozen = selected.copyWith();
+    bool current() =>
+        _currentSession(client, generation) &&
+        mailboxGeneration == _mailboxGeneration &&
+        identical(owner, _draftStore) &&
+        identical(loader, _messageLoader);
+    final mailbox = MailMailbox(
+      id: MailMailboxId(frozen.path, account: store.account),
+      displayName: frozen.name,
+    );
+    setState(() => _dialogOpen = true);
+    try {
+      await showDialog<void>(
+        context: context,
+        barrierDismissible: false,
+        builder: (_) => StudioMailSyncDialog(
+          strings: widget.strings,
+          mailboxStore: store,
+          syncStore: syncStore,
+          mailbox: mailbox,
+          isCurrent: current,
+          run: ({required cancellation, required onProgress}) async {
+            if (!current()) {
+              throw const StudioMailMessageLoadException(
+                MailProblemCode.staleOperation,
+              );
+            }
+            final saved = await syncStore.saveSyncMailbox(mailbox);
+            if (saved case MailFailure<MailUnit>(:final problem)) {
+              throw StudioMailMessageLoadException(problem.code);
+            }
+            if (!current()) {
+              throw const StudioMailMessageLoadException(
+                MailProblemCode.staleOperation,
+              );
+            }
+            return synchronizer.synchronizeMailbox(
+              frozen,
+              repository: syncStore,
+              cancellation: cancellation,
+              onProgress: onProgress,
+            );
+          },
+        ),
+      );
+    } finally {
+      if (current()) setState(() => _dialogOpen = false);
+    }
+  }
+
   Future<void> _switchAccount() async {
     final client = _client;
     if (client == null ||
@@ -2821,6 +2904,16 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         id: 'mailbox',
         title: 'Mailbox',
         children: <Widget>[
+          if (_messageLoader is StudioMailMailboxSynchronizer &&
+              _draftStore is StudioMailMailboxStoreOwner)
+            command(
+              key: const ValueKey('studio-mail-open-sync'),
+              icon: Icons.sync,
+              tooltip: widget.strings.mailSync,
+              onPressed: _busy || _dialogOpen || _mailbox == null
+                  ? null
+                  : _openSynchronization,
+            ),
           command(
             icon: Icons.refresh,
             tooltip: widget.strings.refresh,

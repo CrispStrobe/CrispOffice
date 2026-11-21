@@ -8,9 +8,10 @@ The goal is to preserve the native cell and surrounding content, active citation
 fields, rich paragraph formatting, atomic publication and one undo/redo action.
 Cross-cell ranges and incoming nested-table payloads remain separate work.
 
-Implementation and local qualification are in progress. This initial checkpoint
-records the completed source intake before feature work; it makes no new
-runtime or installed-application acceptance claim.
+Implementation is complete; the broad local qualification is in progress.
+The initial reconciliation checkpoint was saved as
+`674ce9701e185971388fc2e517d305689ccba471` before the implementation checkpoint.
+No installed-application acceptance is implied by the local checks.
 
 The starting main is `e2abbcda6d19f932bfbacc85e0dafd41a3c478f8`. The initial
 observation was `fcb3ff13537eb31c2cabead033a50723124682c5`; the newer main also
@@ -42,6 +43,33 @@ python3 docs/validation/zotero-table-cell-ranges-20261121/intake/audit_refs.py \
 GitHub Actions and check/status queues are neither queried nor awaited.
 Incremental commits are saved to the remote checkpoint branch; final publication
 will use locally qualified source and a non-forced merge into remote main.
+
+## Implemented behavior and focused checks
+
+The session resolves an exclusively owned consecutive range within one real
+cell block list. Existing nested-table ancestry and merged originating cells
+are supported; continuation cells, control/drawing ancestors, aliases,
+cross-cell ranges and incoming table payloads are refused. It pins the exact
+section/note and table/row/cell/container identities at transaction creation and
+rechecks them before staging and applying the result.
+
+Ordinary text, headings, lists, supported pictures and active citations remain
+inside the existing cell. Surrounding paragraphs, unselected native citation
+packets, cell properties and neighbor cells survive. The controller publishes
+one undo/redo step and restores the original selection direction on undo.
+Raw engine sessions support body and authored-note cells; the standard Notes
+pane's UI boundary is unchanged.
+
+Independent development probes found a covariant `List<WmlParagraph>` insertion
+failure for rich headings/lists. Inserting each actual block into the existing
+owner fixes that valid-model case. New engine and controller regressions cover
+the behavior and retained history/serialization.
+
+The focused engine run completed 121 cases with zero failures or skips: 62 new
+cell-range cases and 59 existing paragraph-range cases. The complete affected
+controller suite also passes, including direct Add Note/Add Annotation dialog
+completion/cancellation. These development checks precede the final source-bound
+regression receipt and are not added to its eventual totals.
 
 ## Parity decisions
 

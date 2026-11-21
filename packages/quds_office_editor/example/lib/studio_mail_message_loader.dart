@@ -44,6 +44,18 @@ abstract interface class StudioMailMailboxBrowser {
   });
 }
 
+/// Optional durable foreground synchronization. The caller supplies the owned
+/// repository; no cursor or message is committed by a transient browse request.
+abstract interface class StudioMailMailboxSynchronizer {
+  MailAccountId get account;
+  Future<MailSyncRunReport> synchronizeMailbox(
+    mail.Mailbox selectedMailbox, {
+    required MailSyncRepository repository,
+    required MailCancellationToken cancellation,
+    required void Function(MailSyncRunProgress) onProgress,
+  });
+}
+
 /// Immutable provider observations for durable cached views. This optional
 /// port never derives an identity from a mutable high-level message after a
 /// fetch. Older reader-only host adapters remain valid without local caching.
@@ -161,6 +173,7 @@ final class NativeStudioMailMessageLoader
     implements
         StudioMailMessageLoader,
         StudioMailMailboxBrowser,
+        StudioMailMailboxSynchronizer,
         StudioMailMailboxRecords,
         StudioMailMessageActions,
         StudioMailBulkMessageActions,
@@ -171,6 +184,7 @@ final class NativeStudioMailMessageLoader
     StudioMailProviderFactory? providerFactory,
     MailReadBudget budget = const MailReadBudget(),
     MailTransportLimits limits = const MailTransportLimits(),
+    MailAccountId? persistentAccount,
   }) {
     final incoming = account.incoming;
     final server = incoming.serverConfig;
@@ -199,10 +213,12 @@ final class NativeStudioMailMessageLoader
           MailProblemCode.invalidInput,
         );
       }
-      final id = MailAccountId(
-        'imap-session-${++_nextSession}',
-        profile: MailProfileId('mail-dialog', hostId: 'quds-office-studio'),
-      );
+      final id =
+          persistentAccount ??
+          MailAccountId(
+            'imap-session-${++_nextSession}',
+            profile: MailProfileId('mail-dialog', hostId: 'quds-office-studio'),
+          );
       final reference = MailCredentialReference(
         account: id,
         key: 'session-password',
@@ -247,6 +263,39 @@ final class NativeStudioMailMessageLoader
 
   @override
   MailAccountId get account => _configuration.account;
+
+  @override
+  Future<MailSyncRunReport> synchronizeMailbox(
+    mail.Mailbox selectedMailbox, {
+    required MailSyncRepository repository,
+    required MailCancellationToken cancellation,
+    required void Function(MailSyncRunProgress) onProgress,
+  }) async {
+    final (mailbox, _) = _selectedMailbox(selectedMailbox);
+    if (_active != null) {
+      throw const StudioMailMessageLoadException(MailProblemCode.unavailable);
+    }
+    final operation = _MessageOperation();
+    _active = operation;
+    try {
+      final provider = _providerFactory(
+        configuration: _configuration,
+        credentialStore: _credentials,
+        limits: limits,
+      );
+      return await const MailSyncRunner().run(
+        provider: provider,
+        repository: repository,
+        session: _session,
+        mailbox: mailbox,
+        pageSize: limits.maxPageSize < 100 ? limits.maxPageSize : 100,
+        cancellation: cancellation,
+        onProgress: onProgress,
+      );
+    } finally {
+      if (identical(_active, operation)) _active = null;
+    }
+  }
 
   @override
   MailHeaderRecord observedHeader(
