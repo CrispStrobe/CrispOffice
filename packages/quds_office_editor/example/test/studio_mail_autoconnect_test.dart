@@ -182,20 +182,37 @@ void main() {
       expect(tester.takeException(), isNull);
     });
 
-    testWidgets('$source cannot connect a form edited while loading', (
-      tester,
-    ) async {
-      final store = catalog ? _Catalog() : _Credentials();
-      final client = _Client();
-      await _show(tester, store, client);
-      _input(tester, _strings.emailAddress).text = 'edited@example.test';
-      _input(tester, _strings.password).text = 'edited-password';
-      store.ready.complete();
-      await _pump(tester);
-      expect(client.connections, 0);
-      expect(_input(tester, _strings.emailAddress).text, 'edited@example.test');
-      expect(tester.takeException(), isNull);
-    });
+    testWidgets(
+      catalog
+          ? '$source hides setup and ignores a load completed after closing'
+          : '$source cannot connect a form edited while loading',
+      (tester) async {
+        final store = catalog ? _Catalog() : _Credentials();
+        final client = _Client();
+        await _show(tester, store, client);
+        if (catalog) {
+          expect(
+            find.byKey(const ValueKey('studio-mail-restoring-account')),
+            findsOneWidget,
+          );
+          expect(find.byType(TextField), findsNothing);
+          await tester.pumpWidget(const SizedBox.shrink());
+        } else {
+          _input(tester, _strings.emailAddress).text = 'edited@example.test';
+          _input(tester, _strings.password).text = 'edited-password';
+        }
+        store.ready.complete();
+        await _pump(tester);
+        expect(client.connections, 0);
+        if (!catalog) {
+          expect(
+            _input(tester, _strings.emailAddress).text,
+            'edited@example.test',
+          );
+        }
+        expect(tester.takeException(), isNull);
+      },
+    );
 
     testWidgets('$source failed load cannot authorize automatic connection', (
       tester,
@@ -203,36 +220,79 @@ void main() {
       final store = (catalog ? _Catalog() : _Credentials())..failed = true;
       final client = _Client();
       await _show(tester, store, client);
-      _input(tester, _strings.emailAddress).text = 'edited@example.test';
-      _input(tester, _strings.password).text = 'edited-password';
+      if (!catalog) {
+        _input(tester, _strings.emailAddress).text = 'edited@example.test';
+        _input(tester, _strings.password).text = 'edited-password';
+      }
       store.ready.complete();
       await _pump(tester);
       expect(client.connections, 0);
+      expect(
+        _input(tester, _strings.emailAddress).text,
+        catalog ? isEmpty : 'edited@example.test',
+      );
+      expect(
+        find.byKey(const ValueKey('studio-mail-restoring-account')),
+        findsNothing,
+      );
       expect(tester.takeException(), isNull);
     });
 
-    for (final password in [false, true]) {
+    if (catalog) {
       testWidgets(
-        '$source ${password ? 'password' : 'account'} edit cancels the queued callback',
+        '$source saved-message navigation cancels the queued callback',
         (tester) async {
-          final store = catalog ? _Catalog() : _Credentials();
+          final store = _Catalog();
           final client = _Client();
           await _show(tester, store, client);
           store.ready.complete();
           await tester.idle();
-          expect(_input(tester, _strings.emailAddress).text, _saved.email);
           expect(client.connections, 0);
-          _input(
-            tester,
-            password ? _strings.password : _strings.emailAddress,
-          ).text = password
-              ? 'edited-password'
-              : 'edited@example.test';
+          await tester.tap(find.byTooltip(_strings.savedMessages));
           await _pump(tester);
           expect(client.connections, 0);
+          expect(find.byType(MailMessageView), findsOneWidget);
           expect(tester.takeException(), isNull);
         },
       );
+      testWidgets('$source host opt-out cancels the queued callback', (
+        tester,
+      ) async {
+        final store = _Catalog();
+        final client = _Client();
+        await _show(tester, store, client);
+        store.ready.complete();
+        await tester.idle();
+        expect(client.connections, 0);
+        await _show(tester, store, client, autoConnect: false);
+        expect(client.connections, 0);
+        expect(_input(tester, _strings.emailAddress).text, _saved.email);
+        expect(tester.takeException(), isNull);
+      });
+    } else {
+      for (final password in [false, true]) {
+        testWidgets(
+          '$source ${password ? 'password' : 'account'} edit cancels the queued callback',
+          (tester) async {
+            final store = _Credentials();
+            final client = _Client();
+            await _show(tester, store, client);
+            store.ready.complete();
+            await tester.idle();
+            expect(_input(tester, _strings.emailAddress).text, _saved.email);
+            expect(client.connections, 0);
+            _input(
+              tester,
+              password ? _strings.password : _strings.emailAddress,
+            ).text = password
+                ? 'edited-password'
+                : 'edited@example.test';
+            await _pump(tester);
+            expect(client.connections, 0);
+            expect(tester.takeException(), isNull);
+          },
+        );
+      }
     }
   }
 

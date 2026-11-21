@@ -1,0 +1,51 @@
+{
+  "scope": "Late incoming Mail/editor delta dab9c550..cf12544d after parent merge dd2284a4; no new source edits by reviewer",
+  "runtime": "Official Flutter 3.47.8 / Dart 3.13.7, restored pinned workspace dependencies",
+  "results": [
+    {
+      "log": "late-mail-sync-migration.log",
+      "tests": 23,
+      "files": 1,
+      "result": "passed",
+      "coverage": "sync_mailboxes_test including strengthened v7-to-v10 schema rollback and compose-settings defaults"
+    },
+    {
+      "log": "late-editor-notes-guard.log",
+      "tests": 21,
+      "files": 1,
+      "result": "passed",
+      "coverage": "word_plain_text_insertion_test including new footnote/endnote selection ownership regressions"
+    },
+    {
+      "log": "late-mail-compose-hosts.log",
+      "tests": 45,
+      "files": 3,
+      "result": "passed",
+      "coverage": "compose tools dialog/store, and native IMAP/EWS draft-host recovery"
+    },
+    {
+      "log": "late-mail-editor-analysis.log",
+      "files": 7,
+      "result": "No issues found!",
+      "command": "dart analyze --fatal-infos on the source/test paths in source_sha256"
+    }
+  ],
+  "total_tests_passed": 89,
+  "total_test_files": 5,
+  "source_sha256": {
+    "packages/quds_mail_store/test/sync_mailboxes_test.dart": "20d390e6f39700c3816e03f17193bd6f4a3252952a76b77f88196816714bd234",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "b308b66a0456ccdcd7fffb9e4e851d641b1955e716317cdddbbc041495ae9af8",
+    "packages/quds_office_editor/test/word_plain_text_insertion_test.dart": "99b0ccf1efe339c5ca43c823802089b0f9f118a69edcd9330e3e2a4fde8c9479",
+    "packages/quds_office_editor/example/lib/studio_mail_draft_store.dart": "be8e9b8c9219972aa49fab4921b9320de51d7a1ff71a892885999427a9fb1f8c",
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart": "2d3017cd7f28ef319db49fd465a0db1be0ce56b04989612d18b486b006b4be69",
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart": "8094bca79eb9ef29c59987da521139dcf9854503a43fa9e680a74b9a90ecbb96",
+    "packages/quds_office_editor/example/test/studio_mail_compose_tools_dialog_test.dart": "59b8d0a64862f4e4c3fdbdccfdd12f9c39febbfc683b3d54ffbfd6b82735d923"
+  },
+  "changes_preserved": [
+    "Active Notes-pane insertion guard",
+    "Two footnote/endnote body-caret refusal regressions",
+    "Atomic migration rollback assertion for all v10-added tables",
+    "Default compose-settings revision assertion after migration"
+  ],
+  "additional_changes_required": false
+}

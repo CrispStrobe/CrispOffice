@@ -1,0 +1,27 @@
+[
+  {
+    "source_commit": "dab9c5509c4eed8f0ff42a1ff8b4bccaaf18ff50",
+    "source": "packages/quds_office_engine/test/office_vba_word_styles_integration_test.dart",
+    "retained_path": "packages/quds_office_engine/test/office_vba_word_styles_checkpoint_integration_test.dart",
+    "sha256": "f8d38a1234f8edc107305466a6d170206c4cdf3aa565b054dfcad480adfdea5c",
+    "adjustments": [
+      "Provenance comment",
+      "Import renamed to retained checkpoint fixture"
+    ],
+    "source_blob": "086b531c1e4c8e6811ed79f6d86f1078bad1f0f6",
+    "source_sha256": "03b98db1f8b43805796a575d7cf54f7cdbbf188ee408ace3e75c4186b83967e4",
+    "exact_reconstruction_verified": true
+  },
+  {
+    "source_commit": "dab9c5509c4eed8f0ff42a1ff8b4bccaaf18ff50",
+    "source": "packages/quds_office_engine/tool/macros/web_vba_word_styles_smoke.dart",
+    "retained_path": "packages/quds_office_engine/tool/macros/web_vba_word_styles_checkpoint_smoke.dart",
+    "sha256": "4c2112b6a0e0bd37f3e76b385b447f741c530d9eed56a282d434bed49cf0e567",
+    "adjustments": [
+      "Provenance comment"
+    ],
+    "source_blob": "943039ca772ef5ec526203063b2f85bc9f3559ce",
+    "source_sha256": "a843d0ba342ad5a6e1908148ca399fdfed6dd54e14b098b2478170a02828e1e9",
+    "exact_reconstruction_verified": true
+  }
+]

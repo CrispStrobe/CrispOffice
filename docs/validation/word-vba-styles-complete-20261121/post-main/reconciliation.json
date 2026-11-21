@@ -1,0 +1,27 @@
+{
+  "full_word_cohort": "word-final-reconciled/receipt.json",
+  "post_main_gate": "word-post-main/receipt.json",
+  "engine_library_changes": [
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_data.dart",
+      "before": "eb2b68b152d8b8c79494d36afaf39e2b0c653d6c69a7f1ea43f53d20332a2b61",
+      "after": "5e173c833a44e490dbdde1a5cf0442dfcac4ecb3cd97af0ade905b14ce513484"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_reader.dart",
+      "before": "ae4caa46c648cbc0848f8aeb662352a60b7dc8fca9d671082615556f044f45ab",
+      "after": "4e124914d477a4446cb85f68933c359989510cce1396ac191d871e86f884c36b"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+      "before": "63f0b20fdbe9cb988bcd93d68da2d84380acefdcdbfc65c4d9433b683048e7db",
+      "after": "16b2f4ae643d1d8214b8606a771e5e66195593481d9ad7b2eb834addef31d4d4"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_writer_zotero.dart",
+      "before": null,
+      "after": "b143f0ed491e001360d192da1e805b164b04f76bda8bd374e160b4f0cfeb69d1"
+    }
+  ],
+  "docx_compiler_and_native_style_paths_changed": false
+}

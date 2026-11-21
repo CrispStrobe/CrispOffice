@@ -6,10 +6,12 @@ Account-scoped signatures and literal Quick Text are implemented in the core,
 SQLite repository and shared native Studio composer. The code and all authored
 regressions are retained in incremental remote checkpoints.
 
-**Runtime qualification is open. No new Dart analysis, formatting, model/store
-tests, Flutter widget tests or installed-app checks ran in this increment.**
-Independent source review and Git ancestry/tree checks are the completed
-verification. Neither compilation nor passing tests is inferred from them.
+**Subsequent local runtime qualification is complete for the model, persistence
+and Flutter-host checks recorded below.** The original source-only handoff and
+executor failure remain historical evidence; their open-qualification status is
+superseded by the executed checks in
+[Subsequent local qualification](#subsequent-local-qualification-on-the-word-integration-branch).
+Installed-app and live-provider transmission checks were not performed.
 
 The [feature contract](../../roadmaps/mail/compose-tools.md) gives the user path,
 storage semantics and exact selection/authoring limits.
@@ -39,7 +41,7 @@ was applied as an exact uniquely matched hunk outside our native compose-host
 changes and retained through a normal two-parent merge at
 `af662bcd726097657e2b71ec1fbb6de5eb5dde2a`.
 
-Word VBA PR #322 remains explicitly **WIP**, draft and open at the final intake
+Word VBA PR #322 remained explicitly **WIP**, draft and open at the original Mail intake
 snapshot, with head `6ad48343192a19d0da1f9a0c2c0f318b51e1e9cc`.
 `codex/word-vba-styles-complete-20261121` at
 `db531880f9a1ef4d5060c6fffee5fac8af537b7a` is an integration checkpoint whose
@@ -114,7 +116,7 @@ same-account next-revision acknowledgements, immutable draft/Outbox snapshots,
 close serialization, migration ordering, quotas and strict stored-text decoding.
 No additional concrete source defect was found. This is not a compiler result.
 
-## Authored tests — not executed
+## Authored tests at the original source-only handoff
 
 | Suite | Intended coverage |
 | --- | --- |
@@ -126,10 +128,10 @@ No additional concrete source defect was found. This is not a compiler result.
 | Studio `studio_mail_compose_tools_test.dart` | 12 composer cases: defaults/resume, insertion/undo/autosave, manager readback, stale callbacks and refusal |
 | Editor `word_plain_text_insertion_test.dart` | 19 literal insertion/history/clipboard/guard/selection cases |
 
-Counts describe authored scenarios, not passes. Fixture/layout expectations
-remain subject to actual execution.
+These historical counts describe authored scenarios at that handoff, not passes
+at that time. Subsequent execution results and added regressions are below.
 
-## Executor failure and toolchain receipt
+## Original executor failure and toolchain receipt
 
 - Repository pin: Flutter 3.47.8; SDK requirement Dart ^3.12.0.
 - Standalone `dart --version` successfully identified Dart 3.13.7.
@@ -153,7 +155,7 @@ All source authored after this failure was uploaded through the connected
 GitHub API and reviewed from immutable remote blobs/commits. No current
 acceptance claim depends on transient local files.
 
-## Commands to execute when a working executor is available
+## Commands originally deferred pending a working executor
 
 Use the pinned Flutter SDK and the unchanged workspace lock. From repository
 root, resolve with `flutter pub get --enforce-lockfile`, then format/analyze the
@@ -186,7 +188,6 @@ actually execute.
 
 ## Subsequent local qualification on the Word integration branch
 
-
 Local checks ran on the repository-pinned Flutter 3.47.8 / Dart 3.13.7,
 using locked dependencies and the actual SQLite package build hook (SQLite
 3.54.1 with FTS5). No tracked manifests or dependency versions changed.
@@ -201,6 +202,10 @@ using locked dependencies and the actual SQLite package build hook (SQLite
 | Flutter compose settings, store and dialog | 37 passed |
 | Existing Native/EWS/offline compose, draft, reply and forward tests | 56 passed |
 | Strict analysis of changed core/store/editor/host paths | No issues found |
+| Reconciled Mail accounts, session, browser and saved-message suites | 63 passed |
+| Automatic-connection suite after restoration UI test updates | 14 passed |
+| Plain-text insertion repeated on the reconciled tree | 21 passed |
+| Strict analysis of reconciled Mail host and regression-test paths | No issues found |
 
 The store coverage combines the initial full run and the corrected sync-file
 rerun; it is not a second full-suite run. The v7 fixtures now remove the new
@@ -212,8 +217,35 @@ Runtime review also corrected `WordEditorController.insertPlainText`: when the
 Notes pane owns the selection, the method refuses insertion before touching the
 retained body caret. Footnote and endnote regressions check unchanged text,
 selection, dirty state and history, followed by normal body insertion after
-the note target is cleared. Remaining changes are formatting and analyzer
-cleanup of the previously unexecuted increment.
+the note target is cleared. The initial qualification also applied formatting
+and analyzer cleanup to the previously unexecuted increment.
+
+Final reconciliation retained the incoming PR #324 restoration screen and the
+browser embedded-close callback. Executing the existing Mail host regressions
+exposed two further production defects: the restoration screen hid manual
+account forms during unrelated catalog operations, and the native saved-message
+view did not forward its host's close callback. Automatic startup loading and
+saved-account connection now retain the progress screen, while manual loading,
+selection and pending-save editing retain the setup form. Native saved-message
+closing now uses the same host callback contract as the browser view.
+
+The final host checks cover 24 account cases, 21 session cases, 2 browser cases
+and 16 saved-message cases. New gated regressions verify progress throughout
+catalog loading and connection, return to manual setup after load failure, and
+native embedded closing without popping an unrelated route. Saved-file tests
+use an explicit empty catalog rather than depending on an unresolved platform
+credential store. The 14 automatic-connection checks retain legacy/manual
+stale-edit coverage and exercise the new catalog screen's actual cancellation
+paths: closing during loading, navigating to saved messages, and host opt-out
+before the queued connection begins. Four old catalog cases that expected an
+editable login form behind the new restoration screen were updated to these
+supported interactions. No production core or store changes were required by
+this final reconciliation.
+
+The final focused results combine the four passing host suites with the
+automatic-connection-file rerun after those UI-contract test updates; they are
+not represented as a second full Mail suite run. GitHub Actions were not
+awaited or used as an acceptance gate.
 
 Reproduce with the pinned toolchain and resolved workspace dependencies:
 
@@ -226,6 +258,7 @@ cd ../quds_office_editor
 flutter test --no-pub test/word_plain_text_insertion_test.dart
 cd example
 flutter test --no-pub test/studio_mail_compose_tools_test.dart test/studio_mail_compose_tools_store_test.dart test/studio_mail_compose_tools_dialog_test.dart
+flutter test --no-pub --concurrency=1 test/studio_mail_accounts_test.dart test/studio_mail_session_test.dart test/studio_mail_web_test.dart test/studio_saved_mail_test.dart test/studio_mail_autoconnect_test.dart
 ```
 
 These checks qualify local models, persistence and Flutter host behavior.

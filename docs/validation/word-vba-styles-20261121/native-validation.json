@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "scope": "Word paragraph style assignment native reconciliation",
+  "worktree": "/workspace/scratch/41f814a8b629/quds_reconcile",
+  "sourceBinding": {
+    "headAtRecording": "540f55ce54046c68fa28a18add8a5f87b2769019",
+    "filesCleanAtRecording": true,
+    "files": {
+      "packages/quds_office_engine/lib/src/word/serial/word_paragraph_style.dart": "e6d29579150acf270819a31a99027a8386b2f15c35fb83621a3008904705a6c5",
+      "packages/quds_office_engine/test/word_paragraph_style_assignment_test.dart": "b0431737b86366ffcd6af60a2965585a5a9422368cafa83b0d42ce5a41459522",
+      "packages/quds_office_engine/test/office_macro_word_paragraph_style_test.dart": "5dbbd8ea13c4b6b47b3f34dae43054c7f7db751282edc693566b29273de1196c"
+    }
+  },
+  "runtime": {
+    "dart": "3.13.7",
+    "environmentCommand": "source /workspace/scratch/41f814a8b629/runtime/flutter-env.sh",
+    "runner": "/workspace/scratch/41f814a8b629/runtime/test-runner/flutter-test-runner.dill"
+  },
+  "tests": {
+    "cwd": "/workspace/scratch/41f814a8b629/quds_reconcile/packages/quds_office_engine",
+    "command": "dart --old_gen_heap_size=768 --packages=../../.dart_tool/package_config.json /workspace/scratch/41f814a8b629/runtime/test-runner/flutter-test-runner.dill --compiler source --concurrency=1 --timeout=4x test/word_paragraph_style_assignment_test.dart test/office_macro_word_paragraph_style_test.dart --reporter expanded",
+    "singleRun": true,
+    "exitCode": 0,
+    "passed": 138,
+    "failed": 0,
+    "suites": {
+      "test/word_paragraph_style_assignment_test.dart": 64,
+      "test/office_macro_word_paragraph_style_test.dart": 74
+    },
+    "evidence": {
+      "source": "exec tool stdout",
+      "execSessionId": 5545,
+      "initialChunkId": "f53029",
+      "completionChunkId": "cace71",
+      "finalLine": "00:11 +138: All tests passed!",
+      "rawLogPath": null
+    }
+  },
+  "analysis": {
+    "cwd": "/workspace/scratch/41f814a8b629/quds_reconcile/packages/quds_office_engine",
+    "command": "dart analyze --fatal-infos lib/src/word/serial/word_paragraph_style.dart test/word_paragraph_style_assignment_test.dart test/office_macro_word_paragraph_style_test.dart",
+    "exitCode": 0,
+    "result": "No issues found!",
+    "evidence": {
+      "source": "exec tool stdout",
+      "execSessionId": 49920,
+      "initialChunkId": "452935",
+      "completionChunkId": "94b682",
+      "rawLogPath": null
+    }
+  },
+  "notes": [
+    "Commands ran after the stated environmentCommand, using the pinned Dart 3.13.7 runtime.",
+    "The final test and analyzer commands wrote directly to tool stdout without shell redirection. No raw log files were created by this agent; the root agent may archive the corresponding recorded output.",
+    "No additional tests were run while creating this validation record."
+  ]
+}

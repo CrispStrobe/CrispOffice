@@ -1,5 +1,10 @@
 # Native ODT merged tables and Zotero — 21 November 2026
 
+**Subsequent qualification:** the [editable ODT continuation](../zotero-editable-odt-20261121/README.md)
+completed this pending runtime gate with the pinned SDK, then passed a larger
+frozen-source regression. The status and evidence below retain their original
+PR #323 attribution.
+
 **Status: implementation and regression sources preserved; local runtime
 qualification pending.** Shared executor disk exhaustion prevented SDK
 installation and every subsequent shell invocation. This report distinguishes

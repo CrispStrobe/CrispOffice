@@ -56,12 +56,10 @@ void main() {
     });
   });
 
-  test(
-    'helper rebinding retains the caller header selector',
-    () async {
-      final input = portable.wordStylesInput();
-      final session = OfficeMacroSession(input, format: OfficeMacroFormat.docx);
-      final macro = portable.wordStylesSource('''
+  test('helper rebinding retains the caller header selector', () async {
+    final input = portable.wordStylesInput();
+    final session = OfficeMacroSession(input, format: OfficeMacroFormat.docx);
+    final macro = portable.wordStylesSource('''
 Sub Configure(ByVal target As Range)
   target.Style = wdStyleCaption
   Set target = ActiveDocument.Paragraphs(1).Range
@@ -74,24 +72,23 @@ Sub Main()
   head.Style = "Report Body"
 End Sub
 ''');
-      await session.validate(macro);
-      expect(session.bytes, input);
-      await session.run(macro);
-      var document = WordDeserializer().readBytes(session.bytes);
-      for (var cycle = 0; cycle < 2; cycle++) {
-        expect(
-          document.sections.first.header.single.properties.styleId,
-          'BodyCustom',
-        );
-        expect(document.paragraphs.first.properties.styleId, 'HeadingNative');
-        expect(document.paragraphs.elementAt(1).properties.styleId, isNull);
-        expect(document.paragraphs.elementAt(2).properties.styleId, isNull);
-        document = WordDeserializer().readBytes(
-          WordSerializer().writeBytes(document),
-        );
-      }
-    },
-  );
+    await session.validate(macro);
+    expect(session.bytes, input);
+    await session.run(macro);
+    var document = WordDeserializer().readBytes(session.bytes);
+    for (var cycle = 0; cycle < 2; cycle++) {
+      expect(
+        document.sections.first.header.single.properties.styleId,
+        'BodyCustom',
+      );
+      expect(document.paragraphs.first.properties.styleId, 'HeadingNative');
+      expect(document.paragraphs.elementAt(1).properties.styleId, isNull);
+      expect(document.paragraphs.elementAt(2).properties.styleId, isNull);
+      document = WordDeserializer().readBytes(
+        WordSerializer().writeBytes(document),
+      );
+    }
+  });
 
   test(
     'later missing header keeps earlier committed bytes and revision',

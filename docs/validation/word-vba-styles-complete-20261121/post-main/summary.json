@@ -1,0 +1,33 @@
+{
+  "started_at": "2026-11-21T17:43:41.076181+00:00",
+  "finished_at": "2026-11-21T17:43:56.093996+00:00",
+  "head_at_start": "13e16187180d349601f0af464698706b2693d95e",
+  "exit_code": 0,
+  "files": 11,
+  "test_registrations": {
+    "passed": 315,
+    "failed": 0,
+    "skipped": 0
+  },
+  "source_changes": {},
+  "added_sources": [],
+  "source_hash_count": 448,
+  "per_file": {
+    "test/odt_document_reader_test.dart": 45,
+    "test/odt_merged_table_zotero_test.dart": 40,
+    "test/odt_zotero_export_lifecycle_test.dart": 18,
+    "test/odt_zotero_writer_test.dart": 11,
+    "test/office_macro_word_paragraph_style_test.dart": 74,
+    "test/office_vba_word_styles_checkpoint_integration_test.dart": 9,
+    "test/office_vba_word_styles_integration_test.dart": 11,
+    "test/style_cascade_test.dart": 11,
+    "test/word_paragraph_style_assignment_test.dart": 60,
+    "test/word_table_style_import_regression_test.dart": 14,
+    "test/word_table_style_precedence_test.dart": 22
+  },
+  "raw_log_sha256": {
+    "events.jsonl": "9a13946679e7f26b67e8a1bf86c6e14ebbb34511e76768b72289cf9bd3229726",
+    "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "scope": "Bounded combined-source Word/ODT integration gate after merging latest main c7380f53 as 13e16187. These 315 executions overlap the earlier full Word cohort; do not add counts as unique tests."
+}

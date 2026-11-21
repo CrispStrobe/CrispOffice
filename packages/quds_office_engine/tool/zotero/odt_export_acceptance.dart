@@ -7,6 +7,7 @@ import 'dart:typed_data';
 import 'package:quds_office_engine/quds_office_engine.dart';
 
 const _names = ['body-bibliography', 'table-notes'];
+const _odfText = 'urn:oasis:names:tc:opendocument:xmlns:text:1.0';
 
 ZoteroCitation _citation(String id) => ZoteroCitation.fromJson({
   'citationID': id,
@@ -146,8 +147,21 @@ Future<Map<String, Object?>> _summary(Uint8List bytes) async {
       inventory.fields.any((field) => !field.isImportCandidate)) {
     throw StateError('ODT does not retain a complete native Zotero inventory.');
   }
+  final content = XmlDocument.parse(
+    OpcPackage.openBytes(bytes).getPart('/content.xml')!.readText(),
+  ).root!;
   return {
     'preferences': inventory.preferences.rawData,
+    'notes': [
+      for (final element in _elements(content))
+        if (element.namespaceUri == _odfText && element.localName == 'note')
+          {
+            'class': element.getAttribute('note-class', namespaceUri: _odfText),
+            'label': element
+                .firstChild('note-citation', namespaceUri: _odfText)!
+                .text,
+          },
+    ],
     'fields': [
       for (final field in inventory.fields)
         {
@@ -164,6 +178,13 @@ Future<Map<String, Object?>> _summary(Uint8List bytes) async {
         },
     ],
   };
+}
+
+Iterable<XmlElement> _elements(XmlElement root) sync* {
+  yield root;
+  for (final child in root.childElements) {
+    yield* _elements(child);
+  }
 }
 
 Future<void> main(List<String> args) async {

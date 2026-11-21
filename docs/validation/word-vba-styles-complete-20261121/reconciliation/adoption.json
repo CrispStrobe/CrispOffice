@@ -1,0 +1,17 @@
+{
+  "incoming_commit": "cf12544df1a7965615f38eab8d22dae5cfa0d7c0",
+  "path": "packages/quds_office_engine/test/word_paragraph_style_assignment_test.dart",
+  "incoming_blob": "6c4df5f08bfbab8e4aa2e7729b80e576aab5e268",
+  "incoming_sha256": "a107abef51c3511fa273d82bb4b85c94b2b797059de9293c64262296f90f838e",
+  "reconciled_sha256": "1267631f8a579c33e2ba774bdda8f1ddd605a1b9a07aac9ba2fd894aac50a146",
+  "all_xml_bearing_source_lines_equal": true,
+  "xml_bearing_line_count": 55,
+  "adjusted_test_registrations": 6,
+  "adjustments": [
+    "Two prefix fixtures preserve initial Base/Emphasis identities, atomically refuse ambiguous restyling, and verify original projection and opaque source through three reopens.",
+    "One shared-property fixture requires atomic refusal preserving both original references and values.",
+    "One active-direct-numbering fixture requires atomic refusal preserving style ID, numId, ilvl, label and sparse source.",
+    "Two shared-inline ownership cases use UnsupportedError; cyclic/repeated block ownership stays StateError."
+  ],
+  "preserved_reader_correction": "rStyle depth/namespace filtering retains incoming initial character-style identity assertions."
+}

@@ -437,6 +437,21 @@ void main() {
       expect(foot.id, end.id);
       for (var cycle = 0; cycle < 3; cycle++) {
         final bytes = _exportUnchanged(document);
+        final styles = XmlDocument.parse(
+          OpcPackage.openBytes(bytes).getPart('/styles.xml')!.readText(),
+        ).root!.firstChild('styles')!;
+        final numberingStyles = styles.childrenNamed('notes-configuration');
+        expect(
+          {
+            for (final configuration in numberingStyles)
+              configuration.getAttribute('note-class'): configuration
+                  .getAttribute('num-format'),
+          },
+          {'footnote': '1', 'endnote': '1'},
+          reason:
+              'Automatic note labels need an explicit decimal format; '
+              'Writer otherwise changes the endnote label to Roman.',
+        );
         final inventory = await OdfZotero.inspect(bytes);
         final stories = {
           for (final field in inventory.fields)
@@ -481,6 +496,38 @@ void main() {
       expect(_field(document, 'end').cachedText, _same);
     },
   );
+
+  test('a fixed earlier note cannot silently renumber a later cited note', () {
+    final firstAnchor = _plain('Roman endnote');
+    final secondAnchor = _plain('Decimal endnote');
+    final document = WmlDocument(
+      zoteroDocumentData: _preferences(),
+      sections: [
+        WmlSection(blocks: [firstAnchor]),
+        WmlSection(
+          blocks: [secondAnchor],
+          sourceProperties: WmlSectionSource(
+            xml:
+                '<w:sectPr xmlns:w="${OfficeNamespaces.w}">'
+                '<w:endnotePr><w:numFmt w:val="decimal"/></w:endnotePr>'
+                '</w:sectPr>',
+            values: const {},
+          ),
+        ),
+      ],
+    );
+    WordNotes.insert(document, firstAnchor, endnote: true, text: 'Uncited');
+    final cited = WordNotes.insert(
+      document,
+      secondAnchor,
+      endnote: true,
+      text: 'Cited ',
+    );
+    WordZotero.insertCitation(cited.paragraphs.single, _citation('mixed'));
+    final numbering = WordNoteNumbering(document);
+    expect(document.endnotes.map(numbering.labelFor), ['i', '2']);
+    _refusesUnchanged(document);
+  });
 
   test(
     'native bibliography remains refreshable and unlinkable after export',

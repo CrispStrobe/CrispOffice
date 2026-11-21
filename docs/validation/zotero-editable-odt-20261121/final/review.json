@@ -1,0 +1,87 @@
+{
+  "reviewed_at_utc": "2026-11-21T17:27:41.557110+00:00",
+  "scope": "Independent source review of explicit Zotero ODT export and minimal endnote import correction. No writer source edits by reviewer.",
+  "blocking_findings_remaining": [],
+  "resolved_findings": [
+    {
+      "priority": "P1",
+      "finding": "Span-three citation table exports could not reopen: ordinary relative-width style and repeated covered cells were outside the bounded native input contract.",
+      "resolution": "Writer owner added explicit-path absolute grid width, bounded explicit covered positions, and empty native continuation suppression; reviewer reproduction now reopens with one active field.",
+      "evidence": "span_repro_fixed.log"
+    },
+    {
+      "priority": "P1",
+      "finding": "Opaque metadata guard called recursive XmlElement.text before enforcing descendant depth limits.",
+      "resolution": "Writer owner replaced DOM/subtree traversal with bounded streaming XmlPullReader scan, decoded text aggregation once and attribute checks."
+    },
+    {
+      "priority": "P1",
+      "finding": "Imported decimal ODT endnotes reverted to Word lowerRoman defaults after DOCX. Found by lifecycle owner.",
+      "resolution": "Reviewed minimal newly constructed section endnotePr/numFmt decimal override; preserves existing modeled geometry; lifecycle owner executes tests."
+    }
+  ],
+  "confirmed_contracts": [
+    "Canonical Zotero_ prefix, logical ITEM CSL_CITATION/BIBL codes, terminal RND plus ten alphanumeric suffix characters match pinned plugin sources.",
+    "ReferenceMark field enumeration includes TextSections, as required for native bibliographies.",
+    "Sequential ZOTERO_PREF_N properties are concatenated by native plugin; <=255 UTF-16-unit chunks can safely avoid splitting supplementary characters.",
+    "Ownership maps, exact packet endpoint emission checks, field validity and native bibliography replacement guards refuse incomplete, overlapping, unowned and unsupported active field data.",
+    "Numbered/heading bibliography entry paragraphs refuse before output, preventing bibliography sections from illegal list-item nesting.",
+    "Note and table ownership are distinct and note IDs are qualified by footnote/endnote kind.",
+    "Read conversion remains strict for ordinary callbacks; toOdt only changes Field/Http output storage to ReferenceMark."
+  ],
+  "qualification_limits": [
+    "General native ODT import still has layout/format/resource limits independent of editable Zotero export; no universal export/reimport claim.",
+    "Actual installed Zotero sessions and LibreOffice document behavior are outside this source review. Parent owns converter acceptance.",
+    "No additional broad test suites were run during this review; only concrete span-three regression reproduction was executed."
+  ],
+  "official_sources": [
+    "https://github.com/zotero/zotero-libreoffice-integration/blob/0a31b434371eb21a1297c5bce8ca4978cb9ab425/build/source/org/zotero/integration/ooo/comp/ReferenceMark.java",
+    "https://github.com/zotero/zotero-libreoffice-integration/blob/0a31b434371eb21a1297c5bce8ca4978cb9ab425/build/source/org/zotero/integration/ooo/comp/Document.java",
+    "https://github.com/zotero/zotero-libreoffice-integration/blob/0a31b434371eb21a1297c5bce8ca4978cb9ab425/build/source/org/zotero/integration/ooo/comp/Properties.java"
+  ],
+  "schema_source_in_repo": "docs/validation/office-reconcile-20261117/consumer/schemas/OpenDocument-v1.3-schema.rng",
+  "files": [
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_writer_zotero.dart",
+      "sha256": "b143f0ed491e001360d192da1e805b164b04f76bda8bd374e160b4f0cfeb69d1"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+      "sha256": "16b2f4ae643d1d8214b8606a771e5e66195593481d9ad7b2eb834addef31d4d4"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_data.dart",
+      "sha256": "5e173c833a44e490dbdde1a5cf0442dfcac4ecb3cd97af0ade905b14ce513484"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_reader.dart",
+      "sha256": "4e124914d477a4446cb85f68933c359989510cce1396ac191d871e86f884c36b"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_zotero_writer_test.dart",
+      "sha256": "8943c6eddd591bffdb300fec7e72b3cc8b6ea87614bb573f1978509981f3faa8"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_zotero_export_lifecycle_test.dart",
+      "sha256": "cb808d3d15e956705d1a842d1e2c707d115a521cfcf5d6f3891179b111f0ff18"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "span_repro.log",
+      "sha256": "97bfd1ec457fa451de9408ff1c79cfa70789fc915b88187e4543f5e91d476b56"
+    },
+    {
+      "path": "span_repro_fixed.log",
+      "sha256": "ad4ee97072e197f7d42943901f5ea3335a75af5981a91e2189cde61e2c79cc2f"
+    },
+    {
+      "path": "span_repro_latest.log",
+      "sha256": "fe67bf4ae61b6d9d56d98956b13c418950edbad99c9ae810c7a5297190275655"
+    },
+    {
+      "path": "span_repro.dart",
+      "sha256": "a6374feb4ed0b76a55d8c9dd5de71c75b570b68ee8bbd52686cb5555c4971b25"
+    }
+  ]
+}

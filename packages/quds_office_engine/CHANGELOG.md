@@ -17,7 +17,9 @@ All notable changes to `quds_office_engine` are documented here.
   Unicode-safe ReferenceMark preferences. Preserve supported body, table-cell
   and decimal-note ownership, rich caches and unknown metadata; refuse active
   fields that would be lost. Keep ordinary cached ODT export unchanged.
-  Preserve decimal imported endnote numbering through DOCX reopening. See the
+  Preserve decimal imported endnote numbering through DOCX reopening and
+  editable ODT saves; declare decimal native note configurations and refuse
+  mixed fixed/automatic note numbering that cannot retain cited labels. See the
   [native-output contract](../../docs/roadmaps/zotero/native-odt-output.md).
 
 - Extend bounded native ODT input with horizontal/vertical merged tables.

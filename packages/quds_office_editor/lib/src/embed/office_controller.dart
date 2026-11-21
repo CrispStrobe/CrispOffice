@@ -20,6 +20,7 @@ import '../proofing/word_proofing.dart';
 import 'office_clipboard.dart';
 import 'office_host_fonts.dart';
 import 'office_theme.dart';
+import 'word_autocorrect.dart';
 import 'word_page_layout.dart';
 
 /// The persistent review workspace shown beside (or below) a Word document.
@@ -873,6 +874,13 @@ class WordEditorController extends OfficeController {
       _thesaurusGeneration++;
       _thesaurusTarget = null;
       _thesaurusLookup = null;
+    }
+    // An active composition is not committed text. Do not schedule proofing
+    // against the intermediate IME value; the commit notification observes
+    // the final text and schedules the normal check.
+    if (input.composing.isValid && !input.composing.isCollapsed) {
+      super.notifyListeners();
+      return;
     }
     _proofing?.observeDocument();
     super.notifyListeners();
@@ -5058,6 +5066,49 @@ class WordEditorController extends OfficeController {
     return text.length;
   }
 
+  TextEditingValue _autocorrectImeValue(TextEditingValue value, String old) {
+    if (!value.selection.isCollapsed ||
+        value.composing.isValid && !value.composing.isCollapsed ||
+        value.text == old) {
+      return value;
+    }
+    final insertion = _singleInsertion(old, value.text);
+    if (insertion == null) return value;
+    final corrected = wordAutocorrectInsertion(
+      text: value.text,
+      offset: insertion.offset,
+      inserted: insertion.text,
+      language: _autocorrectLanguage,
+    );
+    if (corrected.text == value.text) return value;
+    final extent = (value.selection.extentOffset + corrected.caretDelta).clamp(
+      0,
+      corrected.text.length,
+    );
+    return value.copyWith(
+      text: corrected.text,
+      selection: TextSelection.collapsed(offset: extent),
+      composing: TextRange.empty,
+    );
+  }
+
+  ({int offset, String text})? _singleInsertion(String old, String next) {
+    if (next.length != old.length + 1) return null;
+    var prefix = 0;
+    while (prefix < old.length &&
+        old.codeUnitAt(prefix) == next.codeUnitAt(prefix)) {
+      prefix++;
+    }
+    if (prefix == old.length) return (offset: prefix, text: next[prefix]);
+    if (old.substring(prefix) != next.substring(prefix + 1)) return null;
+    return (offset: prefix, text: next[prefix]);
+  }
+
+  String get _autocorrectLanguage =>
+      _activeParagraph.properties.proofingLanguage ??
+      document.proofingLanguage ??
+      'de-DE';
+
   void _onIme(TextEditingValue value) {
     if (_applyingIme ||
         !config.allowsMutation ||
@@ -5073,6 +5124,7 @@ class WordEditorController extends OfficeController {
     }
     final WmlParagraph para = _activeParagraph;
     final String old = para.text;
+    value = _autocorrectImeValue(value, old);
     final void Function(String, int)? phase = debugEditPhase;
     final Stopwatch? watch = phase == null ? null : (Stopwatch()..start());
     void lap(String name) {

@@ -1,0 +1,245 @@
+{
+  "qualified_remote_source_commit": "b11c8b1a9a2c0fa58a45f9893b4c86834ec276b2",
+  "qualified_source_tree": "d25991879e4e84b4364ea7756945806e94bc2b51",
+  "checks": {
+    "full_word": {
+      "checked": 509,
+      "missing": [],
+      "changed": [
+        "packages/quds_office_engine/lib/src/word/model/word_zotero_data.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_reader.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+      ]
+    },
+    "post_main": {
+      "checked": 448,
+      "missing": [],
+      "changed": []
+    },
+    "portable": {
+      "checked": 366,
+      "missing": [],
+      "changed": []
+    },
+    "static": {
+      "checked": 53,
+      "missing": [],
+      "changed": []
+    }
+  },
+  "full_word_followup": "Only three pre-existing ODT/Zotero paths differ; the fourth ODT writer helper was newly added. All are covered by post-main gate; DOCX/VBA source unchanged.",
+  "captured_ref_ancestry": [
+    {
+      "ref": "refs/remotes/origin/HEAD",
+      "sha": "c7380f53a55b47a5b7672eb3f7afee32d92def6e",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/word-vba-compatibility-20261121",
+      "sha": "38b07e58b7c0e2a5b04a823a7251805cea60fb77",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/word-vba-extensions-20261121",
+      "sha": "cf12544df1a7965615f38eab8d22dae5cfa0d7c0",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/word-vba-formatting-20261121",
+      "sha": "700ca3da8c6db0d837bbbefc374a7a7f17f8626e",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/word-vba-language-controls-20261121",
+      "sha": "46f20b19193e474bed772fe99b0f602a50fa54db",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/word-vba-next-20261121",
+      "sha": "ed01289aaae398d5731c186db2eb08da9bc2216b",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/word-vba-paragraph-flow-20261121",
+      "sha": "13fa9ad5b9d140f1d7c085e46b4d0ce395000c49",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/word-vba-paragraph-pagination-20261121",
+      "sha": "1581229f0e5aea24b5242c33a1e92f02d70b4c7e",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/word-vba-sections-20261121",
+      "sha": "49665e51f9eacefc180748c3d0ed7851ef5da5d1",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/word-vba-styles-complete-20261121",
+      "sha": "b11c8b1a9a2c0fa58a45f9893b4c86834ec276b2",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/word-vba-text-intrinsics-20261121",
+      "sha": "4357f196507ca38a2f51409a981b8621d419b6d9",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/word-vba-unit-conversions-20261120",
+      "sha": "bbccae1bdead10951e2d7a23b33cf14c55382e02",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-editable-odt-20261121",
+      "sha": "462331f66e1ba3f97cbd74818ee9beaf1861d9e0",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-libreoffice-styles-20261121",
+      "sha": "b6c8eb26e219d1f7607fe943b3c91e9bfc4feb55",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-multiparagraph-20261121",
+      "sha": "589ccd33243eabe57ce3074c92112e1fdf1325f1",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-native-odt-20261121",
+      "sha": "d9bfa44022781f0dd4493a923ca9f20316dc59f0",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-odt-inventory-20261121",
+      "sha": "fb386d6e42a2336f1431e38bf6d713552edd0978",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-parity-2026-11-21",
+      "sha": "a91dcea1e07181457c07bedde57bf0119002b627",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-parity-20261121-continuation",
+      "sha": "9942eb76f0ac818e464ad1b3bcec2cc4513d3e3f",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-parity-20261121-evening",
+      "sha": "1c20b4b7e1208a51dfcf6a65d8a94289ac438e4e",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-parity-20261121-next",
+      "sha": "d4470bab1095593739ddf87fdb9f249bbc948b65",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-transfer-20261121",
+      "sha": "a1995c9154357e603b89947654cf95f8bcba6a83",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-vertical-tables-20261120",
+      "sha": "a7d9f37ecbaaf70544f4866d7d9e572696948184",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/docs/app-store-submission-20261120",
+      "sha": "b08e0a55b629ac22b33c54146b56438862965022",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/main",
+      "sha": "c7380f53a55b47a5b7672eb3f7afee32d92def6e",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/work/mail-boolean-core-20261121",
+      "sha": "3e6374115c10a92fdb4b82734c1bc2b009210794",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/work/mail-client-next-20261121",
+      "sha": "4af5a00a906a82473d653a6b11a3a6e1c88c866f",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/work/mail-command-journal-20261121",
+      "sha": "33ce2428ebab825a844895a767e0f9f1a4077d62",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/work/mail-compose-tools-20261121",
+      "sha": "36d65c43f8981ed7cea00589ff8272d96ea7073d",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/work/mail-intake-20261121",
+      "sha": "4191be02ac9c7117e05ff4a052a5c92fbcfbf4b4",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/work/mail-offline-retention-20261121",
+      "sha": "9eb68b9f048d3c08274ece5d7f964f1249004485",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/work/mail-parity-20261121",
+      "sha": "fa59496840a36709fe3a6d867bdfe96ab99d72ab",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/work/mail-parity-next-20261121",
+      "sha": "59866ce7c983869b16baa3f386b1f55dbb218833",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/work/mail-repository-sessions-20261121",
+      "sha": "0491492d8622ad2ef09fb84e07d3dbba462f9320",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/work/mail-sync-foundation-20261121",
+      "sha": "4a1eaa69e7a068e354bdd851ec9b0323b89ae300",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/work/mail-triage-20261121",
+      "sha": "575e671de665dc918886285dab2e3628f4309965",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/work/mail-unified-cache-20261121",
+      "sha": "93404525ef245df6a98654710e352e78f85a987c",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/upstream/HEAD",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/upstream/ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/upstream/cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/upstream/cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/upstream/main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "ancestor": true
+    }
+  ],
+  "late_word_reconciliation_commit": "8876bc0e63469c34a8f28a0f978e72355e21302e",
+  "latest_main_included": "c7380f53a55b47a5b7672eb3f7afee32d92def6e"
+}
