@@ -27,6 +27,9 @@ live-provider acceptance remain separate. See the [workflow](keyboard-triage.md)
 [work record](../../validation/mail-keyboard-triage-20261121/README.md).
 GitHub Actions were neither queried nor awaited for this continuation.
 
+Word VBA integration independently reran the new range/help/address cases
+within its pinned UI gates; see the [combined qualification](../../validation/word-vba-comparison-colors-20261121/README.md).
+
 ## Scheduled Outbox and pre-submission Undo — locally qualified
 
 Native Outbox now saves fixed UTC deadlines and offers **Send later**, a

@@ -1,0 +1,144 @@
+{
+  "schema": "quds.local-validation.v1",
+  "generated_at_utc": "2026-11-21T21:51:27.802061+00:00",
+  "purpose": "Qualify configured shortcut ownership and held-key composition guards after incoming Mail/Zotero integration.",
+  "repository": {
+    "name": "CrispStrobe/quds_office_suite",
+    "checkout_path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/quds_office_suite",
+    "base_head": "dfb41894add97dfe605bf05a17cd151dd4024b44",
+    "source_state": "Uncommitted four-file implementation identified by SHA-256 below; parent owns checkpoint and remote integration."
+  },
+  "environment": {
+    "flutter_version": "3.47.8",
+    "environment_helper": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/flutter-validation-env.sh",
+    "environment_helper_sha256": "274c73b8a1e9e157c512320d4111d46fcf0360b0f1d5d54b5489d0493eb78d69",
+    "validation_mirror": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter",
+    "sdk_metadata": {
+      "frameworkVersion": "3.47.8",
+      "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+      "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+      "dartSdkVersion": "3.13.7"
+    },
+    "dependency_resolution": "Existing isolated Flutter workspace, exact lockfile resolved by setup agent; all commands use --no-pub."
+  },
+  "source_manifest": [
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "absolute_path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/quds_office_suite/packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "sha256": "c76f37965401b60756729f5a2a6426a5757e8cfbc300f405f50863c1f82fa90d"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+      "absolute_path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/quds_office_suite/packages/quds_office_editor/lib/src/embed/office_editors.dart",
+      "sha256": "9254f683b5be8d2508361f208fa181c45e67483187146067666705e09c39dc33"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "absolute_path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/quds_office_suite/packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "sha256": "bbf76a48b88bb478b46165690c48a1bb0113a776cbbe2b4d4febb1fa93ebd85f"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_shortcut_dispatch_test.dart",
+      "absolute_path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcut_dispatch_test.dart",
+      "sha256": "49ba638533ba73db24d1029b309dae2d0cb3add670524a0fc06eab1c44c48e94"
+    }
+  ],
+  "qualified_commands": [
+    {
+      "id": "focused_dispatch_suite",
+      "cwd": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/example",
+      "shell_command": "bash -c 'source /home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/flutter-validation-env.sh && flutter test --no-pub --concurrency=1 --reporter expanded test/studio_shortcut_dispatch_test.dart > /home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/tmp/shortcut-dispatch-final-test.log 2>&1'",
+      "invocation": "flutter test --no-pub --concurrency=1 --reporter expanded test/studio_shortcut_dispatch_test.dart",
+      "observed_exit_code": 0,
+      "result": {
+        "status": "passed",
+        "tests_passed": 12,
+        "tests_failed": 0
+      },
+      "log": {
+        "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/tmp/shortcut-dispatch-final-test.log",
+        "sha256": "50598b9c38d93bb95e739530ce2c1b144eb00a79bcc7ff9d50a58b2b921f3cbc",
+        "bytes": 1511
+      }
+    },
+    {
+      "id": "studio_source_and_test_analysis",
+      "cwd": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/example",
+      "shell_command": "bash -c 'source /home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/flutter-validation-env.sh && flutter analyze --no-pub lib/suite_workspace.dart test/studio_shortcut_dispatch_test.dart > /home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/tmp/shortcut-dispatch-final-analyze.log 2>&1'",
+      "invocation": "flutter analyze --no-pub lib/suite_workspace.dart test/studio_shortcut_dispatch_test.dart",
+      "observed_exit_code": 0,
+      "result": {
+        "status": "passed",
+        "issues": 0
+      },
+      "log": {
+        "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/tmp/shortcut-dispatch-final-analyze.log",
+        "sha256": "bf7dc70868404d7ee1c730cd2361b3eabed7365eb4cb80ea68a8780adbf8da24",
+        "bytes": 97
+      }
+    },
+    {
+      "id": "editor_source_analysis",
+      "cwd": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor",
+      "shell_command": "bash -c 'source /home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/flutter-validation-env.sh && flutter analyze --no-pub lib/src/embed/office_controller.dart lib/src/embed/office_editors.dart > /home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/tmp/shortcut-editor-final-analyze.log 2>&1'",
+      "invocation": "flutter analyze --no-pub lib/src/embed/office_controller.dart lib/src/embed/office_editors.dart",
+      "observed_exit_code": 0,
+      "result": {
+        "status": "passed",
+        "issues": 0
+      },
+      "log": {
+        "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/tmp/shortcut-editor-final-analyze.log",
+        "sha256": "1d889d8173d105b5857e1ae7cd017def3bf0a09e829f66f01d043a1ee8c84c79",
+        "bytes": 97
+      }
+    }
+  ],
+  "regression_demonstration": {
+    "description": "Before reordering the Slide hook, two repeat events dispatched the configured Find command during active Slide composition. Initial KeyDown was correctly suppressed.",
+    "cwd": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/example",
+    "shell_command": "bash -c 'source /home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/flutter-validation-env.sh && flutter test --no-pub --concurrency=1 --reporter expanded test/studio_shortcut_dispatch_test.dart --plain-name \"held configured shortcuts respect Presentations composition\" > /home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/tmp/shortcut-slide-repeat-before.log 2>&1'",
+    "observed_exit_code": 1,
+    "expected_calls_during_composition": 0,
+    "observed_calls_before_fix": 2,
+    "before_source_sha256": {
+      "packages/quds_office_editor/lib/src/embed/office_editors.dart": "feb68b2c3f8e3824244c873888ecfef37c36d223b39a80634ed5e04d8d47ac28",
+      "packages/quds_office_editor/example/test/studio_shortcut_dispatch_test.dart": "49ba638533ba73db24d1029b309dae2d0cb3add670524a0fc06eab1c44c48e94"
+    },
+    "log": {
+      "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/tmp/shortcut-slide-repeat-before.log",
+      "sha256": "122b15a3e093e585a079beed4ba1a09d1583227eb8a418f748fb25691ed15f3d",
+      "bytes": 2507
+    },
+    "after_fix": "Same regression passes in the 12-case suite; corresponding Word and Sheet held-key cases pass too."
+  },
+  "superseded_evidence": {
+    "initial_focused_suite": {
+      "tests_passed": 9,
+      "log": {
+        "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/tmp/shortcut-dispatch-test.log",
+        "sha256": "2e9224a5aa5ae1c593081ede37248dcfea1465bbddb05a170ff9b85e270a51d6",
+        "bytes": 1207
+      }
+    },
+    "initial_studio_analysis": {
+      "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/tmp/shortcut-dispatch-analyze.log",
+      "sha256": "f88ef8c222fd37e7a77c82b84319d1274f82668a2334a5f77db13d90a0e8eff9",
+      "bytes": 97
+    },
+    "initial_editor_analysis": {
+      "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/tmp/shortcut-editor-analyze.log",
+      "sha256": "3c26c211b9557027aee1c20b11e92a6c888e7fad41d24e46f56ac739a3c6f5c1",
+      "bytes": 97
+    },
+    "note": "Final exact-source qualification is the 12-case suite and final analyzers above. Initial nine-case test run preceded removal of an unnecessary test import and addition of three held-key regressions."
+  },
+  "review": {
+    "remaining_concrete_blockers_at_this_source_state": [],
+    "word_and_sheet_repeat_paths": "Host hook executes before editor defaults and Sheet repeat-navigation dispatch; active composition is checked on every repeat.",
+    "slide_repeat_path": "Host hook handles KeyDownEvent and KeyRepeatEvent before the preexisting KeyDown-only standalone path.",
+    "standalone_sheet_slide_fallback": "Read-only branch review: null hook does not consume events; prior Sheet navigation/default handling and Slide KeyDown-only behavior are retained.",
+    "native_fields": "Actual workspace test verifies native default Select All, remapped Select All and an unconsumed printable Shift key without Word mutation.",
+    "scope_limit": "Local widget/source qualification only; no hosted CI wait or installed desktop Office/native OS differential run."
+  }
+}

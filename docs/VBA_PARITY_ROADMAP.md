@@ -43,14 +43,31 @@ and [the native macro contract](MACROS.md).
 
 ## Ordered milestones and acceptance
 
-The latest Word object-model continuation adds explicit `Tables`, `Table`,
+The latest source-language continuation adds binary `StrComp` with exact
+comparison results, explicit Empty/Null semantics and metered UTF-16 scans in
+all three adapters. Word gains the fixed `Font.ColorIndex` palette and both
+automatic foreground setters, retaining native automatic identity, explicit
+style/theme overrides and sparse source metadata. This advances Stage 2 and
+the bounded Stage 4 adapter together: a complete report/template example uses
+source-data comparisons to choose paragraph/header/footer colors and fill
+existing table cells through the current native transaction.
+
+The [comparison contract](vba-macros-details.md#binary-string-comparison),
+[foreground contract](vba-word-macros-details.md#font-palette-and-automatic-foreground)
+and [local qualification](validation/word-vba-comparison-colors-20261121/README.md)
+record supported cases and refusals. Locale comparison, implicit coercion,
+live document reads, cell formatting and installed Office differential runs
+remain separate milestones. No new rendering policy or embedded VBA host is
+introduced.
+
+The preceding Word object-model continuation adds explicit `Tables`, `Table`,
 `Cell` and cell-range bindings with `Cell.Range.Text` assignment. Existing
 plain, single-paragraph cells in supported unmerged main-story tables can be
 filled using local arrays, loops and typed helpers. A separate guarded native
 operation preserves structural ownership and formatting while retaining atomic
 validation/publication. This advances Stage 4 without introducing document
 reads, arbitrary range mutation, merged/nested-table semantics or embedded
-project execution. See the [table-cell contract](VBA_WORD_MACROS.md#filling-existing-table-cells)
+project execution. See the [table-cell contract](vba-word-macros-details.md#filling-existing-table-cells)
 and [local qualification](validation/word-vba-table-cells-20261121/README.md).
 
 The preceding shared-language continuation adds `Abs`, `Int`, `Fix` and `Sgn`
@@ -61,14 +78,14 @@ use these results in existing paragraph selectors, typography and indentation
 operations. The runnable numeric report and versioned corpus exercise the
 existing atomic native transaction; this does not introduce document reads,
 VBA numeric subtype identity or installed-Office differential qualification.
-See the [numeric contract](VBA_MACROS.md#numeric-intrinsics) and
+See the [numeric contract](vba-macros-details.md#numeric-intrinsics) and
 [local qualification](validation/word-vba-numeric-20261121/README.md).
 
 The preceding bounded continuation adds Word `Font.Position` writes, native signed
 half-point DOCX ownership, automatic/minimum line extents and independent
 baseline rendering through editor and PDF paths. It retains the existing
 typed aliases, helpers, explicit story selectors and atomic plan boundary.
-See the [position contract](VBA_WORD_MACROS.md#baseline-position-without-resizing-text)
+See the [position contract](vba-word-macros-details.md#baseline-position-without-resizing-text)
 and [local qualification](validation/word-vba-typography-20261121/README.md).
 
 The preceding formatting continuation adds typed Word `Shading` objects for selected
@@ -78,8 +95,8 @@ The shared source language adds `Space`/`String` construction and
 `ChrW`/`AscW` UTF-16 operations. These extend Stages 2 and 4 using the same
 compile-to-plan boundary; document reads, live execution and embedded VBA
 projects remain separate milestones. See the
-[shading contract](VBA_WORD_MACROS.md#paragraph-background-shading),
-[text-construction contract](VBA_MACROS.md#text-construction-and-unicode-code-units),
+[shading contract](vba-word-macros-details.md#paragraph-background-shading),
+[text-construction contract](vba-macros-details.md#text-construction-and-unicode-code-units),
 and [source-specific local qualification](validation/word-vba-format-controls-20261121/README.md).
 
 | Stage | Concrete deliverable | Acceptance required before claiming support |
@@ -166,7 +183,7 @@ Native edits preserve untouched direct/inherited stops and opaque XML, and
 clear inherited custom stops with position-specific overrides. This remains a
 source-to-plan slice: no collection reads, `TabStop` return objects, arbitrary
 Word ranges or live execution were added. See the
-[exact contract](VBA_WORD_MACROS.md#custom-paragraph-tab-stops) and
+[exact contract](vba-word-macros-details.md#custom-paragraph-tab-stops) and
 [source-bound local qualification](validation/word-vba-tabstops-20261120/README.md).
 
 ### Custom Word line spacing
@@ -177,7 +194,7 @@ through explicit `LineSpacingRule` / `LineSpacing` pairs, standard `Space1`,
 Each complete pair lowers to one guarded native edit; unpaired setters and
 intervening document writes are refused. This deliberately bounded contract
 does not introduce live spacing reads or infer existing font metrics. See the
-[exact contract](VBA_WORD_MACROS.md#exact-minimum-and-multiple-line-spacing)
+[exact contract](vba-word-macros-details.md#exact-minimum-and-multiple-line-spacing)
 and [local qualification](validation/word-vba-paragraph-spacing-20261120/README.md).
 
 ### Paragraph spacing controls
@@ -190,7 +207,7 @@ preserves after/line inheritance, and conservative source guards refuse
 unmodeled automatic/line-based spacing and ambiguous styles. Default paragraph
 styles now recognize native Boolean flags and native namespace identities.
 This continuation also qualifies the incoming custom spacing work described
-below. See the [exact contract](VBA_WORD_MACROS.md#opening-closing-and-toggling-paragraph-spacing)
+below. See the [exact contract](vba-word-macros-details.md#opening-closing-and-toggling-paragraph-spacing)
 and [local evidence](validation/word-vba-paragraph-controls-20261120/README.md).
 
 ### Physical Word measurements
@@ -204,7 +221,7 @@ The complete BAS examples and source/integration checks cover document
 publication, CLI/MCP paths and the portable numeric contract. The combined
 source has local Dart acceptance; earlier arithmetic-model and authored
 JavaScript checks retain their separate execution status. See the
-[measurement contract](VBA_WORD_MACROS.md#physical-measurement-conversions)
+[measurement contract](vba-word-macros-details.md#physical-measurement-conversions)
 and [combined-source qualification](validation/zotero-merged-cells-20261120/intake.md).
 The incoming Mail continuation additionally qualified the named-argument
 example and original eight-, nine- and thirteen-operation examples on the
@@ -229,7 +246,7 @@ namespace aliases and opaque DOCM parts. Width/height writes select custom
 paper even when their values do not change. Unsupported source measurements,
 gutters, duplicate geometry, custom columns, alternate section properties, and
 mirrored/book-fold settings are refused before mutation. The
-[exact contract](VBA_WORD_MACROS.md#section-page-setup),
+[exact contract](vba-word-macros-details.md#section-page-setup),
 [complete BAS example](../packages/quds_office_engine/example/macros/word_page_setup.bas),
 and [local qualification record](validation/word-vba-paragraph-pagination-20261121/README.md)
 describe the supported engine behavior and executed source checks. This
@@ -251,7 +268,7 @@ resource boundaries. Ambiguous source identity or orientation is refused;
 new-column starts, collection-wide settings and source property reads remain
 unsupported. This is another Stage 4 source-to-plan slice, without Stage 3
 document-dependent branching or installed Word differential qualification.
-See the [exact contract](VBA_WORD_MACROS.md#section-orientation-and-start-controls),
+See the [exact contract](vba-word-macros-details.md#section-orientation-and-start-controls),
 [BAS example](../packages/quds_office_engine/example/macros/word_sections.bas),
 and [local qualification](validation/word-vba-sections-20261121/README.md).
 
@@ -267,7 +284,7 @@ ambiguous definitions and effective numbering changes are explicitly refused.
 
 This is a Stage 4 source-to-plan increment. It does not add live style reads,
 Style objects, collection enumeration, style creation or an embedded VBA host.
-See the [contract](VBA_WORD_MACROS.md#existing-paragraph-styles),
+See the [contract](vba-word-macros-details.md#existing-paragraph-styles),
 [BAS example](../packages/quds_office_engine/example/macros/word_styles.bas)
 and [local qualification](validation/word-vba-styles-20261121/README.md).
 
@@ -287,7 +304,7 @@ numeric counts/spacing and actual Booleans, without property reads, collection
 iteration or a document-wide page-setup binding. This remains a Stage 4
 source-to-plan increment; Stage 3 execution and installed Word differential
 qualification are separate. See the
-[exact contract](VBA_WORD_MACROS.md#uniform-section-text-columns),
+[exact contract](vba-word-macros-details.md#uniform-section-text-columns),
 [two-section example](../packages/quds_office_engine/example/macros/word_text_columns.bas)
 and [local qualification](validation/word-vba-text-columns-20261121/README.md).
 
@@ -307,7 +324,7 @@ header/footer topology and unmodeled content in rewritten paragraph stories
 before mutation. Selected mutable model aliases are also refused. This is bounded source-to-plan support with the existing
 atomic transaction and policy boundary. It does not implement linked-story
 propagation, story creation, whole-story writes or document-aware source
-execution. See the [exact contract](VBA_WORD_MACROS.md#existing-header-and-footer-paragraphs),
+execution. See the [exact contract](vba-word-macros-details.md#existing-header-and-footer-paragraphs),
 [BAS example](../packages/quds_office_engine/example/macros/word_headers_footers.bas),
 and [local qualification record](validation/word-vba-compatibility-20261121/README.md).
 
@@ -324,7 +341,7 @@ selected current text, not paragraph-mark insertion formatting.
 The source contract requires actual Booleans and exact half-point kerning
 thresholds in `0..1638`. No document-dependent reads, mixed-value results,
 general coercions, installed Word differential validation or new proofing
-provider are implied. See the [exact contract](VBA_WORD_MACROS.md#proofing-and-kerning-controls),
+provider are implied. See the [exact contract](vba-word-macros-details.md#proofing-and-kerning-controls),
 [BAS example](../packages/quds_office_engine/example/macros/word_proofing_controls.bas),
 and [local record](validation/word-vba-proofing-20261121/README.md).
 
@@ -340,7 +357,7 @@ The existing transactional source-to-plan boundary remains unchanged.
 
 This slice does not add complex-script/East Asian language routing, language
 reads, installed dictionaries, complex-script size/bold/italic models or Stage 3
-document-aware execution. See the [language/font contract](VBA_WORD_MACROS.md#proofing-language-and-complex-script-font-controls),
+document-aware execution. See the [language/font contract](vba-word-macros-details.md#proofing-language-and-complex-script-font-controls),
 [BAS example](../packages/quds_office_engine/example/macros/word_language_controls.bas)
 and [local qualification](validation/word-vba-language-controls-20261121/README.md).
 
@@ -357,7 +374,7 @@ explicit CSL small capitals clear inherited all-capital formatting.
 This is another bounded Stage 4 write-only capability. Property reads, numeric
 toggles, locale-specific casing, new ODT/RTF capitalization interchange and
 installed Word-host differential acceptance remain separate work. See the
-[exact contract](VBA_WORD_MACROS.md#all-capital-display-without-changing-source-text),
+[exact contract](vba-word-macros-details.md#all-capital-display-without-changing-source-text),
 [BAS example](../packages/quds_office_engine/example/macros/word_all_caps.bas)
 and [local qualification](validation/word-vba-all-caps-20261121/README.md).
 
@@ -377,7 +394,7 @@ paragraphs. Its local qualification covers CLI/MCP, atomic rollback, native
 record/replay, rich formatting and inert DOCM preservation. This extends Stage 2
 and reuses the existing Stage 4 adapters; it does not add Stage 3 document reads,
 locale comparison, general VBA coercion or installed Office qualification.
-See the [exact contract](VBA_MACROS.md#binary-search-replacement-and-trimming)
+See the [exact contract](vba-macros-details.md#binary-search-replacement-and-trimming)
 and [intake and local evidence](validation/word-vba-continuation-20261121/README.md).
 
 ### Independent Word baseline positioning
@@ -394,7 +411,7 @@ paint grouping, comparison and stale-document fingerprints retain positioning.
 This remains a bounded Stage 4 write-only extension, without Stage 3 reads,
 embedded VBA execution, general ODT/RTF position interchange or installed Word
 differential qualification. See the
-[exact contract](VBA_WORD_MACROS.md#baseline-position-without-resizing-text),
+[exact contract](vba-word-macros-details.md#baseline-position-without-resizing-text),
 [BAS example](../packages/quds_office_engine/example/macros/word_font_position.bas)
 and [local qualification](validation/word-vba-typography-20261121/README.md).
 

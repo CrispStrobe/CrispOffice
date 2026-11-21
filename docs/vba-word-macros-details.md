@@ -1,5 +1,5 @@
 # Word VBA macros: the `vba-word` dialect
-> **Detailed reference.** See [VBA_WORD_MACROS.md](VBA_WORD_MACROS.md) for the current overview. This file preserves the pre-rewrite detail and historical qualification notes.
+> **Detailed reference.** See [VBA_WORD_MACROS.md](VBA_WORD_MACROS.md) for the practical overview. This file contains the complete current contracts and historical qualification notes.
 
 
 `OfficeVbaWordMacroLanguage` compiles an explicitly selected `.bas` module into
@@ -200,7 +200,7 @@ and `run-word-vba` CLI commands or the source/MCP APIs.
 `Fix` propagate `Null`, so handle nullable results with `IsNull` before a write.
 `Sgn(Null)` is refused, and String/Boolean inputs require explicit `CDbl` or
 `CLng` conversion. These functions use source-known values and do not add Word
-property reads. See the [shared numeric contract](VBA_MACROS.md#numeric-intrinsics)
+property reads. See the [shared numeric contract](vba-macros-details.md#numeric-intrinsics)
 for bounds, argument shapes and the distinction from complete VBA subtype semantics.
 
 ## Preparing source text for Word
@@ -213,7 +213,7 @@ surrogate units to construct supplementary characters; isolated surrogates,
 XML-invalid controls and structural line breaks remain refused at Word
 publication. `String` accepts a nonempty String character argument; numeric
 code-page conversion is deliberately unsupported. Exact bounds and coercion
-rules are in the [shared construction contract](VBA_MACROS.md#text-construction-and-unicode-code-units).
+rules are in the [shared construction contract](vba-macros-details.md#text-construction-and-unicode-code-units).
 The [runnable construction module](../packages/quds_office_engine/example/macros/word_text_construction.bas)
 requires two body paragraphs and an independent primary header and emits five
 ordinary insertion/formatting operations.
@@ -223,7 +223,7 @@ Word macros can now use shared binary `InStr`, `InStrRev`, and `Replace`, plus
 local values, array elements and helper results known during compilation.
 They do not read text from a Word Range. The exact positional arguments,
 UTF-16 indexing, comparison modes and resource limits are in the
-[shared text contract](VBA_MACROS.md#binary-search-replacement-and-trimming).
+[shared text contract](vba-macros-details.md#binary-search-replacement-and-trimming).
 
 ```vb
 Sub Main()
@@ -278,7 +278,8 @@ geometry has its separate mapping below.
 | `range.LanguageID = value` or `range.LanguageIDOther = value` | `docx.runFormat` | `language`: the supported normal-slot BCP47 tag below |
 | `range.Font.Name = value` | `docx.runFormat` | `font: value` |
 | `range.Font.NameBi = value` | `docx.runFormat` | `csFont: value`; owns the complex-script font independently |
-| `range.Font.Color = value` | `docx.runFormat` | `color` as six uppercase RGB hexadecimal digits |
+| `range.Font.Color = value` | `docx.runFormat` | `color` as six uppercase RGB hexadecimal digits, or `auto` for `wdColorAutomatic` |
+| `range.Font.ColorIndex = value` | `docx.runFormat` | Fixed palette RGB for indices `1..16`, or `auto` for `wdAuto = 0` |
 | `range.Font.Underline = value` | `docx.runFormat` | `underline`, one of the 18 documented `WdUnderline` styles |
 | `range.Font.StrikeThrough = value` | `docx.runFormat` | `strike: value` |
 | `range.Font.SmallCaps = value` | `docx.runFormat` | `smallCaps: value`; `True` also writes an explicit native AllCaps-off override |
@@ -441,8 +442,8 @@ End Sub
 | `BackgroundPatternColorIndex` | `wdAuto = 0` | Explicit `w:fill="auto"` background |
 
 All 60 named `WdColor` constants are recognized in Word source. Their packed
-RGB values also work with the existing `Font.Color` setter; its previous RGB-only
-contract still refuses the automatic sentinel. ColorIndex is a separate numeric
+RGB values and the automatic sentinel also work with `Font.Color` under the
+[foreground contract](#font-palette-and-automatic-foreground). ColorIndex is a separate numeric
 space: for example `wdBlue = 2` and `wdColorBlue = 16711680`. `wdByAuthor`,
 mixed-state values, fractional values, implicit Boolean/String coercions and
 unknown indices are refused. Automatic shading is an explicit no-fill model
@@ -1405,7 +1406,8 @@ Paragraph-format operations can target an empty paragraph.
 | `Font.Underline` | Exact numeric member of `WdUnderline`, including all 18 named constants; `True` is not an underline enum |
 | `Font.Size` | Actual finite number from `0.5` through `1638`, in exact half-point increments |
 | `Font.Name`, `Font.NameBi` | Nonempty XML-safe String; control whitespace in font names is unsupported |
-| `Font.Color` | Exact integer from `0` through `16777215`, using VBA's packed RGB representation; `RGB(r, g, b)` is supported |
+| `Font.Color` | Exact integer from `0` through `16777215`, using VBA's packed RGB representation, or `wdColorAutomatic = -16777216`; `RGB(r, g, b)` is supported |
+| `Font.ColorIndex` | Exact integer `0..16`, including fixed `WdColorIndex` names; `wdAuto = 0` writes automatic foreground |
 | `ParagraphFormat.Alignment` | Exact integer `0`, `1`, `2`, or `3`, including the named constants below |
 | `Range.HighlightColorIndex` | Exact integer `0..16`, including the named `WdColorIndex` constants; `0` removes highlighting |
 | `SpaceBefore`, `SpaceAfter` | Nonnegative finite number in exact `0.05`-point increments; the resulting twentieth-point integer must not exceed `2147483647` |
@@ -1751,6 +1753,77 @@ Primary references: Microsoft Word's
 and [PointsToPicas](https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstopicas),
 and [NIST's exact inch definition](https://www.nist.gov/pml/owm/si-units-length).
 
+### Font palette and automatic foreground
+
+`Font.ColorIndex` writes all 16 fixed colors in the palette below, plus automatic
+foreground. It supports the existing explicit paragraph/range selectors, typed
+`Font` aliases, nested `With`, named/optional `ByVal` helpers, and independently
+owned header/footer paragraphs. Each assignment emits one `docx.runFormat`
+operation, so permission checks, detached validation, recording and all-run
+rollback apply through the ordinary macro runtime.
+
+| Source assignment | Native foreground |
+| --- | --- |
+| `.ColorIndex = wdAuto` (`0`) | Explicit `w:color w:val="auto"` |
+| `.ColorIndex = wdBlack` (`1`) | Fixed `000000` |
+| `.ColorIndex = wdBlue` (`2`) | Fixed `0000FF` |
+| `.ColorIndex = wdGray25` (`16`) | Fixed `C0C0C0` |
+| `.Color = wdColorAutomatic` (`-16777216`) | Explicit `auto` |
+| `.Color = wdColorBlack` (`0`) | Fixed `000000` |
+| `.Color = RGB(20, 30, 40)` | Fixed `141E28` |
+
+The remaining `ColorIndex` entries use the exact 1–16 palette in
+[Typography and highlighting](#typography-and-highlighting). ColorIndex and
+packed Color use different numeric spaces: `0` is automatic on ColorIndex and
+black on Color. `wdNoHighlight` is numerically the same as `wdAuto`, so it also
+means automatic when passed to ColorIndex. `wdByAuthor`, mixed-state values,
+unknown indices and the packed automatic sentinel passed to ColorIndex are
+refused. Fractional, Boolean, String, Empty and Null assignments do not receive
+implicit conversion; existing explicit conversions can prepare valid numbers.
+
+Automatic foreground remains a native `auto` value through save/reopen. A
+same-value RGB or automatic assignment establishes a direct override, including
+when the effective prior color came from a style. The write owns native
+`val`, `themeColor`, `themeShade` and `themeTint`: it sets the requested value and
+removes native theme selectors that would override it. Foreign attributes,
+extension children, namespace aliases and unrelated run properties survive.
+Import and style resolution do not project foreign or nested color lookalikes
+as native foreground.
+
+Duplicate native properties/owned attributes, ambiguous run-property ownership,
+and relevant markup-compatibility alternatives or processed content are refused
+before a run is split or formatted. The package-level ownership guard is
+conservative and can refuse ambiguity outside the selected paragraph. This
+slice formats current nonempty text; it does not introduce paragraph-mark
+insertion formatting, cell-range formatting, font color reads, theme color
+objects or a new automatic-contrast rendering policy.
+
+```vb
+Sub PaintStatus(ByVal target As Font, ByVal status As String)
+    If StrComp(status, "ready", vbBinaryCompare) = 0 Then
+        target.ColorIndex = wdGreen
+    Else
+        target.ColorIndex = wdDarkRed
+    End If
+End Sub
+
+Sub Main()
+    PaintStatus ActiveDocument.Paragraphs(1).Range.Font, "ready"
+    ActiveDocument.Paragraphs(2).Range.Font.Color = wdColorAutomatic
+End Sub
+```
+
+The complete [comparison/color BAS](../packages/quds_office_engine/example/macros/word_comparison_colors.bas)
+adds independent header/footer and existing table-cell writes. See the
+[shared StrComp contract](vba-macros-details.md#binary-string-comparison),
+[versioned corpus](../packages/quds_office_engine/test/fixtures/vba_conformance/word_comparison_colors_v1.json),
+and [local qualification](validation/word-vba-comparison-colors-20261121/README.md).
+Microsoft's [Font.ColorIndex](https://learn.microsoft.com/en-us/office/vba/api/word.font.colorindex),
+[WdColorIndex](https://learn.microsoft.com/en-us/office/vba/api/word.wdcolorindex)
+and [Font.Color](https://learn.microsoft.com/en-us/office/vba/api/word.font.color)
+references define the source vocabulary. Local VM/JavaScript agreement does
+not establish installed Microsoft Word differential qualification.
+
 ### Typography and highlighting
 
 `SmallCaps` changes native formatting without uppercasing the authored text.
@@ -1796,8 +1869,9 @@ when the previous color came from a style.
 
 The aliases `wdAuto` and `wdNoHighlight` have the same numeric value; on this
 specific property it means removal. `wdByAuthor = -1` is declared for a precise
-unsupported-value diagnostic and is not a highlight color. This does not add
-`Font.ColorIndex`, theme color resolution, or automatic foreground colors.
+unsupported-value diagnostic and is not a highlight color. Foreground colors
+use the separate [Font.ColorIndex/Color contract](#font-palette-and-automatic-foreground);
+clearing a highlight does not change text foreground.
 
 [`word_typography.bas`](../packages/quds_office_engine/example/macros/word_typography.bas)
 demonstrates the session document aliases, explicit collection `Item`, a typed

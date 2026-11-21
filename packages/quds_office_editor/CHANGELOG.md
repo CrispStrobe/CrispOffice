@@ -4,6 +4,11 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Render the modeled footnote separator geometry consistently with native
+  note pagination, preserving hidden and zero-width rules. Qualify separator
+  rendering, note editing, note-image ownership and Zotero transfer together
+  with the current Word macro and workspace integration.
+
 - Scope Zotero dialogs to their originating host view through optional
   `isCurrent` checks. Studio cancels delayed publication and focus restoration
   after switching to Mail or another app, even if Word is reopened before the
@@ -13,6 +18,15 @@ All notable changes to `quds_office_editor` are documented here.
   redo/zoom aliases after reassignment, and reject modifier-only key settings.
   Keep native text actions and comment emphasis available in their own views;
   show subscript as unassigned while preserving the established zoom-in chord.
+
+- Give Studio's configured keyboard shortcuts priority at the focused Word,
+  Sheet and Slide surfaces through the optional
+  `OfficeController.onShortcutKeyEvent` host hook. Retire replaced defaults and
+  aliases, dispatch conflicting overrides once, and preserve native text-field
+  editing, composition guards, reserved Zotero commands and standalone editor
+  defaults. Qualify the combined incoming Mail/Zotero changes with focused
+  actual-editor tests; see
+  `docs/validation/word-vba-comparison-colors-20261121/README.md`.
 
 - Add English, German and Arabic help for shared Mail range selection. Search
   synchronized loaded From/To/Cc headers by both display names and mailbox

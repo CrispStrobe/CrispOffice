@@ -1,0 +1,992 @@
+{
+  "recordedHead": "8a9957a5abba3ec891adfaca84aa06c2cfa421c1",
+  "records": [
+    {
+      "file": "editor-zotero-incoming-regression-tests.log.gz",
+      "bytes": 3208,
+      "sha256": "394e9d6b12c9713c14b9b2f191e69f5b944716c4015785c3af9805638bb5dfa5",
+      "originalBytes": 26336,
+      "source": "validation-flutter/logs/editor-zotero-incoming-regression-tests.log"
+    },
+    {
+      "file": "flutter-setup-verification.json",
+      "bytes": 219,
+      "sha256": "91ecf82abf7b0f305b40dea5a7ab0a72aef0f3c368824f1b394c0c7237c2d989",
+      "originalBytes": 219,
+      "source": "validation-flutter/logs/flutter-setup-verification.json"
+    },
+    {
+      "file": "frame-width-assertion.patch",
+      "bytes": 1216,
+      "sha256": "f2a214366f9d516c0f02ffae1dc8e9785535e7ee5c4637ae5149b9c5a14ae797",
+      "originalBytes": 1216,
+      "source": "validation/logs/frame-width-assertion.patch"
+    },
+    {
+      "file": "frame-width-baseline-bare-attribute-command.txt",
+      "bytes": 180,
+      "sha256": "a9392f2a2e89c079d2f90db336506a78d93b845ad631651d4334f278d6eb1924",
+      "originalBytes": 180,
+      "source": "validation/logs/frame-width-baseline-bare-attribute-command.txt"
+    },
+    {
+      "file": "frame-width-baseline-bare-attribute-result.json",
+      "bytes": 387,
+      "sha256": "76473eb06a1d8592a9ff97520715c14782fa1fcaf443bb89e014d930c06dc9f0",
+      "originalBytes": 387,
+      "source": "validation/logs/frame-width-baseline-bare-attribute-result.json"
+    },
+    {
+      "file": "frame-width-baseline-bare-attribute.log.gz",
+      "bytes": 255,
+      "sha256": "5157aab8e5cf2fde51ac97e61c24ae350540154181173800524a298bd8bd0c00",
+      "originalBytes": 583,
+      "source": "validation/logs/frame-width-baseline-bare-attribute.log"
+    },
+    {
+      "file": "frame-width-baseline-corrected-command.txt",
+      "bytes": 180,
+      "sha256": "a9392f2a2e89c079d2f90db336506a78d93b845ad631651d4334f278d6eb1924",
+      "originalBytes": 180,
+      "source": "validation/logs/frame-width-baseline-corrected-command.txt"
+    },
+    {
+      "file": "frame-width-baseline-corrected-result.json",
+      "bytes": 388,
+      "sha256": "9a46eba463ddfeb9acf449dbf66b8a0d4f5300767c6b6bcde8ca793558541327",
+      "originalBytes": 388,
+      "source": "validation/logs/frame-width-baseline-corrected-result.json"
+    },
+    {
+      "file": "frame-width-baseline-corrected.log.gz",
+      "bytes": 472,
+      "sha256": "369978c38c5bafd271ccc54c4a1c40444dcdcb54729e017b6d7d1f67534bfca4",
+      "originalBytes": 1772,
+      "source": "validation/logs/frame-width-baseline-corrected.log"
+    },
+    {
+      "file": "frame-width-baseline-intake.json",
+      "bytes": 927,
+      "sha256": "c5d88dbcc1142ac2a646b9b7cf3a174557cb6dccf17b6abd287eed5ab6059ef8",
+      "originalBytes": 927,
+      "source": "validation/logs/frame-width-baseline-intake.json"
+    },
+    {
+      "file": "frame-width-baseline-namespace-only-test.dart",
+      "bytes": 28651,
+      "sha256": "2134e22645a2ac4490f55428f2523298af7c0c418f2f9a8c25eec528126da226",
+      "originalBytes": 28651,
+      "source": "validation/logs/frame-width-baseline-namespace-only-test.dart"
+    },
+    {
+      "file": "frame-width-baseline-original-command.txt",
+      "bytes": 180,
+      "sha256": "a9392f2a2e89c079d2f90db336506a78d93b845ad631651d4334f278d6eb1924",
+      "originalBytes": 180,
+      "source": "validation/logs/frame-width-baseline-original-command.txt"
+    },
+    {
+      "file": "frame-width-baseline-original-result.json",
+      "bytes": 295,
+      "sha256": "8e553f9726efa3ebb66ef5385b4e4d57d93c6d7c3fb926abfc0d7cd60055b149",
+      "originalBytes": 295,
+      "source": "validation/logs/frame-width-baseline-original-result.json"
+    },
+    {
+      "file": "frame-width-baseline-original-test.dart",
+      "bytes": 28432,
+      "sha256": "8adcc88ce4a4a111c482d55f3ed9fe1887249d3c9e5ef8a67ca5e146473c4ba2",
+      "originalBytes": 28432,
+      "source": "validation/logs/frame-width-baseline-original-test.dart"
+    },
+    {
+      "file": "frame-width-baseline-original.log.gz",
+      "bytes": 472,
+      "sha256": "5afd03fc5173ba4460bab49edf5776d45d2a8daf1fef1536986adf3d012db89d",
+      "originalBytes": 1772,
+      "source": "validation/logs/frame-width-baseline-original.log"
+    },
+    {
+      "file": "frame-width-baseline-source.sha256",
+      "bytes": 962,
+      "sha256": "b2d7b5c4404a7d2395206a1ec7f3e92ed5bea181a641a2c45fd48ef036cda045",
+      "originalBytes": 962,
+      "source": "validation/logs/frame-width-baseline-source.sha256"
+    },
+    {
+      "file": "frame-width-classification.json",
+      "bytes": 1190,
+      "sha256": "20eb8486c2dc976488d93c690e31f83c76fe804d68c5aaf40736fd4fe83fa8bc",
+      "originalBytes": 1190,
+      "source": "validation/logs/frame-width-classification.json"
+    },
+    {
+      "file": "frame-width-current-corrected-command.txt",
+      "bytes": 86,
+      "sha256": "04efa7d97b47531c8c03afcbeba15a88410a6e2b7f9acde9f2d5d7fd709f8565",
+      "originalBytes": 86,
+      "source": "validation/logs/frame-width-current-corrected-command.txt"
+    },
+    {
+      "file": "frame-width-current-corrected-result.json",
+      "bytes": 393,
+      "sha256": "1830074036efa9a63567bf2a5eb4533539ab55b18ae7f36ead6fe5687985d32a",
+      "originalBytes": 393,
+      "source": "validation/logs/frame-width-current-corrected-result.json"
+    },
+    {
+      "file": "frame-width-current-corrected-test.sha256",
+      "bytes": 134,
+      "sha256": "b04635326bfc46bf3197560859a5351dcfd834fb159418b69cf7829ec59913b7",
+      "originalBytes": 134,
+      "source": "validation/logs/frame-width-current-corrected-test.sha256"
+    },
+    {
+      "file": "frame-width-current-corrected.log.gz",
+      "bytes": 880,
+      "sha256": "2a2373c2436be60bc044e9ada33ca3599bbd684b8d8c76c4a977cc83010e3a1b",
+      "originalBytes": 2691,
+      "source": "validation/logs/frame-width-current-corrected.log"
+    },
+    {
+      "file": "frame-width-current-production-source.sha256",
+      "bytes": 1106,
+      "sha256": "f753983f9d2ca331f4bbd428fc607cca3eb7e31fb3602c1d8d63014c589c14c6",
+      "originalBytes": 1106,
+      "source": "validation/logs/frame-width-current-production-source.sha256"
+    },
+    {
+      "file": "incoming-branch-flutter-validation.json",
+      "bytes": 1768,
+      "sha256": "45b396212213a808420ef78e0974c25aaf01927acf7c50f97b6a6d067cda1c50",
+      "originalBytes": 1768,
+      "source": "validation-flutter/logs/incoming-branch-flutter-validation.json"
+    },
+    {
+      "file": "latest-separator-editor-analysis.exitcode",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "originalBytes": 2,
+      "source": "validation-flutter/logs/latest-separator-editor-analysis.exitcode"
+    },
+    {
+      "file": "latest-separator-editor-analysis.log.gz",
+      "bytes": 76,
+      "sha256": "abb96c5dead3d476dbb34afab11b04602c1b1ba46500ff19e8bc9f0efc700c0a",
+      "originalBytes": 97,
+      "source": "validation-flutter/logs/latest-separator-editor-analysis.log"
+    },
+    {
+      "file": "latest-separator-editor-inputs-after.json",
+      "bytes": 68160,
+      "sha256": "7508488f1e1a4c9a517a98cb340d5e1a3b3dad6ab4a0d2ad717a4e630b7cf343",
+      "originalBytes": 68160,
+      "source": "validation-flutter/logs/latest-separator-editor-inputs-after.json"
+    },
+    {
+      "file": "latest-separator-editor-inputs-before.json",
+      "bytes": 68160,
+      "sha256": "7508488f1e1a4c9a517a98cb340d5e1a3b3dad6ab4a0d2ad717a4e630b7cf343",
+      "originalBytes": 68160,
+      "source": "validation-flutter/logs/latest-separator-editor-inputs-before.json"
+    },
+    {
+      "file": "latest-separator-editor-receipt.json",
+      "bytes": 2737,
+      "sha256": "6c994bfdb85a865fd450003881d7308707f959e1a025ccf6635aa9038dc1b015",
+      "originalBytes": 2737,
+      "source": "validation-flutter/logs/latest-separator-editor-receipt.json"
+    },
+    {
+      "file": "latest-separator-editor-setup.json",
+      "bytes": 423,
+      "sha256": "272186af5a026fc6cdc9f6dbb7de9825607dc7106c640b82528e3d5634cd5952",
+      "originalBytes": 423,
+      "source": "validation-flutter/logs/latest-separator-editor-setup.json"
+    },
+    {
+      "file": "latest-separator-editor-test-identities.json",
+      "bytes": 18534,
+      "sha256": "0e4308891a9cfebb722d9fe4d37fe0142e9e62f808c82b8172f31995d71c8991",
+      "originalBytes": 18534,
+      "source": "validation-flutter/logs/latest-separator-editor-test-identities.json"
+    },
+    {
+      "file": "latest-separator-editor-test-summary.json",
+      "bytes": 431,
+      "sha256": "5c7f65491be6481091c74823369fea801294e620c92af06a3f4b545f28da59d0",
+      "originalBytes": 431,
+      "source": "validation-flutter/logs/latest-separator-editor-test-summary.json"
+    },
+    {
+      "file": "latest-separator-editor-tests.exitcode",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "originalBytes": 2,
+      "source": "validation-flutter/logs/latest-separator-editor-tests.exitcode"
+    },
+    {
+      "file": "latest-separator-editor-tests.jsonl.gz",
+      "bytes": 2997,
+      "sha256": "18dcfcf1d8cad3a02f924fcdaf642027f36f684a75d8cfd0d844d4342e310e80",
+      "originalBytes": 36648,
+      "source": "validation-flutter/logs/latest-separator-editor-tests.jsonl"
+    },
+    {
+      "file": "latest-separator-editor-tests.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "originalBytes": 0,
+      "source": "validation-flutter/logs/latest-separator-editor-tests.stderr.log"
+    },
+    {
+      "file": "mail-range-selection-tests.log",
+      "bytes": 3603,
+      "sha256": "94ed1fbeed93c752a7f7c8a546aec02907bfef6a4f6dd4502af96f7f7e64dc51",
+      "originalBytes": 3603,
+      "source": "validation-flutter/logs/mail-range-selection-tests.log"
+    },
+    {
+      "file": "pinned-word-vba-example-compile-command.json",
+      "bytes": 2660,
+      "sha256": "a7771dbf0aa735fcabaa923fd585d64f63e419d67b93757db62af69d77d3db7f",
+      "originalBytes": 2660,
+      "source": "validation-flutter/logs/pinned-word-vba-example-compile-command.json"
+    },
+    {
+      "file": "pinned-word-vba-example-compile.log",
+      "bytes": 114,
+      "sha256": "e621bc77e8b272f0635c710a369e4005a4f7cdb088f0941b61dfb56ed4429e62",
+      "originalBytes": 114,
+      "source": "validation-flutter/logs/pinned-word-vba-example-compile.log"
+    },
+    {
+      "file": "pinned-word-vba-example-compile.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "originalBytes": 0,
+      "source": "validation-flutter/logs/pinned-word-vba-example-compile.stderr.log"
+    },
+    {
+      "file": "pinned-word-vba-example-js-command.json",
+      "bytes": 516,
+      "sha256": "431f3b8956f3ae98285da45e5328eff78721bdbd293180720e784e655736d4ca",
+      "originalBytes": 516,
+      "source": "validation-flutter/logs/pinned-word-vba-example-js-command.json"
+    },
+    {
+      "file": "pinned-word-vba-example-js.json",
+      "bytes": 524,
+      "sha256": "b832a9d6fdd14ca4a9f86309887b07d6a1c5035c49564d327d3839f4289b7ad8",
+      "originalBytes": 524,
+      "source": "validation-flutter/logs/pinned-word-vba-example-js.json"
+    },
+    {
+      "file": "pinned-word-vba-example-js.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "originalBytes": 0,
+      "source": "validation-flutter/logs/pinned-word-vba-example-js.stderr.log"
+    },
+    {
+      "file": "pinned-word-vba-example-vm-command.json",
+      "bytes": 2475,
+      "sha256": "0a3b6f85eee5a05ac827dd37f3a9fdac028d45e99fd13ccae8fed81b2c296c83",
+      "originalBytes": 2475,
+      "source": "validation-flutter/logs/pinned-word-vba-example-vm-command.json"
+    },
+    {
+      "file": "pinned-word-vba-example-vm.json",
+      "bytes": 524,
+      "sha256": "b832a9d6fdd14ca4a9f86309887b07d6a1c5035c49564d327d3839f4289b7ad8",
+      "originalBytes": 524,
+      "source": "validation-flutter/logs/pinned-word-vba-example-vm.json"
+    },
+    {
+      "file": "pinned-word-vba-example-vm.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "originalBytes": 0,
+      "source": "validation-flutter/logs/pinned-word-vba-example-vm.stderr.log"
+    },
+    {
+      "file": "pinned-word-vba-inputs-after.json",
+      "bytes": 64705,
+      "sha256": "2c3533039dbad8560250825463e2e26eee15979e50277778b4dc76b638028394",
+      "originalBytes": 64705,
+      "source": "validation-flutter/logs/pinned-word-vba-inputs-after.json"
+    },
+    {
+      "file": "pinned-word-vba-inputs-before.json",
+      "bytes": 64705,
+      "sha256": "2c3533039dbad8560250825463e2e26eee15979e50277778b4dc76b638028394",
+      "originalBytes": 64705,
+      "source": "validation-flutter/logs/pinned-word-vba-inputs-before.json"
+    },
+    {
+      "file": "pinned-word-vba-portable-comparisons.json",
+      "bytes": 19013,
+      "sha256": "7ed43b9b1622cb52e217f7987bef19ab884416117088830b1162cfa889342d9e",
+      "originalBytes": 19013,
+      "source": "validation-flutter/logs/pinned-word-vba-portable-comparisons.json"
+    },
+    {
+      "file": "pinned-word-vba-portable-runs.json",
+      "bytes": 10804,
+      "sha256": "74401d47b021de0e0db752ab154778f560590c69d62dbbac890177f6a0c9db25",
+      "originalBytes": 10804,
+      "source": "validation-flutter/logs/pinned-word-vba-portable-runs.json"
+    },
+    {
+      "file": "pinned-word-vba-receipt.json",
+      "bytes": 34945,
+      "sha256": "45ca19a2bc53c1d35f5c41267ace0db7c242e3091bf2c25a13d3c691d5940723",
+      "originalBytes": 34945,
+      "source": "validation-flutter/logs/pinned-word-vba-receipt.json"
+    },
+    {
+      "file": "pinned-word-vba-setup.json",
+      "bytes": 1253,
+      "sha256": "3c971e3a11286ee310c4b877db8be9a1f7077b3242dd0274c414a2a3409d5cb4",
+      "originalBytes": 1253,
+      "source": "validation-flutter/logs/pinned-word-vba-setup.json"
+    },
+    {
+      "file": "pinned-word-vba-source-continuity.json",
+      "bytes": 463,
+      "sha256": "dfe236ebea5e7dc9269623034ed20f4c49ab1c27bf512d1f27258630015d7ad7",
+      "originalBytes": 463,
+      "source": "validation-flutter/logs/pinned-word-vba-source-continuity.json"
+    },
+    {
+      "file": "pinned-word-vba-strcomp-compile-command.json",
+      "bytes": 729,
+      "sha256": "0db418a671e8a6c4fdfd8c9ec168002df1743a28de85b100c35b60f959d3dd4b",
+      "originalBytes": 729,
+      "source": "validation-flutter/logs/pinned-word-vba-strcomp-compile-command.json"
+    },
+    {
+      "file": "pinned-word-vba-strcomp-compile.log",
+      "bytes": 112,
+      "sha256": "4b6349b12d81717de96ff93c7335ca1aebffd8d66ed14ff4b51bcc8113aebc27",
+      "originalBytes": 112,
+      "source": "validation-flutter/logs/pinned-word-vba-strcomp-compile.log"
+    },
+    {
+      "file": "pinned-word-vba-strcomp-compile.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "originalBytes": 0,
+      "source": "validation-flutter/logs/pinned-word-vba-strcomp-compile.stderr.log"
+    },
+    {
+      "file": "pinned-word-vba-strcomp-js-command.json",
+      "bytes": 516,
+      "sha256": "4ebaf560cb1f87734deaaaafa0cd56a0e447bd0f8b6fe2f7fcb0511183b6571e",
+      "originalBytes": 516,
+      "source": "validation-flutter/logs/pinned-word-vba-strcomp-js-command.json"
+    },
+    {
+      "file": "pinned-word-vba-strcomp-js.json",
+      "bytes": 9125,
+      "sha256": "8df099428192365cb1befbcee1b3525555b69102f861c274c0c31b6581250aa5",
+      "originalBytes": 9125,
+      "source": "validation-flutter/logs/pinned-word-vba-strcomp-js.json"
+    },
+    {
+      "file": "pinned-word-vba-strcomp-js.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "originalBytes": 0,
+      "source": "validation-flutter/logs/pinned-word-vba-strcomp-js.stderr.log"
+    },
+    {
+      "file": "pinned-word-vba-strcomp-vm-command.json",
+      "bytes": 544,
+      "sha256": "aa60345a3745ba2a4d92134de014c546986b4244c90f2f76e680c0cd69095eb3",
+      "originalBytes": 544,
+      "source": "validation-flutter/logs/pinned-word-vba-strcomp-vm-command.json"
+    },
+    {
+      "file": "pinned-word-vba-strcomp-vm.json",
+      "bytes": 9125,
+      "sha256": "8df099428192365cb1befbcee1b3525555b69102f861c274c0c31b6581250aa5",
+      "originalBytes": 9125,
+      "source": "validation-flutter/logs/pinned-word-vba-strcomp-vm.json"
+    },
+    {
+      "file": "pinned-word-vba-strcomp-vm.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "originalBytes": 0,
+      "source": "validation-flutter/logs/pinned-word-vba-strcomp-vm.stderr.log"
+    },
+    {
+      "file": "pinned-word-vba-test-identities.json",
+      "bytes": 42478,
+      "sha256": "bbe58837684cd54bc2ba9be38ca1c9139f620d05da60a1b52c80711f7456f0d8",
+      "originalBytes": 42478,
+      "source": "validation-flutter/logs/pinned-word-vba-test-identities.json"
+    },
+    {
+      "file": "pinned-word-vba-test-summary.json",
+      "bytes": 584,
+      "sha256": "1849401865c05d74600b0e63e16d35c1cb590d5c1d5d11aa3003ff4766ec6685",
+      "originalBytes": 584,
+      "source": "validation-flutter/logs/pinned-word-vba-test-summary.json"
+    },
+    {
+      "file": "pinned-word-vba-tests.exitcode",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "originalBytes": 2,
+      "source": "validation-flutter/logs/pinned-word-vba-tests.exitcode"
+    },
+    {
+      "file": "pinned-word-vba-tests.jsonl.gz",
+      "bytes": 9053,
+      "sha256": "f26efb832c96950c9792ea4190873befde69adad86d07e00d15bec7713d440bc",
+      "originalBytes": 126686,
+      "source": "validation-flutter/logs/pinned-word-vba-tests.jsonl"
+    },
+    {
+      "file": "pinned-word-vba-tests.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "originalBytes": 0,
+      "source": "validation-flutter/logs/pinned-word-vba-tests.stderr.log"
+    },
+    {
+      "file": "shortcut-dispatch-analyze.log.gz",
+      "bytes": 76,
+      "sha256": "b66842143137a8d9c08715f961d2eed950858c69819bb6c527352951e70a46f8",
+      "originalBytes": 97,
+      "source": "tmp/shortcut-dispatch-analyze.log"
+    },
+    {
+      "file": "shortcut-dispatch-final-analyze.log.gz",
+      "bytes": 76,
+      "sha256": "3f7b36fd3df173f5ab1a6373fc6be06c830bfd4792e167ec6a984df79be0dd46",
+      "originalBytes": 97,
+      "source": "tmp/shortcut-dispatch-final-analyze.log"
+    },
+    {
+      "file": "shortcut-dispatch-final-receipt.json",
+      "bytes": 9647,
+      "sha256": "b1a3272ca30886f35b25e161d81f694e14df792facbdda9deff8a31b9887c653",
+      "originalBytes": 9647,
+      "source": "tmp/shortcut-dispatch-final-receipt.json"
+    },
+    {
+      "file": "shortcut-dispatch-final-test.log",
+      "bytes": 1511,
+      "sha256": "50598b9c38d93bb95e739530ce2c1b144eb00a79bcc7ff9d50a58b2b921f3cbc",
+      "originalBytes": 1511,
+      "source": "tmp/shortcut-dispatch-final-test.log"
+    },
+    {
+      "file": "shortcut-dispatch-test.log",
+      "bytes": 1207,
+      "sha256": "2e9224a5aa5ae1c593081ede37248dcfea1465bbddb05a170ff9b85e270a51d6",
+      "originalBytes": 1207,
+      "source": "tmp/shortcut-dispatch-test.log"
+    },
+    {
+      "file": "shortcut-editor-analyze.log.gz",
+      "bytes": 76,
+      "sha256": "ff800e58849ebcf75248d5b93dfbc6bb5aade3d94c4c2f8d04d441ae46daad37",
+      "originalBytes": 97,
+      "source": "tmp/shortcut-editor-analyze.log"
+    },
+    {
+      "file": "shortcut-editor-final-analyze.log.gz",
+      "bytes": 76,
+      "sha256": "21800eef1bf2ef0d16ebcb62190b8c019f34d18371ce7ec5f29c62fa8c0ae26f",
+      "originalBytes": 97,
+      "source": "tmp/shortcut-editor-final-analyze.log"
+    },
+    {
+      "file": "shortcut-host-integration-analyze.log.gz",
+      "bytes": 76,
+      "sha256": "29682ae5ebe8e8c5411cc39ebbd7f1ca2c9d369b721d13ae2809459a48a313b3",
+      "originalBytes": 97,
+      "source": "tmp/shortcut-host-integration-analyze.log"
+    },
+    {
+      "file": "shortcut-host-integration-final-receipt.json",
+      "bytes": 6510,
+      "sha256": "822c04e7a4c55209910c3ed82dadfe480f8fc1b6860a5ee9cafc043cc0e75a10",
+      "originalBytes": 6510,
+      "source": "tmp/shortcut-host-integration-final-receipt.json"
+    },
+    {
+      "file": "shortcut-host-integration-final-test.log.gz",
+      "bytes": 1500,
+      "sha256": "d24ba88d6f1d7b9ceeda771de7cbf3bec044df789357e20eccb24403aa140658",
+      "originalBytes": 12100,
+      "source": "tmp/shortcut-host-integration-final-test.log"
+    },
+    {
+      "file": "shortcut-host-integration-test.log.gz",
+      "bytes": 2149,
+      "sha256": "cffa5c04e3b8fd947129961e29148876181e87f672b97c1448eb0b010fc8e061",
+      "originalBytes": 15081,
+      "source": "tmp/shortcut-host-integration-test.log"
+    },
+    {
+      "file": "shortcut-host-key-replay-test.log",
+      "bytes": 409,
+      "sha256": "fcf42e18ac70249f74885010c5a80a65a74d8410835d6adacccc60cd05b7caeb",
+      "originalBytes": 409,
+      "source": "tmp/shortcut-host-key-replay-test.log"
+    },
+    {
+      "file": "shortcut-slide-repeat-before.log.gz",
+      "bytes": 704,
+      "sha256": "43ad4d8b1715a7d7a9018846e95ce83510337e60ada83ced80a7abf6890eebef",
+      "originalBytes": 2507,
+      "source": "tmp/shortcut-slide-repeat-before.log"
+    },
+    {
+      "file": "strcomp-js.json",
+      "bytes": 9125,
+      "sha256": "8df099428192365cb1befbcee1b3525555b69102f861c274c0c31b6581250aa5",
+      "originalBytes": 9125,
+      "source": "tmp/strcomp-js.json"
+    },
+    {
+      "file": "strcomp-vm.json",
+      "bytes": 9125,
+      "sha256": "8df099428192365cb1befbcee1b3525555b69102f861c274c0c31b6581250aa5",
+      "originalBytes": 9125,
+      "source": "tmp/strcomp-vm.json"
+    },
+    {
+      "file": "studio-mail-zotero-existing-tests-interrupted-build-contention.log.gz",
+      "bytes": 1325,
+      "sha256": "8c5af49292844cdc25aa29d25bac5e0430a8fc9feb80e6c3e42459e65f4a8302",
+      "originalBytes": 9851,
+      "source": "validation-flutter/logs/studio-mail-zotero-existing-tests-interrupted-build-contention.log"
+    },
+    {
+      "file": "studio-mail-zotero-existing-tests.log.gz",
+      "bytes": 2748,
+      "sha256": "464030f1f6a914b09ad1aaf13fa71200b98dc4fe9324d3375de61c2cfd6f98c2",
+      "originalBytes": 22677,
+      "source": "validation-flutter/logs/studio-mail-zotero-existing-tests.log"
+    },
+    {
+      "file": "word-comparison-colors-conformance-dart2js.log",
+      "bytes": 112,
+      "sha256": "9109e2597d20f424ce387b37d994b5ab6d76e92e3d03de7b610fb93e5fc83dfe",
+      "originalBytes": 112,
+      "source": "validation/logs/word-comparison-colors-conformance-dart2js.log"
+    },
+    {
+      "file": "word-comparison-colors-conformance-js.json",
+      "bytes": 7354,
+      "sha256": "2cca54083876741238892d12b1e454fcd2d97dcef87a49db7f4e0de7da77d60c",
+      "originalBytes": 7354,
+      "source": "validation/logs/word-comparison-colors-conformance-js.json"
+    },
+    {
+      "file": "word-comparison-colors-conformance-tests.log",
+      "bytes": 1877,
+      "sha256": "ad942145bd890065082bcfcab6acdba69e1cbfeffdae390c6479e4b370e09d66",
+      "originalBytes": 1877,
+      "source": "validation/logs/word-comparison-colors-conformance-tests.log"
+    },
+    {
+      "file": "word-comparison-colors-conformance-vm.json",
+      "bytes": 7354,
+      "sha256": "2cca54083876741238892d12b1e454fcd2d97dcef87a49db7f4e0de7da77d60c",
+      "originalBytes": 7354,
+      "source": "validation/logs/word-comparison-colors-conformance-vm.json"
+    },
+    {
+      "file": "word-comparison-colors-example-compile-command.txt",
+      "bytes": 2240,
+      "sha256": "1c99a5eb35d2368bb1383768f5274f2424d0e5f7fa5a6aeb0f1e4a418a6fc8e9",
+      "originalBytes": 2240,
+      "source": "validation/logs/word-comparison-colors-example-compile-command.txt"
+    },
+    {
+      "file": "word-comparison-colors-example-js-command.txt",
+      "bytes": 192,
+      "sha256": "06a30d7e8cb5ffafaeb011e1b55a977e9a771eab57b7826f1b1e72c627d0fa1a",
+      "originalBytes": 192,
+      "source": "validation/logs/word-comparison-colors-example-js-command.txt"
+    },
+    {
+      "file": "word-comparison-colors-example-js-compile.log",
+      "bytes": 114,
+      "sha256": "a3835c6a3f0ff31a9cf046ed4ab68dd79fcbfb2fd25ca04f4272bd2acf09fd71",
+      "originalBytes": 114,
+      "source": "validation/logs/word-comparison-colors-example-js-compile.log"
+    },
+    {
+      "file": "word-comparison-colors-example-js.json",
+      "bytes": 524,
+      "sha256": "b832a9d6fdd14ca4a9f86309887b07d6a1c5035c49564d327d3839f4289b7ad8",
+      "originalBytes": 524,
+      "source": "validation/logs/word-comparison-colors-example-js.json"
+    },
+    {
+      "file": "word-comparison-colors-example-result.json",
+      "bytes": 576,
+      "sha256": "112d4083f433af48b28e2ec9384cb83c6ffd23f78f978b277a053501d6a4973a",
+      "originalBytes": 576,
+      "source": "validation/logs/word-comparison-colors-example-result.json"
+    },
+    {
+      "file": "word-comparison-colors-example-vm-command.txt",
+      "bytes": 2096,
+      "sha256": "bbdc74c66abc58e0690f20c0c2f33843783a343f75750a04976ce04488214b1c",
+      "originalBytes": 2096,
+      "source": "validation/logs/word-comparison-colors-example-vm-command.txt"
+    },
+    {
+      "file": "word-comparison-colors-example-vm.json",
+      "bytes": 524,
+      "sha256": "b832a9d6fdd14ca4a9f86309887b07d6a1c5035c49564d327d3839f4289b7ad8",
+      "originalBytes": 524,
+      "source": "validation/logs/word-comparison-colors-example-vm.json"
+    },
+    {
+      "file": "word-comparison-colors-final-analysis-command.txt",
+      "bytes": 48,
+      "sha256": "7e98213a632ca726d5994f751e361fb3ffde4bacc5d4008e7dfe6133677ed9bb",
+      "originalBytes": 48,
+      "source": "validation/logs/word-comparison-colors-final-analysis-command.txt"
+    },
+    {
+      "file": "word-comparison-colors-final-analysis-isolated-command.txt",
+      "bytes": 48,
+      "sha256": "7e98213a632ca726d5994f751e361fb3ffde4bacc5d4008e7dfe6133677ed9bb",
+      "originalBytes": 48,
+      "source": "validation/logs/word-comparison-colors-final-analysis-isolated-command.txt"
+    },
+    {
+      "file": "word-comparison-colors-final-analysis-isolated-result.json",
+      "bytes": 242,
+      "sha256": "cf914662a9be6d3faa923a6f1a1e02f39b6e3135790ff9251cb55d5135dba25a",
+      "originalBytes": 242,
+      "source": "validation/logs/word-comparison-colors-final-analysis-isolated-result.json"
+    },
+    {
+      "file": "word-comparison-colors-final-analysis-isolated.log",
+      "bytes": 48,
+      "sha256": "a2c6ab62622e33ca0a332c22d5377e80c59f95173984907975a13e7faf53d284",
+      "originalBytes": 48,
+      "source": "validation/logs/word-comparison-colors-final-analysis-isolated.log"
+    },
+    {
+      "file": "word-comparison-colors-final-analysis-result.json",
+      "bytes": 158,
+      "sha256": "4949b506e6088a5c56fcf45ef3750070a1340af4545389ed6e36c05de18507ee",
+      "originalBytes": 158,
+      "source": "validation/logs/word-comparison-colors-final-analysis-result.json"
+    },
+    {
+      "file": "word-comparison-colors-final-analysis.log",
+      "bytes": 163,
+      "sha256": "71338cb513d1b1cdc493de4ef66072bee77bb02d11bfe77c2be2362da1ef8fd1",
+      "originalBytes": 163,
+      "source": "validation/logs/word-comparison-colors-final-analysis.log"
+    },
+    {
+      "file": "word-comparison-colors-final-combined-qualification.json",
+      "bytes": 1050,
+      "sha256": "d20d0f2b0f4518d7f1429b59594cdca2cd01a82bffd20fb162bbe260f47d10e8",
+      "originalBytes": 1050,
+      "source": "validation/logs/word-comparison-colors-final-combined-qualification.json"
+    },
+    {
+      "file": "word-comparison-colors-final-command.txt",
+      "bytes": 6622,
+      "sha256": "d8a065b1ea4c6bd7a7b2bbfed424fc4012b7df299fda14e9b995c3d748c47192",
+      "originalBytes": 6622,
+      "source": "validation/logs/word-comparison-colors-final-command.txt"
+    },
+    {
+      "file": "word-comparison-colors-final-isolated-recovery-command.txt",
+      "bytes": 164,
+      "sha256": "b55c4b01d0612849e494d4d5fe581b6a19256e22d8effdff4324203a0f6437a9",
+      "originalBytes": 164,
+      "source": "validation/logs/word-comparison-colors-final-isolated-recovery-command.txt"
+    },
+    {
+      "file": "word-comparison-colors-final-isolated-recovery-result.json",
+      "bytes": 2395,
+      "sha256": "644b52523de470481ea23331cf5cae49670a570063339963cead7be5862ac62d",
+      "originalBytes": 2395,
+      "source": "validation/logs/word-comparison-colors-final-isolated-recovery-result.json"
+    },
+    {
+      "file": "word-comparison-colors-final-isolated-recovery.log.gz",
+      "bytes": 2899,
+      "sha256": "dbc5bb151f4edad00fc0bbf7d1d72d506b7d146008fa4444563426c1a857f26e",
+      "originalBytes": 18751,
+      "source": "validation/logs/word-comparison-colors-final-isolated-recovery.log"
+    },
+    {
+      "file": "word-comparison-colors-final-restored-fixture.sha256",
+      "bytes": 127,
+      "sha256": "dc694b721131d889ace6318f27951a4f63a7dc91285243b3163a0d26825e0dce",
+      "originalBytes": 127,
+      "source": "validation/logs/word-comparison-colors-final-restored-fixture.sha256"
+    },
+    {
+      "file": "word-comparison-colors-final-result.json",
+      "bytes": 2348,
+      "sha256": "79eb938b2adaa52e8e0d612e29c8d5959c2be542babaea0236d066235b1d6e9b",
+      "originalBytes": 2348,
+      "source": "validation/logs/word-comparison-colors-final-result.json"
+    },
+    {
+      "file": "word-comparison-colors-final-source-after.sha256",
+      "bytes": 1106,
+      "sha256": "f753983f9d2ca331f4bbd428fc607cca3eb7e31fb3602c1d8d63014c589c14c6",
+      "originalBytes": 1106,
+      "source": "validation/logs/word-comparison-colors-final-source-after.sha256"
+    },
+    {
+      "file": "word-comparison-colors-final-source-before.sha256",
+      "bytes": 1106,
+      "sha256": "f753983f9d2ca331f4bbd428fc607cca3eb7e31fb3602c1d8d63014c589c14c6",
+      "originalBytes": 1106,
+      "source": "validation/logs/word-comparison-colors-final-source-before.sha256"
+    },
+    {
+      "file": "word-comparison-colors-final-source-qualified.sha256",
+      "bytes": 1106,
+      "sha256": "f753983f9d2ca331f4bbd428fc607cca3eb7e31fb3602c1d8d63014c589c14c6",
+      "originalBytes": 1106,
+      "source": "validation/logs/word-comparison-colors-final-source-qualified.sha256"
+    },
+    {
+      "file": "word-comparison-colors-final-test-manifest.txt",
+      "bytes": 6359,
+      "sha256": "f174a5f2f1201137bda1097b45193dfca8e1bed7d1cead239d5381fbaca61526",
+      "originalBytes": 6359,
+      "source": "validation/logs/word-comparison-colors-final-test-manifest.txt"
+    },
+    {
+      "file": "word-comparison-colors-final-test-source-qualified.sha256",
+      "bytes": 15533,
+      "sha256": "85c49e058a94a5af1c384691e82c218fff0e0bbf3f8c947484b23e2479539177",
+      "originalBytes": 15533,
+      "source": "validation/logs/word-comparison-colors-final-test-source-qualified.sha256"
+    },
+    {
+      "file": "word-comparison-colors-final-test-source.sha256",
+      "bytes": 15533,
+      "sha256": "d3133bbcf9d4d6d7a3983122c127d43e17fb09a3d721ec3c4cb49f46356fd422",
+      "originalBytes": 15533,
+      "source": "validation/logs/word-comparison-colors-final-test-source.sha256"
+    },
+    {
+      "file": "word-comparison-colors-final-tests.log.gz",
+      "bytes": 41536,
+      "sha256": "5a104ff52d9cf75a2ac4a1bccd9e0f00ebdac8eb4cba68fe735d0f7d4c8a421e",
+      "originalBytes": 780480,
+      "source": "validation/logs/word-comparison-colors-final-tests.log"
+    },
+    {
+      "file": "word-comparison-colors-integration.log",
+      "bytes": 889,
+      "sha256": "d39685b7c1ff998a9b4e082deeaafa3246ede91d2cc7fb71290f61c6fc4855fa",
+      "originalBytes": 889,
+      "source": "validation/logs/word-comparison-colors-integration.log"
+    },
+    {
+      "file": "word-comparison-colors-js-compile.log",
+      "bytes": 114,
+      "sha256": "c51f88e8e136ecda9d1a0c878c4294b5c8ea947168202cd54a51c1d8d6b8e0d4",
+      "originalBytes": 114,
+      "source": "validation/logs/word-comparison-colors-js-compile.log"
+    },
+    {
+      "file": "word-comparison-colors-latest-analysis-command.txt",
+      "bytes": 277,
+      "sha256": "8276ea44d58f02b05ae39f45ca5202fe73945e840c6ed9e56d7308e22d03275c",
+      "originalBytes": 277,
+      "source": "validation/logs/word-comparison-colors-latest-analysis-command.txt"
+    },
+    {
+      "file": "word-comparison-colors-latest-analysis-result.json",
+      "bytes": 455,
+      "sha256": "8b0800d79f6eec87ac253f54a4b1149507e393d7894b445797c06c04f62cd313",
+      "originalBytes": 455,
+      "source": "validation/logs/word-comparison-colors-latest-analysis-result.json"
+    },
+    {
+      "file": "word-comparison-colors-latest-analysis.log",
+      "bytes": 56,
+      "sha256": "97b69c71854bf56cf7faf6aebc3df9a609cb65e73cdedcbcc298993d750bcfee",
+      "originalBytes": 56,
+      "source": "validation/logs/word-comparison-colors-latest-analysis.log"
+    },
+    {
+      "file": "word-comparison-colors-latest-command.txt",
+      "bytes": 1215,
+      "sha256": "9429c3dfa978f5aa02e7a599b28c74cb664f2318ba4e57032ae40bee22880274",
+      "originalBytes": 1215,
+      "source": "validation/logs/word-comparison-colors-latest-command.txt"
+    },
+    {
+      "file": "word-comparison-colors-latest-harness-inputs.sha256",
+      "bytes": 517,
+      "sha256": "22c15cfc6877467c7905309590989d4b6add917e6c6f03ca8f87f2a2c1bfbb6e",
+      "originalBytes": 517,
+      "source": "validation/logs/word-comparison-colors-latest-harness-inputs.sha256"
+    },
+    {
+      "file": "word-comparison-colors-latest-qualification.json",
+      "bytes": 2407,
+      "sha256": "35c3f64d2fff12461cb6136ceb6a8382362312a16b3e43ec58a56352696d443c",
+      "originalBytes": 2407,
+      "source": "validation/logs/word-comparison-colors-latest-qualification.json"
+    },
+    {
+      "file": "word-comparison-colors-latest-result.json",
+      "bytes": 4462,
+      "sha256": "d6d860d0861342a5119d8e184d9d5e7e24c73e1fd3c1dbd193e66a35a132c421",
+      "originalBytes": 4462,
+      "source": "validation/logs/word-comparison-colors-latest-result.json"
+    },
+    {
+      "file": "word-comparison-colors-latest-run-gate.py",
+      "bytes": 6607,
+      "sha256": "73ec5537ff781794b2e33e516974d6129449a2cb6c283a6d0994935bd2ebdf87",
+      "originalBytes": 6607,
+      "source": "validation/logs/word-comparison-colors-latest-run-gate.py"
+    },
+    {
+      "file": "word-comparison-colors-latest-source-after-analysis.sha256",
+      "bytes": 149919,
+      "sha256": "06a86d2a886d53790f59a1223b7cb2bb60b39a938a13861d4a7d3ae4d601c718",
+      "originalBytes": 149919,
+      "source": "validation/logs/word-comparison-colors-latest-source-after-analysis.sha256"
+    },
+    {
+      "file": "word-comparison-colors-latest-source-after-tests.sha256",
+      "bytes": 149919,
+      "sha256": "06a86d2a886d53790f59a1223b7cb2bb60b39a938a13861d4a7d3ae4d601c718",
+      "originalBytes": 149919,
+      "source": "validation/logs/word-comparison-colors-latest-source-after-tests.sha256"
+    },
+    {
+      "file": "word-comparison-colors-latest-source-before.sha256",
+      "bytes": 149919,
+      "sha256": "06a86d2a886d53790f59a1223b7cb2bb60b39a938a13861d4a7d3ae4d601c718",
+      "originalBytes": 149919,
+      "source": "validation/logs/word-comparison-colors-latest-source-before.sha256"
+    },
+    {
+      "file": "word-comparison-colors-latest-test-manifest.txt",
+      "bytes": 798,
+      "sha256": "5cafdb970ee725d300031e8841c71823e66fbb09281c155d5dcda74e367c8f2b",
+      "originalBytes": 798,
+      "source": "validation/logs/word-comparison-colors-latest-test-manifest.txt"
+    },
+    {
+      "file": "word-comparison-colors-latest-test-source.sha256",
+      "bytes": 2490,
+      "sha256": "cbd364ea682af2285461f5ee07e5b65efbb769ba0b12f6d1d5ce149ecda0abd6",
+      "originalBytes": 2490,
+      "source": "validation/logs/word-comparison-colors-latest-test-source.sha256"
+    },
+    {
+      "file": "word-comparison-colors-latest-tests.jsonl.gz",
+      "bytes": 19889,
+      "sha256": "35bb84bb462ce5c73edad9cd4d068f5d7180a20f7c75dd0b1aef77bb84b831f6",
+      "originalBytes": 247857,
+      "source": "validation/logs/word-comparison-colors-latest-tests.jsonl"
+    },
+    {
+      "file": "word-comparison-colors-latest-tests.log.gz",
+      "bytes": 4002,
+      "sha256": "51f925a207c7e70885191471974ba4a690fa3c516969bff2517fc994bd4c61da",
+      "originalBytes": 52509,
+      "source": "validation/logs/word-comparison-colors-latest-tests.log"
+    },
+    {
+      "file": "word-comparison-colors-pinned-format-before.json",
+      "bytes": 13828,
+      "sha256": "a419c399864b93e3a036d72024743a93433f7ae46e5921486d6e81be76b2f72d",
+      "originalBytes": 13828,
+      "source": "validation/logs/word-comparison-colors-pinned-format-before.json"
+    },
+    {
+      "file": "word-comparison-colors-pinned-format-before.log",
+      "bytes": 1137,
+      "sha256": "34f688a6554d60c5b21a3977a215db8cdaaea687d6ac4dc7246b029a3401f611",
+      "originalBytes": 1137,
+      "source": "validation/logs/word-comparison-colors-pinned-format-before.log"
+    },
+    {
+      "file": "word-comparison-colors-pinned-format-check.log",
+      "bytes": 1972,
+      "sha256": "18f6830a93892a469aee30d760b13bacbd97ab6f1c6d6d8ed6053915521f7a8c",
+      "originalBytes": 1972,
+      "source": "validation/logs/word-comparison-colors-pinned-format-check.log"
+    },
+    {
+      "file": "word-comparison-colors-pinned-format-equivalence.json",
+      "bytes": 20280,
+      "sha256": "609e68c53effc658895be71f89b9116a25fdac7352eba2b56ef6a4a67068aaef",
+      "originalBytes": 20280,
+      "source": "validation/logs/word-comparison-colors-pinned-format-equivalence.json"
+    },
+    {
+      "file": "word-comparison-colors-pinned-format-final.log",
+      "bytes": 1972,
+      "sha256": "18f6830a93892a469aee30d760b13bacbd97ab6f1c6d6d8ed6053915521f7a8c",
+      "originalBytes": 1972,
+      "source": "validation/logs/word-comparison-colors-pinned-format-final.log"
+    },
+    {
+      "file": "word-font-color-native-tests.log",
+      "bytes": 4325,
+      "sha256": "8d9832ce4295d32304bf27149559b9d9f18c9cde7e52c5d406e4a41fb847a8fe",
+      "originalBytes": 4325,
+      "source": "validation/logs/word-font-color-native-tests.log"
+    },
+    {
+      "file": "word-font-color-source-tests.log",
+      "bytes": 5778,
+      "sha256": "082cf249e52b070eb11c2d259f7efceb8ace0a98cd7d89c5b5f7ccc51920d239",
+      "originalBytes": 5778,
+      "source": "validation/logs/word-font-color-source-tests.log"
+    },
+    {
+      "file": "word-font-colors-tests.log.gz",
+      "bytes": 2919,
+      "sha256": "096ddcd170ac4f7fea20b10bcfd77384b606465b2db29d50ed24922f59755d80",
+      "originalBytes": 20892,
+      "source": "validation/logs/word-font-colors-tests.log"
+    },
+    {
+      "file": "word-vba-baseline-tests.log.gz",
+      "bytes": 1256,
+      "sha256": "0034ad9a811f2b6c218ba528bf4b29af08de80325fd8ae157f344be6369e39d5",
+      "originalBytes": 26634,
+      "source": "validation/logs/word-vba-baseline-tests.log"
+    },
+    {
+      "file": "word-vba-smoke-js.json",
+      "bytes": 244,
+      "sha256": "1fb8306c1f06be714542c837c8fc9e81ca647864638d6bc5afef20ad95e395ee",
+      "originalBytes": 244,
+      "source": "validation/logs/word-vba-smoke-js.json"
+    },
+    {
+      "file": "word-vba-smoke-vm.json",
+      "bytes": 244,
+      "sha256": "1fb8306c1f06be714542c837c8fc9e81ca647864638d6bc5afef20ad95e395ee",
+      "originalBytes": 244,
+      "source": "validation/logs/word-vba-smoke-vm.json"
+    }
+  ]
+}

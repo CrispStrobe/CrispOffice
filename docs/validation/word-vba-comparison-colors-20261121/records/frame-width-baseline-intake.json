@@ -1,0 +1,19 @@
+{
+  "baselineCommit": "52e72ca0b5677549f31742faae457f08df05759b",
+  "archiveCommand": [
+    "git",
+    "archive",
+    "52e72ca0b5677549f31742faae457f08df05759b",
+    "packages/quds_office_engine/lib",
+    "packages/quds_office_engine/pubspec.yaml",
+    "packages/quds_office_engine/test/word_native_presentation_test.dart",
+    "packages/quds_office_engine/test/fixtures/fidelity/frame_wrap_source.xml",
+    "packages/legacy_doc_parser/lib",
+    "packages/legacy_doc_parser/pubspec.yaml"
+  ],
+  "archiveSha256": "4b0d9f714dce37afe30bbddd9b9f51d47c77d8d4ac935a90d595a2523be0e8af",
+  "baselineEngineLibTree": "c1742efc846c8672b77cd36e3f4c979fd6a5e523",
+  "currentHeadAtCapture": "fa53e8b87aa65c3a9b6b6515615950ba4164e312",
+  "baselineEnginePackageRoot": "file:///home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/baseline-validation/packages/quds_office_engine/",
+  "unmodifiedPackageConfigEntries": 57
+}

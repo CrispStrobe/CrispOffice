@@ -7,10 +7,25 @@ Initial main: 3058d36c5354d46bde418555d59282116cce1e26.
 Implementation branch: work/mail-keyboard-triage-20261121.
 Initial qualified source: 0b38435e553d14cbea505477a473061b134e308e.
 Initial qualified tree: 917f157fccdafc6adda8e2a802fcf95d94a136b1.
-Publication source after current-main reconciliation:
+Combined-code qualification source after current-main reconciliation:
 57618066f397c4856be8df4d75c1423ed4b33e1c.
 Publication tree: b9bded2ebee460f1681d8cc8499d4cb18faca700.
 Delivery: [PR #349](https://github.com/CrispStrobe/quds_office_suite/pull/349).
+
+### Concurrent publication
+
+GitHub marked PR #349 merged when Word PR #350 brought implementation head
+1dd56df51f97dc86fbb1ebe22d9045aab7921d1c into main. Current main
+613c0ba130c538f18670be69dd6617b6560c0760 already contains the Mail feature,
+both Zotero merges and newer Word/shortcut work. All 30 product/test/fixture
+paths introduced by our subsequent footnote reconciliation exactly match that
+main tree.
+
+The final evidence follow-up uses this newer main as its product tree and
+changes only this Mail validation directory. It preserves the recorded 804-case
+qualification at its stated source inputs; it does not claim a new runtime run
+on the later Word publication. The newer main's qualification remains separately
+attributed to PR #350. See [evidence carry-forward](checks/evidence-carry-forward.json).
 
 This continuation advances loaded-mailbox triage with contiguous checked
 selection and corrects synchronized-view header search. It does not claim

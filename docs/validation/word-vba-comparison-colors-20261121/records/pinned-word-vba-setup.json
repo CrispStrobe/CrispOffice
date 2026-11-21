@@ -1,0 +1,23 @@
+{
+  "started_utc": "2026-11-21T21:58:24.290474+00:00",
+  "input_scope": "All engine and legacy parser libraries, engine test/support and conformance fixture files, six selected tests, two portable tools, actual BAS example, package/root manifests and lockfile.",
+  "input_count": 461,
+  "input_manifest_sha256": "2c3533039dbad8560250825463e2e26eee15979e50277778b4dc76b638028394",
+  "dart_version": "3.13.7",
+  "flutter_version": "3.47.8",
+  "dart_binary_sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+  "package_config_sha256": "d1e309bc900c5cb84c7079fbd85199a88a2cc607a6072eb8b311c8bd32a83aec",
+  "lockfile_sha256": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+  "lockfile_identical": true,
+  "bas_sha256": "880de22808e1cd947dd221e1e37c7eded92a7564d7c0d554f62b0dfd43adf51d",
+  "bas_definition_matches_previous": true,
+  "tests": [
+    "office_vba_strcomp_test.dart",
+    "office_vba_word_font_colors_test.dart",
+    "office_macro_word_font_colors_test.dart",
+    "office_vba_word_comparison_colors_integration_test.dart",
+    "office_vba_word_comparison_colors_conformance_test.dart",
+    "office_vba_word_colors_footnote_separator_integration_test.dart"
+  ],
+  "expected_visible_test_count": 238
+}

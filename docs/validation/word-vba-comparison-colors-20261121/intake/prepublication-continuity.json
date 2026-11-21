@@ -1,0 +1,9 @@
+{
+  "qualifiedCheckpoint": "dc787e2e382250d40d88295f7db40237f79f58ef",
+  "refreshedMain": "ad577ea82695231b5932d6b973f92b5156b1d2d6",
+  "packageToolWorkflowChanges": [],
+  "canonicalDartFiles": 47,
+  "canonicalHashesUnchanged": true,
+  "resolution": "Retain completed incoming separator qualification and append combined macro/host qualification follow-up.",
+  "additionalMailQualificationHead": "1dd56df51f97dc86fbb1ebe22d9045aab7921d1c"
+}
