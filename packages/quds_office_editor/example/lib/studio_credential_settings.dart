@@ -1,11 +1,15 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'studio_credential_biometric_strings.dart';
 import 'studio_credential_storage.dart';
+import 'studio_strings.dart';
+import 'credentials/biometric_secret_store.dart';
 import 'credentials/secure_storage_macos_keychain.dart';
 
 Future<bool> showStudioCredentialSettings(
   BuildContext context, {
   StudioCredentialStorage? manager,
+  StudioStrings strings = const StudioStrings(StudioLanguage.en),
 }) async {
   final selectedManager = manager ?? StudioCredentialStorage.instance;
   await selectedManager.loadSelection();
@@ -13,14 +17,16 @@ Future<bool> showStudioCredentialSettings(
   return await showDialog<bool>(
         context: context,
         barrierDismissible: false,
-        builder: (_) => _CredentialSettings(manager: selectedManager),
+        builder: (_) =>
+            _CredentialSettings(manager: selectedManager, strings: strings),
       ) ??
       false;
 }
 
 class _CredentialSettings extends StatefulWidget {
-  const _CredentialSettings({required this.manager});
+  const _CredentialSettings({required this.manager, required this.strings});
   final StudioCredentialStorage manager;
+  final StudioStrings strings;
 
   @override
   State<_CredentialSettings> createState() => _CredentialSettingsState();
@@ -34,10 +40,18 @@ class _CredentialSettingsState extends State<_CredentialSettings> {
   final confirmation = TextEditingController();
   bool existing = true, busy = false;
   String? error;
+  // Touch ID unlock of the vault: what the OS offers, what is stored, and
+  // what the user asked for (applied after the next password unlock).
+  BiometricUnlockAvailability touchIdAvailability =
+      BiometricUnlockAvailability.unsupportedPlatform;
+  bool touchIdEnabled = false, touchIdWanted = false;
+  String? touchIdNotice;
+  late final strings = widget.strings;
   @override
   void initState() {
     super.initState();
     _inspect();
+    _inspectTouchId();
   }
 
   Future<void> _inspect() async {
@@ -48,6 +62,91 @@ class _CredentialSettingsState extends State<_CredentialSettings> {
       if (mounted) {
         setState(() => error = 'The existing vault could not be inspected.');
       }
+    }
+  }
+
+  Future<void> _inspectTouchId() async {
+    final availability = await manager.biometricAvailability();
+    var enabled = false;
+    try {
+      enabled = await manager.biometricUnlockEnabled();
+    } on Object {
+      // Preferences unavailable: present the option as off.
+    }
+    if (!mounted) return;
+    setState(() {
+      touchIdAvailability = availability;
+      touchIdEnabled = touchIdWanted = enabled;
+      if (manager.biometricReenrolmentSuggested) {
+        touchIdNotice = strings.vaultTouchIdInvalidated;
+      }
+    });
+  }
+
+  bool get _touchIdUsable =>
+      touchIdAvailability == BiometricUnlockAvailability.available;
+
+  Future<void> _setTouchId(bool value) async {
+    if (value) {
+      // Storing the key needs the vault unlocked with its master password;
+      // that happens in _apply.
+      setState(() => touchIdWanted = true);
+      return;
+    }
+    if (!touchIdEnabled) {
+      setState(() => touchIdWanted = false);
+      return;
+    }
+    setState(() {
+      busy = true;
+      error = null;
+    });
+    try {
+      await manager.disableBiometricUnlock();
+      if (mounted) {
+        setState(() => touchIdEnabled = touchIdWanted = false);
+      }
+    } on Object {
+      if (mounted) setState(() => error = strings.vaultTouchIdDisableFailed);
+    } finally {
+      if (mounted) setState(() => busy = false);
+    }
+  }
+
+  Future<void> _unlockWithTouchId() async {
+    if (busy) return;
+    setState(() {
+      busy = true;
+      error = null;
+    });
+    try {
+      final result = await manager.unlockVaultWithBiometrics(
+        reason: strings.vaultTouchIdReason,
+        fallbackTitle: strings.vaultTouchIdUsePassword,
+      );
+      if (result == StudioVaultBiometricUnlock.unlocked) {
+        await manager.select(StudioCredentialMode.encryptedVault);
+        if (mounted) Navigator.pop(context, true);
+        return;
+      }
+      if (!mounted) return;
+      setState(() {
+        if (result == StudioVaultBiometricUnlock.invalidated) {
+          touchIdEnabled = touchIdWanted = false;
+          touchIdNotice = strings.vaultTouchIdInvalidated;
+        } else if (result != StudioVaultBiometricUnlock.cancelled) {
+          touchIdNotice = strings.vaultTouchIdFailed;
+        }
+      });
+    } on Object {
+      if (mounted) {
+        setState(
+          () => error =
+              'Could not open the selected credential store. Check its access or password and try again.',
+        );
+      }
+    } finally {
+      if (mounted) setState(() => busy = false);
     }
   }
 
@@ -78,6 +177,21 @@ class _CredentialSettingsState extends State<_CredentialSettings> {
         await manager.unlockVault(selectedPassword, create: createVault);
       }
       await manager.select(selectedMode, path: selectedPath);
+      if (selectedMode == StudioCredentialMode.encryptedVault &&
+          touchIdWanted &&
+          _touchIdUsable &&
+          (createVault || !touchIdEnabled)) {
+        try {
+          await manager.enableBiometricUnlock();
+        } on Object {
+          // The vault is open and selected; only the convenience failed.
+          if (mounted) {
+            ScaffoldMessenger.maybeOf(context)?.showSnackBar(
+              SnackBar(content: Text(strings.vaultTouchIdEnableFailed)),
+            );
+          }
+        }
+      }
       if (mounted) Navigator.pop(context, true);
     } catch (_) {
       if (mounted) {
@@ -89,6 +203,49 @@ class _CredentialSettingsState extends State<_CredentialSettings> {
     } finally {
       if (mounted) setState(() => busy = false);
     }
+  }
+
+  List<Widget> _touchIdControls(BuildContext context) {
+    // Hidden where the platform has no biometric vault unlock at all.
+    if (touchIdAvailability ==
+        BiometricUnlockAvailability.unsupportedPlatform) {
+      return const [];
+    }
+    final unavailable = strings.vaultTouchIdUnavailable(touchIdAvailability);
+    return [
+      const SizedBox(height: 12),
+      SwitchListTile(
+        key: const ValueKey('studio-credential-touchid-toggle'),
+        contentPadding: EdgeInsets.zero,
+        title: Text(strings.vaultTouchIdToggle),
+        subtitle: Text(
+          unavailable ??
+              (touchIdWanted && !touchIdEnabled
+                  ? strings.vaultTouchIdEnableAfterUnlock
+                  : strings.vaultTouchIdHelp),
+        ),
+        value: touchIdWanted,
+        // Turning it off is always possible; turning it on needs biometry.
+        onChanged: busy || (!_touchIdUsable && !touchIdWanted)
+            ? null
+            : _setTouchId,
+      ),
+      if (touchIdNotice != null)
+        Text(
+          touchIdNotice!,
+          key: const ValueKey('studio-credential-touchid-notice'),
+        ),
+      if (existing && touchIdEnabled && _touchIdUsable)
+        Align(
+          alignment: AlignmentDirectional.centerStart,
+          child: TextButton.icon(
+            key: const ValueKey('studio-credential-touchid-unlock'),
+            onPressed: busy ? null : _unlockWithTouchId,
+            icon: const Icon(Icons.fingerprint),
+            label: Text(strings.vaultTouchIdUnlockButton),
+          ),
+        ),
+    ];
   }
 
   @override
@@ -184,6 +341,7 @@ class _CredentialSettingsState extends State<_CredentialSettings> {
                       labelText: 'Confirm master password',
                     ),
                   ),
+                ..._touchIdControls(context),
               ],
               if (mode == StudioCredentialMode.session)
                 const Padding(

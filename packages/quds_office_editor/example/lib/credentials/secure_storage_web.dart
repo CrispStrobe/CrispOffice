@@ -145,6 +145,55 @@ class WebEncryptedStorage extends SecureStorage
     }
   });
 
+  /// The raw unlock key of this handle, for storing behind OS-enforced
+  /// biometry. Returns null while locked, and when the crypto provider keeps
+  /// the key non-extractable (browser WebCrypto); such a vault can then only
+  /// be opened with its master password. The caller must not log the bytes.
+  Future<Uint8List?> exportUnlockKey() => _operations.synchronized(() async {
+    final key = _cryptoKey;
+    return key is Uint8List ? Uint8List.fromList(key) : null;
+  });
+
+  /// Unlock an existing vault with a raw key previously returned by
+  /// [exportUnlockKey]. The key must decrypt the vault's verification token;
+  /// otherwise (vault replaced, re-keyed, or the key is damaged) this throws
+  /// [CredentialVaultKeyRejected] and the handle stays locked. Missing or
+  /// damaged metadata and backend failures surface as other errors.
+  Future<void> initializeWithKey(Uint8List rawKey) =>
+      _operations.synchronized(() async {
+        _cryptoKey = null;
+        _metadata = null;
+        if (rawKey.length != 32) throw const CredentialVaultKeyRejected();
+        try {
+          final unlocked = await _withBackend((backend) async {
+            final metadata = await _readMetadata(backend);
+            if (metadata == null) {
+              throw StateError('No credential vault exists');
+            }
+            final key = await _crypto.importKey(Uint8List.fromList(rawKey));
+            try {
+              final verified = await _crypto.decrypt(
+                key,
+                base64.decode(metadata.verify),
+              );
+              if (utf8.decode(verified) != _verifyPlaintext) {
+                throw const CredentialVaultKeyRejected();
+              }
+            } catch (_) {
+              throw const CredentialVaultKeyRejected();
+            }
+            return (key: key, metadata: metadata);
+          });
+          _cryptoKey = unlocked.key;
+          _metadata = unlocked.metadata;
+          _log.info('Encrypted credential storage unlocked with a stored key');
+        } catch (_) {
+          _cryptoKey = null;
+          _metadata = null;
+          rethrow;
+        }
+      });
+
   static void _validateIterations(int iterations) {
     if (iterations < 1 || iterations > _maxPbkdf2Iterations) {
       throw StateError('Unsupported credential vault PBKDF2 iteration count');
@@ -333,6 +382,13 @@ class WebEncryptedStorage extends SecureStorage
       }
     }),
   );
+}
+
+/// A stored unlock key no longer opens this vault (replaced or re-keyed).
+class CredentialVaultKeyRejected implements Exception {
+  const CredentialVaultKeyRejected();
+  @override
+  String toString() => 'The stored key does not unlock this credential vault';
 }
 
 class _VaultMetadata {
