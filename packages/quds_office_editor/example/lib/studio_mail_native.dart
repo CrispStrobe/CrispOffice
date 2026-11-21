@@ -2230,6 +2230,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   Future<void> _openFlagHistory() async {
     final client = _client;
     final owner = _draftStore;
+    final loader = _messageLoader;
     if (client == null ||
         owner is! StudioMailFlagJournalOwner ||
         _busy ||
@@ -2238,15 +2239,28 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     }
     final generation = _sessionGeneration;
     bool current() =>
-        _currentSession(client, generation) && identical(owner, _draftStore);
+        _currentSession(client, generation) &&
+        identical(owner, _draftStore) &&
+        identical(loader, _messageLoader);
+    final store = (owner as StudioMailFlagJournalOwner).flagJournal;
     setState(() => _dialogOpen = true);
     try {
       await showDialog<void>(
         context: context,
         builder: (_) => StudioMailJournalDialog(
           strings: widget.strings,
-          store: (owner as StudioMailFlagJournalOwner).flagJournal,
+          store: store,
           isCurrent: current,
+          onReconcile: studioMailFlagRecovery(
+            store: store,
+            observer: loader,
+            provider: MailProviderKind.imap,
+            isCurrent: current,
+            onChecked: () => setState(() {
+              _needsRefresh = true;
+              _error = widget.strings.mailWorkspaceRefreshRequired;
+            }),
+          ),
         ),
       );
     } finally {

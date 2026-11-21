@@ -1856,14 +1856,29 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     final lease = session.begin();
     bool current() =>
         _current(provider, lease) && identical(owner, _draftStore);
+    final store = (owner as StudioMailFlagJournalOwner).flagJournal;
     setState(() => _dialogOpen = true);
     try {
       await showDialog<void>(
         context: context,
         builder: (_) => StudioMailJournalDialog(
           strings: widget.strings,
-          store: (owner as StudioMailFlagJournalOwner).flagJournal,
+          store: store,
           isCurrent: current,
+          onReconcile: studioMailFlagRecovery(
+            store: store,
+            observer: provider,
+            provider: switch (widget.cloudService) {
+              MailCloudService.gmail => MailProviderKind.gmail,
+              MailCloudService.microsoft365 => MailProviderKind.graph,
+              null => MailProviderKind.ews,
+            },
+            isCurrent: current,
+            onChecked: () => setState(() {
+              _needsRefresh = true;
+              _error = widget.strings.mailWorkspaceRefreshRequired;
+            }),
+          ),
         ),
       );
     } finally {

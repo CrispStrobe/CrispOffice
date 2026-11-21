@@ -1,5 +1,29 @@
 # Mail implementation status — 21 November 2026
 
+## Explicit recovery of uncertain read and flag actions
+
+Connected **Mail activity** now offers **Check current status** for completed
+uncertain receipts. Native IMAP, Exchange EWS, Gmail and Microsoft 365 observe
+the exact original identity, including an IMAP folder outside the current view.
+Opening history makes no provider request. A later observation records the
+requested flag as matching or different, the original identity as unavailable,
+or an IMAP generation as replaced. It never repeats the original command or
+rewrites its uncertain outcome.
+
+Schema v7 retains versions 1–6 and stores immutable per-item observations with
+owner, lease, revision and profile-epoch fences. The observation and requested
+cached flag update commit together; missing or replaced identities do not evict
+cached content. Cancellation and account retirement reject late completions.
+Fully checked receipts become eligible for bounded history cleanup, releasing
+the unresolved-batch allowance. Unchecked and running work remain protected.
+
+English, German and Arabic controls show original results and later check times.
+Cached history displays saved observations without credentials. The
+[recovery guide](flag-recovery.md) and [local qualification](../../validation/mail-flag-recovery-20261121/README.md)
+record behavior, exact source evidence, incoming-work integration and remote
+checkpoints. Repository-driven sessions, background synchronization and wider
+mailbox commands remain open.
+
 ## Durable foreground read and flag commands
 
 The [command-journal continuation](command-journal.md) saves intent and each
@@ -17,9 +41,10 @@ still be saved before the owner closes.
 
 **Mail activity** provides paginated read-only history and frozen per-message
 details from connected and cached accounts, with confirmed clean-history
-removal in English, German and Arabic. Schema v6 migrates versions 1–5. Bounded
-retention preserves running and uncertain receipts; explicit historical
-reconciliation and repository-driven sessions remain open. See the
+removal in English, German and Arabic. The original schema-v6 journal migrates
+versions 1–5; the schema-v7 recovery continuation above additionally retains
+later observations. Bounded retention preserves running and unchecked uncertain
+receipts. Repository-driven sessions remain open. See the
 [local qualification record](../../validation/mail-command-journal-20261121/README.md).
 
 The same integration preserves recent Office/Zotero work and fixes reader
@@ -59,8 +84,8 @@ by newest/oldest, sender or subject while preserving stable row identities.
 English/German/Arabic help and controls describe the loaded-folder scope.
 Filtering, sorting and keyboard movement issue no provider/body/mutation work.
 
-This advances discovery within M04W. Account-wide search, explicit uncertain
-command reconciliation, conversations and full offline synchronization remain open. The
+This advances discovery within M04W. Account-wide search, conversations and full
+offline synchronization remain open. The
 [local record](../../validation/mail-header-search-20261120/README.md) separates
 fresh validation from inherited evidence and live-provider/platform gates.
 

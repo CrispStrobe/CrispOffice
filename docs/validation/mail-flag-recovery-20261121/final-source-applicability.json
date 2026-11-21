@@ -1,0 +1,818 @@
+{
+  "schema": "quds-mail-final-source-applicability/v1",
+  "generated_at_utc": "2026-11-21T04:57:48.150968+00:00",
+  "status": "SOURCE_APPLICABILITY_VERIFIED_WITH_EXPLICIT_INTEGRATION_DELTAS",
+  "final_commit": "34bbc6110738761c69070bd2b0714b229709a6b6",
+  "final_tree": "52129486adecf61f6b9ff2e0c5c5401656bc80b7",
+  "scope": "Immutable Git tree/blob/ancestry review. Only scratch evidence is written; no remote, index, worktree or ref mutations, CI queries, or new test runs. Final execution results belong to their own source-bound receipts.",
+  "mail_source_and_test_applicability": {
+    "comparison_scopes": [
+      {
+        "component": "core",
+        "accepted_checkpoint": "71a9d73f86a30380d7fe3563f1a0048f1f7eb860",
+        "scope_paths": [
+          "packages/quds_mail_core"
+        ],
+        "baseline": {
+          "entry_count": 34,
+          "entries_sha256": "16ae23e08fc6b744dad9ed6ff60d50db004a4f95dae38bf9ba0aadbf5c7e6e7b",
+          "subtrees": {
+            "packages/quds_mail_core": "63122ab953529b7a78ba6bd63fdecd8259e2d8f5"
+          }
+        },
+        "final": {
+          "entry_count": 34,
+          "entries_sha256": "16ae23e08fc6b744dad9ed6ff60d50db004a4f95dae38bf9ba0aadbf5c7e6e7b",
+          "subtrees": {
+            "packages/quds_mail_core": "63122ab953529b7a78ba6bd63fdecd8259e2d8f5"
+          }
+        },
+        "changed_paths": []
+      },
+      {
+        "component": "transport",
+        "accepted_checkpoint": "71a9d73f86a30380d7fe3563f1a0048f1f7eb860",
+        "scope_paths": [
+          "packages/quds_mail_transport"
+        ],
+        "baseline": {
+          "entry_count": 63,
+          "entries_sha256": "ba5a87d8944af66bd4bb1bff49138956665d1de29ef99a1f6bb2ff63afbb2b14",
+          "subtrees": {
+            "packages/quds_mail_transport": "a639134e2ebb9da36b8a0b1c59f9a7a1f38576a8"
+          }
+        },
+        "final": {
+          "entry_count": 63,
+          "entries_sha256": "ba5a87d8944af66bd4bb1bff49138956665d1de29ef99a1f6bb2ff63afbb2b14",
+          "subtrees": {
+            "packages/quds_mail_transport": "a639134e2ebb9da36b8a0b1c59f9a7a1f38576a8"
+          }
+        },
+        "changed_paths": []
+      },
+      {
+        "component": "mime_carried_unchanged",
+        "accepted_checkpoint": "71a9d73f86a30380d7fe3563f1a0048f1f7eb860",
+        "scope_paths": [
+          "packages/quds_mail_mime"
+        ],
+        "baseline": {
+          "entry_count": 19,
+          "entries_sha256": "9567dc337a914025ca9f36b9548eeb124163459d892d2b4b8579728fd9e928c4",
+          "subtrees": {
+            "packages/quds_mail_mime": "b52df11aefcbf668097fe25c27b31e6aaf15a95d"
+          }
+        },
+        "final": {
+          "entry_count": 19,
+          "entries_sha256": "9567dc337a914025ca9f36b9548eeb124163459d892d2b4b8579728fd9e928c4",
+          "subtrees": {
+            "packages/quds_mail_mime": "b52df11aefcbf668097fe25c27b31e6aaf15a95d"
+          }
+        },
+        "changed_paths": []
+      },
+      {
+        "component": "store",
+        "accepted_checkpoint": "1df5e678906ff1def11deed085586dc733030595",
+        "scope_paths": [
+          "packages/quds_mail_store"
+        ],
+        "baseline": {
+          "entry_count": 83,
+          "entries_sha256": "fd087abd76f7963c8d03bf09abb6dcc864fe322fb71e200c72c4feff02d9dfa5",
+          "subtrees": {
+            "packages/quds_mail_store": "5a30152a3ce2f171fb8318d8b55b77878a5fc8f1"
+          }
+        },
+        "final": {
+          "entry_count": 83,
+          "entries_sha256": "fd087abd76f7963c8d03bf09abb6dcc864fe322fb71e200c72c4feff02d9dfa5",
+          "subtrees": {
+            "packages/quds_mail_store": "5a30152a3ce2f171fb8318d8b55b77878a5fc8f1"
+          }
+        },
+        "changed_paths": []
+      },
+      {
+        "component": "mail_ui",
+        "accepted_checkpoint": "d6e8fddd08755fe84e82f2a7a0bce200f0c92826",
+        "scope_paths": [
+          "packages/quds_mail_ui"
+        ],
+        "baseline": {
+          "entry_count": 36,
+          "entries_sha256": "a1810f9a47337d3efcb1262bdbd63caf4bbc2c89efd24b53547f05448f275660",
+          "subtrees": {
+            "packages/quds_mail_ui": "3ed1b10aa1b90390c3e33821d480a804cc6eadbd"
+          }
+        },
+        "final": {
+          "entry_count": 36,
+          "entries_sha256": "a1810f9a47337d3efcb1262bdbd63caf4bbc2c89efd24b53547f05448f275660",
+          "subtrees": {
+            "packages/quds_mail_ui": "3ed1b10aa1b90390c3e33821d480a804cc6eadbd"
+          }
+        },
+        "changed_paths": []
+      },
+      {
+        "component": "studio_mail_superset",
+        "accepted_checkpoint": "c25a6ffb1b74673b567cc91eaba0d9d3a2a74345",
+        "scope_paths": [
+          "packages/quds_office_editor/example/lib",
+          "packages/quds_office_editor/example/test"
+        ],
+        "baseline": {
+          "entry_count": 278,
+          "entries_sha256": "b3e3993ff905acc0cded59c89749f778634746f5f8c1bf3bdd970075e32da7d8",
+          "subtrees": {
+            "packages/quds_office_editor/example/lib": "76d5df20c9ba18a07a398c05c7285ba53e87bba6",
+            "packages/quds_office_editor/example/test": "0eaf7077cdc627ebef9054bfed107b3e59b37615"
+          }
+        },
+        "final": {
+          "entry_count": 278,
+          "entries_sha256": "64d32daf16e1a2763a7f92dd4cdff68cc7ef8a506cf90b7fa7d3972a0d6c4813",
+          "subtrees": {
+            "packages/quds_office_editor/example/lib": "76d5df20c9ba18a07a398c05c7285ba53e87bba6",
+            "packages/quds_office_editor/example/test": "bff6807cc442fda63b42bc93f0dc93836e44c1ca"
+          }
+        },
+        "changed_paths": [
+          "packages/quds_office_editor/example/test/studio_mail_remote_images_incoming_test.dart"
+        ]
+      }
+    ],
+    "total_final_entries_compared": 513,
+    "unexpected_changes": [],
+    "note": "Complete Mail packages and complete Studio example lib/test trees are a superset of Mail product/source/test files. Mime is carried unchanged; no fresh MIME execution is inferred.",
+    "known_incoming_assertion": {
+      "path": "packages/quds_office_editor/example/test/studio_mail_remote_images_incoming_test.dart",
+      "accepted_studio_blob": "936065182d57029c679ed2347909762c633b1c65",
+      "final_blob": "d2d3359bc7fb9a878de63ea5879eef9aac6b9d35",
+      "numstat": "5\t0\tpackages/quds_office_editor/example/test/studio_mail_remote_images_incoming_test.dart",
+      "meaning": "Five added lines assert decoded HTML plus retained image bytes do not exceed maxDecodedBytes. No production behavior changed; refer to the separate integrated UI gate for execution of this assertion."
+    },
+    "store_original_manifest": {
+      "path": "/workspace/scratch/7bc8916fff75/store-reconciliation-qualification.json",
+      "sha256": "66442e408731f4aba1db5ff8296e88a2f1ca95bb73cdd240c0a8429a43456ad1",
+      "all_original_files_identical": true,
+      "checks": [
+        {
+          "path": "packages/quds_mail_store/CHANGELOG.md",
+          "manifest_git_blob": "7402672e2a584039a19ae2c0fbfdb61a81187bb3",
+          "final_git_blob": "7402672e2a584039a19ae2c0fbfdb61a81187bb3",
+          "sha256_matches": true
+        },
+        {
+          "path": "packages/quds_mail_store/README.md",
+          "manifest_git_blob": "3c7dc478b6f75592a8afe7e343eab0db6fcd810e",
+          "final_git_blob": "3c7dc478b6f75592a8afe7e343eab0db6fcd810e",
+          "sha256_matches": true
+        },
+        {
+          "path": "packages/quds_mail_store/lib/src/flag_journal.dart",
+          "manifest_git_blob": "daf16f493f01c4359a4f7a75b00787baa901eb84",
+          "final_git_blob": "daf16f493f01c4359a4f7a75b00787baa901eb84",
+          "sha256_matches": true
+        },
+        {
+          "path": "packages/quds_mail_store/lib/src/flag_journal_models.dart",
+          "manifest_git_blob": "ac144f790bfd8e5d4f10dfc7ebc651de9dfd9e4a",
+          "final_git_blob": "ac144f790bfd8e5d4f10dfc7ebc651de9dfd9e4a",
+          "sha256_matches": true
+        },
+        {
+          "path": "packages/quds_mail_store/lib/src/repository.dart",
+          "manifest_git_blob": "d3c41998dd2efc03db29d4ee26f3ea7a55dde04b",
+          "final_git_blob": "d3c41998dd2efc03db29d4ee26f3ea7a55dde04b",
+          "sha256_matches": true
+        },
+        {
+          "path": "packages/quds_mail_store/lib/src/schema/database.dart",
+          "manifest_git_blob": "07a854db71986a1e50df31a3dcc94adc35b5351a",
+          "final_git_blob": "07a854db71986a1e50df31a3dcc94adc35b5351a",
+          "sha256_matches": true
+        },
+        {
+          "path": "packages/quds_mail_store/lib/src/schema/flag_journal_schema.dart",
+          "manifest_git_blob": "356f2bcc0ce7542d8cd4081297aca05c46ead3c7",
+          "final_git_blob": "356f2bcc0ce7542d8cd4081297aca05c46ead3c7",
+          "sha256_matches": true
+        },
+        {
+          "path": "packages/quds_mail_store/test/migration_test.dart",
+          "manifest_git_blob": "e58f72f78d242871337c8dd31c9035c4f7eaaccb",
+          "final_git_blob": "e58f72f78d242871337c8dd31c9035c4f7eaaccb",
+          "sha256_matches": true
+        },
+        {
+          "path": "packages/quds_mail_store/lib/src/flag_reconciliation.dart",
+          "manifest_git_blob": "1a2684a6a7960c41e927312cc60148bedd9b7749",
+          "final_git_blob": "1a2684a6a7960c41e927312cc60148bedd9b7749",
+          "sha256_matches": true
+        },
+        {
+          "path": "packages/quds_mail_store/test/flag_reconciliation_test.dart",
+          "manifest_git_blob": "e0da1a34fd306d1c51b49e3faffd3b62eb469a59",
+          "final_git_blob": "e0da1a34fd306d1c51b49e3faffd3b62eb469a59",
+          "sha256_matches": true
+        }
+      ]
+    }
+  },
+  "source_changes_from_pre_fix_integration": {
+    "base": "ac2b65cdbdea6d5ca3464c6a1fc826cfccc9e1dc",
+    "through_formatter": "4be08cb608b6dd1d39bf60bd58a3d17e7563fd8f",
+    "all_final_changes": [
+      {
+        "status": "A",
+        "path": "docs/validation/word-vba-paragraph-pagination-20261121/README.md"
+      },
+      {
+        "status": "A",
+        "path": "docs/validation/word-vba-paragraph-pagination-20261121/evidence-manifest.json"
+      },
+      {
+        "status": "A",
+        "path": "docs/validation/word-vba-paragraph-pagination-20261121/final-acceptance-summary.json"
+      },
+      {
+        "status": "A",
+        "path": "docs/validation/word-vba-paragraph-pagination-20261121/local-qualification-evidence.tar.gz"
+      },
+      {
+        "status": "A",
+        "path": "docs/validation/word-vba-paragraph-pagination-20261121/page-setup-portable-receipt.json"
+      },
+      {
+        "status": "A",
+        "path": "docs/validation/word-vba-paragraph-pagination-20261121/reproduce.py"
+      },
+      {
+        "status": "A",
+        "path": "docs/validation/word-vba-paragraph-pagination-20261121/review.json"
+      },
+      {
+        "status": "A",
+        "path": "docs/validation/word-vba-paragraph-pagination-20261121/source-applicability.json"
+      },
+      {
+        "status": "M",
+        "path": "packages/quds_office_editor/test/word_zotero_multiparagraph_controller_test.dart"
+      },
+      {
+        "status": "M",
+        "path": "packages/quds_office_engine/lib/src/automation/operations/word_page_setup_steps.dart"
+      },
+      {
+        "status": "M",
+        "path": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart"
+      },
+      {
+        "status": "M",
+        "path": "packages/quds_office_engine/lib/src/word/serial/word_section_io.dart"
+      },
+      {
+        "status": "M",
+        "path": "packages/quds_office_engine/test/office_macro_word_page_setup_test.dart"
+      },
+      {
+        "status": "M",
+        "path": "packages/quds_office_engine/test/office_vba_word_page_setup_test.dart"
+      },
+      {
+        "status": "M",
+        "path": "packages/quds_office_engine/test/word_compatibility_fidelity_test.dart"
+      }
+    ],
+    "production_namespace_fixes": [
+      {
+        "path": "packages/quds_office_engine/lib/src/automation/operations/word_page_setup_steps.dart",
+        "classification": "word_namespace_production_fix",
+        "reason": "Exact xmlns prefix/localName upsert reuses parsed declarations, preventing duplicate declarations on repeated PageSetup writes.",
+        "before_blob": "43967d82403ab1f1389be2078d4b80149163e88d",
+        "after_blob": "bc90ad9306ad3c16ce8afec30002699c986c4faa",
+        "before_sha256": "3de650ccecdc5dfb56a300f803e59b0be6b7156ef385c10e7f3cea933bcd1ed6",
+        "after_sha256": "d88ee08fa6c7184d195645b2bf1249c0e79a26e55aaaa2fea813b593173da684"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/serial/word_section_io.dart",
+        "classification": "word_namespace_production_fix",
+        "reason": "Exact declaration upsert for self-contained children and modeled attributes reuses parsed declarations without matching native geometry attributes by local name.",
+        "before_blob": "4e9ab8bdc42e1b310ece7e7691e44e800fe3af80",
+        "after_blob": "a9886e4c51cf57d5bd7352857f71789f94cc8acf",
+        "before_sha256": "0c2b0649adcf3f61099f063e6ccc3e51fc73a1025163b94b771208ef8c0e45c3",
+        "after_sha256": "f08969772eba00471c8c172c1857761c5816b28bbd046b8583d15239cd183b66"
+      }
+    ],
+    "four_formatter_changes": [
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_multiparagraph_controller_test.dart",
+        "classification": "formatting_only_no_behavior_change",
+        "reason": "One continuation line indentation changes; expression and assertions unchanged.",
+        "before_blob": "f7f21e6265f3c4c45f713ff97251d610a48b839b",
+        "after_blob": "aea3ab76834fc5b1b988b85bb5d5b163a61b9ada",
+        "before_sha256": "ebb4278196edef64d3e1e4577725b3e67a83a39e786cbe633c8152a8eb6f2aae",
+        "after_sha256": "819e720f6eecdf28a6531ed38de3943a7e31fd7842394d970526e917c99e555e"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+        "classification": "formatting_only_no_behavior_change",
+        "reason": "XmlDocument call wraps and receives an optional trailing comma; receiver, arguments and following toXmlString call unchanged.",
+        "before_blob": "78ec75dc608ac183b1b6d0662f32288e5f749e93",
+        "after_blob": "65bacddc0bf3408bcf0182faef0e580b0d38d5e5",
+        "before_sha256": "d7d9794dc3629d6bb06dc92c03b78a5d66460f39878d999010ea00eb3a6faed4",
+        "after_sha256": "3722b9ea50c4494f6571b7ecab6dc49bd541b328cf676a986019ff001887db7d"
+      },
+      {
+        "path": "packages/quds_office_engine/test/office_macro_word_page_setup_test.dart",
+        "classification": "formatting_only_no_behavior_change",
+        "reason": "Five nested calls wrap and receive optional trailing commas; arguments and assertions unchanged.",
+        "before_blob": "997fed8a0333a389799970b9ee8a508a7e33547f",
+        "after_blob": "f4f9fd59c8a68cfe4145795dd4cfbe366f3e7bb6",
+        "before_sha256": "5f709ed65de35dbd277e5f49d0ba1ff4f872205414b8a251ebc629d6fac2a9fb",
+        "after_sha256": "256b3a9214a334101e467df6373b38cc9e3d240a830455bbb013746290e1b67f"
+      },
+      {
+        "path": "packages/quds_office_engine/test/office_vba_word_page_setup_test.dart",
+        "classification": "formatting_only_no_behavior_change",
+        "reason": "One compiler call wraps and receives an optional trailing comma; interpolated source, accesses and expected points unchanged.",
+        "before_blob": "f0d2c3b865d1edc55ee43ca8035b132c7dbb180d",
+        "after_blob": "e3bb9b8389b7c242cce51a1de537652897f1d130",
+        "before_sha256": "eca7c0de38e168af5c9e8baeeeb292e3cfb1b439fef53e4842ea360307242985",
+        "after_sha256": "4d432d956c0802ddc9402658cc14a09d2fb3507723059b70f30409467dc2b447"
+      }
+    ],
+    "formatter_review": "All four full diffs reviewed: wrapping, optional trailing commas, and one indentation correction only; identifiers, calls, arguments, literal contents and assertions unchanged. No behavioral change.",
+    "final_test_only_helper_correction": {
+      "path": "packages/quds_office_engine/test/word_compatibility_fidelity_test.dart",
+      "classification": "test_lookup_correctness_fix",
+      "reason": "Helper now selects child and attribute with OfficeNamespaces.w. Every expected geometry/metadata value is unchanged. No production code changed.",
+      "before_blob": "b04148176a86c6a7bbae975420423990026ad9d7",
+      "after_blob": "07721b470326c7bbf15d9731f031ffe5f53da3a4",
+      "before_sha256": "383dbe4b6d69da7f88404b8547fed7cc51c2fe3a6b0ec09644aa17d6f1fcd00e",
+      "after_sha256": "37f48ca73b5e3b44b1879520ed0b99b79f64ac88ec2d6fd086b96768ee6eec79"
+    },
+    "documentation_evidence_changes": [
+      {
+        "status": "A",
+        "path": "docs/validation/word-vba-paragraph-pagination-20261121/README.md"
+      },
+      {
+        "status": "A",
+        "path": "docs/validation/word-vba-paragraph-pagination-20261121/evidence-manifest.json"
+      },
+      {
+        "status": "A",
+        "path": "docs/validation/word-vba-paragraph-pagination-20261121/final-acceptance-summary.json"
+      },
+      {
+        "status": "A",
+        "path": "docs/validation/word-vba-paragraph-pagination-20261121/local-qualification-evidence.tar.gz"
+      },
+      {
+        "status": "A",
+        "path": "docs/validation/word-vba-paragraph-pagination-20261121/page-setup-portable-receipt.json"
+      },
+      {
+        "status": "A",
+        "path": "docs/validation/word-vba-paragraph-pagination-20261121/reproduce.py"
+      },
+      {
+        "status": "A",
+        "path": "docs/validation/word-vba-paragraph-pagination-20261121/review.json"
+      },
+      {
+        "status": "A",
+        "path": "docs/validation/word-vba-paragraph-pagination-20261121/source-applicability.json"
+      }
+    ],
+    "whole_input_tree_unchanged": false
+  },
+  "zotero_309_applicability": {
+    "tested_commit": "ac2b65cdbdea6d5ca3464c6a1fc826cfccc9e1dc",
+    "qualification_path": "/workspace/scratch/7bc8916fff75/validation/integrated-zotero-final/qualification.json",
+    "qualification_sha256": "b040030f3c3113d88695b709c138171d77ebbab7cf908657b430a1cc84494340",
+    "original_passed_count": 309,
+    "fresh_run_on_final_commit": false,
+    "source_manifest_path": "/workspace/scratch/7bc8916fff75/validation/integrated-zotero-final/source-manifest.json",
+    "source_manifest_sha256": "435abf82866f7b29581bc882b0d3ec2bdaeffcb99ec28a1e3864981bab8672d3",
+    "checks": [
+      {
+        "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "tested_git_blob": "8b7c6fec9e6185f1c8fbe56086c3bf8f0aac6e48",
+        "final_git_blob": "8b7c6fec9e6185f1c8fbe56086c3bf8f0aac6e48",
+        "byte_identical": true,
+        "applicability": "identical"
+      },
+      {
+        "path": "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+        "tested_git_blob": "ed308df0854ab492dcf23e221108245895aad073",
+        "final_git_blob": "ed308df0854ab492dcf23e221108245895aad073",
+        "byte_identical": true,
+        "applicability": "identical"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+        "tested_git_blob": "02de53a153126eddd4cad010a43873576e9887fe",
+        "final_git_blob": "02de53a153126eddd4cad010a43873576e9887fe",
+        "byte_identical": true,
+        "applicability": "identical"
+      },
+      {
+        "path": "packages/quds_office_editor/test/word_zotero_multiparagraph_controller_test.dart",
+        "tested_git_blob": "f7f21e6265f3c4c45f713ff97251d610a48b839b",
+        "final_git_blob": "aea3ab76834fc5b1b988b85bb5d5b163a61b9ada",
+        "byte_identical": false,
+        "applicability": "formatting_only_test_indentation"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+        "tested_git_blob": "8bae8ad065703af355809ec7090bcf27bc6760a8",
+        "final_git_blob": "8bae8ad065703af355809ec7090bcf27bc6760a8",
+        "byte_identical": true,
+        "applicability": "identical"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_multiparagraph_test.dart",
+        "tested_git_blob": "029f62c13959f1f22036c363b8b731bfda762ef1",
+        "final_git_blob": "029f62c13959f1f22036c363b8b731bfda762ef1",
+        "byte_identical": true,
+        "applicability": "identical"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_research_target_test.dart",
+        "tested_git_blob": "9e88fa1a3c41b67ce4122c66d4342c55494250c8",
+        "final_git_blob": "9e88fa1a3c41b67ce4122c66d4342c55494250c8",
+        "byte_identical": true,
+        "applicability": "identical"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+        "tested_git_blob": "46154e16ddd983e479d0b8716d08ebece055f9e1",
+        "final_git_blob": "46154e16ddd983e479d0b8716d08ebece055f9e1",
+        "byte_identical": true,
+        "applicability": "identical"
+      }
+    ],
+    "six_delta_files_byte_identical": 5,
+    "six_delta_files_formatter_only": 1,
+    "focused_existing_test_files_identical": true,
+    "qualification_meaning": "All Zotero feature production source is byte-identical to the309-pass run. Five of six delta files are byte-identical; one test differs only by indentation. Both focused existing tests are byte-identical.",
+    "limit": "The full runtime input tree is not unchanged: shared Word namespace serialization/operation helpers received production fixes, one shared Word step file was reformatted, and an unrelated fidelity helper was corrected. Historical309 passes are not represented as a fresh final-tree run or validation of later Word fixes; use their final Word/strict-XML receipts."
+  },
+  "ancestry": {
+    "anchors": [
+      {
+        "name": "initial_main",
+        "sha": "bf761552d22dcd1eb8cbb0ab00ddab6507e1d572",
+        "ancestor_of_final": true
+      },
+      {
+        "name": "initial_new_incoming_branch",
+        "sha": "bbccae1bdead10951e2d7a23b33cf14c55382e02",
+        "ancestor_of_final": true
+      },
+      {
+        "name": "resolved_intake",
+        "sha": "d6e8fddd08755fe84e82f2a7a0bce200f0c92826",
+        "ancestor_of_final": true
+      },
+      {
+        "name": "provider",
+        "sha": "71a9d73f86a30380d7fe3563f1a0048f1f7eb860",
+        "ancestor_of_final": true
+      },
+      {
+        "name": "store",
+        "sha": "1df5e678906ff1def11deed085586dc733030595",
+        "ancestor_of_final": true
+      },
+      {
+        "name": "studio",
+        "sha": "c25a6ffb1b74673b567cc91eaba0d9d3a2a74345",
+        "ancestor_of_final": true
+      },
+      {
+        "name": "incoming_word",
+        "sha": "770c7dc8afddf62f1d831af95e9070bd890df4f4",
+        "ancestor_of_final": true
+      },
+      {
+        "name": "incoming_zotero",
+        "sha": "6ac854de0583b7955470648916c53c76b67c0fff",
+        "ancestor_of_final": true
+      },
+      {
+        "name": "word_merge",
+        "sha": "09500e4452fb01a935dbfa447e2bb8acf829fdd2",
+        "ancestor_of_final": true
+      },
+      {
+        "name": "zotero_merge",
+        "sha": "ac2b65cdbdea6d5ca3464c6a1fc826cfccc9e1dc",
+        "ancestor_of_final": true
+      },
+      {
+        "name": "incoming_namespace_fix",
+        "sha": "72aa0ed9f447d1239763f0fbaa9ca9f7f78088c7",
+        "ancestor_of_final": true
+      },
+      {
+        "name": "latest_integrated_main",
+        "sha": "3d01815908aeded5862d131109341365de637242",
+        "ancestor_of_final": true
+      },
+      {
+        "name": "main_reconciliation",
+        "sha": "a813d08957695c85b743d82d820ff99567322ff3",
+        "ancestor_of_final": true
+      },
+      {
+        "name": "formatter",
+        "sha": "4be08cb608b6dd1d39bf60bd58a3d17e7563fd8f",
+        "ancestor_of_final": true
+      }
+    ],
+    "initial_review_path": "/workspace/scratch/7bc8916fff75/intake-review.json",
+    "initial_review_sha256": "2f42a7359e1acc8de81c1ec429f194811b3926da50204ab394b6624b0ab40b15",
+    "initial_ref_counts_now": {
+      "fork_branches": {
+        "exact_historical_equivalent": 10,
+        "ancestor": 30
+      },
+      "fork_pr_heads": {
+        "ancestor": 266,
+        "exact_historical_equivalent": 14
+      },
+      "upstream_branches": {
+        "ancestor": 4
+      }
+    },
+    "initial_ancestor_refs_lost": [],
+    "initial_unresolved_refs": [],
+    "historical_equivalent_ref_count": 24,
+    "historical_equivalent_unique_heads": 15,
+    "historical_equivalent_proof_preservation": [
+      {
+        "historical_head": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+        "accepted_equivalent": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+        "accepted_equivalent_is_ancestor": true,
+        "proof_kind": "full_tree_record",
+        "original_tree_records_preserved": true
+      },
+      {
+        "historical_head": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+        "accepted_equivalent": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+        "accepted_equivalent_is_ancestor": true,
+        "proof_kind": "full_tree_record",
+        "original_tree_records_preserved": true
+      },
+      {
+        "historical_head": "128a187d69555db80890c2a1945a442b951f9c74",
+        "accepted_equivalent": "d790bca444eef0e160a75ce3d8cb555af541004f",
+        "accepted_equivalent_is_ancestor": true,
+        "proof_kind": "full_tree_record",
+        "original_tree_records_preserved": true
+      },
+      {
+        "historical_head": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+        "accepted_equivalent": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+        "accepted_equivalent_is_ancestor": true,
+        "proof_kind": "full_tree_record",
+        "original_tree_records_preserved": true
+      },
+      {
+        "historical_head": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+        "accepted_equivalent": "4eaca83b192897edad82658107dfeb5bcbed0920",
+        "accepted_equivalent_is_ancestor": true,
+        "proof_kind": "full_tree_record",
+        "original_tree_records_preserved": true
+      },
+      {
+        "historical_head": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+        "accepted_equivalent": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+        "accepted_equivalent_is_ancestor": true,
+        "proof_kind": "full_tree_record",
+        "original_tree_records_preserved": true
+      },
+      {
+        "historical_head": "69d14f84cabd3931b7640c1654b401c89faba766",
+        "accepted_equivalent": "52c73ae4dbadf2ca00a5d619144350ccc353b31a",
+        "accepted_equivalent_is_ancestor": true,
+        "proof_kind": "full_tree_record",
+        "original_tree_records_preserved": true
+      },
+      {
+        "historical_head": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+        "accepted_equivalent": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+        "accepted_equivalent_is_ancestor": true,
+        "proof_kind": "full_tree_record",
+        "original_tree_records_preserved": true
+      },
+      {
+        "historical_head": "7ef09f2408f467c65427700e65907531ecb26acb",
+        "accepted_equivalent": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+        "accepted_equivalent_is_ancestor": true,
+        "proof_kind": "full_tree_record",
+        "original_tree_records_preserved": true
+      },
+      {
+        "historical_head": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+        "accepted_equivalent": "0ff7d23929e4640af6c1d57f87c7ac71b73d2ed4",
+        "accepted_equivalent_is_ancestor": true,
+        "proof_kind": "full_tree_record",
+        "original_tree_records_preserved": true
+      },
+      {
+        "historical_head": "b8ddaaeb581e010467de304c828764d353149102",
+        "accepted_equivalent": "d6010059644b34accd6f188e0e2a4863ab63e318",
+        "accepted_equivalent_is_ancestor": true,
+        "proof_kind": "full_tree_record",
+        "original_tree_records_preserved": true
+      },
+      {
+        "historical_head": "c34945761e7991f5fe49037d79529acdd260b31c",
+        "accepted_equivalent": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+        "accepted_equivalent_is_ancestor": true,
+        "proof_kind": "full_tree_record",
+        "original_tree_records_preserved": true
+      },
+      {
+        "historical_head": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+        "accepted_equivalent": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+        "accepted_equivalent_is_ancestor": true,
+        "proof_kind": "full_tree_record",
+        "original_tree_records_preserved": true
+      },
+      {
+        "historical_head": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+        "accepted_equivalent": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e",
+        "accepted_equivalent_is_ancestor": true,
+        "proof_kind": "full_tree_record",
+        "original_tree_records_preserved": true
+      },
+      {
+        "historical_head": "ec70b9423febefcb9b104629d2ad48b0c96e9082",
+        "accepted_equivalent": "e975cec13b289fe067ef406cd3044701ecc44744",
+        "accepted_equivalent_is_ancestor": true,
+        "proof_kind": "exact_changed_entries",
+        "original_tree_records_preserved": true
+      }
+    ],
+    "historical_equivalent_refs": [
+      {
+        "ref": "refs/remotes/origin/codex/odt-field-continuation-20261117",
+        "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+        "disposition": "exact_historical_equivalent"
+      },
+      {
+        "ref": "refs/remotes/origin/docs/ods-color-scale",
+        "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+        "disposition": "exact_historical_equivalent"
+      },
+      {
+        "ref": "refs/remotes/origin/docs/ods-data-bar",
+        "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+        "disposition": "exact_historical_equivalent"
+      },
+      {
+        "ref": "refs/remotes/origin/feat/ods-color-scale",
+        "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+        "disposition": "exact_historical_equivalent"
+      },
+      {
+        "ref": "refs/remotes/origin/feat/ods-data-bar",
+        "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+        "disposition": "exact_historical_equivalent"
+      },
+      {
+        "ref": "refs/remotes/origin/feat/ods-dynamic-validation-links",
+        "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+        "disposition": "exact_historical_equivalent"
+      },
+      {
+        "ref": "refs/remotes/origin/feat/ods-icon-sets",
+        "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+        "disposition": "exact_historical_equivalent"
+      },
+      {
+        "ref": "refs/remotes/origin/feat/ods-time-period-conditions",
+        "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+        "disposition": "exact_historical_equivalent"
+      },
+      {
+        "ref": "refs/remotes/origin/integrate/office-union-148",
+        "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+        "disposition": "exact_historical_equivalent"
+      },
+      {
+        "ref": "refs/remotes/origin/integrate/recent-pptx",
+        "sha": "ec70b9423febefcb9b104629d2ad48b0c96e9082",
+        "disposition": "exact_historical_equivalent"
+      },
+      {
+        "ref": "refs/remotes/pull/134",
+        "sha": "128a187d69555db80890c2a1945a442b951f9c74",
+        "disposition": "exact_historical_equivalent"
+      },
+      {
+        "ref": "refs/remotes/pull/135",
+        "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+        "disposition": "exact_historical_equivalent"
+      },
+      {
+        "ref": "refs/remotes/pull/136",
+        "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+        "disposition": "exact_historical_equivalent"
+      },
+      {
+        "ref": "refs/remotes/pull/137",
+        "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+        "disposition": "exact_historical_equivalent"
+      },
+      {
+        "ref": "refs/remotes/pull/138",
+        "sha": "b8ddaaeb581e010467de304c828764d353149102",
+        "disposition": "exact_historical_equivalent"
+      },
+      {
+        "ref": "refs/remotes/pull/140",
+        "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+        "disposition": "exact_historical_equivalent"
+      },
+      {
+        "ref": "refs/remotes/pull/141",
+        "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+        "disposition": "exact_historical_equivalent"
+      },
+      {
+        "ref": "refs/remotes/pull/142",
+        "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+        "disposition": "exact_historical_equivalent"
+      },
+      {
+        "ref": "refs/remotes/pull/145",
+        "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+        "disposition": "exact_historical_equivalent"
+      },
+      {
+        "ref": "refs/remotes/pull/146",
+        "sha": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+        "disposition": "exact_historical_equivalent"
+      },
+      {
+        "ref": "refs/remotes/pull/147",
+        "sha": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+        "disposition": "exact_historical_equivalent"
+      },
+      {
+        "ref": "refs/remotes/pull/149",
+        "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+        "disposition": "exact_historical_equivalent"
+      },
+      {
+        "ref": "refs/remotes/pull/151",
+        "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+        "disposition": "exact_historical_equivalent"
+      },
+      {
+        "ref": "refs/remotes/pull/152",
+        "sha": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+        "disposition": "exact_historical_equivalent"
+      }
+    ],
+    "upstream_pr_heads": [
+      {
+        "pr": "1",
+        "sha": "48c5156f459597ce3f8ec486b3c9a20fc5543807",
+        "ancestor_of_final": true
+      },
+      {
+        "pr": "5",
+        "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+        "ancestor_of_final": true
+      },
+      {
+        "pr": "6",
+        "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+        "ancestor_of_final": true
+      },
+      {
+        "pr": "7",
+        "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+        "ancestor_of_final": true
+      }
+    ],
+    "note": "300 initial refs are direct ancestors;24 refs (10 fork branches,14 PR heads,15 distinct historical heads) retain independently verified exact-equivalence proofs whose accepted ancestors remain present. Those24 refs are not mislabeled as direct ancestors. Original bbcc work, newly discovered Word/Zotero work, and latest main3d are direct ancestors."
+  },
+  "limitations": [
+    "Source applicability/ancestry evidence, not a new test run.",
+    "Main3d is the supplied integrated main checkpoint; a live remote may advance after this audit.",
+    "No entire original input-manifest equality is claimed across incoming integration, Word fixes, formatting, or helper correction."
+  ],
+  "github_actions": "NOT QUERIED OR AWAITED"
+}
