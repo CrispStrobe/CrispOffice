@@ -61,10 +61,9 @@ MailMessageList(
 );
 ```
 
-The list keeps checkboxes separate from the opened message. **Select visible**
+The list keeps checkboxes separate from the opened message. **Select shown**
 and Ctrl/Cmd+A, while the list owns focus, check only the currently matching
-loaded rows. Space checks the keyboard cursor; Escape clears checked rows;
-Enter opens the cursor. Selection itself
+loaded rows. Space checks the keyboard cursor; Enter opens it; Escape clears checks. Selection itself
 does not open messages, load pages, read bodies or invoke a mutation callback.
 Filtering prunes hidden checks permanently; newly loaded rows are not selected
 automatically. Sorting preserves checked identities.
@@ -76,6 +75,12 @@ scope/revision/filter/sort/selection changes, or disposal. Changing `scopeId` or
 `selectionRevision` clears the selection. The host must advance the revision
 when its account, provider session or mailbox identity observations change, and
 independently validate the submitted IDs before issuing provider commands.
+
+`selectionScopeId` and `selectionRevision` name the same observation revision;
+`bulkActionsEnabled` and `bulkEnabled` name the same enablement flag. Supplying
+both aliases requires equal values. `selectVisible` remains a strings alias for
+`selectShown`. `onCancelBulk` exposes an optional stop control independently of
+the host-owned `bulkStatus` slot.
 
 `busy` disables selection and mutation controls. `bulkEnabled: false` clears
 checks and keeps controls unavailable while the host requires a refresh. Omit
@@ -131,9 +136,22 @@ The supported subset includes paragraphs and line breaks, headings, bold/italic 
 
 Script, forms, frames, embedded objects, SVG, MathML, media and other active containers are omitted. Event attributes, every CSS rule/style, `url`, `@import`, background, `srcset`, font and equivalent routes never reach a resource loader. Remote, protocol-relative, data, blob and file image URLs are blocked. Only exact unambiguous CID attachment references can reach the local raster decoder.
 
-Only absolute HTTP, HTTPS and mailto links without control characters or embedded credentials become interactive. An explicit click or keyboard action first calls the host's `MailExternalResourcePolicy.openLink`. Only an `allow` result for the still-current reader identity can invoke `onOpenApprovedLink`. The default policy denies every link. The host must evaluate redirected destinations as new decisions; the reader itself performs no navigation or redirect fetch. This release does not offer remote-image loading, so `loadRemoteResource` is never called and there is no misleading remote-load control.
+Only absolute HTTP, HTTPS and mailto links without control characters or embedded credentials become interactive. An explicit click or keyboard action first calls the host's `MailExternalResourcePolicy.openLink`. Only an `allow` result for the still-current reader identity can invoke `onOpenApprovedLink`. The default policy denies every link. The host must evaluate redirected destinations as new decisions; the reader itself performs no navigation or redirect fetch. Remote-image requests and controls belong to the host; this component never invokes `loadRemoteResource` or fetches an image itself.
 
 ## CID rasters and immutable callbacks
+
+`MailReaderPresentation.remoteImageUrls` and its `remoteImageUris` compatibility
+alias expose the same immutable candidate list. Either constructor spelling is
+accepted; when both are supplied, their ordered URI values must agree. Changing
+the caller's input list cannot change the retained presentation. These aliases
+do not load images or authorize network requests.
+
+An explicitly authorized host can pass loaded rasters to
+`MailReaderController.addImages`, with `expectedResult` binding the completion
+to the original message. The controller returns the count newly admitted by the
+current projection. Only current inert image candidates are eligible; cumulative
+decoded-byte, attachment and pixel budgets still apply, and rejected images keep
+their placeholders. The reader itself creates no network client.
 
 Before a platform decoder sees a CID image, the reader checks the attachment byte budget, PNG/JPEG signature and dimensions, static-image structure, individual dimension bounds, and the cumulative pixel budget across unique images. PNG animation and ambiguous duplicate content IDs are rejected. JPEG scanning rejects duplicate or unsupported frame headers and missing/extra end markers. Other raster/vector formats are explicitly unsupported. The decoder must produce one frame with the admitted dimensions; a decode failure remains visible. Image resources are disposed when the message/view changes.
 

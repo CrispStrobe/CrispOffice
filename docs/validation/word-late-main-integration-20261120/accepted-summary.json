@@ -1,0 +1,150 @@
+{
+  "accepted": true,
+  "carry_forward_policy": "The c623 receipts keep their original source bindings. Only this narrow two-file production delta is newly qualified by incoming exact-source runs and the pending71-case fresh bridge; do not describe all earlier1313 tests as rerun on latest main.",
+  "completed_utc": "2026-11-20T22:46:25.285714+00:00",
+  "fresh_bridge": {
+    "exact_c623_case_identities_preserved": true,
+    "failed": 0,
+    "files": 3,
+    "passed": 71,
+    "per_file": {
+      "packages/quds_office_engine/test/word_contained_text_wrap_test.dart": 41,
+      "packages/quds_office_engine/test/word_header_picture_identity_test.dart": 13,
+      "packages/quds_office_engine/test/word_styles_layout_test.dart": 17
+    },
+    "skipped": 0
+  },
+  "historical_macro_corpus": {
+    "add_this_receipt_to_prior_total": false,
+    "cases": 3598,
+    "compiler_unchanged": true,
+    "suites": 69,
+    "this_is_not_a_whole_corpus_rerun": true
+  },
+  "historical_verifier_limit": "Git-qualified archive verifier encountered an unavailable old promisor object df576aa4e32c8c151446309ea1c72dab11d84f06 while checking unrelated baseline3645 ancestry. No fetch was attempted. This audit directly verifies all selected receipts against available44f3/5e7 blobs instead.",
+  "incoming_actual_bas_pairs": [
+    {
+      "comparison_sha256": "238d02b596f7e306ea9468a1c227f616ecca88d7589407b9f3c1d4587800f4da",
+      "equal_json": true,
+      "name": "measurements"
+    },
+    {
+      "comparison_sha256": "8fe63e57ae34da98248772a5887244916988de2c4e18c7328b34c8dbe64c92d6",
+      "equal_json": true,
+      "name": "named_measurements"
+    }
+  ],
+  "incoming_archive": {
+    "bytes": 4736442,
+    "duplicated_here": false,
+    "git_commit": "5e7e4d24284954603a0a5951699bea870ad1955f",
+    "manifest_sha256": "3f2a4c552ebadc1c1c286fae254caecd9a6c002ea048ce4607598b4750dc0e3c",
+    "members_verified": 271,
+    "path": "docs/validation/mail-bulk-flags-20261120/late-evidence.tar.gz",
+    "sha256": "1ab839ebdeb86599af507d623f98d224620fdd533ff870118a58a8134e8711b8"
+  },
+  "incoming_audit_sha256": "f828d114b18b8760916407cf818d2ad0cae200f45cbd36ef03e89c90e205b56b",
+  "incoming_auditor_sha256": "16e8137b64114d56548948e4525dc37dce603ea88b8ceb15ea7cc2003453fc85",
+  "incoming_retained_affected_zotero": {
+    "editor_scope": "Nine Zotero suites plus incremental-layout and two proofing suites; overlap historical acceptance, not additional logical cases.",
+    "editor_skipped": 8,
+    "editor_vm": 362,
+    "engine_vm": 165,
+    "font_vm": 9,
+    "node_rechecks": 117,
+    "studio_16": "Recorded only, not asserted exact-current because Studio may load changed Mail paths."
+  },
+  "incoming_retained_word": {
+    "combined_vm": 929,
+    "excluded_incoming_variant_suites": [
+      "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+      "packages/quds_office_engine/test/word_styles_layout_test.dart"
+    ],
+    "focused_exact_vm": 188,
+    "node_rechecks": 787,
+    "overlap_cases": 62,
+    "unique_vm": 1055
+  },
+  "incoming_runtime_and_scope_limits": [
+    "Historical execution used its recorded runtime, not this session runtime.",
+    "JavaScript evidence is Node execution, not browser/WASM.",
+    "No installed Microsoft Word/Zotero host or live provider session was exercised.",
+    "Final remote source SHA must bind these selected hashes before the fresh bridge runs."
+  ],
+  "independent_final_review": {
+    "path": "archive:independent-review/word-late-main-independent-review.json",
+    "sha256": "ad0afd8aaaecda5b9be460edb6c8295e8a66439f4bc4b3e0387a5fa3beca2435"
+  },
+  "reference_fixture_binding_limit": "Immutable peer/main/c623 Git object equivalence, not an additional historical per-file before/after execution seal.",
+  "runtimes": {
+    "fresh": "Dart SDK version: 3.14.1 (stable) (Tue Nov 17 00:01:24 2026 -0800) on \"linux_x64\"",
+    "incoming": "Retains each archived execution runtime; not relabeled as a fresh run."
+  },
+  "schema_version": 1,
+  "source_binding": {
+    "captured_inputs": 2859,
+    "clean_tree_at_execution_boundaries": true,
+    "compiler_and_macro_files_unchanged_from_c623": 42,
+    "engine_editor_production_delta_from_c623": [
+      "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+      "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart"
+    ],
+    "selected_files": {
+      "packages/quds_office_engine/lib/src/word/layout/word_layout.dart": "145e4a217a3be912e39ba15c4563662537daed2906d1b0c9f52a44855338b0e2",
+      "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart": "f497d871548a813fbb399370930b105696e43980801e283dcad86b8be16a9286",
+      "packages/quds_office_engine/test/word_contained_text_wrap_test.dart": "dd9f84c89839d3033e8c262e233beabf27d5c1624f0523ff7108761005fc5ed5",
+      "packages/quds_office_engine/test/word_header_picture_identity_test.dart": "afae2a679af7095c68d86d028472cc6a13fd80eed1952fece3553d2f4b5be3d3",
+      "packages/quds_office_engine/test/word_header_visual_reconciliation_test.dart": "ce5eeff6a26217e7465aa9fcfa25c2accca2592f6665a104452db76fe5d0ed93",
+      "packages/quds_office_engine/test/word_styles_layout_test.dart": "b96fa31bfebba2773007600923de80371d1dd4e95f760e4029387a696fb610a3",
+      "packages/quds_office_engine/test/word_table_style_import_regression_test.dart": "3c0b8d76a20fae56a2a40e6cc7111a391be09f6f857fbac817ce0d1b59cb5cb8"
+    },
+    "selected_files_match_remote_git_objects": true,
+    "source_runtime_head_unchanged": true
+  },
+  "source_commit": "52eace9e151cff88c5908a049b0a51ade4c20b00",
+  "source_tree": "a86b3c847e981c8eec2ad71d781afb7d1887985d",
+  "strict_checks": [
+    {
+      "command": [
+        "/workspace/scratch/03cd41fa0e7e/runtime/toolchain/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos"
+      ],
+      "cwd": "/workspace/scratch/03cd41fa0e7e/quds_delivery/packages/quds_office_engine",
+      "exit_code": 0,
+      "finished_utc": "2026-11-20T22:46:24.953264+00:00",
+      "name": "engine-analysis",
+      "seconds": 11.685,
+      "started_utc": "2026-11-20T22:46:13.268124+00:00",
+      "stderr": "engine-analysis.stderr.log",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "engine-analysis.stdout.log",
+      "stdout_sha256": "c557a0c697cdb937104f1423d3c02d6a1062917cb0bcb2830d91db8cf6192af0"
+    },
+    {
+      "command": [
+        "/workspace/scratch/03cd41fa0e7e/runtime/flutter-toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+        "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+        "packages/quds_office_engine/test/word_header_picture_identity_test.dart",
+        "packages/quds_office_engine/test/word_header_visual_reconciliation_test.dart",
+        "packages/quds_office_engine/test/word_styles_layout_test.dart",
+        "packages/quds_office_engine/test/word_table_style_import_regression_test.dart"
+      ],
+      "cwd": "/workspace/scratch/03cd41fa0e7e/quds_delivery",
+      "exit_code": 0,
+      "finished_utc": "2026-11-20T22:46:25.118508+00:00",
+      "name": "format",
+      "seconds": 0.165,
+      "started_utc": "2026-11-20T22:46:24.954013+00:00",
+      "stderr": "format.stderr.log",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout": "format.stdout.log",
+      "stdout_sha256": "858b3cab8736f24db5bfcd48ac07f1b2386e6ef57b8e4fb3e17a3af062d5d8aa"
+    }
+  ]
+}

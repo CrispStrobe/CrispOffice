@@ -239,13 +239,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     );
     _word.onFollowExternalLink = _openExternalLink;
     _sheet = SheetEditorController(
-      workbook:
-          widget.initialWorkbook?.workbook ?? SampleLibrary.excelBudget(),
+      workbook: widget.initialWorkbook?.workbook ?? SampleLibrary.excelBudget(),
     );
     _slides = SlideEditorController(
       presentation:
-          widget.initialPresentation?.presentation ??
-          SampleLibrary.slideDeck(),
+          widget.initialPresentation?.presentation ?? SampleLibrary.slideDeck(),
     );
     _wordName = widget.initialWord?.name ?? _wordName;
     _sheetName = widget.initialWorkbook?.name ?? _sheetName;
@@ -926,17 +924,15 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   Future<void> _showNativeDialog(Future<void> Function() open) async {
-    if (!mounted ||
-        _nativeDialogOpen ||
-        !(ModalRoute.isCurrentOf(context) ?? true)) {
-      return;
-    }
+    if (!mounted || _nativeDialogOpen) return;
     _nativeDialogOpen = true;
     try {
       await StudioWindow.show();
-      if (mounted && (ModalRoute.isCurrentOf(context) ?? true)) {
-        await open();
-      }
+      // Mail is a full-window route. Its dialogs and the workspace dialogs
+      // share the root navigator, so native About/Settings actions must remain
+      // available while Mail is the current route. A nested dialog wins only
+      // when it is already on top; otherwise the root navigator shows above it.
+      if (mounted) await open();
     } finally {
       _nativeDialogOpen = false;
     }
@@ -1196,7 +1192,15 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   Future<bool> _confirmCloseWorkspace() async {
-    if (!_fileActionsAvailable) return false;
+    if (_opening || _isSaving) return false;
+    // Mail is a full-window route, so workspace file actions are intentionally
+    // unavailable while it is current. Quitting must still work: close the
+    // route (and any dialog on top of it) before checking documents for save.
+    if (!(ModalRoute.isCurrentOf(context) ?? true)) {
+      Navigator.of(context).popUntil((Route<dynamic> route) => route.isFirst);
+      await WidgetsBinding.instance.endOfFrame;
+      if (!mounted) return false;
+    }
     final SuiteApp previous = _app;
     for (final SuiteApp app in SuiteApp.values) {
       final bool dirty = switch (app) {
@@ -1543,6 +1547,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   Future<void> _openSettings() async {
     await showDialog<void>(
       context: _themedContext,
+      useRootNavigator: true,
       builder: (BuildContext dialogContext) => StatefulBuilder(
         builder: (BuildContext context, StateSetter setDialogState) {
           void changed(VoidCallback update) {
@@ -1680,6 +1685,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                           onChanged: (value) =>
                               changed(() => _showNotes = value),
                         ),
+                        ..._proofingScheduleSettings(changed),
                         SwitchListTile(
                           key: const ValueKey<String>(
                             'studio-setting-detect-language',
@@ -4476,8 +4482,10 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
               StudioStrings.de('Check as you type'),
               'تدقيق أثناء الكتابة',
             ),
-            () => _word.proofing.enabled = !_word.proofing.enabled,
-            selected: _word.proofing.enabled,
+            _toggleCheckAsYouType,
+            selected:
+                _word.proofing.enabled &&
+                _word.proofing.schedule.mode != WordProofingMode.manual,
           ),
         ],
       ),

@@ -80,7 +80,8 @@ final class MailMessageListStrings {
     this.subjectAscending = 'Subject (A–Z)',
     this.searchError = _defaultSearchError,
     this.selectMessage = 'Select message',
-    this.selectVisible = 'Select visible',
+    String? selectShown,
+    String? selectVisible,
     this.clearSelection = 'Clear selection',
     this.selectedCount = _defaultSelectedCount,
     this.bulkActions = 'Selected messages',
@@ -88,7 +89,14 @@ final class MailMessageListStrings {
     this.markUnread = 'Mark as unread',
     this.flag = 'Flag',
     this.unflag = 'Remove flag',
-  });
+    this.stopBulk = 'Stop after current message',
+    this.bulkWorking = 'Applying changes…',
+  }) : assert(
+         selectShown == null ||
+             selectVisible == null ||
+             selectShown == selectVisible,
+       ),
+       selectShown = selectShown ?? selectVisible ?? 'Select shown';
 
   final String searchLoaded;
   final String unread;
@@ -112,7 +120,8 @@ final class MailMessageListStrings {
   final String subjectAscending;
   final String Function(MailHeaderSearchError error) searchError;
   final String selectMessage;
-  final String selectVisible;
+  final String selectShown;
+  String get selectVisible => selectShown;
   final String clearSelection;
   final String Function(int selected) selectedCount;
   final String bulkActions;
@@ -120,6 +129,8 @@ final class MailMessageListStrings {
   final String markUnread;
   final String flag;
   final String unflag;
+  final String stopBulk;
+  final String bulkWorking;
 }
 
 String _defaultSelectedCount(int selected) => '$selected selected';
@@ -176,10 +187,27 @@ class MailMessageList extends StatefulWidget {
     this.limitNotice,
     this.loadMoreKey,
     this.onBulkAction,
-    this.selectionRevision,
-    this.bulkEnabled = true,
+    Object? selectionScopeId,
+    Object? selectionRevision,
+    bool? bulkActionsEnabled,
+    bool? bulkEnabled,
     this.bulkStatus,
-  }) : items = List.unmodifiable(items) {
+    this.onCancelBulk,
+  }) : items = List.unmodifiable(items),
+       selectionScopeId = selectionScopeId ?? selectionRevision,
+       bulkActionsEnabled = bulkActionsEnabled ?? bulkEnabled ?? true {
+    if (selectionScopeId != null &&
+        selectionRevision != null &&
+        selectionScopeId != selectionRevision) {
+      throw ArgumentError(
+        'Selection revision aliases must identify one scope.',
+      );
+    }
+    if (bulkActionsEnabled != null &&
+        bulkEnabled != null &&
+        bulkActionsEnabled != bulkEnabled) {
+      throw ArgumentError('Bulk enabled aliases must agree.');
+    }
     final identities = <String>{};
     for (final item in this.items) {
       if (item.id.isEmpty || !identities.add(item.id)) {
@@ -206,13 +234,18 @@ class MailMessageList extends StatefulWidget {
 
   /// Change after refresh or any host identity/session revision. This clears
   /// checked rows and invalidates already-open menus, even if row IDs overlap.
-  final Object? selectionRevision;
+  final Object? selectionScopeId;
+  Object? get selectionRevision => selectionScopeId;
 
   /// Keep controls visible but unavailable when the host requires a refresh.
-  final bool bulkEnabled;
+  final bool bulkActionsEnabled;
+  bool get bulkEnabled => bulkActionsEnabled;
 
   /// Optional host-owned progress/results, kept in the scrollable header.
   final Widget? bulkStatus;
+
+  /// Present only during a batch; remains usable while busy blocks new work.
+  final VoidCallback? onCancelBulk;
 
   @override
   State<MailMessageList> createState() => _MailMessageListState();
@@ -296,7 +329,7 @@ class _MailMessageListState extends State<MailMessageList> {
 
   bool get _filtered => _unread || _flagged || _query.text.trim().isNotEmpty;
   bool get _canBulk =>
-      widget.onBulkAction != null && widget.bulkEnabled && !widget.busy;
+      widget.onBulkAction != null && widget.bulkActionsEnabled && !widget.busy;
 
   @override
   void didUpdateWidget(MailMessageList oldWidget) {
@@ -304,10 +337,10 @@ class _MailMessageListState extends State<MailMessageList> {
     // A host rebuild can replace a provider/session or header observations.
     // Keep compatible checked rows, but never reuse its old pointer/menu work.
     _interactionGeneration++;
-    if (oldWidget.selectionRevision != widget.selectionRevision ||
+    if (oldWidget.selectionScopeId != widget.selectionScopeId ||
         oldWidget.scopeId != widget.scopeId ||
         widget.onBulkAction == null ||
-        !widget.bulkEnabled) {
+        !widget.bulkActionsEnabled) {
       _checkedIds.clear();
     }
     if (oldWidget.scopeId != widget.scopeId) {
@@ -419,7 +452,7 @@ class _MailMessageListState extends State<MailMessageList> {
     _listFocus.requestFocus();
   }
 
-  void _selectVisible(int generation) {
+  void _selectShown(int generation) {
     if (!_acceptBulkCallback(generation)) return;
     final visible = _visible;
     setState(() {
@@ -550,7 +583,7 @@ class _MailMessageListState extends State<MailMessageList> {
         !HardwareKeyboard.instance.isShiftPressed &&
         key == LogicalKeyboardKey.keyA;
     if (selectAll && widget.onBulkAction != null) {
-      if (event is KeyDownEvent) _selectVisible(_interactionGeneration);
+      if (event is KeyDownEvent) _selectShown(_interactionGeneration);
       return KeyEventResult.handled;
     }
     if (HardwareKeyboard.instance.isControlPressed ||
@@ -606,8 +639,8 @@ class _MailMessageListState extends State<MailMessageList> {
     final visible = _visible;
     final strings = widget.strings;
     final scaler = MediaQuery.textScalerOf(context);
-    final direction = Directionality.of(context);
     final generation = _interactionGeneration;
+    final direction = Directionality.of(context);
     _itemExtent = math.max(
       84.0,
       scaler.scale(14) * 1.3 +
@@ -732,11 +765,11 @@ class _MailMessageListState extends State<MailMessageList> {
                   crossAxisAlignment: WrapCrossAlignment.center,
                   children: [
                     TextButton(
-                      key: const ValueKey('mail-list-select-visible'),
+                      key: const ValueKey('mail-list-select-shown'),
                       onPressed: _canBulk && visible.isNotEmpty
-                          ? () => _selectVisible(generation)
+                          ? () => _selectShown(generation)
                           : null,
-                      child: Text(strings.selectVisible),
+                      child: Text(strings.selectShown),
                     ),
                     TextButton(
                       key: const ValueKey('mail-list-clear-selection'),
@@ -785,6 +818,15 @@ class _MailMessageListState extends State<MailMessageList> {
                             : TextStyle(color: Theme.of(context).disabledColor),
                       ),
                     ),
+                    if (widget.onCancelBulk case final cancel?) ...[
+                      Text(strings.bulkWorking),
+                      TextButton.icon(
+                        key: const ValueKey('mail-list-stop-bulk'),
+                        onPressed: cancel,
+                        icon: const Icon(Icons.stop_circle_outlined, size: 18),
+                        label: Text(strings.stopBulk),
+                      ),
+                    ],
                   ],
                 ),
               ],
@@ -920,10 +962,11 @@ class _MailMessageListState extends State<MailMessageList> {
                   if (widget.onBulkAction != null)
                     ExcludeFocus(
                       child: Checkbox(
-                        key: ValueKey('mail-list-select-${item.id}'),
+                        key: ValueKey('mail-list-check-${item.id}'),
                         value: _checkedIds.contains(item.id),
                         semanticLabel:
-                            '${widget.strings.selectMessage}: ${item.subject}',
+                            '${widget.strings.selectMessage}: ${item.subject}, '
+                            '${item.sender}',
                         onChanged: _canBulk
                             ? (value) =>
                                   _checkRow(item.id, value ?? false, generation)

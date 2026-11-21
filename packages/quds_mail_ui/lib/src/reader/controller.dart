@@ -65,6 +65,7 @@ final class MailReaderController extends ChangeNotifier {
   bool _caseSensitive = false;
   bool _moreMatches = false;
   int _activeMatch = -1;
+  final Map<String, MailInlineImage> _externalImages = {};
 
   MailParseResult get result => _result;
   MailReaderPresentation get presentation => _presentation;
@@ -83,6 +84,7 @@ final class MailReaderController extends ChangeNotifier {
   void replaceResult(MailParseResult value) {
     if (_disposed) return;
     _result = value;
+    _externalImages.clear();
     _revision++;
     _presentation = buildMailPresentation(
       value,
@@ -102,36 +104,68 @@ final class MailReaderController extends ChangeNotifier {
       _result,
       budget: budget,
       preferHtml: value,
+      externalImages: _externalImages.values,
     );
     _selection = const TextSelection.collapsed(offset: 0);
     _runSearch();
     notifyListeners();
   }
 
-  /// Appends host-loaded, already validated remote images. Nothing is fetched
-  /// here; the host performs the explicit user-approved request.
-  void addImages(Iterable<MailInlineImage> extra) {
-    if (_disposed) return;
-    final images = <MailInlineImage>[..._presentation.images, ...extra];
-    if (images.length == _presentation.images.length) return;
+  /// Admits images loaded by an explicit host action for the current message.
+  /// Only URLs exposed by the inert projection are accepted. Pixel dimensions
+  /// are checked from the bytes, and the cumulative reader limits still apply.
+  /// [expectedResult] prevents a late host completion attaching to a replacement.
+  /// Returns the number of newly admitted images. An unsupported image keeps
+  /// its placeholder; a batch admitting nothing leaves view state unchanged.
+  int addImages(
+    Iterable<MailInlineImage> extra, {
+    MailParseResult? expectedResult,
+  }) {
+    if (_disposed ||
+        _presentation.rejected ||
+        expectedResult != null && !identical(expectedResult, _result)) {
+      return 0;
+    }
+    final candidates = Map<String, MailInlineImage>.of(_externalImages);
+    for (final image in extra.take(8)) {
+      final path = image.attachment.partPath;
+      if (!path.startsWith('remote:')) continue;
+      final uri = Uri.tryParse(path.substring(7));
+      if (uri == null || !_presentation.remoteImageUrls.contains(uri)) continue;
+      if (candidates.length >= 8 && !candidates.containsKey(path)) continue;
+      candidates[path] = image;
+    }
+    if (candidates.length == _externalImages.length &&
+        candidates.entries.every(
+          (entry) => identical(entry.value, _externalImages[entry.key]),
+        )) {
+      return 0;
+    }
     final rebuilt = buildMailPresentation(
       _result,
       budget: budget,
       preferHtml: _preferHtml,
-      externalImagePlaceholders: false,
+      externalImages: candidates.values,
     );
-    _presentation = MailReaderPresentation(
-      text: rebuilt.text,
-      bodyText: rebuilt.bodyText,
-      runs: rebuilt.runs,
-      images: <MailInlineImage>[...rebuilt.images, ...extra],
-      diagnostics: rebuilt.diagnostics,
-      rejected: rebuilt.rejected,
-      usedHtml: rebuilt.usedHtml,
-      blockedResourceCount: rebuilt.blockedResourceCount,
-    );
+    if (rebuilt.rejected) return 0;
+    final admitted = {
+      for (final image in rebuilt.images)
+        if (image.attachment.partPath.startsWith('remote:'))
+          image.attachment.partPath: image,
+    };
+    final count = admitted.keys
+        .where((path) => !_externalImages.containsKey(path))
+        .length;
+    if (count == 0) return 0;
+    _presentation = rebuilt;
+    _externalImages
+      ..clear()
+      ..addAll(admitted);
+    _selection = const TextSelection.collapsed(offset: 0);
+    _runSearch();
     _revision++;
     notifyListeners();
+    return count;
   }
 
   /// Offsets use UTF-16 like Flutter. Selection snaps to grapheme boundaries.

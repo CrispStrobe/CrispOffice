@@ -1,0 +1,82 @@
+{
+  "recorded_package_config_sha256": "7065b36dce8b440d439078e0a2b4595e21c61b76916d0ee8fa3c9ae48e8df203",
+  "default_language_version": "3.13.0",
+  "repository_packages": [
+    {
+      "root": "packages/quds_office_editor/example",
+      "language_version": "3.12.0"
+    },
+    {
+      "root": "packages/quds_proofing_hunspell",
+      "language_version": "3.12.0"
+    },
+    {
+      "root": "packages/quds_mail_ui/example",
+      "language_version": "3.12.0"
+    },
+    {
+      "root": "packages/quds_proofing_harper",
+      "language_version": "3.12.0"
+    },
+    {
+      "root": "packages/quds_proofing_gector",
+      "language_version": "3.12.0"
+    },
+    {
+      "root": "packages/quds_mail_transport",
+      "language_version": "3.12.0"
+    },
+    {
+      "root": "packages/quds_proofing_spacy",
+      "language_version": "3.12.0"
+    },
+    {
+      "root": "packages/quds_office_engine",
+      "language_version": "3.12.0"
+    },
+    {
+      "root": "packages/quds_office_editor",
+      "language_version": "3.12.0"
+    },
+    {
+      "root": "packages/legacy_doc_parser",
+      "language_version": "3.8.0"
+    },
+    {
+      "root": "packages/quds_arabic_morph",
+      "language_version": "3.12.0"
+    },
+    {
+      "root": "packages/quds_language_id",
+      "language_version": "3.12.0"
+    },
+    {
+      "root": "packages/quds_mail_store",
+      "language_version": "3.12.0"
+    },
+    {
+      "root": "third_party/enough_mail",
+      "language_version": "3.11.0"
+    },
+    {
+      "root": "packages/quds_mail_core",
+      "language_version": "3.12.0"
+    },
+    {
+      "root": "packages/quds_mail_mime",
+      "language_version": "3.12.0"
+    },
+    {
+      "root": "apps/quds_report_studio",
+      "language_version": "3.12.0"
+    },
+    {
+      "root": "packages/quds_mail_ui",
+      "language_version": "3.12.0"
+    },
+    {
+      "root": "packages/quds_reports",
+      "language_version": "3.12.0"
+    }
+  ]
+}

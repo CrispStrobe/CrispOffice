@@ -511,16 +511,35 @@ void main() {
         ),
       );
       expect(selected.selected, isTrue);
+      final mailDialog = find.byType(StudioMailDialog);
+      final trafficLightSpace = find.descendant(
+        of: mailDialog,
+        matching: find.byKey(const ValueKey('native-traffic-light-space')),
+      );
+      expect(trafficLightSpace, findsOneWidget);
+      expect(find.text('Credential storage'), findsNothing);
+      final ribbon = find.descendant(
+        of: mailDialog,
+        matching: find.byType(StudioRibbonStrip),
+      );
+      expect(ribbon, findsOneWidget);
       expect(
         find.descendant(
-          of: find.byType(StudioMailDialog),
-          matching: find.byKey(const ValueKey('native-traffic-light-space')),
+          of: mailDialog,
+          matching: find.widgetWithText(StudioTabChip, 'Home'),
         ),
         findsOneWidget,
       );
-      expect(find.text('Credential storage'), findsNothing);
-      expect(find.byType(MenuBar), findsWidgets);
-      await tester.tap(find.byTooltip('Close').last);
+      expect(
+        tester.getTopLeft(ribbon).dy,
+        greaterThanOrEqualTo(tester.getBottomLeft(trafficLightSpace).dy),
+      );
+      final close = find.descendant(
+        of: ribbon,
+        matching: find.byTooltip('Close'),
+      );
+      expect(close, findsOneWidget);
+      await tester.tap(close);
       await _frames(tester);
       await tester.pump(const Duration(milliseconds: 600));
       expect(find.byType(QudsWordEditor), findsOneWidget);

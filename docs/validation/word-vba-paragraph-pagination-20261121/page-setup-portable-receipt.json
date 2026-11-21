@@ -1,0 +1,87 @@
+{
+  "commands": [
+    {
+      "command": "vm",
+      "exit_code": 0,
+      "seconds": 6.986991275000037
+    },
+    {
+      "command": "compile",
+      "exit_code": 0,
+      "seconds": 11.425982852000288
+    },
+    {
+      "command": "js",
+      "exit_code": 0,
+      "seconds": 0.7943562440000278
+    }
+  ],
+  "actual_bas_sha256": "92cc0edc359f2d31813c2266a8e55cb6153f27d8b630ed7d0f008221d62c6493",
+  "vm_js_byte_identical": true,
+  "receipt_sha256": "c79926eba214a4f1e9458e60a9ee147d618ec6232f6148e3a00d680e92cf0f23",
+  "receipt": {
+    "example": {
+      "operations": 10,
+      "firstRunRevision": 1,
+      "repeatedRevision": 2,
+      "additionalReopens": 2,
+      "opaquePayloadsPreserved": true,
+      "sections": [
+        {
+          "text": "First section",
+          "width": 648,
+          "height": 864,
+          "top": 72,
+          "bottom": 54,
+          "left": 54,
+          "right": 54,
+          "header": 36,
+          "footer": 36,
+          "columnCount": 2,
+          "columnSpace": 18,
+          "columnSep": true,
+          "break": "nextPage"
+        },
+        {
+          "text": "Second section",
+          "width": 600,
+          "height": 800,
+          "top": 50,
+          "bottom": 60,
+          "left": 36,
+          "right": 36,
+          "header": 25,
+          "footer": 30,
+          "columnCount": 1,
+          "columnSpace": 36,
+          "columnSep": false,
+          "break": "continuous"
+        },
+        {
+          "text": "Untouched section",
+          "width": 700,
+          "height": 900,
+          "top": 45,
+          "bottom": 50,
+          "left": 55,
+          "right": 60,
+          "header": 20,
+          "footer": 25,
+          "columnCount": 1,
+          "columnSpace": 24,
+          "columnSep": false,
+          "break": "nextPage"
+        }
+      ]
+    },
+    "rollback": {
+      "failedStep": 1,
+      "validateAndRunRollback": true
+    },
+    "recording": {
+      "recordedSteps": 2,
+      "failedCallExcluded": true,
+      "replayRevision": 1
+    }
+  }
+}

@@ -1,0 +1,1191 @@
+{
+  "schema_version": 2,
+  "status": "qualified_delivery_source_with_merge_metadata_on_PR278",
+  "repository": "https://github.com/CrispStrobe/quds_office_suite",
+  "working_remote_branch": "codex/word-vba-unit-conversions-20261120",
+  "prepared_from": "Completed historical and c623 receipts, the52eace9e Word bridge, final58cc4283 Mail acceptance, immutable source-retention proofs and captured checkpoint records. No new test execution or CI query was performed to prepare this index.",
+  "github_actions_awaited": false,
+  "github_actions_used_as_acceptance_gate": false,
+  "initial_intake": {
+    "main": "c954d00d2fc85604ae394674bca91ea8a1dede0e",
+    "branches_inspected": 36,
+    "non_main_heads_already_ancestor_or_equal": 24,
+    "open_pr_count_at_initial_snapshot": 0,
+    "latest_updated_prs_inspected": 100,
+    "upstream_main": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+    "upstream_already_ancestor": true,
+    "reviewed_start": "30c8401d6c6083737c2bdb55dd08e5aa03162aff",
+    "proof_methods": [
+      "ancestry",
+      "git cherry patch equivalence",
+      "complete-tree equality",
+      "changed-file blob and mode equality"
+    ],
+    "independent_historical_intake_audit": {
+      "initial_main_graph_commits": 2786,
+      "fork_branch_heads": 23,
+      "fork_pr_heads": 256,
+      "upstream_branches": 4,
+      "upstream_pr_heads": 4,
+      "complete_tree_squash_proofs": 13,
+      "pr_140_blob_mode_records": 37
+    },
+    "evidence": [
+      "docs/validation/word-vba-unit-conversions-20261120/incoming-review.md",
+      "docs/validation/word-vba-unit-conversions-20261120/reconciliation.md",
+      "docs/validation/word-vba-unit-conversions-20261120/intake.json"
+    ]
+  },
+  "fixed_later_inventory": {
+    "captured_utc": "2026-11-20T20:52:58Z",
+    "branches": 38,
+    "open_prs": [
+      271,
+      273
+    ],
+    "later_heads": [
+      {
+        "head": "4d0086aba52fc804424145d8eabe3c4c1c10f201",
+        "disposition": "Concurrent measurements, including dd8e73a7 PR #271; preserve distinct examples/tests and named compiler."
+      },
+      {
+        "head": "dd8e73a7d6252b336b2e7a437c4931addc42d491",
+        "disposition": "PR #271 earlier source/evidence, retained through concurrent measurements."
+      },
+      {
+        "head": "69ab514b57a4d6d4db062d802eb853c2691d80fe",
+        "disposition": "Earlier Mail bulk coordinator."
+      },
+      {
+        "head": "0cc6316c61efd8b39a9cb0cfed6b2879f7865d48",
+        "disposition": "Mail intake ancestry; no-tree-change merge."
+      },
+      {
+        "head": "b01cb23dc1b7bc94b691d68a2507b61dc6d48d7a",
+        "disposition": "Main PR #272 with canonical 8/9/13-operation example names."
+      },
+      {
+        "head": "22cf73b816328cd5fe54ec1793c89f1cc322db3b",
+        "disposition": "Later main evidence and large-scalar regression."
+      },
+      {
+        "head": "cd306bdea352c6f6400b5d1af7cc33e737004462",
+        "disposition": "Parent of captured later main; retained by ancestry."
+      },
+      {
+        "head": "c12ad8bc9c17f1849acdf92b2245e9198f1005b8",
+        "disposition": "Final captured PR #271 evidence; retain stronger named-argument compiler."
+      },
+      {
+        "head": "835b8019cbb873c72424e63d4df292174edd3c3e",
+        "disposition": "Zotero continuation intake/evidence and declaration-order fixture correction."
+      },
+      {
+        "head": "9109fcc645d0d95fbe7a7568ddf1e0ebc07bc384",
+        "disposition": "Mail actions UI/host and independent 63-case Word suite."
+      },
+      {
+        "head": "fcc7bd27f7df6200ac7d3174f6e21097f931cca0",
+        "disposition": "Overlapping Mail flags core/transport/UI/host; reconciled contracts."
+      },
+      {
+        "head": "e975cec13b289fe067ef406cd3044701ecc44744",
+        "disposition": "Main Word layout/deserializer and editor font-path changes; qualified after two repairs."
+      },
+      {
+        "head": "698209aaa6e7f1350b6541df5eb192b7b233443d",
+        "disposition": "Main PR #276 Zotero work; integrated and accepted through the later c623 source-bound union. The 80 attempt remains unaccepted historical evidence."
+      },
+      {
+        "head": "0a2afc41bae4e719b77657a7e2d8d3e7ec02849b",
+        "disposition": "PR #273 Mail/Office reconciliation with new Word native fixes and the Zotero test lint correction; integrated into c623 and locally qualified."
+      },
+      {
+        "head": "f67c18574176d34f48ddab14918aee5a787c3843",
+        "disposition": "PR #275 Mail/Office merge retained in final ancestry; Word delta qualified at52eace9e and final Mail union accepted at58cc4283."
+      },
+      {
+        "head": "5e7e4d24284954603a0a5951699bea870ad1955f",
+        "disposition": "Direct reader/session patch retained through current-main329 ancestry; accepted final Mail union at58cc4283."
+      },
+      {
+        "head": "329d03914808589d3e7650fa870df15a2408afe2",
+        "disposition": "Current main is an actual parent of4163368b and ancestor of qualified58cc4283; Word retention and final Mail acceptance verified."
+      }
+    ],
+    "boundary": "Fixed captured heads; no claim of including subsequent uncaptured pushes."
+  },
+  "published_remote_checkpoints": [
+    {
+      "role": "reviewed_start",
+      "commit": "30c8401d6c6083737c2bdb55dd08e5aa03162aff",
+      "tree": "1d279ced85f247b7fae5e21a04dd8ea354a75919",
+      "subject": "Merge retained maintenance history without restoring retired golden workflow [skip ci]",
+      "publication": "published_remote_checkpoint",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/30c8401d6c6083737c2bdb55dd08e5aa03162aff"
+    },
+    {
+      "role": "implementation",
+      "commit": "e15d97d0b01e363e2bc0d33d99b487630d8b509f",
+      "tree": "ba7967d13a007d968396020cbb2078707d2e16f7",
+      "subject": "Extend Word VBA physical unit conversions and named arguments [skip ci]",
+      "publication": "published_remote_checkpoint",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/e15d97d0b01e363e2bc0d33d99b487630d8b509f"
+    },
+    {
+      "role": "word_baseline",
+      "commit": "e08635b3f21c60ad21888821050dc97c2dbf7086",
+      "tree": "d88010d76bc881ad4d4519c89472abcc9d0282e0",
+      "subject": "Test and document Word measurement macro workflows [skip ci]",
+      "publication": "published_remote_checkpoint",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/e08635b3f21c60ad21888821050dc97c2dbf7086"
+    },
+    {
+      "role": "concurrent_intake",
+      "commit": "1f6df2b5d5947056792ff9f880dd4a38fb07c03b",
+      "tree": "1a8e3b86935291a039b479226ff07b802f8f4774",
+      "subject": "Reconcile concurrent Word measurements and Mail bulk flag work [skip ci]",
+      "publication": "published_remote_checkpoint",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/1f6df2b5d5947056792ff9f880dd4a38fb07c03b"
+    },
+    {
+      "role": "main_272_intake",
+      "commit": "ba6b170c1e011853128af6dcb9333ae9e22e79a1",
+      "tree": "f33dadf4c157a4660fa8d88d66d6cb38ef9b6cf2",
+      "subject": "Merge current main and preserve all Word measurement regressions [skip ci]",
+      "publication": "published_remote_checkpoint",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/ba6b170c1e011853128af6dcb9333ae9e22e79a1"
+    },
+    {
+      "role": "word_measurement_source",
+      "commit": "cb5909fefe6dd41db0f9c38207db83166072dcaf",
+      "tree": "3eca24612f32567d7312ae098d7b30c049bb6e3b",
+      "subject": "Reconcile final captured Word intake and correct regression fixture [skip ci]",
+      "publication": "published_remote_checkpoint",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/cb5909fefe6dd41db0f9c38207db83166072dcaf"
+    },
+    {
+      "role": "word_measurement_evidence",
+      "commit": "467dcaffe016b9e647f944b59af473b13e3ae7f6",
+      "tree": "036ee2f83886b664e4146b1c667c21a830d7e2dd",
+      "subject": "Record executed Word macro qualification and reproducible evidence [skip ci]",
+      "publication": "published_remote_checkpoint",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/467dcaffe016b9e647f944b59af473b13e3ae7f6"
+    },
+    {
+      "role": "initial_mail_reconciliation_source",
+      "commit": "85f4ef96ab4def73b68eccbc82105d89ae5f943b",
+      "tree": "98e4e97bb6495733335d98bc2ab8891f6963b3c8",
+      "subject": "Reconcile captured Mail bulk branches with qualified Word work [skip ci]",
+      "publication": "published_remote_checkpoint",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/85f4ef96ab4def73b68eccbc82105d89ae5f943b"
+    },
+    {
+      "role": "word_native_and_mail_source",
+      "commit": "cdd98460c2eed261719c660351f11adc962e2ca5",
+      "tree": "aee18e93719bc51dcd94c003ac9dfab3c0851bdc",
+      "subject": "Integrate current main and repair Word picture and style regressions [skip ci]",
+      "publication": "published_remote_checkpoint",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/cdd98460c2eed261719c660351f11adc962e2ca5"
+    },
+    {
+      "role": "test_only_correction",
+      "commit": "cf25a0a3d80ee18d2550161af182bacc4e49d18f",
+      "tree": "0780f20f27df62004404496d8e5c529c4bdccd87",
+      "subject": "Keep wrapping regression geometry stable and format cached-host test [skip ci]",
+      "publication": "published_remote_checkpoint",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/cf25a0a3d80ee18d2550161af182bacc4e49d18f"
+    },
+    {
+      "role": "initial_word_native_evidence",
+      "commit": "71f1c188f019ce539f0a7360a9df1a8e9b1e3df6",
+      "tree": "45a79c8fa2db6cde5dd3864f3aa2204fe4ff30d4",
+      "subject": "Preserve Word native integration qualification and explicit editor exclusions [skip ci]",
+      "publication": "published_remote_checkpoint",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/71f1c188f019ce539f0a7360a9df1a8e9b1e3df6"
+    },
+    {
+      "role": "initial_mail_evidence",
+      "commit": "d1c40f41abd81184db328d2aa6b827dd283ff71d",
+      "tree": "ec4a2b13911d6fd7aa09011fb44665c63fd1a526",
+      "subject": "Preserve reconciled Mail qualification, runtime seals and reviewed visual evidence [skip ci]",
+      "publication": "published_remote_checkpoint",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/d1c40f41abd81184db328d2aa6b827dd283ff71d"
+    },
+    {
+      "role": "main_698_zotero_source_attempt",
+      "commit": "80e240ec1f557c1ac7c170a8273de41dfaac0f20",
+      "tree": "88bb7bcbfaae64642a8274ecc7fb7998564e4d04",
+      "subject": "Integrate main Zotero updates while retaining qualified Word VBA and Mail changes [skip ci]",
+      "publication": "published_remote_checkpoint",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/80e240ec1f557c1ac7c170a8273de41dfaac0f20"
+    },
+    {
+      "role": "main_0a2_word_and_validation_instructions",
+      "commit": "039b6e97cbbc01ce1d69c0bcf982fb7147643a3e",
+      "tree": "24bcc931ef348ce462aea00040e1074828e6d06d",
+      "subject": "Checkpoint Word native reconciliation and preserved validation instructions [skip ci]",
+      "publication": "published_remote_checkpoint",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/039b6e97cbbc01ce1d69c0bcf982fb7147643a3e"
+    },
+    {
+      "role": "qualified_word_zotero_and_mail_union",
+      "commit": "c62338c65571aa399da5592455b651fa5c6a9317",
+      "tree": "d8e43e6f43b0726e8fefded52c185e387291916d",
+      "subject": "Reconcile latest main Mail safeguards with Word VBA and native fixes [skip ci]",
+      "publication": "published_remote_checkpoint",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/c62338c65571aa399da5592455b651fa5c6a9317"
+    },
+    {
+      "role": "c623_word_zotero_evidence",
+      "commit": "426fbc920b326df6eb746cd56549e3e66b9c31bb",
+      "tree": "75982ee1168b7e33c839c8eee5c64b5df4e567c5",
+      "subject": "Save final Word VBA, native and Zotero qualification at c62338c6 [skip ci]",
+      "publication": "published_remote_checkpoint",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/426fbc920b326df6eb746cd56549e3e66b9c31bb"
+    },
+    {
+      "role": "c623_mail_evidence",
+      "commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "tree": "fd766740dd0bdef18b98f01f5a015a6f55ae00a4",
+      "subject": "Save complete Mail qualification and bounded continuation at c62338c6 [skip ci]",
+      "publication": "published_remote_checkpoint",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/6eea72244c52a157f603f503ca18f5487a2ee877"
+    },
+    {
+      "role": "pr275_word_delta_source",
+      "commit": "52eace9e151cff88c5908a049b0a51ade4c20b00",
+      "tree": "a86b3c847e981c8eec2ad71d781afb7d1887985d",
+      "subject": "Checkpoint repeated Word visual identity and sparse-spacing follow-up [skip ci]",
+      "publication": "published_remote_checkpoint",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/52eace9e151cff88c5908a049b0a51ade4c20b00"
+    },
+    {
+      "role": "pr275_word_bridge_evidence",
+      "commit": "e7d9055f20462f37c74a38a761d5c092f48ab973",
+      "tree": "e5029a40f1104bce91474060d9ec65a1e294ae36",
+      "subject": "Save bounded Word bridge and incoming source-retention evidence [skip ci]",
+      "publication": "published_remote_checkpoint",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/e7d9055f20462f37c74a38a761d5c092f48ab973"
+    },
+    {
+      "role": "final_candidate_with_current_main",
+      "commit": "4163368b63b35414f25c3830fcc49055e6088953",
+      "tree": "7fcfa56a06e7ba8afdfde7419afd7d1839f3fa81",
+      "parents": [
+        "e7d9055f20462f37c74a38a761d5c092f48ab973",
+        "329d03914808589d3e7650fa870df15a2408afe2"
+      ],
+      "description": "Published current-main reconciliation; original18-failure fixture aggregate preserved and superseded by the58cc4283 correction.",
+      "publication": "published_remote_checkpoint",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/4163368b63b35414f25c3830fcc49055e6088953"
+    },
+    {
+      "role": "final_fixture_correction_source",
+      "commit": "58cc4283b35b29a4036528f65ee0590230d583f6",
+      "tree": "1cba111d27e6b0699ffa65c7df5be2bbb53e8e59",
+      "parents": [
+        "4163368b63b35414f25c3830fcc49055e6088953"
+      ],
+      "description": "Six independently reviewed fixture-only corrections;171-case follow-up accepted.",
+      "publication": "published_remote_checkpoint",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/58cc4283b35b29a4036528f65ee0590230d583f6"
+    },
+    {
+      "role": "final_mail_evidence",
+      "commit": "8206975dd91330914f77d0e3ceab3fadbe9ad519",
+      "tree": "c9ccd4ed73ad55b14268c9ba2dd97bf66dd42f51",
+      "parents": [
+        "58cc4283b35b29a4036528f65ee0590230d583f6"
+      ],
+      "description": "Published final Mail acceptance, preserved failed attempt and corrective receipts, deterministic archive and portable verifier; evidence-only checkpoint.",
+      "publication": "published_remote_checkpoint",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/commit/8206975dd91330914f77d0e3ceab3fadbe9ad519"
+    }
+  ],
+  "current_frozen_source": {
+    "commit": "58cc4283b35b29a4036528f65ee0590230d583f6",
+    "tree": "1cba111d27e6b0699ffa65c7df5be2bbb53e8e59",
+    "parent": "4163368b63b35414f25c3830fcc49055e6088953",
+    "qualification": "accepted",
+    "latest_main_retained": "329d03914808589d3e7650fa870df15a2408afe2"
+  },
+  "word_capability": {
+    "new_methods": [
+      "InchesToPoints",
+      "PointsToInches",
+      "CentimetersToPoints",
+      "PointsToCentimeters",
+      "MillimetersToPoints",
+      "PointsToMillimeters",
+      "PicasToPoints",
+      "PointsToPicas"
+    ],
+    "existing_methods_with_named_support": [
+      "LinesToPoints",
+      "PointsToLines"
+    ],
+    "named_method_count": 10,
+    "calls": [
+      "global",
+      "Application qualified",
+      "leading dot within With Application"
+    ],
+    "argument_contract": "One positional argument or official case-insensitive named argument; evaluate numeric Variant contents.",
+    "arithmetic": "bounded binary64 Double",
+    "physical_factors_points": {
+      "inch": "72",
+      "centimetre": "3600/127",
+      "millimetre": "360/127",
+      "pica": "12",
+      "line": "12"
+    },
+    "native_grid_normalization": "Exact inverse equality; no tolerance or arbitrary dimension rounding.",
+    "native_twip_and_range_guards_unchanged": true,
+    "explicit_rounding_example": "CLng(CentimetersToPoints(1)*20)/20",
+    "compiler_path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+    "compiler_sha256": "41de865411b884d18c1097e9a80d68cd6bf1fb245e1844a46f72af05636f5ecd",
+    "limits": [
+      "Word-only dispatch",
+      "No implicit String/Boolean/Empty/Null/omitted-value conversion",
+      "No VBA Single emulation",
+      "No installed Word/COM/full VBA claim",
+      "Embedded VBA remains inert",
+      "No cryptographic signature validation after modification",
+      "Edited w:ind groups retain existing replacement behavior; unknown attributes within that edited group are outside the preservation guarantee."
+    ],
+    "examples": [
+      {
+        "name": "word_measurements.bas",
+        "native_operations": 8,
+        "vm_and_optimized_js_equal": true
+      },
+      {
+        "name": "word_unit_conversions.bas",
+        "native_operations": 9,
+        "qualification": "Independent integration suites"
+      },
+      {
+        "name": "word_named_measurements.bas",
+        "native_operations": 13,
+        "vm_and_optimized_js_equal": true
+      }
+    ]
+  },
+  "qualifications": {
+    "word_macro_union": {
+      "status": "accepted_historical_union",
+      "passed": 3598,
+      "suites": 69,
+      "failed": 0,
+      "skipped": 0,
+      "baseline_commit": "e08635b3f21c60ad21888821050dc97c2dbf7086",
+      "baseline_passed": 3110,
+      "baseline_suites": 64,
+      "focused_commit": "cb5909fefe6dd41db0f9c38207db83166072dcaf",
+      "focused_tree": "3eca24612f32567d7312ae098d7b30c049bb6e3b",
+      "focused_passed": 645,
+      "focused_suites": 7,
+      "superseded_baseline_cases": 157,
+      "retained_baseline_cases": 2953,
+      "retained_baseline_suites": 62,
+      "arithmetic": "3110 - 157 + 645 = 3598",
+      "shared_source_inputs": 977,
+      "unchanged_shared_source_inputs": 973,
+      "retained_fixture_dependency_audit": true,
+      "node_platform_recheck": {
+        "failed": 0,
+        "passed": 63,
+        "reporter_errors": 0,
+        "same_case_identities_as_vm": true,
+        "skipped": 0,
+        "terminal_success": true
+      },
+      "node_additional_logical_cases": 0,
+      "evidence": "docs/validation/word-vba-unit-conversions-20261120/accepted-suite-union.json"
+    },
+    "later_word_macro_subset": {
+      "source": "c62338c65571aa399da5592455b651fa5c6a9317",
+      "passed": 709,
+      "suites": 23,
+      "fresh_at_c623": 663,
+      "retained_incoming": 46,
+      "same_case_identities_as_historical_subset": true,
+      "additional_cases_to_add_to_3598": 0,
+      "latest_compiler_unchanged_at": "52eace9e151cff88c5908a049b0a51ade4c20b00",
+      "evidence": "docs/validation/word-final-integration-20261120/accepted-summary.json"
+    },
+    "word_native_layout": {
+      "status": "identity_union_proved_with_separate_source_attribution",
+      "passed_identities": 427,
+      "files": 34,
+      "c623_native_union": {
+        "passed": 398,
+        "files": 32,
+        "fresh": 223,
+        "retained_incoming": 175,
+        "source": "c62338c65571aa399da5592455b651fa5c6a9317"
+      },
+      "new_incoming": {
+        "passed": 29,
+        "files": 2,
+        "execution_source": "44f3f61fa7d812971e973f1763ac8e04eb39785a",
+        "header_visual_cases": 15,
+        "table_import_cases": 14,
+        "disjoint_from_prior398": true
+      },
+      "latest_fresh_bridge": {
+        "passed": 71,
+        "files": 3,
+        "source": "52eace9e151cff88c5908a049b0a51ade4c20b00",
+        "failed": 0,
+        "skipped": 0,
+        "exact_existing_identities_replaced": true,
+        "additional_logical_cases": 0
+      },
+      "not_a_427_case_rerun_at_one_sha": true,
+      "proof": "native-case-union.json",
+      "proof_sha256": "4ce30557be30cdf4450c177ab90d1e1f56b1e4895aa9e155b8f7990d28769b8e",
+      "evidence": [
+        "docs/validation/word-final-integration-20261120/accepted-summary.json",
+        "docs/validation/word-late-main-integration-20261120/accepted-summary.json"
+      ]
+    },
+    "word_editor": {
+      "status": "accepted_with_explicit_exclusions",
+      "source": "c62338c65571aa399da5592455b651fa5c6a9317",
+      "passed": 105,
+      "files": 5,
+      "fresh_layout_passed": 96,
+      "retained_font_passed": 9,
+      "failed": 0,
+      "skipped": 8,
+      "exclusions": [
+        {
+          "file": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+          "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-both.docx",
+          "reason": "no paragraphs to edit"
+        },
+        {
+          "file": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+          "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-control.docx",
+          "reason": "no paragraphs to edit"
+        },
+        {
+          "file": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+          "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-horizontal.docx",
+          "reason": "no paragraphs to edit"
+        },
+        {
+          "file": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+          "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-margin-quarter.docx",
+          "reason": "no paragraphs to edit"
+        },
+        {
+          "file": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+          "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-negative-quarter.docx",
+          "reason": "no paragraphs to edit"
+        },
+        {
+          "file": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+          "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-outline-shadow.docx",
+          "reason": "no paragraphs to edit"
+        },
+        {
+          "file": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+          "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-quarter.docx",
+          "reason": "no paragraphs to edit"
+        },
+        {
+          "file": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+          "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-vertical.docx",
+          "reason": "no paragraphs to edit"
+        }
+      ],
+      "font_filename_aliases": "Two incoming actual lowercase-alias fixture cases are included in the 9 retained font cases; no platform-wide installed-font discovery claim.",
+      "latest_scope_note": "Keeps its c623 provenance; overlapping incoming editor 362 + 8 and font 9 evidence is recorded separately, not added."
+    },
+    "mail": {
+      "status": "accepted_source_bound_union",
+      "accepted_source": "58cc4283b35b29a4036528f65ee0590230d583f6",
+      "accepted_tree": "1cba111d27e6b0699ffa65c7df5be2bbb53e8e59",
+      "passed": 1471,
+      "files": 70,
+      "failed": 0,
+      "skipped": 0,
+      "additional_matching_node_executions": 228,
+      "additional_logical_cases_from_node": 0,
+      "source_partition": [
+        {
+          "source": "c62338c65571aa399da5592455b651fa5c6a9317",
+          "retained_cases": 606,
+          "files": 33
+        },
+        {
+          "source": "4163368b63b35414f25c3830fcc49055e6088953",
+          "unchanged_focused_cases": 694,
+          "files": 31
+        },
+        {
+          "source": "58cc4283b35b29a4036528f65ee0590230d583f6",
+          "corrective_cases": 171,
+          "files": 6
+        }
+      ],
+      "focused_union_cases": 865,
+      "not_1471_executions_at_one_sha": true,
+      "original_416_aggregate_status": "failed",
+      "original_416_failed": 18,
+      "original_416_logical_passed": 847,
+      "original_416_node_rechecks": 131,
+      "superseded_416_cases": 171,
+      "superseded_prior_passes_in_corrected_files": 153,
+      "case_identity_renames": [
+        {
+          "file": "packages/quds_office_editor/example/test/studio_mail_credential_backend_switch_test.dart",
+          "new_name": "pending account save disables storage in the ribbon",
+          "old_name": "pending account save also disables storage in the File menu",
+          "reason": "The captured main replaced the File menu with the ribbon; ownership assertions remain."
+        }
+      ],
+      "fixture_corrections_only": true,
+      "production_unchanged_across_correction": true,
+      "four_strict_analyses_passed_at416": true,
+      "studio_analysis_and_format_passed_at58": true,
+      "git_source_blob_comparisons": 17509,
+      "latest_source_files_sealed": 5838,
+      "dependency_files_sealed": 6188,
+      "source_dependency_runtime_and_config_proofs": "passed",
+      "evidence": "../mail-latest-main-integration-20261120/accepted-union.json",
+      "evidence_sha256": "3ec54801e7ba86f2c737e519c9679590311225d6ff8981cc735751c879bd930d",
+      "counting_note": "Canonical case identities are unique. Node rechecks are not additional cases. 606 retained cases executed at c623; 694 unchanged focused cases at 416; 171 complete corrective-file cases at the final source. The initial 18-failure aggregate remains failed and is preserved. All 171 original executions of corrected files are replaced, including 153 prior passes; one obsolete File-menu case title is explicitly renamed.",
+      "capability_boundary": "Guarded foreground flag actions; no live-provider, durable replay or multi-account atomicity guarantee.",
+      "shared_word_only_layout_cases_in_mail_gate": 8,
+      "shared_layout_overlap_note": "The Mail gate includes eight Word-only shared-layout cases; scope counts must not be summed.",
+      "independent_reviews": {
+        "mail-latest-independent-review.json": {
+          "sha256": "8b6061940aa5abda3130c4617cba313a6d885358e4b96c5f434c6a876f5cd1a5",
+          "success": true
+        },
+        "mail-latest-independent-package-review.json": {
+          "sha256": "073c477376d5d0bf70f12c44d32d50b076fb749cc5e1f526053b084a770fc9ac",
+          "success": true
+        }
+      }
+    },
+    "zotero": {
+      "status": "accepted_source_bound_union",
+      "source": "c62338c65571aa399da5592455b651fa5c6a9317",
+      "accepted_engine_passed": 470,
+      "engine_files": 14,
+      "fresh_engine": 188,
+      "retained_engine": 282,
+      "accepted_editor_passed": 257,
+      "editor_files": 9,
+      "fresh_editor": 143,
+      "retained_editor": 114,
+      "failed": 0,
+      "skipped": 0,
+      "evidence": "docs/validation/word-final-integration-20261120/accepted-summary.json",
+      "latest_incoming_affected_evidence": {
+        "editor_scope": "Nine Zotero suites plus incremental-layout and two proofing suites; overlap historical acceptance, not additional logical cases.",
+        "editor_skipped": 8,
+        "editor_vm": 362,
+        "engine_vm": 165,
+        "font_vm": 9,
+        "node_rechecks": 117,
+        "studio_16": "Recorded only, not asserted exact-current because Studio may load changed Mail paths."
+      },
+      "latest_evidence_is_overlapping_and_not_a_727_case_rerun": true
+    },
+    "word_late_bridge": {
+      "accepted": true,
+      "carry_forward_policy": "The c623 receipts keep their original source bindings. The narrow two-file production delta is qualified by incoming exact-source runs and the completed 71-case fresh bridge; the earlier 1,313 cases were not all rerun on latest main.",
+      "completed_utc": "2026-11-20T22:46:25.285714+00:00",
+      "fresh_bridge": {
+        "exact_c623_case_identities_preserved": true,
+        "failed": 0,
+        "files": 3,
+        "passed": 71,
+        "per_file": {
+          "packages/quds_office_engine/test/word_contained_text_wrap_test.dart": 41,
+          "packages/quds_office_engine/test/word_header_picture_identity_test.dart": 13,
+          "packages/quds_office_engine/test/word_styles_layout_test.dart": 17
+        },
+        "skipped": 0
+      },
+      "historical_macro_corpus": {
+        "add_this_receipt_to_prior_total": false,
+        "cases": 3598,
+        "compiler_unchanged": true,
+        "suites": 69,
+        "this_is_not_a_whole_corpus_rerun": true
+      },
+      "historical_verifier_limit": "Git-qualified archive verifier encountered an unavailable old promisor object df576aa4e32c8c151446309ea1c72dab11d84f06 while checking unrelated baseline3645 ancestry. No fetch was attempted. This audit directly verifies all selected receipts against available44f3/5e7 blobs instead.",
+      "incoming_actual_bas_pairs": [
+        {
+          "comparison_sha256": "238d02b596f7e306ea9468a1c227f616ecca88d7589407b9f3c1d4587800f4da",
+          "equal_json": true,
+          "name": "measurements"
+        },
+        {
+          "comparison_sha256": "8fe63e57ae34da98248772a5887244916988de2c4e18c7328b34c8dbe64c92d6",
+          "equal_json": true,
+          "name": "named_measurements"
+        }
+      ],
+      "incoming_archive": {
+        "bytes": 4736442,
+        "duplicated_here": false,
+        "git_commit": "5e7e4d24284954603a0a5951699bea870ad1955f",
+        "manifest_sha256": "3f2a4c552ebadc1c1c286fae254caecd9a6c002ea048ce4607598b4750dc0e3c",
+        "members_verified": 271,
+        "path": "docs/validation/mail-bulk-flags-20261120/late-evidence.tar.gz",
+        "sha256": "1ab839ebdeb86599af507d623f98d224620fdd533ff870118a58a8134e8711b8"
+      },
+      "incoming_audit_sha256": "f828d114b18b8760916407cf818d2ad0cae200f45cbd36ef03e89c90e205b56b",
+      "incoming_auditor_sha256": "16e8137b64114d56548948e4525dc37dce603ea88b8ceb15ea7cc2003453fc85",
+      "incoming_retained_affected_zotero": {
+        "editor_scope": "Nine Zotero suites plus incremental-layout and two proofing suites; overlap historical acceptance, not additional logical cases.",
+        "editor_skipped": 8,
+        "editor_vm": 362,
+        "engine_vm": 165,
+        "font_vm": 9,
+        "node_rechecks": 117,
+        "studio_16": "Recorded only, not asserted exact-current because Studio may load changed Mail paths."
+      },
+      "incoming_retained_word": {
+        "combined_vm": 929,
+        "excluded_incoming_variant_suites": [
+          "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+          "packages/quds_office_engine/test/word_styles_layout_test.dart"
+        ],
+        "focused_exact_vm": 188,
+        "node_rechecks": 787,
+        "overlap_cases": 62,
+        "unique_vm": 1055
+      },
+      "incoming_runtime_and_scope_limits": [
+        "Historical execution used its recorded runtime, not this session runtime.",
+        "JavaScript evidence is Node execution, not browser/WASM.",
+        "No installed Microsoft Word/Zotero host or live provider session was exercised.",
+        "Final remote source SHA must bind these selected hashes before the fresh bridge runs."
+      ],
+      "independent_final_review": {
+        "path": "archive:independent-review/word-late-main-independent-review.json",
+        "sha256": "ad0afd8aaaecda5b9be460edb6c8295e8a66439f4bc4b3e0387a5fa3beca2435"
+      },
+      "reference_fixture_binding_limit": "Immutable peer/main/c623 Git object equivalence, not an additional historical per-file before/after execution seal.",
+      "runtimes": {
+        "fresh": "Dart SDK version: 3.14.1 (stable) (Tue Nov 17 00:01:24 2026 -0800) on \"linux_x64\"",
+        "incoming": "Retains each archived execution runtime; not relabeled as a fresh run."
+      },
+      "schema_version": 1,
+      "source_binding": {
+        "captured_inputs": 2859,
+        "clean_tree_at_execution_boundaries": true,
+        "compiler_and_macro_files_unchanged_from_c623": 42,
+        "engine_editor_production_delta_from_c623": [
+          "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+          "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart"
+        ],
+        "selected_files": {
+          "packages/quds_office_engine/lib/src/word/layout/word_layout.dart": "145e4a217a3be912e39ba15c4563662537daed2906d1b0c9f52a44855338b0e2",
+          "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart": "f497d871548a813fbb399370930b105696e43980801e283dcad86b8be16a9286",
+          "packages/quds_office_engine/test/word_contained_text_wrap_test.dart": "dd9f84c89839d3033e8c262e233beabf27d5c1624f0523ff7108761005fc5ed5",
+          "packages/quds_office_engine/test/word_header_picture_identity_test.dart": "afae2a679af7095c68d86d028472cc6a13fd80eed1952fece3553d2f4b5be3d3",
+          "packages/quds_office_engine/test/word_header_visual_reconciliation_test.dart": "ce5eeff6a26217e7465aa9fcfa25c2accca2592f6665a104452db76fe5d0ed93",
+          "packages/quds_office_engine/test/word_styles_layout_test.dart": "b96fa31bfebba2773007600923de80371d1dd4e95f760e4029387a696fb610a3",
+          "packages/quds_office_engine/test/word_table_style_import_regression_test.dart": "3c0b8d76a20fae56a2a40e6cc7111a391be09f6f857fbac817ce0d1b59cb5cb8"
+        },
+        "selected_files_match_remote_git_objects": true,
+        "source_runtime_head_unchanged": true
+      },
+      "source_commit": "52eace9e151cff88c5908a049b0a51ade4c20b00",
+      "source_tree": "a86b3c847e981c8eec2ad71d781afb7d1887985d",
+      "strict_checks": [
+        {
+          "command": [
+            "/workspace/scratch/03cd41fa0e7e/runtime/toolchain/dart-sdk/bin/dart",
+            "analyze",
+            "--fatal-infos"
+          ],
+          "cwd": "/workspace/scratch/03cd41fa0e7e/quds_delivery/packages/quds_office_engine",
+          "exit_code": 0,
+          "finished_utc": "2026-11-20T22:46:24.953264+00:00",
+          "name": "engine-analysis",
+          "seconds": 11.685,
+          "started_utc": "2026-11-20T22:46:13.268124+00:00",
+          "stderr": "engine-analysis.stderr.log",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout": "engine-analysis.stdout.log",
+          "stdout_sha256": "c557a0c697cdb937104f1423d3c02d6a1062917cb0bcb2830d91db8cf6192af0"
+        },
+        {
+          "command": [
+            "/workspace/scratch/03cd41fa0e7e/runtime/flutter-toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+            "format",
+            "--output=none",
+            "--set-exit-if-changed",
+            "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+            "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+            "packages/quds_office_engine/test/word_contained_text_wrap_test.dart",
+            "packages/quds_office_engine/test/word_header_picture_identity_test.dart",
+            "packages/quds_office_engine/test/word_header_visual_reconciliation_test.dart",
+            "packages/quds_office_engine/test/word_styles_layout_test.dart",
+            "packages/quds_office_engine/test/word_table_style_import_regression_test.dart"
+          ],
+          "cwd": "/workspace/scratch/03cd41fa0e7e/quds_delivery",
+          "exit_code": 0,
+          "finished_utc": "2026-11-20T22:46:25.118508+00:00",
+          "name": "format",
+          "seconds": 0.165,
+          "started_utc": "2026-11-20T22:46:24.954013+00:00",
+          "stderr": "format.stderr.log",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stdout": "format.stdout.log",
+          "stdout_sha256": "858b3cab8736f24db5bfcd48ac07f1b2386e6ef57b8e4fb3e17a3af062d5d8aa"
+        }
+      ],
+      "retained_at_final_candidate": {
+        "status": "passed",
+        "source_commit": "58cc4283b35b29a4036528f65ee0590230d583f6",
+        "source_tree": "1cba111d27e6b0699ffa65c7df5be2bbb53e8e59",
+        "qualified_word_head": "52eace9e151cff88c5908a049b0a51ade4c20b00",
+        "record": "word-source-retention.json",
+        "sha256": "d2537febc49e8984278b85711fdb51d9fbc9fcceb74b9e8f48d78684949fd08f",
+        "captured_inputs": 2859,
+        "unchanged_captured_inputs": 2841,
+        "separately_owned_mail_differences": 18,
+        "word_parser_editor_paths_unchanged": 2302,
+        "reference_fixture_blobs_unchanged": 662,
+        "all_seven_selected_hashes_preserved": true,
+        "shared_layout_pure_word_prefix_unchanged_bytes": 17845,
+        "new_Word_test_execution_required": false,
+        "scope_limit": "Immutable Git retention; original Word executions keep their source/runtime attribution."
+      }
+    },
+    "word_final_candidate_retention": {
+      "status": "passed",
+      "source_commit": "58cc4283b35b29a4036528f65ee0590230d583f6",
+      "source_tree": "1cba111d27e6b0699ffa65c7df5be2bbb53e8e59",
+      "qualified_word_head": "52eace9e151cff88c5908a049b0a51ade4c20b00",
+      "record": "word-source-retention.json",
+      "sha256": "d2537febc49e8984278b85711fdb51d9fbc9fcceb74b9e8f48d78684949fd08f",
+      "captured_inputs": 2859,
+      "unchanged_captured_inputs": 2841,
+      "separately_owned_mail_differences": 18,
+      "word_parser_editor_paths_unchanged": 2302,
+      "reference_fixture_blobs_unchanged": 662,
+      "all_seven_selected_hashes_preserved": true,
+      "shared_layout_pure_word_prefix_unchanged_bytes": 17845,
+      "new_Word_test_execution_required": false,
+      "scope_limit": "Immutable Git retention; original Word executions keep their source/runtime attribution."
+    }
+  },
+  "counting_policy": {
+    "grand_total": null,
+    "reason": "Separate source-bound scopes, platform rechecks and overlapping reruns; no summed project-wide count or one-SHA execution claim.",
+    "raw_failed_or_interrupted_receipts_preserved": true,
+    "native_427": "Identity union of 398 prior cases and 29 disjoint incoming cases; 71 later bridge reruns replace prior identities. Never present 427 as one execution at 52eace9e."
+  },
+  "runtimes": {
+    "engine_dart": "3.14.1",
+    "flutter": "3.47.8",
+    "flutter_dart": "3.13.7",
+    "package_test": "1.31.1",
+    "node": "24.22.3",
+    "mail_native_sqlite": "3.54.1 with FTS5 probe"
+  },
+  "evidence_packages": {
+    "measurement": {
+      "directory": "docs/validation/word-vba-unit-conversions-20261120/",
+      "published_commit": "467dcaffe016b9e647f944b59af473b13e3ae7f6",
+      "archive": "local-qualification.tar.gz",
+      "accepted_record": "accepted-suite-union.json"
+    },
+    "native_editor": {
+      "directory": "docs/validation/word-main-integration-20261120/",
+      "published_commit": "71f1c188f019ce539f0a7360a9df1a8e9b1e3df6",
+      "archive": "local-qualification.tar.gz",
+      "accepted_record": "accepted-summary.json"
+    },
+    "mail": {
+      "directory": "docs/validation/mail-bulk-reconciliation-20261120/",
+      "first_published_commit": "d1c40f41abd81184db328d2aa6b827dd283ff71d",
+      "archive": "mail-bulk-qualification.tar.xz",
+      "accepted_record": "accepted-union.json",
+      "archive_members": 143,
+      "sha256sum_entries": 16,
+      "source_hashes_independently_checked_against_git": 5827,
+      "reviewed_pngs": 20,
+      "first_published_archive": {
+        "sha256": "b4ed2b6b4ba55d4a7d886aefeca8c67701f1fc62246fb3cbcc1c1d9c2b267165",
+        "bytes": 1789408
+      },
+      "reproduction_clarification": {
+        "status": "published",
+        "description": "State the required working directory explicitly in README and archived review/README.md.",
+        "archive_sha256": "ac9cf260c0d7e056c8c982102e181ad8572a3c72a8e29a760a436acd5c1db02b",
+        "archive_bytes": 1788972,
+        "unchanged_archive_members": 141,
+        "changed_archive_members": [
+          "review/README.md",
+          "MANIFEST"
+        ],
+        "changed_package_files": [
+          "README.md",
+          "archive-manifest.json",
+          "SHA256SUMS",
+          "mail-bulk-qualification.tar.xz"
+        ],
+        "source_receipts_logs_changed": false,
+        "published_commit": "039b6e97cbbc01ce1d69c0bcf982fb7147643a3e"
+      }
+    },
+    "word_c623": {
+      "directory": "docs/validation/word-final-integration-20261120/",
+      "published_commit": "426fbc920b326df6eb746cd56549e3e66b9c31bb",
+      "archive": "local-qualification.tar.gz",
+      "archive_bytes": 1008035,
+      "archive_sha256": "5f17f54e93db5d36970c31f06668113add960320f22b5fcbccab344879a9ea1e"
+    },
+    "mail_c623": {
+      "directory": "docs/validation/mail-final-integration-20261120/",
+      "published_commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "archive": "mail-final-qualification.tar.xz",
+      "archive_bytes": 2285248,
+      "archive_sha256": "6c818f3747645035486b12a114491f3b9d1baae718d6fa748d6655927ef11d74"
+    },
+    "word_late_bridge": {
+      "directory": "docs/validation/word-late-main-integration-20261120/",
+      "published_commit": "e7d9055f20462f37c74a38a761d5c092f48ab973",
+      "publication_status": "published_and_read_back",
+      "qualified_source": "52eace9e151cff88c5908a049b0a51ade4c20b00",
+      "archive": "local-qualification.tar.gz",
+      "archive_bytes": 438642,
+      "archive_sha256": "3fdb5092f6b503d188ea19cd79d8a4865e8190e54f527838b05868e26492c6b0"
+    },
+    "mail_latest": {
+      "directory": "docs/validation/mail-latest-main-integration-20261120/",
+      "accepted_record": "accepted-union.json",
+      "qualified_source": "58cc4283b35b29a4036528f65ee0590230d583f6",
+      "accepted_record_sha256": "3ec54801e7ba86f2c737e519c9679590311225d6ff8981cc735751c879bd930d",
+      "package_files": 17,
+      "package_bytes": 3445877,
+      "archive": "mail-latest-qualification.tar.xz",
+      "archive_sha256": "bda1bedc59e7724097ca7fe05deb3d5c6c3a202a1668b58b5478f6ab0bb7e956",
+      "archive_bytes": 2295172,
+      "archive_members": 253,
+      "outer_checksum_entries_passed": 16,
+      "extracted_verifier_output_comparisons_passed": 7,
+      "published_commit": "8206975dd91330914f77d0e3ceab3fadbe9ad519",
+      "publication_status": "published_and_read_back",
+      "report_url": "https://github.com/CrispStrobe/quds_office_suite/blob/8206975dd91330914f77d0e3ceab3fadbe9ad519/docs/validation/mail-latest-main-integration-20261120/README.md",
+      "independent_raw_recount": "passed",
+      "independent_package_review": "passed",
+      "deterministic_archive_rebuild_equal": true
+    },
+    "final_reviewer_index": {
+      "directory": "docs/validation/word-vba-final-integration-20261120/",
+      "publication": "The commit containing this report.",
+      "merge_record": "https://github.com/CrispStrobe/quds_office_suite/pull/278",
+      "independent_mail_reviews": [
+        "mail-latest-independent-review.json",
+        "mail-latest-independent-package-review.json"
+      ]
+    }
+  },
+  "historical_qualifications": {
+    "later_word_macro_subset": {
+      "source": "cdd98460c2eed261719c660351f11adc962e2ca5",
+      "passed": 709,
+      "suites": 23,
+      "same_case_identities_as_historical_subset": true,
+      "additional_cases_to_add_to_3598": 0,
+      "historical_cases_not_rerun_here": 2889
+    },
+    "word_native_layout": {
+      "status": "accepted_union",
+      "original_source": "cdd98460c2eed261719c660351f11adc962e2ca5",
+      "accepted_source": "cf25a0a3d80ee18d2550161af182bacc4e49d18f",
+      "failed": 0,
+      "files": 26,
+      "passed": 312,
+      "retained_case_count": 271,
+      "skipped": 0,
+      "superseding_case_count": 41,
+      "original_fixture_failure_preserved": true,
+      "production_unchanged_between_source_checkpoints": true,
+      "evidence": "docs/validation/word-main-integration-20261120/accepted-summary.json"
+    },
+    "word_editor": {
+      "status": "accepted_with_explicit_exclusions",
+      "source": "cdd98460c2eed261719c660351f11adc962e2ca5",
+      "passed": 103,
+      "files": 5,
+      "failed": 0,
+      "skipped": 8,
+      "exclusions": [
+        {
+          "file": "test/word_incremental_layout_equivalence_test.dart",
+          "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-both.docx",
+          "occurrence": 1,
+          "reason": "no paragraphs to edit",
+          "result": "success",
+          "skipped": true
+        },
+        {
+          "file": "test/word_incremental_layout_equivalence_test.dart",
+          "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-control.docx",
+          "occurrence": 1,
+          "reason": "no paragraphs to edit",
+          "result": "success",
+          "skipped": true
+        },
+        {
+          "file": "test/word_incremental_layout_equivalence_test.dart",
+          "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-horizontal.docx",
+          "occurrence": 1,
+          "reason": "no paragraphs to edit",
+          "result": "success",
+          "skipped": true
+        },
+        {
+          "file": "test/word_incremental_layout_equivalence_test.dart",
+          "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-margin-quarter.docx",
+          "occurrence": 1,
+          "reason": "no paragraphs to edit",
+          "result": "success",
+          "skipped": true
+        },
+        {
+          "file": "test/word_incremental_layout_equivalence_test.dart",
+          "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-negative-quarter.docx",
+          "occurrence": 1,
+          "reason": "no paragraphs to edit",
+          "result": "success",
+          "skipped": true
+        },
+        {
+          "file": "test/word_incremental_layout_equivalence_test.dart",
+          "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-outline-shadow.docx",
+          "occurrence": 1,
+          "reason": "no paragraphs to edit",
+          "result": "success",
+          "skipped": true
+        },
+        {
+          "file": "test/word_incremental_layout_equivalence_test.dart",
+          "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-quarter.docx",
+          "occurrence": 1,
+          "reason": "no paragraphs to edit",
+          "result": "success",
+          "skipped": true
+        },
+        {
+          "file": "test/word_incremental_layout_equivalence_test.dart",
+          "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-vertical.docx",
+          "occurrence": 1,
+          "reason": "no paragraphs to edit",
+          "result": "success",
+          "skipped": true
+        }
+      ],
+      "font_filename_aliases": "Source reviewed and statically analyzed; no alias-specific or default-platform font-discovery runtime claim."
+    },
+    "mail": {
+      "status": "accepted_union",
+      "original_source": "cdd98460c2eed261719c660351f11adc962e2ca5",
+      "accepted_source": "cf25a0a3d80ee18d2550161af182bacc4e49d18f",
+      "accepted_tree": "0780f20f27df62004404496d8e5c529c4bdccd87",
+      "passed": 1056,
+      "suites": 50,
+      "failed": 0,
+      "skipped": 0,
+      "retained_cases": 1024,
+      "corrective_cases": 32,
+      "corrective_same_case_identities": true,
+      "per_scope": [
+        {
+          "scope": "core",
+          "suites": 10,
+          "passed": 155
+        },
+        {
+          "scope": "transport VM and JS",
+          "suites": 22,
+          "passed": 417
+        },
+        {
+          "scope": "UI",
+          "suites": 10,
+          "passed": 155
+        },
+        {
+          "scope": "Studio",
+          "suites": 7,
+          "passed": 324
+        },
+        {
+          "scope": "separate UI visual",
+          "suites": 1,
+          "passed": 5
+        }
+      ],
+      "original_aggregate_status": "unsuccessful; tests all passed, formatter/analyzer-bootstrap/worktree diagnostics retained",
+      "corrective_aggregate_status": "passed",
+      "format_checked_files": 28,
+      "strict_analysis": {
+        "core": "Passed in original receipt.",
+        "editor_font_io": "Passed static analysis only; no platform font-discovery runtime claim.",
+        "studio": "Passed with direct pinned Dart in corrective receipt.",
+        "transport": "Passed in original receipt.",
+        "ui": "Passed with direct pinned Dart in corrective receipt."
+      },
+      "source_files_sealed_each_run": 5827,
+      "configured_dependency_files_sealed": 6188,
+      "source_and_runtime_retention_verified": true,
+      "reviewed_pngs": 20,
+      "visual_languages": [
+        "English",
+        "German",
+        "Arabic"
+      ],
+      "visual_review_boundary": "No bulk-control blocker; existing Latin-address punctuation in RTL retained.",
+      "capability_boundary": "Foreground read/unread and flag/unflag with guarded publication; no durable journal/offline replay/background execution/persistent-cache update or live-provider guarantee.",
+      "evidence": "docs/validation/mail-bulk-reconciliation-20261120/accepted-union.json"
+    },
+    "zotero_80_attempt": {
+      "source": "80e240ec1f557c1ac7c170a8273de41dfaac0f20",
+      "status": "unaccepted_historical_attempt",
+      "engine_passed": 470,
+      "editor_passed": 257,
+      "collector_interruption": "Relative suite paths initially resolved against the collector cwd; preserved continuation recounted original logs with each command cwd without a test rerun.",
+      "strict_analysis_failure": "curly_braces_in_flow_control_structures in zotero_citing_test.dart; incoming main 0a2 contains the correction.",
+      "raw_success": false,
+      "preserved_in": "docs/validation/word-final-integration-20261120/local-qualification.tar.gz:historical-80e240ec-attempt/"
+    },
+    "mail_c623": {
+      "status": "accepted_historical_c623_union",
+      "accepted_source": "c62338c65571aa399da5592455b651fa5c6a9317",
+      "accepted_tree": "d8e43e6f43b0726e8fefded52c185e387291916d",
+      "passed": 1161,
+      "suites": 52,
+      "additional_matching_node_executions": 218,
+      "additional_logical_cases_from_node": 0,
+      "failed": 0,
+      "skipped": 0,
+      "per_scope": [
+        {
+          "scope": "core",
+          "passed": 211,
+          "suites": 12,
+          "node_rechecks": 117
+        },
+        {
+          "scope": "transport_VM",
+          "passed": 415,
+          "suites": 19,
+          "node_rechecks": 101
+        },
+        {
+          "scope": "transport_Node_unsupported_boundaries",
+          "passed": 6,
+          "suites": 3
+        },
+        {
+          "scope": "UI",
+          "passed": 161,
+          "suites": 10
+        },
+        {
+          "scope": "Studio_hosts_cache_visuals",
+          "passed": 363,
+          "suites": 7
+        },
+        {
+          "scope": "UI_visual",
+          "passed": 5,
+          "suites": 1
+        }
+      ],
+      "initial_aggregate_passed": false,
+      "initial_interruption_exit": 130,
+      "interruption_cause": "Undetermined; hidden cached-suite load did not finish before bounded interruption.",
+      "completed_initial_cases": 1116,
+      "continuation_cases": 45,
+      "continuation_status": "passed",
+      "completed_partial_studio_suites": 5,
+      "completed_partial_studio_cases": 323,
+      "unfinished_loader_excluded": true,
+      "strict_analyzers_passed": 4,
+      "format_checked_dart_files": 24,
+      "source_files_sealed": 5833,
+      "dependency_files_sealed": 6188,
+      "source_dependency_runtime_and_git_bindings_verified": true,
+      "reviewed_pngs": 26,
+      "visual_languages": [
+        "English",
+        "German",
+        "Arabic"
+      ],
+      "historical_overlap": {
+        "counts_are_not_additive": true,
+        "current_cases": 1161,
+        "current_source_head": "c62338c65571aa399da5592455b651fa5c6a9317",
+        "historical_cases": 1056,
+        "historical_source_head": "cf25a0a3d80ee18d2550161af182bacc4e49d18f",
+        "matching_case_identities": 1055,
+        "note": "All current cases executed on c623; matching names do not claim unchanged behavior or retained earlier execution."
+      },
+      "capability_boundary": "Guarded foreground read/unread and flag/unflag on selected loaded headers; no durable journal/offline replay/background execution or live-provider guarantee.",
+      "evidence": "docs/validation/mail-final-integration-20261120/qualification.json"
+    }
+  },
+  "latest_captured_main": {
+    "commit": "329d03914808589d3e7650fa870df15a2408afe2",
+    "prior_captured_main": "5e7e4d24284954603a0a5951699bea870ad1955f",
+    "integrated_as_parent_of": "4163368b63b35414f25c3830fcc49055e6088953"
+  },
+  "latest_published_branch_checkpoint": {
+    "commit": "8206975dd91330914f77d0e3ceab3fadbe9ad519",
+    "tree": "c9ccd4ed73ad55b14268c9ba2dd97bf66dd42f51",
+    "parents": [
+      "58cc4283b35b29a4036528f65ee0590230d583f6"
+    ],
+    "remote_publication": "Published and fetched; final Mail evidence only, with qualified production and tests unchanged."
+  },
+  "pull_request": {
+    "number": 278,
+    "url": "https://github.com/CrispStrobe/quds_office_suite/pull/278",
+    "role": "Authoritative integration and merge record"
+  },
+  "qualified_delivery_source": {
+    "commit": "58cc4283b35b29a4036528f65ee0590230d583f6",
+    "tree": "1cba111d27e6b0699ffa65c7df5be2bbb53e8e59",
+    "parent": "4163368b63b35414f25c3830fcc49055e6088953",
+    "qualification": "accepted",
+    "latest_main_retained": "329d03914808589d3e7650fa870df15a2408afe2"
+  },
+  "evidence_checkpoint": {
+    "identity": "The commit containing this report.",
+    "directory": "docs/validation/word-vba-final-integration-20261120",
+    "reason": "No self-referential commit hash is embedded in committed evidence."
+  },
+  "merge_record": {
+    "url": "https://github.com/CrispStrobe/quds_office_suite/pull/278",
+    "purpose": "Authoritative merge commit, final main tree and post-merge exact-tree/compiler/ancestry readback.",
+    "verification_script": "verify_remote_delivery.py",
+    "scope": "This report qualifies the delivery source; merge state and readback are obtained from the PR record."
+  },
+  "final_documentation_update": {
+    "path": "docs/VBA_WORD_MACROS.md",
+    "local_qualification_link": "validation/word-vba-final-integration-20261120/README.md"
+  },
+  "preparation_files": [
+    "runtime/final-delivery-report.md",
+    "runtime/final-delivery-summary.json",
+    "runtime/final-pr-body.md"
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "editor_byte_identical_original_inputs": 2871,
+  "editor_original_input_count": 2884,
+  "editor_refreshed_input_count": 2887,
+  "engine_byte_identical_original_inputs": 2849,
+  "engine_original_input_count": 2853,
+  "fresh_studio_runs": [
+    {
+      "label": "final-studio-citing_transport-main2",
+      "passed": 18,
+      "process_exit": 0,
+      "results": {
+        "success": 18
+      },
+      "runtime_inputs_unchanged": true,
+      "source": "a5dc721dd8e519dde4f019b82a89572fe9f570f4",
+      "source_inputs_unchanged": true,
+      "stderr_bytes": 0,
+      "terminal_events": [
+        {
+          "success": true,
+          "time": 4355,
+          "type": "done"
+        }
+      ],
+      "tree": "b3c010249b88c1ae29bce6d901f5c983adf1acf4",
+      "validation_workspace_inputs_unchanged": true
+    },
+    {
+      "label": "final-studio-shortcuts-main2",
+      "passed": 15,
+      "process_exit": 0,
+      "results": {
+        "success": 15
+      },
+      "runtime_inputs_unchanged": true,
+      "source": "a5dc721dd8e519dde4f019b82a89572fe9f570f4",
+      "source_inputs_unchanged": true,
+      "stderr_bytes": 0,
+      "terminal_events": [
+        {
+          "success": true,
+          "time": 23088,
+          "type": "done"
+        }
+      ],
+      "tree": "b3c010249b88c1ae29bce6d901f5c983adf1acf4",
+      "validation_workspace_inputs_unchanged": true
+    }
+  ],
+  "fresh_studio_unique_cases": 33,
+  "qualification_limits": [
+    "400 editor and 977 engine VM cases were not rerun; they retain their c5cf1ec1 source attribution with the documented exceptions.",
+    "The retained targeted Node 148 cases overlap native engine cases and are not added to a unique-case total.",
+    "The fresh 33 Studio cases replace the earlier host regression result for current applicability; prior 33 results remain historical and are not added.",
+    "Fresh Studio Zotero regressions do not independently establish the new Mail features; the separate Mail owner supplies those gates.",
+    "The Word helper change is not formatting; its separate five-case qualification is supporting evidence, not part of the 33 Studio count.",
+    "No live external Zotero or installed Word/LibreOffice/OpenOffice acceptance is claimed."
+  ],
+  "qualified_editor_engine_source": "c5cf1ec11970211597fd16eebdc8d0eaa115278b",
+  "refreshed_product_source": "a5dc721dd8e519dde4f019b82a89572fe9f570f4",
+  "refreshed_product_tree": "b3c010249b88c1ae29bce6d901f5c983adf1acf4",
+  "retained_editor_cases": 400,
+  "retained_engine_vm_cases": 977,
+  "retained_targeted_node_cases": 148
+}

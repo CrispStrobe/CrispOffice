@@ -1,0 +1,39 @@
+{
+  "qualified_commit": "72aa0ed9f447d1239763f0fbaa9ca9f7f78088c7",
+  "qualified_tree": "d5c836cb97e8beecdd674ec75613c6c64e76cdf3",
+  "source_count": 3019,
+  "captured_source_manifest_sha256": "fe56b74571194d49fa82cf6f777ba85bb9de96aae883dbfd908e78eee1c85366",
+  "method": "SHA-256 of every captured path compared with the actual Git blob at qualified_commit and the final source checkout",
+  "git_blob_mismatches": [],
+  "worktree_mismatches": [],
+  "isolated_copy_manifest_adjustments": [
+    "packages/quds_office_engine/pubspec.yaml",
+    "packages/quds_office_engine/example/pubspec.yaml",
+    "packages/legacy_doc_parser/pubspec.yaml"
+  ],
+  "mail_source_commit": "71a9d73f86a30380d7fe3563f1a0048f1f7eb860",
+  "mail_package_tree_comparison": {
+    "packages/quds_mail_core": {
+      "qualified_tree": "63122ab953529b7a78ba6bd63fdecd8259e2d8f5",
+      "captured_tree": "63122ab953529b7a78ba6bd63fdecd8259e2d8f5",
+      "identical": true
+    },
+    "packages/quds_mail_transport": {
+      "qualified_tree": "a639134e2ebb9da36b8a0b1c59f9a7a1f38576a8",
+      "captured_tree": "a639134e2ebb9da36b8a0b1c59f9a7a1f38576a8",
+      "identical": true
+    },
+    "packages/quds_mail_ui": {
+      "qualified_tree": "3ed1b10aa1b90390c3e33821d480a804cc6eadbd",
+      "captured_tree": "3ed1b10aa1b90390c3e33821d480a804cc6eadbd",
+      "identical": true
+    }
+  },
+  "included_ancestor_commits": [
+    "bf761552d22dcd1eb8cbb0ab00ddab6507e1d572",
+    "bbccae1bdead10951e2d7a23b33cf14c55382e02",
+    "e5b9240512158c329dd2671aa9f36eb08cb74e11",
+    "71a9d73f86a30380d7fe3563f1a0048f1f7eb860"
+  ],
+  "qualification_continues_to_apply_when": "Publication-only changes outside all captured input paths leave these source hashes unchanged."
+}

@@ -1,0 +1,213 @@
+{
+  "final_unique_cases": 433,
+  "history_not_added_to_final_totals": {
+    "focused_test_repairs": {
+      "baseline_commit": "6ac854de0583b7955470648916c53c76b67c0fff",
+      "explanation": "Replaced obsolete blanket refusals with explicit cross-section, cross-table and cross-field safety cases, updated exact tooltip wording, and fixed one test indentation. This overlapping focused run is historical only.",
+      "permitted_changed_test_inputs": [
+        "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+        "packages/quds_office_editor/test/word_zotero_multiparagraph_controller_test.dart",
+        "packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart"
+      ],
+      "results": {
+        "success": 121
+      },
+      "visible_cases": 121
+    },
+    "initial_frozen_checkpoint": {
+      "explanation": "Two image selection tests expected all cross-paragraph selections to refuse; one dialog test matched the obsolete tooltip. Raw failed events and receipts are retained unchanged.",
+      "results": {
+        "error": 1,
+        "failure": 2,
+        "success": 393
+      },
+      "source_commit": "6ac854de0583b7955470648916c53c76b67c0fff",
+      "visible_cases": 396
+    }
+  },
+  "qualification": {
+    "final-editor-combined": {
+      "all_inputs_match_frozen_commit": true,
+      "exit_code": 0,
+      "head_unchanged": true,
+      "per_suite": {
+        "/workspace/scratch/b3c425a3b090/runtime/workspace/packages/quds_office_editor/test/word_cross_paragraph_marker_delete_test.dart": {
+          "success": 7
+        },
+        "/workspace/scratch/b3c425a3b090/runtime/workspace/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart": {
+          "success": 108
+        },
+        "/workspace/scratch/b3c425a3b090/runtime/workspace/packages/quds_office_editor/test/word_zotero_adjacent_citations_controller_test.dart": {
+          "success": 6
+        },
+        "/workspace/scratch/b3c425a3b090/runtime/workspace/packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart": {
+          "success": 13
+        },
+        "/workspace/scratch/b3c425a3b090/runtime/workspace/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart": {
+          "success": 21
+        },
+        "/workspace/scratch/b3c425a3b090/runtime/workspace/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart": {
+          "success": 24
+        },
+        "/workspace/scratch/b3c425a3b090/runtime/workspace/packages/quds_office_editor/test/word_zotero_direct_command_test.dart": {
+          "success": 23
+        },
+        "/workspace/scratch/b3c425a3b090/runtime/workspace/packages/quds_office_editor/test/word_zotero_multiparagraph_controller_test.dart": {
+          "success": 72
+        },
+        "/workspace/scratch/b3c425a3b090/runtime/workspace/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart": {
+          "success": 25
+        },
+        "/workspace/scratch/b3c425a3b090/runtime/workspace/packages/quds_office_editor/test/word_zotero_note_target_test.dart": {
+          "success": 33
+        },
+        "/workspace/scratch/b3c425a3b090/runtime/workspace/packages/quds_office_editor/test/word_zotero_rich_controller_test.dart": {
+          "success": 8
+        },
+        "/workspace/scratch/b3c425a3b090/runtime/workspace/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart": {
+          "success": 60
+        }
+      },
+      "qualification_passed": true,
+      "results": {
+        "success": 400
+      },
+      "runtime_inputs_unchanged": true,
+      "source_input_count": 2884,
+      "source_inputs_unchanged": true,
+      "stderr_bytes": 0,
+      "terminal_events": [
+        {
+          "success": true,
+          "time": 32216,
+          "type": "done"
+        }
+      ],
+      "unique_named_cases": 400,
+      "validation_workspace_inputs_unchanged": true,
+      "visible_cases": 400
+    },
+    "final-studio-citing_transport-combined": {
+      "all_inputs_match_frozen_commit": true,
+      "exit_code": 0,
+      "head_unchanged": true,
+      "per_suite": {
+        "/workspace/scratch/b3c425a3b090/runtime/workspace/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart": {
+          "success": 18
+        }
+      },
+      "qualification_passed": true,
+      "results": {
+        "success": 18
+      },
+      "runtime_inputs_unchanged": true,
+      "source_input_count": 2884,
+      "source_inputs_unchanged": true,
+      "stderr_bytes": 0,
+      "terminal_events": [
+        {
+          "success": true,
+          "time": 4630,
+          "type": "done"
+        }
+      ],
+      "unique_named_cases": 18,
+      "validation_workspace_inputs_unchanged": true,
+      "visible_cases": 18
+    },
+    "final-studio-shortcuts-combined": {
+      "all_inputs_match_frozen_commit": true,
+      "exit_code": 0,
+      "head_unchanged": true,
+      "per_suite": {
+        "/workspace/scratch/b3c425a3b090/runtime/workspace/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart": {
+          "success": 15
+        }
+      },
+      "qualification_passed": true,
+      "results": {
+        "success": 15
+      },
+      "runtime_inputs_unchanged": true,
+      "source_input_count": 2884,
+      "source_inputs_unchanged": true,
+      "stderr_bytes": 0,
+      "terminal_events": [
+        {
+          "success": true,
+          "time": 24810,
+          "type": "done"
+        }
+      ],
+      "unique_named_cases": 15,
+      "validation_workspace_inputs_unchanged": true,
+      "visible_cases": 15
+    }
+  },
+  "runtime": {
+    "dart_version": "3.13.7",
+    "flutter_revision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "flutter_version": "3.47.8",
+    "lockfile_sha256": "0d64a732cd7f6c7cc4e1e01255276f081b59e6f43039636c3d36f6785a958ce2",
+    "package_config_sha256": "592398df3d903bd8895be62a37b1be7230b93155ab6013eb22a0ff5f7413f728",
+    "sdk_archive_sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2"
+  },
+  "scope_limits": [
+    "Selected local native editor/Studio tests and focused static checks; not a complete repository test run.",
+    "No live Zotero desktop or installed Word/LibreOffice/OpenOffice interoperability acceptance is claimed.",
+    "No GitHub Actions queue, workflow/check/status endpoint, or hosted CI result was used.",
+    "Receipts bind to the stated commit/tree and exact input bytes, not to an unqualified later commit."
+  ],
+  "source_commit": "c5cf1ec11970211597fd16eebdc8d0eaa115278b",
+  "source_tree": "e5744c280f3838d0e6831b925494f3d584908d42",
+  "static_checks": {
+    "analysis": {
+      "argv": [
+        "/workspace/scratch/b3c425a3b090/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--packages=/workspace/scratch/b3c425a3b090/runtime/workspace/.dart_tool/package_config.json",
+        "--fatal-infos",
+        "--format=machine",
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+        "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+        "packages/quds_office_editor/test/word_zotero_multiparagraph_controller_test.dart",
+        "packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+        "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+        "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+        "packages/quds_office_engine/test/word_zotero_multiparagraph_test.dart",
+        "packages/quds_office_engine/test/zotero_item_children_test.dart"
+      ],
+      "cwd": "/workspace/scratch/b3c425a3b090/quds_office_suite",
+      "exit_code": 0,
+      "stderr": "/workspace/scratch/b3c425a3b090/runtime/logs/final-editor-combined-static-analysis.stderr",
+      "stderr_bytes": 0,
+      "stdout": "/workspace/scratch/b3c425a3b090/runtime/logs/final-editor-combined-static-analysis.txt",
+      "stdout_bytes": 0
+    },
+    "duration_seconds": 14.304,
+    "format": {
+      "all_exit_zero": true,
+      "files": 9,
+      "language_version": "3.12",
+      "receipt": "/workspace/scratch/b3c425a3b090/runtime/logs/final-editor-combined-static-format.json"
+    },
+    "head_at_completion": "c5cf1ec11970211597fd16eebdc8d0eaa115278b",
+    "head_at_start": "c5cf1ec11970211597fd16eebdc8d0eaa115278b",
+    "inputs_unchanged": true,
+    "manifests_after": {
+      "runtime": "/workspace/scratch/b3c425a3b090/runtime/logs/final-editor-combined-static-runtime-after.json",
+      "source": "/workspace/scratch/b3c425a3b090/runtime/logs/final-editor-combined-static-source-after.json",
+      "workspace": "/workspace/scratch/b3c425a3b090/runtime/logs/final-editor-combined-static-workspace-after.json"
+    },
+    "manifests_before": {
+      "runtime": "/workspace/scratch/b3c425a3b090/runtime/logs/final-editor-combined-static-runtime-before.json",
+      "source": "/workspace/scratch/b3c425a3b090/runtime/logs/final-editor-combined-static-source-before.json",
+      "workspace": "/workspace/scratch/b3c425a3b090/runtime/logs/final-editor-combined-static-workspace-before.json"
+    },
+    "qualification_passed": true,
+    "source_commit": "c5cf1ec11970211597fd16eebdc8d0eaa115278b",
+    "source_tree": "e5744c280f3838d0e6831b925494f3d584908d42",
+    "started_utc": "2026-11-21T04:52:46Z"
+  }
+}

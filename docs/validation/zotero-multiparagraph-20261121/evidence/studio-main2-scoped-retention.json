@@ -1,0 +1,314 @@
+{
+  "all_nine_static_files_byte_identical": true,
+  "all_prior_recorded_inputs_byte_identical": false,
+  "all_selected_editor_and_engine_test_files_byte_identical": true,
+  "editor_byte_identical_original_inputs": 2871,
+  "editor_changed_original_inputs": [
+    {
+      "disposition": "Studio Mail host or test change; fresh Studio Zotero regression run and separate Mail feature qualification.",
+      "final_blob": "a0b118f1a71f466a6b2bdf0661b54513c774398a",
+      "final_sha256": "09396d213578b3f894905084f05e90bffd910dfd116f8a10aff37f436785ebf3",
+      "path": "packages/quds_office_editor/example/lib/studio_mail_bulk_status.dart",
+      "qualified_blob": "83534868b4418cfc21f5e7f4a2cf84cfbce3a1e9",
+      "qualified_sha256": "d8b0122d1dc7a60b37a2e50498fca6cffa4c7b8f799f7258c7eac4a7ca3e72e6"
+    },
+    {
+      "disposition": "Studio Mail host or test change; fresh Studio Zotero regression run and separate Mail feature qualification.",
+      "final_blob": "ccfd56358784d7118f69632dc3f8999e2ed27ec4",
+      "final_sha256": "09a59eafb2a191ffd5fe6566a2f764a13e189089852726e8b337ad8d214cc058",
+      "path": "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+      "qualified_blob": "01f7a9e628b2e402f5dca0629ee6c95a3a792fb1",
+      "qualified_sha256": "5fbddca34e543cb22ab353787e40bca944bd93a53f4ab3a74141e3408f964e29"
+    },
+    {
+      "disposition": "Studio Mail host or test change; fresh Studio Zotero regression run and separate Mail feature qualification.",
+      "final_blob": "07a05f8e6f9dfcaf0e96e485933be6cd326677dd",
+      "final_sha256": "9874a3e4ac1499ee127c55fef375e4c7b5ebfb9460ac10892fedde738f2e0d19",
+      "path": "packages/quds_office_editor/example/lib/studio_mail_flag_journal.dart",
+      "qualified_blob": "be67d1bd3a61731f182a935c8494311aa4e17b8f",
+      "qualified_sha256": "90df92abee5b7c0d393b40a1636e6de94e78022cad94b5b410c4cb2761c8a370"
+    },
+    {
+      "disposition": "Studio Mail host or test change; fresh Studio Zotero regression run and separate Mail feature qualification.",
+      "final_blob": "f74e9f5c223dbaa2f39a931c93625a0b1934388b",
+      "final_sha256": "524b650e5c1a300c11952dccb2160c9c908f0e169beb8c679f347ddf435ccd38",
+      "path": "packages/quds_office_editor/example/lib/studio_mail_journal_dialog.dart",
+      "qualified_blob": "51ae47814e609a46f7f13b501c9615dba35239a6",
+      "qualified_sha256": "fa6e22505645dd0ea00345f839aa6bdec0072f1469a3d50ecfba2dac997b3111"
+    },
+    {
+      "disposition": "Studio Mail host or test change; fresh Studio Zotero regression run and separate Mail feature qualification.",
+      "final_blob": "23de1689cca7ca86f3019887aafe51133313ef24",
+      "final_sha256": "84a59f0cf7d01e298628719e068851c11b7b0dff1c6f3b049f630e54040b5f35",
+      "path": "packages/quds_office_editor/example/lib/studio_mail_journal_strings.dart",
+      "qualified_blob": "e58f37b226c5e0c4a1faebb52638faddcdeb850f",
+      "qualified_sha256": "dcc1c6a0dc7a245f8e3f77c728566665321926af551bfaf189957ed0863365f7"
+    },
+    {
+      "disposition": "Studio Mail host or test change; fresh Studio Zotero regression run and separate Mail feature qualification.",
+      "final_blob": "c8adb66771bc1202c66f922946a18100c1b94c21",
+      "final_sha256": "558058de20366fda777b1d0f1797ab3ac9d2f44de571964c4bcdc6726102004e",
+      "path": "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart",
+      "qualified_blob": "d201c89fddc65e757acb2e9ec67f65a99932de5d",
+      "qualified_sha256": "f00e2def698f6218c580c06f1c82f93035a094d7bce0b795fba83e1f7916b5c0"
+    },
+    {
+      "disposition": "Studio Mail host or test change; fresh Studio Zotero regression run and separate Mail feature qualification.",
+      "final_blob": "1d60a1068e45e5c5266af980c6510463486f4c09",
+      "final_sha256": "4bcdc60936de241a9be5dbdd51d530ab578075665f55974b4c68f3f3b88336e4",
+      "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "qualified_blob": "6427de918984185512a5fa0a155c2bd631bb81f2",
+      "qualified_sha256": "88976ffaec0a691e01140ded498d8142ef38bfcb413654647dee8ec5c04412f0"
+    },
+    {
+      "disposition": "Studio Mail host or test change; fresh Studio Zotero regression run and separate Mail feature qualification.",
+      "final_blob": "2037ed21c503f38b23615fc655870521b1db3212",
+      "final_sha256": "f461b57d0d4114f20540f54ff39dbfc7a74105eda0ce02172171abc8eb530eba",
+      "path": "packages/quds_office_editor/example/test/studio_mail_journal_host_test.dart",
+      "qualified_blob": "fef71fcf44c832dadd8ade1d27e2c5ae5192e6b2",
+      "qualified_sha256": "ee3d2dac4c088289b2a2fc6678d3cfa899438d5153b5fa9756dd395ac9fde330"
+    },
+    {
+      "disposition": "Studio Mail host or test change; fresh Studio Zotero regression run and separate Mail feature qualification.",
+      "final_blob": "3158abe74f6c2425fbe9e2b6b10095d47642e690",
+      "final_sha256": "efb63e52300f0b05cbeae2c2a2b86770c496cd45671b6457eaddbfe8f1b7b33d",
+      "path": "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "qualified_blob": "2439b7e854c1e659be9cedac1173e771467a5bdf",
+      "qualified_sha256": "a6a7126195d6f2e3ae08c52c046ab70dcf83e60c72ab46896ce6fce14efcb069"
+    },
+    {
+      "disposition": "Word formatting only; two complete-file normalized equality proofs and one exact prior-qualified test blob.",
+      "final_blob": "65bacddc0bf3408bcf0182faef0e580b0d38d5e5",
+      "final_sha256": "3722b9ea50c4494f6571b7ecab6dc49bd541b328cf676a986019ff001887db7d",
+      "path": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+      "qualified_blob": "78ec75dc608ac183b1b6d0662f32288e5f749e93",
+      "qualified_sha256": "d7d9794dc3629d6bb06dc92c03b78a5d66460f39878d999010ea00eb3a6faed4"
+    },
+    {
+      "disposition": "Word formatting only; two complete-file normalized equality proofs and one exact prior-qualified test blob.",
+      "final_blob": "9f27f043c5cc4b6e6789069a93e4adad6cec4e24",
+      "final_sha256": "272b12e03922995d0000c0baccfbf312ca41b318090569b3ba327520157ccb87",
+      "path": "packages/quds_office_engine/test/office_macro_word_page_setup_test.dart",
+      "qualified_blob": "63435a4760e7ee0bb83b2b18a144286cefc63abf",
+      "qualified_sha256": "fbf127e8f29314c1a527e184c15112549747c4c1d61bda55d8d8d204577c40a4"
+    },
+    {
+      "disposition": "Word formatting only; two complete-file normalized equality proofs and one exact prior-qualified test blob.",
+      "final_blob": "e3bb9b8389b7c242cce51a1de537652897f1d130",
+      "final_sha256": "4d432d956c0802ddc9402658cc14a09d2fb3507723059b70f30409467dc2b447",
+      "path": "packages/quds_office_engine/test/office_vba_word_page_setup_test.dart",
+      "qualified_blob": "f0d2c3b865d1edc55ee43ca8035b132c7dbb180d",
+      "qualified_sha256": "eca7c0de38e168af5c9e8baeeeb292e3cfb1b439fef53e4842ea360307242985"
+    },
+    {
+      "disposition": "Unexecuted-by-Zotero Word test helper gains namespace-aware lookup; separately qualified by five fresh Word cases.",
+      "final_blob": "07721b470326c7bbf15d9731f031ffe5f53da3a4",
+      "final_sha256": "37f48ca73b5e3b44b1879520ed0b99b79f64ac88ec2d6fd086b96768ee6eec79",
+      "path": "packages/quds_office_engine/test/word_compatibility_fidelity_test.dart",
+      "qualified_blob": "b04148176a86c6a7bbae975420423990026ad9d7",
+      "qualified_sha256": "383dbe4b6d69da7f88404b8547fed7cc51c2fe3a6b0ec09644aa17d6f1fcd00e"
+    }
+  ],
+  "editor_new_inputs": [
+    {
+      "disposition": "Studio Mail host or test change; fresh Studio Zotero regression run and separate Mail feature qualification.",
+      "final_blob": "68060dc379a65b94facddb0347e67fc9c3c5128b",
+      "final_sha256": "c35f22d443c0d1506ce0bca53c5bdca09986001f31933695c3658c373e1821a2",
+      "path": "packages/quds_office_editor/example/lib/studio_mail_flag_reconciliation.dart"
+    },
+    {
+      "disposition": "Studio Mail host or test change; fresh Studio Zotero regression run and separate Mail feature qualification.",
+      "final_blob": "3b01d69de0b6533ed555021acb5a903ed2628d71",
+      "final_sha256": "8e3358ac27d1b1880a4fedb2581763685f40db74c02fd8ec09bd026a9cb08885",
+      "path": "packages/quds_office_editor/example/test/studio_mail_flag_reconciliation_test.dart"
+    },
+    {
+      "disposition": "Studio Mail host or test change; fresh Studio Zotero regression run and separate Mail feature qualification.",
+      "final_blob": "c3ce74d6678ff5e792820a7f0b01916b9d0199b7",
+      "final_sha256": "0fb30dbd2e393aa0b7ca5a4ae5f183bdd78102a0d0d5fe6e980bb3819c5803ef",
+      "path": "packages/quds_office_editor/example/test/studio_mail_flag_recovery_dialog_test.dart"
+    }
+  ],
+  "editor_original_input_count": 2884,
+  "editor_refreshed_input_count": 2887,
+  "editor_removed_inputs": [],
+  "engine_byte_identical_original_inputs": 2849,
+  "engine_changed_original_inputs": [
+    {
+      "disposition": "Word formatting only; two complete-file normalized equality proofs and one exact prior-qualified test blob.",
+      "final_blob": "65bacddc0bf3408bcf0182faef0e580b0d38d5e5",
+      "final_sha256": "3722b9ea50c4494f6571b7ecab6dc49bd541b328cf676a986019ff001887db7d",
+      "path": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+      "qualified_blob": "78ec75dc608ac183b1b6d0662f32288e5f749e93",
+      "qualified_sha256": "d7d9794dc3629d6bb06dc92c03b78a5d66460f39878d999010ea00eb3a6faed4"
+    },
+    {
+      "disposition": "Word formatting only; two complete-file normalized equality proofs and one exact prior-qualified test blob.",
+      "final_blob": "9f27f043c5cc4b6e6789069a93e4adad6cec4e24",
+      "final_sha256": "272b12e03922995d0000c0baccfbf312ca41b318090569b3ba327520157ccb87",
+      "path": "packages/quds_office_engine/test/office_macro_word_page_setup_test.dart",
+      "qualified_blob": "63435a4760e7ee0bb83b2b18a144286cefc63abf",
+      "qualified_sha256": "fbf127e8f29314c1a527e184c15112549747c4c1d61bda55d8d8d204577c40a4"
+    },
+    {
+      "disposition": "Word formatting only; two complete-file normalized equality proofs and one exact prior-qualified test blob.",
+      "final_blob": "e3bb9b8389b7c242cce51a1de537652897f1d130",
+      "final_sha256": "4d432d956c0802ddc9402658cc14a09d2fb3507723059b70f30409467dc2b447",
+      "path": "packages/quds_office_engine/test/office_vba_word_page_setup_test.dart",
+      "qualified_blob": "f0d2c3b865d1edc55ee43ca8035b132c7dbb180d",
+      "qualified_sha256": "eca7c0de38e168af5c9e8baeeeb292e3cfb1b439fef53e4842ea360307242985"
+    },
+    {
+      "disposition": "Unexecuted-by-Zotero Word test helper gains namespace-aware lookup; separately qualified by five fresh Word cases.",
+      "final_blob": "07721b470326c7bbf15d9731f031ffe5f53da3a4",
+      "final_sha256": "37f48ca73b5e3b44b1879520ed0b99b79f64ac88ec2d6fd086b96768ee6eec79",
+      "path": "packages/quds_office_engine/test/word_compatibility_fidelity_test.dart",
+      "qualified_blob": "b04148176a86c6a7bbae975420423990026ad9d7",
+      "qualified_sha256": "383dbe4b6d69da7f88404b8547fed7cc51c2fe3a6b0ec09644aa17d6f1fcd00e"
+    }
+  ],
+  "engine_original_input_count": 2853,
+  "engine_runtime_inputs_unchanged": [
+    "runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "runtime/workspace/.dart_tool/package_config.json",
+    "runtime/workspace/pubspec.lock"
+  ],
+  "engine_scoped_path_set_unchanged": true,
+  "executed_editor_files": [
+    "packages/quds_office_editor/test/word_cross_paragraph_marker_delete_test.dart",
+    "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "packages/quds_office_editor/test/word_zotero_adjacent_citations_controller_test.dart",
+    "packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart",
+    "packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+    "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+    "packages/quds_office_editor/test/word_zotero_multiparagraph_controller_test.dart",
+    "packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "packages/quds_office_editor/test/word_zotero_rich_controller_test.dart",
+    "packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart"
+  ],
+  "executed_engine_files": [
+    "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+    "packages/quds_office_engine/test/word_zotero_adjacent_citations_test.dart",
+    "packages/quds_office_engine/test/word_zotero_bibliography_layout_test.dart",
+    "packages/quds_office_engine/test/word_zotero_caret_test.dart",
+    "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+    "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+    "packages/quds_office_engine/test/word_zotero_formatted_bibliography_test.dart",
+    "packages/quds_office_engine/test/word_zotero_multiparagraph_test.dart",
+    "packages/quds_office_engine/test/word_zotero_note_image_test.dart",
+    "packages/quds_office_engine/test/word_zotero_note_images_integration_test.dart",
+    "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+    "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+    "packages/quds_office_engine/test/word_zotero_note_table_test.dart",
+    "packages/quds_office_engine/test/word_zotero_note_tables_integration_test.dart",
+    "packages/quds_office_engine/test/word_zotero_preference_flow_test.dart",
+    "packages/quds_office_engine/test/word_zotero_research_target_test.dart",
+    "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+    "packages/quds_office_engine/test/word_zotero_scaling_test.dart",
+    "packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+    "packages/quds_office_engine/test/word_zotero_source_identity_test.dart",
+    "packages/quds_office_engine/test/word_zotero_style_preferences_review_test.dart",
+    "packages/quds_office_engine/test/word_zotero_test.dart",
+    "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart",
+    "packages/quds_office_engine/test/zotero_backoff_state_test.dart",
+    "packages/quds_office_engine/test/zotero_catalog_query_test.dart",
+    "packages/quds_office_engine/test/zotero_citing_test.dart",
+    "packages/quds_office_engine/test/zotero_client_test.dart",
+    "packages/quds_office_engine/test/zotero_formatted_text_test.dart",
+    "packages/quds_office_engine/test/zotero_identity_client_test.dart",
+    "packages/quds_office_engine/test/zotero_item_children_test.dart",
+    "packages/quds_office_engine/test/zotero_item_details_test.dart",
+    "packages/quds_office_engine/test/zotero_metadata_batch_test.dart",
+    "packages/quds_office_engine/test/zotero_paragraph_runs_test.dart",
+    "packages/quds_office_engine/test/zotero_saved_search_test.dart",
+    "packages/quds_office_engine/test/zotero_tag_catalog_test.dart",
+    "packages/quds_office_engine/test/zotero_tag_filter_test.dart"
+  ],
+  "fresh_studio_runs": [
+    {
+      "label": "final-studio-citing_transport-main2",
+      "passed": 18,
+      "process_exit": 0,
+      "results": {
+        "success": 18
+      },
+      "runtime_inputs_unchanged": true,
+      "source": "a5dc721dd8e519dde4f019b82a89572fe9f570f4",
+      "source_inputs_unchanged": true,
+      "stderr_bytes": 0,
+      "terminal_events": [
+        {
+          "success": true,
+          "time": 4355,
+          "type": "done"
+        }
+      ],
+      "tree": "b3c010249b88c1ae29bce6d901f5c983adf1acf4",
+      "validation_workspace_inputs_unchanged": true
+    },
+    {
+      "label": "final-studio-shortcuts-main2",
+      "passed": 15,
+      "process_exit": 0,
+      "results": {
+        "success": 15
+      },
+      "runtime_inputs_unchanged": true,
+      "source": "a5dc721dd8e519dde4f019b82a89572fe9f570f4",
+      "source_inputs_unchanged": true,
+      "stderr_bytes": 0,
+      "terminal_events": [
+        {
+          "success": true,
+          "time": 23088,
+          "type": "done"
+        }
+      ],
+      "tree": "b3c010249b88c1ae29bce6d901f5c983adf1acf4",
+      "validation_workspace_inputs_unchanged": true
+    }
+  ],
+  "fresh_studio_unique_cases": 33,
+  "prior_macro_test_final_blob_identical": true,
+  "prior_macro_test_qualified_source": "537d2e7cdd056e06739cd3504b37e5f8751d9373",
+  "qualification_limits": [
+    "400 editor and 977 engine VM cases were not rerun; they retain their c5cf1ec1 source attribution with the documented exceptions.",
+    "The retained targeted Node 148 cases overlap native engine cases and are not added to a unique-case total.",
+    "The fresh 33 Studio cases replace the earlier host regression result for current applicability; prior 33 results remain historical and are not added.",
+    "Fresh Studio Zotero regressions do not independently establish the new Mail features; the separate Mail owner supplies those gates.",
+    "The Word helper change is not formatting; its separate five-case qualification is supporting evidence, not part of the 33 Studio count.",
+    "No live external Zotero or installed Word/LibreOffice/OpenOffice acceptance is claimed."
+  ],
+  "qualified_editor_engine_source": "c5cf1ec11970211597fd16eebdc8d0eaa115278b",
+  "refreshed_product_source": "a5dc721dd8e519dde4f019b82a89572fe9f570f4",
+  "refreshed_product_tree": "b3c010249b88c1ae29bce6d901f5c983adf1acf4",
+  "retained_editor_cases": 400,
+  "retained_engine_vm_cases": 977,
+  "retained_static_files": [
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+    "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "packages/quds_office_editor/test/word_zotero_multiparagraph_controller_test.dart",
+    "packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+    "packages/quds_office_engine/test/word_zotero_multiparagraph_test.dart",
+    "packages/quds_office_engine/test/zotero_item_children_test.dart"
+  ],
+  "retained_targeted_node_cases": 148,
+  "retention_accepted_with_explicit_exceptions": true,
+  "supporting_word_delta_receipt_sha256": "7572ccbce3d2cd1cef22ebec7cca0b44c188ef177f2d86bf2ac4c9d5f5cec9b0",
+  "supporting_word_proof_sha256": "9c3d5efded4c8f97d8e5ee7fec453900108699dfce29563f2a97e86b254e90f3",
+  "word_delta_local_commit": "da0664ff999383210701e530588f6c88bd8e1a6b",
+  "word_delta_tree": "b3c010249b88c1ae29bce6d901f5c983adf1acf4",
+  "word_delta_tree_matches_published_source": true,
+  "word_format_only_paths": [
+    "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+    "packages/quds_office_engine/test/office_macro_word_page_setup_test.dart",
+    "packages/quds_office_engine/test/office_vba_word_page_setup_test.dart"
+  ],
+  "word_namespace_test_helper_path": "packages/quds_office_engine/test/word_compatibility_fidelity_test.dart"
+}

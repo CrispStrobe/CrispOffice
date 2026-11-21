@@ -1,0 +1,72 @@
+{
+  "frozen_head": "6045998d885cbb045454a993aedfdfc0977714d6",
+  "tree": "64360d621e85c5298e0ae132a9c42d1e119df70a",
+  "incoming_main": "329d03914808589d3e7650fa870df15a2408afe2",
+  "new_acceptance": {
+    "passed": 95,
+    "skipped": 0,
+    "failed": 0,
+    "errors": 0,
+    "done_success": true,
+    "terminal_elapsed_ms": 29049,
+    "suites": {
+      "studio_mail_accounts_test.dart": {
+        "success": 22
+      },
+      "studio_mail_workspace_test.dart": {
+        "success": 60
+      },
+      "studio_mail_bulk_visual_test.dart": {
+        "success": 13
+      }
+    },
+    "skipped_cases": [],
+    "non_json_lines": 0
+  },
+  "replacement_policy": "Replace accounts22, native workspace60 and visual13 inside the existing436 host population; add no cases.",
+  "host_population": {
+    "retained_from_fe2": 341,
+    "replaced_at_final": 95,
+    "total": 436
+  },
+  "mail": {
+    "core": 219,
+    "transport": 415,
+    "shared_ui": 179,
+    "hosts": 436,
+    "total_passed": 1249
+  },
+  "word": {
+    "engine": 823,
+    "editor": 598,
+    "incoming_word": 974,
+    "total_passed": 2395,
+    "skipped": 8
+  },
+  "combined": {
+    "passed": 3644,
+    "skipped": 8,
+    "failed": 0,
+    "errors": 0
+  },
+  "static_files": 75,
+  "source_stability": {
+    "source_count": 2659,
+    "source_unchanged": true,
+    "runtime_unchanged": true,
+    "frozen_tree_matches_before_after": true
+  },
+  "prior_archive": {
+    "name": "post-main-evidence.tar.gz",
+    "bytes": 1331836,
+    "sha256": "7d4d37823cb5c41da09371ad130a73b74fb793998dd09b0fb0cb7ab858f126b3"
+  },
+  "prior_qualification_sha256": "9c59404a825c12b93afa8da398ba094ffb29a089f79c97cc3f161eac11ca13e1",
+  "final_publication_source_manifest": {
+    "path": "final-publication-sources.json",
+    "input_count": 5257,
+    "bytes": 775547,
+    "sha256": "ea2a110bb9220705d1d7c399448d66ca1ca0d1ba9e53de2c98f1b47a33e54ff8"
+  },
+  "scope": "The only product changes are two native Mail widget-building methods. All other executable inputs, including stronger session/image/bulk guards and Word source/tests, are unchanged. The95 outcomes replace prior results; incomplete and isolated diagnostics are excluded."
+}

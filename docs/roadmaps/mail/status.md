@@ -1,10 +1,102 @@
-# Mail implementation status — 20 November 2026
+# Mail implementation status — 21 November 2026
+
+## Resumable foreground folder synchronization
+
+Native IMAP, EWS, Gmail and Microsoft 365 now expose **Synchronized mail** with
+explicit Start/Continue/Check for changes, bounded ten-page runs, Stop, durable
+checkpoints and a local paginated header view. Reconnecting to the same account
+resumes its stored cursor under a fresh session lease. **Cached mail** can reopen
+these synchronized folders and previously retained bodies without credentials.
+No known checkpoint, partial scan and completed observation remain distinct.
+
+Schema v8 commits sync state together with each page and preserves older cursors
+without fabricating completion. Canonical cached IDs retain existing bodies;
+reset/deletion preserves drafts and command receipts. Close drains active work
+before the shared owner is released. English, German and Arabic controls retain
+the distinction between local saved counts and current server state.
+
+See the [durable-sync contract](durable-sync.md) and
+[local qualification](../../validation/mail-sync-foundation-20261121/README.md).
+Background scheduling, automatic body retention, unified account queries,
+server Drafts and the complete reusable workspace remain open.
+
+## Repository-observed foreground and cached sessions
+
+The [repository session continuation](repository-sessions.md) adds bounded
+post-commit folder/catalog streams and a provider-neutral selected-folder
+lifecycle. Native IMAP, EWS, Gmail and Microsoft 365 observe the successfully
+saved current window while preserving exact provider-owned action identities.
+Cached mail follows durable view changes and displays saved-view unread/unknown
+counts in English, German and Arabic. Metadata updates preserve the selected
+reader; account/folder changes and close reject stale completions and drain
+subscriptions before the shared owner closes.
+
+Failures retain the last valid saved view with an error; connected online
+fallback remains explicit when persistence or observation fails. This advances
+the repository session boundary. The explicit synchronization continuation above
+adds a separate durable membership view; background synchronization, a unified
+inbox, account-wide search and the complete shared
+`QudsMailWorkspace` remain open. See the
+[local qualification record](../../validation/mail-repository-sessions-20261121/README.md)
+for actual source checkpoints and checks without waiting for GitHub Actions.
+
+## Explicit recovery of uncertain read and flag actions
+
+Connected **Mail activity** now offers **Check current status** for completed
+uncertain receipts. Native IMAP, Exchange EWS, Gmail and Microsoft 365 observe
+the exact original identity, including an IMAP folder outside the current view.
+Opening history makes no provider request. A later observation records the
+requested flag as matching or different, the original identity as unavailable,
+or an IMAP generation as replaced. It never repeats the original command or
+rewrites its uncertain outcome.
+
+Schema v7 retains versions 1–6 and stores immutable per-item observations with
+owner, lease, revision and profile-epoch fences. The observation and requested
+cached flag update commit together; missing or replaced identities do not evict
+cached content. Cancellation and account retirement reject late completions.
+Fully checked receipts become eligible for bounded history cleanup, releasing
+the unresolved-batch allowance. Unchecked and running work remain protected.
+
+English, German and Arabic controls show original results and later check times.
+Cached history displays saved observations without credentials. The
+[recovery guide](flag-recovery.md) and [local qualification](../../validation/mail-flag-recovery-20261121/README.md)
+record behavior, exact source evidence, incoming-work integration and remote
+checkpoints. Repository-driven sessions, background synchronization and wider
+mailbox commands remain open.
+
+## Durable foreground read and flag commands
+
+The [command-journal continuation](command-journal.md) saves intent and each
+pre-dispatch marker before native IMAP, EWS, Gmail or Microsoft 365 flag calls.
+Single-message and bulk controls share this path. Typed outcomes survive restart;
+exclusive recovery preserves acknowledgements, marks unfinished dispatches
+Uncertain and leaves untouched messages Not attempted. Storage failure stops
+later dispatch, and recovery never replays a command.
+
+Confirmed results atomically update only the matching cached target flag while
+preserving other observations and unknown snapshots. Existing stable account,
+draft/cache ownership and view-revision guards remain in force. A retired view
+cannot publish into its replacement, while its in-flight acknowledgement may
+still be saved before the owner closes.
+
+**Mail activity** provides paginated read-only history and frozen per-message
+details from connected and cached accounts, with confirmed clean-history
+removal in English, German and Arabic. The original schema-v6 journal migrates
+versions 1–5; the schema-v7 recovery continuation above additionally retains
+later observations. Bounded retention preserves running and unchecked uncertain
+receipts. Repository-driven sessions remain open. See the
+[local qualification record](../../validation/mail-command-journal-20261121/README.md).
+
+The same integration preserves recent Office/Zotero work and fixes reader
+whitespace and explicit remote-image loading: resources come from admitted
+inert image nodes, obey request/byte/pixel limits and reject stale completions.
 
 ## Foreground bulk read and flag triage
 
 The [foreground bulk contract](bulk-flags.md) adds checked visible selections,
 explicit read/unread/flag/unflag commands, keyboard selection and localized
-outcome summaries to connected IMAP, EWS, Gmail and Microsoft 365. Plans freeze
+progress, outcome summaries and per-message details to connected IMAP, EWS,
+Gmail and Microsoft 365. Plans freeze
 remote identities; sequential execution records confirmed, failed, uncertain
 and unattempted items. Explicit mutation evidence distinguishes definite failure
 from unknown acceptance; generic problem codes do not prove that no write
@@ -15,9 +107,10 @@ and single-use certified coordinator share one dispatch engine.
 Only confirmed target flags update the original foreground view. Scope and
 refresh generations reject stale callbacks, including A → B → A, while a
 same-folder refresh preserves query/sort and clears checked rows. Cached mail
-remains read-only. Reports and intent are not durable across restart, and bulk
-confirmation does not guarantee an immediate persistent-cache update. M04W and
-its repository-driven command journal remain open. The
+remains read-only. The original foreground milestone kept reports in memory;
+the durable continuation above now persists native single/bulk flags and exact
+cache updates. Repository-driven sessions and general remote commands remain
+open. The
 [local record](../../validation/mail-bulk-flags-20261120/README.md) separates
 actual execution, source integration and remaining provider/platform gates.
 
@@ -31,8 +124,8 @@ by newest/oldest, sender or subject while preserving stable row identities.
 English/German/Arabic help and controls describe the loaded-folder scope.
 Filtering, sorting and keyboard movement issue no provider/body/mutation work.
 
-This advances discovery within M04W. Account-wide search, durable command
-recovery, conversations and full offline synchronization remain open. The
+This advances discovery within M04W. Account-wide search, conversations and full
+offline synchronization remain open. The
 [local record](../../validation/mail-header-search-20261120/README.md) separates
 fresh validation from inherited evidence and live-provider/platform gates.
 

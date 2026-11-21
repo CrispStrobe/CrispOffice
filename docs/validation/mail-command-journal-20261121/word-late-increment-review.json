@@ -1,0 +1,369 @@
+{
+  "reviewed_target": "a5a38c916860b08f4cd032313d845ffed216f097",
+  "incoming_head": "4163368b63b35414f25c3830fcc49055e6088953",
+  "incoming_since": "426fbc920b326df6eb746cd56549e3e66b9c31bb",
+  "exact_current_file_matches": [
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+      "current_blob": "55df251ee1a958ef32736919d93b13d6728312d1",
+      "incoming_blob": "55df251ee1a958ef32736919d93b13d6728312d1"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_header_visual_reconciliation_test.dart",
+      "current_blob": "523bd9d43b12f3a544b5b08941f2908066fde738",
+      "incoming_blob": "523bd9d43b12f3a544b5b08941f2908066fde738"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_table_style_import_regression_test.dart",
+      "current_blob": "223e47a428d66fc64d60362dcea86dbf45e31734",
+      "incoming_blob": "223e47a428d66fc64d60362dcea86dbf45e31734"
+    }
+  ],
+  "layout_choice": "Retain current per-page vertical merge normalization and physical row geometry; incoming layout7a075680 is already covered and lacks these newer functions.",
+  "identity_test_choice": "Retain current shared-node test fixture; incoming differs only in equivalent setup and name. Both retain the2 distinct-node/shared-asset cases.",
+  "unique_evidence": [
+    {
+      "path": "docs/validation/mail-final-integration-20261120/README.md",
+      "commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "blob": "4a41af08fd4e03fca2b769cd9faa082dd37f329b"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/SHA256SUMS",
+      "commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "blob": "1d3dfcc5fa486f368665d4b46138399cd95b5a2f"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/accepted-test-cases.json",
+      "commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "blob": "ca8e9bddc580e0d49fc68fe4a56feeb03c67b4ca"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/archive-manifest.json",
+      "commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "blob": "330cd1d80b1b5ef88ca71ceb3441d2512dc7e377"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/continuation-qualification.json",
+      "commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "blob": "49012f7881b10090b59944cd4658b072677e113c"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/historical-overlap.json",
+      "commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "blob": "271804b1d2a945c68a4c6c077862da390bef9e7f"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/incoming-heads.json",
+      "commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "blob": "24894c258dcd6a94569e8e64332c35bed1a27f63"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/interruption-seal.json",
+      "commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "blob": "deb162923f19d48f15bd5e38f85d81b8ca4ad8e5"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/mail-final-qualification.tar.xz",
+      "commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "blob": "7ef7aac6fce8addbc160539e1603160c161a839d"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/package_evidence.py",
+      "commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "blob": "2dfc209580b0b30cccefbd5d128e79fb8a4aff9e"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/platform-recheck-cases.json",
+      "commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "blob": "61c3fa6183c9f5d475803e0563166a01732dc9c7"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/qualification.json",
+      "commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "blob": "1429436213026ccd64847a9be7b175426bf0477d"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/qualify_mail_final_union.py",
+      "commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "blob": "884eab3ed220bb8a174fdd13cfc8631445156fd9"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/reproduce_flutter_runtime.py",
+      "commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "blob": "3c192c97fa8c4c6ca14132c82072d91410a4578b"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/screenshots.json",
+      "commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "blob": "7e39854683557e1cda9c26c21fae4c4fe7d7d570"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/source-git-verification.json",
+      "commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "blob": "a14b0ee6072ed3bfffbd408a07b4232f8ee54849"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/verify_mail_final_union.py",
+      "commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "blob": "0cfd861df9fd3a2036914ef1dc220e8050482bf4"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/visual-review.json",
+      "commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "blob": "86a0a0c237cf395174773ea197bb0cbbbf297b4c"
+    },
+    {
+      "path": "docs/validation/word-late-main-integration-20261120/README.md",
+      "commit": "e7d9055f20462f37c74a38a761d5c092f48ab973",
+      "blob": "0e86ab1c270c2a00e5b40ab0ea2170828e8d6fa3"
+    },
+    {
+      "path": "docs/validation/word-late-main-integration-20261120/accepted-summary.json",
+      "commit": "e7d9055f20462f37c74a38a761d5c092f48ab973",
+      "blob": "db87a83b84420449ff7551cae097af2be1b037a1"
+    },
+    {
+      "path": "docs/validation/word-late-main-integration-20261120/incoming-retention-audit.json",
+      "commit": "e7d9055f20462f37c74a38a761d5c092f48ab973",
+      "blob": "40a765fffe28bb131a4e571d783f7b1a2c623823"
+    },
+    {
+      "path": "docs/validation/word-late-main-integration-20261120/local-qualification.tar.gz",
+      "commit": "e7d9055f20462f37c74a38a761d5c092f48ab973",
+      "blob": "ccadccffe7f32038f943ca72cf6b8de6b82f7b8a"
+    },
+    {
+      "path": "docs/validation/word-late-main-integration-20261120/qualification.json",
+      "commit": "e7d9055f20462f37c74a38a761d5c092f48ab973",
+      "blob": "325bfb1b82381fdf8760422391ccb1be6811c69d"
+    },
+    {
+      "path": "docs/validation/word-late-main-integration-20261120/receipt-manifest.json",
+      "commit": "e7d9055f20462f37c74a38a761d5c092f48ab973",
+      "blob": "bbcc23f8b53f1ae118be5c93fde2203d3c9b61c6"
+    }
+  ],
+  "captured_documentation_followup": {
+    "captured_head": "0e4e999a08996a6b8696ca3adba11e303331b73e",
+    "base": "58cc4283b35b29a4036528f65ee0590230d583f6",
+    "scope": "Documentation and evidence only; no production, test or asset changes.",
+    "commits": [
+      {
+        "sha": "8206975dd91330914f77d0e3ceab3fadbe9ad519",
+        "parents": [
+          "58cc4283b35b29a4036528f65ee0590230d583f6"
+        ],
+        "message": "Save final Mail integration qualification [skip ci]\n\nPreserve the 1,471-case source-bound union, 228 matching Node rechecks, original failed attempt, complete corrective rerun, diagnostic evidence, and reproducible archive.",
+        "url": "https://github.com/CrispStrobe/quds_office_suite/commit/8206975dd91330914f77d0e3ceab3fadbe9ad519",
+        "files": [
+          {
+            "path": "docs/validation/mail-latest-main-integration-20261120/README.md",
+            "status": "added",
+            "blob": "217a4cd01dc2e49a1f4d6170d241bb45670ddac2",
+            "additions": 83,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/mail-latest-main-integration-20261120/SHA256SUMS",
+            "status": "added",
+            "blob": "11c36eeaf7ae781e30a960cd8774911466a7f2fc",
+            "additions": 16,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/mail-latest-main-integration-20261120/accepted-test-cases.json",
+            "status": "added",
+            "blob": "244fa0e11c14f88e3599fa635b5a9eb625d2fa1c",
+            "additions": 18866,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/mail-latest-main-integration-20261120/accepted-union.json",
+            "status": "added",
+            "blob": "9c91dc24ed8af9346d86d5f5d627bf3133800197",
+            "additions": 186,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/mail-latest-main-integration-20261120/archive-manifest.json",
+            "status": "added",
+            "blob": "781abf702a5d4c284b0b84d363554b5b15efc382",
+            "additions": 1103,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/mail-latest-main-integration-20261120/corrective-qualification.json",
+            "status": "added",
+            "blob": "ae15f86e2641d6f33db5ba6be386650fd86f1a57",
+            "additions": 584,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/mail-latest-main-integration-20261120/fixture-peer-review.json",
+            "status": "added",
+            "blob": "ff1203aa6bbd66153667189ea85453c249f781b3",
+            "additions": 46,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/mail-latest-main-integration-20261120/incoming-heads.json",
+            "status": "added",
+            "blob": "c85871294c614f9306102455ae6aa912b7d2f658",
+            "additions": 59,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/mail-latest-main-integration-20261120/initial-qualification.json",
+            "status": "added",
+            "blob": "c0616f157839d0c2acfed3fad23eff88ea4f2953",
+            "additions": 2239,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/mail-latest-main-integration-20261120/mail-latest-qualification.tar.xz",
+            "status": "added",
+            "blob": "cd1662ff3ac50248b23c5e6221a0ef6f352aaaf7",
+            "additions": 0,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/mail-latest-main-integration-20261120/package_evidence.py",
+            "status": "added",
+            "blob": "7f64639e341f50a12dba62990754e34cbc709b6d",
+            "additions": 176,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/mail-latest-main-integration-20261120/platform-recheck-cases.json",
+            "status": "added",
+            "blob": "4729eac76c9dc727e0ccf4c503d79ea197046043",
+            "additions": 2476,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/mail-latest-main-integration-20261120/qualify_mail_latest_delta.py",
+            "status": "added",
+            "blob": "9c2e63b218c529b4b44b6bd7053ae42040b4b2be",
+            "additions": 529,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/mail-latest-main-integration-20261120/reader-peer-review.json",
+            "status": "added",
+            "blob": "5c13218c6c439bfde11239ba789ce8d66ec5d249",
+            "additions": 42,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/mail-latest-main-integration-20261120/reproduce_flutter_runtime.py",
+            "status": "added",
+            "blob": "3c192c97fa8c4c6ca14132c82072d91410a4578b",
+            "additions": 195,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/mail-latest-main-integration-20261120/verify_mail_latest_retention.py",
+            "status": "added",
+            "blob": "f992eb13c2cd45fe31f01ea402fad4c4f85adb6c",
+            "additions": 304,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/mail-latest-main-integration-20261120/visual-comparison.json",
+            "status": "added",
+            "blob": "775f71a2a6cdb5cc0f5262bc4c256d075bc8e134",
+            "additions": 132,
+            "deletions": 0
+          }
+        ]
+      },
+      {
+        "sha": "0e4e999a08996a6b8696ca3adba11e303331b73e",
+        "parents": [
+          "8206975dd91330914f77d0e3ceab3fadbe9ad519"
+        ],
+        "message": "Document qualified Word VBA delivery and integration evidence [skip ci]\n\nIndex the saved compatibility, native layout, Zotero and Mail records; preserve independent source and archive reviews, complete checkpoint history, and post-merge readback procedure.",
+        "url": "https://github.com/CrispStrobe/quds_office_suite/commit/0e4e999a08996a6b8696ca3adba11e303331b73e",
+        "files": [
+          {
+            "path": "docs/VBA_WORD_MACROS.md",
+            "status": "modified",
+            "blob": "1085c7121a90ceb68bc4a8cc1246502bac5be724",
+            "additions": 1,
+            "deletions": 1
+          },
+          {
+            "path": "docs/validation/word-vba-final-integration-20261120/README.md",
+            "status": "added",
+            "blob": "3fbc337b4af757b8075df1492fa288ed0708f313",
+            "additions": 146,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/word-vba-final-integration-20261120/final-delivery-summary.json",
+            "status": "added",
+            "blob": "8be1ddd1841cd3d06ae82b00f2b61fe3cdd8bc0a",
+            "additions": 1191,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/word-vba-final-integration-20261120/mail-fixture-followup-review.json",
+            "status": "added",
+            "blob": "ff1203aa6bbd66153667189ea85453c249f781b3",
+            "additions": 46,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/word-vba-final-integration-20261120/mail-latest-independent-package-review.json",
+            "status": "added",
+            "blob": "ae3de75b084ac88d7fc87c7de398a55253370223",
+            "additions": 39,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/word-vba-final-integration-20261120/mail-latest-independent-review.json",
+            "status": "added",
+            "blob": "4ea369f8fe2b91f40e7ee094978574a737e42d38",
+            "additions": 46,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/word-vba-final-integration-20261120/manifest.json",
+            "status": "added",
+            "blob": "0abb3d242d1a33d4217cf5cb2bd8ee38126b4569",
+            "additions": 45,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/word-vba-final-integration-20261120/native-case-union.json",
+            "status": "added",
+            "blob": "9fd14e5abda6816e14ff95039274a80091d6fd06",
+            "additions": 2594,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/word-vba-final-integration-20261120/verify_remote_delivery.py",
+            "status": "added",
+            "blob": "2643944b836e673bad2a38983e35e6f227da19ea",
+            "additions": 67,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/word-vba-final-integration-20261120/word-source-retention-416.json",
+            "status": "added",
+            "blob": "135a5c1bfb87393614389764f582bfb17ebefaa1",
+            "additions": 150,
+            "deletions": 0
+          },
+          {
+            "path": "docs/validation/word-vba-final-integration-20261120/word-source-retention.json",
+            "status": "added",
+            "blob": "a72c5dfe383fe622afaa3f91390689a617d08fcc",
+            "additions": 217,
+            "deletions": 0
+          }
+        ]
+      }
+    ]
+  }
+}

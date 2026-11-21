@@ -41,6 +41,13 @@ abstract final class WordZoteroDocumentData {
   /// Adapts the storage preference back to Word fields before DOCX storage.
   static String toNative(String data) => _convert(data, 'Field');
 
+  /// Validates preferences carried by Zotero's document-transfer hyperlinks.
+  /// Native Word and LibreOffice exporters may name their original storage
+  /// type; after import this editor stores active Word fields. This exception
+  /// is confined to explicit transfer, never ordinary desktop callbacks.
+  static String fromTransfer(String data) =>
+      _convert(data, 'Field', transfer: true);
+
   /// Requests a fresh native bibliography layout without changing the chosen
   /// style or any unrelated preference. Earlier simplified results must not
   /// permanently advertise that their paragraph layout was already applied.
@@ -102,6 +109,16 @@ abstract final class WordZoteroDocumentData {
         locale = style['locale'];
       }
       noteType = (json['prefs'] as Map<String, dynamic>)['noteType'];
+      // JSON numbers describe the enum's value. Integral doubles and exponent
+      // forms must have the same meaning on the VM and JavaScript, whose
+      // number representation does not distinguish 1 from 1.0.
+      if (noteType is num &&
+          noteType.isFinite &&
+          noteType >= 0 &&
+          noteType <= 2 &&
+          noteType == noteType.truncateToDouble()) {
+        noteType = noteType.toInt();
+      }
     } else if (native.isNotEmpty) {
       final root = _parseXml(native);
       final styles = root.childrenNamed('style', namespaceUri: '');
@@ -241,7 +258,11 @@ abstract final class WordZoteroDocumentData {
     };
   }
 
-  static String _convert(String data, String fieldType) {
+  static String _convert(
+    String data,
+    String fieldType, {
+    bool transfer = false,
+  }) {
     if (data.isEmpty) return '';
     if (data.length > maxDataLength) {
       throw const FormatException(
@@ -262,7 +283,7 @@ abstract final class WordZoteroDocumentData {
         throw const FormatException('Missing Zotero document preferences');
       }
       final prefs = decoded['prefs'] as Map<String, dynamic>;
-      _checkFieldType(prefs['fieldType']);
+      _checkFieldType(prefs['fieldType'], transfer: transfer);
       if (prefs['fieldType'] == fieldType) return data;
       prefs['fieldType'] = fieldType;
       return _bounded(jsonEncode(decoded));
@@ -293,7 +314,7 @@ abstract final class WordZoteroDocumentData {
       throw const FormatException('Missing or duplicate Zotero field type');
     }
     final value = fields.single.getAttribute('value');
-    _checkFieldType(value);
+    _checkFieldType(value, transfer: transfer);
     if (value == fieldType) return data;
     fields.single.setAttribute('value', fieldType);
     return _bounded(XmlDocument(root: root).toXmlString(declaration: false));
@@ -308,8 +329,11 @@ abstract final class WordZoteroDocumentData {
     return data;
   }
 
-  static void _checkFieldType(Object? fieldType) {
-    if (fieldType != 'Field' && fieldType != 'Http') {
+  static void _checkFieldType(Object? fieldType, {bool transfer = false}) {
+    if (fieldType != 'Field' &&
+        fieldType != 'Http' &&
+        !(transfer &&
+            (fieldType == 'ReferenceMark' || fieldType == 'Bookmark'))) {
       throw const FormatException(
         'Only Zotero Word fields can use the desktop connection',
       );

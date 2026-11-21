@@ -1,0 +1,37 @@
+{
+  "command": [
+    "/workspace/scratch/b3c425a3b090/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "format",
+    "--language-version=3.12",
+    "/workspace/scratch/b3c425a3b090/runtime/isolated/main2-fidelity-da066/format-proof/after/office_vba_word_page_setup_test.dart",
+    "/workspace/scratch/b3c425a3b090/runtime/isolated/main2-fidelity-da066/format-proof/after/word_steps.dart",
+    "/workspace/scratch/b3c425a3b090/runtime/isolated/main2-fidelity-da066/format-proof/before/office_vba_word_page_setup_test.dart",
+    "/workspace/scratch/b3c425a3b090/runtime/isolated/main2-fidelity-da066/format-proof/before/word_steps.dart"
+  ],
+  "conclusion": "Both complete files are byte-identical after the same declared-language formatter; incoming differences are formatting only.",
+  "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "exit_code": 0,
+  "files": [
+    {
+      "after_normalized_sha256": "3722b9ea50c4494f6571b7ecab6dc49bd541b328cf676a986019ff001887db7d",
+      "after_raw_sha256": "3722b9ea50c4494f6571b7ecab6dc49bd541b328cf676a986019ff001887db7d",
+      "base_commit": "c5cf1ec11970211597fd16eebdc8d0eaa115278b",
+      "before_normalized_sha256": "3722b9ea50c4494f6571b7ecab6dc49bd541b328cf676a986019ff001887db7d",
+      "before_raw_sha256": "d7d9794dc3629d6bb06dc92c03b78a5d66460f39878d999010ea00eb3a6faed4",
+      "normalized_bytes_identical": true,
+      "path": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+      "target_commit": "da0664ff999383210701e530588f6c88bd8e1a6b"
+    },
+    {
+      "after_normalized_sha256": "4d432d956c0802ddc9402658cc14a09d2fb3507723059b70f30409467dc2b447",
+      "after_raw_sha256": "4d432d956c0802ddc9402658cc14a09d2fb3507723059b70f30409467dc2b447",
+      "base_commit": "c5cf1ec11970211597fd16eebdc8d0eaa115278b",
+      "before_normalized_sha256": "4d432d956c0802ddc9402658cc14a09d2fb3507723059b70f30409467dc2b447",
+      "before_raw_sha256": "eca7c0de38e168af5c9e8baeeeb292e3cfb1b439fef53e4842ea360307242985",
+      "normalized_bytes_identical": true,
+      "path": "packages/quds_office_engine/test/office_vba_word_page_setup_test.dart",
+      "target_commit": "da0664ff999383210701e530588f6c88bd8e1a6b"
+    }
+  ],
+  "formatter_language_version": "3.12"
+}

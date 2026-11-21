@@ -1,0 +1,337 @@
+{
+  "schema": "quds-mail-final-intake-refresh/v1",
+  "generated_at_utc": "2026-11-21T04:40:30.740773+00:00",
+  "status": "NEW_EXTERNAL_WORK_REQUIRES_INTEGRATION",
+  "scope": "Point-in-time read-only incoming-work refresh. Only new branch objects/unique audit refs were fetched; no checkout, merge, index, product/document edit, remote write or GitHub CI/status/check query occurred. Fetch also created the normal remote-tracking names for these two new branches.",
+  "baseline": {
+    "initial_snapshot": {
+      "path": "../intake-snapshot.json",
+      "sha256": "4c53cf6c62aeba463c756538936de8357071e43703a7ff070d5a3abeba1aab05",
+      "captured_at_utc": "2026-11-21T04:21:50.814Z"
+    },
+    "independent_review": {
+      "path": "../intake-review.json",
+      "sha256": "2f42a7359e1acc8de81c1ec429f194811b3926da50204ab394b6624b0ab40b15",
+      "reviewed_at_utc": "2026-11-21T04:23:12.868562+00:00"
+    },
+    "initial_main": "bf761552d22dcd1eb8cbb0ab00ddab6507e1d572"
+  },
+  "reviewed_work_head": "c25a6ffb1b74673b567cc91eaba0d9d3a2a74345",
+  "remote_main": {
+    "ref": "refs/heads/main",
+    "sha": "bf761552d22dcd1eb8cbb0ab00ddab6507e1d572",
+    "unchanged_from_initial": true
+  },
+  "remotes": {
+    "origin": {
+      "capture": {
+        "remote": "origin",
+        "command": [
+          "git",
+          "ls-remote",
+          "--refs",
+          "origin",
+          "refs/heads/*",
+          "refs/pull/*/head"
+        ],
+        "started_at_utc": "2026-11-21T04:38:10.064389+00:00",
+        "completed_at_utc": "2026-11-21T04:38:16.447837+00:00",
+        "path": "final-intake-refresh-origin-refs.txt",
+        "sha256": "bbe8ffc2bd027383a029e5d7559de68cc9f0fd272d14453b3f4c4af1db3d9884",
+        "ref_count": 322
+      },
+      "branch_count": 42,
+      "pull_head_count": 280,
+      "unchanged_count": 319,
+      "changes": [
+        {
+          "ref": "refs/heads/codex/word-vba-paragraph-pagination-20261121",
+          "before": null,
+          "after": "770c7dc8afddf62f1d831af95e9070bd890df4f4"
+        },
+        {
+          "ref": "refs/heads/codex/zotero-multiparagraph-20261121",
+          "before": null,
+          "after": "6ac854de0583b7955470648916c53c76b67c0fff"
+        },
+        {
+          "ref": "refs/heads/work/mail-parity-20261121",
+          "before": "bf761552d22dcd1eb8cbb0ab00ddab6507e1d572",
+          "after": "c25a6ffb1b74673b567cc91eaba0d9d3a2a74345"
+        }
+      ]
+    },
+    "upstream": {
+      "capture": {
+        "remote": "upstream",
+        "command": [
+          "git",
+          "ls-remote",
+          "--refs",
+          "upstream",
+          "refs/heads/*",
+          "refs/pull/*/head"
+        ],
+        "started_at_utc": "2026-11-21T04:38:10.056448+00:00",
+        "completed_at_utc": "2026-11-21T04:38:16.083013+00:00",
+        "path": "final-intake-refresh-upstream-refs.txt",
+        "sha256": "4ec8ea774f24cc95ac64579341b63a6b86e734cc6bd9f319b170ab29dd7e6cac",
+        "ref_count": 8
+      },
+      "branch_count": 4,
+      "pull_head_count": 4,
+      "unchanged_count": 8,
+      "changes": []
+    }
+  },
+  "expected_work_branch_advance_excluded": {
+    "ref": "refs/heads/work/mail-parity-20261121",
+    "before": "bf761552d22dcd1eb8cbb0ab00ddab6507e1d572",
+    "observed_after": "c25a6ffb1b74673b567cc91eaba0d9d3a2a74345"
+  },
+  "initial_new_work_included": {
+    "sha": "bbccae1bdead10951e2d7a23b33cf14c55382e02",
+    "ancestor_of_reviewed_work_head": true
+  },
+  "new_external_heads": [
+    {
+      "remote_ref": "refs/heads/codex/word-vba-paragraph-pagination-20261121",
+      "sha": "770c7dc8afddf62f1d831af95e9070bd890df4f4",
+      "audit_ref": "refs/audit/mail-final-intake-20261121-0438/word-vba-paragraph-pagination",
+      "commit_subject": "Integrate reviewed Mail observations and concurrent intake evidence [skip ci]",
+      "parents": [
+        "1e49a2afa2be0cb3b095f311d1d396ff0d669d9e",
+        "71a9d73f86a30380d7fe3563f1a0048f1f7eb860"
+      ],
+      "merge_base_with_reviewed_work_head": "71a9d73f86a30380d7fe3563f1a0048f1f7eb860",
+      "included_in_reviewed_work_head": false,
+      "commits_not_in_reviewed_work_head": [
+        {
+          "sha": "770c7dc8afddf62f1d831af95e9070bd890df4f4",
+          "subject": "Integrate reviewed Mail observations and concurrent intake evidence [skip ci]"
+        },
+        {
+          "sha": "1e49a2afa2be0cb3b095f311d1d396ff0d669d9e",
+          "subject": "Retain concurrent Zotero intake history and evidence [skip ci]"
+        },
+        {
+          "sha": "c093f6387fcae69f04c63f4344476e4785906a54",
+          "subject": "Harden section namespace fidelity and document bounded Word PageSetup [skip ci]"
+        },
+        {
+          "sha": "d71d378325e4f61996320b0415779f45cea60ce2",
+          "subject": "Extend Word VBA with precise section PageSetup writes [skip ci]"
+        },
+        {
+          "sha": "aefcb7663e63130487054723ed7f1530ad5f9f60",
+          "subject": "Reconcile all incoming fork work and retain Word/Mail validation [skip ci]"
+        },
+        {
+          "sha": "e5b9240512158c329dd2671aa9f36eb08cb74e11",
+          "subject": "Reconcile recent Office branches before Zotero range work [skip ci]"
+        }
+      ],
+      "path_delta_base": "71a9d73f86a30380d7fe3563f1a0048f1f7eb860",
+      "paths": [
+        {
+          "status": "M",
+          "path": "docs/MACROS.md"
+        },
+        {
+          "status": "M",
+          "path": "docs/VBA_PARITY_ROADMAP.md"
+        },
+        {
+          "status": "M",
+          "path": "docs/VBA_WORD_MACROS.md"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/word-vba-paragraph-pagination-20261121/intake-inventory.json"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/word-vba-paragraph-pagination-20261121/intake-verification.json"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/word-vba-paragraph-pagination-20261121/intake.md"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/word-vba-paragraph-pagination-20261121/late-intake.json"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/word-vba-paragraph-pagination-20261121/late-intake.md"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/word-vba-paragraph-pagination-20261121/late-mail-validation.json"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/word-vba-paragraph-pagination-20261121/overlap-resolution.json"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/zotero-merged-cells-20261120/incoming-pr277-horizontal-checkpoint.md"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/zotero-merged-cells-20261120/incoming-pr277-intake.md"
+        },
+        {
+          "status": "M",
+          "path": "docs/validation/zotero-merged-cells-20261120/intake.md"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/zotero-multiparagraph-20261121/intake/README.md"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/zotero-multiparagraph-20261121/intake/audit.json"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/zotero-multiparagraph-20261121/intake/audit_intake.py"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/zotero-multiparagraph-20261121/intake/fork-refs.tsv"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/zotero-multiparagraph-20261121/intake/historical-equivalents.json"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/zotero-multiparagraph-20261121/intake/resolution.json"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/zotero-multiparagraph-20261121/intake/snapshot.json"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/zotero-multiparagraph-20261121/intake/upstream-refs.tsv"
+        },
+        {
+          "status": "M",
+          "path": "packages/quds_office_editor/example/test/studio_mail_remote_images_incoming_test.dart"
+        },
+        {
+          "status": "M",
+          "path": "packages/quds_office_engine/CHANGELOG.md"
+        },
+        {
+          "status": "A",
+          "path": "packages/quds_office_engine/example/macros/word_page_setup.bas"
+        },
+        {
+          "status": "M",
+          "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart"
+        },
+        {
+          "status": "A",
+          "path": "packages/quds_office_engine/lib/src/automation/operations/word_page_setup_steps.dart"
+        },
+        {
+          "status": "M",
+          "path": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart"
+        },
+        {
+          "status": "M",
+          "path": "packages/quds_office_engine/lib/src/word/serial/word_section_io.dart"
+        },
+        {
+          "status": "A",
+          "path": "packages/quds_office_engine/test/office_macro_word_page_setup_test.dart"
+        },
+        {
+          "status": "A",
+          "path": "packages/quds_office_engine/test/office_vba_word_page_setup_integration_test.dart"
+        },
+        {
+          "status": "A",
+          "path": "packages/quds_office_engine/test/office_vba_word_page_setup_test.dart"
+        },
+        {
+          "status": "A",
+          "path": "packages/quds_office_engine/tool/macros/web_vba_word_page_setup_smoke.dart"
+        }
+      ]
+    },
+    {
+      "remote_ref": "refs/heads/codex/zotero-multiparagraph-20261121",
+      "sha": "6ac854de0583b7955470648916c53c76b67c0fff",
+      "audit_ref": "refs/audit/mail-final-intake-20261121-0438/zotero-multiparagraph",
+      "commit_subject": "Extend Zotero research insertion across ordinary paragraphs [skip ci]",
+      "parents": [
+        "e5b9240512158c329dd2671aa9f36eb08cb74e11"
+      ],
+      "merge_base_with_reviewed_work_head": "bf761552d22dcd1eb8cbb0ab00ddab6507e1d572",
+      "included_in_reviewed_work_head": false,
+      "commits_not_in_reviewed_work_head": [
+        {
+          "sha": "6ac854de0583b7955470648916c53c76b67c0fff",
+          "subject": "Extend Zotero research insertion across ordinary paragraphs [skip ci]"
+        },
+        {
+          "sha": "e5b9240512158c329dd2671aa9f36eb08cb74e11",
+          "subject": "Reconcile recent Office branches before Zotero range work [skip ci]"
+        }
+      ],
+      "path_delta_base": "e5b9240512158c329dd2671aa9f36eb08cb74e11",
+      "paths": [
+        {
+          "status": "M",
+          "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart"
+        },
+        {
+          "status": "M",
+          "path": "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart"
+        },
+        {
+          "status": "M",
+          "path": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart"
+        },
+        {
+          "status": "A",
+          "path": "packages/quds_office_editor/test/word_zotero_multiparagraph_controller_test.dart"
+        },
+        {
+          "status": "M",
+          "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart"
+        },
+        {
+          "status": "A",
+          "path": "packages/quds_office_engine/test/word_zotero_multiparagraph_test.dart"
+        }
+      ]
+    }
+  ],
+  "recommendation": {
+    "merge_order": [
+      "770c7dc8afddf62f1d831af95e9070bd890df4f4",
+      "6ac854de0583b7955470648916c53c76b67c0fff"
+    ],
+    "reason": "Word already contains current provider checkpoint 71a9d73f and shared Zotero intake e5b92405; merging it before Zotero makes the shared intake the Zotero merge base and avoids carrying older Mail alias variants back over the resolved intake. Preserve current store/Studio recovery additions.",
+    "word_mail_overlap": {
+      "path": "packages/quds_office_editor/example/test/studio_mail_remote_images_incoming_test.dart",
+      "change": "Five added lines assert decoded HTML plus retained image bytes stay within maxDecodedBytes; no Mail production-source delta from provider checkpoint."
+    },
+    "zotero_shared_intake": "e5b9240512158c329dd2671aa9f36eb08cb74e11",
+    "word_contains_shared_intake": true,
+    "zotero_feature_delta_files": 6,
+    "unmodified_pr_heads": {
+      "fork": 280,
+      "upstream": 4
+    },
+    "upstream_heads_unchanged": 4,
+    "integration_and_tests_performed_by_reviewer": false,
+    "before_remote_main_update": "Re-read remote main and use a normal ancestry-preserving non-force update; captures here are point-in-time and concurrent contributors may advance again."
+  },
+  "github_actions": "NOT QUERIED OR AWAITED"
+}

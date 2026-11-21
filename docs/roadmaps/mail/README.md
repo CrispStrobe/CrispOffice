@@ -18,9 +18,9 @@ plan rather than treating provider connectivity as full product parity.
 | Order | Workflow | Current position | Next acceptance boundary |
 | --- | --- | --- | --- |
 | 1 | Recoverable composition | Multiple account-scoped local drafts, independent reply/forward drafts, attachment/reply recovery and interrupted-send warnings; offline draft entry for verified IMAP (including discovery), EWS, Gmail and Microsoft 365 accounts | Provider-side Drafts synchronization with explicit conflicts and repository-backed offline sessions |
-| 2 | Everyday mailbox workspace (M04W/M06) | Shared foreground list, explicit bulk read/flag triage and dated cached views of visited folders across IMAP, EWS, Gmail and Microsoft 365; explicitly opened bodies/attachments remain readable offline | Repository-driven foreground streams, durable synchronization and remote commands, unified inbox, consistent move/delete and broader bulk actions |
+| 2 | Everyday mailbox workspace (M04W/M06) | Repository-observed loaded/cached sessions, durable single/bulk flag receipts, fresh uncertainty checks, and explicit resumable folder-header synchronization across IMAP, EWS, Gmail and Microsoft 365 | Complete shared synchronized workspace, bounded background/body retention, unified inbox and consistent move/delete |
 | 3 | Sending and outbox (M07) | Visible native durable Outbox, atomic draft transfer/edit-copy, frozen MIME/envelopes, review/exact export, restart recovery, explicit send/retry/cancel and local uncertain closure across SMTP/EWS/Gmail/Microsoft 365 | Durable undo-send delay and explicit scheduling, then background execution and provider-specific Sent reconciliation |
-| 4 | Efficient discovery and organization | Independent archive FTS, saved archive searches, structured loaded-header fields/phrases/dates/states, stable local mailbox sorting and visible-selection read/flag commands | Full account search, conversations, tags/categories, durable bulk commands and ordered rule execution with preview/recovery |
+| 4 | Efficient discovery and organization | Independent archive FTS, saved archive searches, structured loaded-header fields/phrases/dates/states, stable local mailbox sorting and journaled visible-selection read/flag commands | Full account search, conversations, tags/categories, broader durable bulk commands and ordered rule execution with preview/recovery |
 | 5 | Rich authoring and Office workflows (M07/M08) | Word-based plain text, To/Cc/Bcc, reply all, inert HTML-only text quotes, file attachments and explicit complete attachment forwarding | Signatures/templates, HTML alternatives, inline images, attach current document/PDF and edit a copy of a received attachment |
 | 6 | Integrated productivity and release (M09–M13) | Provider adapters and shared foundations available | Calendar/People, invitation workflows, provider-specific shared mailboxes, encryption/signatures where supported, installed-platform and live-provider qualification |
 
@@ -36,10 +36,17 @@ bulk triage. It covers connected and cached mail without extra provider work.
 The [foreground bulk contract](bulk-flags.md) describes checked visible selections,
 explicit read/unread/flag/unflag commands, outcome counts, stop-after-current
 behavior and required refresh after uncertainty. Connected hosts share that
-contract and one execution engine; cached mail stays read-only. Receipts remain
-in memory and do not guarantee persistent-cache updates. The next boundary is
-durable repository-driven sessions and a remote-command journal, followed by unified
-search and conversations.
+contract and one execution engine; cached mail stays read-only. The
+[command-journal continuation](command-journal.md) persists native single/bulk
+intent and outcomes, updates exact cached target flags transactionally and adds
+offline activity history. The [uncertain-action recovery](flag-recovery.md)
+adds explicit fresh provider observations while preserving the original receipt.
+The [repository session continuation](repository-sessions.md) now observes
+saved folder/catalog streams, preserves selected readers and fences account
+and folder changes. The [durable synchronization continuation](durable-sync.md)
+adds explicit resumable folder runs, atomic checkpoint state and offline
+synchronized-header browsing. The next boundary is the complete shared
+synchronized workspace, followed by unified search and conversations.
 
 The [cached mailbox guide](cached-mailboxes.md) describes durable ordered views
 of visited folders, explicit body/attachment retention and credential-free
@@ -163,7 +170,7 @@ Future provider implementations live under the provider boundary, with separate 
 
 Dependency direction is host -> UI/Office integration -> core/MIME/store/provider adapters. The document engine and editor do not depend on mail or either host. Do not put mail models into quds_office_engine.
 
-The target connected-mail architecture is driven by the local store, with commands persisted before remote execution and background workers updating the same repository. The current Studio mailbox list remains a foreground session; connecting it to those durable streams and commands is the next M04W boundary. The saved-message reader can also operate entirely in memory with no mailbox account or database.
+The target connected-mail architecture is driven by the local store, with commands persisted before remote execution and background workers updating the same repository. Native Studio journals foreground read/flag commands, explicitly checks uncertain receipts against fresh provider observations, and observes the successfully saved browsing window through repository streams. Explicit foreground folder synchronization now commits authoritative memberships and durable checkpoints into that repository. Background scheduling and the complete shared workspace remain the next M04W boundaries. The saved-message reader can also operate entirely in memory with no mailbox account or database.
 
 ### Existing editor rules remain binding
 

@@ -1,0 +1,131 @@
+{
+  "errors": 0,
+  "evidence_scope": "Raw test events, cases, commands, stdout/stderr, source manifests, runners and merge/applicability receipts. No exported source workspaces or SDK binaries.",
+  "failed": 0,
+  "formatting": {
+    "commit": "5c45ae27bbba49f3dac8fbf5d100739a2084b63b",
+    "reason": "Explicit declared-language formatter reflows five existing calls with optional trailing commas; production code and Zotero inputs unchanged."
+  },
+  "github_actions": "Neither queried nor awaited",
+  "intake": {
+    "ancestors": 306,
+    "exact_equivalents": 24,
+    "frozen_refs": 330,
+    "refreshed_main_ancestor": "3d01815908aeded5862d131109341365de637242",
+    "uncovered": 0
+  },
+  "passed": 156,
+  "phase_counts": {
+    "page-setup-tests": 148,
+    "section-clone": 5,
+    "section-roundtrip": 3
+  },
+  "portable": {
+    "assertions": {
+      "example": {
+        "additionalReopens": 2,
+        "firstRunRevision": 1,
+        "opaquePayloadsPreserved": true,
+        "operations": 10,
+        "repeatedRevision": 2,
+        "sections": [
+          {
+            "bottom": 54,
+            "break": "nextPage",
+            "columnCount": 2,
+            "columnSep": true,
+            "columnSpace": 18,
+            "footer": 36,
+            "header": 36,
+            "height": 864,
+            "left": 54,
+            "right": 54,
+            "text": "First section",
+            "top": 72,
+            "width": 648
+          },
+          {
+            "bottom": 60,
+            "break": "continuous",
+            "columnCount": 1,
+            "columnSep": false,
+            "columnSpace": 36,
+            "footer": 30,
+            "header": 25,
+            "height": 800,
+            "left": 36,
+            "right": 36,
+            "text": "Second section",
+            "top": 50,
+            "width": 600
+          },
+          {
+            "bottom": 50,
+            "break": "nextPage",
+            "columnCount": 1,
+            "columnSep": false,
+            "columnSpace": 24,
+            "footer": 25,
+            "header": 20,
+            "height": 900,
+            "left": 55,
+            "right": 60,
+            "text": "Untouched section",
+            "top": 45,
+            "width": 700
+          }
+        ]
+      },
+      "recording": {
+        "failedCallExcluded": true,
+        "recordedSteps": 2,
+        "replayRevision": 1
+      },
+      "rollback": {
+        "failedStep": 1,
+        "validateAndRunRollback": true
+      }
+    },
+    "javascript_compile_exit": 0,
+    "node_exit": 0,
+    "stdout_sha256": "c79926eba214a4f1e9458e60a9ee147d618ec6232f6148e3a00d680e92cf0f23",
+    "vm_exit": 0,
+    "vm_node_stdout_identical": true
+  },
+  "prior_failure": {
+    "cases": 147,
+    "cause": "Namespace declarations parse with empty metadata URI; matching explicit XMLNS URI appended duplicate xmlns:qudsWord0 attributes on repeated writes.",
+    "commit": "213c011c2f0016190c408e1fea9229577426d147",
+    "failed": 1,
+    "fix": "Match declaration qualified names while preserving native w:w, foreign attributes/children and ordinary same-local-name attributes; share helper across PageSetup and section preservation.",
+    "fix_commit": "19f829aa2ac0b764b5b49d56223cb222a3cce5c7",
+    "new_regression": "Repeated PageSetup plus section updates through three DOCX saves preserves an unqualified qudsWord0 payload, native and foreign width attributes, foreign namespace tokens/children, and unique declaration names.",
+    "passed": 146,
+    "published_product_fix": "c5cf1ec11970211597fd16eebdc8d0eaa115278b",
+    "test": "repeated writes reuse a native prefix without growing source metadata",
+    "tree": "3700f09ca2f2d6f89dd2a311ac8904b64caa9ada"
+  },
+  "published_commit": "a4ec5b812cc64c5f738357fdef8779df9b8a8a2b",
+  "published_tree": "ce69540b51ff3f59e761ed25de0124540b3cd4bf",
+  "qualified_commit": "5c45ae27bbba49f3dac8fbf5d100739a2084b63b",
+  "qualified_tree": "ceb8f0555a96e824b5bab85b79511b2ebd3004bd",
+  "schema": "quds-word-publication-qualification/v1",
+  "skipped": 0,
+  "source_integrity": {
+    "git_source_files_verified_at_publication": 1150,
+    "inputs": 1152,
+    "mismatches": [],
+    "stable_during_execution": true
+  },
+  "static_checks": {
+    "fatal_info_analysis_exits": [
+      0,
+      0,
+      0
+    ],
+    "format_exit": 0,
+    "formatter_language": "3.12"
+  },
+  "test_cases": 156,
+  "unique_cases": 156
+}

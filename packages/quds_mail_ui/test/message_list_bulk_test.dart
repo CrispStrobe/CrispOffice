@@ -89,7 +89,7 @@ MailMessageList _list({
 );
 
 Finder _key(String key) => find.byKey(ValueKey(key));
-Finder _check(String id) => _key('mail-list-select-$id');
+Finder _check(String id) => _key('mail-list-check-$id');
 
 Future<void> _tap(WidgetTester tester, Finder target) async {
   await tester.ensureVisible(target);
@@ -98,7 +98,7 @@ Future<void> _tap(WidgetTester tester, Finder target) async {
 }
 
 Future<void> _selectAll(WidgetTester tester) =>
-    _tap(tester, _key('mail-list-select-visible'));
+    _tap(tester, _key('mail-list-select-shown'));
 
 Future<void> _focusList(WidgetTester tester) async {
   tester.widget<Focus>(_key('mail-list-focus')).focusNode!.requestFocus();
@@ -131,7 +131,7 @@ void main() {
   testWidgets('cached hosts have no mutable bulk controls', (tester) async {
     await tester.pumpWidget(_app(_list()));
     expect(find.byType(Checkbox), findsNothing);
-    expect(_key('mail-list-select-visible'), findsNothing);
+    expect(_key('mail-list-select-shown'), findsNothing);
     expect(_key('mail-list-bulk-actions'), findsNothing);
     expect(_key('mail-list-selected-count'), findsNothing);
   });
@@ -379,7 +379,7 @@ void main() {
     (tester) async {
       await tester.pumpWidget(_app(_list(onBulkAction: (_, _) {})));
       final oldSelect = tester
-          .widget<TextButton>(_key('mail-list-select-visible'))
+          .widget<TextButton>(_key('mail-list-select-shown'))
           .onPressed!;
       await _selectAll(tester);
       final oldClear = tester
@@ -413,7 +413,7 @@ void main() {
       await tester.pumpWidget(app(busy: true));
       expect(tester.widget<Checkbox>(_check('z')).onChanged, isNull);
       expect(
-        tester.widget<TextButton>(_key('mail-list-select-visible')).onPressed,
+        tester.widget<TextButton>(_key('mail-list-select-shown')).onPressed,
         isNull,
       );
       expect(
@@ -488,6 +488,36 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('1 selected'), findsOneWidget);
     expect(opens, 0);
+  });
+
+  testWidgets('Escape with no checked rows remains available to the host', (
+    tester,
+  ) async {
+    var escapes = 0;
+    await tester.pumpWidget(
+      _app(
+        Focus(
+          onKeyEvent: (_, event) {
+            if (event is KeyDownEvent &&
+                event.logicalKey == LogicalKeyboardKey.escape) {
+              escapes++;
+              return KeyEventResult.handled;
+            }
+            return KeyEventResult.ignored;
+          },
+          child: _list(onBulkAction: (_, _) {}),
+        ),
+      ),
+    );
+    await _focusList(tester);
+    await tester.sendKeyEvent(LogicalKeyboardKey.escape);
+    expect(escapes, 1);
+    await _selectAll(tester);
+    await _focusList(tester);
+    await tester.sendKeyEvent(LogicalKeyboardKey.escape);
+    await tester.pumpAndSettle();
+    expect(escapes, 1);
+    expect(find.text('0 selected'), findsOneWidget);
   });
 
   testWidgets('search editing keeps Ctrl+A and Space without checking mail', (

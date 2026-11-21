@@ -2,7 +2,10 @@ import 'package:quds_office_engine/quds_office_engine.dart';
 import 'package:quds_office_engine/src/word/serial/word_property_io.dart';
 
 import 'step_input.dart';
+import 'word_header_footer_guard.dart';
 import 'word_list_steps.dart';
+import 'word_page_setup_steps.dart';
+import 'word_section_start_steps.dart';
 import 'word_spacing_steps.dart';
 import 'word_structure_steps.dart';
 
@@ -19,6 +22,9 @@ const wordOperations = <String, List<String>>{
   'clearTabStops': ['paragraph', ..._storyFields],
   'lineSpacing': ['paragraph', 'rule', 'points', ..._storyFields],
   'paragraphSpaceBefore': ['paragraph', 'action', ..._storyFields],
+  'pageSetup': ['section', 'property', 'points'],
+  'pageOrientation': ['section', 'orientation'],
+  'sectionStart': ['section', 'kind'],
   'paragraphFormat': [
     'paragraph',
     'alignment',
@@ -615,6 +621,25 @@ void applyStep(
       if (at == paragraphs.length) paragraphs.add(WmlParagraph());
       final p = paragraphs[at];
       WmlRunEdit.replaceRange(p, 0, p.text.length, text);
+    case 'pageSetup':
+      setWordPageSetup(
+        doc,
+        s.item('section', doc.sections),
+        property: s.string('property'),
+        points: s.number('points'),
+      );
+    case 'pageOrientation':
+      setWordPageOrientation(
+        doc,
+        s.item('section', doc.sections),
+        orientation: s.string('orientation'),
+      );
+    case 'sectionStart':
+      setWordSectionStart(
+        doc,
+        s.item('section', doc.sections),
+        kind: s.string('kind'),
+      );
     case 'sectionFormat':
       final sec = section();
       final width = s.number('width', fallback: sec.pageSize.width, min: 1);
@@ -711,7 +736,11 @@ Iterable<WmlParagraph> _paragraphs(WmlDocument doc, StepInput s) {
   if (story == 'footnote' || story == 'endnote') {
     return _note(doc, s, story).allParagraphs;
   }
-  return _headerParagraphs(s.item('section', doc.sections, fallback: 0), story);
+  return editableWordHeaderFooterParagraphs(
+    doc,
+    s.item('section', doc.sections, fallback: 0),
+    story,
+  );
 }
 
 Iterable<WmlVisual> _visuals(WmlDocument doc, StepInput s) {

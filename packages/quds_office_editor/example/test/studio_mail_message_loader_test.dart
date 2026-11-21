@@ -12,6 +12,7 @@ import 'package:quds_office_studio/studio_mail_message_loader.dart';
 
 void main() {
   _bulkAdapterTests();
+  _flagObservationTests();
   _archiveAdapterTests();
   _browsingTests();
 
@@ -2253,6 +2254,12 @@ typedef _HeadersAnswer =
       MailOperationLease lease,
     );
 
+typedef _ObserveAnswer =
+    Future<MailResult<MailFlagObservation>> Function(
+      MailRemoteIdentity identity,
+      MailOperationLease lease,
+    );
+
 final class _HeadersRequest {
   _HeadersRequest(this.mailbox, this.cursor, this.limit, this.lease);
   final MailMailboxId mailbox;
@@ -2291,9 +2298,12 @@ final class _Harness {
   final requests = <_Request>[];
   final headerRequests = <_HeadersRequest>[];
   final requestedValidities = <int>[];
+  final flagObservations = <(MailRemoteIdentity, MailOperationLease)>[];
   _Answer? answer;
   _ApplyAnswer? applyAnswer;
   _HeadersAnswer? headersAnswer;
+  _ObserveAnswer? observeAnswer;
+  void Function()? beforeCreate;
   Object? factoryError;
   MailAccountId? providerAccount;
   final mutations = <(MailOperation, MailOperationLease)>[];
@@ -2314,6 +2324,7 @@ final class _Harness {
     this.configuration = configuration;
     credentials = credentialStore;
     this.limits = limits;
+    beforeCreate?.call();
     if (factoryError case final error?) throw error;
     return _Provider(
       providerAccount ?? configuration.account,
@@ -2335,17 +2346,31 @@ final class _Harness {
             );
       },
       requestedValidities.add,
+      (identity, lease) {
+        flagObservations.add((identity, lease));
+        return observeAnswer?.call(identity, lease) ??
+            Future.value(
+              MailSuccess(
+                MailFlagObservation.present(
+                  identity: identity,
+                  flags: const MailMessageFlags(isRead: true),
+                ),
+              ),
+            );
+      },
     );
   }
 }
 
-final class _Provider implements MailProvider, MailImapHeaderBrowser {
+final class _Provider
+    implements MailProvider, MailImapHeaderBrowser, MailFlagObserver {
   _Provider(
     this.account,
     this.answer,
     this.applyAnswer,
     this.headersAnswer,
     this.observeValidity,
+    this.observeAnswer,
   );
 
   @override
@@ -2354,6 +2379,13 @@ final class _Provider implements MailProvider, MailImapHeaderBrowser {
   final _ApplyAnswer applyAnswer;
   final _HeadersAnswer headersAnswer;
   final void Function(int) observeValidity;
+  final _ObserveAnswer observeAnswer;
+
+  @override
+  Future<MailResult<MailFlagObservation>> observeFlags(
+    MailRemoteIdentity identity, {
+    required MailOperationLease lease,
+  }) => observeAnswer(identity, lease);
 
   @override
   Future<MailResult<MailHeaderPage>> fetchNewestHeaders(
@@ -2403,6 +2435,387 @@ final class _ReaderOnlyProvider implements MailProvider {
   @override
   Object? noSuchMethod(Invocation invocation) =>
       throw StateError('Browsing must negotiate the optional provider port.');
+}
+
+void _flagObservationTests() {
+  group('native historical flag observation adapter', () {
+    MailImapIdentity historical(NativeStudioMailMessageLoader loader) =>
+        MailImapIdentity(
+          mailbox: MailMailboxId('Archive/2025', account: loader.account),
+          uidValidity: 191,
+          uid: 0xffffffff,
+        );
+
+    Matcher failure(MailProblemCode code) =>
+        isA<MailFailure<MailFlagObservation>>().having(
+          (result) => result.problem.code,
+          'problem code',
+          code,
+        );
+
+    void noMailActions(_Harness harness) {
+      expect(harness.requests, isEmpty);
+      expect(harness.headerRequests, isEmpty);
+      expect(harness.mutations, isEmpty);
+    }
+
+    test(
+      'reads the exact historical UID without loading a folder or body',
+      () async {
+        final harness = _Harness();
+        final loader = _loader(harness);
+        final session = MailAccountSession(loader.account);
+        final cancellation = MailCancellationSource();
+        addTearDown(loader.dispose);
+        addTearDown(session.dispose);
+        final identity = historical(loader);
+        final expected = MailFlagObservation.present(
+          identity: identity,
+          flags: const MailMessageFlags(isRead: true, isFlagged: true),
+        );
+        harness.observeAnswer = (_, _) async => MailSuccess(expected);
+        final result = await loader.observeFlags(
+          identity,
+          lease: session.begin(cancellation: cancellation.token),
+        );
+        expect(result, isA<MailSuccess<MailFlagObservation>>());
+        expect(
+          (result as MailSuccess<MailFlagObservation>).value,
+          same(expected),
+        );
+        expect(harness.factoryCalls, 1);
+        expect(harness.flagObservations, hasLength(1));
+        expect(harness.flagObservations.single.$1, same(identity));
+        expect(harness.flagObservations.single.$2.account, loader.account);
+        expect(harness.flagObservations.single.$2.isCurrent, isTrue);
+        expect(
+          harness.flagObservations.single.$2.cancellation,
+          same(cancellation.token),
+        );
+        noMailActions(harness);
+      },
+    );
+
+    for (final kind in [
+      MailFlagObservationKind.missing,
+      MailFlagObservationKind.identityChanged,
+    ]) {
+      test(
+        'preserves provider ${kind.name} evidence for the original identity',
+        () async {
+          final harness = _Harness();
+          final loader = _loader(harness);
+          final session = MailAccountSession(loader.account);
+          addTearDown(loader.dispose);
+          addTearDown(session.dispose);
+          final identity = historical(loader);
+          final expected = kind == MailFlagObservationKind.missing
+              ? MailFlagObservation.missing(identity: identity)
+              : MailFlagObservation.identityChanged(identity: identity);
+          harness.observeAnswer = (_, _) async => MailSuccess(expected);
+          final result = await loader.observeFlags(
+            identity,
+            lease: session.begin(),
+          );
+          expect(
+            (result as MailSuccess<MailFlagObservation>).value,
+            same(expected),
+          );
+          expect(expected.identity, same(identity));
+          expect(expected.flags, isNull);
+          noMailActions(harness);
+        },
+      );
+    }
+
+    test(
+      'preserves typed failures and sanitizes thrown provider errors',
+      () async {
+        final harness = _Harness();
+        final loader = _loader(harness);
+        final session = MailAccountSession(loader.account);
+        addTearDown(loader.dispose);
+        addTearDown(session.dispose);
+        const problem = MailProblem(MailProblemCode.authenticationRequired);
+        harness.observeAnswer = (_, _) async => const MailFailure(problem);
+        final result = await loader.observeFlags(
+          historical(loader),
+          lease: session.begin(),
+        );
+        expect(
+          (result as MailFailure<MailFlagObservation>).problem,
+          same(problem),
+        );
+        harness.observeAnswer = (_, _) async =>
+            throw StateError('private fixture');
+        expect(
+          await loader.observeFlags(historical(loader), lease: session.begin()),
+          failure(MailProblemCode.providerFailure),
+        );
+        expect(harness.flagObservations, hasLength(2));
+        noMailActions(harness);
+      },
+    );
+
+    test(
+      'requires the optional observation port without falling back to a body read',
+      () async {
+        var factories = 0;
+        final loader = NativeStudioMailMessageLoader(
+          _account(),
+          providerFactory:
+              ({
+                required configuration,
+                required credentialStore,
+                required limits,
+              }) {
+                factories++;
+                return _ReaderOnlyProvider(configuration.account);
+              },
+        );
+        final session = MailAccountSession(loader.account);
+        addTearDown(loader.dispose);
+        addTearDown(session.dispose);
+        expect(
+          await loader.observeFlags(historical(loader), lease: session.begin()),
+          failure(MailProblemCode.unsupported),
+        );
+        expect(factories, 1);
+      },
+    );
+
+    test(
+      'rejects wrong identity and lease scopes before constructing a provider',
+      () async {
+        final harness = _Harness();
+        final loader = _loader(harness);
+        final session = MailAccountSession(loader.account);
+        final other = MailAccountId(
+          'another-account',
+          profile: loader.account.profile,
+        );
+        final otherSession = MailAccountSession(other);
+        addTearDown(loader.dispose);
+        addTearDown(session.dispose);
+        addTearDown(otherSession.dispose);
+        for (final identity in [
+          MailOpaqueIdentity(
+            account: loader.account,
+            provider: MailProviderKind.ews,
+            value: 'historical-item',
+          ),
+          MailImapIdentity(
+            mailbox: MailMailboxId('Archive/2025', account: other),
+            uidValidity: 191,
+            uid: 501,
+          ),
+        ]) {
+          expect(
+            await loader.observeFlags(identity, lease: session.begin()),
+            failure(MailProblemCode.invalidInput),
+          );
+        }
+        expect(
+          await loader.observeFlags(
+            historical(loader),
+            lease: otherSession.begin(),
+          ),
+          failure(MailProblemCode.invalidInput),
+        );
+        expect(harness.factoryCalls, 0);
+        expect(harness.flagObservations, isEmpty);
+        noMailActions(harness);
+      },
+    );
+
+    test(
+      'refuses stale or cancelled host leases before provider construction',
+      () async {
+        final harness = _Harness();
+        final loader = _loader(harness);
+        final session = MailAccountSession(loader.account);
+        addTearDown(loader.dispose);
+        addTearDown(session.dispose);
+        final stale = session.begin();
+        session.invalidate();
+        expect(
+          await loader.observeFlags(historical(loader), lease: stale),
+          failure(MailProblemCode.staleOperation),
+        );
+        final cancellation = MailCancellationSource();
+        final cancelled = session.begin(cancellation: cancellation.token);
+        cancellation.cancel();
+        expect(
+          await loader.observeFlags(historical(loader), lease: cancelled),
+          failure(MailProblemCode.cancelled),
+        );
+        expect(harness.factoryCalls, 0);
+        expect(harness.flagObservations, isEmpty);
+        noMailActions(harness);
+      },
+    );
+
+    for (final retireLoader in [false, true]) {
+      test(
+        '${retireLoader ? 'loader' : 'host'} retirement during provider construction prevents dispatch',
+        () async {
+          final harness = _Harness();
+          final loader = _loader(harness);
+          final session = MailAccountSession(loader.account);
+          addTearDown(loader.dispose);
+          addTearDown(session.dispose);
+          harness.beforeCreate = retireLoader
+              ? loader.dispose
+              : session.invalidate;
+          expect(
+            await loader.observeFlags(
+              historical(loader),
+              lease: session.begin(),
+            ),
+            failure(MailProblemCode.staleOperation),
+          );
+          expect(harness.factoryCalls, 1);
+          expect(harness.flagObservations, isEmpty);
+          noMailActions(harness);
+        },
+      );
+    }
+
+    test('refuses a provider for another account before observation', () async {
+      final harness = _Harness()
+        ..providerAccount = MailAccountId(
+          'wrong-provider',
+          profile: MailProfileId('another-profile', hostId: 'test'),
+        );
+      final loader = _loader(harness);
+      final session = MailAccountSession(loader.account);
+      addTearDown(loader.dispose);
+      addTearDown(session.dispose);
+      expect(
+        await loader.observeFlags(historical(loader), lease: session.begin()),
+        failure(MailProblemCode.invalidInput),
+      );
+      expect(harness.flagObservations, isEmpty);
+      noMailActions(harness);
+    });
+
+    test('does not overlap a pending observation with another check', () async {
+      final response = Completer<MailResult<MailFlagObservation>>();
+      final harness = _Harness()..observeAnswer = (_, _) => response.future;
+      final loader = _loader(harness);
+      final session = MailAccountSession(loader.account);
+      addTearDown(loader.dispose);
+      addTearDown(session.dispose);
+      final identity = historical(loader);
+      final pending = loader.observeFlags(identity, lease: session.begin());
+      expect(
+        await loader.observeFlags(identity, lease: session.begin()),
+        failure(MailProblemCode.unavailable),
+      );
+      expect(harness.flagObservations, hasLength(1));
+      expect(harness.factoryCalls, 1);
+      response.complete(
+        MailSuccess(MailFlagObservation.missing(identity: identity)),
+      );
+      expect(await pending, isA<MailSuccess<MailFlagObservation>>());
+      noMailActions(harness);
+    });
+
+    for (final dispose in [false, true]) {
+      test(
+        '${dispose ? 'dispose' : 'cancel'} promptly finishes a non-cooperative observer and rejects its late result',
+        () async {
+          final response = Completer<MailResult<MailFlagObservation>>();
+          final harness = _Harness()..observeAnswer = (_, _) => response.future;
+          final loader = _loader(harness);
+          final session = MailAccountSession(loader.account);
+          addTearDown(loader.dispose);
+          addTearDown(session.dispose);
+          final identity = historical(loader);
+          final pending = loader.observeFlags(identity, lease: session.begin());
+          expect(harness.flagObservations, hasLength(1));
+          dispose ? loader.dispose() : loader.cancel();
+          expect(
+            await pending.timeout(const Duration(seconds: 1)),
+            failure(MailProblemCode.staleOperation),
+          );
+          expect(harness.flagObservations.single.$2.isCurrent, isFalse);
+          response.complete(
+            MailSuccess(MailFlagObservation.missing(identity: identity)),
+          );
+          await Future<void>.delayed(Duration.zero);
+          if (dispose) {
+            expect(
+              await loader.observeFlags(identity, lease: session.begin()),
+              failure(MailProblemCode.staleOperation),
+            );
+            expect(harness.factoryCalls, 1);
+            expect(harness.flagObservations, hasLength(1));
+          } else {
+            harness.observeAnswer = null;
+            expect(
+              await loader.observeFlags(identity, lease: session.begin()),
+              isA<MailSuccess<MailFlagObservation>>(),
+            );
+            expect(harness.flagObservations, hasLength(2));
+          }
+          noMailActions(harness);
+        },
+      );
+    }
+
+    for (final cancelToken in [false, true]) {
+      test(
+        'rejects a completed observation after ${cancelToken ? 'host token cancellation' : 'host generation changed'}',
+        () async {
+          final response = Completer<MailResult<MailFlagObservation>>();
+          final harness = _Harness()..observeAnswer = (_, _) => response.future;
+          final loader = _loader(harness);
+          final session = MailAccountSession(loader.account);
+          final cancellation = MailCancellationSource();
+          addTearDown(loader.dispose);
+          addTearDown(session.dispose);
+          final identity = historical(loader);
+          final pending = loader.observeFlags(
+            identity,
+            lease: session.begin(cancellation: cancellation.token),
+          );
+          cancelToken ? cancellation.cancel() : session.invalidate();
+          response.complete(
+            MailSuccess(MailFlagObservation.missing(identity: identity)),
+          );
+          expect(
+            await pending,
+            failure(
+              cancelToken
+                  ? MailProblemCode.cancelled
+                  : MailProblemCode.staleOperation,
+            ),
+          );
+          expect(harness.flagObservations, hasLength(1));
+          noMailActions(harness);
+        },
+      );
+    }
+
+    test('observes a late provider exception after disposal', () async {
+      final response = Completer<MailResult<MailFlagObservation>>();
+      final harness = _Harness()..observeAnswer = (_, _) => response.future;
+      final loader = _loader(harness);
+      final session = MailAccountSession(loader.account);
+      addTearDown(session.dispose);
+      final pending = loader.observeFlags(
+        historical(loader),
+        lease: session.begin(),
+      );
+      loader.dispose();
+      expect(await pending, failure(MailProblemCode.staleOperation));
+      response.completeError(StateError('private late provider error'));
+      await Future<void>.delayed(Duration.zero);
+      expect(harness.flagObservations, hasLength(1));
+      noMailActions(harness);
+    });
+  });
 }
 
 void _bulkAdapterTests() {

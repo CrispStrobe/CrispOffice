@@ -1,0 +1,227 @@
+{
+  "core": {
+    "passed": 219,
+    "skipped": 0,
+    "failed": 0,
+    "errors": 0,
+    "done_success": true,
+    "terminal_elapsed_ms": 2059,
+    "suites": {
+      "bulk_flags_compatibility_test.dart": {
+        "success": 28
+      },
+      "header_search_test.dart": {
+        "success": 27
+      },
+      "bulk_flags_test.dart": {
+        "success": 30
+      },
+      "outbox_management_test.dart": {
+        "success": 7
+      },
+      "models_test.dart": {
+        "success": 9
+      },
+      "sync_coordinator_test.dart": {
+        "success": 9
+      },
+      "imap_sync_range_test.dart": {
+        "success": 18
+      },
+      "bulk_flags_coordinator_test.dart": {
+        "success": 31
+      },
+      "outbox_test.dart": {
+        "success": 16
+      },
+      "bulk_flags_provider_results_test.dart": {
+        "success": 36
+      },
+      "cancellation_test.dart": {
+        "success": 3
+      },
+      "ews_identity_test.dart": {
+        "success": 5
+      }
+    },
+    "skipped_cases": [],
+    "non_json_lines": 0
+  },
+  "transport": {
+    "passed": 415,
+    "skipped": 0,
+    "failed": 0,
+    "errors": 0,
+    "done_success": true,
+    "terminal_elapsed_ms": 15395,
+    "suites": {
+      "native_provider_test.dart": {
+        "success": 71
+      },
+      "ews_http_test.dart": {
+        "success": 18
+      },
+      "uid_discovery_test.dart": {
+        "success": 27
+      },
+      "configuration_test.dart": {
+        "success": 12
+      },
+      "cloud_provider_test.dart": {
+        "success": 101
+      },
+      "native_tls_round_trip_test.dart": {
+        "success": 5
+      },
+      "cursor_test.dart": {
+        "success": 5
+      },
+      "ews_provider_test.dart": {
+        "success": 23
+      },
+      "cloud_oauth_test.dart": {
+        "success": 30
+      },
+      "cloud_oauth_loopback_test.dart": {
+        "success": 3
+      },
+      "cloud_store_test.dart": {
+        "success": 4
+      },
+      "native_browse_test.dart": {
+        "success": 29
+      },
+      "host_store_integration_test.dart": {
+        "success": 6
+      },
+      "native_tls_cancellation_test.dart": {
+        "success": 4
+      },
+      "native_tls_test.dart": {
+        "success": 17
+      },
+      "ews_configuration_test.dart": {
+        "success": 7
+      },
+      "ews_soap_test.dart": {
+        "success": 23
+      },
+      "cloud_http_test.dart": {
+        "success": 18
+      },
+      "ews_ntlm_test.dart": {
+        "success": 12
+      }
+    },
+    "skipped_cases": [],
+    "non_json_lines": 0
+  },
+  "shared_ui": {
+    "passed": 179,
+    "skipped": 0,
+    "failed": 0,
+    "errors": 0,
+    "done_success": true,
+    "terminal_elapsed_ms": 20585,
+    "suites": {
+      "example_test.dart": {
+        "success": 1
+      },
+      "reader_theme_scroll_test.dart": {
+        "success": 2
+      },
+      "body_presentation_contract_test.dart": {
+        "success": 11
+      },
+      "message_view_test.dart": {
+        "success": 11
+      },
+      "bulk_api_aliases_test.dart": {
+        "success": 3
+      },
+      "bulk_message_list_test.dart": {
+        "success": 20
+      },
+      "controller_test.dart": {
+        "success": 13
+      },
+      "message_list_bulk_test.dart": {
+        "success": 31
+      },
+      "body_presentation_test.dart": {
+        "success": 31
+      },
+      "presentation_test.dart": {
+        "success": 23
+      },
+      "message_list_test.dart": {
+        "success": 33
+      }
+    },
+    "skipped_cases": [],
+    "non_json_lines": 0
+  },
+  "hosts": {
+    "passed": 436,
+    "skipped": 0,
+    "failed": 0,
+    "errors": 0,
+    "done_success": true,
+    "terminal_elapsed_ms": 101573,
+    "suites": {
+      "studio_mail_workspace_test.dart": {
+        "success": 60
+      },
+      "studio_mail_ews_test.dart": {
+        "success": 77
+      },
+      "studio_mail_bulk_provider_test.dart": {
+        "success": 39
+      },
+      "studio_mail_cached_mail_test.dart": {
+        "success": 32
+      },
+      "studio_mail_message_loader_test.dart": {
+        "success": 95
+      },
+      "studio_mail_cloud_test.dart": {
+        "success": 59
+      },
+      "studio_mail_bulk_visual_test.dart": {
+        "success": 13
+      },
+      "studio_mail_autoconnect_test.dart": {
+        "success": 14
+      },
+      "studio_mail_remote_images_test.dart": {
+        "success": 18
+      },
+      "studio_mail_accounts_test.dart": {
+        "success": 22
+      },
+      "studio_mail_credential_backend_switch_test.dart": {
+        "success": 7
+      }
+    },
+    "skipped_cases": [],
+    "non_json_lines": 0
+  },
+  "studio": {
+    "passed": 16,
+    "skipped": 0,
+    "failed": 0,
+    "errors": 0,
+    "done_success": true,
+    "terminal_elapsed_ms": 25523,
+    "suites": {
+      "studio_comment_draft_proofing_test.dart": {
+        "success": 15
+      },
+      "studio_word_chrome_settle_test.dart": {
+        "success": 1
+      }
+    },
+    "skipped_cases": [],
+    "non_json_lines": 0
+  }
+}

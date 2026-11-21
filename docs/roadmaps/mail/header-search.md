@@ -87,18 +87,21 @@ records actual commands, results, remote checkpoints and remaining boundaries.
 
 ## Next increments toward desktop-client parity
 
-1. **Completed:** [foreground bulk read/flag](bulk-flags.md) freezes selected
-   account/folder/remote identities, reports all four outcomes, preserves unknown
-   flags, stops uncertainty and rejects stale selection. The receipt is in-memory;
-   persistent command/cache synchronization remains separate.
-2. Durable repository-driven sessions and a remote-command journal, with restart,
-   UIDVALIDITY, conflict, cancellation and offline/reconnect qualification.
-3. Account/unified search, saved live views and conversations over the durable
+The [foreground bulk read/flag increment](bulk-actions.md) now freezes selected
+account/folder/remote identities, reports confirmed, failed, uncertain and
+unattempted outcomes, and stops on uncertainty or stale scope. It preserves the
+nullable flag contract and does not introduce offline replay.
+
+1. Durable repository-driven sessions, building on the completed
+   [command journal](command-journal.md) and [uncertain-action checks](flag-recovery.md),
+   with explicit completeness, synchronization ownership and offline/reconnect
+   qualification.
+2. Account/unified search, saved live views and conversations over the durable
    index, preserving explicit cache completeness and source-message identity.
-4. Consistent archive/move/delete, broader bulk commands, rules and quick actions
+3. Consistent archive/move/delete, broader bulk commands, rules and quick actions
    over those query/command contracts; rich authoring, signatures/templates and
    Office attachment workflows can progress separately.
-5. Scheduling/Sent reconciliation, Calendar/People, shared mailboxes and security
+4. Scheduling/Sent reconciliation, Calendar/People, shared mailboxes and security
    features retain provider-specific acceptance requirements in the main plan.
 
 This ordering is an engineering decision, not a claim of complete competitor

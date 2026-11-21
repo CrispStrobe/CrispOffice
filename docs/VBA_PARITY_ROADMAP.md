@@ -7,7 +7,7 @@ Passing one layer does not establish parity in the others.
 
 ## Current baseline
 
-As of 20 November 2026, native JSON macros and the shared operation catalog
+As of 21 November 2026, native JSON macros and the shared operation catalog
 cover all three document families. The `vba-excel` source compiler supports a
 bounded, document-independent subset: scalar expressions, typed locals,
 explicit worksheet/range bindings, reusable `ByVal` procedures and scalar
@@ -23,10 +23,14 @@ preserved as opaque package parts and are never executed on document open.
 The `vba-word` adapter shares that language implementation and adds explicit
 `ThisDocument`/paragraph/range bindings, paragraph-prefix insertion, supported
 font properties, all 18 underline styles, strikethrough, paragraph
-alignment/spacing, signed indentation and pagination. It emits native Word
-operations and keeps paragraph marks structural. This is an initial write-only
-Word object-model slice; stories, tables, arbitrary text ranges and live reads
-remain separate work. The `vba-powerpoint` adapter adds explicit presentation,
+alignment/spacing, signed indentation and pagination. Explicit `Section` and
+`PageSetup` selectors additionally set page width/height, four margins and
+header/footer distances on one existing section, plus portrait/landscape
+orientation, toggling and four section-start modes. It emits native Word
+operations and keeps paragraph marks structural. This is a bounded write-only
+Word object-model slice. Explicit independent header/footer paragraphs now reuse
+its insertion and formatting operations; linked stories, tables, arbitrary text
+ranges and live reads remain separate work. The `vba-powerpoint` adapter adds explicit presentation,
 slide, shape and text-range bindings, one-based/index-or-name selection,
 whole-shape text, font/alignment writes and geometry. Native collection guards
 refuse grouped or incompletely modeled slide collections. Rich text formatting
@@ -44,7 +48,7 @@ and [the native macro contract](MACROS.md).
 | 1. Source-data array lifecycle | Local dynamic arrays, `ReDim`, `Preserve`, `Erase`, `Option Base`; reuse fixed-array indexing and iteration | Typed defaults, preserve/shrink/regrow semantics, unallocated diagnostics, enumeration locks, shared resource budgets, CLI/MCP transaction tests, VM/JavaScript agreement |
 | 2. Shared language semantics | String/numeric intrinsics, explicit Variant states and coercion rules, optional/named arguments, multidimensional arrays and array parameters | A versioned feature matrix tied to Microsoft language documentation; positive and refusal cases; differential fixtures from a real Office host for behavior claimed as compatible |
 | 3. Document-aware execution | Separate a checked program from execution; resolve reads/writes against one detached transaction | Read-after-write and data-dependent branches, cancellation, instruction/resource limits, stale-document checks, whole-run rollback; no partial publication on error |
-| 4. Application adapters | Excel workbook/sheet/range reads and collections; Word documents/stories/ranges/paragraphs/tables; PowerPoint presentations/slides/shapes/text ranges | One-based selectors, default members, collection order, object identity, explicit active-document context, precise range offsets/units, correct native serialization, format-specific conformance fixtures |
+| 4. Application adapters | Excel workbook/sheet/range reads and collections; Word documents/sections/page setup/stories/ranges/paragraphs/tables; PowerPoint presentations/slides/shapes/text ranges | One-based selectors, default members, collection order, object identity, explicit active-document context, precise range offsets/units, correct native serialization, format-specific conformance fixtures |
 | 5. Procedures and projects | `ByRef`, modules/classes, properties, scoped globals, error handling, events and project references | Binding and aliasing tests, recursion/call budgets, error propagation, lifecycle tests, multi-module compatibility corpus; controlled host entry points |
 | 6. Project interchange and authoring | Read/write project streams, explicit import/export, source editor, diagnostics, debugging and macro recording | Round-trip preservation, module/source provenance, source maps, breakpoints, consistent undo/history integration; successful Office open/edit/save checks |
 | 7. Host integration and qualification | Common Office workflows and explicit platform integrations | Real Word/Excel/PowerPoint differential runs, version/platform matrix, supported workflow corpus and documented residual gaps; external automation stays subject to host capability grants |
@@ -61,7 +65,7 @@ by explicit Variant states and conversions with independently authored
 conformance expectations, shared budgets, and the same transaction boundary.
 Locale-sensitive coercions, numeric subtype identity, `Nothing`, and remaining
 Stage 2 semantics and Stage 3 remain planned work. Stage 4 now has the initial
-source-only Word paragraph adapter above; its remaining application models and
+source-only Word paragraph and section adapters above; their remaining application models and
 Stages 5–7 remain planned work.
 Small tested adapter slices may run alongside shared language work when their
 prerequisites exist.
@@ -70,7 +74,7 @@ The current Word/PowerPoint increment adds the Stage 4 write-only slices above
 without introducing Stage 3 document reads. Its exact branch integration,
 VM/JavaScript, native transaction and CLI/MCP evidence is retained in the
 [20 November qualification record](validation/office-vba-word-powerpoint-20261120/README.md).
-Groups, arbitrary text subranges, Word stories/tables, and live collection
+Groups, arbitrary text subranges, broader Word stories/tables, and live collection
 behavior remain separate increments with their own identity and range tests.
 
 ### Qualified Word and PowerPoint continuation
@@ -154,13 +158,80 @@ picas in both directions, and official named arguments for all ten unit
 conversions, including the existing line/point functions. It uses exact physical
 ratios with bounded Double arithmetic and exact native-grid canonicalization;
 it does not emulate VBA Single rounding or loosen property precision guards.
-The `word_named_measurements.bas` example and source/integration checks
-exercise document publication, CLI/MCP paths and VM/JavaScript behavior.
-The original eight-operation `word_measurements.bas` and independent
-nine-operation `word_unit_conversions.bas` examples and their fixtures remain
-available alongside the thirteen-operation named-argument example. See the
+The complete BAS examples and source/integration checks cover document
+publication, CLI/MCP paths and the portable numeric contract. The combined
+source has local Dart acceptance; earlier arithmetic-model and authored
+JavaScript checks retain their separate execution status. See the
 [measurement contract](VBA_WORD_MACROS.md#physical-measurement-conversions)
-and [qualification record](validation/word-vba-unit-conversions-20261120/README.md).
+and [combined-source qualification](validation/zotero-merged-cells-20261120/intake.md).
+The incoming Mail continuation additionally qualified the named-argument
+example and original eight-, nine- and thirteen-operation examples on the
+VM and JavaScript; see its [source-specific record](validation/mail-bulk-actions-20261120/intake-local-word-final.md).
+Later publication evidence remains available in the [Mail/Word main record](validation/mail-bulk-actions-20261120/final-main-word-summary.md) and [Word main integration record](validation/word-main-integration-20261120/README.md).
+
+### Explicit Word section page setup
+
+The section continuation adds typed `Section` and `PageSetup` selectors through
+`Document.Sections(i)` / `.Sections.Item(i)`, with `With`, aliases, and required
+`ByVal` helpers. Eight write-only geometry properties lower to the dedicated
+`docx.pageSetup` operation: page width/height, four margins, and header/footer
+distances. Source numbers retain exact twentieth-point checks and bounded
+Double arithmetic; VBA Single rounding, `PaperSize`, broadcast page setup and
+geometry reads remain outside this slice. Orientation and section starts are
+extended by the following continuation.
+
+Native execution resolves each write against the detached section after
+earlier operations, validates positive page-body/column text geometry, and
+retains all-run rollback. Sparse XML ownership preserves unedited attributes,
+namespace aliases and opaque DOCM parts. Width/height writes select custom
+paper even when their values do not change. Unsupported source measurements,
+gutters, duplicate geometry, custom columns, alternate section properties, and
+mirrored/book-fold settings are refused before mutation. The
+[exact contract](VBA_WORD_MACROS.md#section-page-setup),
+[complete BAS example](../packages/quds_office_engine/example/macros/word_page_setup.bas),
+and [local qualification record](validation/word-vba-paragraph-pagination-20261121/README.md)
+describe the supported engine behavior and executed source checks. This
+increment does not establish installed Microsoft Word or Flutter validation
+and does not add Stage 3 document-aware source execution.
+
+### Word section orientation and starts
+
+The next section slice adds `PageSetup.Orientation`, zero-argument
+`TogglePortrait`, and four `SectionStart` modes through the existing explicit
+section selectors. Portrait/landscape assignment and toggling use a dedicated
+native action that swaps dimensions when needed while retaining named margins
+and printer paper code. Square pages retain explicit orientation through
+save/reopen. Continuous/new-page/even-page/odd-page starts update only the
+native section-start attribute, with headless pagination coverage.
+
+Both operations preserve the existing transaction, recording, policy and
+resource boundaries. Ambiguous source identity or orientation is refused;
+new-column starts, collection-wide settings and source property reads remain
+unsupported. This is another Stage 4 source-to-plan slice, without Stage 3
+document-dependent branching or installed Word differential qualification.
+See the [exact contract](VBA_WORD_MACROS.md#section-orientation-and-start-controls),
+[BAS example](../packages/quds_office_engine/example/macros/word_sections.bas),
+and [local qualification](validation/word-vba-sections-20261121/README.md).
+
+### Independent header/footer paragraphs
+
+The next Word adapter slice adds explicit section `Headers` / `Footers`, typed
+`HeadersFooters` / `HeaderFooter` aliases and helpers, and all three
+`WdHeaderFooterIndex` variants. `HeaderFooter.Range.Paragraphs(i)` selects an
+existing paragraph for the supported insertion, formatting, tabs and spacing
+operations. Native plans retain the complete section/story/paragraph identity,
+including custom line-spacing pairing. Body-only list operations are refused
+for these selectors.
+
+Native paragraph selection requires direct independent story ownership and
+refuses missing or opaque targets, ambiguous references, shared/inherited
+header/footer topology and unmodeled content in rewritten paragraph stories
+before mutation. Selected mutable model aliases are also refused. This is bounded source-to-plan support with the existing
+atomic transaction and policy boundary. It does not implement linked-story
+propagation, story creation, whole-story writes or document-aware source
+execution. See the [exact contract](VBA_WORD_MACROS.md#existing-header-and-footer-paragraphs),
+[BAS example](../packages/quds_office_engine/example/macros/word_headers_footers.bas),
+and [local qualification record](validation/word-vba-compatibility-20261121/README.md).
 
 ### Next shared-language increments
 

@@ -210,6 +210,199 @@ MailPreparedMessage _prepared({List<String>? recipients}) =>
     );
 
 void main() {
+  group('read-only flag observation', () {
+    test(
+      'reads exact current flags without envelope, MIME or mutation',
+      () async {
+        final fixture = _Fixture();
+        fixture.scripts.add([
+          (
+            'GetItem',
+            (request) {
+              expect(request, contains('Id="one"'));
+              expect(request, contains('FieldURI="message:IsRead"'));
+              expect(request, contains('FieldURI="item:Flag"'));
+              expect(request, isNot(contains('IncludeMimeContent')));
+              expect(request, isNot(contains('item:Body')));
+              expect(request, isNot(contains('item:Subject')));
+              expect(request, isNot(contains('message:From')));
+              return _response(
+                'GetItem',
+                _item('one', read: true, flagged: true),
+              );
+            },
+          ),
+        ]);
+        final observed = _value(
+          await fixture.provider().observeFlags(
+            _identity('one'),
+            lease: fixture.session.begin(),
+          ),
+        );
+        expect(observed.kind, MailFlagObservationKind.present);
+        expect(observed.identity, _identity('one'));
+        expect(
+          observed.flags,
+          const MailMessageFlags(isRead: true, isFlagged: true),
+        );
+        expect(fixture.clients.single.requests.single.$3, isFalse);
+        expect(fixture.clients.single.mutationStarted, isFalse);
+        expect(fixture.clients.single.aborted, isTrue);
+      },
+    );
+
+    test('explicit item-not-found is current absence only', () async {
+      final fixture = _Fixture();
+      fixture.scripts.add([
+        (
+          'GetItem',
+          (_) => _response('GetItem', _error('GetItem', 'ErrorItemNotFound')),
+        ),
+      ]);
+      final observed = _value(
+        await fixture.provider().observeFlags(
+          _identity('gone'),
+          lease: fixture.session.begin(),
+        ),
+      );
+      expect(observed.kind, MailFlagObservationKind.missing);
+      expect(observed.identity, _identity('gone'));
+      expect(observed.flags, isNull);
+      expect(fixture.clients.single.mutationStarted, isFalse);
+    });
+
+    for (final removed in [
+      '<t:IsRead>false</t:IsRead>',
+      '<t:IsDraft>false</t:IsDraft>',
+      '<t:Flag><t:FlagStatus>NotFlagged</t:FlagStatus></t:Flag>',
+    ]) {
+      test('omitted $removed does not fabricate a known false', () async {
+        final fixture = _Fixture();
+        fixture.scripts.add([
+          (
+            'GetItem',
+            (_) => _response('GetItem', _item('one').replaceFirst(removed, '')),
+          ),
+        ]);
+        _problem(
+          await fixture.provider().observeFlags(
+            _identity('one'),
+            lease: fixture.session.begin(),
+          ),
+          MailProblemCode.providerFailure,
+        );
+        expect(fixture.clients.single.mutationStarted, isFalse);
+      });
+    }
+
+    test('wrong response identity and denied access are not missing', () async {
+      final fixture = _Fixture();
+      fixture.scripts.addAll([
+        [('GetItem', (_) => _response('GetItem', _item('other')))],
+        [
+          (
+            'GetItem',
+            (_) => _response('GetItem', _error('GetItem', 'ErrorAccessDenied')),
+          ),
+        ],
+      ]);
+      final provider = fixture.provider();
+      _problem(
+        await provider.observeFlags(
+          _identity('one'),
+          lease: fixture.session.begin(),
+        ),
+        MailProblemCode.providerFailure,
+      );
+      _problem(
+        await provider.observeFlags(
+          _identity('one'),
+          lease: fixture.session.begin(),
+        ),
+        MailProblemCode.permissionDenied,
+      );
+      expect(
+        fixture.clients.every((client) => !client.mutationStarted),
+        isTrue,
+      );
+    });
+
+    test(
+      'wrong provider/account and stale lease avoid credentials and IO',
+      () async {
+        final fixture = _Fixture();
+        final provider = fixture.provider();
+        _problem(
+          await provider.observeFlags(
+            MailOpaqueIdentity(
+              account: _account,
+              provider: MailProviderKind.gmail,
+              value: 'one',
+            ),
+            lease: fixture.session.begin(),
+          ),
+          MailProblemCode.invalidInput,
+        );
+        final other = MailAccountId('other', profile: _account.profile);
+        _problem(
+          await provider.observeFlags(
+            MailOpaqueIdentity(
+              account: other,
+              provider: MailProviderKind.ews,
+              value: 'one',
+            ),
+            lease: fixture.session.begin(),
+          ),
+          MailProblemCode.invalidInput,
+        );
+        _problem(
+          await provider.observeFlags(
+            _identity('one'),
+            lease: MailAccountSession(other).begin(),
+          ),
+          MailProblemCode.invalidInput,
+        );
+        final stale = fixture.session.begin();
+        fixture.session.invalidate();
+        _problem(
+          await provider.observeFlags(_identity('one'), lease: stale),
+          MailProblemCode.staleOperation,
+        );
+        expect(fixture.vault.loads, 0);
+        expect(fixture.clients, isEmpty);
+      },
+    );
+
+    test(
+      'late observation cannot survive cancellation or account retirement',
+      () async {
+        final fixture = _Fixture();
+        final started = Completer<void>();
+        final released = Completer<String>();
+        fixture.scripts.add([
+          (
+            'GetItem',
+            (_) {
+              started.complete();
+              return released.future;
+            },
+          ),
+        ]);
+        final pending = fixture.provider().observeFlags(
+          _identity('one'),
+          lease: fixture.session.begin(),
+        );
+        await started.future;
+        fixture.session.invalidate();
+        _problem(await pending, MailProblemCode.staleOperation);
+        released.complete(_response('GetItem', _item('one', read: true)));
+        await Future<void>.delayed(Duration.zero);
+        expect(fixture.clients.single.aborted, isTrue);
+        expect(fixture.clients.single.mutationStarted, isFalse);
+      },
+    );
+  });
+
   test(
     'bulk EWS reports acknowledged, definite, uncertain and untouched identities',
     () async {

@@ -4,19 +4,72 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
-- Explain foreground bulk rate-limit stops and provider retry delays in English,
-  German and Arabic, including per-message details. Keep stale-scope refresh
-  guidance distinct from outcome certainty and prevent dismissal from clearing
-  its refresh requirement.
+- Add native **Synchronized mail** for IMAP, EWS, Gmail and Microsoft 365:
+  explicit bounded Start/Continue/Check for changes, Stop, persistent page
+  checkpoints and offline synchronized-header browsing. Reuse existing cached
+  body identities across reconnects, keep account leases separate from stable
+  storage identity, and drain work before close. Include English/German/Arabic
+  controls; full-body retention and background synchronization remain separate.
 
-- Add foreground bulk read/unread/flag/unflag actions for connected IMAP, EWS,
-  Gmail and Microsoft 365 mail. Freeze visible checked identities, preserve
-  nullable flag observations, report confirmed/failed/uncertain/unattempted
-  outcomes, stop after the current message, and require refresh on uncertainty.
-  Guard callbacks across selection, refresh and account changes; localize
-  selection, progress and per-message receipts in English, German and Arabic.
-  Same-folder refresh preserves query/sort while clearing checked rows.
-  Cached mail remains read-only; durable command/cache synchronization follows.
+- Integrate configurable proofing modes for word/sentence completion, typing
+  pauses, background checking and explicit checks. Persist the Studio schedule,
+  distinguish spelling-only providers, prioritize visible paragraphs and retain
+  partial results for the same text. Replace the earlier continuous-typing
+  maximum-delay API with `WordProofingSchedule`; see
+  [scheduling](../../docs/proofing/scheduling.md) for defaults and host migration.
+
+- Add **Prepare document for transfer…** to the native Zotero workspace and
+  recognize incoming transfer documents through **Import transferred references…**
+  and Refresh. Preserve one undo/redo transaction, cancellation, source-identity
+  and stale-result guards; keep carriers inactive and prevent citation editing
+  until import completes. Explain the DOCX/Word and ODT/LibreOffice save-copy
+  workflow and retain original document preferences when undoing an import.
+  Installed Word/LibreOffice/Zotero interoperability remains a separate gate.
+
+- Add `WordProofingMode`, `WordProofingSchedule` and live session scheduling
+  controls for completed-word spelling, sentence/pause grammar and idle
+  document checks. Prioritize visible paragraphs in background passes, keep
+  incomplete words' findings hidden while typing, preserve independent
+  provider-group coverage and retain explicit checks in manual mode. Persist
+  Studio's mode, provider-group, pause, background and visibility preferences;
+  see the [scheduling contract](../../docs/proofing/scheduling.md).
+
+- Observe saved mailbox views from native IMAP, EWS, Gmail and Microsoft 365
+  sessions while preserving original provider action identities. Keep cached
+  folders, read/star flags and saved-view unread counts current with repository
+  transactions; retain selected readers on metadata changes, reject stale
+  folder/account events and drain subscriptions before releasing local storage.
+- Preserve retry state after a failed deferred Word document layout, so the
+  next layout read cannot silently return the previous document's pages.
+
+- Let Zotero Add Note and Add Annotation replace ordinary text spanning several
+  paragraphs in one body section, footnote or endnote. Map both Notes-pane
+  selection endpoints, retain one undo/redo step and original selection direction,
+  and preserve cancellation, composition and stale-document guards. Tables,
+  controls and protected ranges keep explicit selection limits.
+
+- Add explicit **Check current status** to native Mail activity for uncertain
+  read/flag actions across IMAP, EWS, Gmail and Microsoft 365. Keep original
+  outcomes alongside durable later observations; reject stale/cancelled results
+  and never replay commands. Show saved observations offline, release resolved
+  history quota and localize recovery in English, German and Arabic.
+
+- Journal native IMAP, EWS, Gmail and Microsoft 365 single/bulk read and flag
+  commands before dispatch, retain late acknowledgements under their original
+  store owner, and stop further work on persistence failure. Add connected and
+  offline **Mail activity** with paginated frozen receipts, interrupted status
+  and confirmed clean-history removal in English, German and Arabic.
+- Preserve inert reader whitespace and user-loaded images across body-mode
+  changes. Bound explicit image loading by request count, deadlines, streamed
+  bytes and decoded image budgets; reject stale request ownership and keep
+  failed or over-budget images visibly blocked.
+
+- Accept vertical and combined row/column spans through Zotero Add Note and
+  Add Annotation in body, footnote and endnote targets. Preserve rich content,
+  active citations, one undo/redo transaction and repeated DOCX reopening.
+- Resolve continued merged-cell pointer/keyboard navigation to the originating
+  cell while retaining physical row handles; keep authored native continuation
+  content reachable and skip only validated structural empty placeholders.
 
 - Accept horizontally merged Zotero research-note and annotation tables through
   the existing native commands. Preserve cell-owned rich text, lists, pictures
@@ -29,6 +82,20 @@ All notable changes to `quds_office_editor` are documented here.
   step. See the
   [continuation validation record](../../docs/validation/zotero-merged-cells-20261120/README.md)
   for local checks; installed Zotero/Word/LibreOffice acceptance remains separate.
+
+- Recognize conventional lowercase Arial and Times New Roman font filenames
+  for regular, bold, italic and bold-italic faces, retaining metadata checks
+  and canonical candidate precedence.
+
+- Show localized foreground bulk progress and per-message receipts with frozen
+  subjects, cancellation after the current message and refresh-aware dismissal.
+
+- Add foreground bulk read/unread/flag/unflag actions to connected IMAP, EWS,
+  Gmail and Microsoft 365. Freeze checked visible identities, run sequentially,
+  report confirmed/failed/uncertain/unattempted counts and stop on uncertainty.
+  Let users stop after the current request, require explicit refresh for an
+  unconfirmed write, preserve nullable flags and reject stale scope callbacks.
+  Keep cached mail read-only and preserve discovery state on same-folder refresh.
 
 - Refuse an oversized Studio settings snapshot before replacing the last valid
   saved settings. Keep the existing load budget and expose a recoverable save

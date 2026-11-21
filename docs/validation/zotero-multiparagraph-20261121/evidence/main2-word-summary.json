@@ -1,0 +1,36 @@
+{
+  "additional_test_file": "test/word_compatibility_fidelity_test.dart",
+  "ancestors": 306,
+  "cases": 5,
+  "errors": 0,
+  "exact_equivalents": 24,
+  "failed": 0,
+  "fatal_info_analysis_exit_codes": [
+    0,
+    0,
+    0
+  ],
+  "format_exit_code": 0,
+  "format_language": "3.12",
+  "frozen_intake_refs": 330,
+  "git_source_mismatches": [],
+  "github_actions": "Neither queried nor awaited",
+  "new_main_ancestor": "ce1c37c6af1e2306d2c24231758f10ef6213f7dd",
+  "no_full_suite_repetition": true,
+  "normalized_c5_full_files_equal": [
+    "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+    "packages/quds_office_engine/test/office_vba_word_page_setup_test.dart"
+  ],
+  "passed": 5,
+  "previous_word156_cases_remain_separate": true,
+  "prior_macro_test_exact_537_match": "272b12e03922995d0000c0baccfbf312ca41b318090569b3ba327520157ccb87",
+  "published_commit": "a5dc721dd8e519dde4f019b82a89572fe9f570f4",
+  "schema": "quds-main-freshness-word-validation/v1",
+  "skipped": 0,
+  "source_inputs": 1152,
+  "source_inputs_stable": true,
+  "tree": "b3c010249b88c1ae29bce6d901f5c983adf1acf4",
+  "uncovered": 0,
+  "unique_cases": 5,
+  "verified_git_source_files": 1150
+}

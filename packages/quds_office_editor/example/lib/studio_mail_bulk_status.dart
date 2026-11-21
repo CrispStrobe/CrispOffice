@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 
 import 'studio_strings.dart';
+import 'studio_mail_journal_strings.dart';
 
 /// Foreground progress and an immutable, per-message command receipt.
 ///
@@ -15,6 +16,8 @@ class StudioMailBulkStatus extends StatelessWidget {
     required this.running,
     required this.subjects,
     this.onStop,
+    this.showStop = true,
+    this.historical = false,
     this.onDismiss,
   });
 
@@ -23,6 +26,12 @@ class StudioMailBulkStatus extends StatelessWidget {
   final bool running;
   final Map<MailRemoteIdentity, String> subjects;
   final VoidCallback? onStop;
+
+  /// Hosts with a toolbar stop control hide the duplicate control here.
+  final bool showStop;
+
+  /// Saved activity keeps its original outcome alongside later observations.
+  final bool historical;
   final VoidCallback? onDismiss;
 
   String _text(String en, String de, String ar) => switch (strings.language) {
@@ -81,9 +90,15 @@ class StudioMailBulkStatus extends StatelessWidget {
       'فشل الطلب دون تغيير هذه الرسالة.',
     ),
     MailBulkFlagOutcome.uncertain => _text(
-      'The server may have changed this message. Refresh before another change.',
-      'Der Server könnte diese Nachricht geändert haben. Vor einer weiteren Änderung aktualisieren.',
-      'ربما غيّر الخادم هذه الرسالة. حدّث القائمة قبل إجراء تغيير آخر.',
+      historical
+          ? 'The original action was not confirmed. Later status checks appear separately in Mail activity.'
+          : 'The server may have changed this message. Refresh before another change.',
+      historical
+          ? 'Die ursprüngliche Aktion wurde nicht bestätigt. Spätere Statusprüfungen werden in den Mail-Aktivitäten separat angezeigt.'
+          : 'Der Server könnte diese Nachricht geändert haben. Vor einer weiteren Änderung aktualisieren.',
+      historical
+          ? 'لم يُؤكد الإجراء الأصلي. تظهر فحوص الحالة اللاحقة بشكل منفصل في نشاط البريد.'
+          : 'ربما غيّر الخادم هذه الرسالة. حدّث القائمة قبل إجراء تغيير آخر.',
     ),
     MailBulkFlagOutcome.unattempted => _text(
       'No request was sent for this message.',
@@ -91,10 +106,6 @@ class StudioMailBulkStatus extends StatelessWidget {
       'لم يُرسل أي طلب لهذه الرسالة.',
     ),
   };
-
-  bool get _requiresRefresh =>
-      report.requiresRefresh ||
-      report.stopReason == MailBulkFlagStopReason.staleScope;
 
   String _retryDelay(Duration delay) {
     final rounded = (delay.inMilliseconds / 1000).ceil();
@@ -148,10 +159,10 @@ class StudioMailBulkStatus extends StatelessWidget {
                     child: ListView.separated(
                       shrinkWrap: true,
                       padding: const EdgeInsets.symmetric(horizontal: 16),
-                      itemCount: report.results.length,
+                      itemCount: report.items.length,
                       separatorBuilder: (_, _) => const Divider(),
                       itemBuilder: (context, index) {
-                        final result = report.results[index];
+                        final result = report.items[index];
                         final subject = subjects[result.message];
                         return Padding(
                           key: ValueKey('studio-mail-bulk-result-$index'),
@@ -206,10 +217,10 @@ class StudioMailBulkStatus extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final attempted = report.results.length - report.unattemptedCount;
+    final attempted = report.items.length - report.unattemptedCount;
     return Material(
       key: const ValueKey('studio-mail-bulk-status'),
-      color: _requiresRefresh
+      color: report.requiresRefresh && !historical
           ? Theme.of(context).colorScheme.errorContainer
           : Theme.of(context).colorScheme.secondaryContainer,
       child: Padding(
@@ -238,7 +249,7 @@ class StudioMailBulkStatus extends StatelessWidget {
             if (running) ...[
               const SizedBox(height: 8),
               LinearProgressIndicator(
-                value: attempted / report.results.length,
+                value: attempted / report.items.length,
                 semanticsLabel: _text(
                   'Messages completed',
                   'Abgeschlossene Nachrichten',
@@ -246,7 +257,14 @@ class StudioMailBulkStatus extends StatelessWidget {
                 ),
               ),
             ],
-            if (_requiresRefresh) ...[
+            if (report.persistenceProblem != null && !historical) ...[
+              const SizedBox(height: 8),
+              Text(
+                strings.mailActivityPersistenceFailed,
+                key: const ValueKey('studio-mail-bulk-persistence-failed'),
+              ),
+            ],
+            if (report.requiresRefresh && !historical) ...[
               const SizedBox(height: 8),
               Text(
                 _text(
@@ -255,7 +273,8 @@ class StudioMailBulkStatus extends StatelessWidget {
                   'حدّث المجلد للتحقق من الحالة الحالية للرسائل قبل إجراء تغيير آخر.',
                 ),
               ),
-            ] else if (!running &&
+            ] else if (!historical &&
+                !running &&
                 report.stopReason == MailBulkFlagStopReason.rateLimited) ...[
               const SizedBox(height: 8),
               Text(
@@ -266,7 +285,9 @@ class StudioMailBulkStatus extends StatelessWidget {
                 ),
               ),
               if (_retryAfter case final delay?) Text(_retryDelay(delay)),
-            ] else if (!running && report.stopProblem != null) ...[
+            ] else if (!historical &&
+                !running &&
+                report.stopReason != null) ...[
               const SizedBox(height: 8),
               Text(
                 _text(
@@ -279,7 +300,7 @@ class StudioMailBulkStatus extends StatelessWidget {
             Wrap(
               spacing: 8,
               children: [
-                if (running)
+                if (running && showStop)
                   TextButton(
                     key: const ValueKey('studio-mail-bulk-stop'),
                     onPressed: onStop,
@@ -302,7 +323,7 @@ class StudioMailBulkStatus extends StatelessWidget {
                   onPressed: running ? null : () => _details(context),
                   child: Text(_text('Details', 'Einzelheiten', 'التفاصيل')),
                 ),
-                if (!running && !_requiresRefresh && onDismiss != null)
+                if (!running && !report.requiresRefresh && onDismiss != null)
                   TextButton(
                     key: const ValueKey('studio-mail-bulk-dismiss'),
                     onPressed: onDismiss,

@@ -18,6 +18,13 @@ enum TransactionCrashScenario {
   committedSubmitting,
   beforeMailboxViewCommit,
   committedMailboxView,
+  beforeFlagIntentCommit,
+  committedFlagIntent,
+  beforeFlagDispatchCommit,
+  committedFlagDispatch,
+  beforeFlagReceiptCommit,
+  committedFlagReceipt,
+  committedFlagFinish,
 }
 
 final crashProfile = MailProfileId('transactions', hostId: 'mail-crash-tests');
@@ -25,6 +32,13 @@ final crashAccount = MailAccountId('synthetic', profile: crashProfile);
 final crashMailbox = MailMailboxId('inbox', account: crashAccount);
 final crashTime = DateTime.utc(2026, 11, 18, 12);
 const crashAttemptId = 'child-attempt';
+
+MailBulkFlagPlan crashFlagPlan() => MailBulkFlagPlan(
+  id: 'crash-flags',
+  mailbox: crashMailbox,
+  action: MailBulkFlagAction.markRead,
+  messages: [for (var i = 1; i <= 3; i++) crashHeader(i).remote],
+);
 
 MailBytes crashBytes(List<int> bytes) => MailBytes(Uint8List.fromList(bytes));
 
@@ -104,13 +118,32 @@ Future<void> main(List<String> arguments) async {
       TransactionCrashScenario.beforeMailboxViewCommit =>
         MailStoreCheckpoint.beforeCommit,
       TransactionCrashScenario.committedMailboxView => null,
+      TransactionCrashScenario.beforeFlagIntentCommit ||
+      TransactionCrashScenario.committedFlagIntent ||
+      TransactionCrashScenario.beforeFlagDispatchCommit ||
+      TransactionCrashScenario.committedFlagDispatch ||
+      TransactionCrashScenario.beforeFlagReceiptCommit ||
+      TransactionCrashScenario.committedFlagReceipt ||
+      TransactionCrashScenario.committedFlagFinish => null,
     };
+    final journalCommitTarget = switch (scenario) {
+      TransactionCrashScenario.beforeFlagIntentCommit => 1,
+      TransactionCrashScenario.beforeFlagDispatchCommit => 2,
+      TransactionCrashScenario.beforeFlagReceiptCommit => 3,
+      _ => null,
+    };
+    var journalWrites = 0;
     final opened = _required<SqliteMailRepository>(
       await openNativeMailStore(
         appDirectory: Directory(arguments[0]),
         profile: crashProfile,
         clock: () => crashTime.add(const Duration(seconds: 2)),
         faultInjector: (checkpoint) async {
+          if (journalCommitTarget != null &&
+              checkpoint == MailStoreCheckpoint.beforeCommit &&
+              ++journalWrites == journalCommitTarget) {
+            await _ready(scenario);
+          }
           if (checkpoint == target) await _ready(scenario);
         },
       ),
@@ -118,6 +151,73 @@ Future<void> main(List<String> arguments) async {
     );
     store = opened;
     switch (scenario) {
+      case TransactionCrashScenario.beforeFlagIntentCommit:
+      case TransactionCrashScenario.committedFlagIntent:
+      case TransactionCrashScenario.beforeFlagDispatchCommit:
+      case TransactionCrashScenario.committedFlagDispatch:
+      case TransactionCrashScenario.beforeFlagReceiptCommit:
+      case TransactionCrashScenario.committedFlagReceipt:
+      case TransactionCrashScenario.committedFlagFinish:
+        final plan = crashFlagPlan();
+        final lease = MailAccountSession(crashAccount).begin();
+        final handle = _required(
+          await opened.createFlagBatch(
+            plan,
+            subjects: [
+              'First frozen subject',
+              'Second frozen subject',
+              'Third frozen subject',
+            ],
+            lease: lease,
+          ),
+          'persist flag intent',
+        );
+        if (scenario == TransactionCrashScenario.committedFlagIntent) {
+          await _ready(scenario);
+        }
+        _required(
+          await opened.beginFlagAttempt(handle, 0, lease: lease),
+          'persist flag dispatch marker',
+        );
+        if (scenario == TransactionCrashScenario.committedFlagDispatch) {
+          await _ready(scenario);
+        }
+        final result = MailBulkFlagItemResult.restore(
+          operation: plan.operationAt(0),
+          outcome: MailBulkFlagOutcome.confirmed,
+        );
+        _required(
+          await opened.recordFlagResult(handle, 0, result),
+          'persist flag receipt',
+        );
+        if (scenario == TransactionCrashScenario.committedFlagReceipt) {
+          await _ready(scenario);
+        }
+        _required(
+          await opened.finishFlagBatch(
+            handle,
+            MailBulkFlagReport.restore(
+              plan: plan,
+              results: [
+                result,
+                for (var i = 1; i < 3; i++)
+                  MailBulkFlagItemResult.restore(
+                    operation: plan.operationAt(i),
+                    outcome: MailBulkFlagOutcome.unattempted,
+                  ),
+              ],
+              stopReason: MailBulkFlagStopReason.cancelled,
+              stopProblem: const MailProblem(
+                MailProblemCode.cancelled,
+                mutationMayHaveOccurred: false,
+              ),
+            ),
+          ),
+          'finish flag batch',
+        );
+        if (scenario == TransactionCrashScenario.committedFlagFinish) {
+          await _ready(scenario);
+        }
       case TransactionCrashScenario.beforeMailboxViewCommit:
       case TransactionCrashScenario.committedMailboxView:
         _required(

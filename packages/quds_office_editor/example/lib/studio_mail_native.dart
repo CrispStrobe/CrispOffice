@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:enough_mail/enough_mail.dart' as mail;
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_mime/quds_mail_mime.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
@@ -13,8 +12,11 @@ import 'studio_chrome.dart';
 import 'studio_credential_settings.dart';
 import 'studio_credential_storage.dart';
 import 'studio_mail_archive_action.dart';
-import 'studio_mail_archive_folder_action.dart';
 import 'studio_mail_bulk_status.dart';
+import 'studio_mail_flag_journal.dart';
+import 'studio_mail_journal_dialog.dart';
+import 'studio_mail_journal_strings.dart';
+import 'studio_mail_archive_folder_action.dart';
 import 'studio_mail_cloud.dart';
 import 'studio_mail_cached_strings.dart';
 import 'studio_mail_compose.dart';
@@ -30,17 +32,38 @@ import 'studio_mail_ews.dart';
 import 'studio_mail_local_drafts.dart';
 import 'studio_mail_message_loader.dart';
 import 'studio_mail_mailbox_store.dart';
+import 'studio_mail_mailbox_session.dart';
 import 'studio_mail_operation.dart';
 import 'studio_mail_outbox.dart';
 import 'studio_mail_outbox_dialog.dart';
 import 'studio_mail_outbox_strings.dart';
 import 'studio_mail_presets.dart';
+import 'studio_mail_remote_images.dart';
 import 'studio_mail_reply.dart';
 import 'studio_mail_strings.dart';
 import 'studio_mail_workspace_strings.dart';
 import 'studio_mail_submission.dart';
+import 'studio_mail_sync_dialog.dart';
+import 'studio_mail_sync_strings.dart';
 import 'studio_saved_mail.dart';
 import 'studio_strings.dart';
+
+StudioMailDraftAccount _imapLocalIdentity(mail.MailAccount account) {
+  final incoming = account.incoming.serverConfig;
+  final authentication = account.incoming.authentication;
+  return StudioMailDraftAccount(
+    provider: 'imap',
+    endpoint: Uri(
+      scheme: incoming.socketType == mail.SocketType.ssl ? 'imaps' : 'imap',
+      host: incoming.hostname,
+      port: incoming.port,
+    ).toString(),
+    login: authentication is mail.UserNameBasedAuthentication
+        ? authentication.userName
+        : account.email,
+    sender: account.email,
+  );
+}
 
 /// IMAP/SMTP client with optional host-managed account persistence.
 ///
@@ -56,6 +79,7 @@ class StudioMailDialog extends StatefulWidget {
     this.chromeBuilder,
     this.clientFactory,
     this.messageLoaderFactory,
+    this.autoConnectSavedAccount,
     this.accountDiscovery,
     this.credentialStore,
     this.credentialSettingsOpener,
@@ -63,6 +87,7 @@ class StudioMailDialog extends StatefulWidget {
     this.archiveFolderWriter,
     this.draftStoreFactory,
     this.localAccountStore,
+    this.remoteImageLoaderFactory,
   });
 
   final StudioStrings strings;
@@ -78,10 +103,15 @@ class StudioMailDialog extends StatefulWidget {
   final StudioMailArchiveFolderWriter? archiveFolderWriter;
   final StudioMailDraftStoreFactory? draftStoreFactory;
   final StudioMailLocalAccountStore? localAccountStore;
+  final StudioMailRemoteImageLoader Function()? remoteImageLoaderFactory;
 
   /// Creates a fresh client for each connection attempt. Tests use this seam
   /// to control network completions without contacting an external account.
   final mail.MailClient Function(mail.MailAccount account)? clientFactory;
+
+  /// Connect after adopting remembered credentials. Built-in clients enable
+  /// this by default; hosts supplying their own factories can opt in explicitly.
+  final bool? autoConnectSavedAccount;
 
   /// Resolves endpoint settings only; credentials are supplied after the
   /// discovery origin and IMAP/SMTP server types have been checked.
@@ -113,15 +143,14 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   final _usedHeaderCursors = <String>{};
   final _confirmedFlags =
       Map<mail.MimeMessage, ({bool? read, bool? flagged})>.identity();
+  final _repositoryFlags = Map<mail.MimeMessage, MailMessageFlags?>.identity();
   MailCursor? _nextHeaders;
   bool _needsRefresh = false;
-  int _bulkRevision = 0;
-  int _bulkSerial = 0;
-  MailAccountSession? _bulkSession;
+  int _mailboxGeneration = 0;
+  Future<void>? _pendingFlagWrite;
+  MailCancellationSource? _bulkCancellation;
   MailBulkFlagReport? _bulkReport;
   Map<MailRemoteIdentity, String> _bulkSubjects = const {};
-  bool _bulkRunning = false;
-  bool _bulkStopRequested = false;
   final _primaryLogin = TextEditingController();
   StudioMailImapPreset? _preset;
   bool _icloudFullAddressLogin = false;
@@ -132,14 +161,16 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   bool _remember = true;
   StudioMailCredentials? _lastCredentialSnapshot;
   bool _credentialSettingsOpen = false;
+  bool _vaultUnlockPromptOpen = false;
   bool _credentialStoreChangePending = false;
   int _credentialStoreRevision = 0;
   bool _startTls = false;
   bool _hasSavedCredentials = false;
   bool _credentialPending = false;
-  bool _autoConnectScheduled = false;
+  Object? _autoConnectTicket;
   bool _remoteImagesLoading = false;
-  bool _remoteImagesLoaded = false;
+  StudioMailRemoteImageLoader? _remoteImageLoader;
+  MailReaderController? _remoteImageOwner;
   int _settingsRevision = 0;
   int _credentialGeneration = 0;
 
@@ -158,6 +189,9 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   StudioMailDraft? _draft;
   StudioMailDraftStore? _draftStore;
   StudioMailMailboxCapture? _mailboxCapture;
+  StudioMailMailboxSession? _mailboxViewSession;
+  StreamSubscription<StudioMailMailboxSnapshot>? _mailboxViewSubscription;
+  Future<void> _mailboxViewClosing = Future<void>.value();
   Future<void> _draftStoreClosing = Future<void>.value();
   bool _submissionUncertain = false;
   bool _busy = false;
@@ -201,6 +235,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
 
   void _settingsEdited() {
     _settingsRevision++;
+    _autoConnectTicket = null;
     // Keep the offline action in sync with the effective saved-account route.
     // Password edits retain the route; endpoint/sender/login edits may not.
     if (mounted && _selectedSavedAccountId != null) setState(() {});
@@ -225,6 +260,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         credentialGeneration != _credentialGeneration) {
       return;
     }
+    var adopted = false;
     setState(() {
       _hasSavedCredentials = saved != null;
       if (saved == null ||
@@ -234,30 +270,59 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         return;
       }
       _applyCredentials(saved);
+      adopted = true;
     });
-    _scheduleAutoConnect();
+    if (adopted) _scheduleAutoConnect();
   }
 
+  bool get _autoConnectEnabled =>
+      widget.autoConnectSavedAccount ??
+      (widget.clientFactory == null && widget.messageLoaderFactory == null);
+
   void _scheduleAutoConnect() {
-    if (widget.clientFactory != null ||
-        widget.messageLoaderFactory != null ||
-        _autoConnectScheduled ||
+    if (!_autoConnectEnabled ||
+        _autoConnectTicket != null ||
+        !_hasSavedCredentials ||
+        _credentialPending ||
+        _credentialSettingsOpen ||
+        _credentialStoreChangePending ||
+        _showSavedMessages ||
         _client != null ||
         _connecting ||
         _busy ||
+        _dialogOpen ||
         _email.text.trim().isEmpty ||
         _password.text.isEmpty) {
       return;
     }
-    _autoConnectScheduled = true;
+    final ticket = Object();
+    _autoConnectTicket = ticket;
+    final settings = _settingsRevision;
+    final credentials = _credentialGeneration;
+    final store = _credentialStoreRevision;
+    final session = _sessionGeneration;
+    final account = _selectedSavedAccountId;
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!identical(_autoConnectTicket, ticket)) return;
+      _autoConnectTicket = null;
       if (!mounted ||
+          !_autoConnectEnabled ||
+          settings != _settingsRevision ||
+          credentials != _credentialGeneration ||
+          store != _credentialStoreRevision ||
+          session != _sessionGeneration ||
+          account != _selectedSavedAccountId ||
+          !_hasSavedCredentials ||
+          _credentialPending ||
+          _credentialSettingsOpen ||
+          _credentialStoreChangePending ||
+          _showSavedMessages ||
           _client != null ||
           _connecting ||
           _busy ||
+          _dialogOpen ||
           _email.text.trim().isEmpty ||
           _password.text.isEmpty) {
-        _autoConnectScheduled = false;
         return;
       }
       unawaited(_connect());
@@ -317,6 +382,8 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       );
     }
     if (!mounted || generation != _credentialGeneration) return;
+    var adopted = false;
+    var unlockVault = false;
     setState(() {
       _credentialPending = false;
       final current =
@@ -325,17 +392,28 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           !_connecting &&
           _client == null;
       if (!result.isSuccess) {
-        if (current) _credentialError = widget.strings.mailAccountsLoadFailed;
+        if (current) {
+          _credentialError = widget.strings.mailAccountsLoadFailed;
+          // An encrypted vault is intentionally locked on process start.
+          // Offer its master password instead of presenting a permanently
+          // unavailable catalog; the user can still cancel and set up a new
+          // account manually.
+          unlockVault = true;
+        }
         return;
       }
       _accountCatalog = result.catalog!;
       if (current) {
         _credentialError = null;
         final saved = result.catalog!.selectedAccount;
-        if (saved != null) _applySavedAccount(saved);
+        if (saved != null) {
+          _applySavedAccount(saved);
+          adopted = true;
+        }
       }
     });
-    _scheduleAutoConnect();
+    if (unlockVault) _scheduleVaultUnlockPrompt();
+    if (adopted) _scheduleAutoConnect();
   }
 
   Future<void> _selectSavedAccount(String id) async {
@@ -582,8 +660,10 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         _credentialStorageChanged,
       );
     }
+    _bulkCancellation?.cancel(MailCancellationReason.disposed);
+    _remoteImageLoader?.cancel();
     _sessionGeneration++;
-    _bulkSession?.dispose();
+    unawaited(_stopCachedView());
     _mailboxCapture?.dispose();
     _credentialGeneration++;
     _email.dispose();
@@ -608,10 +688,18 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       _currentAttempt(generation) && identical(client, _client);
 
   Future<void> _closeDraftStore(StudioMailDraftStore? store) async {
+    // Keep the owner alive until an in-flight server reply has a durable receipt.
+    // Cancelling the connection still prevents every subsequent dispatch.
     final mailboxStore = switch (store) {
       StudioMailMailboxStoreOwner owner => owner.mailboxStore,
       _ => null,
     };
+    if (mailboxStore != null &&
+        identical(_mailboxViewSession?.store, mailboxStore)) {
+      await _stopCachedView();
+    }
+    await _mailboxViewClosing;
+    await _pendingFlagWrite;
     if (mailboxStore != null &&
         identical(_mailboxCapture?.store, mailboxStore)) {
       _mailboxCapture?.dispose();
@@ -639,20 +727,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     try {
       await _draftStoreClosing;
       if (!_currentSession(client, generation)) return false;
-      final incoming = account.incoming.serverConfig;
-      final authentication = account.incoming.authentication;
-      final identity = StudioMailDraftAccount(
-        provider: 'imap',
-        endpoint: Uri(
-          scheme: incoming.socketType == mail.SocketType.ssl ? 'imaps' : 'imap',
-          host: incoming.hostname,
-          port: incoming.port,
-        ).toString(),
-        login: authentication is mail.UserNameBasedAuthentication
-            ? authentication.userName
-            : account.email,
-        sender: account.email,
-      );
+      final identity = _imapLocalIdentity(account);
       candidate = await (widget.draftStoreFactory ?? openStudioMailDraftStore)(
         identity,
       );
@@ -673,6 +748,13 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       if (candidate case StudioMailMailboxStoreOwner(
         :final mailboxStore,
       ) when mailboxStore.account != identity.account) {
+        throw const StudioMailDraftStoreException(
+          MailProblemCode.permissionDenied,
+        );
+      }
+      if (candidate case StudioMailFlagJournalOwner(
+        :final flagJournal,
+      ) when flagJournal.account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
@@ -702,6 +784,11 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       };
       if (mailboxOwner != null && records != null) {
         final owner = candidate;
+        await _stopCachedView();
+        if (!_currentSession(client, generation) ||
+            !identical(owner, _draftStore)) {
+          return false;
+        }
         _mailboxCapture?.dispose();
         _mailboxCapture = StudioMailMailboxCapture(
           store: mailboxOwner.mailboxStore,
@@ -762,26 +849,159 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         !_currentSession(client, generation)) {
       return;
     }
+    final mailboxGeneration = _mailboxGeneration;
+    bool current() =>
+        _currentSession(client, generation) &&
+        mailboxGeneration == _mailboxGeneration &&
+        identical(capture, _mailboxCapture) &&
+        identical(mailbox, _messageMailbox) &&
+        identical(loader, _messageLoader);
     try {
-      await capture.saveView(
+      final records = [
+        for (final message in _messages)
+          _capturedHeader(loader.observedHeader(mailbox, message), message),
+      ];
+      final messages = <MailMessageId, mail.MimeMessage>{
+        for (var i = 0; i < records.length; i++) records[i].id: _messages[i],
+      };
+      await _stopCachedView(retainMetadata: true);
+      if (!current()) return;
+      final saved = await capture.saveView(
         MailMailbox(
           id: MailMailboxId(mailbox.path, account: loader.account),
           displayName: mailbox.name,
         ),
-        [
-          for (final message in _messages)
-            loader.observedHeader(mailbox, message),
-        ],
+        records,
         hasMore: _nextHeaders != null,
       );
-      if (_currentSession(client, generation)) {
-        setState(() => _cacheViewWarning = null);
+      if (!current()) return;
+      final session = StudioMailMailboxSession(
+        store: capture.store,
+        provider: capture.provider,
+      );
+      _mailboxViewSession = session;
+      void accept(StudioMailMailboxSnapshot snapshot) {
+        if (!current() || !identical(session, _mailboxViewSession)) return;
+        if (snapshot.phase == StudioMailMailboxPhase.loading) return;
+        try {
+          final view = snapshot.view;
+          if (snapshot.phase != StudioMailMailboxPhase.ready || view == null) {
+            throw const StudioMailMailboxStoreException(
+              MailProblemCode.storageFailure,
+            );
+          }
+          final projected = capture.projectView(view);
+          final ordered = <mail.MimeMessage>[];
+          final flags = Map<mail.MimeMessage, MailMessageFlags?>.identity();
+          for (final header in projected) {
+            final message = messages[header.id];
+            if (message == null ||
+                loader.observedHeader(mailbox, message).remote !=
+                    header.remote) {
+              throw const StudioMailMailboxStoreException(
+                MailProblemCode.conflict,
+              );
+            }
+            ordered.add(message);
+            flags[message] = header.flags;
+          }
+          setState(() {
+            _messages = ordered;
+            for (final entry in flags.entries) {
+              final observed = entry.value;
+              final previous = _repositoryFlags[entry.key];
+              final hadPrevious = _repositoryFlags.containsKey(entry.key);
+              final confirmed = _confirmedFlags[entry.key];
+              if (observed != null && confirmed != null) {
+                final read =
+                    confirmed.read == observed.isRead ||
+                        hadPrevious && previous?.isRead != observed.isRead
+                    ? null
+                    : confirmed.read;
+                final flagged =
+                    confirmed.flagged == observed.isFlagged ||
+                        hadPrevious && previous?.isFlagged != observed.isFlagged
+                    ? null
+                    : confirmed.flagged;
+                if (read == null && flagged == null) {
+                  _confirmedFlags.remove(entry.key);
+                } else {
+                  _confirmedFlags[entry.key] = (read: read, flagged: flagged);
+                }
+              }
+            }
+            _repositoryFlags
+              ..clear()
+              ..addAll(flags);
+            _cacheViewWarning = null;
+          });
+        } on Object {
+          setState(
+            () => _cacheViewWarning = widget.strings.mailCacheSaveFailed,
+          );
+        }
       }
+
+      _mailboxViewSubscription = session.changes.listen(accept);
+      await session.select(saved.mailbox.id);
     } on Object {
-      if (_currentSession(client, generation)) {
+      if (current()) {
         setState(() => _cacheViewWarning = widget.strings.mailCacheSaveFailed);
       }
     }
+  }
+
+  MailHeaderRecord _capturedHeader(
+    MailHeaderRecord observed,
+    mail.MimeMessage message,
+  ) {
+    final snapshot = _repositoryFlags.containsKey(message)
+        ? _repositoryFlags[message]
+        : observed.flags;
+    final confirmed = _confirmedFlags[message];
+    return MailHeaderRecord(
+      id: observed.id,
+      remote: observed.remote,
+      envelope: observed.envelope,
+      // A per-flag confirmation must never invent the remaining unknown bits.
+      flags: snapshot == null
+          ? null
+          : MailMessageFlags(
+              isRead: confirmed?.read ?? snapshot.isRead,
+              isFlagged: confirmed?.flagged ?? snapshot.isFlagged,
+              isAnswered: snapshot.isAnswered,
+              isDraft: snapshot.isDraft,
+              isDeleted: snapshot.isDeleted,
+            ),
+    );
+  }
+
+  Future<void> _stopCachedView({bool retainMetadata = false}) {
+    final session = _mailboxViewSession;
+    final subscription = _mailboxViewSubscription;
+    _mailboxViewSession = null;
+    _mailboxViewSubscription = null;
+    if (!retainMetadata) _repositoryFlags.clear();
+    _mailboxCapture?.invalidateView();
+    final closing = session?.close();
+    final previous = _mailboxViewClosing;
+    return _mailboxViewClosing = () async {
+      try {
+        await previous;
+      } on Object {
+        // Continue retiring all independent subscriptions.
+      }
+      try {
+        await subscription?.cancel();
+      } on Object {
+        // Identity fencing already rejects late callbacks.
+      }
+      try {
+        await closing;
+      } on Object {
+        // The owner still closes after every cancellation has settled.
+      }
+    }();
   }
 
   Future<void> _disconnectQuietly(
@@ -808,6 +1028,12 @@ class _StudioMailDialogState extends State<StudioMailDialog>
 
   void _retireReader(MailReaderController? reader) {
     if (reader == null) return;
+    if (identical(_remoteImageOwner, reader)) {
+      _remoteImageLoader?.cancel();
+      _remoteImageLoader = null;
+      _remoteImageOwner = null;
+      _remoteImagesLoading = false;
+    }
     WidgetsBinding.instance.addPostFrameCallback((_) => reader.dispose());
   }
 
@@ -909,7 +1135,10 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       _pendingClient = client;
       final loader =
           widget.messageLoaderFactory?.call(account) ??
-          NativeStudioMailMessageLoader(account);
+          NativeStudioMailMessageLoader(
+            account,
+            persistentAccount: _imapLocalIdentity(account).account,
+          );
       candidateLoader = loader;
       _pendingLoader = loader;
       await client.connect();
@@ -955,13 +1184,12 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         _mailboxes = boxes;
         _mailbox = inbox;
         _messages = page.messages;
-        _bulkRevision++;
-        _bulkReport = null;
-        _bulkSubjects = const {};
         _nextHeaders = page.next;
         _usedHeaderCursors.clear();
         _confirmedFlags.clear();
         _needsRefresh = false;
+        _bulkReport = null;
+        _bulkSubjects = const {};
         _selected = null;
         _reader = null;
         _connecting = false;
@@ -1058,12 +1286,15 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         final generation = _sessionGeneration;
         final previous = more ? null : _reader;
         final cursor = more ? _nextHeaders : null;
+        setState(() => _busy = true);
+        await _stopCachedView(retainMetadata: more);
+        if (!_currentSession(client, generation)) return;
         setState(() {
           _busy = true;
           _error = null;
           _notice = null;
           if (!more) {
-            _bulkRevision++;
+            _mailboxGeneration++;
             _bulkReport = null;
             _bulkSubjects = const {};
             _mailbox = mailbox;
@@ -1126,12 +1357,17 @@ class _StudioMailDialogState extends State<StudioMailDialog>
             _confirmedFlags.removeWhere(
               (message, _) => !retained.contains(message),
             );
+            _repositoryFlags.removeWhere(
+              (message, _) => !retained.contains(message),
+            );
             if (more && _selected != null) {
               _selected = messages[_messageKey(_selected!)];
             }
             _messageMailbox = observedMailbox;
             _nextHeaders = page.next;
             _needsRefresh = false;
+            _bulkReport = null;
+            _bulkSubjects = const {};
           });
           await _saveCachedView(client, generation);
           if (_currentSession(client, generation)) {
@@ -1202,7 +1438,6 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           setState(() {
             _selected = message;
             _reader = reader;
-            _remoteImagesLoaded = false;
             _showCompactMessage = true;
           });
           _retireReader(previous);
@@ -1673,68 +1908,42 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     }
   });
 
-  Iterable<String> get _remoteImageUrls {
-    final html = _reader?.result.message?.body.html;
-    if (html == null) return const <String>[];
-    final matches = RegExp(
-      r'''src\s*=\s*["'](https?://[^"']+)["']''',
-      caseSensitive: false,
-    ).allMatches(html);
-    return <String>{for (final match in matches) match.group(1)!}.take(8);
-  }
-
   Future<void> _loadRemoteImages() async {
     final reader = _reader;
     if (reader == null ||
+        reader.isDisposed ||
         _remoteImagesLoading ||
-        _remoteImagesLoaded ||
-        reader.presentation.blockedResourceCount == 0) {
+        reader.presentation.remoteImageUrls.isEmpty) {
       return;
     }
-    final urls = _remoteImageUrls.toList(growable: false);
-    if (urls.isEmpty) return;
+    final result = reader.result;
+    final generation = _sessionGeneration;
+    final loader =
+        widget.remoteImageLoaderFactory?.call() ??
+        StudioMailRemoteImageLoader();
+    _remoteImageLoader = loader;
+    _remoteImageOwner = reader;
+    bool current() =>
+        mounted &&
+        !reader.isDisposed &&
+        generation == _sessionGeneration &&
+        identical(reader, _reader) &&
+        identical(result, reader.result) &&
+        identical(loader, _remoteImageLoader);
     setState(() {
       _remoteImagesLoading = true;
       _error = null;
     });
-    final loaded = <MailInlineImage>[];
     try {
-      for (final url in urls) {
-        try {
-          final response = await http
-              .get(Uri.parse(url))
-              .timeout(const Duration(seconds: 15));
-          if (response.statusCode != 200 ||
-              response.bodyBytes.length > 4 * 1024 * 1024) {
-            continue;
-          }
-          final mediaType =
-              response.headers['content-type']?.split(';').first.trim() ??
-              'application/octet-stream';
-          final attachment = MailAttachment(
-            partPath: 'remote:$url',
-            mediaType: mediaType,
-            displayName: Uri.parse(url).pathSegments.lastOrNull ?? 'Image',
-            content: MailBytes(response.bodyBytes),
-          );
-          final dimensions = mailRasterDimensions(attachment);
-          if (dimensions == null) continue;
-          loaded.add(
-            MailInlineImage(
-              attachment: attachment,
-              width: dimensions.$1,
-              height: dimensions.$2,
-            ),
-          );
-        } on Object {
-          // A failed optional image never replaces the decoded message.
-        }
-      }
-      if (!mounted || !identical(reader, _reader)) return;
-      reader.addImages(loaded);
-      setState(() => _remoteImagesLoaded = true);
+      await loader.loadInto(reader, isCurrent: current);
     } finally {
-      if (mounted) setState(() => _remoteImagesLoading = false);
+      if (mounted && identical(loader, _remoteImageLoader)) {
+        setState(() {
+          _remoteImagesLoading = false;
+          _remoteImageLoader = null;
+          _remoteImageOwner = null;
+        });
+      }
     }
   }
 
@@ -1868,241 +2077,444 @@ class _StudioMailDialogState extends State<StudioMailDialog>
 
   Future<void> _markRead() => _changeMessageFlags(read: true);
 
+  Future<void> _changeMessageFlags({
+    bool? read,
+    bool? flagged,
+  }) => runStudioMailOperation(() async {
+    final client = _client;
+    final loader = _messageLoader;
+    final mailbox = _messageMailbox;
+    final message = _selected;
+    final actions = loader is StudioMailMessageActions
+        ? loader as StudioMailMessageActions
+        : null;
+    if (client == null ||
+        loader == null ||
+        mailbox == null ||
+        message == null ||
+        _busy ||
+        _dialogOpen ||
+        _needsRefresh ||
+        (read == null) == (flagged == null) ||
+        actions == null && (read != true || message.isSeen)) {
+      return;
+    }
+    if (loader is StudioMailMailboxRecords && actions != null) {
+      await _changeBulkFlags(
+        read != null
+            ? (read
+                  ? MailBulkFlagAction.markRead
+                  : MailBulkFlagAction.markUnread)
+            : (flagged! ? MailBulkFlagAction.flag : MailBulkFlagAction.unflag),
+        [_messageKey(message)],
+        mailboxGeneration: _mailboxGeneration,
+      );
+      return;
+    }
+    final generation = _sessionGeneration;
+    final uid = message.uid;
+    final uidValidity = mailbox.uidValidity;
+    final mailboxPath = mailbox.path;
+    setState(() {
+      _busy = true;
+      _error = null;
+      _notice = null;
+    });
+    try {
+      if (actions == null) {
+        await loader.markRead(mailbox, message);
+      } else if (read != null) {
+        await actions.setRead(mailbox, message, read: read);
+      } else {
+        await actions.setFlagged(mailbox, message, flagged: flagged!);
+      }
+      if (!_currentSession(client, generation)) return;
+      if (!identical(_selected, message) ||
+          !identical(_messageLoader, loader) ||
+          !identical(_messageMailbox, mailbox) ||
+          message.uid != uid ||
+          mailbox.uidValidity != uidValidity ||
+          mailbox.path != mailboxPath) {
+        throw const StudioMailMessageLoadException(MailProblemCode.conflict);
+      }
+      setState(() {
+        _confirmedFlags[message] = (
+          read: read ?? _observedRead(message),
+          flagged: flagged ?? _observedFlagged(message),
+        );
+        if (read != null) message.setFlag(mail.MessageFlags.seen, read);
+        if (flagged != null) {
+          message.setFlag(mail.MessageFlags.flagged, flagged);
+        }
+        _busy = false;
+        _notice = actions == null
+            ? null
+            : widget.strings.mailWorkspaceActionConfirmed;
+      });
+    } on Object {
+      if (!_currentSession(client, generation)) return;
+      setState(() {
+        _busy = false;
+        // An unconfirmed write may have reached the server. A new folder
+        // observation is required; there is no automatic mutation retry.
+        _needsRefresh = actions != null;
+        _error = actions == null
+            ? widget.strings.mailMarkReadFailed
+            : widget.strings.mailWorkspaceRefreshRequired;
+      });
+    }
+  });
+
   Future<void> _changeBulkFlags(
     MailBulkFlagAction action,
     List<String> ids, {
-    required int revision,
-    required StudioMailMessageLoader expectedLoader,
+    required int mailboxGeneration,
   }) => runStudioMailOperation(() async {
     final client = _client;
     final loader = _messageLoader;
     final mailbox = _messageMailbox;
     if (!mounted ||
         client == null ||
-        loader == null ||
-        loader is! StudioMailBulkMessageActions ||
+        loader is! StudioMailMessageActions ||
+        loader is! StudioMailMailboxRecords ||
         mailbox == null ||
         _busy ||
         _dialogOpen ||
         _needsRefresh ||
-        revision != _bulkRevision ||
-        !identical(loader, expectedLoader) ||
+        mailboxGeneration != _mailboxGeneration ||
         ids.isEmpty ||
         ids.length > MailBulkFlagPlan.maxMessages ||
         ids.toSet().length != ids.length) {
       return;
     }
-    final actions = loader as StudioMailBulkMessageActions;
+    final actions = loader as StudioMailMessageActions;
+    final records = loader as StudioMailMailboxRecords;
     final generation = _sessionGeneration;
-    final headers = _messages;
-    final byId = {for (final header in headers) _messageKey(header): header};
-    if (ids.any((id) => !byId.containsKey(id))) return;
-    final frozen = <MailRemoteIdentity, mail.MimeMessage>{};
+    final mailboxPath = mailbox.path;
+    final uidValidity = mailbox.uidValidity;
+    final account = records.account;
+    final targets = <mail.MimeMessage>[];
+    final observed = <MailHeaderRecord>[];
     final MailBulkFlagPlan plan;
     try {
       for (final id in ids) {
-        final header = byId[id]!;
-        final identity = actions.bulkIdentity(mailbox, header);
-        if (frozen.containsKey(identity)) {
-          throw ArgumentError('Duplicate bulk identity.');
+        final matches = _messages.where(
+          (message) => _messageKey(message) == id,
+        );
+        if (matches.length != 1) return;
+        final message = matches.single;
+        final header = records.observedHeader(mailbox, message);
+        final remote = header.remote;
+        if (remote is! MailImapIdentity ||
+            remote.account != account ||
+            remote.mailbox.value != mailboxPath ||
+            remote.uidValidity != uidValidity ||
+            remote.uid != message.uid) {
+          throw const StudioMailMessageLoadException(MailProblemCode.conflict);
         }
-        frozen[identity] = header;
+        targets.add(message);
+        observed.add(header);
       }
       plan = MailBulkFlagPlan(
-        id: 'studio-imap-bulk-${++_bulkSerial}',
-        mailbox: MailMailboxId(mailbox.path, account: actions.account),
+        id: newStudioMailFlagOperationId(),
+        mailbox: MailMailboxId(mailboxPath, account: account),
+        provider: MailProviderKind.imap,
+        messages: [for (final header in observed) header.remote],
         action: action,
-        messages: frozen.keys.toList(),
       );
     } on Object {
-      setState(() {
-        _needsRefresh = true;
-        _error = widget.strings.mailWorkspaceRefreshRequired;
-      });
+      if (_currentSession(client, generation)) {
+        setState(() {
+          _needsRefresh = true;
+          _error = widget.strings.mailWorkspaceRefreshRequired;
+        });
+      }
       return;
     }
-    final session = MailAccountSession(actions.account);
-    final validity = (plan.messages.first as MailImapIdentity).uidValidity;
-    bool current() {
-      if (!_currentSession(client, generation) ||
-          !identical(_messageLoader, loader) ||
-          !identical(_messageMailbox, mailbox) ||
-          !identical(_messages, headers) ||
-          !identical(_bulkSession, session) ||
-          revision != _bulkRevision ||
-          mailbox.path != plan.mailbox.value ||
-          mailbox.uidValidity != validity) {
+
+    bool currentHost() =>
+        _currentSession(client, generation) &&
+        identical(_messageLoader, loader) &&
+        mailboxGeneration == _mailboxGeneration &&
+        identical(_messageMailbox, mailbox);
+
+    bool currentSelection() {
+      if (!currentHost() ||
+          records.account != account ||
+          mailbox.path != mailboxPath ||
+          mailbox.uidValidity != uidValidity) {
         return false;
       }
       try {
-        return actions.account == plan.mailbox.account &&
-            frozen.entries.every(
-              (entry) =>
-                  entry.value.uid == (entry.key as MailImapIdentity).uid &&
-                  actions.bulkIdentity(mailbox, entry.value) == entry.key,
-            );
+        final loaded = Set<mail.MimeMessage>.identity()..addAll(_messages);
+        for (var i = 0; i < targets.length; i++) {
+          final message = targets[i];
+          final remote = observed[i].remote as MailImapIdentity;
+          if (!loaded.contains(message) || message.uid != remote.uid) {
+            return false;
+          }
+          final latest = records.observedHeader(mailbox, message);
+          if (latest.id != observed[i].id || latest.remote != remote) {
+            return false;
+          }
+        }
       } on Object {
         return false;
       }
+      return true;
     }
 
-    void project(MailBulkFlagReport report) {
-      for (final result in report.results) {
-        if (result.outcome != MailBulkFlagOutcome.confirmed) continue;
-        final header = frozen[result.message]!;
-        final read = switch (action) {
-          MailBulkFlagAction.markRead => true,
-          MailBulkFlagAction.markUnread => false,
-          _ => _observedRead(header),
-        };
-        final flagged = switch (action) {
-          MailBulkFlagAction.flag => true,
-          MailBulkFlagAction.unflag => false,
-          _ => _observedFlagged(header),
-        };
-        _confirmedFlags[header] = (read: read, flagged: flagged);
-        if (action == MailBulkFlagAction.markRead ||
-            action == MailBulkFlagAction.markUnread) {
-          header.setFlag(mail.MessageFlags.seen, read!);
-        } else {
-          header.setFlag(mail.MessageFlags.flagged, flagged!);
-        }
-      }
-      _bulkReport = report;
-      if (report.requiresRefresh ||
-          report.stopReason == MailBulkFlagStopReason.staleScope) {
-        _needsRefresh = true;
-      }
-    }
-
+    // This lease scopes the coordinator; the native loader retains ownership
+    // of its own transport lease. Cancel stops later dispatches only.
+    final session = MailAccountSession(account);
+    final cancellation = MailCancellationSource();
+    final owner = _draftStore;
+    final settled = Completer<void>();
+    _pendingFlagWrite = settled.future;
+    final frozenMailbox = mailbox.copyWith();
+    final byRemote = {
+      for (var i = 0; i < targets.length; i++) observed[i].remote: targets[i],
+    };
     setState(() {
-      _bulkSession = session;
-      _bulkSubjects = Map.unmodifiable({
-        for (final entry in frozen.entries)
-          entry.key: entry.value.decodeSubject() ?? '(no subject)',
-      });
+      _bulkCancellation = cancellation;
       _bulkReport = null;
-      _bulkRunning = true;
-      _bulkStopRequested = false;
+      _bulkSubjects = Map.unmodifiable({
+        for (var i = 0; i < targets.length; i++)
+          observed[i].remote: targets[i].decodeSubject() ?? '',
+      });
       _busy = true;
       _error = null;
       _notice = null;
     });
     try {
-      final report = await const MailBulkFlagRunner().run(
+      final report = await MailBulkFlagCoordinator().run(
         plan: plan,
         lease: session.begin(),
-        apply: actions.applyBulkFlag,
-        isScopeCurrent: current,
-        shouldStop: () => _bulkStopRequested,
+        cancellation: cancellation.token,
+        isScopeCurrent: currentSelection,
+        journal: studioMailFlagJournal(
+          owner: owner,
+          requireDurable: widget.draftStoreFactory == null,
+          sourceAccount: account,
+          provider: MailProviderKind.imap,
+          subjects: [for (final header in observed) header.envelope.subject],
+          isCurrent: () => currentSelection() && identical(owner, _draftStore),
+        ),
         onProgress: (report) {
-          if (current()) setState(() => project(report));
+          if (currentSelection() &&
+              identical(_bulkCancellation, cancellation)) {
+            setState(() => _bulkReport = report);
+          }
+        },
+        apply: (operation, lease) async {
+          if (loader is StudioMailBulkMessageActions) {
+            return MailBulkFlagAttempt.fromResult(
+              await (loader as StudioMailBulkMessageActions).applyBulkFlag(
+                operation,
+                lease,
+              ),
+            );
+          }
+          final message = byRemote[operation.message]!;
+          try {
+            if (operation is MailSetRead) {
+              await actions.setRead(
+                frozenMailbox,
+                message,
+                read: operation.read,
+              );
+            } else if (operation is MailSetFlagged) {
+              await actions.setFlagged(
+                frozenMailbox,
+                message,
+                flagged: operation.flagged,
+              );
+            } else {
+              return const MailBulkFlagAttempt.failed(
+                MailProblem(MailProblemCode.unsupported),
+              );
+            }
+            return const MailBulkFlagAttempt.confirmed();
+          } on StudioMailMessageLoadException catch (error) {
+            return MailBulkFlagAttempt.fromResult(
+              MailFailure<MailUnit>(
+                MailProblem(
+                  error.code,
+                  mutationMayHaveOccurred: error.mutationMayHaveOccurred,
+                ),
+              ),
+            );
+          }
         },
       );
-      if (!current()) {
-        // A mutable native header/mailbox may be retired without changing the
-        // account. Release the foreground lock but require a fresh observation.
-        if (_currentSession(client, generation) &&
-            identical(_bulkSession, session)) {
-          setState(() {
-            _bulkReport = report;
-            _bulkRunning = false;
-            _busy = false;
-            _needsRefresh = true;
-            _error = widget.strings.mailWorkspaceRefreshRequired;
-          });
-        }
+      if (!currentHost()) return;
+      if (!currentSelection()) {
+        setState(() {
+          // Keep evidence for the frozen identities even if their mailbox
+          // generation changed. Never project its flags into the new scope.
+          _bulkReport = report;
+          _needsRefresh = true;
+          _error = widget.strings.mailWorkspaceRefreshRequired;
+        });
         return;
       }
       setState(() {
-        project(report);
-        _bulkRunning = false;
-        _busy = false;
-        if (_needsRefresh) {
+        _bulkReport = report;
+        for (var i = 0; i < report.items.length; i++) {
+          final result = report.items[i];
+          if (result.outcome != MailBulkFlagOutcome.confirmed) continue;
+          final message = targets[i];
+          final operation = result.operation;
+          _confirmedFlags[message] = (
+            read: operation is MailSetRead
+                ? operation.read
+                : _observedRead(message),
+            flagged: operation is MailSetFlagged
+                ? operation.flagged
+                : _observedFlagged(message),
+          );
+          if (operation is MailSetRead) {
+            message.setFlag(mail.MessageFlags.seen, operation.read);
+          } else if (operation is MailSetFlagged) {
+            message.setFlag(mail.MessageFlags.flagged, operation.flagged);
+          }
+        }
+        _notice = widget.strings.mailBulkSummary(report);
+        if (report.requiresRefresh) {
+          _needsRefresh = true;
           _error = widget.strings.mailWorkspaceRefreshRequired;
         }
       });
     } finally {
-      if (identical(_bulkSession, session)) _bulkSession = null;
       session.dispose();
+      settled.complete();
+      if (identical(_pendingFlagWrite, settled.future)) {
+        _pendingFlagWrite = null;
+      }
+      if (_currentSession(client, generation) &&
+          identical(_bulkCancellation, cancellation)) {
+        setState(() {
+          _bulkCancellation = null;
+          _busy = false;
+        });
+      }
     }
   });
 
-  Future<void> _changeMessageFlags({bool? read, bool? flagged}) =>
-      runStudioMailOperation(() async {
-        final client = _client;
-        final loader = _messageLoader;
-        final mailbox = _messageMailbox;
-        final message = _selected;
-        final actions = loader is StudioMailMessageActions
-            ? loader as StudioMailMessageActions
-            : null;
-        if (client == null ||
-            loader == null ||
-            mailbox == null ||
-            message == null ||
-            _busy ||
-            _dialogOpen ||
-            _needsRefresh ||
-            (read == null) == (flagged == null) ||
-            actions == null && (read != true || message.isSeen)) {
-          return;
-        }
-        final generation = _sessionGeneration;
-        final uid = message.uid;
-        final uidValidity = mailbox.uidValidity;
-        final mailboxPath = mailbox.path;
-        setState(() {
-          _busy = true;
-          _error = null;
-          _notice = null;
-        });
-        try {
-          if (actions == null) {
-            await loader.markRead(mailbox, message);
-          } else if (read != null) {
-            await actions.setRead(mailbox, message, read: read);
-          } else {
-            await actions.setFlagged(mailbox, message, flagged: flagged!);
-          }
-          if (!_currentSession(client, generation)) return;
-          if (!identical(_selected, message) ||
-              !identical(_messageLoader, loader) ||
-              !identical(_messageMailbox, mailbox) ||
-              message.uid != uid ||
-              mailbox.uidValidity != uidValidity ||
-              mailbox.path != mailboxPath) {
-            throw const StudioMailMessageLoadException(
-              MailProblemCode.conflict,
-            );
-          }
-          setState(() {
-            _confirmedFlags[message] = (
-              read: read ?? _observedRead(message),
-              flagged: flagged ?? _observedFlagged(message),
-            );
-            if (read != null) message.setFlag(mail.MessageFlags.seen, read);
-            if (flagged != null) {
-              message.setFlag(mail.MessageFlags.flagged, flagged);
+  Future<void> _openFlagHistory() async {
+    final client = _client;
+    final owner = _draftStore;
+    final loader = _messageLoader;
+    if (client == null ||
+        owner is! StudioMailFlagJournalOwner ||
+        _busy ||
+        _dialogOpen) {
+      return;
+    }
+    final generation = _sessionGeneration;
+    bool current() =>
+        _currentSession(client, generation) &&
+        identical(owner, _draftStore) &&
+        identical(loader, _messageLoader);
+    final store = (owner as StudioMailFlagJournalOwner).flagJournal;
+    setState(() => _dialogOpen = true);
+    try {
+      await showDialog<void>(
+        context: context,
+        builder: (_) => StudioMailJournalDialog(
+          strings: widget.strings,
+          store: store,
+          isCurrent: current,
+          onReconcile: studioMailFlagRecovery(
+            store: store,
+            observer: loader,
+            provider: MailProviderKind.imap,
+            isCurrent: current,
+            onChecked: () => setState(() {
+              _needsRefresh = true;
+              _error = widget.strings.mailWorkspaceRefreshRequired;
+            }),
+          ),
+        ),
+      );
+    } finally {
+      if (current()) setState(() => _dialogOpen = false);
+    }
+  }
+
+  Future<void> _openSynchronization() async {
+    final client = _client;
+    final owner = _draftStore;
+    final loader = _messageLoader;
+    final selected = _messageMailbox;
+    final store = switch (owner) {
+      StudioMailMailboxStoreOwner value => value.mailboxStore,
+      _ => null,
+    };
+    if (client == null ||
+        selected == null ||
+        selected.path != _mailbox?.path ||
+        store == null ||
+        store is! StudioMailSyncStore ||
+        loader is! StudioMailMailboxSynchronizer ||
+        (loader as StudioMailMailboxSynchronizer).account != store.account ||
+        _busy ||
+        _dialogOpen) {
+      return;
+    }
+    final syncStore = store as StudioMailSyncStore;
+    final synchronizer = loader as StudioMailMailboxSynchronizer;
+    final generation = _sessionGeneration;
+    final mailboxGeneration = _mailboxGeneration;
+    final frozen = selected.copyWith();
+    bool current() =>
+        _currentSession(client, generation) &&
+        mailboxGeneration == _mailboxGeneration &&
+        identical(owner, _draftStore) &&
+        identical(loader, _messageLoader);
+    final mailbox = MailMailbox(
+      id: MailMailboxId(frozen.path, account: store.account),
+      displayName: frozen.name,
+    );
+    setState(() => _dialogOpen = true);
+    try {
+      await showDialog<void>(
+        context: context,
+        barrierDismissible: false,
+        builder: (_) => StudioMailSyncDialog(
+          strings: widget.strings,
+          mailboxStore: store,
+          syncStore: syncStore,
+          mailbox: mailbox,
+          isCurrent: current,
+          run: ({required cancellation, required onProgress}) async {
+            if (!current()) {
+              throw const StudioMailMessageLoadException(
+                MailProblemCode.staleOperation,
+              );
             }
-            _busy = false;
-            _notice = actions == null
-                ? null
-                : widget.strings.mailWorkspaceActionConfirmed;
-          });
-        } on Object {
-          if (!_currentSession(client, generation)) return;
-          setState(() {
-            _busy = false;
-            // An unconfirmed write may have reached the server. A new folder
-            // observation is required; there is no automatic mutation retry.
-            _needsRefresh = actions != null;
-            _error = actions == null
-                ? widget.strings.mailMarkReadFailed
-                : widget.strings.mailWorkspaceRefreshRequired;
-          });
-        }
-      });
+            final saved = await syncStore.saveSyncMailbox(mailbox);
+            if (saved case MailFailure<MailUnit>(:final problem)) {
+              throw StudioMailMessageLoadException(problem.code);
+            }
+            if (!current()) {
+              throw const StudioMailMessageLoadException(
+                MailProblemCode.staleOperation,
+              );
+            }
+            return synchronizer.synchronizeMailbox(
+              frozen,
+              repository: syncStore,
+              cancellation: cancellation,
+              onProgress: onProgress,
+            );
+          },
+        ),
+      );
+    } finally {
+      if (current()) setState(() => _dialogOpen = false);
+    }
+  }
 
   Future<void> _switchAccount() async {
     final client = _client;
@@ -2144,9 +2556,11 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   }
 
   void _disconnect() {
+    _mailboxGeneration++;
+    _bulkCancellation?.cancel(MailCancellationReason.accountChanged);
+    _bulkCancellation = null;
     _sessionGeneration++;
-    _bulkSession?.dispose();
-    _bulkSession = null;
+    unawaited(_stopCachedView());
     _mailboxCapture?.dispose();
     _mailboxCapture = null;
     final draftStore = _draftStore;
@@ -2174,15 +2588,12 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       _mailboxes = const <mail.Mailbox>[];
       _mailbox = null;
       _messages = const <mail.MimeMessage>[];
-      _bulkRevision++;
-      _bulkReport = null;
-      _bulkSubjects = const {};
-      _bulkRunning = false;
-      _bulkStopRequested = false;
       _nextHeaders = null;
       _usedHeaderCursors.clear();
       _confirmedFlags.clear();
       _needsRefresh = false;
+      _bulkReport = null;
+      _bulkSubjects = const {};
       _selected = null;
       _showCompactMessage = false;
       _error = null;
@@ -2376,6 +2787,11 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   bool get _hasCredentialSettings =>
       widget.credentialStore == null || widget.credentialSettingsOpener != null;
 
+  bool get _vaultUnlockAvailable =>
+      widget.credentialStore == null &&
+      StudioCredentialStorage.instance.mode ==
+          StudioCredentialMode.encryptedVault;
+
   bool get _canChangeCredentialStorage =>
       _hasCredentialSettings &&
       !_credentialPending &&
@@ -2412,6 +2828,70 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           : null;
     });
     await _loadCredentials();
+  }
+
+  void _scheduleVaultUnlockPrompt() {
+    if (!mounted) return;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) unawaited(_promptVaultUnlock());
+    });
+  }
+
+  /// Unlocks the selected encrypted vault after the password-protected catalog
+  /// could not be read. The selection is never changed and no fallback store is
+  /// used; cancelling leaves the explicit manual-account path available.
+  Future<void> _promptVaultUnlock() async {
+    if (!mounted ||
+        _vaultUnlockPromptOpen ||
+        _dialogOpen ||
+        _credentialPending ||
+        _connecting ||
+        _busy ||
+        _client != null ||
+        widget.credentialStore != null) {
+      return;
+    }
+    final manager = StudioCredentialStorage.instance;
+    try {
+      await manager.loadSelection();
+    } on Object {
+      return;
+    }
+    if (!mounted || manager.mode != StudioCredentialMode.encryptedVault) {
+      return;
+    }
+    final bool exists;
+    try {
+      exists = await manager.vaultExists();
+    } on Object {
+      return;
+    }
+    if (!exists || !mounted) return;
+    // If another path already unlocked the vault, the load failure is not a
+    // lock problem. Do not retry in a loop or ask for the password.
+    try {
+      await manager.storage;
+      return;
+    } on Object {
+      // Locked, as expected. Continue with the prompt.
+    }
+    if (!mounted || _dialogOpen || _credentialPending) return;
+    _vaultUnlockPromptOpen = true;
+    setState(() => _dialogOpen = true);
+    bool unlocked = false;
+    try {
+      unlocked =
+          await showDialog<bool>(
+            context: context,
+            barrierDismissible: false,
+            builder: (_) => _StudioMailVaultUnlockDialog(manager: manager),
+          ) ??
+          false;
+    } finally {
+      _vaultUnlockPromptOpen = false;
+      if (mounted) setState(() => _dialogOpen = false);
+    }
+    if (unlocked && mounted) await _loadCredentials();
   }
 
   Future<void> _openCredentialStorage() async {
@@ -2469,6 +2949,17 @@ class _StudioMailDialogState extends State<StudioMailDialog>
             : foreground,
       ),
     );
+    Widget imagesCommand() => command(
+      key: const ValueKey('studio-mail-show-images'),
+      icon: _remoteImagesLoading ? Icons.hourglass_top : Icons.image_outlined,
+      tooltip: 'Show remote images',
+      onPressed:
+          _reader == null ||
+              _remoteImagesLoading ||
+              _reader!.presentation.remoteImageUrls.isEmpty
+          ? null
+          : _loadRemoteImages,
+    );
     final groups = <StudioRibbonGroup>[
       StudioRibbonGroup(
         id: 'compose',
@@ -2492,6 +2983,16 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         id: 'mailbox',
         title: 'Mailbox',
         children: <Widget>[
+          if (_messageLoader is StudioMailMailboxSynchronizer &&
+              _draftStore is StudioMailMailboxStoreOwner)
+            command(
+              key: const ValueKey('studio-mail-open-sync'),
+              icon: Icons.sync,
+              tooltip: widget.strings.mailSync,
+              onPressed: _busy || _dialogOpen || _mailbox == null
+                  ? null
+                  : _openSynchronization,
+            ),
           command(
             icon: Icons.refresh,
             tooltip: widget.strings.refresh,
@@ -2515,6 +3016,13 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                 ? null
                 : _openOutbox,
           ),
+          if (_draftStore is StudioMailFlagJournalOwner)
+            command(
+              key: const ValueKey('studio-mail-open-activity'),
+              icon: Icons.history,
+              tooltip: widget.strings.mailActivity,
+              onPressed: _busy || _dialogOpen ? null : _openFlagHistory,
+            ),
           if (_accountCatalogStore != null)
             command(
               key: const ValueKey('studio-mail-switch-account'),
@@ -2535,20 +3043,13 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         id: 'view',
         title: 'View',
         children: <Widget>[
-          command(
-            key: const ValueKey('studio-mail-show-images'),
-            icon: _remoteImagesLoading
-                ? Icons.hourglass_top
-                : Icons.image_outlined,
-            tooltip: 'Show remote images',
-            onPressed:
-                _reader == null ||
-                    _remoteImagesLoaded ||
-                    _remoteImagesLoading ||
-                    _reader!.presentation.blockedResourceCount == 0
-                ? null
-                : _loadRemoteImages,
-          ),
+          if (_reader case final reader?)
+            ListenableBuilder(
+              listenable: reader,
+              builder: (context, child) => imagesCommand(),
+            )
+          else
+            imagesCommand(),
           command(
             key: const ValueKey('studio-mail-saved-messages'),
             icon: Icons.folder_open_outlined,
@@ -2591,35 +3092,19 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Container(
-              height: 32,
+              height: 38,
+              padding: const EdgeInsetsDirectional.only(start: 8),
+              alignment: AlignmentDirectional.centerStart,
               decoration: BoxDecoration(
                 border: Border(
                   bottom: BorderSide(color: theme.colorScheme.outlineVariant),
                 ),
               ),
-              child: Row(
-                children: <Widget>[
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 9,
-                    ),
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(
-                          color: theme.colorScheme.primary,
-                          width: 2,
-                        ),
-                      ),
-                    ),
-                    child: Text(
-                      'Home',
-                      style: theme.textTheme.labelLarge?.copyWith(
-                        color: theme.colorScheme.primary,
-                      ),
-                    ),
-                  ),
-                ],
+              child: StudioTabChip(
+                label: 'Home',
+                selected: true,
+                accent: theme.colorScheme.primary,
+                onTap: () {},
               ),
             ),
             SizedBox(
@@ -3123,15 +3608,16 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                   },
           ),
         ),
-        Align(
-          alignment: AlignmentDirectional.centerStart,
-          child: TextButton.icon(
-            key: const ValueKey('studio-mail-new-account'),
-            onPressed: _connecting || _credentialPending ? null : _newAccount,
-            icon: const Icon(Icons.person_add_alt_outlined),
-            label: Text(widget.strings.mailNewAccount),
+        if (_selectedSavedAccountId != null)
+          Align(
+            alignment: AlignmentDirectional.centerStart,
+            child: TextButton.icon(
+              key: const ValueKey('studio-mail-new-account'),
+              onPressed: _connecting || _credentialPending ? null : _newAccount,
+              icon: const Icon(Icons.person_add_alt_outlined),
+              label: Text(widget.strings.mailNewAccount),
+            ),
           ),
-        ),
         Text(
           widget.strings.mailSavedAccountsHelp,
           style: Theme.of(context).textTheme.bodySmall,
@@ -3165,6 +3651,19 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                     ),
               icon: const Icon(Icons.save_outlined),
               label: const Text('Retry saving account'),
+            ),
+          if (_client == null && _vaultUnlockAvailable)
+            TextButton.icon(
+              key: const ValueKey('studio-mail-unlock-vault'),
+              onPressed:
+                  _credentialPending ||
+                      _credentialSettingsOpen ||
+                      _vaultUnlockPromptOpen ||
+                      _dialogOpen
+                  ? null
+                  : _promptVaultUnlock,
+              icon: const Icon(Icons.lock_open),
+              label: const Text('Unlock saved accounts'),
             ),
         ],
       ),
@@ -3206,7 +3705,16 @@ class _StudioMailDialogState extends State<StudioMailDialog>
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child: SelectableText(_error ?? _notice ?? '', maxLines: 2),
+                    child: Semantics(
+                      liveRegion: true,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          if (_notice != null) SelectableText(_notice!),
+                          if (_error != null) SelectableText(_error!),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -3429,18 +3937,20 @@ class _StudioMailDialogState extends State<StudioMailDialog>
 
   bool? _observedRead(mail.MimeMessage message) {
     final confirmed = _confirmedFlags[message];
-    return confirmed != null
-        ? confirmed.read
-        : message.flags == null
-        ? null
-        : message.isSeen;
+    if (confirmed?.read case final read?) return read;
+    if (_repositoryFlags.containsKey(message)) {
+      return _repositoryFlags[message]?.isRead;
+    }
+    return confirmed != null || message.flags == null ? null : message.isSeen;
   }
 
   bool? _observedFlagged(mail.MimeMessage message) {
     final confirmed = _confirmedFlags[message];
-    return confirmed != null
-        ? confirmed.flagged
-        : message.flags == null
+    if (confirmed?.flagged case final flagged?) return flagged;
+    if (_repositoryFlags.containsKey(message)) {
+      return _repositoryFlags[message]?.isFlagged;
+    }
+    return confirmed != null || message.flags == null
         ? null
         : message.isFlagged;
   }
@@ -3452,57 +3962,53 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     return 'imap-message-${observed?.uidValidity}:${message.uid ?? identityHashCode(message)}';
   }
 
-  Widget _messageList() {
-    final revision = _bulkRevision;
-    final loader = _messageLoader;
-    final bulkSession = _bulkSession;
-    final bulkReport = _bulkReport;
-    return MailMessageList(
-      selectionRevision: revision,
-      bulkEnabled: !_needsRefresh,
-      onBulkAction: loader is StudioMailBulkMessageActions
-          ? (action, ids) => unawaited(
-              _changeBulkFlags(
-                action,
-                ids,
-                revision: revision,
-                expectedLoader: loader!,
-              ),
-            )
-          : null,
-      bulkStatus: bulkReport == null
+  Widget? _bulkStatus() {
+    final report = _bulkReport;
+    if (report == null) return null;
+    final mailboxGeneration = _mailboxGeneration;
+    final cancellation = _bulkCancellation;
+    final running = cancellation != null;
+    return StudioMailBulkStatus(
+      strings: widget.strings,
+      report: report,
+      running: running,
+      subjects: _bulkSubjects,
+      showStop: false,
+      onStop: cancellation == null
           ? null
-          : StudioMailBulkStatus(
-              strings: widget.strings,
-              report: bulkReport,
-              running: _bulkRunning,
-              subjects: _bulkSubjects,
-              onStop: _bulkRunning && !_bulkStopRequested
-                  ? () {
-                      if (!mounted ||
-                          !_bulkRunning ||
-                          !identical(_bulkSession, bulkSession)) {
-                        return;
-                      }
-                      setState(() => _bulkStopRequested = true);
-                    }
-                  : null,
-              onDismiss: _bulkRunning || bulkReport.requiresRefresh
-                  ? null
-                  : () {
-                      if (!mounted ||
-                          _bulkRunning ||
-                          !identical(_bulkReport, bulkReport)) {
-                        return;
-                      }
-                      setState(() {
-                        _bulkReport = null;
-                        _bulkSubjects = const {};
-                      });
-                    },
-            ),
+          : () {
+              if (mounted && identical(_bulkCancellation, cancellation)) {
+                cancellation.cancel();
+              }
+            },
+      onDismiss: running || report.requiresRefresh
+          ? null
+          : () {
+              if (!mounted ||
+                  mailboxGeneration != _mailboxGeneration ||
+                  !identical(_bulkReport, report) ||
+                  _bulkCancellation != null) {
+                return;
+              }
+              setState(() {
+                _bulkReport = null;
+                _bulkSubjects = const {};
+                if (_notice == widget.strings.mailBulkSummary(report)) {
+                  _notice = null;
+                }
+              });
+            },
+    );
+  }
+
+  Widget _messageList() {
+    final mailboxGeneration = _mailboxGeneration;
+    final cancellation = _bulkCancellation;
+    return MailMessageList(
       key: _messageListKey,
       scopeId: '$_sessionGeneration:${_mailbox?.path}',
+      selectionScopeId: '$mailboxGeneration',
+      bulkStatus: _bulkStatus(),
       strings: widget.strings.mailMessageListStrings,
       items: [
         for (final message in _messages)
@@ -3546,6 +4052,25 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       ],
       selectedId: _selected == null ? null : _messageKey(_selected!),
       busy: _busy || _dialogOpen,
+      onBulkAction:
+          _messageLoader is StudioMailMessageActions &&
+              _messageLoader is StudioMailMailboxRecords
+          ? (action, ids) => unawaited(
+              _changeBulkFlags(
+                action,
+                ids,
+                mailboxGeneration: mailboxGeneration,
+              ),
+            )
+          : null,
+      bulkActionsEnabled: !_needsRefresh,
+      onCancelBulk: cancellation == null
+          ? null
+          : () {
+              if (identical(_bulkCancellation, cancellation)) {
+                cancellation.cancel();
+              }
+            },
       hasMore: _nextHeaders != null && _messages.length < _maxHeaders,
       loadMoreKey: const ValueKey('imap-load-more'),
       onLoadMore: _needsRefresh || _mailbox == null
@@ -3628,5 +4153,102 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           ],
         ),
     ],
+  );
+}
+
+class _StudioMailVaultUnlockDialog extends StatefulWidget {
+  const _StudioMailVaultUnlockDialog({required this.manager});
+
+  final StudioCredentialStorage manager;
+
+  @override
+  State<_StudioMailVaultUnlockDialog> createState() =>
+      _StudioMailVaultUnlockDialogState();
+}
+
+class _StudioMailVaultUnlockDialogState
+    extends State<_StudioMailVaultUnlockDialog> {
+  final _password = TextEditingController();
+  bool _busy = false;
+  String? _error;
+
+  @override
+  void dispose() {
+    _password.dispose();
+    super.dispose();
+  }
+
+  Future<void> _unlock() async {
+    if (_busy) return;
+    final password = _password.text;
+    if (password.isEmpty) {
+      setState(() => _error = 'Enter the master password.');
+      return;
+    }
+    setState(() {
+      _busy = true;
+      _error = null;
+    });
+    try {
+      await widget.manager.unlockVault(password, create: false);
+      if (mounted) Navigator.of(context).pop(true);
+    } on Object {
+      if (mounted) {
+        setState(() => _error = 'Incorrect master password or damaged vault.');
+      }
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) => PopScope<bool>(
+    canPop: !_busy,
+    child: AlertDialog(
+      title: const Text('Unlock saved accounts'),
+      content: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 420),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const Text(
+              'Saved mail accounts use the encrypted credential vault. '
+              'Enter its master password. Wrong passwords or damaged vaults '
+              'leave the saved accounts untouched.',
+            ),
+            const SizedBox(height: 12),
+            TextField(
+              key: const ValueKey('studio-mail-vault-password'),
+              controller: _password,
+              obscureText: true,
+              autofocus: true,
+              enabled: !_busy,
+              onSubmitted: (_) => _unlock(),
+              decoration: const InputDecoration(labelText: 'Master password'),
+            ),
+            if (_error != null)
+              Padding(
+                padding: const EdgeInsets.only(top: 12),
+                child: Text(
+                  _error!,
+                  style: TextStyle(color: Theme.of(context).colorScheme.error),
+                ),
+              ),
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: _busy ? null : () => Navigator.of(context).pop(false),
+          child: const Text('Cancel'),
+        ),
+        FilledButton(
+          key: const ValueKey('studio-mail-vault-unlock'),
+          onPressed: _busy ? null : _unlock,
+          child: Text(_busy ? 'Unlocking…' : 'Unlock'),
+        ),
+      ],
+    ),
   );
 }

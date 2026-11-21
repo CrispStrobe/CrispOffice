@@ -1,0 +1,14 @@
+{
+  "qualified_source": "c5cf1ec11970211597fd16eebdc8d0eaa115278b",
+  "final_product": "a4ec5b812cc64c5f738357fdef8779df9b8a8a2b",
+  "scoped_inputs": 2853,
+  "identical_inputs": 2852,
+  "differences": [
+    {
+      "path": "packages/quds_office_engine/test/office_macro_word_page_setup_test.dart",
+      "qualified_sha256": "fbf127e8f29314c1a527e184c15112549747c4c1d61bda55d8d8d204577c40a4",
+      "final_sha256": "272b12e03922995d0000c0baccfbf312ca41b318090569b3ba327520157ccb87"
+    }
+  ],
+  "disposition": "Only unrelated Word test formatting differs; that file is separately qualified on published537d2e7. All executed Zotero tests and implementation/config/runtime inputs remain exact."
+}

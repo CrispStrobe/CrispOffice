@@ -1,0 +1,42 @@
+{
+  "c623_bulk_core_production_byte_identical": true,
+  "limits": [
+    "No source edits, new tests, captures, remote operations or CI queries by this reviewer.",
+    "This review is not a test pass; final focused Mail execution must bind the published source separately."
+  ],
+  "other_reviewed_guards": [
+    "Explicit action is required; parser candidates are inert and bounded to8 HTTP(S) URIs.",
+    "Redirects, credential-bearing/unsupported URI schemes, nonraster responses and oversized declarations are refused.",
+    "Streaming checks byte limits before retaining chunks; timeout closes the owned client.",
+    "Reader/client/session identity is rechecked across waits and before image publication; retiring the reader closes pending requests.",
+    "Selection is reset and search matches rebuilt after text projection changes; original parsed-message bytes remain unchanged.",
+    "Mailbox-switch late-response and lifecycle-resume fixtures preserve current message identity."
+  ],
+  "phase": "Formatted/staged source before root publishes the final remote checkpoint; final test execution remains separate.",
+  "remaining_blockers": [],
+  "reported_hazards": [
+    {
+      "issue": "CID plus external images could exceed cumulative admission after HTML/plain preference changes.",
+      "regression": "preference changes re-admit CID and external images together",
+      "resolution": "Rebuild admits CID images first, then re-admits stored external images against remaining pixel and original attachment counts.",
+      "status": "source and fixture reviewed"
+    },
+    {
+      "issue": "A single successful image could suppress placeholders for other failed/unrequested images.",
+      "regression": "only successfully loaded URI placeholders disappear",
+      "resolution": "Only admitted remote URI placeholders are suppressed; unavailable and blocked alternatives remain.",
+      "status": "source and fixture reviewed"
+    }
+  ],
+  "result": "No remaining concrete source blocker in the reviewed scope.",
+  "reviewed_source_sha256": {
+    "packages/quds_mail_ui/lib/src/reader/controller.dart": "95b1bdd5651c24419ed3c1ffd427f7c4620664a33bdb5eaad780a2311ba81daa",
+    "packages/quds_mail_ui/lib/src/reader/presentation.dart": "d257ca0f1c24c99aba3d3e17f1ed70b93e24909f8c2208a323a5f102901d4fb9",
+    "packages/quds_mail_ui/test/reader_image_updates_test.dart": "84166b04b646685c6916028a2d626503198863cded9ef43aa240072ec9e3fc82",
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart": "2f83c26d93e62fa6b11b3520949067ab9547cbd0920cf0439af0ed2ccecba12a",
+    "packages/quds_office_editor/example/lib/studio_mail_remote_images.dart": "984e211f50ee286cbff7c1ae9efefd4f0a0d6a4b923d6a583606273ffc7cba9b",
+    "packages/quds_office_editor/example/test/studio_mail_remote_images_test.dart": "5c05846353ac755ce80738d84dc3008bc6412a47bf0681cd4a2d936a05a6fe2c",
+    "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart": "e9737678e22b5d45d1cd90246a7e13dce637493be90d317daa467ca67e81a6d2"
+  },
+  "schema": 1
+}

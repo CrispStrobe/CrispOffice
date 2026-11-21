@@ -1,0 +1,436 @@
+{
+  "target_commit": "19eccc016fd14bea52c095db917a28b5ce3cdd5c",
+  "target_tree": "39e5a1911a06c3a6888ed465d6dea9df06ff6b42",
+  "frozen_capture_utc": "2026-11-20T23:32:20Z",
+  "historical_evidence_checks": [
+    {
+      "path": "docs/validation/mail-final-integration-20261120/README.md",
+      "incoming_commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "incoming_blob": "4a41af08fd4e03fca2b769cd9faa082dd37f329b",
+      "retained_blob": "4a41af08fd4e03fca2b769cd9faa082dd37f329b",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/SHA256SUMS",
+      "incoming_commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "incoming_blob": "1d3dfcc5fa486f368665d4b46138399cd95b5a2f",
+      "retained_blob": "1d3dfcc5fa486f368665d4b46138399cd95b5a2f",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/accepted-test-cases.json",
+      "incoming_commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "incoming_blob": "ca8e9bddc580e0d49fc68fe4a56feeb03c67b4ca",
+      "retained_blob": "ca8e9bddc580e0d49fc68fe4a56feeb03c67b4ca",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/archive-manifest.json",
+      "incoming_commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "incoming_blob": "330cd1d80b1b5ef88ca71ceb3441d2512dc7e377",
+      "retained_blob": "330cd1d80b1b5ef88ca71ceb3441d2512dc7e377",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/continuation-qualification.json",
+      "incoming_commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "incoming_blob": "49012f7881b10090b59944cd4658b072677e113c",
+      "retained_blob": "49012f7881b10090b59944cd4658b072677e113c",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/historical-overlap.json",
+      "incoming_commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "incoming_blob": "271804b1d2a945c68a4c6c077862da390bef9e7f",
+      "retained_blob": "271804b1d2a945c68a4c6c077862da390bef9e7f",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/incoming-heads.json",
+      "incoming_commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "incoming_blob": "24894c258dcd6a94569e8e64332c35bed1a27f63",
+      "retained_blob": "24894c258dcd6a94569e8e64332c35bed1a27f63",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/interruption-seal.json",
+      "incoming_commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "incoming_blob": "deb162923f19d48f15bd5e38f85d81b8ca4ad8e5",
+      "retained_blob": "deb162923f19d48f15bd5e38f85d81b8ca4ad8e5",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/mail-final-qualification.tar.xz",
+      "incoming_commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "incoming_blob": "7ef7aac6fce8addbc160539e1603160c161a839d",
+      "retained_blob": "7ef7aac6fce8addbc160539e1603160c161a839d",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/package_evidence.py",
+      "incoming_commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "incoming_blob": "2dfc209580b0b30cccefbd5d128e79fb8a4aff9e",
+      "retained_blob": "2dfc209580b0b30cccefbd5d128e79fb8a4aff9e",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/platform-recheck-cases.json",
+      "incoming_commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "incoming_blob": "61c3fa6183c9f5d475803e0563166a01732dc9c7",
+      "retained_blob": "61c3fa6183c9f5d475803e0563166a01732dc9c7",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/qualification.json",
+      "incoming_commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "incoming_blob": "1429436213026ccd64847a9be7b175426bf0477d",
+      "retained_blob": "1429436213026ccd64847a9be7b175426bf0477d",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/qualify_mail_final_union.py",
+      "incoming_commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "incoming_blob": "884eab3ed220bb8a174fdd13cfc8631445156fd9",
+      "retained_blob": "884eab3ed220bb8a174fdd13cfc8631445156fd9",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/reproduce_flutter_runtime.py",
+      "incoming_commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "incoming_blob": "3c192c97fa8c4c6ca14132c82072d91410a4578b",
+      "retained_blob": "3c192c97fa8c4c6ca14132c82072d91410a4578b",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/screenshots.json",
+      "incoming_commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "incoming_blob": "7e39854683557e1cda9c26c21fae4c4fe7d7d570",
+      "retained_blob": "7e39854683557e1cda9c26c21fae4c4fe7d7d570",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/source-git-verification.json",
+      "incoming_commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "incoming_blob": "a14b0ee6072ed3bfffbd408a07b4232f8ee54849",
+      "retained_blob": "a14b0ee6072ed3bfffbd408a07b4232f8ee54849",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/verify_mail_final_union.py",
+      "incoming_commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "incoming_blob": "0cfd861df9fd3a2036914ef1dc220e8050482bf4",
+      "retained_blob": "0cfd861df9fd3a2036914ef1dc220e8050482bf4",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-final-integration-20261120/visual-review.json",
+      "incoming_commit": "6eea72244c52a157f603f503ca18f5487a2ee877",
+      "incoming_blob": "86a0a0c237cf395174773ea197bb0cbbbf297b4c",
+      "retained_blob": "86a0a0c237cf395174773ea197bb0cbbbf297b4c",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/word-late-main-integration-20261120/README.md",
+      "incoming_commit": "e7d9055f20462f37c74a38a761d5c092f48ab973",
+      "incoming_blob": "0e86ab1c270c2a00e5b40ab0ea2170828e8d6fa3",
+      "retained_blob": "0e86ab1c270c2a00e5b40ab0ea2170828e8d6fa3",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/word-late-main-integration-20261120/accepted-summary.json",
+      "incoming_commit": "e7d9055f20462f37c74a38a761d5c092f48ab973",
+      "incoming_blob": "db87a83b84420449ff7551cae097af2be1b037a1",
+      "retained_blob": "db87a83b84420449ff7551cae097af2be1b037a1",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/word-late-main-integration-20261120/incoming-retention-audit.json",
+      "incoming_commit": "e7d9055f20462f37c74a38a761d5c092f48ab973",
+      "incoming_blob": "40a765fffe28bb131a4e571d783f7b1a2c623823",
+      "retained_blob": "40a765fffe28bb131a4e571d783f7b1a2c623823",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/word-late-main-integration-20261120/local-qualification.tar.gz",
+      "incoming_commit": "e7d9055f20462f37c74a38a761d5c092f48ab973",
+      "incoming_blob": "ccadccffe7f32038f943ca72cf6b8de6b82f7b8a",
+      "retained_blob": "ccadccffe7f32038f943ca72cf6b8de6b82f7b8a",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/word-late-main-integration-20261120/qualification.json",
+      "incoming_commit": "e7d9055f20462f37c74a38a761d5c092f48ab973",
+      "incoming_blob": "325bfb1b82381fdf8760422391ccb1be6811c69d",
+      "retained_blob": "325bfb1b82381fdf8760422391ccb1be6811c69d",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/word-late-main-integration-20261120/receipt-manifest.json",
+      "incoming_commit": "e7d9055f20462f37c74a38a761d5c092f48ab973",
+      "incoming_blob": "bbcc23f8b53f1ae118be5c93fde2203d3c9b61c6",
+      "retained_blob": "bbcc23f8b53f1ae118be5c93fde2203d3c9b61c6",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-latest-main-integration-20261120/README.md",
+      "incoming_commit": "8206975dd91330914f77d0e3ceab3fadbe9ad519",
+      "incoming_blob": "217a4cd01dc2e49a1f4d6170d241bb45670ddac2",
+      "retained_blob": "217a4cd01dc2e49a1f4d6170d241bb45670ddac2",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-latest-main-integration-20261120/SHA256SUMS",
+      "incoming_commit": "8206975dd91330914f77d0e3ceab3fadbe9ad519",
+      "incoming_blob": "11c36eeaf7ae781e30a960cd8774911466a7f2fc",
+      "retained_blob": "11c36eeaf7ae781e30a960cd8774911466a7f2fc",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-latest-main-integration-20261120/accepted-test-cases.json",
+      "incoming_commit": "8206975dd91330914f77d0e3ceab3fadbe9ad519",
+      "incoming_blob": "244fa0e11c14f88e3599fa635b5a9eb625d2fa1c",
+      "retained_blob": "244fa0e11c14f88e3599fa635b5a9eb625d2fa1c",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-latest-main-integration-20261120/accepted-union.json",
+      "incoming_commit": "8206975dd91330914f77d0e3ceab3fadbe9ad519",
+      "incoming_blob": "9c91dc24ed8af9346d86d5f5d627bf3133800197",
+      "retained_blob": "9c91dc24ed8af9346d86d5f5d627bf3133800197",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-latest-main-integration-20261120/archive-manifest.json",
+      "incoming_commit": "8206975dd91330914f77d0e3ceab3fadbe9ad519",
+      "incoming_blob": "781abf702a5d4c284b0b84d363554b5b15efc382",
+      "retained_blob": "781abf702a5d4c284b0b84d363554b5b15efc382",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-latest-main-integration-20261120/corrective-qualification.json",
+      "incoming_commit": "8206975dd91330914f77d0e3ceab3fadbe9ad519",
+      "incoming_blob": "ae15f86e2641d6f33db5ba6be386650fd86f1a57",
+      "retained_blob": "ae15f86e2641d6f33db5ba6be386650fd86f1a57",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-latest-main-integration-20261120/fixture-peer-review.json",
+      "incoming_commit": "8206975dd91330914f77d0e3ceab3fadbe9ad519",
+      "incoming_blob": "ff1203aa6bbd66153667189ea85453c249f781b3",
+      "retained_blob": "ff1203aa6bbd66153667189ea85453c249f781b3",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-latest-main-integration-20261120/incoming-heads.json",
+      "incoming_commit": "8206975dd91330914f77d0e3ceab3fadbe9ad519",
+      "incoming_blob": "c85871294c614f9306102455ae6aa912b7d2f658",
+      "retained_blob": "c85871294c614f9306102455ae6aa912b7d2f658",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-latest-main-integration-20261120/initial-qualification.json",
+      "incoming_commit": "8206975dd91330914f77d0e3ceab3fadbe9ad519",
+      "incoming_blob": "c0616f157839d0c2acfed3fad23eff88ea4f2953",
+      "retained_blob": "c0616f157839d0c2acfed3fad23eff88ea4f2953",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-latest-main-integration-20261120/mail-latest-qualification.tar.xz",
+      "incoming_commit": "8206975dd91330914f77d0e3ceab3fadbe9ad519",
+      "incoming_blob": "cd1662ff3ac50248b23c5e6221a0ef6f352aaaf7",
+      "retained_blob": "cd1662ff3ac50248b23c5e6221a0ef6f352aaaf7",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-latest-main-integration-20261120/package_evidence.py",
+      "incoming_commit": "8206975dd91330914f77d0e3ceab3fadbe9ad519",
+      "incoming_blob": "7f64639e341f50a12dba62990754e34cbc709b6d",
+      "retained_blob": "7f64639e341f50a12dba62990754e34cbc709b6d",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-latest-main-integration-20261120/platform-recheck-cases.json",
+      "incoming_commit": "8206975dd91330914f77d0e3ceab3fadbe9ad519",
+      "incoming_blob": "4729eac76c9dc727e0ccf4c503d79ea197046043",
+      "retained_blob": "4729eac76c9dc727e0ccf4c503d79ea197046043",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-latest-main-integration-20261120/qualify_mail_latest_delta.py",
+      "incoming_commit": "8206975dd91330914f77d0e3ceab3fadbe9ad519",
+      "incoming_blob": "9c2e63b218c529b4b44b6bd7053ae42040b4b2be",
+      "retained_blob": "9c2e63b218c529b4b44b6bd7053ae42040b4b2be",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-latest-main-integration-20261120/reader-peer-review.json",
+      "incoming_commit": "8206975dd91330914f77d0e3ceab3fadbe9ad519",
+      "incoming_blob": "5c13218c6c439bfde11239ba789ce8d66ec5d249",
+      "retained_blob": "5c13218c6c439bfde11239ba789ce8d66ec5d249",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-latest-main-integration-20261120/reproduce_flutter_runtime.py",
+      "incoming_commit": "8206975dd91330914f77d0e3ceab3fadbe9ad519",
+      "incoming_blob": "3c192c97fa8c4c6ca14132c82072d91410a4578b",
+      "retained_blob": "3c192c97fa8c4c6ca14132c82072d91410a4578b",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-latest-main-integration-20261120/verify_mail_latest_retention.py",
+      "incoming_commit": "8206975dd91330914f77d0e3ceab3fadbe9ad519",
+      "incoming_blob": "f992eb13c2cd45fe31f01ea402fad4c4f85adb6c",
+      "retained_blob": "f992eb13c2cd45fe31f01ea402fad4c4f85adb6c",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/mail-latest-main-integration-20261120/visual-comparison.json",
+      "incoming_commit": "8206975dd91330914f77d0e3ceab3fadbe9ad519",
+      "incoming_blob": "775f71a2a6cdb5cc0f5262bc4c256d075bc8e134",
+      "retained_blob": "775f71a2a6cdb5cc0f5262bc4c256d075bc8e134",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/VBA_WORD_MACROS.md",
+      "incoming_commit": "0e4e999a08996a6b8696ca3adba11e303331b73e",
+      "incoming_blob": "1085c7121a90ceb68bc4a8cc1246502bac5be724",
+      "retained_blob": "1b5763a5a42501d3613043746f120d0614e65783",
+      "proof": "exact retained added line from the single-link update",
+      "retained_added_line": "document tests. See the [local qualification record](validation/word-vba-final-integration-20261120/README.md)",
+      "full_blob_equal": false
+    },
+    {
+      "path": "docs/validation/word-vba-final-integration-20261120/README.md",
+      "incoming_commit": "0e4e999a08996a6b8696ca3adba11e303331b73e",
+      "incoming_blob": "3fbc337b4af757b8075df1492fa288ed0708f313",
+      "retained_blob": "3fbc337b4af757b8075df1492fa288ed0708f313",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/word-vba-final-integration-20261120/final-delivery-summary.json",
+      "incoming_commit": "0e4e999a08996a6b8696ca3adba11e303331b73e",
+      "incoming_blob": "8be1ddd1841cd3d06ae82b00f2b61fe3cdd8bc0a",
+      "retained_blob": "8be1ddd1841cd3d06ae82b00f2b61fe3cdd8bc0a",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/word-vba-final-integration-20261120/mail-fixture-followup-review.json",
+      "incoming_commit": "0e4e999a08996a6b8696ca3adba11e303331b73e",
+      "incoming_blob": "ff1203aa6bbd66153667189ea85453c249f781b3",
+      "retained_blob": "ff1203aa6bbd66153667189ea85453c249f781b3",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/word-vba-final-integration-20261120/mail-latest-independent-package-review.json",
+      "incoming_commit": "0e4e999a08996a6b8696ca3adba11e303331b73e",
+      "incoming_blob": "ae3de75b084ac88d7fc87c7de398a55253370223",
+      "retained_blob": "ae3de75b084ac88d7fc87c7de398a55253370223",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/word-vba-final-integration-20261120/mail-latest-independent-review.json",
+      "incoming_commit": "0e4e999a08996a6b8696ca3adba11e303331b73e",
+      "incoming_blob": "4ea369f8fe2b91f40e7ee094978574a737e42d38",
+      "retained_blob": "4ea369f8fe2b91f40e7ee094978574a737e42d38",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/word-vba-final-integration-20261120/manifest.json",
+      "incoming_commit": "0e4e999a08996a6b8696ca3adba11e303331b73e",
+      "incoming_blob": "0abb3d242d1a33d4217cf5cb2bd8ee38126b4569",
+      "retained_blob": "0abb3d242d1a33d4217cf5cb2bd8ee38126b4569",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/word-vba-final-integration-20261120/native-case-union.json",
+      "incoming_commit": "0e4e999a08996a6b8696ca3adba11e303331b73e",
+      "incoming_blob": "9fd14e5abda6816e14ff95039274a80091d6fd06",
+      "retained_blob": "9fd14e5abda6816e14ff95039274a80091d6fd06",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/word-vba-final-integration-20261120/verify_remote_delivery.py",
+      "incoming_commit": "0e4e999a08996a6b8696ca3adba11e303331b73e",
+      "incoming_blob": "2643944b836e673bad2a38983e35e6f227da19ea",
+      "retained_blob": "2643944b836e673bad2a38983e35e6f227da19ea",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/word-vba-final-integration-20261120/word-source-retention-416.json",
+      "incoming_commit": "0e4e999a08996a6b8696ca3adba11e303331b73e",
+      "incoming_blob": "135a5c1bfb87393614389764f582bfb17ebefaa1",
+      "retained_blob": "135a5c1bfb87393614389764f582bfb17ebefaa1",
+      "proof": "exact Git blob equality"
+    },
+    {
+      "path": "docs/validation/word-vba-final-integration-20261120/word-source-retention.json",
+      "incoming_commit": "0e4e999a08996a6b8696ca3adba11e303331b73e",
+      "incoming_blob": "a72c5dfe383fe622afaa3f91390689a617d08fcc",
+      "retained_blob": "a72c5dfe383fe622afaa3f91390689a617d08fcc",
+      "proof": "exact Git blob equality"
+    }
+  ],
+  "exact_incoming_word_source_matches": [
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+      "incoming_blob": "55df251ee1a958ef32736919d93b13d6728312d1",
+      "retained_blob": "55df251ee1a958ef32736919d93b13d6728312d1"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_header_visual_reconciliation_test.dart",
+      "incoming_blob": "523bd9d43b12f3a544b5b08941f2908066fde738",
+      "retained_blob": "523bd9d43b12f3a544b5b08941f2908066fde738"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_table_style_import_regression_test.dart",
+      "incoming_blob": "223e47a428d66fc64d60362dcea86dbf45e31734",
+      "retained_blob": "223e47a428d66fc64d60362dcea86dbf45e31734"
+    }
+  ],
+  "upstream_unchanged_since_initial_snapshot": true,
+  "ref_changes_since_initial_snapshot": [
+    {
+      "category": "fork_branches",
+      "name": "codex/word-vba-unit-conversions-20261120",
+      "initial_sha": "426fbc920b326df6eb746cd56549e3e66b9c31bb",
+      "captured_sha": "0e4e999a08996a6b8696ca3adba11e303331b73e"
+    },
+    {
+      "category": "fork_branches",
+      "name": "codex/zotero-vertical-tables-20261120",
+      "initial_sha": "37148e37736a4134bba1d3c07b0ad847c2e1447d",
+      "captured_sha": "a7d9f37ecbaaf70544f4866d7d9e572696948184"
+    },
+    {
+      "category": "fork_branches",
+      "name": "main",
+      "initial_sha": "5e7e4d24284954603a0a5951699bea870ad1955f",
+      "captured_sha": "383c0c0c5d3b4b1a6edccc8d09ffd1ca64029537"
+    },
+    {
+      "category": "fork_branches",
+      "name": "work/mail-command-journal-20261121",
+      "initial_sha": "5e7e4d24284954603a0a5951699bea870ad1955f",
+      "captured_sha": "cc152e75dc6b7121fd5e6c6d58e304e9bb89de73"
+    },
+    {
+      "category": "fork_pull_requests",
+      "name": "277",
+      "initial_sha": "37148e37736a4134bba1d3c07b0ad847c2e1447d",
+      "captured_sha": "a7d9f37ecbaaf70544f4866d7d9e572696948184"
+    },
+    {
+      "category": "fork_pull_requests",
+      "name": "278",
+      "initial_sha": null,
+      "captured_sha": "0e4e999a08996a6b8696ca3adba11e303331b73e"
+    },
+    {
+      "category": "fork_pull_requests",
+      "name": "279",
+      "initial_sha": null,
+      "captured_sha": "cc152e75dc6b7121fd5e6c6d58e304e9bb89de73"
+    }
+  ],
+  "scope": "This explicitly checks retained incoming evidence and three exact Word source/test files. General ref inclusion is independently proven by final-intake.json; runtime qualification remains separate."
+}

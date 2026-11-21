@@ -1,0 +1,479 @@
+{
+  "archive": "incoming-flutter.tar.gz",
+  "archive_bytes": 1405519,
+  "archive_sha256": "4b24c856ce8c2b2ab51740745930df4becac57e8cac1ab1a4011f9ed5518afcf",
+  "deterministic_metadata": {
+    "compression_level": 9,
+    "format": "ustar",
+    "gid": 0,
+    "gname": "",
+    "gzip_mtime": 0,
+    "gzip_original_filename": "",
+    "mode": "0644",
+    "tar_mtime": 0,
+    "uid": 0,
+    "uname": ""
+  },
+  "excluded": [
+    "SDK and package-cache contents",
+    "native binaries",
+    "compiled kernels",
+    "generated JavaScript",
+    "screenshots",
+    "live-account data"
+  ],
+  "member_count": 68,
+  "members": [
+    {
+      "bytes": 6653,
+      "path": "runtime-flutter/INCOMING_FLUTTER_REPLAY.md",
+      "sha256": "b4de434c90dd9eef9a0341190991213acbd8a72d49b76bcf03fca277dc812d11"
+    },
+    {
+      "bytes": 493700,
+      "path": "runtime-flutter/archive-members.json",
+      "sha256": "8799648215251c6cee363cd1573275efe5389a18fe7878dc9523b7129130438d"
+    },
+    {
+      "bytes": 104,
+      "path": "runtime-flutter/bin/dart",
+      "sha256": "5b06c0192e89752ce1a14f11cfce18d29f58510df4ed177aef53d4a9c90c8f86"
+    },
+    {
+      "bytes": 212,
+      "path": "runtime-flutter/bin/flutter",
+      "sha256": "da3e1543dabb89adcd2421242777d48e7d2dc0f977c1ca6e16c76b2171730a1d"
+    },
+    {
+      "bytes": 644,
+      "path": "runtime-flutter/env.sh",
+      "sha256": "7062665aa090636dcb43f671e9555c318a287c9be712521b76f6876ac6b8a075"
+    },
+    {
+      "bytes": 3081,
+      "path": "runtime-flutter/incoming-flutter-summary.json",
+      "sha256": "1b3972d517b66b5129162a2c7760655933f55102fb370e80144412901a5c0ca6"
+    },
+    {
+      "bytes": 68,
+      "path": "runtime-flutter/logs/flutter-tools-pub-get.log",
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    },
+    {
+      "bytes": 636,
+      "path": "runtime-flutter/logs/flutter-version.json",
+      "sha256": "a203301732c46e2b907d97507ab5e61a426c3480bb94e73b47a01e5ebacccac8"
+    },
+    {
+      "bytes": 0,
+      "path": "runtime-flutter/logs/flutter-version.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 214,
+      "path": "runtime-flutter/logs/sqlite-readiness.log",
+      "sha256": "1add0471127824f774b78a833845f3537efa2b35bb15ab4d851b2a8e15b3c16e"
+    },
+    {
+      "bytes": 202,
+      "path": "runtime-flutter/logs/test-runner-compile.log",
+      "sha256": "9cd108da3c2338c5feb39792b49c86471851bdbed485b107c7aca452789e06b6"
+    },
+    {
+      "bytes": 158,
+      "path": "runtime-flutter/logs/workspace-manifests-before.sha256",
+      "sha256": "1619993621c36757937132216763c655ef83efd612baab013373fa36dcfc2760"
+    },
+    {
+      "bytes": 214,
+      "path": "runtime-flutter/logs/workspace-pub-get.log",
+      "sha256": "3640d48177b802767785e357f56651162d2250e124b566cffdc2cb88ce7e7f9c"
+    },
+    {
+      "bytes": 5531,
+      "path": "runtime-flutter/package_evidence.py",
+      "sha256": "02b47e52b3bef8c957114f38399bc33ec70b85d5f4163e8fc94a9351382178a7"
+    },
+    {
+      "bytes": 4532,
+      "path": "runtime-flutter/prepare_sdk.py",
+      "sha256": "2eb1e71ff254a46d67a5aba9790cd3383e33580bec132528a382a897d08ce11b"
+    },
+    {
+      "bytes": 64485,
+      "path": "runtime-flutter/pub-cache-receipt.json",
+      "sha256": "4e6495b00ebc17bc2877bd3672add0e75b7d6a71150c35bd87ef88fdf9e2cb4d"
+    },
+    {
+      "bytes": 1645,
+      "path": "runtime-flutter/qualification-75f694d5-node/progress.json",
+      "sha256": "4e8ad7a48391fdd943e5423afd07e4d314f054c4a20fedf68e24a7ef7b150d9c"
+    },
+    {
+      "bytes": 1123223,
+      "path": "runtime-flutter/qualification-75f694d5-node/source-after.json",
+      "sha256": "b1a011ea5f08e399a5284a3767979c0c646c097c9f3871ff0339823b934da638"
+    },
+    {
+      "bytes": 1123223,
+      "path": "runtime-flutter/qualification-75f694d5-node/source-before.json",
+      "sha256": "b1a011ea5f08e399a5284a3767979c0c646c097c9f3871ff0339823b934da638"
+    },
+    {
+      "bytes": 533,
+      "path": "runtime-flutter/qualification-75f694d5-node/store-node-cases.json",
+      "sha256": "6f5d512eed225da9dbcd2963309ecdbb82fc5c3df81daf0a87eba4cb744d633a"
+    },
+    {
+      "bytes": 2372,
+      "path": "runtime-flutter/qualification-75f694d5-node/store-node.jsonl",
+      "sha256": "d62bf1031183976daf3c9442ae0eb829d2c0097cb8ba181f038541f91fb1331e"
+    },
+    {
+      "bytes": 0,
+      "path": "runtime-flutter/qualification-75f694d5-node/store-node.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 639,
+      "path": "runtime-flutter/qualification-75f694d5/close-probe-cases.json",
+      "sha256": "5eaf07945d9ac0555161478b16f180c7fd46c0fc65e3978d230cbfe03e9e170d"
+    },
+    {
+      "bytes": 2263,
+      "path": "runtime-flutter/qualification-75f694d5/close-probe.jsonl",
+      "sha256": "0c29c84f90e4f185fb6eaf713900c10a180d81eea3c39c8014fcf8db53847266"
+    },
+    {
+      "bytes": 0,
+      "path": "runtime-flutter/qualification-75f694d5/close-probe.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 262,
+      "path": "runtime-flutter/qualification-75f694d5/native-navigation-cases.json",
+      "sha256": "3b333d5d9c49c6f2b7d65d308b67d932aabb397adf72e18638b2f05e1bb871ba"
+    },
+    {
+      "bytes": 1440,
+      "path": "runtime-flutter/qualification-75f694d5/native-navigation.jsonl",
+      "sha256": "4f0a21071428e6124d9d827d1aac4d6a7a0e84cde6225b4cda485d5f1db47c74"
+    },
+    {
+      "bytes": 0,
+      "path": "runtime-flutter/qualification-75f694d5/native-navigation.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 10430,
+      "path": "runtime-flutter/qualification-75f694d5/progress.json",
+      "sha256": "2038afb4e15e64ca1173fa89ce646d901323d6264fd7389dd8b0b49e7381b8f2"
+    },
+    {
+      "bytes": 1839,
+      "path": "runtime-flutter/qualification-75f694d5/runtime-after.json",
+      "sha256": "3e0aa14bb312ec6fafe93192b4c8f79e046b0c15ff0335e3edd62f5b62affdb4"
+    },
+    {
+      "bytes": 1839,
+      "path": "runtime-flutter/qualification-75f694d5/runtime-before.json",
+      "sha256": "3e0aa14bb312ec6fafe93192b4c8f79e046b0c15ff0335e3edd62f5b62affdb4"
+    },
+    {
+      "bytes": 3743,
+      "path": "runtime-flutter/qualification-75f694d5/saved-mail-cases.json",
+      "sha256": "5ebf34ee4d39e2596c928ad68ec7ccf4e74f687ebc61d7b9de26a5f44d97efa7"
+    },
+    {
+      "bytes": 8366,
+      "path": "runtime-flutter/qualification-75f694d5/saved-mail.jsonl",
+      "sha256": "4a21fc6bafc8b896a8dc39700cc31dbc13cc640669e08246ee5445f302a0d324"
+    },
+    {
+      "bytes": 0,
+      "path": "runtime-flutter/qualification-75f694d5/saved-mail.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1123223,
+      "path": "runtime-flutter/qualification-75f694d5/source-after.json",
+      "sha256": "b1a011ea5f08e399a5284a3767979c0c646c097c9f3871ff0339823b934da638"
+    },
+    {
+      "bytes": 1123223,
+      "path": "runtime-flutter/qualification-75f694d5/source-before.json",
+      "sha256": "b1a011ea5f08e399a5284a3767979c0c646c097c9f3871ff0339823b934da638"
+    },
+    {
+      "bytes": 46,
+      "path": "runtime-flutter/qualification-75f694d5/store-analysis.log",
+      "sha256": "6573947ce493b867fb233613853e29c908e91977b0e23360aa95417b9071bef1"
+    },
+    {
+      "bytes": 0,
+      "path": "runtime-flutter/qualification-75f694d5/store-analysis.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 154726,
+      "path": "runtime-flutter/qualification-75f694d5/store-cases.json",
+      "sha256": "72872387913ba9262c89bb567a187856b7ad85484fa5ec76c27af2cdc86b4645"
+    },
+    {
+      "bytes": 468713,
+      "path": "runtime-flutter/qualification-75f694d5/store.jsonl",
+      "sha256": "bd15e3f7fd7fd713e5a94b56f9c194c0a007f899972ae8266488d152988b6cab"
+    },
+    {
+      "bytes": 0,
+      "path": "runtime-flutter/qualification-75f694d5/store.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 398,
+      "path": "runtime-flutter/qualification-75f694d5/studio-analysis.log",
+      "sha256": "e49461de82d38d43c03a574e2cc327674f9046dcf81894e3b912a3f1f117e00b"
+    },
+    {
+      "bytes": 0,
+      "path": "runtime-flutter/qualification-75f694d5/studio-analysis.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 10020,
+      "path": "runtime-flutter/qualification-75f694d5/sync-cases.json",
+      "sha256": "8bad3cf9a9954fab2e22f8943694ee99175d6387d2943278d57e4da8a7bf9bec"
+    },
+    {
+      "bytes": 22105,
+      "path": "runtime-flutter/qualification-75f694d5/sync.jsonl",
+      "sha256": "1bff941cafa5f1a0e78a60debfa085d2188bdc2a38fc406cbbb511657b8fb24b"
+    },
+    {
+      "bytes": 0,
+      "path": "runtime-flutter/qualification-75f694d5/sync.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 78,
+      "path": "runtime-flutter/qualification-75f694d5/zotero-analysis.log",
+      "sha256": "3c499e1c99cc6490e681f63e9964d31c70dedbea4f9dd1edf160efe771e881d0"
+    },
+    {
+      "bytes": 0,
+      "path": "runtime-flutter/qualification-75f694d5/zotero-analysis.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 32083,
+      "path": "runtime-flutter/qualification-75f694d5/zotero-cases.json",
+      "sha256": "d76ac32c45155422baa64c046fd62eb566d242bde82fbc7db61dc95ea5cff327"
+    },
+    {
+      "bytes": 54063,
+      "path": "runtime-flutter/qualification-75f694d5/zotero.jsonl",
+      "sha256": "033e0936abab0a5f4a61220496067e7274e7421a665b8dc7dba885c7df1441c0"
+    },
+    {
+      "bytes": 0,
+      "path": "runtime-flutter/qualification-75f694d5/zotero.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 9938,
+      "path": "runtime-flutter/qualify_incoming.py",
+      "sha256": "9282b0479379cbec480fdae9f10be269436ec44919329d3053109d70c8258598"
+    },
+    {
+      "bytes": 2992,
+      "path": "runtime-flutter/qualify_store_node.py",
+      "sha256": "dd0cdd13c672d0bc921b26bd89bce4a6e464246522ef19db0955d022492ca99c"
+    },
+    {
+      "bytes": 23779,
+      "path": "runtime-flutter/replay/flutter-tools-pubspec.lock",
+      "sha256": "6a98afb61c0cc72f31631ab444932f072fd275aa04d56cde2bf6831ba02fc8f8"
+    },
+    {
+      "bytes": 26,
+      "path": "runtime-flutter/replay/workspace-fvmrc.json",
+      "sha256": "90bf8f8884c05a407f51d6ef651ba033fef99a656010f8bfcb65951e921f4294"
+    },
+    {
+      "bytes": 375,
+      "path": "runtime-flutter/replay/workspace-native-assets.yaml",
+      "sha256": "f2add2d276a131fcb7f55726ab50f87b8a6de47c1085eca37cd3da0bc21be517"
+    },
+    {
+      "bytes": 35632,
+      "path": "runtime-flutter/replay/workspace-package-config.json",
+      "sha256": "76756a60428efbd1689d3e5e5942fffb22618802bc36922398f0788869a135b6"
+    },
+    {
+      "bytes": 33203,
+      "path": "runtime-flutter/replay/workspace-pubspec.lock",
+      "sha256": "0d64a732cd7f6c7cc4e1e01255276f081b59e6f43039636c3d36f6785a958ce2"
+    },
+    {
+      "bytes": 1043,
+      "path": "runtime-flutter/replay/workspace-pubspec.yaml",
+      "sha256": "453a1f8ab62db1c5577c424b058b50033a8d3b49b99c83862ab58a7e1108f74f"
+    },
+    {
+      "bytes": 1718,
+      "path": "runtime-flutter/replay_setup.sh",
+      "sha256": "8a00f3c202a7e9af9fd5d045cd721c995a574127140529d487536298ce25115c"
+    },
+    {
+      "bytes": 3556,
+      "path": "runtime-flutter/restore_pins.py",
+      "sha256": "4949942cd4937c34301ca21b81abee9964c6de76c3b67e5d22f3a58ae9373e9d"
+    },
+    {
+      "bytes": 1839,
+      "path": "runtime-flutter/runtime-final.json",
+      "sha256": "3e0aa14bb312ec6fafe93192b4c8f79e046b0c15ff0335e3edd62f5b62affdb4"
+    },
+    {
+      "bytes": 2702,
+      "path": "runtime-flutter/saved_mail_close_probe_test.dart",
+      "sha256": "a2d5659ae04ae65ebbc3bc8c52e276173cd5e2671a7a986f12a0418f4fbd0d5c"
+    },
+    {
+      "bytes": 740,
+      "path": "runtime-flutter/sdk-preparation.json",
+      "sha256": "dbde4003e78877987d4ebf5826000d30a4977909c298992bb024b9af72b5d33b"
+    },
+    {
+      "bytes": 934,
+      "path": "runtime-flutter/sdk-preparation.log",
+      "sha256": "d3a6976bf55ce0b17444c27fa098703e6e7d7d9d3444b5247fd75b770e3e2ce7"
+    },
+    {
+      "bytes": 8706,
+      "path": "runtime-flutter/sdk-pub-restore.log",
+      "sha256": "a7f8e42f3a0e0c7c67698515998a7ac27d978617b57dca11c3bd60aa5470d51f"
+    },
+    {
+      "bytes": 607,
+      "path": "runtime-flutter/sqlite_probe.dart",
+      "sha256": "e04d4564568d5c8ea50c63bbb9b78121742cdccf884948be19e04be67432ca59"
+    },
+    {
+      "bytes": 9123,
+      "path": "runtime-flutter/workspace-pub-restore.log",
+      "sha256": "7b4f7ffdbf0848942d7c1585199f7a71a71df26a33a9a887921b07e5ca43ccc0"
+    }
+  ],
+  "replay_note_member": "runtime-flutter/INCOMING_FLUTTER_REPLAY.md",
+  "schema_version": 1,
+  "sensitive_content_check": "All members UTF-8 text; scanned private-key, GitHub-token, Bearer-authorization and token-URL patterns; no matches. Logs contain local fixtures and public downloads only.",
+  "summary": {
+    "analysis_gates": [
+      "studio-analysis",
+      "zotero-analysis",
+      "store-analysis"
+    ],
+    "cohorts": [
+      {
+        "failed": 0,
+        "name": "store",
+        "passed": 825,
+        "receipt": "qualification-75f694d5/progress.json",
+        "scratch_only": false,
+        "skipped": 0,
+        "test_source_files": 34
+      },
+      {
+        "failed": 0,
+        "name": "store-node",
+        "passed": 3,
+        "receipt": "qualification-75f694d5-node/progress.json",
+        "scratch_only": false,
+        "skipped": 0,
+        "test_source_files": 1
+      },
+      {
+        "failed": 0,
+        "name": "sync",
+        "passed": 36,
+        "receipt": "qualification-75f694d5/progress.json",
+        "scratch_only": false,
+        "skipped": 0,
+        "test_source_files": 4
+      },
+      {
+        "failed": 0,
+        "name": "saved-mail",
+        "passed": 14,
+        "receipt": "qualification-75f694d5/progress.json",
+        "scratch_only": false,
+        "skipped": 0,
+        "test_source_files": 1
+      },
+      {
+        "failed": 0,
+        "name": "native-navigation",
+        "passed": 1,
+        "receipt": "qualification-75f694d5/progress.json",
+        "scratch_only": false,
+        "skipped": 0,
+        "test_source_files": 1
+      },
+      {
+        "failed": 0,
+        "name": "close-probe",
+        "passed": 3,
+        "receipt": "qualification-75f694d5/progress.json",
+        "scratch_only": true,
+        "skipped": 0,
+        "test_source_files": 1
+      },
+      {
+        "failed": 0,
+        "name": "zotero",
+        "passed": 109,
+        "receipt": "qualification-75f694d5/progress.json",
+        "scratch_only": false,
+        "skipped": 0,
+        "test_source_files": 1
+      }
+    ],
+    "complete_store_test_source_files": 35,
+    "distinct_test_source_files": 43,
+    "embedded_dart": "3.13.7",
+    "failed_total": 0,
+    "finished_utc": "2026-11-21T07:45:27.777271+00:00",
+    "flutter": "3.47.8",
+    "github_actions_waited": false,
+    "hosted_dependency_verification": "pub-cache-receipt.json",
+    "independent_scratch_test_source_files": 1,
+    "native_hooks_enabled": true,
+    "node": "v24.22.3",
+    "normal_flutter_assets": true,
+    "passed_total": 991,
+    "replay_note": "INCOMING_FLUTTER_REPLAY.md",
+    "replay_setup_script": "replay_setup.sh",
+    "replay_setup_script_validation": "bash -n only; consolidated after qualification",
+    "runtime_hashes_unchanged": true,
+    "scope_limitations": [
+      "Local provider fixtures only; no live mail-account acceptance",
+      "No Microsoft Word execution claim",
+      "No screenshot or macOS acceptance rerun",
+      "Qualification remains bound to exact application source commit; later documentation-only merge equivalence is separate"
+    ],
+    "sdk_archive_verification": "sdk-preparation.json",
+    "separate_engine_dart": "3.14.1",
+    "skipped_total": 0,
+    "source_commit": "75f694d5e42049f356ba52b26329d199bfb7c2aa",
+    "source_files_hashed": 6076,
+    "source_tree": "b05bbf48aaa6189c8c297866b4b39263004ca85f",
+    "source_unchanged": true,
+    "sqlite_library_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+    "status": "passed",
+    "tracked_test_source_files": 42,
+    "tracked_worktree_clean": true
+  },
+  "summary_member": "runtime-flutter/incoming-flutter-summary.json",
+  "uncompressed_member_bytes": 5987842
+}

@@ -323,7 +323,7 @@ void main() {
     expect(client.connections, 0);
   });
 
-  testWidgets('pending account save also disables storage in the File menu', (
+  testWidgets('pending account save disables the ribbon storage command', (
     tester,
   ) async {
     final accounts = _Accounts();
@@ -334,6 +334,9 @@ void main() {
       opened++;
       return true;
     });
+    final earlierSettingsAction = tester
+        .widget<IconButton>(_key('studio-mail-credential-storage'))
+        .onPressed!;
     accounts.saveGate = gate;
     await _connect(tester);
     expect(accounts.saves, 1);
@@ -344,17 +347,14 @@ void main() {
       isNull,
     );
 
-    await _tap(tester, find.widgetWithText(SubmenuButton, 'File'));
-    expect(
-      tester
-          .widget<MenuItemButton>(
-            find.widgetWithText(MenuItemButton, 'Credential storage…'),
-          )
-          .onPressed,
-      isNull,
-    );
+    expect(find.byTooltip('Credential storage'), findsOneWidget);
+    await _tap(tester, _key('studio-mail-credential-storage'));
     expect(opened, 0);
-    await _tap(tester, find.widgetWithText(SubmenuButton, 'File'));
+    // The Home ribbon replaced the old File submenu. Its disabled command
+    // and a callback retained before the save obey the same storage guard.
+    earlierSettingsAction();
+    await _pump(tester);
+    expect(opened, 0);
     gate.complete();
     await _pump(tester);
     expect(
@@ -363,6 +363,8 @@ void main() {
           .onPressed,
       isNotNull,
     );
+    await _openStorage(tester);
+    expect(opened, 1);
   });
 
   testWidgets(
@@ -405,16 +407,9 @@ void main() {
               .onPressed,
           isNull,
         );
-        await _tap(tester, find.widgetWithText(SubmenuButton, 'File'));
-        expect(
-          tester
-              .widget<MenuItemButton>(
-                find.widgetWithText(MenuItemButton, 'Credential storage…'),
-              )
-              .onPressed,
-          isNull,
-        );
-        await _tap(tester, find.widgetWithText(SubmenuButton, 'File'));
+        expect(find.byTooltip('Credential storage'), findsOneWidget);
+        await _tap(tester, _key('studio-mail-credential-storage'));
+        expect(openedSettings, 0);
 
         // A callback captured before connection must obey the same guard as
         // the newly disabled controls.

@@ -1,0 +1,1029 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-11-21T07:36:17.626185+00:00",
+  "scope": "Byte-preserved intake, runtime, core/store/protocol, standalone and final combined host, rendered UI receipt, static checks and captured incoming-frontier evidence. UI image files are described by their receipt; this text-file inventory is not an exhaustive directory inventory.",
+  "original_receipts_modified": false,
+  "additional_tests_run_to_build_this_index": false,
+  "requested_source_head": "78b90a73adc9c2f18e6e3bdf7b3906afa387922b",
+  "repository_head_when_indexed": "278fa78d59f219965a50f025dbdb11d1b7b98676",
+  "source_targets": {
+    "78b90a73adc9c2f18e6e3bdf7b3906afa387922b": {
+      "tree": "fd868bec7aed01d2134f72308096ea438129760b"
+    },
+    "278fa78d59f219965a50f025dbdb11d1b7b98676": {
+      "tree": "fd868bec7aed01d2134f72308096ea438129760b"
+    }
+  },
+  "source_check_method": "Read immutable Git blobs at each recorded target with git cat-file --batch; compute SHA-256 and compare every source path recorded by each receipt. The mutable worktree is not used as the source target.",
+  "source_check_limits": [
+    "Applicability checks establish equality only for recorded paths, not every repository file or unrecorded transitive dependency.",
+    "A passing original run remains historical evidence when any recorded path differs. The standalone host receipt predates three incoming engine changes; use the final combined-host receipt for the merged source.",
+    "The UI rendering receipt has after-run source hashes only; the async review has a single review-time snapshot. Neither establishes before/after run stability.",
+    "The runtime receipt binds the repository lockfile only. No source fingerprints exist in the two intake snapshots, which record Git-ref reconciliation instead.",
+    "Counts describe the listed suite executions. Overlapping standalone and combined/focused cohorts must not be added as unique tests."
+  ],
+  "intake": {
+    "initial": {
+      "path": "intake.json",
+      "captured_at": "2026-11-21T07:15:46.628055+00:00",
+      "inventory_counts": {
+        "fork_branches": 46,
+        "fork_pull_heads": 288,
+        "upstream_refs": 8
+      },
+      "classification_counts": {
+        "verified_equivalent": 24,
+        "ancestor": 316,
+        "uncovered": 2
+      }
+    },
+    "pre_publication": {
+      "path": "pre-publication.json",
+      "captured_at": "2026-11-21T07:29:03.131403+00:00",
+      "inventory_counts": {
+        "fork_branches": 48,
+        "fork_pull_heads": 289,
+        "upstream_refs": 8
+      },
+      "classification_counts": {
+        "verified_equivalent": 24,
+        "ancestor": 317,
+        "incoming": 4
+      },
+      "all_historical_proofs_recomputed_valid": true
+    },
+    "final_captured_coverage": {
+      "path": "final-captured-coverage.json",
+      "checked_at": "2026-11-21T07:35:16.271770+00:00",
+      "head": "278fa78d59f219965a50f025dbdb11d1b7b98676",
+      "inventory_counts": {
+        "fork_branches": 48,
+        "fork_pull_heads": 289,
+        "upstream_refs": 8
+      },
+      "classification_counts": {
+        "verified_equivalent": 24,
+        "ancestor": 321
+      },
+      "all_captured_refs_accounted_for": true
+    },
+    "source_hash_applicability": "not_applicable_to_ref_inventory_snapshots",
+    "remote_ref_refresh_performed_to_build_this_index": false
+  },
+  "groups": [
+    {
+      "id": "store_all",
+      "scope": "Complete quds_mail_store VM suite; source fingerprints cover this package, not all transitive dependencies.",
+      "receipt": "store/store-all-tests-receipt.json",
+      "results": {
+        "passed": 825,
+        "failed": 0,
+        "skipped": 0
+      },
+      "exit_code": 0,
+      "source_scope": "store_all",
+      "raw_log": "store/store-all-tests.jsonl",
+      "raw_log_hash_recorded_in_original_receipt": false,
+      "raw_log_hash_recorded_in_this_index": true
+    },
+    {
+      "id": "host_standalone",
+      "scope": "Five Studio host regressions with fake provider seams and real SQLite storage; captured before the incoming Word/Zotero source merge.",
+      "receipt": "host/host-sync-receipt.json",
+      "results": {
+        "passed": 5,
+        "failed": 0,
+        "skipped": 0
+      },
+      "exit_code": 0,
+      "source_scope": "host_standalone",
+      "raw_log": "host/host-sync-tests.jsonl",
+      "raw_log_hash_recorded_in_original_receipt": false,
+      "raw_log_hash_recorded_in_this_index": true
+    },
+    {
+      "id": "host_final_combined",
+      "scope": "Final combined 12-file mail cohort after the captured incoming Word/Zotero merge. Includes the standalone host and dialog tests; do not add those counts as unique tests.",
+      "receipt": "final-mail/mail-host-receipt.json",
+      "results": {
+        "passed": 407,
+        "failed": 0,
+        "skipped": 0
+      },
+      "exit_code": 0,
+      "source_scope": "host_final_combined",
+      "raw_log": "final-mail/mail-host-tests.jsonl",
+      "raw_log_hash_recorded_in_original_receipt": false,
+      "raw_log_hash_recorded_in_this_index": true
+    },
+    {
+      "id": "core_all",
+      "receipt": "core/receipt.json",
+      "source_scope": "core_all",
+      "commands": [
+        {
+          "passed": 271,
+          "exit_code": 0
+        }
+      ]
+    },
+    {
+      "id": "protocol_providers",
+      "receipt": "core-transport/providers.json",
+      "source_scope": "protocol_providers",
+      "commands": [
+        {
+          "label": "provider_sync_tests",
+          "passed": 255,
+          "exit_code": 0
+        }
+      ]
+    },
+    {
+      "id": "protocol_store",
+      "receipt": "core-transport/provider_store.json",
+      "source_scope": "protocol_store",
+      "commands": [
+        {
+          "label": "provider_store_sync_tests",
+          "passed": 10,
+          "exit_code": 0
+        }
+      ]
+    },
+    {
+      "id": "core_javascript",
+      "receipt": "core-transport/core_js.json",
+      "source_scope": "core_javascript",
+      "commands": [
+        {
+          "label": "core_js_compile",
+          "passed": null,
+          "exit_code": 0
+        },
+        {
+          "label": "core_js_node",
+          "passed": null,
+          "exit_code": 0
+        }
+      ]
+    },
+    {
+      "id": "incoming_engine",
+      "receipt": "incoming/engine.json",
+      "source_scope": "incoming_engine",
+      "commands": [
+        {
+          "label": "incoming_engine_tests",
+          "passed": 689,
+          "exit_code": 0
+        }
+      ]
+    },
+    {
+      "id": "incoming_editor",
+      "receipt": "incoming/editor.json",
+      "source_scope": "incoming_editor",
+      "commands": [
+        {
+          "label": "incoming_editor_tests",
+          "passed": 109,
+          "exit_code": 0
+        }
+      ]
+    },
+    {
+      "id": "incoming_word_javascript",
+      "receipt": "incoming/word_js.json",
+      "source_scope": "incoming_word_javascript",
+      "commands": [
+        {
+          "label": "word_js_compile",
+          "passed": null,
+          "exit_code": 0
+        },
+        {
+          "label": "word_js_node",
+          "passed": null,
+          "exit_code": 0
+        }
+      ]
+    },
+    {
+      "id": "ui_rendered",
+      "receipt": "ui/receipt.json",
+      "source_scope": "ui_rendered",
+      "results": {
+        "passed": 22,
+        "failed": 0,
+        "skipped": 0
+      },
+      "exit_code": 0,
+      "raw_test_log_archived": false,
+      "scope": "Rendered fixtures and an observed focused dialog test run. The receipt captures source hashes after the run, not before/after stability. No live-provider qualification."
+    },
+    {
+      "id": "ui_async_review",
+      "receipt": "core-transport/ui-review.json",
+      "source_scope": "ui_async_review",
+      "scope": "read-only async lifetime and account scope review",
+      "must_fix_findings_recorded": 0
+    },
+    {
+      "id": "runtime",
+      "receipt": "runtime/runtime.json",
+      "source_scope": "runtime_lock",
+      "archive_manifest": "runtime/pub-cache-receipt.json",
+      "verified_hosted_archives": 202,
+      "sdk_archive_verified": true,
+      "commands_exit_codes": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "final_static_checks",
+      "receipt": "final-mail/static-checks.json",
+      "source_scope": "host_final_combined",
+      "source_binding": "The static receipt asserts equality to the final-host receipt source scope. It does not contain a second independent source fingerprint map.",
+      "source_unchanged_since_final_host_run_recorded": true,
+      "exit_codes": {
+        "format": 0,
+        "whitespace": 0,
+        "analysis": 0,
+        "store_browser_compile": 0
+      },
+      "store_browser_compile_scope": "Actual compilation succeeded; this does not claim browser execution, OPFS/worker behavior, or a complete Flutter web build."
+    }
+  ],
+  "source_scopes": {
+    "store_all": {
+      "recorded_file_count": 74,
+      "before_after_fingerprints_available": true,
+      "source_unchanged_during_original_run": true,
+      "capture": "SHA-256 of scoped files recorded before and after the original command(s).",
+      "applicability": {
+        "78b90a73adc9c2f18e6e3bdf7b3906afa387922b": {
+          "status": "all_recorded_paths_match",
+          "matched": 74,
+          "changed": 0,
+          "missing": 0,
+          "mismatches": []
+        },
+        "278fa78d59f219965a50f025dbdb11d1b7b98676": {
+          "status": "all_recorded_paths_match",
+          "matched": 74,
+          "changed": 0,
+          "missing": 0,
+          "mismatches": []
+        }
+      }
+    },
+    "host_standalone": {
+      "recorded_file_count": 844,
+      "before_after_fingerprints_available": true,
+      "source_unchanged_during_original_run": true,
+      "capture": "SHA-256 of scoped files recorded before and after the original command(s).",
+      "applicability": {
+        "78b90a73adc9c2f18e6e3bdf7b3906afa387922b": {
+          "status": "recorded_paths_changed",
+          "matched": 841,
+          "changed": 3,
+          "missing": 0,
+          "mismatches": [
+            {
+              "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+              "recorded_sha256": "83bedecf4dc696bb7b424d15c7b5520393299553b0e7e018c1e4124ef6034ab8",
+              "target_sha256": "f0bf44e664a56c8fbc2e6b7fc76bcfec51b32791bce30c74ec39eb50aebf644d"
+            },
+            {
+              "path": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+              "recorded_sha256": "c5d067ec80dfbce5739c0901ff8d48ae6fa5052ccf759ad55773011da016d64d",
+              "target_sha256": "af9b3f18201301c3fa9399d61c72f4201259636b757e84d72f50103bffeec58b"
+            },
+            {
+              "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+              "recorded_sha256": "1eb15bb89c3461d134b984499f1374ca4e11e08e3ea48c760b26b3720921dbbe",
+              "target_sha256": "aa8800089bcc7da05bb3d07934f2f1715e6f85d74b1ea42bb02682f09912367d"
+            }
+          ]
+        },
+        "278fa78d59f219965a50f025dbdb11d1b7b98676": {
+          "status": "recorded_paths_changed",
+          "matched": 841,
+          "changed": 3,
+          "missing": 0,
+          "mismatches": [
+            {
+              "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+              "recorded_sha256": "83bedecf4dc696bb7b424d15c7b5520393299553b0e7e018c1e4124ef6034ab8",
+              "target_sha256": "f0bf44e664a56c8fbc2e6b7fc76bcfec51b32791bce30c74ec39eb50aebf644d"
+            },
+            {
+              "path": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+              "recorded_sha256": "c5d067ec80dfbce5739c0901ff8d48ae6fa5052ccf759ad55773011da016d64d",
+              "target_sha256": "af9b3f18201301c3fa9399d61c72f4201259636b757e84d72f50103bffeec58b"
+            },
+            {
+              "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+              "recorded_sha256": "1eb15bb89c3461d134b984499f1374ca4e11e08e3ea48c760b26b3720921dbbe",
+              "target_sha256": "aa8800089bcc7da05bb3d07934f2f1715e6f85d74b1ea42bb02682f09912367d"
+            }
+          ]
+        }
+      }
+    },
+    "host_final_combined": {
+      "recorded_file_count": 981,
+      "before_after_fingerprints_available": true,
+      "source_unchanged_during_original_run": true,
+      "capture": "SHA-256 of scoped files recorded before and after the original command(s).",
+      "applicability": {
+        "78b90a73adc9c2f18e6e3bdf7b3906afa387922b": {
+          "status": "all_recorded_paths_match",
+          "matched": 981,
+          "changed": 0,
+          "missing": 0,
+          "mismatches": []
+        },
+        "278fa78d59f219965a50f025dbdb11d1b7b98676": {
+          "status": "all_recorded_paths_match",
+          "matched": 981,
+          "changed": 0,
+          "missing": 0,
+          "mismatches": []
+        }
+      }
+    },
+    "core_all": {
+      "recorded_file_count": 35,
+      "before_after_fingerprints_available": true,
+      "source_unchanged_during_original_run": true,
+      "capture": "SHA-256 of scoped files recorded before and after the original command(s).",
+      "original_scope_sha256": "aae2b734f418a8c3119fd5ea91ba6fbddac91627eded64d669b5c59752b9993e",
+      "applicability": {
+        "78b90a73adc9c2f18e6e3bdf7b3906afa387922b": {
+          "status": "all_recorded_paths_match",
+          "matched": 35,
+          "changed": 0,
+          "missing": 0,
+          "mismatches": []
+        },
+        "278fa78d59f219965a50f025dbdb11d1b7b98676": {
+          "status": "all_recorded_paths_match",
+          "matched": 35,
+          "changed": 0,
+          "missing": 0,
+          "mismatches": []
+        }
+      }
+    },
+    "protocol_providers": {
+      "recorded_file_count": 182,
+      "before_after_fingerprints_available": true,
+      "source_unchanged_during_original_run": true,
+      "capture": "SHA-256 of scoped files recorded before and after the original command(s).",
+      "original_scope_sha256": "b45d6795479418b3592bf3a63eeede702a9dc2ff5951bb11922344ae5173fb70",
+      "applicability": {
+        "78b90a73adc9c2f18e6e3bdf7b3906afa387922b": {
+          "status": "all_recorded_paths_match",
+          "matched": 182,
+          "changed": 0,
+          "missing": 0,
+          "mismatches": []
+        },
+        "278fa78d59f219965a50f025dbdb11d1b7b98676": {
+          "status": "all_recorded_paths_match",
+          "matched": 182,
+          "changed": 0,
+          "missing": 0,
+          "mismatches": []
+        }
+      }
+    },
+    "protocol_store": {
+      "recorded_file_count": 182,
+      "before_after_fingerprints_available": true,
+      "source_unchanged_during_original_run": true,
+      "capture": "SHA-256 of scoped files recorded before and after the original command(s).",
+      "original_scope_sha256": "b45d6795479418b3592bf3a63eeede702a9dc2ff5951bb11922344ae5173fb70",
+      "applicability": {
+        "78b90a73adc9c2f18e6e3bdf7b3906afa387922b": {
+          "status": "all_recorded_paths_match",
+          "matched": 182,
+          "changed": 0,
+          "missing": 0,
+          "mismatches": []
+        },
+        "278fa78d59f219965a50f025dbdb11d1b7b98676": {
+          "status": "all_recorded_paths_match",
+          "matched": 182,
+          "changed": 0,
+          "missing": 0,
+          "mismatches": []
+        }
+      }
+    },
+    "core_javascript": {
+      "recorded_file_count": 182,
+      "before_after_fingerprints_available": true,
+      "source_unchanged_during_original_run": true,
+      "capture": "SHA-256 of scoped files recorded before and after the original command(s).",
+      "original_scope_sha256": "b45d6795479418b3592bf3a63eeede702a9dc2ff5951bb11922344ae5173fb70",
+      "applicability": {
+        "78b90a73adc9c2f18e6e3bdf7b3906afa387922b": {
+          "status": "all_recorded_paths_match",
+          "matched": 182,
+          "changed": 0,
+          "missing": 0,
+          "mismatches": []
+        },
+        "278fa78d59f219965a50f025dbdb11d1b7b98676": {
+          "status": "all_recorded_paths_match",
+          "matched": 182,
+          "changed": 0,
+          "missing": 0,
+          "mismatches": []
+        }
+      }
+    },
+    "incoming_engine": {
+      "recorded_file_count": 1323,
+      "before_after_fingerprints_available": true,
+      "source_unchanged_during_original_run": true,
+      "capture": "SHA-256 of scoped files recorded before and after the original command(s).",
+      "original_scope_sha256": "0236bbcbf3897cca856b827dd354374c8e691acb93502f098a3dcd26c44bae25",
+      "applicability": {
+        "78b90a73adc9c2f18e6e3bdf7b3906afa387922b": {
+          "status": "all_recorded_paths_match",
+          "matched": 1323,
+          "changed": 0,
+          "missing": 0,
+          "mismatches": []
+        },
+        "278fa78d59f219965a50f025dbdb11d1b7b98676": {
+          "status": "all_recorded_paths_match",
+          "matched": 1323,
+          "changed": 0,
+          "missing": 0,
+          "mismatches": []
+        }
+      }
+    },
+    "incoming_editor": {
+      "recorded_file_count": 1323,
+      "before_after_fingerprints_available": true,
+      "source_unchanged_during_original_run": true,
+      "capture": "SHA-256 of scoped files recorded before and after the original command(s).",
+      "original_scope_sha256": "0236bbcbf3897cca856b827dd354374c8e691acb93502f098a3dcd26c44bae25",
+      "applicability": {
+        "78b90a73adc9c2f18e6e3bdf7b3906afa387922b": {
+          "status": "all_recorded_paths_match",
+          "matched": 1323,
+          "changed": 0,
+          "missing": 0,
+          "mismatches": []
+        },
+        "278fa78d59f219965a50f025dbdb11d1b7b98676": {
+          "status": "all_recorded_paths_match",
+          "matched": 1323,
+          "changed": 0,
+          "missing": 0,
+          "mismatches": []
+        }
+      }
+    },
+    "incoming_word_javascript": {
+      "recorded_file_count": 1323,
+      "before_after_fingerprints_available": true,
+      "source_unchanged_during_original_run": true,
+      "capture": "SHA-256 of scoped files recorded before and after the original command(s).",
+      "original_scope_sha256": "0236bbcbf3897cca856b827dd354374c8e691acb93502f098a3dcd26c44bae25",
+      "applicability": {
+        "78b90a73adc9c2f18e6e3bdf7b3906afa387922b": {
+          "status": "all_recorded_paths_match",
+          "matched": 1323,
+          "changed": 0,
+          "missing": 0,
+          "mismatches": []
+        },
+        "278fa78d59f219965a50f025dbdb11d1b7b98676": {
+          "status": "all_recorded_paths_match",
+          "matched": 1323,
+          "changed": 0,
+          "missing": 0,
+          "mismatches": []
+        }
+      }
+    },
+    "ui_rendered": {
+      "recorded_file_count": 3,
+      "before_after_fingerprints_available": false,
+      "source_unchanged_during_original_run": null,
+      "capture": "After the run; production UI was frozen before screenshot capture",
+      "applicability": {
+        "78b90a73adc9c2f18e6e3bdf7b3906afa387922b": {
+          "status": "all_recorded_paths_match",
+          "matched": 3,
+          "changed": 0,
+          "missing": 0,
+          "mismatches": []
+        },
+        "278fa78d59f219965a50f025dbdb11d1b7b98676": {
+          "status": "all_recorded_paths_match",
+          "matched": 3,
+          "changed": 0,
+          "missing": 0,
+          "mismatches": []
+        }
+      }
+    },
+    "ui_async_review": {
+      "recorded_file_count": 6,
+      "before_after_fingerprints_available": false,
+      "source_unchanged_during_original_run": null,
+      "capture": "Single source snapshot from a read-only review; no before/after test execution fingerprints.",
+      "applicability": {
+        "78b90a73adc9c2f18e6e3bdf7b3906afa387922b": {
+          "status": "recorded_paths_changed",
+          "matched": 5,
+          "changed": 1,
+          "missing": 0,
+          "mismatches": [
+            {
+              "path": "packages/quds_office_editor/example/lib/studio_mail_sync_dialog.dart",
+              "recorded_sha256": "cdfcd70caa8b3d88b783db66ea9df9eeb5b12e2f716f92c95f11bb3ffb081f14",
+              "target_sha256": "0abdbdca99ccefb94ed2505e70b9a778271191f103c3da0500f0faa633dace0c"
+            }
+          ]
+        },
+        "278fa78d59f219965a50f025dbdb11d1b7b98676": {
+          "status": "recorded_paths_changed",
+          "matched": 5,
+          "changed": 1,
+          "missing": 0,
+          "mismatches": [
+            {
+              "path": "packages/quds_office_editor/example/lib/studio_mail_sync_dialog.dart",
+              "recorded_sha256": "cdfcd70caa8b3d88b783db66ea9df9eeb5b12e2f716f92c95f11bb3ffb081f14",
+              "target_sha256": "0abdbdca99ccefb94ed2505e70b9a778271191f103c3da0500f0faa633dace0c"
+            }
+          ]
+        }
+      }
+    },
+    "runtime_lock": {
+      "recorded_file_count": 1,
+      "before_after_fingerprints_available": true,
+      "source_unchanged_during_original_run": true,
+      "capture": "Only the repository lockfile is source-bound here. Runtime/archive fingerprints describe the recorded toolchain, not repository source coverage.",
+      "applicability": {
+        "78b90a73adc9c2f18e6e3bdf7b3906afa387922b": {
+          "status": "all_recorded_paths_match",
+          "matched": 1,
+          "changed": 0,
+          "missing": 0,
+          "mismatches": []
+        },
+        "278fa78d59f219965a50f025dbdb11d1b7b98676": {
+          "status": "all_recorded_paths_match",
+          "matched": 1,
+          "changed": 0,
+          "missing": 0,
+          "mismatches": []
+        }
+      }
+    }
+  },
+  "original_receipt_log_integrity_checks": [
+    {
+      "receipt": "core/receipt.json",
+      "log": "core/core_all_tests.log",
+      "expected_sha256": "b2cd0577c8e184ac9efb274b461fec6475e9218e3a8e0b463decc5e38913d3d0",
+      "archived_sha256_matches_receipt": true
+    },
+    {
+      "receipt": "core-transport/providers.json",
+      "log": "core-transport/provider_sync_tests.log",
+      "expected_sha256": "a36fbef55ba3adea5665d7b8ac9323d55477777dbde210470644997e22801101",
+      "archived_sha256_matches_receipt": true
+    },
+    {
+      "receipt": "core-transport/provider_store.json",
+      "log": "core-transport/provider_store_sync_tests.log",
+      "expected_sha256": "08870657c02d8e5d26a0f6fb7ca9a023508c09142ca52665e1dfb55802ad1b95",
+      "archived_sha256_matches_receipt": true
+    },
+    {
+      "receipt": "core-transport/core_js.json",
+      "log": "core-transport/core_js_compile.log",
+      "expected_sha256": "b867eda505bb532fd25e3357ef0f22a823cb7ac626479489c5c54f53c22ba651",
+      "archived_sha256_matches_receipt": true
+    },
+    {
+      "receipt": "core-transport/core_js.json",
+      "log": "core-transport/core_js_node.log",
+      "expected_sha256": "60968dfae89e53c809acd34d1c62d589023d58b261f0259cb06f4b0f2401cc8a",
+      "archived_sha256_matches_receipt": true
+    },
+    {
+      "receipt": "incoming/engine.json",
+      "log": "incoming/incoming_engine_tests.log",
+      "expected_sha256": "7eadbd9a338ec2e71d7cfe0aabe8effbd2c4642187fbbad6c84fe2f4c00780de",
+      "archived_sha256_matches_receipt": true
+    },
+    {
+      "receipt": "incoming/editor.json",
+      "log": "incoming/incoming_editor_tests.log",
+      "expected_sha256": "f5127ab91a2c3f2ef0885b8032e21684f6b472880518781972feaeb0e68a3c43",
+      "archived_sha256_matches_receipt": true
+    },
+    {
+      "receipt": "incoming/word_js.json",
+      "log": "incoming/word_js_compile.log",
+      "expected_sha256": "f78458c02b8986907f33f8a40b06741d7b8def030b24e01fee0e25c05cfa15c5",
+      "archived_sha256_matches_receipt": true
+    },
+    {
+      "receipt": "incoming/word_js.json",
+      "log": "incoming/word_js_node.log",
+      "expected_sha256": "98a58a09cf92aa3982373fd6adc2f1d61c7836f2dc6fadfe5604edf7ae2a5c2f",
+      "archived_sha256_matches_receipt": true
+    },
+    {
+      "receipt": "runtime/runtime.json",
+      "log": "runtime/flutter-tools-pub-get.log",
+      "expected_sha256": "fcccf37d969787c76d4c55b19cba368cff68b1c3eb86b1f0f02274b9cc405829",
+      "archived_sha256_matches_receipt": true
+    },
+    {
+      "receipt": "runtime/runtime.json",
+      "log": "runtime/workspace-pub-get.log",
+      "expected_sha256": "3640d48177b802767785e357f56651162d2250e124b566cffdc2cb88ce7e7f9c",
+      "archived_sha256_matches_receipt": true
+    },
+    {
+      "receipt": "runtime/runtime.json",
+      "log": "runtime/flutter-version.log",
+      "expected_sha256": "e78aa2b4f51f259feaa96f21784ad4973309eb442d4f9c5a2343fbb5f490551e",
+      "archived_sha256_matches_receipt": true
+    },
+    {
+      "receipt": "final-mail/static-checks.json",
+      "log": "final-mail/analyze.log",
+      "expected_sha256": "4308bf9a15c83769ddf3a1add5c5c1a7dc5e88db7ef2885e8266324251365eab",
+      "archived_sha256_matches_receipt": true
+    },
+    {
+      "receipt": "final-mail/static-checks.json",
+      "log": "final-mail/diff-check.log",
+      "expected_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archived_sha256_matches_receipt": true
+    },
+    {
+      "receipt": "final-mail/static-checks.json",
+      "log": "final-mail/store-browser-compile.log",
+      "expected_sha256": "574f6b01bb953d8f483b95ac364aa20f11c392c827bc3c1dc0d26fa1054d84ff",
+      "archived_sha256_matches_receipt": true
+    },
+    {
+      "receipt": "final-mail/static-checks.json",
+      "log": "final-mail/format.log",
+      "expected_sha256": "a8fce6cea6dc3ff299103d7a35be21893a7d1758c7aeb16a3ae79cb4ee2acfa2",
+      "archived_sha256_matches_receipt": true
+    }
+  ],
+  "archive": {
+    "file_count_excluding_this_index": 40,
+    "total_bytes_excluding_this_index": 3052064,
+    "all_files_byte_identical_to_originals": true,
+    "files": [
+      {
+        "path": "core-transport/core_js.json",
+        "original_workspace_path": "core-transport-validation/core_js.json",
+        "bytes": 50222,
+        "sha256": "e91176de92fca6f84dce008121ea2b648048255458f081721269fe486ddf4b0e",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "core-transport/core_js_compile.log",
+        "original_workspace_path": "core-transport-validation/core_js_compile.log",
+        "bytes": 111,
+        "sha256": "b867eda505bb532fd25e3357ef0f22a823cb7ac626479489c5c54f53c22ba651",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "core-transport/core_js_node.log",
+        "original_workspace_path": "core-transport-validation/core_js_node.log",
+        "bytes": 88,
+        "sha256": "60968dfae89e53c809acd34d1c62d589023d58b261f0259cb06f4b0f2401cc8a",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "core-transport/provider_store.json",
+        "original_workspace_path": "core-transport-validation/provider_store.json",
+        "bytes": 49668,
+        "sha256": "fff538d8c57058061e3b785568275e2673e8f8c10510baf5d350d9c80746c93a",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "core-transport/provider_store_sync_tests.log",
+        "original_workspace_path": "core-transport-validation/provider_store_sync_tests.log",
+        "bytes": 1406,
+        "sha256": "08870657c02d8e5d26a0f6fb7ca9a023508c09142ca52665e1dfb55802ad1b95",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "core-transport/provider_sync_tests.log",
+        "original_workspace_path": "core-transport-validation/provider_sync_tests.log",
+        "bytes": 32960,
+        "sha256": "a36fbef55ba3adea5665d7b8ac9323d55477777dbde210470644997e22801101",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "core-transport/providers.json",
+        "original_workspace_path": "core-transport-validation/providers.json",
+        "bytes": 49760,
+        "sha256": "2d6313f71228c05b575728011484785a38968ee4b88880ff9bc301ba677cafaa",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "core-transport/summary.json",
+        "original_workspace_path": "core-transport-validation/summary.json",
+        "bytes": 4344,
+        "sha256": "007e224d2bf2f84c785759282870b84b6dc7868a6fd055877b47a3e037f73788",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "core-transport/ui-review.json",
+        "original_workspace_path": "core-transport-validation/ui-review.json",
+        "bytes": 1909,
+        "sha256": "c0ad4e6ef4c9be307be02a3b68f07991a77308724c3f8c511fc7d5cff964778d",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "core/core_all_tests.log",
+        "original_workspace_path": "core-final-validation/core_all_tests.log",
+        "bytes": 34336,
+        "sha256": "b2cd0577c8e184ac9efb274b461fec6475e9218e3a8e0b463decc5e38913d3d0",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "core/receipt.json",
+        "original_workspace_path": "core-final-validation/receipt.json",
+        "bytes": 10651,
+        "sha256": "91115ea970b3e647798ee5e2bcdce7b852d99b453cce61c999d85ebecd785ab6",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "final-captured-coverage.json",
+        "original_workspace_path": "quds_office_suite/docs/validation/mail-sync-foundation-20261121/final-captured-coverage.json",
+        "bytes": 71264,
+        "sha256": "b2ddf68d0f348909ffea6ca71f491eaafe2bed9bdb64d59495a6d683a4f2f579",
+        "byte_identical_to_original": true,
+        "origin": "authored_in_repository_and_preserved"
+      },
+      {
+        "path": "final-mail/analyze.log",
+        "original_workspace_path": "final-mail-validation/analyze.log",
+        "bytes": 402,
+        "sha256": "4308bf9a15c83769ddf3a1add5c5c1a7dc5e88db7ef2885e8266324251365eab",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "final-mail/diff-check.log",
+        "original_workspace_path": "quds_office_suite/docs/validation/mail-sync-foundation-20261121/final-mail/diff-check.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "byte_identical_to_original": true,
+        "origin": "authored_in_repository_and_preserved"
+      },
+      {
+        "path": "final-mail/format.log",
+        "original_workspace_path": "quds_office_suite/docs/validation/mail-sync-foundation-20261121/final-mail/format.log",
+        "bytes": 48,
+        "sha256": "a8fce6cea6dc3ff299103d7a35be21893a7d1758c7aeb16a3ae79cb4ee2acfa2",
+        "byte_identical_to_original": true,
+        "origin": "authored_in_repository_and_preserved"
+      },
+      {
+        "path": "final-mail/mail-host-receipt.json",
+        "original_workspace_path": "final-mail-validation/mail-host-receipt.json",
+        "bytes": 279613,
+        "sha256": "16dc7c2f141d3fb66c486e06205ffea16d601002e482c31915fdeb675912e531",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "final-mail/mail-host-tests.jsonl",
+        "original_workspace_path": "final-mail-validation/mail-host-tests.jsonl",
+        "bytes": 236929,
+        "sha256": "538ffa2870d492935374e8b58ec2be5ee9286c7387e7bffafdce88d27e102ccb",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "final-mail/static-checks.json",
+        "original_workspace_path": "quds_office_suite/docs/validation/mail-sync-foundation-20261121/final-mail/static-checks.json",
+        "bytes": 3959,
+        "sha256": "b7a334be17d234c4e6ea11ca61e894c665635424f33e5e8ec14db998aa77862b",
+        "byte_identical_to_original": true,
+        "origin": "authored_in_repository_and_preserved"
+      },
+      {
+        "path": "final-mail/store-browser-compile.log",
+        "original_workspace_path": "final-mail-validation/store-browser-compile.log",
+        "bytes": 114,
+        "sha256": "574f6b01bb953d8f483b95ac364aa20f11c392c827bc3c1dc0d26fa1054d84ff",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "host/host-sync-receipt.json",
+        "original_workspace_path": "host-sync-validation/host-sync-receipt.json",
+        "bytes": 237707,
+        "sha256": "b0a5efc15a77edf9d8596da4c318ba44dbb6e572f7b0b8f71596ef3be3d7e914",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "host/host-sync-tests.jsonl",
+        "original_workspace_path": "host-sync-validation/host-sync-tests.jsonl",
+        "bytes": 3676,
+        "sha256": "0f995b2cf261835ac8ba4788782e0d9310f78634e4d4c56744d721447dd01a66",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "incoming/editor.json",
+        "original_workspace_path": "incoming-frontier-validation/editor.json",
+        "bytes": 386314,
+        "sha256": "bdcdfdc6101acd7af39869b7846397c623962b57146a3726d04ce797ca315291",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "incoming/engine.json",
+        "original_workspace_path": "incoming-frontier-validation/engine.json",
+        "bytes": 387157,
+        "sha256": "cf91e48b954c4f6b2de7954bd50d22269597df4995030b4db735addd83345e4f",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "incoming/incoming_editor_tests.log",
+        "original_workspace_path": "incoming-frontier-validation/incoming_editor_tests.log",
+        "bytes": 9304,
+        "sha256": "f5127ab91a2c3f2ef0885b8032e21684f6b472880518781972feaeb0e68a3c43",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "incoming/incoming_engine_tests.log",
+        "original_workspace_path": "incoming-frontier-validation/incoming_engine_tests.log",
+        "bytes": 104169,
+        "sha256": "7eadbd9a338ec2e71d7cfe0aabe8effbd2c4642187fbbad6c84fe2f4c00780de",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "incoming/summary.json",
+        "original_workspace_path": "incoming-frontier-validation/summary.json",
+        "bytes": 2315,
+        "sha256": "dc9bb6d0dd2bee56f592037df02ccc0978e1ee3d14a4e6b0b89c6267b1320cf2",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "incoming/word_js.json",
+        "original_workspace_path": "incoming-frontier-validation/word_js.json",
+        "bytes": 389237,
+        "sha256": "6b03f0a556f976db10050e53d09577d8f9d417b9186bd4dcca168e190cdaf521",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "incoming/word_js_compile.log",
+        "original_workspace_path": "incoming-frontier-validation/word_js_compile.log",
+        "bytes": 114,
+        "sha256": "f78458c02b8986907f33f8a40b06741d7b8def030b24e01fee0e25c05cfa15c5",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "incoming/word_js_node.log",
+        "original_workspace_path": "incoming-frontier-validation/word_js_node.log",
+        "bytes": 358,
+        "sha256": "98a58a09cf92aa3982373fd6adc2f1d61c7836f2dc6fadfe5604edf7ae2a5c2f",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "intake.json",
+        "original_workspace_path": "intake/initial-reconciliation.json",
+        "bytes": 74963,
+        "sha256": "007289bfbf7bcefb51307f9225cf785cc24a256579d80c9535f696d1dcad43bc",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "pre-publication.json",
+        "original_workspace_path": "intake/pre-publication.json",
+        "bytes": 87055,
+        "sha256": "91e22a198e80d462e0e0514cfb1af4ecb26fc1733e6f47107962aab99f67de5f",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "runtime/flutter-tools-pub-get.log",
+        "original_workspace_path": "toolchains/logs/flutter-tools-pub-get.log",
+        "bytes": 1228,
+        "sha256": "fcccf37d969787c76d4c55b19cba368cff68b1c3eb86b1f0f02274b9cc405829",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "runtime/flutter-version.log",
+        "original_workspace_path": "toolchains/logs/flutter-version.log",
+        "bytes": 631,
+        "sha256": "e78aa2b4f51f259feaa96f21784ad4973309eb442d4f9c5a2343fbb5f490551e",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "runtime/pub-cache-receipt.json",
+        "original_workspace_path": "toolchains/pub-cache-receipt.json",
+        "bytes": 51401,
+        "sha256": "b7bb9204bb4c3d97d9bebf368624d10a8683ad4c37dd361bb2846644744696fa",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "runtime/runtime.json",
+        "original_workspace_path": "toolchains/runtime.json",
+        "bytes": 3453,
+        "sha256": "f0ed78a05b25ae06be5fa17de14abde55b7e3f7aeca14323f99fb9f9978ca6fa",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "runtime/workspace-pub-get.log",
+        "original_workspace_path": "toolchains/logs/workspace-pub-get.log",
+        "bytes": 214,
+        "sha256": "3640d48177b802767785e357f56651162d2250e124b566cffdc2cb88ce7e7f9c",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "store/store-all-tests-receipt.json",
+        "original_workspace_path": "store-validation/store-all-tests-receipt.json",
+        "bytes": 20199,
+        "sha256": "fd64bd49e5fa5dc2418cb3004bc1da5d4b2ba0f4e7863f91b9f7b0343f5c450d",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "store/store-all-tests.jsonl",
+        "original_workspace_path": "store-validation/store-all-tests.jsonl",
+        "bytes": 462117,
+        "sha256": "257259b5ac57e7e32074c1e8d59efc5581eb1456555ef30187b0747938ff8b79",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "ui/receipt.json",
+        "original_workspace_path": "sync-ui-preview/receipt.json",
+        "bytes": 2132,
+        "sha256": "b4bdad3604feee0b6f8a4dcc4ae497893b4e0a2c26dae69048deb94f7fd9b8b5",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      },
+      {
+        "path": "upstream-refs.tsv",
+        "original_workspace_path": "intake/upstream-refs.tsv",
+        "bytes": 536,
+        "sha256": "4ec8ea774f24cc95ac64579341b63a6b86e734cc6bd9f319b170ab29dd7e6cac",
+        "byte_identical_to_original": true,
+        "origin": "copied_from_original_workspace_artifact"
+      }
+    ],
+    "omitted": [
+      "Generated JavaScript/compiler dependency outputs",
+      "SDK and Pub archives",
+      "Screenshots from this copy operation; the UI receipt retains their original hashes"
+    ]
+  }
+}

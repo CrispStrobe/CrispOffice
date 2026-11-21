@@ -1,0 +1,106 @@
+name: Keystroke trace
+
+# Attribution of the slowest Studio keystrokes: the widget-test typing
+# benchmark (debug JIT, per-keystroke phase and listener breakdown) and the
+# same script as an integration test in profile mode on the Linux embedder
+# (timeline with GC and frame timings). `defines` is passed to both as
+# --dart-define flags (e.g. to switch a fix off for an A/B in one build).
+# See docs/performance/keystroke-trace-20261121.md.
+on:
+  workflow_dispatch:
+    inputs:
+      defines:
+        description: Extra --dart-define flags, e.g. "--dart-define=X=true"
+        required: false
+        default: ''
+  push:
+    branches: ['perf/keystroke-trace-*']
+    paths:
+      - '.github/workflows/keystroke-trace.yml'
+      - 'packages/**'
+      - 'tool/perf/**'
+
+jobs:
+  debug:
+    name: debug benchmark ${{ matrix.variant }} (ubuntu-latest)
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        variant: [lazy-layout-off, lazy-layout-on]
+    defaults:
+      run:
+        working-directory: packages/quds_office_editor/example
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.47.8
+      - name: Resolve workspace
+        working-directory: .
+        run: flutter pub get
+      - name: Run benchmark (3 runs)
+        env:
+          DEFINES: ${{ inputs.defines }} ${{ matrix.variant == 'lazy-layout-off' && '--dart-define=QUDS_LAZY_DOCUMENT_LAYOUT=false' || '' }}
+        run: |
+          for run in 1 2 3; do
+            QUDS_TYPING_BENCHMARK=1 flutter test $DEFINES test/studio_typing_proofing_benchmark_test.dart \
+              --plain-name 'typing benchmark' 2>&1 \
+              | tee "$RUNNER_TEMP/run-$run.txt" | grep -E 'TYPING_BENCHMARK|Some tests failed|All tests passed'
+          done
+          {
+            echo '### debug ${{ matrix.variant }}'
+            echo '```'
+            grep -h 'TYPING_BENCHMARK ' "$RUNNER_TEMP"/run-*.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  profile:
+    name: profile drive ${{ matrix.variant }} (linux)
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        variant: [lazy-layout-off, lazy-layout-on]
+    defaults:
+      run:
+        working-directory: packages/quds_office_editor/example
+    steps:
+      - uses: actions/checkout@v4
+      - name: Linux build dependencies
+        working-directory: .
+        run: sudo apt-get update && sudo apt-get install -y ninja-build libgtk-3-dev libsecret-1-dev clang cmake g++ pkg-config xvfb
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.47.8
+      - name: Resolve workspace
+        working-directory: .
+        run: flutter pub get
+      - name: Typing profile (3 runs)
+        env:
+          DEFINES: ${{ inputs.defines }} ${{ matrix.variant == 'lazy-layout-off' && '--dart-define=QUDS_LAZY_DOCUMENT_LAYOUT=false' || '' }}
+          # flutter_secure_storage_linux's bundled json.hpp trips clang's
+          # -Wdeprecated-literal-operator under the plugin's -Werror.
+          CXXFLAGS: -Wno-deprecated-literal-operator
+        run: |
+          for run in 1 2 3; do
+            xvfb-run -a -s "-screen 0 1600x1100x24" flutter drive --profile -d linux $DEFINES \
+              --driver=test_driver/typing_profile_driver.dart \
+              --target=integration_test/typing_profile_test.dart 2>&1 | tail -5
+            mv build/typing_profile.json "build/typing_profile-$run.json"
+            python3 "$GITHUB_WORKSPACE/tool/perf/keystroke_trace_report.py" "build/typing_profile-$run.json" \
+              | tee "$RUNNER_TEMP/profile-$run.txt"
+          done
+          {
+            echo '### profile ${{ matrix.variant }}'
+            echo '```'
+            cat "$RUNNER_TEMP"/profile-*.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: typing-profile-${{ matrix.variant }}
+          path: packages/quds_office_editor/example/build/typing_profile-*.json

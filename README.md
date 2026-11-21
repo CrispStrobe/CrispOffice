@@ -19,7 +19,7 @@
 The core suite has an engine, reports library, Flutter editor and desktop app. This fork also carries the maintained standalone legacy DOC parser.
 
 The engine now supports [native macros and MCP](docs/MACROS.md): record and replay
-parameterized calls across 67 shared Word, spreadsheet, and presentation
+parameterized calls across shared Word, spreadsheet, and presentation
 operations, with complete-output publication and a local MCP stdio bridge.
 The bundled [Excel VBA subset](docs/VBA_MACROS.md) compiles explicitly selected
 `.bas` source into the same bounded command plan, including reusable procedures
@@ -34,6 +34,8 @@ Variants distinguish `Empty`/`Null`, with state predicates and explicit bounded
 [Word VBA subset](docs/VBA_WORD_MACROS.md) shares that language and adds explicit
 paragraph/range bindings, paragraph-prefix insertion, all 18 underline styles,
 strikethrough, and paragraph alignment, spacing, indentation and pagination.
+Section page setup includes explicit geometry, portrait/landscape orientation,
+orientation toggling and continuous/new-page/even-page/odd-page section starts.
 The [PowerPoint VBA subset](docs/VBA_POWERPOINT_MACROS.md) adds explicit slide
 and shape selectors, text/font/alignment edits and shape geometry, with guarded
 top-level collection identity and preserved rich text. All three adapters use
@@ -572,8 +574,16 @@ storage-layer capabilities; the foreground Studio composer now uses them for
 [durable Outbox](docs/roadmaps/mail/outbox.md), and
 [message review, export and safe editing](docs/roadmaps/mail/outbox-management.md),
 including explicit management of interrupted-send uncertainty. Its separately
-configured browser entry compiles, but actual
-browser storage, quota and reload behavior remain unqualified. The database is
+configured browser entry compiles, but actual browser storage, quota and reload
+behavior remain unqualified. Native Studio now also uses a
+[durable command journal](docs/roadmaps/mail/command-journal.md) for single/bulk
+read and flag changes across IMAP, EWS, Gmail and Microsoft 365. Intent precedes
+dispatch, exact cached target flags update transactionally, and connected or
+offline **Mail activity** retains restart evidence without replaying commands.
+[Check current status](docs/roadmaps/mail/flag-recovery.md) explicitly records
+fresh provider observations beside uncertain receipts while preserving the
+original outcomes. Repository-driven sessions are the next
+[desktop-mail parity increment](docs/roadmaps/mail/README.md#desktop-mail-parity-ordered-increments). The database is
 unencrypted, and process-crash tests do not establish power-loss durability.
 
 The [Office synchronization report](docs/validation/office-main-sync-20261119/README.md)

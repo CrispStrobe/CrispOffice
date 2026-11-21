@@ -1,0 +1,98 @@
+{
+  "head": "8ff607b914f1a2828e6dceb68d4859e7f0ed4a8e",
+  "tree": "c6e320878ceffb5ba640e62e4f0046988c86dfbe",
+  "integration_parents": [
+    "99e46629eb9743ffb190183ab1b65c4ad259137b",
+    "47660815c429e15aa280005dc6d76bb36c53eca4",
+    "f4c493d99413ee6347a4fd7d00a5e480cc61bfb3",
+    "6c3fb2ef2076fe6d8601cdb24d5125c05490e773"
+  ],
+  "ancestor_checks": {
+    "99e46629eb9743ffb190183ab1b65c4ad259137b": true,
+    "47660815c429e15aa280005dc6d76bb36c53eca4": true,
+    "f4c493d99413ee6347a4fd7d00a5e480cc61bfb3": true,
+    "6c3fb2ef2076fe6d8601cdb24d5125c05490e773": true
+  },
+  "new_blobs_not_in_input_heads": [
+    {
+      "path": "docs/proofing/scheduling.md",
+      "git_blob": "e6ec3867adbe3f65fde35ee312c8a6fb84ed2f49",
+      "sha256": "030012cdf6e47c46afed3cd05b171b2db75f8d197df6607725dc2d36f264b71b"
+    },
+    {
+      "path": "docs/validation/word-vba-sections-20261121/README.md",
+      "git_blob": "4e8450fbf3252443cbfd09d472c4250a51ee710a",
+      "sha256": "3b8c749121a06a1a1ccc040f3cdb241b2a2b965c83088fe6a96201d5b119a8ce"
+    },
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "git_blob": "8e072eea793187761b10cdd7539843edf25f24e5",
+      "sha256": "751f295018a7096bbd1199ea5acc0a19bcd461dfe50dee5fb41c620e0d89771e"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_typing_proofing_benchmark_test.dart",
+      "git_blob": "bf6c362ff471fed86af37af7405ded26c8afbf68",
+      "sha256": "77b9c16576ac441be11fe4b130c7d11ae2f3e94f1388a89fcdb1eab243efc659"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "git_blob": "f79d297b8bc71c34d926aee3b380c7c773e1a517",
+      "sha256": "26df1c1eea17c35d530552f826b1c7cdf5bdb2dd177495ccd0eab619c3d29e54"
+    },
+    {
+      "path": "packages/quds_office_engine/CHANGELOG.md",
+      "git_blob": "8d7695939f368f0aff7dd729dabf06e818dba447",
+      "sha256": "3c6cf449752ebb54514ce4820d9e1dcedc5ac08fbfcf020e9b687e0c976c60b2"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+      "git_blob": "6bfd739ddbdd90de6ec33a320ff743500599f251",
+      "sha256": "866a489ccb2fa543cd0683a6433fd6e5116efd58853f1cca26eb608c307704ed"
+    }
+  ],
+  "production_changes_relative_e162": {
+    "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart": {
+      "git_blob": "f79d297b8bc71c34d926aee3b380c7c773e1a517",
+      "sha256": "26df1c1eea17c35d530552f826b1c7cdf5bdb2dd177495ccd0eab619c3d29e54"
+    },
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart": {
+      "git_blob": "6bfd739ddbdd90de6ec33a320ff743500599f251",
+      "sha256": "866a489ccb2fa543cd0683a6433fd6e5116efd58853f1cca26eb608c307704ed"
+    },
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_transfer.dart": {
+      "git_blob": "4a2bf264a96a0f3d2606bb8bff2c7ef4c2c2e5d3",
+      "sha256": "973d0eb0fe662b2d566663e37840668b79210c01cbb726e10fe8cd2b71066197"
+    },
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart": {
+      "git_blob": "815fbefcf96cee07403e89e0f7a461f45883ae7e",
+      "sha256": "63f0b20fdbe9cb988bcd93d68da2d84380acefdcdbfc65c4d9433b683048e7db"
+    }
+  },
+  "status": "?? docs/validation/mail-repository-sessions-20261121/final-intake-zotero-proofing/",
+  "offline_locked_pub_resolution": "passed; tracked lock unchanged",
+  "source_frozen": true,
+  "modified_test_tool_paths_relative_e162": [
+    "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart",
+    "packages/quds_office_editor/example/test/studio_typing_proofing_benchmark_test.dart",
+    "packages/quds_office_editor/test/word_incremental_proofing_menu_test.dart",
+    "packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+    "packages/quds_office_editor/test/word_typing_proofing_schedule_test.dart",
+    "packages/quds_office_engine/test/odt_hyperlink_range_fidelity_test.dart",
+    "packages/quds_office_engine/test/word_zotero_transfer_test.dart",
+    "packages/quds_office_engine/tool/zotero/transfer_acceptance.dart"
+  ],
+  "preserved_mail_paths_equal_accepted_checkpoint": true,
+  "preserved_controller_layout_automation_paths_equal_base": true,
+  "resolution_notes": [
+    "Zotero transfer conflict retains incoming getter-based header guard and existing braces.",
+    "Changelog conflicts combine public API names, incoming behavior and interoperability limits without duplicate entries.",
+    "Scheduling add/add preserves qualified contract, integrates new behavior and cited research, narrows unsupported universals and removes unfinished benchmark placeholder.",
+    "Added missing sections validation README referenced by incoming docs.",
+    "Benchmark category forwarding is statically typed as required by CONTRIBUTING; historical builds without this API require their matching harness.",
+    "Formatter changes only one dialog indentation line; scheduler source follow-up only corrects progress comments.",
+    "No new source qualification executed by integrator; research owns scoped Zotero/proofing gates and validator owns composer24 source-binding gate."
+  ],
+  "remote_checkpoint": "721ad2c74a5d81d54c2eaa2af084e82ba5077991",
+  "remote_tree_matches_local": true,
+  "incoming_snapshot_observed_at_utc": "2026-11-21T06:15:44Z"
+}

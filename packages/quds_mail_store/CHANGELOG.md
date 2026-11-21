@@ -2,6 +2,45 @@
 
 ## Unreleased
 
+- Add schema-v8 synchronization checkpoints with monotonic per-mailbox
+  revisions, last committed page times and explicit provider continuation.
+  Commit them atomically with headers, memberships, tombstones and cursors;
+  preserve unknown completion for legacy cursors until the next page commits.
+  Add bounded `loadSyncMailbox`/`listSyncMailboxes` reads and corresponding
+  observers, with immutable snapshots, stable local-ID pagination, separate
+  local/provider continuation, metadata preflight and account isolation.
+  Preserve browse windows, pending-operation reconciliation, drafts and flag
+  history through synchronization resets, migrations and failures.
+
+- Add bounded `watchMailboxView` and `watchMailboxViews` streams for saved
+  browse windows and folder catalogs. Publish complete snapshots after
+  successful commits, including flag journal acknowledgements and later
+  observations, while keeping absent views distinct from empty folders.
+  Preserve ordering, capture times, quotas and account isolation; coalesce
+  updates while paused, drain cancelled reads and complete on repository close.
+
+- Add schema-v7 read-only reconciliation of completed uncertain flag receipts.
+  Retain the original uncertain outcomes and problems while recording one
+  immutable matches/differs/missing/identity-changed observation per item.
+  Bind checks to the exact account, provider identity, repository owner, lease,
+  batch revision and a persisted epoch fencing newer commands, cache writes
+  and account transitions. Host scope checks and cancellation roll back late
+  commits. Update only the observed requested bit of a known cache snapshot;
+  missing or replaced identities never evict cached content. Definitively
+  resolved batches release unresolved capacity and become eligible for clean
+  history pruning. Preserve released schema definitions and migrate atomically.
+
+- Add schema-v6 durable bulk flag journals with frozen selections/subjects,
+  sequential dispatch markers, typed outcomes, owner-bound revision checks,
+  history paging and bounded completed-history cleanup. Exclusive reopen and
+  logout preserve confirmations, recover applying markers as uncertain, and
+  retain untouched items as not attempted without replaying provider commands.
+  Atomically patch only a confirmed known cache flag and advance affected view
+  revisions, including confirmations of already-matching or unknown snapshots.
+  Preserve unrelated/unknown flags, old UIDVALIDITY namespaces,
+  drafts, Outbox and older schemas. Bound retained clean/unresolved receipts and
+  reject oversized persisted metadata before transferring it to Dart.
+
 - Retain bounded, ordered foreground mailbox windows with timestamps, explicit
   partial scope, transactional revision checks and lease cancellation. Keep
   browse references separate from synchronization cursors and authoritative

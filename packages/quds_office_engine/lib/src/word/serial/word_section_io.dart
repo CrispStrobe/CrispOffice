@@ -46,7 +46,11 @@ final class WordSectionRevisionIds {
         attribute.value = '$replacement';
       } else {
         final String prefix = change.prefix.isEmpty ? 'w' : change.prefix;
-        change.setAttribute(prefix, OfficeNamespaces.w, prefix: 'xmlns');
+        WordSectionIo.setNamespaceDeclaration(
+          change,
+          prefix,
+          OfficeNamespaces.w,
+        );
         change.setAttribute(
           'id',
           '$replacement',
@@ -70,6 +74,34 @@ final class WordSectionRevisionIds {
 
 /// Merges deliberate section edits into an imported section-property fragment.
 abstract final class WordSectionIo {
+  /// Updates a declaration without taking an ordinary same-name attribute.
+  ///
+  /// Parsed declarations have an empty namespace URI in the lightweight XML
+  /// model. Match their qualified names so repeated source edits neither add
+  /// duplicate declarations nor overwrite attributes such as `w:w`.
+  static void setNamespaceDeclaration(
+    XmlElement element,
+    String prefix,
+    String uri,
+  ) {
+    final qualifiedName = prefix.isEmpty ? 'xmlns' : 'xmlns:$prefix';
+    final existing = element.attributes
+        .where((attribute) => attribute.qualifiedName == qualifiedName)
+        .firstOrNull;
+    if (existing != null) {
+      existing.value = uri;
+      return;
+    }
+    element.attributes.add(
+      XmlAttribute(
+        localName: prefix.isEmpty ? 'xmlns' : prefix,
+        prefix: prefix.isEmpty ? '' : 'xmlns',
+        namespaceUri: 'http://www.w3.org/2000/xmlns/',
+        value: uri,
+      ),
+    );
+  }
+
   static Map<String, String> values(WmlSection section) => <String, String>{
     'type': section.breakKind.name,
     'pgSz':
@@ -138,9 +170,12 @@ abstract final class WordSectionIo {
     return result;
   }
 
-  static XmlElement _selfContained(XmlElement element) => element.copy()
-    ..setAttribute('w', OfficeNamespaces.w, prefix: 'xmlns')
-    ..setAttribute('r', OfficeNamespaces.r, prefix: 'xmlns');
+  static XmlElement _selfContained(XmlElement element) {
+    final result = element.copy();
+    setNamespaceDeclaration(result, 'w', OfficeNamespaces.w);
+    setNamespaceDeclaration(result, 'r', OfficeNamespaces.r);
+    return result;
+  }
 
   static void _mergeModeledAttributes(
     XmlElement original,
@@ -164,9 +199,31 @@ abstract final class WordSectionIo {
               .map((XmlAttribute a) => a.prefix)
               .where((String p) => p.isNotEmpty)
               .firstOrNull ??
-          'w';
+          '';
+      if (prefix.isEmpty) {
+        // A default-namespace native group may already use w for an extension.
+        // Reserve a fresh prefix across the subtree before adding declarations,
+        // so untouched extension attributes and children keep their identity.
+        final used = <String>{};
+        void collect(XmlElement node) {
+          used.add(node.prefix);
+          for (final attribute in node.attributes) {
+            used.add(attribute.prefix);
+            if (attribute.prefix == 'xmlns') used.add(attribute.localName);
+          }
+          for (final child in node.childElements) {
+            collect(child);
+          }
+        }
+
+        collect(original);
+        var index = 0;
+        do {
+          prefix = 'qudsWord${index++}';
+        } while (used.contains(prefix));
+      }
     }
-    original.setAttribute(prefix, OfficeNamespaces.w, prefix: 'xmlns');
+    setNamespaceDeclaration(original, prefix, OfficeNamespaces.w);
     for (final String attribute in attributes) {
       original.removeAttribute(attribute, namespaceUri: OfficeNamespaces.w);
       final String? value = replacement.getAttribute(attribute);

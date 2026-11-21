@@ -11,9 +11,16 @@ identified application, Zotero and plugin versions. LibreOffice results do not
 establish that compatibility.
 
 The [usage guide](../../zotero-support.md) describes the current controls. The
-[horizontal-merge and Refresh work record](../../validation/zotero-merged-cells-20261120/README.md)
+[table-cell range work record](../../validation/zotero-table-cell-ranges-20261121/README.md)
+tracks the latest cell-local editing increment. The
+[document-transfer work record](../../validation/zotero-transfer-20261121/README.md)
 records the latest source, incoming-work reconciliation, remote checkpoints,
-checks and remaining acceptance. The
+local checks, real file-converter routes and remaining installed-plugin
+acceptance. The preceding
+[multi-paragraph replacement work record](../../validation/zotero-multiparagraph-20261121/README.md)
+retains its source-specific evidence. The earlier
+[vertical-table work record](../../validation/zotero-vertical-tables-20261120/README.md)
+retains its source-specific evidence. The
 [research-table work record](../../validation/zotero-research-tables-20261120/README.md)
 retains the preceding table increment's evidence. The earlier
 [structured-note continuation](../../validation/zotero-parity-continuation-20261120/README.md)
@@ -29,12 +36,12 @@ results retain their original source and platform attribution.
 | Refresh | Complete supported document sequence sent to Zotero's processor, including note order, numeric renumbering, disambiguation, style-dependent ibid. and merging of directly touching citation packets | Merge hints require physical adjacency in the same paragraph/story/note; live acceptance must be repeated on the exact release/host |
 | Bibliography | Native add/edit, entry paragraphs, rich runs, hanging indents, spacing and tab stops | Replacement requires a complete exclusively owned bibliography range |
 | Unlink citations | Explicit individual and document-wide conversion with undo | Verify final target-application files separately |
-| Add Note | Rich paragraphs, headings, nested lists up to nine levels, multiparagraph items, links, pictures, rectangular tables with horizontal merged cells and active citations; insertion in body or authored notes and replacement within one paragraph | Table payloads require a main-flow destination; vertical merges, nested tables, header/footer row groups, custom table styling, broader selections and custom/reversed list markers remain unsupported |
+| Add Note | Rich paragraphs, headings, nested lists up to nine levels, multiparagraph items, links, pictures, rectangular tables with combined row/column spans and active citations; insertion in body or authored notes and replacement across consecutive ordinary paragraphs in one section, note or table cell | Table payloads require a main-flow destination; cross-cell/control ranges, selected protected/structural content, compact merged-row height distribution, incoming nested tables, header/footer row groups, custom table styling and custom/reversed list markers remain unsupported |
 | Add Annotation | Zotero 9+ native annotation picker, text/comments and supported PNG image/ink content with active citations | Uses the same bounded image/content envelope as Add Note |
 | Library/source discovery | Local/online catalogs, collections, saved searches, tags, source details, cited-source reuse and occurrence navigation | Local and online catalog APIs have different connection/version requirements |
 | Research materials | Read-only direct-child note previews and attachment metadata | No separate attachment-file download or Zotero library write workflow |
 | DOCX persistence | Active fields/preferences, native notes, rich bibliography structure, tables and embedded pictures use supported save/reopen paths | Local tests are separate from actual Word/LibreOffice application round trips |
-| Cross-word-processor transfer | Explicit transfer limitations remain documented | Active ODT field transfer and Zotero export/import handshakes need a dedicated qualified implementation |
+| Cross-word-processor transfer | Native export/import handshake, temporary metadata hyperlinks, DOCX import/save/reopen and ODT carrier export; complete native formatting before import publication | Direct native ODT reference marks and installed Zotero/Word/LibreOffice plugin acceptance remain separate; actual converter findings are recorded explicitly |
 
 The native controls use Zotero's own CSL processor. The separate basic/offline
 citation and single-item preview/export paths retain their narrower formatting
@@ -81,8 +88,9 @@ The selected range is replaced only when the detached operation completes and
 the original document, selection and composition state are still current.
 Surrounding prose, supported formatting, lists and images remain intact. One
 undo restores the entire document and the original selection direction.
-Selections across paragraphs or through existing fields, atomic content,
-commented text or structural/protected ranges remain guarded. Native complex
+That increment guarded selections across paragraphs. The later range
+continuation below extends this boundary; selected existing fields, atomic
+content, commented text and structural/protected ranges remain guarded. Native complex
 Word fields and bookmark endpoints are protected too. DOCX reopening now
 resolves visible list labels independently for each authored footnote/endnote.
 
@@ -136,10 +144,10 @@ pixels. Explicit widths reconcile across all rows by logical column; unresolved
 columns use 120 points. A cell's width is the sum of its covered grid widths,
 and total native table width remains at most 4,000 points. The existing bounds
 of 64 tables, 256 rows per table and 4,096 authored cells per note remain,
-alongside shared paragraph, link and image budgets. Vertical merges
+alongside shared paragraph, link and image budgets. At that checkpoint, vertical merges
 (`rowspan` greater than 1), nested tables, tables inside list items, unequal
 logical row widths, separate header/footer row groups, captions and unsupported
-custom styling still refuse the entire staged insertion. The
+custom styling refused the entire staged insertion. The subsequent vertical-table increment below extends that boundary. The
 [usage guide](../../zotero-support.md#tables-in-notes-and-annotations) records the
 complete content envelope.
 
@@ -160,19 +168,113 @@ passes, 378 editor passes/eight skips and 928 incoming Word/Mail passes. The
 three final processes total 1,801 passes and eight skips, with zero failures or
 errors. All 257 Zotero editor cases executed and passed. The eight skips are
 existing image-only layout fixtures; they are also excluded from the corrected
-earlier-source tally. Repeated runs are not added together. Final merge into
-main remains pending. This is local source qualification; no new installed
+earlier-source tally. Repeated runs are not added together. PR #276 merged into main as
+`698209aaa6e7f1350b6541df5eb192b7b233443d`. This is local source qualification; no new installed
 Zotero, Word or LibreOffice run, active ODT transfer or complete parity is
 claimed. Earlier records retain their original evidence and source attribution.
 
+## Delivered increment: vertical research-table merges
+
+Add Note and Add Annotation now accept bounded `rowspan` and combined
+`rowspan`/`colspan`. A logical occupancy grid checks complete rectangular
+coverage, actual-row bounds, row-group boundaries and overlaps before staging.
+Native continuation cells own mandatory empty paragraphs; citation and list
+indexes are remapped to the final native paragraph order, preserving active
+fields and independent counters before, inside and after tables.
+
+The complete fragment is limited to 4,096 native cells and 10,000 native
+paragraphs, including generated continuations. Width vectors reconcile by
+occupied logical column. Body, authored-footnote and authored-endnote targets
+retain detached cancellation/stale-target behavior, one undo/redo step and
+DOCX reopening.
+
+Merged-cell shading/borders continue across physical pages. Pointer and keyboard
+navigation target the originating cell while row handles retain physical row
+geometry. The first physical row still carries the originating cell's full
+content height; compact Word-style row-height distribution is not claimed.
+See the [source-bound work record](../../validation/zotero-vertical-tables-20261120/README.md)
+for current qualification and remaining installed-application acceptance.
+
+## Delivered increment: replacement across ordinary paragraphs
+
+Add Note and Add Annotation now replace a selection spanning up to 10,000
+consecutive ordinary main-flow paragraphs in one body section or authored
+footnote/endnote. The native range owns its paragraph boundaries explicitly.
+Unselected prefix/suffix runs and active fields remain in reading order;
+separate suffix paragraphs retain their original paragraph formatting. The
+existing rich paragraphs, headings, lists, images and table payloads use the
+same detached conversion and one undo/redo transaction.
+
+The Notes pane maps both visible selection endpoints to native offsets and
+preserves the automatic marker/separator. Undo restores the original selection
+direction. Cancellation, moved endpoints, composition and intervening edits
+leave the staged result unapplied. Exact unselected citation endpoints retain
+both simple and complex native packets, including refreshes that change text
+length. Quds DOCX reopening retains active citations and permits another
+qualified replacement.
+
+Selected fields, note references, pictures, comments, bookmarks and ambiguous
+native markup remain guarded. Ranges cannot cross sections or structural
+blocks, nor start inside a table or content control. Shared paragraph objects
+are refused before mutation. This completes the earlier ordinary-paragraph
+range milestone; it does not establish active ODT transfer or installed
+Word/LibreOffice acceptance. The [work record](../../validation/zotero-multiparagraph-20261121/README.md)
+separates fresh execution from historical evidence and records all remote saves.
+
+## Delivered increment: active-document transfer protocol
+
+Quds now advertises Zotero's import/export capability, invokes its native
+`exportDocument` command and implements the matching document callbacks.
+Transfer preparation retains the canonical marker, instructions, raw citation
+and bibliography codes and serialized preferences. Import recognizes the modern
+and legacy markers, reconstructs validated fields and lets Zotero reformat every
+remaining imported field before the staged result can be applied.
+
+The editor exposes **Prepare document for transfer…** and changes Refresh into
+**Import transferred references…** for a pending carrier. Cancellation, malformed
+metadata, incomplete formatting and stale document state leave the source
+untouched. Successful import/export is one undo/redo step. The model preserves
+existing paragraph, table-cell and authored-note identities, handles adjacent or
+formatted link fragments, and recognizes narrowly verified Google Docs URLs.
+
+The [transfer work record](../../validation/zotero-transfer-20261121/README.md)
+records pinned upstream contracts, local tests, converter artifacts and exact
+limitations. DOCX is the incoming format for Quds. ODT export uses the temporary
+hyperlink carrier; direct native ODT `ReferenceMark` import is not implemented.
+Installed native-plugin acceptance remains a separate gate.
+
+## Delivered increment: replacement within one table cell
+
+Add Note and Add Annotation can replace consecutive ordinary paragraphs in one
+body table cell, including a merged region's originating cell and a cell inside
+an existing nested table. The native table, row, cell and block-list owners stay
+intact. Rich paragraphs, headings, lists, supported pictures, unselected text
+and active citation fields retain the existing detached transaction, DOCX
+persistence and one undo/redo action.
+
+The session captures the exact owner chain when it starts. Replacing an owner
+while a picker is open invalidates the result even if flattened paragraph
+identities and visible text are unchanged. Cross-cell ranges, selected nested
+structures, content-control/drawing ancestors, aliases and hidden vertical-merge
+continuations remain guarded. A table-containing incoming note still requires a
+main-flow destination; supporting existing nested-cell ownership does not add
+nested-table payload parsing.
+
+Raw engine sessions also support cells in authored footnotes/endnotes. The
+standard Notes pane still edits main-flow note paragraphs, so this does not
+claim a new Notes-pane table editor. The [work record](../../validation/zotero-table-cell-ranges-20261121/README.md)
+separates local qualification from installed Word/LibreOffice plugin acceptance.
+
 ## Next implementation and acceptance steps
 
-1. **Broaden replacement ranges deliberately.** Extend beyond single-paragraph
-   text selections only after modeling ownership of paragraph boundaries,
-   comments, content controls, existing fields and note references. Keep the
-   authored-note ownership, stale-selection, composition and undo guarantees
-   established by the existing increments.
-2. **Extend table structure and formatting.** Map vertical merges, nested tables,
+1. **Finish installed-application transfer acceptance and native ODT input.**
+   Use the implemented carrier and retained synthetic fixtures with current
+   Word/LibreOffice and their actual Zotero plugins. Resolve any converter findings
+   against identified release versions. Check citations, rich bibliographies,
+   authored notes, tables, images and repeated transfers. Implement native ODT
+   reference-mark/preference ownership in the ODF reader before claiming direct
+   active-ODT editing; the current Quds import path is DOCX.
+2. **Extend table structure and formatting.** Improve merged-row height distribution and map nested tables,
    header/footer row groups and custom styles to native structures with explicit
    ownership. Qualify their citation order, geometry, save/reopen behavior and
    rendering before accepting them. Add table-cell editing in the Notes pane
@@ -181,14 +283,15 @@ claimed. Earlier records retain their original evidence and source attribution.
    grayscale/CMYK output consistently in editor, DOCX and PDF before removing
    current refusals. Additional raster formats need matching rendering and
    resource bounds, rather than a permissive data-URI allowlist.
-4. **Qualify active document transfer.** Establish Word/LibreOffice fixtures
-   containing active citations, rich bibliographies, authored notes, tables and
-   images. Verify the actual Zotero transfer/import/export protocol and ODT field
-   representation before advertising cross-format editing parity.
+4. **Extend structural replacement deliberately.** Cell-local paragraph ranges
+   are implemented. Model ranges crossing cells and content-control boundaries,
+   comments, existing fields and note references before accepting those
+   selections. Preserve the ordinary-paragraph range,
+   authored-note, stale-selection, composition and undo guarantees already delivered.
 5. **Run release-host acceptance.** Exercise current native Zotero, Word and
    LibreOffice with a synthetic library on each supported desktop platform.
    Check picker cancellation, metadata updates, note-style conversion,
-   image/ink annotation and horizontally merged table insertion, adjacent-citation
+   image/ink annotation and horizontally/vertically merged table insertion, adjacent-citation
    refresh, bibliography refresh, saved-file
    reopening and return-to-writing focus. Record exact application versions,
    source and artifacts. Browser and mobile support require their own acceptance scope.

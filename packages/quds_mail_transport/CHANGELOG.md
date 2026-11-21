@@ -2,14 +2,22 @@
 
 ## Unreleased
 
-- Certify documented Gmail/Graph HTTP 429 flag-update rejections as no effect,
-  preserving retry delay evidence and the separate submission outcome rules.
-  Unfamiliar post-dispatch failures remain uncertain.
+- Observe current read/flag state without mutation for exact IMAP, EWS, Gmail
+  and Microsoft 365 identities. Use bounded metadata reads, validate IMAP
+  UIDVALIDITY and returned identity, reject incomplete flag observations, and
+  distinguish exact-message absence from authentication/transport failures.
+  Browser factories return explicit unsupported without accessing credentials.
 
-- Treat dispatched cloud message-mutation rate limits and unfamiliar client
-  errors as uncertain; only explicit request, authorization, resource or
-  precondition rejections certify no mutation. Preserve the separate submission
-  rejection and Retry-After contract.
+- Retain uncertainty after a dispatched cloud mutation returns HTTP 410,
+  stopping later flag commands until refresh. Preserve the independent Send
+  rejection policy, with Gmail and Microsoft 365 regression coverage.
+
+- Treat dispatched timeouts and unfamiliar client-error responses as uncertain;
+  explicit request, authorization, resource, precondition and documented rate
+  limit rejections certify no mutation. Preserve rate-limit retry guidance while
+  foreground bulk coordination stops later dispatches without automatic retry.
+- Preserve the separate submission rejection and Retry-After contract when
+  classifying foreground flag mutations.
 
 - Report explicit mutation-boundary evidence for failed IMAP, EWS, Gmail and
   Microsoft 365 operations. Foreground bulk commands can distinguish definite

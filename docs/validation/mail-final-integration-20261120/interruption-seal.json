@@ -1,0 +1,77 @@
+{
+  "checked_utc": "2026-11-20T22:31:52.803309+00:00",
+  "collector_initial_diagnostic": "An initial readback expected progress.status=interrupted, but the force interruption left it running. No test outcome or source was changed; this record preserves the raw state and separately binds the tool exit.",
+  "completed_studio_cases": 323,
+  "completed_studio_suites": 5,
+  "git_status": "",
+  "interrupted_session": 69749,
+  "progress_sha256": "9df9e10529cd0a90ca2b7f9d94ca7b550b7022f1057841ea1bd7340b1a0795f9",
+  "raw_progress_status": "running",
+  "raw_studio_log_sha256": "50d58f82e3cb731974ca6a9fed984d8a651cc53796938dff0856fd092642f6a9",
+  "reason": "Cached Studio suite remained at its hidden loading event without a terminal result; cause undetermined.",
+  "source_head": "c62338c65571aa399da5592455b651fa5c6a9317",
+  "source_seals": {
+    "dependencies_unchanged": true,
+    "runtime_unchanged": true,
+    "source_unchanged": true
+  },
+  "status": "interrupted_run_preserved_with_complete_suite_evidence",
+  "studio_suites": [
+    {
+      "accepted_complete_suite": true,
+      "completed_cases": 56,
+      "expected_root_group_cases": [
+        56
+      ],
+      "file": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart",
+      "unfinished_test_ids": []
+    },
+    {
+      "accepted_complete_suite": true,
+      "completed_cases": 77,
+      "expected_root_group_cases": [
+        77
+      ],
+      "file": "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+      "unfinished_test_ids": []
+    },
+    {
+      "accepted_complete_suite": true,
+      "completed_cases": 36,
+      "expected_root_group_cases": [
+        36
+      ],
+      "file": "packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart",
+      "unfinished_test_ids": []
+    },
+    {
+      "accepted_complete_suite": true,
+      "completed_cases": 95,
+      "expected_root_group_cases": [
+        95
+      ],
+      "file": "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+      "unfinished_test_ids": []
+    },
+    {
+      "accepted_complete_suite": true,
+      "completed_cases": 59,
+      "expected_root_group_cases": [
+        59
+      ],
+      "file": "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+      "unfinished_test_ids": []
+    },
+    {
+      "accepted_complete_suite": false,
+      "completed_cases": 0,
+      "expected_root_group_cases": [],
+      "file": "packages/quds_office_editor/example/test/studio_mail_cached_mail_test.dart",
+      "unfinished_test_ids": [
+        345
+      ]
+    }
+  ],
+  "tool_reported_session_exit": 130,
+  "whole_interrupted_aggregate_passed": false
+}

@@ -41,6 +41,12 @@ StudioSettings _changed() => StudioSettings.defaults().copyWith({
   StudioSettingKeys.checkAsYouType: false,
   StudioSettingKeys.detectLanguage: false,
   StudioSettingKeys.arabicContext: false,
+  StudioSettingKeys.checkingMode: 'onPause',
+  StudioSettingKeys.checkSpellingWhileTyping: false,
+  StudioSettingKeys.checkGrammarWhileTyping: false,
+  StudioSettingKeys.pauseMilliseconds: 2700,
+  StudioSettingKeys.backgroundCheck: false,
+  StudioSettingKeys.hideTypingErrors: false,
   StudioSettingKeys.personalWords: {
     'de-DE': ['Quds', 'CrispOffice'],
     'ar': ['قدس'],
@@ -266,6 +272,62 @@ void main() {
       );
     });
 
+    test('proofing schedule values are validated and map to the session', () {
+      final defaults = StudioSettings.defaults();
+      expect(defaults.proofingSchedule, const WordProofingSchedule());
+      final repaired = <String>[];
+      final settings = StudioSettings.fromSettingsJson({
+        StudioSettingKeys.checkingMode: 'sometimes',
+        StudioSettingKeys.pauseMilliseconds: 100,
+        StudioSettingKeys.checkSpellingWhileTyping: 'yes',
+        StudioSettingKeys.hideTypingErrors: false,
+      }, repaired: repaired);
+      expect(repaired, {
+        StudioSettingKeys.checkingMode,
+        StudioSettingKeys.pauseMilliseconds,
+        StudioSettingKeys.checkSpellingWhileTyping,
+      });
+      expect(
+        settings.proofingSchedule,
+        const WordProofingSchedule(hideTypingErrors: false),
+      );
+      for (final invalid in <Object>[299, 5001, 1500.5, 'fast', double.nan]) {
+        expect(
+          () =>
+              defaults.copyWith({StudioSettingKeys.pauseMilliseconds: invalid}),
+          throwsArgumentError,
+        );
+      }
+      // Integral JSON numbers are accepted.
+      expect(
+        defaults
+            .copyWith({StudioSettingKeys.pauseMilliseconds: 2000.0})
+            .proofingSchedule
+            .pause,
+        const Duration(seconds: 2),
+      );
+      final changed = _changed();
+      expect(
+        changed.proofingSchedule,
+        const WordProofingSchedule(
+          mode: WordProofingMode.onPause,
+          checkSpelling: false,
+          checkGrammar: false,
+          pause: Duration(milliseconds: 2700),
+          backgroundCheck: false,
+          hideTypingErrors: false,
+        ),
+      );
+      expect(
+        defaults
+            .copyWith(
+              StudioSettings.proofingScheduleJson(changed.proofingSchedule),
+            )
+            .proofingSchedule,
+        changed.proofingSchedule,
+      );
+    });
+
     test('copyWith rejects invalid values', () {
       expect(
         () => StudioSettings.defaults().copyWith({
@@ -469,5 +531,114 @@ void main() {
     expect(saved[StudioSettingKeys.personalWords], {
       'de-DE': ['Quds', 'Strobe'],
     });
+  });
+
+  testWidgets('proofing schedule settings are restored, applied at once '
+      'from the Settings dialog and saved', (tester) async {
+    final backend = MemoryStudioSettingsBackend(
+      StudioSettingsStore.encode(
+        StudioSettings.defaults().copyWith({
+          StudioSettingKeys.checkingMode: 'onPause',
+          StudioSettingKeys.pauseMilliseconds: 2500,
+          StudioSettingKeys.hideTypingErrors: false,
+        }),
+      ),
+    );
+    final ribbon = StudioRibbonPreferences(persist: false);
+    await tester.binding.setSurfaceSize(const Size(1440, 1000));
+    addTearDown(() async {
+      await tester.pumpWidget(const SizedBox.shrink());
+      ribbon.dispose();
+      await tester.binding.setSurfaceSize(null);
+    });
+    await tester.pumpWidget(
+      MaterialApp(
+        home: SuiteWorkspace(
+          ribbonPreferences: ribbon,
+          settingsStore: StudioSettingsStore(backend: backend),
+        ),
+      ),
+    );
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 300));
+    final proofing = tester
+        .widget<QudsWordEditor>(find.byType(QudsWordEditor))
+        .controller
+        .proofing;
+    expect(
+      proofing.schedule,
+      const WordProofingSchedule(
+        mode: WordProofingMode.onPause,
+        pause: Duration(milliseconds: 2500),
+        hideTypingErrors: false,
+      ),
+    );
+    expect(backend.writes, 0);
+
+    await tester.tap(find.byTooltip('Settings'));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 300));
+    Finder key(String value) => find.byKey(ValueKey<String>(value));
+
+    // Mode: "Only when I click Check document".
+    final mode = key('studio-setting-proofing-mode');
+    await tester.ensureVisible(mode);
+    await tester.tap(mode);
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 300));
+    await tester.tap(find.text('Only when I click Check document').last);
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 300));
+    expect(proofing.schedule.mode, WordProofingMode.manual);
+    // The dependent switches are disabled in manual mode.
+    final grammar = key('studio-setting-check-grammar');
+    await tester.ensureVisible(grammar);
+    expect(tester.widget<SwitchListTile>(grammar).onChanged, isNull);
+
+    // Back to "While typing", then turn grammar off and hiding on.
+    await tester.ensureVisible(mode);
+    await tester.tap(mode);
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 300));
+    await tester.tap(find.text('While typing (recommended)').last);
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 300));
+    await tester.ensureVisible(grammar);
+    await tester.tap(grammar);
+    await tester.pump();
+    final hide = key('studio-setting-hide-typing-errors');
+    await tester.ensureVisible(hide);
+    await tester.tap(hide);
+    await tester.pump();
+    expect(
+      proofing.schedule,
+      const WordProofingSchedule(
+        checkGrammar: false,
+        pause: Duration(milliseconds: 2500),
+      ),
+    );
+    // The pause slider snaps to tenths of a second.
+    final slider = key('studio-setting-proofing-pause');
+    await tester.ensureVisible(slider);
+    tester.widget<Slider>(slider).onChanged!(1234);
+    await tester.pump();
+    expect(proofing.schedule.pause, const Duration(milliseconds: 1200));
+
+    await tester.tap(
+      find.descendant(
+        of: find.byType(AlertDialog),
+        matching: find.widgetWithText(TextButton, 'Close'),
+      ),
+    );
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 500));
+    final saved = (jsonDecode(backend.contents!) as Map)['settings'] as Map;
+    expect(saved[StudioSettingKeys.checkingMode], 'whileTyping');
+    expect(saved[StudioSettingKeys.checkGrammarWhileTyping], isFalse);
+    expect(saved[StudioSettingKeys.checkSpellingWhileTyping], isTrue);
+    expect(saved[StudioSettingKeys.pauseMilliseconds], 1200);
+    expect(saved[StudioSettingKeys.backgroundCheck], isTrue);
+    expect(saved[StudioSettingKeys.hideTypingErrors], isTrue);
+    expect(saved[StudioSettingKeys.checkAsYouType], isTrue);
   });
 }

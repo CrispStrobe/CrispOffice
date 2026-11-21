@@ -697,6 +697,7 @@ extension MailStoreLocalOperations on SqliteMailRepository {
         "UPDATE pending_operations SET state='reconcile',revision=revision+1 WHERE account=? AND state='applying'",
         [session.account.value],
       );
+      await _recoverFlagBatches(account: session.account);
       return MailUnit.value;
     });
   }
@@ -777,6 +778,8 @@ extension MailStoreLocalOperations on SqliteMailRepository {
     for (final table in [
       'mail_fts',
       'pending_operations',
+      'flag_batch_items',
+      'flag_batches',
       'tombstones',
       'cached_messages',
       'outbox_attempts',
@@ -787,6 +790,7 @@ extension MailStoreLocalOperations on SqliteMailRepository {
       'memberships',
       'mailbox_view_members',
       'mailbox_views',
+      'mailbox_sync_state',
       'cursors',
       'index_state',
       'messages',

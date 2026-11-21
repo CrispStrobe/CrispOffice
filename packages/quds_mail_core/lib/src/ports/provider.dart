@@ -203,6 +203,50 @@ abstract interface class MailProvider {
   );
 }
 
+/// A fresh observation describes the current identity, not the result of an
+/// earlier command. Missing means unavailable at the checked provider endpoint;
+/// it does not prove deletion or authorize replay of an uncertain mutation.
+enum MailFlagObservationKind { present, missing, identityChanged }
+
+final class MailFlagObservation {
+  const MailFlagObservation.present({
+    required this.identity,
+    required MailMessageFlags this.flags,
+  }) : kind = MailFlagObservationKind.present;
+
+  const MailFlagObservation.missing({required this.identity})
+    : kind = MailFlagObservationKind.missing,
+      flags = null;
+
+  const MailFlagObservation.identityChanged({
+    required MailImapIdentity this.identity,
+  }) : kind = MailFlagObservationKind.identityChanged,
+       flags = null;
+
+  /// The exact identity requested, including its original IMAP UIDVALIDITY.
+  final MailRemoteIdentity identity;
+  final MailFlagObservationKind kind;
+
+  /// Read and flagged are authoritative only for [MailFlagObservationKind.present].
+  /// Other flag fields retain the provider's existing supported projection and
+  /// must not be used to resolve unrelated commands.
+  final MailMessageFlags? flags;
+}
+
+/// Optional read-only recovery capability. Implementations obtain fresh flags
+/// for exactly one identity, without fetching a body, changing Seen, submitting
+/// mail or retrying an earlier command. An incomplete flag response is a failure.
+/// A caller must validate its lease and local revision again before saving the
+/// observation; a current snapshot cannot establish historical causality.
+abstract interface class MailFlagObserver {
+  MailAccountId get account;
+
+  Future<MailResult<MailFlagObservation>> observeFlags(
+    MailRemoteIdentity identity, {
+    required MailOperationLease lease,
+  });
+}
+
 /// Optional foreground IMAP browsing, independent of durable sync cursors.
 ///
 /// Pages descend by UID within the selected [uidValidity] generation. The first

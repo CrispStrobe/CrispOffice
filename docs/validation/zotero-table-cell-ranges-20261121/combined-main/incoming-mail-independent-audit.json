@@ -1,0 +1,237 @@
+{
+  "reviewed_main": "4a1eaa69e7a068e354bdd851ec9b0323b89ae300",
+  "tested_head": "278fa78d59f219965a50f025dbdb11d1b7b98676",
+  "all_recorded_before_after_source_maps_equal": true,
+  "source_applicability": [
+    {
+      "receipt": "core/receipt.json",
+      "paths": 35,
+      "before_after_identical": true,
+      "tested_tree_mismatches": [],
+      "incoming_main_mismatches": []
+    },
+    {
+      "receipt": "store/store-all-tests-receipt.json",
+      "paths": 74,
+      "before_after_identical": true,
+      "tested_tree_mismatches": [],
+      "incoming_main_mismatches": []
+    },
+    {
+      "receipt": "core-transport/providers.json",
+      "paths": 182,
+      "before_after_identical": true,
+      "tested_tree_mismatches": [],
+      "incoming_main_mismatches": []
+    },
+    {
+      "receipt": "core-transport/provider_store.json",
+      "paths": 182,
+      "before_after_identical": true,
+      "tested_tree_mismatches": [],
+      "incoming_main_mismatches": []
+    },
+    {
+      "receipt": "final-mail/mail-host-receipt.json",
+      "paths": 981,
+      "before_after_identical": true,
+      "tested_tree_mismatches": [],
+      "incoming_main_mismatches": [
+        "packages/quds_office_editor/example/test/app_store_screenshots_gate.dart"
+      ]
+    },
+    {
+      "receipt": "incoming/engine.json",
+      "paths": 1323,
+      "before_after_identical": true,
+      "tested_tree_mismatches": [],
+      "incoming_main_mismatches": []
+    },
+    {
+      "receipt": "incoming/editor.json",
+      "paths": 1323,
+      "before_after_identical": true,
+      "tested_tree_mismatches": [],
+      "incoming_main_mismatches": []
+    }
+  ],
+  "raw_logs": [
+    {
+      "path": "core/core_all_tests.log",
+      "reporter": "expanded",
+      "bytes": 34336,
+      "sha256": "b2cd0577c8e184ac9efb274b461fec6475e9218e3a8e0b463decc5e38913d3d0",
+      "receipt_sha_matches": true,
+      "recorded_process_exit": 0,
+      "terminal_count": 271,
+      "recorded_passed": 271,
+      "failure_or_skip_markers": false,
+      "raw_runtime_error_markers": false,
+      "status_prefixes_checked": true,
+      "scan_note": "A broad initial regex falsely matched the case name invalid pageSize -1; the corrected scan checks reporter status prefixes, not arbitrary case names."
+    },
+    {
+      "path": "core-transport/provider_sync_tests.log",
+      "reporter": "expanded",
+      "bytes": 32960,
+      "sha256": "a36fbef55ba3adea5665d7b8ac9323d55477777dbde210470644997e22801101",
+      "receipt_sha_matches": true,
+      "recorded_process_exit": 0,
+      "terminal_count": 255,
+      "recorded_passed": 255,
+      "failure_or_skip_markers": false,
+      "raw_runtime_error_markers": false,
+      "status_prefixes_checked": true
+    },
+    {
+      "path": "core-transport/provider_store_sync_tests.log",
+      "reporter": "expanded",
+      "bytes": 1406,
+      "sha256": "08870657c02d8e5d26a0f6fb7ca9a023508c09142ca52665e1dfb55802ad1b95",
+      "receipt_sha_matches": true,
+      "recorded_process_exit": 0,
+      "terminal_count": 10,
+      "recorded_passed": 10,
+      "failure_or_skip_markers": false,
+      "raw_runtime_error_markers": false,
+      "status_prefixes_checked": true
+    },
+    {
+      "path": "incoming/incoming_engine_tests.log",
+      "reporter": "expanded",
+      "bytes": 104169,
+      "sha256": "7eadbd9a338ec2e71d7cfe0aabe8effbd2c4642187fbbad6c84fe2f4c00780de",
+      "receipt_sha_matches": true,
+      "recorded_process_exit": 0,
+      "terminal_count": 689,
+      "recorded_passed": 689,
+      "failure_or_skip_markers": false,
+      "raw_runtime_error_markers": false,
+      "status_prefixes_checked": true
+    },
+    {
+      "path": "incoming/incoming_editor_tests.log",
+      "reporter": "expanded",
+      "bytes": 9304,
+      "sha256": "f5127ab91a2c3f2ef0885b8032e21684f6b472880518781972feaeb0e68a3c43",
+      "receipt_sha_matches": true,
+      "recorded_process_exit": 0,
+      "terminal_count": 109,
+      "recorded_passed": 109,
+      "failure_or_skip_markers": false,
+      "raw_runtime_error_markers": false,
+      "status_prefixes_checked": true
+    },
+    {
+      "path": "store/store-all-tests.jsonl",
+      "reporter": "json",
+      "bytes": 462117,
+      "sha256": "257259b5ac57e7e32074c1e8d59efc5581eb1456555ef30187b0747938ff8b79",
+      "recorded_process_exit": 0,
+      "actual_passed": 825,
+      "actual_failed": 0,
+      "actual_skipped": 0,
+      "excluded_loading_setup_teardown": 34,
+      "suite_count": 34,
+      "one_successful_done": true,
+      "every_start_completed_once": true,
+      "duplicate_start_ids": [],
+      "json_errors": 0,
+      "raw_runtime_errors": 0,
+      "recorded_results": {
+        "passed": 825,
+        "failed": 0,
+        "skipped": 0
+      },
+      "suites": [
+        "test/archive_query_test.dart",
+        "test/codec_test.dart",
+        "test/flag_reconciliation_test.dart",
+        "test/platform_configuration_test.dart",
+        "test/archive_export_native_test.dart",
+        "test/archive_export_plan_test.dart",
+        "test/outbox_draft_transfer_test.dart",
+        "test/archive_restore_adversarial_test.dart",
+        "test/archive_runner_test.dart",
+        "test/cache_metadata_test.dart",
+        "test/cache_cleanup_test.dart",
+        "test/adversarial_store_test.dart",
+        "test/draft_editor_state_test.dart",
+        "test/archive_restore_native_test.dart",
+        "test/archive_export_manifest_test.dart",
+        "test/archive_directory_native_test.dart",
+        "test/local_accounts_test.dart",
+        "test/archive_multi_origin_test.dart",
+        "test/draft_catalog_test.dart",
+        "test/imap_sync_range_test.dart",
+        "test/native_platform_test.dart",
+        "test/flag_journal_test.dart",
+        "test/crash_recovery_test.dart",
+        "test/migration_test.dart",
+        "test/archive_repository_test.dart",
+        "test/sync_mailboxes_test.dart",
+        "test/archive_restore_checkpoint_test.dart",
+        "test/outbox_management_test.dart",
+        "test/archive_restore_resume_test.dart",
+        "test/mailbox_view_streams_test.dart",
+        "test/mailbox_views_test.dart",
+        "test/ews_store_test.dart",
+        "test/archive_native_test.dart",
+        "test/repository_test.dart"
+      ]
+    },
+    {
+      "path": "final-mail/mail-host-tests.jsonl",
+      "reporter": "json",
+      "bytes": 236929,
+      "sha256": "538ffa2870d492935374e8b58ec2be5ee9286c7387e7bffafdce88d27e102ccb",
+      "recorded_process_exit": 0,
+      "actual_passed": 407,
+      "actual_failed": 0,
+      "actual_skipped": 0,
+      "excluded_loading_setup_teardown": 10,
+      "suite_count": 10,
+      "one_successful_done": true,
+      "every_start_completed_once": true,
+      "duplicate_start_ids": [],
+      "json_errors": 0,
+      "raw_runtime_errors": 0,
+      "recorded_results": {
+        "passed": 407,
+        "failed": 0,
+        "skipped": 0
+      },
+      "suites": [
+        "/workspace/scratch/1fa88bd5b735/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_store_test.dart",
+        "/workspace/scratch/1fa88bd5b735/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+        "/workspace/scratch/1fa88bd5b735/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_mailbox_store_test.dart",
+        "/workspace/scratch/1fa88bd5b735/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_native_test.dart",
+        "/workspace/scratch/1fa88bd5b735/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+        "/workspace/scratch/1fa88bd5b735/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+        "/workspace/scratch/1fa88bd5b735/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_workspace_test.dart",
+        "/workspace/scratch/1fa88bd5b735/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_cached_mail_test.dart",
+        "/workspace/scratch/1fa88bd5b735/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart",
+        "/workspace/scratch/1fa88bd5b735/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart"
+      ]
+    }
+  ],
+  "limitations": [
+    "Expanded logs support terminal counters, commands, receipt exits and raw error scans, not a complete JSON lifecycle audit.",
+    "Original receipts do not retain separate stderr files for these executions; do not infer separately empty stderr.",
+    "Source applicability proves recorded path hashes; it is not proof of unrecorded external dependency or live account behavior."
+  ],
+  "ancestry": {
+    "4b47520ae44dc545b898713d6e22370b66767acd": true,
+    "45f0e5038e05e57f121554f976bf74e59af126f6": true,
+    "9cfad3920f9afb3ca1620df429fa41e33f3db8e6": false,
+    "a6095c304ad2d6935f2ae6f8b74412038d19f142": true
+  },
+  "raw_log_failure_or_skip_markers_found": false,
+  "archive_hash_audit": {
+    "checked_files": 40,
+    "all_sha_and_size_match": true,
+    "failures": []
+  },
+  "publication_tree_equal_to_qualified_branch": true,
+  "tree_sha": "fe907b142374a67717577d26051bbcaf42bf2b78"
+}

@@ -1,5 +1,11 @@
 # Typing latency and as-you-type proofing (20 November 2026)
 
+> **Superseded scheduling (21 November 2026).** The 600 ms idle pause and the
+> 2.5 s deadline described below were replaced by word/sentence completion,
+> a 1.5 s pause and idle-time background checking, with user settings; see
+> [proofing/scheduling.md](../proofing/scheduling.md). The measurements here
+> remain the record of the earlier change.
+
 The owner reported that typing in the Word view lags, that every keystroke
 seems to trigger a spelling/grammar recheck, and that the status bar is redrawn
 constantly ("Waiting to check…"). This records the measurements, the root

@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "status": "prepared-not-executed",
+  "repo": "/workspace/scratch/a4ce103494d8/quds_office_suite",
+  "workspace": "/workspace/scratch/a4ce103494d8/quds-validation",
+  "runtime": "/workspace/scratch/a4ce103494d8/runtime-setup",
+  "cohorts": [
+    {
+      "name": "engine-fidelity",
+      "package": "packages/quds_office_engine",
+      "runner": "dart",
+      "tests": [
+        "test/word_table_grid_addressing_test.dart",
+        "test/word_bookmark_fidelity_test.dart"
+      ],
+      "concurrency": 2,
+      "test_timeout": "2m",
+      "process_timeout_seconds": 600
+    },
+    {
+      "name": "studio-zotero",
+      "package": "packages/quds_office_editor/example",
+      "runner": "flutter",
+      "tests": [
+        "test/studio_zotero_citing_transport_test.dart",
+        "test/studio_zotero_shortcuts_test.dart"
+      ],
+      "concurrency": 1,
+      "test_timeout": "2m",
+      "process_timeout_seconds": 600
+    },
+    {
+      "name": "studio-mail",
+      "package": "packages/quds_office_editor/example",
+      "runner": "flutter",
+      "tests": [
+        "test/studio_saved_mail_test.dart",
+        "test/studio_mail_workspace_test.dart"
+      ],
+      "concurrency": 1,
+      "test_timeout": "2m",
+      "process_timeout_seconds": 900
+    }
+  ],
+  "approved_skips": [],
+  "scope": {
+    "total_suites": 6,
+    "prior_qualification_overlap_cases": 72,
+    "mail_cases": "count from genuine runner events; includes one new localized global Close regression",
+    "overlap": "Cohorts in this run have disjoint files. The engine 39 and Studio Zotero 33 cases repeat prior qualification and must not be added as new distinct cases."
+  },
+  "source_binding": "All current nonignored Dart sources, package manifests/locks/analysis options, recorded test fixtures and engine BAS examples under packages and third_party, plus root manifests/lock/analysis options. Hidden nonruntime fixture Git metadata is excluded by rg. Every recorded input and path must match before/after each cohort. Docs excluded.",
+  "execution": "Original test files in genuine package:test or flutter test; separate libraries/isolates as supplied by those runners. No rewritten tests or synthesized merged suites. Engine concurrency 2; Flutter concurrency 1 and sequential cohorts.",
+  "selection_rationale": {
+    "engine-fidelity": "Two original fidelity suites whose static import closure includes changed Word automation operations: table grid addressing and bookmarks.",
+    "studio-zotero": "Both original Studio Zotero transport and command/shortcut suites after incoming Mail/native host changes.",
+    "studio-mail": "Original saved-message and native workspace widget suites, with one new global localized Close regression to cover captured fix/main-green-20261120 behavior.",
+    "excluded": "No broad rerun of all119 original Zotero/fidelity suites. Original2551 remains preserved and source applicability is reviewed separately; this supplemental run covers concrete incoming-source intersections."
+  },
+  "frozen_commit": "5289b90a83ce9042a4f4cfb73ba8115fe501513a",
+  "frozen_git_tree": "15165a1c510f68de244f36286c3268d8cd8b43ed"
+}

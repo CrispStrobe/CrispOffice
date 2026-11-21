@@ -1,0 +1,1 @@
+{"example":{"operations":11,"addressedStoryVariants":6,"firstRunRevision":1,"repeatedRevision":2,"additionalReopens":2,"opaquePayloadsPreserved":true,"untouchedBody":["Body 1","Body 2","Body 3"],"firstHeader":"Report: S1 header 1","evenFooter":"Appendix: S2 evenFooter 2"},"rollback":{"failedStep":1,"validateAndRunRollback":true,"recordingUnchanged":true}}

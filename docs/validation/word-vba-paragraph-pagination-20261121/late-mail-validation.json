@@ -1,0 +1,58 @@
+{
+  "schema": "quds.local-validation.v1",
+  "source_commit": "71a9d73f86a30380d7fe3563f1a0048f1f7eb860",
+  "source_archive_sha256": "55181a40742023468e2879667a997636e64cd1b7ecf8782ef4e281df0c8a276a",
+  "runtime": "Dart 3.14.1 stable, actual package:test 1.31.1; pinned dependency versions seeded from captured workspace lock",
+  "all_phases_passed": true,
+  "total_cases": 498,
+  "phase_case_counts": {
+    "transport_vm": 257,
+    "fallback_node": 6,
+    "core": 235,
+    "analysis": 0,
+    "core_analysis": 0
+  },
+  "source_integrity": {
+    "source_commit": "71a9d73f86a30380d7fe3563f1a0048f1f7eb860",
+    "original_file_count": 471,
+    "copied_manifest_adjustments": [
+      "packages/quds_mail_store/pubspec.yaml",
+      "packages/quds_mail_transport/pubspec.yaml",
+      "packages/quds_mail_core/pubspec.yaml",
+      "packages/quds_mail_mime/pubspec.yaml"
+    ],
+    "nonmanifest_source_mismatches": [],
+    "per_suite_cases": {
+      "transport_vm": {
+        "test/native_flag_observation_test.dart": 11,
+        "test/native_provider_test.dart": 71,
+        "test/cloud_provider_test.dart": 121,
+        "test/ews_provider_test.dart": 31,
+        "test/ews_soap_test.dart": 23
+      },
+      "core": {
+        "test/sync_coordinator_test.dart": 9,
+        "test/header_search_test.dart": 27,
+        "test/bulk_flags_coordinator_test.dart": 31,
+        "test/bulk_flags_compatibility_test.dart": 28,
+        "test/ews_identity_test.dart": 5,
+        "test/outbox_test.dart": 16,
+        "test/cancellation_test.dart": 3,
+        "test/bulk_flags_test.dart": 30,
+        "test/imap_sync_range_test.dart": 18,
+        "test/bulk_flags_journal_test.dart": 16,
+        "test/models_test.dart": 9,
+        "test/bulk_flags_provider_results_test.dart": 36,
+        "test/outbox_management_test.dart": 7
+      }
+    }
+  },
+  "logs_sha256": {
+    "transport_vm": "30dc70b61eb145a26012539f65fd46baf1113a9d3e582ba4f8653fa32dcaeb5b",
+    "fallback_node": "392cb1a383e0ab440af54cf7ebaafe446b0a56750f1da550b0905d4d16a476a9",
+    "core": "e46a0390f887ce13bd4dd88476ec7cc3b24b395518d98988e9206453cca054c3",
+    "analysis": "f1209f8186b8e73dff325f30babda00d59594a720768a3340eec0514d4774128",
+    "core_analysis": "95a28819c918db92d8f3f7dfadfc18f1248f79ab8313759391ad318fe94cf093"
+  },
+  "scope": "Actual captured core/transport production and test sources. Original tests use in-process/local protocol and HTTP fixtures; no live provider credentials/accounts. Flutter UI not run. No shared engine-validation files refreshed."
+}

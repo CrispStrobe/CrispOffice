@@ -1,0 +1,43 @@
+{
+  "directory": "/workspace/scratch/11a0888870d6/runtime/qualification/studio-transfer-serial-final",
+  "raw_diagnostics": [
+    {
+      "file": "stdout.jsonl",
+      "line": 106,
+      "kinds": [
+        "flutter_error"
+      ],
+      "message": "Shell: [ERROR:flutter/runtime/dart_isolate.cc(1403)] Unhandled exception:"
+    },
+    {
+      "file": "stdout.jsonl",
+      "line": 154,
+      "kinds": [
+        "flutter_error"
+      ],
+      "message": "Shell: [ERROR:flutter/runtime/dart_isolate.cc(1403)] Unhandled exception:"
+    },
+    {
+      "file": "stdout.jsonl",
+      "line": 202,
+      "kinds": [
+        "flutter_error"
+      ],
+      "message": "Shell: [ERROR:flutter/runtime/dart_isolate.cc(1403)] Unhandled exception:"
+    },
+    {
+      "file": "stdout.jsonl",
+      "line": 250,
+      "kinds": [
+        "flutter_error"
+      ],
+      "message": "Shell: [ERROR:flutter/runtime/dart_isolate.cc(1403)] Unhandled exception:"
+    }
+  ],
+  "raw_diagnostic_count": 4,
+  "raw_diagnostics_clean": false,
+  "files": {
+    "stdout.jsonl": "55129e2be863b6e87083897093e36f2225b0fa49b84cdddacafda46ccfc14d53",
+    "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

@@ -1,0 +1,1276 @@
+{
+  "accepts_new_main": false,
+  "affected_selected_suites": [
+    "packages/quds_office_engine/test/word_bookmark_fidelity_test.dart",
+    "packages/quds_office_engine/test/word_table_grid_addressing_test.dart"
+  ],
+  "all_119_selected_test_sources_unchanged": true,
+  "baseline_combined_checkpoint": "5289b90a83ce9042a4f4cfb73ba8115fe501513a",
+  "baseline_to_incoming_source_delta": {
+    "added": [],
+    "after_count": 2994,
+    "before_count": 2994,
+    "modified_existing": [
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "3e26e9af5f42044d448f5f8670645f5df4704bfe",
+          "sha256": "5e12d10f08550e6c80b7a3dfccf074afb2ce3dc296b671305bb8f083a6b49545",
+          "size": 16955
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "8a5697049e3b0d16b4545ab38ba87693c6e4a634",
+          "sha256": "a6ebecaea71eee13a27e85b090cedd3e8e935883690c49a6cc577a5b70823b0f",
+          "size": 17979
+        },
+        "path": "packages/quds_office_editor/example/test/studio_saved_mail_test.dart"
+      },
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "14a70a2a34edb3cc388596965c238e55732f5a66",
+          "sha256": "3e564faa171594515f463cfdf01752274dd46a7b756308a6136624b6a72160fa",
+          "size": 18512
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "7cd56bef186e0688ab07c0ef170a7e8d3d5f1bdb",
+          "sha256": "f2324bba254113f920943a1e95410653981e793626e0c041c4f43ae6aab849b1",
+          "size": 14128
+        },
+        "path": "packages/quds_office_engine/lib/src/automation/operations/word_header_footer_guard.dart"
+      },
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "36232cbe88e637e9ce966da55ef71e6cffe75ef6",
+          "sha256": "c0681a5a81ae64f1d357b4e60ae10ba14c7dd901c3d6f09b025660b977653f6a",
+          "size": 30232
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "341e5ffac5841d6b16b18d5baf1c51b6b4ff5115",
+          "sha256": "01918ecebc64a54b9711184f8f0a562e7c083c52a84dbbdd3078c5787dcf6cae",
+          "size": 21337
+        },
+        "path": "packages/quds_office_engine/test/office_macro_word_headers_footers_test.dart"
+      }
+    ],
+    "modified_existing_count": 3,
+    "removed": [],
+    "unchanged_existing_count": 2991
+  },
+  "baseline_to_reviewed_source_delta": {
+    "added": [],
+    "after_count": 2994,
+    "before_count": 2994,
+    "modified_existing": [
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "14a70a2a34edb3cc388596965c238e55732f5a66",
+          "sha256": "3e564faa171594515f463cfdf01752274dd46a7b756308a6136624b6a72160fa",
+          "size": 18512
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "7cd56bef186e0688ab07c0ef170a7e8d3d5f1bdb",
+          "sha256": "f2324bba254113f920943a1e95410653981e793626e0c041c4f43ae6aab849b1",
+          "size": 14128
+        },
+        "path": "packages/quds_office_engine/lib/src/automation/operations/word_header_footer_guard.dart"
+      },
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "36232cbe88e637e9ce966da55ef71e6cffe75ef6",
+          "sha256": "c0681a5a81ae64f1d357b4e60ae10ba14c7dd901c3d6f09b025660b977653f6a",
+          "size": 30232
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "341e5ffac5841d6b16b18d5baf1c51b6b4ff5115",
+          "sha256": "01918ecebc64a54b9711184f8f0a562e7c083c52a84dbbdd3078c5787dcf6cae",
+          "size": 21337
+        },
+        "path": "packages/quds_office_engine/test/office_macro_word_headers_footers_test.dart"
+      }
+    ],
+    "modified_existing_count": 2,
+    "removed": [],
+    "unchanged_existing_count": 2992
+  },
+  "both_node_repository_closures_unchanged": true,
+  "changed_production_dynamic_loader_matches": [],
+  "changed_unselected_macro_test": "packages/quds_office_engine/test/office_macro_word_headers_footers_test.dart",
+  "dependency_helper_sha256": "b2bc1b5b1f7297904b40f99e31e9d065a74d0aedb6ea36b5c1936eb1a4ff3cae",
+  "directive_completeness_issues": {
+    "4034c7e7d384ed1f947d1702b4c2cf5231b7d3d1": [],
+    "5289b90a83ce9042a4f4cfb73ba8115fe501513a": []
+  },
+  "full_119_suite_repeat_needed_for_this_delta": false,
+  "guard_changes": [
+    "Checks independent/non-inherited story linkage across all sections before edits.",
+    "Rejects aliasing of mutable paragraph, inline and property models.",
+    "Requires faithful native paragraph/run text projection and supported attributes/markers."
+  ],
+  "header_guard_imports_unchanged": true,
+  "incoming_main": "9f23cbd2be72c527829b3990f22b356e5237ed96",
+  "no_github_ci_used": true,
+  "no_source_or_ref_mutations": true,
+  "node_selected_suites": [
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_table_cell_replacement_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "0891207125a1e13383c3787c2f905e8dddcad04ee139f465675599a4488c0bac",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_multiparagraph_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "7621806093cbf65a4ad350a99ef570a09af1e745d86d1fb31a691861ca9bc837",
+      "test_source_unchanged": true
+    }
+  ],
+  "only_changed_production_source": "packages/quds_office_engine/lib/src/automation/operations/word_header_footer_guard.dart",
+  "previous_main": "4a1eaa69e7a068e354bdd851ec9b0323b89ae300",
+  "prior_impact_review": {
+    "reviewed_commit": "5289b90a83ce9042a4f4cfb73ba8115fe501513a",
+    "reviewed_source_identity_sha256": "3ced474ffcdd5bb31b1f660c2537c832626bb9f192c96bf03d5ff70227ce9df8",
+    "reviewed_tree": "15165a1c510f68de244f36286c3268d8cd8b43ed",
+    "schema_version": 1
+  },
+  "prior_impact_review_sha256": "4d26f8b4aaf81330b583c4c2f65adbf864abe4d067bbbe0dbf25dc149f425df0",
+  "prior_reviewed_loader_sources_unchanged": true,
+  "repeat_plan": {
+    "expected_existing_cases": 39,
+    "result": "Pending separate immutable-source execution receipts; these are repeated existing cases.",
+    "suites": [
+      {
+        "original_passed_cases": 17,
+        "path": "packages/quds_office_engine/test/word_bookmark_fidelity_test.dart"
+      },
+      {
+        "original_passed_cases": 22,
+        "path": "packages/quds_office_engine/test/word_table_grid_addressing_test.dart"
+      }
+    ]
+  },
+  "replay_script_sha256": "e8b210611d83ac1a8b83a363f04677b07e52341d4919e2e996dd21fd1afd85e8",
+  "reviewed_source_identity_sha256": "58a7d37ae78a9ec4e779e66a6cdb7273766654a420a42bbce87cab235a43f696",
+  "reviewed_target": "4034c7e7d384ed1f947d1702b4c2cf5231b7d3d1",
+  "reviewed_target_is_final_combination": true,
+  "reviewed_tree": "1e21f3c97cc7e37ff55f8302f668e05276fe9d6d",
+  "saved_mail_regression_disposition": "Preserved exactly in the combined commit.",
+  "schema_version": 1,
+  "selected_suites": [
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "2b98ada580f8764a69aac212469eb3c55bf419383d56f0014b000a1b1080e061",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_adjacent_citations_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "20aa47c92f1000b32e1d293555898e6e27fe70724405ae4358b9b7db97cade3d",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_bibliography_layout_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "955b4b17be17c7e2f57d120547e8974e0003a2f8685f3737002e74e9fd0c5250",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_bibliography_style_fidelity_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "048748b5a0375b4a9cd6451a2e234ce0e278a762e783d3dcabf358401564b176",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_caret_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "d98a60eef22ef858b91b4bae36b6d1be7d75f82f873820051752c07c58430c3f",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "d812caf21c31ec52e9d12d31c23b4f28c32b036d5efbba038239f0f42f178cb2",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "d371c2970b57df7358d2da7c0e68bf1cbf44d2370c25b0fbd4ecefe63f291bae",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_formatted_bibliography_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "a466bca40bcbbb5832470757eb5b5189d6b9f803b85d82720d7d2fb9731f106f",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_multiparagraph_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "7621806093cbf65a4ad350a99ef570a09af1e745d86d1fb31a691861ca9bc837",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_note_image_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "a5c030773dfb5de51f167c7b41eac4029b9711d17c4cfc216102d4470de043fa",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_note_images_integration_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "c3d16105d9c965fddb386890de1775de5da23ee65443821a61b5777a68782001",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "9a2c3a3984f27ce0f0bfda9e1c488fa1458620c94799ac64553a33b1714caffb",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "083628794fe5939ce3eac3afce4b7d44e5f1ca65fa0532cffd6bdf6998dce372",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_note_table_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "87514ce9c40c4a3bf29d6ed090cdc7230caa0a93311d569d64ff68f76e8a220d",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_note_tables_integration_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "b85685003acc7e5a97ffeb9249aadabe6d13a33baf369bfdc41a2ae470f0a05f",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_preference_flow_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "db2212f971358aa89b8affe7a57068571fe6e4ddfd1275382f027149a1cd52e7",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_research_target_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "9e77d66cd70228e268f8bb4bd8a48c0627e32e1532afd48f7194bf8a02d5aa61",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "fef7ced6d20a44dfe5ed08be9957b81c5a0cd82daf2c18ceab9e16ee5a9f9286",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_scaling_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "532cbedc47bfd49378db1288a39da841025dbd642e75dc0ac3c61bed914e9071",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "c0609e0eac45aee1c9028fcdbe2b96be7a01df0356be3e6d5c64ceb74f1cc2fd",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_source_identity_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "95fbf992cbee1e2820f3afbf87fe6af66f7ec7010924c86960271deed4c3ef54",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_style_preferences_review_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "9ea5500a7a99aa20d96e55d8e6cc3730c9b63c8956c18054d8be203117ff4168",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_table_cell_replacement_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "0891207125a1e13383c3787c2f905e8dddcad04ee139f465675599a4488c0bac",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "e3346a41c11d4f782c916469ea2cbc8f33d2fe15722d4be2aa962c491b926e45",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_transfer_session_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "65e507ea956dd6c6b5f074361aad0c3386a182e9d66890010f08daa6c15e5496",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_transfer_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "dad72af061230a68cecbce08995d5338cbb435c2a6608d792455c1133b87a112",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "a46e26fe257de06a743ccb1fc6af9fe93728c08c91eba8044573853cad29923a",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/zotero_backoff_state_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "f0053457e76775054d4c1a1a45f8a5a3afc432cd4de92c9fafb63278bf448b81",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/zotero_catalog_query_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 3,
+      "repository_dependency_identity_sha256": "4ab754b2412b2de8654195dce59f1b83d94a43d6c76e5d65c295d24037c45a00",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 4,
+      "repository_dependency_identity_sha256": "78dc8b356ac2fd4bcf457620e2be274e7714ea4584d3d963347d793ac5c837ba",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 3,
+      "repository_dependency_identity_sha256": "bab9e9c370f2824f5a32e2a08f74dc646ce323e036e2d2cdf90aab13b37c6e1e",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/zotero_formatted_text_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "87c40faf69880cd2d47ff8f2894efe748970245cb552866c4f71ee6f7e5d4a30",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/zotero_identity_client_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 3,
+      "repository_dependency_identity_sha256": "ba60367e4ff7f38b3b2f55aacccc2dbd6b74a0ed7e0992c6136c27ea6f9e4144",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/zotero_item_children_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "1f2503f7bfc2c1a2ed5cada33743e712c5b8e696db2a67ec48a0001b4934afb2",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/zotero_item_details_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 3,
+      "repository_dependency_identity_sha256": "f3e1708a95df0e41dba52c74c903a2d5b89c51ecb350c9bc2a76b6fd5a6e133e",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/zotero_metadata_batch_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 3,
+      "repository_dependency_identity_sha256": "63cc24cbb86d9f544e42b6b544bd3a53d0bb382e750796daa1e7812cc9b90943",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/zotero_paragraph_runs_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "36a4ee4bbcc01238352102b35f8085fe755a231c3fc7fcc7b87dcb4be871142d",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/zotero_saved_search_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 3,
+      "repository_dependency_identity_sha256": "36d0674d1f453fcc4b647fe8b3897dfba2a6d41f47dd31d9241435180449a0c4",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/zotero_tag_catalog_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 3,
+      "repository_dependency_identity_sha256": "b62c24a0dab8f8a667b911cfd0b310cab205acce2b51c8891ed9b058f9012e1c",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/zotero_tag_filter_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 3,
+      "repository_dependency_identity_sha256": "47fda2a81ec6f4a433cf643be9dd3206dc51a202e49dbb781a5ef56c282bfcc3",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/zotero_transfer_protocol_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 4,
+      "repository_dependency_identity_sha256": "927d1a0e2b6aba197777926b704a7109fb22eb72543db9fe780b0e05173461aa",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_tree_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "77f4a01d7448b9d3af5052046f946e53acb34dd9d32bde367ad05a670cf08845",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_structure_integrity_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 381,
+      "repository_dependency_identity_sha256": "96961486bdac4465c9a796d3e6c023fa50819f41fc9dcc6e4d81af3bcb94a6d5",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_field_span_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "305f453919bd8319b72c73c4d75c382675143871e18fd2abe8657c5ad832abdc",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_bibliography_fidelity_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "52286fab15eac414d352ae0cc41a4177e2c4db67a55e7df62f8f414374c19309",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_note_bookmark_edit_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "cc08426fac78fb08ddc41b5235018faa082f8eac72f68c1b2cc59c16c2dace74",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_note_numbering_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "d81ed4fe74e5ee6a3a3d874924dbe553fb0b56bed16d25d9ae02973993aae401",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_footnote_reference_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "adec484afaa1daef1e851eb39c5bb0452d754964a64c97ccd202d56d3b06088c",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_table_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "2544e106e28cc5a6f83c2c1b97faee68058f61f21ba48502e5c7606dc28cbfab",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [
+        "packages/quds_office_engine/lib/src/automation/operations/word_header_footer_guard.dart"
+      ],
+      "dependency_paths": {
+        "packages/quds_office_engine/lib/src/automation/operations/word_header_footer_guard.dart": [
+          "packages/quds_office_engine/test/word_table_grid_addressing_test.dart",
+          "packages/quds_office_engine/tool/fidelity/office_steps.dart",
+          "packages/quds_office_engine/tool/fidelity/word_steps.dart",
+          "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+          "packages/quds_office_engine/lib/src/automation/operations/word_header_footer_guard.dart"
+        ]
+      },
+      "path": "packages/quds_office_engine/test/word_table_grid_addressing_test.dart",
+      "repository_dependency_closure_unchanged": false,
+      "repository_dependency_count": 394,
+      "repository_dependency_identity_sha256": "bac694bc94a72d260a551ba7b204e5e65569c9993f71b35195cbb64597d8981e",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_table_cell_border_roundtrip_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "f5e3261ad91b14343d6ed75aadad3d1b3165bee20acd33074f4fdbafa83ebf3d",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_table_nested_layout_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "8280525e4a9dcbbf6f10f6e24b439bc3468c273bad69ce791236f1f69ae44529",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_table_vertical_merge_layout_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "85701dbaee0be7f36bcd0a4a5bfee60abbd35e8cd8b8bb27f07cdb6538d3b42d",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_table_direction_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "91a1af530cf14561d15722e18e5e49a10f97d5c5d9d095fdba6c4f6a5cf70c57",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_table_style_import_regression_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "7fb02de353a721f7ed919a6737591182509be01e7f56df592a89e759bbced411",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_table_style_precedence_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "aa1ca215f7b6ca26e55be49c912923d0919eb195226a948d464b386e651d985e",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "bb385f3b8af912edba3e92a7283a554805f8170988ca604e28cdd3d7d6e642ee",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_content_control_fidelity_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "6d5ed18be4cc0a9cb8538e11e329b9651bf7e3ec32d9f4e268e93b0b4f8691d4",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [
+        "packages/quds_office_engine/lib/src/automation/operations/word_header_footer_guard.dart"
+      ],
+      "dependency_paths": {
+        "packages/quds_office_engine/lib/src/automation/operations/word_header_footer_guard.dart": [
+          "packages/quds_office_engine/test/word_bookmark_fidelity_test.dart",
+          "packages/quds_office_engine/tool/fidelity/office_steps.dart",
+          "packages/quds_office_engine/tool/fidelity/word_steps.dart",
+          "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+          "packages/quds_office_engine/lib/src/automation/operations/word_header_footer_guard.dart"
+        ]
+      },
+      "path": "packages/quds_office_engine/test/word_bookmark_fidelity_test.dart",
+      "repository_dependency_closure_unchanged": false,
+      "repository_dependency_count": 394,
+      "repository_dependency_identity_sha256": "132971cb3cc5d36a223876fdf26ff96339fb86b1eeb4c6d33811cfc44b61bd02",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_edit_integrity_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "74da1a18104a79a590e9b88fbd70db6db4b2da2dc5309778bc6d84343d87be6f",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/odt_document_writer_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "151633dbeb924c5df7f622609c1b4f8b53cfd9df70818f1fc98f1d79bba24056",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/odt_table_merge_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "7968d1a99b475385998ee7d3259ac81408f6cb5d61968db122882c05d17ea270",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/odt_structure_fidelity_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "06e554d2095da70762bc1d67561a19d7b58a4762af37143c831d302a9c7792c2",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/odt_inline_field_fidelity_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "31cbe68764cf01bf3575a0d4daa370786fe1ceb6155883e99de7cd46d3721770",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "00b952f980ac703fe79edf6e8479fec06ff75c19467759a89e8de45df24be366",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/odt_note_fidelity_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "e28ffd7e8b6601792613620887e3993c0df7aad51cb51ef9b9c10480df08c42d",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/odt_bookmark_range_fidelity_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "eebefdb91505e8ef6093180b68689bac45eaba569932059137c031efb7fe65fe",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/odt_hyperlink_range_fidelity_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "505a5d88a5507c72ffbce0548228ad868edb6d0c306c4d8fbe8e570dcaac67b3",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "16a6b363efd0856e79612651b04836954fa697bb8a0968eb8336d8e2a7d50dcb",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_adjacent_citations_controller_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "1e3031c0c5330790cd8f660e9a037b9f65473922e7af31c12e4861174c4c4c5d",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_backoff_session_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "7158e0adabcb9042488a5068a0a437eabc918be88deb65fd881fb553a8f53808",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "54d84ec510e0f00452ec7b87149a90a16ca7d6ac23b0e58a2ae92faeec9317e7",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "cea73e374737d5d0dc3e95ba48426745cea8ca001e1484c1a8727e7711dc8d1a",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_catalog_query_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "bd76becdfdcf3a154b521b1593b6e2f063332b20723e47ee7f68d3c3177512ef",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_children_dialog_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "bf2c431e3cafa3de5947034415511ed39c4d5249d052406605cff6af6680fa1c",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_children_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "2afb9e194374f0fe49e355e2a14db2de4b1219edb55ae7d270047dcbd85aa9f5",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "9055c1954649df1d862d7e31818ac3f7c8028cf08da1b00135b71e18e25a34b0",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "e4749a563a09de2e1de5ac5f71b91a24169a5c0db1d4c2efaf9c538c1785e6c5",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "ff0f48ec9298c1c9caf9e60a0db03c815d19b5979334970efb17e0a12ec12c53",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_composer_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 383,
+      "repository_dependency_identity_sha256": "436c08327114e5aec1ae36cc59bbd699ff8274e7f20d0cb07870c7eb49e1e33a",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_connected_alias_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "bccbcd8808a8d3f9c55f852a7945f51a9a3a4689076cca9104ee233549182d8e",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_controller_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "cd942f39fd1af9c2dca0019687fb96cd2beef0e30ad818b3a37df0ff71094110",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "7f6e1e86a38013d271e5c2816dad8c946bb5f5cc476869ac65ae50d4e6afce4f",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "315c675c51129e3c51eb727af651f50e5819d25a148ad33941181fe5abcf582b",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "d63155de3dc8127fbb357c890d2ea1fee62597c28265cf98b50b3389dfd0117c",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_document_actions_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "dfe8f1e966641fd57064c088ec9d9ba5f7d4ab92f66505fcb5834bfa4bc56661",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_document_reuse_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "1d74013de9dfb2cfce75501167c162abb66e2647bcb2e5275479b9a9dcbd1fa3",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_document_source_picker_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 383,
+      "repository_dependency_identity_sha256": "94a1e0b486fed47e1aa1320b4bd13f2ac73cd1d53ea491316157df57913db3de",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_document_sources_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 379,
+      "repository_dependency_identity_sha256": "f47cdba5c64aaaa531252d66166a7c6d7cc2b6aaca1775e9dbed77146eb6b9f5",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_field_at_caret_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "ec4dd86bff27c6bccbe53f932c83c5832b00587eec4d7a6bdb713ee02d23341f",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_format_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 378,
+      "repository_dependency_identity_sha256": "e178f0dcd4f82ed1e447ec0ab67deb588bc39356d949f58e1091b6a8678190ab",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_import_search_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "2f9cb82a2b184eaf837357aca5b6830529f5d551150f5e02a988b46b6e701758",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_library_details_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "6fbf365251b6923c2a16ae44e0ebb1af6402408070884b56c9224d31f35530e6",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_multiparagraph_controller_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "f9a2af0e8da55413fc1619a7da06345fa16dc71e931837227f17034671af9cfc",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_navigation_dialog_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "6d8e40379b33dd4bdf3855ca4c15cf4dfc6cff488e7aebb486c5175d14285e9a",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_navigation_pane_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "3bf3c24e1027e9449c40c0656f17bf3d6016351c9514b478c8bad1739f94ac8e",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "700dfa66f99134fe76a008b4e96b9f69e57c48889f443a0e0bfb7007c9df5153",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "df792c223404686a63c921c02f9127a8705c403ae3b4a7b4824f36bd5e5083ab",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_note_preview_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 2,
+      "repository_dependency_identity_sha256": "73499cb0ad922575a29bd6b88a8802234537f9bea0c1c6d56d5054e362f2a220",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "d2b38354d95df7825656f5b1354c0fab17d7725da5ffec35703dd8745d86cbc9",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "00e198b23e5ba8580d403ad2554c486ebefb129f668b011096714c9a999244de",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_occurrence_navigation_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "5e088458150515c7ffb66b535730778876d6f20e4581e6112fb000afd7820415",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_rich_controller_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "8f81b95ebd0ad332b66d9e384ec89196304dc181802f8c19b33acaab31e79d45",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_saved_search_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "11eadeabcd7956129fc013cb0bdbe38aadcc81f7e8965251f502b954ddb90140",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_snapshot_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 379,
+      "repository_dependency_identity_sha256": "6579119efeafd6ee2b8e96a73d6a4166493c2f6e60380e366df8290d007a2e14",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_source_identity_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 378,
+      "repository_dependency_identity_sha256": "7ae5507a4b8c39a089e4516bb784d7c4e22b2fbc22eb486deb0ff7f762492bda",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_source_occurrences_dialog_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "8d18ba5ecba16b5af26a9afe0cfe958c84846dedee9cda25dead87915179275f",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_source_occurrences_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 379,
+      "repository_dependency_identity_sha256": "dd8cc9332f4d82cbc73b9074ca85680dc089fece6fe85fe228d1f6c63044931a",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_source_resolver_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 379,
+      "repository_dependency_identity_sha256": "4c2391745ea35bcfb9a00855e710a5d8e03b4ba98e9d9c627cb9b14f7f6f8d05",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "005a713240a4feb8b42f6cc0a5809274222ce748b0211fd36db9598c34a946b4",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_stored_details_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 379,
+      "repository_dependency_identity_sha256": "d98a2803c1e1a9206ae43cc4af20ab8f511f078314105fd5ec83c61ec9d14221",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_tag_browser_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "a621b890b0910a88715b016d2ca21cb2cebb5ddc05ee9092ac7146f101006b6b",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_tag_filter_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "594f2756ed87b5a0a514c81aae61b6695d152273a4b54d881593e3d2f384f335",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "1309c74ba8dd7f165b473cd607570eea727e066d99cdc212f8ed3211db9daa5c",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_transfer_dialog_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "af463ab082c7e6b15da73b647669dc16c0765887f1fe2eb84b8a794681ec538f",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "e4325a8150ebb370c73e94fb4d950e477bc20eb4880297fdd0effdc74099a3ba",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "79d8e467f684a287264446b5822ae6c69d451a0db4e9c722bbf9b86a3bbcd8f9",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 380,
+      "repository_dependency_identity_sha256": "8d1bcce914e2065ea5876ff2e6d35322ebe87158ff8ffe371c382bd8f2b1f094",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 925,
+      "repository_dependency_identity_sha256": "abbef20cc98ac628002f6e0f477bb4b2e096dbcc8eba9d6c0add26d6745e4b3b",
+      "test_source_unchanged": true
+    }
+  ],
+  "status": "pending-targeted-39-case-execution-and-final-merged-source-receipt",
+  "studio_mail_native_identical": true,
+  "studio_mail_native_identity": {
+    "executable": false,
+    "git_blob_sha1": "24e946bd4a7cd4dbfc830f6d8fd8b7a034a81129",
+    "sha256": "1f3e6a058364d2978187c47a40b380793c64aeb36d79cfffd5aa2aa1bc51a894",
+    "size": 142601
+  },
+  "studio_repeat_needed_for_this_delta": false,
+  "unchanged_selected_dependency_closures": 117
+}

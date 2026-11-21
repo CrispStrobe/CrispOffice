@@ -364,6 +364,13 @@ void _expectBulkCounts(
   expect(report.failedCount, failed);
   expect(report.uncertainCount, uncertain);
   expect(report.unattemptedCount, unattempted);
+  expect(
+    find.textContaining(
+      '$confirmed confirmed · $failed failed · $uncertain uncertain · '
+      '$unattempted not attempted',
+    ),
+    findsOneWidget,
+  );
   expect(find.text('Confirmed: $confirmed'), findsOneWidget);
   expect(find.text('Failed: $failed'), findsOneWidget);
   expect(find.text('Uncertain: $uncertain'), findsOneWidget);

@@ -1,0 +1,12 @@
+00:00 +0: [VM, Kernel] loading test/cloud_store_test.dart
+00:00 +0: [VM, Kernel] test/cloud_store_test.dart: Gmail label removal commits one membership and preserves the other label
+00:00 +1: [VM, Kernel] test/cloud_store_test.dart: failed cloud page transaction rolls back membership and opaque cursor together
+00:00 +2: [VM, Kernel] test/cloud_store_test.dart: malformed cloud history does not advance or clear a persisted mailbox
+00:00 +3: [VM, Kernel] test/cloud_store_test.dart: completed empty history pages advance CAS revision and reject stale replay
+00:02 +4: [VM, Kernel] test/host_store_integration_test.dart: completed sweeps reject stale pages without restoring expunged data
+00:02 +5: [VM, Kernel] test/host_store_integration_test.dart: high discovered UID pages preserve flags and resume the durable cursor after reopen
+00:02 +6: [VM, Kernel] test/host_store_integration_test.dart: failed store transaction retains the cursor and retries the same UID window
+00:02 +7: [VM, Kernel] test/host_store_integration_test.dart: UIDVALIDITY reset replaces only its own account and mailbox membership
+00:02 +8: [VM, Kernel] test/host_store_integration_test.dart: account invalidation during a blocked IMAP response cannot commit later
+00:02 +9: [VM, Kernel] test/host_store_integration_test.dart: host-scoped credentials are checked before protocol work and on every pull
+00:02 +10: All tests passed!

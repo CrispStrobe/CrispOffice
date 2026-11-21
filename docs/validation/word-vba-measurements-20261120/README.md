@@ -1,8 +1,9 @@
 # Word VBA physical measurements — integration and validation
 
 > Historical incoming qualification record captured from main
-> `b01cb23dc1b7bc94b691d68a2507b61dc6d48d7a` (PR #272), including evidence
-> added by `6d370884cd2b62ae83e627d9e71809ae9d795684`. Its unexecuted-test
+> `22cf73b816328cd5fe54ec1793c89f1cc322db3b`, following PR #272 at
+> `b01cb23dc1b7bc94b691d68a2507b61dc6d48d7a` and evidence added by
+> `6d370884cd2b62ae83e627d9e71809ae9d795684`. Its unexecuted-test
 > statements describe that incoming environment and are not the status of the
 > later local qualification. See the
 > [current qualification](../word-vba-unit-conversions-20261120/README.md) for

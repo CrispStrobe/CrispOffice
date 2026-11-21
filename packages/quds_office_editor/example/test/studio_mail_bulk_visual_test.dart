@@ -1,5 +1,3 @@
-// Adapted from peer commit 9109fcc645d0d95fbe7a7568ddf1e0ebc07bc384.
-// The host-owned status slot uses the accepted shared progress widget.
 // Always checks the actual localized controls with real bundled fonts.
 // Optional PNG evidence:
 // flutter test test/studio_mail_bulk_visual_test.dart \
@@ -145,7 +143,7 @@ void _expectRowsUsable(WidgetTester tester) {
   final rows = _key('mail-list-rows');
   expect(rows, findsOneWidget);
   expect(tester.getSize(rows).height, greaterThanOrEqualTo(48));
-  expect(_key('mail-list-select-planning').hitTestable(), findsOneWidget);
+  expect(_key('mail-list-check-planning').hitTestable(), findsOneWidget);
   expect(tester.takeException(), isNull);
 }
 
@@ -174,15 +172,48 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   setUpAll(_loadFonts);
 
+  // Keep the original toolbar stop controls and the incoming host-owned
+  // status-slot controls under the same real-font and compact-layout checks.
   for (final variant in [
-    (language: StudioLanguage.en, size: const Size(440, 850), compact: false),
-    (language: StudioLanguage.de, size: const Size(440, 850), compact: false),
-    (language: StudioLanguage.ar, size: const Size(440, 850), compact: false),
-    (language: StudioLanguage.de, size: const Size(320, 260), compact: true),
-    (language: StudioLanguage.ar, size: const Size(320, 260), compact: true),
+    for (final statusSlot in [false, true])
+      for (final original in [
+        (
+          language: StudioLanguage.en,
+          size: const Size(440, 850),
+          compact: false,
+        ),
+        (
+          language: StudioLanguage.de,
+          size: const Size(440, 850),
+          compact: false,
+        ),
+        (
+          language: StudioLanguage.ar,
+          size: const Size(440, 850),
+          compact: false,
+        ),
+        (
+          language: StudioLanguage.de,
+          size: const Size(320, 260),
+          compact: true,
+        ),
+        (
+          language: StudioLanguage.ar,
+          size: const Size(320, 260),
+          compact: true,
+        ),
+      ])
+        (
+          language: original.language,
+          size: original.size,
+          compact: original.compact,
+          statusSlot: statusSlot,
+        ),
   ]) {
     final language = variant.language;
-    final name = '${language.name}-${variant.compact ? 'compact' : 'portrait'}';
+    final name =
+        '${language.name}-${variant.compact ? 'compact' : 'portrait'}'
+        '${variant.statusSlot ? '-status-slot' : ''}';
     testWidgets('$name bulk controls remain usable at 1.4 text scale', (
       tester,
     ) async {
@@ -195,7 +226,7 @@ void main() {
       var busy = false;
       var commands = 0;
       var stops = 0;
-      final pending = await _pendingReport();
+      final pending = variant.statusSlot ? await _pendingReport() : null;
       await tester.pumpWidget(
         RepaintBoundary(
           key: _captureKey,
@@ -234,7 +265,8 @@ void main() {
                 body: MailMessageList(
                   key: const ValueKey('localized-bulk-list'),
                   scopeId: 'visual/${language.name}',
-                  selectionRevision: '1',
+                  selectionScopeId: variant.statusSlot ? null : '1',
+                  selectionRevision: variant.statusSlot ? '1' : null,
                   strings: strings,
                   items: _rows(language),
                   busy: busy,
@@ -249,10 +281,13 @@ void main() {
                       busy = true;
                     });
                   },
-                  bulkStatus: busy
+                  onCancelBulk: busy && !variant.statusSlot
+                      ? () => stops++
+                      : null,
+                  bulkStatus: busy && variant.statusSlot
                       ? StudioMailBulkStatus(
                           strings: StudioStrings(language),
-                          report: pending,
+                          report: pending!,
                           running: true,
                           subjects: {
                             pending.plan.messages.single: _rows(
@@ -280,7 +315,7 @@ void main() {
         expect(header.controller!.position.maxScrollExtent, greaterThan(0));
       }
 
-      final checkbox = _key('mail-list-select-planning');
+      final checkbox = _key('mail-list-check-planning');
       await tester.tap(checkbox);
       await tester.pumpAndSettle();
       expect(tester.widget<Checkbox>(checkbox).value, isTrue);
@@ -312,14 +347,17 @@ void main() {
       expect(tester.widget<Checkbox>(checkbox).onChanged, isNull);
       expect(
         tester
-            .widget<PopupMenuButton<dynamic>>(_key('mail-list-bulk-actions'))
+            .widget<PopupMenuButton<Object>>(_key('mail-list-bulk-actions'))
             .enabled,
         isFalse,
       );
-      await _showControl(tester, _key('studio-mail-bulk-stop'));
+      final stopKey = variant.statusSlot
+          ? 'studio-mail-bulk-stop'
+          : 'mail-list-stop-bulk';
+      await _showControl(tester, _key(stopKey));
       _expectRowsUsable(tester);
       await _capture(tester, '$name-working');
-      await tester.tap(_key('studio-mail-bulk-stop'));
+      await tester.tap(_key(stopKey));
       await tester.pumpAndSettle();
       expect(stops, 1);
       expect(commands, 1);
@@ -327,7 +365,6 @@ void main() {
     });
   }
 
-  // Additional real-font receipt probes retained from peer PR #273.
   for (final language in StudioLanguage.values) {
     testWidgets(
       '${language.name} per-message receipt and details at 1.4 scale',

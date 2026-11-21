@@ -1,0 +1,116 @@
+{
+  "accepted": true,
+  "converter_version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+  "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "environment": {
+    "FLUTTER_ROOT": "/workspace/scratch/11a0888870d6/runtime/flutter-sdk",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "PUB_CACHE": "/workspace/scratch/11a0888870d6/runtime/pub-cache",
+    "TMPDIR": "/workspace/scratch/11a0888870d6/runtime/tmp"
+  },
+  "files": {
+    "commands.json": "5353fab26d28db81d55d9e7a3bbb499d00b4dfbf1003eaba467f5f45e29dc023",
+    "docx-odt-docx/transfer.docx": "8f9ae3eb06665962046b60c8813c235d8bbc4b4f18d342fa19519fe8a53447ca",
+    "docx-odt-docx/transfer.docx.restored.docx": "d4f57e2cf4da96426d26c3b4c0b963152bd4414b2b38bac0f7bf47a44dd88eac",
+    "docx-to-odt/transfer.odt": "174f891cc9f131192d3bf5b453583bacc8d2121ea81610f2ab34cdd6adc3c142",
+    "fixtures/active.docx": "f1975221434e03468401cc8b53dbcd48bd1bd8fed9b051092c4b926e3d729bf9",
+    "fixtures/transfer.docx": "fa4117170c86e388eb2f5179a8f189f946a441137451b1b039d3725335306237",
+    "fixtures/transfer.docx.restored.docx": "bbac3d5cff2197d767959d9e1eb1faa938d58e0c08c41eaa8a72d538347f806f",
+    "fixtures/transfer.odt": "76faccc0c584928e8cd723a4796ed9cb0a0f2f5646a74fab19036f5dfd338d2c",
+    "logs/convert-docx-to-odt.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/convert-docx-to-odt.stdout": "99d9c179b07ac4fdc6cc2096a26ad2c75203ca17c4681a01f9ccdaa98f3619ee",
+    "logs/convert-generated-odt-to-docx.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/convert-generated-odt-to-docx.stdout": "13865b148c844f081605c94e6d018e1980aeac9dc758e62ff74099a395739da4",
+    "logs/convert-odt-back-to-docx.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/convert-odt-back-to-docx.stdout": "d28815463aeb412fa77404e7b1ad87475692d1f0335e664eb7886971689782e8",
+    "logs/dart-version.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/dart-version.stdout": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4",
+    "logs/direct-docx.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/direct-docx.stdout": "32ed9f131e4c5a58fe2fbe077e75db56610a8ed707564d6c7aa2b8ee4e9b755c",
+    "logs/generate.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/generate.stdout": "126e7fa493b78393ce2b81c8cc422c30714ea56dff96f159835a54f78acbb5d0",
+    "logs/office-version.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/office-version.stdout": "6d49d29516f9fb3b3f02bf33238f0beae9980c1743128ce831deddcfb69bce89",
+    "logs/verify-docx-odt-docx.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/verify-docx-odt-docx.stdout": "d0b6982659354a95dea8583c5e40c52a03f6434ccf8690419d2c4ee9b33ae188",
+    "logs/verify-odt-docx.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/verify-odt-docx.stdout": "0547082c38e1347022877c84342712241905496d78ba91fcd4286116da2663a9",
+    "odt-to-docx/transfer.docx": "4847662de40a9bc2613b6bd4f76564abf4076d47f7ba7a06ebbdf655b8f594f7",
+    "odt-to-docx/transfer.docx.restored.docx": "8e0b0eca535d5feda2b3a9b5a58e5c1aa9b8fca518fd05be90683298e2fb371b",
+    "source-after.json": "51b9ac860145c7e5eea29d726e5527d905ef133036702caf574849804358ab05",
+    "source-before.json": "51b9ac860145c7e5eea29d726e5527d905ef133036702caf574849804358ab05"
+  },
+  "package_config_sha256": "938d5010cfe3ddfb164adc9ab36ef4cb5f530232f7cec52cf9f2d6e196716317",
+  "scope": "Actual LibreOffice file conversion and controlled Quds import/format callbacks; no live Zotero/plugin session.",
+  "source_head_after": "9228cb58e960ed9a6c0e91f2531e539c58689364",
+  "source_head_before": "9228cb58e960ed9a6c0e91f2531e539c58689364",
+  "source_input_count": 357,
+  "source_inputs_changed": [],
+  "source_inputs_unchanged": true,
+  "verification": {
+    "direct-docx": {
+      "activeFieldsAfterReopen": 6,
+      "citations": [
+        "body-a",
+        "body-b",
+        "footnote",
+        "endnote",
+        "table"
+      ],
+      "input": "/workspace/scratch/11a0888870d6/transfer-final-9228cb58/replay/fixtures/transfer.docx",
+      "noteIndexes": {
+        "body-a": 0,
+        "body-b": 0,
+        "endnote": 1,
+        "footnote": 1,
+        "table": 0
+      },
+      "restored": "/workspace/scratch/11a0888870d6/transfer-final-9228cb58/replay/fixtures/transfer.docx.restored.docx",
+      "result": "passed",
+      "scope": "DOCX carrier preservation and controlled Quds import/format callbacks; converter provenance is recorded separately; no live Zotero plugin."
+    },
+    "verify-docx-odt-docx": {
+      "activeFieldsAfterReopen": 6,
+      "citations": [
+        "body-a",
+        "body-b",
+        "footnote",
+        "endnote",
+        "table"
+      ],
+      "input": "/workspace/scratch/11a0888870d6/transfer-final-9228cb58/replay/docx-odt-docx/transfer.docx",
+      "noteIndexes": {
+        "body-a": 0,
+        "body-b": 0,
+        "endnote": 1,
+        "footnote": 1,
+        "table": 0
+      },
+      "restored": "/workspace/scratch/11a0888870d6/transfer-final-9228cb58/replay/docx-odt-docx/transfer.docx.restored.docx",
+      "result": "passed",
+      "scope": "DOCX carrier preservation and controlled Quds import/format callbacks; converter provenance is recorded separately; no live Zotero plugin."
+    },
+    "verify-odt-docx": {
+      "activeFieldsAfterReopen": 6,
+      "citations": [
+        "body-a",
+        "body-b",
+        "footnote",
+        "endnote",
+        "table"
+      ],
+      "input": "/workspace/scratch/11a0888870d6/transfer-final-9228cb58/replay/odt-to-docx/transfer.docx",
+      "noteIndexes": {
+        "body-a": 0,
+        "body-b": 0,
+        "endnote": 1,
+        "footnote": 1,
+        "table": 0
+      },
+      "restored": "/workspace/scratch/11a0888870d6/transfer-final-9228cb58/replay/odt-to-docx/transfer.docx.restored.docx",
+      "result": "passed",
+      "scope": "DOCX carrier preservation and controlled Quds import/format callbacks; converter provenance is recorded separately; no live Zotero plugin."
+    }
+  }
+}

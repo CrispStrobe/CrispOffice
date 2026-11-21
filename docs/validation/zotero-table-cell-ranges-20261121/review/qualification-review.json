@@ -1,0 +1,214 @@
+{
+  "status": "accepted",
+  "frozen_commit": "a6095c304ad2d6935f2ae6f8b74412038d19f142",
+  "source_input_count": 2978,
+  "source_map_sha256": "b02b5b7f62c34bf37698d53e0cb614df93ac30d955ce0ad8b1cb1707f6f18916",
+  "source_matches_committed_and_current_paths_blobs_modes": true,
+  "explicit_nonruntime_metadata_exclusion": {
+    "path": "packages/quds_office_engine/test/fixtures/word_reviews/.gitattributes",
+    "reason": "Hidden Git normalization attributes omitted by rg; all actual XML fixture bytes are included",
+    "current_matches_frozen_commit": true,
+    "git_blob": "72f09cacc687b275568aeabb66eae16a7e5f008d",
+    "sha256": "e013a05856343f54eb68a5020b9a95619540ab64fa06d2098b18c3b2a5a0a024",
+    "bound_during_test_execution": false
+  },
+  "bound_runtime_environment_files": 33,
+  "runtime_environment_unchanged_between_both_executions": true,
+  "audit_correction": "Only suite-path resolution changed; original rejection and raw execution retained",
+  "runner_v1_sha256": "832114d23dc75ce88debcdc5a29d8020c1da639eb6a60327e0495c1a7d716043",
+  "runner_v2_sha256": "c5da757113ab043cb80a0932cff2b7d136d7e06bb9dc3b6fb707d47ef69baba1",
+  "cohorts": [
+    {
+      "name": "engine-zotero",
+      "directory": "/workspace/scratch/a4ce103494d8/cell-validation/frozen-final/engine-zotero",
+      "passed": 1157,
+      "suites": 41,
+      "failures": 0,
+      "skips": 0,
+      "runtime_errors": 0,
+      "stderr_bytes": 0,
+      "excluded": {
+        "loading": 41
+      },
+      "stdout_sha256": "a64293f8c6366eadeaf87c85dfa93e79497b4b08a9603e5546b4ee9b03e12965",
+      "terminal": {
+        "success": true,
+        "type": "done",
+        "time": 66452
+      },
+      "raw_event_count": 2482
+    },
+    {
+      "name": "engine-owner-fidelity",
+      "directory": "/workspace/scratch/a4ce103494d8/cell-validation/frozen-remaining/engine-owner-fidelity",
+      "passed": 432,
+      "suites": 27,
+      "failures": 0,
+      "skips": 0,
+      "runtime_errors": 0,
+      "stderr_bytes": 0,
+      "excluded": {
+        "loading": 27
+      },
+      "stdout_sha256": "fc3d3d03e1c3818b64c079cc89fbc83806e244aa64c6941f044772c2ce606cc4",
+      "terminal": {
+        "success": true,
+        "type": "done",
+        "time": 11708
+      },
+      "raw_event_count": 980
+    },
+    {
+      "name": "editor-zotero-1",
+      "directory": "/workspace/scratch/a4ce103494d8/cell-validation/frozen-remaining/editor-zotero-1",
+      "passed": 224,
+      "suites": 10,
+      "failures": 0,
+      "skips": 0,
+      "runtime_errors": 0,
+      "stderr_bytes": 0,
+      "excluded": {
+        "loading": 10,
+        "lifecycle": 4
+      },
+      "stdout_sha256": "28da71c637eef0cfbe5da525a6830a074d961906ed8617d3ff0ef823be504ef7",
+      "terminal": {
+        "success": true,
+        "type": "done",
+        "time": 39720
+      },
+      "raw_event_count": 499
+    },
+    {
+      "name": "editor-zotero-2",
+      "directory": "/workspace/scratch/a4ce103494d8/cell-validation/frozen-remaining/editor-zotero-2",
+      "passed": 162,
+      "suites": 10,
+      "failures": 0,
+      "skips": 0,
+      "runtime_errors": 0,
+      "stderr_bytes": 0,
+      "excluded": {
+        "loading": 10,
+        "lifecycle": 2
+      },
+      "stdout_sha256": "cf1e5eb69eaace7453a54e0270be3d53184df278a1dcaafc72283fc333bba9a2",
+      "terminal": {
+        "success": true,
+        "type": "done",
+        "time": 58764
+      },
+      "raw_event_count": 371
+    },
+    {
+      "name": "editor-zotero-3",
+      "directory": "/workspace/scratch/a4ce103494d8/cell-validation/frozen-remaining/editor-zotero-3",
+      "passed": 256,
+      "suites": 10,
+      "failures": 0,
+      "skips": 0,
+      "runtime_errors": 0,
+      "stderr_bytes": 0,
+      "excluded": {
+        "loading": 10,
+        "lifecycle": 4
+      },
+      "stdout_sha256": "0d524e1b8c8847579ac0694378471e64660a6c380ff229bec635efdb47b06275",
+      "terminal": {
+        "success": true,
+        "type": "done",
+        "time": 28518
+      },
+      "raw_event_count": 570
+    },
+    {
+      "name": "editor-zotero-4",
+      "directory": "/workspace/scratch/a4ce103494d8/cell-validation/frozen-remaining/editor-zotero-4",
+      "passed": 117,
+      "suites": 10,
+      "failures": 0,
+      "skips": 0,
+      "runtime_errors": 0,
+      "stderr_bytes": 0,
+      "excluded": {
+        "loading": 10
+      },
+      "stdout_sha256": "fdeb8fbcca63d55f6458213825e1dad03970e8b152fe690d111d0326a10d129f",
+      "terminal": {
+        "success": true,
+        "type": "done",
+        "time": 18523
+      },
+      "raw_event_count": 278
+    },
+    {
+      "name": "editor-zotero-5",
+      "directory": "/workspace/scratch/a4ce103494d8/cell-validation/frozen-remaining/editor-zotero-5",
+      "passed": 170,
+      "suites": 9,
+      "failures": 0,
+      "skips": 0,
+      "runtime_errors": 0,
+      "stderr_bytes": 0,
+      "excluded": {
+        "loading": 9,
+        "lifecycle": 2
+      },
+      "stdout_sha256": "a0632841391572c2bf8abf96baa59e68b5cc4d362734aa1c0334ed0b6f17825e",
+      "terminal": {
+        "success": true,
+        "type": "done",
+        "time": 31978
+      },
+      "raw_event_count": 383
+    },
+    {
+      "name": "studio-zotero",
+      "directory": "/workspace/scratch/a4ce103494d8/cell-validation/frozen-remaining/studio-zotero",
+      "passed": 33,
+      "suites": 2,
+      "failures": 0,
+      "skips": 0,
+      "runtime_errors": 0,
+      "stderr_bytes": 0,
+      "excluded": {
+        "loading": 2
+      },
+      "stdout_sha256": "03dc5920debcd0fff029772a1bae9e5f8ba6c190e97cfed02425d40e03108985",
+      "terminal": {
+        "success": true,
+        "type": "done",
+        "time": 34144
+      },
+      "raw_event_count": 77
+    }
+  ],
+  "unique_vm_cases": 2551,
+  "unique_suite_files": 119,
+  "failures": 0,
+  "skips": 0,
+  "runtime_errors": 0,
+  "portable": {
+    "passed": 121,
+    "suites": 2,
+    "failures": 0,
+    "skips": 0,
+    "runtime_errors": 0,
+    "stderr_bytes": 0,
+    "excluded": {
+      "loading": 2
+    },
+    "stdout_sha256": "b8af972b8abfb14a2ae2c182f3594d125d7bf021d5f186f06c238b0a8e714cfb",
+    "terminal": {
+      "success": true,
+      "type": "done",
+      "time": 37220
+    },
+    "raw_event_count": 255
+  },
+  "portable_cases_are_overlapping": true,
+  "raw_case_inventory_sha256": "963ca9aa3a543049faa12ecc2fc4d174c36b7b978724c4b58582f0c896762274",
+  "audit_script_sha256": "e4f999fe672c0f11eef0d18d4b6488434ba02737e34f30dc2d1f86459b3610fb",
+  "methodology": "Original test files in standard runners; no synthesized or rewritten test modules. Engine concurrency two, Flutter concurrency one. Independent raw-event reconstruction excludes only successful loading/lifecycle events.",
+  "scope_limit": "Runtime equality covers recorded binaries, runner configuration, locks and manifests; it is not an exhaustive hash of every extracted dependency file."
+}

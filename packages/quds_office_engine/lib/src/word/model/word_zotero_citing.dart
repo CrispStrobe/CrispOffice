@@ -13,6 +13,7 @@ import 'word_tree.dart';
 import 'word_zotero.dart';
 import 'word_zotero_data.dart';
 import 'word_zotero_note.dart';
+import 'word_zotero_transfer.dart';
 
 /// A staged implementation of Zotero's HTTP document/field interface.
 ///
@@ -26,16 +27,22 @@ final class WordZoteroCitingSession {
     required this.documentId,
     this.insertionParagraph,
     this.insertionOffset = 0,
+    WmlParagraph? insertionEndParagraph,
     int? insertionEndOffset,
     WmlZoteroField? selectedField,
     ZoteroCitation? seedCitation,
-  }) : insertionEndOffset = insertionEndOffset ?? insertionOffset {
+  }) : insertionEndParagraph = insertionEndParagraph ?? insertionParagraph,
+       insertionEndOffset = insertionEndOffset ?? insertionOffset {
     if (document.trackRevisions || document.restrictEditing) {
       throw UnsupportedError(
         'Turn off Track changes and use an editable document before citing with Zotero.',
       );
     }
-    _nativeData = WordZoteroDocumentData.read(document);
+    _startedAsTransfer = WordZoteroTransfer.isTransferDocument(document);
+    _originalDataOverride = document.zoteroDocumentData;
+    _nativeData = _startedAsTransfer
+        ? ''
+        : WordZoteroDocumentData.read(document);
     _originalData = _nativeData;
     _body.addAll(_flowParagraphs(document.sections.expand((s) => s.blocks)));
     _bodyParagraphs.addAll(_body);
@@ -156,10 +163,13 @@ final class WordZoteroCitingSession {
         (_bodyParagraphs.contains(insertionParagraph) ||
             _insertionNote != null)) {
       if (insertionOffset < 0 ||
-          this.insertionEndOffset < insertionOffset ||
-          this.insertionEndOffset > insertionParagraph!.text.length) {
+          insertionOffset > insertionParagraph!.text.length ||
+          this.insertionEndOffset < 0 ||
+          this.insertionEndOffset > this.insertionEndParagraph!.text.length ||
+          (identical(insertionParagraph, this.insertionEndParagraph) &&
+              this.insertionEndOffset < insertionOffset)) {
         throw ArgumentError(
-          'The Zotero insertion range is outside the paragraph.',
+          'The Zotero insertion range is outside its paragraphs.',
         );
       }
       _selected ??= _fields
@@ -185,8 +195,21 @@ final class WordZoteroCitingSession {
       );
     }
     if (seedCitation != null) {
+      if (_startedAsTransfer) {
+        throw UnsupportedError(
+          'Import transferred references with Refresh before inserting a citation.',
+        );
+      }
       _seedCitation(seedCitation);
     }
+    // Flat paragraph order does not identify a table cell: the same objects
+    // can be moved into another cell, row or table without changing that view.
+    // Capture the exact ownership chain when the transaction starts, before
+    // Zotero opens a picker or stages any research content.
+    _originalNoteTextOwner =
+        identical(insertionParagraph, this.insertionEndParagraph)
+        ? null
+        : _findNoteTextOwner();
   }
 
   final WmlDocument document;
@@ -194,8 +217,13 @@ final class WordZoteroCitingSession {
   final WmlParagraph? insertionParagraph;
   final int insertionOffset;
 
-  /// End of the deliberate single-paragraph research-content replacement.
-  /// Other citing commands keep their existing caret/selected-field behavior.
+  /// End paragraph of a deliberate research-content replacement, defaulting
+  /// to [insertionParagraph]. Multi-paragraph ranges must consist of consecutive
+  /// ordinary paragraphs in one body section, authored note or table cell.
+  final WmlParagraph? insertionEndParagraph;
+
+  /// Exclusive end offset in [insertionEndParagraph]. Other citing commands
+  /// keep their existing caret/selected-field behavior.
   final int insertionEndOffset;
   final _body = <WmlParagraph>[];
   final _bodyParagraphs = Set<WmlParagraph>.identity();
@@ -209,15 +237,20 @@ final class WordZoteroCitingSession {
   final _sourceTexts = <WmlParagraph, String>{};
   final formattingWarnings = <String>{};
   late final String _originalData;
+  late final bool _startedAsTransfer;
+  late final String? _originalDataOverride;
   late String _nativeData;
   _CitingField? _selected;
   _CitingField? _stagedInsertion;
   WordZoteroNoteText? _noteText;
+  late final _ResearchRangeOwner? _originalNoteTextOwner;
   bool _notePlaceholdersConverted = false;
   int? _noteTextCaretTailLength;
   final _noteTextFields = <_CitingField, WordZoteroNotePlaceholder>{};
   bool _complete = false;
   bool _applied = false;
+  WordZoteroTransferPlan? _transferPlan;
+  WordZoteroCitingSession? _importSession;
   _BibliographyStyle? _bibliographyStyle;
   WmlParagraph? _insertedParagraph;
   WmlNote? _insertedNote;
@@ -227,8 +260,15 @@ final class WordZoteroCitingSession {
   ({WmlParagraph paragraph, int offset})? get caretAfter => _caretAfter;
 
   bool get isComplete => _complete;
-  bool get hasInsertedNoteText => _noteText != null;
-  String get documentData => _nativeData;
+  bool get hasInsertedNoteText =>
+      _importSession?.hasInsertedNoteText ?? (_noteText != null);
+  String get documentData => _importSession?.documentData ?? _nativeData;
+
+  /// A transfer remains detached until Zotero has finished recreating and
+  /// formatting every imported field and the editor commits the transaction.
+  bool get hasImportedDocument => _importSession != null;
+  bool get hasExportedDocument =>
+      _transferPlan != null && _importSession == null;
   bool get hasAcceptedSeedCitation => _fields.any(
     (field) =>
         field.seeded &&
@@ -237,15 +277,22 @@ final class WordZoteroCitingSession {
         (field.codeWasSet || field.textWasSet),
   );
   bool get hasChanges =>
+      _transferPlan != null ||
       _nativeData != _originalData ||
       _bibliographyStyle != null ||
       _noteText != null ||
       _fields.any((f) => f.changed);
-  int get changedFieldCount => _fields.where((f) => f.changed).length;
-  List<String> get previewTexts => List.unmodifiable(<String>[
-    if (_noteText != null) _noteText!.plainText,
-    ..._ordered().where((f) => !f.deleted && f.changed).map((f) => f.text),
-  ]);
+  int get changedFieldCount =>
+      _importSession?.changedFieldCount ??
+      (hasExportedDocument
+          ? _fields.length
+          : _fields.where((f) => f.changed).length);
+  List<String> get previewTexts =>
+      _importSession?.previewTexts ??
+      List.unmodifiable(<String>[
+        if (_noteText != null) _noteText!.plainText,
+        ..._ordered().where((f) => !f.deleted && f.changed).map((f) => f.text),
+      ]);
 
   /// All original paragraphs whose model state might be changed by [apply].
   /// The editor also snapshots the owning block lists and note buckets.
@@ -257,7 +304,7 @@ final class WordZoteroCitingSession {
   /// seed is placed, without saving preferences or changing the document if
   /// the following citation picker is cancelled or fails.
   void continueWithCitation(ZoteroCitation citation) {
-    if (!_complete || _applied) {
+    if (!_complete || _applied || _transferPlan != null) {
       throw StateError('Finish choosing the Zotero document style first.');
     }
     assertUnchanged();
@@ -300,14 +347,59 @@ final class WordZoteroCitingSession {
         'documentID': documentId,
         'outputFormat': 'html',
         'supportedNotes': <String>['footnotes', 'endnotes'],
-        'supportsImportExport': false,
-        'supportsTextInsertion': canInsertNoteText,
+        'supportsImportExport': true,
+        'supportsTextInsertion':
+            !WordZoteroTransfer.isTransferDocument(document) &&
+            canInsertNoteText,
         'supportsCitationMerging': true,
         'processorName': 'CrispOffice',
       };
     }
     if (args.isEmpty || args.first != documentId) {
       throw const FormatException('Zotero addressed another document.');
+    }
+    final imported = _importSession;
+    if (imported != null) {
+      if (command == 'Document.importDocument' ||
+          command == 'Document.exportDocument') {
+        throw UnsupportedError(
+          'Finish this Zotero transfer before starting another.',
+        );
+      }
+      if (command == 'Document.complete' &&
+          imported._fields.any(
+            (field) =>
+                field.original != null &&
+                !field.deleted &&
+                !field.unlinked &&
+                !field.textWasSet,
+          )) {
+        throw const FormatException(
+          'Zotero did not finish formatting every transferred reference. The transfer document was kept.',
+        );
+      }
+      final result = imported.handle(command, args);
+      if (command == 'Document.complete') _complete = true;
+      return result;
+    }
+    if (hasExportedDocument &&
+        command != 'Document.complete' &&
+        command != 'Document.activate' &&
+        command != 'Document.getDocumentData' &&
+        command != 'Document.setDocumentData') {
+      throw UnsupportedError(
+        'The document has already been prepared for transfer.',
+      );
+    }
+    if (_startedAsTransfer &&
+        command != 'Document.activate' &&
+        command != 'Document.getDocumentData' &&
+        command != 'Document.importDocument' &&
+        command != 'Document.canInsertField' &&
+        command != 'Document.complete') {
+      throw UnsupportedError(
+        'Import the transferred references before changing this document.',
+      );
     }
     switch (command) {
       case 'Document.activate':
@@ -316,9 +408,13 @@ final class WordZoteroCitingSession {
       case 'Document.canInsertField':
         _arity(args, 2);
         _httpType(args[1]);
-        return _canInsert || _selected != null;
+        return !_startedAsTransfer && (_canInsert || _selected != null);
       case 'Document.getDocumentData':
         _arity(args, 1);
+        if (hasExportedDocument ||
+            WordZoteroTransfer.isTransferDocument(document)) {
+          return 'ZOTERO_TRANSFER_DOCUMENT';
+        }
         // Earlier Quds versions accepted the callback but simplified its
         // values. Ask Zotero to send the style again when no applied native
         // paragraph layout is present, including a newly added bibliography.
@@ -336,8 +432,55 @@ final class WordZoteroCitingSession {
         );
       case 'Document.setDocumentData':
         _arity(args, 2);
-        _nativeData = WordZoteroDocumentData.toNative(_string(args[1]));
+        final data = WordZoteroDocumentData.toNative(_string(args[1]));
+        // Zotero writes its session data once more after every command. The
+        // exported carrier already contains that data; a different late value
+        // would make the carrier and persistent preferences disagree.
+        if (hasExportedDocument && data != _nativeData) {
+          throw StateError(
+            'Zotero changed document preferences after preparing the transfer.',
+          );
+        }
+        _nativeData = data;
         return null;
+      case 'Document.exportDocument':
+        _arity(args, 3);
+        _httpType(args[1]);
+        if (_fields.any((field) => field.changed) ||
+            _noteText != null ||
+            _bibliographyStyle != null ||
+            WordZoteroTransfer.isTransferDocument(document)) {
+          throw UnsupportedError(
+            'Finish formatting citations before preparing a separate Zotero transfer.',
+          );
+        }
+        assertUnchanged();
+        _transferPlan = WordZoteroTransfer.prepareExport(
+          document,
+          instructions: _string(args[2]),
+          documentData: _nativeData,
+        );
+        return null;
+      case 'Document.importDocument':
+        _arity(args, 2);
+        _httpType(args[1]);
+        if (!WordZoteroTransfer.isTransferDocument(document)) return false;
+        if (_fields.isNotEmpty ||
+            _noteText != null ||
+            _bibliographyStyle != null) {
+          throw UnsupportedError(
+            'This document mixes active citations and transfer data.',
+          );
+        }
+        assertUnchanged();
+        final plan = WordZoteroTransfer.prepareImport(document);
+        final importedSession = WordZoteroCitingSession(
+          document: plan.document,
+          documentId: documentId,
+        );
+        _transferPlan = plan;
+        _importSession = importedSession;
+        return true;
       case 'Document.cursorInField':
         _arity(args, 2);
         _httpType(args[1]);
@@ -523,6 +666,13 @@ final class WordZoteroCitingSession {
     if (!_complete) {
       throw StateError('Zotero has not completed this operation.');
     }
+    final imported = _importSession;
+    if (imported != null) {
+      imported.prepareReview();
+      formattingWarnings.addAll(imported.formattingWarnings);
+      return;
+    }
+    if (hasExportedDocument) return;
     for (final field in _fields.where((f) => !f.deleted && !f.unlinked)) {
       if (_bibliographyStyle != null &&
           _kind(field) == ZoteroFieldKind.bibliography &&
@@ -556,11 +706,15 @@ final class WordZoteroCitingSession {
   /// Rechecks original field identity and text. The editor additionally checks
   /// its monotonic revision, selection, mutation permissions and lifecycle.
   void assertUnchanged() {
+    _transferPlan?.assertUnchanged();
     if (_applied ||
         document.restrictEditing ||
         document.trackRevisions ||
         document.revisions.any((revision) => revision.accepted == null) ||
-        WordZoteroDocumentData.read(document) != _originalData) {
+        (_startedAsTransfer
+            ? (!WordZoteroTransfer.isTransferDocument(document) ||
+                  document.zoteroDocumentData != _originalDataOverride)
+            : WordZoteroDocumentData.read(document) != _originalData)) {
       throw StateError('The Zotero document changed while formatting.');
     }
     final body = _flowParagraphs(
@@ -674,6 +828,15 @@ final class WordZoteroCitingSession {
       throw StateError('Zotero has not completed this operation.');
     }
     assertUnchanged();
+    final transfer = _transferPlan;
+    if (transfer != null) {
+      prepareReview();
+      _importSession?.apply();
+      transfer.apply();
+      _caretAfter = null;
+      _applied = true;
+      return;
+    }
     if (_noteText != null) assertCanInsertNoteText();
     prepareReview();
     // Descending source positions keep the original handles/offsets valid.
@@ -937,74 +1100,276 @@ final class WordZoteroCitingSession {
         'Insert Zotero research content in the document body or an anchored footnote or endnote.',
       );
     }
-    if (paragraph.properties.fieldInstruction?.trim().isNotEmpty == true ||
-        paragraph.properties.pageNumberField) {
-      throw UnsupportedError(
-        'Insert Zotero research content in an ordinary paragraph, outside a paragraph-owned field.',
-      );
-    }
+    final ranges = _noteTextRanges();
     _noteTextInsertionType(0);
     _assertOutsideNativeFields();
-    final range = WmlRunEdit.normalizeRange(
-      paragraph,
-      insertionOffset,
-      insertionEndOffset,
-    );
-    if (range.start != insertionOffset ||
-        range.end != insertionEndOffset ||
-        !_isTextBoundary(paragraph.text, insertionOffset) ||
-        !_isTextBoundary(paragraph.text, insertionEndOffset) ||
-        _fields.any(
-          (field) =>
-              field.original != null &&
-              (field.original!.paragraphs.length > 1
-                  ? field.original!.paragraphs.contains(paragraph)
-                  : identical(field.original!.paragraph, paragraph) &&
-                        (insertionOffset == insertionEndOffset
-                            ? insertionOffset >= field.original!.start &&
-                                  insertionOffset < field.original!.end
-                            : insertionOffset < field.original!.end &&
-                                  insertionEndOffset > field.original!.start)),
-        )) {
-      throw UnsupportedError(
-        'Choose ordinary text outside existing fields before inserting Zotero research content.',
-      );
-    }
-    if (insertionEndOffset > insertionOffset) {
-      var offset = 0;
-      for (final inline in paragraph.inlines) {
-        if (inline is WmlRun) {
-          final end = offset + inline.text.length;
-          final selected =
-              offset < insertionEndOffset && end > insertionOffset ||
-              inline.text.isEmpty &&
-                  offset >= insertionOffset &&
-                  offset <= insertionEndOffset;
-          if (selected && (inline.isAtomic || inline.commentIds.isNotEmpty)) {
-            throw UnsupportedError(
-              'A Zotero research-content selection must not contain note references, pictures, fields or commented text.',
-            );
-          }
-          offset = end;
-        } else if ((inline is WmlBookmarkBoundary &&
-                offset >= insertionOffset &&
-                offset <= insertionEndOffset) ||
-            (offset > insertionOffset && offset < insertionEndOffset)) {
-          throw UnsupportedError(
-            'A Zotero research-content selection must not cross structural markers.',
-          );
-        }
+    final fieldsByParagraph = <WmlParagraph, List<WmlZoteroField>>{};
+    for (final field in _fields) {
+      final original = field.original;
+      if (original == null) continue;
+      for (final paragraph in original.paragraphs) {
+        fieldsByParagraph.putIfAbsent(paragraph, () => []).add(original);
       }
     }
-    WordContentControls.assertCanEdit(
-      paragraph,
-      insertionOffset,
-      insertionEndOffset,
-    );
-    WordContentControls.assertCanSplit(paragraph, insertionOffset);
-    WordContentControls.assertCanSplit(paragraph, insertionEndOffset);
+    for (final slice in ranges) {
+      final paragraph = slice.paragraph;
+      final start = slice.start;
+      final end = slice.end;
+      if (paragraph.properties.fieldInstruction?.trim().isNotEmpty == true ||
+          paragraph.properties.pageNumberField) {
+        throw UnsupportedError(
+          'Insert Zotero research content in ordinary paragraphs, outside paragraph-owned fields.',
+        );
+      }
+      final range = WmlRunEdit.normalizeRange(paragraph, start, end);
+      if (range.start != start ||
+          range.end != end ||
+          !_isTextBoundary(paragraph.text, start) ||
+          !_isTextBoundary(paragraph.text, end) ||
+          (fieldsByParagraph[paragraph] ?? const <WmlZoteroField>[]).any(
+            (field) =>
+                field.paragraphs.length > 1 ||
+                (ranges.length > 1 &&
+                    field.start == field.end &&
+                    field.start >= start &&
+                    field.start <= end) ||
+                (start == end
+                    ? ranges.length == 1 &&
+                          start >= field.start &&
+                          start < field.end
+                    : start < field.end && end > field.start),
+          )) {
+        throw UnsupportedError(
+          'Choose ordinary text outside existing fields before inserting Zotero research content.',
+        );
+      }
+      // Empty selected paragraphs still own zero-width source markup. Scan
+      // them too when their paragraph boundary is part of the replacement.
+      if (end > start || ranges.length > 1) {
+        var offset = 0;
+        for (final inline in paragraph.inlines) {
+          if (inline is WmlRun) {
+            final runEnd = offset + inline.text.length;
+            final selected =
+                offset < end && runEnd > start ||
+                inline.text.isEmpty && offset >= start && offset <= end;
+            if (selected && (inline.isAtomic || inline.commentIds.isNotEmpty)) {
+              throw UnsupportedError(
+                'A Zotero research-content selection must not contain note references, pictures, fields or commented text.',
+              );
+            }
+            offset = runEnd;
+          } else if ((inline is WmlBookmarkBoundary &&
+                  offset >= start &&
+                  offset <= end) ||
+              (offset > start && offset < end) ||
+              (ranges.length > 1 &&
+                  offset >= start &&
+                  offset <= end &&
+                  inline is! WmlFieldBoundary &&
+                  !(inline is WmlNoteMarker &&
+                      identical(paragraph, insertionParagraph) &&
+                      _insertionNote != null &&
+                      offset == 0 &&
+                      identical(
+                        _insertionNote!.note.blocks.firstOrNull,
+                        paragraph,
+                      )))) {
+            throw UnsupportedError(
+              'A Zotero research-content selection must not cross structural markers.',
+            );
+          }
+        }
+      }
+      WordContentControls.assertCanEdit(paragraph, start, end);
+      WordContentControls.assertCanSplit(paragraph, start);
+      WordContentControls.assertCanSplit(paragraph, end);
+    }
     final text = _noteText;
     if (text != null) _assertNoteBlockTarget(text);
+  }
+
+  /// Resolve paragraph-boundary ownership without using the flattened view.
+  /// A multi-paragraph replacement cannot consume a table, frame, control or
+  /// section boundary, even when the visible endpoints look like plain text.
+  List<({WmlParagraph paragraph, int start, int end})> _noteTextRanges() {
+    final first = insertionParagraph;
+    final last = insertionEndParagraph;
+    if (first == null || last == null) {
+      throw UnsupportedError('Choose an editable Zotero insertion range.');
+    }
+    if (identical(first, last)) {
+      return [
+        (paragraph: first, start: insertionOffset, end: insertionEndOffset),
+      ];
+    }
+    final owner = _findNoteTextOwner();
+    if (owner == null || _originalNoteTextOwner == null) {
+      throw UnsupportedError(
+        'Select consecutive ordinary paragraphs in one document section, authored note or table cell, outside content controls and drawings.',
+      );
+    }
+    if (!_originalNoteTextOwner.matches(owner)) {
+      throw StateError('The Zotero research-content container changed.');
+    }
+    final blocks = owner.blocks;
+    final from = blocks.indexOf(first);
+    final to = blocks.indexOf(last);
+    if (to <= from ||
+        blocks.lastIndexOf(first) != from ||
+        blocks.lastIndexOf(last) != to ||
+        to - from >= 10000) {
+      throw UnsupportedError(
+        'Select an ordered range of at most 10,000 paragraphs in one document section, authored note or table cell.',
+      );
+    }
+    final selected = blocks.sublist(from, to + 1);
+    if (selected.any((block) => block is! WmlParagraph) ||
+        selected.toSet().length != selected.length ||
+        selected.whereType<WmlParagraph>().any(
+          (paragraph) =>
+              WordContentControls.hasStructuralControls(paragraph) ||
+              paragraph.properties.bookmarkName != null ||
+              paragraph.properties.sourceBookmarkName != null ||
+              _hasUnrepresentedFieldBoundary(paragraph),
+        )) {
+      throw UnsupportedError(
+        'A Zotero research-content selection must not cross tables, frames, content controls or paragraph-owned bookmarks and field boundaries.',
+      );
+    }
+    final selectedParagraphs = selected.cast<WmlParagraph>();
+    final occurrences = Map<WmlParagraph, int>.identity();
+    for (final paragraph in selectedParagraphs) {
+      occurrences[paragraph] = 0;
+    }
+    var scanned = 0;
+    for (final paragraph in _allParagraphOccurrences()) {
+      if (++scanned > 1000000) {
+        throw UnsupportedError(
+          'This document is too complex for one Zotero research-content replacement.',
+        );
+      }
+      final count = occurrences[paragraph];
+      if (count != null) occurrences[paragraph] = count + 1;
+    }
+    if (occurrences.values.any((count) => count != 1)) {
+      throw UnsupportedError(
+        'A selected paragraph belongs to more than one document position or story.',
+      );
+    }
+    return [
+      for (final paragraph in selectedParagraphs)
+        (
+          paragraph: paragraph,
+          start: identical(paragraph, first) ? insertionOffset : 0,
+          end: identical(paragraph, last)
+              ? insertionEndOffset
+              : paragraph.text.length,
+        ),
+    ];
+  }
+
+  /// An eligible range owns one actual block list. Only table-cell ancestry
+  /// extends the ordinary section/note flow; controls and drawing stories do
+  /// not become editable just because their descendants are plain paragraphs.
+  _ResearchRangeOwner? _findNoteTextOwner() {
+    final first = insertionParagraph;
+    final last = insertionEndParagraph;
+    if (first == null || last == null) return null;
+    final owners = <_ResearchRangeOwner>[];
+    var visited = 0;
+    bool visit(List<WmlBlock> blocks, List<Object> ancestors, int depth) {
+      if (depth > 64 || ++visited > 1000000) return false;
+      final path = <Object>[...ancestors, blocks];
+      final from = blocks.indexOf(first);
+      if (from >= 0) {
+        final to = blocks.indexOf(last);
+        // Pin an initially eligible ownership range too: moving an endpoint
+        // from an adjacent cell must not create eligibility after the picker
+        // was opened, even when the flattened paragraph order is unchanged.
+        if (to <= from ||
+            to - from >= 10000 ||
+            blocks.lastIndexOf(first) != from ||
+            blocks.lastIndexOf(last) != to ||
+            blocks
+                .skip(from)
+                .take(to - from + 1)
+                .any((block) => block is! WmlParagraph)) {
+          return false;
+        }
+        owners.add(_ResearchRangeOwner(blocks, path));
+        if (owners.length > 1) return false;
+      }
+      for (final block in blocks) {
+        if (++visited > 1000000) return false;
+        if (block is! WmlTable) continue;
+        for (final row in block.rows) {
+          if (++visited > 1000000) return false;
+          for (final cell in row.cells) {
+            if (++visited > 1000000) return false;
+            // Continuations belong to the originating merged cell and must
+            // never expose a separate replacement range, even when malformed
+            // source content puts ordinary paragraphs inside them.
+            if (cell.vMerge == WmlVMerge.cont) continue;
+            if (!visit(cell.blocks, [
+              ...path,
+              block,
+              block.rows,
+              row,
+              row.cells,
+              cell,
+            ], depth + 1)) {
+              return false;
+            }
+          }
+        }
+      }
+      return true;
+    }
+
+    if (_insertionNote == null) {
+      for (final section in document.sections) {
+        if (!visit(section.blocks, [section], 0)) return null;
+      }
+    } else {
+      final note = _insertionNote!.note;
+      if (!visit(note.blocks, [note], 0)) return null;
+    }
+    return owners.length == 1 ? owners.single : null;
+  }
+
+  Iterable<WmlParagraph> _allParagraphOccurrences() sync* {
+    for (final section in document.sections) {
+      yield* WordTree.paragraphs(section.blocks);
+      yield* section.header;
+      yield* section.footer;
+      yield* section.firstHeader;
+      yield* section.firstFooter;
+      yield* section.evenHeader;
+      yield* section.evenFooter;
+    }
+    for (final note in [...document.footnotes, ...document.endnotes]) {
+      yield* WordTree.paragraphs(note.blocks);
+    }
+    for (final comment in document.comments) {
+      yield* comment.paragraphs;
+    }
+  }
+
+  static bool _hasUnrepresentedFieldBoundary(WmlParagraph paragraph) {
+    // Imports also set these legacy flags alongside actual inline packets.
+    // The story scan handles represented packets; only an unrepresented flag
+    // leaves paragraph-boundary ownership impossible to establish here.
+    final kinds = paragraph.inlines
+        .whereType<WmlFieldBoundary>()
+        .map((boundary) => boundary.kind)
+        .toSet();
+    return paragraph.properties.fieldBegin &&
+            !kinds.contains(WmlFieldBoundaryKind.begin) ||
+        paragraph.properties.fieldSeparate &&
+            !kinds.contains(WmlFieldBoundaryKind.separate) ||
+        paragraph.properties.fieldEnd &&
+            !kinds.contains(WmlFieldBoundaryKind.end);
   }
 
   /// Native field result runs can look like ordinary text even when their
@@ -1019,8 +1384,9 @@ final class WordZoteroCitingSession {
       _insertionNote?.note.blocks ??
           document.sections.expand((section) => section.blocks),
     ).toList();
-    final target = paragraphs.indexOf(insertionParagraph!);
-    if (target < 0) {
+    final firstTarget = paragraphs.indexOf(insertionParagraph!);
+    final lastTarget = paragraphs.indexOf(insertionEndParagraph!);
+    if (firstTarget < 0 || lastTarget < firstTarget) {
       throw StateError('The Zotero research-content story changed.');
     }
     final stack = <_ResearchFieldScan>[];
@@ -1077,12 +1443,14 @@ final class WordZoteroCitingSession {
               // original citation packets to be editable and untouched.
               continue;
             }
-            if (target < open.paragraph || target > index) continue;
-            final start = target == open.paragraph ? open.start : 0;
-            final end = target == index
-                ? offset
-                : insertionParagraph!.text.length;
-            if (insertionOffset <= end && insertionEndOffset >= start) {
+            final startsBeforeEnd =
+                firstTarget < index ||
+                firstTarget == index && insertionOffset <= offset;
+            final endsAfterStart =
+                lastTarget > open.paragraph ||
+                lastTarget == open.paragraph &&
+                    insertionEndOffset >= open.start;
+            if (startsBeforeEnd && endsAfterStart) {
               throw UnsupportedError(
                 'Choose ordinary text away from Word field results and boundaries before inserting Zotero research content.',
               );
@@ -1220,11 +1588,42 @@ final class WordZoteroCitingSession {
   void _applyNoteText() {
     final text = _noteText!;
     final paragraph = insertionParagraph!;
+    final endParagraph = insertionEndParagraph!;
+    final multipleParagraphs = !identical(paragraph, endParagraph);
+    final owner = _insertionNote;
+    // The automatic note separator is not selected prose. Capture it before
+    // joining the suffix, whose own leading space must remain independent.
+    final at =
+        multipleParagraphs &&
+            insertionOffset == 0 &&
+            owner != null &&
+            identical(owner.note.blocks.firstOrNull, paragraph) &&
+            paragraph.text.startsWith(' ') &&
+            (paragraph.inlines.any((inline) => inline is WmlNoteMarker) ||
+                (owner.note.addReference && !owner.note.hasReferenceMarkers))
+        ? 1
+        : insertionOffset;
+    final suffixProperties = endParagraph.properties.copy();
     final slot = WordTree.locate(document, paragraph);
     if (slot == null) {
       throw StateError('The Zotero note insertion point changed.');
     }
-    if (insertionEndOffset != insertionOffset) {
+    if (multipleParagraphs) {
+      final lastIndex = slot.parent.indexOf(endParagraph);
+      if (lastIndex <= slot.index) {
+        throw StateError('The Zotero replacement paragraphs changed.');
+      }
+      // All selected boundaries were qualified before any field mutation.
+      // Later fields have already refreshed, so retain their actual suffix
+      // runs and markup rather than rebuilding from captured plain text.
+      final suffix = WmlRunEdit.splitParagraphInlines(
+        endParagraph,
+        insertionEndOffset,
+      );
+      WmlRunEdit.replaceRange(paragraph, at, paragraph.text.length, '');
+      paragraph.inlines.addAll(suffix);
+      slot.parent.removeRange(slot.index + 1, lastIndex + 1);
+    } else if (insertionEndOffset != insertionOffset) {
       WmlRunEdit.replaceRange(
         paragraph,
         insertionOffset,
@@ -1305,21 +1704,22 @@ final class WordZoteroCitingSession {
         ..indent = WmlIndent(left: indent, hanging: 9)
         ..explicitIndent = true;
     }
-    _noteTextCaretTailLength = paragraph.text.length - insertionOffset;
+    _noteTextCaretTailLength = paragraph.text.length - at;
     if (blocks.any((block) => block is WmlTable) ||
         text.listItems.isNotEmpty ||
         paragraphs.any((p) => p.properties.headingLevel != null)) {
       // Preserve native tables and keep headings/list formatting independent
       // from surrounding prose. Cell paragraphs never absorb outside text.
-      final originalProperties = paragraph.properties.copy();
+      final originalProperties = suffixProperties;
       final tail = _splitNoteTextParagraph(
         paragraph,
+        offset: at,
         preserveReferenceSpace: blocks.first is WmlTable,
       );
       final owner = _insertionNote;
       final referenceSpacePrefix =
           owner != null &&
-          insertionOffset == 1 &&
+          at == 1 &&
           paragraph.text == ' ' &&
           identical(
             WordNotes.editableParagraphs(owner.note).firstOrNull,
@@ -1352,7 +1752,12 @@ final class WordZoteroCitingSession {
       // and separator in the original main-flow paragraph, outside the cells.
       if (emptyPrefix) slot.parent.removeAt(slot.index);
       final insertedAt = slot.index + (emptyPrefix ? 0 : 1);
-      slot.parent.insertAll(insertedAt, blocks);
+      // Public model owners can retain a valid List<WmlParagraph>. Bulk
+      // insertion checks the iterable's wider runtime type before its values;
+      // each actual paragraph must instead be checked against that owner.
+      for (var index = 0; index < blocks.length; index++) {
+        slot.parent.insert(insertedAt + index, blocks[index]);
+      }
       if (blocks.last is WmlParagraph) {
         final last = blocks.last as WmlParagraph;
         _caretAfter = (paragraph: last, offset: last.text.length);
@@ -1380,23 +1785,19 @@ final class WordZoteroCitingSession {
     // and last inserted paragraphs share the existing surrounding paragraph.
     if (paragraphs.length == 1) {
       final insertedLength = paragraphs.single.text.length;
-      WmlRunEdit.insertInlines(
-        paragraph,
-        insertionOffset,
-        paragraphs.single.inlines,
-      );
-      _caretAfter = (
-        paragraph: paragraph,
-        offset: insertionOffset + insertedLength,
-      );
+      WmlRunEdit.insertInlines(paragraph, at, paragraphs.single.inlines);
+      _caretAfter = (paragraph: paragraph, offset: at + insertedLength);
     } else {
-      final tail = _splitNoteTextParagraph(paragraph);
+      final tail = _splitNoteTextParagraph(paragraph, offset: at);
       paragraph.inlines.addAll(paragraphs.first.inlines);
       for (final inserted in paragraphs.skip(1)) {
         inserted.properties = paragraph.properties.copy();
       }
       final last = paragraphs.last;
       final end = last.text.length;
+      if (multipleParagraphs && tail.isNotEmpty) {
+        last.properties = suffixProperties;
+      }
       last.inlines.addAll(tail);
       slot.parent.insertAll(slot.index + 1, paragraphs.skip(1));
       _caretAfter = (paragraph: last, offset: end);
@@ -1405,13 +1806,15 @@ final class WordZoteroCitingSession {
 
   List<WmlInline> _splitNoteTextParagraph(
     WmlParagraph paragraph, {
+    int? offset,
     bool preserveReferenceSpace = false,
   }) {
     // A note's automatic reference mark is not editable text. At offset zero
     // it belongs before the inserted content, including a leading heading or
     // list; it must not move to the suffix paragraph with ordinary boundaries.
+    final at = offset ?? insertionOffset;
     final leadingMarkers = <WmlNoteMarker>[];
-    if (_insertionNote != null && insertionOffset == 0) {
+    if (_insertionNote != null && at == 0) {
       for (final inline in paragraph.inlines) {
         if (inline is WmlRun && inline.text.isNotEmpty) break;
         if (inline is WmlNoteMarker) leadingMarkers.add(inline);
@@ -1421,7 +1824,7 @@ final class WordZoteroCitingSession {
     final splitOffset =
         preserveReferenceSpace &&
             owner != null &&
-            insertionOffset == 0 &&
+            at == 0 &&
             paragraph.text.startsWith(' ') &&
             identical(
               WordNotes.editableParagraphs(owner.note).firstOrNull,
@@ -1430,7 +1833,7 @@ final class WordZoteroCitingSession {
             (leadingMarkers.isNotEmpty ||
                 (owner.note.addReference && !owner.note.hasReferenceMarkers))
         ? 1
-        : insertionOffset;
+        : at;
     final tail = WmlRunEdit.splitParagraphInlines(paragraph, splitOffset);
     for (final marker in leadingMarkers) {
       if (tail.remove(marker)) paragraph.inlines.add(marker);
@@ -1897,6 +2300,18 @@ final class WordZoteroCitingSession {
       }
     }
   }
+}
+
+final class _ResearchRangeOwner {
+  _ResearchRangeOwner(this.blocks, this.path);
+
+  final List<WmlBlock> blocks;
+  final List<Object> path;
+
+  bool matches(_ResearchRangeOwner other) =>
+      identical(blocks, other.blocks) &&
+      path.length == other.path.length &&
+      path.indexed.every((entry) => identical(entry.$2, other.path[entry.$1]));
 }
 
 final class _CitingField {

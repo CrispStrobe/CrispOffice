@@ -4,22 +4,94 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
-- Preserve distinct inline header/footer pictures and legitimate body frames
-  while reconciling the incoming Word renderer. Deduplicate repeated references
-  to one authored visual occurrence; retain distinct pictures even when content
-  and placement match. Include tall inline headers in body clearance and carry
-  only body frames across continuous sections so footer pictures cannot create
-  extra pages. Keep direct and inherited table formatting precedence, authored
-  border widths, inherited omitted widths and sparse spacing provenance through
-  save/reopen.
+- Extend Word VBA with section `Headers` / `Footers`, typed `HeadersFooters`
+  and `HeaderFooter` aliases, and primary/first-page/even-page paragraph
+  selection through `Range.Paragraphs`. Reuse insertion, font/paragraph
+  formatting, tabs and spacing with complete story identity and normal
+  transaction/policy boundaries. Guard native paragraph selection against
+  inherited, shared, ambiguous and opaque header/footer targets; reject
+  whole-story writes and nonbody list operations. Add a runnable BAS example
+  and compiler, native, CLI/MCP and portable regression coverage. See the
+  [header/footer contract](../../docs/VBA_WORD_MACROS.md#existing-header-and-footer-paragraphs).
+
+- Preserve adjacent equal-target ODT hyperlinks as one range with independently
+  styled spans, preventing lost Unicode transfer metadata in LibreOffice.
+  Define the generated `Bibliography` style through referenced-style export,
+  retaining imported custom definitions and sparse styleless documents.
+
+- Add detached `WordZoteroTransfer` / `WordZoteroTransferPlan` export and import,
+  `ZoteroCitingCommand.exportDocument` and the document import/export handshake.
+  Stage bounded hyperlink carriers separately from the source, retain raw
+  citation/bibliography metadata and document preferences, and require native
+  formatting of every imported field before publication. Support DOCX carriers,
+  ODT carrier export, the legacy marker and verified Google Docs link variants.
+  Preserve body/table/uniquely anchored note ownership, surrounding rich content
+  and paragraph identities; reject damaged, mixed, protected, stale or excessive
+  transfers. Direct native ODT reference-mark import remains separate. See the
+  [transfer work record](../../docs/validation/zotero-transfer-20261121/README.md)
+  for exact local and converter acceptance boundaries.
+
+- Add `OfficeProofingProvider.categories` and the optional
+  `OfficeProofingService.check(only: ...)` provider filter for category-aware
+  scheduling. Providers default to all categories; the bundled German spelling
+  provider declares spelling only. Existing timeout, result-validation and
+  provider-ownership behavior applies to filtered checks.
+
+- Extend section-scoped Word VBA `PageSetup` with `Orientation`, zero-argument
+  `TogglePortrait`, and four `SectionStart` modes. Add guarded native
+  `docx.pageOrientation` and `docx.sectionStart` operations, preserving aliases,
+  helper calls, source order, recording and whole-run rollback. Orientation
+  changes swap dimensions while retaining named margins, header/footer
+  distances and paper code; explicit square-page orientation survives reopen.
+  Section-start edits own only the native break attribute and preserve unrelated
+  geometry and revision metadata. Refuse ambiguous orientation/source identity
+  and unsupported new-column starts. Add an executable BAS example, source,
+  native, transaction and portable checks; see the
+  [section-controls contract](../../docs/VBA_WORD_MACROS.md#section-orientation-and-start-controls).
+
+- Replace Zotero research-content selections across consecutive ordinary
+  paragraphs in one body section or authored note. Preserve rich prefix/suffix
+  content, active citation order, native note separators and DOCX reopening;
+  reject ambiguous ownership and selected structural/protected content before
+  mutation. Add optional `insertionEndParagraph` to the staged native session.
+
+- Extend Word VBA with explicit `Sections(i)` / `Sections.Item(i)`, typed
+  `Section` and `PageSetup` aliases, `With`, and required `ByVal` helpers. Add
+  eight write-only page geometry setters for dimensions, margins and
+  header/footer distances, using exact twentieth-points and the existing
+  measurement conversions. Lower each setter to guarded `docx.pageSetup`.
+  Preserve unedited sparse section XML, namespace aliases and opaque DOCM
+  parts; select custom paper on width/height writes, including same-value
+  assignments. Validate each detached intermediate page body and column width,
+  reject unsupported source geometry/settings, and retain whole-run rollback,
+  recording and ordinary host policy. Keep reads, broadcast page setup,
+  orientation and paper-size selection outside the documented source slice.
+  Add compiler, native, transaction and portable examples; see the
+  [source-bound qualification record](../../docs/validation/word-vba-paragraph-pagination-20261121/README.md)
+  for executed checks and remaining Office/Flutter host acceptance.
+
+- Read Zotero JSON citation placement consistently on the VM and JavaScript:
+  numeric values 0, 1 and 2 include equivalent decimal/exponent spellings;
+  fractional, out-of-range, string and boolean values remain invalid. Preserve
+  native XML's strict placement spellings and add literal-JSON parity cases.
+
+- Preserve vertical and combined row/column merges in Zotero research tables.
+  Normalize a bounded logical grid into native restart/continuation cells and
+  remap citation/list indexes by paragraph identity. Count generated cells and
+  paragraphs against whole-note budgets and reject malformed or cross-group spans.
+- Keep native merged-table shading and borders on every occupied page, with
+  source paragraph ownership distinct from physical row geometry. Retain the
+  current conservative row-height allocation and reject invalid merge chains.
+- Preserve explicit per-cell border enable/disable overrides in DOCX export and
+  keep tall merged-cell page cuts open independently of inherited border style.
 
 - Preserve horizontal merged cells in Zotero Add Note/Add Annotation tables.
   Map bounded `colspan` to native `gridSpan`, reconcile `data-colwidth` vectors
   by logical column (including unspecified zero entries), and sum covered grid
   widths for each cell. Retain rich text, lists, pictures and active citations
   through body/note insertion, DOCX save/reopen and one undo/redo transaction.
-  Keep whole-note resource bounds and refuse vertical merges, nested tables,
-  unequal logical row widths and unsupported table groups/styles.
+  Keep whole-note resource bounds and reject malformed logical grids, nested
+  tables and unsupported table groups/styles.
 - Advertise native Zotero citation merging and report adjacency to the next
   enumerated field only for physically touching citation packets in the same
   paragraph/story/note. Let Zotero own order, deduplication and formatting;
@@ -28,6 +100,14 @@ All notable changes to `quds_office_engine` are documented here.
   a merge. See the
   [continuation validation record](../../docs/validation/zotero-merged-cells-20261120/README.md)
   for qualified local source checks and remaining installed-application acceptance.
+
+- Render inline header/footer pictures and retain distinct images when their
+  dimensions match. Keep continuous-section decoration separate from body
+  frames so incremental layout preserves the same pictures as full layout.
+  Resolve table-style header formatting through the existing cascade, preserving
+  direct run overrides and explicit border widths when style color fills an
+  automatic value. Keep imported compact spacing sparse on export so later style
+  changes remain effective. Retain the imported empty-paragraph border behavior.
 
 - Extend Word VBA with inches, centimeters, millimeters and picas conversions
   to/from points, plus official named arguments for all ten measurement

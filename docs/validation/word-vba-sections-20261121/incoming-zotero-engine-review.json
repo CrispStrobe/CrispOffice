@@ -1,0 +1,131 @@
+{
+  "finished": "2026-11-21T06:09:54.680099+00:00",
+  "source": {
+    "rootHead": "81b762008dfca9a8ab8d32cd9159a8d93ec3c6f2",
+    "incoming": "3da241d5f1f3e43d7be47f00bcf7fbe62bd8272b",
+    "mergeBase": "2cd11ced136a30354169fd0043e002079bcabfa3",
+    "incomingEngineFiles": [
+      {
+        "path": "packages/quds_office_engine/lib/quds_office_engine.dart",
+        "sha256": "2d21f087a4f283e89cdb28de94b8fa621a24c46463effcd0f5330526f563296a",
+        "status": "M"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+        "sha256": "1eb15bb89c3461d134b984499f1374ca4e11e08e3ea48c760b26b3720921dbbe",
+        "status": "M"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_data.dart",
+        "sha256": "68502cb6ed65a521ebc3505c43369fcab603b1157d2dfe03fe845f44e9a9fc8c",
+        "status": "M"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_transfer.dart",
+        "sha256": "d5ee062c5f3bd2f5275e35db8f560283dd901f9eaf08064bd1c7e1f6bf32c2af",
+        "status": "A"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/zotero/zotero_citing.dart",
+        "sha256": "bd2acce4bb23af14783cf70f78c3dcb6a534243892ef8dbdb2b16440b19d69ce",
+        "status": "M"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+        "sha256": "5198947823928eb1a0cb344a4c73dcd664bbb7e45254850dac656352dfd998fc",
+        "status": "M"
+      },
+      {
+        "path": "packages/quds_office_engine/test/word_zotero_transfer_session_test.dart",
+        "sha256": "34a569d6368dd5ce1183f565e6a031d990ab99a3900cdd278298b2c2dad733a1",
+        "status": "A"
+      },
+      {
+        "path": "packages/quds_office_engine/test/zotero_citing_test.dart",
+        "sha256": "c1e8a95be64c0dba01e5b93b9a0221e0363a77bc6d38b41115eed1b9ad520707",
+        "status": "M"
+      },
+      {
+        "path": "packages/quds_office_engine/test/zotero_transfer_protocol_test.dart",
+        "sha256": "cc2a89bd83e285a6ce3227e16522361ddc8ebf5b0a4487e9b96b96f01f8b7e50",
+        "status": "A"
+      }
+    ],
+    "overlap": []
+  },
+  "dependencies": {
+    "hostedPackages": 54,
+    "mismatches": {}
+  },
+  "initialExactIncomingTests": {
+    "passed": 798,
+    "failed": 0,
+    "skipped": 0,
+    "completed": true,
+    "files": 28
+  },
+  "initialStrictAnalysis": {
+    "exitCode": 1,
+    "issues": 21,
+    "code": "curly_braces_in_flow_control_structures",
+    "file": "lib/src/word/model/word_zotero_transfer.dart"
+  },
+  "correctedTests": {
+    "passed": 30,
+    "failed": 0,
+    "skipped": 0,
+    "completed": true,
+    "files": 2
+  },
+  "correctedStrictAnalysis": {
+    "command": [
+      "/workspace/scratch/1be64193e422/runtime/dart",
+      "analyze",
+      "--fatal-infos",
+      "lib",
+      "test/word_zotero_citing_test.dart",
+      "test/word_zotero_transfer_session_test.dart",
+      "test/zotero_citing_test.dart",
+      "test/zotero_transfer_protocol_test.dart"
+    ],
+    "cwd": "/workspace/scratch/1be64193e422/zotero-transfer-validation/packages/quds_office_engine",
+    "started": "2026-11-21T06:08:36.433855+00:00",
+    "finished": "2026-11-21T06:08:43.919000+00:00",
+    "exitCode": 0
+  },
+  "correction": {
+    "file": "packages/quds_office_engine/lib/src/word/model/word_zotero_transfer.dart",
+    "candidateSha256": "9daac5af7a548a972618d5bed1920c966aa5914b70cd4f1121e6647815dcaf84",
+    "patchSha256": "67abd8f56a226ab7af56720569eea132255281b26f2224ced7930ea9dec0f302",
+    "verification": {
+      "nonBraceTokensBefore": 5977,
+      "nonBraceTokensAfter": 5977,
+      "nonBraceTokensIdentical": true
+    },
+    "formatterAdditionalChanges": 0
+  },
+  "sourceChanges": [
+    "packages/quds_office_engine/example/pubspec.lock",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_transfer.dart",
+    "packages/quds_office_engine/pubspec.lock"
+  ],
+  "unexpectedSourceChanges": [],
+  "generatedExampleLock": {
+    "hostedPackages": 8,
+    "mismatches": {}
+  },
+  "readiness": "Eligible with the attached brace-only lint correction; final integrated engine gate remains assigned to root. No original repository files or refs were changed by this qualification.",
+  "resolvedBlockers": [
+    "The exhaustive editor command switch includes exportDocument.",
+    "The speculative placeholder callback extension is reverted; original protocol and model shape agree."
+  ],
+  "scope": [
+    "Native staged transfer model/session callbacks and DOCX reopening; protocol transcript tests.",
+    "All existing Word/Zotero model and citing suites in 28 targeted files.",
+    "Separate Flutter receipt covers 97 editor cases."
+  ],
+  "limits": [
+    "No installed Microsoft Word, LibreOffice or Zotero round-trip execution.",
+    "Incoming work-record README still describes qualification as in progress; reference final local evidence when integrating."
+  ]
+}

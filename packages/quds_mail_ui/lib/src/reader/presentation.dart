@@ -18,7 +18,7 @@ final class MailTextRun {
   final Uri? link;
 }
 
-/// A local CID raster that passed byte, format and cumulative pixel admission.
+/// A raster to be checked against the reader's byte, format and pixel limits.
 final class MailInlineImage {
   const MailInlineImage({
     required this.attachment,
@@ -41,9 +41,25 @@ final class MailReaderPresentation {
     this.rejected = false,
     this.usedHtml = false,
     this.blockedResourceCount = 0,
+    List<Uri>? remoteImageUrls,
+    List<Uri>? remoteImageUris,
   }) : runs = List.unmodifiable(runs),
        images = List.unmodifiable(images),
-       diagnostics = List.unmodifiable(diagnostics);
+       diagnostics = List.unmodifiable(diagnostics),
+       remoteImageUrls = List.unmodifiable(
+         remoteImageUrls ?? remoteImageUris ?? const [],
+       ) {
+    if (remoteImageUrls != null && remoteImageUris != null) {
+      if (remoteImageUrls.length != remoteImageUris.length) {
+        throw ArgumentError('Remote image candidate aliases must agree.');
+      }
+      for (var index = 0; index < remoteImageUrls.length; index++) {
+        if (remoteImageUrls[index] != remoteImageUris[index]) {
+          throw ArgumentError('Remote image candidate aliases must agree.');
+        }
+      }
+    }
+  }
   final String text;
 
   /// The bounded body projection, without envelope or attachment summaries.
@@ -57,6 +73,14 @@ final class MailReaderPresentation {
   final bool rejected;
   final bool usedHtml;
   final int blockedResourceCount;
+
+  /// Unloaded, explicit HTTP(S) images in the admitted HTML projection.
+  /// Active elements, comments, CSS, credentials and relative URLs are excluded.
+  /// At most eight distinct URLs are offered for an explicit host action.
+  final List<Uri> remoteImageUrls;
+
+  /// Compatibility spelling for the same bounded, immutable candidates.
+  List<Uri> get remoteImageUris => remoteImageUrls;
 }
 
 /// Width and height of an admitted static PNG/JPEG attachment, or null.
@@ -74,6 +98,7 @@ MailReaderPresentation buildMailPresentation(
   MailReadBudget budget = const MailReadBudget(),
   bool preferHtml = true,
   bool externalImagePlaceholders = true,
+  Iterable<MailInlineImage> externalImages = const [],
 }) {
   budget.validate();
   final diagnostics = <MailDiagnostic>[...result.diagnostics];
@@ -221,6 +246,8 @@ MailReaderPresentation buildMailPresentation(
     budget,
     message.attachments,
     externalImagePlaceholders: externalImagePlaceholders,
+    externalImages: externalImages,
+    remainingDecodedBytes: budget.maxDecodedBytes - decodedBytes,
   );
   try {
     builder.add(
@@ -287,6 +314,7 @@ MailReaderPresentation buildMailPresentation(
       diagnostics: diagnostics,
       usedHtml: useHtml,
       blockedResourceCount: builder.blocked,
+      remoteImageUrls: builder.remoteImageUrls,
     );
   } on _AdmissionFailure catch (failure) {
     return reject(
@@ -534,22 +562,34 @@ final class _Projection {
     this.attachments, {
     this.strictHtml = false,
     this.externalImagePlaceholders = true,
-  });
+    Iterable<MailInlineImage> externalImages = const [],
+    int? remainingDecodedBytes,
+  }) : remainingDecodedBytes = remainingDecodedBytes ?? budget.maxDecodedBytes,
+       externalImages = {
+         for (final image in externalImages.take(8))
+           image.attachment.partPath: image,
+       };
   final bool strictHtml;
   final bool externalImagePlaceholders;
   final MailReadBudget budget;
   final List<MailAttachment> attachments;
+  final Map<String, MailInlineImage> externalImages;
+  int remainingDecodedBytes;
   final StringBuffer text = StringBuffer();
   final List<MailTextRun> runs = [];
   final List<MailInlineImage> images = [];
   final List<MailDiagnostic> diagnostics = [];
   final List<_Tag> stack = [];
   final Set<String> shownCids = {};
+  final Set<String> externalSources = {};
+  final Set<String> shownExternal = {};
+  final List<Uri> remoteImageUrls = [];
   int bytes = 0;
   int nodes = 0;
   int blocked = 0;
   int pixels = 0;
   bool newline = true;
+  bool whitespaceAtEnd = false;
 
   void add(String value, {bool? bold, bool? italic, Uri? link}) {
     if (value.isEmpty) return;
@@ -575,6 +615,7 @@ final class _Projection {
       ),
     );
     newline = value.endsWith('\n');
+    whitespaceAtEnd = _space(value.codeUnitAt(value.length - 1));
   }
 
   void node() {
@@ -597,9 +638,16 @@ final class _Projection {
   /// the padded `div`/table wrappers used by transactional mail become dozens
   /// of visually empty lines.
   void addHtmlText(String value) {
-    var normalized = value.replaceAll(RegExp(r'[\t\r\n ]+'), ' ');
-    if (normalized.trim().isEmpty) return;
-    if (newline) normalized = normalized.trimLeft();
+    if (stack.any((tag) => tag.name == 'pre')) {
+      add(value.replaceAll('\r\n', '\n').replaceAll('\r', '\n'));
+      return;
+    }
+    var normalized = value.replaceAll(RegExp(r'[\t\r\n\f ]+'), ' ');
+    // A text node containing only whitespace still separates inline elements.
+    // Collapse across tag boundaries, while keeping NBSP and <pre> meaningful.
+    if ((newline || whitespaceAtEnd) && normalized.startsWith(' ')) {
+      normalized = normalized.substring(1);
+    }
     add(normalized);
   }
 
@@ -821,6 +869,47 @@ final class _Projection {
 
   void _image(String? source, String? alt) {
     if (source == null || !source.toLowerCase().startsWith('cid:')) {
+      final uri = source == null ? null : approvedMailLink(source);
+      final eligible =
+          uri != null &&
+          (uri.scheme == 'http' || uri.scheme == 'https') &&
+          (externalSources.contains(uri.toString()) ||
+              externalSources.length < 8);
+      if (eligible) {
+        final key = uri.toString();
+        externalSources.add(key);
+        final image = externalImages['remote:$key'];
+        final attachment = image?.attachment;
+        final dimensions = attachment == null
+            ? null
+            : _rasterDimensions(attachment);
+        final alreadyShown = shownExternal.contains(key);
+        if (attachment != null &&
+            dimensions != null &&
+            (alreadyShown ||
+                attachments.length + shownExternal.length <
+                        budget.maxAttachments &&
+                    attachment.content.length <= budget.maxAttachmentBytes &&
+                    attachment.content.length <= remainingDecodedBytes &&
+                    dimensions.$1 * dimensions.$2 <=
+                        budget.maxImagePixels - pixels)) {
+          if (!alreadyShown) {
+            shownExternal.add(key);
+            remainingDecodedBytes -= attachment.content.length;
+            pixels += dimensions.$1 * dimensions.$2;
+            images.add(
+              MailInlineImage(
+                attachment: attachment,
+                width: dimensions.$1,
+                height: dimensions.$2,
+              ),
+            );
+          }
+          add('[External image: ${_headerText(attachment.displayName)}]');
+          return;
+        }
+        if (!remoteImageUrls.contains(uri)) remoteImageUrls.add(uri);
+      }
       blocked++;
       if (externalImagePlaceholders) {
         add(

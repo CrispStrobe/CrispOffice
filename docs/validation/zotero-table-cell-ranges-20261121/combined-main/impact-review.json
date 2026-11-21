@@ -1,0 +1,2388 @@
+{
+  "accepts_combined_main": false,
+  "additional_close_fix_regression": "The combined checkpoint includes the added saved-Mail global Close regression in studio_saved_mail_test.dart. Its execution and the targeted Mail suites require separate receipts; they are outside the original 119-suite population.",
+  "affected_suite_count": 3,
+  "all_119_selected_test_sources_unchanged": true,
+  "captured_frontiers_are_ancestors": {
+    "main": true,
+    "original_qualification": true,
+    "saved_mail_close_fix": true
+  },
+  "captured_main": "4a1eaa69e7a068e354bdd851ec9b0323b89ae300",
+  "captured_main_to_reviewed_combination": {
+    "added": [],
+    "after_count": 2994,
+    "before_count": 2994,
+    "modified_existing": [
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "24e946bd4a7cd4dbfc830f6d8fd8b7a034a81129",
+          "sha256": "1f3e6a058364d2978187c47a40b380793c64aeb36d79cfffd5aa2aa1bc51a894",
+          "size": 142601
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "573aca5e7742280328e6c0e5c1124663b44c3265",
+          "sha256": "d19291074d2c431dde635108029cb55d07c63ad2550f7fdf15df99df6f816361",
+          "size": 142400
+        },
+        "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart"
+      },
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "8a5697049e3b0d16b4545ab38ba87693c6e4a634",
+          "sha256": "a6ebecaea71eee13a27e85b090cedd3e8e935883690c49a6cc577a5b70823b0f",
+          "size": 17979
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "3e26e9af5f42044d448f5f8670645f5df4704bfe",
+          "sha256": "5e12d10f08550e6c80b7a3dfccf074afb2ce3dc296b671305bb8f083a6b49545",
+          "size": 16955
+        },
+        "path": "packages/quds_office_editor/example/test/studio_saved_mail_test.dart"
+      }
+    ],
+    "modified_existing_count": 2,
+    "removed": [],
+    "unchanged_existing_count": 2992
+  },
+  "captured_saved_mail_close_fix": "9cfad3920f9afb3ca1620df429fa41e33f3db8e6",
+  "cohorts": [
+    {
+      "affected_suites": [],
+      "name": "engine-zotero",
+      "suite_count": 41
+    },
+    {
+      "affected_suites": [
+        "packages/quds_office_engine/test/word_table_grid_addressing_test.dart",
+        "packages/quds_office_engine/test/word_bookmark_fidelity_test.dart"
+      ],
+      "name": "engine-owner-fidelity",
+      "suite_count": 27
+    },
+    {
+      "affected_suites": [],
+      "name": "editor-zotero-1",
+      "suite_count": 10
+    },
+    {
+      "affected_suites": [],
+      "name": "editor-zotero-2",
+      "suite_count": 10
+    },
+    {
+      "affected_suites": [],
+      "name": "editor-zotero-3",
+      "suite_count": 10
+    },
+    {
+      "affected_suites": [],
+      "name": "editor-zotero-4",
+      "suite_count": 10
+    },
+    {
+      "affected_suites": [],
+      "name": "editor-zotero-5",
+      "suite_count": 9
+    },
+    {
+      "affected_suites": [
+        "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart"
+      ],
+      "name": "studio-zotero",
+      "suite_count": 2
+    }
+  ],
+  "dependency_method": "Lexical import/export/part URI scan, actual repository package resolution and all conditional alternatives; external packages are not traversed. Both original and combined selected transitive closures must have zero unresolved local directives, unsupported URI forms or possible same-line directives. The complete combined transitive closure is scanned for process/library loaders. This is a conservative source review, not a compiler trace or new test result.",
+  "directive_completeness": {
+    "combined_closure_inputs": 1061,
+    "issues": {
+      "combined": [],
+      "original": []
+    },
+    "original_closure_inputs": 1056
+  },
+  "editor_library_changes": [],
+  "engine_word_library_changes": [],
+  "no_github_ci_used": true,
+  "no_source_or_ref_mutations_by_replay": true,
+  "node": {
+    "applicability": "Original Node test results retain source applicability to the two unchanged test dependency closures; the entire old broad engine capture is not identical.",
+    "both_repository_closures_unchanged": true,
+    "capture_changes": {
+      "added": [
+        {
+          "executable": false,
+          "git_blob_sha1": "7cd56bef186e0688ab07c0ef170a7e8d3d5f1bdb",
+          "path": "packages/quds_office_engine/lib/src/automation/operations/word_header_footer_guard.dart",
+          "sha256": "f2324bba254113f920943a1e95410653981e793626e0c041c4f43ae6aab849b1",
+          "size": 14128
+        }
+      ],
+      "after_count": 357,
+      "before_count": 356,
+      "modified_existing": [
+        {
+          "after": {
+            "executable": false,
+            "git_blob_sha1": "33790b41d17e6cce12e414cc1441ef9aacb0949f",
+            "sha256": "f0bf44e664a56c8fbc2e6b7fc76bcfec51b32791bce30c74ec39eb50aebf644d",
+            "size": 208302
+          },
+          "before": {
+            "executable": false,
+            "git_blob_sha1": "cc4a841cfe52a9a4c466eda6b7e24035b2223297",
+            "sha256": "83bedecf4dc696bb7b424d15c7b5520393299553b0e7e018c1e4124ef6034ab8",
+            "size": 201669
+          },
+          "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart"
+        },
+        {
+          "after": {
+            "executable": false,
+            "git_blob_sha1": "99d027d0bc3b199c67201cb3170743f1ea27c32d",
+            "sha256": "af9b3f18201301c3fa9399d61c72f4201259636b757e84d72f50103bffeec58b",
+            "size": 32932
+          },
+          "before": {
+            "executable": false,
+            "git_blob_sha1": "764d3420159bb7964704b7d99a9048fe0965d51b",
+            "sha256": "c5d067ec80dfbce5739c0901ff8d48ae6fa5052ccf759ad55773011da016d64d",
+            "size": 32853
+          },
+          "path": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart"
+        }
+      ],
+      "modified_existing_count": 2,
+      "removed": [],
+      "unchanged_existing_count": 354
+    },
+    "original_capture_inputs": 356,
+    "original_passed_cases": 121,
+    "selected_suites": [
+      {
+        "changed_production_dependencies": [],
+        "cohort": "engine-zotero",
+        "dependency_paths": {},
+        "path": "packages/quds_office_engine/test/word_zotero_table_cell_replacement_test.dart",
+        "repository_dependency_closure_unchanged": true,
+        "repository_dependency_count": 377,
+        "repository_dependency_identity_sha256": "0891207125a1e13383c3787c2f905e8dddcad04ee139f465675599a4488c0bac",
+        "test_source_unchanged": true
+      },
+      {
+        "changed_production_dependencies": [],
+        "cohort": "engine-zotero",
+        "dependency_paths": {},
+        "path": "packages/quds_office_engine/test/word_zotero_multiparagraph_test.dart",
+        "repository_dependency_closure_unchanged": true,
+        "repository_dependency_count": 377,
+        "repository_dependency_identity_sha256": "7621806093cbf65a4ad350a99ef570a09af1e745d86d1fb31a691861ca9bc837",
+        "test_source_unchanged": true
+      }
+    ]
+  },
+  "original_archive_sha256": "7605bf4f72509aa52d5544fcca515e0b15997679ecab0ddf717db2068ab83229",
+  "original_qualification": {
+    "passed_cases": 2551,
+    "source_inputs": 2978,
+    "source_map_sha256": "b02b5b7f62c34bf37698d53e0cb614df93ac30d955ce0ad8b1cb1707f6f18916",
+    "suites": 119
+  },
+  "original_qualified_commit": "a6095c304ad2d6935f2ae6f8b74412038d19f142",
+  "original_to_captured_main": {
+    "added": [
+      {
+        "executable": false,
+        "git_blob_sha1": "e580343468f699dbb1d43e5512e9a3de68faae5c",
+        "path": "packages/quds_mail_core/lib/src/sync/runner.dart",
+        "sha256": "71193de086c5d035a7f4c76bb9f2a006ba285fa2029c475661e9d548ea0d8b61",
+        "size": 10415
+      },
+      {
+        "executable": false,
+        "git_blob_sha1": "e06c9d1f237af29eddbd3e85e61f399973fabcb7",
+        "path": "packages/quds_mail_core/test/sync_runner_test.dart",
+        "sha256": "b6d801ab77a04878f766b5f9a0224e14853e0b2e9c91ad5267d1aeaa25c46f4d",
+        "size": 23630
+      },
+      {
+        "executable": false,
+        "git_blob_sha1": "baaee901a4f5f361f0623c632ffbe283f9da97c2",
+        "path": "packages/quds_mail_store/lib/src/sync_mailboxes.dart",
+        "sha256": "87ba8eb7031c3192a56c17eff204b96cba3b23f46b91500e16c5faea599923e1",
+        "size": 12275
+      },
+      {
+        "executable": false,
+        "git_blob_sha1": "ffdbcaee2f2a3f3667961e4c99f8495f03b13c39",
+        "path": "packages/quds_mail_store/test/sync_mailboxes_test.dart",
+        "sha256": "f6997550811adb5930c48352a63070ebb7dfd3f4a940efa4a6206d35e96f7d23",
+        "size": 22527
+      },
+      {
+        "executable": false,
+        "git_blob_sha1": "cc5af24ed0c18b64dcc03b5a31d3736771ab3e35",
+        "path": "packages/quds_office_editor/example/lib/studio_mail_sync_dialog.dart",
+        "sha256": "0abdbdca99ccefb94ed2505e70b9a778271191f103c3da0500f0faa633dace0c",
+        "size": 28368
+      },
+      {
+        "executable": false,
+        "git_blob_sha1": "478f9dbcfdc6d444a16e7e67d50125cbdcda7d40",
+        "path": "packages/quds_office_editor/example/lib/studio_mail_sync_strings.dart",
+        "sha256": "ed95262b097ee91dcf4702c57cb228947e4c072dfbdda8af203b2868ea447b33",
+        "size": 9402
+      },
+      {
+        "executable": false,
+        "git_blob_sha1": "05803ca3c23ae25c231107cd21c1a5da4b40e0c0",
+        "path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart",
+        "sha256": "bd4c8376a39c6cbdb8695f86a15a47591203b739dba264e4ac88a2380abdc2a8",
+        "size": 25773
+      },
+      {
+        "executable": false,
+        "git_blob_sha1": "24e0fd3c767540ea7951003f153e7d3acb9c2045",
+        "path": "packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart",
+        "sha256": "547f48c08c5bb8459bd18785eb0336a391725ffe485861918c4fc468ed3ee918",
+        "size": 19527
+      },
+      {
+        "executable": false,
+        "git_blob_sha1": "ccf6cfb6710fed2173a2cafaf58350cc83ba3754",
+        "path": "packages/quds_office_editor/example/test/studio_mail_sync_native_test.dart",
+        "sha256": "4270f52bef2939c7ef1b3159514722b4ae8421c3921412a2fc2595ad1bb183cb",
+        "size": 6929
+      },
+      {
+        "executable": false,
+        "git_blob_sha1": "d6375d7f6c0cde0ec56f4501a66fc250b579848e",
+        "path": "packages/quds_office_editor/example/test/studio_mail_sync_store_test.dart",
+        "sha256": "a9420dc413c9d9c52f9aa47a2f40270a1ad0084d840ca5347027f10b959ef9da",
+        "size": 10944
+      },
+      {
+        "executable": false,
+        "git_blob_sha1": "64892124f1eb85b500b7b576e3db2586b945edff",
+        "path": "packages/quds_office_engine/example/macros/word_headers_footers.bas",
+        "sha256": "e50f55fffa6679b3d1756ef023d3f8ed9b7d38b75ec3d467b1486148159e6d8d",
+        "size": 1510
+      },
+      {
+        "executable": false,
+        "git_blob_sha1": "7cd56bef186e0688ab07c0ef170a7e8d3d5f1bdb",
+        "path": "packages/quds_office_engine/lib/src/automation/operations/word_header_footer_guard.dart",
+        "sha256": "f2324bba254113f920943a1e95410653981e793626e0c041c4f43ae6aab849b1",
+        "size": 14128
+      },
+      {
+        "executable": false,
+        "git_blob_sha1": "341e5ffac5841d6b16b18d5baf1c51b6b4ff5115",
+        "path": "packages/quds_office_engine/test/office_macro_word_headers_footers_test.dart",
+        "sha256": "01918ecebc64a54b9711184f8f0a562e7c083c52a84dbbdd3078c5787dcf6cae",
+        "size": 21337
+      },
+      {
+        "executable": false,
+        "git_blob_sha1": "042fab9fa2759a1163adbabc97ff63f2a21be567",
+        "path": "packages/quds_office_engine/test/office_vba_word_headers_footers_integration_test.dart",
+        "sha256": "efe5e01e0661b76bc83a28b143ff2ce187cc96eeda4939d9cba0339652123f07",
+        "size": 17284
+      },
+      {
+        "executable": false,
+        "git_blob_sha1": "f48b26ae2b5f1982b8903dfd3f29f889b7d21773",
+        "path": "packages/quds_office_engine/test/office_vba_word_headers_footers_test.dart",
+        "sha256": "ee3cd32dc30bdc6e28a4a3bf3770e1fd0789c52518b0c52f5cb04f56b08a5157",
+        "size": 20679
+      },
+      {
+        "executable": false,
+        "git_blob_sha1": "4542ff8f39862dd9f86cebb1f651f3466508c771",
+        "path": "packages/quds_office_engine/tool/macros/web_vba_word_headers_footers_smoke.dart",
+        "sha256": "4cca4307918ad1828b7abccabf8c254c54da4b693ba9bb0dee57c12c9c1d2d69",
+        "size": 12781
+      }
+    ],
+    "after_count": 2994,
+    "before_count": 2978,
+    "modified_existing": [
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "24038bd3cf4eb44cdf507d4d2e11bdd37410203d",
+          "sha256": "80d0c1a9f52eb1531a20ed9f3c937d74310592576f7f6462f86f0b38418e8293",
+          "size": 632
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "7a001164dbf973c78ff1145bc4bdd4ed63ddbcbc",
+          "sha256": "cd206870c62bdce16c3f495e98c88e04c19d58ea8492ac9c0ba2af6a6dc81b19",
+          "size": 601
+        },
+        "path": "packages/quds_mail_core/lib/quds_mail_core.dart"
+      },
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "8915531538f3dfc3175444fcd085b332cde63e6c",
+          "sha256": "ac7130535ba21beff9cc441b2f88de4a957817d28e9ee6677a62842dcbadb706",
+          "size": 10104
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "3a8a719b96907f47c0a84c6fc3be740d32c2325a",
+          "sha256": "ed44d8b2dd4380d8bf619fee941191d6204c10f87e47107436b661415b79f4f0",
+          "size": 8447
+        },
+        "path": "packages/quds_mail_store/lib/src/models.dart"
+      },
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "29a928c21b570d9cf8e6d455462f6dfc22838a9f",
+          "sha256": "362458a532d7cc034ab9754461cbe9aa79da8179ad0b5da3578a3f95c13a970a",
+          "size": 43871
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "d3c41998dd2efc03db29d4ee26f3ea7a55dde04b",
+          "sha256": "ff1e50eb7ab21c98d81121eb2d49878f67f2d24f059058d1dd6e3a942e4959f1",
+          "size": 43723
+        },
+        "path": "packages/quds_mail_store/lib/src/repository.dart"
+      },
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "4ba81ba1a152838b56e6adb2a70457a0497f8b06",
+          "sha256": "08e4706f7534553426d2c73cb103142fd7a55b3b1d4604ae25a2df9bda6b9475",
+          "size": 11222
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "07a854db71986a1e50df31a3dcc94adc35b5351a",
+          "sha256": "8318df08de6c83fde055ad02186e7be5fa239b22f7febec4b9cd7d281d7d9b7e",
+          "size": 10251
+        },
+        "path": "packages/quds_mail_store/lib/src/schema/database.dart"
+      },
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "b56b9100ef98ff3047ed17794c7c6aa82d6a0c7a",
+          "sha256": "37e79faa5ebfe37ca9c188a470e00e3fa37ad5fc94dc6b858bb2662a19ad386b",
+          "size": 29170
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "b938d8d7e28973dce6060acab0db8eb5775ff740",
+          "sha256": "95b8b7c8757e6a965cffe1db2a057b82d3d8ee5c12d1bfc7ea889e90de0bd3fc",
+          "size": 29142
+        },
+        "path": "packages/quds_mail_store/lib/src/search_journal.dart"
+      },
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "4f46ddff8b084a91add5ec9fbe5f89b5821689fe",
+          "sha256": "2331ec7ecbb9de7dd5a8a17362a708ac217425a91f8d1e533eb0e0a051320d47",
+          "size": 34097
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "e0da1a34fd306d1c51b49e3faffd3b62eb469a59",
+          "sha256": "78780cfd31996435ee5061ade629fa0a5ec41f5bb34c684dde44b43b36e73c6e",
+          "size": 34097
+        },
+        "path": "packages/quds_mail_store/test/flag_reconciliation_test.dart"
+      },
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "4f024704ba93640a43af93a15cc3601e8fee4fb4",
+          "sha256": "61905ae5895109fafad8a37ccbf388e24a5b09b9ea8c96aec54a6963a9c13b2d",
+          "size": 34673
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "e58f72f78d242871337c8dd31c9035c4f7eaaccb",
+          "sha256": "74f7eb5f2920d638fcfcda48a9a0b4063b674eb8675112d48291b66360df8de4",
+          "size": 34672
+        },
+        "path": "packages/quds_mail_store/test/migration_test.dart"
+      },
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "ba99d10dac73285581dccfc19c0babb0d8493a1e",
+          "sha256": "3139095d6e5a5e2ea40110e5460e506fb6ed545d678c3562f94e39d29d98eb4f",
+          "size": 30244
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "7aeb18e09b12aa41904e08cfe344301a61611b96",
+          "sha256": "a04fe20c5d668424013368ef4d003572f1d5f4e142d20b53b662ae1142a6169b",
+          "size": 28816
+        },
+        "path": "packages/quds_office_editor/example/lib/studio_mail_cached_mail.dart"
+      },
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "cd11edb5b7362c1fc4f167338ff7507e114e2dfa",
+          "sha256": "a6dffece6e5f4da4fd31662bdacfb1ae5667a31863adf7de2e90417ae88398d7",
+          "size": 99072
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "f193e998494df7aa920424342f7136cb693a8304",
+          "sha256": "b55ed0c7fb8224fd2a3c63ae74b406a751a1771c43b0b7c91cef25725806a900",
+          "size": 96232
+        },
+        "path": "packages/quds_office_editor/example/lib/studio_mail_ews.dart"
+      },
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "79ee7ff4f849cc0d3132bb1909532b22b291a211",
+          "sha256": "af2b068d108e44bc3713e45e2310c8f7aa97b2d4e24d4d60f4441f2c21d5e773",
+          "size": 16655
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "629be6cadbc3e8a6e6ec1879b92869b867176880",
+          "sha256": "f83fc9d5cdc2bd2e8521e1905a27fce09ce4f74f9986eeee013895b8c1ba39a3",
+          "size": 12703
+        },
+        "path": "packages/quds_office_editor/example/lib/studio_mail_mailbox_store.dart"
+      },
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "88c50364991ef68616c2a6f2638ed35ae5505e99",
+          "sha256": "e3b8bec272bd065c7f6163a2156b6aa55e05ef99dce476a728c52d29d5d6b079",
+          "size": 37436
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "c8adb66771bc1202c66f922946a18100c1b94c21",
+          "sha256": "558058de20366fda777b1d0f1797ab3ac9d2f44de571964c4bcdc6726102004e",
+          "size": 35758
+        },
+        "path": "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart"
+      },
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "573aca5e7742280328e6c0e5c1124663b44c3265",
+          "sha256": "d19291074d2c431dde635108029cb55d07c63ad2550f7fdf15df99df6f816361",
+          "size": 142400
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "b48b14b9b43aa47a8a2e8ce9de8bd6de00e0eb6b",
+          "sha256": "f63476827ecb44b80f602f2cbb3ddc8ba90cb82f74550d8f68b0448ee730cc91",
+          "size": 139208
+        },
+        "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart"
+      },
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "7ddae7bfc24a44474c794c154d4233dfe454abd0",
+          "sha256": "752600587362d2e3bc9a6c5bc2533aa643cfe4461331acec96eafbbad1819581",
+          "size": 41240
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "128be91ebf9f385dc49a7deeb59500e60b9c0b27",
+          "sha256": "0f6251901f611a8ce83474a0d5b8c2be7a7086dffe2ad98c1c8c2508edaccf91",
+          "size": 41017
+        },
+        "path": "packages/quds_office_editor/example/test/app_store_screenshots_gate.dart"
+      },
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "33790b41d17e6cce12e414cc1441ef9aacb0949f",
+          "sha256": "f0bf44e664a56c8fbc2e6b7fc76bcfec51b32791bce30c74ec39eb50aebf644d",
+          "size": 208302
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "cc4a841cfe52a9a4c466eda6b7e24035b2223297",
+          "sha256": "83bedecf4dc696bb7b424d15c7b5520393299553b0e7e018c1e4124ef6034ab8",
+          "size": 201669
+        },
+        "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart"
+      },
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "99d027d0bc3b199c67201cb3170743f1ea27c32d",
+          "sha256": "af9b3f18201301c3fa9399d61c72f4201259636b757e84d72f50103bffeec58b",
+          "size": 32932
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "764d3420159bb7964704b7d99a9048fe0965d51b",
+          "sha256": "c5d067ec80dfbce5739c0901ff8d48ae6fa5052ccf759ad55773011da016d64d",
+          "size": 32853
+        },
+        "path": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart"
+      }
+    ],
+    "modified_existing_count": 15,
+    "removed": [],
+    "unchanged_existing_count": 2963
+  },
+  "original_to_reviewed_combination": {
+    "added": [
+      {
+        "executable": false,
+        "git_blob_sha1": "e580343468f699dbb1d43e5512e9a3de68faae5c",
+        "path": "packages/quds_mail_core/lib/src/sync/runner.dart",
+        "sha256": "71193de086c5d035a7f4c76bb9f2a006ba285fa2029c475661e9d548ea0d8b61",
+        "size": 10415
+      },
+      {
+        "executable": false,
+        "git_blob_sha1": "e06c9d1f237af29eddbd3e85e61f399973fabcb7",
+        "path": "packages/quds_mail_core/test/sync_runner_test.dart",
+        "sha256": "b6d801ab77a04878f766b5f9a0224e14853e0b2e9c91ad5267d1aeaa25c46f4d",
+        "size": 23630
+      },
+      {
+        "executable": false,
+        "git_blob_sha1": "baaee901a4f5f361f0623c632ffbe283f9da97c2",
+        "path": "packages/quds_mail_store/lib/src/sync_mailboxes.dart",
+        "sha256": "87ba8eb7031c3192a56c17eff204b96cba3b23f46b91500e16c5faea599923e1",
+        "size": 12275
+      },
+      {
+        "executable": false,
+        "git_blob_sha1": "ffdbcaee2f2a3f3667961e4c99f8495f03b13c39",
+        "path": "packages/quds_mail_store/test/sync_mailboxes_test.dart",
+        "sha256": "f6997550811adb5930c48352a63070ebb7dfd3f4a940efa4a6206d35e96f7d23",
+        "size": 22527
+      },
+      {
+        "executable": false,
+        "git_blob_sha1": "cc5af24ed0c18b64dcc03b5a31d3736771ab3e35",
+        "path": "packages/quds_office_editor/example/lib/studio_mail_sync_dialog.dart",
+        "sha256": "0abdbdca99ccefb94ed2505e70b9a778271191f103c3da0500f0faa633dace0c",
+        "size": 28368
+      },
+      {
+        "executable": false,
+        "git_blob_sha1": "478f9dbcfdc6d444a16e7e67d50125cbdcda7d40",
+        "path": "packages/quds_office_editor/example/lib/studio_mail_sync_strings.dart",
+        "sha256": "ed95262b097ee91dcf4702c57cb228947e4c072dfbdda8af203b2868ea447b33",
+        "size": 9402
+      },
+      {
+        "executable": false,
+        "git_blob_sha1": "05803ca3c23ae25c231107cd21c1a5da4b40e0c0",
+        "path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart",
+        "sha256": "bd4c8376a39c6cbdb8695f86a15a47591203b739dba264e4ac88a2380abdc2a8",
+        "size": 25773
+      },
+      {
+        "executable": false,
+        "git_blob_sha1": "24e0fd3c767540ea7951003f153e7d3acb9c2045",
+        "path": "packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart",
+        "sha256": "547f48c08c5bb8459bd18785eb0336a391725ffe485861918c4fc468ed3ee918",
+        "size": 19527
+      },
+      {
+        "executable": false,
+        "git_blob_sha1": "ccf6cfb6710fed2173a2cafaf58350cc83ba3754",
+        "path": "packages/quds_office_editor/example/test/studio_mail_sync_native_test.dart",
+        "sha256": "4270f52bef2939c7ef1b3159514722b4ae8421c3921412a2fc2595ad1bb183cb",
+        "size": 6929
+      },
+      {
+        "executable": false,
+        "git_blob_sha1": "d6375d7f6c0cde0ec56f4501a66fc250b579848e",
+        "path": "packages/quds_office_editor/example/test/studio_mail_sync_store_test.dart",
+        "sha256": "a9420dc413c9d9c52f9aa47a2f40270a1ad0084d840ca5347027f10b959ef9da",
+        "size": 10944
+      },
+      {
+        "executable": false,
+        "git_blob_sha1": "64892124f1eb85b500b7b576e3db2586b945edff",
+        "path": "packages/quds_office_engine/example/macros/word_headers_footers.bas",
+        "sha256": "e50f55fffa6679b3d1756ef023d3f8ed9b7d38b75ec3d467b1486148159e6d8d",
+        "size": 1510
+      },
+      {
+        "executable": false,
+        "git_blob_sha1": "7cd56bef186e0688ab07c0ef170a7e8d3d5f1bdb",
+        "path": "packages/quds_office_engine/lib/src/automation/operations/word_header_footer_guard.dart",
+        "sha256": "f2324bba254113f920943a1e95410653981e793626e0c041c4f43ae6aab849b1",
+        "size": 14128
+      },
+      {
+        "executable": false,
+        "git_blob_sha1": "341e5ffac5841d6b16b18d5baf1c51b6b4ff5115",
+        "path": "packages/quds_office_engine/test/office_macro_word_headers_footers_test.dart",
+        "sha256": "01918ecebc64a54b9711184f8f0a562e7c083c52a84dbbdd3078c5787dcf6cae",
+        "size": 21337
+      },
+      {
+        "executable": false,
+        "git_blob_sha1": "042fab9fa2759a1163adbabc97ff63f2a21be567",
+        "path": "packages/quds_office_engine/test/office_vba_word_headers_footers_integration_test.dart",
+        "sha256": "efe5e01e0661b76bc83a28b143ff2ce187cc96eeda4939d9cba0339652123f07",
+        "size": 17284
+      },
+      {
+        "executable": false,
+        "git_blob_sha1": "f48b26ae2b5f1982b8903dfd3f29f889b7d21773",
+        "path": "packages/quds_office_engine/test/office_vba_word_headers_footers_test.dart",
+        "sha256": "ee3cd32dc30bdc6e28a4a3bf3770e1fd0789c52518b0c52f5cb04f56b08a5157",
+        "size": 20679
+      },
+      {
+        "executable": false,
+        "git_blob_sha1": "4542ff8f39862dd9f86cebb1f651f3466508c771",
+        "path": "packages/quds_office_engine/tool/macros/web_vba_word_headers_footers_smoke.dart",
+        "sha256": "4cca4307918ad1828b7abccabf8c254c54da4b693ba9bb0dee57c12c9c1d2d69",
+        "size": 12781
+      }
+    ],
+    "after_count": 2994,
+    "before_count": 2978,
+    "modified_existing": [
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "24038bd3cf4eb44cdf507d4d2e11bdd37410203d",
+          "sha256": "80d0c1a9f52eb1531a20ed9f3c937d74310592576f7f6462f86f0b38418e8293",
+          "size": 632
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "7a001164dbf973c78ff1145bc4bdd4ed63ddbcbc",
+          "sha256": "cd206870c62bdce16c3f495e98c88e04c19d58ea8492ac9c0ba2af6a6dc81b19",
+          "size": 601
+        },
+        "path": "packages/quds_mail_core/lib/quds_mail_core.dart"
+      },
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "8915531538f3dfc3175444fcd085b332cde63e6c",
+          "sha256": "ac7130535ba21beff9cc441b2f88de4a957817d28e9ee6677a62842dcbadb706",
+          "size": 10104
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "3a8a719b96907f47c0a84c6fc3be740d32c2325a",
+          "sha256": "ed44d8b2dd4380d8bf619fee941191d6204c10f87e47107436b661415b79f4f0",
+          "size": 8447
+        },
+        "path": "packages/quds_mail_store/lib/src/models.dart"
+      },
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "29a928c21b570d9cf8e6d455462f6dfc22838a9f",
+          "sha256": "362458a532d7cc034ab9754461cbe9aa79da8179ad0b5da3578a3f95c13a970a",
+          "size": 43871
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "d3c41998dd2efc03db29d4ee26f3ea7a55dde04b",
+          "sha256": "ff1e50eb7ab21c98d81121eb2d49878f67f2d24f059058d1dd6e3a942e4959f1",
+          "size": 43723
+        },
+        "path": "packages/quds_mail_store/lib/src/repository.dart"
+      },
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "4ba81ba1a152838b56e6adb2a70457a0497f8b06",
+          "sha256": "08e4706f7534553426d2c73cb103142fd7a55b3b1d4604ae25a2df9bda6b9475",
+          "size": 11222
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "07a854db71986a1e50df31a3dcc94adc35b5351a",
+          "sha256": "8318df08de6c83fde055ad02186e7be5fa239b22f7febec4b9cd7d281d7d9b7e",
+          "size": 10251
+        },
+        "path": "packages/quds_mail_store/lib/src/schema/database.dart"
+      },
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "b56b9100ef98ff3047ed17794c7c6aa82d6a0c7a",
+          "sha256": "37e79faa5ebfe37ca9c188a470e00e3fa37ad5fc94dc6b858bb2662a19ad386b",
+          "size": 29170
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "b938d8d7e28973dce6060acab0db8eb5775ff740",
+          "sha256": "95b8b7c8757e6a965cffe1db2a057b82d3d8ee5c12d1bfc7ea889e90de0bd3fc",
+          "size": 29142
+        },
+        "path": "packages/quds_mail_store/lib/src/search_journal.dart"
+      },
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "4f46ddff8b084a91add5ec9fbe5f89b5821689fe",
+          "sha256": "2331ec7ecbb9de7dd5a8a17362a708ac217425a91f8d1e533eb0e0a051320d47",
+          "size": 34097
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "e0da1a34fd306d1c51b49e3faffd3b62eb469a59",
+          "sha256": "78780cfd31996435ee5061ade629fa0a5ec41f5bb34c684dde44b43b36e73c6e",
+          "size": 34097
+        },
+        "path": "packages/quds_mail_store/test/flag_reconciliation_test.dart"
+      },
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "4f024704ba93640a43af93a15cc3601e8fee4fb4",
+          "sha256": "61905ae5895109fafad8a37ccbf388e24a5b09b9ea8c96aec54a6963a9c13b2d",
+          "size": 34673
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "e58f72f78d242871337c8dd31c9035c4f7eaaccb",
+          "sha256": "74f7eb5f2920d638fcfcda48a9a0b4063b674eb8675112d48291b66360df8de4",
+          "size": 34672
+        },
+        "path": "packages/quds_mail_store/test/migration_test.dart"
+      },
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "ba99d10dac73285581dccfc19c0babb0d8493a1e",
+          "sha256": "3139095d6e5a5e2ea40110e5460e506fb6ed545d678c3562f94e39d29d98eb4f",
+          "size": 30244
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "7aeb18e09b12aa41904e08cfe344301a61611b96",
+          "sha256": "a04fe20c5d668424013368ef4d003572f1d5f4e142d20b53b662ae1142a6169b",
+          "size": 28816
+        },
+        "path": "packages/quds_office_editor/example/lib/studio_mail_cached_mail.dart"
+      },
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "cd11edb5b7362c1fc4f167338ff7507e114e2dfa",
+          "sha256": "a6dffece6e5f4da4fd31662bdacfb1ae5667a31863adf7de2e90417ae88398d7",
+          "size": 99072
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "f193e998494df7aa920424342f7136cb693a8304",
+          "sha256": "b55ed0c7fb8224fd2a3c63ae74b406a751a1771c43b0b7c91cef25725806a900",
+          "size": 96232
+        },
+        "path": "packages/quds_office_editor/example/lib/studio_mail_ews.dart"
+      },
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "79ee7ff4f849cc0d3132bb1909532b22b291a211",
+          "sha256": "af2b068d108e44bc3713e45e2310c8f7aa97b2d4e24d4d60f4441f2c21d5e773",
+          "size": 16655
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "629be6cadbc3e8a6e6ec1879b92869b867176880",
+          "sha256": "f83fc9d5cdc2bd2e8521e1905a27fce09ce4f74f9986eeee013895b8c1ba39a3",
+          "size": 12703
+        },
+        "path": "packages/quds_office_editor/example/lib/studio_mail_mailbox_store.dart"
+      },
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "88c50364991ef68616c2a6f2638ed35ae5505e99",
+          "sha256": "e3b8bec272bd065c7f6163a2156b6aa55e05ef99dce476a728c52d29d5d6b079",
+          "size": 37436
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "c8adb66771bc1202c66f922946a18100c1b94c21",
+          "sha256": "558058de20366fda777b1d0f1797ab3ac9d2f44de571964c4bcdc6726102004e",
+          "size": 35758
+        },
+        "path": "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart"
+      },
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "24e946bd4a7cd4dbfc830f6d8fd8b7a034a81129",
+          "sha256": "1f3e6a058364d2978187c47a40b380793c64aeb36d79cfffd5aa2aa1bc51a894",
+          "size": 142601
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "b48b14b9b43aa47a8a2e8ce9de8bd6de00e0eb6b",
+          "sha256": "f63476827ecb44b80f602f2cbb3ddc8ba90cb82f74550d8f68b0448ee730cc91",
+          "size": 139208
+        },
+        "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart"
+      },
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "7ddae7bfc24a44474c794c154d4233dfe454abd0",
+          "sha256": "752600587362d2e3bc9a6c5bc2533aa643cfe4461331acec96eafbbad1819581",
+          "size": 41240
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "128be91ebf9f385dc49a7deeb59500e60b9c0b27",
+          "sha256": "0f6251901f611a8ce83474a0d5b8c2be7a7086dffe2ad98c1c8c2508edaccf91",
+          "size": 41017
+        },
+        "path": "packages/quds_office_editor/example/test/app_store_screenshots_gate.dart"
+      },
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "8a5697049e3b0d16b4545ab38ba87693c6e4a634",
+          "sha256": "a6ebecaea71eee13a27e85b090cedd3e8e935883690c49a6cc577a5b70823b0f",
+          "size": 17979
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "3e26e9af5f42044d448f5f8670645f5df4704bfe",
+          "sha256": "5e12d10f08550e6c80b7a3dfccf074afb2ce3dc296b671305bb8f083a6b49545",
+          "size": 16955
+        },
+        "path": "packages/quds_office_editor/example/test/studio_saved_mail_test.dart"
+      },
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "33790b41d17e6cce12e414cc1441ef9aacb0949f",
+          "sha256": "f0bf44e664a56c8fbc2e6b7fc76bcfec51b32791bce30c74ec39eb50aebf644d",
+          "size": 208302
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "cc4a841cfe52a9a4c466eda6b7e24035b2223297",
+          "sha256": "83bedecf4dc696bb7b424d15c7b5520393299553b0e7e018c1e4124ef6034ab8",
+          "size": 201669
+        },
+        "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart"
+      },
+      {
+        "after": {
+          "executable": false,
+          "git_blob_sha1": "99d027d0bc3b199c67201cb3170743f1ea27c32d",
+          "sha256": "af9b3f18201301c3fa9399d61c72f4201259636b757e84d72f50103bffeec58b",
+          "size": 32932
+        },
+        "before": {
+          "executable": false,
+          "git_blob_sha1": "764d3420159bb7964704b7d99a9048fe0965d51b",
+          "sha256": "c5d067ec80dfbce5739c0901ff8d48ae6fa5052ccf759ad55773011da016d64d",
+          "size": 32853
+        },
+        "path": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart"
+      }
+    ],
+    "modified_existing_count": 16,
+    "removed": [],
+    "unchanged_existing_count": 2962
+  },
+  "production_changes": [
+    "packages/quds_mail_core/lib/quds_mail_core.dart",
+    "packages/quds_mail_core/lib/src/sync/runner.dart",
+    "packages/quds_mail_store/lib/src/models.dart",
+    "packages/quds_mail_store/lib/src/repository.dart",
+    "packages/quds_mail_store/lib/src/schema/database.dart",
+    "packages/quds_mail_store/lib/src/search_journal.dart",
+    "packages/quds_mail_store/lib/src/sync_mailboxes.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_cached_mail.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_mailbox_store.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_sync_dialog.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_sync_strings.dart",
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+    "packages/quds_office_engine/lib/src/automation/operations/word_header_footer_guard.dart",
+    "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart"
+  ],
+  "repeat_plan": {
+    "expected_existing_cases": 72,
+    "result": "Pending separate execution receipts; repeated cases are not additional unique coverage",
+    "suites": [
+      {
+        "original_passed_cases": 22,
+        "path": "packages/quds_office_engine/test/word_table_grid_addressing_test.dart",
+        "reason": "Changed production dependency in the selected suite closure"
+      },
+      {
+        "original_passed_cases": 17,
+        "path": "packages/quds_office_engine/test/word_bookmark_fidelity_test.dart",
+        "reason": "Changed production dependency in the selected suite closure"
+      },
+      {
+        "original_passed_cases": 18,
+        "path": "packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+        "reason": "Shared Studio cohort companion"
+      },
+      {
+        "original_passed_cases": 15,
+        "path": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "reason": "Changed production dependency in the selected suite closure"
+      }
+    ]
+  },
+  "replay_script_sha256": "b2bc1b5b1f7297904b40f99e31e9d065a74d0aedb6ea36b5c1936eb1a4ff3cae",
+  "repository_packages_resolved": 20,
+  "review_kind": "Read-only static repository dependency review; no test execution",
+  "reviewed_commit": "5289b90a83ce9042a4f4cfb73ba8115fe501513a",
+  "reviewed_source_identity_sha256": "3ced474ffcdd5bb31b1f660c2537c832626bb9f192c96bf03d5ff70227ce9df8",
+  "reviewed_tree": "15165a1c510f68de244f36286c3268d8cd8b43ed",
+  "schema_version": 1,
+  "selected_suites": [
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "2b98ada580f8764a69aac212469eb3c55bf419383d56f0014b000a1b1080e061",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_adjacent_citations_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "20aa47c92f1000b32e1d293555898e6e27fe70724405ae4358b9b7db97cade3d",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_bibliography_layout_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "955b4b17be17c7e2f57d120547e8974e0003a2f8685f3737002e74e9fd0c5250",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_bibliography_style_fidelity_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "048748b5a0375b4a9cd6451a2e234ce0e278a762e783d3dcabf358401564b176",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_caret_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "d98a60eef22ef858b91b4bae36b6d1be7d75f82f873820051752c07c58430c3f",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "d812caf21c31ec52e9d12d31c23b4f28c32b036d5efbba038239f0f42f178cb2",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "d371c2970b57df7358d2da7c0e68bf1cbf44d2370c25b0fbd4ecefe63f291bae",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_formatted_bibliography_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "a466bca40bcbbb5832470757eb5b5189d6b9f803b85d82720d7d2fb9731f106f",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_multiparagraph_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "7621806093cbf65a4ad350a99ef570a09af1e745d86d1fb31a691861ca9bc837",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_note_image_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "a5c030773dfb5de51f167c7b41eac4029b9711d17c4cfc216102d4470de043fa",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_note_images_integration_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "c3d16105d9c965fddb386890de1775de5da23ee65443821a61b5777a68782001",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "9a2c3a3984f27ce0f0bfda9e1c488fa1458620c94799ac64553a33b1714caffb",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "083628794fe5939ce3eac3afce4b7d44e5f1ca65fa0532cffd6bdf6998dce372",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_note_table_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "87514ce9c40c4a3bf29d6ed090cdc7230caa0a93311d569d64ff68f76e8a220d",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_note_tables_integration_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "b85685003acc7e5a97ffeb9249aadabe6d13a33baf369bfdc41a2ae470f0a05f",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_preference_flow_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "db2212f971358aa89b8affe7a57068571fe6e4ddfd1275382f027149a1cd52e7",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_research_target_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "9e77d66cd70228e268f8bb4bd8a48c0627e32e1532afd48f7194bf8a02d5aa61",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "fef7ced6d20a44dfe5ed08be9957b81c5a0cd82daf2c18ceab9e16ee5a9f9286",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_scaling_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "532cbedc47bfd49378db1288a39da841025dbd642e75dc0ac3c61bed914e9071",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "c0609e0eac45aee1c9028fcdbe2b96be7a01df0356be3e6d5c64ceb74f1cc2fd",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_source_identity_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "95fbf992cbee1e2820f3afbf87fe6af66f7ec7010924c86960271deed4c3ef54",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_style_preferences_review_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "9ea5500a7a99aa20d96e55d8e6cc3730c9b63c8956c18054d8be203117ff4168",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_table_cell_replacement_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "0891207125a1e13383c3787c2f905e8dddcad04ee139f465675599a4488c0bac",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "e3346a41c11d4f782c916469ea2cbc8f33d2fe15722d4be2aa962c491b926e45",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_transfer_session_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "65e507ea956dd6c6b5f074361aad0c3386a182e9d66890010f08daa6c15e5496",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_zotero_transfer_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "dad72af061230a68cecbce08995d5338cbb435c2a6608d792455c1133b87a112",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "a46e26fe257de06a743ccb1fc6af9fe93728c08c91eba8044573853cad29923a",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/zotero_backoff_state_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "f0053457e76775054d4c1a1a45f8a5a3afc432cd4de92c9fafb63278bf448b81",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/zotero_catalog_query_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 3,
+      "repository_dependency_identity_sha256": "4ab754b2412b2de8654195dce59f1b83d94a43d6c76e5d65c295d24037c45a00",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/zotero_citing_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 4,
+      "repository_dependency_identity_sha256": "78dc8b356ac2fd4bcf457620e2be274e7714ea4584d3d963347d793ac5c837ba",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/zotero_client_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 3,
+      "repository_dependency_identity_sha256": "bab9e9c370f2824f5a32e2a08f74dc646ce323e036e2d2cdf90aab13b37c6e1e",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/zotero_formatted_text_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "87c40faf69880cd2d47ff8f2894efe748970245cb552866c4f71ee6f7e5d4a30",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/zotero_identity_client_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 3,
+      "repository_dependency_identity_sha256": "ba60367e4ff7f38b3b2f55aacccc2dbd6b74a0ed7e0992c6136c27ea6f9e4144",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/zotero_item_children_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "1f2503f7bfc2c1a2ed5cada33743e712c5b8e696db2a67ec48a0001b4934afb2",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/zotero_item_details_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 3,
+      "repository_dependency_identity_sha256": "f3e1708a95df0e41dba52c74c903a2d5b89c51ecb350c9bc2a76b6fd5a6e133e",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/zotero_metadata_batch_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 3,
+      "repository_dependency_identity_sha256": "63cc24cbb86d9f544e42b6b544bd3a53d0bb382e750796daa1e7812cc9b90943",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/zotero_paragraph_runs_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "36a4ee4bbcc01238352102b35f8085fe755a231c3fc7fcc7b87dcb4be871142d",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/zotero_saved_search_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 3,
+      "repository_dependency_identity_sha256": "36d0674d1f453fcc4b647fe8b3897dfba2a6d41f47dd31d9241435180449a0c4",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/zotero_tag_catalog_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 3,
+      "repository_dependency_identity_sha256": "b62c24a0dab8f8a667b911cfd0b310cab205acce2b51c8891ed9b058f9012e1c",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/zotero_tag_filter_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 3,
+      "repository_dependency_identity_sha256": "47fda2a81ec6f4a433cf643be9dd3206dc51a202e49dbb781a5ef56c282bfcc3",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/zotero_transfer_protocol_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 4,
+      "repository_dependency_identity_sha256": "927d1a0e2b6aba197777926b704a7109fb22eb72543db9fe780b0e05173461aa",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-owner-fidelity",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_tree_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "77f4a01d7448b9d3af5052046f946e53acb34dd9d32bde367ad05a670cf08845",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-owner-fidelity",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_structure_integrity_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 381,
+      "repository_dependency_identity_sha256": "96961486bdac4465c9a796d3e6c023fa50819f41fc9dcc6e4d81af3bcb94a6d5",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-owner-fidelity",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_field_span_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "305f453919bd8319b72c73c4d75c382675143871e18fd2abe8657c5ad832abdc",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-owner-fidelity",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_bibliography_fidelity_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "52286fab15eac414d352ae0cc41a4177e2c4db67a55e7df62f8f414374c19309",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-owner-fidelity",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_note_bookmark_edit_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "cc08426fac78fb08ddc41b5235018faa082f8eac72f68c1b2cc59c16c2dace74",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-owner-fidelity",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_note_numbering_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "d81ed4fe74e5ee6a3a3d874924dbe553fb0b56bed16d25d9ae02973993aae401",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-owner-fidelity",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_footnote_reference_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "adec484afaa1daef1e851eb39c5bb0452d754964a64c97ccd202d56d3b06088c",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-owner-fidelity",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_table_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "2544e106e28cc5a6f83c2c1b97faee68058f61f21ba48502e5c7606dc28cbfab",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [
+        "packages/quds_office_engine/lib/src/automation/operations/word_header_footer_guard.dart",
+        "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart"
+      ],
+      "cohort": "engine-owner-fidelity",
+      "dependency_paths": {
+        "packages/quds_office_engine/lib/src/automation/operations/word_header_footer_guard.dart": [
+          "packages/quds_office_engine/test/word_table_grid_addressing_test.dart",
+          "packages/quds_office_engine/tool/fidelity/office_steps.dart",
+          "packages/quds_office_engine/tool/fidelity/word_steps.dart",
+          "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+          "packages/quds_office_engine/lib/src/automation/operations/word_header_footer_guard.dart"
+        ],
+        "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart": [
+          "packages/quds_office_engine/test/word_table_grid_addressing_test.dart",
+          "packages/quds_office_engine/tool/fidelity/office_steps.dart",
+          "packages/quds_office_engine/tool/fidelity/word_steps.dart",
+          "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart"
+        ]
+      },
+      "path": "packages/quds_office_engine/test/word_table_grid_addressing_test.dart",
+      "repository_dependency_closure_unchanged": false,
+      "repository_dependency_count": 394,
+      "repository_dependency_identity_sha256": "54d44d0ccb35091f64c2056abc5c5c6a1bec3a83eb97f00610b5bd4479d8f184",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-owner-fidelity",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_table_cell_border_roundtrip_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "f5e3261ad91b14343d6ed75aadad3d1b3165bee20acd33074f4fdbafa83ebf3d",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-owner-fidelity",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_table_nested_layout_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "8280525e4a9dcbbf6f10f6e24b439bc3468c273bad69ce791236f1f69ae44529",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-owner-fidelity",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_table_vertical_merge_layout_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "85701dbaee0be7f36bcd0a4a5bfee60abbd35e8cd8b8bb27f07cdb6538d3b42d",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-owner-fidelity",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_table_direction_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "91a1af530cf14561d15722e18e5e49a10f97d5c5d9d095fdba6c4f6a5cf70c57",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-owner-fidelity",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_table_style_import_regression_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "7fb02de353a721f7ed919a6737591182509be01e7f56df592a89e759bbced411",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-owner-fidelity",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_table_style_precedence_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "aa1ca215f7b6ca26e55be49c912923d0919eb195226a948d464b386e651d985e",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-owner-fidelity",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_package_preservation_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "bb385f3b8af912edba3e92a7283a554805f8170988ca604e28cdd3d7d6e642ee",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-owner-fidelity",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_content_control_fidelity_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "6d5ed18be4cc0a9cb8538e11e329b9651bf7e3ec32d9f4e268e93b0b4f8691d4",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [
+        "packages/quds_office_engine/lib/src/automation/operations/word_header_footer_guard.dart",
+        "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart"
+      ],
+      "cohort": "engine-owner-fidelity",
+      "dependency_paths": {
+        "packages/quds_office_engine/lib/src/automation/operations/word_header_footer_guard.dart": [
+          "packages/quds_office_engine/test/word_bookmark_fidelity_test.dart",
+          "packages/quds_office_engine/tool/fidelity/office_steps.dart",
+          "packages/quds_office_engine/tool/fidelity/word_steps.dart",
+          "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+          "packages/quds_office_engine/lib/src/automation/operations/word_header_footer_guard.dart"
+        ],
+        "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart": [
+          "packages/quds_office_engine/test/word_bookmark_fidelity_test.dart",
+          "packages/quds_office_engine/tool/fidelity/office_steps.dart",
+          "packages/quds_office_engine/tool/fidelity/word_steps.dart",
+          "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart"
+        ]
+      },
+      "path": "packages/quds_office_engine/test/word_bookmark_fidelity_test.dart",
+      "repository_dependency_closure_unchanged": false,
+      "repository_dependency_count": 394,
+      "repository_dependency_identity_sha256": "cded915470842710c880735395f22b6d9939e3fdeeb1261a76795fb1df3b65b8",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-owner-fidelity",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/word_edit_integrity_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "74da1a18104a79a590e9b88fbd70db6db4b2da2dc5309778bc6d84343d87be6f",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-owner-fidelity",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/odt_document_writer_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "151633dbeb924c5df7f622609c1b4f8b53cfd9df70818f1fc98f1d79bba24056",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-owner-fidelity",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/odt_table_merge_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "7968d1a99b475385998ee7d3259ac81408f6cb5d61968db122882c05d17ea270",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-owner-fidelity",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/odt_structure_fidelity_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "06e554d2095da70762bc1d67561a19d7b58a4762af37143c831d302a9c7792c2",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-owner-fidelity",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/odt_inline_field_fidelity_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "31cbe68764cf01bf3575a0d4daa370786fe1ceb6155883e99de7cd46d3721770",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-owner-fidelity",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "00b952f980ac703fe79edf6e8479fec06ff75c19467759a89e8de45df24be366",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-owner-fidelity",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/odt_note_fidelity_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "e28ffd7e8b6601792613620887e3993c0df7aad51cb51ef9b9c10480df08c42d",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-owner-fidelity",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/odt_bookmark_range_fidelity_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "eebefdb91505e8ef6093180b68689bac45eaba569932059137c031efb7fe65fe",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "engine-owner-fidelity",
+      "dependency_paths": {},
+      "path": "packages/quds_office_engine/test/odt_hyperlink_range_fidelity_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 377,
+      "repository_dependency_identity_sha256": "505a5d88a5507c72ffbce0548228ad868edb6d0c306c4d8fbe8e570dcaac67b3",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-1",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "16a6b363efd0856e79612651b04836954fa697bb8a0968eb8336d8e2a7d50dcb",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-1",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_adjacent_citations_controller_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "1e3031c0c5330790cd8f660e9a037b9f65473922e7af31c12e4861174c4c4c5d",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-1",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_backoff_session_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "7158e0adabcb9042488a5068a0a437eabc918be88deb65fd881fb553a8f53808",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-1",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "54d84ec510e0f00452ec7b87149a90a16ca7d6ac23b0e58a2ae92faeec9317e7",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-1",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "cea73e374737d5d0dc3e95ba48426745cea8ca001e1484c1a8727e7711dc8d1a",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-1",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_catalog_query_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "bd76becdfdcf3a154b521b1593b6e2f063332b20723e47ee7f68d3c3177512ef",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-1",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_children_dialog_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "bf2c431e3cafa3de5947034415511ed39c4d5249d052406605cff6af6680fa1c",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-1",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_children_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "2afb9e194374f0fe49e355e2a14db2de4b1219edb55ae7d270047dcbd85aa9f5",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-1",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "9055c1954649df1d862d7e31818ac3f7c8028cf08da1b00135b71e18e25a34b0",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-1",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "e4749a563a09de2e1de5ac5f71b91a24169a5c0db1d4c2efaf9c538c1785e6c5",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-2",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "ff0f48ec9298c1c9caf9e60a0db03c815d19b5979334970efb17e0a12ec12c53",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-2",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_composer_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 383,
+      "repository_dependency_identity_sha256": "436c08327114e5aec1ae36cc59bbd699ff8274e7f20d0cb07870c7eb49e1e33a",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-2",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_connected_alias_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "bccbcd8808a8d3f9c55f852a7945f51a9a3a4689076cca9104ee233549182d8e",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-2",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_controller_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "cd942f39fd1af9c2dca0019687fb96cd2beef0e30ad818b3a37df0ff71094110",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-2",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "7f6e1e86a38013d271e5c2816dad8c946bb5f5cc476869ac65ae50d4e6afce4f",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-2",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "315c675c51129e3c51eb727af651f50e5819d25a148ad33941181fe5abcf582b",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-2",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "d63155de3dc8127fbb357c890d2ea1fee62597c28265cf98b50b3389dfd0117c",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-2",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_document_actions_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "dfe8f1e966641fd57064c088ec9d9ba5f7d4ab92f66505fcb5834bfa4bc56661",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-2",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_document_reuse_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "1d74013de9dfb2cfce75501167c162abb66e2647bcb2e5275479b9a9dcbd1fa3",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-2",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_document_source_picker_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 383,
+      "repository_dependency_identity_sha256": "94a1e0b486fed47e1aa1320b4bd13f2ac73cd1d53ea491316157df57913db3de",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-3",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_document_sources_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 379,
+      "repository_dependency_identity_sha256": "f47cdba5c64aaaa531252d66166a7c6d7cc2b6aaca1775e9dbed77146eb6b9f5",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-3",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_field_at_caret_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "ec4dd86bff27c6bccbe53f932c83c5832b00587eec4d7a6bdb713ee02d23341f",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-3",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_format_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 378,
+      "repository_dependency_identity_sha256": "e178f0dcd4f82ed1e447ec0ab67deb588bc39356d949f58e1091b6a8678190ab",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-3",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_import_search_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "2f9cb82a2b184eaf837357aca5b6830529f5d551150f5e02a988b46b6e701758",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-3",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_library_details_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "6fbf365251b6923c2a16ae44e0ebb1af6402408070884b56c9224d31f35530e6",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-3",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_multiparagraph_controller_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "f9a2af0e8da55413fc1619a7da06345fa16dc71e931837227f17034671af9cfc",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-3",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_navigation_dialog_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "6d8e40379b33dd4bdf3855ca4c15cf4dfc6cff488e7aebb486c5175d14285e9a",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-3",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_navigation_pane_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "3bf3c24e1027e9449c40c0656f17bf3d6016351c9514b478c8bad1739f94ac8e",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-3",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "700dfa66f99134fe76a008b4e96b9f69e57c48889f443a0e0bfb7007c9df5153",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-3",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "df792c223404686a63c921c02f9127a8705c403ae3b4a7b4824f36bd5e5083ab",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-4",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_note_preview_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 2,
+      "repository_dependency_identity_sha256": "73499cb0ad922575a29bd6b88a8802234537f9bea0c1c6d56d5054e362f2a220",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-4",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "d2b38354d95df7825656f5b1354c0fab17d7725da5ffec35703dd8745d86cbc9",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-4",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "00e198b23e5ba8580d403ad2554c486ebefb129f668b011096714c9a999244de",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-4",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_occurrence_navigation_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "5e088458150515c7ffb66b535730778876d6f20e4581e6112fb000afd7820415",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-4",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_rich_controller_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "8f81b95ebd0ad332b66d9e384ec89196304dc181802f8c19b33acaab31e79d45",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-4",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_saved_search_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "11eadeabcd7956129fc013cb0bdbe38aadcc81f7e8965251f502b954ddb90140",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-4",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_snapshot_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 379,
+      "repository_dependency_identity_sha256": "6579119efeafd6ee2b8e96a73d6a4166493c2f6e60380e366df8290d007a2e14",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-4",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_source_identity_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 378,
+      "repository_dependency_identity_sha256": "7ae5507a4b8c39a089e4516bb784d7c4e22b2fbc22eb486deb0ff7f762492bda",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-4",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_source_occurrences_dialog_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "8d18ba5ecba16b5af26a9afe0cfe958c84846dedee9cda25dead87915179275f",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-4",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_source_occurrences_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 379,
+      "repository_dependency_identity_sha256": "dd8cc9332f4d82cbc73b9074ca85680dc089fece6fe85fe228d1f6c63044931a",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-5",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_source_resolver_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 379,
+      "repository_dependency_identity_sha256": "4c2391745ea35bcfb9a00855e710a5d8e03b4ba98e9d9c627cb9b14f7f6f8d05",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-5",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "005a713240a4feb8b42f6cc0a5809274222ce748b0211fd36db9598c34a946b4",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-5",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_stored_details_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 379,
+      "repository_dependency_identity_sha256": "d98a2803c1e1a9206ae43cc4af20ab8f511f078314105fd5ec83c61ec9d14221",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-5",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_tag_browser_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "a621b890b0910a88715b016d2ca21cb2cebb5ddc05ee9092ac7146f101006b6b",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-5",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_tag_filter_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "594f2756ed87b5a0a514c81aae61b6695d152273a4b54d881593e3d2f384f335",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-5",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "1309c74ba8dd7f165b473cd607570eea727e066d99cdc212f8ed3211db9daa5c",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-5",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_transfer_dialog_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "af463ab082c7e6b15da73b647669dc16c0765887f1fe2eb84b8a794681ec538f",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-5",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "e4325a8150ebb370c73e94fb4d950e477bc20eb4880297fdd0effdc74099a3ba",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "editor-zotero-5",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 486,
+      "repository_dependency_identity_sha256": "79d8e467f684a287264446b5822ae6c69d451a0db4e9c722bbf9b86a3bbcd8f9",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [],
+      "cohort": "studio-zotero",
+      "dependency_paths": {},
+      "path": "packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+      "repository_dependency_closure_unchanged": true,
+      "repository_dependency_count": 380,
+      "repository_dependency_identity_sha256": "8d1bcce914e2065ea5876ff2e6d35322ebe87158ff8ffe371c382bd8f2b1f094",
+      "test_source_unchanged": true
+    },
+    {
+      "changed_production_dependencies": [
+        "packages/quds_mail_core/lib/quds_mail_core.dart",
+        "packages/quds_mail_core/lib/src/sync/runner.dart",
+        "packages/quds_mail_store/lib/src/models.dart",
+        "packages/quds_mail_store/lib/src/repository.dart",
+        "packages/quds_mail_store/lib/src/schema/database.dart",
+        "packages/quds_mail_store/lib/src/search_journal.dart",
+        "packages/quds_mail_store/lib/src/sync_mailboxes.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_cached_mail.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_mailbox_store.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_sync_dialog.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_sync_strings.dart"
+      ],
+      "cohort": "studio-zotero",
+      "dependency_paths": {
+        "packages/quds_mail_core/lib/quds_mail_core.dart": [
+          "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+          "packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "packages/quds_office_editor/example/lib/studio_mail.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+          "packages/quds_mail_core/lib/quds_mail_core.dart"
+        ],
+        "packages/quds_mail_core/lib/src/sync/runner.dart": [
+          "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+          "packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "packages/quds_office_editor/example/lib/studio_mail.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+          "packages/quds_mail_core/lib/quds_mail_core.dart",
+          "packages/quds_mail_core/lib/src/sync/runner.dart"
+        ],
+        "packages/quds_mail_store/lib/src/models.dart": [
+          "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+          "packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "packages/quds_office_editor/example/lib/studio_mail.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+          "packages/quds_mail_store/lib/quds_mail_store.dart",
+          "packages/quds_mail_store/lib/src/models.dart"
+        ],
+        "packages/quds_mail_store/lib/src/repository.dart": [
+          "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+          "packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "packages/quds_office_editor/example/lib/studio_mail.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+          "packages/quds_mail_store/lib/quds_mail_store.dart",
+          "packages/quds_mail_store/lib/src/repository.dart"
+        ],
+        "packages/quds_mail_store/lib/src/schema/database.dart": [
+          "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+          "packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "packages/quds_office_editor/example/lib/studio_mail.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+          "packages/quds_mail_store/lib/quds_mail_store.dart",
+          "packages/quds_mail_store/lib/src/repository.dart",
+          "packages/quds_mail_store/lib/src/schema/database.dart"
+        ],
+        "packages/quds_mail_store/lib/src/search_journal.dart": [
+          "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+          "packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "packages/quds_office_editor/example/lib/studio_mail.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+          "packages/quds_mail_store/lib/quds_mail_store.dart",
+          "packages/quds_mail_store/lib/src/repository.dart",
+          "packages/quds_mail_store/lib/src/search_journal.dart"
+        ],
+        "packages/quds_mail_store/lib/src/sync_mailboxes.dart": [
+          "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+          "packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "packages/quds_office_editor/example/lib/studio_mail.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+          "packages/quds_mail_store/lib/quds_mail_store.dart",
+          "packages/quds_mail_store/lib/src/repository.dart",
+          "packages/quds_mail_store/lib/src/sync_mailboxes.dart"
+        ],
+        "packages/quds_office_editor/example/lib/studio_mail_cached_mail.dart": [
+          "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+          "packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "packages/quds_office_editor/example/lib/studio_mail.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_local_accounts_dialog.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_cached_mail.dart"
+        ],
+        "packages/quds_office_editor/example/lib/studio_mail_ews.dart": [
+          "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+          "packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "packages/quds_office_editor/example/lib/studio_mail.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_ews.dart"
+        ],
+        "packages/quds_office_editor/example/lib/studio_mail_mailbox_store.dart": [
+          "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+          "packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "packages/quds_office_editor/example/lib/studio_mail.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_mailbox_store.dart"
+        ],
+        "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart": [
+          "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+          "packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "packages/quds_office_editor/example/lib/studio_mail.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart"
+        ],
+        "packages/quds_office_editor/example/lib/studio_mail_native.dart": [
+          "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+          "packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "packages/quds_office_editor/example/lib/studio_mail.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_native.dart"
+        ],
+        "packages/quds_office_editor/example/lib/studio_mail_sync_dialog.dart": [
+          "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+          "packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "packages/quds_office_editor/example/lib/studio_mail.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_sync_dialog.dart"
+        ],
+        "packages/quds_office_editor/example/lib/studio_mail_sync_strings.dart": [
+          "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+          "packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "packages/quds_office_editor/example/lib/studio_mail.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_sync_strings.dart"
+        ]
+      },
+      "path": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "repository_dependency_closure_unchanged": false,
+      "repository_dependency_count": 925,
+      "repository_dependency_identity_sha256": "abbef20cc98ac628002f6e0f477bb4b2e096dbcc8eba9d6c0add26d6745e4b3b",
+      "test_source_unchanged": true
+    }
+  ],
+  "source_identity_digest_encoding": "SHA-256 of sorted compact JSON source records",
+  "status": "applicability-pending-targeted-runs",
+  "tracked_dart_libraries_scanned": 2537,
+  "transitive_closure_dynamic_loader_matches": [
+    {
+      "line": 7,
+      "path": "packages/quds_office_editor/example/lib/credentials/native_system_io.dart",
+      "text": "// Direct libc / Win32 calls keep normal file operations free of `Process.run`."
+    },
+    {
+      "line": 8098,
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "text": "Process.start('cmd', <String>['/c', 'start', '', target]);"
+    },
+    {
+      "line": 8100,
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "text": "Process.start('open', <String>[target]);"
+    },
+    {
+      "line": 8102,
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "text": "Process.start('xdg-open', <String>[target]);"
+    },
+    {
+      "line": 6,
+      "path": "packages/quds_office_editor/lib/src/embed/office_uri_io.dart",
+      "text": "Process.start('cmd', <String>['/c', 'start', '', uri]);"
+    },
+    {
+      "line": 8,
+      "path": "packages/quds_office_editor/lib/src/embed/office_uri_io.dart",
+      "text": "Process.start('open', <String>[uri]);"
+    },
+    {
+      "line": 10,
+      "path": "packages/quds_office_editor/lib/src/embed/office_uri_io.dart",
+      "text": "Process.start('xdg-open', <String>[uri]);"
+    }
+  ],
+  "transitive_closure_dynamic_loader_review": [
+    {
+      "assessment": "Comment mentioning Process.run; no executable loader.",
+      "expected_matches": 1,
+      "path": "packages/quds_office_editor/example/lib/credentials/native_system_io.dart",
+      "source_identity": {
+        "executable": false,
+        "git_blob_sha1": "0844caca16ae23ea0bc3a8eeeeaea7255d77c039",
+        "sha256": "cb0faa287e6def7f56e11497a6ac32c4e06a177574db8a96766c35b6072bc428",
+        "size": 6263
+      },
+      "source_unchanged": true
+    },
+    {
+      "assessment": "_openExternalLink delegates a hyperlink to the OS via cmd/start, open or xdg-open; it does not import or execute repository Dart source.",
+      "expected_matches": 3,
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "source_identity": {
+        "executable": false,
+        "git_blob_sha1": "f0a0be6bf767c261d3fedd7b6caf555e2993cca0",
+        "sha256": "ec2b7848791a3daf33a357324e6a42ff9e184474aaf6ff9697df638ed05d2bef",
+        "size": 439367
+      },
+      "source_unchanged": true
+    },
+    {
+      "assessment": "openExternalUri delegates a PDF link to the OS via cmd/start, open or xdg-open; it does not import or execute repository Dart source.",
+      "expected_matches": 3,
+      "path": "packages/quds_office_editor/lib/src/embed/office_uri_io.dart",
+      "source_identity": {
+        "executable": false,
+        "git_blob_sha1": "ce2cb778ec0b95b260fa88f8cc93c5de1c03175c",
+        "sha256": "4993a5a1dcd8daa4fd693c5c55d6a93093f1a9b2a0038e9635d1c90a7041dceb",
+        "size": 350
+      },
+      "source_unchanged": true
+    }
+  ],
+  "zotero_named_lib_or_test_changes": []
+}

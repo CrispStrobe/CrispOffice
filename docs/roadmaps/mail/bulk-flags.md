@@ -1,14 +1,15 @@
 # Foreground bulk read and flag actions
 
-This milestone extends the shared connected mailbox list in Studio. It covers
-IMAP, EWS, Gmail and Microsoft 365 using the same frozen command plan and
-four-outcome report. It is a bounded foreground capability on the route toward
-desktop-client parity; durable command journals and repository-driven sessions
-remain the next increment.
+The concurrently developed bulk-flags and bulk-actions branches are reconciled
+in one implementation and one [foreground bulk action contract](bulk-actions.md).
+That contract covers frozen visible selections, explicit read/unread/flag/unflag
+assignments, four per-message outcomes, provider mutation evidence, cancellation,
+localized progress/details and the cache boundary.
 
-## User path
+See the [integration and local validation record](../../validation/mail-bulk-actions-20261120/README.md)
+for source intake, reconciliation decisions and accepted local evidence.
 
-Select individual checkboxes or **Select visible**, then choose **Mark read**,
+Select individual checkboxes or **Select shown**, then choose **Mark read**,
 **Mark unread**, **Flag** or **Unflag**. Selection covers only currently matching,
 already loaded headers in this folder, in their displayed order. It never means
 all server messages. Newly loaded rows remain unchecked. Changing a filter prunes
@@ -81,12 +82,12 @@ have the same code without being presented as the same outcome. Unexpected
 callback exceptions are uncertain. IMAP, EWS, Gmail and Microsoft 365 annotate
 their existing real mutation boundaries. Legacy providers without this metadata
 retain conservative treatment. Cloud flag commands accept only explicit
-request, authentication, resource, precondition or documented HTTP 429
-rejections as no-write evidence. The HTTP 429 treatment follows the
-[Microsoft Graph throttling contract](https://learn.microsoft.com/en-us/graph/throttling)
-and [Gmail error contract](https://developers.google.com/workspace/gmail/api/guides/handle-errors).
-Timeouts and unfamiliar failures after dispatch remain uncertain. This
-flag-command rule preserves the separate existing submission outcome contract.
+request, authentication, resource, precondition and documented rate-limit
+rejections as no-write evidence. A certified quota rejection stops the remaining
+selection and retains Retry-After guidance without demanding an uncertainty
+refresh. Timeouts and unfamiliar failures after dispatch remain uncertain.
+This flag-command rule preserves the separate existing submission outcome
+contract.
 
 Only confirmed target flags update the live view. An unobserved unrelated flag
 stays unknown. A successful in-flight acknowledgment is retained in the report
@@ -134,15 +135,18 @@ different persistence contract.
 
 ## Foreground and cache boundary
 
-The report and command plan are in memory. There is no durable command journal,
-offline queue, restart recovery, automatic replay or undo promise. Bulk changes
-are reflected in the live view; reconnect and cached-mail views require a fresh
-folder observation to retain the latest confirmed flags. This milestone does
-not claim synchronized persistent-cache updates after every foreground change.
+The original foreground milestone kept reports in memory. The later
+[command journal](command-journal.md) persists native single/bulk flag intent,
+pre-dispatch markers and typed outcomes through schema v6. Confirmed results
+atomically patch the exact cached target flag without inventing unknown
+observations. Connected and cached workspaces can inspect saved receipts.
 
-No dependency versions, authentication flow or database schema change is
-required. Move, delete, archive, rules and scheduled operations are separate
-capabilities with their own acceptance requirements.
+There is no automatic replay, general offline queue or undo promise. Historical
+uncertainty remains evidence. [Explicit checks](flag-recovery.md) now save
+separate fresh provider observations without changing the original outcome.
+Move, delete, archive, rules and scheduled operations are separate capabilities
+with their own acceptance requirements. Authentication and dependency versions
+remain unchanged by the journal increment.
 
 ## Validation and continuation
 
@@ -152,9 +156,9 @@ and preserves raw logs and localized probes. Fake providers and protocol
 fixtures qualify the implementation contracts; live provider accounts and
 installed platform releases remain outside this increment.
 
-1. Durable repository-driven sessions and a remote-command journal: persist
-   intent before dispatch, retain uncertainty across restart, and qualify
-   offline/reconnect, cancellation, UIDVALIDITY, conflicts and explicit recovery.
+1. Repository-driven sessions: build on the durable flag journal and completed
+   [explicit observation recovery](flag-recovery.md), with visible completeness,
+   synchronization ownership and reconnect behavior.
 2. Account-wide/unified search, saved live views and conversations over a durable
    index with explicit cache completeness and source-message identity.
 3. Consistent archive/move/delete, broader bulk commands, rules and quick actions

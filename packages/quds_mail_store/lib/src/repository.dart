@@ -5,12 +5,16 @@ import 'package:quds_mail_core/quds_mail_core.dart';
 
 import 'codec.dart';
 import 'errors.dart';
+import 'flag_journal_models.dart';
 import 'models.dart';
 import 'schema/database.dart';
 
 part 'search_journal.dart';
 part 'local_accounts.dart';
 part 'mailbox_views.dart';
+part 'sync_mailboxes.dart';
+part 'flag_journal.dart';
+part 'flag_reconciliation.dart';
 
 /// One profile in one database, with native/browser setup in separate entries.
 ///
@@ -26,6 +30,7 @@ final class SqliteMailRepository implements MailRepository {
   final MailStoreLimits limits;
   final DateTime Function() _clock;
   final Map<(String, String), String> _interrupted = {};
+  final Object _flagJournalOwner = Object();
   bool _closed = false;
 
   static Future<MailResult<SqliteMailRepository>> open({
@@ -82,6 +87,7 @@ final class SqliteMailRepository implements MailRepository {
           "UPDATE pending_operations SET state='reconcile',revision=revision+1 "
           "WHERE state='applying'",
         );
+        await repository._recoverFlagBatches();
       });
       return MailSuccess(repository);
     } on Object catch (error) {
@@ -446,6 +452,7 @@ final class SqliteMailRepository implements MailRepository {
         'ON CONFLICT(account,mailbox) DO UPDATE SET cursor=excluded.cursor',
         [account.value, page.mailbox.value, page.next.value],
       );
+      await _saveSyncCheckpoint(page);
       await _quota(account);
       await _db.fault(MailStoreCheckpoint.beforeCommit);
       lease.checkCurrent();
@@ -744,6 +751,7 @@ final class SqliteMailRepository implements MailRepository {
         ['mailbox', 'revision', 'captured_at', 'header_count', 'has_more'],
       ),
       ('mailbox_view_members', ['mailbox', 'position', 'message']),
+      ('mailbox_sync_state', ['mailbox', 'revision', 'updated_at', 'has_more']),
       ('cursors', ['mailbox', 'cursor']),
       ('tombstones', ['mailbox', 'remote']),
       ('blobs', ['hash', 'data']),
@@ -753,12 +761,17 @@ final class SqliteMailRepository implements MailRepository {
       ('outbox', ['id', 'state', 'attempt_id', 'data']),
       ('outbox_attempts', ['outbox', 'attempt_id']),
       ('pending_operations', ['id', 'remote', 'kind', 'argument', 'state']),
+      // Reserve fixed typed outcome metadata before dispatch, so recording a
+      // reply does not need new logical-byte admission after the remote write.
+      ('flag_batches', ['id', 'mailbox', 'provider', 'action']),
+      ('flag_batch_items', ['batch', 'remote', 'subject']),
+      ('flag_item_resolutions', ['batch', 'position', 'kind', 'checked_at']),
       ('credential_cleanup', ['reference']),
       ('mail_fts', ['message', 'content']),
       ('index_state', ['message']),
     ]) {
       final expression = [
-        '64',
+        table.startsWith('flag_') ? '256' : '64',
         for (final column in columns)
           'coalesce(length(CAST($column AS BLOB)),0)',
       ].join('+');

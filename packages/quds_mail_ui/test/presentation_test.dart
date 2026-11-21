@@ -18,6 +18,7 @@ void main() {
         diagnostics: const [],
       );
       expect(p.bodyText, isEmpty);
+      expect(p.remoteImageUrls, isEmpty);
     },
   );
 
@@ -329,6 +330,65 @@ void main() {
     expect(p.text, isNot(contains('rich')));
     expect(result.original!.bytes, [255, 0, 13, 10, 65]);
   });
+
+  for (final (html, expected) in <(String, String)>[
+    ('<b>Alpha</b> <i>Beta</i>', 'Alpha Beta'),
+    ('<b>Alpha </b> \n\t<i> Beta</i>', 'Alpha Beta'),
+    ('<span>Alpha</span><!-- gap --> <span>Beta</span>', 'Alpha Beta'),
+    ('<b>Alpha</b>&nbsp;<i>Beta</i>', 'Alpha\u00a0Beta'),
+    (
+      '<div>\n  <div><b>Alpha</b> <i>Beta</i></div>\n  <div>Gamma</div>\n</div>',
+      'Alpha Beta\nGamma',
+    ),
+  ]) {
+    test('HTML whitespace preserves words in $html', () {
+      final reader = buildMailPresentation(mailFixture(html: html));
+      final quotation = buildMailBodyPresentation(
+        MailBody(html: html),
+        preferHtml: true,
+      );
+      expect(reader.bodyText.trim(), expected);
+      expect(quotation.text.trim(), expected);
+      expect(reader.rejected, isFalse);
+      expect(quotation.rejected, isFalse);
+    });
+  }
+
+  test(
+    'remote image discovery uses admitted image elements and decoded URLs',
+    () {
+      final presentation = buildMailPresentation(
+        mailFixture(
+          html:
+              '<script src="https://script.invalid/a">'
+              '"<img src="https://script.invalid/fake">"</script>'
+              '<iframe src="https://frame.invalid/a">'
+              '<img src="https://frame.invalid/fake"></iframe>'
+              '<object><img src="https://object.invalid/a"></object>'
+              '<a href="https://link.invalid/a">A link</a>'
+              '<img src="https://image.invalid/a?x=1&amp;y=2">'
+              '<img SRC="https://image.invalid/a?x=1&amp;y=2">'
+              '<img src="http://image.invalid/b">'
+              '<img src="//relative.invalid/a">'
+              '<img src="https://user:secret@private.invalid/a">'
+              '<img src="https://control.invalid/&#10;a">'
+              '<img src="mailto:mail@example.invalid">'
+              '<img srcset="https://set.invalid/a 2x">',
+        ),
+      );
+      expect(presentation.rejected, isFalse);
+      expect(presentation.remoteImageUrls, [
+        Uri.parse('https://image.invalid/a?x=1&y=2'),
+        Uri.parse('http://image.invalid/b'),
+      ]);
+      expect(presentation.images, isEmpty);
+      expect(
+        () =>
+            presentation.remoteImageUrls.add(Uri.parse('https://new.invalid')),
+        throwsUnsupportedError,
+      );
+    },
+  );
 }
 
 void _nestedWrapperWhitespaceTest() {

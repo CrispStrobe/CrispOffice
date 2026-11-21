@@ -91,6 +91,7 @@ void main() {
             'compatibility:2',
           ]);
           expect(report.items, same(report.results));
+          expect(() => report.items.clear(), throwsUnsupportedError);
           expect(report.confirmedCount, 2);
           expect(report.failedCount, 1);
           expect(report.items[1].problem, same(denied));
@@ -204,12 +205,14 @@ void main() {
           expect(report.confirmedCount, 1);
           expect(report.unattemptedCount, 2);
           expect(report.stopReason, MailBulkFlagStopReason.cancelled);
+          expect(report.requiresRefresh, isFalse);
         },
       );
 
       for (final code in [
         MailProblemCode.cancelled,
         MailProblemCode.staleOperation,
+        MailProblemCode.quotaExceeded,
       ]) {
         test('certified $code failure still stops further dispatch', () async {
           var calls = 0;
@@ -223,13 +226,17 @@ void main() {
           expect(calls, 1);
           expect(report.failedCount, 1);
           expect(report.unattemptedCount, 2);
+          expect(report.items.first.problem, same(problem));
           expect(report.stopProblem, same(problem));
           expect(
-            report.stopReason,
-            code == MailProblemCode.cancelled
-                ? MailBulkFlagStopReason.cancelled
-                : MailBulkFlagStopReason.staleScope,
+            report.requiresRefresh,
+            code == MailProblemCode.staleOperation,
           );
+          expect(report.stopReason, switch (code) {
+            MailProblemCode.cancelled => MailBulkFlagStopReason.cancelled,
+            MailProblemCode.staleOperation => MailBulkFlagStopReason.staleScope,
+            _ => MailBulkFlagStopReason.rateLimited,
+          });
         });
       }
 
@@ -252,6 +259,7 @@ void main() {
             );
             expect(report.unattemptedCount, 3);
             expect(report.stopReason, MailBulkFlagStopReason.staleScope);
+            expect(report.requiresRefresh, isTrue);
           },
         );
       }
@@ -300,4 +308,33 @@ void main() {
       await expectLater(start(), throwsStateError);
     },
   );
+  for (final reason in [
+    MailBulkFlagStopReason.staleScope,
+    MailBulkFlagStopReason.invalidScope,
+    MailBulkFlagStopReason.scopeCheckFailed,
+  ]) {
+    test(
+      '$reason requires a fresh observation even without a dispatched write',
+      () async {
+        final account = reason == MailBulkFlagStopReason.invalidScope
+            ? MailAccountId('foreign', profile: _profile)
+            : _account;
+        final report = await MailBulkFlagCoordinator().run(
+          plan: _plan(),
+          lease: MailAccountSession(account).begin(),
+          isScopeCurrent: () {
+            if (reason == MailBulkFlagStopReason.scopeCheckFailed) {
+              throw StateError('Retired scope');
+            }
+            return false;
+          },
+          apply: (operation, lease) async => fail('Invalid scope dispatched.'),
+        );
+        expect(report.stopReason, reason);
+        expect(report.requiresRefresh, isTrue);
+        expect(report.unattemptedCount, 3);
+        expect(report.uncertainCount, 0);
+      },
+    );
+  }
 }

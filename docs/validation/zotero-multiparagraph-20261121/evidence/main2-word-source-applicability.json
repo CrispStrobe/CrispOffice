@@ -1,0 +1,82 @@
+{
+  "additional_case_files": [
+    "test/word_compatibility_fidelity_test.dart"
+  ],
+  "additional_compatibility_fidelity_cases": 5,
+  "broader_suite_repetition": "Not performed; retained byte and normalization proofs cover previously executed engine/Word populations. Studio Mail recovery is separately validated by the parent.",
+  "captured_input_count": 1152,
+  "case_populations_disjoint": true,
+  "changed_word_execution_inputs": [
+    "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+    "packages/quds_office_engine/test/office_vba_word_page_setup_test.dart",
+    "packages/quds_office_engine/test/word_compatibility_fidelity_test.dart"
+  ],
+  "engine_product_delta": {
+    "kind": "Formatting only; normalized entire-file bytes equal to c5",
+    "other_engine_and_legacy_libs_and_dependency_locks": "Identical to previous Word qualification",
+    "path": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart"
+  },
+  "executed_local_commit": "da0664ff999383210701e530588f6c88bd8e1a6b",
+  "frozen_snapshot_counts": {
+    "ancestor": 306,
+    "verified_equivalent": 24
+  },
+  "git_blob_sha256_mismatches": [],
+  "git_source_files_verified": 1150,
+  "inputs_stable_during_execution": true,
+  "local_and_published_trees_identical": true,
+  "normalization_proof_sha256": "9c3d5efded4c8f97d8e5ee7fec453900108699dfce29563f2a97e86b254e90f3",
+  "normalized_full_file_equivalence": [
+    {
+      "after_normalized_sha256": "3722b9ea50c4494f6571b7ecab6dc49bd541b328cf676a986019ff001887db7d",
+      "after_raw_sha256": "3722b9ea50c4494f6571b7ecab6dc49bd541b328cf676a986019ff001887db7d",
+      "base_commit": "c5cf1ec11970211597fd16eebdc8d0eaa115278b",
+      "before_normalized_sha256": "3722b9ea50c4494f6571b7ecab6dc49bd541b328cf676a986019ff001887db7d",
+      "before_raw_sha256": "d7d9794dc3629d6bb06dc92c03b78a5d66460f39878d999010ea00eb3a6faed4",
+      "normalized_bytes_identical": true,
+      "path": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+      "target_commit": "da0664ff999383210701e530588f6c88bd8e1a6b"
+    },
+    {
+      "after_normalized_sha256": "4d432d956c0802ddc9402658cc14a09d2fb3507723059b70f30409467dc2b447",
+      "after_raw_sha256": "4d432d956c0802ddc9402658cc14a09d2fb3507723059b70f30409467dc2b447",
+      "base_commit": "c5cf1ec11970211597fd16eebdc8d0eaa115278b",
+      "before_normalized_sha256": "4d432d956c0802ddc9402658cc14a09d2fb3507723059b70f30409467dc2b447",
+      "before_raw_sha256": "eca7c0de38e168af5c9e8baeeeb292e3cfb1b439fef53e4842ea360307242985",
+      "normalized_bytes_identical": true,
+      "path": "packages/quds_office_engine/test/office_vba_word_page_setup_test.dart",
+      "target_commit": "da0664ff999383210701e530588f6c88bd8e1a6b"
+    }
+  ],
+  "previous_word_case_count": 156,
+  "previous_word_case_files": [
+    "test/office_macro_word_page_setup_test.dart",
+    "test/office_vba_word_page_setup_integration_test.dart",
+    "test/office_vba_word_page_setup_test.dart",
+    "test/word_fidelity_test.dart",
+    "test/word_section_clone_fidelity_test.dart",
+    "test/xml_namespace_capture_test.dart"
+  ],
+  "previous_word_qualified_commit": "537d2e7cdd056e06739cd3504b37e5f8751d9373",
+  "previous_zotero_qualified_commit": "c5cf1ec11970211597fd16eebdc8d0eaa115278b",
+  "prior_formatted_macro_test": {
+    "bytes_identical": true,
+    "path": "packages/quds_office_engine/test/office_macro_word_page_setup_test.dart",
+    "prior_537_sha256": "272b12e03922995d0000c0baccfbf312ca41b318090569b3ba327520157ccb87",
+    "published_sha256": "272b12e03922995d0000c0baccfbf312ca41b318090569b3ba327520157ccb87"
+  },
+  "published_commit": "a5dc721dd8e519dde4f019b82a89572fe9f570f4",
+  "published_tree": "b3c010249b88c1ae29bce6d901f5c983adf1acf4",
+  "refreshed_main": "ce1c37c6af1e2306d2c24231758f10ef6213f7dd",
+  "refreshed_main_is_ancestor": true,
+  "runtime_config_inputs": [
+    ".dart_tool/package_config.json",
+    ".dart_tool/package_graph.json"
+  ],
+  "schema": "quds-main-freshness-word-applicability/v1",
+  "semantic_test_delta": {
+    "change": "The private section assertion helper selects child and attribute using OfficeNamespaces.w; production behavior is unchanged. Its own five-case suite was executed successfully.",
+    "path": "packages/quds_office_engine/test/word_compatibility_fidelity_test.dart",
+    "previous_word_population_did_not_include_this_file": true
+  }
+}

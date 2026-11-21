@@ -628,6 +628,52 @@ abstract class OfficeController extends ChangeNotifier {
 
 /// Word document controller: IME, caret, layout, load/save.
 class WordEditorController extends OfficeController {
+  /// Benchmark hook (null in normal use): receives the duration of each
+  /// phase of a typed keystroke (`model`, `undo`, `layout`, `notify`) and,
+  /// while [debugTimeListeners] was on when a listener was added, of each
+  /// listener (`listener <description>`).
+  static void Function(String phase, int microseconds)? debugEditPhase;
+
+  /// Benchmark switch: listeners added while it is true are timed through
+  /// [debugEditPhase].
+  static bool debugTimeListeners = false;
+
+  final Map<VoidCallback, List<VoidCallback>> _timedListeners =
+      <VoidCallback, List<VoidCallback>>{};
+
+  @override
+  void addListener(VoidCallback listener) {
+    if (!debugTimeListeners) {
+      super.addListener(listener);
+      return;
+    }
+    final String label = 'listener $listener';
+    void timed() {
+      final void Function(String, int)? sink = debugEditPhase;
+      if (sink == null) {
+        listener();
+        return;
+      }
+      final Stopwatch watch = Stopwatch()..start();
+      listener();
+      sink(label, watch.elapsedMicroseconds);
+    }
+
+    _timedListeners.putIfAbsent(listener, () => <VoidCallback>[]).add(timed);
+    super.addListener(timed);
+  }
+
+  @override
+  void removeListener(VoidCallback listener) {
+    final List<VoidCallback>? wrappers = _timedListeners[listener];
+    if (wrappers != null && wrappers.isNotEmpty) {
+      super.removeListener(wrappers.removeLast());
+      if (wrappers.isEmpty) _timedListeners.remove(listener);
+      return;
+    }
+    super.removeListener(listener);
+  }
+
   WordProofingSession? _proofing;
   final OfficeProofingVocabulary? _initialProofingVocabulary;
   final OfficeProofingService? _initialProofingService;
@@ -736,8 +782,24 @@ class WordEditorController extends OfficeController {
       },
       vocabulary: _initialProofingVocabulary,
       service: _initialProofingService,
+      visibleParagraphs: _proofingVisibleParagraphs,
     )..addListener(_onProofingChanged);
     return _proofing!;
+  }
+
+  /// Body paragraphs on the visible page and its neighbours, from the
+  /// current layout; background proofing checks them first.
+  Iterable<WmlParagraph> _proofingVisibleParagraphs() sync* {
+    final pages = documentLaidOut.pages;
+    if (pages.isEmpty) return;
+    final visible = visiblePageIndex.clamp(0, pages.length - 1);
+    final last = visible + 1 < pages.length ? visible + 1 : pages.length - 1;
+    for (var index = visible > 0 ? visible - 1 : 0; index <= last; index++) {
+      for (final line in pages[index].lines) {
+        final paragraph = line.sourceParagraph;
+        if (paragraph != null) yield paragraph;
+      }
+    }
   }
 
   // Inspect existing text only: checking must not materialize empty comment,
@@ -796,6 +858,7 @@ class WordEditorController extends OfficeController {
   void dispose() {
     _proofing?.removeListener(_onProofingChanged);
     _proofing?.dispose();
+    _timedListeners.clear();
     super.dispose();
   }
 
@@ -807,7 +870,7 @@ class WordEditorController extends OfficeController {
     OfficeProofingVocabulary? proofingVocabulary,
     OfficeProofingService? proofingService,
     String revisionAuthor = 'CrispOffice',
-  }) : document = document ?? WmlDocument.empty(),
+  }) : _document = document ?? WmlDocument.empty(),
        _initialProofingVocabulary = proofingVocabulary,
        _initialProofingService = proofingService,
        _revisionAuthor = _normalizeRevisionAuthor(revisionAuthor) {
@@ -843,7 +906,34 @@ class WordEditorController extends OfficeController {
   }
 
   /// document API.
-  WmlDocument document;
+  ///
+  /// Assigning a different document marks the current layout as belonging to
+  /// the old one: the next read of [documentLaidOut] (the canvas's next
+  /// paint, or an explicit [relayout]) lays the new document out in full.
+  /// Without this, the layout stayed the old document's until the first
+  /// keystroke, which then paid a full layout (and an incremental attempt
+  /// could reuse pages of the old document). Switch:
+  /// [layoutReplacedDocumentOnRead].
+  WmlDocument get document => _document;
+  set document(WmlDocument value) {
+    if (identical(value, _document)) return;
+    _document = value;
+    _documentReplaced = true;
+  }
+
+  WmlDocument _document;
+
+  /// True while [documentLaidOut] still shows a previously assigned
+  /// [document].
+  bool _documentReplaced = false;
+
+  /// When false (`--dart-define=QUDS_LAZY_DOCUMENT_LAYOUT=false`), assigning
+  /// [document] leaves the old layout in place until the next [relayout],
+  /// as before.
+  static bool layoutReplacedDocumentOnRead = const bool.fromEnvironment(
+    'QUDS_LAZY_DOCUMENT_LAYOUT',
+    defaultValue: true,
+  );
 
   // Keep the host's requested interaction mode separate from document
   // restrictions so a rebuild cannot bypass protection or undo enable edits
@@ -902,7 +992,16 @@ class WordEditorController extends OfficeController {
             commands.nextRedoCommand is _WordProtectionCommand;
 
   /// documentLaidOut API.
-  late LaidOutDocument documentLaidOut;
+  ///
+  /// Lays out a newly assigned [document] first (see [document]).
+  LaidOutDocument get documentLaidOut {
+    if (_documentReplaced && layoutReplacedDocumentOnRead) relayout();
+    return _documentLaidOut;
+  }
+
+  set documentLaidOut(LaidOutDocument value) => _documentLaidOut = value;
+
+  late LaidOutDocument _documentLaidOut;
 
   /// commentLaidOut API.
   LaidOutDocument? commentLaidOut;
@@ -1418,6 +1517,27 @@ class WordEditorController extends OfficeController {
   /// layout again ([WordLayoutEngine.incrementalLayout]); the result equals a
   /// full layout without field updates.
   void relayout({bool localEdit = false, Iterable<WmlParagraph>? dirty}) {
+    final bool replaced = _documentReplaced;
+    if (replaced) {
+      // The previous layout belongs to another document: nothing in it can
+      // be reused, so lay the new one out in full.
+      _documentReplaced = false;
+      localEdit = false;
+    }
+    try {
+      _relayoutCurrentDocument(localEdit: localEdit, dirty: dirty);
+    } catch (_) {
+      // A failed replacement must never make the old document's layout
+      // appear current. Keep both lazy reads and explicit relayouts retryable.
+      if (replaced) _documentReplaced = true;
+      rethrow;
+    }
+  }
+
+  void _relayoutCurrentDocument({
+    required bool localEdit,
+    Iterable<WmlParagraph>? dirty,
+  }) {
     _syncEmptyParagraphDirection();
     // Header/footer text is chrome, not section body content. The incremental
     // layout path reuses page chrome, so edits there would never reach the
@@ -2288,24 +2408,34 @@ class WordEditorController extends OfficeController {
         if (remaining <= room) {
           caret.logicalIndex += remaining;
           remaining = 0;
-        } else if (caret.paragraphIndex >= paras.length - 1) {
-          caret.logicalIndex = text.length;
-          remaining = 0;
         } else {
-          remaining -= room + 1;
-          caret.paragraphIndex++;
-          caret.logicalIndex = 0;
+          final next = _nextNavigationParagraph(paras, caret.paragraphIndex, 1);
+          if (next == null) {
+            caret.logicalIndex = text.length;
+            remaining = 0;
+          } else {
+            remaining -= room + 1;
+            caret.paragraphIndex = next;
+            caret.logicalIndex = 0;
+          }
         }
       } else if (caret.logicalIndex + remaining >= 0) {
         caret.logicalIndex += remaining;
         remaining = 0;
-      } else if (caret.paragraphIndex <= 0) {
-        caret.logicalIndex = 0;
-        remaining = 0;
       } else {
-        remaining += caret.logicalIndex + 1;
-        caret.paragraphIndex--;
-        caret.logicalIndex = paras[caret.paragraphIndex].text.length;
+        final previous = _nextNavigationParagraph(
+          paras,
+          caret.paragraphIndex,
+          -1,
+        );
+        if (previous == null) {
+          caret.logicalIndex = 0;
+          remaining = 0;
+        } else {
+          remaining += caret.logicalIndex + 1;
+          caret.paragraphIndex = previous;
+          caret.logicalIndex = paras[previous].text.length;
+        }
       }
     }
     if (!extend) {
@@ -2430,10 +2560,16 @@ class WordEditorController extends OfficeController {
       return;
     }
     selectedVisual = null;
-    caret.paragraphIndex = (caret.paragraphIndex + delta).clamp(
-      0,
-      paras.length - 1,
-    );
+    caret.paragraphIndex = caret.paragraphIndex.clamp(0, paras.length - 1);
+    for (var remaining = delta.abs(); remaining > 0; remaining--) {
+      final next = _nextNavigationParagraph(
+        paras,
+        caret.paragraphIndex,
+        delta.sign,
+      );
+      if (next == null) break;
+      caret.paragraphIndex = next;
+    }
     caret.logicalIndex = caret.logicalIndex.clamp(
       0,
       paras[caret.paragraphIndex].text.length,
@@ -4834,13 +4970,24 @@ class WordEditorController extends OfficeController {
     }
     final WmlParagraph para = _activeParagraph;
     final String old = para.text;
+    final void Function(String, int)? phase = debugEditPhase;
+    final Stopwatch? watch = phase == null ? null : (Stopwatch()..start());
+    void lap(String name) {
+      if (watch == null) return;
+      phase!(name, watch.elapsedMicroseconds);
+      watch.reset();
+    }
+
     if (value.text != old) {
       _setParagraphText(WmlClone.paragraph(para), value.text);
       _applyingIme = true;
       _syncParagraphDirection(para, incoming: value.text);
+      lap('model');
       _commitParagraphInlines(para, () => _setParagraphText(para, value.text));
       _applyingIme = false;
+      lap('undo');
       relayout(localEdit: true);
+      lap('layout');
       caret.logicalIndex = value.selection.extentOffset.clamp(
         0,
         value.text.length,
@@ -4863,7 +5010,9 @@ class WordEditorController extends OfficeController {
     }
     caret.resetBlink();
     _imeValueTarget = _imeEditingTarget;
+    lap('caret');
     notifyListeners();
+    lap('notify');
   }
 
   void _onImeAction(TextInputAction action) {
@@ -6910,6 +7059,61 @@ class WordEditorController extends OfficeController {
   List<WmlBlock>? _parentBlocksOfBlock(WmlBlock target) =>
       WordTree.locate(document, target)?.parent;
 
+  // Native vMerge continuations own structural empty paragraphs, but no
+  // independent editable text. Keep model indexes stable while bypassing only
+  // those placeholders during navigation. Imported content and zero-width
+  // fields/bookmarks remain reachable, even in malformed native cells.
+  bool _isEmptyVerticalContinuation(WmlParagraph paragraph) {
+    if (isEditingComment ||
+        isEditingHeaderFooter ||
+        paragraph.text.isNotEmpty ||
+        paragraph.contentControlWrappers.isNotEmpty ||
+        paragraph.properties.fieldInstruction != null ||
+        paragraph.properties.fieldBegin ||
+        paragraph.properties.fieldSeparate ||
+        paragraph.properties.fieldEnd ||
+        paragraph.properties.pageNumberField ||
+        paragraph.properties.bookmarkName != null ||
+        paragraph.properties.sourceBookmarkName != null ||
+        paragraph.properties.noteId != null ||
+        paragraph.properties.numId != null ||
+        paragraph.properties.listLabel != null ||
+        paragraph.inlines.any(
+          (inline) =>
+              inline is! WmlRun ||
+              inline.isAtomic ||
+              inline.hyperlink != null ||
+              inline.commentIds.isNotEmpty,
+        )) {
+      return false;
+    }
+    final location = WordTable.locationOfParagraph(document, paragraph);
+    if (location == null) return false;
+    final cell = location.table.rows[location.row].cells[location.col];
+    if (cell.vMerge != WmlVMerge.cont ||
+        cell.blocks.length != 1 ||
+        !identical(cell.blocks.single, paragraph) ||
+        !WordTable.supportsGridAddressing(location.table)) {
+      return false;
+    }
+    return true;
+  }
+
+  int? _nextNavigationParagraph(
+    List<WmlParagraph> paragraphs,
+    int index,
+    int direction,
+  ) {
+    for (
+      var next = index + direction;
+      next >= 0 && next < paragraphs.length;
+      next += direction
+    ) {
+      if (!_isEmptyVerticalContinuation(paragraphs[next])) return next;
+    }
+    return null;
+  }
+
   List<LaidOutLine> _contentLines() {
     return <LaidOutLine>[
       for (final LaidOutPage page in laidOut.pages)
@@ -7906,6 +8110,13 @@ class WordEditorController extends OfficeController {
         'Finish the current text composition before using Zotero.',
       );
     }
+    if (WordZoteroTransfer.isTransferDocument(document) &&
+        command != null &&
+        command != ZoteroCitingCommand.refresh) {
+      throw UnsupportedError(
+        'Use Refresh citations to import this Zotero transfer document before editing its references.',
+      );
+    }
     final noteTarget = noteEditingTarget;
     _assertNoteTargetReady(noteTarget);
     final insertsNoteText = command?.insertsNoteText == true;
@@ -7914,7 +8125,7 @@ class WordEditorController extends OfficeController {
             selectedEquation != null ||
             selectedTableBand != null)) {
       throw UnsupportedError(
-        'Place the caret or select text within one paragraph before inserting a Zotero note or annotation.',
+        'Place the caret or select ordinary text before inserting a Zotero note or annotation.',
       );
     }
     commitNoteEdits();
@@ -7931,16 +8142,19 @@ class WordEditorController extends OfficeController {
     final noteRange = noteTarget == null
         ? null
         : _noteSelectionRange(noteTarget);
+    final researchNoteRange = noteTarget == null || !insertsNoteText
+        ? null
+        : _noteResearchSelectionRange(noteTarget);
     final bodyRange = caret.normalizedRange;
     final bodyParagraphs = document.paragraphs.toList();
-    final singleBodyParagraph =
-        bodyRange.startPara == bodyRange.endPara &&
+    final validBodyRange =
         bodyRange.startPara >= 0 &&
-        bodyRange.startPara < bodyParagraphs.length;
+        bodyRange.endPara >= bodyRange.startPara &&
+        bodyRange.endPara < bodyParagraphs.length;
     if (insertsNoteText &&
-        (noteTarget != null ? noteRange == null : !singleBodyParagraph)) {
+        (noteTarget != null ? researchNoteRange == null : !validBodyRange)) {
       throw UnsupportedError(
-        'Select text within one paragraph to replace it with a Zotero note or annotation.',
+        'Select ordinary text in the document body or an authored note to replace it with a Zotero note or annotation.',
       );
     }
     final resolvedField =
@@ -7949,17 +8163,26 @@ class WordEditorController extends OfficeController {
       document: document,
       documentId: documentId,
       insertionParagraph: noteTarget != null
-          ? (noteTarget.selection.isCollapsed || insertsNoteText
-                ? noteRange?.paragraph
-                : null)
+          ? (insertsNoteText
+                ? researchNoteRange!.paragraph
+                : (noteTarget.selection.isCollapsed
+                      ? noteRange?.paragraph
+                      : null))
           : (insertsNoteText
                 ? bodyParagraphs[bodyRange.startPara]
                 : (caret.isCollapsed ? _activeParagraph : null)),
+      insertionEndParagraph: insertsNoteText
+          ? (noteTarget != null
+                ? researchNoteRange!.endParagraph
+                : bodyParagraphs[bodyRange.endPara])
+          : null,
       insertionOffset: noteTarget != null
-          ? (noteRange?.start ?? 0)
+          ? (insertsNoteText
+                ? researchNoteRange!.start
+                : (noteRange?.start ?? 0))
           : (insertsNoteText ? bodyRange.startIdx : caret.logicalIndex),
       insertionEndOffset: insertsNoteText
-          ? (noteTarget != null ? noteRange?.end : bodyRange.endIdx)
+          ? (noteTarget != null ? researchNoteRange!.end : bodyRange.endIdx)
           : null,
       selectedField: resolvedField,
       seedCitation: seedCitation,
@@ -7980,6 +8203,7 @@ class WordEditorController extends OfficeController {
     }
     if (!session.hasChanges) return;
     final before = _ZoteroDocumentSnapshot.capture(document);
+    before.assertRestorable(document);
     late final _ZoteroDocumentSnapshot after;
     try {
       session.apply();
@@ -9131,6 +9355,44 @@ class WordEditorController extends OfficeController {
         return (
           paragraph: segment.paragraph,
           start: target.selection.start - segment.start + segment.hidden,
+          end: target.selection.end - segment.start + segment.hidden,
+        );
+      }
+    }
+    return null;
+  }
+
+  /// Research-content replacement may cross paragraph separators exposed by
+  /// the Notes pane. Resolve each endpoint independently, including the hidden
+  /// automatic-reference separator. The engine qualifies the actual block
+  /// range; adjacent visible paragraphs can still be separated by a table or
+  /// belong to different content controls in the native note story.
+  ({WmlParagraph paragraph, WmlParagraph endParagraph, int start, int end})?
+  _noteResearchSelectionRange(WordNoteEditingTarget target) {
+    if (!_ownsNote(target.note) ||
+        !target.selection.isValid ||
+        target.selection.end > noteEditText(target.note).length) {
+      return null;
+    }
+    ({WmlParagraph paragraph, int offset})? start;
+    for (final segment in _noteTextSegments(target.note)) {
+      final end =
+          segment.start + segment.paragraph.text.length - segment.hidden;
+      if (start == null &&
+          target.selection.start >= segment.start &&
+          target.selection.start <= end) {
+        start = (
+          paragraph: segment.paragraph,
+          offset: target.selection.start - segment.start + segment.hidden,
+        );
+      }
+      if (start != null &&
+          target.selection.end >= segment.start &&
+          target.selection.end <= end) {
+        return (
+          paragraph: start.paragraph,
+          endParagraph: segment.paragraph,
+          start: start.offset,
           end: target.selection.end - segment.start + segment.hidden,
         );
       }
@@ -16060,7 +16322,9 @@ final class _ZoteroDocumentSnapshot {
       blocks: blocks,
       footnotes: List<WmlNote>.of(document.footnotes),
       endnotes: List<WmlNote>.of(document.endnotes),
-      data: WordZoteroDocumentData.read(document),
+      data: WordZoteroTransfer.isTransferDocument(document)
+          ? document.zoteroDocumentData
+          : WordZoteroDocumentData.read(document),
       numbering: WordListNumberingSnapshot.capture(document),
     );
   }
@@ -16073,27 +16337,64 @@ final class _ZoteroDocumentSnapshot {
   final Map<List<WmlBlock>, List<WmlBlock>> blocks;
   final List<WmlNote> footnotes;
   final List<WmlNote> endnotes;
-  final String data;
+  final String? data;
   final WordListNumberingSnapshot numbering;
+
+  void assertRestorable(WmlDocument document) {
+    for (final entry in blocks.entries) {
+      _assertRestorableList(entry.key, entry.value);
+    }
+    for (final entry in paragraphs.entries) {
+      _assertRestorableList(entry.key.inlines, entry.value.inlines);
+    }
+    _assertRestorableList(document.footnotes, footnotes);
+    _assertRestorableList(document.endnotes, endnotes);
+  }
+
+  static void _assertRestorableList<T>(List<T> target, Iterable<T> values) {
+    try {
+      // No content changes: reject fixed/unmodifiable containers and retain
+      // the runtime element type when checking covariant owners.
+      target.length = target.length;
+      final probe = target.sublist(0, 0);
+      for (final value in values) {
+        probe.add(value);
+      }
+    } on UnsupportedError {
+      throw UnsupportedError(
+        'Zotero edits require mutable document containers.',
+      );
+    } on TypeError {
+      throw UnsupportedError(
+        'Zotero edits require compatible document containers.',
+      );
+    }
+  }
 
   void restore(WmlDocument document) {
     for (final entry in blocks.entries) {
-      entry.key
-        ..clear()
-        ..addAll(entry.value);
+      entry.key.clear();
+      // Owners may retain a covariant List<WmlParagraph>. Adding each saved
+      // value preserves that valid element type without an Iterable cast.
+      for (final block in entry.value) {
+        entry.key.add(block);
+      }
     }
     for (final entry in paragraphs.entries) {
       entry.key.properties = entry.value.properties.copy();
-      entry.key.inlines
-        ..clear()
-        ..addAll(WmlClone.inlines(entry.value.inlines));
+      entry.key.inlines.clear();
+      for (final inline in WmlClone.inlines(entry.value.inlines)) {
+        entry.key.inlines.add(inline);
+      }
     }
-    document.footnotes
-      ..clear()
-      ..addAll(footnotes);
-    document.endnotes
-      ..clear()
-      ..addAll(endnotes);
+    document.footnotes.clear();
+    for (final note in footnotes) {
+      document.footnotes.add(note);
+    }
+    document.endnotes.clear();
+    for (final note in endnotes) {
+      document.endnotes.add(note);
+    }
     document.zoteroDocumentData = data;
     numbering.restore(document);
   }

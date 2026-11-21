@@ -915,7 +915,7 @@ void main() {
           ...valid,
           'prefs': {'fieldType': 'Field'},
         }),
-        for (final value in [null, '1', -1, 3, 1.0, true])
+        for (final value in [null, '1', -1, 3, 1.5, true])
           'invalid JSON note type $value': jsonEncode({
             ...valid,
             'prefs': {'fieldType': 'Field', 'noteType': value},
@@ -1239,7 +1239,7 @@ void main() {
       );
       expect(
         () => _call(session, 'Document.exportDocument'),
-        throwsUnsupportedError,
+        throwsFormatException,
       );
       expect(
         () =>

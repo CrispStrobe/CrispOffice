@@ -1,0 +1,73 @@
+{
+  "status": "applicable-with-explicit-unexecuted-main-delta",
+  "qualified_commit": "a6095c304ad2d6935f2ae6f8b74412038d19f142",
+  "previous_main": "e2abbcda6d19f932bfbacc85e0dafd41a3c478f8",
+  "incorporated_main": "eb286fb7254d6850c9f33b46e8aa65e2ea32f7f0",
+  "pull_request": 290,
+  "qualified_source_inputs": 2978,
+  "unchanged_recorded_inputs": 2977,
+  "changed_recorded_inputs": [
+    "packages/quds_office_editor/example/test/app_store_screenshots_gate.dart"
+  ],
+  "all_recorded_inputs_identical": false,
+  "executed_suite_files_unchanged": 119,
+  "unchanged_portable_source_inputs": 356,
+  "executed_cohort_commands_without_screenshot_gate": 8,
+  "unique_vm_cases_retaining_applicability": 2551,
+  "overlapping_node_cases_retaining_applicability": 121,
+  "incoming_files_preserved_exactly": [
+    {
+      "path": "docs/release/app-store-screenshots/01-word-english-arabic.png",
+      "git_blob_sha1": "3ff02b6731e662dc79fdc0b3cbcc9c0c5f96ee22",
+      "mode": "100644",
+      "size": 373234,
+      "sha256": "11c2fefc746696aa5dfcdab377633ac302d2c9d5ff85db13ecfe444913e7563b"
+    },
+    {
+      "path": "docs/release/app-store-screenshots/02-german-grammar.png",
+      "git_blob_sha1": "788731346ea711e2e9dc3f0eb3ffccc6b05c9cf2",
+      "mode": "100644",
+      "size": 403820,
+      "sha256": "75e25cfe9ec934fe5a7e96505d9fdda7c291eccf2d23a995744d3c3262b0e1a0"
+    },
+    {
+      "path": "docs/release/app-store-screenshots/03-excel.png",
+      "git_blob_sha1": "1a6a4a5027de774e54c82e1159f358b47ee75c3c",
+      "mode": "100644",
+      "size": 289379,
+      "sha256": "f377689496a418a4246ef8e63f472c9bf933fcde319bffeaf5865e667eca1479"
+    },
+    {
+      "path": "docs/release/app-store-screenshots/04-powerpoint.png",
+      "git_blob_sha1": "07c5f87ac3bce78f00174b53d4d1503a2d309ea6",
+      "mode": "100644",
+      "size": 256374,
+      "sha256": "588ac4c3f708a2bd7252ae082f732154850f762e9c95858fdf7271b6abf3919f"
+    },
+    {
+      "path": "docs/release/app-store-screenshots/05-mail.png",
+      "git_blob_sha1": "ba8252fe6e6a8545b5aebff3e9ed49ae20fc36fe",
+      "mode": "100644",
+      "size": 456807,
+      "sha256": "63ca48d1acf0a6712b91e84c9f5d9a4a39657e80592047ebd2d8526887e5fb3d"
+    },
+    {
+      "path": "docs/release/app-store-screenshots/06-downloads.png",
+      "git_blob_sha1": "c12c94d1cbd6bc007bda04c9dbd070cb33b9cb9f",
+      "mode": "100644",
+      "size": 396994,
+      "sha256": "4bbf2ddb0c186591f4b40a943f4d32471ff1a225ad75895a7fa3382c63d69ec1"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/app_store_screenshots_gate.dart",
+      "git_blob_sha1": "7ddae7bfc24a44474c794c154d4233dfe454abd0",
+      "mode": "100644",
+      "size": 41240,
+      "sha256": "752600587362d2e3bc9a6c5bc2533aa643cfe4461331acec96eafbbad1819581"
+    }
+  ],
+  "gate_imports_unchanged": true,
+  "inbound_gate_references_in_other_recorded_dart_yaml_sources": [],
+  "basis": "Only one independent, unselected screenshot gate and six documentation images changed; Zotero product, all selected suites, fixtures, manifests and locks are unchanged.",
+  "scope_limit": "No new screenshot execution or full-suite rerun is claimed. The original qualification remains bound to its original commit; this receipt establishes the reviewed delta applicability."
+}

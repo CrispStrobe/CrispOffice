@@ -68,7 +68,8 @@ final class _Operation {
 /// Gmail and Microsoft Graph adapters share bounded HTTP and MIME boundaries.
 /// No mail submission or mutation is retried. Each operation verifies that the
 /// supplied credential still belongs to its configured mailbox before mail IO.
-final class ApiMailCloudProvider implements MailCloudProvider {
+final class ApiMailCloudProvider
+    implements MailCloudProvider, MailFlagObserver {
   ApiMailCloudProvider({
     required this.configuration,
     required this.tokenSource,
@@ -364,11 +365,10 @@ final class ApiMailCloudProvider implements MailCloudProvider {
       }
       rethrow;
     }
-    // Foreground message mutations use a narrow no-write evidence set,
-    // including documented Gmail/Graph 429 rejection. Timeouts and unfamiliar
-    // 4xx responses remain uncertain. Submission keeps its existing explicit
-    // client-rejection and Retry-After contract; bulk policy must not change
-    // send outcomes.
+    // Foreground mutations use a narrow no-write evidence set. A dispatched
+    // 410 response does not establish the requested flag's final state; retain
+    // uncertainty and stop the batch. Submission keeps its separate existing
+    // client-rejection and Retry-After contract.
     final rejectedWithoutMutation = operation.kind == MailCloudOperation.apply
         ? const {
             400,
@@ -409,6 +409,7 @@ final class ApiMailCloudProvider implements MailCloudProvider {
     _Json? body,
     bool mutation = false,
     int? pageSize,
+    int? responseLimit,
   }) async {
     final response = await _request(
       operation,
@@ -417,6 +418,7 @@ final class ApiMailCloudProvider implements MailCloudProvider {
       body: body == null ? const [] : utf8.encode(jsonEncode(body)),
       mutation: mutation,
       pageSize: pageSize,
+      responseLimit: responseLimit,
     );
     return _object(jsonDecode(utf8.decode(response.body)));
   }
@@ -948,6 +950,74 @@ final class ApiMailCloudProvider implements MailCloudProvider {
       MailParseStatus.unsupported => MailProblemCode.unsupported,
       MailParseStatus.cancelled => MailProblemCode.cancelled,
       _ => MailProblemCode.providerFailure,
+    });
+  }
+
+  @override
+  Future<MailResult<MailFlagObservation>> observeFlags(
+    MailRemoteIdentity identity, {
+    required MailOperationLease lease,
+  }) async {
+    if (!_identityValid(identity)) {
+      return _failure(MailProblemCode.invalidInput);
+    }
+    final remote = identity as MailOpaqueIdentity;
+    return _run(lease, MailCloudOperation.observeFlags, (operation) async {
+      final _Json data;
+      try {
+        data = await _json(
+          operation,
+          'GET',
+          _gmail
+              ? _gmailUri(
+                  ['messages', remote.value],
+                  {'format': 'minimal', 'fields': 'id,labelIds'},
+                )
+              : _graphUri(
+                  ['messages', remote.value],
+                  {r'$select': 'id,isRead,isDraft,flag'},
+                ),
+          responseLimit: limits.maxHeaderBytes,
+        );
+      } on _ResponseFailure catch (error) {
+        // This catch covers only the exact message GET, after account/profile
+        // verification. Other errors, including 410, do not establish absence.
+        if (error.status == 404) {
+          return MailFlagObservation.missing(identity: identity);
+        }
+        rethrow;
+      }
+      if (_text(data['id']) != remote.value) {
+        _fail(MailProblemCode.providerFailure);
+      }
+      final MailMessageFlags flags;
+      if (_gmail) {
+        // An explicit empty label list is valid. An omitted or malformed list
+        // cannot certify that an uncertain read/flag command currently matches.
+        final labels = _array(
+          data['labelIds'],
+        ).map((value) => _text(value)).toSet();
+        flags = MailMessageFlags(
+          isRead: !labels.contains('UNREAD'),
+          isFlagged: labels.contains('STARRED'),
+          isDraft: labels.contains('DRAFT'),
+          isDeleted: labels.contains('TRASH'),
+        );
+      } else {
+        if (data['isRead'] is! bool || data['isDraft'] is! bool) {
+          _fail(MailProblemCode.providerFailure);
+        }
+        final flag = _object(data['flag'])['flagStatus'];
+        if (!const ['flagged', 'notFlagged', 'complete'].contains(flag)) {
+          _fail(MailProblemCode.providerFailure);
+        }
+        flags = MailMessageFlags(
+          isRead: data['isRead'] as bool,
+          isDraft: data['isDraft'] as bool,
+          isFlagged: flag == 'flagged',
+        );
+      }
+      return MailFlagObservation.present(identity: identity, flags: flags);
     });
   }
 

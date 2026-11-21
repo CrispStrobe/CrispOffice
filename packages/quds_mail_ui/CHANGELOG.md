@@ -1,5 +1,19 @@
 ## 0.1.0
 
+- Preserve the `remoteImageUris` compatibility spelling for the same immutable
+  candidates as `remoteImageUrls`, rejecting contradictory ordered values.
+  Retain current image admission, source identity and cumulative budget guards.
+- Preserve meaningful inline HTML separators, preformatted whitespace and
+  nonbreaking spaces while collapsing wrapper indentation. Keep explicit image
+  loading tied to admitted inert nodes with cumulative byte/pixel budgets,
+  retained placeholders and stale-result rejection; preserve images when
+  switching body alternatives and update selection/search after projection.
+
+- Add explicit multi-message selection and foreground read/unread/flag/unflag
+  callbacks, with immutable visible-order snapshots, keyboard controls,
+  stale-menu rejection, scope/revision resets and selection cleared at dispatch.
+- Keep read-only hosts free of mutation controls; expose accessible
+  stop-after-current controls and a scrollable host-owned progress/results slot.
 - Add explicit visible-message selection and foreground read/flag action
   callbacks, with immutable ordered snapshots, Ctrl/Cmd+A and Space selection,
   Escape to clear checked rows,

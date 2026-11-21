@@ -1,0 +1,107 @@
+{
+  "checks": [
+    {
+      "command": [
+        "git",
+        "-C",
+        "/workspace/scratch/03cd41fa0e7e/quds_delivery",
+        "merge-base",
+        "--is-ancestor",
+        "80e240ec1f557c1ac7c170a8273de41dfaac0f20",
+        "c62338c65571aa399da5592455b651fa5c6a9317"
+      ],
+      "commit": "80e240ec1f557c1ac7c170a8273de41dfaac0f20",
+      "exit_code": 0,
+      "label": "previous_qualified_source"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "/workspace/scratch/03cd41fa0e7e/quds_delivery",
+        "merge-base",
+        "--is-ancestor",
+        "039b6e97cbbc01ce1d69c0bcf982fb7147643a3e",
+        "c62338c65571aa399da5592455b651fa5c6a9317"
+      ],
+      "commit": "039b6e97cbbc01ce1d69c0bcf982fb7147643a3e",
+      "exit_code": 0,
+      "label": "word_resolution_checkpoint"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "/workspace/scratch/03cd41fa0e7e/quds_delivery",
+        "merge-base",
+        "--is-ancestor",
+        "0a2afc41bae4e719b77657a7e2d8d3e7ec02849b",
+        "c62338c65571aa399da5592455b651fa5c6a9317"
+      ],
+      "commit": "0a2afc41bae4e719b77657a7e2d8d3e7ec02849b",
+      "exit_code": 0,
+      "label": "captured_main"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "/workspace/scratch/03cd41fa0e7e/quds_delivery",
+        "merge-base",
+        "--is-ancestor",
+        "1584a2da8b23128c113d95c3b05b6a12d2d3861e",
+        "c62338c65571aa399da5592455b651fa5c6a9317"
+      ],
+      "commit": "1584a2da8b23128c113d95c3b05b6a12d2d3861e",
+      "exit_code": 0,
+      "label": "captured_pr273_head"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "/workspace/scratch/03cd41fa0e7e/quds_delivery",
+        "merge-base",
+        "--is-ancestor",
+        "79e10ef8375aa9950d624eb9702ba1ff19a19e8c",
+        "c62338c65571aa399da5592455b651fa5c6a9317"
+      ],
+      "commit": "79e10ef8375aa9950d624eb9702ba1ff19a19e8c",
+      "exit_code": 0,
+      "label": "incoming_mail_evidence_source"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "/workspace/scratch/03cd41fa0e7e/quds_delivery",
+        "merge-base",
+        "--is-ancestor",
+        "9109fcc645d0d95fbe7a7568ddf1e0ebc07bc384",
+        "c62338c65571aa399da5592455b651fa5c6a9317"
+      ],
+      "commit": "9109fcc645d0d95fbe7a7568ddf1e0ebc07bc384",
+      "exit_code": 0,
+      "label": "earlier_bulk_actions"
+    },
+    {
+      "command": [
+        "git",
+        "-C",
+        "/workspace/scratch/03cd41fa0e7e/quds_delivery",
+        "merge-base",
+        "--is-ancestor",
+        "fcc7bd27f7df6200ac7d3174f6e21097f931cca0",
+        "c62338c65571aa399da5592455b651fa5c6a9317"
+      ],
+      "commit": "fcc7bd27f7df6200ac7d3174f6e21097f931cca0",
+      "exit_code": 0,
+      "label": "earlier_bulk_flags"
+    }
+  ],
+  "github_actions_used": false,
+  "later_main_not_covered": "5e7e4d24284954603a0a5951699bea870ad1955f",
+  "note": "This is the completed c623 checkpoint. Any later product reconciliation requires its own source-bound qualification or retention proof.",
+  "qualified_source_head": "c62338c65571aa399da5592455b651fa5c6a9317",
+  "qualified_source_tree": "d8e43e6f43b0726e8fefded52c185e387291916d"
+}

@@ -1,0 +1,368 @@
+{
+  "accepted": true,
+  "accepted_unions": {
+    "affected-macro-runtime": {
+      "files": 23,
+      "fresh_passed": 663,
+      "passed": 709,
+      "retained_passed": 46,
+      "skipped": 0
+    },
+    "editor-layout-and-fonts": {
+      "files": 5,
+      "fresh_passed": 96,
+      "passed": 105,
+      "retained_passed": 9,
+      "skipped": 8
+    },
+    "word-native-layout": {
+      "files": 32,
+      "fresh_passed": 223,
+      "passed": 398,
+      "retained_passed": 175,
+      "skipped": 0
+    },
+    "zotero-editor": {
+      "files": 9,
+      "fresh_passed": 143,
+      "passed": 257,
+      "retained_passed": 114,
+      "skipped": 0
+    },
+    "zotero-engine": {
+      "files": 14,
+      "fresh_passed": 188,
+      "passed": 470,
+      "retained_passed": 282,
+      "skipped": 0
+    }
+  },
+  "actual_bas_portable_examples": {
+    "line_spacing": {
+      "bas_path": "packages/quds_office_engine/example/macros/word_line_spacing.bas",
+      "bas_sha256": "ea112b9e3b3f9e8eb71540c0d98e0a9a1849d229d11ebc9d1ef8df71d0d5b3f9",
+      "equal_vm_and_node_results": true,
+      "evidence": "audited incoming execution",
+      "operations": 6
+    },
+    "measurements": {
+      "bas_path": "packages/quds_office_engine/example/macros/word_measurements.bas",
+      "bas_sha256": "dd62cd308c0517ef34ffc7567ffcfa102bc17b7d408b1acfd00ed77e237c0fbd",
+      "equal_vm_and_node_results": true,
+      "evidence": "audited incoming execution",
+      "operations": 8
+    },
+    "named_measurements": {
+      "bas_path": "packages/quds_office_engine/example/macros/word_named_measurements.bas",
+      "bas_sha256": "8255788a75f6ea75f193c3c58c717d0f0f743575ae9506374607a936106d2ccf",
+      "equal_vm_and_node_results": true,
+      "evidence": "audited incoming execution",
+      "operations": 13
+    }
+  },
+  "editor_exclusions": [
+    {
+      "file": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-both.docx",
+      "reason": "no paragraphs to edit"
+    },
+    {
+      "file": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-control.docx",
+      "reason": "no paragraphs to edit"
+    },
+    {
+      "file": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-horizontal.docx",
+      "reason": "no paragraphs to edit"
+    },
+    {
+      "file": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-margin-quarter.docx",
+      "reason": "no paragraphs to edit"
+    },
+    {
+      "file": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-negative-quarter.docx",
+      "reason": "no paragraphs to edit"
+    },
+    {
+      "file": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-outline-shadow.docx",
+      "reason": "no paragraphs to edit"
+    },
+    {
+      "file": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-quarter.docx",
+      "reason": "no paragraphs to edit"
+    },
+    {
+      "file": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-vertical.docx",
+      "reason": "no paragraphs to edit"
+    }
+  ],
+  "finished_utc": "2026-11-20T22:30:03.669694+00:00",
+  "fresh": {
+    "editor-layout": {
+      "failed": 0,
+      "files": 4,
+      "passed": 96,
+      "skipped": 8
+    },
+    "macro": {
+      "failed": 0,
+      "files": 19,
+      "passed": 663,
+      "skipped": 0
+    },
+    "native": {
+      "failed": 0,
+      "files": 16,
+      "passed": 223,
+      "skipped": 0
+    },
+    "zotero-editor": {
+      "failed": 0,
+      "files": 7,
+      "passed": 143,
+      "skipped": 0
+    },
+    "zotero-engine": {
+      "failed": 0,
+      "files": 8,
+      "passed": 188,
+      "skipped": 0
+    }
+  },
+  "historical_80e240ec_attempt": {
+    "accepted": false,
+    "archive": "archive:historical-80e240ec-attempt/attempt-evidence.tar.gz",
+    "collector_interruption": "Both test commands succeeded; the initial collector resolved relative suite paths against the wrong cwd. The preserved continuation recounted original events using each command cwd without rerunning tests.",
+    "editor_passed": 257,
+    "engine_passed": 470,
+    "remaining_failed_gate": "Fatal-info engine analysis found curly_braces_in_flow_control_structures in zotero_citing_test.dart. Incoming main supplies the braces correction.",
+    "source_commit": "80e240ec1f557c1ac7c170a8273de41dfaac0f20"
+  },
+  "historical_macro_population": {
+    "add_reruns_or_node_results_to_historical_total": false,
+    "affected_runtime_subset": 709,
+    "cases": 3598,
+    "exact_709_historical_identity_set_verified": true,
+    "fresh_affected_subset": 663,
+    "retained_affected_subset": 46,
+    "suites": 69
+  },
+  "incoming_archive_references": [
+    {
+      "bytes": 2614173,
+      "copied_into_this_archive": false,
+      "members_verified": 121,
+      "path": "docs/validation/mail-bulk-actions-20261120/evidence-final-main.tar.gz",
+      "sha256": "ed060f4d17229239a05c64d33c7b14a4fdab134175af97d1823bcde4440ba205"
+    },
+    {
+      "bytes": 1143658,
+      "copied_into_this_archive": false,
+      "members_verified": 70,
+      "path": "docs/validation/mail-bulk-actions-20261120/evidence-publication.tar.gz",
+      "sha256": "ac2606e994cb91ca4d37eb099fb374d6a0d76902542f47a37d8c910837f3e814"
+    }
+  ],
+  "incoming_audit_sha256": "0a030bf56e5b51080c960575230161d8123a1fe178d186a565bcabb60a923dd1",
+  "incoming_retention_limits": {
+    "editor": "The comparison manifest is intentionally broader than the two Zotero suites. Any Mail-only differences must remain separately qualified; editor library and Zotero test/support files have no quds_mail or studio_mail references.",
+    "font_source_comparison": {
+      "changes": [],
+      "runtime_only": [
+        ".dart_tool/package_config.json"
+      ],
+      "tracked_checked": 27
+    },
+    "word": [
+      "Four changed Zotero helpers are limited to citation/session/note-specific operations and are independently qualified in the publication receipts; they do not alter the macro/layout entrypoints used by the Word cohort.",
+      "The current word_styles_layout_test.dart preserves two additional direct-format fixtures; rerun its entire17case suite rather than relabeling the incoming15case suite.",
+      "The current13case identity suite and41case contained-text suite require fresh combined-source validation.",
+      "VM961 and Node758 overlap; neither is a new count to add to historical accepted macro populations."
+    ],
+    "word_source_comparison": {
+      "changes": [
+        {
+          "actual": "2e7d30616ed82d94b3bf202f35e7465b66f1b1b979b2c5dff727b7797fd164a5",
+          "expected": "e679eb2fbf1c752f159caaa0d7df0c2d217c54a556c8e5a3b73b7802cb470478",
+          "path": "packages/quds_office_engine/lib/src/word/model/word_zotero.dart"
+        },
+        {
+          "actual": "18e594770044913cce273c89c2a7889a573ed35695a9d8dd2b4b67f6bb631120",
+          "expected": "813cc190bd868b17c96377b75eb92e0fa8262184de0cb174a4e2e5d963a879bc",
+          "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart"
+        },
+        {
+          "actual": "ce0ede4c087aabe574e50ff548e52c0306da06886a4af63250907f81cbb970e1",
+          "expected": "b8782d5f1a5caceede3e559556182919b78b041d25409bd573abc6f64fbcc6e6",
+          "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart"
+        },
+        {
+          "actual": "9b35b90b5ed9f3266f0515bbf7432a07559376e274d30a10a10c333605369dd6",
+          "expected": "3595c58e8adb5417ce41aac7934e3144c5f2bb782ae44697f5be64bafa32be34",
+          "path": "packages/quds_office_engine/lib/src/zotero/zotero_citing.dart"
+        },
+        {
+          "actual": "b96fa31bfebba2773007600923de80371d1dd4e95f760e4029387a696fb610a3",
+          "expected": "8e5d171c763e9e24e36eec0a7c3ecee2444a39317db0123827450744f7db9205",
+          "path": "packages/quds_office_engine/test/word_styles_layout_test.dart"
+        }
+      ],
+      "runtime_only": [],
+      "tracked_checked": 492
+    },
+    "zotero_editor_source_comparison": {
+      "changes": [
+        {
+          "actual": "69b64680aaf2b301f39789b0e299a026b9d98c502063d1d4cc5fe5a9e8fef9d3",
+          "expected": "7b2790cd1db0ee686ba2fba3a8b0130372d441dc11a88cd64f704d34f434489e",
+          "path": "packages/quds_mail_core/lib/src/sync/bulk_flags.dart"
+        },
+        {
+          "actual": "945512e679a84daade118f548a6e813df1e24fa70dc87740a8fb0e38419bb718",
+          "expected": "a807220a4d09dca94b4c712301935a0b2d66b774edc1e19343f340c76dbf7791",
+          "path": "packages/quds_mail_ui/lib/src/workspace/message_list.dart"
+        },
+        {
+          "actual": "8662fee3d885f07b60941c227ddb14494f40ed3f5010fba49c81c2001734fe8c",
+          "expected": "54215a3d95f6b62cb638951efbd4d1a53ba9a708a59ab80beb221b33f5a4b003",
+          "path": "packages/quds_office_editor/example/lib/studio_mail_ews.dart"
+        },
+        {
+          "actual": "92061fe1e08ce6a22acb1866ae1e281fd9fd7c124347753a0f0ed013db77d64c",
+          "expected": "dfc6fbb6f7e529c900a88546d58c793a6d7c13f5c99d92314da91cfb64582e81",
+          "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart"
+        }
+      ],
+      "runtime_only": [
+        ".dart_tool/package_config.json"
+      ],
+      "tracked_checked": 1010
+    },
+    "zotero_engine_source_comparison": {
+      "changes": [],
+      "runtime_only": [
+        ".dart_tool/package_config.json"
+      ],
+      "tracked_checked": 430
+    }
+  },
+  "independent_final_recount": {
+    "path": "archive:independent-review/delivery-word-final-recount.json",
+    "sha256": "d1f3af275f34d2eba2645c297dfa102ae38b62f61d93c8071ad69f95fd67fcf7"
+  },
+  "limitations": [
+    "Eight image-only editing-equivalence fixtures have no editable paragraphs and remain excluded.",
+    "Incoming retained executions used their archived runtime; they are not relabeled as fresh local runs.",
+    "No installed Microsoft Word COM host or external Zotero/Word/LibreOffice acceptance was executed.",
+    "No cryptographic DOCM signature validity after edits is claimed; existing edited w:ind group ownership remains unchanged.",
+    "The historical macro corpus is not a new whole-corpus rerun. Mail is qualified in its separate report."
+  ],
+  "retained": {
+    "fonts": {
+      "files": 1,
+      "passed": 9
+    },
+    "word_node": {
+      "files": 7,
+      "passed": 758
+    },
+    "word_vm": {
+      "excluded_superseded_style_cases": 15,
+      "files": 25,
+      "passed": 946
+    },
+    "zotero_editor": {
+      "files": 2,
+      "passed": 114
+    },
+    "zotero_engine": {
+      "files": 6,
+      "passed": 282
+    }
+  },
+  "runtimes": {
+    "fresh_editor_dart": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+    "fresh_engine": "Dart SDK version: 3.14.1 (stable) (Tue Nov 17 00:01:24 2026 -0800) on \"linux_x64\"",
+    "fresh_flutter": "3.47.8",
+    "incoming_runtime_limit": "Incoming execution used its archived Dart3.13.7/package configuration. This audit verifies the archived configuration and immutable source; it is not a new execution on the local Dart3.14.1 environment."
+  },
+  "schema_version": 1,
+  "scope": "Fresh bounded residual execution plus independently audited incoming results, with eight named editor exclusions. No aggregate count across overlapping runtime/compiler/platform populations.",
+  "source_binding": {
+    "captured_source_files": 2831,
+    "compiler_sha256": "41de865411b884d18c1097e9a80d68cd6bf1fb245e1844a46f72af05636f5ecd",
+    "compiler_unchanged_from_historical_macro_corpus": true,
+    "fixture_manifest": "archive:tools-and-bindings/reference-fixture-git-binding.json",
+    "incoming_word_production": {
+      "packages/quds_office_engine/lib/src/word/layout/word_layout.dart": "ec820bd02b287b7f1ef109248d7336e243f436c0206eedb4982631b6855e690e",
+      "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart": "4a5a9b69e45f3f6123103f98f31623b55892e3b2dfce8283322bacc9c9d5244b"
+    },
+    "reference_fixtures_bound_separately_to_git": 140,
+    "source_runtime_head_unchanged": true,
+    "start_end_clean_tree": true
+  },
+  "source_commit": "c62338c65571aa399da5592455b651fa5c6a9317",
+  "source_tree": "d8e43e6f43b0726e8fefded52c185e387291916d",
+  "strict_checks": {
+    "editor-analysis": {
+      "command": [
+        "/workspace/scratch/03cd41fa0e7e/runtime/flutter-toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "test/office_system_fonts_test.dart",
+        "test/word_header_footer_navigation_test.dart",
+        "test/word_incremental_layout_equivalence_test.dart",
+        "test/word_inline_picture_history_test.dart",
+        "test/word_page_layout_test.dart",
+        "test/word_zotero_bibliography_controller_test.dart",
+        "test/word_zotero_citing_controller_test.dart",
+        "test/word_zotero_citing_dialog_test.dart",
+        "test/word_zotero_direct_command_test.dart",
+        "test/word_zotero_note_image_controller_test.dart",
+        "test/word_zotero_note_target_test.dart",
+        "test/word_zotero_rich_controller_test.dart",
+        "tool/zotero/research_target_acceptance.dart"
+      ],
+      "cwd": "/workspace/scratch/03cd41fa0e7e/quds_delivery/packages/quds_office_editor",
+      "exit_code": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "c035c357523f45b8b3a456e8ffbbeda9a460c7f15f119b75d84bfaaa30330723"
+    },
+    "engine-analysis": {
+      "command": [
+        "/workspace/scratch/03cd41fa0e7e/runtime/toolchain/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos"
+      ],
+      "cwd": "/workspace/scratch/03cd41fa0e7e/quds_delivery/packages/quds_office_engine",
+      "exit_code": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "c557a0c697cdb937104f1423d3c02d6a1062917cb0bcb2830d91db8cf6192af0"
+    },
+    "format": {
+      "command": [
+        "/workspace/scratch/03cd41fa0e7e/runtime/flutter-toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_office_editor/test/office_system_fonts_test.dart",
+        "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+        "packages/quds_office_engine/test/word_header_picture_identity_test.dart",
+        "packages/quds_office_engine/test/word_header_picture_layout_regression_test.dart",
+        "packages/quds_office_engine/test/word_table_style_precedence_test.dart",
+        "packages/quds_office_engine/test/zotero_citing_test.dart"
+      ],
+      "cwd": "/workspace/scratch/03cd41fa0e7e/quds_delivery",
+      "exit_code": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "3ec8f351db495c07ae881d9d9d584931370c9c21083ad1e64dae0e687c329801"
+    }
+  }
+}
