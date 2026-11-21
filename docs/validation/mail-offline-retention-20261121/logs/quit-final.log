@@ -1,0 +1,11 @@
+00:00 +0: loading /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_quit_test.dart
+00:00 +0: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_quit_test.dart: native Quit flushes edits before autosave and disposes Mail after saving (variant: TargetPlatform.macOS)
+00:02 +1: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_quit_test.dart: pending draft save and repeated native Quit keep the account alive (variant: TargetPlatform.macOS)
+00:02 +2: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_quit_test.dart: failed draft save blocks native Quit and remains retryable (variant: TargetPlatform.macOS)
+00:03 +3: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_quit_test.dart: native Quit drains an ordinary dialog and Mail before approving close (variant: TargetPlatform.macOS)
+00:04 +4: loading /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_desktop_menu_test.dart
+00:05 +4: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_desktop_menu_test.dart: desktop File menu invokes enabled actions and disables busy ones
+00:05 +5: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_desktop_menu_test.dart: macOS menu serializes File shortcuts and dispatches native selection (variant: TargetPlatform.macOS)
+00:05 +6: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_desktop_menu_test.dart: native Quit waits for and respects the workspace close decision (variant: TargetPlatform.macOS)
+00:05 +7: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_desktop_menu_test.dart: macOS Close restores prevention and synchronizes fullscreen (variant: TargetPlatform.macOS)
+00:05 +8: All tests passed!

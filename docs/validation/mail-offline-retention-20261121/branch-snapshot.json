@@ -1,0 +1,288 @@
+{
+  "recorded_at_utc": "2026-11-21T09:08:19.447202+00:00",
+  "local_integration_head": "33b3b2add0fbabb6b445d2a6e4b9a1f85330eb89",
+  "source_checkpoint": "283ec4ae7c690787ae29b9342872b3206cc57b67",
+  "remote_refs": [
+    {
+      "ref": "origin",
+      "sha": "f92c0d24f0513c5e13e61ae58507c36e9cf4f1c1",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/odt-field-continuation-20261117",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "ancestor": false,
+      "disposition": "already_represented_exact_equivalence",
+      "replacement": "2c47165d01d01cc883135a434ac9f6591ce6e770"
+    },
+    {
+      "ref": "origin/codex/word-powerpoint-vba-expansion-20261120",
+      "sha": "0f6239396ff3328473a5f57c280b982d57e33a08",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/word-vba-compat-20261120-next",
+      "sha": "650afb7d117337bab943af05d63a250a7e90c058",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/word-vba-compatibility-20261120-continuation",
+      "sha": "8c54d5283804099f9c9023540921f2410b878eb1",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/word-vba-compatibility-20261121",
+      "sha": "38b07e58b7c0e2a5b04a823a7251805cea60fb77",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/word-vba-list-levels-20261120",
+      "sha": "fff4a4afda2beecdd20ae0bd1f3c31622e8c0b37",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/word-vba-measurements-20261120",
+      "sha": "cd306bdea352c6f6400b5d1af7cc33e737004462",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/word-vba-paragraph-controls-20261120",
+      "sha": "90ecd41c8a3ef2a6f35967f1219223022e2b0d32",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/word-vba-paragraph-flow-20261121",
+      "sha": "13fa9ad5b9d140f1d7c085e46b4d0ce395000c49",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/word-vba-paragraph-pagination-20261121",
+      "sha": "1581229f0e5aea24b5242c33a1e92f02d70b4c7e",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/word-vba-paragraph-spacing-20261120",
+      "sha": "d30299dd91634ad7e20c32db5c39a6687fcef4aa",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/word-vba-ranges-20261120",
+      "sha": "22e5960e99915e81a1b5997058cac44dac27ba1a",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/word-vba-sections-20261121",
+      "sha": "49665e51f9eacefc180748c3d0ed7851ef5da5d1",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/word-vba-unit-conversions-20261120",
+      "sha": "bbccae1bdead10951e2d7a23b33cf14c55382e02",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/zotero-multiparagraph-20261121",
+      "sha": "589ccd33243eabe57ce3074c92112e1fdf1325f1",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/zotero-parity-20261120-next",
+      "sha": "0da1b048546f36c658a7ddfb899117b73c5d3e7c",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/zotero-parity-20261121-continuation",
+      "sha": "c4e1d67540e7c3a706d2f0a3fead0cb17949f437",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/zotero-parity-20261121-next",
+      "sha": "d4470bab1095593739ddf87fdb9f249bbc948b65",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/zotero-research-tables-20261120",
+      "sha": "34491bca22a2989dd89d9da3c853f5e57de5464f",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/zotero-transfer-20261121",
+      "sha": "a1995c9154357e603b89947654cf95f8bcba6a83",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/codex/zotero-vertical-tables-20261120",
+      "sha": "a7d9f37ecbaaf70544f4866d7d9e572696948184",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/docs/app-store-submission-20261120",
+      "sha": "b08e0a55b629ac22b33c54146b56438862965022",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/docs/ods-color-scale",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "ancestor": false,
+      "disposition": "already_represented_exact_equivalence",
+      "replacement": "4eaca83b192897edad82658107dfeb5bcbed0920"
+    },
+    {
+      "ref": "origin/docs/ods-data-bar",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "ancestor": false,
+      "disposition": "already_represented_exact_equivalence",
+      "replacement": "52c73ae4dbadf2ca00a5d619144350ccc353b31a"
+    },
+    {
+      "ref": "origin/feat/arabic-web-context-20261120",
+      "sha": "be47bed22a88382f016d823e526bae49590bd0eb",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/feat/ods-color-scale",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "ancestor": false,
+      "disposition": "already_represented_exact_equivalence",
+      "replacement": "4584d5f319aab198f1d705f48b4d6647e6cbabea"
+    },
+    {
+      "ref": "origin/feat/ods-data-bar",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "ancestor": false,
+      "disposition": "already_represented_exact_equivalence",
+      "replacement": "b3f41eb4b4bca8ca13676b4114891ea6d9185043"
+    },
+    {
+      "ref": "origin/feat/ods-dynamic-validation-links",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "ancestor": false,
+      "disposition": "already_represented_exact_equivalence",
+      "replacement": "d754bf15b07a24c8a86c8dce339ca749fecd9531"
+    },
+    {
+      "ref": "origin/feat/ods-icon-sets",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "ancestor": false,
+      "disposition": "already_represented_exact_equivalence",
+      "replacement": "c84d5e16024c502f6c451fd04b9807b1e65f20d3"
+    },
+    {
+      "ref": "origin/feat/ods-time-period-conditions",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "ancestor": false,
+      "disposition": "already_represented_exact_equivalence",
+      "replacement": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6"
+    },
+    {
+      "ref": "origin/feat/settings-arweb-20261120",
+      "sha": "e8db6b3f21401f8c6ac4dae4c2934edde8699f4b",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/fix/mail-credential-stores-chrome-20261120",
+      "sha": "a652a205e6daf6b4b8e3baec04db1c1b52fabd0d",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/fix/main-green-20261120",
+      "sha": "9cfad3920f9afb3ca1620df429fa41e33f3db8e6",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/integrate/office-union-148",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "ancestor": false,
+      "disposition": "already_represented_exact_equivalence",
+      "replacement": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4"
+    },
+    {
+      "ref": "origin/integrate/recent-pptx",
+      "sha": "ec70b9423febefcb9b104629d2ad48b0c96e9082",
+      "ancestor": false,
+      "disposition": "already_represented_exact_equivalence",
+      "replacement": "698209aaa6e7f1350b6541df5eb192b7b233443d"
+    },
+    {
+      "ref": "origin/main",
+      "sha": "f92c0d24f0513c5e13e61ae58507c36e9cf4f1c1",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/perf/wrap-chrome-20261121",
+      "sha": "5332c5ff4d3e72dffcd6fa78444dca22787be88e",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/work/mail-accounts-20261120",
+      "sha": "86e44e87f829b0309ea7b84fd5d390f596fe7f26",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/work/mail-bulk-actions-20261120",
+      "sha": "1584a2da8b23128c113d95c3b05b6a12d2d3861e",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/work/mail-bulk-flags-20261120",
+      "sha": "bf0effdcc8f690972d762c5b53079e8847a5e65e",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/work/mail-cached-workspace-20261120",
+      "sha": "c7e721b7703766491fd4459b69de30bf68d9010d",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/work/mail-command-journal-20261121",
+      "sha": "33ce2428ebab825a844895a767e0f9f1a4077d62",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/work/mail-multiple-drafts-20261120",
+      "sha": "b3abdf3b4628a8a703857d69b8f11cd21bc502e1",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/work/mail-offline-accounts-20261120",
+      "sha": "44855ab24c2c7fd34953e879fba571381cce0bc3",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/work/mail-offline-retention-20261121",
+      "sha": "283ec4ae7c690787ae29b9342872b3206cc57b67",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/work/mail-outbox-20261120",
+      "sha": "9443612b024114c424ba2f8146e04050d6e049b0",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/work/mail-outbox-management-20261120",
+      "sha": "79e11935e16ea1d2fa576ead0712c83f22e15c28",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/work/mail-parity-20261120",
+      "sha": "540eb7a41554620e1405807ac1db9dc38bd62148",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/work/mail-parity-20261121",
+      "sha": "fa59496840a36709fe3a6d867bdfe96ab99d72ab",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/work/mail-repository-sessions-20261121",
+      "sha": "0491492d8622ad2ef09fb84e07d3dbba462f9320",
+      "ancestor": true
+    },
+    {
+      "ref": "origin/work/mail-sync-foundation-20261121",
+      "sha": "4a1eaa69e7a068e354bdd851ec9b0323b89ae300",
+      "ancestor": true
+    }
+  ],
+  "unresolved": []
+}

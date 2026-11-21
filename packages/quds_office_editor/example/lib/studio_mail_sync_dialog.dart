@@ -195,6 +195,7 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
   }
 
   void _clearSelection() {
+    _downloadCancellation?.cancel(MailCancellationReason.accountChanged);
     _viewGeneration++;
     final subscription = _viewSubscription;
     if (subscription != null) {
@@ -230,6 +231,7 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
   Future<void> _selectMailbox(MailMailbox mailbox) async {
     if (!_current) return;
     if (mailbox.id.account != widget.mailboxStore.account) _invalid();
+    _downloadCancellation?.cancel(MailCancellationReason.accountChanged);
     final previous = _reader;
     setState(() {
       _mailbox = mailbox;
@@ -244,6 +246,9 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
   Future<void> _loadPage(int offset) async {
     final mailbox = _mailbox;
     if (!_current || mailbox == null) return;
+    // Automatic pagination repair can run after a membership reset, even while
+    // paging controls are disabled. Retire its body writes before any await.
+    _downloadCancellation?.cancel(MailCancellationReason.accountChanged);
     final generation = ++_viewGeneration;
     setState(() {
       _viewBusy = true;
@@ -287,6 +292,7 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
 
   void _viewError(MailMailboxId mailbox, int generation) {
     if (!_viewCurrent(mailbox, generation)) return;
+    _downloadCancellation?.cancel(MailCancellationReason.accountChanged);
     setState(() {
       _viewFailed = true;
       _viewBusy = false;
@@ -690,33 +696,39 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
   Widget _message() {
     if (_reader case final reader?) return MailMessageView(controller: reader);
     return Center(
+      // This is host status/recovery chrome, not the document reader. Keep its
+      // action reachable with long translations and enlarged system text.
       child: SingleChildScrollView(
+        key: const ValueKey('studio-mail-sync-message-status-scroll'),
         primary: false,
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              _missingBody
-                  ? widget.strings.mailSyncMissingBody
-                  : _bodyBusy
-                  ? widget.strings.mailMessageListStrings.loading
-                  : _error ?? widget.strings.mailSyncChooseMessage,
-              key: const ValueKey('studio-mail-sync-message-state'),
-            ),
-            if (_missingBody && widget.download != null) ...[
-              const SizedBox(height: 12),
-              FilledButton.icon(
-                key: const ValueKey('studio-mail-download-message'),
-                onPressed: !_current || _working || _bodyBusy || _viewFailed
-                    ? null
-                    : () =>
-                          unawaited(_work(() => _download(selectedOnly: true))),
-                icon: const Icon(Icons.download_for_offline_outlined),
-                label: Text(widget.strings.mailDownloadMessage),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                _missingBody
+                    ? widget.strings.mailSyncMissingBody
+                    : _bodyBusy
+                    ? widget.strings.mailMessageListStrings.loading
+                    : _error ?? widget.strings.mailSyncChooseMessage,
+                key: const ValueKey('studio-mail-sync-message-state'),
               ),
+              if (_missingBody && widget.download != null) ...[
+                const SizedBox(height: 12),
+                FilledButton.icon(
+                  key: const ValueKey('studio-mail-download-message'),
+                  onPressed: !_current || _working || _bodyBusy || _viewFailed
+                      ? null
+                      : () => unawaited(
+                          _work(() => _download(selectedOnly: true)),
+                        ),
+                  icon: const Icon(Icons.download_for_offline_outlined),
+                  label: Text(widget.strings.mailDownloadMessage),
+                ),
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );

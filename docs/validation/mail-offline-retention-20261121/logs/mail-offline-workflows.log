@@ -1,0 +1,390 @@
+00:00 +0: loading /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_body_download_store_test.dart
+00:00 +0: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_body_download_store_test.dart: imap: download survives restart with exact offline content and untouched outgoing state
+00:00 +0 -1: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_body_download_store_test.dart: imap: download survives restart with exact offline content and untouched outgoing state [E]
+  Expected: <Instance of 'MailSuccess<FutureOr<MailMailboxSyncSnapshot>?>'>
+    Actual: <Instance of 'MailSuccess<MailMailboxSyncSnapshot?>'>
+     Which: is not an instance of 'MailSuccess<FutureOr<MailMailboxSyncSnapshot>?>'
+  
+  package:matcher                                        expect
+  package:flutter_test/src/widget_tester.dart 473:18     expect
+  test/studio_mail_body_download_store_test.dart 15:3    _value
+  test/studio_mail_body_download_store_test.dart 258:12  main.seed
+  
+00:00 +0 -1: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_body_download_store_test.dart: ews: download survives restart with exact offline content and untouched outgoing state
+00:00 +0 -2: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_body_download_store_test.dart: ews: download survives restart with exact offline content and untouched outgoing state [E]
+  Expected: <Instance of 'MailSuccess<FutureOr<MailMailboxSyncSnapshot>?>'>
+    Actual: <Instance of 'MailSuccess<MailMailboxSyncSnapshot?>'>
+     Which: is not an instance of 'MailSuccess<FutureOr<MailMailboxSyncSnapshot>?>'
+  
+  package:matcher                                        expect
+  package:flutter_test/src/widget_tester.dart 473:18     expect
+  test/studio_mail_body_download_store_test.dart 15:3    _value
+  test/studio_mail_body_download_store_test.dart 258:12  main.seed
+  
+00:00 +0 -2: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_body_download_store_test.dart: gmail: download survives restart with exact offline content and untouched outgoing state
+00:00 +0 -3: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_body_download_store_test.dart: gmail: download survives restart with exact offline content and untouched outgoing state [E]
+  Expected: <Instance of 'MailSuccess<FutureOr<MailMailboxSyncSnapshot>?>'>
+    Actual: <Instance of 'MailSuccess<MailMailboxSyncSnapshot?>'>
+     Which: is not an instance of 'MailSuccess<FutureOr<MailMailboxSyncSnapshot>?>'
+  
+  package:matcher                                        expect
+  package:flutter_test/src/widget_tester.dart 473:18     expect
+  test/studio_mail_body_download_store_test.dart 15:3    _value
+  test/studio_mail_body_download_store_test.dart 258:12  main.seed
+  
+00:00 +0 -3: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_body_download_store_test.dart: graph: download survives restart with exact offline content and untouched outgoing state
+00:00 +0 -4: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_body_download_store_test.dart: graph: download survives restart with exact offline content and untouched outgoing state [E]
+  Expected: <Instance of 'MailSuccess<FutureOr<MailMailboxSyncSnapshot>?>'>
+    Actual: <Instance of 'MailSuccess<MailMailboxSyncSnapshot?>'>
+     Which: is not an instance of 'MailSuccess<FutureOr<MailMailboxSyncSnapshot>?>'
+  
+  package:matcher                                        expect
+  package:flutter_test/src/widget_tester.dart 473:18     expect
+  test/studio_mail_body_download_store_test.dart 15:3    _value
+  test/studio_mail_body_download_store_test.dart 258:12  main.seed
+  
+00:00 +0 -4: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_body_download_store_test.dart: cancel during a later cache transaction preserves only the acknowledged prefix
+00:00 +0 -5: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_body_download_store_test.dart: cancel during a later cache transaction preserves only the acknowledged prefix [E]
+  Expected: <Instance of 'MailSuccess<FutureOr<MailMailboxSyncSnapshot>?>'>
+    Actual: <Instance of 'MailSuccess<MailMailboxSyncSnapshot?>'>
+     Which: is not an instance of 'MailSuccess<FutureOr<MailMailboxSyncSnapshot>?>'
+  
+  package:matcher                                        expect
+  package:flutter_test/src/widget_tester.dart 473:18     expect
+  test/studio_mail_body_download_store_test.dart 15:3    _value
+  test/studio_mail_body_download_store_test.dart 258:12  main.seed
+  
+00:00 +0 -5: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_body_download_store_test.dart: retire during a later cache transaction preserves only the acknowledged prefix
+00:00 +0 -6: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_body_download_store_test.dart: retire during a later cache transaction preserves only the acknowledged prefix [E]
+  Expected: <Instance of 'MailSuccess<FutureOr<MailMailboxSyncSnapshot>?>'>
+    Actual: <Instance of 'MailSuccess<MailMailboxSyncSnapshot?>'>
+     Which: is not an instance of 'MailSuccess<FutureOr<MailMailboxSyncSnapshot>?>'
+  
+  package:matcher                                        expect
+  package:flutter_test/src/widget_tester.dart 473:18     expect
+  test/studio_mail_body_download_store_test.dart 15:3    _value
+  test/studio_mail_body_download_store_test.dart 258:12  main.seed
+  
+00:00 +0 -6: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_body_download_store_test.dart: rollback during a later cache transaction preserves only the acknowledged prefix
+00:00 +0 -7: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_body_download_store_test.dart: rollback during a later cache transaction preserves only the acknowledged prefix [E]
+  Expected: <Instance of 'MailSuccess<FutureOr<MailMailboxSyncSnapshot>?>'>
+    Actual: <Instance of 'MailSuccess<MailMailboxSyncSnapshot?>'>
+     Which: is not an instance of 'MailSuccess<FutureOr<MailMailboxSyncSnapshot>?>'
+  
+  package:matcher                                        expect
+  package:flutter_test/src/widget_tester.dart 473:18     expect
+  test/studio_mail_body_download_store_test.dart 15:3    _value
+  test/studio_mail_body_download_store_test.dart 258:12  main.seed
+  
+00:00 +0 -7: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_body_download_store_test.dart: native blob quota keeps earlier bodies and all outgoing data intact
+00:00 +0 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_body_download_store_test.dart: native blob quota keeps earlier bodies and all outgoing data intact [E]
+  Expected: <Instance of 'MailSuccess<FutureOr<MailMailboxSyncSnapshot>?>'>
+    Actual: <Instance of 'MailSuccess<MailMailboxSyncSnapshot?>'>
+     Which: is not an instance of 'MailSuccess<FutureOr<MailMailboxSyncSnapshot>?>'
+  
+  package:matcher                                        expect
+  package:flutter_test/src/widget_tester.dart 473:18     expect
+  test/studio_mail_body_download_store_test.dart 15:3    _value
+  test/studio_mail_body_download_store_test.dart 258:12  main.seed
+  
+00:00 +0 -8: loading /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_native_test.dart
+00:01 +0 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_native_test.dart: native IMAP body download uses canonical synced IDs and skips retained content
+00:01 +1 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_native_test.dart: disposed native loader cannot overwrite the successor cached body
+00:01 +2 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_native_test.dart: IMAP reconnect resumes the persisted cursor under a stable account
+00:01 +3 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_native_test.dart: IMAP synchronization accepts a provider-verified UIDVALIDITY reset
+00:01 +4 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_native_test.dart: disposal fences an old loader even when its successor has the same account
+00:01 +5 -8: loading /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart
+00:02 +5 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: connected reader downloads only after explicit message action
+00:03 +6 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: page download freezes 100 rows and Stop waits for completion
+00:04 +7 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: closing cancels body downloads and drains them before owner release
+00:04 +8 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: membership replacement cancels a frozen body download
+00:04 +9 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: automatic offset repair cancels downloads before a delayed reload
+00:05 +10 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: download limits and recovery remain usable in en
+00:05 +11 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: download limits and recovery remain usable in de
+00:05 +12 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: download limits and recovery remain usable in ar
+00:05 +13 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: offline catalog reads only saved headers and reports scope
+00:05 +14 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: connected folder starts only explicitly and shows saved state
+00:05 +15 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: partial checkpoint offers continue and bounded pause
+00:05 +16 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: stop cancels once and waits for running work before resuming
+00:06 +17 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: close cancels and drains run before releasing the caller
+00:06 +18 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: close drains initial read and repository stream cancellation
+00:06 +19 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: missing body explains headers-only scope without downloading
+00:06 +20 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: saved message body uses reader and survives metadata updates
+00:06 +21 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: close drains a body read and suppresses its late reader
+00:07 +22 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: forced disposal cancels work and never calls stale host again
+00:07 +23 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: saved headers page in bounded windows without accumulating
+00:07 +24 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: shrinking mailbox returns an out-of-range page to saved start
+00:07 +25 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: repository failure retains view and successful update recovers
+00:07 +26 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: cross-account stores are rejected before subscribing
+00:07 +27 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: mismatched cached body is not displayed
+00:07 +28 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: typed authenticationRequired failure preserves resumable saved view
+00:08 +29 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: typed quotaExceeded failure preserves resumable saved view
+00:08 +30 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: typed conflict failure preserves resumable saved view
+00:08 +31 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: typed unsupported failure preserves resumable saved view
+00:08 +32 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: compact en layout keeps controls and reader
+00:08 +33 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: compact de layout keeps controls and reader
+00:08 +34 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: compact ar layout keeps controls and reader
+00:09 +35 -8: loading /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart
+00:16 +35 -8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart: ews host downloads synchronized bodies explicitly and reopens them offline
+
+Warning: A call to tap() with finder "Found 1 widget with text "Open downloaded mail": [
+  Text("Open downloaded mail", dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),
+]" derived an Offset (Offset(153.0, 24.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderParagraph#f4b03 relayoutBoundary=up13
+The hit test result at that offset is: HitTestResult(HitTestEntry<HitTestTarget>#a2c96(TextSpan(debugLabel: ((englishLike titleLarge 2021).merge((blackMountainView titleLarge).apply)).copyWith, inherit: false, color: Color(alpha: 1.0000, red: 0.1137, green: 0.1059, blue: 0.1255, colorSpace: ColorSpace.sRGB), family: Roboto, size: 22.0, weight: 400, letterSpacing: 0.0, baseline: alphabetic, height: 1.3x, leadingDistribution: even, decoration: Color(alpha: 1.0000, red: 0.1137, green: 0.1059, blue: 0.1255, colorSpace: ColorSpace.sRGB) TextDecoration.none, "Exchange Server (EWS)")), RenderParagraph#982ea@Offset(81.0, 10.0), _RenderAppBarTitleBox#087cb@Offset(81.0, 10.0), RenderSemanticsAnnotations#bb2f5@Offset(81.0, 10.0), RenderCustomMultiChildLayoutBox#ea8b5@Offset(153.0, 24.0), RenderCustomSingleChildLayoutBox#5aa24@Offset(153.0, 24.0), RenderClipRect#3976f@Offset(153.0, 24.0), RenderPadding#58d94@Offset(153.0, 24.0), RenderPositionedBox#d0eca@Offset(153.0, 24.0), RenderSemanticsAnnotations#37060@Offset(153.0, 24.0), _RenderInkFeatures#a5e2b@Offset(153.0, 24.0), RenderPhysicalModel#127cc@Offset(153.0, 24.0), RenderAnnotatedRegion<SystemUiOverlayStyle>#7d4f8@Offset(153.0, 24.0), RenderSemanticsAnnotations#d6a91@Offset(153.0, 24.0), RenderConstrainedBox#e16b2@Offset(153.0, 24.0), RenderCustomMultiChildLayoutBox#cfd91@Offset(153.0, 24.0), _RenderInkFeatures#c9f1e@Offset(153.0, 24.0), RenderPhysicalModel#cce6b@Offset(153.0, 24.0), _RenderInkFeatures#87c4a@Offset(153.0, 24.0), RenderPhysicalModel#83df5@Offset(153.0, 24.0), RenderPadding#c816a@Offset(153.0, 24.0), RenderSemanticsAnnotations#41249@Offset(153.0, 24.0), RenderPadding#665cd@Offset(153.0, 24.0), RenderSemanticsAnnotations#ad987@Offset(153.0, 24.0), RenderPadding#95de3@Offset(153.0, 24.0), RenderSemanticsAnnotations#1ec94@Offset(153.0, 24.0), RenderRepaintBoundary#c52a3@Offset(153.0, 24.0), RenderIgnorePointer#5cab1@Offset(153.0, 24.0), RenderAnimatedOpacity#d991d@Offset(153.0, 24.0), RenderRepaintBoundary#42362@Offset(153.0, 24.0), RenderSemanticsAnnotations#86e75@Offset(153.0, 24.0), RenderOffstage#ba478@Offset(153.0, 24.0), RenderSemanticsAnnotations#fa13c@Offset(153.0, 24.0), _RenderTheater#71d4d@Offset(153.0, 24.0), RenderAbsorbPointer#3509b@Offset(153.0, 24.0), RenderPointerListener#03a9e@Offset(153.0, 24.0), RenderSemanticsAnnotations#7dc18@Offset(153.0, 24.0), RenderCustomPaint#70d1c@Offset(153.0, 24.0), RenderSemanticsAnnotations#4cfde@Offset(153.0, 24.0), RenderSemanticsAnnotations#25e92@Offset(153.0, 24.0), RenderSemanticsAnnotations#c6565@Offset(153.0, 24.0), RenderTapRegionSurface#14b0f@Offset(153.0, 24.0), RenderSemanticsAnnotations#2c591@Offset(153.0, 24.0), RenderSemanticsAnnotations#5aa2b@Offset(153.0, 24.0), HitTestEntry<HitTestTarget>#b3f38(_ReusableRenderView#4211a), HitTestEntry<HitTestTarget>#aaf99(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart:482:22)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: true
+  Actual: <false>
+The real sync host operation must settle.
+
+When the exception was thrown, this was the stack:
+#4      _until (file:///workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart:277:3)
+<asynchronous suspension>
+#5      main.<anonymous closure> (file:///workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart:483:9)
+<asynchronous suspension>
+#6      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#7      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart line 277
+The test description was:
+  ews host downloads synchronized bodies explicitly and reopens them offline
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:37 +35 -9: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart: ews host downloads synchronized bodies explicitly and reopens them offline [E]
+  Test failed. See exception logs above.
+  The test description was: ews host downloads synchronized bodies explicitly and reopens them offline
+  
+  Bad state: Outbox fixture operation did not complete within 15 s.
+  test/support/mail_outbox_store.dart 42:5    awaitOutboxOperation
+  ===== asynchronous gap ===========================
+  dart:async                                  _CustomZone.registerBinaryCallback
+  test/studio_mail_sync_host_test.dart 307:5  _fixture.<fn>
+  
+00:52 +35 -9: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart: ews host sync persists, resumes after reconnect and opens offline without a provider
+WARNING (drift): It looks like you've created the database class MailStoreDatabase multiple times. When these two databases use the same QueryExecutor, race conditions will occur and might corrupt the database. 
+Try to follow the advice at https://drift.simonbinder.eu/faq/#using-the-database or, if you know what you're doing, set driftRuntimeOptions.dontWarnAboutMultipleDatabases = true
+Here is the stacktrace from when the database was opened a second time:
+#0      GeneratedDatabase._handleInstantiated (package:drift/src/runtime/api/db_base.dart:96:30)
+#1      GeneratedDatabase._whenConstructed (package:drift/src/runtime/api/db_base.dart:73:12)
+#2      new GeneratedDatabase (package:drift/src/runtime/api/db_base.dart:64:5)
+#3      new MailStoreDatabase (package:quds_mail_store/src/schema/database.dart)
+#4      SqliteMailRepository.open (package:quds_mail_store/src/repository.dart:43:22)
+#5      openNativeMailStore (package:quds_mail_store/quds_mail_store_native.dart:59:47)
+<asynchronous suspension>
+#6      openStudioMailDraftStore (package:quds_office_studio/studio_mail_draft_store_native.dart:22:20)
+<asynchronous suspension>
+#7      _Harness.open (file:///workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart:217:19)
+<asynchronous suspension>
+#8      _StudioMailCachedMailDialogState._openStore (package:quds_office_studio/studio_mail_cached_mail.dart:152:11)
+<asynchronous suspension>
+This warning will only appear on debug builds.
+00:56 +36 -9: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart: gmail host downloads synchronized bodies explicitly and reopens them offline
+WARNING (drift): It looks like you've created the database class MailStoreDatabase multiple times. When these two databases use the same QueryExecutor, race conditions will occur and might corrupt the database. 
+Try to follow the advice at https://drift.simonbinder.eu/faq/#using-the-database or, if you know what you're doing, set driftRuntimeOptions.dontWarnAboutMultipleDatabases = true
+Here is the stacktrace from when the database was opened a second time:
+#0      GeneratedDatabase._handleInstantiated (package:drift/src/runtime/api/db_base.dart:96:30)
+#1      GeneratedDatabase._whenConstructed (package:drift/src/runtime/api/db_base.dart:73:12)
+#2      new GeneratedDatabase (package:drift/src/runtime/api/db_base.dart:64:5)
+#3      new MailStoreDatabase (package:quds_mail_store/src/schema/database.dart)
+#4      SqliteMailRepository.open (package:quds_mail_store/src/repository.dart:43:22)
+#5      openNativeMailStore (package:quds_mail_store/quds_mail_store_native.dart:59:47)
+<asynchronous suspension>
+#6      openStudioMailDraftStore (package:quds_office_studio/studio_mail_draft_store_native.dart:22:20)
+<asynchronous suspension>
+#7      _Harness.open (file:///workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart:217:19)
+<asynchronous suspension>
+#8      awaitOutboxOperation.<anonymous closure> (file:///workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/support/mail_outbox_store.dart:20:5)
+<asynchronous suspension>
+This warning will only appear on debug builds.
+
+Warning: A call to tap() with finder "Found 1 widget with text "Open downloaded mail": [
+  Text("Open downloaded mail", dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),
+]" derived an Offset (Offset(153.0, 24.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderParagraph#db037 relayoutBoundary=up13
+The hit test result at that offset is: HitTestResult(HitTestEntry<HitTestTarget>#115be(TextSpan(debugLabel: ((englishLike titleLarge 2021).merge((blackMountainView titleLarge).apply)).copyWith, inherit: false, color: Color(alpha: 1.0000, red: 0.1137, green: 0.1059, blue: 0.1255, colorSpace: ColorSpace.sRGB), family: Roboto, size: 22.0, weight: 400, letterSpacing: 0.0, baseline: alphabetic, height: 1.3x, leadingDistribution: even, decoration: Color(alpha: 1.0000, red: 0.1137, green: 0.1059, blue: 0.1255, colorSpace: ColorSpace.sRGB) TextDecoration.none, "Gmail")), RenderParagraph#c24d8@Offset(81.0, 10.0), _RenderAppBarTitleBox#cc262@Offset(81.0, 10.0), RenderSemanticsAnnotations#891eb@Offset(81.0, 10.0), RenderCustomMultiChildLayoutBox#a05ff@Offset(153.0, 24.0), RenderCustomSingleChildLayoutBox#8bdab@Offset(153.0, 24.0), RenderClipRect#7f190@Offset(153.0, 24.0), RenderPadding#aa9f1@Offset(153.0, 24.0), RenderPositionedBox#761aa@Offset(153.0, 24.0), RenderSemanticsAnnotations#d39fc@Offset(153.0, 24.0), _RenderInkFeatures#7e62a@Offset(153.0, 24.0), RenderPhysicalModel#5724c@Offset(153.0, 24.0), RenderAnnotatedRegion<SystemUiOverlayStyle>#43188@Offset(153.0, 24.0), RenderSemanticsAnnotations#10fcf@Offset(153.0, 24.0), RenderConstrainedBox#22b1b@Offset(153.0, 24.0), RenderCustomMultiChildLayoutBox#5a6ae@Offset(153.0, 24.0), _RenderInkFeatures#bf9e8@Offset(153.0, 24.0), RenderPhysicalModel#bc82f@Offset(153.0, 24.0), _RenderInkFeatures#45e51@Offset(153.0, 24.0), RenderPhysicalModel#2e75a@Offset(153.0, 24.0), RenderPadding#5e59a@Offset(153.0, 24.0), RenderSemanticsAnnotations#07971@Offset(153.0, 24.0), RenderPadding#7687e@Offset(153.0, 24.0), RenderSemanticsAnnotations#42004@Offset(153.0, 24.0), RenderPadding#eed07@Offset(153.0, 24.0), RenderSemanticsAnnotations#63543@Offset(153.0, 24.0), RenderRepaintBoundary#8f34a@Offset(153.0, 24.0), RenderIgnorePointer#5aab3@Offset(153.0, 24.0), RenderAnimatedOpacity#67581@Offset(153.0, 24.0), RenderRepaintBoundary#8a301@Offset(153.0, 24.0), RenderSemanticsAnnotations#a8b12@Offset(153.0, 24.0), RenderOffstage#c5035@Offset(153.0, 24.0), RenderSemanticsAnnotations#1d1ac@Offset(153.0, 24.0), _RenderTheater#a9a4b@Offset(153.0, 24.0), RenderAbsorbPointer#3a926@Offset(153.0, 24.0), RenderPointerListener#d4c05@Offset(153.0, 24.0), RenderSemanticsAnnotations#dc453@Offset(153.0, 24.0), RenderCustomPaint#670fb@Offset(153.0, 24.0), RenderSemanticsAnnotations#84a2c@Offset(153.0, 24.0), RenderSemanticsAnnotations#c52b5@Offset(153.0, 24.0), RenderSemanticsAnnotations#dd5e0@Offset(153.0, 24.0), RenderTapRegionSurface#fb79c@Offset(153.0, 24.0), RenderSemanticsAnnotations#65660@Offset(153.0, 24.0), RenderSemanticsAnnotations#4a6d5@Offset(153.0, 24.0), HitTestEntry<HitTestTarget>#63a4d(_ReusableRenderView#4211a), HitTestEntry<HitTestTarget>#5b274(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart:482:22)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: true
+  Actual: <false>
+The real sync host operation must settle.
+
+When the exception was thrown, this was the stack:
+#4      _until (file:///workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart:277:3)
+<asynchronous suspension>
+#5      main.<anonymous closure> (file:///workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart:483:9)
+<asynchronous suspension>
+#6      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#7      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart line 277
+The test description was:
+  gmail host downloads synchronized bodies explicitly and reopens them offline
+════════════════════════════════════════════════════════════════════════════════════════════════════
+01:14 +36 -10: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart: gmail host downloads synchronized bodies explicitly and reopens them offline [E]
+  Test failed. See exception logs above.
+  The test description was: gmail host downloads synchronized bodies explicitly and reopens them offline
+  
+  Bad state: Outbox fixture operation did not complete within 15 s.
+  test/support/mail_outbox_store.dart 42:5    awaitOutboxOperation
+  ===== asynchronous gap ===========================
+  dart:async                                  _CustomZone.registerBinaryCallback
+  test/studio_mail_sync_host_test.dart 307:5  _fixture.<fn>
+  
+01:29 +36 -10: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart: gmail host sync persists, resumes after reconnect and opens offline without a provider
+WARNING (drift): It looks like you've created the database class MailStoreDatabase multiple times. When these two databases use the same QueryExecutor, race conditions will occur and might corrupt the database. 
+Try to follow the advice at https://drift.simonbinder.eu/faq/#using-the-database or, if you know what you're doing, set driftRuntimeOptions.dontWarnAboutMultipleDatabases = true
+Here is the stacktrace from when the database was opened a second time:
+#0      GeneratedDatabase._handleInstantiated (package:drift/src/runtime/api/db_base.dart:96:30)
+#1      GeneratedDatabase._whenConstructed (package:drift/src/runtime/api/db_base.dart:73:12)
+#2      new GeneratedDatabase (package:drift/src/runtime/api/db_base.dart:64:5)
+#3      new MailStoreDatabase (package:quds_mail_store/src/schema/database.dart)
+#4      SqliteMailRepository.open (package:quds_mail_store/src/repository.dart:43:22)
+#5      openNativeMailStore (package:quds_mail_store/quds_mail_store_native.dart:59:47)
+<asynchronous suspension>
+#6      openStudioMailDraftStore (package:quds_office_studio/studio_mail_draft_store_native.dart:22:20)
+<asynchronous suspension>
+#7      _Harness.open (file:///workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart:217:19)
+<asynchronous suspension>
+#8      _StudioMailCachedMailDialogState._openStore (package:quds_office_studio/studio_mail_cached_mail.dart:152:11)
+<asynchronous suspension>
+This warning will only appear on debug builds.
+01:33 +37 -10: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart: graph host downloads synchronized bodies explicitly and reopens them offline
+WARNING (drift): It looks like you've created the database class MailStoreDatabase multiple times. When these two databases use the same QueryExecutor, race conditions will occur and might corrupt the database. 
+Try to follow the advice at https://drift.simonbinder.eu/faq/#using-the-database or, if you know what you're doing, set driftRuntimeOptions.dontWarnAboutMultipleDatabases = true
+Here is the stacktrace from when the database was opened a second time:
+#0      GeneratedDatabase._handleInstantiated (package:drift/src/runtime/api/db_base.dart:96:30)
+#1      GeneratedDatabase._whenConstructed (package:drift/src/runtime/api/db_base.dart:73:12)
+#2      new GeneratedDatabase (package:drift/src/runtime/api/db_base.dart:64:5)
+#3      new MailStoreDatabase (package:quds_mail_store/src/schema/database.dart)
+#4      SqliteMailRepository.open (package:quds_mail_store/src/repository.dart:43:22)
+#5      openNativeMailStore (package:quds_mail_store/quds_mail_store_native.dart:59:47)
+<asynchronous suspension>
+#6      openStudioMailDraftStore (package:quds_office_studio/studio_mail_draft_store_native.dart:22:20)
+<asynchronous suspension>
+#7      _Harness.open (file:///workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart:217:19)
+<asynchronous suspension>
+#8      awaitOutboxOperation.<anonymous closure> (file:///workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/support/mail_outbox_store.dart:20:5)
+<asynchronous suspension>
+This warning will only appear on debug builds.
+
+Warning: A call to tap() with finder "Found 1 widget with text "Open downloaded mail": [
+  Text("Open downloaded mail", dependencies: [DefaultSelectionStyle, DefaultTextStyle, MediaQuery]),
+]" derived an Offset (Offset(153.0, 24.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderParagraph#ad039 relayoutBoundary=up13
+The hit test result at that offset is: HitTestResult(HitTestEntry<HitTestTarget>#98b56(TextSpan(debugLabel: ((englishLike titleLarge 2021).merge((blackMountainView titleLarge).apply)).copyWith, inherit: false, color: Color(alpha: 1.0000, red: 0.1137, green: 0.1059, blue: 0.1255, colorSpace: ColorSpace.sRGB), family: Roboto, size: 22.0, weight: 400, letterSpacing: 0.0, baseline: alphabetic, height: 1.3x, leadingDistribution: even, decoration: Color(alpha: 1.0000, red: 0.1137, green: 0.1059, blue: 0.1255, colorSpace: ColorSpace.sRGB) TextDecoration.none, "Microsoft 365 / Outlook")), RenderParagraph#0600f@Offset(81.0, 10.0), _RenderAppBarTitleBox#3d957@Offset(81.0, 10.0), RenderSemanticsAnnotations#d1d12@Offset(81.0, 10.0), RenderCustomMultiChildLayoutBox#3471d@Offset(153.0, 24.0), RenderCustomSingleChildLayoutBox#23c8a@Offset(153.0, 24.0), RenderClipRect#91769@Offset(153.0, 24.0), RenderPadding#ecb23@Offset(153.0, 24.0), RenderPositionedBox#558c7@Offset(153.0, 24.0), RenderSemanticsAnnotations#5e710@Offset(153.0, 24.0), _RenderInkFeatures#0f2db@Offset(153.0, 24.0), RenderPhysicalModel#75631@Offset(153.0, 24.0), RenderAnnotatedRegion<SystemUiOverlayStyle>#5cafc@Offset(153.0, 24.0), RenderSemanticsAnnotations#da7d0@Offset(153.0, 24.0), RenderConstrainedBox#b3dae@Offset(153.0, 24.0), RenderCustomMultiChildLayoutBox#b982c@Offset(153.0, 24.0), _RenderInkFeatures#ae263@Offset(153.0, 24.0), RenderPhysicalModel#99a7f@Offset(153.0, 24.0), _RenderInkFeatures#e0cb2@Offset(153.0, 24.0), RenderPhysicalModel#ede37@Offset(153.0, 24.0), RenderPadding#767a2@Offset(153.0, 24.0), RenderSemanticsAnnotations#34312@Offset(153.0, 24.0), RenderPadding#2ac22@Offset(153.0, 24.0), RenderSemanticsAnnotations#6850d@Offset(153.0, 24.0), RenderPadding#6de78@Offset(153.0, 24.0), RenderSemanticsAnnotations#7ce5e@Offset(153.0, 24.0), RenderRepaintBoundary#bbf7d@Offset(153.0, 24.0), RenderIgnorePointer#cd8cf@Offset(153.0, 24.0), RenderAnimatedOpacity#1e1d8@Offset(153.0, 24.0), RenderRepaintBoundary#bedd2@Offset(153.0, 24.0), RenderSemanticsAnnotations#24d68@Offset(153.0, 24.0), RenderOffstage#85bbb@Offset(153.0, 24.0), RenderSemanticsAnnotations#f1be0@Offset(153.0, 24.0), _RenderTheater#b2f10@Offset(153.0, 24.0), RenderAbsorbPointer#86b6c@Offset(153.0, 24.0), RenderPointerListener#87c94@Offset(153.0, 24.0), RenderSemanticsAnnotations#57724@Offset(153.0, 24.0), RenderCustomPaint#ec8af@Offset(153.0, 24.0), RenderSemanticsAnnotations#1aee2@Offset(153.0, 24.0), RenderSemanticsAnnotations#3fc2f@Offset(153.0, 24.0), RenderSemanticsAnnotations#25347@Offset(153.0, 24.0), RenderTapRegionSurface#d1190@Offset(153.0, 24.0), RenderSemanticsAnnotations#917f8@Offset(153.0, 24.0), RenderSemanticsAnnotations#1f2d3@Offset(153.0, 24.0), HitTestEntry<HitTestTarget>#313fe(_ReusableRenderView#4211a), HitTestEntry<HitTestTarget>#c5823(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)
+#3      main.<anonymous closure> (file:///workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart:482:22)
+<asynchronous suspension>
+#4      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#5      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+#6      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: true
+  Actual: <false>
+The real sync host operation must settle.
+
+When the exception was thrown, this was the stack:
+#4      _until (file:///workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart:277:3)
+<asynchronous suspension>
+#5      main.<anonymous closure> (file:///workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart:483:9)
+<asynchronous suspension>
+#6      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#7      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart line 277
+The test description was:
+  graph host downloads synchronized bodies explicitly and reopens them offline
+════════════════════════════════════════════════════════════════════════════════════════════════════
+01:51 +37 -11: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart: graph host downloads synchronized bodies explicitly and reopens them offline [E]
+  Test failed. See exception logs above.
+  The test description was: graph host downloads synchronized bodies explicitly and reopens them offline
+  
+  Bad state: Outbox fixture operation did not complete within 15 s.
+  test/support/mail_outbox_store.dart 42:5    awaitOutboxOperation
+  ===== asynchronous gap ===========================
+  dart:async                                  _CustomZone.registerBinaryCallback
+  test/studio_mail_sync_host_test.dart 307:5  _fixture.<fn>
+  
+02:06 +37 -11: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart: graph host sync persists, resumes after reconnect and opens offline without a provider
+WARNING (drift): It looks like you've created the database class MailStoreDatabase multiple times. When these two databases use the same QueryExecutor, race conditions will occur and might corrupt the database. 
+Try to follow the advice at https://drift.simonbinder.eu/faq/#using-the-database or, if you know what you're doing, set driftRuntimeOptions.dontWarnAboutMultipleDatabases = true
+Here is the stacktrace from when the database was opened a second time:
+#0      GeneratedDatabase._handleInstantiated (package:drift/src/runtime/api/db_base.dart:96:30)
+#1      GeneratedDatabase._whenConstructed (package:drift/src/runtime/api/db_base.dart:73:12)
+#2      new GeneratedDatabase (package:drift/src/runtime/api/db_base.dart:64:5)
+#3      new MailStoreDatabase (package:quds_mail_store/src/schema/database.dart)
+#4      SqliteMailRepository.open (package:quds_mail_store/src/repository.dart:43:22)
+#5      openNativeMailStore (package:quds_mail_store/quds_mail_store_native.dart:59:47)
+<asynchronous suspension>
+#6      openStudioMailDraftStore (package:quds_office_studio/studio_mail_draft_store_native.dart:22:20)
+<asynchronous suspension>
+#7      _Harness.open (file:///workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart:217:19)
+<asynchronous suspension>
+#8      _StudioMailCachedMailDialogState._openStore (package:quds_office_studio/studio_mail_cached_mail.dart:152:11)
+<asynchronous suspension>
+This warning will only appear on debug builds.
+02:10 +38 -11: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart: host rejects a provider whose account changes before starting sync
+02:11 +39 -11: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart: disposed host session cannot commit a late provider sync page
+02:13 +40 -11: Some tests failed.
+
+Failing tests:
+  /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_body_download_store_test.dart: cancel during a later cache transaction preserves only the acknowledged prefix
+  /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_body_download_store_test.dart: ews: download survives restart with exact offline content and untouched outgoing state
+  /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_body_download_store_test.dart: gmail: download survives restart with exact offline content and untouched outgoing state
+  /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_body_download_store_test.dart: graph: download survives restart with exact offline content and untouched outgoing state
+  ... and 7 more

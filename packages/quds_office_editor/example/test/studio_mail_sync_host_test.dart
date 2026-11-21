@@ -459,6 +459,9 @@ void main() {
           tester,
           harness.open(identity),
         );
+        addTearDown(() async {
+          await awaitOutboxOperation(tester, owner.close());
+        });
         final cache = (owner as StudioMailMailboxStoreOwner).mailboxStore;
         final sync = cache as StudioMailSyncStore;
         await tester.pumpWidget(

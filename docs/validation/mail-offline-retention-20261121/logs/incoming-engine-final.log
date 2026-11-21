@@ -1,0 +1,264 @@
+00:00 +0: loading test/office_macro_word_text_controls_test.dart
+00:00 +0: test/office_macro_word_text_controls_test.dart: native kerning 0 points persists as exact half-points
+00:00 +1: test/office_macro_word_text_controls_test.dart: native kerning 0.5 points persists as exact half-points
+00:00 +2: test/office_macro_word_text_controls_test.dart: native kerning 1 points persists as exact half-points
+00:00 +3: test/office_macro_word_text_controls_test.dart: native kerning 12 points persists as exact half-points
+00:00 +4: test/office_vba_word_proofing_test.dart: proofing controls preserve assignment order and Boolean polarity
+00:00 +5: test/office_vba_word_proofing_test.dart: proofing controls preserve assignment order and Boolean polarity
+00:00 +6: test/office_vba_word_proofing_test.dart: proofing controls preserve assignment order and Boolean polarity
+00:00 +7: test/office_macro_word_text_controls_test.dart: native proofing and hyphenation retain explicit false
+00:00 +8: test/office_macro_word_text_controls_test.dart: native proofing and hyphenation retain explicit false
+00:00 +9: test/office_macro_word_text_controls_test.dart: native proofing and hyphenation retain explicit false
+00:00 +10: test/office_vba_word_proofing_test.dart: firstHeader preserves section/story identity for all three setters
+00:00 +11: test/office_macro_word_text_controls_test.dart: partial text controls split only the selected current text
+00:00 +12: test/office_macro_word_text_controls_test.dart: partial text controls split only the selected current text
+00:00 +13: test/office_macro_word_text_controls_test.dart: partial text controls split only the selected current text
+00:00 +14: test/office_macro_word_text_controls_test.dart: partial text controls split only the selected current text
+00:00 +15: test/office_macro_word_text_controls_test.dart: partial text controls split only the selected current text
+00:00 +16: test/office_macro_word_text_controls_test.dart: partial text controls split only the selected current text
+00:00 +17: test/office_macro_word_text_controls_test.dart: partial text controls split only the selected current text
+00:00 +18: test/office_macro_word_text_controls_test.dart: partial text controls split only the selected current text
+00:00 +19: test/office_vba_word_proofing_test.dart: accept exact supported kerning threshold 12.5
+00:00 +20: test/office_macro_word_text_controls_test.dart: invalid kerning -0.5 fails before splitting or other writes
+00:00 +21: test/office_macro_word_text_controls_test.dart: invalid kerning -0.5 fails before splitting or other writes
+00:00 +22: test/office_vba_word_proofing_test.dart: reject unsupported kerning value -0.5 without a partial plan
+00:00 +23: test/office_macro_word_text_controls_test.dart: invalid kerning 0.25 fails before splitting or other writes
+00:00 +24: test/office_macro_word_text_controls_test.dart: invalid kerning 0.25 fails before splitting or other writes
+00:00 +25: test/office_macro_word_text_controls_test.dart: invalid kerning 0.25 fails before splitting or other writes
+00:00 +26: test/office_macro_word_text_controls_test.dart: invalid kerning 0.25 fails before splitting or other writes
+00:00 +27: test/office_macro_word_text_controls_test.dart: invalid kerning 0.25 fails before splitting or other writes
+00:00 +28: test/office_vba_word_proofing_test.dart: reject unsupported kerning value Null without a partial plan
+00:00 +29: test/office_macro_word_text_controls_test.dart: invalid kerning 1638.5 fails before splitting or other writes
+00:00 +30: test/office_macro_word_text_controls_test.dart: invalid kerning 1638.5 fails before splitting or other writes
+00:00 +31: test/office_macro_word_text_controls_test.dart: invalid kerning 1638.5 fails before splitting or other writes
+00:00 +32: test/office_macro_word_text_controls_test.dart: invalid kerning 1638.5 fails before splitting or other writes
+00:00 +33: test/office_macro_word_text_controls_test.dart: invalid kerning 1638.5 fails before splitting or other writes
+00:00 +34: test/office_macro_word_text_controls_test.dart: invalid kerning 1638.5 fails before splitting or other writes
+00:00 +35: test/office_macro_word_text_controls_test.dart: invalid kerning 1638.5 fails before splitting or other writes
+00:00 +36: test/office_macro_word_text_controls_test.dart: invalid kerning 1638.5 fails before splitting or other writes
+00:00 +37: test/office_macro_word_text_controls_test.dart: invalid kerning 1638.5 fails before splitting or other writes
+00:00 +38: test/office_macro_word_text_controls_test.dart: invalid kerning 1638.5 fails before splitting or other writes
+00:00 +39: test/office_macro_word_text_controls_test.dart: invalid kerning 1638.5 fails before splitting or other writes
+00:00 +40: test/office_macro_word_text_controls_test.dart: invalid kerning 1638.5 fails before splitting or other writes
+00:00 +41: test/office_macro_word_text_controls_test.dart: invalid kerning 1638.5 fails before splitting or other writes
+00:00 +42: test/office_macro_word_text_controls_test.dart: invalid kerning 1638.5 fails before splitting or other writes
+00:00 +43: test/office_macro_word_text_controls_test.dart: invalid kerning 1638.5 fails before splitting or other writes
+00:00 +44: test/office_macro_word_text_controls_test.dart: invalid kerning 1638.5 fails before splitting or other writes
+00:00 +45: test/office_macro_word_text_controls_test.dart: invalid kerning 1638.5 fails before splitting or other writes
+00:00 +46: test/office_macro_word_text_controls_test.dart: invalid kerning 1638.5 fails before splitting or other writes
+00:00 +47: test/office_macro_word_text_controls_test.dart: invalid kerning 1638.5 fails before splitting or other writes
+00:00 +48: test/office_vba_word_proofing_test.dart: unsupported receiver or property read is checked in inactive code: Dim value As Variant
+value = ActiveDocument.Paragraphs(1).Range.ParagraphFormat.Hyphenation
+00:00 +49: test/office_macro_word_text_controls_test.dart: invalid kerning NaN fails before splitting or other writes
+00:00 +50: test/office_macro_word_text_controls_test.dart: invalid kerning NaN fails before splitting or other writes
+00:00 +51: test/office_macro_word_text_controls_test.dart: invalid kerning NaN fails before splitting or other writes
+00:00 +52: test/office_macro_word_text_controls_test.dart: invalid kerning NaN fails before splitting or other writes
+00:00 +53: test/office_macro_word_text_controls_test.dart: invalid kerning NaN fails before splitting or other writes
+00:00 +54: test/office_macro_word_text_controls_test.dart: invalid kerning Infinity fails before splitting or other writes
+00:00 +55: test/office_macro_word_text_controls_test.dart: invalid kerning null fails before splitting or other writes
+00:00 +56: test/office_macro_word_text_controls_test.dart: invalid kerning 12 fails before splitting or other writes
+00:00 +57: test/office_macro_word_text_controls_test.dart: invalid kerning true fails before splitting or other writes
+00:00 +58: test/office_macro_word_text_controls_test.dart: proofing switches reject non-Boolean null before mutation
+00:00 +59: test/office_macro_word_text_controls_test.dart: proofing switches reject non-Boolean 0 before mutation
+00:00 +60: test/office_macro_word_text_controls_test.dart: proofing switches reject non-Boolean -1 before mutation
+00:00 +61: test/office_macro_word_text_controls_test.dart: proofing switches reject non-Boolean true before mutation
+00:00 +62: test/office_macro_word_text_controls_test.dart: same inherited values become direct without pinning other styles
+00:00 +63: test/office_macro_word_text_controls_test.dart: scalar writes retain w aliases and independent XML metadata
+00:00 +64: test/office_macro_word_text_controls_test.dart: scalar writes retain q aliases and independent XML metadata
+00:00 +65: test/office_macro_word_text_controls_test.dart: foreign style controls and nested lookalikes stay opaque
+00:00 +66: test/office_macro_word_text_controls_test.dart: native values win over earlier foreign attributes (true, inherited=true)
+00:00 +67: test/office_macro_word_text_controls_test.dart: native values win over earlier foreign attributes (true, inherited=false)
+00:00 +68: test/office_macro_word_text_controls_test.dart: native values win over earlier foreign attributes (false, inherited=true)
+00:00 +69: test/office_macro_word_text_controls_test.dart: native values win over earlier foreign attributes (false, inherited=false)
+00:00 +70: test/office_macro_word_text_controls_test.dart: empty direct Boolean markers override inherited explicit false
+00:00 +71: test/office_macro_word_text_controls_test.dart: native kern in markup alternatives refuses before mutation
+00:00 +72: test/office_macro_word_text_controls_test.dart: native noProof in markup alternatives refuses before mutation
+00:00 +73: test/office_macro_word_text_controls_test.dart: native suppressAutoHyphens in markup alternatives refuses before mutation
+00:00 +74: test/office_macro_word_text_controls_test.dart: duplicate kern in a later run refuses before any run mutates
+00:00 +75: test/office_macro_word_text_controls_test.dart: duplicate noProof in a later run refuses before any run mutates
+00:00 +76: test/office_macro_word_text_controls_test.dart: duplicate paragraph suppression refuses before publishing a copy
+00:00 +77: test/office_macro_word_text_controls_test.dart: source preflight includes runs reached by citation normalization (kern)
+00:00 +78: test/office_macro_word_text_controls_test.dart: source preflight includes runs reached by citation normalization (noProof)
+00:00 +79: test/office_macro_word_text_controls_test.dart: kerning threshold controls native glyph eligibility after reopening
+00:00 +80: test/office_macro_word_text_controls_test.dart: hyphenation suppression affects layout while retaining document settings
+00:00 +81: test/office_macro_word_text_controls_test.dart: a later invalid control leaves session bytes and prior edits unpublished
+00:00 +82: test/office_vba_word_proofing_integration_test.dart: committed BAS validates, records, replays and preserves DOCM
+00:01 +83: test/office_vba_word_proofing_integration_test.dart: committed BAS validates, records, replays and preserves DOCM
+00:01 +84: test/office_vba_word_proofing_integration_test.dart: committed BAS validates, records, replays and preserves DOCM
+00:01 +85: test/office_vba_word_proofing_integration_test.dart: committed BAS validates, records, replays and preserves DOCM
+00:01 +86: test/office_vba_word_proofing_integration_test.dart: committed BAS validates, records, replays and preserves DOCM
+00:01 +87: test/office_vba_word_proofing_integration_test.dart: late missing paragraph rolls back all three setters and recording
+00:01 +88: test/office_vba_word_proofing_integration_test.dart: ordinary mutation policy applies to proofing controls: Instance of 'OfficeMacroPolicy'
+00:01 +89: test/office_vba_word_proofing_integration_test.dart: ordinary mutation policy applies to proofing controls: Instance of 'OfficeMacroPolicy'
+00:01 +90: test/office_vba_word_proofing_integration_test.dart: ordinary mutation policy applies to proofing controls: Instance of 'OfficeMacroPolicy'
+00:01 +91: test/office_vba_word_proofing_integration_test.dart: ordinary mutation policy applies to proofing controls: Instance of 'OfficeMacroPolicy'
+00:01 +92: test/office_vba_word_proofing_integration_test.dart: compiled Hyphenation controls actual layout without changing text or settings
+00:01 +93: test/office_vba_word_proofing_integration_test.dart: run controls refuse empty text without setting paragraph insertion format
+00:01 +94: test/office_vba_word_proofing_integration_test.dart: MCP compiles and executes the committed BAS through existing tools
+00:01 +95: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +96: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +97: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +98: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +99: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +100: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +101: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +102: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +103: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +104: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +105: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +106: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +107: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +108: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +109: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +110: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +111: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +112: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +113: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +114: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +115: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +116: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +117: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +118: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +119: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +120: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +121: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +122: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +123: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +124: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +125: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +126: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +127: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +128: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +129: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +130: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +131: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +132: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +133: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +134: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +135: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +136: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +137: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +138: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +139: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +140: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +141: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +142: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +143: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +144: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +145: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +146: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +147: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:01 +148: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +149: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +150: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +151: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +152: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +153: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +154: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +155: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +156: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +157: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +158: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +159: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +160: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +161: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +162: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +163: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +164: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +165: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +166: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +167: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +168: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +169: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +170: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +171: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +172: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +173: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +174: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +175: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +176: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +177: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +178: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +179: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +180: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +181: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +182: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +183: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +184: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +185: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +186: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +187: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +188: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +189: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +190: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +191: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +192: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +193: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +194: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +195: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +196: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +197: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +198: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +199: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +200: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +201: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +202: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +203: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +204: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +205: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +206: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +207: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +208: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +209: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +210: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +211: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +212: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:02 +213: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:03 +214: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:03 +215: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:03 +216: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:03 +217: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:03 +218: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:03 +219: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:03 +220: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:03 +221: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:03 +222: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:03 +223: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:03 +224: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:03 +225: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:03 +226: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:03 +227: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:03 +228: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:03 +229: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:03 +230: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:04 +231: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:04 +232: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:04 +233: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:04 +234: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:04 +235: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:04 +236: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:04 +237: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:04 +238: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:04 +239: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:04 +240: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:04 +241: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:04 +242: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:04 +243: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:04 +244: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:04 +245: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:04 +246: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:04 +247: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:04 +248: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:05 +249: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:05 +250: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:06 +251: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:06 +252: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:07 +253: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:08 +254: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:08 +255: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:09 +256: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:09 +257: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:09 +258: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:09 +259: test/office_vba_word_proofing_integration_test.dart: CLI validates and runs BAS while retaining its original DOCM
+00:15 +260: test/office_vba_word_proofing_integration_test.dart: (tearDownAll)
+00:15 +260: All tests passed!

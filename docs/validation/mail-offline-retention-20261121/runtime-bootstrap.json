@@ -1,0 +1,40 @@
+{
+  "status": "ready",
+  "framework": {
+    "frameworkVersion": "3.47.8",
+    "channel": "[user-branch]",
+    "repositoryUrl": "https://github.com/flutter/flutter.git",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineBuildDate": "2026-10-23 05:34:48.330",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "flutterVersion": "3.47.8",
+    "flutterRoot": "/workspace/scratch/5627811b9768/mail-runtime/flutter"
+  },
+  "dart_executable_sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+  "flutter_tester_sha256": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f",
+  "hosted_packages_verified": 202,
+  "workspace_resolution": "dart pub get --offline --enforce-lockfile passed; tracked manifests verified unchanged",
+  "flutter_smoke": {
+    "command": "flutter test --no-pub --reporter expanded test/body_presentation_test.dart",
+    "cwd": "packages/quds_mail_ui",
+    "passed": 31,
+    "failed": 0,
+    "exit_code": 0,
+    "log": "logs/flutter-smoke.log"
+  },
+  "native_sqlite": "Pending project SQLite suite; no library overrides",
+  "omitted_optional_sdk_snapshots": [
+    "analysis_server.dart.snapshot",
+    "dartdevc.dart.snapshot",
+    "dart2bytecode.dart.snapshot",
+    "dart2wasm_product.snapshot"
+  ],
+  "omitted_sdk_content": "Source development tests/examples; DevTools UI except original version metadata recovered by HTTP ranges. All runtime/compiler/test assets used by these checks retained.",
+  "free_bytes_at_record": 1151807488,
+  "environment_script": "/workspace/scratch/5627811b9768/mail-runtime/env.sh"
+}

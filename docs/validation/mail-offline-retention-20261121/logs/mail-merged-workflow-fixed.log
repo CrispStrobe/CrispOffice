@@ -1,0 +1,52 @@
+00:00 +0: loading /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_native_test.dart
+00:00 +0: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_native_test.dart: native IMAP body download uses canonical synced IDs and skips retained content
+00:00 +1: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_native_test.dart: disposed native loader cannot overwrite the successor cached body
+00:00 +2: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_native_test.dart: IMAP reconnect resumes the persisted cursor under a stable account
+00:00 +3: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_native_test.dart: IMAP synchronization accepts a provider-verified UIDVALIDITY reset
+00:00 +4: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_native_test.dart: disposal fences an old loader even when its successor has the same account
+00:00 +5: loading /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart
+00:01 +5: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: connected reader downloads only after explicit message action
+00:02 +6: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: page download freezes 100 rows and Stop waits for completion
+00:02 +7: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: closing cancels body downloads and drains them before owner release
+00:02 +8: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: membership replacement cancels a frozen body download
+00:02 +9: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: automatic offset repair cancels downloads before a delayed reload
+00:03 +10: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: download limits and recovery remain usable in en
+00:03 +11: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: download limits and recovery remain usable in de
+00:03 +12: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: download limits and recovery remain usable in ar
+00:03 +13: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: offline catalog reads only saved headers and reports scope
+00:03 +14: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: connected folder starts only explicitly and shows saved state
+00:03 +15: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: partial checkpoint offers continue and bounded pause
+00:04 +16: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: stop cancels once and waits for running work before resuming
+00:04 +17: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: close cancels and drains run before releasing the caller
+00:04 +18: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: close drains initial read and repository stream cancellation
+00:04 +19: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: missing body explains headers-only scope without downloading
+00:04 +20: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: saved message body uses reader and survives metadata updates
+00:04 +21: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: close drains a body read and suppresses its late reader
+00:05 +22: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: forced disposal cancels work and never calls stale host again
+00:05 +23: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: saved headers page in bounded windows without accumulating
+00:05 +24: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: shrinking mailbox returns an out-of-range page to saved start
+00:05 +25: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: repository failure retains view and successful update recovers
+00:05 +26: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: cross-account stores are rejected before subscribing
+00:05 +27: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: mismatched cached body is not displayed
+00:05 +28: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: typed authenticationRequired failure preserves resumable saved view
+00:05 +29: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: typed quotaExceeded failure preserves resumable saved view
+00:05 +30: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: typed conflict failure preserves resumable saved view
+00:06 +31: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: typed unsupported failure preserves resumable saved view
+00:06 +32: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: compact en missing-body download stays reachable
+00:06 +33: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: compact en layout keeps controls and reader
+00:06 +34: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: compact de missing-body download stays reachable
+00:06 +35: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: compact de layout keeps controls and reader
+00:06 +36: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: compact ar missing-body download stays reachable
+00:06 +37: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart: compact ar layout keeps controls and reader
+00:06 +38: loading /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_calendar_date_test.dart
+00:07 +38: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_calendar_date_test.dart: mail list calendar dates yesterday across spring clock change in en
+00:07 +39: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_calendar_date_test.dart: mail list calendar dates yesterday across autumn clock change in en
+00:07 +40: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_calendar_date_test.dart: mail list calendar dates yesterday across spring clock change in de
+00:07 +41: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_calendar_date_test.dart: mail list calendar dates yesterday across autumn clock change in de
+00:07 +42: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_calendar_date_test.dart: mail list calendar dates yesterday across spring clock change in ar
+00:07 +43: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_calendar_date_test.dart: mail list calendar dates yesterday across autumn clock change in ar
+00:07 +44: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_calendar_date_test.dart: mail list calendar dates seven calendar days remain outside the recent weekday window
+00:07 +45: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_calendar_date_test.dart: mail list calendar dates tomorrow across spring clock change is not labeled as today
+00:07 +46: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_calendar_date_test.dart: mail list calendar dates UTC now uses the same local date as the message
+00:07 +47: /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_calendar_date_test.dart: mail list calendar dates UTC message and now preserve yesterday across the year boundary
+00:07 +48: All tests passed!

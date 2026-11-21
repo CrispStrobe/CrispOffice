@@ -18,7 +18,7 @@ plan rather than treating provider connectivity as full product parity.
 | Order | Workflow | Current position | Next acceptance boundary |
 | --- | --- | --- | --- |
 | 1 | Recoverable composition | Multiple account-scoped local drafts, independent reply/forward drafts, attachment/reply recovery and interrupted-send warnings; offline draft entry for verified IMAP (including discovery), EWS, Gmail and Microsoft 365 accounts | Provider-side Drafts synchronization with explicit conflicts and repository-backed offline sessions |
-| 2 | Everyday mailbox workspace (M04W/M06) | Repository-observed loaded/cached sessions, durable single/bulk flag receipts, fresh uncertainty checks, and explicit resumable folder-header synchronization across IMAP, EWS, Gmail and Microsoft 365 | Complete shared synchronized workspace, bounded background/body retention, unified inbox and consistent move/delete |
+| 2 | Everyday mailbox workspace (M04W/M06) | Repository-observed loaded/cached sessions, durable single/bulk flag receipts, fresh uncertainty checks, resumable folder-header synchronization and explicit bounded offline body/attachment downloads across IMAP, EWS, Gmail and Microsoft 365 | Complete shared synchronized workspace, durable retention policy/background scheduling, unified inbox and consistent move/delete |
 | 3 | Sending and outbox (M07) | Visible native durable Outbox, atomic draft transfer/edit-copy, frozen MIME/envelopes, review/exact export, restart recovery, explicit send/retry/cancel and local uncertain closure across SMTP/EWS/Gmail/Microsoft 365 | Durable undo-send delay and explicit scheduling, then background execution and provider-specific Sent reconciliation |
 | 4 | Efficient discovery and organization | Independent archive FTS, saved archive searches, structured loaded-header fields/phrases/dates/states, stable local mailbox sorting and journaled visible-selection read/flag commands | Full account search, conversations, tags/categories, broader durable bulk commands and ordered rule execution with preview/recovery |
 | 5 | Rich authoring and Office workflows (M07/M08) | Word-based plain text, To/Cc/Bcc, reply all, inert HTML-only text quotes, file attachments and explicit complete attachment forwarding | Signatures/templates, HTML alternatives, inline images, attach current document/PDF and edit a copy of a received attachment |
@@ -45,7 +45,9 @@ The [repository session continuation](repository-sessions.md) now observes
 saved folder/catalog streams, preserves selected readers and fences account
 and folder changes. The [durable synchronization continuation](durable-sync.md)
 adds explicit resumable folder runs, atomic checkpoint state and offline
-synchronized-header browsing. The next boundary is the complete shared
+synchronized-header browsing. The [offline-download continuation](offline-downloads.md)
+adds explicit single-message/current-page body and attachment retention with
+restart skipping, bounded progress and guarded close. The next boundary is the complete shared
 synchronized workspace, followed by unified search and conversations.
 
 The [cached mailbox guide](cached-mailboxes.md) describes durable ordered views

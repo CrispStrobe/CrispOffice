@@ -1,5 +1,23 @@
 # Mail implementation status — 21 November 2026
 
+## Explicit offline downloads and guarded native Quit
+
+Connected **Synchronized mail** now offers **Download this page** for at most
+100 headers or **Download for offline reading** for one missing body. IMAP,
+EWS, Gmail and Microsoft 365 share a pure-Dart runner and the existing owned
+cache. Raw bytes, selected body text and attachments are retained atomically,
+with a 64 MiB content allowance per run and the existing per-message budgets.
+Progress distinguishes newly downloaded, already-saved and remaining messages.
+Stop, close, account retirement and replaced identities fence further work;
+explicit retry/restart skips completed snapshots. Cached browsing stays local.
+
+Native Quit now respects the composer's save guard and waits for accepted route
+disposal before releasing its account. Pending/failed saves keep Mail open.
+See [the workflow and limits](offline-downloads.md) and
+[local qualification](../../validation/mail-offline-retention-20261121/README.md).
+Background scheduling, policy-based retention, unified queries and the complete
+shared mailbox workspace remain open.
+
 ## Resumable foreground folder synchronization
 
 Native IMAP, EWS, Gmail and Microsoft 365 now expose **Synchronized mail** with

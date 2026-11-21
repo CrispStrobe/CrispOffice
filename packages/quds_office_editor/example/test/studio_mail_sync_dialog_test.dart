@@ -360,8 +360,9 @@ Future<void> _show(
               : const ['SyncLatin', 'SyncArabic'],
         ),
         builder: (context, child) => MediaQuery(
-          data: MediaQuery.of(context)
-              .copyWith(textScaler: TextScaler.linear(scale)),
+          data: MediaQuery.of(
+            context,
+          ).copyWith(textScaler: TextScaler.linear(scale)),
           child: child!,
         ),
         home: Scaffold(
@@ -588,6 +589,49 @@ void main() {
     expect(find.text(_strings.mailDownloadConflict), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
+
+  testWidgets(
+    'automatic offset repair cancels downloads before a delayed reload',
+    (tester) async {
+      final store = _Store()
+        ..save(List.generate(101, (index) => _header(index + 1)));
+      final completion = Completer<MailBodyDownloadReport>();
+      MailCancellationToken? token;
+      await _show(
+        tester,
+        store,
+        run: idleSync,
+        download:
+            ({required headers, required cancellation, required onProgress}) {
+              expect(headers.single.id, _header(101).id);
+              token = cancellation;
+              return completion.future;
+            },
+      );
+      await tester.tap(_key('studio-mail-sync-next'));
+      await _pump(tester);
+      await tester.tap(_key('studio-mail-download-page'));
+      await _pump(tester);
+      store.readGate = Completer<void>();
+      store.save([_header(1)], revision: 2);
+      await _pump(tester);
+      expect(store.reads.last, (_inbox.id, 100, 0));
+      expect(
+        token!.reason,
+        MailCancellationReason.accountChanged,
+        reason:
+            'A replacement page must retire the fetch before awaiting local I/O.',
+      );
+      completion.complete(
+        downloaded(1, saved: 0, status: MailBodyDownloadStatus.cancelled),
+      );
+      store.readGate!.complete();
+      await _pump(tester);
+      expect(store.bodies, isEmpty);
+      expect(find.text(_strings.mailSyncPage(1, 1, 1)), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    },
+  );
 
   for (final language in StudioLanguage.values) {
     testWidgets(
@@ -985,6 +1029,46 @@ void main() {
   }
 
   for (final language in StudioLanguage.values) {
+    testWidgets(
+      'compact ${language.name} missing-body download stays reachable',
+      (tester) async {
+        final header = _header(1);
+        final store = _Store()..save([header], hasMore: false);
+        var requests = 0;
+        await _show(
+          tester,
+          store,
+          language: language,
+          size: const Size(390, 844),
+          scale: 1.3,
+          run: idleSync,
+          download:
+              ({
+                required headers,
+                required cancellation,
+                required onProgress,
+              }) async {
+                requests++;
+                expect(headers.map((item) => item.id), [header.id]);
+                store.bodies[header.id] = _message(header);
+                return downloaded(1);
+              },
+        );
+        _openFirst(tester);
+        await _pump(tester);
+        expect(tester.takeException(), isNull);
+        expect(requests, 0);
+        await tester.ensureVisible(_key('studio-mail-download-message'));
+        await tester.pumpAndSettle();
+        await tester.tap(_key('studio-mail-download-message'));
+        await _pump(tester);
+        expect(requests, 1);
+        expect(find.byType(MailMessageView), findsOneWidget);
+        expect(tester.takeException(), isNull);
+        await _capture(tester, 'compact-download-${language.name}');
+      },
+    );
+
     testWidgets('compact ${language.name} layout keeps controls and reader', (
       tester,
     ) async {

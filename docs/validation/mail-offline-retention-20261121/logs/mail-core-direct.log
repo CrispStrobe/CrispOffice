@@ -1,0 +1,337 @@
+00:00 +0: loading packages/quds_mail_core/test/sync_coordinator_test.dart
+00:00 +0: packages/quds_mail_core/test/sync_coordinator_test.dart: fixture pages apply real upserts/tombstones and advance cursor atomically
+00:00 +1: packages/quds_mail_core/test/sync_coordinator_test.dart: transaction failure leaves both old content and cursor unchanged
+00:00 +2: packages/quds_mail_core/test/sync_coordinator_test.dart: out-of-order concurrent pulls cannot regress the stored cursor
+00:00 +3: packages/quds_mail_core/test/header_search_test.dart: loaded header matching empty and whitespace queries match without inventing observations
+00:00 +4: packages/quds_mail_core/test/header_search_test.dart: loaded header matching empty and whitespace queries match without inventing observations
+00:00 +5: packages/quds_mail_core/test/header_search_test.dart: loaded header matching empty and whitespace queries match without inventing observations
+00:00 +6: packages/quds_mail_core/test/header_search_test.dart: loaded header matching empty and whitespace queries match without inventing observations
+00:00 +7: packages/quds_mail_core/test/header_search_test.dart: loaded header matching empty and whitespace queries match without inventing observations
+00:00 +8: packages/quds_mail_core/test/header_search_test.dart: loaded header matching empty and whitespace queries match without inventing observations
+00:00 +9: packages/quds_mail_core/test/header_search_test.dart: loaded header matching empty and whitespace queries match without inventing observations
+00:00 +10: packages/quds_mail_core/test/header_search_test.dart: loaded header matching unqualified terms search only subject and sender
+00:00 +11: packages/quds_mail_core/test/header_search_test.dart: loaded header matching all terms must match and may match different visible headers
+00:00 +12: packages/quds_mail_core/test/header_search_test.dart: loaded header matching phrases preserve order and whitespace inside a substring
+00:00 +13: packages/quds_mail_core/test/header_search_test.dart: loaded header matching field names and text are case-insensitive Unicode substrings
+00:00 +14: packages/quds_mail_core/test/header_search_test.dart: loaded header matching each address group is searched independently
+00:00 +15: packages/quds_mail_core/test/header_search_test.dart: loaded header matching quoted values decode only escaped quote and backslash
+00:00 +16: packages/quds_mail_core/test/header_search_test.dart: loaded header matching quoted literals allow reserved punctuation and operator words
+00:00 +17: packages/quds_mail_core/test/header_search_test.dart: loaded header matching a compiled query can be reused against independent rows
+00:00 +18: packages/quds_mail_core/test/header_search_test.dart: observed flag predicates every read/flag truth-table state preserves unknown values
+00:00 +19: packages/quds_mail_core/test/header_search_test.dart: observed flag predicates states are case-insensitive and contradictory states match none
+00:00 +20: packages/quds_mail_core/test/header_search_test.dart: local calendar dates before and after are exclusive of the complete named day
+00:00 +21: packages/quds_mail_core/test/header_search_test.dart: local calendar dates UTC instants use the same local day as their display date
+00:00 +22: packages/quds_mail_core/test/header_search_test.dart: local calendar dates explicit-offset input is converted before comparing calendar days
+00:00 +23: packages/quds_mail_core/test/header_search_test.dart: local calendar dates missing dates match no date predicate
+00:00 +24: packages/quds_mail_core/test/header_search_test.dart: local calendar dates valid leap days and four-digit edge years are accepted
+00:00 +25: packages/quds_mail_core/test/header_search_test.dart: local calendar dates normalized, ambiguous and invalid date values are rejected
+00:00 +26: packages/quds_mail_core/test/header_search_test.dart: bounded and explicit grammar accepts exactly the code-unit budget and rejects one more
+00:00 +27: packages/quds_mail_core/test/header_search_test.dart: bounded and explicit grammar accepts exactly 32 terms, including trailing whitespace
+00:00 +28: packages/quds_mail_core/test/header_search_test.dart: bounded and explicit grammar unknown fields cannot become silent literal searches
+00:00 +29: packages/quds_mail_core/test/header_search_test.dart: bounded and explicit grammar fields require an adjacent nonempty value
+00:00 +30: packages/quds_mail_core/test/header_search_test.dart: bounded and explicit grammar unsupported operators, negation, groups and wildcards are explicit
+00:00 +31: packages/quds_mail_core/test/header_search_test.dart: bounded and explicit grammar invalid states have a typed failure at the value offset
+00:00 +32: packages/quds_mail_core/test/header_search_test.dart: bounded and explicit grammar quotes cannot be concatenated with bare terms or field keys
+00:00 +33: packages/quds_mail_core/test/header_search_test.dart: bounded and explicit grammar unsupported and incomplete escapes are rejected
+00:00 +34: packages/quds_mail_core/test/header_search_test.dart: bounded and explicit grammar control characters cannot hide in bare or quoted values
+00:00 +35: packages/quds_mail_core/test/header_search_test.dart: bounded and explicit grammar exception strings omit query and message content
+00:00 +36: packages/quds_mail_core/test/bulk_flags_coordinator_test.dart: frozen bulk flag plan copies selection and rejects subsequent caller mutation
+00:00 +37: packages/quds_mail_core/test/bulk_flags_coordinator_test.dart: frozen bulk flag plan accepts the exact selection bound and refuses empty/oversized input
+00:00 +38: packages/quds_mail_core/test/bulk_flags_coordinator_test.dart: frozen bulk flag plan rejects invalid batch IDs without exposing the supplied ID
+00:00 +39: packages/quds_mail_core/test/bulk_flags_coordinator_test.dart: frozen bulk flag plan rejects structurally equal duplicate remote identities
+00:00 +40: packages/quds_mail_core/test/bulk_flags_coordinator_test.dart: frozen bulk flag plan does not merge account IDs belonging to different host profiles
+00:00 +41: packages/quds_mail_core/test/bulk_flags_coordinator_test.dart: frozen bulk flag plan rejects mixed providers and a local provider plan
+00:00 +42: packages/quds_mail_core/test/bulk_flags_coordinator_test.dart: frozen bulk flag plan IMAP freezes UIDVALIDITY and never accepts another folder
+00:00 +43: packages/quds_mail_core/test/bulk_flags_coordinator_test.dart: frozen bulk flag plan graph keeps its opaque identity namespace
+00:00 +44: packages/quds_mail_core/test/bulk_flags_coordinator_test.dart: frozen bulk flag plan gmail keeps its opaque identity namespace
+00:00 +45: packages/quds_mail_core/test/bulk_flags_coordinator_test.dart: frozen bulk flag plan ews keeps its opaque identity namespace
+00:00 +46: packages/quds_mail_core/test/bulk_flags_coordinator_test.dart: frozen bulk flag plan jmap keeps its opaque identity namespace
+00:00 +47: packages/quds_mail_core/test/bulk_flags_coordinator_test.dart: frozen bulk flag plan each action assigns exactly one flag without reading old flags
+00:00 +48: packages/quds_mail_core/test/bulk_flags_coordinator_test.dart: foreground outcome accounting dispatches sequentially in frozen order and retains the exact lease
+00:00 +49: packages/quds_mail_core/test/bulk_flags_coordinator_test.dart: foreground outcome accounting definite rejection is retained and does not stop other messages
+00:00 +50: packages/quds_mail_core/test/bulk_flags_coordinator_test.dart: foreground outcome accounting uncertainty stops immediately and accounts for the remaining selection
+00:00 +51: packages/quds_mail_core/test/bulk_flags_coordinator_test.dart: foreground outcome accounting an uncertain last reply is never reported as a completed batch
+00:00 +52: packages/quds_mail_core/test/bulk_flags_coordinator_test.dart: foreground outcome accounting synchronous adapter exceptions are uncertain and omit raw error text
+00:00 +53: packages/quds_mail_core/test/bulk_flags_coordinator_test.dart: foreground outcome accounting asynchronous failure after dispatch is uncertain without retry
+00:00 +54: packages/quds_mail_core/test/bulk_flags_coordinator_test.dart: foreground outcome accounting MailCancelled from an invoked adapter cannot prove non-delivery
+00:00 +55: packages/quds_mail_core/test/bulk_flags_coordinator_test.dart: foreground outcome accounting a coordinator rejects overlap and later replay
+00:00 +56: packages/quds_mail_core/test/bulk_flags_coordinator_test.dart: scope and cancellation boundaries a foreign account lease dispatches nothing
+00:00 +57: packages/quds_mail_core/test/body_download_test.dart: retains exact payloads with canonical IDs and one run lease
+00:00 +58: packages/quds_mail_core/test/body_download_test.dart: retains exact payloads with canonical IDs and one run lease
+00:00 +59: packages/quds_mail_core/test/body_download_test.dart: retains exact payloads with canonical IDs and one run lease
+00:00 +60: packages/quds_mail_core/test/body_download_test.dart: retains exact payloads with canonical IDs and one run lease
+00:00 +61: packages/quds_mail_core/test/body_download_test.dart: retains exact payloads with canonical IDs and one run lease
+00:00 +62: packages/quds_mail_core/test/body_download_test.dart: retains exact payloads with canonical IDs and one run lease
+00:00 +63: packages/quds_mail_core/test/body_download_test.dart: retains exact payloads with canonical IDs and one run lease
+00:00 +64: packages/quds_mail_core/test/body_download_test.dart: retains exact payloads with canonical IDs and one run lease
+00:00 +65: packages/quds_mail_core/test/body_download_test.dart: retains exact payloads with canonical IDs and one run lease
+00:00 +66: packages/quds_mail_core/test/body_download_test.dart: retains exact payloads with canonical IDs and one run lease
+00:00 +67: packages/quds_mail_core/test/body_download_test.dart: retains exact payloads with canonical IDs and one run lease
+00:00 +68: packages/quds_mail_core/test/body_download_test.dart: skips exact complete cache snapshots without provider work
+00:00 +69: packages/quds_mail_core/test/body_download_test.dart: message allowance pauses and resume skips the saved prefix
+00:00 +70: packages/quds_mail_core/test/body_download_test.dart: cumulative payload bound pauses before saving an oversized tail
+00:00 +71: packages/quds_mail_core/test/body_download_test.dart: exact byte boundary saves once and avoids fetching the next body
+00:00 +72: packages/quds_mail_core/test/body_download_test.dart: one message larger than the full byte budget is a quota failure
+00:00 +73: packages/quds_mail_core/test/body_download_test.dart: freezes the caller selection before awaited work
+00:00 +74: packages/quds_mail_core/test/body_download_test.dart: rejects provider identity substitution before caching
+00:00 +75: packages/quds_mail_core/test/body_download_test.dart: rejects a provider snapshot without a remote identity
+00:00 +76: packages/quds_mail_core/test/body_download_test.dart: rejects cached remote mismatch without fetching
+00:00 +77: packages/quds_mail_core/test/body_download_test.dart: rejects cached local mismatch without fetching
+00:00 +78: packages/quds_mail_core/test/body_download_test.dart: rejects cached raw mismatch without fetching
+00:00 +79: packages/quds_mail_core/test/body_download_test.dart: pre-cancelled requests access no cache or provider
+00:00 +80: packages/quds_mail_core/test/body_download_test.dart: cancel during cache read prevents provider fetch
+00:00 +81: packages/quds_mail_core/test/body_download_test.dart: cancellation during provider fetch rejects its late body
+00:00 +82: packages/quds_mail_core/test/body_download_test.dart: stale session cannot cache a late same-account completion
+00:00 +83: packages/quds_mail_core/test/body_download_test.dart: folder retirement prevents late provider data from reaching cache
+00:00 +84: packages/quds_mail_core/test/body_download_test.dart: a true host guard cannot revive the session it invalidated
+00:00 +85: packages/quds_mail_core/test/body_download_test.dart: a throwing host guard is a content-redacted stale result
+00:00 +86: packages/quds_mail_core/test/body_download_test.dart: provider account changes during a run stop before storage
+00:00 +87: packages/quds_mail_core/test/body_download_test.dart: cache account changes during a read stop before fetching
+00:00 +88: packages/quds_mail_core/test/body_download_test.dart: atomic save lease rejects cancellation before committing
+00:00 +89: packages/quds_mail_core/test/body_download_test.dart: acknowledged save survives cancellation without late progress
+00:00 +90: packages/quds_mail_core/test/body_download_test.dart: observer cancellation stops following fetches but retains the save
+00:00 +91: packages/quds_mail_core/test/body_download_test.dart: observer exception does not change storage outcomes
+00:00 +92: packages/quds_mail_core/test/body_download_test.dart: failed MailProblemCode.quotaExceeded save preserves prefix and resumes without refetch
+00:00 +93: packages/quds_mail_core/test/body_download_test.dart: failed MailProblemCode.storageFailure save preserves prefix and resumes without refetch
+00:00 +94: packages/quds_mail_core/test/body_download_test.dart: typed provider failure stops later requests and retains retry guidance
+00:00 +95: packages/quds_mail_core/test/body_download_test.dart: cache read failures do not cause a provider fallback
+00:00 +96: packages/quds_mail_core/test/body_download_test.dart: raw provider exceptions become typed content-free failures
+00:00 +97: packages/quds_mail_core/test/body_download_test.dart: raw cache-read exceptions become typed content-free failures
+00:00 +98: packages/quds_mail_core/test/body_download_test.dart: raw cache-save exceptions become typed content-free failures
+00:00 +99: packages/quds_mail_core/test/body_download_test.dart: empty selection completes without cache or provider operations
+00:00 +100: packages/quds_mail_core/test/body_download_test.dart: invalid selection duplicate-id has no cache or provider work
+00:00 +101: packages/quds_mail_core/test/body_download_test.dart: invalid selection duplicate-remote has no cache or provider work
+00:00 +102: packages/quds_mail_core/test/body_download_test.dart: invalid selection account has no cache or provider work
+00:00 +103: packages/quds_mail_core/test/body_download_test.dart: invalid selection mailbox has no cache or provider work
+00:00 +104: packages/quds_mail_core/test/body_download_test.dart: invalid selection generation has no cache or provider work
+00:00 +105: packages/quds_mail_core/test/body_download_test.dart: invalid selection provider has no cache or provider work
+00:00 +106: packages/quds_mail_core/test/body_download_test.dart: initial session account mismatch fails before operations
+00:00 +107: packages/quds_mail_core/test/body_download_test.dart: initial provider account mismatch fails before operations
+00:00 +108: packages/quds_mail_core/test/body_download_test.dart: initial cache account mismatch fails before operations
+00:00 +109: packages/quds_mail_core/test/body_download_test.dart: initial mailbox account mismatch fails before operations
+00:00 +110: packages/quds_mail_core/test/body_download_test.dart: disposed session fails before any cache access
+00:00 +111: packages/quds_mail_core/test/body_download_test.dart: input count over 100 is rejected without partial work
+00:00 +112: packages/quds_mail_core/test/body_download_test.dart: maximum selection and message bounds complete
+00:00 +113: packages/quds_mail_core/test/body_download_test.dart: invalid message budget -1 fails before operations
+00:00 +114: packages/quds_mail_core/test/body_download_test.dart: invalid message budget 0 fails before operations
+00:00 +115: packages/quds_mail_core/test/body_download_test.dart: invalid message budget 101 fails before operations
+00:00 +116: packages/quds_mail_core/test/body_download_test.dart: invalid retained-byte budget -1 fails before operations
+00:00 +117: packages/quds_mail_core/test/body_download_test.dart: invalid retained-byte budget 0 fails before operations
+00:00 +118: packages/quds_mail_core/test/body_download_test.dart: invalid retained-byte budget 268435457 fails before operations
+00:00 +119: packages/quds_mail_core/test/body_download_test.dart: invalid per-message budget fails before operations
+00:00 +120: packages/quds_mail_core/test/body_download_test.dart: provider result must honor actual raw payload bounds
+00:00 +121: packages/quds_mail_core/test/body_download_test.dart: provider result must honor actual body payload bounds
+00:00 +122: packages/quds_mail_core/test/body_download_test.dart: provider result must honor actual render payload bounds
+00:00 +123: packages/quds_mail_core/test/body_download_test.dart: provider result must honor actual decoded payload bounds
+00:00 +124: packages/quds_mail_core/test/body_download_test.dart: provider result must honor actual attachment payload bounds
+00:00 +125: packages/quds_mail_core/test/body_download_test.dart: provider result must honor actual count payload bounds
+00:00 +126: packages/quds_mail_core/test/body_download_test.dart: one runner refuses overlapping requests until the first finishes
+00:00 +127: packages/quds_mail_core/test/body_download_test.dart: MailProviderKind.gmail opaque identity stays exact while local ID is rebound
+00:00 +128: packages/quds_mail_core/test/body_download_test.dart: MailProviderKind.graph opaque identity stays exact while local ID is rebound
+00:00 +129: packages/quds_mail_core/test/body_download_test.dart: MailProviderKind.ews opaque identity stays exact while local ID is rebound
+00:00 +130: packages/quds_mail_core/test/bulk_flags_compatibility_test.dart: explicit provider checks rather than changes the frozen namespace
+00:00 +131: packages/quds_mail_core/test/bulk_flags_compatibility_test.dart: provider runner receipt retains exact dispatched operations and problem evidence
+00:00 +132: packages/quds_mail_core/test/bulk_flags_compatibility_test.dart: provider runner uncertainty dominates simultaneous stop and stale scope
+00:00 +133: packages/quds_mail_core/test/bulk_flags_compatibility_test.dart: provider runner quota evidence false stops the pending tail
+00:00 +134: packages/quds_mail_core/test/bulk_flags_compatibility_test.dart: provider runner quota evidence true stops the pending tail
+00:00 +135: packages/quds_mail_core/test/bulk_flags_compatibility_test.dart: provider runner quota evidence null stops the pending tail
+00:00 +136: packages/quds_mail_core/test/bulk_flags_compatibility_test.dart: provider runner stop from progress retains confirmation even if display throws
+00:00 +137: packages/quds_mail_core/test/bulk_flags_compatibility_test.dart: provider runner certified MailProblemCode.cancelled failure still stops further dispatch
+00:00 +138: packages/quds_mail_core/test/bulk_flags_compatibility_test.dart: provider runner certified MailProblemCode.staleOperation failure still stops further dispatch
+00:00 +139: packages/quds_mail_core/test/bulk_flags_compatibility_test.dart: provider runner certified MailProblemCode.quotaExceeded failure still stops further dispatch
+00:00 +140: packages/quds_mail_core/test/bulk_flags_compatibility_test.dart: provider runner reentrant lease retirement in guard cannot dispatch (true)
+00:00 +141: packages/quds_mail_core/test/bulk_flags_compatibility_test.dart: provider runner reentrant lease retirement in guard cannot dispatch (false)
+00:00 +142: packages/quds_mail_core/test/bulk_flags_compatibility_test.dart: certified coordinator receipt retains exact dispatched operations and problem evidence
+00:00 +143: packages/quds_mail_core/test/bulk_flags_compatibility_test.dart: certified coordinator uncertainty dominates simultaneous stop and stale scope
+00:00 +144: packages/quds_mail_core/test/bulk_flags_compatibility_test.dart: certified coordinator quota evidence false stops the pending tail
+00:00 +145: packages/quds_mail_core/test/bulk_flags_compatibility_test.dart: certified coordinator quota evidence true stops the pending tail
+00:00 +146: packages/quds_mail_core/test/bulk_flags_compatibility_test.dart: certified coordinator quota evidence null stops the pending tail
+00:00 +147: packages/quds_mail_core/test/bulk_flags_compatibility_test.dart: certified coordinator stop from progress retains confirmation even if display throws
+00:00 +148: packages/quds_mail_core/test/bulk_flags_compatibility_test.dart: certified coordinator certified MailProblemCode.cancelled failure still stops further dispatch
+00:00 +149: packages/quds_mail_core/test/bulk_flags_compatibility_test.dart: certified coordinator certified MailProblemCode.staleOperation failure still stops further dispatch
+00:00 +150: packages/quds_mail_core/test/bulk_flags_compatibility_test.dart: certified coordinator certified MailProblemCode.quotaExceeded failure still stops further dispatch
+00:00 +151: packages/quds_mail_core/test/bulk_flags_compatibility_test.dart: certified coordinator reentrant lease retirement in guard cannot dispatch (true)
+00:00 +152: packages/quds_mail_core/test/bulk_flags_compatibility_test.dart: certified coordinator reentrant lease retirement in guard cannot dispatch (false)
+00:00 +153: packages/quds_mail_core/test/bulk_flags_compatibility_test.dart: contradictory failed certificate never hides possible mutation
+00:00 +154: packages/quds_mail_core/test/bulk_flags_compatibility_test.dart: a predispatch scope rejection consumes the single-use coordinator
+00:00 +155: packages/quds_mail_core/test/bulk_flags_compatibility_test.dart: MailBulkFlagStopReason.staleScope requires a fresh observation even without a dispatched write
+00:00 +156: packages/quds_mail_core/test/bulk_flags_compatibility_test.dart: MailBulkFlagStopReason.invalidScope requires a fresh observation even without a dispatched write
+00:00 +157: packages/quds_mail_core/test/bulk_flags_compatibility_test.dart: MailBulkFlagStopReason.scopeCheckFailed requires a fresh observation even without a dispatched write
+00:00 +158: packages/quds_mail_core/test/ews_identity_test.dart: EWS item IDs retain exact case and opaque punctuation
+00:00 +159: packages/quds_mail_core/test/ews_identity_test.dart: equal server IDs remain isolated by host, account and provider
+00:00 +160: packages/quds_mail_core/test/ews_identity_test.dart: an Exchange move can replace the server identity
+00:00 +161: packages/quds_mail_core/test/ews_identity_test.dart: EWS identities reject empty values and control characters
+00:00 +162: packages/quds_mail_core/test/ews_identity_test.dart: cross-account Exchange moves fail before provider work
+00:00 +163: packages/quds_mail_core/test/outbox_test.dart: queued revision, wire and envelope remain frozen through submission
+00:00 +164: packages/quds_mail_core/test/outbox_test.dart: mixed 250/550 RCPT responses abort every recipient before DATA
+00:00 +165: packages/quds_mail_core/test/outbox_test.dart: aggregate response does not fabricate recipient-level acceptance
+00:00 +166: packages/quds_mail_core/test/outbox_test.dart: missing recipient responses stay unknown on aggregate failure
+00:00 +167: packages/quds_mail_core/test/outbox_test.dart: connection loss after possible acceptance is uncertain and cannot retry
+00:00 +168: packages/quds_mail_core/test/outbox_test.dart: interrupted submitting state recovers as uncertain, never queued
+00:00 +169: packages/quds_mail_core/test/outbox_test.dart: definite non-acceptance retries with a fresh attempt identity only
+00:00 +170: packages/quds_mail_core/test/outbox_test.dart: validated restoration preserves a pending attempt and recovers uncertain
+00:00 +171: packages/quds_mail_core/test/outbox_test.dart: legacy draft uncertainty requires acknowledgement before queue send
+00:00 +172: packages/quds_mail_core/test/outbox_test.dart: acknowledged retry preserves older uncertainty after accepted
+00:00 +173: packages/quds_mail_core/test/outbox_test.dart: acknowledged retry preserves older uncertainty after rejected
+00:00 +174: packages/quds_mail_core/test/outbox_test.dart: acknowledged retry preserves older uncertainty after retryableFailure
+00:00 +175: packages/quds_mail_core/test/outbox_test.dart: acknowledged retry preserves older uncertainty after uncertain
+00:00 +176: packages/quds_mail_core/test/outbox_test.dart: acknowledgement cannot restart ordinary or accepted work
+00:00 +177: packages/quds_mail_core/test/bulk_flags_test.dart: plan freezes stable identities and rejects list mutation
+00:00 +178: packages/quds_mail_core/test/bulk_flags_test.dart: plan freezes stable identities and rejects list mutation
+00:00 +179: packages/quds_mail_core/test/bulk_flags_test.dart: plan freezes stable identities and rejects list mutation
+00:00 +180: packages/quds_mail_core/test/bulk_flags_test.dart: plan bounds the selection and operation IDs before work
+00:00 +181: packages/quds_mail_core/test/bulk_flags_test.dart: duplicate value identities are rejected even in different objects
+00:00 +182: packages/quds_mail_core/test/bulk_flags_test.dart: wrong account, folder and mixed IMAP generations are rejected
+00:00 +183: packages/quds_mail_core/test/bulk_flags_test.dart: opaque provider namespaces cannot mix in one selected mailbox
+00:00 +184: packages/quds_mail_core/test/bulk_flags_test.dart: explicit markRead freezes desired state and ordered IDs
+00:00 +185: packages/quds_mail_core/test/bulk_flags_test.dart: explicit markUnread freezes desired state and ordered IDs
+00:00 +186: packages/quds_mail_core/test/bulk_flags_test.dart: explicit flag freezes desired state and ordered IDs
+00:00 +187: packages/quds_mail_core/test/bulk_flags_test.dart: explicit unflag freezes desired state and ordered IDs
+00:00 +188: packages/quds_mail_core/test/bulk_flags_test.dart: dispatch is sequential and progress snapshots remain immutable
+00:00 +189: packages/quds_mail_core/test/bulk_flags_test.dart: certified no-write failure permits independent later commands
+00:00 +190: packages/quds_mail_core/test/bulk_flags_test.dart: mutation evidence true stops at uncertainty without replay
+00:00 +191: packages/quds_mail_core/test/bulk_flags_test.dart: mutation evidence null stops at uncertainty without replay
+00:00 +192: packages/quds_mail_core/test/bulk_flags_test.dart: conflict code with certified no-write evidence is definite
+00:00 +193: packages/quds_mail_core/test/bulk_flags_test.dart: provider MailProblemCode.cancelled stops even when no mutation occurred
+00:00 +194: packages/quds_mail_core/test/bulk_flags_test.dart: provider MailProblemCode.staleOperation stops even when no mutation occurred
+00:00 +195: packages/quds_mail_core/test/bulk_flags_test.dart: callback exception after possible dispatch is uncertain
+00:00 +196: packages/quds_mail_core/test/bulk_flags_test.dart: wrong-account lease cannot dispatch
+00:00 +197: packages/quds_mail_core/test/bulk_flags_test.dart: cancellation before dispatch leaves all identities unattempted
+00:00 +198: packages/quds_mail_core/test/bulk_flags_test.dart: stale account lease cannot dispatch
+00:00 +199: packages/quds_mail_core/test/bulk_flags_test.dart: disposed account session cannot dispatch
+00:00 +200: packages/quds_mail_core/test/bulk_flags_test.dart: stale folder predicate (throws=false) rejects selection
+00:00 +201: packages/quds_mail_core/test/bulk_flags_test.dart: stale folder predicate (throws=true) rejects selection
+00:00 +202: packages/quds_mail_core/test/bulk_flags_test.dart: successful in-flight result survives scope change but stops next write
+00:00 +203: packages/quds_mail_core/test/bulk_flags_test.dart: in-flight cancellation cannot erase confirmed acknowledgement
+00:00 +204: packages/quds_mail_core/test/bulk_flags_test.dart: scope retirement in progress callback prevents next command
+00:00 +205: packages/quds_mail_core/test/bulk_flags_test.dart: display observer exceptions cannot change command outcomes
+00:00 +206: packages/quds_mail_core/test/bulk_flags_test.dart: Stop after current preserves acknowledgement without cancelling lease
+00:00 +207: packages/quds_mail_core/test/bulk_flags_test.dart: Stop before dispatch (throws=false) leaves all unattempted
+00:00 +208: packages/quds_mail_core/test/bulk_flags_test.dart: Stop before dispatch (throws=true) leaves all unattempted
+00:00 +209: packages/quds_mail_core/test/imap_sync_range_test.dart: inclusive ranges support the full IMAP UID space and single UIDs
+00:00 +210: packages/quds_mail_core/test/imap_sync_range_test.dart: range rejects zero UIDVALIDITY
+00:00 +211: packages/quds_mail_core/test/imap_sync_range_test.dart: range rejects negative UIDVALIDITY
+00:00 +212: packages/quds_mail_core/test/imap_sync_range_test.dart: range rejects overflow UIDVALIDITY
+00:00 +213: packages/quds_mail_core/test/imap_sync_range_test.dart: range rejects zero first UID
+00:00 +214: packages/quds_mail_core/test/imap_sync_range_test.dart: range rejects negative first UID
+00:00 +215: packages/quds_mail_core/test/imap_sync_range_test.dart: range rejects overflow first UID
+00:00 +216: packages/quds_mail_core/test/imap_sync_range_test.dart: range rejects zero last UID
+00:00 +217: packages/quds_mail_core/test/imap_sync_range_test.dart: range rejects negative last UID
+00:00 +218: packages/quds_mail_core/test/imap_sync_range_test.dart: range rejects overflow last UID
+00:00 +219: packages/quds_mail_core/test/imap_sync_range_test.dart: range rejects reversed UIDs
+00:00 +220: packages/quds_mail_core/test/imap_sync_range_test.dart: range scope must match the page even when the page is empty
+00:00 +221: packages/quds_mail_core/test/imap_sync_range_test.dart: authoritative range rejects HTTPS identity in upserts and tombstones
+00:00 +222: packages/quds_mail_core/test/imap_sync_range_test.dart: authoritative range rejects different UIDVALIDITY in upserts and tombstones
+00:00 +223: packages/quds_mail_core/test/imap_sync_range_test.dart: authoritative range rejects UID below range in upserts and tombstones
+00:00 +224: packages/quds_mail_core/test/imap_sync_range_test.dart: authoritative range rejects UID above range in upserts and tombstones
+00:00 +225: packages/quds_mail_core/test/imap_sync_range_test.dart: authoritative range rejects different mailbox in upserts and tombstones
+00:00 +226: packages/quds_mail_core/test/imap_sync_range_test.dart: range pages retain immutable survivor and tombstone snapshots
+00:00 +227: packages/quds_mail_core/test/cancellation_test.dart: invalidate rejects old callbacks but allows a new generation
+00:00 +228: packages/quds_mail_core/test/cancellation_test.dart: dispose invalidates all callbacks and cannot reopen a session
+00:00 +229: packages/quds_mail_core/test/cancellation_test.dart: explicit cancellation is typed and keeps the first reason
+00:00 +230: packages/quds_mail_core/test/bulk_flags_journal_test.dart: intent and every applying marker commit before the matching provider call
+00:00 +231: packages/quds_mail_core/test/bulk_flags_journal_test.dart: prepare failure prevents every provider dispatch
+00:00 +232: packages/quds_mail_core/test/bulk_flags_journal_test.dart: begin:0 failure prevents every provider dispatch
+00:00 +233: packages/quds_mail_core/test/bulk_flags_journal_test.dart: cancellation during prepare prevents dispatch and retains an unattempted receipt
+00:00 +234: packages/quds_mail_core/test/bulk_flags_journal_test.dart: cancellation during begin:0 prevents dispatch and retains an unattempted receipt
+00:00 +235: packages/quds_mail_core/test/bulk_flags_journal_test.dart: scope retirement during prepare prevents dispatch
+00:00 +236: packages/quds_mail_core/test/bulk_flags_journal_test.dart: scope retirement during begin:0 prevents dispatch
+00:00 +237: packages/quds_mail_core/test/bulk_flags_journal_test.dart: receipt write failure retains confirmed knowledge and stops later dispatch
+00:00 +238: packages/quds_mail_core/test/bulk_flags_journal_test.dart: a thrown persistence exception is sanitized and cannot authorize dispatch
+00:00 +239: packages/quds_mail_core/test/bulk_flags_journal_test.dart: finish failure never discards settled acknowledgements
+00:00 +240: packages/quds_mail_core/test/bulk_flags_journal_test.dart: a late acknowledgement is persisted even after its view and lease retire
+00:00 +241: packages/quds_mail_core/test/bulk_flags_journal_test.dart: uncertainty retains precedence and still exposes failed persistence
+00:00 +242: packages/quds_mail_core/test/bulk_flags_journal_test.dart: a contradictory failed certificate is normalized before persistence
+00:00 +243: packages/quds_mail_core/test/bulk_flags_journal_test.dart: provider-result runner uses the same durable lifecycle
+00:00 +244: packages/quds_mail_core/test/bulk_flags_journal_test.dart: restoring receipt cannot change identity, order, desired state or count
+00:00 +245: packages/quds_mail_core/test/bulk_flags_journal_test.dart: restoration rejects contradictory failure evidence and keeps storage refresh requirement
+00:00 +246: packages/quds_mail_core/test/sync_runner_test.dart: commits multiple pages and immutable progress including resets
+00:00 +247: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: provider result adaptation preserves evidence, not just error codes
+00:00 +248: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: provider result adaptation preserves evidence, not just error codes
+00:00 +249: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: provider result adaptation preserves evidence, not just error codes
+00:00 +250: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: provider result adaptation preserves evidence, not just error codes
+00:00 +251: packages/quds_mail_core/test/sync_runner_test.dart: second-page storage failure preserves data and cursor atomically
+00:00 +252: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: plan freezes stable identities and rejects list mutation
+00:00 +253: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: plan freezes stable identities and rejects list mutation
+00:00 +254: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: plan freezes stable identities and rejects list mutation
+00:00 +255: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: plan freezes stable identities and rejects list mutation
+00:00 +256: packages/quds_mail_core/test/sync_runner_test.dart: cancelled raw provider failure is classified as cancellation
+00:00 +257: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: plan bounds the selection and operation IDs before work
+00:00 +258: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: plan bounds the selection and operation IDs before work
+00:00 +259: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: plan bounds the selection and operation IDs before work
+00:00 +260: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: plan bounds the selection and operation IDs before work
+00:00 +261: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: plan bounds the selection and operation IDs before work
+00:00 +262: packages/quds_mail_core/test/sync_runner_test.dart: observer exceptions do not alter commits or stop later pages
+00:00 +263: packages/quds_mail_core/test/sync_runner_test.dart: mismatched account fails without storage or provider calls
+00:00 +264: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: duplicate value identities are rejected even in different objects
+00:00 +265: packages/quds_mail_core/test/sync_runner_test.dart: mismatched mailbox account fails before storage access
+00:00 +266: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: wrong account, folder and mixed IMAP generations are rejected
+00:00 +267: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: wrong account, folder and mixed IMAP generations are rejected
+00:00 +268: packages/quds_mail_core/test/sync_runner_test.dart: invalid pageSize -1 has no side effects
+00:00 +269: packages/quds_mail_core/test/sync_runner_test.dart: invalid pageSize -1 has no side effects
+00:00 +270: packages/quds_mail_core/test/sync_runner_test.dart: invalid pageSize 0 has no side effects
+00:00 +271: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: explicit markRead freezes desired state and ordered IDs
+00:00 +272: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: explicit markRead freezes desired state and ordered IDs
+00:00 +273: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: explicit markRead freezes desired state and ordered IDs
+00:00 +274: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: explicit markRead freezes desired state and ordered IDs
+00:00 +275: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: explicit markRead freezes desired state and ordered IDs
+00:00 +276: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: explicit markRead freezes desired state and ordered IDs
+00:00 +277: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: explicit markRead freezes desired state and ordered IDs
+00:00 +278: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: explicit markRead freezes desired state and ordered IDs
+00:00 +279: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: explicit markRead freezes desired state and ordered IDs
+00:00 +280: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: explicit markRead freezes desired state and ordered IDs
+00:00 +281: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: explicit markRead freezes desired state and ordered IDs
+00:00 +282: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: explicit markRead freezes desired state and ordered IDs
+00:00 +283: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: explicit markRead freezes desired state and ordered IDs
+00:00 +284: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: explicit markRead freezes desired state and ordered IDs
+00:00 +285: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: explicit markRead freezes desired state and ordered IDs
+00:00 +286: packages/quds_mail_core/test/sync_runner_test.dart: raw provider exceptions become typed failures without raw detail
+00:00 +287: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: explicit markUnread freezes desired state and ordered IDs
+00:00 +288: packages/quds_mail_core/test/sync_runner_test.dart: raw storage read exceptions become storage failure
+00:00 +289: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: explicit flag freezes desired state and ordered IDs
+00:00 +290: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: explicit flag freezes desired state and ordered IDs
+00:00 +291: loading packages/quds_mail_core/test/models_test.dart
+00:00 +291: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: explicit unflag freezes desired state and ordered IDs
+00:00 +292: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: dispatch is sequential and progress snapshots remain immutable
+00:00 +293: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: certified no-write failure permits independent later commands
+00:00 +294: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: mutation evidence true stops at uncertainty without replay
+00:00 +295: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: mutation evidence null stops at uncertainty without replay
+00:00 +296: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: conflict code with certified no-write evidence is definite
+00:00 +297: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: quota evidence false stops without retry or later dispatch
+00:00 +298: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: quota evidence true stops without retry or later dispatch
+00:00 +299: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: quota evidence null stops without retry or later dispatch
+00:00 +300: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: provider MailProblemCode.cancelled stops even when no mutation occurred
+00:00 +301: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: provider MailProblemCode.staleOperation stops even when no mutation occurred
+00:00 +302: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: callback exception after possible dispatch is uncertain
+00:00 +303: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: wrong-account lease cannot dispatch
+00:00 +304: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: cancellation before dispatch leaves all identities unattempted
+00:00 +305: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: stale account lease cannot dispatch
+00:00 +306: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: disposed account session cannot dispatch
+00:00 +307: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: stale folder predicate (throws=false) rejects selection
+00:00 +308: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: stale folder predicate (throws=true) rejects selection
+00:00 +309: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: successful in-flight result survives scope change but stops next write
+00:00 +310: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: in-flight cancellation cannot erase confirmed acknowledgement
+00:00 +311: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: scope retirement in progress callback prevents next command
+00:00 +312: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: display observer exceptions cannot change command outcomes
+00:00 +313: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: initial progress observer can retire scope before any dispatch
+00:00 +314: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: last progress observer cannot make a retired scope current
+00:00 +315: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: Stop after current preserves acknowledgement without cancelling lease
+00:00 +316: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: Stop before dispatch (throws=false) leaves all unattempted
+00:00 +317: packages/quds_mail_core/test/bulk_flags_provider_results_test.dart: Stop before dispatch (throws=true) leaves all unattempted
+00:01 +318: packages/quds_mail_core/test/models_test.dart: observed standard flags have value equality and an empty snapshot
+00:01 +319: packages/quds_mail_core/test/models_test.dart: snapshots own bytes, including buffer views and export copies
+00:01 +320: packages/quds_mail_core/test/models_test.dart: message headers and attachments do not alias mutable input lists
+00:01 +321: packages/quds_mail_core/test/models_test.dart: parse result cannot claim success without a message
+00:01 +322: packages/quds_mail_core/test/models_test.dart: full and preview budgets preserve planned resource bounds
+00:01 +323: packages/quds_mail_core/test/models_test.dart: profile and account identities cannot alias between products
+00:01 +324: packages/quds_mail_core/test/models_test.dart: UIDVALIDITY, mailbox and account form the IMAP persistent identity
+00:01 +325: packages/quds_mail_core/test/models_test.dart: move and sync cursor enforce account and mailbox scopes
+00:01 +326: packages/quds_mail_core/test/models_test.dart: mail capability does not imply Calendar, People or sending
+00:01 +327: packages/quds_mail_core/test/outbox_management_test.dart: closing first uncertainty retains the unknown actual result
+00:01 +328: packages/quds_mail_core/test/outbox_management_test.dart: inherited uncertainty closes without inventing an attempt
+00:01 +329: packages/quds_mail_core/test/outbox_management_test.dart: closing later rejected preserves older uncertainty
+00:01 +330: packages/quds_mail_core/test/outbox_management_test.dart: closing later retryableFailure preserves older uncertainty
+00:01 +331: packages/quds_mail_core/test/outbox_management_test.dart: closing later uncertain preserves older uncertainty
+00:01 +332: packages/quds_mail_core/test/outbox_management_test.dart: ordinary queued, active, accepted and cancelled work cannot close
+00:01 +333: packages/quds_mail_core/test/outbox_management_test.dart: restoration rejects closure without retained uncertain history
+00:01 +334: All tests passed!
