@@ -359,9 +359,18 @@ void main() {
       final phases = <String, List<double>>{};
       var current = <String, double>{};
       final perKey = <Map<String, double>>[];
+      var calls = <String, int>{};
+      final perKeyCalls = <Map<String, int>>[];
+      final wrapKeys = <int>[];
       WordEditorController.debugEditPhase = (phase, micros) {
         current[phase] = (current[phase] ?? 0) + micros / 1000;
+        calls[phase] = (calls[phase] ?? 0) + 1;
       };
+      int linesOfTarget() => controller.documentLaidOut.pages
+          .expand((page) => page.lines)
+          .where((line) => line.paragraphIndex == paragraphIndex)
+          .length;
+      var targetLines = linesOfTarget();
       final handler = <double>[];
       final frame = <double>[];
       final background = <double>[];
@@ -376,12 +385,17 @@ void main() {
           selection: TextSelection.collapsed(offset: at + 1),
         );
         current = <String, double>{};
+        calls = <String, int>{};
         stats.keystroke = perKey.length;
         final watch = Stopwatch()..start();
         tester.testTextInput.updateEditingValue(next);
         await null; // the platform message completes in a microtask
         handler.add(watch.elapsedMicroseconds / 1000);
         perKey.add(current);
+        perKeyCalls.add(calls);
+        final lines = linesOfTarget();
+        if (lines != targetLines) wrapKeys.add(perKey.length - 1);
+        targetLines = lines;
         current.forEach(
           (k, v) => phases.putIfAbsent(k, () => <double>[]).add(v),
         );
@@ -458,6 +472,36 @@ void main() {
               e.key: _distribution(e.value),
         },
         'proofingPassEndedBeforeKey': stats.passEndedAt,
+        // Keystrokes after which the typed paragraph has a different number
+        // of lines (a new line moves everything below).
+        'wrapKeys': wrapKeys.length,
+        'wrapHandlerMs': _distribution([for (final i in wrapKeys) handler[i]]),
+        'otherHandlerMs': _distribution([
+          for (var i = 0; i < handler.length; i++)
+            if (!wrapKeys.contains(i)) handler[i],
+        ]),
+        // Studio chrome listener (SuiteWorkspace._rebuildWord): calls per
+        // keystroke and cost per keystroke.
+        'chromeCallsPerKey': _distribution([
+          for (final c in perKeyCalls)
+            (c.entries
+                    .where((e) => e.key.contains('_rebuildWord'))
+                    .fold<int>(0, (a, e) => a + e.value))
+                .toDouble(),
+        ]),
+        'chromeMsPerKey': _distribution([
+          for (final k in perKey)
+            k.entries
+                .where((e) => e.key.contains('_rebuildWord'))
+                .fold<double>(0, (a, e) => a + e.value),
+        ]),
+        'listenerCallsPerKey': _distribution([
+          for (final c in perKeyCalls)
+            (c.entries
+                    .where((e) => e.key.startsWith('listener'))
+                    .fold<int>(0, (a, e) => a + e.value))
+                .toDouble(),
+        ]),
         'slowest': [
           for (final i in (List<int>.generate(
             handler.length,

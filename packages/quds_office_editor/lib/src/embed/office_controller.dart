@@ -604,7 +604,40 @@ abstract class OfficeController extends ChangeNotifier {
   void _onCommands() {
     _contentRevision++;
     _dirty = true;
+    if (_editNotifyDepth > 0 && coalesceEditNotifications) {
+      // The edit in progress notifies once when it is done.
+      _commandNotifyPending = true;
+      return;
+    }
     notifyListeners();
+  }
+
+  /// Typing edits commit undo commands before they lay out and notify.
+  /// While one runs, the command stack's notification is folded into the
+  /// edit's own, so listeners (chrome, proofing, the editor widget) run once
+  /// per keystroke instead of twice, and never see the model before the
+  /// relayout. `--dart-define=QUDS_COALESCE_EDIT_NOTIFY=false` turns it off.
+  static bool coalesceEditNotifications = const bool.fromEnvironment(
+    'QUDS_COALESCE_EDIT_NOTIFY',
+    defaultValue: true,
+  );
+
+  int _editNotifyDepth = 0;
+  bool _commandNotifyPending = false;
+
+  /// Runs [edit] with command notifications folded into one notification
+  /// (the edit's own, or one at the end when it did not notify).
+  T _coalescingNotifications<T>(T Function() edit) {
+    _editNotifyDepth++;
+    try {
+      return edit();
+    } finally {
+      _editNotifyDepth--;
+      if (_editNotifyDepth == 0 && _commandNotifyPending) {
+        _commandNotifyPending = false;
+        notifyListeners();
+      }
+    }
   }
 
   @override
@@ -613,6 +646,7 @@ abstract class OfficeController extends ChangeNotifier {
     if (_disposed) {
       return;
     }
+    _commandNotifyPending = false;
     super.notifyListeners();
   }
 
@@ -878,7 +912,7 @@ class WordEditorController extends OfficeController {
     _config = _effectiveConfig(_config);
     relayout();
     input = OfficeInputBridge(
-      onValue: _onIme,
+      onValue: (value) => _coalescingNotifications(() => _onIme(value)),
       onAction: _onImeAction,
       onSelector: _onImeSelector,
     );
@@ -4283,7 +4317,10 @@ class WordEditorController extends OfficeController {
   }
 
   /// insertText API.
-  void insertText(String text) {
+  void insertText(String text) =>
+      _coalescingNotifications(() => _insertText(text));
+
+  void _insertText(String text) {
     if (!config.allowsMutation || text.isEmpty) {
       return;
     }
@@ -4332,7 +4369,10 @@ class WordEditorController extends OfficeController {
   }
 
   /// deleteSelectionOr API.
-  void deleteSelectionOr({required bool backward}) {
+  void deleteSelectionOr({required bool backward}) =>
+      _coalescingNotifications(() => _deleteSelectionOr(backward: backward));
+
+  void _deleteSelectionOr({required bool backward}) {
     if (!config.allowsMutation) {
       return;
     }
@@ -4787,7 +4827,8 @@ class WordEditorController extends OfficeController {
   }
 
   /// insertParagraphBreak API.
-  void insertParagraphBreak() => _insertParagraphBreak();
+  void insertParagraphBreak() =>
+      _coalescingNotifications(() => _insertParagraphBreak());
 
   void _insertParagraphBreak({
     bool pageBreakBefore = false,
