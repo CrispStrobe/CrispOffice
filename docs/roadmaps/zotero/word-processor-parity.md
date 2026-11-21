@@ -468,6 +468,14 @@ footnote behavior or full Word/LibreOffice parity.
 
 ## Next implementation and acceptance steps
 
+The [combined round-trip completion](../../validation/zotero-roundtrip-complete-20261121/README.md)
+reconciles the latest accepted bibliography, image, note-style and Mail work.
+It adds semantic uppercase import with preserved raw text and citation
+boundaries, and corrects continuous-header picture identity and inline
+annotation-picture formatting. Its qualification records four real converter
+fixture routes, separate PNG/JPEG cycles, bounded intake and the exact source.
+Installed Zotero/Word/LibreOffice acceptance remains a separate next step.
+
 1. **Qualify release-host editable ODT workflows and production formatting.**
    Use the implemented carrier and retained synthetic fixtures with current
    Word/LibreOffice and their actual Zotero plugins. Resolve any converter findings

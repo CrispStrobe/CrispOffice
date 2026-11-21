@@ -1,0 +1,148 @@
+{
+  "schema": 1,
+  "repository": "CrispStrobe/quds_office_suite",
+  "checkpoint_branch": "codex/zotero-roundtrip-complete-20261121",
+  "qualified_product_commit": "78d1f8db5374a6b2739451834708c8fe9f703ed8",
+  "qualified_product_tree": "3ccb17f6ec1c0543c7cc93b0b84a5832ddda28f7",
+  "documentation_and_evidence_only_after_qualified_product": true,
+  "initial_main": "5c59a062e86e24d043ba06cfe8f0a69074c44f62",
+  "latest_integrated_main": "0de92d6f42b3b2d1f2df43ef56a7af8e0f49d059",
+  "remote_checkpoints": [
+    "4dd06224b410c27d87053175dfa532e8f4be210a",
+    "96f850531a7b4fe43963dc0ef72ffa4f94428148",
+    "538d002ab9da5a8a12ef6adbb66c8062b0560810",
+    "a9839a97ba5645fcaf36e34729e011074d6a868b",
+    "0692e06203d19b89025f63615ba71abd309c9438",
+    "5a829066238b94685db5145ff14420e7e7f0928a",
+    "c179c61a198df9b2cd1af3899d6f805159481ce2",
+    "8afb6f9135bb18f59532e1a6f1ad37b5c6da7ad8",
+    "78d1f8db5374a6b2739451834708c8fe9f703ed8"
+  ],
+  "intake": {
+    "original": {
+      "captured_refs": 383,
+      "ancestors": 369,
+      "verified_historical_equivalents": 14,
+      "uncovered_refs": 0
+    },
+    "publication": {
+      "captured_refs": 386,
+      "captured_at": "2026-11-21T19:15:48.233042+00:00",
+      "ancestors": 370,
+      "verified_historical_equivalents": 14,
+      "explicit_later_draft_refs": 2,
+      "uncovered_accepted_refs": 0,
+      "all_captured_refs_are_merged": false
+    },
+    "deferred": {
+      "pr": 336,
+      "branch": "codex/word-vba-typography-20261121",
+      "sha": "a646cf761f7eafe7915988a1d84f90ca6dbe5793",
+      "reason": "New cross-layer draft after the initial cutoff; its frozen-source/portable/Flutter qualification remained in progress at the bounded refresh."
+    },
+    "final_main_followup_recorded_separately": true
+  },
+  "validation": {
+    "counts": {
+      "engine": 2698,
+      "editor_distinct": 508,
+      "studio_zotero": 41,
+      "mail_core": 6,
+      "mail_store": 107,
+      "mail_studio": 92
+    },
+    "distinct_accepted_cases": 3452,
+    "accepted_executions_have_zero_failures_skips_errors": true,
+    "engine": {
+      "passed": 2698,
+      "source": "7350559973dd1dd9637f0169e8838df818b2b8be",
+      "equivalent_remote": "0692e06203d19b89025f63615ba71abd309c9438",
+      "source_inputs_unchanged": true
+    },
+    "editor": {
+      "initial_cohort": 499,
+      "final_renderer_replay": 28,
+      "renderer_overlap": 27,
+      "distinct": 508,
+      "frozen_editor_distinct": 500,
+      "page_text_followup": 36,
+      "page_text_overlap": 28
+    },
+    "studio_zotero": {
+      "passed": 41
+    },
+    "mail_intake": {
+      "passed": 205,
+      "subtree_equivalence": "evidence/mail-source-equivalence.json"
+    },
+    "static": {
+      "initial_changed_file_batch": 46,
+      "subsequent_corrected_test_passed": true,
+      "final_renderer_files": 2,
+      "format_passed": true,
+      "fatal_info_warning_analysis_passed": true,
+      "final_page_text_files": 2
+    },
+    "source_applicability": "final-delivery/source-continuity.json",
+    "repeated_and_rejected_attempts_excluded": true,
+    "frozen_source_applicability": "evidence/source-equivalence.json",
+    "page_text_followup": {
+      "record": "final-delivery/README.md",
+      "case_accounting": "final-delivery/case-accounting.json",
+      "accepted_cases": 36,
+      "repeated_cases": 28,
+      "additional_cases": 8,
+      "new_raster_regressions": 5,
+      "source_manifest_count": 2668,
+      "source_inputs_unchanged": true,
+      "full_earlier_populations_rerun": false
+    }
+  },
+  "converter": {
+    "version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+    "four_fixture_routes_passed": true,
+    "actual_saves_per_fixture": 2,
+    "intervening_native_docx_odt_cycle": true,
+    "fixtures": {
+      "body-bibliography": 3,
+      "table-only": 6,
+      "endnote-only": 2,
+      "uppercase-citations": 2
+    },
+    "png_jpeg_actual_save_and_three_native_cycles_passed": true,
+    "source_input_count": 372,
+    "source_input_hash": "eba0401e77a82d7e3cb8425a322fbb48310e14d1ec6ef38fd7a86ae902149de8",
+    "original_inputs_unchanged": true,
+    "earlier_incompatible_endnote_still_refused": true,
+    "summary": "evidence/converter-summary.json",
+    "archive": "evidence/converter.tar.gz",
+    "installed_zotero_plugin_qualification": false,
+    "stable_release_host_qualification": false
+  },
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "verified_unique_pub_archives": 204,
+    "tracked_lock_sha256": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb"
+  },
+  "publication_policy": {
+    "github_actions_queried": false,
+    "github_actions_awaited": false,
+    "remote_force_updates": false,
+    "branch_protections_changed": false,
+    "preserve_incoming_parent_history": true
+  },
+  "remaining": [
+    "Supported-release installed Zotero/Word/LibreOffice acceptance",
+    "Active footnote separator geometry",
+    "Richer note numbering/restarts/configured paragraphs",
+    "Broader table/image/structural content envelopes",
+    "Version-specific legacy Apache OpenOffice acceptance"
+  ],
+  "native_file_checkpoint": {
+    "commit": "5a829066238b94685db5145ff14420e7e7f0928a",
+    "tree": "faf0d91961b145e5358f0fd3909a9489933b3e2b",
+    "frozen_evidence_commit": "c179c61a198df9b2cd1af3899d6f805159481ce2",
+    "distinct_accepted_cases": 3444
+  }
+}

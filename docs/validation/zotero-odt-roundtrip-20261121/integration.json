@@ -1,0 +1,638 @@
+{
+  "acceptance_boundaries": [
+    "Actual file conversion used the identified development LibreOffice build; no supported stable host release is qualified by this record.",
+    "Installed Zotero plugin and Microsoft Word application command flows are not exercised here.",
+    "Mixed note export/inventories are qualified; native active-footnote separator import remains unsupported.",
+    "Image acceptance covers the tool's bounded inline PNG and upright RGB JPEG cases; floating/transformed graphics and other raster formats are not established by these fixtures.",
+    "Native file preservation does not establish matching on-screen table padding.",
+    "Legacy Apache OpenOffice remains a separately unqualified host/plugin target."
+  ],
+  "actual_converter": {
+    "all_23_command_exit_codes_zero": true,
+    "binary_sha256": "d905a74dc92eaccb22481ba2de1345666a074a5f0d48322aaad1b6dc8a9e1e40",
+    "build": "2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+    "execution_order": [
+      "three_fixture_two_save",
+      "mixed_note_export_inventory",
+      "native_png_jpeg_images"
+    ],
+    "product": "LibreOfficeDev",
+    "runs": {
+      "mixed_note_export_inventory": {
+        "active_fields": 7,
+        "command_count": 6,
+        "commands": [
+          {
+            "exit_code": 0,
+            "name": "dart-version"
+          },
+          {
+            "exit_code": 0,
+            "name": "libreoffice-version"
+          },
+          {
+            "exit_code": 0,
+            "name": "compile"
+          },
+          {
+            "exit_code": 0,
+            "name": "create"
+          },
+          {
+            "exit_code": 0,
+            "name": "libreoffice-save"
+          },
+          {
+            "exit_code": 0,
+            "name": "verify-inventories-and-labels"
+          }
+        ],
+        "evidence": {
+          "acceptance-source.dart": {
+            "archive": "integration-execution.tar.gz",
+            "member": "converters/mixed-integrated-bb2dfd52/acceptance-source.dart",
+            "sha256": "63a512a4eac208a32acdd220919995e879b01afe22bca31b30046ac3de369146",
+            "size_bytes": 7297
+          },
+          "receipt.json": {
+            "archive": "integration-execution.tar.gz",
+            "member": "converters/mixed-integrated-bb2dfd52/receipt.json",
+            "sha256": "392a90b90aa855f5fa0c659671aabafd9a6bfc5f9566718dd1e597f98f820aa7",
+            "size_bytes": 10463
+          },
+          "runner.py": {
+            "archive": "integration-execution.tar.gz",
+            "member": "converters/mixed-integrated-bb2dfd52/runner.py",
+            "sha256": "1aa15dc1a8524d7cb181c9bc3bc26a49b2a3b095fde36d8a8421460d69c5a95f",
+            "size_bytes": 6451
+          },
+          "source-after.json": {
+            "archive": "integration-execution.tar.gz",
+            "member": "converters/mixed-integrated-bb2dfd52/source-after.json",
+            "sha256": "bb7e45e617216839e0250ae495807a247c0b19340fbea66a4be894fb4b364dab",
+            "size_bytes": 61148
+          },
+          "source-before.json": {
+            "archive": "integration-execution.tar.gz",
+            "member": "converters/mixed-integrated-bb2dfd52/source-before.json",
+            "sha256": "bb7e45e617216839e0250ae495807a247c0b19340fbea66a4be894fb4b364dab",
+            "size_bytes": 61148
+          }
+        },
+        "fixtures": {
+          "body-bibliography": 3,
+          "table-notes": 4
+        },
+        "input_preservation": {
+          "originals_unchanged": true
+        },
+        "native_footnote_reopen_claimed": false,
+        "scope": "One actual save; exact inventories, cached note labels and all four distinct 65-percent symbol/anchor styles.",
+        "source_commit": "bb2dfd5272ff8de27ed2ec7f68b71801a2e41886",
+        "source_inputs": 438,
+        "source_unchanged": true,
+        "status": "passed"
+      },
+      "native_png_jpeg_images": {
+        "active_citations_per_fixture": 2,
+        "actual_saves": 2,
+        "command_count": 8,
+        "commands": [
+          {
+            "exit_code": 0,
+            "name": "dart-version"
+          },
+          {
+            "exit_code": 0,
+            "name": "libreoffice-version"
+          },
+          {
+            "exit_code": 0,
+            "name": "compile"
+          },
+          {
+            "exit_code": 0,
+            "name": "create"
+          },
+          {
+            "exit_code": 0,
+            "name": "libreoffice-first-save"
+          },
+          {
+            "exit_code": 0,
+            "name": "verify-first-and-three-native-cycles"
+          },
+          {
+            "exit_code": 0,
+            "name": "libreoffice-second-save"
+          },
+          {
+            "exit_code": 0,
+            "name": "verify-second-and-three-native-cycles"
+          }
+        ],
+        "evidence": {
+          "acceptance-source.dart": {
+            "archive": "integration-execution.tar.gz",
+            "member": "converters/images-integrated-bb2dfd52/acceptance-source.dart",
+            "sha256": "d68ab9bd7fedfa8cbfc6f6fae095e50f0b8b71fcc3747b221bf2a18d0394969c",
+            "size_bytes": 7848
+          },
+          "receipt.json": {
+            "archive": "integration-execution.tar.gz",
+            "member": "converters/images-integrated-bb2dfd52/receipt.json",
+            "sha256": "65d14de49b5e2e4abed3430117d8eee36b3314c64b15c33fbe9a32a4e5491aa6",
+            "size_bytes": 22705
+          },
+          "runner.py": {
+            "archive": "integration-execution.tar.gz",
+            "member": "converters/images-integrated-bb2dfd52/runner.py",
+            "sha256": "29d3feb4267d0568408e5a74a9590f2c0c581f16d992bce10f84f75da044ef0d",
+            "size_bytes": 6994
+          },
+          "source-after.json": {
+            "archive": "integration-execution.tar.gz",
+            "member": "converters/images-integrated-bb2dfd52/source-after.json",
+            "sha256": "808cec49233b042ede8db2aaeddae8808ac78772621ae1f530df69971d6c3c79",
+            "size_bytes": 61147
+          },
+          "source-before.json": {
+            "archive": "integration-execution.tar.gz",
+            "member": "converters/images-integrated-bb2dfd52/source-before.json",
+            "sha256": "808cec49233b042ede8db2aaeddae8808ac78772621ae1f530df69971d6c3c79",
+            "size_bytes": 61147
+          }
+        },
+        "fixtures": [
+          "png-citations",
+          "jpeg-citations"
+        ],
+        "image_dimension_tolerance_points": 0.03,
+        "input_preservation": {
+          "inputs_unchanged": {
+            "original": true,
+            "reexported-first": true,
+            "saved-first": true,
+            "saved-second": true,
+            "second-save-input": true
+          }
+        },
+        "native_docx_odt_cycles_after_each_actual_save": 3,
+        "pictures_per_fixture": 2,
+        "scope": "Unchanged incoming image tool compares authored model: picture bytes, dimensions, links, alternative text, citation metadata/cache/editability/offsets and document preferences. Final first-stage reexport is copied byte-for-byte into the second actual save.",
+        "source_commit": "bb2dfd5272ff8de27ed2ec7f68b71801a2e41886",
+        "source_inputs": 438,
+        "source_unchanged": true,
+        "status": "passed"
+      },
+      "three_fixture_two_save": {
+        "active_fields": 11,
+        "command_count": 9,
+        "commands": [
+          {
+            "exit_code": 0,
+            "name": "dart-version"
+          },
+          {
+            "exit_code": 0,
+            "name": "libreoffice-version"
+          },
+          {
+            "exit_code": 0,
+            "name": "compile"
+          },
+          {
+            "exit_code": 0,
+            "name": "create"
+          },
+          {
+            "exit_code": 0,
+            "name": "libreoffice-first-save"
+          },
+          {
+            "exit_code": 0,
+            "name": "verify-first"
+          },
+          {
+            "exit_code": 0,
+            "name": "docx-and-odt-reexport"
+          },
+          {
+            "exit_code": 0,
+            "name": "libreoffice-second-save"
+          },
+          {
+            "exit_code": 0,
+            "name": "verify-second"
+          }
+        ],
+        "evidence": {
+          "acceptance-source.dart": {
+            "archive": "integration-execution.tar.gz",
+            "member": "converters/integrated-bb2dfd52/acceptance-source.dart",
+            "sha256": "85e5f2ad612c88357218238cb427a3b16344f0c41cdf6a36289ea0f636abc9e2",
+            "size_bytes": 22700
+          },
+          "receipt.json": {
+            "archive": "integration-execution.tar.gz",
+            "member": "converters/integrated-bb2dfd52/receipt.json",
+            "sha256": "b1f7121db3befb459bb7aa4656166171a2c83e6af89ea3f0f29185fbff25341d",
+            "size_bytes": 17052
+          },
+          "runner.py": {
+            "archive": "integration-execution.tar.gz",
+            "member": "converters/integrated-bb2dfd52/runner.py",
+            "sha256": "1dd9c4154e589adb1fc5cd30a45cdfdd69020962672a8432afc2a436c26d12a2",
+            "size_bytes": 5437
+          },
+          "source-after.json": {
+            "archive": "integration-execution.tar.gz",
+            "member": "converters/integrated-bb2dfd52/source-after.json",
+            "sha256": "f6e711a463af892ff7d1885c9bd93157bd7b544bab3493f25273bff674c9dc63",
+            "size_bytes": 61151
+          },
+          "source-before.json": {
+            "archive": "integration-execution.tar.gz",
+            "member": "converters/integrated-bb2dfd52/source-before.json",
+            "sha256": "f6e711a463af892ff7d1885c9bd93157bd7b544bab3493f25273bff674c9dc63",
+            "size_bytes": 61151
+          }
+        },
+        "fixtures": {
+          "body-bibliography": 3,
+          "endnote-only": 2,
+          "table-only": 6
+        },
+        "input_preservation": {
+          "original_fixtures_unchanged": true,
+          "reexported_fixtures_unchanged": true
+        },
+        "scope": "Authored model through editable ODT, first actual LibreOffice save, native reopen, DOCX save/reopen, editable ODT reexport, second actual LibreOffice save, and native reopen. Exact metadata, cache text, editability, offsets, story ownership, rich styles, table topology, note markers/anchors/labels and page geometry. Geometry expressed in Word twips.",
+        "source_commit": "bb2dfd5272ff8de27ed2ec7f68b71801a2e41886",
+        "source_inputs": 438,
+        "source_unchanged": true,
+        "status": "passed"
+      }
+    },
+    "version": "26.8.0.0.alpha0"
+  },
+  "evidence_archive": {
+    "all_archive_members_verified": true,
+    "all_inputs_unchanged_during_packaging": true,
+    "deterministic_rebuild_matched": true,
+    "file": "integration-execution.tar.gz",
+    "historical_artifacts_unchanged": true,
+    "manifest": {
+      "file": "integration-archive-contents.json",
+      "sha256": "f6d7123429c7c9d275efbf4bb4dee2d0db25b95d83bd179b8d986b8cacb5d3c4",
+      "size_bytes": 54655
+    },
+    "members": 183,
+    "sha256": "33c754e181be83d85ba391330a01898747c96db3f03f3af91ef501385e38b3b1",
+    "size_bytes": 992068,
+    "uncompressed_bytes": 4526110
+  },
+  "github_actions": {
+    "awaited": false,
+    "queried": false
+  },
+  "intake": {
+    "refs": {
+      "archive": "integration-execution.tar.gz",
+      "member": "intake/integration-refs.txt",
+      "sha256": "97c2874157d33854daba43fed44fca4cfcafacba0674e96fb3c8b54d7d4e39ca",
+      "size_bytes": 25708
+    },
+    "review": {
+      "archive": "integration-execution.tar.gz",
+      "member": "intake/integration-intake.md",
+      "sha256": "a643c572d699b2e7b98d4c99c865ab1a4af71bc6ae11524c4641b3a0e7fff594",
+      "size_bytes": 2260
+    },
+    "scope": "Captured inventory at this milestone. Five later concurrent refs are explicitly identified; this does not claim integration of future main updates.",
+    "snapshot": {
+      "archive": "integration-execution.tar.gz",
+      "member": "intake/integration-intake.json",
+      "sha256": "42be1229b87a371124ef2e6b53341c9a95955bcdf19e4ba9084a5929fc2afbbf",
+      "size_bytes": 245973
+    },
+    "summary": {
+      "advanced_refs": 3,
+      "by_disposition": {
+        "ancestor_of_main_and_checkpoint": 364,
+        "current_checkpoint_ancestry_only": 2,
+        "independently_verified_historical_equivalent": 14,
+        "later_concurrent_ongoing_ref": 5
+      },
+      "by_remote": {
+        "origin": 43,
+        "pull": 338,
+        "upstream": 4
+      },
+      "historical_proofs_verified": 14,
+      "initial_coverage": {
+        "ancestor_of_main_and_checkpoint": 361,
+        "independently_verified_historical_equivalent": 14
+      },
+      "initial_tips": 375,
+      "main_is_checkpoint_ancestor": true,
+      "new_refs": 10,
+      "snapshot_stable": true,
+      "total_refs": 385
+    }
+  },
+  "local_tests": {
+    "counting": "One fresh final run per scope. Prior milestone tests, development reruns and independent probes are excluded. Converter fixtures are separate acceptance evidence.",
+    "errors": 0,
+    "execution_order": [
+      "engine",
+      "editor",
+      "studio",
+      "static"
+    ],
+    "failed": 0,
+    "gates": {
+      "editor": {
+        "elapsed_seconds": 15.710181427000862,
+        "errors": [],
+        "evidence": {
+          "cases.json": {
+            "archive": "integration-execution.tar.gz",
+            "member": "qualification/editor/cases.json",
+            "sha256": "5712eb5077f70e575528693b8ed1573a336086b8e2783f6359d1339b4e2397d0",
+            "size_bytes": 42830
+          },
+          "events.jsonl": {
+            "archive": "integration-execution.tar.gz",
+            "member": "qualification/editor/events.jsonl",
+            "sha256": "bfdadaacb1331cd83e0fa398e790fb74a65c73156e4cb797289ab22cb2618ff9",
+            "size_bytes": 78509
+          },
+          "inputs-after.json": {
+            "archive": "integration-execution.tar.gz",
+            "member": "qualification/editor/inputs-after.json",
+            "sha256": "ae3be2b81e7e1f804ea38fa1a5fefcbace32640bd6ef2564530f71cd43a4a429",
+            "size_bytes": 126368
+          },
+          "inputs-before.json": {
+            "archive": "integration-execution.tar.gz",
+            "member": "qualification/editor/inputs-before.json",
+            "sha256": "ae3be2b81e7e1f804ea38fa1a5fefcbace32640bd6ef2564530f71cd43a4a429",
+            "size_bytes": 126368
+          },
+          "receipt.json": {
+            "archive": "integration-execution.tar.gz",
+            "member": "qualification/editor/receipt.json",
+            "sha256": "5122a58315f9a3b45c8424f6f7d889f8be7bcaaf4a6e44ea5eb254f76681bf64",
+            "size_bytes": 1476
+          }
+        },
+        "exit_code": 0,
+        "failed": 0,
+        "inputs_unchanged": true,
+        "passed": 147,
+        "skipped": 0,
+        "source_checkpoint_after_run": "bb2dfd5272ff8de27ed2ec7f68b71801a2e41886",
+        "source_checkpoint_before_run": "bb2dfd5272ff8de27ed2ec7f68b71801a2e41886",
+        "source_inputs": 914,
+        "test_file_count": 11
+      },
+      "engine": {
+        "elapsed_seconds": 30.70656795299874,
+        "errors": [],
+        "evidence": {
+          "cases.json": {
+            "archive": "integration-execution.tar.gz",
+            "member": "qualification/engine/cases.json",
+            "sha256": "b9c0f80e89bad66e1a0b19dac2b7740be2e7969704f9c7580499e32643988763",
+            "size_bytes": 598311
+          },
+          "events.jsonl": {
+            "archive": "integration-execution.tar.gz",
+            "member": "qualification/engine/events.jsonl",
+            "sha256": "3e3ecdd7b3bf8c3853881d2808163035fdf3594568b368af798641ee3bab829f",
+            "size_bytes": 988467
+          },
+          "inputs-after.json": {
+            "archive": "integration-execution.tar.gz",
+            "member": "qualification/engine/inputs-after.json",
+            "sha256": "326c27edf0ef6a126af0b87c6a093fb503718b153226a62b2161c36f2d4483a6",
+            "size_bytes": 136706
+          },
+          "inputs-before.json": {
+            "archive": "integration-execution.tar.gz",
+            "member": "qualification/engine/inputs-before.json",
+            "sha256": "326c27edf0ef6a126af0b87c6a093fb503718b153226a62b2161c36f2d4483a6",
+            "size_bytes": 136706
+          },
+          "receipt.json": {
+            "archive": "integration-execution.tar.gz",
+            "member": "qualification/engine/receipt.json",
+            "sha256": "f911415ffaf62ca824a1b7efc2fbfdb5489d8944e2f4e7fc012f570f85f94bfa",
+            "size_bytes": 5103
+          }
+        },
+        "exit_code": 0,
+        "failed": 0,
+        "inputs_unchanged": true,
+        "passed": 2015,
+        "skipped": 0,
+        "source_checkpoint_after_run": "bb2dfd5272ff8de27ed2ec7f68b71801a2e41886",
+        "source_checkpoint_before_run": "bb2dfd5272ff8de27ed2ec7f68b71801a2e41886",
+        "source_inputs": 987,
+        "test_file_count": 84
+      },
+      "studio": {
+        "elapsed_seconds": 76.01102813300167,
+        "errors": [],
+        "evidence": {
+          "cases.json": {
+            "archive": "integration-execution.tar.gz",
+            "member": "qualification/studio/cases.json",
+            "sha256": "9ceac6c99c4b3e2e48f3aca865be671187ceafd6323ecc0b2be5d2602ec5958a",
+            "size_bytes": 51221
+          },
+          "events.jsonl": {
+            "archive": "integration-execution.tar.gz",
+            "member": "qualification/studio/events.jsonl",
+            "sha256": "029560c33e63d9df7d30bfd29177874673c59381c0f22dacae33fe638d761101",
+            "size_bytes": 107503
+          },
+          "inputs-after.json": {
+            "archive": "integration-execution.tar.gz",
+            "member": "qualification/studio/inputs-after.json",
+            "sha256": "79b2e1d1b33abce555af3e1283f14bb120d75044819f77699d2d12b5b161a528",
+            "size_bytes": 127255
+          },
+          "inputs-before.json": {
+            "archive": "integration-execution.tar.gz",
+            "member": "qualification/studio/inputs-before.json",
+            "sha256": "79b2e1d1b33abce555af3e1283f14bb120d75044819f77699d2d12b5b161a528",
+            "size_bytes": 127255
+          },
+          "receipt.json": {
+            "archive": "integration-execution.tar.gz",
+            "member": "qualification/studio/receipt.json",
+            "sha256": "d48c40c6aa889ae3df64328d27710091c5d3cbbaaafaad495cdc9bff9b9e2a15",
+            "size_bytes": 1772
+          }
+        },
+        "exit_code": 0,
+        "failed": 0,
+        "inputs_unchanged": true,
+        "passed": 169,
+        "skipped": 0,
+        "source_checkpoint_after_run": "bb2dfd5272ff8de27ed2ec7f68b71801a2e41886",
+        "source_checkpoint_before_run": "bb2dfd5272ff8de27ed2ec7f68b71801a2e41886",
+        "source_inputs": 919,
+        "test_file_count": 16
+      }
+    },
+    "input_union": {
+      "archive": "integration-execution.tar.gz",
+      "member": "qualification/input-union.json",
+      "sha256": "e4ee88c8d2d5bf939fa0ad00f243d0a1df4465b0b43d8a6e25799ffd315a3b3a",
+      "size_bytes": 140848
+    },
+    "passed": 2331,
+    "qualification_summary": {
+      "archive": "integration-execution.tar.gz",
+      "member": "qualification/qualification-summary.json",
+      "sha256": "2c9875c219649527dc425f23af473647969acc28b42979e8f8e07749914ac7eb",
+      "size_bytes": 1962
+    },
+    "skipped": 0,
+    "suites": 111,
+    "test_event_audit": {
+      "archive": "integration-execution.tar.gz",
+      "member": "qualification/test-event-audit.json",
+      "sha256": "f46e661184e862dd7d374597d8501fa370c71fec6cf791fcd4f4e6b44f90b1bd",
+      "size_bytes": 16723
+    }
+  },
+  "preceding_milestone_preserved": {
+    "all_bytes_unchanged": true,
+    "artifacts": [
+      {
+        "file": "final.json",
+        "sha256": "755e0be18048b1d71aa8d7c3892479eb8ca709a491d23829f440a76a189efb12",
+        "size_bytes": 10348
+      },
+      {
+        "file": "execution.tar.gz",
+        "sha256": "0cda5b93c032ca4a0dc539e31733cff4cf6162e1c0dc08a380094e401ed4ab0a",
+        "size_bytes": 2470145
+      },
+      {
+        "file": "archive-contents.json",
+        "sha256": "c878e2e371339730345fe8d9efa095a0e55a8ec983a22817f31a0786c3cb7300",
+        "size_bytes": 134844
+      },
+      {
+        "file": "source-binding.json",
+        "sha256": "ba02035589ddd6566a6479bd40aaf1f9c46abe26e7d595da3748e03f8fc36ea0",
+        "size_bytes": 1943178
+      }
+    ],
+    "git_scope_proof": {
+      "baseline_commit": "650415ddb7d50e4568a5cd25d32b766e71d6ce59",
+      "identical_path_mode_type_blob_maps_at_qualified_checkpoint": true,
+      "prefix": "docs/validation/zotero-odt-roundtrip-20261121/"
+    },
+    "passed_tests": 2078,
+    "qualified_commit": "d743c1b3e0791f7e73e5bd87638f8cd43a10fba2",
+    "qualified_tree": "c94e0fb95ca1897b845527a3cc8898f80c8796f8",
+    "suites": 93
+  },
+  "qualified_source": {
+    "all_binding_checks_passed": true,
+    "binding_check_count": 8,
+    "binding_checks": {
+      "all_declared_source_aliases_identical": true,
+      "all_library_coverage_complete": true,
+      "all_required_runs_loaded": true,
+      "all_run_checks_pass": true,
+      "current_tracked_inputs_match_target": true,
+      "historical_artifacts_preserved": true,
+      "historical_git_scopes_preserved": true,
+      "target_head_stable_during_audit": true
+    },
+    "commit": "bb2dfd5272ff8de27ed2ec7f68b71801a2e41886",
+    "coverage": {
+      "engine_library_files_per_converter": 366,
+      "interpretation": "Complete captured library supersets with exact Git-byte binding; this does not assert every library was compiled or every repository test was run.",
+      "legacy_library_files_per_converter": 66,
+      "qualification_input_union": 1015,
+      "workspace_library_files_per_test_or_static_gate": 874
+    },
+    "integrated_main": "2058a434b2bcc76e7fc7e8a449ff6ce31488eb25",
+    "preceding_validation_checkpoint": "650415ddb7d50e4568a5cd25d32b766e71d6ce59",
+    "required_runs": 7,
+    "source_binding": {
+      "file": "integration-source-binding.json",
+      "sha256": "2498b4875a2bd1d4758369984c3d216d5108d49705019614b13df3934384c190",
+      "size_bytes": 1930196
+    },
+    "source_exceptions": [],
+    "tree": "5fadc8755a09f06cd1ba3c47a147e05c333258e0"
+  },
+  "recorded_at_utc": "2026-11-21T19:44:08.526757+00:00",
+  "runtime": {
+    "dart": "3.13.7",
+    "flutter": "3.47.8",
+    "locked_hosted_archives_verified": 204,
+    "receipt_source": {
+      "archive": "execution.tar.gz",
+      "member": "runtime/runtime.json",
+      "sha256": "28732fa1c983cc5ce0378263de0a1a389841b69d8fb544ca41b92383f946b83a"
+    },
+    "tracked_lockfile_sha256": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb"
+  },
+  "schema": "quds-zotero-combined-source-integration-milestone-v1",
+  "scope": "Completed bb2 milestone integrating main2058. This is an immutable qualification record for the explicit source tree; later main advances require a separate delta assessment or qualification and are not covered by inference.",
+  "static_checks": {
+    "checks": [
+      {
+        "elapsed_seconds": 0.25528702399969916,
+        "exit_code": 0,
+        "name": "format"
+      },
+      {
+        "elapsed_seconds": 6.865921216000061,
+        "exit_code": 0,
+        "name": "analysis"
+      },
+      {
+        "elapsed_seconds": 0.013325563999387668,
+        "exit_code": 0,
+        "name": "diff-check"
+      },
+      {
+        "elapsed_seconds": 0.01911401500001375,
+        "exit_code": 0,
+        "name": "worktree-check"
+      }
+    ],
+    "inputs_unchanged": true,
+    "passed": true,
+    "receipt": {
+      "archive": "integration-execution.tar.gz",
+      "member": "qualification/static/receipt.json",
+      "sha256": "e9dc3053cddc1ead4f090c0f61032059acdcfd0eee63d2b419e3a4c133d655e5",
+      "size_bytes": 4280
+    },
+    "source_checkpoint_after_run": "bb2dfd5272ff8de27ed2ec7f68b71801a2e41886",
+    "source_checkpoint_before_run": "bb2dfd5272ff8de27ed2ec7f68b71801a2e41886",
+    "source_inputs": 907,
+    "target_file_count": 6,
+    "targets": [
+      "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+      "packages/quds_office_engine/lib/src/word/serial/odt_reader_styles.dart",
+      "packages/quds_office_engine/test/odt_libreoffice_note_offsets_test.dart",
+      "packages/quds_office_engine/test/odt_note_configuration_styles_test.dart",
+      "packages/quds_office_engine/test/odt_reader_styles_test.dart",
+      "packages/quds_office_engine/tool/zotero/odt_roundtrip_acceptance.dart"
+    ]
+  },
+  "status": "passed_for_qualified_checkpoint"
+}

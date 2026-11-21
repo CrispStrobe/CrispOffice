@@ -1,0 +1,28 @@
+{
+  "tested_comparison_commit": "5b4a4c766369b75ce0bac3bfd174b62c10252f6c",
+  "publication_commit": "a9839a97ba5645fcaf36e34729e011074d6a868b",
+  "publication_tree": "408361e8e58523f76d87647d8c4f1928f689a60f",
+  "verification": "Exact Git subtree object equality, including all descendant paths, file modes and blob content",
+  "subtrees": [
+    {
+      "path": "packages/quds_mail_core",
+      "tested_tree": "407fa086fe7ae6a7d7bf5b33906a98f1de0e53c6",
+      "publication_tree": "407fa086fe7ae6a7d7bf5b33906a98f1de0e53c6",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_mail_store",
+      "tested_tree": "78b0a62a3d649858abd69b763ac1164412a6b8b6",
+      "publication_tree": "78b0a62a3d649858abd69b763ac1164412a6b8b6",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_editor/example",
+      "tested_tree": "06088b975eff41db66905f8f1e9f508deb472964",
+      "publication_tree": "06088b975eff41db66905f8f1e9f508deb472964",
+      "identical": true
+    }
+  ],
+  "mail_passed": 205,
+  "mail_repeated_tests_added_to_final_total": false
+}

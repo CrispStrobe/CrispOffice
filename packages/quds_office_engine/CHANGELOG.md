@@ -13,6 +13,15 @@ All notable changes to `quds_office_engine` are documented here.
   BAS example, versioned source corpus, native/layout and CLI/MCP tests. See the
   [position contract](../../docs/VBA_WORD_MACROS.md#baseline-position-without-resizing-text).
 
+- Preserve semantic uppercase text when importing native Zotero ODT files.
+  Resolve inherited uppercase and explicit normal-case overrides without
+  changing authored Unicode, citation caches, JSON or UTF-16 endpoints. Retain
+  mixed-script formatting and inline images through repeated ODT/DOCX saves.
+  Reject unsupported transforms and ambiguous uppercase/small-cap combinations.
+  Preserve authored picture-title distinctions in continuous header comparison
+  and character styles on inline annotation pictures. See the
+  [combined qualification](../../docs/validation/zotero-roundtrip-complete-20261121/README.md).
+
 - Reopen supported native Zotero bibliographies saved by LibreOffice, including
   inherited inert section styles and rich/empty entries. Validate unused
   sequence declarations and retain protection/layout refusals. Qualify the

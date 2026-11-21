@@ -1,0 +1,1114 @@
+{
+  "all_archive_members_verified": true,
+  "all_inputs_unchanged_during_packaging": true,
+  "archive_file": "integration-execution.tar.gz",
+  "archive_sha256": "33c754e181be83d85ba391330a01898747c96db3f03f3af91ef501385e38b3b1",
+  "archive_size_bytes": 992068,
+  "deterministic_rebuild_matched": true,
+  "entries": [
+    {
+      "path": "builder/build_zotero_integration_evidence.py",
+      "sha256": "3ab94a58f69c41ae0405170750e4ebc6f670a8854fcf5174e0c8de46ba65b0db",
+      "size_bytes": 14416,
+      "source": "build_zotero_integration_evidence.py"
+    },
+    {
+      "path": "builder/collection-policy.json",
+      "sha256": "a0e2e37ecc9e2e750c20747132c627d3a3a177518154d60ae871d7cb65963b41",
+      "size_bytes": 1449,
+      "source": "generated collection policy"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/acceptance-source.dart",
+      "sha256": "d68ab9bd7fedfa8cbfc6f6fae095e50f0b8b71fcc3747b221bf2a18d0394969c",
+      "size_bytes": 7848,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/acceptance-source.dart"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/compile.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/compile.stderr.log"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/compile.stdout.log",
+      "sha256": "3493877cafaa0dee3784ea7f712c9f0dd08929205f5c1cdcad3b1548fc51a9da",
+      "size_bytes": 246,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/compile.stdout.log"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/create.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/create.stderr.log"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/create.stdout.log",
+      "sha256": "c5024ae50e1c17d1741542a4859d7a766c6d066a58a6846fb9e88703a511f890",
+      "size_bytes": 74,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/create.stdout.log"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/dart-version.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/dart-version.stderr.log"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/dart-version.stdout.log",
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4",
+      "size_bytes": 82,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/dart-version.stdout.log"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/libreoffice-first-save.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/libreoffice-first-save.stderr.log"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/libreoffice-first-save.stdout.log",
+      "sha256": "ca898d94df4dd458dd70ac79cbda7c3068b9f7130193cfca53aaa766fb3fea6e",
+      "size_bytes": 578,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/libreoffice-first-save.stdout.log"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/libreoffice-second-save.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/libreoffice-second-save.stderr.log"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/libreoffice-second-save.stdout.log",
+      "sha256": "90edf35faef619d834a8f4d058167febf76b1cfbf47d37cfa011aad61b3a571b",
+      "size_bytes": 598,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/libreoffice-second-save.stdout.log"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/libreoffice-version.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/libreoffice-version.stderr.log"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/libreoffice-version.stdout.log",
+      "sha256": "6d49d29516f9fb3b3f02bf33238f0beae9980c1743128ce831deddcfb69bce89",
+      "size_bytes": 73,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/libreoffice-version.stdout.log"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/original/jpeg-citations.expected.json",
+      "sha256": "4cfb92b797844739fe391c70115314f36e9c0c20175638e942c878fa14595cd8",
+      "size_bytes": 2918,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/original/jpeg-citations.expected.json"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/original/jpeg-citations.odt",
+      "sha256": "e6fd93d77ef4b484e353ff344cf8dfc26208e3397c743a089b834c3e4d780765",
+      "size_bytes": 5117,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/original/jpeg-citations.odt"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/original/png-citations.expected.json",
+      "sha256": "8a15a675e81a89d05ea941dedd5ca61b699fe8fef4d50e1a41c17f62581390f2",
+      "size_bytes": 2918,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/original/png-citations.expected.json"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/original/png-citations.odt",
+      "sha256": "832cd67084b632a44a36c6af6845161ebe67ab23f5e6bdd01ada4dc5a2dec0ab",
+      "size_bytes": 4312,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/original/png-citations.odt"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/receipt.json",
+      "sha256": "65d14de49b5e2e4abed3430117d8eee36b3314c64b15c33fbe9a32a4e5491aa6",
+      "size_bytes": 22705,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/receipt.json"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-first/jpeg-citations-cycle-0.docx",
+      "sha256": "f683f63bd5a8b954b0676d11d28ff8965e5836c5237cf17258b7fffd34100094",
+      "size_bytes": 8326,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-first/jpeg-citations-cycle-0.docx"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-first/jpeg-citations-cycle-0.json",
+      "sha256": "617d05993e5ffa36184c68fa44757d13f50f0da15f5adfdeec2a5c010b889abf",
+      "size_bytes": 2922,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-first/jpeg-citations-cycle-0.json"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-first/jpeg-citations-cycle-0.odt",
+      "sha256": "bd4be05e2e71801db5512b8c619395c5b73972133baa3365e7ad9eecd70c4112",
+      "size_bytes": 5249,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-first/jpeg-citations-cycle-0.odt"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-first/jpeg-citations-cycle-1.docx",
+      "sha256": "464754a451030111f7dab49b67ca9e33f1ba8c90383d538eff529b4b597b2d91",
+      "size_bytes": 8248,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-first/jpeg-citations-cycle-1.docx"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-first/jpeg-citations-cycle-1.json",
+      "sha256": "196569e2066e0346fd784d70a77f34f467cad06af26ffff9cff1c97629b74acb",
+      "size_bytes": 2920,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-first/jpeg-citations-cycle-1.json"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-first/jpeg-citations-cycle-1.odt",
+      "sha256": "8212da6689a8ed0ed0e06ab3576dce103a8b2b5d0ebff3e9885b185bde5580bb",
+      "size_bytes": 5257,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-first/jpeg-citations-cycle-1.odt"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-first/jpeg-citations-cycle-2.docx",
+      "sha256": "5d2d64fc140814d96f823e2358ebc93d9cd321b8c65c0da75358915e4e2b8482",
+      "size_bytes": 8255,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-first/jpeg-citations-cycle-2.docx"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-first/jpeg-citations-cycle-2.json",
+      "sha256": "196569e2066e0346fd784d70a77f34f467cad06af26ffff9cff1c97629b74acb",
+      "size_bytes": 2920,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-first/jpeg-citations-cycle-2.json"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-first/jpeg-citations-cycle-2.odt",
+      "sha256": "2dc45bbd292efc0abb8ccdb5b0348626a4b3e55cd0a846b2dffd3d1cd931fae6",
+      "size_bytes": 5256,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-first/jpeg-citations-cycle-2.odt"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-first/png-citations-cycle-0.docx",
+      "sha256": "0c9a7f0483406711b8d1b269f85db40f1b887191508832792eac6d0efa0fcedc",
+      "size_bytes": 7923,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-first/png-citations-cycle-0.docx"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-first/png-citations-cycle-0.json",
+      "sha256": "e97eecbef4a0f9371fdcfe7d2d54c1bfc8b78f221182f268116510d0de61b1e1",
+      "size_bytes": 2922,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-first/png-citations-cycle-0.json"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-first/png-citations-cycle-0.odt",
+      "sha256": "d37f31a5490edf781a4d81878c26fed4d0a9e2b330aace14b3f1b2829b2206a1",
+      "size_bytes": 4445,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-first/png-citations-cycle-0.odt"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-first/png-citations-cycle-1.docx",
+      "sha256": "d7094216267b9a8e9adda44fd98edf6e9cbb3af6cea3b1020ee75bae1326deb3",
+      "size_bytes": 7845,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-first/png-citations-cycle-1.docx"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-first/png-citations-cycle-1.json",
+      "sha256": "864aace6565340442a04691932d7143267265c905bf45015db0b24096cf70d42",
+      "size_bytes": 2920,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-first/png-citations-cycle-1.json"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-first/png-citations-cycle-1.odt",
+      "sha256": "a62acbed374c5d77230f35ecb50b8dfdbca76c7b6d32b30841bbe9686e5cd3d9",
+      "size_bytes": 4453,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-first/png-citations-cycle-1.odt"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-first/png-citations-cycle-2.docx",
+      "sha256": "8a3cad488bf291856a17ea78492f073d16c6bbcfb666200886221791388030eb",
+      "size_bytes": 7853,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-first/png-citations-cycle-2.docx"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-first/png-citations-cycle-2.json",
+      "sha256": "864aace6565340442a04691932d7143267265c905bf45015db0b24096cf70d42",
+      "size_bytes": 2920,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-first/png-citations-cycle-2.json"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-first/png-citations-cycle-2.odt",
+      "sha256": "f843c5cb495823d62683c2faaf19ac148ca6832df6b5d13d56469cbbcb7b4b7b",
+      "size_bytes": 4453,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-first/png-citations-cycle-2.odt"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-second/jpeg-citations-cycle-0.docx",
+      "sha256": "48b06916844ddbf8c6aa1076b354b42063e1c6cfcdb570e62769c6a0c699b53b",
+      "size_bytes": 8397,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-second/jpeg-citations-cycle-0.docx"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-second/jpeg-citations-cycle-0.json",
+      "sha256": "617d05993e5ffa36184c68fa44757d13f50f0da15f5adfdeec2a5c010b889abf",
+      "size_bytes": 2922,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-second/jpeg-citations-cycle-0.json"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-second/jpeg-citations-cycle-0.odt",
+      "sha256": "418f17706c3d907d9c6b1cdac2c52b77b86281921d84ccc5312804be251ba313",
+      "size_bytes": 5259,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-second/jpeg-citations-cycle-0.odt"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-second/jpeg-citations-cycle-1.docx",
+      "sha256": "c9921899bbe327ec8d275117a7bfefec8033a0b85bdf63c9693e25a090561837",
+      "size_bytes": 8260,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-second/jpeg-citations-cycle-1.docx"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-second/jpeg-citations-cycle-1.json",
+      "sha256": "196569e2066e0346fd784d70a77f34f467cad06af26ffff9cff1c97629b74acb",
+      "size_bytes": 2920,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-second/jpeg-citations-cycle-1.json"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-second/jpeg-citations-cycle-1.odt",
+      "sha256": "ce2ececde14b4fd70b37d84547ed4d80979730ab433ee8f612ef7a5db77e718a",
+      "size_bytes": 5259,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-second/jpeg-citations-cycle-1.odt"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-second/jpeg-citations-cycle-2.docx",
+      "sha256": "26ef32a9a7115d6f30bcb73ea96af91d4980214f54ef91bd36d60bee83035c05",
+      "size_bytes": 8260,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-second/jpeg-citations-cycle-2.docx"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-second/jpeg-citations-cycle-2.json",
+      "sha256": "196569e2066e0346fd784d70a77f34f467cad06af26ffff9cff1c97629b74acb",
+      "size_bytes": 2920,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-second/jpeg-citations-cycle-2.json"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-second/jpeg-citations-cycle-2.odt",
+      "sha256": "ba03bc8a36bde38accd05e959432f6efa473ed8248f4c3eb52eb7d513db13f16",
+      "size_bytes": 5258,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-second/jpeg-citations-cycle-2.odt"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-second/png-citations-cycle-0.docx",
+      "sha256": "47f3ea0ac7f7336def753c47d819d7673b90057f3fbd7f671eae2b5ee4c2aa2f",
+      "size_bytes": 7995,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-second/png-citations-cycle-0.docx"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-second/png-citations-cycle-0.json",
+      "sha256": "e97eecbef4a0f9371fdcfe7d2d54c1bfc8b78f221182f268116510d0de61b1e1",
+      "size_bytes": 2922,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-second/png-citations-cycle-0.json"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-second/png-citations-cycle-0.odt",
+      "sha256": "61ffb586d490cc37b094d202e2718afa4a9619c243da72c870bc61654ac005d8",
+      "size_bytes": 4455,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-second/png-citations-cycle-0.odt"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-second/png-citations-cycle-1.docx",
+      "sha256": "b7590ba9943b78f79c99c1ec8ccad4741f81d0b13d6e4c7b5e6fdcc9a3ab225b",
+      "size_bytes": 7857,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-second/png-citations-cycle-1.docx"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-second/png-citations-cycle-1.json",
+      "sha256": "864aace6565340442a04691932d7143267265c905bf45015db0b24096cf70d42",
+      "size_bytes": 2920,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-second/png-citations-cycle-1.json"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-second/png-citations-cycle-1.odt",
+      "sha256": "598dbee34a1a4c30581f2d9c7c1654ebfa072993b23562f82524aee65541bd1f",
+      "size_bytes": 4455,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-second/png-citations-cycle-1.odt"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-second/png-citations-cycle-2.docx",
+      "sha256": "97f7ee5fcccdea57d4451e2f402a2361a2326712b1bd78f3aed60602c79552d7",
+      "size_bytes": 7857,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-second/png-citations-cycle-2.docx"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-second/png-citations-cycle-2.json",
+      "sha256": "864aace6565340442a04691932d7143267265c905bf45015db0b24096cf70d42",
+      "size_bytes": 2920,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-second/png-citations-cycle-2.json"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/reexported-second/png-citations-cycle-2.odt",
+      "sha256": "276fa72c40b344ebb31a771e3977dada4a5ba89ce544f84ee915d2640f0f9466",
+      "size_bytes": 4455,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/reexported-second/png-citations-cycle-2.odt"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/runner.py",
+      "sha256": "29d3feb4267d0568408e5a74a9590f2c0c581f16d992bce10f84f75da044ef0d",
+      "size_bytes": 6994,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/runner.py"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/saved-first/jpeg-citations.odt",
+      "sha256": "35cbfaf8ec6fe3b55f039e6a7a7bc23c9369d83c4465d3228d458eee2ba307f4",
+      "size_bytes": 14471,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/saved-first/jpeg-citations.odt"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/saved-first/png-citations.odt",
+      "sha256": "d3bef8d6b191b82965131850516c8ec924bfa0225fc0d72b014b8efc9087b4dc",
+      "size_bytes": 13058,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/saved-first/png-citations.odt"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/saved-second/jpeg-citations.odt",
+      "sha256": "4c05b1d6f7cf539b3ba6b01da268b5331e138823a3e6733f8e9690529fb5f62b",
+      "size_bytes": 14570,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/saved-second/jpeg-citations.odt"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/saved-second/png-citations.odt",
+      "sha256": "a2d782b28d77c439ab0dde59b80c626dc99a983ee6b6aed31b513ff1102cb613",
+      "size_bytes": 13165,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/saved-second/png-citations.odt"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/second-save-input/jpeg-citations.odt",
+      "sha256": "2dc45bbd292efc0abb8ccdb5b0348626a4b3e55cd0a846b2dffd3d1cd931fae6",
+      "size_bytes": 5256,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/second-save-input/jpeg-citations.odt"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/second-save-input/png-citations.odt",
+      "sha256": "f843c5cb495823d62683c2faaf19ac148ca6832df6b5d13d56469cbbcb7b4b7b",
+      "size_bytes": 4453,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/second-save-input/png-citations.odt"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/source-after.json",
+      "sha256": "808cec49233b042ede8db2aaeddae8808ac78772621ae1f530df69971d6c3c79",
+      "size_bytes": 61147,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/source-after.json"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/source-before.json",
+      "sha256": "808cec49233b042ede8db2aaeddae8808ac78772621ae1f530df69971d6c3c79",
+      "size_bytes": 61147,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/source-before.json"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/verify-first-and-three-native-cycles.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/verify-first-and-three-native-cycles.stderr.log"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/verify-first-and-three-native-cycles.stdout.log",
+      "sha256": "ce1e2382df2f24f6d4c26172c113f70d1d7de158e14eb6ce99d374004a45f5c2",
+      "size_bytes": 331,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/verify-first-and-three-native-cycles.stdout.log"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/verify-second-and-three-native-cycles.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/verify-second-and-three-native-cycles.stderr.log"
+    },
+    {
+      "path": "converters/images-integrated-bb2dfd52/verify-second-and-three-native-cycles.stdout.log",
+      "sha256": "a7c7bed2321641f8b08a2d154ed23a8813f58781056ad94de1f28718513e59fb",
+      "size_bytes": 331,
+      "source": "zotero-roundtrip-development/images-integrated-bb2dfd52/verify-second-and-three-native-cycles.stdout.log"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/acceptance-source.dart",
+      "sha256": "85e5f2ad612c88357218238cb427a3b16344f0c41cdf6a36289ea0f636abc9e2",
+      "size_bytes": 22700,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/acceptance-source.dart"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/compile.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/compile.stderr.log"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/compile.stdout.log",
+      "sha256": "a8a0f5a641a619501cc57329042e8dfcd9e3ac46cb49911561cca848e38e89cd",
+      "size_bytes": 243,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/compile.stdout.log"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/create.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/create.stderr.log"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/create.stdout.log",
+      "sha256": "2169fb940595b48e337c596944bc4929b172646330444bb694832fb9d00d5da8",
+      "size_bytes": 117,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/create.stdout.log"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/dart-version.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/dart-version.stderr.log"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/dart-version.stdout.log",
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4",
+      "size_bytes": 82,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/dart-version.stdout.log"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/docx-and-odt-reexport.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/docx-and-odt-reexport.stderr.log"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/docx-and-odt-reexport.stdout.log",
+      "sha256": "6748195c1082ddbce9860801fa1bcd899030e6a871b06ae224e103d50eb02c78",
+      "size_bytes": 333,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/docx-and-odt-reexport.stdout.log"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/libreoffice-first-save.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/libreoffice-first-save.stderr.log"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/libreoffice-first-save.stdout.log",
+      "sha256": "1e65e2afc68a2af21839490eed8a42adc2d7dae8e0e547f293e1c7b776371633",
+      "size_bytes": 822,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/libreoffice-first-save.stdout.log"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/libreoffice-second-save.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/libreoffice-second-save.stderr.log"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/libreoffice-second-save.stdout.log",
+      "sha256": "d09378b10da5057a35e915c1d912333f08bbdf6e35318ab4e4967f32719b5a4d",
+      "size_bytes": 831,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/libreoffice-second-save.stdout.log"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/libreoffice-version.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/libreoffice-version.stderr.log"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/libreoffice-version.stdout.log",
+      "sha256": "6d49d29516f9fb3b3f02bf33238f0beae9980c1743128ce831deddcfb69bce89",
+      "size_bytes": 73,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/libreoffice-version.stdout.log"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/original/body-bibliography.expected.json",
+      "sha256": "3bf95053406f5846f80d4bb22f519785a42a6d8fa4367e9978ddebc9cefdaa41",
+      "size_bytes": 17959,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/original/body-bibliography.expected.json"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/original/body-bibliography.odt",
+      "sha256": "f6b2585cbfaeebfcdff75040c7efd8ad6140f6e466cc13bef0b085e3b1596357",
+      "size_bytes": 4097,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/original/body-bibliography.odt"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/original/body-bibliography.source.docx",
+      "sha256": "1a8f996a24d9fc171ff1c975444715bc527abd6823694027298271681963048f",
+      "size_bytes": 6666,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/original/body-bibliography.source.docx"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/original/endnote-only.expected.json",
+      "sha256": "cc7bdf7d0acdf4d9c342d84126136d99ef1b557207d3a6ffed643f199875b081",
+      "size_bytes": 16907,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/original/endnote-only.expected.json"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/original/endnote-only.odt",
+      "sha256": "b89714d6465e60cf688285b29d4ae7c468bb30131f0729e3fe086ae654c2257a",
+      "size_bytes": 4163,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/original/endnote-only.odt"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/original/endnote-only.source.docx",
+      "sha256": "2cfefe332e3404d7853997f3448d4d9528c8c1be7e9beed52749f45430496042",
+      "size_bytes": 6760,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/original/endnote-only.source.docx"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/original/table-only.expected.json",
+      "sha256": "6c643ab2581fa4b4ba2d86c8ae16eaf9ac246e79724f15026d569d9e738c32a0",
+      "size_bytes": 51057,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/original/table-only.expected.json"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/original/table-only.odt",
+      "sha256": "947773020da4f9c564553ee04602f219a47a7fb66519364f5e93897b8d88e08f",
+      "size_bytes": 4666,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/original/table-only.odt"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/original/table-only.source.docx",
+      "sha256": "833160d5179aecabcf85283f09f80179204838a5cf68687587551ac71450e6f3",
+      "size_bytes": 7291,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/original/table-only.source.docx"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/receipt.json",
+      "sha256": "b1f7121db3befb459bb7aa4656166171a2c83e6af89ea3f0f29185fbff25341d",
+      "size_bytes": 17052,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/receipt.json"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/reexported/body-bibliography.docx",
+      "sha256": "86f750b0029a5f1c2ebddf8eead6231953f4a41243d4f11b046249bf86ece812",
+      "size_bytes": 7591,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/reexported/body-bibliography.docx"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/reexported/body-bibliography.expected.json",
+      "sha256": "3bf95053406f5846f80d4bb22f519785a42a6d8fa4367e9978ddebc9cefdaa41",
+      "size_bytes": 17959,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/reexported/body-bibliography.expected.json"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/reexported/body-bibliography.odt",
+      "sha256": "da71b6a7c75f28880bef3add078aeaf14d565f2e6fd4c570d8a1045d456acf37",
+      "size_bytes": 4136,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/reexported/body-bibliography.odt"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/reexported/endnote-only.docx",
+      "sha256": "4ef3cfb0191232d27dee8c5d8915084d92371427c1aa89300e5a6ac2120e5981",
+      "size_bytes": 8037,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/reexported/endnote-only.docx"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/reexported/endnote-only.expected.json",
+      "sha256": "cc7bdf7d0acdf4d9c342d84126136d99ef1b557207d3a6ffed643f199875b081",
+      "size_bytes": 16907,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/reexported/endnote-only.expected.json"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/reexported/endnote-only.odt",
+      "sha256": "2a7018e6efcc8a3d4de917b46955bb6c35b020e8dbf743d668b89d4618959ad2",
+      "size_bytes": 4204,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/reexported/endnote-only.odt"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/reexported/table-only.docx",
+      "sha256": "8cadb90911ee21376ef7b8c7bde9a57b21ae15c168de373311dad313f5d21b6b",
+      "size_bytes": 10772,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/reexported/table-only.docx"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/reexported/table-only.expected.json",
+      "sha256": "6c643ab2581fa4b4ba2d86c8ae16eaf9ac246e79724f15026d569d9e738c32a0",
+      "size_bytes": 51057,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/reexported/table-only.expected.json"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/reexported/table-only.odt",
+      "sha256": "82f3063b0d494e8d4c1bd7c030aaf59cd12d8ed2b920d621e123863cee9605ca",
+      "size_bytes": 4708,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/reexported/table-only.odt"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/runner.py",
+      "sha256": "1dd9c4154e589adb1fc5cd30a45cdfdd69020962672a8432afc2a436c26d12a2",
+      "size_bytes": 5437,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/runner.py"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/saved-first/body-bibliography.odt",
+      "sha256": "2da06476de713b413774565344bdf55baa57f915a2f01a696188eaa9d725ecc5",
+      "size_bytes": 11015,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/saved-first/body-bibliography.odt"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/saved-first/endnote-only.odt",
+      "sha256": "2483896185c7b85404b22faa3f1081177c8785d6ca88bc1e2c15cce7cd897d06",
+      "size_bytes": 9882,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/saved-first/endnote-only.odt"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/saved-first/table-only.odt",
+      "sha256": "5f334a3ca0174d740f2b8b17faee6f8aaa5deed239f4a5287b069b0817b95155",
+      "size_bytes": 13727,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/saved-first/table-only.odt"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/saved-second/body-bibliography.odt",
+      "sha256": "db32b544d646939b741731e5b2d0f8ee272ca708df51fea7f46172a07ac12ddb",
+      "size_bytes": 11046,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/saved-second/body-bibliography.odt"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/saved-second/endnote-only.odt",
+      "sha256": "241c74367d4b59278f49a7bc96ed0f6f3b483b347c6ac30b6451857013ce5f91",
+      "size_bytes": 9867,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/saved-second/endnote-only.odt"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/saved-second/table-only.odt",
+      "sha256": "28e9d791b98d273484c2b3e52e22bf2e06f5a741f073c8e456c3349bbe97b4c6",
+      "size_bytes": 13758,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/saved-second/table-only.odt"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/source-after.json",
+      "sha256": "f6e711a463af892ff7d1885c9bd93157bd7b544bab3493f25273bff674c9dc63",
+      "size_bytes": 61151,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/source-after.json"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/source-before.json",
+      "sha256": "f6e711a463af892ff7d1885c9bd93157bd7b544bab3493f25273bff674c9dc63",
+      "size_bytes": 61151,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/source-before.json"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/verify-first.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/verify-first.stderr.log"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/verify-first.stdout.log",
+      "sha256": "6ad0d787b467eda5244578e3d788f8e07ac4a4dc866495fe35cbec4482d69d9b",
+      "size_bytes": 336,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/verify-first.stdout.log"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/verify-second.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/verify-second.stderr.log"
+    },
+    {
+      "path": "converters/integrated-bb2dfd52/verify-second.stdout.log",
+      "sha256": "6ad0d787b467eda5244578e3d788f8e07ac4a4dc866495fe35cbec4482d69d9b",
+      "size_bytes": 336,
+      "source": "zotero-roundtrip-development/integrated-bb2dfd52/verify-second.stdout.log"
+    },
+    {
+      "path": "converters/mixed-integrated-bb2dfd52/acceptance-source.dart",
+      "sha256": "63a512a4eac208a32acdd220919995e879b01afe22bca31b30046ac3de369146",
+      "size_bytes": 7297,
+      "source": "zotero-roundtrip-development/mixed-integrated-bb2dfd52/acceptance-source.dart"
+    },
+    {
+      "path": "converters/mixed-integrated-bb2dfd52/compile.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-roundtrip-development/mixed-integrated-bb2dfd52/compile.stderr.log"
+    },
+    {
+      "path": "converters/mixed-integrated-bb2dfd52/compile.stdout.log",
+      "sha256": "5f320ce052af845f139a4a4814bce73427ae97cea9f5266481e39baf173f196a",
+      "size_bytes": 246,
+      "source": "zotero-roundtrip-development/mixed-integrated-bb2dfd52/compile.stdout.log"
+    },
+    {
+      "path": "converters/mixed-integrated-bb2dfd52/create.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-roundtrip-development/mixed-integrated-bb2dfd52/create.stderr.log"
+    },
+    {
+      "path": "converters/mixed-integrated-bb2dfd52/create.stdout.log",
+      "sha256": "77e596795efb46d41565f7feb28eb921bf39c38a03fb09350545678f4b66ca99",
+      "size_bytes": 48,
+      "source": "zotero-roundtrip-development/mixed-integrated-bb2dfd52/create.stdout.log"
+    },
+    {
+      "path": "converters/mixed-integrated-bb2dfd52/dart-version.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-roundtrip-development/mixed-integrated-bb2dfd52/dart-version.stderr.log"
+    },
+    {
+      "path": "converters/mixed-integrated-bb2dfd52/dart-version.stdout.log",
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4",
+      "size_bytes": 82,
+      "source": "zotero-roundtrip-development/mixed-integrated-bb2dfd52/dart-version.stdout.log"
+    },
+    {
+      "path": "converters/mixed-integrated-bb2dfd52/libreoffice-save.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-roundtrip-development/mixed-integrated-bb2dfd52/libreoffice-save.stderr.log"
+    },
+    {
+      "path": "converters/mixed-integrated-bb2dfd52/libreoffice-save.stdout.log",
+      "sha256": "aaa44cf5ad1ea9c01879b2cff5fa2c81c0f90c875479868a5f1ad71e781fe8f6",
+      "size_bytes": 564,
+      "source": "zotero-roundtrip-development/mixed-integrated-bb2dfd52/libreoffice-save.stdout.log"
+    },
+    {
+      "path": "converters/mixed-integrated-bb2dfd52/libreoffice-version.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-roundtrip-development/mixed-integrated-bb2dfd52/libreoffice-version.stderr.log"
+    },
+    {
+      "path": "converters/mixed-integrated-bb2dfd52/libreoffice-version.stdout.log",
+      "sha256": "6d49d29516f9fb3b3f02bf33238f0beae9980c1743128ce831deddcfb69bce89",
+      "size_bytes": 73,
+      "source": "zotero-roundtrip-development/mixed-integrated-bb2dfd52/libreoffice-version.stdout.log"
+    },
+    {
+      "path": "converters/mixed-integrated-bb2dfd52/original/body-bibliography.expected.json",
+      "sha256": "93ae3ee41b2be8a89a727ca1b07461f138f0a38c58df1d8aabc5e2a234a81386",
+      "size_bytes": 7429,
+      "source": "zotero-roundtrip-development/mixed-integrated-bb2dfd52/original/body-bibliography.expected.json"
+    },
+    {
+      "path": "converters/mixed-integrated-bb2dfd52/original/body-bibliography.odt",
+      "sha256": "958e67658b208db8e4dfa986abc45a14bb1eed9fa8564252554a581b203b5cf6",
+      "size_bytes": 3939,
+      "source": "zotero-roundtrip-development/mixed-integrated-bb2dfd52/original/body-bibliography.odt"
+    },
+    {
+      "path": "converters/mixed-integrated-bb2dfd52/original/table-notes.expected.json",
+      "sha256": "6f4abdd85b3ebdec3fff30c8e7f721916066547da069a7e055c67ade3b0712ca",
+      "size_bytes": 10064,
+      "source": "zotero-roundtrip-development/mixed-integrated-bb2dfd52/original/table-notes.expected.json"
+    },
+    {
+      "path": "converters/mixed-integrated-bb2dfd52/original/table-notes.odt",
+      "sha256": "396492e7d3ce10753e0d1fcad00d9d4352c4747e67fa6f7c37efc64b6a01f791",
+      "size_bytes": 4310,
+      "source": "zotero-roundtrip-development/mixed-integrated-bb2dfd52/original/table-notes.odt"
+    },
+    {
+      "path": "converters/mixed-integrated-bb2dfd52/receipt.json",
+      "sha256": "392a90b90aa855f5fa0c659671aabafd9a6bfc5f9566718dd1e597f98f820aa7",
+      "size_bytes": 10463,
+      "source": "zotero-roundtrip-development/mixed-integrated-bb2dfd52/receipt.json"
+    },
+    {
+      "path": "converters/mixed-integrated-bb2dfd52/runner.py",
+      "sha256": "1aa15dc1a8524d7cb181c9bc3bc26a49b2a3b095fde36d8a8421460d69c5a95f",
+      "size_bytes": 6451,
+      "source": "zotero-roundtrip-development/mixed-integrated-bb2dfd52/runner.py"
+    },
+    {
+      "path": "converters/mixed-integrated-bb2dfd52/saved/body-bibliography.odt",
+      "sha256": "71e72596b4c8970c25609079d81ece2aefcac04b09e71967bdc4c003f8eba0a4",
+      "size_bytes": 10505,
+      "source": "zotero-roundtrip-development/mixed-integrated-bb2dfd52/saved/body-bibliography.odt"
+    },
+    {
+      "path": "converters/mixed-integrated-bb2dfd52/saved/table-notes.odt",
+      "sha256": "61122f510242400cf450055608291ca6895457d772e315cd555f972dcc083b85",
+      "size_bytes": 11087,
+      "source": "zotero-roundtrip-development/mixed-integrated-bb2dfd52/saved/table-notes.odt"
+    },
+    {
+      "path": "converters/mixed-integrated-bb2dfd52/source-after.json",
+      "sha256": "bb7e45e617216839e0250ae495807a247c0b19340fbea66a4be894fb4b364dab",
+      "size_bytes": 61148,
+      "source": "zotero-roundtrip-development/mixed-integrated-bb2dfd52/source-after.json"
+    },
+    {
+      "path": "converters/mixed-integrated-bb2dfd52/source-before.json",
+      "sha256": "bb7e45e617216839e0250ae495807a247c0b19340fbea66a4be894fb4b364dab",
+      "size_bytes": 61148,
+      "source": "zotero-roundtrip-development/mixed-integrated-bb2dfd52/source-before.json"
+    },
+    {
+      "path": "converters/mixed-integrated-bb2dfd52/verify-inventories-and-labels.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-roundtrip-development/mixed-integrated-bb2dfd52/verify-inventories-and-labels.stderr.log"
+    },
+    {
+      "path": "converters/mixed-integrated-bb2dfd52/verify-inventories-and-labels.stdout.log",
+      "sha256": "c8527897e36d30046254cb22dbda320fda8924e379600fae9bd940624d6d5005",
+      "size_bytes": 82,
+      "source": "zotero-roundtrip-development/mixed-integrated-bb2dfd52/verify-inventories-and-labels.stdout.log"
+    },
+    {
+      "path": "independent-review/build_zotero_source_binding_v2.py",
+      "sha256": "3625246c5f794a1646dc0551da59dac465af56a53b9fb4a6e9d4414bd8b324da",
+      "size_bytes": 18486,
+      "source": "build_zotero_source_binding_v2.py"
+    },
+    {
+      "path": "independent-review/zotero-source-binding-bb2dfd52-plan.json",
+      "sha256": "6f792e602576d841ab06c4805367349bfe758eb0f7f328241f32378841c9e049",
+      "size_bytes": 4017,
+      "source": "zotero-source-binding-bb2dfd52-plan.json"
+    },
+    {
+      "path": "intake/integration-intake.json",
+      "sha256": "42be1229b87a371124ef2e6b53341c9a95955bcdf19e4ba9084a5929fc2afbbf",
+      "size_bytes": 245973,
+      "source": "quds_office_suite/docs/validation/zotero-odt-roundtrip-20261121/integration-intake.json"
+    },
+    {
+      "path": "intake/integration-intake.md",
+      "sha256": "a643c572d699b2e7b98d4c99c865ab1a4af71bc6ae11524c4641b3a0e7fff594",
+      "size_bytes": 2260,
+      "source": "quds_office_suite/docs/validation/zotero-odt-roundtrip-20261121/integration-intake.md"
+    },
+    {
+      "path": "intake/integration-refs.txt",
+      "sha256": "97c2874157d33854daba43fed44fca4cfcafacba0674e96fb3c8b54d7d4e39ca",
+      "size_bytes": 25708,
+      "source": "quds_office_suite/docs/validation/zotero-odt-roundtrip-20261121/integration-refs.txt"
+    },
+    {
+      "path": "qualification/editor/cases.json",
+      "sha256": "5712eb5077f70e575528693b8ed1573a336086b8e2783f6359d1339b4e2397d0",
+      "size_bytes": 42830,
+      "source": "zotero-qualification-main2058/editor/cases.json"
+    },
+    {
+      "path": "qualification/editor/command.json",
+      "sha256": "31b8e0ef8558028f18464b13abfae5c75eaf389c825d26d243a8f99b6367c53a",
+      "size_bytes": 720,
+      "source": "zotero-qualification-main2058/editor/command.json"
+    },
+    {
+      "path": "qualification/editor/events.jsonl",
+      "sha256": "bfdadaacb1331cd83e0fa398e790fb74a65c73156e4cb797289ab22cb2618ff9",
+      "size_bytes": 78509,
+      "source": "zotero-qualification-main2058/editor/events.jsonl"
+    },
+    {
+      "path": "qualification/editor/inputs-after.json",
+      "sha256": "ae3be2b81e7e1f804ea38fa1a5fefcbace32640bd6ef2564530f71cd43a4a429",
+      "size_bytes": 126368,
+      "source": "zotero-qualification-main2058/editor/inputs-after.json"
+    },
+    {
+      "path": "qualification/editor/inputs-before.json",
+      "sha256": "ae3be2b81e7e1f804ea38fa1a5fefcbace32640bd6ef2564530f71cd43a4a429",
+      "size_bytes": 126368,
+      "source": "zotero-qualification-main2058/editor/inputs-before.json"
+    },
+    {
+      "path": "qualification/editor/receipt.json",
+      "sha256": "5122a58315f9a3b45c8424f6f7d889f8be7bcaaf4a6e44ea5eb254f76681bf64",
+      "size_bytes": 1476,
+      "source": "zotero-qualification-main2058/editor/receipt.json"
+    },
+    {
+      "path": "qualification/editor/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-qualification-main2058/editor/stderr.log"
+    },
+    {
+      "path": "qualification/engine/cases.json",
+      "sha256": "b9c0f80e89bad66e1a0b19dac2b7740be2e7969704f9c7580499e32643988763",
+      "size_bytes": 598311,
+      "source": "zotero-qualification-main2058/engine/cases.json"
+    },
+    {
+      "path": "qualification/engine/command.json",
+      "sha256": "d37a9e0105fe67fa82d471cda117bda00c4fb46a2615c9b5a4639b798dedb2e1",
+      "size_bytes": 4347,
+      "source": "zotero-qualification-main2058/engine/command.json"
+    },
+    {
+      "path": "qualification/engine/events.jsonl",
+      "sha256": "3e3ecdd7b3bf8c3853881d2808163035fdf3594568b368af798641ee3bab829f",
+      "size_bytes": 988467,
+      "source": "zotero-qualification-main2058/engine/events.jsonl"
+    },
+    {
+      "path": "qualification/engine/inputs-after.json",
+      "sha256": "326c27edf0ef6a126af0b87c6a093fb503718b153226a62b2161c36f2d4483a6",
+      "size_bytes": 136706,
+      "source": "zotero-qualification-main2058/engine/inputs-after.json"
+    },
+    {
+      "path": "qualification/engine/inputs-before.json",
+      "sha256": "326c27edf0ef6a126af0b87c6a093fb503718b153226a62b2161c36f2d4483a6",
+      "size_bytes": 136706,
+      "source": "zotero-qualification-main2058/engine/inputs-before.json"
+    },
+    {
+      "path": "qualification/engine/receipt.json",
+      "sha256": "f911415ffaf62ca824a1b7efc2fbfdb5489d8944e2f4e7fc012f570f85f94bfa",
+      "size_bytes": 5103,
+      "source": "zotero-qualification-main2058/engine/receipt.json"
+    },
+    {
+      "path": "qualification/engine/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-qualification-main2058/engine/stderr.log"
+    },
+    {
+      "path": "qualification/input-union.json",
+      "sha256": "e4ee88c8d2d5bf939fa0ad00f243d0a1df4465b0b43d8a6e25799ffd315a3b3a",
+      "size_bytes": 140848,
+      "source": "zotero-qualification-main2058/input-union.json"
+    },
+    {
+      "path": "qualification/library-input-coverage.json",
+      "sha256": "1bd96719479a953db4d7700bf6932ce43e5cadea97ae86e85702a13a34413f1a",
+      "size_bytes": 321,
+      "source": "zotero-qualification-main2058/library-input-coverage.json"
+    },
+    {
+      "path": "qualification/plan.json",
+      "sha256": "4af2954fb5ef508d8db836bdef73496ad81176508f87e6c7efe9a65932dcd06a",
+      "size_bytes": 12186,
+      "source": "zotero-qualification-main2058/plan.json"
+    },
+    {
+      "path": "qualification/qualification-summary.json",
+      "sha256": "2c9875c219649527dc425f23af473647969acc28b42979e8f8e07749914ac7eb",
+      "size_bytes": 1962,
+      "source": "zotero-qualification-main2058/qualification-summary.json"
+    },
+    {
+      "path": "qualification/run_zotero_qualification_main2058.py",
+      "sha256": "36fc314938b16654de0c052d9311e58de10dda6bef83f0eb554129de6aa66634",
+      "size_bytes": 8208,
+      "source": "zotero-qualification-main2058/run_zotero_qualification_main2058.py"
+    },
+    {
+      "path": "qualification/run_zotero_static_main2058.py",
+      "sha256": "9e581c1bfb7e21db54110e17335d21ab2e9e7838089fca53821b5afc584c6692",
+      "size_bytes": 3710,
+      "source": "zotero-qualification-main2058/run_zotero_static_main2058.py"
+    },
+    {
+      "path": "qualification/static/analysis.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-qualification-main2058/static/analysis.stderr"
+    },
+    {
+      "path": "qualification/static/analysis.stdout",
+      "sha256": "4f13eb0d09b86687b7611792bc9f8a001cbbd9ee4832629018eb9208bb03745e",
+      "size_bytes": 220,
+      "source": "zotero-qualification-main2058/static/analysis.stdout"
+    },
+    {
+      "path": "qualification/static/diff-check.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-qualification-main2058/static/diff-check.stderr"
+    },
+    {
+      "path": "qualification/static/diff-check.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-qualification-main2058/static/diff-check.stdout"
+    },
+    {
+      "path": "qualification/static/format.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-qualification-main2058/static/format.stderr"
+    },
+    {
+      "path": "qualification/static/format.stdout",
+      "sha256": "c9b06ebe6c9fb8d06b57a3f72f28aee1519bf94b011a33a7438eb2210782fab9",
+      "size_bytes": 47,
+      "source": "zotero-qualification-main2058/static/format.stdout"
+    },
+    {
+      "path": "qualification/static/inputs-after.json",
+      "sha256": "22e80ed07d947e08d9998990e62e372b725e40696d7e3b0fb5852504d8098873",
+      "size_bytes": 125380,
+      "source": "zotero-qualification-main2058/static/inputs-after.json"
+    },
+    {
+      "path": "qualification/static/inputs-before.json",
+      "sha256": "22e80ed07d947e08d9998990e62e372b725e40696d7e3b0fb5852504d8098873",
+      "size_bytes": 125380,
+      "source": "zotero-qualification-main2058/static/inputs-before.json"
+    },
+    {
+      "path": "qualification/static/receipt.json",
+      "sha256": "e9dc3053cddc1ead4f090c0f61032059acdcfd0eee63d2b419e3a4c133d655e5",
+      "size_bytes": 4280,
+      "source": "zotero-qualification-main2058/static/receipt.json"
+    },
+    {
+      "path": "qualification/static/worktree-check.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-qualification-main2058/static/worktree-check.stderr"
+    },
+    {
+      "path": "qualification/static/worktree-check.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-qualification-main2058/static/worktree-check.stdout"
+    },
+    {
+      "path": "qualification/studio/cases.json",
+      "sha256": "9ceac6c99c4b3e2e48f3aca865be671187ceafd6323ecc0b2be5d2602ec5958a",
+      "size_bytes": 51221,
+      "source": "zotero-qualification-main2058/studio/cases.json"
+    },
+    {
+      "path": "qualification/studio/command.json",
+      "sha256": "6f9105331054cc297fcb2e4f21c7bda7a18017df851b8dcd15717b4011b3ce08",
+      "size_bytes": 1017,
+      "source": "zotero-qualification-main2058/studio/command.json"
+    },
+    {
+      "path": "qualification/studio/events.jsonl",
+      "sha256": "029560c33e63d9df7d30bfd29177874673c59381c0f22dacae33fe638d761101",
+      "size_bytes": 107503,
+      "source": "zotero-qualification-main2058/studio/events.jsonl"
+    },
+    {
+      "path": "qualification/studio/inputs-after.json",
+      "sha256": "79b2e1d1b33abce555af3e1283f14bb120d75044819f77699d2d12b5b161a528",
+      "size_bytes": 127255,
+      "source": "zotero-qualification-main2058/studio/inputs-after.json"
+    },
+    {
+      "path": "qualification/studio/inputs-before.json",
+      "sha256": "79b2e1d1b33abce555af3e1283f14bb120d75044819f77699d2d12b5b161a528",
+      "size_bytes": 127255,
+      "source": "zotero-qualification-main2058/studio/inputs-before.json"
+    },
+    {
+      "path": "qualification/studio/receipt.json",
+      "sha256": "d48c40c6aa889ae3df64328d27710091c5d3cbbaaafaad495cdc9bff9b9e2a15",
+      "size_bytes": 1772,
+      "source": "zotero-qualification-main2058/studio/receipt.json"
+    },
+    {
+      "path": "qualification/studio/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-qualification-main2058/studio/stderr.log"
+    },
+    {
+      "path": "qualification/test-event-audit.json",
+      "sha256": "f46e661184e862dd7d374597d8501fa370c71fec6cf791fcd4f4e6b44f90b1bd",
+      "size_bytes": 16723,
+      "source": "zotero-qualification-main2058/test-event-audit.json"
+    }
+  ],
+  "entries_count": 183,
+  "historical_artifacts_unchanged": true,
+  "schema": 1,
+  "target_commit": "bb2dfd5272ff8de27ed2ec7f68b71801a2e41886",
+  "target_tree": "5fadc8755a09f06cd1ba3c47a147e05c333258e0",
+  "uncompressed_bytes": 4526110
+}
