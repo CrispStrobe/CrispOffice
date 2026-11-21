@@ -48,6 +48,10 @@ abstract final class WordZoteroDocumentData {
   static String fromTransfer(String data) =>
       _convert(data, 'Field', transfer: true);
 
+  /// Adapts preferences only after a native ODT reader has reconstructed every
+  /// ReferenceMark as a validated Word field. Ordinary callbacks stay strict.
+  static String fromOdt(String data) => _convert(data, 'Field', transfer: true);
+
   /// Requests a fresh native bibliography layout without changing the chosen
   /// style or any unrelated preference. Earlier simplified results must not
   /// permanently advertise that their paragraph layout was already applied.
