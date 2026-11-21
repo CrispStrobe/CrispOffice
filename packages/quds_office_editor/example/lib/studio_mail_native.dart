@@ -3195,10 +3195,41 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     );
   }
 
-  Widget _accountView(BuildContext context, {required bool compact}) =>
-      _client == null
-      ? _accountSetup(context)
-      : _inbox(context, compact: compact);
+  Widget _accountView(BuildContext context, {required bool compact}) {
+    if (_client == null &&
+        _accountCatalogStore != null &&
+        (_credentialPending ||
+            _hasSavedCredentials &&
+                (_autoConnectTicket != null || _connecting))) {
+      return _restoringAccount(context);
+    }
+    return _client == null
+        ? _accountSetup(context)
+        : _inbox(context, compact: compact);
+  }
+
+  Widget _restoringAccount(BuildContext context) => Center(
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        const CircularProgressIndicator(),
+        const SizedBox(height: 16),
+        Text(
+          _email.text.trim().isEmpty
+              ? 'Connecting to your saved account…'
+              : 'Connecting to ${_email.text.trim()}…',
+          key: const ValueKey('studio-mail-restoring-account'),
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: 8),
+        Text(
+          'Your Mail workspace is kept open while you work in other apps.',
+          style: Theme.of(context).textTheme.bodySmall,
+          textAlign: TextAlign.center,
+        ),
+      ],
+    ),
+  );
 
   Widget _accountSetup(BuildContext context) => Center(
     child: SingleChildScrollView(
