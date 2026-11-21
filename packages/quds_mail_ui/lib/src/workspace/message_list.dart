@@ -63,18 +63,18 @@ final class MailMessageListStrings {
     this.searchHelp = 'Search help',
     this.searchHelpTitle = 'Search loaded message headers',
     this.searchHelpText =
-        'Separate terms with spaces to require every match. Use uppercase '
-        'AND, OR and NOT, or a leading minus for NOT. Parentheses group terms; '
-        'NOT applies first, then AND, then OR. Use from:, to:, cc:, subject:, '
-        'is:read, is:unread, is:flagged or is:unflagged. '
-        'Use before:YYYY-MM-DD, after:YYYY-MM-DD or on:YYYY-MM-DD for dates. '
-        'Before and after exclude the specified date. A missing date or flag '
-        'does not match its filter, even when negated. '
-        'Put phrases in double quotes and keep values next to the colon. '
-        'Use spaces between adjacent terms and groups. Only loaded message '
-        'headers are searched, excluding body text and attachments. '
-        'Up to 1,024 characters, 32 terms, 32 operators and eight nested groups. '
-        'Wildcards, square brackets, && and || are not supported.',
+        'Separate terms or use AND to require every match. Use OR for '
+        'alternatives and NOT or a leading - to exclude a match. '
+        'NOT applies before AND, then OR; parentheses group conditions. '
+        'Use from:, to:, cc:, subject:, is:read, is:unread, is:flagged '
+        'or is:unflagged. Use before:YYYY-MM-DD, after:YYYY-MM-DD or '
+        'on:YYYY-MM-DD for dates. Before and after exclude the named day. '
+        'Unknown dates and flags remain unknown, including with NOT. '
+        'Put phrases or literal operators in double quotes. '
+        'Only loaded message headers are searched. '
+        'Use at most 1,024 characters, 32 terms, 32 explicit operators '
+        'and 8 nested groups. Body text, attachments and wildcards '
+        'are not searched.',
     this.close = 'Close',
     this.sort = 'Sort loaded messages',
     this.providerOrder = 'Provider order',
@@ -154,15 +154,16 @@ String _defaultSearchError(MailHeaderSearchError error) => switch (error) {
     'Use is:read, is:unread, is:flagged or is:unflagged.',
   MailHeaderSearchError.invalidDate => 'Enter a valid date as YYYY-MM-DD.',
   MailHeaderSearchError.unsupportedOperator =>
-    'Use AND, OR or NOT. Wildcards, square brackets, && and || are not supported.',
+    'Wildcards, brackets and symbolic operators are not supported.',
   MailHeaderSearchError.invalidExpression =>
-    'Check the search terms, operators and parentheses; use at most 32 operators.',
+    'Complete each AND, OR or NOT expression and balance parentheses. '
+    'Use at most 32 explicit operators.',
   MailHeaderSearchError.nestingTooDeep =>
-    'Use no more than eight nested groups of parentheses.',
+    'Use no more than 8 nested groups.',
 };
 
 final _searchExampleLine = RegExp(
-  r'^\s*(?:from|subject|to|cc|is|before|after|on):',
+  r'^\s*(?:[-(]\s*|NOT\b\s*)*(?:from|subject|to|cc|is|before|after|on):',
   caseSensitive: false,
 );
 

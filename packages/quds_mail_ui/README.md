@@ -21,9 +21,11 @@ MailMessageList(
 );
 ```
 
-The list searches loaded subjects and senders without making requests. Unread
-and Flagged filters combine; nullable unknown flags do not count as observed
-unread/flagged states. Counts distinguish visible and loaded rows. Load more
+The list searches loaded subject/sender/recipient headers, dates and observed
+flags without making requests. Uppercase AND/OR/NOT, implicit AND, parentheses
+and leading-minus negation compose bounded queries. Unread and Flagged filters
+combine with the complete query; unknown dates/flags remain unknown under
+negation and do not become observed unread/flagged states. Counts distinguish visible and loaded rows. Load more
 remains available when filtering hides every loaded row. Rows are virtualized.
 
 Arrow Up/Down and Home/End move list focus; Enter explicitly activates

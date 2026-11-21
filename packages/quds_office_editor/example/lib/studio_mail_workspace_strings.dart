@@ -46,66 +46,66 @@ extension StudioMailWorkspaceStrings on StudioStrings {
       'البحث في البريد',
     ),
     searchHelpText: _text(
-      'Words match the subject or sender. Separate terms with spaces to '
-          'require every match; use double quotes for an exact phrase. '
-          'Use uppercase AND, OR and NOT, or a leading minus for NOT. '
-          'Parentheses group terms; NOT applies first, then AND, then OR. '
-          'Use spaces between adjacent terms and groups.\n\n'
-          'from:alice subject:"quarterly report"\n'
-          'from:alice OR (subject:report AND NOT is:read)\n'
+      'Words match the subject or sender. Separate terms or use AND to '
+          'require all. Use OR for alternatives, and NOT or a leading - '
+          'to exclude matches. NOT applies before AND, then OR; parentheses '
+          'group conditions. Use double quotes for a phrase or literal '
+          'operator text.\n\n'
+          '(from:alice OR from:bob) NOT subject:invoice\n'
+          'from:alice -subject:"weekly digest"\n'
           'to:team@example.test cc:manager\n'
           'State choices: is:read, is:unread, is:flagged, is:unflagged\n'
           'after:2026-10-01 before:2026-11-01 on:2026-10-15\n\n'
-          'Dates use the displayed local calendar day. Before and after exclude '
-          'the named day; on includes that day. A missing date or flag does '
-          'not match its filter, even when negated. '
-          'Operator names stay in English.\n\n'
-          'Search covers only loaded headers in this folder. It does not search '
-          'message bodies, Bcc or other folders, or download more mail. '
-          'Use Archive search for collected message content. '
-          'Up to 1,024 characters, 32 terms, 32 operators and eight nested '
-          'groups. Wildcards, square brackets, && and || are not supported.',
-      'Wörter suchen im Betreff oder Absender. Durch Leerzeichen getrennte '
-          'Begriffe müssen alle zutreffen; doppelte Anführungszeichen suchen '
-          'eine genaue Wortgruppe. Verwenden Sie AND, OR und NOT in '
-          'Großbuchstaben oder ein vorangestelltes Minus für NOT. Klammern '
-          'gruppieren Begriffe; NOT gilt vor AND und AND vor OR. Trennen Sie '
-          'benachbarte Begriffe und Gruppen durch Leerzeichen.\n\n'
-          'from:alice subject:"quarterly report"\n'
-          'from:alice OR (subject:report AND NOT is:read)\n'
+          'Dates use the displayed local calendar day. Before and after '
+          'exclude the named day; on includes it. Missing dates or flags '
+          'remain unknown, including with NOT. Operator names stay in '
+          'English; Boolean operators must be uppercase.\n\n'
+          'Search covers only loaded headers in this folder. It does not '
+          'search message bodies, Bcc or other folders, or download more '
+          'mail. Use Archive search for collected message content. '
+          'Limits: 1,024 characters, 32 terms, 32 explicit operators and '
+          '8 nested groups. Wildcards are not supported.',
+      'Wörter suchen im Betreff oder Absender. Leerzeichen oder AND '
+          'verlangen alle Bedingungen. OR erlaubt Alternativen; NOT oder '
+          'ein vorangestelltes - schließt Treffer aus. NOT gilt vor AND, '
+          'danach OR; Klammern gruppieren Bedingungen. Doppelte '
+          'Anführungszeichen suchen eine Wortgruppe oder wörtliche '
+          'Operatornamen.\n\n'
+          '(from:alice OR from:bob) NOT subject:invoice\n'
+          'from:alice -subject:"weekly digest"\n'
           'to:team@example.test cc:manager\n'
           'Statusauswahl: is:read, is:unread, is:flagged, is:unflagged\n'
           'after:2026-10-01 before:2026-11-01 on:2026-10-15\n\n'
-          'Datumsfilter verwenden den angezeigten lokalen Kalendertag. Before '
-          'und after schließen den genannten Tag aus; on umfasst diesen Tag. '
-          'Fehlende Datums- oder Statuswerte erfüllen ihren Filter auch '
-          'bei NOT nicht. '
-          'Die Operatornamen bleiben Englisch.\n\n'
+          'Datumsfilter verwenden den angezeigten lokalen Kalendertag. '
+          'Before und after schließen den genannten Tag aus; on umfasst '
+          'ihn. Fehlende Datums- oder Statuswerte bleiben unbekannt, auch '
+          'mit NOT. Operatornamen bleiben Englisch; boolesche Operatoren '
+          'müssen großgeschrieben werden.\n\n'
           'Durchsucht werden nur geladene Nachrichtenköpfe dieses Ordners. '
-          'Nachrichtentext, Bcc und andere Ordner bleiben außerhalb der Suche; '
-          'es werden keine weiteren Nachrichten geladen. Gesammelte Inhalte '
-          'finden Sie mit der Archivsuche. Höchstens 1.024 Zeichen, 32 '
-          'Begriffe, 32 Operatoren und acht verschachtelte Gruppen. '
-          'Platzhalter, eckige Klammern, && und || werden nicht unterstützt.',
-      'تطابق الكلمات الموضوع أو المرسل. افصل العبارات بمسافات لاشتراط '
-          'تطابقها جميعًا؛ استخدم علامتي اقتباس مزدوجتين لعبارة مطابقة حرفيًا. '
-          'استخدم AND وOR وNOT بأحرف كبيرة، أو علامة ناقص قبل العبارة للنفي. '
-          'تجمع الأقواس العبارات؛ تُطبّق NOT أولًا، ثم AND، ثم OR. '
-          'افصل العبارات والمجموعات المتجاورة بمسافات.\n\n'
-          'from:alice subject:"quarterly report"\n'
-          'from:alice OR (subject:report AND NOT is:read)\n'
+          'Nachrichtentext, Bcc und andere Ordner bleiben außerhalb der '
+          'Suche; es werden keine weiteren Nachrichten geladen. Gesammelte '
+          'Inhalte finden Sie mit der Archivsuche. Grenzen: 1.024 Zeichen, '
+          '32 Begriffe, 32 ausdrückliche Operatoren und 8 verschachtelte '
+          'Gruppen. Platzhalter werden nicht unterstützt.',
+      'تطابق الكلمات الموضوع أو المرسل. تفصل المسافات أو AND بين الشروط '
+          'المطلوب تطابقها جميعًا. استخدم OR للبدائل، وNOT أو - في البداية '
+          'لاستبعاد التطابقات. تُطبّق NOT قبل AND ثم OR؛ وتجمع الأقواس '
+          'الشروط. استخدم علامتي اقتباس مزدوجتين لعبارة أو لاسم عامل '
+          'بحث حرفي.\n\n'
+          '(from:alice OR from:bob) NOT subject:invoice\n'
+          'from:alice -subject:"weekly digest"\n'
           'to:team@example.test cc:manager\n'
           'خيارات الحالة: is:read، is:unread، is:flagged، is:unflagged\n'
           'after:2026-10-01 before:2026-11-01 on:2026-10-15\n\n'
-          'تستخدم التواريخ اليوم المحلي المعروض. يستثني before وafter اليوم '
-          'المحدد، ويشمله on. لا تطابق التواريخ أو الحالات المفقودة '
-          'مرشحاتها، حتى عند نفيها باستخدام NOT. تبقى أسماء عوامل البحث '
-          'بالإنجليزية.\n\n'
-          'يشمل البحث الترويسات المحمّلة في هذا المجلد فقط، ولا يبحث في متن '
-          'الرسائل أو Bcc أو المجلدات الأخرى، ولا يحمّل بريدًا إضافيًا. '
-          'استخدم بحث الأرشيف للمحتوى الذي جُمع. الحد الأقصى 1024 حرفًا '
-          'و32 عبارة و32 عاملًا وثمانية مستويات من الأقواس المتداخلة. '
-          'لا تُدعم أحرف البدل أو الأقواس المربعة أو && أو ||.',
+          'تستخدم التواريخ اليوم المحلي المعروض. يستثني before وafter '
+          'اليوم المحدد، ويشمله on. تبقى التواريخ أو الحالات المفقودة '
+          'غير معروفة حتى مع NOT. تبقى أسماء العوامل بالإنجليزية؛ '
+          'وتُكتب العوامل المنطقية بأحرف كبيرة.\n\n'
+          'يشمل البحث الترويسات المحمّلة في هذا المجلد فقط، ولا يبحث في '
+          'متن الرسائل أو Bcc أو المجلدات الأخرى، ولا يحمّل بريدًا إضافيًا. '
+          'استخدم بحث الأرشيف للمحتوى الذي جُمع. الحدود: 1024 حرفًا '
+          'و32 عبارة و32 عاملًا صريحًا و8 مجموعات متداخلة. '
+          'لا تُدعم أحرف البدل.',
     ),
     close: _text('Close', 'Schließen', 'إغلاق'),
     sort: _text(
@@ -209,19 +209,19 @@ extension StudioMailWorkspaceStrings on StudioStrings {
       'أدخل تاريخًا صحيحًا بالتنسيق YYYY-MM-DD.',
     ),
     MailHeaderSearchError.unsupportedOperator => _text(
-      'Use AND, OR or NOT. Wildcards, square brackets, && and || are not supported; quote literal text.',
-      'Verwenden Sie AND, OR oder NOT. Platzhalter, eckige Klammern, && und || werden nicht unterstützt; setzen Sie wörtlichen Text in Anführungszeichen.',
-      'استخدم AND أو OR أو NOT. لا تُدعم أحرف البدل أو الأقواس المربعة أو && أو ||؛ ضع النص الحرفي بين علامتي اقتباس.',
+      'Wildcards, brackets and symbolic operators are not supported. Use AND, OR, NOT and parentheses; quote literal text.',
+      'Platzhalter, eckige Klammern und symbolische Operatoren werden nicht unterstützt. Verwenden Sie AND, OR, NOT und runde Klammern; setzen Sie wörtlichen Text in Anführungszeichen.',
+      'لا تُدعم أحرف البدل أو الأقواس المربعة أو العوامل الرمزية. استخدم AND وOR وNOT والأقواس المستديرة؛ وضع النص الحرفي بين علامتي اقتباس.',
     ),
     MailHeaderSearchError.invalidExpression => _text(
-      'Check the search terms, operators and parentheses; use at most 32 operators.',
-      'Prüfen Sie Suchbegriffe, Operatoren und Klammern; verwenden Sie höchstens 32 Operatoren.',
-      'تحقق من عبارات البحث والعوامل والأقواس؛ استخدم 32 عاملًا كحد أقصى.',
+      'Complete each AND, OR or NOT expression and balance parentheses. Use at most 32 explicit operators.',
+      'Vervollständigen Sie jeden AND-, OR- oder NOT-Ausdruck und schließen Sie alle Klammern. Verwenden Sie höchstens 32 ausdrückliche Operatoren.',
+      'أكمل كل تعبير AND أو OR أو NOT وأغلق جميع الأقواس. استخدم 32 عاملًا صريحًا كحد أقصى.',
     ),
     MailHeaderSearchError.nestingTooDeep => _text(
-      'Use no more than eight nested groups of parentheses.',
-      'Verwenden Sie höchstens acht ineinander verschachtelte Klammergruppen.',
-      'استخدم ثمانية مستويات من الأقواس المتداخلة كحد أقصى.',
+      'Use no more than 8 nested groups.',
+      'Verwenden Sie höchstens 8 ineinander verschachtelte Gruppen.',
+      'استخدم 8 مجموعات متداخلة كحد أقصى.',
     ),
   };
 

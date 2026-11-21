@@ -6,6 +6,12 @@ file, socket, credential-string, or `enough_mail` API dependency.
 
 ## Implemented
 
+- Bounded loaded-header search with fields, phrases, dates, observed flags and
+  AND/OR/NOT expressions. Parentheses and leading-minus negation preserve
+  unknown observations through three-valued evaluation. Queries admit at most
+  1,024 UTF-16 code units, 32 predicates, 32 explicit operators and eight nested
+  groups; matching consults no provider, repository or body.
+
 - Owned immutable raw/attachment bytes, lazy SHA-256 integrity and exact export.
   Byte snapshots copy input once; exported views and their buffers are read-only.
 - Typed header/body/attachment projections, parse statuses and redacted diagnostic

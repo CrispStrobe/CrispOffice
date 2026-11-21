@@ -122,13 +122,12 @@ String _localizedSearchError(MailHeaderSearchError error) =>
     'Localized error: ${error.name}';
 
 String _compactGermanError(MailHeaderSearchError _) =>
-    'Trennen Sie Begriffe durch Leerzeichen. Boolesche Operatoren, Verneinung '
-    'und Platzhalter werden nicht unterstützt; setzen Sie wörtlichen Text '
-    'in Anführungszeichen.';
+    'Vervollständigen Sie jeden AND-, OR- oder NOT-Ausdruck und schließen '
+    'Sie alle Klammern. Verwenden Sie höchstens 32 ausdrückliche Operatoren.';
 
 String _compactArabicError(MailHeaderSearchError _) =>
-    'افصل العبارات بمسافات. لا تُدعم العوامل المنطقية أو النفي أو أحرف البدل؛ '
-    'ضع النص الحرفي بين علامتي اقتباس.';
+    'أكمل كل تعبير AND أو OR أو NOT وأغلق جميع الأقواس. '
+    'استخدم 32 عاملًا صريحًا كحد أقصى.';
 
 void main() {
   test('row collection is immutable and identities cannot alias', () {
@@ -910,6 +909,11 @@ void main() {
       const prose = 'استخدم العبارات التالية للبحث.';
       const example = 'from:alice subject:"quarterly report"';
       const recipientExample = '  TO:team@example.test cc:manager';
+      const groupedExample = '(from:alice OR from:bob) NOT subject:invoice';
+      const negatedExample = 'NOT (from:alice OR from:bob)';
+      const tightNegatedExample = 'NOT(from:alice OR from:bob)';
+      const nestedNegatedExample = '(NOT(from:alice OR from:bob))';
+      const minusExample = '-subject:"weekly digest"';
       const closing = 'يشمل البحث الترويسات المحمّلة فقط.';
       const localized = MailMessageListStrings(
         searchLoaded: 'البحث',
@@ -922,14 +926,25 @@ void main() {
         loadedScope: 'الترويسات المحمّلة',
         count: _count,
         searchHelpTitle: 'مساعدة البحث',
-        searchHelpText: '$prose\n\n$example\n$recipientExample\n\n$closing',
+        searchHelpText:
+            '$prose\n\n$example\n$recipientExample\n$groupedExample\n'
+            '$negatedExample\n$tightNegatedExample\n$nestedNegatedExample\n'
+            '$minusExample\n\n$closing',
       );
       await tester.pumpWidget(
         _app(_list(strings: localized), direction: TextDirection.rtl),
       );
       await tester.tap(find.byKey(const ValueKey('mail-list-search-help')));
       await tester.pumpAndSettle();
-      for (final text in [example, recipientExample]) {
+      for (final text in [
+        example,
+        recipientExample,
+        groupedExample,
+        negatedExample,
+        tightNegatedExample,
+        nestedNegatedExample,
+        minusExample,
+      ]) {
         final rendered = tester.widget<Text>(find.text(text));
         expect(rendered.data, text);
         expect(rendered.textDirection, TextDirection.ltr);
@@ -1037,7 +1052,7 @@ void main() {
       expect(header.offset, 0);
       await tester.enterText(
         find.byKey(const ValueKey('mail-list-search')),
-        'from:alice OR report',
+        'from:alice OR',
       );
       await tester.pumpAndSettle();
       await tester.ensureVisible(
@@ -1116,4 +1131,109 @@ void main() {
       expect(tester.takeException(), isNull);
     });
   }
+
+  testWidgets('Boolean groups combine with chips without provider work', (
+    tester,
+  ) async {
+    var opens = 0;
+    var loads = 0;
+    await tester.pumpWidget(
+      _app(
+        _list(
+          onOpen: (_) => opens++,
+          hasMore: true,
+          onLoadMore: () => loads++,
+        ),
+      ),
+    );
+    final search = find.byKey(const ValueKey('mail-list-search'));
+    await tester.enterText(
+      search,
+      '(from:alice OR from:bob) NOT subject:update',
+    );
+    await tester.pump();
+    expect(_row('one'), findsOneWidget);
+    expect(_row('two'), findsOneWidget);
+    expect(_row('three'), findsNothing);
+    expect(_row('unknown'), findsNothing);
+    await tester.tap(find.byKey(const ValueKey('mail-list-unread')));
+    await tester.pump();
+    expect(_row('one'), findsOneWidget);
+    expect(_row('two'), findsNothing);
+    await tester.enterText(search, 'NOT is:read');
+    await tester.pump();
+    expect(_row('one'), findsOneWidget);
+    expect(_row('three'), findsOneWidget);
+    expect(_row('unknown'), findsNothing);
+    expect(find.byKey(const ValueKey('mail-list-search-error')), findsNothing);
+    expect(opens, 0);
+    expect(loads, 0);
+  });
+
+  testWidgets('malformed Boolean expressions fail closed and recover', (
+    tester,
+  ) async {
+    var opens = 0;
+    var loads = 0;
+    await tester.pumpWidget(
+      _app(
+        _list(
+          onOpen: (_) => opens++,
+          hasMore: true,
+          onLoadMore: () => loads++,
+        ),
+      ),
+    );
+    final search = find.byKey(const ValueKey('mail-list-search'));
+    for (final query in [
+      'from:alice OR',
+      '(from:alice OR from:bob',
+      'from:alice OR body:hidden',
+      'NOT',
+    ]) {
+      await tester.enterText(search, query);
+      await tester.pump();
+      expect(find.byKey(const ValueKey('mail-list-search-error')), findsOneWidget);
+      expect(_row('one'), findsNothing);
+      expect(_row('two'), findsNothing);
+      expect(_row('three'), findsNothing);
+      expect(_row('unknown'), findsNothing);
+      await _focusList(tester);
+      await tester.sendKeyEvent(LogicalKeyboardKey.enter);
+      expect(opens, 0);
+      expect(loads, 0);
+    }
+    await tester.enterText(search, 'from:alice OR from:bob');
+    await tester.pump();
+    expect(find.byKey(const ValueKey('mail-list-search-error')), findsNothing);
+    expect(_row('one'), findsOneWidget);
+    expect(_row('two'), findsOneWidget);
+    expect(_row('three'), findsOneWidget);
+    expect(opens, 0);
+    expect(loads, 0);
+  });
+
+  testWidgets('changing account clears a Boolean query and stale row callback', (
+    tester,
+  ) async {
+    final opened = <String>[];
+    await tester.pumpWidget(_app(_list(onOpen: opened.add)));
+    final search = find.byKey(const ValueKey('mail-list-search'));
+    await tester.enterText(search, '(from:alice OR from:bob) -subject:update');
+    await tester.pump();
+    final staleTap = tester
+        .widget<InkWell>(
+          find.descendant(of: _row('one'), matching: find.byType(InkWell)),
+        )
+        .onTap!;
+    await tester.pumpWidget(
+      _app(_list(onOpen: opened.add, scopeId: 'account-b/inbox')),
+    );
+    await tester.pump();
+    expect(tester.widget<TextField>(search).controller!.text, isEmpty);
+    staleTap();
+    expect(opened, isEmpty);
+    expect(_row('three'), findsOneWidget);
+  });
+
 }

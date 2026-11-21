@@ -1,5 +1,27 @@
 # Mail implementation status — 21 November 2026
 
+## Boolean header search — implemented, runtime qualification pending
+
+Connected and cached mailbox lists now accept uppercase AND/OR/NOT, implicit
+AND, leading-minus negation and parenthesis groups. Existing fields, phrases,
+dates and loaded-folder scope are preserved. Unknown flag/date observations
+remain unknown under negation. Invalid expressions fail closed; query changes
+continue to prune hidden checks and invalidate old bulk/row callbacks.
+
+English, German and Arabic help describes precedence and the 1,024-code-unit,
+32-term, 32-explicit-operator and eight-group-depth limits. Parenthesized and
+negated examples keep LTR syntax within Arabic prose. See the
+[workflow](boolean-search.md) and [validation record](../../validation/mail-boolean-search-20261121/README.md).
+The source includes 26 new core test registrations and seven new widget/locale
+registrations; **they have not been executed in this session**. Independent
+static review is complete, but local Dart/Flutter analysis, formatting and tests
+remain blocked by the exhausted workspace/runtime.
+
+The [51-branch intake](../../mail-intake-20261121.md) preserves all recent mail
+work, integrates the missing benchmark fields and reviewed CLI runner changes,
+and records squash-equivalent branches and excluded WIP cache/artifacts.
+Account-wide/unified search, saved live views and conversations remain open.
+
 ## Explicit offline downloads and guarded native Quit
 
 Connected **Synchronized mail** now offers **Download this page** for at most

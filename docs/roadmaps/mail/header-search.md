@@ -27,20 +27,23 @@ operator names are the same in every language.
 | `on:2026-10-15` | Local calendar day is exactly 15 October 2026 |
 
 Text and field matching is case-insensitive substring matching. Whitespace
-joins terms with AND. This replaces the earlier whole-query substring behavior:
-quote a multiword phrase when adjacency matters. Quoted values allow escaped
-quotes and backslashes. Uppercase bare `AND`, `OR` and `NOT`, negation, grouping
-and wildcards are unsupported; quote reserved syntax to search it literally.
+joins terms with AND. The [Boolean-search continuation](boolean-search.md) also
+accepts uppercase AND, OR and NOT, leading-minus negation and parenthesis groups.
+Precedence is NOT, then AND, then OR. Quote a multiword phrase when adjacency
+matters or an operator should be literal. Quoted values allow escaped quotes
+and backslashes; lowercase operator words and field values remain literal text.
+Wildcards, brackets and symbolic operators are unsupported.
 Unknown field names, incomplete syntax, impossible dates and invalid states
 produce a localized error and no results. A bad query never falls back to a
-broader search. Queries are limited to 1,024 UTF-16 code units and 32 terms.
+broader search. Queries are limited to 1,024 UTF-16 code units, 32 terms,
+32 explicit operators and eight nested groups.
 Oversized pasted text remains editable and is rejected in full; predicates are
 never silently removed by truncation. IME composing text/ranges are preserved.
 
 Dates use the same local timezone conversion as the displayed header date.
 Before/after exclude the entire named day. Unobserved read/flag values and
-missing dates do not match those predicates. Quick Unread/Flagged chips remain
-conjunctive with the query. Bcc, private transport envelopes and body text are
+missing dates remain unknown under those predicates, including negation. Quick
+Unread/Flagged chips remain conjunctive with the complete Boolean query. Bcc, private transport envelopes and body text are
 not added to searchable header fields.
 
 ## Scope, sorting and interaction
@@ -82,8 +85,11 @@ direction and text scale, including narrow Arabic layouts.
   provider capability, authentication path, database migration or dependency
   is introduced.
 
-The [local validation and integration record](../../validation/mail-header-search-20261120/README.md)
-records actual commands, results, remote checkpoints and remaining boundaries.
+The [original validation and integration record](../../validation/mail-header-search-20261120/README.md)
+records commands and results for the earlier conjunctive implementation.
+The [Boolean-search record](../../validation/mail-boolean-search-20261121/README.md)
+records the newer source and independent static review. Its Dart/Flutter runtime
+qualification is pending because the workspace could not launch commands.
 
 ## Next increments toward desktop-client parity
 

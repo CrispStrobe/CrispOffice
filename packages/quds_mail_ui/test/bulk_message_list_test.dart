@@ -461,4 +461,44 @@ void main() {
       },
     );
   }
+
+  testWidgets('Boolean edits prune checks and reject an earlier bulk menu', (
+    tester,
+  ) async {
+    final commands = <_Command>[];
+    final opened = <String>[];
+    await _pump(
+      tester,
+      onOpen: opened.add,
+      onAction: (action, ids) => commands.add((action: action, ids: ids)),
+    );
+    await tester.enterText(
+      _key('mail-list-search'),
+      'from:alice OR from:bob',
+    );
+    await tester.pump();
+    await _tap(tester, _key('mail-list-select-shown'));
+    expect(find.text('3 selected'), findsOneWidget);
+    final staleAction = _freezeMenu(tester);
+    await tester.enterText(_key('mail-list-search'), 'NOT is:read');
+    await tester.pump();
+    expect(find.text('1 selected'), findsOneWidget);
+    expect(_check('three'), findsNothing);
+    staleAction(MailBulkFlagAction.flag);
+    expect(commands, isEmpty);
+    await tester.enterText(_key('mail-list-search'), '');
+    await tester.pump();
+    expect(find.text('1 selected'), findsOneWidget);
+    await _action(tester, MailBulkFlagAction.flag);
+    expect(commands.single.ids, ['one']);
+    expect(opened, isEmpty);
+
+    await _tap(tester, _key('mail-list-select-shown'));
+    await tester.enterText(_key('mail-list-search'), 'from:alice OR');
+    await tester.pump();
+    expect(find.text('0 selected'), findsOneWidget);
+    expect(_key('mail-list-search-error'), findsOneWidget);
+    expect(commands, hasLength(1));
+  });
+
 }
