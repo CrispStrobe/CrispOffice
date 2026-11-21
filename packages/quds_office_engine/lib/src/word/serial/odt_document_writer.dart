@@ -420,14 +420,6 @@ abstract final class OdtDocumentWriter {
     // compare their reference positions below instead of emitted bodies.
     _removeAnnotations(root);
     void normalize(XmlElement element) {
-      if (element.localName == 'frame' &&
-          element.namespaceUri == drawing &&
-          element.firstChild('image', namespaceUri: drawing) != null) {
-        // Package-wide picture identities must be unique, even for visually
-        // equal headers. Ignore allocated names only in this comparison copy;
-        // their suffixes must not force a continuous section onto a new page.
-        element.removeAttribute('name', namespaceUri: drawing);
-      }
       if (element.localName == 'image' && element.namespaceUri == drawing) {
         final path = element.getAttribute(
           'href',
@@ -1216,14 +1208,14 @@ abstract final class OdtDocumentWriter {
           );
         }
         if (inline.inlineVisual case final visual?) {
-          // Annotation pictures retain their established direct paragraph/link
-          // structure. Ordinary pictures carry the native run style on a span.
-          if (!layout.inCommentBody) {
+          // Annotation links carry the style directly. Other inline pictures,
+          // including unlinked annotation pictures, retain their run style.
+          if (!commentLink) {
             w.writeStartElement('span', prefix: 'text');
             w.writeAttribute('text:style-name', style);
           }
           _writeVisual(w, visual.visual, layout, inline: true);
-          if (!layout.inCommentBody) w.writeEndElement();
+          if (!commentLink) w.writeEndElement();
         }
         if (ownLink) w.writeEndElement();
         if (layout.commentsAllowed) {

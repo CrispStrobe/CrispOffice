@@ -276,7 +276,23 @@ final class _OdtReader {
         .childrenNamed('text', namespaceUri: odfOfficeNamespace)
         .single;
     if (body.childElements.length != 1) _unsupported(body);
-    _attributes(text, {});
+    _attributes(text, {
+      odfTextNamespace: {'use-soft-page-breaks'},
+    });
+    final softPageBreaks = _attr(
+      text,
+      'use-soft-page-breaks',
+      odfTextNamespace,
+    );
+    if (softPageBreaks != null &&
+        !RegExp(
+          r'^[ \t\r\n]*(?:true|false|1|0)[ \t\r\n]*$',
+        ).hasMatch(softPageBreaks)) {
+      throw const FormatException('Invalid ODT soft-page-break hint.');
+    }
+    // ODF 1.3 19.903 makes these cached pagination hints optional. The native
+    // layout recomputes pagination; authored hard breaks retain their separate
+    // paragraph/run properties. The writer does not export stale soft hints.
     final section = WmlSection();
     document.sections.add(section);
     section.blocks.addAll(_blocks(text));
@@ -429,7 +445,9 @@ final class _OdtReader {
               name.isEmpty ||
               !names.add(name) ||
               level == null ||
-              !RegExp(r'^[ \t\r\n]*\+?[0-9]+[ \t\r\n]*$').hasMatch(level) ||
+              !RegExp(
+                r'^[ \t\r\n]*(?:\+?[0-9]+|-0+)[ \t\r\n]*$',
+              ).hasMatch(level) ||
               (separator != null && separator.runes.length != 1)) {
             _unsupported(declaration);
           }
