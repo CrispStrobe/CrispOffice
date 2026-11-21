@@ -1,0 +1,58 @@
+{
+  "changed_input_sha256": {
+    "docs/roadmaps/mail/status.md": "ea622158d845169d0edb50932080731ae2fddec7a724570b55655cfdca7e24d8",
+    "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart": "0522803e6320a650a62b81a68f8d7c6f32380a9f334973c170c51db5148ebc42",
+    "packages/quds_mail_ui/CHANGELOG.md": "17ed9a036d35e0a9913081236fcde8ae156b4c1ba814cbd0edb50437934d61c4",
+    "packages/quds_mail_ui/README.md": "9920419363da5b2b29f6d955d056370f4366bbb39d6e45a720e8e13e4795047f",
+    "packages/quds_mail_ui/lib/src/reader/controller.dart": "9bba496ea8d46c1a021b1e5143c3b07534c5536fcc87be6529e14d637729e0ac",
+    "packages/quds_mail_ui/lib/src/reader/presentation.dart": "acdc53474f9245e3d540d70dff8053dd9b48b81f182699694f78add1b24944a9",
+    "packages/quds_mail_ui/lib/src/workspace/message_list.dart": "2b9756fd71ce2e943199811433766d6dea763cea327c3923a1d91ce6b9e61a49",
+    "packages/quds_mail_ui/test/bulk_api_aliases_test.dart": "1a260bc99a95e78366bbdd176c01d1a1229be01847b98f5194adb4deefaac671",
+    "packages/quds_mail_ui/test/controller_test.dart": "6cc5c2f5bd4b7648740c96be9332cf3dbdcd996e0cced767eda8988543b04693",
+    "packages/quds_mail_ui/test/presentation_test.dart": "ade202a7a32dda8613843a03d3a1242089099e24352a09d82cf05bc227feb5c6",
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart": "eafeaecb4fd952b0523f7a68cdc7be710764ff24239ec2c744a83ce1919463e7",
+    "packages/quds_office_editor/example/lib/studio_mail_remote_images.dart": "6432d3a88a0803ff5b8f1a417cbeefed6993cb3fba78a880abeb54afa9d6a2eb",
+    "packages/quds_office_editor/example/test/studio_mail_autoconnect_test.dart": "b40818af6e0f09a0ccc59a37bad670c4943a9abb4e2d0465b17e2b8daa59299d",
+    "packages/quds_office_editor/example/test/studio_mail_bulk_visual_test.dart": "a4cebe49b5d5d897f98ec189f1b4c378a4dd99a3965f1465ea6c9a18ff68b2a6",
+    "packages/quds_office_editor/example/test/studio_mail_cached_mail_test.dart": "c60f79a24e7ec4ab0766b03cd7b11608ea5fd1c08bfc50e7f7a3fc32ebe6dddb",
+    "packages/quds_office_editor/example/test/studio_mail_remote_image_loader_test.dart": "20c289c5acf19e728adbc5f95239dc3f6ac0110c8e885b89783b2098d80f2b36",
+    "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart": "ae9c36d20136661e6296f9f7171547c541971842f5fdf3453afab21e08d6aecb"
+  },
+  "findings": [
+    {
+      "issue": "Contradictory new remote-image URI alias lists silently selected one value.",
+      "regression": "packages/quds_mail_ui/test/bulk_api_aliases_test.dart",
+      "resolution": "Constructor now rejects differing URI values/order/length, permits equal separate lists, and exposes one immutable list through both getters.",
+      "resolved": true
+    }
+  ],
+  "incoming_main": "383c0c0c5d3b4b1a6edccc8d09ffd1ca64029537",
+  "preserved_core_transport_ews_production_files": 41,
+  "preserved_production_byte_identical": true,
+  "previous_qualified_head": "0e4e999a08996a6b8696ca3adba11e303331b73e",
+  "qualification_boundary": [
+    "No tests, screenshots, provider calls, CI requests, source edits, config changes, or ref mutations were performed in this review.",
+    "Targeted gate results are pending; development analysis is not relabeled as final acceptance.",
+    "Final reader publication enforces the full cumulative decoded-byte limit; fetch batches also have their own cumulative limit and may acquire an image that final reader admission refuses."
+  ],
+  "review": "read-only source and regression-fixture review",
+  "reviewed_behaviors": [
+    "Autoconnect occurs only after adopting saved credentials; queued ticket captures settings, credential generation, store revision, session and selected account and rejects stale/disabled/manual/disposed ownership.",
+    "Cumulative remote admission counts both decoded body alternatives, all original attachment bytes, and previously accepted remote bytes; actual PNG/JPEG dimensions determine pixel admission.",
+    "Existing incremental append, one-pass input, URI-specific blocked placeholders, preformatted spacing and CID/external re-admission semantics are retained.",
+    "Selection/enabled aliases reject contradictions; remote-candidate aliases now reject contradictions as well.",
+    "Reader-owning loader compatibility API uses the same bounded loop as the original client-owning function, refuses redirects, bounds chunk copies and total response deadline, and cancels stalled/late bodies.",
+    "Native response publication checks captured reader revision and host/session identity; cleanup intentionally uses host identity after successful addImages increments reader revision."
+  ],
+  "reviewed_changed_path_set_sha256": "7510f88c2257a07017d070e668595c11c1a73c24167cf8df3a1b76088d5b113b",
+  "reviewed_production_sha256": {
+    "packages/quds_mail_ui/lib/src/reader/controller.dart": "9bba496ea8d46c1a021b1e5143c3b07534c5536fcc87be6529e14d637729e0ac",
+    "packages/quds_mail_ui/lib/src/reader/presentation.dart": "acdc53474f9245e3d540d70dff8053dd9b48b81f182699694f78add1b24944a9",
+    "packages/quds_mail_ui/lib/src/workspace/message_list.dart": "2b9756fd71ce2e943199811433766d6dea763cea327c3923a1d91ce6b9e61a49",
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart": "eafeaecb4fd952b0523f7a68cdc7be710764ff24239ec2c744a83ce1919463e7",
+    "packages/quds_office_editor/example/lib/studio_mail_remote_images.dart": "6432d3a88a0803ff5b8f1a417cbeefed6993cb3fba78a880abeb54afa9d6a2eb"
+  },
+  "schema": 1,
+  "source_not_yet_finally_qualified": true,
+  "status": "no_remaining_source_blocker"
+}

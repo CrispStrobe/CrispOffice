@@ -1,0 +1,307 @@
+{
+  "schema": "quds-zotero-continuation-intake/v1",
+  "target_main": "bf761552d22dcd1eb8cbb0ab00ddab6507e1d572",
+  "incoming_head": "bbccae1bdead10951e2d7a23b33cf14c55382e02",
+  "merge_parents": [
+    "bf761552d22dcd1eb8cbb0ab00ddab6507e1d572",
+    "bbccae1bdead10951e2d7a23b33cf14c55382e02"
+  ],
+  "conflict_count": 28,
+  "resolutions": [
+    {
+      "path": "docs/VBA_WORD_MACROS.md",
+      "resolution": "Keep current main documentation, changelog and qualified-source attribution. Incoming historical evidence remains separately named and unchanged."
+    },
+    {
+      "path": "docs/roadmaps/mail/bulk-actions.md",
+      "resolution": "Keep current main documentation, changelog and qualified-source attribution. Incoming historical evidence remains separately named and unchanged."
+    },
+    {
+      "path": "docs/roadmaps/mail/bulk-flags.md",
+      "resolution": "Keep current main documentation, changelog and qualified-source attribution. Incoming historical evidence remains separately named and unchanged."
+    },
+    {
+      "path": "docs/roadmaps/mail/header-search.md",
+      "resolution": "Keep current main documentation, changelog and qualified-source attribution. Incoming historical evidence remains separately named and unchanged."
+    },
+    {
+      "path": "docs/roadmaps/mail/status.md",
+      "resolution": "Keep current main documentation, changelog and qualified-source attribution. Incoming historical evidence remains separately named and unchanged."
+    },
+    {
+      "path": "docs/validation/zotero-merged-cells-20261120/README.md",
+      "resolution": "Keep current source-specific canonical receipt; retain incoming historical narratives under their already-distinct incoming-pr277 names and all new evidence files unchanged."
+    },
+    {
+      "path": "packages/quds_mail_core/CHANGELOG.md",
+      "resolution": "Keep current main documentation, changelog and qualified-source attribution. Incoming historical evidence remains separately named and unchanged."
+    },
+    {
+      "path": "packages/quds_mail_core/lib/src/sync/bulk_flags.dart",
+      "resolution": "Main retains runner/coordinator compatibility plus the newer durable command journal, persistence-failure stop state and evidence validation."
+    },
+    {
+      "path": "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart",
+      "resolution": "Retain main regression assertions for its newer accepted API/behavior; preserve original incoming source in branch ancestry and record renamed equivalent suites below."
+    },
+    {
+      "path": "packages/quds_mail_core/test/bulk_flags_test.dart",
+      "resolution": "Retain main regression assertions for its newer accepted API/behavior; preserve original incoming source in branch ancestry and record renamed equivalent suites below."
+    },
+    {
+      "path": "packages/quds_mail_transport/CHANGELOG.md",
+      "resolution": "Keep current main documentation, changelog and qualified-source attribution. Incoming historical evidence remains separately named and unchanged."
+    },
+    {
+      "path": "packages/quds_mail_transport/lib/src/cloud/provider.dart",
+      "resolution": "Retain main dispatched-mutation certainty policy and separate send rejection contract. Incoming delta is commentary around the same no-write set."
+    },
+    {
+      "path": "packages/quds_mail_ui/CHANGELOG.md",
+      "resolution": "Keep current main documentation, changelog and qualified-source attribution. Incoming historical evidence remains separately named and unchanged."
+    },
+    {
+      "path": "packages/quds_mail_ui/README.md",
+      "resolution": "Keep current main documentation, changelog and qualified-source attribution. Incoming historical evidence remains separately named and unchanged."
+    },
+    {
+      "path": "packages/quds_mail_ui/lib/src/reader/controller.dart",
+      "resolution": "Retain newer main implementation and its tested identity, cancellation, cumulative admission and journal semantics; incoming alternative implementation is older."
+    },
+    {
+      "path": "packages/quds_mail_ui/lib/src/reader/presentation.dart",
+      "resolution": "Retain main image admission/projection. Restore only incoming remoteImageUris constructor/getter alias, checking ordered URI equality when both spellings are supplied."
+    },
+    {
+      "path": "packages/quds_mail_ui/lib/src/workspace/message_list.dart",
+      "resolution": "Retain newer main implementation and its tested identity, cancellation, cumulative admission and journal semantics; incoming alternative implementation is older."
+    },
+    {
+      "path": "packages/quds_mail_ui/test/controller_test.dart",
+      "resolution": "Retain main regression assertions for its newer accepted API/behavior; preserve original incoming source in branch ancestry and record renamed equivalent suites below."
+    },
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "resolution": "Keep current main documentation, changelog and qualified-source attribution. Incoming historical evidence remains separately named and unchanged."
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+      "resolution": "Retain newer main implementation and its tested identity, cancellation, cumulative admission and journal semantics; incoming alternative implementation is older."
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "resolution": "Retain newer main implementation and its tested identity, cancellation, cumulative admission and journal semantics; incoming alternative implementation is older."
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_remote_images.dart",
+      "resolution": "Retain newer main implementation and its tested identity, cancellation, cumulative admission and journal semantics; incoming alternative implementation is older."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_credential_backend_switch_test.dart",
+      "resolution": "Retain main regression assertions for its newer accepted API/behavior; preserve original incoming source in branch ancestry and record renamed equivalent suites below."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+      "resolution": "Retain main regression assertions for its newer accepted API/behavior; preserve original incoming source in branch ancestry and record renamed equivalent suites below."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_remote_images_test.dart",
+      "resolution": "Retain main regression assertions for its newer accepted API/behavior; preserve original incoming source in branch ancestry and record renamed equivalent suites below."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart",
+      "resolution": "Retain main regression assertions for its newer accepted API/behavior; preserve original incoming source in branch ancestry and record renamed equivalent suites below."
+    },
+    {
+      "path": "packages/quds_office_engine/CHANGELOG.md",
+      "resolution": "Keep current main documentation, changelog and qualified-source attribution. Incoming historical evidence remains separately named and unchanged."
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_header_picture_identity_test.dart",
+      "resolution": "Main and incoming both cover the shared-WmlVisual-node case; keep main fixture construction and all distinct-node/shared-asset regressions."
+    }
+  ],
+  "regression_mappings": [
+    {
+      "incoming_path": "packages/quds_mail_core/test/bulk_flag_runner_test.dart",
+      "retained_path": "packages/quds_mail_core/test/bulk_flags_test.dart",
+      "incoming_blob": "4a600a0f34b4b1c462398897542aa6b120f17d62",
+      "retained_blob": "4a600a0f34b4b1c462398897542aa6b120f17d62",
+      "exact_bytes_equal": true
+    },
+    {
+      "incoming_path": "packages/quds_mail_core/test/bulk_flags_test.dart",
+      "retained_path": "packages/quds_mail_core/test/bulk_flags_coordinator_test.dart",
+      "incoming_blob": "fbbb20b4ee8d7cb6fe03dfe4606394154749132b",
+      "retained_blob": "fbbb20b4ee8d7cb6fe03dfe4606394154749132b",
+      "exact_bytes_equal": true
+    },
+    {
+      "incoming_path": "packages/quds_office_editor/example/test/studio_mail_remote_image_loader_test.dart",
+      "retained_path": "packages/quds_office_editor/example/test/studio_mail_remote_images_incoming_test.dart",
+      "incoming_blob": "e3e0de1b714acb06ee505cdcd2e32d9014a86db1",
+      "retained_blob": "936065182d57029c679ed2347909762c633b1c65",
+      "exact_bytes_equal": false,
+      "adaptation": "Same behavioral cases use main clientFactory/loadInto API and the equivalent 4MiB bound. Main additionally asserts the blocked-resource count and remaining URI under cumulative byte limits; incoming asserts only the retained total bytes. Incoming raw load(reader) cannot alias main load(urls), which has a different argument/return type; keep the existing explicit loadInto(reader) method."
+    }
+  ],
+  "unchanged_incoming_evidence": [
+    {
+      "path": "docs/validation/mail-pr277-integration-20261120/README.md",
+      "blob": "326c1b909d32ff5fe2526345cafeed65c86be923",
+      "exact_incoming": true
+    },
+    {
+      "path": "docs/validation/mail-pr277-integration-20261120/SHA256SUMS",
+      "blob": "4f3afdd81e3e2370a0435a1f97807c9095e62bea",
+      "exact_incoming": true
+    },
+    {
+      "path": "docs/validation/mail-pr277-integration-20261120/accepted-test-cases.json",
+      "blob": "ef3d9b6c13f21e9253cb0d862f49d4477d78fc09",
+      "exact_incoming": true
+    },
+    {
+      "path": "docs/validation/mail-pr277-integration-20261120/accepted-union.json",
+      "blob": "910157df72f8974e012f3590f83800ebe49f49f0",
+      "exact_incoming": true
+    },
+    {
+      "path": "docs/validation/mail-pr277-integration-20261120/archive-manifest.json",
+      "blob": "79f90833cc7b9f2dbf654d74a59b808c4c0b73a6",
+      "exact_incoming": true
+    },
+    {
+      "path": "docs/validation/mail-pr277-integration-20261120/audit_pr277_mail_evidence.py",
+      "blob": "fbda801743b54736b03b0ddbf9caa7017d3dd75b",
+      "exact_incoming": true
+    },
+    {
+      "path": "docs/validation/mail-pr277-integration-20261120/focused-qualification.json",
+      "blob": "290560afa8b59102f8f4748d01eee31d7f13b885",
+      "exact_incoming": true
+    },
+    {
+      "path": "docs/validation/mail-pr277-integration-20261120/incoming-evidence-audit.json",
+      "blob": "4a12babc7c1917a32a3d14a257ae694689a07405",
+      "exact_incoming": true
+    },
+    {
+      "path": "docs/validation/mail-pr277-integration-20261120/incoming-heads.json",
+      "blob": "b9a852f3a257fcc6eadcbb682d139083c01e4a96",
+      "exact_incoming": true
+    },
+    {
+      "path": "docs/validation/mail-pr277-integration-20261120/mail-pr277-qualification.tar.xz",
+      "blob": "67712c12293a310874415547d966d04daa89e88d",
+      "exact_incoming": true
+    },
+    {
+      "path": "docs/validation/mail-pr277-integration-20261120/package_evidence.py",
+      "blob": "b5106d7307de7dfc8cd3298ab1cd8c5922090058",
+      "exact_incoming": true
+    },
+    {
+      "path": "docs/validation/mail-pr277-integration-20261120/platform-recheck-cases.json",
+      "blob": "f0884c24dd7c68fa0118f2656d800a509eddf52e",
+      "exact_incoming": true
+    },
+    {
+      "path": "docs/validation/mail-pr277-integration-20261120/qualify_mail_pr277.py",
+      "blob": "79f98fa2360e7baf44778908ae34411f61659806",
+      "exact_incoming": true
+    },
+    {
+      "path": "docs/validation/mail-pr277-integration-20261120/reproduce_flutter_runtime.py",
+      "blob": "3c192c97fa8c4c6ca14132c82072d91410a4578b",
+      "exact_incoming": true
+    },
+    {
+      "path": "docs/validation/mail-pr277-integration-20261120/source-peer-review.json",
+      "blob": "74d7a5ae5c0c31cd59478e356794f790ccfe9510",
+      "exact_incoming": true
+    },
+    {
+      "path": "docs/validation/mail-pr277-integration-20261120/verify_mail_pr277_retention.py",
+      "blob": "f6bf74e990b6b218da0757db3a6f889b41702c5a",
+      "exact_incoming": true
+    },
+    {
+      "path": "docs/validation/mail-pr277-integration-20261120/visual-comparison.json",
+      "blob": "01bd23d390676f9f30066f458905038d3976a3c5",
+      "exact_incoming": true
+    },
+    {
+      "path": "docs/validation/mail-pr277-integration-20261120/visual-review.json",
+      "blob": "7c0207f21fd8a723a4ed88e466822ddbc75ed5ff",
+      "exact_incoming": true
+    },
+    {
+      "path": "docs/validation/word-pr277-integration-20261120/README.md",
+      "blob": "f19042f8b0f892da65b32e880e39ae4b40e30158",
+      "exact_incoming": true
+    },
+    {
+      "path": "docs/validation/word-pr277-integration-20261120/SHA256SUMS",
+      "blob": "0135d669481f5ca9ec44e6ead77d7a3ff8a751ff",
+      "exact_incoming": true
+    },
+    {
+      "path": "docs/validation/word-pr277-integration-20261120/accepted-summary.json",
+      "blob": "06bd811d5237600ad0a8023aab36806aac340379",
+      "exact_incoming": true
+    },
+    {
+      "path": "docs/validation/word-pr277-integration-20261120/archive-manifest.json",
+      "blob": "10bdbae8ba68c8dc51dbd0c6105796fa52bb21ec",
+      "exact_incoming": true
+    },
+    {
+      "path": "docs/validation/word-pr277-integration-20261120/fresh-qualification.json",
+      "blob": "91804ea7208a1ee89f60ff0e33bee2ab85e6730c",
+      "exact_incoming": true
+    },
+    {
+      "path": "docs/validation/word-pr277-integration-20261120/incoming-evidence-audit.json",
+      "blob": "fe355c0f11abdb7f366c6e3577d858eb6af3306c",
+      "exact_incoming": true
+    },
+    {
+      "path": "docs/validation/word-pr277-integration-20261120/incoming-retention-ledger.json",
+      "blob": "e8262910373e758333fda0407dba254f40d817ab",
+      "exact_incoming": true
+    },
+    {
+      "path": "docs/validation/word-pr277-integration-20261120/independent-review.json",
+      "blob": "f0e161bba389af894487d06259b739f95bbf97da",
+      "exact_incoming": true
+    },
+    {
+      "path": "docs/validation/word-pr277-integration-20261120/local-qualification.tar.gz",
+      "blob": "dd798d6502299b953d474a31c7e87865398b19af",
+      "exact_incoming": true
+    },
+    {
+      "path": "docs/validation/word-pr277-integration-20261120/source-resolution.json",
+      "blob": "a693f929327b72017f66605d1ae572710b7f5a0a",
+      "exact_incoming": true
+    },
+    {
+      "path": "docs/validation/zotero-merged-cells-20261120/incoming-pr277-horizontal-checkpoint.md",
+      "blob": "9e6889b52b27c7c97a69ab5d0ee9260511c9b7c7",
+      "exact_incoming": true
+    },
+    {
+      "path": "docs/validation/zotero-merged-cells-20261120/incoming-pr277-intake.md",
+      "blob": "3ebf760b7932624f1250d99f0eb01d7f87643b77",
+      "exact_incoming": true
+    }
+  ],
+  "changed_product_and_test_paths": [
+    "packages/quds_mail_ui/lib/src/reader/presentation.dart",
+    "packages/quds_mail_ui/test/bulk_api_aliases_test.dart"
+  ],
+  "qualification": "Mail compatibility suite and affected reader regressions scheduled locally; not yet claimed as passed. Historical evidence retains original source attribution.",
+  "github_actions": "Neither queried nor awaited",
+  "ref_intake": "304 ancestor refs + 24 independently recomputed equivalent refs + 1 incoming branch before this merge. After preserving this incoming parent, all 329 captured refs will be covered."
+}

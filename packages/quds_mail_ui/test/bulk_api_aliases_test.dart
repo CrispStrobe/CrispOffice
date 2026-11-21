@@ -20,6 +20,28 @@ MailMessageListStrings _strings({String? shown, String? visible}) =>
     );
 
 void main() {
+  test('remote image candidate aliases agree by ordered URI values', () {
+    final first = Uri.parse('https://images.example/first.png');
+    final second = Uri.parse('https://images.example/second.png');
+    MailReaderPresentation presentation(List<Uri> uris, List<Uri> urls) =>
+        MailReaderPresentation(
+          text: '',
+          runs: const [],
+          images: const [],
+          diagnostics: const [],
+          remoteImageUris: uris,
+          remoteImageUrls: urls,
+        );
+    final result = presentation([first, second], [first, second]);
+    expect(result.remoteImageUris, same(result.remoteImageUrls));
+    expect(() => result.remoteImageUrls.clear(), throwsUnsupportedError);
+    expect(() => presentation([first], [first, second]), throwsArgumentError);
+    expect(
+      () => presentation([first, second], [second, first]),
+      throwsArgumentError,
+    );
+  });
+
   test('published selection and enabled spellings expose one value', () {
     final scope = Object();
     final list = MailMessageList(
