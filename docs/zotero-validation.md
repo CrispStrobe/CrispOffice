@@ -8,13 +8,15 @@ one body section or authored footnote/endnote. It preserves rich surrounding
 content, active citation order, note markers/separators, atomic undo/redo and
 DOCX reopening. Explicit guards retain structural and protected content.
 
-The final product checkpoint is `a4ec5b81`. Local acceptance covers 977 engine
+The final product checkpoint is `a5dc721d`. Local acceptance covers 977 engine
 VM cases, 148 overlapping targeted JavaScript cases, 400 editor cases and 33
-Studio cases, plus 156 incoming Word and 332 incoming Mail cases. Every accepted
+Studio cases, plus 161 incoming Word and 505 incoming Mail cases. Every accepted
 process passed; repeated and overlapping runs are not summed. The work record
 retains the initial failures, corrections, exact inputs, runtime and exclusions.
 The frozen 330-ref publication intake has 306 ancestors, 24 verified historical
-equivalents and zero uncovered refs; refreshed main `3d018159` is also included.
+equivalents and zero uncovered refs; refreshed mains `3d018159` and `ce1c37c6`
+are also included. The final Studio/Mail refresh replaces earlier overlapping
+consumer cases rather than adding them twice.
 Historical evidence keeps its original source attribution. Installed-application
 acceptance and active cross-word-processor transfer remain separate. GitHub
 Actions were neither queried nor awaited.

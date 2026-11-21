@@ -51,6 +51,16 @@
       "purpose": "refreshed_main_ancestry_merge",
       "commit": "a4ec5b812cc64c5f738357fdef8779df9b8a8a2b",
       "tree": "ce69540b51ff3f59e761ed25de0124540b3cd4bf"
+    },
+    {
+      "purpose": "qualified_initial_publication_evidence",
+      "commit": "ea0f9a8ffb17a0b33f14eb35576e2d820144cd2b",
+      "tree": "800dc125bbba3cecbc759c845d6f46ce1c293449"
+    },
+    {
+      "purpose": "second_refreshed_main_ancestry_merge",
+      "commit": "a5dc721dd8e519dde4f019b82a89572fe9f570f4",
+      "tree": "b3c010249b88c1ae29bce6d901f5c983adf1acf4"
     }
   ],
   "publication": "Connected GitHub blob/tree/commit API with expected-head fast-forward ref updates; local and remote trees compared after each save.",

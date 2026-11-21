@@ -1,0 +1,32 @@
+{
+  "qualified_head": "6c180d7e805b49663fda32fcf9c5c92e0ae2d86e",
+  "current_head": "a5dc721dd8e519dde4f019b82a89572fe9f570f4",
+  "current_tree": "b3c010249b88c1ae29bce6d901f5c983adf1acf4",
+  "scope": "Mail packages, their source/fixtures, third_party/enough_mail, root manifests, and original native validation runtime. The prior Studio example consumer is excluded and replaced by fresh delta execution.",
+  "repository_inputs": 491,
+  "runtime_inputs": 8,
+  "total_inputs": 499,
+  "path_sets_equal": true,
+  "changed_inputs": [],
+  "exact_equality": true,
+  "removed_from_retention_scope": [
+    "packages/quds_office_editor/example/lib/studio_mail_remote_images.dart",
+    "packages/quds_office_editor/example/pubspec.yaml",
+    "packages/quds_office_editor/example/test/studio_mail_remote_images_incoming_test.dart"
+  ],
+  "retained_unique_passes": 314,
+  "retained_gate_passes": {
+    "store": 83,
+    "transport_vm": 163,
+    "core": 28,
+    "ui": 34,
+    "unsupported_js": 6
+  },
+  "old_studio_18_cases_not_retained_or_added": true,
+  "cases_sha256": "175694f434ff96efbd43488857f9d8e84cbc0402c4c369a4148c38e93ddda009",
+  "input_manifest_sha256": "a2d8776b6e802425acf214070561ea28b51f5d5caec1b4db59f8b2142a8c932c",
+  "input_comparison_sha256": "c9370520a52df193d83cfa81ce2e92e1df23f991c5ede077663ae34ba694aa7e",
+  "no_new_package_test_execution": true,
+  "verifier_sha256": "f1e4eeefe07b9411418aebe021578d6f4b30e21411a231065422955c8b95ad31",
+  "checked_utc": "2026-11-21T05:10:06.319173+00:00"
+}

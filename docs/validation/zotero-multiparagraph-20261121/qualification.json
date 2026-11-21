@@ -1,7 +1,7 @@
 {
   "product_checkpoint": {
-    "commit": "a4ec5b812cc64c5f738357fdef8779df9b8a8a2b",
-    "tree": "ce69540b51ff3f59e761ed25de0124540b3cd4bf"
+    "commit": "a5dc721dd8e519dde4f019b82a89572fe9f570f4",
+    "tree": "b3c010249b88c1ae29bce6d901f5c983adf1acf4"
   },
   "branch": "codex/zotero-multiparagraph-20261121",
   "scope": "Zotero Add Note/Add Annotation replacement across ordinary paragraphs, reviewed incoming Word/Mail integration, refreshed-main reconciliation",
@@ -11,7 +11,8 @@
     "ancestor": 306,
     "verified_equivalent": 24,
     "uncovered": 0,
-    "refreshed_main": "3d01815908aeded5862d131109341365de637242"
+    "refreshed_main": "ce1c37c6af1e2306d2c24231758f10ef6213f7dd",
+    "earlier_refreshed_main": "3d01815908aeded5862d131109341365de637242"
   },
   "accepted_gates": [
     {
@@ -48,21 +49,23 @@
     },
     {
       "name": "studio_citing_transport",
-      "source": "c5cf1ec11970211597fd16eebdc8d0eaa115278b",
+      "source": "a5dc721dd8e519dde4f019b82a89572fe9f570f4",
       "passed": 18,
       "failed": 0,
       "skipped": 0,
       "errors": 0,
-      "process_exit": 0
+      "process_exit": 0,
+      "replaces_same_cases_at": "c5cf1ec11970211597fd16eebdc8d0eaa115278b"
     },
     {
       "name": "studio_shortcuts",
-      "source": "c5cf1ec11970211597fd16eebdc8d0eaa115278b",
+      "source": "a5dc721dd8e519dde4f019b82a89572fe9f570f4",
       "passed": 15,
       "failed": 0,
       "skipped": 0,
       "errors": 0,
-      "process_exit": 0
+      "process_exit": 0,
+      "replaces_same_cases_at": "c5cf1ec11970211597fd16eebdc8d0eaa115278b"
     },
     {
       "name": "incoming_word",
@@ -76,10 +79,10 @@
       "note": "148 PageSetup, 5 namespace/section clone, 3 section/column roundtrip cases; portable VM/Node smoke separate."
     },
     {
-      "name": "incoming_mail",
+      "name": "incoming_mail_packages_retained",
       "source": "6c180d7e805b49663fda32fcf9c5c92e0ae2d86e",
-      "original_files": 14,
-      "passed": 332,
+      "original_files": 13,
+      "passed": 314,
       "failed": 0,
       "skipped": 0,
       "errors": 0,
@@ -88,19 +91,49 @@
         0,
         0,
         0,
-        0,
         0
       ],
       "native_sqlite_cases": 83,
-      "js_unsupported_provider_cases": 6
+      "js_unsupported_provider_cases": 6,
+      "scoped_inputs_unchanged": 499,
+      "note": "Exclude previous18 Studio consumer cases; fresh Studio gate replaces them."
+    },
+    {
+      "name": "incoming_word_compatibility_fidelity",
+      "source": "a5dc721dd8e519dde4f019b82a89572fe9f570f4",
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0,
+      "process_exit": 0,
+      "note": "Disjoint from earlier156 Word cases."
+    },
+    {
+      "name": "incoming_mail_studio_refresh",
+      "source": "a5dc721dd8e519dde4f019b82a89572fe9f570f4",
+      "original_files": 5,
+      "passed": 191,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0,
+      "process_exit": 0,
+      "per_suite": {
+        "reconciliation": 24,
+        "recovery_dialog": 14,
+        "journal_host": 24,
+        "message_loader": 111,
+        "remote_images_incoming": 18
+      },
+      "note": "Replaces earlier18 consumer cases and adds four original suites; Mail total314+191=505."
     }
   ],
   "static_checks": {
     "zotero_files": 9,
-    "word_files": 3,
+    "word_files": 6,
     "analysis": "fatal-infos, all pass",
     "format_language_version": "3.12",
-    "format": "no-write, all pass"
+    "format": "no-write, all pass",
+    "incoming_studio_mail_files": 12
   },
   "historical_runs_not_added_to_accepted_counts": {
     "full_engine_vm": 977,
@@ -122,7 +155,9 @@
       "passed": 146,
       "failed": 1,
       "cases": 147
-    }
+    },
+    "studio_c5_replaced": 33,
+    "mail_studio_consumer_6c_replaced": 18
   },
   "runtime": {
     "flutter": "3.47.8",
@@ -150,7 +185,8 @@
       "bytes": 276144,
       "members": 91,
       "index": "evidence/final-editor-studio-combined-evidence.index.json",
-      "index_sha256": "d628c2e8728fc929264af2564e262ceea7b42a2feceaad68a925d68d866ac001"
+      "index_sha256": "d628c2e8728fc929264af2564e262ceea7b42a2feceaad68a925d68d866ac001",
+      "accepted_population": "400 retained editor cases; earlier33Studio cases replaced by main2 supplement."
     },
     "incoming_mail": {
       "archive": "evidence/incoming-mail-qualification.tar.xz",
@@ -158,7 +194,8 @@
       "bytes": 386032,
       "members": 70,
       "index": "evidence/incoming-mail-qualification.index.json",
-      "index_sha256": "19d7f0fc8785607ffbd5680586854d00b14c2df71334432eb57521e5a6d21526"
+      "index_sha256": "19d7f0fc8785607ffbd5680586854d00b14c2df71334432eb57521e5a6d21526",
+      "accepted_population": "314 retained package cases; earlier18Studio consumer cases replaced by main2 supplement."
     },
     "incoming_word": {
       "archive": "evidence/word-intake-evidence.tar.xz",
@@ -175,6 +212,33 @@
       "members": 10,
       "index": "evidence/initial-intake-and-review.index.json",
       "index_sha256": "3b216c52d6a322d4399dc4de2d695d9f1edded4a42b680930bf0ea94c23ffd65"
+    },
+    "studio_main2": {
+      "archive": "evidence/studio-main2-evidence.tar.xz",
+      "sha256": "4f6a8cec5f41d6ccd153dd2489f63c5c45ec37059a630662a1c5f469ff9b1547",
+      "bytes": 236608,
+      "members": 40,
+      "index": "evidence/studio-main2-evidence.index.json",
+      "index_sha256": "4d8642015b9c955eb4692d76a75c90b0c8c0315624369b10bca3c73bb15160fe",
+      "accepted_population": "Fresh33StudioZotero cases replace prior33."
+    },
+    "word_main2": {
+      "archive": "evidence/main2-word-evidence.tar.xz",
+      "sha256": "36d19734d826c6420be717ad0655f388d00f4b8dcf9057f12c6cc27cc332c350",
+      "bytes": 70540,
+      "members": 36,
+      "index": "evidence/main2-word-evidence.index.json",
+      "index_sha256": "f05e600754b1dc420aec00f92f8f672c2ec6ccc6f0850eb53cebe75a33824ad3",
+      "accepted_population": "Five additional disjoint compatibility-fidelity cases."
+    },
+    "mail_studio_main2": {
+      "archive": "evidence/studio-mail-delta-qualification.tar.xz",
+      "sha256": "3dd1acf2115e824cade4fc47a3d88078254fd3f76a79f3646c88822b5b4a7a57",
+      "bytes": 910320,
+      "members": 67,
+      "index": "evidence/studio-mail-delta-qualification.index.json",
+      "index_sha256": "c520ee5ba4dcdd06d02ff42e0dbc24ed4d3017bd0edf305ed232fedc45edfaaa",
+      "accepted_population": "191freshStudioMail cases plus exact retentionproof for314packagecases; acceptedMailtotal505."
     }
   },
   "limits": [
@@ -184,7 +248,15 @@
   ],
   "github_actions": "Neither queried nor awaited; no workflow/check/status endpoints used.",
   "workflow_and_dependency_policy_changed": false,
-  "source_applicability": {
+  "pre_main2_product_checkpoint": {
+    "commit": "a4ec5b812cc64c5f738357fdef8779df9b8a8a2b",
+    "tree": "ce69540b51ff3f59e761ed25de0124540b3cd4bf"
+  },
+  "accepted_disjoint_integration_totals": {
+    "word": 161,
+    "mail": 505
+  },
+  "pre_main2_source_applicability": {
     "engine": {
       "report": "evidence/engine-source-applicability.json",
       "scoped_inputs": 2853,
@@ -211,5 +283,44 @@
       "git_source_files": 1150,
       "runtime_configuration_files": 2
     }
-  }
+  },
+  "source_applicability": {
+    "engine_editor": {
+      "report": "evidence/studio-main2-scoped-retention.json",
+      "engine_original_inputs": 2853,
+      "engine_unchanged": 2849,
+      "engine_changed": 4,
+      "editor_original_inputs": 2884,
+      "editor_unchanged": 2871,
+      "editor_changed": 13,
+      "editor_added": 3,
+      "all_executed_retained_tests_identical": true,
+      "all_nine_zotero_static_files_identical": true,
+      "exceptions": "Three unrelated Word formatter paths, one separately tested namespace-aware fidelity helper, and explicitly refreshed Studio Mail host inputs."
+    },
+    "word": {
+      "report": "evidence/main2-word-source-applicability.json",
+      "normalization_proof": "evidence/main2-word-format-normalization-proof.json",
+      "prior156_retained": true,
+      "fresh_fidelity_cases": 5
+    },
+    "mail_packages": {
+      "report": "evidence/mail-main2-retained-packages.json",
+      "unchanged_scoped_inputs": 499,
+      "retained_cases": 314
+    },
+    "studio": {
+      "report": "evidence/studio-main2-summary.json",
+      "source": "a5dc721dd8e519dde4f019b82a89572fe9f570f4",
+      "fresh_cases": 33
+    },
+    "mail_studio": {
+      "report": "evidence/mail-main2-summary.json",
+      "source": "a5dc721dd8e519dde4f019b82a89572fe9f570f4",
+      "fresh_cases": 191,
+      "source_runtime_inputs": 5692
+    }
+  },
+  "accepted_unique_case_identities_excluding_repeated_node": 2076,
+  "final_independent_review": "evidence/final-main2-content-review.json"
 }

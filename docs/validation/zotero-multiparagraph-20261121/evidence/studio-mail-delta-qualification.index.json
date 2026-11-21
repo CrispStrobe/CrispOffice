@@ -1,0 +1,270 @@
+{
+  "env.sh": {
+    "bytes": 596,
+    "sha256": "9d848f2e4cabb28c8e0ca82e8ad8456b62e09add8c157ebbcede0f0047e18e64"
+  },
+  "historical-reference/incoming-mail-archive-index.json": {
+    "bytes": 10387,
+    "sha256": "19d7f0fc8785607ffbd5680586854d00b14c2df71334432eb57521e5a6d21526"
+  },
+  "historical-reference/incoming-mail-core-receipt.json": {
+    "bytes": 3554,
+    "sha256": "afc206b22725285cae05ac6c492a2a8e4f5a88103f252ed25d403b696d691a79"
+  },
+  "historical-reference/incoming-mail-store-receipt.json": {
+    "bytes": 3854,
+    "sha256": "6d344335d9619cf3d65836fc19cda4bf3448d50c1d9d6a80e4ccad6d77d9d50b"
+  },
+  "historical-reference/incoming-mail-store-sources-before.json": {
+    "bytes": 65208,
+    "sha256": "b86dd44afbac8c349b5cd6580cbd12fae34f24a8f60d00325ac94d3f358e7b47"
+  },
+  "historical-reference/incoming-mail-summary.json": {
+    "bytes": 4509,
+    "sha256": "cc66d4e0b5d521a9d1e301ab30d7e81d9439c1dab11a4de5ae78180ebb819d43"
+  },
+  "historical-reference/incoming-mail-transport-receipt.json": {
+    "bytes": 5097,
+    "sha256": "22cafba96cd0a4f67e1521c1894f13b51a2d834ef9aaeaced4554c43bde753be"
+  },
+  "historical-reference/incoming-mail-ui-receipt.json": {
+    "bytes": 3779,
+    "sha256": "228a9c68215c86fc60348c706bc1e401eb08f26fd5a8918d19a5f228803ee1ba"
+  },
+  "historical-reference/incoming-mail-unsupported-receipt.json": {
+    "bytes": 3893,
+    "sha256": "c8c52d6b075eecc2cebce6b8db4ec25418d80144dfa603fff85c8ad131484169"
+  },
+  "historical-reference/incoming-mail-xz-package.json": {
+    "bytes": 797,
+    "sha256": "d4f77737d390e9016092e5c3d92698ddc1ada1f6695db3ec21db3c9d9c1827c5"
+  },
+  "logs/flutter-version.json": {
+    "bytes": 628,
+    "sha256": "bb8411db9fc556a9d86afb0e3e026b9f287d1019d15f83cbf817ca2e89825be6"
+  },
+  "logs/studio-mail-delta-cases.json": {
+    "bytes": 39580,
+    "sha256": "a0f8ca683e02b9eb2c8fe04e687e9b7fd28827fae191e7daaef561867331c88e"
+  },
+  "logs/studio-mail-delta-combined-cases.json": {
+    "bytes": 114098,
+    "sha256": "9f8036249f4703584aff0835d35328a7ab67fdeead09f1dccbb0ecec90399c2a"
+  },
+  "logs/studio-mail-delta-diagnostics/static-preflight/error.log": {
+    "bytes": 1179,
+    "sha256": "050c4f3291874c3050d5216b860b5592de553f391a5de8000ccba7379fabec67"
+  },
+  "logs/studio-mail-delta-diagnostics/static-preflight/receipt.json": {
+    "bytes": 287,
+    "sha256": "b05198d23271fa50c6c2bd1e63883ab6685a6787226b929511282e7bc914f65a"
+  },
+  "logs/studio-mail-delta-diagnostics/static-preflight/runner.py": {
+    "bytes": 4318,
+    "sha256": "02eceb66d875c09ef66eb86d59035a5f3d4744a15049f1b967a9c5c33da4e7f2"
+  },
+  "logs/studio-mail-delta-native-readiness-process.json": {
+    "bytes": 330,
+    "sha256": "a0204ef68dec058cff11550780a81a90c1c00aac8a77625e2fce0b8de3885359"
+  },
+  "logs/studio-mail-delta-native-readiness.json": {
+    "bytes": 1752,
+    "sha256": "43daffd8836ba5d0dd7e44e1c0c5bb69b093fce62f427f591bb0e8c9ea19aa5a"
+  },
+  "logs/studio-mail-delta-native-readiness.stderr": {
+    "bytes": 44,
+    "sha256": "dd35d399349c10aa3a96d7b290940c947560d0a57270cc0c46cfa73c85128ef6"
+  },
+  "logs/studio-mail-delta-native-readiness.stdout": {
+    "bytes": 170,
+    "sha256": "6e28872a863ad519c16b9face33b0e6ae156657713400f39d3bd164add10a213"
+  },
+  "logs/studio-mail-delta-process.json": {
+    "bytes": 60,
+    "sha256": "230666160331d71051b4618c09ed65d51c83ec76efa3be014269f748e2c5ddbb"
+  },
+  "logs/studio-mail-delta-pub-get.log": {
+    "bytes": 214,
+    "sha256": "3640d48177b802767785e357f56651162d2250e124b566cffdc2cb88ce7e7f9c"
+  },
+  "logs/studio-mail-delta-receipt.json": {
+    "bytes": 4263,
+    "sha256": "0d5783c46b115c748402d764942ef92c97d7a2ef9c525f4c735230fe7d10233e"
+  },
+  "logs/studio-mail-delta-retained-cases.json": {
+    "bytes": 67645,
+    "sha256": "175694f434ff96efbd43488857f9d8e84cbc0402c4c369a4148c38e93ddda009"
+  },
+  "logs/studio-mail-delta-retained-input-comparison.json": {
+    "bytes": 168530,
+    "sha256": "c9370520a52df193d83cfa81ce2e92e1df23f991c5ede077663ae34ba694aa7e"
+  },
+  "logs/studio-mail-delta-retained-inputs.json": {
+    "bytes": 64783,
+    "sha256": "a2d8776b6e802425acf214070561ea28b51f5d5caec1b4db59f8b2142a8c932c"
+  },
+  "logs/studio-mail-delta-retained-packages.json": {
+    "bytes": 1503,
+    "sha256": "bc4d5148b78a50adea57fc657eec0d82bf23add1e6e143fea5b0a760e7876cb2"
+  },
+  "logs/studio-mail-delta-retention.log": {
+    "bytes": 1503,
+    "sha256": "bc4d5148b78a50adea57fc657eec0d82bf23add1e6e143fea5b0a760e7876cb2"
+  },
+  "logs/studio-mail-delta-setup.log": {
+    "bytes": 247,
+    "sha256": "d85f9a51551ba1470630ade5e07c1d1410786bc83f475c5677fe719ed79abfc9"
+  },
+  "logs/studio-mail-delta-sources-after.json": {
+    "bytes": 833240,
+    "sha256": "64736750b9d66e00f9b9d3ffbb9c59dce44219a62681f3e102e52c429485f60c"
+  },
+  "logs/studio-mail-delta-sources-before.json": {
+    "bytes": 833240,
+    "sha256": "64736750b9d66e00f9b9d3ffbb9c59dce44219a62681f3e102e52c429485f60c"
+  },
+  "logs/studio-mail-delta-sqlite-probe.log": {
+    "bytes": 170,
+    "sha256": "6e28872a863ad519c16b9face33b0e6ae156657713400f39d3bd164add10a213"
+  },
+  "logs/studio-mail-delta-sqlite-probe.stderr": {
+    "bytes": 44,
+    "sha256": "dd35d399349c10aa3a96d7b290940c947560d0a57270cc0c46cfa73c85128ef6"
+  },
+  "logs/studio-mail-delta-started.json": {
+    "bytes": 2455,
+    "sha256": "744fcb2eee152a0f85d6105c28ab6c4cc19d6ce2c81af8ee8e6a9e0818153f81"
+  },
+  "logs/studio-mail-delta-static-analysis-process.json": {
+    "bytes": 62,
+    "sha256": "a32204e180b216666f5ddd9e723446b62c355c5a8b0ef33795b5e7e689aad645"
+  },
+  "logs/studio-mail-delta-static-analysis.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "logs/studio-mail-delta-static-analysis.stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "logs/studio-mail-delta-static-format.json": {
+    "bytes": 6726,
+    "sha256": "073d1cefbd803c47d7bb7ff5db2f1116949c33695f574536d900098de1671cf8"
+  },
+  "logs/studio-mail-delta-static-inputs-after.json": {
+    "bytes": 833156,
+    "sha256": "0a80e504386171248e8c04f8c79d1ab2f488d9be229bf2eba636270785208fff"
+  },
+  "logs/studio-mail-delta-static-inputs-before.json": {
+    "bytes": 833156,
+    "sha256": "0a80e504386171248e8c04f8c79d1ab2f488d9be229bf2eba636270785208fff"
+  },
+  "logs/studio-mail-delta-static-receipt.json": {
+    "bytes": 3463,
+    "sha256": "5db415e23d84a847588bcff8986eb509d73bfbc249244193b93eace7dd390de6"
+  },
+  "logs/studio-mail-delta-static-run.log": {
+    "bytes": 3463,
+    "sha256": "f7beb17497a2399d5188d094db545f8e203ed65f3427b72f2e24151384fcd5f9"
+  },
+  "logs/studio-mail-delta-static-started.json": {
+    "bytes": 2807,
+    "sha256": "ebddf40790d9192b4a4364d25a0b30873f76fe7b03427f40d1db1bcf0e5334fe"
+  },
+  "logs/studio-mail-delta-summary.json": {
+    "bytes": 6002,
+    "sha256": "51b6eaae72ae71e2f053222c452fff1f649f57f0094f4e44ef0fba676f384bfc"
+  },
+  "logs/studio-mail-delta-visual-review.json": {
+    "bytes": 5038,
+    "sha256": "8c6930beabf403585aabe330b18eea9ea563039e03c07991d660b23dcb03df6d"
+  },
+  "logs/studio-mail-delta-visuals/ar-compact-check.png": {
+    "bytes": 87857,
+    "sha256": "244ea95d81bfe3e3355f1a55a54cae2b8a2717caece389b594723513aafc1d3c"
+  },
+  "logs/studio-mail-delta-visuals/ar-compact-observed.png": {
+    "bytes": 93553,
+    "sha256": "4efa7cc650fd5eb591c8541bac775b25b4450c3f99113e05930cb4fb72c72ea1"
+  },
+  "logs/studio-mail-delta-visuals/de-compact-check.png": {
+    "bytes": 104542,
+    "sha256": "ac63a156e6fe7cf7028defc760af0c733b49b6980d3c4059c4f06b62c588693f"
+  },
+  "logs/studio-mail-delta-visuals/de-compact-observed.png": {
+    "bytes": 113874,
+    "sha256": "38817c275b8001ee8ffc4cfd5ebff194c54e894f9177c500717626e9e90a6174"
+  },
+  "logs/studio-mail-delta-visuals/en-desktop-check.png": {
+    "bytes": 80063,
+    "sha256": "fa37a1f913341e6888154c63a1830df94a0ed2f7ae07e79ec9d6baf19128973b"
+  },
+  "logs/studio-mail-delta-visuals/en-desktop-observed.png": {
+    "bytes": 95530,
+    "sha256": "69626d7d69a5190289a92ad5bee82a5509821b972eead9033dd1119b62294ddb"
+  },
+  "logs/studio-mail-delta.jsonl": {
+    "bytes": 104482,
+    "sha256": "b93d071287c063142bd916af3327a91f5c9fda67b0b8d53f3a2dccebe9189aea"
+  },
+  "logs/studio-mail-delta.stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "package_studio_mail_delta.py": {
+    "bytes": 12506,
+    "sha256": "106dd13f8802ec57f024a8fd3935a7c27c978a36fb073831f9075af02be6eb76"
+  },
+  "prepare_immutable_workspace.py": {
+    "bytes": 3161,
+    "sha256": "f0189ae54501138eb520204698d6b436a3078112275550d07a5e4b4a6a0e4e27"
+  },
+  "run_studio_mail_delta.py": {
+    "bytes": 5197,
+    "sha256": "e9c564d896f2f6e6a16a07c5510ac0bb7b7fe37d80a0808592763c23a89231c6"
+  },
+  "run_studio_mail_delta_static.py": {
+    "bytes": 4414,
+    "sha256": "7dd029677c33822e99a3f6ccef2f60993cbcc0525b0d663702db34f3125f2d4c"
+  },
+  "runtime-configuration/native_assets.yaml": {
+    "bytes": 387,
+    "sha256": "91e62d87e2ced02429556411dff17c3f53f7b73bb16312b78b82f50e867b5470"
+  },
+  "runtime-configuration/package_config.json": {
+    "bytes": 34472,
+    "sha256": "592398df3d903bd8895be62a37b1be7230b93155ab6013eb22a0ff5f7413f728"
+  },
+  "runtime-configuration/pubspec.lock": {
+    "bytes": 33203,
+    "sha256": "0d64a732cd7f6c7cc4e1e01255276f081b59e6f43039636c3d36f6785a958ce2"
+  },
+  "setup/native/sqlite_probe.dart": {
+    "bytes": 606,
+    "sha256": "a4b3477221f443491fab6ba4011e9248ff28e2fc2d703f3ca70bc60b38d4a3d3"
+  },
+  "setup/prefetch-101.json": {
+    "bytes": 31152,
+    "sha256": "76c5dc014b34e4f8ff85def2a1c14d6b3eaf5615e846191897f43d5189105665"
+  },
+  "setup/prefetch-135.json": {
+    "bytes": 50880,
+    "sha256": "2bf82aec406a8b610246320fed62868e41339d1ab22e4ec90169d5fd133b446a"
+  },
+  "setup/sdk.json": {
+    "bytes": 289,
+    "sha256": "720cf835bb8fefe02f201a0c9e2a3bbbd3fa6c17211548e99fac7357c6ca92cc"
+  },
+  "setup/sqlite-download.json": {
+    "bytes": 319,
+    "sha256": "dda45553fbba5482a8b2ef25217926ba008183fd194d4f1e430de5b5a746c189"
+  },
+  "setup/studio-mail-delta-export.json": {
+    "bytes": 1517801,
+    "sha256": "4a547fc9d9de92a92cfca258bf9f5f513f2a5be902ed77568a2c722a98c050ae"
+  },
+  "verify_mail_package_retention.py": {
+    "bytes": 4264,
+    "sha256": "f1e4eeefe07b9411418aebe021578d6f4b30e21411a231065422955c8b95ad31"
+  }
+}

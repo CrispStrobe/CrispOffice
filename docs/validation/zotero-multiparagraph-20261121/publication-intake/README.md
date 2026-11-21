@@ -5,11 +5,12 @@ Target before late integration: `6ac854de0583b7955470648916c53c76b67c0fff`, tree
 The complete fork/upstream Git advertisements contain **330 refs**. Against the target, **304 are ancestors, 24 have independently verified exact equivalents, and two external branch heads remain to integrate**. Our own new Zotero branch is counted once among the ancestors. Fork and upstream open-PR endpoints each returned an empty, complete first page.
 
 Completed disposition: both captured incoming heads are ancestors of published
-product checkpoint `a4ec5b812cc64c5f738357fdef8779df9b8a8a2b`. The
+product checkpoint `a5dc721dd8e519dde4f019b82a89572fe9f570f4`. The
 [final replay](final-audit.json) proves **306 ancestors, 24 exact historical
 equivalents and zero uncovered refs**. Refreshed main
-`3d01815908aeded5862d131109341365de637242` is separately included as a merge
-parent. The review below preserves the pre-integration snapshot and decisions;
+`3d01815908aeded5862d131109341365de637242` and later main
+`ce1c37c6af1e2306d2c24231758f10ef6213f7dd` are separately included through
+normal ancestry merges. The review below preserves the pre-integration snapshot and decisions;
 the [current work record](../README.md) contains qualification and publication
 applicability.
 
