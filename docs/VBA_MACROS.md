@@ -672,7 +672,10 @@ Primary contracts: [InStr](https://learn.microsoft.com/en-us/office/vba/language
 [Replace](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/replace-function),
 [Trim family](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/ltrim-rtrim-and-trim-functions),
 and [String-returning `$` forms](https://learn.microsoft.com/en-us/office/vba/language/concepts/getting-started/returning-strings-from-functions).
-These are specification-derived contracts; no installed Office host was run.
+The corpus separates specification-derived behavior from deliberate dialect
+choices. In particular, combined empty-input/empty-needle/start/count boundary
+precedence is recorded as a dialect contract pending Office differential
+observation. No installed Office host was run.
 
 ## Variant states and explicit conversions
 
