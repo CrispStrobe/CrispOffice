@@ -1,15 +1,5 @@
 # Native Zotero round trips through LibreOffice
 
-## Combined-source completion
-
-The [round-trip completion record](../zotero-roundtrip-complete-20261121/README.md)
-reconciles this branch, the inline-image continuation, scheduled Mail and the
-latest accepted main. It retains the earlier converter failure and separately
-qualifies newly exported explicit note-marker styles, semantic uppercase text,
-native reference metadata, repeated file saves and current editor workflows.
-Its source, fresh local results, exact remote intake and installed-plugin
-boundaries are recorded independently. This record retains its own executed scope and source identities.
-
 ## Latest integrated qualification
 
 The final combined-source checkpoint is
@@ -48,6 +38,16 @@ remain the completed first milestone below and are unchanged. Initial intake
 coverage remains complete; Mail is now integrated, while five later ongoing
 refs are explicitly recorded separately. No GitHub Actions were queried or
 awaited for either milestone.
+
+## Combined-source completion
+
+The [round-trip completion record](../zotero-roundtrip-complete-20261121/README.md)
+reconciles this branch, the inline-image continuation, scheduled Mail and the
+latest accepted main. It retains the earlier converter failure and separately
+qualifies newly exported explicit note-marker styles, semantic uppercase text,
+native reference metadata, repeated file saves and current editor workflows.
+Its source, fresh local results, exact remote intake and installed-plugin
+boundaries are recorded independently. This record retains its own executed scope and source identities.
 
 ## First qualification milestone
 

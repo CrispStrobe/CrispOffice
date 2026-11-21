@@ -132,6 +132,7 @@ const _maxActiveArrayElements = 16384;
 const _maxActiveArrayStringUnits = 1048576;
 const _maxExactInteger = 9007199254740991;
 const _comparisonOperators = <String>{'=', '<>', '<', '>', '<=', '>='};
+const _numericIntrinsics = <String>{'abs', 'int', 'fix', 'sgn'};
 const _stringIntrinsics = <String>{
   'len',
   r'left$',
@@ -2215,6 +2216,7 @@ class _Checker {
   final Map<String, Set<String>> calls = <String, Set<String>>{};
   late _Procedure currentProcedure;
   static const _reserved = <String>{
+    ..._numericIntrinsics,
     ..._stringIntrinsics,
     ..._variantIntrinsics,
     'sub',
@@ -3387,6 +3389,15 @@ class _Checker {
       case _Call():
         if ((symbols[expression.token.lower]?.isArray ?? false)) {
           return _arrayIndex(expression);
+        }
+        if (_numericIntrinsics.contains(expression.token.lower)) {
+          _count(expression.token, expression.arguments, 1);
+          final argument = expression.arguments.single;
+          final kind = _expression(argument);
+          _compatible(_Kind.number, kind, argument.token);
+          // Abs, Int and Fix preserve Null. Sgn always returns a number or
+          // raises a diagnostic; its Null input cannot produce a result.
+          return expression.token.lower == 'sgn' ? _Kind.number : kind;
         }
         if (_stringIntrinsics.contains(expression.token.lower)) {
           return _stringIntrinsic(expression);
@@ -4816,6 +4827,9 @@ class _Evaluator {
         final arguments = <Object>[
           for (final argument in expression.arguments) _evaluate(argument),
         ];
+        if (_numericIntrinsics.contains(expression.token.lower)) {
+          return _numericIntrinsic(expression, arguments.single);
+        }
         if (_stringIntrinsics.contains(expression.token.lower)) {
           return _stringIntrinsic(expression, arguments);
         }
@@ -5475,6 +5489,32 @@ class _Evaluator {
     'vba_invalid_use_of_null',
     'Null cannot be converted to a typed scalar or published as a cell value; handle it explicitly with IsNull.',
   );
+
+  Object _numericIntrinsic(_Call expression, Object value) {
+    final name = expression.token.lower;
+    final token = expression.arguments.single.token;
+    if (value == _VariantState.nullValue) {
+      if (name == 'sgn') _invalidNull(token);
+      return _VariantState.nullValue;
+    }
+    // Empty has the documented numeric zero value. Other scalar conversions
+    // remain explicit, exactly as for arithmetic and the existing intrinsics.
+    final number = value == _VariantState.empty ? 0 : _number(value, token);
+    final result = switch (name) {
+      'abs' => number.abs(),
+      'int' => number.floor(),
+      'fix' => number.truncate(),
+      _ =>
+        number < 0
+            ? -1
+            : number > 0
+            ? 1
+            : 0,
+    };
+    // Preserve the shared VM/JavaScript envelope, and normalize negative zero
+    // before publishing a plan or composing with another source expression.
+    return result == 0 ? 0 : _finite(result, token);
+  }
 
   Object _variantIntrinsic(_Call expression, Object value) {
     final name = expression.token.lower;

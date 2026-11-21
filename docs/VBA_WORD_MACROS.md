@@ -90,6 +90,45 @@ Variant states and conversions described in [the shared language
 contract](VBA_MACROS.md). Excel object members are unavailable in `vba-word`.
 Word object members are unavailable in `vba-excel`.
 
+## Calculating Word layout values
+
+Word source macros share the bounded `Abs`, `Int`, `Fix`, and `Sgn` functions.
+They evaluate local numbers, numeric Variants and helper results before the
+native document plan runs. For example:
+
+```vb
+Sub Main()
+    Dim offset As Double
+    offset = -8.4
+    With ActiveDocument.Paragraphs(1).Range
+        .InsertBefore "Floor: " & CStr(Int(offset)) & "; truncate: " & CStr(Fix(offset)) & ". "
+        .Font.Position = Fix(offset)
+        .ParagraphFormat.LeftIndent = Abs(offset)
+    End With
+End Sub
+```
+
+This prefixes the first paragraph with `Floor: -9; truncate: -8. `, lowers its
+text baseline by eight points, and applies an 8.4-point left indent. The
+paragraph must already contain or receive text before font formatting. The
+existing exact property units, story ownership, document admission and atomic
+publication checks still apply.
+
+The [complete numeric report module](../packages/quds_office_engine/example/macros/word_numeric_report.bas)
+also uses typed helpers, a computed paragraph selector, numeric Variants,
+explicit conversions, `Empty`, nullable calculations and an independent primary
+header. Its template requires three body paragraphs and one independently owned
+primary-header paragraph in the first section. The same module can be compiled,
+validated and run through the existing `compile-word-vba`, `validate-word-vba`
+and `run-word-vba` CLI commands or the source/MCP APIs.
+
+`Int` floors negative fractions; `Fix` truncates toward zero. `Abs`, `Int` and
+`Fix` propagate `Null`, so handle nullable results with `IsNull` before a write.
+`Sgn(Null)` is refused, and String/Boolean inputs require explicit `CDbl` or
+`CLng` conversion. These functions use source-known values and do not add Word
+property reads. See the [shared numeric contract](VBA_MACROS.md#numeric-intrinsics)
+for bounds, argument shapes and the distinction from complete VBA subtype semantics.
+
 ## Preparing source text for Word
 
 `Space` / `Space$`, `String` / `String$`, `ChrW` / `ChrW$`, and `AscW` also
