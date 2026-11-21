@@ -1,8 +1,10 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/studio_chrome.dart';
+import 'package:quds_office_studio/studio_desktop_menu.dart';
 import 'package:quds_office_studio/studio_ribbon_preferences.dart';
 import 'package:quds_office_studio/studio_settings.dart';
 import 'package:quds_office_studio/studio_strings.dart';
@@ -13,6 +15,31 @@ import 'package:quds_office_studio/suite_workspace.dart';
 import 'support/studio_document_mode.dart';
 
 const _strings = StudioStrings(StudioLanguage.en);
+
+final class _SavePicker extends FilePicker {
+  int saves = 0;
+
+  @override
+  Future<String?> saveFile({
+    String? dialogTitle,
+    String? fileName,
+    String? initialDirectory,
+    FileType type = FileType.any,
+    List<String>? allowedExtensions,
+    Uint8List? bytes,
+    bool lockParentWindow = false,
+  }) async {
+    saves++;
+    return null;
+  }
+}
+
+_SavePicker _savePicker() {
+  final picker = _SavePicker();
+  FilePicker.platform = picker;
+  addTearDown(() => FilePicker.platform = FilePickerIO());
+  return picker;
+}
 
 final class _UnavailableTransport extends StudioZoteroTransport {
   @override
@@ -95,7 +122,7 @@ Future<WordEditorController> _studio(
   return word;
 }
 
-List<VoidCallback> _bindings(
+List<VoidCallback> _reservedBindings(
   WidgetTester tester,
   LogicalKeyboardKey key, {
   bool control = true,
@@ -120,6 +147,42 @@ List<VoidCallback> _bindings(
   ];
 }
 
+Future<void> Function() _capturedDocumentShortcut(
+  WidgetTester tester,
+  LogicalKeyboardKey key,
+  PhysicalKeyboardKey physicalKey,
+) {
+  final editor = tester.widget<QudsWordEditor>(find.byType(QudsWordEditor));
+  final dispatch = editor.controller.onShortcutKeyEvent!;
+  // Capture the public host hook now, then replay its original chord after
+  // navigation. The saved callback must validate its owner at invocation.
+  return () async {
+    await tester.sendKeyDownEvent(LogicalKeyboardKey.controlLeft);
+    try {
+      dispatch(
+        KeyDownEvent(
+          physicalKey: physicalKey,
+          logicalKey: key,
+          timeStamp: Duration.zero,
+        ),
+      );
+    } finally {
+      await tester.sendKeyUpEvent(LogicalKeyboardKey.controlLeft);
+    }
+    await _frames(tester);
+  };
+}
+
+VoidCallback _nativeEdit(WidgetTester tester, String id) {
+  final menus = tester.widget<StudioNativeMenus>(
+    find.byType(StudioNativeMenus),
+  );
+  return menus.editGroups
+      .expand((group) => group)
+      .singleWhere((action) => action.id == id)
+      .onSelected!;
+}
+
 void _focusChrome(WidgetTester tester) {
   final settings = find.byWidgetPredicate(
     (widget) => widget is IconButton && widget.tooltip == 'Settings',
@@ -130,23 +193,46 @@ void _focusChrome(WidgetTester tester) {
 Future<void> _chord(
   WidgetTester tester,
   LogicalKeyboardKey key, {
+  bool control = true,
   bool shift = false,
   bool alt = false,
+  bool meta = false,
   bool chrome = false,
 }) async {
   if (chrome) {
     _focusChrome(tester);
     await _frames(tester);
   }
-  await tester.sendKeyDownEvent(LogicalKeyboardKey.controlLeft);
+  if (control) await tester.sendKeyDownEvent(LogicalKeyboardKey.controlLeft);
   if (shift) await tester.sendKeyDownEvent(LogicalKeyboardKey.shiftLeft);
   if (alt) await tester.sendKeyDownEvent(LogicalKeyboardKey.altLeft);
+  if (meta) await tester.sendKeyDownEvent(LogicalKeyboardKey.metaLeft);
   try {
-    await tester.sendKeyEvent(key);
+    if (key == LogicalKeyboardKey.add) {
+      // Flutter's legacy Linux raw-key simulator has no logical Add mapping.
+      // Deliver its explicit physical/logical pair through the modern handler.
+      HardwareKeyboard.instance.handleKeyEvent(
+        KeyDownEvent(
+          physicalKey: PhysicalKeyboardKey.numpadAdd,
+          logicalKey: key,
+          timeStamp: Duration.zero,
+        ),
+      );
+      HardwareKeyboard.instance.handleKeyEvent(
+        KeyUpEvent(
+          physicalKey: PhysicalKeyboardKey.numpadAdd,
+          logicalKey: key,
+          timeStamp: Duration.zero,
+        ),
+      );
+    } else {
+      await tester.sendKeyEvent(key);
+    }
   } finally {
+    if (meta) await tester.sendKeyUpEvent(LogicalKeyboardKey.metaLeft);
     if (alt) await tester.sendKeyUpEvent(LogicalKeyboardKey.altLeft);
     if (shift) await tester.sendKeyUpEvent(LogicalKeyboardKey.shiftLeft);
-    await tester.sendKeyUpEvent(LogicalKeyboardKey.controlLeft);
+    if (control) await tester.sendKeyUpEvent(LogicalKeyboardKey.controlLeft);
   }
   await _frames(tester);
 }
@@ -164,7 +250,6 @@ void main() {
 
   scenario('default chrome bold dispatches exactly once', (tester) async {
     final word = await _studio(tester);
-    expect(_bindings(tester, LogicalKeyboardKey.keyB), hasLength(1));
     await _chord(tester, LogicalKeyboardKey.keyB, chrome: true);
     expect(_runs(word).map((run) => run.properties.bold), [true]);
     word.undo();
@@ -177,11 +262,16 @@ void main() {
       tester,
       shortcuts: {'format.bold': 'ctrl+alt+${LogicalKeyboardKey.digit1.keyId}'},
     );
-    expect(_bindings(tester, LogicalKeyboardKey.keyB), isEmpty);
-    expect(
-      _bindings(tester, LogicalKeyboardKey.keyB, control: false, meta: true),
-      isEmpty,
+    await _chord(tester, LogicalKeyboardKey.keyB, chrome: true);
+    await _chord(
+      tester,
+      LogicalKeyboardKey.keyB,
+      control: false,
+      meta: true,
+      chrome: true,
     );
+    expect(_runs(word).map((run) => run.properties.bold), [false]);
+    expect(word.canUndo, isFalse);
     await _chord(tester, LogicalKeyboardKey.digit1, alt: true, chrome: true);
     expect(_runs(word).map((run) => run.properties.bold), [true]);
     word.undo();
@@ -201,8 +291,10 @@ void main() {
             return _UnavailableTransport();
           },
         );
-        expect(_bindings(tester, LogicalKeyboardKey.keyB), hasLength(1));
-        expect(_bindings(tester, key, alt: true), hasLength(1));
+        await _chord(tester, LogicalKeyboardKey.keyB, chrome: true);
+        expect(_runs(word).map((run) => run.properties.bold), [true]);
+        word.undo();
+        expect(_reservedBindings(tester, key, alt: true), hasLength(1));
         await _chord(tester, key, alt: true, chrome: true);
         expect(connections, 1);
         expect(_runs(word).map((run) => run.properties.bold), [false]);
@@ -214,71 +306,110 @@ void main() {
   scenario('reassigned redo removes Ctrl Y and both Shift Z defaults', (
     tester,
   ) async {
-    await _studio(
+    final word = await _studio(
       tester,
       shortcuts: {'edit.redo': 'ctrl+alt+${LogicalKeyboardKey.keyQ.keyId}'},
     );
-    expect(_bindings(tester, LogicalKeyboardKey.keyY), isEmpty);
-    expect(
-      _bindings(tester, LogicalKeyboardKey.keyY, control: false, meta: true),
-      isEmpty,
-    );
-    expect(_bindings(tester, LogicalKeyboardKey.keyZ, shift: true), isEmpty);
-    expect(
-      _bindings(
+    word.applyRunFormat((properties) => properties.bold = true);
+    word.applyRunFormat((properties) => properties.italic = true);
+    word.undo();
+    word.undo();
+    for (final meta in [false, true]) {
+      await _chord(
+        tester,
+        LogicalKeyboardKey.keyY,
+        control: !meta,
+        meta: meta,
+        chrome: true,
+      );
+      await _chord(
         tester,
         LogicalKeyboardKey.keyZ,
-        control: false,
-        meta: true,
+        control: !meta,
+        meta: meta,
         shift: true,
-      ),
-      isEmpty,
-    );
-    expect(_bindings(tester, LogicalKeyboardKey.keyQ, alt: true), hasLength(1));
+        chrome: true,
+      );
+    }
+    expect(word.canUndo, isFalse);
+    await _chord(tester, LogicalKeyboardKey.keyQ, alt: true, chrome: true);
+    expect(_runs(word).map((run) => run.properties.bold), [true]);
+    expect(_runs(word).map((run) => run.properties.italic), [false]);
+    expect(word.canRedo, isTrue);
   });
 
   scenario('reassigned zoom removes old equals and keypad aliases', (
     tester,
   ) async {
-    await _studio(
+    final word = await _studio(
       tester,
       shortcuts: {'view.zoomIn': 'ctrl+alt+${LogicalKeyboardKey.keyQ.keyId}'},
     );
-    expect(_bindings(tester, LogicalKeyboardKey.equal), isEmpty);
-    expect(_bindings(tester, LogicalKeyboardKey.numpadAdd), isEmpty);
-    expect(_bindings(tester, LogicalKeyboardKey.add), isEmpty);
-    expect(_bindings(tester, LogicalKeyboardKey.keyQ, alt: true), hasLength(1));
+    final scale = word.viewport.scale;
+    for (final key in [
+      LogicalKeyboardKey.equal,
+      LogicalKeyboardKey.numpadAdd,
+      LogicalKeyboardKey.add,
+    ]) {
+      await _chord(tester, key, chrome: true);
+      expect(word.viewport.scale, scale);
+    }
+    await _chord(tester, LogicalKeyboardKey.keyQ, alt: true, chrome: true);
+    expect(word.viewport.scale, closeTo(scale + 0.1, 0.000001));
   });
 
   scenario('reassigned save removes both platform defaults', (tester) async {
+    final picker = _savePicker();
     await _studio(
       tester,
       shortcuts: {'file.save': 'ctrl+alt+${LogicalKeyboardKey.keyQ.keyId}'},
     );
-    expect(_bindings(tester, LogicalKeyboardKey.keyS), isEmpty);
-    expect(
-      _bindings(tester, LogicalKeyboardKey.keyS, control: false, meta: true),
-      isEmpty,
+    await _chord(tester, LogicalKeyboardKey.keyS, chrome: true);
+    await _chord(
+      tester,
+      LogicalKeyboardKey.keyS,
+      control: false,
+      meta: true,
+      chrome: true,
     );
-    expect(_bindings(tester, LogicalKeyboardKey.keyQ, alt: true), hasLength(1));
+    expect(picker.saves, 0);
+    await _chord(tester, LogicalKeyboardKey.keyQ, alt: true, chrome: true);
+    expect(picker.saves, 1);
   });
 
   scenario('explicit configurable override keeps incoming precedence', (
     tester,
   ) async {
-    await _studio(
+    final picker = _savePicker();
+    final word = await _studio(
       tester,
       shortcuts: {'file.save': 'ctrl+${LogicalKeyboardKey.keyB.keyId}'},
     );
-    expect(_bindings(tester, LogicalKeyboardKey.keyB), hasLength(1));
-    expect(_bindings(tester, LogicalKeyboardKey.keyS), isEmpty);
+    await _chord(tester, LogicalKeyboardKey.keyS, chrome: true);
+    expect(picker.saves, 0);
+    await _chord(tester, LogicalKeyboardKey.keyB, chrome: true);
+    expect(picker.saves, 1);
+    expect(_runs(word).map((run) => run.properties.bold), [false]);
+    expect(word.canUndo, isFalse);
   });
 
   scenario('captured Word mutations refuse other app targets', (tester) async {
     final word = await _studio(tester);
-    final indent = _bindings(tester, LogicalKeyboardKey.keyM).single;
+    final indent = _capturedDocumentShortcut(
+      tester,
+      LogicalKeyboardKey.keyM,
+      PhysicalKeyboardKey.keyM,
+    );
+    final before = word.document.paragraphs.single.properties.indent.left;
+    await indent();
+    expect(
+      word.document.paragraphs.single.properties.indent.left,
+      isNot(before),
+    );
+    word.undo();
+    expect(word.document.paragraphs.single.properties.indent.left, before);
+    expect(word.canUndo, isFalse);
     final paragraph = word.document.paragraphs.single;
-    final before = paragraph.properties.indent.left;
     for (final label in [
       _strings.spreadsheets,
       _strings.presentations,
@@ -286,7 +417,7 @@ void main() {
     ]) {
       await tester.tap(_switcher(label));
       await _frames(tester);
-      indent();
+      await indent();
       expect(paragraph.properties.indent.left, before);
       expect(word.canUndo, isFalse);
     }
@@ -294,11 +425,15 @@ void main() {
 
   scenario('page break refuses preview-only document mutation', (tester) async {
     final word = await _studio(tester);
-    final pageBreak = _bindings(tester, LogicalKeyboardKey.enter).single;
+    final pageBreak = _capturedDocumentShortcut(
+      tester,
+      LogicalKeyboardKey.enter,
+      PhysicalKeyboardKey.enter,
+    );
     await selectStudioDocumentMode(tester, OfficeInteractionMode.viewing);
     final paragraph = word.document.paragraphs.single;
     final before = paragraph.properties.pageBreakBefore;
-    pageBreak();
+    await pageBreak();
     await _frames(tester);
     expect(paragraph.properties.pageBreakBefore, before);
     expect(word.document.paragraphs, hasLength(1));
@@ -309,7 +444,11 @@ void main() {
     tester,
   ) async {
     final word = await _studio(tester);
-    final indent = _bindings(tester, LogicalKeyboardKey.keyM).single;
+    final indent = _capturedDocumentShortcut(
+      tester,
+      LogicalKeyboardKey.keyM,
+      PhysicalKeyboardKey.keyM,
+    );
     final paragraph = word.document.paragraphs.single;
     final before = paragraph.properties.indent.left;
     final settings = find.byWidgetPredicate(
@@ -318,7 +457,7 @@ void main() {
     await tester.tap(settings);
     await _frames(tester);
     expect(find.byType(AlertDialog), findsOneWidget);
-    indent();
+    await indent();
     expect(paragraph.properties.indent.left, before);
     expect(word.canUndo, isFalse);
   });
@@ -332,7 +471,7 @@ void main() {
         'edit.selectAll': 'ctrl+alt+${LogicalKeyboardKey.keyQ.keyId}',
       },
     );
-    _bindings(tester, LogicalKeyboardKey.keyF).single();
+    await _chord(tester, LogicalKeyboardKey.keyF, chrome: true);
     await _frames(tester);
     final field = find.byType(TextField).first;
     await tester.enterText(field, 'native field text');
@@ -355,7 +494,7 @@ void main() {
       word.caret.paragraphIndex,
       word.caret.logicalIndex,
     ), before);
-    _bindings(tester, LogicalKeyboardKey.keyB).single();
+    await _chord(tester, LogicalKeyboardKey.keyB);
     expect(_runs(word).map((run) => run.properties.bold), [false]);
   });
 
@@ -390,8 +529,12 @@ void main() {
         return _UnavailableTransport();
       },
     );
-    final select = _bindings(tester, LogicalKeyboardKey.keyA).single;
-    final cite = _bindings(tester, LogicalKeyboardKey.keyC, alt: true).single;
+    final select = _nativeEdit(tester, 'select-all');
+    final cite = _reservedBindings(
+      tester,
+      LogicalKeyboardKey.keyC,
+      alt: true,
+    ).single;
     word.caret
       ..logicalIndex = 2
       ..collapseSelection();
@@ -444,7 +587,7 @@ void main() {
         LogicalKeyboardKey.keyI,
         LogicalKeyboardKey.keyU,
       ]) {
-        _bindings(tester, key).single();
+        await _chord(tester, key, chrome: true);
       }
       final runs = comment.paragraphs.single.inlines.whereType<WmlRun>();
       expect(runs.map((run) => run.properties.bold), [true]);
@@ -452,7 +595,7 @@ void main() {
       expect(runs.map((run) => run.properties.underline), [
         WmlUnderline.single,
       ]);
-      _bindings(tester, LogicalKeyboardKey.keyM).single();
+      await _chord(tester, LogicalKeyboardKey.keyM, chrome: true);
       expect(
         word.document.paragraphs.single.properties.indent.left,
         bodyIndent,
@@ -465,7 +608,7 @@ void main() {
     tester,
   ) async {
     final word = await _studio(tester);
-    final select = _bindings(tester, LogicalKeyboardKey.keyA).single;
+    final select = _nativeEdit(tester, 'select-all');
     word.caret
       ..logicalIndex = 2
       ..collapseSelection();

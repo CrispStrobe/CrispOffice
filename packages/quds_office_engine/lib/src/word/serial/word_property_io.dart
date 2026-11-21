@@ -98,8 +98,7 @@ abstract final class WordPropertyIo {
         // An explicit foreground choice owns its native value and theme
         // selectors, while extension metadata and namespace aliases survive.
         // This also retains an automatic value equal to the resolved import.
-        final value = generated
-            .childElements
+        final value = generated.childElements
             .where(
               (child) =>
                   child.localName == 'color' &&

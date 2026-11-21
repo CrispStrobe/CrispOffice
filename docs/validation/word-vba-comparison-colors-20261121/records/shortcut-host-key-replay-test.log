@@ -1,0 +1,4 @@
+00:00 +0: loading /home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/example/test/studio_shortcut_host_ownership_test.dart
+00:00 +0: reassigned zoom removes old equals and keypad aliases (variant: TargetPlatform.linux)
+00:02 +1: captured Word mutations refuse other app targets (variant: TargetPlatform.linux)
+00:05 +2: All tests passed!

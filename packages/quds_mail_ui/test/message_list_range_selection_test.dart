@@ -222,28 +222,23 @@ void _expectChecked(
   }
 }
 
-Future<void> _sort(
-  WidgetTester tester,
-  MailMessageListSort value,
-) async {
+Future<void> _sort(WidgetTester tester, MailMessageListSort value) async {
   await _tap(tester, _key('mail-list-sort'));
   final name = value.name;
   await _tap(tester, _key('mail-list-sort-$name'));
 }
 
-Future<void> _invoke(
-  WidgetTester tester,
-  MailBulkFlagAction action,
-) async {
+Future<void> _invoke(WidgetTester tester, MailBulkFlagAction action) async {
   await _tap(tester, _key('mail-list-bulk-actions'));
   final name = action.name;
   await _tap(tester, _key('mail-list-bulk-$name'));
 }
 
-VoidCallback _rowCallback(WidgetTester tester, String id) =>
-    tester.widget<InkWell>(
+VoidCallback _rowCallback(WidgetTester tester, String id) => tester
+    .widget<InkWell>(
       find.descendant(of: _row(id), matching: find.byType(InkWell)),
-    ).onTap!;
+    )
+    .onTap!;
 
 void main() {
   for (final modifier in [
@@ -389,8 +384,7 @@ void main() {
           _list(onOpen: opened.add, onBulk: (_, _) => actions++),
         );
         await _tap(tester, _check('b'));
-        Finder target(String id) =>
-            targetKind == 'row' ? _row(id) : _check(id);
+        Finder target(String id) => targetKind == 'row' ? _row(id) : _check(id);
         await _shiftTap(tester, target('e'));
         _expectChecked(tester, ['b', 'c', 'd', 'e']);
         _expectCursor(tester, 'e');
@@ -457,22 +451,23 @@ void main() {
     _expectChecked(tester, ['e', 'f']);
   });
 
-  testWidgets('Enter opens only the cursor and never submits its checked range', (
-    tester,
-  ) async {
-    final opened = <String>[];
-    var actions = 0;
-    await _mount(
-      tester,
-      _list(onOpen: opened.add, onBulk: (_, _) => actions++),
-    );
-    await _cursorAtC(tester);
-    await _shift(tester, LogicalKeyboardKey.end);
-    await _press(tester, LogicalKeyboardKey.enter);
-    expect(opened, ['f']);
-    _expectChecked(tester, ['c', 'd', 'e', 'f']);
-    expect(actions, 0);
-  });
+  testWidgets(
+    'Enter opens only the cursor and never submits its checked range',
+    (tester) async {
+      final opened = <String>[];
+      var actions = 0;
+      await _mount(
+        tester,
+        _list(onOpen: opened.add, onBulk: (_, _) => actions++),
+      );
+      await _cursorAtC(tester);
+      await _shift(tester, LogicalKeyboardKey.end);
+      await _press(tester, LogicalKeyboardKey.enter);
+      expect(opened, ['f']);
+      _expectChecked(tester, ['c', 'd', 'e', 'f']);
+      expect(actions, 0);
+    },
+  );
 
   testWidgets('query changes prune hidden rows and restart range ownership', (
     tester,
@@ -495,24 +490,25 @@ void main() {
     expect(batches.single, ['c', 'd', 'f']);
   });
 
-  testWidgets('invalid queries clear checks and cannot retain a hidden anchor', (
-    tester,
-  ) async {
-    await _mount(tester, _list());
-    await _cursorAtC(tester);
-    await _shift(tester, LogicalKeyboardKey.end);
-    await tester.enterText(_key('mail-list-search'), 'body:unsupported');
-    await tester.pumpAndSettle();
-    expect(find.text('0 selected'), findsOneWidget);
-    await _focusList(tester);
-    await _shift(tester, LogicalKeyboardKey.end);
-    expect(find.text('0 selected'), findsOneWidget);
-    await tester.enterText(_key('mail-list-search'), 'keep');
-    await tester.pumpAndSettle();
-    await _focusList(tester);
-    await _shift(tester, LogicalKeyboardKey.arrowDown);
-    _expectChecked(tester, ['a', 'c'], visible: ['a', 'c', 'd', 'f']);
-  });
+  testWidgets(
+    'invalid queries clear checks and cannot retain a hidden anchor',
+    (tester) async {
+      await _mount(tester, _list());
+      await _cursorAtC(tester);
+      await _shift(tester, LogicalKeyboardKey.end);
+      await tester.enterText(_key('mail-list-search'), 'body:unsupported');
+      await tester.pumpAndSettle();
+      expect(find.text('0 selected'), findsOneWidget);
+      await _focusList(tester);
+      await _shift(tester, LogicalKeyboardKey.end);
+      expect(find.text('0 selected'), findsOneWidget);
+      await tester.enterText(_key('mail-list-search'), 'keep');
+      await tester.pumpAndSettle();
+      await _focusList(tester);
+      await _shift(tester, LogicalKeyboardKey.arrowDown);
+      _expectChecked(tester, ['a', 'c'], visible: ['a', 'c', 'd', 'f']);
+    },
+  );
 
   testWidgets('quick filters exclude hidden rows from keyboard ranges', (
     tester,
@@ -522,11 +518,7 @@ void main() {
     await _focusList(tester);
     await _shift(tester, LogicalKeyboardKey.end);
     await _tap(tester, _key('mail-list-unread'));
-    _expectChecked(
-      tester,
-      ['a', 'c', 'd', 'f'],
-      visible: ['a', 'c', 'd', 'f'],
-    );
+    _expectChecked(tester, ['a', 'c', 'd', 'f'], visible: ['a', 'c', 'd', 'f']);
     await _tap(tester, _key('mail-list-clear-selection'));
     await _focusList(tester);
     await _press(tester, LogicalKeyboardKey.home);
@@ -553,47 +545,48 @@ void main() {
     expect(batches.single, ['d', 'c']);
   });
 
-  testWidgets('folding removes hidden checks and re-expansion keeps them clear', (
-    tester,
-  ) async {
-    final batches = <List<String>>[];
-    await _mount(
-      tester,
-      _list(items: _threadItems, onBulk: (_, ids) => batches.add(ids)),
-    );
-    await _tap(tester, _key('mail-list-conversations'));
-    await _focusList(tester);
-    await _shift(tester, LogicalKeyboardKey.arrowDown);
-    _expectChecked(
-      tester,
-      ['root', 'reply'],
-      visible: ['root', 'reply', 'other', 'tail'],
-    );
-    await _tap(tester, _key('mail-list-conversation-toggle-root'));
-    expect(_check('reply'), findsNothing);
-    _expectChecked(tester, ['root'], visible: ['root', 'other', 'tail']);
-    await _shift(tester, LogicalKeyboardKey.end);
-    _expectChecked(
-      tester,
-      ['root', 'other', 'tail'],
-      visible: ['root', 'other', 'tail'],
-    );
-    await _tap(tester, _key('mail-list-conversation-toggle-root'));
-    _expectChecked(
-      tester,
-      ['root', 'other', 'tail'],
-      visible: ['root', 'reply', 'other', 'tail'],
-    );
-    await _shift(tester, LogicalKeyboardKey.arrowDown);
-    await _shift(tester, LogicalKeyboardKey.arrowUp);
-    _expectChecked(
-      tester,
-      ['root', 'other', 'tail'],
-      visible: ['root', 'reply', 'other', 'tail'],
-    );
-    await _invoke(tester, MailBulkFlagAction.unflag);
-    expect(batches.single, ['root', 'other', 'tail']);
-  });
+  testWidgets(
+    'folding removes hidden checks and re-expansion keeps them clear',
+    (tester) async {
+      final batches = <List<String>>[];
+      await _mount(
+        tester,
+        _list(items: _threadItems, onBulk: (_, ids) => batches.add(ids)),
+      );
+      await _tap(tester, _key('mail-list-conversations'));
+      await _focusList(tester);
+      await _shift(tester, LogicalKeyboardKey.arrowDown);
+      _expectChecked(
+        tester,
+        ['root', 'reply'],
+        visible: ['root', 'reply', 'other', 'tail'],
+      );
+      await _tap(tester, _key('mail-list-conversation-toggle-root'));
+      expect(_check('reply'), findsNothing);
+      _expectChecked(tester, ['root'], visible: ['root', 'other', 'tail']);
+      await _shift(tester, LogicalKeyboardKey.end);
+      _expectChecked(
+        tester,
+        ['root', 'other', 'tail'],
+        visible: ['root', 'other', 'tail'],
+      );
+      await _tap(tester, _key('mail-list-conversation-toggle-root'));
+      _expectChecked(
+        tester,
+        ['root', 'other', 'tail'],
+        visible: ['root', 'reply', 'other', 'tail'],
+      );
+      await _shift(tester, LogicalKeyboardKey.arrowDown);
+      await _shift(tester, LogicalKeyboardKey.arrowUp);
+      _expectChecked(
+        tester,
+        ['root', 'other', 'tail'],
+        visible: ['root', 'reply', 'other', 'tail'],
+      );
+      await _invoke(tester, MailBulkFlagAction.unflag);
+      expect(batches.single, ['root', 'other', 'tail']);
+    },
+  );
 
   for (final transition in ['refresh', 'revision', 'account']) {
     testWidgets('$transition ends the previous keyboard range', (tester) async {
@@ -697,14 +690,11 @@ void main() {
           await tester.sendKeyUpEvent(LogicalKeyboardKey.shiftLeft);
         }
         if (transition != 'dispose') {
-          _expectChecked(
-            tester,
-            switch (transition) {
-              'selection' => ['b', 'c'],
-              'sort' || 'refresh' => ['b'],
-              _ => <String>[],
-            },
-          );
+          _expectChecked(tester, switch (transition) {
+            'selection' => ['b', 'c'],
+            'sort' || 'refresh' => ['b'],
+            _ => <String>[],
+          });
         }
         expect(opened, isEmpty);
         expect(tester.takeException(), isNull);
@@ -888,7 +878,10 @@ void main() {
     );
     await tester.pumpAndSettle();
     final field = tester.widget<TextField>(_key('mail-list-search'));
-    expect(field.controller!.value.composing, const TextRange(start: 0, end: 4));
+    expect(
+      field.controller!.value.composing,
+      const TextRange(start: 0, end: 4),
+    );
     for (final key in [
       LogicalKeyboardKey.arrowUp,
       LogicalKeyboardKey.arrowDown,
@@ -954,41 +947,44 @@ void main() {
     _expectChecked(tester, ['a', 'b', 'c', 'd']);
   });
 
-  testWidgets('keyboard ranges include offscreen loaded rows without fetching', (
-    tester,
-  ) async {
-    final rows = [
-      for (var index = 0; index < 40; index++)
-        MailMessageListItem(
-          id: 'row-$index',
-          subject: 'Message $index',
-          sender: 'sender@example.test',
+  testWidgets(
+    'keyboard ranges include offscreen loaded rows without fetching',
+    (tester) async {
+      final rows = [
+        for (var index = 0; index < 40; index++)
+          MailMessageListItem(
+            id: 'row-$index',
+            subject: 'Message $index',
+            sender: 'sender@example.test',
+          ),
+      ];
+      final batches = <List<String>>[];
+      var opens = 0;
+      var loads = 0;
+      await _mount(
+        tester,
+        _list(
+          items: rows,
+          onOpen: (_) => opens++,
+          onBulk: (_, ids) => batches.add(ids),
+          onLoadMore: () => loads++,
         ),
-    ];
-    final batches = <List<String>>[];
-    var opens = 0;
-    var loads = 0;
-    await _mount(
-      tester,
-      _list(
-        items: rows,
-        onOpen: (_) => opens++,
-        onBulk: (_, ids) => batches.add(ids),
-        onLoadMore: () => loads++,
-      ),
-      height: 430,
-    );
-    expect(_check('row-39'), findsNothing);
-    await _focusList(tester);
-    await _shift(tester, LogicalKeyboardKey.end);
-    expect(find.text('40 selected'), findsOneWidget);
-    expect(_row('row-39').hitTestable(), findsOneWidget);
-    _expectCursor(tester, 'row-39');
-    await _invoke(tester, MailBulkFlagAction.flag);
-    expect(batches.single, [for (var index = 0; index < 40; index++) 'row-$index']);
-    expect(opens, 0);
-    expect(loads, 0);
-  });
+        height: 430,
+      );
+      expect(_check('row-39'), findsNothing);
+      await _focusList(tester);
+      await _shift(tester, LogicalKeyboardKey.end);
+      expect(find.text('40 selected'), findsOneWidget);
+      expect(_row('row-39').hitTestable(), findsOneWidget);
+      _expectCursor(tester, 'row-39');
+      await _invoke(tester, MailBulkFlagAction.flag);
+      expect(batches.single, [
+        for (var index = 0; index < 40; index++) 'row-$index',
+      ]);
+      expect(opens, 0);
+      expect(loads, 0);
+    },
+  );
 
   testWidgets('RTL preserves vertical range direction and row identities', (
     tester,

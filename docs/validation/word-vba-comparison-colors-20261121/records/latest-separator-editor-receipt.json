@@ -1,0 +1,78 @@
+{
+  "source_head_reported_by_root": "38dce76f",
+  "started_utc": "2026-11-21T21:54:03.371796+00:00",
+  "input_scope": "All engine/editor library files, the four selected editor tests, and root/package manifests and root lockfile.",
+  "input_count": 484,
+  "input_manifest_sha256": "7508488f1e1a4c9a517a98cb340d5e1a3b3dad6ab4a0d2ad717a4e630b7cf343",
+  "flutter": "3.47.8",
+  "dart": "3.13.7",
+  "lockfile_identical": true,
+  "finished_utc": "2026-11-21T21:55:49.200244+00:00",
+  "source_inputs_unchanged": true,
+  "changed_inputs": [],
+  "after_manifest_sha256": "7508488f1e1a4c9a517a98cb340d5e1a3b3dad6ab4a0d2ad717a4e630b7cf343",
+  "tests": {
+    "passed": 64,
+    "failed": 0,
+    "skipped": 0,
+    "hidden_passed": 4,
+    "hooks_passed": 2,
+    "suites": 4,
+    "started": 70,
+    "completed": 70,
+    "by_file": {
+      "word_footnote_separator_render_test.dart": 6,
+      "word_notes_editing_test.dart": 4,
+      "word_zotero_note_image_controller_test.dart": 25,
+      "word_zotero_transfer_controller_test.dart": 29
+    },
+    "errors": [],
+    "lifecycle_errors": [],
+    "terminal_success": true
+  },
+  "test_exit_code": 0,
+  "analysis_exit_code": 0,
+  "analysis_scope": [
+    "lib/src/editor_word/render_word_canvas.dart",
+    "test/word_footnote_separator_render_test.dart"
+  ],
+  "test_command": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter",
+    "json",
+    "test/word_footnote_separator_render_test.dart",
+    "test/word_notes_editing_test.dart",
+    "test/word_zotero_note_image_controller_test.dart",
+    "test/word_zotero_transfer_controller_test.dart"
+  ],
+  "analysis_command": [
+    "flutter",
+    "analyze",
+    "--no-pub",
+    "--fatal-infos",
+    "lib/src/editor_word/render_word_canvas.dart",
+    "test/word_footnote_separator_render_test.dart"
+  ],
+  "cwd": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor",
+  "runtime_version_log_sha256": "083184f3fab704aadd2245083f49719d34fccbb1bc54bd5f2694cceb3b401378",
+  "package_config_sha256": "d1e309bc900c5cb84c7079fbd85199a88a2cc607a6072eb8b311c8bd32a83aec",
+  "lockfile_sha256": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+  "logs": {
+    "latest-separator-editor-tests.jsonl": {
+      "sha256": "54cfd31718c5784b22b8378eba05a9bc77b972585cc6235f7fe3d790f408c40a",
+      "bytes": 36648
+    },
+    "latest-separator-editor-tests.stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "latest-separator-editor-analysis.log": {
+      "sha256": "c97866656ed5f3924a6377ca3568559971673148efae188e87eea5b0b071b87b",
+      "bytes": 97
+    }
+  },
+  "accepted": true
+}

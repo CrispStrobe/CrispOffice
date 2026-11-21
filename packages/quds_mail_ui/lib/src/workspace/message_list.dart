@@ -1345,9 +1345,7 @@ class _MailMessageListState extends State<MailMessageList> {
             : Colors.transparent,
         child: InkWell(
           canRequestFocus: false,
-          onTap: widget.busy
-              ? null
-              : () => _activateRow(item.id, generation),
+          onTap: widget.busy ? null : () => _activateRow(item.id, generation),
           child: DecoratedBox(
             decoration: BoxDecoration(
               border: Border.all(
@@ -1368,12 +1366,11 @@ class _MailMessageListState extends State<MailMessageList> {
                             '${widget.strings.selectMessage}: ${item.subject}, '
                             '${item.sender}',
                         onChanged: _canBulk
-                            ? (value) =>
-                                  _checkFromPointer(
-                                    item.id,
-                                    value ?? false,
-                                    generation,
-                                  )
+                            ? (value) => _checkFromPointer(
+                                item.id,
+                                value ?? false,
+                                generation,
+                              )
                             : null,
                       ),
                     ),

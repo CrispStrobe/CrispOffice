@@ -4,6 +4,14 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Retain document-wide footnote separator geometry through bounded native
+  DOCX and editable ODT persistence, note pagination and Zotero transfer.
+  Preserve supported gaps, thickness, relative width, physical alignment,
+  color and hidden rules, including nondefault special-note IDs and settings
+  references. Qualify combined VBA foreground writes and late-failure rollback
+  without changing active notes or separators; see the
+  [integrated record](../../docs/validation/word-vba-comparison-colors-20261121/README.md).
+
 - Add shared binary `StrComp` to Word, Excel and PowerPoint VBA macros, with
   exact comparison results, explicit Empty/Null handling, strict argument
   contracts and metered UTF-16 work. Word additionally supports the complete

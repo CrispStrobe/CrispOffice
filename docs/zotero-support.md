@@ -36,6 +36,11 @@ Changes are applied as one undo step. Cancelling the picker or declining a
 formatting review returns focus to the document without changing it. Finish IME
 composition before starting a command.
 
+Switching from Word to Mail or another app cancels the pending operation for
+that Word view, including when you return before Zotero responds. Close and
+reopen the Zotero workspace to start a new operation. The citation and refresh
+chords remain reserved when customizing workspace shortcuts.
+
 Native desktop integration is available even before the catalog browser is
 connected. The Zotero windows may open behind the office app.
 
@@ -100,6 +105,13 @@ contract covers:
 - research-note and annotation insertion;
 - native bibliography layout and style preferences;
 - undo transactions and source-bound saving.
+
+Hosts that keep a document mounted across view changes can pass an optional
+`isCurrent` predicate to `showWordZoteroDialog`. Tie it to the originating
+document view and navigation generation; it stays true while Zotero's own
+modal dialogs are open. A stale operation cannot publish changes or take
+editing focus after completion. See the
+[host-ownership qualification](validation/zotero-host-ownership-20261121/README.md).
 
 See the [details](zotero-support-details.md) for exact command names,
 async completion and cancellation behavior, and the native bibliography layout

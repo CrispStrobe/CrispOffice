@@ -47,6 +47,18 @@ execution, locale collation, implicit text coercion or cell formatting.
   `00fbd252d659777dc85f886df150f23c7a76bf1e`. Both independent shortcut test
   suites are retained under distinct names. The compatible separator read and
   automatic-color projection coexist in the Word deserializer.
+- `d8c4c6b83b228d758f00ea2d1fa9dbb1c87f23ca`: saved the original engine,
+  portable and 252-case UI qualification records before the final integrated
+  checks. The [ref inventory](intake/latest-captured-refs.tsv) contains all
+  fifteen then-current fork heads and four upstream heads.
+- Final reconciliation also retains remote main
+  `2f7f5ffc668d7f6452facb13e006e6704c93f439`, which merged the completed
+  host-ownership PR #347 while these checks ran, and Mail's pinned formatter
+  commit `0b38435e553d14cbea505477a473061b134e308e`. The new main contribution
+  contains documentation and execution evidence; its production source was
+  already represented by the captured host snapshot. The [final captured ref
+  coverage](intake/final-ref-coverage.tsv) verifies every captured fork/upstream
+  head in the integrated history.
 
 The documentation reconciliation retains main's short overview guides and
 detailed companions. The new [Word foreground contract](../../vba-word-macros-details.md#font-palette-and-automatic-foreground)
@@ -190,19 +202,57 @@ successful bounded ODT routes and the unsuccessful DOCX-to-LibreOffice
 separator-appearance probes. Its draft status did not establish an integrated
 passing gate.
 
-The newly combined source is being checked with the changed separator suites,
-adjacent note/Zotero persistence tests, color/package/atomicity regressions, a
-new combined macro-and-separator transaction case, and the four affected editor
-rendering/note suites. The incoming host suite is retained as
-`studio_shortcut_host_ownership_test.dart`; its harness is being reconciled
-with the actual editor-owned shortcut dispatch while retaining its assertions.
-Completed results and exact-source records follow in the next checkpoint.
+The newly combined source passed the following gates. Counts are per gate;
+the pinned and host groups deliberately overlap earlier scopes.
+
+| Final gate | Result |
+| --- | --- |
+| 18 engine files: separators, note/Zotero persistence, color, package preservation, atomicity and combined transactions | 465 passed, zero failures/skips |
+| Full engine analysis including `tool/macros` and `tool/zotero` | No issues |
+| Four editor separator-rendering/note suites on pinned Flutter | 64 passed, zero failures/skips; scoped analysis clean |
+| Both shortcut suites plus Zotero shortcuts on pinned Flutter | 44 passed: 12 bridge, 15 retained host, 17 Zotero; scoped analysis clean |
+| Six new macro/conformance/integration suites on pinned Dart 3.13.7 | 238 passed, zero failures/skips |
+| Actual BAS and StrComp tools on pinned VM/compiled JavaScript | Both output pairs byte-identical; all six commands succeeded |
+| Pinned Dart formatting of all 47 changed Dart files | Zero remaining formatting changes; canonical equivalence verified |
+
+The [18-file engine receipt](records/word-comparison-colors-latest-qualification.json)
+binds testing and analysis to 1,108 unchanged inputs. The new two-case
+`office_vba_word_colors_footnote_separator_integration_test.dart` exercises
+source-data comparison, palette and both automatic-color setters in the same
+document as an active footnote. Two native save/reopens retain nondefault
+special-note IDs 17/23, settings references, separator geometry, note text and
+its body anchor. A late invalid macro target leaves published bytes, revision,
+colors, notes and recording unchanged during both validation and execution.
+
+The [editor receipt](records/latest-separator-editor-receipt.json) covers 484
+unchanged inputs. The incoming host suite is retained as
+`studio_shortcut_host_ownership_test.dart`; its public keyboard/menu/controller
+harness now matches editor-owned dispatch while preserving all fifteen incoming
+scenarios. The [44-case host receipt](records/shortcut-host-integration-final-receipt.json)
+confirms that the previously qualified production bridge and original test
+suite remained unchanged. Flutter's legacy logical `Add` alias requires an
+explicit physical/logical test event; the alias behavior remains asserted.
+
+The [pinned macro receipt](records/pinned-word-vba-receipt.json) closes the SDK
+gap between the standalone Dart regression and the repository's exact pin.
+All 461 captured inputs remained unchanged during the 238 tests and portable
+executions. Actual BAS and StrComp output hashes match the earlier receipts
+listed above, including native XML hashes in the BAS result.
+
+After these source-frozen checks, the incoming pinned-formatter commit was
+reconciled. Six files changed formatting only. All 47 final Dart files exactly
+match the pinned formatter's canonical output for the qualified input snapshots;
+the subsequent format check reports zero changes. The
+[format-equivalence receipt](records/word-comparison-colors-pinned-format-equivalence.json)
+records each qualified, canonical and final SHA-256, so this formatting step
+does not silently replace source-qualified evidence with a different program.
 
 ### Evidence and publication
 
 The [record manifest](records/manifest.json) gives exact byte lengths and
 SHA-256 hashes for the saved commands, source inventories, receipts and logs.
-Large text logs use deterministic gzip compression. Original failing runs and
+Large logs and logs with trailing terminal whitespace use deterministic gzip
+compression without changing their original bytes. Original failing runs and
 the successful follow-up checks are retained so the qualification is auditable.
 Portable VM and JavaScript outputs have distinct filenames for the corpus,
 intrinsic smoke and actual BAS workflow.

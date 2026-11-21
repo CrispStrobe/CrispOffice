@@ -1,0 +1,3 @@
+source /home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-env.sh
+cd /home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation/packages/quds_office_engine
+dart analyze --fatal-infos lib test tool/macros tool/zotero
