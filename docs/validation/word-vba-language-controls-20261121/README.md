@@ -50,3 +50,13 @@ source overlay. Independent probes found additional table-style inheritance
 and width cases requiring review; this preservation checkpoint is deliberately
 not a final qualification or publication of those behaviors. Corrections and
 final combined-source evidence must precede main publication.
+
+The follow-up correction preserves sparse table/row inheritance and explicit
+transparent cell backgrounds. It validates authored positive absolute table
+widths against supported fixed column geometry within 0.00001 pt and refuses
+unsupported used structural-style metadata or nested/duplicate property
+content. Unused opaque style definitions remain accepted. The isolated corrected
+ODT cohort passes 381 cases, including 21 new preservation regressions, with
+clean targeted analysis. The combined checkout gate is the remaining acceptance
+step; no editor-loader or installed Office/LibreOffice/Zotero qualification is
+claimed by this intake.
