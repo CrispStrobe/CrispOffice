@@ -1,0 +1,88 @@
+{
+  "archive": "execution.tar.gz",
+  "bytes": 663621,
+  "sha256": "70e46e5324337adcf57ca870ffe54073cba8a5d5013d34a99a14888cec4d6693",
+  "member_count": 20,
+  "members": {
+    "paint-integration/analyze.json": {
+      "bytes": 689,
+      "sha256": "0af40c1ef78796d53c6c2c660daffee811356d1383160e16a93b181bebf9e2c6"
+    },
+    "paint-integration/analyze.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "paint-integration/analyze.stdout.log": {
+      "bytes": 54,
+      "sha256": "de8fbb4b1ba8504a9ab7586495ebec9d0d897f9feac7bf291926d297e3ec1b35"
+    },
+    "paint-integration/commands.txt": {
+      "bytes": 744,
+      "sha256": "b881743785eb27220d01b79ac9d5b7b57ae594db226bfdaf1be9f9535bf34113"
+    },
+    "paint-integration/flutter-tests.json": {
+      "bytes": 1442,
+      "sha256": "740892c243f25486c4bcbdb35add60764b395673165d204cb37f2712973dd4d0"
+    },
+    "paint-integration/flutter-tests.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "paint-integration/flutter-tests.stdout.log": {
+      "bytes": 19537,
+      "sha256": "3f508093836f344cea156e9621c0e7fa285845aed7f670bed0bdd57030f02265"
+    },
+    "paint-integration/format.json": {
+      "bytes": 714,
+      "sha256": "a11081a041eb43e8cf14d1184dbf81782e3325e20352a5187af3fcdcb2430492"
+    },
+    "paint-integration/format.stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "paint-integration/format.stdout.log": {
+      "bytes": 46,
+      "sha256": "9ef1244e615ce195aeeb8fa18ed76dea89fb3591ce2b8b8ebc4199f8f33fc712"
+    },
+    "paint-integration/inputs-after.json": {
+      "bytes": 327842,
+      "sha256": "17fa0affe28c4a706f8fad341680930b322a118763772248bd1449c1156c1018"
+    },
+    "paint-integration/inputs-before.json": {
+      "bytes": 327842,
+      "sha256": "17fa0affe28c4a706f8fad341680930b322a118763772248bd1449c1156c1018"
+    },
+    "paint-integration/receipt.json": {
+      "bytes": 4593,
+      "sha256": "95959c6e67bd7f65a87d1a81a751d26d35ddf6dd476e6683ec7b5b56f5c6e7ad"
+    },
+    "paint-integration/runner.py": {
+      "bytes": 11964,
+      "sha256": "69db5fe386b99416d1a69a009d397be368f913c2e29808e24342160a67cd26e6"
+    },
+    "paint-integration/source-after.json": {
+      "bytes": 299,
+      "sha256": "cfeea4e5399c76d2e72085300703ef0cf5c53326dec9bc64e52f976800f36ec9"
+    },
+    "paint-integration/source-before.json": {
+      "bytes": 299,
+      "sha256": "41c60e96984ada7884b6f7620235583437b427d7c6b5da50147cb54b1c7a75fd"
+    },
+    "paint-integration/source-binding.json": {
+      "bytes": 2317869,
+      "sha256": "4092432fa3ab933a10af6bc8b12cc910eeb110bd3401e76ba268f56ad8eccdda"
+    },
+    "paint-integration/suite-map.json": {
+      "bytes": 377,
+      "sha256": "5346e7edcdad998be96d9a37d1272cbee877fd3717847fe7c15c26d1643ddc91"
+    },
+    "paint-integration/test-cases.json": {
+      "bytes": 13551,
+      "sha256": "3cf435951df0bd897b337ef7019605f5c5c02e857e7ba2eeeabf09e4efba31cd"
+    },
+    "paint-integration/test-errors.json": {
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    }
+  }
+}
