@@ -477,7 +477,9 @@ ${_paragraphStyle('Child', '', parent: 'Parent', text: 'fo:font-style="italic"')
             () => configured(
               '<text:notes-configuration text:note-class="footnote" text:$name="Custom"/>',
             ).validateNoteConfiguration(false),
-            throwsUnsupportedError,
+            name.startsWith('citation-')
+                ? throwsA(isA<FormatException>())
+                : throwsUnsupportedError,
           );
         }
       },
