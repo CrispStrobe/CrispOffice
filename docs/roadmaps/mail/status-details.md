@@ -17,12 +17,14 @@ entry, with empty-name fallbacks and no Bcc/body inclusion. Connected and
 offline regression cases assert that searching triggers no synchronization,
 download or body reads.
 
-**Fresh runtime qualification is pending.** The local executor failed with
-disk exhaustion and then could not start processes. Source review and remote
-readback do not establish passing Flutter tests, analyzer, formatter, visual
-checks or live-provider acceptance. See the [workflow](keyboard-triage.md) and
-[work record](../../validation/mail-keyboard-triage-20261121/README.md).
-GitHub Actions were neither queried nor awaited for this continuation.
+**Fresh widget qualification passed on Flutter 3.47.8 / Dart 3.13.7.** The
+43 range-selection, three localized-help and two new address-search cases
+passed during Word macro integration; the complete sync-dialog suite passed
+35 cases. The [original work record](../../validation/mail-keyboard-triage-20261121/README.md)
+retains the initial executor failure. See the [workflow](keyboard-triage.md) and
+[integrated local evidence](../../validation/word-vba-comparison-colors-20261121/README.md).
+This does not claim installed-provider or visual acceptance. GitHub Actions
+were neither queried nor awaited.
 
 ## Scheduled Outbox and pre-submission Undo — locally qualified
 

@@ -4,6 +4,16 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Scope Zotero dialogs to their originating host view through optional
+  `isCurrent` checks. Studio cancels delayed publication and focus restoration
+  after switching to Mail or another app, even if Word is reopened before the
+  response arrives.
+
+- Protect reserved Zotero shortcuts from conflicting overrides, retire old
+  redo/zoom aliases after reassignment, and reject modifier-only key settings.
+  Keep native text actions and comment emphasis available in their own views;
+  show subscript as unassigned while preserving the established zoom-in chord.
+
 - Give Studio's configured keyboard shortcuts priority at the focused Word,
   Sheet and Slide surfaces through the optional
   `OfficeController.onShortcutKeyEvent` host hook. Retire replaced defaults and

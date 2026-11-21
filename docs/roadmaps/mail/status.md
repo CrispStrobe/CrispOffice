@@ -24,6 +24,19 @@ interrupted work.
 | Account persistence | Native account store, schema migrations and reconnect |
 | Browser store | Implemented path; quota/reload/Web Locks acceptance remains open |
 
+## Latest increment: keyboard triage and address search
+
+Loaded mailbox lists now support growing and shrinking checked ranges with
+Shift+Up/Down/Home/End, Shift+Space and Shift+click, with English, German and
+Arabic help. Synchronized-view header search retains names and addresses for
+every visible From/To/Cc entry.
+
+**Locally qualified on Flutter 3.47.8 / Dart 3.13.7.** The 48 new regression
+cases passed: 43 range-selection cases, three localized-help cases and two
+address-search cases within the passing 35-case sync-dialog suite. See the
+[workflow](keyboard-triage.md), [detailed status](status-details.md#range-selection-and-synchronized-address-search--source-implemented)
+and [integrated qualification](../../validation/word-vba-comparison-colors-20261121/README.md).
+
 ## Mailbox
 
 - Browse folders with a paginated, account-scoped header view.
