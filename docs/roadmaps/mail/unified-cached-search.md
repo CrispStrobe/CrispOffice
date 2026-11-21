@@ -86,11 +86,13 @@ revalidated before access and publication. Reads verify account, provider,
 local ID and remote identity. Close fences late completions, drains operations
 and releases both owners. A close failure remains visible and retryable.
 
-Search does not invoke transport, credential, draft-editor, command-journal or
-submission methods. Repository search itself performs no writes and reads no
-body/blob/draft/Outbox payload. The existing native opener retains its normal
-ownership and interrupted-operation recovery behavior. No database migration,
-dependency change, network search or new automatic send is introduced.
+The search route invokes no transport, credential, draft-editor or submission
+operations. The repository query performs no writes and reads no
+body/blob/draft/Outbox payload. Opening an account still performs the existing
+profile/account initialization and interrupted-operation recovery; those
+opening steps can update local metadata and recovery records before the query.
+No database migration, dependency change, network search or new automatic send
+is introduced by cached search.
 
 ## Qualification
 

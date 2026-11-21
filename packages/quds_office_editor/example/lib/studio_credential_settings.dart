@@ -77,7 +77,9 @@ class _CredentialSettingsState extends State<_CredentialSettings> {
     setState(() {
       touchIdAvailability = availability;
       touchIdEnabled = touchIdWanted = enabled;
-      if (manager.biometricReenrolmentSuggested) {
+      if (manager.biometricCleanupPending) {
+        touchIdNotice = strings.vaultTouchIdCleanupPending;
+      } else if (manager.biometricReenrolmentSuggested) {
         touchIdNotice = strings.vaultTouchIdInvalidated;
       }
     });
@@ -93,7 +95,7 @@ class _CredentialSettingsState extends State<_CredentialSettings> {
       setState(() => touchIdWanted = true);
       return;
     }
-    if (!touchIdEnabled) {
+    if (!touchIdEnabled && !manager.biometricCleanupPending) {
       setState(() => touchIdWanted = false);
       return;
     }
@@ -104,7 +106,10 @@ class _CredentialSettingsState extends State<_CredentialSettings> {
     try {
       await manager.disableBiometricUnlock();
       if (mounted) {
-        setState(() => touchIdEnabled = touchIdWanted = false);
+        setState(() {
+          touchIdEnabled = touchIdWanted = false;
+          touchIdNotice = null;
+        });
       }
     } on Object {
       if (mounted) setState(() => error = strings.vaultTouchIdDisableFailed);
@@ -187,10 +192,23 @@ class _CredentialSettingsState extends State<_CredentialSettings> {
           // The vault is open and selected; only the convenience failed.
           if (mounted) {
             ScaffoldMessenger.maybeOf(context)?.showSnackBar(
-              SnackBar(content: Text(strings.vaultTouchIdEnableFailed)),
+              SnackBar(
+                content: Text(
+                  manager.biometricCleanupPending
+                      ? strings.vaultTouchIdCleanupPending
+                      : strings.vaultTouchIdEnableFailed,
+                ),
+              ),
             );
           }
         }
+      }
+      if (mounted &&
+          selectedMode != StudioCredentialMode.encryptedVault &&
+          manager.biometricCleanupPending) {
+        ScaffoldMessenger.maybeOf(context)?.showSnackBar(
+          SnackBar(content: Text(strings.vaultTouchIdCleanupPending)),
+        );
       }
       if (mounted) Navigator.pop(context, true);
     } catch (_) {
@@ -226,7 +244,10 @@ class _CredentialSettingsState extends State<_CredentialSettings> {
         ),
         value: touchIdWanted,
         // Turning it off is always possible; turning it on needs biometry.
-        onChanged: busy || (!_touchIdUsable && !touchIdWanted)
+        onChanged:
+            busy ||
+                manager.biometricCleanupPending ||
+                (!_touchIdUsable && !touchIdWanted)
             ? null
             : _setTouchId,
       ),
@@ -234,6 +255,12 @@ class _CredentialSettingsState extends State<_CredentialSettings> {
         Text(
           touchIdNotice!,
           key: const ValueKey('studio-credential-touchid-notice'),
+        ),
+      if (manager.biometricCleanupPending)
+        TextButton(
+          key: const ValueKey('studio-credential-touchid-cleanup'),
+          onPressed: busy ? null : () => _setTouchId(false),
+          child: Text(strings.vaultTouchIdRetryCleanup),
         ),
       if (existing && touchIdEnabled && _touchIdUsable)
         Align(
