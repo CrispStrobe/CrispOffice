@@ -1,0 +1,125 @@
+{
+  "accepted": true,
+  "checks": {
+    "analysis": {
+      "accepted": true,
+      "exit_code": 0,
+      "stderr_bytes": 0
+    },
+    "format": {
+      "accepted": true,
+      "exit_code": 0,
+      "stderr_bytes": 0
+    }
+  },
+  "counting": {
+    "additional_case_identities": 32,
+    "combined_distinct_case_identities": 436,
+    "current_executed_case_identities": 46,
+    "expected_fourteen_case_overlap_verified": true,
+    "prior_accepted_distinct_case_identities": 404,
+    "rerun_case_identities": [
+      [
+        "packages/quds_office_editor/example/test/studio_mail_cached_search_refresh_dialog_test.dart",
+        "Close drains an in-flight automatic refresh and rejects its late result"
+      ],
+      [
+        "packages/quds_office_editor/example/test/studio_mail_cached_search_refresh_dialog_test.dart",
+        "a refresh capped at one thousand matches pauses automatic work"
+      ],
+      [
+        "packages/quds_office_editor/example/test/studio_mail_cached_search_refresh_dialog_test.dart",
+        "failed refresh pauses auto without exposing storage details"
+      ],
+      [
+        "packages/quds_office_editor/example/test/studio_mail_cached_search_refresh_dialog_test.dart",
+        "manual refresh replaces removed and changed-flag matches"
+      ],
+      [
+        "packages/quds_office_editor/example/test/studio_mail_cached_search_refresh_dialog_test.dart",
+        "multiaccount refresh publishes one complete replacement"
+      ],
+      [
+        "packages/quds_office_editor/example/test/studio_mail_cached_search_refresh_dialog_test.dart",
+        "query edits invalidate staged work and stale refresh callbacks"
+      ],
+      [
+        "packages/quds_office_editor/example/test/studio_mail_cached_search_refresh_dialog_test.dart",
+        "refresh is explicit until auto is opted in after full local coverage"
+      ],
+      [
+        "packages/quds_office_editor/example/test/studio_mail_cached_search_refresh_dialog_test.dart",
+        "refresh preserves the selected reader without rereading its body"
+      ],
+      [
+        "packages/quds_office_editor/example/test/studio_mail_cached_search_refresh_dialog_test.dart",
+        "removing an earlier account during refresh clears its selected reader"
+      ],
+      [
+        "packages/quds_office_editor/example/test/studio_mail_cached_search_refresh_dialog_test.dart",
+        "scope edits clear the previous search and disable auto immediately"
+      ],
+      [
+        "packages/quds_office_editor/example/test/studio_mail_cached_search_refresh_dialog_test.dart",
+        "slow automatic refresh never overlaps or catches up in bursts"
+      ],
+      [
+        "packages/quds_office_editor/example/test/studio_mail_cached_search_refresh_dialog_test.dart",
+        "suspended refresh cleanup failure pauses auto until explicit retry"
+      ],
+      [
+        "packages/quds_office_editor/example/test/studio_mail_cached_search_refresh_dialog_test.dart",
+        "suspending a staged refresh retains completed results and stops future pages"
+      ],
+      [
+        "packages/quds_office_editor/example/test/studio_mail_cached_search_refresh_dialog_test.dart",
+        "suspension cancels the timer and resume waits a full interval"
+      ]
+    ],
+    "rerun_prior_case_identities": 14,
+    "rule": "The existing 14 refresh-dialog cases are rerun and counted once. The earlier 404 accepted identities remain a separate recorded population; only additional identities increase a combined distinct total."
+  },
+  "limits": "Finite local Flutter qualification of shortcut dispatch/settings, a Linux-targeted real workspace Mail-isolation case, and the existing refresh lifecycle cases. It does not claim full repository or installed-platform acceptance; the 14 rerun refresh identities are counted once.",
+  "qualified_source_commit": "26e12bc3787f6b350cf185a14c6622bb9ac587f0",
+  "rejected_preflight": {
+    "directory": "/workspace/scratch/8eb34dc8ced9/runtime/shortcuts-integration-preflight-rejected",
+    "excluded_from_counts": true,
+    "reason": "Initial runtime guard omitted the observed editor changelog metadata path; no Flutter execution occurred before that guard was corrected.",
+    "tests_executed": 0
+  },
+  "schema": "quds-mail-live-search-shortcuts-integration-acceptance/v1",
+  "source_applicability": {
+    "prior_qualified_head": "3d49a13d9e3d01db2a273d43affd36140475b467",
+    "scope": "The new delta is limited to Studio shortcut/settings/workspace paths, their tests, and the editor changelog. Mail/core/store/editor-engine package inputs outside those explicitly recorded paths and dependency manifests are unchanged. This gate covers actual shortcut dispatch, persistence, Mail isolation and the existing refresh lifecycle cohort; it does not claim a full Studio or repository regression.",
+    "source_delta": [
+      "packages/quds_office_editor/CHANGELOG.md",
+      "packages/quds_office_editor/example/lib/studio_settings.dart",
+      "packages/quds_office_editor/example/lib/studio_shortcuts.dart",
+      "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "packages/quds_office_editor/example/lib/suite_workspace_settings.dart",
+      "packages/quds_office_editor/example/test/studio_shortcuts_test.dart",
+      "packages/quds_office_editor/example/test/suite_workspace_mail_shortcuts_test.dart"
+    ]
+  },
+  "source_input_count": 5983,
+  "source_manifest_sha256": {
+    "after": "4f55cd63a478030e0640e728b40064f941f9ef26d9c66fac92f53484aca86adc",
+    "before": "4f55cd63a478030e0640e728b40064f941f9ef26d9c66fac92f53484aca86adc"
+  },
+  "summary_sha256": "d5b869f78f7b759d98b4350176c27e9500b34e0c7cb7b66abfd4a71767642bec",
+  "test_receipt_sha256": "5ab1a6cf53e77e29d301d74ac0e7b1cdb9fea58ea3cbd00b59950632eca70c16",
+  "tests": {
+    "complete_lifecycle": true,
+    "failed": 0,
+    "passed": 46,
+    "runtime_error_events": 0,
+    "skipped": 0,
+    "stderr_bytes": 0,
+    "suites": {
+      "packages/quds_office_editor/example/test/studio_mail_cached_search_refresh_dialog_test.dart": 14,
+      "packages/quds_office_editor/example/test/studio_settings_test.dart": 21,
+      "packages/quds_office_editor/example/test/studio_shortcuts_test.dart": 10,
+      "packages/quds_office_editor/example/test/suite_workspace_mail_shortcuts_test.dart": 1
+    }
+  }
+}

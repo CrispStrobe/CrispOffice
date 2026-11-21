@@ -39,6 +39,7 @@ are neither consulted nor awaited.
 | `3d49a13d9e3d01db2a273d43affd36140475b467` | Later landed main `e5940c79`, including completed Word numeric authoring and its independent evidence |
 | `bc901aa1724684748d82448377f383ab2938ab18` | Complete numeric integration receipts and ancestry replay |
 | `b31594736634f4edc1bfed1ab43dca31c06416b7` | Preserve subsequently landed main `2fdc0883` / PR #344 configurable workspace shortcuts |
+| `26e12bc3787f6b350cf185a14c6622bb9ac587f0` | Semantic workspace shortcut replacement, Mail isolation, released direction chords and actual dispatch regressions |
 
 The final scope recheck closes an independently reproduced design gap: account
 A can be retired after its last page while account B is still being scanned.
@@ -166,8 +167,23 @@ document shortcuts while Mail is active. Actual key-dispatch and workspace
 Mail-isolation regressions accompany the correction. The direction handler now
 uses the existing release-time chord recognizer, so Ctrl+Shift prefixes do not
 create an extra direction edit before another shortcut. Bare function keys
-also survive the saved-binding parser. Its finite qualification is recorded in
-the subsequent evidence checkpoint.
+also survive the saved-binding parser.
+
+The [shortcut integration receipt](shortcuts-integration.json) passes all
+46 executed cases: 10 shortcut, 21 settings, one real workspace Mail-isolation
+case and 14 refreshed Mail lifecycle cases. The actual workspace case verifies
+that Mail focus leaves hidden Word text, formatting, tracking, selection,
+revision, dirty state and undo history unchanged; returning to Documents
+restores one undoable action per tested shortcut. Strict analysis and format
+checks pass for all 15 selected files, and all 5,983 input hashes remain
+unchanged. There are zero failures, skips, runtime error events or stderr.
+
+The 14 Mail cases are reruns and counted once: this adds **32 distinct cases**
+to the preceding 404, for **436 distinct automated regression cases plus four
+visual configurations**. The [archive index](shortcuts-integration-index.json)
+hashes every entry in the [raw archive](shortcuts-integration.tar.xz). An initial
+preflight omitted the known changelog path from its expected-change list; that
+zero-test rejection is preserved separately from the accepted execution.
 
 The correction is scoped to workspace dispatch. Several built-in shortcuts are
 handled directly by the embedded Word editor before reaching its ancestor;
