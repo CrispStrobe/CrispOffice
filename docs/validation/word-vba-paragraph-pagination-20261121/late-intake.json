@@ -1,0 +1,117 @@
+{
+  "schema": "quds.word-vba.late-intake.v1",
+  "date": "2026-11-21",
+  "repository": "CrispStrobe/quds_office_suite",
+  "scope": "Fixed concurrent source snapshot; later pushes on work branches are outside this intake. Remote main is refreshed separately before publication.",
+  "main": "bf761552d22dcd1eb8cbb0ab00ddab6507e1d572",
+  "word_checkpoint_before_late_intake": "c093f6387fcae69f04c63f4344476e4785906a54",
+  "inherited_inventory": "intake-inventory.json",
+  "fresh_fork_inventory": {
+    "branch_count": 42,
+    "open_pull_requests": 0,
+    "recent_pull_requests_checked": [
+      280,
+      278,
+      279,
+      277,
+      275,
+      273
+    ],
+    "new_branches": [
+      {
+        "name": "codex/word-vba-paragraph-pagination-20261121",
+        "captured_head": "d71d378325e4f61996320b0415779f45cea60ce2",
+        "role": "this work"
+      },
+      {
+        "name": "codex/zotero-multiparagraph-20261121",
+        "captured_head": "e5b9240512158c329dd2671aa9f36eb08cb74e11",
+        "role": "incoming intake-only merge"
+      }
+    ],
+    "advanced_branch": {
+      "name": "work/mail-parity-20261121",
+      "previous_head": "bf761552d22dcd1eb8cbb0ab00ddab6507e1d572",
+      "captured_head": "71a9d73f86a30380d7fe3563f1a0048f1f7eb860"
+    },
+    "other_branch_heads_unchanged": 39,
+    "previous_full_scope_retained": {
+      "fork_pr_heads": 280,
+      "upstream_branches": 4,
+      "upstream_pr_heads": 4
+    }
+  },
+  "incoming": [
+    {
+      "name": "codex/zotero-multiparagraph-20261121",
+      "head": "e5b9240512158c329dd2671aa9f36eb08cb74e11",
+      "parents": [
+        "bf761552d22dcd1eb8cbb0ab00ddab6507e1d572",
+        "bbccae1bdead10951e2d7a23b33cf14c55382e02"
+      ],
+      "kind": "intake-only",
+      "retained_unique_paths": 8,
+      "description": "Retain the eight exact incoming Zotero intake artifacts and its merge ancestry. The 30 older evidence files were already retained. Its image URI/URL alias is semantically equivalent to the current implementation."
+    },
+    {
+      "name": "work/mail-parity-20261121",
+      "head": "71a9d73f86a30380d7fe3563f1a0048f1f7eb860",
+      "parents": [
+        "d6e8fddd08755fe84e82f2a7a0bce200f0c92826"
+      ],
+      "intake_parent": {
+        "head": "d6e8fddd08755fe84e82f2a7a0bce200f0c92826",
+        "parents": [
+          "bf761552d22dcd1eb8cbb0ab00ddab6507e1d572",
+          "bbccae1bdead10951e2d7a23b33cf14c55382e02"
+        ]
+      },
+      "kind": "self-contained optional capability",
+      "description": "Retain the two exact Mail intake artifacts, immutable alias regressions and documentation, then the fresh read-only MailFlagObserver port with IMAP, EWS, Gmail and Microsoft 365 implementations. This commit introduces no partially wired recovery controller or UI."
+    }
+  ],
+  "merge_order": [
+    "e5b9240512158c329dd2671aa9f36eb08cb74e11",
+    "71a9d73f86a30380d7fe3563f1a0048f1f7eb860"
+  ],
+  "reviewed_resolutions": {
+    "retain_word_checkpoint_exact": [
+      "packages/quds_office_engine/CHANGELOG.md"
+    ],
+    "retain_current_image_alias": [
+      "packages/quds_mail_ui/lib/src/reader/presentation.dart"
+    ],
+    "retain_historical_evidence_and_correct_link": [
+      "docs/validation/zotero-merged-cells-20261120/incoming-pr277-horizontal-checkpoint.md",
+      "docs/validation/zotero-merged-cells-20261120/incoming-pr277-intake.md",
+      "docs/validation/zotero-merged-cells-20261120/intake.md"
+    ],
+    "take_compatible_mail_additions_exact": [
+      "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart",
+      "packages/quds_mail_transport/CHANGELOG.md",
+      "packages/quds_mail_ui/CHANGELOG.md"
+    ],
+    "observations": "Recursive merge bases attempted to remove newer Word changelog text, restore an obsolete historical-report link, and delete two retained Zotero evidence files. Those automatic results were rejected. All remaining automatic merges were inspected."
+  },
+  "source_verification": {
+    "word_engine_and_macro_docs": "No delta from the pre-intake Word checkpoint.",
+    "exact_incoming_evidence": "All eight Zotero intake files and two Mail intake files retain their incoming Git blob identities. All previously retained evidence remains unchanged.",
+    "mail_package_subtrees_equal_captured_head": {
+      "packages/quds_mail_core": "63122ab953529b7a78ba6bd63fdecd8259e2d8f5",
+      "packages/quds_mail_transport": "a639134e2ebb9da36b8a0b1c59f9a7a1f38576a8",
+      "packages/quds_mail_ui": "3ed1b10aa1b90390c3e33821d480a804cc6eadbd"
+    },
+    "diff_check": "passed"
+  },
+  "local_mail_validation": {
+    "source_commit": "71a9d73f86a30380d7fe3563f1a0048f1f7eb860",
+    "record": "late-mail-validation.json",
+    "cases": 498,
+    "transport_vm": 257,
+    "core": 235,
+    "node_fallback": 6,
+    "core_and_transport_fatal_infos_analysis": "passed",
+    "scope": "Actual captured core/transport sources with local protocol and HTTP fixtures. Four disposable pubspec workspace directives were removed; no production/test drift. Flutter UI and live provider accounts were not executed."
+  },
+  "github_actions": "No workflow, check, status, queue or Actions run was queried or awaited."
+}
