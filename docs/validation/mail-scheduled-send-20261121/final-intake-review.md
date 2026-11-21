@@ -1,28 +1,30 @@
-# Mail final intake refresh
+# Final incoming-history reconciliation
 
-Frozen local graph target: `55825a375c6acd875f7bb2d408b6069795f10b48`.
-Remote main remains `4970f71f983535d045ce263e86835b499db4fda9`.
+The frozen **377-ref snapshot is fully reconciled** at `44a980b089b6b452e73bcc3a51ed8f820d83fd7a`: **363 captured refs are ancestors and 14 historical PR refs have verified equivalents**. No captured current production branch remains unintegrated. The snapshot was captured 2026-11-21 at 18:56:54 UTC; later remote advances are outside this finite checkpoint.
 
-The refresh captured 377 refs: 41 fork branches, all 332 fork PR heads and all four upstream branches. 360 are current-work-branch ancestors, 14 old PR heads are independently reverified equivalents, and three current branch heads need ancestry integration. No GitHub Actions/status queries or waits were used.
+| Source | Captured | Ancestors | Verified equivalents |
+|---|---:|---:|---:|
+| Fork branches |41|41|0|
+| Fork PR heads |332|318|14|
+| Original upstream branches |4|4|0|
+| Total |377|363|14|
 
-## Frozen incoming heads
+The historical PRs are #134,135,136,137,138,140,141,142,145,146,147,149,151,152. Thirteen have exact whole-tree equality with accepted ancestors. PR #140 has exact equality for all 37 paths changed by its original commit. Every replacement is an ancestor of the integrated checkpoint. Full object IDs, paths, trees and proofs are in `final-intake.json`.
 
-- Word `37afb04e1167fe306e4d124368a08e372638f4ab`: merges the already captured Zotero intake checkpoints into the already accepted Word source. No engine change relative to qualified `655b2722`.
-- Bibliography `bf54a8e7d976670af87dd3d36f3afc26c1821d3b`: admits bounded LibreOffice bibliography section wrappers, qualifies producer-specific note numbering offsets, preserves explicit editable-ODT table alignment/width, validates inert sequence declarations, and adds source fixtures/regressions. Production changes are `odt_document_reader.dart`, `odt_document_writer.dart` and `odt_reader_styles.dart`.
-- Images `81e478ca0ffe249a908362cd233790b8920d439c` (following `fac61ecd`): imports bounded embedded PNG/upright JPEG frames, preserves inline picture positions and metadata through editable ODT, assigns unique frame names, and validates the associated graphic/link styles. It changes those same three files plus `odt_writer_zotero.dart` and adds `odt_reader_images.dart`, three engine suites, an editor suite and acceptance tooling/docs.
+## Preserved incoming heads
 
-## Merge review
+| Head | Scope | Local merge commit |
+|---|---|---|
+| `37afb04e1167fe306e4d124368a08e372638f4ab` | Word merge ancestry and intake docs; native Word 655 source already qualified | `056970556f6c821c3070b8e4213769bc81bbf499` |
+| `bf54a8e7d976670af87dd3d36f3afc26c1821d3b` | Native ODT bibliography wrappers, producer-specific note offsets, table geometry | `ba615eaa13d8fc08d423767366275e8a293cb4ce` |
+| `81e478ca0ffe249a908362cd233790b8920d439c` | Embedded inline PNG/JPEG import/export, image ownership/styles, distinct drawing names | `44a980b089b6b452e73bcc3a51ed8f820d83fd7a` |
 
-A read-only `git merge-tree --write-tree bf54a8e7 81e478ca` found one conflicted file, `odt_document_reader.dart`. Its two conflict regions are the constructor call/signature: images supplies a positional `ZipReader`, while bibliography supplies named `libreOfficeNoteOffsets`. Preserve both parameters and both initialization behaviors. Writer and style changes merge automatically because their edits concern different behaviors.
+Each merge retains its original incoming head as a parent. The only merge conflict was two constructor hunks in `odt_document_reader.dart`: the resolved call and constructor preserve both the ZIP image input and the LibreOffice note-offset flag. Shared writer/style changes merged automatically and received combined runtime validation.
 
-The new image reader does not fetch external image URLs. It reuses bounded raster validation and accounts for previously unsupported inventory paths only after fully decoding their corresponding frames. Images inside citation/bibliography fields remain refused. The bibliography continuation admits only wrapper properties that have no active protection/layout effect and requires observed ordinal agreement when applying its restricted LibreOffice-producer convention. No source-review blocker was found; execution on the combined source remains required.
+## Combined qualification and corrections
 
-Relevant new/changed tests are `odt_libreoffice_bibliography_test.dart`, `odt_libreoffice_fixture_test.dart`, `odt_libreoffice_note_offsets_test.dart`, `odt_zotero_table_geometry_test.dart`, `odt_image_style_review_test.dart`, `odt_reader_images_test.dart`, `odt_zotero_image_lifecycle_test.dart` and editor `word_odt_image_load_test.dart`. Existing bounded ODT/ODF-Zotero reader/writer suites should run on the combination, since these shared serializers feed the imported features.
+All **1,206 engine tests in 63 focused ODT/ODF-Zotero suites** and **19 editor tests in 3 ODT suites** passed on the final source. Fatal-info analysis and formatting passed on 15 relevant Dart paths. All source inputs also match committed source `e9a95d7795812a8322c3a0c1d508cf05553bfe82`. Hashes for 1,247 engine/editor Dart inputs are identical before and after every final command, and all final commands share the same source snapshot.
 
-No source was merged or modified during this read-only refresh. This is a finite captured inventory, not a promise that concurrently active branches cannot advance afterward.
+The first combined engine run exposed three incoming failures: two continuous-section page-break regressions caused by newly allocated picture names leaking into story comparisons, and one annotation picture structure regression. A narrow writer correction ignores picture identity only in comparison copies, preserving unique names in emitted packages, and retains existing comment-picture structure while ordinary picture style spans remain. The existing continuous-header regression now also checks emitted identities remain distinct. One redundant nullable operator in an incoming bibliography test was corrected for strict analysis. These changes are captured as a three-file patch in the evidence archive; no incoming production capability was dropped.
 
-## Reconciliation completed
-
-The frozen 377-ref snapshot is now reconciled at `44a980b089b6b452e73bcc3a51ed8f820d83fd7a` (tree `4d1b2ec8a519a283897e703e385aa92165ea6b19`): 363 captured refs are ancestors and 14 historical PR refs retain exact verified equivalents. All 41 fork branch tips, 318 of 332 PR heads, and all 4 upstream branch tips are ancestors. The remaining 14 PR heads have 13 whole-tree equivalences and one original-change-path equivalence across all 37 paths, reverified after merging. No captured current production branch remains unintegrated.
-
-Merge commits preserve the original branch heads as parents: `05697055` for Word37, `ba615eaa` for bibliography bf54, and `44a980b0` for images81. The only conflict was the ODT reader construction/constructor; both the ZIP image input and producer-specific note-offset flag are retained. Combined engine/editor validation is recorded separately. The snapshot remains finite: no Actions polling and no endless branch chasing.
+Raw initial failures, the overlapping 165-test focused rerun, final 1,225 passing tests, strict analysis/format logs, source hashes and exact commands are retained in the ODT evidence package. No external LibreOffice conversion or installed Zotero/CSL session was run here; the committed LibreOffice fixture tests passed. GitHub Actions were neither queried nor awaited.

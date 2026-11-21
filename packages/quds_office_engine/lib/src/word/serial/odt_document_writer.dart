@@ -253,12 +253,35 @@ abstract final class OdtDocumentWriter {
         if (!layout.notes.emitted.keys.any((key) => key.$1 == endnote)) {
           continue;
         }
+        // Writer associates each note class/role with a distinct style pool
+        // identity. Reusing one style lets a later role reset the earlier one
+        // to its built-in 58% anchor or baseline symbol during an actual save.
+        final prefix = endnote ? 'QudsEndnote' : 'QudsFootnote';
+        for (final role in ['Symbol', 'Anchor']) {
+          w.writeStartElement('style', prefix: 'style');
+          w.writeAttribute('style:name', '$prefix$role');
+          w.writeAttribute('style:family', 'text');
+          w.writeEmptyElement(
+            'text-properties',
+            prefix: 'style',
+            attributes: {'style:text-position': 'super 65%'},
+          );
+          w.writeEndElement();
+        }
         w.writeEmptyElement(
           'notes-configuration',
           prefix: 'text',
           attributes: {
             'text:note-class': endnote ? 'endnote' : 'footnote',
             'style:num-format': '1',
+            'text:citation-style-name': '${prefix}Symbol',
+            'text:citation-body-style-name': '${prefix}Anchor',
+            // Native endnotes use the final section's regular page geometry,
+            // including when that section entered on an odd/even start master.
+            if (endnote)
+              'text:master-page-name': layout.sections.length == 1
+                  ? 'Standard'
+                  : 'mp${layout.sections.length - 1}',
             if (!endnote) 'text:start-numbering-at': 'document',
           },
         );
@@ -1208,13 +1231,14 @@ abstract final class OdtDocumentWriter {
           );
         }
         if (inline.inlineVisual case final visual?) {
-          // Inline pictures own the run's character style in every story,
-          // including annotations. Detached comment visuals still use their
-          // separate paragraph-level writer.
-          w.writeStartElement('span', prefix: 'text');
-          w.writeAttribute('text:style-name', style);
+          // Comment links already carry the run style. Unlinked pictures,
+          // including annotation pictures, preserve it on their own span.
+          if (!commentLink) {
+            w.writeStartElement('span', prefix: 'text');
+            w.writeAttribute('text:style-name', style);
+          }
           _writeVisual(w, visual.visual, layout, inline: true);
-          w.writeEndElement();
+          if (!commentLink) w.writeEndElement();
         }
         if (ownLink) w.writeEndElement();
         if (layout.commentsAllowed) {

@@ -295,9 +295,12 @@ void main() {
         expect(picture.height, 16);
         final preferences =
             jsonDecode(WordZoteroDocumentData.read(document))
-                as Map<String, dynamic>;
+                as Map<String, Object?>;
         expect(preferences['futurePreference'], 'KeepCase 😀');
-        expect(preferences['style']['locale'], 'de-DE');
+        expect(
+          (preferences['style'] as Map<String, Object?>)['locale'],
+          'de-DE',
+        );
       }
 
       for (var cycle = 0; cycle < 3; cycle++) {

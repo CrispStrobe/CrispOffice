@@ -73,6 +73,10 @@ in LibreOffice. Other alignments refuse this explicit path. The ordinary writer
 retains its existing fill-width behavior. See the
 [round-trip continuation](../../validation/zotero-odt-roundtrip-20261121/README.md)
 for the actual converter reproduction and corrected table fixtures.
+Intervening DOCX saves retain complete uniform table-cell margins, including
+zero; partial/asymmetric/logical-edge source margins remain opaque and sparse.
+This is file/model preservation. The existing Quds table renderer still uses
+fixed cell padding and does not yet establish identical host/Quds screen layout.
 Bounded merged tables use explicit covered-cell positions. Empty native vertical
 continuation paragraphs become empty ODF covered cells without duplicating their
 origin's citation text. Existing cached-result export remains unchanged.
@@ -163,3 +167,10 @@ bibliography section styles and the qualified decimal note-offset convention
 are now represented, while used footnote separators retain their explicit
 reader limitation. Converter acceptance does not expand the ordinary writer's
 general document-formatting contract.
+
+For native editable notes, the writer declares a 65-percent superscript style
+for both the main-flow anchor and the number inside the note. Endnotes select
+the final section's regular page master, avoiding a host-selected default with
+different margins. Reopening validates the full effective marker style and
+requires compatible used page geometry. Arbitrary marker formatting, differing
+note-page layouts and configured note paragraph styles remain unsupported.
