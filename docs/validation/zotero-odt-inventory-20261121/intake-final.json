@@ -1,0 +1,442 @@
+{
+  "captured_at_utc": "2026-11-21T10:35:10.504947+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "initial_main": "f50c4f23392ccb0ac9f486541ffae6a65a691b99",
+  "reconciled_baseline": "465ded3282ce03c636a9f0c17547fa5b94634de4",
+  "frozen_late_main": "64ebfc1bbc1daf9d3e9fc8a03ff8bf95f9973e04",
+  "frozen_word_branch": "4357f196507ca38a2f51409a981b8621d419b6d9",
+  "frozen_mail_branch": "833ddd05ff8cdecb202d6db414e66b91f2332544",
+  "pre_mail_merge_checkpoint": "aa72fa6b52c58168d943181e1201ab5ef8ef321b",
+  "main_contains_reconciled_baseline": true,
+  "pre_mail_checkpoint_contains_main": true,
+  "main_merge_base_with_original_zotero_checkpoint": "465ded3282ce03c636a9f0c17547fa5b94634de4",
+  "branches_at_late_capture": [
+    {
+      "name": "codex/word-vba-compatibility-20261121",
+      "sha": "38b07e58b7c0e2a5b04a823a7251805cea60fb77",
+      "ancestor_of_frozen_main": true,
+      "ancestor_of_pre_mail_checkpoint": true,
+      "ancestor_of_qualified_checkpoint": true
+    },
+    {
+      "name": "codex/word-vba-paragraph-flow-20261121",
+      "sha": "13fa9ad5b9d140f1d7c085e46b4d0ce395000c49",
+      "ancestor_of_frozen_main": true,
+      "ancestor_of_pre_mail_checkpoint": true,
+      "ancestor_of_qualified_checkpoint": true
+    },
+    {
+      "name": "codex/word-vba-paragraph-pagination-20261121",
+      "sha": "1581229f0e5aea24b5242c33a1e92f02d70b4c7e",
+      "ancestor_of_frozen_main": true,
+      "ancestor_of_pre_mail_checkpoint": true,
+      "ancestor_of_qualified_checkpoint": true
+    },
+    {
+      "name": "codex/word-vba-sections-20261121",
+      "sha": "49665e51f9eacefc180748c3d0ed7851ef5da5d1",
+      "ancestor_of_frozen_main": true,
+      "ancestor_of_pre_mail_checkpoint": true,
+      "ancestor_of_qualified_checkpoint": true
+    },
+    {
+      "name": "codex/word-vba-text-intrinsics-20261121",
+      "sha": "4357f196507ca38a2f51409a981b8621d419b6d9",
+      "ancestor_of_frozen_main": true,
+      "ancestor_of_pre_mail_checkpoint": true,
+      "ancestor_of_qualified_checkpoint": true
+    },
+    {
+      "name": "codex/word-vba-unit-conversions-20261120",
+      "sha": "bbccae1bdead10951e2d7a23b33cf14c55382e02",
+      "ancestor_of_frozen_main": true,
+      "ancestor_of_pre_mail_checkpoint": true,
+      "ancestor_of_qualified_checkpoint": true
+    },
+    {
+      "name": "codex/zotero-multiparagraph-20261121",
+      "sha": "589ccd33243eabe57ce3074c92112e1fdf1325f1",
+      "ancestor_of_frozen_main": true,
+      "ancestor_of_pre_mail_checkpoint": true,
+      "ancestor_of_qualified_checkpoint": true
+    },
+    {
+      "name": "codex/zotero-native-odt-20261121",
+      "sha": "d9bfa44022781f0dd4493a923ca9f20316dc59f0",
+      "ancestor_of_frozen_main": true,
+      "ancestor_of_pre_mail_checkpoint": true,
+      "ancestor_of_qualified_checkpoint": true
+    },
+    {
+      "name": "codex/zotero-odt-inventory-20261121",
+      "sha": "60e212b0d62f55054a1e77e5b8721564656eaf57",
+      "ancestor_of_frozen_main": false,
+      "ancestor_of_pre_mail_checkpoint": true,
+      "ancestor_of_qualified_checkpoint": true
+    },
+    {
+      "name": "codex/zotero-parity-20261121-continuation",
+      "sha": "9942eb76f0ac818e464ad1b3bcec2cc4513d3e3f",
+      "ancestor_of_frozen_main": true,
+      "ancestor_of_pre_mail_checkpoint": true,
+      "ancestor_of_qualified_checkpoint": true
+    },
+    {
+      "name": "codex/zotero-parity-20261121-next",
+      "sha": "d4470bab1095593739ddf87fdb9f249bbc948b65",
+      "ancestor_of_frozen_main": true,
+      "ancestor_of_pre_mail_checkpoint": true,
+      "ancestor_of_qualified_checkpoint": true
+    },
+    {
+      "name": "codex/zotero-transfer-20261121",
+      "sha": "a1995c9154357e603b89947654cf95f8bcba6a83",
+      "ancestor_of_frozen_main": true,
+      "ancestor_of_pre_mail_checkpoint": true,
+      "ancestor_of_qualified_checkpoint": true
+    },
+    {
+      "name": "codex/zotero-vertical-tables-20261120",
+      "sha": "a7d9f37ecbaaf70544f4866d7d9e572696948184",
+      "ancestor_of_frozen_main": true,
+      "ancestor_of_pre_mail_checkpoint": true,
+      "ancestor_of_qualified_checkpoint": true
+    },
+    {
+      "name": "docs/app-store-submission-20261120",
+      "sha": "b08e0a55b629ac22b33c54146b56438862965022",
+      "ancestor_of_frozen_main": true,
+      "ancestor_of_pre_mail_checkpoint": true,
+      "ancestor_of_qualified_checkpoint": true
+    },
+    {
+      "name": "fix/main-green-20261120",
+      "sha": "41c363f40cdcdfbcc22a8932ea325ce87872f5a0",
+      "ancestor_of_frozen_main": true,
+      "ancestor_of_pre_mail_checkpoint": true,
+      "ancestor_of_qualified_checkpoint": true
+    },
+    {
+      "name": "main",
+      "sha": "64ebfc1bbc1daf9d3e9fc8a03ff8bf95f9973e04",
+      "ancestor_of_frozen_main": true,
+      "ancestor_of_pre_mail_checkpoint": true,
+      "ancestor_of_qualified_checkpoint": true
+    },
+    {
+      "name": "perf/wrap-chrome-20261121",
+      "sha": "8716057f80c4c18b72c5a43a708beefd70bc7588",
+      "ancestor_of_frozen_main": true,
+      "ancestor_of_pre_mail_checkpoint": true,
+      "ancestor_of_qualified_checkpoint": true
+    },
+    {
+      "name": "work/mail-boolean-core-20261121",
+      "sha": "3e6374115c10a92fdb4b82734c1bc2b009210794",
+      "ancestor_of_frozen_main": true,
+      "ancestor_of_pre_mail_checkpoint": true,
+      "ancestor_of_qualified_checkpoint": true
+    },
+    {
+      "name": "work/mail-command-journal-20261121",
+      "sha": "33ce2428ebab825a844895a767e0f9f1a4077d62",
+      "ancestor_of_frozen_main": true,
+      "ancestor_of_pre_mail_checkpoint": true,
+      "ancestor_of_qualified_checkpoint": true
+    },
+    {
+      "name": "work/mail-intake-20261121",
+      "sha": "4191be02ac9c7117e05ff4a052a5c92fbcfbf4b4",
+      "ancestor_of_frozen_main": true,
+      "ancestor_of_pre_mail_checkpoint": true,
+      "ancestor_of_qualified_checkpoint": true
+    },
+    {
+      "name": "work/mail-offline-retention-20261121",
+      "sha": "9eb68b9f048d3c08274ece5d7f964f1249004485",
+      "ancestor_of_frozen_main": true,
+      "ancestor_of_pre_mail_checkpoint": true,
+      "ancestor_of_qualified_checkpoint": true
+    },
+    {
+      "name": "work/mail-parity-20261121",
+      "sha": "fa59496840a36709fe3a6d867bdfe96ab99d72ab",
+      "ancestor_of_frozen_main": true,
+      "ancestor_of_pre_mail_checkpoint": true,
+      "ancestor_of_qualified_checkpoint": true
+    },
+    {
+      "name": "work/mail-repository-sessions-20261121",
+      "sha": "0491492d8622ad2ef09fb84e07d3dbba462f9320",
+      "ancestor_of_frozen_main": true,
+      "ancestor_of_pre_mail_checkpoint": true,
+      "ancestor_of_qualified_checkpoint": true
+    },
+    {
+      "name": "work/mail-sync-foundation-20261121",
+      "sha": "4a1eaa69e7a068e354bdd851ec9b0323b89ae300",
+      "ancestor_of_frozen_main": true,
+      "ancestor_of_pre_mail_checkpoint": true,
+      "ancestor_of_qualified_checkpoint": true
+    },
+    {
+      "name": "work/mail-triage-20261121",
+      "sha": "575e671de665dc918886285dab2e3628f4309965",
+      "ancestor_of_frozen_main": true,
+      "ancestor_of_pre_mail_checkpoint": true,
+      "ancestor_of_qualified_checkpoint": true
+    },
+    {
+      "name": "work/mail-unified-cache-20261121",
+      "sha": "833ddd05ff8cdecb202d6db414e66b91f2332544",
+      "ancestor_of_frozen_main": false,
+      "ancestor_of_pre_mail_checkpoint": false,
+      "ancestor_of_qualified_checkpoint": true
+    }
+  ],
+  "open_pr_count_at_late_capture": 0,
+  "late_main_changed_paths_vs_baseline": [
+    "docs/VBA_MACROS.md",
+    "docs/validation/word-vba-continuation-20261121/README.md",
+    "docs/validation/word-vba-continuation-20261121/evidence/engine/engine-full-analysis-receipt.json",
+    "docs/validation/word-vba-continuation-20261121/evidence/engine/engine-full-analysis.log",
+    "docs/validation/word-vba-continuation-20261121/evidence/engine/native-line-spacing-retry-receipt.json",
+    "docs/validation/word-vba-continuation-20261121/evidence/engine/native-line-spacing-retry.jsonl.gz",
+    "docs/validation/word-vba-continuation-20261121/evidence/engine/runtime-resolution.json",
+    "docs/validation/word-vba-continuation-20261121/evidence/engine/vba-regression-aggregate.json",
+    "docs/validation/word-vba-continuation-20261121/evidence/engine/vba-regression-receipt.json",
+    "docs/validation/word-vba-continuation-20261121/evidence/engine/vba-regression.jsonl.gz",
+    "docs/validation/word-vba-continuation-20261121/evidence/mail/extract_final_mail_labels.py",
+    "docs/validation/word-vba-continuation-20261121/evidence/mail/final-main-mail-analysis.log",
+    "docs/validation/word-vba-continuation-20261121/evidence/mail/final-main-mail-label-derivation.json",
+    "docs/validation/word-vba-continuation-20261121/evidence/mail/final-main-mail-label-results.json",
+    "docs/validation/word-vba-continuation-20261121/evidence/mail/final-main-mail-recheck-receipt.json",
+    "docs/validation/word-vba-continuation-20261121/evidence/mail/final-main-mail-tests.jsonl.gz",
+    "docs/validation/word-vba-continuation-20261121/evidence/mail/final_main_mail_labels.dart",
+    "docs/validation/word-vba-continuation-20261121/evidence/text-conformance/javascript-compile.stderr",
+    "docs/validation/word-vba-continuation-20261121/evidence/text-conformance/javascript-compile.stdout",
+    "docs/validation/word-vba-continuation-20261121/evidence/text-conformance/javascript.stderr",
+    "docs/validation/word-vba-continuation-20261121/evidence/text-conformance/javascript.stdout",
+    "docs/validation/word-vba-continuation-20261121/evidence/text-conformance/receipt.json",
+    "docs/validation/word-vba-continuation-20261121/evidence/text-conformance/tests.stderr",
+    "docs/validation/word-vba-continuation-20261121/evidence/text-conformance/tests.stdout",
+    "docs/validation/word-vba-continuation-20261121/evidence/text-conformance/vm.stderr",
+    "docs/validation/word-vba-continuation-20261121/evidence/text-conformance/vm.stdout",
+    "docs/validation/word-vba-continuation-20261121/evidence/word-text/compile-js.stderr",
+    "docs/validation/word-vba-continuation-20261121/evidence/word-text/compile-js.stdout",
+    "docs/validation/word-vba-continuation-20261121/evidence/word-text/javascript.stderr",
+    "docs/validation/word-vba-continuation-20261121/evidence/word-text/javascript.stdout",
+    "docs/validation/word-vba-continuation-20261121/evidence/word-text/receipt.json",
+    "docs/validation/word-vba-continuation-20261121/evidence/word-text/vm.stderr",
+    "docs/validation/word-vba-continuation-20261121/evidence/word-text/vm.stdout",
+    "docs/validation/word-vba-continuation-20261121/evidence/word-text/word-text-analysis-final.log",
+    "docs/validation/word-vba-continuation-20261121/evidence/word-text/word-text-integration-final.log",
+    "docs/validation/word-vba-continuation-20261121/late-branch-proof.json",
+    "docs/validation/word-vba-continuation-20261121/late-refresh.json",
+    "docs/validation/word-vba-continuation-20261121/refresh.json",
+    "docs/validation/word-vba-continuation-20261121/source-manifest.json",
+    "packages/quds_mail_core/test/header_search_boolean_regression_test.dart",
+    "packages/quds_mail_core/test/header_search_boolean_test.dart",
+    "packages/quds_office_engine/test/fixtures/vba_conformance/text_intrinsics_v1.json",
+    "packages/quds_office_engine/test/support/office_macro_cli.dart"
+  ],
+  "late_main_functional_production_changes_vs_baseline": [],
+  "late_main_resolution": [
+    "Main includes the original 465ded32 Zotero intake checkpoint as real ancestry.",
+    "Keep incoming Word docs/evidence and the three fixture provenance corrections; compiler and expected native operations are unchanged.",
+    "Adopt separate current-main Boolean test cohorts: header_search_boolean_test.dart and header_search_boolean_regression_test.dart, preserving the same 73 registrations.",
+    "Incoming CLI helper change is comment-only.",
+    "Root normal merge of new main was clean and checkpointed aa72fa6b; root reran both Boolean files successfully."
+  ],
+  "late_mail": {
+    "head": "833ddd05ff8cdecb202d6db414e66b91f2332544",
+    "merge_base_with_frozen_main": "db00cf411b21cb8c26878adaa535ffaa5e7e62db",
+    "unique_commits": [
+      "02afd5394c77bdbafbad8e3790825c77598cf84d",
+      "833ddd05ff8cdecb202d6db414e66b91f2332544"
+    ],
+    "scope": "Additive read-only cached-header repository search and optional account-owned host search sessions; no installed UI flow or provider network calls.",
+    "existing_behavior_change": "Repository _notify also invalidates in-memory cached-search cursors. Existing update notifications remain intact.",
+    "risk_review": "No concrete blocker found. Owner/account/query/revision-bound cursors, bounded metadata scans, source-row/folder identity checks, no body payload reads, stale operation fencing and explicit owner close failures reviewed.",
+    "integration": "Normal --no-ff --no-commit merge of exact frozen head onto aa72fa6b completed cleanly; root now owns checkpointing and all Git state.",
+    "file_bindings": [
+      {
+        "path": "docs/validation/mail-unified-cache-20261121/intake.json",
+        "incoming_git_blob": "1a83c209e01826d9c13bb96078d3c805c38f9ffd",
+        "worktree_git_blob": null,
+        "exact_match": true,
+        "sha256": "c3d5c5bc69bfac4222248e9c82bbcb33ef2f7575cf5aea0b782e7feb4a640b07",
+        "committed_git_blob": "1a83c209e01826d9c13bb96078d3c805c38f9ffd",
+        "worktree_note": "Sparse checkout omission; exact committed Git blob verified."
+      },
+      {
+        "path": "docs/validation/mail-unified-cache-20261121/intake.md",
+        "incoming_git_blob": "25b2943dbdf5cabe6a3170a38a96f7e90bb5bc33",
+        "worktree_git_blob": null,
+        "exact_match": true,
+        "sha256": "3c78a91f30e1c63a85103c62967e2aadb0f910249db15b67e4e67088221ace0b",
+        "committed_git_blob": "25b2943dbdf5cabe6a3170a38a96f7e90bb5bc33",
+        "worktree_note": "Sparse checkout omission; exact committed Git blob verified."
+      },
+      {
+        "path": "packages/quds_mail_store/CHANGELOG.md",
+        "incoming_git_blob": "75032c534932fe900d4114f89186daeaf18aee5b",
+        "worktree_git_blob": "75032c534932fe900d4114f89186daeaf18aee5b",
+        "exact_match": true,
+        "sha256": "f5c8b1b047543e8123ffa35c4305b2a0e3d406f2cd4a1baac39c94bfcb598c89",
+        "committed_git_blob": "75032c534932fe900d4114f89186daeaf18aee5b"
+      },
+      {
+        "path": "packages/quds_mail_store/lib/src/cached_header_search.dart",
+        "incoming_git_blob": "5b6e9b934d03afcfce3f855798b471095e2b5f50",
+        "worktree_git_blob": "5b6e9b934d03afcfce3f855798b471095e2b5f50",
+        "exact_match": true,
+        "sha256": "6c476b4106645f6ce1abb6a040b0c5959e9fe7d856b0e97fb8c5980f966b7171",
+        "committed_git_blob": "5b6e9b934d03afcfce3f855798b471095e2b5f50"
+      },
+      {
+        "path": "packages/quds_mail_store/lib/src/repository.dart",
+        "incoming_git_blob": "646924349ded19be4eea34f670f4d6530e8301c5",
+        "worktree_git_blob": "646924349ded19be4eea34f670f4d6530e8301c5",
+        "exact_match": true,
+        "sha256": "da742af8964121c82e875b1da59c5bd132d36a2fd61c9a7406b51707f1bc5056",
+        "committed_git_blob": "646924349ded19be4eea34f670f4d6530e8301c5"
+      },
+      {
+        "path": "packages/quds_mail_store/test/cached_header_search_test.dart",
+        "incoming_git_blob": "7441a76c7d79816b702ba06107323cac5fb2bc0a",
+        "worktree_git_blob": "7441a76c7d79816b702ba06107323cac5fb2bc0a",
+        "exact_match": true,
+        "sha256": "5f01cf855686b53cb15c1370d63fdb317cc55a7b96bbccac53d82ee4d8ccef00",
+        "committed_git_blob": "7441a76c7d79816b702ba06107323cac5fb2bc0a"
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_cached_search.dart",
+        "incoming_git_blob": "b8aff87a390c8097007355c88ce77077e873ce61",
+        "worktree_git_blob": "b8aff87a390c8097007355c88ce77077e873ce61",
+        "exact_match": true,
+        "sha256": "b2bedfa2e23650b9f4d717442224dc11b02e73fc746ae5fe8a82fbee17e85fad",
+        "committed_git_blob": "b8aff87a390c8097007355c88ce77077e873ce61"
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_mailbox_store.dart",
+        "incoming_git_blob": "b2c7b016ec77bac32253f7431bbdf9b66e42bb0a",
+        "worktree_git_blob": "b2c7b016ec77bac32253f7431bbdf9b66e42bb0a",
+        "exact_match": true,
+        "sha256": "e24401be2402643939df936a98792c8211f90bed71dee38c945c703b992417ec",
+        "committed_git_blob": "b2c7b016ec77bac32253f7431bbdf9b66e42bb0a"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_cached_search_test.dart",
+        "incoming_git_blob": "3d653cc8f8837ced2962a74f49728f8359b41f69",
+        "worktree_git_blob": "3d653cc8f8837ced2962a74f49728f8359b41f69",
+        "exact_match": true,
+        "sha256": "cd5d2369e0ec710e954f54b205be3ea6f0b1da0aad9156a2ed131866e51f9d6f",
+        "committed_git_blob": "3d653cc8f8837ced2962a74f49728f8359b41f69"
+      }
+    ],
+    "qualification": "PASS: 110 store tests and 58 isolated host tests; zero failures or skips. Both scoped analyzers and six-file formatter passed. All 217 recorded input hashes unchanged across original store and fresh isolated host/static phases.",
+    "store_test_counts": {
+      "test/cached_header_search_test.dart": {
+        "success": 19
+      },
+      "test/repository_test.dart": {
+        "success": 19
+      },
+      "test/mailbox_view_streams_test.dart": {
+        "success": 11
+      },
+      "test/mailbox_views_test.dart": {
+        "success": 38
+      },
+      "test/sync_mailboxes_test.dart": {
+        "success": 23
+      }
+    },
+    "approval_block_record": "/workspace/scratch/cbbfa2f59b19/late-mail-validation/blocked-execution.json",
+    "store_test_total": 110,
+    "isolated_evidence": "/workspace/scratch/cbbfa2f59b19/late-mail-validation-isolated",
+    "qualification_results": "/workspace/scratch/cbbfa2f59b19/late-mail-validation/RESULTS.json",
+    "qualification_results_sha256": "f00ce790b07232ffcff400191ab96c7c26f487e9352e61ddb400452e365563e8",
+    "isolated_results": "/workspace/scratch/cbbfa2f59b19/late-mail-validation-isolated/RESULTS.json",
+    "isolated_results_sha256": "2bf72a85f9f617ad8326f28212a6f3e32504dfef455ca5f586bbaef7846ce665",
+    "host_test_counts": {
+      "/workspace/scratch/cbbfa2f59b19/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_mailbox_session_test.dart": {
+        "success": 14
+      },
+      "/workspace/scratch/cbbfa2f59b19/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_cached_search_test.dart": {
+        "success": 21
+      },
+      "/workspace/scratch/cbbfa2f59b19/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_mailbox_store_test.dart": {
+        "success": 23
+      }
+    },
+    "test_totals": {
+      "store_passed": 110,
+      "host_passed": 58,
+      "passed": 168,
+      "failed": 0,
+      "skipped": 0
+    },
+    "command_exit_codes": {
+      "store-tests": 0,
+      "host-tests": 0,
+      "store-analysis": 0,
+      "host-analysis": 0,
+      "format": 0
+    },
+    "source_manifest": {
+      "before": "/workspace/scratch/cbbfa2f59b19/late-mail-validation/inputs-before.json",
+      "before_sha256": "f451f8a97532c2e1d8549f3252ae8b06476dd8508a1b2ccc1ba853dd68fdbd14",
+      "after": "/workspace/scratch/cbbfa2f59b19/late-mail-validation-isolated/inputs-after.json",
+      "after_sha256": "f451f8a97532c2e1d8549f3252ae8b06476dd8508a1b2ccc1ba853dd68fdbd14",
+      "count": 217,
+      "unchanged": true,
+      "isolated_before_sha256": "f451f8a97532c2e1d8549f3252ae8b06476dd8508a1b2ccc1ba853dd68fdbd14"
+    }
+  },
+  "observed_checkout_head": "ce4eca72da1698f1b1ce9d2d494f345dbad32827",
+  "ci": {
+    "queried": false,
+    "awaited": false
+  },
+  "evidence": "/workspace/scratch/cbbfa2f59b19/late-mail-validation",
+  "post_freeze_discovery": {
+    "source": "/workspace/scratch/cbbfa2f59b19/premerge-discovery.json",
+    "captured_at_utc": "2026-11-21 10:40:45 UTC",
+    "main": "64ebfc1bbc1daf9d3e9fc8a03ff8bf95f9973e04",
+    "subsequent_active_heads": [
+      {
+        "name": "feat/touchid-vault-unlock-20261121",
+        "sha": "38b0dae033e50bd6409ad3a4930b083fb8b5b7c5",
+        "disposition": "Observed after the frozen implementation intake; retained remotely for its own review and qualification."
+      },
+      {
+        "name": "perf/wrap-chrome-20261121",
+        "sha": "d76c705ba9e7aefc2428e000d850ef0aba7c6b26",
+        "disposition": "Observed after the frozen implementation intake; retained remotely for its own review and qualification."
+      },
+      {
+        "name": "work/mail-unified-cache-20261121",
+        "sha": "4ecf9850e0292436fdaf2af034e6758fceb247ba",
+        "disposition": "Observed after the frozen implementation intake; retained remotely for its own review and qualification."
+      }
+    ],
+    "open_prs": [
+      {
+        "number": 302,
+        "title": "Unlock the encrypted credential vault with Touch ID (macOS)",
+        "state": "open",
+        "head": "feat/touchid-vault-unlock-20261121",
+        "head_sha": "38b0dae033e50bd6409ad3a4930b083fb8b5b7c5",
+        "base": "main",
+        "created_at": "2026-11-21T10:36:33Z",
+        "url": "https://github.com/CrispStrobe/quds_office_suite/pull/302"
+      }
+    ],
+    "disposition": "Do not merge moving heads during this gate. Freeze exact Mail 833ddd05 qualification; later active work remains remotely preserved for separate review and qualification."
+  },
+  "qualification_completed_at_utc": "2026-11-21T10:46:23.932886+00:00",
+  "observed_checkout_tree": "d3ea0686b6d793d6f6f5c4cd1d4706da7a65cda1",
+  "all_frozen_late_heads_are_ancestors_of_qualified_checkpoint": true
+}
