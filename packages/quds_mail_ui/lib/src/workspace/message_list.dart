@@ -163,7 +163,7 @@ String _defaultSearchError(MailHeaderSearchError error) => switch (error) {
 };
 
 final _searchExampleLine = RegExp(
-  r'^\s*(?:[-(]\s*|NOT\s+)*(?:from|subject|to|cc|is|before|after|on):',
+  r'^\s*(?:[-(]\s*|NOT\b\s*)*(?:from|subject|to|cc|is|before|after|on):',
   caseSensitive: false,
 );
 

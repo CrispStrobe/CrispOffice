@@ -911,6 +911,8 @@ void main() {
       const recipientExample = '  TO:team@example.test cc:manager';
       const groupedExample = '(from:alice OR from:bob) NOT subject:invoice';
       const negatedExample = 'NOT (from:alice OR from:bob)';
+      const tightNegatedExample = 'NOT(from:alice OR from:bob)';
+      const nestedNegatedExample = '(NOT(from:alice OR from:bob))';
       const minusExample = '-subject:"weekly digest"';
       const closing = 'يشمل البحث الترويسات المحمّلة فقط.';
       const localized = MailMessageListStrings(
@@ -926,7 +928,8 @@ void main() {
         searchHelpTitle: 'مساعدة البحث',
         searchHelpText:
             '$prose\n\n$example\n$recipientExample\n$groupedExample\n'
-            '$negatedExample\n$minusExample\n\n$closing',
+            '$negatedExample\n$tightNegatedExample\n$nestedNegatedExample\n'
+            '$minusExample\n\n$closing',
       );
       await tester.pumpWidget(
         _app(_list(strings: localized), direction: TextDirection.rtl),
@@ -938,6 +941,8 @@ void main() {
         recipientExample,
         groupedExample,
         negatedExample,
+        tightNegatedExample,
+        nestedNegatedExample,
         minusExample,
       ]) {
         final rendered = tester.widget<Text>(find.text(text));
