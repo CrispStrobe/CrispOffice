@@ -146,6 +146,13 @@ const _stringIntrinsics = <String>{
   r'ltrim$',
   'rtrim',
   r'rtrim$',
+  'space',
+  r'space$',
+  'string',
+  r'string$',
+  'chrw',
+  r'chrw$',
+  'ascw',
 };
 const _stringComparisonConstants = <String, int>{
   'vbbinarycompare': 0,
@@ -255,10 +262,76 @@ const _wordStyleConstants = <String, int>{
   'wdstylesubtitle': -75,
 };
 
+// Microsoft's WdColor values use VBA packed RGB (red in the low byte).
+// Automatic is accepted only by members with an explicit automatic contract.
+const _wordColorConstants = <String, int>{
+  'wdcoloraqua': 13421619,
+  'wdcolorautomatic': -16777216,
+  'wdcolorblack': 0,
+  'wdcolorblue': 16711680,
+  'wdcolorbluegray': 10053222,
+  'wdcolorbrightgreen': 65280,
+  'wdcolorbrown': 13209,
+  'wdcolordarkblue': 8388608,
+  'wdcolordarkgreen': 13056,
+  'wdcolordarkred': 128,
+  'wdcolordarkteal': 6697728,
+  'wdcolordarkyellow': 32896,
+  'wdcolorgold': 52479,
+  'wdcolorgray05': 15987699,
+  'wdcolorgray10': 15132390,
+  'wdcolorgray125': 14737632,
+  'wdcolorgray15': 14277081,
+  'wdcolorgray20': 13421772,
+  'wdcolorgray25': 12632256,
+  'wdcolorgray30': 11776947,
+  'wdcolorgray35': 10921638,
+  'wdcolorgray375': 10526880,
+  'wdcolorgray40': 10066329,
+  'wdcolorgray45': 9211020,
+  'wdcolorgray50': 8421504,
+  'wdcolorgray55': 7566195,
+  'wdcolorgray60': 6710886,
+  'wdcolorgray625': 6316128,
+  'wdcolorgray65': 5855577,
+  'wdcolorgray70': 5000268,
+  'wdcolorgray75': 4210752,
+  'wdcolorgray80': 3355443,
+  'wdcolorgray85': 2500134,
+  'wdcolorgray875': 2105376,
+  'wdcolorgray90': 1644825,
+  'wdcolorgray95': 789516,
+  'wdcolorgreen': 32768,
+  'wdcolorindigo': 10040115,
+  'wdcolorlavender': 16751052,
+  'wdcolorlightblue': 16737843,
+  'wdcolorlightgreen': 13434828,
+  'wdcolorlightorange': 39423,
+  'wdcolorlightturquoise': 16777164,
+  'wdcolorlightyellow': 10092543,
+  'wdcolorlime': 52377,
+  'wdcolorolivegreen': 13107,
+  'wdcolororange': 26367,
+  'wdcolorpaleblue': 16764057,
+  'wdcolorpink': 16711935,
+  'wdcolorplum': 6697881,
+  'wdcolorred': 255,
+  'wdcolorrose': 13408767,
+  'wdcolorseagreen': 6723891,
+  'wdcolorskyblue': 16763904,
+  'wdcolortan': 10079487,
+  'wdcolorteal': 8421376,
+  'wdcolorturquoise': 16776960,
+  'wdcolorviolet': 8388736,
+  'wdcolorwhite': 16777215,
+  'wdcoloryellow': 65535,
+};
+
 const _wordConstants = <String, int>{
   ..._stringComparisonConstants,
   ..._wordLanguageConstants,
   ..._wordStyleConstants,
+  ..._wordColorConstants,
   'wdheaderfooterprimary': 1,
   'wdheaderfooterfirstpage': 2,
   'wdheaderfooterevenpages': 3,
@@ -386,6 +459,7 @@ const _wordReserved = <String>{
   'paragraphs',
   'tabstops',
   'listformat',
+  'shading',
   'wdalignparagraphleft',
   'wdalignparagraphcenter',
   'wdalignparagraphright',
@@ -810,6 +884,7 @@ enum _Kind {
   paragraphFormat,
   wordTabStops,
   wordListFormat,
+  wordShading,
   powerPointApplication,
   presentation,
   slides,
@@ -845,6 +920,7 @@ enum _Declared {
   wordParagraphFormat,
   wordTabStops,
   wordListFormat,
+  wordShading,
   presentation,
   slide,
   shape,
@@ -869,6 +945,7 @@ bool _objectType(_Declared type) =>
     type == _Declared.wordParagraphFormat ||
     type == _Declared.wordTabStops ||
     type == _Declared.wordListFormat ||
+    type == _Declared.wordShading ||
     type == _Declared.presentation ||
     type == _Declared.slide ||
     type == _Declared.shape ||
@@ -914,6 +991,7 @@ _Kind _kindOf(_Declared type) => switch (type) {
   _Declared.wordParagraphFormat => _Kind.paragraphFormat,
   _Declared.wordTabStops => _Kind.wordTabStops,
   _Declared.wordListFormat => _Kind.wordListFormat,
+  _Declared.wordShading => _Kind.wordShading,
   _Declared.presentation => _Kind.presentation,
   _Declared.slide => _Kind.slide,
   _Declared.shape => _Kind.shape,
@@ -1897,6 +1975,7 @@ class _Parser {
       'paragraphformat' when context.isWord => _Declared.wordParagraphFormat,
       'tabstops' when context.isWord => _Declared.wordTabStops,
       'listformat' when context.isWord => _Declared.wordListFormat,
+      'shading' when context.isWord => _Declared.wordShading,
       'presentation' when context.isPowerPoint => _Declared.presentation,
       'slide' when context.isPowerPoint => _Declared.slide,
       'shape' when context.isPowerPoint => _Declared.shape,
@@ -2183,7 +2262,6 @@ class _Checker {
     'boolean',
     'double',
     'long',
-    'string',
     'variant',
     'worksheet',
     'function',
@@ -2822,6 +2900,7 @@ class _Checker {
                   kind == _Kind.font ||
                   kind == _Kind.paragraphFormat ||
                   kind == _Kind.wordTabStops ||
+                  kind == _Kind.wordShading ||
                   kind == _Kind.wordListFormat);
           final powerPointObject =
               context.isPowerPoint && _powerPointObjectKinds.contains(kind);
@@ -2834,7 +2913,7 @@ class _Checker {
               context.isPowerPoint
                   ? 'With requires an explicitly bound PowerPoint object.'
                   : context.isWord
-                  ? 'With requires a Document, Section, PageSetup, TextColumns, HeadersFooters, HeaderFooter, Paragraph, Range, Font, ParagraphFormat, TabStops, or ListFormat.'
+                  ? 'With requires a Document, Section, PageSetup, TextColumns, HeadersFooters, HeaderFooter, Paragraph, Range, Font, ParagraphFormat, TabStops, ListFormat, or Shading.'
                   : 'With requires a Worksheet or Range.',
             );
           }
@@ -3144,6 +3223,11 @@ class _Checker {
       );
     }
     if (context.isWord) {
+      if (receiver == _Kind.wordShading &&
+          (property == 'backgroundpatterncolor' ||
+              property == 'backgroundpatterncolorindex')) {
+        return _Kind.number;
+      }
       if ((receiver == _Kind.paragraph || receiver == _Kind.range) &&
           property == 'style') {
         return _Kind.wordStyleValue;
@@ -3458,6 +3542,11 @@ class _Checker {
             _arguments(expression, 0, allowProperty: true);
             return _Kind.paragraphFormat;
           }
+          if ((receiver == _Kind.paragraph || receiver == _Kind.range) &&
+              name == 'shading') {
+            _arguments(expression, 0, allowProperty: true);
+            return _Kind.wordShading;
+          }
           if ((receiver == _Kind.paragraph ||
                   receiver == _Kind.paragraphFormat) &&
               name == 'tabstops') {
@@ -3652,6 +3741,34 @@ class _Checker {
   _Kind _stringIntrinsic(_Call expression) {
     final name = expression.token.lower;
     final arguments = expression.arguments;
+    if (name == 'space' ||
+        name == r'space$' ||
+        name == 'chrw' ||
+        name == r'chrw$' ||
+        name == 'ascw' ||
+        name == 'string' ||
+        name == r'string$') {
+      final repeat = name == 'string' || name == r'string$';
+      _count(expression.token, arguments, repeat ? 2 : 1);
+      final first = arguments.first;
+      _compatible(
+        name == 'ascw' ? _Kind.string : _Kind.number,
+        _expression(first),
+        first.token,
+      );
+      if (repeat) {
+        final character = arguments[1];
+        final kind = _expression(character);
+        if (kind == _Kind.number) {
+          context.unsupported(
+            character.token,
+            'String requires a String character argument; numeric code-page character conversion is unsupported. Use ChrW explicitly.',
+          );
+        }
+        _compatible(_Kind.string, kind, character.token);
+      }
+      return name == 'ascw' ? _Kind.number : _Kind.string;
+    }
     if (name == 'instr' || name == 'instrrev' || name == 'replace') {
       final minimum = name == 'replace' ? 3 : 2;
       final maximum = name == 'replace' ? 6 : 4;
@@ -3810,6 +3927,7 @@ class _Checker {
             expected == _Kind.paragraphFormat ||
             expected == _Kind.wordTabStops ||
             expected == _Kind.wordListFormat ||
+            expected == _Kind.wordShading ||
             _powerPointObjectKinds.contains(expected))) {
       // Scalar Variant values may defer scalar checks until evaluation, but
       // cannot ever carry object bindings, including in unexecuted code.
@@ -3986,6 +4104,11 @@ class _WordTabStops {
 
 class _WordListFormat {
   const _WordListFormat(this.range);
+  final _WordRange range;
+}
+
+class _WordShading {
+  const _WordShading(this.range);
   final _WordRange range;
 }
 
@@ -4814,6 +4937,7 @@ class _Evaluator {
             return switch (expression.token.lower) {
               'format' => _WordParagraphFormat(range),
               'tabstops' => _WordTabStops(range),
+              'shading' => _WordShading(range),
               _ => range,
             };
           }
@@ -4831,6 +4955,7 @@ class _Evaluator {
           return switch (expression.token.lower) {
             'font' => _WordFont(range),
             'listformat' => _WordListFormat(range),
+            'shading' => _WordShading(range),
             _ => _WordParagraphFormat(range),
           };
         }
@@ -5296,6 +5421,11 @@ class _Evaluator {
           context.type(token, 'Set requires Word ListFormat.');
         }
         return value;
+      case _Declared.wordShading:
+        if (value is! _WordShading) {
+          context.type(token, 'Set requires Word Shading.');
+        }
+        return value;
       case _Declared.presentation:
         if (value is! _Presentation) {
           context.type(token, 'Set requires a Presentation.');
@@ -5551,6 +5681,67 @@ class _Evaluator {
 
   Object _stringIntrinsic(_Call expression, List<Object> arguments) {
     final name = expression.token.lower;
+    if (name == 'space' ||
+        name == r'space$' ||
+        name == 'string' ||
+        name == r'string$') {
+      final count = _stringIndex(
+        arguments.first,
+        expression.arguments.first.token,
+      );
+      var unit = 32;
+      if (name == 'string' || name == r'string$') {
+        final value = arguments[1];
+        final token = expression.arguments[1].token;
+        if (value is num) {
+          context.unsupported(
+            token,
+            'String requires a String character argument; numeric code-page character conversion is unsupported. Use ChrW explicitly.',
+          );
+        }
+        final character = _string(value, token);
+        if (character.isEmpty) {
+          context.type(token, 'String requires a nonempty character string.');
+        }
+        // VBA's character unit is a 16-bit code unit, not a grapheme or a
+        // Unicode scalar. Isolated surrogates can be examined/recombined in
+        // source; the existing native-publication boundary remains strict.
+        unit = character.codeUnitAt(0);
+      }
+      if (count > _maxString) {
+        context.limit(
+          expression.token,
+          'Constructed strings exceed $_maxString UTF-16 code units.',
+        );
+      }
+      // Validate every argument, even for zero length, and meter the entire
+      // result before allocation. Repeated calls share the normal work budget.
+      _charge(count, expression.token);
+      return count == 0 ? '' : String.fromCharCode(unit) * count;
+    }
+    if (name == 'chrw' || name == r'chrw$') {
+      final token = expression.arguments.single.token;
+      final code = _integer(arguments.single, token);
+      // Quds deliberately accepts the full signed 16-bit range as well as
+      // unsigned units. MS-VBAL 6.1.2.11.1.6 prints -32767; accepting -32768
+      // additionally preserves ChrW(AscW(U+8000)) and its 16-bit bit pattern.
+      // This is a documented dialect choice, not an observed Word-host result.
+      if (code < -32768 || code > 65535) {
+        context.type(token, 'ChrW requires an integer from -32768 to 65535.');
+      }
+      _charge(1, expression.token);
+      return String.fromCharCode(code < 0 ? code + 65536 : code);
+    }
+    if (name == 'ascw') {
+      final token = expression.arguments.single.token;
+      final text = _string(arguments.single, token);
+      if (text.isEmpty) {
+        context.type(token, 'AscW requires a nonempty string.');
+      }
+      _charge(1, expression.token);
+      final unit = text.codeUnitAt(0);
+      return unit > 32767 ? unit - 65536 : unit;
+    }
     if (name == 'instr' || name == 'instrrev') {
       return _stringSearch(expression, arguments);
     }
@@ -6367,6 +6558,25 @@ class _Evaluator {
     Object value,
     _Token token,
   ) {
+    if (receiver is _WordShading) {
+      final number = _integer(value, token);
+      final String color;
+      if (property == 'backgroundpatterncolorindex') {
+        if (number < 0 || number >= _wordHighlights.length) {
+          context.unsupported(
+            token,
+            'BackgroundPatternColorIndex requires wdAuto or a fixed WdColorIndex color from 1 through 16.',
+          );
+        }
+        color = _wordHighlights[number] ?? 'auto';
+      } else {
+        color = number == -16777216 ? 'auto' : _color(value, token);
+      }
+      _emitWord(receiver.range, 'paragraphShading', <String, Object?>{
+        'color': color,
+      }, token);
+      return;
+    }
     if (property == 'style' &&
         (receiver is _WordParagraph || receiver is _WordRange)) {
       final range = receiver is _WordParagraph
