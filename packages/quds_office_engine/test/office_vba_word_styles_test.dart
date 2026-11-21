@@ -89,14 +89,14 @@ void main() {
 
   test('String expressions and numeric Variant values remain separate', () {
     final macro = _compile('''
-Dim selection As Variant
+Dim chosenStyle As Variant
 Dim names(1 To 2) As String
 names(1) = "Report"
 names(2) = " Body"
-selection = names(1) & names(2)
-$_paragraph.Style = selection
-selection = wdStyleTitle
-$_range.Style = selection
+chosenStyle = names(1) & names(2)
+$_paragraph.Style = chosenStyle
+chosenStyle = wdStyleTitle
+$_range.Style = chosenStyle
 ''');
     expect(macro.steps.map((step) => step.arguments), [
       {'paragraph': 0, 'name': 'Report Body'},
@@ -107,12 +107,12 @@ $_range.Style = selection
   test('typed aliases and named ByVal helpers retain their selected target', () {
     final macro = _source('''
 Option Explicit
-Sub Configure(ByVal paragraph As Paragraph, ByVal target As Range, Optional ByVal name As String = "Report Body")
-  paragraph.Style = name
+Sub Configure(ByVal para As Paragraph, ByVal target As Range, Optional ByVal name As String = "Report Body")
+  para.Style = name
   target.Style = wdStyleSubtitle
-  Set paragraph = ActiveDocument.Paragraphs(3)
+  Set para = ActiveDocument.Paragraphs(3)
   Set target = ActiveDocument.Paragraphs(4).Range
-  paragraph.Style = wdStyleHeading2
+  para.Style = wdStyleHeading2
   target.Style = wdStyleCaption
 End Sub
 Sub Main()
@@ -120,7 +120,7 @@ Sub Main()
   Dim r As Range
   Set p = ThisDocument.Paragraphs.Item(1)
   Set r = Application.ActiveDocument.Paragraphs.Item(2).Range
-  Configure target:=r, paragraph:=p
+  Configure target:=r, para:=p
   p.Style = wdStyleNormal
   r.Style = "Body final"
 End Sub
