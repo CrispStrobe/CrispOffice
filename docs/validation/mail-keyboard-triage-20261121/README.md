@@ -5,8 +5,12 @@
 Repository: CrispStrobe/quds_office_suite.
 Initial main: 3058d36c5354d46bde418555d59282116cce1e26.
 Implementation branch: work/mail-keyboard-triage-20261121.
-Formatted source: 0b38435e553d14cbea505477a473061b134e308e.
-Formatted tree: 917f157fccdafc6adda8e2a802fcf95d94a136b1.
+Initial qualified source: 0b38435e553d14cbea505477a473061b134e308e.
+Initial qualified tree: 917f157fccdafc6adda8e2a802fcf95d94a136b1.
+Publication source after current-main reconciliation:
+57618066f397c4856be8df4d75c1423ed4b33e1c.
+Publication tree: b9bded2ebee460f1681d8cc8499d4cb18faca700.
+Delivery: [PR #349](https://github.com/CrispStrobe/quds_office_suite/pull/349).
 
 This continuation advances loaded-mailbox triage with contiguous checked
 selection and corrects synchronized-view header search. It does not claim
@@ -44,8 +48,9 @@ That reconciliation preserves:
 - the Zotero footnote-separator intake documentation checkpoint;
 - both independently saved Mail implementation/test branches.
 
-The footnote-separator checkpoint was planning/intake documentation. This Mail
-continuation does not present it as a delivered separator implementation.
+The footnote-separator checkpoint was planning/intake documentation at that
+cutoff. Its later implementation and separately qualified evidence were retained
+when PR #348 subsequently entered main, as described below.
 Later PRs #347 and #348 appeared after the captured branch cutoff. PR #347
 subsequently merged into main as 2f7f5ffc668d7f6452facb13e006e6704c93f439,
 which is retained as an additional publication parent. Its production changes
@@ -55,6 +60,22 @@ changelog and qualification records are preserved. The
 [publication reconciliation](checks/late-main-reconciliation.json) records this
 continuity. A finite branch cutoff prevents unrelated ongoing branches from
 continually replacing the source being qualified; new main commits are retained.
+
+PR #348 then entered main as ad577ea82695231b5932d6b973f92b5156b1d2d6
+immediately before PR #349 was created. Reconciliation checkpoint
+57618066f397c4856be8df4d75c1423ed4b33e1c retains that main parent and matches
+the resolved local Git tree exactly. The sole manual conflict was the Zotero
+separator work record: its completed incoming version supersedes the planning
+version, which remains in history. Word's deserializer automatically combines
+the native run-color filter with the new separator import/read.
+
+All Mail packages, Studio source/tests and the dependency lock remain unchanged
+by that publication merge. The changed Word serialization boundary was
+independently reviewed and then freshly tested: 289 cases passed, comprising
+all 205 earlier Word cases plus 84 separator cases. Those 37 captured
+source/helper/fixture hashes remained unchanged during execution. The incoming
+author's separate 3,738-case qualification is retained but is not counted here.
+See [publication continuity](checks/publication-main-continuity.json).
 
 All remote ref updates use the exact expected prior SHA and force=false.
 Original commits are retained as merge parents. No branch was deleted and no
@@ -96,8 +117,9 @@ resolution passed with enforce-lockfile. The committed workspace lockfile
 remained unchanged.
 
 The [source/runtime manifest](checks/source-runtime-manifest.json) binds the
-formatted source, dependency inputs, SDK identity and exact changed-file
-hashes. Fresh results available at this evidence checkpoint:
+initial formatted source, dependency inputs, SDK identity and changed-file
+hashes. The publication continuity record and Word before/after manifests bind
+the subsequent current-main merge. Accepted results at publication:
 
 | Cohort | Result | Evidence |
 | --- | --- | --- |
@@ -105,22 +127,25 @@ hashes. Fresh results available at this evidence checkpoint:
 | Changed Dart analysis | All 23 paths pass fatal-infos/fatal-warnings | [receipt](checks/changed-dart-analysis-final.json) |
 | Changed Dart formatting | All 23 paths unchanged by the pinned formatter | [receipt](checks/changed-dart-format-final.json) |
 | Late dispatch analysis/format | The additional test passes both checks; 24 Dart paths checked overall | [analysis](checks/late-dispatch-analysis.json), [format](checks/late-dispatch-format.json) |
-| Incoming Word tests | 205 passed; zero failures/skips; four files | [summary](checks/incoming-word-validation-summary.json) |
+| Combined Word/separator tests | 289 passed; zero failures/skips; seven files | [summary](checks/publication-word-test-summary.json) |
 | Incoming Word portable smokes | Both VM/JavaScript output pairs identical | [parity record](checks/incoming-word-smoke-parity-final.json) |
 | Studio Mail regression cohort | 176 passed; zero failures/skips; seven files | [case record](checks/studio-mail-test-counts-final.json) |
 | Incoming Zotero/shortcut runtime checks | 52 passed; zero failures/skips; three files | [case record](checks/incoming-zotero-test-counts-final.json) |
 | Late main dispatch regression | 15 passed; zero failures/skips; one file | [case record](checks/incoming-dispatch-test-counts-final.json) |
 
-The five final cohorts total 720 substantive cases across 32 distinct files,
+The five accepted cohorts total 804 distinct substantive cases across 35 files,
 with zero failures or skips. Of these, 448 cases are the Mail/Studio cohorts.
 Initial runs, loaders, lifecycle events and portable smoke receipts are not
 added to these totals. The incoming Zotero cohort covers 23 settings, 12
 shortcut and 17 Zotero cases, including delayed host completion guards.
 
 The shared UI count includes the 43 new range cases and the existing search,
-conversation, bulk action and reader regressions. Word's 205 cases comprise
-78 StrComp, 43 native-color, 74 VBA-color and 10 integration cases. The separate
-portable smoke output is not included in that unit-test count.
+conversation, bulk action and reader regressions. The combined Word cohort
+contains 78 StrComp, 43 native-color, 74 VBA-color, 10 integration, 48 separator
+DOCX, 30 separator ODT and six retained-converter fixture cases. Its repeated
+205 cases replace the earlier Word count rather than being added again. The
+separate portable smoke output is not included in the unit-test count; the
+interpreter source did not change in the final merge.
 
 Machine test counts exclude hidden lifecycle and suite-loader events. For the
 Flutter run, known test.startedProcess notifications are separately recorded;
@@ -165,6 +190,8 @@ Actions workflow, job, status or check result was queried or awaited.
 | Main documentation split reconciliation | c077c7ac5b348c0d75affd460e81d49754f1ec1e |
 | Word colors and paired Zotero recovery | 00fbd252d659777dc85f886df150f23c7a76bf1e |
 | Pinned formatting after runtime recovery | 0b38435e553d14cbea505477a473061b134e308e |
+| Initial 720-case evidence and current-main reconciliation | 1dd56df51f97dc86fbb1ebe22d9045aab7921d1c |
+| Reconcile footnote work from current main | 57618066f397c4856be8df4d75c1423ed4b33e1c |
 
 ## Reproduction and remaining boundaries
 

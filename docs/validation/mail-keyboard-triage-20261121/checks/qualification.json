@@ -1,8 +1,7 @@
 {
   "status": "PASS",
   "scope": "Fresh native focused qualification; no installed/live-provider/browser acceptance claim",
-  "qualified_source": "0b38435e553d14cbea505477a473061b134e308e",
-  "reconciled_main": "2f7f5ffc668d7f6452facb13e006e6704c93f439",
+  "reconciled_main": "ad577ea82695231b5932d6b973f92b5156b1d2d6",
   "cohorts": [
     {
       "name": "shared-mail-ui-tests-final",
@@ -25,14 +24,16 @@
       "log_sha256": "cc250d272afa30b7ebad8f04ea1d915ce421ab40a8c12d2a1fecf359edfa82a2"
     },
     {
-      "name": "incoming-word-tests-final",
-      "passed": 205,
+      "name": "publication-word-integration",
+      "passed": 289,
       "failed": 0,
       "skipped": 0,
-      "files": 4,
-      "receipt": "incoming-word-tests-final.json",
-      "log": "incoming-word-tests-final.log",
-      "log_sha256": "4ae559fae3b65042e520545f28713240badf9cff71a858550e963b5a28e4aa7c"
+      "files": 7,
+      "receipt": "publication-word-integration.json",
+      "log": "publication-word-integration.log",
+      "log_sha256": "75e01748b126cd2aa7032c45be495bb69599038b57d5299fcd50fed731094f5b",
+      "replaces_earlier_word_cases": 205,
+      "additional_separator_cases": 84
     },
     {
       "name": "incoming-zotero-tests-final",
@@ -55,13 +56,16 @@
       "log_sha256": "7acfa4ebfbda200e15e863ab83982ec84e7d5f72fa6d3bf0be75404ee6ad8ec4"
     }
   ],
-  "substantive_tests": 720,
-  "distinct_files": 32,
+  "substantive_tests": 804,
+  "distinct_files": 35,
   "mail_tests": 448,
   "new_mail_cases": 48,
   "dart_paths_analyzed_and_formatted": 24,
-  "original_source_inputs_unchanged": true,
   "word_vm_js_parity": "incoming-word-smoke-parity-final.json",
   "initial_studio_attempt": "studio-mail-tests-interruption.json",
-  "github_actions": "NOT USED"
+  "github_actions": "NOT USED",
+  "prepublication_qualified_source": "0b38435e553d14cbea505477a473061b134e308e",
+  "publication_qualified_source": "57618066f397c4856be8df4d75c1423ed4b33e1c",
+  "original_source_inputs_unchanged_at_prepublication_checkpoint": true,
+  "publication_continuity": "publication-main-continuity.json"
 }

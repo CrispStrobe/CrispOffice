@@ -1,0 +1,19 @@
+{
+  "name": "publication-merge-format",
+  "command": [
+    "/workspace/scratch/f433637a99a0/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+    "format",
+    "--output=none",
+    "--set-exit-if-changed",
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart"
+  ],
+  "cwd": "/workspace/scratch/f433637a99a0/quds_office_suite",
+  "started_utc": "2026-11-21T22:12:01.005052+00:00",
+  "status": "PASS",
+  "log": "publication-merge-format.log",
+  "github_actions": "NOT USED",
+  "exit_code": 0,
+  "elapsed_seconds": 0.265,
+  "finished_utc": "2026-11-21T22:12:01.270237+00:00",
+  "log_sha256": "9c6af9ce091034658dcdd87645293fc0f03a5d2fa04f65516dbe6d3496d84c7e"
+}

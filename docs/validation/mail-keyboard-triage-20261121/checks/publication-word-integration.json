@@ -1,0 +1,25 @@
+{
+  "name": "publication-word-integration",
+  "command": [
+    "/workspace/scratch/f433637a99a0/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+    "test",
+    "--reporter=json",
+    "--concurrency=1",
+    "test/office_vba_strcomp_test.dart",
+    "test/office_macro_word_font_colors_test.dart",
+    "test/office_vba_word_font_colors_test.dart",
+    "test/office_vba_word_comparison_colors_integration_test.dart",
+    "test/word_footnote_separator_docx_test.dart",
+    "test/odt_footnote_separator_test.dart",
+    "test/odt_footnote_separator_libreoffice_test.dart"
+  ],
+  "cwd": "/workspace/scratch/f433637a99a0/quds_office_suite/packages/quds_office_engine",
+  "started_utc": "2026-11-21T22:11:41.668241+00:00",
+  "status": "PASS",
+  "log": "publication-word-integration.log",
+  "github_actions": "NOT USED",
+  "exit_code": 0,
+  "elapsed_seconds": 40.713,
+  "finished_utc": "2026-11-21T22:12:22.380908+00:00",
+  "log_sha256": "75e01748b126cd2aa7032c45be495bb69599038b57d5299fcd50fed731094f5b"
+}
