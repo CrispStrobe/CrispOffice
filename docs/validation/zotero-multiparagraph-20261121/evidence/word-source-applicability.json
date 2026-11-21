@@ -1,0 +1,28 @@
+{
+  "all_non_documentation_paths_identical_to_word_qualified_commit": true,
+  "captured_inputs": 1152,
+  "difference_reason": "Five existing chained calls reflowed by explicit Dart3.12 formatting, with optional trailing commas; no production or Zotero source/test/fixture bytes changed.",
+  "git_blob_sha256_mismatches": [],
+  "git_source_files": 1150,
+  "incoming_word_evidence_folder_identical": true,
+  "non_documentation_differences_from_zotero_commit": [
+    "packages/quds_office_engine/test/office_macro_word_page_setup_test.dart"
+  ],
+  "published_commit": "a4ec5b812cc64c5f738357fdef8779df9b8a8a2b",
+  "published_tree": "ce69540b51ff3f59e761ed25de0124540b3cd4bf",
+  "qualification_limit": "Local VM/Node/static results; no live Microsoft Word, LibreOffice, OpenOffice or external Zotero desktop session is claimed.",
+  "qualified_word_commit": "5c45ae27bbba49f3dac8fbf5d100739a2084b63b",
+  "qualified_word_tree": "ceb8f0555a96e824b5bab85b79511b2ebd3004bd",
+  "refreshed_main": "3d01815908aeded5862d131109341365de637242",
+  "refreshed_main_is_ancestor": true,
+  "runtime_config_files": [
+    ".dart_tool/package_config.json",
+    ".dart_tool/package_graph.json"
+  ],
+  "snapshot_audit_counts": {
+    "ancestor": 306,
+    "verified_equivalent": 24
+  },
+  "source_manifest_sha256": "d2590ae593c3d3b76aa7f720ddc786e892f037c6358a13c6d92c3facba469066",
+  "zotero_qualified_commit": "c5cf1ec11970211597fd16eebdc8d0eaa115278b"
+}

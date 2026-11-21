@@ -4,6 +4,15 @@ Target before late integration: `6ac854de0583b7955470648916c53c76b67c0fff`, tree
 
 The complete fork/upstream Git advertisements contain **330 refs**. Against the target, **304 are ancestors, 24 have independently verified exact equivalents, and two external branch heads remain to integrate**. Our own new Zotero branch is counted once among the ancestors. Fork and upstream open-PR endpoints each returned an empty, complete first page.
 
+Completed disposition: both captured incoming heads are ancestors of published
+product checkpoint `a4ec5b812cc64c5f738357fdef8779df9b8a8a2b`. The
+[final replay](final-audit.json) proves **306 ancestors, 24 exact historical
+equivalents and zero uncovered refs**. Refreshed main
+`3d01815908aeded5862d131109341365de637242` is separately included as a merge
+parent. The review below preserves the pre-integration snapshot and decisions;
+the [current work record](../README.md) contains qualification and publication
+applicability.
+
 | Incoming branch | Frozen head | Feature |
 | --- | --- | --- |
 | `codex/word-vba-paragraph-pagination-20261121` | `c093f6387fcae69f04c63f4344476e4785906a54` | Guarded Word VBA section PageSetup writes, sparse native section preservation and namespace fidelity |

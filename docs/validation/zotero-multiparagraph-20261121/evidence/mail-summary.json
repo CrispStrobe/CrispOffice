@@ -1,0 +1,123 @@
+{
+  "head": "6c180d7e805b49663fda32fcf9c5c92e0ae2d86e",
+  "tree": "94d8880ff9f665f5eba24e3f648d5053750a3171",
+  "immutable_git_blob_verified_export": true,
+  "unique_original_files": 14,
+  "unique_cases": 332,
+  "passed": 332,
+  "skipped_test_cases": 0,
+  "failed": 0,
+  "errors": 0,
+  "all_six_process_exits": 0,
+  "all_started_cases_completed": true,
+  "all_terminal_events_successful": true,
+  "source_input_count": 502,
+  "source_manifest_sha256": "b86dd44afbac8c349b5cd6580cbd12fae34f24a8f60d00325ac94d3f358e7b47",
+  "source_stable_all_runs": true,
+  "native_sqlite": {
+    "status": "ready",
+    "exit_code": 0,
+    "native_sqlite_version": "Version(libVersion: 3.54.1, sourceId: 2026-10-16 14:45:20 555e07ef33f69a0957d24d8e555b702464a131d6f1607f4c3c1e4551e8e6ca76, number: 3054001)",
+    "fts5": "ready",
+    "library_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+    "native_assets_manifest_sha256": "3bbd0039e3bb93493cbd72dc9f6f005c54c0eb14f521643eb448843f7f500960",
+    "probe_source_sha256": "a4b3477221f443491fab6ba4011e9248ff28e2fc2d703f3ca70bc60b38d4a3d3",
+    "log_sha256": "6e28872a863ad519c16b9face33b0e6ae156657713400f39d3bd164add10a213",
+    "stderr_sha256": "dd35d399349c10aa3a96d7b290940c947560d0a57270cc0c46cfa73c85128ef6",
+    "command": [
+      "runtime/flutter/bin/cache/dart-sdk/bin/dart",
+      "run",
+      "build/runtime-preparation/sqlite_probe.dart"
+    ],
+    "cwd": "/workspace/scratch/b3c425a3b090/runtime/mail-workspace/packages/quds_mail_store",
+    "uses_official_package_default_hook": true
+  },
+  "gate_results": {
+    "store": {
+      "passed": 83,
+      "skipped": 0,
+      "failed": 0,
+      "errors": 0,
+      "exit_code": 0,
+      "suite_counts": {
+        "packages/quds_mail_store/test/flag_reconciliation_test.dart": 42,
+        "packages/quds_mail_store/test/migration_test.dart": 15,
+        "packages/quds_mail_store/test/flag_journal_test.dart": 26
+      }
+    },
+    "transport": {
+      "passed": 163,
+      "skipped": 0,
+      "failed": 0,
+      "errors": 0,
+      "exit_code": 0,
+      "suite_counts": {
+        "packages/quds_mail_transport/test/cloud_provider_test.dart": 121,
+        "packages/quds_mail_transport/test/ews_provider_test.dart": 31,
+        "packages/quds_mail_transport/test/native_flag_observation_test.dart": 11
+      }
+    },
+    "core": {
+      "passed": 28,
+      "skipped": 0,
+      "failed": 0,
+      "errors": 0,
+      "exit_code": 0,
+      "suite_counts": {
+        "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart": 28
+      }
+    },
+    "ui": {
+      "passed": 34,
+      "skipped": 0,
+      "failed": 0,
+      "errors": 0,
+      "exit_code": 0,
+      "suite_counts": {
+        "packages/quds_mail_ui/test/bulk_api_aliases_test.dart": 6,
+        "packages/quds_mail_ui/test/presentation_test.dart": 23,
+        "packages/quds_mail_ui/test/presentation_whitespace_test.dart": 5
+      }
+    },
+    "studio": {
+      "passed": 18,
+      "skipped": 0,
+      "failed": 0,
+      "errors": 0,
+      "exit_code": 0,
+      "suite_counts": {
+        "packages/quds_office_editor/example/test/studio_mail_remote_images_incoming_test.dart": 18
+      }
+    },
+    "unsupported": {
+      "passed": 6,
+      "skipped": 0,
+      "failed": 0,
+      "errors": 0,
+      "exit_code": 0,
+      "suite_counts": {
+        "packages/quds_mail_transport/test/cloud_unsupported_test.dart": 2,
+        "packages/quds_mail_transport/test/ews_unsupported_test.dart": 1,
+        "packages/quds_mail_transport/test/unsupported_test.dart": 3
+      }
+    }
+  },
+  "platform_exclusions": [
+    {
+      "file": "packages/quds_mail_transport/test/cloud_unsupported_test.dart",
+      "declaration": "@TestOn('js')",
+      "qualification_gate": "incoming-mail-unsupported-receipt.json"
+    },
+    {
+      "file": "packages/quds_mail_transport/test/ews_unsupported_test.dart",
+      "declaration": "@TestOn('js')",
+      "qualification_gate": "incoming-mail-unsupported-receipt.json"
+    },
+    {
+      "file": "packages/quds_mail_transport/test/unsupported_test.dart",
+      "declaration": "@TestOn('js')",
+      "qualification_gate": "incoming-mail-unsupported-receipt.json"
+    }
+  ],
+  "scope": "Affected native SQLite reconciliation/journal/migration, core provider compatibility, native/cloud/EWS observations, JavaScript unsupported boundaries, UI aliases/presentation, and the Studio remote-image compatibility consumer. Provider responses are synthetic; native SQLite is the actual pinned native library."
+}

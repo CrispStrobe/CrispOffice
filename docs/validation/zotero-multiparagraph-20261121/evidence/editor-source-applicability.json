@@ -1,0 +1,218 @@
+{
+  "assessment": [
+    "All 14 executed test files and all 9 static-check files are byte-identical to the qualified source.",
+    "All implementation, dependency manifest/lock, analysis configuration, assets and fonts in the recorded scope are byte-identical.",
+    "The sole changed recorded input is an unexecuted Word engine test. Manual diff review found five equivalent _section(...) calls reformatted across lines with a trailing argument comma; no imports, argument expressions, assertions or expected values changed.",
+    "A package-tree text search found no references to the changed test filename. It was neither one of the 14 explicitly executed suites nor one of the 9 static files.",
+    "The 12 other changed paths are documentation/evidence under docs/. No other executable changes, new scoped inputs or removed scoped inputs exist.",
+    "The 433 results remain attributed to c5cf1ec1. Their applicability to a4ec5b81 follows from unchanged measured implementation and selected-test inputs; this is not a rerun at a4ec5b81."
+  ],
+  "byte_identical_recorded_inputs": 2883,
+  "changed_recorded_inputs": [
+    {
+      "final_blob": "9f27f043c5cc4b6e6789069a93e4adad6cec4e24",
+      "final_sha256": "272b12e03922995d0000c0baccfbf312ca41b318090569b3ba327520157ccb87",
+      "path": "packages/quds_office_engine/test/office_macro_word_page_setup_test.dart",
+      "qualified_blob": "63435a4760e7ee0bb83b2b18a144286cefc63abf",
+      "qualified_sha256": "fbf127e8f29314c1a527e184c15112549747c4c1d61bda55d8d8d204577c40a4"
+    }
+  ],
+  "executed_suite_count": 14,
+  "executed_suites": {
+    "packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart": {
+      "final_blob": "ae85923e2732770db63e45c80a7b3ca329cedf9a",
+      "qualified_blob": "ae85923e2732770db63e45c80a7b3ca329cedf9a",
+      "results": {
+        "success": 18
+      },
+      "unchanged": true
+    },
+    "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart": {
+      "final_blob": "4e62ab3326bdd745a305b187cc01dfd742ac58a8",
+      "qualified_blob": "4e62ab3326bdd745a305b187cc01dfd742ac58a8",
+      "results": {
+        "success": 15
+      },
+      "unchanged": true
+    },
+    "packages/quds_office_editor/test/word_cross_paragraph_marker_delete_test.dart": {
+      "final_blob": "4add3a098a1f825d6c9189e526b9a3310faf27dd",
+      "qualified_blob": "4add3a098a1f825d6c9189e526b9a3310faf27dd",
+      "results": {
+        "success": 7
+      },
+      "unchanged": true
+    },
+    "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart": {
+      "final_blob": "02de53a153126eddd4cad010a43873576e9887fe",
+      "qualified_blob": "02de53a153126eddd4cad010a43873576e9887fe",
+      "results": {
+        "success": 108
+      },
+      "unchanged": true
+    },
+    "packages/quds_office_editor/test/word_zotero_adjacent_citations_controller_test.dart": {
+      "final_blob": "c435dbea35a3b9d589e12b60bd7a37a4896861f7",
+      "qualified_blob": "c435dbea35a3b9d589e12b60bd7a37a4896861f7",
+      "results": {
+        "success": 6
+      },
+      "unchanged": true
+    },
+    "packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart": {
+      "final_blob": "2ba8fc2a65f8442337263e999ca839143c96c7bb",
+      "qualified_blob": "2ba8fc2a65f8442337263e999ca839143c96c7bb",
+      "results": {
+        "success": 13
+      },
+      "unchanged": true
+    },
+    "packages/quds_office_editor/test/word_zotero_citing_controller_test.dart": {
+      "final_blob": "03f8183864021b8b766fbf3debe3b680315f2a83",
+      "qualified_blob": "03f8183864021b8b766fbf3debe3b680315f2a83",
+      "results": {
+        "success": 21
+      },
+      "unchanged": true
+    },
+    "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart": {
+      "final_blob": "9294cae0b8535277512adf3953ff00292fb54059",
+      "qualified_blob": "9294cae0b8535277512adf3953ff00292fb54059",
+      "results": {
+        "success": 24
+      },
+      "unchanged": true
+    },
+    "packages/quds_office_editor/test/word_zotero_direct_command_test.dart": {
+      "final_blob": "a34fbfdab393790cd91fd6b13d4dc55fee466992",
+      "qualified_blob": "a34fbfdab393790cd91fd6b13d4dc55fee466992",
+      "results": {
+        "success": 23
+      },
+      "unchanged": true
+    },
+    "packages/quds_office_editor/test/word_zotero_multiparagraph_controller_test.dart": {
+      "final_blob": "aea3ab76834fc5b1b988b85bb5d5b163a61b9ada",
+      "qualified_blob": "aea3ab76834fc5b1b988b85bb5d5b163a61b9ada",
+      "results": {
+        "success": 72
+      },
+      "unchanged": true
+    },
+    "packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart": {
+      "final_blob": "b20d0b7b25d7cb50afff654f8d70a47583e239d3",
+      "qualified_blob": "b20d0b7b25d7cb50afff654f8d70a47583e239d3",
+      "results": {
+        "success": 25
+      },
+      "unchanged": true
+    },
+    "packages/quds_office_editor/test/word_zotero_note_target_test.dart": {
+      "final_blob": "401d7ef2f2fd4d2079fb17aed02f0df8c2d73a9d",
+      "qualified_blob": "401d7ef2f2fd4d2079fb17aed02f0df8c2d73a9d",
+      "results": {
+        "success": 33
+      },
+      "unchanged": true
+    },
+    "packages/quds_office_editor/test/word_zotero_rich_controller_test.dart": {
+      "final_blob": "6a7cdef9235516b53a75b628a1350c3b33e8098c",
+      "qualified_blob": "6a7cdef9235516b53a75b628a1350c3b33e8098c",
+      "results": {
+        "success": 8
+      },
+      "unchanged": true
+    },
+    "packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart": {
+      "final_blob": "081b7eb95e1aafefca831fe5556e38e76963d80f",
+      "qualified_blob": "081b7eb95e1aafefca831fe5556e38e76963d80f",
+      "results": {
+        "success": 60
+      },
+      "unchanged": true
+    }
+  },
+  "final_unique_cases": 433,
+  "input_manifest_sha256": "7c1a9f9393d3358964693220d5cc0e660d80996f4317ae3f401927819f9f8dd0",
+  "new_relevant_inputs": [],
+  "other_changed_paths": [
+    "docs/validation/word-vba-paragraph-pagination-20261121/README.md",
+    "docs/validation/word-vba-paragraph-pagination-20261121/evidence-manifest.json",
+    "docs/validation/word-vba-paragraph-pagination-20261121/final-acceptance-summary.json",
+    "docs/validation/word-vba-paragraph-pagination-20261121/late-intake.json",
+    "docs/validation/word-vba-paragraph-pagination-20261121/late-intake.md",
+    "docs/validation/word-vba-paragraph-pagination-20261121/late-mail-validation.json",
+    "docs/validation/word-vba-paragraph-pagination-20261121/local-qualification-evidence.tar.gz",
+    "docs/validation/word-vba-paragraph-pagination-20261121/page-setup-portable-receipt.json",
+    "docs/validation/word-vba-paragraph-pagination-20261121/reproduce.py",
+    "docs/validation/word-vba-paragraph-pagination-20261121/review.json",
+    "docs/validation/word-vba-paragraph-pagination-20261121/source-applicability.json",
+    "docs/validation/zotero-merged-cells-20261120/intake.md"
+  ],
+  "pending": "Final qualification.json and work-record claim review awaits parent review-ready signal.",
+  "qualified_source": "c5cf1ec11970211597fd16eebdc8d0eaa115278b",
+  "qualified_tree": "e5744c280f3838d0e6831b925494f3d584908d42",
+  "recorded_source_inputs": 2884,
+  "removed_relevant_inputs": [],
+  "review_kind": "Final-source applicability; no tests rerun",
+  "reviewed_final_source": "a4ec5b812cc64c5f738357fdef8779df9b8a8a2b",
+  "reviewed_final_tree": "ce69540b51ff3f59e761ed25de0124540b3cd4bf",
+  "source_applicability_passed": true,
+  "source_is_ancestor": true,
+  "static_files": [
+    {
+      "final_sha256": "62ea4b4761df1bf1c9466e56e88b11f622aea6a795803cc662009d9f721c72e6",
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "qualified_sha256": "62ea4b4761df1bf1c9466e56e88b11f622aea6a795803cc662009d9f721c72e6",
+      "unchanged": true
+    },
+    {
+      "final_sha256": "ac788b820a09a583e7e5fa815b633e36d8808b6a76b407eda90d3d230874bc12",
+      "path": "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "qualified_sha256": "ac788b820a09a583e7e5fa815b633e36d8808b6a76b407eda90d3d230874bc12",
+      "unchanged": true
+    },
+    {
+      "final_sha256": "d101fe09001ccf19d09d56d7e1e4a2309efc931a5477d130c0a94d92a785c003",
+      "path": "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+      "qualified_sha256": "d101fe09001ccf19d09d56d7e1e4a2309efc931a5477d130c0a94d92a785c003",
+      "unchanged": true
+    },
+    {
+      "final_sha256": "819e720f6eecdf28a6531ed38de3943a7e31fd7842394d970526e917c99e555e",
+      "path": "packages/quds_office_editor/test/word_zotero_multiparagraph_controller_test.dart",
+      "qualified_sha256": "819e720f6eecdf28a6531ed38de3943a7e31fd7842394d970526e917c99e555e",
+      "unchanged": true
+    },
+    {
+      "final_sha256": "28ffbdd37b57950578de70bfdb52939233ac61e80d83377987430fc2883294a1",
+      "path": "packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+      "qualified_sha256": "28ffbdd37b57950578de70bfdb52939233ac61e80d83377987430fc2883294a1",
+      "unchanged": true
+    },
+    {
+      "final_sha256": "3c1f01c9ba5da791158a3597d6e9b55b4b96a4612c6443cee0978371bea5b80d",
+      "path": "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+      "qualified_sha256": "3c1f01c9ba5da791158a3597d6e9b55b4b96a4612c6443cee0978371bea5b80d",
+      "unchanged": true
+    },
+    {
+      "final_sha256": "a56e47ec5a40b6ce2f47193edb86631ca11ccc609d28df36c9db766f3533cc47",
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+      "qualified_sha256": "a56e47ec5a40b6ce2f47193edb86631ca11ccc609d28df36c9db766f3533cc47",
+      "unchanged": true
+    },
+    {
+      "final_sha256": "b7c179e22f63afbd2a1bb23dbf91027226985d4cf3549f8c73946584b49dd1e3",
+      "path": "packages/quds_office_engine/test/word_zotero_multiparagraph_test.dart",
+      "qualified_sha256": "b7c179e22f63afbd2a1bb23dbf91027226985d4cf3549f8c73946584b49dd1e3",
+      "unchanged": true
+    },
+    {
+      "final_sha256": "5416c175f1b0539878ec28953f65e2674f1768c3a1a518cce520a78455a3242e",
+      "path": "packages/quds_office_engine/test/zotero_item_children_test.dart",
+      "qualified_sha256": "5416c175f1b0539878ec28953f65e2674f1768c3a1a518cce520a78455a3242e",
+      "unchanged": true
+    }
+  ]
+}

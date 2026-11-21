@@ -1,0 +1,58 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "branch": "codex/zotero-multiparagraph-20261121",
+  "checkpoints": [
+    {
+      "purpose": "initial_intake",
+      "commit": "e5b9240512158c329dd2671aa9f36eb08cb74e11",
+      "tree": "2afefc48769c571618883db3879c06fb91c0ded7"
+    },
+    {
+      "purpose": "zotero_implementation",
+      "commit": "6ac854de0583b7955470648916c53c76b67c0fff",
+      "tree": "5bd40fb467d6710987e06634934e84c3dc513bfa"
+    },
+    {
+      "purpose": "documentation",
+      "commit": "1613d106102c5e43a4acd19c114a608900942682",
+      "tree": "ecbfaeda891f0d48fa9ddf595c74131ec7676f3a"
+    },
+    {
+      "purpose": "test_repairs_and_publication_intake",
+      "commit": "61a82ac076a56a81f9d8f24ef9e45bd80cdb8c64",
+      "tree": "94958cbe8ca0d5754fbc2675ab5fb9b7e978f797"
+    },
+    {
+      "purpose": "word_ancestry_merge",
+      "commit": "420baa0707506cd200950c9a9ff8212ddba0df41",
+      "tree": "3700f09ca2f2d6f89dd2a311ac8904b64caa9ada"
+    },
+    {
+      "purpose": "mail_ancestry_merge",
+      "commit": "6c180d7e805b49663fda32fcf9c5c92e0ae2d86e",
+      "tree": "94d8880ff9f665f5eba24e3f648d5053750a3171"
+    },
+    {
+      "purpose": "portable_numeric_fixture",
+      "commit": "9ddf793cc57dd8442924350e4f34c67a52f2b608",
+      "tree": "02fe08d2ae26f106dd0c5fc78bbefb5633704afb"
+    },
+    {
+      "purpose": "word_namespace_fix",
+      "commit": "c5cf1ec11970211597fd16eebdc8d0eaa115278b",
+      "tree": "e5744c280f3838d0e6831b925494f3d584908d42"
+    },
+    {
+      "purpose": "word_test_format",
+      "commit": "537d2e7cdd056e06739cd3504b37e5f8751d9373",
+      "tree": "ceb8f0555a96e824b5bab85b79511b2ebd3004bd"
+    },
+    {
+      "purpose": "refreshed_main_ancestry_merge",
+      "commit": "a4ec5b812cc64c5f738357fdef8779df9b8a8a2b",
+      "tree": "ce69540b51ff3f59e761ed25de0124540b3cd4bf"
+    }
+  ],
+  "publication": "Connected GitHub blob/tree/commit API with expected-head fast-forward ref updates; local and remote trees compared after each save.",
+  "github_actions": "Neither queried nor awaited"
+}

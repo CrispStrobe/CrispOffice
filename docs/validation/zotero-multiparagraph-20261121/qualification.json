@@ -1,0 +1,215 @@
+{
+  "product_checkpoint": {
+    "commit": "a4ec5b812cc64c5f738357fdef8779df9b8a8a2b",
+    "tree": "ce69540b51ff3f59e761ed25de0124540b3cd4bf"
+  },
+  "branch": "codex/zotero-multiparagraph-20261121",
+  "scope": "Zotero Add Note/Add Annotation replacement across ordinary paragraphs, reviewed incoming Word/Mail integration, refreshed-main reconciliation",
+  "publication_snapshot": {
+    "captured_at": "2026-11-21T04:36:46.090004+00:00",
+    "refs": 330,
+    "ancestor": 306,
+    "verified_equivalent": 24,
+    "uncovered": 0,
+    "refreshed_main": "3d01815908aeded5862d131109341365de637242"
+  },
+  "accepted_gates": [
+    {
+      "name": "zotero_engine_vm",
+      "source": "c5cf1ec11970211597fd16eebdc8d0eaa115278b",
+      "original_suites": 36,
+      "passed": 977,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0,
+      "process_exit": 0
+    },
+    {
+      "name": "zotero_engine_node_targeted",
+      "source": "c5cf1ec11970211597fd16eebdc8d0eaa115278b",
+      "original_suites": 3,
+      "passed": 148,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0,
+      "process_exit": 0,
+      "overlap": "These semantic cases also execute on VM; do not add to a unique-case total."
+    },
+    {
+      "name": "zotero_editor",
+      "source": "c5cf1ec11970211597fd16eebdc8d0eaa115278b",
+      "original_suites": 12,
+      "passed": 400,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0,
+      "process_exit": 0,
+      "scope": "12 selected editor files: Zotero plus shared marker-deletion regression."
+    },
+    {
+      "name": "studio_citing_transport",
+      "source": "c5cf1ec11970211597fd16eebdc8d0eaa115278b",
+      "passed": 18,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0,
+      "process_exit": 0
+    },
+    {
+      "name": "studio_shortcuts",
+      "source": "c5cf1ec11970211597fd16eebdc8d0eaa115278b",
+      "passed": 15,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0,
+      "process_exit": 0
+    },
+    {
+      "name": "incoming_word",
+      "source": "537d2e7cdd056e06739cd3504b37e5f8751d9373",
+      "local_execution_commit": "5c45ae27bbba49f3dac8fbf5d100739a2084b63b",
+      "tree": "ceb8f0555a96e824b5bab85b79511b2ebd3004bd",
+      "passed": 156,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0,
+      "note": "148 PageSetup, 5 namespace/section clone, 3 section/column roundtrip cases; portable VM/Node smoke separate."
+    },
+    {
+      "name": "incoming_mail",
+      "source": "6c180d7e805b49663fda32fcf9c5c92e0ae2d86e",
+      "original_files": 14,
+      "passed": 332,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0,
+      "process_exits": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "native_sqlite_cases": 83,
+      "js_unsupported_provider_cases": 6
+    }
+  ],
+  "static_checks": {
+    "zotero_files": 9,
+    "word_files": 3,
+    "analysis": "fatal-infos, all pass",
+    "format_language_version": "3.12",
+    "format": "no-write, all pass"
+  },
+  "historical_runs_not_added_to_accepted_counts": {
+    "full_engine_vm": 977,
+    "full_engine_node": {
+      "passed": 964,
+      "failed": 1,
+      "executed": 965,
+      "filesystem_cases_excluded": 12,
+      "diagnosis": "Integral double fixture serializes differently on VM/JS; corrected to 12.5 without parser change."
+    },
+    "original_editor": {
+      "passed": 393,
+      "failed_or_errored": 3,
+      "cases": 396
+    },
+    "editor_focused_repairs": 121,
+    "initial_mail_alias": 60,
+    "initial_word_page_setup": {
+      "passed": 146,
+      "failed": 1,
+      "cases": 147
+    }
+  },
+  "runtime": {
+    "flutter": "3.47.8",
+    "flutter_revision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "dart": "3.13.7",
+    "node": "24.22.3",
+    "platform": "Linux x64",
+    "sdk_archive_sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+    "pubspec_lock_sha256": "0d64a732cd7f6c7cc4e1e01255276f081b59e6f43039636c3d36f6785a958ce2",
+    "native_sqlite": "3.54.1",
+    "native_sqlite_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b"
+  },
+  "evidence": {
+    "engine": {
+      "archive": "evidence/engine-qualification.tar.xz",
+      "sha256": "33604f671dc6857df220c655a64a8d67028bcf597cf739d8af2d1d256ded6690",
+      "bytes": 223200,
+      "members": 65,
+      "index": "evidence/engine-qualification.index.json",
+      "index_sha256": "cda0fe3efcd9c0938e07ce0b90926db58e036ce526b61b98263b487960a138de"
+    },
+    "editor_studio": {
+      "archive": "evidence/final-editor-studio-combined-evidence.tar.xz",
+      "sha256": "56c4e9678aee3901e54914f17f2bd2af8fe7c1993631634d602ed219dcf09a20",
+      "bytes": 276144,
+      "members": 91,
+      "index": "evidence/final-editor-studio-combined-evidence.index.json",
+      "index_sha256": "d628c2e8728fc929264af2564e262ceea7b42a2feceaad68a925d68d866ac001"
+    },
+    "incoming_mail": {
+      "archive": "evidence/incoming-mail-qualification.tar.xz",
+      "sha256": "124a355260b85903fc50c2aa8b9462b9861f6a971a49781d3ca870a9a102a9db",
+      "bytes": 386032,
+      "members": 70,
+      "index": "evidence/incoming-mail-qualification.index.json",
+      "index_sha256": "19d7f0fc8785607ffbd5680586854d00b14c2df71334432eb57521e5a6d21526"
+    },
+    "incoming_word": {
+      "archive": "evidence/word-intake-evidence.tar.xz",
+      "sha256": "f1a301da7d22c0d134fe85af953d64f6564f7018df6dc27545c773f2a41899a3",
+      "bytes": 81964,
+      "members": 71,
+      "index": "evidence/word-intake-evidence.index.json",
+      "index_sha256": "d7574a4704b6a047b94a52ca838c8b4113f6cd933da28a424a3d973709f905d5"
+    },
+    "initial_intake_and_review": {
+      "archive": "evidence/initial-intake-and-review.tar.xz",
+      "sha256": "5add65c687df780406721db4e63a225ea04811a730b2f4110f87a3d439d7effa",
+      "bytes": 22544,
+      "members": 10,
+      "index": "evidence/initial-intake-and-review.index.json",
+      "index_sha256": "3b216c52d6a322d4399dc4de2d695d9f1edded4a42b680930bf0ea94c23ffd65"
+    }
+  },
+  "limits": [
+    "No live Zotero or installed Word/LibreOffice/OpenOffice acceptance in this increment.",
+    "No active ODT citation transfer or cross-word-processor export/import parity claim.",
+    "No new complete 36-suite Node rerun after the corrected numeric fixture; 148 targeted current cases are attributed explicitly."
+  ],
+  "github_actions": "Neither queried nor awaited; no workflow/check/status endpoints used.",
+  "workflow_and_dependency_policy_changed": false,
+  "source_applicability": {
+    "engine": {
+      "report": "evidence/engine-source-applicability.json",
+      "scoped_inputs": 2853,
+      "identical": 2852,
+      "exception": "Unexecuted Word PageSetup test formatted and separately qualified."
+    },
+    "editor_studio": {
+      "report": "evidence/editor-source-applicability.json",
+      "scoped_inputs": 2884,
+      "identical": 2883,
+      "executed_files_identical": true,
+      "static_files_identical": true,
+      "exception": "Same unrelated, separately qualified Word test formatting."
+    },
+    "mail": {
+      "report": "evidence/mail-source-applicability.json",
+      "scoped_inputs": 502,
+      "identical": 502
+    },
+    "word": {
+      "report": "evidence/word-source-applicability.json",
+      "scoped_inputs": 1152,
+      "identical": 1152,
+      "git_source_files": 1150,
+      "runtime_configuration_files": 2
+    }
+  }
+}

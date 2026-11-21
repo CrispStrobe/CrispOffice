@@ -1,0 +1,33 @@
+{
+  "head": "537d2e7cdd056e06739cd3504b37e5f8751d9373",
+  "tree": "ceb8f0555a96e824b5bab85b79511b2ebd3004bd",
+  "incoming": "3d01815908aeded5862d131109341365de637242",
+  "independent_namespace_review": "Incoming positive-prefix helpers match prefix==xmlns plus localName, semantically equivalent to current qualifiedName matching at every shared call site. Current shared helper additionally protects revision-ID namespace insertion; retain it and the tested collision regression.",
+  "staged_tree": "ce69540b51ff3f59e761ed25de0124540b3cd4bf",
+  "resolved_conflicts": {
+    "packages/quds_mail_ui/lib/src/reader/presentation.dart": "Retained current qualified product/changelog bytes after independent semantic review",
+    "packages/quds_office_engine/CHANGELOG.md": "Retained current qualified product/changelog bytes after independent semantic review",
+    "packages/quds_office_engine/lib/src/automation/operations/word_page_setup_steps.dart": "Retained current qualified product/changelog bytes after independent semantic review",
+    "packages/quds_office_engine/lib/src/word/serial/word_section_io.dart": "Retained current qualified product/changelog bytes after independent semantic review"
+  },
+  "changed_paths": [
+    "docs/validation/word-vba-paragraph-pagination-20261121/README.md",
+    "docs/validation/word-vba-paragraph-pagination-20261121/evidence-manifest.json",
+    "docs/validation/word-vba-paragraph-pagination-20261121/final-acceptance-summary.json",
+    "docs/validation/word-vba-paragraph-pagination-20261121/late-intake.json",
+    "docs/validation/word-vba-paragraph-pagination-20261121/late-intake.md",
+    "docs/validation/word-vba-paragraph-pagination-20261121/late-mail-validation.json",
+    "docs/validation/word-vba-paragraph-pagination-20261121/local-qualification-evidence.tar.gz",
+    "docs/validation/word-vba-paragraph-pagination-20261121/page-setup-portable-receipt.json",
+    "docs/validation/word-vba-paragraph-pagination-20261121/reproduce.py",
+    "docs/validation/word-vba-paragraph-pagination-20261121/review.json",
+    "docs/validation/word-vba-paragraph-pagination-20261121/source-applicability.json",
+    "docs/validation/zotero-merged-cells-20261120/intake.md"
+  ],
+  "changed_executable_paths": [],
+  "all_non_documentation_paths_identical": true,
+  "incoming_added_evidence_byte_identical": true,
+  "retained_historical_doc_correction": "intake.md now points its historical continuation claim to incoming-main-698-checkpoint.md",
+  "word_qualified_tree": "ceb8f0555a96e824b5bab85b79511b2ebd3004bd",
+  "zotero_qualified_product_commit": "c5cf1ec11970211597fd16eebdc8d0eaa115278b"
+}
