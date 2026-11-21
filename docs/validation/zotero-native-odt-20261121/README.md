@@ -73,8 +73,8 @@ The next native-ODT milestone requires more than reference-mark recognition:
 the tree has ODF text extraction and ODT output but no rich ODT input reader.
 The new contract therefore separates:
 
-1. A read-only native Zotero mark/preference inventory with exact ownership,
-   explicit findings and deterministic parser tests.
+1. A read-only native Zotero mark, bibliography-section and preference inventory
+   with exact ownership, explicit findings and deterministic parser tests.
 2. Rich ODT-to-Word import with validated field ranges, metadata conversion and
    editor transaction/publication behavior.
 3. Actual Zotero/Word/LibreOffice plugin acceptance with identified versions
@@ -122,9 +122,13 @@ awaited. The runtime blocker is local, not the Actions queue.
 1. `54f287b893ea704816c6cd8de8421996b5b2d1fb` — frozen intake and explicit blocker.
    Published with the captured main as its parent; the 108,073-character JSON
    was read back unchanged.
-2. The following documentation commit contains this work record, the detailed
-   implementation contract and a correction to the parity roadmap's ODT
-   prerequisite. Its exact SHA is available in this file's commit history.
+2. `e1879ded13449fcb9d9895b046f9f2e3667969e5` — detailed implementation contract,
+   work record and corrected roadmap prerequisite. All three Markdown files
+   were read back exactly; every non-docs top-level Git tree entry matches the
+   captured main, and the comparison lists only four documentation paths.
+3. The following review correction adds native bibliography TextSection
+   ownership, an upstream case the initial contract omitted. Its SHA is
+   available in this file's commit history. This is still documentation-only.
 
 No application, dependency, workflow or test file is changed by this
 checkpoint. Merge the eventual tested implementation after the environment

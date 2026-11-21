@@ -66,9 +66,17 @@ and endpoints that change story or structural ownership. Do not pair a body
 start with an endpoint inside a note, annotation or nested cell.
 
 An empty point reference mark must be detected and classified explicitly.
-Do not invent cached text for it. A bibliography may span ordinary paragraphs;
-its range must retain those boundaries instead of joining all text into an
-unowned string. Initial eligibility limits should be stated in code and tests.
+Do not invent cached text for it. Native bibliographies may be stored as named
+LibreOffice TextSections: the pinned plugin's bibliography update path creates
+a section, and its `getFields('ReferenceMark')` enumerates sections as well as
+reference marks. Inventory namespace-qualified `text:section` elements whose
+`text:name` contains a recognized Zotero bibliography code, retaining the
+section's native block ownership and paragraph boundaries. Pairing only
+reference-mark-start/end elements would miss this native bibliography form.
+Ordinary sections and namespace lookalikes must not become bibliographies.
+Detect duplicate names and overlapping ownership between section and mark
+records. Preserve nested, protected, linked or otherwise unsupported section
+findings explicitly. Initial eligibility limits belong in code and tests.
 
 ### Native name and preference contracts
 
@@ -135,10 +143,10 @@ new tests in this checkpoint.
 
 | Area | Required cases |
 | --- | --- |
-| Basic fields | Citation, bibliography, multiple clusters, identical metadata with different names, non-Zotero marks, empty point marks. |
+| Basic fields | Citation, reference-mark and section-backed bibliography, multiple clusters, identical metadata with different names, non-Zotero marks/sections, empty point marks. |
 | Text positions | Arabic and supplementary Unicode, escaped XML/JSON, styled spans, quoted ` RND` in JSON, leading/trailing literal spaces, explicit repeated spaces, tabs and line breaks. |
 | Ownership | Body, authored footnote/endnote, ordinary and nested table cells, covered cells, annotation and drawing stories, stored revisions, multiparagraph bibliography. |
-| Ambiguity | Duplicate names even across stories, duplicate or missing endpoints, crossed/nested marks, cross-cell and cross-story ranges, malformed native names. |
+| Ambiguity | Duplicate names even across stories and section/mark records, duplicate or missing endpoints, crossed/nested marks, overlapping sections/marks, cross-cell and cross-story ranges, malformed native names. |
 | Preferences | One/many chunks, ordering past 9, gaps, duplicates, invalid indexes/types, absent default type, conflicting families, extensions, malformed content, exact limit and over-limit data. |
 | Preservation | Original bytes and unrelated metadata unchanged; unsupported content reported explicitly; deterministic order and stable identities on repeated reads. |
 | Bounds | Deep trees, many marks, large names/JSON, whitespace expansion, cumulative text, preferences, and failure without a misleading partial-success result. |
