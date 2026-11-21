@@ -105,7 +105,8 @@ abstract final class OdtDocumentReader {
       package
           .relationshipsFor('/word/document.xml')
           .add(
-            type: 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/customXml',
+            type:
+                'http://schemas.openxmlformats.org/officeDocument/2006/relationships/customXml',
             target: '../customXml/qudsOdtMetadata.xml',
           );
     }
@@ -526,30 +527,29 @@ final class _OdtReader {
     final explicitWidths = <bool>[];
     final tableStyle = _attr(element, 'style-name', odfTableNamespace);
     for (final style in styles.styleChain('table', tableStyle)) {
-      final props = _structuralProperties(style, 'table-properties');
-      if (props == null) continue;
-      _attributes(props, {
-        odfTableNamespace: {'align'},
-        _fo: {'margin-left', 'margin-right'},
-        _style: {'width'},
-      });
-      final width = _attr(props, 'width', _style);
-      if (width != null) {
-        tableWidth = _length(width);
-        if (tableWidth <= 0) _unsupported(props);
-      }
-      final align = _attr(props, 'align', odfTableNamespace);
-      if (align != null) {
-        table.properties.alignment = switch (align) {
-          'left' || 'margins' => WmlJustification.left,
-          'center' => WmlJustification.center,
-          'right' => WmlJustification.right,
-          _ => throw UnsupportedError('Unsupported ODT table alignment.'),
-        };
-      }
-      for (final name in ['margin-left', 'margin-right']) {
-        final margin = _attr(props, name, _fo);
-        if (margin != null && _length(margin) != 0) _unsupported(props);
+      for (final props in style.childElements) {
+        if (!_is(props, _style, 'table-properties')) _unsupported(props);
+        _attributes(props, {
+          odfTableNamespace: {'align'},
+          _fo: {'margin-left', 'margin-right'},
+          _style: {'width'},
+        });
+        _empty(props);
+        final width = _attr(props, 'width', _style);
+        if (width != null) tableWidth = _length(width);
+        final align = _attr(props, 'align', odfTableNamespace);
+        if (align != null) {
+          table.properties.alignment = switch (align) {
+            'left' || 'margins' => WmlJustification.left,
+            'center' => WmlJustification.center,
+            'right' => WmlJustification.right,
+            _ => throw UnsupportedError('Unsupported ODT table alignment.'),
+          };
+        }
+        for (final name in ['margin-left', 'margin-right']) {
+          final margin = _attr(props, name, _fo);
+          if (margin != null && _length(margin) != 0) _unsupported(props);
+        }
       }
     }
     var columnsSeen = false;
@@ -573,15 +573,19 @@ final class _OdtReader {
           'table-column',
           _attr(child, 'style-name', odfTableNamespace),
         )) {
-          final props = _structuralProperties(style, 'table-column-properties');
-          if (props == null) continue;
-          _attributes(props, {
-            _style: {'column-width'},
-          });
-          final value = _attr(props, 'column-width', _style);
-          if (value != null) {
-            width = _length(value);
-            explicitWidth = true;
+          for (final props in style.childElements) {
+            if (!_is(props, _style, 'table-column-properties')) {
+              _unsupported(props);
+            }
+            _attributes(props, {
+              _style: {'column-width'},
+            });
+            _empty(props);
+            final value = _attr(props, 'column-width', _style);
+            if (value != null) {
+              width = _length(value);
+              explicitWidth = true;
+            }
           }
         }
         if (width <= 0 || width > 4000) _unsupported(child);
@@ -601,19 +605,23 @@ final class _OdtReader {
           'table-row',
           _attr(child, 'style-name', odfTableNamespace),
         )) {
-          final props = _structuralProperties(style, 'table-row-properties');
-          if (props == null) continue;
-          _attributes(props, {
-            _style: {'min-row-height'},
-            _fo: {'keep-together'},
-          });
-          final height = _attr(props, 'min-row-height', _style);
-          if (height != null) row.height = _length(height);
-          final keep = _attr(props, 'keep-together', _fo);
-          if (keep != null && keep != 'auto' && keep != 'always') {
-            _unsupported(props);
+          for (final props in style.childElements) {
+            if (!_is(props, _style, 'table-row-properties')) {
+              _unsupported(props);
+            }
+            _attributes(props, {
+              _style: {'min-row-height'},
+              _fo: {'keep-together'},
+            });
+            _empty(props);
+            final height = _attr(props, 'min-row-height', _style);
+            if (height != null) row.height = _length(height);
+            final keep = _attr(props, 'keep-together', _fo);
+            if (keep != null && keep != 'auto' && keep != 'always') {
+              _unsupported(props);
+            }
+            if (keep != null) row.cantSplit = keep == 'always';
           }
-          if (keep != null) row.cantSplit = keep == 'always';
         }
         for (final sourceCell in child.childElements) {
           if (!_is(sourceCell, odfTableNamespace, 'table-cell')) {
@@ -637,20 +645,24 @@ final class _OdtReader {
             'table-cell',
             _attr(sourceCell, 'style-name', odfTableNamespace),
           )) {
-            final props = _structuralProperties(style, 'table-cell-properties');
-            if (props == null) continue;
-            _attributes(props, {
-              _fo: {'background-color'},
-            });
-            final fill = _attr(props, 'background-color', _fo);
-            if (fill != null) {
-              if (fill == 'transparent') {
-                cell.fillColor = null;
-              } else {
-                if (!RegExp(r'^#[0-9a-fA-F]{6}$').hasMatch(fill)) {
-                  _unsupported(props);
+            for (final props in style.childElements) {
+              if (!_is(props, _style, 'table-cell-properties')) {
+                _unsupported(props);
+              }
+              _attributes(props, {
+                _fo: {'background-color'},
+              });
+              _empty(props);
+              final fill = _attr(props, 'background-color', _fo);
+              if (fill != null) {
+                if (fill == 'transparent') {
+                  cell.fillColor = null;
+                } else {
+                  if (!RegExp(r'^#[0-9a-fA-F]{6}$').hasMatch(fill)) {
+                    _unsupported(props);
+                  }
+                  cell.fillColor = fill.substring(1).toUpperCase();
                 }
-                cell.fillColor = fill.substring(1).toUpperCase();
               }
             }
           }
@@ -1204,33 +1216,6 @@ void _empty(XmlElement element) {
   }
 }
 
-/// Qualifies only a used structural style after style-chain validation.
-/// Unused opaque definitions remain untouched; duplicate or nested property
-/// content on an applied style must not be silently dropped.
-XmlElement? _structuralProperties(XmlElement definition, String propertyName) {
-  _attributes(definition, {
-    _style: {
-      'name',
-      'family',
-      'display-name',
-      'parent-style-name',
-      'class',
-      'auto-update',
-    },
-    _xml: {'id'},
-  });
-  XmlElement? result;
-  for (final child in definition.childElements) {
-    if (!_is(child, _style, propertyName)) _unsupported(child);
-    if (result != null) {
-      throw FormatException('Duplicate used ODT $propertyName.');
-    }
-    _empty(child);
-    result = child;
-  }
-  return result;
-}
-
 void _structuralText(XmlElement element) {
   for (final node in element.children) {
     final text = node is XmlText
@@ -1255,8 +1240,9 @@ void _attributes(XmlElement element, Map<String, Set<String>> allowed) {
 }
 
 double _length(String value) {
-  final match = RegExp(r'^([+-]?(?:\d+(?:\.\d*)?|\.\d+))(pt|in|cm|mm|pc)$')
-      .firstMatch(value.trim());
+  final match = RegExp(
+    r'^([+-]?(?:\d+(?:\.\d*)?|\.\d+))(pt|in|cm|mm|pc)$',
+  ).firstMatch(value.trim());
   if (match == null) throw UnsupportedError('Unsupported ODT length: $value.');
   final number = double.parse(match.group(1)!);
   final factor = switch (match.group(2)) {

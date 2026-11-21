@@ -1,0 +1,79 @@
+{
+  "qualified_source_head": "4386cba498f5b4411dc7598bbc94c706005d04db",
+  "qualified_source_tree": "a16dfd32bcf8670f7329e2380da949d030c7cb58",
+  "engine": {
+    "files": 122,
+    "counts": {
+      "success": 2576
+    },
+    "exit_code": 0,
+    "inputs": 1296,
+    "source_unchanged": true,
+    "accepted": true
+  },
+  "editor": {
+    "files": 60,
+    "counts": {
+      "success": 1043
+    }
+  },
+  "studio": {
+    "files": 4,
+    "counts": {
+      "success": 40
+    }
+  },
+  "focused_loader_replay": {
+    "editor": {
+      "success": 8
+    },
+    "studio": {
+      "success": 7
+    },
+    "add_to_totals": false,
+    "accepted": true
+  },
+  "static": {
+    "paths": 29,
+    "accepted": true
+  },
+  "portable_vba": {
+    "outcome": "passed",
+    "source_head": "5647e457b9419fa90f302e196ddbeeac8585ccfb",
+    "vm_js_agreement": true
+  },
+  "actual_native_converter": {
+    "result": "refused at active fo:hyphenation-ladder-count",
+    "general_host_acceptance": false,
+    "receipt": "local-validation.zip/converter-probe/result.json"
+  },
+  "counting": "Use one final process per cohort. Earlier development/diagnostic runs and focused loader replays overlap and are not additive.",
+  "github_actions_queried": false,
+  "github_actions_awaited": false,
+  "archives": {
+    "editor-validation.zip": {
+      "bytes": 197938,
+      "sha256": "52d190dd977d79035eead355bbdc8581a3e22b9d560b041e8dd266f8fae32efa",
+      "member_count": 19,
+      "crc_verified": true
+    },
+    "loader-development.zip": {
+      "bytes": 32979,
+      "sha256": "56edf0509667ff5c75d724cf4154f8c0f025cb1629c01b8a1ee2f9b24bb41934",
+      "member_count": 26,
+      "crc_verified": true
+    },
+    "loader-final-validation.zip": {
+      "bytes": 116356,
+      "sha256": "40c1039556872e564a5eb6f422a363a58955a77d943d68c2f5fb45f38655dcfa",
+      "member_count": 18,
+      "crc_verified": true
+    },
+    "local-validation.zip": {
+      "bytes": 1898068,
+      "sha256": "ee22590512431374a3e2d6e0a535a29e4eec0063ba7293db9e32d9b77ddc0060",
+      "member_count": 98,
+      "crc_verified": true
+    }
+  }
+}

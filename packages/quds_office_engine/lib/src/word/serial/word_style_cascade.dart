@@ -430,8 +430,9 @@ class _StyleCascade {
         props,
       );
     }
-    props.sourcePropertiesXml = XmlDocument(root: direct)
-        .toXmlString(declaration: false);
+    props.sourcePropertiesXml = XmlDocument(
+      root: direct,
+    ).toXmlString(declaration: false);
     props.importedValues = WordPropertyIo.paragraphValues(props);
     target.properties = props;
   }
@@ -570,8 +571,9 @@ class _StyleCascade {
         updated[key] = '$inherited';
       }
       if (updated.isEmpty) return;
-      props.sourcePropertiesXml = XmlDocument(root: direct)
-          .toXmlString(declaration: false);
+      props.sourcePropertiesXml = XmlDocument(
+        root: direct,
+      ).toXmlString(declaration: false);
       props.importedValues = hasSparseSource
           ? {...imported, ...updated}
           : WordPropertyIo.runValues(props);

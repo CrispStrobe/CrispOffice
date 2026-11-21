@@ -248,7 +248,8 @@ ${_paragraphStyle('Child', '', parent: 'Parent', text: 'fo:font-style="italic"')
       final styles = OdtReaderStyles(
         _content(
           _textStyle('T', 'style:font-name="Embedded"'),
-          fonts: '<style:font-face style:name="Embedded" svg:font-family="Custom"><svg:font-face-src/></style:font-face>',
+          fonts:
+              '<style:font-face style:name="Embedded" svg:font-family="Custom"><svg:font-face-src/></style:font-face>',
         ),
       );
       expect(styles.runProperties(null).bold, isFalse);
@@ -277,7 +278,8 @@ ${_paragraphStyle('Child', '', parent: 'Parent', text: 'fo:font-style="italic"')
             'T',
             'style:font-name="Latin" style:font-name-complex="Arabic"',
           ),
-          fonts: '''<style:font-face style:name="Latin" svg:font-family="'Liberation Serif'"/><style:font-face style:name="Arabic" svg:font-family="Amiri"/>''',
+          fonts:
+              '''<style:font-face style:name="Latin" svg:font-family="'Liberation Serif'"/><style:font-face style:name="Arabic" svg:font-family="Amiri"/>''',
         ),
       );
       final run = styles.runProperties('T');
@@ -294,25 +296,29 @@ ${_paragraphStyle('Child', '', parent: 'Parent', text: 'fo:font-style="italic"')
         () => OdtReaderStyles(
           _content(
             '',
-            fonts: '<style:font-face style:name="F" svg:font-family="Arial"/><style:font-face style:name="F" svg:font-family="Amiri"/>',
+            fonts:
+                '<style:font-face style:name="F" svg:font-family="Arial"/><style:font-face style:name="F" svg:font-family="Amiri"/>',
           ),
         ),
         throwsFormatException,
       );
     });
 
-    test('applies proportional size to inherited size with exact half points', () {
-      final styles = OdtReaderStyles(
-        _content(
-          '${_textStyle('A', 'fo:font-size="16pt"')}${_textStyle('B', 'fo:font-size="125%"', parent: 'A')}',
-        ),
-      );
-      expect(styles.runProperties('B').fontSizePoints, 20);
-      final lossy = OdtReaderStyles(
-        _content(_textStyle('Lossy', 'fo:font-size="11.1pt"')),
-      );
-      expect(() => lossy.runProperties('Lossy'), throwsUnsupportedError);
-    });
+    test(
+      'applies proportional size to inherited size with exact half points',
+      () {
+        final styles = OdtReaderStyles(
+          _content(
+            '${_textStyle('A', 'fo:font-size="16pt"')}${_textStyle('B', 'fo:font-size="125%"', parent: 'A')}',
+          ),
+        );
+        expect(styles.runProperties('B').fontSizePoints, 20);
+        final lossy = OdtReaderStyles(
+          _content(_textStyle('Lossy', 'fo:font-size="11.1pt"')),
+        );
+        expect(() => lossy.runProperties('Lossy'), throwsUnsupportedError);
+      },
+    );
 
     test('preserves color highlight small caps and kerning flags', () {
       final props = OdtReaderStyles(
@@ -373,13 +379,16 @@ ${_paragraphStyle('Child', '', parent: 'Parent', text: 'fo:font-style="italic"')
       expect(run.noProof, isFalse);
     });
 
-    test('explicit no-language suppresses proofing rather than inheriting document language', () {
-      final run = OdtReaderStyles(
-        _content(_textStyle('T', 'fo:language="none" fo:country="none"')),
-      ).runProperties('T');
-      expect(run.proofingLanguage, isNull);
-      expect(run.noProof, isTrue);
-    });
+    test(
+      'explicit no-language suppresses proofing rather than inheriting document language',
+      () {
+        final run = OdtReaderStyles(
+          _content(_textStyle('T', 'fo:language="none" fo:country="none"')),
+        ).runProperties('T');
+        expect(run.proofingLanguage, isNull);
+        expect(run.noProof, isTrue);
+      },
+    );
 
     test('rejects distinct script formatting outside model representation', () {
       for (final value in [
@@ -388,9 +397,9 @@ ${_paragraphStyle('Child', '', parent: 'Parent', text: 'fo:font-style="italic"')
         'style:font-style-asian="italic"',
       ]) {
         expect(
-          () =>
-              OdtReaderStyles(_content(_textStyle('T', value)))
-                  .runProperties('T'),
+          () => OdtReaderStyles(
+            _content(_textStyle('T', value)),
+          ).runProperties('T'),
           throwsUnsupportedError,
         );
       }
@@ -409,40 +418,46 @@ ${_paragraphStyle('Child', '', parent: 'Parent', text: 'fo:font-style="italic"')
       ).validateNoteConfiguration(false);
     });
 
-    test('rejects active note numbering or positioning outside canonical scope', () {
-      for (final attribute in [
-        'text:start-value="0"',
-        'text:start-value="2"',
-        'style:num-format="i"',
-        'style:num-prefix="["',
-        'style:num-suffix="]"',
-        'text:start-numbering-at="page"',
-        'text:footnotes-position="text"',
-      ]) {
-        expect(
-          () => configured(
-            '<text:notes-configuration text:note-class="footnote" $attribute/>',
-          ).validateNoteConfiguration(false),
-          throwsUnsupportedError,
-        );
-      }
-    });
+    test(
+      'rejects active note numbering or positioning outside canonical scope',
+      () {
+        for (final attribute in [
+          'text:start-value="0"',
+          'text:start-value="2"',
+          'style:num-format="i"',
+          'style:num-prefix="["',
+          'style:num-suffix="]"',
+          'text:start-numbering-at="page"',
+          'text:footnotes-position="text"',
+        ]) {
+          expect(
+            () => configured(
+              '<text:notes-configuration text:note-class="footnote" $attribute/>',
+            ).validateNoteConfiguration(false),
+            throwsUnsupportedError,
+          );
+        }
+      },
+    );
 
-    test('does not ignore configured note marker or default paragraph styles', () {
-      for (final name in [
-        'citation-style-name',
-        'citation-body-style-name',
-        'default-style-name',
-        'master-page-name',
-      ]) {
-        expect(
-          () => configured(
-            '<text:notes-configuration text:note-class="footnote" text:$name="Custom"/>',
-          ).validateNoteConfiguration(false),
-          throwsUnsupportedError,
-        );
-      }
-    });
+    test(
+      'does not ignore configured note marker or default paragraph styles',
+      () {
+        for (final name in [
+          'citation-style-name',
+          'citation-body-style-name',
+          'default-style-name',
+          'master-page-name',
+        ]) {
+          expect(
+            () => configured(
+              '<text:notes-configuration text:note-class="footnote" text:$name="Custom"/>',
+            ).validateNoteConfiguration(false),
+            throwsUnsupportedError,
+          );
+        }
+      },
+    );
 
     test('rejects duplicate note configurations and continuation labels', () {
       expect(
@@ -470,20 +485,17 @@ ${_paragraphStyle('Child', '', parent: 'Parent', text: 'fo:font-style="italic"')
       );
     });
 
-    test(
-      'rejects numbered outlines while admitting empty numbering levels',
-      () {
-        configured(
-          '<text:outline-style style:name="Outline"><text:outline-level-style text:level="1" style:num-format=""/></text:outline-style>',
-        ).validateHeadingConfiguration();
-        expect(
-          () => configured(
-            '<text:outline-style style:name="Outline"><text:outline-level-style text:level="1" style:num-format="1"/></text:outline-style>',
-          ).validateHeadingConfiguration(),
-          throwsUnsupportedError,
-        );
-      },
-    );
+    test('rejects numbered outlines while admitting empty numbering levels', () {
+      configured(
+        '<text:outline-style style:name="Outline"><text:outline-level-style text:level="1" style:num-format=""/></text:outline-style>',
+      ).validateHeadingConfiguration();
+      expect(
+        () => configured(
+          '<text:outline-style style:name="Outline"><text:outline-level-style text:level="1" style:num-format="1"/></text:outline-style>',
+        ).validateHeadingConfiguration(),
+        throwsUnsupportedError,
+      );
+    });
 
     test('used table definitions reject active master and update metadata', () {
       for (final attribute in [
@@ -541,7 +553,8 @@ ${_paragraphStyle('Child', '', parent: 'Parent', text: 'fo:font-style="italic"')
         _content(''),
         styles: _styles(
           '',
-          automatic: '<style:page-layout style:name="P"><style:page-layout-properties><style:columns fo:column-count="1"/><style:columns fo:column-count="2"/></style:page-layout-properties></style:page-layout>',
+          automatic:
+              '<style:page-layout style:name="P"><style:page-layout-properties><style:columns fo:column-count="1"/><style:columns fo:column-count="2"/></style:page-layout-properties></style:page-layout>',
           masters: _master('M', 'P'),
         ),
       );
@@ -621,9 +634,9 @@ ${_paragraphStyle('Child', '', parent: 'Parent', text: 'fo:font-style="italic"')
         'style:writing-mode="tb-rl"',
       ]) {
         expect(
-          () =>
-              OdtReaderStyles(_content(_paragraphStyle('P', attribute)))
-                  .paragraphProperties('P'),
+          () => OdtReaderStyles(
+            _content(_paragraphStyle('P', attribute)),
+          ).paragraphProperties('P'),
           throwsUnsupportedError,
         );
       }
@@ -713,7 +726,8 @@ ${_paragraphStyle('Child', '', parent: 'Parent', text: 'fo:font-style="italic"')
         styles: _styles(
           '',
           automatic: _layout('P', '612pt', '792pt'),
-          masters: '<style:master-page style:name="M" style:page-layout-name="P"><style:header><text:p>Header</text:p></style:header></style:master-page>',
+          masters:
+              '<style:master-page style:name="M" style:page-layout-name="P"><style:header><text:p>Header</text:p></style:header></style:master-page>',
         ),
       );
       expect(

@@ -27,11 +27,10 @@ All notable changes to `quds_office_engine` are documented here.
 
 - Qualify the incoming bounded ODT reader's table-style inheritance. Preserve
   inherited alignment and row keep-together, honor explicit transparent cell
-  fills, and refuse unsupported authored widths or used structural-style
-  metadata instead of silently dropping them. Reconcile declared-width
-  allocation and guarded asynchronous Word/Studio opening from the concurrent
-  ODT branch. Add 23 preservation regressions; installed-host parity remains
-  outside this headless qualification.
+  fills, and distribute an explicit table width across unspecified columns.
+  Refuse conflicting fixed widths, duplicate used property containers and
+  unsupported structural-style metadata. Retain 23 preservation regressions
+  when reconciling the incoming branch with the richer import contract above.
 
 - Add `OdfZotero.inspect`, a bounded read-only native ODT Zotero inventory.
   Retain canonical citation ReferenceMarks, bibliography TextSections, exact

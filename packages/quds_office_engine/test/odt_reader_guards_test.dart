@@ -72,42 +72,39 @@ void main() {
     expect(WordZotero.fields(reopened).length, 512);
   });
 
-  test(
-    'original unrelated metadata remains verbatim through DOCX saves',
-    () async {
-      const metadata =
-          '<office:document-meta xmlns:office="$_office" xmlns:meta="$_meta" '
-          'xmlns:dc="http://purl.org/dc/elements/1.1/">'
-          '<office:meta><dc:title>Research title</dc:title>'
-          '<meta:user-defined meta:name="Project">Keep &amp; retain</meta:user-defined>'
-          '<meta:user-defined meta:name="Review" meta:value-type="boolean">true</meta:user-defined>'
-          '</office:meta></office:document-meta>';
-      var document = await OdtDocumentReader.readBytes(
-        _odt('<text:p>Research</text:p>', metadata: metadata),
+  test('original unrelated metadata remains verbatim through DOCX saves', () async {
+    const metadata =
+        '<office:document-meta xmlns:office="$_office" xmlns:meta="$_meta" '
+        'xmlns:dc="http://purl.org/dc/elements/1.1/">'
+        '<office:meta><dc:title>Research title</dc:title>'
+        '<meta:user-defined meta:name="Project">Keep &amp; retain</meta:user-defined>'
+        '<meta:user-defined meta:name="Review" meta:value-type="boolean">true</meta:user-defined>'
+        '</office:meta></office:document-meta>';
+    var document = await OdtDocumentReader.readBytes(
+      _odt('<text:p>Research</text:p>', metadata: metadata),
+    );
+    expect(document.properties.title, 'Research title');
+    for (var cycle = 0; cycle < 3; cycle++) {
+      final package = OpcPackage.openBytes(
+        WordSerializer().writeBytes(document),
       );
+      expect(
+        package.getPart('/customXml/qudsOdtMetadata.xml')!.readText(),
+        metadata,
+      );
+      expect(
+        package
+            .relationshipsFor('/word/document.xml')
+            .items
+            .where((relation) => relation.type.endsWith('/customXml'))
+            .length,
+        1,
+      );
+      document = WordDeserializer().read(package);
       expect(document.properties.title, 'Research title');
-      for (var cycle = 0; cycle < 3; cycle++) {
-        final package = OpcPackage.openBytes(
-          WordSerializer().writeBytes(document),
-        );
-        expect(
-          package.getPart('/customXml/qudsOdtMetadata.xml')!.readText(),
-          metadata,
-        );
-        expect(
-          package
-              .relationshipsFor('/word/document.xml')
-              .items
-              .where((relation) => relation.type.endsWith('/customXml'))
-              .length,
-          1,
-        );
-        document = WordDeserializer().read(package);
-        expect(document.properties.title, 'Research title');
-        expect(WordZoteroDocumentData.read(document), isEmpty);
-      }
-    },
-  );
+      expect(WordZoteroDocumentData.read(document), isEmpty);
+    }
+  });
 
   test('absent office meta owner is an empty optional metadata part', () async {
     final document = await OdtDocumentReader.readBytes(

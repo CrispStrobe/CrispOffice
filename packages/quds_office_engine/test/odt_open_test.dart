@@ -125,12 +125,16 @@ void main() {
   test(
     'async decoder retains the existing DOCX, workbook and slide routes',
     () async {
-      final word = await decodeOfficeOpen(
-        WordSerializer().writeBytes(WmlDocument.empty(text: 'DOCX kept')),
-        null,
-        'word',
-        (_) {},
-      ) as WordOpenPayload;
+      final word =
+          await decodeOfficeOpen(
+                WordSerializer().writeBytes(
+                  WmlDocument.empty(text: 'DOCX kept'),
+                ),
+                null,
+                'word',
+                (_) {},
+              )
+              as WordOpenPayload;
       expect(word.document.paragraphs.single.text, 'DOCX kept');
 
       final workbook = SmlWorkbook();
@@ -138,12 +142,14 @@ void main() {
       workbook.firstSheet.cellA1('B1')
         ..type = SmlCellType.formula
         ..formula = '=A1+2';
-      final sheet = await decodeOfficeOpen(
-        SheetSerializer().writeBytes(workbook),
-        null,
-        'sheet',
-        (_) {},
-      ) as SmlWorkbook;
+      final sheet =
+          await decodeOfficeOpen(
+                SheetSerializer().writeBytes(workbook),
+                null,
+                'sheet',
+                (_) {},
+              )
+              as SmlWorkbook;
       expect(sheet.firstSheet.cellA1('B1').value, 10);
 
       final presentation = PmlPresentation(
@@ -154,12 +160,14 @@ void main() {
           ),
         ],
       );
-      final slide = await decodeOfficeOpen(
-        SlideSerializer().writeBytes(presentation),
-        null,
-        'slide',
-        (_) {},
-      ) as PmlPresentation;
+      final slide =
+          await decodeOfficeOpen(
+                SlideSerializer().writeBytes(presentation),
+                null,
+                'slide',
+                (_) {},
+              )
+              as PmlPresentation;
       expect(slide.slides.single.shapes.single.text, 'Slide kept');
     },
   );

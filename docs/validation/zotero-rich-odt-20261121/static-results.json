@@ -1,0 +1,83 @@
+{
+  "source_head": "4386cba498f5b4411dc7598bbc94c706005d04db",
+  "started_at_utc": "2026-11-21T12:32:23.476537+00:00",
+  "path_count": 29,
+  "previous_source_head": "77c4ef27008a1a2468b94c3b67423c43ac28438d",
+  "previous_static_receipt": "static-at-77c4ef27/result.json",
+  "previous_static_receipt_sha256": "a0b520fea24e3b9fe6272006abf9db596063bcd222de2a33c3858ac593eec85e",
+  "verified_unchanged_paths": [
+    "packages/quds_office_editor/example/lib/studio_files.dart",
+    "packages/quds_office_editor/example/lib/suite_workspace.dart",
+    "packages/quds_office_editor/example/test/studio_odt_open_test.dart",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "packages/quds_office_editor/test/word_odt_load_test.dart",
+    "packages/quds_office_engine/lib/quds_office_engine.dart",
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+    "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+    "packages/quds_office_engine/lib/src/opc/office_isolate_open.dart",
+    "packages/quds_office_engine/lib/src/opc/office_isolate_spawn.dart",
+    "packages/quds_office_engine/lib/src/opc/office_isolate_spawn_io.dart",
+    "packages/quds_office_engine/lib/src/opc/office_open_decode.dart",
+    "packages/quds_office_engine/lib/src/word/model/word_styles.dart",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_data.dart",
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_reader.dart",
+    "packages/quds_office_engine/lib/src/word/serial/odt_reader_styles.dart",
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+    "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart",
+    "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+    "packages/quds_office_engine/test/odt_document_reader_test.dart",
+    "packages/quds_office_engine/test/odt_open_test.dart",
+    "packages/quds_office_engine/test/odt_reader_guards_test.dart",
+    "packages/quds_office_engine/test/odt_reader_styles_test.dart",
+    "packages/quds_office_engine/test/odt_vba_language_roundtrip_test.dart",
+    "packages/quds_office_engine/test/office_macro_word_language_controls_test.dart",
+    "packages/quds_office_engine/test/office_vba_word_language_controls_integration_test.dart",
+    "packages/quds_office_engine/test/office_vba_word_language_controls_test.dart",
+    "packages/quds_office_engine/tool/macros/web_vba_word_language_controls_smoke.dart"
+  ],
+  "freshly_checked_paths": [
+    "packages/quds_office_engine/test/odt_reader_table_preservation_test.dart"
+  ],
+  "qualification_method": "The previous accepted formatter/analyzer gate covered all29 paths. Twenty-eight inputs remain byte-identical. The sole changed test receives fresh strict formatting and analysis; all29 hashes are checked before/after.",
+  "results": {
+    "format": {
+      "command": [
+        "/workspace/scratch/1e8f5be6b406/runtime/flutter-sdk/bin/dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_office_engine/test/odt_reader_table_preservation_test.dart"
+      ],
+      "cwd": "/workspace/scratch/1e8f5be6b406/quds_office_suite",
+      "exit_code": 0,
+      "elapsed_seconds": 0.14609039799870516,
+      "stdout_sha256": "1685974b88bd671112e17334bdc2abb8ef350e01ae026547459ec7a8307375ec",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "analyze": {
+      "command": [
+        "/workspace/scratch/1e8f5be6b406/runtime/flutter-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_engine/test/odt_reader_table_preservation_test.dart"
+      ],
+      "cwd": "/workspace/scratch/1e8f5be6b406/quds_office_suite",
+      "exit_code": 0,
+      "elapsed_seconds": 6.8590225230000215,
+      "stdout_sha256": "0f791dd6db0017d1ece6f69b449490aa4597cf15908e053263730bae5bcd8b5d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "inputs_changed": [],
+  "loader_binding": {
+    "input_count": 1062,
+    "before_receipt": "loader-final-binding-4386-before.json",
+    "after_receipt": "loader-final-binding-4386-after.json",
+    "before_changed": [],
+    "after_changed": [],
+    "tests_rerun": false
+  },
+  "source_head_after": "4386cba498f5b4411dc7598bbc94c706005d04db",
+  "finished_at_utc": "2026-11-21T12:32:30.553245+00:00",
+  "accepted": true
+}
