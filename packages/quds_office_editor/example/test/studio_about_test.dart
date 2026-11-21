@@ -15,6 +15,10 @@ void main() {
         url: 'https://github.com/CrispStrobe/quds_office_suite',
       ),
       (label: strings.website, url: 'https://www.crispstro.be'),
+      (
+        label: strings.privacyPolicy,
+        url: 'https://www.crispstro.be/en/crispoffice-privacy/',
+      ),
     ]) {
       testWidgets('${link.label} launches when the capability query '
           '${capabilityThrows ? 'would throw' : 'would return false'}', (
@@ -57,4 +61,11 @@ void main() {
       });
     }
   }
+
+  test('German UI links the German privacy policy', () {
+    expect(
+      const StudioStrings(StudioLanguage.de).privacyPolicyUrl,
+      'https://www.crispstro.be/de/crispoffice-datenschutz/',
+    );
+  });
 }

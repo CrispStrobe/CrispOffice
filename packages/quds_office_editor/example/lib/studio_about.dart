@@ -123,6 +123,11 @@ class StudioAboutDialog extends StatelessWidget {
                     label: Text(strings.website),
                     onPressed: () => _launch('https://www.crispstro.be'),
                   ),
+                  TextButton.icon(
+                    icon: const Icon(Icons.privacy_tip_outlined),
+                    label: Text(strings.privacyPolicy),
+                    onPressed: () => _launch(strings.privacyPolicyUrl),
+                  ),
                 ],
               ),
               const SizedBox(height: 12),
