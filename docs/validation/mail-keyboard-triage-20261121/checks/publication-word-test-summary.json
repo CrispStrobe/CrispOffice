@@ -1,0 +1,88 @@
+{
+  "status": "PASS",
+  "combined_code_index_tree": "b9bded2ebee460f1681d8cc8499d4cb18faca700",
+  "receipt": "publication-word-integration.json",
+  "raw_log": "publication-word-integration.log",
+  "substantive_tests": 289,
+  "failed": 0,
+  "skipped": 0,
+  "per_file": {
+    "test/office_vba_strcomp_test.dart": 78,
+    "test/office_macro_word_font_colors_test.dart": 43,
+    "test/office_vba_word_font_colors_test.dart": 74,
+    "test/office_vba_word_comparison_colors_integration_test.dart": 10,
+    "test/word_footnote_separator_docx_test.dart": 48,
+    "test/odt_footnote_separator_test.dart": 30,
+    "test/odt_footnote_separator_libreoffice_test.dart": 6
+  },
+  "excluded_hidden_loader_setup_teardown": [
+    {
+      "name": "loading test/office_vba_strcomp_test.dart",
+      "hidden": true,
+      "result": "success"
+    },
+    {
+      "name": "loading test/office_macro_word_font_colors_test.dart",
+      "hidden": true,
+      "result": "success"
+    },
+    {
+      "name": "loading test/office_vba_word_font_colors_test.dart",
+      "hidden": true,
+      "result": "success"
+    },
+    {
+      "name": "loading test/office_vba_word_comparison_colors_integration_test.dart",
+      "hidden": true,
+      "result": "success"
+    },
+    {
+      "name": "(setUpAll)",
+      "hidden": true,
+      "result": "success"
+    },
+    {
+      "name": "(tearDownAll)",
+      "hidden": true,
+      "result": "success"
+    },
+    {
+      "name": "loading test/word_footnote_separator_docx_test.dart",
+      "hidden": true,
+      "result": "success"
+    },
+    {
+      "name": "loading test/odt_footnote_separator_test.dart",
+      "hidden": true,
+      "result": "success"
+    },
+    {
+      "name": "loading test/odt_footnote_separator_libreoffice_test.dart",
+      "hidden": true,
+      "result": "success"
+    }
+  ],
+  "overlap_with_prior_word_cohort": {
+    "prior_receipt": "incoming-word-tests-final.json",
+    "repeated_test_identities": 205,
+    "prior_cases_missing": 0,
+    "new_separator_test_identities": 84,
+    "new_separator_per_file": {
+      "test/word_footnote_separator_docx_test.dart": 48,
+      "test/odt_footnote_separator_test.dart": 30,
+      "test/odt_footnote_separator_libreoffice_test.dart": 6
+    }
+  },
+  "identity_manifest": "publication-word-test-identities.json",
+  "source_before": "publication-word-source-before.json",
+  "source_after": "publication-word-source-after.json",
+  "unchanged_source_and_fixture_hashes": 37,
+  "counting_note": "This run repeats the prior 205 Word cases. Its 84 separator cases are reported separately; do not add all 289 to the earlier 720 total or add incoming author qualification claims.",
+  "github_actions": "NOT USED",
+  "js_smokes": "Not rerun; interpreter implementation unchanged by this merge.",
+  "combined_tree_blob_match": {
+    "tree": "b9bded2ebee460f1681d8cc8499d4cb18faca700",
+    "matching_files": 37,
+    "mismatches": []
+  }
+}

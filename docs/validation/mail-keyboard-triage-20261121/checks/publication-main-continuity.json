@@ -1,0 +1,36 @@
+{
+  "qualified_before_publication": "1dd56df51f97dc86fbb1ebe22d9045aab7921d1c",
+  "incoming_main": "ad577ea82695231b5932d6b973f92b5156b1d2d6",
+  "publication_source": "57618066f397c4856be8df4d75c1423ed4b33e1c",
+  "publication_tree": "b9bded2ebee460f1681d8cc8499d4cb18faca700",
+  "unchanged_paths": [
+    "packages/quds_mail_core",
+    "packages/quds_mail_mime",
+    "packages/quds_mail_store",
+    "packages/quds_mail_transport",
+    "packages/quds_mail_ui",
+    "third_party/enough_mail",
+    "packages/quds_office_editor/example",
+    "pubspec.yaml",
+    "pubspec.lock"
+  ],
+  "changed_original_manifest_inputs": [
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+      "before_sha256": "8a14e33899318fc874d1f07574f001b9f29c258feab3386773eb7f4313250a2c",
+      "after_sha256": "849bacd91ef41d35049dc498429fbaab607729e76c7da3017be524c4917340ae",
+      "git_blob": "e4ca59dd5c9ec32227087db8f6b86cb966ec876f"
+    }
+  ],
+  "manual_conflict": {
+    "path": "docs/validation/zotero-footnote-separators-20261121/README.md",
+    "resolution": "Preserve the completed incoming record; planning checkpoint remains in history."
+  },
+  "combined_test_receipt": "publication-word-integration.json",
+  "combined_test_summary": "publication-word-test-summary.json",
+  "source_before": "publication-word-source-before.json",
+  "source_after": "publication-word-source-after.json",
+  "overlap_count": 205,
+  "additional_cases": 84,
+  "github_actions": "NOT USED"
+}
