@@ -377,31 +377,33 @@ void main() {
       },
     );
 
-    test('annotation, text-box and stored revisions remain inventoried', () async {
-      final fields = (await OdfZotero.inspect(
-        _package(
-          _paragraph(
-                '<office:annotation>${_paragraph(_mark(_name('comment'), 'Comment'))}'
-                '</office:annotation>'
-                '<draw:frame><draw:text-box>'
-                '${_paragraph(_mark(_name('drawing'), 'Drawing'))}'
-                '</draw:text-box></draw:frame>',
-              ) +
-              '<text:tracked-changes><text:changed-region text:id="c1">'
-                  '<text:deletion>${_paragraph(_mark(_name('revision'), 'Deleted'))}'
-                  '</text:deletion></text:changed-region></text:tracked-changes>',
-        ),
-      )).fields;
-      expect(fields.map((field) => field.starts.single.story), [
-        OdfZoteroStory.annotation,
-        OdfZoteroStory.textBox,
-        OdfZoteroStory.revision,
-      ]);
-      for (final field in fields) {
-        _ineligible(field, OdfZoteroIssueCode.unsupportedStory);
-        expect(field.cachedText, isNotEmpty);
-      }
-    });
+    test(
+      'annotation, text-box and stored revisions remain inventoried',
+      () async {
+        final anchored = _paragraph(
+          '<office:annotation>${_paragraph(_mark(_name('comment'), 'Comment'))}'
+          '</office:annotation><draw:frame><draw:text-box>'
+          '${_paragraph(_mark(_name('drawing'), 'Drawing'))}'
+          '</draw:text-box></draw:frame>',
+        );
+        final fields = (await OdfZotero.inspect(
+          _package(
+            '$anchored<text:tracked-changes><text:changed-region text:id="c1">'
+            '<text:deletion>${_paragraph(_mark(_name('revision'), 'Deleted'))}'
+            '</text:deletion></text:changed-region></text:tracked-changes>',
+          ),
+        )).fields;
+        expect(fields.map((field) => field.starts.single.story), [
+          OdfZoteroStory.annotation,
+          OdfZoteroStory.textBox,
+          OdfZoteroStory.revision,
+        ]);
+        for (final field in fields) {
+          _ineligible(field, OdfZoteroIssueCode.unsupportedStory);
+          expect(field.cachedText, isNotEmpty);
+        }
+      },
+    );
 
     test(
       'a note inside stored deleted content retains the revision guard',
@@ -694,16 +696,16 @@ void main() {
   group('native ODT Zotero namespaces and bounds', () {
     test('element and attribute namespace decoys do not create fields', () async {
       final escaped = _escape(_name('decoy'));
+      final decoys = _paragraph(
+        '<foreign:reference-mark-start text:name="$escaped"/>'
+        'A<foreign:reference-mark-end text:name="$escaped"/>'
+        '<text:reference-mark-start foreign:name="$escaped"/>'
+        'B<text:reference-mark-end foreign:name="$escaped"/>',
+      );
       final inventory = await OdfZotero.inspect(
         _package(
-          _paragraph(
-                '<foreign:reference-mark-start text:name="$escaped"/>'
-                'A<foreign:reference-mark-end text:name="$escaped"/>'
-                '<text:reference-mark-start foreign:name="$escaped"/>'
-                'B<text:reference-mark-end foreign:name="$escaped"/>',
-              ) +
-              '<foreign:section text:name="$escaped">${_paragraph('C')}</foreign:section>' +
-              '<text:section foreign:name="$escaped">${_paragraph('D')}</text:section>',
+          '$decoys<foreign:section text:name="$escaped">${_paragraph('C')}</foreign:section>'
+          '<text:section foreign:name="$escaped">${_paragraph('D')}</text:section>',
         ),
       );
       expect(inventory.fields, isEmpty);

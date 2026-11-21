@@ -74,7 +74,9 @@ abstract final class OdfZotero {
           final attributes = <String>{};
           for (var index = 0; index < scanner.attributeCount; index++) {
             final prefix = scanner.attributePrefix(index);
-            final namespace = prefix == 'xmlns'
+            final namespace =
+                prefix == 'xmlns' ||
+                    scanner.attributeQualifiedName(index) == 'xmlns'
                 ? 'http://www.w3.org/2000/xmlns/'
                 : scanner.attributeNamespace(index);
             final key = '$namespace\u0000${scanner.attributeLocalName(index)}';
@@ -227,6 +229,8 @@ final class _Field {
   ZoteroFieldKind? kind;
   Map<String, Object?>? metadata;
   bool valid = false;
+  int paragraphStart = 0;
+  int paragraphEnd = 0;
 
   OdfZoteroLocation? get location =>
       starts.firstOrNull?.location ?? ends.firstOrNull?.location;
@@ -247,6 +251,8 @@ final class _InventoryReader {
   final _sectionStack = <_Field>[];
   var _order = 0;
   var _endpointCount = 0;
+  var _rangeWork = 0;
+  var _rangeCount = 0;
 
   void read(String part, XmlElement root) {
     _visit(root, '/0', _Context(part: part), null);
@@ -341,6 +347,9 @@ final class _InventoryReader {
           'table-row',
           'table-cell',
           'covered-table-cell',
+          'table-header-rows',
+          'table-rows',
+          'table-row-group',
         }.contains(local);
     final isTextOwner =
         textElement &&
@@ -354,7 +363,69 @@ final class _InventoryReader {
     final guards = <OdfZoteroIssueCode>{};
     // Descendants retain the guard even when a foreign/drawing wrapper is
     // outside a paragraph. A real text:p inside it must not regain body status.
+    final unknownTextOwner =
+        textElement &&
+        !{
+          'p',
+          'h',
+          'section',
+          'list',
+          'list-item',
+          'list-header',
+          'note',
+          'note-body',
+          'note-citation',
+          'span',
+          'a',
+          's',
+          'tab',
+          'line-break',
+          'reference-mark',
+          'reference-mark-start',
+          'reference-mark-end',
+          'bookmark',
+          'bookmark-start',
+          'bookmark-end',
+          'soft-page-break',
+          'ruby',
+          'ruby-base',
+          'ruby-text',
+        }.contains(local);
+    final unknownOfficeOwner =
+        namespace == odfOfficeNamespace &&
+        context.story != OdfZoteroStory.unknown &&
+        !{'text', 'annotation', 'annotation-end'}.contains(local);
+    final unknownTableOwner =
+        namespace == odfTableNamespace &&
+        !{
+          'table',
+          'table-row',
+          'table-cell',
+          'covered-table-cell',
+          'table-header-rows',
+          'table-rows',
+          'table-row-group',
+          'table-column',
+          'table-columns',
+          'table-header-columns',
+          'table-column-group',
+        }.contains(local);
+    final unknownStyleOwner =
+        namespace == _styleNamespace &&
+        context.story != OdfZoteroStory.unknown &&
+        !{
+          'header',
+          'header-left',
+          'header-first',
+          'footer',
+          'footer-left',
+          'footer-first',
+        }.contains(local);
     final unsupportedOwner =
+        unknownTextOwner ||
+        unknownOfficeOwner ||
+        unknownTableOwner ||
+        unknownStyleOwner ||
         (context.story != OdfZoteroStory.unknown &&
             !{
               odfOfficeNamespace,
@@ -471,6 +542,7 @@ final class _InventoryReader {
           .length;
       if (isSection) {
         section = _newField(name, OdfZoteroStorage.section);
+        section.paragraphStart = _paragraphs.length;
         section.starts.add(_endpoint(context, path, null));
         section.guards.addAll(context.guards);
         if (incoming.owners.any(
@@ -583,6 +655,7 @@ final class _InventoryReader {
     }
     if (section != null) {
       _sectionStack.removeLast();
+      section.paragraphEnd = _paragraphs.length;
       section.ends.add(_endpoint(context, path, null));
     }
   }
@@ -685,10 +758,12 @@ final class _InventoryReader {
       field.guards.add(OdfZoteroIssueCode.crossOwner);
       return;
     }
-    final selected = _paragraphs
-        .getRange(first.index, last.index + 1)
-        .where((paragraph) => _sameStory(paragraph.context, start.context))
-        .toList();
+    final selected = _paragraphs.getRange(first.index, last.index + 1).where((
+      paragraph,
+    ) {
+      _consumeRangeWork();
+      return _sameStory(paragraph.context, start.context);
+    }).toList();
     if (selected.any(
       (paragraph) => !_sameOwners(paragraph.context, start.context),
     )) {
@@ -711,26 +786,35 @@ final class _InventoryReader {
 
   void _sectionRanges(_Field field) {
     final start = field.starts.single;
-    final pathPrefix = '${start.path}/';
-    final selected = _paragraphs
-        .where(
-          (paragraph) =>
-              paragraph.context.part == start.context.part &&
-              paragraph.path.startsWith(pathPrefix) &&
-              _sameStory(paragraph.context, start.context),
-        )
-        .toList();
-    if (selected.isEmpty) field.guards.add(OdfZoteroIssueCode.emptySection);
-    for (final paragraph in selected) {
+    // The traversal owns this interval. Empty sections do no paragraph work,
+    // and nested sections cannot multiply range allocations without a bound.
+    for (
+      var index = field.paragraphStart;
+      index < field.paragraphEnd;
+      index++
+    ) {
+      _consumeRangeWork();
+      final paragraph = _paragraphs[index];
+      if (!_sameStory(paragraph.context, start.context)) continue;
       field.guards.addAll(paragraph.guards);
       if (!_sameOwners(paragraph.context, start.context)) {
         field.guards.add(OdfZoteroIssueCode.unsupportedSectionStructure);
       }
       _addRange(field, paragraph, 0, paragraph.text.length);
     }
+    if (field.ranges.isEmpty) field.guards.add(OdfZoteroIssueCode.emptySection);
+  }
+
+  void _consumeRangeWork() {
+    if (++_rangeWork > limits.maxRangeWork) {
+      throw const OdfZoteroLimitException('range work');
+    }
   }
 
   void _addRange(_Field field, _Paragraph paragraph, int start, int end) {
+    if (++_rangeCount > limits.maxFieldRanges) {
+      throw const OdfZoteroLimitException('field ranges');
+    }
     if (start < 0 || end < start || end > paragraph.text.length) {
       throw const FormatException('Invalid ODT Zotero endpoint offsets.');
     }

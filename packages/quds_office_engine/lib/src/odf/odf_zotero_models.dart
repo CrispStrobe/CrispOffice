@@ -238,6 +238,8 @@ final class OdfZoteroLimits {
     this.maxXmlElements = 200000,
     this.maxFields = 10000,
     this.maxParagraphs = 100000,
+    this.maxRangeWork = 200000,
+    this.maxFieldRanges = 100000,
     this.maxNameLength = 1024 * 1024 + 32,
     this.maxTextBytes = 16 * 1024 * 1024,
   });
@@ -250,6 +252,12 @@ final class OdfZoteroLimits {
   final int maxXmlElements;
   final int maxFields;
   final int maxParagraphs;
+
+  /// Candidate paragraph visits accumulated across every field's range scan.
+  final int maxRangeWork;
+
+  /// Range records, independently of their possibly empty text content.
+  final int maxFieldRanges;
   final int maxNameLength;
   final int maxTextBytes;
 
@@ -263,6 +271,8 @@ final class OdfZoteroLimits {
       'maxXmlElements': maxXmlElements,
       'maxFields': maxFields,
       'maxParagraphs': maxParagraphs,
+      'maxRangeWork': maxRangeWork,
+      'maxFieldRanges': maxFieldRanges,
       'maxNameLength': maxNameLength,
       'maxTextBytes': maxTextBytes,
     };

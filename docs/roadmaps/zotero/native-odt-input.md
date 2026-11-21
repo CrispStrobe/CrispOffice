@@ -1,13 +1,22 @@
 # Native ODT Zotero input: implementation contract
 
-Status: **proposed; no reader implementation or executable qualification in this checkpoint**.
+Status: **Increment 1 implemented: bounded read-only inventory. Rich ODT import
+and installed-host interoperability remain separate work.**
+
+The public `OdfZotero.inspect` API and `tool/zotero/odt_inventory.dart` diagnostic
+now implement the inventory below. The
+[implementation and validation record](../../validation/zotero-odt-inventory-20261121/README.md)
+identifies the reconciled source, remote checkpoints, executable checks and
+remaining limits. The earlier execution-blocked checkpoint is preserved as
+history; its lack of runtime qualification is not attributed to this increment.
 
 Baseline: [`1ef5f7f88705e05bb2ebd2f5b639460dab52c3d0`](https://github.com/CrispStrobe/quds_office_suite/commit/1ef5f7f88705e05bb2ebd2f5b639460dab52c3d0).
 The [continuation record](../../validation/zotero-native-odt-20261121/README.md)
-records the frozen remote intake, two outstanding branch heads, and the local
-execution blocker. This specification advances the existing
-[word-processor parity roadmap](word-processor-parity.md); it does not mark any
-parity item complete.
+records that checkpoint's frozen remote intake, two then-outstanding branch
+heads and local execution blocker. Both heads were subsequently integrated
+into main. This implementation advances the existing
+[word-processor parity roadmap](word-processor-parity.md) without claiming
+editable native ODT support.
 
 ## Finding: rich ODT input is a prerequisite
 
@@ -33,9 +42,42 @@ own tests, rather than an incidental change to ordinary export.
 
 ## Increment 1: read-only inventory with explicit ownership
 
-Suggested implementation location:
+Implementation entry point:
 `packages/quds_office_engine/lib/src/odf/odf_zotero.dart`.
-The filename and public API are proposals, not existing symbols.
+Immutable results and limits are in `odf_zotero_models.dart`; preference
+inventory is in `odf_zotero_preferences.dart`. The API is
+`Future<OdfZoteroInventory> OdfZotero.inspect(Uint8List bytes, {OdfZoteroLimits limits})`.
+
+The reader examines the actual ODT package's `content.xml`, optional
+`styles.xml` and optional `meta.xml`, after checking its MIME type and ZIP
+directory. Embedded subdocuments are not recursively opened. Their owners are
+reported as unsupported. Canonical marks and sections in other stories remain
+visible as inventory records. A field's `isValid` refers to its canonical name
+and metadata; `isImportCandidate` additionally requires an unambiguous supported
+range. Neither property makes an editable document or validates a full ODF
+formatting model. `toJson()` explicitly reports `editable: false`.
+
+Paths contain zero-based element-child indexes, independent of XML prefixes.
+Each endpoint retains its part, story identity, structural owner chain,
+paragraph path/index and UTF-16 offset. Deferred collapsed spaces are resolved
+before final offsets are published. Bibliographies retain separate paragraph
+ranges, including empty paragraphs. Unknown, protected, linked, repeated and
+overlapping ownership stays ineligible. Source bytes and properties are never
+rewritten.
+
+Default bounds are 64 MiB archive bytes, 10,000 ZIP entries, 16 MiB per XML part,
+24 MiB total selected XML, 128 XML levels, 200,000 XML elements, 10,000 fields,
+20,000 endpoints, 100,000 paragraphs, 1 Mi UTF-16 units plus 32 for native
+names, and separate 16 MiB UTF-8 budgets for decoded text and cached field text.
+Section traversal records its own paragraph interval, so an empty section does
+not rescan unrelated paragraphs. Cumulative range work is capped at 200,000
+candidate paragraph visits, and materialized field ranges at 100,000 independently
+of their text length. Empty or repeatedly nested content cannot evade these
+limits.
+Duplicate ZIP members and expanded XML attributes reject before ownership is
+selected. A bound failure throws instead of returning a partial inventory.
+Preference data retains its existing 256 Ki UTF-16 limit, with separate
+property, chunk and collected-text limits.
 
 Read the original package and return typed immutable records. Do not mutate
 package parts, create Word fields, start a Zotero session or advertise editable
@@ -132,14 +174,17 @@ Unsupported embedded objects must retain an explicit ownership finding.
 
 ### Required tests for this increment
 
-Proposed files:
+Implemented tests:
 
 - `test/odf_zotero_reference_marks_test.dart`
 - `test/odf_zotero_preferences_test.dart`
-- `test/fixtures/zotero/odt/`
+- `test/odf_zotero_ownership_test.dart`
+- `test/odf_zotero_resource_test.dart`
+- `tool/zotero/odt_inventory_acceptance.dart`
 
-These paths are relative to `packages/quds_office_engine` and do not exist as
-new tests in this checkpoint.
+These paths are relative to `packages/quds_office_engine`. Fixtures are synthetic
+and pinned to the native plugin's storage contract; they are not claimed as
+files produced by an installed LibreOffice/Zotero session.
 
 | Area | Required cases |
 | --- | --- |
@@ -194,21 +239,21 @@ Apache OpenOffice is a separate legacy target. Zotero's current
 does not support it; any historical compatibility claim needs exact host,
 Zotero and plugin versions. Current LibreOffice acceptance cannot establish it.
 
-## Resuming and publishing
+## Continuing with rich import
 
-1. Restore a writable execution environment with enough space for a checkout,
-   the pinned SDK, locked dependencies and test output.
-2. Refresh main and the two pending heads in the continuation record. Reconcile
-   genuine changes and review the WIP test cache before treating intake as done.
-   Preserve original histories and keep generated temporary test outputs out
-   of the intended implementation.
-3. Implement and execute Increment 1 before changing rich-document loading.
-   Save each working increment on a remote branch with an expected-head lease.
+1. Refresh current main and recent branch/PR heads, preserving incoming history.
+   The earlier two pending heads and the subsequently discovered Word text
+   branch are integrated by this continuation; keep their recorded cutoffs.
+2. Begin Increment 2 with an explicit rich-document content envelope and
+   rendering/persistence ownership. Use the inventory identities as evidence,
+   not as a substitute for a rich ODT reader.
+3. Save each working increment on a remote branch with an expected-head lease.
 4. Review the integrated diff, rerun checks affected by incoming changes, then
    merge the qualified implementation to current remote main and verify the
    resulting commit/tree and branch ancestry.
 5. Do not query or wait on GitHub Actions as the acceptance path. Preserve
    concrete local results and state any installed-host limits separately.
 
-No code, tests, native file-format support or runtime acceptance are delivered
-by this specification itself.
+Increment 1 is a locally testable read-only capability. It does not establish
+active native ODT editing, changed ordinary ODT export, or installed-host
+acceptance for Zotero, Word, LibreOffice or legacy Apache OpenOffice.

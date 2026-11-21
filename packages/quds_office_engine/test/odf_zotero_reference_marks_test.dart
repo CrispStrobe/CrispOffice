@@ -69,6 +69,40 @@ Uint8List _zip(
 
 void main() {
   test(
+    'unmodeled ODF block owners do not become ordinary body candidates',
+    () async {
+      final name = _citation();
+      for (final owner in ['text:alphabetical-index', 'office:forms']) {
+        final result = await OdfZotero.inspect(
+          _odt('<$owner><text:p>${_mark(name, 'retained')}</text:p></$owner>'),
+        );
+        expect(result.fields.single.cachedText, 'retained');
+        expect(result.fields.single.isImportCandidate, isFalse);
+        expect(
+          result.fields.single.starts.single.owners.last.localName,
+          owner.split(':').last,
+        );
+      }
+    },
+  );
+
+  test(
+    'duplicate qualified attributes reject before selecting a native name',
+    () async {
+      final name = encodeXmlAttribute(_citation());
+      await expectLater(
+        OdfZotero.inspect(
+          _odt(
+            '<text:p><text:reference-mark-start text:name="ordinary" text:name="$name"/>'
+            'Text<text:reference-mark-end text:name="$name"/></text:p>',
+          ),
+        ),
+        throwsFormatException,
+      );
+    },
+  );
+
+  test(
     'canonical multi-item citation retains exact identity and metadata',
     () async {
       final name = _citation();
