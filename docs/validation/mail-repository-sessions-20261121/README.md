@@ -24,10 +24,13 @@ remote commits:
 | --- | --- |
 | `c375becb51939dcca5c145bf1bcdb14a4febe041` | Initial intake, mailbox view/catalog streams, incoming Word failure-recovery fix and local receipts |
 | `6ec90c8a3acdc8fb5878f1decef0131e478e6b1d` | Guarded selected-folder sessions, original-provider identity projection and focused regressions |
+| `4d435f81493c88e8fd4fb90a62558a1cc8a7ec22` | Connected and cached Studio workflows, localized counts, error recovery, pagination/identity regressions and roadmap |
+| `9276a267e83ab903d18b5af38975e15d183b7e7b` | Combined source with the four additional pinned branch heads retained as merge parents |
 
-The next checkpoint connects those APIs to native IMAP/EWS/Gmail/Graph and
-cached Mail. Final combined qualification and late-branch reconciliation are
-recorded before main publication. GitHub Actions are neither awaited nor used
+The [late intake review](late-intake-review.md) and [exact snapshot](late-intake-review.json)
+record the additional performance, Word sections, Zotero transfer and proofing
+scheduling branches. Incoming qualification and an integrated-source Mail check
+precede main publication. GitHub Actions are neither awaited nor used
 as a substitute for local results; checkpoint messages use `[skip ci]`.
 
 ## Local qualification retained so far
@@ -40,7 +43,8 @@ database, source stub, fake SDK library or modified access rule was used.
 | Scope | Result | Evidence |
 | --- | --- | --- |
 | Mail store streams, existing saved views, flag journal and reconciliation | 117 passed, no failures/skips | [Store receipt](store-validation.json) |
-| Selected-folder session, stale delivery, listener-driven switching/close and error recovery | 14 passed, no failures/skips; fatal-info analysis clean | [Session receipt](session-validation.json) |
+| Ten-suite Studio Mail cohort: connected providers, cached reader, sessions, journal/reconciliation and workspace | 285 passed, no failures/skips; 16-file fatal-info analysis clean; 1,029 source inputs unchanged | [Studio receipt](studio-validation.json) and [full evidence](studio-validation.tar.xz) |
+| Selected-folder session, stale delivery, listener-driven switching/close and error recovery (included in the Studio total) | 14 passed, no failures/skips; fatal-info analysis clean | [Session receipt](session-validation.json) |
 | Incoming Word layout equivalence and failed-layout retry | 70 passed, 8 existing image-only fixtures explicitly skipped, no failures; six-file analysis clean | [Word receipt](incoming-word-validation.json) and [logs](incoming-word-logs.tar.xz) |
 
 The eight Word fixtures contain no editable paragraphs; the receipt names them.
@@ -51,6 +55,13 @@ The ordinary `dart test` launcher stalled after the real SQLite build hook.
 Store tests used the locked `test` 1.31.1 entry point directly with its kernel/VM
 runner and actual SQLite native asset. The receipt records the exact command
 and hashes. Flutter host tests use the genuine Flutter test runner.
+
+The Studio evidence preserves an initial 284-pass/one-fixture-failure attempt.
+The native SQLite fixture had exhausted a fixed number of zero-delay widget
+pump turns while real isolate work was still pending. Its setup now runs in
+`tester.runAsync`, retaining every quota/cleanup assertion. The focused case and
+the complete 285-case rerun passed. Stream-cancellation fixture checks likewise
+drain both real and widget event queues; they retain all ownership assertions.
 
 ## Remaining acceptance boundaries
 
