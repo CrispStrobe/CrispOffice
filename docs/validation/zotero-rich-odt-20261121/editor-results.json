@@ -281,7 +281,32 @@
       "unexpected": []
     }
   },
-  "evidence_scope": "Accepted frozen source at 5647e457b9419fa90f302e196ddbeeac8585ccfb before any later formatting. Parent must bind subsequent formatting through its non-comment token-equivalence receipt. No repeat runs are summed.",
-  "archive_sha256": "8f639115d6f45074c5723382a00ab5c80e53ee654aeedccb5e216638280be875",
-  "archive_bytes": 194612
+  "evidence_scope": "Accepted aggregate snapshot at5647e457; subsequent formatting is bound through identical complete parsed CompilationUnit.toSource output, not identical raw scanner tokens. A separate duplicate-style guard is covered by final engine and focused loader evidence. No repeat counts are added.",
+  "archive_sha256": "52d190dd977d79035eead355bbdc8581a3e22b9d560b041e8dd266f8fae32efa",
+  "archive_bytes": 197938,
+  "formatting_binding": {
+    "qualified_editor_head": "5647e457b9419fa90f302e196ddbeeac8585ccfb",
+    "focused_final_head": "77c4ef27008a1a2468b94c3b67423c43ac28438d",
+    "method": "Pinned dart format; analyzer parses all files and complete CompilationUnit.toSource() outputs match exactly. Raw scanner token streams differ by formatter-managed optional punctuation.",
+    "format_result_sha256": "42dc6056169542aa003ea6cb73374641f9449b33bebfe2bac8aa025094132d85",
+    "formatted_production_inputs": [
+      "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+      "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+      "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart"
+    ],
+    "separate_semantic_changes": [
+      "packages/quds_office_engine/lib/src/word/serial/odt_reader_styles.dart"
+    ],
+    "focused_replay_counts": {
+      "editor": {
+        "success": 8
+      },
+      "studio": {
+        "success": 7
+      }
+    },
+    "focused_replay_summary_sha256": "db2d8b698b49dc19a20f5f63ba7cd16ca6c56d96e5f163533ee998fe09c1afa1",
+    "counts_are_overlapping_not_additive": true,
+    "separate_engine_evidence": "New duplicate used property-container refusal is covered by dedicated engine tests and final engine qualification, recorded separately."
+  }
 }

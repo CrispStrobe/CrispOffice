@@ -1,8 +1,8 @@
 {
-  "archive_sha256": "8f639115d6f45074c5723382a00ab5c80e53ee654aeedccb5e216638280be875",
-  "archive_bytes": 194612,
+  "archive_sha256": "52d190dd977d79035eead355bbdc8581a3e22b9d560b041e8dd266f8fae32efa",
+  "archive_bytes": 197938,
   "member_sha256": {
-    "editor-gate/README.md": "200aa3b08676fa99cccd8d380fb5e228379efdf63cd7a843b0e9b5c51751880f",
+    "editor-gate/README.md": "6da458b489c65da72fedde4babfdc1ce52fc733e77fcce7f40530c342f9e7f2a",
     "editor-gate/coverage.json": "d86c5f40d1b8d23e0a90b853262cf55bcb6b46a85c815d7bf5043ce52cb00b7d",
     "editor-gate/editor/command.json": "4c2f85c9cd205b256fe21dd4524a59ba64fe317582bc919e956ad2951e9890b0",
     "editor-gate/editor/events.jsonl": "cf87b7ea5751bc9b955b1623e4b3049b60ccd22b1e1d1884e72516e2df3a47cd",
@@ -18,7 +18,9 @@
     "editor-gate/studio/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "editor-gate/summary.json": "756d2665e3091795f5f62e1e276acb9fcdec063d3dff6d3c190a2b9338ab442b",
     "run_editor_gate.py": "744ab9878f276ebca541b6f4e7d853e4d167f369100cfa072cb1eea37dd6a5af",
-    "editor-plan.json": "52db61e41635637eb47f77e10b6ba706b4c395e45f1c90cecd4667fc9f7e31ae"
+    "editor-plan.json": "52db61e41635637eb47f77e10b6ba706b4c395e45f1c90cecd4667fc9f7e31ae",
+    "editor-gate/formatting-binding.json": "350197451faeee6f4082a1ed0712d349212f730f8faf2331e3966d164b4228d4",
+    "format-equivalence/result.json": "42dc6056169542aa003ea6cb73374641f9449b33bebfe2bac8aa025094132d85"
   },
   "reopened_crc_and_member_hashes_verified": true
 }

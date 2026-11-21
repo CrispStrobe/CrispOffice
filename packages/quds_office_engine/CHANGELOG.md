@@ -29,7 +29,7 @@ All notable changes to `quds_office_engine` are documented here.
   inherited alignment and row keep-together, honor explicit transparent cell
   fills, and distribute an explicit table width across unspecified columns.
   Refuse conflicting fixed widths, duplicate used property containers and
-  unsupported structural-style metadata. Retain 21 preservation regressions
+  unsupported structural-style metadata. Retain 23 preservation regressions
   when reconciling the incoming branch with the richer import contract above.
 
 - Add `OdfZotero.inspect`, a bounded read-only native ODT Zotero inventory.

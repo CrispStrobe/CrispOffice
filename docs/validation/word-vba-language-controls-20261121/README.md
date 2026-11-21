@@ -60,3 +60,15 @@ ODT cohort passes 381 cases, including 21 new preservation regressions, with
 clean targeted analysis. The combined checkout gate is the remaining acceptance
 step; no editor-loader or installed Office/LibreOffice/Zotero qualification is
 claimed by this intake.
+
+## Refreshed ODT and loader intake
+
+The next captured ODT head `5647e457b9419fa90f302e196ddbeeac8585ccfb`
+adds guarded asynchronous Word/Studio import. The reader conflict is reconciled:
+the latest declared-width allocation and fixed-width consistency rule are
+preserved together with duplicate-property and used-metadata guards. The table
+regressions now contain 23 cases, including supported 144 pt import/reopening.
+The 13-file ODT/ODF/isolate-open cohort passes 432 cases with clean analysis and
+unchanged source. Flutter/editor/Studio test execution is not claimed. Six
+incoming Dart files receive formatter-only changes before the final combined
+109-file gate and final portable receipt; this checkpoint precedes that gate.

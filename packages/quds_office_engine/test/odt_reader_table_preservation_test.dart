@@ -107,16 +107,11 @@ void main() {
   );
 
   test(
-    'declared width supplies an implicit column through DOCX reopening',
+    'declared table width fills an unspecified column without loss',
     () async {
       final document = await OdtDocumentReader.readBytes(
         _package(
-          _style(
-            'T',
-            'table',
-            '<style:table-properties style:width="144pt"/>',
-            extra: 'style:class="extra" style:auto-update="false"',
-          ),
+          _style('T', 'table', '<style:table-properties style:width="144pt"/>'),
           tableStyle: 'table:style-name="T"',
         ),
       );
@@ -126,6 +121,37 @@ void main() {
       }
     },
   );
+
+  test('conflicting explicitly fixed table and column widths refuse', () async {
+    await expectLater(
+      OdtDocumentReader.readBytes(
+        _package(
+          '${_style('T', 'table', '<style:table-properties style:width="144pt"/>')}'
+          '${_style('C', 'table-column', '<style:table-column-properties style:column-width="120pt"/>')}',
+          tableStyle: 'table:style-name="T"',
+          columns: '<table:table-column table:style-name="C"/>',
+        ),
+      ),
+      _refused,
+    );
+  });
+
+  test('used structural styles retain supported inert metadata', () async {
+    final document = await OdtDocumentReader.readBytes(
+      _package(
+        _style(
+          'T',
+          'table',
+          '<style:table-properties table:align="center"/>',
+          extra: 'style:class="extra" style:auto-update="false"',
+        ),
+        tableStyle: 'table:style-name="T"',
+      ),
+    );
+    for (final current in [document, _reopen(document)]) {
+      expect(_table(current).properties.alignment, WmlJustification.center);
+    }
+  });
 
   for (final width in ['not-a-length', '0pt']) {
     test('refuses invalid table width $width', () async {
