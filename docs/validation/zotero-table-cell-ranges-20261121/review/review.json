@@ -1,0 +1,80 @@
+{
+  "review_status": "accepted_no_blocking_findings",
+  "scope": "Same-cell multi-paragraph research-content insertion; source/test review plus supplemental independent VM probes",
+  "head_at_review": "674ce9701e185971388fc2e517d305689ccba471",
+  "source_inputs": {
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart": {
+      "sha256": "aa8800089bcc7da05bb3d07934f2f1715e6f85d74b1ea42bb02682f09912367d",
+      "git_blob": "bdc12d6e6e7a2508fe9ade5d4803c32d323a444d"
+    },
+    "packages/quds_office_engine/test/word_zotero_multiparagraph_test.dart": {
+      "sha256": "e9f155aff1f6cc7dd9aea490bd13b381da77469cb28a285fc2b9f8d94863b8d6",
+      "git_blob": "2a41ebfdd71c04b9054303d62a40aed6a90827ae"
+    },
+    "packages/quds_office_engine/test/word_zotero_table_cell_replacement_test.dart": {
+      "sha256": "6a8824e0f8ad9d2490960523f24e4df093e0348edacb22e31389976b89b35558",
+      "git_blob": "ca7f7eaa865c4d9d617a0065672e9782ea3f9403"
+    },
+    "packages/quds_office_editor/test/word_zotero_multiparagraph_controller_test.dart": {
+      "sha256": "5d3d476624fa517f0f5c3a0562ba5313a73c5aa6c2c5d6c5397d4ebe8d70819f",
+      "git_blob": "cc561887da9167be81a952f639b4b64ae597bb1d"
+    }
+  },
+  "runtime": {
+    "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+    "dart_binary_sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "package_config_sha256": "7065b36dce8b440d439078e0a2b4595e21c61b76916d0ee8fa3c9ae48e8df203",
+    "engine_package": {
+      "name": "quds_office_engine",
+      "rootUri": "../packages/quds_office_engine",
+      "packageUri": "lib/",
+      "languageVersion": "3.12"
+    },
+    "engine_lib_resolved": "/workspace/scratch/a4ce103494d8/quds_office_suite/packages/quds_office_engine/lib"
+  },
+  "independent_probes": {
+    "count": 21,
+    "passed": 21,
+    "failures": 0,
+    "exit_code": 0,
+    "stderr_bytes": 0,
+    "source_unchanged": true,
+    "bound_input_count": 356,
+    "receipt": "accepted-receipt.json",
+    "results": "accepted-probes.json",
+    "source": "ownership_probes.dart"
+  },
+  "findings_resolved": [
+    {
+      "issue": "Rich heading/list insertion into covariant List<WmlParagraph> cell owner threw a runtime iterable TypeError",
+      "resolution": "Insert each supported block individually; fresh probes and product tests exercise success and preservation"
+    },
+    {
+      "issue": "Initially invalid cross-cell raw-session range could become eligible after endpoint reparenting that preserved flat paragraph order",
+      "resolution": "Constructor owner capture now requires both ordered endpoints and consecutive ordinary initial blocks"
+    }
+  ],
+  "reviewed_guards": [
+    "Exact initial section/note and nested table-row-cell-list ownership chain is captured and rechecked",
+    "Selected paragraph aliases across stories/containers are refused",
+    "Vertical continuations, structural controls/frames, cross-cell boundaries and incoming tables stay guarded",
+    "Existing field protection, plain-text boundaries and note ownership remain in the original path",
+    "Controller rollback/undo snapshots retain owners and reject stale revisions, selection and lifecycle changes"
+  ],
+  "coverage_review": [
+    "Body, footnote and endnote engine targets",
+    "Nested and merged-origin cells with persistent ownership metadata",
+    "Simple and complex prefix/suffix active citation packets and refreshed display lengths",
+    "Forward/reverse controller selections, undo/redo and DOCX reopen",
+    "Plain/rich/heading/list/image payloads, typed paragraph-list owners",
+    "Direct Add Note/Add Annotation dialog completion and cancellation",
+    "Shared cell/list/table aliases, owner replacement without revision, cross-cell/row boundaries, continuation cells, control/frame ancestors and selected table bands"
+  ],
+  "limits": [
+    "No live Zotero/Word/LibreOffice plugin session is qualified by these probes",
+    "Notes-pane table-cell editing is not supplied by this engine increment",
+    "Owner identities/list containers are pinned; unchanged-owner geometry changes outside the controller revision contract are not exhaustively snapshotted",
+    "Independent probes are separate from the product regression suite count"
+  ],
+  "github_actions": "Neither queried nor awaited"
+}

@@ -1,0 +1,150 @@
+{
+  "schema_version": 1,
+  "status": "bounded_initial_intake_complete_with_explicit_post_intake_deferrals",
+  "qualified_source_commit": "a6095c304ad2d6935f2ae6f8b74412038d19f142",
+  "qualified_source_tree": "bfeef373423ae762e8782efa47c35ca555cf13d5",
+  "qualified_runtime_receipt": "../qualification.json",
+  "qualified_source_map_sha256": "b02b5b7f62c34bf37698d53e0cb614df93ac30d955ce0ad8b1cb1707f6f18916",
+  "recorded_source_fixture_inputs": 2978,
+  "initial_intake": {
+    "captured_at": "2026-11-21T07:15:28.806356+00:00",
+    "snapshot": "../intake/snapshot.json",
+    "coverage": "../intake/coverage.json",
+    "external_heads": 338,
+    "external_kinds": {
+      "branch": 46,
+      "pull_request": 288,
+      "upstream_branch": 4
+    },
+    "external_dispositions": {
+      "verified_historical_equivalent": 24,
+      "ancestor": 314
+    },
+    "all_initial_external_heads_covered": true,
+    "coverage_target": "e2abbcda6d19f932bfbacc85e0dafd41a3c478f8",
+    "coverage_target_is_ancestor_of_qualified_source": true,
+    "separate_own_checkpoint_refs": 1
+  },
+  "final_refresh": {
+    "captured_at": "2026-11-21T07:30:36.739521+00:00",
+    "snapshot": "snapshot.json",
+    "raw_coverage": "coverage.json",
+    "external_heads": 341,
+    "external_kinds": {
+      "branch": 48,
+      "pull_request": 289,
+      "upstream_branch": 4
+    },
+    "external_dispositions": {
+      "verified_historical_equivalent": 24,
+      "ancestor": 314,
+      "uncovered": 3
+    },
+    "raw_audit_exit_code": 1,
+    "raw_all_external_covered": false,
+    "uncovered_external_heads": 3,
+    "separate_own_checkpoint_refs": 1,
+    "all_final_external_heads_integrated": false,
+    "exit_code_semantics": "intake/audit_refs.py returns 1 when the raw uncovered list is nonempty; this final capture retains that result."
+  },
+  "policy": "At this captured cutoff, retain the qualified Zotero source with every original captured external head accounted for and preserve newly arrived or advanced work separately. Exclusion applies to the reviewed a609 source. Later main reconciliation may supersede a disposition and must be recorded separately. This record does not turn the final raw coverage audit into a pass.",
+  "deferred_heads": [
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/codex/word-vba-compatibility-20261121",
+      "local_ref": "refs/remotes/origin/codex/word-vba-compatibility-20261121",
+      "sha": "4b47520ae44dc545b898713d6e22370b66767acd",
+      "scope": "Word VBA source selectors and native guards for existing header/footer paragraphs, including early Mail synchronization runner ancestry.",
+      "disposition": "uncovered",
+      "arrival": "new_branch_after_initial_capture",
+      "initial_head": null,
+      "readiness": "implementation_in_progress",
+      "reason": "The branch work record explicitly identifies an incremental implementation-in-progress checkpoint and withholds final source hashes, acceptance commands and counts. It also incorporates the early Mail runner, so merging it would introduce new Word and Mail product changes beyond the qualified Zotero source.",
+      "evidence": [
+        "git show 4b47520ae44dc545b898713d6e22370b66767acd:docs/validation/word-vba-compatibility-20261121/README.md",
+        "git show --no-patch --format=%P 558c3f4a",
+        "git merge-base --is-ancestor d9d75300f7eec0eeecc8fdee05bc02fb6ad3db0b 4b47520ae44dc545b898713d6e22370b66767acd"
+      ],
+      "new_feature_runtime_executed_in_this_publication": false,
+      "publication_disposition": "preserved_separately_at_captured_cutoff_excluded_from_qualified_a609_source",
+      "included_in_qualified_source": false,
+      "remote_head_preserved_at_final_capture": true,
+      "remote_tracking_head_verified_for_this_record": "4b47520ae44dc545b898713d6e22370b66767acd",
+      "commit_url": "https://github.com/CrispStrobe/quds_office_suite/commit/4b47520ae44dc545b898713d6e22370b66767acd"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/work/mail-sync-foundation-20261121",
+      "local_ref": "refs/remotes/origin/work/mail-sync-foundation-20261121",
+      "sha": "45f0e5038e05e57f121554f976bf74e59af126f6",
+      "scope": "Resumable foreground synchronization, native store schema v8 checkpoints, synchronized/offline mailbox UI, and persistent IMAP/EWS/Gmail/Graph identity wiring.",
+      "disposition": "uncovered",
+      "arrival": "new_branch_after_initial_capture",
+      "initial_head": null,
+      "readiness": "implemented_pending_own_acceptance",
+      "reason": "The three new feature checkpoints contain substantial implementation and six new test suites, but their committed contents do not establish completed execution or independent acceptance. Native migration, storage recovery, account/session identity and UI shutdown require their own combined qualification; the completed Zotero receipt does not qualify this new Mail workflow.",
+      "feature_commits": [
+        "d9d75300f7eec0eeecc8fdee05bc02fb6ad3db0b",
+        "93ef36747dfd71c5f40438e9ba3c2ccf156034f7",
+        "45f0e5038e05e57f121554f976bf74e59af126f6"
+      ],
+      "evidence": [
+        "git diff --stat cf7a5df5 45f0e5038e05e57f121554f976bf74e59af126f6",
+        "git log --format=%h --name-only a6095c30..45f0e503 -- docs/validation docs/roadmaps",
+        "git show 45f0e503:packages/quds_mail_store/lib/src/schema/database.dart",
+        "git show 45f0e503:packages/quds_office_editor/example/lib/studio_mail_native.dart"
+      ],
+      "new_feature_runtime_executed_in_this_publication": false,
+      "publication_disposition": "preserved_separately_at_captured_cutoff_excluded_from_qualified_a609_source",
+      "included_in_qualified_source": false,
+      "remote_head_preserved_at_final_capture": true,
+      "remote_tracking_head_verified_for_this_record": "45f0e5038e05e57f121554f976bf74e59af126f6",
+      "commit_url": "https://github.com/CrispStrobe/quds_office_suite/commit/45f0e5038e05e57f121554f976bf74e59af126f6"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/fix/main-green-20261120",
+      "local_ref": "refs/remotes/origin/fix/main-green-20261120",
+      "sha": "9cfad3920f9afb3ca1620df429fa41e33f3db8e6",
+      "scope": "Hide the native Mail command-bar Close control while the saved-message view supplies its own Close control.",
+      "disposition": "uncovered",
+      "arrival": "existing_branch_advanced_after_initial_capture",
+      "initial_head": "15271321a9f4550c1ab796a2cf9eaed910824574",
+      "readiness": "post_intake_mail_fix_not_executed_here",
+      "reason": "This is a new, unrelated Mail UI correction after the initial intake. The change is one native Studio Mail file (8 insertions, 5 deletions), and its runtime behavior was not executed in this Zotero publication. Keep it independently preserved without presenting the Zotero checks as acceptance of the fix.",
+      "evidence": [
+        "git log --oneline a6095c30..9cfad3920f9afb3ca1620df429fa41e33f3db8e6",
+        "git diff --stat 9cfad392^ 9cfad392",
+        "git diff 9cfad392^ 9cfad392 -- packages/quds_office_editor/example/lib/studio_mail_native.dart"
+      ],
+      "new_feature_runtime_executed_in_this_publication": false,
+      "publication_disposition": "preserved_separately_at_captured_cutoff_excluded_from_qualified_a609_source",
+      "included_in_qualified_source": false,
+      "remote_head_preserved_at_final_capture": true,
+      "remote_tracking_head_verified_for_this_record": "9cfad3920f9afb3ca1620df429fa41e33f3db8e6",
+      "commit_url": "https://github.com/CrispStrobe/quds_office_suite/commit/9cfad3920f9afb3ca1620df429fa41e33f3db8e6"
+    }
+  ],
+  "overlap": {
+    "shared_early_mail_runner": "d9d75300f7eec0eeecc8fdee05bc02fb6ad3db0b",
+    "ancestor_of_both_word_and_mail_heads": true,
+    "word_merge_commit": "558c3f4a"
+  },
+  "raw_evidence_unchanged": true,
+  "raw_evidence_sha256": {
+    "intake/snapshot.json": "478dd1cde7195f14705e69f45f2c03a9eb35607048af2d79d1bff3367e816d11",
+    "intake/coverage.json": "3bc718474208dcf57c9059fcc8bef0c4c1bc91e40114a7a63417fedb9bfcaa8c",
+    "final-intake/snapshot.json": "1b3fee683e74d5006987b6ea64b7ccd5efb7ad400c4ba089d73cbdda470b6499",
+    "final-intake/coverage.json": "59a6c6c17636dcea2d0ca1eed802109986f42f502e45be4def5626aee9ddb722"
+  },
+  "github_actions_status_and_checks": "No Actions/workflow/job/check/status endpoints queried or awaited; local Git history and captured refs were used.",
+  "product_or_ref_mutations_by_this_record": false,
+  "additional_runtime_tests_for_deferred_heads": false,
+  "disposition_scope": "Historical captured cutoff at 2026-11-21T07:30:36.739521+00:00, assessed against qualified source a6095c304ad2d6935f2ae6f8b74412038d19f142. This record does not assert the content of a subsequently advancing remote main.",
+  "publication_may_supersede_dispositions": true,
+  "asserts_later_remote_main_exclusion": false,
+  "later_main_reconciliation": "Any later main reconciliation and actual publication ancestry/readback are recorded separately; they may supersede these historical dispositions without rewriting the captured raw audit."
+}
