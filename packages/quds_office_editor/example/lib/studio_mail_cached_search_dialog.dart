@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
@@ -11,6 +13,8 @@ import 'studio_mail_draft_store.dart';
 import 'studio_mail_draft_store_native.dart';
 import 'studio_mail_local_accounts.dart';
 import 'studio_mail_reader_labels.dart';
+import 'studio_mail_saved_searches.dart';
+import 'studio_mail_saved_search_strings.dart';
 import 'studio_strings.dart';
 
 /// Explicit, read-only discovery across saved account/folder headers.
@@ -23,6 +27,7 @@ class StudioMailCachedSearchDialog extends StatefulWidget {
     required this.isCurrent,
     this.provider,
     this.draftStoreFactory,
+    this.savedSearchStore,
   });
 
   final StudioStrings strings;
@@ -30,6 +35,7 @@ class StudioMailCachedSearchDialog extends StatefulWidget {
   final bool Function() isCurrent;
   final MailProviderKind? provider;
   final StudioMailDraftStoreFactory? draftStoreFactory;
+  final StudioMailSavedSearchStore? savedSearchStore;
 
   @override
   State<StudioMailCachedSearchDialog> createState() =>
@@ -41,6 +47,9 @@ class _StudioMailCachedSearchDialogState
   final _query = TextEditingController();
   final _retired = <StudioMailCachedSearchSession>{};
   late final Future<void> _opening;
+  late final StudioMailSavedSearchStore? _savedStore;
+  Future<void>? _saving;
+  Future<void>? _accountRefresh;
   Future<void>? _pending;
   Future<void>? _retiring;
   StudioMailCachedSearchSession? _session;
@@ -48,6 +57,13 @@ class _StudioMailCachedSearchDialogState
   List<StudioMailCachedSearchHit> _hits = const [];
   List<StudioMailCachedSearchCoverage> _coverage = const [];
   String? _scope;
+  List<String>? _fixedAccountIds;
+  List<MailSavedHeaderSearch> _savedSearches = const [];
+  MailSavedHeaderSearch? _savedSearch;
+  String? _savedError;
+  String? _savedNotice;
+  bool _savedLoading = false;
+  bool _savedBusy = false;
   String? _error;
   MailReaderController? _reader;
   StudioMailCachedSearchHit? _selected;
@@ -71,7 +87,16 @@ class _StudioMailCachedSearchDialogState
   @override
   void initState() {
     super.initState();
-    _opening = _loadAccounts();
+    _savedStore =
+        widget.savedSearchStore ??
+        switch (widget.store) {
+          StudioMailSavedSearchStore store => store,
+          _ => null,
+        };
+    _opening = Future.wait([
+      _loadAccounts(),
+      _loadSavedSearches(),
+    ]).then((_) {});
   }
 
   @override
@@ -79,6 +104,7 @@ class _StudioMailCachedSearchDialogState
     super.didUpdateWidget(oldWidget);
     if (!identical(oldWidget.store, widget.store) ||
         oldWidget.provider != widget.provider ||
+        oldWidget.savedSearchStore != widget.savedSearchStore ||
         oldWidget.draftStoreFactory != widget.draftStoreFactory ||
         !widget.isCurrent()) {
       _expired = true;
@@ -106,6 +132,8 @@ class _StudioMailCachedSearchDialogState
   Future<void> _drainAfterDisposal() async {
     await _opening;
     await _pending;
+    await _saving;
+    await _accountRefresh;
     try {
       await _releaseRetired();
     } on Object {
@@ -144,10 +172,255 @@ class _StudioMailCachedSearchDialogState
       );
     } on Object {
       if (_current) {
-        setState(() => _error = widget.strings.mailCachedSearchAccountsFailed);
+        setState(() {
+          _accounts = const [];
+          _error = widget.strings.mailCachedSearchAccountsFailed;
+        });
       }
     } finally {
       if (mounted) setState(() => _loading = false);
+    }
+  }
+
+  Future<void> _loadSavedSearches() async {
+    final store = _savedStore;
+    if (store == null || !_current) return;
+    setState(() => _savedLoading = true);
+    try {
+      final searches = await store.loadSavedSearches();
+      if (!_current) return;
+      final ids = <String>{};
+      final names = <String>{};
+      if (searches.length > 100 ||
+          searches.any(
+            (search) =>
+                !search.isValid ||
+                search.revision < 1 ||
+                !ids.add(search.id) ||
+                !names.add(search.nameKey),
+          )) {
+        throw const StudioMailDraftStoreException(MailProblemCode.conflict);
+      }
+      setState(() {
+        _savedSearches = List.unmodifiable(searches);
+        // Do not rebase an open editor silently onto a newer revision. The
+        // user must select the refreshed definition before replacing it.
+        if (_savedSearch case final selected?) {
+          if (!searches.any(
+            (search) =>
+                search.id == selected.id &&
+                search.revision == selected.revision,
+          )) {
+            _savedSearch = null;
+          }
+        }
+        _savedError = null;
+      });
+    } on Object {
+      if (_current) {
+        setState(() => _savedError = widget.strings.mailSavedSearchLoadFailed);
+      }
+    } finally {
+      if (mounted) setState(() => _savedLoading = false);
+    }
+  }
+
+  List<MailLocalAccountRecord>? _scopeAccounts() {
+    final fixed = _fixedAccountIds;
+    if (fixed != null) {
+      final byId = {for (final account in _accounts) account.id: account};
+      if (fixed.any((id) => !byId.containsKey(id))) return null;
+      return [for (final id in fixed) byId[id]!];
+    }
+    final accounts = [
+      for (final row in _accounts)
+        if (_scope == null || row.id == _scope) row,
+    ];
+    return accounts.isEmpty ? null : accounts;
+  }
+
+  Future<void> _chooseSavedSearch(String? id) async {
+    if (!_current || _loading || _busy || _savedBusy || _savedLoading) return;
+    final search = _savedSearches.where((entry) => entry.id == id).firstOrNull;
+    if (search == null) {
+      setState(() {
+        _savedSearch = null;
+        _savedNotice = null;
+      });
+      return;
+    }
+    _invalidate();
+    final epoch = _epoch;
+    setState(() {
+      _savedSearch = search;
+      _query.text = search.query;
+      _fixedAccountIds = search.accountIds;
+      _scope = '@saved';
+      _savedNotice = null;
+      _savedError = null;
+      _loading = true;
+    });
+    // Reopen against today's verified directory, rather than persisting old
+    // directory revisions or silently widening a missing account to All.
+    final refresh = _loadAccounts();
+    _accountRefresh = refresh;
+    await refresh;
+    if (identical(_accountRefresh, refresh)) _accountRefresh = null;
+    if (!_active(epoch) || !identical(_savedSearch, search) || _error != null) {
+      return;
+    }
+    if (_scopeAccounts() == null) {
+      setState(() => _error = widget.strings.mailSavedSearchMissingAccounts);
+      return;
+    }
+    await _search();
+  }
+
+  Future<void> _saveSearch({required bool replace}) async {
+    final store = _savedStore;
+    final selected = replace ? _savedSearch : null;
+    if (store == null ||
+        !_current ||
+        _loading ||
+        _busy ||
+        _savedBusy ||
+        _savedLoading ||
+        replace && selected == null) {
+      return;
+    }
+    final accounts = _scopeAccounts();
+    if (accounts == null) {
+      setState(
+        () => _savedError = widget.strings.mailSavedSearchMissingAccounts,
+      );
+      return;
+    }
+    final query = _query.text;
+    try {
+      MailHeaderSearchQuery.parse(query);
+    } on MailHeaderSearchException {
+      setState(() => _error = widget.strings.mailCachedSearchInvalid);
+      return;
+    }
+    final epoch = _epoch;
+    final name = await showDialog<String>(
+      context: context,
+      builder: (context) => _SavedSearchNameDialog(
+        strings: widget.strings,
+        initialName: selected?.name ?? '',
+        replace: replace,
+      ),
+    );
+    if (name == null || !_active(epoch)) return;
+    final random = Random.secure();
+    final search = MailSavedHeaderSearch(
+      id:
+          selected?.id ??
+          'search-${base64Url.encode(List<int>.generate(16, (_) => random.nextInt(256))).replaceAll('=', '')}',
+      name: name,
+      query: query,
+      accountIds: [for (final account in accounts) account.id],
+      revision: selected?.revision ?? 0,
+    );
+    await _savedOperation(() async {
+      final saved = await store.saveSavedSearch(
+        search,
+        expectedRevision: selected?.revision,
+      );
+      if (!_current || !_active(epoch)) return;
+      if (!saved.isValid ||
+          saved.id != search.id ||
+          saved.revision <= search.revision ||
+          saved.name != search.name ||
+          saved.query != search.query ||
+          saved.accountIds.length != search.accountIds.length ||
+          !saved.accountIds.every(search.accountIds.contains)) {
+        throw const StudioMailDraftStoreException(MailProblemCode.conflict);
+      }
+      setState(() {
+        _savedSearches = [
+          ..._savedSearches.where((entry) => entry.id != saved.id),
+          saved,
+        ]..sort((a, b) => a.nameKey.compareTo(b.nameKey));
+        _savedSearch = saved;
+        _savedNotice = widget.strings.mailSavedSearchSaved;
+      });
+    });
+  }
+
+  Future<void> _deleteSearch() async {
+    final store = _savedStore;
+    final selected = _savedSearch;
+    if (store == null || selected == null || !_current || _savedBusy || _busy) {
+      return;
+    }
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(widget.strings.mailSavedSearchDelete),
+        content: Text(widget.strings.mailSavedSearchDeleteAbout(selected.name)),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: Text(widget.strings.cancel),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: Text(widget.strings.mailSavedSearchDelete),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true || !_current || !identical(selected, _savedSearch)) {
+      return;
+    }
+    await _savedOperation(() async {
+      await store.deleteSavedSearch(
+        selected.id,
+        expectedRevision: selected.revision,
+      );
+      if (!_current) return;
+      setState(() {
+        _savedSearches = [
+          for (final entry in _savedSearches)
+            if (entry.id != selected.id) entry,
+        ];
+        _savedSearch = null;
+        _savedNotice = widget.strings.mailSavedSearchDeleted;
+      });
+    });
+  }
+
+  Future<void> _savedOperation(Future<void> Function() action) async {
+    setState(() {
+      _savedBusy = true;
+      _savedError = null;
+      _savedNotice = null;
+    });
+    final operation = Future<void>.sync(action);
+    _saving = operation.then<void>(
+      (_) {},
+      onError: (Object _, StackTrace _) {},
+    );
+    try {
+      await operation;
+    } on StudioMailDraftStoreException catch (error) {
+      if (_current) {
+        setState(
+          () => _savedError = switch (error.code) {
+            MailProblemCode.conflict => widget.strings.mailSavedSearchConflict,
+            MailProblemCode.quotaExceeded =>
+              widget.strings.mailSavedSearchLimit,
+            _ => widget.strings.mailSavedSearchWriteFailed,
+          },
+        );
+      }
+    } on Object {
+      if (_current) {
+        setState(() => _savedError = widget.strings.mailSavedSearchWriteFailed);
+      }
+    } finally {
+      if (mounted) setState(() => _savedBusy = false);
     }
   }
 
@@ -230,8 +503,15 @@ class _StudioMailCachedSearchDialogState
   }
 
   Future<void> _search() async {
-    if (!_current || _busy || _loading || _accounts.isEmpty) return;
+    if (!_current || _busy || _savedBusy || _loading || _accounts.isEmpty) {
+      return;
+    }
+    final accounts = _scopeAccounts();
     _invalidate();
+    if (accounts == null) {
+      setState(() => _error = widget.strings.mailSavedSearchMissingAccounts);
+      return;
+    }
     final epoch = _epoch;
     final query = _query.text;
     try {
@@ -252,10 +532,7 @@ class _StudioMailCachedSearchDialogState
       if (!_active(epoch)) return;
       final session = StudioMailCachedSearchSession(
         query: query,
-        accounts: [
-          for (final row in _accounts)
-            if (_scope == null || row.id == _scope) row,
-        ],
+        accounts: accounts,
         directory: widget.store,
         openStore: widget.draftStoreFactory ?? openStudioMailDraftStore,
         isCurrent: () => _active(epoch),
@@ -371,6 +648,8 @@ class _StudioMailCachedSearchDialogState
     _retireReader(previous);
     await _opening;
     await _pending;
+    await _saving;
+    await _accountRefresh;
     try {
       await _releaseRetired();
     } on Object {
@@ -405,11 +684,71 @@ class _StudioMailCachedSearchDialogState
     ].join(' · ');
   }
 
+  Widget _savedControls() => Column(
+    crossAxisAlignment: CrossAxisAlignment.stretch,
+    children: [
+      Row(
+        children: [
+          Expanded(
+            child: DropdownButtonFormField<String>(
+              key: const ValueKey('studio-mail-saved-search-picker'),
+              initialValue: _savedSearch?.id ?? '',
+              isExpanded: true,
+              decoration: InputDecoration(
+                labelText: widget.strings.mailSavedSearches,
+              ),
+              items: [
+                DropdownMenuItem(
+                  value: '',
+                  child: Text(
+                    widget.strings.mailSavedSearchChoose,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                for (final search in _savedSearches)
+                  DropdownMenuItem(
+                    value: search.id,
+                    child: Text(search.name, overflow: TextOverflow.ellipsis),
+                  ),
+              ],
+              onChanged:
+                  !_current || _loading || _busy || _savedBusy || _savedLoading
+                  ? null
+                  : (id) => unawaited(_chooseSavedSearch(id)),
+            ),
+          ),
+          IconButton(
+            key: const ValueKey('studio-mail-saved-search-reload'),
+            tooltip: widget.strings.mailSavedSearchReload,
+            onPressed: !_current || _savedBusy || _savedLoading
+                ? null
+                : _loadSavedSearches,
+            icon: const Icon(Icons.refresh),
+          ),
+        ],
+      ),
+      const SizedBox(height: 4),
+      Text(widget.strings.mailSavedSearchAbout),
+      if (_savedError case final error?)
+        Text(error, key: const ValueKey('studio-mail-saved-search-error')),
+      if (_savedNotice case final notice?)
+        Semantics(
+          liveRegion: true,
+          child: Text(
+            notice,
+            key: const ValueKey('studio-mail-saved-search-notice'),
+          ),
+        ),
+      const SizedBox(height: 12),
+    ],
+  );
+
   Widget _controls() => Column(
     crossAxisAlignment: CrossAxisAlignment.stretch,
     children: [
       Text(widget.strings.mailCachedSearchAbout),
       const SizedBox(height: 16),
+      if (_savedStore != null) _savedControls(),
       DropdownButtonFormField<String>(
         key: const ValueKey('studio-mail-cached-search-scope'),
         initialValue: _scope ?? '',
@@ -425,6 +764,14 @@ class _StudioMailCachedSearchDialogState
               overflow: TextOverflow.ellipsis,
             ),
           ),
+          if (_fixedAccountIds case final ids?)
+            DropdownMenuItem(
+              value: '@saved',
+              child: Text(
+                widget.strings.mailSavedSearchAccountCount(ids.length),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
           for (final row in _accounts)
             DropdownMenuItem(
               value: row.id,
@@ -437,12 +784,14 @@ class _StudioMailCachedSearchDialogState
               ),
             ),
         ],
-        onChanged: !_current || _loading
+        onChanged: !_current || _loading || _savedBusy
             ? null
             : (value) {
                 final next = value == null || value.isEmpty ? null : value;
                 if (next == _scope) return;
                 _scope = next;
+                _fixedAccountIds = null;
+                _savedNotice = null;
                 _invalidate();
               },
       ),
@@ -450,7 +799,7 @@ class _StudioMailCachedSearchDialogState
       TextField(
         key: const ValueKey('studio-mail-cached-search-query'),
         controller: _query,
-        enabled: _current,
+        enabled: _current && !_savedBusy,
         textDirection: TextDirection.ltr,
         maxLines: 3,
         minLines: 1,
@@ -458,7 +807,10 @@ class _StudioMailCachedSearchDialogState
         decoration: InputDecoration(
           labelText: widget.strings.mailCachedSearchQuery,
         ),
-        onChanged: (_) => _invalidate(),
+        onChanged: (_) {
+          _savedNotice = null;
+          _invalidate();
+        },
         onSubmitted: (_) => unawaited(_search()),
       ),
       const SizedBox(height: 8),
@@ -468,12 +820,54 @@ class _StudioMailCachedSearchDialogState
         children: [
           FilledButton.icon(
             key: const ValueKey('studio-mail-cached-search-start'),
-            onPressed: !_current || _loading || _busy || _accounts.isEmpty
+            onPressed:
+                !_current ||
+                    _loading ||
+                    _busy ||
+                    _savedBusy ||
+                    _accounts.isEmpty
                 ? null
                 : _search,
             icon: const Icon(Icons.search),
             label: Text(widget.strings.mailCachedSearchStart),
           ),
+          if (_savedStore != null) ...[
+            OutlinedButton.icon(
+              key: const ValueKey('studio-mail-saved-search-save'),
+              onPressed:
+                  !_current ||
+                      _loading ||
+                      _busy ||
+                      _savedBusy ||
+                      _savedLoading ||
+                      _accounts.isEmpty
+                  ? null
+                  : () => _saveSearch(replace: false),
+              icon: const Icon(Icons.bookmark_add_outlined),
+              label: Text(widget.strings.mailSavedSearchSaveAs),
+            ),
+            if (_savedSearch != null) ...[
+              TextButton(
+                key: const ValueKey('studio-mail-saved-search-update'),
+                onPressed:
+                    !_current ||
+                        _loading ||
+                        _busy ||
+                        _savedBusy ||
+                        _savedLoading
+                    ? null
+                    : () => _saveSearch(replace: true),
+                child: Text(widget.strings.mailSavedSearchUpdate),
+              ),
+              TextButton(
+                key: const ValueKey('studio-mail-saved-search-delete'),
+                onPressed: !_current || _busy || _savedBusy || _savedLoading
+                    ? null
+                    : _deleteSearch,
+                child: Text(widget.strings.mailSavedSearchDelete),
+              ),
+            ],
+          ],
           if (_busy && _session != null)
             TextButton(
               key: const ValueKey('studio-mail-cached-search-cancel'),
@@ -745,7 +1139,8 @@ class _StudioMailCachedSearchDialogState
                 ],
               ),
             ),
-            if (_loading || _busy || _closing) const LinearProgressIndicator(),
+            if (_loading || _busy || _closing || _savedLoading || _savedBusy)
+              const LinearProgressIndicator(),
             Expanded(
               child: _closeRequested
                   ? SingleChildScrollView(
@@ -766,6 +1161,80 @@ class _StudioMailCachedSearchDialogState
           ],
         ),
       ),
+    ),
+  );
+}
+
+class _SavedSearchNameDialog extends StatefulWidget {
+  const _SavedSearchNameDialog({
+    required this.strings,
+    required this.initialName,
+    required this.replace,
+  });
+  final StudioStrings strings;
+  final String initialName;
+  final bool replace;
+
+  @override
+  State<_SavedSearchNameDialog> createState() => _SavedSearchNameDialogState();
+}
+
+class _SavedSearchNameDialogState extends State<_SavedSearchNameDialog> {
+  late final _name = TextEditingController(text: widget.initialName);
+
+  bool get _valid => MailSavedHeaderSearch(
+    id: 'name-check',
+    name: _name.text.trim(),
+    query: '',
+    accountIds: const ['name-check'],
+  ).isValid;
+
+  void _submit() {
+    if (_valid) Navigator.of(context).pop(_name.text.trim());
+  }
+
+  @override
+  void dispose() {
+    _name.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => Directionality(
+    textDirection: widget.strings.language == StudioLanguage.ar
+        ? TextDirection.rtl
+        : TextDirection.ltr,
+    child: AlertDialog(
+      title: Text(
+        widget.replace
+            ? widget.strings.mailSavedSearchUpdate
+            : widget.strings.mailSavedSearchSaveAs,
+      ),
+      content: SingleChildScrollView(
+        child: TextField(
+          key: const ValueKey('studio-mail-saved-search-name'),
+          controller: _name,
+          autofocus: true,
+          maxLength: MailSavedHeaderSearch.maxNameCodeUnits,
+          textInputAction: TextInputAction.done,
+          decoration: InputDecoration(
+            labelText: widget.strings.mailSavedSearchName,
+          ),
+          onChanged: (_) => setState(() {}),
+          onSubmitted: (_) => _submit(),
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: Text(widget.strings.cancel),
+        ),
+        FilledButton(
+          key: const ValueKey('studio-mail-saved-search-confirm'),
+          onPressed: _valid ? _submit : null,
+          child: Text(widget.strings.mailSavedSearchSave),
+        ),
+      ],
     ),
   );
 }

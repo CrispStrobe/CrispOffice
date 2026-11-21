@@ -1,5 +1,40 @@
 # Quds Mail store
 
+## Saved cached-header search definitions
+
+`MailSavedHeaderSearches` adds durable named definitions to
+`SqliteMailRepository`. A definition retains its independent ID, display name,
+bounded Boolean header query, exact ordered account IDs and assigned revision.
+It retains no query results, message bytes, credentials or continuation cursors.
+The directory profile may refer to accounts stored in separate profiles; the
+host verifies each exact account ID before rerunning the search. Missing IDs
+must remain unavailable and never broaden the saved scope.
+
+Create with `saveSavedHeaderSearch(definition)` using revision zero. Update
+with the displayed record's revision in both the definition and
+`expectedRevision`; the returned record supplies the new revision. Delete with
+`deleteSavedHeaderSearch(id, expectedRevision: revision)`. Listing sorts by the
+locale-independent lowercase name key, then ID. Names remain in their original
+spelling and are unique under that key, with no accent folding or Unicode
+normalization implied. A stale edit/delete or duplicate name returns `conflict`.
+
+The catalog allows 100 definitions, names up to 128 UTF-16 code units and
+1–100 distinct account IDs of up to 1,024 code units. The shared query parser
+enforces its existing 1,024-unit and expression limits. An empty query searches
+all retained headers in the fixed scope. The repository metadata allowance
+additionally bounds the complete catalog. Stored size/type checks precede text
+transfer; invalid definitions fail explicitly without being overwritten.
+Names, queries and identities require well-formed UTF-16 so SQLite's UTF-8
+encoding preserves them exactly, including valid supplementary characters.
+
+Schema v9 preserves versions 1–8. Definition and ordered scope updates commit
+together, and a monotonic persisted counter prevents a stale callback from
+editing or deleting an ID that was deleted and recreated. Deleting a definition
+does not change messages, accounts, drafts, Outbox, credentials or provider mail.
+Retiring its directory profile removes its definitions. Opening a definition
+does not itself execute a search or contact a provider; the host starts a fresh
+bounded search over current locally retained headers.
+
 ## Durable archive and search
 
 `SqliteMailArchive` adds an independent original-message archive alongside the

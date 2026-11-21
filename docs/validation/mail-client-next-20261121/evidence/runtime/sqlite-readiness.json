@@ -1,0 +1,10 @@
+{
+  "status": "ready",
+  "exit_code": 0,
+  "log": "sqlite-readiness.log",
+  "log_sha256": "1add0471127824f774b78a833845f3537efa2b35bb15ab4d851b2a8e15b3c16e",
+  "library_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+  "probe": "sqlite_probe.dart",
+  "probe_sha256": "a4b3477221f443491fab6ba4011e9248ff28e2fc2d703f3ca70bc60b38d4a3d3",
+  "native_assets_manifest_sha256": "d7465dd1ba3244586d275177c3aec6fd25e6f025efd1b8d28196a64cb1a0c8b9"
+}

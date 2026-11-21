@@ -1,5 +1,10 @@
 ## Unreleased
 
+- Let users collapse and expand loaded conversations with an accessible
+  disclosure and direction-aware Left/Right keys. Keep groups expanded by
+  default, preserve the choice by stable account/member identities, and prune
+  hidden checked rows before any action. Show filtered loaded totals and
+  observed unread/flagged counts, with explicit unknown-state detail.
 - Add Boolean query guidance and expression/depth errors to loaded mailbox
   search, preserving conjunctive quick filters, fail-closed results, checked
   selection pruning and stale-action guards. Keep parenthesized and negated

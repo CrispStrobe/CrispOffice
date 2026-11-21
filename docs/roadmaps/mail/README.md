@@ -12,9 +12,12 @@ archive, Studio workflows and remaining MailStore parity work.
 ## Desktop mail parity: ordered increments
 
 The [loaded-conversation continuation](conversations.md) adds opt-in
-account-scoped grouping of explicitly linked, already loaded mailbox headers.
-It preserves individual message actions and does not claim full threaded
-inboxes, background synchronization or cross-folder conversation search.
+account-scoped grouping, expand/collapse and observed unread/flag counts for
+explicitly linked, already loaded mailbox headers. It preserves individual
+visible-message actions. [Saved searches](saved-searches.md) persist named
+queries and fixed account scopes, reopening against current retained headers.
+Full threaded inboxes, continuous search refresh, background synchronization
+and cross-folder conversation indexing remain open.
 
 Outlook, Thunderbird and eM Client are comparison targets for complete workflows,
 reliability and usability. The following order extends the existing M00–M14
@@ -25,7 +28,7 @@ plan rather than treating provider connectivity as full product parity.
 | 1 | Recoverable composition | Multiple account-scoped local drafts, independent reply/forward drafts, attachment/reply recovery and interrupted-send warnings; offline draft entry for verified IMAP (including discovery), EWS, Gmail and Microsoft 365 accounts | Provider-side Drafts synchronization with explicit conflicts and repository-backed offline sessions |
 | 2 | Everyday mailbox workspace (M04W/M06) | Repository-observed loaded/cached sessions, durable single/bulk flag receipts, fresh uncertainty checks, resumable folder-header synchronization and explicit bounded offline body/attachment downloads across IMAP, EWS, Gmail and Microsoft 365 | Complete shared synchronized workspace, durable retention policy/background scheduling, unified inbox and consistent move/delete |
 | 3 | Sending and outbox (M07) | Visible native durable Outbox, atomic draft transfer/edit-copy, frozen MIME/envelopes, review/exact export, restart recovery, explicit send/retry/cancel and local uncertain closure across SMTP/EWS/Gmail/Microsoft 365 | Durable undo-send delay and explicit scheduling, then background execution and provider-specific Sent reconciliation |
-| 4 | Efficient discovery and organization | Independent archive FTS, saved archive searches, locally qualified Boolean header queries, bounded saved-header discovery across account folders and native account profiles, stable local mailbox sorting and journaled visible-selection read/flag commands | Saved live views, broader indexed body/server search, conversations, tags/categories, broader durable bulk commands and ordered rule execution with preview/recovery |
+| 4 | Efficient discovery and organization | Independent archive FTS, saved archive searches, Boolean header queries, bounded saved-header discovery, persistent named searches with fixed account scopes, expandable loaded conversations and observed counts, stable local sorting and journaled visible-selection read/flag commands | Continuously refreshed shared saved views, indexed body/server search, persistent cross-folder conversations, tags/categories, broader durable bulk commands and ordered rule execution with preview/recovery |
 | 5 | Rich authoring and Office workflows (M07/M08) | Word-based plain text, To/Cc/Bcc, reply all, inert HTML-only text quotes, file attachments and explicit complete attachment forwarding | Signatures/templates, HTML alternatives, inline images, attach current document/PDF and edit a copy of a received attachment |
 | 6 | Integrated productivity and release (M09–M13) | Provider adapters and shared foundations available | Calendar/People, invitation workflows, provider-specific shared mailboxes, encryption/signatures where supported, installed-platform and live-provider qualification |
 
@@ -44,7 +47,9 @@ fresh core/UI execution is recorded in the
 The [cached-search continuation](unified-cached-search.md) reuses the same query
 across retained folder memberships and native account profiles, with bounded
 continuation, account/folder provenance, partial coverage and explicit offline
-body opening. It does not claim server-wide or body-content search.
+body opening. [Persistent saved searches](saved-searches.md) now reuse that
+workflow with revision-guarded name/query/scope management. These features do
+not claim server-wide or body-content search.
 
 The [foreground bulk contract](bulk-flags.md) describes checked visible selections,
 explicit read/unread/flag/unflag commands, outcome counts, stop-after-current
@@ -62,7 +67,8 @@ synchronized-header browsing. The [offline-download continuation](offline-downlo
 adds explicit single-message/current-page body and attachment retention with
 restart skipping, bounded progress and guarded close. Unified cached-header
 discovery is now a separate local workflow. The next boundaries include saved
-live views, the complete shared synchronized workspace and conversations.
+continuously refreshed shared views, the complete shared synchronized workspace
+and persistent cross-folder conversations.
 
 The [cached mailbox guide](cached-mailboxes.md) describes durable ordered views
 of visited folders, explicit body/attachment retention and credential-free
