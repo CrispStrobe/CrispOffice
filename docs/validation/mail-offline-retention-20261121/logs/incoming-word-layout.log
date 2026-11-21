@@ -1,0 +1,11 @@
+00:00 +0: loading packages/quds_office_engine/test/word_incremental_layout_test.dart
+00:00 +0: typing converges after the edited paragraph
+00:00 +1: growing and shrinking a paragraph shifts pages both ways
+00:01 +2: inserting and removing paragraphs renumbers reused lines
+00:01 +3: edits in a table cell, in columns and in a later section
+00:02 +4: property changes inside the declared paragraphs
+00:02 +5: missing state, footnotes and the switch fall back
+00:03 +6: removing a wrapping frame discards older breaks (empty intermediate: false)
+00:03 +7: removing a wrapping frame discards older breaks (empty intermediate: true)
+00:03 +8: foreign engine reuse remeasures every section with current metrics
+00:03 +9: All tests passed!

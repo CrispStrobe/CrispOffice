@@ -1,0 +1,36 @@
+{
+  "head_before": "cd78a3baae61e5eaf9a70e63100ccf8146327dd7",
+  "started_at": "2026-11-21T09:01:35.992662+00:00",
+  "cwd": "/workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_engine",
+  "command": [
+    "/workspace/scratch/5627811b9768/mail-runtime/bin/dart",
+    "--packages=/workspace/scratch/5627811b9768/quds_office_suite/.dart_tool/package_config.json",
+    "/workspace/scratch/5627811b9768/mail-runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--concurrency=2",
+    "--reporter=expanded",
+    "test/office_macro_word_text_controls_test.dart",
+    "test/office_vba_word_proofing_test.dart",
+    "test/office_vba_word_proofing_integration_test.dart",
+    "test/word_incremental_break_translation_test.dart",
+    "test/word_zotero_note_table_test.dart",
+    "test/word_zotero_nested_note_tables_test.dart",
+    "test/word_zotero_nested_table_test.dart",
+    "test/word_zotero_nested_tables_integration_test.dart",
+    "test/word_incremental_layout_test.dart"
+  ],
+  "files": {
+    "office_macro_word_text_controls_test.dart": "a8b438be78520a6c17032e53933fd1dd2b89f73185bb47042445fee37296b221",
+    "office_vba_word_proofing_test.dart": "2a137ea62b994084df01e7ee59b3506eaedc883b250656108457d6d9c4f077aa",
+    "office_vba_word_proofing_integration_test.dart": "f337e1e139193aa5bd96548935464b75af20817ba1afe670ca24bf6b57bd0beb",
+    "word_incremental_break_translation_test.dart": "8760960435532be1e67af105f1ea9e923de0e0acc79f83182c3e7d64590241c4",
+    "word_zotero_note_table_test.dart": "d38bf7485e41d9f083dac896d0f79609f17a1a835e604129b2a560ab45ee2170",
+    "word_zotero_nested_note_tables_test.dart": "2ea258008891e429f0b842f026fbd293821648253832850360e9ff2f492765e7",
+    "word_zotero_nested_table_test.dart": "9685589d787597d932c49973b609661ed3f15c38053e2e25c149ecd25d0fd446",
+    "word_zotero_nested_tables_integration_test.dart": "e27c7e9d1e5bb36c7998ac6098944d0647aa3b97646284781b9b9881e75ba67f",
+    "word_incremental_layout_test.dart": "8619ef6918ae3eb76ec3f9e67d9d1cd9a2db02f02243ebff33f0abc0a43e3fd3"
+  },
+  "exit_code": 0,
+  "finished_at": "2026-11-21T09:02:03.598093+00:00",
+  "log_sha256": "5363bfb8cf7754f73180580dbd8691d8d4dcecf2ec57a5d280400cc32dcefddf",
+  "head_after": "cd78a3baae61e5eaf9a70e63100ccf8146327dd7"
+}

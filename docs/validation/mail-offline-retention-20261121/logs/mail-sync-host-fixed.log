@@ -1,0 +1,10 @@
+00:00 +0: loading /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart
+00:00 +0: ews host downloads synchronized bodies explicitly and reopens them offline
+00:06 +1: ews host sync persists, resumes after reconnect and opens offline without a provider
+00:10 +2: gmail host downloads synchronized bodies explicitly and reopens them offline
+00:14 +3: gmail host sync persists, resumes after reconnect and opens offline without a provider
+00:17 +4: graph host downloads synchronized bodies explicitly and reopens them offline
+00:20 +5: graph host sync persists, resumes after reconnect and opens offline without a provider
+00:24 +6: host rejects a provider whose account changes before starting sync
+00:25 +7: disposed host session cannot commit a late provider sync page
+00:26 +8: All tests passed!

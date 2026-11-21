@@ -1,0 +1,465 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-11-21T09:00:04.976174+00:00",
+  "phase": "local_qualification_complete",
+  "repository": "CrispStrobe/quds_office_suite",
+  "branch": "work/mail-offline-retention-20261121",
+  "initial_main": "4090feb56f308cd3657c5edd1d045ff1197ff79b",
+  "initial_reconciled_main": "97cfb09b277e0808f9228a4fb638a55748c6268f",
+  "remote_verified_checkpoints": [
+    {
+      "sha": "f0c2599bf685a599e5bb0aa00f9f1e898e42bf43",
+      "purpose": "merge captured performance branch 5332c5ff"
+    },
+    {
+      "sha": "63f5406690de119f31e7a553b254f67d4702abc3",
+      "purpose": "bounded offline retention and guarded Quit implementation"
+    },
+    {
+      "sha": "7414e0fa044d47c9b5eb96ddf66a1aa5d315613c",
+      "tree": "0104861b56e568bb45952418f7eb00759318fc19",
+      "purpose": "durable qualification fixes, roadmap and evidence"
+    },
+    {
+      "sha": "8335a43934825af60a8b13a4f4ba42caae88d05b",
+      "tree": "5731b5ab05735cc8f154973e5e93e08057094ee4",
+      "parents": [
+        "7414e0fa044d47c9b5eb96ddf66a1aa5d315613c",
+        "f92c0d24f0513c5e13e61ae58507c36e9cf4f1c1",
+        "96a6b1b17bb946d48594ba3d28ca1180ac53d7fd"
+      ],
+      "purpose": "combined Mail, Word and Zotero integration; same tree as cd78a3ba"
+    },
+    {
+      "sha": "283ec4ae7c690787ae29b9342872b3206cc57b67",
+      "tree": "03a23d9663c813a1532bc83674f694097d677c4d",
+      "purpose": "final compact-layout implementation and regression tests"
+    }
+  ],
+  "remote_verification_provenance": "Root integration agent verified published branch references by remote readback.",
+  "included_prs": [
+    294,
+    295
+  ],
+  "historical_equivalence": [
+    {
+      "ref": "codex/odt-field-continuation-20261117",
+      "source": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "replacement": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "scope": "changed_paths",
+      "replacement_is_ancestor": true,
+      "changed_path_count": 37,
+      "exact_equivalent": true,
+      "disposition": "already_represented"
+    },
+    {
+      "ref": "docs/ods-color-scale",
+      "source": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "replacement": "4eaca83b192897edad82658107dfeb5bcbed0920",
+      "scope": "full_tree",
+      "replacement_is_ancestor": true,
+      "exact_equivalent": true,
+      "disposition": "already_represented"
+    },
+    {
+      "ref": "docs/ods-data-bar",
+      "source": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "replacement": "52c73ae4dbadf2ca00a5d619144350ccc353b31a",
+      "scope": "full_tree",
+      "replacement_is_ancestor": true,
+      "exact_equivalent": true,
+      "disposition": "already_represented"
+    },
+    {
+      "ref": "feat/ods-color-scale",
+      "source": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "replacement": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "scope": "full_tree",
+      "replacement_is_ancestor": true,
+      "exact_equivalent": true,
+      "disposition": "already_represented"
+    },
+    {
+      "ref": "feat/ods-data-bar",
+      "source": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "replacement": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "scope": "full_tree",
+      "replacement_is_ancestor": true,
+      "exact_equivalent": true,
+      "disposition": "already_represented"
+    },
+    {
+      "ref": "feat/ods-dynamic-validation-links",
+      "source": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "replacement": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "scope": "full_tree",
+      "replacement_is_ancestor": true,
+      "exact_equivalent": true,
+      "disposition": "already_represented"
+    },
+    {
+      "ref": "feat/ods-icon-sets",
+      "source": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "replacement": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "scope": "full_tree",
+      "replacement_is_ancestor": true,
+      "exact_equivalent": true,
+      "disposition": "already_represented"
+    },
+    {
+      "ref": "feat/ods-time-period-conditions",
+      "source": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "replacement": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+      "scope": "full_tree",
+      "replacement_is_ancestor": true,
+      "exact_equivalent": true,
+      "disposition": "already_represented"
+    },
+    {
+      "ref": "integrate/office-union-148",
+      "source": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "replacement": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "scope": "full_tree",
+      "replacement_is_ancestor": true,
+      "exact_equivalent": true,
+      "disposition": "already_represented"
+    },
+    {
+      "ref": "integrate/recent-pptx",
+      "source": "ec70b9423febefcb9b104629d2ad48b0c96e9082",
+      "replacement": "698209aaa6e7f1350b6541df5eb192b7b233443d",
+      "scope": "changed_paths",
+      "replacement_is_ancestor": true,
+      "changed_path_count": 3,
+      "exact_equivalent": true,
+      "disposition": "already_represented"
+    }
+  ],
+  "latest_captured_main": "f92c0d24f0513c5e13e61ae58507c36e9cf4f1c1",
+  "pending_integrations": [],
+  "superseded_capture_heads": [
+    "75b429e30a80181c34205d49391fb21e9928b490",
+    "6270ec92c957ee856aa68f33fb07f27e2f8b3c33"
+  ],
+  "qualified_worktree_base": "63f5406690de119f31e7a553b254f67d4702abc3",
+  "qualification_fix_sources": [
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+      "sha256": "59ea1f02d8fbfdc1ad5a63a1ef1bc859fef0b9ebd986c93300b4611ebc309af0"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_sync_dialog.dart",
+      "sha256": "6071788a14ef48f4619ef0db505c67a2b773aab25a8dd2ec329881c7f244a793"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_body_download_store_test.dart",
+      "sha256": "f4564c741d3cd6c1dbbcb6b8e3af789f733b6b47fa92a362268e871bad1de198"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_quit_test.dart",
+      "sha256": "c6789fe66f33b75746417bb3291947214b92dcf5db016ecb38e953cbddbf8605"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart",
+      "sha256": "dc73edd2bbf25921391aa801e5a1b097279c8a3c2b0438140bbbdd17eed416c5"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart",
+      "sha256": "e6a452fe61aba48f4d102bea63565a04c3eb401574bd09765fa42b1e6833cf76"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_sync_native_test.dart",
+      "sha256": "1089d807937dcc9a001344986167ac436fce6b7311fe042c29b6f72201150f46"
+    }
+  ],
+  "toolchain": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "framework_revision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "engine_revision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "verified_locked_hosted_packages": 202,
+    "test_runner": "package:test 1.31.1",
+    "flutter_smoke_passed": 31,
+    "sqlite": "real native default build hook; store suite closes/reopens temporary databases; no library override"
+  },
+  "completed_checks": [
+    {
+      "path": "logs/mail-core-direct.log",
+      "scope": "complete_mail_core_suite",
+      "passed": 334,
+      "failed": 0,
+      "observed_completion": "All tests passed!",
+      "sha256": "ef634abd7b2793216b83e2c88718a688a94654ccdc8b2a2155a1e7d687cfb2aa"
+    },
+    {
+      "path": "logs/mail-body-store-fixed.log",
+      "scope": "corrected_native_sqlite_store_suite",
+      "passed": 8,
+      "failed": 0,
+      "observed_completion": "All tests passed!",
+      "sha256": "e4d5a5a6a00aa520af63b0646f374f863048e1430a5b4e652af07912f9bd6291"
+    },
+    {
+      "path": "logs/quit-final.log",
+      "scope": "new_quit_and_existing_desktop_menu_suites",
+      "passed": 8,
+      "failed": 0,
+      "observed_completion": "All tests passed!",
+      "sha256": "41316b1d051f41211250bd7c52d780c9056124ec844e62bcc5bcf20f8c544850"
+    },
+    {
+      "path": "logs/incoming-word-layout.log",
+      "scope": "incoming_incremental_layout_engine_suite",
+      "passed": 9,
+      "failed": 0,
+      "observed_completion": "All tests passed!",
+      "sha256": "b49af2ab9fe5282e88138e943a1ef47fb31a7c3ee2668e07c92880f8d85c860c"
+    },
+    {
+      "path": "logs/mail-sync-host-fixed.log",
+      "scope": "corrected_ews_gmail_graph_host_suite",
+      "passed": 8,
+      "failed": 0,
+      "observed_completion": "All tests passed!",
+      "sha256": "52a82cffd4767b8ad738597dcc7ad9ea6f78b761e2b0396bd1accd9d47fec419"
+    },
+    {
+      "path": "logs/mail-host-analyze-fixed.log",
+      "scope": "static_analysis",
+      "result": "No issues found!",
+      "sha256": "ff4fa844f181efd810d6bd8018cf32261c54760de356f72d32e678cd2846e96c"
+    },
+    {
+      "path": "logs/mail-offline-analyze.log",
+      "scope": "static_analysis",
+      "result": "No issues found!",
+      "sha256": "30d46d28f0768cad7edffb2dba505eba25307923fb102ebb8760ed4295477552"
+    },
+    {
+      "path": "logs/incoming-engine-final.log",
+      "receipt": "logs/incoming-engine-final.receipt.json",
+      "scope": "postmerge Word VBA proofing, incremental layout and nested Zotero engine suites",
+      "passed": 260,
+      "failed": 0,
+      "exit_code": 0,
+      "test_files": 9,
+      "source_commit": "cd78a3baae61e5eaf9a70e63100ccf8146327dd7",
+      "source_tree": "5731b5ab05735cc8f154973e5e93e08057094ee4",
+      "same_tree_as_remote": "8335a43934825af60a8b13a4f4ba42caae88d05b",
+      "sha256": "5363bfb8cf7754f73180580dbd8691d8d4dcecf2ec57a5d280400cc32dcefddf"
+    },
+    {
+      "path": "logs/mail-merged-workflow-fixed.log",
+      "scope": "postmerge native sync, dialog/download and calendar suites",
+      "passed": 48,
+      "failed": 0,
+      "exit_code": 0,
+      "file_counts": {
+        "studio_mail_sync_native_test.dart": 5,
+        "studio_mail_sync_dialog_test.dart": 33,
+        "studio_mail_calendar_date_test.dart": 10
+      },
+      "source_base": "8335a43934825af60a8b13a4f4ba42caae88d05b",
+      "additional_sources": "postmerge_layout_sources",
+      "sha256": "5cbe13e39e11af7d80ecca77a39e99e2b30548a874c8e0716c9e687e5e691aa8"
+    },
+    {
+      "path": "logs/mail-layout-analyze-final.log",
+      "scope": "final_compact_layout_static_analysis",
+      "result": "No issues found!",
+      "sha256": "952e61fbc8353f48f7c3cb1833705c2cfffcad748ac713b51dfbef1ad08317e6"
+    },
+    {
+      "path": "logs/incoming-editor-final.log",
+      "scope": "postmerge editor notification, layout equivalence and nested Zotero controller suites",
+      "passed": 68,
+      "skipped": 8,
+      "failed": 0,
+      "exit_code": 0,
+      "test_files": 3,
+      "skip_reason": "existing image-only fixture cases with no editable paragraphs; existing markTestSkipped guard",
+      "sha256": "58857f7a862fa20e3d7571128471862c74c525761be9c13faa97d60cd6143759",
+      "source_files": [
+        {
+          "path": "packages/quds_office_editor/test/word_edit_notification_test.dart",
+          "sha256": "87622af190486e1824b7eb6c741416b24b103c751803cd504d214c16a9573fc9"
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+          "sha256": "02234c183925c19c97158464c23fdbb49f8761ec34ae835b4a58dbc7e5b30add"
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_zotero_nested_table_controller_test.dart",
+          "sha256": "e53f2906037d5fe11103eb81521a327ad2778a0fdd52c68a22f56a14d456ca3e"
+        }
+      ]
+    },
+    {
+      "path": "logs/incoming-zotero-tool-analyze.log",
+      "scope": "final_incoming_nested_table_acceptance_utility_analysis",
+      "result": "No issues found!",
+      "sha256": "bc648a1624bafd45b1d281e7ce33898398237bd45e442246785ec4aa33caf72a"
+    },
+    {
+      "path": "logs/flutter-smoke.log",
+      "receipt": "runtime-bootstrap.json",
+      "scope": "genuine Flutter engine bootstrap/body presentation smoke",
+      "passed": 31,
+      "failed": 0,
+      "exit_code": 0,
+      "sha256": "b6c82c122c91f0554577659c1059e4da5341f98d46d884992fa9bc6ccbdc77b2"
+    }
+  ],
+  "mixed_cohort": {
+    "path": "logs/mail-offline-workflows.log",
+    "sha256": "383973d9a14bfce6a452b9b256f742d1aec4839cbb81bf209211a9da6ffb3ad0",
+    "overall_result": "failed; not claimed as an overall pass",
+    "accepted_file_subsets": [
+      {
+        "file": "studio_mail_sync_native_test.dart",
+        "passed": 5,
+        "failed": 0
+      },
+      {
+        "file": "studio_mail_sync_dialog_test.dart",
+        "passed": 30,
+        "failed": 0
+      }
+    ],
+    "superseded_failures": [
+      "8 store fixture failures replaced by mail-body-store-fixed.log",
+      "3 host failures replaced by mail-sync-host-fixed.log"
+    ]
+  },
+  "github_actions": {
+    "waited": false,
+    "acceptance_source": false,
+    "reason": "user explicitly requested local qualification due starved Actions queue"
+  },
+  "limits": [
+    "deterministic providers; no live-account interoperability or credential validation",
+    "Linux Flutter tester with macOS target-platform variation, not a launched native macOS application",
+    "not full Outlook/Thunderbird/eM Client parity",
+    "8 existing image-only editor fixtures skipped because they have no editable paragraphs; not counted as passes"
+  ],
+  "updated_at_utc": "2026-11-21T09:07:38.257043+00:00",
+  "completed_integrations": [
+    {
+      "order": 1,
+      "ref": "main",
+      "source": "f92c0d24f0513c5e13e61ae58507c36e9cf4f1c1",
+      "contains_word_head": "13fa9ad5b9d140f1d7c085e46b4d0ce395000c49",
+      "merge_commit": "4f8945127a67f746999f0d2a67456e2a8d995750"
+    },
+    {
+      "order": 2,
+      "pr": 296,
+      "ref": "codex/zotero-parity-20261121-continuation",
+      "source": "96a6b1b17bb946d48594ba3d28ca1180ac53d7fd",
+      "merge_commit": "cd78a3baae61e5eaf9a70e63100ccf8146327dd7"
+    },
+    {
+      "order": 3,
+      "ref": "codex/zotero-parity-20261121-continuation",
+      "source": "c4e1d67540e7c3a706d2f0a3fead0cb17949f437",
+      "merge_commit": "33b3b2add0fbabb6b445d2a6e4b9a1f85330eb89",
+      "conflicts": "two Mail files retained the existing qualified implementations after duplicate-fix review"
+    }
+  ],
+  "local_integration": {
+    "sha": "cd78a3baae61e5eaf9a70e63100ccf8146327dd7",
+    "tree": "5731b5ab05735cc8f154973e5e93e08057094ee4",
+    "remote_publication": {
+      "verified_sha": "8335a43934825af60a8b13a4f4ba42caae88d05b",
+      "tree": "5731b5ab05735cc8f154973e5e93e08057094ee4",
+      "same_tree": true
+    },
+    "conflict_resolution": "Only additive packages/quds_office_editor/CHANGELOG.md conflicts; all entries retained."
+  },
+  "qualification_fix_sources_unchanged_after_integration": true,
+  "postmerge_qualification": {
+    "status": "complete",
+    "acceptance_complete": true,
+    "attempts": [
+      {
+        "source_log": "mail-merged-workflow.log",
+        "sha256": "6bb4e0b3f38d1bdb46ba55963f4cf1c7e46d62191e664ee8e88b293079d1b9a3",
+        "passed": 43,
+        "failed": 2,
+        "result": "Some tests failed.",
+        "failures": [
+          "studio_mail_sync_dialog_test.dart: compact de layout keeps controls and reader",
+          "studio_mail_sync_dialog_test.dart: compact en layout keeps controls and reader"
+        ],
+        "disposition": "superseded by clean 48-case mail-merged-workflow-fixed.log after scrollable message-pane status/recovery correction"
+      }
+    ],
+    "remaining": [],
+    "completed": [
+      "logs/incoming-engine-final.log",
+      "logs/mail-merged-workflow-fixed.log",
+      "logs/incoming-editor-final.log"
+    ]
+  },
+  "final_source_base": "8335a43934825af60a8b13a4f4ba42caae88d05b",
+  "postmerge_layout_sources": [
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_sync_dialog.dart",
+      "sha256": "c12fa06767dffafd7e64c23161b289b974e687c7f4bc78fb01d1afa9770178b5"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart",
+      "sha256": "9ddd4a59a01161963b18a71036499c936380c491950aaf7d959d3325a0b0628e"
+    }
+  ],
+  "postmerge_layout_source_binding": {
+    "published_checkpoint": "283ec4ae7c690787ae29b9342872b3206cc57b67",
+    "tree": "03a23d9663c813a1532bc83674f694097d677c4d",
+    "all_recorded_hashes_match": true,
+    "note": "Sources formatted after clean workflow run; formatting changed the test file only."
+  },
+  "publication": {
+    "source_checkpoint": "283ec4ae7c690787ae29b9342872b3206cc57b67",
+    "final_local_source": "33b3b2add0fbabb6b445d2a6e4b9a1f85330eb89",
+    "record_location": "GitHub pull request and final remote main readback; this evidence binds immutable source checkpoints rather than its own future commit identifier."
+  },
+  "final_local_source": {
+    "commit": "33b3b2add0fbabb6b445d2a6e4b9a1f85330eb89",
+    "tree": "bb6adb8a21b59a7e253b59c4e156808fde9b42f4",
+    "parents": [
+      "283ec4ae7c690787ae29b9342872b3206cc57b67",
+      "c4e1d67540e7c3a706d2f0a3fead0cb17949f437"
+    ],
+    "mail_preservation_check": {
+      "command": [
+        "git",
+        "diff",
+        "--exit-code",
+        "283ec4ae7c690787ae29b9342872b3206cc57b67",
+        "33b3b2add0fbabb6b445d2a6e4b9a1f85330eb89",
+        "--",
+        "packages/quds_office_editor/example/lib",
+        "packages/quds_office_editor/example/test",
+        "packages/quds_mail_core"
+      ],
+      "exit_code": 0
+    },
+    "entire_delta_from_published_source": [
+      {
+        "path": "packages/quds_office_editor/CHANGELOG.md",
+        "lines_added": 2
+      },
+      {
+        "path": "packages/quds_office_engine/tool/zotero/nested_table_acceptance.dart",
+        "lines_added": 432
+      }
+    ]
+  },
+  "branch_snapshot": {
+    "path": "branch-snapshot.json",
+    "captured_refs": 52,
+    "ancestors": 42,
+    "exactly_represented": 10,
+    "unresolved": 0
+  }
+}
