@@ -1,5 +1,16 @@
 # Mail implementation status — 21 November 2026
 
+## Loaded conversation ordering — source checkpointed, tests not executed
+
+The shared mailbox list has an opt-in **Conversations** chip for explicitly
+threaded loaded headers across native IMAP, EWS/cloud, cached and synchronized
+views. It groups by strict account-scoped Message-ID/In-Reply-To/References
+links without guessing from subjects, fetching missing mail or changing row
+identities. Search and bulk actions remain visible-row-only. The core and
+widget regressions were committed remotely but are **not claimed passing**:
+this execution environment has neither Dart nor Flutter, and CI is not a
+blocking gate. [Scope, limitations and validation commands](conversations.md).
+
 ## Unified cached-header search
 
 The native local-account chooser now offers **Search saved mail** for all listed
