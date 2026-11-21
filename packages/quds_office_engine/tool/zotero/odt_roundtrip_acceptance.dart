@@ -23,8 +23,9 @@ const _names = [
   'table-only',
   'endnote-only',
   'uppercase-citations',
+  'table-padding',
 ];
-const _fieldCounts = [3, 6, 2, 2];
+const _fieldCounts = [3, 6, 2, 2, 9];
 const _textNamespace = 'urn:oasis:names:tc:opendocument:xmlns:text:1.0';
 const _styleNamespace = 'urn:oasis:names:tc:opendocument:xmlns:style:1.0';
 
@@ -199,6 +200,78 @@ WmlDocument _tableOnly() => WmlDocument(
           _plain('After ${alignment.name} table'),
         ],
         _plain('After table'),
+      ],
+    ),
+  ],
+);
+
+// Each outer table carries its own uniform padding, including explicit zero.
+// Nested tables use a different positive value so style inheritance cannot
+// accidentally substitute the parent table's padding and still pass the oracle.
+WmlDocument _tablePadding() => WmlDocument(
+  zoteroDocumentData: _preferences(),
+  sections: [
+    WmlSection(
+      blocks: [
+        _plain('Before padded tables'),
+        for (final margin in const <double>[0, 6, 12]) ...[
+          WmlTable(
+            grid: [180, 180],
+            properties: WmlTableProps(borders: false, cellMargin: margin),
+            rows: [
+              WmlTableRow(
+                cells: [
+                  WmlTableCell(
+                    width: 360,
+                    gridSpan: 2,
+                    blocks: [
+                      _cited('padding-${margin.toInt()}-merged', 'Merged'),
+                    ],
+                  ),
+                ],
+              ),
+              WmlTableRow(
+                cells: [
+                  WmlTableCell(
+                    width: 180,
+                    blocks: [_cited('padding-${margin.toInt()}-left', 'Left')],
+                  ),
+                  WmlTableCell(
+                    width: 180,
+                    blocks: [
+                      _plain('Before nested table'),
+                      WmlTable(
+                        grid: [120],
+                        properties: WmlTableProps(
+                          borders: false,
+                          cellMargin: 3,
+                        ),
+                        rows: [
+                          WmlTableRow(
+                            cells: [
+                              WmlTableCell(
+                                width: 120,
+                                blocks: [
+                                  _cited(
+                                    'padding-${margin.toInt()}-nested',
+                                    'Nested',
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      _plain('After nested table'),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+          _plain('After ${margin.toInt()} point table'),
+        ],
+        _plain('After padded tables'),
       ],
     ),
   ],
@@ -640,6 +713,7 @@ Future<void> main(List<String> args) async {
       _tableOnly(),
       _endnoteOnly(),
       _uppercaseCitations(),
+      _tablePadding(),
     ];
     for (var index = 0; index < _names.length; index++) {
       final name = _names[index];

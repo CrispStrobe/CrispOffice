@@ -1475,6 +1475,22 @@ abstract final class OdtDocumentWriter {
     _OdtSectionStart? sectionStart,
   }) {
     final cells = _OdtTableCells(table);
+    final cellPadding = layout.zotero == null
+        ? null
+        : table.properties.cellMargin;
+    if (cellPadding != null &&
+        (!cellPadding.isFinite ||
+            cellPadding < 0 ||
+            cellPadding * 20 > 32767)) {
+      throw ArgumentError.value(
+        cellPadding,
+        'cellMargin',
+        'Editable Zotero ODT needs finite, nonnegative native cell margins.',
+      );
+    }
+    if (cellPadding != null) {
+      _validateEditableTablePadding(table, cells, cellPadding);
+    }
     final inferredColumns = cells.columnCount - BigInt.from(table.grid.length);
     // The explicit Zotero path retains the native grid's absolute geometry.
     // Using the ordinary 100%-width export fallback would rescale its columns
@@ -1547,7 +1563,7 @@ abstract final class OdtDocumentWriter {
             w.writeAttribute('table:number-rows-spanned', '${placement.rows}');
           }
         }
-        if (layout.cellStyle(cell) case final style?) {
+        if (layout.cellStyle(cell, padding: cellPadding) case final style?) {
           w.writeAttribute('table:style-name', style);
         }
         final notesAllowed = layout.noteBodiesAllowed;
@@ -1592,6 +1608,57 @@ abstract final class OdtDocumentWriter {
       w.writeEndElement();
     }
     w.writeEndElement();
+  }
+
+  static void _validateEditableTablePadding(
+    WmlTable table,
+    _OdtTableCells cells,
+    double padding,
+  ) {
+    // Check the geometry a reader receives, including two-decimal rounding.
+    // A small positive native content width must not become zero on export.
+    // Integer hundredths also avoid cancellation when subtracting cumulative
+    // offsets, e.g. (240.02 - 240) must equal twice a 0.01 pt margin exactly.
+    final emittedPadding = BigInt.parse(
+      padding.toStringAsFixed(2).replaceFirst('.', ''),
+    );
+    final offsets = <BigInt>[BigInt.zero];
+    for (final width in table.grid) {
+      final emitted = BigInt.tryParse(
+        _OdtLayout._paragraphDecimal(width)?.replaceFirst('.', '') ?? '',
+      );
+      if (emitted == null || emitted <= BigInt.zero) {
+        throw ArgumentError.value(
+          width,
+          'grid',
+          'Editable Zotero ODT needs positive serialized column widths.',
+        );
+      }
+      offsets.add(offsets.last + emitted);
+    }
+    final explicitColumns = BigInt.from(table.grid.length);
+    BigInt offset(BigInt column) => column <= explicitColumns
+        ? offsets[column.toInt()]
+        : offsets.last + (column - explicitColumns) * BigInt.from(12000);
+    for (var rowIndex = 0; rowIndex < table.rows.length; rowIndex++) {
+      final row = table.rows[rowIndex];
+      var column = BigInt.from(row.gridBefore > 0 ? row.gridBefore : 0);
+      for (final placement in cells.rows[rowIndex]) {
+        final end = column + BigInt.from(placement.columns);
+        if (!placement.covered) {
+          final width = offset(end) - offset(column);
+          if (emittedPadding + emittedPadding >= width) {
+            throw ArgumentError.value(
+              padding,
+              'cellMargin',
+              'Editable Zotero ODT padding must leave positive serialized '
+                  'content width in every visible cell.',
+            );
+          }
+        }
+        column = end;
+      }
+    }
   }
 
   static bool _emptyCoveredCell(WmlTableCell cell) => cell.blocks.every(
@@ -2704,7 +2771,7 @@ class _OdtLayout {
     );
   }
 
-  String? cellStyle(WmlTableCell cell) {
+  String? cellStyle(WmlTableCell cell, {double? padding}) {
     final fill = _rgbColor(cell.fillColor);
     final borders = [
       cell.borderTop == true,
@@ -2712,8 +2779,13 @@ class _OdtLayout {
       cell.borderLeft == true,
       cell.borderRight == true,
     ];
-    if (fill == null && !borders.any((enabled) => enabled)) return null;
-    final key = jsonEncode([fill, ...borders]);
+    if (fill == null && padding == null && !borders.any((enabled) => enabled)) {
+      return null;
+    }
+    final paddingText = padding == null
+        ? null
+        : _paragraphDecimal(padding == 0 ? 0 : padding);
+    final key = jsonEncode([fill, paddingText, ...borders]);
     return _cellStyles.putIfAbsent(key, () {
       final name = 'Ce${_cellStyles.length + 1}';
       final buffer = StringBuffer(
@@ -2722,6 +2794,9 @@ class _OdtLayout {
       );
       if (fill != null) {
         buffer.write(' fo:background-color="#$fill"');
+      }
+      if (paddingText != null) {
+        buffer.write(' fo:padding="${paddingText}pt"');
       }
       if (cell.borderTop == true) {
         buffer.write(' fo:border-top="0.5pt solid #000000"');

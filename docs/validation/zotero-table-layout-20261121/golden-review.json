@@ -1,0 +1,158 @@
+{
+  "source": "e255713a43fbd1f0e10adf3345350b6aec98add1",
+  "baseline_pngs_checked": 63,
+  "changed_pngs": [
+    "packages/quds_office_editor/test/goldens/linux/word_selection_macOS.png",
+    "packages/quds_office_editor/test/goldens/linux/word_selection_windows.png",
+    "packages/quds_office_editor/test/goldens/nested_table_content.png",
+    "packages/quds_office_editor/test/goldens/table_grid_format.png",
+    "packages/quds_office_editor/test/goldens/table_grid_replace.png",
+    "packages/quds_office_editor/test/goldens/table_grid_unchanged.png",
+    "packages/quds_office_editor/test/goldens/table_grid_unmerge.png"
+  ],
+  "unchanged_png_count": 56,
+  "reviews": [
+    {
+      "file": "packages/quds_office_editor/test/goldens/table_grid_unchanged.png",
+      "image_size": [
+        640,
+        900
+      ],
+      "before_sha256": "febba09d8100617dbdb65591468e8bf876e154a9a4c6e07ecdc6e9237c8b93dd",
+      "diagnostic_master_sha256": "febba09d8100617dbdb65591468e8bf876e154a9a4c6e07ecdc6e9237c8b93dd",
+      "after_sha256": "e8a5274b118d445f69a0e7c225b64d468471dc67b55cace9c5f04241678b86df",
+      "changed_pixels": 11120,
+      "changed_pixel_bounds_xyxy": [
+        159,
+        154,
+        521,
+        459
+      ],
+      "updated_pixels_equal_reviewed_test_image": true,
+      "reviewed_master_pixels_equal_original_baseline": true,
+      "visual_review": "Cell structure, merge state, shading, formatting, text, and line breaks retained; padding and cumulative table/paragraph positions shift as expected."
+    },
+    {
+      "file": "packages/quds_office_editor/test/goldens/table_grid_format.png",
+      "image_size": [
+        640,
+        900
+      ],
+      "before_sha256": "5ddd6f96865b19f2c73096717aefcc7f9aac89d56d964b46ecde6a39c081f7f6",
+      "diagnostic_master_sha256": "5ddd6f96865b19f2c73096717aefcc7f9aac89d56d964b46ecde6a39c081f7f6",
+      "after_sha256": "1750647d6980ed9cfc136fb23f336e2991667bd51f320df48f6ef8cde567da6c",
+      "changed_pixels": 12174,
+      "changed_pixel_bounds_xyxy": [
+        159,
+        154,
+        521,
+        589
+      ],
+      "updated_pixels_equal_reviewed_test_image": true,
+      "reviewed_master_pixels_equal_original_baseline": true,
+      "visual_review": "Cell structure, merge state, shading, formatting, text, and line breaks retained; padding and cumulative table/paragraph positions shift as expected."
+    },
+    {
+      "file": "packages/quds_office_editor/test/goldens/table_grid_replace.png",
+      "image_size": [
+        640,
+        900
+      ],
+      "before_sha256": "438fb0727e44bc3ab4393f87f2cde56796b241649668938df7fcfed71be48457",
+      "diagnostic_master_sha256": "438fb0727e44bc3ab4393f87f2cde56796b241649668938df7fcfed71be48457",
+      "after_sha256": "6b5a70d72d47775ccf183667beeebf65736c117485e72604ab5aa23cd6c9e296",
+      "changed_pixels": 11967,
+      "changed_pixel_bounds_xyxy": [
+        159,
+        154,
+        521,
+        584
+      ],
+      "updated_pixels_equal_reviewed_test_image": true,
+      "reviewed_master_pixels_equal_original_baseline": true,
+      "visual_review": "Cell structure, merge state, shading, formatting, text, and line breaks retained; padding and cumulative table/paragraph positions shift as expected."
+    },
+    {
+      "file": "packages/quds_office_editor/test/goldens/table_grid_unmerge.png",
+      "image_size": [
+        640,
+        900
+      ],
+      "before_sha256": "5dddd0679ef5560d0453c936cdc36f7e7af51bb03b49e0af177c4ba12dd498e1",
+      "diagnostic_master_sha256": "5dddd0679ef5560d0453c936cdc36f7e7af51bb03b49e0af177c4ba12dd498e1",
+      "after_sha256": "29e7c266ec602715de689b0adc1b0fb5d696d3d511b08d96dde493037df503cb",
+      "changed_pixels": 13062,
+      "changed_pixel_bounds_xyxy": [
+        159,
+        154,
+        521,
+        647
+      ],
+      "updated_pixels_equal_reviewed_test_image": true,
+      "reviewed_master_pixels_equal_original_baseline": true,
+      "visual_review": "Cell structure, merge state, shading, formatting, text, and line breaks retained; padding and cumulative table/paragraph positions shift as expected."
+    },
+    {
+      "file": "packages/quds_office_editor/test/goldens/nested_table_content.png",
+      "image_size": [
+        760,
+        800
+      ],
+      "before_sha256": "7b84d316c266a030bf046b7a1bc44ce6ee1056403c8f84e273d8165c785b2210",
+      "diagnostic_master_sha256": "7b84d316c266a030bf046b7a1bc44ce6ee1056403c8f84e273d8165c785b2210",
+      "after_sha256": "9eef18ad9e2b56067c664d355f7ee1bfe4a435340149d4a02a7a37c22a73a286",
+      "changed_pixels": 10594,
+      "changed_pixel_bounds_xyxy": [
+        95,
+        90,
+        657,
+        381
+      ],
+      "updated_pixels_equal_reviewed_test_image": true,
+      "reviewed_master_pixels_equal_original_baseline": true,
+      "visual_review": "Picture, nested table, contents entry, frame, headings, and text retained without clipping; only expected padding and cumulative flow positions change."
+    },
+    {
+      "file": "packages/quds_office_editor/test/goldens/linux/word_selection_macOS.png",
+      "image_size": [
+        820,
+        560
+      ],
+      "before_sha256": "7610764f724a853192335f0c37bc36459ccbef3fbd6e5e143b67ebea987bc186",
+      "diagnostic_master_sha256": "7610764f724a853192335f0c37bc36459ccbef3fbd6e5e143b67ebea987bc186",
+      "after_sha256": "b5b00b57a45899e53a9f40e520d11cadcff0279fae0347e4629b4094b15bfb3e",
+      "changed_pixels": 3727,
+      "changed_pixel_bounds_xyxy": [
+        159,
+        295,
+        561,
+        367
+      ],
+      "updated_pixels_equal_reviewed_test_image": true,
+      "reviewed_master_pixels_equal_original_baseline": true,
+      "pixels_above_table_identical": true,
+      "visual_review": "Selection highlights, body text, and wrapping unchanged; table contents and following paragraph shift consistently with 4.25pt to 4pt padding."
+    },
+    {
+      "file": "packages/quds_office_editor/test/goldens/linux/word_selection_windows.png",
+      "image_size": [
+        820,
+        560
+      ],
+      "before_sha256": "632b4de2fd87b6ce1449268a308b215376f74e14fae2bc3d2be7dceb6d112932",
+      "diagnostic_master_sha256": "632b4de2fd87b6ce1449268a308b215376f74e14fae2bc3d2be7dceb6d112932",
+      "after_sha256": "915aba428f767cf52a0193f8ea22e2225ea141e3a4fd8a3e455aaf3af1fa7633",
+      "changed_pixels": 3727,
+      "changed_pixel_bounds_xyxy": [
+        159,
+        295,
+        561,
+        367
+      ],
+      "updated_pixels_equal_reviewed_test_image": true,
+      "reviewed_master_pixels_equal_original_baseline": true,
+      "pixels_above_table_identical": true,
+      "visual_review": "Selection highlights, body text, and wrapping unchanged; table contents and following paragraph shift consistently with 4.25pt to 4pt padding."
+    }
+  ]
+}

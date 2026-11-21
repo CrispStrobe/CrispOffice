@@ -4,6 +4,18 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Honor each table's uniform cell margin in native measurement, wrapping,
+  pagination and note/nested-table layout instead of a fixed inset. Preserve
+  accumulated ancestor margins when fitting pictures and splitting tall rows.
+  Editable Zotero ODT exports explicit padding; native import resolves bounded
+  style inheritance and retains uniform padding through DOCX saves. Admit
+  LibreOffice's explicit borderless declarations, while rejecting asymmetric,
+  conflicting or unrepresentable padding and visible unsupported borders.
+  Check serialized content widths with exact decimal arithmetic, including
+  merged spans and margins that exhaust a cell only after rounding. Render
+  uniquely defined, body-referenced image-only endnotes without promoting
+  orphan, duplicate or frame-only note references.
+
 - Refuse editable Zotero ODT export when effective native text, paragraph-mark
   or note-marker formatting raises or lowers the baseline by an absolute
   amount. Check inherited positions before writing, preserve explicit zero
