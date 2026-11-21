@@ -219,9 +219,10 @@ $_setup.HeaderDistance = 12
       'exact twentieth-point boundary $property=$points is source-valid',
       () {
         expect(
-          _compile(
-            '$_setup.$property = $points',
-          ).steps.single.arguments['points'],
+          _compile('$_setup.$property = $points')
+              .steps
+              .single
+              .arguments['points'],
           points,
         );
       },
@@ -380,7 +381,6 @@ End Sub
     'ThisDocument.PageSetup.TopMargin = 36',
     'ThisDocument.Sections.PageSetup.TopMargin = 36',
     'ThisDocument.Paragraphs(1).Range.PageSetup.TopMargin = 36',
-    '$_setup.Orientation = 1',
     '$_setup.PaperSize = 1',
     '$_setup.Gutter = 18',
     '$_setup.DifferentFirstPageHeaderFooter = True',

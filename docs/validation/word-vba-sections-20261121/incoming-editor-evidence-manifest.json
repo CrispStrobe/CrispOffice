@@ -1,0 +1,87 @@
+{
+  "archive": "incoming-editor-evidence.tar.gz",
+  "archive_bytes": 27280,
+  "archive_sha256": "0f9ac059f6ccdd7ac1cb0bf62a1d923c2356be22f08275c1d48f6312d62532ab",
+  "members": {
+    "focused-summary.json": {
+      "bytes": 5971,
+      "sha256": "1c428b3632e66496114f9dc692677ec1f8b13654572947d11e3c2577ccb88570"
+    },
+    "runtime.json": {
+      "bytes": 3482,
+      "sha256": "0fa2e0c2310740e8887af3d05d7b6d404215d2c9e334b4da67314fbe83b55218"
+    },
+    "official-release.json": {
+      "bytes": 354,
+      "sha256": "0512d2f3e1ecc398936a6dcd0d9b57f89c7cf6221efa5c103b95490c77eab9dd"
+    },
+    "pub-cache-receipt.json": {
+      "bytes": 47778,
+      "sha256": "71bffe01776ff54e8f44c283f80ebf906bf7f87223f16db5d1b787d4d72e15c9"
+    },
+    "bin/flutter": {
+      "bytes": 784,
+      "sha256": "c1e8ed49a383032eac3f629f30a61baa6155578277f7abc233870803db1088b0"
+    },
+    "scripts/bootstrap_flutter_focused.py": {
+      "bytes": 10028,
+      "sha256": "06b1220b482f9d911eb526e708558d29be0191ece9650bf9113bac0bcdbd5918"
+    },
+    "scripts/run_focused_flutter.py": {
+      "bytes": 3327,
+      "sha256": "fd8b8aad585bcad70fcf0d4dc4f3ea460f3aea688a820d80c1c50cc3cf58198f"
+    },
+    "scripts/flutter-bootstrap.log": {
+      "bytes": 543,
+      "sha256": "aa47f1d5e1c89a840609853055f10afc64b61c17135dc44c1719187f88df359e"
+    },
+    "logs/benchmark-metrics.json": {
+      "bytes": 6439,
+      "sha256": "88f0628f1fadfd7274e7308d853e8aafe2e4e4fe4a4c474cd82b6606a806339a"
+    },
+    "logs/flutter-tools-pub-get.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "logs/flutter-tools-pub-get.stdout": {
+      "bytes": 1228,
+      "sha256": "fcccf37d969787c76d4c55b19cba368cff68b1c3eb86b1f0f02274b9cc405829"
+    },
+    "logs/flutter-version.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "logs/flutter-version.stdout": {
+      "bytes": 636,
+      "sha256": "a07ccdd6756113db2a1ed9f6dbc3b74cc187e0c0d47b03a288238a13dbe196c5"
+    },
+    "logs/focused-flutter-receipt.json": {
+      "bytes": 2254,
+      "sha256": "d6b5fc86b52f119d49a151d194537f34f4bc87f35607594bbc5db7c29ff33d07"
+    },
+    "logs/studio-typing-benchmark.jsonl": {
+      "bytes": 7314,
+      "sha256": "9a5d05f299133935d14435b1b1b785be275fbfce850102bb46d38324346a677f"
+    },
+    "logs/studio-typing-benchmark.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "logs/word-layout-equivalence.jsonl": {
+      "bytes": 31072,
+      "sha256": "b5f354805ebb97efd45307dc0708ab35e6ad3d85e0ce685db0ac6065a99846b5"
+    },
+    "logs/word-layout-equivalence.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "logs/workspace-pub-get.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "logs/workspace-pub-get.stdout": {
+      "bytes": 214,
+      "sha256": "3640d48177b802767785e357f56651162d2250e124b566cffdc2cb88ce7e7f9c"
+    }
+  }
+}

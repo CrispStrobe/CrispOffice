@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-21",
+  "source_base": "c375becb51939dcca5c145bf1bcdb14a4febe041",
+  "scope": "Provider-neutral selected-folder session, deterministic local streams; no live-provider claim",
+  "toolchain": "Flutter 3.47.8 / Dart 3.13.7; repository language 3.12",
+  "command": "flutter test --no-pub test/studio_mail_mailbox_session_test.dart",
+  "working_directory": "packages/quds_office_editor/example",
+  "passed": 14,
+  "failed": 0,
+  "skipped": 0,
+  "coverage": [
+    "initial and incremental flags/counts",
+    "A-B-A selection and cross-account rejection",
+    "missing versus empty views",
+    "revision high-water mark across absence",
+    "retained snapshot on typed and thrown failures",
+    "notification-driven selection and close",
+    "delivery-time suppression of stale queued snapshots",
+    "cancellation drain before owner release",
+    "one-shot store compatibility"
+  ],
+  "sources": {
+    "packages/quds_office_editor/example/lib/studio_mail_mailbox_session.dart": "6713567d7d54d9d7a3177278d58d1b0951a53de86991f5a21064eec3a7047280",
+    "packages/quds_office_editor/example/test/studio_mail_mailbox_session_test.dart": "136e25a59dca6376a74ac5a01685dd874aef6155c8316c2611e7d26853ad7bfa"
+  },
+  "analysis": {
+    "command": "dart analyze --fatal-infos lib/studio_mail_mailbox_session.dart test/studio_mail_mailbox_session_test.dart",
+    "result": "No issues found"
+  }
+}

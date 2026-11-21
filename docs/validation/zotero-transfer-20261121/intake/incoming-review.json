@@ -1,0 +1,45 @@
+{
+  "base": "84046975f286407e3c62e5e5352bc16bc89c0d26",
+  "incoming_ref": "refs/heads/perf/keystroke-trace-20261121",
+  "incoming_head": "2cd11ced136a30354169fd0043e002079bcabfa3",
+  "merge_base": "84046975f286407e3c62e5e5352bc16bc89c0d26",
+  "relationship": "incoming is exactly three commits ahead of frozen main",
+  "commits": [
+    {
+      "sha": "2cd11ced136a30354169fd0043e002079bcabfa3",
+      "subject": "Word: lay out a replaced document on the next read, not on the first keystroke"
+    },
+    {
+      "sha": "48f4792a48361d84cc7261d9732d8ad85450379f",
+      "subject": "Keystroke trace workflow: run on pushes to perf/keystroke-trace-*"
+    },
+    {
+      "sha": "1a854c9f5abb1a23a74dcc3d5418900ae8a5d09c",
+      "subject": "Keystroke trace: phase/listener hooks, profile-mode typing integration test, workflow [skip ci]"
+    }
+  ],
+  "changed_paths": [
+    ".github/workflows/keystroke-trace.yml",
+    "packages/quds_office_editor/example/integration_test/typing_profile_test.dart",
+    "packages/quds_office_editor/example/test/studio_typing_proofing_benchmark_test.dart",
+    "packages/quds_office_editor/example/test_driver/typing_profile_driver.dart",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+    "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+    "tool/perf/keystroke_trace_report.py"
+  ],
+  "reviewed_behavior": [
+    "Add optional Word keystroke and listener timing hooks; hooks inactive by default.",
+    "Add profile-mode Flutter typing harness and timeline summarizer; preserve benchmark fixtures.",
+    "Assigning a different Word document invalidates its layout and forces full layout on next read or relayout.",
+    "Incremental engine refuses reuse when either engine owner or document identity differs.",
+    "Includes two document-replacement regression tests and a new keystroke-trace workflow; no workflow was run or awaited."
+  ],
+  "recommended_validation": [
+    "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+    "Zotero controller suites exercising document replacement, undo/redo, target stale detection, and layout",
+    "Targeted engine Word layout regression"
+  ],
+  "minor_nonblocking_observation": "Incoming workflow references docs/performance/keystroke-trace-20261121.md, which is not in this captured branch tree. This is a comment-only documentation link.",
+  "disposition": "Pending parent integration; preserve the incoming ancestry through a normal merge or fast-forward. Do not fake an equivalent disposition."
+}

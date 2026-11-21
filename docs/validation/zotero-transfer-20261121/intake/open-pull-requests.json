@@ -1,0 +1,8 @@
+{
+  "captured_at": "2026-11-21T05:45:10.961510+00:00",
+  "repositories": {
+    "CrispStrobe/quds_office_suite": [],
+    "MohammedAsaadAsaad/quds_office_suite": []
+  },
+  "source": "GET /repos/{owner}/{repo}/pulls?state=open&per_page=100 via GitHub connector; both responses empty"
+}

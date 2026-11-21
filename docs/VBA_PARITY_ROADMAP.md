@@ -25,7 +25,8 @@ The `vba-word` adapter shares that language implementation and adds explicit
 font properties, all 18 underline styles, strikethrough, paragraph
 alignment/spacing, signed indentation and pagination. Explicit `Section` and
 `PageSetup` selectors additionally set page width/height, four margins and
-header/footer distances on one existing section. It emits native Word
+header/footer distances on one existing section, plus portrait/landscape
+orientation, toggling and four section-start modes. It emits native Word
 operations and keeps paragraph marks structural. This is a bounded write-only
 Word object-model slice; stories, tables, arbitrary text ranges and live reads
 remain separate work. The `vba-powerpoint` adapter adds explicit presentation,
@@ -174,8 +175,9 @@ The section continuation adds typed `Section` and `PageSetup` selectors through
 `ByVal` helpers. Eight write-only geometry properties lower to the dedicated
 `docx.pageSetup` operation: page width/height, four margins, and header/footer
 distances. Source numbers retain exact twentieth-point checks and bounded
-Double arithmetic; VBA Single rounding, `Orientation`, `PaperSize`, broadcast
-page setup and geometry reads remain outside this slice.
+Double arithmetic; VBA Single rounding, `PaperSize`, broadcast page setup and
+geometry reads remain outside this slice. Orientation and section starts are
+extended by the following continuation.
 
 Native execution resolves each write against the detached section after
 earlier operations, validates positive page-body/column text geometry, and
@@ -190,6 +192,25 @@ and [local qualification record](validation/word-vba-paragraph-pagination-202611
 describe the supported engine behavior and executed source checks. This
 increment does not establish installed Microsoft Word or Flutter validation
 and does not add Stage 3 document-aware source execution.
+
+### Word section orientation and starts
+
+The next section slice adds `PageSetup.Orientation`, zero-argument
+`TogglePortrait`, and four `SectionStart` modes through the existing explicit
+section selectors. Portrait/landscape assignment and toggling use a dedicated
+native action that swaps dimensions when needed while retaining named margins
+and printer paper code. Square pages retain explicit orientation through
+save/reopen. Continuous/new-page/even-page/odd-page starts update only the
+native section-start attribute, with headless pagination coverage.
+
+Both operations preserve the existing transaction, recording, policy and
+resource boundaries. Ambiguous source identity or orientation is refused;
+new-column starts, collection-wide settings and source property reads remain
+unsupported. This is another Stage 4 source-to-plan slice, without Stage 3
+document-dependent branching or installed Word differential qualification.
+See the [exact contract](VBA_WORD_MACROS.md#section-orientation-and-start-controls),
+[BAS example](../packages/quds_office_engine/example/macros/word_sections.bas),
+and [local qualification](validation/word-vba-sections-20261121/README.md).
 
 ### Next shared-language increments
 

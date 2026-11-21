@@ -55,7 +55,8 @@ objects or the range's `Font` and `ParagraphFormat`. All bindings remain
 document-independent selectors; they never expose text or formatting reads.
 
 `Document.Sections(i)` and `.Sections.Item(i)` select an existing section.
-Its `PageSetup` supports the eight explicit geometry writes documented below.
+Its `PageSetup` supports the eight explicit geometry writes and the orientation
+and section-start controls documented below.
 Section geometry is independent of body paragraph selection; a section's
 headers, footers and range are not exposed as source objects.
 
@@ -257,7 +258,7 @@ assignment, matching Word's custom-paper side effect; a foreign attribute
 named `code` is preserved. The existing source orientation remains unchanged.
 If an earlier general native `docx.sectionFormat` dimension edit is pending,
 its normal orientation behavior is retained before the sparse measurement
-write is applied. This does not expose a VBA `Orientation` setter.
+write is applied. The separate orientation setter is described below.
 
 The guarded source subset refuses negative, malformed or universal-unit
 native measurements, nonzero gutters, duplicate native geometry/column
@@ -271,13 +272,108 @@ can still be preserved as input without qualifying it for these edits.
 This slice does not provide `Document.PageSetup`, `Sections.PageSetup`,
 `Range.PageSetup`, `Selection`, property reads, `Sections.Count`, collection
 iteration, `First`/`Last`, section creation, `Section.Range`, header/footer
-objects, `Orientation`, `PaperSize`, `Gutter`, columns, or header/footer mode
+objects, `PaperSize`, `Gutter`, columns, or header/footer mode
 setters in VBA. Geometry changes do not edit header/footer content. Unused
 helpers and inactive branches are checked for unsupported members and types.
 
 The [local qualification record](validation/word-vba-paragraph-pagination-20261121/README.md)
 records the exact source and executed checks. No installed Microsoft Word or
 Flutter editor validation is claimed by this source/native geometry slice.
+
+### Section orientation and start controls
+
+The same explicit `Section.PageSetup` selectors now accept `Orientation`,
+`SectionStart`, and the zero-argument `TogglePortrait` method. Typed `PageSetup`
+aliases, required `ByVal` helper parameters, named helper arguments, and nested
+`With` keep their existing selector identity. These properties remain
+write-only in source; the native runtime resolves a toggle against the selected
+detached section after earlier operations in the same run.
+
+| VBA member/value | Native operation | Required arguments besides zero-based `section` |
+| --- | --- | --- |
+| `.Orientation = wdOrientPortrait` (`0`) | `docx.pageOrientation` | `orientation: portrait` |
+| `.Orientation = wdOrientLandscape` (`1`) | `docx.pageOrientation` | `orientation: landscape` |
+| `.TogglePortrait` | `docx.pageOrientation` | `orientation: toggle` |
+| `.SectionStart = wdSectionContinuous` (`0`) | `docx.sectionStart` | `kind: continuous` |
+| `.SectionStart = wdSectionNewPage` (`2`) | `docx.sectionStart` | `kind: nextPage` |
+| `.SectionStart = wdSectionEvenPage` (`3`) | `docx.sectionStart` | `kind: evenPage` |
+| `.SectionStart = wdSectionOddPage` (`4`) | `docx.sectionStart` | `kind: oddPage` |
+
+The constants retain Microsoft's numeric values. `wdSectionNewColumn` (`1`)
+is recognized but refused because the native section model does not implement
+that start mode. Enum assignments require actual exact integers; Strings,
+Booleans, Empty, Null, fractions and other enum values are refused. The method
+accepts the bare, empty-parentheses, `Call`, and `Call ...()` statement forms,
+with no arguments or return value. A new-column value in an evaluated setter
+produces a source diagnostic and no partial plan. Unsupported member access,
+wrong receivers and argument shapes are also checked in inactive branches and
+unused helpers.
+
+```vb
+Sub Main()
+    With ActiveDocument.Sections(2).PageSetup
+        .Orientation = wdOrientLandscape
+        .SectionStart = wdSectionOddPage
+        Call .TogglePortrait()
+    End With
+End Sub
+```
+
+This writes landscape, selects an odd-page start for the second section, then
+returns that section to portrait. Each statement emits one operation, including
+repeated same-value assignments and toggles. Recording stores the toggle action,
+so replay resolves the orientation of its supplied document. The complete
+[word_sections.bas example](../packages/quds_office_engine/example/macros/word_sections.bas)
+configures two existing sections through typed aliases and a named helper.
+
+**Orientation contract.** Existing dimensions are resolved at the ordinary
+serializer's integer-twip (0.05-point) precision, including authored defaults
+and custom model values. Changing orientation swaps that width and height
+once. Assigning the current orientation retains those dimensions. Named
+top/bottom/left/right margins, header/footer distances and uniform column
+settings retain their values; the resulting page body and column text width
+must still be positive. The native printer paper code is preserved. This is
+distinct from explicit `PageWidth` / `PageHeight` writes, which select custom
+paper. An explicit portrait or landscape attribute is stored even for square
+pages and same-value assignments, and is retained through subsequent edits,
+serialization and reopening.
+
+For imported source, `w:pgSz/@w:orient` determines the current orientation,
+with absent orientation meaning portrait. Unrecognized orientation values or
+non-square dimensions inconsistent with that state are refused. Authored
+sections without source use their canonical dimensions to establish the initial
+state. A preceding general native `docx.sectionFormat` dimension change retains
+the established serializer behavior before the new orientation operation;
+near-square pending geometry is refused when the general serializer's
+orientation tolerance would disagree with the canonical dimensions.
+Existing page-geometry, unsupported gutter/column/settings, namespace and
+section-identity guards continue to apply. All checks complete before changing
+the live model, and failure discards the complete detached macro run.
+
+The dimension-swap and unchanged-margin rules above are the explicit Quds
+contract. The Microsoft VBA references establish the members and enum values;
+this increment has no installed Microsoft Word differential observations and
+does not claim printer-dependent layout parity.
+
+**Section-start contract.** The start belongs to the beginning of the selected
+section. Continuous starts reuse the current page when the existing layout
+allows it; next-page, even-page and odd-page starts use the native pagination
+rules. The operation updates only `w:type/@w:val` and its modeled break kind.
+Same-value writes still own that attribute, including when imported unsupported
+source previously fell back to a modeled kind. Other section properties,
+geometry, namespace extensions and recorded `sectPrChange` history survive.
+Duplicate native type/value entries and ambiguous section identity are refused.
+No unrelated page-geometry restriction is imposed by a section-start write.
+
+Both operations require an explicit valid section index, use normal mutation
+permissions/allowlists and resource limits, and preserve opaque DOCM VBA parts.
+They do not create sections, broadcast over a collection, expose property
+reads, open another document, or execute embedded VBA projects. A pending
+custom paragraph line-spacing pair must complete before either operation.
+
+The [local section-controls qualification](validation/word-vba-sections-20261121/README.md)
+records the source snapshots, native/source/integration checks and VM/JavaScript
+example results, separately from the unexecuted Office and Flutter hosts.
 
 ### Opening, closing and toggling paragraph spacing
 
@@ -773,6 +869,8 @@ Paragraph-format operations can target an empty paragraph.
 | `ParagraphFormat.LineSpacing` | Positive finite number in exact `0.05`-point increments, at most `107374182.35` points (`2147483647` native twips) |
 | `PageSetup.PageWidth`, `PageSetup.PageHeight` | Actual finite number from `1` through `107374182.35` points, in exact `0.05`-point increments; native execution also checks page-body and column geometry |
 | `PageSetup.TopMargin`, `BottomMargin`, `LeftMargin`, `RightMargin`, `HeaderDistance`, `FooterDistance` | Actual finite number from `0` through `107374182.35` points, in exact `0.05`-point increments; native execution also checks current geometry |
+| `PageSetup.Orientation` | Exact numeric `0` (portrait) or `1` (landscape); native execution checks orientation consistency and resulting geometry |
+| `PageSetup.SectionStart` | Exact numeric `0`, `2`, `3`, or `4` (continuous, new-page, even-page or odd-page); new-column `1` is unsupported |
 
 The named alignment constants are `wdAlignParagraphLeft = 0`,
 `wdAlignParagraphCenter = 1`, `wdAlignParagraphRight = 2`, and
@@ -1290,6 +1388,8 @@ the explicit restrictions above. They do not certify this implementation:
 - [Paragraphs object](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphs): indexed paragraph access and main-story collection scope.
 - [Document.Sections](https://learn.microsoft.com/en-us/office/vba/api/word.document.sections), [Sections.Item](https://learn.microsoft.com/en-us/office/vba/api/word.sections.item), and [Section.PageSetup](https://learn.microsoft.com/en-us/office/vba/api/word.section.pagesetup): explicit section selection and page-setup object vocabulary; the source integer limits and no-read restrictions above are deliberate dialect boundaries.
 - [PageSetup.PageWidth](https://learn.microsoft.com/en-us/office/vba/api/word.pagesetup.pagewidth) and [PageHeight](https://learn.microsoft.com/en-us/office/vba/api/word.pagesetup.pageheight): point dimensions and the custom-paper side effect of each setter. Quds does not claim VBA Single rounding or a general paper-size object model.
+- [PageSetup.Orientation](https://learn.microsoft.com/en-us/office/vba/api/word.pagesetup.orientation), [WdOrientation](https://learn.microsoft.com/en-us/office/vba/api/word.wdorientation), and [PageSetup.TogglePortrait](https://learn.microsoft.com/en-us/office/vba/api/word.pagesetup.toggleportrait): member vocabulary, enum values and toggling. The explicit dimension/margin behavior above is the bounded Quds contract, without an installed Word differential claim.
+- [PageSetup.SectionStart](https://learn.microsoft.com/en-us/office/vba/api/word.pagesetup.sectionstart) and [WdSectionStart](https://learn.microsoft.com/en-us/office/vba/api/word.wdsectionstart): break modes and their numeric identities, applied to the beginning of the selected section. New-column starts remain unsupported.
 - [PageSetup.TopMargin](https://learn.microsoft.com/en-us/office/vba/api/word.pagesetup.topmargin), [BottomMargin](https://learn.microsoft.com/en-us/office/vba/api/word.pagesetup.bottommargin), [LeftMargin](https://learn.microsoft.com/en-us/office/vba/api/word.pagesetup.leftmargin), and [RightMargin](https://learn.microsoft.com/en-us/office/vba/api/word.pagesetup.rightmargin): page-to-body distances in points.
 - [PageSetup.HeaderDistance](https://learn.microsoft.com/en-us/office/vba/api/word.pagesetup.headerdistance) and [FooterDistance](https://learn.microsoft.com/en-us/office/vba/api/word.pagesetup.footerdistance): page-edge distances in points, separate from story content.
 - [Paragraphs.Item](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphs.item) and [Application.ActiveDocument](https://learn.microsoft.com/en-us/office/vba/api/word.application.activedocument): source vocabulary; the Quds session binding is explicitly scoped above.
