@@ -273,8 +273,8 @@ can still be preserved as input without qualifying it for these edits.
 
 This slice does not provide `Document.PageSetup`, `Sections.PageSetup`,
 `Range.PageSetup`, `Selection`, property reads, `Sections.Count`, collection
-iteration, `First`/`Last`, section creation, `Section.Range`, header/footer
-objects, `PaperSize`, `Gutter`, columns, or header/footer mode
+iteration, `First`/`Last`, section creation, `Section.Range`, `PaperSize`,
+`Gutter`, columns, or header/footer mode
 setters in VBA. Geometry changes do not edit header/footer content. Unused
 helpers and inactive branches are checked for unsupported members and types.
 
@@ -1297,7 +1297,7 @@ and [native unit definitions](https://learn.microsoft.com/en-us/windows/win32/vm
 
 Font sizes still require their existing half-point grid; tab stops, spacing
 and indentation retain their existing constraints. Pixel conversions,
-`Selection`, page-setup objects, arbitrary ranges and document property reads
+`Selection`, arbitrary ranges and document property reads
 remain outside this slice.
 
 Conversions emit no native operation themselves. Resulting writes use the

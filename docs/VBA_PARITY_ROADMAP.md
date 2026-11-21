@@ -74,7 +74,7 @@ The current Word/PowerPoint increment adds the Stage 4 write-only slices above
 without introducing Stage 3 document reads. Its exact branch integration,
 VM/JavaScript, native transaction and CLI/MCP evidence is retained in the
 [20 November qualification record](validation/office-vba-word-powerpoint-20261120/README.md).
-Groups, arbitrary text subranges, Word stories/tables, and live collection
+Groups, arbitrary text subranges, broader Word stories/tables, and live collection
 behavior remain separate increments with their own identity and range tests.
 
 ### Qualified Word and PowerPoint continuation
