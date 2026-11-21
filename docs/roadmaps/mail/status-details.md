@@ -2,7 +2,7 @@
 > **Detailed reference.** See [status.md](status.md) for the current overview. This file preserves the pre-rewrite detail and historical qualification notes.
 
 
-## Range selection and synchronized address search — source implemented
+## Range selection and synchronized address search — locally qualified
 
 Shared mailbox lists with checked actions now support Shift+Up/Down/Home/End,
 Shift+Space and Shift+click on rows or checkboxes. Ranges track the visible
@@ -17,10 +17,13 @@ entry, with empty-name fallbacks and no Bcc/body inclusion. Connected and
 offline regression cases assert that searching triggers no synchronization,
 download or body reads.
 
-**Fresh runtime qualification is pending.** The local executor failed with
-disk exhaustion and then could not start processes. Source review and remote
-readback do not establish passing Flutter tests, analyzer, formatter, visual
-checks or live-provider acceptance. See the [workflow](keyboard-triage.md) and
+**Fresh native qualification passed.** After executor recovery, the full shared
+Mail UI suite passed 272 cases and the focused Studio cohort passed 176 cases,
+including the 43 new range, three help and two address-search cases. All 23
+changed Dart paths pass strict analysis and formatting. The original outage
+and incomplete first Studio run remain separate historical attempts; the final
+serialized Studio run passed unchanged. Installed keyboard/IME, visual and
+live-provider acceptance remain separate. See the [workflow](keyboard-triage.md) and
 [work record](../../validation/mail-keyboard-triage-20261121/README.md).
 GitHub Actions were neither queried nor awaited for this continuation.
 

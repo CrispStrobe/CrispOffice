@@ -1,0 +1,134 @@
+{
+  "qualified_source": "0b38435e553d14cbea505477a473061b134e308e",
+  "incoming_main": "2f7f5ffc668d7f6452facb13e006e6704c93f439",
+  "pr": 347,
+  "production_inputs_unchanged": true,
+  "files": [
+    {
+      "path": "docs/validation/zotero-host-ownership-20261121/README.md",
+      "sha": "8f442eae02cc058aed8e7e39bc45130b00cd6862",
+      "mode": "100644",
+      "existing_bytes_identical": false,
+      "sha256": "d5a6d5b19b15387d4ec3a4619c806795c04874f17d4a52111ebda8c26c4c6274"
+    },
+    {
+      "path": "docs/validation/zotero-host-ownership-20261121/execution.tar.xz",
+      "sha": "cdd39e03d64f29379fd9cb9d87c3fbe668caff84",
+      "mode": "100644",
+      "existing_bytes_identical": false,
+      "sha256": "6f2bd1286d589f9bb8e1c7ec4395b9c1d9b95e09aeaa954672c0fccca7a46992"
+    },
+    {
+      "path": "docs/validation/zotero-host-ownership-20261121/index.json",
+      "sha": "7f3dbd34305524bf888a1071f62bddc9f95e37de",
+      "mode": "100644",
+      "existing_bytes_identical": false,
+      "sha256": "75a75716452c74f3403724dbfeda9fad6bfdda6a4f8cfb8b41566b7b57cd6a15"
+    },
+    {
+      "path": "docs/validation/zotero-host-ownership-20261121/qualification.json",
+      "sha": "019e68c78acd07afe4f6582a5a9d90c9124b32da",
+      "mode": "100644",
+      "existing_bytes_identical": false,
+      "sha256": "2ee1d45f61bd6a4d0e8dcd5787b387b99204778c221e70f198a5d61fc6e8aa53"
+    },
+    {
+      "path": "docs/validation/zotero-host-ownership-20261121/run_local.py",
+      "sha": "8bf6061dfcca48bdd1d3a192ff2d6096285a28a0",
+      "mode": "100644",
+      "existing_bytes_identical": false,
+      "sha256": "f224842164cac239baccdad308f436eeabc1a6de92ce1420a8a4b5596d667e40"
+    },
+    {
+      "path": "docs/validation/zotero-host-ownership-20261121/verification.json",
+      "sha": "fcc21541d2b2d53d212b2b92db306dafda827bef",
+      "mode": "100644",
+      "existing_bytes_identical": false,
+      "sha256": "408070e5807da829b41d8ab1fa651fb186b5c6c9ccb465479b0bf3017cd9759b"
+    },
+    {
+      "path": "docs/validation/zotero-table-layout-20261121/README.md",
+      "sha": "19aef0db30df18c6a3c1669324f59abbd30e0153",
+      "mode": "100644",
+      "existing_bytes_identical": false,
+      "sha256": "e40ed07c0c525142370889dc6bb7797077b74eb689b0f11a13017db5aaec9c5b"
+    },
+    {
+      "path": "docs/validation/zotero-table-layout-20261121/main-source-continuity-52e72ca0.json",
+      "sha": "614f39206843ef368365c32b68857a2bff7cb164",
+      "mode": "100644",
+      "existing_bytes_identical": false,
+      "sha256": "6cc8ddecc14dc3f3f691f785eecddab10f90b1e8d6389d61c059bf674935a6e2"
+    },
+    {
+      "path": "docs/zotero-support.md",
+      "sha": "a4a88630acb98e12b05e40ff7beb04ece7e07af4",
+      "mode": "100644",
+      "existing_bytes_identical": false,
+      "sha256": "6f4d0647cf49f6b85d1b3438fc89855a8d1eee6736d6435e7b85ffe24ed40d4f"
+    },
+    {
+      "path": "docs/zotero-validation.md",
+      "sha": "0696e9231f3d686d2756ea4a4e097444c0c5d07d",
+      "mode": "100644",
+      "existing_bytes_identical": false,
+      "sha256": "106d79f6bb693c5e2ddae9243ef0e8a4167fc4480a8814d277c26f5843b29689"
+    },
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "sha": "0331e2d1428f7a71609bfc08cfb0429834fc6774",
+      "resolution": "combine incoming entries with Mail changelog"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_shortcuts.dart",
+      "sha": "05ee0d3e79c53c78ed1ee03f44f544f6fa5bb4c5",
+      "mode": "100644",
+      "existing_bytes_identical": true,
+      "sha256": "3dd2af2b4e3461cae167fccc0943ce0164f7fbf1557d7eeba6fb95504d418b87"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "sha": "4fcee9ca6982958640829cd3fb373a31b358a0fd",
+      "mode": "100644",
+      "existing_bytes_identical": true,
+      "sha256": "bc61a03ccd65e98a9015f2c4fd91468af2afcdf106cff992b2ba95065c4898cd"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_settings_test.dart",
+      "sha": "3fd1d0a32d513f7fa4068a04939d72c89a1c7728",
+      "mode": "100644",
+      "existing_bytes_identical": true,
+      "sha256": "933e3cfda8941787d406bb0ab73ee85e2c30a3ee4148d48ebb42320959756570"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_shortcut_dispatch_test.dart",
+      "sha": "c95257d8ad6d384b3199d657f26ff4b4d45a3401",
+      "mode": "100644",
+      "existing_bytes_identical": true,
+      "sha256": "3908958023fb9ec4e194e477cbab9a42945501ca67391c1e87a537805bf4d346"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_shortcuts_test.dart",
+      "sha": "aa21b68c54aab009a11e2078a51d8ec056e692b2",
+      "mode": "100644",
+      "existing_bytes_identical": true,
+      "sha256": "fb620f61d43d3e4007c70b167c6b33780036d837cb072aa9815cc108d0e51fd2"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "sha": "0b561d805e403324352994086f5669b5ab4325e5",
+      "mode": "100644",
+      "existing_bytes_identical": true,
+      "sha256": "8004b37ee6361112e2c9fc9674e20d28cedc23f1861147d45772745e68c8b6db"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "sha": "fbcba34d303b6035826558f71f74177840d1a90a",
+      "mode": "100644",
+      "existing_bytes_identical": true,
+      "sha256": "89cc6e5b692ca05eae21e6f839e913ad4373593144286bb1626ae19cf9a4822a"
+    }
+  ],
+  "additional_runtime_check": "incoming-dispatch-tests-final.json",
+  "note": "Retain merged-main history, exact source, evidence and combined changelog; the 15 additional dispatch cases are separate from the earlier 705."
+}

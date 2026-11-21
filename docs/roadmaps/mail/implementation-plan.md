@@ -274,8 +274,9 @@ inspection receipt, not a complete dependency or runtime certification.
 - [x] Implement visible checked ranges in the shared list with Shift navigation,
   Shift+click, preserved independent checks and generation/scope guards, plus
   EN/DE/AR help. Correct synchronized header search to include visible names
-  and addresses. Source and regressions are committed; local runtime
-  qualification is pending. See [keyboard-triage.md](keyboard-triage.md).
+  and addresses. Fresh local qualification passes 272 shared UI and 176 Studio
+  cases, with strict analysis and formatting. See
+  [keyboard-triage.md](keyboard-triage.md).
 - [ ] Provide responsive single-pane mobile and multi-pane desktop layouts, keyboard actions and accessible focus movement. Lists/navigation are host chrome, not replacement document editors.
 - [ ] Switch accounts/profiles without retaining the previous account's selection, attachment handles, credentials or callbacks. Restore draft sessions under their owning identity.
 - [ ] Accept host navigation/attachment/composer services by injection; do not instantiate CrispCloud or standalone global services.

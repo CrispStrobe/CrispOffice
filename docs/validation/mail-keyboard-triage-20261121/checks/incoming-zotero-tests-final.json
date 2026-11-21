@@ -1,0 +1,24 @@
+{
+  "name": "incoming-zotero-tests-final",
+  "command": [
+    "/workspace/scratch/f433637a99a0/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+    "/workspace/scratch/f433637a99a0/toolchain/flutter/bin/cache/flutter_tools.snapshot",
+    "--no-version-check",
+    "test",
+    "--no-pub",
+    "--machine",
+    "--concurrency=1",
+    "test/studio_settings_test.dart",
+    "test/studio_shortcuts_test.dart",
+    "test/studio_zotero_shortcuts_test.dart"
+  ],
+  "cwd": "/workspace/scratch/f433637a99a0/quds_office_suite/packages/quds_office_editor/example",
+  "started_utc": "2026-11-21T21:57:32.424236+00:00",
+  "status": "PASS",
+  "log": "incoming-zotero-tests-final.log",
+  "github_actions": "NOT USED",
+  "exit_code": 0,
+  "elapsed_seconds": 42.678,
+  "finished_utc": "2026-11-21T21:58:15.102509+00:00",
+  "log_sha256": "8b40f5b50f570ba6118d49b41f3439a9dce5043362b183ebb7ca343527a76b48"
+}

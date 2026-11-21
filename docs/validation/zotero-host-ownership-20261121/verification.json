@@ -1,0 +1,160 @@
+{
+  "accepted_executions": 232,
+  "archives_verified": 1,
+  "case_identity": [
+    "repository-relative suite path",
+    "test name",
+    "visible occurrence ordinal within suite and name (testStart order)"
+  ],
+  "distinct_case_names": 232,
+  "distinct_cases": 232,
+  "distinct_suites": 17,
+  "members_verified": 58,
+  "production_commit": "22dd2a4d474a59ad231f24a61dcb8046b029e993",
+  "production_tree": "c265e4d354d4d8af5a3dcbf55d2ae51fdee7a667",
+  "repeated_executions": 0,
+  "runs": [
+    {
+      "distinct_case_names": 12,
+      "distinct_cases": 12,
+      "hidden_successes_omitted": 1,
+      "name": "studio-studio_shortcuts_test",
+      "passed": 12,
+      "suites": 1
+    },
+    {
+      "distinct_case_names": 23,
+      "distinct_cases": 23,
+      "hidden_successes_omitted": 1,
+      "name": "studio-studio_settings_test",
+      "passed": 23,
+      "suites": 1
+    },
+    {
+      "distinct_case_names": 15,
+      "distinct_cases": 15,
+      "hidden_successes_omitted": 1,
+      "name": "studio-studio_shortcut_dispatch_test",
+      "passed": 15,
+      "suites": 1
+    },
+    {
+      "distinct_case_names": 1,
+      "distinct_cases": 1,
+      "hidden_successes_omitted": 1,
+      "name": "studio-suite_workspace_mail_shortcuts_test",
+      "passed": 1,
+      "suites": 1
+    },
+    {
+      "distinct_case_names": 17,
+      "distinct_cases": 17,
+      "hidden_successes_omitted": 1,
+      "name": "studio-studio_zotero_shortcuts_test",
+      "passed": 17,
+      "suites": 1
+    },
+    {
+      "distinct_case_names": 18,
+      "distinct_cases": 18,
+      "hidden_successes_omitted": 1,
+      "name": "studio-studio_zotero_citing_transport_test",
+      "passed": 18,
+      "suites": 1
+    },
+    {
+      "distinct_case_names": 5,
+      "distinct_cases": 5,
+      "hidden_successes_omitted": 1,
+      "name": "studio-studio_zotero_odt_export_test",
+      "passed": 5,
+      "suites": 1
+    },
+    {
+      "distinct_case_names": 3,
+      "distinct_cases": 3,
+      "hidden_successes_omitted": 1,
+      "name": "studio-studio_odt_open_test",
+      "passed": 3,
+      "suites": 1
+    },
+    {
+      "distinct_case_names": 49,
+      "distinct_cases": 49,
+      "hidden_successes_omitted": 1,
+      "name": "editor-word_zotero_dialog_test",
+      "passed": 49,
+      "suites": 1
+    },
+    {
+      "distinct_case_names": 24,
+      "distinct_cases": 24,
+      "hidden_successes_omitted": 1,
+      "name": "editor-word_zotero_citing_dialog_test",
+      "passed": 24,
+      "suites": 1
+    },
+    {
+      "distinct_case_names": 6,
+      "distinct_cases": 6,
+      "hidden_successes_omitted": 1,
+      "name": "editor-word_zotero_transfer_dialog_test",
+      "passed": 6,
+      "suites": 1
+    },
+    {
+      "distinct_case_names": 10,
+      "distinct_cases": 10,
+      "hidden_successes_omitted": 1,
+      "name": "editor-word_zotero_children_dialog_test",
+      "passed": 10,
+      "suites": 1
+    },
+    {
+      "distinct_case_names": 8,
+      "distinct_cases": 8,
+      "hidden_successes_omitted": 1,
+      "name": "editor-word_zotero_source_occurrences_dialog_test",
+      "passed": 8,
+      "suites": 1
+    },
+    {
+      "distinct_case_names": 11,
+      "distinct_cases": 11,
+      "hidden_successes_omitted": 1,
+      "name": "editor-word_zotero_stored_details_dialog_test",
+      "passed": 11,
+      "suites": 1
+    },
+    {
+      "distinct_case_names": 5,
+      "distinct_cases": 5,
+      "hidden_successes_omitted": 1,
+      "name": "editor-word_zotero_navigation_dialog_test",
+      "passed": 5,
+      "suites": 1
+    },
+    {
+      "distinct_case_names": 2,
+      "distinct_cases": 2,
+      "hidden_successes_omitted": 1,
+      "name": "editor-word_zotero_dialog_scaling_test",
+      "passed": 2,
+      "suites": 1
+    },
+    {
+      "distinct_case_names": 23,
+      "distinct_cases": 23,
+      "hidden_successes_omitted": 1,
+      "name": "editor-word_zotero_note_preview_test",
+      "passed": 23,
+      "suites": 1
+    }
+  ],
+  "source_check": {
+    "checked": true,
+    "status": "verified",
+    "tracked_files": 6131
+  },
+  "verified": true
+}

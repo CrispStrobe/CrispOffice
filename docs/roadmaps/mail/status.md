@@ -31,10 +31,11 @@ Shift+Up/Down/Home/End, Shift+Space and Shift+click, with English, German and
 Arabic help. Synchronized-view header search retains names and addresses for
 every visible From/To/Cc entry.
 
-**Source implemented; fresh runtime qualification is pending.** The local
-executor could not start. The 48 new Mail regression cases are committed and
-source-reviewed, but were not executed. See the [workflow](keyboard-triage.md),
-[detailed status](status-details.md#range-selection-and-synchronized-address-search--source-implemented)
+**Locally qualified.** Fresh native runs passed 272 shared Mail UI cases and
+176 Studio cases, including all 48 new regressions. All 23 changed Dart paths
+pass strict analysis and formatting. The original executor outage and incomplete
+Studio attempt remain in the record. See the [workflow](keyboard-triage.md),
+[detailed status](status-details.md#range-selection-and-synchronized-address-search--locally-qualified)
 and [work record](../../validation/mail-keyboard-triage-20261121/README.md).
 
 ## Mailbox

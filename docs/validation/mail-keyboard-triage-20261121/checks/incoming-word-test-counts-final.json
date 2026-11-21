@@ -1,0 +1,44 @@
+{
+  "substantive_tests": 205,
+  "per_file": {
+    "test/office_vba_strcomp_test.dart": 78,
+    "test/office_macro_word_font_colors_test.dart": 43,
+    "test/office_vba_word_font_colors_test.dart": 74,
+    "test/office_vba_word_comparison_colors_integration_test.dart": 10
+  },
+  "failures": [],
+  "skipped": [],
+  "excluded_hidden_or_loader_setup_events": [
+    {
+      "test_id": 1,
+      "name": "loading test/office_vba_strcomp_test.dart",
+      "hidden": true
+    },
+    {
+      "test_id": 87,
+      "name": "loading test/office_macro_word_font_colors_test.dart",
+      "hidden": true
+    },
+    {
+      "test_id": 133,
+      "name": "loading test/office_vba_word_font_colors_test.dart",
+      "hidden": true
+    },
+    {
+      "test_id": 210,
+      "name": "loading test/office_vba_word_comparison_colors_integration_test.dart",
+      "hidden": true
+    },
+    {
+      "test_id": 212,
+      "name": "(setUpAll)",
+      "hidden": true
+    },
+    {
+      "test_id": 223,
+      "name": "(tearDownAll)",
+      "hidden": true
+    }
+  ],
+  "runner_success": true
+}

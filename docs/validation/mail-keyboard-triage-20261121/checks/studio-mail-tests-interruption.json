@@ -1,0 +1,19 @@
+{
+  "name": "studio-mail-tests-interruption",
+  "status": "FAILED_AND_STALLED",
+  "observed_utc": "2026-11-21T21:53:36.588637+00:00",
+  "session_exit_code": 130,
+  "intervention": "Ctrl-C to owned exec session63912 after loader stalled; Flutter final done event and wrapper completion receipt were not observed.",
+  "substantive_passed": 169,
+  "substantive_failed": 1,
+  "substantive_skipped": 0,
+  "failed_test": "ews host downloads synchronized bodies explicitly and reopens them offline",
+  "failure_location": "studio_mail_sync_host_test.dart _showHost line352, _until line277",
+  "failure_detail": "15-second wall-clock _until deadline waiting for enabled studio-mail-open-sync during host startup.",
+  "last_runner_event": "loading studio_mail_boolean_search_strings_test.dart (test188); first five files completed, remaining Boolean and conversation locale files not executed.",
+  "log": "studio-mail-tests.log",
+  "log_sha256": "9a0090c355ef4dff7d1885cab72036f82e4e048b0af3a7ad24ed271718bbfcd9",
+  "original_wrapper_receipt": "studio-mail-tests.json",
+  "original_wrapper_receipt_status": "RUNNING (interrupted before finalization)",
+  "github_actions": "NOT USED"
+}

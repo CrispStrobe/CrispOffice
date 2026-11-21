@@ -4,11 +4,15 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
-- Keep workspace shortcut dispatch within the active app, focused text action,
-  route and mutation permissions. Reject modifier-only triggers, allow explicitly
-  unassigned defaults, and leave Subscript configurable without a zoom conflict.
-  Reject delayed Zotero completion after leaving the owning Word workspace,
-  including a return to Word before the response arrives.
+- Scope Zotero dialogs to their originating host view through optional
+  `isCurrent` checks. Studio cancels delayed publication and focus restoration
+  after switching to Mail or another app, even if Word is reopened before the
+  response arrives.
+
+- Protect reserved Zotero shortcuts from conflicting overrides, retire old
+  redo/zoom aliases after reassignment, and reject modifier-only key settings.
+  Keep native text actions and comment emphasis available in their own views;
+  show subscript as unassigned while preserving the established zoom-in chord.
 
 - Add English, German and Arabic help for shared Mail range selection. Search
   synchronized loaded From/To/Cc headers by both display names and mailbox

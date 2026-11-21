@@ -1,0 +1,137 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "initial_main": "3058d36c5354d46bde418555d59282116cce1e26",
+  "reconciled_head": "00fbd252d659777dc85f886df150f23c7a76bf1e",
+  "reconciled_tree": "155015a5c83bc4d54f4891cc4dbe9b6f45d3b889",
+  "open_prs_at_cutoff": 0,
+  "branch_checks": [
+    {
+      "branch": "codex/word-vba-authoring-20261121",
+      "captured_head": "cf06b018ec125ce3b5abfda41a7fbbdcf7d30a47",
+      "target": "00fbd252d659777dc85f886df150f23c7a76bf1e",
+      "status": "behind",
+      "incoming_only": 0,
+      "target_only": 65,
+      "merge_base": "cf06b018ec125ce3b5abfda41a7fbbdcf7d30a47"
+    },
+    {
+      "branch": "codex/word-vba-comparison-colors-20261121",
+      "captured_head": "e1eeb3dc6c13449b1e6357529f325067bdcf5048",
+      "target": "00fbd252d659777dc85f886df150f23c7a76bf1e",
+      "status": "behind",
+      "incoming_only": 0,
+      "target_only": 17,
+      "merge_base": "e1eeb3dc6c13449b1e6357529f325067bdcf5048"
+    },
+    {
+      "branch": "codex/word-vba-compatibility-20261121",
+      "captured_head": "3058d36c5354d46bde418555d59282116cce1e26",
+      "target": "00fbd252d659777dc85f886df150f23c7a76bf1e",
+      "status": "behind",
+      "incoming_only": 0,
+      "target_only": 22,
+      "merge_base": "3058d36c5354d46bde418555d59282116cce1e26"
+    },
+    {
+      "branch": "codex/zotero-dispatch-recovery-20261121",
+      "captured_head": "fa028f7b96f5ddff93176bc0a502fb3f19903700",
+      "target": "00fbd252d659777dc85f886df150f23c7a76bf1e",
+      "status": "behind",
+      "incoming_only": 0,
+      "target_only": 20,
+      "merge_base": "fa028f7b96f5ddff93176bc0a502fb3f19903700"
+    },
+    {
+      "branch": "codex/zotero-footnote-separators-20261121",
+      "captured_head": "c70b8b59254d01b27cc7cd1c4ac1ddd3aad96bbc",
+      "target": "00fbd252d659777dc85f886df150f23c7a76bf1e",
+      "status": "behind",
+      "incoming_only": 0,
+      "target_only": 18,
+      "merge_base": "c70b8b59254d01b27cc7cd1c4ac1ddd3aad96bbc"
+    },
+    {
+      "branch": "codex/zotero-host-ownership-20261121",
+      "captured_head": "52e72ca0b5677549f31742faae457f08df05759b",
+      "target": "00fbd252d659777dc85f886df150f23c7a76bf1e",
+      "status": "behind",
+      "incoming_only": 0,
+      "target_only": 21,
+      "merge_base": "52e72ca0b5677549f31742faae457f08df05759b"
+    },
+    {
+      "branch": "codex/zotero-note-layout-20261121",
+      "captured_head": "2089e1e35a8ba81ea7f0a077b348f93ca70953c8",
+      "target": "00fbd252d659777dc85f886df150f23c7a76bf1e",
+      "status": "behind",
+      "incoming_only": 0,
+      "target_only": 44,
+      "merge_base": "2089e1e35a8ba81ea7f0a077b348f93ca70953c8"
+    },
+    {
+      "branch": "codex/zotero-odt-roundtrip-20261121",
+      "captured_head": "05072dc2d59d0fa4ea97de4d6a842700ef333fab",
+      "target": "00fbd252d659777dc85f886df150f23c7a76bf1e",
+      "status": "behind",
+      "incoming_only": 0,
+      "target_only": 59,
+      "merge_base": "05072dc2d59d0fa4ea97de4d6a842700ef333fab"
+    },
+    {
+      "branch": "codex/zotero-shortcut-host-recovery-20261121",
+      "captured_head": "2168011b6104f680100b87404bc1bd409f724939",
+      "target": "00fbd252d659777dc85f886df150f23c7a76bf1e",
+      "status": "behind",
+      "incoming_only": 0,
+      "target_only": 19,
+      "merge_base": "2168011b6104f680100b87404bc1bd409f724939"
+    },
+    {
+      "branch": "main",
+      "captured_head": "cc797dc2e1921be0ee72f90799607af4d787d20b",
+      "target": "00fbd252d659777dc85f886df150f23c7a76bf1e",
+      "status": "behind",
+      "incoming_only": 0,
+      "target_only": 20,
+      "merge_base": "cc797dc2e1921be0ee72f90799607af4d787d20b"
+    },
+    {
+      "branch": "work/mail-keyboard-triage-20261121",
+      "captured_head": "8858749fc4ffab56a8d429a15ab6625978dbd83f",
+      "target": "00fbd252d659777dc85f886df150f23c7a76bf1e",
+      "status": "behind",
+      "incoming_only": 0,
+      "target_only": 7,
+      "merge_base": "8858749fc4ffab56a8d429a15ab6625978dbd83f"
+    },
+    {
+      "branch": "work/mail-live-search-20261121",
+      "captured_head": "c3d55be30d91694b1a427d261cddbe47b1dd5eec",
+      "target": "00fbd252d659777dc85f886df150f23c7a76bf1e",
+      "status": "behind",
+      "incoming_only": 0,
+      "target_only": 44,
+      "merge_base": "c3d55be30d91694b1a427d261cddbe47b1dd5eec"
+    },
+    {
+      "branch": "work/mail-range-selection-tests-20261121",
+      "captured_head": "5c7a385c5de40394d9eed736c5a2d975535c3df3",
+      "target": "00fbd252d659777dc85f886df150f23c7a76bf1e",
+      "status": "behind",
+      "incoming_only": 0,
+      "target_only": 18,
+      "merge_base": "5c7a385c5de40394d9eed736c5a2d975535c3df3"
+    },
+    {
+      "branch": "work/mail-sync-address-search-20261121",
+      "captured_head": "33d8f956ec2ed1dfd748e1d7ccbc5add053ff565",
+      "target": "00fbd252d659777dc85f886df150f23c7a76bf1e",
+      "status": "behind",
+      "incoming_only": 0,
+      "target_only": 21,
+      "merge_base": "33d8f956ec2ed1dfd748e1d7ccbc5add053ff565"
+    }
+  ],
+  "github_actions": "NOT USED",
+  "branch_cutoff_policy": "Captured tips only; later branch work remains outside this intake. Main is rechecked at publication."
+}

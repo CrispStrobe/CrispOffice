@@ -1,0 +1,678 @@
+{
+  "schema": "quds-zotero-main-continuity/v1",
+  "status": "Verified scoped historical-evidence continuity; no tests executed for this audit",
+  "verified_at_utc": "2026-11-21T21:35:36Z",
+  "repository": "CrispStrobe/quds_office_suite",
+  "baseline": {
+    "commit": "d1125df123c68ff4bedcc0d163e6d4fb06bb0e18",
+    "tree": "eba5a73fb140a33425d1a3a6a5b45615cee39040",
+    "index": "docs/validation/zotero-table-layout-20261121/index.json",
+    "tracked_inputs": 1527,
+    "historical_passing_test_executions": 4635,
+    "historical_engine_passing_executions": 3438,
+    "historical_editor_studio_passing_executions": 1197
+  },
+  "target": {
+    "commit": "52e72ca0b5677549f31742faae457f08df05759b",
+    "tree": "c9440327ea012ad51e0d116ef019d70ee78531c4"
+  },
+  "baseline_input_continuity": {
+    "unchanged": 1516,
+    "changed": 11,
+    "missing": 0,
+    "mode_changes": 0,
+    "scopes": {
+      "legacy_parser_library": {
+        "baseline_inputs": 66,
+        "unchanged": 66,
+        "changed": []
+      },
+      "mail_package_libraries": {
+        "baseline_inputs": 97,
+        "unchanged": 97,
+        "changed": []
+      },
+      "workspace_package_manifests": {
+        "baseline_inputs": 9,
+        "unchanged": 9,
+        "changed": []
+      },
+      "studio_other_library": {
+        "baseline_inputs": 84,
+        "unchanged": 84,
+        "changed": []
+      },
+      "studio_mail_library": {
+        "baseline_inputs": 76,
+        "unchanged": 74,
+        "changed": [
+          "packages/quds_office_editor/example/lib/studio_mail_cached_search_dialog.dart",
+          "packages/quds_office_editor/example/lib/studio_mail_cached_search_strings.dart"
+        ]
+      },
+      "studio_settings_workspace": {
+        "baseline_inputs": 3,
+        "unchanged": 0,
+        "changed": [
+          "packages/quds_office_editor/example/lib/studio_settings.dart",
+          "packages/quds_office_editor/example/lib/suite_workspace.dart",
+          "packages/quds_office_editor/example/lib/suite_workspace_settings.dart"
+        ]
+      },
+      "studio_zotero_library": {
+        "baseline_inputs": 3,
+        "unchanged": 3,
+        "changed": []
+      },
+      "studio_mail_tests": {
+        "baseline_inputs": 13,
+        "unchanged": 11,
+        "changed": [
+          "packages/quds_office_editor/example/test/studio_mail_cached_search_dialog_test.dart",
+          "packages/quds_office_editor/example/test/studio_mail_cached_search_refresh_dialog_test.dart"
+        ]
+      },
+      "studio_other_tests": {
+        "baseline_inputs": 4,
+        "unchanged": 4,
+        "changed": []
+      },
+      "studio_zotero_tests": {
+        "baseline_inputs": 3,
+        "unchanged": 3,
+        "changed": []
+      },
+      "editor_library": {
+        "baseline_inputs": 108,
+        "unchanged": 108,
+        "changed": []
+      },
+      "editor_tests_and_goldens": {
+        "baseline_inputs": 74,
+        "unchanged": 74,
+        "changed": []
+      },
+      "engine_library": {
+        "baseline_inputs": 366,
+        "unchanged": 362,
+        "changed": [
+          "packages/quds_office_engine/lib/src/automation/office_operations.dart",
+          "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+          "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+          "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart"
+        ]
+      },
+      "engine_tests_and_fixtures": {
+        "baseline_inputs": 618,
+        "unchanged": 618,
+        "changed": []
+      },
+      "engine_acceptance_tools": {
+        "baseline_inputs": 2,
+        "unchanged": 2,
+        "changed": []
+      },
+      "studio_settings_test_support": {
+        "baseline_inputs": 1,
+        "unchanged": 1,
+        "changed": []
+      }
+    },
+    "changed_inputs": [
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_cached_search_dialog.dart",
+        "mode": "100644",
+        "baseline_git_blob": "f596c8c8669dcacece28cd86df26ff67bb2cd50e",
+        "target_git_blob": "611095a5b80b7632c8d199f460c783660d36a812",
+        "baseline_sha256": "00247b27f6abf7693d0592c94fa8d78a01f842e801bf427cc2176bf48b8ec77f",
+        "word_qualified_sha256": null,
+        "target_sha256": "1f24b38af93a8f59f1054d5ad30ea2bea79933610a4df40bb29aad3840308fc3"
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_cached_search_strings.dart",
+        "mode": "100644",
+        "baseline_git_blob": "458986425a8d207ca9ee412f10479be128bfb3f6",
+        "target_git_blob": "ddeb9f0565432cac1a4fe3566fb7ecfbb4066733",
+        "baseline_sha256": "ca695491d9f2002dfd98a83982b05e2a026a1f784a7c08b6125207412294d8a9",
+        "word_qualified_sha256": null,
+        "target_sha256": "a8303621802c063c3df2a608e8d45bd494a9c6bffe05de271ac53b34ac34bad7"
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_settings.dart",
+        "mode": "100644",
+        "baseline_git_blob": "c3e7aad9f448286c184a3e740d82ce787984457d",
+        "target_git_blob": "d19429a2537a68b1acd73dc41d148322bfac9060",
+        "baseline_sha256": "a7ca52816fab8ff2b62f3fb9162088231891c56a6df93336270defc36bdd6581",
+        "word_qualified_sha256": null,
+        "target_sha256": "cd7ae2c5bf1ae4ecfd3cddc134527948e653428c62eb770ca89fa691e366723b"
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+        "mode": "100644",
+        "baseline_git_blob": "b939cbb628ca566d4e09921d9b3f29c157ddec09",
+        "target_git_blob": "56b912a70909764af39b05290e41f39bc76d565c",
+        "baseline_sha256": "1397d7bf1c8c1d0bb3fa5ce0db6ab9dbf37ed27e5f199fb1bcb9d0df124f550b",
+        "word_qualified_sha256": null,
+        "target_sha256": "5d5960735f97971f2d2ace907ab5abd37637041bc45e75da45600e7254a9d94f"
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/suite_workspace_settings.dart",
+        "mode": "100644",
+        "baseline_git_blob": "7e534cebb57fcd705648a7d1e5922e5420abe554",
+        "target_git_blob": "c186286199d07718e11b31c9eae1f202979fadef",
+        "baseline_sha256": "6636bc23bf5cbdd6c5e7c7c52683ca9c8e103be4501ef8dd114956a499bb0011",
+        "word_qualified_sha256": null,
+        "target_sha256": "7bb265e8f945ba4b8e7d4fe0dd63060e4ca36173165751b315174eff4d45fe4e"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_cached_search_dialog_test.dart",
+        "mode": "100644",
+        "baseline_git_blob": "56d1078a264037c8f3db7b223fabf14f88a656ec",
+        "target_git_blob": "1438c86c6411283b6ebc1c66f3e571ab54417053",
+        "baseline_sha256": "8fbe44d5ea17cd49a717e719a6869abf39004d236ea38239111e82e3daa31b8f",
+        "word_qualified_sha256": null,
+        "target_sha256": "2f22d8a58deebd4eff6289f75ee345e36dc1674dd8b0f04383e5ae50bddb2f30"
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_cached_search_refresh_dialog_test.dart",
+        "mode": "100644",
+        "baseline_git_blob": "de40e79e64ce6e0664778ab4fc14e7517d4d096b",
+        "target_git_blob": "e22f37e8ed31040ec4a1d72aa0ea00bbc635131d",
+        "baseline_sha256": "62b88d4f4c76e8f8035cf8d6ef697686c6fae5197054bbcbc0796b1ca6df5302",
+        "word_qualified_sha256": null,
+        "target_sha256": "6d7ee7ef42872f9ac412b36d2c123499b6a7ee63c8d0573cc334fb574235de55"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/automation/office_operations.dart",
+        "mode": "100644",
+        "baseline_git_blob": "f6e417a309fd6f176274adafbaf4031ff221766d",
+        "target_git_blob": "1d00960f328bbd355ce3e204591aa1b39c6c4233",
+        "baseline_sha256": "87fcb80b601427f3b261e0364de3c5142e1a5326d423f9c32afa041e22a9c38a",
+        "word_qualified_sha256": "0371839732af168084b4bd397d4de054e33a6ee1ab797711d20bff04399d3b39",
+        "target_sha256": "0371839732af168084b4bd397d4de054e33a6ee1ab797711d20bff04399d3b39"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+        "mode": "100644",
+        "baseline_git_blob": "b960ae6004c7292421a25bf9c8e75dc6f123e75e",
+        "target_git_blob": "27f7013c649a20b8cd3a9f1765978b60513a7500",
+        "baseline_sha256": "d23eae5ac84ac071e3ef5231e1987e592733a8903394d80ab0ad2d59564b020f",
+        "word_qualified_sha256": "52a179ab510517311dd8cfbd7f61899980d142c15d8abdad8910306cece373f3",
+        "target_sha256": "52a179ab510517311dd8cfbd7f61899980d142c15d8abdad8910306cece373f3"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+        "mode": "100644",
+        "baseline_git_blob": "dd7fd676d1a9f79179d900cbe90ed41b6e748903",
+        "target_git_blob": "c25f18af86aaad880ace2e9b8499875caca3bf8e",
+        "baseline_sha256": "5ef5169446a8ab0474a5e6b3f9aabd84186c98448fb420260742ba49db1e3623",
+        "word_qualified_sha256": "f192e3e47a41e7ecc82b0a386dc8957237d96e0b8fac37bfa00dfe6ba93c7ca6",
+        "target_sha256": "f192e3e47a41e7ecc82b0a386dc8957237d96e0b8fac37bfa00dfe6ba93c7ca6"
+      },
+      {
+        "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+        "mode": "100644",
+        "baseline_git_blob": "6422ea8a74ffed244d2ed797f9281e1bc42ad717",
+        "target_git_blob": "ff5dc4576e428e276a74a8174d247da9768231e5",
+        "baseline_sha256": "52a4a2c0389473b7621ea99488e42da57b1cf2bf7e674513fad84319cd8da264",
+        "word_qualified_sha256": "0bb0eaa0431eb000da4923dbde20be6243c7aa1072357182eb3ad809b48477bb",
+        "target_sha256": "0bb0eaa0431eb000da4923dbde20be6243c7aa1072357182eb3ad809b48477bb"
+      }
+    ]
+  },
+  "added_production_test_example_tool_paths": [
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_shortcuts.dart",
+      "status": "added",
+      "target_git_blob": "afd76657551b4f172ec3329e328bb65e054d1c24",
+      "target_sha256": "a42b09dc4a9ce914752a46f4b04f7763c83d7839209484839de8d4319064a4b4",
+      "sha256_provenance": "Independently rehashed target bytes and matched Mail source snapshot"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_shortcuts_test.dart",
+      "status": "added",
+      "target_git_blob": "6e1a0b3e048cdd469c08d88b843b9061a180acaf",
+      "target_sha256": "28a8774bb113858932c037bef2fbbd62dadfa17e1cb9f8bc76f9aa1906934374",
+      "sha256_provenance": "Independently rehashed target bytes and matched Mail source snapshot"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/suite_workspace_mail_shortcuts_test.dart",
+      "status": "added",
+      "target_git_blob": "223e9115a5d7057d80c1dc088f7f1cad4ccdb9b0",
+      "target_sha256": "4a2439f6d8b6280ca7fccc970f422e4e7bd2b61458c51623108cdd8ced984ad7",
+      "sha256_provenance": "Independently rehashed target bytes and matched Mail source snapshot"
+    },
+    {
+      "path": "packages/quds_office_editor/example/tool/mail_live_search_visual_test.dart",
+      "status": "added",
+      "target_git_blob": "1cacd28107f24e09b83327deaa33c49fdb8e5c79",
+      "target_sha256": "a981fb65e5d964667839e15d5fd74244fce926ea55b6226d0eb7ad7594f11ade",
+      "sha256_provenance": "Independently rehashed target bytes and matched Mail source snapshot"
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/word_table_report.bas",
+      "status": "added",
+      "target_git_blob": "68ab4272858f83f1d0310fb94c1cfde810bdc16a",
+      "target_sha256": "496ba13d667dec5f620af572a2b1f63ce49a905dd72169e08e0b17699e12a7fc",
+      "sha256_provenance": "Recorded Word qualification source-inputs.json; entire qualified engine source subtree identical at target"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/operations/word_table_cell_text_steps.dart",
+      "status": "added",
+      "target_git_blob": "3a7723ccc8cb94e4d831a785eb8edccd0c14986b",
+      "target_sha256": "9baa94c1b55403d5f4cbe6d545597f567f14cc33f87d163e9238487900f42e2e",
+      "sha256_provenance": "Recorded Word qualification source-inputs.json; entire qualified engine source subtree identical at target"
+    },
+    {
+      "path": "packages/quds_office_engine/test/fixtures/vba_conformance/word_table_cells_v1.json",
+      "status": "added",
+      "target_git_blob": "5bba0164f67826f617b5bfdd83076706cbe7e4ec",
+      "target_sha256": "c751d830c3a50c6659690d9a4866f7706498bda004d885d778b45fa5a0e60743",
+      "sha256_provenance": "Recorded Word qualification source-inputs.json; entire qualified engine source subtree identical at target"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_word_table_cells_test.dart",
+      "status": "added",
+      "target_git_blob": "a7896e6245bd8265b9141818a4906b22f7c6e69d",
+      "target_sha256": "1dc64ea704642ba32b753e8b6cfe5ff924f20c061d5ab7afc3bdaef9af9b7c4d",
+      "sha256_provenance": "Recorded Word qualification source-inputs.json; entire qualified engine source subtree identical at target"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_table_cells_conformance_test.dart",
+      "status": "added",
+      "target_git_blob": "773efa62342e1b2be7d17db209ed638392794c23",
+      "target_sha256": "18c783887e5f869ca03ae3f3948311f0f71402d6fab1b2b750370da2446370f0",
+      "sha256_provenance": "Recorded Word qualification source-inputs.json; entire qualified engine source subtree identical at target"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_table_cells_integration_test.dart",
+      "status": "added",
+      "target_git_blob": "7967e54b5f0231083a32a6ac9b316e0deeb2ef7c",
+      "target_sha256": "da3db7db5cd16593c6e72df48316a5d5c01cec8afbfa9d9d9a05bfc45d085bf1",
+      "sha256_provenance": "Recorded Word qualification source-inputs.json; entire qualified engine source subtree identical at target"
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_table_cells_test.dart",
+      "status": "added",
+      "target_git_blob": "7cb761520b85e94f21e053844bd46d3e3e49daca",
+      "target_sha256": "564d307a735c21d76089f3af340273c29dab7ff55daf6dd68175beb367fe33b2",
+      "sha256_provenance": "Recorded Word qualification source-inputs.json; entire qualified engine source subtree identical at target"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_empty_formatted_run_test.dart",
+      "status": "added",
+      "target_git_blob": "1d23477f72880c10a81d8c27a9ea3b7d74e0a065",
+      "target_sha256": "a33413ca54d229465b06e6bff8b0765b3f886c693bbd838e0050a2ec53631d2a",
+      "sha256_provenance": "Recorded Word qualification source-inputs.json; entire qualified engine source subtree identical at target"
+    },
+    {
+      "path": "packages/quds_office_engine/tool/macros/web_vba_word_table_cells_smoke.dart",
+      "status": "added",
+      "target_git_blob": "3a15076822b53b372febaf23c928f74485f94978",
+      "target_sha256": "f43d8c566d4887e0fd0ad88591de82988ed2936d94b26a2911436c49b0ecd093",
+      "sha256_provenance": "Recorded Word qualification source-inputs.json; entire qualified engine source subtree identical at target"
+    }
+  ],
+  "exact_git_tree_proof": {
+    "method": "Compared complete nontruncated recursive engine/editor package trees, unchanged package subtrees, and root manifest blob identities. Checked all 1,527 baseline indexed paths; independently downloaded and SHA-256/Git-blob rehashed the 11 changed target files. Compared complete commit diff for additional paths.",
+    "engine_editor_indexed_paths_checked": 1357,
+    "remaining_paths_proved_by_identical_package_subtrees_and_root_blobs": 170,
+    "baseline_to_target_comparison": {
+      "status": "ahead",
+      "ahead_by": 33,
+      "changed_repository_paths": 97,
+      "comparison_url": "https://github.com/CrispStrobe/quds_office_suite/compare/d1125df123c68ff4bedcc0d163e6d4fb06bb0e18...52e72ca0b5677549f31742faae457f08df05759b"
+    },
+    "unchanged_editor_library_and_tests": [
+      {
+        "path": "lib",
+        "baseline": "051089f86cb7657cfebafa8150d9862e53e560a2",
+        "target": "051089f86cb7657cfebafa8150d9862e53e560a2"
+      },
+      {
+        "path": "test",
+        "baseline": "1904f9571f17cc132f7b18411a74a6bcb5f4b28f",
+        "target": "1904f9571f17cc132f7b18411a74a6bcb5f4b28f"
+      }
+    ],
+    "identical_package_subtrees": [
+      {
+        "path": "packages/legacy_doc_parser",
+        "sha": "c5d871e967a3ba0b9d5224df3e8243e62bd782fc"
+      },
+      {
+        "path": "packages/quds_arabic_morph",
+        "sha": "8f050609bd6ec25289ce5c64c829a7347f52d818"
+      },
+      {
+        "path": "packages/quds_language_id",
+        "sha": "c72df974f7357a42f5df06ad8b1f44bcac642f6c"
+      },
+      {
+        "path": "packages/quds_mail_core",
+        "sha": "407fa086fe7ae6a7d7bf5b33906a98f1de0e53c6"
+      },
+      {
+        "path": "packages/quds_mail_mime",
+        "sha": "b52df11aefcbf668097fe25c27b31e6aaf15a95d"
+      },
+      {
+        "path": "packages/quds_mail_store",
+        "sha": "78b0a62a3d649858abd69b763ac1164412a6b8b6"
+      },
+      {
+        "path": "packages/quds_mail_transport",
+        "sha": "a639134e2ebb9da36b8a0b1c59f9a7a1f38576a8"
+      },
+      {
+        "path": "packages/quds_mail_ui",
+        "sha": "3776e505904294ba67f5ad1157bf942b373dca96"
+      },
+      {
+        "path": "packages/quds_proofing_gector",
+        "sha": "081d1dc98ba03c365e88acc9aeafe3768fd86771"
+      },
+      {
+        "path": "packages/quds_proofing_harper",
+        "sha": "9efe72c9cecfa0910b96577a66890901f6a16d32"
+      },
+      {
+        "path": "packages/quds_proofing_hunspell",
+        "sha": "b734346cb9bc20c17ab9b0aa929e18a8582e3573"
+      },
+      {
+        "path": "packages/quds_proofing_spacy",
+        "sha": "d54d8447a3b2ecd9cb7574dd2aba5ec5649ba49d"
+      },
+      {
+        "path": "packages/quds_reports",
+        "sha": "fa1ae346999ab49f180461e5a91aeafb3642d981"
+      }
+    ],
+    "root_manifests": [
+      {
+        "path": "pubspec.lock",
+        "git_blob": "121a4f969c34933bd72f4ccce39bd08b30a4c147",
+        "sha256": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb"
+      },
+      {
+        "path": "pubspec.yaml",
+        "git_blob": "ba34bf9e2c1b0eb583e5f9e2d9ba9f236a660f96",
+        "sha256": "453a1f8ab62db1c5577c424b058b50033a8d3b49b99c83862ab58a7e1108f74f"
+      }
+    ]
+  },
+  "incoming_word_qualification": {
+    "record": "docs/validation/word-vba-table-cells-20261121/qualification.json",
+    "source_checkpoint": "e65ce54c5301839c1c012092c13f1997afec127e",
+    "source_tree": "968f59ed48df234ef574ea5088921276c4f46a06",
+    "recorded_source_manifest": "docs/validation/word-vba-table-cells-20261121/source-inputs.json",
+    "recorded_source_inputs": 1154,
+    "recorded_inputs_changed_between_checkpoint_and_target": [],
+    "source_continuity": {
+      "entire_editor_package_git_tree": "ef9ccc02fa83a45f87d73da1317bc3d529f2aebc",
+      "identical_engine_subtrees": [
+        {
+          "path": "lib",
+          "qualified": "c1742efc846c8672b77cd36e3f4c979fd6a5e523",
+          "target": "c1742efc846c8672b77cd36e3f4c979fd6a5e523"
+        },
+        {
+          "path": "test",
+          "qualified": "4b070943857c8344d06a277a61e6024aae051c3a",
+          "target": "4b070943857c8344d06a277a61e6024aae051c3a"
+        },
+        {
+          "path": "tool",
+          "qualified": "da3e94eb5362bcda420886bed88a8d6a11726ca4",
+          "target": "da3e94eb5362bcda420886bed88a8d6a11726ca4"
+        }
+      ],
+      "post_checkpoint_net_package_delta": "Engine CHANGELOG.md only; no production/test/tool changes"
+    },
+    "raw_engine_reporters_recounted": {
+      "passed": 6665,
+      "suites": 141,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "batches": {
+        "engine/incoming/incoming-engine": {
+          "passed": 376,
+          "suites": 17,
+          "errors": 0
+        },
+        "engine/regressions/macro-batch-01": {
+          "passed": 344,
+          "suites": 10,
+          "errors": 0
+        },
+        "engine/regressions/macro-batch-02": {
+          "passed": 570,
+          "suites": 10,
+          "errors": 0
+        },
+        "engine/regressions/macro-batch-03": {
+          "passed": 520,
+          "suites": 10,
+          "errors": 0
+        },
+        "engine/regressions/macro-batch-04": {
+          "passed": 420,
+          "suites": 10,
+          "errors": 0
+        },
+        "engine/regressions/macro-batch-05": {
+          "passed": 371,
+          "suites": 10,
+          "errors": 0
+        },
+        "engine/regressions/macro-batch-06": {
+          "passed": 744,
+          "suites": 10,
+          "errors": 0
+        },
+        "engine/regressions/macro-batch-07": {
+          "passed": 451,
+          "suites": 10,
+          "errors": 0
+        },
+        "engine/regressions/macro-batch-08": {
+          "passed": 665,
+          "suites": 10,
+          "errors": 0
+        },
+        "engine/regressions/macro-batch-09": {
+          "passed": 809,
+          "suites": 10,
+          "errors": 0
+        },
+        "engine/regressions/macro-batch-10": {
+          "passed": 401,
+          "suites": 10,
+          "errors": 0
+        },
+        "engine/regressions/macro-batch-11": {
+          "passed": 462,
+          "suites": 10,
+          "errors": 0
+        },
+        "engine/regressions/macro-batch-12": {
+          "passed": 455,
+          "suites": 10,
+          "errors": 0
+        },
+        "engine/regressions/macro-batch-13": {
+          "passed": 77,
+          "suites": 4,
+          "errors": 0
+        }
+      }
+    },
+    "included_incoming_engine_suite_counts": {
+      "word_table_cell_margin_layout_test.dart": 30,
+      "odt_table_padding_test.dart": 40,
+      "odt_zotero_position_guard_test.dart": 11,
+      "odt_zotero_table_geometry_test.dart": 19,
+      "word_table_cell_margin_test.dart": 48,
+      "word_table_nested_layout_test.dart": 12,
+      "word_table_vertical_merge_layout_test.dart": 39,
+      "word_vertical_table_row_geometry_test.dart": 3,
+      "word_table_picture_pagination_test.dart": 17,
+      "word_table_tall_frame_layout_test.dart": 8,
+      "word_table_tall_toc_layout_test.dart": 4,
+      "odt_merged_table_zotero_test.dart": 40,
+      "odt_zotero_writer_test.dart": 11,
+      "odt_reader_guards_test.dart": 12,
+      "odt_zotero_export_lifecycle_test.dart": 19,
+      "odt_document_writer_test.dart": 18,
+      "odt_document_reader_test.dart": 45
+    },
+    "final_source_ui_passes": 73,
+    "final_source_ui_snapshots": {
+      "ui/incoming-editor-final": {
+        "passed": 17,
+        "case_counts": {
+          "word_ruler_cell_margin_test.dart": 9,
+          "word_shaped_wrap_test.dart": 8
+        },
+        "source_count": 894,
+        "source_before_sha256": "5fbb4c4b262fbe2407795197ff6dff04527b2b538c9cc364632fde9ebe3a76b1",
+        "source_before_after_identical": true,
+        "engine_manifest_overlap": 434,
+        "engine_manifest_differences": [],
+        "current_rehashed_changed_production_inputs": 9,
+        "current_rehash_differences": [],
+        "word_deserializer_in_manifest": true
+      },
+      "ui/incoming-shortcuts-final/editor": {
+        "passed": 21,
+        "case_counts": {
+          "word_input_focus_test.dart": 5,
+          "word_keyboard_review_test.dart": 16
+        },
+        "source_count": 894,
+        "source_before_sha256": "760fbb7eea62b0aa33ea1d5745ff6dc95f334133d7fccb06301e397648afee40",
+        "source_before_after_identical": true,
+        "engine_manifest_overlap": 434,
+        "engine_manifest_differences": [],
+        "current_rehashed_changed_production_inputs": 9,
+        "current_rehash_differences": [],
+        "word_deserializer_in_manifest": true
+      },
+      "ui/incoming-shortcuts-final/studio": {
+        "passed": 35,
+        "case_counts": {
+          "studio_shortcuts_test.dart": 10,
+          "suite_workspace_mail_shortcuts_test.dart": 1,
+          "studio_zotero_shortcuts_test.dart": 15,
+          "studio_comment_keyboard_review_test.dart": 9
+        },
+        "source_count": 896,
+        "source_before_sha256": "3df0443d42d30529bb074c1658bdb98378248023243b5a197f853b1b85e7cb20",
+        "source_before_after_identical": true,
+        "engine_manifest_overlap": 434,
+        "engine_manifest_differences": [],
+        "current_rehashed_changed_production_inputs": 9,
+        "current_rehash_differences": [],
+        "word_deserializer_in_manifest": true
+      }
+    },
+    "historical_initial_ui_checks_excluded": 97,
+    "external_converter_rerun": false
+  },
+  "incoming_mail_shortcut_qualification": {
+    "record": "docs/validation/mail-live-search-20261121/shortcuts-integration.json",
+    "qualified_source_commit": "26e12bc3787f6b350cf185a14c6622bb9ac587f0",
+    "raw_reporter_recount": {
+      "passed": 46,
+      "suites": 4,
+      "counts": {
+        "studio_shortcuts_test.dart": 10,
+        "studio_settings_test.dart": 21,
+        "suite_workspace_mail_shortcuts_test.dart": 1,
+        "studio_mail_cached_search_refresh_dialog_test.dart": 14
+      },
+      "errors": 0
+    },
+    "source_snapshot_inputs": 5983,
+    "source_snapshot_unchanged_during_run": true,
+    "independently_rehashed_current_studio_inputs_matching_snapshot": 11,
+    "source_applicability": "All seven changed indexed Studio paths and four new Studio paths match the archived Mail source snapshot. Git comparison has no Studio source/test delta from qualified Mail commit to target. Later engine/editor changes are separately covered by incoming Word final-source checks; the entire 5,983-input Mail snapshot is not claimed identical at target.",
+    "zotero_editor_dialog_suite_executed": false
+  },
+  "verified_archives": [
+    {
+      "path": "docs/validation/word-vba-table-cells-20261121/execution.tar.xz",
+      "bytes": 445360,
+      "sha256": "ebb59ee9ebac462aba3a7af83ee4737feb9921060ac207839d8e2388859d2799",
+      "members_verified": 265
+    },
+    {
+      "path": "docs/validation/mail-live-search-20261121/shortcuts-integration.tar.xz",
+      "bytes": 246588,
+      "sha256": "33d445d78f1498d9f3aba72c28712f2ccd8e09dc0861de0aa32c8d16ef3cd40d",
+      "members_verified": 32
+    },
+    {
+      "path": "docs/validation/zotero-table-layout-20261121/editor-evidence.tar.xz",
+      "bytes": 548328,
+      "sha256": "c54c5a40bfebf02def9c3fcc2ecb515a1d41551335566d3fc2c879355af17341",
+      "members_verified": 47
+    }
+  ],
+  "zotero_dialog_coverage": {
+    "historical_baseline_editor_passes": 963,
+    "historical_dialog_and_note_preview_suite_counts": {
+      "word_zotero_children_dialog_test.dart": 10,
+      "word_zotero_citing_dialog_test.dart": 24,
+      "word_zotero_dialog_scaling_test.dart": 2,
+      "word_zotero_dialog_test.dart": 49,
+      "word_zotero_navigation_dialog_test.dart": 5,
+      "word_zotero_note_preview_test.dart": 23,
+      "word_zotero_source_occurrences_dialog_test.dart": 8,
+      "word_zotero_stored_details_dialog_test.dart": 11,
+      "word_zotero_transfer_dialog_test.dart": 6
+    },
+    "historical_dialog_and_note_preview_passes": 138,
+    "historical_dialog_and_note_preview_suites": 9,
+    "corresponding_editor_library_and_test_bytes_identical_at_target": true,
+    "incoming_word_final_source_studio_zotero_shortcut_passes": 15,
+    "incoming_word_final_source_editor_zotero_dialog_suites": 0,
+    "current_followup_requirement": "A new editor Zotero dialog interception hook changes the editor library scope and requires its own fresh focused dialog tests. This audit does not qualify that later source."
+  },
+  "subsequent_documentation_only_main": {
+    "commit": "cc797dc2e1921be0ee72f90799607af4d787d20b",
+    "tree": "80288b6fb4f963767d7986ee0aa88b895cc03043",
+    "base": "52e72ca0b5677549f31742faae457f08df05759b",
+    "changed_paths": [
+      "docs/PROOFING.md",
+      "docs/ROADMAP.md",
+      "docs/VBA_MACROS.md",
+      "docs/VBA_WORD_MACROS.md",
+      "docs/document-review-details.md",
+      "docs/document-review.md",
+      "docs/proofing-details.md",
+      "docs/roadmap-details-2026-11.md",
+      "docs/roadmaps/mail/status-details.md",
+      "docs/roadmaps/mail/status.md",
+      "docs/vba-macros-details.md",
+      "docs/vba-word-macros-details.md",
+      "docs/zotero-support-details.md",
+      "docs/zotero-support.md",
+      "packages/quds_office_editor/README.md",
+      "packages/quds_office_engine/README.md"
+    ],
+    "all_16_paths_markdown": true,
+    "production_and_test_source_delta": []
+  },
+  "counting_and_limits": [
+    "No tests or converter commands were executed during this read-only evidence audit.",
+    "The old 4,635 passes remain historical recorded executions at the bound baseline; they are not reported as rerun on current main.",
+    "The 6,665 incoming engine cases include the 376-case incoming Zotero/table/ODT cohort; the 376 are not additional.",
+    "The 73 incoming final-source UI cases, 46 Mail shortcut cases, and old baseline populations overlap; they must not be summed as unique tests.",
+    "The historical two-actual-save LibreOffice table-padding acceptance is preserved evidence. Incoming Word qualification explicitly did not rerun the external converter after changing the Word deserializer.",
+    "No installed Microsoft Word or installed Zotero plugin differential acceptance, whole Flutter suite, or GitHub Actions completion is claimed.",
+    "Later shortcut/dialog followup production changes are outside this fixed-target audit and require their own source hashes and focused test receipts."
+  ]
+}

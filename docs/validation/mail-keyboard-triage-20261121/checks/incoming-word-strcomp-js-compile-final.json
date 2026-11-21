@@ -1,0 +1,21 @@
+{
+  "name": "incoming-word-strcomp-js-compile-final",
+  "command": [
+    "/workspace/scratch/f433637a99a0/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+    "compile",
+    "js",
+    "-O2",
+    "tool/macros/web_vba_strcomp_smoke.dart",
+    "-o",
+    "/workspace/scratch/f433637a99a0/qualification-tmp/incoming-word-strcomp-final.js"
+  ],
+  "cwd": "/workspace/scratch/f433637a99a0/quds_office_suite/packages/quds_office_engine",
+  "started_utc": "2026-11-21T21:49:37.290233+00:00",
+  "status": "PASS",
+  "log": "incoming-word-strcomp-js-compile-final.log",
+  "github_actions": "NOT USED",
+  "exit_code": 0,
+  "elapsed_seconds": 8.598,
+  "finished_utc": "2026-11-21T21:49:45.889366+00:00",
+  "log_sha256": "4f98419f026d5c7f17386f22b0fc7b74236eadc79795e1d5e575cb261c641a80"
+}
