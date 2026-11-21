@@ -75,7 +75,10 @@ Future<WordEditorController> _studio(
             ? null
             : (_, chrome) => Builder(
                 builder: (context) => Column(
-                  children: [chrome(context), Expanded(child: mail(context))],
+                  children: [
+                    chrome(context),
+                    Expanded(child: mail(context)),
+                  ],
                 ),
               ),
       ),
@@ -186,28 +189,31 @@ void main() {
   });
 
   for (final key in [LogicalKeyboardKey.keyC, LogicalKeyboardKey.keyR]) {
-    scenario('reserved Zotero ${key.keyLabel} survives a conflicting override',
-        (tester) async {
-      var connections = 0;
-      final word = await _studio(
-        tester,
-        shortcuts: {'format.bold': 'ctrl+alt+${key.keyId}'},
-        zotero: () {
-          connections++;
-          return _UnavailableTransport();
-        },
-      );
-      expect(_bindings(tester, LogicalKeyboardKey.keyB), hasLength(1));
-      expect(_bindings(tester, key, alt: true), hasLength(1));
-      await _chord(tester, key, alt: true, chrome: true);
-      expect(connections, 1);
-      expect(_runs(word).map((run) => run.properties.bold), [false]);
-      expect(word.canUndo, isFalse);
-    });
+    scenario(
+      'reserved Zotero ${key.keyLabel} survives a conflicting override',
+      (tester) async {
+        var connections = 0;
+        final word = await _studio(
+          tester,
+          shortcuts: {'format.bold': 'ctrl+alt+${key.keyId}'},
+          zotero: () {
+            connections++;
+            return _UnavailableTransport();
+          },
+        );
+        expect(_bindings(tester, LogicalKeyboardKey.keyB), hasLength(1));
+        expect(_bindings(tester, key, alt: true), hasLength(1));
+        await _chord(tester, key, alt: true, chrome: true);
+        expect(connections, 1);
+        expect(_runs(word).map((run) => run.properties.bold), [false]);
+        expect(word.canUndo, isFalse);
+      },
+    );
   }
 
-  scenario('reassigned redo removes Ctrl Y and both Shift Z defaults',
-      (tester) async {
+  scenario('reassigned redo removes Ctrl Y and both Shift Z defaults', (
+    tester,
+  ) async {
     await _studio(
       tester,
       shortcuts: {'edit.redo': 'ctrl+alt+${LogicalKeyboardKey.keyQ.keyId}'},
@@ -219,15 +225,21 @@ void main() {
     );
     expect(_bindings(tester, LogicalKeyboardKey.keyZ, shift: true), isEmpty);
     expect(
-      _bindings(tester, LogicalKeyboardKey.keyZ,
-          control: false, meta: true, shift: true),
+      _bindings(
+        tester,
+        LogicalKeyboardKey.keyZ,
+        control: false,
+        meta: true,
+        shift: true,
+      ),
       isEmpty,
     );
     expect(_bindings(tester, LogicalKeyboardKey.keyQ, alt: true), hasLength(1));
   });
 
-  scenario('reassigned zoom removes old equals and keypad aliases',
-      (tester) async {
+  scenario('reassigned zoom removes old equals and keypad aliases', (
+    tester,
+  ) async {
     await _studio(
       tester,
       shortcuts: {'view.zoomIn': 'ctrl+alt+${LogicalKeyboardKey.keyQ.keyId}'},
@@ -251,8 +263,9 @@ void main() {
     expect(_bindings(tester, LogicalKeyboardKey.keyQ, alt: true), hasLength(1));
   });
 
-  scenario('explicit configurable override keeps incoming precedence',
-      (tester) async {
+  scenario('explicit configurable override keeps incoming precedence', (
+    tester,
+  ) async {
     await _studio(
       tester,
       shortcuts: {'file.save': 'ctrl+${LogicalKeyboardKey.keyB.keyId}'},
@@ -265,7 +278,7 @@ void main() {
     final word = await _studio(tester);
     final indent = _bindings(tester, LogicalKeyboardKey.keyM).single;
     final paragraph = word.document.paragraphs.single;
-    final before = paragraph.properties.indentLeft;
+    final before = paragraph.properties.indent.left;
     for (final label in [
       _strings.spreadsheets,
       _strings.presentations,
@@ -274,7 +287,7 @@ void main() {
       await tester.tap(_switcher(label));
       await _frames(tester);
       indent();
-      expect(paragraph.properties.indentLeft, before);
+      expect(paragraph.properties.indent.left, before);
       expect(word.canUndo, isFalse);
     }
   });
@@ -292,12 +305,13 @@ void main() {
     expect(word.canUndo, isFalse);
   });
 
-  scenario('captured Word mutation refuses a covering modal route',
-      (tester) async {
+  scenario('captured Word mutation refuses a covering modal route', (
+    tester,
+  ) async {
     final word = await _studio(tester);
     final indent = _bindings(tester, LogicalKeyboardKey.keyM).single;
     final paragraph = word.document.paragraphs.single;
-    final before = paragraph.properties.indentLeft;
+    final before = paragraph.properties.indent.left;
     final settings = find.byWidgetPredicate(
       (widget) => widget is IconButton && widget.tooltip == 'Settings',
     );
@@ -305,15 +319,18 @@ void main() {
     await _frames(tester);
     expect(find.byType(AlertDialog), findsOneWidget);
     indent();
-    expect(paragraph.properties.indentLeft, before);
+    expect(paragraph.properties.indent.left, before);
     expect(word.canUndo, isFalse);
   });
 
-  scenario('custom text edit shortcut forwards to focused Find text',
-      (tester) async {
+  scenario('custom text edit shortcut forwards to focused Find text', (
+    tester,
+  ) async {
     final word = await _studio(
       tester,
-      shortcuts: {'edit.selectAll': 'ctrl+alt+${LogicalKeyboardKey.keyQ.keyId}'},
+      shortcuts: {
+        'edit.selectAll': 'ctrl+alt+${LogicalKeyboardKey.keyQ.keyId}',
+      },
     );
     _bindings(tester, LogicalKeyboardKey.keyF).single();
     await _frames(tester);
@@ -328,7 +345,10 @@ void main() {
       word.caret.logicalIndex,
     );
     await _chord(tester, LogicalKeyboardKey.keyQ, alt: true);
-    expect(text.selection, const TextSelection(baseOffset: 0, extentOffset: 17));
+    expect(
+      text.selection,
+      const TextSelection(baseOffset: 0, extentOffset: 17),
+    );
     expect((
       word.caret.selectionAnchorParagraph,
       word.caret.selectionAnchor,
@@ -339,8 +359,9 @@ void main() {
     expect(_runs(word).map((run) => run.properties.bold), [false]);
   });
 
-  scenario('Mail native editing stays active and saved callbacks avoid Word',
-      (tester) async {
+  scenario('Mail native editing stays active and saved callbacks avoid Word', (
+    tester,
+  ) async {
     final text = TextEditingController(text: 'Mail text');
     addTearDown(text.dispose);
     String? copied;
@@ -349,8 +370,12 @@ void main() {
       if (call.method == 'Clipboard.setData') {
         copied = (call.arguments as Map<Object?, Object?>)['text'] as String?;
       }
-      if (call.method == 'Clipboard.getData') return {'text': copied ?? ''};
-      if (call.method == 'Clipboard.hasStrings') return {'value': copied != null};
+      if (call.method == 'Clipboard.getData') {
+        return {'text': copied ?? ''};
+      }
+      if (call.method == 'Clipboard.hasStrings') {
+        return {'value': copied != null};
+      }
       return null;
     });
     addTearDown(
@@ -403,34 +428,42 @@ void main() {
     expect(word.canUndo, isFalse);
   });
 
-  scenario('comment bold italic underline remain valid while paragraph formatting is limited',
-      (tester) async {
-    final word = await _studio(tester);
-    word.insertComment(text: 'Comment text');
-    final comment = word.document.comments.single;
-    word.beginCommentEdit(comment.id);
-    word.selectAll();
-    expect(word.isEditingComment, isTrue);
-    final bodyIndent = word.document.paragraphs.single.properties.indentLeft;
-    final commentIndent = comment.paragraphs.single.properties.indentLeft;
-    for (final key in [
-      LogicalKeyboardKey.keyB,
-      LogicalKeyboardKey.keyI,
-      LogicalKeyboardKey.keyU,
-    ]) {
-      _bindings(tester, key).single();
-    }
-    final runs = comment.paragraphs.single.inlines.whereType<WmlRun>();
-    expect(runs.map((run) => run.properties.bold), [true]);
-    expect(runs.map((run) => run.properties.italic), [true]);
-    expect(runs.map((run) => run.properties.underline), [WmlUnderline.single]);
-    _bindings(tester, LogicalKeyboardKey.keyM).single();
-    expect(word.document.paragraphs.single.properties.indentLeft, bodyIndent);
-    expect(comment.paragraphs.single.properties.indentLeft, commentIndent);
-  });
+  scenario(
+    'comment bold italic underline remain valid while paragraph formatting is limited',
+    (tester) async {
+      final word = await _studio(tester);
+      word.insertComment(text: 'Comment text');
+      final comment = word.document.comments.single;
+      word.beginCommentEdit(comment.id);
+      word.selectAll();
+      expect(word.isEditingComment, isTrue);
+      final bodyIndent = word.document.paragraphs.single.properties.indent.left;
+      final commentIndent = comment.paragraphs.single.properties.indent.left;
+      for (final key in [
+        LogicalKeyboardKey.keyB,
+        LogicalKeyboardKey.keyI,
+        LogicalKeyboardKey.keyU,
+      ]) {
+        _bindings(tester, key).single();
+      }
+      final runs = comment.paragraphs.single.inlines.whereType<WmlRun>();
+      expect(runs.map((run) => run.properties.bold), [true]);
+      expect(runs.map((run) => run.properties.italic), [true]);
+      expect(runs.map((run) => run.properties.underline), [
+        WmlUnderline.single,
+      ]);
+      _bindings(tester, LogicalKeyboardKey.keyM).single();
+      expect(
+        word.document.paragraphs.single.properties.indent.left,
+        bodyIndent,
+      );
+      expect(comment.paragraphs.single.properties.indent.left, commentIndent);
+    },
+  );
 
-  scenario('saved edit callback forwards to a modal native text input',
-      (tester) async {
+  scenario('saved edit callback forwards to a modal native text input', (
+    tester,
+  ) async {
     final word = await _studio(tester);
     final select = _bindings(tester, LogicalKeyboardKey.keyA).single;
     word.caret
@@ -442,13 +475,15 @@ void main() {
     final context = tester.element(find.byType(SuiteWorkspace));
     final dialog = showDialog<void>(
       context: context,
-      builder: (_) => AlertDialog(
-        content: TextField(controller: text, autofocus: true),
-      ),
+      builder: (_) =>
+          AlertDialog(content: TextField(controller: text, autofocus: true)),
     );
     await _frames(tester);
     select();
-    expect(text.selection, const TextSelection(baseOffset: 0, extentOffset: 11));
+    expect(
+      text.selection,
+      const TextSelection(baseOffset: 0, extentOffset: 11),
+    );
     expect(word.caret.logicalIndex, 2);
     expect(word.caret.selectionAnchor, isNull);
     Navigator.of(tester.element(find.byType(AlertDialog))).pop();

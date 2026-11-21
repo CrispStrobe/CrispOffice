@@ -828,80 +828,43 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     }
   }
 
-  Map<ShortcutActivator, VoidCallback> _baseShortcutBindings() =>
-      <ShortcutActivator, VoidCallback>{
-    if (StudioWindow
-        .isDesktop) ...<ShortcutActivator, VoidCallback>{
+  Map<ShortcutActivator, VoidCallback>
+  _baseShortcutBindings() => <ShortcutActivator, VoidCallback>{
+    if (StudioWindow.isDesktop) ...<ShortcutActivator, VoidCallback>{
       _fileShortcut(LogicalKeyboardKey.keyN): _newActiveFile,
       _fileShortcut(LogicalKeyboardKey.keyO): _openFile,
       _fileShortcut(LogicalKeyboardKey.keyW): StudioWindow.close,
     },
-    const SingleActivator(
-      LogicalKeyboardKey.keyS,
-      control: true,
-      shift: true,
-    ): _saveFileAs,
-    const SingleActivator(
-      LogicalKeyboardKey.keyS,
-      meta: true,
-      shift: true,
-    ): _saveFileAs,
-    const SingleActivator(LogicalKeyboardKey.keyZ, control: true):
-        _undo,
-    const SingleActivator(LogicalKeyboardKey.keyZ, meta: true):
-        _undo,
-    const SingleActivator(LogicalKeyboardKey.keyY, control: true):
+    const SingleActivator(LogicalKeyboardKey.keyS, control: true, shift: true):
+        _saveFileAs,
+    const SingleActivator(LogicalKeyboardKey.keyS, meta: true, shift: true):
+        _saveFileAs,
+    const SingleActivator(LogicalKeyboardKey.keyZ, control: true): _undo,
+    const SingleActivator(LogicalKeyboardKey.keyZ, meta: true): _undo,
+    const SingleActivator(LogicalKeyboardKey.keyY, control: true): _redo,
+    const SingleActivator(LogicalKeyboardKey.keyY, meta: true): _redo,
+    const SingleActivator(LogicalKeyboardKey.keyZ, control: true, shift: true):
         _redo,
-    const SingleActivator(LogicalKeyboardKey.keyY, meta: true):
+    const SingleActivator(LogicalKeyboardKey.keyZ, meta: true, shift: true):
         _redo,
-    const SingleActivator(
-      LogicalKeyboardKey.keyZ,
-      control: true,
-      shift: true,
-    ): _redo,
-    const SingleActivator(
-      LogicalKeyboardKey.keyZ,
-      meta: true,
-      shift: true,
-    ): _redo,
-    const SingleActivator(LogicalKeyboardKey.keyA, control: true):
-        _selectAll,
-    const SingleActivator(LogicalKeyboardKey.keyA, meta: true):
-        _selectAll,
-    const SingleActivator(LogicalKeyboardKey.keyC, control: true):
-        _copy,
-    const SingleActivator(LogicalKeyboardKey.keyC, meta: true):
-        _copy,
+    const SingleActivator(LogicalKeyboardKey.keyA, control: true): _selectAll,
+    const SingleActivator(LogicalKeyboardKey.keyA, meta: true): _selectAll,
+    const SingleActivator(LogicalKeyboardKey.keyC, control: true): _copy,
+    const SingleActivator(LogicalKeyboardKey.keyC, meta: true): _copy,
     if (studioZoteroDesktopAvailable) ...{
-      const SingleActivator(
-        LogicalKeyboardKey.keyC,
-        control: true,
-        alt: true,
-      ): _addEditZoteroCitation,
-      const SingleActivator(
-        LogicalKeyboardKey.keyC,
-        meta: true,
-        alt: true,
-      ): _addEditZoteroCitation,
-      const SingleActivator(
-        LogicalKeyboardKey.keyR,
-        control: true,
-        alt: true,
-      ): _refreshZoteroCitations,
-      const SingleActivator(
-        LogicalKeyboardKey.keyR,
-        meta: true,
-        alt: true,
-      ): _refreshZoteroCitations,
+      const SingleActivator(LogicalKeyboardKey.keyC, control: true, alt: true):
+          _addEditZoteroCitation,
+      const SingleActivator(LogicalKeyboardKey.keyC, meta: true, alt: true):
+          _addEditZoteroCitation,
+      const SingleActivator(LogicalKeyboardKey.keyR, control: true, alt: true):
+          _refreshZoteroCitations,
+      const SingleActivator(LogicalKeyboardKey.keyR, meta: true, alt: true):
+          _refreshZoteroCitations,
     },
-    const SingleActivator(LogicalKeyboardKey.keyX, control: true):
-        _cut,
-    const SingleActivator(LogicalKeyboardKey.keyX, meta: true):
-        _cut,
-    const SingleActivator(LogicalKeyboardKey.keyV, control: true):
-        _paste,
-    const SingleActivator(LogicalKeyboardKey.keyV, meta: true):
-        _paste,
+    const SingleActivator(LogicalKeyboardKey.keyX, control: true): _cut,
+    const SingleActivator(LogicalKeyboardKey.keyX, meta: true): _cut,
+    const SingleActivator(LogicalKeyboardKey.keyV, control: true): _paste,
+    const SingleActivator(LogicalKeyboardKey.keyV, meta: true): _paste,
     const SingleActivator(
       LogicalKeyboardKey.keyV,
       control: true,
@@ -914,71 +877,52 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       shift: true,
     ): () =>
         _pasteMode(OfficePasteMode.keepTextOnly),
-    const SingleActivator(LogicalKeyboardKey.f5):
-        _slideShowFromStart,
+    const SingleActivator(LogicalKeyboardKey.f5): _slideShowFromStart,
     const SingleActivator(LogicalKeyboardKey.f5, shift: true):
         _slideShowFromCurrent,
-    const SingleActivator(LogicalKeyboardKey.escape):
-        _workspaceEscape,
-    const SingleActivator(LogicalKeyboardKey.keyF, control: true):
-        _openFind,
-    const SingleActivator(LogicalKeyboardKey.keyF, meta: true):
-        _openFind,
-    const SingleActivator(LogicalKeyboardKey.keyH, control: true):
-        _openReplace,
-    const SingleActivator(LogicalKeyboardKey.keyH, meta: true):
-        _openReplace,
-    const SingleActivator(LogicalKeyboardKey.keyP, control: true):
-        _exportPdf,
-    const SingleActivator(LogicalKeyboardKey.keyP, meta: true):
-        _exportPdf,
+    const SingleActivator(LogicalKeyboardKey.escape): _workspaceEscape,
+    const SingleActivator(LogicalKeyboardKey.keyF, control: true): _openFind,
+    const SingleActivator(LogicalKeyboardKey.keyF, meta: true): _openFind,
+    const SingleActivator(LogicalKeyboardKey.keyH, control: true): _openReplace,
+    const SingleActivator(LogicalKeyboardKey.keyH, meta: true): _openReplace,
+    const SingleActivator(LogicalKeyboardKey.keyP, control: true): _exportPdf,
+    const SingleActivator(LogicalKeyboardKey.keyP, meta: true): _exportPdf,
     const SingleActivator(LogicalKeyboardKey.f3): _findNext,
-    const SingleActivator(LogicalKeyboardKey.f3, shift: true):
-        _findPrevious,
-    const SingleActivator(LogicalKeyboardKey.f1):
-        _openPdfSampleGallery,
+    const SingleActivator(LogicalKeyboardKey.f3, shift: true): _findPrevious,
+    const SingleActivator(LogicalKeyboardKey.f1): _openPdfSampleGallery,
     const SingleActivator(LogicalKeyboardKey.f7): _showSpelling,
     const SingleActivator(LogicalKeyboardKey.f7, shift: true):
         _word.requestThesaurus,
-    const SingleActivator(LogicalKeyboardKey.keyB, control: true):
-        _toggleBold,
-    const SingleActivator(LogicalKeyboardKey.keyB, meta: true):
-        _toggleBold,
+    const SingleActivator(LogicalKeyboardKey.keyB, control: true): _toggleBold,
+    const SingleActivator(LogicalKeyboardKey.keyB, meta: true): _toggleBold,
     const SingleActivator(LogicalKeyboardKey.keyI, control: true):
         _toggleItalic,
-    const SingleActivator(LogicalKeyboardKey.keyI, meta: true):
-        _toggleItalic,
+    const SingleActivator(LogicalKeyboardKey.keyI, meta: true): _toggleItalic,
     const SingleActivator(LogicalKeyboardKey.keyU, control: true):
         _toggleUnderline,
     const SingleActivator(LogicalKeyboardKey.keyU, meta: true):
         _toggleUnderline,
-    const SingleActivator(LogicalKeyboardKey.keyS, control: true):
-        _saveFile,
-    const SingleActivator(LogicalKeyboardKey.keyS, meta: true):
-        _saveFile,
+    const SingleActivator(LogicalKeyboardKey.keyS, control: true): _saveFile,
+    const SingleActivator(LogicalKeyboardKey.keyS, meta: true): _saveFile,
     const SingleActivator(LogicalKeyboardKey.equal, control: true):
         _shortcutZoomIn,
     const SingleActivator(LogicalKeyboardKey.equal, meta: true):
         _shortcutZoomIn,
-    const SingleActivator(
-      LogicalKeyboardKey.numpadAdd,
-      control: true,
-    ): _shortcutZoomIn,
+    const SingleActivator(LogicalKeyboardKey.numpadAdd, control: true):
+        _shortcutZoomIn,
     const SingleActivator(LogicalKeyboardKey.add, control: true):
         _shortcutZoomIn,
     const SingleActivator(LogicalKeyboardKey.minus, control: true):
         _shortcutZoomOut,
     const SingleActivator(LogicalKeyboardKey.minus, meta: true):
         _shortcutZoomOut,
-    const SingleActivator(
-      LogicalKeyboardKey.numpadSubtract,
-      control: true,
-    ): _shortcutZoomOut,
+    const SingleActivator(LogicalKeyboardKey.numpadSubtract, control: true):
+        _shortcutZoomOut,
     const SingleActivator(LogicalKeyboardKey.digit0, control: true):
         _shortcutZoomReset,
     const SingleActivator(LogicalKeyboardKey.digit0, meta: true):
         _shortcutZoomReset,
-      };
+  };
 
   static String _shortcutCode(SingleActivator key) => StudioShortcutBinding(
     keyId: key.trigger.keyId,
@@ -1042,8 +986,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         for (final alias in aliases) _shortcutCode(alias),
     };
     base.removeWhere(
-      (key, _) => key is SingleActivator &&
-          aliasCodes.contains(_shortcutCode(key)),
+      (key, _) =>
+          key is SingleActivator && aliasCodes.contains(_shortcutCode(key)),
     );
     final callbacks = _shortcutCallbacks();
     if (!StudioWindow.isDesktop) {
@@ -1087,9 +1031,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     if (_mailOpen || !_wordRouteIsCurrent) return false;
     if (id.startsWith('file.')) return _fileActionsAvailable;
     final focusContext = FocusManager.instance.primaryFocus?.context;
-    final textInput = focusContext?.widget is EditableText ||
+    final textInput =
+        focusContext?.widget is EditableText ||
         focusContext?.findAncestorWidgetOfExactType<EditableText>() != null;
-    final commentFormatting = id == 'format.bold' ||
+    final commentFormatting =
+        id == 'format.bold' ||
         id == 'format.italic' ||
         id == 'format.underline';
     if (id.startsWith('format.') ||
@@ -1124,8 +1070,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       const CopySelectionTextIntent.cut(SelectionChangedCause.keyboard),
       _cut,
     ),
-    'edit.copy': () =>
-        _dispatchTextAction(CopySelectionTextIntent.copy, _copy),
+    'edit.copy': () => _dispatchTextAction(CopySelectionTextIntent.copy, _copy),
     'edit.paste': () => _dispatchTextAction(
       const PasteTextIntent(SelectionChangedCause.keyboard),
       _paste,
@@ -1860,7 +1805,10 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                   return ListTile(
                     dense: true,
                     title: Text(action.label),
-                    subtitle: Text(binding?.label ?? _t('Not assigned', 'Nicht zugewiesen', 'غير معيّن')),
+                    subtitle: Text(
+                      binding?.label ??
+                          _t('Not assigned', 'Nicht zugewiesen', 'غير معيّن'),
+                    ),
                     trailing: Wrap(
                       spacing: 4,
                       children: [
@@ -1925,13 +1873,15 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       action: action,
       current: current,
       validate: (binding) =>
-          _reservedShortcutCodes(_baseShortcutBindings()).contains(binding.encode())
-              ? _t(
-                  'This shortcut is reserved for another workspace command.',
-                  'Dieses Kürzel ist für einen anderen Arbeitsbereichsbefehl reserviert.',
-                  'هذا الاختصار محجوز لأمر آخر في مساحة العمل.',
-                )
-              : null,
+          _reservedShortcutCodes(
+            _baseShortcutBindings(),
+          ).contains(binding.encode())
+          ? _t(
+              'This shortcut is reserved for another workspace command.',
+              'Dieses Kürzel ist für einen anderen Arbeitsbereichsbefehl reserviert.',
+              'هذا الاختصار محجوز لأمر آخر في مساحة العمل.',
+            )
+          : null,
     ),
   );
 
@@ -3979,8 +3929,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
         localTransport: transport.supportsLocal ? transport.send : null,
         initialCommand: command,
         closeAfterCommand: command != null,
-        isCurrent: () => _zoteroHostIsCurrent &&
-            hostGeneration == _zoteroHostGeneration,
+        isCurrent: () =>
+            _zoteroHostIsCurrent && hostGeneration == _zoteroHostGeneration,
       );
     } finally {
       transport.dispose();
