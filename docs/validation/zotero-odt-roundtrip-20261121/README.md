@@ -1,6 +1,45 @@
 # Native Zotero round trips through LibreOffice
 
-## Result and scope
+## Latest integrated qualification
+
+The final combined-source checkpoint is
+bb2dfd5272ff8de27ed2ec7f68b71801a2e41886, with tree
+5fadc8755a09f06cd1ba3c47a147e05c333258e0. It preserves the completed milestone
+below and merges current main 2058a434b2bcc76e7fc7e8a449ff6ce31488eb25,
+including native PNG/JPEG ODT support, Mail scheduled sending and the final
+selection-cache invalidation fix. Production hunks merged automatically; the
+changelog retains the updated Zotero entry once, without its older duplicate.
+
+| Fresh combined-source gate | Suites | Passed | Failed / skipped |
+| --- | ---: | ---: | --- |
+| Engine | 84 | 2,015 | 0 / 0 |
+| Editor | 11 | 147 | 0 / 0 |
+| Studio | 16 | 169 | 0 / 0 |
+| Total | 111 | 2,331 | 0 / 0 |
+
+Formatting, fatal-info analysis and whitespace checks pass. All 874 tracked
+workspace package-library Dart files are captured in the new source snapshots;
+every gate's before/after hashes match. The editor cohort includes native image
+loading and selection-cache pixels. Studio includes the affected Mail
+scheduling, outbox and compose regressions alongside Zotero/ODT tests. These are
+selected integration cohorts, not a claim that the entire repository was tested.
+
+Fresh actual converter checks repeat all three core fixtures and 11 fields,
+plus mixed-note export inventories. Separate PNG and JPEG fixtures each retain
+two pictures and two citations through two actual LibreOffice saves, with three
+native DOCX/ODT cycles after each save. All 23 converter commands exit zero;
+captured source, original and intermediate input bytes remain unchanged.
+
+Current results are in integration.json, integration-source-binding.json and
+integration-intake.json/.md. The separate integration-execution.tar.gz and
+integration-archive-contents.json retain the new raw evidence. The original
+execution.tar.gz, archive-contents.json, source-binding.json and final.json
+remain the completed first milestone below and are unchanged. Initial intake
+coverage remains complete; Mail is now integrated, while five later ongoing
+refs are explicitly recorded separately. No GitHub Actions were queried or
+awaited for either milestone.
+
+## First qualification milestone
 
 This increment reopens supported LibreOffice-saved Zotero ODT files as editable
 native Quds documents and preserves them through DOCX and further ODT saves.
@@ -9,7 +48,7 @@ bibliography, fixed-width merged/unmerged tables and decimal endnotes. The
 oracle compares the authored source model, complete metadata and ownership;
 passing a read-only Zotero inventory alone is insufficient.
 
-The qualified production checkpoint is
+The first milestone's qualified production checkpoint is
 d743c1b3e0791f7e73e5bd87638f8cd43a10fba2, with tree
 c94e0fb95ca1897b845527a3cc8898f80c8796f8. Later validation-only commits retain
 those production/test bytes. The independent source-binding.json connects
