@@ -71,13 +71,15 @@ statuses are queried or awaited as an acceptance gate.
 
 ## Local qualification
 
-The completed evidence index is [evidence/completed-index.json](evidence/completed-index.json).
-The archives contain raw events, exact commands, result receipts, source manifests
+All local acceptance gates passed. [qualification-summary.json](qualification-summary.json)
+connects the cohort receipts, source applicability and archive identities. The
+archives contain raw events, exact commands, result receipts, source manifests
 and independent review notes; they omit SDKs, caches and generated JavaScript.
 
 | Completed cohort | Visible passes | Qualification |
 | --- | ---: | --- |
 | Broad source-compiler regression, 36 files | 3,159 | Includes the 94 new header/footer source cases; compiler sources, selected tests, fixtures and operation catalog unchanged |
+| Final native/integration/CLI regression, 46 files | 1,167 | Includes 72 new native guard cases and 15 header/footer integration cases; all 3,054 captured tracked inputs unchanged |
 | Mail core, complete suite | 271 | Real Dart, 34 unchanged captured inputs; in-memory runner/provider fixtures |
 | Incoming Zotero engine/protocol, 27 files | 884 | Includes 62 new table-cell cases; all 558 captured inputs unchanged |
 | Incoming Flutter/SQLite local hosts | 991 | Complete store VM/Node coverage plus focused Mail and Zotero controller paths; all 6,076 present tracked inputs unchanged |
@@ -90,9 +92,26 @@ runtime. The final native gate is separate. The seven independent review probes
 are not added to test-suite totals. Earlier development findings in the guard
 archive are explicitly labeled and are not passing evidence.
 
-The final 46-file native/integration/CLI gate, strict analysis, formatting and
-VM/JavaScript parity replay are running against the fixed application source.
-Their final receipts will be added before the requested main merge.
+[final-native-index.json](evidence/final-native-index.json) and
+[final-native.tar.gz](evidence/final-native.tar.gz) record the fixed-source native
+gate. All 1,167 tests passed with no failures, skips or error events. Full engine
+and Mail-core analysis passed with fatal infos; all seven changed feature Dart
+files passed the format check without modification. Every command's 3,054
+captured tracked inputs remained unchanged.
+
+The actual committed BAS compiled to 11 operations addressing all six variants.
+The VM and compiled-JavaScript receipts are byte-identical, SHA-256
+`98a58a09cf92aa3982373fd6adc2f1d61c7836f2dc6fadfe5604edf7ae2a5c2f`.
+They verify first and repeated execution, two additional reopens, untouched body
+text, opaque payload preservation, and validation/run rollback with unchanged
+recording. The final native archive also contains the exact runtime package
+configuration captured after the gate and the executed commands.
+
+The three new feature suites contribute **181 focused cases**: 94 compiler,
+72 native and 15 integration. Those cases are already included in the broad
+cohorts above. Counts are reported by cohort, not added into an inflated unique
+grand total. The earlier compiler/Mail/Zotero/review archive identities remain
+in [completed-index.json](evidence/completed-index.json).
 
 ### Incoming Flutter and SQLite qualification
 
