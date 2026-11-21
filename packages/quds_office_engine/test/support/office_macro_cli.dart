@@ -105,7 +105,9 @@ Future<void> _compile(Directory cache, File kernel) async {
     <String>[
       'compile',
       'kernel',
-      ..._packagesArgument(),
+      // `dart compile` takes a file path here, not the VM's file: URI.
+      if (Platform.packageConfig case final String config)
+        '--packages=${Uri.parse(config).toFilePath()}',
       _script,
       '-o',
       staging.path,
