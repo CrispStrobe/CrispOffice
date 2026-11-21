@@ -209,10 +209,10 @@ WmlDocument _germanPractice() => WmlDocument(
           'Nach dem Unterricht trinken die Studenten zusammen einen Kaffee.',
           language: 'de-DE',
         ),
-        _para('Vocabulary', style: 'Heading1'),
+        _para('Next lesson', style: 'Heading1'),
         _para(
-          'das Sofa – the sofa · schlafen – to sleep · der Garten – the '
-          'garden · besuchen – to visit',
+          'Separable verbs and the perfect tense. Bring three sentences about '
+          'your weekend.',
         ),
       ],
     ),
@@ -278,9 +278,9 @@ SmlWorkbook _salesWorkbook() {
   _set(sales, 5, total + 2, '=AVERAGE(F2:F6)');
   _set(sales, 0, total + 3, 'Best quarter (all regions)');
   _set(sales, 5, total + 3, '=MAX(B7:E7)');
-  sales.columnWidths[0] = 190;
+  sales.columnWidths[0] = 170;
   for (var c = 1; c <= 6; c++) {
-    sales.columnWidths[c] = 92;
+    sales.columnWidths[c] = 84;
   }
   int quarter(int q) => regions.fold(0, (sum, r) => sum + r.$2[q]);
   sales.drawings
@@ -311,10 +311,10 @@ SmlWorkbook _salesWorkbook() {
               color: 'ED7D31',
             ),
           ],
-          width: 430,
+          width: 360,
           height: 250,
         ),
-        col: 8,
+        col: 7,
         row: 1,
         sourceFromA1: 'B7',
         sourceToA1: 'E7',
@@ -339,10 +339,10 @@ SmlWorkbook _salesWorkbook() {
                 ][i],
               ),
           ],
-          width: 430,
+          width: 360,
           height: 250,
         ),
-        col: 8,
+        col: 7,
         row: 15,
       ),
     );
@@ -891,52 +891,32 @@ final class _CredentialStore extends Fake implements StudioMailCredentialStore {
 }
 
 // ---------------------------------------------------------------------------
-// Capture helpers
+// Hosts
 
-/// macOS draws the window buttons natively into the space the title bar
-/// reserves for them; the widget test has no native window, so they are
-/// painted here at their standard positions.
-class _TrafficLights extends StatelessWidget {
-  const _TrafficLights({required this.slot});
+// The hosts' verification runs on real I/O, which the widget-test clock does
+// not drive; a refresh started from a widget (the Downloads dialog) would
+// never finish there. Once the test has refreshed them in real time, later
+// widget-initiated refreshes reuse that verified state.
+class _SettledHunspell extends NativeStudioHunspellHost {
+  _SettledHunspell({required super.root, required super.libraryPath});
 
-  final ValueNotifier<Rect?> slot;
+  bool settled = false;
 
   @override
-  Widget build(BuildContext context) => ValueListenableBuilder<Rect?>(
-    valueListenable: slot,
-    builder: (context, rect, _) {
-      if (rect == null) return const SizedBox.shrink();
-      const colors = <Color>[
-        Color(0xFFFF5F57),
-        Color(0xFFFEBC2E),
-        Color(0xFF28C840),
-      ];
-      return Stack(
-        children: <Widget>[
-          for (var i = 0; i < 3; i++)
-            Positioned(
-              left: rect.left + 14 + i * 20,
-              top: rect.center.dy - 6,
-              child: Container(
-                width: 12,
-                height: 12,
-                decoration: BoxDecoration(
-                  color: colors[i],
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: Colors.black.withValues(alpha: 0.12),
-                    width: 0.5,
-                  ),
-                ),
-              ),
-            ),
-        ],
-      );
-    },
-  );
+  Future<void> refresh() => settled ? Future<void>.value() : super.refresh();
 }
 
-Finder _key(String value) => find.byKey(ValueKey<String>(value));
+class _SettledMorphology extends NativeStudioArabicMorphHost {
+  _SettledMorphology({required super.root, required super.libraryPath});
+
+  bool settled = false;
+
+  @override
+  Future<void> refresh() => settled ? Future<void>.value() : super.refresh();
+}
+
+// ---------------------------------------------------------------------------
+// Capture helpers
 
 Finder _field(String label) => find.byWidgetPredicate(
   (widget) => widget is TextField && widget.decoration?.labelText == label,
@@ -961,11 +941,11 @@ void main() {
 
     // Native hosts, as in the bundle gates.
     final root = Directory(data);
-    final hunspell = NativeStudioHunspellHost(
+    final hunspell = _SettledHunspell(
       root: root,
       libraryPath: '$frameworks/libquds_proofing_hunspell.dylib',
     );
-    final morph = NativeStudioArabicMorphHost(
+    final morph = _SettledMorphology(
       root: root,
       libraryPath: '$frameworks/libquds_arabic_morph.dylib',
     );
@@ -1017,7 +997,6 @@ void main() {
     addTearDown(tester.view.reset);
 
     final boundary = GlobalKey();
-    final lights = ValueNotifier<Rect?>(null);
 
     Future<void> settle([int rounds = 6]) async {
       for (var i = 0; i < rounds; i++) {
@@ -1052,17 +1031,7 @@ void main() {
       await tester.pumpWidget(
         RepaintBoundary(
           key: boundary,
-          child: Directionality(
-            textDirection: TextDirection.ltr,
-            child: Stack(
-              children: <Widget>[
-                Positioned.fill(child: QudsOfficeStudioApp(home: workspace)),
-                Positioned.fill(
-                  child: IgnorePointer(child: _TrafficLights(slot: lights)),
-                ),
-              ],
-            ),
-          ),
+          child: QudsOfficeStudioApp(home: workspace),
         ),
       );
       await settle();
@@ -1070,11 +1039,6 @@ void main() {
 
     Future<void> capture(String name) async {
       await settle(3);
-      final slot = _key('native-traffic-light-space');
-      lights.value = slot.evaluate().isEmpty
-          ? null
-          : tester.getRect(slot.first);
-      await tester.pump(const Duration(milliseconds: 50));
       // Let the caret blink settle into its visible phase.
       await tester.pump(const Duration(milliseconds: 600));
       await tester.runAsync(() async {
@@ -1129,8 +1093,10 @@ void main() {
           .where((i) => i.finding.providerId == spacyGrammarProviderId)
           .firstOrNull;
       final watch = Stopwatch()..start();
-      while (grammar() == null &&
-          watch.elapsed < const Duration(seconds: 120)) {
+      // Retry until one explicit check completes for every provider (a
+      // provider can miss its deadline on a loaded machine).
+      while ((grammar() == null || !controller.proofing.summary.complete) &&
+          watch.elapsed < const Duration(seconds: 240)) {
         await tester.runAsync(() async {
           try {
             await controller.checkDocumentProofing().timeout(
@@ -1144,6 +1110,11 @@ void main() {
         await settle(4);
       }
       final issue = grammar();
+      if (!controller.proofing.summary.complete) {
+        problems.add(
+          'incomplete check: ${controller.proofing.summary.statusMessage}',
+        );
+      }
       if (issue == null) {
         problems.add(
           'no spaCy grammar finding: ${controller.proofing.summary.statusMessage}',
@@ -1211,7 +1182,12 @@ void main() {
             );
       }
 
-      await waitFor('English and Arabic proofing', ready);
+      // A host that finishes loading reconfigures proofing and starts a
+      // fresh check; wait until the findings are back and checking is idle.
+      bool idle() => ready() && !controller.proofing.checking;
+      await waitFor('English and Arabic proofing', idle);
+      await settle(10);
+      await waitFor('settled proofing', idle);
       // ignore: avoid_print
       print('findings: ${findings(controller)}');
       for (final mistake in _englishMistakes) {
@@ -1225,9 +1201,16 @@ void main() {
         ..collapseSelection();
       controller.refreshView();
       await capture('01-word-english-arabic');
+      if (!idle()) problems.add('01: proofing changed while capturing');
     }
 
     // 6: Downloads manager with the installed language packs.
+    await tester.runAsync(() async {
+      await hunspell.refresh();
+      await morph.refresh();
+    });
+    hunspell.settled = true;
+    morph.settled = true;
     {
       final context = tester.element(find.byType(QudsWordEditor));
       unawaited(
@@ -1237,7 +1220,16 @@ void main() {
           fontPacks: FakeFontPacks(),
         ),
       );
-      await settle(10);
+      await settle(4);
+      // The dialog refreshes every host before enabling its actions.
+      await waitFor('the Downloads refresh', () {
+        final remove = find.ancestor(
+          of: find.text('Remove'),
+          matching: find.byWidgetPredicate((w) => w is ButtonStyleButton),
+        );
+        return remove.evaluate().isNotEmpty &&
+            tester.widget<ButtonStyleButton>(remove.first).enabled;
+      }, limit: const Duration(seconds: 60));
       await capture('06-downloads');
       Navigator.of(context).pop();
       await settle(3);
@@ -1304,6 +1296,7 @@ void main() {
 
     // ignore: avoid_print
     print('problems: $problems');
+    debugDisableShadows = true;
     expect(problems, isEmpty);
   }, timeout: const Timeout(Duration(minutes: 20)));
 }
