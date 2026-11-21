@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "verified_head": "a7f69313ed2e610f82242c31be8ad5387ae5cea0",
+  "verified_tree": "8f0acd00b505c230ea6ccd2db2d57e17d7475011",
+  "snapshots": [
+    {
+      "snapshot": "original383",
+      "source_record": "../intake/final-original-replay.json",
+      "source_record_sha256": "daf4c04855aab7812a91084d901ffa6648acc94828afcfba506f73aa3f73830a",
+      "captured_ref_count": 383,
+      "previous_counts": {
+        "ancestor": 369,
+        "verified_equivalent": 14
+      },
+      "current_counts": {
+        "ancestor": 369,
+        "verified_equivalent": 14
+      },
+      "equivalence_proof_kinds": {
+        "full_tree": 13,
+        "changed_paths": 1
+      }
+    },
+    {
+      "snapshot": "publication386",
+      "source_record": "../intake/final-publication-classified-replay.json",
+      "source_record_sha256": "9c606adddb3102227117e7fcb4a7c625ab58fd9e3c3e336b707b45d98f31fa6a",
+      "captured_ref_count": 386,
+      "previous_counts": {
+        "ancestor": 370,
+        "deferred_new_draft": 2,
+        "verified_equivalent": 14
+      },
+      "current_counts": {
+        "ancestor": 372,
+        "verified_equivalent": 14
+      },
+      "equivalence_proof_kinds": {
+        "full_tree": 13,
+        "changed_paths": 1
+      }
+    }
+  ],
+  "resolved_deferred_refs": [
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/heads/codex/word-vba-typography-20261121",
+      "sha": "a646cf761f7eafe7915988a1d84f90ca6dbe5793",
+      "previous_disposition": "deferred_new_draft",
+      "current_disposition": "ancestor"
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "ref": "refs/pull/336/head",
+      "sha": "a646cf761f7eafe7915988a1d84f90ca6dbe5793",
+      "previous_disposition": "deferred_new_draft",
+      "current_disposition": "ancestor"
+    }
+  ],
+  "resolution": "PR336 typography completed and reached main aa861c28; both aliases of its previously captured draft commit are now ancestors of the integrated source checkpoint.",
+  "boundary": "Replays the unchanged historical 383-ref and 386-ref inputs. This is not an unbounded new remote scan, and no earlier snapshot or disposition record is rewritten."
+}

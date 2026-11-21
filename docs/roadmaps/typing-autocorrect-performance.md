@@ -223,7 +223,10 @@ repaints reuse the text layer. Header/footer editing retains its dynamic caret
 and background overlay.
 
 Tests: header/footer navigation, embed rendering and incremental layout suites
-pass. The [final Zotero delivery gate](../validation/zotero-roundtrip-complete-20261121/final-delivery/README.md)
+pass. The [final Zotero delivery gate](../validation/zotero-roundtrip-complete-20261121/final-main/README.md)
 adds five noncompact retained-versus-fresh raster regressions for entering and
 leaving table-band, whole-table, cross-cell and header/footer editing states;
-all 36 selected renderer/dark-document cases and strict static checks pass.
+all 51 selected renderer, dark-document and positioning cases and strict static
+checks pass. The final typed snapshot replaces individual stale page pictures;
+overlay proofing is painted live outside the cached picture and clears when
+findings change.
