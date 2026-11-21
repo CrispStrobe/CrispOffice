@@ -1582,6 +1582,7 @@ class WordDeserializer {
               reader.localName == 'pStyle' ||
               reader.localName == 'bidi' ||
               reader.localName == 'tabs' ||
+              reader.localName == 'shd' ||
               reader.localName == 'suppressAutoHyphens') &&
           (reader.depth != depth + 1 ||
               (reader.namespaceUri != OfficeNamespaces.w &&
@@ -1677,10 +1678,14 @@ class WordDeserializer {
         case 'numPr':
           _readNumPr(reader, props);
         case 'shd':
-          props.shadingFill = reader.getAttribute(
+          final fill = reader.getAttribute(
             'fill',
             namespaceUri: OfficeNamespaces.w,
           );
+          // Automatic background is transparent in the solid-fill model. Its
+          // explicit native packet remains in the sparse source, overriding
+          // inherited shading without painting a literal non-RGB color.
+          props.shadingFill = fill == 'auto' ? null : fill;
         case 'pBdr':
           _readParagraphBorders(reader, props);
         case 'framePr':

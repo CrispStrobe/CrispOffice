@@ -677,6 +677,60 @@ choices. In particular, combined empty-input/empty-needle/start/count boundary
 precedence is recorded as a dialect contract pending Office differential
 observation. No installed Office host was run.
 
+### Text construction and Unicode code units
+
+The shared source layer supports `Space`, `Space$`, `String`, `String$`,
+`ChrW`, `ChrW$`, and `AscW` in all three adapters. Arguments are positional,
+evaluated once in source order, and must have the actual types below. Scalar
+Variants carrying those types are accepted. Named/omitted arguments, implicit
+coercion, and `Null`/`Empty` operands are refused; use the existing explicit
+conversion functions when appropriate. Unsuffixed and `$` variants return the
+same bounded String values here, without a VBA Variant subtype identity claim.
+
+| Function | Bounded contract |
+| --- | --- |
+| `Space(count)` / `Space$(count)` | Produce exactly `count` U+0020 spaces. Zero produces an empty String. |
+| `String(count, character)` / `String$(count, character)` | Repeat the first UTF-16 code unit of a nonempty actual String. The remaining units are ignored. Numeric character/code-page conversion is unsupported; use `ChrW` explicitly. |
+| `ChrW(code)` / `ChrW$(code)` | Produce one UTF-16 code unit from an exact integer in `-32768..65535`. Negative inputs add 65536. |
+| `AscW(text)` | Return the first UTF-16 code unit of a nonempty actual String as a signed integer in `-32768..32767`. |
+
+Counts must be exact nonnegative signed-32-bit integers. Each result is limited
+to 32,767 UTF-16 units, and construction charges every output unit against the
+shared 100,000-work budget before allocating the result. `ChrW` and `AscW`
+charge one unit. Zero-length repetition still validates its character argument.
+Negative/fractional/out-of-Long counts are type errors; valid counts that exceed
+the output/work bounds are `vba_limit_exceeded` errors.
+
+```vb
+Sub Main()
+    Dim label As String
+    label = String$(3, "-+") & Space(1) & ChrW(8364)
+    Worksheets(1).Range("A1").Value2 = label
+    Worksheets(1).Range("A2").Value2 = AscW(ChrW(32768))
+    Worksheets(1).Range("A3").Value2 = ChrW(55357) & ChrW(56832)
+End Sub
+```
+
+The outputs are `"--- €"`, `-32768`, and `"😀"`. Units are not Unicode scalars
+or grapheme clusters: `String(2, "😀")` produces two high-surrogate units, which
+may be inspected by source expressions but cannot be published as native text.
+The existing native boundary refuses isolated surrogates and invalid XML
+characters. Word insertion continues to permit tabs and refuse paragraph/line
+breaks; `ChrW` does not bypass those structural rules.
+
+The full signed lower bound is a deliberate Quds choice: the current MS-VBAL
+ChrW page prints `-32767`, whereas AscW can return `-32768`. Accepting `-32768`
+preserves the full 16-bit inverse `ChrW(AscW(text))` for its first unit. This
+contract is specification-informed and independently tested; it has not been
+differentially qualified against an installed Microsoft Office host.
+
+See Microsoft's [Space](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/space-function),
+[String](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/string-function),
+[MS-VBAL ChrW](https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/de4b7500-260f-41c5-b2fd-082eddd5f0b2),
+and [MS-VBAL AscW](https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/aab8e1d9-287d-4098-bf3a-14271eaa4b8e)
+references. The [Word example](../packages/quds_office_engine/example/macros/word_text_construction.bas)
+uses ordinary insertion/formatting operations with the existing atomic runtime.
+
 ## Variant states and explicit conversions
 
 `Empty` and `Null` are distinct source scalar values. `Empty` is the default of

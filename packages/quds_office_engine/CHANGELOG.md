@@ -20,6 +20,22 @@ All notable changes to `quds_office_engine` are documented here.
   [round-trip record](../../docs/validation/zotero-odt-roundtrip-20261121/README.md)
   for executed scope and remaining active-footnote/installed-plugin acceptance.
 
+- Extend Word VBA with typed `Shading` bindings on selected Paragraph/Range
+  objects, RGB/automatic and fixed-palette background assignments, and all 60
+  named `WdColor` constants. Add guarded native `docx.paragraphShading` with
+  sparse background ownership, explicit automatic overrides, metadata
+  preservation and atomic refusal of unsupported source shading. Include
+  compiler, native, transaction, CLI/MCP and VM/JavaScript example coverage.
+  See the [shading contract](../../docs/VBA_WORD_MACROS.md#paragraph-background-shading).
+
+- Add shared bounded `Space`/`Space$`, `String`/`String$`, `ChrW`/`ChrW$`, and
+  `AscW` to the Word, Excel and PowerPoint source dialects. Keep exact numeric
+  arguments, UTF-16 code-unit semantics, strict actual String inputs, shared
+  work/output limits and existing native-publication character guards. Numeric
+  code-page String operands remain unsupported. Include a runnable Word BAS
+  module and source/transaction/portable tests. See the
+  [construction contract](../../docs/VBA_MACROS.md#text-construction-and-unicode-code-units).
+
 - Extend bounded Word VBA with `Paragraph.Style` and selected `Range.Style`
   assignments by primary name or 13 built-in constants. Add guarded native
   `docx.paragraphStyle` with targeted inheritance refresh, preserved direct
