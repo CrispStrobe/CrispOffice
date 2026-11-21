@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -142,7 +143,7 @@ final class _Provider extends Fake
               partPath: '2',
               mediaType: 'application/octet-stream',
               displayName: 'retained.bin',
-              content: MailBytes([0, 128, 255, number]),
+              content: MailBytes(Uint8List.fromList([0, 128, 255, number])),
             ),
           ],
         ),

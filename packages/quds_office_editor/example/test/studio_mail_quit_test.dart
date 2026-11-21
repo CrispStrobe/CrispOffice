@@ -252,7 +252,7 @@ Future<void> _openMail(WidgetTester tester, _DraftOwner owner) async {
       .controller;
   word.proofing.enabled = false;
   word.proofing.configure(OfficeProofingService(providers: []));
-  await tester.tap(find.text(_strings.mail));
+  await tester.tap(find.byTooltip(_strings.mail));
   await _finishRoutes(tester);
   expect(find.byType(_MailPage), findsOneWidget);
 }

@@ -17,6 +17,8 @@ All notable changes to `quds_office_editor` are documented here.
   until an explicit download and preserve draft, Outbox and sync checkpoints.
 - Honor composer save guards during native Quit, drain closed routes before
   closing their storage owner, and keep failed or pending draft saves open.
+- Keep long missing-message and error descriptions scrollable in compact
+  synchronized-mail readers, including translated text at enlarged text sizes.
 
 - Correct localized Mail list dates across daylight-saving changes and supplied
   UTC clocks: compare local calendar dates so yesterday, recent weekdays and

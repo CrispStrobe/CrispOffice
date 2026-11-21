@@ -688,7 +688,8 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
   Widget _message() {
     if (_reader case final reader?) return MailMessageView(controller: reader);
     return Center(
-      child: Padding(
+      child: SingleChildScrollView(
+        primary: false,
         padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisSize: MainAxisSize.min,
