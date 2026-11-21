@@ -248,6 +248,23 @@ custom columns, alternate section properties, `mc:ProcessContent` markup, and mi
 are refused. See the [complete section contract](VBA_WORD_MACROS.md#section-page-setup)
 and [runnable example](../packages/quds_office_engine/example/macros/word_page_setup.bas).
 
+Native `docx.pageOrientation` requires zero-based `section` and `orientation`
+(`portrait`, `landscape`, or `toggle`). A change swaps the section's dimensions
+while retaining named margins, header/footer distances, column settings and
+printer paper code. Same-value writes retain dimensions but explicitly own
+orientation, including on square pages. Runtime resolution follows previous
+transaction operations and refuses inconsistent/ambiguous source orientation,
+unsupported page settings or resulting invalid geometry.
+
+Native `docx.sectionStart` requires zero-based `section` and `kind`
+(`continuous`, `nextPage`, `evenPage`, or `oddPage`). It owns only the selected
+native section-start attribute, preserves unrelated source properties and
+history, and refuses duplicate native type/value or ambiguous section identity.
+New-column starts are unsupported. Both operations use the same allowlists,
+recording and atomic publication boundary as other mutations. See the
+[section-controls contract](VBA_WORD_MACROS.md#section-orientation-and-start-controls)
+and [runnable example](../packages/quds_office_engine/example/macros/word_sections.bas).
+
 Native `docx.listDefault` takes `paragraph` and Boolean `numbered`. It toggles
 off matching native paragraph numbering or applies a deterministic Quds
 single-level default when the kind differs. Native `docx.removeNumbers` takes
@@ -482,8 +499,10 @@ or ambiguous source definitions. See the [spacing-control contract](VBA_WORD_MAC
 Typed `Section` and `PageSetup` bindings select `Sections(i)` or
 `Sections.Item(i)`. Their eight geometry setters emit `docx.pageSetup`, with
 one explicit section, native property name and point value per operation.
-They support aliases, `With` and required `ByVal` helpers while refusing live
-reads, collection-wide page setup, `Orientation`, and `PaperSize`. The
+They support aliases, `With` and required `ByVal` helpers. `Orientation` and
+`TogglePortrait` emit `docx.pageOrientation`; four supported `SectionStart`
+modes emit `docx.sectionStart`. Live reads, collection-wide page setup and
+`PaperSize` remain unsupported. The
 [section contract](VBA_WORD_MACROS.md#section-page-setup) states source numeric
 bounds, sparse native ownership and the custom-paper side effect. The
 [local qualification record](validation/word-vba-paragraph-pagination-20261121/README.md)

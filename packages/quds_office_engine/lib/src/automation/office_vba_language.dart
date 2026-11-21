@@ -143,6 +143,13 @@ const _variantIntrinsics = <String>{
   'cvar',
 };
 const _wordConstants = <String, int>{
+  'wdorientportrait': 0,
+  'wdorientlandscape': 1,
+  'wdsectioncontinuous': 0,
+  'wdsectionnewcolumn': 1,
+  'wdsectionnewpage': 2,
+  'wdsectionevenpage': 3,
+  'wdsectionoddpage': 4,
   'wdalignparagraphleft': 0,
   'wdalignparagraphcenter': 1,
   'wdalignparagraphright': 2,
@@ -925,6 +932,11 @@ class _WordParagraphControl extends _Statement {
   final _Member target;
 }
 
+class _WordPageSetupOperation extends _Statement {
+  const _WordPageSetupOperation(super.token, this.target);
+  final _Member target;
+}
+
 class _For extends _Statement {
   const _For(
     super.token,
@@ -1307,6 +1319,9 @@ class _Parser {
           } else if (target is _Member &&
               _wordParagraphControls.contains(target.token.lower)) {
             result.add(_WordParagraphControl(target.token, target));
+          } else if (target is _Member &&
+              target.token.lower == 'toggleportrait') {
+            result.add(_WordPageSetupOperation(target.token, target));
           } else if (target is _Call) {
             result.add(_Invoke(target.token, target.arguments));
           } else if (target is _Name) {
@@ -1551,6 +1566,7 @@ class _Parser {
               ..._wordListMethods,
               ..._wordSpacingMethods,
               ..._wordParagraphControls,
+              'toggleportrait',
             }.contains(target.token.lower)) {
           final arguments = target.arguments ?? <_Expr>[];
           if (target.arguments == null &&
@@ -1579,6 +1595,8 @@ class _Parser {
                 ? _WordSpacingOperation(target.token, call)
                 : _wordParagraphControls.contains(target.token.lower)
                 ? _WordParagraphControl(target.token, call)
+                : target.token.lower == 'toggleportrait'
+                ? _WordPageSetupOperation(target.token, call)
                 : _WordTabOperation(target.token, call),
           );
         } else if (!isSet &&
@@ -2529,6 +2547,18 @@ class _Checker {
             statement.target.arguments ?? const <_Expr>[],
             0,
           );
+        case _WordPageSetupOperation():
+          if (_expression(statement.target.receiver) != _Kind.wordPageSetup) {
+            context.type(
+              statement.token,
+              'TogglePortrait requires an explicit Word section PageSetup.',
+            );
+          }
+          _count(
+            statement.target.token,
+            statement.target.arguments ?? const <_Expr>[],
+            0,
+          );
         case _For():
           final counter = _symbol(statement.counter);
           if (counter.isConst ||
@@ -2930,7 +2960,9 @@ class _Checker {
     }
     if (context.isWord) {
       if (receiver == _Kind.wordPageSetup &&
-          _wordPageSetupFields.containsKey(property)) {
+          (_wordPageSetupFields.containsKey(property) ||
+              property == 'orientation' ||
+              property == 'sectionstart')) {
         return _Kind.number;
       }
       if (receiver == _Kind.range && property == 'highlightcolorindex') {
@@ -4080,6 +4112,11 @@ class _Evaluator {
                 _ => 'toggle',
               },
             }, statement.token);
+          case _WordPageSetupOperation():
+            final page = _evaluate(statement.target.receiver) as _WordPageSetup;
+            _emitWordSection(page, 'pageOrientation', <String, Object?>{
+              'orientation': 'toggle',
+            }, statement.target.token);
           case _With():
             withValues.add(_evaluate(statement.target));
             frames.add(_WithFrame());
@@ -5676,6 +5713,36 @@ class _Evaluator {
     _Token token,
   ) {
     if (receiver is _WordPageSetup) {
+      if (property == 'orientation') {
+        final orientation = _integer(value, token);
+        if (orientation != 0 && orientation != 1) {
+          context.unsupported(
+            token,
+            'Orientation supports only wdOrientPortrait and wdOrientLandscape.',
+          );
+        }
+        _emitWordSection(receiver, 'pageOrientation', <String, Object?>{
+          'orientation': orientation == 0 ? 'portrait' : 'landscape',
+        }, token);
+        return;
+      }
+      if (property == 'sectionstart') {
+        final start = _integer(value, token);
+        final kind = switch (start) {
+          0 => 'continuous',
+          2 => 'nextPage',
+          3 => 'evenPage',
+          4 => 'oddPage',
+          _ => context.unsupported(
+            token,
+            'SectionStart supports continuous, new-page, even-page and odd-page breaks; new-column breaks are unsupported.',
+          ),
+        };
+        _emitWordSection(receiver, 'sectionStart', <String, Object?>{
+          'kind': kind,
+        }, token);
+        return;
+      }
       final field = _wordPageSetupFields[property]!;
       final points = _number(value, token);
       final minimum = field == 'width' || field == 'height' ? 1 : 0;
@@ -5688,14 +5755,7 @@ class _Evaluator {
           'PageSetup geometry requires exact twentieth-points within signed Long twips; page dimensions must be at least 1 point and margins/distances nonnegative.',
         );
       }
-      if (steps.length >= _maxSteps) {
-        context.limit(
-          token,
-          'Word writes exceed $_maxSteps emitted operations.',
-        );
-      }
-      _emitNative('docx.pageSetup', <String, Object?>{
-        'section': receiver.section.index,
+      _emitWordSection(receiver, 'pageSetup', <String, Object?>{
         'property': field,
         'points': points,
       }, token);
@@ -5970,6 +6030,21 @@ class _Evaluator {
       pending.token,
       'AtLeast, Exactly and Multiple require a following LineSpacing write to the same paragraph before any other document mutation or the end of the macro.',
     );
+  }
+
+  void _emitWordSection(
+    _WordPageSetup page,
+    String operation,
+    Map<String, Object?> fields,
+    _Token token,
+  ) {
+    if (steps.length >= _maxSteps) {
+      context.limit(token, 'Word writes exceed $_maxSteps emitted operations.');
+    }
+    _emitNative('docx.$operation', <String, Object?>{
+      'section': page.section.index,
+      ...fields,
+    }, token);
   }
 
   void _emitWord(

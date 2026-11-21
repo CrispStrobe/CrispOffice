@@ -59,6 +59,7 @@ extension _StudioSettingsPersistence on _SuiteWorkspaceState {
       StudioSettingKeys.pdfPreventLinks: _pdfPreventLinks,
       StudioSettingKeys.pdfFitPolicy: _pdfFitPolicy.name,
       StudioSettingKeys.checkAsYouType: _word.proofing.enabled,
+      ...StudioSettings.proofingScheduleJson(_word.proofing.schedule),
       StudioSettingKeys.detectLanguage:
           _word.proofing.automaticLanguageDetection,
       StudioSettingKeys.arabicContext:
@@ -115,6 +116,7 @@ extension _StudioSettingsPersistence on _SuiteWorkspaceState {
       _pdfFitPolicy,
     );
     final proofing = _word.proofing;
+    proofing.schedule = stored.proofingSchedule;
     proofing.enabled = stored.flag(StudioSettingKeys.checkAsYouType);
     proofing.automaticLanguageDetection = stored.flag(
       StudioSettingKeys.detectLanguage,
@@ -148,5 +150,222 @@ extension _StudioSettingsPersistence on _SuiteWorkspaceState {
     if (current == binding.saved) return;
     binding.saved = current;
     unawaited(binding.store.save(current));
+  }
+}
+
+/// The as-you-type proofing schedule in the Settings dialog. Every change is
+/// applied to the session at once and persisted by the next workspace build.
+extension _ProofingScheduleSettings on _SuiteWorkspaceState {
+  /// The ribbon's Check as you type switch. Turning it on from "Only when I
+  /// click Check document" chooses the recommended mode.
+  void _toggleCheckAsYouType() {
+    final proofing = _word.proofing;
+    if (proofing.enabled && proofing.schedule.mode != WordProofingMode.manual) {
+      proofing.enabled = false;
+      return;
+    }
+    if (proofing.schedule.mode == WordProofingMode.manual) {
+      proofing.schedule = proofing.schedule.copyWith(
+        mode: WordProofingMode.whileTyping,
+      );
+    }
+    proofing.enabled = true;
+  }
+
+  String _pauseLabel(Duration pause) {
+    final seconds = pause.inMilliseconds / 1000;
+    final text = seconds.toStringAsFixed(1);
+    return _t('$text s', '${text.replaceAll('.', ',')} s', '$text ث');
+  }
+
+  List<Widget> _proofingScheduleSettings(void Function(VoidCallback) changed) {
+    final proofing = _word.proofing;
+    final schedule = proofing.schedule;
+    final mode = proofing.enabled ? schedule.mode : WordProofingMode.manual;
+    final automatic = mode != WordProofingMode.manual;
+    void update(WordProofingSchedule next) =>
+        changed(() => proofing.schedule = next);
+    return <Widget>[
+      const SizedBox(height: 12),
+      Align(
+        alignment: AlignmentDirectional.centerStart,
+        child: Text(
+          _t('Proofing', StudioStrings.de('Proofing'), 'التدقيق'),
+          style: Theme.of(_themedContext).textTheme.titleSmall,
+        ),
+      ),
+      const SizedBox(height: 8),
+      DropdownButtonFormField<WordProofingMode>(
+        key: const ValueKey<String>('studio-setting-proofing-mode'),
+        isExpanded: true,
+        initialValue: mode,
+        decoration: InputDecoration(
+          labelText: _t('Checking mode', 'Prüfmodus', 'وضع التدقيق'),
+        ),
+        items: <DropdownMenuItem<WordProofingMode>>[
+          DropdownMenuItem(
+            value: WordProofingMode.whileTyping,
+            child: Text(
+              _t(
+                'While typing (recommended)',
+                'Während der Eingabe (empfohlen)',
+                'أثناء الكتابة (مستحسن)',
+              ),
+            ),
+          ),
+          DropdownMenuItem(
+            value: WordProofingMode.onPause,
+            child: Text(
+              _t(
+                'When I pause',
+                'Wenn ich eine Pause mache',
+                'عندما أتوقف عن الكتابة',
+              ),
+            ),
+          ),
+          DropdownMenuItem(
+            value: WordProofingMode.manual,
+            child: Text(
+              _t(
+                'Only when I click Check document',
+                'Nur wenn ich auf „Dokument prüfen“ klicke',
+                'فقط عند النقر على «تدقيق المستند»',
+              ),
+            ),
+          ),
+        ],
+        onChanged: (value) {
+          if (value == null) return;
+          changed(() {
+            proofing.schedule = proofing.schedule.copyWith(mode: value);
+            if (value != WordProofingMode.manual) proofing.enabled = true;
+          });
+        },
+      ),
+      Padding(
+        padding: const EdgeInsets.only(top: 4),
+        child: Text(switch (mode) {
+          WordProofingMode.whileTyping => _t(
+            'Spelling is checked when you finish a word, grammar when you '
+                'finish a sentence or pause.',
+            'Die Rechtschreibung wird nach jedem fertigen Wort geprüft, die '
+                'Grammatik nach jedem fertigen Satz oder in einer Pause.',
+            'يُدقَّق الإملاء عند إكمال الكلمة، والقواعد عند إكمال الجملة أو '
+                'التوقف عن الكتابة.',
+          ),
+          WordProofingMode.onPause => _t(
+            'Spelling and grammar are checked when you stop typing.',
+            'Rechtschreibung und Grammatik werden geprüft, sobald Sie aufhören '
+                'zu tippen.',
+            'يُدقَّق الإملاء والقواعد عندما تتوقف عن الكتابة.',
+          ),
+          WordProofingMode.manual => _t(
+            'Nothing is checked automatically.',
+            'Es wird nichts automatisch geprüft.',
+            'لا يُدقَّق شيء تلقائياً.',
+          ),
+        }, style: Theme.of(_themedContext).textTheme.bodySmall),
+      ),
+      SwitchListTile(
+        key: const ValueKey<String>('studio-setting-check-spelling'),
+        contentPadding: EdgeInsets.zero,
+        title: Text(
+          _t(
+            'Check spelling while typing',
+            'Rechtschreibung während der Eingabe prüfen',
+            'تدقيق الإملاء أثناء الكتابة',
+          ),
+        ),
+        value: schedule.checkSpelling,
+        onChanged: automatic
+            ? (value) => update(schedule.copyWith(checkSpelling: value))
+            : null,
+      ),
+      SwitchListTile(
+        key: const ValueKey<String>('studio-setting-check-grammar'),
+        contentPadding: EdgeInsets.zero,
+        title: Text(
+          _t(
+            'Check grammar while typing',
+            'Grammatik während der Eingabe prüfen',
+            'تدقيق القواعد أثناء الكتابة',
+          ),
+        ),
+        value: schedule.checkGrammar,
+        onChanged: automatic
+            ? (value) => update(schedule.copyWith(checkGrammar: value))
+            : null,
+      ),
+      ListTile(
+        contentPadding: EdgeInsets.zero,
+        title: Text(
+          _t(
+            'Pause before checking',
+            'Pause vor dem Prüfen',
+            'مهلة قبل التدقيق',
+          ),
+        ),
+        trailing: Text(_pauseLabel(schedule.pause)),
+      ),
+      Slider(
+        key: const ValueKey<String>('studio-setting-proofing-pause'),
+        min: WordProofingSchedule.minPause.inMilliseconds.toDouble(),
+        max: WordProofingSchedule.maxPause.inMilliseconds.toDouble(),
+        divisions:
+            (WordProofingSchedule.maxPause - WordProofingSchedule.minPause)
+                .inMilliseconds ~/
+            100,
+        value: schedule.pause.inMilliseconds
+            .clamp(
+              WordProofingSchedule.minPause.inMilliseconds,
+              WordProofingSchedule.maxPause.inMilliseconds,
+            )
+            .toDouble(),
+        label: _pauseLabel(schedule.pause),
+        onChanged: automatic
+            ? (value) => update(
+                schedule.copyWith(
+                  pause: Duration(milliseconds: (value / 100).round() * 100),
+                ),
+              )
+            : null,
+      ),
+      SwitchListTile(
+        key: const ValueKey<String>('studio-setting-background-check'),
+        contentPadding: EdgeInsets.zero,
+        title: Text(
+          _t(
+            'Check the whole document in the background',
+            'Das ganze Dokument im Hintergrund prüfen',
+            'تدقيق المستند كاملاً في الخلفية',
+          ),
+        ),
+        subtitle: Text(
+          _t(
+            'Only while you are not typing, visible pages first.',
+            'Nur während Sie nicht tippen, sichtbare Seiten zuerst.',
+            'فقط عندما لا تكتب، والصفحات الظاهرة أولاً.',
+          ),
+        ),
+        value: schedule.backgroundCheck,
+        onChanged: automatic
+            ? (value) => update(schedule.copyWith(backgroundCheck: value))
+            : null,
+      ),
+      SwitchListTile(
+        key: const ValueKey<String>('studio-setting-hide-typing-errors'),
+        contentPadding: EdgeInsets.zero,
+        title: Text(
+          _t(
+            "Hide errors in the word I'm typing",
+            'Fehler im Wort, das ich gerade tippe, ausblenden',
+            'إخفاء الأخطاء في الكلمة التي أكتبها',
+          ),
+        ),
+        value: schedule.hideTypingErrors,
+        onChanged: (value) =>
+            update(schedule.copyWith(hideTypingErrors: value)),
+      ),
+    ];
   }
 }
