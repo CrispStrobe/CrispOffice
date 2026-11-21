@@ -515,6 +515,10 @@ final class WordProofingSession extends ChangeNotifier {
   int checkedParagraphCount = 0;
   final Map<String, int> passCountsByTrigger = {};
 
+  /// Passes over the typed text whose results changed nothing on screen and
+  /// therefore did not notify listeners.
+  int silentPassCount = 0;
+
   WordProofingSummary get _summary {
     final pending = _pendingPublish;
     if (pending != null) {
@@ -2058,6 +2062,14 @@ final class WordProofingSession extends ChangeNotifier {
       refresh();
       return _summary;
     }
+    // What the canvas paints for the checked text right now.
+    final painted = showProgress
+        ? null
+        : [
+            for (final snapshot in checkOrder)
+              findingsByParagraph[snapshot.paragraph],
+          ];
+    final hadResults = _pendingPublish != null || _published.hasResults;
     _publishCached(
       captured,
       documentId: documentId,
@@ -2065,9 +2077,44 @@ final class WordProofingSession extends ChangeNotifier {
       useManual: useManual,
       finished: true,
     );
-    notifyListeners();
+    // A check of the text being typed that changes no mark on screen does
+    // not notify: listeners (and the host's whole chrome) would rebuild for
+    // nothing. Readers still get the new summary; status has its own notifier.
+    if (painted == null ||
+        !hadResults ||
+        !_sameMarks(painted, [
+          for (final snapshot in checkOrder) _findings[snapshot.paragraph],
+        ])) {
+      notifyListeners();
+    } else {
+      silentPassCount++;
+    }
     _finishAutomatic(trigger, captured, document);
     return _summary;
+  }
+
+  static bool _sameMarks(
+    List<List<OfficeProofingFinding>?> before,
+    List<List<OfficeProofingFinding>?> after,
+  ) {
+    for (var index = 0; index < before.length; index++) {
+      final left = before[index] ?? const <OfficeProofingFinding>[];
+      final right = after[index] ?? const <OfficeProofingFinding>[];
+      if (left.length != right.length) return false;
+      for (var i = 0; i < left.length; i++) {
+        final a = left[i];
+        final b = right[i];
+        if (a.start != b.start ||
+            a.end != b.end ||
+            a.category != b.category ||
+            a.ruleId != b.ruleId ||
+            a.providerId != b.providerId ||
+            a.originalText != b.originalText) {
+          return false;
+        }
+      }
+    }
+    return true;
   }
 
   void _finishAutomatic(

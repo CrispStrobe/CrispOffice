@@ -272,6 +272,29 @@ void main() {
     expect(h.session.summary.complete, isTrue);
   });
 
+  testWidgets('a word check that changes no mark does not notify', (
+    tester,
+  ) async {
+    final h = _setup();
+    await _settle(tester, h.controller);
+    h.caret(1, 0);
+    var notifications = 0;
+    void count() => notifications++;
+    h.session.addListener(count);
+    addTearDown(() => h.session.removeListener(count));
+    await h.type(tester, 'Gut ');
+    await tester.pump(_afterWord);
+    expect(h.session.passCountsByTrigger['word'], 1);
+    expect(h.session.silentPassCount, 1);
+    expect(notifications, 0);
+    // A new mark notifies.
+    await h.type(tester, 'Feler ');
+    await tester.pump(_afterWord);
+    expect(h.flagged(1, 'spelling'), isTrue);
+    expect(notifications, 1);
+    await _drain(tester, h);
+  });
+
   testWidgets('continuous typing never forces a pass', (tester) async {
     final h = _setup();
     await _settle(tester, h.controller);
