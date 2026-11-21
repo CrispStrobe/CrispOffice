@@ -32,7 +32,10 @@ void main() {
     final controller = _controller();
     _at(controller, 7);
 
-    controller.insertPlainText('<b>A & B</b>\r\n\r\nDanke\rمرحبا\n');
+    expect(
+      controller.insertPlainText('<b>A & B</b>\r\n\r\nDanke\rمرحبا\n'),
+      isTrue,
+    );
 
     expect(_paragraphs(controller), [
       'Before <b>A & B</b>',
@@ -63,7 +66,7 @@ void main() {
       ..paragraphIndex = 0
       ..logicalIndex = 13;
 
-    controller.insertPlainText('one\ntwo');
+    expect(controller.insertPlainText('one\ntwo'), isTrue);
 
     for (var cycle = 0; cycle < 3; cycle++) {
       expect(_paragraphs(controller), ['Left one', 'two right']);
@@ -80,7 +83,7 @@ void main() {
     _at(controller, 0);
     controller.insertText('pre ');
     _at(controller, 9);
-    controller.insertPlainText('\nfirst\nlast');
+    expect(controller.insertPlainText('\nfirst\nlast'), isTrue);
     controller.insertText('!');
 
     for (var cycle = 0; cycle < 3; cycle++) {
@@ -103,7 +106,7 @@ void main() {
     final controller = _controller();
     controller.selectAll();
 
-    controller.insertPlainText('Hello\n');
+    expect(controller.insertPlainText('Hello\n'), isTrue);
 
     expect(_paragraphs(controller), ['Hello', '']);
     controller.undo();
@@ -111,6 +114,92 @@ void main() {
     expect(controller.canUndo, isFalse);
     controller.redo();
     expect(_paragraphs(controller), ['Hello', '']);
+  });
+
+  for (final startOffset in [0, 1]) {
+    for (final reversed in [false, true]) {
+      test(
+        'refuses partial cross-paragraph replacement from offset $startOffset '
+        'with reversed selection $reversed',
+        () {
+          final controller = _controller(
+            document: WmlDocument(
+              sections: [
+                WmlSection(
+                  blocks: [
+                    for (final text in ['Prefix', 'abc', 'def', 'Suffix'])
+                      WmlParagraph(inlines: [WmlRun(text: text)]),
+                  ],
+                ),
+              ],
+            ),
+          );
+          _at(controller, 0);
+          controller.insertText('saved ');
+          controller.markClean();
+          controller.caret
+            ..selectionAnchorParagraph = reversed ? 2 : 1
+            ..selectionAnchor = reversed ? 2 : startOffset
+            ..paragraphIndex = reversed ? 1 : 2
+            ..logicalIndex = reversed ? startOffset : 2;
+          final before = _paragraphs(controller);
+          final revision = controller.contentRevision;
+          final selection = (
+            paragraph: controller.caret.paragraphIndex,
+            index: controller.caret.logicalIndex,
+            anchorParagraph: controller.caret.selectionAnchorParagraph,
+            anchor: controller.caret.selectionAnchor,
+          );
+
+          expect(controller.insertPlainText('X\nY'), isFalse);
+
+          expect(_paragraphs(controller), before);
+          expect(controller.contentRevision, revision);
+          expect(controller.isDirty, isFalse);
+          expect(
+            (
+              paragraph: controller.caret.paragraphIndex,
+              index: controller.caret.logicalIndex,
+              anchorParagraph: controller.caret.selectionAnchorParagraph,
+              anchor: controller.caret.selectionAnchor,
+            ),
+            selection,
+          );
+          expect(controller.canUndo, isTrue);
+          expect(controller.canRedo, isFalse);
+          controller.undo();
+          expect(_paragraphs(controller), ['Prefix', 'abc', 'def', 'Suffix']);
+          expect(controller.canUndo, isFalse);
+          controller.redo();
+          expect(_paragraphs(controller), before);
+        },
+      );
+    }
+  }
+
+  test('replaces a complete multi-paragraph body in one undo step', () {
+    final controller = _controller(
+      document: WmlDocument(
+        sections: [
+          WmlSection(
+            blocks: [
+              for (final text in ['One', 'Two', 'Three'])
+                WmlParagraph(inlines: [WmlRun(text: text)]),
+            ],
+          ),
+        ],
+      ),
+    );
+    controller.selectAll();
+
+    expect(controller.insertPlainText('Hello\n\n'), isTrue);
+
+    expect(_paragraphs(controller), ['Hello', '', '']);
+    controller.undo();
+    expect(_paragraphs(controller), ['One', 'Two', 'Three']);
+    expect(controller.canUndo, isFalse);
+    controller.redo();
+    expect(_paragraphs(controller), ['Hello', '', '']);
   });
 
   test('empty input preserves selection, clean state and redo history', () {
@@ -122,7 +211,7 @@ void main() {
     final revision = controller.contentRevision;
     final selection = controller.caret.normalizedRange;
 
-    controller.insertPlainText('');
+    expect(controller.insertPlainText(''), isFalse);
 
     expect(_paragraphs(controller), ['Body']);
     expect(controller.caret.normalizedRange, selection);
@@ -136,7 +225,7 @@ void main() {
     final controller = _controller(text: 'Body');
     _at(controller, 0);
 
-    controller.insertPlainText(' \n\t\n');
+    expect(controller.insertPlainText(' \n\t\n'), isTrue);
 
     expect(_paragraphs(controller), [' ', '\t', 'Body']);
     controller.undo();
@@ -155,7 +244,7 @@ void main() {
       );
       final revision = controller.contentRevision;
 
-      controller.insertPlainText('blocked\ntext');
+      expect(controller.insertPlainText('blocked\ntext'), isFalse);
 
       expect(_paragraphs(controller), ['Body']);
       expect(controller.contentRevision, revision);
@@ -170,7 +259,7 @@ void main() {
     controller.markClean();
     final revision = controller.contentRevision;
 
-    controller.insertPlainText('blocked\ntext');
+    expect(controller.insertPlainText('blocked\ntext'), isFalse);
 
     expect(_paragraphs(controller), ['Body']);
     expect(controller.contentRevision, revision);
@@ -199,7 +288,7 @@ void main() {
     controller.selectVisual(visual);
     final revision = controller.contentRevision;
 
-    controller.insertPlainText('blocked\ntext');
+    expect(controller.insertPlainText('blocked\ntext'), isFalse);
 
     expect(paragraph.text, 'Body');
     expect(controller.document.sections.single.blocks, [
@@ -241,7 +330,7 @@ void main() {
         expect(controller.canUndo, isFalse);
         expect(controller.isDirty, isFalse);
         _at(controller, 7);
-        controller.insertPlainText('!');
+        expect(controller.insertPlainText('!'), isTrue);
         expect(_paragraphs(controller), ['abXYZcd!']);
         controller.undo();
         expect(_paragraphs(controller), ['abXYZcd']);
@@ -263,7 +352,7 @@ void main() {
     final controller = _controller(text: 'Body');
     _at(controller, 0);
 
-    controller.insertPlainText('Inserted\n');
+    expect(controller.insertPlainText('Inserted\n'), isTrue);
 
     expect(_paragraphs(controller), ['Inserted', 'Body']);
     expect(clipboard.local, same(previous));
@@ -280,7 +369,7 @@ void main() {
     final observed = <List<String>>[];
     controller.addListener(() => observed.add(_paragraphs(controller)));
 
-    controller.insertPlainText('A\nB\nC');
+    expect(controller.insertPlainText('A\nB\nC'), isTrue);
 
     expect(observed, [
       ['A', 'B', 'CBody'],

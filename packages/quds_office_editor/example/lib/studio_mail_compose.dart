@@ -105,6 +105,7 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
   bool _editingTools = false;
   bool _toolsLoadFailed = false;
   bool _toolsInsertionFailed = false;
+  bool _toolsSelectionFailed = false;
 
   @override
   void initState() {
@@ -488,7 +489,16 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
 
   Future<void> _loadComposeTools() async {
     final owner = _toolsOwner;
-    if (!_toolsCurrent || owner == null) return;
+    if (!_toolsCurrent || owner == null) {
+      if (mounted) {
+        setState(() {
+          _initialToolsPending = false;
+          _loadingTools = false;
+          _toolsLoadFailed = true;
+        });
+      }
+      return;
+    }
     final epoch = ++_toolsEpoch;
     setState(() {
       _loadingTools = true;
@@ -595,6 +605,17 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
         range.endIdx > paragraphs[range.endPara].text.length) {
       return;
     }
+    final wholeMessage = range.startPara == 0 &&
+        range.startIdx == 0 &&
+        range.endPara == paragraphs.length - 1 &&
+        range.endIdx == paragraphs.last.text.length;
+    if (range.startPara != range.endPara && !wholeMessage) {
+      setState(() {
+        _toolsInsertionFailed = false;
+        _toolsSelectionFailed = true;
+      });
+      return;
+    }
     var start = range.startIdx;
     var end = range.endIdx;
     for (var i = 0; i < range.endPara; i++) {
@@ -603,15 +624,37 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
       if (i < range.startPara) start += length;
     }
     final body = _snapshot().body;
+    // These supported selection shapes match the Word insertion contract.
+    // Partial cross-paragraph ranges were refused above without changing text.
     final next = body.replaceRange(start, end, text);
     if (next.length > StudioMailDraft.maxBodyBytes ||
         utf8.encode(next).length > StudioMailDraft.maxBodyBytes) {
-      setState(() => _toolsInsertionFailed = true);
+      setState(() {
+        _toolsInsertionFailed = true;
+        _toolsSelectionFailed = false;
+      });
       return;
     }
-    _body.insertPlainText(text);
+    try {
+      if (!_body.insertPlainText(text)) {
+        setState(() {
+          _toolsInsertionFailed = false;
+          _toolsSelectionFailed = true;
+        });
+        return;
+      }
+    } on Object {
+      setState(() {
+        _toolsInsertionFailed = false;
+        _toolsSelectionFailed = true;
+      });
+      return;
+    }
     _edited();
-    setState(() => _toolsInsertionFailed = false);
+    setState(() {
+      _toolsInsertionFailed = false;
+      _toolsSelectionFailed = false;
+    });
     if (requestFocus) _bodyFocus.requestFocus();
   }
 
@@ -697,6 +740,11 @@ class _StudioMailComposeDialogState extends State<StudioMailComposeDialog> {
             ),
           ),
         ],
+        if (_toolsSelectionFailed)
+          Text(
+            strings.mailComposeToolsSelectionFailed,
+            style: TextStyle(color: Theme.of(context).colorScheme.error),
+          ),
         if (_toolsInsertionFailed)
           Text(
             strings.mailComposeToolsInsertionFailed,

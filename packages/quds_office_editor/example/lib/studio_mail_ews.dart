@@ -1676,7 +1676,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       StudioMailDraftCatalog value => value,
       _ => null,
     };
-    if (initial != null && catalog != null) {
+    if (initial != null && (catalog != null || _draft == null)) {
       setState(() => _busy = true);
       try {
         final retained = _draft;
@@ -1691,7 +1691,12 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           isCurrent: () => _current(provider, lease) && identical(store, _draftStore),
         );
         if (!_current(provider, lease)) return;
-        final created = await catalog.createDraft(prepared);
+        final created = catalog == null
+            ? StudioMailStoredDraft(
+                draft: prepared,
+                submissionUncertain: false,
+              )
+            : await catalog.createDraft(prepared);
         if (!_current(provider, lease)) return;
         setState(() {
           _draft = created.draft;

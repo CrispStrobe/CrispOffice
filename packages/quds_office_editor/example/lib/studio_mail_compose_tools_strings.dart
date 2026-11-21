@@ -90,6 +90,11 @@ extension StudioMailComposeToolsStrings on StudioStrings {
   );
   String get mailComposeToolsReload =>
       _text('Reload writing tools', 'Schreibhilfen neu laden', 'إعادة تحميل أدوات الكتابة');
+  String get mailComposeToolsSelectionFailed => _text(
+    'Place the cursor in one paragraph, or select the whole message, before inserting writing tools.',
+    'Setzen Sie den Cursor in einen Absatz oder wählen Sie die gesamte Nachricht aus, bevor Sie Schreibhilfen einfügen.',
+    'ضع المؤشر في فقرة واحدة، أو حدد الرسالة بأكملها، قبل إدراج نصوص أدوات الكتابة.',
+  );
   String get mailComposeToolsInsertionFailed => _text(
     'This text cannot be inserted because the message would exceed its size limit.',
     'Dieser Text kann nicht eingefügt werden, da die Nachricht dadurch ihre Größenbegrenzung überschreiten würde.',

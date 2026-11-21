@@ -4344,14 +4344,16 @@ class WordEditorController extends OfficeController {
 
   /// Inserts literal plain text at the text caret as one undoable operation.
   ///
-  /// Replaces the text selection using the same preflight and story ownership
-  /// as plain-text paste. CRLF, CR and LF become paragraph boundaries, including
-  /// empty and trailing lines. Destination formatting is retained; HTML is not
-  /// interpreted and the clipboard is neither read nor changed.
+  /// Replaces a same-paragraph text selection or the complete document using
+  /// plain-paste preflight and story ownership. CRLF, CR and LF become paragraph
+  /// boundaries, including empty and trailing lines. Destination formatting is
+  /// retained; HTML is not interpreted and the clipboard is not accessed.
   ///
-  /// Empty input, read-only surfaces and non-text object selections are no-ops.
-  /// Unsupported content-control edits throw before any text is changed.
-  void insertPlainText(String text) {
+  /// Returns false without changes for empty input, read-only surfaces,
+  /// non-text object selections or partial selections spanning paragraphs.
+  /// Returns true after insertion. Unsupported content-control edits throw
+  /// before any text is changed.
+  bool insertPlainText(String text) {
     if (!config.allowsMutation ||
         text.isEmpty ||
         selectedVisual != null ||
@@ -4359,9 +4361,18 @@ class WordEditorController extends OfficeController {
         (selectedFrame != null && !editingFrame) ||
         selectedTable != null ||
         selectedTableBand != null) {
-      return;
+      return false;
+    }
+    final range = caret.normalizedRange;
+    // Structural paste can retain boundary blocks or relocate the caret when
+    // a partial selection crosses paragraphs. Do not expose that behavior as
+    // text replacement at the selected target.
+    if (range.startPara != range.endPara &&
+        (isEditingHeaderFooter || !_isEntireDocumentSelected())) {
+      return false;
     }
     _coalescingNotifications(() => _pasteWordPlain(text));
+    return true;
   }
 
   /// insertText API.
