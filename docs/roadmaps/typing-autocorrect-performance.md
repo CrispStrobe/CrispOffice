@@ -209,3 +209,16 @@ a normal typing edit already re-lays only a handful of blocks.
 band paths for unchanged geometry. A repaint caused by a caret blink, a
 proofing notification, scrolling or another page no longer rebuilds those
 paths. `TextPainter` shaping remains cached independently.
+
+### Item 5c — cached page text layer (implemented)
+
+Body line text, list labels, revision markup and selected-comment backgrounds
+are recorded into a per-page `ui.Picture`. Selection, find hits, proofing waves
+and the caret are painted dynamically over it. The picture is invalidated only
+when the layout, theme/config or selected comment changes; caret moves,
+selection changes, proofing updates and unrelated repaints reuse it. Header and
+footer editing uses the same body text layer, with its own dynamic caret and
+header/footer overlay.
+
+Tests: header/footer navigation, embed rendering and incremental layout suites
+pass.
