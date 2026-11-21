@@ -13,6 +13,12 @@ on:
         description: Extra --dart-define flags, e.g. "--dart-define=X=true"
         required: false
         default: ''
+  push:
+    branches: ['perf/keystroke-trace-*']
+    paths:
+      - '.github/workflows/keystroke-trace.yml'
+      - 'packages/**'
+      - 'tool/perf/**'
 
 jobs:
   debug:
