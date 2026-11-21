@@ -772,6 +772,10 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
 
   final Map<_RunPaintKey, TextPainter> _runPainters =
       <_RunPaintKey, TextPainter>{};
+  final Map<(int, int, int, int), Path> _proofingPaths =
+      <(int, int, int, int), Path>{};
+  final Map<(LaidOutPage, int, int, int, int, int), Path> _selectionPaths =
+      <(LaidOutPage, int, int, int, int, int), Path>{};
 
   @override
   void dispose() {
@@ -780,6 +784,8 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
       painter.dispose();
     }
     _runPainters.clear();
+    _proofingPaths.clear();
+    _selectionPaths.clear();
     super.dispose();
   }
 
@@ -3937,22 +3943,37 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
     OfficeProofingCategory category,
   ) {
     if (end <= start) return;
-    final paint = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 0.8
-      ..color = switch (category) {
-        OfficeProofingCategory.spelling => const Color(0xFFD93025),
-        OfficeProofingCategory.grammar => const Color(0xFF1967D2),
-        OfficeProofingCategory.style => const Color(0xFF8E5B00),
-      };
-    final path = Path()..moveTo(start, y);
-    var up = true;
-    for (var x = start + 1.5; x < end; x += 1.5) {
-      path.lineTo(x, y + (up ? -1 : 1));
-      up = !up;
+    final key = (
+      (start * 2).round(),
+      (end * 2).round(),
+      (y * 2).round(),
+      category.index,
+    );
+    var path = _proofingPaths[key];
+    if (path == null) {
+      path = Path()..moveTo(start, y);
+      var up = true;
+      for (var x = start + 1.5; x < end; x += 1.5) {
+        path.lineTo(x, y + (up ? -1 : 1));
+        up = !up;
+      }
+      path.lineTo(end, y);
+      if (_proofingPaths.length >= 2048) {
+        _proofingPaths.remove(_proofingPaths.keys.first);
+      }
+      _proofingPaths[key] = path;
     }
-    path.lineTo(end, y);
-    canvas.drawPath(path, paint);
+    canvas.drawPath(
+      path,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 0.8
+        ..color = switch (category) {
+          OfficeProofingCategory.spelling => const Color(0xFFD93025),
+          OfficeProofingCategory.grammar => const Color(0xFF1967D2),
+          OfficeProofingCategory.style => const Color(0xFF8E5B00),
+        },
+    );
   }
 
   void _paintFindHits(Canvas canvas, LaidOutLine line) {
@@ -3994,33 +4015,47 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
     if (!config.allowsSelection || caret.isCollapsed) {
       return;
     }
-    final Map<int, LaidOutLine> lastLines = _lastLineOfParagraphs();
-    final Path band = Path();
-    var any = false;
-    for (final LaidOutLine line in page.lines) {
-      if (!_paintsLineSelection(line, page)) {
-        continue;
+    final key = (
+      page,
+      caret.selectionAnchorParagraph,
+      caret.selectionAnchor,
+      caret.paragraphIndex,
+      caret.logicalIndex,
+      config.allowsSelection ? 1 : 0,
+    );
+    var band = _selectionPaths[key];
+    if (band == null) {
+      final Map<int, LaidOutLine> lastLines = _lastLineOfParagraphs();
+      band = Path();
+      var any = false;
+      for (final LaidOutLine line in page.lines) {
+        if (!_paintsLineSelection(line, page)) {
+          continue;
+        }
+        for (final Rect r in caret.selectionRectsOnLine(
+          line,
+          line.y,
+          line.height,
+          paragraph: line.paragraphIndex,
+          lastOfParagraph: identical(lastLines[line.paragraphIndex], line),
+          rtl: _paragraphRtl(line.paragraphIndex, line: line),
+        )) {
+          band.addRect(r);
+          any = true;
+        }
       }
-      for (final Rect r in caret.selectionRectsOnLine(
-        line,
-        line.y,
-        line.height,
-        paragraph: line.paragraphIndex,
-        lastOfParagraph: identical(lastLines[line.paragraphIndex], line),
-        rtl: _paragraphRtl(line.paragraphIndex, line: line),
-      )) {
-        band.addRect(r);
-        any = true;
+      if (!any) return;
+      if (_selectionPaths.length >= 16) {
+        _selectionPaths.remove(_selectionPaths.keys.first);
       }
+      _selectionPaths[key] = band;
     }
-    if (any) {
-      canvas.drawPath(
-        band,
-        Paint()
-          ..color = _textSelectionFill
-          ..style = PaintingStyle.fill,
-      );
-    }
+    canvas.drawPath(
+      band,
+      Paint()
+        ..color = _textSelectionFill
+        ..style = PaintingStyle.fill,
+    );
   }
 
   Map<int, LaidOutLine>? _lastLinesCache;
