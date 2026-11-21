@@ -8,6 +8,10 @@ same engine and editor source through its guarded vendor manifest.
 
 ## Native Zotero document formatting
 
+Native ODT files also have a read-only inspection API and developer diagnostic.
+See [Inspect a native LibreOffice ODT](#inspect-a-native-libreoffice-odt) below.
+Editable native ODT loading remains a separate implementation step.
+
 Open Zotero on the same computer, open a Word document in Quds Office or
 CrispCloud, and choose **Insert → Zotero → Document**. Native desktop hosts show
 **Zotero desktop citation tools** even before connecting the catalog browser.
@@ -1482,6 +1486,37 @@ results, reproduction commands and native acceptance scope. Full
 compiled application builds and Microsoft Word/LibreOffice interoperability
 remain separate acceptance steps. Historical evidence retains its original
 source identity.
+
+## Inspect a native LibreOffice ODT
+
+From `packages/quds_office_engine`, run:
+
+```bash
+dart run tool/zotero/odt_inventory.dart document.odt
+```
+
+The command prints JSON containing native citation marks, bibliography sections,
+original field codes and preferences, visible cached text, exact endpoint
+locations and findings. It reads the file without modifying it or starting a
+Zotero session. Namespace aliases, authored notes, table cells and stored
+unsupported stories retain their own identities. Malformed or ambiguous fields
+remain visible with reasons; invalid packages and resource-limit failures return
+a nonzero exit code instead of a partial success.
+
+Applications can call the same public engine API:
+
+```dart
+final inventory = await OdfZotero.inspect(odtBytes);
+final report = inventory.toJson();
+```
+
+`isValid` describes a field's canonical native name and metadata.
+`isImportCandidate` also requires a supported, unambiguous physical range.
+These are inspection results, not active citations. They do not open an editable
+ODT document, normalize `ReferenceMark` preferences into Word fields, change
+ordinary ODT export, or establish compatibility with an installed host/plugin.
+The [native ODT contract](roadmaps/zotero/native-odt-input.md) specifies bounds,
+synthetic fixtures and the remaining rich-import milestone.
 
 ## Protocol sources
 
