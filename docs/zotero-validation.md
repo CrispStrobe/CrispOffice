@@ -1,5 +1,41 @@
 # Zotero validation
 
+## 21 November 2026 — bounded rich native ODT import
+
+The [rich ODT continuation](validation/zotero-rich-odt-20261121/README.md)
+adds `OdtDocumentReader.readBytes`, byte-based Word open dispatch, guarded
+asynchronous editor loading and Studio `.odt` opening. Supported native Zotero
+ReferenceMarks and bibliography TextSections become editable Word fields.
+Studio selects a new DOCX save destination, preserving the source ODT path.
+Ordinary ODT export retains its cached-result behavior.
+
+The bounded envelope includes supported inherited paragraph/run formatting,
+external absolute links, authored decimal footnotes/endnotes, simple lists and
+rectangular unmerged tables nested up to eight levels. Tests exercise exact
+source identities, UTF-16 ranges and note-anchor order; duplicate visible and
+adjacent fields; rich/empty bibliography paragraphs; list/table inheritance;
+explicit ReferenceMark-to-Field preference conversion; unknown metadata;
+repeated DOCX saves; and refusal without partial publication. Original
+`meta.xml` is retained byte-for-byte as archival DOCX custom XML. Controlled
+`WordZoteroCitingSession` tests exercise staged citation/bibliography refresh and
+inline/footnote/endnote placement conversion after import.
+
+The record owns the exact combined source, remote reconciliation/checkpoints,
+reproduction commands, aggregate local results and evidence artifacts. It
+separates core/style/loader tests, editor/Studio publication and save-routing
+checks, and incoming-source regressions. Historical results below retain their
+original source attribution and are not added to this increment's totals.
+
+The untouched LibreOfficeDev 26.8 sample is explicitly refused at active
+`fo:hyphenation-ladder-count`; other script-specific defaults remain unqualified.
+That original file is not a passing import fixture. Removing unsupported
+properties for a diagnostic probe does not qualify its original formatting.
+The earlier DOCX → ODT → DOCX continued-numbering loss also remains recorded.
+Local synthetic and controlled-transport results do not establish full
+Word/LibreOffice plugin parity, an installed Zotero round trip, general
+LibreOffice-file support, editable native ODT output or legacy Apache OpenOffice
+compatibility. Acceptance uses local checks without waiting for GitHub Actions.
+
 ## 21 November 2026 — nested research tables
 
 The [nested-table continuation](validation/zotero-nested-tables-20261121/README.md)
