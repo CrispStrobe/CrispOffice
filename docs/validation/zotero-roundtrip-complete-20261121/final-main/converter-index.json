@@ -1,0 +1,345 @@
+{
+  "schema": 1,
+  "kind": "accepted-main-native-file-replay-evidence",
+  "archive": "converter.tar.gz",
+  "archive_sha256": "30fb5100898d49b255d85a0980e938ced5b116637885d346298ea14796e141c8",
+  "archive_bytes": 147507,
+  "member_count": 62,
+  "members": [
+    {
+      "path": "converter/acceptance.json",
+      "bytes": 1986,
+      "sha256": "b7d76de4e6c40e37dd987108e758578ee6cabb8cd55162353736e22ce8c13ad0"
+    },
+    {
+      "path": "converter/accepted-main-source-binding.json",
+      "bytes": 756,
+      "sha256": "7647de3830e978b15aaf8c3dcedd69f1a69239dca2282c9148487e8379bb5971"
+    },
+    {
+      "path": "converter/artifacts.json",
+      "bytes": 5146,
+      "sha256": "2a350c66735e4f98d9e79b6c20f4dc34f54c90846a44d3b4237a4992603df022"
+    },
+    {
+      "path": "converter/commands/converter-version.json",
+      "bytes": 646,
+      "sha256": "241db67883c9182d24826f512ddb1630bc913f1437192f493a493a2f61a08b14"
+    },
+    {
+      "path": "converter/commands/converter-version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "converter/commands/converter-version.stdout",
+      "bytes": 73,
+      "sha256": "6d49d29516f9fb3b3f02bf33238f0beae9980c1743128ce831deddcfb69bce89"
+    },
+    {
+      "path": "converter/commands/current-libreoffice-save.json",
+      "bytes": 1354,
+      "sha256": "660c8ecb2b9c143fcf4ff7c83c6f627d51e75188d0a9598f4665ccdd25d647ca"
+    },
+    {
+      "path": "converter/commands/current-libreoffice-save.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "converter/commands/current-libreoffice-save.stdout",
+      "bytes": 1016,
+      "sha256": "6afe4232283a99772c58e5b0f943a33b3b9b42cb99d08e27f828174bdf9ae6bf"
+    },
+    {
+      "path": "converter/commands/current-native-verify.json",
+      "bytes": 870,
+      "sha256": "bd4fd8461c50725153dbdc6174a4f2adfe38acff8d0852a764647b36a2c08915"
+    },
+    {
+      "path": "converter/commands/current-native-verify.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "converter/commands/current-native-verify.stdout",
+      "bytes": 454,
+      "sha256": "a25f6ee629601efaa9e9d38410dc07a82424ae9738fb0abbdcebd0f7034ce2b2"
+    },
+    {
+      "path": "converter/commands/dart-version.json",
+      "bytes": 569,
+      "sha256": "76af3857207c88cdbf5347c88a89fa012f35e20cde963c36b19ed93b1a8aad81"
+    },
+    {
+      "path": "converter/commands/dart-version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "converter/commands/dart-version.stdout",
+      "bytes": 82,
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    {
+      "path": "converter/commands/images-native-cycles.json",
+      "bytes": 961,
+      "sha256": "0dffc9c6f6bb0c4ca98e61c11170034b70167c6db9cc313a8b9761574dc9d626"
+    },
+    {
+      "path": "converter/commands/images-native-cycles.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "converter/commands/images-native-cycles.stdout",
+      "bytes": 331,
+      "sha256": "a7fae406145b42b0acf850654c3fae81b035f25c9623b365b44c227dd3d6ba47"
+    },
+    {
+      "path": "converter/commands/native-reexport.json",
+      "bytes": 947,
+      "sha256": "67003d6b062b28189477edcfbe55cd2ef7ad30eb1056382982bcb6511b4da86e"
+    },
+    {
+      "path": "converter/commands/native-reexport.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "converter/commands/native-reexport.stdout",
+      "bytes": 450,
+      "sha256": "541371dc53eee5669082dc629a87dfec51346d28fcb39ed738ffbfe98900295c"
+    },
+    {
+      "path": "converter/commands.json",
+      "bytes": 5582,
+      "sha256": "bedb9f9507cc21478a26e7346abd689e703b2f396ddfeebb144f56720a451d03"
+    },
+    {
+      "path": "converter/image-cycles/jpeg-citations-cycle-0.docx",
+      "bytes": 8349,
+      "sha256": "3fa4439752669d2f73ae5b517440baf660d30660782c4814f0ab33b31f827ef9"
+    },
+    {
+      "path": "converter/image-cycles/jpeg-citations-cycle-0.json",
+      "bytes": 2922,
+      "sha256": "617d05993e5ffa36184c68fa44757d13f50f0da15f5adfdeec2a5c010b889abf"
+    },
+    {
+      "path": "converter/image-cycles/jpeg-citations-cycle-0.odt",
+      "bytes": 5249,
+      "sha256": "a3581702506bb95165772e956e08bb27bfd4e65cdd53d12de17b422fdcb09068"
+    },
+    {
+      "path": "converter/image-cycles/jpeg-citations-cycle-1.docx",
+      "bytes": 8269,
+      "sha256": "09cccc2ddc607db7c67a7db875df52f39f9a824f214ebdfe2dabfabf6e47f1cf"
+    },
+    {
+      "path": "converter/image-cycles/jpeg-citations-cycle-1.json",
+      "bytes": 2920,
+      "sha256": "196569e2066e0346fd784d70a77f34f467cad06af26ffff9cff1c97629b74acb"
+    },
+    {
+      "path": "converter/image-cycles/jpeg-citations-cycle-1.odt",
+      "bytes": 5255,
+      "sha256": "18ccfdee71b08dde159139b2d0e8a603282fe226731522884422a13ce6e29858"
+    },
+    {
+      "path": "converter/image-cycles/jpeg-citations-cycle-2.docx",
+      "bytes": 8277,
+      "sha256": "34d23d8518b10ade7bcc791925d64caaf26ddbf8d4684ba0665747d1848daa6d"
+    },
+    {
+      "path": "converter/image-cycles/jpeg-citations-cycle-2.json",
+      "bytes": 2920,
+      "sha256": "196569e2066e0346fd784d70a77f34f467cad06af26ffff9cff1c97629b74acb"
+    },
+    {
+      "path": "converter/image-cycles/jpeg-citations-cycle-2.odt",
+      "bytes": 5256,
+      "sha256": "e306e2e7be15876e33e90021c71929554bf92b836475dfea1092caefc52efb96"
+    },
+    {
+      "path": "converter/image-cycles/png-citations-cycle-0.docx",
+      "bytes": 7946,
+      "sha256": "abaf305d71f849a67e3d9d7a7d21d469b43f310a60eb61974a15848dc6280c7a"
+    },
+    {
+      "path": "converter/image-cycles/png-citations-cycle-0.json",
+      "bytes": 2922,
+      "sha256": "e97eecbef4a0f9371fdcfe7d2d54c1bfc8b78f221182f268116510d0de61b1e1"
+    },
+    {
+      "path": "converter/image-cycles/png-citations-cycle-0.odt",
+      "bytes": 4445,
+      "sha256": "31122042609068451e03ff372fa3e1dbed9dd72ab42703dbd3cbf287a025e836"
+    },
+    {
+      "path": "converter/image-cycles/png-citations-cycle-1.docx",
+      "bytes": 7868,
+      "sha256": "a8fdca36a13c69b206b78f4d2ae774a47e124e96439849ec2a6d8f2c10b9163b"
+    },
+    {
+      "path": "converter/image-cycles/png-citations-cycle-1.json",
+      "bytes": 2920,
+      "sha256": "864aace6565340442a04691932d7143267265c905bf45015db0b24096cf70d42"
+    },
+    {
+      "path": "converter/image-cycles/png-citations-cycle-1.odt",
+      "bytes": 4453,
+      "sha256": "c1997eeb69937a68da304b552146f439869af1280b9b3959af8ed1e529eb890e"
+    },
+    {
+      "path": "converter/image-cycles/png-citations-cycle-2.docx",
+      "bytes": 7876,
+      "sha256": "4077b45c0a9ee9474b153fa3b5d3db958ddd58eabf332aa5d1578c94c93a20a8"
+    },
+    {
+      "path": "converter/image-cycles/png-citations-cycle-2.json",
+      "bytes": 2920,
+      "sha256": "864aace6565340442a04691932d7143267265c905bf45015db0b24096cf70d42"
+    },
+    {
+      "path": "converter/image-cycles/png-citations-cycle-2.odt",
+      "bytes": 4453,
+      "sha256": "a10cd7749142935dee76e0c8fb1f8c17b1754c184c6da460bd64dfa49901c665"
+    },
+    {
+      "path": "converter/input-provenance.json",
+      "bytes": 7039,
+      "sha256": "57b12086c829e48c42c06ede931681bbe5bbef28ad2e6e776b7204e560506752"
+    },
+    {
+      "path": "converter/inputs-after.json",
+      "bytes": 2370,
+      "sha256": "1af622c8fd8846114436d70364997f9d26edd0258d72b7e84727cbc106941981"
+    },
+    {
+      "path": "converter/inputs-before.json",
+      "bytes": 2370,
+      "sha256": "1af622c8fd8846114436d70364997f9d26edd0258d72b7e84727cbc106941981"
+    },
+    {
+      "path": "converter/native-reexport/body-bibliography.docx",
+      "bytes": 7862,
+      "sha256": "597d1fdbc8cf4b0725b3057a4c68944b1263e3b123dc372ed72c6785b8dd3474"
+    },
+    {
+      "path": "converter/native-reexport/body-bibliography.expected.json",
+      "bytes": 17959,
+      "sha256": "3bf95053406f5846f80d4bb22f519785a42a6d8fa4367e9978ddebc9cefdaa41"
+    },
+    {
+      "path": "converter/native-reexport/body-bibliography.odt",
+      "bytes": 4141,
+      "sha256": "c2573c864803edec395dfbe9371bc531ae43895f28860b6e9ab55040827fb4c4"
+    },
+    {
+      "path": "converter/native-reexport/endnote-only.docx",
+      "bytes": 8101,
+      "sha256": "fdd725f2e9f493ffa661ae4584b3e637f854e23bf731418cd7784a8b5c782244"
+    },
+    {
+      "path": "converter/native-reexport/endnote-only.expected.json",
+      "bytes": 16907,
+      "sha256": "cc7bdf7d0acdf4d9c342d84126136d99ef1b557207d3a6ffed643f199875b081"
+    },
+    {
+      "path": "converter/native-reexport/endnote-only.odt",
+      "bytes": 4208,
+      "sha256": "34393eedbb56916048cef593b45eb1a8184a0ac71a8cc4011ff340053caa7c0c"
+    },
+    {
+      "path": "converter/native-reexport/table-only.docx",
+      "bytes": 10856,
+      "sha256": "1a86530da597b5f56d17b9d155fcaefeca6f6e9e8186b152f6f6de499c238292"
+    },
+    {
+      "path": "converter/native-reexport/table-only.expected.json",
+      "bytes": 51057,
+      "sha256": "6c643ab2581fa4b4ba2d86c8ae16eaf9ac246e79724f15026d569d9e738c32a0"
+    },
+    {
+      "path": "converter/native-reexport/table-only.odt",
+      "bytes": 4710,
+      "sha256": "ec4f684b6f3f6ac0fd2c28cd90d179ed12ff00fcdc46ee6b3c7e682a62db279c"
+    },
+    {
+      "path": "converter/native-reexport/uppercase-citations.docx",
+      "bytes": 7484,
+      "sha256": "ff0920d3000ca8e170662290851f399b9b506999f74ad6f5ade09ca1a7916a04"
+    },
+    {
+      "path": "converter/native-reexport/uppercase-citations.expected.json",
+      "bytes": 11953,
+      "sha256": "36c15dc65ac20dec5aef1ea510959b088cb5fc37c7ebafa1a7f9e760463cb4f8"
+    },
+    {
+      "path": "converter/native-reexport/uppercase-citations.odt",
+      "bytes": 3978,
+      "sha256": "381fcbc38eab1b3801c662607973f7992f4d67112d184bf8cd8ea506dc82a052"
+    },
+    {
+      "path": "converter/run-gate.py",
+      "bytes": 10132,
+      "sha256": "7f3f2a87463b7cba79b05c0518b11e8b0274f5e8440e6d33f89c2703a93d84e0"
+    },
+    {
+      "path": "converter/saved-current/body-bibliography.odt",
+      "bytes": 11046,
+      "sha256": "62a00200178b2930f59b0d15cf856ebc7e221111a33a9a8470264c1ef5ac4b20"
+    },
+    {
+      "path": "converter/saved-current/endnote-only.odt",
+      "bytes": 9892,
+      "sha256": "4a4bd063c11b627b0cd3a3eb076deb75c74a311186fd50da2301115e61c3822a"
+    },
+    {
+      "path": "converter/saved-current/table-only.odt",
+      "bytes": 13760,
+      "sha256": "4b9d4a325156cb0f15cfd8b03e9a85a81199151e18e40ed6d523f56198be13e3"
+    },
+    {
+      "path": "converter/saved-current/uppercase-citations.odt",
+      "bytes": 11241,
+      "sha256": "51bf4152a37fe1e6bd6b7de1ba860650bffc47ed681ddda2a4d3d9250ad3e5db"
+    },
+    {
+      "path": "converter/source-after.json",
+      "bytes": 62691,
+      "sha256": "5e616c5e9acb098d6a59bb62322037bb6d3fafe6dd25a46bc5c9f7185f27e9a3"
+    },
+    {
+      "path": "converter/source-before.json",
+      "bytes": 62691,
+      "sha256": "5e616c5e9acb098d6a59bb62322037bb6d3fafe6dd25a46bc5c9f7185f27e9a3"
+    }
+  ],
+  "summary": "converter-summary.json",
+  "summary_sha256": "b7d76de4e6c40e37dd987108e758578ee6cabb8cd55162353736e22ce8c13ad0",
+  "primary_acceptance": "converter/acceptance.json",
+  "accepted_main_source_binding": "converter/accepted-main-source-binding.json",
+  "preserved_input_provenance": "converter/input-provenance.json",
+  "prior_input_archive": {
+    "path": "docs/validation/zotero-roundtrip-complete-20261121/evidence/converter.tar.gz",
+    "sha256": "8222b20c903638e7e58fbfec20e23f854692880c85b3b89494f62520cc221768"
+  },
+  "excluded_path_components": [
+    ".cache",
+    ".dart_tool",
+    "__pycache__",
+    "cache",
+    "profiles"
+  ],
+  "sdk_profile_or_cache_included": false,
+  "deterministic_metadata": {
+    "gzip_mtime": 0,
+    "tar_mtime": 0,
+    "uid": 0,
+    "gid": 0,
+    "file_mode": "0644"
+  },
+  "deterministic_rebuild_identical": true
+}
