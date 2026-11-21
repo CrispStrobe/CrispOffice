@@ -17,6 +17,18 @@ abstract interface class StudioMailMailboxWatchStore {
   Stream<MailResult<MailCachedMailboxView?>> watchView(MailMailboxId mailbox);
 }
 
+/// Optional bounded discovery over all retained headers in this account.
+/// The existing draft owner serializes reads and retains its exclusive lease.
+abstract interface class StudioMailCachedHeaderSearchStore {
+  MailAccountId get account;
+  Future<MailCachedHeaderSearchPage> searchCachedHeaders(
+    String query, {
+    MailCachedHeaderSearchCursor? cursor,
+    int limit = 100,
+    int scanLimit = 500,
+  });
+}
+
 abstract interface class StudioMailMailboxStore {
   MailAccountId get account;
   Future<List<MailCachedMailboxSummary>> listViews();
@@ -99,6 +111,7 @@ final class SqliteStudioMailMailboxStore
     implements
         StudioMailMailboxStore,
         StudioMailMailboxWatchStore,
+        StudioMailCachedHeaderSearchStore,
         StudioMailSyncStore {
   SqliteStudioMailMailboxStore({
     required this._repository,
@@ -125,6 +138,24 @@ final class SqliteStudioMailMailboxStore
       );
     }
   }
+
+  @override
+  Future<MailCachedHeaderSearchPage> searchCachedHeaders(
+    String query, {
+    MailCachedHeaderSearchCursor? cursor,
+    int limit = 100,
+    int scanLimit = 500,
+  }) => _serialize(
+    () async => _value(
+      await _repository.searchCachedHeaders(
+        account,
+        query,
+        cursor: cursor,
+        limit: limit,
+        scanLimit: scanLimit,
+      ),
+    ),
+  );
 
   Future<MailResult<T>> _sync<T>(
     MailAccountId account,
