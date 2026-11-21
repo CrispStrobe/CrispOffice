@@ -637,7 +637,9 @@ void main() {
     final _Run run = _Run();
     // An empty paragraph moves everything below by a line. The flow meets
     // the old layout only where a page break absorbs the shift; until then
-    // every unchanged paragraph reuses its line breaks instead of reshaping.
+    // an unchanged paragraph that stays on its page moves its previous
+    // lines (translation), and one that crosses a page reuses its line
+    // breaks instead of reshaping.
     for (final int p in <int>[100, 70, 40, 10]) {
       _at(c, p, _paras(c)[p].text.length);
       c.insertParagraphBreak();
@@ -645,8 +647,13 @@ void main() {
     }
     expect(WordIncrementalLayoutStats.incremental, 4);
     expect(
-      WordIncrementalLayoutStats.breaksReused,
+      WordIncrementalLayoutStats.breaksReused +
+          WordIncrementalLayoutStats.blocksTranslated,
       greaterThan(WordIncrementalLayoutStats.blocksLaidOut ~/ 2),
+    );
+    expect(
+      WordIncrementalLayoutStats.blocksTranslated,
+      greaterThan(WordIncrementalLayoutStats.breaksReused),
     );
   });
 
@@ -819,4 +826,19 @@ void _expectEquivalentWithFields(
     wordLayoutFingerprint(_freshEngine(c).layout(c.document)),
     reason: step,
   );
+
+  test('switch off: wrapping keystrokes re-lay unchanged paragraphs', () {
+    WordLayoutEngine.translateParagraphs = false;
+    addTearDown(() => WordLayoutEngine.translateParagraphs = true);
+    final WordEditorController c = WordEditorController(document: _mixedLong());
+    addTearDown(c.dispose);
+    _at(c, 30, _paras(c)[30].text.length);
+    c.insertText('x');
+    WordIncrementalLayoutStats.reset();
+    final _Run run = _Run();
+    c.insertText(_long);
+    _expectEquivalent(c, 'long text, translation off', run);
+    expect(WordIncrementalLayoutStats.blocksTranslated, 0);
+    expect(WordIncrementalLayoutStats.breaksReused, greaterThan(10));
+  });
 }

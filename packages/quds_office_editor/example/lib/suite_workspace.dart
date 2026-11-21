@@ -320,13 +320,24 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   /// Everything the Word chrome shows that typing can change.
   List<Object?> _wordChromeKey() {
     final WordEditorController w = _word;
-    final WmlRunProps run = w.activeRunProps;
     final List<WmlParagraph> paras = w.isEditingHeaderFooter
         ? const <WmlParagraph>[]
         : w.document.paragraphs.toList();
     final int at = w.documentCaret.paragraphIndex;
     final WmlParagraph? para = at >= 0 && at < paras.length ? paras[at] : null;
     final WmlParagraphProps? pp = para?.properties;
+    // Body typing: derive caret run, table and section from the paragraph
+    // already found instead of walking the document once per getter (each
+    // of activeRunProps, tableAtCaret and sectionAtCaret lists every
+    // paragraph). Other editing targets keep the controller's getters.
+    final bool body =
+        para != null &&
+        !w.isEditingComment &&
+        !w.isEditingHeaderFooter &&
+        w.noteEditingTarget == null;
+    final WmlRunProps run = body
+        ? WmlRunEdit.propsAt(para, w.documentCaret.logicalIndex)
+        : w.activeRunProps;
     return <Object?>[
       w.document,
       w.config,
@@ -350,8 +361,10 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       // Not selectedProofingIssue: validating it captures the document for
       // proofing on every keystroke.
       w.chosenProofingIssue,
-      w.tableAtCaret,
-      w.sectionAtCaret,
+      body ? WordTable.locationOfParagraph(w.document, para) : w.tableAtCaret,
+      body
+          ? w.document.sections[w.document.sectionIndexOf(para)]
+          : w.sectionAtCaret,
       w.reviewPaneVisible,
       w.reviewPaneTab,
       w.pictureCropMode,
