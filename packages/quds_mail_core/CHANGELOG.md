@@ -1,5 +1,11 @@
 ## Unreleased
 
+- Add bounded foreground `MailSyncRunner` with immutable partial-progress
+  receipts, persisted-cursor resume, cancellation across an entire run and
+  explicit completed/paused/cancelled/failed outcomes. Reuse atomic sync-page
+  coordination, reject cursor cycles before commit, sanitize external failures
+  and isolate progress observers. No automatic retry or submission is introduced.
+
 - Add optional `MailFlagObserver` and typed current-state observations for exact
   message identities. Distinguish present flags, an unavailable identity and
   an invalidated IMAP generation without claiming an earlier command succeeded
