@@ -1,0 +1,25 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "upstream": "MohammedAsaadAsaad/quds_office_suite",
+  "base": "4970f71f983535d045ce263e86835b499db4fda9",
+  "forkBranches": 36,
+  "upstreamBranches": 4,
+  "recentPrNumbers": [
+    233,
+    332
+  ],
+  "recentPrHeads": 100,
+  "uniqueComparisons": 109,
+  "uncontainedRefs": 0,
+  "openPullRequests": 0,
+  "comparisonMethod": "GET /repos/CrispStrobe/quds_office_suite/compare/<base>...<observed head>; ahead_by must equal 0",
+  "collectionQueries": [
+    "/repos/CrispStrobe/quds_office_suite/branches?per_page=100",
+    "/repos/MohammedAsaadAsaad/quds_office_suite/branches?per_page=100",
+    "/repos/CrispStrobe/quds_office_suite/pulls?state=open&per_page=100&sort=updated&direction=desc",
+    "/repos/CrispStrobe/quds_office_suite/pulls?state=closed&per_page=100&sort=created&direction=desc"
+  ],
+  "fullEvidence": "remote-intake-20261121.json",
+  "actionsQueried": false,
+  "notes": "All captured branches and recent PR heads are already ancestors of fixed base. No merge needed for this intake."
+}
