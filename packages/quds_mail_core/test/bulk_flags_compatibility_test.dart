@@ -226,6 +226,7 @@ void main() {
           expect(calls, 1);
           expect(report.failedCount, 1);
           expect(report.unattemptedCount, 2);
+          expect(report.items.first.problem, same(problem));
           expect(report.stopProblem, same(problem));
           expect(
             report.requiresRefresh,

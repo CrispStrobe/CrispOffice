@@ -1,5 +1,8 @@
 ## 0.1.0
 
+- Preserve the `remoteImageUris` compatibility spelling for the same immutable
+  candidates as `remoteImageUrls`, rejecting contradictory ordered values.
+  Retain current image admission, source identity and cumulative budget guards.
 - Preserve meaningful inline HTML separators, preformatted whitespace and
   nonbreaking spaces while collapsing wrapper indentation. Keep explicit image
   loading tied to admitted inert nodes with cumulative byte/pixel budgets,

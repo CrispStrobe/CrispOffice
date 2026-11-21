@@ -1,0 +1,40 @@
+{
+  "comparison_sha256": "03e1e13ac4da11125186d35568810d18529af18e88d1af1f87c24d3ff612a986",
+  "limits": [
+    "Read-only inspection of five existing PNG files; no new screenshots or tests.",
+    "31 other PNGs were accepted only after direct byte comparison to the earlier reviewed images.",
+    "This does not claim live provider, screen-reader, or native OS visual qualification."
+  ],
+  "new_images_visually_inspected": [
+    {
+      "path": "en-portrait-status-slot-working.png",
+      "sha256": "c7149cd2682492d036bd77485c822b4e8f80b9c2e600ad4514d7912bbff84281"
+    },
+    {
+      "path": "de-portrait-status-slot-working.png",
+      "sha256": "17b065073f18f40ce49c9615e6a35599028493ac8329a87b21200f1adfb22bf2"
+    },
+    {
+      "path": "ar-portrait-status-slot-working.png",
+      "sha256": "0f1c4b9847e3e8ee941d2dcbee8f8389b0b5efda6bed9ef49614c797b4d0b6ef"
+    },
+    {
+      "path": "de-compact-status-slot-working.png",
+      "sha256": "95ee84cd4f53130484eacc616bfcd82d99faf86bf206674f8df8081a7c4764ba"
+    },
+    {
+      "path": "ar-compact-status-slot-working.png",
+      "sha256": "fdc7f2207725ba9986deca55c5d8ac3746d02e4709a25e9c6cf9807029c49fe1"
+    }
+  ],
+  "observations": [
+    "English/German/Arabic working receipts retain readable confirmed/failed/uncertain/pending counts.",
+    "Stop remains visibly enabled while selection/action controls and Details are disabled during pending work.",
+    "German compact Stop text wraps legibly; Arabic layout and control alignment mirror coherently with shaped glyphs.",
+    "Compact views intentionally show a scrolled status panel and truncated message summaries; no overflow stripe or unusable control was observed."
+  ],
+  "schema": 1,
+  "source_head": "5c7b76a6137bc9373276ce2e7fccc6ed48903998",
+  "status": "no_concrete_visual_blocker",
+  "unchanged_previously_reviewed_images_verified": 31
+}
