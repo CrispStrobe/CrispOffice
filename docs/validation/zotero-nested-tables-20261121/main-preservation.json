@@ -1,0 +1,247 @@
+{
+  "audited_at": "2026-11-21T09:22:30.499026+00:00",
+  "target": "ed30a633a96960552d4fab11bd6e3226ee73ca14",
+  "scope": "Supplemental main-only preservation after the frozen352-reference branch cutoff; does not alter that snapshot.",
+  "captured_word_branch": "75b429e30a80181c34205d49391fb21e9928b490",
+  "published_main_recheck": "f92c0d24f0513c5e13e61ae58507c36e9cf4f1c1",
+  "integration_commit": "c4e1d67540e7c3a706d2f0a3fead0cb17949f437",
+  "integration_parents": [
+    "a292438e12acb9bf97fab93d947e12e12ae01f75",
+    "f92c0d24f0513c5e13e61ae58507c36e9cf4f1c1"
+  ],
+  "published_main_is_ancestor": true,
+  "integration_is_ancestor": true,
+  "changes_since_captured_word_branch": [
+    {
+      "status": "M",
+      "path": "docs/validation/word-vba-proofing-20261121/README.md"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/word-vba-proofing-20261121/calendar-derivation.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/word-vba-proofing-20261121/calendar-tests.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/word-vba-proofing-20261121/engine-analysis.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/word-vba-proofing-20261121/engine-tests.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/word-vba-proofing-20261121/intake-refresh-audit.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/word-vba-proofing-20261121/intake-refresh-snapshot.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/word-vba-proofing-20261121/portable-compile.log"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/word-vba-proofing-20261121/portable-js.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/word-vba-proofing-20261121/portable-result.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/word-vba-proofing-20261121/portable-vm.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/word-vba-proofing-20261121/source-manifest.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/word-vba-proofing-20261121/zotero-tests.log"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/word_zotero_nested_note_tables_test.dart"
+    }
+  ],
+  "changed_engine_lib_paths": [],
+  "test_gate_addition": "packages/quds_office_engine/test/word_zotero_nested_note_tables_test.dart",
+  "github_actions": "Not queried or awaited.",
+  "additional_preservations": [
+    {
+      "published_main_recheck": "c10416d39894031164be68313253db5bbb3a5ad2",
+      "integration_commit": "ed30a633a96960552d4fab11bd6e3226ee73ca14",
+      "prior_published_checkpoint": "574bc02bc533bf5e8402d619b1e0e46c0950d935",
+      "integration_parents": [
+        "574bc02bc533bf5e8402d619b1e0e46c0950d935",
+        "c10416d39894031164be68313253db5bbb3a5ad2"
+      ],
+      "published_main_is_ancestor": true,
+      "integration_is_ancestor": true,
+      "combined_changes_relative_to_prior_checkpoint": [
+        {
+          "status": "M",
+          "path": "docs/roadmaps/mail/README.md"
+        },
+        {
+          "status": "M",
+          "path": "docs/roadmaps/mail/durable-sync.md"
+        },
+        {
+          "status": "M",
+          "path": "docs/roadmaps/mail/implementation-plan.md"
+        },
+        {
+          "status": "A",
+          "path": "docs/roadmaps/mail/offline-downloads.md"
+        },
+        {
+          "status": "M",
+          "path": "docs/roadmaps/mail/status.md"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/mail-offline-retention-20261121/README.md"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/mail-offline-retention-20261121/branch-snapshot.json"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/mail-offline-retention-20261121/intake.json"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/mail-offline-retention-20261121/logs/flutter-smoke.log"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/mail-offline-retention-20261121/logs/incoming-editor-final.log"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/mail-offline-retention-20261121/logs/incoming-engine-final.log"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/mail-offline-retention-20261121/logs/incoming-engine-final.receipt.json"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/mail-offline-retention-20261121/logs/incoming-word-layout.log"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/mail-offline-retention-20261121/logs/incoming-zotero-tool-analyze.log"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/mail-offline-retention-20261121/logs/mail-body-store-fixed.log"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/mail-offline-retention-20261121/logs/mail-core-direct.log"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/mail-offline-retention-20261121/logs/mail-host-analyze-fixed.log"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/mail-offline-retention-20261121/logs/mail-layout-analyze-final.log"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/mail-offline-retention-20261121/logs/mail-merged-workflow-fixed.log"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/mail-offline-retention-20261121/logs/mail-merged-workflow.log"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/mail-offline-retention-20261121/logs/mail-offline-analyze.log"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/mail-offline-retention-20261121/logs/mail-offline-workflows.log"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/mail-offline-retention-20261121/logs/mail-sync-host-fixed.log"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/mail-offline-retention-20261121/logs/quit-final.log"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/mail-offline-retention-20261121/runtime-bootstrap.json"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/mail-offline-retention-20261121/screenshots/offline-download-limit-ar.png"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/mail-offline-retention-20261121/screenshots/offline-download-limit-de.png"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/mail-offline-retention-20261121/screenshots/offline-download-limit-en.png"
+        },
+        {
+          "status": "A",
+          "path": "docs/validation/mail-offline-retention-20261121/screenshots/offline-download-message-en.png"
+        },
+        {
+          "status": "M",
+          "path": "packages/quds_office_editor/example/lib/studio_mail_ews.dart"
+        },
+        {
+          "status": "M",
+          "path": "packages/quds_office_editor/example/lib/studio_mail_sync_dialog.dart"
+        },
+        {
+          "status": "A",
+          "path": "packages/quds_office_editor/example/test/studio_mail_body_download_store_test.dart"
+        },
+        {
+          "status": "M",
+          "path": "packages/quds_office_editor/example/test/studio_mail_quit_test.dart"
+        },
+        {
+          "status": "M",
+          "path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+        },
+        {
+          "status": "M",
+          "path": "packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart"
+        },
+        {
+          "status": "M",
+          "path": "packages/quds_office_editor/example/test/studio_mail_sync_native_test.dart"
+        }
+      ],
+      "unchanged_engine_dependency_scope": [
+        "packages/quds_office_engine",
+        "packages/legacy_doc_parser",
+        "pubspec.yaml",
+        "pubspec.lock",
+        "analysis_options.yaml",
+        ".fvmrc"
+      ],
+      "engine_dependency_scope_changed_paths": [],
+      "merge_resolution_record": "final-main-merge-resolution.json",
+      "replacement_studio_gate": "late-mail/studio-combined-final"
+    }
+  ],
+  "most_recent_preserved_published_main": "c10416d39894031164be68313253db5bbb3a5ad2",
+  "all_published_main_rechecks_preserved": true
+}

@@ -592,6 +592,462 @@
           "bytes": 469
         }
       }
+    },
+    "final-qualification.tar.gz": {
+      "role": "Accepted final cohorts, explicit retained-source proofs, final intake and main supplements, exact commands and reproducible audit scripts; failed and superseded Mail/format attempts are retained but excluded from passing totals.",
+      "sha256": "9a3a980bf6a92e52de1ccee52d319c0073ef658747b73a3aead2bb7faf231273",
+      "bytes": 3183917,
+      "member_count": 106,
+      "uncompressed_bytes": 10601704,
+      "verified_by_reopening": true,
+      "members": {
+        "audit-zotero-qualification.py": {
+          "sha256": "b83e951af9daa2f3b482c1a5a9172b1b77a4c5d329a1ac4f932a63ada82d835e",
+          "bytes": 25172
+        },
+        "refresh-zotero-intake.py": {
+          "sha256": "f4f4f2c0bd743cefc8b0e28874811109cb82e7d4975bf6581da092e5a20d44ed",
+          "bytes": 8065
+        },
+        "run-zotero-cohort.py": {
+          "sha256": "ed1fef6796b7c319db4cd87eb8ddfede8bc6ff4864fd94243e208b7568471c35",
+          "bytes": 4036
+        },
+        "run-zotero-editor-final-checks.py": {
+          "sha256": "33203c51bd18864b269c4fc10fced4f77afb79931c34b85b823d6db3d725f9a1",
+          "bytes": 3650
+        },
+        "run-zotero-final-editor.py": {
+          "sha256": "4be9d4c4ed3f6958b4b3d8908ebcb0ec3a7523cabaa1afe47e5f9c6e04dc16a1",
+          "bytes": 4055
+        },
+        "zotero-local-results/editor-combined-final/receipt.json": {
+          "sha256": "b8ef5b511e4e492b87cae66a0a88cca6aaed940687a35fec97f55230bd9a4f90",
+          "bytes": 1847
+        },
+        "zotero-local-results/editor-combined-final/render/cycle-0-layout.txt": {
+          "sha256": "64a1e4cee364c5b889cc5e7e9e0f7877f5f3caf78dd320e93d3911848b52530a",
+          "bytes": 41964
+        },
+        "zotero-local-results/editor-combined-final/render/cycle-0.png": {
+          "sha256": "2f97ab707e4700de6003ad86d8e630a4be622e19f224902a59e1470f9d78ca82",
+          "bytes": 37039
+        },
+        "zotero-local-results/editor-combined-final/render/cycle-1-difference.json": {
+          "sha256": "87ec484d3712ac4c107d63274281aeb121265471528a28e52d53f2315b2ba449",
+          "bytes": 68
+        },
+        "zotero-local-results/editor-combined-final/render/cycle-1-layout.txt": {
+          "sha256": "64a1e4cee364c5b889cc5e7e9e0f7877f5f3caf78dd320e93d3911848b52530a",
+          "bytes": 41964
+        },
+        "zotero-local-results/editor-combined-final/render/cycle-1.png": {
+          "sha256": "2f97ab707e4700de6003ad86d8e630a4be622e19f224902a59e1470f9d78ca82",
+          "bytes": 37039
+        },
+        "zotero-local-results/editor-combined-final/render/cycle-2-difference.json": {
+          "sha256": "87ec484d3712ac4c107d63274281aeb121265471528a28e52d53f2315b2ba449",
+          "bytes": 68
+        },
+        "zotero-local-results/editor-combined-final/render/cycle-2-layout.txt": {
+          "sha256": "64a1e4cee364c5b889cc5e7e9e0f7877f5f3caf78dd320e93d3911848b52530a",
+          "bytes": 41964
+        },
+        "zotero-local-results/editor-combined-final/render/cycle-2.png": {
+          "sha256": "2f97ab707e4700de6003ad86d8e630a4be622e19f224902a59e1470f9d78ca82",
+          "bytes": 37039
+        },
+        "zotero-local-results/editor-combined-final/render/cycle-3-difference.json": {
+          "sha256": "87ec484d3712ac4c107d63274281aeb121265471528a28e52d53f2315b2ba449",
+          "bytes": 68
+        },
+        "zotero-local-results/editor-combined-final/render/cycle-3-layout.txt": {
+          "sha256": "64a1e4cee364c5b889cc5e7e9e0f7877f5f3caf78dd320e93d3911848b52530a",
+          "bytes": 41964
+        },
+        "zotero-local-results/editor-combined-final/render/cycle-3.png": {
+          "sha256": "2f97ab707e4700de6003ad86d8e630a4be622e19f224902a59e1470f9d78ca82",
+          "bytes": 37039
+        },
+        "zotero-local-results/editor-combined-final/render/summary.json": {
+          "sha256": "37981fdd5c5db9659d3e416bce7802e4fa1b949757ebda0b4b7c190217a56281",
+          "bytes": 1560
+        },
+        "zotero-local-results/editor-combined-final/source-after.json": {
+          "sha256": "562c5e3f980417a095c0a7009d8943dedd0eda7edf1be4e24c00064ba3ed7741",
+          "bytes": 581766
+        },
+        "zotero-local-results/editor-combined-final/source-before.json": {
+          "sha256": "562c5e3f980417a095c0a7009d8943dedd0eda7edf1be4e24c00064ba3ed7741",
+          "bytes": 581766
+        },
+        "zotero-local-results/editor-combined-final/stderr.log": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "zotero-local-results/editor-combined-final/stdout.jsonl": {
+          "sha256": "dd1eccf5530cbca990e52528098ad9c9296dba3bc8d885fa649a30174b4d1570",
+          "bytes": 267233
+        },
+        "zotero-local-results/editor-composed-acceptance.json": {
+          "sha256": "3f87892be2a61b9d28c03b8fa0de448a63631f6fb5d39e244fa70378422da42f",
+          "bytes": 94838
+        },
+        "zotero-local-results/editor-final-checks-02/analyze.log": {
+          "sha256": "0db2e0c6492d0ade9b02ac13d7a5248d5e7b8eac18a9a5ae868fd4f1676e7386",
+          "bytes": 302
+        },
+        "zotero-local-results/editor-final-checks-02/format.log": {
+          "sha256": "f7765f18b4b6a508ba5e9be7fbfa0ae4741fa2031500978f36ba338019ed271d",
+          "bytes": 48
+        },
+        "zotero-local-results/editor-final-checks-02/source-after.json": {
+          "sha256": "3736b7988825387817a791ca7f7ee2c6affa3a3ada9f21fa3c0b4cf9c0715660",
+          "bytes": 341587
+        },
+        "zotero-local-results/editor-final-checks-02/source-before.json": {
+          "sha256": "251b2543f10a574ff789b278d95d27f836e9840b1b858d11e15ed5fe78560520",
+          "bytes": 346576
+        },
+        "zotero-local-results/editor-final-checks-02/summary.json": {
+          "sha256": "54e793b77ca7d8d47f86c5a043cd4b86c1bed0a9b0364db03ad87279a26c5071",
+          "bytes": 4313
+        },
+        "zotero-local-results/editor-final-checks/analyze.log": {
+          "sha256": "9685771c5ebf66c7e91d0ee3772a8440352c9e878fbe0096a471c33f9d1cc003",
+          "bytes": 202
+        },
+        "zotero-local-results/editor-final-checks/format.log": {
+          "sha256": "643a91f206611ec7d0dad2a01df4feedbb13f9dfce404212bd504606914178ae",
+          "bytes": 131
+        },
+        "zotero-local-results/editor-final-checks/source-after.json": {
+          "sha256": "fa554a12c0ab60fdf1a528ace7b33cc441fc97d451e4de219da4ac590e359130",
+          "bytes": 341431
+        },
+        "zotero-local-results/editor-final-checks/source-before.json": {
+          "sha256": "9e002cf01e06c4e19a2a8afc633c4628cffe13585ed54883af3abc05c61ed70c",
+          "bytes": 346418
+        },
+        "zotero-local-results/editor-final-checks/summary.json": {
+          "sha256": "e3d323fdf877ced901ace97e9c075fec30d5acab9f300f223068cb4082d37ea9",
+          "bytes": 3342
+        },
+        "zotero-local-results/engine-applicability-after-mail-main.json": {
+          "sha256": "2e664b4472e50467ea72196e3c4f895dad068826d371ecc3298c806afa60325d",
+          "bytes": 225597
+        },
+        "zotero-local-results/engine-combined-final/analyze-exit-code.txt": {
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+          "bytes": 2
+        },
+        "zotero-local-results/engine-combined-final/analyze-summary.json": {
+          "sha256": "d5bfa073bc3935de98ae3c2381d2dfaaf102af194090a314f212d73edca7863d",
+          "bytes": 282
+        },
+        "zotero-local-results/engine-combined-final/analyze.log": {
+          "sha256": "6b7a8871da280b2b7725a31509a42d0e66de8a6281e319414cfeb7d46b48d2ed",
+          "bytes": 34
+        },
+        "zotero-local-results/engine-combined-final/command.json": {
+          "sha256": "252727376fd201b426589bac1cffa06427100cd304dbcf6d4fe98f72fcc54aa9",
+          "bytes": 3181
+        },
+        "zotero-local-results/engine-combined-final/events.jsonl": {
+          "sha256": "0c2e82744f01e4a99a5b4dac27dc94e3c334302a42f8f06b5f0eb62cea1b5315",
+          "bytes": 655756
+        },
+        "zotero-local-results/engine-combined-final/exit-code.txt": {
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+          "bytes": 2
+        },
+        "zotero-local-results/engine-combined-final/run_engine.py": {
+          "sha256": "8e25e84f444a3c87481d22d0bc415b814719d621baeb985680483a7d8c37cbe7",
+          "bytes": 3742
+        },
+        "zotero-local-results/engine-combined-final/source-after.json": {
+          "sha256": "77edd4a96f97b5ebf4e3617dc9be0555a7de9f742885d24c3b20262c271ce8db",
+          "bytes": 340057
+        },
+        "zotero-local-results/engine-combined-final/source-before.json": {
+          "sha256": "c614d58947570da906c156d6e27fc809d00a25ea21c929262f62e3200071804a",
+          "bytes": 349199
+        },
+        "zotero-local-results/engine-combined-final/summary.json": {
+          "sha256": "4b8efde64eff46374e20320da9b3c56be5573ce43906d1ed45a31c68e638f305",
+          "bytes": 4554
+        },
+        "zotero-local-results/engine-combined-final/test-files.txt": {
+          "sha256": "6a7bbed58b2fd1d06f44b1362bb9ed2c8b1d39f079ffdc991d7591551c700790",
+          "bytes": 2237
+        },
+        "zotero-local-results/final-evidence-files.json": {
+          "sha256": "ca1112f9d1fa8b45fe930fefbd41f9320f965bdf6d616ffae509ae0eb34e0091",
+          "bytes": 20558
+        },
+        "zotero-local-results/final-intake-coverage.json": {
+          "sha256": "9a1552f3bfdaccd49d2095bce721c12ed9e8a4f761795db8894231eee664f20a",
+          "bytes": 71029
+        },
+        "zotero-local-results/final-main-merge-resolution.json": {
+          "sha256": "3836661a05bc18bf4dc9146061fd51eb4a1bd673a901fdbce15e3f1267b6cab9",
+          "bytes": 5169
+        },
+        "zotero-local-results/final-qualification-audit.json": {
+          "sha256": "2e2bae146836e86b58765a66a5cd57c8686922f4ed19648223f29cafa446ce99",
+          "bytes": 83613
+        },
+        "zotero-local-results/final-source-review.json": {
+          "sha256": "77093ba8354ccca8963b21873d8322c09b7ea2375a54b0fbb29720e27f1cc614",
+          "bytes": 1490
+        },
+        "zotero-local-results/formatting-only-test-review.json": {
+          "sha256": "5151c576948650a06d7411dd95c7381f7457278d1a28d223b4c1897a04d65b89",
+          "bytes": 3976
+        },
+        "zotero-local-results/frozen-intake-at-dc87bf94.json": {
+          "sha256": "0d59dd012c0738050b45a7afb4168fed5bdfefd9de24b8472a3519d87d5e3c3e",
+          "bytes": 71117
+        },
+        "zotero-local-results/late-mail/core/command.json": {
+          "sha256": "a72241fc5fd3940ea7c1b95add085e38fe3b620ec8539281331cd020597b720e",
+          "bytes": 591
+        },
+        "zotero-local-results/late-mail/core/events.jsonl": {
+          "sha256": "abf4f23dcdedbf77f072d68a1375cda11c83b2f14d5f1678f3fa7a3925022741",
+          "bytes": 27216
+        },
+        "zotero-local-results/late-mail/core/exit-code.txt": {
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+          "bytes": 2
+        },
+        "zotero-local-results/late-mail/core/source-after.json": {
+          "sha256": "4d40e90829cc744ae2e0e91e6b5cda943890818087fbde71aed72de6113265b0",
+          "bytes": 339768
+        },
+        "zotero-local-results/late-mail/core/source-before.json": {
+          "sha256": "80d32741500c02fb9eaddbc45b77442b03bdd6951ae395b1c2cc33e49cc19ef8",
+          "bytes": 344804
+        },
+        "zotero-local-results/late-mail/core/summary.json": {
+          "sha256": "9aa50a955b0c74e68e06c87ce1ecada6e3a721724f986f4a71a1056a948b6dcf",
+          "bytes": 447
+        },
+        "zotero-local-results/late-mail/host-focused-02/command.json": {
+          "sha256": "c69fc50d4a2995810405d43d831baf849dea5f92b1f6e476d25d271454385b12",
+          "bytes": 556
+        },
+        "zotero-local-results/late-mail/host-focused-02/events.jsonl": {
+          "sha256": "7bd318fc39604c102bf2f57b336164df2be78dd87a6e09b5a7b19bb3644a2f8e",
+          "bytes": 5326
+        },
+        "zotero-local-results/late-mail/host-focused-02/exit-code.txt": {
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+          "bytes": 2
+        },
+        "zotero-local-results/late-mail/host-focused-02/source-after.json": {
+          "sha256": "4778970fffe881b6ed16291cb0ccfd957698ea354b5e355ee6fa037464adb22f",
+          "bytes": 340057
+        },
+        "zotero-local-results/late-mail/host-focused-02/source-before.json": {
+          "sha256": "b82d8c6a38416eeece377fa1dcf7b48511f4d4512dbeff72e96a05316d04b37d",
+          "bytes": 345117
+        },
+        "zotero-local-results/late-mail/host-focused-02/summary.json": {
+          "sha256": "4a84dfaf0903feebb5022ac344a2346d4a3911ab3ed5e7dbd5c4e0ccb5fb3c25",
+          "bytes": 469
+        },
+        "zotero-local-results/late-mail/independent-review.json": {
+          "sha256": "395d192fcd934f1910cfb3fb5c4a2648de4a3fe8a733d5a9e2f7a95c45cccb01",
+          "bytes": 12464
+        },
+        "zotero-local-results/late-mail/patch-format-apply-exit.txt": {
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+          "bytes": 2
+        },
+        "zotero-local-results/late-mail/patch-format-apply.log": {
+          "sha256": "0f036be5805cc73103feae5207f0f20b64c12e949b8c916fe36ae52d2e86d4fa",
+          "bytes": 137
+        },
+        "zotero-local-results/late-mail/patch-format-check-exit.txt": {
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+          "bytes": 2
+        },
+        "zotero-local-results/late-mail/patch-format-check.log": {
+          "sha256": "3e9ff2fe592aafa234c51369334da1e98cfae07eb8eb56d68b22a597e23f1e92",
+          "bytes": 133
+        },
+        "zotero-local-results/late-mail/quit-focused-02/command.json": {
+          "sha256": "b470461ef79958f053d504b43759d150e366c618cbf09dc77e6b389f4c40203f",
+          "bytes": 551
+        },
+        "zotero-local-results/late-mail/quit-focused-02/events.jsonl": {
+          "sha256": "638c6da95da0d678aef2cfa61769447fb3224ea739efbb0e6decc05594431ad1",
+          "bytes": 3172
+        },
+        "zotero-local-results/late-mail/quit-focused-02/exit-code.txt": {
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+          "bytes": 2
+        },
+        "zotero-local-results/late-mail/quit-focused-02/source-after.json": {
+          "sha256": "6573799d742f916226e492bcc376485ccb73c8b3fb960de025d05cdf220cda68",
+          "bytes": 340057
+        },
+        "zotero-local-results/late-mail/quit-focused-02/source-before.json": {
+          "sha256": "b07b59493e4219696696cb045fd66fa3be6ddeb9c30047c93b805e3fb08b2cbf",
+          "bytes": 345112
+        },
+        "zotero-local-results/late-mail/quit-focused-02/summary.json": {
+          "sha256": "9d8a863d0f8051fcf4327af4496a35ebc45f2524b562bcfebd8226cfc2ed41ee",
+          "bytes": 462
+        },
+        "zotero-local-results/late-mail/quit-save-diagnostic-exit.txt": {
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+          "bytes": 2
+        },
+        "zotero-local-results/late-mail/quit-save-diagnostic.jsonl": {
+          "sha256": "c000a09243c732d6ef63cccdfad94eda868feb7ed1be040bf195ba1d1d4f5cfa",
+          "bytes": 5492
+        },
+        "zotero-local-results/late-mail/run_gate.py": {
+          "sha256": "e01d10a382b9e7e257af1e797bde4e0314fa18870f1366626ed410fa2502b610",
+          "bytes": 3891
+        },
+        "zotero-local-results/late-mail/studio-combined-final/command.json": {
+          "sha256": "b74d3e2a1f003ee9a66ca2eb025b1ca0b8f9614f950f26a14ee38fc91bfd9114",
+          "bytes": 995
+        },
+        "zotero-local-results/late-mail/studio-combined-final/events.jsonl": {
+          "sha256": "c72f4c8b7e4462a443c2d674ba0460d82404e37a9b33c4b3adb3cf26fe330316",
+          "bytes": 183778
+        },
+        "zotero-local-results/late-mail/studio-combined-final/exit-code.txt": {
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+          "bytes": 2
+        },
+        "zotero-local-results/late-mail/studio-combined-final/source-after.json": {
+          "sha256": "1d9fc8bcb2ed8c2444d8229e423a2ae863ccd64fa5287f7f0964fb5fdd2656bd",
+          "bytes": 340213
+        },
+        "zotero-local-results/late-mail/studio-combined-final/source-before.json": {
+          "sha256": "d0779bbb8582ffde34439aeb0d4a14360c879dfa110f1d0b7635ab47eb27b151",
+          "bytes": 346074
+        },
+        "zotero-local-results/late-mail/studio-combined-final/summary.json": {
+          "sha256": "8437f0a31687bc7a8c8cf1355149da1488cdea1a85754bf771aecbe916dee30c",
+          "bytes": 1270
+        },
+        "zotero-local-results/late-mail/studio-final/command.json": {
+          "sha256": "6bfd9bd824c6875c591ab4441ea875c1c04b30c0dbadffc5d6064b29ac951ac4",
+          "bytes": 895
+        },
+        "zotero-local-results/late-mail/studio-final/events.jsonl": {
+          "sha256": "73c54016ca29cb4b46011d7f9e9f7a91b69986a109f47a42142d5fd4f2318017",
+          "bytes": 173853
+        },
+        "zotero-local-results/late-mail/studio-final/exit-code.txt": {
+          "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+          "bytes": 2
+        },
+        "zotero-local-results/late-mail/studio-final/source-after.json": {
+          "sha256": "77edd4a96f97b5ebf4e3617dc9be0555a7de9f742885d24c3b20262c271ce8db",
+          "bytes": 340057
+        },
+        "zotero-local-results/late-mail/studio-final/source-before.json": {
+          "sha256": "450738c15f455c58730a7b6a507263f8abca849ab9cb1c1fa6eb0f2c495cbf6f",
+          "bytes": 345744
+        },
+        "zotero-local-results/late-mail/studio-final/summary.json": {
+          "sha256": "16f8ada733a8b82080aca3f74116de0331c2fb5086957e62897ed2d3af07bdbe",
+          "bytes": 1098
+        },
+        "zotero-local-results/late-mail/studio-focused-01/command.json": {
+          "sha256": "b822e34b1a4c346d4dc302b38691692a5f3657def6e9c5dc3b4343a7fcf73bf8",
+          "bytes": 641
+        },
+        "zotero-local-results/late-mail/studio-focused-01/events.jsonl": {
+          "sha256": "a90e26ed9bd859732901f915f43f66547528da98bdfbc4ae8af44541240cd7c0",
+          "bytes": 65124
+        },
+        "zotero-local-results/late-mail/studio-focused-01/exit-code.txt": {
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+          "bytes": 2
+        },
+        "zotero-local-results/late-mail/studio-focused-01/source-after.json": {
+          "sha256": "ea51920fa99be52c5b1d6a170e6123e379e1e567add068a3a1971282fab42c49",
+          "bytes": 339910
+        },
+        "zotero-local-results/late-mail/studio-focused-01/source-before.json": {
+          "sha256": "27f8a93578522072e10efc54c02078fea70993ec3ea06ec5bd02742dfb7b218b",
+          "bytes": 345125
+        },
+        "zotero-local-results/late-mail/studio-focused-01/summary.json": {
+          "sha256": "05185dd78604cf52293ad57dfb27b45a24707a0a452c77b4b4b6b8d493bc5ebf",
+          "bytes": 646
+        },
+        "zotero-local-results/late-mail/studio/command.json": {
+          "sha256": "ca2725a6b70a9fef79e793236bef2ddfaa3e3baddf190d02b173a3e17bb3a820",
+          "bytes": 895
+        },
+        "zotero-local-results/late-mail/studio/events.jsonl": {
+          "sha256": "db4283f7b990b34bc435db32d3d92612157045629b296346ce56a00b6990c6f3",
+          "bytes": 182557
+        },
+        "zotero-local-results/late-mail/studio/exit-code.txt": {
+          "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+          "bytes": 2
+        },
+        "zotero-local-results/late-mail/studio/source-after.json": {
+          "sha256": "4d40e90829cc744ae2e0e91e6b5cda943890818087fbde71aed72de6113265b0",
+          "bytes": 339768
+        },
+        "zotero-local-results/late-mail/studio/source-before.json": {
+          "sha256": "72fbc2aca121e2523fbe32f4bbf6bf352cd631f9313cc64bf00edebee912d97a",
+          "bytes": 345451
+        },
+        "zotero-local-results/late-mail/studio/summary.json": {
+          "sha256": "19ddfb55cfc2c4855792b9d6f7e4485837f3a8c89343e4bd3f73172619bbe899",
+          "bytes": 1115
+        },
+        "zotero-local-results/late-mail/test-plan.json": {
+          "sha256": "f5797c4c70d18194943a161d6dd0c347abce3e78bd0cff4d0dba5a3b06d3b55e",
+          "bytes": 1420
+        },
+        "zotero-local-results/supplemental-main-preservation.json": {
+          "sha256": "8c8310a37e3f6fe0d5a3c46ae94777d103dccc36b571fa496a2cc0ca2343851a",
+          "bytes": 8523
+        },
+        "zotero-local-results/zotero-parity-agent-at-574bc02b.json": {
+          "sha256": "4087d2404fc49c3264526c7711dd9c3bf1c91dd7ff45e61b3ec446b017c58e5a",
+          "bytes": 1811
+        },
+        "zotero-local-results/zotero-parity-agent-final.json": {
+          "sha256": "08e168f68af51bd4d46db076bf447baca5f9fcbe60d6d862babe6b5f19d0dc82",
+          "bytes": 2750
+        }
+      }
+    }
+  },
+  "files": {
+    "qualification.json": {
+      "sha256": "2e2bae146836e86b58765a66a5cd57c8686922f4ed19648223f29cafa446ce99",
+      "bytes": 83613
+    },
+    "intake-final.json": {
+      "sha256": "9a1552f3bfdaccd49d2095bce721c12ed9e8a4f761795db8894231eee664f20a",
+      "bytes": 71029
+    },
+    "main-preservation.json": {
+      "sha256": "8c8310a37e3f6fe0d5a3c46ae94777d103dccc36b571fa496a2cc0ca2343851a",
+      "bytes": 8523
+    },
+    "nested-note.png": {
+      "sha256": "2f97ab707e4700de6003ad86d8e630a4be622e19f224902a59e1470f9d78ca82",
+      "bytes": 37039
+    },
+    "verify_evidence.py": {
+      "sha256": "b75799c3ee90a2a8ec4fef89b9919bd3f4e9f50d462872f4556fbaf95b032bbb",
+      "bytes": 2048
     }
   }
 }

@@ -1,5 +1,41 @@
 # Zotero validation
 
+## 21 November 2026 — nested research tables
+
+The [nested-table continuation](validation/zotero-nested-tables-20261121/README.md)
+extends native Add Note and Add Annotation to tables nested inside research-note
+cells, up to eight table levels. It preserves independent grids and spans,
+recursive citation/list order, pictures and native trailing cell paragraphs.
+Whole-note budgets, detached staging, stale/cancelled-operation guards,
+main-flow destination limits and one-step undo/redo remain in place.
+
+Qualified source `ed30a633` preserves published Word main `f92c0d24` and Mail
+main `c10416d3`. The final source-bound acceptance records **2,267 distinct
+passing cases across 83 selected files**, eight existing floating-image fixture
+skips and zero failures or runtime errors in the accepted application runs:
+1,359 engine, 510 editor, 335 Studio and 63 Mail core cases. Exact-input
+retention proofs preserve the engine/core runs across unrelated Studio changes;
+the final Studio/editor groups execute the combined source. Complete engine
+library analysis, eight targeted editor/Mail analyzer checks, and 13 selected
+Dart formatting checks pass. The nested controller's rendered pixels remain
+identical through three DOCX save/reopen cycles.
+
+The frozen 352-reference intake has 328 ancestors, 24 verified historical
+equivalents and zero uncovered refs. Later published mains retain their ancestry.
+The [qualification receipt](validation/zotero-nested-tables-20261121/qualification.json)
+and SHA-256-indexed archives retain raw events, exact inputs, failed attempts,
+replacements, converter files and runtime provenance. Earlier overlapping runs
+are not added to the final count. GitHub Actions were neither queried nor awaited.
+
+An actual LibreOfficeDev 26.8.0.0.alpha0 converter preserves the synthetic direct
+Quds ODT carrier → DOCX → controlled Quds import route, including four active
+citations, three nested tables, an image and three further saves. The separate
+DOCX → ODT → DOCX route changes list labels from `4., 5.` to `4., 1.`; a flat-list
+control reproduces the loss. That route remains a strict failure and is recorded
+separately from the passing application tests. Live Zotero/Word/LibreOffice
+plugin acceptance, native ODT editing and legacy Apache OpenOffice remain
+separate qualification targets.
+
 ## 21 November 2026 — document-transfer protocol
 
 The [transfer continuation](validation/zotero-transfer-20261121/README.md)
