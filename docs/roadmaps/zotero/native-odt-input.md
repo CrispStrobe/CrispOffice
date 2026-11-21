@@ -7,6 +7,12 @@ rich-import and LibreOffice style results retain their original sources.
 The separate [native-output contract](native-odt-output.md) now defines explicit
 editable ODT copy export. Installed-host/plugin acceptance remains open.**
 
+The [native round-trip continuation](../../validation/zotero-odt-roundtrip-20261121/README.md)
+extends reopening of actual LibreOffice-saved bibliography sections and
+identified decimal-note metadata. It also corrects editable table export
+geometry. Its current validation and remaining footnote-layout boundary are
+recorded separately from the preceding milestones.
+
 `OdtDocumentReader.readBytes` builds an editable `WmlDocument` from the supported
 ODT subset below. The asynchronous Word loader and Studio Open use this reader;
 the resulting active document saves as DOCX. The
@@ -368,7 +374,41 @@ do not establish broad real LibreOffice table acceptance.
 Primary format contract: OASIS ODF 1.3 Part 3
 [section 9.1.5 and span attributes 19.680/19.682](https://docs.oasis-open.org/office/OpenDocument/v1.3/os/part3-schema/OpenDocument-v1.3-os-part3-schema.html).
 
-## Increment 5: installed-host acceptance
+## Increment 5: native reopening after LibreOffice saves
+
+The reader accepts the ordinary section style LibreOffice assigns to a native
+Zotero bibliography. It resolves section-family defaults and parents before
+qualifying a single column, zero margins, transparent background and inactive
+protection/editing flags. Rich entries and empty bibliography paragraphs retain
+their exact ownership. Active section geometry, protected/hidden/linked content,
+unknown properties and malformed inherited styles still refuse. Unused sequence
+declarations are checked for valid names, outline-level syntax and a single
+Unicode separator; their authored content and active sequence fields refuse.
+
+LibreOffice stores the note configuration's starting value as a zero-based
+offset, unlike the normative ODF initial-number description. An unambiguous
+stock LibreOffice/LibreOfficeDev generator with a complete project revision
+qualifies that convention. Only zero offsets and exact visible decimal ordinals
+are accepted; independent footnote/endnote sequences survive DOCX conversion.
+Unknown or ambiguous producers retain the existing ODF convention. Other note
+formats, restarts, custom labels and unsupported note styling remain refused.
+
+Known separating/collapsing table border-model defaults are inert only within
+the existing borderless reader: actual border/padding properties remain guarded.
+Editable export now pairs absolute widths with physical left/center/right
+alignment. The earlier `margins` alignment expanded tables in LibreOffice and
+converted their columns to unsupported relative-only widths. Historical files
+from that route remain explicit failures; regenerated output has its own
+retained qualification.
+
+An actual LibreOffice footnote separator has dimensions and styling absent from
+the current native note-layout model. It is still refused when footnotes use it.
+Endnote-only and table-only files have separate acceptance scopes. The
+[work record](../../validation/zotero-odt-roundtrip-20261121/README.md) retains
+unmodified converter files, controlled native field updates, repeat-save
+checks, source manifests and the exact remaining limits.
+
+## Increment 6: installed-host acceptance
 
 Run an actual current Zotero session with identified Word and LibreOffice
 versions and synthetic library data. Exercise native-file input separately

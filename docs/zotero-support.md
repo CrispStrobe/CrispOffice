@@ -1555,10 +1555,14 @@ The importer accepts a bounded subset:
   TextSections, including rich bibliography entries, empty paragraphs,
   multi-item options, adjacent fields and identical-looking citations with
   different native identities.
+  Ordinary single-column bibliography section styles written by LibreOffice
+  are accepted after their inherited formatting and protection are checked.
 - Authored footnotes/endnotes with ordinary decimal numbering and live note
   anchors, simple decimal/bullet lists with independent starts/restarts and
   nested continuations, and rectangular tables with supported horizontal and
   vertical merges, nested up to eight levels. Citation ownership stays with its actual paragraph, note or cell.
+  Identified LibreOffice decimal notes may use its zero-based starting offset;
+  their visible note labels must match the complete sequence exactly.
 - XML/JSON Zotero preferences, including unknown members. The explicit import
   converts `ReferenceMark` storage to Word `Field` only after reconstruction.
   Standard document properties are mapped; the exact original `meta.xml` is
@@ -1602,6 +1606,15 @@ Asian typography requires non-Asian current text and known supported break
 languages. Active Asian typography, nonstandard default tab spacing used by
 actual tabs, an active page grid and a used custom footnote separator still
 refuse explicitly.
+
+Editable Zotero ODT export preserves fixed table widths with left, center or
+right alignment. This prevents LibreOffice from expanding those tables to fill
+page margins. Returned table-only, bibliography and endnote-only documents are
+checked independently through native reopening and further saves in the
+[round-trip work record](validation/zotero-odt-roundtrip-20261121/README.md).
+Actual footnotes using a LibreOffice separator remain outside the reader's
+current formatting subset; accepting the note-numbering metadata does not
+remove that layout restriction.
 
 Conversion preserves supported current content, rather than a complete live
 ODF style engine for future typing or Zotero replacements. General LibreOffice

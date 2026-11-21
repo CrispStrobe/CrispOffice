@@ -253,6 +253,26 @@ void main() {
     },
   );
 
+  for (final level in ['-00', '+100000000000000000000000000000']) {
+    test(
+      'unused sequence declaration keeps valid integer and Unicode syntax $level',
+      () async {
+        final bytes = _variant(
+          (xml) => _replace(
+            _replace(
+              xml,
+              _columns,
+              '<style:columns fo:column-count=" +001 " fo:column-gap="0pt"/>',
+            ),
+            '<text:sequence-decl text:display-outline-level="0" text:name="Table"/>',
+            '<text:sequence-decl text:display-outline-level="$level" text:name="Table" text:separation-character="😀"/>',
+          ),
+        );
+        _expectOriginal(await OdtDocumentReader.readBytes(bytes));
+      },
+    );
+  }
+
   final variants = <String, String Function(String)>{
     'missing section style': (xml) =>
         _replace(xml, 'text:style-name="Sect1"', 'text:style-name="Missing"'),

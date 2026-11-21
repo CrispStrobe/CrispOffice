@@ -110,6 +110,7 @@ class WordDeserializer {
   bool _noteMarkCaptured = false;
   final Set<WmlTable> _tablesWithOwnBorders = Set<WmlTable>.identity();
   final Set<WmlTable> _tablesWithOwnBorderWidths = Set<WmlTable>.identity();
+  final Set<WmlTable> _tablesWithOwnCellMargins = Set<WmlTable>.identity();
   final Set<WmlRunProps> _notBold = Set<WmlRunProps>.identity();
   final Set<WmlRunProps> _notItalic = Set<WmlRunProps>.identity();
   final Map<WmlTable, _TableLook> _tableLooks =
@@ -127,6 +128,7 @@ class WordDeserializer {
     _moveRanges.clear();
     _tablesWithOwnBorders.clear();
     _tablesWithOwnBorderWidths.clear();
+    _tablesWithOwnCellMargins.clear();
     _tableLooks.clear();
     _notBold.clear();
     _notItalic.clear();
@@ -2654,6 +2656,9 @@ class WordDeserializer {
 
   void _readTableProperties(XmlPullReader reader, WmlTable table) {
     final int depth = reader.depth;
+    final nativeContainer =
+        reader.localName == 'tblPr' &&
+        reader.namespaceUri == OfficeNamespaces.w;
     while (reader.next() && reader.depth >= depth) {
       if (reader.eventType != XmlEventType.startElement ||
           reader.depth != depth + 1) {
@@ -2679,6 +2684,16 @@ class WordDeserializer {
         table.properties.alignment = _jc(
           reader.getAttribute('val', namespaceUri: OfficeNamespaces.w),
         );
+      } else if (reader.localName == 'tblCellMar' &&
+          nativeContainer &&
+          reader.namespaceUri == OfficeNamespaces.w) {
+        final firstDeclaration = _tablesWithOwnCellMargins.add(table);
+        final margin = WordTablePropertyIo.uniformCellMargin(
+          XmlDocument.readElement(reader),
+        );
+        // Any direct container blocks a guessed style fallback. Unsupported
+        // or duplicate declarations keep their source XML and native fallback.
+        table.properties.cellMargin = firstDeclaration ? margin ?? 4 : 4;
       }
     }
   }
@@ -2737,12 +2752,24 @@ class WordDeserializer {
     final Map<String, _TableStyle> styles = part == null
         ? <String, _TableStyle>{}
         : _TableStyle.readAll(part.readText());
+    final defaultStyles = styles.entries
+        .where((entry) => entry.value.isDefault)
+        .toList();
+    final defaultMarginStyle = defaultStyles.length == 1
+        ? _TableStyle.resolve(defaultStyles.single.key, styles)
+        : null;
 
     void applyTo(WmlTable table) {
       final String? styleId = table.properties.styleId;
       final _TableStyle? style = styleId == null
           ? null
           : _TableStyle.resolve(styleId, styles);
+      final marginStyle = styleId == null ? defaultMarginStyle : style;
+      if (!_tablesWithOwnCellMargins.contains(table)) {
+        if (marginStyle?.cellMargin case final margin?) {
+          table.properties.cellMargin = margin;
+        }
+      }
       if (!_tablesWithOwnBorders.contains(table)) {
         if (style != null && style.bordersDeclared) {
           table.properties.borders = style.borderColor != null;
@@ -2843,6 +2870,7 @@ class WordDeserializer {
     }
     _tablesWithOwnBorders.clear();
     _tablesWithOwnBorderWidths.clear();
+    _tablesWithOwnCellMargins.clear();
     _tableLooks.clear();
   }
 
@@ -4432,6 +4460,12 @@ class _TableStyle {
   _TableStyle({this.basedOn});
 
   String? basedOn;
+  bool isDefault = false;
+
+  /// Presence is separate from projection: an unsupported child declaration
+  /// must not inherit a parent's scalar and pretend its margins are uniform.
+  bool cellMarginsDeclared = false;
+  double? cellMargin;
 
   /// The style has its own `w:tblPr/w:tblBorders`.
   bool bordersDeclared = false;
@@ -4460,6 +4494,12 @@ class _TableStyle {
       return style;
     }
     final _TableStyle merged = _TableStyle(basedOn: parentId)
+      ..isDefault = style.isDefault
+      ..cellMarginsDeclared =
+          style.cellMarginsDeclared || parent.cellMarginsDeclared
+      ..cellMargin = style.cellMarginsDeclared
+          ? style.cellMargin
+          : parent.cellMargin
       ..bordersDeclared = style.bordersDeclared || parent.bordersDeclared
       ..borderColor = style.bordersDeclared
           ? style.borderColor
@@ -4477,10 +4517,14 @@ class _TableStyle {
     final XmlPullReader reader = WordMarkupCompatibilityReader(xml);
     String? id;
     String? basedOn;
+    var basedOnDeclared = false;
     var isTable = false;
     _TableStyle? current;
     String? region;
     var inBorders = false;
+    int? stylesDepth;
+    int? styleDepth;
+    int? tablePropertiesDepth;
     while (reader.next()) {
       final String name = reader.localName;
       if (reader.eventType == XmlEventType.endElement) {
@@ -4488,12 +4532,22 @@ class _TableStyle {
           region = null;
         } else if (name == 'tblBorders') {
           inBorders = false;
-        } else if (name == 'style') {
+        } else if (name == 'tblPr' &&
+            tablePropertiesDepth != null &&
+            reader.depth == tablePropertiesDepth - 1) {
+          tablePropertiesDepth = null;
+        } else if (name == 'style' &&
+            styleDepth != null &&
+            reader.depth == styleDepth - 1) {
           if (isTable && id != null && current != null) {
             out[id] = current..basedOn = basedOn;
           }
           id = null;
           current = null;
+          styleDepth = null;
+          tablePropertiesDepth = null;
+        } else if (name == 'styles' && reader.depth == 0) {
+          stylesDepth = null;
         }
         continue;
       }
@@ -4504,19 +4558,62 @@ class _TableStyle {
         'val',
         namespaceUri: OfficeNamespaces.w,
       );
-      if (name == 'style') {
+      if (name == 'styles' &&
+          reader.namespaceUri == OfficeNamespaces.w &&
+          reader.depth == 1) {
+        stylesDepth = reader.depth;
+      } else if (name == 'style') {
+        // Only direct native styles can supply effective table properties.
+        // Foreign and nested lookalikes remain in the preserved styles part.
+        if (reader.namespaceUri != OfficeNamespaces.w ||
+            stylesDepth == null ||
+            reader.depth != stylesDepth + 1) {
+          XmlDocument.readElement(reader);
+          continue;
+        }
         isTable =
             reader.getAttribute('type', namespaceUri: OfficeNamespaces.w) ==
             'table';
         id = reader.getAttribute('styleId', namespaceUri: OfficeNamespaces.w);
         basedOn = null;
+        basedOnDeclared = false;
         region = null;
         inBorders = false;
         current = _TableStyle();
+        styleDepth = reader.depth;
+        current.isDefault = const {'1', 'true', 'on'}.contains(
+          reader.getAttribute('default', namespaceUri: OfficeNamespaces.w),
+        );
+        if (reader.isEmptyElement) {
+          if (isTable && id != null) out[id] = current;
+          id = null;
+          current = null;
+          styleDepth = null;
+        }
+        tablePropertiesDepth = null;
       } else if (current == null || !isTable) {
         continue;
-      } else if (name == 'basedOn') {
-        basedOn = val;
+      } else if (name == 'tblPr' &&
+          reader.namespaceUri == OfficeNamespaces.w &&
+          styleDepth != null &&
+          reader.depth == styleDepth + 1 &&
+          !reader.isEmptyElement) {
+        tablePropertiesDepth = reader.depth;
+      } else if (name == 'tblCellMar' &&
+          reader.namespaceUri == OfficeNamespaces.w &&
+          tablePropertiesDepth != null &&
+          reader.depth == tablePropertiesDepth + 1) {
+        final margin = WordTablePropertyIo.uniformCellMargin(
+          XmlDocument.readElement(reader),
+        );
+        current.cellMargin = current.cellMarginsDeclared ? null : margin;
+        current.cellMarginsDeclared = true;
+      } else if (name == 'basedOn' &&
+          reader.namespaceUri == OfficeNamespaces.w &&
+          styleDepth != null &&
+          reader.depth == styleDepth + 1) {
+        basedOn = basedOnDeclared ? null : val;
+        basedOnDeclared = true;
       } else if (name == 'tblStylePr' && !reader.isEmptyElement) {
         region = reader.getAttribute('type', namespaceUri: OfficeNamespaces.w);
       } else if (name == 'tblBorders' && region == null) {

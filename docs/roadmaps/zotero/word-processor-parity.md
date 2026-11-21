@@ -415,6 +415,23 @@ passed 513 engine, 93 editor and 25 Studio cases (631 unique passes, no failures
 or skips), with exact published-source binding and retained converter fixtures
 in the [qualification record](../../validation/zotero-editable-odt-20261121/README.md).
 
+## Delivered increment: reopening LibreOffice-saved native references
+
+The [native round-trip continuation](../../validation/zotero-odt-roundtrip-20261121/README.md)
+starts from actual saved ODT files that previously passed inventory checks but
+failed editable reopening. Native bibliography sections now admit their inert
+inherited LibreOffice styles, preserving complete rich/empty entry ownership.
+Strict decimal note labels qualify the identified LibreOffice zero-offset
+convention. Editable table exports use physical alignment with fixed widths,
+preventing LibreOffice from expanding them to the page margins. Unknown used
+formatting and unrepresented protection remain explicit refusals.
+
+The work record separates local native update/save regressions, actual converter
+cycles, and installed-plugin acceptance. In particular, active LibreOffice
+footnote separator geometry still needs a native model/layout/persistence
+implementation. Endnote-only and table-only acceptance cannot establish that
+footnote behavior or full Word/LibreOffice parity.
+
 ## Next implementation and acceptance steps
 
 1. **Qualify release-host editable ODT workflows and production formatting.**
@@ -430,6 +447,11 @@ in the [qualification record](../../validation/zotero-editable-odt-20261121/READ
    Refresh, citation editing, bibliography editing, style changes and repeated
    saves. The normal imported document still saves as DOCX; an ODT export copy
    does not redirect that save destination.
+   Model and preserve active footnote separator geometry before widening the
+   native reader to returned LibreOffice documents that use it. Retain failing
+   historical relative-table files and continued-list conversions as separate
+   regression targets rather than treating regenerated passing fixtures as
+   evidence for those earlier routes.
 2. **Extend table structure and formatting.** Improve merged-row height distribution and map
    header/footer row groups and custom styles to native structures with explicit
    ownership. Qualify their citation order, geometry, save/reopen behavior and

@@ -67,6 +67,12 @@ paragraphs completely; heading/list entries and partial ranges refuse. Fields
 in table cells must remain in one native cell owner.
 
 The explicit writer retains valid body-table grid widths as absolute ODF widths.
+It uses physical left, center or right alignment for those fixed widths; the
+ODF `margins` value means fill the available width and overrides that geometry
+in LibreOffice. Other alignments refuse this explicit path. The ordinary writer
+retains its existing fill-width behavior. See the
+[round-trip continuation](../../validation/zotero-odt-roundtrip-20261121/README.md)
+for the actual converter reproduction and corrected table fixtures.
 Bounded merged tables use explicit covered-cell positions. Empty native vertical
 continuation paragraphs become empty ODF covered cells without duplicating their
 origin's citation text. Existing cached-result export remains unchanged.
@@ -125,3 +131,10 @@ Then qualify Word transfer and additional native documents, especially notes
 with richer numbering, fields in note tables, images and styles beyond the
 current reader. Legacy Apache OpenOffice requires its own identified versions
 and acceptance evidence.
+
+The native round-trip continuation also opens returned LibreOffice files through
+the Quds reader rather than checking their metadata inventory alone. Inert
+bibliography section styles and the qualified decimal note-offset convention
+are now represented, while used footnote separators retain their explicit
+reader limitation. Converter acceptance does not expand the ordinary writer's
+general document-formatting contract.
