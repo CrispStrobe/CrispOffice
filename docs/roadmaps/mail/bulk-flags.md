@@ -142,7 +142,8 @@ atomically patch the exact cached target flag without inventing unknown
 observations. Connected and cached workspaces can inspect saved receipts.
 
 There is no automatic replay, general offline queue or undo promise. Historical
-uncertainty remains evidence until explicit reconciliation is implemented.
+uncertainty remains evidence. [Explicit checks](flag-recovery.md) now save
+separate fresh provider observations without changing the original outcome.
 Move, delete, archive, rules and scheduled operations are separate capabilities
 with their own acceptance requirements. Authentication and dependency versions
 remain unchanged by the journal increment.
@@ -155,9 +156,9 @@ and preserves raw logs and localized probes. Fake providers and protocol
 fixtures qualify the implementation contracts; live provider accounts and
 installed platform releases remain outside this increment.
 
-1. Explicit historical uncertainty reconciliation and repository-driven
-   sessions: build on the durable flag journal with provider observations,
-   UIDVALIDITY checks, conflicts and bounded recovery.
+1. Repository-driven sessions: build on the durable flag journal and completed
+   [explicit observation recovery](flag-recovery.md), with visible completeness,
+   synchronization ownership and reconnect behavior.
 2. Account-wide/unified search, saved live views and conversations over a durable
    index with explicit cache completeness and source-message identity.
 3. Consistent archive/move/delete, broader bulk commands, rules and quick actions
