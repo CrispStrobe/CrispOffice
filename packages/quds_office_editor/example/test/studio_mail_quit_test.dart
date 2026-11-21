@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
+import 'package:quds_office_studio/studio_chrome.dart';
 import 'package:quds_office_studio/studio_mail_compose.dart';
 import 'package:quds_office_studio/studio_mail_strings.dart';
 import 'package:quds_office_studio/studio_ribbon_preferences.dart';
@@ -156,14 +157,10 @@ final class _DraftOwner {
   bool disposed = false;
 
   Future<void> save(StudioMailDraft draft) async {
-    expect(disposed, isFalse);
     events.add('save started');
+    if (disposed) throw StateError('Draft owner is already closed');
     await gate?.future;
-    expect(
-      disposed,
-      isFalse,
-      reason: 'The account must outlive its draft write.',
-    );
+    if (disposed) throw StateError('Draft owner closed during a write');
     if (fail) {
       events.add('save failed');
       throw StateError('Draft store unavailable');
@@ -252,7 +249,11 @@ Future<void> _openMail(WidgetTester tester, _DraftOwner owner) async {
       .controller;
   word.proofing.enabled = false;
   word.proofing.configure(OfficeProofingService(providers: []));
-  await tester.tap(find.text(_strings.mail));
+  await tester.tap(
+    find.byWidgetPredicate(
+      (widget) => widget is StudioAppSwitcher && widget.label == _strings.mail,
+    ),
+  );
   await _finishRoutes(tester);
   expect(find.byType(_MailPage), findsOneWidget);
 }

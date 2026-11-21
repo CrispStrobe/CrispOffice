@@ -253,6 +253,12 @@ inspection receipt, not a complete dependency or runtime certification.
   preserve stable account/cache IDs across reconnects, distinguish partial from
   completed observations, and expose local paginated headers/cached bodies in
   connected and credential-free offline dialogs. See [durable-sync.md](durable-sync.md).
+- [x] Add explicit single-message/current-page body and attachment downloads to
+  synchronized native folders. Bound each request and cumulative retained
+  content, skip complete exact-identity snapshots across restarts, preserve
+  draft/Outbox/cursor state, and drain cancelled work before releasing the
+  owner. See [offline-downloads.md](offline-downloads.md). Automatic retention
+  policy and background scheduling remain separate work.
 - [ ] Implement QudsMailWorkspace with account/folder or label navigation, paginated/virtualized message and conversation lists, stable selection and coordinated reader/composer sessions.
 - [ ] Extend repository-observed browsing to authoritative synchronized lists,
   unread counts and full account search in the shared workspace; keep loading,

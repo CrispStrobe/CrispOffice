@@ -11,16 +11,18 @@ import 'studio_mail_workspace_strings.dart';
 import 'studio_strings.dart';
 import 'studio_mail_reader_labels.dart';
 
-typedef StudioMailSyncRun = Future<MailSyncRunReport> Function({
-  required MailCancellationToken cancellation,
-  required void Function(MailSyncRunProgress) onProgress,
-});
+typedef StudioMailSyncRun =
+    Future<MailSyncRunReport> Function({
+      required MailCancellationToken cancellation,
+      required void Function(MailSyncRunProgress) onProgress,
+    });
 
-typedef StudioMailBodyDownloadRun = Future<MailBodyDownloadReport> Function({
-  required List<MailHeaderRecord> headers,
-  required MailCancellationToken cancellation,
-  required void Function(MailBodyDownloadProgress) onProgress,
-});
+typedef StudioMailBodyDownloadRun =
+    Future<MailBodyDownloadReport> Function({
+      required List<MailHeaderRecord> headers,
+      required MailCancellationToken cancellation,
+      required void Function(MailBodyDownloadProgress) onProgress,
+    });
 
 /// An explicit foreground sync controller and repository-only offline reader.
 /// The caller keeps ownership of both stores until this route has closed.
@@ -193,6 +195,7 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
   }
 
   void _clearSelection() {
+    _downloadCancellation?.cancel(MailCancellationReason.accountChanged);
     _viewGeneration++;
     final subscription = _viewSubscription;
     if (subscription != null) {
@@ -228,6 +231,7 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
   Future<void> _selectMailbox(MailMailbox mailbox) async {
     if (!_current) return;
     if (mailbox.id.account != widget.mailboxStore.account) _invalid();
+    _downloadCancellation?.cancel(MailCancellationReason.accountChanged);
     final previous = _reader;
     setState(() {
       _mailbox = mailbox;
@@ -242,6 +246,9 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
   Future<void> _loadPage(int offset) async {
     final mailbox = _mailbox;
     if (!_current || mailbox == null) return;
+    // Automatic pagination repair can run after a membership reset, even while
+    // paging controls are disabled. Retire its body writes before any await.
+    _downloadCancellation?.cancel(MailCancellationReason.accountChanged);
     final generation = ++_viewGeneration;
     setState(() {
       _viewBusy = true;
@@ -285,6 +292,7 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
 
   void _viewError(MailMailboxId mailbox, int generation) {
     if (!_viewCurrent(mailbox, generation)) return;
+    _downloadCancellation?.cancel(MailCancellationReason.accountChanged);
     setState(() {
       _viewFailed = true;
       _viewBusy = false;

@@ -31,9 +31,11 @@ The local view reads 100 headers per page, with deterministic repository order
 and existing loaded-page search, filters and sorting. It can show folders larger
 than the separate 1,000-header foreground browsing window by paging through
 their synchronized memberships. **Cached mail → Synchronized mail** opens the
-same retained folders without credentials or a provider. Only previously opened
-and saved message bodies are readable there; a missing body is identified and
-is never downloaded implicitly. Controls and scope text are available in English,
+same retained folders without credentials or a provider. The subsequent
+[offline-download increment](offline-downloads.md) explicitly retains a message
+or current page's bodies and attachments. Previously opened/saved bodies also
+remain readable; a missing body is identified and never downloaded implicitly.
+Controls and scope text are available in English,
 German and Arabic, including compact reader/back navigation.
 
 ## Data and lifecycle contract
@@ -97,8 +99,9 @@ packaging or a complete Outlook/Thunderbird/eM Client parity claim.
 
 1. Move the synchronized folder/query/session path into a reusable
    `QudsMailWorkspace`, preserving selection and provider authority while
-   replacing the remaining separate foreground browsing path. Add scoped body
-   retention controls and restart/resume scheduling with explicit rate limits.
+   replacing the remaining separate foreground browsing path. Explicit scoped
+   body downloads are now delivered; add durable retention policy and
+   restart/resume scheduling with explicit rate limits.
 2. Add stable queries across selected accounts and folders, with coverage
    indicators and deduplication, then unified inbox, account-wide search and
    conversations. Extend beyond offset pagination where a stable snapshot is

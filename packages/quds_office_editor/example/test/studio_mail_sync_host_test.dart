@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -142,7 +143,7 @@ final class _Provider extends Fake
               partPath: '2',
               mediaType: 'application/octet-stream',
               displayName: 'retained.bin',
-              content: MailBytes([0, 128, 255, number]),
+              content: MailBytes(Uint8List.fromList([0, 128, 255, number])),
             ),
           ],
         ),
@@ -257,11 +258,9 @@ final class _Harness {
                 expect(lease.account, account);
                 return MailSuccess(_Tokens());
               },
-          providerFactory: ({
-            required configuration,
-            required tokenSource,
-            log,
-          }) => create(configuration.account),
+          providerFactory:
+              ({required configuration, required tokenSource, log}) =>
+                  create(configuration.account),
         );
 }
 
@@ -458,8 +457,13 @@ void main() {
           tester,
           harness.open(identity),
         );
+        addTearDown(() async {
+          await awaitOutboxOperation(tester, owner.close());
+        });
         final cache = (owner as StudioMailMailboxStoreOwner).mailboxStore;
         final sync = cache as StudioMailSyncStore;
+        await tester.pumpWidget(const SizedBox.shrink());
+        await tester.pump();
         await tester.pumpWidget(
           MaterialApp(
             home: Builder(

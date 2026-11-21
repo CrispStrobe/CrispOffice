@@ -360,8 +360,9 @@ Future<void> _show(
               : const ['SyncLatin', 'SyncArabic'],
         ),
         builder: (context, child) => MediaQuery(
-          data: MediaQuery.of(context)
-              .copyWith(textScaler: TextScaler.linear(scale)),
+          data: MediaQuery.of(
+            context,
+          ).copyWith(textScaler: TextScaler.linear(scale)),
           child: child!,
         ),
         home: Scaffold(
@@ -588,6 +589,49 @@ void main() {
     expect(find.text(_strings.mailDownloadConflict), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
+
+  testWidgets(
+    'automatic offset repair cancels downloads before a delayed reload',
+    (tester) async {
+      final store = _Store()
+        ..save(List.generate(101, (index) => _header(index + 1)));
+      final completion = Completer<MailBodyDownloadReport>();
+      MailCancellationToken? token;
+      await _show(
+        tester,
+        store,
+        run: idleSync,
+        download:
+            ({required headers, required cancellation, required onProgress}) {
+              expect(headers.single.id, _header(101).id);
+              token = cancellation;
+              return completion.future;
+            },
+      );
+      await tester.tap(_key('studio-mail-sync-next'));
+      await _pump(tester);
+      await tester.tap(_key('studio-mail-download-page'));
+      await _pump(tester);
+      store.readGate = Completer<void>();
+      store.save([_header(1)], revision: 2);
+      await _pump(tester);
+      expect(store.reads.last, (_inbox.id, 100, 0));
+      expect(
+        token!.reason,
+        MailCancellationReason.accountChanged,
+        reason:
+            'A replacement page must retire the fetch before awaiting local I/O.',
+      );
+      completion.complete(
+        downloaded(1, saved: 0, status: MailBodyDownloadStatus.cancelled),
+      );
+      store.readGate!.complete();
+      await _pump(tester);
+      expect(store.bodies, isEmpty);
+      expect(find.text(_strings.mailSyncPage(1, 1, 1)), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    },
+  );
 
   for (final language in StudioLanguage.values) {
     testWidgets(
