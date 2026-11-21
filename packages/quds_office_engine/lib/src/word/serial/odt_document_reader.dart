@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import '../../odf/odf_text.dart';
 import '../../odf/odf_zotero.dart';
 import '../../opc/office_package_parts.dart';
+import '../../opc/opc_archive.dart';
 import '../../opc/zip/zip_reader.dart';
 import '../../xml/xml_node.dart';
 import '../model/wml_document.dart';
@@ -88,6 +89,27 @@ abstract final class OdtDocumentReader {
     final reader = _OdtReader(content, styles, inventory, limits);
     final document = reader.read();
     reader.readMetadata(metadata);
+    if (metadata != null) {
+      // Preserve unrelated and future ODF metadata verbatim in the DOCX.
+      // Active Zotero settings remain in their separately owned native Word
+      // custom properties; this archival custom XML part is never consulted
+      // by ordinary Zotero callbacks.
+      final package = document.package ??= OpcPackage.create(
+        OpcPackageKind.word,
+      );
+      package.createPart(
+        '/customXml/qudsOdtMetadata.xml',
+        'application/xml',
+        zip.read('meta.xml', maxBytes: limits.maxPartBytes),
+      );
+      package
+          .relationshipsFor('/word/document.xml')
+          .add(
+            type:
+                'http://schemas.openxmlformats.org/officeDocument/2006/relationships/customXml',
+            target: '../customXml/qudsOdtMetadata.xml',
+          );
+    }
     // Only a fully reconstructed document may adopt foreign storage settings.
     document.zoteroDocumentData = WordZoteroDocumentData.fromOdt(
       preferences.rawData ?? '',
@@ -135,6 +157,11 @@ final class _OdtReader {
   final OdfTextBudget textBudget;
   final document = WmlDocument(sections: []);
   final paths = Map<XmlElement, String>.identity();
+  final sourceOrder = <String, int>{};
+  final markOffsets = <String, _RichAnchor>{};
+  final noteOrders = <int>[];
+  final noteRunOrders = Map<WmlRun, int>.identity();
+  final listParagraphs = Set<WmlParagraph>.identity();
   final paragraphs = <String, WmlParagraph>{};
   final _bibliographySections = <String>{};
   final _nativeMarks = <String>{};
@@ -142,9 +169,11 @@ final class _OdtReader {
   var _tableCount = 0;
   var _cellCount = 0;
   var _listCount = 0;
+  var _generatedParagraphs = 0;
 
   void _index(XmlElement element, String path) {
     paths[element] = path;
+    sourceOrder[path] = sourceOrder.length;
     var index = 0;
     for (final child in element.childElements) {
       _index(child, '$path/${index++}');
@@ -152,6 +181,7 @@ final class _OdtReader {
   }
 
   WmlDocument read() {
+    _structuralText(content);
     for (final field in inventory.fields) {
       if (field.storage == OdfZoteroStorage.section) {
         _bibliographySections.add(field.name);
@@ -163,6 +193,11 @@ final class _OdtReader {
       odfOfficeNamespace: {'version'},
     });
     for (final child in content.childElements) {
+      if (_is(child, odfOfficeNamespace, 'scripts')) {
+        _attributes(child, {});
+        _empty(child);
+        continue;
+      }
       if (child.namespaceUri != odfOfficeNamespace ||
           !{
             'font-face-decls',
@@ -176,6 +211,7 @@ final class _OdtReader {
         .childrenNamed('body', namespaceUri: odfOfficeNamespace)
         .single;
     _attributes(body, {});
+    _structuralText(body);
     final text = body
         .childrenNamed('text', namespaceUri: odfOfficeNamespace)
         .single;
@@ -186,25 +222,34 @@ final class _OdtReader {
     section.blocks.addAll(_blocks(text));
     styles.applyPageLayout(section);
     _attachFields();
+    // Source ODF offsets exclude the visible note number. After reconstruction,
+    // use the same numbered anchor representation as the DOCX reader/layout.
+    for (final reference in noteRunOrders.keys) {
+      reference.text = '${reference.noteRefId}';
+    }
     final actual = WordZotero.fields(document);
     if (actual.length != inventory.fields.length) {
       throw const FormatException(
         'Native ODT field reconstruction is incomplete.',
       );
     }
-    final expected = <String, List<String>>{};
+    final expected = <String, Map<String, int>>{};
     for (final field in inventory.fields) {
-      expected
-          .putIfAbsent(' ADDIN ZOTERO_${field.logicalCode} ', () => [])
-          .add(field.cachedText);
+      final caches = expected.putIfAbsent(
+        ' ADDIN ZOTERO_${field.logicalCode} ',
+        () => <String, int>{},
+      );
+      caches.update(field.cachedText, (count) => count + 1, ifAbsent: () => 1);
     }
     for (final field in actual) {
       final values = expected[field.instruction];
-      if (values == null || !values.remove(field.cachedText)) {
+      final count = values?[field.cachedText] ?? 0;
+      if (count == 0) {
         throw const FormatException(
           'Native ODT field content changed during import.',
         );
       }
+      values![field.cachedText] = count - 1;
       if (!field.isValid ||
           field.locked ||
           field.nested ||
@@ -271,7 +316,7 @@ final class _OdtReader {
   }
 
   WmlParagraph _paragraph(XmlElement element, {required bool inNote}) {
-    if (paragraphs.length >= limits.maxParagraphs) {
+    if (paragraphs.length + _generatedParagraphs >= limits.maxParagraphs) {
       throw const OdfZoteroLimitException('paragraphs');
     }
     _attributes(element, {
@@ -281,6 +326,7 @@ final class _OdtReader {
     final styleName = _attr(element, 'style-name', odfTextNamespace);
     final properties = styles.paragraphProperties(styleName);
     if (element.localName == 'h') {
+      styles.validateHeadingConfiguration();
       final level = int.tryParse(
         _attr(element, 'outline-level', odfTextNamespace) ?? '1',
       );
@@ -338,11 +384,25 @@ final class _OdtReader {
               (type != null && type != 'simple')) {
             _unsupported(node);
           }
-          final link = target.startsWith('#')
-              ? WmlHyperlink(anchor: target.substring(1))
-              : WmlHyperlink(url: target);
+          final uri = Uri.tryParse(target);
+          if (uri == null ||
+              !{'https', 'http', 'mailto', 'zotero'}.contains(uri.scheme) ||
+              ((uri.scheme == 'http' || uri.scheme == 'https') &&
+                  uri.host.isEmpty)) {
+            throw UnsupportedError(
+              'Native ODT import requires an absolute web, mail or Zotero hyperlink.',
+            );
+          }
+          final link = WmlHyperlink(url: target);
+          final styleName = _attr(node, 'style-name', odfTextNamespace);
+          final visited = _attr(node, 'visited-style-name', odfTextNamespace);
+          if (visited != null && visited.isNotEmpty && visited != styleName) {
+            throw UnsupportedError(
+              'Distinct visited ODT hyperlink styles are not supported.',
+            );
+          }
           final resolved = styles.runProperties(
-            _attr(node, 'style-name', odfTextNamespace),
+            styleName,
             inherited: properties,
           );
           _inlines(node, buffer, resolved, link, inNote: inNote);
@@ -377,6 +437,9 @@ final class _OdtReader {
           if (!_nativeMarks.contains(_attr(node, 'name', odfTextNamespace))) {
             _unsupported(node);
           }
+          final anchor = _RichAnchor(buffer.length);
+          markOffsets[paths[node]!] = anchor;
+          buffer.anchor(anchor);
         case 'note':
           if (inNote || hyperlink != null) _unsupported(node);
           buffer.inline(_note(node, properties));
@@ -387,6 +450,8 @@ final class _OdtReader {
   }
 
   WmlRun _note(XmlElement element, WmlRunProps properties) {
+    _structuralText(element);
+    noteOrders.add(sourceOrder[paths[element]!]!);
     _attributes(element, {
       odfTextNamespace: {'id', 'note-class'},
     });
@@ -396,6 +461,7 @@ final class _OdtReader {
     }
     final kind = _attr(element, 'note-class', odfTextNamespace) ?? 'footnote';
     if (kind != 'footnote' && kind != 'endnote') _unsupported(element);
+    styles.validateNoteConfiguration(kind == 'endnote');
     final children = element.childElements.toList();
     if (children.length != 2 ||
         !_is(children[0], odfTextNamespace, 'note-citation') ||
@@ -433,11 +499,13 @@ final class _OdtReader {
         blocks: blocks,
       ),
     );
-    return WmlRun(
+    final reference = WmlRun(
       properties: properties.copy()..vertAlign = WmlVertAlign.superscript,
       noteRefId: id,
       noteRefEndnote: kind == 'endnote',
     );
+    noteRunOrders[reference] = sourceOrder[paths[element]!]!;
+    return reference;
   }
 
   WmlTable _table(
@@ -445,6 +513,7 @@ final class _OdtReader {
     required bool inNote,
     required int depth,
   }) {
+    _structuralText(element);
     if (depth > 8 || ++_tableCount > 64) {
       throw const OdfZoteroLimitException('tables');
     }
@@ -454,6 +523,8 @@ final class _OdtReader {
     final table = WmlTable(
       properties: WmlTableProps(borders: false, cellMargin: 0),
     );
+    double? tableWidth;
+    final explicitWidths = <bool>[];
     final tableStyle = _attr(element, 'style-name', odfTableNamespace);
     for (final style in styles.styleChain('table', tableStyle)) {
       for (final props in style.childElements) {
@@ -463,13 +534,18 @@ final class _OdtReader {
           _fo: {'margin-left', 'margin-right'},
           _style: {'width'},
         });
+        _empty(props);
+        final width = _attr(props, 'width', _style);
+        if (width != null) tableWidth = _length(width);
         final align = _attr(props, 'align', odfTableNamespace);
-        table.properties.alignment = switch (align) {
-          null || 'left' || 'margins' => WmlJustification.left,
-          'center' => WmlJustification.center,
-          'right' => WmlJustification.right,
-          _ => throw UnsupportedError('Unsupported ODT table alignment.'),
-        };
+        if (align != null) {
+          table.properties.alignment = switch (align) {
+            'left' || 'margins' => WmlJustification.left,
+            'center' => WmlJustification.center,
+            'right' => WmlJustification.right,
+            _ => throw UnsupportedError('Unsupported ODT table alignment.'),
+          };
+        }
         for (final name in ['margin-left', 'margin-right']) {
           final margin = _attr(props, name, _fo);
           if (margin != null && _length(margin) != 0) _unsupported(props);
@@ -492,6 +568,7 @@ final class _OdtReader {
           throw const OdfZoteroLimitException('table columns');
         }
         var width = 120.0;
+        var explicitWidth = false;
         for (final style in styles.styleChain(
           'table-column',
           _attr(child, 'style-name', odfTableNamespace),
@@ -503,13 +580,19 @@ final class _OdtReader {
             _attributes(props, {
               _style: {'column-width'},
             });
+            _empty(props);
             final value = _attr(props, 'column-width', _style);
-            if (value != null) width = _length(value);
+            if (value != null) {
+              width = _length(value);
+              explicitWidth = true;
+            }
           }
         }
         if (width <= 0 || width > 4000) _unsupported(child);
         table.grid.addAll(List<double>.filled(count, width));
+        explicitWidths.addAll(List<bool>.filled(count, explicitWidth));
       } else if (_is(child, odfTableNamespace, 'table-row')) {
+        _structuralText(child);
         rowsSeen = true;
         if (table.rows.length >= 256) {
           throw const OdfZoteroLimitException('table rows');
@@ -530,13 +613,14 @@ final class _OdtReader {
               _style: {'min-row-height'},
               _fo: {'keep-together'},
             });
+            _empty(props);
             final height = _attr(props, 'min-row-height', _style);
             if (height != null) row.height = _length(height);
             final keep = _attr(props, 'keep-together', _fo);
             if (keep != null && keep != 'auto' && keep != 'always') {
               _unsupported(props);
             }
-            row.cantSplit = keep == 'always';
+            if (keep != null) row.cantSplit = keep == 'always';
           }
         }
         for (final sourceCell in child.childElements) {
@@ -568,17 +652,23 @@ final class _OdtReader {
               _attributes(props, {
                 _fo: {'background-color'},
               });
+              _empty(props);
               final fill = _attr(props, 'background-color', _fo);
-              if (fill != null && fill != 'transparent') {
-                if (!RegExp(r'^#[0-9a-fA-F]{6}$').hasMatch(fill)) {
-                  _unsupported(props);
+              if (fill != null) {
+                if (fill == 'transparent') {
+                  cell.fillColor = null;
+                } else {
+                  if (!RegExp(r'^#[0-9a-fA-F]{6}$').hasMatch(fill)) {
+                    _unsupported(props);
+                  }
+                  cell.fillColor = fill.substring(1).toUpperCase();
                 }
-                cell.fillColor = fill.substring(1).toUpperCase();
               }
             }
           }
           if (cell.blocks.isEmpty || cell.blocks.last is! WmlParagraph) {
-            if (paragraphs.length + _cellCount > limits.maxParagraphs) {
+            if (paragraphs.length + ++_generatedParagraphs >
+                limits.maxParagraphs) {
               throw const OdfZoteroLimitException('native paragraphs');
             }
             cell.blocks.add(WmlParagraph());
@@ -588,21 +678,47 @@ final class _OdtReader {
         if (row.cells.isEmpty) _unsupported(child);
         if (!columnsSeen && table.rows.isEmpty) {
           table.grid.addAll(List<double>.filled(row.cells.length, 120));
+          explicitWidths.addAll(List<bool>.filled(row.cells.length, false));
         }
         if (row.cells.length != table.grid.length) {
           _unsupported(child);
-        }
-        for (var i = 0; i < row.cells.length; i++) {
-          row.cells[i].width = table.grid[i];
         }
         table.rows.add(row);
       } else {
         _unsupported(child);
       }
     }
+    if (tableWidth != null) {
+      var fixed = 0.0;
+      var unspecified = 0;
+      for (var column = 0; column < table.grid.length; column++) {
+        if (explicitWidths[column]) {
+          fixed += table.grid[column];
+        } else {
+          unspecified++;
+        }
+      }
+      if (unspecified == 0 && (fixed - tableWidth).abs() > 0.02) {
+        throw const FormatException('ODT table and column widths disagree.');
+      }
+      if (unspecified > 0) {
+        final remaining = tableWidth - fixed;
+        if (remaining <= 0) _unsupported(element);
+        for (var column = 0; column < table.grid.length; column++) {
+          if (!explicitWidths[column]) {
+            table.grid[column] = remaining / unspecified;
+          }
+        }
+      }
+    }
     if (table.rows.isEmpty ||
         table.grid.fold<double>(0, (sum, width) => sum + width) > 4000) {
       _unsupported(element);
+    }
+    for (final row in table.rows) {
+      for (var column = 0; column < row.cells.length; column++) {
+        row.cells[column].width = table.grid[column];
+      }
     }
     return table;
   }
@@ -614,6 +730,7 @@ final class _OdtReader {
     required int depth,
     String? inheritedStyle,
   }) {
+    _structuralText(element);
     if (depth >= 9 || ++_listCount > 1000) {
       throw const OdfZoteroLimitException('lists');
     }
@@ -660,6 +777,11 @@ final class _OdtReader {
     if (!numbered && _attr(level, 'bullet-char', odfTextNamespace) != bullet) {
       _unsupported(level);
     }
+    if (!numbered &&
+        ((_attr(level, 'num-prefix', _style) ?? '').isNotEmpty ||
+            (_attr(level, 'num-suffix', _style) ?? '').isNotEmpty)) {
+      _unsupported(level);
+    }
     var left = 18.0 * (depth + 1);
     var hanging = 9.0;
     for (final props in level.childElements) {
@@ -667,6 +789,7 @@ final class _OdtReader {
       _attributes(props, {
         odfTextNamespace: {'space-before', 'min-label-width'},
       });
+      _empty(props);
       final before = _attr(props, 'space-before', odfTextNamespace);
       final width = _attr(props, 'min-label-width', odfTextNamespace);
       if (before != null) left = _length(before);
@@ -700,9 +823,24 @@ final class _OdtReader {
         inheritedListStyle: name,
       );
       if (blocks.isEmpty || blocks.first is! WmlParagraph) _unsupported(item);
+      if (listParagraphs.contains(blocks.first) ||
+          blocks.any((block) => block is! WmlParagraph)) {
+        _unsupported(item);
+      }
       var first = true;
       for (final block in blocks) {
-        if (block is WmlParagraph && block.properties.numId == null) {
+        if (block is WmlParagraph && !listParagraphs.contains(block)) {
+          final sourceIndent = block.properties.indent;
+          if (sourceIndent.firstLine != 0 || sourceIndent.hanging != 0) {
+            throw UnsupportedError(
+              'Conflicting native ODT list paragraph indentation.',
+            );
+          }
+          if (left + sourceIndent.left > 4000) {
+            throw const FormatException(
+              'ODT list indentation is out of bounds.',
+            );
+          }
           block.properties
             ..numId = first ? id : null
             ..numberingSuppressed = !first
@@ -713,8 +851,13 @@ final class _OdtReader {
             ..listRestart = first && numbered
                 ? (restart ?? (index == 0 ? start : null))
                 : null
-            ..indent = WmlIndent(left: left, hanging: first ? hanging : 0)
+            ..indent = WmlIndent(
+              left: left + sourceIndent.left,
+              right: sourceIndent.right,
+              hanging: first ? hanging : 0,
+            )
             ..explicitIndent = true;
+          listParagraphs.add(block);
           first = false;
         }
       }
@@ -727,32 +870,69 @@ final class _OdtReader {
 
   void _attachFields() {
     final events = <String, List<_FieldEvent>>{};
+    final textByParagraph = <String, String>{};
+    for (final entry in paragraphs.entries) {
+      textByParagraph[entry.key] = entry.value.text;
+    }
+    noteOrders.sort();
     var identity = 0;
     for (final field in inventory.fields) {
       if (field.ranges.isEmpty) {
         throw const FormatException('Empty native Zotero field ownership.');
       }
-      for (final range in field.ranges) {
+      var start = field.ranges.first.start;
+      var end = field.ranges.last.end;
+      var firstOrder = sourceOrder[field.ranges.first.location.paragraphPath]!;
+      var lastOrder =
+          sourceOrder[field.ranges.last.location.paragraphPath]! + 1;
+      if (field.storage == OdfZoteroStorage.referenceMark) {
+        final first = field.starts.single;
+        final last = field.ends.single;
+        final richStart = markOffsets[first.path];
+        final richEnd = markOffsets[last.path];
+        if (richStart == null || richEnd == null) {
+          throw const FormatException('Missing rich native field endpoints.');
+        }
+        start = richStart.offset;
+        end = richEnd.offset;
+        firstOrder = sourceOrder[first.path]!;
+        lastOrder = sourceOrder[last.path]!;
+        // Source order distinguishes a touching field from a zero-width note
+        // anchor inside it, including an anchor at the final text offset.
+        var low = 0;
+        var high = noteOrders.length;
+        while (low < high) {
+          final middle = (low + high) ~/ 2;
+          if (noteOrders[middle] <= firstOrder) {
+            low = middle + 1;
+          } else {
+            high = middle;
+          }
+        }
+        if (low < noteOrders.length && noteOrders[low] < lastOrder) {
+          throw const FormatException(
+            'A native Zotero field contains a note anchor.',
+          );
+        }
+      }
+      for (var rangeIndex = 0; rangeIndex < field.ranges.length; rangeIndex++) {
+        final range = field.ranges[rangeIndex];
         final paragraph = paragraphs[range.location.paragraphPath];
+        final text = textByParagraph[range.location.paragraphPath];
+        final rangeStart = rangeIndex == 0 ? start : range.start;
+        final rangeEnd = rangeIndex == field.ranges.length - 1
+            ? end
+            : range.end;
         if (range.location.part != 'content.xml' ||
             paragraph == null ||
-            range.start < 0 ||
-            range.end > paragraph.text.length ||
-            paragraph.text.substring(range.start, range.end) != range.text) {
+            text == null ||
+            rangeStart < 0 ||
+            rangeEnd < rangeStart ||
+            rangeEnd > text.length ||
+            text.substring(rangeStart, rangeEnd) != range.text) {
           throw const FormatException(
             'Native ODT field offsets do not match rich content.',
           );
-        }
-        var offset = 0;
-        for (final inline in paragraph.inlines.whereType<WmlRun>()) {
-          if (inline.noteRefId != null &&
-              offset >= range.start &&
-              offset < range.end) {
-            throw const FormatException(
-              'A native Zotero field contains a note anchor.',
-            );
-          }
-          offset += inline.text.length;
         }
       }
       final first = field.ranges.first;
@@ -760,10 +940,10 @@ final class _OdtReader {
       final instruction = ' ADDIN ZOTERO_${field.logicalCode} ';
       events
           .putIfAbsent(first.location.paragraphPath!, () => [])
-          .add(_FieldEvent(first.start, true, instruction, identity));
+          .add(_FieldEvent(start, true, instruction, identity, firstOrder));
       events
           .putIfAbsent(last.location.paragraphPath!, () => [])
-          .add(_FieldEvent(last.end, false, instruction, identity));
+          .add(_FieldEvent(end, false, instruction, identity, lastOrder));
       identity++;
     }
     for (final entry in events.entries) {
@@ -772,6 +952,8 @@ final class _OdtReader {
         ..sort((a, b) {
           final order = a.offset.compareTo(b.offset);
           if (order != 0) return order;
+          final nativeOrder = a.sourceOrder.compareTo(b.sourceOrder);
+          if (nativeOrder != 0) return nativeOrder;
           if (a.identity == b.identity) return a.start ? -1 : 1;
           return a.start == b.start
               ? a.identity.compareTo(b.identity)
@@ -780,8 +962,10 @@ final class _OdtReader {
       final result = <WmlInline>[];
       var index = 0;
       var offset = 0;
-      void emit(int at) {
-        while (index < sorted.length && sorted[index].offset == at) {
+      void emit(int at, {int? beforeOrder}) {
+        while (index < sorted.length &&
+            sorted[index].offset == at &&
+            (beforeOrder == null || sorted[index].sourceOrder < beforeOrder)) {
           final event = sorted[index++];
           if (event.start) {
             result.addAll([
@@ -802,6 +986,11 @@ final class _OdtReader {
         // The automatic note number belongs to the note story, before any
         // citation beginning at its first visible text position.
         if (inline is WmlNoteMarker) {
+          result.add(inline);
+          continue;
+        }
+        if (inline is WmlRun && inline.noteRefId != null) {
+          emit(offset, beforeOrder: noteRunOrders[inline]!);
           result.add(inline);
           continue;
         }
@@ -837,9 +1026,9 @@ final class _OdtReader {
   void readMetadata(XmlElement? root) {
     if (root == null) return;
     const dc = 'http://purl.org/dc/elements/1.1/';
-    final owner = root
-        .childrenNamed('meta', namespaceUri: odfOfficeNamespace)
-        .single;
+    final owners = root.childrenNamed('meta', namespaceUri: odfOfficeNamespace);
+    if (owners.isEmpty) return;
+    final owner = owners.single;
     final seen = <String>{};
     for (final child in owner.childElements) {
       if (child.namespaceUri != dc &&
@@ -884,13 +1073,24 @@ final class _RichText {
   bool _started = false;
   WmlRunProps? _pending;
   WmlHyperlink? _pendingLink;
+  final _runText = StringBuffer();
+  WmlRunProps? _runProperties;
+  WmlHyperlink? _runLink;
+  int length = 0;
+  final _pendingAnchors = <_RichAnchor>[];
+
+  void anchor(_RichAnchor anchor) {
+    if (_pending != null) _pendingAnchors.add(anchor);
+  }
 
   void literal(String value, WmlRunProps props, WmlHyperlink? link) {
     var index = 0;
     while (index < value.length) {
       if (_whitespace(value.codeUnitAt(index))) {
-        _pending ??= props;
-        _pendingLink = link;
+        if (_pending == null) {
+          _pending = props;
+          _pendingLink = link;
+        }
         index++;
       } else {
         final start = index;
@@ -913,40 +1113,83 @@ final class _RichText {
   void spaces(int count, WmlRunProps props, WmlHyperlink? link) {
     _flush();
     budget.consume(count);
+    length += count;
     if (count > 0) {
-      paragraph.inlines.add(
-        WmlRun(text: ' ' * count, properties: props.copy(), hyperlink: link),
-      );
+      _write(' ' * count, props, link);
     }
     _started = true;
   }
 
-  void inline(WmlInline value) => paragraph.inlines.add(value);
+  void inline(WmlInline value) {
+    _flush();
+    _finishRun();
+    paragraph.inlines.add(value);
+    _started = true;
+  }
+
   void _flush() {
     if (_pending != null && _started) _append(' ', _pending!, _pendingLink);
+    for (final anchor in _pendingAnchors) {
+      anchor.offset = length;
+    }
+    _pendingAnchors.clear();
     _pending = null;
     _pendingLink = null;
   }
 
   void _append(String value, WmlRunProps props, WmlHyperlink? link) {
     budget.consume(utf8.encode(value).length);
+    length += value.length;
+    _write(value, props, link);
+  }
+
+  void _write(String value, WmlRunProps props, WmlHyperlink? link) {
+    if (!identical(props, _runProperties) || !identical(link, _runLink)) {
+      _finishRun();
+      _runProperties = props;
+      _runLink = link;
+    }
+    _runText.write(value);
+  }
+
+  void _finishRun() {
+    if (_runText.isEmpty) return;
     paragraph.inlines.add(
-      WmlRun(text: value, properties: props.copy(), hyperlink: link),
+      WmlRun(
+        text: _runText.toString(),
+        properties: _runProperties!.copy(),
+        hyperlink: _runLink,
+      ),
     );
+    _runText.clear();
   }
 
   void finish() {
+    _finishRun();
     _pending = null;
     _pendingLink = null;
+    _pendingAnchors.clear();
   }
 }
 
+final class _RichAnchor {
+  _RichAnchor(this.offset);
+  int offset;
+}
+
 final class _FieldEvent {
-  const _FieldEvent(this.offset, this.start, this.instruction, this.identity);
+  const _FieldEvent(
+    this.offset,
+    this.start,
+    this.instruction,
+    this.identity,
+    this.sourceOrder,
+  );
   final int offset;
   final bool start;
   final String instruction;
   final int identity;
+  final int sourceOrder;
 }
 
 WmlRun _slice(WmlRun run, int start, int end) => WmlRun(
@@ -970,6 +1213,17 @@ Never _unsupported(XmlElement element) => throw UnsupportedError(
 void _empty(XmlElement element) {
   if (element.childElements.isNotEmpty || element.text.trim().isNotEmpty) {
     _unsupported(element);
+  }
+}
+
+void _structuralText(XmlElement element) {
+  for (final node in element.children) {
+    final text = node is XmlText
+        ? node.text
+        : node is XmlCdata
+        ? node.text
+        : '';
+    if (text.trim().isNotEmpty) _unsupported(element);
   }
 }
 

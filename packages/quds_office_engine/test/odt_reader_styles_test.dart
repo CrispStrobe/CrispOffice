@@ -52,6 +52,14 @@ String _paragraphStyle(
 
 void main() {
   group('ODT style inheritance', () {
+    test('rejects family-name collisions from malformed definitions', () {
+      final styles = OdtReaderStyles(
+        _content(
+          '<style:style style:name="B" style:family="text/A"><style:text-properties fo:font-weight="bold"/></style:style>',
+        ),
+      );
+      expect(() => styles.runProperties('A/B'), throwsFormatException);
+    });
     test('uses ODF paragraph spacing defaults', () {
       final props = OdtReaderStyles(_content('')).paragraphProperties(null);
       expect(props.spacingAfter, 0);
@@ -204,9 +212,6 @@ ${_paragraphStyle('Child', '', parent: 'Parent', text: 'fo:font-style="italic"')
     });
 
     test('requires namespace identity, regardless of prefix spelling', () {
-      final root = _content(_textStyle('T', 'fo:font-weight="bold"'));
-      final xml = root.toString();
-      expect(xml, isNotEmpty);
       final other = XmlDocument.parse(
         '''
 <o:document-content xmlns:o="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:s="urn:oasis:names:tc:opendocument:xmlns:style:1.0" xmlns:f="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0"><o:automatic-styles><s:style s:name="T" s:family="text"><s:text-properties f:font-weight="bold"/></s:style></o:automatic-styles></o:document-content>''',
@@ -216,6 +221,56 @@ ${_paragraphStyle('Child', '', parent: 'Parent', text: 'fo:font-style="italic"')
   });
 
   group('ODT character formatting', () {
+    test('rejects proofing suppression that differs between scripts', () {
+      for (final properties in [
+        'fo:language="none" style:language-complex="ar"',
+        'fo:language="en" style:language-complex="none"',
+        'style:language-asian="none"',
+      ]) {
+        final styles = OdtReaderStyles(_content(_textStyle('T', properties)));
+        expect(() => styles.runProperties('T'), throwsUnsupportedError);
+      }
+    });
+    test('keeps explicit complex font when descendant changes Latin font', () {
+      final styles = OdtReaderStyles(
+        _content(
+          '${_textStyle('Parent', 'style:font-name-complex="Arabic"')}${_textStyle('Child', 'fo:font-family="Liberation Sans"', parent: 'Parent')}',
+          fonts:
+              '<style:font-face style:name="Arabic" svg:font-family="Amiri"/>',
+        ),
+      );
+      final run = styles.runProperties('Child');
+      expect(run.asciiFont, 'Liberation Sans');
+      expect(run.csFont, 'Amiri');
+    });
+
+    test('rejects used embedded font sources instead of substituting', () {
+      final styles = OdtReaderStyles(
+        _content(
+          _textStyle('T', 'style:font-name="Embedded"'),
+          fonts:
+              '<style:font-face style:name="Embedded" svg:font-family="Custom"><svg:font-face-src/></style:font-face>',
+        ),
+      );
+      expect(styles.runProperties(null).bold, isFalse);
+      expect(() => styles.runProperties('T'), throwsUnsupportedError);
+    });
+
+    test(
+      'rejects independent underline color even when initially equal to text',
+      () {
+        final styles = OdtReaderStyles(
+          _content(
+            _textStyle(
+              'T',
+              'fo:color="#ff0000" style:text-underline-color="#ff0000" style:text-underline-style="solid"',
+            ),
+          ),
+        );
+        expect(() => styles.runProperties('T'), throwsUnsupportedError);
+      },
+    );
+
     test('resolves declared font aliases including quoted font families', () {
       final styles = OdtReaderStyles(
         _content(
@@ -351,7 +406,161 @@ ${_paragraphStyle('Child', '', parent: 'Parent', text: 'fo:font-style="italic"')
     });
   });
 
+  group('ODT document configuration guards', () {
+    OdtReaderStyles configured(String definitions) =>
+        OdtReaderStyles(_content(''), styles: _styles(definitions));
+
+    test('accepts absent and canonical decimal note configurations', () {
+      configured('').validateNoteConfiguration(false);
+      configured('').validateNoteConfiguration(true);
+      configured(
+        '<text:notes-configuration text:note-class="footnote" style:num-format="1" style:num-prefix="" style:num-suffix="" text:start-value="1" text:start-numbering-at="document" text:footnotes-position="page"><text:note-continuation-notice-forward/></text:notes-configuration>',
+      ).validateNoteConfiguration(false);
+    });
+
+    test(
+      'rejects active note numbering or positioning outside canonical scope',
+      () {
+        for (final attribute in [
+          'text:start-value="0"',
+          'text:start-value="2"',
+          'style:num-format="i"',
+          'style:num-prefix="["',
+          'style:num-suffix="]"',
+          'text:start-numbering-at="page"',
+          'text:footnotes-position="text"',
+        ]) {
+          expect(
+            () => configured(
+              '<text:notes-configuration text:note-class="footnote" $attribute/>',
+            ).validateNoteConfiguration(false),
+            throwsUnsupportedError,
+          );
+        }
+      },
+    );
+
+    test(
+      'does not ignore configured note marker or default paragraph styles',
+      () {
+        for (final name in [
+          'citation-style-name',
+          'citation-body-style-name',
+          'default-style-name',
+          'master-page-name',
+        ]) {
+          expect(
+            () => configured(
+              '<text:notes-configuration text:note-class="footnote" text:$name="Custom"/>',
+            ).validateNoteConfiguration(false),
+            throwsUnsupportedError,
+          );
+        }
+      },
+    );
+
+    test('rejects duplicate note configurations and continuation labels', () {
+      expect(
+        () => configured(
+          '<text:notes-configuration text:note-class="footnote"/><text:notes-configuration text:note-class="footnote"/>',
+        ).validateNoteConfiguration(false),
+        throwsFormatException,
+      );
+      expect(
+        () => configured(
+          '<text:notes-configuration text:note-class="footnote"><text:note-continuation-notice-forward>continued</text:note-continuation-notice-forward></text:notes-configuration>',
+        ).validateNoteConfiguration(false),
+        throwsUnsupportedError,
+      );
+    });
+
+    test('unused other note class does not block the supported class', () {
+      final styles = configured(
+        '<text:notes-configuration text:note-class="endnote" style:num-format="i"/>',
+      );
+      styles.validateNoteConfiguration(false);
+      expect(
+        () => styles.validateNoteConfiguration(true),
+        throwsUnsupportedError,
+      );
+    });
+
+    test('rejects numbered outlines while admitting empty numbering levels', () {
+      configured(
+        '<text:outline-style style:name="Outline"><text:outline-level-style text:level="1" style:num-format=""/></text:outline-style>',
+      ).validateHeadingConfiguration();
+      expect(
+        () => configured(
+          '<text:outline-style style:name="Outline"><text:outline-level-style text:level="1" style:num-format="1"/></text:outline-style>',
+        ).validateHeadingConfiguration(),
+        throwsUnsupportedError,
+      );
+    });
+
+    test('used table definitions reject active master and update metadata', () {
+      for (final attribute in [
+        'style:master-page-name="Other"',
+        'style:auto-update="true"',
+        'style:hidden="true"',
+      ]) {
+        final styles = OdtReaderStyles(
+          _content(
+            '<style:style style:name="T" style:family="table" $attribute><style:table-properties/></style:style>',
+          ),
+        );
+        expect(() => styles.styleChain('table', 'T'), throwsUnsupportedError);
+      }
+      final conditional = OdtReaderStyles(
+        _content(
+          '<style:style style:name="T" style:family="table-cell"><style:map style:condition="cell-content()=1" style:apply-style-name="Other"/></style:style>',
+        ),
+      );
+      expect(
+        () => conditional.styleChain('table-cell', 'T'),
+        throwsUnsupportedError,
+      );
+    });
+
+    test(
+      'list definitions reject consecutive numbering instead of ignoring it',
+      () {
+        final styles = OdtReaderStyles(
+          _content(
+            '<text:list-style style:name="L" text:consecutive-numbering="true"/><text:list-style style:name="N" text:consecutive-numbering="false"/>',
+          ),
+        );
+        expect(() => styles.listStyle('L'), throwsUnsupportedError);
+        expect(styles.listStyle('N'), isNotNull);
+      },
+    );
+  });
+
   group('ODT paragraph and page geometry', () {
+    test('explicit tab leader none suppresses the supplied leader pattern', () {
+      final styles = OdtReaderStyles(
+        _content(
+          '<style:style style:name="P" style:family="paragraph"><style:paragraph-properties><style:tab-stops><style:tab-stop style:position="1in" style:leader-type="none" style:leader-style="dotted" style:leader-text="."/></style:tab-stops></style:paragraph-properties></style:style>',
+        ),
+      );
+      expect(
+        styles.paragraphProperties('P').tabs.single.leader,
+        WmlTabLeader.none,
+      );
+    });
+
+    test('rejects ambiguous repeated page column configurations', () {
+      final styles = OdtReaderStyles(
+        _content(''),
+        styles: _styles(
+          '',
+          automatic:
+              '<style:page-layout style:name="P"><style:page-layout-properties><style:columns fo:column-count="1"/><style:columns fo:column-count="2"/></style:page-layout-properties></style:page-layout>',
+          masters: _master('M', 'P'),
+        ),
+      );
+      expect(() => styles.applyPageLayout(WmlSection()), throwsFormatException);
+    });
+
     test('resolves RTL logical alignment and physical margins', () {
       final props = OdtReaderStyles(
         _content(

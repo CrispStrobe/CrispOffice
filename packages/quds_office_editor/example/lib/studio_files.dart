@@ -28,6 +28,7 @@ abstract final class StudioFiles {
   static final Map<String, SfntFont> _bundled = <String, SfntFont>{};
   static const List<String> extensions = <String>[
     'docx',
+    'odt',
     'xlsx',
     'pptx',
     'docm',
@@ -648,6 +649,8 @@ abstract final class StudioFiles {
   }
 
   static OpcPackageKind kindOf(String name, Uint8List bytes) {
+    // The package owns its format even when it has a misleading extension.
+    if (OdtDocumentReader.isOdt(bytes)) return OpcPackageKind.word;
     final String lower = name.toLowerCase();
     if (lower.endsWith('.xlsx') || lower.endsWith('.xlsm')) {
       return OpcPackageKind.sheet;
@@ -655,7 +658,9 @@ abstract final class StudioFiles {
     if (lower.endsWith('.pptx') || lower.endsWith('.pptm')) {
       return OpcPackageKind.slide;
     }
-    if (lower.endsWith('.docx') || lower.endsWith('.docm')) {
+    if (lower.endsWith('.docx') ||
+        lower.endsWith('.docm') ||
+        lower.endsWith('.odt')) {
       return OpcPackageKind.word;
     }
     if (lower.endsWith('.pdf')) {
@@ -666,6 +671,14 @@ abstract final class StudioFiles {
     } catch (_) {
       return OpcPackageKind.unknown;
     }
+  }
+
+  /// Native ODT input becomes an active DOCX document when saved by Writer.
+  static String importedOdtSaveName(String name) {
+    final clean = name.trim();
+    final dot = clean.lastIndexOf('.');
+    final stem = dot > 0 ? clean.substring(0, dot) : clean;
+    return '${stem.isEmpty ? 'Document1' : stem}.docx';
   }
 }
 

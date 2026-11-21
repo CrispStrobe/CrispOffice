@@ -951,11 +951,13 @@ class WordEditorController extends OfficeController {
   WmlDocument get document => _document;
   set document(WmlDocument value) {
     if (identical(value, _document)) return;
+    _openGeneration++;
     _document = value;
     _documentReplaced = true;
   }
 
   WmlDocument _document;
+  int _openGeneration = 0;
 
   /// True while [documentLaidOut] still shows a previously assigned
   /// [document].
@@ -1466,22 +1468,46 @@ class WordEditorController extends OfficeController {
 
   /// loadBytes API.
   void loadBytes(Uint8List bytes, {String? password}) {
+    if (isDisposed) {
+      throw StateError('Cannot open a file in a disposed editor.');
+    }
+    _openGeneration++;
+    if (OdtDocumentReader.isOdt(bytes)) {
+      throw UnsupportedError(
+        'Use loadBytesAsync to import a native ODT document.',
+      );
+    }
     _acceptOpenedWord(
       WordDeserializer().read(OfficeRepair.open(bytes, password: password)),
     );
   }
 
-  /// loadBytesAsync API.
+  /// Opens DOCX or a supported native ODT without replacing newer work.
+  ///
+  /// Failed imports and results made stale by an edit, document replacement,
+  /// another open request or disposal leave the active document untouched.
   Future<void> loadBytesAsync(
     Uint8List bytes, {
     String? password,
     void Function(OfficeOpenProgress progress)? onProgress,
   }) async {
+    if (isDisposed) {
+      throw StateError('Cannot open a file in a disposed editor.');
+    }
+    final int generation = ++_openGeneration;
+    final WmlDocument original = document;
+    final int revision = contentRevision;
     final WordOpenPayload opened = await OfficeIsolateOpen.word(
       bytes,
       password: password,
       onProgress: onProgress,
     );
+    if (isDisposed ||
+        generation != _openGeneration ||
+        !identical(document, original) ||
+        contentRevision != revision) {
+      throw StateError('The document changed while the file was opening.');
+    }
     _acceptOpenedWord(opened.document);
   }
 

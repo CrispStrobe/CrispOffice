@@ -544,6 +544,70 @@ void main() {
     },
   );
 
+  test(
+    'authored note anchors retain whitespace on its original side',
+    () async {
+      for (final after in ['after', '']) {
+        final document = await OdtDocumentReader.readBytes(
+          _package(
+            '<text:p>Before <text:note text:note-class="footnote">'
+            '<text:note-citation>1</text:note-citation><text:note-body>'
+            '<text:p>Authored note</text:p></text:note-body></text:note>'
+            '$after</text:p>',
+          ),
+        );
+        for (final current in [document, _reopen(document)]) {
+          final runs = _runs(
+            current.sections.single.blocks.whereType<WmlParagraph>().single,
+          );
+          final anchor = runs.indexWhere((run) => run.noteRefId != null);
+          expect(anchor, greaterThanOrEqualTo(0));
+          expect(runs.take(anchor).map((run) => run.text).join(), 'Before ');
+          expect(runs.skip(anchor + 1).map((run) => run.text).join(), after);
+          expect(current.footnotes.single.blocks.single, isA<WmlParagraph>());
+        }
+      }
+    },
+  );
+
+  test('a citation after a note owns its exact rich range', () async {
+    for (final spacing in [('Before ', ' '), ('Before', ''), ('', '')]) {
+      final before = spacing.$1;
+      final after = spacing.$2;
+      final document = await OdtDocumentReader.readBytes(
+        _package(
+          '<text:p>$before<text:note text:note-class="footnote">'
+          '<text:note-citation>1</text:note-citation><text:note-body>'
+          '<text:p>Authored note</text:p></text:note-body></text:note>'
+          '$after${_mark(_citation(), '(Source)')}</text:p>',
+        ),
+      );
+      for (final current in [document, _reopen(document)]) {
+        final field = WordZotero.fields(current).single;
+        final paragraph = field.paragraph;
+        expect(paragraph.text, '${before}1$after(Source)');
+        expect(field.start, before.length + 1 + after.length);
+        expect(field.end, before.length + 1 + after.length + '(Source)'.length);
+        expect(field.cachedText, '(Source)');
+        expect(field.canEdit, isTrue);
+        final anchor = paragraph.inlines.indexWhere(
+          (inline) => inline is WmlRun && inline.noteRefId != null,
+        );
+        final begin = field.run != null
+            ? paragraph.inlines.indexOf(field.run!)
+            : paragraph.inlines.indexWhere(
+                (inline) =>
+                    inline is WmlFieldBoundary &&
+                    inline.kind == WmlFieldBoundaryKind.begin,
+              );
+        expect(anchor, greaterThanOrEqualTo(0));
+        expect(begin, greaterThanOrEqualTo(0));
+        expect((paragraph.inlines[anchor] as WmlRun).text, '1');
+        expect(anchor, lessThan(begin));
+      }
+    }
+  });
+
   test('cross-cell and cross-note reference marks are refused', () async {
     final name = _citation();
     for (final body in [
@@ -557,8 +621,83 @@ void main() {
       '<text:p>${_start(name)}Before<text:note text:note-class="footnote">'
           '<text:note-citation>1</text:note-citation><text:note-body>'
           '<text:p>Note</text:p></text:note-body></text:note>After${_end(name)}</text:p>',
+      '<text:p>${_start(name)}(Source)<text:note text:note-class="footnote">'
+          '<text:note-citation>1</text:note-citation><text:note-body>'
+          '<text:p>Note</text:p></text:note-body></text:note>${_end(name)}</text:p>',
     ]) {
       await expectLater(OdtDocumentReader.readBytes(_package(body)), _refused);
+    }
+  });
+
+  test(
+    'table style inheritance keeps alignment, row keep and fill clearing',
+    () async {
+      final document = await OdtDocumentReader.readBytes(
+        _package(
+          '<table:table table:style-name="TableChild">'
+          '<table:table-row table:style-name="RowChild">'
+          '<table:table-cell table:style-name="CellChild">'
+          '<text:p>${_mark(_citation(), '(Source)')}</text:p>'
+          '</table:table-cell><table:table-cell table:style-name="CellBase">'
+          '<text:p>Shaded</text:p></table:table-cell>'
+          '</table:table-row></table:table>',
+          styles: _styles(
+            '<style:style style:name="TableBase" style:family="table">'
+            '<style:table-properties table:align="center"/></style:style>'
+            '<style:style style:name="TableChild" style:family="table" '
+            'style:parent-style-name="TableBase">'
+            '<style:table-properties style:width="240pt"/></style:style>'
+            '<style:style style:name="RowBase" style:family="table-row">'
+            '<style:table-row-properties fo:keep-together="always"/></style:style>'
+            '<style:style style:name="RowChild" style:family="table-row" '
+            'style:parent-style-name="RowBase">'
+            '<style:table-row-properties style:min-row-height="12pt"/>'
+            '</style:style>'
+            '<style:style style:name="CellBase" style:family="table-cell">'
+            '<style:table-cell-properties fo:background-color="#AABBCC"/>'
+            '</style:style>'
+            '<style:style style:name="CellChild" style:family="table-cell" '
+            'style:parent-style-name="CellBase">'
+            '<style:table-cell-properties fo:background-color="transparent"/>'
+            '</style:style>',
+          ),
+        ),
+      );
+      for (final current in [document, _reopen(document)]) {
+        final table = current.sections.single.blocks
+            .whereType<WmlTable>()
+            .single;
+        expect(table.properties.alignment, WmlJustification.center);
+        final row = table.rows.single;
+        expect(row.cantSplit, isTrue);
+        expect(row.height, 12);
+        expect(row.cells.first.fillColor, isNull);
+        expect(row.cells.last.fillColor, 'AABBCC');
+        expect(WordZotero.fields(current).single.cachedText, '(Source)');
+        expect(WordZotero.fields(current).single.canEdit, isTrue);
+      }
+    },
+  );
+
+  test('unsupported used table style semantics are refused', () async {
+    for (final attribute in [
+      'style:auto-update="true"',
+      'style:master-page-name="Alternate"',
+      'foreign:rendering="required"',
+    ]) {
+      await expectLater(
+        OdtDocumentReader.readBytes(
+          _package(
+            '<table:table table:style-name="Table"><table:table-row>'
+            '<table:table-cell><text:p>Cell</text:p></table:table-cell>'
+            '</table:table-row></table:table>',
+            automaticStyles:
+                '<style:style style:name="Table" style:family="table" $attribute>'
+                '<style:table-properties/></style:style>',
+          ),
+        ),
+        _refused,
+      );
     }
   });
 
@@ -643,6 +782,156 @@ void main() {
       expect(paragraphs.every((p) => p.properties.numId != null), isTrue);
     }
   });
+
+  test('list label geometry retains authored paragraph margins', () async {
+    final document = await OdtDocumentReader.readBytes(
+      _package(
+        '<text:list text:style-name="Numbers"><text:list-item>'
+        '<text:p text:style-name="Inset">First</text:p>'
+        '<text:p text:style-name="Inset">Continuation</text:p>'
+        '</text:list-item></text:list>',
+        automaticStyles:
+            '<style:style style:name="Inset" style:family="paragraph">'
+            '<style:paragraph-properties fo:margin-left="36pt" '
+            'fo:margin-right="12pt"/></style:style>'
+            '<text:list-style style:name="Numbers">'
+            '<text:list-level-style-number text:level="1" '
+            'style:num-format="1" style:num-suffix=".">'
+            '<style:list-level-properties text:space-before="9pt" '
+            'text:min-label-width="9pt"/></text:list-level-style-number>'
+            '</text:list-style>',
+      ),
+    );
+    for (final current in [document, _reopen(document)]) {
+      final paragraphs = current.paragraphs.toList();
+      expect(paragraphs.map((p) => p.text), ['First', 'Continuation']);
+      expect(paragraphs.map((p) => p.properties.indent.left), [54, 54]);
+      expect(paragraphs.map((p) => p.properties.indent.right), [12, 12]);
+      expect(paragraphs.map((p) => p.properties.indent.hanging), [9, 0]);
+      expect(paragraphs.first.properties.listLabel?.trim(), '1.');
+      expect(paragraphs.last.properties.numberingSuppressed, isTrue);
+    }
+  });
+
+  test('conflicting list paragraph first-line geometry is refused', () async {
+    for (final indent in ['9pt', '-9pt']) {
+      await expectLater(
+        OdtDocumentReader.readBytes(
+          _package(
+            '<text:list text:style-name="Numbers"><text:list-item>'
+            '<text:p text:style-name="Inset">First</text:p>'
+            '</text:list-item></text:list>',
+            automaticStyles:
+                '<style:style style:name="Inset" style:family="paragraph">'
+                '<style:paragraph-properties fo:text-indent="$indent"/>'
+                '</style:style><text:list-style style:name="Numbers">'
+                '<text:list-level-style-number text:level="1" '
+                'style:num-format="1" style:num-suffix="."/></text:list-style>',
+          ),
+        ),
+        _refused,
+      );
+    }
+  });
+
+  test('nested list continuation keeps its own level and field', () async {
+    final document = await OdtDocumentReader.readBytes(
+      _package(
+        '<text:list text:style-name="Bullets"><text:list-item>'
+        '<text:p>Outer</text:p><text:list><text:list-item>'
+        '<text:p>Inner</text:p><text:p>Inner continuation '
+        '${_mark(_citation(), '(Source)')}</text:p></text:list-item></text:list>'
+        '<text:p>Outer continuation</text:p></text:list-item>'
+        '<text:list-item><text:p>Next</text:p></text:list-item></text:list>',
+        automaticStyles:
+            '<text:list-style style:name="Bullets">'
+            '<text:list-level-style-bullet text:level="1" text:bullet-char="•"/>'
+            '<text:list-level-style-bullet text:level="2" text:bullet-char="◦"/>'
+            '</text:list-style>',
+      ),
+    );
+    for (final current in [document, _reopen(document)]) {
+      final paragraphs = current.paragraphs.toList();
+      expect(paragraphs.map((p) => p.text), [
+        'Outer',
+        'Inner',
+        'Inner continuation (Source)',
+        'Outer continuation',
+        'Next',
+      ]);
+      expect(paragraphs.map((p) => p.properties.ilvl), [0, 1, 1, 0, 0]);
+      expect(paragraphs.map((p) => p.properties.indent.left), [
+        18,
+        36,
+        36,
+        18,
+        18,
+      ]);
+      expect(paragraphs.map((p) => p.properties.numberingSuppressed), [
+        false,
+        false,
+        true,
+        true,
+        false,
+      ]);
+      expect(paragraphs.map((p) => p.properties.listLabel?.trim()), [
+        '•',
+        '◦',
+        null,
+        null,
+        '•',
+      ]);
+      final field = WordZotero.fields(current).single;
+      expect(identical(field.paragraph, paragraphs[2]), isTrue);
+      expect(field.cachedText, '(Source)');
+      expect(field.canEdit, isTrue);
+    }
+  });
+
+  test('unsupported used list definition semantics are refused', () async {
+    for (final attribute in [
+      'text:consecutive-numbering="true"',
+      'foreign:rendering="required"',
+    ]) {
+      await expectLater(
+        OdtDocumentReader.readBytes(
+          _package(
+            '<text:list text:style-name="Numbers"><text:list-item>'
+            '<text:p>First</text:p></text:list-item></text:list>',
+            automaticStyles:
+                '<text:list-style style:name="Numbers" $attribute>'
+                '<text:list-level-style-number text:level="1" '
+                'style:num-format="1" style:num-suffix="."/></text:list-style>',
+          ),
+        ),
+        _refused,
+      );
+    }
+  });
+
+  test(
+    'bullet label affixes are refused instead of silently omitted',
+    () async {
+      for (final attribute in [
+        'style:num-prefix="("',
+        'style:num-suffix=")"',
+      ]) {
+        await expectLater(
+          OdtDocumentReader.readBytes(
+            _package(
+              '<text:list text:style-name="Bullets"><text:list-item>'
+              '<text:p>Item</text:p></text:list-item></text:list>',
+              automaticStyles:
+                  '<text:list-style style:name="Bullets">'
+                  '<text:list-level-style-bullet text:level="1" '
+                  'text:bullet-char="•" $attribute/></text:list-style>',
+            ),
+          ),
+          _refused,
+        );
+      }
+    },
+  );
 
   test(
     'unqualified list continuation is refused instead of restarting silently',
@@ -798,6 +1087,171 @@ void main() {
         isTrue,
       );
       expect(WordZotero.fields(_reopen(reopened)), isEmpty);
+    },
+  );
+
+  test(
+    'imported DOCX fields accept a staged Zotero refresh transaction',
+    () async {
+      final imported = await OdtDocumentReader.readBytes(
+        _package(
+          '<text:p>Lead ${_mark(_citation(), '(Old)')} tail</text:p>'
+          '${_section(_bibliography(), '<text:p>Old first entry.</text:p><text:p>Old second entry.</text:p>')}'
+          '<text:p>After</text:p>',
+          metadata: _metadata(
+            jsonEncode({
+              'dataVersion': 4,
+              'style': {
+                'styleID': 'http://www.zotero.org/styles/apa',
+                'locale': 'de-DE',
+              },
+              'prefs': {'fieldType': 'ReferenceMark', 'noteType': 0},
+              'futurePreferences': {'preserve': true},
+            }),
+          ),
+        ),
+      );
+      final document = _reopen(imported);
+      final originalText = document.paragraphs.map((p) => p.text).toList();
+      final session = WordZoteroCitingSession(
+        document: document,
+        documentId: 'odt-refresh',
+        insertionParagraph: document.paragraphs.first,
+      );
+      Object? call(String command, [List<Object?> args = const []]) =>
+          session.handle(command, ['odt-refresh', ...args]);
+      final fields = (call('Document.getFields', ['Http']) as List)
+          .cast<Map<String, Object>>();
+      expect(fields, hasLength(2));
+      final citationField = fields.singleWhere(
+        (f) => (f['code'] as String).startsWith('ITEM'),
+      );
+      final bibliographyField = fields.singleWhere(
+        (f) => (f['code'] as String).startsWith('BIBL'),
+      );
+      final citation = WordZotero.fields(document).first.citation!;
+      const citationHtml = '(<b>Updated</b>)';
+      final updated = citation.withItems(
+        citation.items,
+        plainCitation: '(Updated)',
+        formattedCitation: citationHtml,
+      );
+      call('Field.setCode', [
+        citationField['id'],
+        'ITEM CSL_CITATION ${jsonEncode(updated.toJson())}',
+      ]);
+      call('Field.setText', [citationField['id'], citationHtml, true]);
+      call('Document.setBibliographyStyle', [
+        -720,
+        720,
+        480,
+        240,
+        <int>[720],
+        1,
+      ]);
+      call('Field.setCode', [
+        bibliographyField['id'],
+        'BIBL ${jsonEncode(_bibliographyData)} CSL_BIBLIOGRAPHY',
+      ]);
+      call('Field.setText', [
+        bibliographyField['id'],
+        '<div class="csl-entry">Updated <i>Book</i>.</div>'
+            '<div class="csl-entry">Second <b>Book</b>.</div>',
+        true,
+      ]);
+      call('Document.setDocumentData', [call('Document.getDocumentData')]);
+      expect(document.paragraphs.map((p) => p.text), originalText);
+      call('Document.complete');
+      session.prepareReview();
+      session.apply();
+      for (final current in [document, _reopen(document)]) {
+        final refreshed = WordZotero.fields(current);
+        expect(refreshed.map((f) => f.cachedText), [
+          '(Updated)',
+          'Updated Book.\nSecond Book.',
+        ]);
+        expect(
+          refreshed.first.citation!.toJson()['futureRoot'],
+          _citationData()['futureRoot'],
+        );
+        expect(
+          _runContaining(refreshed.first.paragraph, 'Updated').properties.bold,
+          isTrue,
+        );
+        expect(refreshed.last.metadata, _bibliographyData);
+        expect(refreshed.last.paragraphs, hasLength(2));
+        expect(
+          _runContaining(
+            refreshed.last.paragraphs.first,
+            'Book',
+          ).properties.italic,
+          isTrue,
+        );
+        expect(
+          refreshed.last.paragraphs.every(
+            (p) => p.properties.indent.hanging == 36,
+          ),
+          isTrue,
+        );
+        expect(
+          refreshed.last.paragraphs.every((p) => p.properties.lineSpacing == 2),
+          isTrue,
+        );
+        expect(current.paragraphs.first.text, 'Lead (Updated) tail');
+        expect(current.paragraphs.last.text, 'After');
+        final preferences =
+            jsonDecode(WordZoteroDocumentData.read(current)) as Map;
+        expect(preferences['futurePreferences'], {'preserve': true});
+      }
+    },
+  );
+
+  test(
+    'imported citation can convert through footnote, endnote and inline styles',
+    () async {
+      var document = await OdtDocumentReader.readBytes(
+        _package(
+          '<text:p>Before ${_mark(_citation(), '(Source)')} after</text:p>',
+        ),
+      );
+      for (final noteType in [1, 2, 0]) {
+        document = _reopen(document);
+        final before = document.paragraphs.map((p) => p.text).toList();
+        final session = WordZoteroCitingSession(
+          document: document,
+          documentId: 'odt-convert',
+          insertionParagraph: document.paragraphs.first,
+        );
+        Object? call(String command, [List<Object?> args = const []]) =>
+            session.handle(command, ['odt-convert', ...args]);
+        final fields = (call('Document.getFields', ['Http']) as List)
+            .cast<Map<String, Object>>();
+        final fieldId = fields.single['id'];
+        call('Document.convert', [
+          [fieldId],
+          'Http',
+          [noteType],
+        ]);
+        final converted =
+            (call('Document.getFields', ['Http']) as List).single as Map;
+        expect(converted['noteIndex'], noteType == 0 ? 0 : 1);
+        expect(document.paragraphs.map((p) => p.text), before);
+        call('Document.complete');
+        session.apply();
+        final persisted = _reopen(document);
+        expect(persisted.footnotes, hasLength(noteType == 1 ? 1 : 0));
+        expect(persisted.endnotes, hasLength(noteType == 2 ? 1 : 0));
+        final field = WordZotero.fields(persisted).single;
+        expect(field.cachedText, '(Source)');
+        expect(field.canEdit, isTrue);
+        expect(
+          field.citation!.toJson()['futureRoot'],
+          _citationData()['futureRoot'],
+        );
+        if (noteType == 0) {
+          expect(persisted.paragraphs.single.text, 'Before (Source) after');
+        }
+      }
     },
   );
 
