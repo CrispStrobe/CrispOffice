@@ -89,6 +89,45 @@ Variant states and conversions described in [the shared language
 contract](VBA_MACROS.md). Excel object members are unavailable in `vba-word`.
 Word object members are unavailable in `vba-excel`.
 
+## Preparing source text for Word
+
+Word macros can now use shared binary `InStr`, `InStrRev`, and `Replace`, plus
+`Trim`, `LTrim`, `RTrim` and their `$` forms. They process String literals,
+local values, array elements and helper results known during compilation.
+They do not read text from a Word Range. The exact positional arguments,
+UTF-16 indexing, comparison modes and resource limits are in the
+[shared text contract](VBA_MACROS.md#binary-search-replacement-and-trimming).
+
+```vb
+Sub Main()
+    Dim label As String
+    label = Trim$("  DRAFT_summary  ")
+    label = Replace(label, "_", " ")
+    If InStr(1, label, "DRAFT", vbBinaryCompare) > 0 Then
+        label = Replace(label, "DRAFT", "FINAL", 1, 1)
+    End If
+    ActiveDocument.Paragraphs(1).Range.InsertBefore label & ": "
+End Sub
+```
+
+The [complete text-report module](../packages/quds_office_engine/example/macros/word_text_report.bas)
+also uses reverse search to extract a filename, preserves an emoji, applies
+bold and color to body text, and prepares an independent primary header. Its
+template must contain two existing body paragraphs and one independently
+owned primary header paragraph in the first section. It emits six native
+operations, with the existing permissions, validation, recording and atomic
+publication rules. A missing target or invalid source value leaves the run
+unpublished; embedded VBA project bytes remain inert and preserved.
+
+```bash
+dart run tool/macros/office_macro.dart compile-word-vba \
+  example/macros/word_text_report.bas word-text.qudsmacro.json
+dart run tool/macros/office_macro.dart validate-word-vba \
+  report-template.docm example/macros/word_text_report.bas
+dart run tool/macros/office_macro.dart run-word-vba \
+  report-template.docm example/macros/word_text_report.bas prepared-report.docm
+```
+
 ## Exact native mapping
 
 In the following paragraph table, `i` is a one-based paragraph index and `p`

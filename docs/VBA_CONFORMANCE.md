@@ -12,6 +12,7 @@ The canonical fixtures are:
 | Suite | Cases | Scope |
 | --- | ---: | --- |
 | [`string_intrinsics_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/string_intrinsics_v1.json) | 69 | Strict String intrinsics, UTF-16 and publication boundaries |
+| [`text_intrinsics_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/text_intrinsics_v1.json) | 95 | Binary forward/reverse search, replacement, Trim families, UTF-16, strict argument shapes and shared work/output limits |
 | [`variant_conversions_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/variant_conversions_v1.json) | 120 | Empty/Null lifecycle, operators, explicit conversions and deliberate limits |
 | [`variant_composition_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/variant_composition_v1.json) | 38 | Nested nullable results, unchanged strict operands and static scalar/object boundaries |
 | [`word_paragraphs_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_paragraphs_v1.json) | 44 | Word object bindings, prefix insertion, font/paragraph formatting, shared language behavior and deliberate refusals |
@@ -120,6 +121,13 @@ now reflect that Empty/Null are valid source states rejected by the strict
 String argument check; all other original String expectations are retained.
 See the [dialect contract](VBA_MACROS.md#string-intrinsics) for precise limits.
 
+The text-intrinsic suite independently specifies binary search offsets,
+reverse-match ending bounds, replacement suffixes and nonoverlap, empty/no-op
+paths, Trim's U+0020 boundary, source-order behavior and resource refusals.
+Its UTF-16 and strict typing cases explicitly identify dialect choices;
+specification-derived cases do not claim an observed Office result.
+See the [text contract](VBA_MACROS.md#binary-search-replacement-and-trimming).
+
 The Variant suites independently specify defaults in locals/functions/arrays,
 `ReDim`/`Preserve`/`Erase`, `ByVal`, predicates, typed Empty defaults and Null
 failures, eager arithmetic/comparison/Boolean semantics, concatenation's Null
@@ -145,7 +153,8 @@ missing paragraph. See the [Word dialect contract](VBA_WORD_MACROS.md).
 The original three Excel fixture files and canonical receipt bytes remain
 unchanged by the Word extension. The portable harness checks their previously
 accepted receipt hashes as well as VM/JavaScript equality. The fourth suite
-adds 44 Word cases. The PowerPoint suite adds 20 cases, for **291 canonical cases per runtime**. The receipt shape
+adds 44 Word cases. The PowerPoint suite adds 20 cases and the text-intrinsic
+continuation adds 95, for **386 canonical cases per runtime**. The receipt shape
 is unchanged: its existing `dialect` field identifies the selected adapter.
 
 The PowerPoint suite independently specifies explicit presentation/slide/shape
@@ -171,6 +180,9 @@ execution cannot be mistaken for two matching empty receipts:
 ```bash
 set -e
 dart test test/office_vba_conformance_test.dart \
+  test/office_vba_text_conformance_test.dart \
+  test/office_vba_text_intrinsics_test.dart \
+  test/office_vba_word_text_integration_test.dart \
   test/office_vba_string_intrinsics_test.dart \
   test/office_vba_string_intrinsics_integration_test.dart \
   test/office_vba_variant_conformance_test.dart \
@@ -181,7 +193,7 @@ dart test test/office_vba_conformance_test.dart \
   --concurrency 1 --timeout 4x
 
 mkdir -p build/macros
-for suite in string_intrinsics_v1 variant_conversions_v1 variant_composition_v1 word_paragraphs_v1 powerpoint_shapes_v1; do
+for suite in string_intrinsics_v1 text_intrinsics_v1 variant_conversions_v1 variant_composition_v1 word_paragraphs_v1 powerpoint_shapes_v1; do
   VBA_CASES_BASE64=$(python3 -c 'import base64,sys; from pathlib import Path; print(base64.b64encode(Path(sys.argv[1]).read_bytes()).decode())' "test/fixtures/vba_conformance/${suite}.json")
   dart --packages=../../.dart_tool/package_config.json \
     -DVBA_CONFORMANCE_BASE64="$VBA_CASES_BASE64" \
@@ -214,6 +226,13 @@ including unchanged outputs after compile failures and whole-run rollback.
 Variant unit and integration tests additionally cover native cell clearing,
 formatting preservation, the runnable report, policies, recording isolation,
 real CLI publication and rollback.
+
+`office_vba_text_conformance_test.dart` executes the additional 95 text cases.
+`office_vba_word_text_integration_test.dart` runs the committed Word BAS through
+CLI/MCP and detached native execution, including preserved rich text and DOCM
+contents, recording replay, policy refusals and unchanged outputs on errors.
+The [text continuation record](validation/word-vba-continuation-20261121/README.md)
+retains the source-specific receipts and branch reconciliation.
 
 The [qualification record](validation/office-vba-string-conformance-20261120/README.md)
 records actual commands and source identities. GitHub Actions are not required

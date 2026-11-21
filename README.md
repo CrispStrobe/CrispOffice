@@ -29,6 +29,10 @@ Arrays support indexed access, `LBound`/`UBound`, `ReDim`/`Preserve`, `Erase`,
 and `Option Base`; explicit ranges support
 cell enumeration and read-only row/column coordinates. String intrinsics
 `Len`, `Left$`, `Right$`, and `Mid$` use strict types and UTF-16 units.
+Shared binary `InStr` / `InStrRev` searches, bounded `Replace`, and the
+`Trim` / `LTrim` / `RTrim` families now prepare source text for all three
+adapters; the [Word text report](packages/quds_office_engine/example/macros/word_text_report.bas)
+demonstrates body and header edits through the existing transactional runtime.
 Variants distinguish `Empty`/`Null`, with state predicates and explicit bounded
 `CVar`, `CBool`, `CDbl`, `CLng`, and `CStr` conversions. The
 [Word VBA subset](docs/VBA_WORD_MACROS.md) shares that language and adds explicit
