@@ -380,12 +380,15 @@ void applyStep(
       final noProof = s.has('noProof') ? s.boolean('noProof') : null;
       if (kerning != null ||
           noProof != null ||
+          smallCaps != null ||
           font != null ||
           csFont != null ||
           language != null) {
         _validateScalarPackageSource(doc, {
           if (kerning != null) 'kern',
           if (noProof != null) 'noProof',
+          if (smallCaps != null) 'smallCaps',
+          if (smallCaps == true) 'caps',
           if (font != null || csFont != null) 'rFonts',
           if (language != null) 'lang',
         });
@@ -429,11 +432,37 @@ void applyStep(
                 'lang',
               );
             }
+            if (smallCaps != null) {
+              _validateScalarPropertySource(
+                run.properties.sourcePropertiesXml,
+                'smallCaps',
+              );
+              if (smallCaps) {
+                _validateScalarPropertySource(
+                  run.properties.sourcePropertiesXml,
+                  'caps',
+                );
+              }
+            }
           }
           offset = end;
         }
       }
       WmlRunEdit.applyRange(p, range.$1, range.$2, (r) {
+        if (font != null || csFont != null) {
+          final imported = r.importedValues;
+          if (imported != null &&
+              r.sourcePropertiesXml != null &&
+              imported['rFonts:granular'] != '1' &&
+              !imported.containsKey('rFonts:ascii') &&
+              !imported.containsKey('rFonts:cs')) {
+            // Preserve pending legacy edits before establishing independent
+            // slot baselines. A same-value cs write must become direct even
+            // when the old aggregate snapshot has not changed.
+            r.sourcePropertiesXml = WordSerializer().runPropertiesXml(r);
+            r.importedValues = WordPropertyIo.runValues(r);
+          }
+        }
         if (smallCaps == true) {
           // Word SmallCaps=True explicitly turns AllCaps off. caps is an
           // opaque property in the current live model, so preserve all other
@@ -443,37 +472,7 @@ void applyStep(
             WordSerializer().runPropertiesXml(r),
             'rPr',
           );
-          // Namespace declarations can be stored without a namespace URI.
-          // Replace the declaration by qualified name, then use an explicit
-          // namespace so an unrelated source attribute such as x:w survives.
-          source.attributes.removeWhere(
-            (attribute) => attribute.qualifiedName == 'xmlns:w',
-          );
-          source.setAttribute(
-            'w',
-            OfficeNamespaces.w,
-            prefix: 'xmlns',
-            namespaceUri: 'http://www.w3.org/2000/xmlns/',
-          );
-          source.children.removeWhere(
-            (child) =>
-                child is XmlElement &&
-                child.localName == 'caps' &&
-                child.namespaceUri == OfficeNamespaces.w,
-          );
-          source.addChild(
-            XmlElement(
-              localName: 'caps',
-              prefix: 'w',
-              namespaceUri: OfficeNamespaces.w,
-            )..setAttribute(
-              'val',
-              '0',
-              prefix: 'w',
-              namespaceUri: OfficeNamespaces.w,
-            ),
-          );
-          WordPropertyIo.orderChildren(source);
+          WordPropertyIo.writeAllCapsOff(source);
           r.sourcePropertiesXml = XmlDocument(root: source)
               .toXmlString(declaration: false);
           r.importedValues = WordPropertyIo.runValues(r);

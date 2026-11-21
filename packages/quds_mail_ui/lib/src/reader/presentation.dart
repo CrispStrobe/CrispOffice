@@ -100,6 +100,7 @@ MailReaderPresentation buildMailPresentation(
   MailReadBudget budget = const MailReadBudget(),
   MailReaderLabels labels = const MailReaderLabels(),
   bool preferHtml = true,
+  bool includeHeaders = true,
   bool externalImagePlaceholders = true,
   Iterable<MailInlineImage> externalImages = const [],
 }) {
@@ -253,38 +254,40 @@ MailReaderPresentation buildMailPresentation(
     remainingDecodedBytes: budget.maxDecodedBytes - decodedBytes,
   );
   try {
-    builder.add(
-      message.envelope.subject.isEmpty
-          ? '${labels.noSubject}\n'
-          : '${_headerText(message.envelope.subject)}\n',
-      bold: true,
-    );
-    void addresses(String label, List<MailAddress> values) {
-      if (values.isEmpty) return;
-      builder.add('$label: ', bold: true);
-      for (var index = 0; index < values.length; index++) {
-        if (index > 0) builder.add(', ');
-        final address = values[index];
-        final name = address.displayName;
-        if (name != null && name.isNotEmpty) {
-          builder.add('\u2068${_headerText(name)}\u2069 ');
+    if (includeHeaders) {
+      builder.add(
+        message.envelope.subject.isEmpty
+            ? '${labels.noSubject}\n'
+            : '${_headerText(message.envelope.subject)}\n',
+        bold: true,
+      );
+      void addresses(String label, List<MailAddress> values) {
+        if (values.isEmpty) return;
+        builder.add('$label: ', bold: true);
+        for (var index = 0; index < values.length; index++) {
+          if (index > 0) builder.add(', ');
+          final address = values[index];
+          final name = address.displayName;
+          if (name != null && name.isNotEmpty) {
+            builder.add('\u2068${_headerText(name)}\u2069 ');
+          }
+          builder.add('\u2066${_headerText(address.address)}\u2069');
         }
-        builder.add('\u2066${_headerText(address.address)}\u2069');
+        builder.add('\n');
+      }
+
+      addresses(labels.from, message.envelope.from);
+      addresses(labels.to, message.envelope.to);
+      addresses(labels.cc, message.envelope.cc);
+      addresses(labels.bcc, message.envelope.bcc);
+      addresses(labels.replyTo, message.envelope.replyTo);
+      final date = message.envelope.sentAt;
+      if (date != null) {
+        builder.add('${labels.date}: ', bold: true);
+        builder.add('${labels.formatDate(date)}\n');
       }
       builder.add('\n');
     }
-
-    addresses(labels.from, message.envelope.from);
-    addresses(labels.to, message.envelope.to);
-    addresses(labels.cc, message.envelope.cc);
-    addresses(labels.bcc, message.envelope.bcc);
-    addresses(labels.replyTo, message.envelope.replyTo);
-    final date = message.envelope.sentAt;
-    if (date != null) {
-      builder.add('${labels.date}: ', bold: true);
-      builder.add('${labels.formatDate(date)}\n');
-    }
-    builder.add('\n');
     final bodyStart = builder.text.length;
     if (useHtml) {
       builder.html(body.html!);

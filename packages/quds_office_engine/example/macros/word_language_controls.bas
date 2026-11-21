@@ -9,6 +9,7 @@ Sub ConfigureLatin(ByVal target As Range, Optional ByVal language As Long = wdEn
 End Sub
 
 Sub Main()
+    Dim header As Range
     ConfigureLatin language:=wdGerman, target:=ActiveDocument.Paragraphs(1).Range
 
     With ActiveDocument.Paragraphs(2).Range
@@ -16,7 +17,6 @@ Sub Main()
         .Font.NameBi = "Amiri"
     End With
 
-    Dim header As Range
     Set header = ThisDocument.Sections(1).Headers(wdHeaderFooterPrimary).Range.Paragraphs(1).Range
     header.LanguageIDOther = wdFrench
     header.Font.NameBi = "Noto Naskh Arabic"

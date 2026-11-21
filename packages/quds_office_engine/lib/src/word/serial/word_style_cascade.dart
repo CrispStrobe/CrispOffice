@@ -682,7 +682,7 @@ class _StyleCascade {
   }
 
   static XmlElement _layoutAttributeProjection(XmlElement source) {
-    // Only effective indentation/spacing attributes are projected here. Source
+    // Only native layout, font, or language attributes are projected here. Source
     // prefixes on copied attributes can become unbound, or a later layer rebinds
     // an earlier layer's prefix. Normalize native attributes in this detached
     // projection; the full direct/style XML retains all extension metadata.
@@ -752,7 +752,8 @@ class _StyleCascade {
         final scalarControl =
             (name == 'rPr' &&
                 (incoming.localName == 'kern' ||
-                    incoming.localName == 'noProof')) ||
+                    incoming.localName == 'noProof' ||
+                    incoming.localName == 'smallCaps')) ||
             (name == 'pPr' && incoming.localName == 'suppressAutoHyphens');
         if (scalarControl && !_word(incoming, incoming.localName)) continue;
         final runAttributes =

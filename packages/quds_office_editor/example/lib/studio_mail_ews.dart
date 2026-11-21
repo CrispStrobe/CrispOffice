@@ -1041,6 +1041,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           status: MailParseStatus.complete,
           message: message,
         ),
+        preferHtml: false,
+        includeHeaders: false,
         labels: StudioMailReaderLabels(widget.strings.language),
       );
       final old = _reader;
@@ -2684,6 +2686,14 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                 MailMessageListItem(
                   id: 'ews-message-${header.id.value}',
                   subject: header.envelope.subject,
+                  accountId: [
+                    header.remote.account.profile.hostId,
+                    header.remote.account.profile.value,
+                    header.remote.account.value,
+                  ].map(Uri.encodeComponent).join('/'),
+                  messageId: header.envelope.messageId,
+                  inReplyTo: header.envelope.inReplyTo,
+                  references: header.envelope.references,
                   sender: header.envelope.from
                       .map(
                         (address) =>

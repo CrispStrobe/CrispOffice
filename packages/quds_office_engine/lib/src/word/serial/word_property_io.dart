@@ -99,7 +99,7 @@ abstract final class WordPropertyIo {
         continue;
       }
       if ((generated.localName == 'rPr' &&
-              (key == 'kern' || key == 'noProof')) ||
+              (key == 'kern' || key == 'noProof' || key == 'smallCaps')) ||
           (generated.localName == 'pPr' && key == 'suppressAutoHyphens')) {
         final value = generated.firstChild(key)?.getAttribute('val');
         if (value != null) {
@@ -154,7 +154,7 @@ abstract final class WordPropertyIo {
       final List<XmlElement> replacement = generated.childrenNamed(key);
       if (replacement.isNotEmpty) {
         for (final n in replacement) {
-          result.addChild(n.copy());
+          _appendGenerated(result, n);
         }
       } else if (const {
         'strike',
@@ -162,12 +162,14 @@ abstract final class WordPropertyIo {
         'pageBreakBefore',
         'bidi',
       }.contains(key)) {
-        result.addChild(
+        _appendGenerated(
+          result,
           XmlElement(localName: key, prefix: 'w')
             ..setAttribute('val', '0', prefix: 'w'),
         );
       } else if (const {'u', 'highlight', 'vertAlign'}.contains(key)) {
-        result.addChild(
+        _appendGenerated(
+          result,
           XmlElement(localName: key, prefix: 'w')..setAttribute(
             'val',
             key == 'vertAlign' ? 'baseline' : 'none',
@@ -176,11 +178,16 @@ abstract final class WordPropertyIo {
         );
       }
     }
-    result.children.removeWhere(
-      (n) => n is XmlElement && n.localName == 'sectPr',
-    );
-    for (final n in generated.childrenNamed('sectPr')) {
-      result.addChild(n.copy());
+    if (generated.localName == 'pPr') {
+      result.children.removeWhere(
+        (n) =>
+            n is XmlElement &&
+            n.localName == 'sectPr' &&
+            _wordName(n.namespaceUri, n.prefix),
+      );
+      for (final n in generated.childrenNamed('sectPr')) {
+        _appendGenerated(result, n);
+      }
     }
     orderChildren(result);
     return result;
@@ -245,6 +252,48 @@ abstract final class WordPropertyIo {
 
   static bool _wordName(String namespace, String prefix) =>
       namespace == OfficeNamespaces.w || (namespace.isEmpty && prefix == 'w');
+
+  static void _appendGenerated(XmlElement target, XmlElement generated) {
+    final inserted = generated.copy();
+    if (inserted.prefix == 'w' &&
+        _wordName(inserted.namespaceUri, inserted.prefix)) {
+      inserted.namespaceUri = OfficeNamespaces.w;
+      String? binding;
+      for (XmlElement? node = target; node != null; node = node.parent) {
+        binding = node.attributes
+            .where((a) => a.qualifiedName == 'xmlns:w')
+            .firstOrNull
+            ?.value;
+        if (binding != null) break;
+        if (node.prefix == 'w' && node.namespaceUri.isNotEmpty) {
+          binding = node.namespaceUri;
+          break;
+        }
+      }
+      // Generated fragments normally inherit the serializer's Word context.
+      // Only a conflicting source binding needs a local declaration; never
+      // rebind the sparse source itself or reinterpret retained extensions.
+      if (binding != null && binding != OfficeNamespaces.w) {
+        inserted.attributes.removeWhere((a) => a.qualifiedName == 'xmlns:w');
+        inserted.attributes.add(
+          XmlAttribute(
+            localName: 'w',
+            prefix: 'xmlns',
+            namespaceUri: 'http://www.w3.org/2000/xmlns/',
+            value: OfficeNamespaces.w,
+          ),
+        );
+      }
+    }
+    target.addChild(inserted);
+  }
+
+  /// Small capitals explicitly disable all capitals without rebinding source
+  /// prefixes or replacing opaque attributes and children on the caps property.
+  static void writeAllCapsOff(XmlElement runProperties) {
+    _mergeWordAttributes(runProperties, 'caps', const {'val'}, {'val': '0'});
+    orderChildren(runProperties);
+  }
 
   /// Change one native tab stop while retaining unowned attributes, children,
   /// other positions, and namespace lookalikes in the sparse direct pPr.
@@ -342,6 +391,7 @@ abstract final class WordPropertyIo {
       );
       properties.addChild(target);
     }
+    target.namespaceUri = OfficeNamespaces.w;
     target.attributes.removeWhere(
       (attribute) =>
           owned.contains(attribute.localName) &&

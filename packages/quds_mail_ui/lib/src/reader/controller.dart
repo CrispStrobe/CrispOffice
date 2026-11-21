@@ -18,6 +18,7 @@ final class MailReaderController extends ChangeNotifier {
     this.mode = MailReaderMode.full,
     MailReadBudget? budget,
     bool preferHtml = true,
+    bool includeHeaders = true,
     this.labels = const MailReaderLabels(),
   }) : budget =
            budget ??
@@ -25,11 +26,13 @@ final class MailReaderController extends ChangeNotifier {
                ? const MailReadBudget.preview()
                : const MailReadBudget()),
        _result = result,
-       _preferHtml = preferHtml {
+       _preferHtml = preferHtml,
+       _includeHeaders = includeHeaders {
     _presentation = buildMailPresentation(
       result,
       budget: this.budget,
       preferHtml: preferHtml,
+      includeHeaders: includeHeaders,
       labels: labels,
     );
   }
@@ -40,6 +43,7 @@ final class MailReaderController extends ChangeNotifier {
     MailReaderMode mode = MailReaderMode.full,
     MailReadBudget? budget,
     bool preferHtml = true,
+    bool includeHeaders = true,
     MailReaderLabels labels = const MailReaderLabels(),
   }) {
     final limits =
@@ -53,6 +57,7 @@ final class MailReaderController extends ChangeNotifier {
       mode: mode,
       budget: limits,
       preferHtml: preferHtml,
+      includeHeaders: includeHeaders,
       labels: labels,
     );
   }
@@ -65,6 +70,7 @@ final class MailReaderController extends ChangeNotifier {
   MailParseResult _result;
   late MailReaderPresentation _presentation;
   bool _preferHtml;
+  bool _includeHeaders;
   bool _disposed = false;
   int _revision = 0;
   TextSelection _selection = const TextSelection.collapsed(offset: 0);
@@ -98,6 +104,7 @@ final class MailReaderController extends ChangeNotifier {
       value,
       budget: budget,
       preferHtml: _preferHtml,
+      includeHeaders: _includeHeaders,
       labels: labels,
     );
     _selection = const TextSelection.collapsed(offset: 0);
@@ -113,6 +120,7 @@ final class MailReaderController extends ChangeNotifier {
       _result,
       budget: budget,
       preferHtml: value,
+      includeHeaders: _includeHeaders,
       labels: labels,
       externalImages: _externalImages.values,
     );
@@ -155,6 +163,7 @@ final class MailReaderController extends ChangeNotifier {
       _result,
       budget: budget,
       preferHtml: _preferHtml,
+      includeHeaders: _includeHeaders,
       labels: labels,
       externalImages: candidates.values,
     );

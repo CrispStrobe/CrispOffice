@@ -135,30 +135,29 @@ class PlatformSecureStorage extends SecureStorage
   /// startup, before any credential is read.
   static Future<void> detectMacOsKeychain() async {
     if (kIsWeb || defaultTargetPlatform != TargetPlatform.macOS) return;
-    _macOsDataProtection = !await _missingEntitlement(
-      const FlutterSecureStorage(
-        mOptions: MacOsOptions(useDataProtectionKeyChain: true),
-      ),
-    );
-    if (!_macOsDataProtection) {
-      _secureLog.info(
-        'This build is not entitled to the data-protection keychain '
-        '(-34018); using the login keychain.',
-      );
+    // A read probe is insufficient: an unentitled build returns item-not-found
+    // rather than -34018. Probe the write path instead, which is the first
+    // operation that actually needs the keychain-access-group entitlement.
+    final probe = PlatformSecureStorage(useDataProtectionKeyChain: true);
+    try {
+      await probe.verifyAvailable();
+      _macOsDataProtection = true;
+    } catch (error) {
+      _macOsDataProtection = !isMissingEntitlementError(error);
+      if (!_macOsDataProtection) {
+        _secureLog.info(
+          'This build is not entitled to the data-protection keychain '
+          '(-34018); using the login keychain.',
+        );
+      }
+      // A locked or denied keychain is not an entitlement failure. Keep the
+      // selected backend so later operations report the real unavailability
+      // instead of silently moving credentials to a different store.
     }
   }
 
   /// Whether the current macOS build uses the data-protection keychain.
   static bool get usesMacOsDataProtection => _macOsDataProtection;
-
-  static Future<bool> _missingEntitlement(FlutterSecureStorage storage) async {
-    try {
-      await storage.containsKey(key: '__crispcloud_entitlement_probe__');
-      return false;
-    } catch (error) {
-      return isMissingEntitlementError(error);
-    }
-  }
 
   /// errSecMissingEntitlement as reported by flutter_secure_storage.
   static bool isMissingEntitlementError(Object error) =>

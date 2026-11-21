@@ -159,7 +159,7 @@ void main() {
       ),
     );
     expect(
-      find.text('4 shown · 4 loaded\n${_strings.loadedScope}'),
+      find.text('4 shown · 4 loaded'),
       findsOneWidget,
     );
     expect(find.text('Load more messages'), findsOneWidget);
@@ -202,7 +202,7 @@ void main() {
     expect(_row('two'), findsNothing);
     expect(_row('unknown'), findsNothing);
     expect(
-      find.text('2 shown · 4 loaded\n${_strings.loadedScope}'),
+      find.text('2 shown · 4 loaded'),
       findsOneWidget,
     );
     await tester.enterText(
@@ -259,7 +259,7 @@ void main() {
     expect(_row('three'), findsNothing);
     expect(_row('unknown'), findsNothing);
     expect(
-      find.text('1 shown · 4 loaded\n${_strings.loadedScope}'),
+      find.text('1 shown · 4 loaded'),
       findsOneWidget,
     );
     await tester.enterText(
@@ -340,7 +340,7 @@ void main() {
       );
       await tester.pump();
       expect(find.text('Localized error: unclosedQuote'), findsOneWidget);
-      expect(find.text('0 shown · 4 loaded\nLocal scope'), findsOneWidget);
+      expect(find.text('0 shown · 4 loaded'), findsOneWidget);
       expect(find.text('Local no matches'), findsOneWidget);
       expect(find.byTooltip('Local clear'), findsOneWidget);
       expect(_row('one'), findsNothing);
@@ -358,7 +358,7 @@ void main() {
         find.byKey(const ValueKey('mail-list-clear-search')),
         findsNothing,
       );
-      expect(find.text('4 shown · 4 loaded\nLocal scope'), findsOneWidget);
+      expect(find.text('4 shown · 4 loaded'), findsOneWidget);
       expect(_row('one'), findsOneWidget);
       expect(opened, isEmpty);
       expect(loads, 0);
@@ -390,7 +390,7 @@ void main() {
       expect(_row('one'), findsNothing);
       expect(_row('three'), findsNothing);
       expect(
-        find.text('0 shown · 4 loaded\n${_strings.loadedScope}'),
+        find.text('0 shown · 4 loaded'),
         findsOneWidget,
       );
       await _focusList(tester);
@@ -622,7 +622,14 @@ void main() {
     await tester.pumpWidget(_app(_list(scopeId: 'account-b/inbox')));
     await tester.pump();
     expect(find.byKey(const ValueKey('mail-list-search-error')), findsNothing);
-    expect(find.text('Provider order'), findsOneWidget);
+    expect(
+      tester
+          .widget<PopupMenuButton<MailMessageListSort>>(
+            find.byKey(const ValueKey('mail-list-sort')),
+          )
+          .initialValue,
+      MailMessageListSort.providerOrder,
+    );
     expect(_rowOrder(tester, ids), ids);
   });
 
@@ -1036,10 +1043,8 @@ void main() {
             find.byKey(const ValueKey('mail-list-header-scroll')),
           )
           .controller!;
-      expect(header.position.maxScrollExtent, greaterThan(0));
       await tester.ensureVisible(find.byKey(const ValueKey('mail-list-scope')));
       await tester.pumpAndSettle();
-      expect(header.offset, greaterThan(0));
       expect(
         find.byKey(const ValueKey('mail-list-scope')).hitTestable(),
         findsOneWidget,

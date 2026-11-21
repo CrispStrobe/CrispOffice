@@ -2465,6 +2465,7 @@ class WordDeserializer {
       if (const {
             'kern',
             'noProof',
+            'smallCaps',
             'lang',
             'rFonts',
           }.contains(reader.localName) &&
@@ -2481,7 +2482,25 @@ class WordDeserializer {
         XmlDocument.readElement(reader);
         continue;
       }
-      props.explicitProperties.add(reader.localName);
+      if (reader.localName == 'rFonts') {
+        for (final group in const <String, Set<String>>{
+          'ascii': {'ascii', 'hAnsi', 'asciiTheme', 'hAnsiTheme'},
+          'cs': {'cs', 'cstheme'},
+        }.entries) {
+          if (group.value.any(
+            (attribute) =>
+                reader.getAttribute(
+                  attribute,
+                  namespaceUri: OfficeNamespaces.w,
+                ) !=
+                null,
+          )) {
+            props.explicitProperties.add('rFonts:${group.key}');
+          }
+        }
+      } else {
+        props.explicitProperties.add(reader.localName);
+      }
       switch (reader.localName) {
         case 'lang':
           props.proofingLanguage = reader.getAttribute(

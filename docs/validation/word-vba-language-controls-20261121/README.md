@@ -18,3 +18,25 @@ progress; this checkpoint does not claim final acceptance. The incoming Mail
 conversation and search slice passed 110 focused local tests at its exact
 captured commit. No GitHub Actions, workflow, check or status queue was queried
 or awaited. The final record will identify accepted source and remaining limits.
+
+## Local implementation checkpoint
+
+The first remote code checkpoint is `521fb2c25c029ef92c94a73dc92f7379baee6c59`
+([PR 308](https://github.com/CrispStrobe/quds_office_suite/pull/308)).
+The corrected source suite passes 110 cases, end-to-end integration passes
+11 cases, and the native/preservation gate passes 187 cases (59 new native
+checks, 98 adjacent regressions and 30 typography integration checks).
+Targeted analysis is clean. These are separate local cohorts, not GitHub CI.
+
+Independent review found and corrected shared namespace-preservation defects
+in small-caps/generated property writes and foreign same-name section metadata.
+The actual BAS now compiles and runs through CLI and MCP, with input and
+existing-output preservation on failure, inert DOCM project retention,
+normal/complex/East Asian slot isolation, repeated save/reopen and record/replay.
+
+The branch is also reconciling current main
+`fcb2128884768553141f41c02bf804e2267f9dbb`, preserving the compact Mail reader,
+keychain write probe and completed conversation-UI history (PRs 306, 307, 309).
+The newly started rich-ODT branch is being independently qualified at its
+captured head before any integration. Its status is not represented as complete.
+Final combined-source regression and VM/JavaScript receipts follow separately.
