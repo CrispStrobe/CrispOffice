@@ -1,0 +1,239 @@
+{
+  "schema": 1,
+  "frozen_source_checkpoint": "5a829066238b94685db5145ff14420e7e7f0928a",
+  "frozen_evidence_checkpoint": "c179c61a198df9b2cd1af3899d6f805159481ce2",
+  "final_source": {
+    "local_commit": "e78cdf408bbd76bb0c60ba26cad3ad22b303ec81",
+    "remote_commit": "78d1f8db5374a6b2739451834708c8fe9f703ed8",
+    "tree": "3ccb17f6ec1c0543c7cc93b0b84a5832ddda28f7"
+  },
+  "checkpoints": [
+    {
+      "role": "frozen_source",
+      "remote_commit": "5a829066238b94685db5145ff14420e7e7f0928a",
+      "tree": "faf0d91961b145e5358f0fd3909a9489933b3e2b",
+      "local_commit": "fb605bd929df92f2e8ec0c7a4e456274e1042665",
+      "whole_tree_identical": true
+    },
+    {
+      "role": "frozen_evidence",
+      "remote_commit": "c179c61a198df9b2cd1af3899d6f805159481ce2",
+      "tree": "7e20d963784db2b3176ad0b393ce162e646efdb8",
+      "local_commit": "ba6022dbb893af89fe3a4163890f1b3994fe01f7",
+      "whole_tree_identical": true
+    },
+    {
+      "role": "later_main_intake",
+      "remote_commit": "0de92d6f42b3b2d1f2df43ef56a7af8e0f49d059",
+      "tree": "1d5f54736a05f9e798705bb795dcb4a7da5dfef3"
+    },
+    {
+      "role": "later_main_integration",
+      "remote_commit": "8afb6f9135bb18f59532e1a6f1ad37b5c6da7ad8",
+      "tree": "5ae30b5a65b43d3096bf823ed3d8f1ef1312b2e7",
+      "local_commit": "4c4f476c039d8c5a91d52b787dedd6f965621e46",
+      "whole_tree_identical": true
+    },
+    {
+      "role": "accepted_renderer_fix",
+      "remote_commit": "78d1f8db5374a6b2739451834708c8fe9f703ed8",
+      "tree": "3ccb17f6ec1c0543c7cc93b0b84a5832ddda28f7",
+      "local_commit": "e78cdf408bbd76bb0c60ba26cad3ad22b303ec81",
+      "whole_tree_identical": true
+    }
+  ],
+  "execution": {
+    "head_commit": "4c4f476c039d8c5a91d52b787dedd6f965621e46",
+    "head_tree": "5ae30b5a65b43d3096bf823ed3d8f1ef1312b2e7",
+    "working_tree_changes_present": true,
+    "explanation": "The accepted test ran with the renderer fix and new test in the working tree on the integrated main baseline. The HEAD tree in its raw receipt does not include those edits. The captured input manifest and both captured source files are bound byte for byte to the subsequent remote fix checkpoint."
+  },
+  "accepted_source_bindings": [
+    {
+      "path": "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart",
+      "sha256": "5c4a407aa068cf1e811575b347331c758becf4850184520761d9cbe3fb7693d4",
+      "git_blob": "2fa8b21b5ecca55e563dd99763c52fbe14526f9c",
+      "captured_archive_member": "validation/page-text-final/green-final/source/packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart",
+      "identical_to_final_git_blob": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_page_text_picture_cache_test.dart",
+      "sha256": "4299b7b60a98bced286f095b09ba00945e83f32218b60d3b016b158d7a15918f",
+      "git_blob": "045ced845f49271cdc2153b530e737508e7c1583",
+      "captured_archive_member": "validation/page-text-final/green-final/source/packages/quds_office_editor/test/word_page_text_picture_cache_test.dart",
+      "identical_to_final_git_blob": true
+    }
+  ],
+  "accepted_input_manifest": {
+    "archive": "evidence.tar.gz",
+    "before_member": "validation/page-text-final/green-final/source-before.json",
+    "after_member": "validation/page-text-final/green-final/source-after.json",
+    "sha256": "8949795b61feee9e8f0584b07019929003b29dcdc3be51a62b2dc3434a20c0fa",
+    "total_entries": 2668,
+    "before_after_identical": true,
+    "git_blob_entries": 2667,
+    "all_tracked_hashes_match_final_git_blobs": true,
+    "runtime_only_inputs": [
+      {
+        "path": ".dart_tool/package_config.json",
+        "sha256": "834c4f9a4523a2bac81001d50d607131f1d96140136625606770022335f610ad",
+        "archive_member": "runtime/package_config.json"
+      }
+    ]
+  },
+  "runtime_environment": {
+    "frozen_archive": "../evidence/runtime-writer-review.tar.gz",
+    "member": "runtime/env.sh",
+    "sha256": "3b955d9e691875eee6e7a864d4279dca7f983431e75aa5a5e3158457d7615472",
+    "identical_to_accepted_environment": true
+  },
+  "unchanged_scopes_from_frozen_source": [
+    {
+      "path": "packages/quds_office_engine/lib",
+      "git_object": "e615436a529f8ade5412002bbaaa33f33bb21e06",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_engine/tool",
+      "git_object": "9f59ecc032a844692053db174c3058eed1ac877c",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_engine/test",
+      "git_object": "492e1bbcc7396ad394e690a873593462eaa5d016",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_editor/example",
+      "git_object": "06088b975eff41db66905f8f1e9f508deb472964",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_mail_core",
+      "git_object": "407fa086fe7ae6a7d7bf5b33906a98f1de0e53c6",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_mail_store",
+      "git_object": "78b0a62a3d649858abd69b763ac1164412a6b8b6",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_mail_transport",
+      "git_object": "a639134e2ebb9da36b8a0b1c59f9a7a1f38576a8",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_mail_mime",
+      "git_object": "b52df11aefcbf668097fe25c27b31e6aaf15a95d",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_mail_ui",
+      "git_object": "3776e505904294ba67f5ad1157bf942b373dca96",
+      "identical": true
+    },
+    {
+      "path": "third_party",
+      "git_object": "ea59395f2db91760ce742cad60962f4f25286d87",
+      "identical": true
+    },
+    {
+      "path": "pubspec.yaml",
+      "git_object": "ba34bf9e2c1b0eb583e5f9e2d9ba9f236a660f96",
+      "identical": true
+    },
+    {
+      "path": "pubspec.lock",
+      "git_object": "121a4f969c34933bd72f4ccce39bd08b30a4c147",
+      "identical": true
+    },
+    {
+      "path": "analysis_options.yaml",
+      "git_object": "e40c961c5eda58a8470527fb768f093aa7dbbfff",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_editor/pubspec.yaml",
+      "git_object": "cecd56ff9e121d32d165c32d50b76310895058a0",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_engine/pubspec.yaml",
+      "git_object": "2bdff7e5dcac2502253ab190b6e7104c21a3d024",
+      "identical": true
+    }
+  ],
+  "source_deltas": [
+    {
+      "from": "c179c61a198df9b2cd1af3899d6f805159481ce2",
+      "to": "8afb6f9135bb18f59532e1a6f1ad37b5c6da7ad8",
+      "dart_paths": [
+        "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart"
+      ]
+    },
+    {
+      "from": "8afb6f9135bb18f59532e1a6f1ad37b5c6da7ad8",
+      "to": "78d1f8db5374a6b2739451834708c8fe9f703ed8",
+      "dart_paths": [
+        "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart",
+        "packages/quds_office_editor/test/word_page_text_picture_cache_test.dart"
+      ]
+    },
+    {
+      "from": "5a829066238b94685db5145ff14420e7e7f0928a",
+      "to": "78d1f8db5374a6b2739451834708c8fe9f703ed8",
+      "dart_paths": [
+        "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart",
+        "packages/quds_office_editor/test/word_page_text_picture_cache_test.dart"
+      ]
+    }
+  ],
+  "ancestry": [
+    {
+      "ancestor": "c179c61a198df9b2cd1af3899d6f805159481ce2",
+      "descendant": "8afb6f9135bb18f59532e1a6f1ad37b5c6da7ad8"
+    },
+    {
+      "ancestor": "0de92d6f42b3b2d1f2df43ef56a7af8e0f49d059",
+      "descendant": "8afb6f9135bb18f59532e1a6f1ad37b5c6da7ad8"
+    },
+    {
+      "ancestor": "8afb6f9135bb18f59532e1a6f1ad37b5c6da7ad8",
+      "descendant": "78d1f8db5374a6b2739451834708c8fe9f703ed8"
+    }
+  ],
+  "intake_followup": {
+    "previous_frozen_source": "5a829066238b94685db5145ff14420e7e7f0928a",
+    "later_main": "0de92d6f42b3b2d1f2df43ef56a7af8e0f49d059",
+    "integration_checkpoint": "8afb6f9135bb18f59532e1a6f1ad37b5c6da7ad8",
+    "accepted_incoming_prs": [
+      337,
+      339
+    ],
+    "scope": "Separately bounded later-main followup after the original 383-ref and publication 386-ref records. Those historical records and their deferred PR336 disposition remain unchanged here.",
+    "full_paths_changed_from_frozen_evidence_to_fix": [
+      "docs/roadmaps/typing-autocorrect-performance.md",
+      "docs/validation/zotero-odt-images-20261121/README.md",
+      "docs/validation/zotero-odt-images-20261121/integration/archive-contents.json",
+      "docs/validation/zotero-odt-images-20261121/integration/converter-receipt.json",
+      "docs/validation/zotero-odt-images-20261121/integration/execution.tar.gz",
+      "docs/validation/zotero-odt-images-20261121/integration/local-summary.json",
+      "docs/validation/zotero-odt-images-20261121/integration/publication-frontier.json",
+      "docs/validation/zotero-odt-images-20261121/integration/source-binding.json.gz",
+      "docs/validation/zotero-odt-images-20261121/integration/summary.json",
+      "docs/validation/zotero-odt-images-20261121/integration/supplemental-word-receipt.json",
+      "docs/validation/zotero-odt-images-20261121/publication-paint/archive-contents.json",
+      "docs/validation/zotero-odt-images-20261121/publication-paint/execution.tar.gz",
+      "docs/validation/zotero-odt-images-20261121/publication-paint/receipt.json",
+      "docs/validation/zotero-odt-images-20261121/publication-paint/summary.json",
+      "docs/validation/zotero-odt-images-20261121/publication-reconciliation.json",
+      "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart",
+      "packages/quds_office_editor/test/word_page_text_picture_cache_test.dart",
+      "packages/quds_office_engine/CHANGELOG.md"
+    ]
+  },
+  "applicability": "Engine lib/tool/test, Mail package source, Studio example source and recorded dependency metadata remain byte-identical to the frozen source. The editor renderer changed and is covered by the accepted 36-case followup with five new retained-versus-fresh raster cases. The 3,452 total is a union of accepted identities across documented source checkpoints, not a claim that every case was executed again on the final fix tree.",
+  "converter_scope": "No converter replay is claimed in this addendum. The frozen converter evidence is preserved; its engine lib/tool inputs remain unchanged.",
+  "excluded_attempts": "The red raster failure and rejected green compiler attempt are preserved in distinct archive directories. None of their passes are added to accepted totals."
+}
