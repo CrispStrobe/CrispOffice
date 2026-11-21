@@ -1,3 +1,10 @@
+## Unreleased
+
+- Add Boolean query guidance and expression/depth errors to loaded mailbox
+  search, preserving conjunctive quick filters, fail-closed results, checked
+  selection pruning and stale-action guards. Keep parenthesized and negated
+  help examples left-to-right within RTL prose.
+
 ## 0.1.0
 
 - Preserve the `remoteImageUris` compatibility spelling for the same immutable

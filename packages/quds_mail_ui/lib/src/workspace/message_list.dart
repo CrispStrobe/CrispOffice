@@ -63,14 +63,18 @@ final class MailMessageListStrings {
     this.searchHelp = 'Search help',
     this.searchHelpTitle = 'Search loaded message headers',
     this.searchHelpText =
-        'Combine terms to require every match. Use from:, to:, cc:, subject:, '
-        'is:read, is:unread, is:flagged or is:unflagged. '
-        'Use before:YYYY-MM-DD, after:YYYY-MM-DD or on:YYYY-MM-DD for dates. '
-        'Before and after exclude the specified date. '
-        'Put phrases in double quotes and keep values next to the colon. '
+        'Separate terms or use AND to require every match. Use OR for '
+        'alternatives and NOT or a leading - to exclude a match. '
+        'NOT applies before AND, then OR; parentheses group conditions. '
+        'Use from:, to:, cc:, subject:, is:read, is:unread, is:flagged '
+        'or is:unflagged. Use before:YYYY-MM-DD, after:YYYY-MM-DD or '
+        'on:YYYY-MM-DD for dates. Before and after exclude the named day. '
+        'Unknown dates and flags remain unknown, including with NOT. '
+        'Put phrases or literal operators in double quotes. '
         'Only loaded message headers are searched. '
-        'Body text, attachments, OR/NOT/AND, wildcards and grouping are not '
-        'supported.',
+        'Use at most 1,024 characters, 32 terms, 32 explicit operators '
+        'and 8 nested groups. Body text, attachments and wildcards '
+        'are not searched.',
     this.close = 'Close',
     this.sort = 'Sort loaded messages',
     this.providerOrder = 'Provider order',
@@ -150,11 +154,16 @@ String _defaultSearchError(MailHeaderSearchError error) => switch (error) {
     'Use is:read, is:unread, is:flagged or is:unflagged.',
   MailHeaderSearchError.invalidDate => 'Enter a valid date as YYYY-MM-DD.',
   MailHeaderSearchError.unsupportedOperator =>
-    'Use separate terms to match all. Search operators are not supported.',
+    'Wildcards, brackets and symbolic operators are not supported.',
+  MailHeaderSearchError.invalidExpression =>
+    'Complete each AND, OR or NOT expression and balance parentheses. '
+    'Use at most 32 explicit operators.',
+  MailHeaderSearchError.nestingTooDeep =>
+    'Use no more than 8 nested groups.',
 };
 
 final _searchExampleLine = RegExp(
-  r'^\s*(?:from|subject|to|cc|is|before|after|on):',
+  r'^\s*(?:[-(]\s*|NOT\b\s*)*(?:from|subject|to|cc|is|before|after|on):',
   caseSensitive: false,
 );
 
