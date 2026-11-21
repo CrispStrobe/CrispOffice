@@ -1,0 +1,181 @@
+{
+  "identity": [
+    "repository-relative suite path",
+    "test name"
+  ],
+  "editor_publication_cases": 499,
+  "renderer_followup_executions": 28,
+  "renderer_repeated_cases": 27,
+  "renderer_additional_cases": 1,
+  "distinct_editor_cases": 500,
+  "repeated_renderer_cases": [
+    {
+      "suite": "packages/quds_office_editor/test/word_proofing_capture_cache_test.dart",
+      "name": "reused field-opening snapshots still propagate field depth across sections"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_proofing_capture_cache_test.dart",
+      "name": "warm capture notices noProof and language changes without text edits"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_proofing_capture_cache_test.dart",
+      "name": "warm capture rechecks parent locks and revision guards on unchanged text"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_proofing_capture_cache_test.dart",
+      "name": "warm empty and generated paragraphs keep current language and coverage"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+      "name": "compact proofing hits use story text inside default header bands"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+      "name": "full-page footer keeps exact proofing pointer hits"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+      "name": "full-page header keeps exact proofing pointer hits"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+      "name": "generated field text receives no findings or squiggles"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+      "name": "generated header labels cannot paint source squiggles"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+      "name": "mixed bidi source ranges have disjoint boxes and span wrapped lines"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+      "name": "note presentation labels cannot acquire authored source ranges"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+      "name": "repeated header text maps only to its matching source occurrence"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+      "name": "right-click header hits use measured glyphs and alignment"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+      "name": "right-click source hits distinguish repeated body, table, and footnote text"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+      "name": "squiggles follow paragraph identity through body and table text and clear on refresh"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+      "name": "zero-length finding at body end remains visible"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+      "name": "zero-length finding at header end remains visible"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_selection_paint_test.dart",
+      "name": "Word-like selection golden (Windows grey) (variant: TargetPlatform.windows)"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_selection_paint_test.dart",
+      "name": "Word-like selection golden (variant: TargetPlatform.macOS)"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_selection_paint_test.dart",
+      "name": "selection band geometry a line with mixed font sizes gets one even band"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_selection_paint_test.dart",
+      "name": "selection band geometry a selection ending at the paragraph end leaves the mark out"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_selection_paint_test.dart",
+      "name": "selection band geometry an empty paragraph shows only its mark block"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_selection_paint_test.dart",
+      "name": "selection band geometry multi-line selection is seamless, stops at the text and adds a paragraph-mark block"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_selection_paint_test.dart",
+      "name": "selection band geometry paragraph spacing before and after is not highlighted"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_selection_paint_test.dart",
+      "name": "selection band geometry right-to-left paragraphs show the mark on the left"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_selection_paint_test.dart",
+      "name": "selection colour defaults to Word's colour per platform and stays configurable"
+    },
+    {
+      "suite": "packages/quds_office_editor/test/word_selection_paint_test.dart",
+      "name": "whole cells are filled; a selection inside one cell is not"
+    }
+  ],
+  "additional_renderer_cases": [
+    {
+      "suite": "packages/quds_office_editor/test/word_selection_path_cache_test.dart",
+      "name": "table-band repaint matches a fresh selection canvas"
+    }
+  ],
+  "final_nonoverlapping_scope_counts": {
+    "engine": 2698,
+    "editor_distinct": 500,
+    "studio_zotero": 41,
+    "mail_core": 6,
+    "mail_store": 107,
+    "mail_studio": 92
+  },
+  "final_scope_identity_sha256": {
+    "engine": "038a6c9e01344df113dc73871bcaf3f473fbe1c7f682ce917a15507e9d3ffe7d",
+    "editor_distinct": "9a4f761f081c5c654ff20161d8f14115930933c7d368cf221f8b4ac0725ebcab",
+    "studio_zotero": "a6f378f2c4d643f1e738c80b450f06e41fde23a57aa9f7333ff89b3bd7eb5650",
+    "mail_core": "a4281f00bda0b431737c699571c224ac4018c52e478e49e79939f5914fcf37fd",
+    "mail_store": "c8e91bdb9a02d5bfb0c6642422fa4ff6e82afcb75e558a3e758e26a1039f6e41",
+    "mail_studio": "3ea70d57f5b6e8388b13342a39488a92891bfdc82b8b82bdf65c3498c463463b"
+  },
+  "distinct_accepted_cases": 3444,
+  "raw_event_sources": {
+    "engine": {
+      "archive": "publication.tar.gz",
+      "member": "validation/publication-replay/engine/events.jsonl"
+    },
+    "editor": {
+      "archive": "publication.tar.gz",
+      "member": "validation/publication/editor/events.jsonl"
+    },
+    "renderer": {
+      "archive": "renderer-followup.tar.gz",
+      "member": "validation/final-main/renderer/events.jsonl"
+    },
+    "studio_zotero": {
+      "archive": "publication.tar.gz",
+      "member": "validation/publication/studio/events.jsonl"
+    },
+    "mail_core": {
+      "archive": "mail.tar.gz",
+      "member": "validation/mail-intake/core-events.jsonl"
+    },
+    "mail_store": {
+      "archive": "mail.tar.gz",
+      "member": "validation/mail-intake/store-events.jsonl"
+    },
+    "mail_studio": {
+      "archive": "mail.tar.gz",
+      "member": "validation/mail-intake/studio-events.jsonl"
+    }
+  },
+  "not_added": [
+    "Historical prepublication3152 executions",
+    "Rejected engine partial1703 passes",
+    "Initial writer150/1 and first writer108/1",
+    "Focused writer109 overlapping full engine suite",
+    "Repeated27 final renderer cases"
+  ]
+}
