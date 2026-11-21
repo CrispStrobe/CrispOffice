@@ -4,6 +4,15 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Add bounded Word VBA `Font.Position` assignments through typed aliases,
+  helpers and independent header/footer selectors. Native run formatting,
+  DOCX inheritance and sparse serialization retain signed half-point positions
+  and explicit zero overrides. Headless/PDF layout moves the baseline without
+  resizing text, including incremental and note-copy paths; logical text,
+  comparison and stale-operation identity remain intact. Include an executable
+  BAS example, versioned source corpus, native/layout and CLI/MCP tests. See the
+  [position contract](../../docs/VBA_WORD_MACROS.md#baseline-position-without-resizing-text).
+
 - Extend Word VBA with typed `Shading` bindings on selected Paragraph/Range
   objects, RGB/automatic and fixed-palette background assignments, and all 60
   named `WdColor` constants. Add guarded native `docx.paragraphShading` with

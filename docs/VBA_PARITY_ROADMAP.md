@@ -352,6 +352,24 @@ locale comparison, general VBA coercion or installed Office qualification.
 See the [exact contract](VBA_MACROS.md#binary-search-replacement-and-trimming)
 and [intake and local evidence](validation/word-vba-continuation-20261121/README.md).
 
+### Independent Word baseline positioning
+
+The Word adapter supports `Font.Position` on the existing explicit paragraph
+and independent header/footer selectors, including typed aliases and named
+`ByVal` helpers. Source writes use signed whole points; native JSON accepts
+exact half-points. The native model imports, inherits, copies and sparsely
+exports `w:position`, including an explicit zero that overrides a style.
+Font size and logical text remain independent from the baseline displacement.
+
+Headless layout, incremental translation, note copies, PDF text order, editor
+paint grouping, comparison and stale-document fingerprints retain positioning.
+This remains a bounded Stage 4 write-only extension, without Stage 3 reads,
+embedded VBA execution, general ODT/RTF position interchange or installed Word
+differential qualification. See the
+[exact contract](VBA_WORD_MACROS.md#baseline-position-without-resizing-text),
+[BAS example](../packages/quds_office_engine/example/macros/word_font_position.bas)
+and [local qualification](validation/word-vba-typography-20261121/README.md).
+
 ### Next shared-language increments
 
 Keep multidimensional arrays and array parameter passing as separate increments

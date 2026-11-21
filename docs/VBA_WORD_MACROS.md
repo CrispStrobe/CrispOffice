@@ -160,6 +160,7 @@ geometry has its separate mapping below.
 | `range.Font.Italic = value` | `docx.runFormat` | `italic: value` |
 | `range.Font.Size = value` | `docx.runFormat` | `size: value` in points |
 | `range.Font.Kerning = value` | `docx.runFormat` | `kerning: value`, a minimum font-size threshold in points |
+| `range.Font.Position = value` | `docx.runFormat` | `position: value`, signed whole-point baseline displacement |
 | `range.NoProofing = value` | `docx.runFormat` | `noProof: value` |
 | `range.LanguageID = value` or `range.LanguageIDOther = value` | `docx.runFormat` | `language`: the supported normal-slot BCP47 tag below |
 | `range.Font.Name = value` | `docx.runFormat` | `font: value` |
@@ -1775,6 +1776,72 @@ font-metric parity. See [local qualification](validation/word-vba-all-caps-20261
 and Microsoft's [AllCaps](https://learn.microsoft.com/en-us/office/vba/api/word.font.allcaps)
 and [SmallCaps](https://learn.microsoft.com/en-us/office/vba/api/word.font.smallcaps)
 contracts.
+
+### Baseline position without resizing text
+
+An explicitly selected paragraph's `Font.Position` raises or lowers its current
+text while preserving font size and authored text. Positive points raise the
+text, negative points lower it, and an explicit zero overrides inherited
+positioning. Typed `Font` aliases, nested `With`, required `ByVal Font` helpers,
+named helper arguments, and independent header/footer paragraphs retain their
+existing selector identities.
+
+```vb
+Sub OffsetText(ByVal target As Font, ByVal points As Long)
+    target.Position = points
+End Sub
+
+Sub Main()
+    OffsetText target:=ActiveDocument.Paragraphs(1).Range.Font, points:=3
+    ActiveDocument.Paragraphs(2).Range.Font.Position = -2
+    ActiveDocument.Paragraphs(3).Range.Font.Position = 0
+End Sub
+```
+
+Microsoft defines the source property as a `Long` measured in points. This
+bounded dialect accepts exact integer values in **-1584..1584**; the envelope
+is a Quds resource/geometry restriction, not a claim about Microsoft's full
+accepted range. Fractional points, numeric strings, Booleans, Empty, Null and
+mixed-state constants are refused without coercion or rounding. Integral
+Double/Variant values can pass the existing strict numeric check. No readable
+`Position`, `Selection`, arbitrary text subrange, or document-dependent source
+evaluation is introduced.
+
+Each assignment emits one ordinary `docx.runFormat` operation with signed point
+`position`. The native operation separately accepts exact **half-points** in
+the same envelope for JSON callers. DOCX stores signed half-points in
+`w:position/@w:val`: source `Position = 3` writes `6`; zero is emitted explicitly
+when it owns an inheritance override. Existing signed-integer half-point
+imports remain representable independently of the narrower macro envelope.
+Unsupported source measurements, duplicate native properties/values and
+ambiguous native ownership are refused before a selected write. Foreign XML
+metadata and unrelated direct/inherited properties retain sparse ownership.
+
+Native layout adds the signed displacement to existing superscript/subscript
+baseline behavior; `Position` itself does not select a script mode or resize
+the font. The mode's existing font-size reduction and baseline shift remain
+independent. Position is retained through run copies, run splitting, note
+layout, incremental paragraph translation, editor paint grouping, formatting
+comparison and stale-operation fingerprints. PDF painting uses the displaced
+baseline while logical text is retained for extraction. No new ODT/RTF
+position interchange is claimed by this increment.
+
+The [complete BAS example](../packages/quds_office_engine/example/macros/word_font_position.bas)
+uses three existing body paragraphs and an independently owned primary header.
+Its five operations demonstrate positive/negative/zero writes, named typed
+helpers and preservation of an unrelated bold edit. The existing transaction,
+validation-only, policy, recording/replay and inert DOCM preservation boundaries
+apply. Empty text still refuses run formatting rather than changing paragraph
+mark insertion formatting.
+
+The [versioned corpus](../packages/quds_office_engine/test/fixtures/vba_conformance/word_font_position_v1.json)
+contains independently authored expected plans and positioned refusals; the
+[local qualification record](validation/word-vba-typography-20261121/README.md)
+distinguishes native/portable/editor execution from an installed Microsoft Word
+differential run, which has not been performed.
+
+Primary references: Microsoft's [Font.Position](https://learn.microsoft.com/en-us/office/vba/api/word.font.position)
+and [OOXML Position](https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.wordprocessing.position).
 
 ### Proofing and kerning controls
 

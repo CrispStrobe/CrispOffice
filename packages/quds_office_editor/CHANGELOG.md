@@ -4,6 +4,10 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Retain native Word font baseline positions when grouping painted glyphs and
+  fingerprinting document/history/proofing state. Raised and lowered text keep
+  separate painting groups and a position-only change invalidates stale work.
+
 - Native Mail Outbox adds **Send later**, saved UTC deadlines, explicit Resume
   after reopening and a ten-second pre-submission Undo window. Pause on app
   suspension, account change or Outbox close; fence stale timing edits and
