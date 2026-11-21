@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Add bounded `watchMailboxView` and `watchMailboxViews` streams for saved
+  browse windows and folder catalogs. Publish complete snapshots after
+  successful commits, including flag journal acknowledgements and later
+  observations, while keeping absent views distinct from empty folders.
+  Preserve ordering, capture times, quotas and account isolation; coalesce
+  updates while paused, drain cancelled reads and complete on repository close.
+
 - Add schema-v7 read-only reconciliation of completed uncertain flag receipts.
   Retain the original uncertain outcomes and problems while recording one
   immutable matches/differs/missing/identity-changed observation per item.

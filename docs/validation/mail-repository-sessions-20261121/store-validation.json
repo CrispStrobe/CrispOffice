@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "scope": "Bounded cached mailbox view and folder catalog repository streams",
+  "validation_date": "2026-11-21",
+  "source_base_commit": "2cd11ced136a30354169fd0043e002079bcabfa3",
+  "source_binding": "Working-tree source hashes at validation; base commit does not include this increment.",
+  "source_files": {
+    "packages/quds_mail_store/lib/src/mailbox_views.dart": "3f466009ca6113a2c34b7654f5693389aa4ec7cac34eba8783da786878e4d35f",
+    "packages/quds_mail_store/test/mailbox_view_streams_test.dart": "6b0d1db0a82bd6d36570bba99ef259374f51ddbbe4b9529db22040f46d3e99cf",
+    "packages/quds_mail_store/test/mailbox_views_test.dart": "89140a51f7ef75c4974bd31441aa2d464473f3f3fc5e790f49c0041cb7db0934",
+    "packages/quds_mail_store/test/flag_journal_test.dart": "6094ab25022406d84f5efd7f4f91799b125d8838a65a8c41a0a29321621c3575",
+    "packages/quds_mail_store/test/flag_reconciliation_test.dart": "78780cfd31996435ee5061ade629fa0a5ec41f5bb34c684dde44b43b36e73c6e",
+    "packages/quds_mail_store/CHANGELOG.md": "3e3c031212faabb8953ab4c241a0df63eb7dd5217922c8a6c7f6aa4e98983e8c",
+    "packages/quds_mail_store/pubspec.yaml": "c19f88e29dc3f530505d992e9f79c287336f9ee0310b081c6cfa0017a5c626b6",
+    "pubspec.lock": "0d64a732cd7f6c7cc4e1e01255276f081b59e6f43039636c3d36f6785a958ce2"
+  },
+  "source_trees": {
+    "packages/quds_mail_core/lib": {
+      "algorithm": "sha256(sorted relative path + NUL + file sha256 + LF)",
+      "file_count": 16,
+      "sha256": "3bffd430a20eeb05bb4fb468a009b082488a2259def07e9b753054e02c782877"
+    },
+    "packages/quds_mail_store/lib": {
+      "algorithm": "sha256(sorted relative path + NUL + file sha256 + LF)",
+      "file_count": 36,
+      "sha256": "de4885947a610bb0ef7a18b929300a03dc42008bb8f04cc4daa2e3477c10654c"
+    }
+  },
+  "toolchain": {
+    "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+    "test_package": "1.31.1 (workspace locked dependency)",
+    "sqlite3_package": "3.9.1 (workspace locked dependency)",
+    "native_asset_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+    "native_asset_mapping_sha256": "715fa675a4138f02bfb157a9a56adce78ea2179accc10d3191d73bbc3ab7de94",
+    "native_asset": "Actual sqlite3 build-hook downloaded Linux x64 library; no substitute implementation."
+  },
+  "environment_command": "source /workspace/scratch/1a7ed08f64fe/mail-runtime/env.sh",
+  "working_directory": "packages/quds_mail_store",
+  "checks": [
+    {
+      "command": "dart format lib/src/mailbox_views.dart test/mailbox_view_streams_test.dart",
+      "result": "PASS",
+      "exit_code": 0,
+      "summary": "Formatted 2 files (0 changed) in final format check."
+    },
+    {
+      "command": "dart analyze --fatal-infos",
+      "result": "PASS",
+      "exit_code": 0,
+      "summary": "No issues found!"
+    },
+    {
+      "command": "dart --disable-dart-dev --packages=/workspace/scratch/1a7ed08f64fe/quds_office_suite/.dart_tool/package_config.json /workspace/scratch/1a7ed08f64fe/mail-runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart --compiler=kernel --platform vm --reporter expanded test/mailbox_view_streams_test.dart test/mailbox_views_test.dart test/flag_journal_test.dart test/flag_reconciliation_test.dart",
+      "result": "PASS",
+      "exit_code": 0,
+      "test_executions": 117,
+      "new_stream_scenarios": 11,
+      "summary": "00:01 +117: All tests passed!"
+    }
+  ],
+  "launcher_limitation": {
+    "attempted_command": "dart test test/mailbox_view_streams_test.dart test/mailbox_views_test.dart test/flag_journal_test.dart test/flag_reconciliation_test.dart",
+    "observed": "SQLite build hook completed and produced a native asset mapping. The ordinary test launcher did not reach test output and was manually interrupted (exit 130).",
+    "fallback": "Used the repository-supported direct package:test launcher with the same locked test package, kernel compiler, VM platform, package config and real native SQLite asset.",
+    "github_actions": "Not awaited or used as acceptance evidence."
+  },
+  "boundaries": [
+    "Deterministic local native SQLite tests only.",
+    "No live mail providers, installed application platforms, browser persistence or background synchronization qualified."
+  ]
+}
