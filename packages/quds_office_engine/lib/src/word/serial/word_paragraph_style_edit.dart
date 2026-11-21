@@ -110,8 +110,137 @@ final class _ParagraphStyleEdit {
         _refuse('refuses duplicate native ${child.localName} properties');
       }
     }
+    const paragraphProperties = {
+      'pStyle',
+      'jc',
+      'spacing',
+      'ind',
+      'keepNext',
+      'keepLines',
+      'pageBreakBefore',
+      'numPr',
+      'pBdr',
+      'framePr',
+      'tabs',
+      'outlineLvl',
+      'suppressAutoHyphens',
+      'bidi',
+      'rPr',
+    };
+    const runProperties = {
+      'rStyle',
+      'lang',
+      'rtl',
+      'cs',
+      'noProof',
+      'b',
+      'bCs',
+      'i',
+      'iCs',
+      'strike',
+      'dstrike',
+      'smallCaps',
+      'caps',
+      'color',
+      'highlight',
+      'kern',
+      'sz',
+      'szCs',
+      'u',
+      'vertAlign',
+      'rFonts',
+      'emboss',
+      'imprint',
+      'outline',
+      'shadow',
+      'vanish',
+    };
+    const attributeNames = {
+      'val',
+      'themeColor',
+      'themeShade',
+      'themeTint',
+      'ascii',
+      'hAnsi',
+      'cs',
+      'eastAsia',
+      'asciiTheme',
+      'hAnsiTheme',
+      'cstheme',
+      'eastAsiaTheme',
+      'before',
+      'after',
+      'line',
+      'lineRule',
+      'left',
+      'right',
+      'start',
+      'end',
+      'firstLine',
+      'hanging',
+      'pos',
+      'leader',
+      'type',
+      'fill',
+      'color',
+      'sz',
+      'space',
+      'dropCap',
+      'lines',
+    };
     void visit(XmlElement node) {
       _attributes(node);
+      if (!identical(node, root)) {
+        final property = node.localName;
+        final expected = <String>{
+          if (paragraphProperties.contains(property)) 'pPr',
+          if (runProperties.contains(property)) 'rPr',
+          if (property == 'shd') ...['pPr', 'rPr'],
+          if (const {'numId', 'ilvl'}.contains(property)) 'numPr',
+          if (property == 'tab') 'tabs',
+          if (const {
+            'top',
+            'left',
+            'bottom',
+            'right',
+            'between',
+            'bar',
+            'start',
+            'end',
+          }.contains(property))
+            'pBdr',
+        };
+        // pStyle's projection and reader explicitly ignore namespace
+        // lookalikes. Other native parsers still accept some local names;
+        // refuse those inputs instead of returning a value that changes on
+        // save/reopen. Benign extension attributes/children remain opaque.
+        final foreignStyle =
+            property == 'pStyle' &&
+            node.namespaceUri != _w &&
+            identical(node.parent, root);
+        if (expected.isNotEmpty &&
+            !foreignStyle &&
+            (node.namespaceUri != _w ||
+                node.parent?.namespaceUri != _w ||
+                !expected.contains(node.parent?.localName))) {
+          _refuse('refuses foreign or nested formatting-property lookalikes');
+        }
+        if (node.namespaceUri == _w && expected.isNotEmpty) {
+          for (final attribute in node.attributes) {
+            if (attribute.namespaceUri != _w &&
+                attribute.prefix != 'xmlns' &&
+                attribute.qualifiedName != 'xmlns' &&
+                attributeNames.contains(attribute.localName) &&
+                !(property == 'pStyle' && attribute.localName == 'val')) {
+              _refuse('refuses ambiguous foreign formatting attributes');
+            }
+          }
+        }
+      }
+      if (node.namespaceUri == _w &&
+          const {'sectPr', 'pPrChange', 'rPrChange'}.contains(node.localName)) {
+        return;
+      }
       if (node.namespaceUri == OfficeNamespaces.mc &&
               node.localName == 'AlternateContent' ||
           (node
@@ -212,6 +341,9 @@ final class _ParagraphStyleEdit {
     if (builtin != null && !_builtins.containsKey(builtin)) {
       throw ArgumentError('Unsupported Word built-in paragraph style.');
     }
+    if (WordFieldSpans.unbalanced(document).isNotEmpty) {
+      _refuse('cannot preserve unbalanced modeled field boundaries');
+    }
     final package = document.package;
     if (package == null) _refuse('requires existing native styles');
     final office = _relationship(
@@ -238,6 +370,18 @@ final class _ParagraphStyleEdit {
       _refuse('requires a native styles root');
     }
     _packageAlternatives(package);
+    // Native source remains authoritative for this bounded operation. A host
+    // may have replaced/removed a model style since import; save would then
+    // rewrite its definition after this edit resolved the old native cascade.
+    final modeledIds = <String>{};
+    if (document.styles.any(
+          (style) =>
+              !modeledIds.add(style.id) ||
+              !identical(style, document.importedStyles[style.id]),
+        ) ||
+        document.importedStyles.keys.any((id) => !modeledIds.contains(id))) {
+      _refuse('requires synchronized native and modeled style definitions');
+    }
     final styles = <String, XmlElement>{};
     final names = <String, String>{};
     String? defaultParagraph;
@@ -419,13 +563,6 @@ final class _ParagraphStyleEdit {
         before.listRestart != null) {
       _refuse('does not restyle actively numbered paragraphs');
     }
-    final oldStyle = before.styleId ?? defaultParagraph;
-    if (oldStyle != null &&
-        (styles[oldStyle] == null ||
-            (_attribute(styles[oldStyle]!, 'type') ?? 'paragraph') !=
-                'paragraph')) {
-      _refuse('requires a resolved existing paragraph style');
-    }
     _fragment(before.sourcePropertiesXml, 'pPr');
     final prepared = WmlClone.paragraph(target);
     final serializer = WordSerializer();
@@ -433,6 +570,18 @@ final class _ParagraphStyleEdit {
       serializer.paragraphPropertiesXml(prepared.properties),
       'pPr',
     );
+    // Use explicit sparse ownership, not a style ID inferred by the model from
+    // an outline level. Pending style edits have just been serialized here.
+    final oldReference = _child(direct, 'pStyle');
+    final oldStyle = oldReference == null
+        ? defaultParagraph
+        : _requiredValue(oldReference, 'val');
+    if (oldStyle != null &&
+        (styles[oldStyle] == null ||
+            (_attribute(styles[oldStyle]!, 'type') ?? 'paragraph') !=
+                'paragraph')) {
+      _refuse('requires a resolved existing paragraph style');
+    }
     for (final run in prepared.inlines.whereType<WmlRun>()) {
       final style = run.properties.styleId;
       if (style != null &&

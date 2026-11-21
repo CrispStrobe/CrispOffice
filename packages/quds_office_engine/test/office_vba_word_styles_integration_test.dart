@@ -51,7 +51,7 @@ void main() {
       final session = OfficeMacroSession(input, format: OfficeMacroFormat.docx);
       final plan = portable.wordStylesPlan('''
 With ActiveDocument.Paragraphs(1).Range
-  .Text = "Revised title"
+  .InsertBefore "Revised "
   .Font.Bold = False
   .ParagraphFormat.SpaceBefore = 7
   .Style = wdStyleHeading1
@@ -65,7 +65,7 @@ End With
       await session.run(plan);
       final document = WordDeserializer().readBytes(session.bytes);
       final first = document.paragraphs.first;
-      expect(first.text, 'Revised title');
+      expect(first.text, 'Revised Report title');
       expect(first.properties.styleId, 'ReportBody');
       expect(first.properties.spacingBefore, 7);
       expect(first.properties.spacingAfter, 8);

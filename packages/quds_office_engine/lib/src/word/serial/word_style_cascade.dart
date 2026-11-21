@@ -1032,7 +1032,7 @@ class _StyleCascade {
         ..next(),
       p.properties,
     );
-    if (tableLayers.isNotEmpty) {
+    if (tableLayers.isNotEmpty && !nativeOnly) {
       if (pp.firstChild('spacing')?.getAttribute('after') == null) {
         p.properties.spacingAfter = old.spacingAfter;
       }

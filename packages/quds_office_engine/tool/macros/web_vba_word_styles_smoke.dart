@@ -105,6 +105,10 @@ void _check(bool condition, String message) {
   if (!condition) throw StateError(message);
 }
 
+String _stylesXml(Uint8List bytes) => XmlDocument.parse(
+  OpcPackage.openBytes(bytes).getPart('/word/styles.xml')!.readText(),
+).toXmlString(declaration: false);
+
 /// Independent expected values: style-derived formatting changes, previously
 /// authored direct formatting and the untouched fourth paragraph do not.
 void assertWordStylesExample(Uint8List bytes) {
@@ -157,10 +161,7 @@ void assertWordStylesExample(Uint8List bytes) {
     'Style assignment damaged opaque pStyle metadata or namespace ownership',
   );
   _check(
-    OpcPackage.openBytes(bytes).getPart('/word/styles.xml')!.readText() ==
-        OpcPackage.openBytes(
-          wordStylesInput(),
-        ).getPart('/word/styles.xml')!.readText(),
+    _stylesXml(bytes) == _stylesXml(wordStylesInput()),
     'Style assignment rewrote style definitions',
   );
 }
