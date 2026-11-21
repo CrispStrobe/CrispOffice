@@ -1528,7 +1528,9 @@ Choose a document style with Zotero first if the document has active fields but
 no saved preferences.
 
 Supported inline PNG and upright RGB JPEG pictures keep their raster bytes,
-size, links, titles and alternative descriptions in the editable ODT copy.
+physical size, links, accessible titles and alternative descriptions in the
+editable ODT copy. Duplicate or empty drawing-object names receive deterministic
+unique names; the accessible metadata and original document objects are retained.
 Reopening the supported subset retains one picture at each original position
 and keeps adjacent citations editable. The document-wide limit is 32 pictures
 and 4 MiB of image-file bytes, with the same raster bounds as Add Zotero Note.

@@ -4,6 +4,9 @@ Status: **Bounded horizontal/vertical merged-table input is locally qualified
 by the [editable-output continuation](../../validation/zotero-editable-odt-20261121/README.md).
 Imported decimal endnotes retain their numbering through DOCX saves. Earlier
 rich-import and LibreOffice style results retain their original sources.
+The [picture continuation](../../validation/zotero-odt-images-20261121/README.md)
+adds bounded embedded inline PNG/JPEG input, with local lifecycle checks and
+separately retained LibreOfficeDev converter evidence.
 The separate [native-output contract](native-odt-output.md) now defines explicit
 editable ODT copy export. Installed-host/plugin acceptance remains open.**
 
@@ -446,6 +449,8 @@ Zotero and plugin versions. Current LibreOffice acceptance cannot establish it.
 
 Increment 1 remains a read-only capability. Increments 2 through 5 convert a bounded
 native ODT subset into an editable Word document that saves as DOCX. These
-increments do not change ordinary ODT export or establish complete plugin parity or
-installed-host acceptance for Zotero, Word, LibreOffice or legacy Apache
-OpenOffice.
+increments do not establish complete plugin parity or installed-host acceptance
+for Zotero, Word, LibreOffice or legacy Apache OpenOffice. Ordinary ODT export
+retains its cached Zotero citation behavior; the picture continuation also fixes
+its placeholder emission, accessible metadata, image-run styling and drawing
+names.
