@@ -167,8 +167,9 @@ void main() {
     () {
       final document = _fixture();
       native.applyStep(document, _step('width', 612));
-      final size = _section(WordSerializer().writeBytes(document))
-          .firstChild('pgSz', namespaceUri: _w)!;
+      final size = _section(
+        WordSerializer().writeBytes(document),
+      ).firstChild('pgSz', namespaceUri: _w)!;
       expect(size.getAttribute('code', namespaceUri: _w), isNull);
       expect(size.getAttribute('code', namespaceUri: _x), 'foreign-paper');
       expect(size.getAttribute('w', namespaceUri: _w), '12240');
@@ -224,8 +225,9 @@ void main() {
       'width': 900,
     });
     native.applyStep(document, _step('height', 800));
-    final size = _section(WordSerializer().writeBytes(document))
-        .firstChild('pgSz', namespaceUri: _w)!;
+    final size = _section(
+      WordSerializer().writeBytes(document),
+    ).firstChild('pgSz', namespaceUri: _w)!;
     expect(size.getAttribute('w', namespaceUri: _w), '18000');
     expect(size.getAttribute('h', namespaceUri: _w), '16000');
     expect(size.getAttribute('orient', namespaceUri: _w), 'landscape');
@@ -256,8 +258,9 @@ void main() {
   test('imported sparse groups do not acquire unrelated attributes', () {
     final document = _fixture(margins: '<w:pgMar w:top="1440"/>');
     native.applyStep(document, _step('left', 36));
-    final margins = _section(WordSerializer().writeBytes(document))
-        .firstChild('pgMar', namespaceUri: _w)!;
+    final margins = _section(
+      WordSerializer().writeBytes(document),
+    ).firstChild('pgMar', namespaceUri: _w)!;
     expect(margins.getAttribute('top', namespaceUri: _w), '1440');
     expect(margins.getAttribute('left', namespaceUri: _w), '720');
     expect(margins.getAttribute('right', namespaceUri: _w), isNull);
@@ -272,8 +275,9 @@ void main() {
           'n:header="720" n:footer="720" w:left="foreign"/>',
     );
     native.applyStep(document, _step('left', 48));
-    final margins = _section(WordSerializer().writeBytes(document))
-        .firstChild('pgMar', namespaceUri: _w)!;
+    final margins = _section(
+      WordSerializer().writeBytes(document),
+    ).firstChild('pgMar', namespaceUri: _w)!;
     expect(margins.getAttribute('left', namespaceUri: _w), '960');
     expect(margins.getAttribute('left', namespaceUri: _x), 'foreign');
   });
@@ -290,8 +294,9 @@ void main() {
       'height': 900,
     });
     native.applyStep(document, _step('left', 48));
-    final size = _section(WordSerializer().writeBytes(document))
-        .firstChild('pgSz', namespaceUri: _w)!;
+    final size = _section(
+      WordSerializer().writeBytes(document),
+    ).firstChild('pgSz', namespaceUri: _w)!;
     expect(size.getAttribute('token', namespaceUri: _x), 'keep');
     expect(size.getAttribute('token', namespaceUri: _w), isNull);
     expect(size.firstChild('metadata', namespaceUri: _x), isNotNull);
