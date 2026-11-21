@@ -276,5 +276,29 @@ every keystroke and came back with every check. Keeping unaffected marks
 (moved with the text) and skipping notifications that change no mark removed
 both.
 
-HOSTED_RESULTS
+#### Hosted runners (workflow `Typing proofing benchmark`, run 44875203604)
+
+Base `84046975`, branch `3de1a21f` (the scheduler of this change). Three runs
+per job; each variant ran on its own runner VM. The counters were identical
+in every run and match the local runs: passes 11 → 41, provider calls 22 →
+44, language detection 11 → 3, session notifications 22 → 6, status label
+changes 7 → 5, workspace rebuilds 13 → 10, findings 66 → 65.
+
+| Runner | Variant | Handler p50 / p95 (ms) | Frame p50 / p95 (ms) | Timer work p50 / p95 (ms) | Slow keystrokes | Provider time (ms) |
+|---|---|---|---|---|---|---|
+| ubuntu-latest | before | 3.9 / 6.6 · 3.8 / 6.5 · 3.8 / 6.9 | 5.7 / 13.1 · 5.3 / 12.2 · 5.3 / 13.3 | 0.3 / 5.4 · 0.3 / 5.2 · 0.3 / 5.0 | 27 · 23 · 26 | 165 · 133 · 135 |
+| ubuntu-latest | after | 4.3 / 8.3 · 4.3 / 7.3 · 4.1 / 7.1 | 6.3 / 11.8 · 6.3 / 11.1 · 6.0 / 10.8 | 0.4 / 8.9 · 0.5 / 9.1 · 0.4 / 8.9 | 28 · 26 · 23 | 156 · 155 · 165 |
+| macos-latest | before | 6.1 / 13.1 · 6.2 / 11.3 · 5.5 / 11.6 | 10.7 / 24.7 · 10.4 / 28.9 · 9.6 / 28.2 | 0.7 / 7.7 · 0.7 / 11.6 · 0.6 / 7.8 | 169 · 177 · 123 | 198 · 230 · 158 |
+| macos-latest | after | 6.1 / 15.8 · 5.7 / 11.6 · 7.7 / 20.4 | 10.7 / 26.7 · 9.0 / 21.5 · 14.9 / 40.9 | 0.7 / 13.5 · 0.6 / 11.5 · 1.0 / 15.8 | 167 · 118 · 259 | 185 · 179 · 243 |
+
+On the stable Ubuntu runners, frame p95 is about 1.5 ms lower and handler p95
+about 0.8 ms higher. Timer work between keystrokes p95 rises by about 4 ms
+because word checks now run in those gaps. Slow keystrokes are unchanged. The
+shared macOS runners vary more within one job than between variants, and
+their third "after" run was an outlier. Treat the timing differences as
+within noise. The measured effect is in the counters.
+
+The `Studio example tests` jobs of the same run fail only
+`dump_gallery_shots_test` on the branch. The baseline fails the same test,
+plus `studio_mail_cached_host_test`. The other 1780 tests pass on the branch.
 
