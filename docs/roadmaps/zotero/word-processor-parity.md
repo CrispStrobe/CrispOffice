@@ -48,7 +48,7 @@ results retain their original source and platform attribution.
 | DOCX persistence | Active fields/preferences, native notes, rich bibliography structure, tables and embedded pictures use supported save/reopen paths | Local tests are separate from actual Word/LibreOffice application round trips |
 | Cross-word-processor transfer | Native export/import handshake, temporary metadata hyperlinks, DOCX import/save/reopen and ODT carrier export; complete native formatting before import publication | The qualified DOCX carrier route and native ODT conversion have separate envelopes; installed Zotero/Word/LibreOffice plugin acceptance remains open and actual converter findings are retained |
 | Native ODT inspection | Read-only inventory of citation ReferenceMarks, bibliography TextSections, exact story/paragraph/cell ownership, cached text and original preferences; JSON diagnostic CLI | Inspection reports eligibility and findings without publishing an editable document |
-| Native ODT import | Bounded rich paragraphs/styles, hyperlinks, authored notes, simple lists and unmerged/nested tables; canonical Zotero fields and preferences convert to an editable Word document; asynchronous editor/Studio opening and DOCX save/reopen | Used unsupported structure/formatting refuses atomically; the untouched LibreOfficeDev 26.8 sample still refuses an active paragraph property; native editable ODT output and installed-plugin acceptance remain open |
+| Native ODT import | Bounded rich paragraphs/styles, hyperlinks, authored notes, simple lists and unmerged/nested tables; canonical Zotero fields and preferences convert to an editable Word document; retained LibreOffice prose with independent script formatting; asynchronous editor/Studio opening and DOCX save/reopen | Used unsupported structure/formatting refuses atomically; content-sensitive guards limit dormant defaults; native editable ODT output and installed-plugin acceptance remain open |
 
 The native controls use Zotero's own CSL processor. The separate basic/offline
 citation and single-item preview/export paths retain their narrower formatting
@@ -350,11 +350,28 @@ active citations. Ordinary ODT export remains a cached-result path.
 The [rich-import record](../../validation/zotero-rich-odt-20261121/README.md)
 separates synthetic parser/style tests, controlled Zotero refresh/placement
 transactions, DOCX persistence and editor/Studio checks from actual host
-acceptance. The untouched LibreOfficeDev 26.8 sample refuses active
-`fo:hyphenation-ladder-count`; other script-specific defaults remain unqualified.
-That original file is not claimed as supported. This increment does not
-establish full Word/LibreOffice plugin parity, an installed Zotero round trip or
-legacy Apache OpenOffice compatibility.
+acceptance. Its historical LibreOfficeDev 26.8 style refusal is addressed by the
+next increment. These changes do not establish full Word/LibreOffice plugin
+parity, an installed Zotero round trip or legacy Apache OpenOffice compatibility.
+
+## Delivered increment: retained LibreOffice styles
+
+The [style continuation record](../../validation/zotero-libreoffice-styles-20261121/README.md)
+retains the untouched LibreOfficeDev prose fixture, its source DOCX and exact
+hashes. The importer resolves its full supported style envelope, preserving
+Latin 11-point and Arabic 10-point text through repeated DOCX saves. A separately
+identified synthetic Zotero extension keeps the same style XML while exercising
+canonical fields, multi-paragraph bibliography refresh, preferences, unknown
+metadata and exact UTF-16 ownership.
+
+Independent script settings resolve through inheritance and become ordinary
+editable native runs. Later formatting edits synchronize only importer-owned
+script projections. Paragraph/page defaults are accepted only when supported
+or demonstrably inactive for the current content: active Asian typography,
+uncertain break locales, nonstandard tabs, active grids and used custom footnote
+separators remain explicit refusals. This conversion does not retain a complete
+ODF style engine for later content changes. The source review and local checks
+are separate from an installed Word/LibreOffice/Zotero interoperability session.
 
 ## Next implementation and acceptance steps
 
@@ -363,11 +380,11 @@ legacy Apache OpenOffice compatibility.
    Word/LibreOffice and their actual Zotero plugins. Resolve any converter findings
    against identified release versions. Check citations, rich bibliographies,
    authored notes, tables, images and repeated transfers. Extend the bounded
-   [native ODT reader](native-odt-input.md) from preserved real documents,
-   beginning with active LibreOffice defaults and script-specific formatting.
-   Keep the untouched sample's refusal visible until its full content is
-   supported. Native editable ODT output needs a separate contract; the
-   implemented rich import saves active fields as DOCX.
+   [native ODT reader](native-odt-input.md) from additional preserved real
+   documents, using the retained prose/style qualification as a baseline.
+   Active Asian typography and richer note/page structures retain their own
+   acceptance requirements. Native editable ODT output needs a separate contract;
+   the implemented rich import saves active fields as DOCX.
 2. **Extend table structure and formatting.** Improve merged-row height distribution and map
    header/footer row groups and custom styles to native structures with explicit
    ownership. Qualify their citation order, geometry, save/reopen behavior and

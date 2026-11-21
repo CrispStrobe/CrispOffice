@@ -52,8 +52,8 @@ GitHub Actions and status checks are not queried or awaited.
 - Resolve independent complex-script and Asian font, size, weight, italic and
   language settings across named/default/automatic style inheritance. Resolve
   percentage sizes against the corresponding inherited script size.
-- Materialize the current source text into ordinary native runs when scalar
-  settings differ. Keep supplementary Unicode, combining marks, hyperlinks and
+- Materialize the current source text into ordinary native runs when scalar,
+  font or language routing differs. Keep supplementary Unicode, combining marks, hyperlinks and
   original UTF-16 positions. A shared 100,000-run limit also bounds alternating
   script input.
 - Preserve native complex/Asian slots in DOCX. Private ignorable provenance
@@ -68,14 +68,45 @@ GitHub Actions and status checks are not queried or awaited.
   directory. A synthetic extension injects canonical Zotero fields and
   preferences while leaving the production style envelope unchanged.
 
-The first development cohort opened the untouched ODT and passed its synthetic
-Zotero edit/refresh case. A new combined hyperlink/citation test exposed a
-field-ownership mismatch that is still being reviewed. Final counts, commands,
-source identities and complete passing results will replace this provisional
-execution note before merging.
+The first development cohort completed 344 passing cases and one failed test
+whose hyperlink-bearing citation cache was outside the existing editable
+ownership contract. The corrected fixture checks hyperlink and citation ranges
+independently; the production ownership guard is unchanged. Independent review
+also identified non-RTL complex font/language routing and script context across
+formatting-span boundaries. Both receive targeted corrections and regressions.
+Final counts, commands, source identities and complete passing results will
+replace this provisional execution note before merging.
 
 The [typography source review](lo-typography-research.md) records the pinned
 LibreOffice implementation behind the content/language guards. Its conclusion
 is an inference from source and the fixture, not a new rendered LibreOffice
 session. Conversion preserves the supported current content; it does not retain
 all dormant ODF style behavior for future typing or future Zotero replacements.
+
+## Concurrent incoming work
+
+The [later intake snapshot](final-intake-20261121T144155Z.json) covers 31 fork
+branches, 311 fork PR heads, four upstream branches and four upstream PR heads.
+Of 350 refs, 345 were already represented by snapshot main, one was this work
+branch, and four refs represented three new concurrent heads. There were no
+unclassified refs. This supplements rather than changes the initial intake.
+
+The newly arrived Word VBA AllCaps PR #311 was a draft with qualification still
+pending; the mail continuation retained an implementation/qualification plan;
+the German proofing/localization commit was explicitly WIP. Their ongoing branch
+tips are preserved separately. The VBA change overlaps `word_property_io.dart`
+and Word serialization, so any completed version reaching main before this
+work merges requires ordinary history reconciliation and affected regression
+checks. The final publication record will state the actual main cutoff.
+
+## Preserved remote checkpoints
+
+| Commit | Scope |
+| --- | --- |
+| `2aa7833239ec4507a4a9db1c7f23c84bd01b4028` | Complete initial/expanded remote intake and the retained-fixture milestone contract. |
+| `2e3280a175814dab7fccf14363f8dd1785acc78e` | First production implementation, exact binary fixtures and regression sources; qualification still in progress. |
+
+Remote writes use the authenticated GitHub Git Data API because this checkout
+has no shell HTTPS push credential. Every tree is verified against the local
+Git tree before publishing; every branch move is non-forced and leased against
+the expected prior head. Commit messages use `[skip ci]`.

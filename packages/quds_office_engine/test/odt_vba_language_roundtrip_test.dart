@@ -119,6 +119,7 @@ void _expectDocument(
   for (var index = 0; index < paragraphs.length; index++) {
     final paragraph = paragraphs[index];
     expect(paragraph.properties.spacingAfter, 6);
+    var offset = 0;
     for (final run in paragraph.inlines.whereType<WmlRun>()) {
       final properties = run.properties;
       expect(properties.asciiFont, _latinFont);
@@ -130,16 +131,28 @@ void _expectDocument(
       expect(properties.complexScriptLanguage, _complexLanguage);
       expect(properties.fontSizeHalfPoints, 24);
       expect(properties.noProof, isFalse);
-      final emphasized = run.text == 'Book العربية';
+      final emphasisStart = _prefix.length + 1;
+      final emphasisEnd = emphasisStart + 'Book العربية'.length;
+      final emphasized =
+          index == 1 &&
+          offset < emphasisEnd &&
+          offset + run.text.length > emphasisStart;
       expect(properties.italic, emphasized);
-      if (emphasized) expect(properties.color, '123456');
+      if (emphasized) {
+        expect(offset, greaterThanOrEqualTo(emphasisStart));
+        expect(offset + run.text.length, lessThanOrEqualTo(emphasisEnd));
+        expect(properties.color, '123456');
+      }
+      offset += run.text.length;
     }
   }
   expect(
-    paragraphs[1].inlines.whereType<WmlRun>().where(
-      (run) => run.text == 'Book العربية',
-    ),
-    hasLength(1),
+    paragraphs[1].inlines
+        .whereType<WmlRun>()
+        .where((run) => run.properties.italic)
+        .map((run) => run.text)
+        .join(),
+    'Book العربية',
   );
 }
 
