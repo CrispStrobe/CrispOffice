@@ -40,6 +40,7 @@ are neither consulted nor awaited.
 | `bc901aa1724684748d82448377f383ab2938ab18` | Complete numeric integration receipts and ancestry replay |
 | `b31594736634f4edc1bfed1ab43dca31c06416b7` | Preserve subsequently landed main `2fdc0883` / PR #344 configurable workspace shortcuts |
 | `26e12bc3787f6b350cf185a14c6622bb9ac587f0` | Semantic workspace shortcut replacement, Mail isolation, released direction chords and actual dispatch regressions |
+| `e9192f18597f10e44cc5dffd0b54ec45e904f697` | Passing shortcut/settings/Mail-isolation receipts, with overlapping cases counted once |
 
 The final scope recheck closes an independently reproduced design gap: account
 A can be retired after its last page while account B is still being scanned.
@@ -63,10 +64,12 @@ advanced after the initial intake and remain active independent work:
 These are states at that capture. Word numeric authoring subsequently completed
 its qualification and landed on main as `e5940c79`. The Mail branch incorporates
 that exact main and its Word head in `3d49a13d`; its only new production change
-is the bounded numeric-intrinsic dispatch. The two later Zotero draft heads
-remain independent and were not promoted by this Mail increment.
+is the bounded numeric-intrinsic dispatch. Zotero PR #333 subsequently completed
+and landed as `ac94cb3f`; that exact main and its independently qualified
+position guard are also preserved before final publication. The note-layout
+head captured for draft PR #342 remains independent.
 
-The [final main reconciliation](main-reconciliation.json) replays all 163
+The [Word-main reconciliation](main-reconciliation.json) replays all 163
 initial observations with zero uncovered heads, preserves the complete engine
 tree from landed main, and verifies that all Mail/editor production and active
 dependency manifests are unchanged from the accepted Mail source. The only
@@ -189,6 +192,24 @@ The correction is scoped to workspace dispatch. Several built-in shortcuts are
 handled directly by the embedded Word editor before reaching its ancestor;
 fully authoritative caret-level remapping remains a separate editor-input
 task and is not claimed by these tests.
+
+### Final landed Zotero continuation
+
+Main advanced to `ac94cb3f` with completed PR #333 during the final workspace
+gate. Its production delta is a 15-line preflight guard in editable Zotero ODT
+export; it has no overlap with the Mail/shortcut source or active manifests.
+The [continuity receipt](zotero-main-continuity.json) verifies the incoming
+writer, test and comparison oracle against published source hashes and reads
+the actual 11-case passing guard reporter from the hash-verified archive.
+
+The merged engine tree remains exactly
+`e5ceceb6577810a2ca8b924f83f631e26c57547f`, matching both incoming main and its
+qualified checkpoint `ca726cd6`. The complete editor/Mail package trees and
+active dependency inputs remain identical to locally qualified `26e12bc3`.
+This independent published qualification is retained under its original scope;
+its cases are not added to the 436 locally executed distinct cases, and no
+fresh converter or full-repository run is implied. The merge preserves all
+earlier source/evidence checkpoints through actual ancestry.
 
 ### Evidence
 

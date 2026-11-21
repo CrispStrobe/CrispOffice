@@ -1,0 +1,79 @@
+{
+  "schema": "quds-zotero-publication-followup-v1",
+  "created_utc": "2026-11-21T20:46:20.818257+00:00",
+  "source_commit": "ca726cd687a64a89cdd2b8e5df3f61dc57f4ca25",
+  "source_tree": "8011024075bed83b30388d8deec72de2149886ad",
+  "integrated_main": "e5940c79120859dbbeb99be0907f3443e696f10a",
+  "previous_source_commit": "4b33109aa85e077e2798265efa045d640e6ead4e",
+  "previous_publication_commit": "f1f8a8e368b392b3a65330c03b27806fe4179f40",
+  "production_delta": [
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+    "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart"
+  ],
+  "fresh_checks": {
+    "engine": {
+      "passed_cases": 356,
+      "suites": 4
+    },
+    "editor": {
+      "passed_cases": 195,
+      "suites": 17,
+      "includes_nested_frame_golden": true
+    },
+    "total_passed_cases": 551,
+    "total_suites": 21,
+    "failed": 0,
+    "skipped": 0,
+    "static_targets": 6,
+    "static_passed": true,
+    "all_captured_inputs_unchanged": true,
+    "source_binding": {
+      "file": "publication-followup-source-binding.json",
+      "bytes": 1215218,
+      "sha256": "1db9dd78c313c74cc40c8a224425dab694f8e79b07502813a5b7a142ad778253"
+    }
+  },
+  "historical_scope": {
+    "publication_record": "publication.json",
+    "qualified_source": "4b33109aa85e077e2798265efa045d640e6ead4e",
+    "passed_cases": 2363,
+    "suites": 109,
+    "added_to_followup_count": false,
+    "blocked_position_integration_cases": 4,
+    "all_original_requested_tests_passed": false
+  },
+  "converter_continuity": {
+    "new_converter_execution": false,
+    "all_three_tools_unchanged": true,
+    "reachable_workspace_dart_files_per_tool": 386,
+    "all_reachable_workspace_sources_captured_and_unchanged": true,
+    "changed_broad_snapshot_observer": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+    "changed_observer_reachable_from_converter_tools": false,
+    "runtime_configuration_and_captured_dependency_manifests_unchanged": true,
+    "retained_kernel_byte_scan_corroborates_exclusion": true,
+    "evidence_kind": "Conservative static import/export/part closure plus retained-kernel byte inspection; not a new compiler dependency trace or host run.",
+    "report": {
+      "file": "publication-followup-continuity.json",
+      "bytes": 293218,
+      "sha256": "65d62d23c620b06d855616eea774c4867dc3df812591ba56fc0b063d52c0a250"
+    }
+  },
+  "preserved_previous_records": 25,
+  "archive": {
+    "file": "publication-followup.tar.gz",
+    "bytes": 483019,
+    "sha256": "44af2cc0370b892f428823ddf467e1984e25bd6bc2a12389f2eb06b0bffcf01b",
+    "members": 53,
+    "uncompressed_bytes": 2169674,
+    "all_members_verified": true,
+    "deterministic_rebuild_matched": true,
+    "manifest": {
+      "file": "publication-followup-archive-contents.json",
+      "bytes": 15333,
+      "sha256": "850bde15b24ec8dd7509b7b7e2e2560344455f20145dd9c03231f328babbdcd6"
+    }
+  },
+  "diagnostics": "Initial static-selector preparation failure and audit-parser false positive are preserved without qualification credit.",
+  "github_actions_queried": false,
+  "github_actions_awaited": false
+}

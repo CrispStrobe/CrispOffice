@@ -285,6 +285,7 @@ Map<String, Object?> _runStyle(WmlRunProps p) => {
   'asciiFont': p.asciiFont,
   'csFont': p.csFont,
   'verticalAlignment': p.vertAlign.name,
+  'positionHalfPoints': p.positionHalfPoints,
 };
 
 Map<String, Object?> _model(WmlDocument document) {

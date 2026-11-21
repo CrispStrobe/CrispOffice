@@ -1,0 +1,335 @@
+{
+  "all_archive_members_verified": true,
+  "all_inputs_unchanged_during_packaging": true,
+  "archive_file": "publication-followup.tar.gz",
+  "archive_sha256": "44af2cc0370b892f428823ddf467e1984e25bd6bc2a12389f2eb06b0bffcf01b",
+  "archive_size_bytes": 483019,
+  "baseline_commit": "4b33109aa85e077e2798265efa045d640e6ead4e",
+  "deterministic_rebuild_matched": true,
+  "entries": [
+    {
+      "path": "builder/build_zotero_publication_followup_evidence.py",
+      "sha256": "8e6415f26dfb59d3c4dd45b6853d7de9807b6ad396faa7c2aa5ffe04c45152ca",
+      "size_bytes": 17465,
+      "source": "build_zotero_publication_followup_evidence.py"
+    },
+    {
+      "path": "builder/collection-policy.json",
+      "sha256": "e3cbd19a4f08c2f6c4b99038c156f728e95e6d389633e5544efd04608c454bd7",
+      "size_bytes": 1219,
+      "source": "generated collection policy"
+    },
+    {
+      "path": "changed-test-inputs/packages/quds_office_engine/test/fixtures/vba_conformance/word_numeric_intrinsics_v1.json",
+      "sha256": "af521544e836caad03a61960dbfa0386b18023421d7afe7efb655f3ea080fb1d",
+      "size_bytes": 47939,
+      "source": "git:ca726cd687a64a89cdd2b8e5df3f61dc57f4ca25:packages/quds_office_engine/test/fixtures/vba_conformance/word_numeric_intrinsics_v1.json"
+    },
+    {
+      "path": "changed-test-inputs/packages/quds_office_engine/test/office_vba_numeric_conformance_test.dart",
+      "sha256": "28d01dceaddf070a6ec3676eb35509199acf79525eec78a0c04902666a4b3354",
+      "size_bytes": 1259,
+      "source": "git:ca726cd687a64a89cdd2b8e5df3f61dc57f4ca25:packages/quds_office_engine/test/office_vba_numeric_conformance_test.dart"
+    },
+    {
+      "path": "changed-test-inputs/packages/quds_office_engine/test/office_vba_numeric_intrinsics_test.dart",
+      "sha256": "39996b74e245028d96b7601d5f64781dd9c4b2a4c6266631a1104277da3e09dd",
+      "size_bytes": 11306,
+      "source": "git:ca726cd687a64a89cdd2b8e5df3f61dc57f4ca25:packages/quds_office_engine/test/office_vba_numeric_intrinsics_test.dart"
+    },
+    {
+      "path": "fresh-followup-qualification/editor/cases.json",
+      "sha256": "383c62a950ad1fd90d0402b19327008a79643d68f2cb677804e33355bcabc85c",
+      "size_bytes": 56613,
+      "source": "zotero-qualification-post-main-e594/editor/cases.json"
+    },
+    {
+      "path": "fresh-followup-qualification/editor/command.json",
+      "sha256": "c9cfbbcf80605f45cabbc0ab0d2cf6b2d180722f51f0836f47d4940ed1988481",
+      "size_bytes": 994,
+      "source": "zotero-qualification-post-main-e594/editor/command.json"
+    },
+    {
+      "path": "fresh-followup-qualification/editor/events.jsonl",
+      "sha256": "153a12f27644497d1ddd39069c43acc3495d0e629ecf297c72fdf315b301983d",
+      "size_bytes": 109545,
+      "source": "zotero-qualification-post-main-e594/editor/events.jsonl"
+    },
+    {
+      "path": "fresh-followup-qualification/editor/inputs-after.json",
+      "sha256": "ca6a6e40863326ba122dcb5698ee2286ca4e9e8da0ddaf7fa19a0d949016dd3b",
+      "size_bytes": 129878,
+      "source": "zotero-qualification-post-main-e594/editor/inputs-after.json"
+    },
+    {
+      "path": "fresh-followup-qualification/editor/inputs-before.json",
+      "sha256": "ca6a6e40863326ba122dcb5698ee2286ca4e9e8da0ddaf7fa19a0d949016dd3b",
+      "size_bytes": 129878,
+      "source": "zotero-qualification-post-main-e594/editor/inputs-before.json"
+    },
+    {
+      "path": "fresh-followup-qualification/editor/receipt.json",
+      "sha256": "56203a6399ff28494d340ee1cbe3a1b919d961d21f999cb1ad24bdb3bc808cd8",
+      "size_bytes": 2294,
+      "source": "zotero-qualification-post-main-e594/editor/receipt.json"
+    },
+    {
+      "path": "fresh-followup-qualification/editor/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-qualification-post-main-e594/editor/stderr.log"
+    },
+    {
+      "path": "fresh-followup-qualification/engine/cases.json",
+      "sha256": "2b109dd76c3e43c91acd8e71407f5f947dbd820de730145842d47682b1d2c06f",
+      "size_bytes": 111469,
+      "source": "zotero-qualification-post-main-e594/engine/cases.json"
+    },
+    {
+      "path": "fresh-followup-qualification/engine/command.json",
+      "sha256": "7403e488f9232ed832a365633c1f5a0116ca80384ec7a449fa2e445154c284dc",
+      "size_bytes": 553,
+      "source": "zotero-qualification-post-main-e594/engine/command.json"
+    },
+    {
+      "path": "fresh-followup-qualification/engine/events.jsonl",
+      "sha256": "7853fbd63df53b7221771acce95b2759eb7b91e44322164697e4beb9e39e53e0",
+      "size_bytes": 173835,
+      "source": "zotero-qualification-post-main-e594/engine/events.jsonl"
+    },
+    {
+      "path": "fresh-followup-qualification/engine/inputs-after.json",
+      "sha256": "6e70331e3915e875f545ed99ab73c7259882f86547b33c8cfb458b437ff970c7",
+      "size_bytes": 127632,
+      "source": "zotero-qualification-post-main-e594/engine/inputs-after.json"
+    },
+    {
+      "path": "fresh-followup-qualification/engine/inputs-before.json",
+      "sha256": "6e70331e3915e875f545ed99ab73c7259882f86547b33c8cfb458b437ff970c7",
+      "size_bytes": 127632,
+      "source": "zotero-qualification-post-main-e594/engine/inputs-before.json"
+    },
+    {
+      "path": "fresh-followup-qualification/engine/plan.json",
+      "sha256": "ea3b883210317d858b1bda3269d0bd0475900cb72565644d3d3c3afaca3fd1bb",
+      "size_bytes": 990,
+      "source": "zotero-qualification-post-main-e594/engine/plan.json"
+    },
+    {
+      "path": "fresh-followup-qualification/engine/receipt.json",
+      "sha256": "1bd1ec4041aa50c26aa5d3b5aea02be61a02862e59c56b2817bc3e70fa6a3007",
+      "size_bytes": 1805,
+      "source": "zotero-qualification-post-main-e594/engine/receipt.json"
+    },
+    {
+      "path": "fresh-followup-qualification/engine/runner.py",
+      "sha256": "92408c893c6a189b18ca5635c3fd70a12d59d24a5fb0a25e154a3a2bf8e77918",
+      "size_bytes": 6966,
+      "source": "zotero-qualification-post-main-e594/engine/runner.py"
+    },
+    {
+      "path": "fresh-followup-qualification/engine/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-qualification-post-main-e594/engine/stderr.log"
+    },
+    {
+      "path": "fresh-followup-qualification/input-union.json",
+      "sha256": "c156dfa07b46181d0110064b5d389e06ead7acb7a75546e5714c2cde277960c0",
+      "size_bytes": 130761,
+      "source": "zotero-qualification-post-main-e594/input-union.json"
+    },
+    {
+      "path": "fresh-followup-qualification/plan.json",
+      "sha256": "c847a9c565047fa9ed1c52a074950f31035c65c03059a495ac7a75f63a3a9409",
+      "size_bytes": 1039,
+      "source": "zotero-qualification-post-main-e594/plan.json"
+    },
+    {
+      "path": "fresh-followup-qualification/qualification-summary.json",
+      "sha256": "40ef2fa91c9d9c058837e4f6059d2169cdbb438d1ac7d3477a90caad365d1f0f",
+      "size_bytes": 2234,
+      "source": "zotero-qualification-post-main-e594/qualification-summary.json"
+    },
+    {
+      "path": "fresh-followup-qualification/run_followup_qualification.py",
+      "sha256": "a1914382760415a47653ea57a34f8813aae554d8f33122b933f6133ca0bbcac0",
+      "size_bytes": 7314,
+      "source": "zotero-qualification-post-main-e594/run_followup_qualification.py"
+    },
+    {
+      "path": "fresh-followup-qualification/run_followup_static.py",
+      "sha256": "8cc4838572f4bd8f6948f1919bff76405379634a988162c2eec8189da24d5427",
+      "size_bytes": 4545,
+      "source": "zotero-qualification-post-main-e594/run_followup_static.py"
+    },
+    {
+      "path": "fresh-followup-qualification/static-preparation-attempt/receipt.json",
+      "sha256": "ed1451a7d8b7bdcf97d73c1c81afc580a3e7f32f47160b31ed7e2e880e026acf",
+      "size_bytes": 890,
+      "source": "zotero-qualification-post-main-e594/static-preparation-attempt/receipt.json"
+    },
+    {
+      "path": "fresh-followup-qualification/static-preparation-attempt/runner.py",
+      "sha256": "63016ccdda10feaf0c7ab677edf49c5f15ddcea4aadc3f460ef2592cc3a22ab1",
+      "size_bytes": 4206,
+      "source": "zotero-qualification-post-main-e594/static-preparation-attempt/runner.py"
+    },
+    {
+      "path": "fresh-followup-qualification/static/analysis-quds_office_editor.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-qualification-post-main-e594/static/analysis-quds_office_editor.stderr"
+    },
+    {
+      "path": "fresh-followup-qualification/static/analysis-quds_office_editor.stdout",
+      "sha256": "de8fbb4b1ba8504a9ab7586495ebec9d0d897f9feac7bf291926d297e3ec1b35",
+      "size_bytes": 54,
+      "source": "zotero-qualification-post-main-e594/static/analysis-quds_office_editor.stdout"
+    },
+    {
+      "path": "fresh-followup-qualification/static/analysis-quds_office_engine.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-qualification-post-main-e594/static/analysis-quds_office_engine.stderr"
+    },
+    {
+      "path": "fresh-followup-qualification/static/analysis-quds_office_engine.stdout",
+      "sha256": "7bbc34f2b7737e65c643c5dc4fa3764c53bad47fbfe2be4fe8ccf2c043d072bd",
+      "size_bytes": 224,
+      "source": "zotero-qualification-post-main-e594/static/analysis-quds_office_engine.stdout"
+    },
+    {
+      "path": "fresh-followup-qualification/static/diff-check.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-qualification-post-main-e594/static/diff-check.stderr"
+    },
+    {
+      "path": "fresh-followup-qualification/static/diff-check.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-qualification-post-main-e594/static/diff-check.stdout"
+    },
+    {
+      "path": "fresh-followup-qualification/static/format.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-qualification-post-main-e594/static/format.stderr"
+    },
+    {
+      "path": "fresh-followup-qualification/static/format.stdout",
+      "sha256": "80dc073d23d75bc6e12ef9d333ec4a75d1f1e90dafb1be530ceff7e2d51d6af1",
+      "size_bytes": 47,
+      "source": "zotero-qualification-post-main-e594/static/format.stdout"
+    },
+    {
+      "path": "fresh-followup-qualification/static/inputs-after.json",
+      "sha256": "ad5ebf89e490a0053b10f1d46d7b4ca2d6057690661982ec4e18eb55b57a41b4",
+      "size_bytes": 128080,
+      "source": "zotero-qualification-post-main-e594/static/inputs-after.json"
+    },
+    {
+      "path": "fresh-followup-qualification/static/inputs-before.json",
+      "sha256": "ad5ebf89e490a0053b10f1d46d7b4ca2d6057690661982ec4e18eb55b57a41b4",
+      "size_bytes": 128080,
+      "source": "zotero-qualification-post-main-e594/static/inputs-before.json"
+    },
+    {
+      "path": "fresh-followup-qualification/static/receipt.json",
+      "sha256": "13aab9d9bf3b4f8d11504529f3a9b0a98ad1da50c39df4b7bb5ec39bbf3b2272",
+      "size_bytes": 5348,
+      "source": "zotero-qualification-post-main-e594/static/receipt.json"
+    },
+    {
+      "path": "fresh-followup-qualification/static/worktree-check.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-qualification-post-main-e594/static/worktree-check.stderr"
+    },
+    {
+      "path": "fresh-followup-qualification/static/worktree-check.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "source": "zotero-qualification-post-main-e594/static/worktree-check.stdout"
+    },
+    {
+      "path": "fresh-followup-qualification/summarize_followup.py",
+      "sha256": "9378e25d333a0e5629920f3b1d4301426ec233c4ffef29c7074777be32348733",
+      "size_bytes": 5987,
+      "source": "zotero-qualification-post-main-e594/summarize_followup.py"
+    },
+    {
+      "path": "fresh-followup-qualification/test-event-audit.json",
+      "sha256": "cc514fb3688e8f0c599cedcd41c86292fdfb3b771bc9aeecf2d5e952a5260143",
+      "size_bytes": 866,
+      "source": "zotero-qualification-post-main-e594/test-event-audit.json"
+    },
+    {
+      "path": "independent-review/build_zotero_publication_followup.py",
+      "sha256": "4badc7394765f2e9af2c97978b97320c7b0dc210e7ca31f5eafa6bbb63fa4899",
+      "size_bytes": 15694,
+      "source": "build_zotero_publication_followup.py"
+    },
+    {
+      "path": "independent-review/build_zotero_source_binding_v2.py",
+      "sha256": "3625246c5f794a1646dc0551da59dac465af56a53b9fb4a6e9d4414bd8b324da",
+      "size_bytes": 18486,
+      "source": "build_zotero_source_binding_v2.py"
+    },
+    {
+      "path": "independent-review/development/build_zotero_publication_followup.py",
+      "sha256": "e583294597e82c3a94f1c94bbc4675c2eebfa157b0a00799141fbc245d674c0c",
+      "size_bytes": 15481,
+      "source": "zotero-publication-followup-development/build_zotero_publication_followup.py"
+    },
+    {
+      "path": "independent-review/development/zotero-publication-followup-continuity.json",
+      "sha256": "a567ea935449dc54d731da42566cc6897ee642c3e904efc64cdf4bcb242b7793",
+      "size_bytes": 316866,
+      "source": "zotero-publication-followup-development/zotero-publication-followup-continuity.json"
+    },
+    {
+      "path": "independent-review/inspect_zotero_converter_kernel_inputs.py",
+      "sha256": "d390c388651eb88aec4f28d6b216492e80e657cc94d3812fe95baa2379bbdf36",
+      "size_bytes": 5700,
+      "source": "inspect_zotero_converter_kernel_inputs.py"
+    },
+    {
+      "path": "independent-review/source-binding-summary.json",
+      "sha256": "31f7460a56849c3035d1bdc3dcc81b023e7a9c2fe90829edee795d010dfda0d3",
+      "size_bytes": 5373,
+      "source": "generated exact subset of external fresh follow-up source binding"
+    },
+    {
+      "path": "independent-review/zotero-publication-followup-binding-plan.json",
+      "sha256": "bc48c188a91bf89fd0824e0492c6ed46a05d9056beafae83fba61eacb865a851",
+      "size_bytes": 7889,
+      "source": "zotero-publication-followup-binding-plan.json"
+    },
+    {
+      "path": "independent-review/zotero-publication-followup-continuity.json",
+      "sha256": "65d62d23c620b06d855616eea774c4867dc3df812591ba56fc0b063d52c0a250",
+      "size_bytes": 293218,
+      "source": "zotero-publication-followup-continuity.json"
+    },
+    {
+      "path": "independent-review/zotero-publication-followup-kernel-inspection.json",
+      "sha256": "f1ae9abb4debd9b001c72120ae839afc72e638860c56dae4b58fa855b7b1c45a",
+      "size_bytes": 8147,
+      "source": "zotero-publication-followup-kernel-inspection.json"
+    },
+    {
+      "path": "independent-review/zotero-publication-followup-preservation.json",
+      "sha256": "3c7c4b63e656f08a6f7e9b82f9711d53883441a92fc29fcc9b4425383a085348",
+      "size_bytes": 3873,
+      "source": "zotero-publication-followup-preservation.json"
+    }
+  ],
+  "entries_count": 53,
+  "historical_artifacts_preserved_count": 25,
+  "schema": 1,
+  "target_commit": "ca726cd687a64a89cdd2b8e5df3f61dc57f4ca25",
+  "target_tree": "8011024075bed83b30388d8deec72de2149886ad",
+  "uncompressed_bytes": 2169674
+}

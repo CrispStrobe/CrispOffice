@@ -503,6 +503,7 @@ final class _ZoteroOwners {
       throw const FormatException('Too many ODT paragraphs.');
     }
     paragraphs.add(paragraph);
+    _runPosition(paragraph.properties.importedParagraphMark);
     if (allowed) supported.add(paragraph);
     if (note != null) notes[paragraph] = note;
     if (_looksZotero(paragraph.properties.bookmarkName)) _unrecognized();
@@ -511,6 +512,8 @@ final class _ZoteroOwners {
     }
     for (final inline in paragraph.inlines) {
       if (!_seen.add(inline)) _alias();
+      if (inline is WmlRun) _runPosition(inline.properties);
+      if (inline is WmlNoteMarker) _runPosition(inline.properties);
       if (inline is WmlOpaqueInline) _opaque(inline.content.xml);
       if (inline is WmlContentControlBoundary) _opaque(inline.control.xml);
       if (inline is WmlBookmarkBoundary) {
@@ -521,6 +524,18 @@ final class _ZoteroOwners {
         _opaque(inline.sourceXml);
         _opaque(inline.runPropertiesXml);
       }
+    }
+  }
+
+  static void _runPosition(WmlRunProps? properties) {
+    // Native DOCX import already resolves defaults and style inheritance into
+    // these properties. Check the effective value, including paragraph marks
+    // that affect line height, without rejecting an explicit zero override.
+    // ODT superscript/subscript is separate from Word's absolute baseline shift.
+    if (properties != null && properties.positionHalfPoints != 0) {
+      throw UnsupportedError(
+        'Editable Zotero ODT cannot preserve explicitly raised or lowered text.',
+      );
     }
   }
 
