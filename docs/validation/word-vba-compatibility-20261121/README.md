@@ -80,6 +80,7 @@ and independent review notes; they omit SDKs, caches and generated JavaScript.
 | Broad source-compiler regression, 36 files | 3,159 | Includes the 94 new header/footer source cases; compiler sources, selected tests, fixtures and operation catalog unchanged |
 | Mail core, complete suite | 271 | Real Dart, 34 unchanged captured inputs; in-memory runner/provider fixtures |
 | Incoming Zotero engine/protocol, 27 files | 884 | Includes 62 new table-cell cases; all 558 captured inputs unchanged |
+| Incoming Flutter/SQLite local hosts | 991 | Complete store VM/Node coverage plus focused Mail and Zotero controller paths; all 6,076 present tracked inputs unchanged |
 | Independent guard review | 7 probes | Every final adversarial case refused atomically; exact source hashes recorded |
 
 The compiler run observed native dispatch edits and an added native guard while
@@ -91,8 +92,33 @@ archive are explicitly labeled and are not passing evidence.
 
 The final 46-file native/integration/CLI gate, strict analysis, formatting and
 VM/JavaScript parity replay are running against the fixed application source.
-Independent Flutter/SQLite incoming gates are also in progress. Their final
-receipts will be added before the requested main merge.
+Their final receipts will be added before the requested main merge.
+
+### Incoming Flutter and SQLite qualification
+
+[incoming-flutter-index.json](evidence/incoming-flutter-index.json) and
+[incoming-flutter.tar.gz](evidence/incoming-flutter.tar.gz) preserve the separate
+local application qualification. All selected tests passed without failures or
+skips, and all three analysis commands passed with fatal infos/warnings.
+
+| Cohort | Passes |
+| --- | ---: |
+| Mail store: all 34 VM/native test files | 825 |
+| Mail store: the remaining Node-only test file | 3 |
+| Four incoming Studio synchronization suites | 36 |
+| Saved-mail suite | 14 |
+| Connected saved-message navigation case | 1 |
+| Independent whole-dialog Close probe, English/German/Arabic | 3 |
+| Zotero multi-paragraph controller suite | 109 |
+| Total for this separate qualification | 991 |
+
+The store's entire 35-file test set is covered across VM and Node. Native tests
+use the actual SQLite hook/library, including transaction and child-process
+crash recovery; a separate FTS5 create/insert/query probe also passed. The Close
+probe checks the whole dialog, avoiding the child-scoped finder that would miss
+the duplicated toolbar button. Its source is included as an independent probe,
+not inserted into the application checkout. The selected application worktree
+and captured runtime hashes stayed unchanged throughout both runs.
 
 ### Environment and replay
 
@@ -103,6 +129,15 @@ lockfile. [runtime-environment.json](runtime-environment.json) and
 [runtime-verification.json](runtime-verification.json) record the pins and actual
 source-package roots. The initial two-suite, 97-test section baseline preceded
 this feature and is not counted as final acceptance.
+
+The incoming application gate independently uses genuine **Flutter 3.47.8** and
+its embedded **Dart 3.13.7**, with 202 unique hosted archives verified against
+the actual lockfile. The full official Flutter archive SHA-256 is
+`baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2`.
+Offline enforced-lockfile resolution succeeded; ordinary assets and native hooks
+remained enabled. SQLite 3.54.1 loaded from binary SHA-256
+`0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b`.
+The Node-only store test used Node 24.22.3 and real Dart JavaScript compilation.
 
 Run from a fresh checkout with Python 3 and Node available. Use a fresh output
 directory for each invocation:
@@ -128,6 +163,9 @@ suites; `--cohort native` runs the final native/CLI selection without repeating
 analysis and portable checks. The Zotero archive includes its exact 27-file
 selection and execution driver. Captured absolute workspace paths describe the
 original run; adapt those roots when replaying an archived helper.
+The Flutter archive includes its executed original qualifiers, setup scripts and
+replay notes. Its consolidated `replay_setup.sh` was added after execution and
+syntax-checked; it is not represented as an already executed end-to-end replay.
 
 ## Practical limits
 
