@@ -1,0 +1,734 @@
+[
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_source_occurrences_dialog_test.dart",
+    "name": "back from occurrences preserves source search and staged choices"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_source_occurrences_dialog_test.dart",
+    "name": "read-only body navigation leaves source choices unapplied"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_source_occurrences_dialog_test.dart",
+    "name": "read-only footnote navigation leaves source choices unapplied"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_source_occurrences_dialog_test.dart",
+    "name": "read-only endnote navigation leaves source choices unapplied"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_source_occurrences_dialog_test.dart",
+    "name": "stale cache is refused by final navigation without selecting text"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_source_occurrences_dialog_test.dart",
+    "name": "removed paragraph is refused at click time and permits Back"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_source_occurrences_dialog_test.dart",
+    "name": "unsupported header citation is inspectable with navigation disabled"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_source_occurrences_dialog_test.dart",
+    "name": "320 by 640 doubled-text occurrence browser can navigate and go back"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_source_occurrences_test.dart",
+    "name": "late transitive aliases link distinct fields only once"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_source_occurrences_test.dart",
+    "name": "same keys across libraries and differing offline snapshots stay apart"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_source_occurrences_test.dart",
+    "name": "multiple fields in one paragraph stay distinct and repeated handles do not"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_source_occurrences_test.dart",
+    "name": "labels notes with display numbers and retains unsupported stories"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_source_occurrences_test.dart",
+    "name": "orphaned notes use an explicit source ID and bibliographies add no sources"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_source_resolver_test.dart",
+    "name": "late local/account alias declarations resolve one online source"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_source_resolver_test.dart",
+    "name": "transitive bridges without snapshots resolve scheme/host aliases"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_source_resolver_test.dart",
+    "name": "desktop retains the first declared identity of an alias group"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_source_resolver_test.dart",
+    "name": "unrelated libraries and local profiles keep equal keys separate"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_source_resolver_test.dart",
+    "name": "item IDs and opaque or malformed URIs do not declare links"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_source_resolver_test.dart",
+    "name": "online source selection stays deterministic across numeric aliases"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_source_resolver_test.dart",
+    "name": "the 10,000 unique alias bound does not count repeated occurrences"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart",
+    "name": "import details distinguish duplicate IDs without selecting them"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart",
+    "name": "read-only offline details retain linked identities and metadata"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart",
+    "name": "copy failure leaves selectable metadata and allows retry"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart",
+    "name": "closing pending details copy leaves parent selection intact"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart",
+    "name": "nested details preserve staged order and removals on cancel and apply"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart",
+    "name": "hidden mixed-library selections expose their stored details without fetches"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart",
+    "name": "selection limit counts hidden catalog sources and still permits deselection"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart",
+    "name": "import details and failure feedback fit 320x480 with doubled text in TextDirection.rtl"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart",
+    "name": "import details and failure feedback fit 320x480 with doubled text in TextDirection.ltr"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart",
+    "name": "twenty-source narrow review keeps nested details and actions reachable"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart",
+    "name": "reference without stored CSL metadata remains inspectable"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_test.dart",
+    "name": "shows complete stored publication metadata and full creator names"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_test.dart",
+    "name": "includes every supplied CSL creator role without truncation"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_test.dart",
+    "name": "retains date ranges and each stored literal date representation"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_test.dart",
+    "name": "does not invent missing date precision or a modern year"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_test.dart",
+    "name": "missing snapshot remains inspectable by its existing identity"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_test.dart",
+    "name": "malformed optional values are skipped while valid names survive"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_test.dart",
+    "name": "malformed date ranges are not displayed as a partial single date"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_test.dart",
+    "name": "shows every linked and opaque URI without inventing linked identity"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_test.dart",
+    "name": "URI-shaped stored data alone does not promote an offline source"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_stored_details_test.dart",
+    "name": "copy is readable source metadata and leaves citation state untouched"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_browser_test.dart",
+    "name": "stages exact tag choices across pages and explicit searches"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_browser_test.dart",
+    "name": "cancel discards staged clearing and additions"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_browser_test.dart",
+    "name": "duplicate tag types share a choice without summing counts"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_browser_test.dart",
+    "name": "unrepresentable literal names remain visible and unavailable"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_browser_test.dart",
+    "name": "selection limit can be relieved without losing off-page tags"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_browser_test.dart",
+    "name": "mode changes retain the submitted query until Search"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_browser_test.dart",
+    "name": "network failure is contained and retry is explicit"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_browser_test.dart",
+    "name": "closing during a request ignores its eventual response"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_browser_test.dart",
+    "name": "narrow large-text rtl keeps filters reachable"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_browser_test.dart",
+    "name": "narrow large-text ltr keeps filters reachable"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_browser_test.dart",
+    "name": "workspace applies tags to submitted query and preserves selected sources"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_browser_test.dart",
+    "name": "workspace browses tags within the selected collection"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_browser_test.dart",
+    "name": "changed host session rejects stale tag choices"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart",
+    "name": "adding AND tags restarts the submitted query and keeps selection"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart",
+    "name": "draft tag and query do not change either pagination direction"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart",
+    "name": "removing and clearing tags restart the last submitted search"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart",
+    "name": "new searches preserve tags and collapsing options keeps them active"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart",
+    "name": "collection and group scopes retain repeated tag parameters"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart",
+    "name": "desktop saved searches apply tags before pagination without API keys"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart",
+    "name": "duplicate tags are trimmed, not resent, and preserve capitalization"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart",
+    "name": "invalid \"\" keeps the catalog and selection intact"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart",
+    "name": "invalid \"   \" keeps the catalog and selection intact"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart",
+    "name": "invalid \"one || two\" keeps the catalog and selection intact"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart",
+    "name": "invalid \"\\\\-literal\" keeps the catalog and selection intact"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart",
+    "name": "invalid \"two\\tparts\" keeps the catalog and selection intact"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart",
+    "name": "invalid 257-character tag keeps the catalog and selection intact"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart",
+    "name": "the twenty-tag limit rejects extra input without a request"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart",
+    "name": "desktop reconnect retains applied tags and expanded controls"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart",
+    "name": "failed tag requests retain editable filters for a successful retry"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart",
+    "name": "twenty applied tags and paging fit a 320.0-pixel window"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart",
+    "name": "twenty applied tags and paging fit a 360.0-pixel window"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart",
+    "name": "twenty applied tags and paging fit a 420.0-pixel window"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_tag_filter_test.dart",
+    "name": "closing while a tag request is pending discards the late response"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "export undo/redo retains covariant owners (false)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "export undo/redo retains covariant owners (true)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "export rejects fixed blocks before snapshot rollback can mutate"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "export rejects immutable blocks before snapshot rollback can mutate"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "export rejects fixed inlines before snapshot rollback can mutate"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "export rejects immutable inlines before snapshot rollback can mutate"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "export stays detached until complete and is one undoable change"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "export undo keeps paragraph identity for earlier text undo commands"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "Refresh imports formatted fields atomically with one undo and redo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "incomplete import cannot replace the original transfer document"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "import undo retains earlier typing and its original paragraph target"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "saved transfer reopens for Refresh and saves active DOCX fields"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "discarding an incomplete export leaves a clean document"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "caret change refuses a pending export atomically"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "composition change refuses a pending export atomically"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "document change refuses a pending export atomically"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "revision change refuses a pending export atomically"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "discarding an incomplete import leaves a clean document"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "caret change refuses a pending import atomically"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "composition change refuses a pending import atomically"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "document change refuses a pending import atomically"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "revision change refuses a pending import atomically"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "transfer documents require Refresh before addEditCitation"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "transfer documents require Refresh before addEditBibliography"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "transfer documents require Refresh before addNote"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "transfer documents require Refresh before addAnnotation"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "transfer documents require Refresh before setDocPrefs"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "transfer documents require Refresh before exportDocument"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "transfer documents require Refresh before removeCodes"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_dialog_test.dart",
+    "name": "export button sends the native command and explains saving a copy"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_dialog_test.dart",
+    "name": "transfer detection offers import and disables other desktop edits"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_dialog_test.dart",
+    "name": "import action uses Refresh and restores every formatted reference"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_dialog_test.dart",
+    "name": "cancelling after export staging keeps active fields and no history"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_dialog_test.dart",
+    "name": "malformed transfer data remains intact after a refused import"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_dialog_test.dart",
+    "name": "transfer controls remain reachable in a narrow dialog"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+    "name": "all story fields retain formatting and notes in one undo step"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+    "name": "locked field leaves other fields, revisions and redo untouched"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+    "name": "malformed field leaves other fields, revisions and redo untouched"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+    "name": "nested field leaves other fields, revisions and redo untouched"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+    "name": "missing begin in a modeled Zotero packet blocks the whole batch"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+    "name": "missing separator in a modeled Zotero packet blocks the whole batch"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+    "name": "missing end in a modeled Zotero packet blocks the whole batch"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+    "name": "pending tracked changes prevent the whole conversion"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+    "name": "viewing and empty documents do not create a history step"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+    "name": "a pending note draft is committed before the single unlink step"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+    "name": "preserved header citation prevents partial conversion"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+    "name": "preserved block citation prevents partial conversion"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+    "name": "preserved inline citation prevents partial conversion"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+    "name": "prose, unrelated quoted fields and replaced preserved stories are safe"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addNote rowspan/colspan in body restores forward selection, rich owners and package on undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addNote rowspan/colspan in body restores backward selection, rich owners and package on undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addNote abandoned vertical table in body leaks no media, numbering or fields"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addNote stale body selection rejects the entire vertical table"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addNote cancellation after staging a vertical table in body drains without applying"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addNote outlives rows after rich vertical content leaves body unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addNote crosses row group after rich vertical content leaves body unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addNote zero span after rich vertical content leaves body unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addNote overlap after rich vertical content leaves body unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addNote dialog inserts a rich vertical table in body as one undo step"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addNote rowspan/colspan in footnote restores forward selection, rich owners and package on undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addNote rowspan/colspan in footnote restores backward selection, rich owners and package on undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addNote abandoned vertical table in footnote leaks no media, numbering or fields"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addNote stale footnote selection rejects the entire vertical table"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addNote cancellation after staging a vertical table in footnote drains without applying"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addNote outlives rows after rich vertical content leaves footnote unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addNote crosses row group after rich vertical content leaves footnote unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addNote zero span after rich vertical content leaves footnote unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addNote overlap after rich vertical content leaves footnote unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addNote dialog inserts a rich vertical table in footnote as one undo step"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addNote rowspan/colspan in endnote restores forward selection, rich owners and package on undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addNote rowspan/colspan in endnote restores backward selection, rich owners and package on undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addNote abandoned vertical table in endnote leaks no media, numbering or fields"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addNote stale endnote selection rejects the entire vertical table"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addNote cancellation after staging a vertical table in endnote drains without applying"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addNote outlives rows after rich vertical content leaves endnote unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addNote crosses row group after rich vertical content leaves endnote unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addNote zero span after rich vertical content leaves endnote unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addNote overlap after rich vertical content leaves endnote unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addNote dialog inserts a rich vertical table in endnote as one undo step"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addAnnotation rowspan/colspan in body restores forward selection, rich owners and package on undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addAnnotation rowspan/colspan in body restores backward selection, rich owners and package on undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addAnnotation abandoned vertical table in body leaks no media, numbering or fields"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addAnnotation stale body selection rejects the entire vertical table"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addAnnotation cancellation after staging a vertical table in body drains without applying"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addAnnotation outlives rows after rich vertical content leaves body unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addAnnotation crosses row group after rich vertical content leaves body unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addAnnotation zero span after rich vertical content leaves body unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addAnnotation overlap after rich vertical content leaves body unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addAnnotation dialog inserts a rich vertical table in body as one undo step"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addAnnotation rowspan/colspan in footnote restores forward selection, rich owners and package on undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addAnnotation rowspan/colspan in footnote restores backward selection, rich owners and package on undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addAnnotation abandoned vertical table in footnote leaks no media, numbering or fields"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addAnnotation stale footnote selection rejects the entire vertical table"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addAnnotation cancellation after staging a vertical table in footnote drains without applying"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addAnnotation outlives rows after rich vertical content leaves footnote unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addAnnotation crosses row group after rich vertical content leaves footnote unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addAnnotation zero span after rich vertical content leaves footnote unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addAnnotation overlap after rich vertical content leaves footnote unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addAnnotation dialog inserts a rich vertical table in footnote as one undo step"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addAnnotation rowspan/colspan in endnote restores forward selection, rich owners and package on undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addAnnotation rowspan/colspan in endnote restores backward selection, rich owners and package on undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addAnnotation abandoned vertical table in endnote leaks no media, numbering or fields"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addAnnotation stale endnote selection rejects the entire vertical table"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addAnnotation cancellation after staging a vertical table in endnote drains without applying"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addAnnotation outlives rows after rich vertical content leaves endnote unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addAnnotation crosses row group after rich vertical content leaves endnote unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addAnnotation zero span after rich vertical content leaves endnote unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addAnnotation overlap after rich vertical content leaves endnote unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+    "name": "addAnnotation dialog inserts a rich vertical table in endnote as one undo step"
+  }
+]

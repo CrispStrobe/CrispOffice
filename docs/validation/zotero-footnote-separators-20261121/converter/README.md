@@ -1,0 +1,166 @@
+# Independent separator converter evidence
+
+These probes qualify explicit separator geometry in the installed LibreOffice
+converter. They do not establish acceptance by an installed Zotero plugin or
+Microsoft Word. The DOCX paragraph-border route failed external geometric
+preservation; the direct ODT route preserved the tested geometry.
+
+## Runtime and reproduction
+
+Converter identity:
+
+```text
+LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5
+```
+
+Saved ODT generator:
+
+```text
+LibreOfficeDev/26.8.0.0.alpha0$Linux_X86_64 LibreOffice_project/2c87e51eeaa2b413ff4ae097b2705eea1995d8e5
+```
+
+All conversions used headless `soffice` with a distinct explicitly named
+`-env:UserInstallation=file://...` profile. Each conversion's `command.json`
+records exact arguments, stdout, stderr, exit status and, for the ODT matrix,
+input/output SHA-256 values. PDF drawing geometry was inspected with PyMuPDF
+1.26.6. Final page-bottom PNGs for all 14 ODT cases were visually inspected.
+
+```sh
+source /workspace/scratch/12e9ca120c75/runtime/env.sh
+python3 /workspace/scratch/12e9ca120c75/separator-converter/probe.py
+python3 /workspace/scratch/12e9ca120c75/separator-converter/odt_probe.py
+python3 /workspace/scratch/12e9ca120c75/separator-converter/hidden_reservation_probe.py
+python3 /workspace/scratch/12e9ca120c75/separator-converter/zotero_acceptance.py
+```
+
+The first script makes 7 minimal DOCX probes. Each is converted to PDF and ODT.
+The second makes 10 ODT probes; the third adds 4 targeted hidden-rule reservation
+probes. Each ODT is rendered directly, independently saved as ODT twice, then
+rendered again. The `pass1` and `pass2` directories contain actual converter
+outputs; no output XML was patched after conversion.
+
+## Direct ODT result
+
+Letter pages have 72pt margins, giving a 468pt body width. All input/final
+rendered separator rectangles and colors are identical. All pass1/pass2
+separator attributes are identical. Converter length normalization is at most
+0.016pt for this matrix and stabilizes after the first save.
+
+| Case | Requested line | Before/after gaps | Observed final line |
+| --- | --- | --- | --- |
+| solid-left-half | black, 2pt, left, 50% | 6pt / 6pt | x72–306pt, y700–702pt |
+| solid-center-quarter-color | #1464C8, 1.5pt, center, 25% | 9pt / 3pt | x247.5–364.5pt, y703.5–705pt |
+| solid-right-full-color | #C81464, 3pt, right, 100% | 0pt / 12pt | x72–540pt, y693–696pt |
+| solid-right-half-zero | #00A040, 2pt, right, 50% | 0pt / 0pt | x306–540pt, y706–708pt |
+| none-with-gaps | none, stored 2pt | 9pt / 9pt | no drawing |
+| none-zero | none, stored 2pt | 0pt / 0pt | no drawing |
+| solid-zero-width | solid, 2pt, 0% | 6pt / 6pt | no drawing |
+| solid-zero-thickness | solid, 0pt, 50% | 6pt / 6pt | no drawing |
+
+Two additional 60-line inputs verify body space reservation. Changing only the
+before-gap from 0pt to 24pt reduces first-page body capacity from 52 to 50 fixed
+12pt lines. Both documents are two pages; their separator coordinates and note
+coordinates are otherwise identical. The same result holds after two saves.
+
+### Hidden rules still reserve thickness
+
+Four 60-line probes with both gaps zero resolve a native-model ambiguity:
+
+| Line style | Relative width | Thickness | First-page body lines | Rule visible |
+| --- | --- | --- | --- | --- |
+| none | 50% | 0pt | 53 | no |
+| none | 50% | 24pt | 51 | no |
+| solid | 0% | 24pt | 51 | no |
+| solid | 50% | 24pt | 51 | yes |
+
+Thus the tested Writer ODT semantics reserve `before + thickness + after`
+regardless of paint visibility. Using visibility to remove stored thickness
+changes pagination.
+
+### Omitted zero attributes
+
+LibreOffice keeps `line-style`, `adjustment`, `rel-width`, and `color` in every
+saved case. It omits `width`, `distance-before-sep`, and `distance-after-sep`
+when their value is zero. A consumer that requires those attributes even for an
+identified stock LibreOffice producer rejects valid zero-geometry round trips.
+This is a producer convention, not a claim that ODF specifies universal defaults
+for all those attributes.
+
+## Failed DOCX paragraph-border route
+
+The 7 DOCX probes cover a bare separator, top/bottom paragraph borders, exact
+line heights 0 and 6pt, and both hidden/visible separator marks combined with a
+border. Intended custom borders are red, 2pt, right aligned at 50% body width.
+
+All directly rendered PDFs instead contain the same black rule approximately
+0.5pt thick and 144pt long at x72–216pt. Saved ODT normalizes color, alignment,
+thickness and gaps to converter defaults. Bare/marker variants save 25%
+relative width; border-only variants save 0%. Canonical custom DOCX persistence
+inside Quds can therefore be tested separately, but this mapping cannot support
+a claim that arbitrary geometry survives the LibreOffice DOCX route. Installed
+Word behavior remains unqualified.
+
+## Full editable Zotero acceptance
+
+All three fixtures generated by the repository's
+`packages/quds_office_engine/tool/zotero/footnote_separator_acceptance.dart`
+passed the actual converter/native route below. `zotero_acceptance.py` records
+every invocation, and each preset has an `acceptance.json` with every assertion
+stage and original/final PDF drawing/text extraction.
+
+1. Create a Quds editable ODT containing one body citation, one footnote citation,
+   Arabic and emoji text, locators, and unknown item/citation/document metadata.
+2. Save that untouched input as ODT with LibreOffice.
+3. Open the actual saved ODT natively; validate ownership, fields, metadata and
+   separator; execute a controlled Zotero protocol refresh; save/reopen DOCX and
+   ODT twice each, validating every stage.
+4. Save the resulting native ODT as ODT again with LibreOffice.
+5. Repeat native validation, controlled refresh, and two DOCX/ODT save/reopen
+   loops. Independently inspect the final native ODT.
+6. Render the original Quds ODT and second LibreOffice ODT; compare geometry and
+   text, then visually inspect the original footnote and complete final page.
+
+| Preset | Native separator | Result |
+| --- | --- | --- |
+| custom | before4pt + green1pt rule + after7pt; right50% | accepted; final reserved12pt |
+| zero | before0pt + black0.5pt rule + after0pt; center50% | accepted; final reserved0.5pt |
+| hidden | before4pt + hidden stored2pt + after7pt; left50% | accepted; final reserved13pt |
+
+All stages retain two editable fields in body-then-footnote order, with the
+footnote field still owned by its note. Both controlled refreshes update cached
+text to `(Refreshed body)` and `(Refreshed note)` without losing the locator or
+unknown metadata. Original inputs are SHA-256 identified and unchanged. Native
+geometry checks allow 0.05pt converter quantization; the final native result is
+the exact preset in all three cases.
+
+Both external saves produce identical separator attributes for each preset.
+Original and final PDF drawings are identical, including the absence of any
+rule for `hidden`; all PDFs contain one page. PDF text differs only by the
+controlled citation-cache replacements. Arabic and emoji are visible in the
+inspected pages. `zotero/render-checks.json` records these comparisons.
+
+This exercise uses the real LibreOffice converter and the real Quds file and
+protocol implementations. The refresh is controlled through the protocol
+session; no installed Zotero client, Word UI, or Word plugin was invoked.
+
+## Primary source corroboration
+
+- [ODF 1.4 schema, style:footnote-sep and its attributes](https://docs.oasis-open.org/office/OpenDocument/v1.4/os/part3-schema/OpenDocument-v1.4-os-part3-schema.html): width is thickness; relative width is percentage of body width; adjustment is physical left/center/right with default left.
+- [Pinned LibreOffice ODT separator importer](https://github.com/LibreOffice/core/blob/2c87e51eeaa2b413ff4ae097b2705eea1995d8e5/xmloff/source/style/XMLFootnoteSeparatorImport.cxx), blob `8a28d1a22845693368f0980bb3fa7c6666f9c3dc`: initializes missing width and distances to zero.
+- [Pinned LibreOffice ODT separator exporter](https://github.com/LibreOffice/core/blob/2c87e51eeaa2b413ff4ae097b2705eea1995d8e5/xmloff/source/style/XMLFootnoteSeparatorExport.cxx), blob `c5e160dffd3e7e38425ad10c1e21f13492327d41`: emits width/distances only when positive, while retaining relative width, color, style and alignment.
+- [Pinned LibreOffice footnote layout](https://github.com/LibreOffice/core/blob/2c87e51eeaa2b413ff4ae097b2705eea1995d8e5/sw/source/core/layout/ftnfrm.cxx), blob `df069300105d697eb67fa6e6a610b9140cb4d173`: `FootnoteSeparatorHeight` sums both distances and line width unconditionally for Writer page styles.
+- [OOXML separator mark](https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.wordprocessing.separatormark?view=openxml-3.0.1) and [special-note registration](https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.wordprocessing.footnotespecialreference?view=openxml-3.0.1).
+
+## Evidence boundaries
+
+The minimal probes isolate separator semantics; the full Quds-exported Zotero
+fixtures add the native reopening and controlled refresh checks above. Only
+the tested subset is qualified (solid/none, tested integer-percent relative
+widths, physical alignments, RGB colors and nonnegative geometry). The
+superseded `odt-probes-initial-pages` directory is exploratory only:
+its initial style applied a master-page transition to each paragraph. It is
+excluded from the evidence archive and is not used for pagination claims.
+
+The evidence archive excludes temporary LibreOffice profile directories and
+includes original input packages, saved packages, PDFs, PNGs, XML snapshots,
+scripts, and command logs. `SHA256SUMS` identifies every archived file.

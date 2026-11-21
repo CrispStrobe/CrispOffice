@@ -1165,6 +1165,7 @@ class WmlDocument {
     this.sourceFileName = '',
     this.sourceByteLength,
     this.sourceFootnoteSeparatorsPresent,
+    this.footnoteSeparator,
     this.zoteroDocumentData,
   }) : sections = sections ?? <WmlSection>[WmlSection()],
        comments = comments ?? <WmlComment>[],
@@ -1190,6 +1191,10 @@ class WmlDocument {
   /// definitions. Null keeps the conventional rule for a newly authored part;
   /// false preserves explicit native absence in the editor preview.
   bool? sourceFootnoteSeparatorsPresent;
+
+  /// Explicit supported separator geometry shared by footnote pages.
+  /// Null retains the existing conventional or opaque native definition.
+  WmlFootnoteSeparator? footnoteSeparator;
 
   /// endnotes API.
   List<WmlNote> endnotes;

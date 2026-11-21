@@ -1,0 +1,3 @@
+test/studio_zotero_citing_transport_test.dart
+test/studio_zotero_odt_export_test.dart
+test/studio_zotero_shortcuts_test.dart

@@ -46,12 +46,16 @@ abstract final class WordSettingsIo {
     required bool oddEven,
     bool? autoHyphenation,
     WmlRestrictMode? restrictMode,
+    List<int>? footnoteSpecialIds,
+    List<int>? endnoteSpecialIds,
   }) {
     if (source == null &&
         !tracking &&
         !protection &&
         !oddEven &&
-        autoHyphenation != true) {
+        autoHyphenation != true &&
+        footnoteSpecialIds == null &&
+        endnoteSpecialIds == null) {
       return null;
     }
     final document = source == null
@@ -108,6 +112,65 @@ abstract final class WordSettingsIo {
           (restrictMode ?? WmlRestrictMode.readOnly).name,
           prefix: prefix,
           namespaceUri: OfficeNamespaces.w,
+        );
+      }
+      changed = true;
+    }
+    for (final (kind, ids) in [
+      ('footnote', footnoteSpecialIds),
+      ('endnote', endnoteSpecialIds),
+    ]) {
+      if (ids == null) continue;
+      var properties = root.firstChild(
+        '${kind}Pr',
+        namespaceUri: OfficeNamespaces.w,
+      );
+      final existing = properties
+          ?.childrenNamed(kind, namespaceUri: OfficeNamespaces.w)
+          .map(
+            (node) => node.getAttribute('id', namespaceUri: OfficeNamespaces.w),
+          )
+          .toList();
+      if (existing != null &&
+          existing.length == ids.length &&
+          List.generate(
+            ids.length,
+            (index) => index,
+          ).every((index) => existing[index] == '${ids[index]}')) {
+        continue;
+      }
+      if (properties == null) {
+        properties = XmlElement(
+          localName: '${kind}Pr',
+          prefix: prefix,
+          namespaceUri: OfficeNamespaces.w,
+        );
+        _insert(root, properties);
+      }
+      properties.setAttribute(
+        prefix,
+        OfficeNamespaces.w,
+        prefix: 'xmlns',
+        namespaceUri: 'http://www.w3.org/2000/xmlns/',
+      );
+      properties.children.removeWhere(
+        (node) =>
+            node is XmlElement &&
+            node.namespaceUri == OfficeNamespaces.w &&
+            node.localName == kind,
+      );
+      for (final id in ids) {
+        properties.addChild(
+          XmlElement(
+            localName: kind,
+            prefix: prefix,
+            namespaceUri: OfficeNamespaces.w,
+          )..setAttribute(
+            'id',
+            '$id',
+            prefix: prefix,
+            namespaceUri: OfficeNamespaces.w,
+          ),
         );
       }
       changed = true;
@@ -254,6 +317,38 @@ abstract final class WordSettingsIo {
     'clickAndTypeStyle',
     'defaultTableStyle',
     'evenAndOddHeaders',
+    'bookFoldRevPrinting',
+    'bookFoldPrinting',
+    'bookFoldPrintingSheets',
+    'drawingGridHorizontalSpacing',
+    'drawingGridVerticalSpacing',
+    'displayHorizontalDrawingGridEvery',
+    'displayVerticalDrawingGridEvery',
+    'doNotUseMarginsForDrawingGridOrigin',
+    'drawingGridHorizontalOrigin',
+    'drawingGridVerticalOrigin',
+    'doNotShadeFormData',
+    'noPunctuationKerning',
+    'characterSpacingControl',
+    'printTwoOnOne',
+    'strictFirstAndLastChars',
+    'noLineBreaksAfter',
+    'noLineBreaksBefore',
+    'savePreviewPicture',
+    'doNotValidateAgainstSchema',
+    'saveInvalidXml',
+    'ignoreMixedContent',
+    'alwaysShowPlaceholderText',
+    'doNotDemarcateInvalidXml',
+    'saveXmlDataOnly',
+    'useXSLTWhenSaving',
+    'saveThroughXslt',
+    'showXMLTags',
+    'alwaysMergeEmptyNamespace',
+    'updateFields',
+    'hdrShapeDefaults',
+    'footnotePr',
+    'endnotePr',
   ];
 
   static void _insert(XmlElement root, XmlElement element) {

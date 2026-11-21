@@ -87,6 +87,14 @@ The bounded ODT path supports the documented Zotero field, citation, note and
 inline-picture subset. Unknown ODF XML, unsupported field structures and
 unreviewed page styles remain outside the conversion.
 
+Supported footnote separators retain their color, width, alignment and spacing,
+with matching pagination and editor/PDF rendering. Direct editable ODT exchange
+preserves the tested geometry through LibreOffice saves. Quds also retains a
+bounded native DOCX representation, but LibreOffice normalizes custom DOCX
+separator paragraphs. Use **Export Zotero ODT** for that qualified exchange;
+the [separator work record](validation/zotero-footnote-separators-20261121/README.md)
+documents the exact scope and remaining host limitations.
+
 ## Embedding in another host
 
 Hosts can call the same controller and command layer used by Studio. The public
