@@ -259,8 +259,8 @@ while a picker is open invalidates the result even if flattened paragraph
 identities and visible text are unchanged. Cross-cell ranges, selected nested
 structures, content-control/drawing ancestors, aliases and hidden vertical-merge
 continuations remain guarded. A table-containing incoming note still requires a
-main-flow destination; supporting existing nested-cell ownership does not add
-nested-table payload parsing.
+main-flow destination. That cell-range increment did not add nested-table
+payload parsing; the subsequent nested-research-table increment below does.
 
 Raw engine sessions also support cells in authored footnotes/endnotes. The
 standard Notes pane still edits main-flow note paragraphs, so this does not

@@ -140,7 +140,7 @@ void main() {
   for (final language in [
     (steps: 0, name: 'English', partial: '0 issues · partial check'),
     (steps: 1, name: 'German', partial: '0 Hinweise · teilweise geprüft'),
-    (steps: 2, name: 'Arabic', partial: '0 ملاحظات · تدقيق جزئي'),
+    (steps: 2, name: 'Arabic', partial: 'لا توجد ملاحظات · تدقيق جزئي'),
   ]) {
     testWidgets(
       '${language.name} footer keeps unavailable proofing visibly partial',
@@ -284,7 +284,7 @@ void main() {
     (
       steps: 2,
       name: 'Arabic',
-      partial: '0 ملاحظات · تدقيق جزئي',
+      partial: 'لا توجد ملاحظات · تدقيق جزئي',
       paused: 'التدقيق التلقائي متوقف',
       languageTooltip: 'اللغة والتدقيق',
       changesTooltip: 'مراجعة التغييرات المتعقبة',

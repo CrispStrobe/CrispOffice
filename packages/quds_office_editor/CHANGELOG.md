@@ -10,6 +10,14 @@ All notable changes to `quds_office_editor` are documented here.
   a main-flow destination; Notes-pane table editing and installed-plugin
   interoperability remain separate acceptance scopes.
 
+- Add explicit offline downloads in **Synchronized mail** for native IMAP,
+  EWS, Gmail and Microsoft 365. Download one message or the current header page,
+  retain original bytes and attachments, skip saved messages on resume, and
+  report bounded progress, cancellation and storage failures. Keep reads local
+  until an explicit download and preserve draft, Outbox and sync checkpoints.
+- Honor composer save guards during native Quit, drain closed routes before
+  closing their storage owner, and keep failed or pending draft saves open.
+
 - Add native **Synchronized mail** for IMAP, EWS, Gmail and Microsoft 365:
   explicit bounded Start/Continue/Check for changes, Stop, persistent page
   checkpoints and offline synchronized-header browsing. Reuse existing cached

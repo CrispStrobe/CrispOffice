@@ -9,12 +9,18 @@ import 'studio_mail_mailbox_store.dart';
 import 'studio_mail_sync_strings.dart';
 import 'studio_mail_workspace_strings.dart';
 import 'studio_strings.dart';
+import 'studio_mail_reader_labels.dart';
 
-typedef StudioMailSyncRun =
-    Future<MailSyncRunReport> Function({
-      required MailCancellationToken cancellation,
-      required void Function(MailSyncRunProgress) onProgress,
-    });
+typedef StudioMailSyncRun = Future<MailSyncRunReport> Function({
+  required MailCancellationToken cancellation,
+  required void Function(MailSyncRunProgress) onProgress,
+});
+
+typedef StudioMailBodyDownloadRun = Future<MailBodyDownloadReport> Function({
+  required List<MailHeaderRecord> headers,
+  required MailCancellationToken cancellation,
+  required void Function(MailBodyDownloadProgress) onProgress,
+});
 
 /// An explicit foreground sync controller and repository-only offline reader.
 /// The caller keeps ownership of both stores until this route has closed.
@@ -28,7 +34,9 @@ class StudioMailSyncDialog extends StatefulWidget {
     required this.isCurrent,
     this.mailbox,
     this.run,
-  }) : assert((mailbox == null) == (run == null));
+    this.download,
+  }) : assert((mailbox == null) == (run == null)),
+       assert(download == null || run != null);
 
   final StudioStrings strings;
   final StudioMailMailboxStore mailboxStore;
@@ -36,6 +44,7 @@ class StudioMailSyncDialog extends StatefulWidget {
   final bool Function() isCurrent;
   final MailMailbox? mailbox;
   final StudioMailSyncRun? run;
+  final StudioMailBodyDownloadRun? download;
 
   @override
   State<StudioMailSyncDialog> createState() => _StudioMailSyncDialogState();
@@ -56,6 +65,10 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
   MailCancellationSource? _cancellation;
   MailSyncRunProgress? _progress;
   MailSyncRunReport? _report;
+  MailCancellationSource? _downloadCancellation;
+  MailBodyDownloadProgress? _downloadProgress;
+  MailBodyDownloadReport? _downloadReport;
+  List<MailHeaderRecord> _downloadHeaders = const [];
   bool _catalogBusy = true;
   bool _viewBusy = false;
   bool _bodyBusy = false;
@@ -74,6 +87,8 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
 
   bool get _current => mounted && !_closing && widget.isCurrent();
   bool get _running => _cancellation != null;
+  bool get _downloading => _downloadCancellation != null;
+  bool get _working => _running || _downloading;
   bool get _connected => widget.run != null && widget.mailbox != null;
 
   @override
@@ -88,6 +103,7 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
     _viewGeneration++;
     _bodyGeneration++;
     _cancellation?.cancel(MailCancellationReason.disposed);
+    _downloadCancellation?.cancel(MailCancellationReason.disposed);
     _reader?.dispose();
     _reader = null;
     unawaited(_drain().catchError((Object _, StackTrace _) {}));
@@ -232,6 +248,8 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
       _viewFailed = false;
       _error = null;
       _offset = offset;
+      _downloadProgress = null;
+      _downloadReport = null;
     });
     final previous = _viewSubscription;
     try {
@@ -308,6 +326,18 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
         return;
       }
       final selected = _selected;
+      if (_downloading &&
+          _downloadHeaders.any(
+            (target) =>
+                !(view?.headers.any(
+                      (header) =>
+                          header.id == target.id &&
+                          header.remote == target.remote,
+                    ) ??
+                    false),
+          )) {
+        _downloadCancellation?.cancel(MailCancellationReason.accountChanged);
+      }
       final retained = selected == null
           ? null
           : view?.headers
@@ -369,6 +399,7 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
             status: MailParseStatus.complete,
             message: message,
           ),
+          labels: StudioMailReaderLabels(widget.strings.language),
         );
         setState(() => _reader = reader);
       }
@@ -387,7 +418,7 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
     final run = widget.run;
     if (!_current ||
         run == null ||
-        _running ||
+        _working ||
         _viewBusy ||
         _mailbox?.id != widget.mailbox?.id) {
       return;
@@ -399,6 +430,8 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
       _report = null;
       _stopping = false;
       _error = null;
+      _downloadProgress = null;
+      _downloadReport = null;
     });
     try {
       final report = await run(
@@ -432,9 +465,106 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
   }
 
   void _stop() {
-    if (!_current || !_running) return;
+    if (!_current || !_working) return;
     _cancellation?.cancel();
+    _downloadCancellation?.cancel();
     setState(() => _stopping = true);
+  }
+
+  bool _validDownloadProgress(
+    MailBodyDownloadProgress progress,
+    MailMailboxId mailbox,
+    int total,
+  ) =>
+      progress.mailbox == mailbox &&
+      progress.total == total &&
+      progress.downloaded >= 0 &&
+      progress.alreadyCached >= 0 &&
+      progress.processed <= total &&
+      progress.retainedBytes >= 0 &&
+      progress.retainedBytes <= 64 * 1024 * 1024;
+
+  Future<void> _download({bool selectedOnly = false}) async {
+    final run = widget.download;
+    final mailbox = _mailbox?.id;
+    final view = _view;
+    if (!_current ||
+        !_connected ||
+        run == null ||
+        mailbox == null ||
+        view == null ||
+        _working ||
+        _viewBusy ||
+        _bodyBusy ||
+        _viewFailed) {
+      return;
+    }
+    final headers = List<MailHeaderRecord>.unmodifiable(
+      selectedOnly
+          ? view.headers.where(
+              (header) =>
+                  header.id == _selected?.id &&
+                  header.remote == _selected?.remote,
+            )
+          : view.headers,
+    );
+    if (headers.isEmpty || headers.length > _pageSize) return;
+    final cancellation = MailCancellationSource();
+    final generation = _viewGeneration;
+    final selectedId = _selected?.id.value;
+    bool current() =>
+        _viewCurrent(mailbox, generation) &&
+        identical(_downloadCancellation, cancellation);
+    setState(() {
+      _downloadCancellation = cancellation;
+      _downloadHeaders = headers;
+      _downloadProgress = null;
+      _downloadReport = null;
+      _stopping = false;
+      _error = null;
+    });
+    try {
+      final report = await run(
+        headers: headers,
+        cancellation: cancellation.token,
+        onProgress: (progress) {
+          if (!current()) {
+            cancellation.cancel(MailCancellationReason.accountChanged);
+            return;
+          }
+          if (!_validDownloadProgress(progress, mailbox, headers.length)) {
+            cancellation.cancel(MailCancellationReason.accountChanged);
+            setState(() => _error = widget.strings.mailDownloadConflict);
+            return;
+          }
+          setState(() => _downloadProgress = progress);
+        },
+      );
+      if (!current()) return;
+      if (!_validDownloadProgress(report.progress, mailbox, headers.length)) {
+        _invalid();
+      }
+      setState(() {
+        _downloadReport = report;
+        _downloadProgress = report.progress;
+      });
+    } on Object {
+      if (current()) {
+        setState(() => _error = widget.strings.mailDownloadFailed);
+      }
+    } finally {
+      if (identical(_downloadCancellation, cancellation)) {
+        _downloadCancellation = null;
+        _downloadHeaders = const [];
+        if (_current) setState(() => _stopping = false);
+      }
+    }
+    // Refresh only from the local cache. Selecting a message never downloads it.
+    if (_viewCurrent(mailbox, generation) &&
+        selectedId != null &&
+        _selected?.id.value == selectedId) {
+      await _openMessage(selectedId);
+    }
   }
 
   Future<void> _drain() async {
@@ -459,6 +589,7 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
     if (_closeInProgress) return;
     _closing = true;
     _cancellation?.cancel();
+    _downloadCancellation?.cancel();
     setState(() => _closeInProgress = true);
     try {
       await _drain();
@@ -503,12 +634,35 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
     };
   }
 
+  String? get _downloadReportText {
+    final report = _downloadReport;
+    if (report == null) return null;
+    return switch (report.status) {
+      MailBodyDownloadStatus.completed => widget.strings.mailDownloadFinished,
+      MailBodyDownloadStatus.paused => widget.strings.mailDownloadPaused,
+      MailBodyDownloadStatus.cancelled =>
+        report.problem?.code == MailProblemCode.staleOperation
+            ? widget.strings.mailDownloadConflict
+            : widget.strings.mailDownloadCancelled,
+      MailBodyDownloadStatus.failed => switch (report.problem?.code) {
+        MailProblemCode.authenticationRequired ||
+        MailProblemCode.permissionDenied =>
+          widget.strings.mailDownloadAuthentication,
+        MailProblemCode.conflict ||
+        MailProblemCode.staleOperation => widget.strings.mailDownloadConflict,
+        MailProblemCode.quotaExceeded => widget.strings.mailDownloadQuota,
+        MailProblemCode.unsupported => widget.strings.mailDownloadUnsupported,
+        _ => widget.strings.mailDownloadFailed,
+      },
+    };
+  }
+
   Widget _messages() => MailMessageList(
     key: _listKey,
     scopeId: '${_mailbox?.id.value}:$_offset',
     strings: widget.strings.mailMessageListStrings,
     selectedId: _selected?.id.value,
-    busy: _viewBusy || _bodyBusy || !_current,
+    busy: _viewBusy || _bodyBusy || _downloading || !_current,
     items: [
       for (final header in _view?.headers ?? const <MailHeaderRecord>[])
         MailMessageListItem(
@@ -520,7 +674,10 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
           to: header.envelope.to.map((address) => address.address).join(', '),
           cc: header.envelope.cc.map((address) => address.address).join(', '),
           date: header.envelope.sentAt,
-          dateLabel: header.envelope.sentAt?.toLocal().toString(),
+          dateLabel: studioMailListDate(
+            header.envelope.sentAt,
+            widget.strings.language,
+          ),
           isRead: header.flags?.isRead,
           isFlagged: header.flags?.isFlagged,
         ),
@@ -533,13 +690,30 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(16),
-        child: Text(
-          _missingBody
-              ? widget.strings.mailSyncMissingBody
-              : _bodyBusy
-              ? widget.strings.mailMessageListStrings.loading
-              : _error ?? widget.strings.mailSyncChooseMessage,
-          key: const ValueKey('studio-mail-sync-message-state'),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              _missingBody
+                  ? widget.strings.mailSyncMissingBody
+                  : _bodyBusy
+                  ? widget.strings.mailMessageListStrings.loading
+                  : _error ?? widget.strings.mailSyncChooseMessage,
+              key: const ValueKey('studio-mail-sync-message-state'),
+            ),
+            if (_missingBody && widget.download != null) ...[
+              const SizedBox(height: 12),
+              FilledButton.icon(
+                key: const ValueKey('studio-mail-download-message'),
+                onPressed: !_current || _working || _bodyBusy || _viewFailed
+                    ? null
+                    : () =>
+                          unawaited(_work(() => _download(selectedOnly: true))),
+                icon: const Icon(Icons.download_for_offline_outlined),
+                label: Text(widget.strings.mailDownloadMessage),
+              ),
+            ],
+          ],
         ),
       ),
     );
@@ -586,6 +760,8 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
     final view = _view;
     final progress = _progress;
     final reportText = _reportText;
+    final downloadProgress = _downloadProgress;
+    final downloadReportText = _downloadReportText;
     final error =
         _error ??
         (_catalogFailed || _viewFailed
@@ -614,6 +790,20 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
           ),
         if (reportText != null)
           Text(reportText, key: const ValueKey('studio-mail-sync-result')),
+        if (downloadProgress != null)
+          Text(
+            widget.strings.mailDownloadProgress(
+              downloadProgress.downloaded,
+              downloadProgress.alreadyCached,
+              downloadProgress.remaining,
+            ),
+            key: const ValueKey('studio-mail-download-progress'),
+          ),
+        if (downloadReportText != null)
+          Text(
+            downloadReportText,
+            key: const ValueKey('studio-mail-download-result'),
+          ),
         if (error != null)
           Text(
             error,
@@ -730,6 +920,11 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: Text(widget.strings.mailSyncScope),
                       ),
+                      if (widget.download != null)
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+                          child: Text(widget.strings.mailDownloadScope),
+                        ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
                         child: Text(
@@ -747,7 +942,7 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
                   padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
                   child: Align(
                     alignment: AlignmentDirectional.centerStart,
-                    child: _running
+                    child: _working
                         ? OutlinedButton.icon(
                             key: const ValueKey('studio-mail-sync-stop'),
                             onPressed: !_current || _stopping ? null : _stop,
@@ -758,23 +953,47 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
                                   : widget.strings.mailSyncStop,
                             ),
                           )
-                        : FilledButton.icon(
-                            key: const ValueKey('studio-mail-sync-start'),
-                            onPressed: !_current || _viewBusy
-                                ? null
-                                : () => unawaited(_work(_start)),
-                            icon: const Icon(Icons.sync),
-                            label: Text(
-                              _view == null
-                                  ? widget.strings.mailSyncStart
-                                  : _view!.hasMore
-                                  ? widget.strings.mailSyncContinue
-                                  : widget.strings.mailSyncCheckChanges,
-                            ),
+                        : Wrap(
+                            spacing: 8,
+                            runSpacing: 8,
+                            children: [
+                              FilledButton.icon(
+                                key: const ValueKey('studio-mail-sync-start'),
+                                onPressed: !_current || _viewBusy
+                                    ? null
+                                    : () => unawaited(_work(_start)),
+                                icon: const Icon(Icons.sync),
+                                label: Text(
+                                  _view == null
+                                      ? widget.strings.mailSyncStart
+                                      : _view!.hasMore
+                                      ? widget.strings.mailSyncContinue
+                                      : widget.strings.mailSyncCheckChanges,
+                                ),
+                              ),
+                              if (widget.download != null)
+                                OutlinedButton.icon(
+                                  key: const ValueKey(
+                                    'studio-mail-download-page',
+                                  ),
+                                  onPressed:
+                                      !_current ||
+                                          _viewBusy ||
+                                          _bodyBusy ||
+                                          _viewFailed ||
+                                          (_view?.headers.isEmpty ?? true)
+                                      ? null
+                                      : () => unawaited(_work(_download)),
+                                  icon: const Icon(
+                                    Icons.download_for_offline_outlined,
+                                  ),
+                                  label: Text(widget.strings.mailDownloadPage),
+                                ),
+                            ],
                           ),
                   ),
                 ),
-              if (_catalogBusy || _viewBusy || _running || _closeInProgress)
+              if (_catalogBusy || _viewBusy || _working || _closeInProgress)
                 const LinearProgressIndicator(minHeight: 2)
               else
                 const Divider(height: 2),
@@ -787,7 +1006,8 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
                       IconButton(
                         key: const ValueKey('studio-mail-sync-previous'),
                         tooltip: widget.strings.mailSyncPrevious,
-                        onPressed: !_current || _viewBusy || _offset == 0
+                        onPressed:
+                            !_current || _viewBusy || _working || _offset == 0
                             ? null
                             : () => unawaited(
                                 _work(
@@ -812,7 +1032,10 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
                         key: const ValueKey('studio-mail-sync-next'),
                         tooltip: widget.strings.mailSyncNext,
                         onPressed:
-                            !_current || _viewBusy || !view.hasMoreHeaders
+                            !_current ||
+                                _viewBusy ||
+                                _working ||
+                                !view.hasMoreHeaders
                             ? null
                             : () => unawaited(
                                 _work(() => _loadPage(_offset + _pageSize)),

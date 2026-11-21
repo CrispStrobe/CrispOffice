@@ -13,6 +13,7 @@ import 'studio_credential_settings.dart';
 import 'studio_credential_storage.dart';
 import 'studio_mail_archive_action.dart';
 import 'studio_mail_bulk_status.dart';
+import 'studio_mail_body_download.dart';
 import 'studio_mail_flag_journal.dart';
 import 'studio_mail_journal_dialog.dart';
 import 'studio_mail_journal_strings.dart';
@@ -732,30 +733,26 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       candidate = await (widget.draftStoreFactory ?? openStudioMailDraftStore)(
         identity,
       );
-      if (candidate case StudioMailOutboxStore(
-        :final account,
-      ) when account != identity.account) {
+      if (candidate case StudioMailOutboxStore(:final account)
+          when account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
       }
-      if (candidate case StudioMailDraftCatalog(
-        :final account,
-      ) when account != identity.account) {
+      if (candidate case StudioMailDraftCatalog(:final account)
+          when account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
       }
-      if (candidate case StudioMailMailboxStoreOwner(
-        :final mailboxStore,
-      ) when mailboxStore.account != identity.account) {
+      if (candidate case StudioMailMailboxStoreOwner(:final mailboxStore)
+          when mailboxStore.account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
       }
-      if (candidate case StudioMailFlagJournalOwner(
-        :final flagJournal,
-      ) when flagJournal.account != identity.account) {
+      if (candidate case StudioMailFlagJournalOwner(:final flagJournal)
+          when flagJournal.account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
@@ -2489,6 +2486,20 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           syncStore: syncStore,
           mailbox: mailbox,
           isCurrent: current,
+          download: loader is StudioMailBodyDownloader
+              ? ({
+                  required headers,
+                  required cancellation,
+                  required onProgress,
+                }) => (loader as StudioMailBodyDownloader).downloadMessages(
+                  frozen,
+                  headers: headers,
+                  cache: StudioMailBodyDownloadCache(store),
+                  cancellation: cancellation,
+                  onProgress: onProgress,
+                  isCurrent: current,
+                )
+              : null,
           run: ({required cancellation, required onProgress}) async {
             if (!current()) {
               throw const StudioMailMessageLoadException(

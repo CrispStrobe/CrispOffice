@@ -1,4 +1,5 @@
 import 'studio_downloads_manager.dart';
+
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
@@ -1207,13 +1208,29 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
 
   Future<bool> _confirmCloseWorkspace() async {
     if (_opening || _isSaving) return false;
-    // Mail is a full-window route, so workspace file actions are intentionally
-    // unavailable while it is current. Quitting must still work: close the
-    // route (and any dialog on top of it) before checking documents for save.
-    if (!(ModalRoute.isCurrentOf(context) ?? true)) {
-      Navigator.of(context).popUntil((Route<dynamic> route) => route.isFirst);
+    final workspaceRoute = ModalRoute.of(context);
+    final navigator = Navigator.of(context);
+    // Dismiss each route through its own close guard. In particular the Mail
+    // composer must save its latest revision before its account store closes;
+    // popUntil would bypass PopScope and cancel the pending autosave on dispose.
+    while (workspaceRoute != null && !workspaceRoute.isCurrent) {
+      Route<dynamic>? closingRoute;
+      navigator.popUntil((route) {
+        closingRoute = route;
+        return true; // Inspect the top route without removing anything.
+      });
+      final route = closingRoute;
+      if (route == null || identical(route, workspaceRoute)) return false;
+      final handled = await navigator.maybePop();
       await WidgetsBinding.instance.endOfFrame;
-      if (!mounted) return false;
+      if (!mounted || !handled || route.isActive) {
+        // A guard may be saving asynchronously or displaying a save error.
+        // Keep its route and account alive; a later Quit can retry after it
+        // closes. Do not spin, force-pop, or approve closing the native window.
+        return false;
+      }
+      if (route is TransitionRoute<dynamic>) await route.completed;
+      if (!mounted || !navigator.mounted) return false;
     }
     final SuiteApp previous = _app;
     for (final SuiteApp app in SuiteApp.values) {
@@ -11271,8 +11288,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             selectedTileColor: _accent.withValues(alpha: 0.12),
             title: Text(_sheet.workbook.sheets[i].name),
             subtitle: Text(
-              '${_sheet.workbook.sheets[i].allCells.length} '
-              '${_t('cells', StudioStrings.de('cells'), 'خلية')}',
+              studioCells(_language, _sheet.workbook.sheets[i].allCells.length),
             ),
             onTap: () =>
                 _navigateOffice(_sheet, () => _sheet.setActiveSheet(i)),

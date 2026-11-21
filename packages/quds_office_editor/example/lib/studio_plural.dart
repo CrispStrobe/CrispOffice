@@ -171,3 +171,18 @@ String studioPackagesInstalled(
   arFew: (n) => 'تم تثبيت $installed من $n حزم',
   ar: (n) => 'تم تثبيت $installed من $n حزمة',
 );
+
+/// "3 cells" / "3 Zellen" / "٣ خلايا".
+String studioCells(StudioLanguage language, int count) => studioPlural(
+  language,
+  count,
+  enOne: (_) => '1 cell',
+  en: (n) => '$n cells',
+  deOne: (_) => '1 Zelle',
+  de: (n) => '$n Zellen',
+  arZero: (_) => 'لا توجد خلايا',
+  arOne: (_) => 'خلية واحدة',
+  arTwo: (_) => 'خليتان',
+  arFew: (n) => '$n خلايا',
+  ar: (n) => '$n خلية',
+);
