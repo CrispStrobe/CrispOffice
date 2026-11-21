@@ -8094,6 +8094,13 @@ class WordEditorController extends OfficeController {
         'Finish the current text composition before using Zotero.',
       );
     }
+    if (WordZoteroTransfer.isTransferDocument(document) &&
+        command != null &&
+        command != ZoteroCitingCommand.refresh) {
+      throw UnsupportedError(
+        'Use Refresh citations to import this Zotero transfer document before editing its references.',
+      );
+    }
     final noteTarget = noteEditingTarget;
     _assertNoteTargetReady(noteTarget);
     final insertsNoteText = command?.insertsNoteText == true;
@@ -16298,7 +16305,9 @@ final class _ZoteroDocumentSnapshot {
       blocks: blocks,
       footnotes: List<WmlNote>.of(document.footnotes),
       endnotes: List<WmlNote>.of(document.endnotes),
-      data: WordZoteroDocumentData.read(document),
+      data: WordZoteroTransfer.isTransferDocument(document)
+          ? document.zoteroDocumentData
+          : WordZoteroDocumentData.read(document),
       numbering: WordListNumberingSnapshot.capture(document),
     );
   }
@@ -16311,7 +16320,7 @@ final class _ZoteroDocumentSnapshot {
   final Map<List<WmlBlock>, List<WmlBlock>> blocks;
   final List<WmlNote> footnotes;
   final List<WmlNote> endnotes;
-  final String data;
+  final String? data;
   final WordListNumberingSnapshot numbering;
 
   void restore(WmlDocument document) {
