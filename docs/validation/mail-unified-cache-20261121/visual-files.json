@@ -1,0 +1,42 @@
+[
+  {
+    "path": "captures/ar-compact-form.png",
+    "bytes": 78159,
+    "sha256": "8c5413f3598f14f6dae3f0e596f33c13bdaea9a73210770657325680369bcdec"
+  },
+  {
+    "path": "captures/ar-compact-results.png",
+    "bytes": 90233,
+    "sha256": "87f4180734da2fd0a54a4e6650d86b96aee85c518656d3b9bab1e3e344e641e9"
+  },
+  {
+    "path": "captures/ar-wide-results.png",
+    "bytes": 116745,
+    "sha256": "6239ace4ed8f1fa16fa341c0e8eb9a277c765b4c3dc684c4fe4e6e23137bcbad"
+  },
+  {
+    "path": "captures/de-compact-form.png",
+    "bytes": 93438,
+    "sha256": "03cafe95a12f19c68dbecb96226e0223a27c8c6d0113107abb3fba0339c96e11"
+  },
+  {
+    "path": "captures/de-compact-results.png",
+    "bytes": 103883,
+    "sha256": "be82629ac51a622117f758aa50c29180e40499c8fea200c87db9c3bbb7b60ef9"
+  },
+  {
+    "path": "captures/de-wide-results.png",
+    "bytes": 147255,
+    "sha256": "99d01fb70d02776d32f5519e0a41b14bcf7568d905018f14cd6e3e8f3adb4b73"
+  },
+  {
+    "path": "captures/en-wide-reader.png",
+    "bytes": 70588,
+    "sha256": "60a6d8c03ce4fafbb6358c1798d781ed11d14c44b9f5eacad285160829b08b1c"
+  },
+  {
+    "path": "captures/en-wide-results.png",
+    "bytes": 139017,
+    "sha256": "acba84dca876cdce0165af120bfb2ebfcbbc66f9ef21aade23c782d95fb4cfc4"
+  }
+]

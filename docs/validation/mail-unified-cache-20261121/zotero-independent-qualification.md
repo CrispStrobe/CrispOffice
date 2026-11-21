@@ -53,7 +53,7 @@ main or Mail blob; there was no new unqualified Zotero implementation delta.
 
 ## Evidence and reproduction
 
-The [local evidence archive](../mail-unified-cache-20261121/local-evidence.tar.gz)
+The [local evidence archive](../mail-unified-cache-20261121/local-evidence.tar.xz)
 contains exact commands, timestamps, exit codes, source hashes, raw logs, CLI
 fixtures and portable outputs under `zotero-incoming-20261121/60e212b0/`.
 `zotero-incoming-20261121/ce4eca72-audit.json` records the later preservation

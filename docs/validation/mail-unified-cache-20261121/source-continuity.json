@@ -1,0 +1,51 @@
+{
+  "qualified_commit": "62e9f1af15f2cb00ee67a339cdc6dea48d882aab",
+  "reconciled_commit": "a0a3593a3658086bf1582c3ca87b3fa91485a7de",
+  "checks": [
+    {
+      "scope": "final studio",
+      "files": 1169,
+      "mismatches": []
+    },
+    {
+      "scope": "final mail-core",
+      "files": 71,
+      "mismatches": []
+    },
+    {
+      "scope": "new cached repository search",
+      "files": 4,
+      "mismatches": []
+    },
+    {
+      "scope": "existing mailbox view and synchronization regressions",
+      "files": 5,
+      "mismatches": []
+    },
+    {
+      "scope": "full Mail UI baseline",
+      "files": 191,
+      "mismatches": []
+    },
+    {
+      "scope": "final Word repository inputs",
+      "files": 485,
+      "mismatches": []
+    },
+    {
+      "scope": "qualified Zotero inventory",
+      "files": 13,
+      "mismatches": []
+    },
+    {
+      "scope": "corrected biometric files",
+      "files": 8,
+      "mismatches": []
+    },
+    {
+      "scope": "corrected benchmark",
+      "files": 1,
+      "mismatches": []
+    }
+  ]
+}

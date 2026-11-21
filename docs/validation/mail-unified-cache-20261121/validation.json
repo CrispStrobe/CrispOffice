@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "repository": "CrispStrobe/quds_office_suite",
+  "date": "2026-11-21",
+  "qualified_combined_source_commit": "62e9f1af15f2cb00ee67a339cdc6dea48d882aab",
+  "reconciled_source_commit": "a0a3593a3658086bf1582c3ca87b3fa91485a7de",
+  "reconciled_tree": "6d5b939afa2aff88ecbf112e7a6e731434abfda6",
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "node": "24.22.3",
+    "root_lock_sha256": "0d64a732cd7f6c7cc4e1e01255276f081b59e6f43039636c3d36f6785a958ce2"
+  },
+  "cohorts": [
+    {
+      "scope": "Mail core, complete suite",
+      "passed": 407,
+      "receipt": "final-integrated/20261121T105825.070252Z/mail-core/receipt.json"
+    },
+    {
+      "scope": "Mail UI, complete baseline suite; captured inputs unchanged",
+      "passed": 211,
+      "receipt": "runtime-baselines-20261121/mail-ui-receipt.json"
+    },
+    {
+      "scope": "Cached-header repository search",
+      "passed": 19,
+      "receipt": "mail/cached-header-search-summary.json"
+    },
+    {
+      "scope": "Existing mailbox-view and synchronization regressions",
+      "passed": 34,
+      "receipt": "mail/cached-search-existing-regressions-summary.json"
+    },
+    {
+      "scope": "Combined Studio cached-Mail and credential integration, 11 files",
+      "passed": 178,
+      "receipt": "final-integrated/20261121T105825.070252Z/studio/receipt.json"
+    },
+    {
+      "scope": "Three focused Word text suites on merged engine source",
+      "passed": 263,
+      "receipt": "word-final-integrated-20261121/word-native-receipt.json"
+    },
+    {
+      "scope": "Native ODT Zotero inventory, four suites",
+      "passed": 149,
+      "receipt": "zotero-incoming-20261121/60e212b0/tests-receipt.json"
+    }
+  ],
+  "distinct_native_cases_in_these_cohorts": 1261,
+  "failed_final_cases": 0,
+  "skipped_final_cases": 0,
+  "counting_note": "Do not add superseded 13/21/44/85/134/40/23 runs, VM/Node overlap, or inherited Zotero evidence to these selected disjoint cohorts. The 178 combined host cases comprise 93 cached-Mail and 85 credential cases.",
+  "source_continuity": [
+    {
+      "scope": "final studio",
+      "files": 1169,
+      "mismatches": []
+    },
+    {
+      "scope": "final mail-core",
+      "files": 71,
+      "mismatches": []
+    },
+    {
+      "scope": "new cached repository search",
+      "files": 4,
+      "mismatches": []
+    },
+    {
+      "scope": "existing mailbox view and synchronization regressions",
+      "files": 5,
+      "mismatches": []
+    },
+    {
+      "scope": "full Mail UI baseline",
+      "files": 191,
+      "mismatches": []
+    },
+    {
+      "scope": "final Word repository inputs",
+      "files": 485,
+      "mismatches": []
+    },
+    {
+      "scope": "qualified Zotero inventory",
+      "files": 13,
+      "mismatches": []
+    },
+    {
+      "scope": "corrected biometric files",
+      "files": 8,
+      "mismatches": []
+    },
+    {
+      "scope": "corrected benchmark",
+      "files": 1,
+      "mismatches": []
+    }
+  ],
+  "post_qualification_runtime_diff": [],
+  "studio_warning_print_events": 51,
+  "warning_note": "Drift multiple-database debug warnings from independent account profiles remain in the passing combined log; no warning-free claim.",
+  "portable": {
+    "word_cases": 95,
+    "word_vm_node_byte_equal": true,
+    "word_report_operations": 6,
+    "word_report_reopens": 2,
+    "word_report_vm_node_byte_equal": true,
+    "odt_inventory_fields": 4,
+    "odt_vm_node_byte_equal": true,
+    "overlaps_native_cases": true
+  },
+  "benchmark": {
+    "scope": "one opt-in full-Studio 300-keystroke benchmark",
+    "optimized_passed": true,
+    "baseline_passed": true,
+    "prior_flags_restored": true,
+    "release_performance_claim": false
+  },
+  "intake_summary": "27 captured fork heads and 303 pre-publication PR heads; four upstream branches and four upstream PRs; exact historical equivalence proofs retained.",
+  "github_actions_queried_or_awaited": false,
+  "unexecuted_gates": [
+    "Actual macOS biometric/keychain/signed-app execution",
+    "Live mail provider and installed Office/Zotero interoperability",
+    "Release packaging across supported platforms",
+    "Browser persistence/full Mail workspace acceptance"
+  ],
+  "recorded_utc": "2026-11-21T11:03:56.440326+00:00",
+  "evidence_archive": {
+    "archive": "local-evidence.tar.xz",
+    "archive_bytes": 407980,
+    "archive_sha256": "3b652f28148f71f7d8e74d7cf9b07711147b113002bb9b16cfa56313ff3d8349",
+    "verified_members": 271,
+    "verified_captures": 8,
+    "all_member_hashes_and_sizes_match": true,
+    "unsafe_or_duplicate_members": false,
+    "verified_utc": "2026-11-21T11:07:48.196357+00:00"
+  }
+}

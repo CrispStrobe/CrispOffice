@@ -1,0 +1,10 @@
+{
+  "archive": "local-evidence.tar.xz",
+  "archive_bytes": 407980,
+  "archive_sha256": "3b652f28148f71f7d8e74d7cf9b07711147b113002bb9b16cfa56313ff3d8349",
+  "verified_members": 271,
+  "verified_captures": 8,
+  "all_member_hashes_and_sizes_match": true,
+  "unsafe_or_duplicate_members": false,
+  "verified_utc": "2026-11-21T11:07:48.196357+00:00"
+}
