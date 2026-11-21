@@ -73,6 +73,12 @@
       "additionalParents": [
         "2e3280a175814dab7fccf14363f8dd1785acc78e"
       ]
+    },
+    {
+      "localCommit": "064630e45eb6eb49bf3b4a996c8e33adafe0a21e",
+      "remoteCommit": "e5a83a5045f7b1b107c916ee4d053d4d4bc84f84",
+      "tree": "f4a23c86e0ddeaf8f020f4ae0c3b99f69ef3f965",
+      "message": "docs(mail): preserve local qualification and reconciliation evidence [skip ci]"
     }
   ]
 }

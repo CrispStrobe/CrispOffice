@@ -106,5 +106,6 @@
     "uncovered": 0
   },
   "evidenceIndex": "evidence/evidence-index.json",
-  "checkpoints": "checkpoints.json"
+  "checkpoints": "checkpoints.json",
+  "publicationReconciliation": "publication-reconciliation.json"
 }

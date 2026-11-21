@@ -42,17 +42,25 @@ These incoming tips were preserved through real merge ancestry:
 | --- | --- |
 | 0fe00b18fef6b79a435817c99714f987329d5f3c | Word AllCaps compiler/native/model/layout/editor and Zotero preservation |
 | 2aa7833239ec4507a4a9db1c7f23c84bd01b4028 | Initial LibreOffice/Zotero intake |
-| 3f6b9a2b9209693aa32bbad402bb7d093cf8b4db | Current main, including About privacy-link and App Store documentation PRs #312/#313 |
+| 3f6b9a2b9209693aa32bbad402bb7d093cf8b4db | Captured main, including About privacy-link and App Store documentation PRs #312/#313 |
 | d86d0d1325cb3c663970f5d52e7386b0b0c775b8 | German proofing/editor localization and German mail-composer strings |
 | 2e3280a175814dab7fccf14363f8dd1785acc78e | LibreOffice ODT typography/script-style import and fixtures |
 
 The combined qualified application source is
 **3a8d466fac738973dcffdae58c3d7ac0fd594e86**. Subsequent work-record, evidence,
 changelog and README edits do not alter production or test inputs.
-The [checkpoint map](checkpoints.json) records ten incremental remote commits
+The [checkpoint map](checkpoints.json) records eleven incremental remote commits
 on work/mail-client-next-20261121, exact tree checks and preserved merge
 parents. It maps local execution commit IDs to byte-identical remote trees.
 No branch was force-pushed, and existing branch tips were retained.
+
+During final publication, main advanced to
+49adcd6b693712b9e82f9fdefd2fdf09d0db4ee2 through the completed Word PR #311.
+That main tip was integrated with both parents preserved. Its net addition to
+this branch was ten Word validation documentation/evidence paths; production
+and test inputs remained unchanged. The [publication reconciliation](publication-reconciliation.json)
+records those paths and the already-published Mail evidence checkpoint. This
+documentation-only integration reuses the source qualification below.
 
 ## Local verification
 
