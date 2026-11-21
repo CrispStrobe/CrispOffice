@@ -1,0 +1,4076 @@
+{
+  "schema_version": 1,
+  "purpose": "Read-only final incoming branch/PR frontier for Zotero rich ODT work, before root's final main reconciliation.",
+  "repository": "CrispStrobe/quds_office_suite",
+  "observed_audit_started_at_utc": "2026-11-21 12:03:41 UTC",
+  "observed_final_refs_at_utc": "2026-11-21 12:05:23 UTC",
+  "observed_comparisons_completed_at_utc": "2026-11-21 12:05:33 UTC",
+  "initial_audit_completed_at_utc": "2026-11-21T11:46:36Z",
+  "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+  "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+  "capture_scope": {
+    "fork_branch_count": 27,
+    "incoming_branch_count_excluding_own_checkpoint": 26,
+    "branch_pagination": "GitHub search_branches page_size 100: 27 branches; cursor Mjc yielded terminal empty page. Exact heads obtained from REST branches page 1, per_page 100, then rechecked.",
+    "latest_pr_count": 100,
+    "latest_pr_number_range": [
+      210,
+      309
+    ],
+    "open_pr_count": 1,
+    "initial_pr_number_range": [
+      206,
+      305
+    ],
+    "excluded_branch": "codex/zotero-parity-2026-11-21",
+    "excluded_reason": "This session's incremental checkpoint; not incoming work.",
+    "snapshot_limit": "Refs and PR status are point-in-time observations. They are not locked against subsequent concurrent pushes."
+  },
+  "methods": [
+    "Read GitHub REST main ref and branch metadata through GitHub connector.",
+    "Read all branch names and latest 100/all open PR summaries through GitHub connector.",
+    "Compare every incoming fork head with exact frozen final main.",
+    "Directly compare new PR heads 306 through 309 with final main.",
+    "For unchanged older recent PR heads use exact initial audit ancestry plus direct initial-to-final main ancestry.",
+    "Recheck main, branch heads and open PR status; compare the changed VBA head against current main, initial main and its previous observed head.",
+    "No remote mutations, Actions, workflows, check/status queues or CI waits."
+  ],
+  "result": {
+    "current_main_advanced": true,
+    "main_commits_since_initial": 27,
+    "incoming_heads_behind_main": 24,
+    "incoming_heads_identical_to_main": 1,
+    "incoming_heads_ahead_of_main": 1,
+    "incoming_heads_diverged_from_main": 0,
+    "new_merged_prs": [
+      306,
+      307,
+      309
+    ],
+    "outstanding_open_prs": [
+      308
+    ],
+    "outstanding_ready_prs": [],
+    "outstanding_draft_prs": [
+      308
+    ],
+    "all_initial_incoming_heads_are_ancestors_of_final_main": true,
+    "all_current_incoming_heads_are_ancestors_of_final_main": false,
+    "incoming_source_outside_main": [
+      "codex/word-vba-language-controls-20261121"
+    ]
+  },
+  "main_advancement": {
+    "base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+    "head_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+    "status": "ahead",
+    "ahead_by": 27,
+    "behind_by": 0,
+    "merge_base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+    "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/2f90a0c8f21499d5a1113943971cb7379183885c...fcb2128884768553141f41c02bf804e2267f9dbb",
+    "files": [
+      {
+        "filename": "docs/roadmaps/mail/README.md",
+        "status": "modified",
+        "additions": 5,
+        "deletions": 0,
+        "changes": 5,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/roadmaps/mail/conversations.md",
+        "status": "added",
+        "additions": 99,
+        "deletions": 0,
+        "changes": 99,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/roadmaps/mail/status.md",
+        "status": "modified",
+        "additions": 11,
+        "deletions": 0,
+        "changes": 11,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_mail_core/lib/quds_mail_core.dart",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_mail_core/lib/src/search/conversations.dart",
+        "status": "added",
+        "additions": 165,
+        "deletions": 0,
+        "changes": 165,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_mail_core/test/conversations_test.dart",
+        "status": "added",
+        "additions": 184,
+        "deletions": 0,
+        "changes": 184,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_mail_ui/lib/src/reader/controller.dart",
+        "status": "modified",
+        "additions": 10,
+        "deletions": 1,
+        "changes": 11,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_mail_ui/lib/src/reader/presentation.dart",
+        "status": "modified",
+        "additions": 31,
+        "deletions": 28,
+        "changes": 59,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_mail_ui/lib/src/workspace/message_list.dart",
+        "status": "modified",
+        "additions": 265,
+        "deletions": 137,
+        "changes": 402,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_mail_ui/test/message_list_bulk_test.dart",
+        "status": "modified",
+        "additions": 4,
+        "deletions": 1,
+        "changes": 5,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_mail_ui/test/message_list_conversations_test.dart",
+        "status": "added",
+        "additions": 203,
+        "deletions": 0,
+        "changes": 203,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_mail_ui/test/message_list_test.dart",
+        "status": "modified",
+        "additions": 14,
+        "deletions": 9,
+        "changes": 23,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/example/lib/credentials/secure_storage_service.dart",
+        "status": "modified",
+        "additions": 18,
+        "deletions": 19,
+        "changes": 37,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/example/lib/studio_mail_cached_mail.dart",
+        "status": "modified",
+        "additions": 8,
+        "deletions": 0,
+        "changes": 8,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+        "status": "modified",
+        "additions": 10,
+        "deletions": 0,
+        "changes": 10,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+        "status": "modified",
+        "additions": 20,
+        "deletions": 0,
+        "changes": 20,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/example/lib/studio_mail_sync_dialog.dart",
+        "status": "modified",
+        "additions": 10,
+        "deletions": 0,
+        "changes": 10,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/example/lib/studio_mail_workspace_strings.dart",
+        "status": "modified",
+        "additions": 6,
+        "deletions": 0,
+        "changes": 6,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/example/lib/studio_saved_mail.dart",
+        "status": "modified",
+        "additions": 4,
+        "deletions": 0,
+        "changes": 4,
+        "previous_filename": null
+      }
+    ],
+    "assessment": "19 changed files are Mail conversation/core/UI, reader, account workspace and credential storage plus documentation. This main delta has no quds_office_engine or Zotero paths."
+  },
+  "branches": [
+    {
+      "name": "codex/word-vba-compatibility-20261121",
+      "head_sha": "38b07e58b7c0e2a5b04a823a7251805cea60fb77",
+      "initial_head_sha": "38b07e58b7c0e2a5b04a823a7251805cea60fb77",
+      "changed_since_initial": false,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/tree/codex/word-vba-compatibility-20261121",
+      "excluded_from_incoming_assessment": false,
+      "comparison_to_final_main": {
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "38b07e58b7c0e2a5b04a823a7251805cea60fb77",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 135,
+        "merge_base_sha": "38b07e58b7c0e2a5b04a823a7251805cea60fb77",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...38b07e58b7c0e2a5b04a823a7251805cea60fb77"
+      },
+      "comparison_to_initial_main": {
+        "proof": "unchanged_exact_head_from_initial_audit",
+        "base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "head_sha": "38b07e58b7c0e2a5b04a823a7251805cea60fb77",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 108
+      },
+      "disposition": "Already preserved by current main ancestry."
+    },
+    {
+      "name": "codex/word-vba-language-controls-20261121",
+      "head_sha": "8b236255bcc2c2fc27d3ea46212e5fa36a957ac7",
+      "initial_head_sha": null,
+      "changed_since_initial": true,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/tree/codex/word-vba-language-controls-20261121",
+      "excluded_from_incoming_assessment": false,
+      "comparison_to_final_main": {
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "8b236255bcc2c2fc27d3ea46212e5fa36a957ac7",
+        "status": "ahead",
+        "ahead_by": 2,
+        "behind_by": 0,
+        "merge_base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...8b236255bcc2c2fc27d3ea46212e5fa36a957ac7",
+        "files": [
+          {
+            "filename": "docs/MACROS.md",
+            "status": "modified",
+            "additions": 15,
+            "deletions": 0,
+            "changes": 15,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/VBA_PARITY_ROADMAP.md",
+            "status": "modified",
+            "additions": 16,
+            "deletions": 0,
+            "changes": 16,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/VBA_WORD_MACROS.md",
+            "status": "modified",
+            "additions": 114,
+            "deletions": 5,
+            "changes": 119,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/word-vba-language-controls-20261121/README.md",
+            "status": "added",
+            "additions": 42,
+            "deletions": 0,
+            "changes": 42,
+            "previous_filename": null
+          },
+          {
+            "filename": "docs/validation/word-vba-language-controls-20261121/intake.json",
+            "status": "added",
+            "additions": 4466,
+            "deletions": 0,
+            "changes": 4466,
+            "previous_filename": null
+          },
+          {
+            "filename": "packages/quds_office_engine/CHANGELOG.md",
+            "status": "modified",
+            "additions": 8,
+            "deletions": 0,
+            "changes": 8,
+            "previous_filename": null
+          },
+          {
+            "filename": "packages/quds_office_engine/example/macros/word_language_controls.bas",
+            "status": "added",
+            "additions": 24,
+            "deletions": 0,
+            "changes": 24,
+            "previous_filename": null
+          },
+          {
+            "filename": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+            "status": "modified",
+            "additions": 97,
+            "deletions": 5,
+            "changes": 102,
+            "previous_filename": null
+          },
+          {
+            "filename": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+            "status": "modified",
+            "additions": 132,
+            "deletions": 41,
+            "changes": 173,
+            "previous_filename": null
+          },
+          {
+            "filename": "packages/quds_office_engine/lib/src/word/model/word_styles.dart",
+            "status": "modified",
+            "additions": 2,
+            "deletions": 0,
+            "changes": 2,
+            "previous_filename": null
+          },
+          {
+            "filename": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+            "status": "modified",
+            "additions": 46,
+            "deletions": 32,
+            "changes": 78,
+            "previous_filename": null
+          },
+          {
+            "filename": "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart",
+            "status": "modified",
+            "additions": 110,
+            "deletions": 33,
+            "changes": 143,
+            "previous_filename": null
+          },
+          {
+            "filename": "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+            "status": "modified",
+            "additions": 13,
+            "deletions": 8,
+            "changes": 21,
+            "previous_filename": null
+          },
+          {
+            "filename": "packages/quds_office_engine/test/office_macro_word_language_controls_test.dart",
+            "status": "added",
+            "additions": 771,
+            "deletions": 0,
+            "changes": 771,
+            "previous_filename": null
+          },
+          {
+            "filename": "packages/quds_office_engine/test/office_vba_word_language_controls_integration_test.dart",
+            "status": "added",
+            "additions": 250,
+            "deletions": 0,
+            "changes": 250,
+            "previous_filename": null
+          },
+          {
+            "filename": "packages/quds_office_engine/test/office_vba_word_language_controls_test.dart",
+            "status": "added",
+            "additions": 242,
+            "deletions": 0,
+            "changes": 242,
+            "previous_filename": null
+          },
+          {
+            "filename": "packages/quds_office_engine/tool/macros/web_vba_word_language_controls_smoke.dart",
+            "status": "added",
+            "additions": 256,
+            "deletions": 0,
+            "changes": 256,
+            "previous_filename": null
+          }
+        ]
+      },
+      "comparison_to_initial_main": {
+        "base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "head_sha": "8b236255bcc2c2fc27d3ea46212e5fa36a957ac7",
+        "status": "ahead",
+        "ahead_by": 29,
+        "behind_by": 0,
+        "merge_base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/2f90a0c8f21499d5a1113943971cb7379183885c...8b236255bcc2c2fc27d3ea46212e5fa36a957ac7"
+      },
+      "disposition": "Active source work; open draft PR 308, final acceptance explicitly unfinished."
+    },
+    {
+      "name": "codex/word-vba-paragraph-flow-20261121",
+      "head_sha": "13fa9ad5b9d140f1d7c085e46b4d0ce395000c49",
+      "initial_head_sha": "13fa9ad5b9d140f1d7c085e46b4d0ce395000c49",
+      "changed_since_initial": false,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/tree/codex/word-vba-paragraph-flow-20261121",
+      "excluded_from_incoming_assessment": false,
+      "comparison_to_final_main": {
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "13fa9ad5b9d140f1d7c085e46b4d0ce395000c49",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 104,
+        "merge_base_sha": "13fa9ad5b9d140f1d7c085e46b4d0ce395000c49",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...13fa9ad5b9d140f1d7c085e46b4d0ce395000c49"
+      },
+      "comparison_to_initial_main": {
+        "proof": "unchanged_exact_head_from_initial_audit",
+        "base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "head_sha": "13fa9ad5b9d140f1d7c085e46b4d0ce395000c49",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 77
+      },
+      "disposition": "Already preserved by current main ancestry."
+    },
+    {
+      "name": "codex/word-vba-paragraph-pagination-20261121",
+      "head_sha": "1581229f0e5aea24b5242c33a1e92f02d70b4c7e",
+      "initial_head_sha": "1581229f0e5aea24b5242c33a1e92f02d70b4c7e",
+      "changed_since_initial": false,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/tree/codex/word-vba-paragraph-pagination-20261121",
+      "excluded_from_incoming_assessment": false,
+      "comparison_to_final_main": {
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "1581229f0e5aea24b5242c33a1e92f02d70b4c7e",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 245,
+        "merge_base_sha": "1581229f0e5aea24b5242c33a1e92f02d70b4c7e",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...1581229f0e5aea24b5242c33a1e92f02d70b4c7e"
+      },
+      "comparison_to_initial_main": {
+        "proof": "unchanged_exact_head_from_initial_audit",
+        "base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "head_sha": "1581229f0e5aea24b5242c33a1e92f02d70b4c7e",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 218
+      },
+      "disposition": "Already preserved by current main ancestry."
+    },
+    {
+      "name": "codex/word-vba-sections-20261121",
+      "head_sha": "49665e51f9eacefc180748c3d0ed7851ef5da5d1",
+      "initial_head_sha": "49665e51f9eacefc180748c3d0ed7851ef5da5d1",
+      "changed_since_initial": false,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/tree/codex/word-vba-sections-20261121",
+      "excluded_from_incoming_assessment": false,
+      "comparison_to_final_main": {
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "49665e51f9eacefc180748c3d0ed7851ef5da5d1",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 201,
+        "merge_base_sha": "49665e51f9eacefc180748c3d0ed7851ef5da5d1",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...49665e51f9eacefc180748c3d0ed7851ef5da5d1"
+      },
+      "comparison_to_initial_main": {
+        "proof": "unchanged_exact_head_from_initial_audit",
+        "base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "head_sha": "49665e51f9eacefc180748c3d0ed7851ef5da5d1",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 174
+      },
+      "disposition": "Already preserved by current main ancestry."
+    },
+    {
+      "name": "codex/word-vba-text-intrinsics-20261121",
+      "head_sha": "4357f196507ca38a2f51409a981b8621d419b6d9",
+      "initial_head_sha": "4357f196507ca38a2f51409a981b8621d419b6d9",
+      "changed_since_initial": false,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/tree/codex/word-vba-text-intrinsics-20261121",
+      "excluded_from_incoming_assessment": false,
+      "comparison_to_final_main": {
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "4357f196507ca38a2f51409a981b8621d419b6d9",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 54,
+        "merge_base_sha": "4357f196507ca38a2f51409a981b8621d419b6d9",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...4357f196507ca38a2f51409a981b8621d419b6d9"
+      },
+      "comparison_to_initial_main": {
+        "proof": "unchanged_exact_head_from_initial_audit",
+        "base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "head_sha": "4357f196507ca38a2f51409a981b8621d419b6d9",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 27
+      },
+      "disposition": "Already preserved by current main ancestry."
+    },
+    {
+      "name": "codex/word-vba-unit-conversions-20261120",
+      "head_sha": "bbccae1bdead10951e2d7a23b33cf14c55382e02",
+      "initial_head_sha": "bbccae1bdead10951e2d7a23b33cf14c55382e02",
+      "changed_since_initial": false,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/tree/codex/word-vba-unit-conversions-20261120",
+      "excluded_from_incoming_assessment": false,
+      "comparison_to_final_main": {
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "bbccae1bdead10951e2d7a23b33cf14c55382e02",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 277,
+        "merge_base_sha": "bbccae1bdead10951e2d7a23b33cf14c55382e02",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...bbccae1bdead10951e2d7a23b33cf14c55382e02"
+      },
+      "comparison_to_initial_main": {
+        "proof": "unchanged_exact_head_from_initial_audit",
+        "base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "head_sha": "bbccae1bdead10951e2d7a23b33cf14c55382e02",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 250
+      },
+      "disposition": "Already preserved by current main ancestry."
+    },
+    {
+      "name": "codex/zotero-multiparagraph-20261121",
+      "head_sha": "589ccd33243eabe57ce3074c92112e1fdf1325f1",
+      "initial_head_sha": "589ccd33243eabe57ce3074c92112e1fdf1325f1",
+      "changed_since_initial": false,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/tree/codex/zotero-multiparagraph-20261121",
+      "excluded_from_incoming_assessment": false,
+      "comparison_to_final_main": {
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "589ccd33243eabe57ce3074c92112e1fdf1325f1",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 222,
+        "merge_base_sha": "589ccd33243eabe57ce3074c92112e1fdf1325f1",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...589ccd33243eabe57ce3074c92112e1fdf1325f1"
+      },
+      "comparison_to_initial_main": {
+        "proof": "unchanged_exact_head_from_initial_audit",
+        "base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "head_sha": "589ccd33243eabe57ce3074c92112e1fdf1325f1",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 195
+      },
+      "disposition": "Already preserved by current main ancestry."
+    },
+    {
+      "name": "codex/zotero-native-odt-20261121",
+      "head_sha": "d9bfa44022781f0dd4493a923ca9f20316dc59f0",
+      "initial_head_sha": "d9bfa44022781f0dd4493a923ca9f20316dc59f0",
+      "changed_since_initial": false,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/tree/codex/zotero-native-odt-20261121",
+      "excluded_from_incoming_assessment": false,
+      "comparison_to_final_main": {
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "d9bfa44022781f0dd4493a923ca9f20316dc59f0",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 83,
+        "merge_base_sha": "d9bfa44022781f0dd4493a923ca9f20316dc59f0",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...d9bfa44022781f0dd4493a923ca9f20316dc59f0"
+      },
+      "comparison_to_initial_main": {
+        "proof": "unchanged_exact_head_from_initial_audit",
+        "base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "head_sha": "d9bfa44022781f0dd4493a923ca9f20316dc59f0",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 56
+      },
+      "disposition": "Already preserved by current main ancestry."
+    },
+    {
+      "name": "codex/zotero-odt-inventory-20261121",
+      "head_sha": "fb386d6e42a2336f1431e38bf6d713552edd0978",
+      "initial_head_sha": "fb386d6e42a2336f1431e38bf6d713552edd0978",
+      "changed_since_initial": false,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/tree/codex/zotero-odt-inventory-20261121",
+      "excluded_from_incoming_assessment": false,
+      "comparison_to_final_main": {
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "fb386d6e42a2336f1431e38bf6d713552edd0978",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 46,
+        "merge_base_sha": "fb386d6e42a2336f1431e38bf6d713552edd0978",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...fb386d6e42a2336f1431e38bf6d713552edd0978"
+      },
+      "comparison_to_initial_main": {
+        "proof": "unchanged_exact_head_from_initial_audit",
+        "base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "head_sha": "fb386d6e42a2336f1431e38bf6d713552edd0978",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 19
+      },
+      "disposition": "Already preserved by current main ancestry."
+    },
+    {
+      "name": "codex/zotero-parity-2026-11-21",
+      "head_sha": "3b1625e58a50438d10652032ab8dc5cecc098e34",
+      "initial_head_sha": null,
+      "changed_since_initial": true,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/tree/codex/zotero-parity-2026-11-21",
+      "excluded_from_incoming_assessment": true,
+      "disposition": "Own remote checkpoint, retained."
+    },
+    {
+      "name": "codex/zotero-parity-20261121-continuation",
+      "head_sha": "9942eb76f0ac818e464ad1b3bcec2cc4513d3e3f",
+      "initial_head_sha": "9942eb76f0ac818e464ad1b3bcec2cc4513d3e3f",
+      "changed_since_initial": false,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/tree/codex/zotero-parity-20261121-continuation",
+      "excluded_from_incoming_assessment": false,
+      "comparison_to_final_main": {
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "9942eb76f0ac818e464ad1b3bcec2cc4513d3e3f",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 87,
+        "merge_base_sha": "9942eb76f0ac818e464ad1b3bcec2cc4513d3e3f",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...9942eb76f0ac818e464ad1b3bcec2cc4513d3e3f"
+      },
+      "comparison_to_initial_main": {
+        "proof": "unchanged_exact_head_from_initial_audit",
+        "base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "head_sha": "9942eb76f0ac818e464ad1b3bcec2cc4513d3e3f",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 60
+      },
+      "disposition": "Already preserved by current main ancestry."
+    },
+    {
+      "name": "codex/zotero-parity-20261121-next",
+      "head_sha": "d4470bab1095593739ddf87fdb9f249bbc948b65",
+      "initial_head_sha": "d4470bab1095593739ddf87fdb9f249bbc948b65",
+      "changed_since_initial": false,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/tree/codex/zotero-parity-20261121-next",
+      "excluded_from_incoming_assessment": false,
+      "comparison_to_final_main": {
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "d4470bab1095593739ddf87fdb9f249bbc948b65",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 128,
+        "merge_base_sha": "d4470bab1095593739ddf87fdb9f249bbc948b65",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...d4470bab1095593739ddf87fdb9f249bbc948b65"
+      },
+      "comparison_to_initial_main": {
+        "proof": "unchanged_exact_head_from_initial_audit",
+        "base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "head_sha": "d4470bab1095593739ddf87fdb9f249bbc948b65",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 101
+      },
+      "disposition": "Already preserved by current main ancestry."
+    },
+    {
+      "name": "codex/zotero-transfer-20261121",
+      "head_sha": "a1995c9154357e603b89947654cf95f8bcba6a83",
+      "initial_head_sha": "a1995c9154357e603b89947654cf95f8bcba6a83",
+      "changed_since_initial": false,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/tree/codex/zotero-transfer-20261121",
+      "excluded_from_incoming_assessment": false,
+      "comparison_to_final_main": {
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "a1995c9154357e603b89947654cf95f8bcba6a83",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 170,
+        "merge_base_sha": "a1995c9154357e603b89947654cf95f8bcba6a83",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...a1995c9154357e603b89947654cf95f8bcba6a83"
+      },
+      "comparison_to_initial_main": {
+        "proof": "unchanged_exact_head_from_initial_audit",
+        "base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "head_sha": "a1995c9154357e603b89947654cf95f8bcba6a83",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 143
+      },
+      "disposition": "Already preserved by current main ancestry."
+    },
+    {
+      "name": "codex/zotero-vertical-tables-20261120",
+      "head_sha": "a7d9f37ecbaaf70544f4866d7d9e572696948184",
+      "initial_head_sha": "a7d9f37ecbaaf70544f4866d7d9e572696948184",
+      "changed_since_initial": false,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/tree/codex/zotero-vertical-tables-20261120",
+      "excluded_from_incoming_assessment": false,
+      "comparison_to_final_main": {
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "a7d9f37ecbaaf70544f4866d7d9e572696948184",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 290,
+        "merge_base_sha": "a7d9f37ecbaaf70544f4866d7d9e572696948184",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...a7d9f37ecbaaf70544f4866d7d9e572696948184"
+      },
+      "comparison_to_initial_main": {
+        "proof": "unchanged_exact_head_from_initial_audit",
+        "base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "head_sha": "a7d9f37ecbaaf70544f4866d7d9e572696948184",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 263
+      },
+      "disposition": "Already preserved by current main ancestry."
+    },
+    {
+      "name": "docs/app-store-submission-20261120",
+      "head_sha": "b08e0a55b629ac22b33c54146b56438862965022",
+      "initial_head_sha": "b08e0a55b629ac22b33c54146b56438862965022",
+      "changed_since_initial": false,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/tree/docs/app-store-submission-20261120",
+      "excluded_from_incoming_assessment": false,
+      "comparison_to_final_main": {
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "b08e0a55b629ac22b33c54146b56438862965022",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 433,
+        "merge_base_sha": "b08e0a55b629ac22b33c54146b56438862965022",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...b08e0a55b629ac22b33c54146b56438862965022"
+      },
+      "comparison_to_initial_main": {
+        "proof": "unchanged_exact_head_from_initial_audit",
+        "base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "head_sha": "b08e0a55b629ac22b33c54146b56438862965022",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 406
+      },
+      "disposition": "Already preserved by current main ancestry."
+    },
+    {
+      "name": "main",
+      "head_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+      "initial_head_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+      "changed_since_initial": true,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/tree/main",
+      "excluded_from_incoming_assessment": false,
+      "comparison_to_final_main": {
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "status": "identical",
+        "ahead_by": 0,
+        "behind_by": 0,
+        "merge_base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...fcb2128884768553141f41c02bf804e2267f9dbb"
+      },
+      "comparison_to_initial_main": {
+        "base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "head_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "status": "ahead",
+        "ahead_by": 27,
+        "behind_by": 0,
+        "merge_base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/2f90a0c8f21499d5a1113943971cb7379183885c...fcb2128884768553141f41c02bf804e2267f9dbb"
+      },
+      "disposition": "Reconcile this exact main into our work before final integration."
+    },
+    {
+      "name": "work/mail-boolean-core-20261121",
+      "head_sha": "3e6374115c10a92fdb4b82734c1bc2b009210794",
+      "initial_head_sha": "3e6374115c10a92fdb4b82734c1bc2b009210794",
+      "changed_since_initial": false,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/tree/work/mail-boolean-core-20261121",
+      "excluded_from_incoming_assessment": false,
+      "comparison_to_final_main": {
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "3e6374115c10a92fdb4b82734c1bc2b009210794",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 83,
+        "merge_base_sha": "3e6374115c10a92fdb4b82734c1bc2b009210794",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...3e6374115c10a92fdb4b82734c1bc2b009210794"
+      },
+      "comparison_to_initial_main": {
+        "proof": "unchanged_exact_head_from_initial_audit",
+        "base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "head_sha": "3e6374115c10a92fdb4b82734c1bc2b009210794",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 56
+      },
+      "disposition": "Already preserved by current main ancestry."
+    },
+    {
+      "name": "work/mail-command-journal-20261121",
+      "head_sha": "33ce2428ebab825a844895a767e0f9f1a4077d62",
+      "initial_head_sha": "33ce2428ebab825a844895a767e0f9f1a4077d62",
+      "changed_since_initial": false,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/tree/work/mail-command-journal-20261121",
+      "excluded_from_incoming_assessment": false,
+      "comparison_to_final_main": {
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "33ce2428ebab825a844895a767e0f9f1a4077d62",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 262,
+        "merge_base_sha": "33ce2428ebab825a844895a767e0f9f1a4077d62",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...33ce2428ebab825a844895a767e0f9f1a4077d62"
+      },
+      "comparison_to_initial_main": {
+        "proof": "unchanged_exact_head_from_initial_audit",
+        "base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "head_sha": "33ce2428ebab825a844895a767e0f9f1a4077d62",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 235
+      },
+      "disposition": "Already preserved by current main ancestry."
+    },
+    {
+      "name": "work/mail-intake-20261121",
+      "head_sha": "4191be02ac9c7117e05ff4a052a5c92fbcfbf4b4",
+      "initial_head_sha": "4191be02ac9c7117e05ff4a052a5c92fbcfbf4b4",
+      "changed_since_initial": false,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/tree/work/mail-intake-20261121",
+      "excluded_from_incoming_assessment": false,
+      "comparison_to_final_main": {
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "4191be02ac9c7117e05ff4a052a5c92fbcfbf4b4",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 80,
+        "merge_base_sha": "4191be02ac9c7117e05ff4a052a5c92fbcfbf4b4",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...4191be02ac9c7117e05ff4a052a5c92fbcfbf4b4"
+      },
+      "comparison_to_initial_main": {
+        "proof": "unchanged_exact_head_from_initial_audit",
+        "base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "head_sha": "4191be02ac9c7117e05ff4a052a5c92fbcfbf4b4",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 53
+      },
+      "disposition": "Already preserved by current main ancestry."
+    },
+    {
+      "name": "work/mail-offline-retention-20261121",
+      "head_sha": "9eb68b9f048d3c08274ece5d7f964f1249004485",
+      "initial_head_sha": "9eb68b9f048d3c08274ece5d7f964f1249004485",
+      "changed_since_initial": false,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/tree/work/mail-offline-retention-20261121",
+      "excluded_from_incoming_assessment": false,
+      "comparison_to_final_main": {
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "9eb68b9f048d3c08274ece5d7f964f1249004485",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 92,
+        "merge_base_sha": "9eb68b9f048d3c08274ece5d7f964f1249004485",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...9eb68b9f048d3c08274ece5d7f964f1249004485"
+      },
+      "comparison_to_initial_main": {
+        "proof": "unchanged_exact_head_from_initial_audit",
+        "base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "head_sha": "9eb68b9f048d3c08274ece5d7f964f1249004485",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 65
+      },
+      "disposition": "Already preserved by current main ancestry."
+    },
+    {
+      "name": "work/mail-parity-20261121",
+      "head_sha": "fa59496840a36709fe3a6d867bdfe96ab99d72ab",
+      "initial_head_sha": "fa59496840a36709fe3a6d867bdfe96ab99d72ab",
+      "changed_since_initial": false,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/tree/work/mail-parity-20261121",
+      "excluded_from_incoming_assessment": false,
+      "comparison_to_final_main": {
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "fa59496840a36709fe3a6d867bdfe96ab99d72ab",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 234,
+        "merge_base_sha": "fa59496840a36709fe3a6d867bdfe96ab99d72ab",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...fa59496840a36709fe3a6d867bdfe96ab99d72ab"
+      },
+      "comparison_to_initial_main": {
+        "proof": "unchanged_exact_head_from_initial_audit",
+        "base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "head_sha": "fa59496840a36709fe3a6d867bdfe96ab99d72ab",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 207
+      },
+      "disposition": "Already preserved by current main ancestry."
+    },
+    {
+      "name": "work/mail-parity-next-20261121",
+      "head_sha": "59866ce7c983869b16baa3f386b1f55dbb218833",
+      "initial_head_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+      "changed_since_initial": true,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/tree/work/mail-parity-next-20261121",
+      "excluded_from_incoming_assessment": false,
+      "comparison_to_final_main": {
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "59866ce7c983869b16baa3f386b1f55dbb218833",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 1,
+        "merge_base_sha": "59866ce7c983869b16baa3f386b1f55dbb218833",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...59866ce7c983869b16baa3f386b1f55dbb218833"
+      },
+      "comparison_to_initial_main": {
+        "base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "head_sha": "59866ce7c983869b16baa3f386b1f55dbb218833",
+        "status": "ahead",
+        "ahead_by": 26,
+        "behind_by": 0,
+        "merge_base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/2f90a0c8f21499d5a1113943971cb7379183885c...59866ce7c983869b16baa3f386b1f55dbb218833"
+      },
+      "disposition": "Already preserved by current main ancestry."
+    },
+    {
+      "name": "work/mail-repository-sessions-20261121",
+      "head_sha": "0491492d8622ad2ef09fb84e07d3dbba462f9320",
+      "initial_head_sha": "0491492d8622ad2ef09fb84e07d3dbba462f9320",
+      "changed_since_initial": false,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/tree/work/mail-repository-sessions-20261121",
+      "excluded_from_incoming_assessment": false,
+      "comparison_to_final_main": {
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "0491492d8622ad2ef09fb84e07d3dbba462f9320",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 179,
+        "merge_base_sha": "0491492d8622ad2ef09fb84e07d3dbba462f9320",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...0491492d8622ad2ef09fb84e07d3dbba462f9320"
+      },
+      "comparison_to_initial_main": {
+        "proof": "unchanged_exact_head_from_initial_audit",
+        "base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "head_sha": "0491492d8622ad2ef09fb84e07d3dbba462f9320",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 152
+      },
+      "disposition": "Already preserved by current main ancestry."
+    },
+    {
+      "name": "work/mail-sync-foundation-20261121",
+      "head_sha": "4a1eaa69e7a068e354bdd851ec9b0323b89ae300",
+      "initial_head_sha": "4a1eaa69e7a068e354bdd851ec9b0323b89ae300",
+      "changed_since_initial": false,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/tree/work/mail-sync-foundation-20261121",
+      "excluded_from_incoming_assessment": false,
+      "comparison_to_final_main": {
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "4a1eaa69e7a068e354bdd851ec9b0323b89ae300",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 144,
+        "merge_base_sha": "4a1eaa69e7a068e354bdd851ec9b0323b89ae300",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...4a1eaa69e7a068e354bdd851ec9b0323b89ae300"
+      },
+      "comparison_to_initial_main": {
+        "proof": "unchanged_exact_head_from_initial_audit",
+        "base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "head_sha": "4a1eaa69e7a068e354bdd851ec9b0323b89ae300",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 117
+      },
+      "disposition": "Already preserved by current main ancestry."
+    },
+    {
+      "name": "work/mail-triage-20261121",
+      "head_sha": "575e671de665dc918886285dab2e3628f4309965",
+      "initial_head_sha": "575e671de665dc918886285dab2e3628f4309965",
+      "changed_since_initial": false,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/tree/work/mail-triage-20261121",
+      "excluded_from_incoming_assessment": false,
+      "comparison_to_final_main": {
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "575e671de665dc918886285dab2e3628f4309965",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 69,
+        "merge_base_sha": "575e671de665dc918886285dab2e3628f4309965",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...575e671de665dc918886285dab2e3628f4309965"
+      },
+      "comparison_to_initial_main": {
+        "proof": "unchanged_exact_head_from_initial_audit",
+        "base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "head_sha": "575e671de665dc918886285dab2e3628f4309965",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 42
+      },
+      "disposition": "Already preserved by current main ancestry."
+    },
+    {
+      "name": "work/mail-unified-cache-20261121",
+      "head_sha": "93404525ef245df6a98654710e352e78f85a987c",
+      "initial_head_sha": "93404525ef245df6a98654710e352e78f85a987c",
+      "changed_since_initial": false,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/tree/work/mail-unified-cache-20261121",
+      "excluded_from_incoming_assessment": false,
+      "comparison_to_final_main": {
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "93404525ef245df6a98654710e352e78f85a987c",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 28,
+        "merge_base_sha": "93404525ef245df6a98654710e352e78f85a987c",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...93404525ef245df6a98654710e352e78f85a987c"
+      },
+      "comparison_to_initial_main": {
+        "proof": "unchanged_exact_head_from_initial_audit",
+        "base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "head_sha": "93404525ef245df6a98654710e352e78f85a987c",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 1
+      },
+      "disposition": "Already preserved by current main ancestry."
+    }
+  ],
+  "pull_requests": [
+    {
+      "number": 309,
+      "title": "Mail: add account-scoped conversation ordering in loaded mailbox views [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/309",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "work/mail-parity-next-20261121",
+      "head_sha": "59866ce7c983869b16baa3f386b1f55dbb218833",
+      "base": "main",
+      "base_sha": "dd9e63995c76683a01d4a10ac57a3de5cffd8c69",
+      "created_at": "2026-11-21T11:56:28Z",
+      "updated_at": "2026-11-21T11:56:45Z",
+      "merged_at": "2026-11-21T11:56:45Z",
+      "comparison_to_final_main": {
+        "proof": "direct_github_compare",
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "59866ce7c983869b16baa3f386b1f55dbb218833",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 1,
+        "merge_base_sha": "59866ce7c983869b16baa3f386b1f55dbb218833",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...59866ce7c983869b16baa3f386b1f55dbb218833"
+      }
+    },
+    {
+      "number": 308,
+      "title": "Extend Word VBA language controls and preserve independent font slots [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/308",
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "head": "codex/word-vba-language-controls-20261121",
+      "head_sha": "8b236255bcc2c2fc27d3ea46212e5fa36a957ac7",
+      "base": "main",
+      "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+      "created_at": "2026-11-21T11:55:10Z",
+      "updated_at": "2026-11-21T12:04:49Z",
+      "merged_at": null,
+      "comparison_to_final_main": {
+        "proof": "direct_github_compare",
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "8b236255bcc2c2fc27d3ea46212e5fa36a957ac7",
+        "status": "ahead",
+        "ahead_by": 2,
+        "behind_by": 0,
+        "merge_base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...8b236255bcc2c2fc27d3ea46212e5fa36a957ac7"
+      }
+    },
+    {
+      "number": 307,
+      "title": "Probe the data-protection keychain write path before selecting it",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/307",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "fix/system-keychain-write-probe-20261121",
+      "head_sha": "3307415dcc0d059cce960b3bce7a5279c7230859",
+      "base": "main",
+      "base_sha": "995947e35f76bbb34dc16169b7352872631d092f",
+      "created_at": "2026-11-21T11:54:48Z",
+      "updated_at": "2026-11-21T11:54:52Z",
+      "merged_at": "2026-11-21T11:54:50Z",
+      "comparison_to_final_main": {
+        "proof": "direct_github_compare",
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "3307415dcc0d059cce960b3bce7a5279c7230859",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 24,
+        "merge_base_sha": "3307415dcc0d059cce960b3bce7a5279c7230859",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...3307415dcc0d059cce960b3bce7a5279c7230859"
+      }
+    },
+    {
+      "number": 306,
+      "title": "Prefer clean mail bodies and compact loaded-message controls",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/306",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "fix/mail-compact-reader-20261121",
+      "head_sha": "ca5be88293949b49942bdc3c45338243d5416e8b",
+      "base": "main",
+      "base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+      "created_at": "2026-11-21T11:52:37Z",
+      "updated_at": "2026-11-21T11:52:56Z",
+      "merged_at": "2026-11-21T11:52:53Z",
+      "comparison_to_final_main": {
+        "proof": "direct_github_compare",
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "ca5be88293949b49942bdc3c45338243d5416e8b",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 26,
+        "merge_base_sha": "ca5be88293949b49942bdc3c45338243d5416e8b",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...ca5be88293949b49942bdc3c45338243d5416e8b"
+      }
+    },
+    {
+      "number": 305,
+      "title": "Preserve late performance qualification record [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/305",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "work/mail-unified-cache-20261121",
+      "head_sha": "93404525ef245df6a98654710e352e78f85a987c",
+      "base": "main",
+      "base_sha": "33733fa1e173720afd22f078208b4bf9026ba17e",
+      "created_at": "2026-11-21T11:16:36Z",
+      "updated_at": "2026-11-21T11:16:55Z",
+      "merged_at": "2026-11-21T11:16:55Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "93404525ef245df6a98654710e352e78f85a987c",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 1
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 304,
+      "title": "Add unified cached-mail search and harden vault recovery [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/304",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "work/mail-unified-cache-20261121",
+      "head_sha": "b6e140263adb3f79a28096a331077a60811b4016",
+      "base": "main",
+      "base_sha": "a85e5cc3f6d6acf9cb939f13081945d3ec085550",
+      "created_at": "2026-11-21T11:12:37Z",
+      "updated_at": "2026-11-21T11:12:50Z",
+      "merged_at": "2026-11-21T11:12:49Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "b6e140263adb3f79a28096a331077a60811b4016",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 5
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 303,
+      "title": "Add native ODT Zotero inventory and qualify recent integrations [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/303",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "codex/zotero-odt-inventory-20261121",
+      "head_sha": "fb386d6e42a2336f1431e38bf6d713552edd0978",
+      "base": "main",
+      "base_sha": "64ebfc1bbc1daf9d3e9fc8a03ff8bf95f9973e04",
+      "created_at": "2026-11-21T10:48:28Z",
+      "updated_at": "2026-11-21T10:50:13Z",
+      "merged_at": "2026-11-21T10:48:36Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "fb386d6e42a2336f1431e38bf6d713552edd0978",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 19
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 302,
+      "title": "Unlock the encrypted credential vault with Touch ID (macOS)",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/302",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "feat/touchid-vault-unlock-20261121",
+      "head_sha": "38b0dae033e50bd6409ad3a4930b083fb8b5b7c5",
+      "base": "main",
+      "base_sha": "64ebfc1bbc1daf9d3e9fc8a03ff8bf95f9973e04",
+      "created_at": "2026-11-21T10:36:33Z",
+      "updated_at": "2026-11-21T11:10:00Z",
+      "merged_at": "2026-11-21T11:09:57Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "38b0dae033e50bd6409ad3a4930b083fb8b5b7c5",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 25
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 301,
+      "title": "Extend VBA text search, replacement and trimming [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/301",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "codex/word-vba-text-intrinsics-20261121",
+      "head_sha": "4357f196507ca38a2f51409a981b8621d419b6d9",
+      "base": "main",
+      "base_sha": "f50c4f23392ccb0ac9f486541ffae6a65a691b99",
+      "created_at": "2026-11-21T10:09:47Z",
+      "updated_at": "2026-11-21T10:18:49Z",
+      "merged_at": "2026-11-21T10:17:39Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "4357f196507ca38a2f51409a981b8621d419b6d9",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 27
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 300,
+      "title": "Mail: Boolean header search and reviewed recent-work integration [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/300",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "work/mail-triage-20261121",
+      "head_sha": "575e671de665dc918886285dab2e3628f4309965",
+      "base": "main",
+      "base_sha": "1ef5f7f88705e05bb2ebd2f5b639460dab52c3d0",
+      "created_at": "2026-11-21T10:00:15Z",
+      "updated_at": "2026-11-21T10:00:24Z",
+      "merged_at": "2026-11-21T10:00:24Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "575e671de665dc918886285dab2e3628f4309965",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 42
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 299,
+      "title": "Zotero: preserve ODT input contract and outstanding intake (execution blocked) [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/299",
+      "state": "closed",
+      "draft": true,
+      "merged": true,
+      "head": "codex/zotero-native-odt-20261121",
+      "head_sha": "d9bfa44022781f0dd4493a923ca9f20316dc59f0",
+      "base": "main",
+      "base_sha": "1ef5f7f88705e05bb2ebd2f5b639460dab52c3d0",
+      "created_at": "2026-11-21T09:53:42Z",
+      "updated_at": "2026-11-21T10:00:26Z",
+      "merged_at": "2026-11-21T10:00:26Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "d9bfa44022781f0dd4493a923ca9f20316dc59f0",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 56
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 298,
+      "title": "Mail: durable offline downloads and reconciled Office integration [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/298",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "work/mail-offline-retention-20261121",
+      "head_sha": "9eb68b9f048d3c08274ece5d7f964f1249004485",
+      "base": "main",
+      "base_sha": "f92c0d24f0513c5e13e61ae58507c36e9cf4f1c1",
+      "created_at": "2026-11-21T09:10:19Z",
+      "updated_at": "2026-11-21T09:10:28Z",
+      "merged_at": "2026-11-21T09:10:28Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "9eb68b9f048d3c08274ece5d7f964f1249004485",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 65
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 297,
+      "title": "Extend Word VBA proofing controls and reconcile recent Office work [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/297",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "codex/word-vba-paragraph-flow-20261121",
+      "head_sha": "13fa9ad5b9d140f1d7c085e46b4d0ce395000c49",
+      "base": "main",
+      "base_sha": "97cfb09b277e0808f9228a4fb638a55748c6268f",
+      "created_at": "2026-11-21T08:55:08Z",
+      "updated_at": "2026-11-21T08:55:20Z",
+      "merged_at": "2026-11-21T08:55:20Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "13fa9ad5b9d140f1d7c085e46b4d0ce395000c49",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 77
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 296,
+      "title": "Zotero: qualify nested research tables and reconcile Office updates [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/296",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "codex/zotero-parity-20261121-continuation",
+      "head_sha": "9942eb76f0ac818e464ad1b3bcec2cc4513d3e3f",
+      "base": "main",
+      "base_sha": "c10416d39894031164be68313253db5bbb3a5ad2",
+      "created_at": "2026-11-21T08:49:33Z",
+      "updated_at": "2026-11-21T09:31:18Z",
+      "merged_at": "2026-11-21T09:31:18Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "9942eb76f0ac818e464ad1b3bcec2cc4513d3e3f",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 60
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 295,
+      "title": "Localize mail dates, plural counts and reader text; polish App Store screenshots",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/295",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "fix/app-store-screenshot-polish-20261121",
+      "head_sha": "7b3e45b4eb5f2aafedd4b40886e7b3acddde2f0e",
+      "base": "main",
+      "base_sha": "f2025d3275c8b5ac8313f788286b17c657894567",
+      "created_at": "2026-11-21T08:37:30Z",
+      "updated_at": "2026-11-21T08:37:58Z",
+      "merged_at": "2026-11-21T08:37:41Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "7b3e45b4eb5f2aafedd4b40886e7b3acddde2f0e",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 96
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 294,
+      "title": "Unlock saved Mail vaults and restore native menu actions",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/294",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "fix/mail-vault-native-menus-20261121",
+      "head_sha": "7b2d3f3f422edd21258fee2533085b9065aff883",
+      "base": "main",
+      "base_sha": "4090feb56f308cd3657c5edd1d045ff1197ff79b",
+      "created_at": "2026-11-21T08:36:26Z",
+      "updated_at": "2026-11-21T08:36:39Z",
+      "merged_at": "2026-11-21T08:36:36Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "7b2d3f3f422edd21258fee2533085b9065aff883",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 99
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 293,
+      "title": "Finalize Zotero table-cell integration on reconciled Office main [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/293",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "codex/zotero-parity-20261121-next",
+      "head_sha": "d4470bab1095593739ddf87fdb9f249bbc948b65",
+      "base": "main",
+      "base_sha": "9f23cbd2be72c527829b3990f22b356e5237ed96",
+      "created_at": "2026-11-21T08:09:14Z",
+      "updated_at": "2026-11-21T08:18:27Z",
+      "merged_at": "2026-11-21T08:16:37Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "d4470bab1095593739ddf87fdb9f249bbc948b65",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 101
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 292,
+      "title": "Complete Word VBA header/footer compatibility and preservation guards",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/292",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "codex/word-vba-compatibility-20261121",
+      "head_sha": "38b07e58b7c0e2a5b04a823a7251805cea60fb77",
+      "base": "main",
+      "base_sha": "4a1eaa69e7a068e354bdd851ec9b0323b89ae300",
+      "created_at": "2026-11-21T07:54:30Z",
+      "updated_at": "2026-11-21T07:54:39Z",
+      "merged_at": "2026-11-21T07:54:39Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "38b07e58b7c0e2a5b04a823a7251805cea60fb77",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 108
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 291,
+      "title": "Add durable resumable folder mail synchronization and offline browsing [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/291",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "work/mail-sync-foundation-20261121",
+      "head_sha": "66c98e8e6b303f11dd167305424b9c2f6a820342",
+      "base": "main",
+      "base_sha": "eb286fb7254d6850c9f33b46e8aa65e2ea32f7f0",
+      "created_at": "2026-11-21T07:40:17Z",
+      "updated_at": "2026-11-21T07:40:30Z",
+      "merged_at": "2026-11-21T07:40:30Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "66c98e8e6b303f11dd167305424b9c2f6a820342",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 118
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 290,
+      "title": "Add Mac App Store screenshots of CrispOffice",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/290",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "feat/app-store-screenshots-20261120",
+      "head_sha": "e8d23a3a770037f7309e239e3ef6fe3bf570039a",
+      "base": "main",
+      "base_sha": "e2abbcda6d19f932bfbacc85e0dafd41a3c478f8",
+      "created_at": "2026-11-21T07:33:04Z",
+      "updated_at": "2026-11-21T07:33:31Z",
+      "merged_at": "2026-11-21T07:33:16Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "e8d23a3a770037f7309e239e3ef6fe3bf570039a",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 133
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 289,
+      "title": "Extend Zotero research-content replacement within table cells [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/289",
+      "state": "closed",
+      "draft": true,
+      "merged": true,
+      "head": "codex/zotero-parity-20261121-next",
+      "head_sha": "a6095c304ad2d6935f2ae6f8b74412038d19f142",
+      "base": "main",
+      "base_sha": "e2abbcda6d19f932bfbacc85e0dafd41a3c478f8",
+      "created_at": "2026-11-21T07:25:01Z",
+      "updated_at": "2026-11-21T07:40:32Z",
+      "merged_at": "2026-11-21T07:40:32Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "a6095c304ad2d6935f2ae6f8b74412038d19f142",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 132
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 288,
+      "title": "Implement Zotero document transfer with qualified Office reconciliation",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/288",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "codex/zotero-transfer-20261121",
+      "head_sha": "a1995c9154357e603b89947654cf95f8bcba6a83",
+      "base": "main",
+      "base_sha": "290dfa43e3bcf410d9bf1bd8194c997c4ee613ae",
+      "created_at": "2026-11-21T07:00:53Z",
+      "updated_at": "2026-11-21T07:02:09Z",
+      "merged_at": "2026-11-21T07:01:03Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "a1995c9154357e603b89947654cf95f8bcba6a83",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 143
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 287,
+      "title": "Proofing: check at word/sentence completion, pause and idle time, with settings",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/287",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "feat/proofing-scheduling-20261121",
+      "head_sha": "ada16de93d75c67011399727d10a32d1025f7edb",
+      "base": "main",
+      "base_sha": "17dde2e62cf3d23ae3d089e284ed3d8e1f8b2a5f",
+      "created_at": "2026-11-21T06:23:22Z",
+      "updated_at": "2026-11-21T07:11:27Z",
+      "merged_at": "2026-11-21T07:11:18Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "ada16de93d75c67011399727d10a32d1025f7edb",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 137
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 286,
+      "title": "Extend Word VBA section controls and reconcile Office updates [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/286",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "codex/word-vba-sections-20261121",
+      "head_sha": "49665e51f9eacefc180748c3d0ed7851ef5da5d1",
+      "base": "main",
+      "base_sha": "84046975f286407e3c62e5e5352bc16bc89c0d26",
+      "created_at": "2026-11-21T06:20:12Z",
+      "updated_at": "2026-11-21T06:20:22Z",
+      "merged_at": "2026-11-21T06:20:22Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "49665e51f9eacefc180748c3d0ed7851ef5da5d1",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 174
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 285,
+      "title": "Word: trace and fix the slowest Studio keystroke (layout of a replaced document)",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/285",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "perf/keystroke-trace-20261121",
+      "head_sha": "cb7ab4f7a41fa15414f6dd5ac229bda6e57cb0cd",
+      "base": "main",
+      "base_sha": "84046975f286407e3c62e5e5352bc16bc89c0d26",
+      "created_at": "2026-11-21T06:17:29Z",
+      "updated_at": "2026-11-21T07:13:26Z",
+      "merged_at": "2026-11-21T07:13:13Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "cb7ab4f7a41fa15414f6dd5ac229bda6e57cb0cd",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 189
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 284,
+      "title": "Mail: repository-backed sessions and reconciled Office updates [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/284",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "work/mail-repository-sessions-20261121",
+      "head_sha": "0491492d8622ad2ef09fb84e07d3dbba462f9320",
+      "base": "main",
+      "base_sha": "e1ebcb0cd65716a2a78d2ea1114d9ee37a3017ec",
+      "created_at": "2026-11-21T06:11:15Z",
+      "updated_at": "2026-11-21T06:27:29Z",
+      "merged_at": "2026-11-21T06:27:29Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "0491492d8622ad2ef09fb84e07d3dbba462f9320",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 152
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 283,
+      "title": "Complete Zotero paragraph-range integration and local qualification [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/283",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "codex/zotero-multiparagraph-20261121",
+      "head_sha": "589ccd33243eabe57ce3074c92112e1fdf1325f1",
+      "base": "main",
+      "base_sha": "ce1c37c6af1e2306d2c24231758f10ef6213f7dd",
+      "created_at": "2026-11-21T05:20:43Z",
+      "updated_at": "2026-11-21T05:22:06Z",
+      "merged_at": "2026-11-21T05:20:52Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "589ccd33243eabe57ce3074c92112e1fdf1325f1",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 195
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 282,
+      "title": "Mail: recover uncertain actions and reconcile incoming Office work [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/282",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "work/mail-parity-20261121",
+      "head_sha": "fa59496840a36709fe3a6d867bdfe96ab99d72ab",
+      "base": "main",
+      "base_sha": "3d01815908aeded5862d131109341365de637242",
+      "created_at": "2026-11-21T05:01:58Z",
+      "updated_at": "2026-11-21T05:02:18Z",
+      "merged_at": "2026-11-21T05:02:18Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "fa59496840a36709fe3a6d867bdfe96ab99d72ab",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 207
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 281,
+      "title": "Extend Word VBA with section PageSetup and reconcile recent work",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/281",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "codex/word-vba-paragraph-pagination-20261121",
+      "head_sha": "1581229f0e5aea24b5242c33a1e92f02d70b4c7e",
+      "base": "main",
+      "base_sha": "bf761552d22dcd1eb8cbb0ab00ddab6507e1d572",
+      "created_at": "2026-11-21T04:47:29Z",
+      "updated_at": "2026-11-21T04:47:42Z",
+      "merged_at": "2026-11-21T04:47:41Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "1581229f0e5aea24b5242c33a1e92f02d70b4c7e",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 218
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 280,
+      "title": "Word: clamp bookmarks on cross-paragraph delete; incremental layout after fitting and with notes",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/280",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "fix/bookmark-typing-20261120",
+      "head_sha": "45245b086fce889aff9a54291083d55d40ba3cb4",
+      "base": "main",
+      "base_sha": "383c0c0c5d3b4b1a6edccc8d09ffd1ca64029537",
+      "created_at": "2026-11-20T23:40:34Z",
+      "updated_at": "2026-11-21T00:00:38Z",
+      "merged_at": "2026-11-21T00:00:24Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "45245b086fce889aff9a54291083d55d40ba3cb4",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 259
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 279,
+      "title": "Persist mail flag commands and activity history",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/279",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "work/mail-command-journal-20261121",
+      "head_sha": "33ce2428ebab825a844895a767e0f9f1a4077d62",
+      "base": "main",
+      "base_sha": "383c0c0c5d3b4b1a6edccc8d09ffd1ca64029537",
+      "created_at": "2026-11-20T23:29:57Z",
+      "updated_at": "2026-11-20T23:41:47Z",
+      "merged_at": "2026-11-20T23:41:47Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "33ce2428ebab825a844895a767e0f9f1a4077d62",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 235
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 278,
+      "title": "Complete Word VBA measurements and reconcile current Office work [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/278",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "codex/word-vba-unit-conversions-20261120",
+      "head_sha": "0e4e999a08996a6b8696ca3adba11e303331b73e",
+      "base": "main",
+      "base_sha": "329d03914808589d3e7650fa870df15a2408afe2",
+      "created_at": "2026-11-20T23:05:27Z",
+      "updated_at": "2026-11-20T23:41:49Z",
+      "merged_at": "2026-11-20T23:41:49Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "0e4e999a08996a6b8696ca3adba11e303331b73e",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 267
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 277,
+      "title": "Zotero: vertical research tables and reconciled Office work [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/277",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "codex/zotero-vertical-tables-20261120",
+      "head_sha": "a7d9f37ecbaaf70544f4866d7d9e572696948184",
+      "base": "main",
+      "base_sha": "329d03914808589d3e7650fa870df15a2408afe2",
+      "created_at": "2026-11-20T21:56:21Z",
+      "updated_at": "2026-11-20T23:21:39Z",
+      "merged_at": "2026-11-20T23:21:39Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "a7d9f37ecbaaf70544f4866d7d9e572696948184",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 263
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 276,
+      "title": "Zotero: merged research-table cells and adjacent-citation Refresh [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/276",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "codex/zotero-parity-20261120-next",
+      "head_sha": "0da1b048546f36c658a7ddfb899117b73c5d3e7c",
+      "base": "main",
+      "base_sha": "e975cec13b289fe067ef406cd3044701ecc44744",
+      "created_at": "2026-11-20T21:29:14Z",
+      "updated_at": "2026-11-21T09:54:14Z",
+      "merged_at": "2026-11-20T21:29:26Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "0da1b048546f36c658a7ddfb899117b73c5d3e7c",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 326
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 275,
+      "title": "Mail: guarded bulk read/flag actions and complete main reconciliation",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/275",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "work/mail-bulk-flags-20261120",
+      "head_sha": "bf0effdcc8f690972d762c5b53079e8847a5e65e",
+      "base": "main",
+      "base_sha": "0a2afc41bae4e719b77657a7e2d8d3e7ec02849b",
+      "created_at": "2026-11-20T21:24:47Z",
+      "updated_at": "2026-11-21T09:54:17Z",
+      "merged_at": "2026-11-20T22:26:51Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "bf0effdcc8f690972d762c5b53079e8847a5e65e",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 288
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 274,
+      "title": "Preserve final Word continuation regressions and evidence [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/274",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "codex/word-vba-measurements-20261120",
+      "head_sha": "cd306bdea352c6f6400b5d1af7cc33e737004462",
+      "base": "main",
+      "base_sha": "b01cb23dc1b7bc94b691d68a2507b61dc6d48d7a",
+      "created_at": "2026-11-20T20:49:06Z",
+      "updated_at": "2026-11-21T09:54:14Z",
+      "merged_at": "2026-11-20T20:49:21Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "cd306bdea352c6f6400b5d1af7cc33e737004462",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 341
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 273,
+      "title": "Mail: foreground bulk read and flag actions [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/273",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "work/mail-bulk-actions-20261120",
+      "head_sha": "1584a2da8b23128c113d95c3b05b6a12d2d3861e",
+      "base": "main",
+      "base_sha": "698209aaa6e7f1350b6541df5eb192b7b233443d",
+      "created_at": "2026-11-20T20:44:13Z",
+      "updated_at": "2026-11-21T09:54:17Z",
+      "merged_at": "2026-11-20T21:59:51Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "1584a2da8b23128c113d95c3b05b6a12d2d3861e",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 299
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 272,
+      "title": "Extend Word VBA measurements and official named arguments [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/272",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "codex/word-vba-measurements-20261120",
+      "head_sha": "6d370884cd2b62ae83e627d9e71809ae9d795684",
+      "base": "main",
+      "base_sha": "c954d00d2fc85604ae394674bca91ea8a1dede0e",
+      "created_at": "2026-11-20T20:40:58Z",
+      "updated_at": "2026-11-20T20:42:57Z",
+      "merged_at": "2026-11-20T20:42:56Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "6d370884cd2b62ae83e627d9e71809ae9d795684",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 344
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 271,
+      "title": "Reconcile Word VBA measurement support and incremental validation",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/271",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "codex/word-vba-compatibility-20261120-continuation",
+      "head_sha": "8c54d5283804099f9c9023540921f2410b878eb1",
+      "base": "main",
+      "base_sha": "22cf73b816328cd5fe54ec1793c89f1cc322db3b",
+      "created_at": "2026-11-20T20:29:17Z",
+      "updated_at": "2026-11-21T09:54:13Z",
+      "merged_at": "2026-11-20T20:56:56Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "8c54d5283804099f9c9023540921f2410b878eb1",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 338
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 270,
+      "title": "Mail: structured header search and stable mailbox sorting",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/270",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "work/mail-parity-20261120",
+      "head_sha": "540eb7a41554620e1405807ac1db9dc38bd62148",
+      "base": "main",
+      "base_sha": "52c7f27fc7b6998e209e3ac8c815d6cf1ca6f867",
+      "created_at": "2026-11-20T18:28:05Z",
+      "updated_at": "2026-11-21T09:54:18Z",
+      "merged_at": "2026-11-20T19:32:22Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "540eb7a41554620e1405807ac1db9dc38bd62148",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 362
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 269,
+      "title": "Studio: persist settings in one versioned store (native file / web Cache Storage)",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/269",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "feat/settings-arweb-20261120",
+      "head_sha": "e8db6b3f21401f8c6ac4dae4c2934edde8699f4b",
+      "base": "main",
+      "base_sha": "d1e9cbc0c5dd38f0c8d28e3d76e7fdd59990f3f4",
+      "created_at": "2026-11-20T18:19:27Z",
+      "updated_at": "2026-11-21T09:54:16Z",
+      "merged_at": "2026-11-20T20:01:23Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "e8db6b3f21401f8c6ac4dae4c2934edde8699f4b",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 401
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 268,
+      "title": "Extend Word VBA paragraph spacing controls and qualify incoming spacing",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/268",
+      "state": "closed",
+      "draft": true,
+      "merged": true,
+      "head": "codex/word-vba-paragraph-controls-20261120",
+      "head_sha": "90ecd41c8a3ef2a6f35967f1219223022e2b0d32",
+      "base": "main",
+      "base_sha": "5ad4461a93c835479bf67acab63623944b3900a3",
+      "created_at": "2026-11-20T18:15:25Z",
+      "updated_at": "2026-11-21T09:54:14Z",
+      "merged_at": "2026-11-20T20:01:23Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "90ecd41c8a3ef2a6f35967f1219223022e2b0d32",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 401
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 267,
+      "title": "Arabic context model on web: bundle the Wasm worker, native/web parity CI",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/267",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "feat/arabic-web-context-20261120",
+      "head_sha": "be47bed22a88382f016d823e526bae49590bd0eb",
+      "base": "main",
+      "base_sha": "5ad4461a93c835479bf67acab63623944b3900a3",
+      "created_at": "2026-11-20T18:10:49Z",
+      "updated_at": "2026-11-21T09:54:15Z",
+      "merged_at": "2026-11-20T19:13:50Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "be47bed22a88382f016d823e526bae49590bd0eb",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 406
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 266,
+      "title": "docs: Mac App Store submission package (CrispOffice)",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/266",
+      "state": "closed",
+      "draft": true,
+      "merged": true,
+      "head": "docs/app-store-submission-20261120",
+      "head_sha": "b08e0a55b629ac22b33c54146b56438862965022",
+      "base": "main",
+      "base_sha": "5ad4461a93c835479bf67acab63623944b3900a3",
+      "created_at": "2026-11-20T18:10:44Z",
+      "updated_at": "2026-11-20T19:32:25Z",
+      "merged_at": "2026-11-20T19:32:24Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "b08e0a55b629ac22b33c54146b56438862965022",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 406
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 265,
+      "title": "macOS: require 13.0, pin Hunspell deployment target, guard library minimum OS",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/265",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "chore/macos-13-minimum-20261120",
+      "head_sha": "a51c20737b1932d9c6475ea6dddc33fbd50b2c17",
+      "base": "main",
+      "base_sha": "5ad4461a93c835479bf67acab63623944b3900a3",
+      "created_at": "2026-11-20T18:07:56Z",
+      "updated_at": "2026-11-20T20:24:01Z",
+      "merged_at": "2026-11-20T19:19:55Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "a51c20737b1932d9c6475ea6dddc33fbd50b2c17",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 407
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 264,
+      "title": "Make main CI green again",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/264",
+      "state": "closed",
+      "draft": true,
+      "merged": true,
+      "head": "fix/main-green-20261120",
+      "head_sha": "1e723bd4bc96e07b1b790daf9b82897a846c6096",
+      "base": "main",
+      "base_sha": "5ad4461a93c835479bf67acab63623944b3900a3",
+      "created_at": "2026-11-20T18:07:10Z",
+      "updated_at": "2026-11-21T11:03:37Z",
+      "merged_at": "2026-11-20T20:01:23Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "1e723bd4bc96e07b1b790daf9b82897a846c6096",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 401
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 263,
+      "title": "Extend Word VBA custom paragraph spacing and unit conversions",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/263",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "codex/word-vba-paragraph-spacing-20261120",
+      "head_sha": "d30299dd91634ad7e20c32db5c39a6687fcef4aa",
+      "base": "main",
+      "base_sha": "d1e9cbc0c5dd38f0c8d28e3d76e7fdd59990f3f4",
+      "created_at": "2026-11-20T17:49:21Z",
+      "updated_at": "2026-11-21T09:54:14Z",
+      "merged_at": "2026-11-20T19:19:53Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "d30299dd91634ad7e20c32db5c39a6687fcef4aa",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 395
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 262,
+      "title": "Mail: retain visited folders and opened messages for offline reading [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/262",
+      "state": "closed",
+      "draft": true,
+      "merged": true,
+      "head": "work/mail-cached-workspace-20261120",
+      "head_sha": "c7e721b7703766491fd4459b69de30bf68d9010d",
+      "base": "main",
+      "base_sha": "3ee4e3622c9a2198d384ed1cb296ab092a8838d0",
+      "created_at": "2026-11-20T16:42:54Z",
+      "updated_at": "2026-11-21T09:54:17Z",
+      "merged_at": "2026-11-20T17:55:16Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "c7e721b7703766491fd4459b69de30bf68d9010d",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 410
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 261,
+      "title": "Extend Word VBA outline numbering and list-level editing [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/261",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "codex/word-vba-list-levels-20261120",
+      "head_sha": "fff4a4afda2beecdd20ae0bd1f3c31622e8c0b37",
+      "base": "main",
+      "base_sha": "bb5320a50f288d95844a6d60cfd72eab13a9befc",
+      "created_at": "2026-11-20T16:16:43Z",
+      "updated_at": "2026-11-21T09:54:13Z",
+      "merged_at": "2026-11-20T17:15:13Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "fff4a4afda2beecdd20ae0bd1f3c31622e8c0b37",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 424
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 260,
+      "title": "Mail: finish offline account qualification and preserve Word metadata [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/260",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "work/mail-offline-accounts-20261120",
+      "head_sha": "44855ab24c2c7fd34953e879fba571381cce0bc3",
+      "base": "main",
+      "base_sha": "acca1cbcba2a322ad1ae2d7d9fb415110ce22554",
+      "created_at": "2026-11-20T16:03:45Z",
+      "updated_at": "2026-11-21T09:54:17Z",
+      "merged_at": "2026-11-20T16:14:51Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "44855ab24c2c7fd34953e879fba571381cce0bc3",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 433
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 259,
+      "title": "Extend Word VBA paragraph ListFormat and qualify reconciled fork work",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/259",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "codex/word-vba-compat-20261120-next",
+      "head_sha": "650afb7d117337bab943af05d63a250a7e90c058",
+      "base": "main",
+      "base_sha": "5c48058bedc42dd8cbf3fb9d6f1fb492b2ac1eb8",
+      "created_at": "2026-11-20T15:59:09Z",
+      "updated_at": "2026-11-21T09:54:13Z",
+      "merged_at": "2026-11-20T15:59:20Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "650afb7d117337bab943af05d63a250a7e90c058",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 438
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 258,
+      "title": "Mail: reopen local drafts across verified native accounts [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/258",
+      "state": "closed",
+      "draft": true,
+      "merged": true,
+      "head": "work/mail-offline-accounts-20261120",
+      "head_sha": "fee58398c80ec811f4adfbbaef7ae08598abdda0",
+      "base": "main",
+      "base_sha": "5c48058bedc42dd8cbf3fb9d6f1fb492b2ac1eb8",
+      "created_at": "2026-11-20T15:40:35Z",
+      "updated_at": "2026-11-20T15:59:22Z",
+      "merged_at": "2026-11-20T15:59:21Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "fee58398c80ec811f4adfbbaef7ae08598abdda0",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 439
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 257,
+      "title": "Extend Word VBA custom tab stops and reconcile recent fork work [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/257",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "codex/word-vba-ranges-20261120",
+      "head_sha": "22e5960e99915e81a1b5997058cac44dac27ba1a",
+      "base": "main",
+      "base_sha": "7f2d51a5206059478ea81965ccc95b89a9274ca6",
+      "created_at": "2026-11-20T14:47:50Z",
+      "updated_at": "2026-11-21T09:54:14Z",
+      "merged_at": "2026-11-20T14:47:58Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "22e5960e99915e81a1b5997058cac44dac27ba1a",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 453
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 256,
+      "title": "Finalize Zotero table parity evidence and current-main qualification [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/256",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "codex/zotero-research-tables-20261120",
+      "head_sha": "34491bca22a2989dd89d9da3c853f5e57de5464f",
+      "base": "main",
+      "base_sha": "243b99a5ee56e591991f381533b2363586bd5dd0",
+      "created_at": "2026-11-20T14:27:26Z",
+      "updated_at": "2026-11-21T09:54:14Z",
+      "merged_at": "2026-11-20T14:27:36Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "34491bca22a2989dd89d9da3c853f5e57de5464f",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 467
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 255,
+      "title": "Reconcile final Zotero evidence after the Mail draft milestone",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/255",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "work/mail-multiple-drafts-20261120",
+      "head_sha": "b3abdf3b4628a8a703857d69b8f11cd21bc502e1",
+      "base": "main",
+      "base_sha": "4df939eeed1bda9f9dbde8c8d2cbf0a4fe91b5b0",
+      "created_at": "2026-11-20T14:10:30Z",
+      "updated_at": "2026-11-21T09:54:17Z",
+      "merged_at": "2026-11-20T14:10:33Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "b3abdf3b4628a8a703857d69b8f11cd21bc502e1",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 470
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 254,
+      "title": "Mail: review, export and safely edit durable Outbox messages [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/254",
+      "state": "closed",
+      "draft": true,
+      "merged": true,
+      "head": "work/mail-outbox-management-20261120",
+      "head_sha": "79e11935e16ea1d2fa576ead0712c83f22e15c28",
+      "base": "main",
+      "base_sha": "5c48058bedc42dd8cbf3fb9d6f1fb492b2ac1eb8",
+      "created_at": "2026-11-20T14:08:58Z",
+      "updated_at": "2026-11-21T09:54:18Z",
+      "merged_at": "2026-11-20T15:59:21Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "79e11935e16ea1d2fa576ead0712c83f22e15c28",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 450
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 253,
+      "title": "Add multiple local mail drafts and offline composition",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/253",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "work/mail-multiple-drafts-20261120",
+      "head_sha": "4b6bc01be2c95008c320b5a26615828191cf1d9e",
+      "base": "main",
+      "base_sha": "ae32c69000a33c37770f522ea1d54627bcf09a6b",
+      "created_at": "2026-11-20T14:03:38Z",
+      "updated_at": "2026-11-20T14:05:16Z",
+      "merged_at": "2026-11-20T14:05:16Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "4b6bc01be2c95008c320b5a26615828191cf1d9e",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 475
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 252,
+      "title": "Extend Word and PowerPoint VBA helpers, paragraph layout and text margins [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/252",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "codex/word-powerpoint-vba-expansion-20261120",
+      "head_sha": "0f6239396ff3328473a5f57c280b982d57e33a08",
+      "base": "main",
+      "base_sha": "13be50464d1b43e9f2100fb9ccc12f8fe22eb55e",
+      "created_at": "2026-11-20T13:48:48Z",
+      "updated_at": "2026-11-21T09:54:13Z",
+      "merged_at": "2026-11-20T14:05:18Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "0f6239396ff3328473a5f57c280b982d57e33a08",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 494
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 251,
+      "title": "Mail: complete account ownership and Outbox integration",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/251",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "work/mail-accounts-20261120",
+      "head_sha": "86e44e87f829b0309ea7b84fd5d390f596fe7f26",
+      "base": "main",
+      "base_sha": "13be50464d1b43e9f2100fb9ccc12f8fe22eb55e",
+      "created_at": "2026-11-20T13:43:09Z",
+      "updated_at": "2026-11-21T09:54:17Z",
+      "merged_at": "2026-11-20T14:02:54Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "86e44e87f829b0309ea7b84fd5d390f596fe7f26",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 514
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 250,
+      "title": "Mail: durable foreground Outbox with explicit recovery [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/250",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "work/mail-outbox-20261120",
+      "head_sha": "9443612b024114c424ba2f8146e04050d6e049b0",
+      "base": "main",
+      "base_sha": "b42eca1db058f0def247b86c2f15dea90c11b4e8",
+      "created_at": "2026-11-20T13:31:56Z",
+      "updated_at": "2026-11-21T09:54:18Z",
+      "merged_at": "2026-11-20T13:32:06Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "9443612b024114c424ba2f8146e04050d6e049b0",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 525
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 249,
+      "title": "Preserve Zotero research-note tables and active cell citations [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/249",
+      "state": "closed",
+      "draft": true,
+      "merged": true,
+      "head": "codex/zotero-research-tables-20261120",
+      "head_sha": "a2b87ee3f471da500423055e86ba2614fc053cae",
+      "base": "main",
+      "base_sha": "13be50464d1b43e9f2100fb9ccc12f8fe22eb55e",
+      "created_at": "2026-11-20T11:45:21Z",
+      "updated_at": "2026-11-20T14:28:07Z",
+      "merged_at": "2026-11-20T14:10:35Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "a2b87ee3f471da500423055e86ba2614fc053cae",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 495
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 248,
+      "title": "Complete safe HTML replies and explicit attachment forwarding",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/248",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "work/mail-reply-forward-20261120",
+      "head_sha": "56d5fdf15a20ced764561a1ac2429c2c37a6e780",
+      "base": "main",
+      "base_sha": "a652a205e6daf6b4b8e3baec04db1c1b52fabd0d",
+      "created_at": "2026-11-20T11:44:29Z",
+      "updated_at": "2026-11-20T13:09:58Z",
+      "merged_at": "2026-11-20T12:31:17Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "56d5fdf15a20ced764561a1ac2429c2c37a6e780",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 539
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 247,
+      "title": "Incremental Word relayout for local edits (typing lag)",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/247",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "perf/incremental-layout-20261120",
+      "head_sha": "baf6d1bc53b611e9fb37082ca69c409e5f8d6381",
+      "base": "main",
+      "base_sha": "a652a205e6daf6b4b8e3baec04db1c1b52fabd0d",
+      "created_at": "2026-11-20T11:28:15Z",
+      "updated_at": "2026-11-20T13:09:42Z",
+      "merged_at": "2026-11-20T13:09:31Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "baf6d1bc53b611e9fb37082ca69c409e5f8d6381",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 546
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 246,
+      "title": "Fix analyze on main: font-pack stub signature, duplicate crypto dev dependency",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/246",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "fix/font-pack-stub-packs-20261120",
+      "head_sha": "d0c9007480ba518022836e017802875614e6205c",
+      "base": "main",
+      "base_sha": "e59b8918db508da46039a943080dc4b7a5c7a0bb",
+      "created_at": "2026-11-20T11:16:55Z",
+      "updated_at": "2026-11-20T11:17:22Z",
+      "merged_at": "2026-11-20T11:17:02Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "d0c9007480ba518022836e017802875614e6205c",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 645
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 245,
+      "title": "Extend Word and PowerPoint VBA typography and slideshow support",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/245",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "codex/word-powerpoint-vba-continuation-20261120",
+      "head_sha": "d46d4ef394ed7cafd40bc266c793f8c0df6ec57f",
+      "base": "main",
+      "base_sha": "899df57d03e55bf73357136c5f21739c5c9b5719",
+      "created_at": "2026-11-20T11:16:47Z",
+      "updated_at": "2026-11-20T13:09:49Z",
+      "merged_at": "2026-11-20T11:19:24Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "d46d4ef394ed7cafd40bc266c793f8c0df6ec57f",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 611
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 244,
+      "title": "Typing/proofing: record hosted benchmark and suite results [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/244",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "perf/typing-proofing-results-20261120",
+      "head_sha": "2fd61c3353dc22ee36ed1bc1a69df470a9423230",
+      "base": "main",
+      "base_sha": "c028baf2491f701735a53552b4b3674914a4f830",
+      "created_at": "2026-11-20T11:01:43Z",
+      "updated_at": "2026-11-20T11:02:28Z",
+      "merged_at": "2026-11-20T11:01:51Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "2fd61c3353dc22ee36ed1bc1a69df470a9423230",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 647
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 243,
+      "title": "Mail: add remembered native accounts and explicit switching",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/243",
+      "state": "closed",
+      "draft": true,
+      "merged": true,
+      "head": "work/mail-accounts-20261120",
+      "head_sha": "a059c0249a25bef602640c8b8d504bd8da41c619",
+      "base": "main",
+      "base_sha": "c028baf2491f701735a53552b4b3674914a4f830",
+      "created_at": "2026-11-20T10:53:34Z",
+      "updated_at": "2026-11-20T13:43:10Z",
+      "merged_at": "2026-11-20T11:46:32Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "a059c0249a25bef602640c8b8d504bd8da41c619",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 621
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 242,
+      "title": "Redesign the Downloads manager (uniform grouped package list)",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/242",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "feat/downloads-manager-redesign-20261120",
+      "head_sha": "84d02025fade09c80f3f58942b466f4522eb4434",
+      "base": "main",
+      "base_sha": "e59b8918db508da46039a943080dc4b7a5c7a0bb",
+      "created_at": "2026-11-20T10:50:30Z",
+      "updated_at": "2026-11-20T11:46:32Z",
+      "merged_at": "2026-11-20T11:46:32Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "84d02025fade09c80f3f58942b466f4522eb4434",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 639
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 241,
+      "title": "Mail: shared foreground navigation and reconciled qualification",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/241",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "work/mail-workspace-20261120",
+      "head_sha": "aad737dd79c034b831a8957daa4165c6c64e35e5",
+      "base": "main",
+      "base_sha": "d040c15a07f652d01e75363031d0efdee6357bda",
+      "created_at": "2026-11-20T10:27:55Z",
+      "updated_at": "2026-11-20T10:50:58Z",
+      "merged_at": "2026-11-20T10:28:08Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "aad737dd79c034b831a8957daa4165c6c64e35e5",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 677
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 240,
+      "title": "Extend Zotero research insertion to authored notes and selected text [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/240",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "codex/zotero-note-targets-20261120",
+      "head_sha": "6c23d94472f741aceff6aef0de0e6ef847195afe",
+      "base": "main",
+      "base_sha": "d95e814af9556dcea448ba5673e0ba4dc81007d0",
+      "created_at": "2026-11-20T10:13:17Z",
+      "updated_at": "2026-11-20T13:09:50Z",
+      "merged_at": "2026-11-20T10:55:27Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "6c23d94472f741aceff6aef0de0e6ef847195afe",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 650
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 239,
+      "title": "Extend Word and PowerPoint VBA; integrate recent work [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/239",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "codex/word-powerpoint-vba-20261120",
+      "head_sha": "06f119566235aa3765445526f5ffab48832b1a31",
+      "base": "main",
+      "base_sha": "33190e50cae486be362eedb5fa687dd9c82b0c51",
+      "created_at": "2026-11-20T09:46:22Z",
+      "updated_at": "2026-11-20T10:50:57Z",
+      "merged_at": "2026-11-20T09:46:52Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "06f119566235aa3765445526f5ffab48832b1a31",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 683
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 238,
+      "title": "Complete Zotero image notes and structured lists; integrate incoming Office work",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/238",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "codex/zotero-parity-continuation-20261120",
+      "head_sha": "40a8f8eb76bd9bf51205fa0cb9f576ba497ad76b",
+      "base": "main",
+      "base_sha": "860c807bfd1385899eed130abfb8940f95bda113",
+      "created_at": "2026-11-20T09:38:30Z",
+      "updated_at": "2026-11-20T13:09:52Z",
+      "merged_at": "2026-11-20T10:55:29Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "40a8f8eb76bd9bf51205fa0cb9f576ba497ad76b",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 727
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 237,
+      "title": "Typing: coalesce as-you-type proofing and status chrome (+ benchmark)",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/237",
+      "state": "closed",
+      "draft": true,
+      "merged": true,
+      "head": "perf/typing-proofing-20261120",
+      "head_sha": "712d0ea558a01cabff25a83294a29b8d57ec25d4",
+      "base": "main",
+      "base_sha": "d040c15a07f652d01e75363031d0efdee6357bda",
+      "created_at": "2026-11-20T09:33:21Z",
+      "updated_at": "2026-11-20T11:01:18Z",
+      "merged_at": "2026-11-20T10:55:29Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "712d0ea558a01cabff25a83294a29b8d57ec25d4",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 675
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 236,
+      "title": "Qualify manual German grammar on the Android arm64 spaCy library",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/236",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "feat/android-spacy-grammar-20261120",
+      "head_sha": "7319b220ab2e64b440e6f63d299eb747366a24d3",
+      "base": "main",
+      "base_sha": "5e38de19ab5af8d6811d601c7317cba7f69d516b",
+      "created_at": "2026-11-20T09:07:25Z",
+      "updated_at": "2026-11-20T09:31:52Z",
+      "merged_at": "2026-11-20T09:31:28Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "7319b220ab2e64b440e6f63d299eb747366a24d3",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 783
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 235,
+      "title": "Register the Android spaCy grammar replay workflow",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/235",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "ci/android-spacy-grammar-workflow",
+      "head_sha": "596fb68f64c447177ed202a40f890c20205a0270",
+      "base": "main",
+      "base_sha": "c16e121365b7c52c0b66371381c8c58f592e1d8e",
+      "created_at": "2026-11-20T08:36:54Z",
+      "updated_at": "2026-11-20T09:31:52Z",
+      "merged_at": "2026-11-20T08:37:17Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "596fb68f64c447177ed202a40f890c20205a0270",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 790
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 234,
+      "title": "Rename built app artifacts and platform identities to CrispOffice",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/234",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "feat/crispoffice-rename-20261120",
+      "head_sha": "228d13d949859c66c58cf51addfbb03b09c7365d",
+      "base": "main",
+      "base_sha": "5e38de19ab5af8d6811d601c7317cba7f69d516b",
+      "created_at": "2026-11-20T08:32:25Z",
+      "updated_at": "2026-11-20T10:50:28Z",
+      "merged_at": "2026-11-20T09:46:53Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "228d13d949859c66c58cf51addfbb03b09c7365d",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 784
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 233,
+      "title": "Persist native Mail drafts and reconcile current Office work [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/233",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "work/mail-draft-recovery-20261120",
+      "head_sha": "20b2ecf572f8fd5663a728529da7bf5c7ebbda1d",
+      "base": "main",
+      "base_sha": "e06eb3a7e21b71c1d5d4b1d2cc9abde24774eb26",
+      "created_at": "2026-11-20T08:01:49Z",
+      "updated_at": "2026-11-20T10:50:58Z",
+      "merged_at": "2026-11-20T08:01:59Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "20b2ecf572f8fd5663a728529da7bf5c7ebbda1d",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 796
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 232,
+      "title": "Native proofing libraries on iOS/iPadOS and Android (+ on-device gate, Android spaCy analysis record)",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/232",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "feat/mobile-proofing-native-20261120",
+      "head_sha": "8b09e0ca6667c00db81b613c40b6d275bc20471a",
+      "base": "main",
+      "base_sha": "098412152fa1d64796eb3fb9c06699ced0f0c44d",
+      "created_at": "2026-11-20T06:55:53Z",
+      "updated_at": "2026-11-20T06:59:54Z",
+      "merged_at": "2026-11-20T06:59:22Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "8b09e0ca6667c00db81b613c40b6d275bc20471a",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 842
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 231,
+      "title": "Arabic grammar: context disambiguation over Camel Morph analyses [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/231",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "feat/arabic-morph-disambig-20261120",
+      "head_sha": "754d30d199b6f7dfd52b2772a27cc37a3f8d3dd8",
+      "base": "main",
+      "base_sha": "43db439e1e605d6329a6eabe6817b04ca44ba1aa",
+      "created_at": "2026-11-20T06:25:03Z",
+      "updated_at": "2026-11-20T06:43:26Z",
+      "merged_at": "2026-11-20T06:43:03Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "754d30d199b6f7dfd52b2772a27cc37a3f8d3dd8",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 845
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 230,
+      "title": "Roadmap: GlotLID as optional second language identifier (feasibility)",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/230",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "docs/glotlid-feasibility-20261120",
+      "head_sha": "3c137a66e8a434f5a90e80f5094bfaa25354067a",
+      "base": "main",
+      "base_sha": "dbfbbd28caa064f4850dc81860a68de14d48fb35",
+      "created_at": "2026-11-20T06:14:43Z",
+      "updated_at": "2026-11-20T06:59:52Z",
+      "merged_at": "2026-11-20T06:14:49Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "3c137a66e8a434f5a90e80f5094bfaa25354067a",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 849
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 229,
+      "title": "Persist verified web dictionaries and morphology data across sessions",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/229",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "feat/web-proofing-persistence-20261120",
+      "head_sha": "0c12d087e1d21b710c9fe224a06a93d526f0721e",
+      "base": "main",
+      "base_sha": "64f977ab003031d560c6564cf8895b1250d120d9",
+      "created_at": "2026-11-20T06:01:41Z",
+      "updated_at": "2026-11-20T06:03:05Z",
+      "merged_at": "2026-11-20T06:01:58Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "0c12d087e1d21b710c9fe224a06a93d526f0721e",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 851
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 228,
+      "title": "macOS CI: portable paths; ship pinned spaCy bytes unchanged in ad hoc builds",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/228",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "fix/macos-ci-portable-20261120",
+      "head_sha": "f3ed8d74a016bc1e826dbaf056397e887d765b43",
+      "base": "main",
+      "base_sha": "b0b79d90b0f4ca0036483d73095b4821efddcc8e",
+      "created_at": "2026-11-20T05:44:08Z",
+      "updated_at": "2026-11-20T06:02:57Z",
+      "merged_at": "2026-11-20T05:45:09Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "f3ed8d74a016bc1e826dbaf056397e887d765b43",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 904
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 227,
+      "title": "Extend Word and Excel VBA with explicit Variants and paragraph macros",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/227",
+      "state": "closed",
+      "draft": true,
+      "merged": true,
+      "head": "codex/vba-variant-conversions-20261120",
+      "head_sha": "1ceae221d37e733f0195d35622a05f896a2d13a1",
+      "base": "main",
+      "base_sha": "5e38de19ab5af8d6811d601c7317cba7f69d516b",
+      "created_at": "2026-11-20T05:29:37Z",
+      "updated_at": "2026-11-20T10:50:57Z",
+      "merged_at": "2026-11-20T09:32:04Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "1ceae221d37e733f0195d35622a05f896a2d13a1",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 759
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 226,
+      "title": "Fix comment draft language test after language-download review",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/226",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "fix/comment-draft-language-test-20261120",
+      "head_sha": "a56397df5f53b991f5016f3cc8e1ab53b7ce12f1",
+      "base": "main",
+      "base_sha": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+      "created_at": "2026-11-20T05:28:52Z",
+      "updated_at": "2026-11-20T06:03:06Z",
+      "merged_at": "2026-11-20T05:29:16Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "a56397df5f53b991f5016f3cc8e1ab53b7ce12f1",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 908
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 225,
+      "title": "Native spaCy German grammar v2: NP agreement, preposition case, verb position (+ experimental person)",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/225",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "feat/spacy-grammar-v2-20261120",
+      "head_sha": "4973e712045bdcf45fd36dcfe37d380c52265d3c",
+      "base": "main",
+      "base_sha": "85c019cd8fda1a735a727bff98c2a56fb25a368e",
+      "created_at": "2026-11-20T05:09:38Z",
+      "updated_at": "2026-11-20T05:13:51Z",
+      "merged_at": "2026-11-20T05:13:37Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "4973e712045bdcf45fd36dcfe37d380c52265d3c",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 910
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 224,
+      "title": "macOS release signing with code-identity spaCy qualification; weekly macOS CI",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/224",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "feat/macos-signing-ci-20261120",
+      "head_sha": "38c9c297c12fca3422b8f758e7b1afbdabbf064c",
+      "base": "main",
+      "base_sha": "fe076d22a1b25d27c34b861fa5b0b2a32833b33e",
+      "created_at": "2026-11-20T05:02:04Z",
+      "updated_at": "2026-11-20T05:14:11Z",
+      "merged_at": "2026-11-20T05:02:10Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "38c9c297c12fca3422b8f758e7b1afbdabbf064c",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 917
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 223,
+      "title": "Extend Zotero research-material browsing and reconcile recent work [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/223",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "codex/zotero-research-materials-20261120",
+      "head_sha": "a31616d3567a43307251e13a9728cf92fd8690c6",
+      "base": "main",
+      "base_sha": "88905c56547fa91206acbc306616c3ad10f9d77b",
+      "created_at": "2026-11-20T04:31:15Z",
+      "updated_at": "2026-11-20T10:50:57Z",
+      "merged_at": "2026-11-20T07:24:03Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "a31616d3567a43307251e13a9728cf92fd8690c6",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 816
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 222,
+      "title": "Extend VBA string conformance and reconcile current Office work [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/222",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "codex/vba-string-conformance-20261120",
+      "head_sha": "7be53768501bb6df426eeb9d05c921e393ded02f",
+      "base": "main",
+      "base_sha": "f9128aba7ace7f981746b7282d463cc25a1e6d87",
+      "created_at": "2026-11-20T04:24:49Z",
+      "updated_at": "2026-11-20T04:41:44Z",
+      "merged_at": "2026-11-20T04:41:16Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "7be53768501bb6df426eeb9d05c921e393ded02f",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 923
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 221,
+      "title": "Add bounded mail attachments and reconcile current Office work",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/221",
+      "state": "closed",
+      "draft": true,
+      "merged": true,
+      "head": "work/mail-attachments-20261120",
+      "head_sha": "177f29d3f9450a58f41189b462b0814aad37e45c",
+      "base": "main",
+      "base_sha": "3e5f44ae14926b8054b2e5c0558ce71477891a33",
+      "created_at": "2026-11-20T04:18:56Z",
+      "updated_at": "2026-11-20T10:50:58Z",
+      "merged_at": "2026-11-20T07:24:05Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "177f29d3f9450a58f41189b462b0814aad37e45c",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 853
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 220,
+      "title": "Qualify the app-bundled macOS spaCy library for manual German grammar [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/220",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "feat/spacy-macos-bundled-qualification-20261119",
+      "head_sha": "1441665236401e94ccf03ffa694c7434bb227ef3",
+      "base": "main",
+      "base_sha": "3003272fc2bc1f77bdb1355aa7cb27356dfbc61b",
+      "created_at": "2026-11-19T22:30:00Z",
+      "updated_at": "2026-11-19T23:08:21Z",
+      "merged_at": "2026-11-19T22:30:15Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "1441665236401e94ccf03ffa694c7434bb227ef3",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 951
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 219,
+      "title": "Extend VBA with dynamic arrays and reconcile current Office work",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/219",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "codex/vba-dynamic-arrays-20261119",
+      "head_sha": "3003272fc2bc1f77bdb1355aa7cb27356dfbc61b",
+      "base": "main",
+      "base_sha": "057fdb9325ec2f93d2ac0592217da8ad350b0664",
+      "created_at": "2026-11-19T22:01:14Z",
+      "updated_at": "2026-11-19T22:45:45Z",
+      "merged_at": "2026-11-19T22:01:27Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "3003272fc2bc1f77bdb1355aa7cb27356dfbc61b",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 950
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 218,
+      "title": "Extend Zotero tag discovery and source citation navigation",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/218",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "codex/zotero-workflow-20261119",
+      "head_sha": "6626ad430a54122e4514cc2870fdcee18760682f",
+      "base": "main",
+      "base_sha": "2170791c9250d72c9df31a065408365f9b50abaa",
+      "created_at": "2026-11-19T21:25:20Z",
+      "updated_at": "2026-11-19T22:45:46Z",
+      "merged_at": "2026-11-19T21:31:47Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "6626ad430a54122e4514cc2870fdcee18760682f",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 972
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 217,
+      "title": "Add To/Cc/Bcc and Reply all; reconcile concurrent fork work [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/217",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "work/mail-continuation-20261119",
+      "head_sha": "fd17f6c4e0ffc22b71e52dcc7859fd95f72f30c7",
+      "base": "main",
+      "base_sha": "88513f04cfbdec210340f2d70a674cf3f23e31c0",
+      "created_at": "2026-11-19T21:17:53Z",
+      "updated_at": "2026-11-19T22:45:46Z",
+      "merged_at": "2026-11-19T21:41:20Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "fd17f6c4e0ffc22b71e52dcc7859fd95f72f30c7",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 954
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 216,
+      "title": "Preserve mail reply threading and reconcile fork continuations",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/216",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "work/mail-next-20261119",
+      "head_sha": "ab833975409abfb207f3a6a1a146183a4a5198fd",
+      "base": "main",
+      "base_sha": "5715d56053e93dc11e8b5165bd13f8db2a1f3917",
+      "created_at": "2026-11-19T20:38:12Z",
+      "updated_at": "2026-11-19T22:45:46Z",
+      "merged_at": "2026-11-19T20:50:37Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "ab833975409abfb207f3a6a1a146183a4a5198fd",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 990
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 215,
+      "title": "Verify the saved spaCy setup before the first analysis [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/215",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "fix/spacy-open-refresh-20261119",
+      "head_sha": "cc061e72bd167cdaf4a99d3c0b714f27cb93b2c8",
+      "base": "main",
+      "base_sha": "9ceb994d8edce3989228f1244cda90ecc9884931",
+      "created_at": "2026-11-19T19:53:08Z",
+      "updated_at": "2026-11-19T19:53:18Z",
+      "merged_at": "2026-11-19T19:53:14Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "cc061e72bd167cdaf4a99d3c0b714f27cb93b2c8",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 1053
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 214,
+      "title": "Align bundled spaCy mode with NER state and the downloads manager [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/214",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "fix/spacy-bundled-ner-20261119",
+      "head_sha": "dc93a176f8efc98feff9c25565fb036175793a54",
+      "base": "main",
+      "base_sha": "4a4ea1f0d8c990cc74ce8f7233545a8a9dc0887c",
+      "created_at": "2026-11-19T19:42:33Z",
+      "updated_at": "2026-11-19T19:43:15Z",
+      "merged_at": "2026-11-19T19:42:42Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "dc93a176f8efc98feff9c25565fb036175793a54",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 1055
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 213,
+      "title": "Bundle the spaCy runtime in the macOS app, register missing licences, harden the build [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/213",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "fix/app-gaps-20261119",
+      "head_sha": "0e03878b028ec25ed3d84a790633433eafc3bede",
+      "base": "main",
+      "base_sha": "d9bee6e507f6b631aee55bb8a89187119410847f",
+      "created_at": "2026-11-19T19:15:31Z",
+      "updated_at": "2026-11-19T19:43:15Z",
+      "merged_at": "2026-11-19T19:15:39Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "0e03878b028ec25ed3d84a790633433eafc3bede",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 1059
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 212,
+      "title": "Resume mail archive restores with durable destination checkpoints [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/212",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "codex/mail-archive-resume-20261119",
+      "head_sha": "482fbd99dd8d3d5aff7d773fa87454f4d324028d",
+      "base": "main",
+      "base_sha": "756885bc9cb1612f8d400889f8d3020cec9ad945",
+      "created_at": "2026-11-19T18:33:43Z",
+      "updated_at": "2026-11-19T22:45:45Z",
+      "merged_at": "2026-11-19T20:16:03Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "482fbd99dd8d3d5aff7d773fa87454f4d324028d",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 1002
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 211,
+      "title": "Make Layout precise and compact, fix dark appearance, clarify document modes",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/211",
+      "state": "closed",
+      "draft": true,
+      "merged": true,
+      "head": "codex/crispoffice-layout-theme-20261119",
+      "head_sha": "cacae8569814e4cb81f58d358734d31431f102be",
+      "base": "main",
+      "base_sha": "9f41e0427734d815b19149eba5eabef202f78ba6",
+      "created_at": "2026-11-19T18:09:34Z",
+      "updated_at": "2026-11-19T22:45:45Z",
+      "merged_at": "2026-11-19T20:50:38Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "cacae8569814e4cb81f58d358734d31431f102be",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 1033
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    },
+    {
+      "number": 210,
+      "title": "Extend VBA macros with bounded arrays and For Each; reconcile fork work",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/210",
+      "state": "closed",
+      "draft": true,
+      "merged": true,
+      "head": "codex/vba-arrays-foreach-20261119",
+      "head_sha": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd",
+      "base": "main",
+      "base_sha": "9f41e0427734d815b19149eba5eabef202f78ba6",
+      "created_at": "2026-11-19T18:02:01Z",
+      "updated_at": "2026-11-19T22:45:45Z",
+      "merged_at": "2026-11-19T20:50:38Z",
+      "comparison_to_final_main": {
+        "proof": "transitive_ancestry_via_unchanged_initial_pr_head",
+        "status": "behind",
+        "ahead_by": 0,
+        "head_sha": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd",
+        "initial_main_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+        "final_main_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "initial_head_comparison": {
+          "status": "behind",
+          "ahead_by": 0,
+          "behind_by": 1038
+        },
+        "evidence": "Head SHA unchanged since initial audit; initial main is an ancestor of final main."
+      }
+    }
+  ],
+  "new_pull_request_details": [
+    {
+      "number": 309,
+      "title": "Mail: add account-scoped conversation ordering in loaded mailbox views [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/309",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "work/mail-parity-next-20261121",
+      "head_sha": "59866ce7c983869b16baa3f386b1f55dbb218833",
+      "base": "main",
+      "base_sha": "dd9e63995c76683a01d4a10ac57a3de5cffd8c69",
+      "created_at": "2026-11-21T11:56:28Z",
+      "updated_at": "2026-11-21T11:56:45Z",
+      "merged_at": "2026-11-21T11:56:45Z",
+      "comparison_to_final_main": {
+        "proof": "direct_github_compare",
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "59866ce7c983869b16baa3f386b1f55dbb218833",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 1,
+        "merge_base_sha": "59866ce7c983869b16baa3f386b1f55dbb218833",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...59866ce7c983869b16baa3f386b1f55dbb218833"
+      },
+      "body": "## Feature\n- Introduce an account-scoped pure-Dart conversation grouper for explicit RFC `Message-ID`, `In-Reply-To` and `References` headers, with malformed-input and size limits.\n- Add optional conversation ordering and a thread-size affordance to the **compact** shared mailbox list without removing individual message rows or changing their actions.\n- Wire IMAP, EWS/cloud, cached and synchronized headers; localize English/German/Arabic.\n- Add core and Flutter widget regression suites and a precise mail parity continuation roadmap.\n\n## Concurrent integration\n- Started from main `2f90a0c8f214` after reconciling all earlier forks/branches and open PRs.\n- Merged current main with two parents on the work branch, retaining the newly merged compact reader and credential vault updates. Incoming changes to the compact header chrome and plain-text/body-only reader are retained together with the conversation toggle.\n- No forced ref updates or lost remote incremental commits.\n\n## Checks\n- Manual source and merge review completed; remote main ancestry checked (branch behind=0).\n- **Dart and Flutter tests not executed**: neither SDK is available in this execution environment. Tests are committed but not claimed passing. No GitHub Actions wait (free-tier queue is starved); feature commits use `[skip ci]`.\n- Follow-up requires on-device/toolchain validation and provider smoke tests, plus persisted cross-folder threading for fuller client parity.\n\nSee `docs/roadmaps/mail/conversations.md`."
+    },
+    {
+      "number": 308,
+      "title": "Extend Word VBA language controls and preserve independent font slots [skip ci]",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/308",
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "head": "codex/word-vba-language-controls-20261121",
+      "head_sha": "8b236255bcc2c2fc27d3ea46212e5fa36a957ac7",
+      "base": "main",
+      "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+      "created_at": "2026-11-21T11:55:10Z",
+      "updated_at": "2026-11-21T12:04:49Z",
+      "merged_at": null,
+      "comparison_to_final_main": {
+        "proof": "direct_github_compare",
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "8b236255bcc2c2fc27d3ea46212e5fa36a957ac7",
+        "status": "ahead",
+        "ahead_by": 2,
+        "behind_by": 0,
+        "merge_base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...8b236255bcc2c2fc27d3ea46212e5fa36a957ac7"
+      },
+      "body": "## Why\n\nWord macros cannot assign supported proofing languages or choose a complex-script font through the existing transactional source adapter. Native font-property ownership also groups independent slots, risking unrelated font metadata during edits.\n\n## Changes\n\n- Add bounded Range.LanguageID and LanguageIDOther setters for 30 explicitly mapped normal-slot language IDs, plus Font.NameBi.\n- Preserve separate font/language attributes, explicit inheritance overrides, theme selection and foreign native metadata; guard ambiguous source before mutation.\n- Reconcile all captured recent work, including the new Mail conversation core. The intake covers all 305 existing PRs, 26 fork heads and all upstream heads/PRs.\n- Preserve incremental checkpoints on this branch. Include source tests and a runnable BAS example.\n\n## Checkpoint status\n\nCompiler checks pass 110 cases; the initial native suite passes 49 cases. The incoming Mail conversation/search slice independently passes 110 tests at its captured head. Final native integration, CLI/MCP, VM/JavaScript agreement and source-bound evidence are in progress; this draft does not claim final acceptance.\n\nThe user requested eventual merge to remote main without waiting for the starved free-tier Actions queue. No Actions, workflow, status or check queues are queried or awaited. Final local results and exact limitations will be recorded before merge."
+    },
+    {
+      "number": 307,
+      "title": "Probe the data-protection keychain write path before selecting it",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/307",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "fix/system-keychain-write-probe-20261121",
+      "head_sha": "3307415dcc0d059cce960b3bce7a5279c7230859",
+      "base": "main",
+      "base_sha": "995947e35f76bbb34dc16169b7352872631d092f",
+      "created_at": "2026-11-21T11:54:48Z",
+      "updated_at": "2026-11-21T11:54:52Z",
+      "merged_at": "2026-11-21T11:54:50Z",
+      "comparison_to_final_main": {
+        "proof": "direct_github_compare",
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "3307415dcc0d059cce960b3bce7a5279c7230859",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 24,
+        "merge_base_sha": "3307415dcc0d059cce960b3bce7a5279c7230859",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...3307415dcc0d059cce960b3bce7a5279c7230859"
+      },
+      "body": "An unentitled build returns item-not-found for reads, so the old detection kept the data-protection backend and only failed when saving an account.\n\nProbe a write/read/delete cycle instead. Fall back to the login keychain only for -34018; locked or denied keychains remain explicit failures."
+    },
+    {
+      "number": 306,
+      "title": "Prefer clean mail bodies and compact loaded-message controls",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/306",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "head": "fix/mail-compact-reader-20261121",
+      "head_sha": "ca5be88293949b49942bdc3c45338243d5416e8b",
+      "base": "main",
+      "base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+      "created_at": "2026-11-21T11:52:37Z",
+      "updated_at": "2026-11-21T11:52:56Z",
+      "merged_at": "2026-11-21T11:52:53Z",
+      "comparison_to_final_main": {
+        "proof": "direct_github_compare",
+        "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+        "head_sha": "ca5be88293949b49942bdc3c45338243d5416e8b",
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 26,
+        "merge_base_sha": "ca5be88293949b49942bdc3c45338243d5416e8b",
+        "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/fcb2128884768553141f41c02bf804e2267f9dbb...ca5be88293949b49942bdc3c45338243d5416e8b"
+      },
+      "body": "- Default the reader to the plain-text alternative when present, and keep envelope headers out of the message body.\n- Compact the loaded-message controls: icon filters, icon sort, one-line scope count, compact bulk selection row and hover tooltips.\n- Preserve HTML toggle and full search/bulk behavior.\n\nTests: quds_mail_ui message list, bulk, presentation, controller and message view suites; Office Mail account/session/workspace suites."
+    }
+  ],
+  "concurrent_change_observation": {
+    "branch": "codex/word-vba-language-controls-20261121",
+    "first_observed_sha": "521fb2c25c029ef92c94a73dc92f7379baee6c59",
+    "latest_observed_sha": "8b236255bcc2c2fc27d3ea46212e5fa36a957ac7",
+    "previous_to_latest": {
+      "base_sha": "521fb2c25c029ef92c94a73dc92f7379baee6c59",
+      "head_sha": "8b236255bcc2c2fc27d3ea46212e5fa36a957ac7",
+      "status": "ahead",
+      "ahead_by": 24,
+      "behind_by": 0,
+      "merge_base_sha": "521fb2c25c029ef92c94a73dc92f7379baee6c59",
+      "source_url": "https://github.com/CrispStrobe/quds_office_suite/compare/521fb2c25c029ef92c94a73dc92f7379baee6c59...8b236255bcc2c2fc27d3ea46212e5fa36a957ac7"
+    },
+    "commit_time_utc": "2026-11-21T12:04:47Z",
+    "commit_message": "Complete Word language preservation and reconcile current main [skip ci]\n\nAdd native, compiler and end-to-end evidence for independent language/font writes; preserve namespace aliases, foreign metadata and legacy same-value inheritance. Include runnable seven-operation BAS, CLI/MCP transaction coverage and VM/JavaScript runner. Native gate passes 187 cases; source and integration cohorts pass 110 and 11. Preserve current main and Mail/keychain histories through fcb212888. Final combined-source qualification follows locally without waiting on Actions.",
+    "parents": [
+      "521fb2c25c029ef92c94a73dc92f7379baee6c59",
+      "fcb2128884768553141f41c02bf804e2267f9dbb"
+    ],
+    "classification": "Real source/tests/docs changes on an actively progressing draft PR; not a stale, duplicate, abandoned or ready branch.",
+    "qualification": "PR remains draft. Its body says final native, CLI/MCP, VM/JavaScript and source-bound acceptance is in progress; latest commit says final combined-source qualification follows locally. Authored test-count claims were not rerun or independently verified by this read-only audit."
+  },
+  "recommendation": [
+    "Merge/reconcile final main fcb2128884768553141f41c02bf804e2267f9dbb normally; it preserves the three newly merged PRs and all initial captured branch heads.",
+    "Keep this exact audit cutoff and distinguish draft PR 308 from accepted incoming work. Do not claim all current fork heads are already in main.",
+    "If PR 308 becomes ready or merges during finalization, root should re-read its status/head and reconcile the new main/source with local affected verification; do not wait on Actions.",
+    "After final integration, verify ancestry of initial main, this captured main, and the user's accepted work against final remote main."
+  ],
+  "initial_audit_reference": "branch-intake-audit.json"
+}

@@ -1,31 +1,40 @@
 # Native ODT Zotero input: implementation contract
 
-Status: **Increment 1 implemented: bounded read-only inventory. Rich ODT import
-and installed-host interoperability remain separate work.**
+Status: **Increment 2 implemented: bounded rich ODT import, active Zotero field
+conversion, and asynchronous editor/Studio opening. Installed-host acceptance
+and editable native ODT output remain separate work.**
 
-The public `OdfZotero.inspect` API and `tool/zotero/odt_inventory.dart` diagnostic
-now implement the inventory below. The
-[implementation and validation record](../../validation/zotero-odt-inventory-20261121/README.md)
-identifies the reconciled source, remote checkpoints, executable checks and
-remaining limits. The earlier execution-blocked checkpoint is preserved as
-history; its lack of runtime qualification is not attributed to this increment.
+`OdtDocumentReader.readBytes` builds an editable `WmlDocument` from the supported
+ODT subset below. The asynchronous Word loader and Studio Open use this reader;
+the resulting active document saves as DOCX. The
+[rich-import validation record](../../validation/zotero-rich-odt-20261121/README.md)
+records the qualified source, remote checkpoints, local execution and retained
+LibreOfficeDev refusal. It is the current evidence for this increment.
+
+`OdfZotero.inspect` and `tool/zotero/odt_inventory.dart` remain read-only. Their
+[inventory validation record](../../validation/zotero-odt-inventory-20261121/README.md)
+retains its original source and results. The earlier execution-blocked
+checkpoint is preserved as history; its lack of runtime qualification is not
+attributed to either delivered increment.
 
 Baseline: [`1ef5f7f88705e05bb2ebd2f5b639460dab52c3d0`](https://github.com/CrispStrobe/quds_office_suite/commit/1ef5f7f88705e05bb2ebd2f5b639460dab52c3d0).
 The [continuation record](../../validation/zotero-native-odt-20261121/README.md)
 records that checkpoint's frozen remote intake, two then-outstanding branch
 heads and local execution blocker. Both heads were subsequently integrated
-into main. This implementation advances the existing
-[word-processor parity roadmap](word-processor-parity.md) without claiming
-editable native ODT support.
+into main. The delivered increments advance the existing
+[word-processor parity roadmap](word-processor-parity.md) with separate scopes
+for inspection, conversion into an editable Word document, native ODT output
+and installed-host interoperability.
 
-## Finding: rich ODT input is a prerequisite
+## Baseline finding: rich ODT input was a prerequisite
 
-The current tree has a native ODT exporter and bounded ODF text extraction.
-It does not have an ODT-to-`WmlDocument` reader. Adding reference-mark handling
-to the text extractor alone would lose the formatting and structural ownership
-needed by editable citations.
+At the baseline above, the tree had a native ODT exporter and bounded ODF text
+extraction, but no ODT-to-`WmlDocument` reader. Adding reference-mark handling
+to the text extractor alone would have lost the formatting and structural
+ownership needed by editable citations. These baseline boundaries informed the
+new reader and remain useful when distinguishing its responsibilities.
 
-| Existing boundary | Contract to retain |
+| Baseline boundary | Contract to retain |
 | --- | --- |
 | [`odf_text.dart`](https://github.com/CrispStrobe/quds_office_suite/blob/1ef5f7f88705e05bb2ebd2f5b639460dab52c3d0/packages/quds_office_engine/lib/src/odf/odf_text.dart) | Namespace-aware text decoding with cumulative output limits. Body extraction deliberately omits authored notes, annotations, covered-cell stories and stored revisions. It does not retain mark endpoints. |
 | [`office_text_extractor.dart`](https://github.com/CrispStrobe/quds_office_suite/blob/1ef5f7f88705e05bb2ebd2f5b639460dab52c3d0/packages/quds_office_engine/lib/src/extract/office_text_extractor.dart) | Produces extraction results, not a rich editable Word document. |
@@ -154,9 +163,9 @@ duplicate names, gaps, noncanonical indexes, conflicting property families,
 incorrect value types and malformed XML/JSON. Respect ODF's default value-type
 semantics rather than rejecting a valid omitted type attribute by assumption.
 
-Preserve the original preference string and unrelated properties. A later
-native-ODT import boundary may normalize `ReferenceMark` preferences only
-after it has constructed the corresponding fields. Reuse the existing
+Preserve the original preference string and unrelated properties. The explicit
+native-ODT import boundary in Increment 2 normalizes `ReferenceMark` preferences
+only after it has constructed the corresponding fields. Reuse the existing
 256 Ki UTF-16-unit preference bound; do not weaken `WordZoteroDocumentData.toHttp`
 to make an unconverted ODT document appear valid.
 
@@ -206,22 +215,68 @@ their contracts. Static review alone does not qualify this parser.
 
 ## Increment 2: bounded rich ODT import
 
-After the inventory passes, introduce an explicit ODT document reader and
-loader path. Define and test the first supported content envelope before
-publishing an editable document. It needs sufficient paragraph/run formatting,
-links, notes, lists, tables and resource ownership to avoid flattening protected
-research content.
+Implemented entry points:
 
-Construct native Word field ranges from validated inventory identities while
-preserving paragraph and story order. Normalize document preferences at this
-specific import boundary. Unsupported ranges or structures require an explicit
-refusal or retained representation; do not silently discard citation metadata.
+- `Future<WmlDocument> OdtDocumentReader.readBytes(Uint8List bytes,
+  {OdfZoteroLimits limits = const OdfZoteroLimits()})` performs the conversion.
+- `OfficeIsolateOpen.word` dispatches supported ODT by package bytes and lays
+  out the result through the existing Word open path.
+- `WordEditorController.loadBytesAsync` publishes a successful result only
+  while the original document, revision and open request remain current.
+  An import failure, intervening edit/open or disposal leaves the active
+  document untouched. Synchronous `loadBytes` explicitly directs ODT callers
+  to the asynchronous API.
+- Studio Open accepts `.odt`, clears the original save path after successful
+  import and proposes a `.docx` filename.
+  The first save chooses a DOCX destination instead of overwriting the ODT.
 
-Qualify DOCX save/reopen and further Zotero operations after import, including
-multi-item citations, notes, style conversion, bibliography refresh, manual
-citation text, duplicate visible strings, adjacent fields and repeated saves.
-Wire editor publication only through the existing detached staging,
-stale-document guards and single undo/redo transaction.
+The reader validates an immutable source copy with the existing inventory, then
+reconstructs native paragraphs, runs, note stories and table-cell owners. Field
+identity comes from exact XML endpoints and ownership, never a visible-text
+search. Its rich decoder records its own UTF-16 mark positions so whitespace
+around visible note anchors stays on the correct side. Source endpoint order
+distinguishes a citation immediately after a note from a field containing that
+note, even when their text offsets coincide. Native note markers are populated
+after source-range reconstruction, preserving editor and DOCX offsets.
+
+| Content | Implemented envelope |
+| --- | --- |
+| Paragraphs and runs | Paragraphs, unnumbered headings, literal/explicit spaces, tabs, line breaks, supported character formatting and absolute external hyperlinks. Named, default and automatic style inheritance is resolved into model properties. |
+| Formatting and page layout | Supported fonts, exact half-point sizes, bold/italic, underline/strike, small capitals, semantic superscript/subscript, colors, language, explicit paragraph direction/alignment, indents, spacing and supported tab stops. One compatible page layout may supply page size, margins and equal-width columns. Used unsupported properties reject the import. |
+| Zotero fields | Canonical citation ReferenceMarks and bibliography ReferenceMarks/TextSections become active native fields. Multi-item options, unknown citation/bibliography metadata, rich cache, empty bibliography paragraphs and distinct adjacent/identical-looking fields survive DOCX reopening. |
+| Authored notes | Footnotes/endnotes with supported blocks, ordinary document-wide decimal numbering and live body anchors; citations retain their actual note story. Custom numbering/styles, nested notes and citations enclosing note anchors are refused. |
+| Tables | Rectangular, unmerged tables nested up to eight levels, bounded rows/cells/columns, supported widths/alignment, row minimum height/keep behavior and cell shading. Citations retain physical cell ownership. |
+| Lists | Simple decimal or supported depth-specific bullets, up to nine levels, explicit starts/restarts and multiple paragraphs per item. Independent sequences, nested continuations and source paragraph margins are retained. Continuation references/consecutive numbering, bullet affixes, conflicting first-line geometry and tables inside list items are refused. |
+| Preferences and metadata | Explicit `WordZoteroDocumentData.fromOdt` converts valid `ReferenceMark` storage to native `Field` after reconstruction; ordinary Word/HTTP callbacks remain strict. Style/locale/note mode and unknown XML/JSON preferences survive. Standard document properties are mapped; the exact original `meta.xml`, including unrelated/future properties, is archived in DOCX custom XML. |
+
+The import is all-or-nothing. Invalid/ambiguous marks, crossed owners, protected
+or linked sections, ordinary unsupported sections, bookmarks, drawings/images,
+annotations, revisions, embedded objects, unsupported used styles and resource
+exhaustion refuse before publication. Relative/internal hyperlinks and distinct
+visited-link styles require further ownership/formatting support. Unused style
+definitions do not expand the accepted content envelope. The inventory's shared
+package/XML/text/field bounds remain in force; the rich reader adds explicit
+table, cell, list, note and style-definition limits.
+
+The original ODT bytes remain unchanged. This conversion preserves supported
+content in the Word model; the archived metadata is not a lossless copy of the
+whole source package and is never consulted by ordinary Zotero callbacks.
+Save the result as DOCX to retain active fields and preferences. Ordinary ODT
+export keeps its established cached-result behavior; native editable ODT output
+needs its own implementation and qualification.
+
+Local tests cover repeated DOCX saves, exact rich ownership, preference
+normalization, edit/unlink, a staged citation/bibliography refresh transaction,
+and inline/footnote/endnote conversion. Loader, controller and Studio checks
+cover dispatch and publication/save routing. The current validation record
+retains exact commands and totals; these synthetic checks do not establish an
+installed Word, LibreOffice or Zotero session.
+
+The untouched LibreOfficeDev 26.8 sample is explicitly refused at the active
+`fo:hyphenation-ladder-count` paragraph property. Other script-specific defaults
+also remain unqualified. This is a retained production-format boundary: neither
+removing the property for a probe nor the synthetic passing fixtures qualifies
+that original file as supported.
 
 ## Increment 3: installed-host acceptance
 
@@ -242,14 +297,16 @@ Apache OpenOffice is a separate legacy target. Zotero's current
 does not support it; any historical compatibility claim needs exact host,
 Zotero and plugin versions. Current LibreOffice acceptance cannot establish it.
 
-## Continuing with rich import
+## Continuing after bounded rich import
 
 1. Refresh current main and recent branch/PR heads, preserving incoming history.
    The earlier two pending heads and the subsequently discovered Word text
    branch are integrated by this continuation; keep their recorded cutoffs.
-2. Begin Increment 2 with an explicit rich-document content envelope and
-   rendering/persistence ownership. Use the inventory identities as evidence,
-   not as a substitute for a rich ODT reader.
+2. Expand the documented rich-document envelope from retained real files.
+   Qualify active LibreOffice defaults and script-specific formatting before
+   accepting them; keep each remaining refusal visible. Add drawings, merged
+   tables, further note/list configurations and native ODT output only with
+   corresponding ownership, rendering and persistence checks.
 3. Save each working increment on a remote branch with an expected-head lease.
 4. Review the integrated diff, rerun checks affected by incoming changes, then
    merge the qualified implementation to current remote main and verify the
@@ -257,6 +314,8 @@ Zotero and plugin versions. Current LibreOffice acceptance cannot establish it.
 5. Do not query or wait on GitHub Actions as the acceptance path. Preserve
    concrete local results and state any installed-host limits separately.
 
-Increment 1 is a locally testable read-only capability. It does not establish
-active native ODT editing, changed ordinary ODT export, or installed-host
-acceptance for Zotero, Word, LibreOffice or legacy Apache OpenOffice.
+Increment 1 remains a read-only capability. Increment 2 converts a bounded native
+ODT subset into an editable Word document that saves as DOCX. Neither increment
+changes ordinary ODT export or establishes complete plugin parity or
+installed-host acceptance for Zotero, Word, LibreOffice or legacy Apache
+OpenOffice.

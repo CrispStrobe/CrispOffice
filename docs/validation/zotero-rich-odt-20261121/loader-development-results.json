@@ -1,0 +1,87 @@
+{
+  "scope": "Engine loader, editor publication guards, and Studio ODT-to-DOCX save path integration. Scoped tests overlap later parent aggregate gates; do not sum them as unique total coverage.",
+  "current_local_head": "3b1625e58a50438d10652032ab8dc5cecc098e34",
+  "owned_sources": {
+    "packages/quds_office_engine/lib/src/opc/office_open_decode.dart": "2731c5f6d5ca191bc3f1ffc33f78cdc4259d4a267568a9404577ad100529d3bc",
+    "packages/quds_office_engine/lib/src/opc/office_isolate_open.dart": "5fefebda139a5b3ce7d1d3f85d02e3769ae1bc678390ad0d2f3ff4d860273706",
+    "packages/quds_office_engine/lib/src/opc/office_isolate_spawn_io.dart": "ddd54c426d822af552ac69ce675ebfa35ad593768baf3be2ceef7a66dbc0bbc9",
+    "packages/quds_office_engine/lib/src/opc/office_isolate_spawn.dart": "5df80b5ed4295e251bf3ce76f9b96bd002d269858eaa2c2034eb611cf04fa295",
+    "packages/quds_office_engine/test/odt_open_test.dart": "a1139ea0a639dd22c9fbeb1b8d79fd5d1b50c2b2c33e3cf55811eb037ef41e1d",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "7a3b696fc121af88768a9cc346f7c83e58f14ca66f597a212ce7493d7976603a",
+    "packages/quds_office_editor/test/word_odt_load_test.dart": "55c05571672bfdd855a984a7a1301907ce5e37f8e6682a3db81bd6e1132cdb5d",
+    "packages/quds_office_editor/example/lib/studio_files.dart": "86179e96154455f4fe97628fb3f88d041e86c45a57fcd47d9eefd45f149bfad2",
+    "packages/quds_office_editor/example/lib/suite_workspace.dart": "4c64095f85af7d565f54b4d722f9d8cb8745a69bf2ed9716255765a6cc978df5",
+    "packages/quds_office_editor/example/test/studio_odt_open_test.dart": "6f45a31b1545809b5377d42087a0593d858b0362f6a907ae8bd2b080b4d35dbe"
+  },
+  "cohorts": {
+    "odt-loader-engine": {
+      "counts": {
+        "success": 11
+      },
+      "done": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 10222
+        }
+      ],
+      "errors": [],
+      "log_sha256": "afd6aa1c052a1f19c7777acded71d75b0ef98a414bc05a217ec3147fba34b57c"
+    },
+    "odt-loader-editor": {
+      "counts": {
+        "success": 8
+      },
+      "done": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 14708
+        }
+      ],
+      "errors": [],
+      "log_sha256": "e4e44ec4194f1863c23fb36298d0425e6e9ff5f17d6becf9d1afee566d116a8c"
+    },
+    "odt-loader-studio-final": {
+      "counts": {
+        "success": 7
+      },
+      "done": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 40972
+        }
+      ],
+      "errors": [],
+      "log_sha256": "f705c4abc0890f3460520f0f5e4c3c50759cb6fa0926d7d493e1d96792a2831a"
+    }
+  },
+  "strict_static_analysis": {
+    "exit_code": 0,
+    "log_sha256": "ef329d2f54316b5a816233ee0eb998de79a67e8c1fb617ac4115c8b0d15897ef"
+  },
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "environment": "/workspace/scratch/1e8f5be6b406/runtime/env.sh"
+  },
+  "engine_command": "dart --packages=<repo>/.dart_tool/package_config.json <runtime>/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart test/odt_open_test.dart test/office_isolate_open_test.dart --reporter=json",
+  "editor_command": "flutter --no-version-check test --no-pub --reporter=json test/word_odt_load_test.dart",
+  "studio_command": "flutter --no-version-check test --no-pub --reporter=json test/studio_odt_open_test.dart test/studio_file_menu_test.dart",
+  "initial_studio_attempt": "Two new integration fixtures timed out because real-Future waiting starved fake-zone continuations. Test helper was corrected to pump frames while isolate work completes; all seven cases then passed. Product code unchanged by harness correction.",
+  "native_converter_probe": "Separate untouched generated ODT fixture is retained with exact converter version and explicit refusal; no installed Zotero/Word or native-plugin acceptance claim.",
+  "github_actions_queried": false,
+  "github_actions_awaited": false,
+  "source_binding_note": "Owned-path hashes captured after scoped gates; parent owns final combined transitive-source qualification because root reader/style work proceeded concurrently.",
+  "format": {
+    "exit_code": 0,
+    "files": 10,
+    "changes": 0,
+    "log_sha256": "6d98b8364f976d1809939814dae6b7e3bfef2e1057c8a1f37a1f77eb9fee60b5"
+  },
+  "diff_check": {
+    "exit_code": 0,
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}
