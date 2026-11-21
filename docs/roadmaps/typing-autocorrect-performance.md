@@ -173,3 +173,32 @@ Item 6
 (status-line trailing throttle) are the next low-risk changes. Item 4 is an
 audit because the native providers already use worker transports. Item 5 is a
 larger renderer change.
+
+### Item 5a — laid-out text painter cache (implemented)
+
+`RenderWordCanvas` now keeps a bounded cache of laid-out `TextPainter`s keyed
+by text, font, size, weight, style, kerning, bidi level, underline, ink and
+theme family. Unchanged runs no longer re-shape and re-layout on every paint.
+The cache is disposed with the render object and evicts the oldest entry above
+512 painters.
+
+Benchmark (same debug benchmark, machine load higher in the pre-change run):
+
+| Metric | Adaptive only | + painter cache |
+|---|---|---|
+| Handler p50 / p95 (ms) | 5.6 / 7.95 | 3.98 / 5.5 |
+| Frame p50 / p95 (ms) | 9.94 / 14.85 | 6.54 / 9.96 |
+| Janky keystroke frames | 83 | 11 |
+| Proofing passes / provider calls | 31 / 32 | 31 / 32 |
+
+The layout phase is still the largest per-key cost. Paragraph-level incremental
+layout is already implemented and qualified (`word_incremental_layout_equivalence_test`);
+a normal typing edit already re-lays only a handful of blocks.
+
+### Remaining
+
+- Caret/selection and proofing-squiggle overlays: separate paint layers.
+- Status-line trailing throttle (currently rebuilds on every controller
+  notification; measured as `rebuilds.statusLine`).
+- Worker audit: native providers already use workers; deterministic rule/report
+  work remains on the UI isolate.
