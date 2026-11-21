@@ -130,7 +130,7 @@ void main() {
 
     await tester.enterText(
       find.byKey(const ValueKey('mail-list-search')),
-      'Re: Plan',
+      'subject:"Re: Plan"',
     );
     await tester.pump();
     expect(_row('parent'), findsNothing);
