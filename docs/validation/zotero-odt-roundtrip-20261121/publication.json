@@ -1,0 +1,287 @@
+{
+  "schema": "quds-zotero-final-publication-v1",
+  "created_utc": "2026-11-21T20:32:32.370391+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "branch": "codex/zotero-odt-roundtrip-20261121",
+  "pull_request": 333,
+  "product_source": {
+    "commit": "4b33109aa85e077e2798265efa045d640e6ead4e",
+    "tree": "4d5feed1eb34a30816335ba2c581c18e47ee099a",
+    "integrated_main": "aa861c28e336b17bcd4c259351164380cd6b1438",
+    "integrated_continuation": "a7f69313ed2e610f82242c31be8ad5387ae5cea0"
+  },
+  "qualification_status": "accepted_fresh_scopes_passed_with_one_explicitly_blocked_original_suite",
+  "all_original_requested_tests_passed": false,
+  "successful_fresh_tests": {
+    "passed_cases": 2363,
+    "suites": 109,
+    "failed_cases_in_successful_runs": 0,
+    "skipped_cases_in_successful_runs": 0,
+    "cohorts": {
+      "engine": {
+        "passed": 2131,
+        "failed": 0,
+        "skipped": 0,
+        "test_file_count": 89,
+        "exit_code": 0,
+        "scope": "engine",
+        "snapshot_scope": "Selected test files, all workspace packages/**/lib/**/*.dart, SDK/dependency inputs, Zotero fixtures, six CLI/smoke/example inputs, consumed review helpers and Linux selection goldens.",
+        "runner_sha256": "f1a3e3c68c09e914d2541cdca50de50ea205ddd243f413167ec43af05c240160",
+        "source_checkpoint_after_run": "4b33109aa85e077e2798265efa045d640e6ead4e"
+      },
+      "engine_cli_shading": {
+        "passed": 12,
+        "failed": 0,
+        "skipped": 0,
+        "test_file_count": 1,
+        "exit_code": 0,
+        "scope": "engine-cli-shading",
+        "snapshot_scope": "Selected test files, all workspace packages/**/lib/**/*.dart, SDK/dependency inputs, Zotero fixtures, six CLI/smoke/example inputs, consumed review helpers and Linux selection goldens.",
+        "runner_sha256": "f1a3e3c68c09e914d2541cdca50de50ea205ddd243f413167ec43af05c240160",
+        "source_checkpoint_after_run": "4b33109aa85e077e2798265efa045d640e6ead4e"
+      },
+      "editor": {
+        "passed": 194,
+        "failed": 0,
+        "skipped": 0,
+        "test_file_count": 16,
+        "exit_code": 0,
+        "scope": "editor",
+        "snapshot_scope": "Selected test files, all workspace packages/**/lib/**/*.dart, SDK/dependency inputs, Zotero fixtures, six CLI/smoke/example inputs, consumed review helpers and Linux selection goldens.",
+        "runner_sha256": "f1a3e3c68c09e914d2541cdca50de50ea205ddd243f413167ec43af05c240160",
+        "source_checkpoint_after_run": "4b33109aa85e077e2798265efa045d640e6ead4e"
+      },
+      "studio": {
+        "passed": 26,
+        "failed": 0,
+        "skipped": 0,
+        "test_file_count": 3,
+        "exit_code": 0,
+        "scope": "studio",
+        "snapshot_scope": "Selected test files, all workspace packages/**/lib/**/*.dart, SDK/dependency inputs, Zotero fixtures, six CLI/smoke/example inputs, consumed review helpers and Linux selection goldens.",
+        "runner_sha256": "f1a3e3c68c09e914d2541cdca50de50ea205ddd243f413167ec43af05c240160",
+        "source_checkpoint_after_run": "4b33109aa85e077e2798265efa045d640e6ead4e"
+      }
+    }
+  },
+  "blocked_scope": {
+    "directory": "zotero-qualification-final-merged/engine-cli-position",
+    "test_entrypoint": "packages/quds_office_engine/test/office_vba_word_position_integration_test.dart",
+    "declared_case_titles": [
+      "actual BAS validates, replays, rolls back and retains inert DOCM parts",
+      "position never invents paragraph-mark formatting in empty text",
+      "MCP compiles and executes Font.Position through the existing catalog",
+      "CLI validates, compiles and runs BAS without modifying its input"
+    ],
+    "executed_cases": 0,
+    "declared_cases_not_executed": 4,
+    "receipt": {
+      "path": "/workspace/scratch/4d323337693a/zotero-qualification-final-merged/engine-cli-position/receipt.json",
+      "sha256": "461bb9558640dad9efed63eddeccb6a0fccff50cad84218bc9c971ee33afc405",
+      "bytes": 2036
+    },
+    "events": {
+      "path": "/workspace/scratch/4d323337693a/zotero-qualification-final-merged/engine-cli-position/events.jsonl",
+      "sha256": "94d69651ede3ff736c857c067a18289a1dbaa0bb993bb8ff61a497289e66e7c2",
+      "bytes": 2380
+    },
+    "qualification_credit": 0,
+    "reason": "The suite setUpAll could not create its macro CLI temporary directory (errno 28); its four test bodies did not execute. Retrying this suite was stopped."
+  },
+  "static": {
+    "changed_dart_targets": 41,
+    "format_language_version": "3.12",
+    "formatting_passed": true,
+    "fatal_info_analysis_passed": true,
+    "whitespace_checks_passed": true,
+    "captured_source_inputs": 927
+  },
+  "source_binding": {
+    "successful_execution_scopes": 8,
+    "all_scoped_binding_checks_passed": true,
+    "input_mismatches": 0,
+    "allowed_mismatch_exceptions": 0,
+    "all_tracked_package_library_files_per_test_static_run": 874,
+    "engine_library_files_per_converter": 366,
+    "legacy_library_files_per_converter": 66,
+    "previous_artifacts_preserved_by_source_proof": 41,
+    "proof": {
+      "file": "publication-source-binding.json",
+      "bytes": 2232876,
+      "sha256": "5cd8a914013da539b7c4dac417966ff191c5b9b0072b760514a68c46071560c2"
+    },
+    "completeness": {
+      "file": "publication-completeness.json",
+      "bytes": 29331,
+      "sha256": "e745d58d89c502fb1af15c17b151fb7e0b5cfc96a973ad7bd5abe50837cd71e4"
+    }
+  },
+  "actual_converter_acceptance": {
+    "core_fixture_count": 4,
+    "core_active_fields": 13,
+    "core_actual_saves_per_fixture": 2,
+    "mixed_active_fields": 7,
+    "mixed_scope": "export and inventory only; native footnote reopening is not qualified",
+    "image_fixture_formats": [
+      "PNG",
+      "JPEG"
+    ],
+    "pictures_per_image_fixture": 2,
+    "citations_per_image_fixture": 2,
+    "actual_saves_per_image_fixture": 2,
+    "native_cycles_after_each_image_save": 3,
+    "successful_commands": 23,
+    "runs": {
+      "core": {
+        "directory": "zotero-final-integration-converter/core-4b33109a-retry1",
+        "receipt": {
+          "file": "receipt.json",
+          "bytes": 21219,
+          "sha256": "eb26eaf7b93a4ea8ad38f08379a3150b8e9925b7965f5a07e51ff94be903fac7"
+        },
+        "scope": "Four core synthetic fixtures: body/bibliography3 fields, tables6, endnotes2 and Unicode uppercase2;13 total. Actual two-save cycles use the authored-model oracle.",
+        "commands": 9,
+        "all_commands_passed": true,
+        "captured_source_inputs": 438,
+        "preservation_checks": {
+          "source_unchanged": true,
+          "original_fixtures_unchanged": true,
+          "reexported_fixtures_unchanged": true,
+          "saved_first_fixtures_unchanged": true,
+          "saved_second_fixtures_unchanged": true
+        }
+      },
+      "mixed": {
+        "directory": "zotero-final-integration-converter/mixed-4b33109a-retry1",
+        "receipt": {
+          "file": "receipt.json",
+          "bytes": 10892,
+          "sha256": "98b741ae73972b57c6c437639aa31b4784b534495b9af9845335a51d6abf42f3"
+        },
+        "scope": "Synthetic mixed footnote/endnote export and actual LibreOffice save, complete native inventories and all four note character-style references; native footnote reopening is not exercised or claimed.",
+        "commands": 6,
+        "all_commands_passed": true,
+        "captured_source_inputs": 438,
+        "preservation_checks": {
+          "source_unchanged": true,
+          "originals_unchanged": true,
+          "saved_outputs_unchanged": true
+        }
+      },
+      "images": {
+        "directory": "zotero-final-integration-converter/images-4b33109a",
+        "receipt": {
+          "file": "receipt.json",
+          "bytes": 22998,
+          "sha256": "6ae4c8a8e36ed6b6a7e0d77d751281e24ccd8bb195a6e2cfb7ec875604c46551"
+        },
+        "scope": "Two synthetic PNG/JPEG fixtures, each with two native pictures and two active citations. First actual LibreOffice save, three native DOCX/ODT cycles, byte-identical copies of final reexports into a second actual save, then three further native DOCX/ODT cycles against the original authored model. No installed Zotero plugin or live CSL session is exercised.",
+        "commands": 8,
+        "all_commands_passed": true,
+        "captured_source_inputs": 438,
+        "preservation_checks": {
+          "source_unchanged": true,
+          "inputs_unchanged": {
+            "original": true,
+            "saved-first": true,
+            "reexported-first": true,
+            "second-save-input": true,
+            "saved-second": true
+          }
+        }
+      }
+    }
+  },
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "libreoffice": "LibreOfficeDev 26.8.0.0.alpha0",
+    "libreoffice_build": "2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+    "locked_hosted_dependency_archives_verified": 204
+  },
+  "intake": {
+    "summary": {
+      "total_refs": 386,
+      "by_remote": {
+        "origin": 43,
+        "pull": 339,
+        "upstream": 4
+      },
+      "by_disposition": {
+        "ancestor_of_main_and_checkpoint": 369,
+        "current_checkpoint_ancestry_only": 3,
+        "independently_verified_historical_equivalent": 14
+      },
+      "initial_tips": 375,
+      "initial_coverage": {
+        "ancestor_of_main_and_checkpoint": 361,
+        "independently_verified_historical_equivalent": 14
+      },
+      "historical_proofs_verified": 14,
+      "new_refs": 11,
+      "advanced_refs": 3,
+      "main_is_checkpoint_ancestor": true,
+      "snapshot_stable": true
+    },
+    "uncovered_or_ongoing_current_tips": 0,
+    "original_tip_identities_reverified": 375,
+    "evidence": {
+      "file": "publication-intake.json",
+      "bytes": 245002,
+      "sha256": "090b0ab32f0c2f3b65c65e3fc25fbef7a01ed8381e90081439082c32a59e281c"
+    }
+  },
+  "evidence_archive": {
+    "file": "publication-execution.tar.gz",
+    "bytes": 2277003,
+    "sha256": "73c0eae91c4b557cc097a6efbb422094f2ee6afdbddab739cac5923021debc4a",
+    "members": 334,
+    "uncompressed_bytes": 12601179,
+    "deterministic_rebuild_matched": true,
+    "all_members_verified": true,
+    "manifest": {
+      "file": "publication-archive-contents.json",
+      "bytes": 98690,
+      "sha256": "4940aaf6e79147b347da051cc39d75b3f7b569f166cafeb9b296af083bc25541"
+    },
+    "prior_milestone_files_unchanged": 17
+  },
+  "historical_milestones_not_added_to_fresh_total": [
+    {
+      "source": "d743c1b3e0791f7e73e5bd87638f8cd43a10fba2",
+      "passed_cases": 2078,
+      "suites": 93,
+      "record": "final.json"
+    },
+    {
+      "source": "bb2dfd5272ff8de27ed2ec7f68b71801a2e41886",
+      "passed_cases": 2331,
+      "suites": 111,
+      "record": "integration.json"
+    },
+    {
+      "source": "a4d647a8e553f4a7ec65c96cc9fbe0ac672781f9",
+      "passed_cases": 174,
+      "suites": 13,
+      "record": "publication-execution.tar.gz:intermediate-a4/qualification"
+    }
+  ],
+  "unaccepted_attempts": {
+    "count": 6,
+    "fresh_qualification_credit": 0,
+    "details": "publication-completeness.json",
+    "optional_overlay_probe": "automatic approval review blocked observation; excluded and preserved separately"
+  },
+  "parity_boundaries": [
+    "Installed Zotero-plugin command sessions and Microsoft Word application acceptance remain unqualified.",
+    "Supported stable LibreOffice releases and legacy Apache OpenOffice need separate host/plugin qualification.",
+    "Active footnote separators prevent native reopening of the mixed-note fixture.",
+    "Native table margins survive interchange, while Quds rendering still uses fixed 4.25-point cell padding.",
+    "Effective nonzero absolute baseline positions refuse editable Zotero ODT export; explicit zero and superscript/subscript remain supported."
+  ],
+  "github_actions": {
+    "queried": false,
+    "awaited": false,
+    "merge_basis": "Completed local checks and source-bound receipts, with the blocked original suite explicitly disclosed."
+  }
+}
