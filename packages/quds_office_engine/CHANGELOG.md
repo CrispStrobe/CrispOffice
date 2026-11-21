@@ -4,6 +4,13 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Preserve bounded nested tables in Zotero Add Note/Add Annotation content,
+  including recursive active-citation/list order, independent span/width
+  validation and supported pictures. Keep all resource budgets shared across
+  the note, cap table nesting at eight levels, and create native trailing cell
+  paragraphs before final index mapping for stable DOCX round trips. Retain
+  main-flow destination and unsupported-structure guards.
+
 - Extend bounded Word VBA with `Range.NoProofing`,
   `ParagraphFormat.Hyphenation`, and `Font.Kerning`, including typed helpers
   and explicit independent header/footer paragraphs. Add corresponding native

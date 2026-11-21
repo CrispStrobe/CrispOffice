@@ -1,0 +1,10 @@
+00:00 +0: loading /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_body_download_store_test.dart
+00:00 +0: imap: download survives restart with exact offline content and untouched outgoing state
+00:00 +1: ews: download survives restart with exact offline content and untouched outgoing state
+00:00 +2: gmail: download survives restart with exact offline content and untouched outgoing state
+00:00 +3: graph: download survives restart with exact offline content and untouched outgoing state
+00:00 +4: cancel during a later cache transaction preserves only the acknowledged prefix
+00:00 +5: retire during a later cache transaction preserves only the acknowledged prefix
+00:00 +6: rollback during a later cache transaction preserves only the acknowledged prefix
+00:00 +7: native blob quota keeps earlier bodies and all outgoing data intact
+00:01 +8: All tests passed!

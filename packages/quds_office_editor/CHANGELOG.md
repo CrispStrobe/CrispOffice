@@ -4,6 +4,22 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Accept nested Zotero research-note/annotation tables through the existing
+  native commands, retaining active citations, rich content, body/authored-note
+  ownership and one undo/redo step. Table-containing payloads still require
+  a main-flow destination; Notes-pane table editing and installed-plugin
+  interoperability remain separate acceptance scopes.
+
+- Add explicit offline downloads in **Synchronized mail** for native IMAP,
+  EWS, Gmail and Microsoft 365. Download one message or the current header page,
+  retain original bytes and attachments, skip saved messages on resume, and
+  report bounded progress, cancellation and storage failures. Keep reads local
+  until an explicit download and preserve draft, Outbox and sync checkpoints.
+- Honor composer save guards during native Quit, drain closed routes before
+  closing their storage owner, and keep failed or pending draft saves open.
+- Keep long missing-message and error descriptions scrollable in compact
+  synchronized-mail readers, including translated text at enlarged text sizes.
+
 - Correct localized Mail list dates across daylight-saving changes and supplied
   UTC clocks: compare local calendar dates so yesterday, recent weekdays and
   future dates keep their intended labels.

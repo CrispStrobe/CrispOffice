@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -39,6 +41,7 @@ final class _Provider extends Fake
   final cursors = <MailCursor?>[];
   int headerReads = 0;
   int bodyReads = 0;
+  bool serveBodies = false;
   int disposals = 0;
   MailOperationLease? syncLease;
   Completer<MailResult<MailSyncPage>>? syncGate;
@@ -121,6 +124,31 @@ final class _Provider extends Fake
     required MailOperationLease lease,
   }) async {
     bodyReads++;
+    if (serveBodies) {
+      lease.checkCurrent();
+      expect(identity.account, account);
+      final number = (identity as MailOpaqueIdentity).value.endsWith('1')
+          ? 1
+          : 2;
+      final source = header(number);
+      return MailSuccess(
+        MailMessage(
+          raw: MailBytes(utf8.encode('Original $number\r\n\r\nRetained body')),
+          envelope: source.envelope,
+          localId: source.id,
+          remoteIdentity: source.remote,
+          body: MailBody(plainText: 'Downloaded offline body $number'),
+          attachments: [
+            MailAttachment(
+              partPath: '2',
+              mediaType: 'application/octet-stream',
+              displayName: 'retained.bin',
+              content: MailBytes(Uint8List.fromList([0, 128, 255, number])),
+            ),
+          ],
+        ),
+      );
+    }
     return const MailFailure(MailProblem(MailProblemCode.unavailable));
   }
 
@@ -376,6 +404,117 @@ void main() {
     MailProviderKind.gmail,
     MailProviderKind.graph,
   ]) {
+    testWidgets(
+      '${kind.name} host downloads synchronized bodies explicitly and reopens them offline',
+      (tester) async {
+        final harness = await _fixture(tester, kind);
+        await _showHost(tester, harness);
+        final provider = harness.providers.single;
+        final identity = harness.identities.single;
+        await _openSync(tester);
+        await _startSync(tester);
+        final before = (await _readSync(tester, harness))!;
+        final selected = _syncList(tester).items.first;
+        _syncList(tester).onOpen(selected.id);
+        await _until(
+          tester,
+          () => _key('studio-mail-download-message').evaluate().isNotEmpty,
+        );
+        expect(provider.bodyReads, 0);
+        provider.serveBodies = true;
+        await tester.tap(_key('studio-mail-download-page'));
+        await _until(
+          tester,
+          () =>
+              _key('studio-mail-download-result').evaluate().isNotEmpty &&
+              _buttonReady(tester, 'studio-mail-download-page'),
+        );
+        expect(provider.bodyReads, 2);
+        expect(find.text(_strings.mailDownloadFinished), findsOneWidget);
+        expect(find.byType(MailMessageView), findsOneWidget);
+        final after = (await _readSync(tester, harness))!;
+        expect(after.revision, before.revision);
+        expect(after.headerCount, before.headerCount);
+        await tester.tap(_key('studio-mail-download-page'));
+        await _until(
+          tester,
+          () => find
+              .text(_strings.mailDownloadProgress(0, 2, 0))
+              .evaluate()
+              .isNotEmpty,
+        );
+        expect(
+          provider.bodyReads,
+          2,
+          reason: 'Already retained messages must not be fetched again.',
+        );
+        await _closeSync(tester);
+        await _disconnect(tester, harness);
+
+        // Reopen with no provider or credential source. Only the owned local
+        // repository and production sync dialog/reader are involved.
+        final owner = await awaitOutboxOperation(
+          tester,
+          harness.open(identity),
+        );
+        addTearDown(() async {
+          await awaitOutboxOperation(tester, owner.close());
+        });
+        final cache = (owner as StudioMailMailboxStoreOwner).mailboxStore;
+        final sync = cache as StudioMailSyncStore;
+        await tester.pumpWidget(const SizedBox.shrink());
+        await tester.pump();
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Builder(
+              builder: (context) => Scaffold(
+                body: TextButton(
+                  onPressed: () => showDialog<void>(
+                    context: context,
+                    builder: (_) => StudioMailSyncDialog(
+                      strings: _strings,
+                      mailboxStore: cache,
+                      syncStore: sync,
+                      isCurrent: () => true,
+                    ),
+                  ),
+                  child: const Text('Open downloaded mail'),
+                ),
+              ),
+            ),
+          ),
+        );
+        await tester.tap(find.text('Open downloaded mail'));
+        await _until(
+          tester,
+          () => _key('studio-mail-sync-checkpoint').evaluate().isNotEmpty,
+        );
+        expect(_key('studio-mail-download-page'), findsNothing);
+        final offline = _syncList(tester).items.first;
+        _syncList(tester).onOpen(offline.id);
+        await _until(
+          tester,
+          () => find.byType(MailMessageView).evaluate().isNotEmpty,
+        );
+        final reader = tester
+            .widget<MailMessageView>(find.byType(MailMessageView))
+            .controller;
+        expect(
+          reader.result.message!.body.plainText,
+          startsWith('Downloaded offline body'),
+        );
+        expect(
+          reader.result.message!.attachments.single.content.copyBytes().take(3),
+          [0, 128, 255],
+        );
+        expect(harness.providers, hasLength(1));
+        expect(provider.bodyReads, 2);
+        await _closeSync(tester);
+        await awaitOutboxOperation(tester, owner.close());
+        expect(tester.takeException(), isNull);
+      },
+    );
+
     testWidgets(
       '${kind.name} host sync persists, resumes after reconnect and opens offline without a provider',
       (tester) async {

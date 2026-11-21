@@ -10,6 +10,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'studio_mail_archive_action.dart';
 import 'studio_mail_bulk_status.dart';
+import 'studio_mail_body_download.dart';
 import 'studio_mail_flag_journal.dart';
 import 'studio_mail_journal_dialog.dart';
 import 'studio_mail_journal_strings.dart';
@@ -1927,8 +1928,10 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     }
     final syncStore = store as StudioMailSyncStore;
     final lease = session.begin();
+    final mailboxGeneration = _mailboxGeneration;
     bool current() =>
         _current(provider, lease) &&
+        mailboxGeneration == _mailboxGeneration &&
         identical(owner, _draftStore) &&
         _mailbox?.id == mailbox.id;
     setState(() => _dialogOpen = true);
@@ -1942,6 +1945,23 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           syncStore: syncStore,
           mailbox: mailbox,
           isCurrent: current,
+          download:
+              ({
+                required headers,
+                required cancellation,
+                required onProgress,
+              }) =>
+                  MailBodyDownloadRunner(
+                    provider: provider,
+                    cache: StudioMailBodyDownloadCache(store),
+                    session: session,
+                  ).run(
+                    mailbox: mailbox.id,
+                    headers: headers,
+                    cancellation: cancellation,
+                    onProgress: onProgress,
+                    isCurrent: current,
+                  ),
           run: ({required cancellation, required onProgress}) async {
             lease.checkCurrent();
             if (!current()) {

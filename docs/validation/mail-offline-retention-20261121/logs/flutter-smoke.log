@@ -1,0 +1,36 @@
+[1/9] Material Fonts                                                4.7s
+[2/9] Gradle Wrapper                                             2,780ms
+[9/9] linux-x64/font-subset                                      2,936ms
+00:00 +0: loading /workspace/scratch/5627811b9768/quds_office_suite/packages/quds_mail_ui/test/body_presentation_test.dart
+00:00 +0: plain quotation preserves literal text and Unicode exactly
+00:00 +1: explicitly empty plain text never falls back to HTML by default
+00:00 +2: unselected alternatives are not scanned or budgeted
+00:00 +3: HTML-only text uses inert entities, breaks and styling
+00:00 +4: paragraphs, lists and table cells retain readable separation
+00:00 +5: explicit HTML preference can select the alternate body
+00:00 +6: missing bodies reject without inventing quoted source
+00:00 +7: envelopes and attachments cannot affect body-only quotation
+00:00 +8: active markup and resource attributes never enter quoted text
+00:00 +9: decoded markup remains literal text and is never reparsed
+00:00 +10: remote and CID images have no attachment lookup or resource path
+00:00 +11: safe links remain inert metadata; destinations are not quoted
+00:00 +12: selected input counts complete UTF-8 scalar values
+00:00 +13: selected HTML input is bounded before markup projection
+00:00 +14: decoded content budget is independently enforced
+00:00 +15: render output limit discards an already projected prefix
+00:00 +16: HTML node and attribute limits discard the whole projection
+00:00 +17: HTML nesting is bounded before deeper content is admitted
+00:00 +18: incomplete HTML rejects instead of returning its prefix: <p>Prefix</p><!--private tail
+00:00 +19: incomplete HTML rejects instead of returning its prefix: <p>Prefix</p><a href="private tail
+00:00 +20: incomplete HTML rejects instead of returning its prefix: <p>Prefix</p><script>private tail
+00:00 +21: incomplete HTML rejects instead of returning its prefix: <p>Prefix</p><style>private tail
+00:00 +22: incomplete HTML rejects instead of returning its prefix: <p>Prefix</p><iframe>private tail
+00:00 +23: incomplete HTML rejects instead of returning its prefix: <p>Prefix</p><form>private tail
+00:00 +24: incomplete HTML rejects instead of returning its prefix: <p>Prefix</p><svg><text>private tail
+00:00 +25: incomplete HTML rejects instead of returning its prefix: <p>Prefix</p><plaintext>private tail
+00:00 +26: incomplete HTML rejects instead of returning its prefix: <p>Prefix</p><@>private tail
+00:00 +27: incomplete HTML rejects instead of returning its prefix: <p>Prefix</p><>private tail
+00:00 +28: ordinary optional closing tags do not lose complete visible text
+00:00 +29: strict quotation does not change legacy reader recovery behavior
+00:00 +30: invalid caller budgets fail before any projection
+00:00 +31: All tests passed!
