@@ -2988,5 +2988,15 @@
   "premerge_target_commit": "55825a375c6acd875f7bb2d408b6069795f10b48",
   "premerge_target_tree": "81f08c3bf7a0c9ff8bd03f1da9d3404f82fc4716",
   "reconciled_at": "2026-11-21T19:00:46.006912+00:00",
-  "qualification": "Combined 63-suite engine and 3-suite editor ODT checks running; qualification outcome recorded separately."
+  "qualification": {
+    "status": "passed",
+    "engine_tests": 1206,
+    "engine_suites": 63,
+    "editor_tests": 19,
+    "editor_suites": 3,
+    "analyzed_dart_paths": 15,
+    "formatted_dart_paths": 15,
+    "qualified_source_commit": "e9a95d7795812a8322c3a0c1d508cf05553bfe82",
+    "source": "All1247 input hashes match the committed source; immutable hashes in separate evidence archive."
+  }
 }
