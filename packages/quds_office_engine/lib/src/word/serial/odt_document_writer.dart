@@ -1433,7 +1433,11 @@ abstract final class OdtDocumentWriter {
     w.writeAttribute('table:name', 'Table${layout.tableCount++}');
     w.writeAttribute(
       'table:style-name',
-      layout.tableStyle(sectionStart: sectionStart, width: zoteroWidth),
+      layout.tableStyle(
+        sectionStart: sectionStart,
+        width: zoteroWidth,
+        alignment: layout.zotero == null ? null : table.properties.alignment,
+      ),
     );
     for (final width in table.grid) {
       w.writeStartElement('table-column', prefix: 'table');
@@ -2341,7 +2345,11 @@ class _OdtLayout {
     return decimal.contains('e') ? null : decimal;
   }
 
-  String tableStyle({_OdtSectionStart? sectionStart, double? width}) {
+  String tableStyle({
+    _OdtSectionStart? sectionStart,
+    double? width,
+    WmlJustification? alignment,
+  }) {
     final name = 'Tab${tableCount + 1}';
     String styleXml() {
       final buffer = StringBuffer(
@@ -2359,7 +2367,20 @@ class _OdtLayout {
             ? ' style:rel-width="100%"'
             : ' style:width="${absoluteWidth}pt"',
       );
-      buffer.write(' table:align="margins"');
+      // ODF 1.3 section 20.414 gives `margins` a fill-width meaning. Keeping
+      // it beside an absolute width makes Writer rescale the native columns.
+      // The explicit editable path supplies its physical model alignment;
+      // ordinary cached-text exports retain their established fill behavior.
+      final align = switch (alignment) {
+        null => 'margins',
+        WmlJustification.left => 'left',
+        WmlJustification.center => 'center',
+        WmlJustification.right => 'right',
+        _ => throw UnsupportedError(
+          'Editable Zotero ODT needs left, center or right table alignment.',
+        ),
+      };
+      buffer.write(' table:align="$align"');
       if (sectionStart?.breakBefore == true) {
         buffer.write(' fo:break-before="page"');
       }
