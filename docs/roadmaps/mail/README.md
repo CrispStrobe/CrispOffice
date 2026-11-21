@@ -11,6 +11,16 @@ archive, Studio workflows and remaining MailStore parity work.
 
 ## Desktop mail parity: ordered increments
 
+The [keyboard triage increment](keyboard-triage.md) adds visible checked ranges
+with Shift navigation/click, preserves independent selections and resets anchors
+on projection/host changes. Synchronized loaded-header search now includes
+From/To/Cc names and addresses consistently. EN/DE/AR selection help and focused
+regressions are included. Fresh native qualification passed 272 shared Mail UI
+and 176 Studio cases, including the 48 new regressions; changed Dart paths also
+pass strict analysis and formatting. The original outage and interrupted test
+attempt remain in the work record. The next discovery increment is explicit
+saved-search folder sets with identity/coverage and missing-folder recovery.
+
 The [saved-search refresh increment](live-saved-search.md) adds an explicit
 replacement scan and opt-in 30-second foreground updates over retained headers.
 It preserves an opened reader when its result survives, reports incomplete

@@ -1,0 +1,36 @@
+{
+  "command_receipt": "incoming-zotero-tests-final.json",
+  "log": "incoming-zotero-tests-final.log",
+  "log_sha256": "8b40f5b50f570ba6118d49b41f3439a9dce5043362b183ebb7ca343527a76b48",
+  "test_count_rule": "testDone events excluding hidden events and loading tests",
+  "total_substantive_tests": 52,
+  "passed": 52,
+  "failed": 0,
+  "skipped": 0,
+  "hidden_or_loader_events_excluded": 3,
+  "by_suite": [
+    {
+      "path": "/workspace/scratch/f433637a99a0/quds_office_suite/packages/quds_office_editor/example/test/studio_settings_test.dart",
+      "total": 23,
+      "passed": 23,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "path": "/workspace/scratch/f433637a99a0/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcuts_test.dart",
+      "total": 12,
+      "passed": 12,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "path": "/workspace/scratch/f433637a99a0/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "total": 17,
+      "passed": 17,
+      "failed": 0,
+      "skipped": 0
+    }
+  ],
+  "errors": [],
+  "runner_success": true
+}

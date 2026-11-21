@@ -1,0 +1,11 @@
+Formatted 47 files (0 changed) in 1.57 seconds.
+Warning: Package resolution error when reading "analysis_options.yaml" file for "packages/quds_office_editor/example/lib/studio_mail_sync_dialog.dart":
+Failed to resolve package URI "package:flutter_lints/flutter.yaml" in include at "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/quds_office_suite/packages/quds_office_editor/example/analysis_options.yaml".
+Warning: Package resolution error when reading "analysis_options.yaml" file for "packages/quds_office_editor/example/test/studio_mail_selection_help_test.dart":
+Failed to resolve package URI "package:flutter_lints/flutter.yaml" in include at "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/quds_office_suite/packages/quds_office_editor/example/analysis_options.yaml".
+Warning: Package resolution error when reading "analysis_options.yaml" file for "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart":
+Failed to resolve package URI "package:flutter_lints/flutter.yaml" in include at "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/quds_office_suite/packages/quds_office_editor/analysis_options.yaml".
+Warning: Package resolution error when reading "analysis_options.yaml" file for "packages/quds_office_editor/lib/src/embed/office_controller.dart":
+Failed to resolve package URI "package:flutter_lints/flutter.yaml" in include at "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/quds_office_suite/packages/quds_office_editor/analysis_options.yaml".
+Warning: Package resolution error when reading "analysis_options.yaml" file for "packages/quds_office_editor/test/word_footnote_separator_render_test.dart":
+Failed to resolve package URI "package:flutter_lints/flutter.yaml" in include at "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/quds_office_suite/packages/quds_office_editor/analysis_options.yaml".

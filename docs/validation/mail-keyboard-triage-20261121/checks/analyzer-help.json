@@ -1,0 +1,19 @@
+{
+  "name": "analyzer-help",
+  "command": [
+    "/workspace/scratch/f433637a99a0/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+    "/workspace/scratch/f433637a99a0/toolchain/flutter/bin/cache/flutter_tools.snapshot",
+    "--no-version-check",
+    "analyze",
+    "--help"
+  ],
+  "cwd": "/workspace/scratch/f433637a99a0/quds_office_suite",
+  "started_utc": "2026-11-21T21:43:31.600355+00:00",
+  "status": "PASS",
+  "log": "analyzer-help.log",
+  "github_actions": "NOT USED",
+  "exit_code": 0,
+  "elapsed_seconds": 0.059,
+  "finished_utc": "2026-11-21T21:43:31.660021+00:00",
+  "log_sha256": "b7cf59b0a3e6deecdd8c9a4821d4d9544e7482b6c7e46a01e66ed28efeb2e01c"
+}

@@ -261,6 +261,12 @@ abstract class OfficeController extends ChangeNotifier {
   /// Host chrome: F7.
   VoidCallback? onSpellCheckRequested;
 
+  /// Gives a host's configured shortcuts priority over the surface defaults.
+  /// Return true after dispatching a command or retiring a default binding.
+  /// Only focused document surfaces call this hook; native text fields keep
+  /// their own editing actions. Null preserves standalone editor shortcuts.
+  bool Function(KeyEvent event)? onShortcutKeyEvent;
+
   /// Fired after [find] / [findNext] updates [findSession].
   void Function(OfficeFindHit? hit)? onFindResult;
 

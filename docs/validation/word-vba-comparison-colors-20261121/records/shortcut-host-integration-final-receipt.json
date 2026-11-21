@@ -1,0 +1,111 @@
+{
+  "schema": "quds.local-validation.v1",
+  "generated_at_utc": "2026-11-21T22:00:27.402825+00:00",
+  "purpose": "Reconcile PR347 host-ownership tests with the qualified configured-shortcut bridge after preserving both suites.",
+  "repository": "CrispStrobe/quds_office_suite",
+  "checkout_head": "2efe361508686bfcc5aa585f7df9027292a2f6a7",
+  "flutter_version": "3.47.8",
+  "environment_helper": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/flutter-validation-env.sh",
+  "environment_helper_sha256": "274c73b8a1e9e157c512320d4111d46fcf0360b0f1d5d54b5489d0493eb78d69",
+  "source_manifest": [
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "sha256": "c76f37965401b60756729f5a2a6426a5757e8cfbc300f405f50863c1f82fa90d"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+      "sha256": "9254f683b5be8d2508361f208fa181c45e67483187146067666705e09c39dc33"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "sha256": "89cc6e5b692ca05eae21e6f839e913ad4373593144286bb1626ae19cf9a4822a"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "sha256": "bbf76a48b88bb478b46165690c48a1bb0113a776cbbe2b4d4febb1fa93ebd85f"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_shortcuts.dart",
+      "sha256": "3dd2af2b4e3461cae167fccc0943ce0164f7fbf1557d7eeba6fb95504d418b87"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_shortcut_dispatch_test.dart",
+      "sha256": "49ba638533ba73db24d1029b309dae2d0cb3add670524a0fc06eab1c44c48e94"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_shortcut_host_ownership_test.dart",
+      "sha256": "bb13230ee14cb2a32ca98a42f665bbb9d41606e351e15cd6e3369eea13ef74b6"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "sha256": "8004b37ee6361112e2c9fc9674e20d28cedc23f1861147d45772745e68c8b6db"
+    }
+  ],
+  "source_changed_by_this_reconciliation": [
+    "packages/quds_office_editor/example/test/studio_shortcut_host_ownership_test.dart"
+  ],
+  "bridge_manifest_matches_prior_qualified_receipt": true,
+  "prior_bridge_receipt": {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/tmp/shortcut-dispatch-final-receipt.json",
+    "sha256": "b1a3272ca30886f35b25e161d81f694e14df792facbdda9deff8a31b9887c653"
+  },
+  "qualified_commands": [
+    {
+      "cwd": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/example",
+      "shell_command": "bash -c 'source /home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/flutter-validation-env.sh && flutter test --no-pub --concurrency=1 --reporter expanded test/studio_shortcut_dispatch_test.dart test/studio_shortcut_host_ownership_test.dart test/studio_zotero_shortcuts_test.dart > /home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/tmp/shortcut-host-integration-final-test.log 2>&1'",
+      "exit_code": 0,
+      "tests_passed": 44,
+      "tests_failed": 0,
+      "suite_counts": {
+        "studio_shortcut_dispatch_test.dart": 12,
+        "studio_shortcut_host_ownership_test.dart": 15,
+        "studio_zotero_shortcuts_test.dart": 17
+      },
+      "log": {
+        "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/tmp/shortcut-host-integration-final-test.log",
+        "sha256": "b655e169492195d0834ee528f1481b6a3f91999d5e886d25d1f6fa38a8470a8d",
+        "bytes": 12100
+      }
+    },
+    {
+      "cwd": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/example",
+      "shell_command": "bash -c 'source /home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/flutter-validation-env.sh && flutter analyze --no-pub lib/suite_workspace.dart test/studio_shortcut_dispatch_test.dart test/studio_shortcut_host_ownership_test.dart test/studio_zotero_shortcuts_test.dart > /home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/tmp/shortcut-host-integration-analyze.log 2>&1'",
+      "exit_code": 0,
+      "items_analyzed": 4,
+      "issues": 0,
+      "log": {
+        "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/tmp/shortcut-host-integration-analyze.log",
+        "sha256": "be9241063d8d66ce7365b80a1ecd211be06c1771b6fb5a35aa2f074163830c5e",
+        "bytes": 97
+      }
+    }
+  ],
+  "supplemental_targeted_check": {
+    "invocation": "flutter test --no-pub --concurrency=1 --reporter expanded test/studio_shortcut_host_ownership_test.dart --name \"reassigned zoom|captured Word mutations refuse other app targets\"",
+    "cwd": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/example",
+    "exit_code": 0,
+    "tests_passed": 2,
+    "log": {
+      "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/tmp/shortcut-host-key-replay-test.log",
+      "sha256": "fcf42e18ac70249f74885010c5a80a65a74d8410835d6adacccc60cd05b7caeb",
+      "bytes": 409
+    },
+    "note": "These two tests are included in the final 44; do not add them to the unique count."
+  },
+  "reconciliation": {
+    "configured_keys": "Replaced old outer CallbackShortcuts map introspection with actual chrome keyboard events, history assertions, zoom increments and a cancelling save-picker fixture.",
+    "retained_callbacks": "Reserved Zotero callbacks retain outer-map checks. Captured document hooks test owner changes and have a positive execution control. Captured native menu edit actions test current Mail/modal text forwarding without hidden Word changes.",
+    "coverage_preserved": [
+      "reserved Zotero conflicts",
+      "retired default and alias chords",
+      "explicit override precedence",
+      "viewing mode refusal",
+      "stale app and modal mutation refusal",
+      "native Find/Mail/modal editing",
+      "comment emphasis and paragraph-format limits"
+    ],
+    "simulator_adjustment": "The logical Add alias has no legacy Linux test key-code mapping. Its explicit physical/logical pair is delivered through HardwareKeyboard.handleKeyEvent; the alias behavior remains asserted.",
+    "production_changes_required": false,
+    "remaining_blockers": []
+  }
+}

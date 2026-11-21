@@ -1,0 +1,22 @@
+{
+  "name": "incoming-word-tests",
+  "command": [
+    "/workspace/scratch/f433637a99a0/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+    "test",
+    "--reporter=json",
+    "--concurrency=1",
+    "test/office_vba_strcomp_test.dart",
+    "test/office_macro_word_font_colors_test.dart",
+    "test/office_vba_word_font_colors_test.dart",
+    "test/office_vba_word_comparison_colors_integration_test.dart"
+  ],
+  "cwd": "/workspace/scratch/f433637a99a0/quds_office_suite/packages/quds_office_engine",
+  "started_utc": "2026-11-21T21:45:40.016942+00:00",
+  "status": "PASS",
+  "log": "incoming-word-tests.log",
+  "github_actions": "NOT USED",
+  "exit_code": 0,
+  "elapsed_seconds": 38.856,
+  "finished_utc": "2026-11-21T21:46:18.873317+00:00",
+  "log_sha256": "c8da41ee325626c844cc4dde08570e14cf660d40b986a84e4a7b7645bd7704c2"
+}

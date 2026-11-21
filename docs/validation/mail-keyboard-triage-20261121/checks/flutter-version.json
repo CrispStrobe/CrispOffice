@@ -1,0 +1,19 @@
+{
+  "name": "flutter-version",
+  "command": [
+    "/workspace/scratch/f433637a99a0/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+    "/workspace/scratch/f433637a99a0/toolchain/flutter/bin/cache/flutter_tools.snapshot",
+    "--no-version-check",
+    "--version",
+    "--machine"
+  ],
+  "cwd": "/workspace/scratch/f433637a99a0/toolchain/flutter",
+  "started_utc": "2026-11-21T21:41:57.492054+00:00",
+  "status": "PASS",
+  "log": "flutter-version.log",
+  "github_actions": "NOT USED",
+  "exit_code": 0,
+  "elapsed_seconds": 0.216,
+  "finished_utc": "2026-11-21T21:41:57.708974+00:00",
+  "log_sha256": "5adeba582ca1c43922caa4301f86b8006c48bf3061ab6237a43cc0ef3d0e395e"
+}

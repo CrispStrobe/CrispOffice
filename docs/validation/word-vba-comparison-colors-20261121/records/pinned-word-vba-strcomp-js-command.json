@@ -1,0 +1,11 @@
+{
+  "name": "strcomp-js",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "-e",
+    "globalThis.self = globalThis; require(process.argv[1]);",
+    "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/build/pinned-word-vba-strcomp.js"
+  ],
+  "cwd": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_engine",
+  "started_utc": "2026-11-21T22:00:24.106289+00:00"
+}

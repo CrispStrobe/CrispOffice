@@ -75,12 +75,20 @@ The supported subset includes:
 - `If`, `Select Case`, `Do`, `While`, `For` and `For Each`;
 - fixed and dynamic one-dimensional arrays, `ReDim`, `Erase`, `Option Base`;
 - `Variant` states including `Empty`, `Null` and `IsMissing`;
-- numeric and string intrinsics;
+- numeric and string intrinsics, including metered binary `StrComp` with explicit Empty/Null handling;
 - strict argument types, named arguments and optional scalar `ByVal` values;
 - bounded compilation and execution budgets.
 
 Unsupported constructs fail with a diagnostic. The compiler never silently
 drops a statement or applies a best-effort rewrite.
+
+## Comparing source text
+
+`StrComp(left, right[, vbBinaryCompare])` returns `-1`, `0`, `1`, or Null
+under the bounded [binary String comparison contract](vba-macros-details.md#binary-string-comparison).
+It compares source-known UTF-16 values and shares the compilation work budget.
+The [Word report example](../packages/quds_office_engine/example/macros/word_comparison_colors.bas)
+uses the result to choose font colors and fill an existing table template.
 
 ## Source and safety
 

@@ -271,6 +271,12 @@ inspection receipt, not a complete dependency or runtime certification.
   empty, offline, synchronizing, failed credentials and unsupported capabilities
   distinct. The separate foreground sync dialog does not complete this requirement.
 - [ ] Extend the durable read/unread/flag foundation to archive, move, delete and broader bulk actions; expose failure/reconciliation status without discarding local state.
+- [x] Implement visible checked ranges in the shared list with Shift navigation,
+  Shift+click, preserved independent checks and generation/scope guards, plus
+  EN/DE/AR help. Correct synchronized header search to include visible names
+  and addresses. Fresh local qualification passes 272 shared UI and 176 Studio
+  cases, with strict analysis and formatting. See
+  [keyboard-triage.md](keyboard-triage.md).
 - [ ] Provide responsive single-pane mobile and multi-pane desktop layouts, keyboard actions and accessible focus movement. Lists/navigation are host chrome, not replacement document editors.
 - [ ] Switch accounts/profiles without retaining the previous account's selection, attachment handles, credentials or callbacks. Restore draft sessions under their owning identity.
 - [ ] Accept host navigation/attachment/composer services by injection; do not instantiate CrispCloud or standalone global services.

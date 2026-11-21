@@ -1,0 +1,17 @@
+{
+  "name": "sdk-version",
+  "command": [
+    "toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+    "--version"
+  ],
+  "cwd": "/workspace/scratch/f433637a99a0/toolchain/flutter",
+  "started_utc": "2026-11-21T21:38:35.193818+00:00",
+  "status": "ERROR",
+  "log": "sdk-version-path-attempt.log",
+  "github_actions": "NOT USED",
+  "error": "FileNotFoundError: [Errno 2] No such file or directory: 'toolchain/flutter/bin/cache/dart-sdk/bin/dart'",
+  "exit_code": 127,
+  "elapsed_seconds": 0.001,
+  "finished_utc": "2026-11-21T21:38:35.194438+00:00",
+  "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

@@ -385,7 +385,13 @@ void applyStep(
       final underline = s.has('underline')
           ? WmlUnderline.parse(s.string('underline'))
           : null;
-      final color = s.has('color') ? s.color('color') : null;
+      // Automatic foreground is a native value, not a fixed black color or
+      // an omitted property that could revive an inherited theme color.
+      final color = s.has('color')
+          ? s.string('color') == 'auto'
+                ? 'auto'
+                : s.color('color')
+          : null;
       final highlight = s.has('highlight') && values['highlight'] != null
           ? s.color('highlight')
           : null;
@@ -412,7 +418,8 @@ void applyStep(
         throw ArgumentError('position must use exact 0.5-point increments');
       }
       final noProof = s.has('noProof') ? s.boolean('noProof') : null;
-      if (kerning != null ||
+      if (color != null ||
+          kerning != null ||
           position != null ||
           noProof != null ||
           allCaps != null ||
@@ -421,6 +428,7 @@ void applyStep(
           csFont != null ||
           language != null) {
         _validateScalarPackageSource(doc, {
+          if (color != null) 'color',
           if (kerning != null) 'kern',
           if (position != null) ...{'position', 'noSpaceRaiseLower'},
           if (noProof != null) 'noProof',
@@ -436,6 +444,18 @@ void applyStep(
         for (final run in p.inlines.whereType<WmlRun>()) {
           final end = offset + run.text.length;
           if (offset < affected.end && end > affected.start) {
+            if (color != null) {
+              _validateScalarPropertySource(
+                run.properties.sourcePropertiesXml,
+                'color',
+                ownedAttributes: const {
+                  'val',
+                  'themeColor',
+                  'themeShade',
+                  'themeTint',
+                },
+              );
+            }
             if (kerning != null) {
               _validateScalarPropertySource(
                 run.properties.sourcePropertiesXml,
@@ -890,8 +910,9 @@ void _validateScalarPackageSource(WmlDocument document, Set<String> names) {
     // Inspect raw Word XML as well, so a projected value cannot conceal a
     // competing branch that another consumer would select on reopening.
     final source = package.getPart(part.uri)!.readText();
-    if (names.contains('position') && source.contains('rPr')) {
-      _validatePositionPropertyOwnership(source);
+    if ((names.contains('position') || names.contains('color')) &&
+        source.contains('rPr')) {
+      _validateRunPropertyOwnership(source);
     }
     if (!source.contains('AlternateContent') &&
         !source.contains('ProcessContent')) {
@@ -903,7 +924,7 @@ void _validateScalarPackageSource(WmlDocument document, Set<String> names) {
   }
 }
 
-void _validatePositionPropertyOwnership(String source) {
+void _validateRunPropertyOwnership(String source) {
   final root = XmlDocument.parse(source).root;
   if (root == null) return;
   bool word(XmlElement element, String name) =>
@@ -965,10 +986,10 @@ void _validateScalarPropertySource(
   if (properties == null) return;
   bool nativeName(String namespace, String prefix) =>
       namespace == OfficeNamespaces.w || (namespace.isEmpty && prefix == 'w');
-  if (name == 'position' &&
+  if ((name == 'position' || name == 'color') &&
       properties.localName == 'rPr' &&
       !nativeName(properties.namespaceUri, properties.prefix)) {
-    throw UnsupportedError('Refuses position in a foreign run-property root');
+    throw UnsupportedError('Refuses $name in a foreign run-property root');
   }
   bool containsControl(XmlElement node) =>
       (node.localName == name && nativeName(node.namespaceUri, node.prefix)) ||
@@ -1028,11 +1049,12 @@ void _validateScalarPropertySource(
       if (value == null || value < -2147483648 || value > 2147483647) {
         throw UnsupportedError('Refuses an unsupported native position value');
       }
-      if (values.single.childElements.any(
-        (child) => nativeName(child.namespaceUri, child.prefix),
-      )) {
-        throw UnsupportedError('Refuses nested native position content');
-      }
+    }
+    if ((name == 'position' || name == 'color') &&
+        values.single.childElements.any(
+          (child) => nativeName(child.namespaceUri, child.prefix),
+        )) {
+      throw UnsupportedError('Refuses nested native $name content');
     }
   }
 }

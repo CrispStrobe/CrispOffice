@@ -24,6 +24,20 @@ interrupted work.
 | Account persistence | Native account store, schema migrations and reconnect |
 | Browser store | Implemented path; quota/reload/Web Locks acceptance remains open |
 
+## Latest increment: keyboard triage and address search
+
+Loaded mailbox lists now support growing and shrinking checked ranges with
+Shift+Up/Down/Home/End, Shift+Space and Shift+click, with English, German and
+Arabic help. Synchronized-view header search retains names and addresses for
+every visible From/To/Cc entry.
+
+**Locally qualified.** Fresh native runs passed 272 shared Mail UI cases and
+176 Studio cases, including all 48 new regressions. All 23 changed Dart paths
+pass strict analysis and formatting. The original executor outage and incomplete
+Studio attempt remain in the record. See the [workflow](keyboard-triage.md),
+[detailed status](status-details.md#range-selection-and-synchronized-address-search--locally-qualified)
+and [work record](../../validation/mail-keyboard-triage-20261121/README.md).
+
 ## Mailbox
 
 - Browse folders with a paginated, account-scoped header view.
@@ -131,6 +145,7 @@ Host-specific limits:
 - [Scheduled send](scheduled-send.md)
 - [Saved searches](saved-searches.md)
 - [Conversations](conversations.md)
+- [Keyboard triage](keyboard-triage.md)
 - [Compose tools](compose-tools.md)
 - [CrispCloud integration](crispcloud-integration.md)
 

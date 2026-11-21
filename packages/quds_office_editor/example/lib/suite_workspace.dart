@@ -651,7 +651,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             onAbout: () => _showNativeDialog(_showAbout),
             onSettings: () => _showNativeDialog(_openSettings),
             child: CallbackShortcuts(
-              bindings: _withShortcutOverrides(_baseShortcutBindings()),
+              bindings: _reservedShortcutBindings(),
               child: StudioWindowScope(
                 onCloseRequested: _confirmCloseWorkspace,
                 onChanged: () {
@@ -661,7 +661,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                 },
                 child: Focus(
                   autofocus: true,
-                  onKeyEvent: _onWorkspaceDirectionKey,
+                  onKeyEvent: _onWorkspaceKey,
                   child: Directionality(
                     textDirection: _arabic
                         ? TextDirection.rtl
@@ -975,8 +975,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   Map<ShortcutActivator, VoidCallback> _withShortcutOverrides(
-    Map<ShortcutActivator, VoidCallback> base,
-  ) {
+    Map<ShortcutActivator, VoidCallback> base, {
+    void Function(String id, VoidCallback callback)? onMatch,
+  }) {
     // Mail owns its focused key handlers. Keep the incoming empty shortcut map
     // so native text editing can reach Flutter's default text shortcuts.
     if (_mailOpen) return const <ShortcutActivator, VoidCallback>{};
@@ -998,7 +999,11 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     final guarded = <String, VoidCallback>{
       for (final entry in callbacks.entries)
         entry.key: () {
-          if (_shortcutAllowed(entry.key)) entry.value();
+          if (onMatch != null) {
+            onMatch(entry.key, entry.value);
+          } else if (_shortcutAllowed(entry.key)) {
+            entry.value();
+          }
         },
     };
     final merged = StudioShortcutCatalog.mergeBindings(
@@ -1023,6 +1028,122 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     return merged;
   }
 
+  Map<ShortcutActivator, VoidCallback> _reservedShortcutBindings() {
+    if (_mailOpen) return const <ShortcutActivator, VoidCallback>{};
+    final base = _baseShortcutBindings();
+    final reserved = _reservedShortcutCodes(base);
+    return {
+      for (final entry in base.entries)
+        if (entry.key is! SingleActivator ||
+            reserved.contains(_shortcutCode(entry.key as SingleActivator)))
+          entry.key: entry.value,
+    };
+  }
+
+  Set<String> _managedShortcutCodes(Map<ShortcutActivator, VoidCallback> base) {
+    final overrides = _acceptedShortcutOverrides(base);
+    final callbacks = _shortcutCallbacks();
+    if (!StudioWindow.isDesktop) {
+      callbacks.remove('file.new');
+      callbacks.remove('file.open');
+      callbacks.remove('file.close');
+    }
+    return {
+      for (final action in StudioShortcutCatalog.actions)
+        if (callbacks.containsKey(action.id)) ...{
+          for (final mac in [false, true])
+            if (action.defaultBinding(mac: mac) case final binding?)
+              binding.encode(),
+          if (overrides[action.id] case final stored?)
+            StudioShortcutBinding.tryParse(stored)!.encode(),
+          for (final alias
+              in _shortcutAliases[action.id] ?? <SingleActivator>[])
+            _shortcutCode(alias),
+        },
+    };
+  }
+
+  KeyEventResult _dispatchConfiguredShortcut(
+    KeyEvent event, {
+    OfficeController? document,
+  }) {
+    if (event is! KeyDownEvent && event is! KeyRepeatEvent) {
+      return KeyEventResult.ignored;
+    }
+    final keyboard = HardwareKeyboard.instance;
+    final code = StudioShortcutBinding(
+      keyId: event.logicalKey.keyId,
+      control: keyboard.isControlPressed,
+      shift: keyboard.isShiftPressed,
+      alt: keyboard.isAltPressed,
+      meta: keyboard.isMetaPressed,
+    ).encode();
+    final base = _baseShortcutBindings();
+    if (!_managedShortcutCodes(base).contains(code)) {
+      return KeyEventResult.ignored;
+    }
+    // A document must not fall back to an old default after its host retired
+    // the chord. Native text fields, however, retain their own default keys.
+    final declined = document == null
+        ? KeyEventResult.ignored
+        : KeyEventResult.handled;
+    if (document != null) _workspaceDirectionChord.reset();
+    if (_mailOpen ||
+        !mounted ||
+        !_wordRouteIsCurrent ||
+        (document != null &&
+            (_app == SuiteApp.pdf || !identical(document, _active)))) {
+      return declined;
+    }
+    if (document != null) {
+      final composing = switch (document) {
+        WordEditorController controller => controller.input.composing,
+        SheetEditorController controller =>
+          controller.cellEditor.bridge.composing,
+        SlideEditorController controller =>
+          controller.textEditor.bridge.composing,
+        _ => TextRange.empty,
+      };
+      if (composing.isValid && !composing.isCollapsed) return declined;
+    }
+    var dispatched = false;
+    final bindings = _withShortcutOverrides(
+      base,
+      onMatch: (id, callback) {
+        if (_shortcutAllowed(id)) {
+          dispatched = true;
+          callback();
+        }
+      },
+    );
+    for (final entry in bindings.entries) {
+      if (entry.key.accepts(event, keyboard)) {
+        entry.value();
+        break;
+      }
+    }
+    if (dispatched) _workspaceDirectionChord.reset();
+    return dispatched ? KeyEventResult.handled : declined;
+  }
+
+  EditableText? get _focusedTextInput {
+    final focusContext = FocusManager.instance.primaryFocus?.context;
+    final widget = focusContext?.widget;
+    return widget is EditableText
+        ? widget
+        : focusContext?.findAncestorWidgetOfExactType<EditableText>();
+  }
+
+  KeyEventResult _onWorkspaceKey(FocusNode node, KeyEvent event) {
+    final shortcut = _dispatchConfiguredShortcut(event);
+    if (shortcut != KeyEventResult.ignored) return shortcut;
+    if (_focusedTextInput != null) {
+      _workspaceDirectionChord.reset();
+      return KeyEventResult.ignored;
+    }
+    return _onWorkspaceDirectionKey(node, event);
+  }
+
   bool _shortcutAllowed(String id) {
     if (!mounted) return false;
     // Native text Actions remain valid in Mail or a dialog. Their fallback
@@ -1030,10 +1151,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     if (id.startsWith('edit.')) return true;
     if (_mailOpen || !_wordRouteIsCurrent) return false;
     if (id.startsWith('file.')) return _fileActionsAvailable;
-    final focusContext = FocusManager.instance.primaryFocus?.context;
-    final textInput =
-        focusContext?.widget is EditableText ||
-        focusContext?.findAncestorWidgetOfExactType<EditableText>() != null;
+    final textInput = _focusedTextInput != null;
     final commentFormatting =
         id == 'format.bold' ||
         id == 'format.italic' ||
@@ -7355,6 +7473,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   void _bindHostActions(OfficeController controller) {
+    controller.onShortcutKeyEvent = (event) =>
+        _dispatchConfiguredShortcut(event, document: controller) !=
+        KeyEventResult.ignored;
     if (controller is WordEditorController) {
       // Harper remains local and initializes only for an English request.
       // Missing optional native/web artifacts are reported in the review UI.

@@ -62,6 +62,11 @@ jobs:
           test/office_vba_dynamic_arrays_integration_test.dart
           test/office_vba_string_intrinsics_test.dart
           test/office_vba_string_intrinsics_integration_test.dart
+          test/office_vba_strcomp_test.dart
+          test/office_vba_word_font_colors_test.dart
+          test/office_macro_word_font_colors_test.dart
+          test/office_vba_word_comparison_colors_conformance_test.dart
+          test/office_vba_word_comparison_colors_integration_test.dart
           test/office_vba_numeric_intrinsics_test.dart
           test/office_vba_numeric_conformance_test.dart
           test/office_vba_numeric_intrinsics_integration_test.dart
@@ -127,12 +132,21 @@ jobs:
           dart compile js -O1 -DWORD_TABLE_BAS_BASE64="$WORD_TABLE_BAS_BASE64" tool/macros/web_vba_word_table_cells_smoke.dart -o build/macros/word-table.js
           node -e 'globalThis.self = globalThis; require("./build/macros/word-table.js")' > build/macros/word-table-js.json
           cmp build/macros/word-table-vm.json build/macros/word-table-js.json
+          dart tool/macros/web_vba_strcomp_smoke.dart > build/macros/strcomp-vm.json
+          dart compile js -O1 tool/macros/web_vba_strcomp_smoke.dart -o build/macros/strcomp.js
+          node -e 'globalThis.self = globalThis; require("./build/macros/strcomp.js")' > build/macros/strcomp-js.json
+          cmp build/macros/strcomp-vm.json build/macros/strcomp-js.json
+          WORD_COMPARISON_COLORS_BAS_BASE64=$(python3 -c 'import base64; from pathlib import Path; print(base64.b64encode(Path("example/macros/word_comparison_colors.bas").read_bytes()).decode())')
+          dart -DWORD_COMPARISON_COLORS_BAS_BASE64="$WORD_COMPARISON_COLORS_BAS_BASE64" tool/macros/web_vba_word_comparison_colors_smoke.dart > build/macros/word-comparison-colors-vm.json
+          dart compile js -O1 -DWORD_COMPARISON_COLORS_BAS_BASE64="$WORD_COMPARISON_COLORS_BAS_BASE64" tool/macros/web_vba_word_comparison_colors_smoke.dart -o build/macros/word-comparison-colors.js
+          node -e 'globalThis.self = globalThis; require("./build/macros/word-comparison-colors.js")' > build/macros/word-comparison-colors-js.json
+          cmp build/macros/word-comparison-colors-vm.json build/macros/word-comparison-colors-js.json
       - name: Shared language conformance on VM and JavaScript
         working-directory: packages/quds_office_engine
         run: |
           set -e
           mkdir -p build/macros
-          for suite in string_intrinsics_v1 variant_conversions_v1 variant_composition_v1 word_paragraphs_v1 word_font_position_v1 word_numeric_intrinsics_v1 word_table_cells_v1; do
+          for suite in string_intrinsics_v1 variant_conversions_v1 variant_composition_v1 word_paragraphs_v1 word_font_position_v1 word_numeric_intrinsics_v1 word_table_cells_v1 word_comparison_colors_v1; do
             VBA_CASES_BASE64=$(python3 -c 'import base64,sys; from pathlib import Path; print(base64.b64encode(Path(sys.argv[1]).read_bytes()).decode())' "test/fixtures/vba_conformance/${suite}.json")
             dart --packages=../../.dart_tool/package_config.json -DVBA_CONFORMANCE_BASE64="$VBA_CASES_BASE64" tool/macros/web_vba_conformance.dart > "build/macros/${suite}-vm.json"
             dart compile js -O1 --packages=../../.dart_tool/package_config.json -DVBA_CONFORMANCE_BASE64="$VBA_CASES_BASE64" tool/macros/web_vba_conformance.dart -o "build/macros/${suite}.js"

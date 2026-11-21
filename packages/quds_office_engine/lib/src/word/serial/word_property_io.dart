@@ -94,6 +94,35 @@ abstract final class WordPropertyIo {
         }
       }
       if (current[key] == imported[key]) continue;
+      if (generated.localName == 'rPr' && key == 'color') {
+        // An explicit foreground choice owns its native value and theme
+        // selectors, while extension metadata and namespace aliases survive.
+        // This also retains an automatic value equal to the resolved import.
+        final value = generated.childElements
+            .where(
+              (child) =>
+                  child.localName == 'color' &&
+                  _wordName(child.namespaceUri, child.prefix),
+            )
+            .firstOrNull
+            ?.attributes
+            .where(
+              (attribute) =>
+                  attribute.localName == 'val' &&
+                  _wordName(attribute.namespaceUri, attribute.prefix),
+            )
+            .firstOrNull
+            ?.value;
+        if (value != null) {
+          _mergeWordAttributes(
+            result,
+            'color',
+            const {'val', 'themeColor', 'themeShade', 'themeTint'},
+            {'val': value},
+          );
+          continue;
+        }
+      }
       if (generated.localName == 'pPr' && key == 'bidi') {
         // Reading order owns only the Word val attribute, including an
         // explicit false against inherited RTL. Retain extension metadata.

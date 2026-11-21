@@ -793,7 +793,7 @@ class _StyleCascade {
         if (scalarControl && !_word(incoming, incoming.localName)) continue;
         final runAttributes =
             name == 'rPr' &&
-            const {'lang', 'rFonts'}.contains(incoming.localName);
+            const {'lang', 'rFonts', 'color'}.contains(incoming.localName);
         if (runAttributes && !_word(incoming, incoming.localName)) continue;
         final child = scalarControl
             ? _scalarControlProjection(incoming)

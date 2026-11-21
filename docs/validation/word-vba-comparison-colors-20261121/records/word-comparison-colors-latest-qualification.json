@@ -1,0 +1,57 @@
+{
+  "checkpointAtStart": "ca2c7c2066771dda6c71eb8b2e70ce6bf18d56d4",
+  "sdk": "Dart SDK version: 3.14.1 (stable) (Tue Nov 17 00:01:24 2026 -0800) on \"linux_x64\"",
+  "testFiles": 18,
+  "counts": {
+    "passed": 465,
+    "failed": 0,
+    "skipped": 0
+  },
+  "testExitCode": 0,
+  "testDurationSeconds": 22.137,
+  "analysisExitCode": 0,
+  "analysisDurationSeconds": 20.534,
+  "analysisCommand": [
+    "dart",
+    "analyze",
+    "--fatal-infos",
+    "lib",
+    "test",
+    "tool/macros",
+    "tool/zotero"
+  ],
+  "analysisOutput": "Analyzing lib, test, macros, zotero...\nNo issues found!\n",
+  "sourceInputs": 1108,
+  "sourceManifestSha256": "06a86d2a886d53790f59a1223b7cb2bb60b39a938a13861d4a7d3ae4d601c718",
+  "inputsUnchangedDuringTests": true,
+  "inputsUnchangedDuringAnalysis": true,
+  "newRegression": {
+    "path": "packages/quds_office_engine/test/office_vba_word_colors_footnote_separator_integration_test.dart",
+    "sha256": "bae857da49b42abdfd3e230c5e55c98b4c58383b7759854de7eeae132e50aaec",
+    "cases": 2,
+    "coverage": [
+      "StrComp selects a fixed Font.ColorIndex on a document with an active footnote separator",
+      "Font.Color = wdColorAutomatic and Font.ColorIndex = wdAuto remain native auto",
+      "Foreign run-color metadata survives while owned theme attributes are removed",
+      "Two native save/reopen cycles preserve separator geometry, special-note IDs 17/23, settings references, note text and anchor",
+      "A late invalid macro target preserves published bytes, revision, colors and note state during validate and run",
+      "Failed transaction records no operations"
+    ]
+  },
+  "evidence": [
+    "word-comparison-colors-latest-test-manifest.txt",
+    "word-comparison-colors-latest-test-source.sha256",
+    "word-comparison-colors-latest-source-before.sha256",
+    "word-comparison-colors-latest-source-after-tests.sha256",
+    "word-comparison-colors-latest-source-after-analysis.sha256",
+    "word-comparison-colors-latest-harness-inputs.sha256",
+    "word-comparison-colors-latest-command.txt",
+    "word-comparison-colors-latest-tests.log",
+    "word-comparison-colors-latest-tests.jsonl",
+    "word-comparison-colors-latest-result.json",
+    "word-comparison-colors-latest-analysis-command.txt",
+    "word-comparison-colors-latest-analysis.log",
+    "word-comparison-colors-latest-analysis-result.json",
+    "word-comparison-colors-latest-run-gate.py"
+  ]
+}

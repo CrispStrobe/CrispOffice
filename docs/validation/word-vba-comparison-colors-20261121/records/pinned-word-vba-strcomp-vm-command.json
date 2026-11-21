@@ -1,0 +1,10 @@
+{
+  "name": "strcomp-vm",
+  "command": [
+    "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/sdk/flutter/bin/cache/dart-sdk/bin/dart",
+    "--packages=/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/.dart_tool/package_config.json",
+    "tool/macros/web_vba_strcomp_smoke.dart"
+  ],
+  "cwd": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_engine",
+  "started_utc": "2026-11-21T22:00:04.248025+00:00"
+}

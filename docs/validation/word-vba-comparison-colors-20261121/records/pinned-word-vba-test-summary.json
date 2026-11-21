@@ -1,0 +1,21 @@
+{
+  "passed": 238,
+  "failed": 0,
+  "skipped": 0,
+  "hidden_passed": 6,
+  "hooks_passed": 2,
+  "suites": 6,
+  "started": 246,
+  "completed": 246,
+  "by_file": {
+    "office_vba_strcomp_test.dart": 78,
+    "office_vba_word_font_colors_test.dart": 74,
+    "office_macro_word_font_colors_test.dart": 43,
+    "office_vba_word_comparison_colors_conformance_test.dart": 31,
+    "office_vba_word_colors_footnote_separator_integration_test.dart": 2,
+    "office_vba_word_comparison_colors_integration_test.dart": 10
+  },
+  "errors": [],
+  "lifecycle_errors": [],
+  "terminal_success": true
+}

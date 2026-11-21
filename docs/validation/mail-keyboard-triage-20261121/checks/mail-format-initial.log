@@ -1,0 +1,14 @@
+Warning: Package resolution error when reading "analysis_options.yaml" file for "packages/quds_mail_ui/lib/src/workspace/message_list.dart":
+Failed to resolve package URI "package:lints/recommended.yaml" in include at "/workspace/scratch/f433637a99a0/quds_office_suite/packages/quds_mail_ui/../../analysis_options.yaml".
+Changed packages/quds_mail_ui/lib/src/workspace/message_list.dart
+Warning: Package resolution error when reading "analysis_options.yaml" file for "packages/quds_mail_ui/test/message_list_range_selection_test.dart":
+Failed to resolve package URI "package:lints/recommended.yaml" in include at "/workspace/scratch/f433637a99a0/quds_office_suite/packages/quds_mail_ui/../../analysis_options.yaml".
+Changed packages/quds_mail_ui/test/message_list_range_selection_test.dart
+Warning: Package resolution error when reading "analysis_options.yaml" file for "packages/quds_office_editor/example/lib/studio_mail_workspace_strings.dart":
+Failed to resolve package URI "package:flutter_lints/flutter.yaml" in include at "/workspace/scratch/f433637a99a0/quds_office_suite/packages/quds_office_editor/example/analysis_options.yaml".
+Changed packages/quds_office_editor/example/lib/studio_mail_sync_dialog.dart
+Warning: Package resolution error when reading "analysis_options.yaml" file for "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart":
+Failed to resolve package URI "package:flutter_lints/flutter.yaml" in include at "/workspace/scratch/f433637a99a0/quds_office_suite/packages/quds_office_editor/example/analysis_options.yaml".
+Changed packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart
+Changed packages/quds_office_editor/example/test/studio_mail_selection_help_test.dart
+Formatted 6 files (5 changed) in 0.33 seconds.
