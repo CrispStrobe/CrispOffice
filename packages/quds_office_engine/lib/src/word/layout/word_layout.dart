@@ -48,6 +48,7 @@ class LaidOutGlyph {
     this.highlight,
     this.fontFamily,
     this.vertAlign = WmlVertAlign.baseline,
+    this.positionHalfPoints = 0,
     this.hyperlink,
     List<int>? commentIds,
     this.displayText,
@@ -109,6 +110,9 @@ class LaidOutGlyph {
 
   /// vertAlign API.
   final WmlVertAlign vertAlign;
+
+  /// Independent native baseline position, positive upward, in half-points.
+  final int positionHalfPoints;
 
   /// hyperlink API.
   final WmlHyperlink? hyperlink;
@@ -2739,7 +2743,7 @@ class WordLayoutEngine {
                 cursorY +
                 baselineLeading +
                 baselineAscent +
-                props.vertAlign.baselineShift(baseSize) -
+                props.baselineShift -
                 g.paintDy,
             color: props.color,
             fontSize: size,
@@ -2758,12 +2762,13 @@ class WordLayoutEngine {
                   : g.codePoint,
             ),
             vertAlign: props.vertAlign,
+            positionHalfPoints: props.positionHalfPoints,
             hyperlink: WordLink.at(paragraph, g.logicalIndex),
             commentIds: WordComment.idsAt(paragraph, g.logicalIndex),
             advance: g.advance,
             paintDx: g.paintDx,
             paintDy: g.paintDy,
-          ).._baselineShift = props.vertAlign.baselineShift(baseSize),
+          ).._baselineShift = props.baselineShift,
         );
         if (display != null) {
           displayOffsets[g.logicalIndex] =

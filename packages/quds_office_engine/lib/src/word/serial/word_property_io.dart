@@ -27,6 +27,7 @@ abstract final class WordPropertyIo {
     'color': r.color,
     'sz': '${r.fontSizeHalfPoints}',
     'kern': '${r.kerningHalfPoints}',
+    'position': '${r.positionHalfPoints}',
     'highlight': '${r.highlight}',
     'u': '${r.underline}',
     'vertAlign': '${r.vertAlign}',
@@ -107,11 +108,14 @@ abstract final class WordPropertyIo {
       }
       if ((generated.localName == 'rPr' &&
               (key == 'kern' ||
+                  key == 'position' ||
                   key == 'noProof' ||
                   key == 'caps' ||
                   key == 'smallCaps')) ||
           (generated.localName == 'pPr' && key == 'suppressAutoHyphens')) {
-        final value = generated.firstChild(key)?.getAttribute('val');
+        final value =
+            generated.firstChild(key)?.getAttribute('val') ??
+            (key == 'position' ? '0' : null);
         if (value != null) {
           // Scalar controls own only the native value, not extension
           // metadata, foreign same-name properties, or their namespace aliases.

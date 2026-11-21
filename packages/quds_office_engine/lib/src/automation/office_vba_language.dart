@@ -3267,6 +3267,7 @@ class _Checker {
         }
         if (property == 'size' ||
             property == 'kerning' ||
+            property == 'position' ||
             property == 'color' ||
             property == 'underline') {
           return _Kind.number;
@@ -6747,6 +6748,18 @@ class _Evaluator {
       } else if (property == 'name' || property == 'namebi') {
         field = property == 'namebi' ? 'csFont' : 'font';
         normalized = _wordText(value, token, fontName: true);
+      } else if (property == 'position') {
+        field = 'position';
+        // Word exposes Font.Position as Long points. The native model retains
+        // half-point OOXML imports, but source writes must be integral points.
+        final points = _integer(value, token);
+        if (points < -1584 || points > 1584) {
+          context.type(
+            token,
+            'Word Font.Position requires exact integer points in -1584..1584.',
+          );
+        }
+        normalized = points;
       } else if (property == 'kerning') {
         field = 'kerning';
         final points = _number(value, token);

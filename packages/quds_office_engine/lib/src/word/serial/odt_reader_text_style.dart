@@ -56,6 +56,7 @@ final class OdtReaderTextStyle extends WmlRunProps {
         asciiFont: source.asciiFont,
         csFont: source.csFont,
         vertAlign: source.vertAlign,
+        positionHalfPoints: source.positionHalfPoints,
         proofingLanguage: source.proofingLanguage,
         noProof: source.noProof,
         complexScriptLanguage: source.complexScriptLanguage,

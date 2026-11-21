@@ -603,7 +603,8 @@ String wordLayoutFingerprint(LaidOutDocument document) {
         ..write(' b=${g.bold} i=${g.italic} u=${g.underline.name}')
         ..write(' s=${g.strike} k=${g.kerning} c=${g.color}')
         ..write(' hl=${g.highlight} f=${g.fontFamily}')
-        ..write(' va=${g.vertAlign.name} disp=${g.displayText}')
+        ..write(' va=${g.vertAlign.name} pos=${g.positionHalfPoints}')
+        ..write(' disp=${g.displayText}')
         ..write('/${g.displayOffset}/${g.sourceEnd}/${g.actualText}')
         ..write(' link=${_link(g.hyperlink)}')
         ..writeln(' cm=${g.commentIds}');
