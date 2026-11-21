@@ -17,6 +17,7 @@ import 'studio_mail_workspace_strings.dart';
 import 'studio_mail_sync_dialog.dart';
 import 'studio_mail_sync_strings.dart';
 import 'studio_strings.dart';
+import 'studio_mail_reader_labels.dart';
 
 /// A local mailbox reader with explicit confirmed cleanup of expendable cache.
 /// Opening it never constructs a provider, reads credentials, loads a draft,
@@ -360,6 +361,7 @@ class _StudioMailCachedMailDialogState
         status: MailParseStatus.complete,
         message: message,
       ),
+      labels: StudioMailReaderLabels(widget.strings.language),
     );
     setState(() => _reader = reader);
   });
@@ -515,7 +517,10 @@ class _StudioMailCachedMailDialogState
               )
               .join(', '),
           date: header.envelope.sentAt,
-          dateLabel: header.envelope.sentAt?.toLocal().toString(),
+          dateLabel: studioMailListDate(
+            header.envelope.sentAt,
+            widget.strings.language,
+          ),
           isRead: header.flags?.isRead,
           isFlagged: header.flags?.isFlagged,
         ),

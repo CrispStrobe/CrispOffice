@@ -170,7 +170,9 @@ class _StudioFindPaneState extends State<StudioFindPane> {
           : 'Correct the current cell before continuing.';
     }
     if (_query.text.isEmpty) {
-      return widget.arabic ? 'اكتب للبحث في المستند' : 'Type to search the document';
+      return widget.arabic
+          ? 'اكتب للبحث في المستند'
+          : 'Type to search the document';
     }
     if (session.hits.isEmpty) {
       return widget.arabic ? 'لا نتائج' : 'No matches';
@@ -184,8 +186,12 @@ class _StudioFindPaneState extends State<StudioFindPane> {
   Widget build(BuildContext context) {
     final bool dark = Theme.of(context).brightness == Brightness.dark;
     final Color surface = dark ? const Color(0xFF2B2B2B) : Colors.white;
-    final Color border = dark ? const Color(0xFF3D3D3D) : const Color(0xFFD0D0D0);
-    final Color muted = dark ? const Color(0xFFB0B0B0) : const Color(0xFF5B5B5B);
+    final Color border = dark
+        ? const Color(0xFF3D3D3D)
+        : const Color(0xFFD0D0D0);
+    final Color muted = dark
+        ? const Color(0xFFB0B0B0)
+        : const Color(0xFF5B5B5B);
     return Material(
       color: surface,
       elevation: 8,
@@ -369,9 +375,7 @@ class _StudioFindPaneState extends State<StudioFindPane> {
         _cmd(
           Icons.keyboard_arrow_up,
           widget.arabic ? 'السابق' : 'Previous',
-          hasHits
-              ? () => _stepFind(forward: false)
-              : null,
+          hasHits ? () => _stepFind(forward: false) : null,
         ),
         _cmd(
           Icons.keyboard_arrow_down,
@@ -515,7 +519,11 @@ class _StudioFindPaneState extends State<StudioFindPane> {
                     ),
                   ),
                   const SizedBox(height: 2),
-                  Text.rich(_snippet(hit), maxLines: 2, overflow: TextOverflow.ellipsis),
+                  Text.rich(
+                    _snippet(hit),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ],
               ),
             ),

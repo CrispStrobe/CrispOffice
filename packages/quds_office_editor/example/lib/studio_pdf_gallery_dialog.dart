@@ -140,7 +140,11 @@ class _PdfSampleGalleryDialogState extends State<PdfSampleGalleryDialog> {
               color: Colors.white.withValues(alpha: 0.16),
               borderRadius: BorderRadius.circular(12),
             ),
-            child: const Icon(Icons.auto_awesome, color: Colors.white, size: 22),
+            child: const Icon(
+              Icons.auto_awesome,
+              color: Colors.white,
+              size: 22,
+            ),
           ),
           const SizedBox(width: 14),
           Expanded(
@@ -207,7 +211,9 @@ class _PdfSampleGalleryDialogState extends State<PdfSampleGalleryDialog> {
         borderRadius: BorderRadius.circular(10),
         onTap: () => setState(() {
           _kind = kind;
-          WidgetsBinding.instance.addPostFrameCallback((_) => _scrollToSelected());
+          WidgetsBinding.instance.addPostFrameCallback(
+            (_) => _scrollToSelected(),
+          );
         }),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 9),
@@ -227,7 +233,9 @@ class _PdfSampleGalleryDialogState extends State<PdfSampleGalleryDialog> {
                   style: TextStyle(
                     fontSize: 12.5,
                     fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
-                    color: selected ? accent : onSurface.withValues(alpha: 0.78),
+                    color: selected
+                        ? accent
+                        : onSurface.withValues(alpha: 0.78),
                   ),
                 ),
               ),
@@ -243,10 +251,7 @@ class _PdfSampleGalleryDialogState extends State<PdfSampleGalleryDialog> {
     final bool templates = kind == StudioPdfSampleKind.templates;
     final List<StudioPdfSample> samples = StudioPdfGallery.all
         .where((StudioPdfSample sample) => sample.kind == kind)
-        .where(
-          (StudioPdfSample sample) =>
-              !templates || sample.group == _group,
-        )
+        .where((StudioPdfSample sample) => !templates || sample.group == _group)
         .toList(growable: false);
     final Widget list = ListView(
       padding: const EdgeInsets.fromLTRB(16, 14, 16, 16),
@@ -289,19 +294,23 @@ class _PdfSampleGalleryDialogState extends State<PdfSampleGalleryDialog> {
                 Padding(
                   padding: const EdgeInsetsDirectional.only(end: 6),
                   child: ChoiceChip(
-                    label: Text(StudioPdfGallery.templateGroupTitle(group, arabic)),
+                    label: Text(
+                      StudioPdfGallery.templateGroupTitle(group, arabic),
+                    ),
                     selected: group == _group,
                     selectedColor: accent.withValues(alpha: 0.18),
                     labelStyle: TextStyle(
                       fontSize: 12,
-                      fontWeight:
-                          group == _group ? FontWeight.w700 : FontWeight.w500,
+                      fontWeight: group == _group
+                          ? FontWeight.w700
+                          : FontWeight.w500,
                       color: group == _group ? accent : onSurface,
                     ),
                     onSelected: (_) => setState(() {
                       _group = group;
-                      WidgetsBinding.instance
-                          .addPostFrameCallback((_) => _scrollToSelected());
+                      WidgetsBinding.instance.addPostFrameCallback(
+                        (_) => _scrollToSelected(),
+                      );
                     }),
                   ),
                 ),
@@ -333,9 +342,7 @@ class _PdfSampleGalleryDialogState extends State<PdfSampleGalleryDialog> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
-              color: selected
-                  ? accent
-                  : accent.withValues(alpha: 0.12),
+              color: selected ? accent : accent.withValues(alpha: 0.12),
               width: selected ? 1.6 : 1,
             ),
           ),

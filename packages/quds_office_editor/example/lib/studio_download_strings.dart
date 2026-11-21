@@ -1,5 +1,6 @@
 import 'studio_download_catalog.dart';
 import 'studio_strings.dart';
+import 'studio_plural.dart';
 
 /// English, German and Arabic text for the Downloads overview,
 /// following the [StudioStrings] pattern.
@@ -20,11 +21,9 @@ final class StudioDownloadStrings {
     'Sprach- und Schriftunterstützung, Größe, Quelle und Lizenz vor der Installation prüfen. Downloads beginnen erst, wenn Sie in der Paketprüfung „Installieren“ wählen. Das Entfernen heruntergeladener Daten lässt Ihre Dokumente unverändert.',
     'راجع دعم اللغات والخطوط والحجم والمصدر والترخيص قبل التثبيت. لا يبدأ التنزيل إلا عند اختيار «تثبيت» في مراجعة الحزمة. إزالة البيانات المنزّلة لا تغيّر مستنداتك.',
   );
-  String summary(int installed, int total, String size) => _t(
-    '$installed of $total packages installed · $size on this device',
-    '$installed von $total Paketen installiert · $size auf diesem Gerät',
-    'تم تثبيت $installed من $total حزم · $size على هذا الجهاز',
-  );
+  String summary(int installed, int total, String size) =>
+      '${studioPackagesInstalled(language, installed, total)} · '
+      '${_t('$size on this device', '$size auf diesem Gerät', '$size على هذا الجهاز')}';
   String get forThisDocument =>
       _t('For this document', 'Für dieses Dokument', 'لهذا المستند');
   String get included =>

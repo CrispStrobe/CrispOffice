@@ -40,6 +40,7 @@ import 'studio_spacy_host.dart';
 import 'studio_spacy_setup.dart';
 import 'studio_window.dart';
 import 'studio_zotero.dart';
+import 'studio_plural.dart';
 
 part 'suite_workspace_settings.dart';
 
@@ -11888,17 +11889,15 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       '${_t('Page', StudioStrings.de('Page'), 'صفحة')} ${_word.visiblePageIndex + 1}'
           ' ${_t('of', StudioStrings.de('of'), 'من')} ${_word.pageCount}'
           ' · ${_t('Paragraph', StudioStrings.de('Paragraph'), 'فقرة')} ${_word.documentCaret.paragraphIndex + 1}'
-          ' · ${_wordCounts.paragraphs} '
-          '${_t('paragraphs', StudioStrings.de('paragraphs'), 'فقرات')}'
-          ' · ${_wordCounts.words} ${_t('words', StudioStrings.de('words'), 'كلمة')}'
+          ' · ${studioParagraphs(_language, _wordCounts.paragraphs)}'
+          ' · ${studioWords(_language, _wordCounts.words)}'
           '${_word.selectedVisual != null ? ' · ${_word.selectedVisual!.visual.title}' : ''}'
-          '${_wordCounts.comments == 0 ? '' : ' · ${_wordCounts.comments} ${_t('comments', StudioStrings.de('comments'), 'تعليقات')}'}'
+          '${_wordCounts.comments == 0 ? '' : ' · ${studioComments(_language, _wordCounts.comments)}'}'
           '${_word.isDirty ? ' · •' : ''}',
     SuiteApp.excel =>
       '${_sheet.sheet.name}!${_sheet.selectionAddress}'
           '${_sheet.cellEditor.editing ? (_t(' · editing cell', StudioStrings.de(' · editing cell'), ' · تحرير الخلية')) : ''}'
-          ' · ${_sheet.workbook.sheets.length} '
-          '${_t('sheets', StudioStrings.de('sheets'), 'أوراق')}'
+          ' · ${studioSheets(_language, _sheet.workbook.sheets.length)}'
           '${_sheet.selectedDrawing != null ? ' · ${_sheet.selectedDrawing!.visual.title}' : ''}'
           '${_sheet.isDirty ? ' · •' : ''}',
     SuiteApp.powerpoint =>
@@ -11935,6 +11934,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                 child: Row(
                   children: <Widget>[
                     Expanded(
+                      // The detail text gets the larger share: loose Flexible
+                      // siblings never return their unused space to it.
+                      flex: 5,
                       // Caret paragraph and page change while typing without
                       // a workspace rebuild (see _rebuildWord).
                       child: ListenableBuilder(
@@ -11955,7 +11957,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                       ),
                     ),
                     if (_app == SuiteApp.word)
-                      Flexible(flex: 3, child: _reviewStrip()),
+                      Flexible(flex: 4, child: _reviewStrip()),
                     InkWell(
                       onTap: () => _setZoom(_viewScale - 0.1),
                       child: const Icon(
