@@ -224,8 +224,9 @@ including custom line-spacing pairing. Body-only list operations are refused
 for these selectors.
 
 Native paragraph selection requires direct independent story ownership and
-refuses missing, inherited, shared, ambiguous or opaque header/footer targets
-before mutation. This is bounded source-to-plan support with the existing
+refuses missing or opaque targets, ambiguous references, shared/inherited
+header/footer topology and unmodeled content in rewritten paragraph stories
+before mutation. Selected mutable model aliases are also refused. This is bounded source-to-plan support with the existing
 atomic transaction and policy boundary. It does not implement linked-story
 propagation, story creation, whole-story writes or document-aware source
 execution. See the [exact contract](VBA_WORD_MACROS.md#existing-header-and-footer-paragraphs),

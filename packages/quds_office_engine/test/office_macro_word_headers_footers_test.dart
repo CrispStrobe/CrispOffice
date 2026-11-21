@@ -160,6 +160,7 @@ void _refuses(
   WmlDocument document, {
   String story = 'header',
   int section = 0,
+  Map<String, Object?>? operation,
 }) {
   final before = _state(document);
   final sources = document.sections
@@ -172,7 +173,8 @@ void _refuses(
         name: package.getPart(name)!.readBytes(),
   };
   expect(
-    () => native.applyStep(document, _step(story, section: section)),
+    () =>
+        native.applyStep(document, operation ?? _step(story, section: section)),
     throwsUnsupportedError,
   );
   expect(_state(document), before);
@@ -624,6 +626,273 @@ void main() {
         expect(session.revision, 0);
       }
       expect(session.stopRecording().steps, isEmpty);
+    },
+  );
+
+  for (final kind in ['shared', 'inherited']) {
+    test(
+      'unselected $kind story rolls back an independent header edit',
+      () async {
+        final package = _package(count: 3);
+        if (kind == 'inherited') {
+          _removeReference(package, 2, 'evenFooter');
+        } else {
+          _editDocument(package, (root) {
+            final id = _reference(
+              root,
+              1,
+              'evenFooter',
+            ).getAttribute('id', namespaceUri: _r)!;
+            _reference(
+              root,
+              2,
+              'evenFooter',
+            ).setAttribute('id', id, prefix: 'r', namespaceUri: _r);
+          });
+        }
+        _refuses(WordDeserializer().read(package));
+        final input = package.save();
+        final session = OfficeMacroSession(
+          input,
+          format: OfficeMacroFormat.docx,
+        );
+        session.startRecording('Refuse unrelated linkage changes');
+        final plan = OfficeMacro(
+          name: 'Independent header with unsafe sibling',
+          format: OfficeMacroFormat.docx,
+          steps: [
+            OfficeMacroStep(
+              tool: 'docx.replaceText',
+              arguments: {'paragraph': 0, 'text': 'Body checkpoint'},
+            ),
+            OfficeMacroStep(
+              tool: 'docx.runFormat',
+              arguments: {
+                'paragraph': 0,
+                'story': 'header',
+                'section': 0,
+                'bold': false,
+              },
+            ),
+          ],
+        );
+        for (final validate in [true, false]) {
+          await expectLater(
+            validate ? session.validate(plan) : session.run(plan),
+            throwsA(
+              isA<OfficeMacroException>().having(
+                (value) => value.stepIndex,
+                'stepIndex',
+                1,
+              ),
+            ),
+          );
+          expect(session.bytes, input);
+          expect(session.revision, 0);
+        }
+        expect(session.stopRecording().steps, isEmpty);
+      },
+    );
+  }
+
+  test('unselected inherited source-free story is also refused', () {
+    final document = WmlDocument(
+      sections: [
+        WmlSection(
+          blocks: [_paragraph('Body 0')],
+          header: [_paragraph('H0')],
+          evenFooter: [_paragraph('Inherited')],
+        ),
+        WmlSection(blocks: [_paragraph('Body 1')], header: [_paragraph('H1')]),
+      ],
+    );
+    _refuses(document);
+  });
+
+  for (final alias in [
+    'inline list',
+    'paragraph properties',
+    'run',
+    'run properties',
+  ]) {
+    test('shared $alias cannot propagate a header edit into the body', () {
+      final body = _paragraph('Body');
+      final header = _paragraph('Header');
+      switch (alias) {
+        case 'inline list':
+          header.inlines = body.inlines;
+        case 'paragraph properties':
+          header.properties = body.properties;
+        case 'run':
+          header.inlines = [body.inlines.single];
+        case 'run properties':
+          (header.inlines.single as WmlRun).properties =
+              (body.inlines.single as WmlRun).properties;
+      }
+      final document = WmlDocument(
+        sections: [
+          WmlSection(blocks: [body], header: [header]),
+        ],
+      );
+      _refuses(
+        document,
+        operation: {
+          'op': 'runFormat',
+          'section': 0,
+          'story': 'header',
+          'paragraph': 0,
+          'bold': true,
+        },
+      );
+      expect((body.inlines.single as WmlRun).properties.bold, isFalse);
+    });
+  }
+
+  for (final selected in [true, false]) {
+    for (final kind in [
+      'foreign payload',
+      'foreign run',
+      'foreign text',
+      'paragraph attribute',
+      'run attribute',
+      'root attribute',
+      'native unknown',
+      'field',
+      'hyperlink',
+    ]) {
+      test(
+        '${selected ? 'selected' : 'unselected'} $kind refuses before same-value formatting loses data',
+        () async {
+          final package = _package();
+          final part = _storyPart(
+            package,
+            selected ? 0 : 1,
+            selected ? 'header' : 'footer',
+          );
+          final tag = selected ? 'hdr' : 'ftr';
+          final content = switch (kind) {
+            'foreign payload' =>
+              '<w:p><w:r><w:t>Keep</w:t></w:r><x:payload x:token="retain"/></w:p>',
+            'foreign run' => '<w:p><x:r><x:t>Foreign text</x:t></x:r></w:p>',
+            'foreign text' => '<w:p><w:r><x:t>Foreign text</x:t></w:r></w:p>',
+            'paragraph attribute' =>
+              '<w:p x:token="retain"><w:r><w:t>Keep</w:t></w:r></w:p>',
+            'run attribute' =>
+              '<w:p><w:r x:token="retain"><w:t>Keep</w:t></w:r></w:p>',
+            'native unknown' =>
+              '<w:p><w:r><w:t>Keep</w:t><w:unknown w:val="retain"/></w:r></w:p>',
+            'field' =>
+              '<w:p><w:fldSimple w:instr=" PAGE "><w:r><w:t>1</w:t></w:r></w:fldSimple></w:p>',
+            'hyperlink' =>
+              '<w:p><w:hyperlink w:anchor="Target"><w:r><w:t>Keep</w:t></w:r></w:hyperlink></w:p>',
+            _ => '<w:p><w:r><w:t>Keep</w:t></w:r></w:p>',
+          };
+          part.writeText(
+            '<w:$tag xmlns:w="$_w" xmlns:x="urn:extension" '
+            '${kind == 'root attribute' ? 'x:token="retain"' : ''}>$content</w:$tag>',
+          );
+          final document = WordDeserializer().read(package);
+          _refuses(
+            document,
+            operation: {
+              'op': 'runFormat',
+              'section': 0,
+              'story': 'header',
+              'paragraph': 0,
+              'bold': false,
+            },
+          );
+          final input = package.save();
+          final session = OfficeMacroSession(
+            input,
+            format: OfficeMacroFormat.docx,
+          );
+          await expectLater(
+            session.callTool('docx.runFormat', {
+              'section': 0,
+              'story': 'header',
+              'paragraph': 0,
+              'bold': false,
+            }),
+            throwsA(
+              isA<OfficeMacroException>().having(
+                (value) => value.code,
+                'code',
+                'operation_failed',
+              ),
+            ),
+          );
+          expect(session.bytes, input);
+          expect(session.revision, 0);
+        },
+      );
+    }
+  }
+
+  test(
+    'native text, tabs, breaks and sparse property metadata remain supported',
+    () {
+      final package = _package();
+      _storyPart(package, 0, 'header').writeText(
+        '<w:hdr xmlns:w="$_w" xmlns:x="urn:extension"><w:p><w:pPr>'
+        '<w:keepNext x:token="paragraph"/><x:paragraphMetadata x:token="keep"/>'
+        '</w:pPr><w:r><w:rPr><w:color w:val="223344" x:token="color"/>'
+        '<x:runMetadata x:token="keep"/></w:rPr><w:t xml:space="preserve">Keep </w:t>'
+        '<w:tab/><w:t>tab</w:t><w:br/><w:t>line</w:t></w:r></w:p></w:hdr>',
+      );
+      var document = WordDeserializer().read(package);
+      final before = document.sections.first.header.single.text;
+      native.applyStep(document, {
+        'op': 'runFormat',
+        'section': 0,
+        'story': 'header',
+        'paragraph': 0,
+        'bold': true,
+      });
+      for (var cycle = 0; cycle < 3; cycle++) {
+        final saved = OpcPackage.openBytes(
+          WordSerializer().writeBytes(document),
+        );
+        final xml = _storyPart(saved, 0, 'header').readText();
+        expect(xml, contains('paragraphMetadata'));
+        expect(xml, contains('runMetadata'));
+        expect(xml, contains('x:token="color"'));
+        document = WordDeserializer().read(saved);
+        expect(document.sections.first.header.single.text, before);
+        native.applyStep(document, {
+          'op': 'runFormat',
+          'section': 0,
+          'story': 'header',
+          'paragraph': 0,
+          'bold': true,
+        });
+      }
+    },
+  );
+
+  test(
+    'Unicode soft and nonbreaking hyphens remain editable after save and reopen',
+    () {
+      var document = WordDeserializer().read(_package());
+      const text = 'Soft\u00adhyphen non\u2011breaking العربية 👩‍💻';
+      for (var cycle = 0; cycle < 3; cycle++) {
+        native.applyStep(document, {..._step('header'), 'text': text});
+        final package = OpcPackage.openBytes(
+          WordSerializer().writeBytes(document),
+        );
+        final xml = _storyPart(package, 0, 'header').readText();
+        expect(xml, contains('softHyphen'));
+        expect(xml, contains('noBreakHyphen'));
+        document = WordDeserializer().read(package);
+        expect(document.sections.first.header.single.text, text);
+        native.applyStep(document, {
+          'op': 'runFormat',
+          'section': 0,
+          'story': 'header',
+          'paragraph': 0,
+          'bold': false,
+        });
+      }
     },
   );
 

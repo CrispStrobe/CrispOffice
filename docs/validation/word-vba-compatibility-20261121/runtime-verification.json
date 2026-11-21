@@ -1,0 +1,10 @@
+{
+  "hosted_packages": 56,
+  "dependency_archive_mismatches": {},
+  "source_package_roots": {
+    "legacy_doc_parser": "file:///workspace/scratch/ecc61e3c20da/quds_office_suite/packages/legacy_doc_parser",
+    "quds_office_engine": "file:///workspace/scratch/ecc61e3c20da/quds_office_suite/packages/quds_office_engine"
+  },
+  "sdk_sha256": "759bed01e0aeb50e1a0b0a19474ba5c80c6087ce1d37b3214e475c81a44430e8",
+  "script": "docs/validation/word-vba-unit-conversions-20261120/reproduce_runtime.py"
+}

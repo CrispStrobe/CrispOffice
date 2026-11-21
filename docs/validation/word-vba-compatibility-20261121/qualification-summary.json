@@ -1,0 +1,186 @@
+{
+  "analysis": {
+    "engine_and_mail_core": "passed",
+    "mail_store": "passed",
+    "selected_studio_mail": "passed",
+    "zotero_controller": "passed"
+  },
+  "cohorts": [
+    {
+      "failed": 0,
+      "files": 36,
+      "index": "evidence/completed-index.json",
+      "name": "compiler",
+      "passed": 3159,
+      "scope": "Compiler sources, tests, fixtures and catalog unchanged; native dispatch and guard source changed during this earlier run.",
+      "skipped": 0
+    },
+    {
+      "failed": 0,
+      "files": 46,
+      "index": "evidence/final-native-index.json",
+      "name": "final-native-integration-cli",
+      "passed": 1167,
+      "skipped": 0,
+      "unchanged_tracked_inputs": 3054
+    },
+    {
+      "failed": 0,
+      "index": "evidence/completed-index.json",
+      "name": "mail-core",
+      "passed": 271,
+      "skipped": 0,
+      "unchanged_captured_inputs": 34
+    },
+    {
+      "failed": 0,
+      "files": 27,
+      "index": "evidence/completed-index.json",
+      "name": "incoming-zotero-engine-protocol",
+      "passed": 884,
+      "skipped": 0,
+      "unchanged_captured_inputs": 558
+    },
+    {
+      "failed": 0,
+      "index": "evidence/incoming-flutter-index.json",
+      "name": "incoming-flutter-sqlite",
+      "partitions": [
+        {
+          "failed": 0,
+          "name": "store",
+          "passed": 825,
+          "receipt": "qualification-75f694d5/progress.json",
+          "scratch_only": false,
+          "skipped": 0,
+          "test_source_files": 34
+        },
+        {
+          "failed": 0,
+          "name": "store-node",
+          "passed": 3,
+          "receipt": "qualification-75f694d5-node/progress.json",
+          "scratch_only": false,
+          "skipped": 0,
+          "test_source_files": 1
+        },
+        {
+          "failed": 0,
+          "name": "sync",
+          "passed": 36,
+          "receipt": "qualification-75f694d5/progress.json",
+          "scratch_only": false,
+          "skipped": 0,
+          "test_source_files": 4
+        },
+        {
+          "failed": 0,
+          "name": "saved-mail",
+          "passed": 14,
+          "receipt": "qualification-75f694d5/progress.json",
+          "scratch_only": false,
+          "skipped": 0,
+          "test_source_files": 1
+        },
+        {
+          "failed": 0,
+          "name": "native-navigation",
+          "passed": 1,
+          "receipt": "qualification-75f694d5/progress.json",
+          "scratch_only": false,
+          "skipped": 0,
+          "test_source_files": 1
+        },
+        {
+          "failed": 0,
+          "name": "close-probe",
+          "passed": 3,
+          "receipt": "qualification-75f694d5/progress.json",
+          "scratch_only": true,
+          "skipped": 0,
+          "test_source_files": 1
+        },
+        {
+          "failed": 0,
+          "name": "zotero",
+          "passed": 109,
+          "receipt": "qualification-75f694d5/progress.json",
+          "scratch_only": false,
+          "skipped": 0,
+          "test_source_files": 1
+        }
+      ],
+      "passed": 991,
+      "skipped": 0,
+      "unchanged_present_tracked_inputs": 6076
+    }
+  ],
+  "evidence_indexes": [
+    {
+      "path": "evidence/completed-index.json",
+      "sha256": "fa0bf0d8335c1a248d5b1bea3774002184e11e830553cf68bad517e2b624d933"
+    },
+    {
+      "path": "evidence/final-native-index.json",
+      "sha256": "643a8e6e576f7965178d1a8ce0fbdc833a0fd8ac6d88e5ffeca1145efbd1a8f6"
+    },
+    {
+      "path": "evidence/incoming-flutter-index.json",
+      "sha256": "75f1aa0e5c93d600b78110ce79806e8d631399da3064dc4c55f92ae59461d45e"
+    }
+  ],
+  "feature_format_check": "passed_without_changes",
+  "github_actions_awaited": false,
+  "github_actions_queried": false,
+  "independent_guard_probes": {
+    "excluded_from_suite_totals": true,
+    "index": "evidence/completed-index.json",
+    "passed": 7
+  },
+  "limits": [
+    "Bounded source-to-native-plan compatibility, not full Word VBA or embedded project execution.",
+    "No installed Microsoft Word differential execution.",
+    "Linked/shared topology and unsupported regenerated header/footer structure are explicitly refused.",
+    "Incoming application tests use local fixtures, not live Mail/Zotero accounts."
+  ],
+  "main_reconciliation_receipt": "main-reconciliation.json",
+  "new_feature_cases": {
+    "already_included_in_broad_cohorts": true,
+    "compiler": 94,
+    "integration": 15,
+    "native": 72,
+    "total": 181
+  },
+  "no_combined_unique_test_total": true,
+  "portable_example": {
+    "byte_identical": true,
+    "receipt": {
+      "example": {
+        "additionalReopens": 2,
+        "addressedStoryVariants": 6,
+        "evenFooter": "Appendix: S2 evenFooter 2",
+        "firstHeader": "Report: S1 header 1",
+        "firstRunRevision": 1,
+        "opaquePayloadsPreserved": true,
+        "operations": 11,
+        "repeatedRevision": 2,
+        "untouchedBody": [
+          "Body 1",
+          "Body 2",
+          "Body 3"
+        ]
+      },
+      "rollback": {
+        "failedStep": 1,
+        "recordingUnchanged": true,
+        "validateAndRunRollback": true
+      }
+    },
+    "sha256": "98a58a09cf92aa3982373fd6adc2f1d61c7836f2dc6fadfe5604edf7ae2a5c2f"
+  },
+  "qualified_application_commit": "75f694d5e42049f356ba52b26329d199bfb7c2aa",
+  "reconciled_main_commit": "4a1eaa69e7a068e354bdd851ec9b0323b89ae300",
+  "schema_version": 1,
+  "source_binding": "Final native and Flutter qualification use the same application source. Subsequent work-branch changes affect validation records only. Compiler qualification retains its explicit native-source drift caveat.",
+  "status": "local_acceptance_passed"
+}

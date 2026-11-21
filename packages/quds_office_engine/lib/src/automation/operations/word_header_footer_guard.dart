@@ -43,13 +43,20 @@ List<WmlParagraph> editableWordHeaderFooterParagraphs(
   validateWordSectionIdentity(document, root);
   final package = document.package;
   if (package == null) {
-    if (root != null && _references(root).isNotEmpty) {
-      _refuse('requires the package for imported story references');
+    for (final candidate in document.sections) {
+      final source = candidate.sourceProperties;
+      final root = source == null ? null : XmlDocument.parse(source.xml).root;
+      if (root != null && _references(root).isNotEmpty) {
+        _refuse('requires the package for imported story references');
+      }
     }
-    if (index + 1 < document.sections.length &&
-        !_hasStory(document.sections[index + 1], story)) {
-      _refuse('cannot change a story inherited by a later section');
-    }
+    _validateIndependentStories([
+      for (final (i, candidate) in document.sections.indexed)
+        {
+          for (final name in _stories)
+            if (_hasStory(candidate, name)) name: 'authored:$i:$name',
+        },
+    ]);
     return paragraphs;
   }
 
@@ -155,17 +162,7 @@ List<WmlParagraph> editableWordHeaderFooterParagraphs(
   }
   final selectedUri = references[index][story];
   if (selectedUri == null) _refuse('requires a direct source story reference');
-  if (references
-          .expand((value) => value.values)
-          .where((value) => value == selectedUri)
-          .length !=
-      1) {
-    _refuse('cannot edit a part shared by multiple story references');
-  }
-  if (index + 1 < references.length &&
-      !references[index + 1].containsKey(story)) {
-    _refuse('cannot change a story inherited by a later section');
-  }
+  _validateIndependentStories(references);
   _validateDestinations(
     document,
     package,
@@ -214,11 +211,26 @@ void _validateModelOwnership(
   WmlDocument document,
   List<WmlParagraph> selected,
 ) {
-  final targets = Set<WmlParagraph>.identity()..addAll(selected);
-  if (targets.length != selected.length) {
-    _refuse('refuses duplicated paragraph identities');
+  Iterable<Object> mutableObjects(WmlParagraph paragraph) sync* {
+    yield paragraph;
+    yield paragraph.inlines;
+    yield paragraph.properties;
+    if (paragraph.properties.importedParagraphMark case final mark?) {
+      yield mark;
+    }
+    for (final inline in paragraph.inlines) {
+      if (inline is WmlRun) {
+        yield inline;
+        yield inline.properties;
+      } else if (inline is WmlNoteMarker) {
+        yield inline.properties;
+      }
+    }
   }
-  final seen = Set<WmlParagraph>.identity();
+
+  final targets = Set<Object>.identity()
+    ..addAll(selected.expand(mutableObjects));
+  final seen = Set<Object>.identity();
   final all = <WmlParagraph>[
     ...document.paragraphs,
     for (final section in document.sections)
@@ -228,8 +240,30 @@ void _validateModelOwnership(
     for (final comment in document.comments) ...comment.paragraphs,
   ];
   for (final paragraph in all) {
-    if (targets.contains(paragraph) && !seen.add(paragraph)) {
-      _refuse('refuses paragraph models shared with another story');
+    for (final object in mutableObjects(paragraph)) {
+      if (targets.contains(object) && !seen.add(object)) {
+        _refuse('refuses shared mutable paragraph, inline, or property models');
+      }
+    }
+  }
+}
+
+void _validateIndependentStories(List<Map<String, String>> sections) {
+  final parts = <String>{};
+  final previous = <String>{};
+  for (final section in sections) {
+    for (final story in _stories) {
+      final uri = section[story];
+      if (uri == null) {
+        if (previous.contains(story)) {
+          _refuse('cannot preserve inherited story linkage in another section');
+        }
+      } else {
+        if (!parts.add(uri)) {
+          _refuse('cannot preserve a part shared by multiple story references');
+        }
+        previous.add(story);
+      }
     }
   }
 }
@@ -273,6 +307,14 @@ Map<String, String> _references(XmlElement section) {
   for (final reference in section.childElements) {
     final header = _word(reference, 'headerReference');
     if (!header && !_word(reference, 'footerReference')) continue;
+    _attributes(
+      reference,
+      allowed: {
+        OfficeNamespaces.w: {'type'},
+        OfficeNamespaces.r: {'id'},
+      },
+    );
+    _empty(reference);
     final types = reference.attributes.where(
       (value) =>
           value.namespaceUri == OfficeNamespaces.w && value.localName == 'type',
@@ -336,6 +378,111 @@ void _validateParagraphProjection(
       children.length != _paragraphs(section, story).length ||
       _visuals(section, story).isNotEmpty) {
     _refuse('requires a faithful direct paragraph-only story projection');
+  }
+  _attributes(root);
+  _containerText(root);
+  for (final paragraph in children) {
+    _attributes(paragraph);
+    _containerText(paragraph);
+    var properties = false;
+    for (final child in paragraph.childElements) {
+      if (_word(child, 'pPr') && !properties) {
+        properties = true;
+        // Property fragments are retained verbatim by sparse property I/O.
+        // They do not authorize additional paragraph/run structure, though.
+        continue;
+      }
+      if (!_word(child, 'r')) {
+        _refuse('requires native paragraph/run text without unmodeled content');
+      }
+      _attributes(child);
+      _containerText(child);
+      var runProperties = false;
+      for (final item in child.childElements) {
+        if (_word(item, 'rPr') && !runProperties) {
+          runProperties = true;
+          continue;
+        }
+        if (_word(item, 't')) {
+          _attributes(
+            item,
+            allowed: {
+              OfficeNamespaces.xml: {'space'},
+            },
+          );
+          final space = item.getAttribute(
+            'space',
+            namespaceUri: OfficeNamespaces.xml,
+          );
+          if (space != null && space != 'preserve' && space != 'default') {
+            _refuse('refuses an unsupported text whitespace mode');
+          }
+          if (item.childElements.isNotEmpty) {
+            _refuse('requires text elements without nested content');
+          }
+        } else if (_word(item, 'tab') ||
+            _word(item, 'cr') ||
+            _word(item, 'softHyphen') ||
+            _word(item, 'noBreakHyphen')) {
+          _attributes(item);
+          _empty(item);
+        } else if (_word(item, 'br')) {
+          _attributes(
+            item,
+            allowed: {
+              OfficeNamespaces.w: {'type'},
+            },
+          );
+          final type = item.getAttribute(
+            'type',
+            namespaceUri: OfficeNamespaces.w,
+          );
+          if (type != null &&
+              !const {'textWrapping', 'page', 'column'}.contains(type)) {
+            _refuse('refuses an unsupported native break type');
+          }
+          _empty(item);
+        } else {
+          _refuse('requires native run text, tabs, and supported breaks');
+        }
+      }
+    }
+  }
+}
+
+void _attributes(
+  XmlElement element, {
+  Map<String, Set<String>> allowed = const {},
+}) {
+  final names = <(String, String)>{};
+  for (final attribute in element.attributes) {
+    if (attribute.prefix == 'xmlns' ||
+        attribute.prefix.isEmpty && attribute.localName == 'xmlns') {
+      continue;
+    }
+    if (!(allowed[attribute.namespaceUri]?.contains(attribute.localName) ??
+            false) ||
+        !names.add((attribute.namespaceUri, attribute.localName))) {
+      _refuse('refuses unpreserved or ambiguous story content attributes');
+    }
+  }
+}
+
+void _containerText(XmlElement element) {
+  for (final child in element.children) {
+    final text = switch (child) {
+      XmlText(:final text) => text,
+      XmlCdata(:final text) => text,
+      _ => '',
+    };
+    if (text.trim().isNotEmpty) _refuse('refuses unmodeled container text');
+  }
+}
+
+void _empty(XmlElement element) {
+  _containerText(element);
+  if (element.childElements.isNotEmpty) {
+    _refuse('requires empty native markers');
   }
 }
 

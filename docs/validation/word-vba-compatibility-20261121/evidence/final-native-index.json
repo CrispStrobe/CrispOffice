@@ -1,0 +1,562 @@
+{
+  "all_captured_source_inputs_match_current_checkout": true,
+  "application_tree": "7367c9147d50e415c9a8f0f3502e671cb6fe8439",
+  "archive": "final-native.tar.gz",
+  "archive_sha256": "8c8d385d119da775ac26e07b0a15844c5b5f15cbcf145af6343c736a52b99414",
+  "archive_size": 194639,
+  "members": [
+    {
+      "path": "runtime/final-gate/analysis.command.json",
+      "sha256": "71c8803428d5785485b6a5c6e4f4a58df28652cb23f4ee0501308d1bba5f070f",
+      "size": 251
+    },
+    {
+      "path": "runtime/final-gate/analysis.inputs-after.json",
+      "sha256": "68caa34b31283d9441c27b11bba85f863ed931cb0c676601a2b1f9e2a66f1e89",
+      "size": 464860
+    },
+    {
+      "identical_content_link": "runtime/final-gate/analysis.inputs-after.json",
+      "path": "runtime/final-gate/analysis.inputs-before.json",
+      "sha256": "68caa34b31283d9441c27b11bba85f863ed931cb0c676601a2b1f9e2a66f1e89",
+      "size": 464860
+    },
+    {
+      "path": "runtime/final-gate/analysis.result.json",
+      "sha256": "a187ec9f5bdc7d6b665ba2e464ac0cd40c60b8f63f1aa13839f75a522c5c412d",
+      "size": 286
+    },
+    {
+      "path": "runtime/final-gate/analysis.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "runtime/final-gate/analysis.stdout",
+      "sha256": "44b0b6d958cdd2c21187cb1bacaa994cf4d6493cb2c6fd8aa1d711a3cc8ee987",
+      "size": 65
+    },
+    {
+      "path": "runtime/final-gate/final-tests.command.json",
+      "sha256": "d7cb83c40d0125c5f8b372214756b5c3581e82f7b2c2590574eea20806d3660f",
+      "size": 2773
+    },
+    {
+      "identical_content_link": "runtime/final-gate/analysis.inputs-after.json",
+      "path": "runtime/final-gate/final-tests.inputs-after.json",
+      "sha256": "68caa34b31283d9441c27b11bba85f863ed931cb0c676601a2b1f9e2a66f1e89",
+      "size": 464860
+    },
+    {
+      "identical_content_link": "runtime/final-gate/analysis.inputs-after.json",
+      "path": "runtime/final-gate/final-tests.inputs-before.json",
+      "sha256": "68caa34b31283d9441c27b11bba85f863ed931cb0c676601a2b1f9e2a66f1e89",
+      "size": 464860
+    },
+    {
+      "path": "runtime/final-gate/final-tests.result.json",
+      "sha256": "3a753e0b5f2d10ddbf060df25fa820af930238ee5b6eafa6c8dd59ca7de29df6",
+      "size": 456
+    },
+    {
+      "path": "runtime/final-gate/final-tests.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "runtime/final-gate/final-tests.stdout",
+      "sha256": "4082f39d4add55e004443cc84b0c3d2d2e465ef2fc0b855e15c01a14ec0cd82a",
+      "size": 592019
+    },
+    {
+      "path": "runtime/final-gate/format.command.json",
+      "sha256": "aefec2a72297994cf6bee1ebd11a401160d61c64f7d167fc91605c4817d950e3",
+      "size": 647
+    },
+    {
+      "identical_content_link": "runtime/final-gate/analysis.inputs-after.json",
+      "path": "runtime/final-gate/format.inputs-after.json",
+      "sha256": "68caa34b31283d9441c27b11bba85f863ed931cb0c676601a2b1f9e2a66f1e89",
+      "size": 464860
+    },
+    {
+      "identical_content_link": "runtime/final-gate/analysis.inputs-after.json",
+      "path": "runtime/final-gate/format.inputs-before.json",
+      "sha256": "68caa34b31283d9441c27b11bba85f863ed931cb0c676601a2b1f9e2a66f1e89",
+      "size": 464860
+    },
+    {
+      "path": "runtime/final-gate/format.result.json",
+      "sha256": "bc4333737e2929514cc98653c0785d606608d9baf9f9ef20452f29faccc409d1",
+      "size": 283
+    },
+    {
+      "path": "runtime/final-gate/format.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "runtime/final-gate/format.stdout",
+      "sha256": "58dca27652e488f0ebbee6e9be715fc6eb0e5fb68ad2778b8b09aa75a838b7dc",
+      "size": 47
+    },
+    {
+      "path": "runtime/final-gate/portable-compile-js.command.json",
+      "sha256": "620cc51489d08c7cf02367aaec231e95a04931d1c11c3e7246a542525a0bffba",
+      "size": 2505
+    },
+    {
+      "identical_content_link": "runtime/final-gate/analysis.inputs-after.json",
+      "path": "runtime/final-gate/portable-compile-js.inputs-after.json",
+      "sha256": "68caa34b31283d9441c27b11bba85f863ed931cb0c676601a2b1f9e2a66f1e89",
+      "size": 464860
+    },
+    {
+      "identical_content_link": "runtime/final-gate/analysis.inputs-after.json",
+      "path": "runtime/final-gate/portable-compile-js.inputs-before.json",
+      "sha256": "68caa34b31283d9441c27b11bba85f863ed931cb0c676601a2b1f9e2a66f1e89",
+      "size": 464860
+    },
+    {
+      "path": "runtime/final-gate/portable-compile-js.result.json",
+      "sha256": "8c240d721e98528c08a92e6c83c73987b090355b89aa134074c916ff70de79ee",
+      "size": 296
+    },
+    {
+      "path": "runtime/final-gate/portable-compile-js.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "runtime/final-gate/portable-compile-js.stdout",
+      "sha256": "a22a91be6b6680345b5b7b240924db10894cc938bec193b505dce77fb1b8794b",
+      "size": 114
+    },
+    {
+      "path": "runtime/final-gate/portable-js.command.json",
+      "sha256": "80ee4b32341fcf39250e8ac5a12d5407df3aca319bd99063b8ffdb523c91bd87",
+      "size": 336
+    },
+    {
+      "identical_content_link": "runtime/final-gate/analysis.inputs-after.json",
+      "path": "runtime/final-gate/portable-js.inputs-after.json",
+      "sha256": "68caa34b31283d9441c27b11bba85f863ed931cb0c676601a2b1f9e2a66f1e89",
+      "size": 464860
+    },
+    {
+      "identical_content_link": "runtime/final-gate/analysis.inputs-after.json",
+      "path": "runtime/final-gate/portable-js.inputs-before.json",
+      "sha256": "68caa34b31283d9441c27b11bba85f863ed931cb0c676601a2b1f9e2a66f1e89",
+      "size": 464860
+    },
+    {
+      "path": "runtime/final-gate/portable-js.result.json",
+      "sha256": "a88e16eca62ac7d40a6a71209bbed4bde6b649764187a0fa903e9911c6d6ab62",
+      "size": 288
+    },
+    {
+      "path": "runtime/final-gate/portable-js.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "runtime/final-gate/portable-js.stdout",
+      "sha256": "98a58a09cf92aa3982373fd6adc2f1d61c7836f2dc6fadfe5604edf7ae2a5c2f",
+      "size": 358
+    },
+    {
+      "path": "runtime/final-gate/portable-parity.json",
+      "sha256": "015294bd544f506af7fcc879fce6d78abcdb812498229245175b53da299c39a6",
+      "size": 636
+    },
+    {
+      "path": "runtime/final-gate/portable-vm.command.json",
+      "sha256": "05adfff4d18c45ba8e3764a495e51a74acf8add62bba3934fcde9723397f02b4",
+      "size": 2393
+    },
+    {
+      "identical_content_link": "runtime/final-gate/analysis.inputs-after.json",
+      "path": "runtime/final-gate/portable-vm.inputs-after.json",
+      "sha256": "68caa34b31283d9441c27b11bba85f863ed931cb0c676601a2b1f9e2a66f1e89",
+      "size": 464860
+    },
+    {
+      "identical_content_link": "runtime/final-gate/analysis.inputs-after.json",
+      "path": "runtime/final-gate/portable-vm.inputs-before.json",
+      "sha256": "68caa34b31283d9441c27b11bba85f863ed931cb0c676601a2b1f9e2a66f1e89",
+      "size": 464860
+    },
+    {
+      "path": "runtime/final-gate/portable-vm.result.json",
+      "sha256": "3c551455a7a3a6cbadf720606fd2eb67fd978da2ebba48cf9fbc202e03cef80c",
+      "size": 288
+    },
+    {
+      "path": "runtime/final-gate/portable-vm.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "identical_content_link": "runtime/final-gate/portable-js.stdout",
+      "path": "runtime/final-gate/portable-vm.stdout",
+      "sha256": "98a58a09cf92aa3982373fd6adc2f1d61c7836f2dc6fadfe5604edf7ae2a5c2f",
+      "size": 358
+    },
+    {
+      "path": "runtime/final-gate/results.json",
+      "sha256": "247008ef1134b1b52193045757a4f9fcc3694f538b50102a0d76aa6156530aa3",
+      "size": 2032
+    },
+    {
+      "path": "runtime/final-gate/runtime-binding.json",
+      "sha256": "5058ed417adb27bf1fd8f65d6703ea07538daf7fbf3c9eb76bfd182f7aa81195",
+      "size": 983
+    },
+    {
+      "path": "runtime/final-gate/runtime-package-config.json",
+      "sha256": "b2519868b317679ad201dfb53f0111feda3c3382a1626ecaaae0d36455793164",
+      "size": 12486
+    },
+    {
+      "path": "runtime/final-gate/selected-tests.json",
+      "sha256": "200ebf704e4d6abe863a3e62ac38d276d426158244fb1bbfde9596ad99f101fc",
+      "size": 2475
+    },
+    {
+      "path": "runtime/final-gate/tests-by-suite.json",
+      "sha256": "c78bc5a6b0444634dda30fdb73623b9e0df4cc76ba27133b7ae39dfd6afdf715",
+      "size": 4949
+    }
+  ],
+  "only_documentation_changed_since_qualified_commit": true,
+  "packaging": "Sorted runtime-relative paths; zero timestamps/owners; identical nonempty files stored as tar hard links; no generated JavaScript binaries, SDKs or caches.",
+  "portable_parity": {
+    "byte_identical": true,
+    "receipt": {
+      "example": {
+        "additionalReopens": 2,
+        "addressedStoryVariants": 6,
+        "evenFooter": "Appendix: S2 evenFooter 2",
+        "firstHeader": "Report: S1 header 1",
+        "firstRunRevision": 1,
+        "opaquePayloadsPreserved": true,
+        "operations": 11,
+        "repeatedRevision": 2,
+        "untouchedBody": [
+          "Body 1",
+          "Body 2",
+          "Body 3"
+        ]
+      },
+      "rollback": {
+        "failedStep": 1,
+        "recordingUnchanged": true,
+        "validateAndRunRollback": true
+      }
+    },
+    "sha256": "98a58a09cf92aa3982373fd6adc2f1d61c7836f2dc6fadfe5604edf7ae2a5c2f"
+  },
+  "qualified_application_commit": "75f694d5e42049f356ba52b26329d199bfb7c2aa",
+  "record_assembly_head": "4c1aaca4de50c7cdf2ea7251087e800259775883",
+  "results": [
+    {
+      "changed_inputs": [],
+      "done": {
+        "success": true,
+        "time": 868405,
+        "type": "done"
+      },
+      "errors": [],
+      "exit_code": 0,
+      "input_count": 3054,
+      "label": "final-tests",
+      "seconds": 869.623,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "4082f39d4add55e004443cc84b0c3d2d2e465ef2fc0b855e15c01a14ec0cd82a",
+      "visible_failed": 0,
+      "visible_passed": 1167,
+      "visible_skipped": 0
+    },
+    {
+      "changed_inputs": [],
+      "exit_code": 0,
+      "input_count": 3054,
+      "label": "analysis",
+      "seconds": 12.166,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "44b0b6d958cdd2c21187cb1bacaa994cf4d6493cb2c6fd8aa1d711a3cc8ee987"
+    },
+    {
+      "changed_inputs": [],
+      "exit_code": 0,
+      "input_count": 3054,
+      "label": "format",
+      "seconds": 0.236,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "58dca27652e488f0ebbee6e9be715fc6eb0e5fb68ad2778b8b09aa75a838b7dc"
+    },
+    {
+      "changed_inputs": [],
+      "exit_code": 0,
+      "input_count": 3054,
+      "label": "portable-vm",
+      "seconds": 6.205,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "98a58a09cf92aa3982373fd6adc2f1d61c7836f2dc6fadfe5604edf7ae2a5c2f"
+    },
+    {
+      "changed_inputs": [],
+      "exit_code": 0,
+      "input_count": 3054,
+      "label": "portable-compile-js",
+      "seconds": 9.265,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "a22a91be6b6680345b5b7b240924db10894cc938bec193b505dce77fb1b8794b"
+    },
+    {
+      "changed_inputs": [],
+      "exit_code": 0,
+      "input_count": 3054,
+      "label": "portable-js",
+      "seconds": 1.204,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "98a58a09cf92aa3982373fd6adc2f1d61c7836f2dc6fadfe5604edf7ae2a5c2f"
+    }
+  ],
+  "schema_version": 1,
+  "scope": "46 native, integration, CLI and atomicity files on fixed application source; full engine/mail-core analysis; formatting; actual committed BAS under VM and compiled JavaScript. This does not qualify an installed Microsoft Word host or embedded VBA execution.",
+  "source_input_count": 3054,
+  "source_manifest_sha256": "68caa34b31283d9441c27b11bba85f863ed931cb0c676601a2b1f9e2a66f1e89",
+  "tests_by_suite": {
+    "office_macro_cli_test.dart": {
+      "failed": 0,
+      "passed": 5,
+      "skipped": 0
+    },
+    "office_macro_expansion_test.dart": {
+      "failed": 0,
+      "passed": 5,
+      "skipped": 0
+    },
+    "office_macro_language_test.dart": {
+      "failed": 0,
+      "passed": 11,
+      "skipped": 0
+    },
+    "office_macro_mcp_test.dart": {
+      "failed": 0,
+      "passed": 15,
+      "skipped": 0
+    },
+    "office_macro_runtime_test.dart": {
+      "failed": 0,
+      "passed": 25,
+      "skipped": 0
+    },
+    "office_macro_slide_format_test.dart": {
+      "failed": 0,
+      "passed": 19,
+      "skipped": 0
+    },
+    "office_macro_word_headers_footers_test.dart": {
+      "failed": 0,
+      "passed": 72,
+      "skipped": 0
+    },
+    "office_macro_word_line_spacing_test.dart": {
+      "failed": 0,
+      "passed": 96,
+      "skipped": 0
+    },
+    "office_macro_word_list_format_test.dart": {
+      "failed": 0,
+      "passed": 67,
+      "skipped": 0
+    },
+    "office_macro_word_list_levels_test.dart": {
+      "failed": 0,
+      "passed": 101,
+      "skipped": 0
+    },
+    "office_macro_word_orientation_test.dart": {
+      "failed": 0,
+      "passed": 43,
+      "skipped": 0
+    },
+    "office_macro_word_page_setup_test.dart": {
+      "failed": 0,
+      "passed": 44,
+      "skipped": 0
+    },
+    "office_macro_word_paragraph_controls_test.dart": {
+      "failed": 0,
+      "passed": 118,
+      "skipped": 0
+    },
+    "office_macro_word_revision_guard_test.dart": {
+      "failed": 0,
+      "passed": 2,
+      "skipped": 0
+    },
+    "office_macro_word_section_start_test.dart": {
+      "failed": 0,
+      "passed": 26,
+      "skipped": 0
+    },
+    "office_macro_word_tab_stops_test.dart": {
+      "failed": 0,
+      "passed": 40,
+      "skipped": 0
+    },
+    "office_vba_arguments_integration_test.dart": {
+      "failed": 0,
+      "passed": 16,
+      "skipped": 0
+    },
+    "office_vba_arrays_integration_test.dart": {
+      "failed": 0,
+      "passed": 11,
+      "skipped": 0
+    },
+    "office_vba_control_flow_integration_test.dart": {
+      "failed": 0,
+      "passed": 9,
+      "skipped": 0
+    },
+    "office_vba_dynamic_arrays_integration_test.dart": {
+      "failed": 0,
+      "passed": 11,
+      "skipped": 0
+    },
+    "office_vba_integration_test.dart": {
+      "failed": 0,
+      "passed": 12,
+      "skipped": 0
+    },
+    "office_vba_powerpoint_cli_test.dart": {
+      "failed": 0,
+      "passed": 2,
+      "skipped": 0
+    },
+    "office_vba_powerpoint_integration_test.dart": {
+      "failed": 0,
+      "passed": 7,
+      "skipped": 0
+    },
+    "office_vba_powerpoint_layout_integration_test.dart": {
+      "failed": 0,
+      "passed": 46,
+      "skipped": 0
+    },
+    "office_vba_powerpoint_margins_integration_test.dart": {
+      "failed": 0,
+      "passed": 16,
+      "skipped": 0
+    },
+    "office_vba_procedures_integration_test.dart": {
+      "failed": 0,
+      "passed": 10,
+      "skipped": 0
+    },
+    "office_vba_string_intrinsics_integration_test.dart": {
+      "failed": 0,
+      "passed": 11,
+      "skipped": 0
+    },
+    "office_vba_variant_conversions_integration_test.dart": {
+      "failed": 0,
+      "passed": 9,
+      "skipped": 0
+    },
+    "office_vba_word_cli_test.dart": {
+      "failed": 0,
+      "passed": 5,
+      "skipped": 0
+    },
+    "office_vba_word_format_integration_test.dart": {
+      "failed": 0,
+      "passed": 2,
+      "skipped": 0
+    },
+    "office_vba_word_headers_footers_integration_test.dart": {
+      "failed": 0,
+      "passed": 15,
+      "skipped": 0
+    },
+    "office_vba_word_integration_test.dart": {
+      "failed": 0,
+      "passed": 14,
+      "skipped": 0
+    },
+    "office_vba_word_line_spacing_integration_test.dart": {
+      "failed": 0,
+      "passed": 23,
+      "skipped": 0
+    },
+    "office_vba_word_list_levels_integration_test.dart": {
+      "failed": 0,
+      "passed": 44,
+      "skipped": 0
+    },
+    "office_vba_word_lists_integration_test.dart": {
+      "failed": 0,
+      "passed": 22,
+      "skipped": 0
+    },
+    "office_vba_word_measurements_integration_test.dart": {
+      "failed": 0,
+      "passed": 6,
+      "skipped": 0
+    },
+    "office_vba_word_measurements_positional_integration_test.dart": {
+      "failed": 0,
+      "passed": 6,
+      "skipped": 0
+    },
+    "office_vba_word_named_measurements_integration_test.dart": {
+      "failed": 0,
+      "passed": 11,
+      "skipped": 0
+    },
+    "office_vba_word_page_setup_integration_test.dart": {
+      "failed": 0,
+      "passed": 15,
+      "skipped": 0
+    },
+    "office_vba_word_paragraph_controls_integration_test.dart": {
+      "failed": 0,
+      "passed": 34,
+      "skipped": 0
+    },
+    "office_vba_word_paragraph_layout_integration_test.dart": {
+      "failed": 0,
+      "passed": 17,
+      "skipped": 0
+    },
+    "office_vba_word_sections_integration_test.dart": {
+      "failed": 0,
+      "passed": 27,
+      "skipped": 0
+    },
+    "office_vba_word_tabstops_integration_test.dart": {
+      "failed": 0,
+      "passed": 10,
+      "skipped": 0
+    },
+    "office_vba_word_typography_integration_test.dart": {
+      "failed": 0,
+      "passed": 30,
+      "skipped": 0
+    },
+    "office_vba_word_unit_conversions_integration_test.dart": {
+      "failed": 0,
+      "passed": 6,
+      "skipped": 0
+    },
+    "word_step_atomicity_test.dart": {
+      "failed": 0,
+      "passed": 31,
+      "skipped": 0
+    }
+  }
+}
