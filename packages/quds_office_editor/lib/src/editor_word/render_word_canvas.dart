@@ -4824,6 +4824,8 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
     }
     _frameOwnersCache[page] = owners;
     return owners;
+  }
+
   _BodyTextInkState _bodyTextInkState(LaidOutPage page) {
     if (!_theme.adaptDocumentColors) {
       return (selectedCommentId: selectedCommentId, adaptive: null);
