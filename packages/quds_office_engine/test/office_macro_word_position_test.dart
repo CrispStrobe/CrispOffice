@@ -14,6 +14,7 @@ Uint8List _fixture({
   String paragraph = '',
   String? body,
   String? styles,
+  String? settings,
   String prefix = 'w',
 }) {
   final package = OpcPackage.openBytes(
@@ -34,6 +35,14 @@ Uint8List _fixture({
     package
         .getPart('/word/styles.xml')!
         .writeText('<w:styles xmlns:w="$_w" xmlns:x="$_x">$styles</w:styles>');
+  }
+  if (settings != null) {
+    package
+        .getPart('/word/settings.xml')!
+        .writeText(
+          '<w:settings xmlns:w="$_w" xmlns:q="$_w" xmlns:x="$_x" '
+          'xmlns:mc="${OfficeNamespaces.mc}">$settings</w:settings>',
+        );
   }
   return package.save();
 }
@@ -80,6 +89,83 @@ void main() {
     _run(document, {'position': 0});
     expect(_position(WordSerializer().writeBytes(document)), '0');
   });
+
+  for (final entry in [
+    ('<w:compat><w:noSpaceRaiseLower/></w:compat>', true),
+    ('<q:compat><q:noSpaceRaiseLower q:val="on"/></q:compat>', true),
+    ('<w:compat><w:noSpaceRaiseLower w:val="0"/></w:compat>', false),
+    ('<w:compat><x:noSpaceRaiseLower/></w:compat>', false),
+    ('<x:compat><w:noSpaceRaiseLower/></x:compat>', false),
+    ('<w:compat><x:opaque><w:noSpaceRaiseLower/></x:opaque></w:compat>', false),
+  ]) {
+    test('native noSpaceRaiseLower setting ${entry.$1} stays preserved', () {
+      final source = _fixture(settings: entry.$1);
+      final document = _read(source);
+      expect(document.sourceNoSpaceRaiseLower, entry.$2);
+      _run(document, {'position': -30});
+      final saved = WordSerializer().writeBytes(document);
+      expect(_props(_read(saved)).positionHalfPoints, -60);
+      expect(_read(saved).sourceNoSpaceRaiseLower, entry.$2);
+      expect(
+        OpcPackage.openBytes(saved).getPart('/word/settings.xml')!.readText(),
+        OpcPackage.openBytes(source).getPart('/word/settings.xml')!.readText(),
+      );
+    });
+  }
+
+  test(
+    'position refuses ambiguous compatibility settings before formatting',
+    () {
+      final document = _read(
+        _fixture(
+          settings:
+              '<w:compat><mc:AlternateContent><mc:Choice Requires="x">'
+              '<w:noSpaceRaiseLower/></mc:Choice><mc:Fallback/>'
+              '</mc:AlternateContent></w:compat>',
+        ),
+      );
+      expect(
+        () => _run(document, {'position': 2, 'bold': true}),
+        throwsUnsupportedError,
+      );
+      expect(_props(document).positionHalfPoints, 0);
+      expect(_props(document).bold, isFalse);
+      expect(document.paragraphs.single.inlines, hasLength(1));
+    },
+  );
+
+  for (final properties in [
+    '<x:rPr/>',
+    '<x:rPr><w:position w:val="6"/></x:rPr>',
+    '<w:rPr><w:position w:val="2"/></w:rPr>'
+        '<w:rPr><w:position w:val="4"/></w:rPr>',
+    '<w:rPr/><x:rPr><w:position w:val="6"/></x:rPr>',
+    '<x:opaque><w:rPr><w:position w:val="4"/></w:rPr></x:opaque>',
+  ]) {
+    test('position refuses ambiguous run-property ownership: $properties', () {
+      final document = _read(
+        _fixture(
+          body:
+              '<w:p>'
+              '<w:r><w:t>First</w:t></w:r>'
+              '<w:r>$properties<w:t>Second</w:t></w:r></w:p>',
+        ),
+      );
+      final runs = document.paragraphs.single.inlines
+          .whereType<WmlRun>()
+          .toList();
+      final before = runs
+          .map((run) => run.properties.positionHalfPoints)
+          .toList();
+      expect(
+        () => _run(document, {'position': 2, 'bold': true}),
+        throwsUnsupportedError,
+      );
+      expect(document.paragraphs.single.inlines, hasLength(2));
+      expect(runs.map((run) => run.properties.positionHalfPoints), before);
+      expect(runs.map((run) => run.properties.bold), everyElement(isFalse));
+    });
+  }
 
   for (final points in [-4, 0, 4]) {
     test('inherited position $points becomes direct without pinning color', () {

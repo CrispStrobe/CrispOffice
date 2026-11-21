@@ -140,12 +140,14 @@ class _SectionRecord {
 }
 
 class _IncrementalState {
-  _IncrementalState(this.owner, this.document, this.sections);
+  _IncrementalState(this.owner, this.document, this.sections)
+    : noSpaceRaiseLower = document.sourceNoSpaceRaiseLower;
 
   /// Opaque identity of the engine that shaped these pages and checkpoints.
   final Object owner;
   final WmlDocument document;
   final List<_SectionRecord?> sections;
+  final bool noSpaceRaiseLower;
 
   /// Pages made by the body flow; later pages hold only note overflow and
   /// endnotes and are made again by every layout.

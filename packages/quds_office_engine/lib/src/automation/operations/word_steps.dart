@@ -420,7 +420,7 @@ void applyStep(
           language != null) {
         _validateScalarPackageSource(doc, {
           if (kerning != null) 'kern',
-          if (position != null) 'position',
+          if (position != null) ...{'position', 'noSpaceRaiseLower'},
           if (noProof != null) 'noProof',
           if (smallCaps != null || allCaps == true) 'smallCaps',
           if (allCaps != null || smallCaps == true) 'caps',
@@ -886,6 +886,9 @@ void _validateScalarPackageSource(WmlDocument document, Set<String> names) {
     // Inspect raw Word XML as well, so a projected value cannot conceal a
     // competing branch that another consumer would select on reopening.
     final source = package.getPart(part.uri)!.readText();
+    if (names.contains('position') && source.contains('rPr')) {
+      _validatePositionPropertyOwnership(source);
+    }
     if (!source.contains('AlternateContent') &&
         !source.contains('ProcessContent')) {
       continue;
@@ -894,6 +897,58 @@ void _validateScalarPackageSource(WmlDocument document, Set<String> names) {
       if (source.contains(name)) _validateScalarPropertySource(source, name);
     }
   }
+}
+
+void _validatePositionPropertyOwnership(String source) {
+  final root = XmlDocument.parse(source).root;
+  if (root == null) return;
+  bool word(XmlElement element, String name) =>
+      element.localName == name &&
+      (element.namespaceUri == OfficeNamespaces.w ||
+          (element.namespaceUri.isEmpty && element.prefix == 'w'));
+  void checkRun(XmlElement run) {
+    var properties = 0;
+    void visitContent(XmlElement parent, {required bool direct}) {
+      for (final child in parent.childElements) {
+        if (child.localName == 'rPr') {
+          if (!direct || !word(child, 'rPr') || ++properties > 1) {
+            throw UnsupportedError(
+              'Refuses foreign, nested, or duplicate run-property ownership',
+            );
+          }
+          // Native rPr owns its retained extension metadata and rPrChange;
+          // neither is another direct run-property container.
+          continue;
+        }
+        // These subtrees are consumed as independent text/field/drawing
+        // objects by the importer, so their properties do not own this run.
+        if (const {
+              't',
+              'delText',
+              'instrText',
+              'fldChar',
+              'object',
+              'drawing',
+              'OLEObject',
+            }.contains(child.localName) ||
+            word(child, 'pict')) {
+          continue;
+        }
+        visitContent(child, direct: false);
+      }
+    }
+
+    visitContent(run, direct: true);
+  }
+
+  void visit(XmlElement node) {
+    if (word(node, 'r')) checkRun(node);
+    for (final child in node.childElements) {
+      if (!word(child, 'rPr')) visit(child);
+    }
+  }
+
+  visit(root);
 }
 
 void _validateScalarPropertySource(
@@ -906,6 +961,11 @@ void _validateScalarPropertySource(
   if (properties == null) return;
   bool nativeName(String namespace, String prefix) =>
       namespace == OfficeNamespaces.w || (namespace.isEmpty && prefix == 'w');
+  if (name == 'position' &&
+      properties.localName == 'rPr' &&
+      !nativeName(properties.namespaceUri, properties.prefix)) {
+    throw UnsupportedError('Refuses position in a foreign run-property root');
+  }
   bool containsControl(XmlElement node) =>
       (node.localName == name && nativeName(node.namespaceUri, node.prefix)) ||
       node.childElements.any(containsControl);

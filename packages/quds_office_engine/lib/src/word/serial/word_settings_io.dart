@@ -9,17 +9,24 @@ abstract final class WordSettingsIo {
     bool protection,
     bool oddEven,
     bool autoHyphenation,
+    bool noSpaceRaiseLower,
     WmlRestrictMode restrictMode,
     bool protectionHasPassword,
     bool protectionFormattingRestricted,
   })
   read(String xml) {
     final root = XmlDocument.parse(xml).root!;
+    final compatibility = root.firstChild(
+      'compat',
+      namespaceUri: OfficeNamespaces.w,
+    );
     return (
       tracking: _enabled(root, 'trackRevisions'),
       protection: _enabled(root, 'documentProtection'),
       oddEven: _enabled(root, 'evenAndOddHeaders'),
       autoHyphenation: _enabled(root, 'autoHyphenation'),
+      noSpaceRaiseLower:
+          compatibility != null && _enabled(compatibility, 'noSpaceRaiseLower'),
       restrictMode: _restrictMode(root),
       protectionHasPassword: _hasPassword(root),
       protectionFormattingRestricted: const {'1', 'true', 'on'}.contains(

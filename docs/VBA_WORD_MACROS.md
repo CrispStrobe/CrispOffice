@@ -1820,7 +1820,11 @@ metadata and unrelated direct/inherited properties retain sparse ownership.
 Native layout adds the signed displacement to existing superscript/subscript
 baseline behavior; `Position` itself does not select a script mode or resize
 the font. The mode's existing font-size reduction and baseline shift remain
-independent. Position is retained through run copies, run splitting, note
+independent. Automatic and minimum line spacing expand to include raised or
+lowered visible text; exact spacing retains its specified line box. An imported
+native `w:compat/w:noSpaceRaiseLower` setting suppresses the expansion, with
+its existing settings XML preserved. No source setter for that compatibility
+flag is exposed. Position is retained through run copies, run splitting, note
 layout, incremental paragraph translation, editor paint grouping, formatting
 comparison and stale-operation fingerprints. PDF painting uses the displaced
 baseline while logical text is retained for extraction. No new ODT/RTF
@@ -1840,8 +1844,9 @@ contains independently authored expected plans and positioned refusals; the
 distinguishes native/portable/editor execution from an installed Microsoft Word
 differential run, which has not been performed.
 
-Primary references: Microsoft's [Font.Position](https://learn.microsoft.com/en-us/office/vba/api/word.font.position)
-and [OOXML Position](https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.wordprocessing.position).
+Primary references: Microsoft's [Font.Position](https://learn.microsoft.com/en-us/office/vba/api/word.font.position),
+[OOXML Position](https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.wordprocessing.position)
+and [NoSpaceRaiseLower](https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.wordprocessing.nospaceraiselower).
 
 ### Proofing and kerning controls
 

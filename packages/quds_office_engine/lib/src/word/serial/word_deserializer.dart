@@ -4190,6 +4190,7 @@ class WordDeserializer {
     final settings = WordSettingsIo.read(part.readText());
     document
       ..autoHyphenation = settings.autoHyphenation
+      ..sourceNoSpaceRaiseLower = settings.noSpaceRaiseLower
       ..trackRevisions = settings.tracking
       ..restrictEditing = settings.protection
       ..restrictMode = settings.restrictMode
