@@ -294,7 +294,10 @@ void main() {
         tester.widget<TextField>(_key('mail-list-search')).controller!.text,
         'project',
       );
-      expect(find.text('Subject (A–Z)'), findsOneWidget);
+      expect(
+        find.byIcon(Icons.sort),
+        findsOneWidget,
+      );
       expect(_check('b'), findsNothing);
     },
   );

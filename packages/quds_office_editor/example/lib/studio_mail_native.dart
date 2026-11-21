@@ -1437,6 +1437,8 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           final reader = MailReaderController.fromBytes(
             raw,
             codec: const QudsMimeCodec(),
+            preferHtml: false,
+            includeHeaders: false,
             labels: StudioMailReaderLabels(widget.strings.language),
           );
           final previous = _reader;
