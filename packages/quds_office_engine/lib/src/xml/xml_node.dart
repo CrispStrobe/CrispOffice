@@ -398,12 +398,8 @@ class XmlDocument {
       throw StateError('Expected an XML start element');
     }
     final List<XmlElement> stack = [];
+    final List<Map<String, String>> namespaceScopes = [];
     XmlElement? root;
-    // Only the capture root's inherited scope belongs on its root. Descendant
-    // declarations remain on their original nodes and must never overwrite
-    // an outer binding. Include QName-only prefixes, not just names encountered
-    // while walking the fragment, so opaque extension markup stays standalone.
-    final namespaces = reader.inScopeNamespaces;
     do {
       switch (reader.eventType) {
         case XmlEventType.startElement:
@@ -422,35 +418,41 @@ class XmlDocument {
               ),
             );
           }
+          // Materialize only bindings missing from the captured parent scope.
+          // Projected readers can hide wrappers carrying local declarations
+          // (for example mc:Choice), so retain the actual scope at each visible
+          // node, including prefixes used only in QName-valued attributes.
+          final namespaces = reader.inScopeNamespaces;
+          final parentNamespaces = namespaceScopes.isEmpty
+              ? const <String, String>{}
+              : namespaceScopes.last;
+          final attributeNames = node.attributes
+              .map((attribute) => attribute.qualifiedName)
+              .toSet();
+          for (final ns in namespaces.entries) {
+            if (parentNamespaces[ns.key] == ns.value) continue;
+            final qualifiedName = ns.key.isEmpty ? 'xmlns' : 'xmlns:${ns.key}';
+            if (attributeNames.contains(qualifiedName)) continue;
+            // Match qualified names, so xmlns:w never replaces a real w:w.
+            node.attributes.add(
+              XmlAttribute(
+                localName: ns.key.isEmpty ? 'xmlns' : ns.key,
+                prefix: ns.key.isEmpty ? '' : 'xmlns',
+                value: ns.value,
+              ),
+            );
+          }
           if (stack.isEmpty) {
             root = node;
           } else {
             stack.last.addChild(node);
           }
           stack.add(node);
+          namespaceScopes.add(namespaces);
         case XmlEventType.endElement:
           stack.removeLast();
+          namespaceScopes.removeLast();
           if (stack.isEmpty) {
-            for (final ns in namespaces.entries) {
-              final qualifiedName = ns.key.isEmpty
-                  ? 'xmlns'
-                  : 'xmlns:${ns.key}';
-              final existing = root!.attributes.where(
-                (attribute) => attribute.qualifiedName == qualifiedName,
-              );
-              if (existing.isEmpty) {
-                // A declaration's local name can equal a real attribute's
-                // local name, e.g. xmlns:w and w:w on a preferred cell width.
-                // Match its qualified name rather than overwriting w:w.
-                root.attributes.add(
-                  XmlAttribute(
-                    localName: ns.key.isEmpty ? 'xmlns' : ns.key,
-                    prefix: ns.key.isEmpty ? '' : 'xmlns',
-                    value: ns.value,
-                  ),
-                );
-              }
-            }
             return root!;
           }
         case XmlEventType.characters:

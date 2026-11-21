@@ -1,8 +1,11 @@
 import 'package:quds_office_engine/quds_office_engine.dart';
+import 'package:quds_office_engine/src/word/serial/word_markup_compatibility.dart';
 import 'package:test/test.dart';
 
-XmlElement _capture(String source, String localName) {
-  final reader = XmlPullReader(source);
+XmlElement _capture(String source, String localName) =>
+    _captureReader(XmlPullReader(source), localName);
+
+XmlElement _captureReader(XmlPullReader reader, String localName) {
   while (reader.next()) {
     if (reader.eventType == XmlEventType.startElement &&
         reader.localName == localName) {
@@ -343,4 +346,106 @@ void main() {
       expect(localPrefixes, 1);
     },
   );
+
+  test('projected Choice retains hidden name and QName-only declarations', () {
+    final fragment = _captureReader(
+      WordMarkupCompatibilityReader(
+        '<w:fragment xmlns:w="${OfficeNamespaces.w}" xmlns:mc="${OfficeNamespaces.mc}">'
+        '<mc:AlternateContent><mc:Choice Requires="w" '
+        'xmlns:p="urn:choice" xmlns:t="urn:choice-type">'
+        '<w:p mc:Ignorable="t"><p:item p:id="chosen" type="t:Payload"/></w:p>'
+        '</mc:Choice><mc:Fallback><w:p/></mc:Fallback>'
+        '</mc:AlternateContent></w:fragment>',
+      ),
+      'fragment',
+    );
+    final restored = _roundTrip(fragment);
+    final paragraph = restored.firstChild(
+      'p',
+      namespaceUri: OfficeNamespaces.w,
+    )!;
+    final item = paragraph.firstChild('item', namespaceUri: 'urn:choice')!;
+    expect(item.getAttribute('id', namespaceUri: 'urn:choice'), 'chosen');
+    expect(item.getAttribute('type', namespaceUri: ''), 't:Payload');
+    expect(_declaration(paragraph, 'p'), 'urn:choice');
+    expect(_declaration(paragraph, 't'), 'urn:choice-type');
+    expect(_declaration(restored, 'p'), isNull);
+    expect(_declaration(restored, 't'), isNull);
+    expect(restored.childElements, hasLength(1));
+  });
+
+  test('projected Fallback retains default unbinding and scoped rebinding', () {
+    final fragment = _captureReader(
+      WordMarkupCompatibilityReader(
+        '<w:fragment xmlns:w="${OfficeNamespaces.w}" xmlns:mc="${OfficeNamespaces.mc}" '
+        'xmlns="urn:default-outer" xmlns:e="urn:outer">'
+        '<mc:AlternateContent><mc:Choice Requires="missing" xmlns:missing="urn:unsupported">'
+        '<w:p/></mc:Choice><mc:Fallback xmlns:e="urn:fallback" xmlns="" '
+        'xmlns:t="urn:fallback-type">'
+        '<e:item e:id="fallback" type="t:Payload"><plain/></e:item>'
+        '</mc:Fallback></mc:AlternateContent>'
+        '<e:item e:id="outer"><plain/></e:item></w:fragment>',
+      ),
+      'fragment',
+    );
+    final restored = _roundTrip(fragment);
+    final fallback = restored.firstChild('item', namespaceUri: 'urn:fallback')!;
+    final outer = restored.firstChild('item', namespaceUri: 'urn:outer')!;
+    expect(
+      fallback.getAttribute('id', namespaceUri: 'urn:fallback'),
+      'fallback',
+    );
+    expect(fallback.firstChild('plain', namespaceUri: ''), isNotNull);
+    expect(_declaration(fallback, ''), '');
+    expect(_declaration(fallback, 't'), 'urn:fallback-type');
+    expect(fallback.getAttribute('type', namespaceUri: ''), 't:Payload');
+    expect(outer.getAttribute('id', namespaceUri: 'urn:outer'), 'outer');
+    expect(
+      outer.firstChild('plain', namespaceUri: 'urn:default-outer'),
+      isNotNull,
+    );
+    expect(_declaration(restored, 'e'), 'urn:outer');
+    expect(_declaration(restored, ''), 'urn:default-outer');
+    expect(restored.childElements, hasLength(2));
+  });
+
+  test('nested projected branches restore visible parent and sibling scopes', () {
+    var fragment = _captureReader(
+      WordMarkupCompatibilityReader(
+        '<w:fragment xmlns:w="${OfficeNamespaces.w}" xmlns:mc="${OfficeNamespaces.mc}" '
+        'xmlns:p="urn:outer"><mc:AlternateContent>'
+        '<mc:Choice Requires="w" xmlns:p="urn:inner"><p:container>'
+        '<mc:AlternateContent><mc:Choice Requires="w" xmlns:p="urn:deep">'
+        '<p:leaf p:id="deep"/></mc:Choice></mc:AlternateContent>'
+        '<p:after p:id="inner"/></p:container></mc:Choice>'
+        '</mc:AlternateContent><p:after p:id="outer"/></w:fragment>',
+      ),
+      'fragment',
+    );
+    for (var cycle = 0; cycle < 3; cycle++) {
+      fragment = _roundTrip(fragment);
+      final container = fragment.firstChild(
+        'container',
+        namespaceUri: 'urn:inner',
+      )!;
+      expect(
+        container
+            .firstChild('leaf', namespaceUri: 'urn:deep')!
+            .getAttribute('id', namespaceUri: 'urn:deep'),
+        'deep',
+      );
+      expect(
+        container
+            .firstChild('after', namespaceUri: 'urn:inner')!
+            .getAttribute('id', namespaceUri: 'urn:inner'),
+        'inner',
+      );
+      expect(
+        fragment
+            .firstChild('after', namespaceUri: 'urn:outer')!
+            .getAttribute('id', namespaceUri: 'urn:outer'),
+        'outer',
+      );
+    }
+  });
 }
