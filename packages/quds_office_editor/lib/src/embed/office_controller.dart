@@ -628,6 +628,52 @@ abstract class OfficeController extends ChangeNotifier {
 
 /// Word document controller: IME, caret, layout, load/save.
 class WordEditorController extends OfficeController {
+  /// Benchmark hook (null in normal use): receives the duration of each
+  /// phase of a typed keystroke (`model`, `undo`, `layout`, `notify`) and,
+  /// while [debugTimeListeners] was on when a listener was added, of each
+  /// listener (`listener <description>`).
+  static void Function(String phase, int microseconds)? debugEditPhase;
+
+  /// Benchmark switch: listeners added while it is true are timed through
+  /// [debugEditPhase].
+  static bool debugTimeListeners = false;
+
+  final Map<VoidCallback, List<VoidCallback>> _timedListeners =
+      <VoidCallback, List<VoidCallback>>{};
+
+  @override
+  void addListener(VoidCallback listener) {
+    if (!debugTimeListeners) {
+      super.addListener(listener);
+      return;
+    }
+    final String label = 'listener $listener';
+    void timed() {
+      final void Function(String, int)? sink = debugEditPhase;
+      if (sink == null) {
+        listener();
+        return;
+      }
+      final Stopwatch watch = Stopwatch()..start();
+      listener();
+      sink(label, watch.elapsedMicroseconds);
+    }
+
+    _timedListeners.putIfAbsent(listener, () => <VoidCallback>[]).add(timed);
+    super.addListener(timed);
+  }
+
+  @override
+  void removeListener(VoidCallback listener) {
+    final List<VoidCallback>? wrappers = _timedListeners[listener];
+    if (wrappers != null && wrappers.isNotEmpty) {
+      super.removeListener(wrappers.removeLast());
+      if (wrappers.isEmpty) _timedListeners.remove(listener);
+      return;
+    }
+    super.removeListener(listener);
+  }
+
   WordProofingSession? _proofing;
   final OfficeProofingVocabulary? _initialProofingVocabulary;
   final OfficeProofingService? _initialProofingService;
@@ -4850,13 +4896,24 @@ class WordEditorController extends OfficeController {
     }
     final WmlParagraph para = _activeParagraph;
     final String old = para.text;
+    final void Function(String, int)? phase = debugEditPhase;
+    final Stopwatch? watch = phase == null ? null : (Stopwatch()..start());
+    void lap(String name) {
+      if (watch == null) return;
+      phase!(name, watch.elapsedMicroseconds);
+      watch.reset();
+    }
+
     if (value.text != old) {
       _setParagraphText(WmlClone.paragraph(para), value.text);
       _applyingIme = true;
       _syncParagraphDirection(para, incoming: value.text);
+      lap('model');
       _commitParagraphInlines(para, () => _setParagraphText(para, value.text));
       _applyingIme = false;
+      lap('undo');
       relayout(localEdit: true);
+      lap('layout');
       caret.logicalIndex = value.selection.extentOffset.clamp(
         0,
         value.text.length,
@@ -4879,7 +4936,9 @@ class WordEditorController extends OfficeController {
     }
     caret.resetBlink();
     _imeValueTarget = _imeEditingTarget;
+    lap('caret');
     notifyListeners();
+    lap('notify');
   }
 
   void _onImeAction(TextInputAction action) {
