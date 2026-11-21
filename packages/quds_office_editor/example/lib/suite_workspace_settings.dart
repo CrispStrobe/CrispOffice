@@ -66,6 +66,7 @@ extension _StudioSettingsPersistence on _SuiteWorkspaceState {
           studioArabicMorphHost.grammarReading ==
           ArabicGrammarReading.contextual,
       StudioSettingKeys.personalWords: _personalWords(),
+      StudioSettingKeys.shortcuts: _shortcutOverrides,
     });
   }
 
@@ -110,6 +111,7 @@ extension _StudioSettingsPersistence on _SuiteWorkspaceState {
     _pdfEnableSwipe = stored.flag(StudioSettingKeys.pdfEnableSwipe);
     _pdfShowScroll = stored.flag(StudioSettingKeys.pdfShowScroll);
     _pdfPreventLinks = stored.flag(StudioSettingKeys.pdfPreventLinks);
+    _shortcutOverrides = stored.shortcuts;
     _pdfFitPolicy = stored.choiceOf(
       StudioSettingKeys.pdfFitPolicy,
       PdfFitPolicy.values,

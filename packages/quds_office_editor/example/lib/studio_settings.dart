@@ -7,6 +7,7 @@ import 'package:quds_office_editor/quds_office_editor.dart';
 import 'studio_settings_backend_web.dart'
     if (dart.library.io) 'studio_settings_backend_io.dart'
     as platform;
+import 'studio_shortcuts.dart';
 import 'studio_strings.dart';
 import 'studio_web_data_store.dart';
 
@@ -179,11 +180,36 @@ final class _Words extends StudioSettingSpec {
   }
 }
 
+/// Explicit shortcut overrides by action id. Missing actions use the catalog
+/// default, so a new release can add defaults without rewriting old settings.
+final class _ShortcutMap extends StudioSettingSpec {
+  const _ShortcutMap();
+  static const maxEntries = 256;
+
+  @override
+  Map<String, String> get fallback => const <String, String>{};
+
+  @override
+  Object? accept(Object? value) {
+    if (value is! Map) return null;
+    final out = <String, String>{};
+    for (final entry in value.entries.take(maxEntries)) {
+      final key = entry.key;
+      final raw = entry.value;
+      if (key is! String || key.length > 64 || raw is! String) continue;
+      if (StudioShortcutBinding.tryParse(raw) == null) continue;
+      out[key] = raw;
+    }
+    return out;
+  }
+}
+
 /// Setting keys. Names are stable storage identifiers, never UI text.
 abstract final class StudioSettingKeys {
   static const language = 'ui.language';
   static const look = 'ui.look';
   static const lengthUnit = 'ui.lengthUnit';
+  static const shortcuts = 'ui.shortcuts';
 
   static const wordRulers = 'view.wordRulers';
   static const sheetGridlines = 'view.sheetGridlines';
@@ -245,6 +271,7 @@ final class StudioSettings {
         StudioSettingKeys.lengthUnit: _Choice([
           for (final value in OfficeLengthUnit.values) value.name,
         ], OfficeLengthUnit.millimeters.name),
+        StudioSettingKeys.shortcuts: const _ShortcutMap(),
         StudioSettingKeys.wordRulers: const _Flag(true),
         StudioSettingKeys.sheetGridlines: const _Flag(true),
         StudioSettingKeys.sheetHeaders: const _Flag(true),
@@ -340,6 +367,9 @@ final class StudioSettings {
 
   Map<String, List<String>> get personalWords =>
       _values[StudioSettingKeys.personalWords]! as Map<String, List<String>>;
+
+  Map<String, String> get shortcuts =>
+      _values[StudioSettingKeys.shortcuts]! as Map<String, String>;
 
   /// A copy with [changes] applied; invalid values are rejected.
   StudioSettings copyWith(Map<String, Object?> changes) {

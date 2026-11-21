@@ -23,6 +23,7 @@ import 'studio_ribbon_customization.dart';
 import 'studio_review_strip.dart';
 import 'studio_ribbon_preferences.dart';
 import 'studio_settings.dart';
+import 'studio_shortcuts.dart';
 import 'studio_desktop_menu.dart';
 import 'studio_files.dart';
 import 'studio_find_pane.dart';
@@ -129,6 +130,8 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   var _showComments = false;
   var _showOutline = false;
   late final StudioRibbonPreferences _ribbonPreferences;
+  Map<String, String> _shortcutOverrides = const <String, String>{};
+
   late final _StudioSettingsBinding _settings = _StudioSettingsBinding(
     widget.settingsStore ?? StudioSettingsStore(),
   );
@@ -646,7 +649,10 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             onAbout: () => _showNativeDialog(_showAbout),
             onSettings: () => _showNativeDialog(_openSettings),
             child: CallbackShortcuts(
-              bindings: <ShortcutActivator, VoidCallback>{
+              bindings: _withShortcutOverrides(<
+                ShortcutActivator,
+                VoidCallback
+              >{
                 if (StudioWindow
                     .isDesktop) ...<ShortcutActivator, VoidCallback>{
                   _fileShortcut(LogicalKeyboardKey.keyN): _newActiveFile,
@@ -795,7 +801,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                     _shortcutZoomReset,
                 const SingleActivator(LogicalKeyboardKey.digit0, meta: true):
                     _shortcutZoomReset,
-              },
+              }),
               child: StudioWindowScope(
                 onCloseRequested: _confirmCloseWorkspace,
                 onChanged: () {
@@ -972,6 +978,71 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       _nativeDialogOpen = false;
     }
   }
+
+  Map<ShortcutActivator, VoidCallback> _withShortcutOverrides(
+    Map<ShortcutActivator, VoidCallback> base,
+  ) {
+    final mac = StudioWindow.isMacOS;
+    final resolved = StudioShortcutCatalog.resolve(
+      _shortcutOverrides,
+      mac: mac,
+    );
+    // Remove both platform defaults for a configurable action before adding
+    // the resolved binding, so changing a key never leaves the old one active.
+    for (final action in StudioShortcutCatalog.actions) {
+      base.remove(action.defaultBinding(mac: true).activator);
+      base.remove(action.defaultBinding(mac: false).activator);
+    }
+    final callbacks = _shortcutCallbacks();
+    for (final entry in resolved.entries) {
+      final callback = callbacks[entry.key];
+      if (callback != null) base[entry.value.activator] = callback;
+    }
+    return base;
+  }
+
+  Map<String, VoidCallback> _shortcutCallbacks() => <String, VoidCallback>{
+    'file.new': () => unawaited(_newActiveFile()),
+    'file.open': () => unawaited(_openFile()),
+    'file.save': () => unawaited(_saveFile()),
+    'file.saveAs': () => unawaited(_saveFileAs()),
+    'file.close': StudioWindow.close,
+    'edit.undo': _undo,
+    'edit.redo': _redo,
+    'edit.cut': _cut,
+    'edit.copy': _copy,
+    'edit.paste': _paste,
+    'edit.selectAll': _selectAll,
+    'format.bold': _toggleBold,
+    'format.italic': _toggleItalic,
+    'format.underline': _toggleUnderline,
+    'format.superscript': () => _toggleVertAlign(WmlVertAlign.superscript),
+    'format.subscript': () => _toggleVertAlign(WmlVertAlign.subscript),
+    'format.alignLeft': () => _setAlign(WmlJustification.left),
+    'format.center': () => _setAlign(WmlJustification.center),
+    'format.alignRight': () => _setAlign(WmlJustification.right),
+    'format.justify': () => _setAlign(WmlJustification.justify),
+    'format.bullets': () => _word.toggleList(numbered: false),
+    'format.numbering': () => _word.toggleList(numbered: true),
+    'format.indent': () => _nudgeIndent(18),
+    'format.outdent': () => _nudgeIndent(-18),
+    'format.growFont': () => _nudgeFontSize(2),
+    'format.shrinkFont': () => _nudgeFontSize(-2),
+    'format.singleSpacing': () => _setLineSpacing(1.0),
+    'format.doubleSpacing': () => _setLineSpacing(2.0),
+    'format.oneAndHalfSpacing': () => _setLineSpacing(1.5),
+    'insert.pageBreak': _insertPageBreak,
+    'insert.comment': _newWordComment,
+    'review.trackChanges': () =>
+        _word.setTrackRevisions(!_word.document.trackRevisions),
+    'review.spelling': () => unawaited(_showSpelling()),
+    'review.thesaurus': _word.requestThesaurus,
+    'navigate.find': _openFind,
+    'navigate.replace': _openReplace,
+    'view.zoomIn': _shortcutZoomIn,
+    'view.zoomOut': _shortcutZoomOut,
+    'view.zoomReset': _shortcutZoomReset,
+  };
 
   SingleActivator _fileShortcut(LogicalKeyboardKey key, {bool shift = false}) =>
       SingleActivator(
@@ -1620,6 +1691,117 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     );
   }
 
+  Future<void> _openShortcutSettings() async {
+    final mac = StudioWindow.isMacOS;
+    await showDialog<void>(
+      context: _themedContext,
+      useRootNavigator: true,
+      builder: (dialogContext) => StatefulBuilder(
+        builder: (context, setDialogState) {
+          final resolved = StudioShortcutCatalog.resolve(
+            _shortcutOverrides,
+            mac: mac,
+          );
+          Future<void> change(StudioShortcutAction action) async {
+            final binding = await _recordShortcut(action, resolved[action.id]!);
+            if (!mounted || binding == null) return;
+            setState(() {
+              final next = Map<String, String>.of(_shortcutOverrides);
+              if (binding.encode() ==
+                  action.defaultBinding(mac: mac).encode()) {
+                next.remove(action.id);
+              } else {
+                next[action.id] = binding.encode();
+              }
+              _shortcutOverrides = next;
+            });
+            setDialogState(() {});
+          }
+
+          return AlertDialog(
+            title: Text(
+              _t(
+                'Keyboard shortcuts',
+                'Tastenkürzel',
+                'اختصارات لوحة المفاتيح',
+              ),
+            ),
+            content: SizedBox(
+              width: 680,
+              height: 520,
+              child: ListView.separated(
+                itemCount: StudioShortcutCatalog.actions.length,
+                separatorBuilder: (_, _) => const Divider(height: 1),
+                itemBuilder: (context, index) {
+                  final action = StudioShortcutCatalog.actions[index];
+                  final binding = resolved[action.id]!;
+                  return ListTile(
+                    dense: true,
+                    title: Text(action.label),
+                    subtitle: Text(binding.label),
+                    trailing: Wrap(
+                      spacing: 4,
+                      children: [
+                        IconButton(
+                          tooltip: 'Change shortcut',
+                          icon: const Icon(Icons.edit_outlined, size: 18),
+                          onPressed: () => unawaited(change(action)),
+                        ),
+                        IconButton(
+                          tooltip: 'Reset to default',
+                          icon: const Icon(Icons.restart_alt, size: 18),
+                          onPressed: _shortcutOverrides.containsKey(action.id)
+                              ? () {
+                                  setState(() {
+                                    final next = Map<String, String>.of(
+                                      _shortcutOverrides,
+                                    )..remove(action.id);
+                                    _shortcutOverrides = next;
+                                  });
+                                  setDialogState(() {});
+                                }
+                              : null,
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+            actions: [
+              TextButton(
+                onPressed: _shortcutOverrides.isEmpty
+                    ? null
+                    : () {
+                        setState(
+                          () => _shortcutOverrides = const <String, String>{},
+                        );
+                        setDialogState(() {});
+                      },
+                child: Text(
+                  _t('Reset all', 'Alle zurücksetzen', 'إعادة ضبط الكل'),
+                ),
+              ),
+              FilledButton(
+                onPressed: () => Navigator.pop(dialogContext),
+                child: Text(_strings.close),
+              ),
+            ],
+          );
+        },
+      ),
+    );
+  }
+
+  Future<StudioShortcutBinding?> _recordShortcut(
+    StudioShortcutAction action,
+    StudioShortcutBinding current,
+  ) => showDialog<StudioShortcutBinding>(
+    context: _themedContext,
+    useRootNavigator: true,
+    builder: (_) => _ShortcutRecorderDialog(action: action, current: current),
+  );
+
   Future<void> _openSettings() async {
     await showDialog<void>(
       context: _themedContext,
@@ -1651,6 +1833,26 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
                           onTap: () {
                             Navigator.pop(dialogContext);
                             unawaited(_showLanguageDownloads());
+                          },
+                        ),
+                        ListTile(
+                          key: const ValueKey<String>(
+                            'studio-settings-shortcuts',
+                          ),
+                          leading: const Icon(Icons.keyboard_outlined),
+                          title: Text(
+                            _t(
+                              'Keyboard shortcuts…',
+                              'Tastenkürzel…',
+                              'اختصارات لوحة المفاتيح…',
+                            ),
+                          ),
+                          subtitle: const Text(
+                            'Word and Writer keys; click a shortcut to record a new one.',
+                          ),
+                          onTap: () {
+                            Navigator.pop(dialogContext);
+                            unawaited(_openShortcutSettings());
                           },
                         ),
                         DropdownButtonFormField<SuiteLook>(
@@ -12855,5 +13057,97 @@ class _ThrottledStatusTextState extends State<_ThrottledStatusText> {
     style: const TextStyle(color: Colors.white, fontSize: 11),
     overflow: TextOverflow.ellipsis,
     maxLines: 1,
+  );
+}
+
+class _ShortcutRecorderDialog extends StatefulWidget {
+  const _ShortcutRecorderDialog({required this.action, required this.current});
+
+  final StudioShortcutAction action;
+  final StudioShortcutBinding current;
+
+  @override
+  State<_ShortcutRecorderDialog> createState() =>
+      _ShortcutRecorderDialogState();
+}
+
+class _ShortcutRecorderDialogState extends State<_ShortcutRecorderDialog> {
+  String? _notice;
+
+  KeyEventResult _onKey(FocusNode node, KeyEvent event) {
+    if (event is! KeyDownEvent) return KeyEventResult.handled;
+    final key = event.logicalKey;
+    if (key == LogicalKeyboardKey.escape) {
+      Navigator.pop(context);
+      return KeyEventResult.handled;
+    }
+    if (_isModifier(key)) return KeyEventResult.handled;
+    final ctrl = HardwareKeyboard.instance.isControlPressed;
+    final alt = HardwareKeyboard.instance.isAltPressed;
+    final shift = HardwareKeyboard.instance.isShiftPressed;
+    final meta = HardwareKeyboard.instance.isMetaPressed;
+    final functionKey = key.keyLabel.startsWith('F');
+    if (!ctrl && !alt && !shift && !meta && !functionKey) {
+      setState(() => _notice = 'Use a modifier (Ctrl, Alt, Shift or Command).');
+      return KeyEventResult.handled;
+    }
+    Navigator.pop(
+      context,
+      StudioShortcutBinding(
+        keyId: key.keyId,
+        control: ctrl,
+        alt: alt,
+        shift: shift,
+        meta: meta,
+      ),
+    );
+    return KeyEventResult.handled;
+  }
+
+  static bool _isModifier(LogicalKeyboardKey key) =>
+      key == LogicalKeyboardKey.controlLeft ||
+      key == LogicalKeyboardKey.controlRight ||
+      key == LogicalKeyboardKey.altLeft ||
+      key == LogicalKeyboardKey.altRight ||
+      key == LogicalKeyboardKey.shiftLeft ||
+      key == LogicalKeyboardKey.shiftRight ||
+      key == LogicalKeyboardKey.metaLeft ||
+      key == LogicalKeyboardKey.metaRight;
+
+  @override
+  Widget build(BuildContext context) => AlertDialog(
+    title: Text('Record shortcut: ${widget.action.label}'),
+    content: ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 460),
+      child: Focus(
+        autofocus: true,
+        onKeyEvent: _onKey,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Current: ${widget.current.label}'),
+            const SizedBox(height: 12),
+            const Text(
+              'Press the new key combination now. Escape cancels. Function keys '
+              'may be used without a modifier.',
+            ),
+            if (_notice != null) ...[
+              const SizedBox(height: 12),
+              Text(
+                _notice!,
+                style: TextStyle(color: Theme.of(context).colorScheme.error),
+              ),
+            ],
+          ],
+        ),
+      ),
+    ),
+    actions: [
+      TextButton(
+        onPressed: () => Navigator.pop(context),
+        child: const Text('Cancel'),
+      ),
+    ],
   );
 }
