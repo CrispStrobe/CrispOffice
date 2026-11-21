@@ -1,7 +1,7 @@
 import 'dart:math' as math;
 import 'dart:ui' as ui;
 
-import 'package:flutter/foundation.dart' show defaultTargetPlatform;
+import 'package:flutter/foundation.dart' show defaultTargetPlatform, listEquals;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
@@ -785,6 +785,7 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
   _selectionPaths = <(LaidOutPage, int, int, int, int, WmlTable?), Path>{};
   final Map<(LaidOutPage, int?), ui.Picture> _bodyTextPictures =
       <(LaidOutPage, int?), ui.Picture>{};
+  List<Object?>? _bodyTextInkState;
 
   @override
   void dispose() {
@@ -807,6 +808,39 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
       picture.dispose();
     }
     _bodyTextPictures.clear();
+    _bodyTextInkState = null;
+  }
+
+  void _syncBodyTextInkState() {
+    // Adaptive ink uses the current cell-selection and story backgrounds.
+    // Snapshot their values at paint time: pointer gestures can mutate the
+    // existing caret without updating the widget or replacing the layout.
+    final selectsBodyCells = config.allowsSelection && !_editingHeaderFooter;
+    final selection =
+        selectsBodyCells &&
+            caret.selectionAnchorParagraph != caret.paragraphIndex
+        ? (
+            math.min(caret.selectionAnchorParagraph, caret.paragraphIndex),
+            math.max(caret.selectionAnchorParagraph, caret.paragraphIndex),
+          )
+        : null;
+    final state = _theme.adaptDocumentColors
+        ? <Object?>[
+            editingHeader,
+            editingFooter,
+            selectsBodyCells ? selectedTable : null,
+            selectsBodyCells ? selectedTableBand : null,
+            selection,
+            selectsBodyCells ? _textSelectionFill : null,
+            if (_editingHeaderFooter) ...?storyParagraphs,
+          ]
+        : const <Object?>[];
+    // Positions within one paragraph and caret visibility cannot change
+    // whole-cell ink, so ordinary caret moves/blinks retain the text layer.
+    if (!listEquals(_bodyTextInkState, state)) {
+      _clearBodyTextPictures();
+      _bodyTextInkState = state;
+    }
   }
 
   LaidOutDocument? _fittedLayout;
@@ -3602,6 +3636,7 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
       return;
     }
 
+    _syncBodyTextInkState();
     final double scale = _viewScale;
     final double pageLeft = _pageLeftPx();
     canvas.save();
