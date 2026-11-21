@@ -4,6 +4,10 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Keep manual Mail account editing available during catalog operations while
+  showing progress for automatic restoration. Forward native saved-message
+  closing to the embedded host callback, matching the browser Mail pane.
+
 - Studio Word adds **Export Zotero ODT** on the File menu and ribbon, creating
   a separate copy with active supported Zotero marks. Serialize a detached
   snapshot, show unsupported-field reasons, and preserve the source's normal

@@ -2826,6 +2826,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                   if (_savedMessagesVisited)
                     StudioSavedMailView(
                       strings: widget.strings,
+                      onClose: widget.onClose,
                       onAccounts: () =>
                           setState(() => _showSavedMessages = false),
                     )
@@ -3190,9 +3191,13 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   }
 
   Widget _accountView(BuildContext context, {required bool compact}) {
+    // Catalog selection, saving and forgetting retain the editable setup form.
+    // Automatic restoration owns the progress screen only while loading or
+    // connecting the saved account.
     if (_client == null &&
         _accountCatalogStore != null &&
-        (_credentialPending ||
+        _autoConnectEnabled &&
+        (_accountCatalog == null && _credentialPending ||
             _hasSavedCredentials &&
                 (_autoConnectTicket != null || _connecting))) {
       return _restoringAccount(context);

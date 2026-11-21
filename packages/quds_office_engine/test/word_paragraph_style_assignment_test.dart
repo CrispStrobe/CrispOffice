@@ -133,6 +133,47 @@ void main() {
     }
   });
 
+  for (final packet in ['pPr', 'rPr']) {
+    test('$packet preserves a foreign w binding on a native alias root', () {
+      final properties =
+          '<s:$packet xmlns:s="$_w" xmlns:w="$_x" w:token="root">'
+          '${packet == 'pPr' ? '<s:pStyle s:val="Base"/>' : '<s:rStyle s:val="Emphasis"/>'}'
+          '<w:extension w:token="child"/></s:$packet>';
+      var document = WordDeserializer().read(
+        _package(
+          body:
+              '<w:p>${packet == 'pPr' ? properties : ''}'
+              '<w:r>${packet == 'rPr' ? properties : ''}'
+              '<w:t>Selected</w:t></w:r></w:p>',
+        ),
+      );
+      for (var cycle = 0; cycle < 3; cycle++) {
+        _assign(document);
+        final target = document.paragraphs.single;
+        final run = target.inlines.single as WmlRun;
+        expect(target.properties.styleId, 'Target');
+        expect(run.properties.bold, isTrue);
+        expect(run.properties.italic, packet == 'rPr');
+        final source = packet == 'pPr'
+            ? target.properties.sourcePropertiesXml!
+            : run.properties.sourcePropertiesXml!;
+        final root = XmlDocument.parse(source).root!;
+        expect(root.namespaceUri, _w);
+        expect(root.getAttribute('token', namespaceUri: _x), 'root');
+        expect(
+          root
+              .firstChild('extension', namespaceUri: _x)!
+              .getAttribute('token', namespaceUri: _x),
+          'child',
+        );
+        expect(root.firstChild('extension', namespaceUri: _w), isNull);
+        document = WordDeserializer().readBytes(
+          WordSerializer().writeBytes(document),
+        );
+      }
+    });
+  }
+
   const builtins = <int, String>{
     -1: 'Normal',
     -2: 'heading 1',
@@ -535,6 +576,40 @@ void main() {
     toc.titleParagraph.inlines = [document.paragraphs.first.inlines.single];
     document.sections.first.blocks.add(toc);
     _refusesWithoutMutation(document, matcher: isA<StateError>());
+  });
+
+  test('a body run shared with a native TOC cache is refused', () {
+    final document = WordDeserializer().read(_package());
+    final source = WmlParagraph(
+      inlines: [document.paragraphs.first.inlines.single],
+    );
+    final toc = WmlToc(
+      sourcePresentation: WmlTocPresentation(
+        configuration: (1, 3, true, null, null, null),
+        paragraphs: [WmlTocSourceParagraph(paragraph: source)],
+      ),
+    );
+    document.sections.first.blocks.add(toc);
+    final original = (source.inlines.single as WmlRun).properties;
+    _refusesWithoutMutation(document, matcher: isA<StateError>());
+    expect((source.inlines.single as WmlRun).properties, same(original));
+  });
+
+  test('an independent native TOC cache does not block body restyling', () {
+    final document = WordDeserializer().read(_package());
+    final source = WmlParagraph(inlines: [WmlRun(text: 'Cached result')]);
+    final toc = WmlToc(
+      sourcePresentation: WmlTocPresentation(
+        configuration: (1, 3, true, null, null, null),
+        paragraphs: [WmlTocSourceParagraph(paragraph: source)],
+      ),
+    );
+    document.sections.first.blocks.add(toc);
+    final original = (source.inlines.single as WmlRun).properties;
+    _assign(document);
+    expect(document.paragraphs.first.properties.styleId, 'Target');
+    expect((source.inlines.single as WmlRun).properties, same(original));
+    expect(source.text, 'Cached result');
   });
 
   test('generated TOC paragraph targets are explicitly refused', () {

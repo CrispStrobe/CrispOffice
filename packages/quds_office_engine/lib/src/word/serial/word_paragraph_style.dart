@@ -33,6 +33,20 @@ extension _ParagraphStyleAssignment on _StyleCascade {
         'Unsupported Word paragraph style constant: $builtin',
       );
     }
+    // Resolve against the same native definitions that serialization will
+    // retain. A pending host-side model replacement/removal would otherwise
+    // produce one cascade now and a different one after reopening the file.
+    final modeledIds = <String>{};
+    if (document.styles.any(
+          (style) =>
+              !modeledIds.add(style.id) ||
+              !identical(style, document.importedStyles[style.id]),
+        ) ||
+        document.importedStyles.keys.any((id) => !modeledIds.contains(id))) {
+      throw UnsupportedError(
+        'Style assignment requires synchronized native and modeled styles.',
+      );
+    }
     final root = _assignmentStyles();
     final definitions = <String, XmlElement>{};
     final names = <String, String>{};
@@ -394,14 +408,22 @@ extension _ParagraphStyleAssignment on _StyleCascade {
             }
           }
         } else if (block is WmlToc) {
-          final paragraphs = [block.titleParagraph, ...block.itemParagraphs];
+          final paragraphs = [
+            block.titleParagraph,
+            ...block.itemParagraphs,
+            for (final source
+                in block.sourcePresentation?.paragraphs ??
+                    <WmlTocSourceParagraph>[])
+              source.paragraph,
+          ];
           if (paragraphs.any((paragraph) => identical(paragraph, target))) {
             throw UnsupportedError(
               'Paragraph Style does not edit generated table-of-contents paragraphs.',
             );
           }
-          // These runs are also live owners. A body target must not alias a
-          // generated TOC result that would change when its run is published.
+          // These runs, including the retained native cache, are live owners.
+          // A body target must not alias a TOC result that would change when
+          // its run is published.
           visit(paragraphs, layers);
         } else {
           for (final children in WordTree.childLists(block)) {
@@ -590,7 +612,16 @@ XmlElement _styleFragment(String xml, String name) {
       'Style assignment requires native $name properties.',
     );
   }
-  return roots.single..setAttribute('w', OfficeNamespaces.w, prefix: 'xmlns');
+  final root = roots.single;
+  // Preserve a foreign binding on an aliased native root. Rebinding it would
+  // reinterpret opaque descendant elements/attributes when the XML reopens.
+  // Only materialize the wrapper's inherited native binding when absent.
+  if (!root.attributes.any(
+    (attribute) => attribute.prefix == 'xmlns' && attribute.localName == 'w',
+  )) {
+    root.setAttribute('w', OfficeNamespaces.w, prefix: 'xmlns');
+  }
+  return root;
 }
 
 void _styleCheckAlternatives(XmlElement node, {bool all = false}) {

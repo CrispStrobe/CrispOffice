@@ -250,16 +250,20 @@ creates an explicit native `pStyle` reference. Existing `docx.applyStyle`
 retains its separate catalog/application behavior.
 
 Malformed or ambiguous style relationships, duplicate identities/names,
-unresolved or cyclic inheritance, unsupported property ownership and changes
-to effective numbering are refused before publication. Failed later operations
+unresolved or cyclic inheritance, unsynchronized edits to the modeled style
+catalog, unsupported property ownership and changes to effective numbering
+are refused before publication. Existing foreign namespace bindings and inert
+metadata remain intact, including when native properties use an aliased prefix.
+Failed later operations
 roll back the complete macro, including any earlier style assignment. The
 ordinary mutation policy, tool allowlist, step budget, validation-only mode,
 recording and DOCM preservation rules apply.
 
 Style reads, `Styles` collections, Style objects, numeric collection indices,
 style creation, generated TOC/result paragraphs, multi-paragraph or whole-story
-`Range.Style`, and embedded VBA execution remain unsupported. Names must be nonempty XML-safe strings without
-tabs or line breaks; Boolean, array and object values are not style selectors.
+`Range.Style`, and embedded VBA execution remain unsupported. Names must be
+nonempty XML-safe strings without tabs or line breaks; Boolean, array and object
+values are not style selectors.
 This is a bounded source-to-plan feature, without installed Microsoft Word
 differential qualification of direct-format semantics.
 

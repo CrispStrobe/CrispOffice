@@ -152,11 +152,13 @@ final class _Client extends Fake implements mail.MailClient {
   );
   int connections = 0;
   int disconnections = 0;
+  Completer<void>? connectGate;
   @override
   mail.Mailbox get selectedMailbox => inbox;
   @override
   Future<void> connect({Duration timeout = const Duration(seconds: 20)}) async {
     connections++;
+    await connectGate?.future;
   }
 
   @override
@@ -205,6 +207,7 @@ Future<void> _show(
   mail.MailClient Function(mail.MailAccount)? clientFactory,
   MemoryStudioMailDrafts? drafts,
   StudioMailDraftStoreFactory? draftStoreFactory,
+  bool? autoConnectSavedAccount,
   Size surfaceSize = const Size(1280, 1500),
 }) async {
   await tester.binding.setSurfaceSize(surfaceSize);
@@ -216,6 +219,7 @@ Future<void> _show(
         credentialStore: store,
         clientFactory: clientFactory ?? (_) => _Client(),
         messageLoaderFactory: (_) => _Loader(),
+        autoConnectSavedAccount: autoConnectSavedAccount,
         draftStoreFactory:
             draftStoreFactory ?? (drafts ?? MemoryStudioMailDrafts()).open,
       ),
@@ -583,6 +587,59 @@ void main() {
       }
     },
   );
+
+  testWidgets(
+    'automatic restoration keeps progress visible through catalog and connection',
+    (tester) async {
+      final store = _Accounts()..loadGate = Completer<void>();
+      final client = _Client()..connectGate = Completer<void>();
+      await _show(
+        tester,
+        store,
+        clientFactory: (_) => client,
+        autoConnectSavedAccount: true,
+      );
+      expect(_key('studio-mail-restoring-account'), findsOneWidget);
+      expect(_field(_strings.emailAddress), findsNothing);
+      expect(client.connections, 0);
+
+      store.loadGate!.complete();
+      await _pump(tester);
+      expect(client.connections, 1);
+      expect(_key('studio-mail-restoring-account'), findsOneWidget);
+      expect(find.text('Connecting to ${_a.email}…'), findsOneWidget);
+      expect(_field(_strings.emailAddress), findsNothing);
+
+      client.connectGate!.complete();
+      await _pump(tester);
+      expect(_key('studio-mail-restoring-account'), findsNothing);
+      expect(find.byTooltip(_strings.disconnect), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets('failed automatic restoration returns to manual account setup', (
+    tester,
+  ) async {
+    final store = _Accounts()
+      ..loadGate = Completer<void>()
+      ..loadProblem = StudioMailAccountCatalogProblem.unavailable;
+    final client = _Client();
+    await _show(
+      tester,
+      store,
+      clientFactory: (_) => client,
+      autoConnectSavedAccount: true,
+    );
+    expect(_key('studio-mail-restoring-account'), findsOneWidget);
+    store.loadGate!.complete();
+    await _pump(tester);
+    expect(_key('studio-mail-restoring-account'), findsNothing);
+    expect(_field(_strings.emailAddress), findsOneWidget);
+    expect(find.text(_strings.mailAccountsLoadFailed), findsOneWidget);
+    expect(client.connections, 0);
+    expect(tester.takeException(), isNull);
+  });
 
   testWidgets(
     'restores the selected saved account without a network connection',
