@@ -958,17 +958,131 @@ void main() {
     },
   );
 
-  test('merged and repeated table ownership refuses active citations', () async {
+  test('horizontal merged owner retains active citation and logical width', () async {
+    final document = await OdtDocumentReader.readBytes(
+      _package(
+        '<table:table><table:table-column table:number-columns-repeated="3"/>'
+        '<table:table-row>'
+        '<table:table-cell table:number-columns-spanned="+02">'
+        '<text:p>${_mark(_citation(), '(Source)')}</text:p>'
+        '</table:table-cell><table:covered-table-cell/>'
+        '<table:table-cell><text:p>Neighbor</text:p></table:table-cell>'
+        '</table:table-row></table:table>',
+      ),
+    );
+    for (final current in [document, _reopen(document)]) {
+      final table = current.sections.single.blocks.whereType<WmlTable>().single;
+      expect(table.grid, [120, 120, 120]);
+      expect(table.rows.single.cells.map((cell) => cell.gridSpan), [2, 1]);
+      expect(table.rows.single.cells.map((cell) => cell.width), [240, 120]);
+      expect(table.rows.single.cells.map((cell) => cell.vMerge), [
+        WmlVMerge.none,
+        WmlVMerge.none,
+      ]);
+      final field = WordZotero.fields(current).single;
+      expect(field.cachedText, '(Source)');
+      expect(field.canEdit, isTrue);
+      expect(identical(field.paragraph, table.rows.single.cells.first.blocks.single), isTrue);
+      expect((table.rows.single.cells.last.blocks.single as WmlParagraph).text, 'Neighbor');
+    }
+  });
+
+  test('combined spans inherit fill and emit empty native continuations', () async {
+    final document = await OdtDocumentReader.readBytes(
+      _package(
+        '<table:table table:style-name="T">'
+        '<table:table-column table:style-name="C"/>'
+        '<table:table-column table:number-columns-repeated="2"/>'
+        '<table:table-row table:style-name="R">'
+        '<table:table-cell table:style-name="Child" '
+        'table:number-columns-spanned="2" table:number-rows-spanned="2">'
+        '<text:p>${_mark(_citation(), '(Merged)')}</text:p></table:table-cell>'
+        '<table:covered-table-cell table:style-name="Base"/>'
+        '<table:table-cell><text:p>Top</text:p></table:table-cell>'
+        '</table:table-row><table:table-row>'
+        '<table:covered-table-cell/><table:covered-table-cell/>'
+        '<table:table-cell><text:p>Bottom</text:p></table:table-cell>'
+        '</table:table-row></table:table>',
+        automaticStyles:
+            '<style:style style:name="T" style:family="table">'
+            '<style:table-properties style:width="240pt"/></style:style>'
+            '<style:style style:name="C" style:family="table-column">'
+            '<style:table-column-properties style:column-width="80pt"/></style:style>'
+            '<style:style style:name="R" style:family="table-row">'
+            '<style:table-row-properties fo:keep-together="always" '
+            'style:min-row-height="18pt"/></style:style>'
+            '<style:style style:name="Base" style:family="table-cell">'
+            '<style:table-cell-properties fo:background-color="#12AbCd"/></style:style>'
+            '<style:style style:name="Child" style:family="table-cell" '
+            'style:parent-style-name="Base"/>',
+      ),
+    );
+    for (final current in [document, _reopen(document)]) {
+      final table = current.sections.single.blocks.whereType<WmlTable>().single;
+      expect(table.grid, [80, 80, 80]);
+      expect(table.rows.first.cantSplit, isTrue);
+      expect(table.rows.first.height, 18);
+      expect(table.rows.map((row) => row.cells.length), [2, 2]);
+      final origin = table.rows.first.cells.first;
+      final continuation = table.rows.last.cells.first;
+      expect(origin.vMerge, WmlVMerge.restart);
+      expect(continuation.vMerge, WmlVMerge.cont);
+      for (final cell in [origin, continuation]) {
+        expect(cell.gridSpan, 2);
+        expect(cell.width, 160);
+        expect(cell.fillColor, '12ABCD');
+      }
+      expect(continuation.blocks, hasLength(1));
+      expect((continuation.blocks.single as WmlParagraph).text, isEmpty);
+      final field = WordZotero.fields(current).single;
+      expect(field.cachedText, '(Merged)');
+      expect(field.canEdit, isTrue);
+      expect(identical(field.paragraph, origin.blocks.single), isTrue);
+    }
+  });
+
+  test('repeated table ownership still refuses active citations', () async {
     final paragraph = '<text:p>${_mark(_citation(), 'Citation')}</text:p>';
     for (final body in [
-      '<table:table><table:table-row><table:table-cell table:number-columns-spanned="2">'
-          '$paragraph</table:table-cell><table:covered-table-cell/></table:table-row></table:table>',
       '<table:table><table:table-row table:number-rows-repeated="2">'
           '<table:table-cell>$paragraph</table:table-cell></table:table-row></table:table>',
       '<table:table><table:table-row><table:table-cell table:number-columns-repeated="2">'
           '$paragraph</table:table-cell></table:table-row></table:table>',
     ]) {
       await expectLater(OdtDocumentReader.readBytes(_package(body)), _refused);
+    }
+  });
+
+  test('malformed span values refuse instead of using Dart integer syntax', () async {
+    for (final (name, invalid) in [
+      ('number-columns-spanned', '0'),
+      ('number-columns-spanned', '33'),
+      ('number-columns-spanned', '0x2'),
+      ('number-columns-spanned', '\u00a02'),
+      ('number-columns-spanned', '2\u00a0'),
+      ('number-columns-spanned', '1.0'),
+      ('number-rows-spanned', '-1'),
+      ('number-rows-spanned', '257'),
+      ('number-rows-spanned', '1e0'),
+      ('number-rows-spanned', ''),
+    ]) {
+      // Supply valid two-column coverage for numeric-looking values, so
+      // refusal proves the lexical guard rather than a separate overhang.
+      final covered =
+          invalid == '0x2' || invalid == '\u00a02' || invalid == '2\u00a0'
+          ? '<table:covered-table-cell/>'
+          : '';
+      await expectLater(
+        OdtDocumentReader.readBytes(
+          _package(
+            '<table:table><table:table-row><table:table-cell table:$name="$invalid">'
+            '<text:p>${_mark(_citation(), 'Citation')}</text:p>'
+            '</table:table-cell>$covered</table:table-row></table:table>',
+          ),
+        ),
+        _refused,
+        reason: '$name=$invalid',
+      );
     }
   });
 

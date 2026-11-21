@@ -1142,7 +1142,7 @@ document tools above use the separate HTTP Citing Protocol.
 | Existing DOCX fields | Preserve Zotero codes, unknown JSON members, source data and rich cached text, including multi-run simple fields | Nested, locked and opaque replacement is refused; multi-paragraph replacement is limited to complete native bibliography ranges |
 | Native Zotero document preferences | Read and write Zotero's XML/JSON preferences in chunked `ZOTERO_PREF_*` custom properties; translate native `Field` and wire `Http` types | Unknown preferences and unrelated properties are retained; malformed, duplicate, incomplete or ambiguously owned data is refused |
 | Document transfer | Native export/import callbacks, temporary metadata hyperlinks, DOCX save/reopen and ODT carrier export; native reformatting before applying an import | The qualified incoming carrier route uses DOCX; direct native ODT conversion has the separate envelope below; installed-plugin acceptance remains open |
-| Native ODT import | Supported paragraphs/styles, external links, authored notes, simple lists and unmerged/nested tables become an editable Word document; independent script formatting in retained LibreOffice prose; canonical Zotero citations/bibliographies and preferences remain active through DOCX saves | All-or-nothing bounded conversion; unsupported used structure/formatting and active content-sensitive defaults refuse; ordinary ODT export still writes cached results |
+| Native ODT import | Supported paragraphs/styles, external links, authored notes, simple lists and supported merged/nested tables become an editable Word document; independent script formatting in retained LibreOffice prose; canonical Zotero citations/bibliographies and preferences remain active through DOCX saves | All-or-nothing bounded conversion; unsupported used structure/formatting and active content-sensitive defaults refuse; ordinary ODT export still writes cached results |
 
 New citations use complex Word fields with `ADDIN ZOTERO_ITEM CSL_CITATION`
 codes, durable Zotero item URIs, and embedded CSL item snapshots. New linked
@@ -1528,16 +1528,33 @@ The importer accepts a bounded subset:
   different native identities.
 - Authored footnotes/endnotes with ordinary decimal numbering and live note
   anchors, simple decimal/bullet lists with independent starts/restarts and
-  nested continuations, and rectangular unmerged tables nested up to eight
-  levels. Citation ownership stays with its actual paragraph, note or cell.
+  nested continuations, and rectangular tables with supported horizontal and
+  vertical merges, nested up to eight levels. Citation ownership stays with its actual paragraph, note or cell.
 - XML/JSON Zotero preferences, including unknown members. The explicit import
   converts `ReferenceMark` storage to Word `Field` only after reconstruction.
   Standard document properties are mapped; the exact original `meta.xml` is
   also retained as archival DOCX custom XML, including unrelated properties.
 
+Merged tables require an explicit ODT covered-cell element at every covered
+logical position. Column spans are bounded to 32 and row spans to 256, within
+the actual table. Citation text and metadata stay in the originating cell;
+native continuation cells contain no duplicate citation. Supported widths,
+row settings and inherited shading use the existing Word table representation.
+Missing or overlapping coverage refuses the import. Covered cells containing
+stored content, including empty paragraph elements or non-XML whitespace,
+also refuse rather than losing hidden data. A covered cell's effective shading
+must be absent or agree with its origin; other covered-cell styling remains
+outside this subset. Repeated rows/cells remain unsupported. The document-wide
+cell and paragraph limits include generated continuations and nested tables.
+
+This merged-table increment has source review and regression cases saved in
+the [work record](validation/zotero-odt-merged-tables-20261121/README.md).
+Its local Dart/Flutter execution is pending after executor disk exhaustion;
+the earlier style/import test results do not qualify this new behavior.
+
 Unsupported used formatting or structure rejects the whole import before it
 replaces the active document. Examples include drawings/images, comments,
-revisions, protected/linked sections, merged/repeated table owners, custom note
+revisions, protected/linked sections, repeated table owners, custom note
 numbering, unsupported list continuation/affixes, relative/internal links and
 ambiguous citation ranges. A citation cache containing a hyperlink is outside
 the current editable field contract; external hyperlinks outside citations are

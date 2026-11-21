@@ -1,0 +1,130 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "baseline": "115f1c20131bf0157d047dfe2e9d704ddffb22a2",
+  "observed_date": "2026-11-21",
+  "commands": [
+    "git clone https://github.com/CrispStrobe/quds_office_suite.git",
+    "git fetch origin '+refs/pull/*/head:refs/remotes/origin/pr/*'",
+    "git remote add upstream https://github.com/MohammedAsaadAsaad/quds_office_suite.git",
+    "git fetch upstream",
+    "git merge-base --is-ancestor <head> 115f1c20131bf0157d047dfe2e9d704ddffb22a2",
+    "git cherry 115f1c20131bf0157d047dfe2e9d704ddffb22a2 <non-ancestor-head>"
+  ],
+  "captured_counts": {
+    "fork_branches": 31,
+    "fork_pull_heads": 321,
+    "upstream_branches": 4,
+    "total": 356,
+    "actual_ancestors": 342
+  },
+  "historical_nonancestor_pr_heads": [
+    {
+      "pr": 134,
+      "head": "128a187d69555db80890c2a1945a442b951f9c74",
+      "status": "patch-equivalent"
+    },
+    {
+      "pr": 135,
+      "head": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "status": "patch-equivalent"
+    },
+    {
+      "pr": 136,
+      "head": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "status": "patch-equivalent"
+    },
+    {
+      "pr": 137,
+      "head": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "status": "patch-equivalent"
+    },
+    {
+      "pr": 138,
+      "head": "b8ddaaeb581e010467de304c828764d353149102",
+      "status": "patch-equivalent"
+    },
+    {
+      "pr": 140,
+      "head": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "status": "squash-merged",
+      "merge": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "proof": {
+        "status": "ahead",
+        "ahead": 2077,
+        "behind": 0,
+        "base": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+        "mergeBase": "2c47165d01d01cc883135a434ac9f6591ce6e770"
+      }
+    },
+    {
+      "pr": 141,
+      "head": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "status": "patch-equivalent"
+    },
+    {
+      "pr": 142,
+      "head": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "status": "patch-equivalent"
+    },
+    {
+      "pr": 145,
+      "head": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "status": "patch-equivalent"
+    },
+    {
+      "pr": 146,
+      "head": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+      "status": "patch-equivalent"
+    },
+    {
+      "pr": 147,
+      "head": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "status": "no-unmatched-nonmerge-patches",
+      "git_cherry": []
+    },
+    {
+      "pr": 149,
+      "head": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "status": "no-unmatched-nonmerge-patches",
+      "git_cherry": []
+    },
+    {
+      "pr": 151,
+      "head": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "status": "patch-equivalent"
+    },
+    {
+      "pr": 152,
+      "head": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "status": "squash-merged",
+      "merge": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e",
+      "proof": {
+        "status": "ahead",
+        "ahead": 2062,
+        "behind": 0,
+        "base": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e",
+        "mergeBase": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e"
+      }
+    }
+  ],
+  "upstream_ancestor_branches": [
+    "ci/flutter-workspace",
+    "cursor/class-certificates-2db8",
+    "cursor/cloud-agent-1790580069020-0rk1h",
+    "main"
+  ],
+  "initial_open_prs": [],
+  "late_observation": {
+    "main": "115f1c20131bf0157d047dfe2e9d704ddffb22a2",
+    "open_external_prs": [
+      {
+        "number": 322,
+        "title": "WIP: Word VBA paragraph style assignment",
+        "branch": "codex/word-vba-extensions-20261121",
+        "head": "61178b9149877ef38e18814ccc694b5ea38be1d8",
+        "disposition": "New independently advancing WIP after intake; preserved on its own branch, not treated as completed work."
+      }
+    ]
+  },
+  "scope_note": "The initial branch-head proof is in initial-intake.json. This expanded summary preserves observed local counts/classifications and exact nonancestor exceptions; it does not claim to serialize all 356 fetched ref hashes. No GitHub Actions were queried or waited on."
+}
