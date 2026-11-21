@@ -1,0 +1,91 @@
+{
+  "status": "passed",
+  "started_at_utc": "2026-11-21T17:32:34.869222+00:00",
+  "initial_source_commit": "887207af33d3a4d71c1f2405c1be6c4d348d55e6",
+  "initial_source_tree": "baab4d22be5d462a86ddbe42a3c69c72ce9a1764",
+  "test_paths": [
+    "test/studio_zotero_odt_export_test.dart",
+    "test/studio_odt_open_test.dart",
+    "test/studio_zotero_shortcuts_test.dart",
+    "test/studio_mail_web_test.dart"
+  ],
+  "analysis_paths": [
+    "lib/studio_files.dart",
+    "lib/suite_workspace.dart",
+    "lib/studio_mail_web.dart",
+    "lib/studio_saved_mail.dart",
+    "test/studio_zotero_odt_export_test.dart",
+    "test/studio_odt_open_test.dart",
+    "test/studio_zotero_shortcuts_test.dart",
+    "test/studio_mail_web_test.dart"
+  ],
+  "runtime_receipt": "/workspace/scratch/78195b33b741/zotero-runtime/runtime.json",
+  "runtime_receipt_sha256": "d548a7bf3ba01c7c0bce0ca3b76842d5a3978fb9b7f57bbf32dda753e9dcd34f",
+  "runs": [
+    {
+      "name": "analyze",
+      "argv": [
+        "dart",
+        "analyze",
+        "--fatal-infos",
+        "lib/studio_files.dart",
+        "lib/suite_workspace.dart",
+        "lib/studio_mail_web.dart",
+        "lib/studio_saved_mail.dart",
+        "test/studio_zotero_odt_export_test.dart",
+        "test/studio_odt_open_test.dart",
+        "test/studio_zotero_shortcuts_test.dart",
+        "test/studio_mail_web_test.dart"
+      ],
+      "cwd": "/workspace/scratch/78195b33b741/quds_office_suite/packages/quds_office_editor/example",
+      "started_at_utc": "2026-11-21T17:32:34.870347+00:00",
+      "finished_at_utc": "2026-11-21T17:32:59.773841+00:00",
+      "wall_seconds": 24.904,
+      "exit_code": 0,
+      "stdout": "analyze.log",
+      "stdout_sha256": "32e4eb7c5c94e28467d15aa889235bf1ae0d243b292e1c76ab3f2bc95ed5145c",
+      "stderr": "analyze.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "studio",
+      "argv": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "json",
+        "test/studio_zotero_odt_export_test.dart",
+        "test/studio_odt_open_test.dart",
+        "test/studio_zotero_shortcuts_test.dart",
+        "test/studio_mail_web_test.dart"
+      ],
+      "cwd": "/workspace/scratch/78195b33b741/quds_office_suite/packages/quds_office_editor/example",
+      "started_at_utc": "2026-11-21T17:32:34.870004+00:00",
+      "finished_at_utc": "2026-11-21T17:33:18.075835+00:00",
+      "wall_seconds": 43.206,
+      "exit_code": 0,
+      "stdout": "studio.jsonl",
+      "stdout_sha256": "a892a1a1e84a9ea000a959e0afd4d2c1caa06e53a800a210cf165ac8cb54f08e",
+      "stderr": "studio.stderr",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests": {
+        "passed": 25,
+        "failed": 0,
+        "skipped": 0,
+        "completion": {
+          "success": true,
+          "type": "done",
+          "time": 41292
+        },
+        "errors": [],
+        "non_json_lines": []
+      }
+    }
+  ],
+  "source_files": 916,
+  "source_changes": [],
+  "head_after": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+  "tree_after": "baab4d22be5d462a86ddbe42a3c69c72ce9a1764",
+  "finished_at_utc": "2026-11-21T17:33:18.172149+00:00"
+}

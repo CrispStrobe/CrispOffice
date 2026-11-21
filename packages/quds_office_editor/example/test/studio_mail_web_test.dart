@@ -42,6 +42,29 @@ Future<void> _pump(WidgetTester tester) async {
 }
 
 void main() {
+  testWidgets('embedded browser Mail closes through its workspace callback', (
+    tester,
+  ) async {
+    const strings = StudioStrings(StudioLanguage.en);
+    var closed = 0;
+    await tester.pumpWidget(
+      MaterialApp(
+        home: browser.StudioMailDialog(
+          strings: strings,
+          onClose: () => closed++,
+        ),
+      ),
+    );
+    await _pump(tester);
+    await tester.tap(find.byTooltip(strings.close));
+    await _pump(tester);
+    expect(closed, 1);
+    expect(find.byType(MailMessageView), findsOneWidget);
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox.shrink());
+    await _pump(tester);
+  });
+
   testWidgets(
     'browser Mail explains account availability and opens saved bytes',
     (tester) async {

@@ -123,89 +123,95 @@ WmlTable _expectTopology(WmlDocument document) {
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  test('native merged ODT loads, reveals and edits the origin citation', () async {
-    final bytes = _odt();
-    final originalBytes = Uint8List.fromList(bytes);
-    final controller = _controller()..insertText('Draft ');
-    final previous = controller.document;
-    await controller.loadBytesAsync(
-      bytes,
-      onProgress: (_) => expect(controller.document, same(previous)),
-    );
-    final table = _expectTopology(controller.document);
-    final fields = controller.zoteroFields;
-    expect(fields.map((field) => field.citation!.citationId), [
-      'first',
-      'second',
-      'third',
-    ]);
-    expect(
-      fields.first.paragraph,
-      same(table.rows.first.cells.first.blocks.single),
-    );
-    expect(controller.isDirty, isFalse);
-    expect(controller.canUndo, isFalse);
-    expect(controller.revealZoteroField(fields.first), isTrue);
-    expect(controller.zoteroFieldAtCaret!.citation!.citationId, 'first');
+  test(
+    'native merged ODT loads, reveals and edits the origin citation',
+    () async {
+      final bytes = _odt();
+      final originalBytes = Uint8List.fromList(bytes);
+      final controller = _controller()..insertText('Draft ');
+      final previous = controller.document;
+      await controller.loadBytesAsync(
+        bytes,
+        onProgress: (_) => expect(controller.document, same(previous)),
+      );
+      final table = _expectTopology(controller.document);
+      final fields = controller.zoteroFields;
+      expect(fields.map((field) => field.citation!.citationId), [
+        'first',
+        'second',
+        'third',
+      ]);
+      expect(
+        fields.first.paragraph,
+        same(table.rows.first.cells.first.blocks.single),
+      );
+      expect(controller.isDirty, isFalse);
+      expect(controller.canUndo, isFalse);
+      expect(controller.revealZoteroField(fields.first), isTrue);
+      expect(controller.zoteroFieldAtCaret!.citation!.citationId, 'first');
 
-    controller.updateZoteroCitation(
-      fields.first,
-      fields.first.citation!.withItems(
-        fields.first.citation!.items,
-        plainCitation: '(First, p. 9)',
-      ),
-    );
-    expect(controller.zoteroFields.first.cachedText, '(First, p. 9)');
-    expect(controller.isDirty, isTrue);
-    _expectTopology(controller.document);
-    controller.unlinkZoteroField(controller.zoteroFields.first);
-    expect(controller.zoteroFields.map((field) => field.citation!.citationId), [
-      'second',
-      'third',
-    ]);
-    expect(
-      WordTree.paragraphs(table.rows.first.cells.first.blocks).single.text,
-      'Origin (First, p. 9)',
-    );
-    controller.undo();
-    expect(controller.zoteroFields.first.cachedText, '(First, p. 9)');
-    controller.undo();
-    expect(controller.zoteroFields.first.cachedText, '(First)');
-    controller.redo();
-    expect(controller.zoteroFields.first.cachedText, '(First, p. 9)');
-    _expectTopology(controller.document);
+      controller.updateZoteroCitation(
+        fields.first,
+        fields.first.citation!.withItems(
+          fields.first.citation!.items,
+          plainCitation: '(First, p. 9)',
+        ),
+      );
+      expect(controller.zoteroFields.first.cachedText, '(First, p. 9)');
+      expect(controller.isDirty, isTrue);
+      _expectTopology(controller.document);
+      controller.unlinkZoteroField(controller.zoteroFields.first);
+      expect(
+        controller.zoteroFields.map((field) => field.citation!.citationId),
+        ['second', 'third'],
+      );
+      expect(
+        WordTree.paragraphs(table.rows.first.cells.first.blocks).single.text,
+        'Origin (First, p. 9)',
+      );
+      controller.undo();
+      expect(controller.zoteroFields.first.cachedText, '(First, p. 9)');
+      controller.undo();
+      expect(controller.zoteroFields.first.cachedText, '(First)');
+      controller.redo();
+      expect(controller.zoteroFields.first.cachedText, '(First, p. 9)');
+      _expectTopology(controller.document);
 
-    final saved = controller.saveBytes();
-    expect(OdtDocumentReader.isOdt(saved), isFalse);
-    final reopened = _controller();
-    await reopened.loadBytesAsync(saved);
-    _expectTopology(reopened.document);
-    expect(reopened.zoteroFields.map((field) => field.cachedText), [
-      '(First, p. 9)',
-      '(Second)',
-      '(Third)',
-    ]);
-    expect(reopened.zoteroFields.every((field) => field.canEdit), isTrue);
-    expect(bytes, originalBytes);
-  });
+      final saved = controller.saveBytes();
+      expect(OdtDocumentReader.isOdt(saved), isFalse);
+      final reopened = _controller();
+      await reopened.loadBytesAsync(saved);
+      _expectTopology(reopened.document);
+      expect(reopened.zoteroFields.map((field) => field.cachedText), [
+        '(First, p. 9)',
+        '(Second)',
+        '(Third)',
+      ]);
+      expect(reopened.zoteroFields.every((field) => field.canEdit), isTrue);
+      expect(bytes, originalBytes);
+    },
+  );
 
-  test('hidden covered content refuses before replacing current work', () async {
-    final controller = _controller()..insertText('Draft ');
-    final original = controller.document;
-    final revision = controller.contentRevision;
-    final caret = controller.caret.logicalIndex;
-    await expectLater(
-      controller.loadBytesAsync(_odt(hiddenContent: true)),
-      throwsA(isA<StateError>()),
-    );
-    expect(controller.document, same(original));
-    expect(controller.contentRevision, revision);
-    expect(controller.caret.logicalIndex, caret);
-    expect(controller.isDirty, isTrue);
-    expect(controller.canUndo, isTrue);
-    controller.undo();
-    expect(controller.document.paragraphs.single.text, 'Retain this draft');
-  });
+  test(
+    'hidden covered content refuses before replacing current work',
+    () async {
+      final controller = _controller()..insertText('Draft ');
+      final original = controller.document;
+      final revision = controller.contentRevision;
+      final caret = controller.caret.logicalIndex;
+      await expectLater(
+        controller.loadBytesAsync(_odt(hiddenContent: true)),
+        throwsA(isA<StateError>()),
+      );
+      expect(controller.document, same(original));
+      expect(controller.contentRevision, revision);
+      expect(controller.caret.logicalIndex, caret);
+      expect(controller.isDirty, isTrue);
+      expect(controller.canUndo, isTrue);
+      controller.undo();
+      expect(controller.document.paragraphs.single.text, 'Retain this draft');
+    },
+  );
 
   test(
     'an edit during merged ODT loading invalidates its pending result',

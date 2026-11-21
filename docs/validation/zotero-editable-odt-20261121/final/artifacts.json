@@ -1,0 +1,52 @@
+[
+  {
+    "path": "archive-contents.json",
+    "bytes": 12563,
+    "sha256": "8c6aac03df3ec9a697b2aa05d93c983c0ad68ab8d98edd19483a43a8e82590cd"
+  },
+  {
+    "path": "converter-receipt.json",
+    "bytes": 13021,
+    "sha256": "0baaccb214525d2f128fda5b0a3955507392903aec574666cdd5774e7607b677"
+  },
+  {
+    "path": "execution.tar.gz",
+    "bytes": 250756,
+    "sha256": "976ee9399a19b71fb113a8f7ff87568c898e1d30edc6de1f9b7f5ee576f2e31b"
+  },
+  {
+    "path": "format-receipt.json",
+    "bytes": 1859,
+    "sha256": "619a882f02d4c8d0cf1b21487760e693cf6d0b12b7538b695b41dc98cc0e0073"
+  },
+  {
+    "path": "regression-receipt.json",
+    "bytes": 7929,
+    "sha256": "92e6f6bb49b0fb2150824a6ed70fe96e508f16eb85b3ac38208b1538ebd8adfe"
+  },
+  {
+    "path": "regression-source-binding.json",
+    "bytes": 597,
+    "sha256": "494a04aacddfa0c233ff0edead24060f5f7e11bf0405196e540a7d1e1b4399a6"
+  },
+  {
+    "path": "review.json",
+    "bytes": 5155,
+    "sha256": "13524a2b86bee02f8354b30cdd581dc02e1369ad8daf79bfc63209d581500a1c"
+  },
+  {
+    "path": "studio-receipt.json",
+    "bytes": 3239,
+    "sha256": "b79b611593dfe16203e462e7da6f71ebbc2bd40487eba6614a0f70e649b4570d"
+  },
+  {
+    "path": "studio-source-binding.json",
+    "bytes": 404,
+    "sha256": "e6cfa112e7a9ec6e5df7dc4a15b8fac5d9ea4ad76889916ff809dc82e2cebd34"
+  },
+  {
+    "path": "summary.json",
+    "bytes": 1861,
+    "sha256": "89c0f84c31377aa7a820bfa2068f87f48afc08e036d8f5fc7833e6bd8ea0658e"
+  }
+]

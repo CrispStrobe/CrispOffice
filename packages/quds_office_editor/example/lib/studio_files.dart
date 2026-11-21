@@ -627,6 +627,7 @@ abstract final class StudioFiles {
   static Future<bool> save({
     required Uint8List bytes,
     required String fileName,
+    bool ensureExtension = false,
     void Function(StudioSaveStage stage)? onStage,
   }) async {
     final String ext = fileName.split('.').last;
@@ -644,8 +645,17 @@ abstract final class StudioFiles {
       return false;
     }
     onStage?.call(StudioSaveStage.writing);
-    await File(path).writeAsBytes(bytes, flush: true);
+    final destination = ensureExtension ? withExtension(path, fileName) : path;
+    await File(destination).writeAsBytes(bytes, flush: true);
     return true;
+  }
+
+  /// A separate ODT copy never becomes the active Word document's save path.
+  static String zoteroOdtExportName(String name) {
+    final clean = name.trim();
+    final dot = clean.lastIndexOf('.');
+    final stem = dot > 0 ? clean.substring(0, dot) : clean;
+    return '${stem.isEmpty ? 'Document1' : stem}.odt';
   }
 
   static OpcPackageKind kindOf(String name, Uint8List bytes) {
