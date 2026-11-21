@@ -463,14 +463,14 @@ endnote master; reopening validates their effective formatting and compatible
 page geometry. Optional soft-page hints are recomputed. Actual acceptance now
 follows three fixtures and eleven fields through two external LibreOffice saves
 with a native/DOCX/native cycle between them. The following increment replaces
-fixed table-screen padding with modeled margins. Active footnote separators and
-installed release-host/plugin acceptance remain open.
+fixed table-screen padding with modeled margins. At that checkpoint, active
+footnote separators and installed release-host/plugin acceptance remained open.
 
 The work record separates local native update/save regressions, actual converter
-cycles, and installed-plugin acceptance. In particular, active LibreOffice
-footnote separator geometry still needs a native model/layout/persistence
-implementation. Endnote-only and table-only acceptance cannot establish that
-footnote behavior or full Word/LibreOffice parity.
+cycles, and installed-plugin acceptance. The later active-separator increment
+below adds native model/layout/persistence support. Endnote-only and table-only
+acceptance does not establish that footnote behavior or full Word/LibreOffice
+parity.
 
 ## Delivered increment: uniform table margins and editable ODT padding
 
@@ -504,6 +504,32 @@ records the implementation, focused regressions, repeated native/ODT/DOCX
 lifecycles and identified LibreOffice converter evidence. Installed Zotero
 workflows in Word and supported LibreOffice releases remain a separate gate;
 this increment does not establish complete plugin parity.
+
+## Delivered increment: active footnote separators
+
+Supported footnote documents now retain one explicit separator geometry across
+ordinary and continuation pages: independent before/after gaps, nominal line
+thickness, relative body width, physical left/center/right alignment, RGB color
+and solid/hidden line style. Native pagination reserves both gaps and thickness,
+even when the rule is hidden or has zero width. Editor and PDF rendering use
+the modeled rectangle; documents without an explicit model retain their legacy
+appearance. Continuation-page image fitting accounts for the same reservation.
+
+Native ODT import/export preserves supported geometry and known LibreOffice
+zero-length omissions. A compatible representable dormant definition survives
+deleting the last note and later reinserting one. Used unsupported or differing
+page definitions refuse without publishing a partial document. Native DOCX
+save/reopen uses a bounded canonical special-note/settings mapping with format
+precision checks; arbitrary imported separator XML remains preserved opaquely.
+
+The [separator work record](../../validation/zotero-footnote-separators-20261121/README.md)
+retains local regression evidence, fourteen direct ODT geometry cases and three
+active-citation fixtures through two real LibreOffice saves with controlled
+native refresh and DOCX/ODT cycles between them. The identified development
+converter preserves the tested direct ODT geometry but normalizes custom DOCX
+separator paragraphs. That failed route, installed Word rendering, supported
+release-host qualification and live Zotero plugin workflows remain separate
+acceptance work.
 
 ## Next implementation and acceptance steps
 
