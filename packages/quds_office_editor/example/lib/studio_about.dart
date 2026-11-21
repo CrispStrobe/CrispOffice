@@ -6,6 +6,7 @@ import 'studio_strings.dart';
 Future<void> showStudioAbout(BuildContext context, StudioStrings strings) =>
     showDialog<void>(
       context: context,
+      useRootNavigator: true,
       builder: (context) => StudioAboutDialog(strings: strings),
     );
 
