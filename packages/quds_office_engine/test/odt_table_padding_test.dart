@@ -420,6 +420,18 @@ void main() {
     expect(table.grid[1], 0.004);
   });
 
+  test('export refuses exhausted decimal width after a larger column', () {
+    final document = _document(0.01);
+    final table = document.sections.single.blocks.whereType<WmlTable>().single;
+    table.grid[1] = 0.02;
+    expect(
+      () => OdtDocumentWriter.writeEditableZoteroBytes(document),
+      throwsArgumentError,
+    );
+    expect(table.grid, [240, 0.02]);
+    expect(table.properties.cellMargin, 0.01);
+  });
+
   for (final margin in [
     -1.0,
     double.nan,

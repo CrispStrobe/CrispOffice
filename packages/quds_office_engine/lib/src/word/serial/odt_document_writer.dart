@@ -1617,13 +1617,17 @@ abstract final class OdtDocumentWriter {
   ) {
     // Check the geometry a reader receives, including two-decimal rounding.
     // A small positive native content width must not become zero on export.
-    final emittedPadding = double.parse(padding.toStringAsFixed(2));
-    final offsets = <double>[0];
+    // Integer hundredths also avoid cancellation when subtracting cumulative
+    // offsets, e.g. (240.02 - 240) must equal twice a 0.01 pt margin exactly.
+    final emittedPadding = BigInt.parse(
+      padding.toStringAsFixed(2).replaceFirst('.', ''),
+    );
+    final offsets = <BigInt>[BigInt.zero];
     for (final width in table.grid) {
-      final emitted = double.tryParse(
-        _OdtLayout._paragraphDecimal(width) ?? '',
+      final emitted = BigInt.tryParse(
+        _OdtLayout._paragraphDecimal(width)?.replaceFirst('.', '') ?? '',
       );
-      if (emitted == null || !emitted.isFinite || emitted <= 0) {
+      if (emitted == null || emitted <= BigInt.zero) {
         throw ArgumentError.value(
           width,
           'grid',
@@ -1633,9 +1637,9 @@ abstract final class OdtDocumentWriter {
       offsets.add(offsets.last + emitted);
     }
     final explicitColumns = BigInt.from(table.grid.length);
-    double offset(BigInt column) => column <= explicitColumns
+    BigInt offset(BigInt column) => column <= explicitColumns
         ? offsets[column.toInt()]
-        : offsets.last + (column - explicitColumns).toDouble() * 120;
+        : offsets.last + (column - explicitColumns) * BigInt.from(12000);
     for (var rowIndex = 0; rowIndex < table.rows.length; rowIndex++) {
       final row = table.rows[rowIndex];
       var column = BigInt.from(row.gridBefore > 0 ? row.gridBefore : 0);
@@ -1643,7 +1647,7 @@ abstract final class OdtDocumentWriter {
         final end = column + BigInt.from(placement.columns);
         if (!placement.covered) {
           final width = offset(end) - offset(column);
-          if (!width.isFinite || emittedPadding * 2 >= width) {
+          if (emittedPadding + emittedPadding >= width) {
             throw ArgumentError.value(
               padding,
               'cellMargin',
