@@ -42,6 +42,26 @@ void main() {
     );
   });
 
+  for (final useUris in [true, false]) {
+    test('remote image alias useUris=$useUris retains a defensive copy', () {
+      final source = [Uri.parse('https://images.example/first.png')];
+      final result = MailReaderPresentation(
+        text: '',
+        runs: const [],
+        images: const [],
+        diagnostics: const [],
+        remoteImageUris: useUris ? source : null,
+        remoteImageUrls: useUris ? null : source,
+      );
+      source.clear();
+      expect(result.remoteImageUris, [
+        Uri.parse('https://images.example/first.png'),
+      ]);
+      expect(result.remoteImageUris, same(result.remoteImageUrls));
+      expect(() => result.remoteImageUris.clear(), throwsUnsupportedError);
+    });
+  }
+
   test('published selection and enabled spellings expose one value', () {
     final scope = Object();
     final list = MailMessageList(

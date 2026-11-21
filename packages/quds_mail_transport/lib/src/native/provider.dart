@@ -50,7 +50,7 @@ final class _Operation {
 /// Stateless connections keep account generations and credentials isolated.
 /// A provider allows one active operation, and never automatically replays one.
 final class NativeMailImapProvider
-    implements MailProvider, MailImapHeaderBrowser {
+    implements MailProvider, MailImapHeaderBrowser, MailFlagObserver {
   NativeMailImapProvider({
     required this.configuration,
     required this.credentialStore,
@@ -698,6 +698,42 @@ final class NativeMailImapProvider
     );
     operation.check();
     return result.messages.isEmpty ? null : result.messages.single;
+  }
+
+  @override
+  Future<MailResult<MailFlagObservation>> observeFlags(
+    MailRemoteIdentity identity, {
+    required MailOperationLease lease,
+  }) async {
+    if (identity is! MailImapIdentity || !_mailboxValid(identity.mailbox)) {
+      return _failure(MailProblemCode.invalidInput);
+    }
+    return _run(lease, (client, operation) async {
+      final selected = await _select(client, operation, identity.mailbox);
+      if (selected.uidValidity != identity.uidValidity) {
+        return MailFlagObservation.identityChanged(identity: identity);
+      }
+      // The bounded header FETCH uses BODY.PEEK and never changes Seen. An
+      // empty exact-UID response is distinct from an absent cached list row.
+      final source = await _readIdentity(client, operation, identity);
+      if (source == null) {
+        return MailFlagObservation.missing(identity: identity);
+      }
+      if (source.uid != identity.uid || source.flags == null) {
+        throw const _Failure(MailProblemCode.providerFailure);
+      }
+      final flags = source.flags!.map((flag) => flag.toLowerCase()).toSet();
+      return MailFlagObservation.present(
+        identity: identity,
+        flags: MailMessageFlags(
+          isRead: flags.contains(r'\seen'),
+          isFlagged: flags.contains(r'\flagged'),
+          isAnswered: flags.contains(r'\answered'),
+          isDraft: flags.contains(r'\draft'),
+          isDeleted: flags.contains(r'\deleted'),
+        ),
+      );
+    });
   }
 
   Future<void> _setFlag(

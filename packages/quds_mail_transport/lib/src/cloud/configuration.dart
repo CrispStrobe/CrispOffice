@@ -172,6 +172,7 @@ enum MailCloudOperation {
   capabilities,
   listMailboxes,
   fetchHeaders,
+  observeFlags,
   fetchMessage,
   pullChanges,
   apply,

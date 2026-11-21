@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Observe current read/flag state without mutation for exact IMAP, EWS, Gmail
+  and Microsoft 365 identities. Use bounded metadata reads, validate IMAP
+  UIDVALIDITY and returned identity, reject incomplete flag observations, and
+  distinguish exact-message absence from authentication/transport failures.
+  Browser factories return explicit unsupported without accessing credentials.
+
 - Retain uncertainty after a dispatched cloud mutation returns HTTP 410,
   stopping later flag commands until refresh. Preserve the independent Send
   rejection policy, with Gmail and Microsoft 365 regression coverage.
