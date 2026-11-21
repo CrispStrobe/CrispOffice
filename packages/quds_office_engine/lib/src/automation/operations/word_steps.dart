@@ -7,6 +7,7 @@ import 'word_list_steps.dart';
 import 'word_page_setup_steps.dart';
 import 'word_section_start_steps.dart';
 import 'word_spacing_steps.dart';
+import 'word_style_steps.dart';
 import 'word_structure_steps.dart';
 import 'word_text_columns_steps.dart';
 
@@ -16,6 +17,7 @@ const wordOperations = <String, List<String>>{
   'replaceText': ['paragraph', 'text', 'start', 'end', ..._storyFields],
   'heading': ['paragraph', 'level', ..._storyFields],
   'applyStyle': ['paragraph', 'style', ..._storyFields],
+  'paragraphStyle': ['paragraph', 'name', 'builtin', ..._storyFields],
   'characterStyle': ['paragraph', 'run', 'style', ..._storyFields],
   'tableStyle': ['table', 'style'],
   'styleDefinition': ['style', 'type', 'rPr', 'pPr', 'tblPr', 'tcPr'],
@@ -158,6 +160,8 @@ void applyStep(
         throw ArgumentError('Unknown paragraph style: $style');
       }
       WordStyles.apply(paragraph(), style, document: doc);
+    case 'paragraphStyle':
+      setWordParagraphStyle(doc, paragraph(), s);
     case 'characterStyle':
       final id = s.string('style');
       _sourceStyle(doc, id, 'character');

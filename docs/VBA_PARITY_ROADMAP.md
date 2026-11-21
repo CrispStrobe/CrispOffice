@@ -216,6 +216,22 @@ See the [exact contract](VBA_WORD_MACROS.md#section-orientation-and-start-contro
 [BAS example](../packages/quds_office_engine/example/macros/word_sections.bas),
 and [local qualification](validation/word-vba-sections-20261121/README.md).
 
+### Existing paragraph style assignment
+
+The Word adapter supports writable `Paragraph.Style` and a selected paragraph's
+`Range.Style`, including typed aliases, `With` and required `ByVal` helpers.
+Native execution resolves primary style names or 13 supported built-ins from
+the active document styles part and updates a sparse paragraph style reference.
+Direct formatting, character/table inheritance, previous plan edits, independent
+header/footer ownership and transaction rollback are preserved. Missing or
+ambiguous definitions and effective numbering changes are explicitly refused.
+
+This is a Stage 4 source-to-plan increment. It does not add live style reads,
+Style objects, collection enumeration, style creation or an embedded VBA host.
+See the [contract](VBA_WORD_MACROS.md#existing-paragraph-styles),
+[BAS example](../packages/quds_office_engine/example/macros/word_styles.bas)
+and [local qualification](validation/word-vba-styles-20261121/README.md).
+
 ### Uniform section text columns
 
 The Word adapter extends explicit section page setup with typed `TextColumns`

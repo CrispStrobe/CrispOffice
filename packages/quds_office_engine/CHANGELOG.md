@@ -4,6 +4,14 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Extend bounded Word VBA with `Paragraph.Style` and selected `Range.Style`
+  assignments by primary name or 13 built-in constants. Add guarded native
+  `docx.paragraphStyle` with targeted inheritance refresh, preserved direct
+  formatting and sparse source metadata, explicit same-value references and
+  atomic refusal of ambiguous styles or changed numbering. Include a runnable
+  BAS example and source, native, CLI/MCP, rollback and VM/JavaScript coverage.
+  See the [style contract](../../docs/VBA_WORD_MACROS.md#existing-paragraph-styles).
+
 - Extend bounded native ODT input with horizontal/vertical merged tables.
   Validate explicit covered-cell ownership, preserve originating Zotero fields,
   and emit empty native vertical continuations with summed logical widths.

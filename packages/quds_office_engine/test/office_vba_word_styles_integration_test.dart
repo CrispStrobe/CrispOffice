@@ -57,7 +57,7 @@ void main() {
   });
 
   test(
-    'typed helper can style an independent header without changing body',
+    'helper rebinding retains the caller header selector',
     () async {
       final input = portable.wordStylesInput();
       final session = OfficeMacroSession(input, format: OfficeMacroFormat.docx);

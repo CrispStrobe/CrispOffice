@@ -140,6 +140,7 @@ geometry has its separate mapping below.
 | Word source operation | Native operation | Arguments in addition to `paragraph: p` |
 | --- | --- | --- |
 | `range.InsertBefore text` | `docx.replaceText` | `start: 0`, `end: 0`, `text` |
+| `paragraph.Style = value` or `range.Style = value` | `docx.paragraphStyle` | Exactly one primary style `name` or supported `builtin` constant |
 | `range.Font.Bold = value` | `docx.runFormat` | `bold: value` |
 | `range.Font.Italic = value` | `docx.runFormat` | `italic: value` |
 | `range.Font.Size = value` | `docx.runFormat` | `size: value` in points |
@@ -202,6 +203,76 @@ rule/amount operation. Repeated
 `InsertBefore` calls act on the paragraph as it exists at each step: inserting
 `"A"` and then `"B"` before `"tail"` produces `"BAtail"`. A later font operation
 formats the paragraph's current text, including text inserted by earlier steps.
+
+### Existing paragraph styles
+
+An explicitly selected `Paragraph` or its `Range` accepts a `Style` assignment:
+
+```vb
+Sub Main()
+    ActiveDocument.Paragraphs(1).Style = wdStyleHeading1
+    With ActiveDocument.Paragraphs(2).Range
+        .Font.Bold = True
+        .Style = "Report Body"
+    End With
+End Sub
+```
+
+Typed aliases, nested `With`, required `ByVal Paragraph` / `ByVal Range`
+helpers, named helper arguments, String expressions and scalar Variant values
+retain the selected paragraph. Independent header/footer paragraphs use the
+same existing story-ownership checks. Each assignment emits one
+`docx.paragraphStyle` operation with the ordinary zero-based paragraph/story
+selector and exactly one of `name: String` or `builtin: int`.
+
+| Source constant | Numeric value | Existing native primary name |
+| --- | --- | --- |
+| `wdStyleNormal` | `-1` | Normal |
+| `wdStyleHeading1` through `wdStyleHeading9` | `-2` through `-10` | heading 1 through heading 9 |
+| `wdStyleCaption` | `-35` | caption |
+| `wdStyleTitle` | `-63` | Title |
+| `wdStyleSubtitle` | `-75` | Subtitle |
+
+Names are matched case-insensitively against the primary name of a unique
+existing paragraph style in the document's active native styles part. Spaces
+are significant. The style's ID may differ from its name. Numeric built-ins
+also require a noncustom native definition with the corresponding English
+primary name; they do not guess localized names or use arbitrary style IDs.
+A String such as `"-2"` remains a name. This operation never creates a missing
+style or falls back to the engine's built-in style catalog.
+
+The bounded native contract changes the selected paragraph's style reference
+and refreshes its inherited paragraph/run properties while preserving direct
+formatting, explicit same-value overrides, character styles, table context,
+pending earlier plan edits and unrelated XML metadata. Unselected paragraphs
+are not recascaded. An assignment of the currently inherited style still
+creates an explicit native `pStyle` reference. Existing `docx.applyStyle`
+retains its separate catalog/application behavior.
+
+Malformed or ambiguous style relationships, duplicate identities/names,
+unresolved or cyclic inheritance, unsupported property ownership and changes
+to effective numbering are refused before publication. Failed later operations
+roll back the complete macro, including any earlier style assignment. The
+ordinary mutation policy, tool allowlist, step budget, validation-only mode,
+recording and DOCM preservation rules apply.
+
+Style reads, `Styles` collections, Style objects, numeric collection indices,
+style creation, multi-paragraph or whole-story `Range.Style`, and embedded VBA
+execution remain unsupported. Names must be nonempty XML-safe strings without
+tabs or line breaks; Boolean, array and object values are not style selectors.
+This is a bounded source-to-plan feature, without installed Microsoft Word
+differential qualification of direct-format semantics.
+
+The [complete example](../packages/quds_office_engine/example/macros/word_styles.bas)
+uses three existing body paragraphs and existing Heading 1, Report Body and
+Caption definitions. Its five operations demonstrate typed helpers and direct
+formatting before and after a style assignment. The
+[qualification record](validation/word-vba-styles-20261121/README.md) describes
+the local checks and reproducible portable smoke test.
+
+Primary references: Microsoft's [Paragraph.Style](https://learn.microsoft.com/en-us/office/vba/api/word.paragraph.style),
+[Range.Style](https://learn.microsoft.com/en-us/office/vba/api/word.range.style)
+and [WdBuiltinStyle](https://learn.microsoft.com/en-us/office/vba/api/word.wdbuiltinstyle).
 
 ### Section page setup
 

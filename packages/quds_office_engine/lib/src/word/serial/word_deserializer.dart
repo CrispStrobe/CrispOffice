@@ -18,6 +18,7 @@ import '../model/wml_run_edit.dart';
 import '../model/word_bookmarks.dart';
 import '../model/word_content_controls.dart';
 import '../model/word_fields.dart';
+import '../model/word_field_spans.dart';
 import '../model/word_link.dart';
 import '../model/word_notes.dart';
 import '../model/word_proofing_language.dart';
@@ -41,6 +42,7 @@ import 'word_settings_io.dart';
 import 'word_table_property_io.dart';
 
 part 'word_style_cascade.dart';
+part 'word_paragraph_style.dart';
 
 enum _SdtBreakLayout { none, liftLast, opaque }
 
@@ -1575,6 +1577,7 @@ class WordDeserializer {
         continue;
       }
       if ((reader.localName == 'spacing' ||
+              reader.localName == 'pStyle' ||
               reader.localName == 'bidi' ||
               reader.localName == 'tabs' ||
               reader.localName == 'suppressAutoHyphens') &&
@@ -2475,6 +2478,7 @@ class WordDeserializer {
             'smallCaps',
             'lang',
             'rFonts',
+            'rStyle',
           }.contains(reader.localName) &&
           (reader.depth != depth + 1 ||
               (reader.namespaceUri != OfficeNamespaces.w &&
@@ -4034,6 +4038,21 @@ class WordDeserializer {
     replacement: replacement,
     properties: paragraphProperties,
   );
+
+  /// Assign an existing native paragraph style by its primary [name] or a
+  /// supported Word [builtin] constant. Exactly one selector is required.
+  /// Direct paragraph/run properties and opaque style metadata are preserved.
+  /// The selected paragraph is prepared privately and only published after
+  /// source ownership, style inheritance, and numbering checks succeed.
+  void editParagraphStyle(
+    WmlDocument document,
+    WmlParagraph paragraph, {
+    String? name,
+    int? builtin,
+  }) => _StyleCascade(
+    this,
+    document,
+  ).assignParagraphStyle(paragraph, name: name, builtin: builtin);
 
   /// Recompute effective formatting after editing a source style definition.
   void refreshStyles(WmlDocument document) {
