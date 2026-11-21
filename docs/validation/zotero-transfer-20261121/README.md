@@ -36,3 +36,17 @@ This first implementation checkpoint contains the wire protocol and regression
 tests. Model, editor and interoperability qualification are still in progress.
 Final commands, counts, source binding and remaining boundaries will be recorded
 before publication to main. Intermediate runs are not final acceptance.
+
+## Qualification of the integrated `3da241d5` snapshot
+
+The status above describes the original implementation checkpoint. The Word
+section-macro integration subsequently qualified and included commit
+`3da241d5f1f3e43d7be47f00bcf7fbe62bd8272b`: 798 native Word/Zotero cases and
+97 Flutter editor cases passed. A reviewed brace-only helper cleanup then
+passed strict analysis and 30 native transfer cases. Exact source identities,
+logs and limits are retained in the
+[combined local acceptance record](../word-vba-sections-20261121/README.md) and
+[incoming review](../word-vba-sections-20261121/incoming-zotero-engine-review.json).
+This applies to that captured source, not later work on the advancing Zotero
+branch. Installed Word, LibreOffice and Zotero interoperability remains
+unexecuted.

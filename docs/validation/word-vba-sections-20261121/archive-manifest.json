@@ -1,0 +1,22 @@
+{
+  "local-qualification-evidence.tar.gz": {
+    "bytes": 764466,
+    "sha256": "0b69a5661458fe0e660ef416f6d44d9e688a5c6a5f0473bdcc9091288177abcc"
+  },
+  "preintegration-evidence.tar.gz": {
+    "bytes": 722989,
+    "sha256": "6005c21ca4ba91c8e7f6cb915f1089a28272cc2ff969a98e016c06a25bcaabe3"
+  },
+  "incoming-editor-evidence.tar.gz": {
+    "bytes": 27280,
+    "sha256": "0f9ac059f6ccdd7ac1cb0bf62a1d923c2356be22f08275c1d48f6312d62532ab"
+  },
+  "incoming-zotero-engine-evidence.tar.gz": {
+    "bytes": 326644,
+    "sha256": "247a6505acc000c19f0d2b9cd8a63e9404c90615b5037715f704a0ed913851d4"
+  },
+  "late-incoming-flutter-evidence.tar.gz": {
+    "bytes": 16996,
+    "sha256": "aa04b1534f83ec9989d7a57dbcd24da83ef2fc671241e93c5450ab38b38bfd7a"
+  }
+}
