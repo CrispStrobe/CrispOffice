@@ -225,6 +225,7 @@ class _MailMessageViewState extends State<MailMessageView> {
                 .whereType<Uri>()
                 .toSet()
                 .toList(growable: false);
+            final labels = controller.labels;
             final padding = widget.compact ? 12.0 : 20.0;
             return RepaintBoundary(
               key: const ValueKey('mail-reader-repaint-boundary'),
@@ -240,14 +241,19 @@ class _MailMessageViewState extends State<MailMessageView> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            Text(
-                              presentation.rejected
-                                  ? 'Message display unavailable'
-                                  : '${_statusLabel(result.status)} · ${controller.mode.name} reader',
-                              key: const ValueKey('mail-reader-status'),
-                              style: Theme.of(context).textTheme.titleMedium,
-                            ),
-                            const SizedBox(height: 8),
+                            // A completely decoded message needs no status
+                            // line; partial or failed decoding is reported.
+                            if (presentation.rejected ||
+                                result.status != MailParseStatus.complete) ...[
+                              Text(
+                                presentation.rejected
+                                    ? labels.displayUnavailable
+                                    : labels.status(result.status),
+                                key: const ValueKey('mail-reader-status'),
+                                style: Theme.of(context).textTheme.titleMedium,
+                              ),
+                              const SizedBox(height: 8),
+                            ],
                             Wrap(
                               spacing: 8,
                               runSpacing: 4,
@@ -258,7 +264,7 @@ class _MailMessageViewState extends State<MailMessageView> {
                                       ? null
                                       : controller.selectAll,
                                   icon: const Icon(Icons.select_all),
-                                  label: const Text('Select all'),
+                                  label: Text(labels.selectAll),
                                 ),
                                 TextButton.icon(
                                   key: const ValueKey('mail-copy'),
@@ -266,13 +272,13 @@ class _MailMessageViewState extends State<MailMessageView> {
                                       ? null
                                       : () => unawaited(_copy()),
                                   icon: const Icon(Icons.copy),
-                                  label: const Text('Copy selection'),
+                                  label: Text(labels.copySelection),
                                 ),
                                 TextButton.icon(
                                   key: const ValueKey('mail-find'),
                                   onPressed: _showFind,
                                   icon: const Icon(Icons.search),
-                                  label: const Text('Find in message'),
+                                  label: Text(labels.findInMessage),
                                 ),
                                 if (result.original != null &&
                                     widget.onOpenSource != null)
@@ -294,8 +300,8 @@ class _MailMessageViewState extends State<MailMessageView> {
                                       ),
                                       label: Text(
                                         view == MailSourceView.source
-                                            ? 'Raw source'
-                                            : 'Hex',
+                                            ? labels.rawSource
+                                            : labels.hex,
                                       ),
                                     ),
                                 if (message?.body.html != null &&
@@ -306,8 +312,8 @@ class _MailMessageViewState extends State<MailMessageView> {
                                     ),
                                     child: Text(
                                       controller.preferHtml
-                                          ? 'Show plain text'
-                                          : 'Show static HTML',
+                                          ? labels.showPlainText
+                                          : labels.showStaticHtml,
                                     ),
                                   ),
                               ],
@@ -322,8 +328,8 @@ class _MailMessageViewState extends State<MailMessageView> {
                                   controller: _findInput,
                                   focusNode: _findFocus,
                                   maxLength: 2048,
-                                  decoration: const InputDecoration(
-                                    labelText: 'Find in decoded message',
+                                  decoration: InputDecoration(
+                                    labelText: labels.findField,
                                     counterText: '',
                                     border: OutlineInputBorder(),
                                   ),
@@ -336,18 +342,20 @@ class _MailMessageViewState extends State<MailMessageView> {
                                 crossAxisAlignment: WrapCrossAlignment.center,
                                 children: [
                                   Text(
-                                    '${controller.searchMatches.length}${controller.searchHasMore ? '+' : ''} '
-                                    '${controller.searchMatches.length == 1 && !controller.searchHasMore ? 'match' : 'matches'}',
+                                    labels.matches(
+                                      controller.searchMatches.length,
+                                      more: controller.searchHasMore,
+                                    ),
                                   ),
                                   IconButton(
-                                    tooltip: 'Previous match (Shift+F3)',
+                                    tooltip: labels.previousMatch,
                                     onPressed: controller.searchMatches.isEmpty
                                         ? null
                                         : () => _next(backwards: true),
                                     icon: const Icon(Icons.arrow_upward),
                                   ),
                                   IconButton(
-                                    tooltip: 'Next match (F3)',
+                                    tooltip: labels.nextMatch,
                                     onPressed: controller.searchMatches.isEmpty
                                         ? null
                                         : _next,
@@ -490,7 +498,7 @@ class _MailMessageViewState extends State<MailMessageView> {
                                           icon: const Icon(
                                             Icons.visibility_outlined,
                                           ),
-                                          label: const Text('Open read only'),
+                                          label: Text(labels.openReadOnly),
                                         ),
                                     ],
                                   ),
@@ -510,15 +518,6 @@ class _MailMessageViewState extends State<MailMessageView> {
     );
   }
 }
-
-String _statusLabel(MailParseStatus status) => switch (status) {
-  MailParseStatus.complete => 'Decoded message',
-  MailParseStatus.partial => 'Partially decoded message',
-  MailParseStatus.rejected => 'Message rejected',
-  MailParseStatus.unsupported => 'Unsupported message',
-  MailParseStatus.failed => 'Message decoding failed',
-  MailParseStatus.cancelled => 'Message decoding cancelled',
-};
 
 class _CidImage extends StatefulWidget {
   const _CidImage({super.key, required this.image});

@@ -157,7 +157,7 @@ WmlDocument _partnerUpdate() => WmlDocument(
         ),
         _para(
           'We recieved positive feedback from partner offices in Lisbon, '
-          'Amman and Montreal. The bilingual style guide is an major step '
+          'Amman, and Montreal. The bilingual style guide is an major step '
           'toward consistent publications in both languages.',
         ),
         _para('Summary in Arabic', style: 'Heading1'),
@@ -186,16 +186,17 @@ WmlDocument _partnerUpdate() => WmlDocument(
 const _germanWrong = 'Die Katzen auf dem Sofa schläft.';
 
 WmlDocument _germanPractice() => WmlDocument(
-  proofingLanguage: 'en-US',
+  proofingLanguage: 'de-DE',
   sections: <WmlSection>[
     WmlSection(
       blocks: <WmlBlock>[
-        _para('German Practice — Week 3', style: 'Title'),
+        _para('German Practice — Week 3', style: 'Title', language: 'en-US'),
         _para(
           'Homework sentences from Tuesday’s conversation class. Topic: '
           'subject–verb agreement with plural subjects.',
+          language: 'en-US',
         ),
-        _para('Sentences', style: 'Heading1'),
+        _para('Sentences', style: 'Heading1', language: 'en-US'),
         _para(
           'Die Kinder spielen im Garten, und der Hund liegt in der Sonne.',
           language: 'de-DE',
@@ -209,10 +210,11 @@ WmlDocument _germanPractice() => WmlDocument(
           'Nach dem Unterricht trinken die Studenten zusammen einen Kaffee.',
           language: 'de-DE',
         ),
-        _para('Next lesson', style: 'Heading1'),
+        _para('Next lesson', style: 'Heading1', language: 'en-US'),
         _para(
           'Separable verbs and the perfect tense. Bring three sentences about '
           'your weekend.',
+          language: 'en-US',
         ),
       ],
     ),
@@ -234,6 +236,23 @@ SmlCell _set(SmlWorksheet sheet, int col, int row, Object? value) {
   }
   return cell;
 }
+
+const _amountStyle = 1;
+const _percentStyle = 2;
+
+/// Cell formats 0 General, 1 `#,##0`, 2 `0.0 %`.
+SmlStyleSheet _salesStyles() => SmlStyleSheet(
+  numFmts: <int, String>{0: 'General', 164: '#,##0', 165: '0.0 %'},
+  cellXfsNumFmt: <int>[0, 164, 165],
+  cellXfsAlign: <SmlHAlign>[
+    SmlHAlign.general,
+    SmlHAlign.general,
+    SmlHAlign.general,
+  ],
+  cellXfsWrap: <bool>[false, false, false],
+  cellXfsFillId: <int>[0, 0, 0],
+  cellXfsFontId: <int>[0, 0, 0],
+);
 
 void _header(SmlWorksheet sheet, int row, int count) {
   for (var c = 0; c < count; c++) {
@@ -262,22 +281,27 @@ SmlWorkbook _salesWorkbook() {
     final row = r + 1;
     _set(sales, 0, row, regions[r].$1);
     for (var q = 0; q < 4; q++) {
-      _set(sales, q + 1, row, regions[r].$2[q]);
+      _set(sales, q + 1, row, regions[r].$2[q]).styleIndex = _amountStyle;
     }
-    _set(sales, 5, row, '=SUM(B${row + 1}:E${row + 1})');
-    _set(sales, 6, row, '=ROUND(F${row + 1}/F\$7*100,1)');
+    _set(sales, 5, row, '=SUM(B${row + 1}:E${row + 1})').styleIndex =
+        _amountStyle;
+    _set(sales, 6, row, '=F${row + 1}/F\$7').styleIndex = _percentStyle;
   }
   final total = regions.length + 1;
   _set(sales, 0, total, 'Total').fontBold = true;
   for (var c = 1; c <= 5; c++) {
     final col = String.fromCharCode(65 + c);
-    _set(sales, c, total, '=SUM(${col}2:${col}6)').fontBold = true;
+    _set(sales, c, total, '=SUM(${col}2:${col}6)')
+      ..fontBold = true
+      ..styleIndex = _amountStyle;
   }
-  _set(sales, 6, total, '=SUM(G2:G6)').fontBold = true;
+  _set(sales, 6, total, '=SUM(G2:G6)')
+    ..fontBold = true
+    ..styleIndex = _percentStyle;
   _set(sales, 0, total + 2, 'Average per region');
-  _set(sales, 5, total + 2, '=AVERAGE(F2:F6)');
+  _set(sales, 5, total + 2, '=AVERAGE(F2:F6)').styleIndex = _amountStyle;
   _set(sales, 0, total + 3, 'Best quarter (all regions)');
-  _set(sales, 5, total + 3, '=MAX(B7:E7)');
+  _set(sales, 5, total + 3, '=MAX(B7:E7)').styleIndex = _amountStyle;
   sales.columnWidths[0] = 170;
   for (var c = 1; c <= 6; c++) {
     sales.columnWidths[c] = 84;
@@ -362,7 +386,8 @@ SmlWorkbook _salesWorkbook() {
   ];
   for (var r = 0; r < targetRows.length; r++) {
     for (var c = 0; c < targetRows[r].length; c++) {
-      _set(targets, c, r + 1, targetRows[r][c]);
+      final cell = _set(targets, c, r + 1, targetRows[r][c]);
+      if (c == 1) cell.styleIndex = _amountStyle;
     }
   }
   targets.columnWidths[0] = 160;
@@ -371,7 +396,10 @@ SmlWorkbook _salesWorkbook() {
   _set(notes, 0, 0, 'Figures in USD, rounded to the nearest 50.');
   _set(notes, 0, 1, 'Source: regional sales reports, reviewed 4 January 2027.');
 
-  return SmlWorkbook(sheets: <SmlWorksheet>[sales, targets, notes]);
+  return SmlWorkbook(
+    sheets: <SmlWorksheet>[sales, targets, notes],
+    styles: _salesStyles(),
+  );
 }
 
 PmlShape _box({
@@ -550,7 +578,7 @@ PmlPresentation _launchDeck() => PmlPresentation(
         ),
         _box(
           id: 4,
-          name: 'Takeaways',
+          name: 'Key results',
           text:
               '2,960 beta sign-ups in four weeks\n\n87% would recommend the product\n\nMost requested: offline editing',
           fill: 'DEEAF6',
@@ -648,11 +676,26 @@ mail.Mailbox _box2(String name, [List<mail.MailboxFlag> flags = const []]) =>
 
 const _reportUid = 108;
 
-String _minimalPdf() {
-  const objects = <String>[
+/// A valid one-page PDF of about 240 KB (an uncompressed content stream of
+/// report lines), the size of a typical short report.
+String _reportPdf() {
+  final content = StringBuffer('BT /F1 9 Tf 40 800 Td 11 TL\n');
+  var line = 0;
+  while (content.length < 240 * 1024) {
+    content.write(
+      '(Q4 partner report - section ${line ~/ 60 + 1}, line ${line % 60 + 1}: '
+      'review times, glossary growth and regional publication volumes) Tj T*\n',
+    );
+    line++;
+  }
+  content.write('ET');
+  final objects = <String>[
     '<< /Type /Catalog /Pages 2 0 R >>',
     '<< /Type /Pages /Kids [3 0 R] /Count 1 >>',
-    '<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] >>',
+    '<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] '
+        '/Resources << /Font << /F1 5 0 R >> >> /Contents 4 0 R >>',
+    '<< /Length ${content.length} >>\nstream\n$content\nendstream',
+    '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>',
   ];
   final out = StringBuffer('%PDF-1.4\n');
   final offsets = <int>[];
@@ -673,7 +716,7 @@ String _minimalPdf() {
 }
 
 String _reportMessage() {
-  final pdf = base64.encode(utf8.encode(_minimalPdf()));
+  final pdf = base64.encode(utf8.encode(_reportPdf()));
   final wrapped = StringBuffer();
   for (var i = 0; i < pdf.length; i += 76) {
     wrapped.write(
@@ -684,7 +727,7 @@ String _reportMessage() {
       'To: Anna <anna@example.com>\r\n'
       'Cc: Design Team <design@example.com>\r\n'
       'Subject: Q4 partner report and agenda for Thursday\r\n'
-      'Date: Thu, 19 Nov 2026 09:42:00 +0100\r\n'
+      'Date: ${_inbox.first.$4}\r\n'
       'Message-ID: <q4-report@example.com>\r\n'
       'MIME-Version: 1.0\r\n'
       'Content-Type: multipart/mixed; boundary=report-boundary\r\n'
@@ -718,54 +761,89 @@ String _reportMessage() {
       '--report-boundary--\r\n';
 }
 
-const _inbox = <(int, String, String, String, bool)>[
+/// RFC 5322 date of a local time.
+String _rfcDate(DateTime local) {
+  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  const months = [
+    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', //
+    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+  ];
+  String two(int v) => v.toString().padLeft(2, '0');
+  final offset = local.timeZoneOffset;
+  final sign = offset.isNegative ? '-' : '+';
+  final minutes = offset.inMinutes.abs();
+  return '${days[local.weekday - 1]}, ${local.day} ${months[local.month - 1]} '
+      '${local.year} ${two(local.hour)}:${two(local.minute)}:00 '
+      '$sign${two(minutes ~/ 60)}${two(minutes % 60)}';
+}
+
+/// Message times relative to the rendering day, so the list shows a time
+/// for today, "Yesterday", weekdays and a short date.
+DateTime _sentAt(int daysAgo, int hour, int minute) {
+  final now = DateTime.now();
+  return DateTime(now.year, now.month, now.day - daysAgo, hour, minute);
+}
+
+final _today = () {
+  final now = DateTime.now();
+  final latest = now.subtract(const Duration(minutes: 20));
+  final preferred = DateTime(now.year, now.month, now.day, 9, 42);
+  // Before 10:02 the report arrived 20 minutes ago (still today).
+  return latest.isBefore(preferred) ? latest : preferred;
+}();
+
+final _inbox = <(int, String, String, String, bool)>[
   (
     _reportUid,
     'Leo <leo@example.com>',
     'Q4 partner report and agenda for Thursday',
-    'Thu, 19 Nov 2026 09:42:00 +0100',
+    _rfcDate(_today),
     false,
   ),
   (
     107,
     'Design Team <design@example.com>',
     'New cover drafts for the style guide',
-    'Thu, 19 Nov 2026 08:15:00 +0100',
+    _rfcDate(
+      _today.hour >= 2
+          ? _today.subtract(const Duration(minutes: 87))
+          : _sentAt(1, 21, 15),
+    ),
     false,
   ),
   (
     106,
     'Calendar <calendar@example.com>',
     'Reminder: Editors’ training on Monday',
-    'Wed, 18 Nov 2026 17:30:00 +0100',
+    _rfcDate(_sentAt(1, 17, 30)),
     true,
   ),
   (
     105,
     'Mia <mia@example.com>',
     'Glossary: 120 new terms ready for review',
-    'Wed, 18 Nov 2026 14:05:00 +0100',
+    _rfcDate(_sentAt(1, 14, 5)),
     true,
   ),
   (
     104,
     'Support <support@example.com>',
     'Your workspace storage report',
-    'Tue, 17 Nov 2026 11:20:00 +0100',
+    _rfcDate(_sentAt(2, 11, 20)),
     true,
   ),
   (
     103,
     'Omar <omar@example.com>',
     'Translation of the spring announcement',
-    'Mon, 16 Nov 2026 16:48:00 +0100',
+    _rfcDate(_sentAt(4, 16, 48)),
     true,
   ),
   (
     102,
     'Leo <leo@example.com>',
     'Room booking confirmed',
-    'Mon, 16 Nov 2026 09:02:00 +0100',
+    _rfcDate(_sentAt(9, 9, 2)),
     true,
   ),
 ];

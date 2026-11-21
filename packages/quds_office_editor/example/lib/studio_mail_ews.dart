@@ -36,6 +36,7 @@ import 'studio_mail_submission.dart';
 import 'studio_mail_sync_dialog.dart';
 import 'studio_mail_sync_strings.dart';
 import 'studio_strings.dart';
+import 'studio_mail_reader_labels.dart';
 
 typedef StudioEwsProviderFactory =
     MailEwsProvider Function(
@@ -1039,6 +1040,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           status: MailParseStatus.complete,
           message: message,
         ),
+        labels: StudioMailReaderLabels(widget.strings.language),
       );
       final old = _reader;
       setState(() {
@@ -2686,7 +2688,10 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                       )
                       .join(', '),
                   date: header.envelope.sentAt,
-                  dateLabel: header.envelope.sentAt?.toLocal().toString(),
+                  dateLabel: studioMailListDate(
+                    header.envelope.sentAt,
+                    widget.strings.language,
+                  ),
                   isRead: _isRead(header),
                   isFlagged: _isFlagged(header),
                 ),

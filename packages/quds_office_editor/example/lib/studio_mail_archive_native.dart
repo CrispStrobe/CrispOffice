@@ -14,6 +14,7 @@ import 'studio_mail_archive_restore_progress.dart';
 import 'studio_mail_archive_restore_strings.dart';
 import 'studio_mail_archive_strings.dart';
 import 'studio_strings.dart';
+import 'studio_mail_reader_labels.dart';
 
 export 'studio_mail_archive_host.dart';
 
@@ -380,6 +381,7 @@ class _StudioMailArchiveDialogState extends State<StudioMailArchiveDialog> {
             bytes.bytes,
             codec: const QudsMimeCodec(),
             budget: MailReadBudget(maxRawBytes: widget.limits.maxMessageBytes),
+            labels: StudioMailReaderLabels(widget.strings.language),
           );
         } on Object {
           error = s.archiveProblem(MailProblemCode.invalidInput);

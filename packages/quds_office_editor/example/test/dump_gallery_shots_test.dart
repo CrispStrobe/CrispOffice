@@ -16,9 +16,9 @@ void main() {
     }
 
     final SfntFont? latin = StudioFiles.latinExportFont();
-    final OfficeFontSet fonts = StudioFiles.exportFontSetCovering(const <String>[
-      'Hello مرحبا',
-    ]);
+    final OfficeFontSet fonts = StudioFiles.exportFontSetCovering(
+      const <String>['Hello مرحبا'],
+    );
     // ignore: avoid_print
     print('out=${out.path} latin=${latin != null}');
 

@@ -10,6 +10,7 @@ import 'studio_mail_archive.dart';
 import 'studio_mail_archive_strings.dart';
 import 'studio_mail_file.dart';
 import 'studio_strings.dart';
+import 'studio_mail_reader_labels.dart';
 
 /// The account-free saved-message view shared by native and browser Studio.
 class StudioSavedMailView extends StatefulWidget {
@@ -46,6 +47,7 @@ class _StudioSavedMailViewState extends State<StudioSavedMailView> {
         bytes,
         codec: const QudsMimeCodec(),
         mode: _mode,
+        labels: StudioMailReaderLabels(widget.strings.language),
       );
 
   @override
@@ -97,7 +99,11 @@ class _StudioSavedMailViewState extends State<StudioSavedMailView> {
     final previous = _controller;
     setState(() {
       _mode = mode;
-      _controller = MailReaderController(result: previous.result, mode: mode);
+      _controller = MailReaderController(
+        result: previous.result,
+        mode: mode,
+        labels: previous.labels,
+      );
     });
     WidgetsBinding.instance.addPostFrameCallback((_) => previous.dispose());
   }
