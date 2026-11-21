@@ -28,6 +28,7 @@ import 'word_bookmark_io.dart';
 import 'word_comment_io.dart';
 import 'word_content_control_io.dart';
 import 'word_drawing_io.dart';
+import 'word_footnote_separator_io.dart';
 import 'word_frame_io.dart';
 import 'word_numbering_io.dart';
 import 'word_opaque_io.dart';
@@ -62,6 +63,7 @@ class WordSerializer {
   Map<WmlSection, _HeaderFooterIds> _headerFooterIds =
       <WmlSection, _HeaderFooterIds>{};
   WmlDocument? _document;
+  WordFootnoteSeparatorPlan? _footnoteSeparator;
   late WordSectionRevisionIds _sectionRevisionIds;
   final Map<WmlParagraph, int> _restartNumberingIds =
       Map<WmlParagraph, int>.identity();
@@ -74,6 +76,7 @@ class WordSerializer {
 
   /// write API.
   OpcPackage write(WmlDocument document) {
+    _footnoteSeparator = WordFootnoteSeparatorIo.prepare(document);
     _generatedBookmarkIds = WordBookmarks.generatedIds(document);
     WordRevisions.validate(document);
     WordContentControls.validate(document);
@@ -2024,6 +2027,7 @@ class WordSerializer {
       restrictMode: document.restrictMode,
       oddEven: document.sections.any((s) => s.differentOddEven),
       autoHyphenation: document.autoHyphenation,
+      footnoteSpecialIds: _footnoteSeparator?.ids,
     );
     if (xml == null) return;
     _putPart(
@@ -2610,7 +2614,11 @@ class WordSerializer {
     _activePartUri = uri;
     // Separators are not editable note bodies. Preserve their native metadata;
     // only a newly created note part receives the conventional standard pair.
-    _writeNoteChrome(w, item, source);
+    if (item == 'footnote' && _footnoteSeparator != null) {
+      _footnoteSeparator!.write(w);
+    } else {
+      _writeNoteChrome(w, item, source);
+    }
     for (final WmlNote note in notes) {
       w.writeStartElement(item, prefix: 'w');
       w.writeAttribute('w:id', '${note.id}');

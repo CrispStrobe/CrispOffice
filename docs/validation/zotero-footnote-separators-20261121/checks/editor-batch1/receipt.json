@@ -1,0 +1,107 @@
+{
+  "started_utc": "2026-11-21T21:50:19.716090+00:00",
+  "source_head": "a1b555979b25c5586f27915cf219a95e886febd7",
+  "cwd": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor",
+  "command": [
+    "/workspace/scratch/12e9ca120c75/runtime/bin/flutter",
+    "test",
+    "--no-pub",
+    "--reporter=json",
+    "--concurrency=1",
+    "test/word_footnote_separator_render_test.dart",
+    "test/word_note_numbering_test.dart",
+    "test/word_notes_editing_test.dart",
+    "test/word_notes_proofing_controller_test.dart",
+    "test/word_notes_proofing_pane_test.dart",
+    "test/word_zotero_add_note_controller_test.dart",
+    "test/word_zotero_adjacent_citations_controller_test.dart",
+    "test/word_zotero_backoff_session_test.dart",
+    "test/word_zotero_bibliography_controller_test.dart",
+    "test/word_zotero_catalog_citing_test.dart",
+    "test/word_zotero_catalog_query_test.dart"
+  ],
+  "input_scope": "All tracked files under .github/apps/packages/third_party/tool/tools, all tracked repository-root files, this runner, and generated package configurations beside tracked pubspec.yaml files. The after snapshot also retains every initial path so deletion or untracking cannot hide an input-content change.",
+  "input_count": 6319,
+  "input_manifest_sha256": "5c4d7dd437d3e09f5a2aef6c4b61076945343d67253f12662cf91bfb334e2cb8",
+  "exit_code": 0,
+  "duration_seconds": 51.263,
+  "inputs_unchanged": true,
+  "changed_inputs": [],
+  "tests": {
+    "passed": 232,
+    "failed": 0,
+    "skipped": 0,
+    "errors": 0,
+    "suites": 11,
+    "groups": 11,
+    "started": 249,
+    "completed": 249,
+    "hidden_passed": 11,
+    "hidden_failed": 0,
+    "hidden_skipped": 0,
+    "done": [
+      {
+        "success": true,
+        "type": "done",
+        "time": 49977
+      }
+    ],
+    "hooks_passed": 6,
+    "hooks_failed": 0,
+    "hooks_skipped": 0,
+    "hook_results": [
+      {
+        "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+        "name": "(setUpAll)",
+        "result": "passed",
+        "hidden": true
+      },
+      {
+        "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+        "name": "(tearDownAll)",
+        "result": "passed",
+        "hidden": true
+      },
+      {
+        "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+        "name": "(setUpAll)",
+        "result": "passed",
+        "hidden": true
+      },
+      {
+        "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+        "name": "(tearDownAll)",
+        "result": "passed",
+        "hidden": true
+      },
+      {
+        "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_adjacent_citations_controller_test.dart",
+        "name": "(setUpAll)",
+        "result": "passed",
+        "hidden": true
+      },
+      {
+        "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_adjacent_citations_controller_test.dart",
+        "name": "(tearDownAll)",
+        "result": "passed",
+        "hidden": true
+      }
+    ],
+    "failures": [],
+    "skips": [],
+    "hidden_failures": [],
+    "hidden_skips": [],
+    "unparsed_lines": [],
+    "lifecycle_errors": []
+  },
+  "stdout.log": {
+    "bytes": 122403,
+    "sha256": "381e71280c6ee9009aa7017797cb68b907315995811a5b313a07ceab7457093e"
+  },
+  "stderr.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "accepted": true,
+  "finished_utc": "2026-11-21T21:51:11.344258+00:00"
+}

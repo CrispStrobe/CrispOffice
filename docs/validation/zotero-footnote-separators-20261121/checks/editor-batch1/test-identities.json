@@ -1,0 +1,930 @@
+[
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_footnote_separator_render_test.dart",
+    "name": "native WmlFootnoteSeparatorAlignment.left separator paints its color and thickness"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_footnote_separator_render_test.dart",
+    "name": "native WmlFootnoteSeparatorAlignment.center separator paints its color and thickness"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_footnote_separator_render_test.dart",
+    "name": "native WmlFootnoteSeparatorAlignment.right separator paints its color and thickness"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_footnote_separator_render_test.dart",
+    "name": "dark canvas redraws the new separator geometry and color"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_footnote_separator_render_test.dart",
+    "name": "explicit hidden separator reserves gaps without painted pixels"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_footnote_separator_render_test.dart",
+    "name": "footnote insertion undo and redo retain separator preferences"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart",
+    "name": "display 1 for native ID 999 paints and hit-tests atomically"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart",
+    "name": "display 108 for native ID 7 paints and hit-tests atomically"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart",
+    "name": "display 10 for native ID 10 paints and hit-tests atomically"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart",
+    "name": "editing after a shortened label still uses the original source range"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart",
+    "name": "earlier inserted notes renumber on insert, undo and redo without ID changes"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart",
+    "name": "notes pane shows body order and keeps edit identity after insertion"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart",
+    "name": "limited and orphaned note labels identify source IDs explicitly"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_editing_test.dart",
+    "name": "note edits keep formatting and undo as one step"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_editing_test.dart",
+    "name": "undo commits a pending note edit before undoing it"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_editing_test.dart",
+    "name": "deleting a note removes its mark and undo restores both"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_editing_test.dart",
+    "name": "the notes pane edits, adds and deletes notes"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "footnote maps UTF-16 multiline findings with hidden reference space false"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "footnote maps UTF-16 multiline findings with hidden reference space true"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "footnote reveal focuses the editable note without changing body selection or history"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "footnote correction restores actual note selection through undo and redo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "footnote tracked corrections and change navigation use note ranges"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "endnote maps UTF-16 multiline findings with hidden reference space false"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "endnote maps UTF-16 multiline findings with hidden reference space true"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "endnote reveal focuses the editable note without changing body selection or history"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "endnote correction restores actual note selection through undo and redo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "endnote tracked corrections and change navigation use note ranges"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "note tables remain checked but are not mapped to the plain editor"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "explicit note selection survives an adjacent finding endpoint"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "typed note correction survives an unchanged history boundary (focus loss first: false)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "manual findings survive only the unchanged note history boundary without provider calls (focus loss first: false)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "typed note correction survives an unchanged history boundary (focus loss first: true)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "manual findings survive only the unchanged note history boundary without provider calls (focus loss first: true)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "mixed provider history commit retains the ordinary issue identity before correcting the ordinary finding"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "mixed provider history commit retains the ordinary issue identity before correcting the manual finding"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "history aliases retire after a real note change"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "history aliases retire after a real body change"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "history aliases retire after a real history change"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "history aliases retire after a real provider change"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "history aliases retire after a real detach change"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "unobserved note source changes cannot move focus or apply stale text"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "OfficeInteractionMode.selecting permits only its configured Notes review actions"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "OfficeInteractionMode.viewing permits only its configured Notes review actions"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "document protection blocks note correction and navigation"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "note IME blocks correction and reveals before committing pending text with tracking false"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "note IME blocks correction and reveals before committing pending text with tracking true"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "canvas IME also prevents retargeting review into a note"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "note correction history preserves a later body selection"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "note correction history preserves a later other note selection"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "body corrections preserve a retained Notes selection through history"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "Notes proofing does not manufacture a body thesaurus target"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "Notes language maps reversed multiline UTF-16 selection (endnote: false, hidden separator: false)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "Notes language maps reversed multiline UTF-16 selection (endnote: false, hidden separator: true)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "Notes language maps reversed multiline UTF-16 selection (endnote: true, hidden separator: false)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "Notes language maps reversed multiline UTF-16 selection (endnote: true, hidden separator: true)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "Notes paragraph checking excludes hidden separator and nested table"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "Notes text options retain native block protection"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "retained Notes text options reject selection without changing the body"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "retained Notes text options reject body without changing the body"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "retained Notes text options reject detach without changing the body"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "retained Notes text options reject composition without changing the body"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "committed Notes typing uses Notes text options instead of the body"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart",
+    "name": "clean manual coverage survives unchanged Notes history and debounce"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+    "name": "Notes paints all finding categories without changing source"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+    "name": "live note correction retains focus and separates typing Undo: footnote"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+    "name": "live note correction retains focus and separates typing Undo: endnote"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+    "name": "Notes keyboard undo restores tracked correction revisions"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+    "name": "redo never overwrites a new Notes draft after undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+    "name": "Notes keyboard history leaves an active composition untouched"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+    "name": "language and checking controls follow the focused footnote"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+    "name": "language and checking controls follow the focused endnote"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+    "name": "keyboard finding navigation selects the actual Notes ranges"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+    "name": "composition suppresses underlines and correction until finished"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+    "name": "retained correction rejects changed source and new documents"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+    "name": "select-only and protected Notes remain inspectable without correction"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+    "name": "Notes review action opens persistent Changes without a dialog"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+    "name": "unavailable checks are not reported as a clean Notes result"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_pane_test.dart",
+    "name": "narrow Arabic scaled Notes controls stay reachable"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addNote table replacement restores forward selection and native owners on undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addNote table replacement restores backward selection and native owners on undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addNote table in an authored footnote returns to the Notes pane"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addNote table in an authored endnote returns to the Notes pane"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addNote abandoned table staging leaves document and numbering unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addNote stale table result preserves the selected text"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addNote native dialog completes a cited table as one undo step"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addNote horizontally merged table replacement restores forward selection and native owners on undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addNote horizontally merged table replacement restores backward selection and native owners on undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addNote horizontally merged table in an authored footnote returns to the Notes pane"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addNote horizontally merged table in an authored endnote returns to the Notes pane"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addNote abandoned horizontally merged table staging leaves document and numbering unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addNote stale horizontally merged table result preserves the selected text"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addNote native dialog completes a cited horizontally merged table as one undo step"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addNote rejects row-spanning table content before any edit"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addNote cancellation after merged-table staging drains without applying"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addAnnotation table replacement restores forward selection and native owners on undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addAnnotation table replacement restores backward selection and native owners on undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addAnnotation table in an authored footnote returns to the Notes pane"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addAnnotation table in an authored endnote returns to the Notes pane"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addAnnotation abandoned table staging leaves document and numbering unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addAnnotation stale table result preserves the selected text"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addAnnotation native dialog completes a cited table as one undo step"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addAnnotation horizontally merged table replacement restores forward selection and native owners on undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addAnnotation horizontally merged table replacement restores backward selection and native owners on undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addAnnotation horizontally merged table in an authored footnote returns to the Notes pane"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addAnnotation horizontally merged table in an authored endnote returns to the Notes pane"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addAnnotation abandoned horizontally merged table staging leaves document and numbering unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addAnnotation stale horizontally merged table result preserves the selected text"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addAnnotation native dialog completes a cited horizontally merged table as one undo step"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addAnnotation rejects row-spanning table content before any edit"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addAnnotation cancellation after merged-table staging drains without applying"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "annotated note is staged, preserves prose and positions the caret"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "one undo and redo restore paragraph and existing note identities"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "controller result reopens from DOCX with live fields and preferences"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "note style 1 keeps active citations and undo identities"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "note style 2 keeps active citations and undo identities"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "Add Annotation keeps quoted text, live citations and one undo for style 0"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "Add Annotation keeps quoted text, live citations and one undo for style 1"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "Add Annotation keeps quoted text, live citations and one undo for style 2"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "a rich uncited note inserts once and leaves its tail editable"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "cited research lists retain numbering and one-step undo for style 0"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "cited research lists retain numbering and one-step undo for style 1"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "cited research lists retain numbering and one-step undo for style 2"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "research-list history preserves imported numbering and unrelated package data after save"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addNote nested list paragraphs and citations have one undo step for style 0"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addNote nested list paragraphs and citations have one undo step for style 1"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addNote nested list paragraphs and citations have one undo step for style 2"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addNote stale nested-list result leaves numbering untouched"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addNote excessive list depth refuses the entire insertion"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addAnnotation nested list paragraphs and citations have one undo step for style 0"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addAnnotation nested list paragraphs and citations have one undo step for style 1"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addAnnotation nested list paragraphs and citations have one undo step for style 2"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addAnnotation stale nested-list result leaves numbering untouched"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addAnnotation excessive list depth refuses the entire insertion"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "redo allocates a numbering relationship without overwriting a reused ID"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "Add Annotation refuses viewing before staging content"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "Add Annotation refuses selecting before staging content"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "Add Annotation refuses track changes before staging content"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "Add Annotation refuses document protection before staging content"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "Add Annotation refuses unresolved revision before staging content"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "Add Annotation refuses locked citation before staging content"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "Add Annotation refuses inline content control before staging content"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "Add Annotation refuses header before staging content"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "Add Annotation refuses footer before staging content"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "Add Annotation refuses comment before staging content"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "Add Annotation refuses selected text box before staging content"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "Add Annotation refuses editing text box before staging content"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "Add Annotation refuses body composition before staging content"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "Add Annotation refuses note composition before staging content"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addNote inserts into an authored footnote with style 0"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addNote inserts into an authored footnote with style 1"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addNote replaces an authored footnote selection and restores its direction on undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "a moved footnote selection refuses a staged addNote"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addNote inserts into an authored endnote with style 0"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addNote inserts into an authored endnote with style 2"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addNote replaces an authored endnote selection and restores its direction on undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "a moved endnote selection refuses a staged addNote"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addNote replaces a forward body selection atomically"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addNote replaces a backward body selection atomically"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addNote refuses a selection across an intervening body table"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addNote refuses a selection across an intervening note table"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "a caret inside an existing citation refuses addNote before staging"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "a changed caret refuses a fully staged addNote atomically"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addNote unknown citation placeholder cannot mutate live text or preferences"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "an unsupported addNote image keeps the whole document unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addAnnotation inserts into an authored footnote with style 0"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addAnnotation inserts into an authored footnote with style 1"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addAnnotation replaces an authored footnote selection and restores its direction on undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "a moved footnote selection refuses a staged addAnnotation"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addAnnotation inserts into an authored endnote with style 0"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addAnnotation inserts into an authored endnote with style 2"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addAnnotation replaces an authored endnote selection and restores its direction on undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "a moved endnote selection refuses a staged addAnnotation"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addAnnotation replaces a forward body selection atomically"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addAnnotation replaces a backward body selection atomically"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addAnnotation refuses a selection across an intervening body table"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addAnnotation refuses a selection across an intervening note table"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "a caret inside an existing citation refuses addAnnotation before staging"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "a changed caret refuses a fully staged addAnnotation atomically"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "addAnnotation unknown citation placeholder cannot mutate live text or preferences"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "an unsupported addAnnotation image keeps the whole document unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "the shared addNote command replaces text in the active note"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "the shared addNote command inserts live citation paragraphs"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "cancelled addNote selection discards temporary fields and style changes"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "the shared addAnnotation command replaces text in the active note"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "the shared addAnnotation command inserts live citation paragraphs"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+    "name": "cancelled addAnnotation selection discards temporary fields and style changes"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_adjacent_citations_controller_test.dart",
+    "name": "adjacent refresh is one undo step and restores forward selection"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_adjacent_citations_controller_test.dart",
+    "name": "adjacent refresh is one undo step and restores backward selection"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_adjacent_citations_controller_test.dart",
+    "name": "authored footnote merge restores Notes selection and marker on undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_adjacent_citations_controller_test.dart",
+    "name": "authored endnote merge restores Notes selection and marker on undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_adjacent_citations_controller_test.dart",
+    "name": "abandoned merge preserves fields, preferences, selection and undo stack"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_adjacent_citations_controller_test.dart",
+    "name": "stale native merge keeps the current selection and original fields"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart",
+    "name": "reconnecting and reopening keep an online session pause"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart",
+    "name": "disconnect and public library switching do not discard backoff"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart",
+    "name": "desktop works during online backoff and does not clear it"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart",
+    "name": "a response after closing the dialog still pauses the same session"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_backoff_session_test.dart",
+    "name": "successful Backoff survives public library recreation"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart",
+    "name": "entry insertion is staged, saved and undone as one transaction"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart",
+    "name": "refresh to 1 entries preserves range identity and undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart",
+    "name": "refresh to 4 entries preserves range identity and undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart",
+    "name": "style-only reset has one undo and survives a DOCX roundtrip"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart",
+    "name": "code-only metadata refresh preserves rich results and entry properties"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart",
+    "name": "Field.delete preserves neighbors and restores the complete field in one undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart",
+    "name": "Field.removeCode preserves neighbors and restores the complete field in one undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart",
+    "name": "refresh and unlink preserve the replacement as one undo step"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart",
+    "name": "typing at the insertion caret stays outside the bibliography field"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart",
+    "name": "caret invalidates a pending bibliography refresh without mutation"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart",
+    "name": "revision invalidates a pending bibliography refresh without mutation"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart",
+    "name": "field range invalidates a pending bibliography refresh without mutation"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart",
+    "name": "late bibliography refusal rolls back a preceding citation update"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart",
+    "name": "a saved-search source seeds native first insertion and survives DOCX and undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart",
+    "name": "first catalog insertion chooses placement 0 in one undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart",
+    "name": "first catalog insertion chooses placement 1 in one undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart",
+    "name": "first catalog insertion chooses placement 2 in one undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart",
+    "name": "saved document style goes directly to the seeded native picker"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart",
+    "name": "cancelling the first style chooser retains catalog selection"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart",
+    "name": "cancelling the following picker also discards staged style"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart",
+    "name": "a failed picker never commits the preceding style choice"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart",
+    "name": "preferences stay detached while the next native dialog waits"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart",
+    "name": "Cancel operation discards both native stages"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart",
+    "name": "a changed insertion point discards both native stages"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_query_test.dart",
+    "name": "online query controls apply to every page and retain selection"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_query_test.dart",
+    "name": "both page directions retain submitted text until a new search"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_query_test.dart",
+    "name": "paging an unfiltered catalog does not submit draft search text"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_query_test.dart",
+    "name": "changing query options restarts at zero and all-types removes the filter"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_query_test.dart",
+    "name": "collection and group changes retain filters and restart pagination"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_query_test.dart",
+    "name": "desktop saved-search query controls keep their endpoint and credentials"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_query_test.dart",
+    "name": "expanded catalog options fit a 320.0-pixel window"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_query_test.dart",
+    "name": "expanded catalog options fit a 360.0-pixel window"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_query_test.dart",
+    "name": "expanded catalog options fit a 420.0-pixel window"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_query_test.dart",
+    "name": "desktop reconnect keeps expanded options and chosen filters"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_catalog_query_test.dart",
+    "name": "closing during an option request discards the late result"
+  }
+]

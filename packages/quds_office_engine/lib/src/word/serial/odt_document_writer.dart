@@ -46,6 +46,7 @@ abstract final class OdtDocumentWriter {
     WmlDocument document, {
     OdtWriterZoteroPlan? zotero,
   }) {
+    document.footnoteSeparator?.validate();
     final layout = _OdtLayout(document, zotero: zotero);
     final body = _bodyXml(layout);
     final styles = _stylesXml(document, layout);
@@ -378,6 +379,49 @@ abstract final class OdtDocumentWriter {
           'fo:margin-right',
           '${margins.right.toStringAsFixed(2)}pt',
         );
+        final separator = document.footnoteSeparator;
+        if (separator != null) {
+          // Both gaps are meaningful when the line is hidden. Emit explicit
+          // values so a consumer does not substitute its own separator preset.
+          final roundedHeight =
+              double.parse(separator.beforeSpacing.toStringAsFixed(2)) +
+              double.parse(separator.afterSpacing.toStringAsFixed(2)) +
+              double.parse(separator.thickness.toStringAsFixed(2));
+          if ([
+            separator.beforeSpacing,
+            separator.afterSpacing,
+            separator.thickness,
+          ].any((value) => value > 1000000)) {
+            throw UnsupportedError(
+              'ODT footnote separator exceeds the length limit.',
+            );
+          }
+          final roundedContentHeight =
+              double.parse(page.height.toStringAsFixed(2)) -
+              double.parse(margins.top.toStringAsFixed(2)) -
+              double.parse(margins.bottom.toStringAsFixed(2));
+          if (document.footnotes.isNotEmpty &&
+              roundedHeight >= roundedContentHeight) {
+            throw UnsupportedError('ODT footnote separator consumes the page.');
+          }
+          w.writeEmptyElement(
+            'footnote-sep',
+            prefix: 'style',
+            attributes: {
+              'style:width': '${separator.thickness.toStringAsFixed(2)}pt',
+              'style:distance-before-sep':
+                  '${separator.beforeSpacing.toStringAsFixed(2)}pt',
+              'style:distance-after-sep':
+                  '${separator.afterSpacing.toStringAsFixed(2)}pt',
+              'style:rel-width':
+                  '${(separator.relativeWidth * 100).toStringAsFixed(6)}%',
+              'style:adjustment': separator.alignment.name,
+              'style:color':
+                  '#${separator.color.toRadixString(16).padLeft(6, '0')}',
+              'style:line-style': separator.lineStyle.name,
+            },
+          );
+        }
         w.writeEndElement();
         w.writeEndElement();
       }
