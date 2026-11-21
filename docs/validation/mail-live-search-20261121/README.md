@@ -37,6 +37,8 @@ are neither consulted nor awaited.
 | `1dd6912549c473b1d31f35d7cc00b28bae7acf3d` | Report and pause cancelled cleanup failures, explicit recovery regression, and lazy-list test navigation correction |
 | `2af7b938ff2bbb44e865ee970df1583bb7d4f3ef` | Complete accepted Mail qualification, raw execution archive and twelve visual captures |
 | `3d49a13d9e3d01db2a273d43affd36140475b467` | Later landed main `e5940c79`, including completed Word numeric authoring and its independent evidence |
+| `bc901aa1724684748d82448377f383ab2938ab18` | Complete numeric integration receipts and ancestry replay |
+| `b31594736634f4edc1bfed1ab43dca31c06416b7` | Preserve subsequently landed main `2fdc0883` / PR #344 configurable workspace shortcuts |
 
 The final scope recheck closes an independently reproduced design gap: account
 A can be retired after its last page while account B is still being scanned.
@@ -147,6 +149,30 @@ Across these explicitly scoped local runs, **404 distinct automated regression
 cases and four visual configurations passed**. Source identities and earlier
 failed attempts remain separate; this is not a claim of one uninterrupted full
 repository test run.
+
+### Subsequent workspace shortcut integration
+
+At PR creation, main had advanced again to `2fdc0883` (PR #344). Its five
+shortcut/settings files are preserved by merge checkpoint `b3159473`. Review
+of the pinned Flutter implementation identified a concrete dispatch issue:
+`SingleActivator` keys use object identity, while `CallbackShortcuts` invokes
+every matching binding. Removing freshly constructed activators could leave
+the old callbacks alongside replacements, causing editing commands to run
+twice. The inline Mail pane also remained underneath document shortcuts.
+
+The focused integration correction replaces/deduplicates bindings by their
+key and modifier semantics, gives explicit overrides precedence, and isolates
+document shortcuts while Mail is active. Actual key-dispatch and workspace
+Mail-isolation regressions accompany the correction. The direction handler now
+uses the existing release-time chord recognizer, so Ctrl+Shift prefixes do not
+create an extra direction edit before another shortcut. Bare function keys
+also survive the saved-binding parser. Its finite qualification is recorded in
+the subsequent evidence checkpoint.
+
+The correction is scoped to workspace dispatch. Several built-in shortcuts are
+handled directly by the embedded Word editor before reaching its ancestor;
+fully authoritative caret-level remapping remains a separate editor-input
+task and is not claimed by these tests.
 
 ### Evidence
 

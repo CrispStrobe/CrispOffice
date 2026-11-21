@@ -84,7 +84,6 @@ final class StudioShortcutBinding {
 
   static StudioShortcutBinding? tryParse(String value) {
     final parts = value.split('+');
-    if (parts.length < 2) return null;
     var control = false, shift = false, alt = false, meta = false;
     for (final part in parts.take(parts.length - 1)) {
       switch (part) {
@@ -103,7 +102,9 @@ final class StudioShortcutBinding {
     final keyId = int.tryParse(parts.last);
     final key = keyId == null ? null : LogicalKeyboardKey.findKeyByKeyId(keyId);
     if (key == null ||
-        !(control || shift || alt || meta) && !key.keyLabel.startsWith('F')) {
+        !(control || shift || alt || meta) &&
+            (key.keyId < LogicalKeyboardKey.f1.keyId ||
+                key.keyId > LogicalKeyboardKey.f24.keyId)) {
       return null;
     }
     return StudioShortcutBinding(
@@ -341,4 +342,61 @@ abstract final class StudioShortcutCatalog {
     }
     return result;
   }
+
+  /// Replaces catalog defaults by key combination, not activator identity.
+  ///
+  /// [SingleActivator] does not have value equality, and [CallbackShortcuts]
+  /// invokes every matching entry. Keep one callback per trigger/modifier
+  /// combination so duplicate defaults cannot execute a command twice.
+  /// Explicit overrides win over defaults; ties within either group use the
+  /// later catalog action. Unrelated base bindings are retained.
+  static Map<ShortcutActivator, VoidCallback> mergeBindings(
+    Map<ShortcutActivator, VoidCallback> base, {
+    required Map<String, String> overrides,
+    required Map<String, VoidCallback> callbacks,
+    required bool mac,
+  }) {
+    final merged = <Object, MapEntry<ShortcutActivator, VoidCallback>>{
+      for (final entry in base.entries) _bindingKey(entry.key): entry,
+    };
+    final active = actions.where((action) => callbacks.containsKey(action.id));
+    for (final action in active) {
+      merged.remove(_bindingKey(action.defaultBinding(mac: true).activator));
+      merged.remove(_bindingKey(action.defaultBinding(mac: false).activator));
+    }
+
+    final explicit = <MapEntry<ShortcutActivator, VoidCallback>>[];
+    for (final action in active) {
+      final stored = overrides[action.id];
+      final override = stored == null
+          ? null
+          : StudioShortcutBinding.tryParse(stored);
+      final entry = MapEntry<ShortcutActivator, VoidCallback>(
+        (override ?? action.defaultBinding(mac: mac)).activator,
+        callbacks[action.id]!,
+      );
+      if (override == null) {
+        merged[_bindingKey(entry.key)] = entry;
+      } else {
+        explicit.add(entry);
+      }
+    }
+    for (final entry in explicit) {
+      merged[_bindingKey(entry.key)] = entry;
+    }
+    return <ShortcutActivator, VoidCallback>{
+      for (final entry in merged.values) entry.key: entry.value,
+    };
+  }
+
+  static Object _bindingKey(ShortcutActivator activator) =>
+      activator is SingleActivator
+      ? (
+          activator.trigger.keyId,
+          activator.control,
+          activator.shift,
+          activator.alt,
+          activator.meta,
+        )
+      : activator;
 }
