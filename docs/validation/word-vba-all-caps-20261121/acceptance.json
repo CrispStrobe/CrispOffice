@@ -1,0 +1,1413 @@
+{
+  "accepted": true,
+  "qualified_source": "0fe00b18fef6b79a435817c99714f987329d5f3c",
+  "source_manifest_sha256": "9b7185c99dbc2bd7cb77243d46565c34082327ebecd39a6fff42913efd66ae4e",
+  "source_inputs": 3262,
+  "engine": {
+    "passed": 7840,
+    "files": 271,
+    "failed": 0,
+    "skipped": 0,
+    "counting": "Each requested file counted once; complete accepted MCP replay replaces its initial result.",
+    "primary_run": {
+      "process_exit": 1,
+      "passed": 7837,
+      "failed": 3
+    },
+    "replay": {
+      "path": "test/office_macro_mcp_test.dart",
+      "passed": 15,
+      "process_exit": 0,
+      "timeout_seconds": 120
+    },
+    "initial_30_second_timeouts": [
+      "stdio bridge real stdio handshake, JSON errors, and mutation persist valid output",
+      "stdio bridge validation alone does not create an output file",
+      "stdio bridge persistence failure returns an error and stops before later requests"
+    ],
+    "per_file": {
+      "test/odt_bookmark_end_fidelity_test.dart": {
+        "passed": 7,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_bookmark_name_ambiguity_test.dart": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_bookmark_range_fidelity_test.dart": {
+        "passed": 3,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_column_break_style_fidelity_test.dart": {
+        "passed": 12,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_columns_schema_fidelity_test.dart": {
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_columns_breaks_fidelity_test.dart": {
+        "passed": 7,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_comment_fidelity_test.dart": {
+        "passed": 35,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_complex_field_fidelity_test.dart": {
+        "passed": 25,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_document_reader_test.dart": {
+        "passed": 42,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_document_writer_test.dart": {
+        "passed": 18,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_frame_common_style_test.dart": {
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_header_footer_fidelity_test.dart": {
+        "passed": 9,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_header_variant_comment_fidelity_test.dart": {
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_header_variant_order_test.dart": {
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_hyperlink_range_fidelity_test.dart": {
+        "passed": 5,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_imported_field_fidelity_test.dart": {
+        "passed": 21,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_inline_column_break_fidelity_test.dart": {
+        "passed": 9,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_inline_field_fidelity_test.dart": {
+        "passed": 29,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_list_fidelity_test.dart": {
+        "passed": 40,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_note_fidelity_test.dart": {
+        "passed": 26,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_page_field_fidelity_test.dart": {
+        "passed": 34,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_open_test.dart": {
+        "passed": 7,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_paragraph_break_style_test.dart": {
+        "passed": 8,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_page_marker_column_break_test.dart": {
+        "passed": 12,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_paragraph_decoration_fidelity_test.dart": {
+        "passed": 20,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_paragraph_decoration_resume_test.dart": {
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_paragraph_decoration_test.dart": {
+        "passed": 22,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_paragraph_properties_test.dart": {
+        "passed": 18,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_reader_styles_test.dart": {
+        "passed": 46,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_reader_guards_test.dart": {
+        "passed": 12,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_reader_table_preservation_test.dart": {
+        "passed": 23,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_section_continuation_test.dart": {
+        "passed": 14,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_section_columns_test.dart": {
+        "passed": 14,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_section_integration_test.dart": {
+        "passed": 14,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_section_fidelity_test.dart": {
+        "passed": 39,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_story_visual_fidelity_test.dart": {
+        "passed": 6,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_structure_fidelity_test.dart": {
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_tab_stop_fidelity_test.dart": {
+        "passed": 8,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_tab_style_cache_test.dart": {
+        "passed": 5,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_tab_style_fidelity_test.dart": {
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_table_merge_test.dart": {
+        "passed": 26,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_table_tab_consolidation_test.dart": {
+        "passed": 37,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_table_tab_fidelity_test.dart": {
+        "passed": 11,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_table_tab_gector_fidelity_test.dart": {
+        "passed": 37,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_table_tab_qualification_test.dart": {
+        "passed": 10,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_table_tab_resume_test.dart": {
+        "passed": 10,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/odt_vba_language_roundtrip_test.dart": {
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_macro_expansion_test.dart": {
+        "passed": 5,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_macro_language_test.dart": {
+        "passed": 11,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_macro_mcp_test.dart": {
+        "passed": 15,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_macro_cli_test.dart": {
+        "passed": 5,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_macro_runtime_test.dart": {
+        "passed": 25,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_macro_slide_format_test.dart": {
+        "passed": 19,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_macro_word_all_caps_test.dart": {
+        "passed": 37,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_macro_word_headers_footers_test.dart": {
+        "passed": 72,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_macro_word_language_controls_test.dart": {
+        "passed": 59,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_macro_word_line_spacing_test.dart": {
+        "passed": 96,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_macro_word_list_format_test.dart": {
+        "passed": 67,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_macro_word_list_levels_test.dart": {
+        "passed": 101,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_macro_word_orientation_test.dart": {
+        "passed": 43,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_macro_word_page_setup_test.dart": {
+        "passed": 44,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_macro_word_paragraph_controls_test.dart": {
+        "passed": 118,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_macro_word_revision_guard_test.dart": {
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_macro_word_section_start_test.dart": {
+        "passed": 26,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_macro_word_tab_stops_test.dart": {
+        "passed": 40,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_macro_word_text_controls_test.dart": {
+        "passed": 40,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_arguments_test.dart": {
+        "passed": 68,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_arrays_boundaries_test.dart": {
+        "passed": 144,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_arguments_integration_test.dart": {
+        "passed": 16,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_arrays_test.dart": {
+        "passed": 32,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_conformance_test.dart": {
+        "passed": 115,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_control_flow_boundaries_test.dart": {
+        "passed": 42,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_arrays_integration_test.dart": {
+        "passed": 11,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_control_flow_integration_test.dart": {
+        "passed": 9,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_control_flow_test.dart": {
+        "passed": 35,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_dynamic_arrays_test.dart": {
+        "passed": 50,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_dynamic_arrays_integration_test.dart": {
+        "passed": 11,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_integration_test.dart": {
+        "passed": 12,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_language_test.dart": {
+        "passed": 55,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_powerpoint_conformance_test.dart": {
+        "passed": 24,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_powerpoint_integration_test.dart": {
+        "passed": 7,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_powerpoint_layout_integration_test.dart": {
+        "passed": 46,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_powerpoint_layout_test.dart": {
+        "passed": 41,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_powerpoint_margins_integration_test.dart": {
+        "passed": 16,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_powerpoint_margins_test.dart": {
+        "passed": 27,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_powerpoint_test.dart": {
+        "passed": 63,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_procedure_boundaries_test.dart": {
+        "passed": 19,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_powerpoint_cli_test.dart": {
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_procedures_test.dart": {
+        "passed": 26,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_procedures_integration_test.dart": {
+        "passed": 10,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_string_intrinsics_integration_test.dart": {
+        "passed": 11,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_string_intrinsics_test.dart": {
+        "passed": 102,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_text_conformance_test.dart": {
+        "passed": 96,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_text_intrinsics_test.dart": {
+        "passed": 156,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_variant_conformance_test.dart": {
+        "passed": 162,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_variant_conversions_test.dart": {
+        "passed": 239,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_variant_conversions_integration_test.dart": {
+        "passed": 9,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_all_caps_integration_test.dart": {
+        "passed": 11,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_all_caps_test.dart": {
+        "passed": 32,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_argument_shapes_test.dart": {
+        "passed": 8,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_bulk_intake_conversions_test.dart": {
+        "passed": 63,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_conformance_test.dart": {
+        "passed": 46,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_extensions_test.dart": {
+        "passed": 30,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_format_integration_test.dart": {
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_headers_footers_integration_test.dart": {
+        "passed": 15,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_cli_test.dart": {
+        "passed": 5,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_headers_footers_test.dart": {
+        "passed": 94,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_integration_test.dart": {
+        "passed": 14,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_language_controls_test.dart": {
+        "passed": 110,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_language_test.dart": {
+        "passed": 156,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_language_controls_integration_test.dart": {
+        "passed": 11,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_line_spacing_integration_test.dart": {
+        "passed": 23,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_line_spacing_test.dart": {
+        "passed": 103,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_list_levels_integration_test.dart": {
+        "passed": 44,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_list_levels_test.dart": {
+        "passed": 88,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_lists_integration_test.dart": {
+        "passed": 22,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_measurements_integration_test.dart": {
+        "passed": 6,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_lists_test.dart": {
+        "passed": 95,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_measurements_positional_integration_test.dart": {
+        "passed": 6,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_measurements_positional_test.dart": {
+        "passed": 197,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_measurements_test.dart": {
+        "passed": 197,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_named_measurements_test.dart": {
+        "passed": 160,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_named_measurements_integration_test.dart": {
+        "passed": 11,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_page_setup_integration_test.dart": {
+        "passed": 15,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_page_setup_test.dart": {
+        "passed": 88,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_paragraph_controls_test.dart": {
+        "passed": 148,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_paragraph_layout_integration_test.dart": {
+        "passed": 17,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_paragraph_layout_test.dart": {
+        "passed": 37,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_proofing_integration_test.dart": {
+        "passed": 10,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_paragraph_controls_integration_test.dart": {
+        "passed": 34,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_proofing_test.dart": {
+        "passed": 42,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_sections_test.dart": {
+        "passed": 70,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_tabstops_integration_test.dart": {
+        "passed": 10,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_tabstops_test.dart": {
+        "passed": 85,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_sections_integration_test.dart": {
+        "passed": 27,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_text_integration_test.dart": {
+        "passed": 11,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_typography_integration_test.dart": {
+        "passed": 30,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_typography_test.dart": {
+        "passed": 48,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_unit_conversions_integration_test.dart": {
+        "passed": 6,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/office_vba_word_unit_conversions_test.dart": {
+        "passed": 202,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_all_caps_test.dart": {
+        "passed": 13,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/pdf_logical_text_export_test.dart": {
+        "passed": 17,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_altchunk_fidelity_test.dart": {
+        "passed": 7,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_auxiliary_content_control_test.dart": {
+        "passed": 14,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_bibliography_fidelity_test.dart": {
+        "passed": 9,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_block_bookmark_import_test.dart": {
+        "passed": 3,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_bookmark_copy_test.dart": {
+        "passed": 20,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_bookmark_fidelity_test.dart": {
+        "passed": 17,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_comment_proofing_styles_test.dart": {
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_comment_test.dart": {
+        "passed": 3,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_comparison_adversarial_test.dart": {
+        "passed": 15,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_comparison_test.dart": {
+        "passed": 24,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_compatibility_fidelity_test.dart": {
+        "passed": 5,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_complex_script_language_test.dart": {
+        "passed": 17,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_contained_text_wrap_test.dart": {
+        "passed": 41,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_content_control_fidelity_test.dart": {
+        "passed": 32,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_edit_integrity_test.dart": {
+        "passed": 18,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_extended_revision_test.dart": {
+        "passed": 23,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_fidelity_test.dart": {
+        "passed": 19,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_field_span_test.dart": {
+        "passed": 7,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_find_replace_atomic_test.dart": {
+        "passed": 15,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_font_line_metrics_test.dart": {
+        "passed": 5,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_footnote_reference_test.dart": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_frame_wrap_test.dart": {
+        "passed": 11,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_header_picture_layout_regression_test.dart": {
+        "passed": 11,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_header_picture_identity_test.dart": {
+        "passed": 13,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_header_visual_reconciliation_test.dart": {
+        "passed": 15,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_heading_apply_test.dart": {
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_import_tolerance_test.dart": {
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_incremental_break_translation_test.dart": {
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_incremental_layout_prefix_test.dart": {
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_incremental_layout_differential_test.dart": {
+        "passed": 16,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_incremental_layout_test.dart": {
+        "passed": 9,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_inline_picture_test.dart": {
+        "passed": 6,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_kerning_properties_test.dart": {
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_layout_test.dart": {
+        "passed": 16,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_line_box_fidelity_test.dart": {
+        "passed": 7,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_list_numbering_snapshot_test.dart": {
+        "passed": 5,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_media_dedupe_test.dart": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_native_presentation_test.dart": {
+        "passed": 26,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_note_bookmark_edit_test.dart": {
+        "passed": 9,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_note_numbering_test.dart": {
+        "passed": 22,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_note_script_break_test.dart": {
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_package_preservation_test.dart": {
+        "passed": 32,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_paragraph_mark_layout_test.dart": {
+        "passed": 3,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_paragraph_style_identity_test.dart": {
+        "passed": 40,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_part_routing_test.dart": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_pdf_test.dart": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_picture_distance_fidelity_test.dart": {
+        "passed": 9,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_preserved_header_test.dart": {
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_proofing_inheritance_test.dart": {
+        "passed": 16,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_proofing_language_test.dart": {
+        "passed": 13,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_protection_mode_test.dart": {
+        "passed": 14,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_referenced_styles_and_breaks_test.dart": {
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_revision_story_test.dart": {
+        "passed": 11,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_revision_validation_test.dart": {
+        "passed": 7,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_revision_scaling_test.dart": {
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_run_fragment_fallback_test.dart": {
+        "passed": 6,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_run_measure_boundaries_test.dart": {
+        "passed": 5,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_run_measure_test.dart": {
+        "passed": 17,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_section_clone_fidelity_test.dart": {
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_shape_without_textbox_test.dart": {
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_small_caps_test.dart": {
+        "passed": 12,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_step_atomicity_test.dart": {
+        "passed": 31,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_steps_vocabulary_test.dart": {
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_structure_integrity_test.dart": {
+        "passed": 23,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_style_introduction_test.dart": {
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_structure_steps_test.dart": {
+        "passed": 20,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_styles_layout_test.dart": {
+        "passed": 17,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_symbol_char_test.dart": {
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_table_cell_border_roundtrip_test.dart": {
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_table_direction_test.dart": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_table_grid_addressing_test.dart": {
+        "passed": 22,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_table_nested_layout_test.dart": {
+        "passed": 12,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_table_style_import_regression_test.dart": {
+        "passed": 14,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_table_style_precedence_test.dart": {
+        "passed": 22,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_table_picture_pagination_test.dart": {
+        "passed": 17,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_table_tall_frame_layout_test.dart": {
+        "passed": 8,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_table_tall_toc_layout_test.dart": {
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_table_test.dart": {
+        "passed": 11,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_table_vertical_merge_layout_test.dart": {
+        "passed": 39,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_textbox_nesting_test.dart": {
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_toc_test.dart": {
+        "passed": 8,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_tree_test.dart": {
+        "passed": 3,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_vertical_table_row_geometry_test.dart": {
+        "passed": 3,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_vml_pict_test.dart": {
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_zotero_add_note_test.dart": {
+        "passed": 35,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_zotero_adjacent_citations_test.dart": {
+        "passed": 23,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_zotero_bibliography_layout_test.dart": {
+        "passed": 14,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_zotero_bibliography_style_fidelity_test.dart": {
+        "passed": 6,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_zotero_caret_test.dart": {
+        "passed": 9,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_zotero_citing_test.dart": {
+        "passed": 59,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_zotero_document_data_test.dart": {
+        "passed": 49,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_zotero_formatted_bibliography_test.dart": {
+        "passed": 11,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_zotero_multiparagraph_test.dart": {
+        "passed": 59,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_zotero_nested_note_tables_test.dart": {
+        "passed": 11,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_zotero_nested_table_test.dart": {
+        "passed": 20,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_zotero_nested_tables_integration_test.dart": {
+        "passed": 6,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_zotero_note_image_test.dart": {
+        "passed": 30,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_zotero_note_images_integration_test.dart": {
+        "passed": 10,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_zotero_note_insertion_test.dart": {
+        "passed": 41,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_zotero_note_list_test.dart": {
+        "passed": 38,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_zotero_note_table_test.dart": {
+        "passed": 118,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_zotero_note_tables_integration_test.dart": {
+        "passed": 32,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_zotero_preference_flow_test.dart": {
+        "passed": 11,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_zotero_research_target_test.dart": {
+        "passed": 35,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_zotero_rich_edit_test.dart": {
+        "passed": 30,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_zotero_scaling_test.dart": {
+        "passed": 5,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_zotero_simple_field_test.dart": {
+        "passed": 19,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_zotero_source_identity_test.dart": {
+        "passed": 14,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_zotero_style_preferences_review_test.dart": {
+        "passed": 20,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_zotero_table_cell_replacement_test.dart": {
+        "passed": 62,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_zotero_test.dart": {
+        "passed": 16,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_zotero_transfer_session_test.dart": {
+        "passed": 8,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/word_zotero_transfer_test.dart": {
+        "passed": 81,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/zotero_add_note_protocol_test.dart": {
+        "passed": 15,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/zotero_all_caps_test.dart": {
+        "passed": 5,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/zotero_backoff_state_test.dart": {
+        "passed": 7,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/zotero_catalog_query_test.dart": {
+        "passed": 18,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/zotero_citing_test.dart": {
+        "passed": 49,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/zotero_client_test.dart": {
+        "passed": 34,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/zotero_formatted_text_test.dart": {
+        "passed": 21,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/zotero_identity_client_test.dart": {
+        "passed": 19,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/zotero_item_children_test.dart": {
+        "passed": 40,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/zotero_item_details_test.dart": {
+        "passed": 23,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/zotero_metadata_batch_test.dart": {
+        "passed": 20,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/zotero_paragraph_runs_test.dart": {
+        "passed": 4,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/zotero_saved_search_test.dart": {
+        "passed": 8,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/zotero_tag_catalog_test.dart": {
+        "passed": 27,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/zotero_tag_filter_test.dart": {
+        "passed": 14,
+        "failed": 0,
+        "skipped": 0
+      },
+      "test/zotero_transfer_protocol_test.dart": {
+        "passed": 22,
+        "failed": 0,
+        "skipped": 0
+      }
+    }
+  },
+  "editor": {
+    "passed": 259,
+    "files": 17,
+    "failed": 0,
+    "skipped": 0,
+    "process_exit": 0
+  },
+  "new_engine_cases": {
+    "office_vba_word_all_caps_test.dart": 32,
+    "office_macro_word_all_caps_test.dart": 37,
+    "office_vba_word_all_caps_integration_test.dart": 11,
+    "word_all_caps_test.dart": 13,
+    "zotero_all_caps_test.dart": 5
+  },
+  "new_engine_cases_total": 98,
+  "new_editor_cases": 7,
+  "changed_dart_files": 23,
+  "strict_analysis_and_format": "passed",
+  "portability": {
+    "accepted": true,
+    "raw_bytes_equal": false,
+    "canonical_receipts_equal": true,
+    "native_parts_equal": true,
+    "difference": "Ten display.scale JSON numbers are spelled 1.0 on VM and 1 on JavaScript."
+  },
+  "earlier_editor_run": "Development-only: old parser rejected Flutter control arrays before retaining nested exit; replaced by full identical editor-final run.",
+  "github_actions_queried_or_awaited": false
+}
