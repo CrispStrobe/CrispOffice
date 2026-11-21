@@ -1,0 +1,1531 @@
+{
+  "schema_version": 1,
+  "repository": "CrispStrobe/quds_office_suite",
+  "captured_work_head": "1360ead9e080fcf884ccac6cbc87bd6a58efdb5b",
+  "captured_main": "511df2a0b5dac893c31a646f8a2a822abcdfd7aa",
+  "scope": "All five current fork branches, the latest 100 PR heads (#243\u2013342), and both open PRs in one bounded publication snapshot.",
+  "records": [
+    {
+      "source": "fork_branch",
+      "ref": "codex/word-vba-authoring-20261121",
+      "sha": "97538d025b260bd67c559962be9e9f159a6de06e",
+      "comparison": {
+        "status": "diverged",
+        "ahead_by": 3,
+        "behind_by": 9
+      }
+    },
+    {
+      "source": "fork_branch",
+      "ref": "codex/zotero-note-layout-20261121",
+      "sha": "f6236ff5588441a24f9c8cc9c1dd4370d77eaddb",
+      "comparison": {
+        "status": "diverged",
+        "ahead_by": 2,
+        "behind_by": 9
+      }
+    },
+    {
+      "source": "fork_branch",
+      "ref": "codex/zotero-odt-roundtrip-20261121",
+      "sha": "4b33109aa85e077e2798265efa045d640e6ead4e",
+      "comparison": {
+        "status": "diverged",
+        "ahead_by": 2,
+        "behind_by": 9
+      }
+    },
+    {
+      "source": "fork_branch",
+      "ref": "main",
+      "sha": "511df2a0b5dac893c31a646f8a2a822abcdfd7aa",
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 8
+      }
+    },
+    {
+      "source": "fork_branch",
+      "ref": "work/mail-live-search-20261121",
+      "sha": "1360ead9e080fcf884ccac6cbc87bd6a58efdb5b",
+      "comparison": {
+        "status": "identical",
+        "ahead_by": 0,
+        "behind_by": 0
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 342,
+      "ref": "codex/zotero-note-layout-20261121",
+      "sha": "f6236ff5588441a24f9c8cc9c1dd4370d77eaddb",
+      "state": "open",
+      "merged": false,
+      "draft": true,
+      "comparison": {
+        "status": "diverged",
+        "ahead_by": 2,
+        "behind_by": 9
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 341,
+      "ref": "perf/paragraph-frame-cache",
+      "sha": "d7e2a206d5d2a52ced5b6ad0a71134b27258fa37",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 9
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 340,
+      "ref": "codex/zotero-roundtrip-complete-20261121",
+      "sha": "ac0c51d0f791e278a065ee636106aa9a4e3865fa",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 13
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 339,
+      "ref": "perf/page-text-layer",
+      "sha": "c7273ad41a4270f25488518b4dc27893a18507c2",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 55
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 338,
+      "ref": "work/mail-scheduled-send-20261121",
+      "sha": "dcceffda5377fc4cf51ed31e9ed22919f6cee5bb",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 65
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 337,
+      "ref": "codex/zotero-roundtrip-20261121",
+      "sha": "ea62776db7eedf1b9ffc266bf02d7dda318d071b",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 58
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 336,
+      "ref": "codex/word-vba-typography-20261121",
+      "sha": "3b64f289f8b732c2a2767f5fc8d9ae63f7f21131",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 20
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 335,
+      "ref": "perf/proofing-selection-path-cache",
+      "sha": "d7c44360304f9f2bb96e021d36da4db4906b4307",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 90
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 334,
+      "ref": "codex/word-vba-format-controls-20261121",
+      "sha": "26748a56f9597d3198c7652c26eade6a97da7c2f",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 83
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 333,
+      "ref": "codex/zotero-odt-roundtrip-20261121",
+      "sha": "4b33109aa85e077e2798265efa045d640e6ead4e",
+      "state": "open",
+      "merged": false,
+      "draft": true,
+      "comparison": {
+        "status": "diverged",
+        "ahead_by": 2,
+        "behind_by": 9
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 332,
+      "ref": "perf/status-throttle",
+      "sha": "a2373a577181510899381ab3a294205e76e31597",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 139
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 331,
+      "ref": "docs/typing-roadmap-update",
+      "sha": "947781484a006ec33f39b3cec83ea8ae2897505b",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 140
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 330,
+      "ref": "perf/text-painter-cache",
+      "sha": "b8e788b74af7694fb596ef14f1ec6837beb7fb03",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 141
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 329,
+      "ref": "codex/word-vba-styles-complete-20261121",
+      "sha": "f086214c9e99bca547957d8ba9f6ee3ab15321dc",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 103
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 328,
+      "ref": "fix/ime-proofing-gate-20261121",
+      "sha": "ebd3c09740418084d61dde51d30adf2502a1f6af",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 142
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 327,
+      "ref": "feat/word-autocorrect-adaptive-proofing",
+      "sha": "b57ad955311c67cbb8cd72ac41f0415e274fdfc7",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 143
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 326,
+      "ref": "codex/zotero-editable-odt-20261121",
+      "sha": "b699f88501a10818e0f71bfd9c53cde53866cdf6",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 125
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 325,
+      "ref": "work/mail-compose-tools-20261121",
+      "sha": "36d65c43f8981ed7cea00589ff8272d96ea7073d",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 131
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 324,
+      "ref": "fix/mail-restore-view-20261121",
+      "sha": "e05056dcbe3260b77916dd9255664a8c62e98bf0",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 144
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 323,
+      "ref": "codex/zotero-parity-20261121-evening",
+      "sha": "1c20b4b7e1208a51dfcf6a65d8a94289ac438e4e",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 142
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 322,
+      "ref": "codex/word-vba-extensions-20261121",
+      "sha": "03cdfc9be130ccca0a72db1b2d761917e2e090f7",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 99
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 321,
+      "ref": "fix/cache-mail-pane-20261121",
+      "sha": "f4061383ce16700e7780842bf1d3bd5108de4b57",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 146
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 320,
+      "ref": "fix/linux-word-selection-goldens-20261121",
+      "sha": "198b822eeab12b5641ac20290ce74d31c46691f4",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 148
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 319,
+      "ref": "codex/word-vba-next-20261121",
+      "sha": "3684d3193c6d15f02954b32b2f300afcab553304",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 150
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 318,
+      "ref": "fix/goldens-about-20261121",
+      "sha": "a2ca0f86bcf3237c6c63e75e773d97e4da019480",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 159
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 317,
+      "ref": "fix/studio-mail-tests-20261121",
+      "sha": "7934a34c795327aa23d891048f068a230eac623c",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 163
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 316,
+      "ref": "codex/zotero-libreoffice-styles-20261121",
+      "sha": "b6c8eb26e219d1f7607fe943b3c91e9bfc4feb55",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 170
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 315,
+      "ref": "fix/de-proofing-l10n-20261121",
+      "sha": "5e2aee335c35bd3c49d46601dfc751e75b2eb044",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 179
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 314,
+      "ref": "work/mail-client-next-20261121",
+      "sha": "4af5a00a906a82473d653a6b11a3a6e1c88c866f",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 185
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 313,
+      "ref": "docs/app-store-urls-20261121",
+      "sha": "160700603a4b2a3f0ea3fcb2e688f07f99ad0a90",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 209
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 312,
+      "ref": "feat/about-privacy-link-20261121",
+      "sha": "139ce7ef1f6f8bf8545c75ce7b13e3322361f173",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 211
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 311,
+      "ref": "codex/word-vba-formatting-20261121",
+      "sha": "700ca3da8c6db0d837bbbefc374a7a7f17f8626e",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 202
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 310,
+      "ref": "codex/zotero-parity-2026-11-21",
+      "sha": "a91dcea1e07181457c07bedde57bf0119002b627",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 213
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 309,
+      "ref": "work/mail-parity-next-20261121",
+      "sha": "59866ce7c983869b16baa3f386b1f55dbb218833",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 232
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 308,
+      "ref": "codex/word-vba-language-controls-20261121",
+      "sha": "46f20b19193e474bed772fe99b0f602a50fa54db",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 218
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 307,
+      "ref": "fix/system-keychain-write-probe-20261121",
+      "sha": "3307415dcc0d059cce960b3bce7a5279c7230859",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 255
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 306,
+      "ref": "fix/mail-compact-reader-20261121",
+      "sha": "ca5be88293949b49942bdc3c45338243d5416e8b",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 257
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 305,
+      "ref": "work/mail-unified-cache-20261121",
+      "sha": "93404525ef245df6a98654710e352e78f85a987c",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 259
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 304,
+      "ref": "work/mail-unified-cache-20261121",
+      "sha": "b6e140263adb3f79a28096a331077a60811b4016",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 263
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 303,
+      "ref": "codex/zotero-odt-inventory-20261121",
+      "sha": "fb386d6e42a2336f1431e38bf6d713552edd0978",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 277
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 302,
+      "ref": "feat/touchid-vault-unlock-20261121",
+      "sha": "38b0dae033e50bd6409ad3a4930b083fb8b5b7c5",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 283
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 301,
+      "ref": "codex/word-vba-text-intrinsics-20261121",
+      "sha": "4357f196507ca38a2f51409a981b8621d419b6d9",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 285
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 300,
+      "ref": "work/mail-triage-20261121",
+      "sha": "575e671de665dc918886285dab2e3628f4309965",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 300
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 299,
+      "ref": "codex/zotero-native-odt-20261121",
+      "sha": "d9bfa44022781f0dd4493a923ca9f20316dc59f0",
+      "state": "closed",
+      "merged": true,
+      "draft": true,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 314
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 298,
+      "ref": "work/mail-offline-retention-20261121",
+      "sha": "9eb68b9f048d3c08274ece5d7f964f1249004485",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 323
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 297,
+      "ref": "codex/word-vba-paragraph-flow-20261121",
+      "sha": "13fa9ad5b9d140f1d7c085e46b4d0ce395000c49",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 335
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 296,
+      "ref": "codex/zotero-parity-20261121-continuation",
+      "sha": "9942eb76f0ac818e464ad1b3bcec2cc4513d3e3f",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 318
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 295,
+      "ref": "fix/app-store-screenshot-polish-20261121",
+      "sha": "7b3e45b4eb5f2aafedd4b40886e7b3acddde2f0e",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 354
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 294,
+      "ref": "fix/mail-vault-native-menus-20261121",
+      "sha": "7b2d3f3f422edd21258fee2533085b9065aff883",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 357
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 293,
+      "ref": "codex/zotero-parity-20261121-next",
+      "sha": "d4470bab1095593739ddf87fdb9f249bbc948b65",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 359
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 292,
+      "ref": "codex/word-vba-compatibility-20261121",
+      "sha": "38b07e58b7c0e2a5b04a823a7251805cea60fb77",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 366
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 291,
+      "ref": "work/mail-sync-foundation-20261121",
+      "sha": "66c98e8e6b303f11dd167305424b9c2f6a820342",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 376
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 290,
+      "ref": "feat/app-store-screenshots-20261120",
+      "sha": "e8d23a3a770037f7309e239e3ef6fe3bf570039a",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 391
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 289,
+      "ref": "codex/zotero-parity-20261121-next",
+      "sha": "a6095c304ad2d6935f2ae6f8b74412038d19f142",
+      "state": "closed",
+      "merged": true,
+      "draft": true,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 390
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 288,
+      "ref": "codex/zotero-transfer-20261121",
+      "sha": "a1995c9154357e603b89947654cf95f8bcba6a83",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 401
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 287,
+      "ref": "feat/proofing-scheduling-20261121",
+      "sha": "ada16de93d75c67011399727d10a32d1025f7edb",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 395
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 286,
+      "ref": "codex/word-vba-sections-20261121",
+      "sha": "49665e51f9eacefc180748c3d0ed7851ef5da5d1",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 432
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 285,
+      "ref": "perf/keystroke-trace-20261121",
+      "sha": "cb7ab4f7a41fa15414f6dd5ac229bda6e57cb0cd",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 447
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 284,
+      "ref": "work/mail-repository-sessions-20261121",
+      "sha": "0491492d8622ad2ef09fb84e07d3dbba462f9320",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 410
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 283,
+      "ref": "codex/zotero-multiparagraph-20261121",
+      "sha": "589ccd33243eabe57ce3074c92112e1fdf1325f1",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 453
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 282,
+      "ref": "work/mail-parity-20261121",
+      "sha": "fa59496840a36709fe3a6d867bdfe96ab99d72ab",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 465
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 281,
+      "ref": "codex/word-vba-paragraph-pagination-20261121",
+      "sha": "1581229f0e5aea24b5242c33a1e92f02d70b4c7e",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 476
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 280,
+      "ref": "fix/bookmark-typing-20261120",
+      "sha": "45245b086fce889aff9a54291083d55d40ba3cb4",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 517
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 279,
+      "ref": "work/mail-command-journal-20261121",
+      "sha": "33ce2428ebab825a844895a767e0f9f1a4077d62",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 493
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 278,
+      "ref": "codex/word-vba-unit-conversions-20261120",
+      "sha": "0e4e999a08996a6b8696ca3adba11e303331b73e",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 525
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 277,
+      "ref": "codex/zotero-vertical-tables-20261120",
+      "sha": "a7d9f37ecbaaf70544f4866d7d9e572696948184",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 521
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 276,
+      "ref": "codex/zotero-parity-20261120-next",
+      "sha": "0da1b048546f36c658a7ddfb899117b73c5d3e7c",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 584
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 275,
+      "ref": "work/mail-bulk-flags-20261120",
+      "sha": "bf0effdcc8f690972d762c5b53079e8847a5e65e",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 546
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 274,
+      "ref": "codex/word-vba-measurements-20261120",
+      "sha": "cd306bdea352c6f6400b5d1af7cc33e737004462",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 599
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 273,
+      "ref": "work/mail-bulk-actions-20261120",
+      "sha": "1584a2da8b23128c113d95c3b05b6a12d2d3861e",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 557
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 272,
+      "ref": "codex/word-vba-measurements-20261120",
+      "sha": "6d370884cd2b62ae83e627d9e71809ae9d795684",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 602
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 271,
+      "ref": "codex/word-vba-compatibility-20261120-continuation",
+      "sha": "8c54d5283804099f9c9023540921f2410b878eb1",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 596
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 270,
+      "ref": "work/mail-parity-20261120",
+      "sha": "540eb7a41554620e1405807ac1db9dc38bd62148",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 620
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 269,
+      "ref": "feat/settings-arweb-20261120",
+      "sha": "e8db6b3f21401f8c6ac4dae4c2934edde8699f4b",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 659
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 268,
+      "ref": "codex/word-vba-paragraph-controls-20261120",
+      "sha": "90ecd41c8a3ef2a6f35967f1219223022e2b0d32",
+      "state": "closed",
+      "merged": true,
+      "draft": true,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 659
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 267,
+      "ref": "feat/arabic-web-context-20261120",
+      "sha": "be47bed22a88382f016d823e526bae49590bd0eb",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 664
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 266,
+      "ref": "docs/app-store-submission-20261120",
+      "sha": "b08e0a55b629ac22b33c54146b56438862965022",
+      "state": "closed",
+      "merged": true,
+      "draft": true,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 664
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 265,
+      "ref": "chore/macos-13-minimum-20261120",
+      "sha": "a51c20737b1932d9c6475ea6dddc33fbd50b2c17",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 665
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 264,
+      "ref": "fix/main-green-20261120",
+      "sha": "1e723bd4bc96e07b1b790daf9b82897a846c6096",
+      "state": "closed",
+      "merged": true,
+      "draft": true,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 659
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 263,
+      "ref": "codex/word-vba-paragraph-spacing-20261120",
+      "sha": "d30299dd91634ad7e20c32db5c39a6687fcef4aa",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 653
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 262,
+      "ref": "work/mail-cached-workspace-20261120",
+      "sha": "c7e721b7703766491fd4459b69de30bf68d9010d",
+      "state": "closed",
+      "merged": true,
+      "draft": true,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 668
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 261,
+      "ref": "codex/word-vba-list-levels-20261120",
+      "sha": "fff4a4afda2beecdd20ae0bd1f3c31622e8c0b37",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 682
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 260,
+      "ref": "work/mail-offline-accounts-20261120",
+      "sha": "44855ab24c2c7fd34953e879fba571381cce0bc3",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 691
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 259,
+      "ref": "codex/word-vba-compat-20261120-next",
+      "sha": "650afb7d117337bab943af05d63a250a7e90c058",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 696
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 258,
+      "ref": "work/mail-offline-accounts-20261120",
+      "sha": "fee58398c80ec811f4adfbbaef7ae08598abdda0",
+      "state": "closed",
+      "merged": true,
+      "draft": true,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 697
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 257,
+      "ref": "codex/word-vba-ranges-20261120",
+      "sha": "22e5960e99915e81a1b5997058cac44dac27ba1a",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 711
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 256,
+      "ref": "codex/zotero-research-tables-20261120",
+      "sha": "34491bca22a2989dd89d9da3c853f5e57de5464f",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 725
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 255,
+      "ref": "work/mail-multiple-drafts-20261120",
+      "sha": "b3abdf3b4628a8a703857d69b8f11cd21bc502e1",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 728
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 254,
+      "ref": "work/mail-outbox-management-20261120",
+      "sha": "79e11935e16ea1d2fa576ead0712c83f22e15c28",
+      "state": "closed",
+      "merged": true,
+      "draft": true,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 708
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 253,
+      "ref": "work/mail-multiple-drafts-20261120",
+      "sha": "4b6bc01be2c95008c320b5a26615828191cf1d9e",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 733
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 252,
+      "ref": "codex/word-powerpoint-vba-expansion-20261120",
+      "sha": "0f6239396ff3328473a5f57c280b982d57e33a08",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 752
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 251,
+      "ref": "work/mail-accounts-20261120",
+      "sha": "86e44e87f829b0309ea7b84fd5d390f596fe7f26",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 772
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 250,
+      "ref": "work/mail-outbox-20261120",
+      "sha": "9443612b024114c424ba2f8146e04050d6e049b0",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 783
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 249,
+      "ref": "codex/zotero-research-tables-20261120",
+      "sha": "a2b87ee3f471da500423055e86ba2614fc053cae",
+      "state": "closed",
+      "merged": true,
+      "draft": true,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 753
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 248,
+      "ref": "work/mail-reply-forward-20261120",
+      "sha": "56d5fdf15a20ced764561a1ac2429c2c37a6e780",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 797
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 247,
+      "ref": "perf/incremental-layout-20261120",
+      "sha": "baf6d1bc53b611e9fb37082ca69c409e5f8d6381",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 804
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 246,
+      "ref": "fix/font-pack-stub-packs-20261120",
+      "sha": "d0c9007480ba518022836e017802875614e6205c",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 903
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 245,
+      "ref": "codex/word-powerpoint-vba-continuation-20261120",
+      "sha": "d46d4ef394ed7cafd40bc266c793f8c0df6ec57f",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 869
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 244,
+      "ref": "perf/typing-proofing-results-20261120",
+      "sha": "2fd61c3353dc22ee36ed1bc1a69df470a9423230",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 905
+      }
+    },
+    {
+      "source": "pull_request",
+      "number": 243,
+      "ref": "work/mail-accounts-20261120",
+      "sha": "a059c0249a25bef602640c8b8d504bd8da41c619",
+      "state": "closed",
+      "merged": true,
+      "draft": true,
+      "comparison": {
+        "status": "behind",
+        "ahead_by": 0,
+        "behind_by": 879
+      }
+    }
+  ],
+  "disposition": "The initial 163-ref intake and latest landed main 511df2a0 are integrated. Three subsequently advancing independent branches are recorded as ongoing work: their own final qualification is pending or their PR is explicitly draft/WIP. This mail increment retains their exact remote heads in this record and does not promote unfinished changes to main.",
+  "ongoing_work": [
+    {
+      "branch": "codex/word-vba-authoring-20261121",
+      "head": "97538d025b260bd67c559962be9e9f159a6de06e",
+      "pr": null,
+      "readiness": "Coherent implementation checkpoints; final source-bound qualification explicitly pending.",
+      "production": [
+        "packages/quds_office_engine/lib/src/automation/office_vba_language.dart"
+      ],
+      "tests": [
+        "packages/quds_office_engine/test/fixtures/vba_conformance/word_numeric_intrinsics_v1.json",
+        "packages/quds_office_engine/test/office_vba_numeric_conformance_test.dart",
+        "packages/quds_office_engine/test/office_vba_numeric_intrinsics_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_numeric_intrinsics_test.dart"
+      ],
+      "other": [
+        ".github/workflows/office-macros.yml",
+        "packages/quds_office_engine/example/macros/word_numeric_report.bas",
+        "packages/quds_office_engine/tool/macros/web_vba_word_numeric_smoke.dart"
+      ],
+      "incoming_validation_claims": "README reports development results of192 focused compiler/corpus cases and12 native integration cases, plus81 independent checks on each VM/JavaScript. These are incoming claims, not execution by this audit or the mail task.",
+      "docs": "# Word VBA numeric authoring continuation\n\n## Implementation checkpoint\n\nThis continuation adds shared source-known `Abs`, `Int`, `Fix` and `Sgn`\ncalculations to the Word, Excel and PowerPoint VBA adapters. No native operation,\nrenderer, document format or tracked dependency manifest changes are needed.\nThe exact [numeric contract](../../VBA_MACROS.md#numeric-intrinsics) distinguishes\nnegative floor/truncation, Empty/Null behavior, explicit conversion requirements\nand the existing portable numeric envelope from full VBA numeric subtype rules.\n\nThe executable\n[Word numeric report](../../../packages/quds_office_engine/example/macros/word_numeric_report.bas)\nrequires three body paragraphs and one independent primary-header paragraph.\nIt emits nine ordinary native operations through typed helpers and computed\nselectors, preserves unrelated rich text and inert VBA project bytes, and keeps\nthe existing validation, recording, rollback and permission boundaries.\n\nThe first remote implementation checkpoint is\n`f3e93e7ba7a847f6e90ed7afbf8b618ddee19867`. Its focused compiler and canonical\ncorpus suites pass 192 cases. The completed DOCX/DOCM/CLI/MCP integration suite\npasses another 12 cases. The actual BAS produces identical VM/JavaScript\nreceipts. These development results will be superseded by the final source-bound\nregression and portability qualification below; they are not added twice.\n\n## Preserved intake\n\nThe initial captured frontier contains 45 fork heads, all 339 pull-request heads\nand four original upstream heads. Both outstanding Zotero continuations are\nincorporated with real merge ancestry. Their production fixes were already in\ninitial main `aa861c28e336b17bcd4c259351164380cd6b1438`; the intake adds their\nseparate qualification evidence and both page-cache regression test files.\nThe one documentation conflict retains both independently scoped narratives.\n\nRemote intake checkpoint `80cc132f57367a9cfe607ed6c510e3175a24e17c` preserves\n`c0ae75c226b13ae1ec4ab31238004d558ad01531` and\n`a7f69313ed2e610f82242c31be8ad5387ae5cea0` as parents. Its replay accounts for\nall 388 captured refs: **374 actual ancestors and 14 verified historical\nreplacements**, with no uncovered refs. Thirteen replacements have identical\ncomplete Git trees; one has identical blob/mode changes on every touched path. See\n[the intake record](intake/README.md), exact inventory, proofs and replay script.\n\n## Local qualification procedure\n\nUse the pinned Dart 3.13.7 and the existing dependency lock. Resolve the normal\nworkspace with its pinned Flutter SDK, or reproduce the isolated pure-Dart\nengine harness described in `independent/README-runtime-and-numeric-review.md`.\nThe harness creates only an ignored package config and keeps all tracked\nmanifests/locks unchanged. No GitHub Actions/check/status queue is queried.\n\n```sh\npython3 docs/validation/word-vba-numeric-20261121/run_local.py \\\n  --dart /path/to/dart-sdk/bin/dart --phase regression --output /path/to/results/regression\npython3 docs/validation/word-vba-numeric-20261121/run_local.py \\\n  --dart /path/to/dart-sdk/bin/dart --phase static --output /path/to/results/static\npython3 docs/validation/word-vba-numeric-20261121/run_local.py \\\n  --dart /path/to/dart-sdk/bin/dart --phase portable --output /path/to/results/portable\n```\n\nThe runner retains process exits, compressed raw stdout/stderr, case identities,\nsource snapshots before/after, SDK/package-config identities and complete native\nreceipts. The portability phase uses the exact BAS and fixture bytes, checks\nVM/JavaScript equality, and includes the existing Variant composition/conversion\ncorpora because numeric functions compose with nullable expressions.\n\nThe independent numeric review separately passes 81 checks on both VM and\nJavaScript, with identical receipts and unchanged compiler source. It covers\nnegative zero, subnormals, both numeric bounds, static refusals, single helper\nevaluation and typed alias identity. Those supplemental checks are retained\nseparately from regression totals.\n\n## Scope\n\nThis is bounded source-to-native-plan compatibility. It does not add document\nreads, embedded VBA execution, locale-dependent implicit coercions, complete\nVBA numeric subtype fidelity or an installed Microsoft Word differential run.\nThe inherited renderer tests are preserved; this source-only change does not\nclaim a new Flutter/UI or installed Office qualification.\n"
+    },
+    {
+      "branch": "codex/zotero-note-layout-20261121",
+      "head": "f6236ff5588441a24f9c8cc9c1dd4370d77eaddb",
+      "pr": 342,
+      "draft": true,
+      "readiness": "Explicit work in progress; implementation present, fresh qualification promised by later completion checkpoint.",
+      "production": [
+        "packages/quds_office_editor/lib/src/editor_word/office_ruler.dart",
+        "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart",
+        "packages/quds_office_engine/lib/src/word/layout/word_contained_layout.dart",
+        "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+        "packages/quds_office_engine/lib/src/word/layout/word_table_row_layout.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_reader.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+      ],
+      "tests": [
+        "packages/quds_office_editor/test/word_ruler_cell_margin_test.dart",
+        "packages/quds_office_engine/test/odt_table_padding_test.dart",
+        "packages/quds_office_engine/test/odt_zotero_table_geometry_test.dart",
+        "packages/quds_office_engine/test/word_table_cell_margin_layout_test.dart"
+      ],
+      "other": [
+        "packages/quds_office_engine/tool/zotero/odt_roundtrip_acceptance.dart"
+      ],
+      "incoming_validation_claims": "No completed fresh results in captured README; previous historical counts are expressly not acceptance of this increment.",
+      "docs": "# Zotero research-table margins and native ODT padding\n\nThis increment aligns native table layout with the uniform `cellMargin` already\nstored in the Word model and DOCX. It extends editable Zotero ODT import/export\nto preserve the same bounded padding, including nested and merged table owners.\n\n## Remote intake\n\nWork started from `aa861c28e336b17bcd4c259351164380cd6b1438`. All fork branches,\npull-request heads and upstream branches/PR heads were fetched before new code.\nThe outstanding Zotero continuations `c0ae75c226b13ae1ec4ab31238004d558ad01531`\nand `a7f69313ed2e610f82242c31be8ad5387ae5cea0` were integrated, preserving both\nsets of cache regressions and the separately attributed qualification records.\nTheir README conflict was resolved by retaining both records.\n\nThe combined tree was saved remotely as\n`57c5729ab1aa1ea8c1e27a4c76b233060b843e11`. `intake-initial.json` captures the\nexact ref snapshot; `verify_intake.py` rechecks ancestry and independently proves\nthe fourteen historical equivalents using exact Git trees or changed-path\nmode/type/blob equality. Historical test counts retain their original source\nattribution and are not fresh acceptance of this increment.\n\n## Implementation contract\n\n- Native measurement, text wrapping, row height, pagination and ruler fallback\n  use each table's actual uniform margin. The existing model default remains\n  4 pt; the old fixed 4.25 pt rendering inset is corrected.\n- Nested tables retain independent margins. Picture height limits account for\n  the sum of ancestor margins, including temporary tall-row engines and notes.\n- Explicit editable Zotero ODT writes `fo:padding` on cell styles. The ordinary\n  cached-result ODT path retains its existing formatting contract.\n- Native ODT import resolves family defaults and named parent chains. A layer's\n  shorthand resets its four sides; that layer's side attributes then override\n  it. Only equal effective sides and a uniform margin across visible owners of\n  one table are represented. Nested tables resolve separately.\n- Covered-cell authored padding must agree with its merged owner. Positive\n  borders, asymmetric or per-cell margins, unsupported row/column defaults,\n  invalid lengths, exhausted cell widths and margins beyond native DOCX storage\n  remain explicit refusals. LibreOffice's `border=\"none\"` declarations are inert\n  and accepted.\n\n## Qualification\n\nFresh local and external-converter results are recorded by the completion\ncheckpoint. GitHub Actions are not the acceptance path and are neither queried\nnor awaited. Installed Zotero-plugin sessions, Microsoft Word application\nacceptance, supported-release LibreOffice testing and legacy Apache OpenOffice\ncompatibility remain separate from deterministic tests and the available\nLibreOffice development-build file converter.\n\nActive footnote separator geometry remains the next dedicated note-formatting\nincrement. It needs model, pagination, rendering and DOCX/ODT conversion work;\nadmitting its XML alone would not preserve the document faithfully.\n\n## Primary format references\n\n- [ODF 1.3 Part 3](https://docs.oasis-open.org/office/OpenDocument/v1.3/os/part3-schema/OpenDocument-v1.3-os-part3-schema.html),\n  table styles, covered cells and padding attributes.\n- [XSL 1.0 section 5.2](https://www.w3.org/TR/2001/REC-xsl-20011015/slice5.html#refine-shorthand),\n  shorthand expansion and explicit-property precedence.\n",
+      "pr_body": "## Why\n\nQuds currently preserves uniform table-cell margins in DOCX but draws table contents using a fixed inset. This changes research-note and citation-table geometry, while the native ODT reader refuses positive padding from LibreOffice.\n\n## Work in progress\n\nThe first remote checkpoint reconciles both outstanding Zotero continuations and their independent regression/evidence records. The next checkpoints implement model-driven table layout, ruler bounds, bounded native ODT padding, and repeat-save qualification with active citation ownership.\n\nValidation is local. GitHub Actions will not be queried or awaited; the completed PR will record exact fresh checks and external-converter limits before merge."
+    },
+    {
+      "branch": "codex/zotero-odt-roundtrip-20261121",
+      "head": "4b33109aa85e077e2798265efa045d640e6ead4e",
+      "pr": 333,
+      "draft": true,
+      "readiness": "Small coherent refusal guard plus regression. Current PR remains draft; historical PR body does not qualify new guard.",
+      "source_commit": "c72ee9ee9b4d7934f76d9207a25c686085769fe0",
+      "production": [
+        "packages/quds_office_engine/lib/src/word/serial/odt_writer_zotero.dart"
+      ],
+      "tests": [
+        "packages/quds_office_engine/test/odt_zotero_position_guard_test.dart"
+      ],
+      "other": [
+        "packages/quds_office_engine/tool/zotero/odt_roundtrip_acceptance.dart"
+      ],
+      "incoming_validation_claims": "PR retains prior ODT milestone results; no fresh executed guard qualification is claimed by this audit.",
+      "pr_body": "## Why\n\nActual LibreOffice-saved Zotero documents passed metadata inventories but failed native Quds reopening or changed table/note formatting on later saves. This increment qualifies editable native round trips against the authored source model.\n\n## Changes\n\n- Reopen supported bibliography TextSections with inherited inert section styles, rich and empty entries, exact ownership, and preserved unknown metadata.\n- Qualify LibreOffice decimal note offsets against visible labels. Emit separate symbol/anchor styles per note class and preserve the compatible final endnote page master; validate effective formatting on import.\n- Preserve fixed table widths/alignment through LibreOffice and complete uniform cell margins through DOCX, including zero and bounded style inheritance. Keep unsupported imported margin XML sparse.\n- Recompute optional soft-page hints while preserving authored hard breaks. Retain protection, malformed input, unsupported formatting and ownership guards.\n\n## Local qualification\n\n- **1,913 engine tests /81 suites**, **139 editor tests /9 suites**, **26 Studio tests /3 suites**: **2,078 passes, zero failures or skips**.\n- Formatting, fatal-info analysis and whitespace checks pass.\n- Three fixtures /11 active fields pass two actual LibreOffice saves with native reopen, DOCX save/reopen and editable ODT reexport between them. Exact metadata, text, editability, offsets, ownership, rich styles, table geometry and note/page formatting are checked.\n- A separate mixed-note export check preserves seven inventories and all four note style roles; it does not claim native footnote reopening.\n- Twelve independent source-binding checks connect executed inputs to checkpoint d743c1b3. The later main canvas change is explicitly separated from the unchanged engine/converter inputs and has fresh editor/Studio checks.\n\n## Integration and limits\n\nAll375 initial refs are covered by361 ancestors and14 independently verified historical equivalents. Incoming main through3440c90b is merged. Later concurrent work is explicitly recorded in the final intake instead of being represented as merged.\n\nConverter: LibreOfficeDev26.8.0.0.alpha0, build2c87e51eeaa2b413ff4ae097b2705eea1995d8e5. Installed Zotero-plugin, supported release-host, Microsoft Word application and legacy Apache OpenOffice acceptance remain separate. Active footnote separators and fixed Quds screen table padding remain documented gaps.\n\nNo GitHub Actions were queried or awaited. The complete evidence archive, per-file hashes and final receipts are being attached in the final documentation checkpoint before this draft is marked ready."
+    }
+  ]
+}

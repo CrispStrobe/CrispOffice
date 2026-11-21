@@ -8,6 +8,7 @@ import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
 
 import 'studio_mail_cached_search.dart';
+import 'studio_mail_cached_search_refresh.dart';
 import 'studio_mail_cached_search_strings.dart';
 import 'studio_mail_draft_store.dart';
 import 'studio_mail_draft_store_native.dart';
@@ -43,7 +44,8 @@ class StudioMailCachedSearchDialog extends StatefulWidget {
 }
 
 class _StudioMailCachedSearchDialogState
-    extends State<StudioMailCachedSearchDialog> {
+    extends State<StudioMailCachedSearchDialog>
+    with WidgetsBindingObserver {
   final _query = TextEditingController();
   final _retired = <StudioMailCachedSearchSession>{};
   late final Future<void> _opening;
@@ -53,6 +55,8 @@ class _StudioMailCachedSearchDialogState
   Future<void>? _pending;
   Future<void>? _retiring;
   StudioMailCachedSearchSession? _session;
+  StudioMailCachedSearchSession? _refreshSession;
+  Timer? _refreshTimer;
   List<MailLocalAccountRecord> _accounts = const [];
   List<StudioMailCachedSearchHit> _hits = const [];
   List<StudioMailCachedSearchCoverage> _coverage = const [];
@@ -75,6 +79,11 @@ class _StudioMailCachedSearchDialogState
   bool _closing = false;
   bool _allowPop = false;
   bool _expired = false;
+  bool _autoRefresh = false;
+  bool _foreground = true;
+  bool _refreshing = false;
+  String? _refreshNotice;
+  int _refreshEpoch = 0;
   int _epoch = 0;
   int _readEpoch = 0;
 
@@ -84,9 +93,29 @@ class _StudioMailCachedSearchDialogState
   bool get _limited => _hits.length >= 1000 && _hasMore;
   bool _active(int epoch) => _current && epoch == _epoch;
 
+  bool get _completeSearch =>
+      _started &&
+      _session != null &&
+      !_hasMore &&
+      _coverage.isNotEmpty &&
+      _coverage.length == _scopeAccounts()?.length &&
+      _coverage.every((entry) => entry.complete && entry.problem == null);
+
+  bool get _canAutoRefresh =>
+      _current &&
+      _completeSearch &&
+      !_busy &&
+      !_savedBusy &&
+      !_loading &&
+      !_savedLoading &&
+      _error == null;
+
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    final lifecycle = WidgetsBinding.instance.lifecycleState;
+    _foreground = lifecycle == null || lifecycle == AppLifecycleState.resumed;
     _savedStore =
         widget.savedSearchStore ??
         switch (widget.store) {
@@ -97,6 +126,20 @@ class _StudioMailCachedSearchDialogState
       _loadAccounts(),
       _loadSavedSearches(),
     ]).then((_) {});
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    final foreground = state == AppLifecycleState.resumed;
+    if (_foreground == foreground) return;
+    setState(() => _foreground = foreground);
+    if (!foreground) {
+      // Suspension revokes this attempt, including a pending provider-free
+      // database page. Resume schedules a fresh interval, never a catch-up run.
+      _cancelRefresh();
+    } else {
+      _scheduleRefresh();
+    }
   }
 
   @override
@@ -117,7 +160,9 @@ class _StudioMailCachedSearchDialogState
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _closeRequested = true;
+    _cancelRefresh(stopAutomatic: true);
     _epoch++;
     _readEpoch++;
     if (_session case final session?) _retired.add(session);
@@ -127,6 +172,46 @@ class _StudioMailCachedSearchDialogState
     _query.dispose();
     unawaited(_drainAfterDisposal());
     super.dispose();
+  }
+
+  void _cancelRefresh({bool stopAutomatic = false}) {
+    _refreshTimer?.cancel();
+    _refreshTimer = null;
+    _refreshEpoch++;
+    if (_refreshSession case final staged?) _retired.add(staged);
+    _refreshSession = null;
+    if (stopAutomatic) _autoRefresh = false;
+  }
+
+  void _scheduleRefresh() {
+    _refreshTimer?.cancel();
+    _refreshTimer = null;
+    if (!_autoRefresh || !_foreground || !_canAutoRefresh || _refreshing) {
+      return;
+    }
+    _refreshTimer = Timer(const Duration(seconds: 30), () {
+      _refreshTimer = null;
+      if (!_current) {
+        if (mounted && !_closeRequested) {
+          _expired = true;
+          _invalidate();
+          setState(() => _error = widget.strings.mailCachedSearchExpired);
+        }
+        return;
+      }
+      if (_autoRefresh && _foreground && _canAutoRefresh) {
+        unawaited(_refreshResults(automatic: true));
+      }
+    });
+  }
+
+  void _setAutoRefresh(bool enabled) {
+    if (!_current || (enabled && !_canAutoRefresh)) return;
+    setState(() {
+      _autoRefresh = enabled;
+      if (!enabled) _cancelRefresh(stopAutomatic: true);
+    });
+    _scheduleRefresh();
   }
 
   Future<void> _drainAfterDisposal() async {
@@ -222,6 +307,7 @@ class _StudioMailCachedSearchDialogState
       }
     } finally {
       if (mounted) setState(() => _savedLoading = false);
+      _scheduleRefresh();
     }
   }
 
@@ -392,6 +478,8 @@ class _StudioMailCachedSearchDialogState
   }
 
   Future<void> _savedOperation(Future<void> Function() action) async {
+    _refreshTimer?.cancel();
+    _refreshTimer = null;
     setState(() {
       _savedBusy = true;
       _savedError = null;
@@ -421,6 +509,7 @@ class _StudioMailCachedSearchDialogState
       }
     } finally {
       if (mounted) setState(() => _savedBusy = false);
+      _scheduleRefresh();
     }
   }
 
@@ -432,6 +521,7 @@ class _StudioMailCachedSearchDialogState
   /// Invalidation is synchronous: pending reads cannot repopulate an edited
   /// query or scope. Releasing owners can then finish asynchronously.
   void _invalidate() {
+    _cancelRefresh(stopAutomatic: true);
     _epoch++;
     _readEpoch++;
     final previous = _reader;
@@ -445,6 +535,7 @@ class _StudioMailCachedSearchDialogState
       _coverage = const [];
       _started = false;
       _error = null;
+      _refreshNotice = null;
     });
     _retireReader(previous);
     unawaited(
@@ -464,7 +555,22 @@ class _StudioMailCachedSearchDialogState
     final closing = Future<void>.sync(() async {
       while (_retired.isNotEmpty) {
         final session = _retired.first;
-        await session.close();
+        try {
+          await session.close();
+        } on Object {
+          // A cancelled scan still owns its cleanup obligation. In particular,
+          // suspension must not hide a failed release or retry it on resume.
+          // Retain this owner until an explicit Refresh or Close retries it.
+          if (_current) {
+            _refreshTimer?.cancel();
+            _refreshTimer = null;
+            setState(() {
+              _autoRefresh = false;
+              _error = widget.strings.mailCachedSearchCloseFailed;
+            });
+          }
+          rethrow;
+        }
         _retired.remove(session);
       }
     });
@@ -482,6 +588,8 @@ class _StudioMailCachedSearchDialogState
     bool Function()? isOperationCurrent,
   }) async {
     if (!_active(epoch) || _busy) return;
+    _refreshTimer?.cancel();
+    _refreshTimer = null;
     setState(() {
       _busy = true;
       _error = null;
@@ -494,11 +602,126 @@ class _StudioMailCachedSearchDialogState
     try {
       await operation;
     } on Object {
-      if (_active(epoch) && (isOperationCurrent?.call() ?? true)) {
+      if (_active(epoch) &&
+          (isOperationCurrent?.call() ?? true) &&
+          _error == null) {
         setState(() => _error = widget.strings.mailCachedSearchFailed);
       }
     } finally {
       if (mounted) setState(() => _busy = false);
+      _scheduleRefresh();
+    }
+  }
+
+  /// Stage a new bounded scan and replace the displayed result set once. The
+  /// opened message remains a local reading snapshot; refreshing headers never
+  /// downloads or reloads its body. Existing complete sessions own no store
+  /// between operations and can be retained if the replacement is interrupted.
+  Future<void> _refreshResults({bool automatic = false}) async {
+    if (!_current ||
+        !_foreground ||
+        !_started ||
+        _busy ||
+        _savedBusy ||
+        _loading ||
+        (automatic && (!_autoRefresh || !_completeSearch))) {
+      return;
+    }
+    final accounts = _scopeAccounts();
+    if (accounts == null) {
+      _invalidate();
+      setState(() => _error = widget.strings.mailSavedSearchMissingAccounts);
+      return;
+    }
+    final epoch = _epoch;
+    final refreshEpoch = ++_refreshEpoch;
+    final query = _query.text;
+    bool current() =>
+        _active(epoch) && _foreground && refreshEpoch == _refreshEpoch;
+    StudioMailCachedSearchSession? staged;
+    setState(() {
+      _refreshing = true;
+      _refreshNotice = null;
+    });
+    try {
+      await _operate(epoch, () async {
+        try {
+          // An unfinished manual scan can still own an exclusive database
+          // lease. Drain it before opening the replacement account profile.
+          if (_session case final previous? when previous.hasMore) {
+            _retired.add(previous);
+            _session = null;
+          }
+          await _releaseRetired();
+          if (!current()) return;
+          final session = StudioMailCachedSearchSession(
+            query: query,
+            accounts: accounts,
+            directory: widget.store,
+            openStore: widget.draftStoreFactory ?? openStudioMailDraftStore,
+            isCurrent: () => _active(epoch),
+          );
+          staged = session;
+          _refreshSession = session;
+          final batch = await refreshStudioMailCachedSearch(
+            session,
+            isCurrent: current,
+          );
+          if (!current()) return;
+          final selected = _selected;
+          final replacement = selected == null
+              ? null
+              : batch.hits
+                    .where(
+                      (hit) =>
+                          hit.key == selected.key &&
+                          hit.result.header.remote ==
+                              selected.result.header.remote &&
+                          hit.account.hasSameIdentity(selected.account) &&
+                          hit.account.revision == selected.account.revision,
+                    )
+                    .firstOrNull;
+          final retiredReader = replacement == null ? _reader : null;
+          if (_session case final previous?) _retired.add(previous);
+          _refreshSession = null;
+          setState(() {
+            _session = session;
+            _hits = batch.hits;
+            _coverage = batch.coverage;
+            _selected = replacement;
+            if (replacement == null) {
+              _readEpoch++;
+              _reader = null;
+              _missingBody = false;
+            }
+            if (!batch.complete) _autoRefresh = false;
+            _refreshNotice =
+                batch.coverage.any((entry) => entry.problem != null)
+                ? widget.strings.mailCachedSearchRefreshPartial
+                : !batch.complete
+                ? widget.strings.mailCachedSearchRefreshLimited
+                : selected != null && replacement == null
+                ? widget.strings.mailCachedSearchSelectionRemoved
+                : widget.strings.mailCachedSearchRefreshed;
+          });
+          _retireReader(retiredReader);
+        } on Object {
+          if (current()) {
+            setState(() => _autoRefresh = false);
+          }
+          rethrow;
+        } finally {
+          final candidate = staged;
+          if (candidate != null && !identical(_session, candidate)) {
+            _retired.add(candidate);
+          }
+          if (identical(_refreshSession, candidate)) _refreshSession = null;
+          await _releaseRetired();
+        }
+      }, isOperationCurrent: current);
+    } finally {
+      if (mounted) setState(() => _refreshing = false);
+      _scheduleRefresh();
     }
   }
 
@@ -632,6 +855,7 @@ class _StudioMailCachedSearchDialogState
   Future<void> _close() async {
     if (_closing) return;
     _closeRequested = true;
+    _cancelRefresh(stopAutomatic: true);
     _epoch++;
     _readEpoch++;
     if (_session case final session?) _retired.add(session);
@@ -1104,6 +1328,67 @@ class _StudioMailCachedSearchDialogState
     );
   }
 
+  Widget _refreshControls() => Padding(
+    padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Align(
+          alignment: AlignmentDirectional.centerStart,
+          child: OutlinedButton.icon(
+            key: const ValueKey('studio-mail-cached-search-refresh'),
+            onPressed:
+                !_current || !_foreground || _busy || _savedBusy || _loading
+                ? null
+                : () => _refreshResults(),
+            icon: const Icon(Icons.refresh),
+            label: Text(widget.strings.mailCachedSearchRefresh),
+          ),
+        ),
+        LayoutBuilder(
+          builder: (context, constraints) {
+            final compact = constraints.maxWidth < 600;
+            final explanation = _autoRefresh && !_foreground
+                ? widget.strings.mailCachedSearchRefreshSuspended
+                : !_completeSearch
+                ? widget.strings.mailCachedSearchRefreshIncomplete
+                : widget.strings.mailCachedSearchRefreshAbout;
+            return Tooltip(
+              message: explanation,
+              child: SwitchListTile.adaptive(
+                key: const ValueKey('studio-mail-cached-search-auto-refresh'),
+                contentPadding: EdgeInsets.zero,
+                dense: true,
+                value: _autoRefresh,
+                title: Text(widget.strings.mailCachedSearchAutoRefresh),
+                subtitle: Text(
+                  !compact || (_autoRefresh && !_foreground)
+                      ? explanation
+                      : !_completeSearch
+                      ? widget.strings.mailCachedSearchRefreshIncompleteShort
+                      : widget.strings.mailCachedSearchRefreshShortAbout,
+                ),
+                onChanged: _current && (_autoRefresh || _canAutoRefresh)
+                    ? _setAutoRefresh
+                    : null,
+              ),
+            );
+          },
+        ),
+        if (_refreshNotice case final notice?
+            when _selected == null || !_completeSearch)
+          Semantics(
+            liveRegion: true,
+            child: Text(
+              notice,
+              key: const ValueKey('studio-mail-cached-search-refresh-notice'),
+            ),
+          ),
+        if (_selected != null && _error != null) Text(_error!),
+      ],
+    ),
+  );
+
   @override
   Widget build(BuildContext context) => PopScope<void>(
     canPop: _allowPop,
@@ -1141,6 +1426,8 @@ class _StudioMailCachedSearchDialogState
             ),
             if (_loading || _busy || _closing || _savedLoading || _savedBusy)
               const LinearProgressIndicator(),
+            if (_started && !_closeRequested && !_expired && widget.isCurrent())
+              _refreshControls(),
             Expanded(
               child: _closeRequested
                   ? SingleChildScrollView(

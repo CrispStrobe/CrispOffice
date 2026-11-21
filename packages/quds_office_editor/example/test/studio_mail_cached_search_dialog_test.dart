@@ -955,7 +955,15 @@ void main() {
           of: find.text(subject),
           matching: find.byType(ListTile),
         );
-        await tester.ensureVisible(firstResult);
+        // Enlarged compact controls can leave this lazy row unbuilt. Navigate
+        // the results as a user would before asserting its sender layout.
+        await tester.scrollUntilVisible(
+          firstResult,
+          150,
+          scrollable: find
+              .descendant(of: _results, matching: find.byType(Scrollable))
+              .first,
+        );
         await tester.pump();
         final sender = find.descendant(
           of: firstResult,

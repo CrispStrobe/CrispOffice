@@ -131,6 +131,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   var _showOutline = false;
   late final StudioRibbonPreferences _ribbonPreferences;
   Map<String, String> _shortcutOverrides = const <String, String>{};
+  final _workspaceDirectionChord = OfficeDirectionKeyChord();
 
   late final _StudioSettingsBinding _settings = _StudioSettingsBinding(
     widget.settingsStore ?? StudioSettingsStore(),
@@ -969,10 +970,9 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     _nativeDialogOpen = true;
     try {
       await StudioWindow.show();
-      // Mail is a full-window route. Its dialogs and the workspace dialogs
-      // share the root navigator, so native About/Settings actions must remain
-      // available while Mail is the current route. A nested dialog wins only
-      // when it is already on top; otherwise the root navigator shows above it.
+      // Mail is an inline pane. Its dialogs and the workspace dialogs share
+      // the root navigator, so native About/Settings actions remain available
+      // while Mail is visible. The root navigator shows them above the pane.
       if (mounted) await open();
     } finally {
       _nativeDialogOpen = false;
@@ -982,24 +982,21 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   Map<ShortcutActivator, VoidCallback> _withShortcutOverrides(
     Map<ShortcutActivator, VoidCallback> base,
   ) {
-    final mac = StudioWindow.isMacOS;
-    final resolved = StudioShortcutCatalog.resolve(
-      _shortcutOverrides,
-      mac: mac,
+    // Mail owns its focused key handlers. Workspace actions must not reach
+    // the document retained behind the inline Mail pane.
+    if (_mailOpen) return const <ShortcutActivator, VoidCallback>{};
+    return StudioShortcutCatalog.mergeBindings(
+      base,
+      overrides: _shortcutOverrides,
+      callbacks: _shortcutCallbacks(),
+      mac: StudioWindow.isMacOS,
     );
-    // Remove both platform defaults for a configurable action before adding
-    // the resolved binding, so changing a key never leaves the old one active.
-    for (final action in StudioShortcutCatalog.actions) {
-      base.remove(action.defaultBinding(mac: true).activator);
-      base.remove(action.defaultBinding(mac: false).activator);
-    }
-    final callbacks = _shortcutCallbacks();
-    for (final entry in resolved.entries) {
-      final callback = callbacks[entry.key];
-      if (callback != null) base[entry.value.activator] = callback;
-    }
-    return base;
   }
+
+  VoidCallback _wordMutationShortcut(VoidCallback callback) => () {
+    if (_mailOpen || _app != SuiteApp.word || !_canMutate) return;
+    callback();
+  };
 
   Map<String, VoidCallback> _shortcutCallbacks() => <String, VoidCallback>{
     'file.new': () => unawaited(_newActiveFile()),
@@ -1013,28 +1010,47 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
     'edit.copy': _copy,
     'edit.paste': _paste,
     'edit.selectAll': _selectAll,
-    'format.bold': _toggleBold,
-    'format.italic': _toggleItalic,
-    'format.underline': _toggleUnderline,
-    'format.superscript': () => _toggleVertAlign(WmlVertAlign.superscript),
-    'format.subscript': () => _toggleVertAlign(WmlVertAlign.subscript),
-    'format.alignLeft': () => _setAlign(WmlJustification.left),
-    'format.center': () => _setAlign(WmlJustification.center),
-    'format.alignRight': () => _setAlign(WmlJustification.right),
-    'format.justify': () => _setAlign(WmlJustification.justify),
-    'format.bullets': () => _word.toggleList(numbered: false),
-    'format.numbering': () => _word.toggleList(numbered: true),
-    'format.indent': () => _nudgeIndent(18),
-    'format.outdent': () => _nudgeIndent(-18),
-    'format.growFont': () => _nudgeFontSize(2),
-    'format.shrinkFont': () => _nudgeFontSize(-2),
-    'format.singleSpacing': () => _setLineSpacing(1.0),
-    'format.doubleSpacing': () => _setLineSpacing(2.0),
-    'format.oneAndHalfSpacing': () => _setLineSpacing(1.5),
-    'insert.pageBreak': _insertPageBreak,
-    'insert.comment': _newWordComment,
-    'review.trackChanges': () =>
-        _word.setTrackRevisions(!_word.document.trackRevisions),
+    'format.bold': _wordMutationShortcut(_toggleBold),
+    'format.italic': _wordMutationShortcut(_toggleItalic),
+    'format.underline': _wordMutationShortcut(_toggleUnderline),
+    'format.superscript': _wordMutationShortcut(
+      () => _toggleVertAlign(WmlVertAlign.superscript),
+    ),
+    'format.subscript': _wordMutationShortcut(
+      () => _toggleVertAlign(WmlVertAlign.subscript),
+    ),
+    'format.alignLeft': _wordMutationShortcut(
+      () => _setAlign(WmlJustification.left),
+    ),
+    'format.center': _wordMutationShortcut(
+      () => _setAlign(WmlJustification.center),
+    ),
+    'format.alignRight': _wordMutationShortcut(
+      () => _setAlign(WmlJustification.right),
+    ),
+    'format.justify': _wordMutationShortcut(
+      () => _setAlign(WmlJustification.justify),
+    ),
+    'format.bullets': _wordMutationShortcut(
+      () => _word.toggleList(numbered: false),
+    ),
+    'format.numbering': _wordMutationShortcut(
+      () => _word.toggleList(numbered: true),
+    ),
+    'format.indent': _wordMutationShortcut(() => _nudgeIndent(18)),
+    'format.outdent': _wordMutationShortcut(() => _nudgeIndent(-18)),
+    'format.growFont': _wordMutationShortcut(() => _nudgeFontSize(2)),
+    'format.shrinkFont': _wordMutationShortcut(() => _nudgeFontSize(-2)),
+    'format.singleSpacing': _wordMutationShortcut(() => _setLineSpacing(1.0)),
+    'format.doubleSpacing': _wordMutationShortcut(() => _setLineSpacing(2.0)),
+    'format.oneAndHalfSpacing': _wordMutationShortcut(
+      () => _setLineSpacing(1.5),
+    ),
+    'insert.pageBreak': _wordMutationShortcut(_insertPageBreak),
+    'insert.comment': _wordMutationShortcut(_newWordComment),
+    'review.trackChanges': _wordMutationShortcut(
+      () => _word.setTrackRevisions(!_word.document.trackRevisions),
+    ),
     'review.spelling': () => unawaited(_showSpelling()),
     'review.thesaurus': _word.requestThesaurus,
     'navigate.find': _openFind,
@@ -2081,6 +2097,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   Future<void> _openMail() async {
     await StudioWindow.setTitle('${_strings.mailTitle} — CrispOffice');
     if (!mounted) return;
+    _workspaceDirectionChord.reset();
     setState(() {
       _mailEverOpened = true;
       _mailOpen = true;
@@ -7808,8 +7825,14 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
   }
 
   KeyEventResult _onWorkspaceDirectionKey(FocusNode node, KeyEvent event) {
-    final bool? rtl = officeDirectionFromKeyEvent(event);
-    if (rtl == null || !_canMutate) {
+    if (_mailOpen || !_canMutate) {
+      _workspaceDirectionChord.reset();
+      return KeyEventResult.ignored;
+    }
+    // Ctrl+Shift is also a prefix for tracking, redo and Save As. Commit a
+    // direction change only when the chord is released without another key.
+    final bool? rtl = _workspaceDirectionChord.handle(event);
+    if (rtl == null) {
       return KeyEventResult.ignored;
     }
     switch (_app) {

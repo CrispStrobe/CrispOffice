@@ -1,0 +1,8 @@
+00:00 +0: loading /workspace/scratch/8eb34dc8ced9/quds_office_suite/packages/quds_office_editor/example/tool/mail_live_search_visual_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: live saved search controls remain usable in en-desktop
+00:07 +1: live saved search controls remain usable in en-compact
+00:12 +2: live saved search controls remain usable in de-compact
+00:17 +3: live saved search controls remain usable in ar-compact
+00:20 +4: (tearDownAll)
+00:20 +4: All tests passed!
