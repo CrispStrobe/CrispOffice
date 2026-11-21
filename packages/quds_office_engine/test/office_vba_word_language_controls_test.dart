@@ -232,7 +232,8 @@ $_range.ParagraphFormat.LineSpacing = 12
           OfficeMacroSource(
             language: dialect,
             format: format,
-            source: 'Sub Main()\nDim language As Long\nlanguage = wdGerman\nEnd Sub',
+            source:
+                'Sub Main()\nDim language As Long\nlanguage = wdGerman\nEnd Sub',
           ),
         ),
         throwsA(isA<OfficeVbaCompileException>()),

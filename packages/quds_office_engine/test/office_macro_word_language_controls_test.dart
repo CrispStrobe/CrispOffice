@@ -184,33 +184,37 @@ End Sub
     );
   }
 
-  test('section property insertion keeps foreign namespace and native section identity', () {
-    final source =
-        '<q:pPr xmlns:q="$_w" xmlns:w="urn:foreign-word-prefix">'
-        '<w:sectPr w:keep="opaque"/><q:sectPr><q:pgSz q:w="100"/></q:sectPr></q:pPr>';
-    final generated = WordPropertyIo.parse(
-      '<w:pPr xmlns:w="$_w">'
-          '<w:sectPr><w:pgSz w:w="200"/></w:sectPr></w:pPr>',
-      'pPr',
-    );
-    final result = WordPropertyIo.preserve(generated, source, {}, {});
-    final reopened = XmlDocument.parse(XmlDocument(root: result).toXmlString())
-        .root!;
-    expect(reopened.childrenNamed('sectPr', namespaceUri: _w), hasLength(1));
-    expect(
-      reopened
-          .firstChild('sectPr', namespaceUri: _w)!
-          .firstChild('pgSz', namespaceUri: _w)!
-          .getAttribute('w', namespaceUri: _w),
-      '200',
-    );
-    expect(
-      reopened
-          .firstChild('sectPr', namespaceUri: 'urn:foreign-word-prefix')
-          ?.getAttribute('keep', namespaceUri: 'urn:foreign-word-prefix'),
-      'opaque',
-    );
-  });
+  test(
+    'section property insertion keeps foreign namespace and native section identity',
+    () {
+      final source =
+          '<q:pPr xmlns:q="$_w" xmlns:w="urn:foreign-word-prefix">'
+          '<w:sectPr w:keep="opaque"/><q:sectPr><q:pgSz q:w="100"/></q:sectPr></q:pPr>';
+      final generated = WordPropertyIo.parse(
+        '<w:pPr xmlns:w="$_w">'
+            '<w:sectPr><w:pgSz w:w="200"/></w:sectPr></w:pPr>',
+        'pPr',
+      );
+      final result = WordPropertyIo.preserve(generated, source, {}, {});
+      final reopened = XmlDocument.parse(
+        XmlDocument(root: result).toXmlString(),
+      ).root!;
+      expect(reopened.childrenNamed('sectPr', namespaceUri: _w), hasLength(1));
+      expect(
+        reopened
+            .firstChild('sectPr', namespaceUri: _w)!
+            .firstChild('pgSz', namespaceUri: _w)!
+            .getAttribute('w', namespaceUri: _w),
+        '200',
+      );
+      expect(
+        reopened
+            .firstChild('sectPr', namespaceUri: 'urn:foreign-word-prefix')
+            ?.getAttribute('keep', namespaceUri: 'urn:foreign-word-prefix'),
+        'opaque',
+      );
+    },
+  );
 
   test('language and complex font round trip independently of other slots', () {
     final document = _read(
@@ -257,39 +261,36 @@ End Sub
   });
 
   for (final csFirst in [true, false]) {
-    test(
-      'regular and complex font writes compose in either order ($csFirst)',
-      () {
-        final document = _read(
-          _fixture(
-            run:
-                '<w:rFonts w:ascii="Old Latin" w:hAnsi="Old High" w:cs="Old Complex" '
-                'w:eastAsia="East" w:cstheme="majorBidi" w:asciiTheme="majorHAnsi" '
-                'w:hAnsiTheme="majorHAnsi" x:keep="font-metadata"/>',
-          ),
-        );
-        final edits = [
-          <String, Object?>{'csFont': 'Amiri'},
-          <String, Object?>{'font': 'New Latin'},
-        ];
-        for (final edit in csFirst ? edits : edits.reversed) {
-          _run(document, edit);
-        }
-        final bytes = WordSerializer().writeBytes(document);
-        final fonts = _rPr(bytes).firstChild('rFonts', namespaceUri: _w)!;
-        expect(fonts.getAttribute('ascii', namespaceUri: _w), 'New Latin');
-        expect(fonts.getAttribute('hAnsi', namespaceUri: _w), 'New Latin');
-        expect(fonts.getAttribute('cs', namespaceUri: _w), 'Amiri');
-        expect(fonts.getAttribute('eastAsia', namespaceUri: _w), 'East');
-        expect(fonts.getAttribute('keep', namespaceUri: _x), 'font-metadata');
-        for (final theme in ['asciiTheme', 'hAnsiTheme', 'cstheme']) {
-          expect(fonts.getAttribute(theme, namespaceUri: _w), isNull);
-        }
-        final props = _props(_read(bytes));
-        expect(props.asciiFont, 'New Latin');
-        expect(props.csFont, 'Amiri');
-      },
-    );
+    test('regular and complex font writes compose in either order ($csFirst)', () {
+      final document = _read(
+        _fixture(
+          run:
+              '<w:rFonts w:ascii="Old Latin" w:hAnsi="Old High" w:cs="Old Complex" '
+              'w:eastAsia="East" w:cstheme="majorBidi" w:asciiTheme="majorHAnsi" '
+              'w:hAnsiTheme="majorHAnsi" x:keep="font-metadata"/>',
+        ),
+      );
+      final edits = [
+        <String, Object?>{'csFont': 'Amiri'},
+        <String, Object?>{'font': 'New Latin'},
+      ];
+      for (final edit in csFirst ? edits : edits.reversed) {
+        _run(document, edit);
+      }
+      final bytes = WordSerializer().writeBytes(document);
+      final fonts = _rPr(bytes).firstChild('rFonts', namespaceUri: _w)!;
+      expect(fonts.getAttribute('ascii', namespaceUri: _w), 'New Latin');
+      expect(fonts.getAttribute('hAnsi', namespaceUri: _w), 'New Latin');
+      expect(fonts.getAttribute('cs', namespaceUri: _w), 'Amiri');
+      expect(fonts.getAttribute('eastAsia', namespaceUri: _w), 'East');
+      expect(fonts.getAttribute('keep', namespaceUri: _x), 'font-metadata');
+      for (final theme in ['asciiTheme', 'hAnsiTheme', 'cstheme']) {
+        expect(fonts.getAttribute(theme, namespaceUri: _w), isNull);
+      }
+      final props = _props(_read(bytes));
+      expect(props.asciiFont, 'New Latin');
+      expect(props.csFont, 'Amiri');
+    });
   }
 
   test(
@@ -414,8 +415,9 @@ End Sub
             '<w:rPr><w:rFonts w:ascii="Latin" w:cs="Amiri"/></w:rPr></w:style>',
       ),
     );
-    _props(document).importedValues!
-        .removeWhere((key, _) => key.startsWith('rFonts:'));
+    _props(
+      document,
+    ).importedValues!.removeWhere((key, _) => key.startsWith('rFonts:'));
     _run(document, {'csFont': 'Amiri'});
     final direct = _rPr(WordSerializer().writeBytes(document));
     expect(_attribute(direct, 'rFonts', 'cs'), 'Amiri');
@@ -511,33 +513,30 @@ End Sub
     );
   }
 
-  test(
-    'foreign style font and language metadata cannot override native slots',
-    () {
-      final document = _read(
-        _fixture(
-          run: '<w:rStyle w:val="Character"/>',
-          styles:
-              '<w:style w:type="character" w:styleId="Character"><w:rPr>'
-              '<w:lang x:val="fr-FR" w:val="de-DE" x:bidi="he-IL" w:bidi="ar-SA"/>'
-              '<w:rFonts x:cs="Wrong" w:cs="Amiri" x:ascii="Wrong" w:ascii="Latin"/>'
-              '<x:lang w:val="it-IT"/><x:rFonts w:cs="Other"/>'
-              '<x:container><w:lang w:val="es-ES"/><w:rFonts w:cs="Nested"/></x:container>'
-              '</w:rPr></w:style>',
-        ),
-      );
-      expect(_props(document).proofingLanguage, 'de-DE');
-      expect(_props(document).complexScriptLanguage, 'ar-SA');
-      expect(_props(document).csFont, 'Amiri');
-      expect(_props(document).asciiFont, 'Latin');
-      _run(document, {'language': 'en-GB', 'csFont': 'Other Complex'});
-      final props = _props(_read(WordSerializer().writeBytes(document)));
-      expect(props.proofingLanguage, 'en-GB');
-      expect(props.complexScriptLanguage, 'ar-SA');
-      expect(props.csFont, 'Other Complex');
-      expect(props.asciiFont, 'Latin');
-    },
-  );
+  test('foreign style font and language metadata cannot override native slots', () {
+    final document = _read(
+      _fixture(
+        run: '<w:rStyle w:val="Character"/>',
+        styles:
+            '<w:style w:type="character" w:styleId="Character"><w:rPr>'
+            '<w:lang x:val="fr-FR" w:val="de-DE" x:bidi="he-IL" w:bidi="ar-SA"/>'
+            '<w:rFonts x:cs="Wrong" w:cs="Amiri" x:ascii="Wrong" w:ascii="Latin"/>'
+            '<x:lang w:val="it-IT"/><x:rFonts w:cs="Other"/>'
+            '<x:container><w:lang w:val="es-ES"/><w:rFonts w:cs="Nested"/></x:container>'
+            '</w:rPr></w:style>',
+      ),
+    );
+    expect(_props(document).proofingLanguage, 'de-DE');
+    expect(_props(document).complexScriptLanguage, 'ar-SA');
+    expect(_props(document).csFont, 'Amiri');
+    expect(_props(document).asciiFont, 'Latin');
+    _run(document, {'language': 'en-GB', 'csFont': 'Other Complex'});
+    final props = _props(_read(WordSerializer().writeBytes(document)));
+    expect(props.proofingLanguage, 'en-GB');
+    expect(props.complexScriptLanguage, 'ar-SA');
+    expect(props.csFont, 'Other Complex');
+    expect(props.asciiFont, 'Latin');
+  });
 
   for (final tag in ['de-DE', 'en-GB', 'sr-Latn-RS', 'es-419', 'de-DE-1996']) {
     test('canonical native language tag $tag is preserved exactly', () {
@@ -647,41 +646,44 @@ End Sub
 
   for (final name in ['lang', 'rFonts']) {
     for (final stylePart in [false, true]) {
-      test('$name in retained MC alternatives rejects (style part $stylePart)', () {
-        final attr = name == 'lang' ? 'val' : 'cs';
-        final value = name == 'lang' ? 'en-US' : 'Old';
-        final alternative =
-            '<mc:AlternateContent xmlns:mc="${OfficeNamespaces.mc}">'
-            '<mc:Choice Requires="x"><w:$name w:$attr="$value"/></mc:Choice>'
-            '<mc:Fallback><w:$name w:$attr="$value"/></mc:Fallback></mc:AlternateContent>';
-        final document = _read(
-          _fixture(
-            run: stylePart ? '' : alternative,
-            styles: stylePart
-                ? '<w:style w:type="character" w:styleId="Unused">'
-                      '<w:rPr>$alternative</w:rPr></w:style>'
-                : null,
-          ),
-        );
-        final run = document.paragraphs.single.inlines
-            .whereType<WmlRun>()
-            .single;
-        final before = WordSerializer().runPropertiesXml(run.properties);
-        expect(
-          () => _run(document, {
-            'start': 1,
-            'bold': true,
-            'language': 'de-DE',
-            'csFont': 'Amiri',
-          }),
-          throwsUnsupportedError,
-        );
-        expect(
-          document.paragraphs.single.inlines.whereType<WmlRun>().single,
-          same(run),
-        );
-        expect(WordSerializer().runPropertiesXml(run.properties), before);
-      });
+      test(
+        '$name in retained MC alternatives rejects (style part $stylePart)',
+        () {
+          final attr = name == 'lang' ? 'val' : 'cs';
+          final value = name == 'lang' ? 'en-US' : 'Old';
+          final alternative =
+              '<mc:AlternateContent xmlns:mc="${OfficeNamespaces.mc}">'
+              '<mc:Choice Requires="x"><w:$name w:$attr="$value"/></mc:Choice>'
+              '<mc:Fallback><w:$name w:$attr="$value"/></mc:Fallback></mc:AlternateContent>';
+          final document = _read(
+            _fixture(
+              run: stylePart ? '' : alternative,
+              styles: stylePart
+                  ? '<w:style w:type="character" w:styleId="Unused">'
+                        '<w:rPr>$alternative</w:rPr></w:style>'
+                  : null,
+            ),
+          );
+          final run = document.paragraphs.single.inlines
+              .whereType<WmlRun>()
+              .single;
+          final before = WordSerializer().runPropertiesXml(run.properties);
+          expect(
+            () => _run(document, {
+              'start': 1,
+              'bold': true,
+              'language': 'de-DE',
+              'csFont': 'Amiri',
+            }),
+            throwsUnsupportedError,
+          );
+          expect(
+            document.paragraphs.single.inlines.whereType<WmlRun>().single,
+            same(run),
+          );
+          expect(WordSerializer().runPropertiesXml(run.properties), before);
+        },
+      );
     }
   }
 

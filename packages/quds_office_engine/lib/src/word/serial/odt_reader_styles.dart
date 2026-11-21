@@ -658,6 +658,7 @@ final class OdtReaderStyles {
         'Automatically updating ODT styles are not supported.',
       );
     }
+    final propertyNames = <String>{};
     for (final child in definition.childElements) {
       final allowed = switch (family) {
         'paragraph' => const {'text-properties', 'paragraph-properties'},
@@ -673,6 +674,9 @@ final class OdtReaderStyles {
         throw UnsupportedError(
           'Unsupported used ODT style element: ${child.qualifiedName}',
         );
+      }
+      if (!propertyNames.add(child.localName)) {
+        throw FormatException('Duplicate used ODT ${child.localName}.');
       }
     }
   }

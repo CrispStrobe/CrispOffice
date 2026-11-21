@@ -25,6 +25,13 @@ All notable changes to `quds_office_engine` are documented here.
   BAS module, native/compiler/transaction tests and portable VM/JavaScript
   qualification. See the [language/font contract](../../docs/VBA_WORD_MACROS.md#proofing-language-and-complex-script-font-controls).
 
+- Qualify the incoming bounded ODT reader's table-style inheritance. Preserve
+  inherited alignment and row keep-together, honor explicit transparent cell
+  fills, and distribute an explicit table width across unspecified columns.
+  Refuse conflicting fixed widths, duplicate used property containers and
+  unsupported structural-style metadata. Retain 21 preservation regressions
+  when reconciling the incoming branch with the richer import contract above.
+
 - Add `OdfZotero.inspect`, a bounded read-only native ODT Zotero inventory.
   Retain canonical citation ReferenceMarks, bibliography TextSections, exact
   paragraph/story/cell ownership, UTF-16 offsets, cached results and original
