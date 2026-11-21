@@ -48,7 +48,7 @@ Sub Main()
 End Sub
 ```
 
-`Document`, `Section`, `PageSetup`, `Paragraph`, `Range`, `Font`,
+`Document`, `Section`, `PageSetup`, `HeadersFooters`, `HeaderFooter`, `Paragraph`, `Range`, `Font`,
 `ParagraphFormat`, `TabStops`, and `ListFormat` declarations support explicit
 `Set` bindings and `ByVal` helper parameters. `With` may target these supported
 objects or the range's `Font` and `ParagraphFormat`. All bindings remain
@@ -57,8 +57,9 @@ document-independent selectors; they never expose text or formatting reads.
 `Document.Sections(i)` and `.Sections.Item(i)` select an existing section.
 Its `PageSetup` supports the eight explicit geometry writes and the orientation
 and section-start controls documented below.
-Section geometry is independent of body paragraph selection; a section's
-headers, footers and range are not exposed as source objects.
+Section geometry is independent of paragraph selection. A section's `Headers`
+and `Footers` expose the explicit paragraph selectors described below; its
+whole body `Range` remains unavailable.
 
 `Paragraph.Format` returns the same formatting selector as
 `Paragraph.Range.ParagraphFormat`. A typed alias retains its selected paragraph
@@ -91,8 +92,9 @@ Word object members are unavailable in `vba-excel`.
 ## Exact native mapping
 
 In the following paragraph table, `i` is a one-based paragraph index and `p`
-is `i - 1`. These operations use the native default `body` story. The compiler
-does not emit a header, footer, note, or comment story selector. Section page
+is `i - 1`. Document paragraph selectors use the native default `body` story.
+Explicit header/footer paragraphs add the `story` and `section` fields described
+below. Notes and comments are not exposed by this source dialect. Section page
 geometry has its separate mapping below.
 
 | Word source operation | Native operation | Arguments in addition to `paragraph: p` |
@@ -271,8 +273,8 @@ can still be preserved as input without qualifying it for these edits.
 
 This slice does not provide `Document.PageSetup`, `Sections.PageSetup`,
 `Range.PageSetup`, `Selection`, property reads, `Sections.Count`, collection
-iteration, `First`/`Last`, section creation, `Section.Range`, header/footer
-objects, `PaperSize`, `Gutter`, columns, or header/footer mode
+iteration, `First`/`Last`, section creation, `Section.Range`, `PaperSize`,
+`Gutter`, columns, or header/footer mode
 setters in VBA. Geometry changes do not edit header/footer content. Unused
 helpers and inactive branches are checked for unsupported members and types.
 
@@ -374,6 +376,136 @@ custom paragraph line-spacing pair must complete before either operation.
 The [local section-controls qualification](validation/word-vba-sections-20261121/README.md)
 records the source snapshots, native/source/integration checks and VM/JavaScript
 example results, separately from the unexecuted Office and Flutter hosts.
+
+### Existing header and footer paragraphs
+
+`Section.Headers(index)` and `Section.Footers(index)` select one header or footer
+variant in an explicit existing section. Their `.Item(index)` forms are equivalent.
+The index must be an actual exact numeric value from the following enumeration:
+
+| VBA constant | Value | Header native `story` | Footer native `story` |
+| --- | ---: | --- | --- |
+| `wdHeaderFooterPrimary` | 1 | `header` | `footer` |
+| `wdHeaderFooterFirstPage` | 2 | `firstHeader` | `firstFooter` |
+| `wdHeaderFooterEvenPages` | 3 | `evenHeader` | `evenFooter` |
+
+The selected `HeaderFooter.Range` provides its `Paragraphs(i)` or
+`Paragraphs.Item(i)` collection. Choose a paragraph before inserting text or
+formatting. Paragraph indices are one-based within that story; compilation does
+not open the document, inspect its contents, or count its paragraphs.
+
+```vb
+Option Explicit
+
+Sub FormatHeader(ByVal header As HeaderFooter)
+    Dim target As Range
+    Set target = header.Range.Paragraphs(1).Range
+    target.InsertBefore "Quarterly report: "
+    target.Font.Bold = True
+    target.ParagraphFormat.Alignment = wdAlignParagraphCenter
+End Sub
+
+Sub Main()
+    Dim headers As HeadersFooters
+    Dim header As HeaderFooter
+    Set headers = ActiveDocument.Sections(1).Headers
+    Set header = headers.Item(wdHeaderFooterPrimary)
+    FormatHeader header:=header
+    ThisDocument.Sections(1).Footers(wdHeaderFooterPrimary) _
+        .Range.Paragraphs(1).Range.Font.Italic = True
+End Sub
+```
+
+`HeadersFooters` and `HeaderFooter` support typed aliases, required `ByVal`
+helper parameters, named helper arguments and nested `With`. The whole-story
+`Range` can also bind a typed Range variable or pass to a required `ByVal Range`
+parameter, but only its `Paragraphs` navigation is available. Rebinding another
+alias, collection or helper parameter does not retarget an existing paragraph.
+`Paragraphs(1)` on an already selected paragraph Range selects that same
+paragraph; another index is refused rather than interpreted as a document index.
+Collection enumeration, `Count`, `First`/`Last` and named selector arguments
+remain unavailable.
+
+Existing `InsertBefore`, `Font`, `HighlightColorIndex`, `Paragraph.Format`,
+`ParagraphFormat`, tab-stop and spacing methods use the selected story. For
+example, a prefix inserted into the second paragraph of section 3's even-page
+footer emits:
+
+```json
+{
+  "tool": "docx.replaceText",
+  "arguments": {
+    "paragraph": 1,
+    "story": "evenFooter",
+    "section": 2,
+    "start": 0,
+    "end": 0,
+    "text": "Report: "
+  }
+}
+```
+
+The plan retains the usual native tool names, so permissions and allowlists
+apply to the actual insertion or formatting operation. Body paragraph plans
+retain their existing representation. A pending custom line-spacing pair must
+match the complete section, story and paragraph identity; paragraph 1 in a
+different story cannot complete the pair. `ListFormat` remains body-only and
+is refused on header/footer paragraphs before any plan is returned.
+
+**Independent existing stories.** Execution requires an existing modeled
+paragraph in a directly referenced, independently owned header/footer story.
+It refuses a missing target, an ambiguous source reference, and a selected
+story retained as opaque XML because its structure cannot be represented.
+Shared or inherited header/footer relationships anywhere in the document are
+also refused: the current native serializer rewrites all story parts, and this
+increment does not implement linked-story propagation or unlinking. These
+checks run before the paragraph edit. Failure discards the entire detached
+macro run, including earlier successful body or story edits, and leaves
+session bytes, revision and recording unchanged.
+
+Editable source stories contain native paragraphs and runs with text, tabs and
+supported breaks. Existing `pPr` and `rPr` property fragments retain their
+native preservation behavior. The guard refuses fields, hyperlinks, graphics,
+structural wrappers, unsupported paragraph/run/root attributes, foreign
+structural lookalikes and unsupported markup-compatibility projection. This
+check also covers other modeled header/footer stories that saving rewrites;
+unsupported content in an unselected story can therefore prevent the edit.
+An independent opaque story may remain untouched, but cannot itself be selected.
+Direct native-model callers must not share mutable paragraph, inline-list,
+run or property objects with another story. Such aliases are refused before
+they can make a header edit change body text or formatting.
+
+First-page and even-page stories may be edited while their display modes are
+disabled, provided they otherwise satisfy these ownership checks. Editing them
+does not enable those modes, create a new story, or change section geometry.
+Paragraph text, formatting and opaque package-part preservation use the existing
+native save/reopen path; this does not promise byte-identical rewritten header
+XML or stable generated header-part names.
+
+The complete [header/footer example](../packages/quds_office_engine/example/macros/word_headers_footers.bas)
+requires the independent existing stories documented in that file. Run it with
+the existing `compile-word-vba`, `validate-word-vba` and `run-word-vba` commands,
+or the ordinary MCP source envelope. The
+[local work record](validation/word-vba-compatibility-20261121/README.md)
+identifies executed checks and their source hashes.
+
+This slice does not support whole-story `Range.Text`, `InsertBefore` or
+formatting, `Exists`, `LinkToPrevious`, page-number objects, linked-story
+propagation, story creation, or tables/content controls inside a header/footer.
+It does not add source document reads or execute embedded VBA projects. The
+guard checks the relationships exposed by the existing OPC parser; it is not
+a new validator for raw relationship XML that parser has already normalized.
+
+Primary references: Microsoft Word's
+[Section.Headers](https://learn.microsoft.com/en-us/office/vba/api/word.section.headers),
+[Section.Footers](https://learn.microsoft.com/en-us/office/vba/api/word.section.footers),
+[HeadersFooters.Item](https://learn.microsoft.com/en-us/office/vba/api/word.headersfooters.item),
+[WdHeaderFooterIndex](https://learn.microsoft.com/en-us/office/vba/api/word.wdheaderfooterindex),
+[HeaderFooter.Range](https://learn.microsoft.com/en-us/office/vba/api/word.headerfooter.range),
+[Range.Paragraphs](https://learn.microsoft.com/en-us/office/vba/api/word.range.paragraphs),
+and [HeaderFooter.LinkToPrevious](https://learn.microsoft.com/en-us/office/vba/api/word.headerfooter.linktoprevious).
+These establish source vocabulary and explain the linkage boundary. Local
+engine checks do not constitute differential testing against installed Word.
 
 ### Opening, closing and toggling paragraph spacing
 
@@ -1180,7 +1312,7 @@ and [native unit definitions](https://learn.microsoft.com/en-us/windows/win32/vm
 
 Font sizes still require their existing half-point grid; tab stops, spacing
 and indentation retain their existing constraints. Pixel conversions,
-`Selection`, page-setup objects, arbitrary ranges and document property reads
+`Selection`, arbitrary ranges and document property reads
 remain outside this slice.
 
 Conversions emit no native operation themselves. Resulting writes use the
@@ -1377,7 +1509,7 @@ Unsupported scope includes document-content reads,
 `Selection`, `Paragraphs.Count`, `Sections.Count`, live collection iteration,
 editable character subranges, paragraph/section creation, whole-document ranges,
 document-wide page setup, tables as Word objects,
-headers and footers as Word objects, event entry points, COM, external files,
+linked header/footer editing, whole-story writes, event entry points, COM, external files,
 and execution or editing of an embedded VBA project.
 
 ## Primary reference boundaries

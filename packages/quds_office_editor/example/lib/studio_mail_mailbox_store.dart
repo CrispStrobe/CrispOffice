@@ -38,6 +38,50 @@ abstract interface class StudioMailMailboxStore {
   Future<MailCacheCleanupReport> clearCache();
 }
 
+/// Durable synchronization is separate from a saved foreground browse window.
+/// The draft owner keeps the same exclusive repository lease for both ports.
+abstract interface class StudioMailSyncStore implements MailSyncRepository {
+  MailAccountId get account;
+  Future<MailResult<MailUnit>> saveSyncMailbox(MailMailbox mailbox);
+  Future<MailResult<MailMailboxSyncSnapshot?>> loadSyncMailbox(
+    MailMailboxId mailbox, {
+    int limit = 100,
+    int offset = 0,
+  });
+  Future<MailResult<List<MailMailboxSyncSummary>>> listSyncMailboxes();
+  Stream<MailResult<MailMailboxSyncSnapshot?>> watchSyncMailbox(
+    MailMailboxId mailbox, {
+    int limit = 100,
+    int offset = 0,
+  });
+  Stream<MailResult<List<MailMailboxSyncSummary>>> watchSyncMailboxes();
+}
+
+/// One local ID for a remote message, shared by browse captures and sync pages.
+/// The account is the enclosing repository namespace; RFC Message-ID is not an
+/// identity. Keeping this encoding unchanged preserves previously cached bodies.
+MailHeaderRecord studioMailCachedHeader(MailHeaderRecord source) {
+  final remote = source.remote;
+  final key = jsonEncode([
+    'studio-mail-cache-v1',
+    remote.provider.name,
+    switch (remote) {
+      MailImapIdentity(:final mailbox, :final uidValidity, :final uid) => [
+        mailbox.value,
+        uidValidity,
+        uid,
+      ],
+      MailOpaqueIdentity(:final value) => [value],
+    },
+  ]);
+  return MailHeaderRecord(
+    id: MailMessageId(sha256.convert(utf8.encode(key)).toString()),
+    remote: remote,
+    envelope: source.envelope,
+    flags: source.flags,
+  );
+}
+
 final class StudioMailMailboxStoreException implements Exception {
   const StudioMailMailboxStoreException(this.code);
   final MailProblemCode code;
@@ -52,7 +96,10 @@ typedef StudioMailStorageQueue =
 /// Shares the draft owner's serialization and exclusive SQLite lease. A body
 /// never gets persisted under a different remote identity or local account.
 final class SqliteStudioMailMailboxStore
-    implements StudioMailMailboxStore, StudioMailMailboxWatchStore {
+    implements
+        StudioMailMailboxStore,
+        StudioMailMailboxWatchStore,
+        StudioMailSyncStore {
   SqliteStudioMailMailboxStore({
     required this._repository,
     required this.account,
@@ -78,6 +125,98 @@ final class SqliteStudioMailMailboxStore
       );
     }
   }
+
+  Future<MailResult<T>> _sync<T>(
+    MailAccountId account,
+    Future<MailResult<T>> Function() action,
+  ) async {
+    try {
+      _scope(account);
+      return await _serialize(action);
+    } on StudioMailMailboxStoreException catch (error) {
+      return MailFailure(MailProblem(error.code));
+    } on MailCancelled catch (error) {
+      return MailFailure(
+        MailProblem(
+          error.reason == MailCancellationReason.user ||
+                  error.reason == MailCancellationReason.budgetExpired
+              ? MailProblemCode.cancelled
+              : MailProblemCode.staleOperation,
+        ),
+      );
+    } on Object {
+      return const MailFailure(MailProblem(MailProblemCode.storageFailure));
+    }
+  }
+
+  @override
+  Future<MailResult<MailUnit>> saveSyncMailbox(MailMailbox mailbox) =>
+      _sync(mailbox.id.account, () => _repository.saveMailbox(mailbox));
+
+  @override
+  Future<MailResult<MailCursor?>> readCursor(MailMailboxId mailbox) =>
+      _sync(mailbox.account, () => _repository.readCursor(mailbox));
+
+  @override
+  Future<MailResult<MailUnit>> commitSyncPage(
+    MailSyncPage page, {
+    required MailCursor? expectedCursor,
+    required MailOperationLease lease,
+  }) => _sync(page.mailbox.account, () async {
+    _scope(lease.account);
+    lease.checkCurrent();
+    final ids = <MailMessageId>{};
+    if (page.upserts.any((header) => !ids.add(header.id))) {
+      return const MailFailure(MailProblem(MailProblemCode.invalidInput));
+    }
+    return _repository.commitSyncPage(
+      MailSyncPage(
+        mailbox: page.mailbox,
+        upserts: [
+          for (final header in page.upserts) studioMailCachedHeader(header),
+        ],
+        tombstones: page.tombstones,
+        next: page.next,
+        hasMore: page.hasMore,
+        resetRequired: page.resetRequired,
+        imapRange: page.imapRange,
+      ),
+      expectedCursor: expectedCursor,
+      lease: lease,
+    );
+  });
+
+  @override
+  Future<MailResult<MailMailboxSyncSnapshot?>> loadSyncMailbox(
+    MailMailboxId mailbox, {
+    int limit = 100,
+    int offset = 0,
+  }) => _sync(
+    mailbox.account,
+    () => _repository.loadSyncMailbox(mailbox, limit: limit, offset: offset),
+  );
+
+  @override
+  Future<MailResult<List<MailMailboxSyncSummary>>> listSyncMailboxes() =>
+      _sync(account, () => _repository.listSyncMailboxes(account));
+
+  @override
+  Stream<MailResult<MailMailboxSyncSnapshot?>> watchSyncMailbox(
+    MailMailboxId mailbox, {
+    int limit = 100,
+    int offset = 0,
+  }) {
+    if (mailbox.account != account) {
+      return Stream.value(
+        const MailFailure(MailProblem(MailProblemCode.permissionDenied)),
+      );
+    }
+    return _repository.watchSyncMailbox(mailbox, limit: limit, offset: offset);
+  }
+
+  @override
+  Stream<MailResult<List<MailMailboxSyncSummary>>> watchSyncMailboxes() =>
+      _repository.watchSyncMailboxes(account);
 
   @override
   Future<List<MailCachedMailboxSummary>> listViews() => _serialize(
@@ -287,26 +426,13 @@ final class StudioMailMailboxCapture {
 
   MailHeaderRecord _header(MailHeaderRecord source) {
     final remote = _remote(source.remote);
-    // Structured, account-independent remote parameters plus the enclosing
-    // stable account row identify cached content across reconnects. Message-ID
-    // headers, mutable provider projections and numeric UID alone never do.
-    final key = jsonEncode([
-      'studio-mail-cache-v1',
-      provider.name,
-      switch (remote) {
-        MailImapIdentity(:final mailbox, :final uidValidity, :final uid) => [
-          mailbox.value,
-          uidValidity,
-          uid,
-        ],
-        MailOpaqueIdentity(:final value) => [value],
-      },
-    ]);
-    return MailHeaderRecord(
-      id: MailMessageId(sha256.convert(utf8.encode(key)).toString()),
-      remote: remote,
-      envelope: source.envelope,
-      flags: source.flags,
+    return studioMailCachedHeader(
+      MailHeaderRecord(
+        id: source.id,
+        remote: remote,
+        envelope: source.envelope,
+        flags: source.flags,
+      ),
     );
   }
 

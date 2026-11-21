@@ -1,0 +1,29 @@
+{
+  "platform": "node",
+  "visible_test_count": 121,
+  "suite_counts": {
+    "test/word_zotero_table_cell_replacement_test.dart": 62,
+    "test/word_zotero_multiparagraph_test.dart": 59
+  },
+  "results": {
+    "success": 121
+  },
+  "skipped": 0,
+  "error_events": [],
+  "done_events": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 37220
+    }
+  ],
+  "non_json_stdout": [],
+  "exit_code": 0,
+  "elapsed_seconds": 46.597,
+  "source_unchanged": true,
+  "source_file_count": 356,
+  "git_head": "a6095c304ad2d6935f2ae6f8b74412038d19f142",
+  "node_version": "v24.22.3",
+  "stderr_bytes": 0,
+  "population_note": "These 121 JavaScript executions overlap the 121 focused Dart VM tests; report as a separate platform execution, not additional unique cases."
+}

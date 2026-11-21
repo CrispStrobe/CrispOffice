@@ -1,0 +1,813 @@
+{
+  "archive": "evidence.tar.xz",
+  "archive_sha256": "7605bf4f72509aa52d5544fcca515e0b15997679ecab0ddf717db2068ab83229",
+  "archive_bytes": 454016,
+  "qualified_commit": "a6095c304ad2d6935f2ae6f8b74412038d19f142",
+  "qualified_source_member": "qualification/frozen-final/frozen-source.json.gz",
+  "qualified_source_map_sha256": "b02b5b7f62c34bf37698d53e0cb614df93ac30d955ce0ad8b1cb1707f6f18916",
+  "members": [
+    {
+      "path": "checks/analysis.txt",
+      "size": 187,
+      "sha256": "938019efb6a8813d25ce7c820309aa4f9ea4584d2e341d723aac5a1b5167ac59"
+    },
+    {
+      "path": "checks/format.txt",
+      "size": 47,
+      "sha256": "c0d096b6943cd9b59b0d727672d819283909401bdd7e582377619ea6e041072a"
+    },
+    {
+      "path": "portable/command.json",
+      "size": 1187,
+      "sha256": "a9ff38eed2e543b135979078c4556f81eafc34117e11b09bc48ab83df6fddb96"
+    },
+    {
+      "path": "portable/receipt.json",
+      "size": 1518,
+      "sha256": "73f7370776c8e727992707d9908d8310fc6b5a805f652b3606bb3cc50d90e9b8"
+    },
+    {
+      "path": "portable/source-after.json",
+      "size": 50000,
+      "sha256": "d05ef4e3ee7bf7e058ec1b7f37eb03a5cd913f92ec11193ef5ea0a02dd9a3450"
+    },
+    {
+      "path": "portable/source-before.json",
+      "size": 50000,
+      "sha256": "d05ef4e3ee7bf7e058ec1b7f37eb03a5cd913f92ec11193ef5ea0a02dd9a3450"
+    },
+    {
+      "path": "portable/stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "portable/stdout.jsonl",
+      "size": 56381,
+      "sha256": "b8af972b8abfb14a2ae2c182f3594d125d7bf021d5f186f06c238b0a8e714cfb"
+    },
+    {
+      "path": "portable/summary.json",
+      "size": 772,
+      "sha256": "a1a82aae0d74279a13272cd2569a51274981cf64a5799660872335c22696b2ef"
+    },
+    {
+      "path": "qualification/aggregate-console.json",
+      "size": 2981,
+      "sha256": "72e9980c63beec6cfd92282ff0466e6050a81a1b5bfcea8194f012c02fb5293f"
+    },
+    {
+      "path": "qualification/aggregate_qualification.py",
+      "size": 4116,
+      "sha256": "c6389d7db48b999ebc7f4a620b1388b968066573ee817179452c0632cd56071f"
+    },
+    {
+      "path": "qualification/engine-corrected-audit.json",
+      "size": 10182,
+      "sha256": "00f65ee63779690dc328b93c057fbe5b2ba3ce99652f9d8634ee772b8db8dfe2"
+    },
+    {
+      "path": "qualification/frozen-final-console.log",
+      "size": 1240,
+      "sha256": "51170c6ebd7f4f8a48c7722b17f11f1a390d53916c897916ec6225ae55df82e4"
+    },
+    {
+      "path": "qualification/frozen-final/engine-zotero/cases.json.gz",
+      "size": 24872,
+      "sha256": "80577dba1036e35c80ccb37e2b64aeb96c31b86c13369eab04cdbca9c4deaacc"
+    },
+    {
+      "path": "qualification/frozen-final/engine-zotero/command.json",
+      "size": 5536,
+      "sha256": "9a8fe767928c028efb7c4ca2a4b9cf04e6e339959fe0e784d4551c7203456074"
+    },
+    {
+      "path": "qualification/frozen-final/engine-zotero/excluded-events.json.gz",
+      "size": 800,
+      "sha256": "9dcc479184d7c8921bfe080ad5d73731cd4739415b05b280c112d1be11af2158"
+    },
+    {
+      "path": "qualification/frozen-final/engine-zotero/process-exit.json",
+      "size": 137,
+      "sha256": "0f6dc3214d74b2a102ad22f721863136f5feaf6facbc467442cda916cb6f5585"
+    },
+    {
+      "path": "qualification/frozen-final/engine-zotero/process.json",
+      "size": 69,
+      "sha256": "90e01c92505ead404a9cbbca0eb11462eb919824b92fead1235a47002bbc673d"
+    },
+    {
+      "path": "qualification/frozen-final/engine-zotero/source-after.json.gz",
+      "size": 227263,
+      "sha256": "3ca5f9a684c8b0d628bc95dcc4598a06551f58eb86d1835ee2834077e5e71f2f"
+    },
+    {
+      "path": "qualification/frozen-final/engine-zotero/source-before.json.gz",
+      "size": 227263,
+      "sha256": "3ca5f9a684c8b0d628bc95dcc4598a06551f58eb86d1835ee2834077e5e71f2f"
+    },
+    {
+      "path": "qualification/frozen-final/engine-zotero/stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "qualification/frozen-final/engine-zotero/stdout.jsonl",
+      "size": 550299,
+      "sha256": "a64293f8c6366eadeaf87c85dfa93e79497b4b08a9603e5546b4ee9b03e12965"
+    },
+    {
+      "path": "qualification/frozen-final/engine-zotero/summary.json",
+      "size": 15212,
+      "sha256": "f394dea0a4bc879c0c75f9aa8df2bf6235740ded799e5274cf673f7755d1df00"
+    },
+    {
+      "path": "qualification/frozen-final/environment-after.json",
+      "size": 8089,
+      "sha256": "55b17b4f3dca4b10f837d756a9a306ba53a0beede475e058fb0c1efb0b3a1ab1"
+    },
+    {
+      "path": "qualification/frozen-final/environment-before.json",
+      "size": 8089,
+      "sha256": "55b17b4f3dca4b10f837d756a9a306ba53a0beede475e058fb0c1efb0b3a1ab1"
+    },
+    {
+      "path": "qualification/frozen-final/final-source.json.gz",
+      "size": 227263,
+      "sha256": "3ca5f9a684c8b0d628bc95dcc4598a06551f58eb86d1835ee2834077e5e71f2f"
+    },
+    {
+      "path": "qualification/frozen-final/frozen-source.json.gz",
+      "size": 227263,
+      "sha256": "3ca5f9a684c8b0d628bc95dcc4598a06551f58eb86d1835ee2834077e5e71f2f"
+    },
+    {
+      "path": "qualification/frozen-final/run.json",
+      "size": 1608,
+      "sha256": "5b24dc2d76a8d029be5fb3c687bdeeba8a802d7b0abcb3975ebc86be454cbab8"
+    },
+    {
+      "path": "qualification/frozen-final/selection.json",
+      "size": 9814,
+      "sha256": "df803e88abe4cda66d80eca816a146fb66264f780437994529194d00e7770d64"
+    },
+    {
+      "path": "qualification/frozen-final/summary.json",
+      "size": 965,
+      "sha256": "275459fb0d5ce995ea7e3ad9ae5bd482978421e6d8ba05aef5e1ca4ec03bc1d5"
+    },
+    {
+      "path": "qualification/frozen-remaining-console.log",
+      "size": 4299,
+      "sha256": "13ef1ed3d7e805406cda41561a4e8ed6cee8f2121d5024b946234d90afff230d"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-1/cases.json.gz",
+      "size": 4734,
+      "sha256": "e8979fcec69194d5d5eae23038c169d2ddcd4fa37b98ee81e0b7d6509f3dc68c"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-1/command.json",
+      "size": 1921,
+      "sha256": "892fca4e769289bba1fe49e67109d4c38c401d415091d59fa494eed730296d22"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-1/excluded-events.json.gz",
+      "size": 408,
+      "sha256": "0e69fd9e3dffa03c24cc94de4eac2b134121f15f5412b71f47eeec23ef520d75"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-1/process-exit.json",
+      "size": 137,
+      "sha256": "82cb4ec43aaf29ff3a40fd29ddf977f227aa7003cb40b11dc10de96db2ce69c0"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-1/process.json",
+      "size": 70,
+      "sha256": "7def7cebd39664a34892627e0002a094632cf67a6f186164e739dadd4b8ead6b"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-1/source-after.json.gz",
+      "size": 227263,
+      "sha256": "3ca5f9a684c8b0d628bc95dcc4598a06551f58eb86d1835ee2834077e5e71f2f"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-1/source-before.json.gz",
+      "size": 227263,
+      "sha256": "3ca5f9a684c8b0d628bc95dcc4598a06551f58eb86d1835ee2834077e5e71f2f"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-1/stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-1/stdout.jsonl",
+      "size": 118199,
+      "sha256": "28da71c637eef0cfbe5da525a6830a074d961906ed8617d3ff0ef823be504ef7"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-1/summary.json",
+      "size": 3259,
+      "sha256": "db72cddd4f9eba9c31cc27146f530649751d1ce239d4b97a40c92d9915c4f86a"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-2/cases.json.gz",
+      "size": 4509,
+      "sha256": "50923fb0b1812bf66e36019b1f3d7cfd8868a0ca11caf1c76956255e1737cc85"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-2/command.json",
+      "size": 1869,
+      "sha256": "9bdf71cf864bf1939de584c9eade0dd92b72c59f04956f44701842b77095dcbb"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-2/excluded-events.json.gz",
+      "size": 390,
+      "sha256": "a3632998599319b3ec025ab095e5320031839a73ac4bd09a68a3b47ba43615ff"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-2/process-exit.json",
+      "size": 138,
+      "sha256": "ace99d072c37a35ef37b2fdd528090e79ffa01a5dc7be14da12384a61fc70a60"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-2/process.json",
+      "size": 70,
+      "sha256": "5c2539b973648dd5f14e5bb148e1353ae3bd07f488f0a2e9604bd15badec2f8d"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-2/source-after.json.gz",
+      "size": 227263,
+      "sha256": "3ca5f9a684c8b0d628bc95dcc4598a06551f58eb86d1835ee2834077e5e71f2f"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-2/source-before.json.gz",
+      "size": 227263,
+      "sha256": "3ca5f9a684c8b0d628bc95dcc4598a06551f58eb86d1835ee2834077e5e71f2f"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-2/stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-2/stdout.jsonl",
+      "size": 93286,
+      "sha256": "cf1e5eb69eaace7453a54e0270be3d53184df278a1dcaafc72283fc333bba9a2"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-2/summary.json",
+      "size": 3208,
+      "sha256": "b6c2afb0d2ef175496350d292171cd43bfb0837f4ddb4a61ffcfc5493cec6843"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-3/cases.json.gz",
+      "size": 5723,
+      "sha256": "73647124bc7f4f94e773e4df80fabe1f376dd810690ffcfecdddcf45394e5baa"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-3/command.json",
+      "size": 1893,
+      "sha256": "48b2d082721259207197a9562e64c81d020559ce36be8e9693f78db2bee6d362"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-3/excluded-events.json.gz",
+      "size": 419,
+      "sha256": "7bd4504797cee1b5687773cb2dc79756535e6ea66a55407d96e247fa474fd42e"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-3/process-exit.json",
+      "size": 137,
+      "sha256": "0d27df3e38caea890beada93c35a13d8ce047879512d00e2eab3518b61aecb71"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-3/process.json",
+      "size": 70,
+      "sha256": "d1f10568f1b1de50002fb4b952f411bf1e1c23bdc2a8903c3b1f3dd64504cdfb"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-3/source-after.json.gz",
+      "size": 227263,
+      "sha256": "3ca5f9a684c8b0d628bc95dcc4598a06551f58eb86d1835ee2834077e5e71f2f"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-3/source-before.json.gz",
+      "size": 227263,
+      "sha256": "3ca5f9a684c8b0d628bc95dcc4598a06551f58eb86d1835ee2834077e5e71f2f"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-3/stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-3/stdout.jsonl",
+      "size": 134340,
+      "sha256": "0d524e1b8c8847579ac0694378471e64660a6c380ff229bec635efdb47b06275"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-3/summary.json",
+      "size": 3231,
+      "sha256": "50d03da39858c4158c8377f41f4d3fe5561a35a43d8d4399e93edbf8c1cce333"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-4/cases.json.gz",
+      "size": 3386,
+      "sha256": "248899823df3ccc317fc9cd28209f069860263dcf32a535f4fcf2f27e3dc4972"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-4/command.json",
+      "size": 1883,
+      "sha256": "3788438e56a35ffa560dda7f66929ed635727afb5b32edaa01dee173fea793b4"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-4/excluded-events.json.gz",
+      "size": 365,
+      "sha256": "9d33efe3b5dc9892d53167816500eddd46d9e16666758d7212a95dcfc698be6e"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-4/process-exit.json",
+      "size": 138,
+      "sha256": "c0234f54ad0964e6f0cc09acfb8199fbe04f8b65651b9e3c5e92ad135ff197e4"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-4/process.json",
+      "size": 70,
+      "sha256": "b8d1134d83972a43370afabefb5547fbd37d7647222631b8923b947add403c0b"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-4/source-after.json.gz",
+      "size": 227263,
+      "sha256": "3ca5f9a684c8b0d628bc95dcc4598a06551f58eb86d1835ee2834077e5e71f2f"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-4/source-before.json.gz",
+      "size": 227263,
+      "sha256": "3ca5f9a684c8b0d628bc95dcc4598a06551f58eb86d1835ee2834077e5e71f2f"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-4/stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-4/stdout.jsonl",
+      "size": 63673,
+      "sha256": "fdeb8fbcca63d55f6458213825e1dad03970e8b152fe690d111d0326a10d129f"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-4/summary.json",
+      "size": 3222,
+      "sha256": "642c04f181e5f80b5cb26b928b6495cef52e39121a17bf3e4cf6ea6d3e917cda"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-5/cases.json.gz",
+      "size": 3708,
+      "sha256": "ffd2e6b0e2e1423a955a48d67ff045f1b71f2c9a5c0ed330ce46f33b6509f3dc"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-5/command.json",
+      "size": 1771,
+      "sha256": "65b130b3943c1688f3a4a3f33608332feefdda0188fec5ed0948f2912507e718"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-5/excluded-events.json.gz",
+      "size": 376,
+      "sha256": "f48664fb6f50a7ee197cf7e1336b4dabf9c7356633978213c3d2d06261b0230b"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-5/process-exit.json",
+      "size": 137,
+      "sha256": "262ed980e5c39a6c4d6ea7df52f5a2e3eb1a76ea198b715dec72e06081a9cf03"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-5/process.json",
+      "size": 70,
+      "sha256": "d13e6c86384c312b563479a318d5d15465a7a4b725411fe54dcc438b66f6381d"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-5/source-after.json.gz",
+      "size": 227263,
+      "sha256": "3ca5f9a684c8b0d628bc95dcc4598a06551f58eb86d1835ee2834077e5e71f2f"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-5/source-before.json.gz",
+      "size": 227263,
+      "sha256": "3ca5f9a684c8b0d628bc95dcc4598a06551f58eb86d1835ee2834077e5e71f2f"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-5/stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-5/stdout.jsonl",
+      "size": 90393,
+      "sha256": "a0632841391572c2bf8abf96baa59e68b5cc4d362734aa1c0334ed0b6f17825e"
+    },
+    {
+      "path": "qualification/frozen-remaining/editor-zotero-5/summary.json",
+      "size": 3108,
+      "sha256": "4a4cb6a3720bf4411405924d6542f1022d5d20f10de83dbd85abda401913bb09"
+    },
+    {
+      "path": "qualification/frozen-remaining/engine-owner-fidelity/cases.json.gz",
+      "size": 10240,
+      "sha256": "398f76dfe02573c283058babefa46b79e7fe2fa65fa290a6bab45c8cac3f348a"
+    },
+    {
+      "path": "qualification/frozen-remaining/engine-owner-fidelity/command.json",
+      "size": 3810,
+      "sha256": "3b0a573f72d91ca5aaa28fea09ce43b09e9924c9469376df284297a395207390"
+    },
+    {
+      "path": "qualification/frozen-remaining/engine-owner-fidelity/excluded-events.json.gz",
+      "size": 601,
+      "sha256": "e6ecc294eeef19dab8314c4b260eb2753415aac262f5e6f2f4cac92fecb05e21"
+    },
+    {
+      "path": "qualification/frozen-remaining/engine-owner-fidelity/process-exit.json",
+      "size": 138,
+      "sha256": "b036e4c9ea8acb0c79e13c239d056ce8def880147ab6c8395a5f00928267823a"
+    },
+    {
+      "path": "qualification/frozen-remaining/engine-owner-fidelity/process.json",
+      "size": 69,
+      "sha256": "02631d6d10e513f929cdb7aa6a209ac536d7afec6683ab0a62994bb94ebb1351"
+    },
+    {
+      "path": "qualification/frozen-remaining/engine-owner-fidelity/source-after.json.gz",
+      "size": 227263,
+      "sha256": "3ca5f9a684c8b0d628bc95dcc4598a06551f58eb86d1835ee2834077e5e71f2f"
+    },
+    {
+      "path": "qualification/frozen-remaining/engine-owner-fidelity/source-before.json.gz",
+      "size": 227263,
+      "sha256": "3ca5f9a684c8b0d628bc95dcc4598a06551f58eb86d1835ee2834077e5e71f2f"
+    },
+    {
+      "path": "qualification/frozen-remaining/engine-owner-fidelity/stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "qualification/frozen-remaining/engine-owner-fidelity/stdout.jsonl",
+      "size": 212416,
+      "sha256": "fc3d3d03e1c3818b64c079cc89fbc83806e244aa64c6941f044772c2ce606cc4"
+    },
+    {
+      "path": "qualification/frozen-remaining/engine-owner-fidelity/summary.json",
+      "size": 5149,
+      "sha256": "c590d81470a2ee53d78c00a4fc6f48f1fe11b7640fd74e6c93f917aa32acf687"
+    },
+    {
+      "path": "qualification/frozen-remaining/environment-after.json",
+      "size": 8089,
+      "sha256": "55b17b4f3dca4b10f837d756a9a306ba53a0beede475e058fb0c1efb0b3a1ab1"
+    },
+    {
+      "path": "qualification/frozen-remaining/environment-before.json",
+      "size": 8089,
+      "sha256": "55b17b4f3dca4b10f837d756a9a306ba53a0beede475e058fb0c1efb0b3a1ab1"
+    },
+    {
+      "path": "qualification/frozen-remaining/final-source.json.gz",
+      "size": 227263,
+      "sha256": "3ca5f9a684c8b0d628bc95dcc4598a06551f58eb86d1835ee2834077e5e71f2f"
+    },
+    {
+      "path": "qualification/frozen-remaining/frozen-source.json.gz",
+      "size": 227263,
+      "sha256": "3ca5f9a684c8b0d628bc95dcc4598a06551f58eb86d1835ee2834077e5e71f2f"
+    },
+    {
+      "path": "qualification/frozen-remaining/run.json",
+      "size": 1587,
+      "sha256": "72bbbcea8b810385d385a7c19ab1afd028aa5a66e974d9d3580491eb1ee29465"
+    },
+    {
+      "path": "qualification/frozen-remaining/selection.json",
+      "size": 7509,
+      "sha256": "71c006c10411b7ced92d10de9a677bcd3df3ad0d97230a8eedcb653951b38e3e"
+    },
+    {
+      "path": "qualification/frozen-remaining/studio-zotero/cases.json.gz",
+      "size": 1151,
+      "sha256": "0b3fd0c516733a9807a8455ef8e4cfff6d845867265cd920a818f43e1f4e33c0"
+    },
+    {
+      "path": "qualification/frozen-remaining/studio-zotero/command.json",
+      "size": 885,
+      "sha256": "bcdb97601e17715f191a92f6cf9fbeb70225e7cb2abb7c8176fe0a663421feaf"
+    },
+    {
+      "path": "qualification/frozen-remaining/studio-zotero/excluded-events.json.gz",
+      "size": 230,
+      "sha256": "db0b54fe1f74947cb96eed0e0ec5833018101c239dcc2d950aab6b94a93ee625"
+    },
+    {
+      "path": "qualification/frozen-remaining/studio-zotero/process-exit.json",
+      "size": 138,
+      "sha256": "c87c5d706cc7b44d0ff50454d1e0e5a8aa86843603268d3f11b47a1689cdcc25"
+    },
+    {
+      "path": "qualification/frozen-remaining/studio-zotero/process.json",
+      "size": 71,
+      "sha256": "3a9d1dd5e9a1a17ee46ae84b24470c25ee05af2b60d8d14e4c2d526c4110d761"
+    },
+    {
+      "path": "qualification/frozen-remaining/studio-zotero/source-after.json.gz",
+      "size": 227263,
+      "sha256": "3ca5f9a684c8b0d628bc95dcc4598a06551f58eb86d1835ee2834077e5e71f2f"
+    },
+    {
+      "path": "qualification/frozen-remaining/studio-zotero/source-before.json.gz",
+      "size": 227263,
+      "sha256": "3ca5f9a684c8b0d628bc95dcc4598a06551f58eb86d1835ee2834077e5e71f2f"
+    },
+    {
+      "path": "qualification/frozen-remaining/studio-zotero/stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "qualification/frozen-remaining/studio-zotero/stdout.jsonl",
+      "size": 17882,
+      "sha256": "03dc5920debcd0fff029772a1bae9e5f8ba6c190e97cfed02425d40e03108985"
+    },
+    {
+      "path": "qualification/frozen-remaining/studio-zotero/summary.json",
+      "size": 2219,
+      "sha256": "7d78eda81b130f9ebd041712e16c766610a047fdb45719cb44bb42c2c4eace99"
+    },
+    {
+      "path": "qualification/frozen-remaining/summary.json",
+      "size": 2944,
+      "sha256": "48a8328806caa1e901752026a1b11e4b8cf4ea03adb29b7d6bcf2db3048f0ff0"
+    },
+    {
+      "path": "qualification/prepare_selection.py",
+      "size": 4003,
+      "sha256": "d42172a67f9f8ec3c33c3c490f9fc681a92394f824362c8c1e1863c08e1d8361"
+    },
+    {
+      "path": "qualification/qualification.json",
+      "size": 13460,
+      "sha256": "4e2aa486d32c38975fcfd80f72205360515bee6072759400219e2bd7cb1db0a9"
+    },
+    {
+      "path": "qualification/reaudit_engine.py",
+      "size": 4511,
+      "sha256": "a2f0a7f2eb3fb23d3bdbea0070d6b6866af830f9bdd96729a6e7ce0fda67b87c"
+    },
+    {
+      "path": "qualification/run_qualification.py",
+      "size": 12224,
+      "sha256": "c5da757113ab043cb80a0932cff2b7d136d7e06bb9dc3b6fb707d47ef69baba1"
+    },
+    {
+      "path": "qualification/run_qualification_v1.py",
+      "size": 12170,
+      "sha256": "832114d23dc75ce88debcdc5a29d8020c1da639eb6a60327e0495c1a7d716043"
+    },
+    {
+      "path": "qualification/selection.json",
+      "size": 9814,
+      "sha256": "36575af17dc8c32b746eef07c97e15d03d777233bf93f15898abae76269d2da3"
+    },
+    {
+      "path": "review/accepted-probes.json",
+      "size": 2016,
+      "sha256": "ed90301e69ecaa41debfe9d76ef922cfef3d0c8411c0069c4d24fc3ebbffeb39"
+    },
+    {
+      "path": "review/accepted-probes.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "review/accepted-receipt.json",
+      "size": 102004,
+      "sha256": "45763d3dcfc9f1f77b426568b664cabfa62a2af54a813c9bab1f7567ccaf7d76"
+    },
+    {
+      "path": "review/after-covariance-probes.json",
+      "size": 2016,
+      "sha256": "ed90301e69ecaa41debfe9d76ef922cfef3d0c8411c0069c4d24fc3ebbffeb39"
+    },
+    {
+      "path": "review/after-covariance-probes.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "review/after-covariance-receipt.json",
+      "size": 101925,
+      "sha256": "90c7504930757194b7cac58920acbd4dbe4123e9c330e43921ba0d0f9576d2c1"
+    },
+    {
+      "path": "review/audit_qualification.py",
+      "size": 14958,
+      "sha256": "e4f999fe672c0f11eef0d18d4b6488434ba02737e34f30dc2d1f86459b3610fb"
+    },
+    {
+      "path": "review/development-probes.json",
+      "size": 2953,
+      "sha256": "062399b009f22be35c6b610bfea40a904e27e7f904e8b606c027fd0f7457241a"
+    },
+    {
+      "path": "review/development-probes.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "review/ownership_probes.dart",
+      "size": 6701,
+      "sha256": "0ee8700860f13d57e6817fb40cd3d73e6428505d7990f0fd0d51a5be3b17a52c"
+    },
+    {
+      "path": "review/qualification-review.json",
+      "size": 6814,
+      "sha256": "234f36d4810259ebf27d65da9f52fdbb4d469991ac04a7abd668b69b3aecc1c7"
+    },
+    {
+      "path": "review/qualification-review.md",
+      "size": 3940,
+      "sha256": "5a88ad2d8c7c95243ec1e0c1b6ce691b14607fb1adf363214a6dd3ea29499bcb"
+    },
+    {
+      "path": "review/review.json",
+      "size": 4352,
+      "sha256": "30814724f017fa73cdf8df59e163772674c142bebbeada220feeeb7830f6863d"
+    },
+    {
+      "path": "review/review.md",
+      "size": 3457,
+      "sha256": "1e1fd469c40f287e7a55d5466aad365daf04d21e907e00c6601712bf49590065"
+    },
+    {
+      "path": "runtime/dart-test.sh",
+      "size": 381,
+      "sha256": "37554defc66c947ba2e4a641dd9b9a3df355aba324dd7a85001ac6b761ae6cbb"
+    },
+    {
+      "path": "runtime/env.sh",
+      "size": 644,
+      "sha256": "9edcd50bbcaa18ae3254ddf355aa94f3a16d8d924e0c438dbc28f468833cf568"
+    },
+    {
+      "path": "runtime/flutter-recovery.json",
+      "size": 539,
+      "sha256": "92184a7db15171d3b76fea16cca656795b25cf374e9820b6079e6a4c9302db47"
+    },
+    {
+      "path": "runtime/logs/analysis-smoke.log",
+      "size": 49,
+      "sha256": "64e1f7c9c045aa7280143ec67b8ca5d26b9a5c014deed9909f887cfd09e269fb"
+    },
+    {
+      "path": "runtime/logs/cell-controller-development.jsonl",
+      "size": 51974,
+      "sha256": "40acdfcfef97628cc54f1716319eaca3f746ceb7d9919afc7b9b8d2cad876a8b"
+    },
+    {
+      "path": "runtime/logs/cell-controller-development.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runtime/logs/cell-controller-typed-development.jsonl",
+      "size": 52940,
+      "sha256": "af21f64f26b5750f88955068c58c3e98d35556553050959c2ddeb45e685c7f09"
+    },
+    {
+      "path": "runtime/logs/cell-controller-typed-development.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runtime/logs/cell-final-analysis.txt",
+      "size": 187,
+      "sha256": "938019efb6a8813d25ce7c820309aa4f9ea4584d2e341d723aac5a1b5167ac59"
+    },
+    {
+      "path": "runtime/logs/cell-final-format.txt",
+      "size": 47,
+      "sha256": "c0d096b6943cd9b59b0d727672d819283909401bdd7e582377619ea6e041072a"
+    },
+    {
+      "path": "runtime/logs/dart-version.log",
+      "size": 82,
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    {
+      "path": "runtime/logs/editor-smoke.jsonl",
+      "size": 17092,
+      "sha256": "d57241b6d5f1d5fbe74026e97d3e6fd42a65e66a336d4112f7a6e14fbcd13ce4"
+    },
+    {
+      "path": "runtime/logs/editor-smoke.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runtime/logs/engine-smoke-explicit.jsonl",
+      "size": 21448,
+      "sha256": "11d6215c6514aa89af8ccd1a783b79eeac1be571143f07e3a2cbad5f3b358d69"
+    },
+    {
+      "path": "runtime/logs/engine-smoke-explicit.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runtime/logs/engine-smoke.jsonl",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runtime/logs/engine-smoke.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runtime/logs/flutter-tools-pub-get.log",
+      "size": 1228,
+      "sha256": "fcccf37d969787c76d4c55b19cba368cff68b1c3eb86b1f0f02274b9cc405829"
+    },
+    {
+      "path": "runtime/logs/flutter-version.json",
+      "size": 638,
+      "sha256": "5c334ffcce684abef31449166022db00397396470c66dd78e706ffc0d74527d7"
+    },
+    {
+      "path": "runtime/logs/flutter-version.stderr",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "runtime/logs/prefetch-tools.log",
+      "size": 41868,
+      "sha256": "f96d92a754117fca8030e9fbe0b24bd7f1c29ead97579c706889ebb8e3238525"
+    },
+    {
+      "path": "runtime/logs/prefetch.log",
+      "size": 43670,
+      "sha256": "97f1cd88302746fc942a2f56ccc0f4dd05ee232fc047bac794540d88d43ce0b3"
+    },
+    {
+      "path": "runtime/logs/restore_flutter.log",
+      "size": 556,
+      "sha256": "91bc81b4d2c7cebcb5a70e5b7f9c51ec5265a26a41b06711badbc2b2d982ef5f"
+    },
+    {
+      "path": "runtime/logs/workspace-pub-get.log",
+      "size": 68,
+      "sha256": "d4cb7a3c68b4133b4f6e58c67ff5bfd13725d8021e930388cdc98da8a575919d"
+    },
+    {
+      "path": "runtime/runtime-ready.json",
+      "size": 6367,
+      "sha256": "5ac1dfe1b300b4f3a6563e9051381448e71447fb429cbef7881d82c7fb17d050"
+    },
+    {
+      "path": "runtime/scripts/prefetch_pub.py",
+      "size": 3701,
+      "sha256": "ca07eba475d2613491aee15f192902676f1983501ddabaacdfff5f329fd0c229"
+    },
+    {
+      "path": "runtime/scripts/prepare_workspace.py",
+      "size": 1911,
+      "sha256": "312c2556f17de95f15b719b483d60770d13a25b3643b106542790a551e30d9ae"
+    },
+    {
+      "path": "runtime/scripts/restore_flutter.py",
+      "size": 1934,
+      "sha256": "d23e6221f2f732d827ec1c284aed82cdbb7f875a7ffcc760b66b32688bb0f667"
+    },
+    {
+      "path": "runtime/setup/prefetch-135.json",
+      "size": 50881,
+      "sha256": "06b3e5b5df2318ba84b77c1daa29fb07e5d1552bf260f4db58bbaa478214f3a1"
+    },
+    {
+      "path": "runtime/setup/prefetch-202.json",
+      "size": 50200,
+      "sha256": "2f546933a49a4b985cd406936ab5c42fc2b4d23decf7dc668f3569062b72354a"
+    },
+    {
+      "path": "runtime/setup/workspace-prepared.json",
+      "size": 28141,
+      "sha256": "b95509ad57ae10070318868e219a6baf50b5e414a1810838e3bb4ff94084d978"
+    }
+  ],
+  "scope": {
+    "qualification": "All original execution streams, exits, before/after maps, runner versions, original rejected audit, corrected audit and aggregate receipt.",
+    "review": "Independent source probes, including development failures and rejected moving-source attempt, accepted frozen-source probes and final raw-event audit.",
+    "portable": "Node execution streams, command, exit receipt and source snapshots; 121 cases overlap the VM population.",
+    "runtime": "SDK/package verification receipts, setup scripts and logs; SDK and dependency binaries are not embedded.",
+    "checks": "Final strict analyzer and formatting output.",
+    "paths": "Recorded commands preserve the original absolute execution paths. Archive/source verification is portable; rerunning the original audit requires its recorded workspace/runtime layout."
+  }
+}

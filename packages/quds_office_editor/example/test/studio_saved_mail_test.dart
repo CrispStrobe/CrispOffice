@@ -163,6 +163,33 @@ void main() {
 
   tearDown(() => FilePicker.platform = FilePickerIO());
 
+  testWidgets('saved and account Mail views each expose one localized Close', (
+    tester,
+  ) async {
+    const strings = StudioStrings(StudioLanguage.de);
+    await _openDialog(tester, strings: strings);
+    final reader = _reader(tester);
+    final close = find.byTooltip(strings.close);
+
+    // Search the whole dialog: limiting the finder to the saved-message view
+    // would miss a duplicate Close command in the surrounding Mail ribbon.
+    expect(close, findsOneWidget);
+    await tester.tap(find.byTooltip(strings.mailAccounts));
+    await _pump(tester);
+    expect(find.byType(MailMessageView), findsNothing);
+    expect(close, findsOneWidget);
+
+    await tester.tap(find.byTooltip(strings.savedMessages));
+    await _pump(tester);
+    expect(_reader(tester), same(reader));
+    expect(close, findsOneWidget);
+    await tester.tap(close);
+    await _pump(tester);
+    expect(find.byType(StudioMailDialog), findsNothing);
+    expect(reader.isDisposed, isTrue);
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('Mail opens saved bytes and disposes replaced controllers', (
     tester,
   ) async {

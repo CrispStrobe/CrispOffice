@@ -28,8 +28,9 @@ alignment/spacing, signed indentation and pagination. Explicit `Section` and
 header/footer distances on one existing section, plus portrait/landscape
 orientation, toggling and four section-start modes. It emits native Word
 operations and keeps paragraph marks structural. This is a bounded write-only
-Word object-model slice; stories, tables, arbitrary text ranges and live reads
-remain separate work. The `vba-powerpoint` adapter adds explicit presentation,
+Word object-model slice. Explicit independent header/footer paragraphs now reuse
+its insertion and formatting operations; linked stories, tables, arbitrary text
+ranges and live reads remain separate work. The `vba-powerpoint` adapter adds explicit presentation,
 slide, shape and text-range bindings, one-based/index-or-name selection,
 whole-shape text, font/alignment writes and geometry. Native collection guards
 refuse grouped or incompletely modeled slide collections. Rich text formatting
@@ -73,7 +74,7 @@ The current Word/PowerPoint increment adds the Stage 4 write-only slices above
 without introducing Stage 3 document reads. Its exact branch integration,
 VM/JavaScript, native transaction and CLI/MCP evidence is retained in the
 [20 November qualification record](validation/office-vba-word-powerpoint-20261120/README.md).
-Groups, arbitrary text subranges, Word stories/tables, and live collection
+Groups, arbitrary text subranges, broader Word stories/tables, and live collection
 behavior remain separate increments with their own identity and range tests.
 
 ### Qualified Word and PowerPoint continuation
@@ -211,6 +212,26 @@ document-dependent branching or installed Word differential qualification.
 See the [exact contract](VBA_WORD_MACROS.md#section-orientation-and-start-controls),
 [BAS example](../packages/quds_office_engine/example/macros/word_sections.bas),
 and [local qualification](validation/word-vba-sections-20261121/README.md).
+
+### Independent header/footer paragraphs
+
+The next Word adapter slice adds explicit section `Headers` / `Footers`, typed
+`HeadersFooters` / `HeaderFooter` aliases and helpers, and all three
+`WdHeaderFooterIndex` variants. `HeaderFooter.Range.Paragraphs(i)` selects an
+existing paragraph for the supported insertion, formatting, tabs and spacing
+operations. Native plans retain the complete section/story/paragraph identity,
+including custom line-spacing pairing. Body-only list operations are refused
+for these selectors.
+
+Native paragraph selection requires direct independent story ownership and
+refuses missing or opaque targets, ambiguous references, shared/inherited
+header/footer topology and unmodeled content in rewritten paragraph stories
+before mutation. Selected mutable model aliases are also refused. This is bounded source-to-plan support with the existing
+atomic transaction and policy boundary. It does not implement linked-story
+propagation, story creation, whole-story writes or document-aware source
+execution. See the [exact contract](VBA_WORD_MACROS.md#existing-header-and-footer-paragraphs),
+[BAS example](../packages/quds_office_engine/example/macros/word_headers_footers.bas),
+and [local qualification record](validation/word-vba-compatibility-20261121/README.md).
 
 ### Next shared-language increments
 

@@ -14,6 +14,8 @@ import 'studio_mail_draft_store_native.dart';
 import 'studio_mail_mailbox_store.dart';
 import 'studio_mail_mailbox_session.dart';
 import 'studio_mail_workspace_strings.dart';
+import 'studio_mail_sync_dialog.dart';
+import 'studio_mail_sync_strings.dart';
 import 'studio_strings.dart';
 import 'studio_mail_reader_labels.dart';
 
@@ -604,6 +606,34 @@ class _StudioMailCachedMailDialogState
     }
   }
 
+  Future<void> _openSynchronization() async {
+    final store = _store;
+    final owner = _owner;
+    if (!_current ||
+        _busy ||
+        _confirmingCleanup ||
+        _historyOpen ||
+        store == null ||
+        store is! StudioMailSyncStore) {
+      return;
+    }
+    setState(() => _historyOpen = true);
+    try {
+      await showDialog<void>(
+        context: context,
+        barrierDismissible: false,
+        builder: (_) => StudioMailSyncDialog(
+          strings: widget.strings,
+          mailboxStore: store,
+          syncStore: store as StudioMailSyncStore,
+          isCurrent: () => _current && identical(owner, _owner),
+        ),
+      );
+    } finally {
+      if (mounted) setState(() => _historyOpen = false);
+    }
+  }
+
   @override
   Widget build(BuildContext context) => PopScope<void>(
     canPop: _allowPop,
@@ -631,6 +661,19 @@ class _StudioMailCachedMailDialogState
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
                     ),
+                    if (_store is StudioMailSyncStore)
+                      IconButton(
+                        key: const ValueKey('studio-mail-open-sync'),
+                        tooltip: widget.strings.mailSync,
+                        icon: const Icon(Icons.sync),
+                        onPressed:
+                            _busy ||
+                                _confirmingCleanup ||
+                                _historyOpen ||
+                                !_current
+                            ? null
+                            : _openSynchronization,
+                      ),
                     if (_owner is StudioMailFlagJournalOwner)
                       IconButton(
                         key: const ValueKey('studio-mail-open-activity'),

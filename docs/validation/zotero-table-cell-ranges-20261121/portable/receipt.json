@@ -1,0 +1,54 @@
+{
+  "command": [
+    "/workspace/scratch/a4ce103494d8/runtime-setup/dart-test.sh",
+    "--platform",
+    "node",
+    "--concurrency",
+    "1",
+    "--reporter",
+    "json",
+    "test/word_zotero_table_cell_replacement_test.dart",
+    "test/word_zotero_multiparagraph_test.dart"
+  ],
+  "cwd": "/workspace/scratch/a4ce103494d8/quds-validation/packages/quds_office_engine",
+  "started_utc": "2026-11-21T07:24:46.079675+00:00",
+  "git_head": {
+    "command": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "exit_code": 0,
+    "stdout": "a6095c304ad2d6935f2ae6f8b74412038d19f142\n",
+    "stderr": ""
+  },
+  "git_tracked_status": {
+    "command": [
+      "git",
+      "status",
+      "--short",
+      "--untracked-files=no"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "node": {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "--version"
+    ],
+    "exit_code": 0,
+    "stdout": "v24.22.3\n",
+    "stderr": ""
+  },
+  "runtime_wrapper_sha256": "37554defc66c947ba2e4a641dd9b9a3df355aba324dd7a85001ac6b761ae6cbb",
+  "runtime_env_sha256": "9edcd50bbcaa18ae3254ddf355aa94f3a16d8d924e0c438dbc28f468833cf568",
+  "finished_utc": "2026-11-21T07:25:32.701791+00:00",
+  "elapsed_seconds": 46.597,
+  "exit_code": 0,
+  "source_unchanged": true,
+  "source_file_count": 356,
+  "stdout_sha256": "b8af972b8abfb14a2ae2c182f3594d125d7bf021d5f186f06c238b0a8e714cfb",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

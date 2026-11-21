@@ -4,6 +4,16 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Extend Word VBA with section `Headers` / `Footers`, typed `HeadersFooters`
+  and `HeaderFooter` aliases, and primary/first-page/even-page paragraph
+  selection through `Range.Paragraphs`. Reuse insertion, font/paragraph
+  formatting, tabs and spacing with complete story identity and normal
+  transaction/policy boundaries. Guard native paragraph selection against
+  inherited, shared, ambiguous and opaque header/footer targets; reject
+  whole-story writes and nonbody list operations. Add a runnable BAS example
+  and compiler, native, CLI/MCP and portable regression coverage. See the
+  [header/footer contract](../../docs/VBA_WORD_MACROS.md#existing-header-and-footer-paragraphs).
+
 - Preserve adjacent equal-target ODT hyperlinks as one range with independently
   styled spans, preventing lost Unicode transfer metadata in LibreOffice.
   Define the generated `Bibliography` style through referenced-style export,

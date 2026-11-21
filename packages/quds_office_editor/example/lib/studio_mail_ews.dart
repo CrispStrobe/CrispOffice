@@ -33,6 +33,8 @@ import 'studio_mail_reply.dart';
 import 'studio_mail_strings.dart';
 import 'studio_mail_workspace_strings.dart';
 import 'studio_mail_submission.dart';
+import 'studio_mail_sync_dialog.dart';
+import 'studio_mail_sync_strings.dart';
 import 'studio_strings.dart';
 import 'studio_mail_reader_labels.dart';
 
@@ -307,11 +309,16 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           _password.text.isEmpty) {
         throw const FormatException();
       }
-      final profile = MailProfileId('studio-ews', hostId: 'quds-office-studio');
-      final account = MailAccountId(
-        '${DateTime.now().microsecondsSinceEpoch}-${++_serial}',
-        profile: profile,
+      final identity = StudioMailDraftAccount(
+        provider: 'ews',
+        endpoint: Uri.parse(_endpoint.text.trim()).toString(),
+        login: jsonEncode([
+          _domain.text.trim(),
+          _login.text.trim().isEmpty ? sender : _login.text.trim(),
+        ]),
+        sender: sender,
       );
+      final account = identity.account;
       configuration = MailEwsConfiguration(
         account: account,
         endpoint: Uri.parse(_endpoint.text.trim()),
@@ -449,24 +456,28 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     late final MailOAuthConfiguration authorization;
     late final MailCloudConfiguration configuration;
     try {
-      final profile = MailProfileId(
-        'studio-cloud',
-        hostId: 'quds-office-studio',
-      );
-      final account = MailAccountId(
-        '${DateTime.now().microsecondsSinceEpoch}-${++_serial}',
-        profile: profile,
-      );
-      configuration = MailCloudConfiguration(
-        account: account,
-        service: widget.cloudService!,
-        mailboxAddress: sender,
-      );
       authorization = MailOAuthConfiguration(
         service: widget.cloudService!,
         clientId: _clientId.text.trim(),
         tenant: _tenant.text.trim(),
         clientSecret: _clientSecret.text.isEmpty ? null : _clientSecret.text,
+      );
+      final identity = StudioMailDraftAccount(
+        provider: widget.cloudService == MailCloudService.gmail
+            ? 'gmail'
+            : 'graph',
+        endpoint: widget.cloudService == MailCloudService.gmail
+            ? 'https://gmail.googleapis.com/gmail/v1'
+            : 'https://graph.microsoft.com/v1.0',
+        login: widget.cloudService == MailCloudService.gmail
+            ? sender
+            : jsonEncode([authorization.tenant, sender]),
+        sender: sender,
+      );
+      configuration = MailCloudConfiguration(
+        account: identity.account,
+        service: widget.cloudService!,
+        mailboxAddress: sender,
       );
     } on Object {
       setState(() => _error = widget.strings.mailCloudInvalidSettings);
@@ -1896,6 +1907,69 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     }
   }
 
+  Future<void> _openSynchronization() async {
+    final provider = _provider;
+    final session = _session;
+    final owner = _draftStore;
+    final mailbox = _mailbox;
+    final store = switch (owner) {
+      StudioMailMailboxStoreOwner value => value.mailboxStore,
+      _ => null,
+    };
+    if (_blocked ||
+        provider == null ||
+        session == null ||
+        mailbox == null ||
+        store == null ||
+        store is! StudioMailSyncStore ||
+        store.account != provider.account) {
+      return;
+    }
+    final syncStore = store as StudioMailSyncStore;
+    final lease = session.begin();
+    bool current() =>
+        _current(provider, lease) &&
+        identical(owner, _draftStore) &&
+        _mailbox?.id == mailbox.id;
+    setState(() => _dialogOpen = true);
+    try {
+      await showDialog<void>(
+        context: context,
+        barrierDismissible: false,
+        builder: (_) => StudioMailSyncDialog(
+          strings: widget.strings,
+          mailboxStore: store,
+          syncStore: syncStore,
+          mailbox: mailbox,
+          isCurrent: current,
+          run: ({required cancellation, required onProgress}) async {
+            lease.checkCurrent();
+            if (!current()) {
+              throw const _EwsUiFailure(
+                MailProblem(MailProblemCode.staleOperation),
+              );
+            }
+            final saved = await syncStore.saveSyncMailbox(mailbox);
+            if (saved case MailFailure<MailUnit>(:final problem)) {
+              throw _EwsUiFailure(problem);
+            }
+            lease.checkCurrent();
+            return const MailSyncRunner().run(
+              provider: provider,
+              repository: syncStore,
+              session: session,
+              mailbox: mailbox.id,
+              cancellation: cancellation,
+              onProgress: onProgress,
+            );
+          },
+        ),
+      );
+    } finally {
+      if (current()) setState(() => _dialogOpen = false);
+    }
+  }
+
   Future<void> _discardDraft() async {
     final provider = _provider;
     final session = _session;
@@ -2036,6 +2110,15 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         title: Text(_title, overflow: TextOverflow.ellipsis),
         actions: [
           if (_connected) ...[
+            if (_draftStore is StudioMailMailboxStoreOwner)
+              IconButton(
+                key: const ValueKey('studio-mail-open-sync'),
+                tooltip: widget.strings.mailSync,
+                icon: const Icon(Icons.sync),
+                onPressed: _blocked || _mailbox == null
+                    ? null
+                    : _openSynchronization,
+              ),
             IconButton(
               tooltip: widget.strings.compose,
               icon: const Icon(Icons.edit_outlined),

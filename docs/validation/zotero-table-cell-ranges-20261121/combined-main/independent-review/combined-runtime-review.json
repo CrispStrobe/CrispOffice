@@ -1,0 +1,139 @@
+{
+  "status": "accepted",
+  "reviewed_commit": "5289b90a83ce9042a4f4cfb73ba8115fe501513a",
+  "reviewed_tree": "15165a1c510f68de244f36286c3268d8cd8b43ed",
+  "source_input_count": 2994,
+  "source_map_sha256": "86723cbca9b7f6eb17f3be8223e1bd20c09cec46ca68a9efa82bb498fe646cc4",
+  "recorded_sources_match_commit_and_current": true,
+  "all_run_and_cohort_source_maps_equal": true,
+  "input_changes_from_original": {
+    "unchanged": 2962,
+    "modified": [
+      "packages/quds_mail_core/lib/quds_mail_core.dart",
+      "packages/quds_mail_store/lib/src/models.dart",
+      "packages/quds_mail_store/lib/src/repository.dart",
+      "packages/quds_mail_store/lib/src/schema/database.dart",
+      "packages/quds_mail_store/lib/src/search_journal.dart",
+      "packages/quds_mail_store/test/flag_reconciliation_test.dart",
+      "packages/quds_mail_store/test/migration_test.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_cached_mail.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_mailbox_store.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "packages/quds_office_editor/example/test/app_store_screenshots_gate.dart",
+      "packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+      "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+      "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart"
+    ],
+    "added": [
+      "packages/quds_mail_core/lib/src/sync/runner.dart",
+      "packages/quds_mail_core/test/sync_runner_test.dart",
+      "packages/quds_mail_store/lib/src/sync_mailboxes.dart",
+      "packages/quds_mail_store/test/sync_mailboxes_test.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_sync_dialog.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_sync_strings.dart",
+      "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_sync_native_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_sync_store_test.dart",
+      "packages/quds_office_engine/example/macros/word_headers_footers.bas",
+      "packages/quds_office_engine/lib/src/automation/operations/word_header_footer_guard.dart",
+      "packages/quds_office_engine/test/office_macro_word_headers_footers_test.dart",
+      "packages/quds_office_engine/test/office_vba_word_headers_footers_integration_test.dart",
+      "packages/quds_office_engine/test/office_vba_word_headers_footers_test.dart",
+      "packages/quds_office_engine/tool/macros/web_vba_word_headers_footers_smoke.dart"
+    ],
+    "removed": []
+  },
+  "explicit_hidden_nonruntime_metadata_exclusion": "packages/quds_office_engine/test/fixtures/word_reviews/.gitattributes",
+  "excluded_metadata_matches_commit": true,
+  "excluded_metadata_bound_during_run": false,
+  "recorded_runtime_files": 33,
+  "runtime_environment_unchanged_from_original_and_during_supplemental_run": true,
+  "cohorts": [
+    {
+      "name": "engine-fidelity",
+      "passed": 39,
+      "suites": 2,
+      "failures": 0,
+      "skips": 0,
+      "runtime_errors": 0,
+      "stderr_bytes": 0,
+      "excluded": {
+        "loading": 2
+      },
+      "stdout_sha256": "f607bba1aaa9b5284a678b91018a8c8c5ee5f2c701cd26bb2b463a926d577553",
+      "terminal": {
+        "success": true,
+        "type": "done",
+        "time": 2124
+      },
+      "raw_event_count": 89
+    },
+    {
+      "name": "studio-zotero",
+      "passed": 33,
+      "suites": 2,
+      "failures": 0,
+      "skips": 0,
+      "runtime_errors": 0,
+      "stderr_bytes": 0,
+      "excluded": {
+        "loading": 2
+      },
+      "stdout_sha256": "a6f7127fd87033bc8537b6bbcbc49ae096a7eafac1ce63fbc9c8142c4d7e1fe4",
+      "terminal": {
+        "success": true,
+        "type": "done",
+        "time": 20441
+      },
+      "raw_event_count": 77
+    },
+    {
+      "name": "studio-mail",
+      "passed": 79,
+      "suites": 2,
+      "failures": 0,
+      "skips": 0,
+      "runtime_errors": 0,
+      "stderr_bytes": 0,
+      "excluded": {
+        "loading": 2
+      },
+      "stdout_sha256": "35f61b6f9b89444346c22c74f7a1493f7e13bf3e72b6c35d761ad1563df35e01",
+      "terminal": {
+        "success": true,
+        "type": "done",
+        "time": 22509
+      },
+      "raw_event_count": 171
+    }
+  ],
+  "actual_cases": 151,
+  "suite_files": 6,
+  "distinct_case_identities_within_this_execution": 151,
+  "case_counts_by_suite": {
+    "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart": 64,
+    "packages/quds_office_editor/example/test/studio_saved_mail_test.dart": 15,
+    "packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart": 18,
+    "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart": 15,
+    "packages/quds_office_engine/test/word_bookmark_fidelity_test.dart": 17,
+    "packages/quds_office_engine/test/word_table_grid_addressing_test.dart": 22
+  },
+  "failures": 0,
+  "skips": 0,
+  "runtime_errors": 0,
+  "stderr_bytes": 0,
+  "processes_completed_successfully": 3,
+  "original_case_identity_overlap": 72,
+  "original_accepted_distinct_cases": 2551,
+  "new_global_close_regression_success": true,
+  "no_cross_archive_distinct_total_claimed": true,
+  "original_archive_sha256": "7605bf4f72509aa52d5544fcca515e0b15997679ecab0ddf717db2068ab83229",
+  "runner_sha256": "1babcb82f2379589c5690e253861d4bfa822df1120ee123d261a5f3b0944c619",
+  "independent_event_parser_sha256": "e4f999fe672c0f11eef0d18d4b6488434ba02737e34f30dc2d1f86459b3610fb",
+  "independent_audit_script_sha256": "7b925f3f4df911249bd9b03e2e8a3271fc4260a743693711fd23881fc35f84c9",
+  "method": "Exact original file commands and raw package:test/Flutter event reconstruction; only successful loading/lifecycle events excluded; one start/completion per case, unique successful terminal, no skips/errors/stderr. Source path population, bytes, Git blobs and modes checked independently against committed target.",
+  "limits": "Only six selected suites executed here; 72 cases repeat the original population. Mail includes existing cases and one new regression. Runtime environment coverage is 33 recorded files, not all extracted dependency bytes. No new test process was launched by this review."
+}

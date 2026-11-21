@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "status": "frozen-ready",
+  "repo": "/workspace/scratch/a4ce103494d8/quds_office_suite",
+  "workspace": "/workspace/scratch/a4ce103494d8/quds-validation",
+  "runtime": "/workspace/scratch/a4ce103494d8/runtime-setup",
+  "cohorts": [
+    {
+      "name": "engine-fidelity",
+      "package": "packages/quds_office_engine",
+      "runner": "dart",
+      "tests": [
+        "test/word_table_grid_addressing_test.dart",
+        "test/word_bookmark_fidelity_test.dart"
+      ],
+      "concurrency": 2,
+      "test_timeout": "2m",
+      "process_timeout_seconds": 600
+    }
+  ],
+  "approved_skips": [],
+  "scope": {
+    "total_suites": 2,
+    "prior_qualification_overlap_cases": 39,
+    "overlap": "Both suites repeat the original119-suite qualification and the intermediate151-case combined-main run. This run is a new-source replay, not39new distinct tests."
+  },
+  "source_binding": "All current nonignored Dart sources, package manifests/locks/analysis options, recorded test fixtures and engine BAS examples under packages and third_party, plus root manifests/lock/analysis options. Hidden nonruntime fixture Git metadata is excluded by rg. Every recorded input and path must match before/after each cohort. Docs excluded.",
+  "execution": "Original test files in genuine package:test or flutter test; separate libraries/isolates as supplied by those runners. No rewritten tests or synthesized merged suites. Engine concurrency 2; Flutter concurrency 1 and sequential cohorts.",
+  "selection_rationale": {
+    "engine-fidelity": "Replay table grid addressing and bookmark fidelity after the incoming final Word header/footer guard changes. Root and parity reviewer are separately assessing other source closures.",
+    "excluded": "No Studio Zotero or Mail replay is requested when those selected product import closures remain byte-identical."
+  },
+  "frozen_commit": "4034c7e7d384ed1f947d1702b4c2cf5231b7d3d1",
+  "frozen_git_tree": "1e21f3c97cc7e37ff55f8302f668e05276fe9d6d"
+}
