@@ -502,6 +502,8 @@ void main() {
                     .fold<int>(0, (a, e) => a + e.value))
                 .toDouble(),
         ]),
+        'callsFirstKeys': perKeyCalls.take(3).toList(),
+        'coalesce': OfficeController.coalesceEditNotifications,
         'slowest': [
           for (final i in (List<int>.generate(
             handler.length,
