@@ -1,0 +1,53 @@
+{
+  "observed_at_utc": "2026-11-21T18:39:45.449Z",
+  "prs": [
+    {
+      "number": 140,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/140",
+      "api_url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/pulls/140",
+      "state": "closed",
+      "merged": true,
+      "merged_at": "2026-11-17T20:14:56Z",
+      "head_sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "base_sha": "d6010059644b34accd6f188e0e2a4863ab63e318",
+      "merge_commit_sha": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "title": "Preserve cached page fields through DOCX import and ODT export"
+    },
+    {
+      "number": 152,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/152",
+      "api_url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/pulls/152",
+      "state": "closed",
+      "merged": true,
+      "merged_at": "2026-11-17T22:10:10Z",
+      "head_sha": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "base_sha": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+      "merge_commit_sha": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e",
+      "title": "Reconcile Office union qualification and frame bookmarks"
+    },
+    {
+      "number": 147,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/147",
+      "api_url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/pulls/147",
+      "state": "closed",
+      "merged": true,
+      "merged_at": "2026-11-17T21:29:45Z",
+      "head_sha": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "base_sha": "0ff7d23929e4640af6c1d57f87c7ac71b73d2ed4",
+      "merge_commit_sha": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+      "title": "Reconcile ODT field, bookmark and column-break fidelity"
+    },
+    {
+      "number": 149,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/149",
+      "api_url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/pulls/149",
+      "state": "closed",
+      "merged": true,
+      "merged_at": "2026-11-17T21:32:16Z",
+      "head_sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "base_sha": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+      "merge_commit_sha": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "title": "Reconcile Office union and finish ODT boundary qualification"
+    }
+  ]
+}
