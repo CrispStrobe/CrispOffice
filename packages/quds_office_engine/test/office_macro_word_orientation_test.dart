@@ -134,18 +134,21 @@ void main() {
     },
   );
 
-  test('same-value sparse size materializes a fractional default at native precision', () {
-    final document = _document(size: '<w:pgSz w:w="12240"/>');
-    _set(document, 'portrait');
-    final reopened = WordDeserializer().readBytes(
-      WordSerializer().writeBytes(document),
-    );
-    final source = _pageSize(reopened.sections.single);
-    expect(source.getAttribute('w', namespaceUri: _w), '12240');
-    expect(source.getAttribute('h', namespaceUri: _w), '16838');
-    expect(reopened.sections.single.pageSize.height, 841.9);
-    expect(source.getAttribute('orient', namespaceUri: _w), 'portrait');
-  });
+  test(
+    'same-value sparse size materializes a fractional default at native precision',
+    () {
+      final document = _document(size: '<w:pgSz w:w="12240"/>');
+      _set(document, 'portrait');
+      final reopened = WordDeserializer().readBytes(
+        WordSerializer().writeBytes(document),
+      );
+      final source = _pageSize(reopened.sections.single);
+      expect(source.getAttribute('w', namespaceUri: _w), '12240');
+      expect(source.getAttribute('h', namespaceUri: _w), '16838');
+      expect(reopened.sections.single.pageSize.height, 841.9);
+      expect(source.getAttribute('orient', namespaceUri: _w), 'portrait');
+    },
+  );
 
   test(
     'toggle resolves current orientation after earlier writes and reopens',
@@ -177,69 +180,76 @@ void main() {
   );
 
   for (final initial in ['portrait', 'landscape']) {
-    test('square source $initial retains explicit state through same and toggle', () {
-      var document = _document(
-        size:
-            '<w:pgSz w:w="12000" w:h="12000" w:orient="$initial" w:code="9"/>',
-      );
-      _set(document, initial);
-      var expected = initial;
-      for (var index = 0; index < 5; index++) {
+    test(
+      'square source $initial retains explicit state through same and toggle',
+      () {
+        var document = _document(
+          size:
+              '<w:pgSz w:w="12000" w:h="12000" w:orient="$initial" w:code="9"/>',
+        );
+        _set(document, initial);
+        var expected = initial;
+        for (var index = 0; index < 5; index++) {
+          document = WordDeserializer().readBytes(
+            WordSerializer().writeBytes(document),
+          );
+          expect(
+            _pageSize(
+              document.sections.single,
+            ).getAttribute('orient', namespaceUri: _w),
+            expected,
+          );
+          _set(document, 'toggle');
+          expected = expected == 'portrait' ? 'landscape' : 'portrait';
+          expect(document.sections.single.pageSize.width, 600);
+          expect(document.sections.single.pageSize.height, 600);
+        }
+      },
+    );
+  }
+
+  test(
+    'new square orientation survives serialization without losing other settings',
+    () {
+      var document = WmlDocument.empty(text: 'Fresh');
+      final section = document.sections.single
+        ..pageSize = const WmlPageSize(width: 600, height: 600)
+        ..margins = const WmlPageMargins(left: 50, right: 60, header: 20)
+        ..columnCount = 2
+        ..columnSpace = 24
+        ..differentFirstPage = true
+        ..lineNumbers = true
+        ..breakKind = WmlSectionBreakKind.oddPage;
+      expect(section.sourceProperties, isNull);
+      _set(document, 'landscape');
+      expect(section.sourceProperties!.values.keys, ['pgSz']);
+      setWordPageSetup(document, section, property: 'top', points: 40);
+      setWordSectionStart(document, section, kind: 'evenPage');
+      for (var cycle = 0; cycle < 3; cycle++) {
         document = WordDeserializer().readBytes(
           WordSerializer().writeBytes(document),
         );
+        final current = document.sections.single;
         expect(
-          _pageSize(document.sections.single)
-              .getAttribute('orient', namespaceUri: _w),
-          expected,
+          _pageSize(current).getAttribute('orient', namespaceUri: _w),
+          'landscape',
         );
-        _set(document, 'toggle');
-        expected = expected == 'portrait' ? 'landscape' : 'portrait';
-        expect(document.sections.single.pageSize.width, 600);
-        expect(document.sections.single.pageSize.height, 600);
+        expect(current.pageSize.width, 600);
+        expect(current.pageSize.height, 600);
+        expect(current.margins.top, 40);
+        expect(current.margins.left, 50);
+        expect(current.margins.right, 60);
+        expect(current.margins.header, 20);
+        expect(current.margins.footer, 36);
+        expect(current.columnCount, 2);
+        expect(current.columnSpace, 24);
+        expect(current.differentFirstPage, isTrue);
+        expect(current.lineNumbers, isTrue);
+        expect(current.breakKind, WmlSectionBreakKind.evenPage);
+        expect(document.paragraphs.single.text, 'Fresh');
       }
-    });
-  }
-
-  test('new square orientation survives serialization without losing other settings', () {
-    var document = WmlDocument.empty(text: 'Fresh');
-    final section = document.sections.single
-      ..pageSize = const WmlPageSize(width: 600, height: 600)
-      ..margins = const WmlPageMargins(left: 50, right: 60, header: 20)
-      ..columnCount = 2
-      ..columnSpace = 24
-      ..differentFirstPage = true
-      ..lineNumbers = true
-      ..breakKind = WmlSectionBreakKind.oddPage;
-    expect(section.sourceProperties, isNull);
-    _set(document, 'landscape');
-    expect(section.sourceProperties!.values.keys, ['pgSz']);
-    setWordPageSetup(document, section, property: 'top', points: 40);
-    setWordSectionStart(document, section, kind: 'evenPage');
-    for (var cycle = 0; cycle < 3; cycle++) {
-      document = WordDeserializer().readBytes(
-        WordSerializer().writeBytes(document),
-      );
-      final current = document.sections.single;
-      expect(
-        _pageSize(current).getAttribute('orient', namespaceUri: _w),
-        'landscape',
-      );
-      expect(current.pageSize.width, 600);
-      expect(current.pageSize.height, 600);
-      expect(current.margins.top, 40);
-      expect(current.margins.left, 50);
-      expect(current.margins.right, 60);
-      expect(current.margins.header, 20);
-      expect(current.margins.footer, 36);
-      expect(current.columnCount, 2);
-      expect(current.columnSpace, 24);
-      expect(current.differentFirstPage, isTrue);
-      expect(current.lineNumbers, isTrue);
-      expect(current.breakKind, WmlSectionBreakKind.evenPage);
-      expect(document.paragraphs.single.text, 'Fresh');
-    }
-  });
+    },
+  );
 
   test('new square state toggles repeatedly before first serialization', () {
     final document = WmlDocument.empty(text: 'Fresh');
@@ -251,8 +261,9 @@ void main() {
       _set(document, 'toggle');
       final expected = index.isEven ? 'landscape' : 'portrait';
       expect(
-        _pageSize(document.sections.single)
-            .getAttribute('orient', namespaceUri: _w),
+        _pageSize(
+          document.sections.single,
+        ).getAttribute('orient', namespaceUri: _w),
         expected,
       );
     }
@@ -260,8 +271,9 @@ void main() {
       WordSerializer().writeBytes(document),
     );
     expect(
-      _pageSize(reopened.sections.single)
-          .getAttribute('orient', namespaceUri: _w),
+      _pageSize(
+        reopened.sections.single,
+      ).getAttribute('orient', namespaceUri: _w),
       'portrait',
     );
   });
@@ -282,8 +294,9 @@ void main() {
       );
       expect(reopened.sections.single.pageSize.height, 600.05);
       expect(
-        _pageSize(reopened.sections.single)
-            .getAttribute('orient', namespaceUri: _w),
+        _pageSize(
+          reopened.sections.single,
+        ).getAttribute('orient', namespaceUri: _w),
         'portrait',
       );
     },
@@ -336,8 +349,9 @@ void main() {
           expect(document.sections.single.pageSize.width, expectedWidth);
           expect(document.sections.single.pageSize.height, expectedHeight);
           expect(
-            _pageSize(document.sections.single)
-                .getAttribute('orient', namespaceUri: _w),
+            _pageSize(
+              document.sections.single,
+            ).getAttribute('orient', namespaceUri: _w),
             'landscape',
           );
           _set(document, 'landscape');
@@ -416,13 +430,15 @@ void main() {
       expect(reopened.sections.single.pageSize.width, 800);
       expect(reopened.sections.single.pageSize.height, 612);
       expect(
-        _pageSize(reopened.sections.single)
-            .getAttribute('code', namespaceUri: _w),
+        _pageSize(
+          reopened.sections.single,
+        ).getAttribute('code', namespaceUri: _w),
         isNull,
       );
       expect(
-        _pageSize(reopened.sections.single)
-            .getAttribute('orient', namespaceUri: _w),
+        _pageSize(
+          reopened.sections.single,
+        ).getAttribute('orient', namespaceUri: _w),
         'landscape',
       );
     },
@@ -455,37 +471,40 @@ void main() {
     },
   );
 
-  test('repeated namespace collisions retain foreign attributes and children', () {
-    var document = _document(
-      size:
-          '<pgSz xmlns="$_w" xmlns:w="$_x" qudsWord0="opaque" w:token="keep"><w:child/></pgSz>',
-    );
-    for (var cycle = 0; cycle < 3; cycle++) {
-      _set(document, 'landscape');
-      final first = document.sections.single.sourceProperties!.xml;
-      for (var repeat = 0; repeat < 20; repeat++) {
+  test(
+    'repeated namespace collisions retain foreign attributes and children',
+    () {
+      var document = _document(
+        size:
+            '<pgSz xmlns="$_w" xmlns:w="$_x" qudsWord0="opaque" w:token="keep"><w:child/></pgSz>',
+      );
+      for (var cycle = 0; cycle < 3; cycle++) {
         _set(document, 'landscape');
+        final first = document.sections.single.sourceProperties!.xml;
+        for (var repeat = 0; repeat < 20; repeat++) {
+          _set(document, 'landscape');
+        }
+        expect(document.sections.single.sourceProperties!.xml, first);
+        document = WordDeserializer().readBytes(
+          WordSerializer().writeBytes(document),
+        );
+        final size = _pageSize(document.sections.single);
+        expect(size.getAttribute('orient', namespaceUri: _w), 'landscape');
+        expect(size.getAttribute('token', namespaceUri: _x), 'keep');
+        expect(size.firstChild('child', namespaceUri: _x), isNotNull);
+        expect(
+          size.attributes
+              .singleWhere((a) => a.qualifiedName == 'qudsWord0')
+              .value,
+          'opaque',
+        );
+        expect(
+          size.attributes.map((a) => a.qualifiedName).toSet(),
+          hasLength(size.attributes.length),
+        );
       }
-      expect(document.sections.single.sourceProperties!.xml, first);
-      document = WordDeserializer().readBytes(
-        WordSerializer().writeBytes(document),
-      );
-      final size = _pageSize(document.sections.single);
-      expect(size.getAttribute('orient', namespaceUri: _w), 'landscape');
-      expect(size.getAttribute('token', namespaceUri: _x), 'keep');
-      expect(size.firstChild('child', namespaceUri: _x), isNotNull);
-      expect(
-        size.attributes
-            .singleWhere((a) => a.qualifiedName == 'qudsWord0')
-            .value,
-        'opaque',
-      );
-      expect(
-        size.attributes.map((a) => a.qualifiedName).toSet(),
-        hasLength(size.attributes.length),
-      );
-    }
-  });
+    },
+  );
 
   test('recorded prior orientation remains opaque history', () {
     final history =
@@ -498,8 +517,9 @@ void main() {
     document = WordDeserializer().readBytes(
       WordSerializer().writeBytes(document),
     );
-    final change = _source(document.sections.single)
-        .firstChild('sectPrChange', namespaceUri: _w)!;
+    final change = _source(
+      document.sections.single,
+    ).firstChild('sectPrChange', namespaceUri: _w)!;
     final size = change
         .firstChild('sectPr', namespaceUri: _w)!
         .firstChild('pgSz', namespaceUri: _w)!;
@@ -558,7 +578,8 @@ void main() {
     (
       'alternate section',
       () => _document(
-        extra: '<mc:AlternateContent><mc:Choice Requires="x"><w:pgSz w:w="12000"/></mc:Choice><mc:Fallback/></mc:AlternateContent>',
+        extra:
+            '<mc:AlternateContent><mc:Choice Requires="x"><w:pgSz w:w="12000"/></mc:Choice><mc:Fallback/></mc:AlternateContent>',
       ),
     ),
     (
@@ -577,7 +598,8 @@ void main() {
     _refuses(
       _document(
         size: '<w:pgSz w:w="6000" w:h="16000"/>',
-        margins: '<w:pgMar w:top="3600" w:bottom="3600" w:left="1000" w:right="1000"/>',
+        margins:
+            '<w:pgMar w:top="3600" w:bottom="3600" w:left="1000" w:right="1000"/>',
         columns: '<w:cols w:num="1"/>',
       ),
       failure: throwsArgumentError,
@@ -588,7 +610,8 @@ void main() {
     _refuses(
       _document(
         size: '<w:pgSz w:w="16000" w:h="6000" w:orient="landscape"/>',
-        margins: '<w:pgMar w:top="1000" w:bottom="1000" w:left="2000" w:right="2000"/>',
+        margins:
+            '<w:pgMar w:top="1000" w:bottom="1000" w:left="2000" w:right="2000"/>',
         columns: '<w:cols w:num="3" w:space="2000"/>',
       ),
       orientation: 'portrait',

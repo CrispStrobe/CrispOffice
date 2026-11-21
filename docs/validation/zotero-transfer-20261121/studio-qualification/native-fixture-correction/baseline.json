@@ -1,0 +1,8 @@
+{
+  "source_head": "9228cb58e960ed9a6c0e91f2531e539c58689364",
+  "path": "packages/quds_office_editor/example/test/support/mail_outbox_store.dart",
+  "sha256": "a2e55bddc9ba76cab998ee005608d688b85b54e1973a9eef508d8736bc6801fd",
+  "initial_run": "studio-transfer-freeze-9228cb58",
+  "failure": "confirmed native cleanup restores quota-blocked draft admission after reopen",
+  "observed": "fixture operation exceeded 1000 fake-clock turns after 238 ms of actual elapsed test time; no quota assertion mismatch observed; original process still pending a separate test loader"
+}

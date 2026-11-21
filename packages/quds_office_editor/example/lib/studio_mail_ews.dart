@@ -21,6 +21,7 @@ import 'studio_mail_outbox_strings.dart';
 import 'studio_mail_draft_store.dart';
 import 'studio_mail_cached_strings.dart';
 import 'studio_mail_mailbox_store.dart';
+import 'studio_mail_mailbox_session.dart';
 import 'studio_mail_draft_store_native.dart';
 import 'studio_mail_drafts_dialog.dart';
 import 'studio_mail_drafts_strings.dart';
@@ -148,6 +149,9 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   StudioMailDraft? _draft;
   StudioMailDraftStore? _draftStore;
   StudioMailMailboxCapture? _mailboxCapture;
+  StudioMailMailboxSession? _mailboxViewSession;
+  StreamSubscription<StudioMailMailboxSnapshot>? _mailboxViewSubscription;
+  Future<void> _mailboxViewClosing = Future<void>.value();
   Future<void> _draftStoreClosing = Future<void>.value();
   StudioMailDraftAccount? _draftIdentity;
   bool _submissionUncertain = false;
@@ -260,6 +264,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   @override
   void dispose() {
     _bulkCancellation?.cancel(MailCancellationReason.disposed);
+    unawaited(_stopCachedView());
     _mailboxCapture?.dispose();
     _session?.dispose();
     _credentials?.clear();
@@ -548,6 +553,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     _mailboxGeneration++;
     _bulkCancellation?.cancel(MailCancellationReason.accountChanged);
     _bulkCancellation = null;
+    unawaited(_stopCachedView());
     _mailboxCapture?.dispose();
     _mailboxCapture = null;
     final draftStore = _draftStore;
@@ -599,11 +605,16 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   Future<void> _closeDraftStore(StudioMailDraftStore? store) async {
     // Keep the owner alive until an in-flight server reply has a durable receipt.
     // Cancelling the connection still prevents every subsequent dispatch.
-    await _pendingFlagWrite;
     final mailboxStore = switch (store) {
       StudioMailMailboxStoreOwner owner => owner.mailboxStore,
       _ => null,
     };
+    if (mailboxStore != null &&
+        identical(_mailboxViewSession?.store, mailboxStore)) {
+      await _stopCachedView();
+    }
+    await _mailboxViewClosing;
+    await _pendingFlagWrite;
     if (mailboxStore != null &&
         identical(_mailboxCapture?.store, mailboxStore)) {
       _mailboxCapture?.dispose();
@@ -684,6 +695,10 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       };
       if (mailboxOwner != null) {
         final owner = candidate;
+        await _stopCachedView();
+        if (!_current(provider, lease) || !identical(owner, _draftStore)) {
+          return false;
+        }
         _mailboxCapture?.dispose();
         _mailboxCapture = StudioMailMailboxCapture(
           store: mailboxOwner.mailboxStore,
@@ -737,16 +752,123 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     if (capture == null || mailbox == null || !_current(provider, lease)) {
       return;
     }
+    final generation = _mailboxGeneration;
+    final headers = [for (final header in _headers) _capturedHeader(header)];
+    bool current() =>
+        _current(provider, lease) &&
+        generation == _mailboxGeneration &&
+        identical(capture, _mailboxCapture) &&
+        identical(mailbox, _mailbox);
     try {
-      await capture.saveView(mailbox, _headers, hasMore: _next != null);
-      if (_current(provider, lease)) {
-        setState(() => _cacheViewWarning = null);
+      await _stopCachedView();
+      if (!current()) return;
+      final saved = await capture.saveView(
+        mailbox,
+        headers,
+        hasMore: _next != null,
+      );
+      if (!current()) return;
+      final session = StudioMailMailboxSession(
+        store: capture.store,
+        provider: capture.provider,
+      );
+      _mailboxViewSession = session;
+      final repositoryFlags = <MailRemoteIdentity, MailMessageFlags?>{};
+      void accept(StudioMailMailboxSnapshot snapshot) {
+        if (!current() || !identical(session, _mailboxViewSession)) return;
+        if (snapshot.phase == StudioMailMailboxPhase.loading) return;
+        try {
+          final view = snapshot.view;
+          if (snapshot.phase != StudioMailMailboxPhase.ready || view == null) {
+            throw const StudioMailMailboxStoreException(
+              MailProblemCode.storageFailure,
+            );
+          }
+          final projected = capture.projectView(view);
+          setState(() {
+            _headers = projected;
+            if (_selected case final selected?) {
+              _selected = projected
+                  .where((header) => header.remote == selected.remote)
+                  .firstOrNull;
+            }
+            for (final header in projected) {
+              final flags = header.flags;
+              final previous = repositoryFlags[header.remote];
+              final hadPrevious = repositoryFlags.containsKey(header.remote);
+              if (flags != null) {
+                if (_confirmedRead[header.remote] == flags.isRead ||
+                    hadPrevious && previous?.isRead != flags.isRead) {
+                  _confirmedRead.remove(header.remote);
+                }
+                if (_confirmedFlagged[header.remote] == flags.isFlagged ||
+                    hadPrevious && previous?.isFlagged != flags.isFlagged) {
+                  _confirmedFlagged.remove(header.remote);
+                }
+              }
+              repositoryFlags[header.remote] = flags;
+            }
+            _cacheViewWarning = null;
+          });
+        } on Object {
+          setState(
+            () => _cacheViewWarning = widget.strings.mailCacheSaveFailed,
+          );
+        }
       }
+
+      _mailboxViewSubscription = session.changes.listen(accept);
+      await session.select(saved.mailbox.id);
     } on Object {
-      if (_current(provider, lease)) {
+      if (current()) {
         setState(() => _cacheViewWarning = widget.strings.mailCacheSaveFailed);
       }
     }
+  }
+
+  MailHeaderRecord _capturedHeader(MailHeaderRecord observed) {
+    final flags = observed.flags;
+    return MailHeaderRecord(
+      id: observed.id,
+      remote: observed.remote,
+      envelope: observed.envelope,
+      flags: flags == null
+          ? null
+          : MailMessageFlags(
+              isRead: _confirmedRead[observed.remote] ?? flags.isRead,
+              isFlagged: _confirmedFlagged[observed.remote] ?? flags.isFlagged,
+              isAnswered: flags.isAnswered,
+              isDraft: flags.isDraft,
+              isDeleted: flags.isDeleted,
+            ),
+    );
+  }
+
+  Future<void> _stopCachedView() {
+    final session = _mailboxViewSession;
+    final subscription = _mailboxViewSubscription;
+    _mailboxViewSession = null;
+    _mailboxViewSubscription = null;
+    _mailboxCapture?.invalidateView();
+    final closing = session?.close();
+    final previous = _mailboxViewClosing;
+    return _mailboxViewClosing = () async {
+      try {
+        await previous;
+      } on Object {
+        // Continue retiring all independent subscriptions.
+      }
+      try {
+        await subscription?.cancel();
+      } on Object {
+        // Identity fencing already rejects late callbacks.
+      }
+      try {
+        await closing;
+      } on Object {
+        // The owner still closes after every cancellation has settled.
+      }
+    }();
   }
 
   void _validateHeaderPage(
@@ -798,6 +920,9 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     final lease = session.begin();
     final old = more ? null : _reader;
     final cursor = more ? _next : null;
+    setState(() => _busy = true);
+    await _stopCachedView();
+    if (!_current(provider, lease)) return;
     setState(() {
       _busy = true;
       _error = null;
@@ -973,6 +1098,13 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       _notice = null;
     });
     try {
+      if (command is MailMove || command is MailDelete) {
+        // The saved window predates this membership-changing command. Stop
+        // following it before dispatch so later cache events cannot restore
+        // a row the server has accepted moving or deleting.
+        await _stopCachedView();
+        if (!_current(provider, lease)) return;
+      }
       final result = await provider.apply(command, lease);
       if (!_current(provider, lease)) return;
       _value(result);
@@ -1247,7 +1379,9 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     );
     if (!_current(provider, lease)) return;
     setState(() => _dialogOpen = false);
-    if (confirmed == true && identical(_selected, selected)) {
+    if (confirmed == true &&
+        _selected?.id == selected.id &&
+        _selected?.remote == selected.remote) {
       await _apply(
         MailDelete(id: 'delete-${++_serial}', message: selected.remote),
       );

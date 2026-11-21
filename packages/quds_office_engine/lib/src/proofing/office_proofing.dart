@@ -244,8 +244,9 @@ List<OfficeProofingFinding> _mergeAgreeingFindings(
     if (byStart != 0) return byStart;
     final int byEnd = a.end.compareTo(b.end);
     if (byEnd != 0) return byEnd;
-    final int byCategory = _categoryPriority(a.category)
-        .compareTo(_categoryPriority(b.category));
+    final int byCategory = _categoryPriority(
+      a.category,
+    ).compareTo(_categoryPriority(b.category));
     if (byCategory != 0) return byCategory;
     return order[a]!.compareTo(order[b]!);
   }

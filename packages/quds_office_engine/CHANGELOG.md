@@ -4,6 +4,29 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Preserve adjacent equal-target ODT hyperlinks as one range with independently
+  styled spans, preventing lost Unicode transfer metadata in LibreOffice.
+  Define the generated `Bibliography` style through referenced-style export,
+  retaining imported custom definitions and sparse styleless documents.
+
+- Add detached `WordZoteroTransfer` / `WordZoteroTransferPlan` export and import,
+  `ZoteroCitingCommand.exportDocument` and the document import/export handshake.
+  Stage bounded hyperlink carriers separately from the source, retain raw
+  citation/bibliography metadata and document preferences, and require native
+  formatting of every imported field before publication. Support DOCX carriers,
+  ODT carrier export, the legacy marker and verified Google Docs link variants.
+  Preserve body/table/uniquely anchored note ownership, surrounding rich content
+  and paragraph identities; reject damaged, mixed, protected, stale or excessive
+  transfers. Direct native ODT reference-mark import remains separate. See the
+  [transfer work record](../../docs/validation/zotero-transfer-20261121/README.md)
+  for exact local and converter acceptance boundaries.
+
+- Add `OfficeProofingProvider.categories` and the optional
+  `OfficeProofingService.check(only: ...)` provider filter for category-aware
+  scheduling. Providers default to all categories; the bundled German spelling
+  provider declares spelling only. Existing timeout, result-validation and
+  provider-ownership behavior applies to filtered checks.
+
 - Extend section-scoped Word VBA `PageSetup` with `Orientation`, zero-argument
   `TogglePortrait`, and four `SectionStart` modes. Add guarded native
   `docx.pageOrientation` and `docx.sectionStart` operations, preserving aliases,

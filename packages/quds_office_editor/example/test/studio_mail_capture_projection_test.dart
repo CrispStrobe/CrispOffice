@@ -160,7 +160,7 @@ void main() {
             headers: [
               _cachedHeader(
                 saved.headers.first,
-            id: MailMessageId('unobserved'),
+                id: MailMessageId('unobserved'),
               ),
               saved.headers.last,
             ],

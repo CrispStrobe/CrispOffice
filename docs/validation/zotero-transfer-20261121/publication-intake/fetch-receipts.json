@@ -1,0 +1,18 @@
+[
+  {
+    "repo": "CrispStrobe/quds_office_suite",
+    "count": 330,
+    "namespace": "refs/audit/zotero-publication-20261121/fork",
+    "exit_code": 0,
+    "captured_refs_match": true,
+    "fetch_log": "fork-fetch.log"
+  },
+  {
+    "repo": "MohammedAsaadAsaad/quds_office_suite",
+    "count": 8,
+    "namespace": "refs/audit/zotero-publication-20261121/upstream",
+    "exit_code": 0,
+    "captured_refs_match": true,
+    "fetch_log": "upstream-fetch.log"
+  }
+]

@@ -132,6 +132,76 @@ String _state(WmlDocument document) => jsonEncode({
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
+  for (final narrowInlines in [false, true]) {
+    test('export undo/redo retains covariant owners ($narrowInlines)', () {
+      final run = WmlRun(
+        text: '(First)',
+        fieldInstruction: _citation('first', '(First)').fieldInstruction,
+      );
+      final paragraph = WmlParagraph(
+        inlines: narrowInlines ? <WmlRun>[run] : <WmlInline>[run],
+      );
+      final owners = <WmlParagraph>[paragraph];
+      final document = WmlDocument(sections: [WmlSection(blocks: owners)])
+        ..zoteroDocumentData = _preferences;
+      final controller = _controller(document);
+      final before = _state(document);
+      final transaction = _export(controller);
+      _complete(transaction);
+      transaction.apply();
+      final after = _state(document);
+      expect(document.sections.single.blocks, same(owners));
+      controller.undo();
+      expect(_state(document), before);
+      expect(document.sections.single.blocks, same(owners));
+      expect(document.paragraphs.single, same(paragraph));
+      controller.redo();
+      expect(_state(document), after);
+      expect(document.sections.single.blocks, same(owners));
+    });
+  }
+
+  for (final owner in [
+    'fixed blocks',
+    'immutable blocks',
+    'fixed inlines',
+    'immutable inlines',
+  ]) {
+    test('export rejects $owner before snapshot rollback can mutate', () {
+      final runs = <WmlInline>[
+        WmlRun(
+          text: '(First)',
+          fieldInstruction: _citation('first', '(First)').fieldInstruction,
+        ),
+      ];
+      final paragraph = WmlParagraph(
+        inlines: switch (owner) {
+          'fixed inlines' => List<WmlInline>.of(runs, growable: false),
+          'immutable inlines' => List<WmlInline>.unmodifiable(runs),
+          _ => runs,
+        },
+      );
+      final paragraphs = <WmlBlock>[paragraph];
+      final blocks = switch (owner) {
+        'fixed blocks' => List<WmlBlock>.of(paragraphs, growable: false),
+        'immutable blocks' => List<WmlBlock>.unmodifiable(paragraphs),
+        _ => paragraphs,
+      };
+      final document = WmlDocument(sections: [WmlSection(blocks: blocks)])
+        ..zoteroDocumentData = _preferences;
+      final controller = _controller(document);
+      final before = _state(document);
+      final revision = controller.contentRevision;
+      final transaction = _export(controller);
+      _complete(transaction);
+      expect(() => transaction.apply(), throwsUnsupportedError);
+      expect(_state(document), before);
+      expect(document.paragraphs.single, same(paragraph));
+      expect(controller.canUndo, isFalse);
+      expect(controller.contentRevision, revision);
+    });
+  }
+
   test('export stays detached until complete and is one undoable change', () {
     final document = _activeDocument();
     final originalParagraph = document.paragraphs.single;

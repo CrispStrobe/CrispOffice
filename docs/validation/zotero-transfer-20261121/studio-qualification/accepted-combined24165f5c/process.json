@@ -1,0 +1,21 @@
+{
+  "pid": 6,
+  "pgid": 6,
+  "command": [
+    "/workspace/scratch/11a0888870d6/runtime/flutter-sdk/bin/flutter",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "json",
+    "--concurrency",
+    "1",
+    "test/studio_mail_capture_projection_test.dart",
+    "test/studio_mail_mailbox_session_test.dart",
+    "test/studio_mail_cached_host_test.dart",
+    "test/studio_mail_cached_mail_test.dart",
+    "test/studio_settings_test.dart",
+    "test/studio_zotero_citing_transport_test.dart",
+    "test/studio_zotero_shortcuts_test.dart",
+    "test/studio_typing_proofing_benchmark_test.dart"
+  ]
+}

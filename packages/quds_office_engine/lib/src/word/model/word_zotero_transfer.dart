@@ -1,10 +1,14 @@
 import 'dart:convert';
 
+import '../../xml/namespaces.dart';
+import '../../xml/xml_node.dart';
 import '../properties/wml_properties.dart';
 import 'wml_clone.dart';
 import 'wml_document.dart';
 import 'wml_run_edit.dart';
+import 'word_link.dart';
 import 'word_notes.dart';
+import 'word_styles.dart';
 import 'word_tree.dart';
 import 'word_zotero.dart';
 import 'word_zotero_data.dart';
@@ -19,6 +23,10 @@ abstract final class WordZoteroTransfer {
   static const marker = 'ZOTERO_TRANSFER_DOCUMENT';
   static const legacyMarker = 'ZOTERO_EXPORTED_DOCUMENT';
   static const linkUrl = 'https://www.zotero.org/';
+  static const _googleDocsUrl = 'https://www.zotero.org/google-docs/?';
+  static final _googleDocsFieldUrl = RegExp(
+    r'^https://www\.zotero\.org/google-docs/\?[A-Za-z0-9]{6}$',
+  );
   static const preferencesPrefix = 'DOCUMENT_PREFERENCES ';
   static const maxFields = 10000;
   static const maxPayloadBytes = 8 * 1024 * 1024;
@@ -219,7 +227,8 @@ abstract final class WordZoteroTransfer {
           );
         }
         if (link.text.startsWith(preferencesPrefix)) {
-          if (preferences != null ||
+          if ((link.url != linkUrl && link.url != _googleDocsUrl) ||
+              preferences != null ||
               !identical(paragraph, document.sections.last.blocks.lastOrNull) ||
               link.first != 0 ||
               link.last != paragraph.inlines.length - 1 ||
@@ -237,6 +246,11 @@ abstract final class WordZoteroTransfer {
           WordZoteroDocumentData.fromTransfer(preferences);
           preferencesParagraph = paragraph;
         } else {
+          if (link.url == _googleDocsUrl) {
+            throw const FormatException(
+              'A Google Docs transfer field has no field key.',
+            );
+          }
           final codes = _splitCodes(link.text);
           fieldCount += codes.length;
           if (fieldCount > maxFields) {
@@ -275,7 +289,11 @@ abstract final class WordZoteroTransfer {
                 text: code.startsWith(_citationPrefix)
                     ? '{Citation}'
                     : '{Bibliography}',
-                properties: run.properties.copy(),
+                properties: _importRunProperties(
+                  document,
+                  entry.paragraph,
+                  run.properties,
+                ),
                 fieldInstruction: ' ADDIN ZOTERO_$code ',
               ),
           ]);
@@ -294,9 +312,93 @@ abstract final class WordZoteroTransfer {
   static WmlParagraph _paragraph(String text) =>
       WmlParagraph(inlines: [WmlRun(text: text)]);
 
+  /// A native plugin removes the carrier hyperlink's character style before
+  /// refreshing the field. Keep that cleanup local to validated carriers:
+  /// surrounding links and authored fonts, colors and source XML stay intact.
+  static WmlRunProps _importRunProperties(
+    WmlDocument document,
+    WmlParagraph paragraph,
+    WmlRunProps source,
+  ) {
+    final result = source.copy();
+    final linkStyle = const {
+      'Hyperlink',
+      'FollowedHyperlink',
+    }.contains(source.styleId);
+    final xml = source.sourcePropertiesXml;
+    final direct = xml == null || xml.isEmpty
+        ? null
+        : XmlDocument.parse(xml).root;
+    XmlElement? property(String name) => direct?.childElements
+        .where(
+          (element) =>
+              element.localName == name &&
+              (element.namespaceUri == OfficeNamespaces.w ||
+                  element.namespaceUri.isEmpty && element.prefix == 'w'),
+        )
+        .firstOrNull;
+    String? value(XmlElement? element) => element?.attributes
+        .where(
+          (attribute) =>
+              attribute.localName == 'val' &&
+              (attribute.namespaceUri == OfficeNamespaces.w ||
+                  attribute.namespaceUri.isEmpty && attribute.prefix == 'w'),
+        )
+        .firstOrNull
+        ?.value;
+    final directColor = property('color');
+    final color = source.color.toUpperCase();
+    final originalColor = value(directColor)?.toUpperCase();
+    final inheritedLinkColor =
+        linkStyle &&
+        xml != null &&
+        directColor == null &&
+        (source.importedValues?['color'] ?? source.color) == source.color;
+    // The DOCX reader applies WordLink's default look to black linked runs,
+    // even when their native direct properties explicitly say black. The
+    // untouched rPr distinguishes this from an authored direct blue color.
+    final defaultLinkLook =
+        color == WordLink.color &&
+        source.underline == WmlUnderline.single &&
+        (originalColor == '000000' ||
+            directColor == null && source.styleId == null);
+    final styledLinkColor =
+        linkStyle &&
+        const {
+          '0563C1',
+          '0000FF',
+          '000080',
+          '954F72',
+          '800080',
+        }.contains(color);
+    if (linkStyle) {
+      result.styleId = null;
+      result.explicitProperties.remove('rStyle');
+    }
+    if (defaultLinkLook && originalColor == '000000') {
+      result.color = '000000';
+    } else if (inheritedLinkColor || styledLinkColor || defaultLinkLook) {
+      result.color =
+          paragraph.properties.importedParagraphMark?.color ??
+          WordStyles.ofParagraph(paragraph, document: document).color;
+    }
+    if (linkStyle && source.underline == WmlUnderline.single) {
+      result.underline = WmlUnderline.none;
+    } else if (defaultLinkLook) {
+      final underline = property('u');
+      result.underline = underline == null
+          ? WmlUnderline.none
+          : WmlUnderline.fromXml(value(underline));
+    }
+    return result;
+  }
+
   static bool _plainFraming(WmlParagraph p, {bool links = false}) =>
       p.contentControlWrappers.isEmpty &&
       p.properties.fieldInstruction == null &&
+      !p.properties.fieldBegin &&
+      !p.properties.fieldSeparate &&
+      !p.properties.fieldEnd &&
       !p.properties.pageNumberField &&
       p.properties.bookmarkName == null &&
       p.properties.noteId == null &&
@@ -309,7 +411,12 @@ abstract final class WordZoteroTransfer {
       );
 
   static bool _canonicalLink(WmlHyperlink? link) =>
-      link?.url == linkUrl && link?.anchor == null && link?.file == null;
+      link != null &&
+      link.anchor == null &&
+      link.file == null &&
+      (link.url == linkUrl ||
+          link.url == _googleDocsUrl ||
+          _googleDocsFieldUrl.hasMatch(link.url ?? ''));
 
   static bool _isCode(String text) =>
       text.startsWith(_citationPrefix) ||
@@ -330,11 +437,17 @@ abstract final class WordZoteroTransfer {
       final text = StringBuffer(first.text);
       while (i + 1 < paragraph.inlines.length) {
         final next = paragraph.inlines[i + 1];
-        if (next is! WmlRun || !_canonicalLink(next.hyperlink)) break;
+        if (next is! WmlRun ||
+            !_canonicalLink(next.hyperlink) ||
+            next.hyperlink!.url != first.hyperlink!.url) {
+          break;
+        }
         text.write(next.text);
         i++;
       }
-      result.add(_TransferLink(start, i, text.toString()));
+      result.add(
+        _TransferLink(start, i, text.toString(), first.hyperlink!.url!),
+      );
     }
     return result;
   }
@@ -342,6 +455,9 @@ abstract final class WordZoteroTransfer {
   static void _assertLinkOwnership(WmlParagraph paragraph, _TransferLink link) {
     if (paragraph.contentControlWrappers.isNotEmpty ||
         paragraph.properties.fieldInstruction != null ||
+        paragraph.properties.fieldBegin ||
+        paragraph.properties.fieldSeparate ||
+        paragraph.properties.fieldEnd ||
         paragraph.properties.pageNumberField) {
       throw UnsupportedError(
         'A Zotero transfer link is inside protected field content.',
@@ -519,10 +635,11 @@ abstract final class WordZoteroTransfer {
 }
 
 final class _TransferLink {
-  const _TransferLink(this.first, this.last, this.text);
+  const _TransferLink(this.first, this.last, this.text, this.url);
   final int first;
   final int last;
   final String text;
+  final String url;
 }
 
 /// An isolated transfer edit, committed only after the host accepts a complete
@@ -585,6 +702,11 @@ final class WordZoteroTransferPlan {
 
   final WmlDocument _source;
   final _TransferModelGuard _guard;
+
+  /// Detached editable stories for the citing transaction. Its package is
+  /// retained only as read-only provenance for opaque parts and relationships.
+  /// Serialize the original source after [apply]; serializing this staging
+  /// model before acceptance would write that shared package prematurely.
   late final WmlDocument document;
   final _paragraphs = Map<WmlParagraph, WmlParagraph>.identity();
   final _originals = Map<WmlBlock, WmlBlock>.identity();
@@ -614,21 +736,18 @@ final class WordZoteroTransferPlan {
     // Validate before touching the source, including cycles/duplicate owners
     // introduced by an unsupported caller of the detached model.
     _TransferModelGuard(document);
-    for (final section in document.sections) {
-      for (final block in section.blocks) {
-        _validatePublish(block);
-      }
-    }
-    for (final note in [...document.footnotes, ...document.endnotes]) {
-      for (final block in note.blocks) {
-        _validatePublish(block);
-      }
-    }
+    final publication = _TransferPublication();
     for (var i = 0; i < document.sections.length; i++) {
-      _publishList(_source.sections[i].blocks, document.sections[i].blocks);
+      _prepareList(
+        _source.sections[i].blocks,
+        document.sections[i].blocks,
+        publication,
+      );
     }
-    _publishNotes(_source.footnotes, document.footnotes);
-    _publishNotes(_source.endnotes, document.endnotes);
+    _prepareNotes(_source.footnotes, document.footnotes, publication);
+    _prepareNotes(_source.endnotes, document.endnotes, publication);
+    publication.apply();
+    _published.addAll(publication.paragraphs);
     _source.zoteroDocumentData = document.zoteroDocumentData;
     _applied = true;
   }
@@ -656,32 +775,21 @@ final class WordZoteroTransferPlan {
     }
   }
 
-  void _publishList(List<WmlBlock> target, List<WmlBlock> staged) {
-    final blocks = [for (final block in staged) _publishBlock(block)];
-    target
-      ..clear()
-      ..addAll(blocks);
+  void _prepareList(
+    List<WmlBlock> target,
+    List<WmlBlock> staged,
+    _TransferPublication publication,
+  ) {
+    publication.replace(target, [
+      for (final block in staged) _prepareBlock(block, publication),
+    ]);
   }
 
-  void _validatePublish(WmlBlock staged) {
-    final original = _originals[staged];
-    final children = WordTree.childLists(staged).toList();
-    if (original != null &&
-        children.length != WordTree.childLists(original).length) {
-      throw StateError('A transfer changed an existing container structure.');
-    }
-    for (final list in children) {
-      for (final block in list) {
-        _validatePublish(block);
-      }
-    }
-  }
-
-  WmlBlock _publishBlock(WmlBlock staged) {
+  WmlBlock _prepareBlock(WmlBlock staged, _TransferPublication publication) {
     final original = _originals[staged];
     if (staged is WmlParagraph) {
       final target = original is WmlParagraph ? original : WmlParagraph();
-      target.properties = staged.properties.copy();
+      final properties = staged.properties.copy();
       final inlines = WmlClone.inlines(staged.inlines);
       for (var i = 0; i < inlines.length; i++) {
         final run = inlines[i];
@@ -690,10 +798,9 @@ final class WordZoteroTransferPlan {
           run.inlineVisual = _visuals[source.inlineVisual] ?? run.inlineVisual;
         }
       }
-      target.inlines
-        ..clear()
-        ..addAll(inlines);
-      _published[staged] = target;
+      publication.replace(target.inlines, inlines);
+      publication.changes.add(() => target.properties = properties);
+      publication.paragraphs[staged] = target;
       return target;
     }
     if (original != null) {
@@ -703,19 +810,23 @@ final class WordZoteroTransferPlan {
         throw StateError('A transfer changed an existing container structure.');
       }
       for (var i = 0; i < from.length; i++) {
-        _publishList(to[i], from[i]);
+        _prepareList(to[i], from[i], publication);
       }
       return original;
     }
     return WmlClone.block(staged);
   }
 
-  void _publishNotes(List<WmlNote> target, List<WmlNote> staged) {
+  void _prepareNotes(
+    List<WmlNote> target,
+    List<WmlNote> staged,
+    _TransferPublication publication,
+  ) {
     final notes = <WmlNote>[];
     for (final note in staged) {
       final original = _notes[note];
       if (original != null) {
-        _publishList(original.blocks, note.blocks);
+        _prepareList(original.blocks, note.blocks, publication);
         notes.add(original);
       } else {
         final added = WmlNote(
@@ -726,13 +837,57 @@ final class WordZoteroTransferPlan {
           referencePropertiesXml: note.referencePropertiesXml,
           blocks: [],
         );
-        _publishList(added.blocks, note.blocks);
+        _prepareList(added.blocks, note.blocks, publication);
         notes.add(added);
       }
     }
-    target
-      ..clear()
-      ..addAll(notes);
+    publication.replace(target, notes);
+  }
+}
+
+/// Prepares every source write before publication. Public model constructors
+/// retain caller-owned lists, which can have narrower runtime element types
+/// (for example `List<WmlParagraph>` used as section blocks).
+final class _TransferPublication {
+  final changes = <void Function()>[];
+  final paragraphs = Map<WmlParagraph, WmlParagraph>.identity();
+
+  void replace<T>(List<T> target, List<T> values) {
+    if (target.length == values.length &&
+        values.indexed.every(
+          (entry) => identical(target[entry.$1], entry.$2),
+        )) {
+      return;
+    }
+    try {
+      // A sublist keeps the owner's runtime element type without changing its
+      // contents. Check actual outgoing objects, including reused identities.
+      final probe = target.sublist(0, 0);
+      for (final value in values) {
+        probe.add(value);
+      }
+      // Standard fixed-length and unmodifiable lists reject even this no-op.
+      // Refuse them before any previously prepared paragraph/list is changed.
+      target.length = target.length;
+    } on Object {
+      throw UnsupportedError(
+        'Zotero transfer needs growable containers that accept the updated content.',
+      );
+    }
+    changes.add(() {
+      target.clear();
+      // addAll checks the iterable's runtime type before checking its values;
+      // individual writes also support valid covariant paragraph/run lists.
+      for (final value in values) {
+        target.add(value);
+      }
+    });
+  }
+
+  void apply() {
+    for (final change in changes) {
+      change();
+    }
   }
 }
 
@@ -765,16 +920,16 @@ final class _TransferModelGuard {
     _list(() => document.comments);
     for (final section in document.sections) {
       _blocks(() => section.blocks, true, 0);
-      for (final list in [
-        section.header,
-        section.footer,
-        section.firstHeader,
-        section.firstFooter,
-        section.evenHeader,
-        section.evenFooter,
+      for (final read in <List<WmlParagraph> Function()>[
+        () => section.header,
+        () => section.footer,
+        () => section.firstHeader,
+        () => section.firstFooter,
+        () => section.evenHeader,
+        () => section.evenFooter,
       ]) {
-        _list(() => list);
-        for (final paragraph in list) {
+        _list(read);
+        for (final paragraph in read()) {
           _paragraph(paragraph, false);
         }
       }

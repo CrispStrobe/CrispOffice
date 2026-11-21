@@ -1,0 +1,1 @@
+convert /workspace/scratch/11a0888870d6/transfer-final-9228cb58/replay/fixtures/transfer.docx as a Writer document -> /workspace/scratch/11a0888870d6/transfer-final-9228cb58/replay/docx-to-odt/transfer.odt using filter : writer8

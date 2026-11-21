@@ -271,10 +271,14 @@ void main() {
       insertionParagraph: document.paragraphs.elementAt(4),
     );
     expect(_call(session, 'Document.canInsertField', ['Http']), isFalse);
-    expect(() => _call(session, 'Document.insertField', ['Http', 0]),
-        throwsUnsupportedError);
-    expect(() => _call(session, 'Document.setDocumentData', [_prefs()]),
-        throwsUnsupportedError);
+    expect(
+      () => _call(session, 'Document.insertField', ['Http', 0]),
+      throwsUnsupportedError,
+    );
+    expect(
+      () => _call(session, 'Document.setDocumentData', [_prefs()]),
+      throwsUnsupportedError,
+    );
     expect(session.hasChanges, isFalse);
   });
 }

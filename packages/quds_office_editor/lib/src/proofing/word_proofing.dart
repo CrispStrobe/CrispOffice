@@ -180,8 +180,8 @@ abstract final class WordProofingTiming {
   /// background. The default of [WordProofingSchedule.backgroundIdle].
   static const Duration backgroundIdle = Duration(seconds: 3);
 
-  /// Status chrome shows "Checking…" only for background or explicit passes
-  /// that run this long. Checks of the text being typed never show it.
+  /// Status chrome shows "Checking…" for background, initial document-wide
+  /// or explicit passes that run this long. Local typing checks never show it.
   static const Duration checkingIndicatorDelay = Duration(milliseconds: 1000);
 
   /// Main-isolate time a pass may use before yielding to input and frames.
@@ -1907,9 +1907,9 @@ final class WordProofingSession extends ChangeNotifier {
   }
 
   /// Runs one pass. Each trigger has its own providers ([_kindsFor]),
-  /// scope ([_scope]) and visibility: only background and explicit passes
-  /// publish progress and may show "Checking…"; checks of the text being
-  /// typed publish once, when they finish.
+  /// scope ([_scope]) and visibility: background, initial document-wide and
+  /// explicit passes publish progress and may show "Checking…"; local typing
+  /// checks publish their results once, when they finish.
   Future<WordProofingSummary> _runPass(
     _Trigger trigger, {
     bool includeManual = false,
