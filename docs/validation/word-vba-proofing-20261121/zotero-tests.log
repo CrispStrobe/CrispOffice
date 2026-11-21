@@ -1,0 +1,240 @@
+00:00 +0: loading test/word_zotero_nested_note_tables_test.dart
+00:00 +0: test/word_zotero_nested_note_tables_test.dart: nested ownership keeps placeholders and lists aligned after trailing paragraphs
+00:00 +1: test/word_zotero_nested_note_tables_test.dart: inner row spans and widths remain independent of the outer table
+00:00 +2: test/word_zotero_nested_note_tables_test.dart: eight table levels are admitted and a ninth is refused
+00:00 +3: test/word_zotero_nested_note_tables_test.dart: the global 64-table budget includes all sibling nested tables
+00:00 +4: test/word_zotero_nested_note_tables_test.dart: nested tables retain the ordinary cell block placement rule: <p><table><tr><td>Invalid</td></tr></table></p>
+00:00 +5: test/word_zotero_nested_note_tables_test.dart: nested tables retain the ordinary cell block placement rule: <span><table><tr><td>Invalid</td></tr></table></span>
+00:00 +6: test/word_zotero_nested_note_tables_test.dart: nested tables retain the ordinary cell block placement rule: <ul><li><table><tr><td>Invalid</td></tr></table></li></ul>
+00:00 +7: test/word_zotero_nested_note_tables_test.dart: nested type 0 insertion stages and reopens live citation ownership
+00:00 +8: test/word_zotero_nested_note_tables_test.dart: nested type 1 insertion stages and reopens live citation ownership
+00:00 +9: test/word_zotero_nested_note_tables_test.dart: nested type 2 insertion stages and reopens live citation ownership
+00:00 +10: test/word_zotero_nested_note_tables_test.dart: rejected nesting leaves the original document and insertion target intact
+00:00 +11: loading test/word_zotero_note_table_test.dart
+00:00 +11: test/word_zotero_note_table_test.dart: ordinary note blocks retain the existing paragraph identities
+00:00 +12: test/word_zotero_note_table_test.dart: native table cells retain row-major citation indexes and ownership
+00:00 +13: test/word_zotero_note_table_test.dart: empty cells and a wholly empty table remain native structure
+00:00 +14: test/word_zotero_note_table_test.dart: adjacent tables and multiple tbody groups retain source block order
+00:00 +15: test/word_zotero_note_table_test.dart: rich cell paragraphs, headings, pictures and ordinary links survive
+00:00 +16: test/word_zotero_note_table_test.dart: cell soft breaks survive structural markers: A<br/> wrapped false
+00:00 +17: test/word_zotero_note_table_test.dart: cell soft breaks survive structural markers: A<br/> wrapped true
+00:00 +18: test/word_zotero_note_table_test.dart: cell soft breaks survive structural markers: A<br/><br/> wrapped false
+00:00 +19: test/word_zotero_note_table_test.dart: cell soft breaks survive structural markers: A<br/><br/> wrapped true
+00:00 +20: test/word_zotero_note_table_test.dart: cell soft breaks survive structural markers: <br/> wrapped false
+00:00 +21: test/word_zotero_note_table_test.dart: cell soft breaks survive structural markers: <br/> wrapped true
+00:00 +22: test/word_zotero_note_table_test.dart: cell soft breaks survive structural markers: <br/>A<br/> wrapped false
+00:00 +23: test/word_zotero_note_table_test.dart: cell soft breaks survive structural markers: <br/>A<br/> wrapped true
+00:00 +24: test/word_zotero_note_table_test.dart: mixed cell and div blocks have no phantom continuation paragraphs
+00:00 +25: test/word_zotero_note_table_test.dart: header bold keeps host fonts and explicit emphasis resets
+00:00 +26: test/word_zotero_note_table_test.dart: lists in separate cells keep independent starts and continuation indexes
+00:00 +27: test/word_zotero_note_table_test.dart: column widths propagate consistently using CSS pixels
+00:00 +28: test/word_zotero_note_table_test.dart: unsized columns use independent 120-point defaults
+00:00 +29: test/word_zotero_note_table_test.dart: horizontal merges reconcile widths by logical column
+00:00 +30: test/word_zotero_note_table_test.dart: zero widths remain unspecified across rows: merged first false
+00:00 +31: test/word_zotero_note_table_test.dart: zero widths remain unspecified across rows: merged first true
+00:00 +32: test/word_zotero_note_table_test.dart: merged cells preserve source paragraphs, lists and citation indexes
+00:00 +33: test/word_zotero_note_table_test.dart: empty and picture-only merged cells retain their native owners
+00:00 +34: test/word_zotero_note_table_test.dart: one cell can span the complete bounded 32-column grid
+00:00 +35: test/word_zotero_note_table_test.dart: explicit column-width bounds apply inside a merged width vector
+00:00 +36: test/word_zotero_note_table_test.dart: row spans create native continuations at their logical columns
+00:00 +37: test/word_zotero_note_table_test.dart: synthetic continuations preserve citation and list paragraph indexes
+00:00 +38: test/word_zotero_note_table_test.dart: covered rows may have no authored cells and preserve empty origins
+00:00 +39: test/word_zotero_note_table_test.dart: independent row groups retain their own vertical merge chains
+00:00 +40: test/word_zotero_note_table_test.dart: direct row groups stay separate across empty and populated bodies
+00:00 +41: test/word_zotero_note_table_test.dart: widths reconcile after skipping vertically covered columns
+00:00 +42: test/word_zotero_note_table_test.dart: invalid row span syntax or bound refuses: 0
+00:00 +43: test/word_zotero_note_table_test.dart: invalid row span syntax or bound refuses: -1
+00:00 +44: test/word_zotero_note_table_test.dart: invalid row span syntax or bound refuses: 1.5
+00:00 +45: test/word_zotero_note_table_test.dart: invalid row span syntax or bound refuses: 01
+00:00 +46: test/word_zotero_note_table_test.dart: invalid row span syntax or bound refuses: 1e2
+00:00 +47: test/word_zotero_note_table_test.dart: invalid row span syntax or bound refuses: +1
+00:00 +48: test/word_zotero_note_table_test.dart: invalid row span syntax or bound refuses: 
+00:00 +49: test/word_zotero_note_table_test.dart: invalid row span syntax or bound refuses: NaN
+00:00 +50: test/word_zotero_note_table_test.dart: invalid row span syntax or bound refuses: 257
+00:00 +51: test/word_zotero_note_table_test.dart: invalid row span syntax or bound refuses: 999999999999999999999
+00:00 +52: test/word_zotero_note_table_test.dart: invalid vertical coverage or column widths refuse: <tr><td rowspan="3">Past end</td></tr><tr/>
+00:00 +53: test/word_zotero_note_table_test.dart: invalid vertical coverage or column widths refuse: <tr><td rowspan="2">Left</td><td>Right</td></tr><tr/>
+00:00 +54: test/word_zotero_note_table_test.dart: invalid vertical coverage or column widths refuse: <tr><td>Left</td><td rowspan="2">Middle</td><td>Right</td></tr><tr><td colspan="2">Collision</td><td>Right</td></tr>
+00:00 +55: test/word_zotero_note_table_test.dart: invalid vertical coverage or column widths refuse: <tr><td rowspan="2" colspan="2">Covered</td></tr><tr><td>Overflow</td></tr>
+00:00 +56: test/word_zotero_note_table_test.dart: invalid vertical coverage or column widths refuse: <tr><td rowspan="2" data-colwidth="100">Left</td><td data-colwidth="80">Right</td></tr><tr><td data-colwidth="81">Conflicting right</td></tr>
+00:00 +57: test/word_zotero_note_table_test.dart: a vertical merge cannot cross row-group ownership: <table><tbody><tr><td rowspan="2">Cross group</td></tr></tbody><tbody><tr/></tbody></table>
+00:00 +58: test/word_zotero_note_table_test.dart: a vertical merge cannot cross row-group ownership: <table><tr><td rowspan="2">Cross group</td></tr><tbody><tr/></tbody></table>
+00:00 +59: test/word_zotero_note_table_test.dart: a vertical merge cannot cross row-group ownership: <table><tbody><tr><td rowspan="2">Cross group</td></tr></tbody><tr/></table>
+00:00 +60: test/word_zotero_note_table_test.dart: a vertical merge cannot cross row-group ownership: <table><tr><td rowspan="2">Cross empty group</td></tr><tbody/><tr/></table>
+00:00 +61: test/word_zotero_note_table_test.dart: a vertical merge cannot cross row-group ownership: <table><tr><td rowspan="2">Cross empty group</td></tr><tbody></tbody><tbody/><tr/></table>
+00:00 +62: test/word_zotero_note_table_test.dart: 256-row spans require exactly covered actual rows
+00:00 +63: test/word_zotero_note_table_test.dart: the global native-cell budget includes every vertical continuation
+00:00 +64: test/word_zotero_note_table_test.dart: the paragraph budget includes synthetic continuation paragraphs
+00:01 +65: test/word_zotero_note_table_test.dart: cell background colors map to native fills without coloring text
+00:01 +66: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table></table>
+00:01 +67: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tbody></tbody></table>
+00:01 +68: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr></tr></table>
+00:01 +69: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr><td>A</td><td>B</td></tr><tr><td>C</td></tr></table>
+00:01 +70: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><td>A</td></table>
+00:01 +71: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tbody><td>A</td></tbody></table>
+00:01 +72: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><div><tr><td>A</td></tr></div></table>
+00:01 +73: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table>Loose<tr><td>A</td></tr></table>
+00:01 +74: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr>Loose<td>A</td></tr></table>
+00:01 +75: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <p><table><tr><td>Inside paragraph</td></tr></table></p>
+00:01 +76: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <span><table><tr><td>Inside inline</td></tr></table></span>
+00:01 +77: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <ul><li><table><tr><td>Inside item</td></tr></table></li></ul>
+00:01 +78: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <a href="https://www.zotero.org/?ABC123"><table><tr><td>Inside citation</td></tr></table></a>
+00:01 +79: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><thead><tr><th>Header group</th></tr></thead></table>
+00:01 +80: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tfoot><tr><td>Footer group</td></tr></tfoot></table>
+00:01 +81: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><caption>Caption</caption><tr><td>A</td></tr></table>
+00:01 +82: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><colgroup><col/></colgroup><tr><td>A</td></tr></table>
+00:01 +83: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <tbody><tr><td>Orphan</td></tr></tbody>
+00:01 +84: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <tr><td>Orphan</td></tr>
+00:01 +85: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <td>Orphan</td>
+00:01 +86: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table class="custom"><tr><td>A</td></tr></table>
+00:01 +87: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table style="width:100%"><tr><td>A</td></tr></table>
+00:01 +88: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tbody style="color:red"><tr><td>A</td></tr></tbody></table>
+00:01 +89: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr style="height:20px"><td>A</td></tr></table>
+00:01 +90: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr><td class="custom">A</td></tr></table>
+00:01 +91: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr><td rowspan="2">Merged</td></tr></table>
+00:01 +92: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr><td colspan="0">Invalid</td></tr></table>
+00:01 +93: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr><td colspan="-1">Invalid</td></tr></table>
+00:01 +94: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr><td colspan="1.5">Invalid</td></tr></table>
+00:01 +95: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr><td colspan="33">Oversized</td></tr></table>
+00:01 +96: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr><td colspan="999999999999999999999">Oversized</td></tr></table>
+00:01 +97: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr><td rowspan="-1">Invalid</td></tr></table>
+00:01 +98: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr><td colspan="2" rowspan="2">Vertical merge</td></tr></table>
+00:01 +99: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr><td data-colwidth="4001">Oversized</td></tr></table>
+00:01 +100: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr><td data-colwidth="96,96">Merged widths</td></tr></table>
+00:01 +101: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr><td colspan="2" data-colwidth="96">Missing width</td></tr></table>
+00:01 +102: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr><td colspan="2" data-colwidth="0,96,0">Extra width</td></tr></table>
+00:01 +103: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr><td colspan="2" data-colwidth="96,">Missing width</td></tr></table>
+00:01 +104: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr><td colspan="2" data-colwidth=",96">Missing width</td></tr></table>
+00:01 +105: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr><td colspan="2" data-colwidth="-1,96">Negative</td></tr></table>
+00:01 +106: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr><td colspan="2" data-colwidth="1,4001">Oversized</td></tr></table>
+00:01 +107: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr><td colspan="2" data-colwidth="4000,4000">Too wide</td></tr></table>
+00:01 +108: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr><td colspan="2" data-colwidth="100,200">Merged</td></tr><tr><td data-colwidth="100">A</td><td data-colwidth="201">Conflicting</td></tr></table>
+00:01 +109: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr><td colspan="2">A</td><td>B</td></tr><tr><td>C</td><td>D</td></tr></table>
+00:01 +110: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr><td>A</td><td>B</td></tr><tr><td colspan="2">C</td><td>D</td></tr></table>
+00:01 +111: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr><td data-colwidth="12.5">Fractional</td></tr></table>
+00:01 +112: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr><td data-colwidth="NaN">Invalid</td></tr></table>
+00:01 +113: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr><td data-colwidth="100">A</td></tr><tr><td data-colwidth="101">Conflicting</td></tr></table>
+00:01 +114: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr><td data-colwidth="4000">A</td><td data-colwidth="4000">Too wide</td></tr></table>
+00:01 +115: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr><td style="padding:4px">Unsupported</td></tr></table>
+00:01 +116: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr><td style="font-weight:bold">Unsupported</td></tr></table>
+00:01 +117: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr><td style="background-color:rgba(0,0,0,0.5)">Alpha</td></tr></table>
+00:01 +118: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr><td style="background-color:rgb(256,0,0)">Range</td></tr></table>
+00:01 +119: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr><td style="background-color:red">Named</td></tr></table>
+00:01 +120: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr><td style="background-color:#fff;background-color:#000">Duplicate</td></tr></table>
+00:01 +121: test/word_zotero_note_table_test.dart: unsupported table structure or formatting refuses: <table><tr><td style="background-color:">Empty</td></tr></table>
+00:01 +122: test/word_zotero_note_table_test.dart: citation identities remain unique across different cells
+00:01 +123: test/word_zotero_note_table_test.dart: authored structural-marker characters cannot impersonate a table
+00:01 +124: test/word_zotero_note_table_test.dart: table count, row count and column count are independently bounded
+00:01 +125: test/word_zotero_note_table_test.dart: the cell budget is global across all tables in one note
+00:01 +126: test/word_zotero_note_table_test.dart: horizontal merges retain the global authored-cell budget
+00:01 +127: test/word_zotero_note_table_test.dart: the paragraph budget includes all cells in the entire note
+00:01 +128: test/word_zotero_note_table_test.dart: the image budget is shared by cells and surrounding paragraphs
+00:01 +129: loading test/word_zotero_note_tables_integration_test.dart
+00:02 +129: test/word_zotero_note_tables_integration_test.dart: table replacement preserves rich prose and active field ownership
+00:02 +130: test/word_zotero_note_tables_integration_test.dart: table-only body insertion has no detached cell or missing caret
+00:02 +131: test/word_zotero_note_tables_integration_test.dart: fields before and after a table insertion retain document order
+00:02 +132: test/word_zotero_note_tables_integration_test.dart: ordinary paragraphs around a table remain outside its cells
+00:02 +133: test/word_zotero_note_tables_integration_test.dart: body merged cells retain DOCX geometry and live citation owners on refresh
+00:02 +134: test/word_zotero_note_tables_integration_test.dart: footnote merged cells retain DOCX geometry and live citation owners on refresh
+00:02 +135: test/word_zotero_note_tables_integration_test.dart: endnote merged cells retain DOCX geometry and live citation owners on refresh
+00:02 +136: test/word_zotero_note_tables_integration_test.dart: body vertical merges preserve field owners and lists through DOCX refresh
+00:02 +137: test/word_zotero_note_tables_integration_test.dart: footnote vertical merges preserve field owners and lists through DOCX refresh
+00:02 +138: test/word_zotero_note_tables_integration_test.dart: endnote vertical merges preserve field owners and lists through DOCX refresh
+00:02 +139: test/word_zotero_note_tables_integration_test.dart: citations around a vertical table keep complete document order
+00:02 +140: test/word_zotero_note_tables_integration_test.dart: fully covered empty rows retain their merge chain through DOCX
+00:02 +141: test/word_zotero_note_tables_integration_test.dart: merged table layout and hit boxes cover the correct logical columns after DOCX reopen
+00:02 +142: test/word_zotero_note_tables_integration_test.dart: footnote leading table preserves its marker and separator false
+00:02 +143: test/word_zotero_note_tables_integration_test.dart: footnote leading table preserves its marker and separator true
+00:02 +144: test/word_zotero_note_tables_integration_test.dart: footnote offset zero keeps the automatic separator before a table
+00:02 +145: test/word_zotero_note_tables_integration_test.dart: footnote empty authored story receives a main-flow table caret
+00:02 +146: test/word_zotero_note_tables_integration_test.dart: footnote incompatible table citation conversion leaves all content staged
+00:02 +147: test/word_zotero_note_tables_integration_test.dart: endnote leading table preserves its marker and separator false
+00:02 +148: test/word_zotero_note_tables_integration_test.dart: endnote leading table preserves its marker and separator true
+00:02 +149: test/word_zotero_note_tables_integration_test.dart: endnote offset zero keeps the automatic separator before a table
+00:02 +150: test/word_zotero_note_tables_integration_test.dart: endnote empty authored story receives a main-flow table caret
+00:02 +151: test/word_zotero_note_tables_integration_test.dart: endnote incompatible table citation conversion leaves all content staged
+00:02 +152: test/word_zotero_note_tables_integration_test.dart: table cell citations create separate native notes for style 1
+00:02 +153: test/word_zotero_note_tables_integration_test.dart: table cell citations create separate native notes for style 2
+00:02 +154: test/word_zotero_note_tables_integration_test.dart: table geometry pictures lists and citations survive DOCX and refresh
+00:02 +155: test/word_zotero_note_tables_integration_test.dart: table payload cannot create a nested destination table
+00:02 +156: test/word_zotero_note_tables_integration_test.dart: moving a staged table target into a cell refuses apply before mutation
+00:02 +157: test/word_zotero_note_tables_integration_test.dart: incomplete or invalid table placeholders reject atomically: []
+00:02 +158: test/word_zotero_note_tables_integration_test.dart: incomplete or invalid table placeholders reject atomically: [FIRST1]
+00:02 +159: test/word_zotero_note_tables_integration_test.dart: incomplete or invalid table placeholders reject atomically: [FIRST1, FIRST1]
+00:02 +160: test/word_zotero_note_tables_integration_test.dart: incomplete or invalid table placeholders reject atomically: [FIRST1, UNKNOWN]
+00:02 +161: loading test/word_zotero_note_list_test.dart
+00:02 +161: test/word_zotero_note_list_test.dart: flat lists preserve rich items, empty items, breaks and active links
+00:02 +162: test/word_zotero_note_list_test.dart: independent lists retain boundaries, start and surrounding prose
+00:03 +163: test/word_zotero_note_list_test.dart: nested mixed lists retain item paragraphs and citation positions
+00:03 +164: test/word_zotero_note_list_test.dart: mixed implicit and explicit paragraphs retain a single item marker
+00:03 +165: test/word_zotero_note_list_test.dart: empty and list-only items keep their own marker without phantom tails
+00:03 +166: test/word_zotero_note_list_test.dart: independent nested starts and continuations survive repeated DOCX saves
+00:03 +167: test/word_zotero_note_list_test.dart: nine nested Word levels are preserved and a tenth rejects atomically
+00:03 +168: test/word_zotero_note_list_test.dart: nested list images and type 0 citations retain reading order
+00:03 +169: test/word_zotero_note_list_test.dart: nested list images and type 1 citations retain reading order
+00:03 +170: test/word_zotero_note_list_test.dart: nested list images and type 2 citations retain reading order
+00:03 +171: test/word_zotero_note_list_test.dart: image-only nested items and continuations keep their paragraph on reopen
+00:03 +172: test/word_zotero_note_list_test.dart: list citations retain active order for note type 0 and DOCX
+00:03 +173: test/word_zotero_note_list_test.dart: list citations retain active order for note type 1 and DOCX
+00:03 +174: test/word_zotero_note_list_test.dart: list citations retain active order for note type 2 and DOCX
+00:03 +175: test/word_zotero_note_list_test.dart: list insertion does not continue or restart surrounding document lists
+00:03 +176: test/word_zotero_note_list_test.dart: later ordinary numbering stays separate after research list, reopened false
+00:03 +177: test/word_zotero_note_list_test.dart: later ordinary numbering stays separate after research list, reopened true
+00:03 +178: test/word_zotero_note_list_test.dart: unsupported list refuses complete insertion without package edits: <ol reversed="reversed"><li>Backwards</li></ol>
+00:03 +179: test/word_zotero_note_list_test.dart: unsupported list refuses complete insertion without package edits: <ol start="0"><li>Zero</li></ol>
+00:03 +180: test/word_zotero_note_list_test.dart: unsupported list refuses complete insertion without package edits: <ol start="-1"><li>Negative</li></ol>
+00:03 +181: test/word_zotero_note_list_test.dart: unsupported list refuses complete insertion without package edits: <ol start="1000000"><li>Too large</li></ol>
+00:03 +182: test/word_zotero_note_list_test.dart: unsupported list refuses complete insertion without package edits: <ol start="one"><li>Invalid</li></ol>
+00:03 +183: test/word_zotero_note_list_test.dart: unsupported list refuses complete insertion without package edits: <ol type="A"><li>Custom</li></ol>
+00:03 +184: test/word_zotero_note_list_test.dart: unsupported list refuses complete insertion without package edits: <ol><li value="2">Custom item</li></ol>
+00:03 +185: test/word_zotero_note_list_test.dart: unsupported list refuses complete insertion without package edits: <ul><li><p>Paragraph<ul><li>Inside paragraph</li></ul></p></li></ul>
+00:03 +186: test/word_zotero_note_list_test.dart: unsupported list refuses complete insertion without package edits: <ul><li><span><ul><li>Inside inline</li></ul></span></li></ul>
+00:03 +187: test/word_zotero_note_list_test.dart: unsupported list refuses complete insertion without package edits: <ul><li><p>First<p>Nested paragraph</p></p></li></ul>
+00:03 +188: test/word_zotero_note_list_test.dart: unsupported list refuses complete insertion without package edits: <ul><li><ul><li value="3">Nested custom</li></ul></li></ul>
+00:03 +189: test/word_zotero_note_list_test.dart: unsupported list refuses complete insertion without package edits: <ul><li><ol start="1000000"><li>Nested limit</li></ol></li></ul>
+00:03 +190: test/word_zotero_note_list_test.dart: unsupported list refuses complete insertion without package edits: <ul><li><a href="https://example.org"><p>Block link</p></a></li></ul>
+00:03 +191: test/word_zotero_note_list_test.dart: unsupported list refuses complete insertion without package edits: <ul><li><div>Wrapped</div></li></ul>
+00:03 +192: test/word_zotero_note_list_test.dart: unsupported list refuses complete insertion without package edits: <ul><li><h1>Heading</h1></li></ul>
+00:03 +193: test/word_zotero_note_list_test.dart: unsupported list refuses complete insertion without package edits: <ul><p>Not an item</p></ul>
+00:03 +194: test/word_zotero_note_list_test.dart: unsupported list refuses complete insertion without package edits: <ul>Loose text<li>Item</li></ul>
+00:03 +195: test/word_zotero_note_list_test.dart: unsupported list refuses complete insertion without package edits: <ul></ul>
+00:03 +196: test/word_zotero_note_list_test.dart: unsupported list refuses complete insertion without package edits: <li>Orphan</li>
+00:03 +197: test/word_zotero_note_list_test.dart: unsupported list refuses complete insertion without package edits: <p><ul><li>Nested paragraph</li></ul></p>
+00:03 +198: test/word_zotero_note_list_test.dart: unsupported list refuses complete insertion without package edits: <ul style="list-style-type:square"><li>Custom</li></ul>
+00:03 +199: loading test/word_zotero_research_target_test.dart
+00:03 +199: test/word_zotero_research_target_test.dart: DOCX note list labels use native starts with independent story counters
+00:03 +200: test/word_zotero_research_target_test.dart: missing numbering definitions use the same note and body fallback
+00:03 +201: test/word_zotero_research_target_test.dart: footnote research content inherits its story for request 0
+00:03 +202: test/word_zotero_research_target_test.dart: footnote research content inherits its story for request 1
+00:03 +203: test/word_zotero_research_target_test.dart: footnote list counters stay separate from body and other note stories
+00:03 +204: test/word_zotero_research_target_test.dart: footnote headings lists and images retain the leading reference marker
+00:03 +205: test/word_zotero_research_target_test.dart: footnote visible start keeps reference separator on the inserted heading
+00:03 +206: test/word_zotero_research_target_test.dart: footnote rejects incompatible placeholder placement before changes
+00:03 +207: test/word_zotero_research_target_test.dart: footnote keeps destination note when an original sole citation is deleted
+00:03 +208: test/word_zotero_research_target_test.dart: footnote refuses conversion of the destination after research text is staged
+00:03 +209: test/word_zotero_research_target_test.dart: endnote research content inherits its story for request 0
+00:03 +210: test/word_zotero_research_target_test.dart: endnote research content inherits its story for request 2
+00:03 +211: test/word_zotero_research_target_test.dart: endnote list counters stay separate from body and other note stories
+00:03 +212: test/word_zotero_research_target_test.dart: endnote headings lists and images retain the leading reference marker
+00:03 +213: test/word_zotero_research_target_test.dart: endnote visible start keeps reference separator on the inserted heading
+00:03 +214: test/word_zotero_research_target_test.dart: endnote rejects incompatible placeholder placement before changes
+00:03 +215: test/word_zotero_research_target_test.dart: endnote keeps destination note when an original sole citation is deleted
+00:03 +216: test/word_zotero_research_target_test.dart: endnote refuses conversion of the destination after research text is staged
+00:03 +217: test/word_zotero_research_target_test.dart: body selection replaces only ordinary selected text and adjusts earlier fields
+00:03 +218: test/word_zotero_research_target_test.dart: selection containing a field or note reference is refused as a whole
+00:03 +219: test/word_zotero_research_target_test.dart: selection crossing a structural marker or commented text is refused
+00:03 +220: test/word_zotero_research_target_test.dart: selection bounds and surrogate boundaries are validated without edits
+00:03 +221: test/word_zotero_research_target_test.dart: selection touching bookmark endpoints preserves the complete range
+00:03 +222: test/word_zotero_research_target_test.dart: empty atomic runs at selection endpoints are protected
+00:03 +223: test/word_zotero_research_target_test.dart: malformed text-box fields do not block an independent body target
+00:03 +224: test/word_zotero_research_target_test.dart: a frame field endpoint cannot close an unmatched body field
+00:03 +225: test/word_zotero_research_target_test.dart: native complex field results and exact endpoints refuse research content
+00:03 +226: test/word_zotero_research_target_test.dart: empty native complex fields have no safe research insertion endpoint
+00:03 +227: test/word_zotero_research_target_test.dart: ordinary text strictly before and after a native field remains editable
+00:03 +228: test/word_zotero_research_target_test.dart: cross-paragraph native field cached text is protected without local markers
+00:03 +229: test/word_zotero_research_target_test.dart: malformed native field packets refuse research edits in their story
+00:03 +230: test/word_zotero_research_target_test.dart: nested native field results are protected while outside text remains safe
+00:03 +231: test/word_zotero_research_target_test.dart: native field protection is scoped to the chosen body or authored-note story
+00:03 +232: test/word_zotero_research_target_test.dart: research text cannot extend a paragraph-owned field at its end boundary
+00:03 +233: test/word_zotero_research_target_test.dart: changed selection content or deleted note refuses completed research content
+00:03 +234: All tests passed!

@@ -1,0 +1,51 @@
+{
+  "scope": "Pure Dart calendar-label date math only; not Flutter widget validation",
+  "repository_head": "75b429e30a80181c34205d49391fb21e9928b490",
+  "source_files": {
+    "packages/quds_office_editor/example/lib/studio_mail_reader_labels.dart": "07f65131fa676e99e0f6e069efe639b95c961a20c59fb6914d7ecdf70b572616",
+    "packages/quds_office_editor/example/lib/studio_strings.dart": "c5c21b8f62c41d2bdc521fbcb0b00b40a53cd90c7cb29b79162e6a205cf7c9ae",
+    "packages/quds_office_editor/example/test/studio_mail_calendar_date_test.dart": "5f5db6ff0a3b5cdab407cbaccba15b36c55f9e83a3f31eb751b10e42610e0ec6"
+  },
+  "extracted_function_block": {
+    "source": "packages/quds_office_editor/example/lib/studio_mail_reader_labels.dart",
+    "start_character": 247,
+    "end_character_exclusive": 1917,
+    "sha256": "dbf5275c4c2d7ba18861f005c013da4be1685172ecca2bb725bd3835feb1d566",
+    "includes": [
+      "date initialization state",
+      "studioIntlLocale",
+      "studioMailListDate"
+    ],
+    "unchanged": true
+  },
+  "extracted_enum": {
+    "source": "packages/quds_office_editor/example/lib/studio_strings.dart",
+    "source_text": "enum StudioLanguage { en, de, ar }",
+    "sha256": "dd1988f019fa26dfea7c2c985c6baf175995d8235fe9c541717b051dfd92200c",
+    "unchanged": true
+  },
+  "test_adaptation": {
+    "only_change": "import 'package:flutter_test/flutter_test.dart'; -> import 'package:test/test.dart';",
+    "body_unchanged": true,
+    "original_sha256": "5f5db6ff0a3b5cdab407cbaccba15b36c55f9e83a3f31eb751b10e42610e0ec6",
+    "harness_sha256": "94dbc8aabbcd254c6e8b65f11cf87cce6590ef1eb9554f09928f533277d619a6"
+  },
+  "harness_files": {
+    "lib/studio_mail_reader_labels.dart": "f6060e42263880125045a9d1fbeadf1782db27b6827bb618c3b494794841537d",
+    "lib/studio_strings.dart": "59212d0f8e27dd045852eeed95ca24e4a4dba882630fb68ebcb9fc55d5636b2f",
+    "test/studio_mail_calendar_date_test.dart": "94dbc8aabbcd254c6e8b65f11cf87cce6590ef1eb9554f09928f533277d619a6",
+    "bin/timezone_probe.dart": "f4e7d856727ba683235a2a858cc81335af3f0b3c23d3d4fc4d64526ca6786659"
+  },
+  "test_environment": {
+    "TZ": "Europe/Berlin",
+    "sdk": "Dart 3.13.7",
+    "intl": "0.20.3",
+    "test": "1.31.1"
+  },
+  "source_files_unchanged_after_test": {
+    "packages/quds_office_editor/example/lib/studio_mail_reader_labels.dart": true,
+    "packages/quds_office_editor/example/lib/studio_strings.dart": true,
+    "packages/quds_office_editor/example/test/studio_mail_calendar_date_test.dart": true
+  },
+  "checkout_head_after_test": "75b429e30a80181c34205d49391fb21e9928b490"
+}
