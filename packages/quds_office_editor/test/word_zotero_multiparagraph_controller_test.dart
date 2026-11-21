@@ -585,7 +585,7 @@ void main() {
             switch (change) {
               case 'start endpoint':
                 controller.caret.selectionAnchor =
-                        controller.caret.selectionAnchor + 1;
+                    controller.caret.selectionAnchor + 1;
               case 'end endpoint':
                 controller.caret.logicalIndex--;
               case 'composition':

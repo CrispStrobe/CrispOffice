@@ -1,0 +1,131 @@
+{
+  "schema": "quds-zotero-publication-intake-review/v1",
+  "snapshot": "snapshot.json",
+  "target": "6ac854de0583b7955470648916c53c76b67c0fff",
+  "captured_counts": {
+    "verified_equivalent": 24,
+    "ancestor": 304,
+    "uncovered": 2
+  },
+  "uncovered": [
+    {
+      "repo": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/codex/word-vba-paragraph-pagination-20261121",
+      "sha": "c093f6387fcae69f04c63f4344476e4785906a54",
+      "own_work": false,
+      "disposition": "uncovered"
+    },
+    {
+      "repo": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/work/mail-parity-20261121",
+      "sha": "1df5e678906ff1def11deed085586dc733030595",
+      "own_work": false,
+      "disposition": "uncovered"
+    }
+  ],
+  "external_work": [
+    {
+      "feature": "word",
+      "branch": "codex/word-vba-paragraph-pagination-20261121",
+      "head": "c093f6387fcae69f04c63f4344476e4785906a54",
+      "preview_base": "6ac854de0583b7955470648916c53c76b67c0fff",
+      "preview_tree_with_conflict_markers": "0304eb9cb07940847d86a0c1224c3404cae7f8bc",
+      "conflicted_paths": [
+        "packages/quds_mail_ui/lib/src/reader/presentation.dart",
+        "packages/quds_office_engine/CHANGELOG.md"
+      ],
+      "changed_product_paths": [
+        "packages/quds_mail_ui/lib/src/reader/presentation.dart",
+        "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+        "packages/quds_office_engine/lib/src/automation/operations/word_page_setup_steps.dart",
+        "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_section_io.dart"
+      ],
+      "changed_test_and_tool_paths": [
+        "packages/quds_office_editor/example/test/studio_mail_remote_images_incoming_test.dart",
+        "packages/quds_office_engine/test/office_macro_word_page_setup_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_page_setup_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_page_setup_test.dart",
+        "packages/quds_office_engine/tool/macros/web_vba_word_page_setup_smoke.dart"
+      ],
+      "new_commits": [
+        "c093f6387fcae69f04c63f4344476e4785906a54 Harden section namespace fidelity and document bounded Word PageSetup [skip ci]",
+        "d71d378325e4f61996320b0415779f45cea60ce2 Extend Word VBA with precise section PageSetup writes [skip ci]",
+        "aefcb7663e63130487054723ed7f1530ad5f9f60 Reconcile all incoming fork work and retain Word/Mail validation [skip ci]"
+      ],
+      "resolution": {
+        "packages/quds_mail_ui/lib/src/reader/presentation.dart": "Keep current alias implementation. Incoming differs only in symmetric operand order and which equal-length alias list supplies loop length.",
+        "changelogs": "Union incoming feature entries with current qualified-source entries.",
+        "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart": "Keep current suite and add incoming assertion that first item problem is the exact original problem object."
+      }
+    },
+    {
+      "feature": "mail",
+      "branch": "work/mail-parity-20261121",
+      "head": "1df5e678906ff1def11deed085586dc733030595",
+      "preview_base": "6ac854de0583b7955470648916c53c76b67c0fff",
+      "preview_tree_with_conflict_markers": "6aeb6ba3e436cc95d3c89d647e8915834e3c1931",
+      "conflicted_paths": [
+        "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart",
+        "packages/quds_mail_transport/CHANGELOG.md",
+        "packages/quds_mail_ui/CHANGELOG.md",
+        "packages/quds_mail_ui/lib/src/reader/presentation.dart"
+      ],
+      "changed_product_paths": [
+        "packages/quds_mail_core/lib/src/ports/provider.dart",
+        "packages/quds_mail_store/lib/src/flag_journal.dart",
+        "packages/quds_mail_store/lib/src/flag_journal_models.dart",
+        "packages/quds_mail_store/lib/src/flag_reconciliation.dart",
+        "packages/quds_mail_store/lib/src/repository.dart",
+        "packages/quds_mail_store/lib/src/schema/database.dart",
+        "packages/quds_mail_store/lib/src/schema/flag_journal_schema.dart",
+        "packages/quds_mail_transport/lib/src/cloud/configuration.dart",
+        "packages/quds_mail_transport/lib/src/cloud/provider.dart",
+        "packages/quds_mail_transport/lib/src/cloud/unsupported.dart",
+        "packages/quds_mail_transport/lib/src/ews/native/provider.dart",
+        "packages/quds_mail_transport/lib/src/ews/soap.dart",
+        "packages/quds_mail_transport/lib/src/ews/unsupported.dart",
+        "packages/quds_mail_transport/lib/src/native/provider.dart",
+        "packages/quds_mail_transport/lib/src/unsupported/provider.dart",
+        "packages/quds_mail_ui/lib/src/reader/presentation.dart"
+      ],
+      "changed_test_and_tool_paths": [
+        "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart",
+        "packages/quds_mail_store/test/flag_reconciliation_test.dart",
+        "packages/quds_mail_store/test/migration_test.dart",
+        "packages/quds_mail_transport/test/cloud_provider_test.dart",
+        "packages/quds_mail_transport/test/cloud_unsupported_test.dart",
+        "packages/quds_mail_transport/test/ews_provider_test.dart",
+        "packages/quds_mail_transport/test/ews_unsupported_test.dart",
+        "packages/quds_mail_transport/test/native_flag_observation_test.dart",
+        "packages/quds_mail_transport/test/unsupported_test.dart",
+        "packages/quds_mail_ui/test/bulk_api_aliases_test.dart"
+      ],
+      "new_commits": [
+        "1df5e678906ff1def11deed085586dc733030595 Persist explicit reconciliation of uncertain mail flags [skip ci]",
+        "71a9d73f86a30380d7fe3563f1a0048f1f7eb860 Add fresh read-only mail flag observations across providers [skip ci]",
+        "d6e8fddd08755fe84e82f2a7a0bce200f0c92826 Reconcile all incoming Office work before Mail recovery [skip ci]"
+      ],
+      "resolution": {
+        "packages/quds_mail_ui/lib/src/reader/presentation.dart": "Keep current alias implementation. Incoming differs only in symmetric operand order and which equal-length alias list supplies loop length.",
+        "changelogs": "Union incoming feature entries with current qualified-source entries.",
+        "packages/quds_mail_core/test/bulk_flags_compatibility_test.dart": "Keep current suite and add incoming assertion that first item problem is the exact original problem object."
+      }
+    }
+  ],
+  "main_at_capture": "bf761552d22dcd1eb8cbb0ab00ddab6507e1d572",
+  "own_work": {
+    "branch": "codex/zotero-multiparagraph-20261121",
+    "head": "6ac854de0583b7955470648916c53c76b67c0fff",
+    "pull_request": "None open at this snapshot"
+  },
+  "scope": "Frozen publication intake. Do not chase later branch heads; perform main freshness check before publication.",
+  "validation_required": [
+    "Word: the three new PageSetup suites, existing section clone/round-trip coverage, and portable PageSetup smoke.",
+    "Mail: flag_reconciliation_test, migration_test, affected cloud/EWS/native observation and unsupported-provider suites, bulk compatibility and UI alias tests.",
+    "Rerun affected Zotero acceptance after the ancestry merges; incoming branch product deltas do not touch Zotero engine/controller paths."
+  ],
+  "github_actions": "Neither queried nor awaited"
+}
