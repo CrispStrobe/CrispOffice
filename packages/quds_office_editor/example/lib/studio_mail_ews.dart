@@ -2684,6 +2684,10 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                 MailMessageListItem(
                   id: 'ews-message-${header.id.value}',
                   subject: header.envelope.subject,
+                  accountId: header.remote.account.value,
+                  messageId: header.envelope.messageId,
+                  inReplyTo: header.envelope.inReplyTo,
+                  references: header.envelope.references,
                   sender: header.envelope.from
                       .map(
                         (address) =>
