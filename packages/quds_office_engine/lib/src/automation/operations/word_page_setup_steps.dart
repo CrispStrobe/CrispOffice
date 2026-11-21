@@ -145,10 +145,11 @@ void setWordPageSetup(
 
 /// Sets or toggles one section's explicit page orientation.
 ///
-/// The bounded operation swaps page dimensions when the orientation changes and
-/// retains margins, header/footer distances, and printer paper metadata. Native
-/// orientation is independent of dimensions for square pages, so it is retained
-/// in a sparse source snapshot even for a newly authored section.
+/// The bounded operation resolves dimensions at the serializer's integer-twip
+/// precision, swaps them when the orientation changes, and retains margins,
+/// header/footer distances, and printer paper metadata. Native orientation is
+/// independent of dimensions for square pages, so it is retained in a sparse
+/// source snapshot even for a newly authored section.
 void setWordPageOrientation(
   WmlDocument document,
   WmlSection section, {
@@ -175,6 +176,13 @@ void setWordPageOrientation(
       'Orientation requires supported existing page size.',
     );
   }
+  final widthTwips = pointsToTwips(old.width);
+  final heightTwips = pointsToTwips(old.height);
+  final normalized =
+      widthTwips / 20 != old.width || heightTwips / 20 != old.height;
+  final effective = normalized
+      ? WmlPageSize(width: widthTwips / 20, height: heightTwips / 20)
+      : old;
   var element = root?.firstChild('pgSz', namespaceUri: _w);
   final raw = element?.getAttribute('orient', namespaceUri: _w);
   if (raw != null && !const {'portrait', 'landscape'}.contains(raw)) {
@@ -186,9 +194,15 @@ void setWordPageOrientation(
       'Orientation requires a complete page-size snapshot.',
     );
   }
-  final current = '${pointsToTwips(old.width)}|${pointsToTwips(old.height)}';
+  final current = '$widthTwips|$heightTwips';
   final pendingSize = snapshot != null && snapshot != current;
-  var previous = old.width > old.height ? 'landscape' : 'portrait';
+  if (pendingSize && (effective.width > effective.height) != old.isLandscape) {
+    throw UnsupportedError(
+      'Orientation refuses pending near-square geometry whose general '
+      'section-format orientation is ambiguous.',
+    );
+  }
+  var previous = effective.width > effective.height ? 'landscape' : 'portrait';
   if (snapshot != null) {
     final values = snapshot.split('|').map(int.tryParse).toList();
     if (values.length != 2 ||
@@ -217,9 +231,38 @@ void setWordPageOrientation(
       : orientation;
   final changed = previous != next;
   final size = changed
-      ? WmlPageSize(width: old.height, height: old.width)
-      : old;
+      ? WmlPageSize(width: effective.height, height: effective.width)
+      : effective;
   _validateGeometry(section, size, section.margins);
+  final margins = section.margins;
+  if ([
+    margins.top,
+    margins.bottom,
+    margins.left,
+    margins.right,
+    margins.header,
+    margins.footer,
+    section.columnSpace,
+  ].any((value) => value * 20 > 2147483647)) {
+    throw UnsupportedError(
+      'Orientation requires supported existing distances.',
+    );
+  }
+  // The model retains all distances unchanged. Check their serialized values
+  // as well so rounding cannot eliminate a body or a column's text width.
+  _validateGeometry(
+    section,
+    size,
+    WmlPageMargins(
+      top: pointsToTwips(margins.top) / 20,
+      bottom: pointsToTwips(margins.bottom) / 20,
+      left: pointsToTwips(margins.left) / 20,
+      right: pointsToTwips(margins.right) / 20,
+      header: margins.header,
+      footer: margins.footer,
+    ),
+    columnSpace: pointsToTwips(section.columnSpace) / 20,
+  );
 
   if (root == null) {
     root = XmlElement(localName: 'sectPr', prefix: 'w', namespaceUri: _w);
@@ -231,7 +274,7 @@ void setWordPageOrientation(
     WordSectionIo.setNamespaceDeclaration(element, 'w', _w);
     root.addChild(element);
   }
-  if (created || changed || pendingSize) {
+  if (created || changed || pendingSize || normalized) {
     setWordSectionAttribute(element, 'w', '${pointsToTwips(size.width)}');
     setWordSectionAttribute(element, 'h', '${pointsToTwips(size.height)}');
   }
@@ -252,8 +295,10 @@ void setWordPageOrientation(
 void _validateGeometry(
   WmlSection section,
   WmlPageSize size,
-  WmlPageMargins margins,
-) {
+  WmlPageMargins margins, {
+  double? columnSpace,
+}) {
+  final gap = columnSpace ?? section.columnSpace;
   final distances = [
     margins.top,
     margins.bottom,
@@ -261,7 +306,7 @@ void _validateGeometry(
     margins.right,
     margins.header,
     margins.footer,
-    section.columnSpace,
+    gap,
   ];
   if (!size.width.isFinite ||
       !size.height.isFinite ||
@@ -276,7 +321,7 @@ void _validateGeometry(
       margins.top + margins.bottom >= size.height) {
     throw ArgumentError('Margins leave no page body');
   }
-  if (section.columnSpace * (section.resolvedColumnCount - 1) >=
+  if (gap * (section.resolvedColumnCount - 1) >=
       size.width - margins.left - margins.right) {
     throw ArgumentError('Columns leave no text width');
   }

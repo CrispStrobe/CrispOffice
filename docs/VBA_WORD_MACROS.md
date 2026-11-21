@@ -326,8 +326,10 @@ so replay resolves the orientation of its supplied document. The complete
 [word_sections.bas example](../packages/quds_office_engine/example/macros/word_sections.bas)
 configures two existing sections through typed aliases and a named helper.
 
-**Orientation contract.** Changing orientation swaps the current width and
-height once. Assigning the current orientation keeps them unchanged. Named
+**Orientation contract.** Existing dimensions are resolved at the ordinary
+serializer's integer-twip (0.05-point) precision, including authored defaults
+and custom model values. Changing orientation swaps that width and height
+once. Assigning the current orientation retains those dimensions. Named
 top/bottom/left/right margins, header/footer distances and uniform column
 settings retain their values; the resulting page body and column text width
 must still be positive. The native printer paper code is preserved. This is
@@ -341,7 +343,9 @@ with absent orientation meaning portrait. Unrecognized orientation values or
 non-square dimensions inconsistent with that state are refused. Authored
 sections without source use their exact dimensions to establish the initial
 state. A preceding general native `docx.sectionFormat` dimension change retains
-the established serializer behavior before the new orientation operation.
+the established serializer behavior before the new orientation operation;
+near-square pending geometry is refused when the general serializer's
+orientation tolerance would disagree with the canonical dimensions.
 Existing page-geometry, unsupported gutter/column/settings, namespace and
 section-identity guards continue to apply. All checks complete before changing
 the live model, and failure discards the complete detached macro run.
