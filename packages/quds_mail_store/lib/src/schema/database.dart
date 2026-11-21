@@ -14,7 +14,7 @@ final class MailStoreDatabase extends GeneratedDatabase {
   final MailStoreFaultInjector? faultInjector;
 
   @override
-  int get schemaVersion => 6;
+  int get schemaVersion => 7;
 
   @override
   Iterable<TableInfo<Table, Object?>> get allTables => const [];
@@ -41,11 +41,14 @@ final class MailStoreDatabase extends GeneratedDatabase {
       for (final statement in schemaV6) {
         await customStatement(statement);
       }
+      for (final statement in schemaV7) {
+        await customStatement(statement);
+      }
       // Include the version in the same transaction as schema creation.
-      await customStatement('PRAGMA user_version = 6');
+      await customStatement('PRAGMA user_version = 7');
     }),
     onUpgrade: (_, from, to) async {
-      if (from < 1 || from > 5 || to != 6) {
+      if (from < 1 || from > 6 || to != 7) {
         throw const MailStoreStorageException(MailProblemCode.unsupported);
       }
       await transaction(() async {
@@ -69,11 +72,16 @@ final class MailStoreDatabase extends GeneratedDatabase {
             await customStatement(statement);
           }
         }
-        for (final statement in schemaV6) {
+        if (from < 6) {
+          for (final statement in schemaV6) {
+            await customStatement(statement);
+          }
+        }
+        for (final statement in schemaV7) {
           await customStatement(statement);
         }
         await faultInjector?.call(MailStoreCheckpoint.migrationCreated);
-        await customStatement('PRAGMA user_version = 6');
+        await customStatement('PRAGMA user_version = 7');
       });
     },
     beforeOpen: (_) async {

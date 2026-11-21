@@ -131,9 +131,9 @@ or real sends.
 
 ## Next increments toward full parity
 
-1. Explicit historical uncertainty reconciliation and repository-driven
-   foreground sessions, building on durable flag receipts with fresh provider
-   observations, UIDVALIDITY changes and conflict-aware recovery.
+1. Repository-driven foreground sessions, building on durable flag receipts and
+   completed [explicit observation recovery](flag-recovery.md), with visible
+   completeness, synchronization ownership and reconnect behavior.
 2. Account-wide/unified search, saved live views and conversations over the
    durable index, with explicit cache completeness and source identity.
 3. Consistent archive/move/delete and broader bulk commands, rules and quick

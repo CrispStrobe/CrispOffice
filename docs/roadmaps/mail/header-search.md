@@ -92,8 +92,10 @@ account/folder/remote identities, reports confirmed, failed, uncertain and
 unattempted outcomes, and stops on uncertainty or stale scope. It preserves the
 nullable flag contract and does not introduce offline replay.
 
-1. Durable repository-driven sessions and a remote-command journal, with restart,
-   UIDVALIDITY, conflict, cancellation and offline/reconnect qualification.
+1. Durable repository-driven sessions, building on the completed
+   [command journal](command-journal.md) and [uncertain-action checks](flag-recovery.md),
+   with explicit completeness, synchronization ownership and offline/reconnect
+   qualification.
 2. Account/unified search, saved live views and conversations over the durable
    index, preserving explicit cache completeness and source-message identity.
 3. Consistent archive/move/delete, broader bulk commands, rules and quick actions

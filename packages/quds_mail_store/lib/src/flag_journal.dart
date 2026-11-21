@@ -34,7 +34,10 @@ extension MailFlagCommandJournal on SqliteMailRepository {
 
   static const _cleanFlagBatch =
       'b.complete=1 AND NOT EXISTS (SELECT 1 FROM flag_batch_items i '
-      "WHERE i.account=b.account AND i.batch=b.id AND i.state IN ('applying','uncertain'))";
+      'WHERE i.account=b.account AND i.batch=b.id AND '
+      "(i.state='applying' OR (i.state='uncertain' AND NOT EXISTS "
+      '(SELECT 1 FROM flag_item_resolutions r WHERE r.account=i.account '
+      'AND r.batch=i.batch AND r.position=i.position))))';
 
   Future<void> _pruneCleanFlagBatches(
     MailAccountId account, {
@@ -88,6 +91,23 @@ extension MailFlagCommandJournal on SqliteMailRepository {
       [account.value],
     )).single.read<int>('n');
     if (invalid != 0) {
+      SqliteMailRepository._fail(MailProblemCode.storageFailure);
+    }
+    final invalidResolutions = (await _rows(
+      'SELECT count(*) AS n FROM flag_item_resolutions r '
+      'LEFT JOIN flag_batches b ON b.account=r.account AND b.id=r.batch '
+      'LEFT JOIN flag_batch_items i ON i.account=r.account AND i.batch=r.batch AND i.position=r.position '
+      'WHERE r.account=? AND ('
+      "typeof(r.batch)!='text' OR length(CAST(r.batch AS BLOB))>1024 OR "
+      "typeof(r.position)!='integer' OR r.position<0 OR r.position>999 OR "
+      "typeof(r.kind)!='text' OR r.kind NOT IN ('matches','differs','missing','identityChanged') OR "
+      "typeof(r.checked_at)!='integer' OR r.checked_at<0 OR r.checked_at>8640000000000000 OR "
+      'b.id IS NULL OR i.position IS NULL OR b.complete!=1 OR '
+      "i.state!='uncertain' OR (r.kind='identityChanged' AND b.provider!='imap') OR "
+      'r.checked_at<b.created_at OR r.checked_at>b.updated_at)',
+      [account.value],
+    )).single.read<int>('n');
+    if (invalidResolutions != 0) {
       SqliteMailRepository._fail(MailProblemCode.storageFailure);
     }
   }
@@ -499,6 +519,7 @@ extension MailFlagCommandJournal on SqliteMailRepository {
       confirmedCount: row.read<int>('confirmed_count'),
       failedCount: row.read<int>('failed_count'),
       uncertainCount: row.read<int>('uncertain_count'),
+      reconciledCount: row.read<int>('reconciled_count'),
       unattemptedCount: row.read<int>('unattempted_count'),
       stopReason: switch (row.readNullable<String>('stop_reason')) {
         final String reason => MailBulkFlagStopReason.values.byName(reason),
@@ -518,6 +539,7 @@ extension MailFlagCommandJournal on SqliteMailRepository {
       "(SELECT count(*) FROM flag_batch_items i WHERE i.account=b.account AND i.batch=b.id AND i.state='confirmed') AS confirmed_count, "
       "(SELECT count(*) FROM flag_batch_items i WHERE i.account=b.account AND i.batch=b.id AND i.state='failed') AS failed_count, "
       "(SELECT count(*) FROM flag_batch_items i WHERE i.account=b.account AND i.batch=b.id AND i.state IN ('uncertain','applying')) AS uncertain_count, "
+      '(SELECT count(*) FROM flag_item_resolutions r WHERE r.account=b.account AND r.batch=b.id) AS reconciled_count, '
       "(SELECT count(*) FROM flag_batch_items i WHERE i.account=b.account AND i.batch=b.id AND i.state='unattempted') AS unattempted_count "
       'FROM flag_batches b ';
 
@@ -610,9 +632,34 @@ extension MailFlagCommandJournal on SqliteMailRepository {
       );
       final reason = batch.readNullable<String>('stop_reason');
       final persistence = batch.readNullable<String>('persistence_problem');
+      final resolutions = <MailStoredFlagResolution>[];
+      for (final row in await _rows(
+        'SELECT position,kind,checked_at FROM flag_item_resolutions WHERE account=? AND batch=? ORDER BY position',
+        [account.value, id],
+      )) {
+        final index = row.read<int>('position');
+        final kind = MailFlagResolutionKind.values.byName(
+          row.read<String>('kind'),
+        );
+        if (kind == MailFlagResolutionKind.identityChanged &&
+            plan.messages[index] is! MailImapIdentity) {
+          SqliteMailRepository._fail(MailProblemCode.storageFailure);
+        }
+        resolutions.add(
+          MailStoredFlagResolution(
+            index: index,
+            kind: kind,
+            checkedAt: DateTime.fromMillisecondsSinceEpoch(
+              row.read<int>('checked_at'),
+              isUtc: true,
+            ),
+          ),
+        );
+      }
       return MailStoredFlagBatch(
         summary: summary,
         subjects: [for (final item in items) item.read<String>('subject')],
+        resolutions: resolutions,
         report: MailBulkFlagReport.restore(
           plan: plan,
           results: [
@@ -644,7 +691,8 @@ extension MailFlagCommandJournal on SqliteMailRepository {
     }),
   );
 
-  /// Explicit local history cleanup; never removes uncertain or running work.
+  /// Local history cleanup preserves running and unresolved uncertain work.
+  /// Later definitive observations make completed uncertain receipts eligible.
   Future<MailResult<int>> clearCompletedFlagBatches(
     MailAccountId account,
   ) => _write(() async {

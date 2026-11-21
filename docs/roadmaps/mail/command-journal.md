@@ -23,9 +23,10 @@ English, German and Arabic controls support compact layouts. Reading history
 does not create a provider, read credentials, fetch bodies or send commands.
 Cached mail remains read-only.
 
-**Clear completed history** requires confirmation and removes only completed
-receipts without an in-flight or uncertain item. Running and uncertain work is
-retained. An interrupted batch with no dispatched command is safe to clear:
+**Clear completed receipts** requires confirmation and removes completed
+receipts whose uncertain items, if any, have all received explicit saved
+[provider observations](flag-recovery.md). Running and unchecked uncertain work
+is retained. An interrupted batch with no dispatched command is safe to clear:
 all its messages are definitely Not attempted. History has no Retry or Resume
 action. Refreshing a folder observes current flags; it does not rewrite the
 historical evidence or prove which earlier command changed them.
@@ -83,6 +84,8 @@ Schema v6 adds account-scoped batch and item tables without replacing drafts,
 Outbox, archive data, cached views or sync cursors. Migrations from versions
 1–5 retain their existing data; interrupted migration rolls back transactionally.
 The native opener uses its existing exclusive owner and SQLite WAL/FULL setup.
+The additive [schema-v7 recovery continuation](flag-recovery.md) retains those
+tables and adds per-item observations and concurrency fences.
 
 On exclusive reopen or logout, unfinished applying markers become Uncertain,
 acknowledged results remain intact, and never-dispatched items stay Not
@@ -95,11 +98,14 @@ Ordinary creation and completion retain the newest 100 clean receipts, within
 a 200-batch total bound and the repository's storage budget. Recovery can close
 prepared, never-dispatched batches as clean receipts without immediately pruning
 them; the next creation or completion enforces the ordinary clean-history
-window. Pruning preserves the receipt just completed. Running or uncertain work
+window. Pruning preserves the receipt just completed. Running or unchecked uncertain work
 is never evicted to admit a new command;
 100 unresolved batches block new journaled flag operations with a quota result.
-The current UI cannot resolve historical uncertainty. Provider-observation
-reconciliation is the next recovery increment.
+Connected **Mail activity → Check current status** now saves a separate fresh
+observation without replaying the action. A completed receipt with every
+uncertain item checked no longer consumes the unresolved allowance and becomes
+eligible for ordinary retention and confirmed cleanup. The original outcome
+remains uncertain. See [flag-recovery.md](flag-recovery.md).
 
 Selections are bounded to 1,000 messages and the configured page limit.
 Subjects are bounded to 4,096 code units each, with a separate aggregate
@@ -125,9 +131,9 @@ runner, not those platform boundaries.
 
 ## Ordered continuation toward desktop-mail parity
 
-1. Add explicit provider-observation reconciliation for historical uncertainty
-   and repository-driven account/folder sessions, with stale observation,
-   UIDVALIDITY, conflict and reconnect tests. Keep recovery distinct from replay.
+1. Drive account/folder sessions from the repository, building on the completed
+   [provider-observation recovery](flag-recovery.md), with explicit completeness,
+   synchronization ownership and reconnect behavior.
 2. Drive account-wide and unified search, saved views and conversations from
    indexed local data with visible completeness and account/source identities.
 3. Extend durable desired-state commands to archive/move/delete, then rules and

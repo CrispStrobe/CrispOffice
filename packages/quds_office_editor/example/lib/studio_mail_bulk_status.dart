@@ -17,6 +17,7 @@ class StudioMailBulkStatus extends StatelessWidget {
     required this.subjects,
     this.onStop,
     this.showStop = true,
+    this.historical = false,
     this.onDismiss,
   });
 
@@ -28,6 +29,9 @@ class StudioMailBulkStatus extends StatelessWidget {
 
   /// Hosts with a toolbar stop control hide the duplicate control here.
   final bool showStop;
+
+  /// Saved activity keeps its original outcome alongside later observations.
+  final bool historical;
   final VoidCallback? onDismiss;
 
   String _text(String en, String de, String ar) => switch (strings.language) {
@@ -86,9 +90,15 @@ class StudioMailBulkStatus extends StatelessWidget {
       'فشل الطلب دون تغيير هذه الرسالة.',
     ),
     MailBulkFlagOutcome.uncertain => _text(
-      'The server may have changed this message. Refresh before another change.',
-      'Der Server könnte diese Nachricht geändert haben. Vor einer weiteren Änderung aktualisieren.',
-      'ربما غيّر الخادم هذه الرسالة. حدّث القائمة قبل إجراء تغيير آخر.',
+      historical
+          ? 'The original action was not confirmed. Later status checks appear separately in Mail activity.'
+          : 'The server may have changed this message. Refresh before another change.',
+      historical
+          ? 'Die ursprüngliche Aktion wurde nicht bestätigt. Spätere Statusprüfungen werden in den Mail-Aktivitäten separat angezeigt.'
+          : 'Der Server könnte diese Nachricht geändert haben. Vor einer weiteren Änderung aktualisieren.',
+      historical
+          ? 'لم يُؤكد الإجراء الأصلي. تظهر فحوص الحالة اللاحقة بشكل منفصل في نشاط البريد.'
+          : 'ربما غيّر الخادم هذه الرسالة. حدّث القائمة قبل إجراء تغيير آخر.',
     ),
     MailBulkFlagOutcome.unattempted => _text(
       'No request was sent for this message.',
@@ -210,7 +220,7 @@ class StudioMailBulkStatus extends StatelessWidget {
     final attempted = report.items.length - report.unattemptedCount;
     return Material(
       key: const ValueKey('studio-mail-bulk-status'),
-      color: report.requiresRefresh
+      color: report.requiresRefresh && !historical
           ? Theme.of(context).colorScheme.errorContainer
           : Theme.of(context).colorScheme.secondaryContainer,
       child: Padding(
@@ -247,14 +257,14 @@ class StudioMailBulkStatus extends StatelessWidget {
                 ),
               ),
             ],
-            if (report.persistenceProblem != null) ...[
+            if (report.persistenceProblem != null && !historical) ...[
               const SizedBox(height: 8),
               Text(
                 strings.mailActivityPersistenceFailed,
                 key: const ValueKey('studio-mail-bulk-persistence-failed'),
               ),
             ],
-            if (report.requiresRefresh) ...[
+            if (report.requiresRefresh && !historical) ...[
               const SizedBox(height: 8),
               Text(
                 _text(
@@ -263,7 +273,8 @@ class StudioMailBulkStatus extends StatelessWidget {
                   'حدّث المجلد للتحقق من الحالة الحالية للرسائل قبل إجراء تغيير آخر.',
                 ),
               ),
-            ] else if (!running &&
+            ] else if (!historical &&
+                !running &&
                 report.stopReason == MailBulkFlagStopReason.rateLimited) ...[
               const SizedBox(height: 8),
               Text(
@@ -274,7 +285,9 @@ class StudioMailBulkStatus extends StatelessWidget {
                 ),
               ),
               if (_retryAfter case final delay?) Text(_retryDelay(delay)),
-            ] else if (!running && report.stopReason != null) ...[
+            ] else if (!historical &&
+                !running &&
+                report.stopReason != null) ...[
               const SizedBox(height: 8),
               Text(
                 _text(

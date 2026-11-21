@@ -16,9 +16,11 @@ import 'package:quds_office_studio/studio_mail_bulk_status.dart';
 import 'package:quds_office_studio/studio_mail_credentials.dart';
 import 'package:quds_office_studio/studio_mail_draft_store.dart';
 import 'package:quds_office_studio/studio_mail_ews.dart';
+import 'package:quds_office_studio/studio_mail_journal_strings.dart';
 import 'package:quds_office_studio/studio_mail_message_loader.dart';
 import 'package:quds_office_studio/studio_mail_native.dart';
 import 'package:quds_office_studio/studio_mail_strings.dart';
+import 'package:quds_office_studio/studio_mail_workspace_strings.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
 import 'support/mail_flag_journal.dart';
@@ -46,6 +48,8 @@ final class _Outgoing extends mail.SmtpClient {
 }
 
 final class _ImapClient extends Fake implements mail.MailClient {
+  _ImapClient(this.harness);
+  final _Harness harness;
   final _incoming = _Incoming();
   final _outgoing = _Outgoing();
   mail.Mailbox? selected;
@@ -61,6 +65,20 @@ final class _ImapClient extends Fake implements mail.MailClient {
   }) async {}
   @override
   Future<void> disconnect() async {}
+  @override
+  Future<void> sendMessage(
+    mail.MimeMessage message, {
+    mail.MailAddress? from,
+    bool appendToSent = true,
+    bool supportUnicode = false,
+    mail.Mailbox? sentMailbox,
+    bool use8BitEncoding = false,
+    List<mail.MailAddress>? recipients,
+  }) async {
+    harness.sends++;
+    throw StateError('A status observation must never submit mail.');
+  }
+
   @override
   Future<List<mail.Mailbox>> listMailboxes({
     List<mail.MailboxFlag>? order,
@@ -95,8 +113,11 @@ final class _ImapBrowser
         StudioMailMailboxBrowser,
         StudioMailMailboxRecords,
         StudioMailMessageActions,
-        StudioMailBulkMessageActions {
-  _ImapBrowser(this.harness);
+        StudioMailBulkMessageActions,
+        MailFlagObserver {
+  _ImapBrowser(this.harness) {
+    harness.liveAccount = account;
+  }
   final _Harness harness;
   @override
   final account = MailAccountId(
@@ -110,6 +131,7 @@ final class _ImapBrowser
     MailCursor? cursor,
     int limit = 50,
   }) async {
+    harness.headerReads++;
     final messages = [
       for (var uid = 1; uid <= 3; uid++)
         mail.MimeMessage.fromEnvelope(
@@ -152,12 +174,15 @@ final class _ImapBrowser
     MailOperationLease lease,
   ) => harness.record(operation);
   @override
-  Future<Uint8List> fetch(
-    mail.Mailbox mailbox,
-    mail.MimeMessage header,
-  ) async => Uint8List.fromList(
-    utf8.encode('Subject: Frozen subject ${header.uid}\r\n\r\nSynthetic body.'),
-  );
+  Future<Uint8List> fetch(mail.Mailbox mailbox, mail.MimeMessage header) async {
+    harness.bodyReads++;
+    return Uint8List.fromList(
+      utf8.encode(
+        'Subject: Frozen subject ${header.uid}\r\n\r\nSynthetic body.',
+      ),
+    );
+  }
+
   @override
   Future<MailMessage> fetchMessage(
     mail.Mailbox mailbox,
@@ -193,10 +218,19 @@ final class _ImapBrowser
   void cancel() {}
   @override
   void dispose() {}
+
+  @override
+  Future<MailResult<MailFlagObservation>> observeFlags(
+    MailRemoteIdentity identity, {
+    required MailOperationLease lease,
+  }) => harness.observe(identity, lease);
 }
 
-class _Provider extends Fake implements MailProvider {
-  _Provider(this.harness, this.account);
+class _Provider extends Fake
+    implements MailProvider, MailFlagObserver, MailSubmissionProvider {
+  _Provider(this.harness, this.account) {
+    harness.liveAccount = account;
+  }
   final _Harness harness;
   @override
   final MailAccountId account;
@@ -234,13 +268,18 @@ class _Provider extends Fake implements MailProvider {
     MailCursor? cursor,
     required int limit,
     required MailOperationLease lease,
-  }) async => MailSuccess(MailHeaderPage(messages: headers));
+  }) async {
+    harness.headerReads++;
+    return MailSuccess(MailHeaderPage(messages: headers));
+  }
+
   @override
   Future<MailResult<MailMessage>> fetchMessage(
     MailRemoteIdentity identity, {
     required MailReadBudget budget,
     required MailOperationLease lease,
   }) async {
+    harness.bodyReads++;
     final record = headers.firstWhere((header) => header.remote == identity);
     return MailSuccess(
       MailMessage(
@@ -264,6 +303,22 @@ class _Provider extends Fake implements MailProvider {
     MailOperation operation,
     MailOperationLease lease,
   ) => harness.record(operation);
+
+  @override
+  Future<MailResult<MailFlagObservation>> observeFlags(
+    MailRemoteIdentity identity, {
+    required MailOperationLease lease,
+  }) => harness.observe(identity, lease);
+
+  @override
+  Future<MailSubmissionResult> submit(
+    MailPreparedMessage message, {
+    required String attemptId,
+    required MailOperationLease lease,
+  }) async {
+    harness.sends++;
+    throw StateError('A status observation must never submit mail.');
+  }
 }
 
 final class _EwsProvider extends _Provider implements MailEwsProvider {
@@ -290,7 +345,17 @@ final class _Harness {
   TestMailFlagJournal get fixture => _fixture!;
   final commands = <MailOperation>[];
   final atDispatch = <MailStoredFlagBatch>[];
+  final flagObservations = <(MailRemoteIdentity, MailOperationLease)>[];
+  MailAccountId? liveAccount;
+  int headerReads = 0;
+  int bodyReads = 0;
+  int sends = 0;
   Future<MailResult<MailUnit>> Function(MailOperation)? respond;
+  Future<MailResult<MailFlagObservation>> Function(
+    MailRemoteIdentity,
+    MailOperationLease,
+  )?
+  observeRespond;
   Future<StudioMailDraftStore> openStore(
     StudioMailDraftAccount identity,
   ) async {
@@ -309,9 +374,26 @@ final class _Harness {
     return respond == null ? _success : await respond!(operation);
   }
 
+  Future<MailResult<MailFlagObservation>> observe(
+    MailRemoteIdentity identity,
+    MailOperationLease lease,
+  ) async {
+    expectSync(identity.account, liveAccount);
+    expectSync(lease.account, liveAccount);
+    lease.checkCurrent();
+    flagObservations.add((identity, lease));
+    return observeRespond?.call(identity, lease) ??
+        MailSuccess(
+          MailFlagObservation.present(
+            identity: identity,
+            flags: const MailMessageFlags(isRead: true, isFlagged: true),
+          ),
+        );
+  }
+
   Widget dialog() {
     if (kind == MailProviderKind.imap) {
-      final client = _ImapClient();
+      final client = _ImapClient(this);
       final browser = _ImapBrowser(this);
       return StudioMailDialog(
         strings: _strings,
@@ -422,6 +504,114 @@ void _bulk(WidgetTester tester) {
   );
 }
 
+Future<MailStoredFlagBatch> _historicalUncertainty(
+  WidgetTester tester,
+  _Harness harness,
+) async {
+  final fixture = harness.fixture;
+  final source = fixture.source('retired-connection');
+  final mailbox = MailMailboxId('Archive/2025', account: source);
+  final plan = MailBulkFlagPlan(
+    id: 'historical-${harness.kind.name}',
+    mailbox: mailbox,
+    provider: harness.kind,
+    action: MailBulkFlagAction.flag,
+    messages: [
+      for (var index = 0; index < 2; index++)
+        if (harness.kind == MailProviderKind.imap)
+          MailImapIdentity(mailbox: mailbox, uidValidity: 191, uid: 501 + index)
+        else
+          MailOpaqueIdentity(
+            account: source,
+            provider: harness.kind,
+            value: 'historical-item-${501 + index}',
+          ),
+    ],
+  );
+  final session = MailAccountSession(source);
+  var dispatched = 0;
+  late MailStoredFlagBatch saved;
+  try {
+    await settleMailJournal(tester, () async {
+      final report = await MailBulkFlagCoordinator().run(
+        plan: plan,
+        lease: session.begin(),
+        isScopeCurrent: () => true,
+        journal: fixture.bind(
+          plan,
+          subjects: ['Historical uncertain message', 'Never attempted'],
+        ),
+        apply: (_, _) async {
+          dispatched++;
+          return const MailBulkFlagAttempt.uncertain(
+            MailProblem(
+              MailProblemCode.providerFailure,
+              mutationMayHaveOccurred: true,
+            ),
+          );
+        },
+      );
+      expectSync(report.persistenceProblem, isNull);
+      expectSync(report.uncertainCount, 1);
+      expectSync(report.unattemptedCount, 1);
+      saved = (await fixture.store.load(plan.id))!;
+    });
+  } finally {
+    session.dispose();
+  }
+  expect(dispatched, 1);
+  expect(saved.summary.complete, isTrue);
+  expect(saved.summary.unresolvedCount, 1);
+  expect(saved.resolutions, isEmpty);
+  return saved;
+}
+
+Future<void> _openActivity(
+  WidgetTester tester,
+  MailStoredFlagBatch batch,
+) async {
+  await tester.tap(_key('studio-mail-open-activity'));
+  await _until(
+    tester,
+    () =>
+        _key(
+          'studio-mail-activity-${batch.summary.id}',
+        ).evaluate().isNotEmpty &&
+        find.byType(LinearProgressIndicator).evaluate().isEmpty,
+  );
+  await tester.tap(_key('studio-mail-activity-${batch.summary.id}'));
+  await _until(
+    tester,
+    () =>
+        _key('studio-mail-activity-check').evaluate().isNotEmpty &&
+        find.byType(LinearProgressIndicator).evaluate().isEmpty,
+  );
+  expect(find.text(_strings.mailActivityCheck), findsOneWidget);
+}
+
+Future<void> _checkActivity(WidgetTester tester) async {
+  await tester.ensureVisible(_key('studio-mail-activity-check'));
+  await tester.tap(_key('studio-mail-activity-check'));
+}
+
+void _expectHistoricalTarget(_Harness harness) {
+  final observed = harness.flagObservations.single.$1;
+  expect(observed.account, harness.liveAccount);
+  expect(observed.account, isNot(harness.fixture.account));
+  expect(observed.provider, harness.kind);
+  if (observed case MailImapIdentity(
+    :final mailbox,
+    :final uidValidity,
+    :final uid,
+  )) {
+    expect(mailbox.value, 'Archive/2025');
+    expect(uidValidity, 191);
+    expect(uid, 501);
+  } else {
+    expect((observed as MailOpaqueIdentity).value, 'historical-item-501');
+  }
+}
+
 void main() {
   for (final kind in [
     MailProviderKind.imap,
@@ -429,6 +619,167 @@ void main() {
     MailProviderKind.gmail,
     MailProviderKind.graph,
   ]) {
+    testWidgets(
+      '${kind.name} connected activity checks frozen history without replay and persists the separate observation',
+      (tester) async {
+        final harness = _Harness(kind);
+        await _show(tester, harness);
+        final historical = await _historicalUncertainty(tester, harness);
+        final headerReads = harness.headerReads;
+        expect(_list(tester).bulkActionsEnabled, isTrue);
+        await _openActivity(tester, historical);
+        expect(harness.flagObservations, isEmpty);
+        expect(harness.commands, isEmpty);
+        expect(harness.bodyReads, 0);
+        expect(harness.sends, 0);
+        expect(harness.headerReads, headerReads);
+        expect(_status(tester).report.uncertainCount, 1);
+        expect(_status(tester).historical, isTrue);
+
+        await _checkActivity(tester);
+        await _until(
+          tester,
+          () =>
+              _key(
+                'studio-mail-activity-observation-0',
+              ).evaluate().isNotEmpty &&
+              find.byType(LinearProgressIndicator).evaluate().isEmpty,
+        );
+        _expectHistoricalTarget(harness);
+        expect(_key('studio-mail-activity-check'), findsNothing);
+        expect(find.text('1 checked · 0 still to check'), findsOneWidget);
+        expect(
+          find.text(
+            _strings.mailActivityObserved(
+              MailFlagResolutionKind.matches,
+              MailBulkFlagAction.flag,
+            ),
+          ),
+          findsOneWidget,
+        );
+        expect(_status(tester).report.confirmedCount, 0);
+        expect(_status(tester).report.uncertainCount, 1);
+        expect(_status(tester).report.unattemptedCount, 1);
+        expect(harness.commands, isEmpty);
+        expect(harness.bodyReads, 0);
+        expect(harness.sends, 0);
+        expect(harness.headerReads, headerReads);
+
+        await tester.tap(_key('studio-mail-activity-close'));
+        await _until(
+          tester,
+          () => _key('studio-mail-activity-dialog').evaluate().isEmpty,
+        );
+        expect(_list(tester).bulkActionsEnabled, isFalse);
+        expect(
+          find.text(_strings.mailWorkspaceRefreshRequired),
+          findsOneWidget,
+        );
+        await tester.pumpWidget(const SizedBox.shrink());
+        await tester.pump();
+        await settleMailJournal(tester, harness.fixture.reopen);
+        final saved = (await tester.runAsync(
+          () => harness.fixture.store.load(historical.summary.id),
+        ))!;
+        expect(
+          saved.summary.revision,
+          greaterThan(historical.summary.revision),
+        );
+        expect(saved.summary.uncertainCount, 1);
+        expect(saved.summary.reconciledCount, 1);
+        expect(saved.summary.unresolvedCount, 0);
+        expect(saved.report.confirmedCount, 0);
+        expect(saved.report.uncertainCount, 1);
+        expect(saved.report.unattemptedCount, 1);
+        expect(
+          saved.report.items.first.problem!.mutationMayHaveOccurred,
+          isTrue,
+        );
+        expect(saved.report.plan.messages, historical.report.plan.messages);
+        expect(saved.resolutions.single.index, 0);
+        expect(saved.resolutions.single.kind, MailFlagResolutionKind.matches);
+        expect(saved.resolutions.single.checkedAt, harness.fixture.now);
+        expect(harness.flagObservations, hasLength(1));
+        expect(harness.commands, isEmpty);
+        expect(harness.sends, 0);
+      },
+    );
+
+    for (final retireHost in [false, true]) {
+      testWidgets(
+        '${kind.name} ${retireHost ? 'retiring the host' : 'closing activity'} cancels a pending check and rejects its late observation',
+        (tester) async {
+          final harness = _Harness(kind);
+          final response = Completer<MailResult<MailFlagObservation>>();
+          harness.observeRespond = (_, _) => response.future;
+          await _show(tester, harness);
+          final historical = await _historicalUncertainty(tester, harness);
+          final headerReads = harness.headerReads;
+          await _openActivity(tester, historical);
+          expect(harness.flagObservations, isEmpty);
+          await _checkActivity(tester);
+          await _until(tester, () => harness.flagObservations.length == 1);
+          _expectHistoricalTarget(harness);
+          if (retireHost) {
+            await tester.pumpWidget(const SizedBox.shrink());
+            await tester.pump();
+          } else {
+            await tester.tap(_key('studio-mail-activity-close'));
+          }
+          await _until(
+            tester,
+            () => !harness.flagObservations.single.$2.isCurrent,
+          );
+          // The non-cooperative provider is still pending. Cancellation must
+          // release the store queue without waiting for its reply.
+          if (retireHost) {
+            await settleMailJournal(tester, harness.fixture.owner.close);
+          } else {
+            await settleMailJournal(tester, () async {
+              final saved = (await harness.fixture.store.load(
+                historical.summary.id,
+              ))!;
+              expectSync(saved.resolutions, isEmpty);
+              expectSync(saved.summary.unresolvedCount, 1);
+            });
+          }
+          response.complete(
+            MailSuccess(
+              MailFlagObservation.present(
+                identity: harness.flagObservations.single.$1,
+                flags: const MailMessageFlags(isFlagged: true),
+              ),
+            ),
+          );
+          await tester.pump(const Duration(milliseconds: 100));
+          if (!retireHost) {
+            await _openActivity(tester, historical);
+            expect(_key('studio-mail-activity-observation-0'), findsNothing);
+            expect(find.text('0 checked · 1 still to check'), findsOneWidget);
+            expect(_status(tester).report.uncertainCount, 1);
+          }
+          expect(harness.flagObservations, hasLength(1));
+          expect(harness.commands, isEmpty);
+          expect(harness.bodyReads, 0);
+          expect(harness.sends, 0);
+          expect(harness.headerReads, headerReads);
+          await tester.pumpWidget(const SizedBox.shrink());
+          await tester.pump();
+          await settleMailJournal(tester, harness.fixture.reopen);
+          final saved = (await tester.runAsync(
+            () => harness.fixture.store.load(historical.summary.id),
+          ))!;
+          expect(saved.resolutions, isEmpty);
+          expect(saved.summary.uncertainCount, 1);
+          expect(saved.summary.unresolvedCount, 1);
+          expect(saved.report.unattemptedCount, 1);
+          expect(harness.flagObservations, hasLength(1));
+          expect(harness.commands, isEmpty);
+          expect(tester.takeException(), isNull);
+        },
+      );
+    }
+
     testWidgets(
       '${kind.name} actual host journals bulk and single flags before provider dispatch',
       (tester) async {

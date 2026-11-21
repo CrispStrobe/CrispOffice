@@ -578,8 +578,10 @@ behavior remain unqualified. Native Studio now also uses a
 read and flag changes across IMAP, EWS, Gmail and Microsoft 365. Intent precedes
 dispatch, exact cached target flags update transactionally, and connected or
 offline **Mail activity** retains restart evidence without replaying commands.
-Explicit uncertain-command reconciliation and repository-driven sessions are
-the next [desktop-mail parity increments](docs/roadmaps/mail/README.md#desktop-mail-parity-ordered-increments). The database is
+[Check current status](docs/roadmaps/mail/flag-recovery.md) explicitly records
+fresh provider observations beside uncertain receipts while preserving the
+original outcomes. Repository-driven sessions are the next
+[desktop-mail parity increment](docs/roadmaps/mail/README.md#desktop-mail-parity-ordered-increments). The database is
 unencrypted, and process-crash tests do not establish power-loss durability.
 
 The [Office synchronization report](docs/validation/office-main-sync-20261119/README.md)

@@ -13,6 +13,7 @@ part 'search_journal.dart';
 part 'local_accounts.dart';
 part 'mailbox_views.dart';
 part 'flag_journal.dart';
+part 'flag_reconciliation.dart';
 
 /// One profile in one database, with native/browser setup in separate entries.
 ///
@@ -761,6 +762,7 @@ final class SqliteMailRepository implements MailRepository {
       // reply does not need new logical-byte admission after the remote write.
       ('flag_batches', ['id', 'mailbox', 'provider', 'action']),
       ('flag_batch_items', ['batch', 'remote', 'subject']),
+      ('flag_item_resolutions', ['batch', 'position', 'kind', 'checked_at']),
       ('credential_cleanup', ['reference']),
       ('mail_fts', ['message', 'content']),
       ('index_state', ['message']),

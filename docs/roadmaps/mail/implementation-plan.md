@@ -234,9 +234,11 @@ inspection receipt, not a complete dependency or runtime certification.
   restart. Atomically patch exact cached flags, preserve owner/revision guards
   and expose paginated connected/offline history with bounded safe cleanup.
   See [command-journal.md](command-journal.md). No automatic replay is enabled.
-- [ ] Reconcile historical uncertainty against explicit fresh provider
+- [x] Reconcile historical uncertainty against explicit fresh provider
   observations, retaining evidence and detecting UIDVALIDITY, identity and
   concurrent-change conflicts before closing unresolved receipts.
+  See [flag-recovery.md](flag-recovery.md). Later observations remain separate
+  from the original uncertain outcome; no command is replayed.
 
 - [x] Deliver the bounded foreground-list foundation: shared virtualized loaded-message list, stable identities, local subject/sender search, conjunctive unread/flagged filters, keyboard activation, compact reader/Back state and explicit 50-message pagination across native Studio hosts. Native IMAP browsing has its own scoped descending-UID cursor and a 1,000-loaded-message host ceiling; confirmed flag actions preserve nullable observations. See the [contract](mailbox-workspace.md) and [local evidence](../../validation/mail-workspace-20261120/README.md). This is a prerequisite slice and does not close the broader items below.
 - [x] Qualify the native [remembered IMAP/SMTP account chooser](remembered-accounts.md) with deterministic storage/provider fixtures: bounded selected-backend catalog, verified legacy migration, explicit selection/connection, selected-only Forget and unchanged per-account draft recovery. See the [local qualification and source-bound evidence](../../validation/mail-accounts-20261120/README.md). The provider-neutral repository-driven switching item below remains open.

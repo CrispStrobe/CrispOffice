@@ -245,7 +245,7 @@ the following repository operations:
 | `recordFlagResult(handle, index, result)` | Retain typed provider evidence and any exact-identity cache flag patch in one transaction |
 | `finishFlagBatch(handle, report)` | Retain the final ordered receipt, stop reason, persistence problem and untouched tail |
 | `listFlagBatches` / `loadFlagBatch` | Inspect bounded account-scoped history without provider calls or message body reads |
-| `clearCompletedFlagBatches` | Remove only finished receipts with no applying or uncertain items |
+| `clearCompletedFlagBatches` | Remove finished receipts with no applying or unresolved uncertain items |
 
 The handle belongs to the repository instance that created it. Every mutation
 compares a monotonic revision, and dispatch also requires a live account lease.
@@ -259,7 +259,7 @@ the owning repository.
 On exclusive reopen, a committed applying marker becomes **uncertain**, already
 recorded confirmations/failures remain intact, and undispatched items remain
 **not attempted**. The batch is closed as interrupted. There is no automatic
-retry, offline replay, provider reconciliation, or claim that a lost reply was
+retry, offline replay, automatic provider reconciliation, or claim that a lost reply was
 a server rejection. A transient result-write failure may still be finalized
 once by its original owner; if storage cannot retain the known result, the
 committed applying marker preserves uncertainty across restart.
@@ -279,17 +279,53 @@ has a 200-batch ceiling. Creating or finishing a batch prunes clean completed
 history to at most 100 receipts, preserving the receipt just finalized. Recovery
 can turn additional undispatched batches into clean completed receipts; those
 remain within the 200-batch ceiling until the next pruning write or explicit
-cleanup. Running or uncertain batches are never pruned or cleared. Once 100
+cleanup. Running or unresolved uncertain batches are never pruned or cleared. Once 100
 unresolved/running batches exist, new batches fail with `quotaExceeded` before
-provider dispatch. Historical uncertainty currently has no reconciliation or
-acknowledgement API, so clearing clean history cannot remove that admission
-block. This requires a later explicit recovery workflow.
+provider dispatch. The explicit read-only reconciliation below releases this
+admission block only after every uncertain item has a definitive observation.
 
 Listing uses explicit bounded pages and continuation offsets. Logical account
 quotas include stored identity/subject bytes and reserve 256 bytes per batch
 and per item for bounded typed outcome metadata at creation. This reservation
 avoids new logical-byte admission for a reply; physical disk quota or I/O errors
 can still prevent a later commit. It is not an estimate of SQLite file size.
+
+### Explicit checks of uncertain flags
+
+Schema v7 adds `beginFlagReconciliation(account, id, index, expectedRevision:,
+lease:, isCurrent:)` and `recordFlagObservation(handle, observation, lease:,
+isCurrent:)`. The first returns an opaque `MailFlagReconciliationHandle` for one
+completed, unresolved uncertain item. The host then uses a `MailFlagObserver`
+to read that handle's exact `message` identity and records the result using the
+same lease. Both calls check optional host/provider scope callbacks. A check
+never executes the historical command, resends mail, moves a message or deletes
+provider content.
+
+The later `MailStoredFlagResolution` has an item `index`, a `checkedAt` timestamp
+and one of `matches`, `differs`, `missing` or `identityChanged`. Only the
+requested read/flagged bit determines matches/differs. An IMAP generation change
+refers to the original historical mailbox/UIDVALIDITY/UID, not a replacement
+message. Missing/generation-changed observations leave the cache intact.
+Present observations can patch the requested bit of an already-known exact
+cache identity and advance its cached-view revision. Unknown flags stay unknown.
+
+The original batch report, uncertain outcomes and problems remain historical
+evidence. `batch.resolutions` holds separate immutable records;
+`summary.reconciledCount` counts them and `summary.unresolvedCount` subtracts
+them from the original uncertainty. Each item can be resolved once. Completed
+batches whose uncertainties are all resolved are eligible for the same bounded
+cleanup as other clean receipts. New observation metadata is subject to account
+quota; failed storage leaves the original uncertainty and cache unchanged.
+
+The handle captures the batch revision, repository owner, original lease and a
+persisted profile observation epoch. SQLite triggers advance that epoch when
+account routes, account state, messages, cached mailbox views, pending commands
+or flag-journal evidence change. Any such intervening write conservatively
+rejects a late observation, including unrelated writes within the profile; the
+user can initiate another explicit check. Reopening, logout/resume, cancelled
+leases and retired host/provider callbacks cannot revive an older handle.
+Receipt, optional cache projection, view fencing and epoch changes commit or
+roll back together.
 
 The native opener uses SQLite WAL, `synchronous=FULL` and an exclusive profile
 owner. Durability is the completed SQLite transaction boundary, subject to the
@@ -363,7 +399,7 @@ Reopening under tighter limits can return `quotaExceeded` while retaining the
 stored content. Local indexing decodes metadata without loading original or
 attachment bytes, and it does not interpret HTML or fetch remote content.
 
-The current schema is version 6. The retained v1 through v5 definitions support
+The current schema is version 7. The retained v1 through v6 definitions support
 reproducible upgrade fixtures. Version upgrades preserve existing rows and
 advance schema state transactionally. Existing messages acquire unknown flags,
 never an invented read/unread state. The nullable constrained bitset stores only
@@ -379,6 +415,8 @@ the [offline-account guide](../../docs/roadmaps/mail/offline-accounts.md).
 Version 5 adds ordered, partial foreground mailbox views with capture times and
 revision checks; it does not replace synchronization cursors. Version 6 adds
 the foreground flag journal described above, preserving all prior tables.
+Version 7 adds per-item observation records and a persisted freshness epoch;
+it never rewrites prior uncertain outcomes into confirmations.
 A failed migration rolls back, and an unknown future version returns
 `unsupported` instead of resetting the database.
 
