@@ -199,6 +199,14 @@ class OfficeProofingResult {
 abstract class OfficeProofingProvider {
   String get id;
   int get configurationRevision => 0;
+
+  /// The finding categories this provider can report. Editors use it to
+  /// schedule work: a provider that reports only
+  /// [OfficeProofingCategory.spelling] can run when a word is completed,
+  /// others when a sentence is completed or typing pauses. The default
+  /// claims every category.
+  Set<OfficeProofingCategory> get categories =>
+      OfficeProofingCategory.values.toSet();
   bool supportsLanguage(String language);
   Future<OfficeProofingResult> check(OfficeProofingRequest request);
   Future<void> dispose() async {}
@@ -236,9 +244,8 @@ List<OfficeProofingFinding> _mergeAgreeingFindings(
     if (byStart != 0) return byStart;
     final int byEnd = a.end.compareTo(b.end);
     if (byEnd != 0) return byEnd;
-    final int byCategory = _categoryPriority(
-      a.category,
-    ).compareTo(_categoryPriority(b.category));
+    final int byCategory = _categoryPriority(a.category)
+        .compareTo(_categoryPriority(b.category));
     if (byCategory != 0) return byCategory;
     return order[a]!.compareTo(order[b]!);
   }
@@ -421,8 +428,17 @@ class OfficeProofingService {
       .map((OfficeProofingProvider p) => '${p.id}:${p.configurationRevision}')
       .join('|');
 
-  Future<OfficeProofingReport> check(OfficeProofingRequest request) async {
-    if (_disposed || providers.isEmpty) {
+  /// Checks [request] with every provider, or only with the providers
+  /// accepted by [only]. A filtered report omits the other providers'
+  /// results; callers merge it with their results for the same text.
+  Future<OfficeProofingReport> check(
+    OfficeProofingRequest request, {
+    bool Function(OfficeProofingProvider provider)? only,
+  }) async {
+    final List<OfficeProofingProvider> selected = only == null
+        ? providers
+        : providers.where(only).toList(growable: false);
+    if (_disposed || selected.isEmpty) {
       return OfficeProofingReport(
         request: request,
         results: <OfficeProofingResult>[
@@ -438,7 +454,7 @@ class OfficeProofingService {
       );
     }
     final List<OfficeProofingResult> results = await Future.wait(
-      providers.map(
+      selected.map(
         (OfficeProofingProvider provider) => _checkProvider(provider, request),
       ),
     );

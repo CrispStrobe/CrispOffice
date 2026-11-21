@@ -62,6 +62,12 @@ final class HunspellProofingProvider extends OfficeProofingProvider {
   Future<void>? _disposing;
   bool _disposed = false;
 
+  /// Spelling only: checked as soon as a word is completed.
+  @override
+  Set<OfficeProofingCategory> get categories => const {
+    OfficeProofingCategory.spelling,
+  };
+
   @override
   String get id => 'hunspell-${bundle.id}';
 
