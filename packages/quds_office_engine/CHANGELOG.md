@@ -4,6 +4,11 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Refuse editable Zotero ODT export when effective native text, paragraph-mark
+  or note-marker formatting raises or lowers the baseline by an absolute
+  amount. Check inherited positions before writing, preserve explicit zero
+  overrides and keep supported superscript/subscript independent.
+
 - Add bounded Word VBA `Font.Position` assignments through typed aliases,
   helpers and independent header/footer selectors. Native run formatting,
   DOCX inheritance and sparse serialization retain signed half-point positions
