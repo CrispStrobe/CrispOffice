@@ -1,0 +1,3698 @@
+{
+  "schema_version": 1,
+  "repository": "CrispStrobe/quds_office_suite",
+  "captured_on_utc": "2026-11-21",
+  "captured_main": "f50c4f23392ccb0ac9f486541ffae6a65a691b99",
+  "integrated_commit": "db00cf411b21cb8c26878adaa535ffaa5e7e62db",
+  "integrated_tree": "73ff301692eacea20ac7ee0f4ab6509fe11a9678",
+  "scope": "Frozen read-only inventory of all 24 starting fork branch heads, all 300 pull requests, all four upstream branches and all four upstream pull requests. Subsequent working branch creation is outside the starting inventory.",
+  "api_queries": [
+    "https://api.github.com/repos/CrispStrobe/quds_office_suite/branches?per_page=100",
+    "https://api.github.com/repos/CrispStrobe/quds_office_suite/pulls?state=open&per_page=100",
+    "https://api.github.com/repos/CrispStrobe/quds_office_suite/pulls?state=all&sort=created&direction=desc&per_page=100&page=1",
+    "https://api.github.com/repos/CrispStrobe/quds_office_suite/pulls?state=all&sort=created&direction=desc&per_page=100&page=2",
+    "https://api.github.com/repos/CrispStrobe/quds_office_suite/pulls?state=all&sort=created&direction=desc&per_page=100&page=3",
+    "https://api.github.com/repos/MohammedAsaadAsaad/quds_office_suite/branches?per_page=100",
+    "https://api.github.com/repos/MohammedAsaadAsaad/quds_office_suite/pulls?state=all&per_page=100"
+  ],
+  "fork_branches": [
+    {
+      "name": "codex/word-vba-compatibility-20261121",
+      "head": "38b07e58b7c0e2a5b04a823a7251805cea60fb77",
+      "ancestor_of_captured_main": true,
+      "ancestor_of_integrated_commit": true
+    },
+    {
+      "name": "codex/word-vba-paragraph-flow-20261121",
+      "head": "13fa9ad5b9d140f1d7c085e46b4d0ce395000c49",
+      "ancestor_of_captured_main": true,
+      "ancestor_of_integrated_commit": true
+    },
+    {
+      "name": "codex/word-vba-paragraph-pagination-20261121",
+      "head": "1581229f0e5aea24b5242c33a1e92f02d70b4c7e",
+      "ancestor_of_captured_main": true,
+      "ancestor_of_integrated_commit": true
+    },
+    {
+      "name": "codex/word-vba-sections-20261121",
+      "head": "49665e51f9eacefc180748c3d0ed7851ef5da5d1",
+      "ancestor_of_captured_main": true,
+      "ancestor_of_integrated_commit": true
+    },
+    {
+      "name": "codex/word-vba-text-intrinsics-20261121",
+      "head": "2714483aafe059065b00dac23032023f9ddf7aac",
+      "ancestor_of_captured_main": false,
+      "ancestor_of_integrated_commit": true
+    },
+    {
+      "name": "codex/word-vba-unit-conversions-20261120",
+      "head": "bbccae1bdead10951e2d7a23b33cf14c55382e02",
+      "ancestor_of_captured_main": true,
+      "ancestor_of_integrated_commit": true
+    },
+    {
+      "name": "codex/zotero-multiparagraph-20261121",
+      "head": "589ccd33243eabe57ce3074c92112e1fdf1325f1",
+      "ancestor_of_captured_main": true,
+      "ancestor_of_integrated_commit": true
+    },
+    {
+      "name": "codex/zotero-native-odt-20261121",
+      "head": "d9bfa44022781f0dd4493a923ca9f20316dc59f0",
+      "ancestor_of_captured_main": true,
+      "ancestor_of_integrated_commit": true
+    },
+    {
+      "name": "codex/zotero-parity-20261121-continuation",
+      "head": "9942eb76f0ac818e464ad1b3bcec2cc4513d3e3f",
+      "ancestor_of_captured_main": true,
+      "ancestor_of_integrated_commit": true
+    },
+    {
+      "name": "codex/zotero-parity-20261121-next",
+      "head": "d4470bab1095593739ddf87fdb9f249bbc948b65",
+      "ancestor_of_captured_main": true,
+      "ancestor_of_integrated_commit": true
+    },
+    {
+      "name": "codex/zotero-transfer-20261121",
+      "head": "a1995c9154357e603b89947654cf95f8bcba6a83",
+      "ancestor_of_captured_main": true,
+      "ancestor_of_integrated_commit": true
+    },
+    {
+      "name": "codex/zotero-vertical-tables-20261120",
+      "head": "a7d9f37ecbaaf70544f4866d7d9e572696948184",
+      "ancestor_of_captured_main": true,
+      "ancestor_of_integrated_commit": true
+    },
+    {
+      "name": "docs/app-store-submission-20261120",
+      "head": "b08e0a55b629ac22b33c54146b56438862965022",
+      "ancestor_of_captured_main": true,
+      "ancestor_of_integrated_commit": true
+    },
+    {
+      "name": "fix/main-green-20261120",
+      "head": "41c363f40cdcdfbcc22a8932ea325ce87872f5a0",
+      "ancestor_of_captured_main": true,
+      "ancestor_of_integrated_commit": true
+    },
+    {
+      "name": "main",
+      "head": "f50c4f23392ccb0ac9f486541ffae6a65a691b99",
+      "ancestor_of_captured_main": true,
+      "ancestor_of_integrated_commit": true
+    },
+    {
+      "name": "perf/wrap-chrome-20261121",
+      "head": "8716057f80c4c18b72c5a43a708beefd70bc7588",
+      "ancestor_of_captured_main": true,
+      "ancestor_of_integrated_commit": true
+    },
+    {
+      "name": "work/mail-boolean-core-20261121",
+      "head": "3e6374115c10a92fdb4b82734c1bc2b009210794",
+      "ancestor_of_captured_main": true,
+      "ancestor_of_integrated_commit": true
+    },
+    {
+      "name": "work/mail-command-journal-20261121",
+      "head": "33ce2428ebab825a844895a767e0f9f1a4077d62",
+      "ancestor_of_captured_main": true,
+      "ancestor_of_integrated_commit": true
+    },
+    {
+      "name": "work/mail-intake-20261121",
+      "head": "4191be02ac9c7117e05ff4a052a5c92fbcfbf4b4",
+      "ancestor_of_captured_main": true,
+      "ancestor_of_integrated_commit": true
+    },
+    {
+      "name": "work/mail-offline-retention-20261121",
+      "head": "9eb68b9f048d3c08274ece5d7f964f1249004485",
+      "ancestor_of_captured_main": true,
+      "ancestor_of_integrated_commit": true
+    },
+    {
+      "name": "work/mail-parity-20261121",
+      "head": "fa59496840a36709fe3a6d867bdfe96ab99d72ab",
+      "ancestor_of_captured_main": true,
+      "ancestor_of_integrated_commit": true
+    },
+    {
+      "name": "work/mail-repository-sessions-20261121",
+      "head": "0491492d8622ad2ef09fb84e07d3dbba462f9320",
+      "ancestor_of_captured_main": true,
+      "ancestor_of_integrated_commit": true
+    },
+    {
+      "name": "work/mail-sync-foundation-20261121",
+      "head": "4a1eaa69e7a068e354bdd851ec9b0323b89ae300",
+      "ancestor_of_captured_main": true,
+      "ancestor_of_integrated_commit": true
+    },
+    {
+      "name": "work/mail-triage-20261121",
+      "head": "575e671de665dc918886285dab2e3628f4309965",
+      "ancestor_of_captured_main": true,
+      "ancestor_of_integrated_commit": true
+    }
+  ],
+  "pull_requests": [
+    {
+      "number": 1,
+      "head": "54f0f8de01416640560519aa9d732f668f603709",
+      "merge_commit": "54f0f8de01416640560519aa9d732f668f603709",
+      "state": "closed",
+      "merged_at": "2026-11-12T11:37:16Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 2,
+      "head": "08b09485588d2b6270f594a07c983689c087587d",
+      "merge_commit": "27747074c30e88d7955fef0bb841a390af01da33",
+      "state": "closed",
+      "merged_at": "2026-11-12T15:25:55Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 3,
+      "head": "e550723b0f2a7cd849970f58820d260c36857502",
+      "merge_commit": "177e080c91842b24bf704baa5d1025337cc249c0",
+      "state": "closed",
+      "merged_at": null,
+      "base": "feature/office-fidelity-followup-20261112",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 4,
+      "head": "09f5ec4b8eba290ff4d65678179854fb6ff6a468",
+      "merge_commit": "9a0a0268aa57f0d61b4112e101968e29a3a5f077",
+      "state": "closed",
+      "merged_at": "2026-11-12T18:25:32Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 5,
+      "head": "da0979a5c6c4273ea68f360ce9a079bfa747384f",
+      "merge_commit": "f6c693aa85b440418f217e950a613063eb8e1c09",
+      "state": "closed",
+      "merged_at": "2026-11-12T20:10:12Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 6,
+      "head": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+      "merge_commit": "78ed85f5fd19d44f672dee11420fed261c974f4a",
+      "state": "closed",
+      "merged_at": "2026-11-12T20:58:32Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 7,
+      "head": "e82c997b6df8746fe86fb83b9f416a89bb3e3b80",
+      "merge_commit": "c7e7fe4c1e636974da0f997260763f50d4261062",
+      "state": "closed",
+      "merged_at": "2026-11-13T21:16:46Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 8,
+      "head": "a86a360bf9bd45c729e00b31dd9a97492e23f2e7",
+      "merge_commit": "8abb9a92b9e14105f5af749cbc3ca864ead3ba06",
+      "state": "closed",
+      "merged_at": "2026-11-14T20:19:59Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 9,
+      "head": "58de54567d45e38c05dd77064b7607c577374b9d",
+      "merge_commit": "8085366ec916af6ad97015b4ef47fdc1fc340262",
+      "state": "closed",
+      "merged_at": "2026-11-14T22:03:26Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 10,
+      "head": "1b1bac125f426b05f868d482e9fbd657d4ffb73a",
+      "merge_commit": "02398e26ba0e2a93a9153be6ba777bd9c16d324c",
+      "state": "closed",
+      "merged_at": "2026-11-14T22:03:26Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 11,
+      "head": "5c1ab430c6911bb11f71d29efa35027ead5ac1d5",
+      "merge_commit": "7416d759956618ea1e6267a5c43392c1c8952659",
+      "state": "closed",
+      "merged_at": "2026-11-14T22:03:26Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 12,
+      "head": "579f2105cf7fca61536f7e3f9b59004929bdb6c5",
+      "merge_commit": "ed41dd8e9e1ad6f129ab6bade6063bc8d37f8024",
+      "state": "closed",
+      "merged_at": "2026-11-14T22:03:26Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 13,
+      "head": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+      "merge_commit": "73b354efdf0f2e7fbe0e87bc67f332a9dfb4903e",
+      "state": "closed",
+      "merged_at": "2026-11-14T22:11:16Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 14,
+      "head": "d4e2a0fcf1fe18e0e5158ac7d86b1f71bf3b70da",
+      "merge_commit": "79b4b5b033aa1f9e4204404f07074c0f5e44fe28",
+      "state": "closed",
+      "merged_at": "2026-11-15T06:13:02Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 15,
+      "head": "448eff5aac55054a34eccd4f8a1e79e754909a05",
+      "merge_commit": "59860a37c83fd5dedf71d8dac0f4f2f88bed5f40",
+      "state": "closed",
+      "merged_at": "2026-11-15T06:13:02Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 16,
+      "head": "78a7b6f4e613c7d18d4bcc6434cda12b50ed184e",
+      "merge_commit": "865d93fe9183af60abfaac222e3586b7c5dd6097",
+      "state": "closed",
+      "merged_at": "2026-11-15T06:13:02Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 17,
+      "head": "89c7f06c592edde0c67774e9c7e087d96f52184b",
+      "merge_commit": "af0b1bd2b8613681ab59aa2c42b4858e30531338",
+      "state": "closed",
+      "merged_at": "2026-11-15T06:13:02Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 18,
+      "head": "f31cf308013ceb4527e3f4de677785894bb1bfc0",
+      "merge_commit": "5099d3063046d53815a64ee6c06f5e6a75aeda29",
+      "state": "closed",
+      "merged_at": "2026-11-15T06:13:02Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 19,
+      "head": "e8227569a3b90fb21db598483690bd13fe74ddef",
+      "merge_commit": "4f7d0e0064cb430cc14e3daca663cffade777938",
+      "state": "closed",
+      "merged_at": "2026-11-15T06:13:02Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 20,
+      "head": "5278aafd512640608fe06b8f7d357c4cffe8520a",
+      "merge_commit": "61f30f303727a285d1cb87bfdd4e3fa9521fc906",
+      "state": "closed",
+      "merged_at": "2026-11-15T06:24:51Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 21,
+      "head": "1f30a823b30678e3684c98fee6a2cd5c4945c4f2",
+      "merge_commit": "29ae021647d36a98153ca05d26525e1c4baffab1",
+      "state": "closed",
+      "merged_at": "2026-11-15T06:24:52Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 22,
+      "head": "4637ddce4154f4b50105c7322fedc1c75fd02193",
+      "merge_commit": "62af42d0f241bfd78559124cbf78c5143faa50be",
+      "state": "closed",
+      "merged_at": "2026-11-15T07:11:20Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 23,
+      "head": "e002b9584bead9761fac8c7cf818431966d1b1c3",
+      "merge_commit": "793c64ac4fc2e896706aa65c13eaa70bd27f7267",
+      "state": "closed",
+      "merged_at": "2026-11-15T08:57:53Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 24,
+      "head": "9cc8c6e91ff9acf0f52a68aea7c0da69934a2661",
+      "merge_commit": "13a30542462353a74803af87a1ace7f0103d9ffb",
+      "state": "closed",
+      "merged_at": "2026-11-15T11:30:45Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 25,
+      "head": "b6d27c84a72d622f670a7e646e36ba4bd920cfc8",
+      "merge_commit": "25240781e0fdac36bc9d1bf75d6d3e4bc6c3c279",
+      "state": "closed",
+      "merged_at": "2026-11-15T11:30:45Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 26,
+      "head": "5b9ac71db1934252c4b8ae48ac03d4cd976e15ae",
+      "merge_commit": "56ed6c8876d0a8cc8bad1f1d890325237f6cd32d",
+      "state": "closed",
+      "merged_at": "2026-11-15T11:41:44Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 27,
+      "head": "cde05b85bcd00c26d519d43283fcc6b55a1884e7",
+      "merge_commit": "6d7c696e2ae9095b395fba9f3bc22ec1c1139ed6",
+      "state": "closed",
+      "merged_at": "2026-11-15T12:23:53Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 28,
+      "head": "a8cd28d8af8ca966e8c4259862587ecc9aade2f4",
+      "merge_commit": "93b138d48fe12e1a49c9587e228b792c4e49f6f5",
+      "state": "closed",
+      "merged_at": "2026-11-15T14:17:35Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 29,
+      "head": "7fe296e29e2e1b173580f6854507fc060cb4f080",
+      "merge_commit": "04f7a8aa696e9e1cc622e325fba1353910d09243",
+      "state": "closed",
+      "merged_at": "2026-11-15T14:12:12Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 30,
+      "head": "49b447324159595c59e64d8425b54a09f79ec736",
+      "merge_commit": "39761edb40a140fc488b3bdb0ddc36dbee557a93",
+      "state": "closed",
+      "merged_at": "2026-11-15T16:25:32Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 31,
+      "head": "912f26f21446ef9bdbf4f542535438dae0ded9a9",
+      "merge_commit": "2f47132206a88c6dd0f724a665fb6b7158cf3a57",
+      "state": "closed",
+      "merged_at": "2026-11-15T16:45:53Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 32,
+      "head": "46850ae47e0241733750decb22417a0150e4b0e4",
+      "merge_commit": "a6c9d7efc3b986baac52d1237deb5f50a162db3a",
+      "state": "closed",
+      "merged_at": "2026-11-15T16:51:32Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 33,
+      "head": "4c8036bbf16ac224c3fc102b5c44d8913a512b18",
+      "merge_commit": "3d255f0f5c37af3efbaf69b29f4fcfc869de3eaa",
+      "state": "closed",
+      "merged_at": "2026-11-15T18:39:22Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 34,
+      "head": "09a05d7d60d2a2e1d2547487ad4545c50472834b",
+      "merge_commit": "7b3b0bbba3a8530678d77325bbec1091f6aae9c9",
+      "state": "closed",
+      "merged_at": "2026-11-15T18:49:26Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 35,
+      "head": "e59751246a200e7477657d0e4835bf77b153422c",
+      "merge_commit": "1d7fee380def59d5a766cab106e519952d5c3292",
+      "state": "closed",
+      "merged_at": "2026-11-15T18:57:27Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 36,
+      "head": "21de3c3963b0334068b87fb1c25c787660cb17cf",
+      "merge_commit": "8815cec9705f8a0b099f83f38d5eca75c5564171",
+      "state": "closed",
+      "merged_at": "2026-11-15T19:01:57Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 37,
+      "head": "b0efe6c661009ffa463f2bf6d7945216ce1dae4c",
+      "merge_commit": "85f5109c8067133bc30942d71b0be6ea9d9bf68c",
+      "state": "closed",
+      "merged_at": "2026-11-15T19:10:36Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 38,
+      "head": "752a94dfddf69522429f3025f9d25702499cb6da",
+      "merge_commit": "9f1efe0758f5e67f10cec05883cc587a3b08b14c",
+      "state": "closed",
+      "merged_at": "2026-11-15T19:13:56Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 39,
+      "head": "b85501b2810e537e21040d82528d8dbaa6fdcf15",
+      "merge_commit": "c210315bee537776b556ae9885e907483b6df7bd",
+      "state": "closed",
+      "merged_at": "2026-11-15T19:18:34Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 40,
+      "head": "8855b88a96b5c94349e3b5278c339228a1688c3e",
+      "merge_commit": "3304f42ee17b52659a82d5714dcc730184050960",
+      "state": "closed",
+      "merged_at": "2026-11-15T22:12:58Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 41,
+      "head": "b69bad50fb235118a5334b325683cd1524b3e3d1",
+      "merge_commit": "42b7f1e767454a962ef3a21342eac335bbf925db",
+      "state": "closed",
+      "merged_at": "2026-11-15T20:23:40Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 42,
+      "head": "8fc3d06be36da5c2176feb107c14245f61650d75",
+      "merge_commit": "b2d5331f49001af189118d90af208cbc1ee2ae67",
+      "state": "closed",
+      "merged_at": "2026-11-15T20:24:56Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 43,
+      "head": "20681b8658392212c128f51b4c91f0b638942448",
+      "merge_commit": "b01455fa415f9411411d06c7c2ab66947630af1a",
+      "state": "closed",
+      "merged_at": "2026-11-15T22:05:48Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 44,
+      "head": "866c14f0b3a876e11732bc544dc25a05d8f10524",
+      "merge_commit": "33d36cd0e111fbfdd152c49d54532286fe8e8d2d",
+      "state": "closed",
+      "merged_at": "2026-11-15T22:18:54Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 45,
+      "head": "0a26be7f136ad3e57dbe894b0bc4cdb0602addd0",
+      "merge_commit": "d5db3b28384c317809f9926b1fec1653741380ae",
+      "state": "closed",
+      "merged_at": "2026-11-15T22:22:34Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 46,
+      "head": "e6fdd16849aaf7ccbaf50f2593d7a92b6a82e630",
+      "merge_commit": "b4b00a883348ad9864a4433fe4edbfad4958523a",
+      "state": "closed",
+      "merged_at": "2026-11-15T22:24:09Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 47,
+      "head": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "merge_commit": "fc37658c907edf6687eccb9564d3046283b49a3a",
+      "state": "closed",
+      "merged_at": "2026-11-15T22:52:54Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 48,
+      "head": "d6d6866c0f4ddbbaa196e1a5eb7ff9e31007fdea",
+      "merge_commit": "d0975da6eadd10e706b5bcf158bd663e4072a226",
+      "state": "closed",
+      "merged_at": "2026-11-15T23:02:25Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 49,
+      "head": "a5febc3362d2fccdb979f012a5296af72e465797",
+      "merge_commit": "7259c27bb69b3b3f97fd50e52e2d70fffe7d721f",
+      "state": "closed",
+      "merged_at": "2026-11-15T23:08:16Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 50,
+      "head": "428679a33381f943a8ae63117d4207f01dd15462",
+      "merge_commit": "4235e690602195cc504438a6b937972c71f1ad39",
+      "state": "closed",
+      "merged_at": "2026-11-16T11:33:19Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 51,
+      "head": "8769019fb8be5483939edd4655dd88005e2515c4",
+      "merge_commit": "d9508c94cccc8e638ca6ae5badfcb2ef50e71259",
+      "state": "closed",
+      "merged_at": "2026-11-16T08:32:57Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 52,
+      "head": "01f62eb1812ca54827cc14e074e03abd82f963d7",
+      "merge_commit": "bd130094b4d1bc666aa9b166e6ed7fb1b447aeb3",
+      "state": "closed",
+      "merged_at": "2026-11-16T08:41:03Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 53,
+      "head": "2e3074c8e1860f9503b059a87870911afc3eee7d",
+      "merge_commit": "adffad55e28479bcae20a87a95fb4e96e25cd96c",
+      "state": "closed",
+      "merged_at": "2026-11-16T09:04:41Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 54,
+      "head": "49ba086251ba61032f15b3e7b726fc921874fd12",
+      "merge_commit": "73eee5d925998e94643be4f3988cc46e1f559e63",
+      "state": "closed",
+      "merged_at": "2026-11-16T09:10:51Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 55,
+      "head": "f5b67cc296b7d27e4f3a480dc46160f472d78694",
+      "merge_commit": "6c2e3d173b8ed3a84b26792105a061bd9dd57c35",
+      "state": "closed",
+      "merged_at": "2026-11-16T09:17:36Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 56,
+      "head": "ca9e4f052d988d77f9ded3a6b13f840f76a26159",
+      "merge_commit": "53f35a30de0f354967aca7ce0dfdb0bd2c6d1d3f",
+      "state": "closed",
+      "merged_at": "2026-11-16T11:33:19Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 57,
+      "head": "0dd9dd9763c2eb6bdc4f6b6e30fb7726035e7d4b",
+      "merge_commit": "91d574acefb45f326a82b9e416719213050068cc",
+      "state": "closed",
+      "merged_at": "2026-11-16T10:30:10Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 58,
+      "head": "864e674795eb422855df2b26ccc375d3255e61a2",
+      "merge_commit": "bad2d9d30fd94db8de92a4f4bf83a55b0692b884",
+      "state": "closed",
+      "merged_at": "2026-11-16T10:37:36Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 59,
+      "head": "e5daa20587e10971e8cb97d82a5495584b5c1553",
+      "merge_commit": "14b13980e0005f4a56e0d0790ed3a2c1fa4798e2",
+      "state": "closed",
+      "merged_at": "2026-11-16T13:26:38Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 60,
+      "head": "988f423b9b95037d8f5273ee368b58ceedab0667",
+      "merge_commit": "0969b2203a6758116bf42b53d7348898cc79d7ea",
+      "state": "closed",
+      "merged_at": "2026-11-16T13:32:40Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 61,
+      "head": "b23ee557ea121774833c7a188a49189e4f80ce70",
+      "merge_commit": "3624a9702054f6f64f7132b374bbcf827bfcf232",
+      "state": "closed",
+      "merged_at": "2026-11-16T13:35:44Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 62,
+      "head": "089e53fce443ca2169fc44f3700e1b23780d2c95",
+      "merge_commit": "7edb096d3328263c75dc0229ff43bb77183e1ad3",
+      "state": "closed",
+      "merged_at": "2026-11-16T13:37:17Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 63,
+      "head": "2480f0988167068d9aeddf6573b9c2c6871a8481",
+      "merge_commit": "bfb24bf57d5efd52f00ab7079b4ac8968259a478",
+      "state": "closed",
+      "merged_at": "2026-11-16T18:48:29Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 64,
+      "head": "4a122b3b71ddc539f8ffda5541b7e6ab0f1dce8f",
+      "merge_commit": "47aa74ab2c45a5ce514343b44296a1a14fa3ae95",
+      "state": "closed",
+      "merged_at": "2026-11-16T13:52:49Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 65,
+      "head": "3bb505ce5fea00236238e37c450ace8b18e4e34e",
+      "merge_commit": "5d89092e779d2cbf776f21f2f7682f7416c0d25f",
+      "state": "closed",
+      "merged_at": "2026-11-16T14:13:30Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 66,
+      "head": "379fa8663c81f32b4328415f56c776746ccc23bc",
+      "merge_commit": "90024d5d76a784dd96974988a5f54effcaac911d",
+      "state": "closed",
+      "merged_at": "2026-11-16T14:16:19Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 67,
+      "head": "0ee0a8320875248adac9718cae2e67875b6b932c",
+      "merge_commit": "3398d53198263d3b76189fabb25b9d53ddf934db",
+      "state": "closed",
+      "merged_at": "2026-11-16T15:11:41Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 68,
+      "head": "82215309dc64ef8c473fec3c4892cf0c9884bc91",
+      "merge_commit": "a042466eaf8cc83db2b7b6a5123d67a1b58f9304",
+      "state": "closed",
+      "merged_at": "2026-11-16T15:16:47Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 69,
+      "head": "ec94795114d11c73bd8fc689fde364cc110b5cd3",
+      "merge_commit": "b6d13f6546e1f240b2d4c5940fbf66bcf9ca53f2",
+      "state": "closed",
+      "merged_at": "2026-11-16T15:49:13Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 70,
+      "head": "9ad9ba92133932b0a3824619168f07dd218c2b26",
+      "merge_commit": "8ddbb76580fc914f1bb60b8cda76ee7f71caacdf",
+      "state": "closed",
+      "merged_at": "2026-11-16T15:55:20Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 71,
+      "head": "108b4087c15f5640dbc906ad243f3030b7592f3f",
+      "merge_commit": "ed5facb4bd503667749ed3d13378da6a1b34738b",
+      "state": "closed",
+      "merged_at": "2026-11-16T15:58:08Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 72,
+      "head": "57bc0f98eb94997b73f22cc267bd8d61dccaee59",
+      "merge_commit": "000b47625ffa15aa1ed28f840b2acda33cc4f42b",
+      "state": "closed",
+      "merged_at": "2026-11-17T08:13:44Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 73,
+      "head": "8a0107cbca4b00766a2a76d43a1db244c006e976",
+      "merge_commit": "c108be5f5033af9c0d07123e1650a16a361dd3e0",
+      "state": "closed",
+      "merged_at": "2026-11-16T18:30:45Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 74,
+      "head": "1675bbbb7c03090a87b6df783e3741e2cbc1768f",
+      "merge_commit": "ba79d47028d70b4124ced59cb9d34583ff0a9514",
+      "state": "closed",
+      "merged_at": "2026-11-16T18:52:45Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 75,
+      "head": "f27e9b0e7ee9b1db8f6b7393abd752dab67d1ca5",
+      "merge_commit": "ff873a4e304f247902cf4cd9a75d447baa8796d9",
+      "state": "closed",
+      "merged_at": "2026-11-16T19:15:03Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 76,
+      "head": "1deb61cf78add61f5d26bea36ff596d769d06a87",
+      "merge_commit": "e81650bd7f17dc8e38f892e05dfc9025ad5705b1",
+      "state": "closed",
+      "merged_at": "2026-11-16T19:17:09Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 77,
+      "head": "bb9866d25bf98e5aa42c10ce4679835dbc8617f1",
+      "merge_commit": "44a56cd0bd4f7cfc4feb1ce41a1818b8ffe69b18",
+      "state": "closed",
+      "merged_at": "2026-11-16T19:21:01Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 78,
+      "head": "27137499f8cc1a946bfcdd7446f43945ea81d2be",
+      "merge_commit": "a3417522a54a1d46beef535e10f609c1295d8cfd",
+      "state": "closed",
+      "merged_at": "2026-11-16T19:23:12Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 79,
+      "head": "06828a5e63365495c86a4a0e1c68ecd113f891e5",
+      "merge_commit": "be9eeec9ea3455018de26fff5874c558dbc66798",
+      "state": "closed",
+      "merged_at": "2026-11-16T19:25:30Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 80,
+      "head": "5aa16674e64cc01b89aec017c85afd3899cd96d5",
+      "merge_commit": "36db2a6cbc0f028dd15b558914045f995aeae949",
+      "state": "closed",
+      "merged_at": "2026-11-16T19:47:41Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 81,
+      "head": "eb95211e4d82933ba5b1db23ea7b79938b77909f",
+      "merge_commit": "ff26ea5cc85afd36e0ed376b7f789563c5e2b7fa",
+      "state": "closed",
+      "merged_at": "2026-11-16T19:49:42Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 82,
+      "head": "4497c737623c1339d2422487d53941c20472bac9",
+      "merge_commit": "647eab0fc7c0fbbf38567dc6ce07b5e78d4d0de3",
+      "state": "closed",
+      "merged_at": "2026-11-16T19:50:02Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 83,
+      "head": "331be9688e2de1feb52635490b534042dea10c27",
+      "merge_commit": "6811f8a7194f8e7b12a34e3c1cf13fd2e3bf7195",
+      "state": "closed",
+      "merged_at": "2026-11-16T19:57:58Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 84,
+      "head": "846c15f0de92a17bb2720e295b9a40412ebcb6fb",
+      "merge_commit": "63194d8e482892f284eaccb95ce48a8a8132376d",
+      "state": "closed",
+      "merged_at": "2026-11-16T19:59:59Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 85,
+      "head": "9f2dbd81c2289a2285521e1491a9c860c4b59646",
+      "merge_commit": "0e6951703827257ed6f12844e3e12b3f209f5174",
+      "state": "closed",
+      "merged_at": "2026-11-17T08:13:44Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 86,
+      "head": "001367e89cb0034cf33467783d7258bb0800deb9",
+      "merge_commit": "fb62dbfc3a0fff95325a9a95b62e32f85f1abb80",
+      "state": "closed",
+      "merged_at": "2026-11-16T20:11:30Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 87,
+      "head": "7dfcfe9fcbf7e6d0d0abc14de7ed1ed901fa99c2",
+      "merge_commit": "ad3c6edce16fd0e02ad43e0d4e176b22d334f21d",
+      "state": "closed",
+      "merged_at": "2026-11-17T08:13:44Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 88,
+      "head": "5fb8762e771fe68be8bc8025fe26e159d14eda8e",
+      "merge_commit": "8e405a09e7b6a017c95ffc6bd32b49ab613a7a3f",
+      "state": "closed",
+      "merged_at": "2026-11-16T23:15:43Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 89,
+      "head": "31a26383639dc7f751cfb0ea543ec7454a537ff6",
+      "merge_commit": "281b5d4cd705c1f32d98a741233ebb836d1ef20a",
+      "state": "closed",
+      "merged_at": "2026-11-16T23:17:46Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 90,
+      "head": "6da74faa9160275df9c10a864c758033c92f114d",
+      "merge_commit": "f57d8f5debd8c27fe7cb9b9322c84fb284ff2c49",
+      "state": "closed",
+      "merged_at": "2026-11-16T23:32:48Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 91,
+      "head": "5cff80ce4ba85e645f21a31efb4fa4d9043b7e79",
+      "merge_commit": "9f2dbd81c2289a2285521e1491a9c860c4b59646",
+      "state": "closed",
+      "merged_at": "2026-11-17T08:13:44Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 92,
+      "head": "e8cb60efc2360be9bb72db7af8e4c675edf5b76f",
+      "merge_commit": "8a3f5a9de14c556fd01ffacb3897629c51f4fa7e",
+      "state": "closed",
+      "merged_at": "2026-11-16T23:41:09Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 93,
+      "head": "5088f3ab7e81f353593f16fcaa86d1467d4e1af9",
+      "merge_commit": "5c38679bab0819c8726444a98d4fbf6ab8437b40",
+      "state": "closed",
+      "merged_at": "2026-11-17T06:11:15Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 94,
+      "head": "8221b0081b02af33101ca7f58438e69e487d2bf6",
+      "merge_commit": "6860985f0a33e0fdff26c4e661a1faaf213b6a46",
+      "state": "closed",
+      "merged_at": "2026-11-17T06:17:05Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 95,
+      "head": "f862fe550bc8b7d3afcdb74016ccfefd7477fd20",
+      "merge_commit": "f4e6edc8d639e887d09fde07ac9886df03139169",
+      "state": "closed",
+      "merged_at": "2026-11-17T08:24:48Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 96,
+      "head": "a733c9f3367b9833f242100fcda0cff9e92767ff",
+      "merge_commit": "ee72594686c17e508740e1b446c87593da9ffbda",
+      "state": "closed",
+      "merged_at": "2026-11-17T08:27:34Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 97,
+      "head": "8e94cf878cfbdeb13482f37f7848ef5a400425f3",
+      "merge_commit": "69a1396eacae0ec5c79f5d0feba6431e641d9448",
+      "state": "closed",
+      "merged_at": "2026-11-17T08:36:14Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 98,
+      "head": "a920b13aef776e0fb8a2ce3cc32848c2e7c0166a",
+      "merge_commit": "dedac9cf14e2fca66363e282d7fe787ac9b71690",
+      "state": "closed",
+      "merged_at": "2026-11-17T08:48:42Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 99,
+      "head": "434a26933501eb288a1b16ffd9f971a5fe3b3bc7",
+      "merge_commit": "b0d6c58b45a7e2cf4d161270b0e8223f05e0d470",
+      "state": "closed",
+      "merged_at": "2026-11-17T08:53:52Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 100,
+      "head": "946942a1e30332892aaf19a068ca5a29470d682a",
+      "merge_commit": "fb3d3a4d275f0be7161c13a4763fcd6cac3e2c13",
+      "state": "closed",
+      "merged_at": "2026-11-17T09:02:35Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 101,
+      "head": "cf60a17bcd825dc9b4ecdf840d54e6a0271d3647",
+      "merge_commit": "9545fbb500c1fa531201d53a47606d47efa3ac7d",
+      "state": "closed",
+      "merged_at": "2026-11-17T15:43:05Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 102,
+      "head": "1549a9c7884eb688732262398b5d9859a68103eb",
+      "merge_commit": "518fb28b1cff7aeefad446cbf41c2832673c4d33",
+      "state": "closed",
+      "merged_at": "2026-11-17T09:35:15Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 103,
+      "head": "e15205c97f0fe0c7fcc5c3441e72cb0e9a3bdc01",
+      "merge_commit": "3458c8977cef969a86a07b39734c761ba62e4b40",
+      "state": "closed",
+      "merged_at": "2026-11-17T13:47:00Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 104,
+      "head": "2a6f3a94ce1d4a5ba6cddc1687a075191448da3d",
+      "merge_commit": "6f9caa0736828dbbb2c4d00d2af89277243dbf2b",
+      "state": "closed",
+      "merged_at": "2026-11-17T14:18:03Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 105,
+      "head": "6f1abf273bd10d7ebe5641661dd307c492f897c2",
+      "merge_commit": "eaebdac8332ec365617152a7aec1fbfe2641532c",
+      "state": "closed",
+      "merged_at": "2026-11-17T15:44:28Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 106,
+      "head": "7686ec52876288e6799023fd686af79228236826",
+      "merge_commit": "2277634a33b77405f045321ee3ea9ae432066f9a",
+      "state": "closed",
+      "merged_at": "2026-11-17T14:40:22Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 107,
+      "head": "8471633ed09e2a49ba35ff162a2bac5eb04073c9",
+      "merge_commit": "67482c25a90631d54dd6dff6cda489687efb380f",
+      "state": "closed",
+      "merged_at": "2026-11-17T14:52:11Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 108,
+      "head": "3ec638bd7de5cb6648774abbf14da1c315f5e418",
+      "merge_commit": "4af75017a9b7df726c1f80741809f5bccdb70f4c",
+      "state": "closed",
+      "merged_at": "2026-11-17T15:21:10Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 109,
+      "head": "b842ae4b4df892ec5f058f6207589953f3e9dae9",
+      "merge_commit": "379d3c8e5e46afb806f9ac181bc814288c9c8893",
+      "state": "closed",
+      "merged_at": "2026-11-17T15:37:09Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 110,
+      "head": "35ae6328a884975c23d2aa5001bf0df05a436f91",
+      "merge_commit": "9941c80d09145310efd752b1558356c7bfb97f02",
+      "state": "closed",
+      "merged_at": "2026-11-17T15:45:06Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 111,
+      "head": "d1738017afd3696adbd2e895678b1fa7d26065ec",
+      "merge_commit": "9626152fced037379a79ef4fec458645e0d8c2ff",
+      "state": "closed",
+      "merged_at": "2026-11-17T18:12:57Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 112,
+      "head": "12601a41b6785dcd1d617adba8e13297d9af4bc0",
+      "merge_commit": "7cf48a2f7b73aafb8bd2019bda4e0ddc6698f9ad",
+      "state": "closed",
+      "merged_at": "2026-11-17T15:52:04Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 113,
+      "head": "93c832f53982a9f5956f19ae0cb9418f55fac8c0",
+      "merge_commit": null,
+      "state": "closed",
+      "merged_at": null,
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 114,
+      "head": "867df7f257eac69adfe3355c051cdb2f773c53ac",
+      "merge_commit": "25cb4c2848557d5f43fb0d030391361df5bafb15",
+      "state": "closed",
+      "merged_at": null,
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 115,
+      "head": "b54ef7d2955f44266a87d9067d0e4c332e868c54",
+      "merge_commit": "2eb080e708257c36b54d3ade18b9e012ebc73ed3",
+      "state": "closed",
+      "merged_at": "2026-11-17T16:11:54Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 116,
+      "head": "6a32a919325d71c121c63e3879cfd1b28d64312e",
+      "merge_commit": null,
+      "state": "closed",
+      "merged_at": null,
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 117,
+      "head": "8b19ead89800f81ed9743ffbaf3279ac88fdd06d",
+      "merge_commit": null,
+      "state": "closed",
+      "merged_at": null,
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 118,
+      "head": "4391669c881cbcba372c742d2300c24cdc465a2f",
+      "merge_commit": "cc9b467f69401ca3d689b56e7306e3cebd01df68",
+      "state": "closed",
+      "merged_at": "2026-11-17T17:26:19Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 119,
+      "head": "2c7d58d2e83e542655db7e9bbcc04b6bade44902",
+      "merge_commit": "924f09bab2caf7b5985ffa6c16702a837a58d7bc",
+      "state": "closed",
+      "merged_at": "2026-11-17T17:42:54Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 120,
+      "head": "e37ccdb47c047f6a0250585cf5cb20efc17573b4",
+      "merge_commit": "29772094616b589d04647e2400eb13744eb0d3e3",
+      "state": "closed",
+      "merged_at": null,
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 121,
+      "head": "a86a4ec6a231ed66cd868ea1ece3acc3aea2bb8f",
+      "merge_commit": "edd023c3505942cd2433bfa6c815a7d009432a3c",
+      "state": "closed",
+      "merged_at": "2026-11-17T17:54:19Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 122,
+      "head": "54a3a8593bdb34dd7c1f737960aa732d401fc2da",
+      "merge_commit": "914d74f13d1ae75d9b45ea0e51873c31ff63ec62",
+      "state": "closed",
+      "merged_at": "2026-11-17T18:00:25Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 123,
+      "head": "1138cffdc4a1c909b2b149db80312037c21909d8",
+      "merge_commit": null,
+      "state": "closed",
+      "merged_at": null,
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 124,
+      "head": "b005a46b32c8b3ec92d60bb99147f2aa3af51f06",
+      "merge_commit": "93cb0773f82b3d41a75bc50705074efcb9d4df78",
+      "state": "closed",
+      "merged_at": "2026-11-17T18:17:58Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 125,
+      "head": "af2a61862d23572b108bd7ef7719c7f575348d83",
+      "merge_commit": "13e7172977d671190ba8c3cf964deec4d7473090",
+      "state": "closed",
+      "merged_at": "2026-11-17T18:25:42Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 126,
+      "head": "8fae38da39c3c45344e723abca92c9330f15a791",
+      "merge_commit": "4c9d60cdc329d83fe0d5c7cb69daabb093973dff",
+      "state": "closed",
+      "merged_at": "2026-11-17T18:38:00Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 127,
+      "head": "8b70fdb42fb2d974587c75437b3adb5018190159",
+      "merge_commit": "162288351af0ad43bb4d869fd2d814eaaa30a930",
+      "state": "closed",
+      "merged_at": "2026-11-17T18:59:52Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 128,
+      "head": "814f165cb24a5b719dde65495f64d85f86563328",
+      "merge_commit": null,
+      "state": "closed",
+      "merged_at": null,
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 129,
+      "head": "bb5a97a8d7c5f9ffa261e64753f53a3c044b610f",
+      "merge_commit": "6061aa72e2e59ba23085451c04286184aa23b9e0",
+      "state": "closed",
+      "merged_at": "2026-11-17T19:09:23Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 130,
+      "head": "84076f8ec8e4604a631cbaad9b88b030e508f0bc",
+      "merge_commit": "aa9591d496d66a549d4e0c67aee73eada0d9d46f",
+      "state": "closed",
+      "merged_at": "2026-11-17T19:11:34Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 131,
+      "head": "f965fce6a54141b753a22f1e1b6c2fabba44e389",
+      "merge_commit": "3ee7e5eeefdec0570246d4f0995e29995d5343e0",
+      "state": "closed",
+      "merged_at": "2026-11-17T19:15:25Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 132,
+      "head": "0ecd1615b96d7b90156c1e913e105d467efe9a39",
+      "merge_commit": "081af8a55338c713ba8b350f2519f2021d9caee3",
+      "state": "closed",
+      "merged_at": "2026-11-17T19:17:06Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 133,
+      "head": "f87533cdbf9f98e5cfc11d21d8903f8501212ab8",
+      "merge_commit": "fdec8c24fde94fbffee212a7541b0cb236f682e4",
+      "state": "closed",
+      "merged_at": "2026-11-17T19:23:07Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 134,
+      "head": "128a187d69555db80890c2a1945a442b951f9c74",
+      "merge_commit": "d790bca444eef0e160a75ce3d8cb555af541004f",
+      "state": "closed",
+      "merged_at": "2026-11-17T19:25:07Z",
+      "base": "main",
+      "ancestor_of_captured_main": false,
+      "disposition": "exact_historical_equivalent",
+      "equivalent_commit": "d790bca444eef0e160a75ce3d8cb555af541004f"
+    },
+    {
+      "number": 135,
+      "head": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "merge_commit": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "state": "closed",
+      "merged_at": "2026-11-17T19:45:42Z",
+      "base": "main",
+      "ancestor_of_captured_main": false,
+      "disposition": "exact_historical_equivalent",
+      "equivalent_commit": "4584d5f319aab198f1d705f48b4d6647e6cbabea"
+    },
+    {
+      "number": 136,
+      "head": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "merge_commit": "4eaca83b192897edad82658107dfeb5bcbed0920",
+      "state": "closed",
+      "merged_at": "2026-11-17T19:47:40Z",
+      "base": "main",
+      "ancestor_of_captured_main": false,
+      "disposition": "exact_historical_equivalent",
+      "equivalent_commit": "4eaca83b192897edad82658107dfeb5bcbed0920"
+    },
+    {
+      "number": 137,
+      "head": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "merge_commit": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "state": "closed",
+      "merged_at": "2026-11-17T20:01:17Z",
+      "base": "main",
+      "ancestor_of_captured_main": false,
+      "disposition": "exact_historical_equivalent",
+      "equivalent_commit": "d754bf15b07a24c8a86c8dce339ca749fecd9531"
+    },
+    {
+      "number": 138,
+      "head": "b8ddaaeb581e010467de304c828764d353149102",
+      "merge_commit": "d6010059644b34accd6f188e0e2a4863ab63e318",
+      "state": "closed",
+      "merged_at": "2026-11-17T20:02:18Z",
+      "base": "main",
+      "ancestor_of_captured_main": false,
+      "disposition": "exact_historical_equivalent",
+      "equivalent_commit": "d6010059644b34accd6f188e0e2a4863ab63e318"
+    },
+    {
+      "number": 139,
+      "head": "6df76a0dff0051312faa04317af41d479dd94162",
+      "merge_commit": "98a2a15056e55699b8ba5651fc79b26f94e5efd3",
+      "state": "closed",
+      "merged_at": "2026-11-18T10:30:57Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 140,
+      "head": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "merge_commit": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "state": "closed",
+      "merged_at": "2026-11-17T20:14:56Z",
+      "base": "main",
+      "ancestor_of_captured_main": false,
+      "disposition": "exact_historical_equivalent",
+      "equivalent_commit": "2c47165d01d01cc883135a434ac9f6591ce6e770"
+    },
+    {
+      "number": 141,
+      "head": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "merge_commit": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "state": "closed",
+      "merged_at": "2026-11-17T20:13:20Z",
+      "base": "main",
+      "ancestor_of_captured_main": false,
+      "disposition": "exact_historical_equivalent",
+      "equivalent_commit": "b3f41eb4b4bca8ca13676b4114891ea6d9185043"
+    },
+    {
+      "number": 142,
+      "head": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "merge_commit": "52c73ae4dbadf2ca00a5d619144350ccc353b31a",
+      "state": "closed",
+      "merged_at": "2026-11-17T20:14:26Z",
+      "base": "main",
+      "ancestor_of_captured_main": false,
+      "disposition": "exact_historical_equivalent",
+      "equivalent_commit": "52c73ae4dbadf2ca00a5d619144350ccc353b31a"
+    },
+    {
+      "number": 143,
+      "head": "83f8c380f9271b6bf34a300c3aedc19442cb61f1",
+      "merge_commit": null,
+      "state": "closed",
+      "merged_at": null,
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 144,
+      "head": "a1e026b496f91b54bbd3017aae54717bf25a5586",
+      "merge_commit": "7600c94b5479431f112279a7461aa9a8d45d9f6c",
+      "state": "closed",
+      "merged_at": null,
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 145,
+      "head": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "merge_commit": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "state": "closed",
+      "merged_at": "2026-11-17T21:23:29Z",
+      "base": "main",
+      "ancestor_of_captured_main": false,
+      "disposition": "exact_historical_equivalent",
+      "equivalent_commit": "c84d5e16024c502f6c451fd04b9807b1e65f20d3"
+    },
+    {
+      "number": 146,
+      "head": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+      "merge_commit": "0ff7d23929e4640af6c1d57f87c7ac71b73d2ed4",
+      "state": "closed",
+      "merged_at": "2026-11-17T21:25:17Z",
+      "base": "main",
+      "ancestor_of_captured_main": false,
+      "disposition": "exact_historical_equivalent",
+      "equivalent_commit": "0ff7d23929e4640af6c1d57f87c7ac71b73d2ed4"
+    },
+    {
+      "number": 147,
+      "head": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "merge_commit": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+      "state": "closed",
+      "merged_at": "2026-11-17T21:29:45Z",
+      "base": "main",
+      "ancestor_of_captured_main": false,
+      "disposition": "exact_historical_equivalent",
+      "equivalent_commit": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c"
+    },
+    {
+      "number": 148,
+      "head": "e3831cdde529aa0c2368845cd72c1b9b65154665",
+      "merge_commit": null,
+      "state": "closed",
+      "merged_at": null,
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 149,
+      "head": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "merge_commit": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "state": "closed",
+      "merged_at": "2026-11-17T21:32:16Z",
+      "base": "main",
+      "ancestor_of_captured_main": false,
+      "disposition": "exact_historical_equivalent",
+      "equivalent_commit": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4"
+    },
+    {
+      "number": 150,
+      "head": "6d97fedccde17244a917ee7d3372adebe5494089",
+      "merge_commit": "50071acec7e69f0e1b5d3e3500ca5e1caaee1ae5",
+      "state": "closed",
+      "merged_at": null,
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 151,
+      "head": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "merge_commit": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+      "state": "closed",
+      "merged_at": "2026-11-17T22:05:16Z",
+      "base": "main",
+      "ancestor_of_captured_main": false,
+      "disposition": "exact_historical_equivalent",
+      "equivalent_commit": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6"
+    },
+    {
+      "number": 152,
+      "head": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "merge_commit": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e",
+      "state": "closed",
+      "merged_at": "2026-11-17T22:10:10Z",
+      "base": "main",
+      "ancestor_of_captured_main": false,
+      "disposition": "exact_historical_equivalent",
+      "equivalent_commit": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e"
+    },
+    {
+      "number": 153,
+      "head": "2e013f26c7d4db54ecabe2c955117cbce5379408",
+      "merge_commit": "7d22b0e1fb77ba9dfc145d354513ca3860288226",
+      "state": "closed",
+      "merged_at": null,
+      "base": "feat/native-spacy-reference-20261117",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 154,
+      "head": "295752ff93b24bafc510e60197b62faa647e2aa3",
+      "merge_commit": "c8eca37d1639ac1d20efb83ba2e9da51981a3ad4",
+      "state": "closed",
+      "merged_at": "2026-11-18T07:11:12Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 155,
+      "head": "536ee2086ce46ab629d4d77144d1ca22a43e3c19",
+      "merge_commit": "1ffcf91a3443caf9a6e8b45a3e6cab3f041831ae",
+      "state": "closed",
+      "merged_at": "2026-11-18T10:30:55Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 156,
+      "head": "f4aa218c87293527b3e2b7514500a28d13bd8f70",
+      "merge_commit": "c60fce9c37ca960eb64dd06c7ffc55b2fdbb2ed7",
+      "state": "closed",
+      "merged_at": "2026-11-18T10:26:07Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 157,
+      "head": "9fc211f6c72be9495767bd7cacfd8df51abf2fad",
+      "merge_commit": "3813f79e04b177d0cfce3755b77b209a58be528a",
+      "state": "closed",
+      "merged_at": "2026-11-18T12:02:57Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 158,
+      "head": "5dd3eb7c1434f0c1063290d5698fa5c760c201e2",
+      "merge_commit": "841714fed1efbad2927048b0e2c8deaf06872ab8",
+      "state": "closed",
+      "merged_at": "2026-11-18T12:02:57Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 159,
+      "head": "2292548eb69de2dbb5240ab9da59256f362137c6",
+      "merge_commit": "1e07cb852766f8651815138785be74c64a09ddc0",
+      "state": "closed",
+      "merged_at": "2026-11-18T12:02:55Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 160,
+      "head": "8cbdb9d9a05ff7f0e795efe0ee7848b196f424a3",
+      "merge_commit": "9bd4490808235f7799ea0f988fbb16ca341c4a23",
+      "state": "closed",
+      "merged_at": "2026-11-18T12:32:49Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 161,
+      "head": "acfa3c2bf543debd2fff518304ab514ab677418b",
+      "merge_commit": "f678948564bf293be00bf3a5a770232f8a368cb8",
+      "state": "closed",
+      "merged_at": "2026-11-18T12:32:49Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 162,
+      "head": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1",
+      "merge_commit": "690e6ac8a1f7d8f5c8d4bea69d989a6728f3b27e",
+      "state": "closed",
+      "merged_at": "2026-11-18T20:17:08Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 163,
+      "head": "ce4d3d19a21eae96a473291ffb9f47ac3be6a74c",
+      "merge_commit": "517f6d10f0ec2509b1381b3cf23807645bba4f92",
+      "state": "closed",
+      "merged_at": "2026-11-18T12:36:33Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 164,
+      "head": "fb1fd4dc3edda824c3e043c035dbfad1f0fe0869",
+      "merge_commit": "fb1fd4dc3edda824c3e043c035dbfad1f0fe0869",
+      "state": "closed",
+      "merged_at": "2026-11-18T20:17:10Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 165,
+      "head": "8d74db5da2992e60c7f17b58cd354b874a1ce33a",
+      "merge_commit": "35c0a5ef25d51318714c4415bb1b5de0f7c68906",
+      "state": "closed",
+      "merged_at": null,
+      "base": "codex/zotero-continuation-20261118",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 166,
+      "head": "3668ed92829dfa012ec5b129943a86738ebb7992",
+      "merge_commit": "40790cb2c8c0ebe8c4a6472f3378fa581abf0b00",
+      "state": "closed",
+      "merged_at": "2026-11-18T16:17:00Z",
+      "base": "codex/document-review-20261118",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 167,
+      "head": "a40a26663f7a2c6b7fb8de91540fd04b9875ed9c",
+      "merge_commit": "6c88efed8de24951ef640f79af64b8df6097b248",
+      "state": "closed",
+      "merged_at": "2026-11-18T17:20:01Z",
+      "base": "codex/document-review-20261118",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 168,
+      "head": "6c993f7406037ba462c6aea32e7e6afeebd28c03",
+      "merge_commit": "68d8c83afad66569e5654023eecbcdc3185cbf20",
+      "state": "closed",
+      "merged_at": "2026-11-18T18:35:33Z",
+      "base": "codex/document-review-20261118",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 169,
+      "head": "4600c0ebc9ac5e6acabd92935821d1c15315f2c1",
+      "merge_commit": "690e6ac8a1f7d8f5c8d4bea69d989a6728f3b27e",
+      "state": "closed",
+      "merged_at": "2026-11-18T20:17:10Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 170,
+      "head": "ff1518517dd9f67e214ff56fe7eef06349f5223a",
+      "merge_commit": "d1dc3416319891cf26346bd0ff81012ac1a58cf8",
+      "state": "closed",
+      "merged_at": "2026-11-18T19:08:40Z",
+      "base": "codex/document-review-20261118",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 171,
+      "head": "637b67c58482e40a3244c590ce77c08b9fc2740e",
+      "merge_commit": "bfa88aab88a74028285619dfa07f3a81868fe59b",
+      "state": "closed",
+      "merged_at": "2026-11-18T20:17:10Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 172,
+      "head": "0dc05c17844249b479357ea0ec5f8f02252a530f",
+      "merge_commit": "838563d5ca28686632c1119d4e287e3129c97226",
+      "state": "closed",
+      "merged_at": "2026-11-19T08:21:11Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 173,
+      "head": "b0a9bd3f1b46ac89021d1b7e49c32980ca4d181e",
+      "merge_commit": "55e262ef269634a0d618c0b5102dc9be5430a5f3",
+      "state": "closed",
+      "merged_at": "2026-11-19T07:39:20Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 174,
+      "head": "59e0a7c232e7380021a8bda4477999205da0f8ae",
+      "merge_commit": "d41000336c84b6ebfe6b35f7f8335140b5d46038",
+      "state": "closed",
+      "merged_at": "2026-11-19T07:26:02Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 175,
+      "head": "c320f28347f1cd292b848be2cf72998d41f8a6ac",
+      "merge_commit": "f38959f04cf58298ac56b142228d825e9d0deb82",
+      "state": "closed",
+      "merged_at": "2026-11-19T07:26:05Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 176,
+      "head": "16cbbebdcf7781564658cc7636473c7d04846b38",
+      "merge_commit": "f059065fa622da8cee7824d66d29a2aff414d529",
+      "state": "closed",
+      "merged_at": "2026-11-19T07:45:15Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 177,
+      "head": "3f0277c8c4d317c3607e3bd6a2bf0e9aaf73bd3d",
+      "merge_commit": "8f2f526aea651c71440e0912c87139c1232c2293",
+      "state": "closed",
+      "merged_at": "2026-11-19T07:58:17Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 178,
+      "head": "2122066f0eccf06a6f2c3c523c5715a7233bb95d",
+      "merge_commit": "97a26316d8d3866813232041b0cbed7c5bbd19ff",
+      "state": "closed",
+      "merged_at": null,
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 179,
+      "head": "5ec15bdd4c5016b320f0fe8edff36b1da69fa44f",
+      "merge_commit": "0e60d9212e284e06d598224a7d0d0c2f9d663df9",
+      "state": "closed",
+      "merged_at": "2026-11-19T07:58:17Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 180,
+      "head": "8717d8515f0f07875e0d7ed7a0ad73fa319cb594",
+      "merge_commit": "f7117a493055008a72e6e16713dd67a4f7c2ad39",
+      "state": "closed",
+      "merged_at": "2026-11-19T07:55:05Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 181,
+      "head": "906296bad785daaf7be85ec838361bee18ca88a9",
+      "merge_commit": "8216dfbd9d4dd2b82cb476e439b1a4e8e16429cb",
+      "state": "closed",
+      "merged_at": "2026-11-19T07:58:37Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 182,
+      "head": "0cee7ea9701e2d75e1385f5e16ded69cbaf0e387",
+      "merge_commit": "b655b8a37fddc874bd42a453c371eed6253e82d8",
+      "state": "closed",
+      "merged_at": "2026-11-19T08:08:10Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 183,
+      "head": "f2b0769cf5533fd4e7ee335adab532c98c677857",
+      "merge_commit": "a33b382aa2f428af037a6bdf44b20a319c2c9499",
+      "state": "closed",
+      "merged_at": "2026-11-19T09:47:23Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 184,
+      "head": "c19ac32d1e443ce277ccc80f7c80107e33fb40c3",
+      "merge_commit": "b559f6c764fbfac143f593e89ddc1096ad8b5c4e",
+      "state": "closed",
+      "merged_at": "2026-11-19T08:31:27Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 185,
+      "head": "e42ca64ba0dd4c687a56947ba0122cf53a15b843",
+      "merge_commit": "be641457c8c7d1acc25091b31c87c73eaa3c9c2a",
+      "state": "closed",
+      "merged_at": "2026-11-19T08:41:58Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 186,
+      "head": "98f7044252015e1d6a3bcddeb4e0133f6c88dbc6",
+      "merge_commit": "7adec5c7f04afa28888c673aa2c18f1bd0c4a9a6",
+      "state": "closed",
+      "merged_at": "2026-11-19T09:26:24Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 187,
+      "head": "217f2abb07eb690d52fd0d4cc513032aaa7f4105",
+      "merge_commit": "4f80ba522ea9a1d029d24aaed99fe8ecfaee8330",
+      "state": "closed",
+      "merged_at": "2026-11-19T09:38:59Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 188,
+      "head": "d2ec54dbfc6e42ea929b872fd0b36c751d4a7a33",
+      "merge_commit": "7d54b9907105b12881e5f19e858a1b18f4e44a44",
+      "state": "closed",
+      "merged_at": "2026-11-19T09:43:17Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 189,
+      "head": "37b8a738d7701b5e61ed282c0d9a25e6a73f97f9",
+      "merge_commit": "b070e228a749e22cc8ce2098029a76ab5fb8eccb",
+      "state": "closed",
+      "merged_at": "2026-11-19T10:49:30Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 190,
+      "head": "13d87f0f151a1f20e81402788c54beb9ada8f030",
+      "merge_commit": "7bfdf91bf606195e0036345cbb4ef57a5cd2e82c",
+      "state": "closed",
+      "merged_at": "2026-11-19T10:27:18Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 191,
+      "head": "1d762d4c369795175b55a4ecb9c44efd29f041b1",
+      "merge_commit": "4c25c0455cee867db4cfad0f737cb886f01c1936",
+      "state": "closed",
+      "merged_at": "2026-11-19T12:54:11Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 192,
+      "head": "0601d2790c7636bc02d53430f6e99f471e8ac83e",
+      "merge_commit": "1c415fef97a9552191e83a6e5f8a071a6fe06710",
+      "state": "closed",
+      "merged_at": "2026-11-19T12:54:13Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 193,
+      "head": "4cf5831d01ace0ae804a176ec82ff2d27ce7fac3",
+      "merge_commit": "2a06bd50e2bde37e85f9723df777eaa824436036",
+      "state": "closed",
+      "merged_at": "2026-11-19T11:55:35Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 194,
+      "head": "e77d0dab229bc0ea4c195a164771d3c44809f0f0",
+      "merge_commit": "389fdbe5af929ce0cf87ce9a42fe0b4e0fa6583d",
+      "state": "closed",
+      "merged_at": null,
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 195,
+      "head": "d42626a4c0742a955ab27b700c7138fd69d99298",
+      "merge_commit": "0336116d6a07a16f5b46dbe07583b47ee9dcec83",
+      "state": "closed",
+      "merged_at": "2026-11-19T13:03:08Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 196,
+      "head": "555fc99fdeb8ef7f3043513203cb16b243a4a9d7",
+      "merge_commit": "1427f69d2599fd507e68c7b23e6d278de94c8737",
+      "state": "closed",
+      "merged_at": "2026-11-19T14:04:12Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 197,
+      "head": "f20b3c61d28918cd75526c64852c41fae943acf3",
+      "merge_commit": "f2131f3813d042fc6f3b16813c5ba0937e6ff0ec",
+      "state": "closed",
+      "merged_at": "2026-11-19T14:56:01Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 198,
+      "head": "623057111a9179552eb02b21a753a1728de9905d",
+      "merge_commit": "d7584360c187fa20167c6330f5476042983f524c",
+      "state": "closed",
+      "merged_at": "2026-11-19T16:26:53Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 199,
+      "head": "107155216505590e2eabfb93fc67cb908ad6173d",
+      "merge_commit": "0812a07e07856b885853b203089bc085d0ce9c57",
+      "state": "closed",
+      "merged_at": "2026-11-19T14:56:01Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 200,
+      "head": "4b2ad7995c1ddff052232c21749d847701d77f96",
+      "merge_commit": "e00ca1495551ffaf61dd9b3ee7770f8bfde7e897",
+      "state": "closed",
+      "merged_at": "2026-11-19T14:55:59Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 201,
+      "head": "3c1764f5ff8bf9f89e090ef4e04e3142c4ccf90a",
+      "merge_commit": "9f87eff5e9c3ade6a13f5a816b7b42313e5a9f74",
+      "state": "closed",
+      "merged_at": "2026-11-19T16:26:52Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 202,
+      "head": "d98c8ae020a60715fbb02f5332b2f3414fb6805b",
+      "merge_commit": "2309cb3ca7d482bf741d891515216ce6306bf8aa",
+      "state": "closed",
+      "merged_at": null,
+      "base": "codex/mcp-aligned-macros",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 203,
+      "head": "aa9fb9de14347ed69182be90f13c99a443a0ecbb",
+      "merge_commit": "81ae98688860599f118748afca19bdb2ec45da37",
+      "state": "closed",
+      "merged_at": "2026-11-19T16:26:50Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 204,
+      "head": "3db248be978b24d0693d1133505d9be200fd1256",
+      "merge_commit": "304d4bff45da24f22cee420ec464882d7c7ce516",
+      "state": "closed",
+      "merged_at": "2026-11-19T16:48:52Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 205,
+      "head": "82b20dc8b52d0b95efeff590c6023ed84704fa7a",
+      "merge_commit": "0c29b5d8a0a92148dcd95f3282b4d43c462be20d",
+      "state": "closed",
+      "merged_at": "2026-11-19T17:27:22Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 206,
+      "head": "bba11ff1b23b2e8c0cdc0d872ce31394ada83bf2",
+      "merge_commit": "0d87cebea232c3edf55c4f4a22f63684dbe5a3f5",
+      "state": "closed",
+      "merged_at": "2026-11-19T17:40:16Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 207,
+      "head": "dde2b56066746223b2b313cbfb0ce8dba55dc6bd",
+      "merge_commit": "cf59efa99232a3fd26cf21ce7f2382402e576f9b",
+      "state": "closed",
+      "merged_at": "2026-11-19T17:49:23Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 208,
+      "head": "de9d21f9014060c14263ce17fe323d5fdb063d11",
+      "merge_commit": "bcb061e163834f9a5a6e0b61571ffda909bdd61e",
+      "state": "closed",
+      "merged_at": "2026-11-19T17:39:56Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 209,
+      "head": "6275d21246040e03f6264b27171992c88d1474a2",
+      "merge_commit": "caf378f40fd5bda50f504a6816404d01d8bbb8f8",
+      "state": "closed",
+      "merged_at": "2026-11-19T18:16:42Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 210,
+      "head": "3abffb94dcf33a2766a4579d296d0ef09c9e35cd",
+      "merge_commit": "2638a2c96ea5e66ace5884896fe09de92a7ce380",
+      "state": "closed",
+      "merged_at": "2026-11-19T20:50:38Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 211,
+      "head": "cacae8569814e4cb81f58d358734d31431f102be",
+      "merge_commit": "2638a2c96ea5e66ace5884896fe09de92a7ce380",
+      "state": "closed",
+      "merged_at": "2026-11-19T20:50:38Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 212,
+      "head": "482fbd99dd8d3d5aff7d773fa87454f4d324028d",
+      "merge_commit": "5715d56053e93dc11e8b5165bd13f8db2a1f3917",
+      "state": "closed",
+      "merged_at": "2026-11-19T20:16:03Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 213,
+      "head": "0e03878b028ec25ed3d84a790633433eafc3bede",
+      "merge_commit": "4a4ea1f0d8c990cc74ce8f7233545a8a9dc0887c",
+      "state": "closed",
+      "merged_at": "2026-11-19T19:15:39Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 214,
+      "head": "dc93a176f8efc98feff9c25565fb036175793a54",
+      "merge_commit": "9ceb994d8edce3989228f1244cda90ecc9884931",
+      "state": "closed",
+      "merged_at": "2026-11-19T19:42:42Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 215,
+      "head": "cc061e72bd167cdaf4a99d3c0b714f27cb93b2c8",
+      "merge_commit": "53d5e43b1dec37c191d44dbff101c68f8221de7e",
+      "state": "closed",
+      "merged_at": "2026-11-19T19:53:14Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 216,
+      "head": "ab833975409abfb207f3a6a1a146183a4a5198fd",
+      "merge_commit": "2170791c9250d72c9df31a065408365f9b50abaa",
+      "state": "closed",
+      "merged_at": "2026-11-19T20:50:37Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 217,
+      "head": "fd17f6c4e0ffc22b71e52dcc7859fd95f72f30c7",
+      "merge_commit": "057fdb9325ec2f93d2ac0592217da8ad350b0664",
+      "state": "closed",
+      "merged_at": "2026-11-19T21:41:20Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 218,
+      "head": "6626ad430a54122e4514cc2870fdcee18760682f",
+      "merge_commit": "88513f04cfbdec210340f2d70a674cf3f23e31c0",
+      "state": "closed",
+      "merged_at": "2026-11-19T21:31:47Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 219,
+      "head": "3003272fc2bc1f77bdb1355aa7cb27356dfbc61b",
+      "merge_commit": "3003272fc2bc1f77bdb1355aa7cb27356dfbc61b",
+      "state": "closed",
+      "merged_at": "2026-11-19T22:01:27Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 220,
+      "head": "1441665236401e94ccf03ffa694c7434bb227ef3",
+      "merge_commit": "096ddbef8a50fdbe446b72da7d79bed945d12a19",
+      "state": "closed",
+      "merged_at": "2026-11-19T22:30:15Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 221,
+      "head": "177f29d3f9450a58f41189b462b0814aad37e45c",
+      "merge_commit": "a45ee3bf40dbb7e64a04f879fd6d574db7cb60b1",
+      "state": "closed",
+      "merged_at": "2026-11-20T07:24:05Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 222,
+      "head": "7be53768501bb6df426eeb9d05c921e393ded02f",
+      "merge_commit": "1e22519d098d5e8103a92c581e281589f207cc4f",
+      "state": "closed",
+      "merged_at": "2026-11-20T04:41:16Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 223,
+      "head": "a31616d3567a43307251e13a9728cf92fd8690c6",
+      "merge_commit": "7501b604db23e2df3d765f2ea44f572b2ea43d97",
+      "state": "closed",
+      "merged_at": "2026-11-20T07:24:03Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 224,
+      "head": "38c9c297c12fca3422b8f758e7b1afbdabbf064c",
+      "merge_commit": "85c019cd8fda1a735a727bff98c2a56fb25a368e",
+      "state": "closed",
+      "merged_at": "2026-11-20T05:02:10Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 225,
+      "head": "4973e712045bdcf45fd36dcfe37d380c52265d3c",
+      "merge_commit": "6b2f392c7301d4b19f16d6ccf150258f14bf7ad7",
+      "state": "closed",
+      "merged_at": "2026-11-20T05:13:37Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 226,
+      "head": "a56397df5f53b991f5016f3cc8e1ab53b7ce12f1",
+      "merge_commit": "b0b79d90b0f4ca0036483d73095b4821efddcc8e",
+      "state": "closed",
+      "merged_at": "2026-11-20T05:29:16Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 227,
+      "head": "1ceae221d37e733f0195d35622a05f896a2d13a1",
+      "merge_commit": "3d67261b7d6ad6fd3f6103fd651b57707137cdb3",
+      "state": "closed",
+      "merged_at": "2026-11-20T09:32:04Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 228,
+      "head": "f3ed8d74a016bc1e826dbaf056397e887d765b43",
+      "merge_commit": "3e5f44ae14926b8054b2e5c0558ce71477891a33",
+      "state": "closed",
+      "merged_at": "2026-11-20T05:45:09Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 229,
+      "head": "0c12d087e1d21b710c9fe224a06a93d526f0721e",
+      "merge_commit": "dbfbbd28caa064f4850dc81860a68de14d48fb35",
+      "state": "closed",
+      "merged_at": "2026-11-20T06:01:58Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 230,
+      "head": "3c137a66e8a434f5a90e80f5094bfaa25354067a",
+      "merge_commit": "43db439e1e605d6329a6eabe6817b04ca44ba1aa",
+      "state": "closed",
+      "merged_at": "2026-11-20T06:14:49Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 231,
+      "head": "754d30d199b6f7dfd52b2772a27cc37a3f8d3dd8",
+      "merge_commit": "098412152fa1d64796eb3fb9c06699ced0f0c44d",
+      "state": "closed",
+      "merged_at": "2026-11-20T06:43:03Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 232,
+      "head": "8b09e0ca6667c00db81b613c40b6d275bc20471a",
+      "merge_commit": "88905c56547fa91206acbc306616c3ad10f9d77b",
+      "state": "closed",
+      "merged_at": "2026-11-20T06:59:22Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 233,
+      "head": "20b2ecf572f8fd5663a728529da7bf5c7ebbda1d",
+      "merge_commit": "2f9bfd332b7f3dffc3190bb3b92d9c226e0f95bc",
+      "state": "closed",
+      "merged_at": "2026-11-20T08:01:59Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 234,
+      "head": "228d13d949859c66c58cf51addfbb03b09c7365d",
+      "merge_commit": "932d49a33cccaeedd7fcb41aa16cbfda95aeb4e4",
+      "state": "closed",
+      "merged_at": "2026-11-20T09:46:53Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 235,
+      "head": "596fb68f64c447177ed202a40f890c20205a0270",
+      "merge_commit": "5e38de19ab5af8d6811d601c7317cba7f69d516b",
+      "state": "closed",
+      "merged_at": "2026-11-20T08:37:17Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 236,
+      "head": "7319b220ab2e64b440e6f63d299eb747366a24d3",
+      "merge_commit": "7c562b635f932372a310b78a78eb20bdb9df626d",
+      "state": "closed",
+      "merged_at": "2026-11-20T09:31:28Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 237,
+      "head": "712d0ea558a01cabff25a83294a29b8d57ec25d4",
+      "merge_commit": "e867ffaa1c434a019b9ea8ccdd8592918ada6c0d",
+      "state": "closed",
+      "merged_at": "2026-11-20T10:55:29Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 238,
+      "head": "40a8f8eb76bd9bf51205fa0cb9f576ba497ad76b",
+      "merge_commit": "50e33639c545164af9f693265494c28b4ec8c15e",
+      "state": "closed",
+      "merged_at": "2026-11-20T10:55:29Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 239,
+      "head": "06f119566235aa3765445526f5ffab48832b1a31",
+      "merge_commit": "d040c15a07f652d01e75363031d0efdee6357bda",
+      "state": "closed",
+      "merged_at": "2026-11-20T09:46:52Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 240,
+      "head": "6c23d94472f741aceff6aef0de0e6ef847195afe",
+      "merge_commit": "c028baf2491f701735a53552b4b3674914a4f830",
+      "state": "closed",
+      "merged_at": "2026-11-20T10:55:27Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 241,
+      "head": "aad737dd79c034b831a8957daa4165c6c64e35e5",
+      "merge_commit": "50b029b3747a6643df040dafb470e54fa8dd5466",
+      "state": "closed",
+      "merged_at": "2026-11-20T10:28:08Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 242,
+      "head": "84d02025fade09c80f3f58942b466f4522eb4434",
+      "merge_commit": "7600f7fd71fdc7f01228155a22d600177f5afcb9",
+      "state": "closed",
+      "merged_at": "2026-11-20T11:46:32Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 243,
+      "head": "a059c0249a25bef602640c8b8d504bd8da41c619",
+      "merge_commit": "f7bf155337b0ba77dc20c6be548ef38ac06c5c65",
+      "state": "closed",
+      "merged_at": "2026-11-20T11:46:32Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 244,
+      "head": "2fd61c3353dc22ee36ed1bc1a69df470a9423230",
+      "merge_commit": "e59b8918db508da46039a943080dc4b7a5c7a0bb",
+      "state": "closed",
+      "merged_at": "2026-11-20T11:01:51Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 245,
+      "head": "d46d4ef394ed7cafd40bc266c793f8c0df6ec57f",
+      "merge_commit": "3ffa599ff003a6e678260df1237b01887693e546",
+      "state": "closed",
+      "merged_at": "2026-11-20T11:19:24Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 246,
+      "head": "d0c9007480ba518022836e017802875614e6205c",
+      "merge_commit": "899df57d03e55bf73357136c5f21739c5c9b5719",
+      "state": "closed",
+      "merged_at": "2026-11-20T11:17:02Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 247,
+      "head": "baf6d1bc53b611e9fb37082ca69c409e5f8d6381",
+      "merge_commit": "b42eca1db058f0def247b86c2f15dea90c11b4e8",
+      "state": "closed",
+      "merged_at": "2026-11-20T13:09:31Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 248,
+      "head": "56d5fdf15a20ced764561a1ac2429c2c37a6e780",
+      "merge_commit": "c3df77d01ea9df4846e18131e69160d858f174ac",
+      "state": "closed",
+      "merged_at": "2026-11-20T12:31:17Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 249,
+      "head": "a2b87ee3f471da500423055e86ba2614fc053cae",
+      "merge_commit": "b95f83db4f54b5e4e44e3bcb8c384ea7445e3970",
+      "state": "closed",
+      "merged_at": "2026-11-20T14:10:35Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 250,
+      "head": "9443612b024114c424ba2f8146e04050d6e049b0",
+      "merge_commit": "13be50464d1b43e9f2100fb9ccc12f8fe22eb55e",
+      "state": "closed",
+      "merged_at": "2026-11-20T13:32:06Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 251,
+      "head": "86e44e87f829b0309ea7b84fd5d390f596fe7f26",
+      "merge_commit": "ae32c69000a33c37770f522ea1d54627bcf09a6b",
+      "state": "closed",
+      "merged_at": "2026-11-20T14:02:54Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 252,
+      "head": "0f6239396ff3328473a5f57c280b982d57e33a08",
+      "merge_commit": "e7ed2efd4e661ef244a21dd2836525c8e1531b7e",
+      "state": "closed",
+      "merged_at": "2026-11-20T14:05:18Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 253,
+      "head": "4b6bc01be2c95008c320b5a26615828191cf1d9e",
+      "merge_commit": "4df939eeed1bda9f9dbde8c8d2cbf0a4fe91b5b0",
+      "state": "closed",
+      "merged_at": "2026-11-20T14:05:16Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 254,
+      "head": "79e11935e16ea1d2fa576ead0712c83f22e15c28",
+      "merge_commit": "79e11935e16ea1d2fa576ead0712c83f22e15c28",
+      "state": "closed",
+      "merged_at": "2026-11-20T15:59:21Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 255,
+      "head": "b3abdf3b4628a8a703857d69b8f11cd21bc502e1",
+      "merge_commit": "243b99a5ee56e591991f381533b2363586bd5dd0",
+      "state": "closed",
+      "merged_at": "2026-11-20T14:10:33Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 256,
+      "head": "34491bca22a2989dd89d9da3c853f5e57de5464f",
+      "merge_commit": "7f2d51a5206059478ea81965ccc95b89a9274ca6",
+      "state": "closed",
+      "merged_at": "2026-11-20T14:27:36Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 257,
+      "head": "22e5960e99915e81a1b5997058cac44dac27ba1a",
+      "merge_commit": "5c48058bedc42dd8cbf3fb9d6f1fb492b2ac1eb8",
+      "state": "closed",
+      "merged_at": "2026-11-20T14:47:58Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 258,
+      "head": "fee58398c80ec811f4adfbbaef7ae08598abdda0",
+      "merge_commit": "fee58398c80ec811f4adfbbaef7ae08598abdda0",
+      "state": "closed",
+      "merged_at": "2026-11-20T15:59:21Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 259,
+      "head": "650afb7d117337bab943af05d63a250a7e90c058",
+      "merge_commit": "acca1cbcba2a322ad1ae2d7d9fb415110ce22554",
+      "state": "closed",
+      "merged_at": "2026-11-20T15:59:20Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 260,
+      "head": "44855ab24c2c7fd34953e879fba571381cce0bc3",
+      "merge_commit": "bb5320a50f288d95844a6d60cfd72eab13a9befc",
+      "state": "closed",
+      "merged_at": "2026-11-20T16:14:51Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 261,
+      "head": "fff4a4afda2beecdd20ae0bd1f3c31622e8c0b37",
+      "merge_commit": "3ee4e3622c9a2198d384ed1cb296ab092a8838d0",
+      "state": "closed",
+      "merged_at": "2026-11-20T17:15:13Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 262,
+      "head": "c7e721b7703766491fd4459b69de30bf68d9010d",
+      "merge_commit": "c7e721b7703766491fd4459b69de30bf68d9010d",
+      "state": "closed",
+      "merged_at": "2026-11-20T17:55:16Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 263,
+      "head": "d30299dd91634ad7e20c32db5c39a6687fcef4aa",
+      "merge_commit": "52c7f27fc7b6998e209e3ac8c815d6cf1ca6f867",
+      "state": "closed",
+      "merged_at": "2026-11-20T19:19:53Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 264,
+      "head": "1e723bd4bc96e07b1b790daf9b82897a846c6096",
+      "merge_commit": "c954d00d2fc85604ae394674bca91ea8a1dede0e",
+      "state": "closed",
+      "merged_at": "2026-11-20T20:01:23Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 265,
+      "head": "a51c20737b1932d9c6475ea6dddc33fbd50b2c17",
+      "merge_commit": "ed750f1f6b8acab88406fd506e0dd511adcc4485",
+      "state": "closed",
+      "merged_at": "2026-11-20T19:19:55Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 266,
+      "head": "b08e0a55b629ac22b33c54146b56438862965022",
+      "merge_commit": "f4f0da7379822d030e3549292696e76a6fd05526",
+      "state": "closed",
+      "merged_at": "2026-11-20T19:32:24Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 267,
+      "head": "be47bed22a88382f016d823e526bae49590bd0eb",
+      "merge_commit": "d1e9cbc0c5dd38f0c8d28e3d76e7fdd59990f3f4",
+      "state": "closed",
+      "merged_at": "2026-11-20T19:13:50Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 268,
+      "head": "90ecd41c8a3ef2a6f35967f1219223022e2b0d32",
+      "merge_commit": "11fb60e508a33dd7031eef7fc2b19d3d7d95c67c",
+      "state": "closed",
+      "merged_at": "2026-11-20T20:01:23Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 269,
+      "head": "e8db6b3f21401f8c6ac4dae4c2934edde8699f4b",
+      "merge_commit": "2c9341ae929c162d7e690e1678641166b08fecca",
+      "state": "closed",
+      "merged_at": "2026-11-20T20:01:23Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 270,
+      "head": "540eb7a41554620e1405807ac1db9dc38bd62148",
+      "merge_commit": "0ff83fd3647096477a701430d372904ee5b0cdd7",
+      "state": "closed",
+      "merged_at": "2026-11-20T19:32:22Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 271,
+      "head": "8c54d5283804099f9c9023540921f2410b878eb1",
+      "merge_commit": "b6657785b9de0943d2008b4883187a94f05bc514",
+      "state": "closed",
+      "merged_at": "2026-11-20T20:56:56Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 272,
+      "head": "6d370884cd2b62ae83e627d9e71809ae9d795684",
+      "merge_commit": "b01cb23dc1b7bc94b691d68a2507b61dc6d48d7a",
+      "state": "closed",
+      "merged_at": "2026-11-20T20:42:56Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 273,
+      "head": "1584a2da8b23128c113d95c3b05b6a12d2d3861e",
+      "merge_commit": "0a2afc41bae4e719b77657a7e2d8d3e7ec02849b",
+      "state": "closed",
+      "merged_at": "2026-11-20T21:59:51Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 274,
+      "head": "cd306bdea352c6f6400b5d1af7cc33e737004462",
+      "merge_commit": "22cf73b816328cd5fe54ec1793c89f1cc322db3b",
+      "state": "closed",
+      "merged_at": "2026-11-20T20:49:21Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 275,
+      "head": "bf0effdcc8f690972d762c5b53079e8847a5e65e",
+      "merge_commit": "f67c18574176d34f48ddab14918aee5a787c3843",
+      "state": "closed",
+      "merged_at": "2026-11-20T22:26:51Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 276,
+      "head": "0da1b048546f36c658a7ddfb899117b73c5d3e7c",
+      "merge_commit": "698209aaa6e7f1350b6541df5eb192b7b233443d",
+      "state": "closed",
+      "merged_at": "2026-11-20T21:29:26Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 277,
+      "head": "a7d9f37ecbaaf70544f4866d7d9e572696948184",
+      "merge_commit": "383c0c0c5d3b4b1a6edccc8d09ffd1ca64029537",
+      "state": "closed",
+      "merged_at": "2026-11-20T23:21:39Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 278,
+      "head": "0e4e999a08996a6b8696ca3adba11e303331b73e",
+      "merge_commit": "19eccc016fd14bea52c095db917a28b5ce3cdd5c",
+      "state": "closed",
+      "merged_at": "2026-11-20T23:41:49Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 279,
+      "head": "33ce2428ebab825a844895a767e0f9f1a4077d62",
+      "merge_commit": "653a03d2d2a7c47c3e5d6d648180a4fe0ffad298",
+      "state": "closed",
+      "merged_at": "2026-11-20T23:41:47Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 280,
+      "head": "45245b086fce889aff9a54291083d55d40ba3cb4",
+      "merge_commit": "bf761552d22dcd1eb8cbb0ab00ddab6507e1d572",
+      "state": "closed",
+      "merged_at": "2026-11-21T00:00:24Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 281,
+      "head": "1581229f0e5aea24b5242c33a1e92f02d70b4c7e",
+      "merge_commit": "3d01815908aeded5862d131109341365de637242",
+      "state": "closed",
+      "merged_at": "2026-11-21T04:47:41Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 282,
+      "head": "fa59496840a36709fe3a6d867bdfe96ab99d72ab",
+      "merge_commit": "ce1c37c6af1e2306d2c24231758f10ef6213f7dd",
+      "state": "closed",
+      "merged_at": "2026-11-21T05:02:18Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 283,
+      "head": "589ccd33243eabe57ce3074c92112e1fdf1325f1",
+      "merge_commit": "84046975f286407e3c62e5e5352bc16bc89c0d26",
+      "state": "closed",
+      "merged_at": "2026-11-21T05:20:52Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 284,
+      "head": "0491492d8622ad2ef09fb84e07d3dbba462f9320",
+      "merge_commit": "290dfa43e3bcf410d9bf1bd8194c997c4ee613ae",
+      "state": "closed",
+      "merged_at": "2026-11-21T06:27:29Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 285,
+      "head": "cb7ab4f7a41fa15414f6dd5ac229bda6e57cb0cd",
+      "merge_commit": "e2abbcda6d19f932bfbacc85e0dafd41a3c478f8",
+      "state": "closed",
+      "merged_at": "2026-11-21T07:13:13Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 286,
+      "head": "49665e51f9eacefc180748c3d0ed7851ef5da5d1",
+      "merge_commit": "e1ebcb0cd65716a2a78d2ea1114d9ee37a3017ec",
+      "state": "closed",
+      "merged_at": "2026-11-21T06:20:22Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 287,
+      "head": "ada16de93d75c67011399727d10a32d1025f7edb",
+      "merge_commit": "fcb3ff13537eb31c2cabead033a50723124682c5",
+      "state": "closed",
+      "merged_at": "2026-11-21T07:11:18Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 288,
+      "head": "a1995c9154357e603b89947654cf95f8bcba6a83",
+      "merge_commit": "17dde2e62cf3d23ae3d089e284ed3d8e1f8b2a5f",
+      "state": "closed",
+      "merged_at": "2026-11-21T07:01:03Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 289,
+      "head": "a6095c304ad2d6935f2ae6f8b74412038d19f142",
+      "merge_commit": "278fa78d59f219965a50f025dbdb11d1b7b98676",
+      "state": "closed",
+      "merged_at": "2026-11-21T07:40:32Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 290,
+      "head": "e8d23a3a770037f7309e239e3ef6fe3bf570039a",
+      "merge_commit": "eb286fb7254d6850c9f33b46e8aa65e2ea32f7f0",
+      "state": "closed",
+      "merged_at": "2026-11-21T07:33:16Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 291,
+      "head": "66c98e8e6b303f11dd167305424b9c2f6a820342",
+      "merge_commit": "4a1eaa69e7a068e354bdd851ec9b0323b89ae300",
+      "state": "closed",
+      "merged_at": "2026-11-21T07:40:30Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 292,
+      "head": "38b07e58b7c0e2a5b04a823a7251805cea60fb77",
+      "merge_commit": "9f23cbd2be72c527829b3990f22b356e5237ed96",
+      "state": "closed",
+      "merged_at": "2026-11-21T07:54:39Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 293,
+      "head": "d4470bab1095593739ddf87fdb9f249bbc948b65",
+      "merge_commit": "4090feb56f308cd3657c5edd1d045ff1197ff79b",
+      "state": "closed",
+      "merged_at": "2026-11-21T08:16:37Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 294,
+      "head": "7b2d3f3f422edd21258fee2533085b9065aff883",
+      "merge_commit": "f2025d3275c8b5ac8313f788286b17c657894567",
+      "state": "closed",
+      "merged_at": "2026-11-21T08:36:36Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 295,
+      "head": "7b3e45b4eb5f2aafedd4b40886e7b3acddde2f0e",
+      "merge_commit": "97cfb09b277e0808f9228a4fb638a55748c6268f",
+      "state": "closed",
+      "merged_at": "2026-11-21T08:37:41Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 296,
+      "head": "9942eb76f0ac818e464ad1b3bcec2cc4513d3e3f",
+      "merge_commit": "1ef5f7f88705e05bb2ebd2f5b639460dab52c3d0",
+      "state": "closed",
+      "merged_at": "2026-11-21T09:31:18Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 297,
+      "head": "13fa9ad5b9d140f1d7c085e46b4d0ce395000c49",
+      "merge_commit": "f92c0d24f0513c5e13e61ae58507c36e9cf4f1c1",
+      "state": "closed",
+      "merged_at": "2026-11-21T08:55:20Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 298,
+      "head": "9eb68b9f048d3c08274ece5d7f964f1249004485",
+      "merge_commit": "c10416d39894031164be68313253db5bbb3a5ad2",
+      "state": "closed",
+      "merged_at": "2026-11-21T09:10:28Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 299,
+      "head": "d9bfa44022781f0dd4493a923ca9f20316dc59f0",
+      "merge_commit": "575e671de665dc918886285dab2e3628f4309965",
+      "state": "closed",
+      "merged_at": "2026-11-21T10:00:26Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    },
+    {
+      "number": 300,
+      "head": "575e671de665dc918886285dab2e3628f4309965",
+      "merge_commit": "f50c4f23392ccb0ac9f486541ffae6a65a691b99",
+      "state": "closed",
+      "merged_at": "2026-11-21T10:00:24Z",
+      "base": "main",
+      "ancestor_of_captured_main": true,
+      "disposition": "ancestor"
+    }
+  ],
+  "upstream": {
+    "repository": "MohammedAsaadAsaad/quds_office_suite",
+    "branches": [
+      {
+        "name": "ci/flutter-workspace",
+        "head": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+        "ancestor_of_captured_main": true
+      },
+      {
+        "name": "cursor/class-certificates-2db8",
+        "head": "f45099688e7a3f67a1302efdb442830d052f2240",
+        "ancestor_of_captured_main": true
+      },
+      {
+        "name": "cursor/cloud-agent-1790580069020-0rk1h",
+        "head": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+        "ancestor_of_captured_main": true
+      },
+      {
+        "name": "main",
+        "head": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+        "ancestor_of_captured_main": true
+      }
+    ],
+    "pull_requests": [
+      {
+        "number": 7,
+        "head": "f45099688e7a3f67a1302efdb442830d052f2240",
+        "merge_commit": "58b7a6c9cbf03bed727b7894aa9ea219f1185f96",
+        "state": "closed",
+        "merged_at": "2026-10-12T18:08:30Z",
+        "ancestor_of_captured_main": true
+      },
+      {
+        "number": 6,
+        "head": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+        "merge_commit": "e1a830961b8dc23cccdf17dd991b0eaa9f11e6e1",
+        "state": "closed",
+        "merged_at": "2026-10-10T19:22:03Z",
+        "ancestor_of_captured_main": true
+      },
+      {
+        "number": 5,
+        "head": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+        "merge_commit": "f6630b450e7fc60e7bd432bfe1a131efb8d96fdc",
+        "state": "closed",
+        "merged_at": "2026-10-10T19:13:47Z",
+        "ancestor_of_captured_main": true
+      },
+      {
+        "number": 1,
+        "head": "48c5156f459597ce3f8ec486b3c9a20fc5543807",
+        "merge_commit": "53e347eb23d4e738c7bbd697a0eaa7effd99fc2a",
+        "state": "closed",
+        "merged_at": "2026-09-28T08:36:16Z",
+        "ancestor_of_captured_main": true
+      }
+    ]
+  },
+  "open_pull_requests": [],
+  "new_incoming_head": {
+    "branch": "codex/word-vba-text-intrinsics-20261121",
+    "head": "2714483aafe059065b00dac23032023f9ddf7aac",
+    "feature_commit": "801ad67ba8bf98083af79bcf4acb79757cf0f351",
+    "qualification_commit": "2714483aafe059065b00dac23032023f9ddf7aac"
+  },
+  "historical_proof_source": {
+    "commit": "2714483aafe059065b00dac23032023f9ddf7aac",
+    "path": "docs/validation/word-vba-continuation-20261121/intake.json"
+  },
+  "verification": {
+    "runtime_tests_claimed": false,
+    "github_actions_queried": false,
+    "github_actions_awaited": false,
+    "remote_ref_mutations_by_auditor": false
+  },
+  "limitations": [
+    "This immutable snapshot does not claim that remote branches or main cannot advance after capture. Refresh main and current branch/PR heads before final publication.",
+    "Incoming Word qualification is historical evidence, not tests executed by this intake audit.",
+    "Historical equivalent PR heads are deliberately not replayed over later source. Exact current Git-object comparisons establish equivalence to ancestor replacements."
+  ],
+  "historical_equivalence_proofs": [
+    {
+      "source": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "replacement": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "kind": "changed_paths",
+      "replacement_ancestor_of_captured_main": true,
+      "source_only_commits": [
+        "c34945761e7991f5fe49037d79529acdd260b31c",
+        "5afff4b86523250c93d949eb6c010e49d9fabd82"
+      ],
+      "changed_paths": [
+        "docs/odf-export-fidelity.md",
+        "docs/validation/german-proofing-recovery-20261117/README.md",
+        "docs/validation/odt-field-continuation-20261117/README.md",
+        "docs/validation/odt-field-continuation-20261117/audit-portability.json",
+        "docs/validation/odt-field-continuation-20261117/audit_recovery.py",
+        "docs/validation/odt-field-continuation-20261117/evidence-index.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/package-config.json",
+        "docs/validation/odt-field-continuation-20261117/pull-request-draft.md",
+        "docs/validation/odt-field-continuation-20261117/recovered-original-source.commit",
+        "docs/validation/odt-field-continuation-20261117/recovery-audit.json",
+        "docs/validation/odt-field-continuation-20261117/resolved-pubspec.lock",
+        "docs/validation/odt-field-continuation-20261117/run_logged.py",
+        "docs/validation/odt-field-continuation-20261117/runtime.json",
+        "docs/validation/odt-field-continuation-20261117/source-recovery.json",
+        "docs/validation/odt-field-continuation-20261117/test-workspace-pubspec.yaml",
+        "docs/validation/odt-field-continuation-20261117/verification.json",
+        "docs/validation/odt-field-continuation-20261117/verify_evidence.py",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+        "packages/quds_office_engine/test/odt_imported_field_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_page_field_fidelity_test.dart"
+      ],
+      "declared_paths_equal_actual_delta": true,
+      "blob_comparisons": [
+        {
+          "path": "docs/odf-export-fidelity.md",
+          "source_entry": "100644 blob e0ec6e28f094f9be3101a165bb2f8aba52f10ce7\tdocs/odf-export-fidelity.md",
+          "replacement_entry": "100644 blob e0ec6e28f094f9be3101a165bb2f8aba52f10ce7\tdocs/odf-export-fidelity.md"
+        },
+        {
+          "path": "docs/validation/german-proofing-recovery-20261117/README.md",
+          "source_entry": "100644 blob c645d21a4fecd134bf6a24cd13fa703579846e1c\tdocs/validation/german-proofing-recovery-20261117/README.md",
+          "replacement_entry": "100644 blob c645d21a4fecd134bf6a24cd13fa703579846e1c\tdocs/validation/german-proofing-recovery-20261117/README.md"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/README.md",
+          "source_entry": "100644 blob 8146c83246daf3599e662b1dd683cb97300803d6\tdocs/validation/odt-field-continuation-20261117/README.md",
+          "replacement_entry": "100644 blob 8146c83246daf3599e662b1dd683cb97300803d6\tdocs/validation/odt-field-continuation-20261117/README.md"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/audit-portability.json",
+          "source_entry": "100644 blob ef170d72cf34c4b3687b5c1e419edb6fc38224c8\tdocs/validation/odt-field-continuation-20261117/audit-portability.json",
+          "replacement_entry": "100644 blob ef170d72cf34c4b3687b5c1e419edb6fc38224c8\tdocs/validation/odt-field-continuation-20261117/audit-portability.json"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/audit_recovery.py",
+          "source_entry": "100644 blob a94f21fd4168af21c1fa98032f8de3e22a69fcc6\tdocs/validation/odt-field-continuation-20261117/audit_recovery.py",
+          "replacement_entry": "100644 blob a94f21fd4168af21c1fa98032f8de3e22a69fcc6\tdocs/validation/odt-field-continuation-20261117/audit_recovery.py"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence-index.json",
+          "source_entry": "100644 blob acb5422a76561ecf87b900c2b6b5e544d2eb75ca\tdocs/validation/odt-field-continuation-20261117/evidence-index.json",
+          "replacement_entry": "100644 blob acb5422a76561ecf87b900c2b6b5e544d2eb75ca\tdocs/validation/odt-field-continuation-20261117/evidence-index.json"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.inputs.json.gz",
+          "source_entry": "100644 blob 33fbc0410ec5a7337be6caa033f949b1cd9267aa\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.inputs.json.gz",
+          "replacement_entry": "100644 blob 33fbc0410ec5a7337be6caa033f949b1cd9267aa\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.inputs.json.gz"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.json",
+          "source_entry": "100644 blob 689f4d104e14eaf48b8e2db6b8168a5966e8e3a5\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.json",
+          "replacement_entry": "100644 blob 689f4d104e14eaf48b8e2db6b8168a5966e8e3a5\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.json"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stderr.gz",
+          "source_entry": "100644 blob 86e43ea3218b5890302b754bbf8927f94e79f7ee\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stderr.gz",
+          "replacement_entry": "100644 blob 86e43ea3218b5890302b754bbf8927f94e79f7ee\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stderr.gz"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stdout.gz",
+          "source_entry": "100644 blob d3ebc28122aea1ac61bf9583af637de490436639\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stdout.gz",
+          "replacement_entry": "100644 blob d3ebc28122aea1ac61bf9583af637de490436639\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stdout.gz"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.inputs.json.gz",
+          "source_entry": "100644 blob 7e230ee642d2775c8fedc35ebfacee2007174b8e\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.inputs.json.gz",
+          "replacement_entry": "100644 blob 7e230ee642d2775c8fedc35ebfacee2007174b8e\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.inputs.json.gz"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.json",
+          "source_entry": "100644 blob a8f70f98dfe30e6acc0b16f55430c3ac3e4aa12c\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.json",
+          "replacement_entry": "100644 blob a8f70f98dfe30e6acc0b16f55430c3ac3e4aa12c\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.json"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stderr.gz",
+          "source_entry": "100644 blob 86e43ea3218b5890302b754bbf8927f94e79f7ee\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stderr.gz",
+          "replacement_entry": "100644 blob 86e43ea3218b5890302b754bbf8927f94e79f7ee\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stderr.gz"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stdout.gz",
+          "source_entry": "100644 blob 532fe3f24fec0cdee150019cd8f9797ecc623b95\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stdout.gz",
+          "replacement_entry": "100644 blob 532fe3f24fec0cdee150019cd8f9797ecc623b95\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stdout.gz"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.inputs.json.gz",
+          "source_entry": "100644 blob 8cc251232eada488fff92cd62468bb351f459a7a\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-node.inputs.json.gz",
+          "replacement_entry": "100644 blob 8cc251232eada488fff92cd62468bb351f459a7a\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-node.inputs.json.gz"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.json",
+          "source_entry": "100644 blob f121265eeb266c2305a6be1262071259a3091049\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-node.json",
+          "replacement_entry": "100644 blob f121265eeb266c2305a6be1262071259a3091049\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-node.json"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stderr.gz",
+          "source_entry": "100644 blob 86e43ea3218b5890302b754bbf8927f94e79f7ee\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-node.stderr.gz",
+          "replacement_entry": "100644 blob 86e43ea3218b5890302b754bbf8927f94e79f7ee\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-node.stderr.gz"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stdout.gz",
+          "source_entry": "100644 blob f4280f38fe5539ca4d1696b199be3e000a000bea\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-node.stdout.gz",
+          "replacement_entry": "100644 blob f4280f38fe5539ca4d1696b199be3e000a000bea\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-node.stdout.gz"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.inputs.json.gz",
+          "source_entry": "100644 blob bbf6b28978a480d2503ce1b9262a1df67a7f6366\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-vm.inputs.json.gz",
+          "replacement_entry": "100644 blob bbf6b28978a480d2503ce1b9262a1df67a7f6366\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-vm.inputs.json.gz"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.json",
+          "source_entry": "100644 blob e9d41011c0f51400af3bb805c770bddb81593627\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-vm.json",
+          "replacement_entry": "100644 blob e9d41011c0f51400af3bb805c770bddb81593627\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-vm.json"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stderr.gz",
+          "source_entry": "100644 blob 86e43ea3218b5890302b754bbf8927f94e79f7ee\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stderr.gz",
+          "replacement_entry": "100644 blob 86e43ea3218b5890302b754bbf8927f94e79f7ee\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stderr.gz"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stdout.gz",
+          "source_entry": "100644 blob 9094d230bd90d63ae770fff1879b6a6396691a19\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stdout.gz",
+          "replacement_entry": "100644 blob 9094d230bd90d63ae770fff1879b6a6396691a19\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stdout.gz"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/package-config.json",
+          "source_entry": "100644 blob 4cd8acc7a9b9090400d8ddb7e1d64dcd604a3235\tdocs/validation/odt-field-continuation-20261117/package-config.json",
+          "replacement_entry": "100644 blob 4cd8acc7a9b9090400d8ddb7e1d64dcd604a3235\tdocs/validation/odt-field-continuation-20261117/package-config.json"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/pull-request-draft.md",
+          "source_entry": "100644 blob 01acc165985da7b712c2698679483a74c1f1fd73\tdocs/validation/odt-field-continuation-20261117/pull-request-draft.md",
+          "replacement_entry": "100644 blob 01acc165985da7b712c2698679483a74c1f1fd73\tdocs/validation/odt-field-continuation-20261117/pull-request-draft.md"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/recovered-original-source.commit",
+          "source_entry": "100644 blob 416b76ae102bf364ac37e7dca4361e09f5ff008c\tdocs/validation/odt-field-continuation-20261117/recovered-original-source.commit",
+          "replacement_entry": "100644 blob 416b76ae102bf364ac37e7dca4361e09f5ff008c\tdocs/validation/odt-field-continuation-20261117/recovered-original-source.commit"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/recovery-audit.json",
+          "source_entry": "100644 blob e3b618b38616277085a71ba3ff11c787f2d1028c\tdocs/validation/odt-field-continuation-20261117/recovery-audit.json",
+          "replacement_entry": "100644 blob e3b618b38616277085a71ba3ff11c787f2d1028c\tdocs/validation/odt-field-continuation-20261117/recovery-audit.json"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/resolved-pubspec.lock",
+          "source_entry": "100644 blob 1d3ea1eada7ee8eecf7732a1fc2bcaedc03a76f7\tdocs/validation/odt-field-continuation-20261117/resolved-pubspec.lock",
+          "replacement_entry": "100644 blob 1d3ea1eada7ee8eecf7732a1fc2bcaedc03a76f7\tdocs/validation/odt-field-continuation-20261117/resolved-pubspec.lock"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/run_logged.py",
+          "source_entry": "100644 blob b762a1f0cd19c2dac856ec1a8736354492b7d12e\tdocs/validation/odt-field-continuation-20261117/run_logged.py",
+          "replacement_entry": "100644 blob b762a1f0cd19c2dac856ec1a8736354492b7d12e\tdocs/validation/odt-field-continuation-20261117/run_logged.py"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/runtime.json",
+          "source_entry": "100644 blob 6067874fc355b418f55b0ca05d7c9e4b5a1cf4cf\tdocs/validation/odt-field-continuation-20261117/runtime.json",
+          "replacement_entry": "100644 blob 6067874fc355b418f55b0ca05d7c9e4b5a1cf4cf\tdocs/validation/odt-field-continuation-20261117/runtime.json"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/source-recovery.json",
+          "source_entry": "100644 blob 745160d6bad6db04ee2dc13a8808e5109d0cde18\tdocs/validation/odt-field-continuation-20261117/source-recovery.json",
+          "replacement_entry": "100644 blob 745160d6bad6db04ee2dc13a8808e5109d0cde18\tdocs/validation/odt-field-continuation-20261117/source-recovery.json"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/test-workspace-pubspec.yaml",
+          "source_entry": "100644 blob b3237978f2f20b516ea19d47d418c2d9b8c39322\tdocs/validation/odt-field-continuation-20261117/test-workspace-pubspec.yaml",
+          "replacement_entry": "100644 blob b3237978f2f20b516ea19d47d418c2d9b8c39322\tdocs/validation/odt-field-continuation-20261117/test-workspace-pubspec.yaml"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/verification.json",
+          "source_entry": "100644 blob b2bed5a868f78d74bfb2ed171afc94da88e880ea\tdocs/validation/odt-field-continuation-20261117/verification.json",
+          "replacement_entry": "100644 blob b2bed5a868f78d74bfb2ed171afc94da88e880ea\tdocs/validation/odt-field-continuation-20261117/verification.json"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/verify_evidence.py",
+          "source_entry": "100644 blob 041838e2cf114134d270d427ae3bc2f7f34bcb5e\tdocs/validation/odt-field-continuation-20261117/verify_evidence.py",
+          "replacement_entry": "100644 blob 041838e2cf114134d270d427ae3bc2f7f34bcb5e\tdocs/validation/odt-field-continuation-20261117/verify_evidence.py"
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+          "source_entry": "100644 blob 06e7d40ce0758a7df17700b94a31e0d184534f18\tpackages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+          "replacement_entry": "100644 blob 06e7d40ce0758a7df17700b94a31e0d184534f18\tpackages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+          "source_entry": "100644 blob 4e30fa0fef45350b6d0ad53ebf6e6a75bded48d8\tpackages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+          "replacement_entry": "100644 blob 4e30fa0fef45350b6d0ad53ebf6e6a75bded48d8\tpackages/quds_office_engine/lib/src/word/serial/word_deserializer.dart"
+        },
+        {
+          "path": "packages/quds_office_engine/test/odt_imported_field_fidelity_test.dart",
+          "source_entry": "100644 blob c1082c3340f375425d11a6b5944a46b8f1751484\tpackages/quds_office_engine/test/odt_imported_field_fidelity_test.dart",
+          "replacement_entry": "100644 blob c1082c3340f375425d11a6b5944a46b8f1751484\tpackages/quds_office_engine/test/odt_imported_field_fidelity_test.dart"
+        },
+        {
+          "path": "packages/quds_office_engine/test/odt_page_field_fidelity_test.dart",
+          "source_entry": "100644 blob 0a4331683f037aa8a23e70b043bc6a7b8af2de62\tpackages/quds_office_engine/test/odt_page_field_fidelity_test.dart",
+          "replacement_entry": "100644 blob 0a4331683f037aa8a23e70b043bc6a7b8af2de62\tpackages/quds_office_engine/test/odt_page_field_fidelity_test.dart"
+        }
+      ],
+      "exact_equal": true
+    },
+    {
+      "source": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "replacement": "4eaca83b192897edad82658107dfeb5bcbed0920",
+      "kind": "full_tree",
+      "replacement_ancestor_of_captured_main": true,
+      "source_tree": "3d828f3e1779b08ae84dc526e0c7236882d69a26",
+      "replacement_tree": "3d828f3e1779b08ae84dc526e0c7236882d69a26",
+      "exact_equal": true
+    },
+    {
+      "source": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "replacement": "52c73ae4dbadf2ca00a5d619144350ccc353b31a",
+      "kind": "full_tree",
+      "replacement_ancestor_of_captured_main": true,
+      "source_tree": "fcceef2418d7463f2a566623f22f8f0862dd1d01",
+      "replacement_tree": "fcceef2418d7463f2a566623f22f8f0862dd1d01",
+      "exact_equal": true
+    },
+    {
+      "source": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "replacement": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "kind": "full_tree",
+      "replacement_ancestor_of_captured_main": true,
+      "source_tree": "8eaa993960d6fb6b6b484326d825a550f969ea0a",
+      "replacement_tree": "8eaa993960d6fb6b6b484326d825a550f969ea0a",
+      "exact_equal": true
+    },
+    {
+      "source": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "replacement": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "kind": "full_tree",
+      "replacement_ancestor_of_captured_main": true,
+      "source_tree": "b3345f76c2e3cd8e1bad13b554f2d24555aea9ce",
+      "replacement_tree": "b3345f76c2e3cd8e1bad13b554f2d24555aea9ce",
+      "exact_equal": true
+    },
+    {
+      "source": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "replacement": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "kind": "full_tree",
+      "replacement_ancestor_of_captured_main": true,
+      "source_tree": "aea95c000855820c5ecf205d3833298539f01753",
+      "replacement_tree": "aea95c000855820c5ecf205d3833298539f01753",
+      "exact_equal": true
+    },
+    {
+      "source": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "replacement": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "kind": "full_tree",
+      "replacement_ancestor_of_captured_main": true,
+      "source_tree": "097bb5511b2ddf2e00a398da7055b310693fe054",
+      "replacement_tree": "097bb5511b2ddf2e00a398da7055b310693fe054",
+      "exact_equal": true
+    },
+    {
+      "source": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "replacement": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+      "kind": "full_tree",
+      "replacement_ancestor_of_captured_main": true,
+      "source_tree": "072bded0da30965ac975f9a8a3c08c7a46829460",
+      "replacement_tree": "072bded0da30965ac975f9a8a3c08c7a46829460",
+      "exact_equal": true
+    },
+    {
+      "source": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "replacement": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "kind": "full_tree",
+      "replacement_ancestor_of_captured_main": true,
+      "source_tree": "e3adc9e259c6120b4b1e3e03177391f880243e13",
+      "replacement_tree": "e3adc9e259c6120b4b1e3e03177391f880243e13",
+      "exact_equal": true
+    },
+    {
+      "source": "ec70b9423febefcb9b104629d2ad48b0c96e9082",
+      "replacement": "698209aaa6e7f1350b6541df5eb192b7b233443d",
+      "kind": "changed_paths",
+      "replacement_ancestor_of_captured_main": true,
+      "source_only_commits": [
+        "ec70b9423febefcb9b104629d2ad48b0c96e9082"
+      ],
+      "changed_paths": [
+        "packages/quds_office_editor/lib/src/embed/office_system_fonts_io.dart",
+        "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart"
+      ],
+      "declared_paths_equal_actual_delta": true,
+      "blob_comparisons": [
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/office_system_fonts_io.dart",
+          "source_entry": "100644 blob dc68414500242c074a7ce5403496cfbda5499e0d\tpackages/quds_office_editor/lib/src/embed/office_system_fonts_io.dart",
+          "replacement_entry": "100644 blob dc68414500242c074a7ce5403496cfbda5499e0d\tpackages/quds_office_editor/lib/src/embed/office_system_fonts_io.dart"
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+          "source_entry": "100644 blob 2bc032449fa03a1efd9adf901e8d06b7c4f8f482\tpackages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+          "replacement_entry": "100644 blob 2bc032449fa03a1efd9adf901e8d06b7c4f8f482\tpackages/quds_office_engine/lib/src/word/layout/word_layout.dart"
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+          "source_entry": "100644 blob 0d15a684ea9569f9ef0740df4b24381f501b23cf\tpackages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+          "replacement_entry": "100644 blob 0d15a684ea9569f9ef0740df4b24381f501b23cf\tpackages/quds_office_engine/lib/src/word/serial/word_deserializer.dart"
+        }
+      ],
+      "exact_equal": true
+    },
+    {
+      "source": "128a187d69555db80890c2a1945a442b951f9c74",
+      "replacement": "d790bca444eef0e160a75ce3d8cb555af541004f",
+      "kind": "full_tree",
+      "replacement_ancestor_of_captured_main": true,
+      "source_tree": "cc9dd97799056d82ee604ca071c023cd4a7d63c1",
+      "replacement_tree": "cc9dd97799056d82ee604ca071c023cd4a7d63c1",
+      "exact_equal": true
+    },
+    {
+      "source": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+      "replacement": "0ff7d23929e4640af6c1d57f87c7ac71b73d2ed4",
+      "kind": "full_tree",
+      "replacement_ancestor_of_captured_main": true,
+      "source_tree": "955a0d933240e0cc62eceff0ee11fd89e0f0caa2",
+      "replacement_tree": "955a0d933240e0cc62eceff0ee11fd89e0f0caa2",
+      "exact_equal": true
+    },
+    {
+      "source": "b8ddaaeb581e010467de304c828764d353149102",
+      "replacement": "d6010059644b34accd6f188e0e2a4863ab63e318",
+      "kind": "full_tree",
+      "replacement_ancestor_of_captured_main": true,
+      "source_tree": "7654a8905c705a04136e37a5271eb95d8a9a4e21",
+      "replacement_tree": "7654a8905c705a04136e37a5271eb95d8a9a4e21",
+      "exact_equal": true
+    },
+    {
+      "source": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "replacement": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+      "kind": "full_tree",
+      "replacement_ancestor_of_captured_main": true,
+      "source_tree": "a30201059a62b8034ac747367c1af8de054a2afb",
+      "replacement_tree": "a30201059a62b8034ac747367c1af8de054a2afb",
+      "exact_equal": true
+    },
+    {
+      "source": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "replacement": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e",
+      "kind": "full_tree",
+      "replacement_ancestor_of_captured_main": true,
+      "source_tree": "b73ebcc6f72c49a2883c5749f6450d497c647324",
+      "replacement_tree": "b73ebcc6f72c49a2883c5749f6450d497c647324",
+      "exact_equal": true
+    }
+  ],
+  "integration_checks": [
+    {
+      "path": "packages/quds_mail_ui/lib/src/workspace/message_list.dart",
+      "matches_captured_main": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_workspace_strings.dart",
+      "matches_captured_main": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/support/office_macro_cli.dart",
+      "matches_captured_main": true
+    },
+    {
+      "path": "packages/quds_mail_core/test/header_search_boolean_test.dart",
+      "matches_captured_main": true
+    },
+    {
+      "path": "packages/quds_mail_core/test/header_search_boolean_truth_table_test.dart",
+      "matches_incoming_path": "packages/quds_mail_core/test/header_search_boolean_test.dart",
+      "blob": "d05b7eff5eea4d162e5bfb15c6209816ecb46f36"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+      "matches_incoming_head": true,
+      "sha256": "4f969f9de6259dd6362440f939a931be7e647be5001ce002525af188f8242b94"
+    },
+    {
+      "path": "packages/quds_office_engine/test/fixtures/vba_conformance/text_intrinsics_v1.json",
+      "matches_incoming_head": true,
+      "sha256": "d052ef8c376fcf4bf9f02a9912521ea5219ee786f998010edf5eeeb682fa13b4"
+    }
+  ],
+  "counts": {
+    "starting_fork_branches": 24,
+    "fork_heads_already_ancestors": 23,
+    "new_fork_heads": 1,
+    "fork_heads_ancestors_after_integration": 24,
+    "pull_requests": 300,
+    "pull_request_heads_ancestors": 286,
+    "pull_request_heads_exact_equivalents": 14,
+    "upstream_branches": 4,
+    "upstream_pull_requests": 4,
+    "open_pull_requests": 0,
+    "uncovered_captured_heads_after_integration": 0
+  },
+  "audit_completed_at_utc": "2026-11-21T10:11:14.090652+00:00"
+}

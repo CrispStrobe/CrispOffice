@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Add bounded account-wide cached-header search across synchronized memberships
+  and saved browse windows. Reuse the Boolean query contract, deduplicate label
+  memberships, retain folder provenance and body availability without loading
+  payloads, and expose explicit scan continuation and local coverage metadata.
+  Bind in-memory cursors to the unchanged account, query and repository owner;
+  committed changes and reopen require a fresh search. No schema migration.
+
 - Add schema-v8 synchronization checkpoints with monotonic per-mailbox
   revisions, last committed page times and explicit provider continuation.
   Commit them atomically with headers, memberships, tombstones and cursors;

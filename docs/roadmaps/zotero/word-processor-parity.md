@@ -44,6 +44,7 @@ results retain their original source and platform attribution.
 | Research materials | Read-only direct-child note previews and attachment metadata | No separate attachment-file download or Zotero library write workflow |
 | DOCX persistence | Active fields/preferences, native notes, rich bibliography structure, tables and embedded pictures use supported save/reopen paths | Local tests are separate from actual Word/LibreOffice application round trips |
 | Cross-word-processor transfer | Native export/import handshake, temporary metadata hyperlinks, DOCX import/save/reopen and ODT carrier export; complete native formatting before import publication | Direct native ODT reference marks and installed Zotero/Word/LibreOffice plugin acceptance remain separate; actual converter findings are recorded explicitly |
+| Native ODT inspection | Read-only inventory of citation ReferenceMarks, bibliography TextSections, exact story/paragraph/cell ownership, cached text and original preferences; JSON diagnostic CLI | Rich ODT loading, active-field conversion and installed-plugin round trips remain separate |
 
 The native controls use Zotero's own CSL processor. The separate basic/offline
 citation and single-item preview/export paths retain their narrower formatting
@@ -290,6 +291,24 @@ a continued numbered list from `4., 5.` to `4., 1.`. A flat-list control reprodu
 the change without nested tables. The strict verifier keeps that route failed;
 no reader heuristic conflates separate numbering instances to conceal it.
 
+## Delivered increment: native ODT Zotero inventory
+
+`OdfZotero.inspect` reads native LibreOffice citation marks and bibliography
+sections without changing the document. It preserves full names, logical codes,
+unknown citation metadata, paragraph ranges, UTF-16 offsets and original
+preference strings. Namespace-qualified owner chains distinguish the body,
+individual notes, table cells, comments, drawings, headers/footers and revisions.
+Duplicate, missing, crossed, nested, repeated, protected, linked and unsupported
+structures produce explicit findings. Resource exhaustion fails the whole
+inspection. A command-line diagnostic emits the typed inventory as JSON.
+
+The [native-input contract](native-odt-input.md) documents the exact scope and
+bounds; the [validation record](../../validation/zotero-odt-inventory-20261121/README.md)
+records executed checks and incremental remote preservation. The source uses
+the existing Zotero metadata semantics without weakening Word/HTTP callbacks.
+This completes the inventory prerequisite. It does not make ODT editable or
+change ordinary ODT export's cached-result behavior.
+
 ## Next implementation and acceptance steps
 
 1. **Finish installed-application transfer acceptance and native ODT input.**
@@ -298,10 +317,11 @@ no reader heuristic conflates separate numbering instances to conceal it.
    against identified release versions. Check citations, rich bibliographies,
    authored notes, tables, images and repeated transfers. Native ODT input first
    needs a rich document reader: the current tree has a bounded ODF text
-   extractor and ODT exporter, not an ODT-to-Word reader. Start with the
-   [native ODT inventory and ownership contract](native-odt-input.md), then
+   extractor, ODT exporter and native Zotero inventory, not an ODT-to-Word
+   reader. Build on the implemented
+   [native ODT inventory and ownership contract](native-odt-input.md) to
    implement and qualify rich import before claiming active-ODT editing.
-   The current Quds import path remains DOCX; the contract is not an implementation.
+   The current editable Quds import path remains DOCX.
 2. **Extend table structure and formatting.** Improve merged-row height distribution and map
    header/footer row groups and custom styles to native structures with explicit
    ownership. Qualify their citation order, geometry, save/reopen behavior and
