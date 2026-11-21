@@ -1,0 +1,17 @@
+{
+  "testCommand": "flutter --no-version-check test --no-pub --reporter=json test/studio_about_test.dart",
+  "analysisCommand": "dart analyze lib/studio_about.dart test/studio_about_test.dart",
+  "testExit": 0,
+  "analysisExit": 0,
+  "visibleTestsPassed": 11,
+  "done": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 14152
+    }
+  ],
+  "testLogSha256": "2b6b85cabe895032d22716a465fe5ccc78ea4a5118aafad74c446469e4833550",
+  "analysis": "Analyzing studio_about.dart, studio_about_test.dart...\nNo issues found!\n",
+  "platformLimitations": []
+}

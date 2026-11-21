@@ -1,0 +1,13 @@
+{
+  "name": "engine-analysis",
+  "command": [
+    "dart",
+    "analyze",
+    "--fatal-infos"
+  ],
+  "cwd": "packages/quds_office_engine",
+  "exitCode": 0,
+  "durationSeconds": 23.035,
+  "stdoutSha256": "c557a0c697cdb937104f1423d3c02d6a1062917cb0bcb2830d91db8cf6192af0",
+  "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}
