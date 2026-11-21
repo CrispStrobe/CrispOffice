@@ -930,9 +930,24 @@ final class WordProofingSession extends ChangeNotifier {
     _observedDocument = document;
     _observedRevision = revision;
     _observedConfiguration = configuration;
-    final trigger = contentEdit ? _typingTrigger() : null;
     _invalidate();
-    if (trigger != null) _scheduleCompletion(trigger);
+    if (contentEdit) _queueTypingEvaluation();
+  }
+
+  bool _typingEvaluationQueued = false;
+
+  /// Hosts may notify while an edit is still in progress (for example from
+  /// a history batch, before the caret moves past the inserted text), so the
+  /// caret is read once the edit's synchronous work is done.
+  void _queueTypingEvaluation() {
+    if (_typingEvaluationQueued) return;
+    _typingEvaluationQueued = true;
+    scheduleMicrotask(() {
+      _typingEvaluationQueued = false;
+      if (_disposed) return;
+      final trigger = _typingTrigger();
+      if (trigger != null) _scheduleCompletion(trigger);
+    });
   }
 
   static final RegExp _wordCharacter = RegExp(
@@ -966,13 +981,6 @@ final class WordProofingSession extends ChangeNotifier {
     final typed = text[offset - 1];
     if (_sentenceEnds.contains(typed)) return _Trigger.sentence;
     if (_wordCharacter.hasMatch(typed)) return null;
-    // Typing a space after sentence punctuation also completes the sentence
-    // (the punctuation may have been inserted by autocorrect or paste).
-    final before = text.substring(0, offset).trimRight();
-    if (before.isNotEmpty &&
-        _sentenceEnds.contains(before[before.length - 1])) {
-      return _Trigger.sentence;
-    }
     return _Trigger.word;
   }
 
@@ -998,7 +1006,7 @@ final class WordProofingSession extends ChangeNotifier {
   /// there, without a provider call. The host notifies its own listeners.
   void _releaseTypingPosition() {
     final typing = _typing;
-    if (typing == null) return;
+    if (typing == null || _typingEvaluationQueued) return;
     final caret = _caretPosition?.call();
     if (caret != null &&
         identical(caret.paragraph, typing.paragraph) &&
@@ -1803,7 +1811,13 @@ final class WordProofingSession extends ChangeNotifier {
             : distance + captured.paragraphs.length;
       }
 
-      rest.sort((a, b) => rank(a).compareTo(rank(b)));
+      // Ties keep document order (List.sort is not stable).
+      rest.sort((a, b) {
+        final byRank = rank(a).compareTo(rank(b));
+        return byRank != 0
+            ? byRank
+            : position[a.paragraph]!.compareTo(position[b.paragraph]!);
+      });
     }
     return [?priority, ...rest];
   }
@@ -1923,7 +1937,6 @@ final class WordProofingSession extends ChangeNotifier {
     // the edited paragraph; each one republishes the whole document.
     final progressStride = (checkOrder.length + 19) ~/ 20;
     final slice = Stopwatch()..start();
-    final all = useManual || kinds.length == _Kind.values.length;
     for (var position = 0; position < checkOrder.length; position++) {
       final snapshot = checkOrder[position];
       // Yield even when a provider Future completes synchronously, but only
@@ -1938,7 +1951,6 @@ final class WordProofingSession extends ChangeNotifier {
       // Reuse results for the same text and add the missing provider groups.
       final previous = _cache[snapshot.paragraph];
       final reusable =
-          !all &&
           !useManual &&
           previous != null &&
           !previous.includesManual &&
@@ -1955,7 +1967,10 @@ final class WordProofingSession extends ChangeNotifier {
           documentId: documentId,
           revision: revision,
         );
-        final ordinary = await _service.check(request, only: _filter(missing));
+        final ordinary = await _service.check(
+          request,
+          only: useManual ? null : _filter(missing),
+        );
         if (!current()) return _summary;
         final report = useManual
             ? mergeOfficeProofingReports(
@@ -1969,7 +1984,7 @@ final class WordProofingSession extends ChangeNotifier {
         paragraphReports.add(report);
       }
       checkedParagraphCount++;
-      final checkedKinds = all
+      final checkedKinds = useManual
           ? _Kind.values.toSet()
           : {...missing, if (reusable) ...previous.kinds};
       _cache[snapshot.paragraph] = _CachedParagraph(
@@ -2162,6 +2177,7 @@ final class WordProofingSession extends ChangeNotifier {
     // an unfinished word or sentence: keep it in the cache but do not flag
     // it until the word is completed or the caret moves away.
     final caret = _schedule.hideTypingErrors ? _typing : null;
+    final allKinds = _available(_Kind.values.toSet());
     _hidAtCaret = false;
     _findingTexts.clear();
     for (final snapshot in captured.paragraphs) {
@@ -2171,9 +2187,11 @@ final class WordProofingSession extends ChangeNotifier {
         allowOrdinaryPreview: true,
       );
       if (cached == null) continue;
-      if ((!useManual || _cache[snapshot.paragraph]!.includesManual) &&
+      final entry = _cache[snapshot.paragraph]!;
+      if ((!useManual || entry.includesManual) &&
           cached.isNotEmpty &&
-          cached.every((report) => report.complete)) {
+          cached.every((report) => report.complete) &&
+          entry.kinds.containsAll(allKinds)) {
         checked++;
       }
       for (var index = 0; index < snapshot.segments.length; index++) {
@@ -2629,8 +2647,9 @@ final class WordProofingSession extends ChangeNotifier {
 
   static bool _lockedControl(WmlContentControlData control) {
     try {
-      final properties = WordContentControls.template(control)
-          .firstChild('sdtPr', namespaceUri: OfficeNamespaces.w);
+      final properties = WordContentControls.template(
+        control,
+      ).firstChild('sdtPr', namespaceUri: OfficeNamespaces.w);
       final lock = properties?.firstChild(
         'lock',
         namespaceUri: OfficeNamespaces.w,
