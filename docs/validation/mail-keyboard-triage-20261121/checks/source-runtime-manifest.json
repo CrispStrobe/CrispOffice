@@ -1,0 +1,146 @@
+{
+  "source_commit": "0b38435e553d14cbea505477a473061b134e308e",
+  "source_tree": "917f157fccdafc6adda8e2a802fcf95d94a136b1",
+  "tracked_tree_clean": true,
+  "files": {
+    "packages/quds_mail_ui/lib/src/workspace/message_list.dart": {
+      "sha256": "2bab763b7c5c8c24e939ea64fd6d1d651dd8703b7332097881c457b4b086f89d",
+      "git_blob": "9f6176250e9a5aa22eef85efd26222ac12093127"
+    },
+    "packages/quds_mail_ui/test/message_list_range_selection_test.dart": {
+      "sha256": "e5629ac5d633a85691b1bdd1c26e8845b4df1aba9b3fa986a345d91655f6bd38",
+      "git_blob": "3d9919c8b76d4b8eb55a5d23d4d01fedebd05cde"
+    },
+    "packages/quds_office_editor/example/lib/studio_mail_sync_dialog.dart": {
+      "sha256": "1f6b00393dee770f17917b447407b7907692c4561220df5ca2b888659454a7ab",
+      "git_blob": "b6fe30f840be6bc512d68d99c3090856c411ae84"
+    },
+    "packages/quds_office_editor/example/lib/studio_mail_workspace_strings.dart": {
+      "sha256": "7d7478b60c94accad957d6d792f8fd714dce20a7ed5d1fb48ca776bf8e47d515",
+      "git_blob": "e4668d5841509ec226ee06048c391f4af5f2ad5b"
+    },
+    "packages/quds_office_editor/example/lib/studio_shortcuts.dart": {
+      "sha256": "3dd2af2b4e3461cae167fccc0943ce0164f7fbf1557d7eeba6fb95504d418b87",
+      "git_blob": "05ee0d3e79c53c78ed1ee03f44f544f6fa5bb4c5"
+    },
+    "packages/quds_office_editor/example/lib/suite_workspace.dart": {
+      "sha256": "bc61a03ccd65e98a9015f2c4fd91468af2afcdf106cff992b2ba95065c4898cd",
+      "git_blob": "4fcee9ca6982958640829cd3fb373a31b358a0fd"
+    },
+    "packages/quds_office_editor/example/test/studio_mail_selection_help_test.dart": {
+      "sha256": "1f145483a577bd4a0fa1cf4ec103e4ec95f14413653e991211a26e21c1224468",
+      "git_blob": "fc25343919af05c9e223fbde132dde4d54cb4365"
+    },
+    "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart": {
+      "sha256": "7b4f5041bd80f594b4662079dbecfab5301d43646910ce6b9d36612194aa0905",
+      "git_blob": "b4df29a0ebab25e9504b1a08df34d0355dfc2b38"
+    },
+    "packages/quds_office_editor/example/test/studio_settings_test.dart": {
+      "sha256": "933e3cfda8941787d406bb0ab73ee85e2c30a3ee4148d48ebb42320959756570",
+      "git_blob": "3fd1d0a32d513f7fa4068a04939d72c89a1c7728"
+    },
+    "packages/quds_office_editor/example/test/studio_shortcuts_test.dart": {
+      "sha256": "fb620f61d43d3e4007c70b167c6b33780036d837cb072aa9815cc108d0e51fd2",
+      "git_blob": "aa21b68c54aab009a11e2078a51d8ec056e692b2"
+    },
+    "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart": {
+      "sha256": "8004b37ee6361112e2c9fc9674e20d28cedc23f1861147d45772745e68c8b6db",
+      "git_blob": "0b561d805e403324352994086f5669b5ab4325e5"
+    },
+    "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart": {
+      "sha256": "89cc6e5b692ca05eae21e6f839e913ad4373593144286bb1626ae19cf9a4822a",
+      "git_blob": "fbcba34d303b6035826558f71f74177840d1a90a"
+    },
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart": {
+      "sha256": "0b419bf9f13443c0090d74cb0bfca7a4542809ffabeafb070c1622e75501b7b7",
+      "git_blob": "a4bfcb52386c8c462e0845912543c33d89629314"
+    },
+    "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart": {
+      "sha256": "8b661f58db52b1b49496ddb7b8035b481665ce3797719dd8492cc61e55126785",
+      "git_blob": "80cb771c7e422d4141e2a71f328da4ff035be3e4"
+    },
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart": {
+      "sha256": "8a14e33899318fc874d1f07574f001b9f29c258feab3386773eb7f4313250a2c",
+      "git_blob": "4d1a9b752595e0ee7502e99c945988fa04ed8442"
+    },
+    "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart": {
+      "sha256": "5a782657d7ac1cfd243fb383210738639ba4df1ffda2b5a7bc752ead147559f0",
+      "git_blob": "36fe8cdc3ccc0bde2795bb0517f0d54f63c5cdfe"
+    },
+    "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart": {
+      "sha256": "4bd4c5c563ed1882583392919fdaebc7b5ec46d4748a1a0df12b1b30596367fa",
+      "git_blob": "aa289ea503704be28c936fc2ae712c2c68fa04a9"
+    },
+    "packages/quds_office_engine/test/office_macro_word_font_colors_test.dart": {
+      "sha256": "5a61b93b89d5de79daff6887827d62fa89b76435f18755a506f93248c9ef8a42",
+      "git_blob": "fcf6ce6b6e97bca428f9e3e930ccbce2fcbb1fc1"
+    },
+    "packages/quds_office_engine/test/office_vba_strcomp_test.dart": {
+      "sha256": "c0d4bd262ecbcefc29ae62047d53020599a57aab9682c0268d979074dc891987",
+      "git_blob": "d23ee1318045410420f4b7a294992f799892096e"
+    },
+    "packages/quds_office_engine/test/office_vba_word_comparison_colors_integration_test.dart": {
+      "sha256": "22debbb0546141d91c04f85a71b4fefd99378a54ca154279b250f9b1caa5ac8d",
+      "git_blob": "d66edd6460b1564a6f47a052531aa9977389db58"
+    },
+    "packages/quds_office_engine/test/office_vba_word_font_colors_test.dart": {
+      "sha256": "addcf9d015bbb97da86c1633043f17db7cc346eb83b8abc50482dea2ade291c8",
+      "git_blob": "7669fcbf0fad1aa268c1c33e2e2bed2a301528db"
+    },
+    "packages/quds_office_engine/tool/macros/web_vba_strcomp_smoke.dart": {
+      "sha256": "ae054261ad114e5ff0bebc18605c4bc77f7d4ddb68cc6620e8054baa15e64ec8",
+      "git_blob": "f74dc8fb61f22e64f31558d9efc063c49de4a8ac"
+    },
+    "packages/quds_office_engine/tool/macros/web_vba_word_comparison_colors_smoke.dart": {
+      "sha256": "aa4e9c07abda3fc9260a874031363be8b740fcbe7c4cba1993d9af19e9e32f3d",
+      "git_blob": "a9ed9ea7297e83c396bb2aa7143c0166c7d1ce17"
+    },
+    ".fvmrc": {
+      "sha256": "90bf8f8884c05a407f51d6ef651ba033fef99a656010f8bfcb65951e921f4294",
+      "git_blob": "4e46fba09bb9c1d654a226b7285b55b6949b3767"
+    },
+    "pubspec.yaml": {
+      "sha256": "453a1f8ab62db1c5577c424b058b50033a8d3b49b99c83862ab58a7e1108f74f",
+      "git_blob": "ba34bf9e2c1b0eb583e5f9e2d9ba9f236a660f96"
+    },
+    "pubspec.lock": {
+      "sha256": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+      "git_blob": "121a4f969c34933bd72f4ccce39bd08b30a4c147"
+    },
+    "analysis_options.yaml": {
+      "sha256": "2605ddd3559825e867cab2f5c4536f4172d6ba3514cb10da19f17d7dbe7179e4",
+      "git_blob": "e40c961c5eda58a8470527fb768f093aa7dbbfff"
+    },
+    "packages/quds_mail_ui/analysis_options.yaml": {
+      "sha256": "c3daa85e07661bf968765b6c240860e8bd24a196213c192a63f7a530f8150cfb",
+      "git_blob": "9aa1de6477f7db767dc57ba5152626516ba1625d"
+    },
+    "packages/quds_office_editor/example/analysis_options.yaml": {
+      "sha256": "23c7037f65bce027616f5953474e41aac06c2981feda7f8dbab94b3509949ed3",
+      "git_blob": "6be99ebf1c04294573572bb9c075e7ca2953ca88"
+    },
+    "packages/quds_office_engine/analysis_options.yaml": {
+      "sha256": "bf7d17dfdbc3aa4dcba00ef52506c50fd798bbcf3d0f907e875fa38bdfa9846f",
+      "git_blob": "f04c6cf0f30d4f8306eabe5dfd00f2a4c902b838"
+    }
+  },
+  "sdk_archive_url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.47.8-stable.tar.xz",
+  "sdk_archive_sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+  "flutter_version": {
+    "frameworkVersion": "3.47.8",
+    "channel": "stable",
+    "repositoryUrl": "https://github.com/flutter/flutter.git",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineBuildDate": "2026-10-22 20:34:48.330",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "flutterVersion": "3.47.8",
+    "flutterRoot": "/workspace/scratch/f433637a99a0/toolchain/flutter"
+  },
+  "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "github_actions": "NOT USED"
+}

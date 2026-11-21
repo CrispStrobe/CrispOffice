@@ -31,11 +31,12 @@ Shift+Up/Down/Home/End, Shift+Space and Shift+click, with English, German and
 Arabic help. Synchronized-view header search retains names and addresses for
 every visible From/To/Cc entry.
 
-**Locally qualified on Flutter 3.47.8 / Dart 3.13.7.** The 48 new regression
-cases passed: 43 range-selection cases, three localized-help cases and two
-address-search cases within the passing 35-case sync-dialog suite. See the
-[workflow](keyboard-triage.md), [detailed status](status-details.md#range-selection-and-synchronized-address-search--source-implemented)
-and [integrated qualification](../../validation/word-vba-comparison-colors-20261121/README.md).
+**Locally qualified.** Fresh native runs passed 272 shared Mail UI cases and
+176 Studio cases, including all 48 new regressions. All 23 changed Dart paths
+pass strict analysis and formatting. The original executor outage and incomplete
+Studio attempt remain in the record. See the [workflow](keyboard-triage.md),
+[detailed status](status-details.md#range-selection-and-synchronized-address-search--locally-qualified)
+and [work record](../../validation/mail-keyboard-triage-20261121/README.md).
 
 ## Mailbox
 
@@ -47,14 +48,12 @@ and [integrated qualification](../../validation/word-vba-comparison-colors-20261
 - Use Conversations for explicitly loaded threaded headers. Subjects alone
   never create a thread.
 - Open attachments through the shared attachment workflow.
-- Extend or contract checked visible ranges with Shift+arrow/Home/End/Space
-  or Shift+click; independent checks and bulk-action boundaries are preserved.
 
 Search covered by the current implementation:
 
 - local cached headers, including account/folder provenance;
 - saved, named header searches with fixed account scopes;
-- Boolean header expressions and visible From/To/Cc names and addresses;
+- Boolean header expressions;
 - explicit selection of a cached result to open retained bytes.
 
 Search does **not** silently fetch bodies or contact providers.
@@ -146,7 +145,7 @@ Host-specific limits:
 - [Scheduled send](scheduled-send.md)
 - [Saved searches](saved-searches.md)
 - [Conversations](conversations.md)
-- [Keyboard and range triage](keyboard-triage.md)
+- [Keyboard triage](keyboard-triage.md)
 - [Compose tools](compose-tools.md)
 - [CrispCloud integration](crispcloud-integration.md)
 

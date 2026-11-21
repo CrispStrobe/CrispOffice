@@ -2,9 +2,12 @@
 
 This increment advances everyday triage in the
 [ordered mail parity plan](README.md#desktop-mail-parity-ordered-increments).
-Its source and regression tests are committed. Fresh Flutter execution and
-visual qualification remain open because the local executor was unavailable;
-see the [work record](../../validation/mail-keyboard-triage-20261121/README.md).
+Its source and regression tests are committed. Fresh native qualification
+passed 272 shared Mail UI and 176 Studio cases, including the 48 new regressions.
+The changed Dart paths pass strict analysis and formatting. The original
+executor outage and interrupted first Studio run remain in the
+[work record](../../validation/mail-keyboard-triage-20261121/README.md);
+installed-platform and visual qualification remain separate.
 
 ## User workflow
 
@@ -84,20 +87,22 @@ scope/revision changes, disabled/read-only states and explicit batch snapshots.
 Connected/offline synchronized-search cases exercise all visible address groups,
 Bcc exclusion and the absence of provider/body-reading side effects.
 
-These are prepared regressions, not claimed passing executions. The work record
-separates source review and remote readback from Dart/Flutter tests, analyzer,
-formatter and visual checks. No GitHub Actions result is used as a substitute.
+All 48 new cases passed within the final 448-case Mail/Studio cohort total.
+Suite loaders and hidden lifecycle events are excluded. The first Studio run
+had an EWS startup timeout and later stalled; the same tests passed unchanged
+in the serialized final run. Raw events, initial failures, exact source/runtime
+identities and command exits are retained in the work record. This establishes
+native unit/widget behavior, not installed-platform or live-provider acceptance.
+No GitHub Actions result was queried or awaited.
 
 ## Next ordered boundaries
 
-1. Execute the focused UI and Studio regressions, then the existing shared
-   list/search/conversation cohorts with the pinned SDK and locked dependencies.
-2. Add explicit saved-search folder sets: stable account/mailbox identities,
+1. Add explicit saved-search folder sets: stable account/mailbox identities,
    existing-definition compatibility, no silent scope broadening, per-folder
    coverage, deduplication and stale-scope recovery.
-3. Complete repository-observed unified navigation and durable move/delete
+2. Complete repository-observed unified navigation and durable move/delete
    before expanding automatic rules and background account work.
-4. Continue richer identities/composition, provider Sent reconciliation and
+3. Continue richer identities/composition, provider Sent reconciliation and
    installed-platform/live-provider qualification.
 
 The comparator references inform workflow design; this increment does not

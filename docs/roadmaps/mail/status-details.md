@@ -1,8 +1,8 @@
 # Mail implementation status — 21 November 2026
-> **Detailed reference.** See [status.md](status.md) for the current overview. This file retains feature contracts and their qualification records.
+> **Detailed reference.** See [status.md](status.md) for the current overview. This file preserves the pre-rewrite detail and historical qualification notes.
 
 
-## Range selection and synchronized address search — source implemented
+## Range selection and synchronized address search — locally qualified
 
 Shared mailbox lists with checked actions now support Shift+Up/Down/Home/End,
 Shift+Space and Shift+click on rows or checkboxes. Ranges track the visible
@@ -17,14 +17,18 @@ entry, with empty-name fallbacks and no Bcc/body inclusion. Connected and
 offline regression cases assert that searching triggers no synchronization,
 download or body reads.
 
-**Fresh widget qualification passed on Flutter 3.47.8 / Dart 3.13.7.** The
-43 range-selection, three localized-help and two new address-search cases
-passed during Word macro integration; the complete sync-dialog suite passed
-35 cases. The [original work record](../../validation/mail-keyboard-triage-20261121/README.md)
-retains the initial executor failure. See the [workflow](keyboard-triage.md) and
-[integrated local evidence](../../validation/word-vba-comparison-colors-20261121/README.md).
-This does not claim installed-provider or visual acceptance. GitHub Actions
-were neither queried nor awaited.
+**Fresh native qualification passed.** After executor recovery, the full shared
+Mail UI suite passed 272 cases and the focused Studio cohort passed 176 cases,
+including the 43 new range, three help and two address-search cases. All 23
+changed Dart paths pass strict analysis and formatting. The original outage
+and incomplete first Studio run remain separate historical attempts; the final
+serialized Studio run passed unchanged. Installed keyboard/IME, visual and
+live-provider acceptance remain separate. See the [workflow](keyboard-triage.md) and
+[work record](../../validation/mail-keyboard-triage-20261121/README.md).
+GitHub Actions were neither queried nor awaited for this continuation.
+
+Word VBA integration independently reran the new range/help/address cases
+within its pinned UI gates; see the [combined qualification](../../validation/word-vba-comparison-colors-20261121/README.md).
 
 ## Scheduled Outbox and pre-submission Undo — locally qualified
 

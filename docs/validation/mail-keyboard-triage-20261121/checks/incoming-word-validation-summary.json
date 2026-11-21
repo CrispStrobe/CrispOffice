@@ -1,0 +1,113 @@
+{
+  "status": "PASS",
+  "finished_utc": "2026-11-21T21:50:32.494451+00:00",
+  "source_manifest": "incoming-word-source-manifest.json",
+  "tested_source_unchanged": true,
+  "source_files": 12,
+  "workspace_head_at_start": "00fbd252d659777dc85f886df150f23c7a76bf1e",
+  "workspace_head_at_completion": "00fbd252d659777dc85f886df150f23c7a76bf1e",
+  "unit_tests": {
+    "substantive_passed": 205,
+    "failed": 0,
+    "skipped": 0,
+    "per_file": {
+      "test/office_vba_strcomp_test.dart": 78,
+      "test/office_macro_word_font_colors_test.dart": 43,
+      "test/office_vba_word_font_colors_test.dart": 74,
+      "test/office_vba_word_comparison_colors_integration_test.dart": 10
+    },
+    "excluded_loader_setup_teardown": 6
+  },
+  "smokes": {
+    "strcomp": {
+      "vm_js_output_bytes_equal": true,
+      "output_sha256": "8df099428192365cb1befbcee1b3525555b69102f861c274c0c31b6581250aa5",
+      "details": {
+        "portable_receipts": 72,
+        "host_languages": [
+          "vba-excel",
+          "vba-powerpoint",
+          "vba-word"
+        ]
+      },
+      "counted_as_unit_tests": false
+    },
+    "colors": {
+      "vm_js_output_bytes_equal": true,
+      "output_sha256": "b832a9d6fdd14ca4a9f86309887b07d6a1c5035c49564d327d3839f4289b7ad8",
+      "details": {
+        "operations": 9,
+        "revision": 2,
+        "recordedSteps": 9,
+        "additionalReopens": 2,
+        "opaquePartsPreserved": true,
+        "colorMetadataPreserved": true,
+        "lateRollback": true,
+        "policyRefusals": 3,
+        "colors": [
+          "008000",
+          "800000",
+          "auto",
+          "000080",
+          "auto"
+        ],
+        "cellText": [
+          "0",
+          "-1"
+        ],
+        "nativePartSha256": {
+          "/word/document.xml": "0c0f7799033f5063a8df84cb2af95823ed027aed64314627a6683bfe566a2adc",
+          "/word/footer2.xml": "7f496c44db18929400d8affe7423efa6b1068b64a83ed30ddba3d49855273c3e",
+          "/word/header1.xml": "a51d311b47e6818e8fae4d2f92c515b2d4a071e82e619ca890d7a736438aeab1"
+        }
+      },
+      "counted_as_unit_tests": false
+    }
+  },
+  "receipts": {
+    "incoming-word-tests-final": {
+      "receipt": "incoming-word-tests-final.json",
+      "log": "incoming-word-tests-final.log",
+      "elapsed_seconds": 60.08,
+      "log_sha256": "4ae559fae3b65042e520545f28713240badf9cff71a858550e963b5a28e4aa7c"
+    },
+    "incoming-word-strcomp-vm-final": {
+      "receipt": "incoming-word-strcomp-vm-final.json",
+      "log": "incoming-word-strcomp-vm-final.log",
+      "elapsed_seconds": 26.877,
+      "log_sha256": "8df099428192365cb1befbcee1b3525555b69102f861c274c0c31b6581250aa5"
+    },
+    "incoming-word-colors-vm-final": {
+      "receipt": "incoming-word-colors-vm-final.json",
+      "log": "incoming-word-colors-vm-final.log",
+      "elapsed_seconds": 23.625,
+      "log_sha256": "b832a9d6fdd14ca4a9f86309887b07d6a1c5035c49564d327d3839f4289b7ad8"
+    },
+    "incoming-word-strcomp-js-compile-final": {
+      "receipt": "incoming-word-strcomp-js-compile-final.json",
+      "log": "incoming-word-strcomp-js-compile-final.log",
+      "elapsed_seconds": 8.598,
+      "log_sha256": "4f98419f026d5c7f17386f22b0fc7b74236eadc79795e1d5e575cb261c641a80"
+    },
+    "incoming-word-strcomp-js-final": {
+      "receipt": "incoming-word-strcomp-js-final.json",
+      "log": "incoming-word-strcomp-js-final.log",
+      "elapsed_seconds": 0.394,
+      "log_sha256": "8df099428192365cb1befbcee1b3525555b69102f861c274c0c31b6581250aa5"
+    },
+    "incoming-word-colors-js-compile-final": {
+      "receipt": "incoming-word-colors-js-compile-final.json",
+      "log": "incoming-word-colors-js-compile-final.log",
+      "elapsed_seconds": 14.827,
+      "log_sha256": "1c5a535b0948b605f2be1f28049c894475ec614b7d91710c075d789ba0c99182"
+    },
+    "incoming-word-colors-js-final": {
+      "receipt": "incoming-word-colors-js-final.json",
+      "log": "incoming-word-colors-js-final.log",
+      "elapsed_seconds": 1.479,
+      "log_sha256": "b832a9d6fdd14ca4a9f86309887b07d6a1c5035c49564d327d3839f4289b7ad8"
+    }
+  },
+  "github_actions": "NOT USED",
+  "scope": "Fresh targeted incoming Word checks after formatting; no installed Microsoft Office host comparison."
+}

@@ -72,6 +72,21 @@ objects are saved through the connected GitHub API and fetched back locally.
 No existing branch was force-pushed or deleted. GitHub Actions are not a gate;
 checkpoint messages use `[skip ci]` and no Actions run is queried or awaited.
 
+## Last main refresh
+
+Remote main advanced again to `ad577ea82695231b5932d6b973f92b5156b1d2d6`
+through PR #348 after final qualification. Its separator production source was
+already integrated and tested here. Reconciliation retains its completed
+qualification and converter evidence plus this branch's combined regression
+follow-up. No package source, tool or workflow changed in this final merge;
+all 47 canonical Dart hashes still match. See the
+[publication continuity receipt](intake/prepublication-continuity.json).
+The final captured Mail head `1dd56df51f97dc86fbb1ebe22d9045aab7921d1c`
+also contributes its completed 272-case shared UI and 176-case Studio evidence.
+Those independent historical gates are retained separately from the runs
+executed for this Word macro change; the integration changes documentation and
+evidence only.
+
 ## Local environment
 
 The first full checkout exhausted the initial executor's storage and that

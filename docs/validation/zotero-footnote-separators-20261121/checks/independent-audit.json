@@ -1,0 +1,629 @@
+{
+  "status": "accepted",
+  "audited_at_utc": "2026-11-21T21:56:23.050507+00:00",
+  "source_checkpoint": "a1b555979b25c5586f27915cf219a95e886febd7",
+  "current_head": "a1b555979b25c5586f27915cf219a95e886febd7",
+  "scope": "Read-only replay of captured final gate events, receipts, archives and current captured input files. No test suites were started by this audit.",
+  "expected_gates": [
+    "engine-final",
+    "editor-batch1",
+    "editor-batch2",
+    "editor-batch3",
+    "editor-batch4",
+    "editor-batch5",
+    "studio-final",
+    "legacy-golden",
+    "analysis-final",
+    "format-final"
+  ],
+  "excluded_earlier_runs": {
+    "engine": "Failed initial aggregate; all results excluded from final total.",
+    "editor": "Interrupted initial aggregate; partial results excluded.",
+    "studio": "Earlier pass rerun with expanded source capture; excluded duplicate.",
+    "analysis": "Earlier narrower input scope; superseded.",
+    "format": "Earlier narrower input scope; superseded.",
+    "separator-layout-validation": "Exploratory and earlier bounded runs; excluded repeats."
+  },
+  "gates": {
+    "engine-final": {
+      "complete": true,
+      "source_head": "a1b555979b25c5586f27915cf219a95e886febd7",
+      "receipt_accepted": true,
+      "exit_code": 0,
+      "inputs_reported_unchanged": true,
+      "reported_input_count": 6319,
+      "archive_checks": {
+        "stdout.log": {
+          "bytes": 1310080,
+          "sha256": "0b1ee149ea36724a909d5cbd01035aa9ad8111c049124ec3fdc23fef3a998269",
+          "compressed_sha256": "497dcdbb36842c25993312189e045c7a5c8bab771366da694d3e66559317a6e2",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "compressed_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        }
+      },
+      "issues": [],
+      "stderr_text": "",
+      "input_manifest_sha256": "5c4d7dd437d3e09f5a2aef6c4b61076945343d67253f12662cf91bfb334e2cb8",
+      "input_manifest_compressed_sha256": "e3137329997f7eb0b0a273c2ef19ba0b4da1f1d335e040e7dec6c88bd3cc8fb4",
+      "raw_event_counts": {
+        "allSuites": 1,
+        "done": 1,
+        "group": 145,
+        "start": 1,
+        "suite": 122,
+        "testDone": 2799,
+        "testStart": 2799
+      },
+      "test_counts": {
+        "passed": 2677,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "suites": 122,
+        "groups": 145,
+        "started": 2799,
+        "completed": 2799,
+        "hooks_passed": 0,
+        "hooks_failed": 0,
+        "hooks_skipped": 0,
+        "hidden_passed": 122,
+        "hidden_failed": 0,
+        "hidden_skipped": 0
+      },
+      "lifecycle_issues": [],
+      "group_count_mismatches": [],
+      "receipt_count_mismatches": {},
+      "duplicate_case_identities": [],
+      "missing_suites": [],
+      "unexpected_suites": [],
+      "case_identity_sha256": "e30e8523769ce2f3b2957d40f5de0ae17966d9a3ec83e7cd589c7918db2b6614",
+      "case_identity_count": 2677,
+      "parse_errors": []
+    },
+    "editor-batch1": {
+      "complete": true,
+      "source_head": "a1b555979b25c5586f27915cf219a95e886febd7",
+      "receipt_accepted": true,
+      "exit_code": 0,
+      "inputs_reported_unchanged": true,
+      "reported_input_count": 6319,
+      "archive_checks": {
+        "stdout.log": {
+          "bytes": 122403,
+          "sha256": "381e71280c6ee9009aa7017797cb68b907315995811a5b313a07ceab7457093e",
+          "compressed_sha256": "b264615fd4a9a948e83631ce1973867cdf9f0a78ce7531570ec4f31d5e318dd1",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "compressed_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        }
+      },
+      "issues": [],
+      "stderr_text": "",
+      "input_manifest_sha256": "5c4d7dd437d3e09f5a2aef6c4b61076945343d67253f12662cf91bfb334e2cb8",
+      "input_manifest_compressed_sha256": "e3137329997f7eb0b0a273c2ef19ba0b4da1f1d335e040e7dec6c88bd3cc8fb4",
+      "raw_event_counts": {
+        "allSuites": 1,
+        "done": 1,
+        "group": 11,
+        "start": 1,
+        "suite": 11,
+        "testDone": 249,
+        "testStart": 249
+      },
+      "test_counts": {
+        "passed": 232,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "suites": 11,
+        "groups": 11,
+        "started": 249,
+        "completed": 249,
+        "hooks_passed": 6,
+        "hooks_failed": 0,
+        "hooks_skipped": 0,
+        "hidden_passed": 11,
+        "hidden_failed": 0,
+        "hidden_skipped": 0
+      },
+      "lifecycle_issues": [],
+      "group_count_mismatches": [],
+      "receipt_count_mismatches": {},
+      "duplicate_case_identities": [],
+      "missing_suites": [],
+      "unexpected_suites": [],
+      "case_identity_sha256": "523930f8f37c8b57b4f1063d988e65516c595f425879890bb16571637120dfd4",
+      "case_identity_count": 232,
+      "parse_errors": []
+    },
+    "editor-batch2": {
+      "complete": true,
+      "source_head": "a1b555979b25c5586f27915cf219a95e886febd7",
+      "receipt_accepted": true,
+      "exit_code": 0,
+      "inputs_reported_unchanged": true,
+      "reported_input_count": 6319,
+      "archive_checks": {
+        "stdout.log": {
+          "bytes": 115176,
+          "sha256": "33a2e0b2d4713c5389a3d8d070e4ce4b1687fb6870c1c3e588c0b72c2dbab8ee",
+          "compressed_sha256": "d6375b8e0e69ad311ade49dec0feb774c4edb762010b05c603d945746db4cb62",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "compressed_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        }
+      },
+      "issues": [],
+      "stderr_text": "",
+      "input_manifest_sha256": "5c4d7dd437d3e09f5a2aef6c4b61076945343d67253f12662cf91bfb334e2cb8",
+      "input_manifest_compressed_sha256": "e3137329997f7eb0b0a273c2ef19ba0b4da1f1d335e040e7dec6c88bd3cc8fb4",
+      "raw_event_counts": {
+        "allSuites": 1,
+        "done": 1,
+        "group": 11,
+        "start": 1,
+        "suite": 11,
+        "testDone": 217,
+        "testStart": 217
+      },
+      "test_counts": {
+        "passed": 204,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "suites": 11,
+        "groups": 11,
+        "started": 217,
+        "completed": 217,
+        "hooks_passed": 2,
+        "hooks_failed": 0,
+        "hooks_skipped": 0,
+        "hidden_passed": 11,
+        "hidden_failed": 0,
+        "hidden_skipped": 0
+      },
+      "lifecycle_issues": [],
+      "group_count_mismatches": [],
+      "receipt_count_mismatches": {},
+      "duplicate_case_identities": [],
+      "missing_suites": [],
+      "unexpected_suites": [],
+      "case_identity_sha256": "f2961ec2f6a393a6eb88366031974412e23dee28cf03117cb5746183fce11a44",
+      "case_identity_count": 204,
+      "parse_errors": []
+    },
+    "editor-batch3": {
+      "complete": true,
+      "source_head": "a1b555979b25c5586f27915cf219a95e886febd7",
+      "receipt_accepted": true,
+      "exit_code": 0,
+      "inputs_reported_unchanged": true,
+      "reported_input_count": 6319,
+      "archive_checks": {
+        "stdout.log": {
+          "bytes": 124309,
+          "sha256": "73817802a381fe2206091c0a91d341b71f9fa65b63e516aa78e3f88878d2e9d6",
+          "compressed_sha256": "20d2157a7963ee0a88f661ac60753f02cb82af3aff380a784391bf82a24e2216",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "compressed_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        }
+      },
+      "issues": [],
+      "stderr_text": "",
+      "input_manifest_sha256": "5c4d7dd437d3e09f5a2aef6c4b61076945343d67253f12662cf91bfb334e2cb8",
+      "input_manifest_compressed_sha256": "e3137329997f7eb0b0a273c2ef19ba0b4da1f1d335e040e7dec6c88bd3cc8fb4",
+      "raw_event_counts": {
+        "allSuites": 1,
+        "done": 1,
+        "group": 18,
+        "start": 1,
+        "suite": 11,
+        "testDone": 240,
+        "testStart": 240
+      },
+      "test_counts": {
+        "passed": 227,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "suites": 11,
+        "groups": 18,
+        "started": 240,
+        "completed": 240,
+        "hooks_passed": 2,
+        "hooks_failed": 0,
+        "hooks_skipped": 0,
+        "hidden_passed": 11,
+        "hidden_failed": 0,
+        "hidden_skipped": 0
+      },
+      "lifecycle_issues": [],
+      "group_count_mismatches": [],
+      "receipt_count_mismatches": {},
+      "duplicate_case_identities": [],
+      "missing_suites": [],
+      "unexpected_suites": [],
+      "case_identity_sha256": "00bc78e9788d6c31cfb597349e31e249f21d0d5b5a7d315dce24e522b3f7e5dd",
+      "case_identity_count": 227,
+      "parse_errors": []
+    },
+    "editor-batch4": {
+      "complete": true,
+      "source_head": "a1b555979b25c5586f27915cf219a95e886febd7",
+      "receipt_accepted": true,
+      "exit_code": 0,
+      "inputs_reported_unchanged": true,
+      "reported_input_count": 6319,
+      "archive_checks": {
+        "stdout.log": {
+          "bytes": 92533,
+          "sha256": "dbd5d40f8a3c18657ca35ef8477878c93a458afb2af680cf6dc1a72d8cc406d8",
+          "compressed_sha256": "1b291b1439e928aa0328126dcb555600fb527e8f9198a7121438b283f178c400",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "compressed_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        }
+      },
+      "issues": [],
+      "stderr_text": "",
+      "input_manifest_sha256": "5c4d7dd437d3e09f5a2aef6c4b61076945343d67253f12662cf91bfb334e2cb8",
+      "input_manifest_compressed_sha256": "e3137329997f7eb0b0a273c2ef19ba0b4da1f1d335e040e7dec6c88bd3cc8fb4",
+      "raw_event_counts": {
+        "allSuites": 1,
+        "done": 1,
+        "group": 12,
+        "start": 1,
+        "suite": 11,
+        "testDone": 191,
+        "testStart": 191
+      },
+      "test_counts": {
+        "passed": 176,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "suites": 11,
+        "groups": 12,
+        "started": 191,
+        "completed": 191,
+        "hooks_passed": 4,
+        "hooks_failed": 0,
+        "hooks_skipped": 0,
+        "hidden_passed": 11,
+        "hidden_failed": 0,
+        "hidden_skipped": 0
+      },
+      "lifecycle_issues": [],
+      "group_count_mismatches": [],
+      "receipt_count_mismatches": {},
+      "duplicate_case_identities": [],
+      "missing_suites": [],
+      "unexpected_suites": [],
+      "case_identity_sha256": "a32dd5eb59c95bb03272ab8422fbc49f826575f3cd623dfba300e5b3d0e276d1",
+      "case_identity_count": 176,
+      "parse_errors": []
+    },
+    "editor-batch5": {
+      "complete": true,
+      "source_head": "a1b555979b25c5586f27915cf219a95e886febd7",
+      "receipt_accepted": true,
+      "exit_code": 0,
+      "inputs_reported_unchanged": true,
+      "reported_input_count": 6319,
+      "archive_checks": {
+        "stdout.log": {
+          "bytes": 99056,
+          "sha256": "2bc91008b3c37a5c2f7e7084cfb2bc0fbb0d1d4b00208a0746b44a225150f0c4",
+          "compressed_sha256": "7ac767122dee98e68dc6b16a56043d7602a0c80f480a3245919d330b1c8486b1",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "compressed_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        }
+      },
+      "issues": [],
+      "stderr_text": "",
+      "input_manifest_sha256": "5c4d7dd437d3e09f5a2aef6c4b61076945343d67253f12662cf91bfb334e2cb8",
+      "input_manifest_compressed_sha256": "e3137329997f7eb0b0a273c2ef19ba0b4da1f1d335e040e7dec6c88bd3cc8fb4",
+      "raw_event_counts": {
+        "allSuites": 1,
+        "done": 1,
+        "group": 11,
+        "start": 1,
+        "suite": 11,
+        "testDone": 196,
+        "testStart": 196
+      },
+      "test_counts": {
+        "passed": 183,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "suites": 11,
+        "groups": 11,
+        "started": 196,
+        "completed": 196,
+        "hooks_passed": 2,
+        "hooks_failed": 0,
+        "hooks_skipped": 0,
+        "hidden_passed": 11,
+        "hidden_failed": 0,
+        "hidden_skipped": 0
+      },
+      "lifecycle_issues": [],
+      "group_count_mismatches": [],
+      "receipt_count_mismatches": {},
+      "duplicate_case_identities": [],
+      "missing_suites": [],
+      "unexpected_suites": [],
+      "case_identity_sha256": "fa62150f6935da9850dbab11833bb61435e5ff3183f924c06a724462e7a8c5cf",
+      "case_identity_count": 183,
+      "parse_errors": []
+    },
+    "studio-final": {
+      "complete": true,
+      "source_head": "a1b555979b25c5586f27915cf219a95e886febd7",
+      "receipt_accepted": true,
+      "exit_code": 0,
+      "inputs_reported_unchanged": true,
+      "reported_input_count": 6319,
+      "archive_checks": {
+        "stdout.log": {
+          "bytes": 21446,
+          "sha256": "96d85b0bfbedc05e27b07faaa8acd315469bad895beb1a955eb464be344a0425",
+          "compressed_sha256": "6740a071c0f6135813c4165265b17c0a4c3bf80508c4d67dcd079eecaba3e0fe",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "compressed_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        }
+      },
+      "issues": [],
+      "stderr_text": "",
+      "input_manifest_sha256": "5c4d7dd437d3e09f5a2aef6c4b61076945343d67253f12662cf91bfb334e2cb8",
+      "input_manifest_compressed_sha256": "e3137329997f7eb0b0a273c2ef19ba0b4da1f1d335e040e7dec6c88bd3cc8fb4",
+      "raw_event_counts": {
+        "allSuites": 1,
+        "done": 1,
+        "group": 3,
+        "start": 1,
+        "suite": 3,
+        "testDone": 41,
+        "testStart": 41
+      },
+      "test_counts": {
+        "passed": 38,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "suites": 3,
+        "groups": 3,
+        "started": 41,
+        "completed": 41,
+        "hooks_passed": 0,
+        "hooks_failed": 0,
+        "hooks_skipped": 0,
+        "hidden_passed": 3,
+        "hidden_failed": 0,
+        "hidden_skipped": 0
+      },
+      "lifecycle_issues": [],
+      "group_count_mismatches": [],
+      "receipt_count_mismatches": {},
+      "duplicate_case_identities": [],
+      "missing_suites": [],
+      "unexpected_suites": [],
+      "case_identity_sha256": "eee0e7a084fe1c9a8e6a2e9d7545f5c1f0ed9867c5156cb26e6b2e0fef3fe59f",
+      "case_identity_count": 38,
+      "parse_errors": []
+    },
+    "legacy-golden": {
+      "complete": true,
+      "source_head": "a1b555979b25c5586f27915cf219a95e886febd7",
+      "receipt_accepted": true,
+      "exit_code": 0,
+      "inputs_reported_unchanged": true,
+      "reported_input_count": 6319,
+      "archive_checks": {
+        "stdout.log": {
+          "bytes": 2103,
+          "sha256": "eead63b7bb39e1d3eb171b6d04e87a2128422872f2a3a790df200fce617e6b3a",
+          "compressed_sha256": "342d0d9889363ac8ab56ceb07250cdc3d54a38ef67d302bfb8322376febe0cd2",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "compressed_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        }
+      },
+      "issues": [],
+      "stderr_text": "",
+      "input_manifest_sha256": "5c4d7dd437d3e09f5a2aef6c4b61076945343d67253f12662cf91bfb334e2cb8",
+      "input_manifest_compressed_sha256": "e3137329997f7eb0b0a273c2ef19ba0b4da1f1d335e040e7dec6c88bd3cc8fb4",
+      "raw_event_counts": {
+        "allSuites": 1,
+        "done": 1,
+        "group": 1,
+        "start": 1,
+        "suite": 1,
+        "testDone": 4,
+        "testStart": 4
+      },
+      "test_counts": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "suites": 1,
+        "groups": 1,
+        "started": 4,
+        "completed": 4,
+        "hooks_passed": 2,
+        "hooks_failed": 0,
+        "hooks_skipped": 0,
+        "hidden_passed": 1,
+        "hidden_failed": 0,
+        "hidden_skipped": 0
+      },
+      "lifecycle_issues": [],
+      "group_count_mismatches": [],
+      "receipt_count_mismatches": {},
+      "duplicate_case_identities": [],
+      "missing_suites": [],
+      "unexpected_suites": [],
+      "case_identity_sha256": "18926909a77ed33241bb9b7664eb6d4965131847b3ff1fe789226caf0020f0c3",
+      "case_identity_count": 1,
+      "parse_errors": []
+    },
+    "analysis-final": {
+      "complete": true,
+      "source_head": "a1b555979b25c5586f27915cf219a95e886febd7",
+      "receipt_accepted": true,
+      "exit_code": 0,
+      "inputs_reported_unchanged": true,
+      "reported_input_count": 6319,
+      "archive_checks": {
+        "stdout.log": {
+          "bytes": 701,
+          "sha256": "4f2d43c1340137d6580ba98dd597c4c4eba6d87fe7f98b4e129b5851d3a86542",
+          "compressed_sha256": "0f66a02ff4160386254eee2b541880a1047c34a00549984c4b315ad51d3868dd",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "compressed_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        }
+      },
+      "issues": [],
+      "stderr_text": "",
+      "input_manifest_sha256": "5c4d7dd437d3e09f5a2aef6c4b61076945343d67253f12662cf91bfb334e2cb8",
+      "input_manifest_compressed_sha256": "e3137329997f7eb0b0a273c2ef19ba0b4da1f1d335e040e7dec6c88bd3cc8fb4",
+      "stdout_text": "Analyzing render_word_canvas.dart, word_footnote_separator_render_test.dart, word_layout.dart, word_note_layout.dart, wml_document.dart, word_notes.dart, word_zotero_transfer.dart, odt_document_reader.dart, odt_document_writer.dart, odt_reader_styles.dart, word_deserializer.dart, word_footnote_separator_io.dart, word_serializer.dart, word_settings_io.dart, odt_footnote_separator_libreoffice_test.dart, odt_footnote_separator_test.dart, odt_libreoffice_fixture_test.dart, odt_reader_libreoffice_defaults_test.dart, word_footnote_separator_docx_test.dart, word_footnote_separator_layout_test.dart, word_zotero_note_images_integration_test.dart, footnote_separator_acceptance.dart...\nNo issues found!\n"
+    },
+    "format-final": {
+      "complete": true,
+      "source_head": "a1b555979b25c5586f27915cf219a95e886febd7",
+      "receipt_accepted": true,
+      "exit_code": 0,
+      "inputs_reported_unchanged": true,
+      "reported_input_count": 6319,
+      "archive_checks": {
+        "stdout.log": {
+          "bytes": 48,
+          "sha256": "4b89ad7317c7d3f82c8ff33f4b307188f28854bc74da1683cea1a332d2d6eec8",
+          "compressed_sha256": "49385298cbe99ea037591b233ac701af275b6a4c07ba7705f8034302b8fecc53",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "compressed_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        }
+      },
+      "issues": [],
+      "stderr_text": "",
+      "input_manifest_sha256": "5c4d7dd437d3e09f5a2aef6c4b61076945343d67253f12662cf91bfb334e2cb8",
+      "input_manifest_compressed_sha256": "e3137329997f7eb0b0a273c2ef19ba0b4da1f1d335e040e7dec6c88bd3cc8fb4",
+      "stdout_text": "Formatted 22 files (0 changed) in 0.50 seconds.\n"
+    }
+  },
+  "input_manifests": {
+    "5c4d7dd437d3e09f5a2aef6c4b61076945343d67253f12662cf91bfb334e2cb8": {
+      "count": 6319,
+      "root_counts": {
+        "(root)": 10,
+        ".dart_tool": 1,
+        ".github": 15,
+        "apps": 136,
+        "docs": 1,
+        "packages": 5735,
+        "third_party": 272,
+        "tool": 6,
+        "tools": 143
+      },
+      "current_files_checked": 6319,
+      "missing_current_files": [],
+      "current_hash_mismatches": [],
+      "tracked_source_blob_mismatches": [],
+      "generated_inputs_outside_commit": [
+        ".dart_tool/package_config.json"
+      ],
+      "unexpected_inputs_outside_commit": [],
+      "matches_current_files": true,
+      "matches_source_checkpoint_for_tracked_files": true
+    }
+  },
+  "blocking_findings": [],
+  "editor_selection_coverage": {
+    "complete": true,
+    "original_expected_suites": 55,
+    "observed_suites": 55,
+    "unique_observed_suites": 55,
+    "duplicate_suites": [],
+    "missing_suites": [],
+    "unexpected_suites": [],
+    "expected_suite_set_sha256": "5ffcf9735d6437bfbe02b528cd33f95c7cb657e0b82deafaff1a86d6785e5836"
+  },
+  "case_totals": {
+    "credited_gate_case_completions": 3738,
+    "unique_credited_cases": 3738,
+    "duplicate_case_identities_across_gates": [],
+    "unique_case_identity_sha256": "520d146e9c0c2dd9c7359e1748c7b7ab00172319f9650571d02d01f85b023d75",
+    "hooks_and_hidden_loaders_excluded": true,
+    "earlier_and_development_runs_excluded": true
+  },
+  "all_gates_complete": true
+}
