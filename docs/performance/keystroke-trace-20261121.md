@@ -103,3 +103,84 @@ both modes.
   i.e. when the command stack's notification during the commit reaches the
   controller's listeners (they run again from the keystroke's own
   notification).
+
+## Follow-up: line-wrapping keystrokes and chrome notifications
+
+### Why a wrapped line re-paginated the rest of the document
+
+A keystroke that adds a line moves every later block down by one line. The
+incremental layout converges only where the flow state at a block boundary
+equals the previous layout's (page, column, y, lines on the page, notes):
+with greedy page filling the shift carries over every page break (each page's
+last line moves to the next page), so in a document without hard breaks it
+never converges and every later block was laid out again — from cached line
+breaks, but still through paragraph placement (run properties, metrics,
+glyph construction, hyperlink/comment lookups per glyph): ~91 blocks for a
+keystroke at paragraph 90 of 180.
+
+### Translation of unchanged paragraphs (`QUDS_TRANSLATE_PARAGRAPHS`)
+
+An unchanged paragraph that the previous layout placed entirely on one page
+(no frames, no notes, no breaks) and that the flow now reaches on the same
+page and column, with the same column top and adjacent spacing, is not laid
+out again: its previous lines move to the new height. Every line top and
+glyph baseline is recomputed with paragraph layout's own arithmetic (line
+heights, recorded baseline leading/ascent and vertical-alignment shift), so
+the result is bit-identical to a fresh layout; a paragraph whose lines would
+cross the page bottom is laid out normally. Only the paragraph that crosses
+each page boundary is re-placed (from cached breaks). The line objects move
+from the replaced layout (no copies). Switch:
+`WordLayoutEngine.translateParagraphs`
+(`--dart-define=QUDS_TRANSLATE_PARAGRAPHS=false`). Equivalence: full suite
+71 passed / 8 skipped, POI corpus 44 / 4, engine incremental tests 25, plus a
+switch-off test.
+
+Per wrapping keystroke at paragraph 90 (engine only, JIT warmed, 51 wrapping
+keystrokes of 4000, interleaved, MacBook, 1-min load noted), p50 / p95 / max:
+
+| Run | Load | Translation off | Translation on |
+|---|---|---|---|
+| 1 | 16.2 / 17.3 | 21.6 / 89.3 / 106.9 ms | **4.4 / 11.7 / 22.3 ms** |
+| 2 | 16.3 / 25.0 | 24.0 / 72.7 / 122.2 ms | **5.8 / 45.1 / 71.3 ms** |
+
+Non-wrapping keystrokes p50 2.2–2.7 → 1.9–2.7 ms. A temporary phase split
+(load ~50) put 2.35 s of 2.52 s in paragraph placement without translation;
+with it, translation cost 4 µs per block.
+
+### Chrome notifications (`QUDS_COALESCE_EDIT_NOTIFY`)
+
+Every typing edit commits an undo command; the command stack's notification
+made the controller notify its listeners before the relayout, and the edit
+notified them again afterwards: 10 listener calls per keystroke in Studio,
+two of them `SuiteWorkspace._rebuildWord`. Typing edits (`insertText`,
+Backspace/Delete, Enter, IME updates) now fold the command notification into
+their own: one notification per keystroke, after the relayout. Switch:
+`OfficeController.coalesceEditNotifications`
+(`--dart-define=QUDS_COALESCE_EDIT_NOTIFY=false`); test
+`word_edit_notification_test.dart` (once vs. twice, undo intact).
+
+What `_rebuildWord` costs: computing the chrome key walked the document four
+times — `document.paragraphs.toList()` (87 µs in debug for 180 paragraphs),
+`activeRunProps` (114 µs), `tableAtCaret` (190 µs) and `sectionAtCaret`
+(160 µs) each list every paragraph. For body typing the key now derives run,
+table and section from the one paragraph it already found. The 9–21 ms
+profile-mode spikes attributed to it earlier coincided with layout spikes on
+the same 2-core runner while Xvfb's software rasterizer ran (raster p50
+29–44 ms per frame); they are not the listener's own work.
+
+Studio typing benchmark (debug, 300 keystrokes, the same build with
+`QUDS_TYPING_BENCHMARK_BASELINE=1` switching both off; interleaved, load
+10–15 at the start of each run):
+
+| Run | Variant | Chrome calls per key (p50/max) | Listener calls per key | Chrome ms per key p50 / p95 / max | Wrapping keys handler p50 / p95 / max (n=8) |
+|---|---|---|---|---|---|
+| 1 | off | 2 / 3 | 10 | 0.27 / 0.50 / 8.56 | 18.5 / 42.5 / 42.5 |
+| 1 | on | **1 / 2** | **5** | 0.17 / 0.48 / 5.57 | 14.7 / 98.3 / 98.3 |
+| 2 | off | 2 / 3 | 10 | 0.58 / 1.67 / 21.5 | 44.5 / 54.0 / 54.0 |
+| 2 | on | **1 / 2** | **5** | 0.26 / 0.60 / 2.67 | 19.1 / 21.5 / 21.5 |
+
+The call counts are deterministic; the Studio timings at this load (another
+lane's release build left the machine at 10–40) vary by 2–3× between runs of
+the same variant, so the engine-only table is the timing evidence. Headline
+hosted numbers were not taken: GitHub Actions concurrency for the account was
+saturated by other repositories.
