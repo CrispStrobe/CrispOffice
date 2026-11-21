@@ -1,0 +1,89 @@
+{
+  "status": "passed",
+  "startedHead": "0afbc2d90be94418eba1d8bad69c224f7359fae5",
+  "completedHead": "7e33854158243c47e95c43fbb890cce23da4e0ce",
+  "completedUtc": "2026-11-21T10:08:44Z",
+  "sources": {
+    "packages/quds_mail_core/lib/src/search/header_search.dart": {
+      "sha256": "c5d132767232fb150b6b5372bce38409b49c8035da3e3121fdb4f99b9b31332b",
+      "equalsStartedHead": true
+    },
+    "packages/quds_mail_core/test/header_search_test.dart": {
+      "sha256": "57e4733b5dff49c9593f53ebd985474dec200706956d8f5b7ab78023745f48a9",
+      "equalsStartedHead": true
+    },
+    "packages/quds_mail_core/test/header_search_boolean_test.dart": {
+      "sha256": "cc8525d3e56276f125309b8fe9e234200751346c23bb02dae5e74390965772f2",
+      "equalsStartedHead": true
+    },
+    "packages/quds_mail_core/test/header_search_boolean_regression_test.dart": {
+      "sha256": "59efc9d47eb1e74126f7fa9d9432e61d2c5506515a574b52b2f5e333f0b95755",
+      "equalsStartedHead": true
+    },
+    "packages/quds_mail_ui/lib/src/workspace/message_list.dart": {
+      "sha256": "34be2c39220e012fab43c2747cf394410999fa4389770900a13175d1af9ca196",
+      "equalsStartedHead": true
+    },
+    "packages/quds_office_editor/example/lib/studio_mail_workspace_strings.dart": {
+      "sha256": "2666e4451ab341eeffbf61ed3943d0bf0c897353d5a88dbc89f0c04048a66676",
+      "equalsStartedHead": true
+    }
+  },
+  "allRelevantSourceStable": true,
+  "tests": {
+    "command": [
+      "dart",
+      "test",
+      "--reporter=json",
+      "test/header_search_test.dart",
+      "test/header_search_boolean_test.dart",
+      "test/header_search_boolean_regression_test.dart"
+    ],
+    "cwd": "/workspace/scratch/dca92fad5f00/validation/packages/quds_mail_core",
+    "exitCode": 0,
+    "passed": 100,
+    "failed": 0,
+    "skipped": 0,
+    "suites": {
+      "test/header_search_test.dart": 27,
+      "test/header_search_boolean_test.dart": 26,
+      "test/header_search_boolean_regression_test.dart": 47
+    },
+    "log": "final-main-mail-tests.jsonl"
+  },
+  "analysis": {
+    "command": [
+      "dart",
+      "analyze",
+      "--fatal-infos",
+      "lib",
+      "test/header_search_test.dart",
+      "test/header_search_boolean_test.dart",
+      "test/header_search_boolean_regression_test.dart"
+    ],
+    "cwd": "/workspace/scratch/dca92fad5f00/quds_office_suite/packages/quds_mail_core",
+    "exitCode": 0,
+    "result": "No issues found!",
+    "log": "final-main-mail-analysis.log"
+  },
+  "sourceLabelAndDirectionCheck": {
+    "command": [
+      "dart",
+      "--packages=.dart_tool/package_config.json",
+      "final_main_mail_labels.dart"
+    ],
+    "cwd": "/workspace/scratch/dca92fad5f00/validation",
+    "exitCode": 0,
+    "results": {
+      "labelChecks": 78,
+      "directionChecks": 56,
+      "exampleChecks": 31,
+      "authoredExamples": 12,
+      "errors": 13,
+      "languages": 3
+    },
+    "log": "final-main-mail-label-results.json",
+    "derivation": "final-main-mail-label-derivation.json",
+    "scope": "Exact error-label methods, regex, direction expression and localized help evaluated with minimal wrappers. Arabic ambient RTL simulated; does not qualify Flutter widgets or full Studio compilation."
+  }
+}

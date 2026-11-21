@@ -1,0 +1,16 @@
+{
+  "scope": "Exact production error-label methods, example regex, direction-selection expression and localized help text in a minimal Dart wrapper. TextDirection is an equivalent two-value enum; Arabic ambient RTL is simulated. Excludes Flutter widget rendering/full Studio compilation.",
+  "sources": {
+    "packages/quds_mail_ui/lib/src/workspace/message_list.dart": "34be2c39220e012fab43c2747cf394410999fa4389770900a13175d1af9ca196",
+    "packages/quds_office_editor/example/lib/studio_mail_workspace_strings.dart": "2666e4451ab341eeffbf61ed3943d0bf0c897353d5a88dbc89f0c04048a66676",
+    "packages/quds_mail_core/lib/src/search/header_search.dart": "c5d132767232fb150b6b5372bce38409b49c8035da3e3121fdb4f99b9b31332b"
+  },
+  "extractedSha256": {
+    "default": "9334ef00716635f9dfd0a725aa8a0473aab124dfff8d083e3f48a8bdc735efed",
+    "localized": "8c7ff0ba1003e4ad35306af7d90502187c21803d934b26e14382049b0a69c661",
+    "regex": "3f3319bf1475e7f4f631d1adc871c4cd3f0f988a9254a45876ee0e94ec6080dc",
+    "routing": "54a51e96f334394f134a43d4a40344af322d57ed2389e24e0455b4ec8e84a2dd",
+    "help": "3fb07db95f9b6d502edd1a836167359352826dcdacf5102e05493c4a73aa64e3"
+  },
+  "generatedHarnessSha256": "1272743fcb19d2acd3dfa3429316680b0ae69a3d122243721121bee0a45b92c4"
+}
