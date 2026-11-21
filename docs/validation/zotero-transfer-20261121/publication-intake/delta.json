@@ -1,0 +1,51 @@
+{
+  "initial_snapshot": "docs/validation/zotero-transfer-20261121/intake/snapshot.json",
+  "initial_snapshot_sha256": "6fd0b325446d2eea1b68ba7327001092e1a7ddd9a62a4c0f42731262bc1b26af",
+  "initial_captured_at": "2026-11-21T05:45:10.961510+00:00",
+  "new_captured_at": "2026-11-21T06:06:59.608453+00:00",
+  "initial_count": 334,
+  "new_count": 338,
+  "added": [
+    {
+      "repo": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/codex/word-vba-sections-20261121",
+      "sha": "81b762008dfca9a8ab8d32cd9159a8d93ec3c6f2"
+    },
+    {
+      "repo": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/codex/zotero-transfer-20261121",
+      "sha": "3da241d5f1f3e43d7be47f00bcf7fbe62bd8272b"
+    },
+    {
+      "repo": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/feat/proofing-scheduling-20261121",
+      "sha": "ef30d54079cfbf25368e5af5bb39f221496543e7"
+    },
+    {
+      "repo": "CrispStrobe/quds_office_suite",
+      "kind": "branch",
+      "ref": "refs/heads/work/mail-repository-sessions-20261121",
+      "sha": "4d435f81493c88e8fd4fb90a62558a1cc8a7ec22"
+    }
+  ],
+  "removed": [],
+  "changed": [
+    {
+      "before": {
+        "repo": "CrispStrobe/quds_office_suite",
+        "kind": "branch",
+        "ref": "refs/heads/perf/keystroke-trace-20261121",
+        "sha": "2cd11ced136a30354169fd0043e002079bcabfa3"
+      },
+      "after": {
+        "repo": "CrispStrobe/quds_office_suite",
+        "kind": "branch",
+        "ref": "refs/heads/perf/keystroke-trace-20261121",
+        "sha": "1460876e70fcf3da49644e232e9942b7ee042d8d"
+      }
+    }
+  ]
+}

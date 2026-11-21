@@ -9,6 +9,8 @@ import '../../../../quds_mail_store/test/support/outbox_widget_database.dart';
 /// Completes repository work while advancing the widget test's fake clock.
 /// Drift can defer a transaction to a zero-duration timer even with its
 /// synchronous SQLite executor; blindly awaiting it would stop that clock.
+/// Native file I/O also needs real time, so bound elapsed time rather than
+/// counting fake-clock turns, which can finish before the operating system does.
 Future<T> awaitOutboxOperation<T>(WidgetTester tester, Future<T> future) async {
   var complete = false;
   T? result;
@@ -25,13 +27,20 @@ Future<T> awaitOutboxOperation<T>(WidgetTester tester, Future<T> future) async {
       complete = true;
     },
   );
-  for (var turn = 0; !complete && turn < 1000; turn++) {
+  const timeout = Duration(seconds: 15);
+  final elapsed = Stopwatch()..start();
+  while (!complete && elapsed.elapsed < timeout) {
     await tester.pump(const Duration(milliseconds: 1));
     if (!complete) {
-      await tester.runAsync(() => Future<void>.delayed(Duration.zero));
+      await tester.runAsync(
+        () => Future<void>.delayed(const Duration(milliseconds: 1)),
+      );
     }
   }
-  if (!complete) throw StateError('Outbox fixture operation did not complete.');
+  elapsed.stop();
+  if (!complete) {
+    throw StateError('Outbox fixture operation did not complete within 15 s.');
+  }
   if (failure != null) Error.throwWithStackTrace(failure!, stack!);
   return result as T;
 }

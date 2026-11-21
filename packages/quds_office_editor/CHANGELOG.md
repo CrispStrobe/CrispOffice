@@ -4,6 +4,13 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Integrate configurable proofing modes for word/sentence completion, typing
+  pauses, background checking and explicit checks. Persist the Studio schedule,
+  distinguish spelling-only providers, prioritize visible paragraphs and retain
+  partial results for the same text. Replace the earlier continuous-typing
+  maximum-delay API with `WordProofingSchedule`; see
+  [scheduling](../../docs/proofing/scheduling.md) for defaults and host migration.
+
 - Add **Prepare document for transfer…** to the native Zotero workspace and
   recognize incoming transfer documents through **Import transferred references…**
   and Refresh. Preserve one undo/redo transaction, cancellation, source-identity

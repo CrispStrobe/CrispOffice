@@ -1,0 +1,21 @@
+{
+  "input": "/workspace/scratch/11a0888870d6/transfer-final-9228cb58/replay/odt-to-docx/transfer.docx",
+  "result": "passed",
+  "citations": [
+    "body-a",
+    "body-b",
+    "footnote",
+    "endnote",
+    "table"
+  ],
+  "noteIndexes": {
+    "body-a": 0,
+    "body-b": 0,
+    "footnote": 1,
+    "endnote": 1,
+    "table": 0
+  },
+  "activeFieldsAfterReopen": 6,
+  "restored": "/workspace/scratch/11a0888870d6/transfer-final-9228cb58/replay/odt-to-docx/transfer.docx.restored.docx",
+  "scope": "DOCX carrier preservation and controlled Quds import/format callbacks; converter provenance is recorded separately; no live Zotero plugin."
+}

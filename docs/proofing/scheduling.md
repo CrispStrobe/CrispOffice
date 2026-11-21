@@ -132,6 +132,13 @@ category routing and preference persistence. Execution results for an integrated
 build belong in its source-bound validation record; this document is the API
 contract, not a test receipt.
 
+## Host migration
+
+This replaces the earlier continuous-typing maximum-delay schedule. Embedding
+hosts should configure `schedule` rather than the removed `maxDelay` parameter
+or internal caret-deferral controls. The existing `debounce` constructor
+argument maps to the schedule pause for compatibility.
+
 ## Comparative source notes
 
 Researched 21 November 2026. Source links are pinned to these commits:

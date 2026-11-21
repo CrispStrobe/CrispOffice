@@ -11,9 +11,12 @@ identified application, Zotero and plugin versions. LibreOffice results do not
 establish that compatibility.
 
 The [usage guide](../../zotero-support.md) describes the current controls. The
-[multi-paragraph replacement work record](../../validation/zotero-multiparagraph-20261121/README.md)
+[document-transfer work record](../../validation/zotero-transfer-20261121/README.md)
 records the latest source, incoming-work reconciliation, remote checkpoints,
-checks and remaining acceptance. The preceding
+local checks, real file-converter routes and remaining installed-plugin
+acceptance. The preceding
+[multi-paragraph replacement work record](../../validation/zotero-multiparagraph-20261121/README.md)
+retains its source-specific evidence. The earlier
 [vertical-table work record](../../validation/zotero-vertical-tables-20261120/README.md)
 retains its source-specific evidence. The
 [research-table work record](../../validation/zotero-research-tables-20261120/README.md)

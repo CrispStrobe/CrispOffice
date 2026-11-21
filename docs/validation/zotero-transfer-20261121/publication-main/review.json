@@ -1,0 +1,89 @@
+{
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "show",
+        "-s",
+        "--format=fuller",
+        "24165f5ca6aff2d2a0c371ea473d82eba1e10f16"
+      ],
+      "exit_code": 0,
+      "stdout_member": "publication-main-24165f5c/merge.txt"
+    },
+    {
+      "argv": [
+        "git",
+        "log",
+        "--oneline",
+        "1cad8c01f455e63a6af483d68010073dfe0c1ed8..290dfa43e3bcf410d9bf1bd8194c997c4ee613ae"
+      ],
+      "exit_code": 0,
+      "stdout_member": "publication-main-24165f5c/incoming-history.txt"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--name-status",
+        "1cad8c01f455e63a6af483d68010073dfe0c1ed8",
+        "24165f5ca6aff2d2a0c371ea473d82eba1e10f16"
+      ],
+      "exit_code": 0,
+      "stdout_member": "publication-main-24165f5c/incoming-tree-delta.txt"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "1cad8c01f455e63a6af483d68010073dfe0c1ed8",
+        "24165f5ca6aff2d2a0c371ea473d82eba1e10f16",
+        "--",
+        "*.dart"
+      ],
+      "exit_code": 0,
+      "stdout_member": "publication-main-24165f5c/incoming-dart-delta.txt"
+    },
+    {
+      "argv": [
+        "git",
+        "diff",
+        "--name-status",
+        "9228cb58e960ed9a6c0e91f2531e539c58689364",
+        "24165f5ca6aff2d2a0c371ea473d82eba1e10f16",
+        "--",
+        "packages/quds_office_engine/lib",
+        "packages/quds_office_engine/test",
+        "packages/quds_office_engine/tool",
+        "packages/legacy_doc_parser/lib",
+        "packages/quds_office_engine/example/pdf_widgets_invoice.dart",
+        "packages/quds_office_engine/example/pdf_widgets_proposal.dart",
+        "packages/quds_office_engine/example/pdf_widgets_report.dart",
+        "packages/quds_office_engine/pubspec.yaml",
+        "packages/legacy_doc_parser/pubspec.yaml"
+      ],
+      "exit_code": 0,
+      "stdout_member": "publication-main-24165f5c/engine-dependency-tree-delta.txt"
+    }
+  ],
+  "engine_dependency_review": "publication-main-24165f5c/engine-dependency-review.json",
+  "files": {
+    "applicability.json": "3da121634294aa8dd58c68044b3f435c55ec732efa92a20ec1cff729cb2fbb62",
+    "engine-dependency-review.json": "c93291f80ef778faefe81bdcd7fe46c0d4ee115f87dbe4245f082b65d33a9b98",
+    "engine-dependency-tree-delta.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "incoming-dart-delta.txt": "28668ce1e8c180904d1be8313c41853d4051d463c624eefeb67d38584bc13689",
+    "incoming-history.txt": "ff03063a2b072b9a7d38397501be75f9fd4fcdcda85bd498225d7f124c85ffda",
+    "incoming-tree-delta.txt": "2d77b9903804b9115d37e7e46fd27271a714a71c7d1e5da7ed1bf55d8ede4d85",
+    "merge.txt": "0942ca0440ba2a0c4bee799dd4c99d2c782d5990255ba7d2cdaa7b04012a9f7b",
+    "packages/legacy_doc_parser/pubspec.yaml": "150af8d89562635bf5a876c0a539c20ae48b58ea3666db071b5e4ebd3addf153",
+    "packages/quds_office_engine/pubspec.yaml": "225773e48bab7333652a4098e5747f37eab2aac9fc6a14de1e814590ab03fb7a",
+    "review.md": "bd952abc370b3b4a41ffbe35acf254aba557d2709d5264e562894e074f1a2bd9"
+  },
+  "merge": "24165f5ca6aff2d2a0c371ea473d82eba1e10f16",
+  "parents": [
+    "1cad8c01f455e63a6af483d68010073dfe0c1ed8",
+    "290dfa43e3bcf410d9bf1bd8194c997c4ee613ae"
+  ],
+  "schema_version": 1,
+  "scope": "Publication-main merge review and exact source applicability"
+}

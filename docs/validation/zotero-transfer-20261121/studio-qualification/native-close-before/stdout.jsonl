@@ -1,0 +1,31 @@
+{"protocolVersion":"0.1.1","runnerVersion":"1.31.1","pid":6,"type":"start","time":0}
+{"suite":{"id":0,"platform":"vm","path":"/workspace/scratch/11a0888870d6/validation-workspace/packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"},"type":"suite","time":0}
+{"test":{"id":1,"name":"loading /workspace/scratch/11a0888870d6/validation-workspace/packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart","suiteID":0,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":0}
+{"count":1,"time":3,"type":"allSuites"}
+{"testID":1,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":5236}
+{"group":{"id":2,"suiteID":0,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":2,"line":null,"column":null,"url":null},"type":"group","time":5239}
+{"test":{"id":3,"name":"imap failed initial view save preserves uncertainty and online reader","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":1494,"root_column":5,"root_url":"file:///workspace/scratch/11a0888870d6/validation-workspace/packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"},"type":"testStart","time":5239}
+{"testID":3,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":8852}
+{"test":{"id":4,"name":"imap view and body save warnings survive success in the other scope","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":1522,"root_column":5,"root_url":"file:///workspace/scratch/11a0888870d6/validation-workspace/packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"},"type":"testStart","time":8853}
+Shell: [ERROR:flutter/runtime/dart_isolate.cc(1403)] Unhandled exception:
+Shell: Bad state: This database has already been closed
+Shell: #0      DatabaseImplementation.ensureOpen (package:sqlite3/src/implementation/database.dart:75:7)
+Shell: #1      DatabaseImplementation.execute (package:sqlite3/src/implementation/database.dart:305:5)
+Shell: #2      Sqlite3Delegate.runWithArgsSync (package:drift/src/sqlite3/database.dart:151:16)
+Shell: #3      _NativeDelegate.runCustom.<anonymous closure> (package:drift/native.dart:434:30)
+Shell: #4      new Future.sync (dart:async/future.dart:325:27)
+Shell: #5      _NativeDelegate.runCustom (package:drift/native.dart:434:19)
+Shell: #6      _BaseExecutor.runCustom.<anonymous closure> (package:drift/src/runtime/executor/helpers/engines.dart:120:19)
+Shell: #7      _BaseExecutor._synchronized (package:drift/src/runtime/executor/helpers/engines.dart:64:20)
+Shell: #8      _BaseExecutor.runCustom (package:drift/src/runtime/executor/helpers/engines.dart:116:12)
+Shell: #9      _StatementBasedTransactionExecutor.rollback (package:drift/src/runtime/executor/helpers/engines.dart:288:13)
+Shell: #10     ServerImplementation._abandonExecutor (package:drift/src/remote/server_impl.dart:353:44)
+Shell: <asynchronous suspension>
+Shell: #11     Future.wait.<anonymous closure> (dart:async/future.dart:567:21)
+Shell: <asynchronous suspension>
+Shell: #12     ServerImplementation._abandonExecutorsOf (package:drift/src/remote/server_impl.dart:334:5)
+Shell: <asynchronous suspension>
+Shell: #13     Future._propagateToListeners.handleWhenCompleteCallback.<anonymous closure> (dart:async/future_impl.dart:934:15)
+Shell: <asynchronous suspension>
+{"testID":4,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":13306}
+{"success":true,"type":"done","time":13335}

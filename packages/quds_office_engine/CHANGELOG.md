@@ -4,6 +4,11 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Preserve adjacent equal-target ODT hyperlinks as one range with independently
+  styled spans, preventing lost Unicode transfer metadata in LibreOffice.
+  Define the generated `Bibliography` style through referenced-style export,
+  retaining imported custom definitions and sparse styleless documents.
+
 - Add detached `WordZoteroTransfer` / `WordZoteroTransferPlan` export and import,
   `ZoteroCitingCommand.exportDocument` and the document import/export handshake.
   Stage bounded hyperlink carriers separately from the source, retain raw

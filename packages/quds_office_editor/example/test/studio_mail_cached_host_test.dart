@@ -242,6 +242,8 @@ final class _Owner
   final SqliteStudioMailDraftStore delegate;
   final _ForeignCache? foreign;
   final _WatchProbe? watchProbe;
+  final _closeCompleted = Completer<void>();
+  Future<void> get whenClosed => _closeCompleted.future;
   bool closed = false;
   int loads = 0;
   final saveFailures = <MailProblemCode>[];
@@ -296,9 +298,14 @@ final class _Owner
   Future<void> discardDraft(StudioMailDraftSummary summary) =>
       delegate.discardDraft(summary);
   @override
-  Future<void> close() async {
-    await delegate.close();
-    closed = true;
+  Future<void> close() {
+    if (!_closeCompleted.isCompleted) {
+      _closeCompleted.complete(() async {
+        await delegate.close();
+        closed = true;
+      }());
+    }
+    return whenClosed;
   }
 }
 
@@ -576,11 +583,15 @@ Future<_Harness> _fixture(WidgetTester tester, MailProviderKind kind) async {
   addTearDown(() async {
     final blocked = stores.blockedCommit;
     if (blocked != null && !blocked.isCompleted) blocked.complete();
-    await tester.pumpWidget(const SizedBox.shrink());
     for (final owner in stores.owners.reversed) {
       final gate = owner.watchProbe?.cancelGate;
       if (gate != null && !gate.isCompleted) gate.complete();
-      await awaitOutboxOperation(tester, owner.close());
+    }
+    await tester.pumpWidget(const SizedBox.shrink());
+    for (final owner in stores.owners.reversed) {
+      // The host drains live repository reads before closing its owner. A
+      // competing fixture close can tear down SQLite during that drain.
+      await awaitOutboxOperation(tester, owner.whenClosed);
     }
     await tester.runAsync(() => directory.delete(recursive: true));
     await tester.binding.setSurfaceSize(null);
@@ -1348,6 +1359,28 @@ void main() {
         await _until(tester, () => owner.closed);
         expect(probe.completedCancellations, 2);
         expect(find.byType(MailMessageView), findsNothing);
+        expect(tester.takeException(), isNull);
+      },
+    );
+
+    testWidgets(
+      '${kind.name} widget disposal drains repository cancellation before owner close',
+      (tester) async {
+        final harness = await _fixture(tester, kind);
+        harness.stores.observeWatches = true;
+        await _showHost(tester, harness);
+        final owner = harness.stores.owners.single;
+        final probe = owner.watchProbe!;
+        final gate = probe.cancelGate = Completer<void>();
+
+        await tester.pumpWidget(const SizedBox.shrink());
+        await _until(tester, () => probe.cancellations == 1);
+        expect(probe.completedCancellations, 0);
+        expect(owner.closed, isFalse);
+        gate.complete();
+        await awaitOutboxOperation(tester, owner.whenClosed);
+        expect(probe.completedCancellations, 1);
+        expect(owner.closed, isTrue);
         expect(tester.takeException(), isNull);
       },
     );

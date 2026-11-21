@@ -323,8 +323,9 @@ Map<String, Object?> runWordSectionsPrecision() {
     );
     for (var cycle = 0; cycle < 3; cycle++) {
       final section = document.sections.single;
-      final size = XmlDocument.parse(section.sourceProperties!.xml).root!
-          .firstChild('pgSz', namespaceUri: _w)!;
+      final size = XmlDocument.parse(
+        section.sourceProperties!.xml,
+      ).root!.firstChild('pgSz', namespaceUri: _w)!;
       _check(
         section.pageSize.width == width &&
             section.pageSize.height == height &&
