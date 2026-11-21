@@ -811,21 +811,6 @@ void main() {
       expect(engine.requests.length, recoveredCalls);
     });
   }
-}
-
-/// Like [_expectEquivalent], but against a full layout with field updates
-/// (what [WordEditorController.relayout] produces for a non-local layout).
-void _expectEquivalentWithFields(
-  WordEditorController c,
-  String step,
-  _Run run,
-) {
-  run.checks++;
-  expect(
-    wordLayoutFingerprint(c.documentLaidOut),
-    wordLayoutFingerprint(_freshEngine(c).layout(c.document)),
-    reason: step,
-  );
 
   test('switch off: wrapping keystrokes re-lay unchanged paragraphs', () {
     WordLayoutEngine.translateParagraphs = false;
@@ -841,4 +826,19 @@ void _expectEquivalentWithFields(
     expect(WordIncrementalLayoutStats.blocksTranslated, 0);
     expect(WordIncrementalLayoutStats.breaksReused, greaterThan(10));
   });
+}
+
+/// Like [_expectEquivalent], but against a full layout with field updates
+/// (what [WordEditorController.relayout] produces for a non-local layout).
+void _expectEquivalentWithFields(
+  WordEditorController c,
+  String step,
+  _Run run,
+) {
+  run.checks++;
+  expect(
+    wordLayoutFingerprint(c.documentLaidOut),
+    wordLayoutFingerprint(_freshEngine(c).layout(c.document)),
+    reason: step,
+  );
 }
