@@ -22,8 +22,12 @@ on:
 
 jobs:
   debug:
-    name: debug benchmark (ubuntu-latest)
+    name: debug benchmark ${{ matrix.variant }} (ubuntu-latest)
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        variant: [lazy-layout-off, lazy-layout-on]
     defaults:
       run:
         working-directory: packages/quds_office_editor/example
@@ -38,7 +42,7 @@ jobs:
         run: flutter pub get
       - name: Run benchmark (3 runs)
         env:
-          DEFINES: ${{ inputs.defines }}
+          DEFINES: ${{ inputs.defines }} ${{ matrix.variant == 'lazy-layout-off' && '--dart-define=QUDS_LAZY_DOCUMENT_LAYOUT=false' || '' }}
         run: |
           for run in 1 2 3; do
             QUDS_TYPING_BENCHMARK=1 flutter test $DEFINES test/studio_typing_proofing_benchmark_test.dart \
@@ -46,15 +50,19 @@ jobs:
               | tee "$RUNNER_TEMP/run-$run.txt" | grep -E 'TYPING_BENCHMARK|Some tests failed|All tests passed'
           done
           {
-            echo '### debug'
+            echo '### debug ${{ matrix.variant }}'
             echo '```'
             grep -h 'TYPING_BENCHMARK ' "$RUNNER_TEMP"/run-*.txt
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
   profile:
-    name: profile drive (linux)
+    name: profile drive ${{ matrix.variant }} (linux)
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        variant: [lazy-layout-off, lazy-layout-on]
     defaults:
       run:
         working-directory: packages/quds_office_editor/example
@@ -72,7 +80,10 @@ jobs:
         run: flutter pub get
       - name: Typing profile (3 runs)
         env:
-          DEFINES: ${{ inputs.defines }}
+          DEFINES: ${{ inputs.defines }} ${{ matrix.variant == 'lazy-layout-off' && '--dart-define=QUDS_LAZY_DOCUMENT_LAYOUT=false' || '' }}
+          # flutter_secure_storage_linux's bundled json.hpp trips clang's
+          # -Wdeprecated-literal-operator under the plugin's -Werror.
+          CXXFLAGS: -Wno-deprecated-literal-operator
         run: |
           for run in 1 2 3; do
             xvfb-run -a -s "-screen 0 1600x1100x24" flutter drive --profile -d linux $DEFINES \
@@ -83,7 +94,7 @@ jobs:
               | tee "$RUNNER_TEMP/profile-$run.txt"
           done
           {
-            echo '### profile'
+            echo '### profile ${{ matrix.variant }}'
             echo '```'
             cat "$RUNNER_TEMP"/profile-*.txt
             echo '```'
@@ -91,5 +102,5 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: typing-profile
+          name: typing-profile-${{ matrix.variant }}
           path: packages/quds_office_editor/example/build/typing_profile-*.json

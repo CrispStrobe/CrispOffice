@@ -677,4 +677,62 @@ void main() {
     expect(WordIncrementalLayoutStats.converged, greaterThanOrEqualTo(8));
     expect(WordIncrementalLayoutStats.blocksLaidOut, lessThan(10 * 6));
   });
+
+  test('assigning a document lays it out on the next read, not on the '
+      'first keystroke', () {
+    final WordEditorController c = WordEditorController(document: _mixedLong());
+    addTearDown(c.dispose);
+    final _Run run = _Run();
+    final WmlDocument next = _structured();
+    c.document = next;
+    c.refresh();
+    // The canvas reads the layout on its next paint.
+    expect(c.documentLaidOut.pages, isNotEmpty);
+    _expectEquivalentWithFields(c, 'replaced document', run);
+    WordIncrementalLayoutStats.reset();
+    _at(c, 3, _paras(c)[3].text.length);
+    c.insertText('x');
+    expect(WordIncrementalLayoutStats.incremental, 1);
+    expect(WordIncrementalLayoutStats.fallbacks, 0);
+    _expectEquivalent(c, 'first keystroke in replaced document', run);
+  });
+
+  test(
+    'switch off: a replaced document keeps the old layout until relayout',
+    () {
+      WordEditorController.layoutReplacedDocumentOnRead = false;
+      addTearDown(
+        () => WordEditorController.layoutReplacedDocumentOnRead = true,
+      );
+      final WordEditorController c = WordEditorController(
+        document: _mixedLong(),
+      );
+      addTearDown(c.dispose);
+      final LaidOutDocument old = c.documentLaidOut;
+      c.document = _structured();
+      expect(identical(c.documentLaidOut, old), isTrue);
+      WordIncrementalLayoutStats.reset();
+      _at(c, 3, 0);
+      c.insertText('x');
+      // The first local edit lays the new document out in full; it never
+      // reuses pages of the old document.
+      expect(WordIncrementalLayoutStats.incremental, 0);
+      _expectEquivalent(c, 'first keystroke, switch off', _Run());
+    },
+  );
+}
+
+/// Like [_expectEquivalent], but against a full layout with field updates
+/// (what [WordEditorController.relayout] produces for a non-local layout).
+void _expectEquivalentWithFields(
+  WordEditorController c,
+  String step,
+  _Run run,
+) {
+  run.checks++;
+  expect(
+    wordLayoutFingerprint(c.documentLaidOut),
+    wordLayoutFingerprint(_freshEngine(c).layout(c.document)),
+    reason: step,
+  );
 }

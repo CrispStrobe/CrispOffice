@@ -853,7 +853,7 @@ class WordEditorController extends OfficeController {
     OfficeProofingVocabulary? proofingVocabulary,
     OfficeProofingService? proofingService,
     String revisionAuthor = 'CrispOffice',
-  }) : document = document ?? WmlDocument.empty(),
+  }) : _document = document ?? WmlDocument.empty(),
        _initialProofingVocabulary = proofingVocabulary,
        _initialProofingService = proofingService,
        _revisionAuthor = _normalizeRevisionAuthor(revisionAuthor) {
@@ -889,7 +889,34 @@ class WordEditorController extends OfficeController {
   }
 
   /// document API.
-  WmlDocument document;
+  ///
+  /// Assigning a different document marks the current layout as belonging to
+  /// the old one: the next read of [documentLaidOut] (the canvas's next
+  /// paint, or an explicit [relayout]) lays the new document out in full.
+  /// Without this, the layout stayed the old document's until the first
+  /// keystroke, which then paid a full layout (and an incremental attempt
+  /// could reuse pages of the old document). Switch:
+  /// [layoutReplacedDocumentOnRead].
+  WmlDocument get document => _document;
+  set document(WmlDocument value) {
+    if (identical(value, _document)) return;
+    _document = value;
+    _documentReplaced = true;
+  }
+
+  WmlDocument _document;
+
+  /// True while [documentLaidOut] still shows a previously assigned
+  /// [document].
+  bool _documentReplaced = false;
+
+  /// When false (`--dart-define=QUDS_LAZY_DOCUMENT_LAYOUT=false`), assigning
+  /// [document] leaves the old layout in place until the next [relayout],
+  /// as before.
+  static bool layoutReplacedDocumentOnRead = const bool.fromEnvironment(
+    'QUDS_LAZY_DOCUMENT_LAYOUT',
+    defaultValue: true,
+  );
 
   // Keep the host's requested interaction mode separate from document
   // restrictions so a rebuild cannot bypass protection or undo enable edits
@@ -948,7 +975,16 @@ class WordEditorController extends OfficeController {
             commands.nextRedoCommand is _WordProtectionCommand;
 
   /// documentLaidOut API.
-  late LaidOutDocument documentLaidOut;
+  ///
+  /// Lays out a newly assigned [document] first (see [document]).
+  LaidOutDocument get documentLaidOut {
+    if (_documentReplaced && layoutReplacedDocumentOnRead) relayout();
+    return _documentLaidOut;
+  }
+
+  set documentLaidOut(LaidOutDocument value) => _documentLaidOut = value;
+
+  late LaidOutDocument _documentLaidOut;
 
   /// commentLaidOut API.
   LaidOutDocument? commentLaidOut;
@@ -1464,6 +1500,12 @@ class WordEditorController extends OfficeController {
   /// layout again ([WordLayoutEngine.incrementalLayout]); the result equals a
   /// full layout without field updates.
   void relayout({bool localEdit = false, Iterable<WmlParagraph>? dirty}) {
+    if (_documentReplaced) {
+      // The previous layout belongs to another document: nothing in it can
+      // be reused, so lay the new one out in full.
+      _documentReplaced = false;
+      localEdit = false;
+    }
     _syncEmptyParagraphDirection();
     // Header/footer text is chrome, not section body content. The incremental
     // layout path reuses page chrome, so edits there would never reach the
