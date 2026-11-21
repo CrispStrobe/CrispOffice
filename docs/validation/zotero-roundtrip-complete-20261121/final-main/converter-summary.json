@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "kind": "accepted-main-native-file-replay",
+  "local_source_commit": "c9709f19a2e6eae03e1114d9e4c254090a1caad6",
+  "remote_equivalent_commit": "a7f69313ed2e610f82242c31be8ad5387ae5cea0",
+  "source_tree": "8f0acd00b505c230ea6ccd2db2d57e17d7475011",
+  "accepted_main_production": "aa861c28e336b17bcd4c259351164380cd6b1438",
+  "source_before_sha256": "ee65ff4fab19cdb71271d6af79bb9239b269a5d58a80785c6bd4221530358265",
+  "source_after_sha256": "ee65ff4fab19cdb71271d6af79bb9239b269a5d58a80785c6bd4221530358265",
+  "source_file_count": 442,
+  "source_and_head_unchanged": true,
+  "preserved_input_count": 22,
+  "preserved_inputs_unchanged": true,
+  "preserved_inputs_match_prior_archive": true,
+  "converter_version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+  "converter_launcher_sha256": "d14c5c8aa975640aafc8a62474a23a67fb46cd5fa95fae3771f76b7399a04c50",
+  "converter_executable_sha256": "d905a74dc92eaccb22481ba2de1345666a074a5f0d48322aaad1b6dc8a9e1e40",
+  "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "roundtrip_fixtures": [
+    "body-bibliography",
+    "table-only",
+    "endnote-only",
+    "uppercase-citations"
+  ],
+  "roundtrip_fields": 13,
+  "roundtrip_matched": true,
+  "image_fixtures": [
+    "png-citations",
+    "jpeg-citations"
+  ],
+  "image_three_native_cycles_matched": true,
+  "gate_dart_commands": 3,
+  "actual_host_save_commands": 1,
+  "failures": [],
+  "success": true,
+  "limits": [
+    "Reuses immutable previously qualified LibreOffice first-save inputs and authored expected JSON.",
+    "The current native reader/DOCX reexport and one new actual LibreOffice save are freshly executed.",
+    "The converter is the identified development build; stable LibreOffice releases are not qualified.",
+    "No installed Zotero plugin or Microsoft Word application is exercised.",
+    "No native footnote reopening or ODT Position interchange is claimed."
+  ]
+}

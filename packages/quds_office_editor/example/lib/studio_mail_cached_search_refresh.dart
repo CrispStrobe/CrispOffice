@@ -99,6 +99,15 @@ Future<StudioMailCachedSearchRefreshBatch> refreshStudioMailCachedSearch(
   }
 
   checkCurrent();
+  // Earlier accounts have already released their owners. Recheck the whole
+  // directory after later accounts finish before publishing any replacement.
+  await session.validateAccountScope();
+  checkCurrent();
+  final invalidAccounts = <String>{
+    for (final account in session.coverage)
+      if (account.problem != null) account.account.id,
+  };
+  hits.removeWhere((_, hit) => invalidAccounts.contains(hit.account.id));
   final hasMore = session.hasMore;
   return StudioMailCachedSearchRefreshBatch._(
     hits: hits.values.toList(growable: false),

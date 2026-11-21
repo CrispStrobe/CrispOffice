@@ -153,10 +153,32 @@ Future<void> _press(WidgetTester tester, Finder target) async {
   await tester.pump(const Duration(milliseconds: 350));
 }
 
-Future<void> _show(WidgetTester tester, _Probe probe) async {
+void _pause(WidgetTester tester) {
+  for (final state in const [
+    AppLifecycleState.inactive,
+    AppLifecycleState.hidden,
+    AppLifecycleState.paused,
+  ]) {
+    tester.binding.handleAppLifecycleStateChanged(state);
+  }
+}
+
+void _resume(WidgetTester tester) {
+  if (tester.binding.lifecycleState == AppLifecycleState.paused) {
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.hidden);
+  }
+  if (tester.binding.lifecycleState == AppLifecycleState.hidden) {
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+  }
+  if (tester.binding.lifecycleState != AppLifecycleState.resumed) {
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+  }
+}
+
+Future<MemoryMailLocalAccounts> _show(WidgetTester tester, _Probe probe) async {
   await tester.binding.setSurfaceSize(const Size(1100, 1000));
   addTearDown(() => tester.binding.setSurfaceSize(null));
-  tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+  _resume(tester);
   final directory = MemoryMailLocalAccounts();
   for (final fixture in probe.fixtures.values) {
     directory.seed(fixture.identity);
@@ -184,11 +206,8 @@ Future<void> _show(WidgetTester tester, _Probe probe) async {
   );
   await _press(tester, find.text('Open saved mail'));
   await _idle(tester);
-  addTearDown(
-    () => tester.binding.handleAppLifecycleStateChanged(
-      AppLifecycleState.resumed,
-    ),
-  );
+  addTearDown(() => _resume(tester));
+  return directory;
 }
 
 Future<void> _search(WidgetTester tester, {String query = ''}) async {
@@ -516,6 +535,61 @@ void main() {
   );
 
   testWidgets(
+    'removing an earlier account during refresh clears its selected reader',
+    (tester) async {
+      final identities = [
+        _identity('removed-first'),
+        _identity('retained-last'),
+      ]..sort((a, b) => a.account.value.compareTo(b.account.value));
+      final first = await _fixture(tester, identities.first);
+      final second = await _fixture(tester, identities.last);
+      await _seed(tester, first, [
+        _header(first.identity, 0, subject: 'Selected from removed account'),
+      ], body: true);
+      await _seed(tester, second, [
+        _header(second.identity, 0, subject: 'Retained account message'),
+      ]);
+      final probe = _Probe([first, second]);
+      final directory = await _show(tester, probe);
+      await _completeSearch(tester);
+      await _press(tester, find.text('Selected from removed account'));
+      await _idle(tester);
+      expect(find.byType(MailMessageView), findsOneWidget);
+      expect(probe.bodyLoads, 1);
+
+      final gate = _gate();
+      probe.searchGate = gate;
+      probe.gateAccount = second.identity.account;
+      await _setAuto(tester, true);
+      await tester.pump(const Duration(seconds: 30));
+      await _until(
+        tester,
+        () => probe.searchCalls == 4 && probe.activeSearches == 1,
+      );
+      expect(probe.searchedAccounts.last, second.identity.account);
+      expect(find.byType(MailMessageView), findsOneWidget);
+
+      // The first account passed its page-level authority checks already.
+      // A later account is still reading when that earlier authority is lost.
+      directory.records.remove(first.identity.account.value);
+      gate.complete();
+      probe.searchGate = null;
+      await _idle(tester);
+
+      expect(find.byType(MailMessageView), findsNothing);
+      expect(find.text('Selected from removed account'), findsNothing);
+      expect(find.text('Retained account message'), findsOneWidget);
+      expect(_autoEnabled(tester), isFalse);
+      expect(tester.widget<SwitchListTile>(_auto).onChanged, isNull);
+      expect(probe.bodyLoads, 1);
+      final reads = probe.searchCalls;
+      await tester.pump(const Duration(minutes: 2));
+      expect(probe.searchCalls, reads);
+      expect(probe.readsAfterClose, 0);
+    },
+  );
+
+  testWidgets(
     'refresh is explicit until auto is opted in after full local coverage',
     (tester) async {
       final identity = _identity('opt-in');
@@ -603,12 +677,12 @@ void main() {
     await _completeSearch(tester);
     await _setAuto(tester, true);
     await tester.pump(const Duration(seconds: 29));
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+    _pause(tester);
     await tester.pump(const Duration(minutes: 3));
     expect(probe.searchCalls, 1);
     expect(find.text('Offline result'), findsOneWidget);
     expect(_autoEnabled(tester), isTrue);
-    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+    _resume(tester);
     await tester.pump();
     await tester.pump(const Duration(seconds: 29));
     expect(probe.searchCalls, 1);
@@ -651,7 +725,7 @@ void main() {
         tester,
         () => probe.searchCalls == 5 && probe.activeSearches == 1,
       );
-      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+      _pause(tester);
       gate.complete();
       probe.searchGate = null;
       await _idle(tester);
@@ -661,7 +735,7 @@ void main() {
       expect(_autoEnabled(tester), isTrue);
       await tester.pump(const Duration(minutes: 2));
       expect(probe.searchCalls, 5);
-      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      _resume(tester);
       await tester.pump(const Duration(seconds: 29));
       expect(probe.searchCalls, 5);
       await tester.pump(const Duration(seconds: 1));

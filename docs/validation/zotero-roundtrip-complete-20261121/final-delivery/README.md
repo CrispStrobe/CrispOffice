@@ -1,13 +1,14 @@
-# Final main reconciliation and page-text qualification
+# Frozen page-text qualification checkpoint
 
-The final qualified product checkpoint is
+The qualified cache checkpoint is
 [`78d1f8db5374a6b2739451834708c8fe9f703ed8`](https://github.com/CrispStrobe/quds_office_suite/commit/78d1f8db5374a6b2739451834708c8fe9f703ed8),
 tree `3ccb17f6ec1c0543c7cc93b0b84a5832ddda28f7`. It retains the native Zotero
 work and its frozen evidence, incorporates accepted main through
 `0de92d6f42b3b2d1f2df43ef56a7af8e0f49d059`, and corrects the new page-text
-cache's adaptive-color dependencies. Subsequent delivery edits are
-documentation/evidence only. The publication PR records the final main merge
-and readback.
+cache's adaptive-color dependencies. This is the frozen 3,452-case record.
+The subsequent [final main reconciliation](../final-main/README.md) incorporates
+completed Word positioning and a typed per-page implementation that subsumes
+this fix, retains both cache suites, and supplies current-source qualification.
 
 ## What the followup adds
 
@@ -87,7 +88,8 @@ preserves the applicable earlier source comparisons.
 
 The original 383-ref and bounded 386-ref intake snapshots remain unchanged.
 The separately recorded accepted main additions do not convert the deferred
-PR #336 aliases into an acceptance claim. Accepted incoming commits retain their
+PR #336 aliases into an acceptance claim at this checkpoint. Their later
+completion and ancestry are recorded in the final-main followup. Accepted incoming commits retain their
 merge ancestry, and the checkpoint branch is preserved. No GitHub Actions,
 checks or status queues were queried or awaited;
 no force update or protection change was used.
