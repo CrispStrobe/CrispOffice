@@ -87,7 +87,7 @@ void main() {
       'unrelated',
       'reply',
     ]);
-    expect(find.byIcon(Icons.forum_outlined), findsNothing);
+    expect(find.byTooltip('2 loaded messages in conversation'), findsNothing);
     await _toggle(tester);
     expect(_order(tester, ['parent', 'unrelated', 'reply']), [
       'parent',
@@ -135,7 +135,7 @@ void main() {
     await tester.pump();
     expect(_row('parent'), findsNothing);
     expect(_row('reply'), findsOneWidget);
-    expect(find.byIcon(Icons.forum_outlined), findsNothing);
+    expect(find.byTooltip('2 loaded messages in conversation'), findsNothing);
     expect(find.text('0 selected'), findsOneWidget);
   });
 
