@@ -1,0 +1,293 @@
+{
+  "startedAtUtc": "2026-11-21T17:33:54.672522+00:00",
+  "repository": "/workspace/scratch/78195b33b741/quds_office_suite",
+  "environmentCommand": "source /workspace/scratch/78195b33b741/zotero-runtime/env.sh",
+  "requestedSourceCommit": "887207af33d3a4d71c1f2405c1be6c4d348d55e6",
+  "expectedSourceTree": "baab4d22be5d462a86ddbe42a3c69c72ce9a1764",
+  "commands": [
+    {
+      "name": "source-commit",
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "shellCommand": "git rev-parse HEAD",
+      "cwd": "/workspace/scratch/78195b33b741/quds_office_suite",
+      "exitCode": 0,
+      "durationSeconds": 0.003,
+      "stdout": "/workspace/scratch/78195b33b741/zotero-converter/final/source-commit.stdout.log",
+      "stderr": "/workspace/scratch/78195b33b741/zotero-converter/final/source-commit.stderr.log"
+    },
+    {
+      "name": "source-tree",
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "shellCommand": "git rev-parse 'HEAD^{tree}'",
+      "cwd": "/workspace/scratch/78195b33b741/quds_office_suite",
+      "exitCode": 0,
+      "durationSeconds": 0.003,
+      "stdout": "/workspace/scratch/78195b33b741/zotero-converter/final/source-tree.stdout.log",
+      "stderr": "/workspace/scratch/78195b33b741/zotero-converter/final/source-tree.stderr.log"
+    },
+    {
+      "name": "requested-source-tree",
+      "argv": [
+        "git",
+        "rev-parse",
+        "887207af33d3a4d71c1f2405c1be6c4d348d55e6^{tree}"
+      ],
+      "shellCommand": "git rev-parse '887207af33d3a4d71c1f2405c1be6c4d348d55e6^{tree}'",
+      "cwd": "/workspace/scratch/78195b33b741/quds_office_suite",
+      "exitCode": 0,
+      "durationSeconds": 0.002,
+      "stdout": "/workspace/scratch/78195b33b741/zotero-converter/final/requested-source-tree.stdout.log",
+      "stderr": "/workspace/scratch/78195b33b741/zotero-converter/final/requested-source-tree.stderr.log"
+    },
+    {
+      "name": "source-diff",
+      "argv": [
+        "git",
+        "diff",
+        "--name-only",
+        "HEAD"
+      ],
+      "shellCommand": "git diff --name-only HEAD",
+      "cwd": "/workspace/scratch/78195b33b741/quds_office_suite",
+      "exitCode": 0,
+      "durationSeconds": 0.012,
+      "stdout": "/workspace/scratch/78195b33b741/zotero-converter/final/source-diff.stdout.log",
+      "stderr": "/workspace/scratch/78195b33b741/zotero-converter/final/source-diff.stderr.log"
+    },
+    {
+      "name": "generator-blob",
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD:packages/quds_office_engine/tool/zotero/odt_export_acceptance.dart"
+      ],
+      "shellCommand": "git rev-parse HEAD:packages/quds_office_engine/tool/zotero/odt_export_acceptance.dart",
+      "cwd": "/workspace/scratch/78195b33b741/quds_office_suite",
+      "exitCode": 0,
+      "durationSeconds": 0.002,
+      "stdout": "/workspace/scratch/78195b33b741/zotero-converter/final/generator-blob.stdout.log",
+      "stderr": "/workspace/scratch/78195b33b741/zotero-converter/final/generator-blob.stderr.log"
+    },
+    {
+      "name": "dart-version",
+      "argv": [
+        "/workspace/scratch/78195b33b741/zotero-runtime/bin/dart",
+        "--version"
+      ],
+      "shellCommand": "/workspace/scratch/78195b33b741/zotero-runtime/bin/dart --version",
+      "cwd": "/workspace/scratch/78195b33b741/quds_office_suite",
+      "exitCode": 0,
+      "durationSeconds": 0.002,
+      "stdout": "/workspace/scratch/78195b33b741/zotero-converter/final/dart-version.stdout.log",
+      "stderr": "/workspace/scratch/78195b33b741/zotero-converter/final/dart-version.stderr.log"
+    },
+    {
+      "name": "libreoffice-version",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/native/libreoffice-headless/libreoffice/program/soffice",
+        "--version"
+      ],
+      "shellCommand": "/opt/codex/runtimes/codex-primary-runtime/dependencies/native/libreoffice-headless/libreoffice/program/soffice --version",
+      "cwd": "/workspace/scratch/78195b33b741/quds_office_suite",
+      "exitCode": 0,
+      "durationSeconds": 0.122,
+      "stdout": "/workspace/scratch/78195b33b741/zotero-converter/final/libreoffice-version.stdout.log",
+      "stderr": "/workspace/scratch/78195b33b741/zotero-converter/final/libreoffice-version.stderr.log"
+    },
+    {
+      "name": "create",
+      "argv": [
+        "/workspace/scratch/78195b33b741/zotero-runtime/bin/dart",
+        "--packages=/workspace/scratch/78195b33b741/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/78195b33b741/quds_office_suite/packages/quds_office_engine/tool/zotero/odt_export_acceptance.dart",
+        "create",
+        "/workspace/scratch/78195b33b741/zotero-converter/final/original"
+      ],
+      "shellCommand": "/workspace/scratch/78195b33b741/zotero-runtime/bin/dart --packages=/workspace/scratch/78195b33b741/quds_office_suite/.dart_tool/package_config.json /workspace/scratch/78195b33b741/quds_office_suite/packages/quds_office_engine/tool/zotero/odt_export_acceptance.dart create /workspace/scratch/78195b33b741/zotero-converter/final/original",
+      "cwd": "/workspace/scratch/78195b33b741/quds_office_suite",
+      "exitCode": 0,
+      "durationSeconds": 10.256,
+      "stdout": "/workspace/scratch/78195b33b741/zotero-converter/final/create.stdout.log",
+      "stderr": "/workspace/scratch/78195b33b741/zotero-converter/final/create.stderr.log"
+    },
+    {
+      "name": "libreoffice-convert",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/native/libreoffice-headless/libreoffice/program/soffice",
+        "-env:UserInstallation=file:///workspace/scratch/78195b33b741/zotero-converter/final/profile",
+        "--headless",
+        "--convert-to",
+        "odt:writer8",
+        "--outdir",
+        "/workspace/scratch/78195b33b741/zotero-converter/final/roundtrip",
+        "/workspace/scratch/78195b33b741/zotero-converter/final/original/body-bibliography.odt",
+        "/workspace/scratch/78195b33b741/zotero-converter/final/original/table-notes.odt"
+      ],
+      "shellCommand": "/opt/codex/runtimes/codex-primary-runtime/dependencies/native/libreoffice-headless/libreoffice/program/soffice -env:UserInstallation=file:///workspace/scratch/78195b33b741/zotero-converter/final/profile --headless --convert-to odt:writer8 --outdir /workspace/scratch/78195b33b741/zotero-converter/final/roundtrip /workspace/scratch/78195b33b741/zotero-converter/final/original/body-bibliography.odt /workspace/scratch/78195b33b741/zotero-converter/final/original/table-notes.odt",
+      "cwd": "/workspace/scratch/78195b33b741/quds_office_suite",
+      "exitCode": 0,
+      "durationSeconds": 1.079,
+      "stdout": "/workspace/scratch/78195b33b741/zotero-converter/final/libreoffice-convert.stdout.log",
+      "stderr": "/workspace/scratch/78195b33b741/zotero-converter/final/libreoffice-convert.stderr.log"
+    },
+    {
+      "name": "verify",
+      "argv": [
+        "/workspace/scratch/78195b33b741/zotero-runtime/bin/dart",
+        "--packages=/workspace/scratch/78195b33b741/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/78195b33b741/quds_office_suite/packages/quds_office_engine/tool/zotero/odt_export_acceptance.dart",
+        "verify",
+        "/workspace/scratch/78195b33b741/zotero-converter/final/roundtrip",
+        "/workspace/scratch/78195b33b741/zotero-converter/final/original"
+      ],
+      "shellCommand": "/workspace/scratch/78195b33b741/zotero-runtime/bin/dart --packages=/workspace/scratch/78195b33b741/quds_office_suite/.dart_tool/package_config.json /workspace/scratch/78195b33b741/quds_office_suite/packages/quds_office_engine/tool/zotero/odt_export_acceptance.dart verify /workspace/scratch/78195b33b741/zotero-converter/final/roundtrip /workspace/scratch/78195b33b741/zotero-converter/final/original",
+      "cwd": "/workspace/scratch/78195b33b741/quds_office_suite",
+      "exitCode": 0,
+      "durationSeconds": 9.709,
+      "stdout": "/workspace/scratch/78195b33b741/zotero-converter/final/verify.stdout.log",
+      "stderr": "/workspace/scratch/78195b33b741/zotero-converter/final/verify.stderr.log"
+    },
+    {
+      "name": "source-tree-after",
+      "argv": [
+        "git",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "shellCommand": "git rev-parse 'HEAD^{tree}'",
+      "cwd": "/workspace/scratch/78195b33b741/quds_office_suite",
+      "exitCode": 0,
+      "durationSeconds": 0.004,
+      "stdout": "/workspace/scratch/78195b33b741/zotero-converter/final/source-tree-after.stdout.log",
+      "stderr": "/workspace/scratch/78195b33b741/zotero-converter/final/source-tree-after.stderr.log"
+    },
+    {
+      "name": "source-diff-after",
+      "argv": [
+        "git",
+        "diff",
+        "--name-only",
+        "HEAD"
+      ],
+      "shellCommand": "git diff --name-only HEAD",
+      "cwd": "/workspace/scratch/78195b33b741/quds_office_suite",
+      "exitCode": 0,
+      "durationSeconds": 0.019,
+      "stdout": "/workspace/scratch/78195b33b741/zotero-converter/final/source-diff-after.stdout.log",
+      "stderr": "/workspace/scratch/78195b33b741/zotero-converter/final/source-diff-after.stderr.log"
+    }
+  ],
+  "scope": "Synthetic ODT export, actual LibreOffice headless open/save, then exact OdfZotero inventory verification.",
+  "limitations": [
+    "No installed Zotero plugin commands or live desktop integration were exercised.",
+    "This is not a visual-layout comparison or proof of arbitrary document compatibility.",
+    "The verifier inspects saved ODT inventory; it does not test importing converter output with OdtDocumentReader."
+  ],
+  "actualExecutionCommit": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+  "actualExecutionTree": "baab4d22be5d462a86ddbe42a3c69c72ce9a1764",
+  "generator": {
+    "path": "/workspace/scratch/78195b33b741/quds_office_suite/packages/quds_office_engine/tool/zotero/odt_export_acceptance.dart",
+    "sha256": "cf61f5ff91d534aaab93cb7547abf09b18787536b09cf4fff747d9a57ffe2be8",
+    "gitBlob": "7c0907cc3ac965ff2f6099aef28f6827cde7ea3f"
+  },
+  "environmentSha256": "0127397a77c7eb2e3071495c47301c94e494e98f4919ac0167c6e99055c8ede1",
+  "runtime": {
+    "dart": "/workspace/scratch/78195b33b741/zotero-runtime/bin/dart",
+    "dartVersion": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+    "libreOfficeExecutable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/native/libreoffice-headless/libreoffice/program/soffice",
+    "libreOfficeVersion": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+    "libreOfficeWrapperSha256": "d14c5c8aa975640aafc8a62474a23a67fb46cd5fa95fae3771f76b7399a04c50",
+    "libreOfficeBinarySha256": "d905a74dc92eaccb22481ba2de1345666a074a5f0d48322aaad1b6dc8a9e1e40",
+    "profile": "/workspace/scratch/78195b33b741/zotero-converter/final/profile"
+  },
+  "originalFiles": {
+    "body-bibliography.expected.json": {
+      "sha256": "cae1491a5f41fb2fb06bab6be096ac3651175bb1c019619681d343625ca5a296",
+      "bytes": 7414
+    },
+    "body-bibliography.odt": {
+      "sha256": "6366122077de92d4c2ae4e42354512b14d822113a8af5e7dc026d3672942db4b",
+      "bytes": 3939
+    },
+    "table-notes.expected.json": {
+      "sha256": "bf7267cc7f09f44d2247e1ea892b5cc226fc36f13417228ed072e4c16269e406",
+      "bytes": 9930
+    },
+    "table-notes.odt": {
+      "sha256": "c7548b7d4f302fc4cd64bcd5f2e45f23577ecdf93fc9ba6ca6f5704d5decdce6",
+      "bytes": 4118
+    }
+  },
+  "fixtures": [
+    {
+      "name": "body-bibliography",
+      "records": 3,
+      "fieldKinds": [
+        "citation",
+        "citation",
+        "bibliography"
+      ],
+      "stories": [
+        "body",
+        "body",
+        "body"
+      ],
+      "tableOwnerCounts": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "table-notes",
+      "records": 4,
+      "fieldKinds": [
+        "citation",
+        "citation",
+        "citation",
+        "citation"
+      ],
+      "stories": [
+        "body",
+        "body",
+        "footnote",
+        "endnote"
+      ],
+      "tableOwnerCounts": [
+        0,
+        1,
+        0,
+        0
+      ]
+    }
+  ],
+  "totalRecords": 7,
+  "roundtripFiles": {
+    "body-bibliography.odt": {
+      "sha256": "f2e940184bfe599a646ee9ff7931643f487767af6f0a6690dbcc8a4ad3c0d05f",
+      "bytes": 10505
+    },
+    "table-notes.odt": {
+      "sha256": "80575ca83a73bcfe206caff35f38ce3821a74c522499c8024c8e2498a6d5ed60",
+      "bytes": 10956
+    }
+  },
+  "originalFilesUnchanged": true,
+  "sourceTreeAfter": "baab4d22be5d462a86ddbe42a3c69c72ce9a1764",
+  "verifiedProperties": [
+    "No inventory issues; all fields are native import candidates.",
+    "ReferenceMark document preferences match exactly, including unknown Unicode metadata.",
+    "Field order, full field names, kinds, storage, metadata, cached text, and paragraph text lists match exactly.",
+    "Start story and count of table-cell ancestors match exactly."
+  ],
+  "result": "PASS",
+  "finishedAtUtc": "2026-11-21T17:34:15.888276+00:00"
+}

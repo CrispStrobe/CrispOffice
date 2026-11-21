@@ -14,6 +14,14 @@ All notable changes to `quds_office_engine` are documented here.
   full Word style-object parity remain outside this increment. See the
   [style contract](../../docs/VBA_WORD_MACROS.md#assigning-existing-paragraph-styles).
 
+- Add explicit `OdtDocumentWriter.writeEditableZoteroBytes` copy export with
+  native citation ReferenceMarks, complete bibliography TextSections and
+  Unicode-safe ReferenceMark preferences. Preserve supported body, table-cell
+  and decimal-note ownership, rich caches and unknown metadata; refuse active
+  fields that would be lost. Keep ordinary cached ODT export unchanged.
+  Preserve decimal imported endnote numbering through DOCX reopening. See the
+  [native-output contract](../../docs/roadmaps/zotero/native-odt-output.md).
+
 - Extend bounded native ODT input with horizontal/vertical merged tables.
   Validate explicit covered-cell ownership, preserve originating Zotero fields,
   and emit empty native vertical continuations with summed logical widths.
@@ -23,6 +31,9 @@ All notable changes to `quds_office_engine` are documented here.
   Subsequent reader, Zotero and editor runtime qualification passed with the
   pinned SDK during Word style integration; see the
   [work record](../../docs/validation/zotero-odt-merged-tables-20261121/README.md).
+
+  The [editable-output continuation](../../docs/validation/zotero-editable-odt-20261121/README.md)
+  executes the previously blocked local qualification and records its results.
 
 - Preserve namespace scope when capturing XML fragments: retain inherited
   prefixes, including QName-only extension references, without allowing a

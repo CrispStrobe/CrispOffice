@@ -442,6 +442,7 @@ void main() {
           expect(field.cachedText, '(First)');
           expect(field.canEdit, isTrue);
           expect(note.paragraphs.single.text, '(First) tail');
+          expect(WordNoteNumbering(current).labelFor(note), '1');
         }
       },
     );
@@ -467,6 +468,7 @@ void main() {
           final note = notes.single;
           expect(note.endnote, kind == 'endnote');
           expect(note.paragraphs.single.text, 'Note (Same) tail');
+          expect(WordNoteNumbering(current).labelFor(note), '1');
           final fields = WordZotero.fields(current);
           expect(fields, hasLength(2));
           final noteField = fields.singleWhere(

@@ -1,10 +1,11 @@
 # Native ODT Zotero input: implementation contract
 
-Status: **Increment 4 implemented: bounded horizontal/vertical merged-table
-input with source review and regression sources. Runtime qualification of this
-increment is pending after executor disk exhaustion. Earlier rich-import and
-LibreOffice style results retain their original sources. Installed-host
-acceptance and editable native ODT output remain separate work.**
+Status: **Bounded horizontal/vertical merged-table input is locally qualified
+by the [editable-output continuation](../../validation/zotero-editable-odt-20261121/README.md).
+Imported decimal endnotes retain their numbering through DOCX saves. Earlier
+rich-import and LibreOffice style results retain their original sources.
+The separate [native-output contract](native-odt-output.md) now defines explicit
+editable ODT copy export. Installed-host/plugin acceptance remains open.**
 
 `OdtDocumentReader.readBytes` builds an editable `WmlDocument` from the supported
 ODT subset below. The asynchronous Word loader and Studio Open use this reader;
@@ -249,7 +250,7 @@ after source-range reconstruction, preserving editor and DOCX offsets.
 | Formatting and page layout | Supported fonts, exact half-point sizes, bold/italic, underline/strike, small capitals, semantic superscript/subscript, colors, language, explicit paragraph direction/alignment, indents, spacing and supported tab stops. One compatible page layout may supply page size, margins and equal-width columns. Used unsupported properties reject the import. |
 | Zotero fields | Canonical citation ReferenceMarks and bibliography ReferenceMarks/TextSections become active native fields. Multi-item options, unknown citation/bibliography metadata, rich cache, empty bibliography paragraphs and distinct adjacent/identical-looking fields survive DOCX reopening. |
 | Authored notes | Footnotes/endnotes with supported blocks, ordinary document-wide decimal numbering and live body anchors; citations retain their actual note story. Custom numbering/styles, nested notes and citations enclosing note anchors are refused. |
-| Tables | Rectangular tables with bounded horizontal/vertical merges and explicit covered cells, nested up to eight levels; supported widths/alignment, row minimum height/keep behavior and inherited shading. Citations retain their originating cell. Hidden covered content, conflicting effective shading, repeated rows/cells and ambiguous coverage refuse. Increment 4 runtime checks are pending. |
+| Tables | Rectangular tables with bounded horizontal/vertical merges and explicit covered cells, nested up to eight levels; supported widths/alignment, row minimum height/keep behavior and inherited shading. Citations retain their originating cell. Hidden covered content, conflicting effective shading, repeated rows/cells and ambiguous coverage refuse. Increment 4 runtime checks are recorded in the editable-output continuation. |
 | Lists | Simple decimal or supported depth-specific bullets, up to nine levels, explicit starts/restarts and multiple paragraphs per item. Independent sequences, nested continuations and source paragraph margins are retained. Continuation references/consecutive numbering, bullet affixes, conflicting first-line geometry and tables inside list items are refused. |
 | Preferences and metadata | Explicit `WordZoteroDocumentData.fromOdt` converts valid `ReferenceMark` storage to native `Field` after reconstruction; ordinary Word/HTTP callbacks remain strict. Style/locale/note mode and unknown XML/JSON preferences survive. Standard document properties are mapped; the exact original `meta.xml`, including unrelated/future properties, is archived in DOCX custom XML. |
 
@@ -323,7 +324,9 @@ Zotero plugin produced the synthetic extension.
 This is conversion of supported current content into the Word model. Dormant
 ODF typography settings are not retained as a general live ODF style engine for
 future typing or Zotero refresh. The qualified artifact still saves as DOCX;
-native editable ODT output and complete release-host behavior remain open.
+native editable ODT output was still open at that checkpoint. The separate
+[native-output continuation](native-odt-output.md) now implements explicit copy
+export; complete release-host behavior remains open.
 See the [current work record](../../validation/zotero-libreoffice-styles-20261121/README.md)
 for exact executed checks and the pinned-source typography rationale.
 
@@ -356,10 +359,11 @@ Generated empty cell paragraphs share `maxParagraphs` with source paragraphs.
 Covered horizontal positions do not create independent Word cells or fields.
 
 The [work record](../../validation/zotero-odt-merged-tables-20261121/README.md)
-contains source-review findings and the prepared engine/editor regression
-scope. Local formatter, analyzer and runtime execution remain pending after
-shared disk exhaustion during official SDK setup. The new source does not
-inherit earlier test totals or establish real LibreOffice table acceptance.
+contains source-review findings and the original execution-blocked scope.
+The [editable-output continuation](../../validation/zotero-editable-odt-20261121/README.md)
+subsequently executes the pending formatter, analyzer and engine/editor checks
+with the genuine pinned SDK. Those new results are separately attributed and
+do not establish broad real LibreOffice table acceptance.
 
 Primary format contract: OASIS ODF 1.3 Part 3
 [section 9.1.5 and span attributes 19.680/19.682](https://docs.oasis-open.org/office/OpenDocument/v1.3/os/part3-schema/OpenDocument-v1.3-os-part3-schema.html).
@@ -390,9 +394,8 @@ Zotero and plugin versions. Current LibreOffice acceptance cannot establish it.
    branch are integrated by this continuation; keep their recorded cutoffs.
 2. Expand the documented rich-document envelope from additional retained real
    files. The exact prose fixture and supported script/default mapping above
-   provide the next baseline. Execute the pending merged-table checks, then add
-   active Asian typography, drawings, further note/list configurations and
-   native ODT output with matching
+   provide the next baseline. Extend active Asian typography, drawings and
+   further note/list configurations, and qualify the explicit native ODT output with matching
    ownership, rendering and persistence checks; keep remaining refusals visible.
 3. Save each working increment on a remote branch with an expected-head lease.
 4. Review the integrated diff, rerun checks affected by incoming changes, then

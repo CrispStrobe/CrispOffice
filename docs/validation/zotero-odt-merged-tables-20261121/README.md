@@ -1,12 +1,14 @@
 # Native ODT merged tables and Zotero — 21 November 2026
 
-**Status: subsequent local runtime qualification completed.** The Word style
-integration checked the incoming reader/Zotero tests, existing ODT regressions
-and editor loading tests with the genuine pinned SDK; see the
-[completion record](../word-vba-styles-complete-20261121/README.md).
+**Status: subsequent local runtime qualification completed.** Both the
+[editable ODT continuation](../zotero-editable-odt-20261121/README.md) and the
+[Word style integration](../word-vba-styles-complete-20261121/README.md) executed
+the incoming reader/Zotero and editor tests with the genuine pinned SDK. Their
+separate receipts identify each qualified source and avoid additive claims for
+overlapping cohorts.
 
 At the original checkpoint, shared executor disk exhaustion prevented SDK
-installation and subsequent shell invocations. The original source-only
+installation and subsequent shell invocations. The original PR #323 source-only
 qualification report below is retained as historical evidence.
 
 Starting main: `115f1c20131bf0157d047dfe2e9d704ddffb22a2`.

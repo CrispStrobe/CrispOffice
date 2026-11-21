@@ -752,32 +752,37 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       candidate = await (widget.draftStoreFactory ?? openStudioMailDraftStore)(
         identity,
       );
-      if (candidate case StudioMailOutboxStore(:final account)
-          when account != identity.account) {
+      if (candidate case StudioMailOutboxStore(
+        :final account,
+      ) when account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
       }
-      if (candidate case StudioMailComposeToolsStore(:final account)
-          when account != identity.account) {
+      if (candidate case StudioMailComposeToolsStore(
+        :final account,
+      ) when account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
       }
-      if (candidate case StudioMailDraftCatalog(:final account)
-          when account != identity.account) {
+      if (candidate case StudioMailDraftCatalog(
+        :final account,
+      ) when account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
       }
-      if (candidate case StudioMailMailboxStoreOwner(:final mailboxStore)
-          when mailboxStore.account != identity.account) {
+      if (candidate case StudioMailMailboxStoreOwner(
+        :final mailboxStore,
+      ) when mailboxStore.account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
       }
-      if (candidate case StudioMailFlagJournalOwner(:final flagJournal)
-          when flagJournal.account != identity.account) {
+      if (candidate case StudioMailFlagJournalOwner(
+        :final flagJournal,
+      ) when flagJournal.account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );

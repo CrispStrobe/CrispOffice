@@ -48,7 +48,8 @@ results retain their original source and platform attribution.
 | DOCX persistence | Active fields/preferences, native notes, rich bibliography structure, tables and embedded pictures use supported save/reopen paths | Local tests are separate from actual Word/LibreOffice application round trips |
 | Cross-word-processor transfer | Native export/import handshake, temporary metadata hyperlinks, DOCX import/save/reopen and ODT carrier export; complete native formatting before import publication | The qualified DOCX carrier route and native ODT conversion have separate envelopes; installed Zotero/Word/LibreOffice plugin acceptance remains open and actual converter findings are retained |
 | Native ODT inspection | Read-only inventory of citation ReferenceMarks, bibliography TextSections, exact story/paragraph/cell ownership, cached text and original preferences; JSON diagnostic CLI | Inspection reports eligibility and findings without publishing an editable document |
-| Native ODT import | Bounded rich paragraphs/styles, hyperlinks, authored notes, simple lists and supported merged/nested tables; canonical Zotero fields and preferences convert to an editable Word document; retained LibreOffice prose with independent script formatting; asynchronous editor/Studio opening and DOCX save/reopen | Used unsupported structure/formatting refuses atomically; content-sensitive guards limit dormant defaults; native editable ODT output and installed-plugin acceptance remain open |
+| Native ODT import | Bounded rich paragraphs/styles, hyperlinks, authored notes, simple lists and supported merged/nested tables; canonical Zotero fields and preferences convert to an editable Word document; retained LibreOffice prose with independent script formatting; asynchronous editor/Studio opening and DOCX save/reopen, including decimal endnote numbering | Used unsupported structure/formatting refuses atomically; content-sensitive guards limit dormant defaults; installed-plugin acceptance remains open |
+| Native editable ODT output | Explicit copy export with native citation ReferenceMarks, bibliography TextSections, ReferenceMark preferences, bounded body/cell/decimal-note ownership and separate Studio action | General Word-to-ODT formatting limits remain; unsupported active-field ownership refuses; release-host/plugin acceptance is separate from local and converter fixtures |
 
 The native controls use Zotero's own CSL processor. The separate basic/offline
 citation and single-item preview/export paths retain their narrower formatting
@@ -390,14 +391,33 @@ continue to save as DOCX.
 
 The [merged-table work record](../../validation/zotero-odt-merged-tables-20261121/README.md)
 records incremental remote preservation and independent source review.
-Formatting, analysis and runtime tests for this increment remain pending
-because the shared executor exhausted disk space during SDK setup. Earlier
-qualified results retain their original sources and are not relabeled.
+The subsequent [editable-output work record](../../validation/zotero-editable-odt-20261121/README.md)
+executes the pending formatting, analysis and engine/editor regressions with
+the pinned SDK. Earlier results retain their original source attribution.
+
+## Delivered increment: explicit editable ODT output
+
+The [native-output contract](native-odt-output.md) defines a separate
+`OdtDocumentWriter.writeEditableZoteroBytes` API and Studio **Export Zotero ODT**
+action. Canonical ReferenceMarks, complete bibliography TextSections and
+Unicode-safe preference chunks retain the active field metadata. Exact native
+owners and emitted endpoints are checked before returning bytes. Unsupported
+or hidden fields refuse the whole export. The ordinary cached-text exporter and
+normal DOCX save workflow retain their existing behavior.
+
+Repeated body/table/note ODT/native/DOCX cycles, native bibliography refresh and
+unlink, source immutability and Studio cancellation/save routing are qualified
+locally. The concrete LibreOfficeDev save/reopen fixtures preserve seven active
+field records and preferences; they do not establish installed-plugin or stable
+release acceptance. A repeat-cycle regression also corrected decimal ODT
+endnotes reverting to Roman numbering after DOCX saves. The final local gate
+passed 513 engine, 93 editor and 25 Studio cases (631 unique passes, no failures
+or skips), with exact published-source binding and retained converter fixtures
+in the [qualification record](../../validation/zotero-editable-odt-20261121/README.md).
 
 ## Next implementation and acceptance steps
 
-1. **Execute the pending merged-table regression checks, then qualify production
-   ODT formatting and installed-application transfer.**
+1. **Qualify release-host editable ODT workflows and production formatting.**
    Use the implemented carrier and retained synthetic fixtures with current
    Word/LibreOffice and their actual Zotero plugins. Resolve any converter findings
    against identified release versions. Check citations, rich bibliographies,
@@ -405,8 +425,11 @@ qualified results retain their original sources and are not relabeled.
    [native ODT reader](native-odt-input.md) from additional preserved real
    documents, using the retained prose/style qualification as a baseline.
    Active Asian typography and richer note/page structures retain their own
-   acceptance requirements. Native editable ODT output needs a separate contract;
-   the implemented rich import saves active fields as DOCX.
+   acceptance requirements. Exercise the explicit
+   [editable ODT export](native-odt-output.md) with actual Zotero plugins:
+   Refresh, citation editing, bibliography editing, style changes and repeated
+   saves. The normal imported document still saves as DOCX; an ODT export copy
+   does not redirect that save destination.
 2. **Extend table structure and formatting.** Improve merged-row height distribution and map
    header/footer row groups and custom styles to native structures with explicit
    ownership. Qualify their citation order, geometry, save/reopen behavior and
