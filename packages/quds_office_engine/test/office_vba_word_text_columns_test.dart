@@ -284,6 +284,41 @@ End Sub
     );
   });
 
+  for (final binding in [
+    'Dim columns As TextColumns\nSet columns = value',
+    'Configure target:=value',
+  ]) {
+    test('unused helper rejects scalar Variant as TextColumns: $binding', () {
+      expect(
+        () => _source('''
+Sub Configure(ByVal target As TextColumns)
+  target.SetCount 2
+End Sub
+Sub Unused()
+  Dim value As Variant
+  $binding
+End Sub
+Sub Main()
+End Sub
+'''),
+        throwsA(_error('vba_type_error')),
+      );
+    });
+  }
+
+  test('dead branches still reject scalar Variant column bindings', () {
+    expect(
+      () => _compile('''
+Dim value As Variant
+Dim columns As TextColumns
+If False Then
+  Set columns = value
+End If
+'''),
+      throwsA(_error('vba_type_error')),
+    );
+  });
+
   for (final statement in [
     '$_columns.SetCount 2',
     '$_columns.Spacing = 18',

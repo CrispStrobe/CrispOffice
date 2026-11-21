@@ -3766,6 +3766,7 @@ class _Checker {
             expected == _Kind.document ||
             expected == _Kind.wordSection ||
             expected == _Kind.wordPageSetup ||
+            expected == _Kind.wordTextColumns ||
             expected == _Kind.wordHeadersFooters ||
             expected == _Kind.wordHeaderFooter ||
             expected == _Kind.wordStoryRange ||
