@@ -1,0 +1,5 @@
+Unhandled exception:
+Bad state: Independent probe mismatch
+#0      main (file:///workspace/scratch/55ae4c05da4e/runtime/numeric-independent-probes.dart:89:49)
+#1      _delayEntrypointInvocation.<anonymous closure> (dart:isolate-patch/isolate_patch.dart:313:19)
+#2      _RawReceivePort._handleMessage (dart:isolate-patch/isolate_patch.dart:192:12)

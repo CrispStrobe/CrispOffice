@@ -1,0 +1,143 @@
+{
+  "verified_at": "2026-11-21T20:03:16.954257+00:00",
+  "verified_head": "c0ae75c226b13ae1ec4ab31238004d558ad01531",
+  "proofs": {
+    "005c708e9f747cb46cf02e12c869b0a2f85ac824": {
+      "kind": "full_tree",
+      "replacement": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "replacement_ancestor": true,
+      "source_tree": "097bb5511b2ddf2e00a398da7055b310693fe054",
+      "replacement_tree": "097bb5511b2ddf2e00a398da7055b310693fe054"
+    },
+    "0a53b8a70128870f3e1df6d18cdb177bb64290ee": {
+      "kind": "full_tree",
+      "replacement": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "replacement_ancestor": true,
+      "source_tree": "b3345f76c2e3cd8e1bad13b554f2d24555aea9ce",
+      "replacement_tree": "b3345f76c2e3cd8e1bad13b554f2d24555aea9ce"
+    },
+    "128a187d69555db80890c2a1945a442b951f9c74": {
+      "kind": "full_tree",
+      "replacement": "d790bca444eef0e160a75ce3d8cb555af541004f",
+      "replacement_ancestor": true,
+      "source_tree": "cc9dd97799056d82ee604ca071c023cd4a7d63c1",
+      "replacement_tree": "cc9dd97799056d82ee604ca071c023cd4a7d63c1"
+    },
+    "3abf8f43b0e79c10271bbd046f391e462b8fe6b9": {
+      "kind": "full_tree",
+      "replacement": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "replacement_ancestor": true,
+      "source_tree": "e3adc9e259c6120b4b1e3e03177391f880243e13",
+      "replacement_tree": "e3adc9e259c6120b4b1e3e03177391f880243e13"
+    },
+    "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283": {
+      "kind": "full_tree",
+      "replacement": "4eaca83b192897edad82658107dfeb5bcbed0920",
+      "replacement_ancestor": true,
+      "source_tree": "3d828f3e1779b08ae84dc526e0c7236882d69a26",
+      "replacement_tree": "3d828f3e1779b08ae84dc526e0c7236882d69a26"
+    },
+    "68a0db23408e4c95d6d283219504c79aea33a6fe": {
+      "kind": "full_tree",
+      "replacement": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "replacement_ancestor": true,
+      "source_tree": "aea95c000855820c5ecf205d3833298539f01753",
+      "replacement_tree": "aea95c000855820c5ecf205d3833298539f01753"
+    },
+    "69d14f84cabd3931b7640c1654b401c89faba766": {
+      "kind": "full_tree",
+      "replacement": "52c73ae4dbadf2ca00a5d619144350ccc353b31a",
+      "replacement_ancestor": true,
+      "source_tree": "fcceef2418d7463f2a566623f22f8f0862dd1d01",
+      "replacement_tree": "fcceef2418d7463f2a566623f22f8f0862dd1d01"
+    },
+    "74ce9ffb816c70c0d2ae50b91ec52a614f26d688": {
+      "kind": "full_tree",
+      "replacement": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "replacement_ancestor": true,
+      "source_tree": "8eaa993960d6fb6b6b484326d825a550f969ea0a",
+      "replacement_tree": "8eaa993960d6fb6b6b484326d825a550f969ea0a"
+    },
+    "7ef09f2408f467c65427700e65907531ecb26acb": {
+      "kind": "full_tree",
+      "replacement": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+      "replacement_ancestor": true,
+      "source_tree": "072bded0da30965ac975f9a8a3c08c7a46829460",
+      "replacement_tree": "072bded0da30965ac975f9a8a3c08c7a46829460"
+    },
+    "a7f144cc983f2df7c16d88f8644ad67a9254c3d0": {
+      "kind": "full_tree",
+      "replacement": "0ff7d23929e4640af6c1d57f87c7ac71b73d2ed4",
+      "replacement_ancestor": true,
+      "source_tree": "955a0d933240e0cc62eceff0ee11fd89e0f0caa2",
+      "replacement_tree": "955a0d933240e0cc62eceff0ee11fd89e0f0caa2"
+    },
+    "b8ddaaeb581e010467de304c828764d353149102": {
+      "kind": "full_tree",
+      "replacement": "d6010059644b34accd6f188e0e2a4863ab63e318",
+      "replacement_ancestor": true,
+      "source_tree": "7654a8905c705a04136e37a5271eb95d8a9a4e21",
+      "replacement_tree": "7654a8905c705a04136e37a5271eb95d8a9a4e21"
+    },
+    "c34945761e7991f5fe49037d79529acdd260b31c": {
+      "kind": "changed_paths",
+      "replacement": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "replacement_ancestor": true,
+      "base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "changed_paths": [
+        "docs/odf-export-fidelity.md",
+        "docs/validation/german-proofing-recovery-20261117/README.md",
+        "docs/validation/odt-field-continuation-20261117/README.md",
+        "docs/validation/odt-field-continuation-20261117/audit-portability.json",
+        "docs/validation/odt-field-continuation-20261117/audit_recovery.py",
+        "docs/validation/odt-field-continuation-20261117/evidence-index.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.inputs.json.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.json",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stderr.gz",
+        "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stdout.gz",
+        "docs/validation/odt-field-continuation-20261117/package-config.json",
+        "docs/validation/odt-field-continuation-20261117/pull-request-draft.md",
+        "docs/validation/odt-field-continuation-20261117/recovered-original-source.commit",
+        "docs/validation/odt-field-continuation-20261117/recovery-audit.json",
+        "docs/validation/odt-field-continuation-20261117/resolved-pubspec.lock",
+        "docs/validation/odt-field-continuation-20261117/run_logged.py",
+        "docs/validation/odt-field-continuation-20261117/runtime.json",
+        "docs/validation/odt-field-continuation-20261117/source-recovery.json",
+        "docs/validation/odt-field-continuation-20261117/test-workspace-pubspec.yaml",
+        "docs/validation/odt-field-continuation-20261117/verification.json",
+        "docs/validation/odt-field-continuation-20261117/verify_evidence.py",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+        "packages/quds_office_engine/test/odt_imported_field_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_page_field_fidelity_test.dart"
+      ],
+      "exact_changed_paths": true
+    },
+    "cee6e2632f891a3fe21c5c02d6bf508805973051": {
+      "kind": "full_tree",
+      "replacement": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+      "replacement_ancestor": true,
+      "source_tree": "a30201059a62b8034ac747367c1af8de054a2afb",
+      "replacement_tree": "a30201059a62b8034ac747367c1af8de054a2afb"
+    },
+    "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0": {
+      "kind": "full_tree",
+      "replacement": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e",
+      "replacement_ancestor": true,
+      "source_tree": "b73ebcc6f72c49a2883c5749f6450d497c647324",
+      "replacement_tree": "b73ebcc6f72c49a2883c5749f6450d497c647324"
+    }
+  }
+}
