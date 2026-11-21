@@ -11,6 +11,7 @@ export 'src/ports/codec.dart';
 export 'src/ports/hosts.dart';
 export 'src/ports/provider.dart';
 export 'src/ports/repository.dart';
+export 'src/search/conversations.dart';
 export 'src/search/header_search.dart';
 export 'src/sync/body_download.dart';
 export 'src/sync/bulk_flags.dart';

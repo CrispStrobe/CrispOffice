@@ -21,6 +21,10 @@ final class MailMessageListItem {
     this.dateLabel,
     this.isRead,
     this.isFlagged,
+    this.accountId,
+    this.messageId,
+    this.inReplyTo,
+    this.references = const [],
   });
 
   final String id;
@@ -36,6 +40,12 @@ final class MailMessageListItem {
   final String? dateLabel;
   final bool? isRead;
   final bool? isFlagged;
+
+  /// Account namespace; absent means conversation grouping is unavailable.
+  final String? accountId;
+  final String? messageId;
+  final String? inReplyTo;
+  final List<String> references;
 }
 
 /// Local ordering of the loaded rows. Equal values retain provider order.
@@ -95,6 +105,8 @@ final class MailMessageListStrings {
     this.unflag = 'Remove flag',
     this.stopBulk = 'Stop after current message',
     this.bulkWorking = 'Applying changes…',
+    this.groupConversations = 'Conversations',
+    this.conversationCount = _defaultConversationCount,
   }) : assert(
          selectShown == null ||
              selectVisible == null ||
@@ -135,7 +147,12 @@ final class MailMessageListStrings {
   final String unflag;
   final String stopBulk;
   final String bulkWorking;
+  final String groupConversations;
+  final String Function(int count) conversationCount;
 }
+
+String _defaultConversationCount(int count) =>
+    '$count loaded messages in conversation';
 
 String _defaultSelectedCount(int selected) => '$selected selected';
 
@@ -266,6 +283,7 @@ class _MailMessageListState extends State<MailMessageList> {
   final _scroll = ScrollController();
   bool _unread = false;
   bool _flagged = false;
+  bool _conversations = false;
   MailHeaderSearchQuery? _compiledQuery = MailHeaderSearchQuery.parse('');
   MailHeaderSearchException? _queryError;
   MailMessageListSort _sort = MailMessageListSort.providerOrder;
@@ -273,6 +291,30 @@ class _MailMessageListState extends State<MailMessageList> {
   final _checkedIds = <String>{};
   String? _activeId;
   double _itemExtent = 84;
+
+  bool get _canGroupConversations => widget.items.any(
+    (item) =>
+        (item.accountId?.isNotEmpty ?? false) &&
+        (item.messageId != null ||
+            item.inReplyTo != null ||
+            item.references.isNotEmpty),
+  );
+
+  List<MailConversationGroup> _conversationGroups(
+    List<MailMessageListItem> items,
+  ) => groupMailConversations([
+    for (final item in items)
+      MailConversationEntry(
+        id: item.id,
+        // Without an explicit account, refuse to group this row with others.
+        accountId: item.accountId?.isNotEmpty == true
+            ? item.accountId!
+            : '\u0000unscoped:' + item.id,
+        messageId: item.messageId,
+        inReplyTo: item.inReplyTo,
+        references: item.references,
+      ),
+  ]);
 
   List<MailMessageListItem> get _visible {
     final query = _compiledQuery;
@@ -320,7 +362,13 @@ class _MailMessageListState extends State<MailMessageList> {
         return comparison == 0 ? a.index.compareTo(b.index) : comparison;
       });
     }
-    return [for (final row in rows) row.item];
+    final visible = [for (final row in rows) row.item];
+    if (!_conversations || !_canGroupConversations) return visible;
+    final byId = {for (final item in visible) item.id: item};
+    return [
+      for (final group in _conversationGroups(visible))
+        for (final member in group.entries) byId[member.id]!,
+    ];
   }
 
   int _compareDates(
@@ -356,6 +404,7 @@ class _MailMessageListState extends State<MailMessageList> {
       _compileQuery();
       _unread = false;
       _flagged = false;
+      _conversations = false;
       _sort = MailMessageListSort.providerOrder;
       _activeId = null;
       _listFocus.unfocus();
@@ -645,6 +694,14 @@ class _MailMessageListState extends State<MailMessageList> {
   @override
   Widget build(BuildContext context) {
     final visible = _visible;
+    final conversationCounts = <String, int>{};
+    if (_conversations && _canGroupConversations) {
+      for (final group in _conversationGroups(visible)) {
+        if (group.length > 1) {
+          conversationCounts[group.entries.first.id] = group.length;
+        }
+      }
+    }
     final notAllLoaded = widget.hasMore || widget.limitNotice != null;
     final strings = widget.strings;
     final scaler = MediaQuery.textScalerOf(context);
@@ -759,6 +816,25 @@ class _MailMessageListState extends State<MailMessageList> {
                   onSelected: (value) => _filterChanged(() => _flagged = value),
                 ),
               ),
+              if (_canGroupConversations) ...[
+                const SizedBox(width: 4),
+                Tooltip(
+                  message: strings.groupConversations,
+                  child: FilterChip(
+                    key: const ValueKey('mail-list-conversations'),
+                    label: const Icon(Icons.forum_outlined, size: 18),
+                    tooltip: strings.groupConversations,
+                    showCheckmark: false,
+                    visualDensity: VisualDensity.compact,
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    labelPadding: EdgeInsets.zero,
+                    padding: const EdgeInsets.all(6),
+                    selected: _conversations,
+                    onSelected: (value) =>
+                        _filterChanged(() => _conversations = value),
+                  ),
+                ),
+              ],
               const Spacer(),
               PopupMenuButton<MailMessageListSort>(
                 key: const ValueKey('mail-list-sort'),
@@ -953,8 +1029,11 @@ class _MailMessageListState extends State<MailMessageList> {
                             controller: _scroll,
                             itemExtent: _itemExtent,
                             itemCount: visible.length,
-                            itemBuilder: (context, index) =>
-                                _row(visible[index]),
+                            itemBuilder: (context, index) => _row(
+                              visible[index],
+                              conversationSize:
+                                  conversationCounts[visible[index].id] ?? 1,
+                            ),
                           ),
                   ),
                 ),
@@ -978,7 +1057,7 @@ class _MailMessageListState extends State<MailMessageList> {
     );
   }
 
-  Widget _row(MailMessageListItem item) {
+  Widget _row(MailMessageListItem item, {int conversationSize = 1}) {
     final generation = _interactionGeneration;
     final colors = Theme.of(context).colorScheme;
     final active = _listFocus.hasFocus && item.id == _activeId;
@@ -1058,6 +1137,19 @@ class _MailMessageListState extends State<MailMessageList> {
                       ],
                     ),
                   ),
+                  if (conversationSize > 1)
+                    Padding(
+                      padding: const EdgeInsetsDirectional.only(start: 6),
+                      child: Tooltip(
+                        message: widget.strings.conversationCount(conversationSize),
+                        child: Icon(
+                          Icons.forum_outlined,
+                          size: 18,
+                          semanticLabel:
+                              widget.strings.conversationCount(conversationSize),
+                        ),
+                      ),
+                    ),
                   if (item.isRead == false)
                     Padding(
                       padding: const EdgeInsetsDirectional.only(start: 6),

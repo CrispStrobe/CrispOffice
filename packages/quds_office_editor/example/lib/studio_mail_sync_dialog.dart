@@ -678,6 +678,14 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
         MailMessageListItem(
           id: header.id.value,
           subject: header.envelope.subject,
+          accountId: [
+            header.remote.account.profile.hostId,
+            header.remote.account.profile.value,
+            header.remote.account.value,
+          ].map(Uri.encodeComponent).join('/'),
+          messageId: header.envelope.messageId,
+          inReplyTo: header.envelope.inReplyTo,
+          references: header.envelope.references,
           sender: header.envelope.from
               .map((address) => address.displayName ?? address.address)
               .join(', '),
