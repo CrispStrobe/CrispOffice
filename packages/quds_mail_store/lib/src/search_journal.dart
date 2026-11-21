@@ -790,6 +790,7 @@ extension MailStoreLocalOperations on SqliteMailRepository {
       'memberships',
       'mailbox_view_members',
       'mailbox_views',
+      'mailbox_sync_state',
       'cursors',
       'index_state',
       'messages',

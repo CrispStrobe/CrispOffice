@@ -12,6 +12,7 @@ import 'schema/database.dart';
 part 'search_journal.dart';
 part 'local_accounts.dart';
 part 'mailbox_views.dart';
+part 'sync_mailboxes.dart';
 part 'flag_journal.dart';
 part 'flag_reconciliation.dart';
 
@@ -451,6 +452,7 @@ final class SqliteMailRepository implements MailRepository {
         'ON CONFLICT(account,mailbox) DO UPDATE SET cursor=excluded.cursor',
         [account.value, page.mailbox.value, page.next.value],
       );
+      await _saveSyncCheckpoint(page);
       await _quota(account);
       await _db.fault(MailStoreCheckpoint.beforeCommit);
       lease.checkCurrent();
@@ -749,6 +751,7 @@ final class SqliteMailRepository implements MailRepository {
         ['mailbox', 'revision', 'captured_at', 'header_count', 'has_more'],
       ),
       ('mailbox_view_members', ['mailbox', 'position', 'message']),
+      ('mailbox_sync_state', ['mailbox', 'revision', 'updated_at', 'has_more']),
       ('cursors', ['mailbox', 'cursor']),
       ('tombstones', ['mailbox', 'remote']),
       ('blobs', ['hash', 'data']),

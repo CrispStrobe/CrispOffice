@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+- Add schema-v8 synchronization checkpoints with monotonic per-mailbox
+  revisions, last committed page times and explicit provider continuation.
+  Commit them atomically with headers, memberships, tombstones and cursors;
+  preserve unknown completion for legacy cursors until the next page commits.
+  Add bounded `loadSyncMailbox`/`listSyncMailboxes` reads and corresponding
+  observers, with immutable snapshots, stable local-ID pagination, separate
+  local/provider continuation, metadata preflight and account isolation.
+  Preserve browse windows, pending-operation reconciliation, drafts and flag
+  history through synchronization resets, migrations and failures.
+
 - Add bounded `watchMailboxView` and `watchMailboxViews` streams for saved
   browse windows and folder catalogs. Publish complete snapshots after
   successful commits, including flag journal acknowledgements and later
