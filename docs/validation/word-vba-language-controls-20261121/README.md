@@ -40,3 +40,13 @@ keychain write probe and completed conversation-UI history (PRs 306, 307, 309).
 The newly started rich-ODT branch is being independently qualified at its
 captured head before any integration. Its status is not represented as complete.
 Final combined-source regression and VM/JavaScript receipts follow separately.
+
+## Incoming ODT preservation checkpoint
+
+The captured ODT reader/style implementation at
+`3b1625e58a50438d10652032ab8dc5cecc098e34` is retained on the working branch
+with its original history. Its 360-case focused gate passed in an isolated
+source overlay. Independent probes found additional table-style inheritance
+and width cases requiring review; this preservation checkpoint is deliberately
+not a final qualification or publication of those behaviors. Corrections and
+final combined-source evidence must precede main publication.
