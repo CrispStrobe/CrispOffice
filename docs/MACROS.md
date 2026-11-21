@@ -18,8 +18,8 @@ Dynamic arrays support `ReDim`/`Preserve` and `Erase`, and `Option Base` sets
 omitted lower bounds. String intrinsics, explicit Variant `Empty`/`Null`,
 state predicates and bounded conversions operate on source values. Empty cell
 writes clear values/formulas; Null publication fails before a plan is returned.
-The Word adapter targets explicit body paragraphs, inserts text before their
-content, and applies supported font and paragraph formatting. It also targets
+The Word adapter targets explicit body and independent header/footer paragraphs,
+inserts text before their content, and applies supported font and paragraph formatting. It also targets
 explicit existing sections for eight `PageSetup` geometry setters: page width
 and height, four margins, and header/footer distances. Its ranges retain
 the native paragraph boundaries. Word formatting includes all underline styles,
@@ -219,6 +219,16 @@ mode. `smallCaps: true` writes an explicit AllCaps-off override. Highlighting
 uses the existing `highlight` field with a palette RGB color or `null` to clear.
 These operations retain the ordinary nonempty text-range requirement.
 
+Generic native paragraph operations also accept `story: "header"`, `"footer"`,
+`"firstHeader"`, `"firstFooter"`, `"evenHeader"` or `"evenFooter"`, with a
+zero-based `section` and story-local `paragraph`. These selectors require an
+existing modeled, independently owned story. Ambiguous references, shared or
+inherited stories and preserved opaque header/footer structures are refused
+before editing. The separate native `headerFooterText` creation/replacement
+operation retains its existing contract. The source adapter uses the generic
+paragraph operations; it does not create stories. See the
+[Word header/footer contract](VBA_WORD_MACROS.md#existing-header-and-footer-paragraphs).
+
 Native `docx.tabStop` upserts one custom stop on an explicit `paragraph`, with
 required `position` in points and optional `alignment` (`left`, `center`,
 `right`, `decimal`; default `left`) and `leader` (`none`, `dot`, `hyphen`,
@@ -227,7 +237,8 @@ in `-1584..1584`. Native `docx.clearTabStops` clears the selected paragraph's
 currently effective explicit custom-tab definitions resolved by Quds, including inherited stops,
 using native position-specific clear records. It preserves default-tab interval
 settings and indentation. Both operations accept the usual explicit story
-selectors; VBA tab-stop methods emit only body-paragraph selectors. Partial tab edits
+selectors; VBA tab-stop methods emit body or explicitly selected header/footer
+paragraph selectors. Partial tab edits
 preserve unrelated source XML and inheritance. Table inheritance uses the
 existing whole-table, horizontal-band and first-row layers; other conditional
 table regions remain unmodeled. Ambiguous source definitions
