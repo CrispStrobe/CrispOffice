@@ -1622,6 +1622,7 @@ Map<String, Object?> _runProperties(WmlRunProps p) => <String, Object?>{
   'underline': p.underline.name,
   'strike': p.strike,
   'smallCaps': p.smallCaps,
+  'allCaps': p.allCaps,
   'color': p.color,
   'highlight': p.highlight,
   'halfPointSize': p.fontSizeHalfPoints,

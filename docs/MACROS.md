@@ -212,10 +212,17 @@ including automatic advance timing, retain their current values. Source-level
 `SlideShowTransition.Duration` is expressed in seconds and compiles to exact
 integer milliseconds. Slide visibility uses the existing `pptx.slideHidden`.
 
-Native `docx.runFormat` additionally accepts Boolean `smallCaps`, `superscript`,
-and `subscript` fields. A single native call must not provide both script-mode
-fields. Enabling a mode selects it; disabling it preserves an existing opposite
-mode. `smallCaps: true` writes an explicit AllCaps-off override. Highlighting
+Native `docx.runFormat` additionally accepts Boolean `allCaps`, `smallCaps`,
+`superscript`, and `subscript` fields. A single native call must not provide both
+script-mode fields. Enabling a mode selects it; disabling it preserves an
+existing opposite mode. `smallCaps: true` writes an explicit AllCaps-off
+override, and `allCaps: true` writes an explicit SmallCaps-off override.
+Requesting both capitalization modes true in one operation is refused before
+mutation; consistent pairs are accepted. AllCaps displays full-size capitals
+without changing authored text or its source offsets. Sparse native ownership,
+style inheritance and ambiguity guards are described in the
+[Word capitalization contract](VBA_WORD_MACROS.md#all-capital-display-without-changing-source-text).
+Highlighting
 uses the existing `highlight` field with a palette RGB color or `null` to clear.
 These operations retain the ordinary nonempty text-range requirement.
 

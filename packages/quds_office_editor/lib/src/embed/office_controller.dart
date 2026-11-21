@@ -10336,6 +10336,7 @@ class WordEditorController extends OfficeController {
         run.properties.underline.name,
         run.properties.strike,
         run.properties.smallCaps,
+        run.properties.allCaps,
         run.properties.color,
         run.properties.highlight,
         run.properties.fontSizeHalfPoints,

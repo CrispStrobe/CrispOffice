@@ -1426,7 +1426,7 @@ class WordSerializer {
         attributes: {'w:val': r.styleId!},
       );
     }
-    // OOXML CT_RPr order is strict: rFonts, b, i, smallCaps, strike, color, sz,
+    // OOXML CT_RPr order is strict: rFonts, b, i, caps, smallCaps, strike, color, sz,
     // highlight, u, vertAlign. Word reports the package as corrupt when these
     // appear in a different order.
     if (r.asciiFont.isNotEmpty || r.csFont.isNotEmpty) {
@@ -1450,6 +1450,11 @@ class WordSerializer {
       'i',
       prefix: 'w',
       attributes: <String, String>{'w:val': r.italic ? '1' : '0'},
+    );
+    w.writeEmptyElement(
+      'caps',
+      prefix: 'w',
+      attributes: <String, String>{'w:val': r.allCaps ? '1' : '0'},
     );
     w.writeEmptyElement(
       'smallCaps',

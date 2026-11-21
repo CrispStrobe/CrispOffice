@@ -755,6 +755,7 @@ class _StyleCascade {
             (name == 'rPr' &&
                 (incoming.localName == 'kern' ||
                     incoming.localName == 'noProof' ||
+                    incoming.localName == 'caps' ||
                     incoming.localName == 'smallCaps')) ||
             (name == 'pPr' && incoming.localName == 'suppressAutoHyphens');
         if (scalarControl && !_word(incoming, incoming.localName)) continue;

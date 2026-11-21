@@ -1,0 +1,30 @@
+{
+  "qualified_source": "a52013158c28fbcf3e69a999deffb6cc2eea23cc",
+  "qualified_tree": "60390f21d90775fe29d1cd98bc527a54e8d26928",
+  "accepted": true,
+  "studio_about": {
+    "passed": 7,
+    "failed": 0,
+    "skipped": 0,
+    "error_events": 0,
+    "parse_errors": 0,
+    "process_exit": 0,
+    "elapsed_seconds": 32.727
+  },
+  "analysis_and_format_paths": 3,
+  "all_check_exits_zero": true,
+  "source_files": 3262,
+  "all_source_manifests_match_combined": true,
+  "combined_manifest_sha256": "64bf85be8dbc6db823032fe40c38a2c841e6b76881b4779cdb5a7fddbfbdc48a",
+  "runtime_and_helpers_unchanged": true,
+  "unchanged_prior_qualified_inputs": 3259,
+  "all_unchanged_git_modes_and_blob_ids_equal": true,
+  "changed_selected_paths": [
+    "packages/quds_office_editor/example/lib/studio_about.dart",
+    "packages/quds_office_editor/example/lib/studio_strings.dart",
+    "packages/quds_office_editor/example/test/studio_about_test.dart"
+  ],
+  "all_combined_worktree_blob_hashes_match_git_tree": true,
+  "github_actions_queried_or_awaited": false,
+  "gates_repeated": "Only incoming Studio About suite and three incoming Dart files; earlier broad AllCaps gates not repeated."
+}
