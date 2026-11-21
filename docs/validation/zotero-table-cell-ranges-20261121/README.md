@@ -1,36 +1,115 @@
 # Zotero research-content replacement within a table cell
 
-## Scope and starting point
+## Final publication
 
-This increment extends Add Note and Add Annotation from ordinary main-flow
-paragraph ranges to consecutive ordinary paragraphs owned by one table cell.
-The goal is to preserve the native cell and surrounding content, active citation
-fields, rich paragraph formatting, atomic publication and one undo/redo action.
-Cross-cell ranges and incoming nested-table payloads remain separate work.
+The final qualified source is `4034c7e7d384ed1f947d1702b4c2cf5231b7d3d1`.
+It also incorporates completed Word main
+`9f23cbd2be72c527829b3990f22b356e5237ed96`. That last update changes the
+header/footer guard and its own macro test while preserving our saved-Mail
+regression. The two affected Word fidelity suites passed all **39 repeated
+cases** on this final source; all other recorded inputs remained identical to
+the accepted 151-case combined run. Both Node test closures and the Studio
+closures remain unchanged by that last delta.
 
-Implementation is complete; the broad local qualification is in progress.
-The initial reconciliation checkpoint was saved as
-`674ce9701e185971388fc2e517d305689ccba471` before the implementation checkpoint.
-No installed-application acceptance is implied by the local checks.
+[PR #293](https://github.com/CrispStrobe/quds_office_suite/pull/293) publishes the
+remaining reconciliation and evidence after the original implementation PR
+was incorporated through Mail. Its publication receipt records the final
+merge and remote-main readback. See the [final Word reconciliation](final-word/README.md)
+for the latest source map and verification command. All **341 captured external
+heads** are covered, with 317 ancestors, 24 verified historical equivalents and
+zero uncovered heads.
 
-The starting main is `e2abbcda6d19f932bfbacc85e0dafd41a3c478f8`. The initial
-observation was `fcb3ff13537eb31c2cabead033a50723124682c5`; the newer main also
-includes PR #285's final two performance documentation files. Its runtime
-implementation was already incorporated. The checkpoint branch is
-`codex/zotero-parity-20261121-next`.
+## Combined Word/Mail checkpoint
 
-## Completed incoming-history audit
+Remote main subsequently advanced to `4a1eaa69e7a068e354bdd851ec9b0323b89ae300`
+through qualified Mail PR #291, which also incorporates the captured Word VBA
+and Zotero implementation heads. This branch incorporates that main plus the
+captured `9cfad3920f9afb3ca1620df429fa41e33f3db8e6` Mail Close-control fix.
+All three earlier deferred captured heads are therefore included in the new
+combined source. Their original cutoff dispositions and raw audit remain
+historical evidence, superseded by this later reconciliation.
 
-All 338 captured external heads are accounted for: 46 fork branches, 288 PR
-heads and four upstream branches. There are 314 actual ancestors and 24
-independently verified historical equivalents, with zero uncovered references.
-The checkpoint branch is recorded separately.
+A meaningful saved-Mail regression now asserts exactly one localized Close
+action across saved and account views, then verifies dismissal and reader
+disposal. The combined source is preserved at
+`5289b90a83ce9042a4f4cfb73ba8115fe501513a` and passed **151 actual cases across
+six original suites**: 72 repeated Zotero/Word cases and 79 Mail UI cases.
+There were no failures, skips, error events or stderr bytes. All 2,994 recorded
+source inputs matched that checkpoint before and after execution.
+
+Replaying the initial and later captured inventories against this combined
+checkpoint covers **338/338** and **341/341** external heads, respectively.
+The later result has 317 ancestors, 24 verified historical equivalents and zero
+uncovered heads. The immutable earlier three-uncovered result is retained.
+
+The frozen 2,551-case result below remains bound to `a6095c30`; source additions
+and changed shared Word/Mail dependencies are accounted for by the explicit
+impact review and targeted repeats. See the [combined-main record](combined-main/README.md)
+for the current verification command, source mapping and separate test counts.
+
+## Result and publication
+
+Add Note and Add Annotation can replace a consecutive range of ordinary
+paragraphs within one table cell. The existing cell, its properties, surrounding
+content, active citation fields and supported rich formatting are retained.
+The controller publishes one undo/redo action.
+
+The implementation passed **2,551 distinct local cases in 119 original suites**,
+with zero failures, skips, runtime error events or stderr bytes. A separate
+Node execution passed **121 overlapping cases**. Independent review also
+accepted 21 supplemental ownership probes. These counts are separate.
+Strict analysis found no issues, and all four changed Dart files were already
+formatted. This is local implementation qualification; installed Word,
+LibreOffice and Zotero plugin acceptance remains separate.
+
+The remote branch is `codex/zotero-parity-20261121-next`. Incremental checkpoints:
+
+| Checkpoint | Commit |
+| --- | --- |
+| Incoming-history reconciliation and increment plan | `674ce9701e185971388fc2e517d305689ccba471` |
+| Complete implementation, tests and user-facing documentation; frozen qualification source | `a6095c304ad2d6935f2ae6f8b74412038d19f142` |
+| Qualification evidence and final intake dispositions | `149a8ae46d6dad02d21040c3587389f3c954a577` |
+| Incorporation of screenshot main | `b45703affe7249b0cfe6ae16c4f9017f8cd0f378` |
+| Incorporation of qualified Mail/Word main and the captured Close fix | `5289b90a83ce9042a4f4cfb73ba8115fe501513a` |
+| Completed combined-source qualification and evidence | `53957cbd0e79b1b3c7ab49ae5f3f3d4e7e34e838` |
+| Incorporation of completed Word main; final source | `4034c7e7d384ed1f947d1702b4c2cf5231b7d3d1` |
+| Final 39-case repeat and publication evidence | The subsequent documentation/evidence checkpoint published by PR #293 |
+
+[PR #289](https://github.com/CrispStrobe/quds_office_suite/pull/289) records the
+implementation and was automatically closed when PR #291 incorporated its
+head. Later branch checkpoints and the final main readback are published in a
+separate [reconciliation PR #293](https://github.com/CrispStrobe/quds_office_suite/pull/293).
+The starting main was
+`e2abbcda6d19f932bfbacc85e0dafd41a3c478f8`. The initial observation was
+`fcb3ff13537eb31c2cabead033a50723124682c5`; the newer main includes PR #285's
+final two performance documentation files. Its runtime implementation was
+already incorporated. Publication uses an ordinary merge with an expected PR
+head; no forced ref update is needed. GitHub Actions and status/check queues
+were neither queried nor awaited.
+
+## Incoming-history reconciliation and cutoff
+
+All **338 initially captured external heads** are accounted for: 46 fork
+branches, 288 PR heads and four upstream branches. There are 314 actual
+ancestors and 24 independently verified historical equivalents, with zero
+uncovered references. The checkpoint branch is recorded separately.
 
 The audit recomputes 13 complete tree identities and two exact changed-path
 comparisons (37 ODT-continuation paths and three PPTX-integration paths),
 including Git modes and object identities. Every accepted replacement is an
 ancestor of the target. The full inventory, candidate mappings, proofs and
-replay script are retained in `intake/`.
+replay script are retained in [intake/](intake/).
+
+The later refresh captured 341 external heads and found **three post-intake
+branch advances** outside that completed inventory: Word VBA, Mail sync and a
+Mail Close-control fix. Their exact heads and review dispositions are retained
+in [final-intake/](final-intake/README.md). At that cutoff they were preserved
+separately pending their own acceptance. The later combined-main reconciliation
+above includes all three; the raw historical final audit still reports three
+uncovered heads and exit code 1 and is not rewritten. A separate replay against
+the final combined commit records the newer coverage result.
+
+To replay the completed initial inventory against the current merge:
 
 ```bash
 python3 docs/validation/zotero-table-cell-ranges-20261121/intake/audit_refs.py \
@@ -40,49 +119,164 @@ python3 docs/validation/zotero-table-cell-ranges-20261121/intake/audit_refs.py \
   --output /tmp/zotero-table-cell-intake.json
 ```
 
-GitHub Actions and check/status queues are neither queried nor awaited.
-Incremental commits are saved to the remote checkpoint branch; final publication
-will use locally qualified source and a non-forced merge into remote main.
+## Implemented behavior
 
-## Implemented behavior and focused checks
-
-The session resolves an exclusively owned consecutive range within one real
+The session resolves an exclusively owned, consecutive range within one real
 cell block list. Existing nested-table ancestry and merged originating cells
-are supported; continuation cells, control/drawing ancestors, aliases,
-cross-cell ranges and incoming table payloads are refused. It pins the exact
-section/note and table/row/cell/container identities at transaction creation and
-rechecks them before staging and applying the result.
+are supported. It captures the exact section/note and table/row/cell/container
+identities and the initially eligible endpoints when the transaction starts,
+then rechecks before staging and applying the result. A replacement owner
+containing the same paragraph objects cannot silently receive a stale result.
+This pins ownership; it does not promise detection of every geometry mutation
+that bypasses the host's revision tracking.
 
-Ordinary text, headings, lists, supported pictures and active citations remain
+Ordinary text, headings, lists, supported pictures and active citations stay
 inside the existing cell. Surrounding paragraphs, unselected native citation
-packets, cell properties and neighbor cells survive. The controller publishes
-one undo/redo step and restores the original selection direction on undo.
-Raw engine sessions support body and authored-note cells; the standard Notes
-pane's UI boundary is unchanged.
+packets, cell properties and neighboring cells survive. Undo restores the
+original selection direction; redo reapplies the single published operation.
+Tests cover DOCX save/reopen and subsequent editing, direct Add Note and Add
+Annotation dialog completion/cancellation, forward/reverse ranges, both
+simple and complex citation fields and before/after-picker ownership changes.
+
+Cross-cell/row/story ranges, vertical-merge continuation cells, aliased
+ownership, control/drawing ancestors and selected protected or structural
+content are refused. Incoming table payloads still require a main-flow
+destination. Existing nested tables can own the selected cell; this does not
+add nested tables from incoming Zotero content.
+
+Raw engine sessions support body cells and cells in authored footnotes or
+endnotes. The standard Notes pane still exposes authored-note main-flow text;
+engine coverage does not create a Notes-pane table editor.
 
 Independent development probes found a covariant `List<WmlParagraph>` insertion
 failure for rich headings/lists. Inserting each actual block into the existing
-owner fixes that valid-model case. New engine and controller regressions cover
-the behavior and retained history/serialization.
+owner fixes that valid-model case. Regression tests cover the retained owner,
+history and serialization. The original probe failures and the accepted
+frozen-source rerun are retained in the evidence archive.
 
-The focused engine run completed 121 cases with zero failures or skips: 62 new
-cell-range cases and 59 existing paragraph-range cases. The complete affected
-controller suite also passes, including direct Add Note/Add Annotation dialog
-completion/cancellation. These development checks precede the final source-bound
-regression receipt and are not added to its eventual totals.
+## Qualification scope and evidence
 
-## Parity decisions
+| Disjoint execution scope | Original suites | Passed cases |
+| --- | ---: | ---: |
+| Zotero engine | 41 | 1,157 |
+| Word/ODT ownership, fields, notes, tables and persistence | 27 | 432 |
+| Zotero editor, controllers and UI | 49 | 929 |
+| Studio transport and shortcuts | 2 | 33 |
+| **Total distinct local cases** | **119** | **2,551** |
 
-The core native citation, bibliography, preference, refresh, unlink and transfer
-workflows already exist. The next useful editing gap is cell-local paragraph
-replacement. Direct active ODT input requires a structured ODT reader, reference
-mark ownership and preference restoration; the existing ODF text extractor is
-not that reader. It remains an explicit roadmap dependency.
+All original test files were executed through standard `package:test` or
+`flutter test`; no merged synthetic test module or name filter was used.
+The total excludes 119 loading events and 12 setup/teardown events. The
+independent audit reconstructs every case from the raw streams, confirms
+successful process exits and a unique successful terminal event, and rejects
+failed lifecycle events, hidden real cases, duplicate identities and runtime
+diagnostics. See [qualification.json](qualification.json),
+[selection.json](selection.json) and the
+[independent audit](review/qualification-review.md).
 
-The standard Notes pane exposes authored-note main-flow text, not table-cell
-editing. Engine coverage for cells in authored footnotes/endnotes must not be
-reported as a new Notes-pane editing surface. Actual Word/LibreOffice Zotero
-plugin acceptance remains distinct from local protocol and DOCX checks.
+The two focused engine suites also passed all 121 cases on Node v24.22.3:
+62 table-cell cases and 59 existing paragraph-range cases. Their exact
+suite/name population is a subset of the VM population. They add platform
+coverage, not another 121 distinct cases. The separate accepted 21 ownership
+probes and earlier development smokes are not added to the regression total.
+
+Every VM/Flutter cohort binds the same **2,978 recorded source, fixture,
+manifest and lock inputs** to the implementation commit above, including SHA-256, Git blob
+identity and executable mode. The canonical source-map SHA-256 is
+`b02b5b7f62c34bf37698d53e0cb614df93ac30d955ce0ad8b1cb1707f6f18916`.
+All before/after maps match. One hidden fixture `.gitattributes` file was not
+captured by `rg --files`; independent review separately verified its unchanged
+Git identity. Actual XML fixtures are bound. This is the recorded source scope,
+not a claim that every repository metadata file was captured.
+
+The runtime was verified Flutter 3.47.8 / Dart 3.13.7 with the existing lockfile,
+an isolated validation workspace, 135 verified hosted root-lock packages and a
+164-package resolved graph. Dependencies were resolved offline with lockfile
+enforcement. No manifest or lockfile changed. The 33 recorded runtime files
+remain identical across execution; this is not an exhaustive hash of every
+extracted dependency file. SDK verification, setup logs, environment scripts
+and exact per-cohort commands are retained.
+
+### Preserved audit correction
+
+The first engine process passed all 1,157 cases and exited successfully, but
+the first Python audit rejected its suite-path comparison: relative test paths
+were resolved against the wrapper's directory instead of the recorded process
+working directory. The correction changes exactly that expression. The v1
+runner, raw streams, exit receipt, source maps and rejected summary remain
+unchanged. A separate audit accepts those same execution bytes; the tests were
+not rerun for the correction. The remaining 78 suites ran once under v2.
+Independent review verified the exact one-expression difference.
+
+### Retained archive and verification
+
+[evidence.tar.xz](evidence.tar.xz) contains original streams and process exits,
+compressed source maps, accepted and rejected audit records, runner scripts,
+independent probes, Node receipts and runtime setup evidence.
+[evidence-index.json](evidence-index.json) records the archive hash and every
+member's size and SHA-256. SDK/cache binaries are not embedded.
+
+From the repository root, verify every archive member and the original source
+bytes on the qualified implementation/evidence checkpoint without rerunning tests:
+
+```bash
+python3 docs/validation/zotero-table-cell-ranges-20261121/verify_evidence.py --repo .
+```
+
+Use `--archive-only` to check the preserved evidence after future source
+changes. Original runner/auditor scripts preserve the actual absolute execution
+paths; rerunning those scripts requires their recorded workspace/runtime layout
+or deliberate path relocation. The archive verifier itself is portable and
+does not require the original SDK.
+
+## Historical main update: App Store screenshots
+
+After qualification and the captured final intake, remote main advanced to
+`eb286fb7254d6850c9f33b46e8aa65e2ea32f7f0` through PR #290. It adds six App Store
+screenshots and changes the standalone `app_store_screenshots_gate.dart`.
+This main update was incorporated in `b45703af`, preserving its seven files
+exactly. That particular checkpoint did not include the three historical
+deferred branch heads; the subsequent reconciliation above does.
+
+The screenshot gate is one of the broadly recorded 2,978 inputs, so that
+checkpoint is **not** described as having an identical complete source map.
+Exactly **2,977 inputs remain unchanged**; that one unselected gate is the
+explicit exception. All 119 executed suite files, Zotero product files,
+fixtures, manifests and locks remain unchanged. The gate's imports are
+unchanged, no other recorded Dart/YAML source refers to it, and it is absent
+from every executed test command. Independent review found its changes confined
+to screenshot fixture layout, local native-host settling and capture helpers.
+
+The original 2,551-case and overlapping 121-case Node qualification therefore
+retains applicability to the unchanged Zotero implementation. No fresh run of
+the macOS screenshot gate or of the full populations is claimed. The exact
+seven incoming file identities and the single recorded-source exception are
+retained in [main-applicability.json](main-applicability.json).
+
+On the screenshot-only checkpoint `b45703af`, verify the archive plus that
+precisely bounded source reconciliation using:
+
+```bash
+python3 docs/validation/zotero-table-cell-ranges-20261121/verify_main_applicability.py --repo .
+```
+
+The original strict verifier intentionally rejects that checkpoint's changed
+screenshot gate unless `--archive-only` is selected. Neither verifier silently
+accepts further source drift. Ancestry, merge tree and remote main readback are
+recorded separately in the final reconciliation PR. This historical verifier
+also rejects the later combined Word/Mail source, whose broader delta and new
+targeted runs have their own reconciliation record.
+
+## Remaining parity work
+
+The native citation, bibliography, preferences, refresh, unlink and transfer
+workflows already exist. This increment closes a bounded editing gap.
+Direct active ODT input still requires a structured ODT reader, reference-mark
+ownership and preference restoration; the existing ODF text extractor does not
+provide that model. Installed Word/LibreOffice round trips with their actual
+Zotero plugins remain a separate acceptance gate. Cross-cell replacement and
+incoming nested tables also remain outside this increment.
 
 See the [parity roadmap](../../roadmaps/zotero/word-processor-parity.md) and
-[usage guide](../../zotero-support.md) for the existing workflow contract.
+[usage guide](../../zotero-support.md) for workflow details and the ordered next
+implementation and acceptance steps.

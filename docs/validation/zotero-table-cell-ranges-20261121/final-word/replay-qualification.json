@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "frozen_commit": "4034c7e7d384ed1f947d1702b4c2cf5231b7d3d1",
+  "frozen_git_tree": "1e21f3c97cc7e37ff55f8302f668e05276fe9d6d",
+  "source_input_count": 2994,
+  "source_map_sha256": "9ce3a43c7b6708a6f2be62843fc4eb037208a01ec8e2e5d24075eaf1bfb19c42",
+  "source_unchanged": true,
+  "environment_unchanged": true,
+  "actual_passed": 39,
+  "failed": 0,
+  "skipped": 0,
+  "suite_count": 2,
+  "case_counts_by_suite": {
+    "packages/quds_office_engine/test/word_bookmark_fidelity_test.dart": 17,
+    "packages/quds_office_engine/test/word_table_grid_addressing_test.dart": 22
+  },
+  "prior_overlap": {
+    "original_119_suites": 39,
+    "intermediate_151_case_run": 39,
+    "all_suite_and_name_identities_match": true,
+    "new_distinct_test_cases": 0
+  },
+  "source_changes_since_5289b90": [
+    "packages/quds_office_engine/lib/src/automation/operations/word_header_footer_guard.dart",
+    "packages/quds_office_engine/test/office_macro_word_headers_footers_test.dart"
+  ],
+  "all_other_recorded_input_paths_and_bytes_identical": true,
+  "scope": "Source-bound replay of two existing engine fidelity suites after the final Word guard changes. Original 2551 and intermediate 151 evidence remain separate and unchanged. No Studio or Mail tests were rerun in this cohort.",
+  "runner_sha256": "47c2396f497581562fdde1885ce0536a20d5b915d97069d6291309c6a81dafa3",
+  "summary_sha256": "9abd823403b840d0c0178191313cd372c0da0ffef23c628b562adc2c97da2a65"
+}

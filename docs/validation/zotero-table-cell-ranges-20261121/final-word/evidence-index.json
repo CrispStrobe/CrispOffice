@@ -1,0 +1,179 @@
+{
+  "archive": "evidence.tar.xz",
+  "archive_sha256": "1adbff063e450b4f525c5ca3b73b2f18d60990433b3033507094f3790769922e",
+  "archive_bytes": 269592,
+  "qualified_commit": "4034c7e7d384ed1f947d1702b4c2cf5231b7d3d1",
+  "qualified_source_member": "qualification/frozen-4034c7e/frozen-source.json.gz",
+  "qualified_source_map_sha256": "9ce3a43c7b6708a6f2be62843fc4eb037208a01ec8e2e5d24075eaf1bfb19c42",
+  "members": [
+    {
+      "path": "publication/README.md",
+      "size": 4740,
+      "sha256": "c62b820b468e09261b9646e6ff2d6c20ecb66984019d23d04726731e36791206"
+    },
+    {
+      "path": "publication/final-independent-review.json",
+      "size": 3638,
+      "sha256": "00985ccfeaf51203b9fcc9bc3a800e940bed8933249ccf66d12656abac0b6c75"
+    },
+    {
+      "path": "publication/final-independent-review.md",
+      "size": 3070,
+      "sha256": "c6a7b6dc751a3a4bb2887f9183ecbc0988821fbc5cb11fd1e1804c132d32f6f8"
+    },
+    {
+      "path": "publication/impact-review.json",
+      "size": 59238,
+      "sha256": "d52052ac6649bea59afeeeb921816b7c03cc01efd8b09b52d09c6e69fc3e0a30"
+    },
+    {
+      "path": "publication/impact-review.md",
+      "size": 3387,
+      "sha256": "2984a28a8f8c9ecff25ccdeb3b9d2f1ce2077c0d831d1baa27b8266485ad8858"
+    },
+    {
+      "path": "publication/intake-replay.json",
+      "size": 130305,
+      "sha256": "931f11a8ee94190034801e09b56146e7ebfa68d9482e140ffb19e5fcb916dde2"
+    },
+    {
+      "path": "publication/replay-qualification.json",
+      "size": 1466,
+      "sha256": "b9a2c229c38aafd2ef888eac7bb78a99ba8e575b4a1e600a2e6514df58a18617"
+    },
+    {
+      "path": "publication/replay.py",
+      "size": 9112,
+      "sha256": "e8b210611d83ac1a8b83a363f04677b07e52341d4919e2e996dd21fd1afd85e8"
+    },
+    {
+      "path": "publication/selection.json",
+      "size": 2003,
+      "sha256": "a38ae26d40dc65e9fe45f7f2c4bddb5443dc85f9ca0b0ac18ea36735c3e9861a"
+    },
+    {
+      "path": "qualification/audit_overlap.py",
+      "size": 3653,
+      "sha256": "6c10b986ef3f7eec7df2465a6dc694c8c7b9212fc0484b156b8401a2f9f4045d"
+    },
+    {
+      "path": "qualification/frozen-4034c7e/engine-fidelity/cases.json.gz",
+      "size": 1313,
+      "sha256": "17c144b7178926c8ab76c2021f33c92cd5c20d93ba9cbb8aec96fd803ab4e23c"
+    },
+    {
+      "path": "qualification/frozen-4034c7e/engine-fidelity/command.json",
+      "size": 813,
+      "sha256": "4d99238ca837bb5edba665ced3b215c4dd99d65e71f024b17babeaa952f11ad7"
+    },
+    {
+      "path": "qualification/frozen-4034c7e/engine-fidelity/excluded-events.json.gz",
+      "size": 174,
+      "sha256": "586f7d58b0d57c20b769cc30b6b830a4d33ab7bcb56b2858146aebabfee9f665"
+    },
+    {
+      "path": "qualification/frozen-4034c7e/engine-fidelity/process-exit.json",
+      "size": 137,
+      "sha256": "b6b0fb96d72d96124d4783348cb3d14adc329c2c27bb59e157784eb5adafe52b"
+    },
+    {
+      "path": "qualification/frozen-4034c7e/engine-fidelity/process.json",
+      "size": 69,
+      "sha256": "c0562ed34814ad9cd07ea8389d98381d40e23c8da80f11432cabf338ab3e4de5"
+    },
+    {
+      "path": "qualification/frozen-4034c7e/engine-fidelity/source-after.json.gz",
+      "size": 228532,
+      "sha256": "2731b59b3fbf1d7ce02aaa4372ce0fb05abf96fff5c98e5167c0931a8f7ff011"
+    },
+    {
+      "path": "qualification/frozen-4034c7e/engine-fidelity/source-before.json.gz",
+      "size": 228532,
+      "sha256": "2731b59b3fbf1d7ce02aaa4372ce0fb05abf96fff5c98e5167c0931a8f7ff011"
+    },
+    {
+      "path": "qualification/frozen-4034c7e/engine-fidelity/stderr.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "qualification/frozen-4034c7e/engine-fidelity/stdout.jsonl",
+      "size": 18761,
+      "sha256": "276b8f0cd1ec73f5008ddb7c95d7f5b081ea7d2b165404aa41ddbc814f565d74"
+    },
+    {
+      "path": "qualification/frozen-4034c7e/engine-fidelity/summary.json",
+      "size": 2145,
+      "sha256": "0f5b04b979f484aff7a704dfa250629f1f6fa454c9b8d28aa78ad0bfa6319112"
+    },
+    {
+      "path": "qualification/frozen-4034c7e/environment-after.json",
+      "size": 8089,
+      "sha256": "55b17b4f3dca4b10f837d756a9a306ba53a0beede475e058fb0c1efb0b3a1ab1"
+    },
+    {
+      "path": "qualification/frozen-4034c7e/environment-before.json",
+      "size": 8089,
+      "sha256": "55b17b4f3dca4b10f837d756a9a306ba53a0beede475e058fb0c1efb0b3a1ab1"
+    },
+    {
+      "path": "qualification/frozen-4034c7e/final-source.json.gz",
+      "size": 228532,
+      "sha256": "2731b59b3fbf1d7ce02aaa4372ce0fb05abf96fff5c98e5167c0931a8f7ff011"
+    },
+    {
+      "path": "qualification/frozen-4034c7e/frozen-source.json.gz",
+      "size": 228532,
+      "sha256": "2731b59b3fbf1d7ce02aaa4372ce0fb05abf96fff5c98e5167c0931a8f7ff011"
+    },
+    {
+      "path": "qualification/frozen-4034c7e/run.json",
+      "size": 1506,
+      "sha256": "9fd01573ce5e747c547a5ed8ced549073d02657dd06322e081b671d09479f2f1"
+    },
+    {
+      "path": "qualification/frozen-4034c7e/selection.json",
+      "size": 2003,
+      "sha256": "c98d0d6a3a86e9880003471f62df4f83b0a28f68fa4955437c80fe9523918dda"
+    },
+    {
+      "path": "qualification/frozen-4034c7e/source-commit-binding.json",
+      "size": 213,
+      "sha256": "c0bf7ff1e2212d5368bdc9f6244600aa26dc68ab24531de8eca24f11ec4f60f9"
+    },
+    {
+      "path": "qualification/frozen-4034c7e/summary.json",
+      "size": 960,
+      "sha256": "9abd823403b840d0c0178191313cd372c0da0ffef23c628b562adc2c97da2a65"
+    },
+    {
+      "path": "qualification/qualification-console.log",
+      "size": 1123,
+      "sha256": "6a33cb49c380ab63c0f46e3458231ee3a308e4145a13e2739bb92ec747f626a2"
+    },
+    {
+      "path": "qualification/replay-qualification.json",
+      "size": 1466,
+      "sha256": "b9a2c229c38aafd2ef888eac7bb78a99ba8e575b4a1e600a2e6514df58a18617"
+    },
+    {
+      "path": "qualification/run_qualification.py",
+      "size": 13041,
+      "sha256": "47c2396f497581562fdde1885ce0536a20d5b915d97069d6291309c6a81dafa3"
+    },
+    {
+      "path": "qualification/selection.json",
+      "size": 2003,
+      "sha256": "a38ae26d40dc65e9fe45f7f2c4bddb5443dc85f9ca0b0ac18ea36735c3e9861a"
+    }
+  ],
+  "scope": {
+    "qualification": "Original two-suite execution, process receipt, full final source maps, recorded environment, source binding, runner and exact overlap audit.",
+    "publication": "Final source-impact review, independent acceptance, captured-history replay and summaries.",
+    "counting": "All39 executions overlap both the original2551 and intermediate151 populations; zero new distinct cases.",
+    "earlier_archives": {
+      "original": "7605bf4f72509aa52d5544fcca515e0b15997679ecab0ddf717db2068ab83229",
+      "combined-main": "3e8150250d6d4554395372db08faa9d7987e04594a1f9f4f6849ca846e0f5504"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "frozen_commit": "5289b90a83ce9042a4f4cfb73ba8115fe501513a",
+  "frozen_git_tree": "15165a1c510f68de244f36286c3268d8cd8b43ed",
+  "source_input_count": 2994,
+  "source_map_sha256": "86723cbca9b7f6eb17f3be8223e1bd20c09cec46ca68a9efa82bb498fe646cc4",
+  "source_unchanged": true,
+  "environment_unchanged": true,
+  "suite_count": 6,
+  "actual_passed": 151,
+  "failed": 0,
+  "skipped": 0,
+  "case_counts_by_suite": {
+    "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart": 64,
+    "packages/quds_office_editor/example/test/studio_saved_mail_test.dart": 15,
+    "packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart": 18,
+    "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart": 15,
+    "packages/quds_office_engine/test/word_bookmark_fidelity_test.dart": 17,
+    "packages/quds_office_engine/test/word_table_grid_addressing_test.dart": 22
+  },
+  "original_population": {
+    "selected_suites": 119,
+    "accepted_distinct_cases": 2551,
+    "cases_rechecked_here": 72,
+    "all_72_suite_and_name_identities_match": true,
+    "selected_suite_paths_match_original_plan": true
+  },
+  "global_close_regression": {
+    "suite": "packages/quds_office_editor/example/test/studio_saved_mail_test.dart",
+    "case": "saved and account Mail views each expose one localized Close",
+    "actual_successful_executions": 1
+  },
+  "counting_limits": [
+    "The 72 repeated engine/Studio Zotero cases must not be added to the original2551 as new distinct cases.",
+    "The two Mail suites include pre-existing cases; only one new regression was added here. The Mail workspace suite also overlaps incoming Mail qualification, so no cross-archive distinct total is claimed.",
+    "Loading, setup and teardown events are excluded from case totals."
+  ],
+  "runner_sha256": "1babcb82f2379589c5690e253861d4bfa822df1120ee123d261a5f3b0944c619",
+  "original_qualification_sha256": "4e2aa486d32c38975fcfd80f72205360515bee6072759400219e2bd7cb1db0a9",
+  "supplemental_summary_sha256": "8099f8b43d91c00ec6774a950826b7e8e036ed17ea6846ef6daa19d25e7ae6fa"
+}
