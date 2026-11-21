@@ -1,0 +1,425 @@
+{
+  "format": "xz-compressed POSIX tar; normalized timestamps, ownership and modes",
+  "qualified_source_commit": "0fe00b18fef6b79a435817c99714f987329d5f3c",
+  "selected_input_manifest_sha256": "9b7185c99dbc2bd7cb77243d46565c34082327ebecd39a6fff42913efd66ae4e",
+  "archive": {
+    "path": "evidence.tar.xz",
+    "bytes": 1023988,
+    "sha256": "91640094353f3f3c5ec99f480db93cffe834a81f6c90364ae886a01e46d3fcf0"
+  },
+  "member_count": 82,
+  "uncompressed_bytes": 16086034,
+  "read_back_verification": "Every member size and SHA-256 matches the source file.",
+  "members": [
+    {
+      "path": "word-vba-all-caps-20261121/acceptance.json",
+      "bytes": 35945,
+      "sha256": "24c1efb4f03d84c12bf00ebe3ed1846fa59e5bf11fa94e956d2267e24d99156d"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/checks/analyze.command.json",
+      "bytes": 2266,
+      "sha256": "060bba8ed2b05a46c54324b08914d05ceba9e328151eb7aa4065ddbccfdce475"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/checks/analyze.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/checks/analyze.stdout",
+      "bytes": 645,
+      "sha256": "47e7fd68a59f1edf645cd43966644ab2ea31405a09beff01834cb49d9b0c9773"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/checks/changed-dart-paths.txt",
+      "bytes": 1579,
+      "sha256": "624c00a0648f3652f0fb8b472f571a7c128f1aba320ac591c09bc8ec456a12f0"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/checks/format.command.json",
+      "bytes": 2323,
+      "sha256": "9f91d42b0c289d22b27463337ce09ff37930219184e4b5a93cc3c6c5a5b91f0d"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/checks/format.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/checks/format.stdout",
+      "bytes": 48,
+      "sha256": "641d38549c2d74232b6ea5414a6543533484a5dd1b27f68bc638a3deda9efd79"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/checks/provenance.json",
+      "bytes": 2954,
+      "sha256": "44cc9126fceea0f0b2fc36714d3f8b9c81c109711bf7135edba54cf81717ce99"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/checks/source-after.json",
+      "bytes": 531538,
+      "sha256": "9b7185c99dbc2bd7cb77243d46565c34082327ebecd39a6fff42913efd66ae4e"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/checks/source-before.json",
+      "bytes": 531538,
+      "sha256": "9b7185c99dbc2bd7cb77243d46565c34082327ebecd39a6fff42913efd66ae4e"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/checks/summary.json",
+      "bytes": 7176,
+      "sha256": "a7fa00a73365ee017963146eef46485e33da578a43c7dff7135037df89376a36"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/editor/development-note.json",
+      "bytes": 722,
+      "sha256": "92ab6885e3e8f72f75387aea6d9c6080cbaecc1965f204b779d435924368c40c"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/editor/source-after.json",
+      "bytes": 531538,
+      "sha256": "9b7185c99dbc2bd7cb77243d46565c34082327ebecd39a6fff42913efd66ae4e"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/editor/source-before.json",
+      "bytes": 531538,
+      "sha256": "9b7185c99dbc2bd7cb77243d46565c34082327ebecd39a6fff42913efd66ae4e"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/editor/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/editor/stdout.jsonl",
+      "bytes": 143382,
+      "sha256": "862aa515525505e85fba1322812e613770ad441b65b6b9f57e64e787b11b2195"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/editor-final/execution.json",
+      "bytes": 1205,
+      "sha256": "1c96adf048d8ebd392d1de072d383c54721880e461e22f3d22071400687c60c6"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/editor-final/source-after.json",
+      "bytes": 531538,
+      "sha256": "9b7185c99dbc2bd7cb77243d46565c34082327ebecd39a6fff42913efd66ae4e"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/editor-final/source-before.json",
+      "bytes": 531538,
+      "sha256": "9b7185c99dbc2bd7cb77243d46565c34082327ebecd39a6fff42913efd66ae4e"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/editor-final/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/editor-final/stdout.jsonl",
+      "bytes": 143200,
+      "sha256": "0fb1dac171ee964c5cac91dc434f534a95100af0856cc406708e7535c5dfe6f5"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/editor-final/summary.json",
+      "bytes": 7051,
+      "sha256": "f56b979d8caba59eb4a2003df5f6aa6f6f64bff4ba9867371492415132802b3a"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/editor-final-spec.json",
+      "bytes": 1228,
+      "sha256": "1ee1eb3f2aba9446765d8909e0f766f81546efa887f8dc21a2102d7a43d86458"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/editor-spec.json",
+      "bytes": 1216,
+      "sha256": "7d378b8fa0b948859831eb0e2698ddcf2ef90d140fb4dfd6a3243431d1a9c87f"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/engine/source-after.json",
+      "bytes": 531538,
+      "sha256": "9b7185c99dbc2bd7cb77243d46565c34082327ebecd39a6fff42913efd66ae4e"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/engine/source-before.json",
+      "bytes": 531538,
+      "sha256": "9b7185c99dbc2bd7cb77243d46565c34082327ebecd39a6fff42913efd66ae4e"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/engine/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/engine/stdout.jsonl",
+      "bytes": 3910648,
+      "sha256": "c763eaef8ef5ea93193f5e49e1196d5e0dcbd689e48cde83564a6abbfe5ea382"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/engine/summary.json",
+      "bytes": 46670,
+      "sha256": "ddd00952648c990f3c20e1c947d6ed69f5f2faa4cd5c7abf8258134d3f67c3e6"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/engine-spec.json",
+      "bytes": 13668,
+      "sha256": "5f90a78252f24736bff5ce34860faa94a94ad7835fe57e48b34a63defe96b6d0"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/engine-suites.txt",
+      "bytes": 11343,
+      "sha256": "3defb06944615179614dc4221fab5a46071db3a81344158eaa213616976f58eb"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/final-intake-raw.json",
+      "bytes": 63660,
+      "sha256": "86f6536bf7fbe02b14189149db6626adc15282fe2e5b751b5bac59fe2cfb6c42"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/final-intake.json",
+      "bytes": 137333,
+      "sha256": "f1e0b1e9c24b50ad5d9b6d8b216f353c1795f82daddd3b120c98936379cf8646"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/final-source-check.json",
+      "bytes": 531538,
+      "sha256": "9b7185c99dbc2bd7cb77243d46565c34082327ebecd39a6fff42913efd66ae4e"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/frozen-source.json",
+      "bytes": 531538,
+      "sha256": "9b7185c99dbc2bd7cb77243d46565c34082327ebecd39a6fff42913efd66ae4e"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/helpers/assemble_all_caps_acceptance.py",
+      "bytes": 5123,
+      "sha256": "05da07cc3cc4b3df4cf3cf8e54618413fb278069125e5c8cbf64d753732a129c"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/helpers/capture_source.py",
+      "bytes": 1163,
+      "sha256": "c385ca7ef4cf2c6582c5198f57fb92abe5bcb931fc2d386f7127dd80e70fbc13"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/helpers/compare_all_caps_receipts.py",
+      "bytes": 4580,
+      "sha256": "101ad79dcea6f175a18481de36c44a35d31f30682e97930c21f5d050c1a76f76"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/helpers/run_all_caps_portable_checks.py",
+      "bytes": 8053,
+      "sha256": "d9649a889fa4b4403358dc5985bd630b244176021c734a7bbe9a2a87d337efe4"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/helpers/run_gate.py",
+      "bytes": 4959,
+      "sha256": "3a09955323fa8eccdef33425ff5ca8fe3d8644a57c6e43040c951df2ccceed3c"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/independent-audit.json",
+      "bytes": 17960,
+      "sha256": "1813243c4f894de8a21ca8de25ef98d3245ef1fe33e5d824963cc9aadb49a7d7"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/initial-intake.json",
+      "bytes": 54060,
+      "sha256": "f20177b15267ebd29c4c5491be35722d6f685ba1d1b309167c2f2d12c08fb7e0"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/locked-dependencies.json",
+      "bytes": 43457,
+      "sha256": "f2fe586718e75851066fd2b132c338b296acddb3c6d974a36ca501be2c3a468a"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/mcp-replay/execution.json",
+      "bytes": 495,
+      "sha256": "b5975a62016a6501b06ac75d24e64b68270efc02bea80e28e9bcb53684d17031"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/mcp-replay/freeze-verification.json",
+      "bytes": 814,
+      "sha256": "d6750fad8c4aeae3dcb403eb8349b1fc10ae90d5549ad90d17d216a59a3e987c"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/mcp-replay/runtime-inputs.json",
+      "bytes": 1473,
+      "sha256": "8dc2ec4f61d9fa545475968519e43a23ebf501d9510b93424232f7e996e74011"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/mcp-replay/source-after.json",
+      "bytes": 531538,
+      "sha256": "9b7185c99dbc2bd7cb77243d46565c34082327ebecd39a6fff42913efd66ae4e"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/mcp-replay/source-before.json",
+      "bytes": 531538,
+      "sha256": "9b7185c99dbc2bd7cb77243d46565c34082327ebecd39a6fff42913efd66ae4e"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/mcp-replay/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/mcp-replay/stdout.jsonl",
+      "bytes": 8397,
+      "sha256": "5fb7c826159d4d07938516eeb6130444e2c11b5bac4a2b84dccc941c2736d3b4"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/mcp-replay/summary.json",
+      "bytes": 1358,
+      "sha256": "8dc23cf0636b90d7c7e4ce7b26ee556b07490b6890e950ac2f74358f7de1c451"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/mcp-replay-freeze-preflight.json",
+      "bytes": 531538,
+      "sha256": "9b7185c99dbc2bd7cb77243d46565c34082327ebecd39a6fff42913efd66ae4e"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/mcp-replay-runner.log",
+      "bytes": 885,
+      "sha256": "c7a05c7c5478af5486be492dda814ca7d76ed2bcd038db6b8a68fc02d6a7bd10"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/mcp-replay-spec.json",
+      "bytes": 489,
+      "sha256": "e25fbb5454d3b63c80ce2ed5dbdb73a4d319104f2d635c21b729b95dd9163464"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/portable/compile-js.command.json",
+      "bytes": 1714,
+      "sha256": "f1f4d66a868a4fedda12586f54aca4194a80c920f6fd6a83cc29e6547bd41a02"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/portable/compile-js.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/portable/compile-js.stdout",
+      "bytes": 114,
+      "sha256": "f8385941575f61d26a12aeac46ccdd7bb9719d237ab5aede5f513b7ef6da66b4"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/portable/node.canonical.json",
+      "bytes": 1802,
+      "sha256": "218ee6a9e72b3401a692826b35066d55df1118c6876ef09103072bb6f6603cc8"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/portable/node.command.json",
+      "bytes": 590,
+      "sha256": "0fee44ce60064214534f9287f7d4bf41d8e29dab83642bf598d8b705bc9113d2"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/portable/node.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/portable/node.stdout",
+      "bytes": 1802,
+      "sha256": "8a0a64056afbc4a587f92c988ac9218c2d9bcd31def1e14b2702630e6ab653d4"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/portable/node_preamble.js",
+      "bytes": 3422,
+      "sha256": "d91c0e6a7aa2f0415a0708aafff80d02d303e96be90c55cb7cf0dce02fae7c6c"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/portable/provenance.json",
+      "bytes": 2954,
+      "sha256": "44cc9126fceea0f0b2fc36714d3f8b9c81c109711bf7135edba54cf81717ce99"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/portable/semantic-summary.json",
+      "bytes": 3646,
+      "sha256": "d24e69e0be8c3d10925ce56e0fcd8746c0cec934e880e12be905e0961a881060"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/portable/source-after.json",
+      "bytes": 531538,
+      "sha256": "9b7185c99dbc2bd7cb77243d46565c34082327ebecd39a6fff42913efd66ae4e"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/portable/source-before.json",
+      "bytes": 531538,
+      "sha256": "9b7185c99dbc2bd7cb77243d46565c34082327ebecd39a6fff42913efd66ae4e"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/portable/summary.json",
+      "bytes": 8925,
+      "sha256": "5a34041b929f26e8fa850d9e16c86ca5d365324347d95a36eb164d1891f28ed9"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/portable/vm.canonical.json",
+      "bytes": 1802,
+      "sha256": "218ee6a9e72b3401a692826b35066d55df1118c6876ef09103072bb6f6603cc8"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/portable/vm.command.json",
+      "bytes": 1576,
+      "sha256": "d40071eb57712786fe2627e358bb9dbe4155e0711c438bd96335ddb49f2357bf"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/portable/vm.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/portable/vm.stdout",
+      "bytes": 1822,
+      "sha256": "a99e40cded2752649f550476ff3cb40599d888a4599ee58eb7ea50b1785d11ef"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/portable/word-all-caps.js",
+      "bytes": 1192341,
+      "sha256": "496c1a5fd2670e0171342fee4b47e85561715ba79966d039abab841a24f39666"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/portable/word-all-caps.js.deps",
+      "bytes": 129573,
+      "sha256": "296ded63248bc913b4400192d2ff1b8ac2142702e754b98069b3aafd076809d7"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/portable/word-all-caps.js.map",
+      "bytes": 869587,
+      "sha256": "916dae418fc917c510c1d06c5672b61908bbb77829241fb52ebfc222f30a03a3"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/portable/word-all-caps.node.cjs",
+      "bytes": 1195763,
+      "sha256": "8cd1a24c1644c9bc9f4377ae9a4a463d58dbb6af77b8899fba34233e1672fbcd"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/portable-checks-progress.log",
+      "bytes": 249,
+      "sha256": "9da73b20388ec7ccc6b9ad9b0413826ebb58dd38f83bad0ee16004a05450acaf"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/runtime-logs/flutter-tools-pub-get.log",
+      "bytes": 1228,
+      "sha256": "fcccf37d969787c76d4c55b19cba368cff68b1c3eb86b1f0f02274b9cc405829"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/runtime-logs/flutter-version.log",
+      "bytes": 636,
+      "sha256": "dda841268a6ea7315746e0d0373e79c7cadc2d0edbe69ff380878694b448e9dc"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/runtime-logs/runtime-widget-readiness.log",
+      "bytes": 174,
+      "sha256": "8d132a2d1d6dd9253c12612c199e607162aad0676a4424bfb2ab4cc8ef827ae6"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/runtime-logs/workspace-pub-get.log",
+      "bytes": 214,
+      "sha256": "3640d48177b802767785e357f56651162d2250e124b566cffdc2cb88ce7e7f9c"
+    },
+    {
+      "path": "word-vba-all-caps-20261121/runtime-provenance.json",
+      "bytes": 5502,
+      "sha256": "bafc66cf0904ca15b4388881656c6a08206384f2bf2e075a982223441d43bb05"
+    }
+  ]
+}
