@@ -785,6 +785,8 @@ extension MailStoreLocalOperations on SqliteMailRepository {
       'outbox_attempts',
       'outbox',
       'drafts',
+      'account_quick_texts',
+      'account_compose_settings',
       'blob_refs',
       'blobs',
       'memberships',

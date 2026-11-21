@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:drift/drift.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
@@ -15,6 +16,7 @@ part 'mailbox_views.dart';
 part 'sync_mailboxes.dart';
 part 'cached_header_search.dart';
 part 'saved_header_searches.dart';
+part 'compose_settings.dart';
 part 'flag_journal.dart';
 part 'flag_reconciliation.dart';
 
@@ -765,6 +767,11 @@ final class SqliteMailRepository implements MailRepository {
       ('blob_refs', ['owner_kind', 'owner_id', 'hash']),
       ('cached_messages', ['message', 'raw_hash', 'data']),
       ('drafts', ['id', 'data']),
+      (
+        'account_compose_settings',
+        ['revision', 'signature', 'signature_new', 'signature_replies'],
+      ),
+      ('account_quick_texts', ['position', 'id', 'name', 'name_key', 'text']),
       ('outbox', ['id', 'state', 'attempt_id', 'data']),
       ('outbox_attempts', ['outbox', 'attempt_id']),
       ('pending_operations', ['id', 'remote', 'kind', 'argument', 'state']),
