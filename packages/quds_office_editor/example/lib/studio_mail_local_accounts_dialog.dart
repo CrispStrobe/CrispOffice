@@ -5,6 +5,8 @@ import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
 
 import 'studio_mail_cached_mail.dart';
+import 'studio_mail_cached_search_dialog.dart';
+import 'studio_mail_cached_search_strings.dart';
 import 'studio_mail_cached_strings.dart';
 import 'studio_mail_draft_store.dart';
 import 'studio_mail_local_accounts.dart';
@@ -188,6 +190,46 @@ class _StudioMailLocalAccountsDialogState
     }
   }
 
+  Future<void> _openSavedSearch() async {
+    if (!_current || _busy || _childOpen) return;
+    final directory = widget.store;
+    final provider = widget.provider;
+    final openStore = widget.draftStoreFactory;
+    final strings = widget.strings;
+    final parentIsCurrent = widget.isCurrent;
+    bool entryIsCurrent() =>
+        _current &&
+        parentIsCurrent() &&
+        identical(widget.store, directory) &&
+        widget.provider == provider &&
+        identical(widget.draftStoreFactory, openStore);
+    setState(() => _childOpen = true);
+    try {
+      await showDialog<void>(
+        context: context,
+        barrierDismissible: false,
+        builder: (_) => Directionality(
+          textDirection: strings.language == StudioLanguage.ar
+              ? TextDirection.rtl
+              : TextDirection.ltr,
+          child: StudioMailCachedSearchDialog(
+            strings: strings,
+            store: directory,
+            isCurrent: entryIsCurrent,
+            provider: provider,
+            draftStoreFactory: openStore,
+          ),
+        ),
+      );
+    } on Object {
+      if (entryIsCurrent()) {
+        setState(() => _error = widget.strings.mailLocalAccountsFailed);
+      }
+    } finally {
+      if (mounted) setState(() => _childOpen = false);
+    }
+  }
+
   @override
   Widget build(BuildContext context) => PopScope(
     canPop: !_childOpen,
@@ -203,6 +245,22 @@ class _StudioMailLocalAccountsDialogState
               Text(widget.strings.mailLocalAccountsHelp),
               const SizedBox(height: 8),
               Text(widget.strings.mailCachedAccountsHelp),
+              Align(
+                alignment: AlignmentDirectional.centerStart,
+                child: TextButton.icon(
+                  key: const ValueKey('studio-mail-search-saved'),
+                  onPressed:
+                      _busy ||
+                          _childOpen ||
+                          !_current ||
+                          _records.isEmpty ||
+                          _error != null
+                      ? null
+                      : _openSavedSearch,
+                  icon: const Icon(Icons.manage_search),
+                  label: Text(widget.strings.mailCachedSearch),
+                ),
+              ),
               const SizedBox(height: 16),
               if (_busy) const LinearProgressIndicator(),
               if (_error case final error?) Text(error),

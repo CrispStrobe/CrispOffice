@@ -260,6 +260,12 @@ inspection receipt, not a complete dependency or runtime certification.
   owner. See [offline-downloads.md](offline-downloads.md). Automatic retention
   policy and background scheduling remain separate work.
 - [ ] Implement QudsMailWorkspace with account/folder or label navigation, paginated/virtualized message and conversation lists, stable selection and coordinated reader/composer sessions.
+- [x] Search retained browse/synchronization headers across folders and native
+  account profiles using the existing Boolean query. Preserve account/folder
+  provenance, explicit cache coverage, bounded continuation, stale-query and
+  owner guards, and local-only result opening. See
+  [unified-cached-search.md](unified-cached-search.md). This separate chooser
+  workflow does not complete the shared workspace, body or server search.
 - [ ] Extend repository-observed browsing to authoritative synchronized lists,
   unread counts and full account search in the shared workspace; keep loading,
   empty, offline, synchronizing, failed credentials and unsupported capabilities

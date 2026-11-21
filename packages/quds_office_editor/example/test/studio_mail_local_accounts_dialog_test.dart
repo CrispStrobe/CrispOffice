@@ -36,6 +36,27 @@ Future<void> _press(WidgetTester tester, Finder finder) async {
   await pumpOutboxWidgets(tester);
 }
 
+Future<void> _waitForCachedMailClose(WidgetTester tester) async {
+  final dialog = find.byType(StudioMailCachedMailDialog);
+  final elapsed = Stopwatch()..start();
+  // Closing drains Drift subscriptions and the owner before popping. A fixed
+  // three-frame animation pump need not finish those asynchronous cancellations.
+  while (dialog.evaluate().isNotEmpty &&
+      elapsed.elapsed < const Duration(seconds: 15)) {
+    await tester.pump(const Duration(milliseconds: 10));
+    if (dialog.evaluate().isNotEmpty) {
+      await tester.runAsync(
+        () => Future<void>.delayed(const Duration(milliseconds: 1)),
+      );
+    }
+  }
+  expect(
+    dialog,
+    findsNothing,
+    reason: 'The local mailbox must drain storage before its route closes.',
+  );
+}
+
 Future<void> _show(
   WidgetTester tester,
   MemoryMailLocalAccounts store, {
@@ -124,8 +145,19 @@ void main() {
         tester,
         find.byKey(const ValueKey('studio-mail-cache-close')),
       );
+      await _waitForCachedMailClose(tester);
       expect(find.byType(StudioMailCachedMailDialog), findsNothing);
       expect(find.byType(ListTile), findsOneWidget);
+      await expectLater(
+        fixture.adapters.single.load(),
+        throwsA(
+          isA<StudioMailDraftStoreException>().having(
+            (error) => error.code,
+            'code',
+            MailProblemCode.unavailable,
+          ),
+        ),
+      );
     });
   }
 

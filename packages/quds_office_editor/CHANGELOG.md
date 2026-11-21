@@ -4,6 +4,15 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Add explicit **Search saved mail** across listed native accounts and cached
+  folders, using bounded Boolean header search with account/folder provenance,
+  saved-body availability, incremental continuation and honest coverage.
+  Read saved messages offline, invalidate results when scope or query changes,
+  and drain local storage before closing. English, German and Arabic controls
+  include LTR query examples. Server mail, body text and attachments remain
+  outside this search. If selected scope remains unchecked at 1,000 displayed
+  matches, the search asks for a more specific query.
+
 - Accept nested Zotero research-note/annotation tables through the existing
   native commands, retaining active citations, rich content, body/authored-note
   ownership and one undo/redo step. Table-containing payloads still require
