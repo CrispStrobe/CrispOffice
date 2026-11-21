@@ -1,19 +1,92 @@
 import 'package:flutter/material.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'studio_strings.dart';
 
-Future<void> showStudioAbout(BuildContext context, StudioStrings strings) =>
-    showDialog<void>(
-      context: context,
-      useRootNavigator: true,
-      builder: (context) => StudioAboutDialog(strings: strings),
-    );
+/// The version and build number of the running app bundle.
+///
+/// On macOS/iOS these are `CFBundleShortVersionString`/`CFBundleVersion`, on
+/// Android `versionName`/`versionCode`, and on the web Flutter's
+/// `version.json`; all of them come from the pubspec `version` or the
+/// `--build-name`/`--build-number` passed to `flutter build`.
+@immutable
+class StudioAppVersion {
+  const StudioAppVersion(this.version, this.build);
 
-class StudioAboutDialog extends StatelessWidget {
-  const StudioAboutDialog({super.key, required this.strings});
+  final String version;
+  final String build;
+
+  /// `1.2.3 (45)`, or just the version when there is no distinct build.
+  String get label =>
+      build.isEmpty || build == version ? version : '$version ($build)';
+
+  @override
+  bool operator ==(Object other) =>
+      other is StudioAppVersion &&
+      other.version == version &&
+      other.build == build;
+
+  @override
+  int get hashCode => Object.hash(version, build);
+}
+
+/// Reads the version from the app bundle. Returns null when the platform
+/// cannot report it (for example in a widget test without the plugin).
+Future<StudioAppVersion?> loadStudioAppVersion() async {
+  try {
+    final info = await PackageInfo.fromPlatform();
+    if (info.version.isEmpty) return null;
+    return StudioAppVersion(info.version, info.buildNumber);
+  } catch (_) {
+    return null;
+  }
+}
+
+Future<void> showStudioAbout(
+  BuildContext context,
+  StudioStrings strings, {
+  StudioAppVersion? version,
+}) => showDialog<void>(
+  context: context,
+  useRootNavigator: true,
+  builder: (context) => StudioAboutDialog(strings: strings, version: version),
+);
+
+class StudioAboutDialog extends StatefulWidget {
+  const StudioAboutDialog({
+    super.key,
+    required this.strings,
+    this.version,
+    this.versionLoader = loadStudioAppVersion,
+  });
 
   final StudioStrings strings;
+
+  /// The version to show. When null it is read once with [versionLoader];
+  /// tests pass a fixed value so they stay deterministic.
+  final StudioAppVersion? version;
+  final Future<StudioAppVersion?> Function() versionLoader;
+
+  @override
+  State<StudioAboutDialog> createState() => _StudioAboutDialogState();
+}
+
+class _StudioAboutDialogState extends State<StudioAboutDialog> {
+  StudioAppVersion? _loaded;
+
+  StudioStrings get strings => widget.strings;
+  StudioAppVersion? get _version => widget.version ?? _loaded;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.version == null) {
+      widget.versionLoader().then((value) {
+        if (mounted && value != null) setState(() => _loaded = value);
+      }, onError: (Object _) {});
+    }
+  }
 
   Future<void> _launch(String url) async {
     final uri = Uri.parse(url);
@@ -78,7 +151,10 @@ class StudioAboutDialog extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     SelectableText(
-                      '${strings.aboutVersion} 1.0.0 (1)',
+                      _version == null
+                          ? ''
+                          : '${strings.aboutVersion} ${_version!.label}',
+                      key: const ValueKey<String>('studio-about-version'),
                       style: theme.textTheme.bodySmall,
                     ),
                     const SizedBox(height: 14),
@@ -138,7 +214,7 @@ class StudioAboutDialog extends StatelessWidget {
                   onPressed: () => showLicensePage(
                     context: context,
                     applicationName: strings.appTitle,
-                    applicationVersion: '1.0.0',
+                    applicationVersion: _version?.label,
                     applicationIcon: const Icon(
                       Icons.auto_awesome_mosaic,
                       size: 48,
