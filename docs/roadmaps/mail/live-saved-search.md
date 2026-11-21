@@ -61,7 +61,10 @@ lease. English, German and Arabic controls retain this distinction.
 `StudioMailCachedSearchRefreshBatch` is an immutable staged result set. The
 collector reuses the existing scoped search session and enforces positive,
 bounded budgets. Generation checks surround each page and precede publication;
-the caller retains lifecycle and close/drain ownership. The dialog performs
+one final directory snapshot revalidates every captured account, including
+accounts that completed before later accounts were scanned. Changed or missing
+identities/revisions remove that account's staged hits and retain its failure.
+The caller retains lifecycle and close/drain ownership. The dialog performs
 the atomic result replacement and owns the foreground timer independently of
 durable query-definition revisions.
 

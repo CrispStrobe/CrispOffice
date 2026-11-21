@@ -122,8 +122,10 @@ class _StudioMailCachedSearchDialogState
           StudioMailSavedSearchStore store => store,
           _ => null,
         };
-    _opening = Future.wait([_loadAccounts(), _loadSavedSearches()])
-        .then((_) {});
+    _opening = Future.wait([
+      _loadAccounts(),
+      _loadSavedSearches(),
+    ]).then((_) {});
   }
 
   @override
@@ -1326,24 +1328,38 @@ class _StudioMailCachedSearchDialogState
             label: Text(widget.strings.mailCachedSearchRefresh),
           ),
         ),
-        SwitchListTile.adaptive(
-          key: const ValueKey('studio-mail-cached-search-auto-refresh'),
-          contentPadding: EdgeInsets.zero,
-          dense: true,
-          value: _autoRefresh,
-          title: Text(widget.strings.mailCachedSearchAutoRefresh),
-          subtitle: Text(
-            _autoRefresh && !_foreground
+        LayoutBuilder(
+          builder: (context, constraints) {
+            final compact = constraints.maxWidth < 600;
+            final explanation = _autoRefresh && !_foreground
                 ? widget.strings.mailCachedSearchRefreshSuspended
                 : !_completeSearch
                 ? widget.strings.mailCachedSearchRefreshIncomplete
-                : widget.strings.mailCachedSearchRefreshAbout,
-          ),
-          onChanged: _current && (_autoRefresh || _canAutoRefresh)
-              ? _setAutoRefresh
-              : null,
+                : widget.strings.mailCachedSearchRefreshAbout;
+            return Tooltip(
+              message: explanation,
+              child: SwitchListTile.adaptive(
+                key: const ValueKey('studio-mail-cached-search-auto-refresh'),
+                contentPadding: EdgeInsets.zero,
+                dense: true,
+                value: _autoRefresh,
+                title: Text(widget.strings.mailCachedSearchAutoRefresh),
+                subtitle: Text(
+                  !compact || (_autoRefresh && !_foreground)
+                      ? explanation
+                      : !_completeSearch
+                      ? widget.strings.mailCachedSearchRefreshIncompleteShort
+                      : widget.strings.mailCachedSearchRefreshShortAbout,
+                ),
+                onChanged: _current && (_autoRefresh || _canAutoRefresh)
+                    ? _setAutoRefresh
+                    : null,
+              ),
+            );
+          },
         ),
-        if (_refreshNotice case final notice?)
+        if (_refreshNotice case final notice?
+            when _selected == null || !_completeSearch)
           Semantics(
             liveRegion: true,
             child: Text(

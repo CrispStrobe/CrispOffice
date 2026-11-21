@@ -39,6 +39,16 @@ extension StudioMailCachedSearchStrings on StudioStrings {
     'Aktualisiert gespeicherte Nachrichtenköpfe, solange diese Suche geöffnet und die App aktiv ist. Es werden keine E-Mails heruntergeladen.',
     'يحدّث الرؤوس المحفوظة أثناء فتح هذا البحث ونشاط التطبيق. لا يتم تنزيل أي بريد.',
   );
+  String get mailCachedSearchRefreshShortAbout => _text(
+    'Saved mail · app active',
+    'Gespeicherte E-Mails · App aktiv',
+    'البريد المحفوظ · التطبيق نشط',
+  );
+  String get mailCachedSearchRefreshIncompleteShort => _text(
+    'Finish searching to enable updates.',
+    'Suche abschließen, um Updates zu aktivieren.',
+    'أكمل البحث لتفعيل التحديثات.',
+  );
   String get mailCachedSearchRefreshIncomplete => _text(
     'Complete the search before enabling automatic updates. Refresh results checks the selected saved mail again.',
     'Schließen Sie die Suche ab, bevor Sie automatische Aktualisierungen aktivieren. „Ergebnisse aktualisieren“ prüft die ausgewählten gespeicherten E-Mails erneut.',

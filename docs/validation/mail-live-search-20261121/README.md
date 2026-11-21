@@ -26,6 +26,40 @@ non-forced GitHub ref writes. Local Git tree hashes are matched to the remote
 tree before advancing the branch. GitHub Actions, checks and status queues
 are neither consulted nor awaited.
 
+### Incremental remote checkpoints
+
+| Checkpoint | Saved result |
+| --- | --- |
+| `5f1446bc0710f6914de307b5e8904d781eb83c06` | Both outstanding initial branch heads and their complete evidence/test history |
+| `b80f5c27a67ece5692dfd8dc916ab5a57736976f` | Refresh collector, foreground UI, localizations, focused regressions and roadmap |
+| `1360ead9e080fcf884ccac6cbc87bd6a58efdb5b` | Final whole-scope authority recheck, regression and latest landed main `511df2a0` |
+
+The final scope recheck closes an independently reproduced design gap: account
+A can be retired after its last page while account B is still being scanned.
+Before publishing, one directory snapshot now revalidates every captured
+identity/revision and removes all hits from changed or missing accounts. The
+retained reader and automatic updates follow that failure state.
+
+### Later concurrent work
+
+The [publication snapshot](publication-intake.json) records five current fork
+branches and the latest 100 PR heads (#243–342). Main `511df2a0` is preserved,
+including its paragraph/frame-owner rendering cache. Three other branches
+advanced after the initial intake and remain active independent work:
+
+| Captured head | State at capture |
+| --- | --- |
+| `97538d025b260bd67c559962be9e9f159a6de06e` — Word VBA authoring | Implementation checkpoint; its final source-bound qualification is explicitly pending |
+| `f6236ff5588441a24f9c8cc9c1dd4370d77eaddb` — Zotero note layout | Draft PR #342, explicitly work in progress; completion qualification pending |
+| `4b33109aa85e077e2798265efa045d640e6ead4e` — Zotero ODT continuation | Draft PR #333; new position guard has no fresh qualification record at capture |
+
+Those later heads remain on their remote branches and are recorded exactly.
+Their unfinished source is not promoted by this mail increment. This does not
+change the complete ancestry coverage of the initial 163-ref inventory. The
+canonical upstream's four heads and sixteen tags were rechecked unchanged.
+Only subsequent landed-main changes are reconciled before final publication;
+this finite intake does not chase independent draft development indefinitely.
+
 ## Increment under qualification
 
 The [workflow contract](../../roadmaps/mail/live-saved-search.md) describes
