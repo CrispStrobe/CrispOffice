@@ -11251,8 +11251,7 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
             selectedTileColor: _accent.withValues(alpha: 0.12),
             title: Text(_sheet.workbook.sheets[i].name),
             subtitle: Text(
-              '${_sheet.workbook.sheets[i].allCells.length} '
-              '${_t('cells', StudioStrings.de('cells'), 'خلية')}',
+              studioCells(_language, _sheet.workbook.sheets[i].allCells.length),
             ),
             onTap: () =>
                 _navigateOffice(_sheet, () => _sheet.setActiveSheet(i)),

@@ -609,9 +609,8 @@ void main() {
         expect(_field('ews-message-cloud-message'), findsNothing);
         expect(_field('ews-message-older'), findsOneWidget);
         expect(
-          find.text(
-            '1 shown · 2 loaded\n${_strings.mailMessageListStrings.loadedScope}',
-          ),
+          // The last page is loaded: only the filter count remains.
+          find.text('1 shown · 2 loaded'),
           findsOneWidget,
         );
         expect(provider.cursors.map((cursor) => cursor?.value), [
