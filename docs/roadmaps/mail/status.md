@@ -1,5 +1,27 @@
 # Mail implementation status — 21 November 2026
 
+## Range selection and synchronized address search — source implemented
+
+Shared mailbox lists with checked actions now support Shift+Up/Down/Home/End,
+Shift+Space and Shift+click on rows or checkboxes. Ranges track the visible
+ordering, can contract or reverse around their anchor, and preserve separately
+checked messages. Filtering, sorting, folding and host updates reset the range;
+hidden/collapsed rows remain excluded from action snapshots. Generation guards,
+account/revision resets and explicit host-owned bulk dispatch remain in force.
+
+English, German and Arabic help explains the workflow. Synchronized mailbox
+projections now search the names and addresses of every visible From/To/Cc
+entry, with empty-name fallbacks and no Bcc/body inclusion. Connected and
+offline regression cases assert that searching triggers no synchronization,
+download or body reads.
+
+**Fresh runtime qualification is pending.** The local executor failed with
+disk exhaustion and then could not start processes. Source review and remote
+readback do not establish passing Flutter tests, analyzer, formatter, visual
+checks or live-provider acceptance. See the [workflow](keyboard-triage.md) and
+[work record](../../validation/mail-keyboard-triage-20261121/README.md).
+GitHub Actions were neither queried nor awaited for this continuation.
+
 ## Scheduled Outbox and pre-submission Undo — locally qualified
 
 Native Outbox now saves fixed UTC deadlines and offers **Send later**, a
