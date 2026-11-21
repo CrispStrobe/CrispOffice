@@ -1161,6 +1161,7 @@ List<Object?> _runProperties(WmlRunProps p) => [
   p.underline.name,
   p.strike,
   p.smallCaps,
+  p.allCaps,
   p.color,
   p.highlight,
   p.fontSizeHalfPoints,

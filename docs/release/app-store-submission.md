@@ -81,15 +81,18 @@ Schreiben, prüfen und senden in einer App: Word-, Excel- und PowerPoint-Dokumen
 Description: translate section 2 when the English text is approved (**owner**:
 include German and Arabic localizations?).
 
-## 4. URLs and contact (**owner**)
+## 4. URLs and contact
 
-- Support URL: required. A GitHub Pages or repository page is enough.
-- Marketing URL: optional.
-- Privacy Policy URL: required. A draft policy follows in section 6; it must be
-  hosted at a public URL.
-- Copyright: e.g. `2026 CrispStrobe`.
-- Review contact name, phone and email: entered in App Store Connect only,
-  never in this repository.
+- Support URL: `https://www.crispstro.be/en/apps/crispoffice/` (app page with
+  a Support section: e-mail, GitHub issues, privacy link; German page
+  `/de/apps/crispoffice/`).
+- Marketing URL (optional): the same app page.
+- Privacy Policy URL: `https://www.crispstro.be/en/crispoffice-privacy/`
+  (German: `https://www.crispstro.be/de/crispoffice-datenschutz/`). The app's
+  About dialog links it (guideline 5.1.1), alongside the provider and contact
+  details that every CrispStrobe app shows there.
+- Copyright: **owner** (e.g. `2026 Christian Ströbele`).
+- Review contact name, phone and email: entered in App Store Connect only.
 
 ## 5. App Privacy ("nutrition label")
 

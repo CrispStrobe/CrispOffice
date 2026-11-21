@@ -2160,11 +2160,12 @@ class WordLayoutEngine {
       }
     }
     if (paragraph.inlines.whereType<WmlRun>().any(
-      (run) => run.properties.smallCaps,
+      (run) => run.properties.smallCaps || run.properties.allCaps,
     )) {
       for (final segment in WordSmallCaps.segments(text)) {
         if (segment.text == text.substring(segment.start, segment.end) ||
-            !propsAt(segment.start).smallCaps ||
+            !(propsAt(segment.start).smallCaps ||
+                propsAt(segment.start).allCaps) ||
             inlinePictures.containsKey(segment.start) ||
             displayLabels.containsKey(segment.start)) {
           continue;
@@ -2181,7 +2182,9 @@ class WordLayoutEngine {
         displayLabels[segment.start] = (
           text: segment.text,
           end: segment.end,
-          scale: segment.scale,
+          // Prefer full-size capitals for malformed input with both flags on.
+          // This is a display fallback; retain the authored text and flags.
+          scale: props.allCaps ? 1 : segment.scale,
           note: false,
         );
       }
