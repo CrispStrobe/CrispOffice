@@ -955,7 +955,16 @@ void main() {
           of: find.text(subject),
           matching: find.byType(ListTile),
         );
-        await tester.ensureVisible(firstResult);
+        // Refresh controls can put the first lazy result beyond the layout
+        // cache on compact screens with enlarged text. Scroll the results
+        // viewport until that row is built before checking its rendering.
+        await tester.scrollUntilVisible(
+          firstResult,
+          200,
+          scrollable: find
+              .descendant(of: _results, matching: find.byType(Scrollable))
+              .first,
+        );
         await tester.pump();
         final sender = find.descendant(
           of: firstResult,

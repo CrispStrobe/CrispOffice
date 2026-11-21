@@ -1549,6 +1549,11 @@ DOCX margins use twentieths of a point (0.05 pt). Cross-format saves can therefo
 round geometry. The [table-layout record](validation/zotero-table-layout-20261121/README.md)
 documents this bounded behavior rather than an exact-geometry guarantee.
 
+Editable ODT export also refuses effective absolute raised/lowered baseline
+positions in text, paragraph marks and note markers. Inherited positions are
+checked; explicit zero overrides and supported superscript/subscript remain
+accepted.
+
 Supported inline PNG and upright RGB JPEG pictures keep their raster bytes,
 physical size, links, accessible titles and alternative descriptions in the
 editable ODT copy. Duplicate or empty drawing-object names receive deterministic

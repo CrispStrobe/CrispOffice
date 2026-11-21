@@ -55,6 +55,12 @@ source text. Other case transforms and uppercase combined with small capitals
 remain outside the reader's envelope. See the
 [native-input contract](native-odt-input.md#increment-7-semantic-uppercase-text).
 
+Explicit editable ODT export refuses effective absolute raised/lowered baseline
+positions on text, paragraph marks and note markers, including inherited values.
+An explicit zero override and supported semantic superscript/subscript remain
+accepted. This preserves the boundary introduced by native Word `Font.Position`
+support instead of silently omitting that formatting during conversion.
+
 ## Ownership and supported content
 
 The preflight traverses native structural owners and separately accounts for
