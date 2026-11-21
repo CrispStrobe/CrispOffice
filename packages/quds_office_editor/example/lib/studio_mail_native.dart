@@ -23,6 +23,7 @@ import 'studio_mail_archive_folder_action.dart';
 import 'studio_mail_cloud.dart';
 import 'studio_mail_cached_strings.dart';
 import 'studio_mail_compose.dart';
+import 'studio_mail_compose_tools.dart';
 import 'studio_mail_credentials.dart';
 import 'studio_mail_draft_store.dart';
 import 'studio_mail_draft_store_native.dart';
@@ -752,6 +753,13 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         identity,
       );
       if (candidate case StudioMailOutboxStore(
+        :final account,
+      ) when account != identity.account) {
+        throw const StudioMailDraftStoreException(
+          MailProblemCode.permissionDenied,
+        );
+      }
+      if (candidate case StudioMailComposeToolsStore(
         :final account,
       ) when account != identity.account) {
         throw const StudioMailDraftStoreException(
@@ -1747,7 +1755,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       StudioMailDraftCatalog value => value,
       _ => null,
     };
-    if (initial != null && catalog != null) {
+    if (initial != null && (catalog != null || _draft == null)) {
       setState(() => _busy = true);
       try {
         final retained = _draft;
@@ -1755,7 +1763,19 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           await store.save(retained, submissionUncertain: _submissionUncertain);
         }
         if (!_currentSession(client, generation)) return;
-        final created = await catalog.createDraft(initial);
+        final prepared = await prepareStudioMailComposeDraft(
+          store,
+          initial,
+          replyOrForward: true,
+          isCurrent: () => _currentSession(client, generation) && identical(store, _draftStore),
+        );
+        if (!_currentSession(client, generation)) return;
+        final created = catalog == null
+            ? StudioMailStoredDraft(
+                draft: prepared,
+                submissionUncertain: false,
+              )
+            : await catalog.createDraft(prepared);
         if (!_currentSession(client, generation)) return;
         setState(() {
           _draft = created.draft;
@@ -1803,8 +1823,13 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         builder: (context) => StudioMailComposeDialog(
           strings: widget.strings,
           from: account.email,
-          initialDraft: initial ?? _draft,
+          initialDraft: _draft ?? initial,
           previousSubmissionUncertain: _submissionUncertain,
+          composeToolsStore: switch (store) {
+            StudioMailComposeToolsStore value => value,
+            _ => null,
+          },
+          isComposeToolsCurrent: currentDraft,
           onClearMailCache: mailbox == null
               ? null
               : () async {
@@ -3170,10 +3195,41 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     );
   }
 
-  Widget _accountView(BuildContext context, {required bool compact}) =>
-      _client == null
-      ? _accountSetup(context)
-      : _inbox(context, compact: compact);
+  Widget _accountView(BuildContext context, {required bool compact}) {
+    if (_client == null &&
+        _accountCatalogStore != null &&
+        (_credentialPending ||
+            _hasSavedCredentials &&
+                (_autoConnectTicket != null || _connecting))) {
+      return _restoringAccount(context);
+    }
+    return _client == null
+        ? _accountSetup(context)
+        : _inbox(context, compact: compact);
+  }
+
+  Widget _restoringAccount(BuildContext context) => Center(
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        const CircularProgressIndicator(),
+        const SizedBox(height: 16),
+        Text(
+          _email.text.trim().isEmpty
+              ? 'Connecting to your saved account…'
+              : 'Connecting to ${_email.text.trim()}…',
+          key: const ValueKey('studio-mail-restoring-account'),
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: 8),
+        Text(
+          'Your Mail workspace is kept open while you work in other apps.',
+          style: Theme.of(context).textTheme.bodySmall,
+          textAlign: TextAlign.center,
+        ),
+      ],
+    ),
+  );
 
   Widget _accountSetup(BuildContext context) => Center(
     child: SingleChildScrollView(

@@ -5,6 +5,7 @@ import 'package:crypto/crypto.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
 
+import 'studio_mail_compose_tools.dart';
 import 'studio_mail_draft.dart';
 import 'studio_mail_flag_journal.dart';
 import 'studio_mail_mailbox_store.dart';
@@ -203,6 +204,7 @@ final class SqliteStudioMailDraftStore
     implements
         StudioMailDraftStore,
         StudioMailDraftCatalog,
+        StudioMailComposeToolsStore,
         StudioMailMailboxStoreOwner,
         StudioMailFlagJournalOwner,
         StudioMailOutboxStore,
@@ -296,6 +298,28 @@ final class SqliteStudioMailDraftStore
       throw const StudioMailDraftStoreException(MailProblemCode.conflict);
     }
   }
+
+  @override
+  Future<MailComposeSettings> loadComposeSettings() => _serialize(() async {
+    return _value(await _repository.loadComposeSettings(account));
+  });
+
+  @override
+  Future<MailComposeSettings> saveComposeSettings(
+    MailComposeSettings settings,
+  ) => _serialize(() async {
+    if (settings.account != account) {
+      throw const StudioMailDraftStoreException(
+        MailProblemCode.permissionDenied,
+      );
+    }
+    return _value(
+      await _repository.saveComposeSettings(
+        settings,
+        expectedRevision: settings.revision,
+      ),
+    );
+  });
 
   @override
   Future<StudioMailStoredDraft?> load() => _serializeSelection(() async {

@@ -4,6 +4,21 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Retain the incoming saved-account restoration view: show connection progress
+  while restoring saved Mail instead of briefly displaying the login form.
+
+- Studio Mail adds per-account plain-text signatures and named Quick Text,
+  separate new/reply defaults, localized management, revision-safe persistence
+  and connected/offline draft integration. Existing drafts and Outbox payloads
+  remain independent snapshots. Current runtime qualification is explicitly open
+  in `docs/validation/mail-compose-tools-20261121/README.md`.
+
+- Add `WordEditorController.insertPlainText` for literal multiline insertion
+  without touching the clipboard. Support caret insertion, single-paragraph
+  selections and whole-document replacement as one undo step. Return whether
+  insertion occurred; refuse partial cross-paragraph spans, read-only surfaces
+  and selected objects before mutation, retaining content-control preflight.
+
 - Open supported native ODT through `WordEditorController.loadBytesAsync` and
   Studio Open, retaining active Zotero fields, notes and supported rich
   structure. Refuse stale publication after edits, another open, document

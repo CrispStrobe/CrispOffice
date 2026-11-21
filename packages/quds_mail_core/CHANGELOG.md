@@ -1,5 +1,10 @@
 ## Unreleased
 
+- Add immutable account-owned compose settings and ordered named Quick Text
+  snippets. Bound text, names, count, aggregate metadata and revisions; reject
+  malformed Unicode, controls and duplicate identities or case-insensitive names.
+  Keep literal signatures and snippets separate from existing draft content.
+
 - Add immutable, bounded saved-header-search definitions with validated Boolean
   queries, fixed exact account scopes, stable IDs and explicit revisions.
   Reject unpaired UTF-16 surrogates before UTF-8 storage can silently replace

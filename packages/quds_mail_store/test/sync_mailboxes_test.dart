@@ -626,7 +626,7 @@ void main() {
           failAt = null;
         }
         store = _value(await open());
-        expect(database.userVersion, 9);
+        expect(database.userVersion, 10);
         expect(snapshot()..remove('mailbox_sync_state'), prior);
         expect(_value(await store.loadSyncMailbox(_mailbox)), isNull);
         expect(_value(await store.listSyncMailboxes(_account)), isEmpty);
