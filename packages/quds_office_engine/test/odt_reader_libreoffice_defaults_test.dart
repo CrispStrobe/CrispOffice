@@ -1,4 +1,5 @@
 import 'package:quds_office_engine/src/word/model/wml_document.dart';
+import 'package:quds_office_engine/src/word/model/word_notes.dart';
 import 'package:quds_office_engine/src/word/serial/odt_reader_styles.dart';
 import 'package:quds_office_engine/src/xml/xml_node.dart';
 import 'package:test/test.dart';
@@ -256,20 +257,24 @@ void main() {
       expect(section.margins.top, 72);
     });
 
-    test('footnote separator becomes unsupported when a footnote exists', () {
-      final styles = _styles(pageChildren: _separator);
-      _paragraph(styles, 'Text');
-      expect(
-        () => styles.applyPageLayout(WmlSection(), hasFootnotes: true),
-        throwsA(
-          isA<UnsupportedError>().having(
-            (error) => error.message,
-            'message',
-            contains('Active ODT footnote separator'),
-          ),
-        ),
-      );
-    });
+    test(
+      'footnote activates explicitly represented native separator geometry',
+      () {
+        final styles = _styles(pageChildren: _separator);
+        _paragraph(styles, 'Text');
+        final separator = styles.applyPageLayout(
+          WmlSection(),
+          hasFootnotes: true,
+        )!;
+        expect(separator.thickness, closeTo(0.5112, 0.000001));
+        expect(separator.beforeSpacing, closeTo(2.8656, 0.000001));
+        expect(separator.afterSpacing, closeTo(2.8656, 0.000001));
+        expect(separator.relativeWidth, 0.25);
+        expect(separator.alignment, WmlFootnoteSeparatorAlignment.left);
+        expect(separator.color, 0);
+        expect(separator.lineStyle, WmlFootnoteSeparatorLineStyle.solid);
+      },
+    );
 
     for (final property in [
       'style:layout-grid-mode="both"',

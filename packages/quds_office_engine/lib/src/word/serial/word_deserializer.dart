@@ -33,6 +33,7 @@ import 'word_bookmark_io.dart';
 import 'word_comment_io.dart';
 import 'word_content_control_io.dart';
 import 'word_drawing_io.dart';
+import 'word_footnote_separator_io.dart';
 import 'word_markup_compatibility.dart';
 import 'word_opaque_io.dart';
 import 'word_property_io.dart';
@@ -3759,6 +3760,7 @@ class WordDeserializer {
       'endnote',
       endnote: true,
     );
+    document.footnoteSeparator = WordFootnoteSeparatorIo.read(document);
   }
 
   bool? _readNotesPart(

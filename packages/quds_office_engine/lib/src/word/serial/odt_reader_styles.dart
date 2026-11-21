@@ -1,6 +1,7 @@
 import '../../odf/odf_text.dart';
 import '../../xml/xml_node.dart';
 import '../model/wml_document.dart';
+import '../model/word_notes.dart';
 import '../model/word_proofing_language.dart';
 import '../properties/wml_properties.dart';
 import 'odt_reader_text_style.dart';
@@ -707,14 +708,19 @@ final class OdtReaderStyles {
   }
 
   /// Applies the single compatible layout after the body has resolved styles.
-  void applyPageLayout(WmlSection section, {bool hasFootnotes = false}) {
+  WmlFootnoteSeparator? applyPageLayout(
+    WmlSection section, {
+    bool hasFootnotes = false,
+    bool libreOfficeZeroSeparatorLengths = false,
+  }) {
     final names = <String>{..._usedMasters};
     if (_masters.isNotEmpty && (_implicitMasterUsed || names.isEmpty)) {
       names.add(_masters.keys.first);
     }
-    if (names.isEmpty) return;
+    if (names.isEmpty) return null;
     String? signature;
     WmlSection? resolved;
+    WmlFootnoteSeparator? resolvedSeparator;
     for (final name in names) {
       final master = _masters[name];
       if (master == null) {
@@ -741,7 +747,13 @@ final class OdtReaderStyles {
       if (layout == null) {
         throw FormatException('Missing ODT page layout: $layoutName');
       }
-      final candidate = _pageLayout(layout, hasFootnotes: hasFootnotes);
+      final parsed = _pageLayout(
+        layout,
+        hasFootnotes: hasFootnotes,
+        libreOfficeZeroSeparatorLengths: libreOfficeZeroSeparatorLengths,
+      );
+      final candidate = parsed.section;
+      final separator = parsed.separator;
       final candidateSignature = [
         candidate.pageSize.width,
         candidate.pageSize.height,
@@ -751,6 +763,13 @@ final class OdtReaderStyles {
         candidate.margins.bottom,
         candidate.columnCount,
         candidate.columnSpace,
+        separator?.beforeSpacing,
+        separator?.thickness,
+        separator?.afterSpacing,
+        separator?.relativeWidth,
+        separator?.alignment,
+        separator?.color,
+        separator?.lineStyle,
       ].join('/');
       if (signature != null && candidateSignature != signature) {
         throw UnsupportedError(
@@ -759,6 +778,7 @@ final class OdtReaderStyles {
       }
       signature = candidateSignature;
       resolved = candidate;
+      resolvedSeparator = separator;
     }
     if (resolved != null) {
       section.pageSize = resolved.pageSize;
@@ -766,6 +786,7 @@ final class OdtReaderStyles {
       section.columnCount = resolved.columnCount;
       section.columnSpace = resolved.columnSpace;
     }
+    return resolvedSeparator;
   }
 
   void _validateDrawingPage(String name) {
@@ -1342,9 +1363,10 @@ final class OdtReaderStyles {
     WmlUnderline.wavyDouble => 'wave',
   };
 
-  static WmlSection _pageLayout(
+  static ({WmlSection section, WmlFootnoteSeparator? separator}) _pageLayout(
     XmlElement layout, {
     required bool hasFootnotes,
+    required bool libreOfficeZeroSeparatorLengths,
   }) {
     _checkAttributes(layout, {
       _style: {'name', 'page-usage'},
@@ -1375,7 +1397,7 @@ final class OdtReaderStyles {
     }
     final properties = _singleChild(layout, _style, 'page-layout-properties');
     final result = WmlSection();
-    if (properties == null) return result;
+    if (properties == null) return (section: result, separator: null);
     final values = <String, String>{};
     _mergeProperties(values, properties);
     String? take(String ns, String name) => values.remove('$ns/$name');
@@ -1485,13 +1507,20 @@ final class OdtReaderStyles {
       throw const FormatException('Ambiguous ODT page columns.');
     }
     var hasSeparator = false;
+    WmlFootnoteSeparator? separator;
     for (final child in properties.childElements) {
       if (child.namespaceUri == _style && child.localName == 'footnote-sep') {
         if (hasSeparator) {
           throw const FormatException('Duplicate ODT footnote separator.');
         }
         hasSeparator = true;
-        _validateDormantFootnoteSeparator(child, hasFootnotes: hasFootnotes);
+        _validateDormantFootnoteSeparator(child);
+        if (hasFootnotes) {
+          separator = _activeFootnoteSeparator(
+            child,
+            libreOfficeZeroLengths: libreOfficeZeroSeparatorLengths,
+          );
+        }
         continue;
       }
       if (child.namespaceUri != _style || child.localName != 'columns') {
@@ -1511,16 +1540,13 @@ final class OdtReaderStyles {
       final gap = _attr(child, _fo, 'column-gap');
       if (gap != null) result.columnSpace = lengthPoints(gap);
     }
-    return result;
+    if (separator != null && separator.reservedHeight >= result.contentHeight) {
+      throw UnsupportedError('ODT footnote separator consumes the page.');
+    }
+    return (section: result, separator: separator);
   }
 
-  static void _validateDormantFootnoteSeparator(
-    XmlElement separator, {
-    required bool hasFootnotes,
-  }) {
-    if (hasFootnotes) {
-      throw UnsupportedError('Active ODT footnote separator is not supported.');
-    }
+  static void _validateDormantFootnoteSeparator(XmlElement separator) {
     _checkAttributes(separator, {
       _style: {
         'width',
@@ -1558,6 +1584,53 @@ final class OdtReaderStyles {
     }
     final color = _attr(separator, _style, 'color');
     if (color != null) _color(color);
+  }
+
+  /// Active separators need explicit geometry. ODF specifies only the default
+  /// physical alignment; absent producer-dependent dimensions must not become
+  /// invented defaults when opening an editable document.
+  static WmlFootnoteSeparator _activeFootnoteSeparator(
+    XmlElement element, {
+    required bool libreOfficeZeroLengths,
+  }) {
+    String requiredValue(String name) =>
+        _attr(element, _style, name) ??
+        (throw UnsupportedError(
+          'Active ODT footnote separator requires explicit $name.',
+        ));
+    final line = requiredValue('line-style');
+    if (line != 'solid' && line != 'none') {
+      throw UnsupportedError('Active ODT footnote separator line style.');
+    }
+    final relative = requiredValue('rel-width');
+    double length(String name) {
+      // The qualified stock LibreOffice exporter omits these three attributes
+      // exactly when their lengths are zero. Generic ODF has no corresponding
+      // normative defaults. Producer qualification never changes explicit data.
+      final value = _attr(element, _style, name);
+      if (value == null && libreOfficeZeroLengths) return 0;
+      return lengthPoints(value ?? requiredValue(name));
+    }
+
+    final separator = WmlFootnoteSeparator(
+      beforeSpacing: length('distance-before-sep'),
+      thickness: length('width'),
+      afterSpacing: length('distance-after-sep'),
+      relativeWidth:
+          double.parse(relative.substring(0, relative.length - 1)) / 100,
+      alignment: switch (_attr(element, _style, 'adjustment') ?? 'left') {
+        'left' => WmlFootnoteSeparatorAlignment.left,
+        'center' => WmlFootnoteSeparatorAlignment.center,
+        'right' => WmlFootnoteSeparatorAlignment.right,
+        _ => throw UnsupportedError('Active ODT footnote separator alignment.'),
+      },
+      color: int.parse(_color(requiredValue('color')), radix: 16),
+      lineStyle: line == 'solid'
+          ? WmlFootnoteSeparatorLineStyle.solid
+          : WmlFootnoteSeparatorLineStyle.none,
+    );
+    separator.validate();
+    return separator;
   }
 
   static List<WmlTabStop> _tabs(XmlElement element) {

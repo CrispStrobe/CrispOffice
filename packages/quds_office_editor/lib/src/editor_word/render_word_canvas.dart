@@ -4495,10 +4495,12 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
         continue;
       }
       if (box.kind == LaidOutBoxKind.footnote) {
-        canvas.drawRect(
-          Rect.fromLTWH(box.x, box.y, box.width, 0.7),
-          Paint()..color = const Color(0xFF888888),
-        );
+        if (box.fillColor != null && box.fillColor!.isNotEmpty) {
+          canvas.drawRect(
+            Rect.fromLTWH(box.x, box.y, box.width, box.height),
+            Paint()..color = _colorFromHex(box.fillColor!),
+          );
+        }
         continue;
       }
       final Rect rect = Rect.fromLTWH(box.x, box.y, box.width, box.height);

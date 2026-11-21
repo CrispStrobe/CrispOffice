@@ -301,9 +301,10 @@ final class _OdtReader {
         throw UnsupportedError(issue.message);
       }
     }
-    styles.applyPageLayout(
+    document.footnoteSeparator = styles.applyPageLayout(
       section,
       hasFootnotes: document.footnotes.isNotEmpty,
+      libreOfficeZeroSeparatorLengths: libreOfficeNoteOffsets,
     );
     if (document.endnotes.isNotEmpty) {
       // This reader admits only automatic decimal notes starting at one and

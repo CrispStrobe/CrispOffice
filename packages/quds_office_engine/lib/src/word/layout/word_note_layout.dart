@@ -73,6 +73,14 @@ class _NoteStory {
       ]);
     }
     // Make oversized drawings fit a continuation page without clipping.
+    // Retain the legacy content safety band (paragraph spacing and the
+    // block-picture inset) in addition to the modeled separator reservation.
+    final separatorHeight = note.endnote ? 0.0 : owner._footnoteSeparatorHeight;
+    final availableHeight =
+        section.contentHeight - math.max(48, separatorHeight + 40);
+    if (!note.endnote && separatorHeight >= section.contentHeight) {
+      throw StateError('Footnote separator leaves no room for note content');
+    }
     final WmlDocument story = WmlDocument(
       proofingLanguage: owner._layoutDoc?.proofingLanguage,
       autoHyphenation: owner._layoutDoc?.autoHyphenation ?? false,
@@ -94,11 +102,14 @@ class _NoteStory {
       ],
     );
     for (final WmlVisual visual in story.visuals) {
+      if (availableHeight <= 0) {
+        throw StateError('Note page leaves no room for picture content');
+      }
       final double scale = math.min(
         1,
         math.min(
           section.contentWidth / math.max(1, visual.visual.width),
-          (section.contentHeight - 48) / math.max(1, visual.visual.height),
+          availableHeight / math.max(1, visual.visual.height),
         ),
       );
       visual.visual.width *= scale;
