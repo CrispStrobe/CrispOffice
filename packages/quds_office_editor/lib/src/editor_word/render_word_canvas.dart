@@ -1,4 +1,5 @@
 import 'dart:math' as math;
+import 'dart:ui' as ui;
 
 import 'package:flutter/foundation.dart' show defaultTargetPlatform;
 import 'package:flutter/gestures.dart';
@@ -368,6 +369,12 @@ class WordCanvas extends LeafRenderObjectWidget {
     var needsLayout =
         !identical(renderObject.laidOut, laidOut) ||
         renderObject.compact != compact;
+    if (!identical(renderObject.laidOut, laidOut) ||
+        !identical(renderObject.config, config) ||
+        !identical(renderObject.config.theme, config.theme) ||
+        renderObject.selectedCommentId != selectedCommentId) {
+      renderObject._clearBodyTextPictures();
+    }
     renderObject
       ..document = document
       ..laidOut = laidOut
@@ -776,6 +783,8 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
       <(int, int, int, int), Path>{};
   final Map<(LaidOutPage, int, int, int, int, WmlTable?), Path>
   _selectionPaths = <(LaidOutPage, int, int, int, int, WmlTable?), Path>{};
+  final Map<(LaidOutPage, int?), ui.Picture> _bodyTextPictures =
+      <(LaidOutPage, int?), ui.Picture>{};
 
   @override
   void dispose() {
@@ -786,7 +795,18 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
     _runPainters.clear();
     _proofingPaths.clear();
     _selectionPaths.clear();
+    for (final picture in _bodyTextPictures.values) {
+      picture.dispose();
+    }
+    _bodyTextPictures.clear();
     super.dispose();
+  }
+
+  void _clearBodyTextPictures() {
+    for (final picture in _bodyTextPictures.values) {
+      picture.dispose();
+    }
+    _bodyTextPictures.clear();
   }
 
   LaidOutDocument? _fittedLayout;
@@ -3664,42 +3684,53 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
       }
       if (!_editingHeaderFooter) {
         _paintSelectionBand(canvas, page);
-      }
-      for (final LaidOutLine line in page.lines) {
-        final LaidOutBox? cell = _cellForLine(
-          page,
-          line,
-          containingFrame: frameOwners[line.paragraphIndex],
-        );
-        if (cell != null) {
-          canvas.save();
-          canvas.clipRect(
-            Rect.fromLTWH(cell.x, cell.y, cell.width, cell.height),
+        // Selection and proofing stay under the cached text layer. The text
+        // layer itself is recorded once per page and reused for caret moves,
+        // proofing updates and unrelated repaints.
+        for (final LaidOutLine line in page.lines) {
+          final LaidOutBox? cell = _cellForLine(
+            page,
+            line,
+            containingFrame: frameOwners[line.paragraphIndex],
           );
+          if (cell != null) {
+            canvas.save();
+            canvas.clipRect(
+              Rect.fromLTWH(cell.x, cell.y, cell.width, cell.height),
+            );
+          }
+          if (_paintsLineSelection(line, page)) {
+            _paintFindHits(canvas, line);
+          }
+          _paintProofing(canvas, line);
+          if (cell != null) canvas.restore();
         }
-        if (!_editingHeaderFooter && _paintsLineSelection(line, page)) {
-          _paintFindHits(canvas, line);
-        }
-        _paintRevisionMarkup(canvas, line);
-        _drawLine(
-          canvas,
-          line,
-          pageWidth: page.width,
-          marginRight: _marginRightOf(page),
-        );
-        if (!_editingHeaderFooter &&
-            config.showsCaret &&
-            hasFocus &&
-            caret.visible &&
-            line.paragraphIndex >= 0 &&
-            caret.isOnLine(
-              line,
-              lastOfParagraph: _isLastParagraphLine(page, line),
-            )) {
-          _paintCaret(canvas, line);
-        }
-        if (cell != null) {
-          canvas.restore();
+      }
+      canvas.drawPicture(_bodyTextPicture(page, frameOwners));
+      if (!_editingHeaderFooter) {
+        for (final LaidOutLine line in page.lines) {
+          final LaidOutBox? cell = _cellForLine(
+            page,
+            line,
+            containingFrame: frameOwners[line.paragraphIndex],
+          );
+          if (cell != null) {
+            canvas.save();
+            canvas.clipRect(
+              Rect.fromLTWH(cell.x, cell.y, cell.width, cell.height),
+            );
+          }
+          if (config.showsCaret &&
+              hasFocus &&
+              caret.visible &&
+              line.paragraphIndex >= 0 &&
+              caret.isOnLine(
+                line,
+                lastOfParagraph: _isLastParagraphLine(page, line),
+              )) {
+            _paintCaret(canvas, line);
+          }
+          if (cell != null) canvas.restore();
         }
       }
       for (final LaidOutLine line in page.footer) {
@@ -4731,11 +4762,47 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
     painter.dispose();
   }
 
+  ui.Picture _bodyTextPicture(
+    LaidOutPage page,
+    Map<int, WmlFrame> frameOwners,
+  ) {
+    final key = (page, selectedCommentId);
+    final cached = _bodyTextPictures[key];
+    if (cached != null) return cached;
+    final recorder = ui.PictureRecorder();
+    final canvas = Canvas(recorder);
+    canvas.clipRect(Rect.fromLTWH(0, 0, page.width, page.height));
+    for (final LaidOutLine line in page.lines) {
+      final LaidOutBox? cell = _cellForLine(
+        page,
+        line,
+        containingFrame: frameOwners[line.paragraphIndex],
+      );
+      if (cell != null) {
+        canvas.save();
+        canvas.clipRect(Rect.fromLTWH(cell.x, cell.y, cell.width, cell.height));
+      }
+      _paintRevisionMarkup(canvas, line);
+      _drawLine(
+        canvas,
+        line,
+        pageWidth: page.width,
+        marginRight: _marginRightOf(page),
+        paintProofing: false,
+      );
+      if (cell != null) canvas.restore();
+    }
+    final picture = recorder.endRecording();
+    _bodyTextPictures[key] = picture;
+    return picture;
+  }
+
   void _drawLine(
     Canvas canvas,
     LaidOutLine line, {
     double? pageWidth,
     double? marginRight,
+    bool paintProofing = true,
   }) {
     if (line.isParagraphStart &&
         line.listLabel != null &&
@@ -4770,7 +4837,7 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
       );
       return;
     }
-    _paintProofing(canvas, line);
+    if (paintProofing) _paintProofing(canvas, line);
     final String paragraph =
         line.sourceText ??
         line.sourceParagraph?.text ??
