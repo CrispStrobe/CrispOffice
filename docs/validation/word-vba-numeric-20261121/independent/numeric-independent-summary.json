@@ -1,0 +1,13 @@
+{
+  "success": true,
+  "checks": 81,
+  "vm_js_receipts_identical": true,
+  "compiler_git_blob": "b960ae6004c7292421a25bf9c8e75dc6f123e75e",
+  "probe_sha256": "ad1cad7d18fac56841046ef5eae03a19daa69590e61ebdf3db1b7b9e562937aa",
+  "receipt_sha256": "f5f9a6c9dc8592e48fbe1ebd41813555e73454cb47b631de397de2046fd268c9",
+  "vm_exit": 0,
+  "js_compile_exit": 0,
+  "js_exit": 0,
+  "stderr_bytes": 0,
+  "qualification_scope": "Independent compiler probes only; supplements root final regression. Six first-attempt expected diagnostic codes were corrected from vba_unsupported to existing vba_name_error; initial receipt retained."
+}

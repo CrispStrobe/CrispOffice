@@ -1,0 +1,12 @@
+{
+  "suite": "test/office_vba_word_position_test.dart",
+  "success": true,
+  "passed": 33,
+  "failed": 0,
+  "skipped": 0,
+  "stderr_bytes": 0,
+  "sdk": "Dart 3.13.7 stable",
+  "official_sdk_archive_sha256": "eb99aed266efbcb615c6ae21c12f52cfe935b9f208bccc5fea7f64c21e867229",
+  "locked_hosted_dependencies": 56,
+  "tracked_manifests_unchanged": 22
+}

@@ -1,0 +1,67 @@
+{
+  "phase": "regression",
+  "sourceCommit": "97538d025b260bd67c559962be9e9f159a6de06e",
+  "sourceTree": "387d532d7f4eb882245e42b7650be3d714627591",
+  "inputCount": 3134,
+  "dartSha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+  "packageConfigSha256": "8a06676d952763d60a63c8731f7b5e1ea5b2c3af7034f1550ab9479c9a852ca5",
+  "dartVersion": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "commands": [
+    {
+      "name": "macro-regressions",
+      "command": [
+        "/workspace/scratch/55ae4c05da4e/runtime/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/55ae4c05da4e/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/55ae4c05da4e/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--reporter=json",
+        "--concurrency=1",
+        "test/office_vba_word_named_measurements_integration_test.dart",
+        "test/office_vba_word_page_setup_integration_test.dart",
+        "test/office_vba_word_paragraph_controls_integration_test.dart",
+        "test/office_vba_word_position_integration_test.dart",
+        "test/office_vba_word_proofing_integration_test.dart",
+        "test/office_vba_word_sections_integration_test.dart",
+        "test/office_vba_word_shading_integration_test.dart",
+        "test/office_vba_word_styles_alternate_integration_test.dart",
+        "test/office_vba_word_styles_integration_test.dart",
+        "test/office_vba_word_text_columns_integration_test.dart",
+        "test/office_vba_word_text_integration_test.dart",
+        "test/style_cascade_test.dart",
+        "test/word_structure_steps_test.dart"
+      ],
+      "cwd": "/workspace/scratch/55ae4c05da4e/quds_office_suite/packages/quds_office_engine",
+      "exitCode": 0,
+      "seconds": 109.751,
+      "stdoutBytes": 108823,
+      "stderrBytes": 0,
+      "stdoutSha256": "bad551e9b168734faa2b72ece19da256c568001fad765e634c94f727180e3e20",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests": {
+        "passed": 187,
+        "failed": 0,
+        "skipped": 0,
+        "errorEvents": 0,
+        "doneSuccess": true
+      },
+      "rejected": false
+    }
+  ],
+  "suiteFiles": [
+    "test/office_vba_word_named_measurements_integration_test.dart",
+    "test/office_vba_word_page_setup_integration_test.dart",
+    "test/office_vba_word_paragraph_controls_integration_test.dart",
+    "test/office_vba_word_position_integration_test.dart",
+    "test/office_vba_word_proofing_integration_test.dart",
+    "test/office_vba_word_sections_integration_test.dart",
+    "test/office_vba_word_shading_integration_test.dart",
+    "test/office_vba_word_styles_alternate_integration_test.dart",
+    "test/office_vba_word_styles_integration_test.dart",
+    "test/office_vba_word_text_columns_integration_test.dart",
+    "test/office_vba_word_text_integration_test.dart",
+    "test/style_cascade_test.dart",
+    "test/word_structure_steps_test.dart"
+  ],
+  "inputsUnchanged": true,
+  "sourceManifestSha256": "16e592607d1caeb668b5301190a6c85ecb88a2bc8bc6ff774a9a538ac77dcf83",
+  "success": true
+}

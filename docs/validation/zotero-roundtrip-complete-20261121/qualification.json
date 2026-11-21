@@ -2,11 +2,11 @@
   "schema": 1,
   "repository": "CrispStrobe/quds_office_suite",
   "checkpoint_branch": "codex/zotero-roundtrip-complete-20261121",
-  "qualified_product_commit": "78d1f8db5374a6b2739451834708c8fe9f703ed8",
-  "qualified_product_tree": "3ccb17f6ec1c0543c7cc93b0b84a5832ddda28f7",
+  "qualified_product_commit": "a7f69313ed2e610f82242c31be8ad5387ae5cea0",
+  "qualified_product_tree": "8f0acd00b505c230ea6ccd2db2d57e17d7475011",
   "documentation_and_evidence_only_after_qualified_product": true,
   "initial_main": "5c59a062e86e24d043ba06cfe8f0a69074c44f62",
-  "latest_integrated_main": "0de92d6f42b3b2d1f2df43ef56a7af8e0f49d059",
+  "latest_integrated_main": "aa861c28e336b17bcd4c259351164380cd6b1438",
   "remote_checkpoints": [
     "4dd06224b410c27d87053175dfa532e8f4be210a",
     "96f850531a7b4fe43963dc0ef72ffa4f94428148",
@@ -16,7 +16,9 @@
     "5a829066238b94685db5145ff14420e7e7f0928a",
     "c179c61a198df9b2cd1af3899d6f805159481ce2",
     "8afb6f9135bb18f59532e1a6f1ad37b5c6da7ad8",
-    "78d1f8db5374a6b2739451834708c8fe9f703ed8"
+    "78d1f8db5374a6b2739451834708c8fe9f703ed8",
+    "8407500013cece3978b02c237abd37c93f7a61cf",
+    "a7f69313ed2e610f82242c31be8ad5387ae5cea0"
   ],
   "intake": {
     "original": {
@@ -32,26 +34,36 @@
       "verified_historical_equivalents": 14,
       "explicit_later_draft_refs": 2,
       "uncovered_accepted_refs": 0,
-      "all_captured_refs_are_merged": false
+      "all_captured_refs_are_merged": false,
+      "as_of_checkpoint": "5a829066238b94685db5145ff14420e7e7f0928a"
     },
     "deferred": {
       "pr": 336,
       "branch": "codex/word-vba-typography-20261121",
       "sha": "a646cf761f7eafe7915988a1d84f90ca6dbe5793",
-      "reason": "New cross-layer draft after the initial cutoff; its frozen-source/portable/Flutter qualification remained in progress at the bounded refresh."
+      "reason": "New cross-layer draft after the initial cutoff; its frozen-source/portable/Flutter qualification remained in progress at the bounded refresh.",
+      "subsequently_resolved_by_main": "aa861c28e336b17bcd4c259351164380cd6b1438"
     },
-    "final_main_followup_recorded_separately": true
+    "final_main_followup_recorded_separately": true,
+    "final_reconciliation": {
+      "record": "final-main/intake.json",
+      "captured_refs": 386,
+      "ancestors": 372,
+      "verified_historical_equivalents": 14,
+      "remaining_deferred_refs": 0,
+      "uncovered_refs": 0
+    }
   },
   "validation": {
     "counts": {
       "engine": 2698,
-      "editor_distinct": 508,
+      "editor_distinct": 523,
       "studio_zotero": 41,
       "mail_core": 6,
       "mail_store": 107,
       "mail_studio": 92
     },
-    "distinct_accepted_cases": 3452,
+    "distinct_accepted_cases": 3467,
     "accepted_executions_have_zero_failures_skips_errors": true,
     "engine": {
       "passed": 2698,
@@ -63,10 +75,13 @@
       "initial_cohort": 499,
       "final_renderer_replay": 28,
       "renderer_overlap": 27,
-      "distinct": 508,
+      "distinct": 523,
       "frozen_editor_distinct": 500,
       "page_text_followup": 36,
-      "page_text_overlap": 28
+      "page_text_overlap": 28,
+      "prior_cache_checkpoint_distinct": 508,
+      "latest_main_renderer_cases": 51,
+      "latest_main_overlap": 36
     },
     "studio_zotero": {
       "passed": 41
@@ -83,7 +98,7 @@
       "fatal_info_warning_analysis_passed": true,
       "final_page_text_files": 2
     },
-    "source_applicability": "final-delivery/source-continuity.json",
+    "source_applicability": "final-main/source-continuity.json",
     "repeated_and_rejected_attempts_excluded": true,
     "frozen_source_applicability": "evidence/source-equivalence.json",
     "page_text_followup": {
@@ -96,6 +111,22 @@
       "source_manifest_count": 2668,
       "source_inputs_unchanged": true,
       "full_earlier_populations_rerun": false
+    },
+    "total_scope": "Union of distinct suite/name identities across documented checkpoints; not a rerun of every case on the final tree.",
+    "historical_engine_population_is_not_final_tree_rerun": true,
+    "final_main": {
+      "record": "final-main/README.md",
+      "case_accounting": "final-main/case-accounting.json",
+      "accepted_renderer_cases": 51,
+      "repeated_cases": 36,
+      "additional_cases": 15,
+      "source_manifest_count": 2676,
+      "tracked_inputs_match_git": 2675,
+      "source_inputs_unchanged": true,
+      "strict_static_files": 4,
+      "incoming_engine_qualification_verified": true,
+      "incoming_gate_counts_not_added": true,
+      "production_bytes_equal_accepted_main": true
     }
   },
   "converter": {
@@ -117,7 +148,22 @@
     "summary": "evidence/converter-summary.json",
     "archive": "evidence/converter.tar.gz",
     "installed_zotero_plugin_qualification": false,
-    "stable_release_host_qualification": false
+    "stable_release_host_qualification": false,
+    "original_four_fixture_route_source": "a9839a97ba5645fcaf36e34729e011074d6a868b",
+    "final_main_replay": {
+      "summary": "final-main/converter-summary.json",
+      "archive": "final-main/converter.tar.gz",
+      "success": true,
+      "dart_commands": 3,
+      "actual_host_save_commands": 1,
+      "fixtures": 4,
+      "active_fields": 13,
+      "preserved_inputs": 22,
+      "source_file_count": 442,
+      "source_sha256": "ee65ff4fab19cdb71271d6af79bb9239b269a5d58a80785c6bd4221530358265",
+      "source_and_inputs_unchanged": true,
+      "png_jpeg_three_cycles_passed": true
+    }
   },
   "runtime": {
     "flutter": "3.47.8",
@@ -135,14 +181,22 @@
   "remaining": [
     "Supported-release installed Zotero/Word/LibreOffice acceptance",
     "Active footnote separator geometry",
+    "Native layout consumption of preserved table-cell margins",
     "Richer note numbering/restarts/configured paragraphs",
     "Broader table/image/structural content envelopes",
-    "Version-specific legacy Apache OpenOffice acceptance"
+    "Version-specific legacy Apache OpenOffice acceptance",
+    "General ODT/RTF baseline Position interchange"
   ],
   "native_file_checkpoint": {
     "commit": "5a829066238b94685db5145ff14420e7e7f0928a",
     "tree": "faf0d91961b145e5358f0fd3909a9489933b3e2b",
     "frozen_evidence_commit": "c179c61a198df9b2cd1af3899d6f805159481ce2",
     "distinct_accepted_cases": 3444
+  },
+  "cache_checkpoint": {
+    "commit": "78d1f8db5374a6b2739451834708c8fe9f703ed8",
+    "tree": "3ccb17f6ec1c0543c7cc93b0b84a5832ddda28f7",
+    "frozen_evidence_commit": "8407500013cece3978b02c237abd37c93f7a61cf",
+    "distinct_accepted_cases": 3452
   }
 }
