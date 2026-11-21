@@ -410,7 +410,10 @@ unlink, source immutability and Studio cancellation/save routing are qualified
 locally. The concrete LibreOfficeDev save/reopen fixtures preserve seven active
 field records and preferences; they do not establish installed-plugin or stable
 release acceptance. A repeat-cycle regression also corrected decimal ODT
-endnotes reverting to Roman numbering after DOCX saves.
+endnotes reverting to Roman numbering after DOCX saves. The final local gate
+passed 513 engine, 93 editor and 25 Studio cases (631 unique passes, no failures
+or skips), with exact published-source binding and retained converter fixtures
+in the [qualification record](../../validation/zotero-editable-odt-20261121/README.md).
 
 ## Next implementation and acceptance steps
 

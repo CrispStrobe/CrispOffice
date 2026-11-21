@@ -1,0 +1,12 @@
+{
+  "qualified_remote_commit": "cb27581214e00b8cf58cafb65193ee85561c6eb4",
+  "qualified_tree": "baab4d22be5d462a86ddbe42a3c69c72ce9a1764",
+  "manifest": "source-before.json",
+  "manifest_sha256": "0c60d94734e87856ef0da09b11cbe82feaa86a579fa803c0b888d84ac0e30909",
+  "tracked_source_inputs_verified": 533,
+  "generated_inputs_outside_git": [
+    ".dart_tool/package_config.json"
+  ],
+  "mismatches": [],
+  "note": "The original runtime receipt records the pre-commit HEAD; these captured working-tree bytes are verified directly against every corresponding blob in the remote source checkpoint."
+}
