@@ -20,7 +20,9 @@ Installed Microsoft Word differential qualification was not performed.
 
 ## Frozen source and local results
 
-Qualified source: **`0fe00b18fef6b79a435817c99714f987329d5f3c`**.
+AllCaps qualification source: **`0fe00b18fef6b79a435817c99714f987329d5f3c`**.
+Combined publication source: **`a52013158c28fbcf3e69a999deffb6cc2eea23cc`**,
+after incorporating the subsequent main updates and checks described below.
 
 The [acceptance receipt](acceptance.json) selects one accepted result per
 requested test file. Each gate captured the same 3,262 selected tracked
@@ -141,6 +143,8 @@ the newly created checkpoint branch, giving 132 captured references.
 | `3794c8500dec2fbf7b541c346354964fdf696abd` | Complete initial intake and extension scope |
 | `3f130d7f68ce40cf4596ee27c6920ded0220e8e0` | Compiler, native model/formatting, display implementation and first regressions |
 | `0fe00b18fef6b79a435817c99714f987329d5f3c` | Editor and CLI/MCP integration, CSL preservation correction and exact contracts |
+| `c74ba46996a50d5041e9ceab02ccb4f1812dd281` | Complete AllCaps qualification, original failed/replaced evidence and independent audit |
+| `a52013158c28fbcf3e69a999deffb6cc2eea23cc` | Parent-preserving merge of subsequent completed main PRs #312 and #313 |
 
 The final evidence commit changes documentation and artifacts only. All
 checkpoints use parent-preserving, expected-head, non-forced remote updates on
@@ -163,7 +167,43 @@ Three branches began after the initial cutoff and remain preserved separately:
 
 None of those captured changes overlaps AllCaps paths, and none has a completed
 local qualification claim or corresponding open PR at that cutoff. This gate
-does not qualify them. Current main is checked again immediately before merge.
+does not qualify them.
+
+### Subsequent completed main updates
+
+Remote main then advanced to `3f6b9a2b9209693aa32bbad402bb7d093cf8b4db`
+through PRs #312 (Studio About privacy-policy link) and #313 (App Store URL
+documentation). Commit `a52013158c28fbcf3e69a999deffb6cc2eea23cc` merges that
+main with the saved AllCaps evidence checkpoint, retaining both parents.
+The recomputed conflict-free merge tree is
+`60390f21d90775fe29d1cd98bc527a54e8d26928`.
+
+The incoming delta contains one release document and exactly three Studio
+example Dart files. The selected input path set stays at 3,262 files. Exactly
+those three inputs change; the other **3,259 retain identical Git modes/blob
+IDs**, and every current selected input was independently compared with the
+combined commit's Git blob. Macro adapters, Word engine/editor package code,
+tests, manifests and dependencies are unchanged by this merge.
+
+The [combined-source qualification](combined-qualification.json) reports:
+
+- Complete Studio About suite: **7 passed**, no failures/skips/error/parse
+  events, actual process exit 0.
+- Strict analysis and nonmutating Dart 3.12 formatting: all three incoming
+  Dart paths pass, with no edits.
+- All five combined-source captures agree, and runtime/helper identities
+  remain unchanged.
+
+Combined selected-input manifest SHA-256:
+`64bf85be8dbc6db823032fe40c38a2c841e6b76881b4779cdb5a7fddbfbdc48a`.
+
+These seven Studio cases are additional to the 7,840 engine and 259 editor
+cases above. The original broad gates were not repeated because their source
+and dependencies are unchanged. The [combined evidence archive](combined-evidence.tar.xz)
+and [member inventory](combined-evidence-manifest.json) preserve the merge audit,
+source comparison, exact commands, runtime identities, raw results and helper
+scripts. The final evidence commit changes documentation and artifacts only.
+Current main is checked again immediately before publication.
 
 **GitHub Actions, workflow runs, CI checks and queued jobs were not queried or
 awaited.**
