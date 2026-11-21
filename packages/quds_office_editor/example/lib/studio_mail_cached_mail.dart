@@ -12,6 +12,7 @@ import 'studio_mail_journal_dialog.dart';
 import 'studio_mail_journal_strings.dart';
 import 'studio_mail_draft_store_native.dart';
 import 'studio_mail_mailbox_store.dart';
+import 'studio_mail_mailbox_session.dart';
 import 'studio_mail_workspace_strings.dart';
 import 'studio_strings.dart';
 
@@ -42,6 +43,10 @@ class _StudioMailCachedMailDialogState
     extends State<StudioMailCachedMailDialog> {
   StudioMailDraftStore? _owner;
   StudioMailMailboxStore? _store;
+  StudioMailMailboxSession? _mailboxSession;
+  StreamSubscription<StudioMailMailboxSnapshot>? _viewSubscription;
+  StreamSubscription<MailResult<List<MailCachedMailboxSummary>>>?
+  _folderSubscription;
   late final Future<void> _opening;
   Future<void>? _reading;
   Future<void>? _storeClosing;
@@ -61,7 +66,21 @@ class _StudioMailCachedMailDialogState
   bool _allowPop = false;
   int _cleanupEpoch = 0;
   String? _error;
+  bool _viewReadFailed = false;
+  bool _catalogReadFailed = false;
   MailCacheCleanupReport? _cleanupReport;
+
+  String? get _displayError {
+    final streamError = _viewReadFailed || _catalogReadFailed
+        ? widget.strings.mailCacheReadFailed
+        : null;
+    final operationError = _error;
+    if (operationError == null) return streamError;
+    if (streamError == null || operationError == streamError) {
+      return operationError;
+    }
+    return '$operationError\n$streamError';
+  }
 
   bool get _current =>
       mounted &&
@@ -102,12 +121,21 @@ class _StudioMailCachedMailDialogState
     StudioMailMailboxStore store,
   ) async {
     final folders = await store.listViews();
+    return _validateFolders(store, folders);
+  }
+
+  List<MailCachedMailboxSummary> _validateFolders(
+    StudioMailMailboxStore store,
+    List<MailCachedMailboxSummary> folders,
+  ) {
     final ids = <MailMailboxId>{};
+    if (folders.length > 1000) _invalid();
     for (final folder in folders) {
       if (folder.mailbox.id.account != store.account ||
           !ids.add(folder.mailbox.id) ||
-          folder.revision < 0 ||
-          folder.headerCount < 0) {
+          folder.revision < 1 ||
+          folder.headerCount < 0 ||
+          folder.headerCount > 1000) {
         _invalid();
       }
     }
@@ -141,7 +169,28 @@ class _StudioMailCachedMailDialogState
         _folders = folders;
         _loaded = true;
       });
+      final session = StudioMailMailboxSession(
+        store: store,
+        provider: widget.identity.provider,
+      );
+      _mailboxSession = session;
+      _viewSubscription = session.changes.listen(_viewChanged);
       if (folders.isNotEmpty) await _readFolder(folders.first);
+      if (_current && store is StudioMailMailboxWatchStore) {
+        _folderSubscription = (store as StudioMailMailboxWatchStore)
+            .watchViews()
+            .listen(
+              (result) => _foldersChanged(store, result),
+              onError: (Object _) => _foldersChanged(
+                store,
+                const MailFailure(MailProblem(MailProblemCode.storageFailure)),
+              ),
+              onDone: () => _foldersChanged(
+                store,
+                const MailFailure(MailProblem(MailProblemCode.unavailable)),
+              ),
+            );
+      }
       if (!_current) await _releaseStore();
     } on Object {
       var closeFailed = false;
@@ -167,40 +216,79 @@ class _StudioMailCachedMailDialogState
   }
 
   Future<void> _readFolder(MailCachedMailboxSummary summary) async {
-    final store = _store;
-    if (!_current || store == null) return;
-    final view = await store.loadView(summary.mailbox.id);
-    if (!_current || !identical(store, _store)) return;
-    if (view == null ||
-        view.mailbox.id != summary.mailbox.id ||
-        view.revision != summary.revision ||
-        view.capturedAt != summary.capturedAt ||
-        view.headers.length != summary.headerCount ||
-        view.hasMore != summary.hasMore) {
-      _invalid();
+    final session = _mailboxSession;
+    if (!_current || session == null) return;
+    await session.select(summary.mailbox.id);
+  }
+
+  void _viewChanged(StudioMailMailboxSnapshot snapshot) {
+    if (!_current) return;
+    if (snapshot.phase == StudioMailMailboxPhase.failed) {
+      setState(() => _viewReadFailed = true);
+      return;
     }
-    final ids = <MailMessageId>{};
-    for (final header in view.headers) {
-      final wrongMailbox = switch (header.remote) {
-        MailImapIdentity(:final mailbox) => mailbox != view.mailbox.id,
-        _ => false,
-      };
-      if (header.remote.account != store.account ||
-          header.remote.provider != widget.identity.provider ||
-          !ids.add(header.id) ||
-          wrongMailbox) {
-        _invalid();
-      }
+    if (snapshot.phase == StudioMailMailboxPhase.closed ||
+        snapshot.phase == StudioMailMailboxPhase.idle) {
+      return;
     }
-    final previous = _reader;
+    final view = snapshot.view;
+    final selected = _selected;
+    final retained = view?.mailbox.id == _view?.mailbox.id && selected != null
+        ? view?.headers
+              .where(
+                (header) =>
+                    header.id == selected.id &&
+                    header.remote == selected.remote,
+              )
+              .firstOrNull
+        : null;
+    final previous = retained == null ? _reader : null;
     setState(() {
       _view = view;
-      _selected = null;
-      _reader = null;
-      _missingBody = false;
-      _showMessage = false;
+      _selected = retained;
+      if (retained == null) {
+        _reader = null;
+        _missingBody = false;
+        _showMessage = false;
+      }
+      _viewReadFailed = false;
     });
     _retire(previous);
+  }
+
+  void _foldersChanged(
+    StudioMailMailboxStore store,
+    MailResult<List<MailCachedMailboxSummary>> result,
+  ) {
+    if (!_current || !identical(store, _store)) return;
+    try {
+      final folders = switch (result) {
+        MailSuccess<List<MailCachedMailboxSummary>>(:final value) =>
+          _validateFolders(store, value),
+        MailFailure<List<MailCachedMailboxSummary>>() => _invalid(),
+      };
+      final removed =
+          _view != null &&
+          !folders.any((folder) => folder.mailbox.id == _view!.mailbox.id);
+      final previous = removed ? _reader : null;
+      setState(() {
+        _folders = folders;
+        _catalogReadFailed = false;
+        if (removed) {
+          _view = null;
+          _selected = null;
+          _reader = null;
+          _missingBody = false;
+          _showMessage = false;
+        }
+      });
+      _retire(previous);
+      if (_view == null && folders.isNotEmpty && !_busy) {
+        unawaited(_operate(() => _readFolder(folders.first)));
+      }
+    } on Object {
+      setState(() => _catalogReadFailed = true);
+    }
   }
 
   void _retire(MailReaderController? reader) {
@@ -250,7 +338,11 @@ class _StudioMailCachedMailDialogState
     });
     _retire(previous);
     final message = await store.loadMessage(header);
-    if (!_current || !identical(view, _view) || !identical(store, _store)) {
+    if (!_current ||
+        view?.mailbox.id != _view?.mailbox.id ||
+        _selected?.id != header.id ||
+        _selected?.remote != header.remote ||
+        !identical(store, _store)) {
       return;
     }
     if (message == null) {
@@ -319,6 +411,7 @@ class _StudioMailCachedMailDialogState
         _selected = null;
         _missingBody = false;
         _showMessage = false;
+        _viewReadFailed = false;
         _loaded = true;
       });
       _retire(previous);
@@ -327,7 +420,10 @@ class _StudioMailCachedMailDialogState
       try {
         final folders = await _listFolders(store);
         if (!_current || !identical(store, _store)) return;
-        setState(() => _folders = folders);
+        setState(() {
+          _folders = folders;
+          _catalogReadFailed = false;
+        });
         if (folders.isNotEmpty) await _readFolder(folders.first);
       } on Object {
         if (_current) {
@@ -341,12 +437,22 @@ class _StudioMailCachedMailDialogState
     if (_storeClosing case final pending?) return pending;
     final owner = _owner;
     if (owner == null) return Future<void>.value();
-    final closing = Future<void>.sync(owner.close).then((_) {
-      if (identical(owner, _owner)) {
-        _owner = null;
-        _store = null;
-      }
-    });
+    final closing =
+        Future<void>.sync(() async {
+          final session = _mailboxSession;
+          _mailboxSession = null;
+          await _viewSubscription?.cancel();
+          _viewSubscription = null;
+          await _folderSubscription?.cancel();
+          _folderSubscription = null;
+          await session?.close();
+          await owner.close();
+        }).then((_) {
+          if (identical(owner, _owner)) {
+            _owner = null;
+            _store = null;
+          }
+        });
     final result = closing.whenComplete(() => _storeClosing = null);
     _storeClosing = result;
     return result;
@@ -425,7 +531,7 @@ class _StudioMailCachedMailDialogState
               ? widget.strings.mailCacheMissingBody
               : _busy
               ? widget.strings.mailMessageListStrings.loading
-              : _error ?? widget.strings.mailCacheChooseMessage,
+              : _displayError ?? widget.strings.mailCacheChooseMessage,
           key: const ValueKey('studio-mail-cache-message-state'),
         ),
       ),
@@ -583,7 +689,7 @@ class _StudioMailCachedMailDialogState
                         ),
                         child: Text(widget.strings.mailCacheScope),
                       ),
-                      if (_error case final error?)
+                      if (_displayError case final error?)
                         Padding(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 16,
@@ -674,6 +780,25 @@ class _StudioMailCachedMailDialogState
                             ),
                           ),
                         ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 4,
+                          ),
+                          child: Text(
+                            widget.strings.mailCacheUnread(
+                              view.headers
+                                  .where(
+                                    (header) => header.flags?.isRead == false,
+                                  )
+                                  .length,
+                              view.headers
+                                  .where((header) => header.flags == null)
+                                  .length,
+                            ),
+                            key: const ValueKey('studio-mail-cache-unread'),
+                          ),
+                        ),
                         if (view.hasMore)
                           Padding(
                             padding: const EdgeInsets.symmetric(
@@ -697,7 +822,7 @@ class _StudioMailCachedMailDialogState
                       child: Text(
                         _loaded && _folders.isEmpty
                             ? widget.strings.mailCacheEmpty
-                            : _error ??
+                            : _displayError ??
                                   widget.strings.mailMessageListStrings.loading,
                       ),
                     ),

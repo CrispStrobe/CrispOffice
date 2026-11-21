@@ -11,6 +11,14 @@ All notable changes to `quds_office_editor` are documented here.
   the DOCX/Word and ODT/LibreOffice save-copy workflow and retain original document
   preference state when undoing an import.
 
+- Observe saved mailbox views from native IMAP, EWS, Gmail and Microsoft 365
+  sessions while preserving original provider action identities. Keep cached
+  folders, read/star flags and saved-view unread counts current with repository
+  transactions; retain selected readers on metadata changes, reject stale
+  folder/account events and drain subscriptions before releasing local storage.
+- Preserve retry state after a failed deferred Word document layout, so the
+  next layout read cannot silently return the previous document's pages.
+
 - Let Zotero Add Note and Add Annotation replace ordinary text spanning several
   paragraphs in one body section, footnote or endnote. Map both Notes-pane
   selection endpoints, retain one undo/redo step and original selection direction,
