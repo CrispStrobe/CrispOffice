@@ -156,10 +156,7 @@ End Sub
   }
 
   test('unbound Font aliases do not gain an implicit selection', () {
-    _reject(
-      'Dim target As Font\ntarget.Position = 1',
-      code: 'vba_unsupported',
-    );
+    _reject('Dim target As Font\ntarget.Position = 1', code: 'vba_unsupported');
   });
 
   test('Excel and PowerPoint adapters do not acquire Word Position', () {
