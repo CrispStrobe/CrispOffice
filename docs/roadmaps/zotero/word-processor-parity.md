@@ -296,9 +296,12 @@ no reader heuristic conflates separate numbering instances to conceal it.
    Use the implemented carrier and retained synthetic fixtures with current
    Word/LibreOffice and their actual Zotero plugins. Resolve any converter findings
    against identified release versions. Check citations, rich bibliographies,
-   authored notes, tables, images and repeated transfers. Implement native ODT
-   reference-mark/preference ownership in the ODF reader before claiming direct
-   active-ODT editing; the current Quds import path is DOCX.
+   authored notes, tables, images and repeated transfers. Native ODT input first
+   needs a rich document reader: the current tree has a bounded ODF text
+   extractor and ODT exporter, not an ODT-to-Word reader. Start with the
+   [native ODT inventory and ownership contract](native-odt-input.md), then
+   implement and qualify rich import before claiming active-ODT editing.
+   The current Quds import path remains DOCX; the contract is not an implementation.
 2. **Extend table structure and formatting.** Improve merged-row height distribution and map
    header/footer row groups and custom styles to native structures with explicit
    ownership. Qualify their citation order, geometry, save/reopen behavior and
