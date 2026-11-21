@@ -4,6 +4,13 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Native Mail Outbox adds **Send later**, saved UTC deadlines, explicit Resume
+  after reopening and a ten-second pre-submission Undo window. Pause on app
+  suspension, account change or Outbox close; fence stale timing edits and
+  lifecycle/clock changes during pending storage. Retain immediate Send,
+  frozen MIME/envelopes and guarded uncertainty. Scheduling is foreground-only;
+  server-side/OS-background execution remains separate work.
+
 - Keep committed smart-quote and dash corrections synchronized with the system
   input value so subsequent keystrokes retain them. Cancel pending automatic
   proofing during active IME composition and resume checking after commit.
@@ -25,7 +32,7 @@ All notable changes to `quds_office_editor` are documented here.
 - Studio Mail adds per-account plain-text signatures and named Quick Text,
   separate new/reply defaults, localized management, revision-safe persistence
   and connected/offline draft integration. Existing drafts and Outbox payloads
-  remain independent snapshots. Current runtime qualification is explicitly open
+  remain independent snapshots. Subsequent local qualification is recorded
   in `docs/validation/mail-compose-tools-20261121/README.md`.
 
 - Add `WordEditorController.insertPlainText` for literal multiline insertion

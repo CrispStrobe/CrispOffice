@@ -1,5 +1,28 @@
 # Mail implementation status — 21 November 2026
 
+## Scheduled Outbox and pre-submission Undo — locally qualified
+
+Native Outbox now saves fixed UTC deadlines and offers **Send later**, a
+ten-second usable Undo window, Pause, explicit Resume and confirmed Send now.
+Only never-attempted queued entries without older uncertainty can be scheduled.
+The local account-owned store retains deadlines across restart and fences stale
+edits with a monotonic schedule revision. Existing v1/v2 payloads remain readable.
+
+Scheduling explicitly arms one attempt while Outbox is open and the app is
+active. Closing, suspension and account changes revoke permission; reopening
+never sends. Wall-clock eligibility and monotonic Undo timing are checked
+separately. Permission generation and the deadline are checked again after
+attempt persistence before a provider call. Failed writes or readback do not
+arm work, and failed/uncertain attempts never automatically retry.
+
+Full local core/store suites, native adapter/session cases and EN/DE/AR widget
+tests cover restart, stale revisions, rollback, clocks, slow storage and lifecycle
+races. Fresh writing-tools checks also pass. See the
+[workflow](scheduled-send.md) and
+[source-bound local evidence](../../validation/mail-scheduled-send-20261121/README.md).
+This is foreground scheduling; server-side/OS-background execution, provider
+Sent reconciliation and installed/live-provider qualification remain open.
+
 ## Account writing tools — implemented and locally qualified
 
 The shared native composer now provides persistent per-account plain-text
@@ -318,7 +341,8 @@ native SMTP, EWS, Gmail and Microsoft 365, with English/German/Arabic labels.
 
 The [qualification record](../../validation/mail-outbox-management-20261120/README.md)
 binds these workflows and the incoming draft/account/layout continuations to the
-combined source. Undo-send, scheduling, provider Sent reconciliation, background
+combined source. The later [scheduling increment](scheduled-send.md) adds
+foreground Send later and Undo. Provider Sent reconciliation, background
 execution and live-provider/installed-platform gates remain open.
 
 ## Verified offline account entry
@@ -374,8 +398,8 @@ The production native host reuses its existing draft-store lease and account
 identity. Reconnect to that identity to inspect its queue after restart. This
 supersedes historical statements below that no visible durable outbox existed;
 their original qualification scope remains unchanged. The multiple-draft and
-limited offline-entry continuation is described above. Rich authoring,
-scheduling/undo-send, detailed SMTP recipient outcomes,
+limited offline-entry continuation is described above. Foreground scheduling
+and Undo are covered by the later increment above. Rich authoring, detailed SMTP recipient outcomes,
 Sent reconciliation and installed/live-provider qualification remain open.
 See the [local evidence](../../validation/mail-outbox-20261120/README.md).
 
@@ -1103,12 +1127,10 @@ harness, not the standalone Office application.
    other-OS TLS coverage and authorized disposable-account interoperability. Generic browser
    socket transport remains explicitly unsupported; no automatic retry is added
    without its own bounded policy and reconciliation checks.
-4. Build the next M07 increment as a durable pre-submission undo delay and
-   explicitly scheduled foreground send, with separate eligibility/intent,
-   restart/time-change handling and cancel-before-attempt transactions. Keep
-   provider-specific Sent reconciliation as an explicit boundary separate from
-   foreground flag commands; preserve unknown acceptance and the all-or-abort
-   recipient policy.
+4. Extend the completed foreground Send later/Undo workflow with an account-owned
+   background scheduler and explicit credential/lifecycle ownership, then
+   provider-specific Sent reconciliation. Preserve unknown acceptance, separate
+   eligibility from permission, and retain the all-or-abort recipient policy.
 5. Independently close reader/browser no-fetch and browser-store runtime gates,
    including quotas, reloads, tab contention and recovery. Qualify memory and
    rendering on the intended low-memory devices. Keep CrispCloud EML routing

@@ -958,6 +958,7 @@ final class SqliteMailRepository implements MailRepository {
     MailOutboxEntry entry, {
     required MailOutboxState? expectedState,
     required String? expectedAttemptId,
+    int? expectedScheduleRevision,
   }) => _write(() async {
     final account = entry.prepared.account;
     await _account(account, active: entry.state == MailOutboxState.submitting);
@@ -965,6 +966,11 @@ final class SqliteMailRepository implements MailRepository {
     final previous = await _outbox(account, entry.id);
     if (previous?.state != expectedState ||
         previous?.attemptId != expectedAttemptId ||
+        (expectedScheduleRevision != null &&
+            expectedScheduleRevision != previous?.scheduleRevision) ||
+        (((previous?.scheduleRevision ?? 0) > 0 ||
+                entry.scheduleRevision > 0) &&
+            expectedScheduleRevision != previous?.scheduleRevision) ||
         !MailStoreCodec.validOutboxTransition(previous, entry)) {
       _fail(MailProblemCode.conflict);
     }
@@ -1127,6 +1133,7 @@ final class SqliteMailRepository implements MailRepository {
         previous == null ||
         previous.state != original.state ||
         previous.attemptId != original.attemptId ||
+        previous.scheduleRevision != original.scheduleRevision ||
         !MailStoreCodec.validOutboxTransition(previous, original) ||
         draft.id == original.prepared.draftId ||
         (await _rows('SELECT id FROM drafts WHERE account=? AND id=?', [

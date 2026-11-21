@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:enough_mail/enough_mail.dart' as mail;
@@ -9,6 +10,9 @@ import 'studio_mail_draft.dart';
 import 'studio_mail_outbox_export.dart';
 import 'studio_mail_outbox_review.dart';
 import 'studio_mail_outbox_strings.dart';
+import 'studio_mail_outbox_schedule_session.dart';
+import 'studio_mail_schedule_dialog.dart';
+import 'studio_mail_schedule_strings.dart';
 import 'studio_strings.dart';
 
 /// A local, account-scoped foreground queue. Opening or refreshing never sends.
@@ -20,6 +24,8 @@ class StudioMailOutboxDialog extends StatefulWidget {
     required this.submit,
     required this.isCurrent,
     this.exporter = exportStudioMailOutboxFile,
+    this.clock,
+    this.elapsed,
   });
 
   final StudioStrings strings;
@@ -27,15 +33,29 @@ class StudioMailOutboxDialog extends StatefulWidget {
   final StudioMailOutboxSubmit submit;
   final bool Function() isCurrent;
   final StudioMailOutboxExporter exporter;
+  final DateTime Function()? clock;
+  final Duration Function()? elapsed;
 
   @override
   State<StudioMailOutboxDialog> createState() => _StudioMailOutboxDialogState();
 }
 
-class _StudioMailOutboxDialogState extends State<StudioMailOutboxDialog> {
+class _StudioMailOutboxDialogState extends State<StudioMailOutboxDialog>
+    with WidgetsBindingObserver {
   List<MailOutboxEntry> _entries = const [];
   bool _busy = true;
   String? _error;
+  final Stopwatch _stopwatch = Stopwatch();
+  late final StudioMailOutboxScheduleSession _scheduleSession;
+  Timer? _scheduleTimer;
+  int _permissionGeneration = 0;
+
+  DateTime get _now => widget.clock?.call() ?? DateTime.now();
+
+  StudioMailOutboxSchedulingStore? get _scheduling => switch (widget.store) {
+    StudioMailOutboxSchedulingStore value => value,
+    _ => null,
+  };
 
   StudioMailOutboxManagementStore? get _management => switch (widget.store) {
     StudioMailOutboxManagementStore value => value,
@@ -45,7 +65,94 @@ class _StudioMailOutboxDialogState extends State<StudioMailOutboxDialog> {
   @override
   void initState() {
     super.initState();
+    _stopwatch.start();
+    _scheduleSession = StudioMailOutboxScheduleSession(
+      clock: () => _now,
+      elapsed: () => widget.elapsed?.call() ?? _stopwatch.elapsed,
+    );
+    WidgetsBinding.instance.addObserver(this);
     _refresh();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    _pauseSchedules();
+    _stopwatch.stop();
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state != AppLifecycleState.resumed) {
+      _pauseSchedules();
+      if (mounted) setState(() {});
+    }
+  }
+
+  @override
+  void didUpdateWidget(StudioMailOutboxDialog oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (!identical(oldWidget.store, widget.store)) _pauseSchedules();
+  }
+
+  void _pauseSchedules() {
+    _permissionGeneration++;
+    _scheduleSession.pauseAll();
+    _scheduleTimer?.cancel();
+  }
+
+  bool get _foreground {
+    final lifecycle = WidgetsBinding.instance.lifecycleState;
+    return lifecycle == null || lifecycle == AppLifecycleState.resumed;
+  }
+
+  void _arm(
+    MailOutboxEntry entry, {
+    required int permissionGeneration,
+    Duration minimumWait = Duration.zero,
+  }) {
+    if (!mounted ||
+        _busy ||
+        _error != null ||
+        !widget.isCurrent() ||
+        !_foreground ||
+        permissionGeneration != _permissionGeneration) {
+      return;
+    }
+    _scheduleSession.arm(entry, minimumWait: minimumWait);
+    _scheduleSession.reconcile(_entries);
+    if (_scheduleSession.isEmpty) return;
+    _scheduleTimer ??= Timer.periodic(
+      const Duration(seconds: 1),
+      (_) => _tick(),
+    );
+    if (!_scheduleTimer!.isActive) {
+      _scheduleTimer = Timer.periodic(
+        const Duration(seconds: 1),
+        (_) => _tick(),
+      );
+    }
+    setState(() {});
+  }
+
+  void _tick() {
+    if (!mounted) return;
+    if (!widget.isCurrent() || !_foreground) _pauseSchedules();
+    if (_scheduleSession.isEmpty) {
+      _scheduleTimer?.cancel();
+      setState(() {});
+      return;
+    }
+    if (_busy) return;
+    final due = _scheduleSession.takeDue(_entries);
+    setState(() {});
+    if (due != null) unawaited(_send(due, fromSchedule: true));
+  }
+
+  void _replaceEntries(List<MailOutboxEntry> entries) {
+    _entries = entries.reversed.toList();
+    _scheduleSession.reconcile(_entries);
   }
 
   Future<void> _refresh() async {
@@ -63,7 +170,7 @@ class _StudioMailOutboxDialogState extends State<StudioMailOutboxDialog> {
     try {
       final entries = await widget.store.loadOutbox();
       if (mounted && widget.isCurrent()) {
-        setState(() => _entries = entries.reversed.toList());
+        setState(() => _replaceEntries(entries));
       }
     } on Object {
       if (mounted) setState(() => _error = widget.strings.mailOutboxFailed);
@@ -134,7 +241,7 @@ class _StudioMailOutboxDialogState extends State<StudioMailOutboxDialog> {
         try {
           final entries = await widget.store.loadOutbox();
           if (mounted && widget.isCurrent()) {
-            setState(() => _entries = entries.reversed.toList());
+            setState(() => _replaceEntries(entries));
           }
         } on Object {
           if (mounted) setState(() => _error = widget.strings.mailOutboxFailed);
@@ -144,35 +251,203 @@ class _StudioMailOutboxDialogState extends State<StudioMailOutboxDialog> {
     }
   }
 
-  Future<void> _send(MailOutboxEntry entry) => _run(() async {
-    final acknowledge = entry.canBeginAcknowledgedAttempt;
-    if (acknowledge &&
-        !await _confirm(
-          widget.strings.mailOutboxCheckRetry,
-          widget.strings.mailOutboxUncertainExplanation,
-          acknowledge: true,
-        )) {
-      return;
-    }
-    if (!widget.isCurrent()) return;
-    await submitStudioMailOutbox(
-      store: widget.store,
-      entry: entry,
-      submit: widget.submit,
-      isCurrent: widget.isCurrent,
-      acknowledgeUncertain: acknowledge,
-      onAttemptPersisted: (attempt) {
-        if (mounted && widget.isCurrent()) {
-          setState(
-            () => _entries = [
-              for (final item in _entries)
-                if (item.id == attempt.id) attempt else item,
-            ],
-          );
+  Future<void> _send(MailOutboxEntry entry, {bool fromSchedule = false}) =>
+      _run(() async {
+        final permissionGeneration = _permissionGeneration;
+        final owner = widget.store;
+        final isCurrentOwner = widget.isCurrent;
+        var ready = entry;
+        if (!fromSchedule && entry.canSchedule && entry.sendNotBefore != null) {
+          final scheduling = _scheduling;
+          if (scheduling == null ||
+              !await _confirm(
+                widget.strings.mailOutboxSend,
+                widget.strings.mailScheduleSendNowExplanation,
+              ) ||
+              !mounted ||
+              !widget.isCurrent()) {
+            return;
+          }
+          _scheduleSession.pause(entry);
+          ready = await scheduling.scheduleOutbox(entry, sendNotBefore: null);
         }
-      },
-    );
+        final acknowledge = entry.canBeginAcknowledgedAttempt;
+        if (acknowledge &&
+            !await _confirm(
+              widget.strings.mailOutboxCheckRetry,
+              widget.strings.mailOutboxUncertainExplanation,
+              acknowledge: true,
+            )) {
+          return;
+        }
+        if (!widget.isCurrent()) return;
+        await submitStudioMailOutbox(
+          store: widget.store,
+          entry: ready,
+          submit: widget.submit,
+          isCurrent: () =>
+              mounted &&
+              identical(widget.store, owner) &&
+              isCurrentOwner() &&
+              (!fromSchedule ||
+                  (_foreground &&
+                      permissionGeneration == _permissionGeneration &&
+                      ready.isDueAt(_now))),
+          acknowledgeUncertain: acknowledge,
+          onAttemptPersisted: (attempt) {
+            if (mounted && widget.isCurrent()) {
+              setState(
+                () => _entries = [
+                  for (final item in _entries)
+                    if (item.id == attempt.id) attempt else item,
+                ],
+              );
+            }
+          },
+        );
+      });
+
+  Future<void> _schedule(
+    MailOutboxEntry entry, {
+    bool undoWindow = false,
+  }) async {
+    final permissionGeneration = _permissionGeneration;
+    MailOutboxEntry? saved;
+    await _run(() async {
+      final scheduling = _scheduling;
+      if (scheduling == null || !entry.canSchedule) return;
+      DateTime? deadline;
+      if (undoWindow) {
+        deadline = _now.add(const Duration(seconds: 10));
+      } else {
+        deadline = await showDialog<DateTime>(
+          context: context,
+          builder: (_) => StudioMailScheduleDialog(
+            strings: widget.strings,
+            isCurrent: () => mounted && widget.isCurrent(),
+            initial: entry.sendNotBefore,
+            clock: () => _now,
+          ),
+        );
+      }
+      if (deadline == null || !mounted || !widget.isCurrent()) return;
+      _scheduleSession.pause(entry);
+      saved = await scheduling.scheduleOutbox(entry, sendNotBefore: deadline);
+    });
+    // Start only after save AND readback finish, when Undo is usable. A slow
+    // refresh cannot consume the advertised window, and a hide/resume cycle
+    // during either await cannot silently restore foreground permission.
+    if (saved case final entry?) {
+      _arm(
+        entry,
+        permissionGeneration: permissionGeneration,
+        minimumWait: undoWindow ? const Duration(seconds: 10) : Duration.zero,
+      );
+    }
+  }
+
+  Future<void> _resume(MailOutboxEntry entry) async {
+    final permissionGeneration = _permissionGeneration;
+    MailOutboxEntry? saved;
+    await _run(() async {
+      if (!await _confirm(
+            widget.strings.mailScheduleResume,
+            widget.strings.mailScheduleExplanation,
+          ) ||
+          !mounted ||
+          !widget.isCurrent()) {
+        return;
+      }
+      // A fresh read prevents resuming stale timing after another window edits it.
+      final current = await widget.store.loadOutbox();
+      for (final candidate in current) {
+        if (candidate.id == entry.id &&
+            candidate.prepared.account == entry.prepared.account &&
+            candidate.scheduleRevision == entry.scheduleRevision &&
+            candidate.sendNotBefore == entry.sendNotBefore &&
+            candidate.canSchedule) {
+          saved = candidate;
+        }
+      }
+      if (saved == null) throw StateError('The saved schedule changed.');
+    });
+    if (saved case final entry?) {
+      _arm(entry, permissionGeneration: permissionGeneration);
+    }
+  }
+
+  Future<void> _undoSchedule(MailOutboxEntry entry) => _run(() async {
+    final scheduling = _scheduling;
+    if (scheduling == null) return;
+    // Pause before storage: a failed cancellation cannot trigger a send while
+    // the user is trying to stop it. The saved entry remains reviewable.
+    _scheduleSession.pause(entry);
+    await scheduling.scheduleOutbox(entry, sendNotBefore: null);
   });
+
+  Widget _scheduleStatus(MailOutboxEntry entry) {
+    final strings = widget.strings;
+    final active = _scheduleSession.isArmed(entry);
+    final remaining = _scheduleSession.remaining(entry);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(strings.mailScheduleAt(entry.sendNotBefore!)),
+        if (entry.canSchedule)
+          Text(
+            active
+                ? remaining <= const Duration(seconds: 60)
+                      ? strings.mailScheduleCountdown(remaining)
+                      : strings.mailScheduleActive
+                : strings.mailSchedulePaused,
+          ),
+        if (active && remaining <= const Duration(seconds: 10))
+          Text(strings.mailScheduleUndoExplanation),
+      ],
+    );
+  }
+
+  List<Widget> _scheduleActions(MailOutboxEntry entry) {
+    if (_scheduling == null || !entry.canSchedule) return const [];
+    final strings = widget.strings;
+    final active = _scheduleSession.isArmed(entry);
+    return [
+      if (entry.sendNotBefore == null)
+        OutlinedButton.icon(
+          key: ValueKey('studio-mail-outbox-delay-${entry.id}'),
+          onPressed: _busy ? null : () => _schedule(entry, undoWindow: true),
+          icon: const Icon(Icons.undo),
+          label: Text(strings.mailSendWithUndo),
+        ),
+      OutlinedButton.icon(
+        key: ValueKey('studio-mail-outbox-schedule-${entry.id}'),
+        onPressed: _busy ? null : () => _schedule(entry),
+        icon: const Icon(Icons.schedule_send_outlined),
+        label: Text(strings.mailSendLater),
+      ),
+      if (entry.sendNotBefore != null) ...[
+        if (active)
+          TextButton(
+            key: ValueKey('studio-mail-outbox-pause-${entry.id}'),
+            onPressed: _busy
+                ? null
+                : () => setState(() => _scheduleSession.pause(entry)),
+            child: Text(strings.mailSchedulePause),
+          )
+        else
+          OutlinedButton(
+            key: ValueKey('studio-mail-outbox-resume-${entry.id}'),
+            onPressed: _busy ? null : () => _resume(entry),
+            child: Text(strings.mailScheduleResume),
+          ),
+        TextButton(
+          key: ValueKey('studio-mail-outbox-undo-${entry.id}'),
+          onPressed: _busy ? null : () => _undoSchedule(entry),
+          child: Text(strings.mailScheduleUndo),
+        ),
+      ],
+    ];
+  }
 
   Future<void> _cancel(MailOutboxEntry entry) => _run(() async {
     if (await _confirm(
@@ -180,6 +455,7 @@ class _StudioMailOutboxDialogState extends State<StudioMailOutboxDialog> {
           widget.strings.mailOutboxCancelExplanation,
         ) &&
         widget.isCurrent()) {
+      _scheduleSession.pause(entry);
       await widget.store.cancelOutbox(entry);
     }
   });
@@ -220,6 +496,7 @@ class _StudioMailOutboxDialogState extends State<StudioMailOutboxDialog> {
         !widget.isCurrent()) {
       return;
     }
+    _scheduleSession.pause(entry);
     final draft = await management.editOutboxAsDraft(entry);
     if (mounted && widget.isCurrent()) {
       // The same owner has selected the newly saved draft. Return that exact
@@ -333,7 +610,13 @@ class _StudioMailOutboxDialogState extends State<StudioMailOutboxDialog> {
                                         context,
                                       ).textTheme.titleMedium,
                                     ),
-                                    Text(strings.mailOutboxState(entry.state)),
+                                    if (entry.sendNotBefore == null ||
+                                        entry.state != MailOutboxState.queued)
+                                      Text(
+                                        strings.mailOutboxState(entry.state),
+                                      ),
+                                    if (entry.sendNotBefore != null)
+                                      _scheduleStatus(entry),
                                     Text(
                                       '${entry.prepared.envelope.sender} · ${strings.mailOutboxAttempt(entry.attemptNumber)}',
                                       textDirection: TextDirection.ltr,
@@ -384,7 +667,12 @@ class _StudioMailOutboxDialogState extends State<StudioMailOutboxDialog> {
                                             key: ValueKey(
                                               'studio-mail-outbox-send-${entry.id}',
                                             ),
-                                            onPressed: _busy
+                                            onPressed:
+                                                _busy ||
+                                                    (entry.sendNotBefore !=
+                                                            null &&
+                                                        entry.canSchedule &&
+                                                        _scheduling == null)
                                                 ? null
                                                 : () => _send(entry),
                                             icon: const Icon(
@@ -398,6 +686,7 @@ class _StudioMailOutboxDialogState extends State<StudioMailOutboxDialog> {
                                                   : strings.mailOutboxRetry,
                                             ),
                                           ),
+                                        ..._scheduleActions(entry),
                                         if (entry.canCancel)
                                           TextButton(
                                             key: ValueKey(

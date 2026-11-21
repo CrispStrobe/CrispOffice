@@ -14,6 +14,7 @@ import '../model/word_notes.dart';
 import '../model/word_zotero.dart';
 import '../model/word_zotero_data.dart';
 import '../properties/wml_properties.dart';
+import 'odt_reader_images.dart';
 import 'odt_reader_styles.dart';
 import 'odt_reader_text_style.dart';
 
@@ -21,6 +22,7 @@ const _style = 'urn:oasis:names:tc:opendocument:xmlns:style:1.0';
 const _fo = 'urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0';
 const _xlink = 'http://www.w3.org/1999/xlink';
 const _xml = 'http://www.w3.org/XML/1998/namespace';
+const _meta = 'urn:oasis:names:tc:opendocument:xmlns:meta:1.0';
 
 /// Converts a bounded native ODT into an editable Word document.
 ///
@@ -43,8 +45,14 @@ abstract final class OdtDocumentReader {
     // Bind inventory and rich parsing to the same immutable input across awaits.
     final source = Uint8List.fromList(bytes);
     final inventory = await OdfZotero.inspect(source, limits: limits);
-    if (inventory.issues.isNotEmpty) {
-      throw UnsupportedError(inventory.issues.first.message);
+    for (final issue in inventory.issues) {
+      // Drawing observations remain conservative in the read-only inventory.
+      // The rich reader must account for their exact paths after successfully
+      // validating and materializing complete embedded picture frames.
+      if (issue.code != OdfZoteroIssueCode.unsupportedContent ||
+          issue.location?.part != 'content.xml') {
+        throw UnsupportedError(issue.message);
+      }
     }
     for (final field in inventory.fields) {
       // The inventory conservatively guards a whole paragraph containing a
@@ -88,7 +96,14 @@ abstract final class OdtDocumentReader {
     final content = (await parts.xml('content.xml'))!.root!;
     final styles = (await parts.xml('styles.xml'))?.root;
     final metadata = (await parts.xml('meta.xml'))?.root;
-    final reader = _OdtReader(content, styles, inventory, limits);
+    final reader = _OdtReader(
+      content,
+      styles,
+      inventory,
+      limits,
+      zip,
+      libreOfficeNoteOffsets: _usesLibreOfficeNoteOffsets(metadata),
+    );
     final document = reader.read();
     reader.readMetadata(metadata);
     if (metadata != null) {
@@ -143,19 +158,59 @@ abstract final class OdtDocumentReader {
         utf8.decode(zip.read('mimetype', maxBytes: 128)) ==
             'application/vnd.oasis.opendocument.text';
   }
+
+  /// LibreOffice's ODF exporter stores a zero-based note offset where ODF
+  /// describes an initial number. Use that convention only for an unambiguous
+  /// stock producer declaration; note import still verifies the visible labels.
+  static bool _usesLibreOfficeNoteOffsets(XmlElement? root) {
+    if (root == null || !_is(root, odfOfficeNamespace, 'document-meta')) {
+      return false;
+    }
+    final containers = root
+        .childrenNamed('meta', namespaceUri: odfOfficeNamespace)
+        .toList();
+    if (containers.length != 1) return false;
+    final generators = containers.single
+        .childrenNamed('generator', namespaceUri: _meta)
+        .toList();
+    if (generators.length != 1) return false;
+    final generator = generators.single;
+    if (generator.childElements.isNotEmpty ||
+        generator.attributes.any(
+          (attribute) =>
+              attribute.prefix != 'xmlns' && attribute.qualifiedName != 'xmlns',
+        )) {
+      return false;
+    }
+    final match = RegExp(
+      r'^LibreOffice(?:Dev)?/[0-9]+(?:\.[0-9]+){1,3}'
+      r'(?:\.(?:alpha|beta|rc)[0-9]+)?\$[A-Za-z0-9_]+'
+      r' LibreOffice_project/[0-9a-f]{40}$',
+    ).firstMatch(generator.text);
+    return match != null && match.end == generator.text.length;
+  }
 }
 
 final class _OdtReader {
-  _OdtReader(this.content, XmlElement? styleRoot, this.inventory, this.limits)
-    : styles = OdtReaderStyles(content, styles: styleRoot),
-      textBudget = OdfTextBudget(limits.maxTextBytes) {
+  _OdtReader(
+    this.content,
+    XmlElement? styleRoot,
+    this.inventory,
+    this.limits,
+    ZipReader zip, {
+    required this.libreOfficeNoteOffsets,
+  }) : styles = OdtReaderStyles(content, styles: styleRoot),
+       textBudget = OdfTextBudget(limits.maxTextBytes) {
+    images = OdtReaderImages(zip, styles);
     _index(content, '/0');
   }
 
   final XmlElement content;
   final OdfZoteroInventory inventory;
   final OdfZoteroLimits limits;
+  final bool libreOfficeNoteOffsets;
   final OdtReaderStyles styles;
+  late final OdtReaderImages images;
   final OdfTextBudget textBudget;
   final runBudget = OdtReaderRunBudget();
   final document = WmlDocument(sections: []);
@@ -164,6 +219,8 @@ final class _OdtReader {
   final markOffsets = <String, _RichAnchor>{};
   final noteOrders = <int>[];
   final noteRunOrders = Map<WmlRun, int>.identity();
+  final imageOrders = <int>[];
+  final _imagePaths = <String>{};
   final listParagraphs = Set<WmlParagraph>.identity();
   final paragraphs = <String, WmlParagraph>{};
   final _bibliographySections = <String>{};
@@ -219,10 +276,31 @@ final class _OdtReader {
         .childrenNamed('text', namespaceUri: odfOfficeNamespace)
         .single;
     if (body.childElements.length != 1) _unsupported(body);
-    _attributes(text, {});
+    _attributes(text, {
+      odfTextNamespace: {'use-soft-page-breaks'},
+    });
+    final softPageBreaks = _attr(
+      text,
+      'use-soft-page-breaks',
+      odfTextNamespace,
+    );
+    if (softPageBreaks != null &&
+        !RegExp(
+          r'^[ \t\r\n]*(?:true|false|1|0)[ \t\r\n]*$',
+        ).hasMatch(softPageBreaks)) {
+      throw const FormatException('Invalid ODT soft-page-break hint.');
+    }
+    // ODF 1.3 19.903 makes these cached pagination hints optional. The native
+    // layout recomputes pagination; authored hard breaks retain their separate
+    // paragraph/run properties. The writer does not export stale soft hints.
     final section = WmlSection();
     document.sections.add(section);
     section.blocks.addAll(_blocks(text));
+    for (final issue in inventory.issues) {
+      if (!_imagePaths.contains(issue.location?.path)) {
+        throw UnsupportedError(issue.message);
+      }
+    }
     styles.applyPageLayout(
       section,
       hasFootnotes: document.footnotes.isNotEmpty,
@@ -313,17 +391,64 @@ final class _OdtReader {
         );
       } else if (_is(node, odfTextNamespace, 'section')) {
         _attributes(node, {
-          odfTextNamespace: {'name'},
+          odfTextNamespace: {'name', 'style-name', 'protected'},
         });
         final name = _attr(node, 'name', odfTextNamespace);
         if (!_bibliographySections.contains(name)) _unsupported(node);
+        final protection = _attr(node, 'protected', odfTextNamespace);
+        if (protection != null && protection != 'false' && protection != '0') {
+          _unsupported(node);
+        }
+        styles.validateBibliographySection(
+          _attr(node, 'style-name', odfTextNamespace),
+        );
         result.addAll(_blocks(node, inNote: inNote, tableDepth: tableDepth));
       } else if (_is(node, odfTextNamespace, 'sequence-decls')) {
         // Inert declarations generated by LibreOffice do not author content.
         // A later sequence field is rejected by the inline parser.
+        _attributes(node, {});
+        final names = <String>{};
+        if (node.children.any(
+          (child) =>
+              (child is XmlText || child is XmlCdata) &&
+              !(child is XmlText ? child.text : (child as XmlCdata).text)
+                  .codeUnits
+                  .every(_whitespace),
+        )) {
+          _unsupported(node);
+        }
         for (final declaration in node.childElements) {
           if (!_is(declaration, odfTextNamespace, 'sequence-decl') ||
-              declaration.childElements.isNotEmpty) {
+              declaration.childElements.isNotEmpty ||
+              !declaration.text.codeUnits.every(_whitespace)) {
+            _unsupported(declaration);
+          }
+          _attributes(declaration, {
+            odfTextNamespace: {
+              'name',
+              'display-outline-level',
+              'separation-character',
+            },
+          });
+          final name = _attr(declaration, 'name', odfTextNamespace);
+          final level = _attr(
+            declaration,
+            'display-outline-level',
+            odfTextNamespace,
+          );
+          final separator = _attr(
+            declaration,
+            'separation-character',
+            odfTextNamespace,
+          );
+          if (name == null ||
+              name.isEmpty ||
+              !names.add(name) ||
+              level == null ||
+              !RegExp(
+                r'^[ \t\r\n]*(?:\+?[0-9]+|-0+)[ \t\r\n]*$',
+              ).hasMatch(level) ||
+              (separator != null && separator.runes.length != 1)) {
             _unsupported(declaration);
           }
         }
@@ -380,6 +505,27 @@ final class _OdtReader {
         continue;
       }
       if (node is! XmlElement) continue;
+      if (_is(node, odfDrawingNamespace, 'frame')) {
+        final visual = images.read(node);
+        final path = paths[node]!;
+        _imagePaths.add(path);
+        final image = node
+            .childrenNamed('image', namespaceUri: odfDrawingNamespace)
+            .single;
+        _imagePaths.add(paths[image]!);
+        imageOrders.add(sourceOrder[path]!);
+        buffer.picture(
+          WmlRun(
+            text: '\uFFFC',
+            properties: properties is OdtReaderTextStyle
+                ? properties.nativeProperties()
+                : properties.copy(),
+            hyperlink: hyperlink,
+            inlineVisual: WmlVisual(visual: visual),
+          ),
+        );
+        continue;
+      }
       if (node.namespaceUri != odfTextNamespace) _unsupported(node);
       switch (node.localName) {
         case 'span':
@@ -417,9 +563,20 @@ final class _OdtReader {
           final styleName = _attr(node, 'style-name', odfTextNamespace);
           final visited = _attr(node, 'visited-style-name', odfTextNamespace);
           if (visited != null && visited.isNotEmpty && visited != styleName) {
-            throw UnsupportedError(
-              'Distinct visited ODT hyperlink styles are not supported.',
-            );
+            if (!OdtReaderImages.isImageOnlyLink(node)) {
+              throw UnsupportedError(
+                'Distinct visited ODT hyperlink styles are not supported.',
+              );
+            }
+            // No authored glyphs or text boxes use the visited character
+            // style. Writer can reference an undefined built-in visited style
+            // for such an image link. Validate a supplied definition, but do
+            // not invent one or widen the ordinary text-link contract.
+            if (styles.hasTextStyle(visited)) {
+              styles
+                  .runProperties(visited, inherited: properties)
+                  .validateEffective();
+            }
           }
           final resolved = styles.runProperties(
             styleName,
@@ -481,7 +638,10 @@ final class _OdtReader {
     }
     final kind = _attr(element, 'note-class', odfTextNamespace) ?? 'footnote';
     if (kind != 'footnote' && kind != 'endnote') _unsupported(element);
-    styles.validateNoteConfiguration(kind == 'endnote');
+    final verifyCachedOrdinal = styles.validateNoteConfiguration(
+      kind == 'endnote',
+      libreOfficeNoteOffsets: libreOfficeNoteOffsets,
+    );
     final children = element.childElements.toList();
     if (children.length != 2 ||
         !_is(children[0], odfTextNamespace, 'note-citation') ||
@@ -494,8 +654,9 @@ final class _OdtReader {
     final notes = kind == 'endnote' ? document.endnotes : document.footnotes;
     if (notes.length >= 10000) throw const OdfZoteroLimitException('notes');
     final id = notes.length + 1;
-    final label = children[0].text.trim();
-    if (label.isNotEmpty && label != '$id') {
+    final rawLabel = children[0].text;
+    final label = verifyCachedOrdinal ? rawLabel : rawLabel.trim();
+    if ((verifyCachedOrdinal || label.isNotEmpty) && label != '$id') {
       throw UnsupportedError('Custom ODT note numbering is not supported.');
     }
     final blocks = _blocks(children[1], inNote: true);
@@ -554,11 +715,20 @@ final class _OdtReader {
       for (final props in style.childElements) {
         if (!_is(props, _style, 'table-properties')) _unsupported(props);
         _attributes(props, {
-          odfTableNamespace: {'align'},
+          odfTableNamespace: {'align', 'border-model'},
           _fo: {'margin-left', 'margin-right'},
           _style: {'width'},
         });
         _empty(props);
+        final borderModel = _attr(props, 'border-model', odfTableNamespace);
+        if (borderModel != null &&
+            borderModel != 'separating' &&
+            borderModel != 'collapsing') {
+          _unsupported(props);
+        }
+        // Both ODF border models are inert in this bounded borderless reader.
+        // Used table/row/cell border and padding properties remain rejected,
+        // including inherited defaults and covered-cell styles below.
         final width = _attr(props, 'width', _style);
         if (width != null) tableWidth = _length(width);
         final align = _attr(props, 'align', odfTableNamespace);
@@ -1012,6 +1182,7 @@ final class _OdtReader {
       textByParagraph[entry.key] = entry.value.text;
     }
     noteOrders.sort();
+    imageOrders.sort();
     var identity = 0;
     for (final field in inventory.fields) {
       if (field.ranges.isEmpty) {
@@ -1051,6 +1222,20 @@ final class _OdtReader {
             'A native Zotero field contains a note anchor.',
           );
         }
+      }
+      // Pictures are atomic native characters outside field caches. The
+      // inventory deliberately omits their drawing content; never reconstruct
+      // a citation/bibliography by silently discarding a picture inside it.
+      if (imageOrders.any((order) => order > firstOrder && order < lastOrder) ||
+          (field.storage == OdfZoteroStorage.section &&
+              field.ranges.any(
+                (range) => paragraphs[range.location.paragraphPath]!.inlines
+                    .whereType<WmlRun>()
+                    .any((run) => run.inlineVisual != null),
+              ))) {
+        throw const FormatException(
+          'A native Zotero field contains a picture.',
+        );
       }
       for (var rangeIndex = 0; rangeIndex < field.ranges.length; rangeIndex++) {
         final range = field.ranges[rangeIndex];
@@ -1132,6 +1317,11 @@ final class _OdtReader {
           continue;
         }
         emit(offset);
+        if (inline is WmlRun && inline.inlineVisual != null) {
+          result.add(inline);
+          offset += inline.text.length;
+          continue;
+        }
         if (inline is! WmlRun || inline.text.isEmpty) {
           result.add(inline);
           continue;
@@ -1283,6 +1473,15 @@ final class _RichText {
     paragraph.inlines.add(value);
     _scriptContext.previous = null;
     _started = true;
+  }
+
+  void picture(WmlRun value) {
+    inline(value);
+    // Unlike the temporary zero-width note reference, a native inline picture
+    // owns one U+FFFC character. Later rich mark offsets include that position.
+    budget.consume(3);
+    runBudget.consume();
+    length++;
   }
 
   void _flush() {

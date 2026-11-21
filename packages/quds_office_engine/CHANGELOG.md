@@ -20,6 +20,17 @@ All notable changes to `quds_office_engine` are documented here.
   module and source/transaction/portable tests. See the
   [construction contract](../../docs/VBA_MACROS.md#text-construction-and-unicode-code-units).
 
+- Reopen supported native Zotero bibliographies saved by LibreOffice, including
+  inherited inert section styles and rich/empty entries. Validate unused
+  sequence declarations and retain protection/layout refusals. Qualify the
+  identified LibreOffice decimal zero-offset note convention against exact
+  visible ordinals. Preserve absolute editable-ODT table widths with physical
+  left/center/right alignment and admit inert border-model defaults only within
+  the bounded borderless reader. Retain actual converter fixtures and controlled
+  native refresh/edit/unlink regressions. See the
+  [round-trip record](../../docs/validation/zotero-odt-roundtrip-20261121/README.md)
+  for executed scope and remaining active-footnote/installed-plugin acceptance.
+
 - Extend bounded Word VBA with `Paragraph.Style` and selected `Range.Style`
   assignments by primary name or 13 built-in constants. Add guarded native
   `docx.paragraphStyle` with targeted inheritance refresh, preserved direct
