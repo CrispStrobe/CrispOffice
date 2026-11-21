@@ -4,6 +4,10 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Align Word's table-cell ruler fallback with the actual table margin, including
+  zero and narrow cells. Native layout now honors persisted margins throughout
+  research tables, merged/nested cells and authored-note tables.
+
 - Retain native Word font baseline positions when grouping painted glyphs and
   fingerprinting document/history/proofing state. Raised and lowered text keep
   separate painting groups and a position-only change invalidates stale work.

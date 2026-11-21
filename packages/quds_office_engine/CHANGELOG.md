@@ -4,6 +4,14 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Honor each table's uniform cell margin in native measurement, wrapping,
+  pagination and note/nested-table layout instead of a fixed inset. Preserve
+  accumulated ancestor margins when fitting pictures and splitting tall rows.
+  Editable Zotero ODT exports explicit padding; native import resolves bounded
+  style inheritance and retains uniform padding through DOCX saves. Admit
+  LibreOffice's explicit borderless declarations, while rejecting asymmetric,
+  conflicting or unrepresentable padding and visible unsupported borders.
+
 - Add bounded Word VBA `Font.Position` assignments through typed aliases,
   helpers and independent header/footer selectors. Native run formatting,
   DOCX inheritance and sparse serialization retain signed half-point positions

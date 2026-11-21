@@ -1475,6 +1475,19 @@ abstract final class OdtDocumentWriter {
     _OdtSectionStart? sectionStart,
   }) {
     final cells = _OdtTableCells(table);
+    final cellPadding = layout.zotero == null
+        ? null
+        : table.properties.cellMargin;
+    if (cellPadding != null &&
+        (!cellPadding.isFinite ||
+            cellPadding < 0 ||
+            cellPadding * 20 > 32767)) {
+      throw ArgumentError.value(
+        cellPadding,
+        'cellMargin',
+        'Editable Zotero ODT needs finite, nonnegative native cell margins.',
+      );
+    }
     final inferredColumns = cells.columnCount - BigInt.from(table.grid.length);
     // The explicit Zotero path retains the native grid's absolute geometry.
     // Using the ordinary 100%-width export fallback would rescale its columns
@@ -1547,7 +1560,7 @@ abstract final class OdtDocumentWriter {
             w.writeAttribute('table:number-rows-spanned', '${placement.rows}');
           }
         }
-        if (layout.cellStyle(cell) case final style?) {
+        if (layout.cellStyle(cell, padding: cellPadding) case final style?) {
           w.writeAttribute('table:style-name', style);
         }
         final notesAllowed = layout.noteBodiesAllowed;
@@ -2704,7 +2717,7 @@ class _OdtLayout {
     );
   }
 
-  String? cellStyle(WmlTableCell cell) {
+  String? cellStyle(WmlTableCell cell, {double? padding}) {
     final fill = _rgbColor(cell.fillColor);
     final borders = [
       cell.borderTop == true,
@@ -2712,8 +2725,13 @@ class _OdtLayout {
       cell.borderLeft == true,
       cell.borderRight == true,
     ];
-    if (fill == null && !borders.any((enabled) => enabled)) return null;
-    final key = jsonEncode([fill, ...borders]);
+    if (fill == null && padding == null && !borders.any((enabled) => enabled)) {
+      return null;
+    }
+    final paddingText = padding == null
+        ? null
+        : _paragraphDecimal(padding == 0 ? 0 : padding);
+    final key = jsonEncode([fill, paddingText, ...borders]);
     return _cellStyles.putIfAbsent(key, () {
       final name = 'Ce${_cellStyles.length + 1}';
       final buffer = StringBuffer(
@@ -2722,6 +2740,9 @@ class _OdtLayout {
       );
       if (fill != null) {
         buffer.write(' fo:background-color="#$fill"');
+      }
+      if (paddingText != null) {
+        buffer.write(' fo:padding="${paddingText}pt"');
       }
       if (cell.borderTop == true) {
         buffer.write(' fo:border-top="0.5pt solid #000000"');

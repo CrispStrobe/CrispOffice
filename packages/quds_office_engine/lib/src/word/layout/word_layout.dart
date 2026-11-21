@@ -200,8 +200,11 @@ class LaidOutLine {
       ? null
       : proofingOffsets![layoutOffset];
 
-  /// Default inner left/right pad for table-cell text (85 twips).
-  static const double tableCellPad = 4.25;
+  /// Default table-cell inset, matching [WmlTableProps.cellMargin].
+  ///
+  /// Actual table layout uses each table's configured margin. This constant
+  /// remains the fallback for callers without a table model.
+  static const double tableCellPad = 4;
 
   /// Inner pad for absolutely placed [WmlFrame] text.
   static const double framePad = 8;
@@ -862,6 +865,9 @@ class WordLayoutEngine {
   Map<WmlVisual, double>? _deferredContainedVisuals;
   WmlSection? _containedPhysicalSection;
   int _containedTableDepth = 0;
+  // Sum of one-sided margins of all enclosing table cells. Nested tables may
+  // have different margins; depth alone cannot describe their usable height.
+  double _containedCellMargin = 0;
   final Map<WmlNote, _NoteStory> _noteStories = <WmlNote, _NoteStory>{};
   final Map<int, List<_NoteSlice>> _noteSlices = <int, List<_NoteSlice>>{};
   final Set<int> _placedNotes = <int>{};
@@ -3003,6 +3009,24 @@ class WordLayoutEngine {
     _Flow? flow,
     bool allowBreak = true,
   }) {
+    final cellMargin = table.properties.cellMargin;
+    if (!cellMargin.isFinite || cellMargin < 0) {
+      throw ArgumentError.value(
+        cellMargin,
+        'cellMargin',
+        'Table cell margins must be finite and nonnegative.',
+      );
+    }
+    final previousMargin = _containedCellMargin;
+    final nestedMargin = previousMargin + cellMargin;
+    if (!nestedMargin.isFinite) {
+      throw ArgumentError.value(
+        cellMargin,
+        'cellMargin',
+        'The combined table cell margins are not representable.',
+      );
+    }
+    _containedCellMargin = nestedMargin;
     _containedTableDepth++;
     try {
       return _layoutTableContents(
@@ -3021,6 +3045,7 @@ class WordLayoutEngine {
       );
     } finally {
       _containedTableDepth--;
+      _containedCellMargin = previousMargin;
     }
   }
 
@@ -3044,12 +3069,21 @@ class WordLayoutEngine {
     var cursorY = y + 6;
     var idx = pageIndex;
     var para = paragraphIndex;
-    const double cellPad = LaidOutLine.tableCellPad;
+    final double cellPad = table.properties.cellMargin;
     final double tableX = originX ?? section.margins.left;
     final double tableWidth = cols.fold<double>(
       0,
       (double sum, double width) => sum + width,
     );
+    if (!tableWidth.isFinite ||
+        tableWidth <= 0 ||
+        cols.any((width) => !width.isFinite || width <= 0)) {
+      throw ArgumentError.value(
+        cols,
+        'table.grid',
+        'Laid-out table columns must have finite positive widths.',
+      );
+    }
     final bool rtl = table.properties.rightToLeft;
 
     for (final WmlTableRow row in table.rows) {
@@ -3244,6 +3278,7 @@ class WordLayoutEngine {
           for (int k = 0; k < span; k++) {
             colW += cols[(gridCol + k).clamp(0, cols.length - 1)];
           }
+          final contentWidth = _tableCellContentWidth(colW, cellPad);
           if (rtl) {
             x -= colW;
           }
@@ -3257,7 +3292,7 @@ class WordLayoutEngine {
             final double blockH = _estimateCellBlockHeight(
               block,
               section,
-              maxWidth: math.max(1, colW - cellPad * 2),
+              maxWidth: contentWidth,
             );
             if (allowBreak &&
                 !row.cantSplit &&
@@ -3279,7 +3314,7 @@ class WordLayoutEngine {
                 final double nextH = _estimateCellBlockHeight(
                   nextBlock,
                   section,
-                  maxWidth: math.max(1, colW - cellPad * 2),
+                  maxWidth: contentWidth,
                 );
                 if (cellY + blockH + nextH > pageBottom) {
                   needsContinue = true;
@@ -3298,7 +3333,7 @@ class WordLayoutEngine {
               cellY,
               cellPara,
               originX: x + cellPad,
-              maxWidth: math.max(1, colW - cellPad * 2),
+              maxWidth: contentWidth,
             );
             cellY = laid.y;
             cellPara = laid.nextParagraphIndex;
@@ -3479,19 +3514,32 @@ class WordLayoutEngine {
       for (int k = 0; k < span; k++) {
         colW += cols[(gridCol + k).clamp(0, cols.length - 1)];
       }
+      final contentWidth = _tableCellContentWidth(colW, cellPad);
       var cellY = cellPad;
       final blocks = WordTree.visibleBlocks(cell.blocks).toList();
       for (int bi = nextBlock[c]; bi < blocks.length; bi++) {
         cellY += _estimateCellBlockHeight(
           blocks[bi],
           section,
-          maxWidth: math.max(1, colW - cellPad * 2),
+          maxWidth: contentWidth,
         );
       }
       rowBottom = math.max(rowBottom, cellY + cellPad);
       gridCol += span;
     }
     return math.max(row.height ?? 0, rowBottom);
+  }
+
+  static double _tableCellContentWidth(double width, double margin) {
+    final innerWidth = width - margin * 2;
+    if (!innerWidth.isFinite || innerWidth <= 0) {
+      throw ArgumentError.value(
+        margin,
+        'cellMargin',
+        'Table cell margins must leave a finite positive content width.',
+      );
+    }
+    return innerWidth;
   }
 
   List<LaidOutBox> _chromeVisualFrames(
@@ -4161,10 +4209,23 @@ class WordLayoutEngine {
     // document's note stories. Only append definitions belonging to this story.
     final owned = document.endnotes.toSet();
     if (owned.isEmpty) return;
+    // Numbering retains orphan definitions for repair. The visual-only path
+    // must not turn those (or ambiguous duplicate IDs) into visible notes.
+    final definitions = <int, WmlNote?>{};
+    for (final note in owned) {
+      definitions[note.id] = definitions.containsKey(note.id) ? null : note;
+    }
+    final referenced = <WmlNote>{
+      for (final paragraph in document.paragraphs)
+        for (final run in paragraph.inlines.whereType<WmlRun>())
+          if (run.noteRefEndnote)
+            if (definitions[run.noteRefId] case final WmlNote note) note,
+    };
     final List<WmlNote> notes = <WmlNote>[
       for (final WmlNote note in _noteNumbering!.notes)
         if (owned.contains(note) &&
             (note.text.trim().isNotEmpty ||
+                (referenced.contains(note) && note.visuals.isNotEmpty) ||
                 note.addReference ||
                 note.hasReferenceMarkers))
           note,
