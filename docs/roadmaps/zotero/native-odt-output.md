@@ -67,6 +67,12 @@ paragraphs completely; heading/list entries and partial ranges refuse. Fields
 in table cells must remain in one native cell owner.
 
 The explicit writer retains valid body-table grid widths as absolute ODF widths.
+It uses physical left, center or right alignment for those fixed widths; the
+ODF `margins` value means fill the available width and overrides that geometry
+in LibreOffice. Other alignments refuse this explicit path. The ordinary writer
+retains its existing fill-width behavior. See the
+[round-trip continuation](../../validation/zotero-odt-roundtrip-20261121/README.md)
+for the actual converter reproduction and corrected table fixtures.
 Bounded merged tables use explicit covered-cell positions. Empty native vertical
 continuation paragraphs become empty ODF covered cells without duplicating their
 origin's citation text. Existing cached-result export remains unchanged.
@@ -89,11 +95,15 @@ the tests distinguish metadata inventory from full editable reopening.
 The [picture continuation](../../validation/zotero-odt-images-20261121/README.md)
 preserves bounded embedded inline PNG and upright RGB/YCbCr JPEG pictures
 alongside active citations. Each picture is an independently owned canonical
-one-character run. Its accepted raster bytes, width/height, image link, frame
-name, title, alternative description and supported run styling survive the
-qualified native ODT/DOCX paths. `svg:title` and `svg:desc` carry the accessible
-metadata. The writer emits the picture frame once, without writing an extra
-literal U+FFFC placeholder beside it.
+one-character run. Its accepted raster bytes, physical size, image link,
+accessible title/description and supported run styling survive the qualified
+native ODT/DOCX paths. ODT dimensions are written to two decimal places; the
+actual converter check permits at most 0.03 pt of size quantization. `svg:title`
+and `svg:desc` carry the accessible metadata. Drawing-object names are unique
+across stories: duplicate or empty names receive deterministic names without
+mutating the source objects, and reopening adopts the assigned names. The writer
+emits the picture frame once, without writing an extra literal U+FFFC placeholder
+beside it.
 
 The explicit exporter validates the complete document against the same raster
 budgets as native picture input: at most 32 pictures and 4 MiB of raster bytes
@@ -102,7 +112,8 @@ noncanonical picture runs, unsupported stories and pictures in bibliography or
 citation caches refuse. Cropping, rotation, color adjustments, transparency,
 borders, shadows, flipping and unlocked aspect-ratio behavior are outside this
 initial inline-picture contract. Ordinary cached-result export retains its
-existing metadata behavior while receiving the placeholder/accessibility fix.
+existing metadata behavior while receiving the picture placeholder, accessible
+metadata, run-style and drawing-name fixes.
 
 ## Refusals and bounds
 
@@ -145,3 +156,10 @@ Then qualify Word transfer and additional native documents, especially notes
 with richer numbering, fields in note tables, additional image behavior and styles beyond the
 current reader. Legacy Apache OpenOffice requires its own identified versions
 and acceptance evidence.
+
+The native round-trip continuation also opens returned LibreOffice files through
+the Quds reader rather than checking their metadata inventory alone. Inert
+bibliography section styles and the qualified decimal note-offset convention
+are now represented, while used footnote separators retain their explicit
+reader limitation. Converter acceptance does not expand the ordinary writer's
+general document-formatting contract.

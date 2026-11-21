@@ -420,14 +420,6 @@ abstract final class OdtDocumentWriter {
     // compare their reference positions below instead of emitted bodies.
     _removeAnnotations(root);
     void normalize(XmlElement element) {
-      if (element.localName == 'frame' &&
-          element.namespaceUri == drawing &&
-          element.firstChild('image', namespaceUri: drawing) != null) {
-        // Package-wide picture identities must be unique, even for visually
-        // equal headers. Ignore allocated names only in this comparison copy;
-        // their suffixes must not force a continuous section onto a new page.
-        element.removeAttribute('name', namespaceUri: drawing);
-      }
       if (element.localName == 'image' && element.namespaceUri == drawing) {
         final path = element.getAttribute(
           'href',
@@ -435,6 +427,29 @@ abstract final class OdtDocumentWriter {
         );
         final bytes = layout.mediaBytes[path];
         if (bytes != null) {
+          final frame = element.parent;
+          if (frame != null &&
+              frame.localName == 'frame' &&
+              frame.namespaceUri ==
+                  'urn:oasis:names:tc:opendocument:xmlns:drawing:1.0') {
+            final name = frame.getAttribute(
+              'name',
+              namespaceUri: 'urn:oasis:names:tc:opendocument:xmlns:drawing:1.0',
+            );
+            final sourceName = layout._pictureNames[name];
+            if (sourceName != null) {
+              // Allocation names distinguish emitted objects, not authored
+              // story content. Compare their original names so equal headers
+              // still share a continuous master without hiding real edits.
+              frame.setAttribute(
+                'name',
+                sourceName,
+                prefix: 'draw',
+                namespaceUri:
+                    'urn:oasis:names:tc:opendocument:xmlns:drawing:1.0',
+              );
+            }
+          }
           // This is only a comparison key, never an emitted package URL.
           element.setAttribute(
             'href',
@@ -1193,14 +1208,14 @@ abstract final class OdtDocumentWriter {
           );
         }
         if (inline.inlineVisual case final visual?) {
-          // Annotation pictures retain their established direct paragraph/link
-          // structure. Ordinary pictures carry the native run style on a span.
-          if (!layout.inCommentBody) {
+          // Comment links already carry the run style. Unlinked pictures,
+          // including annotation pictures, preserve it on their own span.
+          if (!commentLink) {
             w.writeStartElement('span', prefix: 'text');
             w.writeAttribute('text:style-name', style);
           }
           _writeVisual(w, visual.visual, layout, inline: true);
-          if (!layout.inCommentBody) w.writeEndElement();
+          if (!commentLink) w.writeEndElement();
         }
         if (ownLink) w.writeEndElement();
         if (layout.commentsAllowed) {
@@ -2068,7 +2083,7 @@ class _OdtLayout {
            : document.sections,
        media = sharedMedia?.media ?? <String>[],
        _mediaBytes = sharedMedia?._mediaBytes ?? <String, Uint8List>{},
-       _pictureNames = sharedMedia?._pictureNames ?? <String>{},
+       _pictureNames = sharedMedia?._pictureNames ?? <String, String>{},
        _pictureNameCounters =
            sharedMedia?._pictureNameCounters ?? <String, int>{},
        notes = sharedMedia?.notes ?? _OdtNotes(document),
@@ -2084,7 +2099,7 @@ class _OdtLayout {
       _OdtSectionStart(index, sections[index].breakKind),
   ];
   final List<String> media;
-  final Set<String> _pictureNames;
+  final Map<String, String> _pictureNames;
   final Map<String, int> _pictureNameCounters;
   final _OdtNotes notes;
   final _OdtComments comments;
@@ -2113,13 +2128,15 @@ class _OdtLayout {
     // Writer can drop a later image when two frames reuse the same name.
     // Allocate across every story without mutating the native visual titles.
     final base = title.isEmpty ? 'Picture' : title;
-    if (_pictureNames.add(base)) return base;
-    var suffix = _pictureNameCounters[base] ?? 1;
-    String name;
-    do {
-      name = '$base ${++suffix}';
-    } while (!_pictureNames.add(name));
-    _pictureNameCounters[base] = suffix;
+    var name = base;
+    if (_pictureNames.containsKey(name)) {
+      var suffix = _pictureNameCounters[base] ?? 1;
+      do {
+        name = '$base ${++suffix}';
+      } while (_pictureNames.containsKey(name));
+      _pictureNameCounters[base] = suffix;
+    }
+    _pictureNames[name] = title;
     return name;
   }
 

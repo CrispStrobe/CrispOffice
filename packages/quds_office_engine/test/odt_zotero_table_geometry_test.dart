@@ -187,6 +187,7 @@ void main() {
               .single;
           expect(table.grid, [72, 108]);
           expect(table.properties.alignment, alignment);
+          expect(table.properties.cellMargin, 0, reason: 'cycle $cycle');
           expect(table.rows.first.cells.single.gridSpan, 2);
           expect(table.rows.first.cells.single.width, 180);
           expect(table.rows.last.cells.map((cell) => cell.width), [72, 108]);

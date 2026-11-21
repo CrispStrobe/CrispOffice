@@ -1,0 +1,289 @@
+{
+  "date": "2026-11-21T18:55:33.131014+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "branch": "codex/word-vba-format-controls-20261121",
+  "initial_main": "4970f71f983535d045ce263e86835b499db4fda9",
+  "implementation_checkpoint": "655b2722e9a11df4da129e2de36016f2f60b9c0b",
+  "documentation_intake_merge": "37afb04e1167fe306e4d124368a08e372638f4ab",
+  "runtime": {
+    "version": "3.13.7",
+    "archive_sha256": "eb99aed266efbcb615c6ae21c12f52cfe935b9f208bccc5fea7f64c21e867229",
+    "official_digest_verified": true,
+    "sdk": "/workspace/scratch/b0a00802ea39/toolchain/pinned/dart-sdk"
+  },
+  "dependency_count": 56,
+  "tracked_manifests_changed": false,
+  "github_actions_awaited": false,
+  "broad_tests": {
+    "tests": 5871,
+    "results": {
+      "success": 5871
+    },
+    "skipped": 0,
+    "errors": [],
+    "done": [
+      {
+        "success": true,
+        "type": "done",
+        "time": 125770
+      }
+    ],
+    "suites": 117
+  },
+  "final_focused_tests": {
+    "tests": 338,
+    "results": {
+      "success": 338
+    },
+    "skipped": 0,
+    "errors": [],
+    "done": [
+      {
+        "success": true,
+        "type": "done",
+        "time": 11706
+      }
+    ],
+    "suites": 4
+  },
+  "analysis": {
+    "scope": "Entire engine lib, all four new tests and both new portable runners",
+    "fatal_infos": true,
+    "result": "No issues found"
+  },
+  "format": {
+    "changed_dart_files": 11,
+    "required_changes": 0
+  },
+  "portable": {
+    "shading": {
+      "success": true,
+      "example": "shading",
+      "source_bas_sha256": "ec39fa7aafdabe8b6034f8eb15281d54975c9f6197da2166a432fe6bb7e91d0d",
+      "inputs_unchanged": 507,
+      "node_preamble_sha256": "699c77a6f623b9efbbf8175d72e3224b5e333633d6011593e10fad6a169a14bf",
+      "package_config_sha256": "4271fa941346b401f1bbe71c05a1da2063e314866e0e39f3ee0fd6efbdd2dea7",
+      "vm_node_complete_receipt_equal": true,
+      "vm_node_receipts_byte_identical": true,
+      "vm_receipt_sha256": "be06f00690b723e264fcf47f5a558f50db3cb9e7f04df0e34f0291fdcc06cd89",
+      "node_receipt_sha256": "be06f00690b723e264fcf47f5a558f50db3cb9e7f04df0e34f0291fdcc06cd89",
+      "result": {
+        "example": {
+          "operations": 7,
+          "revision": 1,
+          "repeatedRevision": 2,
+          "recordedSteps": 7,
+          "additionalReopens": 2,
+          "opaquePayloadsPreserved": true,
+          "plan": [
+            {
+              "tool": "docx.paragraphShading",
+              "arguments": {
+                "paragraph": 0,
+                "color": "123456"
+              }
+            },
+            {
+              "tool": "docx.paragraphShading",
+              "arguments": {
+                "paragraph": 1,
+                "color": "FFFF00"
+              }
+            },
+            {
+              "tool": "docx.paragraphShading",
+              "arguments": {
+                "paragraph": 1,
+                "color": "auto"
+              }
+            },
+            {
+              "tool": "docx.paragraphShading",
+              "arguments": {
+                "paragraph": 2,
+                "color": "C0C0C0"
+              }
+            },
+            {
+              "tool": "docx.paragraphShading",
+              "arguments": {
+                "paragraph": 0,
+                "story": "header",
+                "section": 0,
+                "color": "00FFFF"
+              }
+            },
+            {
+              "tool": "docx.paragraphShading",
+              "arguments": {
+                "paragraph": 0,
+                "story": "footer",
+                "section": 0,
+                "color": "123456"
+              }
+            },
+            {
+              "tool": "docx.paragraphShading",
+              "arguments": {
+                "paragraph": 0,
+                "story": "footer",
+                "section": 0,
+                "color": "auto"
+              }
+            }
+          ],
+          "state": [
+            {
+              "text": "Stra\u00dfe \ud83d\ude00 \u0627\u0644\u0639\u0631\u0628\u064a\u0629",
+              "fill": "123456",
+              "spacingAfterTwips": 180,
+              "runs": [
+                {
+                  "text": "Stra\u00dfe \ud83d\ude00 \u0627\u0644\u0639\u0631\u0628\u064a\u0629",
+                  "bold": true,
+                  "color": "2468AC",
+                  "size": 24,
+                  "language": "de-DE"
+                }
+              ]
+            },
+            {
+              "text": "R\u00e9sum\u00e9",
+              "fill": null,
+              "spacingAfterTwips": 180,
+              "runs": [
+                {
+                  "text": "R\u00e9sum\u00e9",
+                  "bold": true,
+                  "color": "2468AC",
+                  "size": 24,
+                  "language": "de-DE"
+                }
+              ]
+            },
+            {
+              "text": "",
+              "fill": "C0C0C0",
+              "spacingAfterTwips": 180,
+              "runs": []
+            },
+            {
+              "text": "En-t\u00eate",
+              "fill": "00FFFF",
+              "spacingAfterTwips": 180,
+              "runs": [
+                {
+                  "text": "En-t\u00eate",
+                  "bold": true,
+                  "color": "2468AC",
+                  "size": 24,
+                  "language": "de-DE"
+                }
+              ]
+            },
+            {
+              "text": "Footer \u0627\u0644\u0639\u0631\u0628\u064a\u0629",
+              "fill": null,
+              "spacingAfterTwips": 180,
+              "runs": [
+                {
+                  "text": "Footer \u0627\u0644\u0639\u0631\u0628\u064a\u0629",
+                  "bold": true,
+                  "color": "2468AC",
+                  "size": 24,
+                  "language": "de-DE"
+                }
+              ]
+            }
+          ],
+          "nativeFills": [
+            "123456",
+            "auto",
+            "C0C0C0",
+            "00FFFF",
+            "auto"
+          ],
+          "nativePartSha256": {
+            "/customXml/item1.xml": "85cb3aa64e1f93bc876819e3052baddbdd822701717d40d0588cea523d6cae3f",
+            "/word/document.xml": "1287ffe65afb544bc0a4385e49acce7109046a82e0f7169ca3e6b5ad7292c5bf",
+            "/word/footer2.xml": "a298900e6c54b48b37c6c80921d9a6b1be3ebecaddd0681e6dcd63f1626bc637",
+            "/word/header1.xml": "fa1bc8cdbf354f30881b73dc7888ed6db4c883d4d708afeb759ec8ebd8c91321",
+            "/word/vbaProject.bin": "2814b46182e33117c8b0ace61239be19f7afadf3caff8feaa56f75ea8838fc43"
+          }
+        },
+        "rollback": {
+          "failedStep": 1,
+          "validateAndRunRollback": true
+        },
+        "policy": {
+          "atomicDenials": 6,
+          "allowedSteps": 2
+        }
+      }
+    },
+    "text-construction": {
+      "success": true,
+      "example": "text-construction",
+      "source_bas_sha256": "a7cb4aa03c3fd525215d82a2cd8d1e06b4dddc3888b66ee295eacac173f76ce5",
+      "inputs_unchanged": 507,
+      "node_preamble_sha256": "699c77a6f623b9efbbf8175d72e3224b5e333633d6011593e10fad6a169a14bf",
+      "package_config_sha256": "4271fa941346b401f1bbe71c05a1da2063e314866e0e39f3ee0fd6efbdd2dea7",
+      "vm_node_complete_receipt_equal": true,
+      "vm_node_receipts_byte_identical": true,
+      "vm_receipt_sha256": "7649356d36fe1e0869acc2daa8008499b3c76bdb3dc1ed693032561763750f02",
+      "node_receipt_sha256": "7649356d36fe1e0869acc2daa8008499b3c76bdb3dc1ed693032561763750f02",
+      "result": {
+        "operations": 5,
+        "revision": 1,
+        "recordedSteps": 5,
+        "additionalReopens": 2,
+        "opaqueVbaPreserved": true,
+        "richFormattingPreserved": true,
+        "lateRollback": true,
+        "policyDenials": 3,
+        "text": [
+          "\u2605\u2605 READY body one",
+          "\ud83d\ude00  \u8000: body two",
+          "--- report header"
+        ],
+        "scalarChecks": [
+          "-32768",
+          "3"
+        ]
+      }
+    }
+  },
+  "source_sha256": {
+    "packages/quds_office_engine/example/macros/word_shading.bas": "ec39fa7aafdabe8b6034f8eb15281d54975c9f6197da2166a432fe6bb7e91d0d",
+    "packages/quds_office_engine/example/macros/word_text_construction.bas": "a7cb4aa03c3fd525215d82a2cd8d1e06b4dddc3888b66ee295eacac173f76ce5",
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart": "85ca2c96e723679fc9deba901ca92ac9822e9d1761de53758c7b6946caac9ed9",
+    "packages/quds_office_engine/lib/src/automation/operations/word_shading_steps.dart": "3cfdd928e499011e9887021789215fc6a40497206dbe22ce05088eb25f5c1c47",
+    "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart": "3d2994f81cebbe34298d2b899eeb0f90b6771c76c437f2a7474a2237ebb35c47",
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart": "ff885ddced0a245db23309da1325cb68d6c26a49848166a9f7a081e63ad12568",
+    "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart": "a5badec64634ba3662b0f1ff9e493e1a1433ff1307a7f147d2a1f6294839bc38",
+    "packages/quds_office_engine/test/office_macro_word_shading_test.dart": "1ebba7c211c039d7ec307ddd3a07ac74d7996d876a4f0b16297084ea3d220455",
+    "packages/quds_office_engine/test/office_vba_text_construction_test.dart": "6b684535043496951a2c30e81d199b375782625eaccc7bc32a474b32f5a5ec02",
+    "packages/quds_office_engine/test/office_vba_word_shading_integration_test.dart": "1fd1f5b149f2df6064b4ff21d5edfb42ef0fc664bfb072ab4dd545d9a1303905",
+    "packages/quds_office_engine/test/office_vba_word_shading_test.dart": "1c479ee6f641451bdccbd567dbfdef8be0dfb190a6fb6bb45f30428dd224bcde",
+    "packages/quds_office_engine/tool/macros/web_vba_text_construction_smoke.dart": "e4e55e34789a448f4dce06bf167565a86cdcfb7646bd6db00b8ff76f08256157",
+    "packages/quds_office_engine/tool/macros/web_vba_word_shading_smoke.dart": "1221c6af7508430eb6b76d1cff1c49daff7d2fc5027959e2356d7ee14aac44c1"
+  },
+  "execution_archive": {
+    "path": "execution.tar.gz",
+    "sha256": "7eecd55744b3abec220307f45fa3e41d258c09c039a8ac0556b8bb64f5e3cddb",
+    "bytes": 316278
+  },
+  "boundaries": [
+    "No Microsoft Word differential host execution",
+    "No Flutter/Studio UI execution",
+    "Bounded source-known compile-to-plan API; no live document reads",
+    "Concurrent unfinished Zotero source heads excluded; planning ancestry included"
+  ],
+  "qualification_order": "Broad tests before six brace-only lint fixes and test formatting; final focused/analyzer/portable gates after cleanup. Documentation-only merge does not change tested source.",
+  "independent_review": {
+    "automaticStyleRefresh": true,
+    "sameValueStyleRefresh": true,
+    "sparseSpacingInheritance": true,
+    "reboundPrefixRoundtrips": 3
+  }
+}

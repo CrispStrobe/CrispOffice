@@ -339,8 +339,12 @@ existing optional story identity, and `color`. The native operation handles
 solid backgrounds only and validates source ownership before publication.
 It preserves unedited paragraph/run formatting, foreign metadata and native
 namespace aliases. Same-value assignments still create direct background
-ownership. Patterned or ambiguous source shading is refused instead of being
-silently flattened. This contract does not implement texture or foreground
+ownership. Direct shading, document defaults, the selected paragraph style
+chain and ancestor table-style definitions must contain supported unthemed
+solid backgrounds. Patterned or themed sources in those layers are refused;
+untouched patterned neighbors and unrelated styles are retained. Package-wide
+duplicate ownership, unresolved/cyclic styles and relevant markup-compatibility
+alternatives are also guarded. This contract does not implement texture or foreground
 setters, character shading, table/cell Shading objects, whole-story ranges,
 live property reads or automatic style creation.
 
@@ -2051,6 +2055,15 @@ linked header/footer editing, whole-story writes, event entry points, COM, exter
 and execution or editing of an embedded VBA project.
 
 ## Primary reference boundaries
+
+- [Paragraph.Shading](https://learn.microsoft.com/en-us/office/vba/api/word.paragraph.shading),
+  [Shading.BackgroundPatternColor](https://learn.microsoft.com/en-us/office/vba/api/word.shading.backgroundpatterncolor),
+  [Shading.BackgroundPatternColorIndex](https://learn.microsoft.com/en-us/office/vba/api/word.shading.backgroundpatterncolorindex),
+  and [WdColor](https://learn.microsoft.com/en-us/office/vba/api/word.wdcolor):
+  object vocabulary, paragraph-selected Range examples, packed color identities
+  and the automatic sentinel. Solid-only rendering and guarded native sources
+  are the explicit Quds slice; these references do not establish installed-host
+  differential qualification.
 
 The following Microsoft references inform the supported source vocabulary and
 the explicit restrictions above. They do not certify this implementation:
