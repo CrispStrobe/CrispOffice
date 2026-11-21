@@ -1,0 +1,450 @@
+{
+  "branch_heads": [
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/codex/word-vba-compatibility-20261121",
+      "sha": "38b07e58b7c0e2a5b04a823a7251805cea60fb77"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/codex/word-vba-extensions-20261121",
+      "sha": "03cdfc9be130ccca0a72db1b2d761917e2e090f7"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/codex/word-vba-format-controls-20261121",
+      "sha": "26748a56f9597d3198c7652c26eade6a97da7c2f"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/codex/word-vba-formatting-20261121",
+      "sha": "700ca3da8c6db0d837bbbefc374a7a7f17f8626e"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/codex/word-vba-language-controls-20261121",
+      "sha": "46f20b19193e474bed772fe99b0f602a50fa54db"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/codex/word-vba-next-20261121",
+      "sha": "ed01289aaae398d5731c186db2eb08da9bc2216b"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/codex/word-vba-paragraph-flow-20261121",
+      "sha": "13fa9ad5b9d140f1d7c085e46b4d0ce395000c49"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/codex/word-vba-paragraph-pagination-20261121",
+      "sha": "1581229f0e5aea24b5242c33a1e92f02d70b4c7e"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/codex/word-vba-sections-20261121",
+      "sha": "49665e51f9eacefc180748c3d0ed7851ef5da5d1"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/codex/word-vba-styles-complete-20261121",
+      "sha": "f086214c9e99bca547957d8ba9f6ee3ab15321dc"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/codex/word-vba-tables-20261121",
+      "sha": "4970f71f983535d045ce263e86835b499db4fda9"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/codex/word-vba-text-intrinsics-20261121",
+      "sha": "4357f196507ca38a2f51409a981b8621d419b6d9"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/codex/word-vba-typography-20261121",
+      "sha": "5ebd69bacd789c89e2ee6d06a9807ecf22cac764"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/codex/word-vba-unit-conversions-20261120",
+      "sha": "bbccae1bdead10951e2d7a23b33cf14c55382e02"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/codex/zotero-editable-odt-20261121",
+      "sha": "b699f88501a10818e0f71bfd9c53cde53866cdf6"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/codex/zotero-libreoffice-styles-20261121",
+      "sha": "b6c8eb26e219d1f7607fe943b3c91e9bfc4feb55"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/codex/zotero-multiparagraph-20261121",
+      "sha": "589ccd33243eabe57ce3074c92112e1fdf1325f1"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/codex/zotero-native-odt-20261121",
+      "sha": "d9bfa44022781f0dd4493a923ca9f20316dc59f0"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/codex/zotero-odt-inventory-20261121",
+      "sha": "fb386d6e42a2336f1431e38bf6d713552edd0978"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/codex/zotero-odt-roundtrip-20261121",
+      "sha": "650415ddb7d50e4568a5cd25d32b766e71d6ce59"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/codex/zotero-parity-2026-11-21",
+      "sha": "a91dcea1e07181457c07bedde57bf0119002b627"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/codex/zotero-parity-20261121-continuation",
+      "sha": "9942eb76f0ac818e464ad1b3bcec2cc4513d3e3f"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/codex/zotero-parity-20261121-evening",
+      "sha": "1c20b4b7e1208a51dfcf6a65d8a94289ac438e4e"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/codex/zotero-parity-20261121-next",
+      "sha": "d4470bab1095593739ddf87fdb9f249bbc948b65"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/codex/zotero-roundtrip-20261121",
+      "sha": "ea62776db7eedf1b9ffc266bf02d7dda318d071b"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/codex/zotero-roundtrip-complete-20261121",
+      "sha": "5a829066238b94685db5145ff14420e7e7f0928a"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/codex/zotero-transfer-20261121",
+      "sha": "a1995c9154357e603b89947654cf95f8bcba6a83"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/codex/zotero-vertical-tables-20261120",
+      "sha": "a7d9f37ecbaaf70544f4866d7d9e572696948184"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/docs/app-store-submission-20261120",
+      "sha": "b08e0a55b629ac22b33c54146b56438862965022"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/main",
+      "sha": "28a1272ea82d09b078b2bad6b56aee7d908ede87"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/work/mail-boolean-core-20261121",
+      "sha": "3e6374115c10a92fdb4b82734c1bc2b009210794"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/work/mail-client-next-20261121",
+      "sha": "4af5a00a906a82473d653a6b11a3a6e1c88c866f"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/work/mail-command-journal-20261121",
+      "sha": "33ce2428ebab825a844895a767e0f9f1a4077d62"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/work/mail-compose-tools-20261121",
+      "sha": "36d65c43f8981ed7cea00589ff8272d96ea7073d"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/work/mail-intake-20261121",
+      "sha": "4191be02ac9c7117e05ff4a052a5c92fbcfbf4b4"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/work/mail-offline-retention-20261121",
+      "sha": "9eb68b9f048d3c08274ece5d7f964f1249004485"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/work/mail-parity-20261121",
+      "sha": "fa59496840a36709fe3a6d867bdfe96ab99d72ab"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/work/mail-parity-next-20261121",
+      "sha": "59866ce7c983869b16baa3f386b1f55dbb218833"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/work/mail-repository-sessions-20261121",
+      "sha": "0491492d8622ad2ef09fb84e07d3dbba462f9320"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/work/mail-scheduled-send-20261121",
+      "sha": "dcceffda5377fc4cf51ed31e9ed22919f6cee5bb"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/work/mail-sync-foundation-20261121",
+      "sha": "4a1eaa69e7a068e354bdd851ec9b0323b89ae300"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/work/mail-triage-20261121",
+      "sha": "575e671de665dc918886285dab2e3628f4309965"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "fork",
+      "ref": "refs/heads/work/mail-unified-cache-20261121",
+      "sha": "93404525ef245df6a98654710e352e78f85a987c"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "upstream",
+      "ref": "refs/heads/ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "upstream",
+      "ref": "refs/heads/cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "upstream",
+      "ref": "refs/heads/cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21"
+    },
+    {
+      "contained": true,
+      "contained_in_final_code": true,
+      "kind": "upstream",
+      "ref": "refs/heads/main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+    }
+  ],
+  "captured_at_utc": "2026-11-21T19:41:08.753871+00:00",
+  "checked_against_code_head": "0705336aa52b299e06cf7efabc61228e8e22d662",
+  "fork_heads": 43,
+  "historical_non_ancestor_pull_heads": [
+    {
+      "contained": false,
+      "contained_in_final_code": false,
+      "kind": "pull",
+      "ref": "refs/pull/134/head",
+      "sha": "128a187d69555db80890c2a1945a442b951f9c74"
+    },
+    {
+      "contained": false,
+      "contained_in_final_code": false,
+      "kind": "pull",
+      "ref": "refs/pull/135/head",
+      "sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688"
+    },
+    {
+      "contained": false,
+      "contained_in_final_code": false,
+      "kind": "pull",
+      "ref": "refs/pull/136/head",
+      "sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283"
+    },
+    {
+      "contained": false,
+      "contained_in_final_code": false,
+      "kind": "pull",
+      "ref": "refs/pull/137/head",
+      "sha": "68a0db23408e4c95d6d283219504c79aea33a6fe"
+    },
+    {
+      "contained": false,
+      "contained_in_final_code": false,
+      "kind": "pull",
+      "ref": "refs/pull/138/head",
+      "sha": "b8ddaaeb581e010467de304c828764d353149102"
+    },
+    {
+      "contained": false,
+      "contained_in_final_code": false,
+      "kind": "pull",
+      "ref": "refs/pull/140/head",
+      "sha": "c34945761e7991f5fe49037d79529acdd260b31c"
+    },
+    {
+      "contained": false,
+      "contained_in_final_code": false,
+      "kind": "pull",
+      "ref": "refs/pull/141/head",
+      "sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee"
+    },
+    {
+      "contained": false,
+      "contained_in_final_code": false,
+      "kind": "pull",
+      "ref": "refs/pull/142/head",
+      "sha": "69d14f84cabd3931b7640c1654b401c89faba766"
+    },
+    {
+      "contained": false,
+      "contained_in_final_code": false,
+      "kind": "pull",
+      "ref": "refs/pull/145/head",
+      "sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824"
+    },
+    {
+      "contained": false,
+      "contained_in_final_code": false,
+      "kind": "pull",
+      "ref": "refs/pull/146/head",
+      "sha": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0"
+    },
+    {
+      "contained": false,
+      "contained_in_final_code": false,
+      "kind": "pull",
+      "ref": "refs/pull/147/head",
+      "sha": "cee6e2632f891a3fe21c5c02d6bf508805973051"
+    },
+    {
+      "contained": false,
+      "contained_in_final_code": false,
+      "kind": "pull",
+      "ref": "refs/pull/149/head",
+      "sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9"
+    },
+    {
+      "contained": false,
+      "contained_in_final_code": false,
+      "kind": "pull",
+      "ref": "refs/pull/151/head",
+      "sha": "7ef09f2408f467c65427700e65907531ecb26acb"
+    },
+    {
+      "contained": false,
+      "contained_in_final_code": false,
+      "kind": "pull",
+      "ref": "refs/pull/152/head",
+      "sha": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0"
+    }
+  ],
+  "note": "All captured fork/upstream heads and all newly captured PR heads are incorporated. Fourteen unchanged historical PR refs are recorded rather than resurrected. No GitHub Actions were awaited.",
+  "publication_main_follow_up": {
+    "additional_test_execution_required": false,
+    "all_584_final_editor_inputs_identical": true,
+    "changes_since_code_checkpoint": [
+      "docs/roadmaps/typing-autocorrect-performance.md"
+    ],
+    "integrated_main_head": "0de92d6f42b3b2d1f2df43ef56a7af8e0f49d059",
+    "publication_parent_head": "8e6622791d344b294cca4bf19f08ca035cb7260e",
+    "qualified_code_head": "0705336aa52b299e06cf7efabc61228e8e22d662",
+    "reason": "Only a documentation note describing the already integrated text cache arrived after final code qualification."
+  },
+  "pull_heads": 339,
+  "upstream_heads": 4
+}

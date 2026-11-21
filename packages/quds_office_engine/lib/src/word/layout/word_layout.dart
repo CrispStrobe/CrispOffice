@@ -48,6 +48,7 @@ class LaidOutGlyph {
     this.highlight,
     this.fontFamily,
     this.vertAlign = WmlVertAlign.baseline,
+    this.positionHalfPoints = 0,
     this.hyperlink,
     List<int>? commentIds,
     this.displayText,
@@ -109,6 +110,9 @@ class LaidOutGlyph {
 
   /// vertAlign API.
   final WmlVertAlign vertAlign;
+
+  /// Independent native baseline position, positive upward, in half-points.
+  final int positionHalfPoints;
 
   /// hyperlink API.
   final WmlHyperlink? hyperlink;
@@ -1246,7 +1250,9 @@ class WordLayoutEngine {
     final _IncrementalState? previousState = reuse?._incremental;
     if (previousState != null &&
         (!identical(previousState.owner, _incrementalOwner) ||
-            !identical(previousState.document, document))) {
+            !identical(previousState.document, document) ||
+            previousState.noSpaceRaiseLower !=
+                document.sourceNoSpaceRaiseLower)) {
       // Pages of another engine or another document cannot be reused.
       // A rejected incremental attempt must not keep earlier sections from a
       // different engine's font or measurement environment in its fallback.
@@ -1438,6 +1444,7 @@ class WordLayoutEngine {
     if (old == null ||
         !identical(old.owner, _incrementalOwner) ||
         !identical(old.document, document) ||
+        old.noSpaceRaiseLower != document.sourceNoSpaceRaiseLower ||
         old.sections.length != document.sections.length ||
         (document.footnotes.isNotEmpty || document.endnotes.isNotEmpty) !=
             (old.notes != null)) {
@@ -2482,7 +2489,7 @@ class WordLayoutEngine {
           var ascent = 0.0;
           var descent = 0.0;
           var count = 0;
-          void include(WmlRunProps props, int cp) {
+          void include(WmlRunProps props, int cp, {double displayScale = 1}) {
             final size = props.fontSizePoints;
             final metric = faceMetrics.putIfAbsent((props, cp), () {
               final host = measureFont?.call(cp, size, props);
@@ -2499,12 +2506,30 @@ class WordLayoutEngine {
             final height = metric?.typographicLineHeight ?? size * 1.32;
             ascent = math.max(ascent, runAscent);
             descent = math.max(descent, height - runAscent);
+            if (props.positionHalfPoints != 0 &&
+                paragraph.properties.lineSpacingRule !=
+                    WmlLineSpacingRule.exact &&
+                _layoutDoc?.sourceNoSpaceRaiseLower != true) {
+              // Position moves a run without scaling it. Keep the ordinary
+              // unshifted strut, then include the painted run's shifted
+              // ascent/descent so auto/atLeast lines reserve enough space.
+              // Superscript/subscript and small-cap display scaling stay
+              // independent; exact spacing and noSpaceRaiseLower opt out.
+              final scale = props.vertAlign.fontScale * displayScale;
+              final shift = props.baselineShift;
+              ascent = math.max(ascent, runAscent * scale - shift);
+              descent = math.max(descent, (height - runAscent) * scale + shift);
+            }
             count++;
           }
 
           for (final glyph in line.glyphs) {
             if (inlinePictures.containsKey(glyph.logicalIndex)) continue;
-            include(propsAt(sourceStyleOffset(glyph)), glyph.codePoint);
+            include(
+              propsAt(sourceStyleOffset(glyph)),
+              glyph.codePoint,
+              displayScale: displayLabels[glyph.logicalIndex]?.scale ?? 1,
+            );
           }
           // The paragraph mark is an unpainted final-line participant. Its
           // effective font comes from defaults/styles/direct mark properties.
@@ -2739,7 +2764,7 @@ class WordLayoutEngine {
                 cursorY +
                 baselineLeading +
                 baselineAscent +
-                props.vertAlign.baselineShift(baseSize) -
+                props.baselineShift -
                 g.paintDy,
             color: props.color,
             fontSize: size,
@@ -2758,12 +2783,13 @@ class WordLayoutEngine {
                   : g.codePoint,
             ),
             vertAlign: props.vertAlign,
+            positionHalfPoints: props.positionHalfPoints,
             hyperlink: WordLink.at(paragraph, g.logicalIndex),
             commentIds: WordComment.idsAt(paragraph, g.logicalIndex),
             advance: g.advance,
             paintDx: g.paintDx,
             paintDy: g.paintDy,
-          ).._baselineShift = props.vertAlign.baselineShift(baseSize),
+          ).._baselineShift = props.baselineShift,
         );
         if (display != null) {
           displayOffsets[g.logicalIndex] =

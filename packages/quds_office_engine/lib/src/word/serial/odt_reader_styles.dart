@@ -126,6 +126,9 @@ final class OdtReaderStyles {
     }
     if (matching.isEmpty) return false;
     final configuration = matching.single;
+    if (!RegExp(r'^[ \t\r\n]*$').hasMatch(configuration.text)) {
+      throw UnsupportedError('Authored ODT note configuration text.');
+    }
     _checkAttributes(configuration, {
       odfTextNamespace: {
         'note-class',
@@ -177,18 +180,34 @@ final class OdtReaderStyles {
     if (position != null && (endnote || position != 'page')) {
       throw UnsupportedError('Unsupported ODT note placement.');
     }
-    for (final name in [
-      'citation-style-name',
-      'citation-body-style-name',
-      'default-style-name',
-      'master-page-name',
-    ]) {
+    for (final name in ['citation-style-name', 'citation-body-style-name']) {
       final value = _attr(configuration, odfTextNamespace, name);
-      if (value != null && value.isNotEmpty) {
-        throw UnsupportedError(
-          'ODT configured note styles are not supported: $name',
-        );
+      if (value != null) {
+        if (value.isEmpty) {
+          throw const FormatException('Empty ODT note marker style reference.');
+        }
+        _validateNoteMarkerStyle(value);
       }
+    }
+    final paragraphStyle = _attr(
+      configuration,
+      odfTextNamespace,
+      'default-style-name',
+    );
+    if (paragraphStyle != null) {
+      throw UnsupportedError('ODT configured note paragraph styles.');
+    }
+    final master = _attr(configuration, odfTextNamespace, 'master-page-name');
+    if (master != null) {
+      if (master.isEmpty) {
+        throw const FormatException('Empty ODT note master page reference.');
+      }
+      if (!endnote) {
+        throw UnsupportedError('ODT configured footnote master pages.');
+      }
+      // The native model has one compatible page layout. Resolve the note
+      // master together with every used body master, never discard its layout.
+      _usedMasters.add(master);
     }
     for (final child in configuration.childElements) {
       if (child.namespaceUri != odfTextNamespace ||
@@ -206,6 +225,32 @@ final class OdtReaderStyles {
       }
     }
     return libreOfficeNoteOffsets;
+  }
+
+  void _validateNoteMarkerStyle(String name) {
+    final values = <String, String>{};
+    for (final definition in styleChain('text', name)) {
+      if (!RegExp(r'^[ \t\r\n]*$').hasMatch(definition.text)) {
+        throw UnsupportedError('Authored ODT note marker style text.');
+      }
+      final properties = _singleChild(definition, _style, 'text-properties');
+      if (properties == null) continue;
+      if (properties.childElements.isNotEmpty) {
+        throw UnsupportedError('Nested ODT note marker text properties.');
+      }
+      _mergeProperties(values, properties);
+    }
+    final position = values.remove('$_style/text-position');
+    // Both native reference runs and note markers use semantic superscript.
+    // Bare `super` leaves the font height up to the consumer; the qualified
+    // native export uses 65% explicitly. Other formatting cannot be dropped.
+    if (position == null ||
+        !RegExp(
+          r'^[ \t\r\n]*super[ \t\r\n]+65%[ \t\r\n]*$',
+        ).hasMatch(position)) {
+      throw UnsupportedError('Unsupported ODT note marker position.');
+    }
+    _requireEmpty(values, 'note marker');
   }
 
   /// Validates a document-wide outline before importing any heading.
@@ -679,7 +724,8 @@ final class OdtReaderStyles {
         _style: {'name', 'display-name', 'page-layout-name', 'next-style-name'},
         _draw: {'style-name'},
       });
-      if (master.childElements.isNotEmpty) {
+      if (master.childElements.isNotEmpty ||
+          !RegExp(r'^[ \t\r\n]*$').hasMatch(master.text)) {
         throw UnsupportedError('ODT master-page stories are not supported.');
       }
       final next = _attr(master, _style, 'next-style-name');
@@ -1044,8 +1090,18 @@ final class OdtReaderStyles {
       result.opacity = number;
     }
     final transform = take(_fo, 'text-transform');
-    if (transform != null && transform != 'none') {
-      throw UnsupportedError('ODT text transformation is not supported.');
+    if (transform != null) {
+      // ODF uppercase is presentation formatting, like Word's w:caps. Keep
+      // authored Unicode and the native citation's UTF-16 endpoints intact;
+      // transforming the string would move fields after expanding characters.
+      result.allCaps = switch (transform) {
+        'none' => false,
+        'uppercase' => true,
+        _ => throw UnsupportedError(
+          'Unsupported ODT text transformation: $transform',
+        ),
+      };
+      result.explicitProperties.add('allCaps');
     }
     final opticalSizing = take(_loext, 'font-optical-sizing');
     if (opticalSizing != null && opticalSizing != 'auto') {

@@ -1629,6 +1629,7 @@ Map<String, Object?> _runProperties(WmlRunProps p) => <String, Object?>{
   'font': p.asciiFont,
   'complexScriptFont': p.csFont,
   'verticalAlignment': p.vertAlign.name,
+  'halfPointPosition': p.positionHalfPoints,
   'language': p.proofingLanguage,
   'noProof': p.noProof,
 };

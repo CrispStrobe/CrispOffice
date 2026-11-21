@@ -1760,6 +1760,7 @@ final class WordProofingSession extends ChangeNotifier {
           inline.properties.asciiFont,
           inline.properties.csFont,
           inline.properties.vertAlign.name,
+          inline.properties.positionHalfPoints,
           inline.properties.proofingLanguage,
           inline.properties.complexScriptLanguage,
           inline.properties.complexScript,

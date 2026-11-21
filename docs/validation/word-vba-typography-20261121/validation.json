@@ -1,0 +1,89 @@
+{
+  "archive_sha256": "8056bbf64bf2744c354f3e98c2e8722e502c479a299093d7c1990ef23294ca77",
+  "checks": {
+    "cache_regressions": {
+      "before_fix_failed": 6,
+      "differing_pixels_per_failure": 688,
+      "focused_after_fix_passed": 9,
+      "overlay_failure_reproduced": false
+    },
+    "earlier_editor": {
+      "passed": 31,
+      "scope": "Earlier evidence; the final editor cohort repeats these cases.",
+      "suites": 5,
+      "tree": "479bfb1adc542c5f46be270e6d35c3f5c0be1b4d"
+    },
+    "final_editor": {
+      "failures": 0,
+      "passed": 75,
+      "source_files": 584,
+      "suites": 9,
+      "tree": "416ff798516bbaf51cb07f790bfd0915073d6b0f"
+    },
+    "formatter_follow_up": {
+      "formatting_passed": true,
+      "passed": 33,
+      "scope": "Repeat of cases inside the broad Word gate; do not add to unique totals."
+    },
+    "formatting": "Passed with pinned Dart; original one-file formatter failure and its successful correction are retained.",
+    "incoming_branches": {
+      "failures": 0,
+      "passed": 716,
+      "skipped": 0,
+      "source_files": 981,
+      "suites": 25
+    },
+    "independent_native_probes": {
+      "passed": 14,
+      "scope": "Additional ownership/spacing probes, separate from suite counts."
+    },
+    "odt_style_follow_up": {
+      "passed": 46,
+      "scope": "Repeat of cases inside incoming gate after an equivalent matcher change."
+    },
+    "portable": {
+      "bas_operations": 5,
+      "corpus_cases": 12,
+      "receipt_hashes": {
+        "corpus-js.json": "f832c2e2d2db737eca87e718f036bdbe02816e479895d18bd518e8a7739bfe6d",
+        "corpus-vm.json": "f832c2e2d2db737eca87e718f036bdbe02816e479895d18bd518e8a7739bfe6d",
+        "example-js.json": "bb14abf3ae3b8ddbb2783dc10d1ce995db6f7a6cd201846e0da2e9bc3840c82a",
+        "example-vm.json": "bb14abf3ae3b8ddbb2783dc10d1ce995db6f7a6cd201846e0da2e9bc3840c82a"
+      },
+      "vm_javascript_receipts_identical": true
+    },
+    "strict_analysis": "Passed for engine library, new engine/editor tests, portable runner and changed renderer.",
+    "word_engine": {
+      "failures": 0,
+      "passed": 998,
+      "skipped": 0,
+      "source_files": 1151,
+      "suites": 31
+    }
+  },
+  "ci": {
+    "github_actions_awaited": false,
+    "merge_basis": "Executed local checks and source-bound receipts"
+  },
+  "created_utc": "2026-11-21T19:47:41.583920+00:00",
+  "final_code_checkpoint": {
+    "local": "bd0cd5de8112f26feb6bb12a006b5ab1904ddfac",
+    "remote": "0705336aa52b299e06cf7efabc61228e8e22d662",
+    "tree": "416ff798516bbaf51cb07f790bfd0915073d6b0f"
+  },
+  "limits": [
+    "Bounded source-to-plan dialect, not a general VBA host.",
+    "No installed Microsoft Word differential run.",
+    "No new ODT/RTF position interchange.",
+    "noSpaceRaiseLower qualifies spacing suppression, not complete Word clipping parity."
+  ],
+  "publication_follow_up_sha256": "bd7d1a169144652e5bc0bc8cecffcb205a69137193a6c435a6c0567e0c22d609",
+  "qualified": true,
+  "remote_intake_sha256": "2e873512f5ae32233b72f0ecbf4009c5f700fe1a9dc04cdca957e8adbb91aaed",
+  "runtime": {
+    "dart": "3.13.7",
+    "flutter": "3.47.8"
+  },
+  "schema_version": 1,
+  "source_binding_sha256": "b76c0ae546946baf1d91ef9fade558222fd7f7a6b9a39916acdccade08bb9ff3"
+}
