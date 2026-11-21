@@ -1,0 +1,61 @@
+{
+  "head": "78b90a73adc9c2f18e6e3bdf7b3906afa387922b",
+  "word_frontier": "4b47520ae44dc545b898713d6e22370b66767acd",
+  "zotero_frontier": "a6095c304ad2d6935f2ae6f8b74412038d19f142",
+  "all_commands_exit_zero": true,
+  "focused_engine_passed": 689,
+  "focused_editor_passed": 109,
+  "focused_test_total": 798,
+  "word_js_compile_exit_code": 0,
+  "word_js_node_exit_code": 0,
+  "word_js_output": {
+    "example": {
+      "operations": 11,
+      "addressedStoryVariants": 6,
+      "firstRunRevision": 1,
+      "repeatedRevision": 2,
+      "additionalReopens": 2,
+      "opaquePayloadsPreserved": true,
+      "untouchedBody": [
+        "Body 1",
+        "Body 2",
+        "Body 3"
+      ],
+      "firstHeader": "Report: S1 header 1",
+      "evenFooter": "Appendix: S2 evenFooter 2"
+    },
+    "rollback": {
+      "failedStep": 1,
+      "validateAndRunRollback": true,
+      "recordingUnchanged": true
+    }
+  },
+  "source_scope_sha256": "0236bbcbf3897cca856b827dd354374c8e691acb93502f098a3dcd26c44bae25",
+  "source_file_count": 1323,
+  "all_source_scopes_identical": true,
+  "all_scopes_unchanged_during_commands": true,
+  "all_recorded_heads_identical": false,
+  "receipts": {
+    "engine": {
+      "file": "engine.json",
+      "sha256": "cf91e48b954c4f6b2de7954bd50d22269597df4995030b4db735addd83345e4f"
+    },
+    "editor": {
+      "file": "editor.json",
+      "sha256": "bdcdfdc6101acd7af39869b7846397c623962b57146a3726d04ce797ca315291"
+    },
+    "word_js": {
+      "file": "word_js.json",
+      "sha256": "6b03f0a556f976db10050e53d09577d8f9d417b9186bd4dcca168e190cdaf521"
+    }
+  },
+  "log_sha256": {
+    "incoming_engine_tests.log": "7eadbd9a338ec2e71d7cfe0aabe8effbd2c4642187fbbad6c84fe2f4c00780de",
+    "incoming_editor_tests.log": "f5127ab91a2c3f2ef0885b8032e21684f6b472880518781972feaeb0e68a3c43",
+    "word_js_compile.log": "f78458c02b8986907f33f8a40b06741d7b8def030b24e01fee0e25c05cfa15c5",
+    "word_js_node.log": "98a58a09cf92aa3982373fd6adc2f1d61c7836f2dc6fadfe5604edf7ae2a5c2f"
+  },
+  "scope": "Focused captured Word header/footer selector and native guard tests with existing language/section/line-spacing regressions; Zotero table-cell and ownership engine regressions plus editor multiparagraph controller suite. Not a full repository suite.",
+  "no_ci_queried": true,
+  "no_source_edits": true
+}

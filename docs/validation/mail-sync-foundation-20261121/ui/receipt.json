@@ -1,0 +1,44 @@
+{
+  "scope": "Rendered UI fixture inspection and focused dialog tests; not live-provider qualification",
+  "toolchain": "Flutter 3.47.8 / Dart 3.13.7",
+  "command": "flutter test --no-pub --concurrency=1 --reporter expanded --dart-define=MAIL_SYNC_SCREENSHOT_DIR=/workspace/scratch/1fa88bd5b735/sync-ui-preview test/studio_mail_sync_dialog_test.dart",
+  "working_directory": "/workspace/scratch/1fa88bd5b735/quds_office_suite/packages/quds_office_editor/example",
+  "observed_exit_code": 0,
+  "observed_tests_passed": 22,
+  "failed": 0,
+  "skipped": 0,
+  "source_hash_capture": "After the run; production UI was frozen before screenshot capture",
+  "source_files_sha256": {
+    "packages/quds_office_editor/example/lib/studio_mail_sync_dialog.dart": "0abdbdca99ccefb94ed2505e70b9a778271191f103c3da0500f0faa633dace0c",
+    "packages/quds_office_editor/example/lib/studio_mail_sync_strings.dart": "ed95262b097ee91dcf4702c57cb228947e4c072dfbdda8af203b2868ea447b33",
+    "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart": "bd4c8376a39c6cbdb8695f86a15a47591203b739dba264e4ac88a2380abdc2a8"
+  },
+  "images": [
+    {
+      "path": "compact-ar.png",
+      "bytes": 70547,
+      "sha256": "c1daaa2f390e7b008c4159fb05a415550e1ae451bbf64f78d2480b120cfc756b"
+    },
+    {
+      "path": "compact-de.png",
+      "bytes": 90884,
+      "sha256": "f4afa1b5a4838689c7c90616e6063a8cb67479b2503fb1e7e3d5bd6a067f38b2"
+    },
+    {
+      "path": "compact-en.png",
+      "bytes": 79179,
+      "sha256": "897e13436ba81318940cc27c81af6aa6678c842d52d271af511f12e48aa5554b"
+    },
+    {
+      "path": "desktop-en.png",
+      "bytes": 92416,
+      "sha256": "1d34eb58d05cd5ba9fb08c988b0147fe22bb987f04276e3647549f839d693dd0"
+    }
+  ],
+  "visual_inspection": [
+    "desktop-en.png: controls, checkpoint, message columns and pagination fit",
+    "compact-de.png: bounded scrollable host chrome; persistent close and page controls; no layout overflow",
+    "compact-ar.png: RTL chrome and reader navigation fit; no layout overflow"
+  ],
+  "strict_analysis": "dart analyze --fatal-infos on the three listed UI files: no issues found"
+}

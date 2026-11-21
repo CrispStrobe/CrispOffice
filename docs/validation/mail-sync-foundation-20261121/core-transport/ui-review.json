@@ -1,0 +1,21 @@
+{
+  "timestamp_utc": "2026-11-21T07:26:17.746702+00:00",
+  "review_type": "read-only async lifetime and account scope review",
+  "must_fix_findings": [],
+  "observations": [
+    "Normal close sets closing, cancels the run, cancels subscriptions, drains tracked work and only then pops the route. The close task itself is not inserted in the pending set, so it does not await itself.",
+    "Async mailbox reads use generation and mailbox guards; body loads additionally verify selected message identity and body generation before publishing.",
+    "Progress/report account and mailbox scopes are checked; stale parent callbacks suppress publication, and production parent sessions invalidate or dispose the actual runner lease.",
+    "Pending page loads recheck currentness before creating subscriptions, preventing subscriptions from appearing after close begins.",
+    "Connected mode freezes mailbox selection; offline mode performs repository reads and exposes no run callback.",
+    "No source edits made during this review."
+  ],
+  "files": {
+    "packages/quds_office_editor/example/lib/studio_mail_sync_dialog.dart": "cdfcd70caa8b3d88b783db66ea9df9eeb5b12e2f716f92c95f11bb3ffb081f14",
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart": "d19291074d2c431dde635108029cb55d07c63ad2550f7fdf15df99df6f816361",
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart": "a6dffece6e5f4da4fd31662bdacfb1ae5667a31863adf7de2e90417ae88398d7",
+    "packages/quds_office_editor/example/lib/studio_mail_cached_mail.dart": "3139095d6e5a5e2ea40110e5460e506fb6ed545d678c3562f94e39d29d98eb4f",
+    "packages/quds_office_editor/example/lib/studio_mail_mailbox_store.dart": "af2b068d108e44bc3713e45e2310c8f7aa97b2d4e24d4d60f4441f2c21d5e773",
+    "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart": "e3b8bec272bd065c7f6163a2156b6aa55e05ef99dce476a728c52d29d5d6b079"
+  }
+}
