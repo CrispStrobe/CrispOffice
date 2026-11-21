@@ -454,13 +454,26 @@ is refused on header/footer paragraphs before any plan is returned.
 
 **Independent existing stories.** Execution requires an existing modeled
 paragraph in a directly referenced, independently owned header/footer story.
-It refuses a missing or inherited story, a shared story part, an ambiguous
-source reference, and a story retained as opaque XML because its structure
-cannot be represented. A selected story inherited by a later section is also
-refused: this increment does not implement linked-story propagation. These
+It refuses a missing target, an ambiguous source reference, and a selected
+story retained as opaque XML because its structure cannot be represented.
+Shared or inherited header/footer relationships anywhere in the document are
+also refused: the current native serializer rewrites all story parts, and this
+increment does not implement linked-story propagation or unlinking. These
 checks run before the paragraph edit. Failure discards the entire detached
 macro run, including earlier successful body or story edits, and leaves
 session bytes, revision and recording unchanged.
+
+Editable source stories contain native paragraphs and runs with text, tabs and
+supported breaks. Existing `pPr` and `rPr` property fragments retain their
+native preservation behavior. The guard refuses fields, hyperlinks, graphics,
+structural wrappers, unsupported paragraph/run/root attributes, foreign
+structural lookalikes and unsupported markup-compatibility projection. This
+check also covers other modeled header/footer stories that saving rewrites;
+unsupported content in an unselected story can therefore prevent the edit.
+An independent opaque story may remain untouched, but cannot itself be selected.
+Direct native-model callers must not share mutable paragraph, inline-list,
+run or property objects with another story. Such aliases are refused before
+they can make a header edit change body text or formatting.
 
 First-page and even-page stories may be edited while their display modes are
 disabled, provided they otherwise satisfy these ownership checks. Editing them
@@ -479,7 +492,9 @@ identifies executed checks and their source hashes.
 This slice does not support whole-story `Range.Text`, `InsertBefore` or
 formatting, `Exists`, `LinkToPrevious`, page-number objects, linked-story
 propagation, story creation, or tables/content controls inside a header/footer.
-It does not add source document reads or execute embedded VBA projects.
+It does not add source document reads or execute embedded VBA projects. The
+guard checks the relationships exposed by the existing OPC parser; it is not
+a new validator for raw relationship XML that parser has already normalized.
 
 Primary references: Microsoft Word's
 [Section.Headers](https://learn.microsoft.com/en-us/office/vba/api/word.section.headers),

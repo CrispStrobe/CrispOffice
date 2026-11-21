@@ -222,9 +222,11 @@ These operations retain the ordinary nonempty text-range requirement.
 Generic native paragraph operations also accept `story: "header"`, `"footer"`,
 `"firstHeader"`, `"firstFooter"`, `"evenHeader"` or `"evenFooter"`, with a
 zero-based `section` and story-local `paragraph`. These selectors require an
-existing modeled, independently owned story. Ambiguous references, shared or
-inherited stories and preserved opaque header/footer structures are refused
-before editing. The separate native `headerFooterText` creation/replacement
+existing modeled, independently owned paragraph story. Ambiguous references,
+shared or inherited header/footer topology, and unmodeled source content in
+rewritten stories are refused before editing. Selecting a preserved opaque
+story is refused; independent unselected opaque stories remain preserved.
+The separate native `headerFooterText` creation/replacement
 operation retains its existing contract. The source adapter uses the generic
 paragraph operations; it does not create stories. See the
 [Word header/footer contract](VBA_WORD_MACROS.md#existing-header-and-footer-paragraphs).
