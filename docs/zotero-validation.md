@@ -1,5 +1,20 @@
 # Zotero validation
 
+## 21 November 2026 — multi-paragraph research replacement
+
+The [range continuation](validation/zotero-multiparagraph-20261121/README.md)
+extends Add Note and Add Annotation across consecutive ordinary paragraphs in
+one body section or authored footnote/endnote. It preserves rich surrounding
+content, active citation order, note markers/separators, atomic undo/redo and
+DOCX reopening. Explicit guards retain structural and protected content.
+
+The implementation checkpoint is `6ac854de`. The work record contains the
+complete initial 329-reference intake and points to source-bound local
+qualification and the final publication reconciliation. Historical evidence
+keeps its original source attribution. Installed-application acceptance and
+active cross-word-processor transfer remain separate; GitHub Actions are not
+queried or awaited.
+
 ## 20 November 2026 — vertical research-table merges
 
 The [vertical-table continuation](validation/zotero-vertical-tables-20261120/README.md)

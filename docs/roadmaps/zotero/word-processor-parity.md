@@ -11,9 +11,11 @@ identified application, Zotero and plugin versions. LibreOffice results do not
 establish that compatibility.
 
 The [usage guide](../../zotero-support.md) describes the current controls. The
-[vertical-table work record](../../validation/zotero-vertical-tables-20261120/README.md)
+[multi-paragraph replacement work record](../../validation/zotero-multiparagraph-20261121/README.md)
 records the latest source, incoming-work reconciliation, remote checkpoints,
-checks and remaining acceptance. The
+checks and remaining acceptance. The preceding
+[vertical-table work record](../../validation/zotero-vertical-tables-20261120/README.md)
+retains its source-specific evidence. The
 [research-table work record](../../validation/zotero-research-tables-20261120/README.md)
 retains the preceding table increment's evidence. The earlier
 [structured-note continuation](../../validation/zotero-parity-continuation-20261120/README.md)
@@ -29,7 +31,7 @@ results retain their original source and platform attribution.
 | Refresh | Complete supported document sequence sent to Zotero's processor, including note order, numeric renumbering, disambiguation, style-dependent ibid. and merging of directly touching citation packets | Merge hints require physical adjacency in the same paragraph/story/note; live acceptance must be repeated on the exact release/host |
 | Bibliography | Native add/edit, entry paragraphs, rich runs, hanging indents, spacing and tab stops | Replacement requires a complete exclusively owned bibliography range |
 | Unlink citations | Explicit individual and document-wide conversion with undo | Verify final target-application files separately |
-| Add Note | Rich paragraphs, headings, nested lists up to nine levels, multiparagraph items, links, pictures, rectangular tables with combined row/column spans and active citations; insertion in body or authored notes and replacement within one paragraph | Table payloads require a main-flow destination; compact merged-row height distribution, nested tables, header/footer row groups, custom table styling, broader selections and custom/reversed list markers remain unsupported |
+| Add Note | Rich paragraphs, headings, nested lists up to nine levels, multiparagraph items, links, pictures, rectangular tables with combined row/column spans and active citations; insertion in body or authored notes and replacement across consecutive ordinary paragraphs in one section or note | Table payloads require a main-flow destination; selected protected/structural content, multi-paragraph ranges inside tables/controls, compact merged-row height distribution, nested tables, header/footer row groups, custom table styling and custom/reversed list markers remain unsupported |
 | Add Annotation | Zotero 9+ native annotation picker, text/comments and supported PNG image/ink content with active citations | Uses the same bounded image/content envelope as Add Note |
 | Library/source discovery | Local/online catalogs, collections, saved searches, tags, source details, cited-source reuse and occurrence navigation | Local and online catalog APIs have different connection/version requirements |
 | Research materials | Read-only direct-child note previews and attachment metadata | No separate attachment-file download or Zotero library write workflow |
@@ -81,8 +83,9 @@ The selected range is replaced only when the detached operation completes and
 the original document, selection and composition state are still current.
 Surrounding prose, supported formatting, lists and images remain intact. One
 undo restores the entire document and the original selection direction.
-Selections across paragraphs or through existing fields, atomic content,
-commented text or structural/protected ranges remain guarded. Native complex
+That increment guarded selections across paragraphs. The later range
+continuation below extends this boundary; selected existing fields, atomic
+content, commented text and structural/protected ranges remain guarded. Native complex
 Word fields and bookmark endpoints are protected too. DOCX reopening now
 resolves visible list labels independently for each authored footnote/endnote.
 
@@ -187,13 +190,38 @@ content height; compact Word-style row-height distribution is not claimed.
 See the [source-bound work record](../../validation/zotero-vertical-tables-20261120/README.md)
 for current qualification and remaining installed-application acceptance.
 
+## Delivered increment: replacement across ordinary paragraphs
+
+Add Note and Add Annotation now replace a selection spanning up to 10,000
+consecutive ordinary main-flow paragraphs in one body section or authored
+footnote/endnote. The native range owns its paragraph boundaries explicitly.
+Unselected prefix/suffix runs and active fields remain in reading order;
+separate suffix paragraphs retain their original paragraph formatting. The
+existing rich paragraphs, headings, lists, images and table payloads use the
+same detached conversion and one undo/redo transaction.
+
+The Notes pane maps both visible selection endpoints to native offsets and
+preserves the automatic marker/separator. Undo restores the original selection
+direction. Cancellation, moved endpoints, composition and intervening edits
+leave the staged result unapplied. Exact unselected citation endpoints retain
+both simple and complex native packets, including refreshes that change text
+length. Quds DOCX reopening retains active citations and permits another
+qualified replacement.
+
+Selected fields, note references, pictures, comments, bookmarks and ambiguous
+native markup remain guarded. Ranges cannot cross sections or structural
+blocks, nor start inside a table or content control. Shared paragraph objects
+are refused before mutation. This completes the earlier ordinary-paragraph
+range milestone; it does not establish active ODT transfer or installed
+Word/LibreOffice acceptance. The [work record](../../validation/zotero-multiparagraph-20261121/README.md)
+separates fresh execution from historical evidence and records all remote saves.
+
 ## Next implementation and acceptance steps
 
-1. **Broaden replacement ranges deliberately.** Extend beyond single-paragraph
-   text selections only after modeling ownership of paragraph boundaries,
-   comments, content controls, existing fields and note references. Keep the
-   authored-note ownership, stale-selection, composition and undo guarantees
-   established by the existing increments.
+1. **Qualify active document transfer.** Establish Word/LibreOffice fixtures
+   containing active citations, rich bibliographies, authored notes, tables and
+   images. Verify the actual Zotero transfer/import/export protocol and ODT field
+   representation before advertising cross-format editing parity.
 2. **Extend table structure and formatting.** Improve merged-row height distribution and map nested tables,
    header/footer row groups and custom styles to native structures with explicit
    ownership. Qualify their citation order, geometry, save/reopen behavior and
@@ -203,10 +231,10 @@ for current qualification and remaining installed-application acceptance.
    grayscale/CMYK output consistently in editor, DOCX and PDF before removing
    current refusals. Additional raster formats need matching rendering and
    resource bounds, rather than a permissive data-URI allowlist.
-4. **Qualify active document transfer.** Establish Word/LibreOffice fixtures
-   containing active citations, rich bibliographies, authored notes, tables and
-   images. Verify the actual Zotero transfer/import/export protocol and ODT field
-   representation before advertising cross-format editing parity.
+4. **Extend structural replacement deliberately.** Model ownership of table-cell
+   and content-control boundaries, comments, existing fields and note references
+   before accepting those selections. Preserve the ordinary-paragraph range,
+   authored-note, stale-selection, composition and undo guarantees already delivered.
 5. **Run release-host acceptance.** Exercise current native Zotero, Word and
    LibreOffice with a synthetic library on each supported desktop platform.
    Check picker cancellation, metadata updates, note-style conversion,

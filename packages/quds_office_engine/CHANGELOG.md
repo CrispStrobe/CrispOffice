@@ -4,6 +4,12 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Replace Zotero research-content selections across consecutive ordinary
+  paragraphs in one body section or authored note. Preserve rich prefix/suffix
+  content, active citation order, native note separators and DOCX reopening;
+  reject ambiguous ownership and selected structural/protected content before
+  mutation. Add optional `insertionEndParagraph` to the staged native session.
+
 - Read Zotero JSON citation placement consistently on the VM and JavaScript:
   numeric values 0, 1 and 2 include equivalent decimal/exponent spellings;
   fractional, out-of-range, string and boolean values remain invalid. Preserve
