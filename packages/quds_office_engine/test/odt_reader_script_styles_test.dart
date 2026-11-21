@@ -35,7 +35,11 @@ OdtReaderStyles _styles(String definitions) => OdtReaderStyles(
   ).root!,
 );
 
-Uint8List _odt(String body, {String properties = _mixedProperties}) {
+Uint8List _odt(
+  String body, {
+  String properties = _mixedProperties,
+  String textStyles = '',
+}) {
   final writer = ZipWriter();
   writer.addFile(
     'mimetype',
@@ -49,6 +53,7 @@ Uint8List _odt(String body, {String properties = _mixedProperties}) {
       '<office:automatic-styles>'
       '<style:style style:name="Base" style:family="paragraph">'
       '<style:text-properties $properties/></style:style>'
+      '$textStyles'
       '</office:automatic-styles>'
       '<office:body><office:text><text:p text:style-name="Base">$body</text:p>'
       '</office:text></office:body></office:document-content>',
@@ -100,6 +105,325 @@ void main() {
       final copied = child.copy();
       copied.complex.size = 40;
       expect(child.materialize('ب').single.properties.fontSizeHalfPoints, 30);
+    },
+  );
+
+  test('uses Asian slots for supplementary Kana, Tangut and Khitan', () async {
+    // Kana Supplement/Extended-A/Small Kana, Tangut, Khitan, and Hangul
+    // Extended-A/B are outside the older ODF Unicode block table.
+    final asian = String.fromCharCodes([
+      0x1b000,
+      0x1b100,
+      0x1b150,
+      0x17000,
+      0x18b00,
+      0xa960,
+      0xd7b0,
+    ]);
+    final original = 'A$asian😀';
+    var document = await OdtDocumentReader.readBytes(_odt(original));
+    for (var cycle = 0; cycle < 3; cycle++) {
+      final runs = document.paragraphs.single.inlines
+          .whereType<WmlRun>()
+          .toList();
+      expect(runs.map((run) => run.text), ['A', asian, '😀']);
+      expect(runs.map((run) => run.text).join(), original);
+      expect(runs.map((run) => run.properties.fontSizeHalfPoints), [
+        22,
+        28,
+        22,
+      ]);
+      expect(runs[1].properties.asciiFont, 'Noto Serif CJK SC');
+      expect(runs[1].properties.proofingLanguage, 'zh-CN');
+      expect(runs[1].properties.italic, isTrue);
+      if (cycle > 0) {
+        expect(
+          _native(runs[1]).firstChild('rFonts')?.getAttribute('eastAsia'),
+          'Noto Serif CJK SC',
+        );
+        expect(
+          _native(runs[1]).firstChild('lang')?.getAttribute('eastAsia'),
+          'zh-CN',
+        );
+      }
+      if (cycle < 2) {
+        document = WordDeserializer().readBytes(
+          WordSerializer().writeBytes(document),
+        );
+      }
+    }
+  });
+
+  for (final scenario in [
+    (
+      name: 'Devanagari font-only',
+      text: 'हिन्दी',
+      font: 'Noto Serif Devanagari',
+      language: 'en',
+      country: 'US',
+      editedFont: 'Noto Sans Devanagari',
+    ),
+    (
+      name: 'Thai language-only',
+      text: 'ภาษาไทย',
+      font: 'Liberation Serif',
+      language: 'th',
+      country: 'TH',
+      editedFont: 'Noto Sans Thai',
+    ),
+  ]) {
+    test(
+      '${scenario.name} selects the complex slots at equal sizes after edits',
+      () async {
+        const prefix = '😀 before ';
+        final cache = '${scenario.text} / Latin';
+        final metadata = {
+          'citationID': 'complex-route',
+          'citationItems': [
+            {
+              'id': 1,
+              'itemData': {'id': 1, 'type': 'book', 'title': cache},
+            },
+          ],
+          'properties': {'plainCitation': cache, 'noteIndex': 0},
+        };
+        final name = encodeXmlAttribute(
+          'ZOTERO_ITEM CSL_CITATION ${jsonEncode(metadata)} RND0123456789',
+        );
+        var document = await OdtDocumentReader.readBytes(
+          _odt(
+            '$prefix<text:reference-mark-start text:name="$name"/>$cache'
+            '<text:reference-mark-end text:name="$name"/> after',
+            properties:
+                'fo:font-family="Liberation Serif" fo:font-size="11pt" '
+                'fo:language="en" fo:country="US" '
+                'style:font-family-complex="${scenario.font}" '
+                'style:font-size-complex="11pt" '
+                'style:language-complex="${scenario.language}" style:country-complex="${scenario.country}"',
+          ),
+        );
+        for (var cycle = 0; cycle < 4; cycle++) {
+          final paragraph = document.paragraphs.single;
+          final run = _runContaining(document, scenario.text);
+          final font = cycle > 1 ? scenario.editedFont : scenario.font;
+          expect(run.properties.fontSizeHalfPoints, 22);
+          expect(run.properties.complexScript, isTrue);
+          expect(run.properties.asciiFont, 'Liberation Serif');
+          expect(run.properties.csFont, font);
+          expect(
+            OfficeTypeface.familyForRun(
+              run.properties,
+              scenario.text.runes.first,
+            ),
+            font,
+          );
+          expect(
+            wordRunProofingLanguage(run, paragraph),
+            '${scenario.language}-${scenario.country}',
+          );
+          final field = WordZotero.fields(document).single;
+          expect(field.canEdit, isTrue);
+          expect(field.start, prefix.length);
+          expect(field.end, prefix.length + cache.length);
+          expect(field.cachedText, cache);
+          expect(field.metadata, metadata);
+          expect(_nativeValue(run, 'cs'), '1');
+          if (cycle > 0) {
+            expect(
+              _native(run).firstChild('rFonts')?.getAttribute('ascii'),
+              'Liberation Serif',
+            );
+            expect(_native(run).firstChild('rFonts')?.getAttribute('cs'), font);
+            expect(
+              _native(run).firstChild('lang')?.getAttribute('val'),
+              'en-US',
+            );
+            expect(
+              _native(run).firstChild('lang')?.getAttribute('bidi'),
+              '${scenario.language}-${scenario.country}',
+            );
+          }
+          if (cycle == 1) run.properties.csFont = scenario.editedFont;
+          if (cycle < 3) {
+            document = WordDeserializer().readBytes(
+              WordSerializer().writeBytes(document),
+            );
+          }
+        }
+      },
+    );
+  }
+
+  test(
+    'initially equal script slots retain edit ownership through DOCX saves',
+    () async {
+      const prefix = '😀 same ';
+      const cache = 'हिन्दी漢字';
+      final metadata = {
+        'citationID': 'initially-equal-slots',
+        'citationItems': [
+          {
+            'id': 1,
+            'itemData': {'id': 1, 'type': 'book', 'title': cache},
+          },
+        ],
+        'properties': {'plainCitation': cache, 'noteIndex': 0},
+      };
+      final name = encodeXmlAttribute(
+        'ZOTERO_ITEM CSL_CITATION ${jsonEncode(metadata)} RND0123456789',
+      );
+      var document = await OdtDocumentReader.readBytes(
+        _odt(
+          '$prefix<text:reference-mark-start text:name="$name"/>$cache'
+          '<text:reference-mark-end text:name="$name"/> tail',
+          properties:
+              'fo:font-family="Liberation Serif" fo:font-size="12pt" '
+              'fo:language="en" fo:country="US" '
+              'style:font-family-complex="Liberation Serif" style:font-size-complex="12pt" '
+              'style:language-complex="en" style:country-complex="US" '
+              'style:font-family-asian="Liberation Serif" style:font-size-asian="12pt" '
+              'style:language-asian="en" style:country-asian="US"',
+        ),
+      );
+      for (var cycle = 0; cycle < 4; cycle++) {
+        final edited = cycle > 1;
+        final paragraph = document.paragraphs.single;
+        expect(paragraph.text, '$prefix$cache tail');
+        final indic = _runContaining(document, 'हिन्दी');
+        final asian = _runContaining(document, '漢字');
+        final indicFont = edited ? 'Noto Sans Devanagari' : 'Liberation Serif';
+        final asianFont = edited ? 'Noto Sans CJK JP' : 'Liberation Serif';
+        final asianLanguage = edited ? 'ja-JP' : 'en-US';
+        expect(indic.properties.complexScript, isTrue);
+        expect(indic.properties.asciiFont, 'Liberation Serif');
+        expect(indic.properties.csFont, indicFont);
+        expect(
+          OfficeTypeface.familyForRun(indic.properties, 'ह'.runes.single),
+          indicFont,
+        );
+        expect(indic.properties.fontSizeHalfPoints, 24);
+        expect(asian.properties.asciiFont, asianFont);
+        expect(asian.properties.csFont, 'Liberation Serif');
+        expect(asian.properties.fontSizeHalfPoints, 24);
+        expect(wordRunProofingLanguage(asian, paragraph), asianLanguage);
+        expect(_nativeValue(indic, 'cs'), '1');
+        final field = WordZotero.fields(document).single;
+        expect(field.canEdit, isTrue);
+        expect(field.start, prefix.length);
+        expect(field.end, prefix.length + cache.length);
+        expect(field.cachedText, cache);
+        expect(field.metadata, metadata);
+        if (cycle > 0) {
+          expect(
+            _native(indic).firstChild('rFonts')?.getAttribute('cs'),
+            indicFont,
+          );
+          expect(
+            _native(indic).firstChild('rFonts')?.getAttribute('ascii'),
+            'Liberation Serif',
+          );
+          expect(
+            _native(asian).firstChild('rFonts')?.getAttribute('eastAsia'),
+            asianFont,
+          );
+          expect(
+            _native(asian).firstChild('rFonts')?.getAttribute('ascii'),
+            asianFont,
+          );
+          expect(
+            _native(asian).firstChild('lang')?.getAttribute('eastAsia'),
+            asianLanguage,
+          );
+          expect(
+            _native(asian).firstChild('lang')?.getAttribute('bidi'),
+            'en-US',
+          );
+        }
+        if (cycle == 1) {
+          indic.properties.csFont = 'Noto Sans Devanagari';
+          asian.properties
+            ..asciiFont = 'Noto Sans CJK JP'
+            ..proofingLanguage = 'ja-JP';
+        }
+        if (cycle < 3) {
+          document = WordDeserializer().readBytes(
+            WordSerializer().writeBytes(document),
+          );
+        }
+      }
+    },
+  );
+
+  test(
+    'retains mark script across spans, fields, hyperlinks and equal formatting',
+    () async {
+      const variation = '\u{E0100}';
+      final context = OdtReaderScriptContext();
+      OdtReaderTextStyle.from(
+        WmlRunProps(),
+      ).materialize('漢', context: context).toList();
+      final distinct = _styles(
+        _textStyle('Asian', 'style:font-size-asian="14pt"'),
+      ).runProperties('Asian');
+      expect(
+        distinct
+            .materialize(variation, context: context)
+            .single
+            .properties
+            .fontSizeHalfPoints,
+        28,
+      );
+
+      const prefix = '😀 ';
+      const cache = '漢$variation';
+      final metadata = {
+        'citationID': 'mark-context',
+        'citationItems': [
+          {
+            'id': 1,
+            'itemData': {'id': 1, 'type': 'book', 'title': cache},
+          },
+        ],
+        'properties': {'plainCitation': cache, 'noteIndex': 0},
+      };
+      final name = encodeXmlAttribute(
+        'ZOTERO_ITEM CSL_CITATION ${jsonEncode(metadata)} RND0123456789',
+      );
+      var document = await OdtDocumentReader.readBytes(
+        _odt(
+          '$prefix<text:reference-mark-start text:name="$name"/>漢'
+          '<text:span text:style-name="ColorOnly">$variation</text:span>'
+          '<text:reference-mark-end text:name="$name"/> 漢'
+          '<text:a xlink:href="https://example.org/mark">'
+          '<text:span text:style-name="ColorOnly">$variation</text:span></text:a>',
+          textStyles: _textStyle('ColorOnly', 'fo:color="#ff0000"'),
+        ),
+      );
+      for (var cycle = 0; cycle < 3; cycle++) {
+        expect(document.paragraphs.single.text, '$prefix$cache $cache');
+        final marks = document.paragraphs.single.inlines
+            .whereType<WmlRun>()
+            .where((run) => run.text == variation)
+            .toList();
+        expect(marks, hasLength(2));
+        for (final run in marks) {
+          expect(run.properties.fontSizeHalfPoints, 28);
+          expect(run.properties.asciiFont, 'Noto Serif CJK SC');
+          expect(run.properties.proofingLanguage, 'zh-CN');
+          expect(run.properties.color, 'FF0000');
+        }
+        expect(marks.first.hyperlink, isNull);
+        expect(marks.last.hyperlink?.url, 'https://example.org/mark');
+        final field = WordZotero.fields(document).single;
+        expect(field.start, prefix.length);
+        expect(field.end, prefix.length + cache.length);
+        expect(field.cachedText, cache);
+        if (cycle < 2) {
+          document = WordDeserializer().readBytes(
+            WordSerializer().writeBytes(document),
+          );
+        }
+      }
     },
   );
 
@@ -162,11 +486,22 @@ void main() {
         final emoji = _runContaining(document, '👩‍💻');
         expect(emoji.properties.fontSizeHalfPoints, 22);
         expect(emoji.hyperlink, isNull);
-        final linkedRuns = document.paragraphs.single.inlines.whereType<WmlRun>()
-            .where((run) => run.hyperlink != null).toList();
+        final linkedRuns = document.paragraphs.single.inlines
+            .whereType<WmlRun>()
+            .where((run) => run.hyperlink != null)
+            .toList();
         expect(linkedRuns.map((run) => run.text).join(), linked);
-        expect(linkedRuns.map((run) => run.properties.fontSizeHalfPoints), [20, 28, 22]);
-        expect(linkedRuns.every((run) => run.hyperlink?.url == 'https://example.org/source'), isTrue);
+        expect(linkedRuns.map((run) => run.properties.fontSizeHalfPoints), [
+          20,
+          28,
+          22,
+        ]);
+        expect(
+          linkedRuns.every(
+            (run) => run.hyperlink?.url == 'https://example.org/source',
+          ),
+          isTrue,
+        );
         expect(
           document.paragraphs.single.inlines.whereType<WmlRun>().every(
             (run) => run.properties is! OdtReaderTextStyle,
@@ -208,18 +543,18 @@ void main() {
   );
 
   test(
-    'synchronizes shared scalar controls without coupling font or language slots',
+    'Latin runs synchronize shared scalars and preserve independent font/language edits',
     () async {
       final document = await OdtDocumentReader.readBytes(
         _odt(
-          'Latin العربية',
+          'Latin words',
           properties:
               'fo:font-size="12pt" fo:font-family="Liberation Serif" '
-              'style:font-family-complex="Amiri" fo:language="en" style:language-complex="ar"',
+              'fo:language="en" style:language-complex="en"',
         ),
       );
       final run = document.paragraphs.single.inlines.whereType<WmlRun>().single;
-      expect(run.text, 'Latin العربية');
+      expect(run.text, 'Latin words');
       run.properties
         ..fontSizeHalfPoints = 30
         ..bold = true
@@ -234,10 +569,18 @@ void main() {
         expect(_nativeValue(native, 'szCs'), '30');
         expect(_nativeValue(native, 'bCs'), '1');
         expect(_nativeValue(native, 'iCs'), '1');
-        expect(native.properties.asciiFont, 'Liberation Serif');
-        expect(native.properties.csFont, 'Amiri');
-        expect(native.properties.proofingLanguage, 'en');
-        expect(native.properties.complexScriptLanguage, 'ar');
+        expect(
+          native.properties.asciiFont,
+          cycle == 0 ? 'Liberation Serif' : 'Liberation Sans',
+        );
+        expect(native.properties.csFont, 'Liberation Serif');
+        expect(native.properties.proofingLanguage, cycle == 0 ? 'en' : 'de-DE');
+        expect(native.properties.complexScriptLanguage, 'en');
+        if (cycle == 0) {
+          native.properties
+            ..asciiFont = 'Liberation Sans'
+            ..proofingLanguage = 'de-DE';
+        }
         reopened = WordDeserializer().readBytes(
           WordSerializer().writeBytes(reopened),
         );

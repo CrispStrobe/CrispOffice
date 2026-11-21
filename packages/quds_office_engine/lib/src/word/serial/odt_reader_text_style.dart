@@ -27,6 +27,13 @@ final class OdtReaderScriptStyle {
 
 enum OdtTextScript { latin, complex, asian }
 
+/// Actual preceding Unicode script, independent of how runs were projected.
+/// One context spans adjacent text/style/link nodes in a paragraph; a genuine
+/// inline object or a new paragraph starts a new context.
+final class OdtReaderScriptContext {
+  OdtTextScript? previous;
+}
+
 /// Resolved text style before the input's Unicode script runs are known.
 ///
 /// ODF 1.4 section 20.358 defines three independent script slots. Word's
@@ -40,6 +47,7 @@ final class OdtReaderTextStyle extends WmlRunProps {
         italic: source.italic,
         underline: source.underline,
         strike: source.strike,
+        allCaps: source.allCaps,
         smallCaps: source.smallCaps,
         color: source.color,
         highlight: source.highlight,
@@ -88,54 +96,41 @@ final class OdtReaderTextStyle extends WmlRunProps {
     }
   }
 
-  bool get _complexProjection =>
+  bool get _distinctComplexFormatting =>
+      csFont != asciiFont ||
+      (complexScriptLanguage ?? proofingLanguage) != proofingLanguage ||
       (complex.size ?? fontSizeHalfPoints) != fontSizeHalfPoints ||
       (complex.bold ?? bold) != bold ||
       (complex.italic ?? italic) != italic ||
       (complex.noProof ?? noProof ?? false) != (noProof ?? false);
 
-  bool get _asianProjection =>
-      (asian.font ?? asciiFont) != asciiFont ||
-      (asian.size ?? fontSizeHalfPoints) != fontSizeHalfPoints ||
-      (asian.bold ?? bold) != bold ||
-      (asian.italic ?? italic) != italic ||
-      (asian.languageSpecified ? asian.language : proofingLanguage) !=
-          proofingLanguage ||
-      (asian.noProof ?? noProof ?? false) != (noProof ?? false);
-
-  /// Group actual source text by effective native formatting. Common marks
-  /// and joiners stay with their base; supplementary characters stay intact.
+  /// Group actual source text by script, including when all initial values
+  /// agree. Script ownership must still select the right font/language slots
+  /// after editing. Marks and joiners stay with their preceding base.
   Iterable<({String text, WmlRunProps properties})> materialize(
-    String text,
-  ) sync* {
+    String text, {
+    OdtReaderScriptContext? context,
+  }) sync* {
     validateEffective();
     if (text.isEmpty) return;
-    if (!_complexProjection && !_asianProjection) {
-      yield (text: text, properties: nativeProperties(projectedText: true));
-      return;
-    }
     var start = 0;
     var offset = 0;
-    OdtTextScript? previous;
+    OdtTextScript? previous = context?.previous;
     OdtTextScript? group;
     for (final rune in text.runes) {
       final script = _script(rune, previous);
       previous = script;
-      final active = switch (script) {
-        OdtTextScript.complex when _complexProjection => script,
-        OdtTextScript.asian when _asianProjection => script,
-        _ => OdtTextScript.latin,
-      };
-      if (group != null && active != group) {
+      if (group != null && script != group) {
         yield (
           text: text.substring(start, offset),
           properties: nativeProperties(script: group, projectedText: true),
         );
         start = offset;
       }
-      group = active;
+      group = script;
       offset += rune > 0xffff ? 2 : 1;
     }
+    context?.previous = previous;
     yield (
       text: text.substring(start),
       properties: nativeProperties(script: group!, projectedText: true),
@@ -154,7 +149,7 @@ final class OdtReaderTextStyle extends WmlRunProps {
     final slot = script == OdtTextScript.complex ? complex : asian;
     final projection = script != OdtTextScript.latin
         ? script.name
-        : projectedText && !_complexProjection
+        : projectedText && !_distinctComplexFormatting
         ? 'shared'
         : null;
     if (script != OdtTextScript.latin) {
@@ -164,9 +159,10 @@ final class OdtReaderTextStyle extends WmlRunProps {
         ..italic = slot.italic ?? italic
         ..noProof = slot.noProof ?? noProof;
       if (script == OdtTextScript.complex) {
-        result
-          ..asciiFont = csFont
-          ..complexScript = true;
+        // Keep the independent font/language slots intact. The explicit
+        // native marker selects the complex slot for Indic/Thai as well as
+        // RTL scripts, including after a later complex-font edit.
+        result.complexScript = true;
       } else {
         result
           ..asciiFont = asian.font ?? asciiFont

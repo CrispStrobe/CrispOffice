@@ -537,7 +537,9 @@ final class OdtReaderStyles {
     // checking only for Han/Kana/Hangul characters would drop active behavior.
     var asianLocale = false;
     for (final run in paragraph.inlines.whereType<WmlRun>()) {
-      if (run.text.isEmpty) continue;
+      // Note labels are materialized after source field offsets are attached.
+      // They still use a visible normal-script number in this paragraph.
+      if (run.text.isEmpty && run.noteRefId == null) continue;
       final normal =
           run.properties.proofingLanguage ??
           paragraph.properties.proofingLanguage;

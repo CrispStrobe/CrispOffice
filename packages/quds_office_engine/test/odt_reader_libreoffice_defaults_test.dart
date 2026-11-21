@@ -169,6 +169,24 @@ void main() {
       );
     });
 
+    test('checks a note anchor before its visible label is materialized', () {
+      final styles = _styles(defaults: _dormantParagraph, textDefaults: '');
+      final properties = styles.paragraphProperties('P');
+      final paragraph = WmlParagraph(
+        properties: properties,
+        inlines: [
+          WmlRun(
+            noteRefId: 1,
+            properties: properties.importedParagraphMark!.copy(),
+          ),
+        ],
+      );
+      expect(
+        () => styles.validateParagraphContent('P', paragraph),
+        throwsUnsupportedError,
+      );
+    });
+
     test('does not assume an ambient locale for conditional line breaking', () {
       expect(
         () => _paragraph(
