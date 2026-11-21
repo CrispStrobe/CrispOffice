@@ -52,12 +52,17 @@ enum WordZoteroTab { library, document, importCslJson }
 /// after success, cancellation or an unchanged result. Errors remain visible.
 /// The ordinary references workspace stays open unless the user closes it or
 /// chooses a reference to reveal in the document.
+/// [isCurrent] lets a host invalidate the open workspace after navigation away
+/// from its document. It must remain true while this workspace's own dialogs
+/// are open. A host may capture a navigation generation to keep an operation
+/// invalid even if the user returns before a pending response arrives.
 Future<void> showWordZoteroDialog(
   BuildContext context, {
   required WordEditorController controller,
   ZoteroTransport? transport,
   ZoteroTransport? localTransport,
   ZoteroSession? session,
+  bool Function()? isCurrent,
   Future<void> Function(String? apiKey)? persistApiKey,
   WordZoteroTab? initialTab,
   ZoteroCitingCommand? initialCommand,
@@ -66,6 +71,7 @@ Future<void> showWordZoteroDialog(
   if (closeAfterCommand && initialCommand == null) {
     throw ArgumentError('A direct Zotero command is required.');
   }
+  if (!(isCurrent?.call() ?? true)) return;
   if (_hasZoteroComposition(controller)) {
     ScaffoldMessenger.maybeOf(context)?.showSnackBar(
       const SnackBar(
@@ -85,6 +91,7 @@ Future<void> showWordZoteroDialog(
       transport: transport,
       localTransport: localTransport,
       session: session ?? ZoteroSession(),
+      isCurrent: isCurrent,
       persistApiKey: persistApiKey,
       initialTab: initialTab,
       initialCommand: initialCommand,
@@ -93,6 +100,7 @@ Future<void> showWordZoteroDialog(
   );
   if (!context.mounted ||
       controller.isDisposed ||
+      !(isCurrent?.call() ?? true) ||
       !identical(document, controller.document) ||
       ModalRoute.of(context)?.isCurrent == false) {
     return;
@@ -142,6 +150,7 @@ class _WordZoteroDialog extends StatefulWidget {
     this.transport,
     this.localTransport,
     required this.session,
+    this.isCurrent,
     this.persistApiKey,
     required this.initialTab,
     this.initialCommand,
@@ -151,6 +160,7 @@ class _WordZoteroDialog extends StatefulWidget {
   final ZoteroTransport? transport;
   final ZoteroTransport? localTransport;
   final ZoteroSession session;
+  final bool Function()? isCurrent;
   final Future<void> Function(String? apiKey)? persistApiKey;
   final WordZoteroTab? initialTab;
   final ZoteroCitingCommand? initialCommand;
@@ -206,6 +216,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
   bool get _useLocal => _session.useLocal;
   bool get _canEdit =>
       !_controller.isDisposed &&
+      (widget.isCurrent?.call() ?? true) &&
       _controller.config.allowsMutation &&
       !_controller.document.trackRevisions;
   List<ZoteroCitationItem> get _documentItems => [

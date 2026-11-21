@@ -4,6 +4,16 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Scope Zotero dialogs to their originating host view through optional
+  `isCurrent` checks. Studio cancels delayed publication and focus restoration
+  after switching to Mail or another app, even if Word is reopened before the
+  response arrives.
+
+- Protect reserved Zotero shortcuts from conflicting overrides, retire old
+  redo/zoom aliases after reassignment, and reject modifier-only key settings.
+  Keep native text actions and comment emphasis available in their own views;
+  show subscript as unassigned while preserving the established zoom-in chord.
+
 - Align Word's table-cell ruler fallback with the actual table margin, including
   zero and narrow cells. Native layout now honors persisted margins throughout
   research tables, merged/nested cells and authored-note tables.
