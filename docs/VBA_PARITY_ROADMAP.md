@@ -234,13 +234,15 @@ Native execution resolves primary style names or 13 supported built-ins from
 the active document styles part and updates a sparse paragraph style reference.
 Direct formatting, character/table inheritance, previous plan edits, independent
 header/footer ownership and transaction rollback are preserved. Missing or
-ambiguous definitions and effective numbering changes are explicitly refused.
+ambiguous definitions, actively numbered targets and effective numbering
+changes are explicitly refused. Generated TOC/result paragraphs and unsupported
+property namespaces are also guarded before publication.
 
 This is a Stage 4 source-to-plan increment. It does not add live style reads,
 Style objects, collection enumeration, style creation or an embedded VBA host.
-See the [contract](VBA_WORD_MACROS.md#existing-paragraph-styles),
+See the [contract](VBA_WORD_MACROS.md#assigning-existing-paragraph-styles),
 [BAS example](../packages/quds_office_engine/example/macros/word_styles.bas)
-and [local qualification](validation/word-vba-styles-20261121/README.md).
+and [local qualification](validation/word-vba-styles-complete-20261121/README.md).
 
 ### Uniform section text columns
 

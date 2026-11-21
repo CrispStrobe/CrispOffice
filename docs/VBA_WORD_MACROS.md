@@ -708,7 +708,8 @@ text and direct-format writes into detached source properties, preserving
 explicit false/default values, character-style overrides, sparse paragraph
 formatting, foreign attributes and children, and namespace aliases. An
 assignment to the same effective style still writes an explicit reference.
-It preserves style definitions and unselected paragraphs; the normal serializer
+It preserves style definitions, inline identities and unselected paragraphs;
+the normal serializer
 may normalize XML declarations and insignificant whitespace. Opaque DOCM VBA
 projects and signature payloads remain inert and preserved.
 
@@ -719,7 +720,8 @@ primary names above and refuse custom styles; they do not guess localized
 translations. Missing styles are not created. Native source validation refuses
 ambiguous property packets and property lookalikes, nested native style
 selectors, style-bearing markup compatibility alternatives, shared mutable
-target models, unbalanced field boundaries and unsaved replacements/deletions
+target models, cyclic/duplicate block ownership, generated TOC/result targets,
+unbalanced field boundaries and unsaved replacements/deletions
 of the document's style-model definitions. A detached consistency check refuses
 effective-property alias shapes that the ordinary reopen cascade cannot retain;
 the tested native `pStyle` alias and its foreign metadata are preserved.

@@ -2472,6 +2472,7 @@ class WordDeserializer {
         continue;
       }
       if (const {
+            'rStyle',
             'kern',
             'noProof',
             'caps',

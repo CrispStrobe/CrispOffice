@@ -34,9 +34,6 @@ final class _ParagraphStyleEdit {
 
   static bool _safeText(String value) => value.runes.every(
     (rune) =>
-        rune == 9 ||
-        rune == 10 ||
-        rune == 13 ||
         rune >= 0x20 && rune <= 0xd7ff ||
         rune >= 0xe000 && rune <= 0xfffd ||
         rune >= 0x10000 && rune <= 0x10ffff,
@@ -100,7 +97,7 @@ final class _ParagraphStyleEdit {
 
   /// Check source packets before they pass through the effective parser.
   /// Foreign metadata is retained but cannot hide a native style reference.
-  void _properties(XmlElement root) {
+  void _properties(XmlElement root, {bool style = false}) {
     if (!_word(root, 'pPr') && !_word(root, 'rPr')) {
       _refuse('requires native direct property roots');
     }
@@ -190,6 +187,14 @@ final class _ParagraphStyleEdit {
     };
     void visit(XmlElement node) {
       _attributes(node);
+      if (node.namespaceUri == _w) {
+        _propertyValues(node);
+        if (style && node.localName == 'pStyle') {
+          _refuse(
+            'refuses paragraph-style references inside style definitions',
+          );
+        }
+      }
       if (!identical(node, root)) {
         final property = node.localName;
         final expected = <String>{
@@ -269,6 +274,122 @@ final class _ParagraphStyleEdit {
     visit(root);
   }
 
+  void _propertyValues(XmlElement node) {
+    final value = _attribute(node, 'val');
+    const onOff = {'0', '1', 'true', 'false', 'on', 'off'};
+    if (const {
+          'b',
+          'i',
+          'bCs',
+          'iCs',
+          'caps',
+          'smallCaps',
+          'strike',
+          'noProof',
+          'rtl',
+          'cs',
+          'bidi',
+          'keepLines',
+          'keepNext',
+          'pageBreakBefore',
+          'suppressAutoHyphens',
+        }.contains(node.localName) &&
+        value != null &&
+        !onOff.contains(value)) {
+      _refuse('requires a recognized native ${node.localName} boolean');
+    }
+    if (const {'sz', 'szCs', 'kern', 'outlineLvl'}.contains(node.localName)) {
+      final number = value == null ? null : int.tryParse(value);
+      if (number == null ||
+          number < 0 ||
+          number > 2147483647 ||
+          node.localName == 'outlineLvl' && number > 9) {
+        _refuse('requires a valid native ${node.localName} value');
+      }
+    }
+    if (node.localName == 'spacing' || node.localName == 'ind') {
+      for (final attribute in node.attributes.where(
+        (item) => item.namespaceUri == _w,
+      )) {
+        if (attribute.localName == 'lineRule') {
+          if (!const {'auto', 'exact', 'atLeast'}.contains(attribute.value)) {
+            _refuse('requires a recognized native line-spacing rule');
+          }
+        } else if (attribute.localName.endsWith('Autospacing')) {
+          if (!onOff.contains(attribute.value)) {
+            _refuse('requires a recognized native automatic-spacing boolean');
+          }
+        } else {
+          final number = int.tryParse(attribute.value);
+          if (number == null || number < -2147483648 || number > 2147483647) {
+            _refuse('requires valid native paragraph measurements');
+          }
+        }
+      }
+    }
+    if (node.localName == 'numPr') {
+      for (final name in ['numId', 'ilvl']) {
+        final child = _child(node, name);
+        if (child == null) continue;
+        final number = int.tryParse(_requiredValue(child, 'val'));
+        if (number == null ||
+            number < 0 ||
+            number > (name == 'ilvl' ? 8 : 2147483647)) {
+          _refuse('requires a valid native numbering $name');
+        }
+      }
+    }
+  }
+
+  void _numberingStyleLinks(
+    OpcPackage package,
+    RelationshipCollection relationships,
+    String? previousStyle,
+    String nextStyle,
+  ) {
+    if (previousStyle == nextStyle) return;
+    final references = relationships
+        .byType(RelationshipTypes.numbering)
+        .toList();
+    if (references.length > 1 ||
+        references.any(
+          (reference) =>
+              reference.targetMode != RelationshipTargetMode.internal ||
+              reference.target.isEmpty ||
+              RegExp(r'[%?#:\s\\]').hasMatch(reference.target),
+        )) {
+      _refuse('requires unambiguous native numbering relationships');
+    }
+    final part = package.getPart(
+      references.isEmpty
+          ? '/word/numbering.xml'
+          : relationships.resolve(references.single),
+    );
+    if (part == null) return;
+    final root = XmlDocument.parse(part.readText()).root;
+    if (root == null || !_word(root, 'numbering')) {
+      _refuse('requires native numbering XML');
+    }
+    void visit(XmlElement node) {
+      if (node.namespaceUri != _w) return;
+      if (const {
+        'pStyle',
+        'styleLink',
+        'numStyleLink',
+      }.contains(node.localName)) {
+        final style = _requiredValue(node, 'val');
+        if (style == previousStyle || style == nextStyle) {
+          _refuse('does not change style-linked numbering');
+        }
+      }
+      for (final child in node.childElements) {
+        visit(child);
+      }
+    }
+
+    visit(root);
+  }
+
   XmlElement _fragment(String? xml, String name) {
     if (xml == null || xml.isEmpty) {
       return XmlElement(localName: name, prefix: 'w', namespaceUri: _w)
@@ -288,6 +409,10 @@ final class _ParagraphStyleEdit {
 
   void _packageAlternatives(OpcPackage package) {
     void visit(XmlElement node, bool alternative) {
+      // Import retains one direct pPr/rPr packet. Refuse duplicate original
+      // packets before a style save can silently discard an earlier one.
+      if (_word(node, 'p')) _child(node, 'pPr');
+      if (_word(node, 'r')) _child(node, 'rPr');
       final inside =
           alternative ||
           node.namespaceUri == OfficeNamespaces.mc &&
@@ -322,10 +447,6 @@ final class _ParagraphStyleEdit {
         continue;
       }
       final source = package.getPart(part.uri)!.readText();
-      if (!source.contains('AlternateContent') &&
-          !source.contains('ProcessContent')) {
-        continue;
-      }
       final root = XmlDocument.parse(source).root;
       if (root != null) visit(root, false);
     }
@@ -340,9 +461,6 @@ final class _ParagraphStyleEdit {
     }
     if (builtin != null && !_builtins.containsKey(builtin)) {
       throw ArgumentError('Unsupported Word built-in paragraph style.');
-    }
-    if (WordFieldSpans.unbalanced(document).isNotEmpty) {
-      _refuse('cannot preserve unbalanced modeled field boundaries');
     }
     final package = document.package;
     if (package == null) _refuse('requires existing native styles');
@@ -386,11 +504,11 @@ final class _ParagraphStyleEdit {
     final names = <String, String>{};
     String? defaultParagraph;
     final defaults = _child(root, 'docDefaults');
-    for (final parent in defaults?.childElements ?? <XmlElement>[]) {
-      for (final properties in parent.childElements) {
-        if (_word(properties, 'pPr') || _word(properties, 'rPr')) {
-          _properties(properties);
-        }
+    if (defaults != null) {
+      for (final name in ['pPr', 'rPr']) {
+        final wrapper = _child(defaults, '${name}Default');
+        final properties = wrapper == null ? null : _child(wrapper, name);
+        if (properties != null) _properties(properties, style: true);
       }
     }
     for (final style in root.childElements.where(
@@ -426,14 +544,14 @@ final class _ParagraphStyleEdit {
       _child(style, 'basedOn');
       for (final properties in ['pPr', 'rPr']) {
         final packet = _child(style, properties);
-        if (packet != null) _properties(packet);
+        if (packet != null) _properties(packet, style: true);
       }
       for (final region in style.childElements.where(
         (node) => _word(node, 'tblStylePr'),
       )) {
         for (final properties in ['pPr', 'rPr']) {
           final packet = _child(region, properties);
-          if (packet != null) _properties(packet);
+          if (packet != null) _properties(packet, style: true);
         }
       }
       styles[id] = style;
@@ -475,11 +593,17 @@ final class _ParagraphStyleEdit {
     List<XmlElement>? tableLayers;
     var occurrences = 0;
     final all = <WmlParagraph>[];
+    final blocksSeen = Set<WmlBlock>.identity();
     void locate(
       Iterable<WmlBlock> blocks, [
       List<XmlElement> inherited = const [],
     ]) {
       for (final block in blocks) {
+        if (!blocksSeen.add(block)) {
+          throw StateError(
+            'Paragraph style assignment requires uniquely owned, acyclic blocks.',
+          );
+        }
         if (block is WmlParagraph) all.add(block);
         if (identical(block, target)) {
           tableLayers = inherited;
@@ -498,6 +622,21 @@ final class _ParagraphStyleEdit {
               locate(cell.blocks, layers);
             }
           }
+        } else if (block is WmlToc) {
+          final generated = [
+            block.titleParagraph,
+            ...block.itemParagraphs,
+            for (final source
+                in block.sourcePresentation?.paragraphs ??
+                    <WmlTocSourceParagraph>[])
+              source.paragraph,
+          ];
+          if (generated.any((paragraph) => identical(paragraph, target))) {
+            _refuse('does not edit generated table-of-contents paragraphs');
+          }
+          // Generated/live cache runs are owners too: publishing a body run
+          // must not accidentally rewrite an aliased TOC title or result.
+          locate(generated, inherited);
         } else {
           for (final children in WordTree.childLists(block)) {
             locate(children, inherited);
@@ -557,31 +696,43 @@ final class _ParagraphStyleEdit {
         }
       }
     }
+    // Cycle/ownership checks above must precede generic field traversal.
+    if (WordFieldSpans.unbalanced(document).isNotEmpty) {
+      _refuse('cannot preserve unbalanced modeled field boundaries');
+    }
     final before = target.properties;
     if (before.numId != null ||
         before.listLabel != null ||
         before.listRestart != null) {
       _refuse('does not restyle actively numbered paragraphs');
     }
-    _fragment(before.sourcePropertiesXml, 'pPr');
-    final prepared = WmlClone.paragraph(target);
-    final serializer = WordSerializer();
-    final direct = _fragment(
-      serializer.paragraphPropertiesXml(prepared.properties),
-      'pPr',
-    );
-    // Use explicit sparse ownership, not a style ID inferred by the model from
-    // an outline level. Pending style edits have just been serialized here.
-    final oldReference = _child(direct, 'pStyle');
-    final oldStyle = oldReference == null
+    final nativeBefore = _fragment(before.sourcePropertiesXml, 'pPr');
+    final imported = before.importedValues;
+    final pendingStyle =
+        imported == null || imported['pStyle'] != '${before.styleId}';
+    final beforeReference = _child(nativeBefore, 'pStyle');
+    final oldStyle = pendingStyle
+        ? before.styleId
+        : beforeReference == null
         ? defaultParagraph
-        : _requiredValue(oldReference, 'val');
+        : _requiredValue(beforeReference, 'val');
     if (oldStyle != null &&
         (styles[oldStyle] == null ||
             (_attribute(styles[oldStyle]!, 'type') ?? 'paragraph') !=
                 'paragraph')) {
       _refuse('requires a resolved existing paragraph style');
     }
+    final prepared = WmlClone.paragraph(target);
+    // This setter replaces the pending pStyle value itself. Keep its original
+    // sparse packet while flushing other pending edits, so the general value
+    // serializer cannot discard extension metadata on the old reference.
+    prepared.properties.importedValues?['pStyle'] =
+        '${prepared.properties.styleId}';
+    final serializer = WordSerializer();
+    final direct = _fragment(
+      serializer.paragraphPropertiesXml(prepared.properties),
+      'pPr',
+    );
     for (final run in prepared.inlines.whereType<WmlRun>()) {
       final style = run.properties.styleId;
       if (style != null &&
@@ -631,6 +782,7 @@ final class _ParagraphStyleEdit {
         after.ilvl != before.ilvl) {
       _refuse('does not change effective paragraph numbering');
     }
+    _numberingStyleLinks(package, relationships, oldStyle, id);
     // Some legacy effective-property readers are permissive about namespace
     // aliases. This operation must never publish a value that changes when the
     // ordinary import cascade next resolves the same sparse source. Compare a
@@ -671,7 +823,12 @@ final class _ParagraphStyleEdit {
         'requires effective property namespaces stable across native reopens',
       );
     }
+    final liveRuns = target.inlines.whereType<WmlRun>().toList(growable: false);
+    // No further validation or fallible work follows. Preserve the identities
+    // used by caller selections, bookmarks, fields and revision ownership.
+    for (final (index, run) in liveRuns.indexed) {
+      run.properties = preparedRuns[index].properties;
+    }
     target.properties = prepared.properties;
-    target.inlines = prepared.inlines;
   }
 }

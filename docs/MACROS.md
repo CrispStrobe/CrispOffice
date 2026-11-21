@@ -212,16 +212,6 @@ including automatic advance timing, retain their current values. Source-level
 `SlideShowTransition.Duration` is expressed in seconds and compiles to exact
 integer milliseconds. Slide visibility uses the existing `pptx.slideHidden`.
 
-Native `docx.paragraphStyle` requires an explicit zero-based `paragraph`
-selector, optional ordinary story fields, and exactly one `name: String` or
-`builtin: int`. It selects an existing unique native paragraph style and
-preserves direct formatting while refreshing only that paragraph's inherited
-properties. Names use the document's primary style names, case-insensitively;
-the 13 supported numeric built-ins require their noncustom definitions.
-Missing/ambiguous styles, unresolved inheritance and effective numbering changes
-are refused atomically. See the [style contract](VBA_WORD_MACROS.md#existing-paragraph-styles)
-and `example/macros/word_styles.bas` for the exact bounded behavior.
-
 Native `docx.runFormat` additionally accepts Boolean `allCaps`, `smallCaps`,
 `superscript`, and `subscript` fields. A single native call must not provide both
 script-mode fields. Enabling a mode selects it; disabling it preserves an

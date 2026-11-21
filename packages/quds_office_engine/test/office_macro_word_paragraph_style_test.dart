@@ -74,6 +74,56 @@ void _refuses(
 }
 
 void main() {
+  test('pending style assignment retains original native marker metadata', () {
+    final document = _read(portable.wordStylesInput());
+    final paragraph = document.paragraphs.first;
+    final inlines = paragraph.inlines;
+    final run = inlines.first;
+    paragraph.properties.styleId = 'ReportBody';
+    native.applyStep(document, _step(builtin: -2));
+    expect(identical(paragraph.inlines, inlines), isTrue);
+    expect(identical(paragraph.inlines.first, run), isTrue);
+    final properties = XmlDocument.parse(
+      paragraph.properties.sourcePropertiesXml!,
+    ).root!;
+    final style = properties.firstChild('pStyle', namespaceUri: _w)!;
+    expect(style.getAttribute('val', namespaceUri: _w), 'ReportHeadingOne');
+    expect(
+      style.getAttribute('token', namespaceUri: 'urn:word-style-example'),
+      'keep-style',
+    );
+    expect(
+      style.getAttribute('val', namespaceUri: 'urn:word-style-example'),
+      'foreign-style',
+    );
+    expect(
+      style.firstChild('metadata', namespaceUri: 'urn:word-style-example'),
+      isNotNull,
+    );
+  });
+  test('style-linked numbering refuses even without an effective numId', () {
+    final package = OpcPackage.openBytes(_fixture());
+    (package.getPart('/word/numbering.xml') ??
+            package.createPart(
+              '/word/numbering.xml',
+              OfficeContentTypes.wordNumbering,
+            ))
+        .writeText(
+          '<w:numbering xmlns:w="$_w"><w:abstractNum w:abstractNumId="1">'
+          '<w:lvl w:ilvl="0"><w:pStyle w:val="ReportHeading"/></w:lvl>'
+          '</w:abstractNum></w:numbering>',
+        );
+    final relationships = package.relationshipsFor('/word/document.xml');
+    if (relationships.firstByType(RelationshipTypes.numbering) == null) {
+      relationships.add(
+        type: RelationshipTypes.numbering,
+        target: 'numbering.xml',
+      );
+    }
+    final document = _read(package.save());
+    expect(document.paragraphs.first.properties.numId, isNull);
+    _refuses(document, _step(builtin: -2));
+  });
   test(
     'unresolved effective property aliases refuse before live/reopen divergence',
     () {
@@ -649,7 +699,11 @@ void main() {
           (paragraphs.last.inlines[0] as WmlRun).properties =
               (paragraphs.first.inlines[0] as WmlRun).properties;
       }
-      _refuses(document, _step(builtin: -2));
+      _refuses(
+        document,
+        _step(builtin: -2),
+        matcher: kind == 'paragraph' ? throwsStateError : null,
+      );
     });
   }
   test('active numbering refusal retains pending direct formatting', () {

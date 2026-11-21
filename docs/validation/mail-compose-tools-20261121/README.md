@@ -8,8 +8,10 @@ regressions are retained in incremental remote checkpoints.
 
 **Subsequent local runtime qualification passed during Word style integration.**
 The genuine pinned Flutter 3.47.8 / Dart 3.13.7 SDK passed all 476 Mail core and
-924 Mail store tests, all 37 composer/settings/adapter tests, and 19 plain-text
-insertion tests. Strict analysis and formatting also passed. The v7 migration
+924 Mail store tests, all 37 composer/settings/adapter tests, and 21 plain-text
+insertion tests. The latest insertion run includes footnote/endnote selection
+ownership guards, and a further 89-case late-integration run covers those guards,
+strengthened migration assertions and native draft-host recovery. Strict analysis and formatting also passed. The v7 migration
 fixture was corrected to remove both new v10 tables before reconstructing the
 old schema. See the [completion record](../word-vba-styles-complete-20261121/README.md)
 for retained commands and receipts. Installed-app and live-provider checks
