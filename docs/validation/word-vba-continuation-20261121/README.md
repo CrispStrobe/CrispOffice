@@ -47,6 +47,8 @@ These checkpoints were saved remotely on
 | `801ad67ba8bf98083af79bcf4acb79757cf0f351` | Bounded text intrinsics, 156 compiler cases and independent Mail tests |
 | `2714483aafe059065b00dac23032023f9ddf7aac` | Word BAS, transaction/portable tests, independent corpus and public contract |
 | `7e33854158243c47e95c43fbb890cce23da4e0ce` | Latest main reconciliation; both Mail test suites preserved |
+| `0c16e3a56ce269e3d9bbb1cdf0213352f53e8707` | Final raw qualification evidence, provenance corrections and execution logs |
+| `0f7238bf75019a7f0d151af06fdda8914429e49e` | Proven-equivalent late branch merge ancestry; exact tested tree retained |
 
 GitHub Git-data writes use expected-head, non-forced ref updates. Every remote
 tree was compared with its local committed tree, then fetched back into the
@@ -140,6 +142,27 @@ Final publication is tracked by
 merge commit so earlier branch ancestry and checkpoints remain reachable.
 The PR's merge metadata identifies the resulting remote-main commit.
 
+### Late equivalent merge heads
+
+The final branch fetch also discovered
+`codex/zotero-odt-inventory-20261121` at
+`465ded3282ce03c636a9f0c17547fa5b94634de4` and
+`work/mail-unified-cache-20261121` at
+`db00cf411b21cb8c26878adaa535ffaa5e7e62db`. Both are merges of the same
+already-contained main `f50c4f233` and earlier Word checkpoint `2714483aa`.
+They introduce no unique product change. The Mail head gives the preserved
+47-test suite a different filename with an identical blob; the Zotero head
+concatenates the incoming and preserved suites with renamed private helpers.
+That concatenation was independently reconstructed exactly, ignoring only
+outer whitespace. The remaining differences are a CLI-helper comment, the
+three corrected provenance labels and newer qualification evidence here.
+
+`late-branch-proof.json` records every different path and the exact derivations.
+Both heads are preserved as additional parents of `0f7238bf`, whose tree is
+**exactly** the tested tree `c8333e399bc3a1a7d3ad9a0dc61d66e4e78e6646` from
+`0c16e3a5`. No production or test body changed. `late-refresh.json` records all
+26 captured branch heads as contained after that ancestry reconciliation.
+
 ## Preserved evidence
 
 - `evidence/engine/` retains the 85-file aggregate, exact commands, original
@@ -153,6 +176,8 @@ The PR's merge metadata identifies the resulting remote-main commit.
 - `source-manifest.json` binds the final relevant changed source, tests,
   example and public contract files to their SHA-256 values.
 - `refresh.json` records the surviving branch heads and their containment.
+- `late-refresh.json` and `late-branch-proof.json` retain the final captured
+  equivalent merge heads and their independently verified preservation.
 
 Large raw `.jsonl` event streams are stored as `.jsonl.gz`; receipt filenames
 refer to their decompressed bytes. Portable generated JavaScript is
