@@ -166,6 +166,17 @@ bool _word(XmlElement element, String name) =>
 void _setWordAttribute(XmlElement element, String name, String value) {
   var prefix = element.prefix;
   if (prefix.isEmpty) {
+    prefix =
+        element.attributes
+            .where(
+              (attribute) =>
+                  attribute.namespaceUri == _w && attribute.prefix.isNotEmpty,
+            )
+            .map((attribute) => attribute.prefix)
+            .firstOrNull ??
+        '';
+  }
+  if (prefix.isEmpty) {
     final used = <String>{};
     void collect(XmlElement node) {
       used.add(node.prefix);
@@ -237,6 +248,12 @@ void _validateSource(XmlElement root) {
     }
   }
   void alternatives(XmlElement node) {
+    if (_word(node, 'sectPrChange')) return;
+    if (_hasProcessContent(node)) {
+      throw UnsupportedError(
+        'Page setup refuses ProcessContent section markup.',
+      );
+    }
     if (node.namespaceUri == OfficeNamespaces.mc &&
         node.localName == 'AlternateContent') {
       throw UnsupportedError(
@@ -244,7 +261,6 @@ void _validateSource(XmlElement root) {
       );
     }
     // A recorded previous section is opaque history, not current geometry.
-    if (_word(node, 'sectPrChange')) return;
     for (final child in node.childElements) {
       alternatives(child);
     }
@@ -277,6 +293,9 @@ void _validateSettings(WmlDocument document) {
     'bookFoldRevPrinting',
   };
   void visit(XmlElement node) {
+    if (_hasProcessContent(node)) {
+      throw UnsupportedError('Page setup refuses ProcessContent settings.');
+    }
     if (node.namespaceUri != _w && node.namespaceUri != OfficeNamespaces.mc) {
       return;
     }
@@ -315,6 +334,11 @@ void _validateOriginalSections(WmlDocument document) {
     bool alternative = false,
   }) {
     if (_word(node, 'sectPrChange')) return;
+    if (_hasProcessContent(node)) {
+      throw UnsupportedError(
+        'Page setup refuses ProcessContent section markup.',
+      );
+    }
     final currentSection = section || _word(node, 'sectPr');
     final currentAlternative =
         alternative ||
@@ -335,3 +359,10 @@ void _validateOriginalSections(WmlDocument document) {
 
   visit(root);
 }
+
+bool _hasProcessContent(XmlElement element) =>
+    element
+        .getAttribute('ProcessContent', namespaceUri: OfficeNamespaces.mc)
+        ?.trim()
+        .isNotEmpty ??
+    false;

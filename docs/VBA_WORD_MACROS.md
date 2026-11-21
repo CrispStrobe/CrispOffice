@@ -6,8 +6,8 @@ adapter by default. Select language **`vba-word`** and format **`docx`**; the
 separate `vba-excel` adapter and its spreadsheet contract remain available.
 
 Compilation evaluates the supplied source without opening or reading a
-document. The supported Word objects describe explicit paragraph selectors.
-The ordinary native runtime resolves those selectors against a detached Word
+document. The supported Word objects describe explicit paragraph and section
+selectors. The ordinary native runtime resolves those selectors against a detached Word
 document, applies the ordered operations, and publishes saved bytes only after
 the complete plan succeeds. The same mutation permissions, tool allowlists,
 step limits, cancellation, document admission, and save guards apply to native
@@ -48,10 +48,16 @@ Sub Main()
 End Sub
 ```
 
-`Document`, `Paragraph`, `Range`, `Font`, `ParagraphFormat`, `TabStops`, and `ListFormat` declarations
-support explicit `Set` bindings and `ByVal` helper parameters. `With` may target
-these supported objects or the range's `Font` and `ParagraphFormat`. All bindings remain
+`Document`, `Section`, `PageSetup`, `Paragraph`, `Range`, `Font`,
+`ParagraphFormat`, `TabStops`, and `ListFormat` declarations support explicit
+`Set` bindings and `ByVal` helper parameters. `With` may target these supported
+objects or the range's `Font` and `ParagraphFormat`. All bindings remain
 document-independent selectors; they never expose text or formatting reads.
+
+`Document.Sections(i)` and `.Sections.Item(i)` select an existing section.
+Its `PageSetup` supports the eight explicit geometry writes documented below.
+Section geometry is independent of body paragraph selection; a section's
+headers, footers and range are not exposed as source objects.
 
 `Paragraph.Format` returns the same formatting selector as
 `Paragraph.Range.ParagraphFormat`. A typed alias retains its selected paragraph
@@ -83,9 +89,10 @@ Word object members are unavailable in `vba-excel`.
 
 ## Exact native mapping
 
-In this table, `i` is a one-based paragraph index and `p` is `i - 1`. Every
-operation uses the native default `body` story. The compiler does not emit a
-header, footer, note, or comment story selector.
+In the following paragraph table, `i` is a one-based paragraph index and `p`
+is `i - 1`. These operations use the native default `body` story. The compiler
+does not emit a header, footer, note, or comment story selector. Section page
+geometry has its separate mapping below.
 
 | Word source operation | Native operation | Arguments in addition to `paragraph: p` |
 | --- | --- | --- |
@@ -146,6 +153,131 @@ rule/amount operation. Repeated
 `InsertBefore` calls act on the paragraph as it exists at each step: inserting
 `"A"` and then `"B"` before `"tail"` produces `"BAtail"`. A later font operation
 formats the paragraph's current text, including text inserted by earlier steps.
+
+### Section page setup
+
+`ThisDocument.Sections(i).PageSetup`,
+`ActiveDocument.Sections.Item(i).PageSetup`, and the corresponding
+`Application.ActiveDocument` form select page geometry for one explicit
+section. `Section` and `PageSetup` support typed aliases, required `ByVal`
+parameters, named helper arguments, and nested `With` blocks. `With` also
+supports the intermediate `Sections` collection. Rebinding a section variable
+does not retarget a previously bound `PageSetup`; rebinding a helper parameter
+affects only that helper's local selector. Both type names may also be used as
+local variable names.
+
+The index is an actual numeric value that is an exact integer in
+`1..9007199254740991`, following the shared bounded source integer contract.
+Compilation converts it to a zero-based native section index. Native execution
+checks that the section exists in the supplied document; there is no fallback
+to the first section. Section order follows the Quds document model, and the
+operation refuses markup-compatibility alternatives that could change section
+identity or geometry. Compilation does not inspect the document or its section
+count. `Sections(i)` and `.Item(i)` accept one positional index; named arguments
+remain available on declared helpers rather than on these selectors.
+
+Each assignment emits one `docx.pageSetup` operation with required `section`,
+`property`, and `points` arguments. It updates the following native attribute:
+
+| Word property | Native `property` | Native XML attribute |
+| --- | --- | --- |
+| `PageWidth` | `width` | `w:pgSz/@w:w` |
+| `PageHeight` | `height` | `w:pgSz/@w:h` |
+| `TopMargin` | `top` | `w:pgMar/@w:top` |
+| `BottomMargin` | `bottom` | `w:pgMar/@w:bottom` |
+| `LeftMargin` | `left` | `w:pgMar/@w:left` |
+| `RightMargin` | `right` | `w:pgMar/@w:right` |
+| `HeaderDistance` | `header` | `w:pgMar/@w:header` |
+| `FooterDistance` | `footer` | `w:pgMar/@w:footer` |
+
+All eight values are in points. They require actual finite numbers in exact
+`0.05`-point increments, with at most `2147483647` native twips
+(`107374182.35` points). Page dimensions must be at least one point; margins
+and header/footer distances must be nonnegative. These are the dialect's
+explicit numeric bounds. The implementation retains bounded Double arithmetic
+and does not emulate VBA `Single` rounding, printer-dependent limits, or
+implicit String/Boolean conversions. The existing physical measurement
+functions can supply values when their results satisfy this exact native grid.
+
+This example addresses the first existing section and uses a typed helper:
+
+```vb
+Sub SetReportMargins(ByVal page As PageSetup)
+    With page
+        .TopMargin = InchesToPoints(1)
+        .BottomMargin = InchesToPoints(0.75)
+        .LeftMargin = PicasToPoints(4.5)
+        .RightMargin = PicasToPoints(4.5)
+        .HeaderDistance = MillimetersToPoints(12.7)
+        .FooterDistance = CentimetersToPoints(1.27)
+    End With
+End Sub
+
+Sub Main()
+    Dim section As Section
+    Dim page As PageSetup
+    Set section = ActiveDocument.Sections.Item(1)
+    Set page = section.PageSetup
+    SetReportMargins page:=page
+    page.PageWidth = InchesToPoints(9)
+    page.PageHeight = InchesToPoints(12)
+End Sub
+```
+
+The complete [page-setup example](../packages/quds_office_engine/example/macros/word_page_setup.bas)
+also selects a second existing section and demonstrates a `Section` helper.
+Run it through the existing `compile-word-vba`, `validate-word-vba`, or
+`run-word-vba` commands with a template containing the required sections.
+For example, the first section's left-margin assignment above compiles to:
+
+```json
+{
+  "tool": "docx.pageSetup",
+  "arguments": { "section": 0, "property": "left", "points": 54 }
+}
+```
+
+Native execution validates the geometry after **each** assignment, using the
+current detached section after earlier plan operations. Margins must leave a
+positive page body, and the existing uniform columns and gaps must leave
+positive text width. Reduce margins before shrinking a page when the old
+margins would make an intermediate step invalid. A failure leaves the entire
+run unpublished, including earlier successful paragraph or page edits.
+The ordinary policy allowlist, recording, source work/operation limits,
+detached validation and atomic publication rules apply. A pending custom
+paragraph `LineSpacingRule`/`LineSpacing` pair must be completed before a page
+geometry write.
+
+The operation owns only the selected native measurement. Unedited sparse
+attributes, namespace aliases, extension metadata, unrelated section settings,
+document content and opaque DOCM project parts are retained. Missing native
+geometry groups are created from the current modeled values. A width or height
+assignment also clears native `w:pgSz/@w:code`, including for a same-value
+assignment, matching Word's custom-paper side effect; a foreign attribute
+named `code` is preserved. The existing source orientation remains unchanged.
+If an earlier general native `docx.sectionFormat` dimension edit is pending,
+its normal orientation behavior is retained before the sparse measurement
+write is applied. This does not expose a VBA `Orientation` setter.
+
+The guarded source subset refuses negative, malformed or universal-unit
+native measurements, nonzero gutters, duplicate native geometry/column
+elements or attributes, custom/unequal columns, alternate section
+properties, and `mc:ProcessContent` section/settings markup. Enabled
+mirrored-margin, top-gutter or book-fold settings are also
+refused, including those inside retained markup-compatibility branches;
+explicit native `0`, `false`, and `off` settings are allowed. Existing source
+can still be preserved as input without qualifying it for these edits.
+
+This slice does not provide `Document.PageSetup`, `Sections.PageSetup`,
+`Range.PageSetup`, `Selection`, property reads, `Sections.Count`, collection
+iteration, `First`/`Last`, section creation, `Section.Range`, header/footer
+objects, `Orientation`, `PaperSize`, `Gutter`, columns, or header/footer mode
+setters in VBA. Geometry changes do not edit header/footer content. Unused
+helpers and inactive branches are checked for unsupported members and types.
+
+The [local qualification record](validation/word-vba-paragraph-pagination-20261121/README.md)
+records the exact source and executed checks. No installed Microsoft Word or
+Flutter editor validation is claimed by this source/native geometry slice.
 
 ### Opening, closing and toggling paragraph spacing
 
@@ -639,6 +771,8 @@ Paragraph-format operations can target an empty paragraph.
 | `ParagraphFormat.LineSpacingRule` | Exact integer `0`, `1`, or `2`, including the single, 1.5-line, and double-line constants below |
 | Custom `ParagraphFormat.LineSpacingRule` | Exact integer `3`, `4`, or `5`, followed by a matching `LineSpacing` write under the paired contract below |
 | `ParagraphFormat.LineSpacing` | Positive finite number in exact `0.05`-point increments, at most `107374182.35` points (`2147483647` native twips) |
+| `PageSetup.PageWidth`, `PageSetup.PageHeight` | Actual finite number from `1` through `107374182.35` points, in exact `0.05`-point increments; native execution also checks page-body and column geometry |
+| `PageSetup.TopMargin`, `BottomMargin`, `LeftMargin`, `RightMargin`, `HeaderDistance`, `FooterDistance` | Actual finite number from `0` through `107374182.35` points, in exact `0.05`-point increments; native execution also checks current geometry |
 
 The named alignment constants are `wdAlignParagraphLeft = 0`,
 `wdAlignParagraphCenter = 1`, `wdAlignParagraphRight = 2`, and
@@ -1142,8 +1276,9 @@ The actual `word_typography.bas` example also produces identical native
 transaction and repeated-save results on VM and compiled JavaScript.
 
 Unsupported scope includes document-content reads,
-`Selection`, `Paragraphs.Count`, live collection iteration, editable character
-subranges, paragraph creation, whole-document ranges, tables as Word objects,
+`Selection`, `Paragraphs.Count`, `Sections.Count`, live collection iteration,
+editable character subranges, paragraph/section creation, whole-document ranges,
+document-wide page setup, tables as Word objects,
 headers and footers as Word objects, event entry points, COM, external files,
 and execution or editing of an embedded VBA project.
 
@@ -1153,6 +1288,10 @@ The following Microsoft references inform the supported source vocabulary and
 the explicit restrictions above. They do not certify this implementation:
 
 - [Paragraphs object](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphs): indexed paragraph access and main-story collection scope.
+- [Document.Sections](https://learn.microsoft.com/en-us/office/vba/api/word.document.sections), [Sections.Item](https://learn.microsoft.com/en-us/office/vba/api/word.sections.item), and [Section.PageSetup](https://learn.microsoft.com/en-us/office/vba/api/word.section.pagesetup): explicit section selection and page-setup object vocabulary; the source integer limits and no-read restrictions above are deliberate dialect boundaries.
+- [PageSetup.PageWidth](https://learn.microsoft.com/en-us/office/vba/api/word.pagesetup.pagewidth) and [PageHeight](https://learn.microsoft.com/en-us/office/vba/api/word.pagesetup.pageheight): point dimensions and the custom-paper side effect of each setter. Quds does not claim VBA Single rounding or a general paper-size object model.
+- [PageSetup.TopMargin](https://learn.microsoft.com/en-us/office/vba/api/word.pagesetup.topmargin), [BottomMargin](https://learn.microsoft.com/en-us/office/vba/api/word.pagesetup.bottommargin), [LeftMargin](https://learn.microsoft.com/en-us/office/vba/api/word.pagesetup.leftmargin), and [RightMargin](https://learn.microsoft.com/en-us/office/vba/api/word.pagesetup.rightmargin): page-to-body distances in points.
+- [PageSetup.HeaderDistance](https://learn.microsoft.com/en-us/office/vba/api/word.pagesetup.headerdistance) and [FooterDistance](https://learn.microsoft.com/en-us/office/vba/api/word.pagesetup.footerdistance): page-edge distances in points, separate from story content.
 - [Paragraphs.Item](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphs.item) and [Application.ActiveDocument](https://learn.microsoft.com/en-us/office/vba/api/word.application.activedocument): source vocabulary; the Quds session binding is explicitly scoped above.
 - [Paragraph.Format](https://learn.microsoft.com/en-us/office/vba/api/word.paragraph.format), [Font](https://learn.microsoft.com/en-us/office/vba/api/word.font), and [ParagraphFormat](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat): typed formatting objects; this dialect binds explicit paragraph selectors only.
 - [ParagraphFormat.ReadingOrder](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat.readingorder) and [WdReadingOrder](https://learn.microsoft.com/en-us/office/vba/api/word.wdreadingorder): reading direction independently of alignment, with exact RTL/LTR numeric identities.

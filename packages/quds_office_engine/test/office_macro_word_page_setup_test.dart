@@ -21,6 +21,8 @@ WmlDocument _fixture({
   String columns = '<w:cols w:num="2" w:space="720"/>',
   String extra = '',
   String settings = '',
+  String settingsAttributes = '',
+  String documentAttributes = '',
 }) {
   final package = OpcPackage.openBytes(
     (DocxDocumentBuilder()..paragraph('Original text')).build(),
@@ -29,7 +31,7 @@ WmlDocument _fixture({
       .getPart('/word/document.xml')!
       .writeText(
         '<w:document xmlns:w="$_w" xmlns:x="$_x" '
-        'xmlns:mc="${OfficeNamespaces.mc}"><w:body>'
+        'xmlns:mc="${OfficeNamespaces.mc}" $documentAttributes><w:body>'
         '<w:p><w:r><w:t>Original text</w:t></w:r></w:p>'
         '<w:sectPr>$size$margins$columns$extra'
         '<w:pgNumType w:start="7"/><x:metadata x:val="keep"/>'
@@ -40,7 +42,7 @@ WmlDocument _fixture({
         .getPart('/word/settings.xml')!
         .writeText(
           '<w:settings xmlns:w="$_w" xmlns:x="$_x" '
-          'xmlns:mc="${OfficeNamespaces.mc}">$settings</w:settings>',
+          'xmlns:mc="${OfficeNamespaces.mc}" $settingsAttributes>$settings</w:settings>',
         );
   }
   return WordDeserializer().read(package);
@@ -274,6 +276,60 @@ void main() {
         .firstChild('pgMar', namespaceUri: _w)!;
     expect(margins.getAttribute('left', namespaceUri: _w), '960');
     expect(margins.getAttribute('left', namespaceUri: _x), 'foreign');
+  });
+
+  test('mixed native edits never rebind an imported foreign namespace', () {
+    final document = _fixture(
+      size:
+          '<pgSz xmlns="$_w" xmlns:w="$_x" w:token="keep"><w:metadata/></pgSz>',
+    );
+    native.applyStep(document, {
+      'op': 'sectionFormat',
+      'section': 0,
+      'width': 700,
+      'height': 900,
+    });
+    native.applyStep(document, _step('left', 48));
+    final size = _section(WordSerializer().writeBytes(document))
+        .firstChild('pgSz', namespaceUri: _w)!;
+    expect(size.getAttribute('token', namespaceUri: _x), 'keep');
+    expect(size.getAttribute('token', namespaceUri: _w), isNull);
+    expect(size.firstChild('metadata', namespaceUri: _x), isNotNull);
+    expect(size.firstChild('metadata', namespaceUri: _w), isNull);
+    expect(size.getAttribute('w', namespaceUri: _w), '14000');
+    expect(size.getAttribute('h', namespaceUri: _w), '18000');
+  });
+
+  test(
+    'repeated writes reuse a native prefix without growing source metadata',
+    () {
+      final document = _fixture(
+        margins: '<pgMar xmlns="$_w" xmlns:w="$_x" w:token="keep"/>',
+      );
+      native.applyStep(document, _step('left', 48));
+      final source = document.sections.single.sourceProperties!.xml;
+      for (var index = 0; index < 50; index++) {
+        native.applyStep(document, _step('left', 48));
+      }
+      expect(document.sections.single.sourceProperties!.xml, source);
+    },
+  );
+
+  test('ProcessContent cannot hide active settings or section geometry', () {
+    _refuses(
+      _fixture(
+        settings: '<x:wrapper><w:mirrorMargins/></x:wrapper>',
+        settingsAttributes: 'mc:Ignorable="x" mc:ProcessContent="x:wrapper"',
+      ),
+      _step('left', 36),
+    );
+    _refuses(
+      _fixture(
+        extra: '<x:wrapper><w:pgMar w:left="20"/></x:wrapper>',
+        documentAttributes: 'mc:Ignorable="x" mc:ProcessContent="x:wrapper"',
+      ),
+      _step('left', 36),
+    );
   });
 
   for (final (name, document) in <(String, WmlDocument Function())>[
