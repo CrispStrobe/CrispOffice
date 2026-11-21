@@ -2570,11 +2570,14 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                   ? _openCredentialStorage
                   : null,
             ),
-          command(
-            icon: Icons.close,
-            tooltip: widget.strings.close,
-            onPressed: () => Navigator.of(context).maybePop(),
-          ),
+          // The saved-message view brings its own Close (it is shared with
+          // browser Studio); offering a second one here duplicates the action.
+          if (!_showSavedMessages)
+            command(
+              icon: Icons.close,
+              tooltip: widget.strings.close,
+              onPressed: () => Navigator.of(context).maybePop(),
+            ),
         ],
       ),
     ];
