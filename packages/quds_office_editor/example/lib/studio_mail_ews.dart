@@ -40,11 +40,10 @@ import 'studio_mail_sync_strings.dart';
 import 'studio_strings.dart';
 import 'studio_mail_reader_labels.dart';
 
-typedef StudioEwsProviderFactory =
-    MailEwsProvider Function(
-      MailEwsConfiguration configuration,
-      MailCredentialStore credentials,
-    );
+typedef StudioEwsProviderFactory = MailEwsProvider Function(
+  MailEwsConfiguration configuration,
+  MailCredentialStore credentials,
+);
 
 typedef StudioCloudAuthorizer =
     Future<MailResult<MailCloudTokenSource>> Function({
@@ -55,12 +54,11 @@ typedef StudioCloudAuthorizer =
       MailCloudLogSink? log,
     });
 
-typedef StudioCloudProviderFactory =
-    MailCloudProvider Function({
-      required MailCloudConfiguration configuration,
-      required MailCloudTokenSource tokenSource,
-      MailCloudLogSink? log,
-    });
+typedef StudioCloudProviderFactory = MailCloudProvider Function({
+  required MailCloudConfiguration configuration,
+  required MailCloudTokenSource tokenSource,
+  MailCloudLogSink? log,
+});
 
 /// Foreground Exchange Server or cloud mailbox host. Credentials belong to the
 /// session; drafts, visited views and explicitly opened messages use optional
@@ -661,37 +659,32 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       candidate = await (widget.draftStoreFactory ?? openStudioMailDraftStore)(
         identity,
       );
-      if (candidate case StudioMailOutboxStore(
-        :final account,
-      ) when account != identity.account) {
+      if (candidate case StudioMailOutboxStore(:final account)
+          when account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
       }
-      if (candidate case StudioMailComposeToolsStore(
-        :final account,
-      ) when account != identity.account) {
+      if (candidate case StudioMailComposeToolsStore(:final account)
+          when account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
       }
-      if (candidate case StudioMailDraftCatalog(
-        :final account,
-      ) when account != identity.account) {
+      if (candidate case StudioMailDraftCatalog(:final account)
+          when account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
       }
-      if (candidate case StudioMailMailboxStoreOwner(
-        :final mailboxStore,
-      ) when mailboxStore.account != identity.account) {
+      if (candidate case StudioMailMailboxStoreOwner(:final mailboxStore)
+          when mailboxStore.account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
       }
-      if (candidate case StudioMailFlagJournalOwner(
-        :final flagJournal,
-      ) when flagJournal.account != identity.account) {
+      if (candidate case StudioMailFlagJournalOwner(:final flagJournal)
+          when flagJournal.account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );

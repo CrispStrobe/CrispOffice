@@ -74,6 +74,15 @@ void _refuses(
 }
 
 void main() {
+  test(
+    'unresolved effective property aliases refuse before live/reopen divergence',
+    () {
+      final definitions =
+          '$_styles<w:style xmlns:s="$_w" w:styleId="Aliased" w:type="paragraph">'
+          '<w:name w:val="Aliased"/><s:rPr><s:b/><s:sz s:val="50"/></s:rPr></w:style>';
+      _refuses(_read(_fixture(styles: definitions)), _step(name: 'Aliased'));
+    },
+  );
   test('synchronized native style edits remain usable in the same plan', () {
     final document = _read(_fixture());
     native.applyStep(document, {

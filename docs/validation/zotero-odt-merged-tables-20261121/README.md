@@ -1,9 +1,13 @@
 # Native ODT merged tables and Zotero — 21 November 2026
 
-**Status: implementation and regression sources preserved; local runtime
-qualification pending.** Shared executor disk exhaustion prevented SDK
-installation and every subsequent shell invocation. This report distinguishes
-source review from executed tests; no new passing Dart/Flutter total is claimed.
+**Status: subsequent local runtime qualification completed.** The Word style
+integration checked the incoming reader/Zotero tests, existing ODT regressions
+and editor loading tests with the genuine pinned SDK; see the
+[completion record](../word-vba-styles-complete-20261121/README.md).
+
+At the original checkpoint, shared executor disk exhaustion prevented SDK
+installation and subsequent shell invocations. The original source-only
+qualification report below is retained as historical evidence.
 
 Starting main: `115f1c20131bf0157d047dfe2e9d704ddffb22a2`.
 Checkpoint branch: `codex/zotero-parity-20261121-evening`.

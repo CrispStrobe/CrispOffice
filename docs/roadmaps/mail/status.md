@@ -1,6 +1,6 @@
 # Mail implementation status — 21 November 2026
 
-## Account writing tools — implemented; runtime qualification open
+## Account writing tools — implemented and locally qualified
 
 The shared native composer now provides persistent per-account plain-text
 signatures, separate defaults for new messages and replies/forwards, and named
@@ -16,15 +16,15 @@ unsaved settings on failure and require readback after uncertain writes.
 
 Independent source review corrected an initially stale loading barrier, the
 optional no-catalog reply path, and a mismatch with Word's structured selection
-deletion. Regression suites are authored, including persistence, migration,
-account/lifecycle, draft/Outbox preservation and widget paths, but **none of this
-increment's tests or Dart analysis/formatting ran**: SDK setup exhausted the
-executor disk, ordinary cleanup could not start, and sandbox escalation was
-rejected. Later executor access was unavailable. GitHub Actions were not awaited.
+deletion. After the original executor failure, Word style integration ran the
+complete Mail core/store suites (476 and 924 passes), all 37 composer/settings/
+adapter tests, and 19 Word insertion tests with the genuine pinned SDK. It also
+fixed the old-schema migration fixture and completed strict analysis/formatting.
+GitHub Actions were not awaited.
 
 See [the workflow and limits](compose-tools.md) and
 [the exact source/qualification record](../../validation/mail-compose-tools-20261121/README.md).
-This delivers authoring source while runtime, provider and installed-platform
+This qualifies the local implementation; provider and installed-platform
 acceptance remain open. It does not claim full mail-client parity.
 
 ## Persistent saved-header searches

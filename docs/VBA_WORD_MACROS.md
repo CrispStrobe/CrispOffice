@@ -717,10 +717,14 @@ an unambiguous internal document/styles relationship, and resolved acyclic
 `basedOn` chains of matching type. Built-in selectors match the canonical
 primary names above and refuse custom styles; they do not guess localized
 translations. Missing styles are not created. Native source validation refuses
-ambiguous property packets, nested native style selectors, style-bearing markup
-compatibility alternatives, shared mutable target models and unbalanced field
-boundaries. Conservative checks can reject an ambiguous unrelated style or
-story. The native table cascade retains its existing supported conditional
+ambiguous property packets and property lookalikes, nested native style
+selectors, style-bearing markup compatibility alternatives, shared mutable
+target models, unbalanced field boundaries and unsaved replacements/deletions
+of the document's style-model definitions. A detached consistency check refuses
+effective-property alias shapes that the ordinary reopen cascade cannot retain;
+the tested native `pStyle` alias and its foreign metadata are preserved.
+Conservative checks can reject an ambiguous unrelated style or story.
+The native table cascade retains its existing supported conditional
 regions; this does not add full conditional-table-style parity.
 
 This increment refuses actively numbered paragraphs and style changes that

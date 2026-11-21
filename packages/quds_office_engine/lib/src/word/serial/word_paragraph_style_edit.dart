@@ -631,6 +631,46 @@ final class _ParagraphStyleEdit {
         after.ilvl != before.ilvl) {
       _refuse('does not change effective paragraph numbering');
     }
+    // Some legacy effective-property readers are permissive about namespace
+    // aliases. This operation must never publish a value that changes when the
+    // ordinary import cascade next resolves the same sparse source. Compare a
+    // second detached projection rather than broadening unrelated readers.
+    final reopenedProjection = WmlClone.paragraph(prepared);
+    final ordinary = _StyleCascade(reader, document).._load();
+    ordinary.paragraph(reopenedProjection, tableLayers!);
+    bool same(Map<String, String> left, Map<String, String> right) =>
+        left.length == right.length &&
+        left.entries.every((entry) => right[entry.key] == entry.value);
+    bool sameRun(WmlRunProps? left, WmlRunProps? right) =>
+        left == null && right == null ||
+        left != null &&
+            right != null &&
+            left.complexScript == right.complexScript &&
+            same(
+              WordPropertyIo.runValues(left),
+              WordPropertyIo.runValues(right),
+            );
+    final preparedRuns = prepared.inlines.whereType<WmlRun>().toList();
+    final ordinaryRuns = reopenedProjection.inlines
+        .whereType<WmlRun>()
+        .toList();
+    if (!same(
+          WordPropertyIo.paragraphValues(prepared.properties),
+          WordPropertyIo.paragraphValues(reopenedProjection.properties),
+        ) ||
+        !sameRun(
+          prepared.properties.importedParagraphMark,
+          reopenedProjection.properties.importedParagraphMark,
+        ) ||
+        preparedRuns.length != ordinaryRuns.length ||
+        preparedRuns.indexed.any(
+          (entry) =>
+              !sameRun(entry.$2.properties, ordinaryRuns[entry.$1].properties),
+        )) {
+      _refuse(
+        'requires effective property namespaces stable across native reopens',
+      );
+    }
     target.properties = prepared.properties;
     target.inlines = prepared.inlines;
   }

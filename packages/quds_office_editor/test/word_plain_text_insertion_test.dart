@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 
@@ -299,6 +300,45 @@ void main() {
     expect(controller.contentRevision, revision);
     expect(controller.canUndo, isFalse);
   });
+
+  for (final endnote in [false, true]) {
+    test('active ${endnote ? 'endnote' : 'footnote'} does not redirect '
+        'plain-text insertion into the body', () {
+      final note = WmlNote(
+        id: 1,
+        endnote: endnote,
+        addReference: false,
+        addReferenceSpace: false,
+        paragraphs: [
+          WmlParagraph(inlines: [WmlRun(text: 'Note text')]),
+        ],
+      );
+      final document = WmlDocument.empty(text: 'Body text');
+      (endnote ? document.endnotes : document.footnotes).add(note);
+      final controller = _controller(document: document);
+      _at(controller, 4);
+      const selection = TextSelection.collapsed(offset: 5);
+      controller.setNoteEditingTarget(note, selection);
+      final revision = controller.contentRevision;
+
+      expect(controller.insertPlainText('wrong story\ntext'), isFalse);
+
+      expect(_paragraphs(controller), ['Body text']);
+      expect(controller.noteEditText(note), 'Note text');
+      expect(controller.noteEditingTarget?.note, same(note));
+      expect(controller.noteEditingTarget?.selection, selection);
+      expect(controller.contentRevision, revision);
+      expect(controller.isDirty, isFalse);
+      expect(controller.canUndo, isFalse);
+
+      controller.clearNoteEditingTarget();
+      expect(controller.insertPlainText('!'), isTrue);
+      expect(_paragraphs(controller), ['Body! text']);
+      controller.undo();
+      expect(_paragraphs(controller), ['Body text']);
+      expect(controller.canUndo, isFalse);
+    });
+  }
 
   for (final selection in [false, true]) {
     test(

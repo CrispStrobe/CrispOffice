@@ -1,6 +1,14 @@
 # Word VBA paragraph styles — work in progress, 21 November 2026
 
-## Status
+## Completion notice
+
+This historical compiler-only checkpoint has been completed and qualified in
+the [Word style completion record](../word-vba-styles-complete-20261121/README.md).
+The native operation, preservation guards, independent incoming fixtures and
+local runtime checks are now implemented. The original status and workspace
+failure below are retained as evidence of what was true at this checkpoint.
+
+## Original status (superseded)
 
 **Not qualified and not ready to merge.** The source-compiler draft lowers
 paragraph `Style` assignments to `docx.paragraphStyle`. The native operation

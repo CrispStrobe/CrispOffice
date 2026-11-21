@@ -621,7 +621,8 @@ void main() {
           expect(database.userVersion, 7);
           expect(
             database.select(
-              "SELECT name FROM sqlite_master WHERE name='mailbox_sync_state'",
+              "SELECT name FROM sqlite_master WHERE name IN "
+              "('mailbox_sync_state','account_compose_settings','account_quick_texts')",
             ),
             isEmpty,
           );
@@ -629,6 +630,7 @@ void main() {
         }
         store = _value(await open());
         expect(database.userVersion, 10);
+        expect(_value(await store.loadComposeSettings(_account)).revision, 0);
         expect(snapshot()..remove('mailbox_sync_state'), prior);
         expect(_value(await store.loadSyncMailbox(_mailbox)), isNull);
         expect(_value(await store.listSyncMailboxes(_account)), isEmpty);

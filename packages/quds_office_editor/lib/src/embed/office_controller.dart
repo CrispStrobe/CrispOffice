@@ -4350,12 +4350,15 @@ class WordEditorController extends OfficeController {
   /// retained; HTML is not interpreted and the clipboard is not accessed.
   ///
   /// Returns false without changes for empty input, read-only surfaces,
-  /// non-text object selections or partial selections spanning paragraphs.
+  /// active Notes-pane targets, non-text object selections or partial selections
+  /// spanning paragraphs. Notes retain a separate selection, so this operation
+  /// must not fall through to the inactive body caret.
   /// Returns true after insertion. Unsupported content-control edits throw
   /// before any text is changed.
   bool insertPlainText(String text) {
     if (!config.allowsMutation ||
         text.isEmpty ||
+        noteEditingTarget != null ||
         selectedVisual != null ||
         selectedEquation != null ||
         (selectedFrame != null && !editingFrame) ||
