@@ -169,7 +169,7 @@ result. Nothing is silently flattened to make these structures fit.
 ### Tables in notes and annotations
 
 Add Note and Add Annotation preserve supported rectangular tables, including
-horizontal and vertical merged cells, as native Word tables. HTML `colspan`
+tables nested inside cells and horizontal/vertical merged cells, as native Word tables. HTML `colspan`
 values from 1 to 32 map to native `gridSpan`; `rowspan` values from 1 to 256 map
 to native restart/continuation cells. Both spans can be combined in one cell.
 Every row must cover the same number of logical columns, up to 32, including
@@ -177,12 +177,15 @@ positions occupied by preceding row spans. A fully covered row can contain no
 authored cells. Spans must fit the actual rows and stay within their row group;
 overlaps, uncovered positions and malformed spans refuse the whole insertion.
 Cells can contain ordinary or empty paragraphs, soft line breaks,
-headings, supported character formatting, links, lists, pictures and active
-citation fields. Empty cells and an entirely empty table retain their structure.
+headings, supported character formatting, links, lists, pictures, active
+citation fields and nested tables at ordinary cell block boundaries. Nested
+tables may also be wrapped in ordinary `div` elements. Empty cells and an
+entirely empty table retain their structure.
 Header-cell text starts bold and retains explicit inline emphasis changes.
 
 Citations follow the note's source order: rows from first to last, cells within
-each row, and then the paragraphs inside each cell. Refresh and bibliography
+each row, and then the blocks inside each cell, descending into a nested table
+at its position in that cell. Refresh and bibliography
 commands include that sequence. Lists in separate cells retain independent
 counters and starting numbers. The tables, cell content, native fields and
 supported formatting remain part of DOCX saving and reopening.
@@ -204,13 +207,14 @@ The additional table bounds are:
 
 | Limit | Supported range |
 | --- | --- |
-| Tables in one note | Up to 64 |
+| Tables in one note | Up to 64 across all nesting levels |
+| Table nesting depth | Up to eight levels, counting the outermost table |
 | Rows per table | Up to 256 |
 | Logical columns per table | Up to 32, equal across all rows |
 | Horizontal span per cell | An integer from 1 to 32 |
 | Vertical span per cell | An integer from 1 to 256, within its actual row group |
 | Native cells across the complete note | Up to 4,096, including generated continuation cells |
-| Native paragraphs across the complete note | Up to 10,000, including continuation-cell paragraphs |
+| Native paragraphs across the complete note | Up to 10,000, including continuation cells and trailing cell paragraphs |
 | Supplied column width | An integer from 1 to 4,000 CSS pixels; 0 means unspecified |
 | Total native table width | At most 4,000 points |
 
@@ -221,12 +225,16 @@ Explicit widths for the same logical column must agree across rows, including
 rows with different merge patterns. Widths use the same conversion as pictures:
 96 CSS pixels become 72 points. After reconciling all rows, a column with no
 explicit width uses a 120-point default. Each cell's native width is the sum of
-the grid widths it covers. The existing table layout fits an oversized grid to
-the available display width. Cell backgrounds accept
+the grid widths it covers. Each nested table reconciles its own widths without
+changing the containing table's grid. The existing table layout fits an
+oversized grid to the available display width. Cell backgrounds accept
 three- or six-digit hexadecimal colors, integer RGB colors, or transparent.
 
 The supported HTML structure is `table`, optional `tbody`, `tr`, `td` and
-`th`. Nested tables, tables inside list items, unequal logical row widths,
+`th`. A cell ending in a nested table receives a native trailing paragraph
+before citation/list indexes are finalized; saving and reopening retains that
+same paragraph order. Tables inside list items, inline paragraphs or links,
+unequal logical row widths,
 spans crossing row-group boundaries, separate header/footer row groups,
 captions, custom table classes and other
 table/row/cell styling are refused. A malformed table, unsupported image, or
@@ -240,9 +248,11 @@ physical row geometry. The layout currently assigns the originating cell's
 content height to its first row. Compact distribution of that height across
 several rows, as in Word, remains a separate fidelity item.
 
+The [nested-table work record](validation/zotero-nested-tables-20261121/README.md)
+identifies the current implementation and its qualification scope.
 The [vertical-table validation record](validation/zotero-vertical-tables-20261120/README.md)
-identifies this continuation's source checkpoints, checks and application-acceptance
-scope. The [horizontal-merge and Refresh record](validation/zotero-merged-cells-20261120/README.md)
+retains that increment's source-specific evidence.
+The [horizontal-merge and Refresh record](validation/zotero-merged-cells-20261120/README.md)
 retains the preceding increment's evidence. The [earlier table record](validation/zotero-research-tables-20261120/README.md)
 retains its original evidence.
 Local model and controller checks are separate from opening and refreshing the

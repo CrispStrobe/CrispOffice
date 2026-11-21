@@ -11,6 +11,8 @@ identified application, Zotero and plugin versions. LibreOffice results do not
 establish that compatibility.
 
 The [usage guide](../../zotero-support.md) describes the current controls. The
+[nested-table work record](../../validation/zotero-nested-tables-20261121/README.md)
+tracks bounded nested research content and its qualification. The
 [table-cell range work record](../../validation/zotero-table-cell-ranges-20261121/README.md)
 tracks the latest cell-local editing increment. The
 [document-transfer work record](../../validation/zotero-transfer-20261121/README.md)
@@ -36,7 +38,7 @@ results retain their original source and platform attribution.
 | Refresh | Complete supported document sequence sent to Zotero's processor, including note order, numeric renumbering, disambiguation, style-dependent ibid. and merging of directly touching citation packets | Merge hints require physical adjacency in the same paragraph/story/note; live acceptance must be repeated on the exact release/host |
 | Bibliography | Native add/edit, entry paragraphs, rich runs, hanging indents, spacing and tab stops | Replacement requires a complete exclusively owned bibliography range |
 | Unlink citations | Explicit individual and document-wide conversion with undo | Verify final target-application files separately |
-| Add Note | Rich paragraphs, headings, nested lists up to nine levels, multiparagraph items, links, pictures, rectangular tables with combined row/column spans and active citations; insertion in body or authored notes and replacement across consecutive ordinary paragraphs in one section, note or table cell | Table payloads require a main-flow destination; cross-cell/control ranges, selected protected/structural content, compact merged-row height distribution, incoming nested tables, header/footer row groups, custom table styling and custom/reversed list markers remain unsupported |
+| Add Note | Rich paragraphs, headings, nested lists up to nine levels, multiparagraph items, links, pictures, rectangular tables nested up to eight levels with combined row/column spans and active citations; insertion in body or authored notes and replacement across consecutive ordinary paragraphs in one section, note or table cell | Table payloads require a main-flow destination; cross-cell/control ranges, selected protected/structural content, compact merged-row height distribution, header/footer row groups, custom table styling and custom/reversed list markers remain unsupported |
 | Add Annotation | Zotero 9+ native annotation picker, text/comments and supported PNG image/ink content with active citations | Uses the same bounded image/content envelope as Add Note |
 | Library/source discovery | Local/online catalogs, collections, saved searches, tags, source details, cited-source reuse and occurrence navigation | Local and online catalog APIs have different connection/version requirements |
 | Research materials | Read-only direct-child note previews and attachment metadata | No separate attachment-file download or Zotero library write workflow |
@@ -265,6 +267,22 @@ standard Notes pane still edits main-flow note paragraphs, so this does not
 claim a new Notes-pane table editor. The [work record](../../validation/zotero-table-cell-ranges-20261121/README.md)
 separates local qualification from installed Word/LibreOffice plugin acceptance.
 
+## Delivered increment: nested research tables
+
+Add Note and Add Annotation preserve tables nested at ordinary cell block
+boundaries, up to eight table levels including the outermost table. Explicit
+owner frames reconstruct the actual native cell/block tree. Citations and list
+metadata follow recursive document order, including generated merged-cell and
+trailing cell paragraphs. Each table validates its own spans and widths while
+the complete note shares table, cell, paragraph, link and image budgets.
+
+Body and authored-note destinations retain detached publication and one undo
+transaction. A table-containing payload still requires a main-flow target;
+tables inside list items/inline content, custom table styles and cross-cell
+replacement remain separate work. The
+[work record](../../validation/zotero-nested-tables-20261121/README.md) records
+local qualification separately from installed-application acceptance.
+
 ## Next implementation and acceptance steps
 
 1. **Finish installed-application transfer acceptance and native ODT input.**
@@ -274,7 +292,7 @@ separates local qualification from installed Word/LibreOffice plugin acceptance.
    authored notes, tables, images and repeated transfers. Implement native ODT
    reference-mark/preference ownership in the ODF reader before claiming direct
    active-ODT editing; the current Quds import path is DOCX.
-2. **Extend table structure and formatting.** Improve merged-row height distribution and map nested tables,
+2. **Extend table structure and formatting.** Improve merged-row height distribution and map
    header/footer row groups and custom styles to native structures with explicit
    ownership. Qualify their citation order, geometry, save/reopen behavior and
    rendering before accepting them. Add table-cell editing in the Notes pane

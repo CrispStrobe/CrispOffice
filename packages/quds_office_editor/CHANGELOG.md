@@ -4,6 +4,12 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Accept nested Zotero research-note/annotation tables through the existing
+  native commands, retaining active citations, rich content, body/authored-note
+  ownership and one undo/redo step. Table-containing payloads still require
+  a main-flow destination; Notes-pane table editing and installed-plugin
+  interoperability remain separate acceptance scopes.
+
 - Add native **Synchronized mail** for IMAP, EWS, Gmail and Microsoft 365:
   explicit bounded Start/Continue/Check for changes, Stop, persistent page
   checkpoints and offline synchronized-header browsing. Reuse existing cached
