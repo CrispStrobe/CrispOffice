@@ -21,9 +21,7 @@ void main() {
         expect(strings.selectionHelpText.trim(), isNotEmpty);
         expect(strings.selectionHelpText, contains('Escape'));
         expect(strings.selectionHelpText, contains(strings.bulkActions));
-        final rangeKey = language == StudioLanguage.de
-            ? 'Umschalt'
-            : 'Shift';
+        final rangeKey = language == StudioLanguage.de ? 'Umschalt' : 'Shift';
         expect(strings.selectionHelpText, contains(rangeKey));
         if (language != StudioLanguage.en) {
           expect(strings.selectionHelp, isNot(english.selectionHelp));
@@ -35,9 +33,7 @@ void main() {
         await tester.pumpWidget(
           MaterialApp(
             home: MediaQuery(
-              data: const MediaQueryData(
-                textScaler: TextScaler.linear(1.4),
-              ),
+              data: const MediaQueryData(textScaler: TextScaler.linear(1.4)),
               child: Directionality(
                 textDirection: direction,
                 child: Scaffold(
@@ -69,10 +65,7 @@ void main() {
           strings.selectionHelpText.split('\n').first,
         );
         expect(firstParagraph, findsOneWidget);
-        expect(
-          Directionality.of(tester.element(firstParagraph)),
-          direction,
-        );
+        expect(Directionality.of(tester.element(firstParagraph)), direction);
         expect(
           MediaQuery.textScalerOf(tester.element(firstParagraph)).scale(10),
           14,

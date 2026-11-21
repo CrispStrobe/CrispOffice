@@ -260,7 +260,7 @@ void assertWordComparisonColorsOutput(
                 ?.getAttribute('token', namespaceUri: _extension) ==
             'nested',
     'Explicit font color lost metadata or retained a competing theme: '
-        '${XmlDocument(root: color.copy()).toXmlString()}',
+    '${XmlDocument(root: color.copy()).toXmlString()}',
   );
   _check(
     main.readText().contains('w:val="auto"') &&

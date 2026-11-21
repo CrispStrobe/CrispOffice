@@ -151,9 +151,7 @@ Future<WordEditorController> _studio(
                 builder: (context) => Column(
                   children: [
                     chrome(context),
-                    const Expanded(
-                      child: Center(child: Text('Mail fixture')),
-                    ),
+                    const Expanded(child: Center(child: Text('Mail fixture'))),
                   ],
                 ),
               )
@@ -544,10 +542,7 @@ void main() {
         expect(WordZoteroDocumentData.read(document), beforeData);
         expect(controller.canUndo, isFalse);
         expect(controller.zoteroFields, isEmpty);
-        expect(
-          find.textContaining('The document changed'),
-          findsOneWidget,
-        );
+        expect(find.textContaining('The document changed'), findsOneWidget);
         Navigator.of(tester.element(find.byType(Dialog))).pop();
         await _frames(tester);
         expect(desktop.disposals, 1);
