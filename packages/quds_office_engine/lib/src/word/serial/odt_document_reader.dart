@@ -820,11 +820,13 @@ final class _OdtReader {
   int _tableSpan(XmlElement element, String name, int maximum) {
     final raw = _attr(element, name, odfTableNamespace);
     if (raw == null) return 1;
-    final lexical = raw.trim();
-    // Positive-integer XML values may carry a plus sign or leading zeros;
-    // Dart's hexadecimal integer syntax is not an ODF span value.
-    if (!RegExp(r'^\+?[0-9]+$').hasMatch(lexical)) _unsupported(element);
-    final value = int.tryParse(lexical);
+    // Positive-integer XML values may carry a plus sign, leading zeros and
+    // XML whitespace. Validate the original value before String.trim can
+    // remove non-XML Unicode spaces; hexadecimal syntax is not an ODF span.
+    if (!RegExp(r'^[ \t\r\n]*\+?[0-9]+[ \t\r\n]*$').hasMatch(raw)) {
+      _unsupported(element);
+    }
+    final value = int.tryParse(raw.trim());
     if (value == null || value < 1 || value > maximum) _unsupported(element);
     return value;
   }

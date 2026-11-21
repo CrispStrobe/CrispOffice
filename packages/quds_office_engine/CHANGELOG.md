@@ -4,6 +4,15 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Extend bounded native ODT input with horizontal/vertical merged tables.
+  Validate explicit covered-cell ownership, preserve originating Zotero fields,
+  and emit empty native vertical continuations with summed logical widths.
+  Keep existing styles and shared table/cell/paragraph budgets; refuse hidden
+  covered content, ambiguous coverage, conflicting shading and repeated owners.
+  Engine/editor regression sources and independent source review are preserved.
+  Local runtime qualification remains pending after executor disk exhaustion;
+  see the [work record](../../docs/validation/zotero-odt-merged-tables-20261121/README.md).
+
 - Preserve namespace scope when capturing XML fragments: retain inherited
   prefixes, including QName-only extension references, without allowing a
   descendant's prefix shadow to overwrite the captured root's identity.

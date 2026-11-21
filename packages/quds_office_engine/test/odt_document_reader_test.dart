@@ -1058,18 +1058,26 @@ void main() {
       ('number-columns-spanned', '0'),
       ('number-columns-spanned', '33'),
       ('number-columns-spanned', '0x2'),
+      ('number-columns-spanned', '\u00a02'),
+      ('number-columns-spanned', '2\u00a0'),
       ('number-columns-spanned', '1.0'),
       ('number-rows-spanned', '-1'),
       ('number-rows-spanned', '257'),
       ('number-rows-spanned', '1e0'),
       ('number-rows-spanned', ''),
     ]) {
+      // Supply valid two-column coverage for numeric-looking values, so
+      // refusal proves the lexical guard rather than a separate overhang.
+      final covered =
+          invalid == '0x2' || invalid == '\u00a02' || invalid == '2\u00a0'
+          ? '<table:covered-table-cell/>'
+          : '';
       await expectLater(
         OdtDocumentReader.readBytes(
           _package(
             '<table:table><table:table-row><table:table-cell table:$name="$invalid">'
             '<text:p>${_mark(_citation(), 'Citation')}</text:p>'
-            '</table:table-cell></table:table-row></table:table>',
+            '</table:table-cell>$covered</table:table-row></table:table>',
           ),
         ),
         _refused,
