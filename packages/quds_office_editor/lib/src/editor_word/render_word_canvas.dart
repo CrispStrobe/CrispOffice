@@ -4496,8 +4496,12 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
       }
       if (box.kind == LaidOutBoxKind.footnote) {
         if (box.fillColor != null && box.fillColor!.isNotEmpty) {
+          // Modeled separators are fill-only frames with exact geometry.
+          // The conventional fallback still carries an outline for the
+          // historic PDF path and retains its established editor thickness.
+          final thickness = box.strokeColor.isEmpty ? box.height : 0.7;
           canvas.drawRect(
-            Rect.fromLTWH(box.x, box.y, box.width, box.height),
+            Rect.fromLTWH(box.x, box.y, box.width, thickness),
             Paint()..color = _colorFromHex(box.fillColor!),
           );
         }

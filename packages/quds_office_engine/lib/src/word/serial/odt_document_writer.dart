@@ -387,8 +387,21 @@ abstract final class OdtDocumentWriter {
               double.parse(separator.beforeSpacing.toStringAsFixed(2)) +
               double.parse(separator.afterSpacing.toStringAsFixed(2)) +
               double.parse(separator.thickness.toStringAsFixed(2));
+          if ([
+            separator.beforeSpacing,
+            separator.afterSpacing,
+            separator.thickness,
+          ].any((value) => value > 1000000)) {
+            throw UnsupportedError(
+              'ODT footnote separator exceeds the length limit.',
+            );
+          }
+          final roundedContentHeight =
+              double.parse(page.height.toStringAsFixed(2)) -
+              double.parse(margins.top.toStringAsFixed(2)) -
+              double.parse(margins.bottom.toStringAsFixed(2));
           if (document.footnotes.isNotEmpty &&
-              roundedHeight >= section.contentHeight) {
+              roundedHeight >= roundedContentHeight) {
             throw UnsupportedError('ODT footnote separator consumes the page.');
           }
           w.writeEmptyElement(

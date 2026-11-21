@@ -94,6 +94,17 @@ void _expectClearBand(LaidOutDocument layout, WmlDocument document) {
         ),
       );
     }
+    for (final frame in page.frames.where(
+      (box) => box.isNoteContent && box.kind != LaidOutBoxKind.footnote,
+    )) {
+      expect(frame.y, greaterThanOrEqualTo(section.margins.top - .01));
+      expect(
+        frame.y + frame.height,
+        lessThanOrEqualTo(
+          section.pageSize.height - section.margins.bottom + .01,
+        ),
+      );
+    }
     if (separator.visible) {
       final rule = _separators(page).single;
       expect(rule.y, closeTo(reservationTop + separator.beforeSpacing, .01));

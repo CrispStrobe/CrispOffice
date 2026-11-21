@@ -95,6 +95,48 @@ String _generatorMetadata(String xml, String producer) => xml.replaceFirst(
 );
 
 void main() {
+  test(
+    'ODT export refuses geometry exhausted only by emitted page precision',
+    () {
+      const separator = WmlFootnoteSeparator(
+        beforeSpacing: 99.489,
+        thickness: 0.5,
+        afterSpacing: 0,
+      );
+      final document = _document(separator);
+      document.sections.single
+        ..pageSize = const WmlPageSize(width: 200, height: 120.004)
+        ..margins = const WmlPageMargins(
+          top: 10.006,
+          bottom: 10.006,
+          left: 10,
+          right: 10,
+        );
+      expect(
+        separator.reservedHeight,
+        lessThan(document.sections.single.contentHeight),
+      );
+      expect(
+        () => OdtDocumentWriter.writeEditableZoteroBytes(document),
+        throwsUnsupportedError,
+      );
+      expect(document.footnoteSeparator, same(separator));
+    },
+  );
+
+  test(
+    'dormant exported separator lengths remain inside the reader envelope',
+    () {
+      final document = WmlDocument(
+        footnoteSeparator: const WmlFootnoteSeparator(beforeSpacing: 1000001),
+      );
+      expect(
+        () => OdtDocumentWriter.writeBytes(document),
+        throwsUnsupportedError,
+      );
+    },
+  );
+
   for (final alignment in WmlFootnoteSeparatorAlignment.values) {
     test(
       'active $alignment geometry and note citation survive repeated ODT',

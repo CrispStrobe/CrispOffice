@@ -4,6 +4,7 @@ import '../../opc/relationships.dart';
 import '../../xml/namespaces.dart';
 import '../../xml/xml_node.dart';
 import '../../xml/xml_writer.dart';
+import '../model/wml_clone.dart';
 import '../model/wml_document.dart';
 import '../model/word_notes.dart';
 
@@ -65,26 +66,8 @@ abstract final class WordFootnoteSeparatorIo {
           allIds.where((id) => id == secondId).length != 1) {
         return null;
       }
-      final settings = _part(
-        package,
-        _mainUri(package),
-        RelationshipTypes.settings,
-        'settings.xml',
-      );
-      final settingsRoot = settings == null
-          ? null
-          : XmlDocument.parse(settings.readText()).root;
-      if (settingsRoot?.localName != 'settings' ||
-          settingsRoot?.namespaceUri != OfficeNamespaces.w) {
-        return null;
-      }
-      final refs = settingsRoot
-          ?.firstChild('footnotePr', namespaceUri: OfficeNamespaces.w)
-          ?.childrenNamed('footnote', namespaceUri: OfficeNamespaces.w)
-          .map((node) => int.tryParse(_attr(node, 'id') ?? ''))
-          .toList();
-      if (refs == null ||
-          refs.length != 2 ||
+      final refs = _specialReferenceIds(package);
+      if (refs.length != 2 ||
           !refs.contains(firstId) ||
           !refs.contains(secondId)) {
         return null;
@@ -138,6 +121,38 @@ abstract final class WordFootnoteSeparatorIo {
         'Hidden footnote separator spacing exceeds the DOCX range.',
       );
     }
+    final footnoteIds = document.footnotes.map((note) => note.id).toSet();
+    final normalizedReserve = before / 20 + eighths / 8 + after / 20;
+    for (final section in document.sections) {
+      final active = section.blocks
+          .expand(WmlClone.paragraphsOf)
+          .expand((paragraph) => paragraph.inlines.whereType<WmlRun>())
+          .any(
+            (run) => !run.noteRefEndnote && footnoteIds.contains(run.noteRefId),
+          );
+      if (!active) continue;
+      final verticalDimensions = [
+        section.pageSize.height,
+        section.margins.top,
+        section.margins.bottom,
+      ];
+      if (verticalDimensions.any(
+        (value) => !value.isFinite || value < 0 || value > 107374182.35,
+      )) {
+        throw UnsupportedError('Invalid footnote separator body height.');
+      }
+      final storedHeight =
+          ((section.pageSize.height * 20).round() -
+              (section.margins.top * 20).round() -
+              (section.margins.bottom * 20).round()) /
+          20;
+      if (geometry.reservedHeight >= section.contentHeight ||
+          normalizedReserve >= storedHeight) {
+        throw UnsupportedError(
+          'The modeled footnote separator exhausts the body height.',
+        );
+      }
+    }
     final package = document.package;
     final source = package == null ? null : _source(document, package);
     if (source != null &&
@@ -146,6 +161,13 @@ abstract final class WordFootnoteSeparatorIo {
       throw const FormatException('Invalid native footnote part.');
     }
     final definitions = _definitions(source);
+    if (definitions.isEmpty &&
+        package != null &&
+        _specialReferenceIds(package).isNotEmpty) {
+      throw UnsupportedError(
+        'Footnote settings reference missing separator definitions.',
+      );
+    }
     int normalId;
     int continuationId;
     if (definitions.isNotEmpty) {
@@ -229,12 +251,26 @@ abstract final class WordFootnoteSeparatorIo {
     }
     int? width;
     for (final section in document.sections) {
-      if (!section.contentWidth.isFinite ||
+      final dimensions = [
+        section.pageSize.width,
+        section.margins.left,
+        section.margins.right,
+      ];
+      if (dimensions.any(
+            (value) => !value.isFinite || value < 0 || value > 107374182.35,
+          ) ||
+          !section.contentWidth.isFinite ||
           section.contentWidth <= 0 ||
           section.contentWidth > 107374182.35) {
         throw UnsupportedError('Invalid footnote separator body width.');
       }
-      final candidate = (section.contentWidth * 20).round();
+      // The native writer rounds each stored page/margin independently.
+      // Rounding their difference instead can produce a one-twip disagreement
+      // and make a zero-width rule wider than its reopened body owner.
+      final candidate =
+          (section.pageSize.width * 20).round() -
+          (section.margins.left * 20).round() -
+          (section.margins.right * 20).round();
       if (candidate <= 0 || (width != null && width != candidate)) {
         throw UnsupportedError(
           'DOCX modeled footnote separators require a uniform body width across sections.',
@@ -287,6 +323,55 @@ abstract final class WordFootnoteSeparatorIo {
       'footnotes.xml',
     );
     return part == null ? null : XmlDocument.parse(part.readText()).root;
+  }
+
+  static List<int> _specialReferenceIds(OpcPackage package) {
+    final settings = _part(
+      package,
+      _mainUri(package),
+      RelationshipTypes.settings,
+      'settings.xml',
+    );
+    if (settings == null) return [];
+    final root = XmlDocument.parse(settings.readText()).root;
+    if (root?.localName != 'settings' ||
+        root?.namespaceUri != OfficeNamespaces.w) {
+      throw const FormatException('Invalid native Word settings.');
+    }
+    final groups = root!.childrenNamed(
+      'footnotePr',
+      namespaceUri: OfficeNamespaces.w,
+    );
+    if (groups.length > 1) {
+      throw const FormatException('Ambiguous native footnote settings.');
+    }
+    if (groups.isEmpty) return [];
+    final properties = groups.single;
+    if (properties.attributes.any(
+      (attr) => attr.prefix != 'xmlns' && attr.qualifiedName != 'xmlns',
+    )) {
+      throw const FormatException(
+        'Unsupported native footnote settings attributes.',
+      );
+    }
+    final ids = <int>[];
+    for (final node in properties.childrenNamed(
+      'footnote',
+      namespaceUri: OfficeNamespaces.w,
+    )) {
+      final id = int.tryParse(_attr(node, 'id') ?? '');
+      if (!_shape(node, {'id'}, []) ||
+          id == null ||
+          id < -2147483648 ||
+          id > 2147483647 ||
+          ids.contains(id)) {
+        throw const FormatException(
+          'Invalid native special footnote reference.',
+        );
+      }
+      ids.add(id);
+    }
+    return ids;
   }
 
   static List<XmlElement> _definitions(XmlElement? root) => [

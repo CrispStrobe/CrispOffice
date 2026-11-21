@@ -121,6 +121,77 @@ void main() {
     expect(document.footnoteSeparator!.visible, isFalse);
   });
 
+  test(
+    'dormant separator and deleting the last note retain conformant references',
+    () {
+      const separator = WmlFootnoteSeparator(relativeWidth: 1);
+      var document = WmlDocument.empty(text: 'No notes yet')
+        ..footnoteSeparator = separator;
+      for (var phase = 0; phase < 3; phase++) {
+        final package = WordSerializer().write(document);
+        expect(package.getPart('/word/footnotes.xml'), isNotNull);
+        expect(_references(package), [-1, 0]);
+        expect(
+          _definitions(
+            package,
+          ).map((node) => int.parse(node.getAttribute('id')!)),
+          [-1, 0],
+        );
+        document = WordDeserializer().readBytes(package.save());
+        expect(document.footnoteSeparator, separator);
+        if (phase == 0) {
+          WordNotes.insert(
+            document,
+            document.paragraphs.single,
+            endnote: false,
+            text: 'One note',
+          );
+        } else if (phase == 1) {
+          expect(
+            WordNotes.delete(
+              document,
+              document.footnotes.single.id,
+              endnote: false,
+            ),
+            isTrue,
+          );
+        } else {
+          expect(document.footnotes, isEmpty);
+        }
+      }
+    },
+  );
+
+  test(
+    'hidden and zero-relative rules retain nominal thickness through DOCX',
+    () {
+      for (final separator in [
+        const WmlFootnoteSeparator(
+          thickness: 3.375,
+          beforeSpacing: 0,
+          afterSpacing: 2.25,
+          relativeWidth: 1,
+          lineStyle: WmlFootnoteSeparatorLineStyle.none,
+        ),
+        const WmlFootnoteSeparator(
+          thickness: 3.375,
+          beforeSpacing: 0,
+          afterSpacing: 2.25,
+          relativeWidth: 0,
+        ),
+      ]) {
+        var document = _document(separator);
+        for (var cycle = 0; cycle < 3; cycle++) {
+          document = WordDeserializer().readBytes(
+            WordSerializer().writeBytes(document),
+          );
+          expect(document.footnoteSeparator, separator);
+          expect(document.footnoteSeparator!.reservedHeight, 5.625);
+        }
+      }
+    },
+  );
+
   test('DOCX quantization is bounded and stable over repeated saves', () {
     const original = WmlFootnoteSeparator(
       beforeSpacing: 3.123,
@@ -150,6 +221,23 @@ void main() {
       expect(document.footnoteSeparator, normalized);
     }
   });
+
+  test(
+    'fractional page and margin rounding preserve zero-relative separator ownership',
+    () {
+      const separator = WmlFootnoteSeparator(relativeWidth: 0, thickness: 0.5);
+      var document = _document(separator);
+      document.sections.single
+        ..pageSize = const WmlPageSize(width: 600.024, height: 844)
+        ..margins = const WmlPageMargins(left: 72.026, right: 72.026);
+      for (var cycle = 0; cycle < 3; cycle++) {
+        document = WordDeserializer().readBytes(
+          WordSerializer().writeBytes(document),
+        );
+        expect(document.footnoteSeparator, separator);
+      }
+    },
+  );
 
   test(
     'native special IDs are type-based and remain reserved for later note insertion',
@@ -272,6 +360,26 @@ void main() {
           final refs = root.firstChild('footnotePr')!.childrenNamed('footnote');
           _attribute(refs.last, 'id', refs.first.getAttribute('id')!);
         }),
+    'duplicate footnote properties': (package) =>
+        _rewrite(package, '/word/settings.xml', (root) {
+          root.addChild(root.firstChild('footnotePr')!.copy());
+        }),
+    'unknown special-reference attribute': (package) =>
+        _rewrite(package, '/word/settings.xml', (root) {
+          _attribute(
+            root.firstChild('footnotePr')!.childrenNamed('footnote').first,
+            'futureSetting',
+            '1',
+          );
+        }),
+    'special-reference content': (package) =>
+        _rewrite(package, '/word/settings.xml', (root) {
+          root
+              .firstChild('footnotePr')!
+              .childrenNamed('footnote')
+              .first
+              .addText('Unknown payload');
+        }),
     'different continuation geometry': (package) => _rewrite(
       package,
       '/word/footnotes.xml',
@@ -373,6 +481,77 @@ void main() {
     document.sections.add(
       WmlSection(pageSize: const WmlPageSize(width: 100, height: 200)),
     );
+    expect(() => WordSerializer().writeBytes(document), throwsUnsupportedError);
+    expect(document.package, isNull);
+  });
+
+  test(
+    'active separator and rounded geometry cannot exhaust the body height',
+    () {
+      for (final before in [699.49, 700.0]) {
+        final document = _document(
+          WmlFootnoteSeparator(
+            beforeSpacing: before,
+            afterSpacing: 0,
+            thickness: 0.5,
+          ),
+        );
+        document.sections.single.pageSize = const WmlPageSize(
+          width: 600,
+          height: 844,
+        );
+        expect(
+          () => WordSerializer().writeBytes(document),
+          throwsUnsupportedError,
+        );
+        expect(document.package, isNull);
+      }
+      final dormant = WmlDocument.empty(text: 'No anchor')
+        ..footnoteSeparator = const WmlFootnoteSeparator(
+          beforeSpacing: 800,
+          relativeWidth: 1,
+        );
+      expect(
+        WordDeserializer()
+            .readBytes(WordSerializer().writeBytes(dormant))
+            .footnoteSeparator,
+        dormant.footnoteSeparator,
+      );
+    },
+  );
+
+  test(
+    'fractional vertical page dimensions cannot conceal rounded separator exhaustion',
+    () {
+      final document = _document(
+        const WmlFootnoteSeparator(
+          beforeSpacing: 699.46,
+          afterSpacing: 0,
+          thickness: 0.5,
+        ),
+      );
+      document.sections.single
+        ..pageSize = const WmlPageSize(width: 600, height: 844.024)
+        ..margins = const WmlPageMargins(top: 72.026, bottom: 72.026);
+      expect(
+        document.footnoteSeparator!.reservedHeight,
+        lessThan(document.sections.single.contentHeight),
+      );
+      expect(
+        () => WordSerializer().writeBytes(document),
+        throwsUnsupportedError,
+      );
+      expect(document.package, isNull);
+    },
+  );
+
+  test('hidden nominal thickness overflow refuses before package creation', () {
+    final document = WmlDocument.empty(text: 'Dormant')
+      ..footnoteSeparator = const WmlFootnoteSeparator(
+        beforeSpacing: 107374182.35,
+        thickness: 12,
+        lineStyle: WmlFootnoteSeparatorLineStyle.none,
+      );
     expect(() => WordSerializer().writeBytes(document), throwsUnsupportedError);
     expect(document.package, isNull);
   });
