@@ -1,0 +1,147 @@
+{
+  "schema": "quds-mail-zotero-main-continuity-v1",
+  "comparison_base_commit": "2fdc0883b5c84b0b5133bb2be95c23af0dbcdd9f",
+  "incoming_main_commit": "ac94cb3faf840d3a8786fc9d3fb17cae07d4dcde",
+  "qualified_followup_commit": "ca726cd687a64a89cdd2b8e5df3f61dc57f4ca25",
+  "qualified_followup_tree": "8011024075bed83b30388d8deec72de2149886ad",
+  "qualified_broad_commit": "4b33109aa85e077e2798265efa045d640e6ead4e",
+  "audit_method": "Read local Git objects, compare exact tree/blob identities and SHA-256 source bindings, verify the published follow-up archive hash, and count the guard suite's actual non-hidden testDone events in that archive. No new test execution or GitHub Actions query.",
+  "incoming_delta": {
+    "changed_paths": 19,
+    "production_source": "packages/quds_office_engine/lib/src/word/serial/odt_writer_zotero.dart",
+    "production_added_lines": 15,
+    "guard_test": "packages/quds_office_engine/test/odt_zotero_position_guard_test.dart",
+    "guard_test_added_lines": 249,
+    "oracle_source": "packages/quds_office_engine/tool/zotero/odt_roundtrip_acceptance.dart",
+    "oracle_added_lines": 1,
+    "behavior": "Editable Zotero ODT preflight refuses effective nonzero absolute baseline positions on runs, paragraph marks and note markers without mutating the document or native package. Explicit zero overrides and separate superscript/subscript formatting remain supported. The oracle now compares positionHalfPoints.",
+    "other_changes": "Changelog, roadmap and published qualification artifacts. No active dependency-manifest changes."
+  },
+  "qualified_and_incoming_git_objects": {
+    "packages/quds_office_engine": {
+      "qualified_tree": "e5ceceb6577810a2ca8b924f83f631e26c57547f",
+      "incoming_tree": "e5ceceb6577810a2ca8b924f83f631e26c57547f"
+    },
+    "packages/legacy_doc_parser": {
+      "qualified_tree": "c5d871e967a3ba0b9d5224df3e8243e62bd782fc",
+      "incoming_tree": "c5d871e967a3ba0b9d5224df3e8243e62bd782fc"
+    },
+    "packages/quds_office_editor/lib": {
+      "qualified_tree": "dd442236528dfcbc0c4ff98da9f36208a9f49d6f",
+      "incoming_tree": "dd442236528dfcbc0c4ff98da9f36208a9f49d6f"
+    },
+    "pubspec.yaml": {
+      "qualified_blob": "ba34bf9e2c1b0eb583e5f9e2d9ba9f236a660f96",
+      "incoming_blob": "ba34bf9e2c1b0eb583e5f9e2d9ba9f236a660f96"
+    },
+    "pubspec.lock": {
+      "qualified_blob": "121a4f969c34933bd72f4ccce39bd08b30a4c147",
+      "incoming_blob": "121a4f969c34933bd72f4ccce39bd08b30a4c147"
+    },
+    "analysis_options.yaml": {
+      "qualified_blob": "e40c961c5eda58a8470527fb768f093aa7dbbfff",
+      "incoming_blob": "e40c961c5eda58a8470527fb768f093aa7dbbfff"
+    },
+    ".fvmrc": {
+      "qualified_blob": "4e46fba09bb9c1d654a226b7285b55b6949b3767",
+      "incoming_blob": "4e46fba09bb9c1d654a226b7285b55b6949b3767"
+    }
+  },
+  "source_binding_record": "docs/validation/zotero-odt-roundtrip-20261121/publication-source-binding.json",
+  "source_bindings": [
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_writer_zotero.dart",
+      "git_blob": "663a425fd991b08685d6a340c5425d9b65f79b44",
+      "recorded_sha256": "1f00215819a42fc04a86392075928baea8371645e2bbbedd58ee9403ad505af5",
+      "incoming_sha256": "1f00215819a42fc04a86392075928baea8371645e2bbbedd58ee9403ad505af5"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_zotero_position_guard_test.dart",
+      "git_blob": "a127dca29aeef1ad595fa94324043d840a8833c4",
+      "recorded_sha256": "d2cb6fdcde170c451de30d5a0fb41f3cefaadaed6b491592e799dee113e14ead",
+      "incoming_sha256": "d2cb6fdcde170c451de30d5a0fb41f3cefaadaed6b491592e799dee113e14ead"
+    },
+    {
+      "path": "packages/quds_office_engine/tool/zotero/odt_roundtrip_acceptance.dart",
+      "git_blob": "76b7cbf6da9043e55094376eb9bcf2370208244c",
+      "recorded_sha256": "e98dcebe47b54137fe45fb29d17285ab873be659ba9338fdfd4075744e39fcbe",
+      "incoming_sha256": "e98dcebe47b54137fe45fb29d17285ab873be659ba9338fdfd4075744e39fcbe"
+    }
+  ],
+  "published_followup_evidence": {
+    "publication_record": "docs/validation/zotero-odt-roundtrip-20261121/publication-followup.json",
+    "source_binding_record": "docs/validation/zotero-odt-roundtrip-20261121/publication-followup-source-binding.json",
+    "archive": "docs/validation/zotero-odt-roundtrip-20261121/publication-followup.tar.gz",
+    "recorded_archive_sha256": "44af2cc0370b892f428823ddf467e1984e25bd6bc2a12389f2eb06b0bffcf01b",
+    "observed_archive_sha256": "44af2cc0370b892f428823ddf467e1984e25bd6bc2a12389f2eb06b0bffcf01b",
+    "reporter_member": "fresh-followup-qualification/engine/events.jsonl",
+    "recorded_checkpoint": "ca726cd687a64a89cdd2b8e5df3f61dc57f4ca25",
+    "guard_reporter_audit": {
+      "suite": "odt_zotero_position_guard_test.dart",
+      "actual_non_hidden_completed_cases": 11,
+      "passed": 11,
+      "failed": 0,
+      "skipped": 0,
+      "method": "Match the suite path to suite IDs, collect its testStart IDs, and count their testDone events after excluding hidden loading events."
+    },
+    "guard_source_unchanged_between_broad_followup_and_incoming": true
+  },
+  "unchanged_from_comparison_base_to_incoming": {
+    "mail_and_shortcut_scope": "All paths under packages/quds_office_editor/, including Studio Mail, the saved-search refresh UI/tests, studio_shortcuts.dart, suite_workspace.dart, studio_settings.dart and suite_workspace_settings.dart.",
+    "other_mail_packages": "No package outside packages/quds_office_engine/ appears in the incoming delta.",
+    "root_inputs": [
+      "pubspec.yaml",
+      "pubspec.lock",
+      "analysis_options.yaml",
+      ".fvmrc"
+    ],
+    "active_package_manifest_changes": []
+  },
+  "qualification_limits": {
+    "new_test_execution_by_this_audit": false,
+    "followup_cases": 551,
+    "followup_suites": 21,
+    "earlier_broad_successful_cases": 2363,
+    "earlier_broad_successful_suites": 109,
+    "overlapping_scope_counts_added_together": false,
+    "blocked_prior_suite": "office_vba_word_position_integration_test.dart",
+    "blocked_prior_cases_receiving_no_additional_credit": 4,
+    "converter_continuity": "The published continuation uses an unchanged 386-file static workspace closure per converter and retained-kernel corroboration. This audit does not claim a new converter host run, compiler dependency trace, installed Zotero-plugin acceptance or Microsoft Word acceptance.",
+    "mail_and_shortcut_validation": "Independent final gate; imported Zotero test results provide no additional Mail or shortcut execution credit."
+  },
+  "integration_recommendation": {
+    "preserve_landed_main": true,
+    "post_merge_engine_tree_required": "e5ceceb6577810a2ca8b924f83f631e26c57547f",
+    "post_merge_identity_check_performed_by_this_receipt": true,
+    "additional_test_runs_required_if_identity_is_preserved": [],
+    "bounded_fallback_if_fresh_merged_head_execution_is_required": "Run only packages/quds_office_engine/test/odt_zotero_position_guard_test.dart (11 cases).",
+    "broad_suite_or_converter_rerun_warranted_by_this_delta": false
+  },
+  "post_merge_verification": {
+    "local_merge_checkpoint": "36007d574216cf7e8a59b747d65a96a73a0d5c1f",
+    "parents": [
+      "e9192f18597f10e44cc5dffd0b54ec45e904f697",
+      "ac94cb3faf840d3a8786fc9d3fb17cae07d4dcde"
+    ],
+    "engine_tree": "e5ceceb6577810a2ca8b924f83f631e26c57547f",
+    "unchanged_local_qualified_commit": "26e12bc3787f6b350cf185a14c6622bb9ac587f0",
+    "unchanged_paths": [
+      "packages/quds_office_editor",
+      "packages/quds_mail_core",
+      "packages/quds_mail_store",
+      "packages/quds_mail_mime",
+      "packages/quds_mail_transport",
+      "packages/quds_mail_ui",
+      "third_party",
+      "pubspec.yaml",
+      "pubspec.lock",
+      "analysis_options.yaml",
+      ".fvmrc"
+    ],
+    "initial_ref_observations": 163,
+    "initial_unique_commits": 121,
+    "all_initial_refs_actual_ancestors": true,
+    "uncovered_initial_refs": [],
+    "method": "Direct Git tree/diff comparison and complete reachable-commit traversal. Publication adds this receipt and work-record documentation without altering the verified source."
+  }
+}

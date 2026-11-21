@@ -1,0 +1,172 @@
+{
+  "schema": "quds-mail-live-search-shortcuts-integration-archive/v1",
+  "qualified_source_commit": "26e12bc3787f6b350cf185a14c6622bb9ac587f0",
+  "source_inputs_reverified_before_packaging": 5983,
+  "archive": {
+    "path": "shortcuts-integration.tar.xz",
+    "bytes": 246588,
+    "sha256": "33d445d78f1498d9f3aba72c28712f2ccd8e09dc0861de0aa32c8d16ef3cd40d"
+  },
+  "entries": [
+    {
+      "path": "shortcuts-integration/acceptance.json",
+      "bytes": 6299,
+      "sha256": "394d9e918b24217ab6a8077643ba330c370b81b5ec39ec06b3c4307e7e84da9d"
+    },
+    {
+      "path": "shortcuts-integration/analysis.receipt.json",
+      "bytes": 2073,
+      "sha256": "ced5dfcb59741d035fc296486ed5212f41d242736df8074f0b43263c78160b74"
+    },
+    {
+      "path": "shortcuts-integration/analysis.source-after.json",
+      "bytes": 875103,
+      "sha256": "4f55cd63a478030e0640e728b40064f941f9ef26d9c66fac92f53484aca86adc"
+    },
+    {
+      "path": "shortcuts-integration/analysis.source-before.json",
+      "bytes": 875103,
+      "sha256": "4f55cd63a478030e0640e728b40064f941f9ef26d9c66fac92f53484aca86adc"
+    },
+    {
+      "path": "shortcuts-integration/analysis.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "shortcuts-integration/analysis.stdout",
+      "bytes": 97,
+      "sha256": "650ed58501b505a583aa34e4a272bcc40edcbf6919374f0efec1a71ccf64a3cc"
+    },
+    {
+      "path": "shortcuts-integration/context.json",
+      "bytes": 3237,
+      "sha256": "f2119dec8b4657ac30c91ca1d919ed2172f8cb1e201f2144edd10f09e910fe24"
+    },
+    {
+      "path": "shortcuts-integration/dart-version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "shortcuts-integration/dart-version.stdout",
+      "bytes": 82,
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    {
+      "path": "shortcuts-integration/flutter-version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "shortcuts-integration/flutter-version.stdout",
+      "bytes": 628,
+      "sha256": "09dce27c1f3f1df7ace85e9c6e564318e5fbdc2d328064233d4d2f7b19448eb5"
+    },
+    {
+      "path": "shortcuts-integration/format.receipt.json",
+      "bytes": 1999,
+      "sha256": "22aa5f13bd8063132be3ba1322ffe60122348ca8f45870fc5ddf6ee7a45b1d0c"
+    },
+    {
+      "path": "shortcuts-integration/format.source-after.json",
+      "bytes": 875103,
+      "sha256": "4f55cd63a478030e0640e728b40064f941f9ef26d9c66fac92f53484aca86adc"
+    },
+    {
+      "path": "shortcuts-integration/format.source-before.json",
+      "bytes": 875103,
+      "sha256": "4f55cd63a478030e0640e728b40064f941f9ef26d9c66fac92f53484aca86adc"
+    },
+    {
+      "path": "shortcuts-integration/format.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "shortcuts-integration/format.stdout",
+      "bytes": 48,
+      "sha256": "a61af9745630d02fa97d96ac19cfaa382e546bdd23a76eff0a4ec4e4c173ed9d"
+    },
+    {
+      "path": "shortcuts-integration/qualification_support.py",
+      "bytes": 14866,
+      "sha256": "c6f494e2a570a354e456474ed72d14d3334e4b9ee115d1d6612f423d43247ec3"
+    },
+    {
+      "path": "shortcuts-integration/run_shortcuts_integration.py",
+      "bytes": 9729,
+      "sha256": "0f3018c002977f121a51ef9a386b270002fd2a3c3c3a07a778e502df59df1e8a"
+    },
+    {
+      "path": "shortcuts-integration/runtime-versions.json",
+      "bytes": 1468,
+      "sha256": "e50abcd8b4040b47573f0163a2e0a2d1b14a17df7b236668ded80db78c26203d"
+    },
+    {
+      "path": "shortcuts-integration/shortcuts-mail.cases.json",
+      "bytes": 18492,
+      "sha256": "328e57b41ee6ac0222721b7c0881d54fe36de2bf6104c5fb7937c62e8a77ad3e"
+    },
+    {
+      "path": "shortcuts-integration/shortcuts-mail.receipt.json",
+      "bytes": 2786,
+      "sha256": "5ab1a6cf53e77e29d301d74ac0e7b1cdb9fea58ea3cbd00b59950632eca70c16"
+    },
+    {
+      "path": "shortcuts-integration/shortcuts-mail.source-after.json",
+      "bytes": 875103,
+      "sha256": "4f55cd63a478030e0640e728b40064f941f9ef26d9c66fac92f53484aca86adc"
+    },
+    {
+      "path": "shortcuts-integration/shortcuts-mail.source-before.json",
+      "bytes": 875103,
+      "sha256": "4f55cd63a478030e0640e728b40064f941f9ef26d9c66fac92f53484aca86adc"
+    },
+    {
+      "path": "shortcuts-integration/shortcuts-mail.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "shortcuts-integration/shortcuts-mail.stdout",
+      "bytes": 28621,
+      "sha256": "bfab4619c43c815c92a55eceb02b678d46b6a151c1054f718aa1559a4ab1ebdb"
+    },
+    {
+      "path": "shortcuts-integration/source-after.json",
+      "bytes": 875103,
+      "sha256": "4f55cd63a478030e0640e728b40064f941f9ef26d9c66fac92f53484aca86adc"
+    },
+    {
+      "path": "shortcuts-integration/source-before.json",
+      "bytes": 875103,
+      "sha256": "4f55cd63a478030e0640e728b40064f941f9ef26d9c66fac92f53484aca86adc"
+    },
+    {
+      "path": "shortcuts-integration/summary.json",
+      "bytes": 12426,
+      "sha256": "d5b869f78f7b759d98b4350176c27e9500b34e0c7cb7b66abfd4a71767642bec"
+    },
+    {
+      "path": "shortcuts-integration-preflight-rejected/preflight-rejection.json",
+      "bytes": 947,
+      "sha256": "1e1c62040348ce6768974580a37c92829e3f26ed400d940403a452312f3d95a4"
+    },
+    {
+      "path": "shortcuts-integration-preflight-rejected/qualification_support.py",
+      "bytes": 14866,
+      "sha256": "c6f494e2a570a354e456474ed72d14d3334e4b9ee115d1d6612f423d43247ec3"
+    },
+    {
+      "path": "shortcuts-integration-preflight-rejected/run_shortcuts_integration.py",
+      "bytes": 9623,
+      "sha256": "75ac234c6170982db11e1ab1a77c980e18187bd3e82ee41aed55a39454ed2226"
+    },
+    {
+      "path": "shortcuts-integration-preflight-rejected/source-before.json",
+      "bytes": 875103,
+      "sha256": "4f55cd63a478030e0640e728b40064f941f9ef26d9c66fac92f53484aca86adc"
+    }
+  ]
+}
