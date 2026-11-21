@@ -1,0 +1,42 @@
+{
+  "reviewed_code_commit": "72aa0ed9f447d1239763f0fbaa9ca9f7f78088c7",
+  "method": "Independent source review and unchanged three-case Dart reproduction against the final isolated source snapshot",
+  "findings": [
+    {
+      "id": "namespace-identity",
+      "initial_severity": "P2",
+      "problem": "A sparse default-namespace section group could bind the w prefix to foreign metadata; the generic serializer reused w for native attributes and changed the retained foreign attribute and child identity.",
+      "resolution": "Choose an unused native prefix across the subtree and match namespace declarations by their exact qualified name, including after parser normalization.",
+      "result": {
+        "foreignToken": "keep",
+        "nativeToken": null,
+        "foreignChild": true,
+        "nativeChild": false,
+        "width_twips": "14000"
+      },
+      "status": "resolved"
+    },
+    {
+      "id": "process-content",
+      "initial_severity": "P2",
+      "problem": "mc:ProcessContent could retain an effective native mirror-margin setting or section geometry inside a foreign wrapper outside the modeled projection.",
+      "resolution": "Refuse ProcessContent settings, section snapshots and original document markup before publishing model mutations.",
+      "result": {
+        "settings": "Page setup refuses ProcessContent settings.",
+        "section": "Page setup refuses ProcessContent section markup."
+      },
+      "status": "resolved"
+    }
+  ],
+  "additional_regression_fixes": [
+    "A namespace declaration may share local name w with native w:w; declarations now use exact prefix/local-name matching.",
+    "Repeated edits reuse parser-normalized namespace declarations without duplicate attributes or growing source metadata.",
+    "Pending general sectionFormat dimension changes retain their orientation behavior before a sparse pageSetup write.",
+    "Original markup-compatibility alternatives and enabled special settings are checked before mutation."
+  ],
+  "remaining_blockers_in_reviewed_scope": [],
+  "limits": [
+    "The review does not establish complete Word object-model parity.",
+    "No Microsoft Office installation or Flutter editor was exercised."
+  ]
+}
