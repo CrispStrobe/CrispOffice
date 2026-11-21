@@ -555,7 +555,22 @@ class _StudioMailCachedSearchDialogState
     final closing = Future<void>.sync(() async {
       while (_retired.isNotEmpty) {
         final session = _retired.first;
-        await session.close();
+        try {
+          await session.close();
+        } on Object {
+          // A cancelled scan still owns its cleanup obligation. In particular,
+          // suspension must not hide a failed release or retry it on resume.
+          // Retain this owner until an explicit Refresh or Close retries it.
+          if (_current) {
+            _refreshTimer?.cancel();
+            _refreshTimer = null;
+            setState(() {
+              _autoRefresh = false;
+              _error = widget.strings.mailCachedSearchCloseFailed;
+            });
+          }
+          rethrow;
+        }
         _retired.remove(session);
       }
     });
@@ -587,7 +602,9 @@ class _StudioMailCachedSearchDialogState
     try {
       await operation;
     } on Object {
-      if (_active(epoch) && (isOperationCurrent?.call() ?? true)) {
+      if (_active(epoch) &&
+          (isOperationCurrent?.call() ?? true) &&
+          _error == null) {
         setState(() => _error = widget.strings.mailCachedSearchFailed);
       }
     } finally {

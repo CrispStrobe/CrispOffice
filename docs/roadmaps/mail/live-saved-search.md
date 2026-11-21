@@ -42,7 +42,9 @@ explicit local body read.
   retains the failed account and the already checked scope. An account that
   fails on a later page contributes no earlier staged hits. Healthy accounts
   can still contribute results. A read/close error retains an explicit retry
-  path instead of retrying repeatedly without user action.
+  path instead of retrying repeatedly without user action. A close failure
+  after suspension still pauses automatic work and reports the retained owner;
+  resuming the app does not retry that failed cleanup.
 - A completed search holds no account store between reads. An unfinished
   manual scan is drained before refreshing, preserving exclusive repository
   ownership. A cancelled replacement cannot replace the previous completed

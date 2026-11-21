@@ -304,12 +304,16 @@ final class _Owner
   final StudioMailDraftStore delegate;
   final _Probe probe;
   bool closed = false;
+  bool failClose = false;
+  int closeCalls = 0;
   @override
   late final _Mailbox mailboxStore;
 
   @override
   Future<void> close() async {
     if (closed) return;
+    closeCalls++;
+    if (failClose) throw StateError('private-refresh-close-detail');
     await delegate.close();
     closed = true;
   }
@@ -745,6 +749,70 @@ void main() {
       expect(find.text('Before 1'), findsNothing);
       await _setAuto(tester, false);
       expect(probe.bodyLoads, 0);
+    },
+  );
+
+  testWidgets(
+    'suspended refresh cleanup failure pauses auto until explicit retry',
+    (tester) async {
+      final identity = _identity('suspended-close-failure');
+      final fixture = await _fixture(tester, identity);
+      await _seed(tester, fixture, [
+        _header(identity, 0, subject: 'Retained original result'),
+      ]);
+      final probe = _Probe([fixture]);
+      await _show(tester, probe);
+      await _completeSearch(tester);
+      // The first replacement page retains its owner for a continuation, so
+      // its close below belongs to cancellation cleanup, not page completion.
+      await _seed(tester, fixture, [
+        for (var index = 1; index <= 101; index++)
+          _header(identity, index, subject: 'Replacement $index'),
+      ]);
+      final gate = _gate();
+      probe.searchGate = gate;
+      await _setAuto(tester, true);
+      await tester.pump(const Duration(seconds: 30));
+      await _until(tester, () => probe.activeSearches == 1);
+      final pendingOwner = probe.owners.last;
+      pendingOwner.failClose = true;
+      addTearDown(() => pendingOwner.failClose = false);
+      _pause(tester);
+      gate.complete();
+      probe.searchGate = null;
+      await _idle(tester);
+
+      expect(find.text('Retained original result'), findsOneWidget);
+      expect(find.text('Replacement 1'), findsNothing);
+      expect(_autoEnabled(tester), isFalse);
+      expect(tester.widget<SwitchListTile>(_auto).onChanged, isNull);
+      expect(find.text(_strings.mailCachedSearchCloseFailed), findsOneWidget);
+      expect(find.textContaining('private-refresh-close-detail'), findsNothing);
+      expect(pendingOwner.closed, isFalse);
+      expect(pendingOwner.closeCalls, 1);
+      final calls = probe.searchCalls;
+      final opens = probe.opens;
+      _resume(tester);
+      await tester.pump(const Duration(minutes: 2));
+      expect(probe.searchCalls, calls);
+      expect(probe.opens, opens);
+      expect(pendingOwner.closeCalls, 1);
+
+      pendingOwner.failClose = false;
+      await _press(tester, _refresh);
+      await _idle(tester);
+      expect(pendingOwner.closed, isTrue);
+      expect(pendingOwner.closeCalls, 2);
+      expect(probe.opens, opens + 1);
+      expect(probe.searchCalls, calls + 2);
+      expect(find.text('Retained original result'), findsNothing);
+      expect(find.text(_strings.mailCachedSearchMatches(101)), findsOneWidget);
+      expect(find.text(_strings.mailCachedSearchCloseFailed), findsNothing);
+      expect(_autoEnabled(tester), isFalse);
+      expect(probe.owners.every((owner) => owner.closed), isTrue);
+      expect(probe.bodyLoads, 0);
+      expect(probe.readsAfterClose, 0);
+      expect(tester.takeException(), isNull);
     },
   );
 

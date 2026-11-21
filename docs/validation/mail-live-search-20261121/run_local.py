@@ -49,6 +49,7 @@ CHANGED_DART = [
     'packages/quds_office_editor/example/lib/studio_mail_cached_search_dialog.dart',
     'packages/quds_office_editor/example/lib/studio_mail_cached_search_refresh.dart',
     'packages/quds_office_editor/example/lib/studio_mail_cached_search_strings.dart',
+    'packages/quds_office_editor/example/test/studio_mail_cached_search_dialog_test.dart',
     'packages/quds_office_editor/example/test/studio_mail_cached_search_refresh_test.dart',
     'packages/quds_office_editor/example/test/studio_mail_cached_search_refresh_dialog_test.dart',
     'packages/quds_office_editor/example/tool/mail_live_search_visual_test.dart',

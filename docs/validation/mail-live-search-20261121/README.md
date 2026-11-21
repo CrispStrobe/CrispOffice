@@ -33,6 +33,7 @@ are neither consulted nor awaited.
 | `5f1446bc0710f6914de307b5e8904d781eb83c06` | Both outstanding initial branch heads and their complete evidence/test history |
 | `b80f5c27a67ece5692dfd8dc916ab5a57736976f` | Refresh collector, foreground UI, localizations, focused regressions and roadmap |
 | `1360ead9e080fcf884ccac6cbc87bd6a58efdb5b` | Final whole-scope authority recheck, regression and latest landed main `511df2a0` |
+| `d30c473102fddf422413440eda46e184190cb649` | Compact EN/DE/AR controls, actual-font visual test and finite local qualification runner |
 
 The final scope recheck closes an independently reproduced design gap: account
 A can be retired after its last page while account B is still being scanned.
@@ -68,8 +69,20 @@ reader preservation, partial coverage and bounded recovery. Source and tests
 are checkpointed before final qualification so work is not confined to the
 local workspace.
 
-The exact pinned Flutter 3.47.8 / Dart 3.13.7 runtime has been obtained from the
-official release archive and its SHA-256 verified. Dependency resolution and
-local execution are in progress at this source checkpoint. **No passing test
-count is claimed yet.** The final evidence update will replace this pending
-status with actual commands, results and source applicability.
+The exact pinned Flutter 3.47.8 / Dart 3.13.7 runtime was obtained from the
+official release archive and its SHA-256 verified. Dependency resolution used
+the existing workspace lockfile without changing manifests or lockfiles.
+
+The first finite gate at `d30c4731` passed strict analysis/format, all 57 store
+cases and all 16 renderer cases. Studio completed 126 cases: 124 passed and
+two compact-layout navigation cases failed because their lazy result rows had
+not yet been materialized before `ensureVisible`. The corrected cases scroll
+the actual results surface before retaining their sender-direction and layout
+assertions. This failed attempt is preserved and is not the final Studio gate.
+
+Independent review also found a cleanup error hidden by a cancelled refresh
+epoch. The corrective checkpoint reports failed retired-owner closure while
+the route remains current, pauses automatic work even during suspension, and
+retains ownership for explicit Refresh or Close. A new regression covers the
+failed closure, no retry after resume, and successful explicit recovery.
+Qualification of these affected Studio changes is pending at this checkpoint.
