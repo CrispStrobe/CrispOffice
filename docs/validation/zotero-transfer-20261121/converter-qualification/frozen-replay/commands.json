@@ -1,0 +1,124 @@
+[
+  {
+    "command": [
+      "/workspace/scratch/11a0888870d6/runtime/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+      "--version"
+    ],
+    "cwd": "/workspace/scratch/11a0888870d6/quds_office_suite",
+    "duration_seconds": 0.002,
+    "exit_code": 0,
+    "step": "dart-version"
+  },
+  {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override/soffice",
+      "--headless",
+      "-env:UserInstallation=file:///workspace/scratch/11a0888870d6/transfer-final-9228cb58/replay/office-profile",
+      "--version"
+    ],
+    "cwd": "/workspace/scratch/11a0888870d6/quds_office_suite",
+    "duration_seconds": 0.1,
+    "exit_code": 0,
+    "step": "office-version"
+  },
+  {
+    "command": [
+      "/workspace/scratch/11a0888870d6/runtime/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+      "--packages=/workspace/scratch/11a0888870d6/validation-workspace/.dart_tool/package_config.json",
+      "/workspace/scratch/11a0888870d6/quds_office_suite/packages/quds_office_engine/tool/zotero/transfer_acceptance.dart",
+      "generate",
+      "/workspace/scratch/11a0888870d6/transfer-final-9228cb58/replay/fixtures"
+    ],
+    "cwd": "/workspace/scratch/11a0888870d6/quds_office_suite",
+    "duration_seconds": 5.95,
+    "exit_code": 0,
+    "step": "generate"
+  },
+  {
+    "command": [
+      "/workspace/scratch/11a0888870d6/runtime/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+      "--packages=/workspace/scratch/11a0888870d6/validation-workspace/.dart_tool/package_config.json",
+      "/workspace/scratch/11a0888870d6/quds_office_suite/packages/quds_office_engine/tool/zotero/transfer_acceptance.dart",
+      "verify",
+      "/workspace/scratch/11a0888870d6/transfer-final-9228cb58/replay/fixtures/transfer.docx"
+    ],
+    "cwd": "/workspace/scratch/11a0888870d6/quds_office_suite",
+    "duration_seconds": 5.931,
+    "exit_code": 0,
+    "step": "direct-docx"
+  },
+  {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override/soffice",
+      "--headless",
+      "-env:UserInstallation=file:///workspace/scratch/11a0888870d6/transfer-final-9228cb58/replay/office-profile",
+      "--convert-to",
+      "odt",
+      "--outdir",
+      "/workspace/scratch/11a0888870d6/transfer-final-9228cb58/replay/docx-to-odt",
+      "/workspace/scratch/11a0888870d6/transfer-final-9228cb58/replay/fixtures/transfer.docx"
+    ],
+    "cwd": "/workspace/scratch/11a0888870d6/quds_office_suite",
+    "duration_seconds": 0.644,
+    "exit_code": 0,
+    "step": "convert-docx-to-odt"
+  },
+  {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override/soffice",
+      "--headless",
+      "-env:UserInstallation=file:///workspace/scratch/11a0888870d6/transfer-final-9228cb58/replay/office-profile",
+      "--convert-to",
+      "docx",
+      "--outdir",
+      "/workspace/scratch/11a0888870d6/transfer-final-9228cb58/replay/docx-odt-docx",
+      "/workspace/scratch/11a0888870d6/transfer-final-9228cb58/replay/docx-to-odt/transfer.odt"
+    ],
+    "cwd": "/workspace/scratch/11a0888870d6/quds_office_suite",
+    "duration_seconds": 0.412,
+    "exit_code": 0,
+    "step": "convert-odt-back-to-docx"
+  },
+  {
+    "command": [
+      "/workspace/scratch/11a0888870d6/runtime/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+      "--packages=/workspace/scratch/11a0888870d6/validation-workspace/.dart_tool/package_config.json",
+      "/workspace/scratch/11a0888870d6/quds_office_suite/packages/quds_office_engine/tool/zotero/transfer_acceptance.dart",
+      "verify",
+      "/workspace/scratch/11a0888870d6/transfer-final-9228cb58/replay/docx-odt-docx/transfer.docx"
+    ],
+    "cwd": "/workspace/scratch/11a0888870d6/quds_office_suite",
+    "duration_seconds": 5.916,
+    "exit_code": 0,
+    "step": "verify-docx-odt-docx"
+  },
+  {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override/soffice",
+      "--headless",
+      "-env:UserInstallation=file:///workspace/scratch/11a0888870d6/transfer-final-9228cb58/replay/office-profile",
+      "--convert-to",
+      "docx",
+      "--outdir",
+      "/workspace/scratch/11a0888870d6/transfer-final-9228cb58/replay/odt-to-docx",
+      "/workspace/scratch/11a0888870d6/transfer-final-9228cb58/replay/fixtures/transfer.odt"
+    ],
+    "cwd": "/workspace/scratch/11a0888870d6/quds_office_suite",
+    "duration_seconds": 0.228,
+    "exit_code": 0,
+    "step": "convert-generated-odt-to-docx"
+  },
+  {
+    "command": [
+      "/workspace/scratch/11a0888870d6/runtime/flutter-sdk/bin/cache/dart-sdk/bin/dart",
+      "--packages=/workspace/scratch/11a0888870d6/validation-workspace/.dart_tool/package_config.json",
+      "/workspace/scratch/11a0888870d6/quds_office_suite/packages/quds_office_engine/tool/zotero/transfer_acceptance.dart",
+      "verify",
+      "/workspace/scratch/11a0888870d6/transfer-final-9228cb58/replay/odt-to-docx/transfer.docx"
+    ],
+    "cwd": "/workspace/scratch/11a0888870d6/quds_office_suite",
+    "duration_seconds": 6.001,
+    "exit_code": 0,
+    "step": "verify-odt-docx"
+  }
+]
