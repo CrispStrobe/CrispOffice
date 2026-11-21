@@ -388,8 +388,9 @@ void applyStep(
             ),
           );
           WordPropertyIo.orderChildren(source);
-          r.sourcePropertiesXml = XmlDocument(root: source)
-              .toXmlString(declaration: false);
+          r.sourcePropertiesXml = XmlDocument(
+            root: source,
+          ).toXmlString(declaration: false);
           r.importedValues = WordPropertyIo.runValues(r);
           r.explicitProperties.add('caps');
         }

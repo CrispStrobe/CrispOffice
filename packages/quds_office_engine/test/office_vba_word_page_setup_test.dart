@@ -219,10 +219,9 @@ $_setup.HeaderDistance = 12
       'exact twentieth-point boundary $property=$points is source-valid',
       () {
         expect(
-          _compile('$_setup.$property = $points')
-              .steps
-              .single
-              .arguments['points'],
+          _compile(
+            '$_setup.$property = $points',
+          ).steps.single.arguments['points'],
           points,
         );
       },
