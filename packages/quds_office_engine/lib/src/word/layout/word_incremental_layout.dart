@@ -406,7 +406,12 @@ class _Recorder {
         sectionIndex < target.lastDirtySection ||
         dirtyBlocks.contains(block) ||
         block.properties.pageBreakBefore ||
-        block.properties.columnBreakBefore) {
+        block.properties.columnBreakBefore ||
+        // Inline breaks are applied after this candidate is selected. A page
+        // break that was a no-op on an empty page can now move the paragraph,
+        // invalidating the old lines' page indexes and column positions.
+        WordLayoutEngine._hasBreak(block, WmlBreakType.page) ||
+        WordLayoutEngine._hasBreak(block, WmlBreakType.column)) {
       return null;
     }
     int oldBlock = blockIndex;
