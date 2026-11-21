@@ -19,7 +19,7 @@
 The core suite has an engine, reports library, Flutter editor and desktop app. This fork also carries the maintained standalone legacy DOC parser.
 
 The engine now supports [native macros and MCP](docs/MACROS.md): record and replay
-parameterized calls across 67 shared Word, spreadsheet, and presentation
+parameterized calls across shared Word, spreadsheet, and presentation
 operations, with complete-output publication and a local MCP stdio bridge.
 The bundled [Excel VBA subset](docs/VBA_MACROS.md) compiles explicitly selected
 `.bas` source into the same bounded command plan, including reusable procedures
@@ -34,6 +34,8 @@ Variants distinguish `Empty`/`Null`, with state predicates and explicit bounded
 [Word VBA subset](docs/VBA_WORD_MACROS.md) shares that language and adds explicit
 paragraph/range bindings, paragraph-prefix insertion, all 18 underline styles,
 strikethrough, and paragraph alignment, spacing, indentation and pagination.
+Section page setup includes explicit geometry, portrait/landscape orientation,
+orientation toggling and continuous/new-page/even-page/odd-page section starts.
 The [PowerPoint VBA subset](docs/VBA_POWERPOINT_MACROS.md) adds explicit slide
 and shape selectors, text/font/alignment edits and shape geometry, with guarded
 top-level collection identity and preserved rich text. All three adapters use

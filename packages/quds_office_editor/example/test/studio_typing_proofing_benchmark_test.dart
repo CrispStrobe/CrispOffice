@@ -85,6 +85,8 @@ final class _CountingIdentifier implements LanguageIdentifier {
 }
 
 final class _Stats {
+  int keystroke = 0;
+  final List<int> passEndedAt = <int>[];
   int providerCalls = 0;
   int providerMicros = 0;
   int detectorCalls = 0;
@@ -227,6 +229,12 @@ void main() {
     (tester) async {
       await tester.binding.setSurfaceSize(const Size(1440, 1000));
       addTearDown(() => tester.binding.setSurfaceSize(null));
+      // Time every controller listener (named) and keystroke phase.
+      WordEditorController.debugTimeListeners = true;
+      addTearDown(() {
+        WordEditorController.debugTimeListeners = false;
+        WordEditorController.debugEditPhase = null;
+      });
       await tester.pumpWidget(const QudsOfficeStudioApp());
       await tester.pump();
       await tester.pump();
@@ -292,6 +300,7 @@ void main() {
         stats.sessionNotifications++;
         final checking = controller.proofing.checking;
         if (checking && !wasChecking) stats.passes++;
+        if (!checking && wasChecking) stats.passEndedAt.add(stats.keystroke);
         wasChecking = checking;
       }
 
@@ -339,6 +348,12 @@ void main() {
       };
       addTearDown(() => debugOnRebuildDirtyWidget = null);
 
+      final phases = <String, List<double>>{};
+      var current = <String, double>{};
+      final perKey = <Map<String, double>>[];
+      WordEditorController.debugEditPhase = (phase, micros) {
+        current[phase] = (current[phase] ?? 0) + micros / 1000;
+      };
       final handler = <double>[];
       final frame = <double>[];
       final background = <double>[];
@@ -352,10 +367,16 @@ void main() {
           text: value.text.replaceRange(at, at, step.char),
           selection: TextSelection.collapsed(offset: at + 1),
         );
+        current = <String, double>{};
+        stats.keystroke = perKey.length;
         final watch = Stopwatch()..start();
         tester.testTextInput.updateEditingValue(next);
         await null; // the platform message completes in a microtask
         handler.add(watch.elapsedMicroseconds / 1000);
+        perKey.add(current);
+        current.forEach(
+          (k, v) => phases.putIfAbsent(k, () => <double>[]).add(v),
+        );
         watch
           ..reset()
           ..start();
@@ -411,6 +432,30 @@ void main() {
         'findings': summary.issues.length,
         'configurations': configurations.length,
         'status': summary.statusMessage,
+        // Phase breakdown of the handler: totals per phase/listener and the
+        // eight slowest keystrokes with their phases (> 0.5 ms).
+        'phases': {
+          for (final e in phases.entries)
+            if (e.value.fold<double>(0, (a, b) => a + b) > 5)
+              e.key: _distribution(e.value),
+        },
+        'proofingPassEndedBeforeKey': stats.passEndedAt,
+        'slowest': [
+          for (final i in (List<int>.generate(
+            handler.length,
+            (i) => i,
+          )..sort((a, b) => handler[b].compareTo(handler[a]))).take(8))
+            {
+              'key': i,
+              'handlerMs': handler[i],
+              'frameMs': frame[i],
+              'phases': {
+                for (final e in perKey[i].entries)
+                  if (e.value > 0.5)
+                    e.key: double.parse(e.value.toStringAsFixed(2)),
+              },
+            },
+        ],
       };
       // ignore: avoid_print
       print('TYPING_BENCHMARK ${jsonEncode(report)}');
@@ -553,3 +598,9 @@ void _recordLabel(
     update(label);
   }
 }
+
+/// The benchmark document, shared with the profile-mode integration test.
+WmlDocument typingBenchmarkDocument() => _document();
+
+/// The benchmark keystroke script (character and pause after it).
+List<({String char, Duration gap})> typingBenchmarkScript() => _script();

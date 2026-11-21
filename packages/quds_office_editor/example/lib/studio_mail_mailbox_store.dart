@@ -10,6 +10,13 @@ abstract interface class StudioMailMailboxStoreOwner {
   StudioMailMailboxStore get mailboxStore;
 }
 
+/// Optional live repository views. Hosts that supply an in-memory store can
+/// continue to expose one-shot reads through [StudioMailMailboxStore].
+abstract interface class StudioMailMailboxWatchStore {
+  Stream<MailResult<List<MailCachedMailboxSummary>>> watchViews();
+  Stream<MailResult<MailCachedMailboxView?>> watchView(MailMailboxId mailbox);
+}
+
 abstract interface class StudioMailMailboxStore {
   MailAccountId get account;
   Future<List<MailCachedMailboxSummary>> listViews();
@@ -44,7 +51,8 @@ typedef StudioMailStorageQueue =
 
 /// Shares the draft owner's serialization and exclusive SQLite lease. A body
 /// never gets persisted under a different remote identity or local account.
-final class SqliteStudioMailMailboxStore implements StudioMailMailboxStore {
+final class SqliteStudioMailMailboxStore
+    implements StudioMailMailboxStore, StudioMailMailboxWatchStore {
   SqliteStudioMailMailboxStore({
     required this._repository,
     required this.account,
@@ -75,6 +83,20 @@ final class SqliteStudioMailMailboxStore implements StudioMailMailboxStore {
   Future<List<MailCachedMailboxSummary>> listViews() => _serialize(
     () async => _value(await _repository.listMailboxViews(account)),
   );
+
+  @override
+  Stream<MailResult<List<MailCachedMailboxSummary>>> watchViews() =>
+      _repository.watchMailboxViews(account);
+
+  @override
+  Stream<MailResult<MailCachedMailboxView?>> watchView(MailMailboxId mailbox) {
+    if (mailbox.account != account) {
+      return Stream.value(
+        const MailFailure(MailProblem(MailProblemCode.permissionDenied)),
+      );
+    }
+    return _repository.watchMailboxView(mailbox);
+  }
 
   @override
   Future<MailCachedMailboxView?> loadView(MailMailboxId mailbox) =>
@@ -172,8 +194,70 @@ final class StudioMailMailboxCapture {
   final MailProviderKind provider;
   final bool Function() _isCurrent;
   final MailAccountSession _session;
+  int _windowGeneration = 0;
+  MailCachedMailboxView? _savedWindow;
+  Map<MailMessageId, MailHeaderRecord> _sources = const {};
+  int _projectedRevision = 0;
 
-  void dispose() => _session.dispose();
+  void dispose() {
+    invalidateView();
+    _session.dispose();
+  }
+
+  /// Retires this window before a refresh, folder change or subscription close.
+  /// Cached rows cannot become remote command identities by themselves.
+  void invalidateView() {
+    _windowGeneration++;
+    _savedWindow = null;
+    _sources = const {};
+    _projectedRevision = 0;
+  }
+
+  MailMailboxId cachedMailboxId(MailMailboxId source) {
+    _check();
+    if (source.account != sourceAccount) {
+      throw const StudioMailMailboxStoreException(
+        MailProblemCode.permissionDenied,
+      );
+    }
+    return MailMailboxId(source.value, account: store.account);
+  }
+
+  /// Projects persisted metadata only onto this successfully saved window's
+  /// original provider identities. A cache from an earlier connection, a
+  /// partial membership or a changed IMAP generation cannot authorize actions.
+  List<MailHeaderRecord> projectView(MailCachedMailboxView view) {
+    _check();
+    final saved = _savedWindow;
+    if (saved == null ||
+        view.mailbox.id != saved.mailbox.id ||
+        view.revision < saved.revision ||
+        view.revision < _projectedRevision ||
+        view.revision > 9007199254740991 ||
+        view.headers.length != _sources.length) {
+      throw const StudioMailMailboxStoreException(MailProblemCode.conflict);
+    }
+    final seen = <MailMessageId>{};
+    final projected = <MailHeaderRecord>[];
+    for (final cached in view.headers) {
+      final source = _sources[cached.id];
+      if (source == null ||
+          !seen.add(cached.id) ||
+          cached.remote != _remote(source.remote)) {
+        throw const StudioMailMailboxStoreException(MailProblemCode.conflict);
+      }
+      projected.add(
+        MailHeaderRecord(
+          id: source.id,
+          remote: source.remote,
+          envelope: source.envelope,
+          flags: cached.flags,
+        ),
+      );
+    }
+    _projectedRevision = view.revision;
+    return List.unmodifiable(projected);
+  }
 
   void _check() {
     if (!_isCurrent()) _session.dispose();
@@ -226,12 +310,14 @@ final class StudioMailMailboxCapture {
     );
   }
 
-  Future<void> saveView(
+  Future<MailCachedMailboxView> saveView(
     MailMailbox mailbox,
     List<MailHeaderRecord> headers, {
     required bool hasMore,
   }) async {
     _check();
+    invalidateView();
+    final generation = _windowGeneration;
     if (mailbox.id.account != sourceAccount) {
       throw const StudioMailMailboxStoreException(
         MailProblemCode.permissionDenied,
@@ -243,13 +329,47 @@ final class StudioMailMailboxCapture {
       isLabel: mailbox.isLabel,
     );
     final mapped = [for (final header in headers) _header(header)];
-    await store.saveView(
+    final sourceIds = <MailMessageId>{};
+    final sources = <MailMessageId, MailHeaderRecord>{};
+    int? uidValidity;
+    for (var i = 0; i < mapped.length; i++) {
+      if (!sourceIds.add(headers[i].id) || sources.containsKey(mapped[i].id)) {
+        throw const StudioMailMailboxStoreException(MailProblemCode.conflict);
+      }
+      if (headers[i].remote case MailImapIdentity(
+        mailbox: final sourceBox,
+        uidValidity: final validity,
+      )) {
+        if (sourceBox != mailbox.id ||
+            uidValidity != null && uidValidity != validity) {
+          throw const StudioMailMailboxStoreException(MailProblemCode.conflict);
+        }
+        uidValidity = validity;
+      }
+      sources[mapped[i].id] = headers[i];
+    }
+    final saved = await store.saveView(
       local,
       mapped,
       hasMore: hasMore,
       lease: _session.begin(),
     );
     _check();
+    if (generation != _windowGeneration ||
+        saved.mailbox.id != local.id ||
+        saved.revision < 1 ||
+        saved.revision > 9007199254740991) {
+      throw const StudioMailMailboxStoreException(MailProblemCode.conflict);
+    }
+    _sources = Map.unmodifiable(sources);
+    _savedWindow = saved;
+    try {
+      projectView(saved);
+    } on Object {
+      invalidateView();
+      rethrow;
+    }
+    return saved;
   }
 
   Future<void> cacheMessage(

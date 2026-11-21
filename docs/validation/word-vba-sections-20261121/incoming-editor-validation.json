@@ -1,0 +1,158 @@
+{
+  "scope": "Focused native headless Flutter debug/JIT regression of incoming keystroke instrumentation, lazy replacement layout, and c375 failure-retry hardening. No profile-mode or desktop-device performance qualification.",
+  "source_revision": "c375becb51939dcca5c145bf1bcdb14a4febe041",
+  "source_sha256": {
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "795e979a34f7c7910481a5b7b078707a705eeafa345eda759a6e2f82853b01d3",
+    "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart": "ab0d0c2ae94c05d2d96bdc070a10f949fb80344d9da7d8015f09b77a71ca5d8a",
+    "packages/quds_office_editor/example/test/studio_typing_proofing_benchmark_test.dart": "5ce162b8c14ddcbee6c72f5293b01745e8f5fff040d12518f9cddf2d77d7a1af",
+    "packages/quds_office_engine/lib/src/word/layout/word_layout.dart": "6a86ba0fc1c10a83b8c5c11614639c38be7ec630561f6ba82537682aad5ae614"
+  },
+  "source_changed_during_run": [],
+  "version": {
+    "frameworkVersion": "3.47.8",
+    "channel": "stable",
+    "repositoryUrl": "https://github.com/flutter/flutter.git",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineBuildDate": "2026-10-22 20:34:48.330",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "flutterVersion": "3.47.8",
+    "flutterRoot": "/workspace/scratch/1be64193e422/flutter-runtime/flutter"
+  },
+  "sdk_archive": {
+    "url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.47.8-stable.tar.xz",
+    "bytes": 1581444364,
+    "sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+    "verified": true,
+    "selected_expanded_bytes": 1363357113
+  },
+  "hosted_archives_verified": 202,
+  "workspace_lock_sha256": "0d64a732cd7f6c7cc4e1e01255276f081b59e6f43039636c3d36f6785a958ce2",
+  "isolated_workspace": "/workspace/scratch/1be64193e422/flutter-validation",
+  "original_checkout_manifests_modified": false,
+  "runs": [
+    {
+      "label": "word-layout-equivalence",
+      "command": [
+        "/workspace/scratch/1be64193e422/flutter-runtime/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter=json",
+        "--concurrency=1",
+        "test/word_incremental_layout_equivalence_test.dart"
+      ],
+      "cwd": "/workspace/scratch/1be64193e422/flutter-validation/packages/quds_office_editor",
+      "benchmark_enabled": false,
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 119.105,
+      "passed": 50,
+      "failed": 0,
+      "skipped": 8,
+      "done_events": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 118249
+        }
+      ]
+    },
+    {
+      "label": "studio-typing-benchmark",
+      "command": [
+        "/workspace/scratch/1be64193e422/flutter-runtime/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter=json",
+        "--concurrency=1",
+        "test/studio_typing_proofing_benchmark_test.dart"
+      ],
+      "cwd": "/workspace/scratch/1be64193e422/flutter-validation/packages/quds_office_editor/example",
+      "benchmark_enabled": true,
+      "exit_code": 0,
+      "timed_out": false,
+      "seconds": 63.327,
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "done_events": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 52266
+        }
+      ]
+    }
+  ],
+  "expected_skips": [
+    {
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-both.docx",
+      "reasons": [
+        "no paragraphs to edit"
+      ]
+    },
+    {
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-control.docx",
+      "reasons": [
+        "no paragraphs to edit"
+      ]
+    },
+    {
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-horizontal.docx",
+      "reasons": [
+        "no paragraphs to edit"
+      ]
+    },
+    {
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-margin-quarter.docx",
+      "reasons": [
+        "no paragraphs to edit"
+      ]
+    },
+    {
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-negative-quarter.docx",
+      "reasons": [
+        "no paragraphs to edit"
+      ]
+    },
+    {
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-outline-shadow.docx",
+      "reasons": [
+        "no paragraphs to edit"
+      ]
+    },
+    {
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-quarter.docx",
+      "reasons": [
+        "no paragraphs to edit"
+      ]
+    },
+    {
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-vertical.docx",
+      "reasons": [
+        "no paragraphs to edit"
+      ]
+    }
+  ],
+  "fixture_boundary": "All checked-out package fixtures were copied. Optional docs/validation Word reference fixtures excluded by the source sparse checkout were not materialized; QUDS_EQUIVALENCE_POI was not enabled.",
+  "benchmark_boundary": "QUDS_TYPING_BENCHMARK=1 enabled all three original benchmark cases. Original benchmark uses its own counting classifier/provider fixtures; no installed provider model, desktop embedder, or real profile device was qualified.",
+  "raw_metrics": "logs/benchmark-metrics.json",
+  "captured_incoming_commits": [
+    "1a854c9f5abb1a23a74dcc3d5418900ae8a5d09c",
+    "48f4792a48361d84cc7261d9732d8ad85450379f",
+    "2cd11ced136a30354169fd0043e002079bcabfa3",
+    "c375becb51939dcca5c145bf1bcdb14a4febe041"
+  ],
+  "totals": {
+    "passed": 53,
+    "failed": 0,
+    "expected_skipped": 8
+  },
+  "evidence_archive": "incoming-editor-evidence.tar.gz",
+  "evidence_archive_sha256": "0f9ac059f6ccdd7ac1cb0bf62a1d923c2356be22f08275c1d48f6312d62532ab",
+  "evidence_manifest": "incoming-editor-evidence-manifest.json"
+}

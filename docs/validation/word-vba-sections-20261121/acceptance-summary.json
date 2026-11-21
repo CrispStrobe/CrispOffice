@@ -1,0 +1,45 @@
+{
+  "status": "passed",
+  "qualified_code_commit": "47660815c429e15aa280005dc6d76bb36c53eca4",
+  "qualified_tree": "82d40c175d7aafb588dcb0f241c876fe5233dd73",
+  "runtime": {
+    "dart": "Dart SDK version: 3.14.1 (stable) (Tue Nov 17 00:01:24 2026 -0800) on \"linux_x64\"",
+    "node": "v24.22.3"
+  },
+  "strict_analysis": "No issues found; all engine libraries, macro tooling and six changed Word source/integration suites",
+  "tests": {
+    "completed": true,
+    "failed": 0,
+    "passed": 5286,
+    "skipped": 0,
+    "files": 127
+  },
+  "portable": {
+    "page-setup": {
+      "actual_bas_sha256": "92cc0edc359f2d31813c2266a8e55cb6153f27d8b630ed7d0f008221d62c6493",
+      "output_sha256": "c79926eba214a4f1e9458e60a9ee147d618ec6232f6148e3a00d680e92cf0f23",
+      "vm_js_byte_identical": true
+    },
+    "sections": {
+      "actual_bas_sha256": "4cdac8422a312007847d465212b793050aff0d487bce7703c613f37ec88c3493",
+      "output_sha256": "40c10fc01520a6337a9e684e1df4ac4c08b12be3a4d13a0602d1c5f19d06709c",
+      "vm_js_byte_identical": true
+    }
+  },
+  "source": {
+    "captured_inputs": 3032,
+    "all_match_committed_git_blobs": true,
+    "original_inputs_unchanged": true,
+    "copied_inputs_unchanged": true,
+    "resolved_lock_unchanged": true
+  },
+  "dependencies": {
+    "hosted_packages_matching_root_lock": 54,
+    "generated_example_hosted_packages_matching_root_lock": 8
+  },
+  "evidence_archive": "local-qualification-evidence.tar.gz",
+  "evidence_archive_sha256": "0b69a5661458fe0e660ef416f6d44d9e688a5c6a5f0473bdcc9091288177abcc",
+  "evidence_members_verified": 34,
+  "independent_review": "Read-only review found no concrete remaining defect in the compiler, native operations, portable harness or generated-lock treatment.",
+  "actions": "No GitHub Actions runs, queues or check statuses were queried or awaited."
+}

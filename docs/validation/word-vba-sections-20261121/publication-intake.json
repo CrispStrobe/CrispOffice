@@ -1,0 +1,63 @@
+{
+  "recorded_utc": "2026-11-21T06:15:03.970072+00:00",
+  "initial_main": "84046975f286407e3c62e5e5352bc16bc89c0d26",
+  "main_at_publication_audit": "84046975f286407e3c62e5e5352bc16bc89c0d26",
+  "qualified_code_commit": "47660815c429e15aa280005dc6d76bb36c53eca4",
+  "initial_snapshot": {
+    "refs": 335,
+    "initial_main_ancestors": 309,
+    "verified_historical_equivalents": 24,
+    "included_starting_heads": 2,
+    "uncovered_refs": 0,
+    "inventory": "intake-inventory.json"
+  },
+  "accepted_late_commits": [
+    {
+      "branch": "work/mail-repository-sessions-20261121",
+      "head": "6ec90c8a3acdc8fb5878f1decef0131e478e6b1d",
+      "included_prerequisite": "c375becb51939dcca5c145bf1bcdb14a4febe041",
+      "merge": "024e101500527e39c9e6ac15203c7b8ddc3a4751",
+      "scope": "Guarded mailbox sessions, provider identity projection, streams and layout-retry/listener fixes",
+      "evidence": "late-incoming-flutter-validation.json",
+      "ancestor_of_qualified_code": true
+    },
+    {
+      "branch": "perf/keystroke-trace-20261121",
+      "head": "1460876e70fcf3da49644e232e9942b7ee042d8d",
+      "merge": "324bff5860dcceb57fe7a82a6e229b2519991e86",
+      "scope": "Focus/profile harness and B/E garbage-collection event parsing",
+      "qualification": "Parser assertions cover complete/B-E events, per-thread pairing, idle totals and handler overlap; frame/phase reporting was exercised without numeric assertions. Profile harness received read-only source review and was not executed.",
+      "ancestor_of_qualified_code": true,
+      "evidence": "perf-reporter-smoke.json"
+    },
+    {
+      "branch": "codex/zotero-transfer-20261121",
+      "head": "3da241d5f1f3e43d7be47f00bcf7fbe62bd8272b",
+      "merge": "3ef8f406b33c363dcb3cd78d6c3aa9e03e6afa75",
+      "scope": "Staged document transfer, native model/protocol and editor controls",
+      "evidence": "incoming-zotero-engine-review.json",
+      "correction": "21 brace-only lint fixes, 5977 non-brace tokens identical; corrected helper separately analyzed/tested",
+      "ancestor_of_qualified_code": true
+    }
+  ],
+  "later_work_outside_accepted_snapshot": [
+    {
+      "branch": "work/mail-repository-sessions-20261121",
+      "observed_head": "e162101d6852c6522850b848bb6473676d7fe02a",
+      "open_pr": 284,
+      "draft": true,
+      "reason": "Final combined qualification explicitly in progress; adds foreground/cached Mail changes and merges other active branches, including proofing"
+    },
+    {
+      "branch": "codex/zotero-transfer-20261121",
+      "observed_head": "d24240ee62afdd4253bfe3dd787741049923c398",
+      "reason": "Broader successor adds transfer/ODT work and concurrent Mail/proofing merges; not equivalent to the accepted 3da241d source snapshot"
+    },
+    {
+      "branch": "feat/proofing-scheduling-20261121",
+      "observed_head": "690ce037d008089a228cf6058e2fd7824c5cc62a",
+      "reason": "Latest and preceding commits explicitly WIP; scheduler, tests and benchmark still changing"
+    }
+  ],
+  "policy": "Retain all original histories; advance only the accepted feature branch and final main merge without force. Do not query or wait for GitHub Actions. Later active draft/WIP work remains available on its remote branches."
+}

@@ -54,6 +54,48 @@ final class _StopDocument implements Exception {
   const _StopDocument();
 }
 
+final class _FailingReplacementLayoutEngine extends WordLayoutEngine {
+  _FailingReplacementLayoutEngine() : super(font: null);
+
+  int failuresRemaining = 0;
+  final requests =
+      <
+        ({
+          WmlDocument document,
+          bool updateFields,
+          int fromSectionIndex,
+          LaidOutDocument? reuse,
+        })
+      >[];
+
+  @override
+  LaidOutDocument layout(
+    WmlDocument document, {
+    bool updateFields = true,
+    int fromSectionIndex = 0,
+    LaidOutDocument? reuse,
+    Set<WmlParagraph>? dirtyParagraphs,
+  }) {
+    requests.add((
+      document: document,
+      updateFields: updateFields,
+      fromSectionIndex: fromSectionIndex,
+      reuse: reuse,
+    ));
+    if (failuresRemaining > 0) {
+      failuresRemaining--;
+      throw StateError('Transient replacement layout failure');
+    }
+    return super.layout(
+      document,
+      updateFields: updateFields,
+      fromSectionIndex: fromSectionIndex,
+      reuse: reuse,
+      dirtyParagraphs: dirtyParagraphs,
+    );
+  }
+}
+
 void _expectEquivalent(WordEditorController c, String step, _Run run) {
   run.checks++;
   final String incremental = wordLayoutFingerprint(c.documentLaidOut);
@@ -677,4 +719,104 @@ void main() {
     expect(WordIncrementalLayoutStats.converged, greaterThanOrEqualTo(8));
     expect(WordIncrementalLayoutStats.blocksLaidOut, lessThan(10 * 6));
   });
+
+  test('assigning a document lays it out on the next read, not on the '
+      'first keystroke', () {
+    final WordEditorController c = WordEditorController(document: _mixedLong());
+    addTearDown(c.dispose);
+    final _Run run = _Run();
+    final WmlDocument next = _structured();
+    c.document = next;
+    c.refresh();
+    // The canvas reads the layout on its next paint.
+    expect(c.documentLaidOut.pages, isNotEmpty);
+    _expectEquivalentWithFields(c, 'replaced document', run);
+    WordIncrementalLayoutStats.reset();
+    _at(c, 3, _paras(c)[3].text.length);
+    c.insertText('x');
+    expect(WordIncrementalLayoutStats.incremental, 1);
+    expect(WordIncrementalLayoutStats.fallbacks, 0);
+    _expectEquivalent(c, 'first keystroke in replaced document', run);
+  });
+
+  test(
+    'switch off: a replaced document keeps the old layout until relayout',
+    () {
+      WordEditorController.layoutReplacedDocumentOnRead = false;
+      addTearDown(
+        () => WordEditorController.layoutReplacedDocumentOnRead = true,
+      );
+      final WordEditorController c = WordEditorController(
+        document: _mixedLong(),
+      );
+      addTearDown(c.dispose);
+      final LaidOutDocument old = c.documentLaidOut;
+      c.document = _structured();
+      expect(identical(c.documentLaidOut, old), isTrue);
+      WordIncrementalLayoutStats.reset();
+      _at(c, 3, 0);
+      c.insertText('x');
+      // The first local edit lays the new document out in full; it never
+      // reuses pages of the old document.
+      expect(WordIncrementalLayoutStats.incremental, 0);
+      _expectEquivalent(c, 'first keystroke, switch off', _Run());
+    },
+  );
+
+  for (final bool explicitFirst in <bool>[false, true]) {
+    test('failed replacement ${explicitFirst ? 'explicit' : 'lazy'} layout '
+        'retries instead of exposing the old document', () {
+      final engine = _FailingReplacementLayoutEngine();
+      final c = WordEditorController(
+        document: _mixedLong(),
+        layoutEngine: engine,
+      );
+      addTearDown(c.dispose);
+      final LaidOutDocument old = c.documentLaidOut;
+      final WmlDocument next = _structured();
+      final int initialCalls = engine.requests.length;
+      c.document = next;
+      engine.failuresRemaining = 2;
+
+      if (explicitFirst) {
+        expect(() => c.relayout(localEdit: true), throwsStateError);
+      } else {
+        expect(() => c.documentLaidOut, throwsStateError);
+      }
+      // The second read must retry and surface the second failure, not
+      // return a successful-looking cached layout of the previous document.
+      expect(() => c.documentLaidOut, throwsStateError);
+      expect(engine.failuresRemaining, 0);
+      final LaidOutDocument recovered = c.documentLaidOut;
+      expect(identical(recovered, old), isFalse);
+      expect(
+        wordLayoutFingerprint(recovered),
+        wordLayoutFingerprint(WordLayoutEngine(font: null).layout(next)),
+      );
+      for (final request in engine.requests.skip(initialCalls)) {
+        expect(identical(request.document, next), isTrue);
+        expect(request.updateFields, isTrue);
+        expect(request.fromSectionIndex, 0);
+        expect(request.reuse, isNull);
+      }
+      final int recoveredCalls = engine.requests.length;
+      expect(identical(c.documentLaidOut, recovered), isTrue);
+      expect(engine.requests.length, recoveredCalls);
+    });
+  }
+}
+
+/// Like [_expectEquivalent], but against a full layout with field updates
+/// (what [WordEditorController.relayout] produces for a non-local layout).
+void _expectEquivalentWithFields(
+  WordEditorController c,
+  String step,
+  _Run run,
+) {
+  run.checks++;
+  expect(
+    wordLayoutFingerprint(c.documentLaidOut),
+    wordLayoutFingerprint(_freshEngine(c).layout(c.document)),
+    reason: step,
+  );
 }

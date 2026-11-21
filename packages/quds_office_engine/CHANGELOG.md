@@ -4,6 +4,18 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Extend section-scoped Word VBA `PageSetup` with `Orientation`, zero-argument
+  `TogglePortrait`, and four `SectionStart` modes. Add guarded native
+  `docx.pageOrientation` and `docx.sectionStart` operations, preserving aliases,
+  helper calls, source order, recording and whole-run rollback. Orientation
+  changes swap dimensions while retaining named margins, header/footer
+  distances and paper code; explicit square-page orientation survives reopen.
+  Section-start edits own only the native break attribute and preserve unrelated
+  geometry and revision metadata. Refuse ambiguous orientation/source identity
+  and unsupported new-column starts. Add an executable BAS example, source,
+  native, transaction and portable checks; see the
+  [section-controls contract](../../docs/VBA_WORD_MACROS.md#section-orientation-and-start-controls).
+
 - Replace Zotero research-content selections across consecutive ordinary
   paragraphs in one body section or authored note. Preserve rich prefix/suffix
   content, active citation order, native note separators and DOCX reopening;

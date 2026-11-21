@@ -4,6 +4,7 @@ import 'package:quds_office_engine/src/word/serial/word_property_io.dart';
 import 'step_input.dart';
 import 'word_list_steps.dart';
 import 'word_page_setup_steps.dart';
+import 'word_section_start_steps.dart';
 import 'word_spacing_steps.dart';
 import 'word_structure_steps.dart';
 
@@ -21,6 +22,8 @@ const wordOperations = <String, List<String>>{
   'lineSpacing': ['paragraph', 'rule', 'points', ..._storyFields],
   'paragraphSpaceBefore': ['paragraph', 'action', ..._storyFields],
   'pageSetup': ['section', 'property', 'points'],
+  'pageOrientation': ['section', 'orientation'],
+  'sectionStart': ['section', 'kind'],
   'paragraphFormat': [
     'paragraph',
     'alignment',
@@ -388,9 +391,8 @@ void applyStep(
             ),
           );
           WordPropertyIo.orderChildren(source);
-          r.sourcePropertiesXml = XmlDocument(
-            root: source,
-          ).toXmlString(declaration: false);
+          r.sourcePropertiesXml = XmlDocument(root: source)
+              .toXmlString(declaration: false);
           r.importedValues = WordPropertyIo.runValues(r);
           r.explicitProperties.add('caps');
         }
@@ -623,6 +625,18 @@ void applyStep(
         s.item('section', doc.sections),
         property: s.string('property'),
         points: s.number('points'),
+      );
+    case 'pageOrientation':
+      setWordPageOrientation(
+        doc,
+        s.item('section', doc.sections),
+        orientation: s.string('orientation'),
+      );
+    case 'sectionStart':
+      setWordSectionStart(
+        doc,
+        s.item('section', doc.sections),
+        kind: s.string('kind'),
       );
     case 'sectionFormat':
       final sec = section();

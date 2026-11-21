@@ -1,0 +1,135 @@
+{
+  "scope": "Incoming Word keystroke instrumentation/lazy document relayout plus exception-retry hardening; no claim of profile-mode performance qualification.",
+  "source_base": "2cd11ced136a30354169fd0043e002079bcabfa3",
+  "source_files": {
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "795e979a34f7c7910481a5b7b078707a705eeafa345eda759a6e2f82853b01d3",
+    "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart": "ab0d0c2ae94c05d2d96bdc070a10f949fb80344d9da7d8015f09b77a71ca5d8a",
+    "packages/quds_office_engine/lib/src/word/layout/word_layout.dart": "6a86ba0fc1c10a83b8c5c11614639c38be7ec630561f6ba82537682aad5ae614"
+  },
+  "runtime": {
+    "frameworkVersion": "3.47.8",
+    "channel": "stable",
+    "repositoryUrl": "https://github.com/flutter/flutter.git",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineBuildDate": "2026-10-22 20:34:48.330",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "flutterVersion": "3.47.8",
+    "flutterRoot": "/workspace/scratch/1a7ed08f64fe/mail-runtime/flutter"
+  },
+  "sdk_archive": {
+    "url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.47.8-stable.tar.xz",
+    "sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+    "bytes": 1581444364,
+    "verified": true,
+    "extracted_bytes": 1708566422
+  },
+  "hosted_archives_verified": 202,
+  "workspace_lock_sha256": "0d64a732cd7f6c7cc4e1e01255276f081b59e6f43039636c3d36f6785a958ce2",
+  "setup": "Source /workspace/scratch/1a7ed08f64fe/mail-runtime/env.sh; map paths to the current checkout when reproducing. Flutter and Dart wrappers use the recorded pinned SDK.",
+  "analysis": {
+    "command": [
+      "dart",
+      "analyze",
+      "--fatal-infos",
+      "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "packages/quds_office_editor/test/word_incremental_layout_equivalence_test.dart",
+      "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+      "packages/quds_office_editor/example/integration_test/typing_profile_test.dart",
+      "packages/quds_office_editor/example/test/studio_typing_proofing_benchmark_test.dart",
+      "packages/quds_office_editor/example/test_driver/typing_profile_driver.dart"
+    ],
+    "cwd": "/workspace/scratch/1a7ed08f64fe/quds_office_suite",
+    "exit_code": 0,
+    "elapsed_seconds": 13.596615933000066,
+    "source_input_count": 560,
+    "changed_inputs": [],
+    "stdout_sha256": "9e33e1f50e63995b2c3700324e28f73f3fedada074d7e65f35bee5db5327f76d"
+  },
+  "equivalence": {
+    "command": [
+      "flutter",
+      "test",
+      "--no-pub",
+      "--reporter",
+      "json",
+      "--concurrency=2",
+      "test/word_incremental_layout_equivalence_test.dart"
+    ],
+    "cwd": "/workspace/scratch/1a7ed08f64fe/quds_office_suite/packages/quds_office_editor",
+    "exit_code": 0,
+    "elapsed_seconds": 124.1507121880004,
+    "source_input_count": 560,
+    "changed_inputs": [],
+    "stdout_sha256": "236378f016313b99be98b49ef70a9ac5fb97698bbe4a84adc27c09852b15979b"
+  },
+  "test_result": {
+    "passed": 70,
+    "skipped": 8,
+    "failed": 0,
+    "errors": 0,
+    "terminal_success": true,
+    "protocol_errors": 0
+  },
+  "expected_skips": [
+    {
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-both.docx",
+      "reasons": [
+        "no paragraphs to edit"
+      ]
+    },
+    {
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-control.docx",
+      "reasons": [
+        "no paragraphs to edit"
+      ]
+    },
+    {
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-horizontal.docx",
+      "reasons": [
+        "no paragraphs to edit"
+      ]
+    },
+    {
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-margin-quarter.docx",
+      "reasons": [
+        "no paragraphs to edit"
+      ]
+    },
+    {
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-negative-quarter.docx",
+      "reasons": [
+        "no paragraphs to edit"
+      ]
+    },
+    {
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-outline-shadow.docx",
+      "reasons": [
+        "no paragraphs to edit"
+      ]
+    },
+    {
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-quarter.docx",
+      "reasons": [
+        "no paragraphs to edit"
+      ]
+    },
+    {
+      "name": "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-vertical.docx",
+      "reasons": [
+        "no paragraphs to edit"
+      ]
+    }
+  ],
+  "skip_scope": "The eight existing image-only DOCX fixtures have no editable paragraphs and are skipped by the test itself. They are not counted as passes. Both newly added lazy/explicit replacement-failure retry cases passed.",
+  "logs": {
+    "file": "incoming-word-logs.tar.xz",
+    "sha256": "18800633895384f91bff014386db86e4152a23652c012b448c435c80d8fdb3a9",
+    "bytes": 26996
+  },
+  "github_actions": "Neither queried nor awaited."
+}
