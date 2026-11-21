@@ -813,6 +813,7 @@ final class OdtReaderStyles {
         'table-cell' => const {'table-cell-properties'},
         'section' => const {'section-properties'},
         'drawing-page' => const {'drawing-page-properties'},
+        'graphic' => const {'graphic-properties'},
         _ => const <String>{},
       };
       if (child.namespaceUri != _style || !allowed.contains(child.localName)) {

@@ -14,6 +14,7 @@ import '../model/word_notes.dart';
 import '../model/word_zotero.dart';
 import '../model/word_zotero_data.dart';
 import '../properties/wml_properties.dart';
+import 'odt_reader_images.dart';
 import 'odt_reader_styles.dart';
 import 'odt_reader_text_style.dart';
 
@@ -43,8 +44,14 @@ abstract final class OdtDocumentReader {
     // Bind inventory and rich parsing to the same immutable input across awaits.
     final source = Uint8List.fromList(bytes);
     final inventory = await OdfZotero.inspect(source, limits: limits);
-    if (inventory.issues.isNotEmpty) {
-      throw UnsupportedError(inventory.issues.first.message);
+    for (final issue in inventory.issues) {
+      // Drawing observations remain conservative in the read-only inventory.
+      // The rich reader must account for their exact paths after successfully
+      // validating and materializing complete embedded picture frames.
+      if (issue.code != OdfZoteroIssueCode.unsupportedContent ||
+          issue.location?.part != 'content.xml') {
+        throw UnsupportedError(issue.message);
+      }
     }
     for (final field in inventory.fields) {
       // The inventory conservatively guards a whole paragraph containing a
@@ -88,7 +95,7 @@ abstract final class OdtDocumentReader {
     final content = (await parts.xml('content.xml'))!.root!;
     final styles = (await parts.xml('styles.xml'))?.root;
     final metadata = (await parts.xml('meta.xml'))?.root;
-    final reader = _OdtReader(content, styles, inventory, limits);
+    final reader = _OdtReader(content, styles, inventory, limits, zip);
     final document = reader.read();
     reader.readMetadata(metadata);
     if (metadata != null) {
@@ -146,9 +153,15 @@ abstract final class OdtDocumentReader {
 }
 
 final class _OdtReader {
-  _OdtReader(this.content, XmlElement? styleRoot, this.inventory, this.limits)
-    : styles = OdtReaderStyles(content, styles: styleRoot),
+  _OdtReader(
+    this.content,
+    XmlElement? styleRoot,
+    this.inventory,
+    this.limits,
+    ZipReader zip,
+  ) : styles = OdtReaderStyles(content, styles: styleRoot),
       textBudget = OdfTextBudget(limits.maxTextBytes) {
+    images = OdtReaderImages(zip, styles);
     _index(content, '/0');
   }
 
@@ -156,6 +169,7 @@ final class _OdtReader {
   final OdfZoteroInventory inventory;
   final OdfZoteroLimits limits;
   final OdtReaderStyles styles;
+  late final OdtReaderImages images;
   final OdfTextBudget textBudget;
   final runBudget = OdtReaderRunBudget();
   final document = WmlDocument(sections: []);
@@ -164,6 +178,8 @@ final class _OdtReader {
   final markOffsets = <String, _RichAnchor>{};
   final noteOrders = <int>[];
   final noteRunOrders = Map<WmlRun, int>.identity();
+  final imageOrders = <int>[];
+  final _imagePaths = <String>{};
   final listParagraphs = Set<WmlParagraph>.identity();
   final paragraphs = <String, WmlParagraph>{};
   final _bibliographySections = <String>{};
@@ -223,6 +239,11 @@ final class _OdtReader {
     final section = WmlSection();
     document.sections.add(section);
     section.blocks.addAll(_blocks(text));
+    for (final issue in inventory.issues) {
+      if (!_imagePaths.contains(issue.location?.path)) {
+        throw UnsupportedError(issue.message);
+      }
+    }
     styles.applyPageLayout(
       section,
       hasFootnotes: document.footnotes.isNotEmpty,
@@ -380,6 +401,27 @@ final class _OdtReader {
         continue;
       }
       if (node is! XmlElement) continue;
+      if (_is(node, odfDrawingNamespace, 'frame')) {
+        final visual = images.read(node);
+        final path = paths[node]!;
+        _imagePaths.add(path);
+        final image = node
+            .childrenNamed('image', namespaceUri: odfDrawingNamespace)
+            .single;
+        _imagePaths.add(paths[image]!);
+        imageOrders.add(sourceOrder[path]!);
+        buffer.picture(
+          WmlRun(
+            text: '\uFFFC',
+            properties: properties is OdtReaderTextStyle
+                ? properties.nativeProperties()
+                : properties.copy(),
+            hyperlink: hyperlink,
+            inlineVisual: WmlVisual(visual: visual),
+          ),
+        );
+        continue;
+      }
       if (node.namespaceUri != odfTextNamespace) _unsupported(node);
       switch (node.localName) {
         case 'span':
@@ -1012,6 +1054,7 @@ final class _OdtReader {
       textByParagraph[entry.key] = entry.value.text;
     }
     noteOrders.sort();
+    imageOrders.sort();
     var identity = 0;
     for (final field in inventory.fields) {
       if (field.ranges.isEmpty) {
@@ -1051,6 +1094,20 @@ final class _OdtReader {
             'A native Zotero field contains a note anchor.',
           );
         }
+      }
+      // Pictures are atomic native characters outside field caches. The
+      // inventory deliberately omits their drawing content; never reconstruct
+      // a citation/bibliography by silently discarding a picture inside it.
+      if (imageOrders.any((order) => order > firstOrder && order < lastOrder) ||
+          (field.storage == OdfZoteroStorage.section &&
+              field.ranges.any(
+                (range) => paragraphs[range.location.paragraphPath]!.inlines
+                    .whereType<WmlRun>()
+                    .any((run) => run.inlineVisual != null),
+              ))) {
+        throw const FormatException(
+          'A native Zotero field contains a picture.',
+        );
       }
       for (var rangeIndex = 0; rangeIndex < field.ranges.length; rangeIndex++) {
         final range = field.ranges[rangeIndex];
@@ -1132,6 +1189,11 @@ final class _OdtReader {
           continue;
         }
         emit(offset);
+        if (inline is WmlRun && inline.inlineVisual != null) {
+          result.add(inline);
+          offset += inline.text.length;
+          continue;
+        }
         if (inline is! WmlRun || inline.text.isEmpty) {
           result.add(inline);
           continue;
@@ -1283,6 +1345,15 @@ final class _RichText {
     paragraph.inlines.add(value);
     _scriptContext.previous = null;
     _started = true;
+  }
+
+  void picture(WmlRun value) {
+    inline(value);
+    // Unlike the temporary zero-width note reference, a native inline picture
+    // owns one U+FFFC character. Later rich mark offsets include that position.
+    budget.consume(3);
+    runBudget.consume();
+    length++;
   }
 
   void _flush() {

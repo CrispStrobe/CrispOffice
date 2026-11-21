@@ -1172,6 +1172,11 @@ abstract final class OdtDocumentWriter {
             // Missing or ambiguous definitions must not erase cached text.
             _writeStyledText(w, inline.text, style, styleOnParent: commentLink);
           }
+        } else if (inline.inlineVisual?.visual.imageBytes?.isNotEmpty == true &&
+            inline.text == '\uFFFC') {
+          // The native run's object character is represented by draw:frame.
+          // Emitting both the literal U+FFFC and frame duplicates its position
+          // when a document processor opens this ODT.
         } else {
           _writeStyledText(
             w,
@@ -1629,6 +1634,16 @@ abstract final class OdtDocumentWriter {
         prefix: 'draw',
         attributes: {'xlink:href': path, 'xlink:type': 'simple'},
       );
+      if (visual.picture.altTitle.isNotEmpty) {
+        w.writeStartElement('title', prefix: 'svg');
+        w.writeText(visual.picture.altTitle);
+        w.writeEndElement();
+      }
+      if (visual.picture.altDescription.isNotEmpty) {
+        w.writeStartElement('desc', prefix: 'svg');
+        w.writeText(visual.picture.altDescription);
+        w.writeEndElement();
+      }
       w.writeEndElement();
     } else if (inline) {
       writeOdfText(w, visual.title);
