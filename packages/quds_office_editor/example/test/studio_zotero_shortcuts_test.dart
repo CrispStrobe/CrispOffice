@@ -33,9 +33,10 @@ final class _Transport extends StudioZoteroTransport {
 }
 
 final class _Desktop {
-  _Desktop({this.inspectCurrentField = false});
+  _Desktop({this.inspectCurrentField = false, this.writeDocumentData = false});
 
   final bool inspectCurrentField;
+  final bool writeDocumentData;
   final commands = <String>[];
   final requests = <String>[];
   int connections = 0;
@@ -44,6 +45,7 @@ final class _Desktop {
   String? currentFieldId;
   String? currentFieldText;
   Completer<void>? firstResponse;
+  Completer<void>? completionResponse;
 
   StudioZoteroTransport connect() {
     connections++;
@@ -81,7 +83,27 @@ final class _Desktop {
           'command': 'Document.complete',
           'arguments': [_documentId],
         };
+      } else if (writeDocumentData && requests.length == 2) {
+        message = {
+          'command': 'Document.setDocumentData',
+          'arguments': [
+            _documentId,
+            jsonEncode({
+              'dataVersion': 4,
+              'sessionID': 'mail-switch',
+              'zoteroVersion': '9.0',
+              'style': {
+                'styleID': 'http://www.zotero.org/styles/apa',
+                'locale': 'en-US',
+              },
+              'prefs': {'fieldType': 'Http', 'noteType': 0},
+            }),
+          ],
+        };
       } else {
+        if (writeDocumentData && requests.length == 3) {
+          await completionResponse?.future;
+        }
         message = {
           'command': 'Document.complete',
           'arguments': [_documentId],
@@ -104,12 +126,16 @@ Future<void> _frames(WidgetTester tester) async {
 
 Future<WordEditorController> _studio(
   WidgetTester tester,
-  _Desktop desktop,
-) async {
+  _Desktop desktop, {
+  bool fakeMail = false,
+}) async {
   await tester.binding.setSurfaceSize(const Size(1440, 1000));
   addTearDown(() => tester.binding.setSurfaceSize(null));
   addTearDown(() async {
     if (desktop.firstResponse case final gate? when !gate.isCompleted) {
+      gate.complete();
+    }
+    if (desktop.completionResponse case final gate? when !gate.isCompleted) {
       gate.complete();
     }
     await tester.pumpWidget(const SizedBox.shrink());
@@ -118,7 +144,21 @@ Future<WordEditorController> _studio(
   await tester.pumpWidget(
     MaterialApp(
       theme: ThemeData(fontFamily: 'Liberation Sans'),
-      home: SuiteWorkspace(zoteroTransportFactory: desktop.connect),
+      home: SuiteWorkspace(
+        zoteroTransportFactory: desktop.connect,
+        mailBuilder: fakeMail
+            ? (_, chrome) => Builder(
+                builder: (context) => Column(
+                  children: [
+                    chrome(context),
+                    const Expanded(
+                      child: Center(child: Text('Mail fixture')),
+                    ),
+                  ],
+                ),
+              )
+            : null,
+      ),
     ),
   );
   await tester.pump();
@@ -452,6 +492,69 @@ void main() {
       expect(tester.takeException(), isNull);
     },
   );
+
+  for (final returnToWord in [false, true]) {
+    testWidgets(
+      'Mail navigation${returnToWord ? ' and return' : ''} invalidates a pending Zotero publication',
+      (tester) async {
+        final desktop = _Desktop(writeDocumentData: true)
+          ..completionResponse = Completer<void>();
+        final controller = await _studio(tester, desktop, fakeMail: true);
+        final document = controller.document;
+        final beforeData = WordZoteroDocumentData.read(document);
+        final openMail = tester
+            .widget<StudioAppSwitcher>(
+              find.byWidgetPredicate(
+                (widget) =>
+                    widget is StudioAppSwitcher && widget.label == 'Mail',
+              ),
+            )
+            .onTap;
+        _binding(tester, LogicalKeyboardKey.keyR)();
+        for (var tick = 0; tick < 30 && desktop.requests.length < 3; tick++) {
+          await tester.pump(const Duration(milliseconds: 10));
+        }
+        expect(desktop.commands, ['refresh']);
+        expect(desktop.requests, hasLength(3));
+        expect(WordZoteroDocumentData.read(document), beforeData);
+        expect(controller.canUndo, isFalse);
+
+        // A saved host callback models navigation while the native Zotero
+        // picker owns focus. The detached result has changed preferences, but
+        // its terminal response has not yet reached the Word transaction.
+        openMail();
+        await _frames(tester);
+        expect(find.text('Mail fixture'), findsOneWidget);
+        if (returnToWord) {
+          tester
+              .widget<StudioAppSwitcher>(
+                find.byWidgetPredicate(
+                  (widget) =>
+                      widget is StudioAppSwitcher &&
+                      widget.label == 'Documents',
+                ),
+              )
+              .onTap();
+          await _frames(tester);
+          expect(find.text('Mail fixture'), findsNothing);
+        }
+        desktop.completionResponse!.complete();
+        await _frames(tester);
+        expect(controller.document, same(document));
+        expect(WordZoteroDocumentData.read(document), beforeData);
+        expect(controller.canUndo, isFalse);
+        expect(controller.zoteroFields, isEmpty);
+        expect(
+          find.textContaining('The document changed'),
+          findsOneWidget,
+        );
+        Navigator.of(tester.element(find.byType(Dialog))).pop();
+        await _frames(tester);
+        expect(desktop.disposals, 1);
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
 
   testWidgets('citation commands stay inactive in other Studio applications', (
     tester,

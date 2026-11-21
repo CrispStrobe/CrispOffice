@@ -3408,6 +3408,7 @@ class _Checker {
             property == 'kerning' ||
             property == 'position' ||
             property == 'color' ||
+            property == 'colorindex' ||
             property == 'underline') {
           return _Kind.number;
         }
@@ -7150,9 +7151,21 @@ class _Evaluator {
           );
         }
         normalized = size;
+      } else if (property == 'colorindex') {
+        field = 'color';
+        final index = _integer(value, token);
+        if (index < 0 || index >= _wordHighlights.length) {
+          context.unsupported(
+            token,
+            'Font.ColorIndex requires wdAuto or a fixed WdColorIndex color from 1 through 16; wdByAuthor is not valid for fonts.',
+          );
+        }
+        normalized = _wordHighlights[index] ?? 'auto';
       } else {
         field = 'color';
-        normalized = _color(value, token);
+        normalized = _integer(value, token) == -16777216
+            ? 'auto'
+            : _color(value, token);
       }
       _emitWord(receiver.range, 'runFormat', <String, Object?>{
         field: normalized,

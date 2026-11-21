@@ -4,6 +4,13 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Add bounded VBA `StrComp` with binary comparison, explicit compare-mode
+  validation, Variant Empty/Null behavior and shared interpreter budgets.
+  Word `Font.ColorIndex` uses the fixed 16-color palette and automatic index 0;
+  `Font.Color` recognizes automatic foreground while retaining explicit RGB.
+  Preserve native Word color inheritance, sparse writes and foreign XML metadata.
+  Include source/native regression cases, portable smokes and a runnable example.
+
 - Fill existing Word table templates from the bounded VBA dialect using typed
   `Tables`, `Table`, `Cell` and cell-range aliases, `With` and `ByVal` helpers.
   `Cell.Range.Text` emits guarded `docx.tableCellRangeText` operations for plain
