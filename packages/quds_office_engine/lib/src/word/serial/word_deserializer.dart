@@ -2500,6 +2500,7 @@ class WordDeserializer {
             'noProof',
             'caps',
             'smallCaps',
+            'color',
             'lang',
             'rFonts',
             'rStyle',
