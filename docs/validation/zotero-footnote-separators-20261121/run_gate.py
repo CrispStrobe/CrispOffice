@@ -16,7 +16,8 @@ SNAPSHOT_SCOPE = (
     'All tracked files under .github/apps/packages/third_party/tool/tools, '
     'all tracked repository-root files, this runner, and generated package '
     'configurations beside tracked pubspec.yaml files. The after snapshot '
-    'also retains every initial path, detecting deletion or untracking.'
+    'also retains every initial path so deletion or untracking cannot hide '
+    'an input-content change.'
 )
 
 
@@ -271,7 +272,10 @@ def main():
         result = subprocess.run(command, cwd=args.cwd.resolve(), stdout=stdout, stderr=stderr)
     receipt.update(exit_code=result.returncode, duration_seconds=round(time.monotonic() - started, 3))
     after = snapshot(repo, before)
-    changed = sorted(path for path in before.keys() | after.keys() if before.get(path) != after.get(path))
+    changed = sorted(
+        path for path in before.keys() | after.keys()
+        if path not in before or path not in after or before[path] != after[path]
+    )
     receipt['inputs_unchanged'] = not changed
     receipt['changed_inputs'] = changed
     good = result.returncode == 0 and not changed
