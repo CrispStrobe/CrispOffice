@@ -27,7 +27,13 @@ final class MailHeaderSearchDocument {
 
 /// A bounded, portable predicate over already loaded header metadata.
 ///
-/// Whitespace joins terms with AND. Bare text and quoted phrases match
+/// Whitespace joins terms with AND. Uppercase standalone AND, OR and NOT and
+/// parentheses compose expressions, with precedence NOT > AND > OR. A leading
+/// minus is an alias for NOT. Adjacent operands require whitespace: `a (b)` is
+/// valid but `a(b)`, `(a)b` and `(a)(b)` are rejected. Parentheses may touch
+/// their contents and follow an operator directly, as in `NOT(a OR b)`.
+///
+/// Bare text and quoted phrases match
 /// case-insensitive substrings of the subject or sender. The fields `from`,
 /// `subject`, `to` and `cc` restrict that match to one header group. Field names
 /// are case-insensitive and require an adjacent value, for example
@@ -36,15 +42,16 @@ final class MailHeaderSearchDocument {
 /// `is:read`, `is:unread`, `is:flagged` and `is:unflagged` require an observed
 /// flag value. `before:YYYY-MM-DD` and `after:YYYY-MM-DD` are exclusive calendar
 /// day bounds; `on:YYYY-MM-DD` requires the same local calendar day. Missing
-/// flags and dates do not match these predicates.
+/// flags and dates evaluate to unknown, including under NOT; only an expression
+/// known to be true matches. AND with false is false and OR with true is true,
+/// even when the other operand is unknown.
 ///
-/// Quoted values support only escaped quotes and backslashes. Operators,
-/// negation, groups and wildcards are deliberately unsupported; quote them to
-/// search for their literal text. Uppercase AND/OR/NOT are reserved when used
-/// as standalone bare terms. No provider, repository or body is consulted.
+/// Quoted values support only escaped quotes and backslashes. Lowercase
+/// `and/or/not`, field values such as `subject:OR`, and quoted operators are
+/// literal text. Wildcards, brackets, `&&` and `||` remain unsupported.
+/// No provider, repository or body is consulted.
 final class MailHeaderSearchQuery {
-  MailHeaderSearchQuery._(List<_HeaderSearchTerm> terms)
-    : _terms = List.unmodifiable(terms);
+  MailHeaderSearchQuery._(this._expression, this._termCount);
 
   factory MailHeaderSearchQuery.parse(String input) {
     if (input.length > maxCodeUnits) {
@@ -58,17 +65,25 @@ final class MailHeaderSearchQuery {
 
   static const int maxCodeUnits = 1024;
   static const int maxTerms = 32;
+  static const int maxNestingDepth = 8;
 
-  final List<_HeaderSearchTerm> _terms;
+  /// Maximum explicit AND, OR, NOT and minus operators in one query.
+  ///
+  /// Implicit AND is bounded by [maxTerms]. Exceeding this limit reports
+  /// [MailHeaderSearchError.invalidExpression] at the offending operator.
+  static const int maxOperators = 32;
 
-  int get termCount => _terms.length;
-  bool get isEmpty => _terms.isEmpty;
+  final _HeaderSearchTerm? _expression;
+  final int _termCount;
 
-  /// Every term must match. An empty query matches every supplied document.
+  int get termCount => _termCount;
+  bool get isEmpty => _expression == null;
+
+  /// Match only a true expression; an empty query matches every document.
   bool matches(MailHeaderSearchDocument document) {
-    if (_terms.isEmpty) return true;
-    final view = _SearchDocumentView(document);
-    return _terms.every((term) => term.matches(view));
+    final expression = _expression;
+    if (expression == null) return true;
+    return expression.matches(_SearchDocumentView(document)) == true;
   }
 }
 
@@ -84,6 +99,8 @@ enum MailHeaderSearchError {
   invalidState,
   invalidDate,
   unsupportedOperator,
+  invalidExpression,
+  nestingTooDeep,
 }
 
 /// Safe to display or log: no query or message content is included.
@@ -126,7 +143,8 @@ final class _SearchDocumentView {
 sealed class _HeaderSearchTerm {
   const _HeaderSearchTerm();
 
-  bool matches(_SearchDocumentView document);
+  /// Null preserves an observation that is unavailable to the loaded row.
+  bool? matches(_SearchDocumentView document);
 }
 
 final class _TextTerm extends _HeaderSearchTerm {
@@ -153,8 +171,10 @@ final class _FlagTerm extends _HeaderSearchTerm {
   final bool value;
 
   @override
-  bool matches(_SearchDocumentView document) =>
-      (read ? document.source.isRead : document.source.isFlagged) == value;
+  bool? matches(_SearchDocumentView document) {
+    final observed = read ? document.source.isRead : document.source.isFlagged;
+    return observed == null ? null : observed == value;
+  }
 }
 
 final class _DateTerm extends _HeaderSearchTerm {
@@ -164,9 +184,9 @@ final class _DateTerm extends _HeaderSearchTerm {
   final int day;
 
   @override
-  bool matches(_SearchDocumentView document) {
+  bool? matches(_SearchDocumentView document) {
     final observed = document.day;
-    if (observed == null) return false;
+    if (observed == null) return null;
     return switch (relation) {
       _DateRelation.before => observed < day,
       _DateRelation.after => observed > day,
@@ -175,55 +195,169 @@ final class _DateTerm extends _HeaderSearchTerm {
   }
 }
 
+final class _NotTerm extends _HeaderSearchTerm {
+  const _NotTerm(this.operand);
+
+  final _HeaderSearchTerm operand;
+
+  @override
+  bool? matches(_SearchDocumentView document) {
+    final observed = operand.matches(document);
+    return observed == null ? null : !observed;
+  }
+}
+
+final class _BooleanTerm extends _HeaderSearchTerm {
+  const _BooleanTerm(this.left, this.right, {required this.isAnd});
+
+  final _HeaderSearchTerm left;
+  final _HeaderSearchTerm right;
+  final bool isAnd;
+
+  @override
+  bool? matches(_SearchDocumentView document) {
+    final first = left.matches(document);
+    if (isAnd && first == false) return false;
+    if (!isAnd && first == true) return true;
+    final second = right.matches(document);
+    if (isAnd && second == false) return false;
+    if (!isAnd && second == true) return true;
+    if (first == null || second == null) return null;
+    return isAnd;
+  }
+}
+
 final class _HeaderSearchParser {
   _HeaderSearchParser(this.input);
 
   final String input;
   int offset = 0;
+  int _termCount = 0;
+  int _operatorCount = 0;
 
   MailHeaderSearchQuery parse() {
-    final terms = <_HeaderSearchTerm>[];
+    _skipWhitespace();
+    if (offset == input.length) return MailHeaderSearchQuery._(null, 0);
+    final expression = _or(0);
+    _skipWhitespace();
+    if (offset != input.length) _invalidExpression();
+    return MailHeaderSearchQuery._(expression, _termCount);
+  }
+
+  _HeaderSearchTerm _or(int depth) {
+    var expression = _and(depth);
+    while (_operatorAt('OR')) {
+      _consumeOperator(2);
+      expression = _BooleanTerm(expression, _and(depth), isAnd: false);
+    }
+    return expression;
+  }
+
+  _HeaderSearchTerm _and(int depth) {
+    var expression = _unary(depth);
     while (offset < input.length) {
-      if (_whitespace(input.codeUnitAt(offset))) {
-        offset++;
-        continue;
-      }
-      if (terms.length == MailHeaderSearchQuery.maxTerms) {
-        throw MailHeaderSearchException(
-          MailHeaderSearchError.tooManyTerms,
-          offset,
-        );
-      }
-      terms.add(_term());
-      if (offset < input.length && !_whitespace(input.codeUnitAt(offset))) {
+      final spaced = _skipWhitespace();
+      if (offset == input.length || input.codeUnitAt(offset) == 0x29) break;
+      if (!spaced) {
         throw MailHeaderSearchException(
           MailHeaderSearchError.invalidCharacter,
           offset,
         );
       }
+      if (_operatorAt('OR')) break;
+      if (_operatorAt('AND')) _consumeOperator(3);
+      expression = _BooleanTerm(expression, _unary(depth), isAnd: true);
     }
-    return MailHeaderSearchQuery._(terms);
+    return expression;
   }
+
+  _HeaderSearchTerm _unary(int depth) {
+    _skipWhitespace();
+    var negated = false;
+    // Parse unary chains iteratively so their length cannot grow the call stack.
+    while (offset < input.length) {
+      if (_operatorAt('NOT')) {
+        _consumeOperator(3);
+      } else if (input.codeUnitAt(offset) == 0x2d) {
+        _consumeOperator(1);
+      } else {
+        break;
+      }
+      negated = !negated;
+      _skipWhitespace();
+    }
+
+    if (offset == input.length ||
+        input.codeUnitAt(offset) == 0x29 ||
+        _operatorAt('AND') ||
+        _operatorAt('OR')) {
+      _invalidExpression();
+    }
+
+    final _HeaderSearchTerm expression;
+    if (input.codeUnitAt(offset) == 0x28) {
+      if (depth == MailHeaderSearchQuery.maxNestingDepth) {
+        throw MailHeaderSearchException(
+          MailHeaderSearchError.nestingTooDeep,
+          offset,
+        );
+      }
+      offset++;
+      expression = _or(depth + 1);
+      if (offset == input.length || input.codeUnitAt(offset) != 0x29) {
+        _invalidExpression();
+      }
+      offset++;
+    } else {
+      if (_termCount == MailHeaderSearchQuery.maxTerms) {
+        throw MailHeaderSearchException(
+          MailHeaderSearchError.tooManyTerms,
+          offset,
+        );
+      }
+      expression = _term();
+      _termCount++;
+    }
+    return negated ? _NotTerm(expression) : expression;
+  }
+
+  bool _operatorAt(String word) {
+    if (!input.startsWith(word, offset)) return false;
+    final end = offset + word.length;
+    return end == input.length ||
+        _whitespace(input.codeUnitAt(end)) ||
+        input.codeUnitAt(end) == 0x28 ||
+        input.codeUnitAt(end) == 0x29;
+  }
+
+  void _consumeOperator(int length) {
+    if (_operatorCount == MailHeaderSearchQuery.maxOperators) {
+      _invalidExpression();
+    }
+    _operatorCount++;
+    offset += length;
+  }
+
+  bool _skipWhitespace() {
+    final start = offset;
+    while (offset < input.length && _whitespace(input.codeUnitAt(offset))) {
+      offset++;
+    }
+    return offset != start;
+  }
+
+  Never _invalidExpression() => throw MailHeaderSearchException(
+    MailHeaderSearchError.invalidExpression,
+    offset,
+  );
 
   _HeaderSearchTerm _term() {
     final start = offset;
     if (input.codeUnitAt(offset) == 0x22) {
       return _TextTerm(_TextField.any, _quoted().toLowerCase());
     }
-    if (input.codeUnitAt(offset) == 0x2d) {
-      throw MailHeaderSearchException(
-        MailHeaderSearchError.unsupportedOperator,
-        offset,
-      );
-    }
     final word = _bare(stopAtColon: true);
     if (offset == input.length || input.codeUnitAt(offset) != 0x3a) {
-      if (word == 'AND' || word == 'OR' || word == 'NOT') {
-        throw MailHeaderSearchException(
-          MailHeaderSearchError.unsupportedOperator,
-          start,
-        );
-      }
       return _TextTerm(_TextField.any, word.toLowerCase());
     }
 
@@ -245,7 +379,10 @@ final class _HeaderSearchParser {
     }
     offset++;
     final valueStart = offset;
-    if (offset == input.length || _whitespace(input.codeUnitAt(offset))) {
+    if (offset == input.length ||
+        _whitespace(input.codeUnitAt(offset)) ||
+        input.codeUnitAt(offset) == 0x28 ||
+        input.codeUnitAt(offset) == 0x29) {
       throw MailHeaderSearchException(
         MailHeaderSearchError.missingValue,
         offset,
@@ -281,7 +418,12 @@ final class _HeaderSearchParser {
     final start = offset;
     while (offset < input.length) {
       final unit = input.codeUnitAt(offset);
-      if (_whitespace(unit) || stopAtColon && unit == 0x3a) break;
+      if (_whitespace(unit) ||
+          unit == 0x28 ||
+          unit == 0x29 ||
+          stopAtColon && unit == 0x3a) {
+        break;
+      }
       if (_control(unit) || unit == 0x22) {
         throw MailHeaderSearchException(
           MailHeaderSearchError.invalidCharacter,
@@ -294,9 +436,7 @@ final class _HeaderSearchParser {
           offset,
         );
       }
-      if (unit == 0x28 ||
-          unit == 0x29 ||
-          unit == 0x5b ||
+      if (unit == 0x5b ||
           unit == 0x5d ||
           unit == 0x2a ||
           unit == 0x3f ||
