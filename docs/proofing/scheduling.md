@@ -150,6 +150,11 @@ Rules:
   check that changes no mark on screen does not notify listeners at all
   (the Studio otherwise rebuilds its chrome per notification). "Checking…"
   appears only for idle, load and explicit passes that run for 1 s.
+- **Stable underlines.** While an edited paragraph waits for its check, marks
+  in its unchanged text stay painted (moved with the text after the edit);
+  only marks touching the edited range disappear. A spelling-only word check
+  keeps the paragraph's previous grammar marks where the text is unchanged
+  until the next grammar check replaces them (they do not count as checked).
 - **Modes.** "When I pause" disables the word and sentence triggers.
   "Only when I click Check document" disables every automatic check
   (`WordProofingSchedule.automatic`); explicit checks are unchanged.
@@ -213,4 +218,63 @@ paragraph to be rechecked at the next pause instead of in idle time.
 
 ### Typing benchmark
 
-BENCHMARK_RESULTS
+`example/test/studio_typing_proofing_benchmark_test.dart`
+(`QUDS_TYPING_BENCHMARK=1`; described in
+[typing-proofing-20261120](../performance/typing-proofing-20261120.md)): the full
+Studio, 180 paragraphs / 21 pages of German, English and Arabic, 300 characters
+typed through the IME path into paragraph 91 (about 40 words, several sentence
+ends, a 100-character burst and a 1.2 s pause). It now also reports the
+session's own pass count (`sessionPasses`; the older `proofingPasses` only sees
+passes that publish "checking") and per-keystroke rates. The benchmark's
+counting provider forwards `categories`, so the Studio's German spelling
+provider runs on the word schedule.
+
+"Before" is `84046975` (main at the branch point: 600 ms idle pause, 2.5 s
+deadline); "after" is this branch. Debug JIT widget test with fake time.
+
+#### Local (MacBook, three alternating rounds, 1-minute load 5–9)
+
+Values are rounds 1 / 2 / 3.
+
+| Metric | Before | After |
+|---|---|---|
+| Passes started (`sessionPasses`) | 11 / 11 / 11 | 41 / 41 / 41 (one per completed word or sentence, 3 at pauses) |
+| Passes per keystroke | 0.037 | 0.137 |
+| Provider calls (paragraph × provider) | 22 | 44 (word checks call only the spelling provider) |
+| Provider calls per keystroke | 0.073 | 0.147 |
+| Provider time, total (ms) | 110 / 109 / 110 | 118 / 128 / 119 |
+| Language detection calls | 11 | **3** (only at sentence ends and pauses) |
+| Session notifications | 22 | **6** (0.02 per keystroke; checks that change no mark are silent) |
+| Writing-status label changes | 7 | **5** (0.017 per keystroke; issue counts only, never "Checking…") |
+| Studio workspace / ribbon rebuilds | 13 | **10** |
+| Keystroke handler p50 / p95 (ms) | 3.9 / 5.7 · 3.9 / 5.9 · 3.9 / 5.7 | 3.8 / 6.0 · 4.0 / 7.3 · 3.9 / 6.5 |
+| Frame after keystroke p50 / p95 (ms) | 6.2 / 10.4 · 6.0 / 10.4 · 6.0 / 10.7 | 6.2 / 9.6 · 6.5 / 11.4 · 6.1 / 8.6 |
+| Keystrokes over 16.7 ms (handler + frame) | 21 / 21 / 22 | 19 / 25 / 18 |
+| Timer work between keystrokes p50 / p95 (ms) | 0.3 / 3.5 · 0.3 / 4.1 · 0.3 / 3.8 | 0.3 / 6.5 · 0.3 / 7.6 · 0.3 / 6.5 |
+| Proofing session cost per keystroke p50 / p95 (ms) | 0.03 / 0.04 | 0.03 / 0.04 |
+| Findings at the end | 66 | 65 (the misspelling at the caret stays hidden until the caret leaves) |
+
+Reading the table:
+
+- The old scheduler checked continuous typing every 2.5 s, whatever was typed,
+  and flagged unfinished words at the caret; the new one checks a word once,
+  when it is completed, which is what Blink and Writer do. That is more, but
+  much smaller, passes (one spelling call for one paragraph), so provider calls
+  double while provider time stays within 10–15 %.
+- Everything the user sees got calmer: 6 instead of 22 notifications (each one
+  rebuilds the Studio chrome), 5 instead of 7 status changes, no "Checking…",
+  no underline blinking in the paragraph being typed, and language detection
+  only 3 times.
+- Handler and frame times are unchanged within noise (frame p95 is equal or
+  lower); timer work between keystrokes p95 rises by about 3 ms because word
+  checks now run in those gaps instead of every 2.5 s.
+
+An intermediate version that notified after every word check measured frame
+p95 25–34 ms and 49–73 slow keystrokes: each notification rebuilt the
+workspace, and underlines elsewhere in the typed paragraph disappeared on
+every keystroke and came back with every check. Keeping unaffected marks
+(moved with the text) and skipping notifications that change no mark removed
+both.
+
+HOSTED_RESULTS
+
