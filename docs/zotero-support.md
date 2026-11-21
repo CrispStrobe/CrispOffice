@@ -1549,6 +1549,14 @@ are separate from installed Zotero plugin acceptance on a release host.
 
 ## Open a native LibreOffice ODT
 
+Supported uppercase character formatting now remains editable through native
+ODT opening and later DOCX/ODT saves. The visible capitals do not rewrite the
+underlying text or move citation boundaries. Explicit normal-case spans inside
+uppercase paragraphs retain their authored case. Other case transformations
+and an effective combination of uppercase with small capitals still refuse.
+See the [combined round-trip qualification](validation/zotero-roundtrip-complete-20261121/README.md)
+for the actual file-conversion scope and remaining native-plugin checks.
+
 Studio **Open** accepts `.odt` files. A supported file opens in Writer with
 editable paragraphs and active Zotero fields. The normal Zotero document tools
 can then edit or refresh those fields with desktop Zotero running. The first
