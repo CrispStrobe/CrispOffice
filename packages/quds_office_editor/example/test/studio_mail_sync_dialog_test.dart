@@ -1029,6 +1029,46 @@ void main() {
   }
 
   for (final language in StudioLanguage.values) {
+    testWidgets(
+      'compact ${language.name} missing-body download stays reachable',
+      (tester) async {
+        final header = _header(1);
+        final store = _Store()..save([header], hasMore: false);
+        var requests = 0;
+        await _show(
+          tester,
+          store,
+          language: language,
+          size: const Size(390, 844),
+          scale: 1.3,
+          run: idleSync,
+          download:
+              ({
+                required headers,
+                required cancellation,
+                required onProgress,
+              }) async {
+                requests++;
+                expect(headers.map((item) => item.id), [header.id]);
+                store.bodies[header.id] = _message(header);
+                return downloaded(1);
+              },
+        );
+        _openFirst(tester);
+        await _pump(tester);
+        expect(tester.takeException(), isNull);
+        expect(requests, 0);
+        await tester.ensureVisible(_key('studio-mail-download-message'));
+        await tester.pumpAndSettle();
+        await tester.tap(_key('studio-mail-download-message'));
+        await _pump(tester);
+        expect(requests, 1);
+        expect(find.byType(MailMessageView), findsOneWidget);
+        expect(tester.takeException(), isNull);
+        await _capture(tester, 'compact-download-${language.name}');
+      },
+    );
+
     testWidgets('compact ${language.name} layout keeps controls and reader', (
       tester,
     ) async {

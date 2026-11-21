@@ -696,32 +696,39 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
   Widget _message() {
     if (_reader case final reader?) return MailMessageView(controller: reader);
     return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              _missingBody
-                  ? widget.strings.mailSyncMissingBody
-                  : _bodyBusy
-                  ? widget.strings.mailMessageListStrings.loading
-                  : _error ?? widget.strings.mailSyncChooseMessage,
-              key: const ValueKey('studio-mail-sync-message-state'),
-            ),
-            if (_missingBody && widget.download != null) ...[
-              const SizedBox(height: 12),
-              FilledButton.icon(
-                key: const ValueKey('studio-mail-download-message'),
-                onPressed: !_current || _working || _bodyBusy || _viewFailed
-                    ? null
-                    : () =>
-                          unawaited(_work(() => _download(selectedOnly: true))),
-                icon: const Icon(Icons.download_for_offline_outlined),
-                label: Text(widget.strings.mailDownloadMessage),
+      // This is host status/recovery chrome, not the document reader. Keep its
+      // action reachable with long translations and enlarged system text.
+      child: SingleChildScrollView(
+        key: const ValueKey('studio-mail-sync-message-status-scroll'),
+        primary: false,
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                _missingBody
+                    ? widget.strings.mailSyncMissingBody
+                    : _bodyBusy
+                    ? widget.strings.mailMessageListStrings.loading
+                    : _error ?? widget.strings.mailSyncChooseMessage,
+                key: const ValueKey('studio-mail-sync-message-state'),
               ),
+              if (_missingBody && widget.download != null) ...[
+                const SizedBox(height: 12),
+                FilledButton.icon(
+                  key: const ValueKey('studio-mail-download-message'),
+                  onPressed: !_current || _working || _bodyBusy || _viewFailed
+                      ? null
+                      : () => unawaited(
+                          _work(() => _download(selectedOnly: true)),
+                        ),
+                  icon: const Icon(Icons.download_for_offline_outlined),
+                  label: Text(widget.strings.mailDownloadMessage),
+                ),
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );
