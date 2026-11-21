@@ -283,6 +283,7 @@ final class EwsSoap {
   String getItems(
     List<String> ids, {
     bool mime = false,
+    bool flagsOnly = false,
   }) => _request('GetItem', (builder) {
     builder.element(
       'm:ItemShape',
@@ -292,19 +293,21 @@ final class EwsSoap {
         builder.element(
           't:AdditionalProperties',
           nest: () {
-            for (final field in const [
-              'item:Subject',
-              'item:DateTimeSent',
-              'item:InReplyTo',
+            for (final field in [
+              if (!flagsOnly) ...const [
+                'item:Subject',
+                'item:DateTimeSent',
+                'item:InReplyTo',
+                'message:From',
+                'message:ToRecipients',
+                'message:CcRecipients',
+                'message:BccRecipients',
+                'message:ReplyTo',
+                'message:InternetMessageId',
+                'message:References',
+              ],
               'item:IsDraft',
               'item:Flag',
-              'message:From',
-              'message:ToRecipients',
-              'message:CcRecipients',
-              'message:BccRecipients',
-              'message:ReplyTo',
-              'message:InternetMessageId',
-              'message:References',
               'message:IsRead',
             ]) {
               builder.element('t:FieldURI', attributes: {'FieldURI': field});
@@ -605,6 +608,7 @@ final class EwsSoap {
     bool mime = false,
     int? maxMimeBytes,
     bool allowMissing = false,
+    bool requireFlags = false,
   }) => _guard(() {
     final responses = _responses(xml, 'GetItem', allowMissing: allowMissing);
     final result = <EwsItem?>[];
@@ -649,6 +653,10 @@ final class EwsSoap {
       final flag = flagElement == null
           ? null
           : _text(_one(flagElement, 'FlagStatus', _types), budget);
+      if (requireFlags &&
+          (readElement == null || draftElement == null || flag == null)) {
+        _invalid();
+      }
       if (flag != null &&
           !const {'Flagged', 'NotFlagged', 'Complete'}.contains(flag)) {
         _invalid();

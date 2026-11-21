@@ -53,7 +53,7 @@ final class _Operation {
 
 /// Native Exchange Server mail adapter. One active operation owns one HTTPS
 /// client and a fresh vault read. No operation, including send, is retried here.
-final class NativeMailEwsProvider implements MailEwsProvider {
+final class NativeMailEwsProvider implements MailEwsProvider, MailFlagObserver {
   NativeMailEwsProvider({
     required this.configuration,
     required this.credentialStore,
@@ -303,18 +303,20 @@ final class NativeMailEwsProvider implements MailEwsProvider {
     bool mime = false,
     int? maxMimeBytes,
     bool allowMissing = false,
+    bool requireFlags = false,
   }) async {
     if (ids.isEmpty) return const [];
     final xml = await operation.post(
       client,
       'GetItem',
-      _soap.getItems(ids, mime: mime),
+      _soap.getItems(ids, mime: mime, flagsOnly: requireFlags),
     );
     final result = _soap.items(
       xml,
       mime: mime,
       maxMimeBytes: maxMimeBytes,
       allowMissing: allowMissing,
+      requireFlags: requireFlags,
     );
     if (result.length != ids.length) {
       throw const EwsException(MailProblemCode.providerFailure);
@@ -325,6 +327,34 @@ final class NativeMailEwsProvider implements MailEwsProvider {
       }
     }
     return result;
+  }
+
+  @override
+  Future<MailResult<MailFlagObservation>> observeFlags(
+    MailRemoteIdentity identity, {
+    required MailOperationLease lease,
+  }) async {
+    if (!_identityValid(identity)) {
+      return _failure(MailProblemCode.invalidInput);
+    }
+    final remote = identity as MailOpaqueIdentity;
+    return _run(lease, (client, operation) async {
+      final item = (await _items(
+        client,
+        operation,
+        [remote.value],
+        allowMissing: true,
+        requireFlags: true,
+      )).single;
+      if (item == null) {
+        return MailFlagObservation.missing(identity: identity);
+      }
+      final flags = item.flags;
+      if (flags == null) {
+        throw const EwsException(MailProblemCode.providerFailure);
+      }
+      return MailFlagObservation.present(identity: identity, flags: flags);
+    });
   }
 
   @override

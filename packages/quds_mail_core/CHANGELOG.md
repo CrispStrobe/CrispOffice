@@ -1,5 +1,10 @@
 ## Unreleased
 
+- Add optional `MailFlagObserver` and typed current-state observations for exact
+  message identities. Distinguish present flags, an unavailable identity and
+  an invalidated IMAP generation without claiming an earlier command succeeded
+  or authorizing its replay. Existing provider implementations remain compatible.
+
 - Add an optional awaited `MailBulkFlagJournal` lifecycle to the shared runner
   and coordinator. Persist the frozen intent and dispatch marker before network
   work, recheck scope after each awaited write, and retain each result before
