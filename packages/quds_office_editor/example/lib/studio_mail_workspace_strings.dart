@@ -160,6 +160,51 @@ extension StudioMailWorkspaceStrings on StudioStrings {
       'Auswahl aufheben',
       'إلغاء التحديد',
     ),
+    selectionHelp: _text(
+      'Selection help',
+      'Hilfe zur Auswahl',
+      'مساعدة التحديد',
+    ),
+    selectionHelpTitle: _text(
+      'Select messages',
+      'Nachrichten auswählen',
+      'تحديد الرسائل',
+    ),
+    selectionHelpText: _text(
+      'Arrow keys and Home/End move the list cursor without opening mail. '
+          'Space toggles its checkbox. Hold Shift with Up/Down or Home/End '
+          'to extend or shrink a checked range. Shift+Space or Shift+click '
+          'on a row or checkbox selects a range from the anchor. '
+          'Separately checked messages stay selected when a range shrinks. '
+          'Ctrl/Cmd+A selects shown rows; Escape clears the selection.\n\n'
+          'Search, sorting, conversation folding and refreshed rows reset '
+          'the range anchor. Only shown rows are included; filtered or '
+          'collapsed messages are excluded. Choose an action from '
+          'Actions for selected messages to apply changes.',
+      'Pfeiltasten und Pos1/Ende bewegen den Listencursor, ohne E-Mails zu '
+          'öffnen. Die Leertaste schaltet das Kontrollkästchen um. '
+          'Umschalt+Auf/Ab oder Umschalt+Pos1/Ende erweitert oder verkleinert '
+          'den ausgewählten Bereich. Umschalt+Leertaste oder ein Klick auf '
+          'eine Zeile oder ein Kontrollkästchen mit gedrückter Umschalttaste '
+          'wählt den Bereich ab dem Anker aus. Separat ausgewählte '
+          'Nachrichten bleiben beim Verkleinern ausgewählt. Strg/Cmd+A '
+          'wählt angezeigte Zeilen; Escape hebt die Auswahl auf.\n\n'
+          'Suche, Sortierung, das Ein- und Ausklappen von Unterhaltungen '
+          'sowie aktualisierte Zeilen setzen den Bereichsanker zurück. '
+          'Nur angezeigte Zeilen werden einbezogen; ausgefilterte oder '
+          'eingeklappte Nachrichten bleiben ausgeschlossen. Wählen Sie '
+          'unter Aktionen für ausgewählte Nachrichten die gewünschte Aktion.',
+      'تنقل مفاتيح الأسهم وHome/End مؤشر القائمة دون فتح البريد. يبدّل '
+          'مفتاح المسافة تحديد الرسالة. اضغط Shift مع أعلى/أسفل أو '
+          'Home/End لتوسيع نطاق التحديد أو تقليصه. يحدد Shift+المسافة '
+          'أو النقر مع Shift على صف أو مربع تحديد النطاق من نقطة البداية. '
+          'تبقى الرسائل المحددة منفردة محددة عند تقليص النطاق. '
+          'يحدد Ctrl/Cmd+A الصفوف المعروضة؛ ويلغي Escape التحديد.\n\n'
+          'يعيد البحث والترتيب وطي المحادثات أو توسيعها وتحديث الصفوف '
+          'تعيين نقطة بداية النطاق. يشمل التحديد الصفوف المعروضة فقط؛ '
+          'ولا يشمل الرسائل المخفية بالترشيح أو الطي. اختر إجراءً من '
+          'إجراءات الرسائل المحددة لتطبيق التغييرات.',
+    ),
     selectedCount: (count) =>
         _text('$count selected', '$count ausgewählt', '$count محددة'),
     bulkActions: _text(

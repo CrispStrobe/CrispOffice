@@ -97,6 +97,18 @@ final class MailMessageListStrings {
     String? selectShown,
     String? selectVisible,
     this.clearSelection = 'Clear selection',
+    this.selectionHelp = 'Selection help',
+    this.selectionHelpTitle = 'Select messages',
+    this.selectionHelpText =
+        'Arrow keys and Home/End move the list cursor without opening mail. '
+        'Space toggles its checkbox. Hold Shift with Up/Down or Home/End '
+        'to extend or shrink a checked range. Shift+Space, Shift+click on '
+        'a row or Shift+click on a checkbox selects a range from the anchor. '
+        'Separately checked messages stay selected when a range shrinks. '
+        'Ctrl/Cmd+A selects shown rows; Escape clears the checked selection. '
+        'Search, sorting, conversation folding and refreshed rows reset '
+        'the range anchor. Only shown rows are included. '
+        'Choose an action from Selected messages to apply changes.',
     this.selectedCount = _defaultSelectedCount,
     this.bulkActions = 'Selected messages',
     this.markRead = 'Mark as read',
@@ -143,6 +155,9 @@ final class MailMessageListStrings {
   final String selectShown;
   String get selectVisible => selectShown;
   final String clearSelection;
+  final String selectionHelp;
+  final String selectionHelpTitle;
+  final String selectionHelpText;
   final String Function(int selected) selectedCount;
   final String bulkActions;
   final String markRead;
@@ -213,6 +228,11 @@ final _searchExampleLine = RegExp(
 /// Enter or explicit row activation invokes [onOpen]. Space checks the cursor
 /// when bulk actions are available, and Ctrl/Cmd+A checks visible rows only
 /// while the list owns focus. Search editing owns its own keys.
+/// Shift+Up/Down/Home/End extends or contracts a visible checked range.
+/// Shift+Space and Shift+click on a row/checkbox extend from the same anchor.
+/// Independent checks survive contraction. A new unmodified navigation or
+/// toggle establishes a new anchor. Query/sort/folding and host updates end
+/// the active range, so it never expands across a changed projection.
 /// Conversation groups start expanded. Their disclosure only hides/shows loaded
 /// children; it never opens a message or authorizes a group-wide action. Hidden
 /// children immediately leave the checked set. Left/Right collapse/expand the
@@ -313,6 +333,8 @@ class _MailMessageListState extends State<MailMessageList> {
   MailMessageListSort _sort = MailMessageListSort.providerOrder;
   int _interactionGeneration = 0;
   final _checkedIds = <String>{};
+  String? _selectionAnchorId;
+  Set<String>? _rangeBaseIds;
   // Stable account + local row identities, never RFC Message-ID or list index.
   // Remember every current member so sort/filter changes and refreshed heads
   // preserve the user's choice without merging across account namespaces.
@@ -468,6 +490,7 @@ class _MailMessageListState extends State<MailMessageList> {
     }
     setState(() {
       _interactionGeneration++;
+      _resetRangeSelection();
       if (collapsed) {
         _collapsedMembers.addAll(keys);
       } else {
@@ -504,6 +527,7 @@ class _MailMessageListState extends State<MailMessageList> {
     // A host rebuild can replace a provider/session or header observations.
     // Keep compatible checked rows, but never reuse its old pointer/menu work.
     _interactionGeneration++;
+    _resetRangeSelection();
     if (oldWidget.selectionScopeId != widget.selectionScopeId ||
         oldWidget.scopeId != widget.scopeId ||
         widget.onBulkAction == null ||
@@ -563,6 +587,7 @@ class _MailMessageListState extends State<MailMessageList> {
   void _filterChanged(VoidCallback update) {
     setState(() {
       _interactionGeneration++;
+      _resetRangeSelection();
       update();
       final visible = _visible;
       _pruneSelection(visible);
@@ -592,6 +617,7 @@ class _MailMessageListState extends State<MailMessageList> {
   void _sortChanged(MailMessageListSort value) {
     setState(() {
       _interactionGeneration++;
+      _resetRangeSelection();
       _sort = value;
       final visible = _visible;
       _pruneSelection(visible);
@@ -612,6 +638,64 @@ class _MailMessageListState extends State<MailMessageList> {
   bool _acceptBulkCallback(int generation) =>
       mounted && _canBulk && generation == _interactionGeneration;
 
+  void _resetRangeSelection({String? anchorId}) {
+    _selectionAnchorId = anchorId;
+    _rangeBaseIds = null;
+  }
+
+  bool get _onlyShiftPressed =>
+      HardwareKeyboard.instance.isShiftPressed &&
+      !HardwareKeyboard.instance.isControlPressed &&
+      !HardwareKeyboard.instance.isMetaPressed &&
+      !HardwareKeyboard.instance.isAltPressed;
+
+  void _extendSelectionTo(String id, int generation) {
+    if (!_acceptBulkCallback(generation)) return;
+    final visible = _visible;
+    final target = visible.indexWhere((item) => item.id == id);
+    if (target < 0) return;
+    var anchor = visible.indexWhere((item) => item.id == _selectionAnchorId);
+    if (anchor < 0) {
+      anchor = visible.indexWhere((item) => item.id == _activeId);
+    }
+    if (anchor < 0) anchor = target;
+    final start = math.min(anchor, target);
+    final end = math.max(anchor, target);
+    final visibleIds = visible.map((item) => item.id).toSet();
+    setState(() {
+      _interactionGeneration++;
+      _selectionAnchorId = visible[anchor].id;
+      // Only this gesture's additions are removed when the range contracts.
+      // Explicit checks made before it remain selected.
+      _rangeBaseIds ??= Set<String>.of(_checkedIds);
+      _rangeBaseIds!.retainAll(visibleIds);
+      _checkedIds
+        ..clear()
+        ..addAll(_rangeBaseIds!)
+        ..addAll(visible.sublist(start, end + 1).map((item) => item.id));
+      _activeId = id;
+    });
+    _listFocus.requestFocus();
+    _revealCursor();
+  }
+
+  void _checkFromPointer(String id, bool checked, int generation) {
+    if (HardwareKeyboard.instance.isShiftPressed) {
+      if (_onlyShiftPressed) _extendSelectionTo(id, generation);
+      return;
+    }
+    _checkRow(id, checked, generation);
+  }
+
+  void _activateRow(String id, int generation) {
+    if (widget.onBulkAction != null &&
+        HardwareKeyboard.instance.isShiftPressed) {
+      if (_onlyShiftPressed) _extendSelectionTo(id, generation);
+      return;
+    }
+    _open(id, interactionGeneration: generation);
+  }
+
   void _checkRow(String id, bool checked, int generation) {
     if (!_acceptBulkCallback(generation) ||
         !_visible.any((item) => item.id == id)) {
@@ -619,6 +703,7 @@ class _MailMessageListState extends State<MailMessageList> {
     }
     setState(() {
       _interactionGeneration++;
+      _resetRangeSelection(anchorId: id);
       if (checked) {
         _checkedIds.add(id);
       } else {
@@ -634,6 +719,7 @@ class _MailMessageListState extends State<MailMessageList> {
     final visible = _visible;
     setState(() {
       _interactionGeneration++;
+      _resetRangeSelection();
       _checkedIds
         ..clear()
         ..addAll(visible.map((item) => item.id));
@@ -646,6 +732,7 @@ class _MailMessageListState extends State<MailMessageList> {
     if (!_acceptBulkCallback(generation)) return;
     setState(() {
       _interactionGeneration++;
+      _resetRangeSelection();
       _checkedIds.clear();
     });
   }
@@ -670,12 +757,24 @@ class _MailMessageListState extends State<MailMessageList> {
     final callback = widget.onBulkAction!;
     setState(() {
       _interactionGeneration++;
+      _resetRangeSelection();
       _checkedIds.clear();
     });
     callback(choice.action, choice.ids);
   }
 
-  void _showSearchHelp() {
+  void _showSearchHelp() => _showHelp(
+    widget.strings.searchHelpTitle,
+    widget.strings.searchHelpText,
+    searchExamples: true,
+  );
+
+  void _showSelectionHelp() => _showHelp(
+    widget.strings.selectionHelpTitle,
+    widget.strings.selectionHelpText,
+  );
+
+  void _showHelp(String title, String content, {bool searchExamples = false}) {
     final strings = widget.strings;
     final direction = Directionality.of(context);
     final textScaler = MediaQuery.textScalerOf(context);
@@ -686,16 +785,17 @@ class _MailMessageListState extends State<MailMessageList> {
         child: Directionality(
           textDirection: direction,
           child: AlertDialog(
-            title: Text(strings.searchHelpTitle),
+            title: Text(title),
             content: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  for (final line in strings.searchHelpText.split('\n'))
+                  for (final line in content.split('\n'))
                     Text(
                       line.isEmpty ? ' ' : line,
-                      textDirection: _searchExampleLine.hasMatch(line)
+                      textDirection:
+                          searchExamples && _searchExampleLine.hasMatch(line)
                           ? TextDirection.ltr
                           : null,
                     ),
@@ -743,7 +843,10 @@ class _MailMessageListState extends State<MailMessageList> {
         !_visible.any((item) => item.id == id)) {
       return;
     }
-    setState(() => _activeId = id);
+    setState(() {
+      _resetRangeSelection(anchorId: id);
+      _activeId = id;
+    });
     _listFocus.requestFocus();
     widget.onOpen(id);
   }
@@ -765,9 +868,22 @@ class _MailMessageListState extends State<MailMessageList> {
     }
     if (HardwareKeyboard.instance.isControlPressed ||
         HardwareKeyboard.instance.isMetaPressed ||
-        HardwareKeyboard.instance.isAltPressed ||
-        HardwareKeyboard.instance.isShiftPressed) {
+        HardwareKeyboard.instance.isAltPressed) {
       return KeyEventResult.ignored;
+    }
+    if (HardwareKeyboard.instance.isShiftPressed) {
+      if (widget.onBulkAction == null) return KeyEventResult.ignored;
+      if (key == LogicalKeyboardKey.space) {
+        if (event is KeyDownEvent) {
+          if (_activeId case final id?) {
+            _extendSelectionTo(id, _interactionGeneration);
+          }
+        }
+        return KeyEventResult.handled;
+      }
+      if (!_isCursorKey(key)) return KeyEventResult.ignored;
+      if (_canBulk) _moveCursor(key, extend: true);
+      return KeyEventResult.handled;
     }
     if (key == LogicalKeyboardKey.arrowLeft ||
         key == LogicalKeyboardKey.arrowRight) {
@@ -808,14 +924,20 @@ class _MailMessageListState extends State<MailMessageList> {
       }
       return KeyEventResult.handled;
     }
-    if (key != LogicalKeyboardKey.arrowUp &&
-        key != LogicalKeyboardKey.arrowDown &&
-        key != LogicalKeyboardKey.home &&
-        key != LogicalKeyboardKey.end) {
-      return KeyEventResult.ignored;
-    }
+    if (!_isCursorKey(key)) return KeyEventResult.ignored;
+    _moveCursor(key);
+    return KeyEventResult.handled;
+  }
+
+  bool _isCursorKey(LogicalKeyboardKey key) =>
+      key == LogicalKeyboardKey.arrowUp ||
+      key == LogicalKeyboardKey.arrowDown ||
+      key == LogicalKeyboardKey.home ||
+      key == LogicalKeyboardKey.end;
+
+  void _moveCursor(LogicalKeyboardKey key, {bool extend = false}) {
     final visible = _visible;
-    if (visible.isEmpty) return KeyEventResult.handled;
+    if (visible.isEmpty) return;
     final current = visible.indexWhere((item) => item.id == _activeId);
     final index = switch (key) {
       LogicalKeyboardKey.home => 0,
@@ -823,9 +945,16 @@ class _MailMessageListState extends State<MailMessageList> {
       LogicalKeyboardKey.arrowUp => math.max(0, current - 1),
       _ => math.min(visible.length - 1, current + 1),
     };
-    setState(() => _activeId = visible[index].id);
-    _revealCursor();
-    return KeyEventResult.handled;
+    final id = visible[index].id;
+    if (extend) {
+      _extendSelectionTo(id, _interactionGeneration);
+    } else {
+      setState(() {
+        _resetRangeSelection(anchorId: id);
+        _activeId = id;
+      });
+      _revealCursor();
+    }
   }
 
   @override
@@ -1045,6 +1174,13 @@ class _MailMessageListState extends State<MailMessageList> {
                       : null,
                   child: Text(strings.clearSelection),
                 ),
+                IconButton(
+                  key: const ValueKey('mail-list-selection-help'),
+                  tooltip: strings.selectionHelp,
+                  visualDensity: VisualDensity.compact,
+                  onPressed: _showSelectionHelp,
+                  icon: const Icon(Icons.keyboard_outlined, size: 20),
+                ),
                 PopupMenuButton<_BulkChoice>(
                   key: const ValueKey('mail-list-bulk-actions'),
                   tooltip: strings.bulkActions,
@@ -1211,7 +1347,7 @@ class _MailMessageListState extends State<MailMessageList> {
           canRequestFocus: false,
           onTap: widget.busy
               ? null
-              : () => _open(item.id, interactionGeneration: generation),
+              : () => _activateRow(item.id, generation),
           child: DecoratedBox(
             decoration: BoxDecoration(
               border: Border.all(
@@ -1233,7 +1369,11 @@ class _MailMessageListState extends State<MailMessageList> {
                             '${item.sender}',
                         onChanged: _canBulk
                             ? (value) =>
-                                  _checkRow(item.id, value ?? false, generation)
+                                  _checkFromPointer(
+                                    item.id,
+                                    value ?? false,
+                                    generation,
+                                  )
                             : null,
                       ),
                     ),
