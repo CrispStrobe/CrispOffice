@@ -1,0 +1,630 @@
+{
+  "schema": "quds.zotero.publication-main-observation.v1",
+  "observed_utc": "2026-11-21T15:03:01.881646+00:00",
+  "fixed_snapshot_report": "publication-intake-20261121T145803Z.json",
+  "fixed_snapshot_sha256": "76690adc39a9a860d3884381ac9d0560fe28a3a5015faeb10170480aa10a8150",
+  "fixed_snapshot_unchanged": true,
+  "previous_publication_main": "3f6b9a2b9209693aa32bbad402bb7d093cf8b4db",
+  "observed_main": "49adcd6b693712b9e82f9fdefd2fdf09d0db4ee2",
+  "observation_scope": "Post-snapshot main observation prompted by root publication fetch; exact PR and commit evidence is recorded without moving the all-refs cutoff. This is not the final main-only freshness check.",
+  "source_method": "Read-only GitHub PR/compare API and existing local Git objects after root fetched and merged current main. This audit did not fetch or mutate refs.",
+  "github_actions_queried_or_awaited": false,
+  "completed_pr": {
+    "number": 311,
+    "title": "Extend Word VBA AllCaps with native rendering and source preservation [skip ci]",
+    "state": "closed",
+    "draft": false,
+    "merged": true,
+    "merged_at": "2026-11-21T14:59:02Z",
+    "merge_commit_sha": "49adcd6b693712b9e82f9fdefd2fdf09d0db4ee2",
+    "head": "700ca3da8c6db0d837bbbefc374a7a7f17f8626e",
+    "updated_at": "2026-11-21T15:00:15Z",
+    "url": "https://github.com/CrispStrobe/quds_office_suite/pull/311"
+  },
+  "main_comparison": {
+    "repository_full_name": "CrispStrobe/quds_office_suite",
+    "base": "3f6b9a2b9209693aa32bbad402bb7d093cf8b4db",
+    "head": "49adcd6b693712b9e82f9fdefd2fdf09d0db4ee2",
+    "status": "ahead",
+    "ahead_by": 7,
+    "behind_by": 0,
+    "total_commits": 7,
+    "too_large": null,
+    "base_commit": {
+      "sha": "3f6b9a2b9209693aa32bbad402bb7d093cf8b4db",
+      "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/3f6b9a2b9209693aa32bbad402bb7d093cf8b4db",
+      "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/3f6b9a2b9209693aa32bbad402bb7d093cf8b4db"
+    },
+    "merge_base_commit": {
+      "sha": "3f6b9a2b9209693aa32bbad402bb7d093cf8b4db",
+      "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/3f6b9a2b9209693aa32bbad402bb7d093cf8b4db",
+      "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/3f6b9a2b9209693aa32bbad402bb7d093cf8b4db"
+    },
+    "files": [
+      {
+        "filename": "docs/MACROS.md",
+        "status": "modified",
+        "additions": 11,
+        "deletions": 4,
+        "changes": 15,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/VBA_PARITY_ROADMAP.md",
+        "status": "modified",
+        "additions": 20,
+        "deletions": 2,
+        "changes": 22,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/VBA_WORD_MACROS.md",
+        "status": "modified",
+        "additions": 68,
+        "deletions": 3,
+        "changes": 71,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/word-vba-all-caps-20261121/README.md",
+        "status": "added",
+        "additions": 220,
+        "deletions": 0,
+        "changes": 220,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/word-vba-all-caps-20261121/acceptance.json",
+        "status": "added",
+        "additions": 1413,
+        "deletions": 0,
+        "changes": 1413,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/word-vba-all-caps-20261121/combined-evidence-manifest.json",
+        "status": "added",
+        "additions": 170,
+        "deletions": 0,
+        "changes": 170,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/word-vba-all-caps-20261121/combined-evidence.tar.xz",
+        "status": "added",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/word-vba-all-caps-20261121/combined-qualification.json",
+        "status": "added",
+        "additions": 30,
+        "deletions": 0,
+        "changes": 30,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/word-vba-all-caps-20261121/engine-suites.txt",
+        "status": "added",
+        "additions": 271,
+        "deletions": 0,
+        "changes": 271,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/word-vba-all-caps-20261121/evidence-manifest.json",
+        "status": "added",
+        "additions": 425,
+        "deletions": 0,
+        "changes": 425,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/word-vba-all-caps-20261121/evidence.tar.xz",
+        "status": "added",
+        "additions": 0,
+        "deletions": 0,
+        "changes": 0,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/word-vba-all-caps-20261121/final-intake.json",
+        "status": "added",
+        "additions": 3304,
+        "deletions": 0,
+        "changes": 3304,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/word-vba-all-caps-20261121/initial-intake.json",
+        "status": "added",
+        "additions": 1445,
+        "deletions": 0,
+        "changes": 1445,
+        "previous_filename": null
+      },
+      {
+        "filename": "docs/validation/word-vba-all-caps-20261121/runtime-provenance.json",
+        "status": "added",
+        "additions": 117,
+        "deletions": 0,
+        "changes": 117,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 0,
+        "changes": 2,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_editor/test/word_all_caps_editor_test.dart",
+        "status": "added",
+        "additions": 209,
+        "deletions": 0,
+        "changes": 209,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_engine/example/macros/word_all_caps.bas",
+        "status": "added",
+        "additions": 25,
+        "deletions": 0,
+        "changes": 25,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+        "status": "modified",
+        "additions": 3,
+        "deletions": 0,
+        "changes": 3,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+        "status": "modified",
+        "additions": 29,
+        "deletions": 22,
+        "changes": 51,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+        "status": "modified",
+        "additions": 6,
+        "deletions": 3,
+        "changes": 9,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_engine/lib/src/word/model/wml_run_edit.dart",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_engine/lib/src/word/model/word_comparison.dart",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_engine/lib/src/word/model/word_small_caps.dart",
+        "status": "modified",
+        "additions": 12,
+        "deletions": 4,
+        "changes": 16,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_engine/lib/src/word/model/word_zotero_transfer.dart",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_engine/lib/src/word/properties/wml_properties.dart",
+        "status": "modified",
+        "additions": 6,
+        "deletions": 0,
+        "changes": 6,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+        "status": "modified",
+        "additions": 5,
+        "deletions": 0,
+        "changes": 5,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart",
+        "status": "modified",
+        "additions": 5,
+        "deletions": 8,
+        "changes": 13,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart",
+        "status": "modified",
+        "additions": 6,
+        "deletions": 1,
+        "changes": 7,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_engine/lib/src/zotero/zotero_formatted_text.dart",
+        "status": "modified",
+        "additions": 23,
+        "deletions": 7,
+        "changes": 30,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_engine/test/office_macro_word_all_caps_test.dart",
+        "status": "added",
+        "additions": 459,
+        "deletions": 0,
+        "changes": 459,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_engine/test/office_vba_word_all_caps_integration_test.dart",
+        "status": "added",
+        "additions": 295,
+        "deletions": 0,
+        "changes": 295,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_engine/test/office_vba_word_all_caps_test.dart",
+        "status": "added",
+        "additions": 219,
+        "deletions": 0,
+        "changes": 219,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_engine/test/office_vba_word_typography_test.dart",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_engine/test/word_all_caps_test.dart",
+        "status": "added",
+        "additions": 421,
+        "deletions": 0,
+        "changes": 421,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_engine/test/zotero_all_caps_test.dart",
+        "status": "added",
+        "additions": 240,
+        "deletions": 0,
+        "changes": 240,
+        "previous_filename": null
+      },
+      {
+        "filename": "packages/quds_office_engine/tool/macros/web_vba_word_all_caps_smoke.dart",
+        "status": "added",
+        "additions": 203,
+        "deletions": 0,
+        "changes": 203,
+        "previous_filename": null
+      }
+    ]
+  },
+  "main_advancement_ancestry": {
+    "snapshot_main_is_ancestor": true,
+    "captured_vba_head_is_ancestor": true,
+    "initial_main_is_ancestor": true
+  },
+  "incoming_since_initial_main": {
+    "changed_path_count": 42,
+    "changed_paths": [
+      "docs/MACROS.md",
+      "docs/VBA_PARITY_ROADMAP.md",
+      "docs/VBA_WORD_MACROS.md",
+      "docs/release/app-store-submission.md",
+      "docs/validation/word-vba-all-caps-20261121/README.md",
+      "docs/validation/word-vba-all-caps-20261121/acceptance.json",
+      "docs/validation/word-vba-all-caps-20261121/combined-evidence-manifest.json",
+      "docs/validation/word-vba-all-caps-20261121/combined-evidence.tar.xz",
+      "docs/validation/word-vba-all-caps-20261121/combined-qualification.json",
+      "docs/validation/word-vba-all-caps-20261121/engine-suites.txt",
+      "docs/validation/word-vba-all-caps-20261121/evidence-manifest.json",
+      "docs/validation/word-vba-all-caps-20261121/evidence.tar.xz",
+      "docs/validation/word-vba-all-caps-20261121/final-intake.json",
+      "docs/validation/word-vba-all-caps-20261121/initial-intake.json",
+      "docs/validation/word-vba-all-caps-20261121/runtime-provenance.json",
+      "packages/quds_office_editor/example/lib/studio_about.dart",
+      "packages/quds_office_editor/example/lib/studio_strings.dart",
+      "packages/quds_office_editor/example/test/studio_about_test.dart",
+      "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+      "packages/quds_office_editor/test/word_all_caps_editor_test.dart",
+      "packages/quds_office_engine/example/macros/word_all_caps.bas",
+      "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+      "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+      "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+      "packages/quds_office_engine/lib/src/word/model/wml_run_edit.dart",
+      "packages/quds_office_engine/lib/src/word/model/word_comparison.dart",
+      "packages/quds_office_engine/lib/src/word/model/word_small_caps.dart",
+      "packages/quds_office_engine/lib/src/word/model/word_zotero_transfer.dart",
+      "packages/quds_office_engine/lib/src/word/properties/wml_properties.dart",
+      "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+      "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart",
+      "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart",
+      "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+      "packages/quds_office_engine/lib/src/zotero/zotero_formatted_text.dart",
+      "packages/quds_office_engine/test/office_macro_word_all_caps_test.dart",
+      "packages/quds_office_engine/test/office_vba_word_all_caps_integration_test.dart",
+      "packages/quds_office_engine/test/office_vba_word_all_caps_test.dart",
+      "packages/quds_office_engine/test/office_vba_word_typography_test.dart",
+      "packages/quds_office_engine/test/word_all_caps_test.dart",
+      "packages/quds_office_engine/test/zotero_all_caps_test.dart",
+      "packages/quds_office_engine/tool/macros/web_vba_word_all_caps_smoke.dart"
+    ]
+  },
+  "exact_overlap": {
+    "own_source_reference": "3c69a665a889bdef7db7f8aa1756df7005564d41",
+    "shared_paths_since_fixed_snapshot": [
+      "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart"
+    ],
+    "shared_production_source_paths": [
+      "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart"
+    ],
+    "interpretation": "AllCaps adds caps to change tracking and explicit false overrides and removes writeAllCapsOff; Zotero adds narrowly marked ODT script-property preservation. They share WordPropertyIo. The clean textual merge retains both mechanisms; correctness still depends on the combined qualification gate."
+  },
+  "root_reconciliation": {
+    "merge_commit": "a60d879f825f72ed08b292c9ca33361b703bad60",
+    "parents": [
+      "3c69a665a889bdef7db7f8aa1756df7005564d41",
+      "49adcd6b693712b9e82f9fdefd2fdf09d0db4ee2"
+    ],
+    "new_main_is_ancestor_of_merge": true,
+    "retained_source_markers": [
+      "odtScriptProjectionNamespace",
+      "_preserveOdtScriptProjection",
+      "'caps': '${r.allCaps}'"
+    ],
+    "combined_runtime_qualification": "Root is qualifying the reconciled source, including five new engine AllCaps files, editor AllCaps, and incoming Studio About. No result is claimed by this intake audit."
+  },
+  "incoming_combined_acceptance_receipt": {
+    "qualified_source": "a52013158c28fbcf3e69a999deffb6cc2eea23cc",
+    "qualified_tree": "60390f21d90775fe29d1cd98bc527a54e8d26928",
+    "accepted": true,
+    "studio_about": {
+      "passed": 7,
+      "failed": 0,
+      "skipped": 0,
+      "error_events": 0,
+      "parse_errors": 0,
+      "process_exit": 0,
+      "elapsed_seconds": 32.727
+    },
+    "analysis_and_format_paths": 3,
+    "all_check_exits_zero": true,
+    "source_files": 3262,
+    "all_source_manifests_match_combined": true,
+    "combined_manifest_sha256": "64bf85be8dbc6db823032fe40c38a2c841e6b76881b4779cdb5a7fddbfbdc48a",
+    "runtime_and_helpers_unchanged": true,
+    "unchanged_prior_qualified_inputs": 3259,
+    "all_unchanged_git_modes_and_blob_ids_equal": true,
+    "changed_selected_paths": [
+      "packages/quds_office_editor/example/lib/studio_about.dart",
+      "packages/quds_office_editor/example/lib/studio_strings.dart",
+      "packages/quds_office_editor/example/test/studio_about_test.dart"
+    ],
+    "all_combined_worktree_blob_hashes_match_git_tree": true,
+    "github_actions_queried_or_awaited": false,
+    "gates_repeated": "Only incoming Studio About suite and three incoming Dart files; earlier broad AllCaps gates not repeated."
+  },
+  "remaining_unmerged_captured_heads_vs_new_main": [
+    {
+      "base": "49adcd6b693712b9e82f9fdefd2fdf09d0db4ee2",
+      "head": "3a8d466fac738973dcffdae58c3d7ac0fd594e86",
+      "status": "diverged",
+      "ahead_by": 14,
+      "behind_by": 4,
+      "total_commits": 14,
+      "merge_base_commit": {
+        "sha": "3f6b9a2b9209693aa32bbad402bb7d093cf8b4db",
+        "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/3f6b9a2b9209693aa32bbad402bb7d093cf8b4db",
+        "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/3f6b9a2b9209693aa32bbad402bb7d093cf8b4db"
+      },
+      "changed_paths": [
+        "CHANGELOG.md",
+        "docs/MACROS.md",
+        "docs/VBA_PARITY_ROADMAP.md",
+        "docs/VBA_WORD_MACROS.md",
+        "docs/roadmaps/mail/README.md",
+        "docs/roadmaps/mail/conversations.md",
+        "docs/roadmaps/mail/saved-searches.md",
+        "docs/roadmaps/mail/status.md",
+        "docs/validation/mail-client-next-20261121/README.md",
+        "docs/validation/mail-client-next-20261121/intake-audit.json",
+        "docs/validation/mail-client-next-20261121/intake.md",
+        "docs/validation/word-vba-all-caps-20261121/README.md",
+        "docs/validation/word-vba-all-caps-20261121/initial-intake.json",
+        "docs/validation/zotero-libreoffice-styles-20261121/README.md",
+        "docs/validation/zotero-libreoffice-styles-20261121/expanded-intake.json",
+        "docs/validation/zotero-libreoffice-styles-20261121/initial-intake.json",
+        "docs/validation/zotero-libreoffice-styles-20261121/lo-typography-research.md",
+        "docs/validation/zotero-libreoffice-styles-20261121/runtime-setup.json",
+        "packages/quds_mail_core/CHANGELOG.md",
+        "packages/quds_mail_core/README.md",
+        "packages/quds_mail_core/lib/quds_mail_core.dart",
+        "packages/quds_mail_core/lib/src/search/saved_header_search.dart",
+        "packages/quds_mail_core/test/saved_header_search_test.dart",
+        "packages/quds_mail_store/CHANGELOG.md",
+        "packages/quds_mail_store/README.md",
+        "packages/quds_mail_store/lib/src/repository.dart",
+        "packages/quds_mail_store/lib/src/saved_header_searches.dart",
+        "packages/quds_mail_store/lib/src/schema/database.dart",
+        "packages/quds_mail_store/lib/src/search_journal.dart",
+        "packages/quds_mail_store/test/flag_reconciliation_test.dart",
+        "packages/quds_mail_store/test/migration_test.dart",
+        "packages/quds_mail_store/test/saved_header_searches_test.dart",
+        "packages/quds_mail_store/test/sync_mailboxes_test.dart",
+        "packages/quds_mail_ui/CHANGELOG.md",
+        "packages/quds_mail_ui/lib/src/workspace/message_list.dart",
+        "packages/quds_mail_ui/test/message_list_conversations_test.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_cached_search_dialog.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_compose.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_local_accounts.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_saved_search_strings.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_saved_searches.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_workspace_strings.dart",
+        "packages/quds_office_editor/example/lib/suite_workspace.dart",
+        "packages/quds_office_editor/example/test/studio_mail_conversation_strings_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_saved_search_dialog_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_saved_search_store_test.dart",
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "packages/quds_office_editor/lib/src/embed/office_theme.dart",
+        "packages/quds_office_editor/lib/src/embed/word_notes_pane.dart",
+        "packages/quds_office_editor/lib/src/embed/word_review_dialog.dart",
+        "packages/quds_office_editor/lib/src/embed/word_review_labels.dart",
+        "packages/quds_office_editor/lib/src/embed/word_review_pane.dart",
+        "packages/quds_office_editor/lib/src/embed/word_review_status.dart",
+        "packages/quds_office_editor/lib/src/l10n/office_german.dart",
+        "packages/quds_office_editor/lib/src/l10n/office_language.dart",
+        "packages/quds_office_editor/lib/src/l10n/office_plural.dart",
+        "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+        "packages/quds_office_editor/test/office_german_strings_test.dart",
+        "packages/quds_office_editor/test/word_all_caps_editor_test.dart",
+        "packages/quds_office_editor/test/word_live_review_surface_test.dart",
+        "packages/quds_office_engine/CHANGELOG.md",
+        "packages/quds_office_engine/example/macros/word_all_caps.bas",
+        "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+        "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+        "packages/quds_office_engine/lib/src/proofing/german_spelling.dart",
+        "packages/quds_office_engine/lib/src/proofing/office_proofing.dart",
+        "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+        "packages/quds_office_engine/lib/src/word/model/wml_run_edit.dart",
+        "packages/quds_office_engine/lib/src/word/model/word_comparison.dart",
+        "packages/quds_office_engine/lib/src/word/model/word_small_caps.dart",
+        "packages/quds_office_engine/lib/src/word/model/word_zotero_transfer.dart",
+        "packages/quds_office_engine/lib/src/word/properties/wml_properties.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_reader.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_reader_styles.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_reader_text_style.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+        "packages/quds_office_engine/lib/src/zotero/zotero_formatted_text.dart",
+        "packages/quds_office_engine/test/fixtures/zotero/odt/README.md",
+        "packages/quds_office_engine/test/fixtures/zotero/odt/native-prose.docx",
+        "packages/quds_office_engine/test/fixtures/zotero/odt/native-prose.odt",
+        "packages/quds_office_engine/test/odt_libreoffice_fixture_test.dart",
+        "packages/quds_office_engine/test/odt_reader_libreoffice_defaults_test.dart",
+        "packages/quds_office_engine/test/odt_reader_script_styles_test.dart",
+        "packages/quds_office_engine/test/odt_reader_styles_test.dart",
+        "packages/quds_office_engine/test/office_macro_word_all_caps_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_all_caps_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_all_caps_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_typography_test.dart",
+        "packages/quds_office_engine/test/proofing/office_proofing_warm_up_test.dart",
+        "packages/quds_office_engine/test/word_all_caps_test.dart",
+        "packages/quds_office_engine/test/zotero_all_caps_test.dart",
+        "packages/quds_office_engine/tool/macros/web_vba_word_all_caps_smoke.dart"
+      ]
+    },
+    {
+      "base": "49adcd6b693712b9e82f9fdefd2fdf09d0db4ee2",
+      "head": "90c368fbd800259c0c7ebe9e22dc949649d29816",
+      "status": "diverged",
+      "ahead_by": 4,
+      "behind_by": 11,
+      "total_commits": 4,
+      "merge_base_commit": {
+        "sha": "01517de8886ef7bd24947894be5dc823d0328869",
+        "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/01517de8886ef7bd24947894be5dc823d0328869",
+        "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/01517de8886ef7bd24947894be5dc823d0328869"
+      },
+      "changed_paths": [
+        "packages/quds_office_editor/example/lib/studio_mail_compose.dart",
+        "packages/quds_office_editor/example/lib/suite_workspace.dart",
+        "packages/quds_office_editor/lib/src/embed/office_theme.dart",
+        "packages/quds_office_editor/lib/src/embed/word_notes_pane.dart",
+        "packages/quds_office_editor/lib/src/embed/word_review_dialog.dart",
+        "packages/quds_office_editor/lib/src/embed/word_review_labels.dart",
+        "packages/quds_office_editor/lib/src/embed/word_review_pane.dart",
+        "packages/quds_office_editor/lib/src/embed/word_review_status.dart",
+        "packages/quds_office_editor/lib/src/l10n/office_german.dart",
+        "packages/quds_office_editor/lib/src/l10n/office_language.dart",
+        "packages/quds_office_editor/lib/src/l10n/office_plural.dart",
+        "packages/quds_office_editor/test/office_dark_slide_test.dart",
+        "packages/quds_office_editor/test/office_german_strings_test.dart",
+        "packages/quds_office_editor/test/word_live_review_surface_test.dart",
+        "packages/quds_office_editor/test/word_shaped_wrap_test.dart",
+        "packages/quds_office_engine/lib/src/proofing/german_spelling.dart",
+        "packages/quds_office_engine/lib/src/proofing/office_proofing.dart",
+        "packages/quds_office_engine/test/proofing/office_proofing_warm_up_test.dart"
+      ]
+    },
+    {
+      "base": "49adcd6b693712b9e82f9fdefd2fdf09d0db4ee2",
+      "head": "be539f3d94228b649595084758cc7d665186e57d",
+      "status": "diverged",
+      "ahead_by": 1,
+      "behind_by": 11,
+      "total_commits": 1,
+      "merge_base_commit": {
+        "sha": "01517de8886ef7bd24947894be5dc823d0328869",
+        "url": "https://api.github.com/repos/CrispStrobe/quds_office_suite/commits/01517de8886ef7bd24947894be5dc823d0328869",
+        "html_url": "https://github.com/CrispStrobe/quds_office_suite/commit/01517de8886ef7bd24947894be5dc823d0328869"
+      },
+      "changed_paths": [
+        "packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_journal_host_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_outbox_cloud_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_outbox_host_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_remote_images_host_test.dart"
+      ]
+    }
+  ],
+  "remaining_work_interpretation": "The fixed Mail, German and WIP Mail-test heads remain unmerged against main49adcd. Their remote branch tips were not re-enumerated after the fixed cutoff; no claim is made about later advancement.",
+  "publication_sequence": [
+    "Complete local qualification of the combined Zotero plus current-main source.",
+    "Checkpoint the qualification evidence on the remote Zotero branch.",
+    "Check main freshness once more; if unchanged, publish using a non-forced parent-preserving merge.",
+    "Keep unrelated ongoing Mail, German and WIP Mail-test branches preserved separately."
+  ]
+}

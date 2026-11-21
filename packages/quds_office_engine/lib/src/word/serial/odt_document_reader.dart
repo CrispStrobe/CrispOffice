@@ -1081,6 +1081,7 @@ final class _RichText {
   final WmlParagraph paragraph;
   final OdfTextBudget budget;
   final OdtReaderRunBudget runBudget;
+  final _scriptContext = OdtReaderScriptContext();
   bool _started = false;
   WmlRunProps? _pending;
   WmlHyperlink? _pendingLink;
@@ -1135,6 +1136,7 @@ final class _RichText {
     _flush();
     _finishRun();
     paragraph.inlines.add(value);
+    _scriptContext.previous = null;
     _started = true;
   }
 
@@ -1168,7 +1170,7 @@ final class _RichText {
     final text = _runText.toString();
     final properties = _runProperties!;
     final materialized = properties is OdtReaderTextStyle
-        ? properties.materialize(text)
+        ? properties.materialize(text, context: _scriptContext)
         : [(text: text, properties: properties.copy())];
     for (final segment in materialized) {
       runBudget.consume();

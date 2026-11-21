@@ -1,15 +1,18 @@
 # Native ODT Zotero input: implementation contract
 
-Status: **Increment 2 implemented: bounded rich ODT import, active Zotero field
-conversion, and asynchronous editor/Studio opening. Installed-host acceptance
-and editable native ODT output remain separate work.**
+Status: **Increment 3 implemented: retained LibreOffice style qualification on
+top of bounded rich ODT import, active Zotero field conversion and asynchronous
+editor/Studio opening. Installed-host acceptance and editable native ODT output
+remain separate work.**
 
 `OdtDocumentReader.readBytes` builds an editable `WmlDocument` from the supported
 ODT subset below. The asynchronous Word loader and Studio Open use this reader;
 the resulting active document saves as DOCX. The
+[style continuation record](../../validation/zotero-libreoffice-styles-20261121/README.md)
+records the current source, remote checkpoints, local execution and exact
+untouched LibreOfficeDev fixture. The earlier
 [rich-import validation record](../../validation/zotero-rich-odt-20261121/README.md)
-records the qualified source, remote checkpoints, local execution and retained
-LibreOfficeDev refusal. It is the current evidence for this increment.
+retains its original source and then-observed style refusal.
 
 `OdfZotero.inspect` and `tool/zotero/odt_inventory.dart` remain read-only. Their
 [inventory validation record](../../validation/zotero-odt-inventory-20261121/README.md)
@@ -253,10 +256,14 @@ The import is all-or-nothing. Invalid/ambiguous marks, crossed owners, protected
 or linked sections, ordinary unsupported sections, bookmarks, drawings/images,
 annotations, revisions, embedded objects, unsupported used styles and resource
 exhaustion refuse before publication. Relative/internal hyperlinks and distinct
-visited-link styles require further ownership/formatting support. Unused style
+visited-link styles require further ownership/formatting support. A citation
+whose cached runs contain a hyperlink also remains outside the native editable
+field contract; ordinary external hyperlinks outside citations are preserved.
+Unused style
 definitions do not expand the accepted content envelope. The inventory's shared
 package/XML/text/field bounds remain in force; the rich reader adds explicit
-table, cell, list, note and style-definition limits.
+table, cell, list, note and style-definition limits. Script materialization also
+has a shared 100,000-run limit, including alternating-script text across stories.
 
 The original ODT bytes remain unchanged. This conversion preserves supported
 content in the Word model; the archived metadata is not a lossless copy of the
@@ -272,13 +279,54 @@ cover dispatch and publication/save routing. The current validation record
 retains exact commands and totals; these synthetic checks do not establish an
 installed Word, LibreOffice or Zotero session.
 
-The untouched LibreOfficeDev 26.8 sample is explicitly refused at the active
-`fo:hyphenation-ladder-count` paragraph property. Other script-specific defaults
-also remain unqualified. This is a retained production-format boundary: neither
-removing the property for a probe nor the synthetic passing fixtures qualifies
-that original file as supported.
+The original rich-import increment refused the untouched LibreOfficeDev 26.8
+sample at `fo:hyphenation-ladder-count`. Increment 3 below resolves the complete
+style envelope needed by that exact file; the historical record remains intact.
 
-## Increment 3: installed-host acceptance
+## Increment 3: retained LibreOffice style qualification
+
+The original `native-prose.odt` is retained byte-for-byte with SHA-256
+`9fd4e0d23bf9cd2be0248bd5e9cfb496dfe512ec1226c456f324f2171705e1bd`.
+It was produced by LibreOfficeDev 26.8.0.0.alpha0 at source commit
+`2c87e51eeaa2b413ff4ae097b2705eea1995d8e5`. It contains Latin 11-point and
+Arabic 10-point text, bold, italic and supplementary Unicode. Its Asian font
+and language slots are separate from the current source text.
+
+Text styles resolve normal, complex-script and Asian settings independently
+through inheritance, including relative sizes against the corresponding parent
+slot. Current text is materialized into native runs when the effective font,
+size, weight, italic, language or proofing behavior requires separate routing.
+Unicode code points, combining marks, hyperlink ranges and field UTF-16 offsets
+are preserved. Imported script slots survive DOCX serialization; ignorable
+provenance confines later scalar-edit synchronization to those imported
+projections. Ordinary DOCX properties retain their independent sparse slots.
+
+Supported LibreOffice defaults are checked after inheritance. Automatic color,
+opacity and hyphenation must resolve to supported effective values. Disabled
+page grids, empty header/footer style containers, no-fill drawing-page styles,
+zero gutter and an unused footnote separator can be accepted. Unknown or foreign
+properties still refuse. Content-sensitive paragraph rules require that the
+current text and resolved languages do not activate unrepresented Asian
+spacing, hanging punctuation or line-breaking behavior. Unknown break locales
+refuse conservatively. A nonstandard default tab interval with actual tabs,
+an active page grid or a custom separator with actual footnotes also refuses.
+
+The retained fixture checks exact text/style and native DOCX properties over
+repeated saves. A separately labeled synthetic extension adds canonical
+citations, a multi-paragraph bibliography and preferences without changing its
+style envelope. It checks staged refresh, field editing, rich cache, unknown
+metadata, original `meta.xml` bytes and repeated reopen. This does not claim
+that the original converter file contained Zotero fields or that an installed
+Zotero plugin produced the synthetic extension.
+
+This is conversion of supported current content into the Word model. Dormant
+ODF typography settings are not retained as a general live ODF style engine for
+future typing or Zotero refresh. The qualified artifact still saves as DOCX;
+native editable ODT output and complete release-host behavior remain open.
+See the [current work record](../../validation/zotero-libreoffice-styles-20261121/README.md)
+for exact executed checks and the pinned-source typography rationale.
+
+## Increment 4: installed-host acceptance
 
 Run an actual current Zotero session with identified Word and LibreOffice
 versions and synthetic library data. Exercise native-file input separately
@@ -302,11 +350,11 @@ Zotero and plugin versions. Current LibreOffice acceptance cannot establish it.
 1. Refresh current main and recent branch/PR heads, preserving incoming history.
    The earlier two pending heads and the subsequently discovered Word text
    branch are integrated by this continuation; keep their recorded cutoffs.
-2. Expand the documented rich-document envelope from retained real files.
-   Qualify active LibreOffice defaults and script-specific formatting before
-   accepting them; keep each remaining refusal visible. Add drawings, merged
-   tables, further note/list configurations and native ODT output only with
-   corresponding ownership, rendering and persistence checks.
+2. Expand the documented rich-document envelope from additional retained real
+   files. The exact prose fixture and supported script/default mapping above
+   provide the next baseline. Add active Asian typography, drawings, merged
+   tables, further note/list configurations and native ODT output with matching
+   ownership, rendering and persistence checks; keep remaining refusals visible.
 3. Save each working increment on a remote branch with an expected-head lease.
 4. Review the integrated diff, rerun checks affected by incoming changes, then
    merge the qualified implementation to current remote main and verify the
@@ -314,8 +362,8 @@ Zotero and plugin versions. Current LibreOffice acceptance cannot establish it.
 5. Do not query or wait on GitHub Actions as the acceptance path. Preserve
    concrete local results and state any installed-host limits separately.
 
-Increment 1 remains a read-only capability. Increment 2 converts a bounded native
-ODT subset into an editable Word document that saves as DOCX. Neither increment
-changes ordinary ODT export or establishes complete plugin parity or
+Increment 1 remains a read-only capability. Increments 2 and 3 convert a bounded
+native ODT subset into an editable Word document that saves as DOCX. These
+increments do not change ordinary ODT export or establish complete plugin parity or
 installed-host acceptance for Zotero, Word, LibreOffice or legacy Apache
 OpenOffice.

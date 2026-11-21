@@ -96,6 +96,7 @@ void _expectDocument(
   WmlDocument document, {
   String targetLanguage = _normalLanguage,
   String targetComplexFont = _complexFont,
+  bool targetAllCaps = false,
 }) {
   final paragraphs = document.paragraphs.toList();
   expect(paragraphs.map((paragraph) => paragraph.text), [
@@ -119,6 +120,7 @@ void _expectDocument(
   for (var index = 0; index < paragraphs.length; index++) {
     final paragraph = paragraphs[index];
     expect(paragraph.properties.spacingAfter, 6);
+    var offset = 0;
     for (final run in paragraph.inlines.whereType<WmlRun>()) {
       final properties = run.properties;
       expect(properties.asciiFont, _latinFont);
@@ -130,16 +132,30 @@ void _expectDocument(
       expect(properties.complexScriptLanguage, _complexLanguage);
       expect(properties.fontSizeHalfPoints, 24);
       expect(properties.noProof, isFalse);
-      final emphasized = run.text == 'Book العربية';
+      expect(properties.allCaps, index == 1 && targetAllCaps);
+      expect(properties.smallCaps, isFalse);
+      final emphasisStart = _prefix.length + 1;
+      final emphasisEnd = emphasisStart + 'Book العربية'.length;
+      final emphasized =
+          index == 1 &&
+          offset < emphasisEnd &&
+          offset + run.text.length > emphasisStart;
       expect(properties.italic, emphasized);
-      if (emphasized) expect(properties.color, '123456');
+      if (emphasized) {
+        expect(offset, greaterThanOrEqualTo(emphasisStart));
+        expect(offset + run.text.length, lessThanOrEqualTo(emphasisEnd));
+        expect(properties.color, '123456');
+      }
+      offset += run.text.length;
     }
   }
   expect(
-    paragraphs[1].inlines.whereType<WmlRun>().where(
-      (run) => run.text == 'Book العربية',
-    ),
-    hasLength(1),
+    paragraphs[1].inlines
+        .whereType<WmlRun>()
+        .where((run) => run.properties.italic)
+        .map((run) => run.text)
+        .join(),
+    'Book العربية',
   );
 }
 
@@ -150,12 +166,21 @@ void main() {
       statement: 'LanguageID = wdGerman',
       language: 'de-DE',
       complexFont: _complexFont,
+      allCaps: false,
     ),
     (
       name: 'complex font',
       statement: 'Font.NameBi = "Noto Naskh Arabic"',
       language: _normalLanguage,
       complexFont: 'Noto Naskh Arabic',
+      allCaps: false,
+    ),
+    (
+      name: 'all capitals',
+      statement: 'Font.AllCaps = True',
+      language: _normalLanguage,
+      complexFont: _complexFont,
+      allCaps: true,
     ),
   ]) {
     test(
@@ -198,6 +223,7 @@ End Sub
             reopened,
             targetLanguage: change.language,
             targetComplexFont: change.complexFont,
+            targetAllCaps: change.allCaps,
           );
           if (cycle < 2) saved = WordSerializer().writeBytes(reopened);
         }
