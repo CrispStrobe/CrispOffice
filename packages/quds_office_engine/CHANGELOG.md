@@ -11,6 +11,10 @@ All notable changes to `quds_office_engine` are documented here.
   style inheritance and retains uniform padding through DOCX saves. Admit
   LibreOffice's explicit borderless declarations, while rejecting asymmetric,
   conflicting or unrepresentable padding and visible unsupported borders.
+  Check serialized content widths with exact decimal arithmetic, including
+  merged spans and margins that exhaust a cell only after rounding. Render
+  uniquely defined, body-referenced image-only endnotes without promoting
+  orphan, duplicate or frame-only note references.
 
 - Add bounded Word VBA `Font.Position` assignments through typed aliases,
   helpers and independent header/footer selectors. Native run formatting,

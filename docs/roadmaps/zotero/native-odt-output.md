@@ -50,8 +50,10 @@ supported metadata, bibliography inclusion/exclusion data, style, language and
 note preferences remain in their existing payloads. The visible cache retains
 the modeled rich formatting. Small capitals, uppercase transformation and
 complex-script font/emphasis slots are emitted by this explicit path as well.
-Uppercase ODT transformation is exportable but remains outside the bounded
-native reader's accepted formatting subset.
+Supported uppercase transformation also reopens natively without rewriting
+source text. Other case transforms and uppercase combined with small capitals
+remain outside the reader's envelope. See the
+[native-input contract](native-odt-input.md#increment-7-semantic-uppercase-text).
 
 ## Ownership and supported content
 
@@ -75,11 +77,32 @@ retains its existing fill-width behavior. See the
 for the actual converter reproduction and corrected table fixtures.
 Intervening DOCX saves retain complete uniform table-cell margins, including
 zero; partial/asymmetric/logical-edge source margins remain opaque and sparse.
-This is file/model preservation. The existing Quds table renderer still uses
-fixed cell padding and does not yet establish identical host/Quds screen layout.
+The explicit ODT writer now emits each table's modeled uniform margin as
+`fo:padding` on its cell styles. Nested tables keep independent margins, and
+cell-style reuse accounts for padding. Native measurement, wrapping, row height,
+pagination, picture fitting and ruler insets use the same modeled margin.
 Bounded merged tables use explicit covered-cell positions. Empty native vertical
 continuation paragraphs become empty ODF covered cells without duplicating their
 origin's citation text. Existing cached-result export remains unchanged.
+
+This supports one effective value on all four sides and across all visible
+cells in each table. The native reader resolves family defaults and parent
+styles before testing that uniformity; authored or inherited covered-cell
+padding must agree with its merged origin. Asymmetric/per-cell padding,
+unsupported row/column default-cell styles and visible ODT borders remain
+outside that reader envelope. Border declarations with the value `none` are
+accepted. The [table-layout record](../../validation/zotero-table-layout-20261121/README.md)
+documents the delivered margin and padding scope.
+
+Margins must be finite, nonnegative and at most 32,767 DOCX twentieths of a point
+(1,638.35 pt). They must also leave positive content width in every emitted cell,
+including merged spans and the effects of serialization rounding. ODT lengths
+are emitted to two decimal places in points; DOCX margins round to twentieths
+of a point (0.05 pt). These are bounded precision conversions, not an
+exact-geometry guarantee across formats. Native layout may scale a table to its
+page or enclosing cell and refuses a final width exhausted by the margins.
+Ordinary `writeBytes` keeps its existing table-formatting and cached-result
+contract; uniform-padding output is specific to the explicit editable path.
 
 Cited notes require ordinary automatic decimal numbering. The exporter keeps
 their native note ownership, emits automatic ODF note labels, and refuses
@@ -146,6 +169,10 @@ paragraph and empty packets, rich/empty bibliography entries, note numbering,
 merged tables, repeated ODT/native/DOCX conversions, native refresh and unlink,
 Unicode and extension metadata, refusal atomicity, source preservation, and
 Studio export cancellation/save routing.
+The [table-layout continuation](../../validation/zotero-table-layout-20261121/README.md)
+adds uniform-padding inheritance/refusal checks, nested and merged table
+lifecycles, native margin layout and separately identified converter evidence.
+It does not establish complete Word/LibreOffice plugin parity.
 
 `packages/quds_office_engine/tool/zotero/odt_export_acceptance.dart` creates two
 synthetic documents and checks exact native inventory after an external ODT
@@ -154,12 +181,17 @@ records, preferences and structural ownership across both files. This is a real
 file conversion result, not an installed Zotero plugin session or stable-release
 compatibility claim.
 
-Next, use supported release versions of LibreOffice and Zotero to refresh,
-change styles, edit citations/bibliographies and repeat saves on these fixtures.
-Then qualify Word transfer and additional native documents, especially notes
-with richer numbering, fields in note tables, additional image behavior and styles beyond the
-current reader. Legacy Apache OpenOffice requires its own identified versions
-and acceptance evidence.
+The next dedicated note-formatting increment needs a native footnote-separator
+model, matching pagination/rendering and interoperable DOCX/ODT mapping before
+the reader can admit active LibreOffice separators. Retained opaque DOCX
+separator definitions alone do not supply that geometry.
+
+Use installed Zotero with Word and supported LibreOffice release versions to
+refresh, change styles, edit citations/bibliographies and repeat saves on these
+fixtures. Then qualify Word transfer and additional native documents, especially
+notes with richer numbering, fields in note tables, additional image behavior
+and styles beyond the current reader. Legacy Apache OpenOffice requires its
+own identified versions and acceptance evidence.
 
 The native round-trip continuation also opens returned LibreOffice files through
 the Quds reader rather than checking their metadata inventory alone. Inert

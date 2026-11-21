@@ -10,6 +10,11 @@ separately retained LibreOfficeDev converter evidence.
 The separate [native-output contract](native-odt-output.md) now defines explicit
 editable ODT copy export. Installed-host/plugin acceptance remains open.**
 
+The [table-layout continuation](../../validation/zotero-table-layout-20261121/README.md)
+adds effective uniform table-cell padding, including zero and supported style
+inheritance. Native table layout now uses those modeled margins. The precision,
+covered-cell and final layout limits are defined in Increment 8 below.
+
 The [native round-trip continuation](../../validation/zotero-odt-roundtrip-20261121/README.md)
 extends reopening of actual LibreOffice-saved bibliography sections and
 identified decimal-note metadata. It also corrects editable table export
@@ -259,7 +264,7 @@ after source-range reconstruction, preserving editor and DOCX offsets.
 | Formatting and page layout | Supported fonts, exact half-point sizes, bold/italic, underline/strike, small capitals, semantic superscript/subscript, colors, language, explicit paragraph direction/alignment, indents, spacing and supported tab stops. One compatible page layout may supply page size, margins and equal-width columns. Used unsupported properties reject the import. |
 | Zotero fields | Canonical citation ReferenceMarks and bibliography ReferenceMarks/TextSections become active native fields. Multi-item options, unknown citation/bibliography metadata, rich cache, empty bibliography paragraphs and distinct adjacent/identical-looking fields survive DOCX reopening. |
 | Authored notes | Footnotes/endnotes with supported blocks, ordinary document-wide decimal numbering and live body anchors; citations retain their actual note story. Custom numbering/styles, nested notes and citations enclosing note anchors are refused. |
-| Tables | Rectangular tables with bounded horizontal/vertical merges and explicit covered cells, nested up to eight levels; supported widths/alignment, row minimum height/keep behavior and inherited shading. Citations retain their originating cell. Hidden covered content, conflicting effective shading, repeated rows/cells and ambiguous coverage refuse. Increment 4 runtime checks are recorded in the editable-output continuation. |
+| Tables | Rectangular tables with bounded horizontal/vertical merges and explicit covered cells, nested up to eight levels; supported widths/alignment, row minimum height/keep behavior, inherited shading and uniform effective padding. Citations retain their originating cell. Hidden covered content, conflicting effective shading/padding, asymmetric or per-cell margins, repeated rows/cells and ambiguous coverage refuse. Increments 4 and 8 define the merge and padding boundaries. |
 | Lists | Simple decimal or supported depth-specific bullets, up to nine levels, explicit starts/restarts and multiple paragraphs per item. Independent sequences, nested continuations and source paragraph margins are retained. Continuation references/consecutive numbering, bullet affixes, conflicting first-line geometry and tables inside list items are refused. |
 | Inline pictures | Embedded static PNG and upright RGB/YCbCr JPEG in character-anchored frames; original bytes, physical dimensions, title/description, supported run properties and ordinary hyperlinks. Pictures own one native character; adjacent Zotero ranges retain exact offsets. The picture continuation below defines the bounds. |
 | Preferences and metadata | Explicit `WordZoteroDocumentData.fromOdt` converts valid `ReferenceMark` storage to native `Field` after reconstruction; ordinary Word/HTTP callbacks remain strict. Style/locale/note mode and unknown XML/JSON preferences survive. Standard document properties are mapped; the exact original `meta.xml`, including unrelated/future properties, is archived in DOCX custom XML. |
@@ -450,7 +455,8 @@ validated and recomputed by native layout. Authored hard page breaks retain
 their distinct paragraph/run properties; reexport does not copy stale hints.
 
 Known separating/collapsing table border-model defaults are inert only within
-the existing borderless reader: actual border/padding properties remain guarded.
+the existing borderless reader: visible borders remain guarded. Increment 8
+adds bounded uniform padding and accepts explicit borderless declarations.
 Editable export now pairs absolute widths with physical left/center/right
 alignment. The earlier `margins` alignment expanded tables in LibreOffice and
 converted their columns to unsupported relative-only widths. Historical files
@@ -482,7 +488,62 @@ The [combined work record](../../validation/zotero-roundtrip-complete-20261121/R
 distinguishes native regression tests, actual converter saves and remaining
 installed-plugin acceptance.
 
-## Increment 8: installed-host acceptance
+## Increment 8: uniform table padding and native margin layout
+
+The reader resolves `fo:padding` and its four side properties through the
+table-cell family default, named parents and selected cell style. Within each
+layer, the shorthand sets all four sides before explicit side properties
+override them, regardless of XML attribute order. A child shorthand therefore
+resets inherited side values. The effective result must be uniform on all four
+sides and across all visible originating cells of one table. An absent effective
+declaration means zero. Nested tables resolve independently rather than
+inheriting padding from their containing table.
+
+The accepted lengths are finite, nonnegative absolute values in `pt`, `pc`,
+`in`, `cm` or `mm`. Percentages, CSS length lists, `auto`, literal `inherit`,
+asymmetric sides and differing visible-cell margins refuse. The existing
+row/column `table:default-cell-style-name` forms remain unsupported. A covered
+cell without any effective padding declaration adds no override; authored or
+inherited padding must agree with its merged origin. Border declarations with
+the value `none` are inert and accepted; visible or unrepresented borders still
+refuse. Hidden covered-cell content remains outside the contract.
+
+The native scalar margin is bounded by the DOCX storage limit of 32,767
+twentieths of a point (1,638.35 pt). Padding must leave positive content width in
+each cell, using the total width of its merged span. Explicit editable ODT
+output retains the uniform margin on cell styles and checks emitted cell
+geometry after rounding. ODT output uses two decimal places in points; later
+DOCX saves round margins to twentieths of a point (0.05 pt). The supported
+round trip therefore permits format precision changes and does not promise
+exact geometry for arbitrary input lengths.
+
+Native measurement, wrapping, row heights, pagination and ruler insets now use
+each table's modeled margin, including zero. Nested picture fitting accounts
+for the sum of enclosing margins, including temporary tall-row layout and
+authored notes. A table may be scaled to its page or containing cell; layout
+refuses a final scaled cell width that leaves no positive content space. This
+can refuse extreme geometry that fit at its original source width.
+
+The [work record](../../validation/zotero-table-layout-20261121/README.md)
+separates local inheritance/layout/lifecycle regressions and identified
+LibreOffice converter evidence from installed Zotero/Word/supported-release
+LibreOffice acceptance. Ordinary ODT export retains its existing formatting and
+cached-result contract. Source ODT bytes remain unchanged on success or refusal.
+
+Primary semantics: [ODF 1.3 Part 3, table-cell styles and padding](https://docs.oasis-open.org/office/OpenDocument/v1.3/os/part3-schema/OpenDocument-v1.3-os-part3-schema.html)
+and [XSL 1.0 section 5.2, shorthand precedence](https://www.w3.org/TR/2001/REC-xsl-20011015/slice5.html#refine-shorthand).
+
+## Next dedicated milestone: active footnote separators
+
+Add a native separator model, matching note reservation/pagination and rendering,
+ODT parsing/emission and an interoperable DOCX mapping before widening import to
+active LibreOffice separators. Existing opaque DOCX separator preservation does
+not supply editable geometry. Qualify the mapping with retained native files
+and actual application saves; admitting separator XML alone would lose layout.
+
+<a id="increment-8-installed-host-acceptance"></a>
+
+## Increment 9: installed-host acceptance
 
 Run an actual current Zotero session with identified Word and LibreOffice
 versions and synthetic library data. Exercise native-file input separately
@@ -508,9 +569,11 @@ Zotero and plugin versions. Current LibreOffice acceptance cannot establish it.
    branch are integrated by this continuation; keep their recorded cutoffs.
 2. Expand the documented rich-document envelope from additional retained real
    files. The exact prose fixture and supported script/default mapping above
-   provide the next baseline. Extend active Asian typography, additional drawings and
-   further note/list configurations, and qualify the explicit native ODT output with matching
-   ownership, rendering and persistence checks; keep remaining refusals visible.
+   provide a baseline. Complete the dedicated footnote-separator model/layout
+   and DOCX/ODT mapping above before accepting active separators. Extend active
+   Asian typography, additional drawings and further note/list configurations,
+   and qualify the explicit native ODT output with matching ownership, rendering
+   and persistence checks; keep remaining refusals visible.
 3. Save each working increment on a remote branch with an expected-head lease.
 4. Review the integrated diff, rerun checks affected by incoming changes, then
    merge the qualified implementation to current remote main and verify the
@@ -518,7 +581,7 @@ Zotero and plugin versions. Current LibreOffice acceptance cannot establish it.
 5. Do not query or wait on GitHub Actions as the acceptance path. Preserve
    concrete local results and state any installed-host limits separately.
 
-Increment 1 remains a read-only capability. Increments 2 through 5 convert a bounded
+Increment 1 remains a read-only capability. Increments 2 through 8 convert a bounded
 native ODT subset into an editable Word document that saves as DOCX. These
 increments do not establish complete plugin parity or installed-host acceptance
 for Zotero, Word, LibreOffice or legacy Apache OpenOffice. Ordinary ODT export

@@ -11,6 +11,8 @@ The separate **File → Export Zotero ODT…** action creates an ODT copy with
 supported native Zotero marks and preferences for LibreOffice.
 Supported embedded inline pictures from Zotero notes and annotations now also
 survive native ODT reopening and subsequent DOCX saves.
+Uniform table margins now control native text layout, pagination and ruler
+insets, and the bounded editable ODT path retains supported uniform padding.
 
 ## Native Zotero document formatting
 
@@ -238,7 +240,12 @@ rows with different merge patterns. Widths use the same conversion as pictures:
 explicit width uses a 120-point default. Each cell's native width is the sum of
 the grid widths it covers. Each nested table reconciles its own widths without
 changing the containing table's grid. The existing table layout fits an
-oversized grid to the available display width. Cell backgrounds accept
+oversized grid to the available display width. Layout uses each table's uniform
+cell margin, including zero; newly authored native tables default to 4 pt.
+Nested tables keep their own margins. Text wrapping, row height, pagination,
+picture fitting and ruler insets use that geometry. If the final scaled cell
+width leaves no positive space between its margins, layout refuses it rather
+than silently reducing the margins. Cell backgrounds accept
 three- or six-digit hexadecimal colors, integer RGB colors, or transparent.
 
 The supported HTML structure is `table`, optional `tbody`, `tr`, `td` and
@@ -1410,6 +1417,12 @@ to each new client. Clients sharing that state must use the same clock.
 
 ## Current and previous qualification evidence
 
+The [table-layout record](validation/zotero-table-layout-20261121/README.md)
+tracks native table margins and bounded editable ODT uniform padding, including
+inheritance, nested/merged cells, precision limits and repeated saves. Its local
+checks and identified converter results remain separate from an installed
+Zotero session in Word or a supported LibreOffice release.
+
 The [LibreOffice style record](validation/zotero-libreoffice-styles-20261121/README.md)
 tracks current script/default mapping, the exact untouched LibreOfficeDev 26.8
 prose fixture and a separately identified synthetic Zotero extension using the
@@ -1527,6 +1540,15 @@ headers/controls/note tables, partial bibliographies, and ambiguous note owners.
 Choose a document style with Zotero first if the document has active fields but
 no saved preferences.
 
+Supported body tables write their uniform native cell margin as ODT padding,
+including zero. Each nested table keeps its own margin. Values must be finite,
+nonnegative, within the native DOCX margin limit of 32,767 twentieths of a point
+(1,638.35 pt), and leave a positive content width in every emitted cell after
+rounding. Table lengths in this ODT output use two decimal places in points;
+DOCX margins use twentieths of a point (0.05 pt). Cross-format saves can therefore
+round geometry. The [table-layout record](validation/zotero-table-layout-20261121/README.md)
+documents this bounded behavior rather than an exact-geometry guarantee.
+
 Supported inline PNG and upright RGB JPEG pictures keep their raster bytes,
 physical size, links, accessible titles and alternative descriptions in the
 editable ODT copy. Duplicate or empty drawing-object names receive deterministic
@@ -1602,9 +1624,20 @@ row settings and inherited shading use the existing Word table representation.
 Missing or overlapping coverage refuses the import. Covered cells containing
 stored content, including empty paragraph elements or non-XML whitespace,
 also refuse rather than losing hidden data. A covered cell's effective shading
-must be absent or agree with its origin; other covered-cell styling remains
-outside this subset. Repeated rows/cells remain unsupported. The document-wide
-cell and paragraph limits include generated continuations and nested tables.
+and authored or inherited padding must be absent or agree with its origin.
+Explicit borderless declarations are accepted; visible borders and other
+unrepresented covered-cell styling remain outside this subset. Repeated
+rows/cells remain unsupported. The document-wide cell and paragraph limits
+include generated continuations and nested tables.
+
+Cell padding resolves through family defaults and named parent styles. All four
+effective sides must match, and every visible cell in one table must share that
+margin. Zero is supported; no effective padding declaration means zero.
+Nested tables resolve independently. Asymmetric padding, differing cell margins
+and unsupported row/column default-cell styles refuse the import. Margins must
+be finite, nonnegative, within the native DOCX storage limit above and leave
+positive cell content width. ODT output and subsequent DOCX saves use their
+respective point precision; exact geometry across formats is not promised.
 
 The original merged-table [work record](validation/zotero-odt-merged-tables-20261121/README.md)
 retains its earlier execution blocker. The subsequent
@@ -1646,8 +1679,13 @@ remove that layout restriction.
 
 Complete uniform DOCX table margins, including zero, survive intervening saves
 and supported table-style inheritance. Unsupported imported margin forms remain
-in their original source XML. Quds' existing table renderer still uses fixed
-padding, so this file-preservation work does not promise identical screen layout.
+in their original source XML. Native layout now uses the modeled uniform margin
+for measurement, wrapping, row height, pagination and ruler insets, including
+nested tables. Oversized grids can be scaled to a page or enclosing cell; if
+that final width cannot contain the margins and positive content space, layout
+refuses it. The [table-layout continuation](validation/zotero-table-layout-20261121/README.md)
+records the delivered scope. Ordinary ODT export retains its existing formatting
+and cached-result behavior.
 Native editable notes declare exact superscript marker styles and the final
 endnote page master; reopening refuses changed marker scaling or incompatible
 page geometry. Optional soft-page caches are recomputed while authored hard
@@ -1658,6 +1696,11 @@ ODF style engine for future typing or Zotero replacements. General LibreOffice
 file compatibility, a lossless native ODT editing round trip, full plugin parity
 and installed Zotero acceptance remain separate work. The original ODT bytes
 are unchanged by either successful or failed conversion.
+
+The next dedicated note-formatting milestone is a native footnote-separator
+model, matching pagination/rendering and interoperable DOCX/ODT mapping before
+admitting active LibreOffice separators. Actual installed Zotero workflows in
+Word and supported LibreOffice releases still require separate validation.
 
 Engine hosts can explicitly convert and save supported input:
 

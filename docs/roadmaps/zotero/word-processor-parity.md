@@ -11,8 +11,11 @@ identified application, Zotero and plugin versions. LibreOffice results do not
 establish that compatibility.
 
 The [usage guide](../../zotero-support.md) describes the current controls. The
+[table-layout work record](../../validation/zotero-table-layout-20261121/README.md)
+tracks delivered native margin layout and bounded editable ODT uniform padding,
+including precision and remaining application-validation limits. The
 [rich ODT import record](../../validation/zotero-rich-odt-20261121/README.md)
-tracks the latest bounded native-file conversion, asynchronous editor/Studio
+tracks the earlier bounded native-file conversion, asynchronous editor/Studio
 opening, source-preserving DOCX save routing and exact qualification limits. The
 [nested-table work record](../../validation/zotero-nested-tables-20261121/README.md)
 tracks bounded nested research content and its qualification. The
@@ -46,6 +49,7 @@ results retain their original source and platform attribution.
 | Library/source discovery | Local/online catalogs, collections, saved searches, tags, source details, cited-source reuse and occurrence navigation | Local and online catalog APIs have different connection/version requirements |
 | Research materials | Read-only direct-child note previews and attachment metadata | No separate attachment-file download or Zotero library write workflow |
 | DOCX persistence | Active fields/preferences, native notes, rich bibliography structure, tables and embedded pictures use supported save/reopen paths | Local tests are separate from actual Word/LibreOffice application round trips |
+| Table margins | Native measurement, wrapping, pagination, ruler insets and nested picture fitting use each table's modeled uniform margin; explicit editable ODT preserves bounded uniform padding through style inheritance and merged/nested ownership | Asymmetric/per-cell ODT padding and visible borders remain unsupported; ODT/DOCX geometry rounds to format precision, and exhausted final scaled widths refuse |
 | Cross-word-processor transfer | Native export/import handshake, temporary metadata hyperlinks, DOCX import/save/reopen and ODT carrier export; complete native formatting before import publication | The qualified DOCX carrier route and native ODT conversion have separate envelopes; installed Zotero/Word/LibreOffice plugin acceptance remains open and actual converter findings are retained |
 | Native ODT inspection | Read-only inventory of citation ReferenceMarks, bibliography TextSections, exact story/paragraph/cell ownership, cached text and original preferences; JSON diagnostic CLI | Inspection reports eligibility and findings without publishing an editable document |
 | Native ODT import | Bounded rich paragraphs/styles, hyperlinks, authored notes, simple lists, supported merged/nested tables and embedded inline PNG/upright RGB JPEG pictures; canonical Zotero fields and preferences convert to an editable Word document; asynchronous editor/Studio opening and DOCX save/reopen | Used unsupported structure/formatting refuses atomically; content-sensitive guards limit dormant defaults; installed-plugin acceptance remains open |
@@ -457,14 +461,48 @@ distinct 65-percent symbol/anchor styles per note class and the final regular
 endnote master; reopening validates their effective formatting and compatible
 page geometry. Optional soft-page hints are recomputed. Actual acceptance now
 follows three fixtures and eleven fields through two external LibreOffice saves
-with a native/DOCX/native cycle between them. Fixed table-screen padding, active
-footnote separators and installed release-host/plugin acceptance remain open.
+with a native/DOCX/native cycle between them. The following increment replaces
+fixed table-screen padding with modeled margins. Active footnote separators and
+installed release-host/plugin acceptance remain open.
 
 The work record separates local native update/save regressions, actual converter
 cycles, and installed-plugin acceptance. In particular, active LibreOffice
 footnote separator geometry still needs a native model/layout/persistence
 implementation. Endnote-only and table-only acceptance cannot establish that
 footnote behavior or full Word/LibreOffice parity.
+
+## Delivered increment: uniform table margins and editable ODT padding
+
+Native table measurement, wrapping, row height, pagination and ruler fallback
+now use each table's uniform `cellMargin`, including zero. The native model's
+default remains 4 pt. Nested tables keep independent values; picture fitting
+accounts for all enclosing margins, including temporary tall-row layout and
+tables in authored notes. Layout restores the enclosing margin budget after
+nested work or a failure.
+
+The explicit editable ODT writer emits that margin as cell-style `fo:padding`.
+Native input resolves family defaults and named parents, expanding each layer's
+shorthand before its explicit sides. All effective sides and all visible
+originating cells in one table must share one value. Covered-cell padding, when
+authored or inherited, must match its merged origin; nested tables resolve
+separately. Asymmetric/per-cell padding, unsupported row/column default-cell
+styles and visible borders remain refused. Explicit borderless declarations
+are accepted. Ordinary cached-result ODT output keeps its previous formatting
+contract.
+
+Margins must be finite, nonnegative, within the DOCX limit of 32,767 twentieths
+of a point (1,638.35 pt), and leave positive cell content width. Editable ODT
+checks the emitted geometry after rounding: ODT lengths use two decimal places
+in points, while DOCX margins round to twentieths of a point (0.05 pt). This
+does not promise exact cross-format geometry. Native layout may scale a table
+to a page or enclosing cell and refuses a final scaled width exhausted by its
+margins, even when the unscaled source had positive content width.
+
+The [table-layout work record](../../validation/zotero-table-layout-20261121/README.md)
+records the implementation, focused regressions, repeated native/ODT/DOCX
+lifecycles and identified LibreOffice converter evidence. Installed Zotero
+workflows in Word and supported LibreOffice releases remain a separate gate;
+this increment does not establish complete plugin parity.
 
 ## Next implementation and acceptance steps
 
@@ -476,7 +514,12 @@ annotation-picture formatting. Its qualification records four real converter
 fixture routes, separate PNG/JPEG cycles, bounded intake and the exact source.
 Installed Zotero/Word/LibreOffice acceptance remains a separate next step.
 
-1. **Qualify release-host editable ODT workflows and production formatting.**
+1. **Model and preserve active footnote separators.** Add native separator
+   geometry, matching note reservation/pagination and rendering, ODT parsing and
+   emission, and an interoperable DOCX mapping. Qualify those together before
+   admitting active LibreOffice separators. Retaining opaque DOCX definitions
+   or accepting ODT attributes alone does not provide editable layout fidelity.
+2. **Qualify release-host editable ODT workflows and production formatting.**
    Use the implemented carrier and retained synthetic fixtures with current
    Word/LibreOffice and their actual Zotero plugins. Resolve any converter findings
    against identified release versions. Check citations, rich bibliographies,
@@ -489,26 +532,24 @@ Installed Zotero/Word/LibreOffice acceptance remains a separate next step.
    Refresh, citation editing, bibliography editing, style changes and repeated
    saves. The normal imported document still saves as DOCX; an ODT export copy
    does not redirect that save destination.
-   Model and preserve active footnote separator geometry before widening the
-   native reader to returned LibreOffice documents that use it. Retain failing
-   historical relative-table files and continued-list conversions as separate
+   Retain failing historical relative-table files and continued-list conversions as separate
    regression targets rather than treating regenerated passing fixtures as
    evidence for those earlier routes.
-2. **Extend table structure and formatting.** Improve merged-row height distribution and map
+3. **Extend table structure and formatting.** Improve merged-row height distribution and map
    header/footer row groups and custom styles to native structures with explicit
    ownership. Qualify their citation order, geometry, save/reopen behavior and
    rendering before accepting them. Add table-cell editing in the Notes pane
    deliberately; its current text view exposes surrounding paragraphs.
-3. **Extend image fidelity deliberately.** Handle JPEG orientation and
+4. **Extend image fidelity deliberately.** Handle JPEG orientation and
    grayscale/CMYK output consistently in editor, DOCX and PDF before removing
    current refusals. Additional raster formats need matching rendering and
    resource bounds, rather than a permissive data-URI allowlist.
-4. **Extend structural replacement deliberately.** Cell-local paragraph ranges
+5. **Extend structural replacement deliberately.** Cell-local paragraph ranges
    are implemented. Model ranges crossing cells and content-control boundaries,
    comments, existing fields and note references before accepting those
    selections. Preserve the ordinary-paragraph range,
    authored-note, stale-selection, composition and undo guarantees already delivered.
-5. **Run release-host acceptance.** Exercise current native Zotero, Word and
+6. **Run release-host acceptance.** Exercise current native Zotero, Word and
    LibreOffice with a synthetic library on each supported desktop platform.
    Check picker cancellation, metadata updates, note-style conversion,
    image/ink annotation and horizontally/vertically merged table insertion, adjacent-citation
