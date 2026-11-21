@@ -84,6 +84,22 @@ complete Git trees; one has identical blob/mode changes on every touched path. S
 
 ## Local qualification procedure
 
+Before publication, the work branch also merges current main
+`511df2a0b5dac893c31a646f8a2a822abcdfd7aa`, retaining PR #340's completed Zotero
+qualification and PR #341's editor paragraph/frame cache. The engine and legacy
+parser Git trees, root SDK/dependency/analysis inputs, and all 3,134 qualified
+input bytes are unchanged. Thus the numeric qualification still applies without
+relabeling the inherited editor code as newly tested. The final captured-history
+replay at the preserved remote work parent `2acf7473` again accounts for all
+388 starting refs; that parent is retained by the main-integration merge. See
+[the continuity proof](publication-continuity.json) and `intake/final-replay.json`.
+
+An independent raw-event audit reconstructed all accepted case lifecycles and
+root/nested group counts, checked the eight normalized source snapshots and
+source-commit Git blobs, and verified every command stream's byte count/hash.
+It confirmed 6,019 accepted cases, exact retry coverage, and all four VM/Node
+receipt pairs; no tests or sources were changed by the audit.
+
 Use the pinned Dart 3.13.7 and the existing dependency lock. Resolve the normal
 workspace with its pinned Flutter SDK, or reproduce the isolated pure-Dart
 engine harness described in `independent/README-runtime-and-numeric-review.md`.

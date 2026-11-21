@@ -1,0 +1,569 @@
+{
+  "schema": "quds-zotero-final-qualification-completeness-v1",
+  "target_commit": "4b33109aa85e077e2798265efa045d640e6ead4e",
+  "target_tree": "4d5feed1eb34a30816335ba2c581c18e47ee099a",
+  "status": "PARTIALLY_QUALIFIED_WITH_ENVIRONMENT_BLOCKER",
+  "scope": "Complete accounting of the original selection, with exact source binding of accepted scopes and explicitly separate failed attempts. This report does not declare the original plan fully passing.",
+  "original_test_plan": {
+    "path": "/workspace/scratch/4d323337693a/zotero-qualification-final-merged/plan-original91.json",
+    "sha256": "9d0353f69ee4da828656ff587678e1548c0385db9b522fc897b4a4c8a6ba6d6b",
+    "bytes": 5274
+  },
+  "passing_scope_plan": {
+    "path": "/workspace/scratch/4d323337693a/zotero-final-passing-scopes-plan.json",
+    "sha256": "10987eaa52c712492bcedb284edda98e5730cb9e30df58c5aece853c5d9ecd7d",
+    "bytes": 14315
+  },
+  "passing_scope_source_proof": {
+    "path": "/workspace/scratch/4d323337693a/zotero-final-passing-scopes-source-binding.json",
+    "sha256": "5cd8a914013da539b7c4dac417966ff191c5b9b0072b760514a68c46071560c2",
+    "bytes": 2232876
+  },
+  "generator": {
+    "path": "/workspace/scratch/4d323337693a/build_zotero_final_qualification_completeness.py",
+    "sha256": "01aaa6b9582acfa66cae6d4e2c623a6577e52aa84721a704259faecd61164834",
+    "bytes": 12724
+  },
+  "original_requested_suites": {
+    "engine": 91,
+    "editor": 16,
+    "studio": 3
+  },
+  "successful_fresh_test_scopes": {
+    "engine": {
+      "runs": [
+        "engine",
+        "engine_cli_shading"
+      ],
+      "passed_cases": 2143,
+      "selected_suites": 90,
+      "selected_test_entrypoints": [
+        "packages/quds_office_engine/test/odf_zotero_ownership_test.dart",
+        "packages/quds_office_engine/test/odf_zotero_preferences_test.dart",
+        "packages/quds_office_engine/test/odf_zotero_reference_marks_test.dart",
+        "packages/quds_office_engine/test/odf_zotero_resource_test.dart",
+        "packages/quds_office_engine/test/odt_bookmark_end_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_bookmark_name_ambiguity_test.dart",
+        "packages/quds_office_engine/test/odt_bookmark_range_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_column_break_style_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_columns_breaks_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_columns_schema_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_comment_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_complex_field_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_document_reader_test.dart",
+        "packages/quds_office_engine/test/odt_document_writer_test.dart",
+        "packages/quds_office_engine/test/odt_frame_common_style_test.dart",
+        "packages/quds_office_engine/test/odt_header_footer_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_header_variant_comment_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_header_variant_order_test.dart",
+        "packages/quds_office_engine/test/odt_hyperlink_range_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_image_style_review_test.dart",
+        "packages/quds_office_engine/test/odt_imported_field_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_inline_column_break_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_inline_field_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_libreoffice_bibliography_test.dart",
+        "packages/quds_office_engine/test/odt_libreoffice_fixture_test.dart",
+        "packages/quds_office_engine/test/odt_libreoffice_note_offsets_test.dart",
+        "packages/quds_office_engine/test/odt_list_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_merged_table_zotero_test.dart",
+        "packages/quds_office_engine/test/odt_note_configuration_styles_test.dart",
+        "packages/quds_office_engine/test/odt_note_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_open_test.dart",
+        "packages/quds_office_engine/test/odt_page_field_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_page_marker_column_break_test.dart",
+        "packages/quds_office_engine/test/odt_paragraph_break_style_test.dart",
+        "packages/quds_office_engine/test/odt_paragraph_decoration_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_paragraph_decoration_resume_test.dart",
+        "packages/quds_office_engine/test/odt_paragraph_decoration_test.dart",
+        "packages/quds_office_engine/test/odt_paragraph_properties_test.dart",
+        "packages/quds_office_engine/test/odt_reader_guards_test.dart",
+        "packages/quds_office_engine/test/odt_reader_images_test.dart",
+        "packages/quds_office_engine/test/odt_reader_libreoffice_defaults_test.dart",
+        "packages/quds_office_engine/test/odt_reader_script_styles_test.dart",
+        "packages/quds_office_engine/test/odt_reader_styles_test.dart",
+        "packages/quds_office_engine/test/odt_reader_table_preservation_test.dart",
+        "packages/quds_office_engine/test/odt_section_columns_test.dart",
+        "packages/quds_office_engine/test/odt_section_continuation_test.dart",
+        "packages/quds_office_engine/test/odt_section_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_section_integration_test.dart",
+        "packages/quds_office_engine/test/odt_soft_page_breaks_test.dart",
+        "packages/quds_office_engine/test/odt_story_visual_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_structure_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_tab_stop_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_tab_style_cache_test.dart",
+        "packages/quds_office_engine/test/odt_tab_style_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_table_merge_test.dart",
+        "packages/quds_office_engine/test/odt_table_tab_consolidation_test.dart",
+        "packages/quds_office_engine/test/odt_table_tab_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_table_tab_gector_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_table_tab_qualification_test.dart",
+        "packages/quds_office_engine/test/odt_table_tab_resume_test.dart",
+        "packages/quds_office_engine/test/odt_uppercase_test.dart",
+        "packages/quds_office_engine/test/odt_vba_language_roundtrip_test.dart",
+        "packages/quds_office_engine/test/odt_zotero_export_lifecycle_test.dart",
+        "packages/quds_office_engine/test/odt_zotero_image_lifecycle_test.dart",
+        "packages/quds_office_engine/test/odt_zotero_position_guard_test.dart",
+        "packages/quds_office_engine/test/odt_zotero_table_geometry_test.dart",
+        "packages/quds_office_engine/test/odt_zotero_writer_test.dart",
+        "packages/quds_office_engine/test/office_macro_word_position_test.dart",
+        "packages/quds_office_engine/test/office_macro_word_shading_test.dart",
+        "packages/quds_office_engine/test/office_vba_text_construction_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_position_conformance_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_position_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_shading_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_shading_test.dart",
+        "packages/quds_office_engine/test/table_border_fidelity_test.dart",
+        "packages/quds_office_engine/test/word_position_test.dart",
+        "packages/quds_office_engine/test/word_table_cell_margin_test.dart",
+        "packages/quds_office_engine/test/word_table_style_import_regression_test.dart",
+        "packages/quds_office_engine/test/word_table_style_precedence_test.dart",
+        "packages/quds_office_engine/test/word_zotero_bibliography_layout_test.dart",
+        "packages/quds_office_engine/test/word_zotero_bibliography_style_fidelity_test.dart",
+        "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+        "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+        "packages/quds_office_engine/test/word_zotero_formatted_bibliography_test.dart",
+        "packages/quds_office_engine/test/word_zotero_preference_flow_test.dart",
+        "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+        "packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+        "packages/quds_office_engine/test/word_zotero_style_preferences_review_test.dart",
+        "packages/quds_office_engine/test/word_zotero_transfer_session_test.dart",
+        "packages/quds_office_engine/test/word_zotero_transfer_test.dart"
+      ],
+      "duplicate_entrypoints": []
+    },
+    "editor": {
+      "runs": [
+        "editor"
+      ],
+      "passed_cases": 194,
+      "selected_suites": 16,
+      "selected_test_entrypoints": [
+        "packages/quds_office_editor/test/word_body_text_cache_test.dart",
+        "packages/quds_office_editor/test/word_header_footer_navigation_test.dart",
+        "packages/quds_office_editor/test/word_live_review_selection_test.dart",
+        "packages/quds_office_editor/test/word_odt_image_load_test.dart",
+        "packages/quds_office_editor/test/word_odt_load_test.dart",
+        "packages/quds_office_editor/test/word_odt_merged_table_load_test.dart",
+        "packages/quds_office_editor/test/word_page_text_cache_test.dart",
+        "packages/quds_office_editor/test/word_page_text_picture_cache_test.dart",
+        "packages/quds_office_editor/test/word_position_test.dart",
+        "packages/quds_office_editor/test/word_proofing_geometry_test.dart",
+        "packages/quds_office_editor/test/word_selection_paint_test.dart",
+        "packages/quds_office_editor/test/word_selection_path_cache_test.dart",
+        "packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart",
+        "packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+        "packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+        "packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart"
+      ],
+      "duplicate_entrypoints": []
+    },
+    "studio": {
+      "runs": [
+        "studio"
+      ],
+      "passed_cases": 26,
+      "selected_suites": 3,
+      "selected_test_entrypoints": [
+        "packages/quds_office_editor/example/test/studio_odt_open_test.dart",
+        "packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+        "packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart"
+      ],
+      "duplicate_entrypoints": []
+    }
+  },
+  "successful_fresh_case_count": 2363,
+  "successful_fresh_suite_count": 109,
+  "blocked_scope": {
+    "directory": "zotero-qualification-final-merged/engine-cli-position",
+    "test_entrypoint": "packages/quds_office_engine/test/office_vba_word_position_integration_test.dart",
+    "declared_case_titles": [
+      "actual BAS validates, replays, rolls back and retains inert DOCM parts",
+      "position never invents paragraph-mark formatting in empty text",
+      "MCP compiles and executes Font.Position through the existing catalog",
+      "CLI validates, compiles and runs BAS without modifying its input"
+    ],
+    "executed_cases": 0,
+    "declared_cases_not_executed": 4,
+    "receipt": {
+      "path": "/workspace/scratch/4d323337693a/zotero-qualification-final-merged/engine-cli-position/receipt.json",
+      "sha256": "461bb9558640dad9efed63eddeccb6a0fccff50cad84218bc9c971ee33afc405",
+      "bytes": 2036
+    },
+    "events": {
+      "path": "/workspace/scratch/4d323337693a/zotero-qualification-final-merged/engine-cli-position/events.jsonl",
+      "sha256": "94d69651ede3ff736c857c067a18289a1dbaa0bb993bb8ff61a497289e66e7c2",
+      "bytes": 2380
+    },
+    "qualification_credit": 0,
+    "reason": "The suite setUpAll could not create its macro CLI temporary directory (errno 28); its four test bodies did not execute. Retrying this suite was stopped."
+  },
+  "unaccepted_attempts": [
+    {
+      "kind": "tests",
+      "directory": "zotero-qualification-final-merged/engine-enospc-attempt",
+      "reason": "Original full 91-suite attempt ended with two macro CLI setup errors.",
+      "receipt": {
+        "path": "/workspace/scratch/4d323337693a/zotero-qualification-final-merged/engine-enospc-attempt/receipt.json",
+        "sha256": "f133b6b6fb939f0103155b7b86e3599bc085b992754e990fadbc843371c52083",
+        "bytes": 6730
+      },
+      "before_snapshot": {
+        "path": "/workspace/scratch/4d323337693a/zotero-qualification-final-merged/engine-enospc-attempt/inputs-before.json",
+        "sha256": "653509dcc22f57543a59fbfa599766aa1c6ef14150d1be8c3455bc554bf93b08",
+        "bytes": 138255
+      },
+      "after_snapshot": {
+        "path": "/workspace/scratch/4d323337693a/zotero-qualification-final-merged/engine-enospc-attempt/inputs-after.json",
+        "sha256": "653509dcc22f57543a59fbfa599766aa1c6ef14150d1be8c3455bc554bf93b08",
+        "bytes": 138255
+      },
+      "recorded_checkpoint": "4b33109aa85e077e2798265efa045d640e6ead4e",
+      "recorded_result": {
+        "passed": 2131,
+        "failed": 2,
+        "skipped": 0,
+        "exit_code": 1,
+        "test_file_count": 91
+      },
+      "errors": [
+        {
+          "testID": 1517,
+          "error": "FileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/4d323337693a/zotero-runtime/tmp/quds-office-macro-' (OS Error: No space left on device, errno = 28)",
+          "stackTrace": "dart:io                                   _Directory.createTempSync\ntest/support/office_macro_cli.dart 64:42  _compile\ntest/support/office_macro_cli.dart 31:29  registerOfficeMacroCliCleanup.<fn>\n",
+          "isFailure": false,
+          "type": "error",
+          "time": 19654
+        },
+        {
+          "testID": 2255,
+          "error": "FileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/4d323337693a/zotero-runtime/tmp/quds-office-macro-' (OS Error: No space left on device, errno = 28)",
+          "stackTrace": "dart:io                                   _Directory.createTempSync\ntest/support/office_macro_cli.dart 64:42  _compile\ntest/support/office_macro_cli.dart 31:29  registerOfficeMacroCliCleanup.<fn>\n",
+          "isFailure": false,
+          "type": "error",
+          "time": 24756
+        }
+      ],
+      "failed_commands": [],
+      "qualification_credit": 0,
+      "source_binding": {
+        "input_count": 998,
+        "changed_during_attempt": [],
+        "tracked_target_mismatches": [],
+        "unexpected_untracked_inputs": [],
+        "runtime_config_before_after_current_match": true,
+        "all_captured_inputs_match_target": true
+      }
+    },
+    {
+      "kind": "tests",
+      "directory": "zotero-qualification-final-merged/engine-enospc-retry-concurrency4",
+      "reason": "Full 91-suite retry repeated the same two setup errors.",
+      "receipt": {
+        "path": "/workspace/scratch/4d323337693a/zotero-qualification-final-merged/engine-enospc-retry-concurrency4/receipt.json",
+        "sha256": "b4e1ab449bf6fc2301b5890945ff1d0d010a4ec6324a8888ca807baed1b1ee22",
+        "bytes": 6730
+      },
+      "before_snapshot": {
+        "path": "/workspace/scratch/4d323337693a/zotero-qualification-final-merged/engine-enospc-retry-concurrency4/inputs-before.json",
+        "sha256": "653509dcc22f57543a59fbfa599766aa1c6ef14150d1be8c3455bc554bf93b08",
+        "bytes": 138255
+      },
+      "after_snapshot": {
+        "path": "/workspace/scratch/4d323337693a/zotero-qualification-final-merged/engine-enospc-retry-concurrency4/inputs-after.json",
+        "sha256": "653509dcc22f57543a59fbfa599766aa1c6ef14150d1be8c3455bc554bf93b08",
+        "bytes": 138255
+      },
+      "recorded_checkpoint": "4b33109aa85e077e2798265efa045d640e6ead4e",
+      "recorded_result": {
+        "passed": 2131,
+        "failed": 2,
+        "skipped": 0,
+        "exit_code": 1,
+        "test_file_count": 91
+      },
+      "errors": [
+        {
+          "testID": 1507,
+          "error": "FileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/4d323337693a/zotero-runtime/tmp/quds-office-macro-' (OS Error: No space left on device, errno = 28)",
+          "stackTrace": "dart:io                                   _Directory.createTempSync\ntest/support/office_macro_cli.dart 64:42  _compile\ntest/support/office_macro_cli.dart 31:29  registerOfficeMacroCliCleanup.<fn>\n",
+          "isFailure": false,
+          "type": "error",
+          "time": 20570
+        },
+        {
+          "testID": 2267,
+          "error": "FileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/4d323337693a/zotero-runtime/tmp/quds-office-macro-' (OS Error: No space left on device, errno = 28)",
+          "stackTrace": "dart:io                                   _Directory.createTempSync\ntest/support/office_macro_cli.dart 64:42  _compile\ntest/support/office_macro_cli.dart 31:29  registerOfficeMacroCliCleanup.<fn>\n",
+          "isFailure": false,
+          "type": "error",
+          "time": 26057
+        }
+      ],
+      "failed_commands": [],
+      "qualification_credit": 0,
+      "source_binding": {
+        "input_count": 998,
+        "changed_during_attempt": [],
+        "tracked_target_mismatches": [],
+        "unexpected_untracked_inputs": [],
+        "runtime_config_before_after_current_match": true,
+        "all_captured_inputs_match_target": true
+      }
+    },
+    {
+      "kind": "tests",
+      "directory": "zotero-qualification-final-merged/engine-enospc-serial-attempt",
+      "reason": "Serial 91-suite retry repeated the same two setup errors.",
+      "receipt": {
+        "path": "/workspace/scratch/4d323337693a/zotero-qualification-final-merged/engine-enospc-serial-attempt/receipt.json",
+        "sha256": "1e108a00bb02c21c4de666e68d8005b5e550b3c38fb70884abae31e509e65fae",
+        "bytes": 6728
+      },
+      "before_snapshot": {
+        "path": "/workspace/scratch/4d323337693a/zotero-qualification-final-merged/engine-enospc-serial-attempt/inputs-before.json",
+        "sha256": "653509dcc22f57543a59fbfa599766aa1c6ef14150d1be8c3455bc554bf93b08",
+        "bytes": 138255
+      },
+      "after_snapshot": {
+        "path": "/workspace/scratch/4d323337693a/zotero-qualification-final-merged/engine-enospc-serial-attempt/inputs-after.json",
+        "sha256": "653509dcc22f57543a59fbfa599766aa1c6ef14150d1be8c3455bc554bf93b08",
+        "bytes": 138255
+      },
+      "recorded_checkpoint": "4b33109aa85e077e2798265efa045d640e6ead4e",
+      "recorded_result": {
+        "passed": 2131,
+        "failed": 2,
+        "skipped": 0,
+        "exit_code": 1,
+        "test_file_count": 91
+      },
+      "errors": [
+        {
+          "testID": 1711,
+          "error": "FileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/4d323337693a/zotero-runtime/tmp/quds-office-macro-' (OS Error: No space left on device, errno = 28)",
+          "stackTrace": "dart:io                                   _Directory.createTempSync\ntest/support/office_macro_cli.dart 64:42  _compile\ntest/support/office_macro_cli.dart 31:29  registerOfficeMacroCliCleanup.<fn>\n",
+          "isFailure": false,
+          "type": "error",
+          "time": 56539
+        },
+        {
+          "testID": 2359,
+          "error": "FileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/4d323337693a/zotero-runtime/tmp/quds-office-macro-' (OS Error: No space left on device, errno = 28)",
+          "stackTrace": "dart:io                                   _Directory.createTempSync\ntest/support/office_macro_cli.dart 64:42  _compile\ntest/support/office_macro_cli.dart 31:29  registerOfficeMacroCliCleanup.<fn>\n",
+          "isFailure": false,
+          "type": "error",
+          "time": 72798
+        }
+      ],
+      "failed_commands": [],
+      "qualification_credit": 0,
+      "source_binding": {
+        "input_count": 998,
+        "changed_during_attempt": [],
+        "tracked_target_mismatches": [],
+        "unexpected_untracked_inputs": [],
+        "runtime_config_before_after_current_match": true,
+        "all_captured_inputs_match_target": true
+      }
+    },
+    {
+      "kind": "tests",
+      "directory": "zotero-qualification-final-merged/engine-cli-position",
+      "reason": "Isolated Position integration stopped in setUpAll before its four test bodies.",
+      "receipt": {
+        "path": "/workspace/scratch/4d323337693a/zotero-qualification-final-merged/engine-cli-position/receipt.json",
+        "sha256": "461bb9558640dad9efed63eddeccb6a0fccff50cad84218bc9c971ee33afc405",
+        "bytes": 2036
+      },
+      "before_snapshot": {
+        "path": "/workspace/scratch/4d323337693a/zotero-qualification-final-merged/engine-cli-position/inputs-before.json",
+        "sha256": "1a408cab14de776d69504bf29b9c63ceb73d7486f33dc5b14abc13948afe90bd",
+        "bytes": 126352
+      },
+      "after_snapshot": {
+        "path": "/workspace/scratch/4d323337693a/zotero-qualification-final-merged/engine-cli-position/inputs-after.json",
+        "sha256": "1a408cab14de776d69504bf29b9c63ceb73d7486f33dc5b14abc13948afe90bd",
+        "bytes": 126352
+      },
+      "recorded_checkpoint": "4b33109aa85e077e2798265efa045d640e6ead4e",
+      "recorded_result": {
+        "passed": 0,
+        "failed": 1,
+        "skipped": 0,
+        "exit_code": 1,
+        "test_file_count": 1
+      },
+      "errors": [
+        {
+          "testID": 3,
+          "error": "FileSystemException: Creation of temporary directory failed, path = '/workspace/scratch/4d323337693a/zotero-runtime/tmp/quds-office-macro-' (OS Error: No space left on device, errno = 28)",
+          "stackTrace": "dart:io                                   _Directory.createTempSync\ntest/support/office_macro_cli.dart 64:42  _compile\ntest/support/office_macro_cli.dart 31:29  registerOfficeMacroCliCleanup.<fn>\n",
+          "isFailure": false,
+          "type": "error",
+          "time": 1682
+        }
+      ],
+      "failed_commands": [],
+      "qualification_credit": 0,
+      "source_binding": {
+        "input_count": 914,
+        "changed_during_attempt": [],
+        "tracked_target_mismatches": [],
+        "unexpected_untracked_inputs": [],
+        "runtime_config_before_after_current_match": true,
+        "all_captured_inputs_match_target": true
+      }
+    },
+    {
+      "kind": "converter",
+      "directory": "zotero-final-integration-converter/core-4b33109a",
+      "reason": "Initial core create command hit ENOSPC before fixture/host save.",
+      "receipt": {
+        "path": "/workspace/scratch/4d323337693a/zotero-final-integration-converter/core-4b33109a/receipt.json",
+        "sha256": "e79d3cc2dbd5e15ece8e6f9d7d0e900879e0983bed03d819599cb81c9d8489a3",
+        "bytes": 5935
+      },
+      "before_snapshot": {
+        "path": "/workspace/scratch/4d323337693a/zotero-final-integration-converter/core-4b33109a/source-before.json",
+        "sha256": "29b6196af5d075fac0ab5c246c163d6963e6bc77465326aa7f029d22da152b15",
+        "bytes": 61151
+      },
+      "after_snapshot": {
+        "path": "/workspace/scratch/4d323337693a/zotero-final-integration-converter/core-4b33109a/source-after.json",
+        "sha256": "29b6196af5d075fac0ab5c246c163d6963e6bc77465326aa7f029d22da152b15",
+        "bytes": 61151
+      },
+      "recorded_checkpoint": "4b33109aa85e077e2798265efa045d640e6ead4e",
+      "recorded_result": {
+        "status": "failed"
+      },
+      "errors": [],
+      "failed_commands": [
+        {
+          "name": "create",
+          "argv": [
+            "/workspace/scratch/4d323337693a/zotero-runtime/flutter/bin/cache/dart-sdk/bin/dart",
+            "--packages=/workspace/scratch/4d323337693a/quds_office_suite/.dart_tool/package_config.json",
+            "/workspace/scratch/4d323337693a/zotero-final-integration-converter/core-4b33109a/acceptance.dill",
+            "create",
+            "/workspace/scratch/4d323337693a/zotero-final-integration-converter/core-4b33109a/original"
+          ],
+          "cwd": "/workspace/scratch/4d323337693a/quds_office_suite",
+          "exit_code": 255,
+          "seconds": 0.266,
+          "stdout": "create.stdout.log",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "create.stderr.log",
+          "stderr_sha256": "c3a64fc57fc02651d693dae153ad1a753563fb4482c492e630ee5067fbac444b"
+        }
+      ],
+      "qualification_credit": 0,
+      "source_binding": {
+        "input_count": 438,
+        "changed_during_attempt": [],
+        "tracked_target_mismatches": [],
+        "unexpected_untracked_inputs": [],
+        "runtime_config_before_after_current_match": true,
+        "all_captured_inputs_match_target": true
+      }
+    },
+    {
+      "kind": "converter",
+      "directory": "zotero-final-integration-converter/mixed-4b33109a",
+      "reason": "Initial mixed create command hit ENOSPC before fixture/host save.",
+      "receipt": {
+        "path": "/workspace/scratch/4d323337693a/zotero-final-integration-converter/mixed-4b33109a/receipt.json",
+        "sha256": "176fdc26b69817a9763dd8876f1906ecd4bbb45414d3edfc9e000dba8d277b97",
+        "bytes": 5848
+      },
+      "before_snapshot": {
+        "path": "/workspace/scratch/4d323337693a/zotero-final-integration-converter/mixed-4b33109a/source-before.json",
+        "sha256": "84558e3afe9f7c7784e5621314244eee96bb69519fb4ffb71b54d14722b7c5ae",
+        "bytes": 61148
+      },
+      "after_snapshot": {
+        "path": "/workspace/scratch/4d323337693a/zotero-final-integration-converter/mixed-4b33109a/source-after.json",
+        "sha256": "84558e3afe9f7c7784e5621314244eee96bb69519fb4ffb71b54d14722b7c5ae",
+        "bytes": 61148
+      },
+      "recorded_checkpoint": "4b33109aa85e077e2798265efa045d640e6ead4e",
+      "recorded_result": {
+        "status": "failed"
+      },
+      "errors": [],
+      "failed_commands": [
+        {
+          "name": "create",
+          "argv": [
+            "/workspace/scratch/4d323337693a/zotero-runtime/flutter/bin/cache/dart-sdk/bin/dart",
+            "--packages=/workspace/scratch/4d323337693a/quds_office_suite/.dart_tool/package_config.json",
+            "/workspace/scratch/4d323337693a/zotero-final-integration-converter/mixed-4b33109a/acceptance.dill",
+            "create",
+            "/workspace/scratch/4d323337693a/zotero-final-integration-converter/mixed-4b33109a/original"
+          ],
+          "cwd": "/workspace/scratch/4d323337693a/quds_office_suite",
+          "exit_code": 255,
+          "seconds": 0.399,
+          "stdout": "create.stdout.log",
+          "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "stderr": "create.stderr.log",
+          "stderr_sha256": "4cc2fac1e3987efec748f944e0686949fa45157da9f1f21b67f8ce4d4a7e2665"
+        }
+      ],
+      "qualification_credit": 0,
+      "source_binding": {
+        "input_count": 438,
+        "changed_during_attempt": [],
+        "tracked_target_mismatches": [],
+        "unexpected_untracked_inputs": [],
+        "runtime_config_before_after_current_match": true,
+        "all_captured_inputs_match_target": true
+      }
+    }
+  ],
+  "historical_support": {
+    "review": {
+      "path": "/workspace/scratch/4d323337693a/zotero-final-incoming-position-review.json",
+      "sha256": "b8713d7600af9385f39a59825517201910dd78a0af2b6c3b68382e91e0a8688d",
+      "bytes": 11581
+    },
+    "four_cases_passed_upstream": [
+      {
+        "name": "actual BAS validates, replays, rolls back and retains inert DOCM parts",
+        "result": "success",
+        "skipped": false,
+        "archived_test_id": 108
+      },
+      {
+        "name": "position never invents paragraph-mark formatting in empty text",
+        "result": "success",
+        "skipped": false,
+        "archived_test_id": 109
+      },
+      {
+        "name": "MCP compiles and executes Font.Position through the existing catalog",
+        "result": "success",
+        "skipped": false,
+        "archived_test_id": 110
+      },
+      {
+        "name": "CLI validates, compiles and runs BAS without modifying its input",
+        "result": "success",
+        "skipped": false,
+        "archived_test_id": 111
+      }
+    ],
+    "fresh_qualification_credit": 0,
+    "limitations": "The selected test and CLI source bytes match, but the final engine includes the later absolute-position ODT refusal guard, the upstream snapshot omits all 66 legacy library files, and the runtime package configuration differs. The BAS example is separately archived, not part of the Word-gate before/after snapshot.",
+    "missing_legacy_library_snapshot_count": 66
+  },
+  "checks": {
+    "scoped_passing_source_binding_valid": true,
+    "successful_test_cohorts_disjoint": true,
+    "original_selection_equals_successful_plus_explicit_blocked": true,
+    "all_unaccepted_attempt_sources_stable_and_match_target": true,
+    "historical_results_receive_no_fresh_credit": true,
+    "all_original_requested_tests_passed": false
+  },
+  "accounting_checks_passed": true
+}

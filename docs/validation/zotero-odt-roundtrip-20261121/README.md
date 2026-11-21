@@ -1,8 +1,128 @@
 # Native Zotero round trips through LibreOffice
 
-## Latest integrated qualification
+## Final publication follow-up
 
-The final combined-source checkpoint is
+The publication source is `ca726cd687a64a89cdd2b8e5df3f61dc57f4ca25`, tree
+`8011024075bed83b30388d8deec72de2149886ad`. It also incorporates accepted main
+`e5940c79120859dbbeb99be0907f3443e696f10a`, retaining its numeric macro functions
+and paragraph/frame-owner caches alongside the Zotero export safeguard.
+
+A bounded follow-up passes **356 engine cases in four suites** and **195 editor
+cases in 17 suites**, including the existing nested-frame golden that exercises
+the new frame-owner cache. Formatting, fatal-info analysis and whitespace checks
+pass for the six changed package Dart files. All captured inputs remain unchanged
+and match this exact source. These **551 follow-up cases in 21 suites** are
+reported separately from the earlier 2,363 cases below; overlapping scopes are
+not added together. The earlier four blocked Position integration cases remain
+explicitly blocked and receive no fresh credit.
+
+The net package-library delta from the broad checkpoint is limited to the macro
+numeric evaluator and the reviewed renderer caches. The Zotero Position guard,
+its tests, the oracle and all three converter entrypoints remain unchanged.
+Independent import/export/part analysis finds 386 reachable workspace Dart
+files for each converter, all captured and unchanged. The changed automation
+file was an incidental observer in the broader snapshots and is outside those
+closures. Runtime configuration and dependency manifests also remain unchanged;
+retained-kernel byte inspection corroborates the exclusion. This carries forward
+the recorded converter scope through an explicit static continuity argument;
+it is not a new host run or compiler dependency trace.
+
+See [publication-followup.json](publication-followup.json), the
+[continuity report](publication-followup-continuity.json), and the
+[fresh follow-up source binding](publication-followup-source-binding.json).
+`publication-followup.tar.gz` and `publication-followup-archive-contents.json`
+retain the 53-member follow-up evidence. All 25 preceding validation records
+remain unchanged. GitHub Actions were not queried or awaited.
+
+## Broad qualification at 4b33109a
+
+This broad qualification targets source
+`4b33109aa85e077e2798265efa045d640e6ead4e`, tree
+`4d5feed1eb34a30816335ba2c581c18e47ee099a`. It includes accepted main
+`aa861c28e336b17bcd4c259351164380cd6b1438` and the remaining Zotero continuation
+`a7f69313ed2e610f82242c31be8ad5387ae5cea0`. The overlapping text-cache fixes
+were reconciled by retaining the incoming per-page implementation and all three
+independent regression suites. Historical qualification records below retain
+their original source identities and bytes.
+
+The new Word baseline-position property exposed one final export gap. Editable
+Zotero ODT now refuses effective nonzero absolute positions on runs, paragraph
+marks and note markers before output, including inherited formatting. Explicit
+zero and the separate superscript/subscript styles remain supported. Eleven
+new regressions cover the guard and atomicity; the actual converter oracle also
+compares baseline position. The ordinary cached-result ODT API is unchanged.
+
+### Successful fresh test scopes
+
+| Scope | Suites | Passed cases | Failed / skipped in these successful runs |
+| --- | ---: | ---: | --- |
+| Engine core | 89 | 2,131 | 0 / 0 |
+| Isolated shading CLI integration | 1 | 12 | 0 / 0 |
+| Editor | 16 | 194 | 0 / 0 |
+| Studio Zotero/ODT | 3 | 26 | 0 / 0 |
+| Successful total | 109 | 2,363 | 0 / 0 |
+
+These are selected integration scopes. The originally selected 110 suites are
+**not fully qualified**: `office_vba_word_position_integration_test.dart`
+remained blocked by `ENOSPC` in temporary-directory setup, so none of its four
+cases ran successfully in this final qualification. Three earlier broad engine
+attempts and the isolated failed attempt are retained and excluded from the
+passing total. The independent upstream record contains earlier passes of those
+four cases, with explicit source/runtime limitations; it receives no fresh
+qualification credit. See [publication-completeness.json](publication-completeness.json).
+
+The successful engine scopes are disjoint. Formatting with Dart language
+version 3.12, fatal-info analysis and whitespace checks pass for 41 changed Dart
+targets. Captured source and runtime-input hashes remain unchanged before/after
+every successful run. CLI snapshots include their helper, executable tool,
+portable smoke sources and BAS examples. No GitHub Actions were queried or
+awaited.
+
+### Actual file-save acceptance
+
+Four core fixtures now cover **13 active fields**: body/bibliography (3), fixed
+tables (6), decimal endnotes (2), and Unicode uppercase citations (2). All pass
+authored-model export, an actual LibreOffice save, native reopen, DOCX
+save/reopen, editable ODT reexport and a second actual LibreOffice save/reopen.
+Uppercase remains presentation formatting: authored Unicode and citation
+endpoints are preserved.
+
+The mixed-note check preserves seven field inventories and all four distinct
+65-percent superscript note styles after an actual save. It remains
+**export/inventory acceptance**, without a claim of native footnote reopening.
+The PNG and JPEG fixtures each preserve two pictures and two citations through
+two actual saves and three native DOCX/ODT cycles after each save. All **23
+successful converter commands** exit zero; all 438 captured source inputs and
+all original, intermediate and saved input bytes remain unchanged.
+
+The converter remains LibreOfficeDev 26.8.0.0.alpha0, build
+`2c87e51eeaa2b413ff4ae097b2705eea1995d8e5`. Installed Zotero-plugin sessions,
+Microsoft Word application behavior, supported stable LibreOffice releases and
+legacy Apache OpenOffice remain separate acceptance targets.
+
+### Reconciliation and retained evidence
+
+The refreshed audit accounts for **386 fetched refs**: 43 fork branches, 339 PR
+heads and four upstream tips. Of those, 372 are ancestors of this checkpoint
+and 14 have independently verified historical equivalents. No uncovered or
+ongoing current tip remains in that captured inventory. All 375 initial tip
+identities were rechecked. See [publication-intake.md](publication-intake.md).
+
+[publication.json](publication.json) records the final results and hashes.
+[publication-source-binding.json](publication-source-binding.json) binds the
+eight successful fresh execution scopes to this exact source; it does not
+relabel the blocked original scope as passed. The separate
+`publication-execution.tar.gz` and `publication-archive-contents.json` contain
+raw events, fixtures, converter outputs, source snapshots, reproducible runners,
+ref accounting, the completed intermediate 174-case paint milestone, failed
+storage attempts and the excluded optional probe. The earlier 2,078- and
+2,331-case milestones and their archives remain unchanged and are not added to
+these fresh totals. Removal of old reproducible compiled kernels is audited;
+source, fixtures and raw evidence were preserved.
+
+## Earlier integrated qualification
+
+This earlier combined-source checkpoint is
 bb2dfd5272ff8de27ed2ec7f68b71801a2e41886, with tree
 5fadc8755a09f06cd1ba3c47a147e05c333258e0. It preserves the completed milestone
 below and merges current main 2058a434b2bcc76e7fc7e8a449ff6ce31488eb25,
@@ -255,6 +375,9 @@ environment paths; substitute SDK locations for an equivalent installation.
    are separate evidence.
 4. Treat legacy Apache OpenOffice as a separately versioned host/plugin target;
    no result here establishes that combination.
+5. Model and qualify absolute Word font baseline positioning in ODT before
+   widening the new explicit export refusal. Effective zero and supported
+   superscript/subscript remain available.
 
 Continuing contracts: [native ODT input](../../roadmaps/zotero/native-odt-input.md),
 [native ODT output](../../roadmaps/zotero/native-odt-output.md), and the

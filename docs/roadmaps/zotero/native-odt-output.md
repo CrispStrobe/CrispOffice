@@ -157,6 +157,13 @@ missing note anchors; and partial bibliography ownership. Pending tracked
 changes and protected document states refuse. Prepared document-transfer
 carriers must be imported before using this API.
 
+Effective nonzero absolute font baseline positions also refuse this explicit
+export. Native Word `Font.Position` and DOCX `w:position` have no qualified ODT
+mapping yet. Preflight checks visible runs, paragraph marks and note markers,
+including resolved inherited positions, before returning bytes. Effective zero
+overrides remain supported, as do the separate superscript/subscript styles.
+Refusal leaves the document and its native package unchanged.
+
 Unclaimed instructions, native Zotero bookmarks and retained opaque XML are
 examined as well as enumerated fields. Entity-encoded names cannot bypass that
 check. The exporter refuses recognizable Zotero data it cannot preserve.
