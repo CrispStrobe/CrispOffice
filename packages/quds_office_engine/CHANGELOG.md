@@ -4,6 +4,13 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Add detached `WordZoteroTransfer` / `WordZoteroTransferPlan` export and import
+  of bounded hyperlink carriers containing citation/bibliography codes and
+  document preferences. Preserve body, table and uniquely anchored note
+  ownership; reject ambiguous or protected content and stale sources. Add
+  `ZoteroCitingCommand.exportDocument` and the document import/export protocol
+  handshake. Direct native ODT reference-mark import remains outside this API.
+
 - Add `OfficeProofingProvider.categories` and the optional
   `OfficeProofingService.check(only: ...)` provider filter for category-aware
   scheduling. Providers default to all categories; the bundled German spelling

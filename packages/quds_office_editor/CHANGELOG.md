@@ -4,6 +4,12 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Expose staged Zotero document transfer and import through the native Zotero
+  session and dialog. Keep transfer carriers inactive until import completes,
+  apply a completed operation as one undo transaction, and retain cancellation,
+  source-identity and stale-document guards. Installed Word/LibreOffice/Zotero
+  interoperability remains a separate acceptance gate.
+
 - Add `WordProofingMode`, `WordProofingSchedule` and live session scheduling
   controls for completed-word spelling, sentence/pause grammar and idle
   document checks. Prioritize visible paragraphs in background passes, keep

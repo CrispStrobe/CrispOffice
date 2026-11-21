@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "completed_utc": "2026-11-21T06:13:46.012828+00:00",
+  "accepted": true,
+  "repository": "CrispStrobe/quds_office_suite",
+  "scope": "Pinned sections/performance changes and preserved replacement-layout retry fix in the isolated four-branch union.",
+  "source_binding": {
+    "local_head_at_start": "407844cacf575c3743292d186e5d02684b2b3803",
+    "source_inputs": 1732,
+    "changed_inputs": [],
+    "runtime_inputs_unchanged": true,
+    "source_manifest_sha256": "26079c183355a5c85b462a914b6687047b4471484d9b0c06e223b592514d8e70",
+    "note": "Final mechanical Zotero brace corrections were present in the worktree; exact source hashes, rather than local HEAD alone, bind these results."
+  },
+  "merge_inputs": [
+    "4d435f81493c88e8fd4fb90a62558a1cc8a7ec22",
+    "1460876e70fcf3da49644e232e9942b7ee042d8d",
+    "a250152abef9ccb38c73ea1a319c2ef27dea400b",
+    "3da241d5f1f3e43d7be47f00bcf7fbe62bd8272b",
+    "5fcdb2db947f39f860fedf3dbcc16a394313e419"
+  ],
+  "offline_locked_resolution": {
+    "exit_code": 0,
+    "tracked_lock_unchanged": true,
+    "lock_sha256": "0d64a732cd7f6c7cc4e1e01255276f081b59e6f43039636c3d36f6785a958ce2"
+  },
+  "analyses": [
+    {
+      "name": "sections-analysis",
+      "exit_code": 0
+    },
+    {
+      "name": "layout-analysis",
+      "exit_code": 0
+    }
+  ],
+  "tests": {
+    "sections-tests": {
+      "failed": 0,
+      "failed_names": [],
+      "passed": 294,
+      "skipped": 0,
+      "skipped_names": [],
+      "terminal_success": true,
+      "valid": true
+    },
+    "layout-tests": {
+      "failed": 0,
+      "failed_names": [],
+      "passed": 70,
+      "skipped": 8,
+      "skipped_names": [
+        "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-both.docx",
+        "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-control.docx",
+        "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-horizontal.docx",
+        "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-margin-quarter.docx",
+        "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-negative-quarter.docx",
+        "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-outline-shadow.docx",
+        "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-quarter.docx",
+        "incremental layout equals full layout fixture legacy_doc_parser/test/fixtures/fidelity/image-appearance/authored/floating-vertical.docx"
+      ],
+      "terminal_success": true,
+      "valid": true
+    }
+  },
+  "trace_report": {
+    "syntax": "passed",
+    "synthetic_fixtures": 5,
+    "cases": [
+      "Complete GC events and idle exclusion",
+      "Matched begin/end pairs and unmatched-event handling",
+      "Nested same-name spans",
+      "Independent thread/name pairing",
+      "Paired NotifyIdle exclusion"
+    ]
+  },
+  "portable": {
+    "page-setup": {
+      "vm_js_byte_identical": true,
+      "example_sha256": "92cc0edc359f2d31813c2266a8e55cb6153f27d8b630ed7d0f008221d62c6493",
+      "output_sha256": "c79926eba214a4f1e9458e60a9ee147d618ec6232f6148e3a00d680e92cf0f23"
+    },
+    "sections": {
+      "vm_js_byte_identical": true,
+      "example_sha256": "4cdac8422a312007847d465212b793050aff0d487bce7703c613f37ec88c3493",
+      "output_sha256": "40c10fc01520a6337a9e684e1df4ac4c08b12be3a4d13a0602d1c5f19d06709c"
+    }
+  },
+  "limitations": [
+    "No target-device profile measurement; trace parsing uses synthetic fixtures.",
+    "Eight image-only DOCX equivalence cases have no paragraphs to edit and remain expected skips.",
+    "Macro interoperability with installed Microsoft Word is not exercised."
+  ],
+  "github_actions": "Not queried or awaited.",
+  "evidence": {
+    "path": "incoming-word.tar.xz",
+    "sha256": "0707a30131b912c8e9f5a68f96f4a4e9b771c0ad8ded8634d0119b506549a369",
+    "bytes": 102516,
+    "entries": 59,
+    "verified_losslessly": true,
+    "contents": "Exact commands, full stdout/stderr and test events, executed harnesses, source/runtime hashes, locked dependency identities and five trace fixtures. No SDK, package cache or compiled JavaScript."
+  }
+}
