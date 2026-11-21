@@ -9,18 +9,19 @@ Fourteen direct geometry probes and three active-citation routes retain their
 identified LibreOffice converter results; custom DOCX separator normalization
 remains a recorded failed route.
 
-The [combined-main record](validation/zotero-footnote-separators-20261121/integration/README.md)
-qualifies published merge `ad577ea82695231b5932d6b973f92b5156b1d2d6`, which preserves
-both the separator and concurrent host-ownership work. It records **1,117 fresh
-editor/Studio/golden passes** and retains **2,677 engine passes through an exact
-source/dependency-continuity proof**: 3,794 distinct qualified cases, with zero
-failures, errors or skips. Strict analysis and formatting pass for all 29
-changed Dart files. All fresh captured inputs match the combined source.
+The [latest-main record](validation/zotero-footnote-separators-20261121/latest-main/README.md)
+qualifies source `9ed8cc2667a0d441f193915417a5662ad2793d50`, preserving the
+separator, host-ownership and subsequent Word/Mail main integrations. All
+**3,861 cases across 190 suites execute freshly**: 2,732 engine, 1,022 editor,
+106 Studio and one continued-notes golden. There are zero failures, errors or
+skips. All 51 changed live Dart files pass strict analysis and formatting;
+all 6,333 captured inputs remain unchanged and match the qualified source.
 
-The original 3,738-case separator qualification and the earlier host-ownership
-counts retain their own source attribution; overlapping runs are not added to
-the combined total. The final read-back detected the concurrent main update and
-triggered fresh affected-scope execution. Installed Word/live Zotero and
+The original 3,738-case separator qualification, intermediate 3,794-case
+combined-source qualification and earlier host-ownership counts retain their
+own source attribution; overlapping runs are not added to the final total.
+Read-back and expected-base checks detected concurrent main updates and
+triggered the corresponding new qualification. Installed Word/live Zotero and
 supported-release LibreOffice acceptance remain separate. GitHub Actions were
 neither queried nor awaited.
 

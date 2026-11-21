@@ -1,5 +1,10 @@
 # Combined-main Zotero integration qualification
 
+This record retains acceptance for source `ad577ea`. The later Word/Mail main
+update changed native-reader and generic-editor inputs again; the
+[latest-main qualification](../latest-main/README.md) supersedes this scope
+for final publication with entirely fresh engine and UI execution.
+
 This record qualifies the combined published source after a concurrent main
 update was detected during the separator PR's final read-back. It preserves
 both changes and keeps their original execution evidence distinct.

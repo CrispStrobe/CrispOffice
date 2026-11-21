@@ -7,7 +7,14 @@ qualification are recorded below. Delivery is tracked in
 [PR #348](https://github.com/CrispStrobe/quds_office_suite/pull/348); its merge
 commit identifies publication to remote main.
 
-The final read-back detected that concurrent PR #347 had reached main before
+The [latest-main qualification](latest-main/README.md) is the final publication
+gate: 3,861 fresh passing cases on source `9ed8cc2667a0d441f193915417a5662ad2793d50`,
+including the subsequent Word/Mail integration from main `613c0ba1`.
+All 51 changed live Dart files pass strict analysis and formatting.
+[PR #351](https://github.com/CrispStrobe/quds_office_suite/pull/351) publishes
+the final integration records while retaining every earlier checkpoint.
+
+The first final read-back detected that concurrent PR #347 had reached main before
 the separator merge. Published source `ad577ea82695231b5932d6b973f92b5156b1d2d6`
 therefore contains both increments. The
 [combined-main qualification](integration/README.md) records the exact source
