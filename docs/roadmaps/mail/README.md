@@ -11,6 +11,11 @@ archive, Studio workflows and remaining MailStore parity work.
 
 ## Desktop mail parity: ordered increments
 
+The [writing-tools increment](compose-tools.md) adds account signatures and
+literal Quick Text to connected and offline composition. Its new runtime tests
+remain unexecuted because the executor failed during setup; the source and
+review status are recorded explicitly before further parity claims.
+
 The [loaded-conversation continuation](conversations.md) adds opt-in
 account-scoped grouping, expand/collapse and observed unread/flag counts for
 explicitly linked, already loaded mailbox headers. It preserves individual
@@ -29,7 +34,7 @@ plan rather than treating provider connectivity as full product parity.
 | 2 | Everyday mailbox workspace (M04W/M06) | Repository-observed loaded/cached sessions, durable single/bulk flag receipts, fresh uncertainty checks, resumable folder-header synchronization and explicit bounded offline body/attachment downloads across IMAP, EWS, Gmail and Microsoft 365 | Complete shared synchronized workspace, durable retention policy/background scheduling, unified inbox and consistent move/delete |
 | 3 | Sending and outbox (M07) | Visible native durable Outbox, atomic draft transfer/edit-copy, frozen MIME/envelopes, review/exact export, restart recovery, explicit send/retry/cancel and local uncertain closure across SMTP/EWS/Gmail/Microsoft 365 | Durable undo-send delay and explicit scheduling, then background execution and provider-specific Sent reconciliation |
 | 4 | Efficient discovery and organization | Independent archive FTS, saved archive searches, Boolean header queries, bounded saved-header discovery, persistent named searches with fixed account scopes, expandable loaded conversations and observed counts, stable local sorting and journaled visible-selection read/flag commands | Continuously refreshed shared saved views, indexed body/server search, persistent cross-folder conversations, tags/categories, broader durable bulk commands and ordered rule execution with preview/recovery |
-| 5 | Rich authoring and Office workflows (M07/M08) | Word-based plain text, To/Cc/Bcc, reply all, inert HTML-only text quotes, file attachments and explicit complete attachment forwarding | Signatures/templates, HTML alternatives, inline images, attach current document/PDF and edit a copy of a received attachment |
+| 5 | Rich authoring and Office workflows (M07/M08) | Word-based plain text, To/Cc/Bcc, reply all, inert text quotes, attachments, account signatures and reusable Quick Text (source implemented; current runtime qualification open) | Qualify writing tools, then identity routing/full-message templates, HTML alternatives, inline images, attach current document/PDF and edit a copy of a received attachment |
 | 6 | Integrated productivity and release (M09–M13) | Provider adapters and shared foundations available | Calendar/People, invitation workflows, provider-specific shared mailboxes, encryption/signatures where supported, installed-platform and live-provider qualification |
 
 Each increment needs an actual user path, typed failure/recovery behavior,

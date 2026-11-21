@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "reviewed_commit": "32a6dcd4e56584b5af34625b44a845eb15ba44bd",
+  "base_main": "115f1c20131bf0157d047dfe2e9d704ddffb22a2",
+  "adopted_main": "3dbaa8429b14ac43721e165b4d50d3f6d2845309",
+  "branch": "work/mail-compose-tools-20261121",
+  "qualification": {
+    "source_implemented": true,
+    "independent_source_review_completed": true,
+    "dart_analysis_executed": false,
+    "dart_format_executed": false,
+    "regression_tests_executed": false,
+    "github_actions_awaited": false,
+    "live_provider_qualification": false
+  },
+  "corrected_findings": [
+    "Initial stale-account loading barrier",
+    "Partial cross-paragraph preflight and insertion mismatch",
+    "Optional tools owner without draft catalog reply defaults",
+    "Explicit NOT NULL SQLite account ownership and complete profile cleanup"
+  ],
+  "retained_incoming_paths": [
+    "docs/roadmaps/zotero/native-odt-input.md",
+    "docs/roadmaps/zotero/word-processor-parity.md",
+    "docs/validation/zotero-odt-merged-tables-20261121/README.md",
+    "docs/validation/zotero-odt-merged-tables-20261121/expanded-intake.json",
+    "docs/validation/zotero-odt-merged-tables-20261121/initial-intake.json",
+    "docs/validation/zotero-odt-merged-tables-20261121/source-review.json",
+    "docs/zotero-support.md",
+    "packages/quds_office_editor/test/word_odt_merged_table_load_test.dart",
+    "packages/quds_office_engine/CHANGELOG.md",
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_reader.dart",
+    "packages/quds_office_engine/test/odt_document_reader_test.dart",
+    "packages/quds_office_engine/test/odt_merged_table_zotero_test.dart"
+  ],
+  "ongoing_other_work": {
+    "word_vba_pr": 322,
+    "word_vba_head": "6ad48343192a19d0da1f9a0c2c0f318b51e1e9cc",
+    "word_vba_state": "open draft WIP; native operation pending",
+    "word_vba_completion_branch": "db531880f9a1ef4d5060c6fffee5fac8af537b7a",
+    "editable_zotero_odt_branch": "0a5db51c8483e7ad0b6de088ae1e75b566942a7d",
+    "editable_zotero_odt_state": "initial scope/validation checkpoint; implementation in progress",
+    "integrated": false
+  },
+  "runtime_blockers": [
+    "Disk exhaustion prevented sandbox bootstrap, including scoped cleanup",
+    "Granular approval policy rejected sandbox escalation",
+    "Native cleanup unavailable; later executor process unavailable"
+  ],
+  "authored_scenario_counts": {
+    "studio_adapter": 10,
+    "studio_manager": 15,
+    "studio_composer": 12,
+    "editor_plain_text_insertion": 19
+  },
+  "note": "Authored scenarios are not passing results. GitHub source/tree/ancestry readback is separate from runtime qualification.",
+  "combined_source_commit": "af662bcd726097657e2b71ec1fbb6de5eb5dde2a",
+  "integrated_late_mail_branch": {
+    "branch": "fix/mail-restore-view-20261121",
+    "head": "e05056dcbe3260b77916dd9255664a8c62e98bf0",
+    "merge": "af662bcd726097657e2b71ec1fbb6de5eb5dde2a",
+    "resolution": "Exact unique hunk outside compose-host changes",
+    "pr": 324
+  }
+}

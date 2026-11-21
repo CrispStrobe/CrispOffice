@@ -14,7 +14,7 @@ final class MailStoreDatabase extends GeneratedDatabase {
   final MailStoreFaultInjector? faultInjector;
 
   @override
-  int get schemaVersion => 9;
+  int get schemaVersion => 10;
 
   @override
   Iterable<TableInfo<Table, Object?>> get allTables => const [];
@@ -50,11 +50,14 @@ final class MailStoreDatabase extends GeneratedDatabase {
       for (final statement in schemaV9) {
         await customStatement(statement);
       }
+      for (final statement in schemaV10) {
+        await customStatement(statement);
+      }
       // Include the version in the same transaction as schema creation.
-      await customStatement('PRAGMA user_version = 9');
+      await customStatement('PRAGMA user_version = 10');
     }),
     onUpgrade: (_, from, to) async {
-      if (from < 1 || from > 8 || to != 9) {
+      if (from < 1 || from > 9 || to != 10) {
         throw const MailStoreStorageException(MailProblemCode.unsupported);
       }
       await transaction(() async {
@@ -93,11 +96,16 @@ final class MailStoreDatabase extends GeneratedDatabase {
             await customStatement(statement);
           }
         }
-        for (final statement in schemaV9) {
+        if (from < 9) {
+          for (final statement in schemaV9) {
+            await customStatement(statement);
+          }
+        }
+        for (final statement in schemaV10) {
           await customStatement(statement);
         }
         await faultInjector?.call(MailStoreCheckpoint.migrationCreated);
-        await customStatement('PRAGMA user_version = 9');
+        await customStatement('PRAGMA user_version = 10');
       });
     },
     beforeOpen: (_) async {
@@ -302,5 +310,30 @@ const schemaV9 = <String>[
     position INTEGER NOT NULL CHECK(typeof(position) = 'integer' AND
       position BETWEEN 0 AND 99), account_id TEXT NOT NULL,
     PRIMARY KEY(search,position), UNIQUE(search,account_id)
+  )''',
+];
+
+/// Account-owned compose defaults and ordered literal snippets. Account IDs are
+/// retired rather than reused; settings revisions remain monotonic until the
+/// account is explicitly removed. Existing schemas and mail payloads are intact.
+const schemaV10 = <String>[
+  '''CREATE TABLE account_compose_settings (
+    account TEXT NOT NULL PRIMARY KEY REFERENCES accounts(id) ON DELETE CASCADE,
+    revision INTEGER NOT NULL CHECK(typeof(revision) = 'integer' AND
+      revision BETWEEN 1 AND 9007199254740991),
+    signature TEXT NOT NULL CHECK(typeof(signature) = 'text'),
+    signature_new INTEGER NOT NULL CHECK(typeof(signature_new) = 'integer' AND
+      signature_new IN (0,1)),
+    signature_replies INTEGER NOT NULL CHECK(typeof(signature_replies) = 'integer'
+      AND signature_replies IN (0,1))
+  )''',
+  '''CREATE TABLE account_quick_texts (
+    account TEXT NOT NULL REFERENCES account_compose_settings(account)
+      ON DELETE CASCADE,
+    position INTEGER NOT NULL CHECK(typeof(position) = 'integer' AND
+      position BETWEEN 0 AND 31),
+    id TEXT NOT NULL, name TEXT NOT NULL, name_key TEXT NOT NULL,
+    text TEXT NOT NULL,
+    PRIMARY KEY(account,id), UNIQUE(account,position), UNIQUE(account,name_key)
   )''',
 ];

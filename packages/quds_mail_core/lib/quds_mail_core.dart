@@ -3,6 +3,7 @@ library;
 
 export 'src/model/bytes.dart';
 export 'src/model/capabilities.dart';
+export 'src/model/compose_settings.dart';
 export 'src/model/identity.dart';
 export 'src/model/message.dart';
 export 'src/model/parse.dart';

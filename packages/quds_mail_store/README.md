@@ -614,3 +614,25 @@ acceptance record above is separate from the earlier baseline.
 The native crash cases start child processes and send SIGKILL to the process
 that owns SQLite; run them in an environment that permits those operations.
 The runner uses no hosted CI status.
+
+## Account compose settings
+
+Schema 10 adds account-owned plain-text signatures and ordered named Quick Text.
+`loadComposeSettings(account)` returns revision-zero defaults for an existing
+active or logged-out account with no saved preferences. Missing, removed and
+foreign account IDs fail. `saveComposeSettings(settings, expectedRevision: n)`
+requires both the submitted snapshot revision and stored revision to equal `n`,
+then atomically returns revision `n + 1`.
+
+Reads bound row counts, SQLite types and byte sizes before transferring text,
+decode persisted UTF-8 strictly, and revalidate exact UTF-16/aggregate limits.
+Preferences participate in account byte quotas. Logout preserves them; explicit
+account/profile removal deletes them. Reset preferences by saving an empty
+snapshot at its current revision so stale callbacks cannot recreate an old
+revision. These operations do not change drafts, frozen Outbox wire bytes,
+credentials or remote messages. Schema 1–9 upgrades remain additive.
+
+Focused regression commands: `dart test test/compose_settings_test.dart` in this
+package, and the corresponding model test in `quds_mail_core`. Also run the
+existing migration, sync-mailbox and flag-reconciliation suites after a schema
+change.
