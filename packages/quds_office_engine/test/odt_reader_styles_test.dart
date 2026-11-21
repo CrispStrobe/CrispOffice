@@ -221,16 +221,35 @@ ${_paragraphStyle('Child', '', parent: 'Parent', text: 'fo:font-style="italic"')
   });
 
   group('ODT character formatting', () {
-    test('rejects proofing suppression that differs between scripts', () {
-      for (final properties in [
-        'fo:language="none" style:language-complex="ar"',
-        'fo:language="en" style:language-complex="none"',
-        'style:language-asian="none"',
-      ]) {
-        final styles = OdtReaderStyles(_content(_textStyle('T', properties)));
-        expect(() => styles.runProperties('T'), throwsUnsupportedError);
-      }
-    });
+    test(
+      'projects independent script proofing suppression onto actual text',
+      () {
+        for (final scenario in [
+          (
+            properties: 'fo:language="none" style:language-complex="ar"',
+            text: 'Aب',
+            flags: [true, false],
+          ),
+          (
+            properties: 'fo:language="en" style:language-complex="none"',
+            text: 'Aب',
+            flags: [false, true],
+          ),
+          (
+            properties: 'style:language-asian="none"',
+            text: 'A漢',
+            flags: [null, true],
+          ),
+        ]) {
+          final style = OdtReaderStyles(
+            _content(_textStyle('T', scenario.properties)),
+          ).runProperties('T');
+          final runs = style.materialize(scenario.text).toList();
+          expect(runs.map((run) => run.text).join(), scenario.text);
+          expect(runs.map((run) => run.properties.noProof), scenario.flags);
+        }
+      },
+    );
     test('keeps explicit complex font when descendant changes Latin font', () {
       final styles = OdtReaderStyles(
         _content(
@@ -390,19 +409,24 @@ ${_paragraphStyle('Child', '', parent: 'Parent', text: 'fo:font-style="italic"')
       },
     );
 
-    test('rejects distinct script formatting outside model representation', () {
-      for (final value in [
-        'style:font-size-complex="20pt"',
-        'style:font-weight-complex="bold"',
-        'style:font-style-asian="italic"',
-      ]) {
-        expect(
-          () => OdtReaderStyles(
-            _content(_textStyle('T', value)),
-          ).runProperties('T'),
-          throwsUnsupportedError,
-        );
-      }
+    test('materializes distinct script scalar formatting as native runs', () {
+      final style = OdtReaderStyles(
+        _content(
+          _textStyle(
+            'T',
+            'style:font-size-complex="20pt" style:font-weight-complex="bold" style:font-style-asian="italic"',
+          ),
+        ),
+      ).runProperties('T');
+      final runs = style.materialize('Aب漢').toList();
+      expect(runs.map((run) => run.text), ['A', 'ب', '漢']);
+      expect(runs.map((run) => run.properties.fontSizeHalfPoints), [
+        22,
+        40,
+        22,
+      ]);
+      expect(runs.map((run) => run.properties.bold), [false, true, false]);
+      expect(runs.map((run) => run.properties.italic), [false, false, true]);
     });
   });
 

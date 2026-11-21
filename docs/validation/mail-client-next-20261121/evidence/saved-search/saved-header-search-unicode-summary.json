@@ -1,0 +1,83 @@
+{
+  "qualificationStatus": "final for captured core/store inputs after UTF-16 correction",
+  "capturedAtUtc": "2026-11-21T14:49:01.809563+00:00",
+  "currentHead": "3eb066b932e017691b0ff3b659a54b2d1033764b",
+  "discovery": "Actual SQLite probe accepted an unpaired high surrogate U+D800 in ID, name, query, and account ID, then reloaded U+FFFD in place. Saved-search model now rejects malformed UTF-16 before persistence and preserves valid pairs unchanged.",
+  "discoveryLog": "saved-search-unicode-probe.jsonl",
+  "scope": "Narrow shared model fix, regression tests for both lone high and low surrogates in all four fields, and file-restart exact preservation of valid emoji pairs/Arabic text.",
+  "targetedVm": {
+    "log": "saved-header-search-unicode-targeted.jsonl",
+    "sha256": "ff6caf0aa2b75d0a3ab1cd8f0cb04d01be2bbef15e2c4f734ff79ba0742da942",
+    "exitCode": 0,
+    "passed": 87,
+    "failed": 0,
+    "skipped": 0,
+    "errors": [],
+    "done": [
+      {
+        "success": true,
+        "type": "done",
+        "time": 4589
+      }
+    ],
+    "stderrBytes": 0
+  },
+  "coreNode": {
+    "log": "saved-header-search-unicode-node.jsonl",
+    "sha256": "cb74e71df3c385115e311748a469981d07a1f72464e67d9070273519a90a5487",
+    "exitCode": 0,
+    "passed": 42,
+    "failed": 0,
+    "skipped": 0,
+    "errors": [],
+    "done": [
+      {
+        "success": true,
+        "type": "done",
+        "time": 10871
+      }
+    ],
+    "stderrBytes": 0
+  },
+  "fullStoreVm": {
+    "log": "saved-header-search-unicode-full-store.jsonl",
+    "sha256": "9d268a3f503b7c89cb3b5437cf51b97bbc95308ea5ec34da629918f370491f9b",
+    "exitCode": 0,
+    "passed": 884,
+    "failed": 0,
+    "skipped": 0,
+    "errors": [],
+    "done": [
+      {
+        "success": true,
+        "type": "done",
+        "time": 135881
+      }
+    ],
+    "stderrBytes": 0
+  },
+  "analysis": {
+    "log": "saved-header-search-unicode-analysis.txt",
+    "sha256": "3a642346a1e2b0054a411db4fd95f7021e259e6150014a07ec95d621c65c491b",
+    "exitCode": 0,
+    "result": "No issues found"
+  },
+  "inputChecks": [
+    {
+      "manifest": "saved-header-search-unicode-final-inputs.json",
+      "sha256": "2a390ef9806b4acd432d05c19d1452319b0c1b7c10b85a272b93e77661a0cfee",
+      "inputCount": 129,
+      "changedSinceRun": []
+    },
+    {
+      "manifest": "saved-header-search-unicode-node-inputs.json",
+      "sha256": "cd65c498b6f8a5d0c3cd858e76c1abb8b7c8ebb8649b8507a8796f41f785f0ba",
+      "inputCount": 25,
+      "changedSinceRun": []
+    }
+  ],
+  "supersededDevelopmentEvidence": [
+    "saved-header-search-summary.json",
+    "saved-header-search-node-summary.json"
+  ]
+}

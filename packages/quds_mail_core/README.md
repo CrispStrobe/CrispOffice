@@ -6,6 +6,11 @@ file, socket, credential-string, or `enough_mail` API dependency.
 
 ## Implemented
 
+- Immutable saved-header-search definitions with bounded names, Boolean queries,
+  exact nonempty account ID scopes and explicit revisions. The host resolves
+  those IDs against its verified local directory before each new search; no
+  result snapshot, continuation cursor or future account is captured implicitly.
+
 - Bounded loaded-header search with fields, phrases, dates, observed flags and
   AND/OR/NOT expressions. Parentheses and leading-minus negation preserve
   unknown observations through three-valued evaluation. Queries admit at most

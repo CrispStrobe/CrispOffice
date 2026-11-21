@@ -1,99 +1,138 @@
-# Loaded conversation ordering — 21 November 2026
+# Loaded conversations — folding and observed counts
+
+Updated 21 November 2026. This continuation extends the existing loaded-message
+ordering with explicit folding, accessible controls and observed group counts.
 
 ## Scope and user path
 
-This increment adds an opt-in **Conversations** chip to the shared
-MailMessageList when the host supplies account-scoped RFC threading headers.
-It brings related loaded messages together in the existing list and displays
-a count beside the first row of a multi-message group. Each message remains a
-separate selectable/openable row. Turning the chip off restores the current
-folder's prior local sort.
+The shared `MailMessageList` offers **Conversations** when the host supplies
+account-scoped RFC threading headers. Studio supplies these headers in its
+IMAP, EWS/cloud, cached-mailbox and synchronized-folder lists. This workflow
+operates on already loaded headers and does not contact a provider.
 
-The option is now supplied by Studio's IMAP mailbox, EWS/cloud mailbox,
-cached mailbox and synchronized-folder message lists. The shared UI is
-localized in English, German and Arabic. It does not contact any provider.
+1. Enable **Conversations** to bring related loaded messages together. Every
+   group starts expanded, preserving the previous individual-message view.
+2. Use the disclosure beside a group to collapse it. The first member under
+   the current local ordering remains visible; expanding restores its loaded
+   children. Clicking a message row still opens that individual message.
+3. Read the group's **loaded**, **unread** and **flagged** counts. These describe
+   the members that match the current loaded-header search and filters,
+   including children hidden by folding. They are not server totals. Unknown
+   read or flag values are excluded from observed counts; the adjacent help
+   indicator reports each unknown-state count separately.
+4. With the message list focused, Left collapses and Right expands the
+   cursor's conversation in LTR. Arabic/RTL mirrors these keys. Up/Down and
+   Home/End continue to navigate visible individual messages. Disclosure also
+   exposes its expanded state and explicit expand/collapse accessibility
+   actions.
+5. In hosts offering bulk actions, **Select shown** and Ctrl/Cmd+A select only
+   visible message rows. Collapsing immediately removes hidden children from
+   the checked set. Expanding does not silently reselect them. No conversation
+   control authorizes an action on an entire group.
 
-The pure-Dart API is groupMailConversations(MailConversationEntry list), exported
-from quds_mail_core. Its input is a loaded, optionally already filtered and
-sorted snapshot; its immutable output is a list of groups in first-seen order.
+Controls and loaded/observed/unknown counts are localized in English, German
+and Arabic. Long text remains bounded in compact layouts; the disclosure is
+usable with enlarged text. Turning **Conversations** off restores the existing
+local sort without grouping. Within the same host scope, the user's folding
+choice follows stable account/member identities through sorting, filtering,
+metadata refresh, added replies and replacement of the first visible member.
+Changing account/folder scope or recreating the list resets the option and
+folding choices. Hosts with a separate scope for each loaded page retain that
+page boundary.
 
 ## Identity, safety and preservation contract
 
+The pure-Dart API is `groupMailConversations(MailConversationEntry list)`,
+exported from `quds_mail_core`. It accepts a loaded, optionally filtered and
+sorted snapshot and returns immutable groups in first-seen order.
+
 - Group solely on explicit RFC Message-ID, In-Reply-To and References links.
-  **Never guess** a thread from a matching subject, sender or timestamp.
-- Use strict bracketed ASCII dot-atom IDs, at most 254 code units, and preserve
-  case. Invalid References tokens invalidate that entire chain; do not extract
-  apparently valid IDs from comments or malformed input.
+  Never infer a conversation from matching subjects, senders or timestamps.
+- Use strict bracketed ASCII dot-atom IDs, at most 254 code units, preserving
+  case. Invalid References tokens invalidate the entire chain; apparently
+  valid IDs are not extracted from comments or malformed input.
 - Admit at most 64 References entries per row. IMAP raw References fields are
-  limited to 8,192 characters before splitting, and oversized lists are
-  ignored. Every loaded input row has a distinct mailbox-row ID.
+  limited to 8,192 characters before splitting; oversized lists are ignored.
+  Every loaded input row retains its distinct mailbox-row ID.
 - A missing ancestor can link two loaded replies without fabricating its body
-  or a row. Cycles and duplicate RFC IDs are safe.
-- Groups never join across host/profile/account namespaces. Studio's durable
-  header rows encode the full namespace. Unscoped third-party rows remain
-  isolated by default.
-- Filtering and sorting run **before** grouping. Hidden rows cannot be selected,
-  opened or included in an action through the conversation control. A toggle
-  fences previously opened bulk menus via the existing interaction generation.
-- Changing folder/account scope resets the option. Existing keyboard navigation,
-  message opening, bulk receipts and loaded counts continue to use individual
-  mailbox-row IDs.
+  or row. Cycles and duplicate RFC IDs remain bounded.
+- Groups never join across host/profile/account namespaces. Unscoped
+  third-party rows remain isolated by default. Folding state uses account and
+  local member IDs, never RFC Message-ID, a sequence number or a row index.
+- Filtering and sorting precede grouping. Aggregates use only those filtered
+  loaded members. Folding changes visibility without changing identities,
+  provider ownership or the host's opened-message state.
+- Every disclosure invalidates old interaction callbacks and open bulk-menu
+  snapshots. Hidden children cannot be opened or included in a new action
+  through a retained callback. A busy host disables disclosure. A changed
+  host/session revision continues to clear checked rows under the existing
+  selection contract.
 
-## Explicit limits and next acceptance boundaries
+## Local qualification
 
-This is **not** a full Outlook/Thunderbird conversation view. The feature only
-reorders already loaded rows; it does not collapse groups, aggregate unread
-counts, fetch missing ancestors, discover mail in other folders, deduplicate
-unified cross-folder copies, persist conversation identifiers, or implement
-server-side/whole-mailbox threading. Stale/absent provider headers yield single
-rows rather than guessed links.
+The earlier ordering checkpoint's unexecuted-test warning is superseded for
+these exact cohorts. This continuation used the genuine repository-pinned
+Flutter 3.47.8 / Dart 3.13.7 runtime and locked dependencies. The
+[current work record](../../validation/mail-client-next-20261121/README.md)
+records the executed checks, source checkpoints and raw local evidence.
+GitHub Actions were not queried or awaited for acceptance.
 
-Recommended next steps, in order:
+| Cohort | Passed | Relationship |
+| --- | ---: | --- |
+| Pure-Dart conversation grouping | 10 | Separate core suite |
+| Conversation widget suite | 18 | Included in the shared-list total below |
+| Four shared-list widget suites | 108 | Includes the 18 conversation cases, plus navigation and both bulk-action suites |
+| Conversation localization | 3 | EN/DE/AR; included in the six-case conversation/Boolean localization run |
 
-1. Persist and incrementally maintain an account-scoped conversation index
-   alongside synchronized header membership, including tombstones and
-   UIDVALIDITY resets. Add bounded paginated queries and cross-folder
-   provenance so incomplete local coverage stays visible.
-2. Add expandable/collapsible conversation rows with accessible keyboard
-   controls, explicit per-message actions and aggregate unread/flag counts.
-   Preserve selection and scroll position across incoming sync snapshots.
-3. Implement saved live search views using the same account/folder provenance;
-   extend to indexed body search and server capability-gated discovery.
-4. Complete durable move/delete, tag/category and ordered rules workflows with
-   uncertain-operation recovery; then schedule/undo-send and rich composition.
+Every listed cohort finished with zero failures and zero skips. The counts
+above are overlapping scopes and must not be added into a unique grand total.
+Changed Dart paths also passed analysis and formatting checks.
 
-## Validation status
+The widget cases cover default expansion, filtered observed/unknown counts,
+hidden-selection pruning, keyboard selection and disclosure in both text
+directions, stale row/disclosure/bulk-menu callbacks, account/scope isolation,
+sort and membership changes, metadata refresh, busy state, accessibility
+actions, and a 240-pixel RTL layout with 2× text. The core suite covers explicit
+links, absent ancestors, malformed data, duplicates, cycles and account
+isolation. Tests use synthetic messages; they do not establish live-provider
+header availability or installed-platform acceptance.
 
-Source and focused tests are committed to the remote work branch, with
-regressions for absent ancestors, duplicates, invalid References, account
-isolation, sorting, filtering, visible-only bulk actions and scope reset.
-
-**The tests have not been executed in this session.** The execution environment
-has no Dart or Flutter SDK, and GitHub Actions were deliberately not used as a
-blocking gate because the queue is starved. Do not describe these tests as
-passing until a qualified toolchain actually runs them.
-
-Commands for an equipped local checkout:
+Focused local replay commands from the repository root:
 
 ~~~bash
-cd packages/quds_mail_core && dart test test/conversations_test.dart
-cd ../quds_mail_ui && flutter test test/message_list_conversations_test.dart
-flutter test test/message_list_test.dart
-cd ../../packages/quds_office_editor/example && flutter test
+cd packages/quds_mail_core
+dart test test/conversations_test.dart
+cd ../quds_mail_ui
+flutter test --no-pub test/message_list_conversations_test.dart test/message_list_test.dart test/message_list_bulk_test.dart test/bulk_message_list_test.dart
+cd ../quds_office_editor/example
+flutter test --no-pub test/studio_mail_conversation_strings_test.dart test/studio_mail_boolean_search_strings_test.dart
 ~~~
 
-The last command is broad and should be run with the repository's established
-bounded runner if machine resources are constrained. A real provider smoke test
-must separately check IMAP/EWS/cloud header availability; synthetic tests do
-not prove a provider returns every threading field.
+## Remaining acceptance boundaries
 
-## Remote intake disposition
+This increment folds and summarizes loaded conversations. It does not fetch
+missing ancestors, discover other folders, deduplicate cross-folder copies,
+persist a conversation index, or add server-side/whole-mailbox threading.
+Absent or unusable threading metadata leaves rows separate instead of guessing
+links. Folding state is transient view state, not an account-level preference.
 
-At intake, fork main was 2f90a0c8f21499d5a1113943971cb7379183885c.
-The 23 other active fork branches were all ancestors (ahead=0) of that main.
-There were no open PRs. Upstream
-MohammedAsaadAsaad/quds_office_suite/main was
-15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba; its comparison against the
-fork showed zero upstream-only commits, so there was no missing upstream work
-to replay. The new work was checkpointed directly to
-work/mail-parity-next-20261121 before publication to main.
+The next conversation boundary is a persistent account-scoped index maintained
+alongside synchronized membership, including tombstones and UIDVALIDITY resets.
+Bounded queries need cross-folder provenance and visible partial-cache coverage
+before supporting an account-wide conversation workspace. Named cached-header
+searches are the companion organization increment in the current work record;
+indexed body search and capability-gated server discovery remain separate work.
+Durable move/delete, tag/category and ordered-rule workflows still require
+uncertain-operation recovery, followed by broader composition and send controls.
+
+## Remote preservation and intake
+
+The continuation started from fork main
+`01517de8886ef7bd24947894be5dc823d0328869`. Its
+[initial intake](../../validation/mail-client-next-20261121/intake.md) verified
+all 27 captured fork branch heads, the latest 100 PR heads and four upstream
+heads as ancestors of that baseline, with no open PRs. The conversation feature
+was incrementally checkpointed to remote `work/mail-client-next-20261121` at
+`c9a3475541a58778b0db26f4d1b4516e9e51e20a`. Later concurrent intake and final
+publication belong to the current work record; an initial ancestry snapshot is
+not a claim that no later branch can contain new work.

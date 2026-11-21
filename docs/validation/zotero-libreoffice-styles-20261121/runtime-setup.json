@@ -1,0 +1,85 @@
+{
+  "status": "ready",
+  "recorded_utc": "2026-11-21T14:30:11.774863+00:00",
+  "source_head_at_completion": "2aa7833239ec4507a4a9db1c7f23c84bd01b4028",
+  "sdk": "/workspace/scratch/d565978da184/runtime/flutter",
+  "environment_script": "/workspace/scratch/d565978da184/runtime/env.sh",
+  "runtime": {
+    "frameworkVersion": "3.47.8",
+    "channel": "stable",
+    "repositoryUrl": "https://github.com/flutter/flutter.git",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineBuildDate": "2026-10-22 20:34:48.330",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "flutterVersion": "3.47.8",
+    "flutterRoot": "/workspace/scratch/d565978da184/runtime/flutter"
+  },
+  "archive": {
+    "url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.47.8-stable.tar.xz",
+    "sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+    "bytes": 1581444364
+  },
+  "workspace_dependency_resolution": "flutter --no-version-check pub get --offline --enforce-lockfile",
+  "tool_dependency_resolution": "dart pub get --offline --enforce-lockfile",
+  "verified_distinct_hosted_versions": 202,
+  "hosted_package_verification": "All archives verified against exact workspace and official Flutter-tool lock SHA-256 before extraction",
+  "tracked_manifest_pin_count": 23,
+  "source_manifests_changed": [],
+  "engine_smoke": {
+    "command": "dart run tool/zotero/odt_inventory_acceptance.dart",
+    "cwd": "/workspace/scratch/d565978da184/quds_office_suite/packages/quds_office_engine",
+    "exit_code": 0,
+    "sourceBytesPreserved": true,
+    "stableRepeatInventory": true,
+    "malformedPackageRejected": true,
+    "fieldBudgetRejected": true
+  },
+  "editor_smoke": {
+    "command": "flutter --no-version-check test --no-pub --reporter=json test/word_zotero_format_test.dart",
+    "cwd": "/workspace/scratch/d565978da184/quds_office_suite/packages/quds_office_editor",
+    "exit_code": 0,
+    "counts": {
+      "success": 31
+    },
+    "done": [
+      {
+        "success": true,
+        "type": "done",
+        "time": 22712
+      }
+    ],
+    "errors": []
+  },
+  "environment_diagnostic": {
+    "first_editor_attempt_exit_code": 1,
+    "reason": "Sandbox system /tmp was unavailable; Flutter refused before tests",
+    "resolution": "Use scratch-owned TMPDIR exported in env.sh; repeated smoke passed"
+  },
+  "scope": "Runtime setup and smoke only; no final feature qualification or installed-application interoperability claim. GitHub Actions not queried or awaited.",
+  "executable_sha256": {
+    "bin/cache/dart-sdk/bin/dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "bin/cache/artifacts/engine/linux-x64/flutter_tester": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f"
+  },
+  "log_sha256": {
+    "logs/editor-smoke-attempt-1.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/editor-smoke-attempt-1.stderr": "6ec255cd53720dd4f3199c15b4eb967c9f98362a6fcd8aa1a4151b7879d2fc7a",
+    "logs/editor-smoke.jsonl": "9e6d4748f0f8475486149cfd0077763a4cf22907c7a7c43c806aa6f1a561541b",
+    "logs/editor-smoke.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/engine-smoke.json": "23b2a755388b0a665db33d20235a8f0ce6f155572d3cb781f5217921337c40b7",
+    "logs/engine-smoke.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/flutter-download.log": "5ae5bdd76363af9fd12c0155d275dc94e4d4f3bd5e67127543faa55729753b82",
+    "logs/flutter-tools-pub-get.log": "fcccf37d969787c76d4c55b19cba368cff68b1c3eb86b1f0f02274b9cc405829",
+    "logs/flutter-version.json": "5bdcc0c2c3ceda982b76e41d8f5a50c315bc9673f15b4e1379b6df0497cbccc4",
+    "logs/flutter-version.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/prefetch-tools.jsonl": "df887a4b5f2e6544531c02547ef1a496ee850712f90cc2581743e2144925ff5b",
+    "logs/prefetch-tools.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/prefetch-workspace.jsonl": "508bb06752fab9df0ec959e171e932fa8d6687812e0e6150d7872090263a16a0",
+    "logs/prefetch-workspace.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/workspace-pub-get.log": "8f8eaec35c1eb26e37cc745f3fd799bdceace51af176465fd0709650a1b23f22"
+  }
+}

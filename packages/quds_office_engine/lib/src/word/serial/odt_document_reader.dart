@@ -14,6 +14,7 @@ import '../model/word_zotero.dart';
 import '../model/word_zotero_data.dart';
 import '../properties/wml_properties.dart';
 import 'odt_reader_styles.dart';
+import 'odt_reader_text_style.dart';
 
 const _style = 'urn:oasis:names:tc:opendocument:xmlns:style:1.0';
 const _fo = 'urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0';
@@ -155,6 +156,7 @@ final class _OdtReader {
   final OdfZoteroLimits limits;
   final OdtReaderStyles styles;
   final OdfTextBudget textBudget;
+  final runBudget = OdtReaderRunBudget();
   final document = WmlDocument(sections: []);
   final paths = Map<XmlElement, String>.identity();
   final sourceOrder = <String, int>{};
@@ -220,7 +222,10 @@ final class _OdtReader {
     final section = WmlSection();
     document.sections.add(section);
     section.blocks.addAll(_blocks(text));
-    styles.applyPageLayout(section);
+    styles.applyPageLayout(
+      section,
+      hasFootnotes: document.footnotes.isNotEmpty,
+    );
     _attachFields();
     // Source ODF offsets exclude the visible note number. After reconstruction,
     // use the same numbered anchor representation as the DOCX reader/layout.
@@ -334,12 +339,13 @@ final class _OdtReader {
       properties.headingLevel = level;
     }
     final runProperties = styles.paragraphRunProperties(styleName);
-    properties.importedParagraphMark = runProperties.copy();
+    properties.importedParagraphMark = runProperties.nativeProperties();
     final paragraph = WmlParagraph(properties: properties);
     paragraphs[paths[element]!] = paragraph;
-    final buffer = _RichText(paragraph, textBudget);
+    final buffer = _RichText(paragraph, textBudget, runBudget);
     _inlines(element, buffer, runProperties, null, inNote: inNote);
     buffer.finish();
+    styles.validateParagraphContent(styleName, paragraph);
     return paragraph;
   }
 
@@ -500,7 +506,11 @@ final class _OdtReader {
       ),
     );
     final reference = WmlRun(
-      properties: properties.copy()..vertAlign = WmlVertAlign.superscript,
+      properties:
+          (properties is OdtReaderTextStyle
+                ? properties.nativeProperties()
+                : properties.copy())
+            ..vertAlign = WmlVertAlign.superscript,
       noteRefId: id,
       noteRefEndnote: kind == 'endnote',
     );
@@ -1067,9 +1077,10 @@ final class _OdtReader {
 }
 
 final class _RichText {
-  _RichText(this.paragraph, this.budget);
+  _RichText(this.paragraph, this.budget, this.runBudget);
   final WmlParagraph paragraph;
   final OdfTextBudget budget;
+  final OdtReaderRunBudget runBudget;
   bool _started = false;
   WmlRunProps? _pending;
   WmlHyperlink? _pendingLink;
@@ -1154,13 +1165,21 @@ final class _RichText {
 
   void _finishRun() {
     if (_runText.isEmpty) return;
-    paragraph.inlines.add(
-      WmlRun(
-        text: _runText.toString(),
-        properties: _runProperties!.copy(),
-        hyperlink: _runLink,
-      ),
-    );
+    final text = _runText.toString();
+    final properties = _runProperties!;
+    final materialized = properties is OdtReaderTextStyle
+        ? properties.materialize(text)
+        : [(text: text, properties: properties.copy())];
+    for (final segment in materialized) {
+      runBudget.consume();
+      paragraph.inlines.add(
+        WmlRun(
+          text: segment.text,
+          properties: segment.properties,
+          hyperlink: _runLink,
+        ),
+      );
+    }
     _runText.clear();
   }
 

@@ -1,0 +1,49 @@
+{
+  "recorded_at_utc": "2026-11-21T14:37:42.361744+00:00",
+  "source_manifest": "conversation-source-manifest.json",
+  "source_manifest_phase": "Captured during final list run; not a pre-run manifest",
+  "manifest_entries": 33,
+  "changed_manifest_paths": [],
+  "reports": [
+    {
+      "log": "conversation-list-qualified.jsonl",
+      "passed": 108,
+      "skipped": 0,
+      "failed": 0,
+      "done": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 59981
+        }
+      ],
+      "by_suite": {
+        "/workspace/scratch/9b6ad165714c/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart": 37,
+        "/workspace/scratch/9b6ad165714c/quds_office_suite/packages/quds_mail_ui/test/message_list_conversations_test.dart": 18,
+        "/workspace/scratch/9b6ad165714c/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart": 32,
+        "/workspace/scratch/9b6ad165714c/quds_office_suite/packages/quds_mail_ui/test/bulk_message_list_test.dart": 21
+      }
+    },
+    {
+      "log": "conversation-strings-tests.jsonl",
+      "passed": 6,
+      "skipped": 0,
+      "failed": 0,
+      "done": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 11562
+        }
+      ],
+      "by_suite": {
+        "/workspace/scratch/9b6ad165714c/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_conversation_strings_test.dart": 3,
+        "/workspace/scratch/9b6ad165714c/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_boolean_search_strings_test.dart": 3
+      }
+    }
+  ],
+  "development_notes": [
+    "Initial 16 conversation cases passed. Added accessibility and metadata-refresh cases; fixed test matcher API compilation and explicit SemanticsHandle disposal. No production behavior failures occurred.",
+    "Final qualification uses current 18-case conversation suite and existing three list suites, with 6 separate localization cases."
+  ]
+}

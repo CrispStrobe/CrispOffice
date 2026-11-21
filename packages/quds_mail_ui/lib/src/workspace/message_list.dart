@@ -107,6 +107,10 @@ final class MailMessageListStrings {
     this.bulkWorking = 'Applying changes…',
     this.groupConversations = 'Conversations',
     this.conversationCount = _defaultConversationCount,
+    this.collapseConversation = 'Collapse conversation',
+    this.expandConversation = 'Expand conversation',
+    this.conversationSummary = _defaultConversationSummary,
+    this.conversationUnknown = _defaultConversationUnknown,
   }) : assert(
          selectShown == null ||
              selectVisible == null ||
@@ -149,10 +153,25 @@ final class MailMessageListStrings {
   final String bulkWorking;
   final String groupConversations;
   final String Function(int count) conversationCount;
+  final String collapseConversation;
+  final String expandConversation;
+
+  /// Counts cover the filtered, loaded members, including collapsed children.
+  /// Unknown flag values are excluded from both observed counts.
+  final String Function(int loaded, int unread, int flagged)
+  conversationSummary;
+  final String Function(int unknownRead, int unknownFlagged)
+  conversationUnknown;
 }
 
 String _defaultConversationCount(int count) =>
     '$count loaded messages in conversation';
+
+String _defaultConversationSummary(int loaded, int unread, int flagged) =>
+    '$loaded loaded · $unread unread · $flagged flagged';
+
+String _defaultConversationUnknown(int unknownRead, int unknownFlagged) =>
+    'Read state unknown: $unknownRead · Flag state unknown: $unknownFlagged';
 
 String _defaultSelectedCount(int selected) => '$selected selected';
 
@@ -194,6 +213,11 @@ final _searchExampleLine = RegExp(
 /// Enter or explicit row activation invokes [onOpen]. Space checks the cursor
 /// when bulk actions are available, and Ctrl/Cmd+A checks visible rows only
 /// while the list owns focus. Search editing owns its own keys.
+/// Conversation groups start expanded. Their disclosure only hides/shows loaded
+/// children; it never opens a message or authorizes a group-wide action. Hidden
+/// children immediately leave the checked set. Left/Right collapse/expand the
+/// cursor's conversation (mirrored in RTL). Aggregate counts describe filtered,
+/// loaded members and keep unobserved read/flag states separate.
 ///
 /// Change [scopeId] (or the widget key) for a different account or mailbox.
 /// That resets query, filters, sort, keyboard focus and scroll position. Within
@@ -289,6 +313,10 @@ class _MailMessageListState extends State<MailMessageList> {
   MailMessageListSort _sort = MailMessageListSort.providerOrder;
   int _interactionGeneration = 0;
   final _checkedIds = <String>{};
+  // Stable account + local row identities, never RFC Message-ID or list index.
+  // Remember every current member so sort/filter changes and refreshed heads
+  // preserve the user's choice without merging across account namespaces.
+  final _collapsedMembers = <(String?, String)>{};
   String? _activeId;
   double _itemExtent = 84;
 
@@ -309,14 +337,14 @@ class _MailMessageListState extends State<MailMessageList> {
         // Without an explicit account, refuse to group this row with others.
         accountId: item.accountId?.isNotEmpty == true
             ? item.accountId!
-            : '\u0000unscoped:' + item.id,
+            : '\u0000unscoped:${item.id}',
         messageId: item.messageId,
         inReplyTo: item.inReplyTo,
         references: item.references,
       ),
   ]);
 
-  List<MailMessageListItem> get _visible {
+  List<MailMessageListItem> get _matching {
     final query = _compiledQuery;
     if (query == null) return const [];
     final rows = <({int index, MailMessageListItem item})>[];
@@ -362,13 +390,96 @@ class _MailMessageListState extends State<MailMessageList> {
         return comparison == 0 ? a.index.compareTo(b.index) : comparison;
       });
     }
-    final visible = [for (final row in rows) row.item];
-    if (!_conversations || !_canGroupConversations) return visible;
-    final byId = {for (final item in visible) item.id: item};
-    return [
-      for (final group in _conversationGroups(visible))
-        for (final member in group.entries) byId[member.id]!,
-    ];
+    return [for (final row in rows) row.item];
+  }
+
+  (String?, String) _memberKey(MailMessageListItem item) =>
+      (item.accountId, item.id);
+
+  _MessageListProjection _project() {
+    final matching = _matching;
+    if (!_conversations || !_canGroupConversations) {
+      return _MessageListProjection(matching, const {});
+    }
+    final byId = {for (final item in matching) item.id: item};
+    final rows = <MailMessageListItem>[];
+    final conversations = <String, _LoadedConversation>{};
+    for (final group in _conversationGroups(matching)) {
+      final members = [for (final member in group.entries) byId[member.id]!];
+      final collapsed = members.any(
+        (item) => _collapsedMembers.contains(_memberKey(item)),
+      );
+      if (members.length > 1) {
+        conversations[members.first.id] = _LoadedConversation(
+          members,
+          collapsed: collapsed,
+        );
+      }
+      rows.addAll(collapsed ? members.take(1) : members);
+    }
+    return _MessageListProjection(rows, conversations);
+  }
+
+  List<MailMessageListItem> get _visible => _project().rows;
+
+  _LoadedConversation? _conversationFor(String? id) {
+    if (id == null) return null;
+    for (final conversation in _project().conversations.values) {
+      if (conversation.members.any((item) => item.id == id)) {
+        return conversation;
+      }
+    }
+    return null;
+  }
+
+  void _reconcileCollapsedMembers() {
+    if (_collapsedMembers.isEmpty) return;
+    final byId = {for (final item in widget.items) item.id: item};
+    final retained = <(String?, String)>{};
+    for (final group in _conversationGroups(widget.items)) {
+      final keys = [
+        for (final entry in group.entries) _memberKey(byId[entry.id]!),
+      ];
+      if (keys.any(_collapsedMembers.contains)) retained.addAll(keys);
+    }
+    _collapsedMembers
+      ..clear()
+      ..addAll(retained);
+  }
+
+  void _setConversationCollapsed(
+    String headId,
+    bool collapsed,
+    int generation,
+  ) {
+    if (!mounted || widget.busy || generation != _interactionGeneration) return;
+    final conversation = _project().conversations[headId];
+    if (conversation == null || conversation.collapsed == collapsed) return;
+    // Use full loaded membership for state retention, while presentation and
+    // actions stay restricted to the filtered members shown by this view.
+    final byId = {for (final item in widget.items) item.id: item};
+    final visibleKeys = conversation.members.map(_memberKey).toSet();
+    final keys = <(String?, String)>{};
+    for (final group in _conversationGroups(widget.items)) {
+      final members = [
+        for (final entry in group.entries) _memberKey(byId[entry.id]!),
+      ];
+      if (members.any(visibleKeys.contains)) keys.addAll(members);
+    }
+    setState(() {
+      _interactionGeneration++;
+      if (collapsed) {
+        _collapsedMembers.addAll(keys);
+      } else {
+        _collapsedMembers.removeAll(keys);
+      }
+      _activeId = headId;
+      final visible = _visible;
+      _pruneSelection(visible);
+      _reconcileCursor(visible);
+    });
+    _listFocus.requestFocus();
+    _revealCursor();
   }
 
   int _compareDates(
@@ -405,11 +516,13 @@ class _MailMessageListState extends State<MailMessageList> {
       _unread = false;
       _flagged = false;
       _conversations = false;
+      _collapsedMembers.clear();
       _sort = MailMessageListSort.providerOrder;
       _activeId = null;
       _listFocus.unfocus();
       _resetScroll(header: true);
     } else {
+      _reconcileCollapsedMembers();
       final visible = _visible;
       _pruneSelection(visible);
       _reconcileCursor(visible);
@@ -428,6 +541,11 @@ class _MailMessageListState extends State<MailMessageList> {
 
   void _reconcileCursor(List<MailMessageListItem> visible) {
     if (visible.any((item) => item.id == _activeId)) return;
+    final head = _conversationFor(_activeId)?.members.first.id;
+    if (head != null && visible.any((item) => item.id == head)) {
+      _activeId = head;
+      return;
+    }
     _activeId = visible.any((item) => item.id == widget.selectedId)
         ? widget.selectedId
         : visible.firstOrNull?.id;
@@ -475,7 +593,9 @@ class _MailMessageListState extends State<MailMessageList> {
     setState(() {
       _interactionGeneration++;
       _sort = value;
-      _reconcileCursor(_visible);
+      final visible = _visible;
+      _pruneSelection(visible);
+      _reconcileCursor(visible);
     });
     if (_listFocus.hasFocus) {
       _revealCursor();
@@ -649,6 +769,23 @@ class _MailMessageListState extends State<MailMessageList> {
         HardwareKeyboard.instance.isShiftPressed) {
       return KeyEventResult.ignored;
     }
+    if (key == LogicalKeyboardKey.arrowLeft ||
+        key == LogicalKeyboardKey.arrowRight) {
+      final conversation = _conversationFor(_activeId);
+      if (conversation == null) return KeyEventResult.ignored;
+      final rtl = Directionality.of(context) == TextDirection.rtl;
+      final collapse =
+          key ==
+          (rtl ? LogicalKeyboardKey.arrowRight : LogicalKeyboardKey.arrowLeft);
+      if (event is KeyDownEvent) {
+        _setConversationCollapsed(
+          conversation.members.first.id,
+          collapse,
+          _interactionGeneration,
+        );
+      }
+      return KeyEventResult.handled;
+    }
     if (key == LogicalKeyboardKey.escape &&
         widget.onBulkAction != null &&
         _checkedIds.isNotEmpty) {
@@ -693,15 +830,8 @@ class _MailMessageListState extends State<MailMessageList> {
 
   @override
   Widget build(BuildContext context) {
-    final visible = _visible;
-    final conversationCounts = <String, int>{};
-    if (_conversations && _canGroupConversations) {
-      for (final group in _conversationGroups(visible)) {
-        if (group.length > 1) {
-          conversationCounts[group.entries.first.id] = group.length;
-        }
-      }
-    }
+    final projection = _project();
+    final visible = projection.rows;
     final notAllLoaded = widget.hasMore || widget.limitNotice != null;
     final strings = widget.strings;
     final scaler = MediaQuery.textScalerOf(context);
@@ -714,6 +844,9 @@ class _MailMessageListState extends State<MailMessageList> {
           scaler.scale(11) * 1.3 +
           24,
     );
+    if (projection.conversations.isNotEmpty) {
+      _itemExtent += scaler.scale(11) * 1.3 + 6;
+    }
     final header = Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -1031,8 +1164,8 @@ class _MailMessageListState extends State<MailMessageList> {
                             itemCount: visible.length,
                             itemBuilder: (context, index) => _row(
                               visible[index],
-                              conversationSize:
-                                  conversationCounts[visible[index].id] ?? 1,
+                              conversation:
+                                  projection.conversations[visible[index].id],
                             ),
                           ),
                   ),
@@ -1057,7 +1190,7 @@ class _MailMessageListState extends State<MailMessageList> {
     );
   }
 
-  Widget _row(MailMessageListItem item, {int conversationSize = 1}) {
+  Widget _row(MailMessageListItem item, {_LoadedConversation? conversation}) {
     final generation = _interactionGeneration;
     final colors = Theme.of(context).colorScheme;
     final active = _listFocus.hasFocus && item.id == _activeId;
@@ -1104,6 +1237,8 @@ class _MailMessageListState extends State<MailMessageList> {
                             : null,
                       ),
                     ),
+                  if (conversation != null)
+                    _conversationDisclosure(item, conversation, generation),
                   Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -1134,22 +1269,13 @@ class _MailMessageListState extends State<MailMessageList> {
                             overflow: TextOverflow.ellipsis,
                             style: const TextStyle(fontSize: 11, height: 1.3),
                           ),
+                        if (conversation != null) ...[
+                          const SizedBox(height: 4),
+                          _conversationSummary(item, conversation),
+                        ],
                       ],
                     ),
                   ),
-                  if (conversationSize > 1)
-                    Padding(
-                      padding: const EdgeInsetsDirectional.only(start: 6),
-                      child: Tooltip(
-                        message: widget.strings.conversationCount(conversationSize),
-                        child: Icon(
-                          Icons.forum_outlined,
-                          size: 18,
-                          semanticLabel:
-                              widget.strings.conversationCount(conversationSize),
-                        ),
-                      ),
-                    ),
                   if (item.isRead == false)
                     Padding(
                       padding: const EdgeInsetsDirectional.only(start: 6),
@@ -1176,6 +1302,103 @@ class _MailMessageListState extends State<MailMessageList> {
       ),
     );
   }
+
+  Widget _conversationDisclosure(
+    MailMessageListItem head,
+    _LoadedConversation conversation,
+    int generation,
+  ) {
+    final strings = widget.strings;
+    final action = conversation.collapsed
+        ? strings.expandConversation
+        : strings.collapseConversation;
+    void toggle() =>
+        _setConversationCollapsed(head.id, !conversation.collapsed, generation);
+    return Semantics(
+      key: ValueKey('mail-list-conversation-toggle-${head.id}'),
+      button: true,
+      enabled: !widget.busy,
+      expanded: !conversation.collapsed,
+      label:
+          '$action: ${strings.conversationCount(conversation.members.length)}',
+      onTap: widget.busy ? null : toggle,
+      onExpand: !widget.busy && conversation.collapsed ? toggle : null,
+      onCollapse: !widget.busy && !conversation.collapsed ? toggle : null,
+      child: ExcludeSemantics(
+        child: ExcludeFocus(
+          child: IconButton(
+            tooltip: action,
+            visualDensity: VisualDensity.compact,
+            padding: EdgeInsets.zero,
+            constraints: const BoxConstraints(minWidth: 32, minHeight: 40),
+            icon: Icon(
+              conversation.collapsed ? Icons.chevron_right : Icons.expand_more,
+              size: 20,
+            ),
+            onPressed: widget.busy ? null : toggle,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _conversationSummary(
+    MailMessageListItem head,
+    _LoadedConversation conversation,
+  ) {
+    final strings = widget.strings;
+    final summary = strings.conversationSummary(
+      conversation.members.length,
+      conversation.unread,
+      conversation.flagged,
+    );
+    return Row(
+      children: [
+        Expanded(
+          child: Tooltip(
+            message: strings.conversationCount(conversation.members.length),
+            child: Text(
+              summary,
+              key: ValueKey('mail-list-conversation-summary-${head.id}'),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(fontSize: 11, height: 1.3),
+            ),
+          ),
+        ),
+        if (conversation.unknownRead > 0 || conversation.unknownFlagged > 0)
+          Padding(
+            padding: const EdgeInsetsDirectional.only(start: 4),
+            child: Tooltip(
+              message: strings.conversationUnknown(
+                conversation.unknownRead,
+                conversation.unknownFlagged,
+              ),
+              child: const Icon(Icons.help_outline, size: 14),
+            ),
+          ),
+      ],
+    );
+  }
+}
+
+final class _MessageListProjection {
+  const _MessageListProjection(this.rows, this.conversations);
+
+  final List<MailMessageListItem> rows;
+  final Map<String, _LoadedConversation> conversations;
+}
+
+final class _LoadedConversation {
+  const _LoadedConversation(this.members, {required this.collapsed});
+
+  final List<MailMessageListItem> members;
+  final bool collapsed;
+  int get unread => members.where((item) => item.isRead == false).length;
+  int get flagged => members.where((item) => item.isFlagged == true).length;
+  int get unknownRead => members.where((item) => item.isRead == null).length;
+  int get unknownFlagged =>
+      members.where((item) => item.isFlagged == null).length;
 }
 
 final class _BulkChoice {
