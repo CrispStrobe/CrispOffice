@@ -1,8 +1,42 @@
 # Native Zotero round trips through LibreOffice
 
-## Final merged source and validation
+## Final publication follow-up
 
-The final tested product source is
+The publication source is `ca726cd687a64a89cdd2b8e5df3f61dc57f4ca25`, tree
+`8011024075bed83b30388d8deec72de2149886ad`. It also incorporates accepted main
+`e5940c79120859dbbeb99be0907f3443e696f10a`, retaining its numeric macro functions
+and paragraph/frame-owner caches alongside the Zotero export safeguard.
+
+A bounded follow-up passes **356 engine cases in four suites** and **195 editor
+cases in 17 suites**, including the existing nested-frame golden that exercises
+the new frame-owner cache. Formatting, fatal-info analysis and whitespace checks
+pass for the six changed package Dart files. All captured inputs remain unchanged
+and match this exact source. These **551 follow-up cases in 21 suites** are
+reported separately from the earlier 2,363 cases below; overlapping scopes are
+not added together. The earlier four blocked Position integration cases remain
+explicitly blocked and receive no fresh credit.
+
+The net package-library delta from the broad checkpoint is limited to the macro
+numeric evaluator and the reviewed renderer caches. The Zotero Position guard,
+its tests, the oracle and all three converter entrypoints remain unchanged.
+Independent import/export/part analysis finds 386 reachable workspace Dart
+files for each converter, all captured and unchanged. The changed automation
+file was an incidental observer in the broader snapshots and is outside those
+closures. Runtime configuration and dependency manifests also remain unchanged;
+retained-kernel byte inspection corroborates the exclusion. This carries forward
+the recorded converter scope through an explicit static continuity argument;
+it is not a new host run or compiler dependency trace.
+
+See [publication-followup.json](publication-followup.json), the
+[continuity report](publication-followup-continuity.json), and the
+[fresh follow-up source binding](publication-followup-source-binding.json).
+`publication-followup.tar.gz` and `publication-followup-archive-contents.json`
+retain the 53-member follow-up evidence. All 25 preceding validation records
+remain unchanged. GitHub Actions were not queried or awaited.
+
+## Broad qualification at 4b33109a
+
+This broad qualification targets source
 `4b33109aa85e077e2798265efa045d640e6ead4e`, tree
 `4d5feed1eb34a30816335ba2c581c18e47ee099a`. It includes accepted main
 `aa861c28e336b17bcd4c259351164380cd6b1438` and the remaining Zotero continuation
