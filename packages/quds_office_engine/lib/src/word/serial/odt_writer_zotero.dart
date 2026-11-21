@@ -12,6 +12,7 @@ import '../model/word_zotero.dart';
 import '../model/word_zotero_data.dart';
 import '../model/word_zotero_transfer.dart';
 import '../properties/wml_properties.dart';
+import 'odt_reader_images.dart';
 
 /// A read-only, bounded plan for the explicit editable Zotero ODT export.
 ///
@@ -27,6 +28,28 @@ final class OdtWriterZoteroPlan {
       );
     }
     final owners = _ZoteroOwners(document);
+    final images = OdtInlineImageValidator();
+    final seenVisuals = Set<Object>.identity();
+    for (final paragraph in owners.paragraphs) {
+      for (final run in paragraph.inlines.whereType<WmlRun>()) {
+        final picture = run.inlineVisual;
+        if (picture == null) continue;
+        if (!owners.supported.contains(paragraph) ||
+            run.text != '\uFFFC' ||
+            run.noteRefId != null ||
+            run.fieldInstruction != null ||
+            !seenVisuals.add(picture) ||
+            !seenVisuals.add(picture.visual)) {
+          throw UnsupportedError(
+            'Editable Zotero ODT requires independently owned inline picture runs.',
+          );
+        }
+        _xmlText(picture.visual.title);
+        _xmlText(picture.visual.picture.altTitle);
+        _xmlText(picture.visual.picture.altDescription);
+        images.validateVisual(picture.visual);
+      }
+    }
     final fields = WordZotero.fields(document);
     if (fields.length > 10000) {
       throw const FormatException('Too many Zotero fields for editable ODT.');
@@ -81,6 +104,13 @@ final class OdtWriterZoteroPlan {
 
       if (field.kind == ZoteroFieldKind.bibliography) {
         for (final paragraph in field.paragraphs) {
+          if (paragraph.inlines.whereType<WmlRun>().any(
+            (run) => run.inlineVisual != null,
+          )) {
+            throw UnsupportedError(
+              'Editable Zotero ODT bibliography entries cannot contain pictures.',
+            );
+          }
           if (!claimedParagraphs.add(paragraph) ||
               paragraph.properties.headingLevel != null ||
               (paragraph.properties.numId != null &&

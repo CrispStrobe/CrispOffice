@@ -29,6 +29,34 @@ The available converter is LibreOfficeDev 26.8.0.0.alpha0, build
 supported stable-release or installed Zotero-plugin acceptance. GitHub Actions
 are not queried or awaited for this task, per the user's instruction.
 
-This initial checkpoint contains the intake and plan only. Implementation and
-validation results will be recorded as they complete; no new test pass or
-interoperability result is claimed yet.
+## Intake completed
+
+Independent Git-object comparisons account for all 375 captured refs:
+361 ancestors and 14 verified historical equivalents, with zero uncovered
+work. Thirteen original/replacement trees are identical; PR #140's 37 changed
+paths are identical in mode, type and blob to its main-ancestor replacement.
+See `intake-equivalence.json` and `intake-equivalence.md`. No historical work
+needed replay and no current branch or upstream work was omitted.
+
+## Development findings and checkpoints
+
+A frozen copy of all 436 relevant baseline source files was checked against
+main's Git blobs. The baseline generator and actual LibreOffice save both
+passed the native metadata inventory checks, but neither returned file could
+reopen through Quds' reader. The bibliography failed on its new section style.
+The table/notes document failed on table defaults; its table also expanded to
+page width because `table:align="margins"` overrode the supplied absolute width.
+
+The first implementation checkpoint qualifies an inert, inherited bibliography
+section style, validates unused sequence declarations, recognizes a narrowly
+identified LibreOffice zero-offset note convention with exact cached ordinals,
+and fixes editable ODT absolute table alignment. The retained actual bibliography
+fixture now reopens; targeted development tests pass for its repeated native
+updates/saves and for the note-offset cases. Final combined validation and
+external repeat-cycle checks remain pending at this checkpoint.
+
+An active footnote separator remains unsupported by the native reader. The
+observed LibreOffice separator has geometry and styling that the Quds note
+layout cannot represent. Table-only and endnote-only converter fixtures will
+be qualified separately; no guard will be removed by silently dropping that
+footnote formatting.

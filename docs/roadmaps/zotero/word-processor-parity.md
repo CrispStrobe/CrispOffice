@@ -48,8 +48,8 @@ results retain their original source and platform attribution.
 | DOCX persistence | Active fields/preferences, native notes, rich bibliography structure, tables and embedded pictures use supported save/reopen paths | Local tests are separate from actual Word/LibreOffice application round trips |
 | Cross-word-processor transfer | Native export/import handshake, temporary metadata hyperlinks, DOCX import/save/reopen and ODT carrier export; complete native formatting before import publication | The qualified DOCX carrier route and native ODT conversion have separate envelopes; installed Zotero/Word/LibreOffice plugin acceptance remains open and actual converter findings are retained |
 | Native ODT inspection | Read-only inventory of citation ReferenceMarks, bibliography TextSections, exact story/paragraph/cell ownership, cached text and original preferences; JSON diagnostic CLI | Inspection reports eligibility and findings without publishing an editable document |
-| Native ODT import | Bounded rich paragraphs/styles, hyperlinks, authored notes, simple lists and supported merged/nested tables; canonical Zotero fields and preferences convert to an editable Word document; retained LibreOffice prose with independent script formatting; asynchronous editor/Studio opening and DOCX save/reopen, including decimal endnote numbering | Used unsupported structure/formatting refuses atomically; content-sensitive guards limit dormant defaults; installed-plugin acceptance remains open |
-| Native editable ODT output | Explicit copy export with native citation ReferenceMarks, bibliography TextSections, ReferenceMark preferences, bounded body/cell/decimal-note ownership and separate Studio action | General Word-to-ODT formatting limits remain; unsupported active-field ownership refuses; release-host/plugin acceptance is separate from local and converter fixtures |
+| Native ODT import | Bounded rich paragraphs/styles, hyperlinks, authored notes, simple lists, supported merged/nested tables and embedded inline PNG/upright RGB JPEG pictures; canonical Zotero fields and preferences convert to an editable Word document; asynchronous editor/Studio opening and DOCX save/reopen | Used unsupported structure/formatting refuses atomically; content-sensitive guards limit dormant defaults; installed-plugin acceptance remains open |
+| Native editable ODT output | Explicit copy export with native citation ReferenceMarks, bibliography TextSections, preferences, bounded body/cell/decimal-note ownership and inline pictures with links/alternative text | General Word-to-ODT formatting limits remain; unsupported active-field or picture ownership refuses; release-host/plugin acceptance is separate from local and converter fixtures |
 
 The native controls use Zotero's own CSL processor. The separate basic/offline
 citation and single-item preview/export paths retain their narrower formatting
@@ -415,6 +415,48 @@ passed 513 engine, 93 editor and 25 Studio cases (631 unique passes, no failures
 or skips), with exact published-source binding and retained converter fixtures
 in the [qualification record](../../validation/zotero-editable-odt-20261121/README.md).
 
+## Delivered increment: inline pictures through native ODT
+
+The [picture continuation](../../validation/zotero-odt-images-20261121/README.md)
+closes a gap between existing Zotero note/annotation insertion and native ODT
+reopening. Supported embedded inline PNG and upright RGB/YCbCr JPEG pictures
+retain their bytes, physical size, links, accessible titles/descriptions and
+supported run properties. Exact picture positions keep adjacent citation
+offsets and owners stable through native reopening, controlled refresh/unlink,
+undo/redo and further DOCX saves.
+
+The exporter emits one frame per picture without duplicating its internal
+placeholder as visible text. It assigns unique drawing-object names across
+stories so LibreOffice does not drop pictures with duplicate names. Accessible
+titles/descriptions remain independent of those assigned names. The importer
+qualifies each consumed frame/image
+path rather than clearing all drawing findings. It reuses the bounded raster
+decoder across the whole document and refuses unsupported ownership, image
+adjustments and pictures inside field caches. The [input](native-odt-input.md)
+and [output](native-odt-output.md) contracts define the exact envelope.
+
+Actual converter evidence and unresolved general LibreOffice section/table
+defaults are retained separately in the work record. This increment does not
+establish installed Zotero plugin acceptance or historical Apache OpenOffice
+compatibility.
+
+## Delivered increment: reopening LibreOffice-saved native references
+
+The [native round-trip continuation](../../validation/zotero-odt-roundtrip-20261121/README.md)
+starts from actual saved ODT files that previously passed inventory checks but
+failed editable reopening. Native bibliography sections now admit their inert
+inherited LibreOffice styles, preserving complete rich/empty entry ownership.
+Strict decimal note labels qualify the identified LibreOffice zero-offset
+convention. Editable table exports use physical alignment with fixed widths,
+preventing LibreOffice from expanding them to the page margins. Unknown used
+formatting and unrepresented protection remain explicit refusals.
+
+The work record separates local native update/save regressions, actual converter
+cycles, and installed-plugin acceptance. In particular, active LibreOffice
+footnote separator geometry still needs a native model/layout/persistence
+implementation. Endnote-only and table-only acceptance cannot establish that
+footnote behavior or full Word/LibreOffice parity.
+
 ## Next implementation and acceptance steps
 
 1. **Qualify release-host editable ODT workflows and production formatting.**
@@ -430,6 +472,11 @@ in the [qualification record](../../validation/zotero-editable-odt-20261121/READ
    Refresh, citation editing, bibliography editing, style changes and repeated
    saves. The normal imported document still saves as DOCX; an ODT export copy
    does not redirect that save destination.
+   Model and preserve active footnote separator geometry before widening the
+   native reader to returned LibreOffice documents that use it. Retain failing
+   historical relative-table files and continued-list conversions as separate
+   regression targets rather than treating regenerated passing fixtures as
+   evidence for those earlier routes.
 2. **Extend table structure and formatting.** Improve merged-row height distribution and map
    header/footer row groups and custom styles to native structures with explicit
    ownership. Qualify their citation order, geometry, save/reopen behavior and

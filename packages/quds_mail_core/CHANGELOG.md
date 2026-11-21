@@ -1,5 +1,12 @@
 ## Unreleased
 
+- Add durable Outbox deadlines as canonical UTC instants, monotonic schedule
+  revisions and exact due-time guards. Only never-attempted, certain queued
+  entries can be scheduled; clearing a deadline retains its revision. Preserve
+  frozen message content and schedule history through cancellation, submission,
+  outcomes and interrupted recovery. Extend the repository save contract with
+  optional schedule compare-and-set fencing for compatible legacy callers.
+
 - Add immutable account-owned compose settings and ordered named Quick Text
   snippets. Bound text, names, count, aggregate metadata and revisions; reject
   malformed Unicode, controls and duplicate identities or case-insensitive names.

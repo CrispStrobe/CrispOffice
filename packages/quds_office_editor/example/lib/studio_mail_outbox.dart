@@ -35,6 +35,16 @@ abstract interface class StudioMailOutboxManagementStore {
   Future<MailOutboxEntry> closeUncertainOutbox(MailOutboxEntry entry);
 }
 
+/// Optional durable timing on the same account owner. A schedule only makes a
+/// never-attempted message eligible for submission; it does not start a worker
+/// or authorize sending when the account is reopened.
+abstract interface class StudioMailOutboxSchedulingStore {
+  Future<MailOutboxEntry> scheduleOutbox(
+    MailOutboxEntry entry, {
+    required DateTime? sendNotBefore,
+  });
+}
+
 typedef StudioMailOutboxSubmit =
     Future<MailSubmissionResult> Function(
       MailPreparedMessage message, {

@@ -100,10 +100,10 @@ cases, not arbitrary power-loss durability or delivery by live providers.
 
 ## Next ordered increment
 
-Build a durable pre-submission undo delay and explicit scheduled-send intent
-on this frozen-entry foundation. Persist eligibility separately from ordinary
-queued work, handle restart and wall-clock changes, and keep cancel-before-
-attempt transactional. A background scheduler and provider-specific Sent
+The [scheduling continuation](scheduled-send.md) adds durable pre-submission Undo
+and explicit foreground scheduled-send intent on this frozen-entry foundation.
+It separates eligibility from foreground permission, handles restart and clock
+changes, and keeps cancellation transactional. A background scheduler and provider-specific Sent
 reconciliation need their own lifecycle/ownership acceptance; opening an ordinary
 queue must continue to send nothing.
 

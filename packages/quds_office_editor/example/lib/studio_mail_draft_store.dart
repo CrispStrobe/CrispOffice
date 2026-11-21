@@ -208,6 +208,7 @@ final class SqliteStudioMailDraftStore
         StudioMailMailboxStoreOwner,
         StudioMailFlagJournalOwner,
         StudioMailOutboxStore,
+        StudioMailOutboxSchedulingStore,
         StudioMailOutboxManagementStore {
   SqliteStudioMailDraftStore({
     required SqliteMailRepository repository,
@@ -560,6 +561,7 @@ final class SqliteStudioMailDraftStore
             interrupted,
             expectedState: entry.state,
             expectedAttemptId: entry.attemptId,
+            expectedScheduleRevision: entry.scheduleRevision,
           ),
         );
         entry = interrupted;
@@ -629,6 +631,11 @@ final class SqliteStudioMailDraftStore
     bool acknowledgeUncertain = false,
   }) => _serialize(() async {
     _requireOutboxAccount(entry);
+    // Eligibility uses the actual wall clock. The monotonic event timestamp
+    // below must not make a message due after the system clock moves backward.
+    if (entry.sendNotBefore case final deadline?) {
+      if (_clock().isBefore(deadline)) _outboxConflict();
+    }
     final MailOutboxEntry attempt;
     if (acknowledgeUncertain && entry.canBeginAcknowledgedAttempt) {
       attempt = entry.beginAcknowledgedAttempt(
@@ -648,6 +655,7 @@ final class SqliteStudioMailDraftStore
         attempt,
         expectedState: entry.state,
         expectedAttemptId: entry.attemptId,
+        expectedScheduleRevision: entry.scheduleRevision,
       ),
     );
     _activeOutboxAttempts[attempt.id] = attempt.attemptId!;
@@ -678,6 +686,7 @@ final class SqliteStudioMailDraftStore
           completed,
           expectedState: entry.state,
           expectedAttemptId: entry.attemptId,
+          expectedScheduleRevision: entry.scheduleRevision,
         ),
       );
       return completed;
@@ -701,6 +710,7 @@ final class SqliteStudioMailDraftStore
             cancelled,
             expectedState: entry.state,
             expectedAttemptId: entry.attemptId,
+            expectedScheduleRevision: entry.scheduleRevision,
           ),
         );
         return cancelled;
@@ -741,6 +751,29 @@ final class SqliteStudioMailDraftStore
   });
 
   @override
+  Future<MailOutboxEntry> scheduleOutbox(
+    MailOutboxEntry entry, {
+    required DateTime? sendNotBefore,
+  }) => _serialize(() async {
+    _requireOutboxAccount(entry);
+    if (!entry.canSchedule) _outboxConflict();
+    final now = _outboxTime(entry);
+    if (sendNotBefore != null && !sendNotBefore.isAfter(now)) {
+      throw const StudioMailDraftStoreException(MailProblemCode.invalidInput);
+    }
+    final scheduled = entry.schedule(sendNotBefore: sendNotBefore, now: now);
+    _value(
+      await _repository.saveOutbox(
+        scheduled,
+        expectedState: entry.state,
+        expectedAttemptId: entry.attemptId,
+        expectedScheduleRevision: entry.scheduleRevision,
+      ),
+    );
+    return scheduled;
+  });
+
+  @override
   Future<MailOutboxEntry> closeUncertainOutbox(MailOutboxEntry entry) =>
       _serialize(() async {
         _requireOutboxAccount(entry);
@@ -751,6 +784,7 @@ final class SqliteStudioMailDraftStore
             closed,
             expectedState: entry.state,
             expectedAttemptId: entry.attemptId,
+            expectedScheduleRevision: entry.scheduleRevision,
           ),
         );
         return closed;
