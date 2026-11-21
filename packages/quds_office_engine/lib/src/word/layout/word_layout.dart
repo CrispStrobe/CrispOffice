@@ -1169,7 +1169,9 @@ class WordLayoutEngine {
     _prepareLayout(document, updateFields: updateFields);
     final _IncrementalState? previousState = reuse?._incremental;
     if (previousState != null &&
-        !identical(previousState.owner, _incrementalOwner)) {
+        (!identical(previousState.owner, _incrementalOwner) ||
+            !identical(previousState.document, document))) {
+      // Pages of another engine or another document cannot be reused.
       // A rejected incremental attempt must not keep earlier sections from a
       // different engine's font or measurement environment in its fallback.
       reuse = null;
