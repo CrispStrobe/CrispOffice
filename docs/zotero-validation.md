@@ -4,12 +4,14 @@
 
 The [combined completion record](validation/zotero-roundtrip-complete-20261121/README.md)
 qualifies semantic uppercase import and reconciled bibliography/image/note
-interchange on the accepted Office main. It records **3,452 distinct accepted
+interchange on the accepted Office main. It records **3,467 distinct accepted
 test cases**, strict analysis, four fixtures through two actual LibreOffice
 saves, separate PNG/JPEG cycles, source identities, bounded remote intake,
 rejected attempts and incremental remote checkpoints. Its separate final
-delivery gate qualifies the subsequently accepted page-text renderer and
-corrects adaptive ink when table selections or edited stories change.
+delivery gates qualify the subsequently accepted page-text renderer, adaptive
+ink, live proofing and Word positioning. The total is a union across documented
+checkpoints; the final source has a fresh 51-case renderer gate, a current native
+file-conversion replay and independently verified incoming engine qualification.
 Full native-plugin and
 stable-release acceptance remain separate. Earlier milestones below retain
 their original scopes and are not added to the current count.

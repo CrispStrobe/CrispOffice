@@ -83,8 +83,8 @@ void main() {
 
   // The narrow case needs a 73.2 pt line box, where 'AV To AV' (73.45 pt
   // shaped) no longer fits. Derive the cell width from the layout's actual
-  // cell padding (4.25 pt since e975cec1 matched Word table styles) instead
-  // of hard-coding a width that assumed the former 5.4 pt padding.
+  // default cell margin, also used by the table model, instead of a width
+  // coupled to the renderer's former fixed padding.
   const narrowBox = 73.2;
   final narrowCell = narrowBox + 2 * LaidOutLine.tableCellPad;
   for (final cellWidth in [88.0, narrowCell]) {

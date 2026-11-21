@@ -374,7 +374,61 @@ void main() {
     );
   }
 
-  for (final margin in [-1.0, double.nan, double.infinity, 2000.0]) {
+  test(
+    'export validates merged width rather than each constituent column',
+    () async {
+      final document = _document(40);
+      document.sections.single.blocks
+        ..clear()
+        ..add(
+          WmlTable(
+            grid: [60, 60],
+            properties: WmlTableProps(borders: false, cellMargin: 40),
+            rows: [
+              WmlTableRow(
+                cells: [
+                  WmlTableCell(
+                    width: 120,
+                    gridSpan: 2,
+                    blocks: [_cited('span')],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
+      final reopened = await OdtDocumentReader.readBytes(
+        OdtDocumentWriter.writeEditableZoteroBytes(document),
+      );
+      final table = reopened.sections.single.blocks
+          .whereType<WmlTable>()
+          .single;
+      expect(table.properties.cellMargin, 40);
+      expect(table.rows.single.cells.single.gridSpan, 2);
+      expect(WordZotero.fields(reopened).single.canEdit, isTrue);
+    },
+  );
+
+  test('export refuses a positive column that rounds to zero', () {
+    final document = _document(0);
+    final table = document.sections.single.blocks.whereType<WmlTable>().single;
+    table.grid[1] = 0.004;
+    expect(
+      () => OdtDocumentWriter.writeEditableZoteroBytes(document),
+      throwsArgumentError,
+    );
+    expect(table.grid[1], 0.004);
+  });
+
+  for (final margin in [
+    -1.0,
+    double.nan,
+    double.infinity,
+    2000.0,
+    60.0,
+    61.0,
+    59.999,
+  ]) {
     test('explicit exporter refuses invalid native margin $margin', () {
       final document = _document(margin);
       final expected = WordZotero.fields(

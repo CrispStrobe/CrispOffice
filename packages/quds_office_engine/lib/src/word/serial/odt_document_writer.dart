@@ -1488,6 +1488,9 @@ abstract final class OdtDocumentWriter {
         'Editable Zotero ODT needs finite, nonnegative native cell margins.',
       );
     }
+    if (cellPadding != null) {
+      _validateEditableTablePadding(table, cells, cellPadding);
+    }
     final inferredColumns = cells.columnCount - BigInt.from(table.grid.length);
     // The explicit Zotero path retains the native grid's absolute geometry.
     // Using the ordinary 100%-width export fallback would rescale its columns
@@ -1605,6 +1608,53 @@ abstract final class OdtDocumentWriter {
       w.writeEndElement();
     }
     w.writeEndElement();
+  }
+
+  static void _validateEditableTablePadding(
+    WmlTable table,
+    _OdtTableCells cells,
+    double padding,
+  ) {
+    // Check the geometry a reader receives, including two-decimal rounding.
+    // A small positive native content width must not become zero on export.
+    final emittedPadding = double.parse(padding.toStringAsFixed(2));
+    final offsets = <double>[0];
+    for (final width in table.grid) {
+      final emitted = double.tryParse(
+        _OdtLayout._paragraphDecimal(width) ?? '',
+      );
+      if (emitted == null || !emitted.isFinite || emitted <= 0) {
+        throw ArgumentError.value(
+          width,
+          'grid',
+          'Editable Zotero ODT needs positive serialized column widths.',
+        );
+      }
+      offsets.add(offsets.last + emitted);
+    }
+    final explicitColumns = BigInt.from(table.grid.length);
+    double offset(BigInt column) => column <= explicitColumns
+        ? offsets[column.toInt()]
+        : offsets.last + (column - explicitColumns).toDouble() * 120;
+    for (var rowIndex = 0; rowIndex < table.rows.length; rowIndex++) {
+      final row = table.rows[rowIndex];
+      var column = BigInt.from(row.gridBefore > 0 ? row.gridBefore : 0);
+      for (final placement in cells.rows[rowIndex]) {
+        final end = column + BigInt.from(placement.columns);
+        if (!placement.covered) {
+          final width = offset(end) - offset(column);
+          if (!width.isFinite || emittedPadding * 2 >= width) {
+            throw ArgumentError.value(
+              padding,
+              'cellMargin',
+              'Editable Zotero ODT padding must leave positive serialized '
+                  'content width in every visible cell.',
+            );
+          }
+        }
+        column = end;
+      }
+    }
   }
 
   static bool _emptyCoveredCell(WmlTableCell cell) => cell.blocks.every(

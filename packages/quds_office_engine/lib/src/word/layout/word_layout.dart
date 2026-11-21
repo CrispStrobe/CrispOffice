@@ -4212,15 +4212,36 @@ class WordLayoutEngine {
     // Numbering retains orphan definitions for repair. The visual-only path
     // must not turn those (or ambiguous duplicate IDs) into visible notes.
     final definitions = <int, WmlNote?>{};
-    for (final note in owned) {
+    for (final note in document.endnotes) {
       definitions[note.id] = definitions.containsKey(note.id) ? null : note;
     }
-    final referenced = <WmlNote>{
-      for (final paragraph in document.paragraphs)
-        for (final run in paragraph.inlines.whereType<WmlRun>())
-          if (run.noteRefEndnote)
-            if (definitions[run.noteRefId] case final WmlNote note) note,
-    };
+    final referenced = <WmlNote>{};
+    void collectReferences(Iterable<WmlBlock> blocks) {
+      // Match WordNoteNumbering's body sequence. Frames and generated TOC
+      // paragraphs are separate stories, even though document.paragraphs
+      // exposes them to ordinary editing operations.
+      for (final block in WordTree.visibleBlocks(blocks)) {
+        if (block is WmlParagraph) {
+          for (final run in block.inlines.whereType<WmlRun>()) {
+            if (run.noteRefEndnote) {
+              if (definitions[run.noteRefId] case final WmlNote note) {
+                referenced.add(note);
+              }
+            }
+          }
+        } else if (block is WmlTable) {
+          for (final row in block.rows) {
+            for (final cell in row.cells) {
+              collectReferences(cell.blocks);
+            }
+          }
+        }
+      }
+    }
+
+    for (final section in document.sections) {
+      collectReferences(section.blocks);
+    }
     final List<WmlNote> notes = <WmlNote>[
       for (final WmlNote note in _noteNumbering!.notes)
         if (owned.contains(note) &&

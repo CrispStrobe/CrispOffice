@@ -806,6 +806,10 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
   _selectionPaths = <(LaidOutPage, int, int, int, int, WmlTable?), Path>{};
   final Map<LaidOutPage, _CachedBodyTextPicture> _bodyTextPictures =
       <LaidOutPage, _CachedBodyTextPicture>{};
+  WmlDocument? _paragraphIndicesFor;
+  Map<WmlParagraph, int>? _paragraphIndicesCache;
+  final Map<LaidOutPage, Map<int, WmlFrame>> _frameOwnersCache =
+      <LaidOutPage, Map<int, WmlFrame>>{};
 
   @override
   void dispose() {
@@ -820,6 +824,9 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
       cached.picture.dispose();
     }
     _bodyTextPictures.clear();
+    _paragraphIndicesFor = null;
+    _paragraphIndicesCache = null;
+    _frameOwnersCache.clear();
     super.dispose();
   }
 
@@ -828,6 +835,9 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
       cached.picture.dispose();
     }
     _bodyTextPictures.clear();
+    _paragraphIndicesFor = null;
+    _paragraphIndicesCache = null;
+    _frameOwnersCache.clear();
   }
 
   LaidOutDocument? _fittedLayout;
@@ -3691,20 +3701,8 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
           Paint()..color = const Color(0x55F3F3F3),
         );
       }
-      final paragraphs = document.paragraphs.toList();
-      final paragraphIndices = <WmlParagraph, int>{
-        for (var index = 0; index < paragraphs.length; index++)
-          paragraphs[index]: index,
-      };
-      final frameOwners = <int, WmlFrame>{};
-      for (final box in page.frames) {
-        final frame = box.frame;
-        if (frame == null) continue;
-        for (final paragraph in WordTree.paragraphs(frame.blocks)) {
-          final index = paragraphIndices[paragraph];
-          if (index != null) frameOwners[index] = frame;
-        }
-      }
+      final paragraphIndices = _paragraphIndices();
+      final frameOwners = _frameOwners(page, paragraphIndices);
       if (!_editingHeaderFooter) {
         _paintSelectionBand(canvas, page);
         // Selection and proofing stay under the cached text layer. The text
@@ -4796,6 +4794,38 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
     painter.paint(canvas, Offset(x, line.y));
     if (paintProofing) _paintProofingOverlay(canvas, line, painter, x);
     painter.dispose();
+  }
+
+  Map<WmlParagraph, int> _paragraphIndices() {
+    if (identical(_paragraphIndicesFor, document) &&
+        _paragraphIndicesCache != null) {
+      return _paragraphIndicesCache!;
+    }
+    final paragraphs = document.paragraphs.toList(growable: false);
+    _paragraphIndicesFor = document;
+    return _paragraphIndicesCache = <WmlParagraph, int>{
+      for (var index = 0; index < paragraphs.length; index++)
+        paragraphs[index]: index,
+    };
+  }
+
+  Map<int, WmlFrame> _frameOwners(
+    LaidOutPage page,
+    Map<WmlParagraph, int> paragraphIndices,
+  ) {
+    final cached = _frameOwnersCache[page];
+    if (cached != null) return cached;
+    final owners = <int, WmlFrame>{};
+    for (final box in page.frames) {
+      final frame = box.frame;
+      if (frame == null) continue;
+      for (final paragraph in WordTree.paragraphs(frame.blocks)) {
+        final index = paragraphIndices[paragraph];
+        if (index != null) owners[index] = frame;
+      }
+    }
+    _frameOwnersCache[page] = owners;
+    return owners;
   }
 
   _BodyTextInkState _bodyTextInkState(LaidOutPage page) {

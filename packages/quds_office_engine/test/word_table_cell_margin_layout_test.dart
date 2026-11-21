@@ -346,11 +346,25 @@ void main() {
       WmlRun(text: '3', noteRefId: 3, noteRefEndnote: true),
     ]);
     final document = _document([anchor]);
+    document.sections.single.blocks.add(
+      WmlFrame(
+        x: 20,
+        y: 80,
+        width: 160,
+        height: 40,
+        blocks: [
+          WmlParagraph(
+            inlines: [WmlRun(text: '4', noteRefId: 4, noteRefEndnote: true)],
+          ),
+        ],
+      ),
+    );
     document.endnotes.addAll([
       pictureNote(1, 'Referenced'),
       pictureNote(2, 'Orphan'),
       pictureNote(3, 'Ambiguous first'),
       pictureNote(3, 'Ambiguous second'),
+      pictureNote(4, 'Frame-only reference'),
     ]);
     final laid = _engine().layout(document);
     expect(
@@ -360,7 +374,7 @@ void main() {
           .whereType<String>(),
       ['Referenced'],
     );
-    expect(document.endnotes, hasLength(4));
+    expect(document.endnotes, hasLength(5));
   });
 
   test('failed nested layout restores the enclosing margin budget', () {

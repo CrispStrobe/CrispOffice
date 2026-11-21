@@ -3,9 +3,11 @@
 This increment reconciles the pending native ODT bibliography, image and note
 work with accepted Office main, adds semantic uppercase import, and qualifies
 the combined result locally. The native-file checkpoint passed **3,444 distinct
-accepted test cases**. The [final delivery followup](final-delivery/README.md)
-incorporates subsequent accepted main work, corrects its adaptive page-text
-cache and brings the nonoverlapping total to **3,452 passing cases**. Four
+accepted test cases**. The [cache followup](final-delivery/README.md) raised that
+union to 3,452. The [final main reconciliation](final-main/README.md) incorporates
+completed Word positioning and native Zotero qualification, verifies their
+source-bound evidence, and brings the union across documented checkpoints to
+**3,467 passing cases**. Four
 synthetic document fixtures survive two actual LibreOffice saves with an
 intervening native DOCX/ODT cycle. PNG and JPEG fixtures separately retain their
 pictures and active citations through three further native save cycles.
@@ -14,9 +16,12 @@ Checkpoint branch: `codex/zotero-roundtrip-complete-20261121`.
 Native-file checkpoint:
 [`5a829066238b94685db5145ff14420e7e7f0928a`](https://github.com/CrispStrobe/quds_office_suite/commit/5a829066238b94685db5145ff14420e7e7f0928a),
 tree `faf0d91961b145e5358f0fd3909a9489933b3e2b`. The final qualified product is
-[`78d1f8db5374a6b2739451834708c8fe9f703ed8`](https://github.com/CrispStrobe/quds_office_suite/commit/78d1f8db5374a6b2739451834708c8fe9f703ed8),
-tree `3ccb17f6ec1c0543c7cc93b0b84a5832ddda28f7`. Engine, Mail and Studio sources
-remain unchanged; the final renderer has a separate source-bound gate. Later
+[`a7f69313ed2e610f82242c31be8ad5387ae5cea0`](https://github.com/CrispStrobe/quds_office_suite/commit/a7f69313ed2e610f82242c31be8ad5387ae5cea0),
+tree `8f0acd00b505c230ea6ccd2db2d57e17d7475011`. Its production/configuration
+bytes match accepted main `aa861c28...`; the extra Dart file is the independent
+cache regression. Current engine coverage uses verified incoming qualification
+and a fresh native/LibreOffice replay; 51 renderer/position cases passed on this
+exact source. The earlier populations were not all rerun on the final tree. Later
 delivery changes contain documentation and evidence only. The publication PR records the remote main
 merge and readback. GitHub Actions, workflow checks and status queues were
 neither queried nor awaited. No repository protections or remote history were
@@ -59,14 +64,17 @@ and one exact comparison of all 37 original changed paths, including modes and
 blobs; every replacement is a main ancestor.
 
 The publication snapshot at **2026-11-21 19:15:48 UTC** captured **386 external
-refs**, excluding this continuation branch. Its final accounting is **370
+refs**, excluding this continuation branch. At the native-file checkpoint its accounting was **370
 ancestors, 14 verified equivalents and two explicitly deferred refs**. The
 deferred refs are the branch and PR aliases of the new Word typography draft
 [#336](https://github.com/CrispStrobe/quds_office_suite/pull/336), at
 `a646cf761f7eafe7915988a1d84f90ca6dbe5793`. That separate cross-layer feature
 appeared after the initial cutoff and explicitly still required its own frozen
 source, portable and Flutter qualification. Its remote work is preserved and
-is not represented as accepted in this Zotero publication.
+was not accepted at that checkpoint. It subsequently completed qualification
+and merged through main `aa861c28...`. The [final intake](final-main/intake.json)
+now resolves all 386 refs as **372 ancestors and 14 verified equivalents**,
+with no remaining deferred captured work.
 
 Accepted incoming tips include:
 
@@ -77,10 +85,10 @@ Accepted incoming tips include:
   merge `2058a434b2bcc76e7fc7e8a449ff6ce31488eb25` and its renderer correction.
 
 The [intake directory](intake/) retains exact snapshots, original and classified
-replays, explicit dispositions and the unchanged audit script. The raw replay
-continues to identify the two draft refs as unmerged; classification does not
-convert them into accepted ancestors. The later main followup is recorded
-separately from the bounded 386-ref snapshot.
+replays, explicit dispositions and the unchanged audit script. The historical
+native-checkpoint replay identifies the two then-draft refs as unmerged. The
+final replay proves their actual ancestry after main integration. Later main
+followups remain separate from the unchanged bounded 386-ref snapshot.
 
 All accepted incoming branch commits remain reachable through the merge parents.
 Because command-line Git had no write credential, the connected GitHub Git Data
@@ -98,6 +106,7 @@ source bytes were retained.
 | `a9839a97ba5645fcaf36e34729e011074d6a868b` | Refreshed main, explicit note styles and completed incoming evidence |
 | `0692e06203d19b89025f63615ba71abd309c9438` | Updated malformed-style regression assertion; production unchanged |
 | `5a829066238b94685db5145ff14420e7e7f0928a` | Latest accepted main and selection-cache correction |
+| `a7f69313ed2e610f82242c31be8ad5387ae5cea0` | Final accepted main, Word positioning, live proofing and retained independent cache regression |
 
 ## Native-file checkpoint qualification: 3,444 cases
 
@@ -185,7 +194,8 @@ successful route and the direct expected-refusal probe.
 2. Add a native model, layout and persistence contract for active footnote
    separator geometry before accepting those LibreOffice documents. Keep
    richer note numbering, restarts and configured paragraph styles explicit.
-3. Extend table header/footer groups and merged-row geometry, then image
+3. Make native layout consume preserved table-cell margins; current rendering
+   still uses fixed padding. Extend table header/footer groups and merged-row geometry, then image
    orientation/color envelopes and structural replacement across protected
    boundaries with matching ownership and rendering tests.
 

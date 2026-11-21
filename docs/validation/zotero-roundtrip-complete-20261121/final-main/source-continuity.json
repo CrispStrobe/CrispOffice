@@ -1,0 +1,259 @@
+{
+  "schema": 1,
+  "frozen_source_checkpoint": "78d1f8db5374a6b2739451834708c8fe9f703ed8",
+  "previous_qualified_record": "8407500013cece3978b02c237abd37c93f7a61cf",
+  "accepted_main": "aa861c28e336b17bcd4c259351164380cd6b1438",
+  "final_source": {
+    "local_commit": "c9709f19a2e6eae03e1114d9e4c254090a1caad6",
+    "remote_commit": "a7f69313ed2e610f82242c31be8ad5387ae5cea0",
+    "tree": "8f0acd00b505c230ea6ccd2db2d57e17d7475011",
+    "whole_tree_identical": true
+  },
+  "checkpoints": [
+    {
+      "role": "prior_fix",
+      "remote_commit": "78d1f8db5374a6b2739451834708c8fe9f703ed8",
+      "tree": "3ccb17f6ec1c0543c7cc93b0b84a5832ddda28f7"
+    },
+    {
+      "role": "prior_frozen_record",
+      "remote_commit": "8407500013cece3978b02c237abd37c93f7a61cf",
+      "tree": "f029fdfadaa63b7f6f584617d1afec2844545d23"
+    },
+    {
+      "role": "accepted_main",
+      "remote_commit": "aa861c28e336b17bcd4c259351164380cd6b1438",
+      "tree": "05dedac6e24e073e4200f38b915c06f525250f91"
+    },
+    {
+      "role": "final_integrated_source",
+      "remote_commit": "a7f69313ed2e610f82242c31be8ad5387ae5cea0",
+      "tree": "8f0acd00b505c230ea6ccd2db2d57e17d7475011"
+    }
+  ],
+  "execution": {
+    "head_commit": "c9709f19a2e6eae03e1114d9e4c254090a1caad6",
+    "head_tree": "8f0acd00b505c230ea6ccd2db2d57e17d7475011",
+    "working_tree_changes_present": false,
+    "head_and_inputs_unchanged": true,
+    "explanation": "One accepted eight-suite cohort ran on the clean merged source. Its whole tree is identical to the published remote source checkpoint."
+  },
+  "accepted_input_manifest": {
+    "archive": "evidence.tar.gz",
+    "before_member": "validation/latest-main/renderer/source-before.json",
+    "after_member": "validation/latest-main/renderer/source-after.json",
+    "sha256": "61fdc763545340eaa245a0ca3b31ed4f1994385b40128052b6ba974aaad13e68",
+    "total_entries": 2676,
+    "before_after_identical": true,
+    "git_blob_entries": 2675,
+    "all_tracked_hashes_match_final_git_blobs": true,
+    "runtime_only_inputs": [
+      {
+        "path": ".dart_tool/package_config.json",
+        "sha256": "834c4f9a4523a2bac81001d50d607131f1d96140136625606770022335f610ad",
+        "captured_metadata": "../final-delivery/evidence.tar.gz:runtime/package_config.json"
+      }
+    ]
+  },
+  "key_source_sha256": {
+    "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart": "3dd94a16261d930009da2d3afb474392b499d7d39cd26844204a2c87c70e7de7",
+    "packages/quds_office_editor/test/word_page_text_picture_cache_test.dart": "4299b7b60a98bced286f095b09ba00945e83f32218b60d3b016b158d7a15918f",
+    "packages/quds_office_editor/test/word_body_text_cache_test.dart": "c37bca9bf57cc1cb5ff00b094fdddea739d38357956ed27464d594defd4606ca",
+    "packages/quds_office_editor/test/word_position_test.dart": "3a36c8d379a717b55707bc935c3051520f9c71999ea0b6eab61a4352133a48d0"
+  },
+  "unchanged_scopes_from_frozen_source": [
+    {
+      "path": "packages/quds_office_editor/example",
+      "git_object": "06088b975eff41db66905f8f1e9f508deb472964",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_mail_core",
+      "git_object": "407fa086fe7ae6a7d7bf5b33906a98f1de0e53c6",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_mail_store",
+      "git_object": "78b0a62a3d649858abd69b763ac1164412a6b8b6",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_mail_transport",
+      "git_object": "a639134e2ebb9da36b8a0b1c59f9a7a1f38576a8",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_mail_mime",
+      "git_object": "b52df11aefcbf668097fe25c27b31e6aaf15a95d",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_mail_ui",
+      "git_object": "3776e505904294ba67f5ad1157bf942b373dca96",
+      "identical": true
+    },
+    {
+      "path": "third_party",
+      "git_object": "ea59395f2db91760ce742cad60962f4f25286d87",
+      "identical": true
+    },
+    {
+      "path": "pubspec.yaml",
+      "git_object": "ba34bf9e2c1b0eb583e5f9e2d9ba9f236a660f96",
+      "identical": true
+    },
+    {
+      "path": "pubspec.lock",
+      "git_object": "121a4f969c34933bd72f4ccce39bd08b30a4c147",
+      "identical": true
+    },
+    {
+      "path": "analysis_options.yaml",
+      "git_object": "e40c961c5eda58a8470527fb768f093aa7dbbfff",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_editor/pubspec.yaml",
+      "git_object": "cecd56ff9e121d32d165c32d50b76310895058a0",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_engine/pubspec.yaml",
+      "git_object": "2bdff7e5dcac2502253ab190b6e7104c21a3d024",
+      "identical": true
+    }
+  ],
+  "incoming_source_object_bindings": [
+    {
+      "path": "packages/quds_office_engine/lib",
+      "git_object": "8c0778eb782654f8bb4ab76acf21e09a14e2341a",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_engine/tool",
+      "git_object": "45d3d39c72c5d1c63b750447d6e6057459f239e5",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_engine/test",
+      "git_object": "1cf4d7d239c1df2ee48d75de2560a3a6eb07a35d",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_editor/lib",
+      "git_object": "11efba4232af2fdf0a09b948f49de20008e2f003",
+      "identical": true
+    },
+    {
+      "path": "packages/quds_office_editor/example",
+      "git_object": "06088b975eff41db66905f8f1e9f508deb472964",
+      "identical": true
+    },
+    {
+      "path": "pubspec.yaml",
+      "git_object": "ba34bf9e2c1b0eb583e5f9e2d9ba9f236a660f96",
+      "identical": true
+    },
+    {
+      "path": "pubspec.lock",
+      "git_object": "121a4f969c34933bd72f4ccce39bd08b30a4c147",
+      "identical": true
+    },
+    {
+      "path": ".fvmrc",
+      "git_object": "4e46fba09bb9c1d654a226b7285b55b6949b3767",
+      "identical": true
+    }
+  ],
+  "source_deltas": [
+    {
+      "from": "78d1f8db5374a6b2739451834708c8fe9f703ed8",
+      "to": "a7f69313ed2e610f82242c31be8ad5387ae5cea0",
+      "dart_paths": [
+        "packages/quds_office_editor/lib/src/editor_word/paint_run_text.dart",
+        "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart",
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+        "packages/quds_office_editor/test/word_body_text_cache_test.dart",
+        "packages/quds_office_editor/test/word_position_test.dart",
+        "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+        "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+        "packages/quds_office_engine/lib/src/pdf/office_pdf_export.dart",
+        "packages/quds_office_engine/lib/src/word/layout/word_incremental_layout.dart",
+        "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+        "packages/quds_office_engine/lib/src/word/layout/word_note_layout.dart",
+        "packages/quds_office_engine/lib/src/word/layout/word_run_measure.dart",
+        "packages/quds_office_engine/lib/src/word/layout/word_table_row_layout.dart",
+        "packages/quds_office_engine/lib/src/word/model/wml_document.dart",
+        "packages/quds_office_engine/lib/src/word/model/wml_run_edit.dart",
+        "packages/quds_office_engine/lib/src/word/model/word_comparison.dart",
+        "packages/quds_office_engine/lib/src/word/model/word_zotero_transfer.dart",
+        "packages/quds_office_engine/lib/src/word/properties/wml_properties.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_reader_text_style.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_paragraph_style.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_settings_io.dart",
+        "packages/quds_office_engine/test/office_macro_word_position_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_position_conformance_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_position_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_position_test.dart",
+        "packages/quds_office_engine/test/word_position_test.dart",
+        "packages/quds_office_engine/tool/macros/web_vba_word_position_smoke.dart"
+      ]
+    },
+    {
+      "from": "aa861c28e336b17bcd4c259351164380cd6b1438",
+      "to": "a7f69313ed2e610f82242c31be8ad5387ae5cea0",
+      "dart_paths": [
+        "packages/quds_office_editor/test/word_page_text_picture_cache_test.dart"
+      ]
+    }
+  ],
+  "ancestry": [
+    {
+      "ancestor": "8407500013cece3978b02c237abd37c93f7a61cf",
+      "descendant": "a7f69313ed2e610f82242c31be8ad5387ae5cea0"
+    },
+    {
+      "ancestor": "aa861c28e336b17bcd4c259351164380cd6b1438",
+      "descendant": "a7f69313ed2e610f82242c31be8ad5387ae5cea0"
+    },
+    {
+      "ancestor": "a646cf761f7eafe7915988a1d84f90ca6dbe5793",
+      "descendant": "a7f69313ed2e610f82242c31be8ad5387ae5cea0"
+    }
+  ],
+  "merge_resolution": "The incoming typed per-page adaptive-ink snapshot and live proofing layer supersede the earlier local renderer cache correction. Both incoming cache/position suites and the retained five-case page-text regression suite pass in the final 51-case cohort. Production and root configuration agree with accepted main; the additional retained Dart file is word_page_text_picture_cache_test.dart.",
+  "supplemental_incoming_qualification": {
+    "archive_member": "validation/latest-main/incoming-word-review.json",
+    "script_member": "validation/latest-main/review-incoming-word.py",
+    "source_archive": "../../word-vba-typography-20261121/execution.tar.gz",
+    "source_archive_sha256": "8056bbf64bf2744c354f3e98c2e8722e502c479a299093d7c1990ef23294ca77",
+    "engine_library_paths_matching_current_main": 366,
+    "engine_gates": [
+      998,
+      716
+    ],
+    "separate_followups": [
+      33,
+      46
+    ],
+    "final_editor_gate": 75,
+    "counts_not_added_to_current_work_ledger": true,
+    "explanation": "All production engine inputs match the executed incoming gates. The two changed test files have explicit formatter/matcher followups. Final editor inputs match the incoming qualified source. Raw incoming receipts and independent source comparisons are retained; this does not claim a new broad engine run."
+  },
+  "converter_qualification": {
+    "summary": "converter-summary.json",
+    "archive": "converter.tar.gz",
+    "source_manifest_entries": 442,
+    "git_blob_entries": 441,
+    "new_dart_commands": 3,
+    "new_actual_host_save_commands": 1,
+    "preserved_input_files": 22,
+    "scope": "Current native reexport and image cycles plus one new save using the identified LibreOffice development build, starting from unchanged earlier real-host inputs. No installed Zotero, Microsoft Word, stable LibreOffice or ODT Position interchange qualification is claimed."
+  },
+  "applicability": "The 3,467 total is a deduplicated ledger of accepted cases executed during this work at documented checkpoints. Engine production changed with the accepted typography work; current engine applicability is supported by the separate source-bound incoming gates and fresh converter replay, not by claiming the old 2,698-case run used current engine bytes. Mail and Studio sources remain unchanged. Current renderer, positioning, selection, proofing and adaptive-ink behavior are covered by the fresh 51-case cohort."
+}
