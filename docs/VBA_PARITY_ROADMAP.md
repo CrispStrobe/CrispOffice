@@ -57,12 +57,14 @@ Stage 1 was delivered in the prior array-lifecycle increment. Its source, CLI/MC
 VM/JavaScript checks are recorded in the
 [local validation record](validation/office-vba-dynamic-arrays-20261119/README.md).
 This establishes the documented bounded dialect, not differential qualification
-against an installed Microsoft Office host. Stage 2 now has two bounded
-slices: a [versioned conformance format](VBA_CONFORMANCE.md) and these four
+against an installed Microsoft Office host. Stage 2 includes a
+[versioned conformance format](VBA_CONFORMANCE.md) and the original four
 String intrinsics, with explicit type restrictions, UTF-16 units, copy-work
 accounting, transactional integration, and VM/JavaScript agreement; followed
 by explicit Variant states and conversions with independently authored
 conformance expectations, shared budgets, and the same transaction boundary.
+The text-search, replacement and trimming continuation below extends the
+shared source String layer.
 Locale-sensitive coercions, numeric subtype identity, `Nothing`, and remaining
 Stage 2 semantics and Stage 3 remain planned work. Stage 4 now has the initial
 source-only Word paragraph and section adapters above; their remaining application models and
@@ -249,6 +251,25 @@ general coercions, installed Word differential validation or new proofing
 provider are implied. See the [exact contract](VBA_WORD_MACROS.md#proofing-and-kerning-controls),
 [BAS example](../packages/quds_office_engine/example/macros/word_proofing_controls.bas),
 and [local record](validation/word-vba-proofing-20261121/README.md).
+
+### Binary source text processing
+
+The text continuation adds `InStr`, `InStrRev`, `Replace`, and the
+`Trim` / `LTrim` / `RTrim` families to all three VBA adapters. They retain
+source-only evaluation, strict types and UTF-16 units, with positional optional
+arguments and binary comparison. A metered linear matcher bounds scanning and
+replacement expansion before allocation; source and native publication limits
+are unchanged. A new independently authored versioned corpus checks complete
+plans and positioned refusals on both VM and JavaScript.
+
+The [Word report example](../packages/quds_office_engine/example/macros/word_text_report.bas)
+prepares report titles and filenames before editing existing body/header
+paragraphs. Its local qualification covers CLI/MCP, atomic rollback, native
+record/replay, rich formatting and inert DOCM preservation. This extends Stage 2
+and reuses the existing Stage 4 adapters; it does not add Stage 3 document reads,
+locale comparison, general VBA coercion or installed Office qualification.
+See the [exact contract](VBA_MACROS.md#binary-search-replacement-and-trimming)
+and [intake and local evidence](validation/word-vba-continuation-20261121/README.md).
 
 ### Next shared-language increments
 

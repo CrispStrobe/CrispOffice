@@ -1,0 +1,37 @@
+{
+  "runtime": "Dart 3.13.7",
+  "resolution": "pure-Dart validation workspace; original tracked manifests and lock unchanged",
+  "resolvedPackages": 56,
+  "lockDifferences": [],
+  "trackedManifestIntegrity": {
+    "pubspec.yaml": {
+      "sha256": "453a1f8ab62db1c5577c424b058b50033a8d3b49b99c83862ab58a7e1108f74f",
+      "equalsHead": true
+    },
+    "pubspec.lock": {
+      "sha256": "0d64a732cd7f6c7cc4e1e01255276f081b59e6f43039636c3d36f6785a958ce2",
+      "equalsHead": true
+    },
+    "packages/quds_office_engine/pubspec.yaml": {
+      "sha256": "225773e48bab7333652a4098e5747f37eab2aac9fc6a14de1e814590ab03fb7a",
+      "equalsHead": true
+    },
+    "packages/legacy_doc_parser/pubspec.yaml": {
+      "sha256": "150af8d89562635bf5a876c0a539c20ae48b58ea3666db071b5e4ebd3addf153",
+      "equalsHead": true
+    },
+    "packages/quds_mail_core/pubspec.yaml": {
+      "sha256": "9ecb33312a62c29481def03efd177e8da0186b9627fe2d804d38c9d5db05fb21",
+      "equalsHead": true
+    }
+  },
+  "dartExecutableSha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+  "sdkArchiveUrl": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.13.7/sdk/dartsdk-linux-x64-release.zip",
+  "sdkArchiveSha256": "eb99aed266efbcb615c6ae21c12f52cfe935b9f208bccc5fea7f64c21e867229",
+  "bootstrapNotes": [
+    "Dart 3.12.2 download was not used because committed lock requires Dart >=3.13.0.",
+    "Initial pub get failed because /tmp is absent; TMPDIR is explicitly set inside scratch.",
+    "Nested engine example added to validation workspace; full dependency versions and source descriptions match the repository lock.",
+    "Analysis follows symlinks to real source paths; ignored repository package_config uses absolute roots for the same resolved packages."
+  ]
+}
