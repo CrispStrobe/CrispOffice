@@ -28,15 +28,31 @@ def main(path):
     for s in spans.values():
         if "start" in s and "end" in s and s.get("key") is not None:
             windows[int(s["key"])] = (s["start"], s["end"])
+    # GC slices: complete events or begin/end pairs per thread and name.
     gc = []
+    idle = 0.0
+    open_ = {}
     for e in events:
-        cat = e.get("cat", "")
-        if "GC" not in cat and not e.get("name", "").startswith(
-            ("Scavenge", "MarkSweep", "CollectNewGeneration", "CollectOldGeneration",
-             "StartConcurrentMark", "MarkCompact", "EvacuateNewGeneration")):
+        if e.get("cat") != "GC":
             continue
-        if e.get("ph") == "X" and "dur" in e:
-            gc.append((e["ts"], e["ts"] + e["dur"], e["name"]))
+        ph = e.get("ph")
+        name = e.get("name", "")
+        key = (e.get("tid"), name)
+        if ph == "X" and "dur" in e:
+            span = (e["ts"], e["ts"] + e["dur"], name)
+        elif ph == "B":
+            open_.setdefault(key, []).append(e["ts"])
+            continue
+        elif ph == "E" and open_.get(key):
+            span = (open_[key].pop(), e["ts"], name)
+        else:
+            continue
+        if name == "NotifyIdle":
+            idle += (span[1] - span[0]) / 1000
+            continue
+        if name in ("Scavenge", "MarkSweep", "MarkCompact",
+                    "StartConcurrentMark", "EvacuateNewGeneration"):
+            gc.append(span)
     gc_in = {}
     for k, (a, b) in windows.items():
         total = 0.0
@@ -53,6 +69,7 @@ def main(path):
     pct = lambda p: srt[round((len(srt) - 1) * p)] if srt else 0
     print(f"keystrokes {len(handler)} handler p50 {pct(.5):.2f} p95 {pct(.95):.2f} "
           f"max {max(handler) if handler else 0:.2f} ms")
+    print(f"idle-time GC (NotifyIdle, between frames) {idle:.1f} ms")
     print(f"GC events {len(gc)}, total {sum(t - s for s, t, _ in gc) / 1000:.1f} ms; "
           f"GC inside handlers {sum(v[0] for v in gc_in.values()):.1f} ms")
     frames = data.get("frames", [])

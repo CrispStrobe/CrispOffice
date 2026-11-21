@@ -48,7 +48,11 @@ void main() {
       ..selectionAnchor = length
       ..selectionAnchorParagraph = paragraphIndex;
     controller.refreshView();
-    await tester.pump();
+    editor.focusNode!.requestFocus();
+    for (var i = 0; i < 10; i++) {
+      await tester.pump(const Duration(milliseconds: 100));
+    }
+    expect(controller.input.isAttached, isTrue);
 
     final frames = <ui.FrameTiming>[];
     void onTimings(List<ui.FrameTiming> timings) => frames.addAll(timings);
@@ -90,6 +94,11 @@ void main() {
       }
     }, reportKey: 'timeline');
     SchedulerBinding.instance.removeTimingsCallback(onTimings);
+    // Every keystroke must have reached the editor (layout phase recorded).
+    expect(
+      keys.where((k) => (k['phases']! as Map).containsKey('layout')).length,
+      greaterThan(keys.length * 0.9),
+    );
     WordEditorController.debugEditPhase = null;
     WordEditorController.debugTimeListeners = false;
     binding.reportData ??= <String, dynamic>{};
