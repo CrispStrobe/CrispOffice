@@ -1,10 +1,14 @@
 import 'dart:convert';
 
+import '../../xml/namespaces.dart';
+import '../../xml/xml_node.dart';
 import '../properties/wml_properties.dart';
 import 'wml_clone.dart';
 import 'wml_document.dart';
 import 'wml_run_edit.dart';
+import 'word_link.dart';
 import 'word_notes.dart';
+import 'word_styles.dart';
 import 'word_tree.dart';
 import 'word_zotero.dart';
 import 'word_zotero_data.dart';
@@ -19,6 +23,10 @@ abstract final class WordZoteroTransfer {
   static const marker = 'ZOTERO_TRANSFER_DOCUMENT';
   static const legacyMarker = 'ZOTERO_EXPORTED_DOCUMENT';
   static const linkUrl = 'https://www.zotero.org/';
+  static const _googleDocsUrl = 'https://www.zotero.org/google-docs/?';
+  static final _googleDocsFieldUrl = RegExp(
+    r'^https://www\.zotero\.org/google-docs/\?[A-Za-z0-9]{6}$',
+  );
   static const preferencesPrefix = 'DOCUMENT_PREFERENCES ';
   static const maxFields = 10000;
   static const maxPayloadBytes = 8 * 1024 * 1024;
@@ -219,7 +227,8 @@ abstract final class WordZoteroTransfer {
           );
         }
         if (link.text.startsWith(preferencesPrefix)) {
-          if (preferences != null ||
+          if ((link.url != linkUrl && link.url != _googleDocsUrl) ||
+              preferences != null ||
               !identical(paragraph, document.sections.last.blocks.lastOrNull) ||
               link.first != 0 ||
               link.last != paragraph.inlines.length - 1 ||
@@ -237,6 +246,11 @@ abstract final class WordZoteroTransfer {
           WordZoteroDocumentData.fromTransfer(preferences);
           preferencesParagraph = paragraph;
         } else {
+          if (link.url == _googleDocsUrl) {
+            throw const FormatException(
+              'A Google Docs transfer field has no field key.',
+            );
+          }
           final codes = _splitCodes(link.text);
           fieldCount += codes.length;
           if (fieldCount > maxFields) {
@@ -275,7 +289,11 @@ abstract final class WordZoteroTransfer {
                 text: code.startsWith(_citationPrefix)
                     ? '{Citation}'
                     : '{Bibliography}',
-                properties: run.properties.copy(),
+                properties: _importRunProperties(
+                  document,
+                  entry.paragraph,
+                  run.properties,
+                ),
                 fieldInstruction: ' ADDIN ZOTERO_$code ',
               ),
           ]);
@@ -294,9 +312,87 @@ abstract final class WordZoteroTransfer {
   static WmlParagraph _paragraph(String text) =>
       WmlParagraph(inlines: [WmlRun(text: text)]);
 
+  /// A native plugin removes the carrier hyperlink's character style before
+  /// refreshing the field. Keep that cleanup local to validated carriers:
+  /// surrounding links and authored fonts, colors and source XML stay intact.
+  static WmlRunProps _importRunProperties(
+    WmlDocument document,
+    WmlParagraph paragraph,
+    WmlRunProps source,
+  ) {
+    final result = source.copy();
+    final linkStyle = const {
+      'Hyperlink',
+      'FollowedHyperlink',
+    }.contains(source.styleId);
+    final xml = source.sourcePropertiesXml;
+    final direct = xml == null || xml.isEmpty
+        ? null
+        : XmlDocument.parse(xml).root;
+    XmlElement? property(String name) => direct?.childElements
+        .where(
+          (element) =>
+              element.localName == name &&
+              (element.namespaceUri == OfficeNamespaces.w ||
+                  element.namespaceUri.isEmpty && element.prefix == 'w'),
+        )
+        .firstOrNull;
+    String? value(XmlElement? element) => element?.attributes
+        .where(
+          (attribute) =>
+              attribute.localName == 'val' &&
+              (attribute.namespaceUri == OfficeNamespaces.w ||
+                  attribute.namespaceUri.isEmpty && attribute.prefix == 'w'),
+        )
+        .firstOrNull
+        ?.value;
+    final directColor = property('color');
+    final color = source.color.toUpperCase();
+    final originalColor = value(directColor)?.toUpperCase();
+    final inheritedLinkColor =
+        linkStyle &&
+        xml != null &&
+        directColor == null &&
+        (source.importedValues?['color'] ?? source.color) == source.color;
+    // The DOCX reader applies WordLink's default look to black linked runs,
+    // even when their native direct properties explicitly say black. The
+    // untouched rPr distinguishes this from an authored direct blue color.
+    final defaultLinkLook =
+        color == WordLink.color &&
+        source.underline == WmlUnderline.single &&
+        (originalColor == '000000' ||
+            directColor == null && source.styleId == null);
+    final styledLinkColor =
+        linkStyle &&
+        const {'0563C1', '0000FF', '954F72', '800080'}.contains(color);
+    if (linkStyle) {
+      result.styleId = null;
+      result.explicitProperties.remove('rStyle');
+    }
+    if (defaultLinkLook && originalColor == '000000') {
+      result.color = '000000';
+    } else if (inheritedLinkColor || styledLinkColor || defaultLinkLook) {
+      result.color =
+          paragraph.properties.importedParagraphMark?.color ??
+          WordStyles.ofParagraph(paragraph, document: document).color;
+    }
+    if (linkStyle && source.underline == WmlUnderline.single) {
+      result.underline = WmlUnderline.none;
+    } else if (defaultLinkLook) {
+      final underline = property('u');
+      result.underline = underline == null
+          ? WmlUnderline.none
+          : WmlUnderline.fromXml(value(underline));
+    }
+    return result;
+  }
+
   static bool _plainFraming(WmlParagraph p, {bool links = false}) =>
       p.contentControlWrappers.isEmpty &&
       p.properties.fieldInstruction == null &&
+      !p.properties.fieldBegin &&
+      !p.properties.fieldSeparate &&
+      !p.properties.fieldEnd &&
       !p.properties.pageNumberField &&
       p.properties.bookmarkName == null &&
       p.properties.noteId == null &&
@@ -309,7 +405,12 @@ abstract final class WordZoteroTransfer {
       );
 
   static bool _canonicalLink(WmlHyperlink? link) =>
-      link?.url == linkUrl && link?.anchor == null && link?.file == null;
+      link != null &&
+      link.anchor == null &&
+      link.file == null &&
+      (link.url == linkUrl ||
+          link.url == _googleDocsUrl ||
+          _googleDocsFieldUrl.hasMatch(link.url ?? ''));
 
   static bool _isCode(String text) =>
       text.startsWith(_citationPrefix) ||
@@ -330,11 +431,17 @@ abstract final class WordZoteroTransfer {
       final text = StringBuffer(first.text);
       while (i + 1 < paragraph.inlines.length) {
         final next = paragraph.inlines[i + 1];
-        if (next is! WmlRun || !_canonicalLink(next.hyperlink)) break;
+        if (next is! WmlRun ||
+            !_canonicalLink(next.hyperlink) ||
+            next.hyperlink!.url != first.hyperlink!.url) {
+          break;
+        }
         text.write(next.text);
         i++;
       }
-      result.add(_TransferLink(start, i, text.toString()));
+      result.add(
+        _TransferLink(start, i, text.toString(), first.hyperlink!.url!),
+      );
     }
     return result;
   }
@@ -342,6 +449,9 @@ abstract final class WordZoteroTransfer {
   static void _assertLinkOwnership(WmlParagraph paragraph, _TransferLink link) {
     if (paragraph.contentControlWrappers.isNotEmpty ||
         paragraph.properties.fieldInstruction != null ||
+        paragraph.properties.fieldBegin ||
+        paragraph.properties.fieldSeparate ||
+        paragraph.properties.fieldEnd ||
         paragraph.properties.pageNumberField) {
       throw UnsupportedError(
         'A Zotero transfer link is inside protected field content.',
@@ -355,8 +465,9 @@ abstract final class WordZoteroTransfer {
         if (inline.kind == WmlFieldBoundaryKind.begin) fieldDepth++;
         if (inline.kind == WmlFieldBoundaryKind.end) fieldDepth--;
       }
-      if (inline is WmlContentControlBoundary)
+      if (inline is WmlContentControlBoundary) {
         controlDepth += inline.start ? 1 : -1;
+      }
       if (fieldDepth < 0 || controlDepth < 0) {
         throw UnsupportedError(
           'A Zotero transfer link has unbalanced native boundaries.',
@@ -382,7 +493,9 @@ abstract final class WordZoteroTransfer {
     final result = <String>[];
     var at = 0;
     while (at < text.length) {
-      while (at < text.length && _space(text.codeUnitAt(at))) at++;
+      while (at < text.length && _space(text.codeUnitAt(at))) {
+        at++;
+      }
       if (at == text.length) break;
       final start = at;
       final citation = text.startsWith(_citationPrefix, at);
@@ -390,7 +503,9 @@ abstract final class WordZoteroTransfer {
         throw const FormatException('Malformed Zotero transfer field code.');
       }
       at += citation ? _citationPrefix.length : _bibliographyPrefix.length;
-      while (at < text.length && _space(text.codeUnitAt(at))) at++;
+      while (at < text.length && _space(text.codeUnitAt(at))) {
+        at++;
+      }
       if (at == text.length || text.codeUnitAt(at) != 0x7b) {
         throw const FormatException('Missing Zotero transfer field metadata.');
       }
@@ -411,8 +526,9 @@ abstract final class WordZoteroTransfer {
           quoted = true;
         } else if (unit == 0x7b || unit == 0x5b) {
           stack.add(unit == 0x7b ? 0x7d : 0x5d);
-          if (stack.length > 64)
+          if (stack.length > 64) {
             throw const FormatException('Excessive Zotero field nesting.');
+          }
         } else if (unit == 0x7d || unit == 0x5d) {
           if (stack.isEmpty || stack.removeLast() != unit) {
             throw const FormatException(
@@ -428,7 +544,9 @@ abstract final class WordZoteroTransfer {
       }
       if (!citation) {
         final suffixAt = at;
-        while (at < text.length && _space(text.codeUnitAt(at))) at++;
+        while (at < text.length && _space(text.codeUnitAt(at))) {
+          at++;
+        }
         if (text.startsWith('CSL_BIBLIOGRAPHY', at)) {
           at += 'CSL_BIBLIOGRAPHY'.length;
         } else {
@@ -446,8 +564,9 @@ abstract final class WordZoteroTransfer {
       if (citation) ZoteroCitation.fromJson(metadata);
       result.add(code);
     }
-    if (result.isEmpty)
+    if (result.isEmpty) {
       throw const FormatException('Empty Zotero transfer field.');
+    }
     return result;
   }
 
@@ -510,10 +629,11 @@ abstract final class WordZoteroTransfer {
 }
 
 final class _TransferLink {
-  const _TransferLink(this.first, this.last, this.text);
+  const _TransferLink(this.first, this.last, this.text, this.url);
   final int first;
   final int last;
   final String text;
+  final String url;
 }
 
 /// An isolated transfer edit, committed only after the host accepts a complete
@@ -522,8 +642,9 @@ final class _TransferLink {
 final class WordZoteroTransferPlan {
   WordZoteroTransferPlan._(this._source)
     : _guard = _TransferModelGuard(_source) {
-    if (_source.sections.isEmpty)
+    if (_source.sections.isEmpty) {
       throw const FormatException('The document has no body section.');
+    }
     final sections = [
       for (final section in _source.sections) WmlClone.section(section),
     ];
@@ -575,6 +696,11 @@ final class WordZoteroTransferPlan {
 
   final WmlDocument _source;
   final _TransferModelGuard _guard;
+
+  /// Detached editable stories for the citing transaction. Its package is
+  /// retained only as read-only provenance for opaque parts and relationships.
+  /// Serialize the original source after [apply]; serializing this staging
+  /// model before acceptance would write that shared package prematurely.
   late final WmlDocument document;
   final _paragraphs = Map<WmlParagraph, WmlParagraph>.identity();
   final _originals = Map<WmlBlock, WmlBlock>.identity();
@@ -605,10 +731,14 @@ final class WordZoteroTransferPlan {
     // introduced by an unsupported caller of the detached model.
     _TransferModelGuard(document);
     for (final section in document.sections) {
-      for (final block in section.blocks) _validatePublish(block);
+      for (final block in section.blocks) {
+        _validatePublish(block);
+      }
     }
     for (final note in [...document.footnotes, ...document.endnotes]) {
-      for (final block in note.blocks) _validatePublish(block);
+      for (final block in note.blocks) {
+        _validatePublish(block);
+      }
     }
     for (var i = 0; i < document.sections.length; i++) {
       _publishList(_source.sections[i].blocks, document.sections[i].blocks);
@@ -636,7 +766,9 @@ final class WordZoteroTransferPlan {
       }
       final from = WordTree.childLists(original).toList();
       final to = WordTree.childLists(copy).toList();
-      for (var c = 0; c < from.length; c++) _pairBlocks(from[c], to[c]);
+      for (var c = 0; c < from.length; c++) {
+        _pairBlocks(from[c], to[c]);
+      }
     }
   }
 
@@ -655,7 +787,9 @@ final class WordZoteroTransferPlan {
       throw StateError('A transfer changed an existing container structure.');
     }
     for (final list in children) {
-      for (final block in list) _validatePublish(block);
+      for (final block in list) {
+        _validatePublish(block);
+      }
     }
   }
 
@@ -684,7 +818,9 @@ final class WordZoteroTransferPlan {
       if (from.length != to.length) {
         throw StateError('A transfer changed an existing container structure.');
       }
-      for (var i = 0; i < from.length; i++) _publishList(to[i], from[i]);
+      for (var i = 0; i < from.length; i++) {
+        _publishList(to[i], from[i]);
+      }
       return original;
     }
     return WmlClone.block(staged);
@@ -745,18 +881,22 @@ final class _TransferModelGuard {
     _list(() => document.comments);
     for (final section in document.sections) {
       _blocks(() => section.blocks, true, 0);
-      for (final list in [
-        section.header,
-        section.footer,
-        section.firstHeader,
-        section.firstFooter,
-        section.evenHeader,
-        section.evenFooter,
+      for (final read in <List<WmlParagraph> Function()>[
+        () => section.header,
+        () => section.footer,
+        () => section.firstHeader,
+        () => section.firstFooter,
+        () => section.evenHeader,
+        () => section.evenFooter,
       ]) {
-        _list(() => list);
-        for (final paragraph in list) _paragraph(paragraph, false);
+        _list(read);
+        for (final paragraph in read()) {
+          _paragraph(paragraph, false);
+        }
       }
-      for (final opaque in section.preservedStories.values) _opaque(opaque.xml);
+      for (final opaque in section.preservedStories.values) {
+        _opaque(opaque.xml);
+      }
     }
     final body = Set<WmlParagraph>.identity()..addAll(supported);
     final anchors = <(bool, int), int>{};
@@ -769,8 +909,9 @@ final class _TransferModelGuard {
     }
     for (final bucket in [document.footnotes, document.endnotes]) {
       final ids = <int, int>{};
-      for (final note in bucket)
+      for (final note in bucket) {
         ids.update(note.id, (n) => n + 1, ifAbsent: () => 1);
+      }
       for (final note in bucket) {
         final id = note.id;
         final referenceProperties = note.referencePropertiesXml;
@@ -791,7 +932,9 @@ final class _TransferModelGuard {
     }
     for (final comment in document.comments) {
       _list(() => comment.paragraphs);
-      for (final paragraph in comment.paragraphs) _paragraph(paragraph, false);
+      for (final paragraph in comment.paragraphs) {
+        _paragraph(paragraph, false);
+      }
     }
   }
 
@@ -817,24 +960,27 @@ final class _TransferModelGuard {
   }
 
   void _blocks(List<WmlBlock> Function() read, bool allowed, int depth) {
-    if (depth > 64)
+    if (depth > 64) {
       throw const FormatException(
         'The Word story nesting exceeds the transfer limit.',
       );
+    }
     _list(read);
     for (final block in read()) {
-      if (!_seen.add(block))
+      if (!_seen.add(block)) {
         throw UnsupportedError(
           'A Word block has repeated or cyclic ownership.',
         );
+      }
       if (block is WmlParagraph) {
         _paragraph(block, allowed, registered: true);
       } else if (block is WmlTable) {
         _list(() => block.rows);
         for (final row in block.rows) {
           _list(() => row.cells);
-          for (final cell in row.cells)
+          for (final cell in row.cells) {
             _blocks(() => cell.blocks, allowed, depth + 1);
+          }
         }
       } else if (block is WmlContentControlBlock) {
         _opaque(block.control.xml);
@@ -843,8 +989,9 @@ final class _TransferModelGuard {
         _blocks(() => block.blocks, false, depth + 1);
       } else if (block is WmlToc) {
         _paragraph(block.titleParagraph, false);
-        for (final paragraph in block.itemParagraphs)
+        for (final paragraph in block.itemParagraphs) {
           _paragraph(paragraph, false);
+        }
       } else if (block is WmlOpaqueBlock) {
         _opaque(block.xml);
       }
@@ -861,8 +1008,9 @@ final class _TransferModelGuard {
         'A Word paragraph has repeated or cyclic ownership.',
       );
     }
-    if (paragraphs.length >= 100000)
+    if (paragraphs.length >= 100000) {
       throw const FormatException('Too many paragraphs for Zotero transfer.');
+    }
     paragraphs.add(paragraph);
     if (allowed) supported.add(paragraph);
     _list(() => paragraph.inlines);

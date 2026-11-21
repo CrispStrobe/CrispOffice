@@ -4,6 +4,17 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Implement Zotero's document export/import handshake and temporary hyperlink
+  carrier. Stage transfer separately from the source, retain raw citation and
+  bibliography metadata and document preferences, and require native formatting
+  of every imported field before publication. Support DOCX carriers, ODT carrier
+  export, the legacy marker and verified Google Docs link variants. Preserve
+  body/table/authored-note ownership, rich surrounding content and paragraph
+  identities; reject damaged, mixed, protected, stale or excessive transfers.
+  Direct native ODT reference-mark import remains separate. See the
+  [transfer work record](../../docs/validation/zotero-transfer-20261121/README.md)
+  for exact local and converter acceptance boundaries.
+
 - Replace Zotero research-content selections across consecutive ordinary
   paragraphs in one body section or authored note. Preserve rich prefix/suffix
   content, active citation order, native note separators and DOCX reopening;

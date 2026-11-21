@@ -4,6 +4,13 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Add **Prepare document for transfer…** to the native Zotero workspace and
+  recognize incoming transfer documents through **Import transferred references…**
+  and Refresh. Preserve one undo/redo step, cancellation and stale-result checks;
+  prevent citation editing until a pending transfer has been imported. Explain
+  the DOCX/Word and ODT/LibreOffice save-copy workflow and retain original document
+  preference state when undoing an import.
+
 - Let Zotero Add Note and Add Annotation replace ordinary text spanning several
   paragraphs in one body section, footnote or endnote. Map both Notes-pane
   selection endpoints, retain one undo/redo step and original selection direction,

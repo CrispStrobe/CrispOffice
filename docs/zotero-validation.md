@@ -1,5 +1,19 @@
 # Zotero validation
 
+## 21 November 2026 — document-transfer protocol
+
+The [transfer continuation](validation/zotero-transfer-20261121/README.md)
+implements the native Zotero export/import handshake, temporary metadata
+hyperlinks, DOCX transfer import and ODT carrier export. Native formatting must
+complete before an import is applied. The editor exposes preparation and import
+controls with one undo/redo step and retains cancellation and stale-state guards.
+
+The work record separates source-bound local execution, actual LibreOffice file
+conversion and controlled formatting callbacks from installed Zotero/Word/
+LibreOffice plugin acceptance. Direct native ODT reference marks and legacy
+Apache OpenOffice remain separate targets. GitHub Actions are neither queried
+nor awaited.
+
 ## 21 November 2026 — multi-paragraph research replacement
 
 The [range continuation](validation/zotero-multiparagraph-20261121/README.md)
