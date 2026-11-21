@@ -430,9 +430,8 @@ class _StyleCascade {
         props,
       );
     }
-    props.sourcePropertiesXml = XmlDocument(
-      root: direct,
-    ).toXmlString(declaration: false);
+    props.sourcePropertiesXml = XmlDocument(root: direct)
+        .toXmlString(declaration: false);
     props.importedValues = WordPropertyIo.paragraphValues(props);
     target.properties = props;
   }
@@ -571,9 +570,8 @@ class _StyleCascade {
         updated[key] = '$inherited';
       }
       if (updated.isEmpty) return;
-      props.sourcePropertiesXml = XmlDocument(
-        root: direct,
-      ).toXmlString(declaration: false);
+      props.sourcePropertiesXml = XmlDocument(root: direct)
+          .toXmlString(declaration: false);
       props.importedValues = hasSparseSource
           ? {...imported, ...updated}
           : WordPropertyIo.runValues(props);
@@ -757,8 +755,14 @@ class _StyleCascade {
                     incoming.localName == 'noProof')) ||
             (name == 'pPr' && incoming.localName == 'suppressAutoHyphens');
         if (scalarControl && !_word(incoming, incoming.localName)) continue;
+        final runAttributes =
+            name == 'rPr' &&
+            const {'lang', 'rFonts'}.contains(incoming.localName);
+        if (runAttributes && !_word(incoming, incoming.localName)) continue;
         final child = scalarControl
             ? _scalarControlProjection(incoming)
+            : runAttributes
+            ? _layoutAttributeProjection(incoming)
             : name == 'pPr' && _word(incoming, 'numPr')
             ? _numberingProjection(incoming)
             : name == 'pPr' &&

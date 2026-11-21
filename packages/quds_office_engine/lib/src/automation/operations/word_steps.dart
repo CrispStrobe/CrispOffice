@@ -56,6 +56,8 @@ const wordOperations = <String, List<String>>{
     'color',
     'highlight',
     'font',
+    'csFont',
+    'language',
     'size',
     'kerning',
     'noProof',
@@ -360,6 +362,12 @@ void applyStep(
           ? s.color('highlight')
           : null;
       final font = s.has('font') ? s.string('font') : null;
+      final csFont = s.has('csFont')
+          ? _complexScriptFont(s.string('csFont'))
+          : null;
+      final language = s.has('language')
+          ? _runLanguage(s.string('language'))
+          : null;
       final size = s.has('size')
           ? (s.number('size', min: 0.5, max: 1638) * 2).round()
           : null;
@@ -370,10 +378,16 @@ void applyStep(
         throw ArgumentError('kerning must use exact 0.5-point increments');
       }
       final noProof = s.has('noProof') ? s.boolean('noProof') : null;
-      if (kerning != null || noProof != null) {
+      if (kerning != null ||
+          noProof != null ||
+          font != null ||
+          csFont != null ||
+          language != null) {
         _validateScalarPackageSource(doc, {
           if (kerning != null) 'kern',
           if (noProof != null) 'noProof',
+          if (font != null || csFont != null) 'rFonts',
+          if (language != null) 'lang',
         });
         final affected = WmlRunEdit.normalizeRange(p, range.$1, range.$2);
         // Validate every affected source run before applyRange can split any
@@ -392,6 +406,27 @@ void applyStep(
               _validateScalarPropertySource(
                 run.properties.sourcePropertiesXml,
                 'noProof',
+              );
+            }
+            if (font != null || csFont != null) {
+              _validateScalarPropertySource(
+                run.properties.sourcePropertiesXml,
+                'rFonts',
+                ownedAttributes: {
+                  if (font != null) ...{
+                    'ascii',
+                    'hAnsi',
+                    'asciiTheme',
+                    'hAnsiTheme',
+                  },
+                  if (csFont != null) ...{'cs', 'cstheme'},
+                },
+              );
+            }
+            if (language != null) {
+              _validateScalarPropertySource(
+                run.properties.sourcePropertiesXml,
+                'lang',
               );
             }
           }
@@ -439,9 +474,8 @@ void applyStep(
             ),
           );
           WordPropertyIo.orderChildren(source);
-          r.sourcePropertiesXml = XmlDocument(
-            root: source,
-          ).toXmlString(declaration: false);
+          r.sourcePropertiesXml = XmlDocument(root: source)
+              .toXmlString(declaration: false);
           r.importedValues = WordPropertyIo.runValues(r);
           r.explicitProperties.add('caps');
         }
@@ -455,7 +489,9 @@ void applyStep(
           'underline': 'u',
           'color': 'color',
           'highlight': 'highlight',
-          'font': 'rFonts',
+          'font': 'rFonts:ascii',
+          'csFont': 'rFonts:cs',
+          'language': 'lang',
           'size': 'sz',
           'kerning': 'kern',
           'noProof': 'noProof',
@@ -487,6 +523,8 @@ void applyStep(
         if (color != null) r.color = color;
         if (s.has('highlight')) r.highlight = highlight;
         if (font != null) r.asciiFont = font;
+        if (csFont != null) r.csFont = csFont;
+        if (language != null) r.proofingLanguage = language;
         if (size != null) r.fontSizeHalfPoints = size;
         if (kerning != null) r.kerningHalfPoints = kerning.toInt();
         if (noProof != null) r.noProof = noProof;
@@ -803,7 +841,11 @@ void _validateScalarPackageSource(WmlDocument document, Set<String> names) {
   }
 }
 
-void _validateScalarPropertySource(String? source, String name) {
+void _validateScalarPropertySource(
+  String? source,
+  String name, {
+  Set<String> ownedAttributes = const {'val'},
+}) {
   if (source == null || source.isEmpty) return;
   final properties = XmlDocument.parse(source).root;
   if (properties == null) return;
@@ -842,17 +884,67 @@ void _validateScalarPropertySource(String? source, String name) {
   if (values.length > 1) {
     throw UnsupportedError('Refuses duplicate native $name properties');
   }
-  if (values.isNotEmpty &&
-      values.single.attributes
+  if (values.isNotEmpty) {
+    for (final owned in ownedAttributes) {
+      if (values.single.attributes
               .where(
                 (attribute) =>
-                    attribute.localName == 'val' &&
+                    attribute.localName == owned &&
                     nativeName(attribute.namespaceUri, attribute.prefix),
               )
               .length >
           1) {
-    throw UnsupportedError('Refuses duplicate native $name values');
+        throw UnsupportedError('Refuses duplicate native $name $owned values');
+      }
+    }
   }
+}
+
+String _runLanguage(String value) {
+  // This is an intentionally conservative BCP 47 subset, without implicit
+  // normalization, extension sequences, or private-use language identifiers.
+  // Proofing-provider normalization is unsuitable: it changes tags (for
+  // example en-Latn-US) and deliberately leaves malformed unknown tags intact.
+  if (value.length > 63 ||
+      !RegExp(
+        r'^[a-z]{2,3}(?:-[A-Z][a-z]{3})?(?:-(?:[A-Z]{2}|[0-9]{3}))?'
+        r'(?:-(?:[a-z0-9]{5,8}|[0-9][a-z0-9]{3}))*$',
+      ).hasMatch(value)) {
+    throw ArgumentError('language must be a canonical supported BCP 47 tag');
+  }
+  final variants = <String>{};
+  for (final part in value.split('-').skip(1)) {
+    if ((part.length >= 5 ||
+            (part.length == 4 &&
+                part.codeUnitAt(0) >= 48 &&
+                part.codeUnitAt(0) <= 57)) &&
+        !variants.add(part)) {
+      throw ArgumentError('language must not repeat variant subtags');
+    }
+  }
+  return value;
+}
+
+String _complexScriptFont(String value) {
+  if (value.isEmpty) throw ArgumentError('csFont must not be empty');
+  for (var index = 0; index < value.length; index++) {
+    final unit = value.codeUnitAt(index);
+    if (unit < 0x20 || unit == 0xfffe || unit == 0xffff) {
+      throw ArgumentError('csFont must be XML-safe text without controls');
+    }
+    if (unit >= 0xd800 && unit <= 0xdbff) {
+      if (++index >= value.length) {
+        throw ArgumentError('csFont must contain valid UTF-16');
+      }
+      final trail = value.codeUnitAt(index);
+      if (trail < 0xdc00 || trail > 0xdfff) {
+        throw ArgumentError('csFont must contain valid UTF-16');
+      }
+    } else if (unit >= 0xdc00 && unit <= 0xdfff) {
+      throw ArgumentError('csFont must contain valid UTF-16');
+    }
+  }
+  return value;
 }
 
 Iterable<WmlParagraph> _paragraphs(WmlDocument doc, StepInput s) {
