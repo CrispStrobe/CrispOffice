@@ -4,6 +4,15 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Preserve bounded embedded inline PNG/JPEG pictures through native editable
+  Zotero ODT import/export and further DOCX saves, including raster bytes,
+  accessible titles/descriptions, links and adjacent citation ownership.
+  Emit one frame per picture with unique drawing names, preserve image-run
+  styling, and keep identical headers continuous after name allocation.
+  Retain guarded graphic styles, raster budgets and atomic refusals for
+  unsupported pictures. See the
+  [qualified image work](../../docs/validation/zotero-odt-images-20261121/README.md).
+
 - Extend Word VBA with typed `Shading` bindings on selected Paragraph/Range
   objects, RGB/automatic and fixed-palette background assignments, and all 60
   named `WdColor` constants. Add guarded native `docx.paragraphShading` with
@@ -19,6 +28,17 @@ All notable changes to `quds_office_engine` are documented here.
   code-page String operands remain unsupported. Include a runnable Word BAS
   module and source/transaction/portable tests. See the
   [construction contract](../../docs/VBA_MACROS.md#text-construction-and-unicode-code-units).
+
+- Reopen supported native Zotero bibliographies saved by LibreOffice, including
+  inherited inert section styles and rich/empty entries. Validate unused
+  sequence declarations and retain protection/layout refusals. Qualify the
+  identified LibreOffice decimal zero-offset note convention against exact
+  visible ordinals. Preserve absolute editable-ODT table widths with physical
+  left/center/right alignment and admit inert border-model defaults only within
+  the bounded borderless reader. Retain actual converter fixtures and controlled
+  native refresh/edit/unlink regressions. See the
+  [round-trip record](../../docs/validation/zotero-odt-roundtrip-20261121/README.md)
+  for executed scope and remaining active-footnote/installed-plugin acceptance.
 
 - Extend bounded Word VBA with `Paragraph.Style` and selected `Range.Style`
   assignments by primary name or 13 built-in constants. Add guarded native

@@ -1,0 +1,39 @@
+{
+  "observed_at_utc": "2026-11-21T19:14:31.656Z",
+  "qualified_source": "ef05b99ec9bbf1d539181c8519eb41455d182603",
+  "integrated_main": "5c59a062e86e24d043ba06cfe8f0a69074c44f62",
+  "open_pull_requests": [
+    {
+      "number": 335,
+      "title": "Cache proofing waves and selection bands across repaints",
+      "state": "open",
+      "draft": false,
+      "head_ref": "perf/proofing-selection-path-cache",
+      "head_sha": "d7c44360304f9f2bb96e021d36da4db4906b4307",
+      "base_sha": "5c59a062e86e24d043ba06cfe8f0a69074c44f62",
+      "body": "Proofing wave paths and text-selection band paths are immutable for the same line/selection geometry, so reuse them across repaints instead of rebuilding every frame.",
+      "updated_at": "2026-11-21T19:14:22Z"
+    },
+    {
+      "number": 333,
+      "title": "Preserve native Zotero round trips through LibreOffice [skip ci]",
+      "state": "open",
+      "draft": true,
+      "head_ref": "codex/zotero-odt-roundtrip-20261121",
+      "head_sha": "e48b1b617f76823ec4fefd7ce17c0bb4c848aa65",
+      "base_sha": "4970f71f983535d045ce263e86835b499db4fda9",
+      "body": "## Why\n\nNative editable ODT exports can retain Zotero metadata through a LibreOffice save while still failing to reopen in Quds. The frozen current-main reproduction identifies bibliography section styles, note offset conventions and table-width semantics as concrete gaps.\n\n## Changes in progress\n\n- Admit only inert inherited bibliography section styles and validate unused sequence declarations.\n- Qualify the identified LibreOffice decimal note-offset convention against exact visible ordinals.\n- Preserve fixed table widths with physical alignment on the explicit editable Zotero export path.\n- Retain actual converter fixtures and regression checks for active field edits, repeated saves and unlinking.\n\nThe initial intake accounts for all 375 captured refs: 361 ancestors and 14 independently verified historical equivalents. All current branch tips and upstream heads are included in the baseline.\n\n## Validation status\n\nInitial combined local checks passed 1,415 engine cases across 71 files and 108 editor cases across six files, with no failures/skips and unchanged captured inputs. Follow-up actual file cycles exposed a DOCX uniform table-padding omission and an ODF soft-page-break hint; their fixes and final combined qualification are in progress. These initial counts are not a claim about final source.\n\nThe converter is LibreOfficeDev 26.8.0.0.alpha0, build 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5. Actual installed Zotero plugin/release-host acceptance and active footnote separator geometry remain separate boundaries.\n\nUser-authorized delivery uses incremental remote checkpoints and a normal merge to main after local validation. GitHub Actions are not queried or awaited; no protection changes or remote history rewrites are used.\n\nWork record: docs/validation/zotero-odt-roundtrip-20261121/README.md",
+      "updated_at": "2026-11-21T19:13:37Z"
+    }
+  ],
+  "other_heads": [
+    {
+      "branch": "work/mail-scheduled-send-20261121",
+      "sha": "964783488cfa8079464e7dc80c1df6bb139323f5",
+      "fetched_at_utc": "2026-11-21T19:12:57Z",
+      "disposition": "Preserve separately; exact-head work record says implementation and final combined-source qualification are in progress. Earlier 1206 engine, 19 editor and 143 Studio passes predate reader/writer/deserializer/table changes and the draft Zotero integration at this head.",
+      "evidence": "docs/validation/mail-scheduled-send-20261121/README.md"
+    }
+  ],
+  "ci_status_or_workflow_queries": false
+}

@@ -1,5 +1,20 @@
 # Zotero validation
 
+## 21 November 2026 — native LibreOffice reopening continuation
+
+The [current round-trip record](validation/zotero-odt-roundtrip-20261121/README.md)
+records a frozen-main reproduction, implementation checkpoints, pinned local
+checks and unmodified LibreOffice-saved files. It extends the earlier inventory
+checks to actual editable reopening, repeated saves and native field updates.
+Inert bibliography section styles, strict decimal note-offset compatibility and
+fixed table export geometry have explicit scopes. Used footnote separator
+geometry remains unsupported, and the identified development converter does
+not establish supported-release or installed Zotero-plugin acceptance.
+
+The work record owns current totals and source identities. Earlier sections
+below are historical milestones, retain their original findings and are not
+summed into the current result.
+
 ## 21 November 2026 — bounded rich native ODT import
 
 The [rich ODT continuation](validation/zotero-rich-odt-20261121/README.md)

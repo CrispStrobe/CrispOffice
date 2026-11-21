@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- Persist Outbox scheduling in validated payload v3 with canonical UTC deadlines
+  and monotonic revisions; read v1/v2 entries as unscheduled without losing
+  earlier uncertainty. Require explicit revision comparison for schedule edits
+  and all later state changes, including after a deadline is cleared. Reject
+  stale timers, cancellation and edit-as-draft decisions across rescheduling;
+  preserve frozen bytes, attempt history and transaction rollback guarantees.
+  No database schema migration is required.
+
 - Add schema-v10 account-owned compose settings and ordered Quick Text with
   atomic revision-guarded saves, bounded corruption reads and strict UTF-8
   decoding. Preserve settings on logout, clear them on account/profile removal,

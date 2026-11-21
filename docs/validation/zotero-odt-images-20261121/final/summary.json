@@ -1,0 +1,86 @@
+{
+  "qualified_commit": "58fe5b978f63af282ccd3f3406f86e431e440030",
+  "qualified_tree": "a2d9f9663c35caf6896a27c917384bfdf9bde7a4",
+  "created_at_utc": "2026-11-21T19:04:26.208756+00:00",
+  "accepted": true,
+  "tests": {
+    "engine": {
+      "passed": 1265,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0
+    },
+    "editor": {
+      "passed": 44,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0
+    },
+    "studio": {
+      "passed": 41,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0
+    }
+  },
+  "unique_passing_tests": 1350,
+  "formatter_and_fatal_info_analyzer_passed": true,
+  "source_binding": {
+    "qualified_commit": "58fe5b978f63af282ccd3f3406f86e431e440030",
+    "qualified_tree": "a2d9f9663c35caf6896a27c917384bfdf9bde7a4",
+    "qualification_source_unchanged": true,
+    "all_tracked_qualification_inputs_match_published_git_blobs": true,
+    "all_converter_inputs_match_published_git_blobs": true,
+    "tracked_qualification_input_count": 2117,
+    "runtime_only_input_count": 1,
+    "converter_input_count": 366,
+    "runtime_only_inputs": {
+      ".dart_tool/package_config.json": {
+        "sha256": "56cea6e3904788326ac7f3d9079f4441e98ce34d47d29a8545986652e9f94e96",
+        "bytes": 34957,
+        "git_blob": "7f9b9d47dd83e59b0a0c647be1961ea06981af25"
+      }
+    }
+  },
+  "converter": {
+    "converter_version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+    "accepted": true,
+    "verify_results": [
+      {
+        "file": "png-citations",
+        "inputSha256": "93565ea4f8d851c1029b2f0fc20779bae9a06e7bf458e5aabc07a1ed3d2f7795",
+        "pictures": 2,
+        "activeCitations": 2,
+        "cycles": 3,
+        "matched": true
+      },
+      {
+        "file": "jpeg-citations",
+        "inputSha256": "7fc189a61221b3c8e8b22da4586a0caee78f0718e4db44758b25a2e960e71687",
+        "pictures": 2,
+        "activeCitations": 2,
+        "cycles": 3,
+        "matched": true
+      }
+    ],
+    "saved_bytes_untouched": true,
+    "source_unchanged": true,
+    "source_file_count": 366,
+    "artifact_count": 24
+  },
+  "archives": {
+    "final": {
+      "archive": "execution.tar.gz",
+      "bytes": 403352,
+      "sha256": "6318534adb47fbf232500c480999a17d413f213f90483ccfcf47783f382926fd",
+      "member_count": 65
+    },
+    "diagnostics": {
+      "archive": "execution.tar.gz",
+      "bytes": 549061,
+      "sha256": "0431adf9268ad0d77ac9eed0ff50ca3370a43f8f99fe7bfcdc756eeb0af18b9b",
+      "member_count": 124
+    }
+  },
+  "ci_actions_queried_or_awaited": false
+}

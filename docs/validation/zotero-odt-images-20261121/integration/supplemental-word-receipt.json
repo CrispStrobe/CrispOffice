@@ -1,0 +1,86 @@
+{
+  "started_at_utc": "2026-11-21T19:12:59.073492+00:00",
+  "head": "ef05b99ec9bbf1d539181c8519eb41455d182603",
+  "tree": "ecbdd52a92fcba1f6bc1daf842faa8040ae9b380",
+  "expected_head": "ef05b99ec9bbf1d539181c8519eb41455d182603",
+  "expected_tree": "ecbdd52a92fcba1f6bc1daf842faa8040ae9b380",
+  "clean_before": false,
+  "dirty_paths_before": [
+    "docs/validation/zotero-odt-images-20261121/README.md",
+    "packages/quds_office_engine/CHANGELOG.md"
+  ],
+  "allowed_documentation_edits": [
+    "docs/validation/zotero-odt-images-20261121/README.md",
+    "packages/quds_office_engine/CHANGELOG.md"
+  ],
+  "command": [
+    "/workspace/scratch/81e9cddb3100/runtime/bin/dart",
+    "--packages=/workspace/scratch/81e9cddb3100/quds_office_suite/.dart_tool/package_config.json",
+    "/workspace/scratch/81e9cddb3100/runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+    "--reporter",
+    "json",
+    "--concurrency",
+    "4",
+    "test/office_macro_word_shading_test.dart",
+    "test/office_vba_text_construction_test.dart",
+    "test/office_vba_word_shading_integration_test.dart",
+    "test/office_vba_word_shading_test.dart"
+  ],
+  "cwd": "/workspace/scratch/81e9cddb3100/quds_office_suite/packages/quds_office_engine",
+  "stdout": "tests.stdout.jsonl",
+  "stderr": "tests.stderr.log",
+  "process_status": 0,
+  "input_count": 2329,
+  "additional_tracked_path_count": 206,
+  "source_unchanged": true,
+  "accepted": true,
+  "scope": "Supplemental source binding only; these cases overlap the integrated gate and do not increase the total case count.",
+  "environment_setup": "source /workspace/scratch/81e9cddb3100/runtime/env.sh",
+  "runtime": {
+    "test_entry_sha256": "43c93a6773b13eecbf7e9d1c0511da4cb0b8b3cf55f051cf124f34d4843af008",
+    "dart_invoker_sha256": "b4bfc38b3e590e21f85ef76f5ed4ccfefbd7d09302a1552d34c4c08e7b28c6f2",
+    "pubspec_lock_sha256": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+    "package_config_sha256": "56cea6e3904788326ac7f3d9079f4441e98ce34d47d29a8545986652e9f94e96"
+  },
+  "tests": {
+    "passed": 338,
+    "failed": 0,
+    "skipped": 0,
+    "errors": 0,
+    "terminal": [
+      {
+        "success": true,
+        "type": "done",
+        "time": 11529
+      }
+    ],
+    "passed_per_suite": {
+      "office_macro_word_shading_test.dart": 48,
+      "office_vba_text_construction_test.dart": 153,
+      "office_vba_word_shading_integration_test.dart": 12,
+      "office_vba_word_shading_test.dart": 125
+    },
+    "case_count": 338,
+    "expected_case_count": 338
+  },
+  "tests_accepted": true,
+  "changed_inputs": [],
+  "prior_integrated_input_mismatches": [],
+  "clean_after": false,
+  "dirty_paths_after": [
+    "docs/validation/zotero-odt-images-20261121/README.md",
+    "packages/quds_office_engine/CHANGELOG.md"
+  ],
+  "documentation_edits_only": true,
+  "head_unchanged": true,
+  "git_blob_mismatches": {
+    "before": [],
+    "after": []
+  },
+  "source_binding_matches": true,
+  "finished_at_utc": "2026-11-21T19:13:24.314116+00:00",
+  "stdout_sha256": "a77addc4a3a198027c616de1c3ffaa51f95c88b98771211ebe98b1395b0899a1",
+  "stdout_bytes": 158787,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_bytes": 0
+}
