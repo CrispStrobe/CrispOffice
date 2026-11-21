@@ -1,0 +1,706 @@
+[
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+    "name": "body navigation selects the citation and leaves contents and history"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+    "name": "locked citations remain navigable in read-only selecting mode"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+    "name": "view-only mode refuses navigation and keyboard focus"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+    "name": "stale citation handles cannot select replacement text"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+    "name": "identically reinserted citations do not revive a stale run handle"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+    "name": "removed paragraphs and fields from another document are rejected"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+    "name": "body table cells use their actual flattened paragraph index"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+    "name": "complete bibliography range is selected across paragraphs in cell false"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+    "name": "complete bibliography range is selected across paragraphs in cell true"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+    "name": "bibliography spanning unrelated table cells is not selectable"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+    "name": "note false paragraph false maps hidden reference-space offsets"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+    "name": "note false paragraph true maps hidden reference-space offsets"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+    "name": "note true paragraph false maps hidden reference-space offsets"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+    "name": "note true paragraph true maps hidden reference-space offsets"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+    "name": "note bibliography selects all exposed paragraphs"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+    "name": "unsupported headers comments frames and note tables leave selection alone"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+    "name": "only an exact complete body bibliography selection resolves its field"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+    "name": "only an exact complete Notes bibliography selection resolves its field"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+    "name": "invalid citation JSON is not a navigation target"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+    "name": "navigation refuses to interrupt active Notes composition"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+    "name": "body navigation leaves Notes and object contexts before focusing"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+    "name": "focus requests retain Notes selection and skip stale deleted notes"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+    "name": "Add Note opens Notes and single-paragraph body targets without editing before native calls"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+    "name": "body composition rejects every native command before pending edits commit"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+    "name": "body composition beginning during native work rejects completed changes"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+    "name": "body focus return does not clear active composition or change selection"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+    "name": "Notes focus return does not reveal or interrupt active composition"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+    "name": "reattaching an unchanged body target preserves the complete IME draft"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+    "name": "accepted IME text retains its composition through reattachment"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+    "name": "reattachment does not reuse composition after changing paragraph"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+    "name": "reattachment does not reuse composition after changing caret"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+    "name": "reattachment does not reuse composition after changing text"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_nested_table_controller_test.dart",
+    "name": "addNote nested tables preserve body citation order, undo and DOCX saves"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_nested_table_controller_test.dart",
+    "name": "addNote nested tables preserve footnote citation order, undo and DOCX saves"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_nested_table_controller_test.dart",
+    "name": "addNote nested tables preserve endnote citation order, undo and DOCX saves"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_nested_table_controller_test.dart",
+    "name": "addNote invalid inner merge refuses the whole authored note"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_nested_table_controller_test.dart",
+    "name": "addNote nested payload keeps the existing table destination guard"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_nested_table_controller_test.dart",
+    "name": "addAnnotation nested tables preserve body citation order, undo and DOCX saves"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_nested_table_controller_test.dart",
+    "name": "addAnnotation nested tables preserve footnote citation order, undo and DOCX saves"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_nested_table_controller_test.dart",
+    "name": "addAnnotation nested tables preserve endnote citation order, undo and DOCX saves"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_nested_table_controller_test.dart",
+    "name": "addAnnotation invalid inner merge refuses the whole authored note"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_nested_table_controller_test.dart",
+    "name": "addAnnotation nested payload keeps the existing table destination guard"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_nested_table_controller_test.dart",
+    "name": "nested insertion refuses a stale body selection"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_nested_table_controller_test.dart",
+    "name": "nested insertion refuses a stale footnote selection"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_nested_table_controller_test.dart",
+    "name": "nested insertion refuses a stale endnote selection"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_nested_table_controller_test.dart",
+    "name": "cancellation after nested content staging drains Desktop without applying"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_nested_table_controller_test.dart",
+    "name": "nested cited cells remain visible and contained through three DOCX saves"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "ordinary note fractional image extents survive repeated DOCX saves"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addNote image and style 0 apply as one history step"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addNote image and style 1 apply as one history step"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addNote image and style 2 apply as one history step"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addNote stale completed image has no live package effects"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addNote invalid later image rejects the full research result"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addNote image flow keeps the cross-section selection guard"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addNote image flow keeps the cross-table selection guard"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addNote image flow keeps the cross-field selection guard"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addNote image flow keeps the viewing guard"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addNote image flow keeps the selecting guard"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addNote renders the imported PNG beside its citation"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addNote cancelled staged image leaves no media or preferences"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addAnnotation image and style 0 apply as one history step"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addAnnotation image and style 1 apply as one history step"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addAnnotation image and style 2 apply as one history step"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addAnnotation stale completed image has no live package effects"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addAnnotation invalid later image rejects the full research result"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addAnnotation image flow keeps the cross-section selection guard"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addAnnotation image flow keeps the cross-table selection guard"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addAnnotation image flow keeps the cross-field selection guard"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addAnnotation image flow keeps the viewing guard"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addAnnotation image flow keeps the selecting guard"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addAnnotation renders the imported PNG beside its citation"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addAnnotation cancelled staged image leaves no media or preferences"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_preview_test.dart",
+    "name": "plain scientific comparisons and authored line breaks remain literal"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_preview_test.dart",
+    "name": "plain notes preserve whitespace and normalize platform line endings"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_preview_test.dart",
+    "name": "paragraphs headings lists and soft breaks retain their boundaries"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_preview_test.dart",
+    "name": "explicit repeated and trailing breaks are retained"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_preview_test.dart",
+    "name": "leading explicit breaks survive without phantom block boundaries"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_preview_test.dart",
+    "name": "table rows and cells remain distinguishable"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_preview_test.dart",
+    "name": "preformatted text retains indentation, tabs and comparisons"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_preview_test.dart",
+    "name": "normal inline whitespace collapses without joining adjacent words"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_preview_test.dart",
+    "name": "entities decode once and decoded markup stays literal"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_preview_test.dart",
+    "name": "entities separated by markup never become a newly decoded entity"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_preview_test.dart",
+    "name": "multilingual text and numeric Unicode references are retained"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_preview_test.dart",
+    "name": "unknown named entities remain visible and invalid numeric ones are replaced"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_preview_test.dart",
+    "name": "unquoted HTML void images are omitted and disclosed"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_preview_test.dart",
+    "name": "quoted attribute brackets do not end a tag or become note text"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_preview_test.dart",
+    "name": "script and style raw text can contain comparisons and invalid XML"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_preview_test.dart",
+    "name": "raw-text closing names require an exact tag name"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_preview_test.dart",
+    "name": "embedded and hidden container descendants are omitted together"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_preview_test.dart",
+    "name": "comments disappear without interpreting their content"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_preview_test.dart",
+    "name": "empty and formatting-only notes remain empty"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_preview_test.dart",
+    "name": "misnested incomplete and ambiguous markup refuses the whole preview"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_preview_test.dart",
+    "name": "UTF-8 byte budget accepts the boundary and refuses excess multibyte text"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_preview_test.dart",
+    "name": "depth attribute and token budgets bound work even for empty markup"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_preview_test.dart",
+    "name": "many literal less-than signs do not trigger quadratic tag scanning"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "name": "footnote target preserves the body caret and clean history"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "name": "footnote field lookup accounts for the hidden marker separator"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "name": "footnote second paragraph uses pane offsets for field lookup"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "name": "footnote native insertion with type 0 keeps note ownership and undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "name": "footnote native insertion with type 1 keeps note ownership and undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "name": "footnote contained selection edits its citation and restores on undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "name": "footnote local citation insertion retains metadata and selection history"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "name": "footnote local second-paragraph insertion retains the first paragraph"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "name": "footnote local bibliography insertion is refused without a body fallback"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "name": "footnote native bibliography insertion is refused atomically"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "name": "endnote target preserves the body caret and clean history"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "name": "endnote field lookup accounts for the hidden marker separator"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "name": "endnote second paragraph uses pane offsets for field lookup"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "name": "endnote native insertion with type 0 keeps note ownership and undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "name": "endnote native insertion with type 2 keeps note ownership and undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "name": "endnote contained selection edits its citation and restores on undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "name": "endnote local citation insertion retains metadata and selection history"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "name": "endnote local second-paragraph insertion retains the first paragraph"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "name": "endnote local bibliography insertion is refused without a body fallback"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "name": "endnote native bibliography insertion is refused atomically"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "name": "imported leading whitespace remains part of the note selection"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "name": "foreign notes and invalid selections never replace a valid target"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "name": "body caret navigation invalidates the note target"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "name": "note selection spanning paragraphs never inserts into the body"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "name": "active note IME composition prevents native and local insertion"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "name": "selection change invalidates a pending note citation result"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "name": "other note change invalidates a pending note citation result"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "name": "clear change invalidates a pending note citation result"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "name": "deletion change invalidates a pending note citation result"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "name": "IME change invalidates a pending note citation result"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "name": "direct host detached note rejects the detached note result"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "name": "direct host replaced paragraph rejects the detached note result"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+    "name": "direct host changed text rejects the detached note result"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+    "name": "typing undo keeps the visible note target with parked body selection false"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+    "name": "typing undo keeps the visible note target with parked body selection true"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+    "name": "footnote selection survives toolbar focus and opens current field"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+    "name": "footnote native insertion updates pane and exact undo/redo caret"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+    "name": "footnote native editing keeps note text and selection on undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+    "name": "endnote selection survives toolbar focus and opens current field"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+    "name": "endnote native insertion updates pane and exact undo/redo caret"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+    "name": "endnote native editing keeps note text and selection on undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+    "name": "returning to the canvas clears the retained note target"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+    "name": "native cancellation preserves note text and pane selection"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+    "name": "changing the note target invalidates an open workspace"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+    "name": "narrow LTR pane retains citation selection"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+    "name": "narrow RTL pane retains citation selection"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_occurrence_navigation_test.dart",
+    "name": "cited-source navigation reveals the read-only body editor offline"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_occurrence_navigation_test.dart",
+    "name": "cited-source navigation reveals the read-only footnote editor offline"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_occurrence_navigation_test.dart",
+    "name": "cited-source navigation reveals the read-only endnote editor offline"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_occurrence_navigation_test.dart",
+    "name": "a replaced document invalidates occurrence navigation before closing"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_occurrence_navigation_test.dart",
+    "name": "a changed field cache fails final validation after all dialogs close"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_occurrence_navigation_test.dart",
+    "name": "moving the caret while reviewing occurrences keeps the new caret"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_rich_controller_test.dart",
+    "name": "native mixed refresh is one undo step and survives DOCX"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_rich_controller_test.dart",
+    "name": "typing inside a mixed citation appends outside it and undo restores the packet"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_rich_controller_test.dart",
+    "name": "partial selection deletion removes one complete citation with undo and redo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_rich_controller_test.dart",
+    "name": "Enter inside the citation splits after its complete field and is undoable"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_rich_controller_test.dart",
+    "name": "multiline paste inside the citation starts outside the complete field"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_rich_controller_test.dart",
+    "name": "partial citation copy retains linked mixed content through internal paste and undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_rich_controller_test.dart",
+    "name": "mixed cache moves inline to note type 1 and back without setText"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_rich_controller_test.dart",
+    "name": "mixed cache moves inline to note type 2 and back without setText"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart",
+    "name": "saved-search browsing keeps selected identities through filters and pages"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart",
+    "name": "saved-search list pagination deduplicates menu keys and refresh keeps source selection"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart",
+    "name": "group library resets the saved-search view without losing other selected sources"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart",
+    "name": "a deleted saved search removes stale results and retains source selection"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart",
+    "name": "closing during saved-search execution discards the response"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart",
+    "name": "an externally changed library cannot display a pending saved-search result"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart",
+    "name": "empty saved searches remain usable in a narrow viewport"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_saved_search_test.dart",
+    "name": "switching to the online source removes saved-search navigation"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_snapshot_test.dart",
+    "name": "stored selection CSL JSON preserves offline metadata, literal text and unknown nested values"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_snapshot_test.dart",
+    "name": "stored selection CSL JSON keeps explicit selection order and duplicate IDs without collapsing"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_snapshot_test.dart",
+    "name": "stored selection CSL JSON round-trips mixed personal, group, local and offline references"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_snapshot_test.dart",
+    "name": "stored selection CSL JSON retains synced and local aliases plus existing opaque metadata"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_snapshot_test.dart",
+    "name": "stored selection CSL JSON copies reference data without turning citation modifiers into CSL"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_snapshot_test.dart",
+    "name": "stored selection CSL JSON supplies the existing item ID when stored metadata has no ID"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_snapshot_test.dart",
+    "name": "stored selection CSL JSON rejects incomplete records atomically instead of silently omitting them"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_snapshot_test.dart",
+    "name": "stored selection CSL JSON refuses malformed linked aliases without replacing unknown data"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_snapshot_test.dart",
+    "name": "stored selection CSL JSON keeps unlinked URI-looking data inert and unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_snapshot_test.dart",
+    "name": "stored selection CSL JSON enforces the record bound and rejects an empty selection"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_snapshot_test.dart",
+    "name": "stored selection CSL JSON enforces the import byte limit for multilingual copied data"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_source_identity_test.dart",
+    "name": "late alias bridges join bibliography entries and keep first data"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_source_identity_test.dart",
+    "name": "transitive aliases without CSL still deduplicate the bibliography"
+  }
+]

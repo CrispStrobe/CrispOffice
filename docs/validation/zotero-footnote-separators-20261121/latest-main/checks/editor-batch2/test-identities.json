@@ -1,0 +1,818 @@
+[
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_children_dialog_test.dart",
+    "name": "online children are explicitly fetched and preserve selection and drafts"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_children_dialog_test.dart",
+    "name": "desktop children are explicitly fetched and preserve selection and drafts"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_children_dialog_test.dart",
+    "name": "headerless desktop explains why child browsing is disabled"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_children_dialog_test.dart",
+    "name": "research inspection in selecting mode leaves history and saved document unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_children_dialog_test.dart",
+    "name": "research inspection in viewing mode leaves history and saved document unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_children_dialog_test.dart",
+    "name": "online late child response cannot cross a session library change"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_children_dialog_test.dart",
+    "name": "desktop late child response cannot cross a session library change"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_children_dialog_test.dart",
+    "name": "a library change after preview blocks clipboard copy and clears the old list on return"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_children_dialog_test.dart",
+    "name": "changing libraries in parent details blocks child dispatch"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_children_dialog_test.dart",
+    "name": "closing a pending child view prevents late results from reopening it"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_children_test.dart",
+    "name": "online notes are inert and copied"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_children_test.dart",
+    "name": "desktop notes are inert and copied"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_children_test.dart",
+    "name": "attachment details remain text and never fetch file contents"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_children_test.dart",
+    "name": "page failure retains the current page and retry uses its target"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_children_test.dart",
+    "name": "empty and permission-filtered results stay explicit"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_children_test.dart",
+    "name": "a changed library version resets pagination before showing data"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_children_test.dart",
+    "name": "closing while loading discards late data"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_children_test.dart",
+    "name": "changed connection rejects both pending data and future requests"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_children_test.dart",
+    "name": "changed connection prevents copying an open note"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_children_test.dart",
+    "name": "failed clipboard leaves selectable note text available"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_children_test.dart",
+    "name": "unsupported note markup affects only its preview"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_children_test.dart",
+    "name": "embedded images are disclosed without resource requests"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_children_test.dart",
+    "name": "long note headings are bounded while preview and copy stay full"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_children_test.dart",
+    "name": "small rtl view supports enlarged text and back"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_children_test.dart",
+    "name": "small ltr view supports enlarged text and back"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+    "name": "all processor calls remain detached until complete and explicit apply"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+    "name": "refresh undo restores the original noncollapsed text selection"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+    "name": "an explicitly selected citation edits in place without a new field"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+    "name": "new catalog citation, preferences and formatting form one undo step"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+    "name": "native picker insertion into note type 1 is fully undoable"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+    "name": "native picker insertion into note type 2 is fully undoable"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+    "name": "two citations convert in descending order without losing surrounding text"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+    "name": "citation conversion retains an unrelated note reference in the same paragraph"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+    "name": "undo after DOCX save restores native preferences and note ownership"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+    "name": "late insertion refusal rolls back earlier field updates and leaves history clean"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+    "name": "locked field introduced during review refuses the whole result"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+    "name": "caret change invalidates a pending processor result"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+    "name": "selection change invalidates a pending processor result"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+    "name": "revision change invalidates a pending processor result"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+    "name": "view mode change invalidates a pending processor result"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+    "name": "track changes change invalidates a pending processor result"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+    "name": "protection change invalidates a pending processor result"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+    "name": "document change invalidates a pending processor result"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+    "name": "dispose change invalidates a pending processor result"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+    "name": "processor cancellation, canceled seed and no-op keep clean history"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+    "name": "new bibliography block and preferences have one undo and retain paragraph identities"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "name": "a direct citation action starts once without navigating tabs"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "name": "a direct action edits the citation enclosing the selection"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "name": "a direct refresh action uses its native command"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "name": "a direct setDocPrefs action uses its native command"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "name": "a direct addEditBibliography action uses its native command"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "name": "a direct desktop action without a transport keeps the document"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "name": "desktop tools are absent when the host has no local transport"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "name": "annotation workspace command discards cancelled staged edits"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "name": "annotation workspace action is disabled during Track changes"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "name": "native picker inserts a linked footnote and preferences as one undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "name": "Document style invokes Zotero preferences and persists its chosen locale"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "name": "native cancel without changes leaves the undo history clean"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "name": "unsupported capital variants are reviewed before mutation and can be discarded"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "name": "native small caps apply without a simplification review"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "name": "mixed formatting applies styled runs while retaining one protected field"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "name": "moving the caret during review prevents a stale insertion"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "name": "Zotero alert button set 0 returns its exact OK code"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "name": "Zotero alert button set 1 returns its exact Cancel code"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "name": "Zotero alert button set 2 returns its exact No code"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "name": "Zotero alert button set 3 returns its exact Yes code"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "name": "desktop error alert 0 discards staged fields even after complete"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "name": "desktop error alert 2 discards staged fields even after complete"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "name": "cancel waits for a native response then drains without live mutation"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+    "name": "stale editor target reports an error and drains the native transaction"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart",
+    "name": "initial collection duplicates keep one selectable latest entry"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart",
+    "name": "later collection pages replace duplicate metadata and retain selected keys"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart",
+    "name": "a changed library discards its pending collection page"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart",
+    "name": "closing during collection pagination discards the response"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "name": "connected chooser supports keyboard search and selection beyond visible results"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "name": "connected Zotero search is explicit, paged and staged with fresh options"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "name": "connected selection review includes hidden sources and stages removal and order"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "name": "removing hidden connected selections frees capacity and supports an empty selection"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "name": "failed connected search and cancellation leave the citation untouched"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "name": "connected search remains usable in narrow doubled-text RTL layout"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "name": "editing a custom locator requires text review and clears stale RTF"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "name": "author options and affixes invalidate custom cache, undoing edits restores it"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "name": "reordering duplicate IDs keeps edited options on the correct occurrence"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "name": "added sources reset occurrence options but keep complete data"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "name": "oversized combined citation keeps its draft and can be repaired"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "name": "chooser preserves hidden duplicate-ID selections and add order"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "name": "filtering scrolled source candidates starts at the first match"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "name": "cancelled chooser and composer do not modify their inputs"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "name": "empty citations cannot apply and can recover by adding a source"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "name": "addition limit permits deselection and prevents a 21st source"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "name": "larger imported clusters retain every source and remain editable"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "name": "custom text requires review after changing membership or order"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "name": "confirming unchanged custom text discards old formatted cache"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "name": "restoring the original sequence preserves imported formatting"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "name": "choosing basic format regenerates text for the revised sources"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "name": "single-source preview receives the current source after edits"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "name": "failed preview keeps draft text and allows a successful retry"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "name": "pending preview cannot mutate sources or resurrect a closed draft"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "name": "offline and malformed identities do not offer connected previews"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "name": "nested source details retain reordered options and custom review"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "name": "composer and chooser work at doubled text in narrow TextDirection.rtl"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_composer_test.dart",
+    "name": "composer and chooser work at doubled text in narrow TextDirection.ltr"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_connected_alias_test.dart",
+    "name": "refresh counts 1,001 declared aliases as one linked source"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_connected_alias_test.dart",
+    "name": "bibliography counts 51 declared aliases as one linked source"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_connected_alias_test.dart",
+    "name": "basic refresh uses late custom alias bridges in one undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_connected_alias_test.dart",
+    "name": "an unrelated group keeps the same item key in another request"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_connected_alias_test.dart",
+    "name": "alias refresh mismatch discards all staged updates"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_connected_alias_test.dart",
+    "name": "alias refresh missing discards all staged updates"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_connected_alias_test.dart",
+    "name": "alias refresh server discards all staged updates"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_connected_alias_test.dart",
+    "name": "alias refresh stale discards all staged updates"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_connected_alias_test.dart",
+    "name": "a declared source without an online alias refuses before reads"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_connected_alias_test.dart",
+    "name": "API bibliography verifies and formats one alias representative"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_connected_alias_test.dart",
+    "name": "closing during an alias refresh cannot apply its late response"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_controller_test.dart",
+    "name": "citation insertion, undo and redo preserve source and advance save revisions"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_controller_test.dart",
+    "name": "editing and unlinking are independent repeatable undo steps"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_controller_test.dart",
+    "name": "batch refresh updates variable-length fields in one atomic undo step"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_controller_test.dart",
+    "name": "failed refresh leaves all text, save revisions and undo history unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_controller_test.dart",
+    "name": "foreign fields, stale handles and duplicate identities are rejected"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_controller_test.dart",
+    "name": "bibliography creation and replacement retain field metadata through history"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_controller_test.dart",
+    "name": "rich bibliography insertion and replacement survive history and DOCX save"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_controller_test.dart",
+    "name": "mismatched rich bibliography insertion preserves redo and revision"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_controller_test.dart",
+    "name": "mismatched rich bibliography update retains cache, metadata and history"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_controller_test.dart",
+    "name": "viewing mode protects rich bibliography operations"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_controller_test.dart",
+    "name": "tracked mode protects rich bibliography operations"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_controller_test.dart",
+    "name": "same-text citation metadata edits retain imported rich cache styles"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_controller_test.dart",
+    "name": "viewing mode does not mutate Zotero fields or history"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_controller_test.dart",
+    "name": "tracked mode never silently bypasses revision history for Zotero edits"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_controller_test.dart",
+    "name": "citation insertion cannot enter a bibliography middle paragraph"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_controller_test.dart",
+    "name": "pending revisions protect affected paragraphs even when tracking is off"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_controller_test.dart",
+    "name": "pending changes in other paragraphs do not block an independent citation edit"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart",
+    "name": "opening references scans a 1000-citation document once"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart",
+    "name": "bibliography-only documents keep source actions disabled"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "citation editing searches connected Zotero without leaving the editor"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "refresh batches 50 sources and duplicate citations into one undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "refresh batches 51 sources and duplicate citations into one undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "refresh batches 101 sources and duplicate citations into one undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "refresh batches 1000 sources and duplicate citations into one undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "refresh isolates identical keys across libraries; incomplete=false"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "refresh isolates identical keys across libraries; incomplete=true"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "refresh chunks each library without combining matching keys"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "later same-library batch missing CSL keeps all citations"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "later same-library batch server error keeps all citations"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "successful batch backoff stops refresh without partial changes"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "closing during the second batch stops further refresh requests"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "stale target after the second batch stops the third request"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "refresh refuses 1001 distinct sources before any request"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "missing CSL in a later library refuses all staged updates"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "changed edit target stops refresh before the next library"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "unsynced refresh keeps URI aliases and unknown citation data"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "wrong desktop profile with the same item key cannot refresh"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "online operations reject local-only references before a request"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "online refresh can use a numeric alias while retaining old local URI"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "different local profiles are not combined through the same route"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "unsynced single-source preview verifies identity: mismatch false"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "unsynced single-source preview verifies identity: mismatch true"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "unsynced selected export verifies sources before copying reference data"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "changed profile cannot copy another source under a selected item key"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "unsynced bibliography verifies selection and requires review before insertion"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "reviewed bibliography keeps rich runs through save and undo"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "bibliography review offers an explicit editable plain result"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "cancelling rich bibliography review keeps history unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "a changed caret rejects a reviewed rich bibliography"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "a changed revision rejects a reviewed rich bibliography"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "rich review and format limitation fit a narrow viewport"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "unchanged imported citation keeps its rich cache and native formatting metadata"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "older desktop cannot render an unverified aggregate bibliography"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "local source without CSL or identity is not refetched by a bare key"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "desktop account source inserts without using the saved cloud key"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "desktop unsynced source inserts without using the saved cloud key"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "desktop citation-key source inserts without using the saved cloud key"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "switching sources makes no requests and preserves the cloud credential"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "a host without desktop transport offers only the supported source"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "desktop connection and errors fit a 320 by 640 viewport"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "offline CSL import inserts source metadata and can be undone"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "cancelling the citation composer leaves document and history unchanged"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "a changed caret while the composer is open blocks stale insertion"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "a changed revision while the composer is open blocks stale insertion"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "mock Web API connection, pagination and search keep the key outside the document"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "unchecking Remember removes the saved key immediately without connecting"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "imported bibliography customizations cannot be overwritten by basic update"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+    "name": "dialog, offline import and composer fit a 320 by 640 viewport"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+    "name": "direct mode needs a command before opening a dialog"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+    "name": "body composition prevents modal focus changes and native requests"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+    "name": "composition starting during native work remains intact on return"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+    "name": "native citation returns to writing with one undo operation"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+    "name": "direct edit updates the selected field and returns focus"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+    "name": "refresh changes existing text and returns to the document"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+    "name": "unchanged addEditCitation returns without dirtying the file"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+    "name": "unchanged refresh returns without dirtying the file"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+    "name": "unchanged setDocPrefs returns without dirtying the file"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+    "name": "unchanged addEditBibliography returns without dirtying the file"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+    "name": "chosen document preferences persist before returning"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+    "name": "an unavailable host shows a recoverable error"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+    "name": "unavailable annotation command keeps version guidance and data"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+    "name": "busy desktop errors stay visible and never restart the request"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+    "name": "formatting review discards then returns"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+    "name": "formatting review applies then returns"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+    "name": "a stale formatting target stays open without applying the result"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+    "name": "cooperative cancellation returns only after the response drains"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+    "name": "completion never dismisses a newer host dialog"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+    "name": "the ordinary references workspace remains available after a command"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+    "name": "the returned body accepts keyboard input immediately"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+    "name": "a direct citation returns to its footnote caret"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+    "name": "a direct citation returns to its endnote caret"
+  }
+]

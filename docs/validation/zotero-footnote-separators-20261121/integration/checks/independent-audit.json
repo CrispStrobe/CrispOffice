@@ -1,0 +1,755 @@
+{
+  "status": "accepted",
+  "audited_at_utc": "2026-11-21T22:10:11.072207+00:00",
+  "source_checkpoint": "ad577ea82695231b5932d6b973f92b5156b1d2d6",
+  "retained_engine_source_checkpoint": "a1b555979b25c5586f27915cf219a95e886febd7",
+  "source_continuity_artifact": {
+    "path": "/workspace/scratch/12e9ca120c75/integrated-source-continuity.json",
+    "sha256": "fe7cf34ffc8373b77d733a7969206e3dd2ebed50fb742e58f022337776222007",
+    "status": "accepted"
+  },
+  "current_head": "ad577ea82695231b5932d6b973f92b5156b1d2d6",
+  "scope": "Read-only replay of integrated UI gates at the published merge, combined with historical engine results explicitly justified by source continuity. No test suites were started by this audit.",
+  "expected_gates": [
+    "engine-final",
+    "editor-batch1",
+    "editor-batch2",
+    "editor-batch3",
+    "editor-batch4",
+    "editor-batch5",
+    "studio-final",
+    "legacy-golden",
+    "analysis-final",
+    "format-final"
+  ],
+  "excluded_earlier_runs": {
+    "final-validation/editor-batch1..5": "Earlier 1,022 UI cases superseded by fresh integrated-source executions; not double counted.",
+    "final-validation/studio-final": "Earlier 38 Studio cases superseded by the eight-suite integrated selection.",
+    "final-validation/legacy-golden": "Earlier golden superseded by the fresh integrated-source execution.",
+    "final-validation/analysis-final": "Earlier 22-file analysis superseded by the integrated 29-file selection.",
+    "final-validation/format-final": "Earlier 22-file format gate superseded by the integrated 29-file selection.",
+    "engine": "Failed initial aggregate; all results excluded from final total.",
+    "editor": "Interrupted initial aggregate; partial results excluded.",
+    "studio": "Earlier pass rerun with expanded source capture; excluded duplicate.",
+    "analysis": "Earlier narrower input scope; superseded.",
+    "format": "Earlier narrower input scope; superseded.",
+    "separator-layout-validation": "Exploratory and earlier bounded runs; excluded repeats."
+  },
+  "gates": {
+    "engine-final": {
+      "complete": true,
+      "source_head": "a1b555979b25c5586f27915cf219a95e886febd7",
+      "evidence_directory": "/workspace/scratch/12e9ca120c75/final-validation/engine-final",
+      "credit_basis": "retained engine with explicit source continuity",
+      "receipt_accepted": true,
+      "exit_code": 0,
+      "inputs_reported_unchanged": true,
+      "reported_input_count": 6319,
+      "archive_checks": {
+        "stdout.log": {
+          "bytes": 1310080,
+          "sha256": "0b1ee149ea36724a909d5cbd01035aa9ad8111c049124ec3fdc23fef3a998269",
+          "compressed_sha256": "497dcdbb36842c25993312189e045c7a5c8bab771366da694d3e66559317a6e2",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "compressed_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        }
+      },
+      "issues": [],
+      "stderr_text": "",
+      "input_manifest_sha256": "5c4d7dd437d3e09f5a2aef6c4b61076945343d67253f12662cf91bfb334e2cb8",
+      "input_manifest_compressed_sha256": "e3137329997f7eb0b0a273c2ef19ba0b4da1f1d335e040e7dec6c88bd3cc8fb4",
+      "current_source_applicability": "Accepted only for unchanged engine dependency inputs; whole historical manifest differs exactly as recorded in source-continuity artifact.",
+      "raw_event_counts": {
+        "allSuites": 1,
+        "done": 1,
+        "group": 145,
+        "start": 1,
+        "suite": 122,
+        "testDone": 2799,
+        "testStart": 2799
+      },
+      "test_counts": {
+        "passed": 2677,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "suites": 122,
+        "groups": 145,
+        "started": 2799,
+        "completed": 2799,
+        "hooks_passed": 0,
+        "hooks_failed": 0,
+        "hooks_skipped": 0,
+        "hidden_passed": 122,
+        "hidden_failed": 0,
+        "hidden_skipped": 0
+      },
+      "lifecycle_issues": [],
+      "group_count_mismatches": [],
+      "receipt_count_mismatches": {},
+      "duplicate_case_identities": [],
+      "missing_suites": [],
+      "unexpected_suites": [],
+      "case_identity_sha256": "e30e8523769ce2f3b2957d40f5de0ae17966d9a3ec83e7cd589c7918db2b6614",
+      "case_identity_count": 2677,
+      "parse_errors": []
+    },
+    "editor-batch1": {
+      "complete": true,
+      "source_head": "ad577ea82695231b5932d6b973f92b5156b1d2d6",
+      "evidence_directory": "/workspace/scratch/12e9ca120c75/integrated-validation/editor-batch1",
+      "credit_basis": "fresh integrated-source execution",
+      "receipt_accepted": true,
+      "exit_code": 0,
+      "inputs_reported_unchanged": true,
+      "reported_input_count": 6320,
+      "archive_checks": {
+        "stdout.log": {
+          "bytes": 122402,
+          "sha256": "db3c9294ec5506fe606933e85ca4ee0a278f829daed31d53c2b74f32d700bcd8",
+          "compressed_sha256": "bbd77fb961643e3b57bedabc6a8173e54209cb0adbcd3f8979596f9ec67a59cf",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "compressed_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        }
+      },
+      "issues": [],
+      "stderr_text": "",
+      "input_manifest_sha256": "b88774ebf481f2e7710704f4363eb1ec8f670e1814ab294ad1a719a830124b65",
+      "input_manifest_compressed_sha256": "cd9e5323d4b2482e8185fb0fae89a7ffca302c48557f3fb581c9663bf2e765d8",
+      "current_source_applicability": "Every captured input matches current files and the integrated committed source.",
+      "raw_event_counts": {
+        "allSuites": 1,
+        "done": 1,
+        "group": 11,
+        "start": 1,
+        "suite": 11,
+        "testDone": 249,
+        "testStart": 249
+      },
+      "test_counts": {
+        "passed": 232,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "suites": 11,
+        "groups": 11,
+        "started": 249,
+        "completed": 249,
+        "hooks_passed": 6,
+        "hooks_failed": 0,
+        "hooks_skipped": 0,
+        "hidden_passed": 11,
+        "hidden_failed": 0,
+        "hidden_skipped": 0
+      },
+      "lifecycle_issues": [],
+      "group_count_mismatches": [],
+      "receipt_count_mismatches": {},
+      "duplicate_case_identities": [],
+      "missing_suites": [],
+      "unexpected_suites": [],
+      "case_identity_sha256": "523930f8f37c8b57b4f1063d988e65516c595f425879890bb16571637120dfd4",
+      "case_identity_count": 232,
+      "parse_errors": []
+    },
+    "editor-batch2": {
+      "complete": true,
+      "source_head": "ad577ea82695231b5932d6b973f92b5156b1d2d6",
+      "evidence_directory": "/workspace/scratch/12e9ca120c75/integrated-validation/editor-batch2",
+      "credit_basis": "fresh integrated-source execution",
+      "receipt_accepted": true,
+      "exit_code": 0,
+      "inputs_reported_unchanged": true,
+      "reported_input_count": 6320,
+      "archive_checks": {
+        "stdout.log": {
+          "bytes": 115181,
+          "sha256": "d82379be438c214af889b06038fa95df831a701c2c08a6071a13aed8b2fa4ee2",
+          "compressed_sha256": "6b1ceae222f94edaf9e20e1afa6d24a4738d63841d74f857325f1fbd06b6f7b9",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "compressed_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        }
+      },
+      "issues": [],
+      "stderr_text": "",
+      "input_manifest_sha256": "b88774ebf481f2e7710704f4363eb1ec8f670e1814ab294ad1a719a830124b65",
+      "input_manifest_compressed_sha256": "cd9e5323d4b2482e8185fb0fae89a7ffca302c48557f3fb581c9663bf2e765d8",
+      "current_source_applicability": "Every captured input matches current files and the integrated committed source.",
+      "raw_event_counts": {
+        "allSuites": 1,
+        "done": 1,
+        "group": 11,
+        "start": 1,
+        "suite": 11,
+        "testDone": 217,
+        "testStart": 217
+      },
+      "test_counts": {
+        "passed": 204,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "suites": 11,
+        "groups": 11,
+        "started": 217,
+        "completed": 217,
+        "hooks_passed": 2,
+        "hooks_failed": 0,
+        "hooks_skipped": 0,
+        "hidden_passed": 11,
+        "hidden_failed": 0,
+        "hidden_skipped": 0
+      },
+      "lifecycle_issues": [],
+      "group_count_mismatches": [],
+      "receipt_count_mismatches": {},
+      "duplicate_case_identities": [],
+      "missing_suites": [],
+      "unexpected_suites": [],
+      "case_identity_sha256": "f2961ec2f6a393a6eb88366031974412e23dee28cf03117cb5746183fce11a44",
+      "case_identity_count": 204,
+      "parse_errors": []
+    },
+    "editor-batch3": {
+      "complete": true,
+      "source_head": "ad577ea82695231b5932d6b973f92b5156b1d2d6",
+      "evidence_directory": "/workspace/scratch/12e9ca120c75/integrated-validation/editor-batch3",
+      "credit_basis": "fresh integrated-source execution",
+      "receipt_accepted": true,
+      "exit_code": 0,
+      "inputs_reported_unchanged": true,
+      "reported_input_count": 6320,
+      "archive_checks": {
+        "stdout.log": {
+          "bytes": 124307,
+          "sha256": "ab532551964c1022622382521e25f37b661cb68e81f479ec0963faca7572f93f",
+          "compressed_sha256": "ed182ed13b13e687c3e2da9e36b2f6ee2a0d4c058258936e75ac5c3de495487b",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "compressed_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        }
+      },
+      "issues": [],
+      "stderr_text": "",
+      "input_manifest_sha256": "b88774ebf481f2e7710704f4363eb1ec8f670e1814ab294ad1a719a830124b65",
+      "input_manifest_compressed_sha256": "cd9e5323d4b2482e8185fb0fae89a7ffca302c48557f3fb581c9663bf2e765d8",
+      "current_source_applicability": "Every captured input matches current files and the integrated committed source.",
+      "raw_event_counts": {
+        "allSuites": 1,
+        "done": 1,
+        "group": 18,
+        "start": 1,
+        "suite": 11,
+        "testDone": 240,
+        "testStart": 240
+      },
+      "test_counts": {
+        "passed": 227,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "suites": 11,
+        "groups": 18,
+        "started": 240,
+        "completed": 240,
+        "hooks_passed": 2,
+        "hooks_failed": 0,
+        "hooks_skipped": 0,
+        "hidden_passed": 11,
+        "hidden_failed": 0,
+        "hidden_skipped": 0
+      },
+      "lifecycle_issues": [],
+      "group_count_mismatches": [],
+      "receipt_count_mismatches": {},
+      "duplicate_case_identities": [],
+      "missing_suites": [],
+      "unexpected_suites": [],
+      "case_identity_sha256": "00bc78e9788d6c31cfb597349e31e249f21d0d5b5a7d315dce24e522b3f7e5dd",
+      "case_identity_count": 227,
+      "parse_errors": []
+    },
+    "editor-batch4": {
+      "complete": true,
+      "source_head": "ad577ea82695231b5932d6b973f92b5156b1d2d6",
+      "evidence_directory": "/workspace/scratch/12e9ca120c75/integrated-validation/editor-batch4",
+      "credit_basis": "fresh integrated-source execution",
+      "receipt_accepted": true,
+      "exit_code": 0,
+      "inputs_reported_unchanged": true,
+      "reported_input_count": 6320,
+      "archive_checks": {
+        "stdout.log": {
+          "bytes": 92508,
+          "sha256": "24134ce074d7af83a24d8d21dfd9c31d48f21853cc7d02be8979b95cc6d182c3",
+          "compressed_sha256": "d60914eb1558f8b3d00901b31573fc379a350cea00766e772fa4e19f4d97f087",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "compressed_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        }
+      },
+      "issues": [],
+      "stderr_text": "",
+      "input_manifest_sha256": "b88774ebf481f2e7710704f4363eb1ec8f670e1814ab294ad1a719a830124b65",
+      "input_manifest_compressed_sha256": "cd9e5323d4b2482e8185fb0fae89a7ffca302c48557f3fb581c9663bf2e765d8",
+      "current_source_applicability": "Every captured input matches current files and the integrated committed source.",
+      "raw_event_counts": {
+        "allSuites": 1,
+        "done": 1,
+        "group": 12,
+        "start": 1,
+        "suite": 11,
+        "testDone": 191,
+        "testStart": 191
+      },
+      "test_counts": {
+        "passed": 176,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "suites": 11,
+        "groups": 12,
+        "started": 191,
+        "completed": 191,
+        "hooks_passed": 4,
+        "hooks_failed": 0,
+        "hooks_skipped": 0,
+        "hidden_passed": 11,
+        "hidden_failed": 0,
+        "hidden_skipped": 0
+      },
+      "lifecycle_issues": [],
+      "group_count_mismatches": [],
+      "receipt_count_mismatches": {},
+      "duplicate_case_identities": [],
+      "missing_suites": [],
+      "unexpected_suites": [],
+      "case_identity_sha256": "a32dd5eb59c95bb03272ab8422fbc49f826575f3cd623dfba300e5b3d0e276d1",
+      "case_identity_count": 176,
+      "parse_errors": []
+    },
+    "editor-batch5": {
+      "complete": true,
+      "source_head": "ad577ea82695231b5932d6b973f92b5156b1d2d6",
+      "evidence_directory": "/workspace/scratch/12e9ca120c75/integrated-validation/editor-batch5",
+      "credit_basis": "fresh integrated-source execution",
+      "receipt_accepted": true,
+      "exit_code": 0,
+      "inputs_reported_unchanged": true,
+      "reported_input_count": 6320,
+      "archive_checks": {
+        "stdout.log": {
+          "bytes": 99056,
+          "sha256": "26071092ea952cf6b194af1dbb28497d0ec09da0b40804f1c05fcab07b56aa48",
+          "compressed_sha256": "5e3ad0c4aaf3be9876bec71f3cae75d772b1e34e1fe64904471e52d293d332db",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "compressed_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        }
+      },
+      "issues": [],
+      "stderr_text": "",
+      "input_manifest_sha256": "b88774ebf481f2e7710704f4363eb1ec8f670e1814ab294ad1a719a830124b65",
+      "input_manifest_compressed_sha256": "cd9e5323d4b2482e8185fb0fae89a7ffca302c48557f3fb581c9663bf2e765d8",
+      "current_source_applicability": "Every captured input matches current files and the integrated committed source.",
+      "raw_event_counts": {
+        "allSuites": 1,
+        "done": 1,
+        "group": 11,
+        "start": 1,
+        "suite": 11,
+        "testDone": 196,
+        "testStart": 196
+      },
+      "test_counts": {
+        "passed": 183,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "suites": 11,
+        "groups": 11,
+        "started": 196,
+        "completed": 196,
+        "hooks_passed": 2,
+        "hooks_failed": 0,
+        "hooks_skipped": 0,
+        "hidden_passed": 11,
+        "hidden_failed": 0,
+        "hidden_skipped": 0
+      },
+      "lifecycle_issues": [],
+      "group_count_mismatches": [],
+      "receipt_count_mismatches": {},
+      "duplicate_case_identities": [],
+      "missing_suites": [],
+      "unexpected_suites": [],
+      "case_identity_sha256": "fa62150f6935da9850dbab11833bb61435e5ff3183f924c06a724462e7a8c5cf",
+      "case_identity_count": 183,
+      "parse_errors": []
+    },
+    "studio-final": {
+      "complete": true,
+      "source_head": "ad577ea82695231b5932d6b973f92b5156b1d2d6",
+      "evidence_directory": "/workspace/scratch/12e9ca120c75/integrated-validation/studio-final",
+      "credit_basis": "fresh integrated-source execution",
+      "receipt_accepted": true,
+      "exit_code": 0,
+      "inputs_reported_unchanged": true,
+      "reported_input_count": 6320,
+      "archive_checks": {
+        "stdout.log": {
+          "bytes": 55087,
+          "sha256": "0096ec27692bb6a361608d5c440c822fe639ec0ba7ce15ab591bc15b36576749",
+          "compressed_sha256": "6554c18a4131c9d7b37b118587a718c12ccca571674a3ade9ad12298c0b7d67e",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "compressed_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        }
+      },
+      "issues": [],
+      "stderr_text": "",
+      "input_manifest_sha256": "b88774ebf481f2e7710704f4363eb1ec8f670e1814ab294ad1a719a830124b65",
+      "input_manifest_compressed_sha256": "cd9e5323d4b2482e8185fb0fae89a7ffca302c48557f3fb581c9663bf2e765d8",
+      "current_source_applicability": "Every captured input matches current files and the integrated committed source.",
+      "raw_event_counts": {
+        "allSuites": 1,
+        "done": 1,
+        "group": 12,
+        "start": 1,
+        "suite": 8,
+        "testDone": 102,
+        "testStart": 102
+      },
+      "test_counts": {
+        "passed": 94,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "suites": 8,
+        "groups": 12,
+        "started": 102,
+        "completed": 102,
+        "hooks_passed": 0,
+        "hooks_failed": 0,
+        "hooks_skipped": 0,
+        "hidden_passed": 8,
+        "hidden_failed": 0,
+        "hidden_skipped": 0
+      },
+      "lifecycle_issues": [],
+      "group_count_mismatches": [],
+      "receipt_count_mismatches": {},
+      "duplicate_case_identities": [],
+      "missing_suites": [],
+      "unexpected_suites": [],
+      "case_identity_sha256": "8720362d9f1a7cbbfd837e918d22ea1da5ce8ae32fea1dacc99bdd67955aca07",
+      "case_identity_count": 94,
+      "parse_errors": []
+    },
+    "legacy-golden": {
+      "complete": true,
+      "source_head": "ad577ea82695231b5932d6b973f92b5156b1d2d6",
+      "evidence_directory": "/workspace/scratch/12e9ca120c75/integrated-validation/legacy-golden",
+      "credit_basis": "fresh integrated-source execution",
+      "receipt_accepted": true,
+      "exit_code": 0,
+      "inputs_reported_unchanged": true,
+      "reported_input_count": 6320,
+      "archive_checks": {
+        "stdout.log": {
+          "bytes": 2102,
+          "sha256": "75eec899a5439f16e6b33585ee0e0014165ba5079ea70f14f0e5f19baec7f180",
+          "compressed_sha256": "d31b38757f24ff8fee3dbb25db235984886127ff7dff57fc62b9c2af53451166",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "compressed_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        }
+      },
+      "issues": [],
+      "stderr_text": "",
+      "input_manifest_sha256": "b88774ebf481f2e7710704f4363eb1ec8f670e1814ab294ad1a719a830124b65",
+      "input_manifest_compressed_sha256": "cd9e5323d4b2482e8185fb0fae89a7ffca302c48557f3fb581c9663bf2e765d8",
+      "current_source_applicability": "Every captured input matches current files and the integrated committed source.",
+      "raw_event_counts": {
+        "allSuites": 1,
+        "done": 1,
+        "group": 1,
+        "start": 1,
+        "suite": 1,
+        "testDone": 4,
+        "testStart": 4
+      },
+      "test_counts": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "errors": 0,
+        "suites": 1,
+        "groups": 1,
+        "started": 4,
+        "completed": 4,
+        "hooks_passed": 2,
+        "hooks_failed": 0,
+        "hooks_skipped": 0,
+        "hidden_passed": 1,
+        "hidden_failed": 0,
+        "hidden_skipped": 0
+      },
+      "lifecycle_issues": [],
+      "group_count_mismatches": [],
+      "receipt_count_mismatches": {},
+      "duplicate_case_identities": [],
+      "missing_suites": [],
+      "unexpected_suites": [],
+      "case_identity_sha256": "18926909a77ed33241bb9b7664eb6d4965131847b3ff1fe789226caf0020f0c3",
+      "case_identity_count": 1,
+      "parse_errors": []
+    },
+    "analysis-final": {
+      "complete": true,
+      "source_head": "ad577ea82695231b5932d6b973f92b5156b1d2d6",
+      "evidence_directory": "/workspace/scratch/12e9ca120c75/integrated-validation/analysis-final",
+      "credit_basis": "fresh integrated-source execution",
+      "receipt_accepted": true,
+      "exit_code": 0,
+      "inputs_reported_unchanged": true,
+      "reported_input_count": 6320,
+      "archive_checks": {
+        "stdout.log": {
+          "bytes": 897,
+          "sha256": "bb416778fef99bb99afcdbaeafe66da10b622f51799662bb7282b85c3c5c600d",
+          "compressed_sha256": "c33fcf0efec6037b08740aa543703fef3012f8c48a67f66982a72ef6aaf329c2",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "compressed_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        }
+      },
+      "issues": [],
+      "stderr_text": "",
+      "input_manifest_sha256": "b88774ebf481f2e7710704f4363eb1ec8f670e1814ab294ad1a719a830124b65",
+      "input_manifest_compressed_sha256": "cd9e5323d4b2482e8185fb0fae89a7ffca302c48557f3fb581c9663bf2e765d8",
+      "current_source_applicability": "Every captured input matches current files and the integrated committed source.",
+      "stdout_text": "Analyzing studio_shortcuts.dart, suite_workspace.dart, studio_settings_test.dart, studio_shortcut_dispatch_test.dart, studio_shortcuts_test.dart, studio_zotero_shortcuts_test.dart, render_word_canvas.dart, word_zotero_dialog.dart, word_footnote_separator_render_test.dart, word_layout.dart, word_note_layout.dart, wml_document.dart, word_notes.dart, word_zotero_transfer.dart, odt_document_reader.dart, odt_document_writer.dart, odt_reader_styles.dart, word_deserializer.dart, word_footnote_separator_io.dart, word_serializer.dart, word_settings_io.dart, odt_footnote_separator_libreoffice_test.dart, odt_footnote_separator_test.dart, odt_libreoffice_fixture_test.dart, odt_reader_libreoffice_defaults_test.dart, word_footnote_separator_docx_test.dart, word_footnote_separator_layout_test.dart, word_zotero_note_images_integration_test.dart, footnote_separator_acceptance.dart...\nNo issues found!\n",
+      "dart_file_selection": {
+        "expected_count": 29,
+        "actual_count": 29,
+        "missing_paths": [],
+        "unexpected_paths": [],
+        "duplicates": [],
+        "expected_path_set_sha256": "0ebc68d2f9a01b8211f0a7a2bdd114720519cfb17634a8ba3e74cd57c926f515"
+      }
+    },
+    "format-final": {
+      "complete": true,
+      "source_head": "ad577ea82695231b5932d6b973f92b5156b1d2d6",
+      "evidence_directory": "/workspace/scratch/12e9ca120c75/integrated-validation/format-final",
+      "credit_basis": "fresh integrated-source execution",
+      "receipt_accepted": true,
+      "exit_code": 0,
+      "inputs_reported_unchanged": true,
+      "reported_input_count": 6320,
+      "archive_checks": {
+        "stdout.log": {
+          "bytes": 48,
+          "sha256": "0ea7a0ba35b7200f240ffbe1746b724ca22cf5e27c005aaef0d863f6580b2bdf",
+          "compressed_sha256": "3c93b5f40212bca762f24bc062eeadcf844f87d140ffe3accadc581d213d4b6b",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        },
+        "stderr.log": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "compressed_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "matches_receipt": true,
+          "gzip_equals_raw": true
+        }
+      },
+      "issues": [],
+      "stderr_text": "",
+      "input_manifest_sha256": "b88774ebf481f2e7710704f4363eb1ec8f670e1814ab294ad1a719a830124b65",
+      "input_manifest_compressed_sha256": "cd9e5323d4b2482e8185fb0fae89a7ffca302c48557f3fb581c9663bf2e765d8",
+      "current_source_applicability": "Every captured input matches current files and the integrated committed source.",
+      "stdout_text": "Formatted 29 files (0 changed) in 1.53 seconds.\n",
+      "dart_file_selection": {
+        "expected_count": 29,
+        "actual_count": 29,
+        "missing_paths": [],
+        "unexpected_paths": [],
+        "duplicates": [],
+        "expected_path_set_sha256": "0ebc68d2f9a01b8211f0a7a2bdd114720519cfb17634a8ba3e74cd57c926f515"
+      }
+    }
+  },
+  "input_manifests": {
+    "5c4d7dd437d3e09f5a2aef6c4b61076945343d67253f12662cf91bfb334e2cb8": {
+      "source_checkpoint": "a1b555979b25c5586f27915cf219a95e886febd7",
+      "count": 6319,
+      "root_counts": {
+        "(root)": 10,
+        ".dart_tool": 1,
+        ".github": 15,
+        "apps": 136,
+        "docs": 1,
+        "packages": 5735,
+        "third_party": 272,
+        "tool": 6,
+        "tools": 143
+      },
+      "current_files_checked": 6319,
+      "missing_current_files": [],
+      "current_hash_mismatches": [
+        "packages/quds_office_editor/CHANGELOG.md",
+        "packages/quds_office_editor/example/lib/studio_shortcuts.dart",
+        "packages/quds_office_editor/example/lib/suite_workspace.dart",
+        "packages/quds_office_editor/example/test/studio_settings_test.dart",
+        "packages/quds_office_editor/example/test/studio_shortcuts_test.dart",
+        "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart"
+      ],
+      "tracked_source_files_checked": 6318,
+      "tracked_source_blob_mismatches": [],
+      "generated_inputs_outside_commit": [
+        ".dart_tool/package_config.json"
+      ],
+      "unexpected_inputs_outside_commit": [],
+      "matches_current_files": false,
+      "matches_source_checkpoint_for_tracked_files": true
+    },
+    "b88774ebf481f2e7710704f4363eb1ec8f670e1814ab294ad1a719a830124b65": {
+      "source_checkpoint": "ad577ea82695231b5932d6b973f92b5156b1d2d6",
+      "count": 6320,
+      "root_counts": {
+        "(root)": 10,
+        ".dart_tool": 1,
+        ".github": 15,
+        "apps": 136,
+        "docs": 1,
+        "packages": 5736,
+        "third_party": 272,
+        "tool": 6,
+        "tools": 143
+      },
+      "current_files_checked": 6320,
+      "missing_current_files": [],
+      "current_hash_mismatches": [],
+      "tracked_source_files_checked": 6319,
+      "tracked_source_blob_mismatches": [],
+      "generated_inputs_outside_commit": [
+        ".dart_tool/package_config.json"
+      ],
+      "unexpected_inputs_outside_commit": [],
+      "matches_current_files": true,
+      "matches_source_checkpoint_for_tracked_files": true
+    }
+  },
+  "blocking_findings": [],
+  "editor_selection_coverage": {
+    "complete": true,
+    "original_expected_suites": 55,
+    "observed_suites": 55,
+    "unique_observed_suites": 55,
+    "duplicate_suites": [],
+    "missing_suites": [],
+    "unexpected_suites": [],
+    "expected_suite_set_sha256": "5ffcf9735d6437bfbe02b528cd33f95c7cb657e0b82deafaff1a86d6785e5836"
+  },
+  "studio_selection_coverage": {
+    "complete": true,
+    "catalog": "docs/validation/zotero-host-ownership-20261121/run_local.py",
+    "catalog_sha256": "f224842164cac239baccdad308f436eeabc1a6de92ce1420a8a4b5596d667e40",
+    "catalog_source_checkpoint": "ad577ea82695231b5932d6b973f92b5156b1d2d6",
+    "current_catalog_matches_committed_source": true,
+    "expected_suites": [
+      "packages/quds_office_editor/example/test/studio_odt_open_test.dart",
+      "packages/quds_office_editor/example/test/studio_settings_test.dart",
+      "packages/quds_office_editor/example/test/studio_shortcut_dispatch_test.dart",
+      "packages/quds_office_editor/example/test/studio_shortcuts_test.dart",
+      "packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+      "packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart",
+      "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "packages/quds_office_editor/example/test/suite_workspace_mail_shortcuts_test.dart"
+    ],
+    "observed_suites": [
+      "packages/quds_office_editor/example/test/studio_odt_open_test.dart",
+      "packages/quds_office_editor/example/test/studio_settings_test.dart",
+      "packages/quds_office_editor/example/test/studio_shortcut_dispatch_test.dart",
+      "packages/quds_office_editor/example/test/studio_shortcuts_test.dart",
+      "packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+      "packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart",
+      "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "packages/quds_office_editor/example/test/suite_workspace_mail_shortcuts_test.dart"
+    ],
+    "missing_suites": [],
+    "unexpected_suites": [],
+    "duplicate_suites": [],
+    "expected_suite_set_sha256": "89a6e3f218b309d1eee9d915f616d3b18bbd6a6df827d043d56e842733698ce6"
+  },
+  "case_totals": {
+    "credited_gate_case_completions": 3794,
+    "unique_credited_cases": 3794,
+    "duplicate_case_identities_across_gates": [],
+    "unique_case_identity_sha256": "f56eefe4135f92ffaa208c7d2fc1f3704d38c5924ab8e19070269a6d5cc97708",
+    "retained_engine_cases": 2677,
+    "fresh_integrated_ui_cases": 1117,
+    "hooks_and_hidden_loaders_excluded": true,
+    "earlier_and_development_runs_excluded": true
+  },
+  "all_gates_complete": true
+}

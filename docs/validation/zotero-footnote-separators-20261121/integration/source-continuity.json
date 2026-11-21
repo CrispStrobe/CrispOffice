@@ -1,0 +1,428 @@
+{
+  "status": "accepted",
+  "audited_at_utc": "2026-11-21T22:10:11.068415+00:00",
+  "qualified_engine_source": "a1b555979b25c5586f27915cf219a95e886febd7",
+  "qualified_pr_head": "a70c0e7af251d737dc7639f44a48777bbea1bf51",
+  "published_merge_source": "ad577ea82695231b5932d6b973f92b5156b1d2d6",
+  "published_merge_parents": [
+    "2f7f5ffc668d7f6452facb13e006e6704c93f439",
+    "a70c0e7af251d737dc7639f44a48777bbea1bf51"
+  ],
+  "current_head": "ad577ea82695231b5932d6b973f92b5156b1d2d6",
+  "scope": "Source applicability of retained engine results only; fresh editor, Studio and golden gates independently qualify the integrated user-interface source.",
+  "retained_evidence": {
+    "gate": "final-validation/engine-final",
+    "cases": 2677,
+    "suites": 122,
+    "original_receipt_source_identity_preserved": true,
+    "original_independent_audit_sha256": "feb16bb7dce589c8ae43e8fcc13614f1435dffdec74f21de9798c9f5c88b9b69",
+    "external_runtime_note": "The same pinned runtime commands are used; this record verifies captured workspace inputs and does not claim to hash all installed SDK/pub-cache files."
+  },
+  "old_manifest_sha256": "5c4d7dd437d3e09f5a2aef6c4b61076945343d67253f12662cf91bfb334e2cb8",
+  "new_manifest_sha256": "b88774ebf481f2e7710704f4363eb1ec8f670e1814ab294ad1a719a830124b65",
+  "old_manifest_count": 6319,
+  "new_manifest_count": 6320,
+  "unchanged_original_input_count": 6312,
+  "changed_existing_inputs": [
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "before_sha256": "787676bb7cb0c4071a9d05afaa1a3b3d3f2d8b7315d5e07b7ec12ca8dca1a863",
+      "after_sha256": "6313ce76a6c4a04d360ddcda7c5b36c5ec719df102dd9059138f7d44939ddab8"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_shortcuts.dart",
+      "before_sha256": "a42b09dc4a9ce914752a46f4b04f7763c83d7839209484839de8d4319064a4b4",
+      "after_sha256": "3dd2af2b4e3461cae167fccc0943ce0164f7fbf1557d7eeba6fb95504d418b87"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "before_sha256": "5d5960735f97971f2d2ace907ab5abd37637041bc45e75da45600e7254a9d94f",
+      "after_sha256": "bc61a03ccd65e98a9015f2c4fd91468af2afcdf106cff992b2ba95065c4898cd"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_settings_test.dart",
+      "before_sha256": "d4be8ee939969bc6008064d48171bb1df69cc4fadcc01c1b36b61ab81f74cd2b",
+      "after_sha256": "933e3cfda8941787d406bb0ab73ee85e2c30a3ee4148d48ebb42320959756570"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_shortcuts_test.dart",
+      "before_sha256": "28a8774bb113858932c037bef2fbbd62dadfa17e1cb9f8bc76f9aa1906934374",
+      "after_sha256": "fb620f61d43d3e4007c70b167c6b33780036d837cb072aa9815cc108d0e51fd2"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "before_sha256": "2e81a000c349808e3fefe599d8bfc722a44f7b57afe3a632d3b1aacd6747a4e9",
+      "after_sha256": "8004b37ee6361112e2c9fc9674e20d28cedc23f1861147d45772745e68c8b6db"
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "before_sha256": "26df1c1eea17c35d530552f826b1c7cdf5bdb2dd177495ccd0eab619c3d29e54",
+      "after_sha256": "89cc6e5b692ca05eae21e6f839e913ad4373593144286bb1626ae19cf9a4822a"
+    }
+  ],
+  "added_inputs": [
+    {
+      "path": "packages/quds_office_editor/example/test/studio_shortcut_dispatch_test.dart",
+      "sha256": "3908958023fb9ec4e194e477cbab9a42945501ca67391c1e87a537805bf4d346"
+    }
+  ],
+  "removed_inputs": [],
+  "incoming_main_delta": [
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-host-ownership-20261121/README.md",
+      "captured_input": false
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-host-ownership-20261121/execution.tar.xz",
+      "captured_input": false
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-host-ownership-20261121/index.json",
+      "captured_input": false
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-host-ownership-20261121/qualification.json",
+      "captured_input": false
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-host-ownership-20261121/run_local.py",
+      "captured_input": false
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-host-ownership-20261121/verification.json",
+      "captured_input": false
+    },
+    {
+      "status": "M",
+      "path": "docs/validation/zotero-table-layout-20261121/README.md",
+      "captured_input": false
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-table-layout-20261121/main-source-continuity-52e72ca0.json",
+      "captured_input": false
+    },
+    {
+      "status": "M",
+      "path": "docs/zotero-support.md",
+      "captured_input": false
+    },
+    {
+      "status": "M",
+      "path": "docs/zotero-validation.md",
+      "captured_input": false
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "captured_input": true
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/lib/studio_shortcuts.dart",
+      "captured_input": true
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "captured_input": true
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/test/studio_settings_test.dart",
+      "captured_input": true
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_editor/example/test/studio_shortcut_dispatch_test.dart",
+      "captured_input": true
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/test/studio_shortcuts_test.dart",
+      "captured_input": true
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "captured_input": true
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "captured_input": true
+    }
+  ],
+  "incoming_main_delta_count": 18,
+  "incoming_main_delta_outside_manifest": [
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-host-ownership-20261121/README.md",
+      "captured_input": false
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-host-ownership-20261121/execution.tar.xz",
+      "captured_input": false
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-host-ownership-20261121/index.json",
+      "captured_input": false
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-host-ownership-20261121/qualification.json",
+      "captured_input": false
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-host-ownership-20261121/run_local.py",
+      "captured_input": false
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-host-ownership-20261121/verification.json",
+      "captured_input": false
+    },
+    {
+      "status": "M",
+      "path": "docs/validation/zotero-table-layout-20261121/README.md",
+      "captured_input": false
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-table-layout-20261121/main-source-continuity-52e72ca0.json",
+      "captured_input": false
+    },
+    {
+      "status": "M",
+      "path": "docs/zotero-support.md",
+      "captured_input": false
+    },
+    {
+      "status": "M",
+      "path": "docs/zotero-validation.md",
+      "captured_input": false
+    }
+  ],
+  "qualified_source_to_pr_head_non_documentation_changes": [],
+  "fresh_manifest_scope": {
+    "expected_paths": 6320,
+    "missing_paths": [],
+    "unexpected_paths": [],
+    "exact_coverage": true
+  },
+  "historical_manifest_validation": {
+    "source_checkpoint": "a1b555979b25c5586f27915cf219a95e886febd7",
+    "count": 6319,
+    "root_counts": {
+      "(root)": 10,
+      ".dart_tool": 1,
+      ".github": 15,
+      "apps": 136,
+      "docs": 1,
+      "packages": 5735,
+      "third_party": 272,
+      "tool": 6,
+      "tools": 143
+    },
+    "current_files_checked": 6319,
+    "missing_current_files": [],
+    "current_hash_mismatches": [
+      "packages/quds_office_editor/CHANGELOG.md",
+      "packages/quds_office_editor/example/lib/studio_shortcuts.dart",
+      "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "packages/quds_office_editor/example/test/studio_settings_test.dart",
+      "packages/quds_office_editor/example/test/studio_shortcuts_test.dart",
+      "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart"
+    ],
+    "tracked_source_files_checked": 6318,
+    "tracked_source_blob_mismatches": [],
+    "generated_inputs_outside_commit": [
+      ".dart_tool/package_config.json"
+    ],
+    "unexpected_inputs_outside_commit": [],
+    "matches_current_files": false,
+    "matches_source_checkpoint_for_tracked_files": true
+  },
+  "fresh_manifest_validation": {
+    "source_checkpoint": "ad577ea82695231b5932d6b973f92b5156b1d2d6",
+    "count": 6320,
+    "root_counts": {
+      "(root)": 10,
+      ".dart_tool": 1,
+      ".github": 15,
+      "apps": 136,
+      "docs": 1,
+      "packages": 5736,
+      "third_party": 272,
+      "tool": 6,
+      "tools": 143
+    },
+    "current_files_checked": 6320,
+    "missing_current_files": [],
+    "current_hash_mismatches": [],
+    "tracked_source_files_checked": 6319,
+    "tracked_source_blob_mismatches": [],
+    "generated_inputs_outside_commit": [
+      ".dart_tool/package_config.json"
+    ],
+    "unexpected_inputs_outside_commit": [],
+    "matches_current_files": true,
+    "matches_source_checkpoint_for_tracked_files": true
+  },
+  "unchanged_subsets": {
+    "packages/quds_office_engine/": {
+      "label": "packages/quds_office_engine/",
+      "count": 1301,
+      "old_path_hash_identity_sha256": "9f420aa0df2610637da3346783e947235b56643f97af86e69642395e471ea408",
+      "new_path_hash_identity_sha256": "9f420aa0df2610637da3346783e947235b56643f97af86e69642395e471ea408",
+      "missing_before": [],
+      "missing_after": [],
+      "changed_paths": [],
+      "unchanged": true,
+      "old_git_tree": "8d0395a484b3a1482b867b59d668f1428dd9086d",
+      "new_git_tree": "8d0395a484b3a1482b867b59d668f1428dd9086d",
+      "git_tree_identical": true
+    },
+    "packages/legacy_doc_parser/": {
+      "label": "packages/legacy_doc_parser/",
+      "count": 1855,
+      "old_path_hash_identity_sha256": "938839ce09b7ddb6e0154bd63492d0b506fbd2fbb80be2f300876907df501453",
+      "new_path_hash_identity_sha256": "938839ce09b7ddb6e0154bd63492d0b506fbd2fbb80be2f300876907df501453",
+      "missing_before": [],
+      "missing_after": [],
+      "changed_paths": [],
+      "unchanged": true,
+      "old_git_tree": "c5d871e967a3ba0b9d5224df3e8243e62bd782fc",
+      "new_git_tree": "c5d871e967a3ba0b9d5224df3e8243e62bd782fc",
+      "git_tree_identical": true
+    },
+    "third_party/": {
+      "label": "third_party/",
+      "count": 272,
+      "old_path_hash_identity_sha256": "e7cc30ca82a14b9d54fc5ab172abe02478717d902e56c8e63349f92217a4ac00",
+      "new_path_hash_identity_sha256": "e7cc30ca82a14b9d54fc5ab172abe02478717d902e56c8e63349f92217a4ac00",
+      "missing_before": [],
+      "missing_after": [],
+      "changed_paths": [],
+      "unchanged": true,
+      "old_git_tree": "ea59395f2db91760ce742cad60962f4f25286d87",
+      "new_git_tree": "ea59395f2db91760ce742cad60962f4f25286d87",
+      "git_tree_identical": true
+    },
+    "packages/quds_office_editor/fonts/": {
+      "label": "packages/quds_office_editor/fonts/",
+      "count": 16,
+      "old_path_hash_identity_sha256": "5f78f9e71a73a3f7233c2e4baccf0b348f23b9b412e2b43bb4369b87c362b276",
+      "new_path_hash_identity_sha256": "5f78f9e71a73a3f7233c2e4baccf0b348f23b9b412e2b43bb4369b87c362b276",
+      "missing_before": [],
+      "missing_after": [],
+      "changed_paths": [],
+      "unchanged": true,
+      "old_git_tree": "e7dda4f99e00ddd72958a70c1860e564d41c3239",
+      "new_git_tree": "e7dda4f99e00ddd72958a70c1860e564d41c3239",
+      "git_tree_identical": true
+    },
+    "packages/quds_office_editor/example/fonts/": {
+      "label": "packages/quds_office_editor/example/fonts/",
+      "count": 6,
+      "old_path_hash_identity_sha256": "b1afce6dbe90bab42c8157d23bc7a48729d36e3f6ec59aec7455987cce83ba17",
+      "new_path_hash_identity_sha256": "b1afce6dbe90bab42c8157d23bc7a48729d36e3f6ec59aec7455987cce83ba17",
+      "missing_before": [],
+      "missing_after": [],
+      "changed_paths": [],
+      "unchanged": true,
+      "old_git_tree": "0c8567f5034a0a4e0a4f7e5e498aafd036f6c58b",
+      "new_git_tree": "0c8567f5034a0a4e0a4f7e5e498aafd036f6c58b",
+      "git_tree_identical": true
+    },
+    "packages/quds_office_editor/lib/src/editor_word/": {
+      "label": "packages/quds_office_editor/lib/src/editor_word/",
+      "count": 9,
+      "old_path_hash_identity_sha256": "2b0f28de38c08c5e1b7c3e174903d5aa146db9c13947d4fa3433d4a7a3860b57",
+      "new_path_hash_identity_sha256": "2b0f28de38c08c5e1b7c3e174903d5aa146db9c13947d4fa3433d4a7a3860b57",
+      "missing_before": [],
+      "missing_after": [],
+      "changed_paths": [],
+      "unchanged": true,
+      "old_git_tree": "2f23b9cfb7ec37594780f43a2059d44f89ea8b63",
+      "new_git_tree": "2f23b9cfb7ec37594780f43a2059d44f89ea8b63",
+      "git_tree_identical": true
+    },
+    "packages/quds_office_editor/test/": {
+      "label": "packages/quds_office_editor/test/",
+      "count": 277,
+      "old_path_hash_identity_sha256": "11205063bd8d005b6d2797f0d66b6e1c1751ce752741ac52f54667472dc225f3",
+      "new_path_hash_identity_sha256": "11205063bd8d005b6d2797f0d66b6e1c1751ce752741ac52f54667472dc225f3",
+      "missing_before": [],
+      "missing_after": [],
+      "changed_paths": [],
+      "unchanged": true,
+      "old_git_tree": "b02dfc6e56e33e417d23940bc3b41402ab327949",
+      "new_git_tree": "b02dfc6e56e33e417d23940bc3b41402ab327949",
+      "git_tree_identical": true
+    },
+    "root_and_package_configuration": {
+      "label": "root and package configuration",
+      "count": 39,
+      "old_path_hash_identity_sha256": "202e4701a0bbff9302f31005e8e79d7574a3b7012ca37e35462b9e99d90694bf",
+      "new_path_hash_identity_sha256": "202e4701a0bbff9302f31005e8e79d7574a3b7012ca37e35462b9e99d90694bf",
+      "missing_before": [],
+      "missing_after": [],
+      "changed_paths": [],
+      "unchanged": true,
+      "path_hashes": {
+        ".cursorrules": "ebad7f3a90103e65ae4de41263ec477f9986b2c28c9591984e35fc909c709607",
+        ".fvmrc": "90bf8f8884c05a407f51d6ef651ba033fef99a656010f8bfcb65951e921f4294",
+        ".gitignore": "b2efb23ba7790d8a32da61d5a68d70d0d0fa7db747a384396ed7726228aaabb2",
+        "CHANGELOG.md": "81bcc029c923abe6d9781eeb935eacf1a33c3613ee4dd67a6cc7d37c5b95fac9",
+        "CONTRIBUTING.md": "26107e37a090b081cc1ee86cb86e95e962317d800b97b81623134f3e21496e30",
+        "LICENSE": "ddce111598e179ca6118a86ec7d1a62aaaab6fb007df49d7236b78d9085f3641",
+        "README.md": "9e33e9f2a17509ac1cb51b4a874d28eea4614bcc5b7c73a4ec20dbec36fc4c72",
+        "analysis_options.yaml": "2605ddd3559825e867cab2f5c4536f4172d6ba3514cb10da19f17d7dbe7179e4",
+        "apps/quds_report_studio/analysis_options.yaml": "a843123b7cd6f13deca03b2beedf31a0f8b3cb9bdffe7352193b1cc81bc37e29",
+        "apps/quds_report_studio/pubspec.yaml": "4a6624ee8d31222409dca9cea01daa28231ae477ac81369a2226540837a8179a",
+        "packages/legacy_doc_parser/analysis_options.yaml": "69d5fc7c4dc082613882215d52d18b02b1688b833d674ce9b281f45821626b7d",
+        "packages/legacy_doc_parser/pubspec.yaml": "150af8d89562635bf5a876c0a539c20ae48b58ea3666db071b5e4ebd3addf153",
+        "packages/quds_arabic_morph/pubspec.yaml": "fc88256a998232198ac4e8e2f6daa9fb2a2d14a27f3df7ae4560019153efab2c",
+        "packages/quds_language_id/pubspec.yaml": "6f17ec3cb01c9ce17499a796dc3972b4c91c55fa57d90af539b7e9a5cf922cc5",
+        "packages/quds_mail_core/pubspec.yaml": "9ecb33312a62c29481def03efd177e8da0186b9627fe2d804d38c9d5db05fb21",
+        "packages/quds_mail_mime/pubspec.yaml": "7a2d759c76e945e6e7503ce62c7a32bfae0473ae6ac58d249f40910fc3124b81",
+        "packages/quds_mail_store/pubspec.yaml": "c19f88e29dc3f530505d992e9f79c287336f9ee0310b081c6cfa0017a5c626b6",
+        "packages/quds_mail_transport/analysis_options.yaml": "4f81df7733df22a4734e70a7af950dea7547c134fad68d5b7cdafa435d337d00",
+        "packages/quds_mail_transport/pubspec.yaml": "c470b33a51a06e9a4366cf0e4000d48b495fd069c43752acb5346057c3252ba2",
+        "packages/quds_mail_ui/analysis_options.yaml": "c3daa85e07661bf968765b6c240860e8bd24a196213c192a63f7a530f8150cfb",
+        "packages/quds_mail_ui/example/pubspec.yaml": "215440d5c99478c7bfe1d5aa37d57e36471f7613c76f75619867ad1e006fd1f3",
+        "packages/quds_mail_ui/pubspec.yaml": "1ae476502a8b02982d63954494c1eb4165f697fe27a7f1962c946b7f449c7653",
+        "packages/quds_office_editor/analysis_options.yaml": "f42d6305af68c4bcc794fb058640b30a68ab5f8d6f3970c6669b3e5b6c55529e",
+        "packages/quds_office_editor/example/analysis_options.yaml": "23c7037f65bce027616f5953474e41aac06c2981feda7f8dbab94b3509949ed3",
+        "packages/quds_office_editor/example/pubspec.yaml": "97671571d22a1358d6be697cd5e63f39d693cd16e47bad9507afe3aa30b29bc9",
+        "packages/quds_office_editor/pubspec.yaml": "536da824dbe7ade3c70080fb6fd5d507186021ca7052869dc47a41fffd82b272",
+        "packages/quds_office_engine/analysis_options.yaml": "bf7d17dfdbc3aa4dcba00ef52506c50fd798bbcf3d0f907e875fa38bdfa9846f",
+        "packages/quds_office_engine/example/pubspec.yaml": "9f1b07bb8665c2125d92074aef74f2892963e34171ab0ea381df7a1cf798fb6c",
+        "packages/quds_office_engine/pubspec.yaml": "225773e48bab7333652a4098e5747f37eab2aac9fc6a14de1e814590ab03fb7a",
+        "packages/quds_proofing_gector/pubspec.yaml": "26074a4688212904b95e3cb24fa934ffb94a1881c41d8d98074e38d586ea63b1",
+        "packages/quds_proofing_harper/pubspec.yaml": "e94200003c36cc9047685b145f16b85915e8ca80fe347d3e3733c38a9ad5f63e",
+        "packages/quds_proofing_hunspell/pubspec.yaml": "4d803e1eb286500a2c1c88ea97b5f3a1afa4211a1cfe5919c0f4b4c48e7b5a59",
+        "packages/quds_proofing_spacy/pubspec.yaml": "eaa01aa5b7410e785ed9171b1cfd5073cb619663a900403119e3bb02f93d57f5",
+        "packages/quds_reports/analysis_options.yaml": "bf7d17dfdbc3aa4dcba00ef52506c50fd798bbcf3d0f907e875fa38bdfa9846f",
+        "packages/quds_reports/pubspec.yaml": "5e4bc0d98b2ed07463fede914e41d6536a985ede6746741df85a0bc743dbb98a",
+        "pubspec.lock": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+        "pubspec.yaml": "453a1f8ab62db1c5577c424b058b50033a8d3b49b99c83862ab58a7e1108f74f",
+        "third_party/enough_mail/analysis_options.yaml": "cbcd99e298d94b53dd500283ea7eb3a7957da04c586b5283914e0125b6c426d8",
+        "third_party/enough_mail/pubspec.yaml": "d38d11b0aaf151286c8abec5f83b434aad91339a90113c46065f464ac48ee27e"
+      }
+    }
+  },
+  "applicability_reason": "The only captured changes are the editor dialog, Studio code/tests and editor changelog. Engine code/tests/fixtures, legacy parser, third-party workspace sources, fonts, dependency resolution and configuration remain identical. The modified dialog/Studio sources are outside the engine dependency direction. Older UI executions are superseded rather than carried forward.",
+  "blocking_findings": []
+}
