@@ -257,8 +257,8 @@ ordinary mutation policy, tool allowlist, step budget, validation-only mode,
 recording and DOCM preservation rules apply.
 
 Style reads, `Styles` collections, Style objects, numeric collection indices,
-style creation, multi-paragraph or whole-story `Range.Style`, and embedded VBA
-execution remain unsupported. Names must be nonempty XML-safe strings without
+style creation, generated TOC/result paragraphs, multi-paragraph or whole-story
+`Range.Style`, and embedded VBA execution remain unsupported. Names must be nonempty XML-safe strings without
 tabs or line breaks; Boolean, array and object values are not style selectors.
 This is a bounded source-to-plan feature, without installed Microsoft Word
 differential qualification of direct-format semantics.

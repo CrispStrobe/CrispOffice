@@ -7,8 +7,8 @@ import 'word_list_steps.dart';
 import 'word_page_setup_steps.dart';
 import 'word_section_start_steps.dart';
 import 'word_spacing_steps.dart';
-import 'word_style_steps.dart';
 import 'word_structure_steps.dart';
+import 'word_style_steps.dart';
 import 'word_text_columns_steps.dart';
 
 const _storyFields = <String>['story', 'section', 'note', 'comment'];

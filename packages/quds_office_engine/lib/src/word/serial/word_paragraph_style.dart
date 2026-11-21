@@ -126,15 +126,32 @@ extension _ParagraphStyleAssignment on _StyleCascade {
         'A custom style cannot satisfy a Word built-in selector.',
       );
     }
+    _load();
+    final context = _assignmentContext(target);
     if (WordFieldSpans.unbalanced(document).isNotEmpty) {
       throw UnsupportedError(
         'Style assignment requires balanced field boundaries.',
       );
     }
-    _load();
-    final context = _assignmentContext(target);
     final original = target.properties;
-    if (original.styleId case final String previous) {
+    final sourceProperties = original.sourcePropertiesXml;
+    final nativeSource = sourceProperties == null || sourceProperties.isEmpty
+        ? null
+        : _styleFragment(sourceProperties, 'pPr');
+    _styleCheckProperties(nativeSource);
+    final nativeReference = _styleSingleChild(nativeSource, 'pStyle');
+    // outlineLvl may synthesize a HeadingN layout identity on import without
+    // a native pStyle. Only an authored/pending style value or a source
+    // reference must resolve against the real catalog.
+    final imported = original.importedValues;
+    final pendingStyle =
+        imported == null || imported['pStyle'] != '${original.styleId}';
+    final previousStyle = pendingStyle
+        ? original.styleId
+        : nativeReference == null
+        ? null
+        : _styleAttribute(nativeReference, 'val');
+    if (previousStyle case final String previous) {
       if ((definitions[previous] == null) ||
           (_styleAttribute(definitions[previous]!, 'type') ?? 'paragraph') !=
               'paragraph') {
@@ -144,10 +161,6 @@ extension _ParagraphStyleAssignment on _StyleCascade {
       }
     }
     final preview = WmlClone.paragraph(target);
-    final sourceProperties = preview.properties.sourcePropertiesXml;
-    if (sourceProperties != null && sourceProperties.isNotEmpty) {
-      _styleCheckProperties(_styleFragment(sourceProperties, 'pPr'));
-    }
     // Preserve the existing pStyle packet before serialization. This operation
     // owns its native value explicitly; a generic changed-value serializer
     // would replace the packet, discarding its extension attributes/children.
@@ -229,7 +242,7 @@ extension _ParagraphStyleAssignment on _StyleCascade {
         style: true,
       );
     }
-    paragraph(preview, context);
+    paragraph(preview, context, preserveTableSpacing: false);
     final next = preview.properties;
     if (next.numId != original.numId ||
         next.ilvl != original.ilvl ||
@@ -240,6 +253,11 @@ extension _ParagraphStyleAssignment on _StyleCascade {
         'Paragraph Style cannot change effective numbering; use explicit list operations.',
       );
     }
+    _assignmentNumberingLinks(
+      original,
+      next,
+      previousStyle ?? defaultParagraph,
+    );
     // Publishing properties preserves the live paragraph and inline identities
     // used by bookmarks, revisions and callers. The clone has the same runs.
     final preparedRuns = preview.inlines.whereType<WmlRun>().toList(
@@ -375,6 +393,16 @@ extension _ParagraphStyleAssignment on _StyleCascade {
               visit(cell.blocks, _tableCellLayers(block, row));
             }
           }
+        } else if (block is WmlToc) {
+          final paragraphs = [block.titleParagraph, ...block.itemParagraphs];
+          if (paragraphs.any((paragraph) => identical(paragraph, target))) {
+            throw UnsupportedError(
+              'Paragraph Style does not edit generated table-of-contents paragraphs.',
+            );
+          }
+          // These runs are also live owners. A body target must not alias a
+          // generated TOC result that would change when its run is published.
+          visit(paragraphs, layers);
         } else {
           for (final children in WordTree.childLists(block)) {
             visit(children, layers);
@@ -406,6 +434,104 @@ extension _ParagraphStyleAssignment on _StyleCascade {
       throw StateError('The paragraph must have one current document owner.');
     }
     return context!;
+  }
+
+  void _assignmentNumberingLinks(
+    WmlParagraphProps before,
+    WmlParagraphProps after,
+    String? previousStyle,
+  ) {
+    if (previousStyle == after.styleId) return;
+    final package = document.package!;
+    final office = package.packageRelationships.firstByType(
+      RelationshipTypes.officeDocument,
+    )!;
+    final relationships = package.relationshipsFor(
+      package.packageRelationships.resolve(office),
+    );
+    final references = relationships
+        .byType(RelationshipTypes.numbering)
+        .toList();
+    if (references.length > 1 ||
+        references.any(
+          (reference) =>
+              reference.targetMode != RelationshipTargetMode.internal ||
+              reference.target.isEmpty ||
+              RegExp(r'[%?#:\s\\]').hasMatch(reference.target),
+        )) {
+      throw UnsupportedError(
+        'Style assignment requires unambiguous numbering relationships.',
+      );
+    }
+    final part = package.getPart(
+      references.isEmpty
+          ? '/word/numbering.xml'
+          : relationships.resolve(references.single),
+    );
+    if (part == null) return;
+    final root = XmlDocument.parse(part.readText()).root;
+    if (root == null || !_StyleCascade._word(root, 'numbering')) {
+      throw UnsupportedError('Style assignment requires native numbering XML.');
+    }
+    final active = <String>{
+      if (before.numId != null) '${before.numId}',
+      if (after.numId != null) '${after.numId}',
+    };
+    final abstractIds = <String>{};
+    final instances = <String>{};
+    bool hasLink(XmlElement node, {required bool activeDefinition}) {
+      if (!_StyleCascade._word(node, node.localName)) return false;
+      if (const {
+        'pStyle',
+        'styleLink',
+        'numStyleLink',
+      }.contains(node.localName)) {
+        final style = _styleAttribute(node, 'val');
+        if (activeDefinition ||
+            style == previousStyle ||
+            style == after.styleId) {
+          return true;
+        }
+      }
+      return node.childElements.any(
+        (child) => hasLink(child, activeDefinition: activeDefinition),
+      );
+    }
+
+    for (final instance in root.childElements.where(
+      (node) => _StyleCascade._word(node, 'num'),
+    )) {
+      final id = _styleAttribute(instance, 'numId');
+      if (id == null || !active.contains(id)) continue;
+      if (!instances.add(id)) {
+        throw UnsupportedError('Ambiguous active numbering identity.');
+      }
+      final reference = _styleSingleChild(instance, 'abstractNumId');
+      final abstract = reference == null
+          ? null
+          : _styleAttribute(reference, 'val');
+      if (abstract != null) abstractIds.add(abstract);
+      if (hasLink(instance, activeDefinition: true)) {
+        throw UnsupportedError(
+          'Paragraph Style cannot change style-linked numbering.',
+        );
+      }
+    }
+    final seen = <String>{};
+    for (final definition in root.childElements.where(
+      (node) => _StyleCascade._word(node, 'abstractNum'),
+    )) {
+      final id = _styleAttribute(definition, 'abstractNumId');
+      final isActive = abstractIds.contains(id);
+      if (isActive && id != null && !seen.add(id)) {
+        throw UnsupportedError('Ambiguous active abstract numbering identity.');
+      }
+      if (hasLink(definition, activeDefinition: isActive)) {
+        throw UnsupportedError(
+          'Paragraph Style cannot change style-linked numbering.',
+        );
+      }
+    }
   }
 }
 

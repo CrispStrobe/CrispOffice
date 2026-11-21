@@ -17,8 +17,8 @@ import '../model/wml_document.dart';
 import '../model/wml_run_edit.dart';
 import '../model/word_bookmarks.dart';
 import '../model/word_content_controls.dart';
-import '../model/word_fields.dart';
 import '../model/word_field_spans.dart';
+import '../model/word_fields.dart';
 import '../model/word_link.dart';
 import '../model/word_notes.dart';
 import '../model/word_proofing_language.dart';
@@ -41,8 +41,8 @@ import 'word_serializer.dart';
 import 'word_settings_io.dart';
 import 'word_table_property_io.dart';
 
-part 'word_style_cascade.dart';
 part 'word_paragraph_style.dart';
+part 'word_style_cascade.dart';
 
 enum _SdtBreakLayout { none, liftLast, opaque }
 

@@ -942,7 +942,11 @@ class _StyleCascade {
     return result;
   }
 
-  void paragraph(WmlParagraph p, List<XmlElement> tableLayers) {
+  void paragraph(
+    WmlParagraph p,
+    List<XmlElement> tableLayers, {
+    bool preserveTableSpacing = true,
+  }) {
     final bool previouslyImported = p.properties.importedValues != null;
     // A fresh import can already contain native numId=0. Its source XML owns
     // extension metadata that a full generated pPr cannot reproduce. Only
@@ -1026,7 +1030,7 @@ class _StyleCascade {
         ..next(),
       p.properties,
     );
-    if (tableLayers.isNotEmpty) {
+    if (tableLayers.isNotEmpty && preserveTableSpacing) {
       if (pp.firstChild('spacing')?.getAttribute('after') == null) {
         p.properties.spacingAfter = old.spacingAfter;
       }

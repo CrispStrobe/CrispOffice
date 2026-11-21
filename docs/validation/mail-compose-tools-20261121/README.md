@@ -1,4 +1,4 @@
-# Mail compose tools — incremental implementation
+# Mail compose tools — implementation and local qualification
 
 ## Intake and scope
 
@@ -8,11 +8,12 @@ All 31 observed branch tips, all 101 PRs created since 20 November 2026
 are already ancestors of that baseline. No open PR remained at intake.
 The machine-readable branch and PR checks are retained beside this file.
 
-Development branch: `work/mail-compose-tools-20261121`. Checkpoints are pushed
-incrementally; publication will use a normal merge after current-main
-reconciliation. GitHub Actions are not an acceptance dependency.
+Development branch: `work/mail-compose-tools-20261121`. Its final checkpoint
+`32a6dcd4e56584b5af34625b44a845eb15ba44bd` was incorporated into
+`codex/word-vba-extensions-20261121` together with the latest remote main.
+GitHub Actions are not an acceptance dependency.
 
-## Planned user-visible increment
+## Implemented user-visible increment
 
 - Account-scoped persistent plain-text signatures with independent defaults for
   new messages and replies/forwards.
@@ -28,6 +29,46 @@ background delivery, rules or end-to-end encryption.
 
 ## Qualification
 
-Implementation and local runtime checks are in progress. This initial
-checkpoint claims only the intake checks above; later commits will record the
-commands actually executed and their results.
+Local checks ran on the repository-pinned Flutter 3.47.8 / Dart 3.13.7,
+using locked dependencies and the actual SQLite package build hook (SQLite
+3.54.1 with FTS5). No tracked manifests or dependency versions changed.
+
+| Check | Result |
+| --- | --- |
+| Complete Mail core suite | 476 passed |
+| Compose settings and schema migrations | 57 passed |
+| Complete Mail store suite, initial run | 922 passed; 2 stale v7 fixture failures |
+| Complete sync suite after fixture correction | 23 passed, including both previously failing cases |
+| Flutter plain-text insertion | 21 passed |
+| Flutter compose settings, store and dialog | 37 passed |
+| Existing Native/EWS/offline compose, draft, reply and forward tests | 56 passed |
+| Strict analysis of changed core/store/editor/host paths | No issues found |
+
+The store coverage combines the initial full run and the corrected sync-file
+rerun; it is not a second full-suite run. The v7 fixtures now remove the new
+v10 compose tables before reconstructing an old database. They also verify
+interrupted migration rolls back those tables and a successful upgrade exposes
+revision-zero compose defaults. No production storage change was needed.
+
+Runtime review also corrected `WordEditorController.insertPlainText`: when the
+Notes pane owns the selection, the method refuses insertion before touching the
+retained body caret. Footnote and endnote regressions check unchanged text,
+selection, dirty state and history, followed by normal body insertion after
+the note target is cleared. Remaining changes are formatting and analyzer
+cleanup of the previously unexecuted increment.
+
+Reproduce with the pinned toolchain and resolved workspace dependencies:
+
+```bash
+cd packages/quds_mail_core
+dart test
+cd ../quds_mail_store
+dart test
+cd ../quds_office_editor
+flutter test --no-pub test/word_plain_text_insertion_test.dart
+cd example
+flutter test --no-pub test/studio_mail_compose_tools_test.dart test/studio_mail_compose_tools_store_test.dart test/studio_mail_compose_tools_dialog_test.dart
+```
+
+These checks qualify local models, persistence and Flutter host behavior.
+They do not constitute live mail-provider transmission tests.

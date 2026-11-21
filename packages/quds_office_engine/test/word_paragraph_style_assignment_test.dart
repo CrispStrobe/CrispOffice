@@ -262,6 +262,71 @@ void main() {
     },
   );
 
+  test(
+    'changing a table paragraph style drops obsolete inherited spacing immediately',
+    () {
+      final package = _package(
+        styles: '''
+<w:style w:type="paragraph" w:styleId="Old"><w:name w:val="Old"/><w:pPr><w:spacing w:after="240" w:line="360"/></w:pPr></w:style>
+<w:style w:type="paragraph" w:styleId="Target"><w:name w:val="Report Body"/></w:style>
+<w:style w:type="table" w:styleId="TableTheme"><w:name w:val="Table Theme"/><w:rPr><w:i/></w:rPr></w:style>''',
+        body: '''
+<w:tbl><w:tblPr><w:tblStyle w:val="TableTheme"/></w:tblPr><w:tblGrid><w:gridCol w:w="2000"/></w:tblGrid>
+<w:tr><w:tc><w:p><w:pPr><w:pStyle w:val="Old"/></w:pPr><w:r><w:t>Cell</w:t></w:r></w:p></w:tc></w:tr></w:tbl>''',
+      );
+      var document = WordDeserializer().read(package);
+      expect(document.paragraphs.single.properties.spacingAfter, 12);
+      expect(document.paragraphs.single.properties.lineSpacing, 1.5);
+      _assign(document);
+      for (var cycle = 0; cycle < 3; cycle++) {
+        final paragraph = document.paragraphs.single;
+        expect(paragraph.properties.spacingAfter, 0);
+        expect(paragraph.properties.lineSpacing, 1);
+        final source = XmlDocument.parse(
+          paragraph.properties.sourcePropertiesXml!,
+        ).root!;
+        expect(source.firstChild('spacing', namespaceUri: _w), isNull);
+        document = WordDeserializer().readBytes(
+          WordSerializer().writeBytes(document),
+        );
+      }
+    },
+  );
+
+  test(
+    'direct outline levels do not require a synthesized Heading style definition',
+    () {
+      var document = WordDeserializer().read(
+        _package(
+          body:
+              '<w:p><w:pPr><w:outlineLvl w:val="0"/></w:pPr><w:r><w:t>Outline</w:t></w:r></w:p>',
+        ),
+      );
+      expect(document.paragraphs.single.properties.styleId, 'Heading1');
+      _assign(document);
+      for (var cycle = 0; cycle < 3; cycle++) {
+        expect(document.paragraphs.single.properties.styleId, 'Target');
+        expect(document.paragraphs.single.properties.headingLevel, 1);
+        document = WordDeserializer().readBytes(
+          WordSerializer().writeBytes(document),
+        );
+      }
+    },
+  );
+
+  test(
+    'unresolved explicitly authored and pending styles are still refused',
+    () {
+      final source = WordDeserializer().read(
+        _package(body: _body.replaceFirst('w:val="Base"', 'w:val="Missing"')),
+      );
+      _refusesWithoutMutation(source);
+      final pending = WordDeserializer().read(_package());
+      pending.paragraphs.first.properties.styleId = 'Missing';
+      _refusesWithoutMutation(pending);
+    },
+  );
+
   final invalidStyles = <String, String>{
     'duplicate ID':
         '$_styles<w:style w:styleId="Target"><w:name w:val="Another"/></w:style>',
@@ -429,6 +494,63 @@ void main() {
     );
     expect(document.paragraphs.first.properties.styleId, 'Target');
     expect(document.paragraphs.first.properties.listLabel, originalLabel);
+  });
+
+  test(
+    'style-linked numbering is refused even when modeled IDs and levels match',
+    () {
+      final styleNumber = '<w:numPr><w:numId w:val="7"/></w:numPr>';
+      final styles = _styles.replaceAll('<w:pPr>', '<w:pPr>$styleNumber');
+      final package = _package(styles: styles);
+      package
+          .createPart('/word/numbering.xml', OfficeContentTypes.wordNumbering)
+          .writeText(
+            '''
+<w:numbering xmlns:w="$_w"><w:abstractNum w:abstractNumId="2">
+<w:lvl w:ilvl="0"><w:pStyle w:val="Base"/><w:numFmt w:val="decimal"/><w:lvlText w:val="%1."/></w:lvl>
+<w:lvl w:ilvl="1"><w:pStyle w:val="Target"/><w:numFmt w:val="decimal"/><w:lvlText w:val="%1.%2."/></w:lvl>
+</w:abstractNum><w:num w:numId="7"><w:abstractNumId w:val="2"/></w:num></w:numbering>''',
+          );
+      package
+          .relationshipsFor('/word/document.xml')
+          .add(type: RelationshipTypes.numbering, target: 'numbering.xml');
+      final document = WordDeserializer().read(package);
+      expect(document.paragraphs.first.properties.numId, 7);
+      expect(document.paragraphs.first.properties.ilvl, 0);
+      _refusesWithoutMutation(document);
+    },
+  );
+
+  test('cyclic block ownership is refused before field traversal', () {
+    final document = WordDeserializer().read(_package());
+    final frame = WmlFrame();
+    frame.blocks.add(frame);
+    document.sections.first.blocks.add(frame);
+    _refusesWithoutMutation(document, matcher: isA<StateError>());
+  });
+
+  test('a body run shared with a generated TOC is refused', () {
+    final document = WordDeserializer().read(_package());
+    final toc = WmlToc();
+    toc.titleParagraph.inlines = [document.paragraphs.first.inlines.single];
+    document.sections.first.blocks.add(toc);
+    _refusesWithoutMutation(document, matcher: isA<StateError>());
+  });
+
+  test('generated TOC paragraph targets are explicitly refused', () {
+    final document = WordDeserializer().read(_package());
+    final toc = WmlToc();
+    document.sections.first.blocks.add(toc);
+    final properties = toc.titleParagraph.properties;
+    expect(
+      () => WordDeserializer().editParagraphStyle(
+        document,
+        toc.titleParagraph,
+        name: 'Report Body',
+      ),
+      throwsUnsupportedError,
+    );
+    expect(toc.titleParagraph.properties, same(properties));
   });
 
   for (final selector in <Map<String, Object?>>[
