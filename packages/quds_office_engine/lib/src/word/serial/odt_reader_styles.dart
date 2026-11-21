@@ -28,6 +28,8 @@ final class OdtReaderStyles {
   final _lists = <String, XmlElement>{};
   final _masters = <String, XmlElement>{};
   final _layouts = <String, XmlElement>{};
+  final _noteConfigurations = <XmlElement>[];
+  final _outlineStyles = <XmlElement>[];
   final _chains = <String, List<XmlElement>>{};
   final _usedMasters = <String>{};
   bool _implicitMasterUsed = false;
@@ -57,10 +59,11 @@ final class OdtReaderStyles {
         result.add(definition);
         current = _attr(definition, _style, 'parent-style-name');
       }
-      return List<XmlElement>.unmodifiable([
-        ?_defaults[family],
-        ...result.reversed,
-      ]);
+      final chain = <XmlElement>[?_defaults[family], ...result.reversed];
+      for (final definition in chain) {
+        _checkDefinition(definition, family);
+      }
+      return List<XmlElement>.unmodifiable(chain);
     });
   }
 
@@ -68,7 +71,161 @@ final class OdtReaderStyles {
     if (name == null || name.isEmpty) return null;
     final result = _lists[name];
     if (result == null) throw FormatException('Missing ODT list style: $name');
+    _checkAttributes(result, {
+      _style: {'name', 'display-name'},
+      odfTextNamespace: {'consecutive-numbering'},
+      _xml: {'id'},
+    });
+    final consecutive = _attr(
+      result,
+      odfTextNamespace,
+      'consecutive-numbering',
+    );
+    if (consecutive != null && _boolean(consecutive)) {
+      throw UnsupportedError(
+        'Consecutive ODT list numbering is not supported.',
+      );
+    }
     return result;
+  }
+
+  /// Rejects note numbering and styling not represented by the reader.
+  /// ODF 1.3 section 19.874.5 defines the initial note number as one.
+  /// A producer's zero-based offset is not silently interpreted as that value.
+  void validateNoteConfiguration(bool endnote) {
+    final kind = endnote ? 'endnote' : 'footnote';
+    final matching = <XmlElement>[];
+    for (final configuration in _noteConfigurations) {
+      final configuredKind = _attr(
+        configuration,
+        odfTextNamespace,
+        'note-class',
+      );
+      if (configuredKind != 'footnote' && configuredKind != 'endnote') {
+        throw const FormatException('Invalid ODT note configuration class.');
+      }
+      if (configuredKind == kind) matching.add(configuration);
+    }
+    if (matching.length > 1) {
+      throw const FormatException('Duplicate ODT note configuration.');
+    }
+    if (matching.isEmpty) return;
+    final configuration = matching.single;
+    _checkAttributes(configuration, {
+      odfTextNamespace: {
+        'note-class',
+        'start-value',
+        'start-numbering-at',
+        'footnotes-position',
+        'citation-style-name',
+        'citation-body-style-name',
+        'default-style-name',
+        'master-page-name',
+      },
+      _style: {'num-format', 'num-prefix', 'num-suffix', 'num-letter-sync'},
+    });
+    final format = _attr(configuration, _style, 'num-format');
+    if (format != null && format != '1') {
+      throw UnsupportedError('Nondecimal ODT note numbering is not supported.');
+    }
+    for (final name in ['num-prefix', 'num-suffix']) {
+      final value = _attr(configuration, _style, name);
+      if (value != null && value.isNotEmpty) {
+        throw UnsupportedError('ODT note number affixes are not supported.');
+      }
+    }
+    final sync = _attr(configuration, _style, 'num-letter-sync');
+    if (sync != null && _boolean(sync)) {
+      throw UnsupportedError(
+        'ODT synchronized note lettering is not supported.',
+      );
+    }
+    final start = _attr(configuration, odfTextNamespace, 'start-value');
+    if (start != null && start != '1') {
+      throw UnsupportedError(
+        'Noncanonical ODT note start values are not supported.',
+      );
+    }
+    final restart = _attr(
+      configuration,
+      odfTextNamespace,
+      'start-numbering-at',
+    );
+    if (restart != null && restart != 'document') {
+      throw UnsupportedError('ODT note numbering restarts are not supported.');
+    }
+    final position = _attr(
+      configuration,
+      odfTextNamespace,
+      'footnotes-position',
+    );
+    if (position != null && (endnote || position != 'page')) {
+      throw UnsupportedError('Unsupported ODT note placement.');
+    }
+    for (final name in [
+      'citation-style-name',
+      'citation-body-style-name',
+      'default-style-name',
+      'master-page-name',
+    ]) {
+      final value = _attr(configuration, odfTextNamespace, name);
+      if (value != null && value.isNotEmpty) {
+        throw UnsupportedError(
+          'ODT configured note styles are not supported: $name',
+        );
+      }
+    }
+    for (final child in configuration.childElements) {
+      if (child.namespaceUri != odfTextNamespace ||
+          !{
+            'note-continuation-notice-forward',
+            'note-continuation-notice-backward',
+          }.contains(child.localName)) {
+        throw UnsupportedError('Unsupported ODT note configuration content.');
+      }
+      _checkAttributes(child, const {});
+      if (child.childElements.isNotEmpty || child.text.isNotEmpty) {
+        throw UnsupportedError(
+          'ODT note continuation notices are not supported.',
+        );
+      }
+    }
+  }
+
+  /// Validates a document-wide outline before importing any heading.
+  /// Numbered outlines and list-level indentation need separate conversion.
+  void validateHeadingConfiguration() {
+    if (_outlineStyles.length > 1) {
+      throw const FormatException('Ambiguous ODT outline styles.');
+    }
+    if (_outlineStyles.isEmpty) return;
+    final outline = _outlineStyles.single;
+    _checkAttributes(outline, {
+      _style: {'name', 'display-name'},
+    });
+    final levels = <int>{};
+    for (final level in outline.childElements) {
+      if (level.namespaceUri != odfTextNamespace ||
+          level.localName != 'outline-level-style') {
+        throw UnsupportedError('Unsupported ODT outline style content.');
+      }
+      _checkAttributes(level, {
+        odfTextNamespace: {'level'},
+        _style: {'num-format'},
+      });
+      final number = int.tryParse(
+        _attr(level, odfTextNamespace, 'level') ?? '',
+      );
+      if (number == null || number < 1 || number > 10 || !levels.add(number)) {
+        throw const FormatException('Invalid ODT outline level.');
+      }
+      if (_attr(level, _style, 'num-format') != '' ||
+          level.childElements.isNotEmpty) {
+        throw UnsupportedError(
+          'Numbered or positioned ODT outlines are not supported.',
+        );
+      }
+    }
   }
 
   WmlRunProps paragraphRunProperties(String? styleName) {
@@ -298,6 +455,7 @@ final class OdtReaderStyles {
     _requireEmpty(values, 'paragraph');
     if (tabs != null) result.tabs = _tabs(tabs);
     final mark = paragraphRunProperties(styleName);
+    if (heading != null) validateHeadingConfiguration();
     result.importedParagraphMark = mark;
     result.proofingLanguage = mark.proofingLanguage;
     return result;
@@ -363,9 +521,8 @@ final class OdtReaderStyles {
 
   /// Converts an absolute ODF length. Relative and non-finite values reject.
   static double lengthPoints(String value, {bool allowNegative = false}) {
-    final match = RegExp(
-      r'^([+-]?(?:\d+(?:\.\d*)?|\.\d+))(pt|pc|in|cm|mm)$',
-    ).firstMatch(value.trim());
+    final match = RegExp(r'^([+-]?(?:\d+(?:\.\d*)?|\.\d+))(pt|pc|in|cm|mm)$')
+        .firstMatch(value.trim());
     if (match == null) throw UnsupportedError('Unsupported ODT length: $value');
     final number = double.parse(match[1]!);
     final scale = switch (match[2]) {
@@ -409,7 +566,7 @@ final class OdtReaderStyles {
           final family = _attr(definition, _svg, 'font-family');
           if (name == null || family == null) continue;
           final previous = _fonts[name];
-          final resolved = _fontFamily(family);
+          final resolved = family.trim();
           if (previous != null && previous != resolved) {
             throw FormatException('Ambiguous ODT font alias: $name');
           }
@@ -447,6 +604,12 @@ final class OdtReaderStyles {
             throw const FormatException('Unnamed ODT page layout.');
           }
           _insert(_layouts, name, definition);
+        } else if (definition.namespaceUri == odfTextNamespace &&
+            definition.localName == 'notes-configuration') {
+          _noteConfigurations.add(definition);
+        } else if (definition.namespaceUri == odfTextNamespace &&
+            definition.localName == 'outline-style') {
+          _outlineStyles.add(definition);
         }
       }
     }
@@ -464,18 +627,23 @@ final class OdtReaderStyles {
   }
 
   static void _checkDefinition(XmlElement definition, String family) {
+    if (_attr(definition, _style, 'family') != family) {
+      throw const FormatException('Ambiguous ODT style family identity.');
+    }
     _checkAttributes(definition, {
       _style: {
         'name',
         'family',
         'display-name',
         'parent-style-name',
-        'next-style-name',
         'class',
-        'default-outline-level',
-        'master-page-name',
-        'list-style-name',
         'auto-update',
+        if (family == 'paragraph') ...{
+          'next-style-name',
+          'default-outline-level',
+          'master-page-name',
+          'list-style-name',
+        },
       },
       _xml: {'id'},
     });
@@ -490,10 +658,17 @@ final class OdtReaderStyles {
       );
     }
     for (final child in definition.childElements) {
-      if (child.namespaceUri != _style ||
-          (child.localName != 'text-properties' &&
-              !(family == 'paragraph' &&
-                  child.localName == 'paragraph-properties'))) {
+      final allowed = switch (family) {
+        'paragraph' => const {'text-properties', 'paragraph-properties'},
+        'text' => const {'text-properties'},
+        'table' => const {'table-properties'},
+        'table-column' => const {'table-column-properties'},
+        'table-row' => const {'table-row-properties'},
+        'table-cell' => const {'table-cell-properties'},
+        'section' => const {'section-properties'},
+        _ => const <String>{},
+      };
+      if (child.namespaceUri != _style || !allowed.contains(child.localName)) {
         throw UnsupportedError(
           'Unsupported used ODT style element: ${child.qualifiedName}',
         );
@@ -512,11 +687,7 @@ final class OdtReaderStyles {
     final alias = take(_style, 'font-name');
     if (font != null) result.asciiFont = _fontFamily(font);
     if (alias != null) {
-      if (_unsupportedFonts.contains(alias)) throw UnsupportedError('Embedded ODT font sources are not supported.');
-      final declared = _fonts[alias];
-      if (declared == null) {
-        throw FormatException('Missing ODT font alias: $alias');
-      }
+      final declared = _resolveFont(alias);
       if (font != null && result.asciiFont != declared) {
         throw const FormatException('Conflicting ODT font family and alias.');
       }
@@ -527,18 +698,15 @@ final class OdtReaderStyles {
     }
     final csAlias = take(_style, 'font-name-complex');
     if (csAlias != null) {
-      if (_unsupportedFonts.contains(csAlias)) throw UnsupportedError('Embedded ODT font sources are not supported.');
-      final declared = _fonts[csAlias];
-      if (declared == null) {
-        throw FormatException('Missing ODT complex font alias: $csAlias');
-      }
+      final declared = _resolveFont(csAlias);
       result.csFont = declared;
       result.explicitProperties.add('csFont');
-    } else if ((font != null || alias != null) && !result.explicitProperties.contains('csFont')) {
+    } else if ((font != null || alias != null) &&
+        !result.explicitProperties.contains('csFont')) {
       result.csFont = result.asciiFont;
     }
     final asian = take(_style, 'font-name-asian');
-    if (asian != null && _fonts[asian] != result.asciiFont) {
+    if (asian != null && _resolveFont(asian) != result.asciiFont) {
       throw UnsupportedError('Distinct ODT Asian font.');
     }
     final size = take(_fo, 'font-size');
@@ -610,8 +778,7 @@ final class OdtReaderStyles {
     final underlineWidth = take(_style, 'text-underline-width');
     final underlineMode = take(_style, 'text-underline-mode');
     final underlineColor = take(_style, 'text-underline-color');
-    if (underlineColor != null &&
-        underlineColor != 'font-color') {
+    if (underlineColor != null && underlineColor != 'font-color') {
       throw UnsupportedError('Distinct ODT underline color.');
     }
     if (underline != null ||
@@ -686,8 +853,19 @@ final class OdtReaderStyles {
       );
       result.explicitProperties.add('complexScriptLanguage');
     }
+    if ((csLanguage == 'none' && result.noProof != true) ||
+        (result.noProof == true && result.complexScriptLanguage != null)) {
+      throw UnsupportedError(
+        'Independent ODT script proofing suppression is not supported.',
+      );
+    }
     final asianLanguage = take(_style, 'language-asian');
     final asianCountry = take(_style, 'country-asian');
+    if (asianLanguage == 'none' && result.noProof != true) {
+      throw UnsupportedError(
+        'Independent ODT Asian proofing suppression is not supported.',
+      );
+    }
     if ((asianLanguage != null || asianCountry != null) &&
         _language(asianLanguage, asianCountry, result.proofingLanguage) !=
             result.proofingLanguage) {
@@ -826,6 +1004,9 @@ final class OdtReaderStyles {
       throw UnsupportedError('ODT page background.');
     }
     _requireEmpty(values, 'page layout');
+    if (properties.childrenNamed('columns', namespaceUri: _style).length > 1) {
+      throw const FormatException('Ambiguous ODT page columns.');
+    }
     for (final child in properties.childElements) {
       if (child.namespaceUri != _style || child.localName != 'columns') {
         throw UnsupportedError('Unsupported ODT page-layout content.');
@@ -893,13 +1074,15 @@ final class OdtReaderStyles {
       }
       final leaderStyle = _attr(tab, _style, 'leader-style');
       final leaderText = _attr(tab, _style, 'leader-text');
-      final leader = switch ((leaderStyle, leaderText)) {
-        (null, null) || ('none', null) => WmlTabLeader.none,
-        ('dotted', '.') => WmlTabLeader.dot,
-        ('solid', '-') => WmlTabLeader.hyphen,
-        ('solid', '_') => WmlTabLeader.underscore,
-        _ => throw UnsupportedError('Unsupported ODT tab leader.'),
-      };
+      final leader = leaderType == 'none'
+          ? WmlTabLeader.none
+          : switch ((leaderStyle, leaderText)) {
+              (null, null) || ('none', null) => WmlTabLeader.none,
+              ('dotted', '.') => WmlTabLeader.dot,
+              ('solid', '-') => WmlTabLeader.hyphen,
+              ('solid', '_') => WmlTabLeader.underscore,
+              _ => throw UnsupportedError('Unsupported ODT tab leader.'),
+            };
       result.add(
         WmlTabStop(
           position: lengthPoints(position),
@@ -967,6 +1150,17 @@ final class OdtReaderStyles {
       return trimmed.substring(1, trimmed.length - 1);
     }
     return trimmed;
+  }
+
+  String _resolveFont(String alias) {
+    if (_unsupportedFonts.contains(alias)) {
+      throw UnsupportedError('Embedded ODT font sources are not supported.');
+    }
+    final family = _fonts[alias];
+    if (family == null) {
+      throw FormatException('Missing ODT font alias: $alias');
+    }
+    return _fontFamily(family);
   }
 
   static String _color(String value) {

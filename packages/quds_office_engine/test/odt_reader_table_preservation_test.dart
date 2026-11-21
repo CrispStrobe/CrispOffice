@@ -88,15 +88,28 @@ void main() {
     },
   );
 
+  test('matching explicit width and fixed columns survive DOCX reopening', () async {
+    final document = await OdtDocumentReader.readBytes(
+      _package(
+        '${_style('T', 'table', '<style:table-properties style:width="144pt"/>')}'
+        '${_style('C', 'table-column', '<style:table-column-properties style:column-width="2in"/>')}',
+        tableStyle: 'table:style-name="T"',
+        columns: '<table:table-column table:style-name="C"/>',
+      ),
+    );
+    for (final current in [document, _reopen(document)]) {
+      expect(_table(current).grid, [144]);
+      expect(_table(current).rows.single.cells.single.width, 144);
+    }
+  });
+
   test(
-    'matching explicit width and fixed columns survive DOCX reopening',
+    'declared table width fills an unspecified column without loss',
     () async {
       final document = await OdtDocumentReader.readBytes(
         _package(
-          '${_style('T', 'table', '<style:table-properties style:width="144pt"/>')}'
-          '${_style('C', 'table-column', '<style:table-column-properties style:column-width="2in"/>')}',
+          _style('T', 'table', '<style:table-properties style:width="144pt"/>'),
           tableStyle: 'table:style-name="T"',
-          columns: '<table:table-column table:style-name="C"/>',
         ),
       );
       for (final current in [document, _reopen(document)]) {
@@ -106,8 +119,39 @@ void main() {
     },
   );
 
-  for (final width in ['144pt', 'not-a-length', '0pt']) {
-    test('refuses unrepresented or invalid table width $width', () async {
+  test('conflicting explicitly fixed table and column widths refuse', () async {
+    await expectLater(
+      OdtDocumentReader.readBytes(
+        _package(
+          '${_style('T', 'table', '<style:table-properties style:width="144pt"/>')}'
+          '${_style('C', 'table-column', '<style:table-column-properties style:column-width="120pt"/>')}',
+          tableStyle: 'table:style-name="T"',
+          columns: '<table:table-column table:style-name="C"/>',
+        ),
+      ),
+      _refused,
+    );
+  });
+
+  test('used structural styles retain supported inert metadata', () async {
+    final document = await OdtDocumentReader.readBytes(
+      _package(
+        _style(
+          'T',
+          'table',
+          '<style:table-properties table:align="center"/>',
+          extra: 'style:class="extra" style:auto-update="false"',
+        ),
+        tableStyle: 'table:style-name="T"',
+      ),
+    );
+    for (final current in [document, _reopen(document)]) {
+      expect(_table(current).properties.alignment, WmlJustification.center);
+    }
+  });
+
+  for (final width in ['not-a-length', '0pt']) {
+    test('refuses invalid table width $width', () async {
       await expectLater(
         OdtDocumentReader.readBytes(
           _package(
@@ -157,24 +201,21 @@ void main() {
   });
 
   for (final override in ['', ' fo:background-color="transparent"']) {
-    test(
-      'cell fill distinguishes inherited and explicit transparent $override',
-      () async {
-        final document = await OdtDocumentReader.readBytes(
-          _package(
-            '${_style('CB', 'table-cell', '<style:table-cell-properties fo:background-color="#FF0000"/>')}'
-            '${_style('C', 'table-cell', '<style:table-cell-properties$override/>', parent: 'CB')}',
-            cellStyle: 'table:style-name="C"',
-          ),
+    test('cell fill distinguishes inherited and explicit transparent $override', () async {
+      final document = await OdtDocumentReader.readBytes(
+        _package(
+          '${_style('CB', 'table-cell', '<style:table-cell-properties fo:background-color="#FF0000"/>')}'
+          '${_style('C', 'table-cell', '<style:table-cell-properties$override/>', parent: 'CB')}',
+          cellStyle: 'table:style-name="C"',
+        ),
+      );
+      for (final current in [document, _reopen(document)]) {
+        expect(
+          _table(current).rows.single.cells.single.fillColor,
+          override.isEmpty ? 'FF0000' : null,
         );
-        for (final current in [document, _reopen(document)]) {
-          expect(
-            _table(current).rows.single.cells.single.fillColor,
-            override.isEmpty ? 'FF0000' : null,
-          );
-        }
-      },
-    );
+      }
+    });
   }
 
   for (final family in ['table', 'table-column', 'table-row', 'table-cell']) {

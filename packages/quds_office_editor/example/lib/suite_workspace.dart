@@ -6520,9 +6520,15 @@ class _SuiteWorkspaceState extends State<SuiteWorkspace> {
       switch (picked.kind) {
         case OpcPackageKind.word:
           _switchApp(SuiteApp.word);
+          final bool importedOdt = OdtDocumentReader.isOdt(bytes);
           await _word.loadBytesAsync(bytes, onProgress: onProgress);
-          _wordPath = picked.path;
-          _wordName = _nameFromPicked(picked);
+          if (!mounted) return;
+          // The active representation is DOCX. Never write those bytes over
+          // the source ODT path; the first save chooses a new DOCX location.
+          _wordPath = importedOdt ? null : picked.path;
+          _wordName = importedOdt
+              ? StudioFiles.importedOdtSaveName(_nameFromPicked(picked))
+              : _nameFromPicked(picked);
         case OpcPackageKind.sheet:
           _switchApp(SuiteApp.excel);
           await _sheet.loadBytesAsync(bytes, onProgress: onProgress);
