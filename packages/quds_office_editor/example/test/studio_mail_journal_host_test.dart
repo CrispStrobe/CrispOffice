@@ -601,10 +601,7 @@ void _expectHistoricalTarget(_Harness harness) {
   // re-targeted to the live one. (Since 45f0e503 EWS/Gmail/Graph live
   // accounts reuse the stable store identity, so they may equal
   // fixture.account; IMAP still uses a per-connection id.)
-  expect(
-    observed.account,
-    isNot(harness.fixture.source('retired-connection')),
-  );
+  expect(observed.account, isNot(harness.fixture.source('retired-connection')));
   expect(observed.provider, harness.kind);
   if (observed case MailImapIdentity(
     :final mailbox,

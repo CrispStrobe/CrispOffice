@@ -1572,8 +1572,7 @@ void main() {
         matching: find.byWidgetPredicate(
           (widget) =>
               widget is Tooltip &&
-              widget.message ==
-                  _strings.mailMessageListStrings.loadedScope,
+              widget.message == _strings.mailMessageListStrings.loadedScope,
         ),
       ),
       findsOneWidget,
