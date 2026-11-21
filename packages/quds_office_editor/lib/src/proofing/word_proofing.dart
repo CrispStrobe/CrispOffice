@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:quds_office_engine/quds_office_engine.dart';
+import '../l10n/office_plural.dart';
 
 /// A finding together with its exact paragraph, story and input snapshot.
 final class WordProofingIssue {
@@ -139,10 +140,10 @@ final class WordProofingSummary {
           result.message ?? '${result.providerId}: ${result.status.name}',
     };
     final coverage =
-        '$checkedParagraphCount of $paragraphCount paragraphs checked';
+        '$checkedParagraphCount of ${officeParagraphs(paragraphCount)} checked';
     final excluded = skippedContentCount == 0
         ? ''
-        : '; $skippedContentCount excluded or unsupported content ranges';
+        : '; ${officeCount(skippedContentCount, 'excluded or unsupported content range')}';
     if (reports.isEmpty) return '$coverage$excluded. No checkable text.';
     if (supported.isEmpty) {
       final language = reports.first.request.language;
@@ -150,15 +151,15 @@ final class WordProofingSummary {
     }
     if (problems.isNotEmpty) return '$coverage$excluded. ${problems.join(' ')}';
     if (manualProvidersSkipped) {
-      return '$coverage$excluded. ${issues.length} findings; '
+      return '$coverage$excluded. ${officeFindings(issues.length)}; '
           'choose Check document to include the manual grammar check.';
     }
     if (!complete) {
-      return '$coverage$excluded. ${issues.length} findings; coverage is incomplete.';
+      return '$coverage$excluded. ${officeFindings(issues.length)}; coverage is incomplete.';
     }
     return issues.isEmpty
         ? '$coverage. No issues found by the configured providers.'
-        : '$coverage. ${issues.length} findings to review.';
+        : '$coverage. ${officeCount(issues.length, 'finding')} to review.';
   }
 }
 

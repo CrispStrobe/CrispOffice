@@ -14,9 +14,9 @@ extension StudioMailWorkspaceStrings on StudioStrings {
 
   MailMessageListStrings get mailMessageListStrings => MailMessageListStrings(
     searchLoaded: _text(
-      'Search loaded headers',
-      'Geladene Nachrichtenköpfe durchsuchen',
-      'البحث في الترويسات المحمّلة',
+      'Search mail',
+      'E-Mails durchsuchen',
+      'البحث في البريد',
     ),
     unread: _text('Unread', 'Ungelesen', 'غير مقروءة'),
     flagged: _text('Flagged', 'Gekennzeichnet', 'المعلّمة'),
@@ -41,9 +41,9 @@ extension StudioMailWorkspaceStrings on StudioStrings {
     clearSearch: _text('Clear search', 'Suche löschen', 'مسح البحث'),
     searchHelp: _text('Search help', 'Suchhilfe', 'مساعدة البحث'),
     searchHelpTitle: _text(
-      'Search loaded headers',
-      'Geladene Nachrichtenköpfe durchsuchen',
-      'البحث في ترويسات الرسائل المحمّلة',
+      'Search mail',
+      'E-Mails durchsuchen',
+      'البحث في البريد',
     ),
     searchHelpText: _text(
       'Words match the subject or sender. All terms must match; use double '

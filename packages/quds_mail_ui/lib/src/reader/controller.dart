@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 
+import 'labels.dart';
 import 'presentation.dart';
 
 enum MailReaderMode { full, preview }
@@ -17,6 +18,7 @@ final class MailReaderController extends ChangeNotifier {
     this.mode = MailReaderMode.full,
     MailReadBudget? budget,
     bool preferHtml = true,
+    this.labels = const MailReaderLabels(),
   }) : budget =
            budget ??
            (mode == MailReaderMode.preview
@@ -28,6 +30,7 @@ final class MailReaderController extends ChangeNotifier {
       result,
       budget: this.budget,
       preferHtml: preferHtml,
+      labels: labels,
     );
   }
 
@@ -37,6 +40,7 @@ final class MailReaderController extends ChangeNotifier {
     MailReaderMode mode = MailReaderMode.full,
     MailReadBudget? budget,
     bool preferHtml = true,
+    MailReaderLabels labels = const MailReaderLabels(),
   }) {
     final limits =
         budget ??
@@ -49,11 +53,15 @@ final class MailReaderController extends ChangeNotifier {
       mode: mode,
       budget: limits,
       preferHtml: preferHtml,
+      labels: labels,
     );
   }
 
   final MailReaderMode mode;
   final MailReadBudget budget;
+
+  /// Header labels and formatting of the decoded text and the view.
+  final MailReaderLabels labels;
   MailParseResult _result;
   late MailReaderPresentation _presentation;
   bool _preferHtml;
@@ -90,6 +98,7 @@ final class MailReaderController extends ChangeNotifier {
       value,
       budget: budget,
       preferHtml: _preferHtml,
+      labels: labels,
     );
     _selection = const TextSelection.collapsed(offset: 0);
     _runSearch();
@@ -104,6 +113,7 @@ final class MailReaderController extends ChangeNotifier {
       _result,
       budget: budget,
       preferHtml: value,
+      labels: labels,
       externalImages: _externalImages.values,
     );
     _selection = const TextSelection.collapsed(offset: 0);
@@ -145,6 +155,7 @@ final class MailReaderController extends ChangeNotifier {
       _result,
       budget: budget,
       preferHtml: _preferHtml,
+      labels: labels,
       externalImages: candidates.values,
     );
     if (rebuilt.rejected) return 0;

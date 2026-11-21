@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 
 import 'studio_strings.dart';
+import 'studio_plural.dart';
 
 /// Writing, language and tracked-change actions of the Studio footer.
 ///
@@ -138,11 +139,9 @@ class _StudioReviewStripState extends State<StudioReviewStrip> {
         issues = _t('Not checked yet', 'Noch nicht geprüft', 'لم يُدقّق بعد');
         issuesIcon = Icons.spellcheck;
       case WordProofingPhase.partial:
-        issues = _t(
-          '${count == 1 ? '1 issue' : '$count issues'} · partial check',
-          '${count == 1 ? '1 Hinweis' : '$count Hinweise'} · teilweise geprüft',
-          '$count ملاحظات · تدقيق جزئي',
-        );
+        issues =
+            '${studioIssues(widget.language, count)} · '
+            '${_t('partial check', 'teilweise geprüft', 'تدقيق جزئي')}';
         issuesIcon = Icons.info_outline;
       case WordProofingPhase.complete:
         issues = count == 0
@@ -151,18 +150,10 @@ class _StudioReviewStripState extends State<StudioReviewStrip> {
                 'Keine Schreibhinweise',
                 'لا توجد ملاحظات',
               )
-            : count == 1
-            ? _t('1 writing issue', '1 Schreibhinweis', 'ملاحظة واحدة')
-            : _t(
-                '$count writing issues',
-                '$count Schreibhinweise',
-                '$count ملاحظات',
-              );
+            : studioWritingIssues(widget.language, count);
         issuesIcon = count == 0 ? Icons.check_circle_outline : Icons.spellcheck;
     }
-    final changes = pending == 1
-        ? _t('1 change', '1 Änderung', 'تغيير واحد')
-        : _t('$pending changes', '$pending Änderungen', '$pending تغييرات');
+    final changes = studioChanges(widget.language, pending);
     final compact = widget.compact;
     Widget action(
       IconData icon,

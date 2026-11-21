@@ -9,6 +9,7 @@ import 'studio_mail_mailbox_store.dart';
 import 'studio_mail_sync_strings.dart';
 import 'studio_mail_workspace_strings.dart';
 import 'studio_strings.dart';
+import 'studio_mail_reader_labels.dart';
 
 typedef StudioMailSyncRun =
     Future<MailSyncRunReport> Function({
@@ -369,6 +370,7 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
             status: MailParseStatus.complete,
             message: message,
           ),
+          labels: StudioMailReaderLabels(widget.strings.language),
         );
         setState(() => _reader = reader);
       }
@@ -520,7 +522,10 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
           to: header.envelope.to.map((address) => address.address).join(', '),
           cc: header.envelope.cc.map((address) => address.address).join(', '),
           date: header.envelope.sentAt,
-          dateLabel: header.envelope.sentAt?.toLocal().toString(),
+          dateLabel: studioMailListDate(
+            header.envelope.sentAt,
+            widget.strings.language,
+          ),
           isRead: header.flags?.isRead,
           isFlagged: header.flags?.isFlagged,
         ),

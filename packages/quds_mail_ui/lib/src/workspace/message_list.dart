@@ -637,6 +637,7 @@ class _MailMessageListState extends State<MailMessageList> {
   @override
   Widget build(BuildContext context) {
     final visible = _visible;
+    final notAllLoaded = widget.hasMore || widget.limitNotice != null;
     final strings = widget.strings;
     final scaler = MediaQuery.textScalerOf(context);
     final generation = _interactionGeneration;
@@ -736,15 +737,21 @@ class _MailMessageListState extends State<MailMessageList> {
             ],
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(10, 0, 10, 8),
-          child: Text(
-            '${strings.count(visible.length, widget.items.length)}\n'
-            '${strings.loadedScope}',
-            key: const ValueKey('mail-list-scope'),
-            style: Theme.of(context).textTheme.bodySmall,
+        // The counts and the loaded-only scope matter only when the folder
+        // has more headers than are loaded (more pages or the host's limit),
+        // or when filters hide some.
+        if (notAllLoaded || visible.length != widget.items.length)
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10, 0, 10, 8),
+            child: Text(
+              notAllLoaded
+                  ? '${strings.count(visible.length, widget.items.length)}\n'
+                        '${strings.loadedScope}'
+                  : strings.count(visible.length, widget.items.length),
+              key: const ValueKey('mail-list-scope'),
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
           ),
-        ),
         if (widget.onBulkAction != null)
           Padding(
             padding: const EdgeInsets.fromLTRB(10, 0, 10, 8),
