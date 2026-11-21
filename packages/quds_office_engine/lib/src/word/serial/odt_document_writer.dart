@@ -1208,14 +1208,13 @@ abstract final class OdtDocumentWriter {
           );
         }
         if (inline.inlineVisual case final visual?) {
-          // Annotation pictures retain their established direct paragraph/link
-          // structure. Ordinary pictures carry the native run style on a span.
-          if (!layout.inCommentBody) {
-            w.writeStartElement('span', prefix: 'text');
-            w.writeAttribute('text:style-name', style);
-          }
+          // Inline pictures own the run's character style in every story,
+          // including annotations. Detached comment visuals still use their
+          // separate paragraph-level writer.
+          w.writeStartElement('span', prefix: 'text');
+          w.writeAttribute('text:style-name', style);
           _writeVisual(w, visual.visual, layout, inline: true);
-          if (!layout.inCommentBody) w.writeEndElement();
+          w.writeEndElement();
         }
         if (ownLink) w.writeEndElement();
         if (layout.commentsAllowed) {
