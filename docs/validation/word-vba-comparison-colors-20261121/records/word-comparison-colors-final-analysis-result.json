@@ -1,0 +1,12 @@
+{
+  "command": [
+    "dart",
+    "analyze",
+    "--fatal-infos",
+    "lib",
+    "test",
+    "tool/macros"
+  ],
+  "exitCode": 4,
+  "durationSeconds": 65.734
+}

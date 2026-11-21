@@ -1,0 +1,33 @@
+00:00 +0: loading test/office_vba_word_comparison_colors_conformance_test.dart
+00:00 +0: StrComp result: three-ordering-results
+00:00 +1: StrComp result: prefix-and-empty-ordering
+00:00 +2: StrComp result: binary-digit-strings
+00:00 +3: StrComp result: unicode-no-normalization
+00:00 +4: StrComp result: surrogate-halves-and-nul
+00:00 +5: StrComp result: null-operands-propagate
+00:00 +6: StrComp Empty: empty-and-default-variant
+00:00 +7: StrComp result: explicit-text-conversions
+00:00 +8: Comparison and Word formatting: comparison-selects-font-palette
+00:00 +9: StrComp refusal: text-mode-refused
+00:00 +10: StrComp refusal: database-mode-refused
+00:00 +11: StrComp refusal: option-mode-refused
+00:00 +12: StrComp refusal: null-mode-refused
+00:00 +13: StrComp refusal: numeric-text-coercion-refused
+00:00 +14: StrComp refusal: boolean-text-coercion-refused
+00:00 +15: StrComp refusal: string-mode-coercion-refused
+00:00 +16: StrComp refusal: fractional-mode-refused
+00:00 +17: StrComp refusal: empty-mode-refused
+00:00 +18: StrComp refusal: missing-required-argument
+00:00 +19: StrComp refusal: named-compare-refused
+00:00 +20: StrComp refusal: omitted-compare-refused
+00:00 +21: Font.ColorIndex palette: complete-fixed-font-palette
+00:00 +22: Automatic foreground: automatic-and-packed-rgb-stay-distinct
+00:00 +23: Comparison and Word targeting: helper-and-independent-footer
+00:00 +24: Font color refusal: font-by-author-refused
+00:00 +25: Font color refusal: palette-outside-range-refused
+00:00 +26: Font color refusal: fractional-palette-refused
+00:00 +27: Font color refusal: font-property-read-refused
+00:00 +28: Font color refusal: automatic-sentinel-is-not-palette-index
+00:00 +29: Font color refusal: invalid-rgb-does-not-return-partial-plan
+00:00 +30: comparison and font-color corpus distinguishes specification and dialect evidence
+00:00 +31: All tests passed!

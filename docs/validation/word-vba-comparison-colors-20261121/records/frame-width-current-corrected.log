@@ -1,0 +1,28 @@
+00:00 +0: loading test/word_native_presentation_test.dart
+00:00 +0: native TOC bookmark keeps exact title/page range false through three saves
+00:00 +1: native TOC bookmark keeps exact title/page range true through three saves
+00:00 +2: native TOC control keeps exact title/page range true through three saves
+00:00 +3: native TOC bookmark regeneration fails before model or package mutation
+00:00 +4: native TOC control regeneration fails before model or package mutation
+00:00 +5: settings edits preserve foreign w bindings with aliased Word elements
+00:00 +6: settings edits preserve foreign w bindings with default Word elements
+00:00 +7: native display math keeps its wrapper through clone and three saves
+00:00 +8: native inline math keeps its wrapper through clone and three saves
+00:00 +9: native TOC shared field paragraphs retain omission, rich suffix and live edits for three saves
+00:00 +10: native TOC separate field paragraphs retain omission, rich suffix and live edits for three saves
+00:00 +11: native TOC without a title does not acquire an invented heading
+00:00 +12: TOC setting changes and explicit refresh select generated presentation
+00:00 +13: native frame insets and host properties survive clone and three saves: <wps:bodyPr/>
+00:00 +14: native frame insets and host properties survive clone and three saves: <wps:bodyPr lIns="0" tIns="0" rIns="0" bIns="0"/>
+00:00 +15: native frame insets and host properties survive clone and three saves: <wps:bodyPr lIns="127000" bIns="63500" vert="vert" anchor="ctr"><a:noAutofit/></wps:bodyPr>
+00:00 +16: native frame line omissions and properties survive clone, color edit and three saves: 
+00:00 +17: native frame line omissions and properties survive clone, color edit and three saves: <a:ln><a:solidFill><a:srgbClr val="355C7D"/></a:solidFill></a:ln>
+00:00 +18: native frame line omissions and properties survive clone, color edit and three saves: <a:ln w="38100" cap="rnd" cmpd="sng" algn="ctr"><a:solidFill><a:srgbClr val="355C7D"/></a:solidFill><a:prstDash val="dash"/><a:round/></a:ln>
+00:00 +19: new frame native insets match the eight-point editor default
+00:00 +20: frame inset edit changes only its attribute and retains native host spacing
+00:00 +21: absent native settings retain their distinction through three saves
+00:00 +22: empty native settings retain their distinction through three saves
+00:00 +23: owned settings parse their own flags and preserve native values and part ownership for three saves
+00:00 +24: live settings edits preserve protection metadata and insert owned nodes in schema order
+00:00 +25: requested live settings create an owned settings part when absent
+00:00 +26: All tests passed!

@@ -1,0 +1,5 @@
+00:00 +0: loading test/word_native_presentation_test.dart
+00:00 +0: native frame line omissions and properties survive clone, color edit and three saves: 
+00:00 +1: native frame line omissions and properties survive clone, color edit and three saves: <a:ln><a:solidFill><a:srgbClr val="355C7D"/></a:solidFill></a:ln>
+00:00 +2: native frame line omissions and properties survive clone, color edit and three saves: <a:ln w="38100" cap="rnd" cmpd="sng" algn="ctr"><a:solidFill><a:srgbClr val="355C7D"/></a:solidFill><a:prstDash val="dash"/><a:round/></a:ln>
+00:00 +3: All tests passed!

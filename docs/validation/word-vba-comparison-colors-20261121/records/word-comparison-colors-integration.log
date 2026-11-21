@@ -1,0 +1,14 @@
+00:00 +0: loading test/office_vba_word_comparison_colors_integration_test.dart
+00:00 +0: (setUpAll)
+00:05 +0: actual BAS preserves DOCM, native colors and transactions
+00:06 +1: DOCX executes the same BAS without acquiring an embedded project
+00:06 +2: ByVal Font rebinding does not replace the caller alias
+00:06 +3: Null comparison stays explicit and Empty selects a known branch
+00:06 +4: automatic and explicit black remain distinct native writes
+00:06 +5: a later invalid target rolls back colors and leaves recording empty
+00:06 +6: an unsupported merged cell rolls back an earlier font change
+00:06 +7: MCP compiles, validates and runs the actual comparison/color BAS
+00:06 +8: MCP refuses an invalid comparison before any source plan is published
+00:06 +9: CLI compiles/runs the actual BAS and retains prior output on refusals
+00:09 +10: (tearDownAll)
+00:09 +10: All tests passed!
