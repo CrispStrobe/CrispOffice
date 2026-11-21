@@ -296,15 +296,9 @@ void main() {
     });
 
     test(
-      'unsupported operators, negation, groups and wildcards are explicit',
+      'unsupported symbolic operators and wildcards are explicit',
       () {
         for (final query in [
-          'one OR two',
-          'one AND two',
-          'NOT one',
-          '-one',
-          '-is:read',
-          '(one)',
           '[one two]',
           'from:ali*',
           'subject:r?port',
