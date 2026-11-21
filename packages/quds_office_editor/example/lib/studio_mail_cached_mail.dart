@@ -495,7 +495,11 @@ class _StudioMailCachedMailDialogState
         MailMessageListItem(
           id: header.id.value,
           subject: header.envelope.subject,
-          accountId: header.remote.account.value,
+          accountId: [
+            header.remote.account.profile.hostId,
+            header.remote.account.profile.value,
+            header.remote.account.value,
+          ].map(Uri.encodeComponent).join('/'),
           messageId: header.envelope.messageId,
           inReplyTo: header.envelope.inReplyTo,
           references: header.envelope.references,
