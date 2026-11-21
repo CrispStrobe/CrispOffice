@@ -4,6 +4,13 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Add shared bounded VBA `Abs`, `Int`, `Fix` and `Sgn` expressions to Word,
+  Excel and PowerPoint macros. Preserve negative floor/truncation differences,
+  numeric Variant and Empty/Null behavior, explicit coercion requirements and
+  finite portable bounds. Include a runnable Word report, versioned numeric
+  corpus and native/CLI/MCP transaction and VM/JavaScript coverage. See the
+  [numeric contract](../../docs/VBA_MACROS.md#numeric-intrinsics).
+
 - Add bounded Word VBA `Font.Position` assignments through typed aliases,
   helpers and independent header/footer selectors. Native run formatting,
   DOCX inheritance and sparse serialization retain signed half-point positions

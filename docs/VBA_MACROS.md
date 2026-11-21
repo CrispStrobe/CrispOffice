@@ -507,6 +507,52 @@ Only supported member names are admitted. `Merge`, `ColumnWidth`, `NumberFormat`
 `FormulaR1C1`, worksheet dynamic spill formulas, named ranges, whole rows/columns, discontiguous
 ranges, and default members are not translated into approximate operations.
 
+## Numeric intrinsics
+
+The shared Word, Excel and PowerPoint source dialects support `Abs`, `Int`,
+`Fix`, and `Sgn` in source expressions. Each accepts exactly one positional
+argument, evaluated once before the result is used. Names are case-insensitive
+and reserved for these functions. Named/omitted arguments, `$` aliases and
+module-qualified calls are not supported. Existing restrictions on calls in
+`Const` expressions and optional parameter defaults remain in effect.
+
+| Function | Result | Example |
+| --- | --- | --- |
+| `Abs(number)` | Nonnegative magnitude | `Abs(-8.4)` is `8.4` |
+| `Int(number)` | Greatest integer no larger than the input | `Int(-8.4)` is `-9` |
+| `Fix(number)` | Integer portion, truncating toward zero | `Fix(-8.4)` is `-8` |
+| `Sgn(number)` | `-1`, `0`, or `1` according to the input's sign | `Sgn(-8.4)` is `-1` |
+
+Actual numbers, numeric scalar Variants and `Empty` are accepted; `Empty`
+contributes zero. `Abs`, `Int` and `Fix` propagate `Null`, including nested
+calls and nullable helper results. Test such a result with `IsNull` before
+assigning it to a typed scalar or a document property. `Sgn(Null)` produces
+`vba_invalid_use_of_null` in this bounded dialect. A missing optional Variant
+must still be handled with `IsMissing` before reading it.
+
+Strings and Booleans require an explicit conversion, even when a Variant
+contains them: `Abs(CDbl("-12.5"))` and `Abs(CDbl(True))` are supported,
+while `Abs("-12.5")` and `Abs(True)` are refused. Locale-dependent implicit
+conversion and the complete VBA numeric subtype/overflow system are not
+implemented. In particular, the shared numeric envelope allows
+`Abs(CLng(-2147483648))` to produce `2147483648`; assigning that result to
+a declared `Long` still fails its signed 32-bit bound.
+
+Inputs and results remain finite and within `±9007199254740991`. The ordinary
+arithmetic, evaluation and emitted-operation budgets apply to arguments,
+helpers and surrounding loops. Negative zero is normalized to zero. These
+functions do not round to a requested decimal precision or relax the exact
+point/twip/integer requirements of document properties. A failing argument,
+unused statically invalid helper, or invalid native operation cannot publish
+a partial macro run.
+
+The [58-case numeric corpus](../packages/quds_office_engine/test/fixtures/vba_conformance/word_numeric_intrinsics_v1.json)
+records independently authored arithmetic expectations separately from
+deliberate dialect limits. The [Word numeric report](VBA_WORD_MACROS.md#calculating-word-layout-values)
+uses the functions through the existing native transaction and policy boundary.
+This qualifies source-known calculations; live document-value reads and an
+installed Microsoft Office differential run remain separate work.
+
 ## String intrinsics
 
 These case-insensitive functions operate on source String values, including a
@@ -901,6 +947,7 @@ dart run tool/macros/office_macro.dart run-vba \
 | Constants | Literals, supported unary/binary expressions, and previously declared constants; function calls in constant initializers are unsupported |
 | Assignment | Scalar assignment, optional `Let`, and explicitly supported writable object properties |
 | Arithmetic | Decimal/exponent literals, parentheses, unary `+`/`-`, and binary `+`, `-`, `*`, `/` |
+| Numeric intrinsics | `Abs`, `Int`, `Fix`, `Sgn`; one positional numeric/Variant argument, explicit Empty/Null behavior and bounded portable arithmetic |
 | Text | Double-quoted literals with doubled embedded quotes and `&` concatenation of scalar values |
 | String intrinsics | `Len`, `Left$`, `Right$`, `Mid$`, binary `InStr` / `InStrRev` / `Replace`, and Trim/LTrim/RTrim with their `$` forms; actual Strings, UTF-16 units, bounded exact integer arguments, no implicit coercion |
 | Comparisons | `=`, `<>`, `<`, `>`, `<=`, `>=` between matching scalar types, contextual `Empty`, or propagating `Null`; strings use binary ordering |
@@ -1087,6 +1134,7 @@ The supported mappings are based on Microsoft's documented VBA behavior:
 - [Select Case syntax and ranges](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/select-case-statement)
 - [MS-VBAL Select Case evaluation order](https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/94a2f0fe-bdbe-4f5d-b3f4-bbf339b0ac65)
 - [RGB color values](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/rgb-function)
+- [Abs](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/abs-function), [Int/Fix](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/int-fix-functions), and [Sgn](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/sgn-function)
 - [Len, including typed-variable storage semantics](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/len-function)
 - [Left](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/left-function), [Right](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/right-function), and [Mid](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/mid-function)
 - [MS-VBAL Left$](https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/5f10a9e1-b6ba-4a92-bd94-c4c99da74ef2)

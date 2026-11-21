@@ -1,0 +1,363 @@
+{
+  "coverage": {
+    "acceptedCases": 6019,
+    "acceptedSuites": 119,
+    "originalCleanSuiteCases": 5832,
+    "originalCleanSuites": 106,
+    "retryCases": 187,
+    "retrySuites": 13,
+    "discardedOverlappingOriginalPasses": 27,
+    "initialInfrastructureErrors": 15,
+    "initialError": "ENOSPC while creating temporary/output directories",
+    "acceptance": "One complete clean execution per suite: original clean suites plus serial rerun of every affected suite. No failed/skipped accepted case. Parameterized equal-name cases retain separate runner IDs and name occurrence numbers.",
+    "inputCount": 3134,
+    "sourceInputsUnchanged": true,
+    "initialSourceCommit": "97538d025b260bd67c559962be9e9f159a6de06e",
+    "retrySuitePaths": [
+      "test/office_vba_word_named_measurements_integration_test.dart",
+      "test/office_vba_word_page_setup_integration_test.dart",
+      "test/office_vba_word_paragraph_controls_integration_test.dart",
+      "test/office_vba_word_position_integration_test.dart",
+      "test/office_vba_word_proofing_integration_test.dart",
+      "test/office_vba_word_sections_integration_test.dart",
+      "test/office_vba_word_shading_integration_test.dart",
+      "test/office_vba_word_styles_alternate_integration_test.dart",
+      "test/office_vba_word_styles_integration_test.dart",
+      "test/office_vba_word_text_columns_integration_test.dart",
+      "test/office_vba_word_text_integration_test.dart",
+      "test/style_cascade_test.dart",
+      "test/word_structure_steps_test.dart"
+    ]
+  },
+  "static": {
+    "phase": "static",
+    "sourceCommit": "97538d025b260bd67c559962be9e9f159a6de06e",
+    "sourceTree": "387d532d7f4eb882245e42b7650be3d714627591",
+    "inputCount": 3134,
+    "dartSha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "packageConfigSha256": "8a06676d952763d60a63c8731f7b5e1ea5b2c3af7034f1550ab9479c9a852ca5",
+    "dartVersion": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+    "commands": [
+      {
+        "name": "analysis",
+        "command": [
+          "/workspace/scratch/55ae4c05da4e/runtime/dart-sdk/bin/dart",
+          "analyze",
+          "--fatal-infos"
+        ],
+        "cwd": "/workspace/scratch/55ae4c05da4e/quds_office_suite/packages/quds_office_engine",
+        "exitCode": 0,
+        "seconds": 18.265,
+        "stdoutBytes": 49,
+        "stderrBytes": 0,
+        "stdoutSha256": "c557a0c697cdb937104f1423d3c02d6a1062917cb0bcb2830d91db8cf6192af0",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "format",
+        "command": [
+          "/workspace/scratch/55ae4c05da4e/runtime/dart-sdk/bin/dart",
+          "format",
+          "--output=none",
+          "--set-exit-if-changed",
+          "lib/src/automation/office_vba_language.dart",
+          "test/office_vba_numeric_intrinsics_test.dart",
+          "test/office_vba_numeric_intrinsics_integration_test.dart",
+          "test/office_vba_numeric_conformance_test.dart",
+          "tool/macros/web_vba_word_numeric_smoke.dart"
+        ],
+        "cwd": "/workspace/scratch/55ae4c05da4e/quds_office_suite/packages/quds_office_engine",
+        "exitCode": 0,
+        "seconds": 0.155,
+        "stdoutBytes": 47,
+        "stderrBytes": 0,
+        "stdoutSha256": "fa7c222e299400d65a9ab0674a18eb5d5a70d8903f4893013aa2574d4c502704",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "whitespace",
+        "command": [
+          "git",
+          "diff",
+          "--check"
+        ],
+        "cwd": "/workspace/scratch/55ae4c05da4e/quds_office_suite/packages/quds_office_engine",
+        "exitCode": 0,
+        "seconds": 0.012,
+        "stdoutBytes": 0,
+        "stderrBytes": 0,
+        "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "inputsUnchanged": true,
+    "sourceManifestSha256": "16e592607d1caeb668b5301190a6c85ecb88a2bc8bc6ff774a9a538ac77dcf83",
+    "success": true
+  },
+  "portable": {
+    "phase": "portable",
+    "sourceCommit": "97538d025b260bd67c559962be9e9f159a6de06e",
+    "sourceTree": "387d532d7f4eb882245e42b7650be3d714627591",
+    "inputCount": 3134,
+    "dartSha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "packageConfigSha256": "8a06676d952763d60a63c8731f7b5e1ea5b2c3af7034f1550ab9479c9a852ca5",
+    "dartVersion": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+    "commands": [
+      {
+        "name": "word-numeric-vm",
+        "command": [
+          "/workspace/scratch/55ae4c05da4e/runtime/dart-sdk/bin/dart",
+          "--packages=/workspace/scratch/55ae4c05da4e/quds_office_suite/.dart_tool/package_config.json",
+          "-DWORD_NUMERIC_BAS_BASE64=<base64 of example/macros/word_numeric_report.bas; sha256=61fc36ab5b106ed8af766649318ecd80a59968d5cd97672f0f9af735b4f1da0a>",
+          "tool/macros/web_vba_word_numeric_smoke.dart"
+        ],
+        "cwd": "/workspace/scratch/55ae4c05da4e/quds_office_suite/packages/quds_office_engine",
+        "exitCode": 0,
+        "seconds": 10.137,
+        "stdoutBytes": 483,
+        "stderrBytes": 0,
+        "stdoutSha256": "d8033e3dbaaacf6d338d5c63aceedb8e112493e53e5b2878164017eb0c2359c3",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "word-numeric-compile",
+        "command": [
+          "/workspace/scratch/55ae4c05da4e/runtime/dart-sdk/bin/dart",
+          "compile",
+          "js",
+          "-O1",
+          "--packages=/workspace/scratch/55ae4c05da4e/quds_office_suite/.dart_tool/package_config.json",
+          "-DWORD_NUMERIC_BAS_BASE64=<base64 of example/macros/word_numeric_report.bas; sha256=61fc36ab5b106ed8af766649318ecd80a59968d5cd97672f0f9af735b4f1da0a>",
+          "tool/macros/web_vba_word_numeric_smoke.dart",
+          "-o",
+          "/workspace/scratch/55ae4c05da4e/qualification/portable/tmp/word-numeric.js"
+        ],
+        "cwd": "/workspace/scratch/55ae4c05da4e/quds_office_suite/packages/quds_office_engine",
+        "exitCode": 0,
+        "seconds": 14.43,
+        "stdoutBytes": 114,
+        "stderrBytes": 0,
+        "stdoutSha256": "9995feed7ec231079ec3fe680ada50636190a7b618c3e5553b2c18d788cde726",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "word-numeric-node",
+        "command": [
+          "node",
+          "-e",
+          "globalThis.self=globalThis; require(process.argv[1]);",
+          "/workspace/scratch/55ae4c05da4e/qualification/portable/tmp/word-numeric.js"
+        ],
+        "cwd": "/workspace/scratch/55ae4c05da4e/quds_office_suite/packages/quds_office_engine",
+        "exitCode": 0,
+        "seconds": 1.097,
+        "stdoutBytes": 483,
+        "stderrBytes": 0,
+        "stdoutSha256": "d8033e3dbaaacf6d338d5c63aceedb8e112493e53e5b2878164017eb0c2359c3",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "numeric-corpus-vm",
+        "command": [
+          "/workspace/scratch/55ae4c05da4e/runtime/dart-sdk/bin/dart",
+          "--packages=/workspace/scratch/55ae4c05da4e/quds_office_suite/.dart_tool/package_config.json",
+          "-DVBA_CONFORMANCE_BASE64=<base64 of test/fixtures/vba_conformance/word_numeric_intrinsics_v1.json; sha256=af521544e836caad03a61960dbfa0386b18023421d7afe7efb655f3ea080fb1d>",
+          "tool/macros/web_vba_conformance.dart"
+        ],
+        "cwd": "/workspace/scratch/55ae4c05da4e/quds_office_suite/packages/quds_office_engine",
+        "exitCode": 0,
+        "seconds": 10.883,
+        "stdoutBytes": 10731,
+        "stderrBytes": 0,
+        "stdoutSha256": "d25042125917480df38ead7aa811cfa510b5177bcacafe92bfe9bf649a151eb9",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "numeric-corpus-compile",
+        "command": [
+          "/workspace/scratch/55ae4c05da4e/runtime/dart-sdk/bin/dart",
+          "compile",
+          "js",
+          "-O1",
+          "--packages=/workspace/scratch/55ae4c05da4e/quds_office_suite/.dart_tool/package_config.json",
+          "-DVBA_CONFORMANCE_BASE64=<base64 of test/fixtures/vba_conformance/word_numeric_intrinsics_v1.json; sha256=af521544e836caad03a61960dbfa0386b18023421d7afe7efb655f3ea080fb1d>",
+          "tool/macros/web_vba_conformance.dart",
+          "-o",
+          "/workspace/scratch/55ae4c05da4e/qualification/portable/tmp/numeric-corpus.js"
+        ],
+        "cwd": "/workspace/scratch/55ae4c05da4e/quds_office_suite/packages/quds_office_engine",
+        "exitCode": 0,
+        "seconds": 8.786,
+        "stdoutBytes": 112,
+        "stderrBytes": 0,
+        "stdoutSha256": "9e563a1ca1e220727ec52dcb2a142d32529a65558be4ed72c5d0c658bda13db0",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "numeric-corpus-node",
+        "command": [
+          "node",
+          "-e",
+          "globalThis.self=globalThis; require(process.argv[1]);",
+          "/workspace/scratch/55ae4c05da4e/qualification/portable/tmp/numeric-corpus.js"
+        ],
+        "cwd": "/workspace/scratch/55ae4c05da4e/quds_office_suite/packages/quds_office_engine",
+        "exitCode": 0,
+        "seconds": 0.174,
+        "stdoutBytes": 10731,
+        "stderrBytes": 0,
+        "stdoutSha256": "d25042125917480df38ead7aa811cfa510b5177bcacafe92bfe9bf649a151eb9",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "variant-composition-vm",
+        "command": [
+          "/workspace/scratch/55ae4c05da4e/runtime/dart-sdk/bin/dart",
+          "--packages=/workspace/scratch/55ae4c05da4e/quds_office_suite/.dart_tool/package_config.json",
+          "-DVBA_CONFORMANCE_BASE64=<base64 of test/fixtures/vba_conformance/variant_composition_v1.json; sha256=c554defa81099730169cc4a41e8b54405b5ebe354aa951c5528331e99b9e0a7b>",
+          "tool/macros/web_vba_conformance.dart"
+        ],
+        "cwd": "/workspace/scratch/55ae4c05da4e/quds_office_suite/packages/quds_office_engine",
+        "exitCode": 0,
+        "seconds": 10.649,
+        "stdoutBytes": 9361,
+        "stderrBytes": 0,
+        "stdoutSha256": "80c295dbff1477d79dd4e1706159ea502ca4c07b26476e00d14e7d0e8d3c4858",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "variant-composition-compile",
+        "command": [
+          "/workspace/scratch/55ae4c05da4e/runtime/dart-sdk/bin/dart",
+          "compile",
+          "js",
+          "-O1",
+          "--packages=/workspace/scratch/55ae4c05da4e/quds_office_suite/.dart_tool/package_config.json",
+          "-DVBA_CONFORMANCE_BASE64=<base64 of test/fixtures/vba_conformance/variant_composition_v1.json; sha256=c554defa81099730169cc4a41e8b54405b5ebe354aa951c5528331e99b9e0a7b>",
+          "tool/macros/web_vba_conformance.dart",
+          "-o",
+          "/workspace/scratch/55ae4c05da4e/qualification/portable/tmp/variant-composition.js"
+        ],
+        "cwd": "/workspace/scratch/55ae4c05da4e/quds_office_suite/packages/quds_office_engine",
+        "exitCode": 0,
+        "seconds": 8.046,
+        "stdoutBytes": 112,
+        "stderrBytes": 0,
+        "stdoutSha256": "da0033d8137aaa177380ca5bbbaf6bff37daeb5816186b8f0b5e1e7001c65b3f",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "variant-composition-node",
+        "command": [
+          "node",
+          "-e",
+          "globalThis.self=globalThis; require(process.argv[1]);",
+          "/workspace/scratch/55ae4c05da4e/qualification/portable/tmp/variant-composition.js"
+        ],
+        "cwd": "/workspace/scratch/55ae4c05da4e/quds_office_suite/packages/quds_office_engine",
+        "exitCode": 0,
+        "seconds": 0.137,
+        "stdoutBytes": 9361,
+        "stderrBytes": 0,
+        "stdoutSha256": "80c295dbff1477d79dd4e1706159ea502ca4c07b26476e00d14e7d0e8d3c4858",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "variant-conversions-vm",
+        "command": [
+          "/workspace/scratch/55ae4c05da4e/runtime/dart-sdk/bin/dart",
+          "--packages=/workspace/scratch/55ae4c05da4e/quds_office_suite/.dart_tool/package_config.json",
+          "-DVBA_CONFORMANCE_BASE64=<base64 of test/fixtures/vba_conformance/variant_conversions_v1.json; sha256=ddcdf7cfef0926a2a6634fb7116623951afea4a3be76035759077be1f4bb34ce>",
+          "tool/macros/web_vba_conformance.dart"
+        ],
+        "cwd": "/workspace/scratch/55ae4c05da4e/quds_office_suite/packages/quds_office_engine",
+        "exitCode": 0,
+        "seconds": 10.482,
+        "stdoutBytes": 41060,
+        "stderrBytes": 0,
+        "stdoutSha256": "0ccceebcb1bac7707fa7ba4756f48e29323a03b6840c26e78f054402b11e35bc",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "variant-conversions-compile",
+        "command": [
+          "/workspace/scratch/55ae4c05da4e/runtime/dart-sdk/bin/dart",
+          "compile",
+          "js",
+          "-O1",
+          "--packages=/workspace/scratch/55ae4c05da4e/quds_office_suite/.dart_tool/package_config.json",
+          "-DVBA_CONFORMANCE_BASE64=<base64 of test/fixtures/vba_conformance/variant_conversions_v1.json; sha256=ddcdf7cfef0926a2a6634fb7116623951afea4a3be76035759077be1f4bb34ce>",
+          "tool/macros/web_vba_conformance.dart",
+          "-o",
+          "/workspace/scratch/55ae4c05da4e/qualification/portable/tmp/variant-conversions.js"
+        ],
+        "cwd": "/workspace/scratch/55ae4c05da4e/quds_office_suite/packages/quds_office_engine",
+        "exitCode": 0,
+        "seconds": 8.573,
+        "stdoutBytes": 112,
+        "stderrBytes": 0,
+        "stdoutSha256": "369fc71a972273106c76ff9627284c11f8d33aedc8c6bdd60e86f2f68896e85f",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "name": "variant-conversions-node",
+        "command": [
+          "node",
+          "-e",
+          "globalThis.self=globalThis; require(process.argv[1]);",
+          "/workspace/scratch/55ae4c05da4e/qualification/portable/tmp/variant-conversions.js"
+        ],
+        "cwd": "/workspace/scratch/55ae4c05da4e/quds_office_suite/packages/quds_office_engine",
+        "exitCode": 0,
+        "seconds": 0.217,
+        "stdoutBytes": 41060,
+        "stderrBytes": 0,
+        "stdoutSha256": "0ccceebcb1bac7707fa7ba4756f48e29323a03b6840c26e78f054402b11e35bc",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "portableInputs": [
+      {
+        "name": "word-numeric",
+        "file": "example/macros/word_numeric_report.bas",
+        "inputSha256": "61fc36ab5b106ed8af766649318ecd80a59968d5cd97672f0f9af735b4f1da0a",
+        "receiptSha256": "d8033e3dbaaacf6d338d5c63aceedb8e112493e53e5b2878164017eb0c2359c3",
+        "byteIdentical": true,
+        "cases": null,
+        "operations": 9
+      },
+      {
+        "name": "numeric-corpus",
+        "file": "test/fixtures/vba_conformance/word_numeric_intrinsics_v1.json",
+        "inputSha256": "af521544e836caad03a61960dbfa0386b18023421d7afe7efb655f3ea080fb1d",
+        "receiptSha256": "d25042125917480df38ead7aa811cfa510b5177bcacafe92bfe9bf649a151eb9",
+        "byteIdentical": true,
+        "cases": 58,
+        "operations": null
+      },
+      {
+        "name": "variant-composition",
+        "file": "test/fixtures/vba_conformance/variant_composition_v1.json",
+        "inputSha256": "c554defa81099730169cc4a41e8b54405b5ebe354aa951c5528331e99b9e0a7b",
+        "receiptSha256": "80c295dbff1477d79dd4e1706159ea502ca4c07b26476e00d14e7d0e8d3c4858",
+        "byteIdentical": true,
+        "cases": 38,
+        "operations": null
+      },
+      {
+        "name": "variant-conversions",
+        "file": "test/fixtures/vba_conformance/variant_conversions_v1.json",
+        "inputSha256": "ddcdf7cfef0926a2a6634fb7116623951afea4a3be76035759077be1f4bb34ce",
+        "receiptSha256": "0ccceebcb1bac7707fa7ba4756f48e29323a03b6840c26e78f054402b11e35bc",
+        "byteIdentical": true,
+        "cases": 120,
+        "operations": null
+      }
+    ],
+    "inputsUnchanged": true,
+    "sourceManifestSha256": "16e592607d1caeb668b5301190a6c85ecb88a2bc8bc6ff774a9a538ac77dcf83",
+    "success": true
+  },
+  "independentChecksPerRuntime": 81,
+  "archiveSha256": "7a77e46bed1d26f1c3d7bc7f9b428e9146c3212f44a8e81117e6f62fd2101266"
+}

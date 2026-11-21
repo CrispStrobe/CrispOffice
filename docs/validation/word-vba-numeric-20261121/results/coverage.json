@@ -1,0 +1,30 @@
+{
+  "acceptedCases": 6019,
+  "acceptedSuites": 119,
+  "originalCleanSuiteCases": 5832,
+  "originalCleanSuites": 106,
+  "retryCases": 187,
+  "retrySuites": 13,
+  "discardedOverlappingOriginalPasses": 27,
+  "initialInfrastructureErrors": 15,
+  "initialError": "ENOSPC while creating temporary/output directories",
+  "acceptance": "One complete clean execution per suite: original clean suites plus serial rerun of every affected suite. No failed/skipped accepted case. Parameterized equal-name cases retain separate runner IDs and name occurrence numbers.",
+  "inputCount": 3134,
+  "sourceInputsUnchanged": true,
+  "initialSourceCommit": "97538d025b260bd67c559962be9e9f159a6de06e",
+  "retrySuitePaths": [
+    "test/office_vba_word_named_measurements_integration_test.dart",
+    "test/office_vba_word_page_setup_integration_test.dart",
+    "test/office_vba_word_paragraph_controls_integration_test.dart",
+    "test/office_vba_word_position_integration_test.dart",
+    "test/office_vba_word_proofing_integration_test.dart",
+    "test/office_vba_word_sections_integration_test.dart",
+    "test/office_vba_word_shading_integration_test.dart",
+    "test/office_vba_word_styles_alternate_integration_test.dart",
+    "test/office_vba_word_styles_integration_test.dart",
+    "test/office_vba_word_text_columns_integration_test.dart",
+    "test/office_vba_word_text_integration_test.dart",
+    "test/style_cascade_test.dart",
+    "test/word_structure_steps_test.dart"
+  ]
+}
