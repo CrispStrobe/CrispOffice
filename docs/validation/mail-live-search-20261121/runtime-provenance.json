@@ -1,0 +1,124 @@
+{
+  "sdk": {
+    "archive_url": "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.47.8-stable.tar.xz",
+    "archive_bytes": 1581444364,
+    "sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+    "release": {
+      "hash": "737ba8f885dc774b53b442759999a312c9461e4e",
+      "channel": "stable",
+      "version": "3.47.8",
+      "dart_sdk_version": "3.13.7",
+      "dart_sdk_arch": "x64",
+      "release_date": "2026-10-23T19:02:25.384067Z",
+      "archive": "stable/linux/flutter_linux_3.47.8-stable.tar.xz",
+      "sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2"
+    },
+    "extracted": true,
+    "dart": {
+      "command": [
+        "dart",
+        "--version"
+      ],
+      "exit_code": 0,
+      "stdout": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"\n",
+      "stderr": ""
+    },
+    "flutter": {
+      "command": [
+        "flutter",
+        "--version",
+        "--machine"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"frameworkVersion\": \"3.47.8\",\n  \"channel\": \"stable\",\n  \"repositoryUrl\": \"https://github.com/flutter/flutter.git\",\n  \"frameworkRevision\": \"737ba8f885dc774b53b442759999a312c9461e4e\",\n  \"frameworkCommitDate\": \"2026-10-22 21:37:31 -0700\",\n  \"engineRevision\": \"cf636b1dfb818dd6a3ff16e390e93b1a036969c8\",\n  \"engineCommitDate\": \"2026-10-23 02:13:38.000Z\",\n  \"engineContentHash\": \"dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2\",\n  \"engineBuildDate\": \"2026-10-22 20:34:48.330\",\n  \"dartSdkVersion\": \"3.13.7\",\n  \"devToolsVersion\": \"2.60.0\",\n  \"flutterVersion\": \"3.47.8\",\n  \"flutterRoot\": \"/workspace/scratch/8eb34dc8ced9/runtime/flutter\"\n}\n",
+      "stderr": ""
+    },
+    "binary_sha256": {
+      "flutter/bin/cache/dart-sdk/bin/dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+      "flutter/bin/cache/dart-sdk/bin/dartaotruntime": "3599c987228070f342c80d29353f496c8efc72c620c75fc4d59e5671666b2f72",
+      "flutter/bin/cache/artifacts/engine/linux-x64/flutter_tester": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f"
+    },
+    "free_bytes": 2886758400,
+    "archive_removed_after_verified_extraction": true
+  },
+  "native_sqlite": {
+    "native_library": "/workspace/scratch/8eb34dc8ced9/quds_office_suite/.dart_tool/hooks_runner/shared/sqlite3/build/download-0a658527/libsqlite3.so",
+    "bytes": 1823736,
+    "sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b",
+    "hook_status": "success"
+  },
+  "locked_resolution": {
+    "command": [
+      "flutter",
+      "pub",
+      "get",
+      "--enforce-lockfile"
+    ],
+    "cwd": "/workspace/scratch/8eb34dc8ced9/quds_office_suite",
+    "exit_code": 0,
+    "duration_seconds": 275.3219211101532,
+    "manifests_and_locks_before": {
+      "apps/quds_report_studio/pubspec.yaml": "4a6624ee8d31222409dca9cea01daa28231ae477ac81369a2226540837a8179a",
+      "packages/legacy_doc_parser/doc/evidence/file-viewer-compat-20261113/resolved-pubspec.lock": "8820af7100fc60f70972d6b1329b4c3721b0d6bed26bdb9c8cae3dfd581034d1",
+      "packages/legacy_doc_parser/doc/evidence/note-boundary-d622754/measured-pubspec.lock": "7d0056c7466e4aad98ccec568b25d10dac8f3fac0a7eb6511ac3e2d6272ca829",
+      "packages/legacy_doc_parser/doc/evidence/parser-audit-20261113-followup/resolved-pubspec.lock": "b8da06e622794c47491eee61f6b751f6e9a12c0c747af7bbc7e39d7ff39a39d3",
+      "packages/legacy_doc_parser/doc/evidence/parser-audit-20261113/resolved-pubspec.lock": "b8da06e622794c47491eee61f6b751f6e9a12c0c747af7bbc7e39d7ff39a39d3",
+      "packages/legacy_doc_parser/pubspec.yaml": "150af8d89562635bf5a876c0a539c20ae48b58ea3666db071b5e4ebd3addf153",
+      "packages/quds_arabic_morph/pubspec.yaml": "fc88256a998232198ac4e8e2f6daa9fb2a2d14a27f3df7ae4560019153efab2c",
+      "packages/quds_language_id/pubspec.yaml": "6f17ec3cb01c9ce17499a796dc3972b4c91c55fa57d90af539b7e9a5cf922cc5",
+      "packages/quds_mail_core/pubspec.yaml": "9ecb33312a62c29481def03efd177e8da0186b9627fe2d804d38c9d5db05fb21",
+      "packages/quds_mail_mime/pubspec.yaml": "7a2d759c76e945e6e7503ce62c7a32bfae0473ae6ac58d249f40910fc3124b81",
+      "packages/quds_mail_store/pubspec.yaml": "c19f88e29dc3f530505d992e9f79c287336f9ee0310b081c6cfa0017a5c626b6",
+      "packages/quds_mail_transport/pubspec.yaml": "c470b33a51a06e9a4366cf0e4000d48b495fd069c43752acb5346057c3252ba2",
+      "packages/quds_mail_ui/example/pubspec.yaml": "215440d5c99478c7bfe1d5aa37d57e36471f7613c76f75619867ad1e006fd1f3",
+      "packages/quds_mail_ui/pubspec.yaml": "1ae476502a8b02982d63954494c1eb4165f697fe27a7f1962c946b7f449c7653",
+      "packages/quds_office_editor/example/pubspec.yaml": "97671571d22a1358d6be697cd5e63f39d693cd16e47bad9507afe3aa30b29bc9",
+      "packages/quds_office_editor/pubspec.yaml": "536da824dbe7ade3c70080fb6fd5d507186021ca7052869dc47a41fffd82b272",
+      "packages/quds_office_engine/example/pubspec.yaml": "9f1b07bb8665c2125d92074aef74f2892963e34171ab0ea381df7a1cf798fb6c",
+      "packages/quds_office_engine/pubspec.yaml": "225773e48bab7333652a4098e5747f37eab2aac9fc6a14de1e814590ab03fb7a",
+      "packages/quds_proofing_gector/pubspec.yaml": "26074a4688212904b95e3cb24fa934ffb94a1881c41d8d98074e38d586ea63b1",
+      "packages/quds_proofing_harper/pubspec.yaml": "e94200003c36cc9047685b145f16b85915e8ca80fe347d3e3733c38a9ad5f63e",
+      "packages/quds_proofing_hunspell/pubspec.yaml": "4d803e1eb286500a2c1c88ea97b5f3a1afa4211a1cfe5919c0f4b4c48e7b5a59",
+      "packages/quds_proofing_spacy/pubspec.yaml": "eaa01aa5b7410e785ed9171b1cfd5073cb619663a900403119e3bb02f93d57f5",
+      "packages/quds_reports/pubspec.yaml": "5e4bc0d98b2ed07463fede914e41d6536a985ede6746741df85a0bc743dbb98a",
+      "pubspec.lock": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+      "pubspec.yaml": "453a1f8ab62db1c5577c424b058b50033a8d3b49b99c83862ab58a7e1108f74f",
+      "third_party/enough_mail/pubspec.yaml": "d38d11b0aaf151286c8abec5f83b434aad91339a90113c46065f464ac48ee27e"
+    },
+    "manifests_and_locks_after": {
+      "apps/quds_report_studio/pubspec.yaml": "4a6624ee8d31222409dca9cea01daa28231ae477ac81369a2226540837a8179a",
+      "packages/legacy_doc_parser/doc/evidence/file-viewer-compat-20261113/resolved-pubspec.lock": "8820af7100fc60f70972d6b1329b4c3721b0d6bed26bdb9c8cae3dfd581034d1",
+      "packages/legacy_doc_parser/doc/evidence/note-boundary-d622754/measured-pubspec.lock": "7d0056c7466e4aad98ccec568b25d10dac8f3fac0a7eb6511ac3e2d6272ca829",
+      "packages/legacy_doc_parser/doc/evidence/parser-audit-20261113-followup/resolved-pubspec.lock": "b8da06e622794c47491eee61f6b751f6e9a12c0c747af7bbc7e39d7ff39a39d3",
+      "packages/legacy_doc_parser/doc/evidence/parser-audit-20261113/resolved-pubspec.lock": "b8da06e622794c47491eee61f6b751f6e9a12c0c747af7bbc7e39d7ff39a39d3",
+      "packages/legacy_doc_parser/pubspec.yaml": "150af8d89562635bf5a876c0a539c20ae48b58ea3666db071b5e4ebd3addf153",
+      "packages/quds_arabic_morph/pubspec.yaml": "fc88256a998232198ac4e8e2f6daa9fb2a2d14a27f3df7ae4560019153efab2c",
+      "packages/quds_language_id/pubspec.yaml": "6f17ec3cb01c9ce17499a796dc3972b4c91c55fa57d90af539b7e9a5cf922cc5",
+      "packages/quds_mail_core/pubspec.yaml": "9ecb33312a62c29481def03efd177e8da0186b9627fe2d804d38c9d5db05fb21",
+      "packages/quds_mail_mime/pubspec.yaml": "7a2d759c76e945e6e7503ce62c7a32bfae0473ae6ac58d249f40910fc3124b81",
+      "packages/quds_mail_store/pubspec.yaml": "c19f88e29dc3f530505d992e9f79c287336f9ee0310b081c6cfa0017a5c626b6",
+      "packages/quds_mail_transport/pubspec.yaml": "c470b33a51a06e9a4366cf0e4000d48b495fd069c43752acb5346057c3252ba2",
+      "packages/quds_mail_ui/example/pubspec.yaml": "215440d5c99478c7bfe1d5aa37d57e36471f7613c76f75619867ad1e006fd1f3",
+      "packages/quds_mail_ui/pubspec.yaml": "1ae476502a8b02982d63954494c1eb4165f697fe27a7f1962c946b7f449c7653",
+      "packages/quds_office_editor/example/pubspec.yaml": "97671571d22a1358d6be697cd5e63f39d693cd16e47bad9507afe3aa30b29bc9",
+      "packages/quds_office_editor/pubspec.yaml": "536da824dbe7ade3c70080fb6fd5d507186021ca7052869dc47a41fffd82b272",
+      "packages/quds_office_engine/example/pubspec.yaml": "9f1b07bb8665c2125d92074aef74f2892963e34171ab0ea381df7a1cf798fb6c",
+      "packages/quds_office_engine/pubspec.yaml": "225773e48bab7333652a4098e5747f37eab2aac9fc6a14de1e814590ab03fb7a",
+      "packages/quds_proofing_gector/pubspec.yaml": "26074a4688212904b95e3cb24fa934ffb94a1881c41d8d98074e38d586ea63b1",
+      "packages/quds_proofing_harper/pubspec.yaml": "e94200003c36cc9047685b145f16b85915e8ca80fe347d3e3733c38a9ad5f63e",
+      "packages/quds_proofing_hunspell/pubspec.yaml": "4d803e1eb286500a2c1c88ea97b5f3a1afa4211a1cfe5919c0f4b4c48e7b5a59",
+      "packages/quds_proofing_spacy/pubspec.yaml": "eaa01aa5b7410e785ed9171b1cfd5073cb619663a900403119e3bb02f93d57f5",
+      "packages/quds_reports/pubspec.yaml": "5e4bc0d98b2ed07463fede914e41d6536a985ede6746741df85a0bc743dbb98a",
+      "pubspec.lock": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+      "pubspec.yaml": "453a1f8ab62db1c5577c424b058b50033a8d3b49b99c83862ab58a7e1108f74f",
+      "third_party/enough_mail/pubspec.yaml": "d38d11b0aaf151286c8abec5f83b434aad91339a90113c46065f464ac48ee27e"
+    },
+    "manifests_and_locks_unchanged": true
+  },
+  "startup_environment": {
+    "CI": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true",
+    "DART_SUPPRESS_ANALYTICS": "true"
+  },
+  "development_attempts": "The archive preserves a rejected Flutter startup attempt, the initial lifecycle-harness failures and the later compact-navigation failures. None are counted as accepted qualification. The rejected startup had no test outcome. Supported CI and analytics settings avoid the SDK cloud-metadata startup probe for subsequent local runs."
+}

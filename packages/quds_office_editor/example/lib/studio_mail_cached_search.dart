@@ -93,6 +93,11 @@ final class StudioMailCachedSearchSession {
 
   bool get hasMore => !_closed && _index < _accounts.length;
 
+  /// Whether this session still owns its query/scope and accepts work. Unlike
+  /// the host's [isCurrent] callback, this also fences an explicitly closed
+  /// session, including one closed after its final page.
+  bool get isActive => _current;
+
   List<StudioMailCachedSearchCoverage> get coverage => List.unmodifiable([
     for (final record in _accounts) ?_coverage[record.id],
   ]);
@@ -178,6 +183,42 @@ final class StudioMailCachedSearchSession {
     await owner.close();
     if (identical(owner, _temporaryOwner)) _temporaryOwner = null;
   }
+
+  /// Revalidate the captured account set in one final directory snapshot.
+  /// Another account can be retired after its last page while later accounts
+  /// are still being scanned. Keep that loss in coverage so a staged refresh
+  /// cannot publish its earlier hits or retain its reader as current.
+  Future<void> validateAccountScope() => _work(() async {
+    final records = await directory.load();
+    _check();
+    if (records.length > MailLocalAccountDirectory.maxAccounts) {
+      _fail(MailProblemCode.quotaExceeded);
+    }
+    final byId = <String, MailLocalAccountRecord>{};
+    for (final record in records) {
+      studioMailLocalAccountIdentity(record);
+      if (byId.containsKey(record.id)) _fail(MailProblemCode.conflict);
+      byId[record.id] = record;
+    }
+    for (final expected in _accounts) {
+      final actual = byId[expected.id];
+      if (actual != null &&
+          actual.hasSameIdentity(expected) &&
+          actual.revision == expected.revision) {
+        continue;
+      }
+      final previous = _coverage[expected.id];
+      _coverage[expected.id] = StudioMailCachedSearchCoverage(
+        account: expected,
+        scannedCount: previous?.scannedCount ?? 0,
+        totalCount: previous?.totalCount ?? 0,
+        complete: false,
+        problem: MailProblemCode.conflict,
+        browsed: previous?.browsed ?? const [],
+        synchronized: previous?.synchronized ?? const [],
+      );
+    }
+  });
 
   static MailProblemCode _problem(Object error) => switch (error) {
     StudioMailMailboxStoreException(:final code) => code,

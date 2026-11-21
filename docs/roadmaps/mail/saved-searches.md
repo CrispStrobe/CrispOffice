@@ -11,6 +11,9 @@ The **Saved searches** chooser reopens a definition after an application
 restart. Selecting it resolves its original account IDs against the current
 verified directory and starts a fresh, bounded search. **Search** reruns the
 current criteria; **Search more** continues the existing local snapshot.
+The [refresh continuation](live-saved-search.md) adds **Refresh results** and
+opt-in foreground updates every 30 seconds after a complete local scan, while
+preserving the opened message if it remains in the results.
 Use **Update saved search…** to change the name, current query or explicitly
 chosen account scope. **Save search as…** creates an independent definition.
 **Delete saved search** removes only that definition after a confirmation;
@@ -84,7 +87,8 @@ stale and concurrent updates, failed writes, pending-close behavior, and actual
 message/draft/Outbox preservation after deletion. English, German and Arabic
 controls are tested at enlarged text sizes.
 
-This completes reusable saved queries over current retained mail. Continuous
+This completes reusable saved queries over current retained mail. Optional
+bounded foreground refresh is described in the continuation above. Continuous
 subscription-driven refresh, arbitrary folder-set selection, persistent unified
 navigation, indexed body search and provider-capability-gated server search
 remain open. They should extend the same exact scope and revision contracts.
@@ -96,5 +100,5 @@ Primary comparator references checked on 21 November 2026:
 - [eM Client Search Folders](https://www.emclient.com/webdocumentation/en/10.0/emclient/Content/Favorite%20Folders/About%20Search%20Folders.htm).
 
 Those products provide broader virtual-folder workflows. The completed Quds
-increment refreshes explicitly over available local headers; it does not claim
-continuous whole-mailbox parity.
+increment refreshes available local headers explicitly or on an opted-in
+foreground interval; it does not claim continuous whole-mailbox parity.
