@@ -1,0 +1,90 @@
+{
+  "scope": "Qualification of incoming Mail compose tools and native ODT merged-table support",
+  "sdk": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7"
+  },
+  "groups": [
+    {
+      "name": "Mail core",
+      "tests": 476,
+      "files": 20,
+      "log": "incoming-mail-core.log",
+      "result": "passed",
+      "scope": "all package tests"
+    },
+    {
+      "name": "Mail store",
+      "tests": 924,
+      "files": 38,
+      "log": "incoming-mail-store-all.log",
+      "result": "passed",
+      "scope": "all package tests, including migration and real SIGKILL crash recovery"
+    },
+    {
+      "name": "Composer widgets and storage adapter",
+      "tests": 37,
+      "files": 3,
+      "log": "incoming-mail-editor.log",
+      "result": "passed"
+    },
+    {
+      "name": "Editor insertion and ODT loading",
+      "tests": 22,
+      "files": 2,
+      "log": "incoming-editor-controller.log",
+      "result": "passed"
+    },
+    {
+      "name": "ODT reader and merged Zotero fields",
+      "tests": 85,
+      "files": 2,
+      "log": "incoming-odt-engine.log",
+      "result": "passed"
+    },
+    {
+      "name": "Existing ODT reader/table/open/LibreOffice regressions",
+      "tests": 267,
+      "files": 13,
+      "log": "incoming-odt-regressions.log",
+      "result": "passed"
+    }
+  ],
+  "total_tests": 1811,
+  "total_test_files": 78,
+  "analysis": [
+    {
+      "scope": "whole quds_mail_core and quds_mail_store",
+      "flags": "--fatal-infos",
+      "log": "incoming-mail-analysis.log",
+      "result": "No issues found"
+    },
+    {
+      "scope": "12 incoming composer production/test files",
+      "flags": "--fatal-infos",
+      "log": "incoming-mail-example-analysis.log",
+      "result": "No issues found"
+    },
+    {
+      "scope": "office_controller and incoming editor insertion/ODT tests",
+      "flags": "--fatal-infos",
+      "log": "incoming-editor-analysis.log",
+      "result": "No issues found"
+    },
+    {
+      "scope": "ODT reader and incoming ODT engine tests",
+      "flags": "--fatal-infos",
+      "log": "incoming-odt-analysis.log",
+      "result": "No issues found"
+    }
+  ],
+  "changes": [
+    "Formatted 29 incoming Dart files with official pinned formatter (18 needed formatting).",
+    "Corrected v7 sync migration fixture to remove both v10 compose tables before exercising migration.",
+    "Resolved six Mail test interpolation lints, two redundant composer null checks, three composer/test lints, and five ODT fixture interpolation lints.",
+    "No functional production behavior change was needed to pass incoming tests."
+  ],
+  "runner": "Source runtime/env.sh. Pure Dart tests use dart --packages=<repo>/.dart_tool/package_config.json <runtime>/test-runner/test-runner.dill --concurrency=3 --timeout=180s --reporter=expanded <test paths>. Flutter tests use flutter test --no-pub --reporter expanded <test paths>.",
+  "superseded_failures": "Initial focused store run failed only two v7 reconstruction fixtures; corrected and complete store suite passed. Extra ODT run briefly saw the native agent partial-file write; rerun after source coherence passed. Standard dart test setup waited and was stopped; official directly compiled test runner used successfully.",
+  "github_actions": "not polled or awaited"
+}

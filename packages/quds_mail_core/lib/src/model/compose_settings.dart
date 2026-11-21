@@ -30,11 +30,8 @@ final class MailQuickText {
       text.length <= maxTextCodeUnits &&
       _validComposeText(text, multiline: true);
 
-  MailQuickText copyWith({String? name, String? text}) => MailQuickText(
-    id: id,
-    name: name ?? this.name,
-    text: text ?? this.text,
-  );
+  MailQuickText copyWith({String? name, String? text}) =>
+      MailQuickText(id: id, name: name ?? this.name, text: text ?? this.text);
 
   @override
   String toString() => 'MailQuickText(redacted)';
@@ -78,7 +75,10 @@ final class MailComposeSettings {
       quickTexts.fold<int>(
         0,
         (sum, item) =>
-            sum + item.id.length + item.name.length + item.nameKey.length +
+            sum +
+            item.id.length +
+            item.name.length +
+            item.nameKey.length +
             item.text.length,
       );
 
@@ -96,9 +96,7 @@ final class MailComposeSettings {
     final ids = <String>{};
     final names = <String>{};
     for (final item in quickTexts) {
-      if (!item.isValid ||
-          !ids.add(item.id) ||
-          !names.add(item.nameKey)) {
+      if (!item.isValid || !ids.add(item.id) || !names.add(item.nameKey)) {
         return false;
       }
     }

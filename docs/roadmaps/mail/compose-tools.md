@@ -14,9 +14,9 @@ Changes stay local to the dialog until **Save** replaces the account's settings
 at the displayed revision. Closing the dialog discards its unsaved settings
 edits. The live message body remains independent.
 
-This increment is source-implemented and independently reviewed. Its Dart and
-Flutter regression tests are authored but **not executed** because the local
-executor became unavailable during SDK setup. See the
+This increment is source-implemented, independently reviewed and locally
+tested with the pinned SDK. Mail core/store, composer/settings/adapter and Word
+plain-text insertion tests passed during the Word style integration. See the
 [qualification record](../../validation/mail-compose-tools-20261121/README.md).
 It is not a live-provider, installed-platform or release qualification.
 

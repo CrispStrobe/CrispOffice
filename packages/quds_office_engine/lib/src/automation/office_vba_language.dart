@@ -237,9 +237,28 @@ const _wordNormalLanguages = <int, String>{
   1039: 'is-IS',
   1055: 'tr-TR',
 };
+// These explicit built-ins select an existing native paragraph style. They
+// never index a document's Styles collection or manufacture a definition.
+const _wordStyleConstants = <String, int>{
+  'wdstylenormal': -1,
+  'wdstyleheading1': -2,
+  'wdstyleheading2': -3,
+  'wdstyleheading3': -4,
+  'wdstyleheading4': -5,
+  'wdstyleheading5': -6,
+  'wdstyleheading6': -7,
+  'wdstyleheading7': -8,
+  'wdstyleheading8': -9,
+  'wdstyleheading9': -10,
+  'wdstylecaption': -35,
+  'wdstyletitle': -63,
+  'wdstylesubtitle': -75,
+};
+
 const _wordConstants = <String, int>{
   ..._stringComparisonConstants,
   ..._wordLanguageConstants,
+  ..._wordStyleConstants,
   'wdheaderfooterprimary': 1,
   'wdheaderfooterfirstpage': 2,
   'wdheaderfooterevenpages': 3,
@@ -804,6 +823,7 @@ enum _Kind {
   powerPointParagraphFormat,
   slideShowTransition,
   triState,
+  wordStyleValue,
 }
 
 enum _Declared {
@@ -3124,6 +3144,10 @@ class _Checker {
       );
     }
     if (context.isWord) {
+      if ((receiver == _Kind.paragraph || receiver == _Kind.range) &&
+          property == 'style') {
+        return _Kind.wordStyleValue;
+      }
       if (receiver == _Kind.wordTextColumns) {
         if (property == 'spacing') return _Kind.number;
         if (property == 'linebetween') return _Kind.boolean;
@@ -3741,6 +3765,17 @@ class _Checker {
       _compatible(_kindOf(type), value, token);
 
   void _compatible(_Kind expected, _Kind value, _Token token) {
+    if (expected == _Kind.wordStyleValue) {
+      if (value == _Kind.string ||
+          value == _Kind.number ||
+          value == _Kind.variant) {
+        return;
+      }
+      context.type(
+        token,
+        'Word Style requires a String name or a supported WdBuiltinStyle number.',
+      );
+    }
     if (context.isWord &&
         expected == _Kind.range &&
         value == _Kind.wordStoryRange) {
@@ -6332,6 +6367,29 @@ class _Evaluator {
     Object value,
     _Token token,
   ) {
+    if (property == 'style' &&
+        (receiver is _WordParagraph || receiver is _WordRange)) {
+      final range = receiver is _WordParagraph
+          ? _WordRange(receiver)
+          : receiver as _WordRange;
+      if (value is String) {
+        _emitWord(range, 'paragraphStyle', <String, Object?>{
+          'name': _wordText(value, token, styleName: true),
+        }, token);
+      } else {
+        final builtin = _integer(value, token);
+        if (!_wordStyleConstants.values.contains(builtin)) {
+          context.unsupported(
+            token,
+            'Word Style supports only Normal, Heading1 through Heading9, Caption, Title and Subtitle built-in constants; numeric collection indices are unsupported.',
+          );
+        }
+        _emitWord(range, 'paragraphStyle', <String, Object?>{
+          'builtin': builtin,
+        }, token);
+      }
+      return;
+    }
     if (receiver is _WordTextColumns) {
       if (property == 'linebetween') {
         _emitWordSection(receiver.page, 'textColumns', <String, Object?>{
@@ -6648,24 +6706,31 @@ class _Evaluator {
     }, token);
   }
 
-  String _wordText(Object value, _Token token, {bool fontName = false}) {
+  String _wordText(
+    Object value,
+    _Token token, {
+    bool fontName = false,
+    bool styleName = false,
+  }) {
     final text = _string(value, token);
     // Bound publication scans/copies before validating or encoding a string.
     _charge(text.length, token);
     _nativeString(text, token);
-    if (fontName && text.isEmpty) {
-      context.type(token, 'Word font names require a nonempty String.');
+    final isName = fontName || styleName;
+    final nameKind = styleName ? 'style' : 'font';
+    if (isName && text.isEmpty) {
+      context.type(token, 'Word $nameKind names require a nonempty String.');
     }
     for (var index = 0; index < text.length; index++) {
       final unit = text.codeUnitAt(index);
       if ((unit < 0x20 && unit != 9) ||
           unit == 0xfffe ||
           unit == 0xffff ||
-          (fontName && unit == 9)) {
+          (isName && unit == 9)) {
         context.type(
           token,
-          fontName
-              ? 'Word font names require XML-safe text without tabs or line breaks.'
+          isName
+              ? 'Word $nameKind names require XML-safe text without tabs or line breaks.'
               : 'InsertBefore requires XML-safe single-paragraph text; tabs are allowed but line breaks are unsupported.',
         );
       }

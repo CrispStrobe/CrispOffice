@@ -1688,14 +1688,12 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           store,
           initial,
           replyOrForward: true,
-          isCurrent: () => _current(provider, lease) && identical(store, _draftStore),
+          isCurrent: () =>
+              _current(provider, lease) && identical(store, _draftStore),
         );
         if (!_current(provider, lease)) return;
         final created = catalog == null
-            ? StudioMailStoredDraft(
-                draft: prepared,
-                submissionUncertain: false,
-              )
+            ? StudioMailStoredDraft(draft: prepared, submissionUncertain: false)
             : await catalog.createDraft(prepared);
         if (!_current(provider, lease)) return;
         setState(() {

@@ -253,6 +253,17 @@ operation retains its existing contract. The source adapter uses the generic
 paragraph operations; it does not create stories. See the
 [Word header/footer contract](VBA_WORD_MACROS.md#existing-header-and-footer-paragraphs).
 
+Native `docx.paragraphStyle` assigns one existing paragraph style using the
+ordinary zero-based `paragraph`/story selector and exactly one `name: String`
+or `builtin: int`. Names match unique native primary names case-insensitively;
+the 13 supported negative built-in constants require a non-custom style with
+the documented canonical name. The edit preserves direct formatting and
+foreign property metadata while recomputing only the selected paragraph's
+inherited properties. It refuses missing/ambiguous styles, unsafe ownership,
+unsupported numbering changes and actively numbered targets. This differs from
+the older authoring-oriented `docx.applyStyle` operation, which applies catalog
+formatting. See the [paragraph-style contract](VBA_WORD_MACROS.md#assigning-existing-paragraph-styles).
+
 Native `docx.tabStop` upserts one custom stop on an explicit `paragraph`, with
 required `position` in points and optional `alignment` (`left`, `center`,
 `right`, `decimal`; default `left`) and `leader` (`none`, `dot`, `hyphen`,

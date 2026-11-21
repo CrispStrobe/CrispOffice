@@ -1,0 +1,93 @@
+{
+  "started_at": "2026-11-21T17:53:09.262191+00:00",
+  "finished_at": "2026-11-21T17:53:27.200610+00:00",
+  "duration_seconds": 17.87,
+  "head": "725860613e28a713cdb29a0e484da690a5272877",
+  "scope": "Incoming autocorrect/adaptive proofing/IME gate plus Notes insertion ownership and targeted controller/proofing regressions. No optional broad suite.",
+  "change": "Confirmed IME bridge regression: publish corrected text/selection to OfficeInputBridge after successful model and caret update. Added a real bridge-keystroke regression; original 121-pass gate and failing reproduction preserved separately.",
+  "runs": [
+    {
+      "name": "tests",
+      "exit_code": 0,
+      "stdout": "tests.stdout",
+      "stderr": "tests.stderr"
+    },
+    {
+      "name": "analyze",
+      "exit_code": 0,
+      "stdout": "analyze.stdout",
+      "stderr": "analyze.stderr"
+    },
+    {
+      "name": "format",
+      "exit_code": 0,
+      "stdout": "format.stdout",
+      "stderr": "format.stderr"
+    }
+  ],
+  "tests": {
+    "passed": 122,
+    "failed": 0,
+    "skipped": 0
+  },
+  "per_file": {
+    "/workspace/scratch/2adad0258e1a/quds_office_suite/packages/quds_office_editor/test/word_autocorrect_test.dart": {
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0
+    },
+    "/workspace/scratch/2adad0258e1a/quds_office_suite/packages/quds_office_editor/test/word_typing_proofing_schedule_test.dart": {
+      "passed": 21,
+      "failed": 0,
+      "skipped": 0
+    },
+    "/workspace/scratch/2adad0258e1a/quds_office_suite/packages/quds_office_editor/test/word_plain_text_insertion_test.dart": {
+      "passed": 21,
+      "failed": 0,
+      "skipped": 0
+    },
+    "/workspace/scratch/2adad0258e1a/quds_office_suite/packages/quds_office_editor/test/word_live_proofing_session_test.dart": {
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0
+    },
+    "/workspace/scratch/2adad0258e1a/quds_office_suite/packages/quds_office_editor/test/word_incremental_proofing_test.dart": {
+      "passed": 15,
+      "failed": 0,
+      "skipped": 0
+    },
+    "/workspace/scratch/2adad0258e1a/quds_office_suite/packages/quds_office_editor/test/word_notes_proofing_controller_test.dart": {
+      "passed": 46,
+      "failed": 0,
+      "skipped": 0
+    },
+    "/workspace/scratch/2adad0258e1a/quds_office_suite/packages/quds_office_editor/test/content_revision_test.dart": {
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "errors": [],
+  "done": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 10101
+    }
+  ],
+  "log_hashes": {
+    "analyze.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "tests.stdout": "a7263647d2c986420ab5fbc2fce271f65d2885a5e0e475ae6d6f1b046713c959",
+    "analyze.stdout": "c03d02569631aed1425ccb598135aff2697f15b1f11ea9629dbdd8b049447da1",
+    "tests.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "format.stdout": "f404c15166f0ea191b7277467223fcff1f4711f3659eab8c9d798f41f3c292ec",
+    "format.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "captured_inputs": 481,
+  "source_changed_during_run": [],
+  "added_sources_during_run": [],
+  "changed_since_initial_gate": [
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "packages/quds_office_editor/test/word_autocorrect_test.dart"
+  ]
+}

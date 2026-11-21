@@ -1,14 +1,15 @@
 # Native ODT merged tables and Zotero — 21 November 2026
 
-**Subsequent qualification:** the [editable ODT continuation](../zotero-editable-odt-20261121/README.md)
-completed this pending runtime gate with the pinned SDK, then passed a larger
-frozen-source regression. The status and evidence below retain their original
-PR #323 attribution.
+**Status: subsequent local runtime qualification completed.** Both the
+[editable ODT continuation](../zotero-editable-odt-20261121/README.md) and the
+[Word style integration](../word-vba-styles-complete-20261121/README.md) executed
+the incoming reader/Zotero and editor tests with the genuine pinned SDK. Their
+separate receipts identify each qualified source and avoid additive claims for
+overlapping cohorts.
 
-**Status: implementation and regression sources preserved; local runtime
-qualification pending.** Shared executor disk exhaustion prevented SDK
-installation and every subsequent shell invocation. This report distinguishes
-source review from executed tests; no new passing Dart/Flutter total is claimed.
+At the original checkpoint, shared executor disk exhaustion prevented SDK
+installation and subsequent shell invocations. The original PR #323 source-only
+qualification report below is retained as historical evidence.
 
 Starting main: `115f1c20131bf0157d047dfe2e9d704ddffb22a2`.
 Checkpoint branch: `codex/zotero-parity-20261121-evening`.

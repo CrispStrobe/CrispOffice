@@ -6,10 +6,20 @@ Account-scoped signatures and literal Quick Text are implemented in the core,
 SQLite repository and shared native Studio composer. The code and all authored
 regressions are retained in incremental remote checkpoints.
 
-**Runtime qualification is open. No new Dart analysis, formatting, model/store
-tests, Flutter widget tests or installed-app checks ran in this increment.**
-Independent source review and Git ancestry/tree checks are the completed
-verification. Neither compilation nor passing tests is inferred from them.
+**Subsequent local runtime qualification passed during Word style integration.**
+The genuine pinned Flutter 3.47.8 / Dart 3.13.7 SDK passed all 476 Mail core and
+924 Mail store tests, all 37 composer/settings/adapter tests, and 21 plain-text
+insertion tests. The latest insertion run includes footnote/endnote selection
+ownership guards, and a further 89-case late-integration run covers those guards,
+strengthened migration assertions and native draft-host recovery. Strict analysis and formatting also passed. The v7 migration
+fixture was corrected to remove both new v10 tables before reconstructing the
+old schema. See the [completion record](../word-vba-styles-complete-20261121/README.md)
+for retained commands and receipts. Installed-app and live-provider checks
+remain outside this local qualification.
+
+The initial increment below had source review and ancestry checks only because
+its executor failed. That historical record is retained without treating its
+unexecuted tests as passing evidence.
 
 The [feature contract](../../roadmaps/mail/compose-tools.md) gives the user path,
 storage semantics and exact selection/authoring limits.
@@ -114,7 +124,7 @@ same-account next-revision acknowledgements, immutable draft/Outbox snapshots,
 close serialization, migration ordering, quotas and strict stored-text decoding.
 No additional concrete source defect was found. This is not a compiler result.
 
-## Authored tests — not executed
+## Authored tests (subsequently executed)
 
 | Suite | Intended coverage |
 | --- | --- |
@@ -126,10 +136,11 @@ No additional concrete source defect was found. This is not a compiler result.
 | Studio `studio_mail_compose_tools_test.dart` | 12 composer cases: defaults/resume, insertion/undo/autosave, manager readback, stale callbacks and refusal |
 | Editor `word_plain_text_insertion_test.dart` | 19 literal insertion/history/clipboard/guard/selection cases |
 
-Counts describe authored scenarios, not passes. Fixture/layout expectations
-remain subject to actual execution.
+The original authored counts above are now supplemented by the passing local
+execution totals in the completion notice. The whole-package store run includes
+the migration/sync paths and real SQLite crash-recovery subprocesses.
 
-## Executor failure and toolchain receipt
+## Original executor failure and toolchain receipt
 
 - Repository pin: Flutter 3.47.8; SDK requirement Dart ^3.12.0.
 - Standalone `dart --version` successfully identified Dart 3.13.7.
