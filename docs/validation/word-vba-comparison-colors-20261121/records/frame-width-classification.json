@@ -1,0 +1,34 @@
+{
+  "baselineCommit": "52e72ca0b5677549f31742faae457f08df05759b",
+  "classification": "inherited test assertion ambiguity, not a production regression",
+  "baselineOriginal": {
+    "passed": 1,
+    "failed": 2,
+    "log": "frame-width-baseline-original.log"
+  },
+  "namespaceUriEmptyAttempt": {
+    "passed": 1,
+    "failed": 2,
+    "log": "frame-width-baseline-corrected.log",
+    "reason": "namespace declaration attributes also have empty namespaceUri in this XML model"
+  },
+  "baselineBareAttributeAssertion": {
+    "passed": 3,
+    "failed": 0,
+    "log": "frame-width-baseline-bare-attribute.log"
+  },
+  "currentCorrectedWholeFile": {
+    "passed": 26,
+    "failed": 0,
+    "log": "frame-width-current-corrected.log"
+  },
+  "fix": "assert only attributes whose qualifiedName is exactly w; preserve absent-width and explicit 38100 expectations",
+  "changedBroadManifestTestFiles": [
+    {
+      "path": "test/word_native_presentation_test.dart",
+      "beforeSha256": "8adcc88ce4a4a111c482d55f3ed9fe1887249d3c9e5ef8a67ca5e146473c4ba2",
+      "afterSha256": "61af68922c4badc680559d1f78d2c5f30c30726afe0e39373b4a9d809a5859b4"
+    }
+  ],
+  "productionAndExampleSourcesUnchanged": true
+}

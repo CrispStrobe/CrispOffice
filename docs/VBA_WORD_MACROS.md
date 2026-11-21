@@ -59,7 +59,7 @@ document supplied to the macro session. They never search for another file.
 | `Document.Tables(i)` / `Table.Cell(row, column)` | Existing main-story table cells |
 | `Document.Sections(i)` | Existing sections |
 | `Section.PageSetup` | Page geometry, orientation and section start |
-| `Section.TextColumns` | Uniform text columns |
+| `Section.PageSetup.TextColumns` | Uniform text columns |
 | `Section.Headers` / `.Footers` | Existing header/footer paragraphs |
 | `Range.Font` / `ParagraphFormat` | Formatting of the selected text |
 | `ListFormat` / `TabStops` | Supported paragraph list and tab settings |
@@ -72,7 +72,7 @@ content.
 
 The native plan can apply the documented subset of:
 
-- paragraph styles and direct character formatting;
+- paragraph styles and direct character formatting, including the fixed font-color palette and native automatic foreground;
 - paragraph shading, spacing, line spacing and keep controls;
 - tab stops and list formatting;
 - section page size, margins, orientation and start controls;
@@ -84,6 +84,19 @@ The native plan can apply the documented subset of:
 Unsupported whole-object assignment, `Duplicate`, runtime type discovery and
 property reads are refused. A `ByVal` object helper retains the selector passed
 to it; rebinding the helper parameter does not retarget the caller.
+
+## Comparing labels and choosing colors
+
+`Font.ColorIndex` accepts all 16 fixed `WdColorIndex` colors plus `wdAuto`.
+`Font.Color` accepts packed RGB or `wdColorAutomatic`. Automatic remains a
+native value, and explicit writes override inherited/theme colors while
+preserving unrelated XML metadata. These writes use existing paragraph and
+independent header/footer selectors.
+
+Source-only `StrComp` can choose a status color using binary comparisons; it
+does not read document text. See the [exact foreground contract](vba-word-macros-details.md#font-palette-and-automatic-foreground),
+[shared comparison contract](vba-macros-details.md#binary-string-comparison),
+and [complete runnable BAS](../packages/quds_office_engine/example/macros/word_comparison_colors.bas).
 
 ## Filling a table template
 
@@ -127,7 +140,7 @@ parameterless `Sub`; the default is `Main`.
 - No document discovery, external file opening or application automation.
 - The same permissions, tool allowlists, step limits, cancellation and save
   guards as native JSON macros apply.
-- Forms, events, COM, macro recording and the complete Word object model are
+- Forms, events, COM, source-level VBA recording and the complete Word object model are
   out of scope.
 - Indexes and formatting values are validated against a real detached document.
 - Source-bound local tests do not establish compatibility with every Microsoft

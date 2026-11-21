@@ -1,0 +1,36 @@
+{
+  "sourceCheckpoint": "e1eeb3dc6c13449b1e6357529f325067bdcf5048",
+  "broadManifestFiles": 139,
+  "broadUniqueTests": 6683,
+  "initialBroad": {
+    "passed": 6676,
+    "failed": 7,
+    "log": "word-comparison-colors-final-tests.log"
+  },
+  "isolatedHarnessRecovery": {
+    "passed": 135,
+    "failed": 2,
+    "log": "word-comparison-colors-final-isolated-recovery.log"
+  },
+  "resolvedInitialFailures": {
+    "MCPTimeout": 1,
+    "missingTrackedFont": 4,
+    "inheritedFrameAssertion": 2
+  },
+  "correctedFrameFile": {
+    "passed": 26,
+    "failed": 0,
+    "log": "frame-width-current-corrected.log"
+  },
+  "remainingFailures": 0,
+  "qualificationMethod": "original broad manifest plus isolated recovery and the corrected test file; no second full broad execution",
+  "fullEngineAnalysis": {
+    "exitCode": 0,
+    "log": "word-comparison-colors-final-analysis-isolated.log"
+  },
+  "exampleVmJavaScript": {
+    "byteIdentical": true,
+    "receipt": "word-comparison-colors-example-result.json"
+  },
+  "productionAndExampleSourcesUnchanged": true
+}

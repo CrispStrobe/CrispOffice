@@ -1,0 +1,30 @@
+{
+  "checkpoint": "e1eeb3dc6c13449b1e6357529f325067bdcf5048",
+  "sdk": "Dart SDK version: 3.14.1 (stable) (Tue Nov 17 00:01:24 2026 -0800) on \"linux_x64\"",
+  "testFiles": 139,
+  "exitCode": 1,
+  "durationSeconds": 289.304,
+  "productionAndExampleSourcesUnchanged": true,
+  "lastOutput": [
+    "04:46 +6667 -7: test/word_table_style_precedence_test.dart: direct table border width an omitted direct size inherits the style size",
+    "04:46 +6668 -7: test/word_table_style_precedence_test.dart: direct table border width a direct border color and size both win over the style",
+    "04:46 +6669 -7: test/word_table_style_precedence_test.dart: direct table border width explicit nil borders stay disabled",
+    "04:46 +6670 -7: test/word_table_style_precedence_test.dart: table paragraph spacing precedence document defaults retain their declared spacing",
+    "04:46 +6671 -7: test/word_table_style_precedence_test.dart: table paragraph spacing precedence table style retain their declared spacing",
+    "04:46 +6672 -7: test/word_table_style_precedence_test.dart: table paragraph spacing precedence paragraph style retain their declared spacing",
+    "04:46 +6673 -7: test/word_table_style_precedence_test.dart: table paragraph spacing precedence direct zero and single retain their declared spacing",
+    "04:46 +6674 -7: test/word_table_style_precedence_test.dart: table paragraph spacing precedence an otherwise unformatted styled cell keeps the compact fallback",
+    "04:46 +6675 -7: test/word_table_style_precedence_test.dart: table paragraph spacing precedence the compact fallback stays inherited after an untouched export",
+    "04:46 +6676 -7: Some tests failed.",
+    "",
+    "Failing tests:",
+    "  test/office_macro_mcp_test.dart: stdio bridge real stdio handshake, JSON errors, and mutation persist valid output",
+    "  test/office_macro_word_line_spacing_test.dart: atLeast 20.0 points reaches saved native line-box layout",
+    "  test/office_macro_word_line_spacing_test.dart: atLeast 8.0 points reaches saved native line-box layout",
+    "  test/office_macro_word_line_spacing_test.dart: exact 18.0 points reaches saved native line-box layout",
+    "  ... and 3 more",
+    "",
+    "Consider enabling the flag chain-stack-traces to receive more detailed exceptions.",
+    "For example, 'dart test --chain-stack-traces'."
+  ]
+}

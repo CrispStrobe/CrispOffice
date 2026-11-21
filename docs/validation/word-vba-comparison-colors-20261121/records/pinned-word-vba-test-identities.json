@@ -1,0 +1,1192 @@
+[
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binary UTF-16 ordering StrComp(\"\", \"\") returns 0",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binary UTF-16 ordering StrComp(\"\", \"a\") returns -1",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binary UTF-16 ordering StrComp(\"a\", \"\") returns 1",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binary UTF-16 ordering StrComp(\"same\", \"same\") returns 0",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binary UTF-16 ordering StrComp(\"a\", \"b\") returns -1",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binary UTF-16 ordering StrComp(\"b\", \"a\") returns 1",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binary UTF-16 ordering StrComp(\"abc\", \"abcd\") returns -1",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binary UTF-16 ordering StrComp(\"abcd\", \"abc\") returns 1",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binary UTF-16 ordering StrComp(\"abx\", \"aby\") returns -1",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binary UTF-16 ordering StrComp(\"ABCD\", \"abcd\") returns -1",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binary UTF-16 ordering StrComp(\"abcd\", \"ABCD\") returns 1",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binary UTF-16 ordering StrComp(\"9\", \"10\") returns 1",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binary UTF-16 ordering StrComp(\"\u00e9\", \"e\u0301\") returns 1",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binary UTF-16 ordering StrComp(\"\ud83d\ude00\", \"\ud83d\ude01\") returns -1",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binary UTF-16 ordering StrComp(\"\ud83d\ude00\", ChrW(57344)) returns -1",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binary UTF-16 ordering StrComp(ChrW(57344), \"\ud83d\ude00\") returns 1",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binary UTF-16 ordering StrComp(ChrW(0), \"\") returns 1",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binary UTF-16 ordering StrComp(\"a\" & ChrW(0), \"a\") returns 1",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binary UTF-16 ordering StrComp(ChrW(0), ChrW(1)) returns -1",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binary UTF-16 ordering StrComp(ChrW(-1), ChrW(32767)) returns 1",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binary UTF-16 ordering StrComp(Mid$(\"\ud83d\ude00\", 1, 1), Mid$(\"\ud83d\ude01\", 1, 1)) returns 0",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binary UTF-16 ordering StrComp(Mid$(\"\ud83d\ude00\", 2, 1), Mid$(\"\ud83d\ude01\", 2, 1)) returns -1",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binary UTF-16 ordering StrComp(Empty, \"\") returns 0",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binary UTF-16 ordering StrComp(\"\", Empty) returns 0",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binary UTF-16 ordering StrComp(Empty, Empty) returns 0",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binary UTF-16 ordering StrComp(Empty, \"a\") returns -1",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binary UTF-16 ordering StrComp(\"a\", Empty) returns 1",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binary UTF-16 ordering StrComp(CVar(\"b\"), CVar(\"a\")) returns 1",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binary UTF-16 ordering StrComp(CVar(Empty), CVar(\"\")) returns 0",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binary UTF-16 ordering case-insensitive intrinsic and exact numeric comparison mode",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binary UTF-16 ordering String and uninitialized Variant locals retain their types",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "Null propagation and conversion boundaries StrComp(Null, \"text\") retains Null",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "Null propagation and conversion boundaries StrComp(\"text\", Null) retains Null",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "Null propagation and conversion boundaries StrComp(Null, Null) retains Null",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "Null propagation and conversion boundaries StrComp(Null, Empty) retains Null",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "Null propagation and conversion boundaries StrComp(Empty, Null) retains Null",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "Null propagation and conversion boundaries StrComp(CVar(Null), CVar(\"text\")) retains Null",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "Null propagation and conversion boundaries a Null result remains available in a Variant array and branch",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "Null propagation and conversion boundaries Null cannot silently become a typed result or a native value",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "Null propagation and conversion boundaries Null Compare is always invalid: Null, \"x\", Null",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "Null propagation and conversion boundaries Null Compare is always invalid: \"x\", Null, CVar(Null)",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "Null propagation and conversion boundaries Null Compare is always invalid: \"a\", \"b\", Null",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "Null propagation and conversion boundaries unsupported Compare is checked even with Null text: vbTextCompare",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "Null propagation and conversion boundaries unsupported Compare is checked even with Null text: vbDatabaseCompare",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "Null propagation and conversion boundaries unsupported Compare is checked even with Null text: vbUseCompareOption",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "Null propagation and conversion boundaries unsupported Compare is checked even with Null text: 3",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "Null propagation and conversion boundaries unsupported Compare is checked even with Null text: CVar(1)",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "Null propagation and conversion boundaries Compare requires an actual exact number: Empty",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "Null propagation and conversion boundaries Compare requires an actual exact number: True",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "Null propagation and conversion boundaries Compare requires an actual exact number: \"0\"",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "Null propagation and conversion boundaries Compare requires an actual exact number: 0.5",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "Null propagation and conversion boundaries Compare requires an actual exact number: CVar(False)",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "Null propagation and conversion boundaries Compare requires an actual exact number: CVar(\"0\")",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "Null propagation and conversion boundaries text conversion must be explicit: 1",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "Null propagation and conversion boundaries text conversion must be explicit: True",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "Null propagation and conversion boundaries text conversion must be explicit: CVar(1)",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "Null propagation and conversion boundaries text conversion must be explicit: CVar(False)",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "Null propagation and conversion boundaries explicit scalar conversions compose with StrComp",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binding, helpers and source evaluation invalid call is diagnosed: StrComp()",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binding, helpers and source evaluation invalid call is diagnosed: StrComp(\"a\")",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binding, helpers and source evaluation invalid call is diagnosed: StrComp(\"a\", \"b\", 0, 0)",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binding, helpers and source evaluation invalid call is diagnosed: StrComp(Worksheets(1), \"a\")",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binding, helpers and source evaluation named and omitted arguments stay unsupported: StrComp(string1:=\"a\", string2:=\"b\")",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binding, helpers and source evaluation named and omitted arguments stay unsupported: StrComp(\"a\", \"b\", compare:=0)",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binding, helpers and source evaluation named and omitted arguments stay unsupported: StrComp(\"a\", , 0)",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binding, helpers and source evaluation named and omitted arguments stay unsupported: StrComp(\"a\", \"b\", )",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binding, helpers and source evaluation invalid dead code is checked",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binding, helpers and source evaluation intrinsic cannot be shadowed by a local, helper or parameter",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binding, helpers and source evaluation constant and optional-default expression rules remain bounded",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binding, helpers and source evaluation Option Compare modes remain explicitly unsupported",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binding, helpers and source evaluation argument helpers run once in source order before the result",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binding, helpers and source evaluation named module-helper arguments retain their source order",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "binding, helpers and source evaluation a late failure never returns an earlier partial plan",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "metered comparison work a complete comparison is linear and fits the shared budget",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "metered comparison work repeated equal values cannot bypass scanning charges",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "metered comparison work early differences do not scan the remaining long suffix",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "shared Word and PowerPoint adapters Word branches on source comparisons before table and font writes",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_strcomp_test.dart",
+    "name": "shared Word and PowerPoint adapters PowerPoint uses the same comparison in text and geometry",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Font.ColorIndex wdAuto and numeric 0 preserve palette identity",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Font.ColorIndex wdBlack and numeric 1 preserve palette identity",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Font.ColorIndex wdBlue and numeric 2 preserve palette identity",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Font.ColorIndex wdTurquoise and numeric 3 preserve palette identity",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Font.ColorIndex wdBrightGreen and numeric 4 preserve palette identity",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Font.ColorIndex wdPink and numeric 5 preserve palette identity",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Font.ColorIndex wdRed and numeric 6 preserve palette identity",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Font.ColorIndex wdYellow and numeric 7 preserve palette identity",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Font.ColorIndex wdWhite and numeric 8 preserve palette identity",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Font.ColorIndex wdDarkBlue and numeric 9 preserve palette identity",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Font.ColorIndex wdTeal and numeric 10 preserve palette identity",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Font.ColorIndex wdGreen and numeric 11 preserve palette identity",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Font.ColorIndex wdViolet and numeric 12 preserve palette identity",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Font.ColorIndex wdDarkRed and numeric 13 preserve palette identity",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Font.ColorIndex wdDarkYellow and numeric 14 preserve palette identity",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Font.ColorIndex wdGray50 and numeric 15 preserve palette identity",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Font.ColorIndex wdGray25 and numeric 16 preserve palette identity",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Font.Color preserves packed RGB and automatic identity: wdColorAutomatic",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Font.Color preserves packed RGB and automatic identity: -16777216",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Font.Color preserves packed RGB and automatic identity: wdColorBlack",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Font.Color preserves packed RGB and automatic identity: wdAuto",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Font.Color preserves packed RGB and automatic identity: 0",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Font.Color preserves packed RGB and automatic identity: 16777215",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Font.Color preserves packed RGB and automatic identity: wdColorBlue",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Font.Color preserves packed RGB and automatic identity: RGB(18, 52, 86)",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Font.Color preserves packed RGB and automatic identity: RGB(255, 0, 0)",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Font.Color preserves packed RGB and automatic identity: RGB(0, 0, 255)",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Font.Color preserves packed RGB and automatic identity: CLng(CVar(-16777216))",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "automatic is property-specific and does not become a palette RGB",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "typed aliases, named optional ByVal helpers and rebinding keep identity",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "both font color properties preserve the explicit header target",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "both font color properties preserve the explicit firstHeader target",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "both font color properties preserve the explicit evenHeader target",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "both font color properties preserve the explicit footer target",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "both font color properties preserve the explicit firstFooter target",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "both font color properties preserve the explicit evenFooter target",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "explicit scalar conversions retain exact palette values: CLng(\"6\")",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "explicit scalar conversions retain exact palette values: CDbl(\"2\")",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "explicit scalar conversions retain exact palette values: CVar(0)",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "explicit scalar conversions retain exact palette values: 16.0",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "ColorIndex refuses implicit type coercion from True",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "ColorIndex refuses implicit type coercion from False",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "ColorIndex refuses implicit type coercion from \"6\"",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "ColorIndex refuses implicit type coercion from Null",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "ColorIndex refuses implicit type coercion from Empty",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "ColorIndex refuses implicit type coercion from 0.5",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Color refuses implicit type coercion from True",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Color refuses implicit type coercion from False",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Color refuses implicit type coercion from \"6\"",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Color refuses implicit type coercion from Null",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Color refuses implicit type coercion from Empty",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Color refuses implicit type coercion from 0.5",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "ColorIndex refuses unsupported palette value -1",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "ColorIndex refuses unsupported palette value wdByAuthor",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "ColorIndex refuses unsupported palette value 17",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "ColorIndex refuses unsupported palette value wdColorAutomatic",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Color refuses unsupported RGB value -1",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Color refuses unsupported RGB value wdByAuthor",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Color refuses unsupported RGB value -16777215",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Color refuses unsupported RGB value 16777216",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "ColorIndex retains shared numeric bounds",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Color retains shared numeric bounds",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "unsupported target/read is rejected even in inactive code: ActiveDocument.Paragraphs(1).Range.ColorIndex = wdRed",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "unsupported target/read is rejected even in inactive code: ActiveDocument.Paragraphs(1).Range.ParagraphFormat.ColorIndex = wdRed",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "unsupported target/read is rejected even in inactive code: ThisDocument.Sections(1).Headers(1).Range.Font.ColorIndex = wdRed",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "unsupported target/read is rejected even in inactive code: ThisDocument.Tables(1).Cell(1, 1).Range.Font.ColorIndex = wdRed",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "unsupported target/read is rejected even in inactive code: Dim value As Long\nvalue = ActiveDocument.Paragraphs(1).Range.Font.ColorIndex",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "unsupported target/read is rejected even in inactive code: Dim value As Long\nvalue = ActiveDocument.Paragraphs(1).Range.Font.Color",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "unsupported target/read is rejected even in inactive code: ActiveDocument.Paragraphs(1).Range.Font.ColorIndex(wdRed)",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "unused helpers still check ColorIndex assignment types",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "ColorIndex = wdAuto cannot split a custom line-spacing pair",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Color = wdColorAutomatic cannot split a custom line-spacing pair",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Word ColorIndex does not silently extend vba-excel",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_font_colors_test.dart",
+    "name": "Word ColorIndex does not silently extend vba-powerpoint",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "native color auto preserves its identity through three reopens",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "native color 000000 preserves its identity through three reopens",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "native color FFFFFF preserves its identity through three reopens",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "native color 1a2b3c preserves its identity through three reopens",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "authored automatic color emits auto explicitly instead of black",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "an imported automatic color survives unrelated formatting",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "same inherited 123456 becomes direct without pinning other properties",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "same inherited auto becomes direct without pinning other properties",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "explicit 123456 owns native color and removes all inherited theme selectors",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "explicit auto owns native color and removes all inherited theme selectors",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "unrelated run edits preserve color theme ownership",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "auto preserves native aliases and foreign color metadata (w)",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "A1B2C3 preserves native aliases and foreign color metadata (w)",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "auto preserves native aliases and foreign color metadata (q)",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "A1B2C3 preserves native aliases and foreign color metadata (q)",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "foreign same-name values do not determine imported direct or style color",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "partial color edits retain UTF-16 boundaries and untouched neighboring colors",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "automatic color targets one independent header without changing the body",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "invalid native color null refuses before run splitting or formatting",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "invalid native color true refuses before run splitting or formatting",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "invalid native color 0 refuses before run splitting or formatting",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "invalid native color -16777216 refuses before run splitting or formatting",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "invalid native color  refuses before run splitting or formatting",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "invalid native color AUTO refuses before run splitting or formatting",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "invalid native color Auto refuses before run splitting or formatting",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "invalid native color auto  refuses before run splitting or formatting",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "invalid native color  auto refuses before run splitting or formatting",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "invalid native color #FFFFFF refuses before run splitting or formatting",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "invalid native color FFFFFFF refuses before run splitting or formatting",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "invalid native color ZZZZZZ refuses before run splitting or formatting",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "invalid native color [] refuses before run splitting or formatting",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "late duplicate native color ownership refuses all affected runs: <w:color w:val=\"123456\"/><w:color w:val=\"654321\"/>",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "late duplicate native color ownership refuses all affected runs: <w:color xmlns:q=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" w:val=\"123456\" q:val=\"654321\"/>",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "late duplicate native color ownership refuses all affected runs: <w:color xmlns:q=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" w:val=\"123456\" w:themeColor=\"accent1\" q:themeColor=\"accent2\"/>",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "late duplicate native color ownership refuses all affected runs: <w:color xmlns:q=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" w:val=\"123456\" w:themeTint=\"80\" q:themeTint=\"40\"/>",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "late duplicate native color ownership refuses all affected runs: <w:color xmlns:q=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" w:val=\"123456\" w:themeShade=\"80\" q:themeShade=\"40\"/>",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "duplicate run-property containers cannot hide color ownership",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "markup-compatibility color alternatives refuse before mutation: <w:rPr><mc:AlternateContent><mc:Choice Requires=\"x\"><w:color w:val=\"123456\"/></mc:Choice><mc:Fallback><w:color w:val=\"654321\"/></mc:Fallback></mc:AlternateContent></w:rPr>",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "markup-compatibility color alternatives refuse before mutation: <w:rPr mc:Ignorable=\"x\" mc:ProcessContent=\"x:container\"><x:container><w:color w:val=\"123456\"/></x:container></w:rPr>",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "late invalid color rolls back color, bytes and recording (validate true)",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "late missing paragraph rolls back color, bytes and recording (validate true)",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "late invalid color rolls back color, bytes and recording (validate false)",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_macro_word_font_colors_test.dart",
+    "name": "late missing paragraph rolls back color, bytes and recording (validate false)",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_conformance_test.dart",
+    "name": "StrComp result: three-ordering-results",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_conformance_test.dart",
+    "name": "StrComp result: prefix-and-empty-ordering",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_conformance_test.dart",
+    "name": "StrComp result: binary-digit-strings",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_conformance_test.dart",
+    "name": "StrComp result: unicode-no-normalization",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_conformance_test.dart",
+    "name": "StrComp result: surrogate-halves-and-nul",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_conformance_test.dart",
+    "name": "StrComp result: null-operands-propagate",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_conformance_test.dart",
+    "name": "StrComp Empty: empty-and-default-variant",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_conformance_test.dart",
+    "name": "StrComp result: explicit-text-conversions",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_conformance_test.dart",
+    "name": "Comparison and Word formatting: comparison-selects-font-palette",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_conformance_test.dart",
+    "name": "StrComp refusal: text-mode-refused",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_conformance_test.dart",
+    "name": "StrComp refusal: database-mode-refused",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_conformance_test.dart",
+    "name": "StrComp refusal: option-mode-refused",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_conformance_test.dart",
+    "name": "StrComp refusal: null-mode-refused",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_conformance_test.dart",
+    "name": "StrComp refusal: numeric-text-coercion-refused",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_conformance_test.dart",
+    "name": "StrComp refusal: boolean-text-coercion-refused",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_conformance_test.dart",
+    "name": "StrComp refusal: string-mode-coercion-refused",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_conformance_test.dart",
+    "name": "StrComp refusal: fractional-mode-refused",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_conformance_test.dart",
+    "name": "StrComp refusal: empty-mode-refused",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_conformance_test.dart",
+    "name": "StrComp refusal: missing-required-argument",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_conformance_test.dart",
+    "name": "StrComp refusal: named-compare-refused",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_conformance_test.dart",
+    "name": "StrComp refusal: omitted-compare-refused",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_conformance_test.dart",
+    "name": "Font.ColorIndex palette: complete-fixed-font-palette",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_conformance_test.dart",
+    "name": "Automatic foreground: automatic-and-packed-rgb-stay-distinct",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_conformance_test.dart",
+    "name": "Comparison and Word targeting: helper-and-independent-footer",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_conformance_test.dart",
+    "name": "Font color refusal: font-by-author-refused",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_conformance_test.dart",
+    "name": "Font color refusal: palette-outside-range-refused",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_conformance_test.dart",
+    "name": "Font color refusal: fractional-palette-refused",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_conformance_test.dart",
+    "name": "Font color refusal: font-property-read-refused",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_conformance_test.dart",
+    "name": "Font color refusal: automatic-sentinel-is-not-palette-index",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_conformance_test.dart",
+    "name": "Font color refusal: invalid-rgb-does-not-return-partial-plan",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_conformance_test.dart",
+    "name": "comparison and font-color corpus distinguishes specification and dialect evidence",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_colors_footnote_separator_integration_test.dart",
+    "name": "palette and both automatic colors preserve active separators across two native reopens",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_colors_footnote_separator_integration_test.dart",
+    "name": "late macro failure rolls back colors and active separator state",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_integration_test.dart",
+    "name": "actual BAS preserves DOCM, native colors and transactions",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_integration_test.dart",
+    "name": "DOCX executes the same BAS without acquiring an embedded project",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_integration_test.dart",
+    "name": "ByVal Font rebinding does not replace the caller alias",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_integration_test.dart",
+    "name": "Null comparison stays explicit and Empty selects a known branch",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_integration_test.dart",
+    "name": "automatic and explicit black remain distinct native writes",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_integration_test.dart",
+    "name": "a later invalid target rolls back colors and leaves recording empty",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_integration_test.dart",
+    "name": "an unsupported merged cell rolls back an earlier font change",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_integration_test.dart",
+    "name": "MCP compiles, validates and runs the actual comparison/color BAS",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_integration_test.dart",
+    "name": "MCP refuses an invalid comparison before any source plan is published",
+    "result": "passed"
+  },
+  {
+    "path": "test/office_vba_word_comparison_colors_integration_test.dart",
+    "name": "CLI compiles/runs the actual BAS and retains prior output on refusals",
+    "result": "passed"
+  }
+]

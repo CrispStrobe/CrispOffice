@@ -1,0 +1,22 @@
+{
+  "name": "mail-format-repair",
+  "command": [
+    "/workspace/scratch/f433637a99a0/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+    "format",
+    "packages/quds_mail_ui/lib/src/workspace/message_list.dart",
+    "packages/quds_mail_ui/test/message_list_range_selection_test.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_workspace_strings.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_sync_dialog.dart",
+    "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_selection_help_test.dart"
+  ],
+  "cwd": "/workspace/scratch/f433637a99a0/quds_office_suite",
+  "started_utc": "2026-11-21T21:45:06.903047+00:00",
+  "status": "PASS",
+  "log": "mail-format-repair.log",
+  "github_actions": "NOT USED",
+  "exit_code": 0,
+  "elapsed_seconds": 0.217,
+  "finished_utc": "2026-11-21T21:45:07.120680+00:00",
+  "log_sha256": "17d7cb1ed97557a5b4ff5b8408e3e57d211801debb0a82a09e1e2a73de0288a1"
+}

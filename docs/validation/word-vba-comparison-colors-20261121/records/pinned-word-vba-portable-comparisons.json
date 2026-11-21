@@ -1,0 +1,713 @@
+[
+  {
+    "case": "example",
+    "byte_identical": true,
+    "output_bytes": 524,
+    "output_sha256": "b832a9d6fdd14ca4a9f86309887b07d6a1c5035c49564d327d3839f4289b7ad8",
+    "vm_output": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/logs/pinned-word-vba-example-vm.json",
+    "js_output": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/logs/pinned-word-vba-example-js.json",
+    "compiled_js_sha256": "29900cd65c578bfe1f9899aff0455ad55e1c0904c6f2e833c118daf8a4709f07",
+    "node_version": "v24.22.3",
+    "result": {
+      "operations": 9,
+      "revision": 2,
+      "recordedSteps": 9,
+      "additionalReopens": 2,
+      "opaquePartsPreserved": true,
+      "colorMetadataPreserved": true,
+      "lateRollback": true,
+      "policyRefusals": 3,
+      "colors": [
+        "008000",
+        "800000",
+        "auto",
+        "000080",
+        "auto"
+      ],
+      "cellText": [
+        "0",
+        "-1"
+      ],
+      "nativePartSha256": {
+        "/word/document.xml": "0c0f7799033f5063a8df84cb2af95823ed027aed64314627a6683bfe566a2adc",
+        "/word/footer2.xml": "7f496c44db18929400d8affe7423efa6b1068b64a83ed30ddba3d49855273c3e",
+        "/word/header1.xml": "a51d311b47e6818e8fae4d2f92c515b2d4a071e82e619ca890d7a736438aeab1"
+      }
+    }
+  },
+  {
+    "case": "strcomp",
+    "byte_identical": true,
+    "output_bytes": 9125,
+    "output_sha256": "8df099428192365cb1befbcee1b3525555b69102f861c274c0c31b6581250aa5",
+    "vm_output": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/logs/pinned-word-vba-strcomp-vm.json",
+    "js_output": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/logs/pinned-word-vba-strcomp-js.json",
+    "compiled_js_sha256": "599e97edeeae1587f6ba820fb2e985c97975f931df3ca16f7d37935e398b60d0",
+    "node_version": "v24.22.3",
+    "result": {
+      "cases": 72,
+      "receipts": [
+        {
+          "host": "vba-word",
+          "expression": "StrComp(\"ABCD\", \"abcd\")",
+          "result": "-1",
+          "arguments": {
+            "table": 0,
+            "row": 0,
+            "column": 0,
+            "text": "-1"
+          }
+        },
+        {
+          "host": "vba-word",
+          "expression": "StrComp(\"abcd\", \"ABCD\", vbBinaryCompare)",
+          "result": "1",
+          "arguments": {
+            "table": 0,
+            "row": 0,
+            "column": 0,
+            "text": "1"
+          }
+        },
+        {
+          "host": "vba-word",
+          "expression": "StrComp(\"same\", \"same\", 0)",
+          "result": "0",
+          "arguments": {
+            "table": 0,
+            "row": 0,
+            "column": 0,
+            "text": "0"
+          }
+        },
+        {
+          "host": "vba-word",
+          "expression": "StrComp(\"abc\", \"abcd\")",
+          "result": "-1",
+          "arguments": {
+            "table": 0,
+            "row": 0,
+            "column": 0,
+            "text": "-1"
+          }
+        },
+        {
+          "host": "vba-word",
+          "expression": "StrComp(\"abcd\", \"abc\")",
+          "result": "1",
+          "arguments": {
+            "table": 0,
+            "row": 0,
+            "column": 0,
+            "text": "1"
+          }
+        },
+        {
+          "host": "vba-word",
+          "expression": "StrComp(Empty, \"\")",
+          "result": "0",
+          "arguments": {
+            "table": 0,
+            "row": 0,
+            "column": 0,
+            "text": "0"
+          }
+        },
+        {
+          "host": "vba-word",
+          "expression": "StrComp(\"x\", Empty)",
+          "result": "1",
+          "arguments": {
+            "table": 0,
+            "row": 0,
+            "column": 0,
+            "text": "1"
+          }
+        },
+        {
+          "host": "vba-word",
+          "expression": "StrComp(ChrW(0), \"\")",
+          "result": "1",
+          "arguments": {
+            "table": 0,
+            "row": 0,
+            "column": 0,
+            "text": "1"
+          }
+        },
+        {
+          "host": "vba-word",
+          "expression": "StrComp(\"\ud83d\ude00\", ChrW(57344))",
+          "result": "-1",
+          "arguments": {
+            "table": 0,
+            "row": 0,
+            "column": 0,
+            "text": "-1"
+          }
+        },
+        {
+          "host": "vba-word",
+          "expression": "StrComp(ChrW(57344), \"\ud83d\ude00\")",
+          "result": "1",
+          "arguments": {
+            "table": 0,
+            "row": 0,
+            "column": 0,
+            "text": "1"
+          }
+        },
+        {
+          "host": "vba-word",
+          "expression": "StrComp(Mid$(\"\ud83d\ude00\", 2, 1), Mid$(\"\ud83d\ude01\", 2, 1))",
+          "result": "-1",
+          "arguments": {
+            "table": 0,
+            "row": 0,
+            "column": 0,
+            "text": "-1"
+          }
+        },
+        {
+          "host": "vba-word",
+          "expression": "StrComp(CVar(\"\u00e9\"), \"e\u0301\")",
+          "result": "1",
+          "arguments": {
+            "table": 0,
+            "row": 0,
+            "column": 0,
+            "text": "1"
+          }
+        },
+        {
+          "host": "vba-word",
+          "expression": "IsNull(StrComp(Null, \"x\"))",
+          "result": "True",
+          "arguments": {
+            "table": 0,
+            "row": 0,
+            "column": 0,
+            "text": "True"
+          }
+        },
+        {
+          "host": "vba-word",
+          "expression": "IsNull(StrComp(\"x\", Null, 0))",
+          "result": "True",
+          "arguments": {
+            "table": 0,
+            "row": 0,
+            "column": 0,
+            "text": "True"
+          }
+        },
+        {
+          "host": "vba-word",
+          "expression": "IsNull(StrComp(Null, Empty))",
+          "result": "True",
+          "arguments": {
+            "table": 0,
+            "row": 0,
+            "column": 0,
+            "text": "True"
+          }
+        },
+        {
+          "host": "vba-word",
+          "expression": "StrComp(Null, \"x\", vbTextCompare)",
+          "error": "vba_unsupported",
+          "line": 2,
+          "column": 74
+        },
+        {
+          "host": "vba-word",
+          "expression": "StrComp(\"x\", Null, vbUseCompareOption)",
+          "error": "vba_unsupported",
+          "line": 2,
+          "column": 74
+        },
+        {
+          "host": "vba-word",
+          "expression": "StrComp(Null, \"x\", Null)",
+          "error": "vba_invalid_use_of_null",
+          "line": 2,
+          "column": 74
+        },
+        {
+          "host": "vba-word",
+          "expression": "StrComp(\"x\", \"y\", Empty)",
+          "error": "vba_type_error",
+          "line": 2,
+          "column": 73
+        },
+        {
+          "host": "vba-word",
+          "expression": "StrComp(CVar(1), \"1\")",
+          "error": "vba_type_error",
+          "line": 2,
+          "column": 63
+        },
+        {
+          "host": "vba-word",
+          "expression": "StrComp(Null, CVar(True))",
+          "error": "vba_type_error",
+          "line": 2,
+          "column": 69
+        },
+        {
+          "host": "vba-word",
+          "expression": "StrComp(\"a\", \"b\", 0.5)",
+          "error": "vba_type_error",
+          "line": 2,
+          "column": 73
+        },
+        {
+          "host": "vba-word",
+          "expression": "StrComp(\"a\", \"b\", compare:=0)",
+          "error": "vba_unsupported",
+          "line": 2,
+          "column": 73
+        },
+        {
+          "host": "vba-word",
+          "workLimit": "vba_limit_exceeded"
+        },
+        {
+          "host": "vba-excel",
+          "expression": "StrComp(\"ABCD\", \"abcd\")",
+          "result": "-1",
+          "arguments": {
+            "sheet": 0,
+            "cell": "A1",
+            "value": "-1"
+          }
+        },
+        {
+          "host": "vba-excel",
+          "expression": "StrComp(\"abcd\", \"ABCD\", vbBinaryCompare)",
+          "result": "1",
+          "arguments": {
+            "sheet": 0,
+            "cell": "A1",
+            "value": "1"
+          }
+        },
+        {
+          "host": "vba-excel",
+          "expression": "StrComp(\"same\", \"same\", 0)",
+          "result": "0",
+          "arguments": {
+            "sheet": 0,
+            "cell": "A1",
+            "value": "0"
+          }
+        },
+        {
+          "host": "vba-excel",
+          "expression": "StrComp(\"abc\", \"abcd\")",
+          "result": "-1",
+          "arguments": {
+            "sheet": 0,
+            "cell": "A1",
+            "value": "-1"
+          }
+        },
+        {
+          "host": "vba-excel",
+          "expression": "StrComp(\"abcd\", \"abc\")",
+          "result": "1",
+          "arguments": {
+            "sheet": 0,
+            "cell": "A1",
+            "value": "1"
+          }
+        },
+        {
+          "host": "vba-excel",
+          "expression": "StrComp(Empty, \"\")",
+          "result": "0",
+          "arguments": {
+            "sheet": 0,
+            "cell": "A1",
+            "value": "0"
+          }
+        },
+        {
+          "host": "vba-excel",
+          "expression": "StrComp(\"x\", Empty)",
+          "result": "1",
+          "arguments": {
+            "sheet": 0,
+            "cell": "A1",
+            "value": "1"
+          }
+        },
+        {
+          "host": "vba-excel",
+          "expression": "StrComp(ChrW(0), \"\")",
+          "result": "1",
+          "arguments": {
+            "sheet": 0,
+            "cell": "A1",
+            "value": "1"
+          }
+        },
+        {
+          "host": "vba-excel",
+          "expression": "StrComp(\"\ud83d\ude00\", ChrW(57344))",
+          "result": "-1",
+          "arguments": {
+            "sheet": 0,
+            "cell": "A1",
+            "value": "-1"
+          }
+        },
+        {
+          "host": "vba-excel",
+          "expression": "StrComp(ChrW(57344), \"\ud83d\ude00\")",
+          "result": "1",
+          "arguments": {
+            "sheet": 0,
+            "cell": "A1",
+            "value": "1"
+          }
+        },
+        {
+          "host": "vba-excel",
+          "expression": "StrComp(Mid$(\"\ud83d\ude00\", 2, 1), Mid$(\"\ud83d\ude01\", 2, 1))",
+          "result": "-1",
+          "arguments": {
+            "sheet": 0,
+            "cell": "A1",
+            "value": "-1"
+          }
+        },
+        {
+          "host": "vba-excel",
+          "expression": "StrComp(CVar(\"\u00e9\"), \"e\u0301\")",
+          "result": "1",
+          "arguments": {
+            "sheet": 0,
+            "cell": "A1",
+            "value": "1"
+          }
+        },
+        {
+          "host": "vba-excel",
+          "expression": "IsNull(StrComp(Null, \"x\"))",
+          "result": "True",
+          "arguments": {
+            "sheet": 0,
+            "cell": "A1",
+            "value": "True"
+          }
+        },
+        {
+          "host": "vba-excel",
+          "expression": "IsNull(StrComp(\"x\", Null, 0))",
+          "result": "True",
+          "arguments": {
+            "sheet": 0,
+            "cell": "A1",
+            "value": "True"
+          }
+        },
+        {
+          "host": "vba-excel",
+          "expression": "IsNull(StrComp(Null, Empty))",
+          "result": "True",
+          "arguments": {
+            "sheet": 0,
+            "cell": "A1",
+            "value": "True"
+          }
+        },
+        {
+          "host": "vba-excel",
+          "expression": "StrComp(Null, \"x\", vbTextCompare)",
+          "error": "vba_unsupported",
+          "line": 2,
+          "column": 60
+        },
+        {
+          "host": "vba-excel",
+          "expression": "StrComp(\"x\", Null, vbUseCompareOption)",
+          "error": "vba_unsupported",
+          "line": 2,
+          "column": 60
+        },
+        {
+          "host": "vba-excel",
+          "expression": "StrComp(Null, \"x\", Null)",
+          "error": "vba_invalid_use_of_null",
+          "line": 2,
+          "column": 60
+        },
+        {
+          "host": "vba-excel",
+          "expression": "StrComp(\"x\", \"y\", Empty)",
+          "error": "vba_type_error",
+          "line": 2,
+          "column": 59
+        },
+        {
+          "host": "vba-excel",
+          "expression": "StrComp(CVar(1), \"1\")",
+          "error": "vba_type_error",
+          "line": 2,
+          "column": 49
+        },
+        {
+          "host": "vba-excel",
+          "expression": "StrComp(Null, CVar(True))",
+          "error": "vba_type_error",
+          "line": 2,
+          "column": 55
+        },
+        {
+          "host": "vba-excel",
+          "expression": "StrComp(\"a\", \"b\", 0.5)",
+          "error": "vba_type_error",
+          "line": 2,
+          "column": 59
+        },
+        {
+          "host": "vba-excel",
+          "expression": "StrComp(\"a\", \"b\", compare:=0)",
+          "error": "vba_unsupported",
+          "line": 2,
+          "column": 59
+        },
+        {
+          "host": "vba-excel",
+          "workLimit": "vba_limit_exceeded"
+        },
+        {
+          "host": "vba-powerpoint",
+          "expression": "StrComp(\"ABCD\", \"abcd\")",
+          "result": "-1",
+          "arguments": {
+            "topLevel": true,
+            "slide": 0,
+            "shape": 0,
+            "text": "-1"
+          }
+        },
+        {
+          "host": "vba-powerpoint",
+          "expression": "StrComp(\"abcd\", \"ABCD\", vbBinaryCompare)",
+          "result": "1",
+          "arguments": {
+            "topLevel": true,
+            "slide": 0,
+            "shape": 0,
+            "text": "1"
+          }
+        },
+        {
+          "host": "vba-powerpoint",
+          "expression": "StrComp(\"same\", \"same\", 0)",
+          "result": "0",
+          "arguments": {
+            "topLevel": true,
+            "slide": 0,
+            "shape": 0,
+            "text": "0"
+          }
+        },
+        {
+          "host": "vba-powerpoint",
+          "expression": "StrComp(\"abc\", \"abcd\")",
+          "result": "-1",
+          "arguments": {
+            "topLevel": true,
+            "slide": 0,
+            "shape": 0,
+            "text": "-1"
+          }
+        },
+        {
+          "host": "vba-powerpoint",
+          "expression": "StrComp(\"abcd\", \"abc\")",
+          "result": "1",
+          "arguments": {
+            "topLevel": true,
+            "slide": 0,
+            "shape": 0,
+            "text": "1"
+          }
+        },
+        {
+          "host": "vba-powerpoint",
+          "expression": "StrComp(Empty, \"\")",
+          "result": "0",
+          "arguments": {
+            "topLevel": true,
+            "slide": 0,
+            "shape": 0,
+            "text": "0"
+          }
+        },
+        {
+          "host": "vba-powerpoint",
+          "expression": "StrComp(\"x\", Empty)",
+          "result": "1",
+          "arguments": {
+            "topLevel": true,
+            "slide": 0,
+            "shape": 0,
+            "text": "1"
+          }
+        },
+        {
+          "host": "vba-powerpoint",
+          "expression": "StrComp(ChrW(0), \"\")",
+          "result": "1",
+          "arguments": {
+            "topLevel": true,
+            "slide": 0,
+            "shape": 0,
+            "text": "1"
+          }
+        },
+        {
+          "host": "vba-powerpoint",
+          "expression": "StrComp(\"\ud83d\ude00\", ChrW(57344))",
+          "result": "-1",
+          "arguments": {
+            "topLevel": true,
+            "slide": 0,
+            "shape": 0,
+            "text": "-1"
+          }
+        },
+        {
+          "host": "vba-powerpoint",
+          "expression": "StrComp(ChrW(57344), \"\ud83d\ude00\")",
+          "result": "1",
+          "arguments": {
+            "topLevel": true,
+            "slide": 0,
+            "shape": 0,
+            "text": "1"
+          }
+        },
+        {
+          "host": "vba-powerpoint",
+          "expression": "StrComp(Mid$(\"\ud83d\ude00\", 2, 1), Mid$(\"\ud83d\ude01\", 2, 1))",
+          "result": "-1",
+          "arguments": {
+            "topLevel": true,
+            "slide": 0,
+            "shape": 0,
+            "text": "-1"
+          }
+        },
+        {
+          "host": "vba-powerpoint",
+          "expression": "StrComp(CVar(\"\u00e9\"), \"e\u0301\")",
+          "result": "1",
+          "arguments": {
+            "topLevel": true,
+            "slide": 0,
+            "shape": 0,
+            "text": "1"
+          }
+        },
+        {
+          "host": "vba-powerpoint",
+          "expression": "IsNull(StrComp(Null, \"x\"))",
+          "result": "True",
+          "arguments": {
+            "topLevel": true,
+            "slide": 0,
+            "shape": 0,
+            "text": "True"
+          }
+        },
+        {
+          "host": "vba-powerpoint",
+          "expression": "IsNull(StrComp(\"x\", Null, 0))",
+          "result": "True",
+          "arguments": {
+            "topLevel": true,
+            "slide": 0,
+            "shape": 0,
+            "text": "True"
+          }
+        },
+        {
+          "host": "vba-powerpoint",
+          "expression": "IsNull(StrComp(Null, Empty))",
+          "result": "True",
+          "arguments": {
+            "topLevel": true,
+            "slide": 0,
+            "shape": 0,
+            "text": "True"
+          }
+        },
+        {
+          "host": "vba-powerpoint",
+          "expression": "StrComp(Null, \"x\", vbTextCompare)",
+          "error": "vba_unsupported",
+          "line": 2,
+          "column": 91
+        },
+        {
+          "host": "vba-powerpoint",
+          "expression": "StrComp(\"x\", Null, vbUseCompareOption)",
+          "error": "vba_unsupported",
+          "line": 2,
+          "column": 91
+        },
+        {
+          "host": "vba-powerpoint",
+          "expression": "StrComp(Null, \"x\", Null)",
+          "error": "vba_invalid_use_of_null",
+          "line": 2,
+          "column": 91
+        },
+        {
+          "host": "vba-powerpoint",
+          "expression": "StrComp(\"x\", \"y\", Empty)",
+          "error": "vba_type_error",
+          "line": 2,
+          "column": 90
+        },
+        {
+          "host": "vba-powerpoint",
+          "expression": "StrComp(CVar(1), \"1\")",
+          "error": "vba_type_error",
+          "line": 2,
+          "column": 80
+        },
+        {
+          "host": "vba-powerpoint",
+          "expression": "StrComp(Null, CVar(True))",
+          "error": "vba_type_error",
+          "line": 2,
+          "column": 86
+        },
+        {
+          "host": "vba-powerpoint",
+          "expression": "StrComp(\"a\", \"b\", 0.5)",
+          "error": "vba_type_error",
+          "line": 2,
+          "column": 90
+        },
+        {
+          "host": "vba-powerpoint",
+          "expression": "StrComp(\"a\", \"b\", compare:=0)",
+          "error": "vba_unsupported",
+          "line": 2,
+          "column": 90
+        },
+        {
+          "host": "vba-powerpoint",
+          "workLimit": "vba_limit_exceeded"
+        }
+      ]
+    }
+  }
+]

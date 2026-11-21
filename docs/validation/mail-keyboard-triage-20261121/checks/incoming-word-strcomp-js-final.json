@@ -1,0 +1,18 @@
+{
+  "name": "incoming-word-strcomp-js-final",
+  "command": [
+    "node",
+    "-e",
+    "globalThis.self = globalThis; require(process.argv[1]);",
+    "/workspace/scratch/f433637a99a0/qualification-tmp/incoming-word-strcomp-final.js"
+  ],
+  "cwd": "/workspace/scratch/f433637a99a0/quds_office_suite/packages/quds_office_engine",
+  "started_utc": "2026-11-21T21:49:45.990679+00:00",
+  "status": "PASS",
+  "log": "incoming-word-strcomp-js-final.log",
+  "github_actions": "NOT USED",
+  "exit_code": 0,
+  "elapsed_seconds": 0.394,
+  "finished_utc": "2026-11-21T21:49:46.385370+00:00",
+  "log_sha256": "8df099428192365cb1befbcee1b3525555b69102f861c274c0c31b6581250aa5"
+}

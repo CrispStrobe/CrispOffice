@@ -1,0 +1,16 @@
+{
+  "name": "incoming-word-strcomp-vm-final",
+  "command": [
+    "/workspace/scratch/f433637a99a0/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+    "tool/macros/web_vba_strcomp_smoke.dart"
+  ],
+  "cwd": "/workspace/scratch/f433637a99a0/quds_office_suite/packages/quds_office_engine",
+  "started_utc": "2026-11-21T21:48:32.561802+00:00",
+  "status": "PASS",
+  "log": "incoming-word-strcomp-vm-final.log",
+  "github_actions": "NOT USED",
+  "exit_code": 0,
+  "elapsed_seconds": 26.877,
+  "finished_utc": "2026-11-21T21:48:59.439801+00:00",
+  "log_sha256": "8df099428192365cb1befbcee1b3525555b69102f861c274c0c31b6581250aa5"
+}

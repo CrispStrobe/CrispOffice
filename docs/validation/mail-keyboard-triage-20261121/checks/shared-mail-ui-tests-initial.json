@@ -1,0 +1,21 @@
+{
+  "name": "shared-mail-ui-tests-initial",
+  "command": [
+    "/workspace/scratch/f433637a99a0/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+    "/workspace/scratch/f433637a99a0/toolchain/flutter/bin/cache/flutter_tools.snapshot",
+    "--no-version-check",
+    "test",
+    "--no-pub",
+    "--machine",
+    "--concurrency=1"
+  ],
+  "cwd": "/workspace/scratch/f433637a99a0/quds_office_suite/packages/quds_mail_ui",
+  "started_utc": "2026-11-21T21:45:48.768822+00:00",
+  "status": "PASS",
+  "log": "shared-mail-ui-tests-initial.log",
+  "github_actions": "NOT USED",
+  "exit_code": 0,
+  "elapsed_seconds": 64.442,
+  "finished_utc": "2026-11-21T21:46:53.210830+00:00",
+  "log_sha256": "8808a2907b7745b6f539ae5c02f6c79ac6b3926d768e66d8b72277dd0bc4ae7b"
+}

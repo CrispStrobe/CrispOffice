@@ -4,6 +4,26 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Retain document-wide footnote separator geometry through bounded native
+  DOCX and editable ODT persistence, note pagination and Zotero transfer.
+  Preserve supported gaps, thickness, relative width, physical alignment,
+  color and hidden rules, including nondefault special-note IDs and settings
+  references. Qualify combined VBA foreground writes and late-failure rollback
+  without changing active notes or separators; see the
+  [integrated record](../../docs/validation/word-vba-comparison-colors-20261121/README.md).
+
+- Add shared binary `StrComp` to Word, Excel and PowerPoint VBA macros, with
+  exact comparison results, explicit Empty/Null handling, strict argument
+  contracts and metered UTF-16 work. Word additionally supports the complete
+  fixed `Font.ColorIndex` palette and automatic foreground through `wdAuto`
+  or `Font.Color = wdColorAutomatic`. Preserve native automatic identity,
+  sparse theme overrides, foreign metadata and transaction rollback. Include
+  a runnable report/template BAS, versioned source cases, CLI/MCP coverage,
+  native save/reopen regressions and matching VM/JavaScript checks. See the
+  [comparison](../../docs/vba-macros-details.md#binary-string-comparison) and
+  [foreground](../../docs/vba-word-macros-details.md#font-palette-and-automatic-foreground)
+  contracts.
+
 - Fill existing Word table templates from the bounded VBA dialect using typed
   `Tables`, `Table`, `Cell` and cell-range aliases, `With` and `ByVal` helpers.
   `Cell.Range.Text` emits guarded `docx.tableCellRangeText` operations for plain
@@ -37,7 +57,7 @@ All notable changes to `quds_office_engine` are documented here.
   numeric Variant and Empty/Null behavior, explicit coercion requirements and
   finite portable bounds. Include a runnable Word report, versioned numeric
   corpus and native/CLI/MCP transaction and VM/JavaScript coverage. See the
-  [numeric contract](../../docs/VBA_MACROS.md#numeric-intrinsics).
+  [numeric contract](../../docs/vba-macros-details.md#numeric-intrinsics).
 
 - Add bounded Word VBA `Font.Position` assignments through typed aliases,
   helpers and independent header/footer selectors. Native run formatting,
@@ -46,7 +66,7 @@ All notable changes to `quds_office_engine` are documented here.
   resizing text, including incremental and note-copy paths; logical text,
   comparison and stale-operation identity remain intact. Include an executable
   BAS example, versioned source corpus, native/layout and CLI/MCP tests. See the
-  [position contract](../../docs/VBA_WORD_MACROS.md#baseline-position-without-resizing-text).
+  [position contract](../../docs/vba-word-macros-details.md#baseline-position-without-resizing-text).
 
 - Preserve semantic uppercase text when importing native Zotero ODT files.
   Resolve inherited uppercase and explicit normal-case overrides without
@@ -88,7 +108,7 @@ All notable changes to `quds_office_engine` are documented here.
   sparse background ownership, explicit automatic overrides, metadata
   preservation and atomic refusal of unsupported source shading. Include
   compiler, native, transaction, CLI/MCP and VM/JavaScript example coverage.
-  See the [shading contract](../../docs/VBA_WORD_MACROS.md#paragraph-background-shading).
+  See the [shading contract](../../docs/vba-word-macros-details.md#paragraph-background-shading).
 
 - Add shared bounded `Space`/`Space$`, `String`/`String$`, `ChrW`/`ChrW$`, and
   `AscW` to the Word, Excel and PowerPoint source dialects. Keep exact numeric
@@ -96,7 +116,7 @@ All notable changes to `quds_office_engine` are documented here.
   work/output limits and existing native-publication character guards. Numeric
   code-page String operands remain unsupported. Include a runnable Word BAS
   module and source/transaction/portable tests. See the
-  [construction contract](../../docs/VBA_MACROS.md#text-construction-and-unicode-code-units).
+  [construction contract](../../docs/vba-macros-details.md#text-construction-and-unicode-code-units).
 
 - Extend bounded Word VBA with `Paragraph.Style` and selected `Range.Style`
   assignments by primary name or 13 built-in constants. Add guarded native
@@ -104,7 +124,7 @@ All notable changes to `quds_office_engine` are documented here.
   formatting and sparse source metadata, explicit same-value references and
   atomic refusal of ambiguous styles or changed numbering. Include a runnable
   BAS example and source, native, CLI/MCP, rollback and VM/JavaScript coverage.
-  See the [style contract](../../docs/VBA_WORD_MACROS.md#existing-paragraph-styles).
+  See the [style contract](../../docs/vba-word-macros-details.md#existing-paragraph-styles).
 
 - Add explicit `OdtDocumentWriter.writeEditableZoteroBytes` copy export with
   native citation ReferenceMarks, complete bibliography TextSections and
@@ -138,7 +158,7 @@ All notable changes to `quds_office_engine` are documented here.
   native metadata, namespace aliases and inert DOCM parts; recognize native
   separator Boolean spellings. Include a runnable two-section BAS module and
   source, native, CLI/MCP and portable regression coverage. See the
-  [text-column contract](../../docs/VBA_WORD_MACROS.md#uniform-section-text-columns).
+  [text-column contract](../../docs/vba-word-macros-details.md#uniform-section-text-columns).
 
 - Extend bounded native ODT import with independently inherited Latin,
   complex-script and Asian text formatting, materialized as editable native
@@ -171,7 +191,7 @@ All notable changes to `quds_office_engine` are documented here.
   DOCM contents. Correct native font ownership and namespace-aware direct/style
   projection; refuse ambiguous input before mutation. Add a runnable multilingual
   BAS module, native/compiler/transaction tests and portable VM/JavaScript
-  qualification. See the [language/font contract](../../docs/VBA_WORD_MACROS.md#proofing-language-and-complex-script-font-controls).
+  qualification. See the [language/font contract](../../docs/vba-word-macros-details.md#proofing-language-and-complex-script-font-controls).
 
 - Qualify the incoming bounded ODT reader's table-style inheritance. Preserve
   inherited alignment and row keep-together, honor explicit transparent cell
@@ -200,7 +220,7 @@ All notable changes to `quds_office_engine` are documented here.
   formatting fields with exact half-point validation, sparse attribute writes,
   explicit inheritance overrides and preserved foreign XML. Include a runnable
   BAS example and source, native, layout, CLI/MCP and portable qualification.
-  See the [proofing contract](../../docs/VBA_WORD_MACROS.md#proofing-and-kerning-controls).
+  See the [proofing contract](../../docs/vba-word-macros-details.md#proofing-and-kerning-controls).
 - Prevent incremental line translation from reusing stale page/column identity
   when an inline page break becomes active after an earlier typing edit.
 
@@ -212,7 +232,7 @@ All notable changes to `quds_office_engine` are documented here.
   inherited, shared, ambiguous and opaque header/footer targets; reject
   whole-story writes and nonbody list operations. Add a runnable BAS example
   and compiler, native, CLI/MCP and portable regression coverage. See the
-  [header/footer contract](../../docs/VBA_WORD_MACROS.md#existing-header-and-footer-paragraphs).
+  [header/footer contract](../../docs/vba-word-macros-details.md#existing-header-and-footer-paragraphs).
 
 - Preserve adjacent equal-target ODT hyperlinks as one range with independently
   styled spans, preventing lost Unicode transfer metadata in LibreOffice.
@@ -247,7 +267,7 @@ All notable changes to `quds_office_engine` are documented here.
   geometry and revision metadata. Refuse ambiguous orientation/source identity
   and unsupported new-column starts. Add an executable BAS example, source,
   native, transaction and portable checks; see the
-  [section-controls contract](../../docs/VBA_WORD_MACROS.md#section-orientation-and-start-controls).
+  [section-controls contract](../../docs/vba-word-macros-details.md#section-orientation-and-start-controls).
 
 - Replace Zotero research-content selections across consecutive ordinary
   paragraphs in one body section or authored note. Preserve rich prefix/suffix

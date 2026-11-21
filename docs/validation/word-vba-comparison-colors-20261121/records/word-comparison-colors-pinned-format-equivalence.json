@@ -1,0 +1,352 @@
+{
+  "sdk": "Dart3.13.7",
+  "languageVersion": "3.12",
+  "sourceHead": "2efe361508686bfcc5aa585f7df9027292a2f6a7",
+  "formatter": [
+    "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/sdk/flutter/bin/cache/dart-sdk/bin/dart",
+    "format",
+    "--language-version=3.12"
+  ],
+  "files": [
+    {
+      "path": "packages/quds_mail_ui/lib/src/workspace/message_list.dart",
+      "qualifiedSha256": "0c43bf6628745f8c787af60225dfcb4587c310cd840e69ff9f3df507cef77795",
+      "canonicalSha256": "2bab763b7c5c8c24e939ea64fd6d1d651dd8703b7332097881c457b4b086f89d",
+      "finalSha256": "2bab763b7c5c8c24e939ea64fd6d1d651dd8703b7332097881c457b4b086f89d",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_mail_ui/test/message_list_range_selection_test.dart",
+      "qualifiedSha256": "c53cb5f573f884470b5c388c9d1569bb64f251593db8127710f4325c4c606124",
+      "canonicalSha256": "e5629ac5d633a85691b1bdd1c26e8845b4df1aba9b3fa986a345d91655f6bd38",
+      "finalSha256": "e5629ac5d633a85691b1bdd1c26e8845b4df1aba9b3fa986a345d91655f6bd38",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_sync_dialog.dart",
+      "qualifiedSha256": "1f6b00393dee770f17917b447407b7907692c4561220df5ca2b888659454a7ab",
+      "canonicalSha256": "1f6b00393dee770f17917b447407b7907692c4561220df5ca2b888659454a7ab",
+      "finalSha256": "1f6b00393dee770f17917b447407b7907692c4561220df5ca2b888659454a7ab",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_workspace_strings.dart",
+      "qualifiedSha256": "7d7478b60c94accad957d6d792f8fd714dce20a7ed5d1fb48ca776bf8e47d515",
+      "canonicalSha256": "7d7478b60c94accad957d6d792f8fd714dce20a7ed5d1fb48ca776bf8e47d515",
+      "finalSha256": "7d7478b60c94accad957d6d792f8fd714dce20a7ed5d1fb48ca776bf8e47d515",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "qualifiedSha256": "bbf76a48b88bb478b46165690c48a1bb0113a776cbbe2b4d4febb1fa93ebd85f",
+      "canonicalSha256": "bbf76a48b88bb478b46165690c48a1bb0113a776cbbe2b4d4febb1fa93ebd85f",
+      "finalSha256": "bbf76a48b88bb478b46165690c48a1bb0113a776cbbe2b4d4febb1fa93ebd85f",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_selection_help_test.dart",
+      "qualifiedSha256": "47c8e61f6c7050c8a75abb12b862f386c1e6b5ac1c95324fb5748378319377cd",
+      "canonicalSha256": "1f145483a577bd4a0fa1cf4ec103e4ec95f14413653e991211a26e21c1224468",
+      "finalSha256": "1f145483a577bd4a0fa1cf4ec103e4ec95f14413653e991211a26e21c1224468",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart",
+      "qualifiedSha256": "15f40001cc09648a942a448a1a8e023091625dade8d0f05e130ec7924ea688d0",
+      "canonicalSha256": "7b4f5041bd80f594b4662079dbecfab5301d43646910ce6b9d36612194aa0905",
+      "finalSha256": "7b4f5041bd80f594b4662079dbecfab5301d43646910ce6b9d36612194aa0905",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_shortcut_dispatch_test.dart",
+      "qualifiedSha256": "49ba638533ba73db24d1029b309dae2d0cb3add670524a0fc06eab1c44c48e94",
+      "canonicalSha256": "49ba638533ba73db24d1029b309dae2d0cb3add670524a0fc06eab1c44c48e94",
+      "finalSha256": "49ba638533ba73db24d1029b309dae2d0cb3add670524a0fc06eab1c44c48e94",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_shortcut_host_ownership_test.dart",
+      "qualifiedSha256": "bb13230ee14cb2a32ca98a42f665bbb9d41606e351e15cd6e3369eea13ef74b6",
+      "canonicalSha256": "bb13230ee14cb2a32ca98a42f665bbb9d41606e351e15cd6e3369eea13ef74b6",
+      "finalSha256": "bb13230ee14cb2a32ca98a42f665bbb9d41606e351e15cd6e3369eea13ef74b6",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "qualifiedSha256": "8004b37ee6361112e2c9fc9674e20d28cedc23f1861147d45772745e68c8b6db",
+      "canonicalSha256": "8004b37ee6361112e2c9fc9674e20d28cedc23f1861147d45772745e68c8b6db",
+      "finalSha256": "8004b37ee6361112e2c9fc9674e20d28cedc23f1861147d45772745e68c8b6db",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart",
+      "qualifiedSha256": "39d18678e6efb3985ebc54d7b34c81fa28a4e5c0451ce595f7b098bc2ddb76a2",
+      "canonicalSha256": "39d18678e6efb3985ebc54d7b34c81fa28a4e5c0451ce595f7b098bc2ddb76a2",
+      "finalSha256": "39d18678e6efb3985ebc54d7b34c81fa28a4e5c0451ce595f7b098bc2ddb76a2",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "qualifiedSha256": "c76f37965401b60756729f5a2a6426a5757e8cfbc300f405f50863c1f82fa90d",
+      "canonicalSha256": "c76f37965401b60756729f5a2a6426a5757e8cfbc300f405f50863c1f82fa90d",
+      "finalSha256": "c76f37965401b60756729f5a2a6426a5757e8cfbc300f405f50863c1f82fa90d",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+      "qualifiedSha256": "9254f683b5be8d2508361f208fa181c45e67483187146067666705e09c39dc33",
+      "canonicalSha256": "9254f683b5be8d2508361f208fa181c45e67483187146067666705e09c39dc33",
+      "finalSha256": "9254f683b5be8d2508361f208fa181c45e67483187146067666705e09c39dc33",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_footnote_separator_render_test.dart",
+      "qualifiedSha256": "2bbeb44a29e9988ed10d06ff1880dc85f0c6c4be27dcc7a805e10e7c7f74137d",
+      "canonicalSha256": "2bbeb44a29e9988ed10d06ff1880dc85f0c6c4be27dcc7a805e10e7c7f74137d",
+      "finalSha256": "2bbeb44a29e9988ed10d06ff1880dc85f0c6c4be27dcc7a805e10e7c7f74137d",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+      "qualifiedSha256": "0b419bf9f13443c0090d74cb0bfca7a4542809ffabeafb070c1622e75501b7b7",
+      "canonicalSha256": "0b419bf9f13443c0090d74cb0bfca7a4542809ffabeafb070c1622e75501b7b7",
+      "finalSha256": "0b419bf9f13443c0090d74cb0bfca7a4542809ffabeafb070c1622e75501b7b7",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+      "qualifiedSha256": "8b661f58db52b1b49496ddb7b8035b481665ce3797719dd8492cc61e55126785",
+      "canonicalSha256": "8b661f58db52b1b49496ddb7b8035b481665ce3797719dd8492cc61e55126785",
+      "finalSha256": "8b661f58db52b1b49496ddb7b8035b481665ce3797719dd8492cc61e55126785",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+      "qualifiedSha256": "b8973f40c3aa99b2384af529d14385f9d8ed33dba495758a269236b2e009cad9",
+      "canonicalSha256": "b8973f40c3aa99b2384af529d14385f9d8ed33dba495758a269236b2e009cad9",
+      "finalSha256": "b8973f40c3aa99b2384af529d14385f9d8ed33dba495758a269236b2e009cad9",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/layout/word_note_layout.dart",
+      "qualifiedSha256": "b2fd7fedc04cec13a3525cefbda1fc84e72ea4cb2f4614a01a0e6334b66ea484",
+      "canonicalSha256": "b2fd7fedc04cec13a3525cefbda1fc84e72ea4cb2f4614a01a0e6334b66ea484",
+      "finalSha256": "b2fd7fedc04cec13a3525cefbda1fc84e72ea4cb2f4614a01a0e6334b66ea484",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/wml_document.dart",
+      "qualifiedSha256": "d7047b57c1c65784cc1d1e56a7a7b43ae79fb98da128b4057e80e6e876bf17ba",
+      "canonicalSha256": "d7047b57c1c65784cc1d1e56a7a7b43ae79fb98da128b4057e80e6e876bf17ba",
+      "finalSha256": "d7047b57c1c65784cc1d1e56a7a7b43ae79fb98da128b4057e80e6e876bf17ba",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_notes.dart",
+      "qualifiedSha256": "45b9d883f56c6d233d880dbbd48d8523daf75b90449f81d8a43f1f9cf0aa0ccc",
+      "canonicalSha256": "45b9d883f56c6d233d880dbbd48d8523daf75b90449f81d8a43f1f9cf0aa0ccc",
+      "finalSha256": "45b9d883f56c6d233d880dbbd48d8523daf75b90449f81d8a43f1f9cf0aa0ccc",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_transfer.dart",
+      "qualifiedSha256": "7f1068f5cf72a7b785c883b28bcbd010c103353fc46676c889f453df3fb7c2c3",
+      "canonicalSha256": "7f1068f5cf72a7b785c883b28bcbd010c103353fc46676c889f453df3fb7c2c3",
+      "finalSha256": "7f1068f5cf72a7b785c883b28bcbd010c103353fc46676c889f453df3fb7c2c3",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_reader.dart",
+      "qualifiedSha256": "05717415b71be1f77dafe3fe3e194d297c529728035bd9360b88e078e924e9d1",
+      "canonicalSha256": "05717415b71be1f77dafe3fe3e194d297c529728035bd9360b88e078e924e9d1",
+      "finalSha256": "05717415b71be1f77dafe3fe3e194d297c529728035bd9360b88e078e924e9d1",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+      "qualifiedSha256": "2e27b42c67b92d4bdde8d522effbae544d660dc2eb8c16e58481224d359f6fbc",
+      "canonicalSha256": "2e27b42c67b92d4bdde8d522effbae544d660dc2eb8c16e58481224d359f6fbc",
+      "finalSha256": "2e27b42c67b92d4bdde8d522effbae544d660dc2eb8c16e58481224d359f6fbc",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_reader_styles.dart",
+      "qualifiedSha256": "76d0f033a873daa24102a8435499cd6670bf8578e24bf55e792e27ec800febe6",
+      "canonicalSha256": "76d0f033a873daa24102a8435499cd6670bf8578e24bf55e792e27ec800febe6",
+      "finalSha256": "76d0f033a873daa24102a8435499cd6670bf8578e24bf55e792e27ec800febe6",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+      "qualifiedSha256": "849bacd91ef41d35049dc498429fbaab607729e76c7da3017be524c4917340ae",
+      "canonicalSha256": "849bacd91ef41d35049dc498429fbaab607729e76c7da3017be524c4917340ae",
+      "finalSha256": "849bacd91ef41d35049dc498429fbaab607729e76c7da3017be524c4917340ae",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_footnote_separator_io.dart",
+      "qualifiedSha256": "65b3dccc5174bf4b78dec680cc5c67bc0afde3f9b9b9eeb6897b3d22cb9f659e",
+      "canonicalSha256": "65b3dccc5174bf4b78dec680cc5c67bc0afde3f9b9b9eeb6897b3d22cb9f659e",
+      "finalSha256": "65b3dccc5174bf4b78dec680cc5c67bc0afde3f9b9b9eeb6897b3d22cb9f659e",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart",
+      "qualifiedSha256": "5a40ad27c67e5fe8855a2da270d8179bfcdcc3ed6f5cf49fb96173eb9900abc3",
+      "canonicalSha256": "5a782657d7ac1cfd243fb383210738639ba4df1ffda2b5a7bc752ead147559f0",
+      "finalSha256": "5a782657d7ac1cfd243fb383210738639ba4df1ffda2b5a7bc752ead147559f0",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart",
+      "qualifiedSha256": "342f95c8ea180457196ad495ce9639f9fb848b2acd3e88b2270953bcc9abfaed",
+      "canonicalSha256": "342f95c8ea180457196ad495ce9639f9fb848b2acd3e88b2270953bcc9abfaed",
+      "finalSha256": "342f95c8ea180457196ad495ce9639f9fb848b2acd3e88b2270953bcc9abfaed",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_settings_io.dart",
+      "qualifiedSha256": "03adb926d04d3841fb2828623bb92abc42b8306790a9616911a30047ffe768ca",
+      "canonicalSha256": "03adb926d04d3841fb2828623bb92abc42b8306790a9616911a30047ffe768ca",
+      "finalSha256": "03adb926d04d3841fb2828623bb92abc42b8306790a9616911a30047ffe768ca",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+      "qualifiedSha256": "4bd4c5c563ed1882583392919fdaebc7b5ec46d4748a1a0df12b1b30596367fa",
+      "canonicalSha256": "4bd4c5c563ed1882583392919fdaebc7b5ec46d4748a1a0df12b1b30596367fa",
+      "finalSha256": "4bd4c5c563ed1882583392919fdaebc7b5ec46d4748a1a0df12b1b30596367fa",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_footnote_separator_libreoffice_test.dart",
+      "qualifiedSha256": "4d03d9e5f49a9129fc088bde3b18ac402c624b4847b1ac4b7a0c91df1532055a",
+      "canonicalSha256": "4d03d9e5f49a9129fc088bde3b18ac402c624b4847b1ac4b7a0c91df1532055a",
+      "finalSha256": "4d03d9e5f49a9129fc088bde3b18ac402c624b4847b1ac4b7a0c91df1532055a",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_footnote_separator_test.dart",
+      "qualifiedSha256": "ad1a2bdcead85f8f50ebfabb441ed118eba9573b6400ae9be096c572c19cda4f",
+      "canonicalSha256": "ad1a2bdcead85f8f50ebfabb441ed118eba9573b6400ae9be096c572c19cda4f",
+      "finalSha256": "ad1a2bdcead85f8f50ebfabb441ed118eba9573b6400ae9be096c572c19cda4f",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_libreoffice_fixture_test.dart",
+      "qualifiedSha256": "0ec175ba71ebcdf793ea50318a9427f2ff040c2b31f2908e9c3dab2340806eb0",
+      "canonicalSha256": "0ec175ba71ebcdf793ea50318a9427f2ff040c2b31f2908e9c3dab2340806eb0",
+      "finalSha256": "0ec175ba71ebcdf793ea50318a9427f2ff040c2b31f2908e9c3dab2340806eb0",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_reader_libreoffice_defaults_test.dart",
+      "qualifiedSha256": "e489396acd02f768ba570fa9f93bcb49f02eabbccf2464a8131ecf5deb94c8f5",
+      "canonicalSha256": "e489396acd02f768ba570fa9f93bcb49f02eabbccf2464a8131ecf5deb94c8f5",
+      "finalSha256": "e489396acd02f768ba570fa9f93bcb49f02eabbccf2464a8131ecf5deb94c8f5",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_word_font_colors_test.dart",
+      "qualifiedSha256": "5a61b93b89d5de79daff6887827d62fa89b76435f18755a506f93248c9ef8a42",
+      "canonicalSha256": "5a61b93b89d5de79daff6887827d62fa89b76435f18755a506f93248c9ef8a42",
+      "finalSha256": "5a61b93b89d5de79daff6887827d62fa89b76435f18755a506f93248c9ef8a42",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_strcomp_test.dart",
+      "qualifiedSha256": "c0d4bd262ecbcefc29ae62047d53020599a57aab9682c0268d979074dc891987",
+      "canonicalSha256": "c0d4bd262ecbcefc29ae62047d53020599a57aab9682c0268d979074dc891987",
+      "finalSha256": "c0d4bd262ecbcefc29ae62047d53020599a57aab9682c0268d979074dc891987",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_colors_footnote_separator_integration_test.dart",
+      "qualifiedSha256": "bae857da49b42abdfd3e230c5e55c98b4c58383b7759854de7eeae132e50aaec",
+      "canonicalSha256": "bae857da49b42abdfd3e230c5e55c98b4c58383b7759854de7eeae132e50aaec",
+      "finalSha256": "bae857da49b42abdfd3e230c5e55c98b4c58383b7759854de7eeae132e50aaec",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_comparison_colors_conformance_test.dart",
+      "qualifiedSha256": "a72a176becb26d33306a050c2ade209c70fcb805eae04e21fee436f23f9067ad",
+      "canonicalSha256": "a72a176becb26d33306a050c2ade209c70fcb805eae04e21fee436f23f9067ad",
+      "finalSha256": "a72a176becb26d33306a050c2ade209c70fcb805eae04e21fee436f23f9067ad",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_comparison_colors_integration_test.dart",
+      "qualifiedSha256": "22debbb0546141d91c04f85a71b4fefd99378a54ca154279b250f9b1caa5ac8d",
+      "canonicalSha256": "22debbb0546141d91c04f85a71b4fefd99378a54ca154279b250f9b1caa5ac8d",
+      "finalSha256": "22debbb0546141d91c04f85a71b4fefd99378a54ca154279b250f9b1caa5ac8d",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_font_colors_test.dart",
+      "qualifiedSha256": "addcf9d015bbb97da86c1633043f17db7cc346eb83b8abc50482dea2ade291c8",
+      "canonicalSha256": "addcf9d015bbb97da86c1633043f17db7cc346eb83b8abc50482dea2ade291c8",
+      "finalSha256": "addcf9d015bbb97da86c1633043f17db7cc346eb83b8abc50482dea2ade291c8",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_footnote_separator_docx_test.dart",
+      "qualifiedSha256": "ced024b71c9e7a407d4f337638a2b6b2ebb5ccd61aca1f704f67c9ea2464ae1f",
+      "canonicalSha256": "ced024b71c9e7a407d4f337638a2b6b2ebb5ccd61aca1f704f67c9ea2464ae1f",
+      "finalSha256": "ced024b71c9e7a407d4f337638a2b6b2ebb5ccd61aca1f704f67c9ea2464ae1f",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_footnote_separator_layout_test.dart",
+      "qualifiedSha256": "33831536f2c82e1bd2b6a71c780fd6d0d159c594e685d2f9d0fd506293d3c55f",
+      "canonicalSha256": "33831536f2c82e1bd2b6a71c780fd6d0d159c594e685d2f9d0fd506293d3c55f",
+      "finalSha256": "33831536f2c82e1bd2b6a71c780fd6d0d159c594e685d2f9d0fd506293d3c55f",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_native_presentation_test.dart",
+      "qualifiedSha256": "61af68922c4badc680559d1f78d2c5f30c30726afe0e39373b4a9d809a5859b4",
+      "canonicalSha256": "61af68922c4badc680559d1f78d2c5f30c30726afe0e39373b4a9d809a5859b4",
+      "finalSha256": "61af68922c4badc680559d1f78d2c5f30c30726afe0e39373b4a9d809a5859b4",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_note_images_integration_test.dart",
+      "qualifiedSha256": "dff3356351d128a55a95b3df0750f44ad7612690d3683636edbd5aad29fc1adb",
+      "canonicalSha256": "dff3356351d128a55a95b3df0750f44ad7612690d3683636edbd5aad29fc1adb",
+      "finalSha256": "dff3356351d128a55a95b3df0750f44ad7612690d3683636edbd5aad29fc1adb",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_engine/tool/macros/web_vba_strcomp_smoke.dart",
+      "qualifiedSha256": "ae054261ad114e5ff0bebc18605c4bc77f7d4ddb68cc6620e8054baa15e64ec8",
+      "canonicalSha256": "ae054261ad114e5ff0bebc18605c4bc77f7d4ddb68cc6620e8054baa15e64ec8",
+      "finalSha256": "ae054261ad114e5ff0bebc18605c4bc77f7d4ddb68cc6620e8054baa15e64ec8",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_engine/tool/macros/web_vba_word_comparison_colors_smoke.dart",
+      "qualifiedSha256": "cb6771e07c43dc6f3ab340b35ed0d191b843f199dbd36414ac9593e4789635ee",
+      "canonicalSha256": "aa4e9c07abda3fc9260a874031363be8b740fcbe7c4cba1993d9af19e9e32f3d",
+      "finalSha256": "aa4e9c07abda3fc9260a874031363be8b740fcbe7c4cba1993d9af19e9e32f3d",
+      "canonicalEquivalent": true
+    },
+    {
+      "path": "packages/quds_office_engine/tool/zotero/footnote_separator_acceptance.dart",
+      "qualifiedSha256": "d56213cb65f562c0f70a57f8590b1b83b7e37abc30e46ef7bf0f840fdb65dda6",
+      "canonicalSha256": "d56213cb65f562c0f70a57f8590b1b83b7e37abc30e46ef7bf0f840fdb65dda6",
+      "finalSha256": "d56213cb65f562c0f70a57f8590b1b83b7e37abc30e46ef7bf0f840fdb65dda6",
+      "canonicalEquivalent": true
+    }
+  ],
+  "incomingFormatterCommit": "0b38435e553d14cbea505477a473061b134e308e",
+  "allCanonicalEquivalent": true,
+  "checkExitCode": 0,
+  "changedFiles": [
+    "packages/quds_mail_ui/lib/src/workspace/message_list.dart",
+    "packages/quds_mail_ui/test/message_list_range_selection_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_selection_help_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart",
+    "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart",
+    "packages/quds_office_engine/tool/macros/web_vba_word_comparison_colors_smoke.dart"
+  ]
+}

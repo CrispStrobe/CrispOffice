@@ -1,0 +1,23 @@
+{
+  "command_receipt": "incoming-dispatch-tests-final.json",
+  "log": "incoming-dispatch-tests-final.log",
+  "log_sha256": "7acfa4ebfbda200e15e863ab83982ec84e7d5f72fa6d3bf0be75404ee6ad8ec4",
+  "source_blob": "c95257d8ad6d384b3199d657f26ff4b4d45a3401",
+  "test_count_rule": "testDone events excluding hidden events and loading tests",
+  "total_substantive_tests": 15,
+  "passed": 15,
+  "failed": 0,
+  "skipped": 0,
+  "hidden_or_loader_events_excluded": 1,
+  "by_suite": [
+    {
+      "path": "/workspace/scratch/f433637a99a0/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcut_dispatch_test.dart",
+      "total": 15,
+      "passed": 15,
+      "failed": 0,
+      "skipped": 0
+    }
+  ],
+  "errors": [],
+  "runner_success": true
+}

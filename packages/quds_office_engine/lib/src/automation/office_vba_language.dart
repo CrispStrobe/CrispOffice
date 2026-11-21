@@ -140,6 +140,7 @@ const _stringIntrinsics = <String>{
   r'mid$',
   'instr',
   'instrrev',
+  'strcomp',
   'replace',
   'trim',
   r'trim$',
@@ -3407,6 +3408,7 @@ class _Checker {
             property == 'kerning' ||
             property == 'position' ||
             property == 'color' ||
+            property == 'colorindex' ||
             property == 'underline') {
           return _Kind.number;
         }
@@ -3910,6 +3912,25 @@ class _Checker {
   _Kind _stringIntrinsic(_Call expression) {
     final name = expression.token.lower;
     final arguments = expression.arguments;
+    if (name == 'strcomp') {
+      if (arguments.length < 2 || arguments.length > 3) {
+        context.type(
+          expression.token,
+          'StrComp requires two strings and an optional binary comparison mode.',
+        );
+      }
+      for (var index = 0; index < arguments.length; index++) {
+        final argument = arguments[index];
+        _compatible(
+          index < 2 ? _Kind.string : _Kind.number,
+          _expression(argument),
+          argument.token,
+        );
+      }
+      // String arguments may be Variants containing Empty or Null. A Null
+      // result must remain a Variant until its consumer handles it explicitly.
+      return _Kind.variant;
+    }
     if (name == 'space' ||
         name == r'space$' ||
         name == 'chrw' ||
@@ -5963,6 +5984,7 @@ class _Evaluator {
 
   Object _stringIntrinsic(_Call expression, List<Object> arguments) {
     final name = expression.token.lower;
+    if (name == 'strcomp') return _stringCompare(expression, arguments);
     if (name == 'space' ||
         name == r'space$' ||
         name == 'string' ||
@@ -6080,6 +6102,40 @@ class _Evaluator {
     return text.substring(offset, offset + count);
   }
 
+  Object _stringCompare(_Call expression, List<Object> arguments) {
+    // Every argument expression has already run once in source order. Even
+    // Null text must not bypass a supplied invalid comparison mode.
+    if (arguments.length == 3) {
+      final mode = arguments[2];
+      final token = expression.arguments[2].token;
+      if (mode == _VariantState.nullValue) _invalidNull(token);
+      _stringBinaryCompare(mode, token);
+    }
+    String? text(int index) {
+      final value = arguments[index];
+      if (value == _VariantState.empty) return '';
+      if (value == _VariantState.nullValue) return null;
+      return _string(value, expression.arguments[index].token);
+    }
+
+    // Validate both operands before propagating Null: String/Empty/Null are
+    // accepted, but numeric and Boolean-to-string coercion remains explicit.
+    final left = text(0);
+    final right = text(1);
+    if (left == null || right == null) return _VariantState.nullValue;
+    final length = left.length < right.length ? left.length : right.length;
+    for (var index = 0; index < length; index++) {
+      // Inspect UTF-16 units on both runtimes, including isolated surrogates
+      // in source values. Charge both reads before performing the comparison.
+      _charge(2, expression.token);
+      final a = left.codeUnitAt(index);
+      final b = right.codeUnitAt(index);
+      if (a != b) return a < b ? -1 : 1;
+    }
+    if (left.length == right.length) return 0;
+    return left.length < right.length ? -1 : 1;
+  }
+
   int _stringSearch(_Call expression, List<Object> arguments) {
     final reverse = expression.token.lower == 'instrrev';
     final withStart = !reverse && arguments.length >= 3;
@@ -6190,7 +6246,7 @@ class _Evaluator {
     if (_integer(value, token) != 0) {
       context.unsupported(
         token,
-        'String search and replacement require vbBinaryCompare (0); locale, database and Option Compare modes are unsupported.',
+        'String operations require vbBinaryCompare (0); locale, database and Option Compare modes are unsupported.',
       );
     }
   }
@@ -7095,9 +7151,21 @@ class _Evaluator {
           );
         }
         normalized = size;
+      } else if (property == 'colorindex') {
+        field = 'color';
+        final index = _integer(value, token);
+        if (index < 0 || index >= _wordHighlights.length) {
+          context.unsupported(
+            token,
+            'Font.ColorIndex requires wdAuto or a fixed WdColorIndex color from 1 through 16; wdByAuthor is not valid for fonts.',
+          );
+        }
+        normalized = _wordHighlights[index] ?? 'auto';
       } else {
         field = 'color';
-        normalized = _color(value, token);
+        normalized = _integer(value, token) == -16777216
+            ? 'auto'
+            : _color(value, token);
       }
       _emitWord(receiver.range, 'runFormat', <String, Object?>{
         field: normalized,

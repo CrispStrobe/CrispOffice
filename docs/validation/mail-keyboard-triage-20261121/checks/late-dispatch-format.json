@@ -1,0 +1,19 @@
+{
+  "name": "late-dispatch-format",
+  "command": [
+    "/workspace/scratch/f433637a99a0/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+    "format",
+    "--output=none",
+    "--set-exit-if-changed",
+    "packages/quds_office_editor/example/test/studio_shortcut_dispatch_test.dart"
+  ],
+  "cwd": "/workspace/scratch/f433637a99a0/quds_office_suite",
+  "started_utc": "2026-11-21T22:02:37.797171+00:00",
+  "status": "PASS",
+  "log": "late-dispatch-format.log",
+  "github_actions": "NOT USED",
+  "exit_code": 0,
+  "elapsed_seconds": 0.167,
+  "finished_utc": "2026-11-21T22:02:37.965596+00:00",
+  "log_sha256": "c3bcc35222b18b2e9aab96a1ebd0350c9c73fade030cdbddf7b75d7a11c7c95f"
+}

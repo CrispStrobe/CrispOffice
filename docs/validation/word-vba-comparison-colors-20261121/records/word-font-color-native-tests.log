@@ -1,0 +1,45 @@
+00:00 +0: loading test/office_macro_word_font_colors_test.dart
+00:00 +0: native color auto preserves its identity through three reopens
+00:00 +1: native color 000000 preserves its identity through three reopens
+00:00 +2: native color FFFFFF preserves its identity through three reopens
+00:00 +3: native color 1a2b3c preserves its identity through three reopens
+00:00 +4: authored automatic color emits auto explicitly instead of black
+00:00 +5: an imported automatic color survives unrelated formatting
+00:00 +6: same inherited 123456 becomes direct without pinning other properties
+00:00 +7: same inherited auto becomes direct without pinning other properties
+00:00 +8: explicit 123456 owns native color and removes all inherited theme selectors
+00:00 +9: explicit auto owns native color and removes all inherited theme selectors
+00:00 +10: unrelated run edits preserve color theme ownership
+00:00 +11: auto preserves native aliases and foreign color metadata (w)
+00:00 +12: A1B2C3 preserves native aliases and foreign color metadata (w)
+00:00 +13: auto preserves native aliases and foreign color metadata (q)
+00:00 +14: A1B2C3 preserves native aliases and foreign color metadata (q)
+00:00 +15: foreign same-name values do not determine imported direct or style color
+00:00 +16: partial color edits retain UTF-16 boundaries and untouched neighboring colors
+00:00 +17: automatic color targets one independent header without changing the body
+00:00 +18: invalid native color null refuses before run splitting or formatting
+00:00 +19: invalid native color true refuses before run splitting or formatting
+00:00 +20: invalid native color 0 refuses before run splitting or formatting
+00:00 +21: invalid native color -16777216 refuses before run splitting or formatting
+00:00 +22: invalid native color  refuses before run splitting or formatting
+00:00 +23: invalid native color AUTO refuses before run splitting or formatting
+00:00 +24: invalid native color Auto refuses before run splitting or formatting
+00:00 +25: invalid native color auto  refuses before run splitting or formatting
+00:00 +26: invalid native color  auto refuses before run splitting or formatting
+00:00 +27: invalid native color #FFFFFF refuses before run splitting or formatting
+00:00 +28: invalid native color FFFFFFF refuses before run splitting or formatting
+00:00 +29: invalid native color ZZZZZZ refuses before run splitting or formatting
+00:00 +30: invalid native color [] refuses before run splitting or formatting
+00:00 +31: late duplicate native color ownership refuses all affected runs: <w:color w:val="123456"/><w:color w:val="654321"/>
+00:00 +32: late duplicate native color ownership refuses all affected runs: <w:color xmlns:q="http://schemas.openxmlformats.org/wordprocessingml/2006/main" w:val="123456" q:val="654321"/>
+00:00 +33: late duplicate native color ownership refuses all affected runs: <w:color xmlns:q="http://schemas.openxmlformats.org/wordprocessingml/2006/main" w:val="123456" w:themeColor="accent1" q:themeColor="accent2"/>
+00:00 +34: late duplicate native color ownership refuses all affected runs: <w:color xmlns:q="http://schemas.openxmlformats.org/wordprocessingml/2006/main" w:val="123456" w:themeTint="80" q:themeTint="40"/>
+00:00 +35: late duplicate native color ownership refuses all affected runs: <w:color xmlns:q="http://schemas.openxmlformats.org/wordprocessingml/2006/main" w:val="123456" w:themeShade="80" q:themeShade="40"/>
+00:00 +36: duplicate run-property containers cannot hide color ownership
+00:00 +37: markup-compatibility color alternatives refuse before mutation: <w:rPr><mc:AlternateContent><mc:Choice Requires="x"><w:color w:val="123456"/></mc:Choice><mc:Fallback><w:color w:val="654321"/></mc:Fallback></mc:AlternateContent></w:rPr>
+00:00 +38: markup-compatibility color alternatives refuse before mutation: <w:rPr mc:Ignorable="x" mc:ProcessContent="x:container"><x:container><w:color w:val="123456"/></x:container></w:rPr>
+00:00 +39: late invalid color rolls back color, bytes and recording (validate true)
+00:00 +40: late missing paragraph rolls back color, bytes and recording (validate true)
+00:00 +41: late invalid color rolls back color, bytes and recording (validate false)
+00:00 +42: late missing paragraph rolls back color, bytes and recording (validate false)
+00:00 +43: All tests passed!

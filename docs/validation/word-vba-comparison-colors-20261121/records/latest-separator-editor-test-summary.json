@@ -1,0 +1,19 @@
+{
+  "passed": 64,
+  "failed": 0,
+  "skipped": 0,
+  "hidden_passed": 4,
+  "hooks_passed": 2,
+  "suites": 4,
+  "started": 70,
+  "completed": 70,
+  "by_file": {
+    "word_footnote_separator_render_test.dart": 6,
+    "word_notes_editing_test.dart": 4,
+    "word_zotero_note_image_controller_test.dart": 25,
+    "word_zotero_transfer_controller_test.dart": 29
+  },
+  "errors": [],
+  "lifecycle_errors": [],
+  "terminal_success": true
+}

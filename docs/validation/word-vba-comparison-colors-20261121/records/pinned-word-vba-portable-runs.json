@@ -1,0 +1,112 @@
+[
+  {
+    "name": "example-vm",
+    "command": [
+      "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/sdk/flutter/bin/cache/dart-sdk/bin/dart",
+      "-DWORD_COMPARISON_COLORS_BAS_BASE64=T3B0aW9uIEV4cGxpY2l0CgonIFRlbXBsYXRlOiB0aHJlZSBub25lbXB0eSBib2R5IHBhcmFncmFwaHMsIGluZGVwZW5kZW50IHByaW1hcnkgaGVhZGVyL2Zvb3RlciwKJyBhbmQgb25lIHVubWVyZ2VkIGJvZHkgdGFibGUgd2l0aCBhIHNpbmdsZSByb3cgYW5kIHR3byBwbGFpbiBjZWxscy4KJyBUaGUgY29tcGFyaXNvbnMgdXNlIHNvdXJjZSBkYXRhOyBubyBleGlzdGluZyBkb2N1bWVudCB0ZXh0IGlzIHJlYWQuClN1YiBNYWluKCkKICAgIERpbSBzdGF0dXNlcygxIFRvIDIpIEFzIFN0cmluZwogICAgRGltIHNlbGVjdGVkIEFzIEZvbnQKICAgIERpbSByb3cgQXMgTG9uZwoKICAgIHN0YXR1c2VzKDEpID0gIiAgUmVhZHkgICIKICAgIHN0YXR1c2VzKDIpID0gIlJldmlldyIKICAgIEZvciByb3cgPSAxIFRvIDIKICAgICAgICBTZXQgc2VsZWN0ZWQgPSBBY3RpdmVEb2N1bWVudC5QYXJhZ3JhcGhzKHJvdykuUmFuZ2UuRm9udAogICAgICAgIE1hcmtTdGF0dXMgc3RhdHVzOj1UcmltJChzdGF0dXNlcyhyb3cpKSwgdGFyZ2V0Oj1zZWxlY3RlZAogICAgTmV4dCByb3cKCiAgICBXaXRoIFRoaXNEb2N1bWVudC5QYXJhZ3JhcGhzKDMpLlJhbmdlLkZvbnQKICAgICAgICAuQ29sb3JJbmRleCA9IHdkQmx1ZQogICAgICAgIC5Db2xvciA9IHdkQ29sb3JBdXRvbWF0aWMKICAgIEVuZCBXaXRoCgogICAgU2V0IHNlbGVjdGVkID0gQWN0aXZlRG9jdW1lbnQuU2VjdGlvbnMoMSkuSGVhZGVycyh3ZEhlYWRlckZvb3RlclByaW1hcnkpLlJhbmdlLlBhcmFncmFwaHMoMSkuUmFuZ2UuRm9udAogICAgc2VsZWN0ZWQuQ29sb3JJbmRleCA9IHdkRGFya0JsdWUKICAgIFdpdGggQWN0aXZlRG9jdW1lbnQuU2VjdGlvbnMoMSkuRm9vdGVycyh3ZEhlYWRlckZvb3RlclByaW1hcnkpLlJhbmdlLlBhcmFncmFwaHMoMSkuUmFuZ2UuRm9udAogICAgICAgIC5Db2xvckluZGV4ID0gd2RSZWQKICAgICAgICAuQ29sb3JJbmRleCA9IHdkQXV0bwogICAgRW5kIFdpdGgKCiAgICBXaXRoIEFjdGl2ZURvY3VtZW50LlRhYmxlcygxKQogICAgICAgIC5DZWxsKDEsIDEpLlJhbmdlLlRleHQgPSBDU3RyKFN0ckNvbXAoIlJlYWR5IiwgIlJlYWR5IiwgdmJCaW5hcnlDb21wYXJlKSkKICAgICAgICAuQ2VsbCgxLCAyKS5SYW5nZS5UZXh0ID0gQ1N0cihTdHJDb21wKCJBIiwgImEiKSkKICAgIEVuZCBXaXRoCkVuZCBTdWIKClN1YiBNYXJrU3RhdHVzKEJ5VmFsIHRhcmdldCBBcyBGb250LCBCeVZhbCBzdGF0dXMgQXMgU3RyaW5nKQogICAgSWYgU3RyQ29tcChzdGF0dXMsICJSZWFkeSIsIHZiQmluYXJ5Q29tcGFyZSkgPSAwIFRoZW4KICAgICAgICB0YXJnZXQuQ29sb3JJbmRleCA9IHdkR3JlZW4KICAgIEVsc2UKICAgICAgICB0YXJnZXQuQ29sb3JJbmRleCA9IHdkRGFya1JlZAogICAgRW5kIElmCkVuZCBTdWIK",
+      "--packages=/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/.dart_tool/package_config.json",
+      "tool/macros/web_vba_word_comparison_colors_smoke.dart"
+    ],
+    "cwd": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_engine",
+    "started_utc": "2026-11-21T21:59:38.178302+00:00",
+    "exit_code": 0,
+    "duration_seconds": 10.693,
+    "stdout": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/logs/pinned-word-vba-example-vm.json",
+    "stderr": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/logs/pinned-word-vba-example-vm.stderr.log",
+    "stdout_sha256": "b832a9d6fdd14ca4a9f86309887b07d6a1c5035c49564d327d3839f4289b7ad8",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "example-compile",
+    "command": [
+      "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/sdk/flutter/bin/cache/dart-sdk/bin/dart",
+      "compile",
+      "js",
+      "-O1",
+      "-DWORD_COMPARISON_COLORS_BAS_BASE64=T3B0aW9uIEV4cGxpY2l0CgonIFRlbXBsYXRlOiB0aHJlZSBub25lbXB0eSBib2R5IHBhcmFncmFwaHMsIGluZGVwZW5kZW50IHByaW1hcnkgaGVhZGVyL2Zvb3RlciwKJyBhbmQgb25lIHVubWVyZ2VkIGJvZHkgdGFibGUgd2l0aCBhIHNpbmdsZSByb3cgYW5kIHR3byBwbGFpbiBjZWxscy4KJyBUaGUgY29tcGFyaXNvbnMgdXNlIHNvdXJjZSBkYXRhOyBubyBleGlzdGluZyBkb2N1bWVudCB0ZXh0IGlzIHJlYWQuClN1YiBNYWluKCkKICAgIERpbSBzdGF0dXNlcygxIFRvIDIpIEFzIFN0cmluZwogICAgRGltIHNlbGVjdGVkIEFzIEZvbnQKICAgIERpbSByb3cgQXMgTG9uZwoKICAgIHN0YXR1c2VzKDEpID0gIiAgUmVhZHkgICIKICAgIHN0YXR1c2VzKDIpID0gIlJldmlldyIKICAgIEZvciByb3cgPSAxIFRvIDIKICAgICAgICBTZXQgc2VsZWN0ZWQgPSBBY3RpdmVEb2N1bWVudC5QYXJhZ3JhcGhzKHJvdykuUmFuZ2UuRm9udAogICAgICAgIE1hcmtTdGF0dXMgc3RhdHVzOj1UcmltJChzdGF0dXNlcyhyb3cpKSwgdGFyZ2V0Oj1zZWxlY3RlZAogICAgTmV4dCByb3cKCiAgICBXaXRoIFRoaXNEb2N1bWVudC5QYXJhZ3JhcGhzKDMpLlJhbmdlLkZvbnQKICAgICAgICAuQ29sb3JJbmRleCA9IHdkQmx1ZQogICAgICAgIC5Db2xvciA9IHdkQ29sb3JBdXRvbWF0aWMKICAgIEVuZCBXaXRoCgogICAgU2V0IHNlbGVjdGVkID0gQWN0aXZlRG9jdW1lbnQuU2VjdGlvbnMoMSkuSGVhZGVycyh3ZEhlYWRlckZvb3RlclByaW1hcnkpLlJhbmdlLlBhcmFncmFwaHMoMSkuUmFuZ2UuRm9udAogICAgc2VsZWN0ZWQuQ29sb3JJbmRleCA9IHdkRGFya0JsdWUKICAgIFdpdGggQWN0aXZlRG9jdW1lbnQuU2VjdGlvbnMoMSkuRm9vdGVycyh3ZEhlYWRlckZvb3RlclByaW1hcnkpLlJhbmdlLlBhcmFncmFwaHMoMSkuUmFuZ2UuRm9udAogICAgICAgIC5Db2xvckluZGV4ID0gd2RSZWQKICAgICAgICAuQ29sb3JJbmRleCA9IHdkQXV0bwogICAgRW5kIFdpdGgKCiAgICBXaXRoIEFjdGl2ZURvY3VtZW50LlRhYmxlcygxKQogICAgICAgIC5DZWxsKDEsIDEpLlJhbmdlLlRleHQgPSBDU3RyKFN0ckNvbXAoIlJlYWR5IiwgIlJlYWR5IiwgdmJCaW5hcnlDb21wYXJlKSkKICAgICAgICAuQ2VsbCgxLCAyKS5SYW5nZS5UZXh0ID0gQ1N0cihTdHJDb21wKCJBIiwgImEiKSkKICAgIEVuZCBXaXRoCkVuZCBTdWIKClN1YiBNYXJrU3RhdHVzKEJ5VmFsIHRhcmdldCBBcyBGb250LCBCeVZhbCBzdGF0dXMgQXMgU3RyaW5nKQogICAgSWYgU3RyQ29tcChzdGF0dXMsICJSZWFkeSIsIHZiQmluYXJ5Q29tcGFyZSkgPSAwIFRoZW4KICAgICAgICB0YXJnZXQuQ29sb3JJbmRleCA9IHdkR3JlZW4KICAgIEVsc2UKICAgICAgICB0YXJnZXQuQ29sb3JJbmRleCA9IHdkRGFya1JlZAogICAgRW5kIElmCkVuZCBTdWIK",
+      "--packages=/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/.dart_tool/package_config.json",
+      "tool/macros/web_vba_word_comparison_colors_smoke.dart",
+      "-o",
+      "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/build/pinned-word-vba-example.js"
+    ],
+    "cwd": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_engine",
+    "started_utc": "2026-11-21T21:59:48.872550+00:00",
+    "exit_code": 0,
+    "duration_seconds": 13.233,
+    "stdout": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/logs/pinned-word-vba-example-compile.log",
+    "stderr": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/logs/pinned-word-vba-example-compile.stderr.log",
+    "stdout_sha256": "e621bc77e8b272f0635c710a369e4005a4f7cdb088f0941b61dfb56ed4429e62",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "example-js",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "-e",
+      "globalThis.self = globalThis; require(process.argv[1]);",
+      "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/build/pinned-word-vba-example.js"
+    ],
+    "cwd": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_engine",
+    "started_utc": "2026-11-21T22:00:02.106469+00:00",
+    "exit_code": 0,
+    "duration_seconds": 2.129,
+    "stdout": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/logs/pinned-word-vba-example-js.json",
+    "stderr": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/logs/pinned-word-vba-example-js.stderr.log",
+    "stdout_sha256": "b832a9d6fdd14ca4a9f86309887b07d6a1c5035c49564d327d3839f4289b7ad8",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "strcomp-vm",
+    "command": [
+      "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/sdk/flutter/bin/cache/dart-sdk/bin/dart",
+      "--packages=/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/.dart_tool/package_config.json",
+      "tool/macros/web_vba_strcomp_smoke.dart"
+    ],
+    "cwd": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_engine",
+    "started_utc": "2026-11-21T22:00:04.248025+00:00",
+    "exit_code": 0,
+    "duration_seconds": 11.473,
+    "stdout": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/logs/pinned-word-vba-strcomp-vm.json",
+    "stderr": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/logs/pinned-word-vba-strcomp-vm.stderr.log",
+    "stdout_sha256": "8df099428192365cb1befbcee1b3525555b69102f861c274c0c31b6581250aa5",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "strcomp-compile",
+    "command": [
+      "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/sdk/flutter/bin/cache/dart-sdk/bin/dart",
+      "compile",
+      "js",
+      "-O1",
+      "--packages=/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/.dart_tool/package_config.json",
+      "tool/macros/web_vba_strcomp_smoke.dart",
+      "-o",
+      "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/build/pinned-word-vba-strcomp.js"
+    ],
+    "cwd": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_engine",
+    "started_utc": "2026-11-21T22:00:15.722867+00:00",
+    "exit_code": 0,
+    "duration_seconds": 8.382,
+    "stdout": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/logs/pinned-word-vba-strcomp-compile.log",
+    "stderr": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/logs/pinned-word-vba-strcomp-compile.stderr.log",
+    "stdout_sha256": "4b6349b12d81717de96ff93c7335ca1aebffd8d66ed14ff4b51bcc8113aebc27",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "strcomp-js",
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "-e",
+      "globalThis.self = globalThis; require(process.argv[1]);",
+      "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/build/pinned-word-vba-strcomp.js"
+    ],
+    "cwd": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_engine",
+    "started_utc": "2026-11-21T22:00:24.106289+00:00",
+    "exit_code": 0,
+    "duration_seconds": 0.126,
+    "stdout": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/logs/pinned-word-vba-strcomp-js.json",
+    "stderr": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/logs/pinned-word-vba-strcomp-js.stderr.log",
+    "stdout_sha256": "8df099428192365cb1befbcee1b3525555b69102f861c274c0c31b6581250aa5",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

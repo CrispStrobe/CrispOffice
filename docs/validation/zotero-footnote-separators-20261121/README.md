@@ -218,3 +218,25 @@ These runs are diagnostic evidence and are not summed into final acceptance.
 - [OOXML separator mark](https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.wordprocessing.separatormark?view=openxml-3.0.1) and [special-footnote references](https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.wordprocessing.footnotespecialreference?view=openxml-3.0.1).
 - [Tested LibreOffice separator importer](https://github.com/LibreOffice/core/blob/2c87e51eeaa2b413ff4ae097b2705eea1995d8e5/xmloff/source/style/XMLFootnoteSeparatorImport.cxx) and [exporter](https://github.com/LibreOffice/core/blob/2c87e51eeaa2b413ff4ae097b2705eea1995d8e5/xmloff/source/style/XMLFootnoteSeparatorExport.cxx): omitted-zero conventions.
 - [Tested LibreOffice footnote layout](https://github.com/LibreOffice/core/blob/2c87e51eeaa2b413ff4ae097b2705eea1995d8e5/sw/source/core/layout/ftnfrm.cxx): reservation includes nominal thickness even when the rule is hidden.
+
+## Integrated local qualification follow-up
+
+The Word VBA comparison/color integration retained implementation head
+`a1b555979b25c5586f27915cf219a95e886febd7` and executed the changed native
+separator suites, adjacent note/Zotero persistence, package preservation and
+macro atomicity in an 18-file engine gate: **465 passed, zero failures/skips**.
+Full engine analysis including macro and Zotero tools is clean. The four
+affected editor rendering/note suites passed **64 cases** on pinned Flutter
+3.47.8 / Dart 3.13.7, with clean scoped analysis.
+
+A new combined two-case regression applies palette and automatic foreground
+macros to a document with an active note and modeled separator, preserves
+nondefault special-note IDs/settings through repeated native saves, and proves
+whole-run rollback after a late invalid target. Those cases also pass within
+the pinned Dart **238-case** macro gate. Exact commands, source identities and
+logs are in the [integrated qualification record](../word-vba-comparison-colors-20261121/README.md).
+
+These executions use the retained LibreOffice-produced fixtures; they do not
+claim a new converter invocation, installed Word rendering, or a live Zotero
+plugin UI session. The external DOCX-to-LibreOffice geometry limitation above
+remains explicit.
