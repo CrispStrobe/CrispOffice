@@ -1,0 +1,213 @@
+{
+  "source_head_before": "e162101d6852c6522850b848bb6473676d7fe02a",
+  "source_head_after": "e162101d6852c6522850b848bb6473676d7fe02a",
+  "test_inventory": [
+    "test/studio_mail_cached_host_test.dart",
+    "test/studio_mail_capture_projection_test.dart",
+    "test/studio_mail_mailbox_store_test.dart",
+    "test/studio_mail_cached_mail_test.dart",
+    "test/studio_mail_mailbox_session_test.dart",
+    "test/studio_mail_journal_host_test.dart",
+    "test/studio_mail_flag_reconciliation_test.dart",
+    "test/studio_mail_workspace_test.dart",
+    "test/studio_mail_lifecycle_test.dart",
+    "test/studio_mail_session_test.dart",
+    "test/studio_mail_compose_test.dart"
+  ],
+  "checks": [
+    {
+      "name": "tests",
+      "command": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=2",
+        "--reporter",
+        "expanded",
+        "--file-reporter",
+        "json:/workspace/scratch/1a7ed08f64fe/mail-validation/final-union-studio/tests.jsonl",
+        "test/studio_mail_cached_host_test.dart",
+        "test/studio_mail_capture_projection_test.dart",
+        "test/studio_mail_mailbox_store_test.dart",
+        "test/studio_mail_cached_mail_test.dart",
+        "test/studio_mail_mailbox_session_test.dart",
+        "test/studio_mail_journal_host_test.dart",
+        "test/studio_mail_flag_reconciliation_test.dart",
+        "test/studio_mail_workspace_test.dart",
+        "test/studio_mail_lifecycle_test.dart",
+        "test/studio_mail_session_test.dart",
+        "test/studio_mail_compose_test.dart"
+      ],
+      "cwd": "/workspace/scratch/1a7ed08f64fe/quds_office_suite/packages/quds_office_editor/example",
+      "started_at_utc": "2026-11-21T06:13:52.354048+00:00",
+      "status": "PASS",
+      "exit_code": 0,
+      "elapsed_seconds": 85.09096419900015,
+      "finished_at_utc": "2026-11-21T06:15:17.445683+00:00",
+      "stdout_sha256": "1e998e1656b4cb11f5b7268ec6de542d9772a00cbd81868859463335488c4697",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests": {
+        "passed": 309,
+        "skipped": 0,
+        "failed": 0,
+        "errors": 0,
+        "all_failed": 0,
+        "all_skipped": 0,
+        "excluded_failed": 0,
+        "excluded_skipped": 0,
+        "terminal_success": true,
+        "start_events": 1,
+        "terminal_events": 1,
+        "incomplete": 0,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "valid": true
+      }
+    },
+    {
+      "name": "analysis",
+      "command": [
+        "dart",
+        "analyze",
+        "--fatal-infos",
+        "lib/studio_mail_mailbox_session.dart",
+        "lib/studio_mail_mailbox_store.dart",
+        "lib/studio_mail_cached_mail.dart",
+        "lib/studio_mail_cached_strings.dart",
+        "lib/studio_mail_native.dart",
+        "lib/studio_mail_ews.dart",
+        "test/studio_mail_cached_host_test.dart",
+        "test/studio_mail_capture_projection_test.dart",
+        "test/studio_mail_mailbox_store_test.dart",
+        "test/studio_mail_cached_mail_test.dart",
+        "test/studio_mail_mailbox_session_test.dart",
+        "test/studio_mail_journal_host_test.dart",
+        "test/studio_mail_flag_reconciliation_test.dart",
+        "test/studio_mail_workspace_test.dart",
+        "test/studio_mail_lifecycle_test.dart",
+        "test/studio_mail_session_test.dart",
+        "test/studio_mail_compose_test.dart"
+      ],
+      "cwd": "/workspace/scratch/1a7ed08f64fe/quds_office_suite/packages/quds_office_editor/example",
+      "started_at_utc": "2026-11-21T06:13:52.354318+00:00",
+      "status": "PASS",
+      "exit_code": 0,
+      "elapsed_seconds": 17.829675834000227,
+      "finished_at_utc": "2026-11-21T06:14:10.184362+00:00",
+      "stdout_sha256": "409b67bc71670cb61b22474cf46599fe8379d685af8f631c0042388213c0b7d0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "source_input_count": 1032,
+  "changed_inputs": [],
+  "changed_runtime_inputs": [],
+  "github_actions": "Not queried or awaited.",
+  "scope": "Final integrated-source Linux Flutter execution of ten Mail suites plus Word-based composer; controlled provider/storage fixtures and native SQLite. Incoming Office/Zotero/proofing are qualified separately. No live-provider or installed-platform acceptance claim.",
+  "accepted": true,
+  "by_suite": {
+    "test/studio_mail_capture_projection_test.dart": {
+      "passed": 21,
+      "skipped": 0,
+      "failed": 0
+    },
+    "test/studio_mail_cached_host_test.dart": {
+      "passed": 56,
+      "skipped": 0,
+      "failed": 0
+    },
+    "test/studio_mail_mailbox_store_test.dart": {
+      "passed": 23,
+      "skipped": 0,
+      "failed": 0
+    },
+    "test/studio_mail_cached_mail_test.dart": {
+      "passed": 37,
+      "skipped": 0,
+      "failed": 0
+    },
+    "test/studio_mail_mailbox_session_test.dart": {
+      "passed": 14,
+      "skipped": 0,
+      "failed": 0
+    },
+    "test/studio_mail_journal_host_test.dart": {
+      "passed": 24,
+      "skipped": 0,
+      "failed": 0
+    },
+    "test/studio_mail_flag_reconciliation_test.dart": {
+      "passed": 24,
+      "skipped": 0,
+      "failed": 0
+    },
+    "test/studio_mail_workspace_test.dart": {
+      "passed": 64,
+      "skipped": 0,
+      "failed": 0
+    },
+    "test/studio_mail_lifecycle_test.dart": {
+      "passed": 1,
+      "skipped": 0,
+      "failed": 0
+    },
+    "test/studio_mail_session_test.dart": {
+      "passed": 21,
+      "skipped": 0,
+      "failed": 0
+    },
+    "test/studio_mail_compose_test.dart": {
+      "passed": 24,
+      "skipped": 0,
+      "failed": 0
+    }
+  },
+  "mail_slice_to_union_comparison": {
+    "prior_receipt": "studio-validation.json",
+    "prior_receipt_sha256": "4b5f1768db96929602e12d44e7b79b004796314ab372aaaa78032ca78b78490f",
+    "manifest_delta_entries": 21,
+    "changed_paths": [
+      "packages/quds_office_editor/example/lib/studio_settings.dart",
+      "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "packages/quds_office_editor/example/lib/suite_workspace_settings.dart",
+      "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_compose_test.dart",
+      "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "packages/quds_office_editor/lib/src/proofing/platform_spelling_provider.dart",
+      "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+      "packages/quds_office_engine/lib/quds_office_engine.dart",
+      "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+      "packages/quds_office_engine/lib/src/automation/operations/word_page_setup_steps.dart",
+      "packages/quds_office_engine/lib/src/automation/operations/word_section_start_steps.dart",
+      "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+      "packages/quds_office_engine/lib/src/proofing/german_spelling.dart",
+      "packages/quds_office_engine/lib/src/proofing/office_proofing.dart",
+      "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+      "packages/quds_office_engine/lib/src/word/model/word_zotero_data.dart",
+      "packages/quds_office_engine/lib/src/word/model/word_zotero_transfer.dart",
+      "packages/quds_office_engine/lib/src/zotero/zotero_citing.dart",
+      "packages/quds_proofing_hunspell/lib/src/hunspell_provider.dart"
+    ],
+    "explanation": "Incoming shared Office, settings, proofing and Zotero source changes are included. The composer test is newly measured by this cohort, not newly created. Mail production code is unchanged from the accepted 285-case slice; the cached-host fixture has the isolated native draft-commit scheduling correction described below.",
+    "full_hash_delta": "final-union-studio/mail-slice-to-union.json in archive"
+  },
+  "source_manifest_sha256": "9e4539d671ab965656cdf3f43eebbd669e8daf92caeb67f39a6f0c5726e16c37",
+  "runtime_manifest_sha256": "578551dc978bbf1100defd087c63f1d41f8d89afd75d6f9b35f960dd5f54a771",
+  "toolchain": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "activation": "source /workspace/scratch/1a7ed08f64fe/mail-runtime/env.sh"
+  },
+  "fixture_correction": {
+    "initial_union_result": "308 passed, 1 failed, 0 skipped; analyzer passed",
+    "failed_case": "graph delete survives metadata updates and cannot resurrect cached rows",
+    "cause": "The fixture fixed 1000-turn zero-delay helper exhausted before the unrelated native draft commit completed. Delete, subscription cancellation, reader removal and row-membership assertions had passed.",
+    "correction": "Only the unrelated owner.save draft commit now runs in tester.runAsync. Existing stream pumps and every assertion are preserved. All three provider variants passed before the complete union rerun.",
+    "diagnostic_archive_directory": "final-union-studio-initial"
+  },
+  "logs_archive": {
+    "file": "union-studio-validation.tar.xz",
+    "bytes": 76880,
+    "sha256": "f5c90d924260e8d20c48fb26d5a5b1da8b948f591181e808246a49a82ec48741"
+  }
+}

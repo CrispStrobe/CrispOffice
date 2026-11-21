@@ -107,6 +107,12 @@ extension StudioMailCachedStrings on StudioStrings {
     );
   }
 
+  String mailCacheUnread(int unread, int unknown) => _text(
+    '$unread unread in this saved view${unknown == 0 ? '' : ' · $unknown with unknown read status'}',
+    '$unread ungelesen in dieser gespeicherten Ansicht${unknown == 0 ? '' : ' · $unknown mit unbekanntem Lesestatus'}',
+    '$unread غير مقروءة في هذا العرض المحفوظ${unknown == 0 ? '' : ' · $unknown بحالة قراءة غير معروفة'}',
+  );
+
   String get mailCacheMissingBody => _text(
     'This message was not saved for offline reading. Reconnect and open it to save a local copy.',
     'Diese Nachricht wurde nicht zum Offline-Lesen gespeichert. Verbinden Sie sich erneut und öffnen Sie sie, um eine lokale Kopie zu speichern.',

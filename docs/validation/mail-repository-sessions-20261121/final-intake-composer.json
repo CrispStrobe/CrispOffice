@@ -1,0 +1,155 @@
+{
+  "accepted": true,
+  "scope": "Final intake delta qualification of unchanged Mail inputs and shared Word-based composer.",
+  "source_binding": {
+    "frozen_worktree_commit": "8ff607b914f1a2828e6dceb68d4859e7f0ed4a8e",
+    "remote_saved_commit": "721ad2c74a5d81d54c2eaa2af084e82ba5077991",
+    "identical_tree": "c6e320878ceffb5ba640e62e4f0046988c86dfbe",
+    "publication_merge_commit": "dbe48121625a2f72ef4f6fb3fc8dc7a4cf7703a0",
+    "publication_tree": "2570bbd94bfb560a225e0b9a3eff8e8418ffcf72",
+    "publication_changed_paths": [
+      "docs/validation/word-vba-sections-20261121/README.md",
+      "docs/validation/word-vba-sections-20261121/acceptance-summary.json",
+      "docs/validation/word-vba-sections-20261121/archive-manifest.json",
+      "docs/validation/word-vba-sections-20261121/local-evidence-manifest.json",
+      "docs/validation/word-vba-sections-20261121/local-qualification-evidence.tar.gz",
+      "docs/validation/word-vba-sections-20261121/perf-reporter-smoke.json",
+      "docs/validation/word-vba-sections-20261121/perf-reporter-smoke.py",
+      "docs/validation/word-vba-sections-20261121/publication-intake.json",
+      "docs/validation/word-vba-sections-20261121/publication-intake.md",
+      "docs/validation/word-vba-sections-20261121/qualification.json",
+      "docs/validation/word-vba-sections-20261121/source-applicability.json",
+      "docs/validation/zotero-transfer-20261121/README.md"
+    ],
+    "publication_changes_are_validation_docs_only": true,
+    "production_test_tool_dependency_changes_at_publication": []
+  },
+  "source_input_count": 1032,
+  "unchanged_mail_and_shared_fixture_inputs": 428,
+  "changed_mail_inputs_from_accepted_union": [],
+  "changed_inputs_during_run": [],
+  "changed_runtime_inputs_during_run": [],
+  "source_manifest_sha256": "24e9c88affee796920ee2c1ef33d23fcfce2c1b2ff3dd33e5da59c6d363d03be",
+  "runtime_manifest_sha256": "c1031272adc3203c8f5b1fcd3a7f973df6670676ba42518636d9c94f117607ad",
+  "runtime_identical_to_accepted_union": true,
+  "prior_mail_acceptance": {
+    "receipt": "union-studio-validation.json",
+    "sha256": "ef67e6ddd60630fefe3d533c5e0512bbbf990b2c48a00f22d3a6c563f3199e1c",
+    "passed": 309,
+    "explanation": "Previous full Mail acceptance is preserved; these 24 composer cases are a repeated integration check and are not additional unique tests."
+  },
+  "source_delta": {
+    "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart": {
+      "accepted_union_sha256": "fb3d44f6c30bfac04d8c45e100201d5c0c21a3b12ed9d65cb0bad41f8906aabc",
+      "final_intake_sha256": "26df1c1eea17c35d530552f826b1c7cdf5bdb2dd177495ccd0eab619c3d29e54"
+    },
+    "packages/quds_office_editor/lib/src/proofing/word_proofing.dart": {
+      "accepted_union_sha256": "3b22f685ce0edf024832392645ccd2684da082578e1d7f3f31d66019450b3008",
+      "final_intake_sha256": "866a489ccb2fa543cd0683a6433fd6e5116efd58853f1cca26eb608c307704ed"
+    },
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_transfer.dart": {
+      "accepted_union_sha256": "9daac5af7a548a972618d5bed1920c966aa5914b70cd4f1121e6647815dcaf84",
+      "final_intake_sha256": "973d0eb0fe662b2d566663e37840668b79210c01cbb726e10fe8cd2b71066197"
+    },
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart": {
+      "accepted_union_sha256": "689f19a6c3d1206d02ae545b5a975644d6d3cda59a9edf671aa4fc48db44ffe1",
+      "final_intake_sha256": "63f0b20fdbe9cb988bcd93d68da2d84380acefdcdbfc65c4d9433b683048e7db"
+    }
+  },
+  "generated_config_delta": {
+    ".dart_tool/native_assets.yaml": {
+      "accepted_union_sha256": "715fa675a4138f02bfb157a9a56adce78ea2179accc10d3191d73bbc3ab7de94",
+      "final_intake_sha256": "c83b40e7d2444cd2c021f92c4144cb85534f5b69c917667f6e35bd27e565e5bd"
+    }
+  },
+  "generated_config_explanation": "Only the native-assets absolute path changes to the final worktree; the SQLite binary hash is identical.",
+  "dependency_binding": {
+    "package_config_identical": true,
+    "local_package_count": 20,
+    "all_local_packages_resolve_to_tested_worktree": true,
+    "detail": "final-intake-composer/dependency-binding.json in archive"
+  },
+  "checks": [
+    {
+      "name": "tests",
+      "command": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=2",
+        "--reporter",
+        "expanded",
+        "--file-reporter",
+        "json:/workspace/scratch/1a7ed08f64fe/mail-validation/final-intake-composer/tests.jsonl",
+        "test/studio_mail_compose_test.dart"
+      ],
+      "cwd": "/workspace/scratch/1a7ed08f64fe/mail-final-intake-20261121/packages/quds_office_editor/example",
+      "started_at_utc": "2026-11-21T06:23:16.587046+00:00",
+      "status": "PASS",
+      "exit_code": 0,
+      "elapsed_seconds": 19.53651375699883,
+      "finished_at_utc": "2026-11-21T06:23:36.123611+00:00",
+      "stdout_sha256": "e6bc7e37dea76df2fa7c21ae26910ffc189d0f9d6d790ecc8349858ab68cb8cc",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests": {
+        "passed": 24,
+        "skipped": 0,
+        "failed": 0,
+        "errors": 0,
+        "all_failed": 0,
+        "all_skipped": 0,
+        "excluded_failed": 0,
+        "excluded_skipped": 0,
+        "terminal_success": true,
+        "start_events": 1,
+        "terminal_events": 1,
+        "incomplete": 0,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "valid": true
+      }
+    },
+    {
+      "name": "analysis",
+      "command": [
+        "dart",
+        "analyze",
+        "--fatal-infos",
+        "lib/studio_mail_compose.dart",
+        "test/studio_mail_compose_test.dart"
+      ],
+      "cwd": "/workspace/scratch/1a7ed08f64fe/mail-final-intake-20261121/packages/quds_office_editor/example",
+      "started_at_utc": "2026-11-21T06:20:33.409548+00:00",
+      "status": "PASS",
+      "exit_code": 0,
+      "elapsed_seconds": 86.21602531499957,
+      "finished_at_utc": "2026-11-21T06:21:59.625903+00:00",
+      "stdout_sha256": "0d9b18198588731c01dd68ec7c30e6d0f1754a2d00e3d775ccb0fe46b8b5ef92",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reused_from_identical_source_run": "/workspace/scratch/1a7ed08f64fe/mail-validation/final-intake-composer-initial/analysis-receipt.json"
+    }
+  ],
+  "review": {
+    "composer": "The only Mail WordEditorController uses an empty proofing-provider list and disables proofing. Its construction, editing, snapshot and disposal still share Word code; all 24 composer cases are rerun.",
+    "zotero_odt": "No Mail code invokes Zotero transfer or ODT document writing. Mail attachment handling recognizes ODT only as a MIME type.",
+    "retained_acceptance": "The accepted 309-case Mail/composer gate remains applicable to identical Mail and fixture inputs. Incoming Word/proofing/Zotero behavior is qualified by separate targeted gates.",
+    "additional_mail_regressions": "None: no changed Mail inputs or additional affected execution path found."
+  },
+  "initial_attempt": {
+    "status": "INFRASTRUCTURE_FAILURE",
+    "source_changes": [],
+    "executed_test_cases": 0,
+    "observed_error": "The Dart compiler exited unexpectedly; Flutter then reported a null-check cleanup error.",
+    "source_diagnostic_reported": false,
+    "test_process_disposition": "Stopped with SIGINT after compiler exit left Flutter waiting; controlling session returned130.",
+    "analysis_status": "PASS",
+    "cause_assessment": "Concurrent cold compilation may have contributed; no root cause established. Other compiler jobs have now exited before serialized rerun."
+  },
+  "rerun": "After all other compiler jobs exited, the isolated 24-case composer run passed without source, fixture or assertion edits. Clean two-file analysis was reused only after exact before/after source-manifest equality and command checks.",
+  "github_actions": "Not queried or awaited.",
+  "logs_archive": {
+    "file": "final-intake-composer.tar.xz",
+    "bytes": 55416,
+    "sha256": "563ebd4225aa91979f731712c30fc34462f104e05aa6ee67f0f4a6eb52238b49"
+  }
+}

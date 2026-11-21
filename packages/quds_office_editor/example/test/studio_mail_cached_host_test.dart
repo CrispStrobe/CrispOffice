@@ -48,6 +48,9 @@ final class _Provider extends Fake
   final MailProviderKind kind;
   int headerReads = 0;
   int bodyReads = 0;
+  final fetchedIdentities = <MailRemoteIdentity>[];
+  final commands = <MailOperation>[];
+  bool paginate = false;
   int disposals = 0;
   int bodyVersion = 1;
   String bodyFiller = '';
@@ -141,10 +144,12 @@ final class _Provider extends Fake
     return MailSuccess(
       MailHeaderPage(
         messages: [
-          header(2, folder: mailbox.value),
-          header(1, folder: mailbox.value),
+          if (!paginate || cursor == null) header(2, folder: mailbox.value),
+          if (!paginate || cursor != null) header(1, folder: mailbox.value),
         ],
-        next: MailCursor(mailbox: mailbox, value: 'more-headers'),
+        next: paginate && cursor != null
+            ? null
+            : MailCursor(mailbox: mailbox, value: 'more-headers'),
       ),
     );
   }
@@ -165,7 +170,18 @@ final class _Provider extends Fake
     required MailOperationLease lease,
   }) async {
     bodyReads++;
+    fetchedIdentities.add(identity);
     return bodyGate == null ? MailSuccess(message(identity)) : bodyGate!.future;
+  }
+
+  @override
+  Future<MailResult<MailUnit>> apply(
+    MailOperation command,
+    MailOperationLease lease,
+  ) async {
+    lease.checkCurrent();
+    commands.add(command);
+    return const MailSuccess(MailUnit.value);
   }
 
   @override
@@ -222,9 +238,10 @@ final class _Owner
         StudioMailDraftStore,
         StudioMailDraftCatalog,
         StudioMailMailboxStoreOwner {
-  _Owner(this.delegate, {this.foreign});
+  _Owner(this.delegate, {this.foreign, this.watchProbe});
   final SqliteStudioMailDraftStore delegate;
   final _ForeignCache? foreign;
+  final _WatchProbe? watchProbe;
   bool closed = false;
   int loads = 0;
   final saveFailures = <MailProblemCode>[];
@@ -235,7 +252,8 @@ final class _Owner
   @override
   int get selectionEpoch => delegate.selectionEpoch;
   @override
-  StudioMailMailboxStore get mailboxStore => foreign ?? delegate.mailboxStore;
+  StudioMailMailboxStore get mailboxStore =>
+      foreign ?? watchProbe ?? delegate.mailboxStore;
   @override
   Future<StudioMailStoredDraft?> load() {
     loads++;
@@ -311,6 +329,76 @@ final class _ForeignCache extends Fake implements StudioMailMailboxStore {
   }
 }
 
+/// Real persistence and events, with cancellation held at the host boundary.
+final class _WatchProbe extends Fake
+    implements StudioMailMailboxStore, StudioMailMailboxWatchStore {
+  _WatchProbe(this.delegate);
+  final StudioMailMailboxStore delegate;
+  Completer<void>? cancelGate;
+  int watches = 0;
+  int emissions = 0;
+  int cancellations = 0;
+  int completedCancellations = 0;
+  final streams = <StreamController<MailResult<MailCachedMailboxView?>>>[];
+  @override
+  MailAccountId get account => delegate.account;
+  @override
+  Future<List<MailCachedMailboxSummary>> listViews() => delegate.listViews();
+  @override
+  Future<MailCachedMailboxView?> loadView(MailMailboxId mailbox) =>
+      delegate.loadView(mailbox);
+  @override
+  Future<MailCachedMailboxView> saveView(
+    MailMailbox mailbox,
+    List<MailHeaderRecord> headers, {
+    required bool hasMore,
+    required MailOperationLease lease,
+  }) => delegate.saveView(mailbox, headers, hasMore: hasMore, lease: lease);
+  @override
+  Future<void> cacheMessage(
+    MailHeaderRecord header,
+    MailMessage message, {
+    required MailOperationLease lease,
+  }) => delegate.cacheMessage(header, message, lease: lease);
+  @override
+  Future<MailMessage?> loadMessage(MailHeaderRecord header) =>
+      delegate.loadMessage(header);
+  @override
+  Future<MailCacheCleanupReport> clearCache() => delegate.clearCache();
+  @override
+  Stream<MailResult<List<MailCachedMailboxSummary>>> watchViews() =>
+      (delegate as StudioMailMailboxWatchStore).watchViews();
+  @override
+  Stream<MailResult<MailCachedMailboxView?>> watchView(MailMailboxId mailbox) {
+    watches++;
+    late StreamSubscription<MailResult<MailCachedMailboxView?>> subscription;
+    late StreamController<MailResult<MailCachedMailboxView?>> controller;
+    controller = StreamController<MailResult<MailCachedMailboxView?>>(
+      sync: true,
+      onListen: () {
+        subscription = (delegate as StudioMailMailboxWatchStore)
+            .watchView(mailbox)
+            .listen(
+              (value) {
+                emissions++;
+                controller.add(value);
+              },
+              onError: controller.addError,
+              onDone: controller.close,
+            );
+      },
+      onCancel: () async {
+        cancellations++;
+        await cancelGate?.future;
+        await subscription.cancel();
+        completedCancellations++;
+      },
+    );
+    streams.add(controller);
+    return controller.stream;
+  }
+}
+
 final class _Stores {
   _Stores(this.directory);
   final Directory directory;
@@ -322,6 +410,7 @@ final class _Stores {
   bool failFirstView = false;
   bool failNextCommit = false;
   bool foreignCache = false;
+  bool observeWatches = false;
   Completer<void>? holdCommit;
   Completer<void>? blockedCommit;
   Completer<void>? reachedCommit;
@@ -355,6 +444,7 @@ final class _Stores {
             as SqliteStudioMailDraftStore;
     final owner = _Owner(
       delegate,
+      watchProbe: observeWatches ? _WatchProbe(delegate.mailboxStore) : null,
       foreign: foreignCache
           ? _ForeignCache(
               MailAccountId('foreign-cache', profile: account.profile),
@@ -393,11 +483,12 @@ final class _Harness {
   _Provider? provider;
   int authorizations = 0;
   int providerCreations = 0;
+  bool paginate = false;
   final client = _Client();
 
   _Provider create(MailAccountId account) {
     if (provider?.account != account) {
-      provider = _Provider(account, kind);
+      provider = _Provider(account, kind)..paginate = paginate;
       providerCreations++;
     }
     return provider!;
@@ -487,6 +578,8 @@ Future<_Harness> _fixture(WidgetTester tester, MailProviderKind kind) async {
     if (blocked != null && !blocked.isCompleted) blocked.complete();
     await tester.pumpWidget(const SizedBox.shrink());
     for (final owner in stores.owners.reversed) {
+      final gate = owner.watchProbe?.cancelGate;
+      if (gate != null && !gate.isCompleted) gate.complete();
       await awaitOutboxOperation(tester, owner.close());
     }
     await tester.runAsync(() => directory.delete(recursive: true));
@@ -802,6 +895,463 @@ Future<void> _recoverUnsavedEditor(
 
 void main() {
   for (final kind in _providers) {
+    testWidgets(
+      '${kind.name} repository observations supersede only changed confirmed bits',
+      (tester) async {
+        final harness = await _fixture(tester, kind);
+        harness.stores.observeWatches = true;
+        await _showHost(tester, harness);
+        final owner = harness.stores.owners.single;
+        final probe = owner.watchProbe!;
+        MailMessageList list() =>
+            tester.widget<MailMessageList>(find.byType(MailMessageList));
+        for (final action in [
+          MailBulkFlagAction.flag,
+          MailBulkFlagAction.markUnread,
+        ]) {
+          final before = harness.provider!.commands.length;
+          list().onBulkAction!(action, [list().items.first.id]);
+          await _until(
+            tester,
+            () =>
+                harness.provider!.commands.length > before &&
+                _listReady(tester),
+          );
+        }
+        expect(list().items.first.isRead, isFalse);
+        expect(list().items.first.isFlagged, isTrue);
+        final before = probe.emissions;
+        await awaitOutboxOperation(
+          tester,
+          owner.save(
+            StudioMailDraft(to: '', subject: 'Same view revision', body: ''),
+            submissionUncertain: false,
+          ),
+        );
+        await _until(tester, () => probe.emissions > before);
+        expect(list().items.first.isRead, isFalse);
+        expect(list().items.first.isFlagged, isTrue);
+        final folders = await awaitOutboxOperation(tester, probe.listViews());
+        final saved = (await awaitOutboxOperation(
+          tester,
+          probe.loadView(folders.single.mailbox.id),
+        ))!;
+        Future<void> observe(MailMessageFlags flags) async {
+          final first = saved.headers.first;
+          probe.streams.single.add(
+            MailSuccess(
+              MailCachedMailboxView(
+                mailbox: saved.mailbox,
+                revision: saved.revision,
+                capturedAt: saved.capturedAt,
+                headers: [
+                  MailHeaderRecord(
+                    id: first.id,
+                    remote: first.remote,
+                    envelope: first.envelope,
+                    flags: flags,
+                  ),
+                  ...saved.headers.skip(1),
+                ],
+                hasMore: saved.hasMore,
+              ),
+            ),
+          );
+          await tester.pump();
+          await tester.pump(const Duration(milliseconds: 1));
+        }
+
+        // A changed read observation must not erase the independent flag
+        // confirmation. All snapshots deliberately retain the same revision.
+        await observe(const MailMessageFlags(isRead: false));
+        expect(list().items.first.isRead, isFalse);
+        expect(list().items.first.isFlagged, isTrue);
+        await observe(const MailMessageFlags(isRead: true));
+        expect(list().items.first.isRead, isTrue);
+        expect(list().items.first.isFlagged, isTrue);
+        await observe(const MailMessageFlags(isRead: true, isFlagged: true));
+        await observe(const MailMessageFlags(isRead: true, isFlagged: false));
+        expect(list().items.first.isFlagged, isFalse);
+        expect(harness.provider!.headerReads, 1);
+        expect(harness.provider!.commands, hasLength(2));
+        expect(tester.takeException(), isNull);
+      },
+    );
+
+    if (kind != MailProviderKind.imap) {
+      testWidgets(
+        '${kind.name} delete survives metadata updates and cannot resurrect cached rows',
+        (tester) async {
+          final harness = await _fixture(tester, kind);
+          harness.stores.observeWatches = true;
+          await _showHost(tester, harness);
+          await _tapMessage(tester, 'Message two');
+          await _until(tester, () => _listReady(tester));
+          final owner = harness.stores.owners.single;
+          final cache = owner.watchProbe!;
+          final folders = await awaitOutboxOperation(tester, cache.listViews());
+          final saved = (await awaitOutboxOperation(
+            tester,
+            cache.loadView(folders.single.mailbox.id),
+          ))!;
+          final label = kind == MailProviderKind.ews
+              ? _strings.ewsDelete
+              : _strings.mailCloudDelete;
+          await tester.tap(find.byTooltip(label));
+          await tester.pumpAndSettle();
+          final session = MailAccountSession(cache.account);
+          addTearDown(session.dispose);
+          final before = cache.emissions;
+          await awaitOutboxOperation(
+            tester,
+            cache.saveView(
+              saved.mailbox,
+              [
+                for (final header in saved.headers)
+                  MailHeaderRecord(
+                    id: header.id,
+                    remote: header.remote,
+                    envelope: header.envelope,
+                    flags: header.flags == null
+                        ? null
+                        : const MailMessageFlags(isRead: true, isFlagged: true),
+                  ),
+              ],
+              hasMore: saved.hasMore,
+              lease: session.begin(),
+            ),
+          );
+          await _until(tester, () => cache.emissions > before);
+          await tester.tap(find.widgetWithText(FilledButton, label));
+          await _until(
+            tester,
+            () => harness.provider!.commands.isNotEmpty && _listReady(tester),
+          );
+          expect(harness.provider!.commands.single, isA<MailDelete>());
+          expect(cache.completedCancellations, 1);
+          expect(
+            tester
+                .widget<MailMessageList>(find.byType(MailMessageList))
+                .items
+                .map((item) => item.subject),
+            ['Message one'],
+          );
+          expect(find.byType(MailMessageView), findsNothing);
+          // This unrelated native draft commit needs the real isolate/I/O
+          // event loop, independently of the host's fake widget clock.
+          await tester.runAsync(
+            () => owner.save(
+              StudioMailDraft(to: '', subject: 'After delete', body: ''),
+              submissionUncertain: false,
+            ),
+          );
+          await tester.pump(const Duration(milliseconds: 100));
+          expect(
+            tester
+                .widget<MailMessageList>(find.byType(MailMessageList))
+                .items
+                .map((item) => item.subject),
+            ['Message one'],
+          );
+          expect(harness.provider!.headerReads, 1);
+          expect(tester.takeException(), isNull);
+        },
+      );
+    }
+
+    testWidgets(
+      '${kind.name} pagination retains repository flags and selected reader',
+      (tester) async {
+        final harness = await _fixture(tester, kind);
+        harness.paginate = true;
+        await _showHost(tester, harness);
+        await _tapMessage(tester, 'Message two');
+        await _until(tester, () => _listReady(tester));
+        final reader = tester
+            .widget<MailMessageView>(find.byType(MailMessageView))
+            .controller;
+        final listBefore = tester.widget<MailMessageList>(
+          find.byType(MailMessageList),
+        );
+        final cache = harness.stores.owners.single.mailboxStore;
+        final views = await awaitOutboxOperation(tester, cache.listViews());
+        final saved = (await awaitOutboxOperation(
+          tester,
+          cache.loadView(views.single.mailbox.id),
+        ))!;
+        expect(saved.headers, hasLength(1));
+        final header = saved.headers.single;
+        final session = MailAccountSession(cache.account);
+        addTearDown(session.dispose);
+        await awaitOutboxOperation(
+          tester,
+          cache.saveView(
+            saved.mailbox,
+            [
+              MailHeaderRecord(
+                id: header.id,
+                remote: header.remote,
+                envelope: header.envelope,
+                flags: const MailMessageFlags(
+                  isFlagged: true,
+                  isAnswered: true,
+                ),
+              ),
+            ],
+            hasMore: true,
+            lease: session.begin(),
+          ),
+        );
+        await _until(
+          tester,
+          () =>
+              tester
+                  .widget<MailMessageList>(find.byType(MailMessageList))
+                  .items
+                  .single
+                  .isFlagged ==
+              true,
+        );
+        tester
+            .widget<MailMessageList>(find.byType(MailMessageList))
+            .onLoadMore!();
+        await _until(
+          tester,
+          () => harness.provider!.headerReads == 2 && _listReady(tester),
+        );
+        final list = tester.widget<MailMessageList>(
+          find.byType(MailMessageList),
+        );
+        expect(list.items, hasLength(2));
+        expect(list.items.first.isFlagged, isTrue);
+        expect(list.items.first.isRead, isFalse);
+        expect(list.selectedId, listBefore.selectedId);
+        expect(
+          tester
+              .widget<MailMessageView>(find.byType(MailMessageView))
+              .controller,
+          same(reader),
+        );
+        final retained = (await awaitOutboxOperation(
+          tester,
+          cache.loadView(saved.mailbox.id),
+        ))!;
+        expect(
+          retained.headers.first.flags,
+          const MailMessageFlags(isFlagged: true, isAnswered: true),
+        );
+        expect(retained.headers.last.flags, isNull);
+        expect(tester.takeException(), isNull);
+      },
+    );
+
+    testWidgets(
+      '${kind.name} unchanged repository revision preserves newer foreground flag',
+      (tester) async {
+        final harness = await _fixture(tester, kind);
+        harness.paginate = true;
+        await _showHost(tester, harness);
+        final list = tester.widget<MailMessageList>(
+          find.byType(MailMessageList),
+        );
+        list.onBulkAction!(MailBulkFlagAction.flag, [list.items.first.id]);
+        await _until(
+          tester,
+          () => harness.provider!.commands.isNotEmpty && _listReady(tester),
+        );
+        expect(
+          tester
+              .widget<MailMessageList>(find.byType(MailMessageList))
+              .items
+              .first
+              .isFlagged,
+          isTrue,
+        );
+        final sourceRemote = harness.provider!
+            .header(2, folder: kind == MailProviderKind.imap ? 'INBOX' : null)
+            .remote;
+        expect(harness.provider!.commands.single.message, sourceRemote);
+        // This custom owner has no journal; an unrelated draft commit must not
+        // overwrite the newer confirmed flag with the unchanged cached value.
+        await awaitOutboxOperation(
+          tester,
+          harness.stores.owners.single.save(
+            StudioMailDraft(
+              to: '',
+              subject: 'Unrelated draft',
+              body: 'Keep flag',
+            ),
+            submissionUncertain: false,
+          ),
+        );
+        await tester.pump(const Duration(milliseconds: 100));
+        await tester.runAsync(() => Future<void>.delayed(Duration.zero));
+        await tester.pump(const Duration(milliseconds: 100));
+        expect(
+          tester
+              .widget<MailMessageList>(find.byType(MailMessageList))
+              .items
+              .first
+              .isFlagged,
+          isTrue,
+        );
+        tester
+            .widget<MailMessageList>(find.byType(MailMessageList))
+            .onLoadMore!();
+        await _until(
+          tester,
+          () => harness.provider!.headerReads == 2 && _listReady(tester),
+        );
+        expect(
+          tester
+              .widget<MailMessageList>(find.byType(MailMessageList))
+              .items
+              .first
+              .isFlagged,
+          isTrue,
+        );
+        final cache = harness.stores.owners.single.mailboxStore;
+        final folders = await awaitOutboxOperation(tester, cache.listViews());
+        final retained = (await awaitOutboxOperation(
+          tester,
+          cache.loadView(folders.single.mailbox.id),
+        ))!;
+        expect(retained.headers.first.flags!.isFlagged, isTrue);
+        expect(tester.takeException(), isNull);
+      },
+    );
+
+    testWidgets(
+      '${kind.name} repository flags preserve live reader and provider identities',
+      (tester) async {
+        final harness = await _fixture(tester, kind);
+        await _showHost(tester, harness);
+        await _tapMessage(tester, 'Message two');
+        await _until(tester, () => _listReady(tester));
+        final before = tester.widget<MailMessageList>(
+          find.byType(MailMessageList),
+        );
+        final originalIds = before.items.map((item) => item.id).toList();
+        final selectedId = before.selectedId;
+        final reader = tester
+            .widget<MailMessageView>(find.byType(MailMessageView))
+            .controller;
+        final cache = harness.stores.owners.single.mailboxStore;
+        final summaries = await awaitOutboxOperation(tester, cache.listViews());
+        final saved = (await awaitOutboxOperation(
+          tester,
+          cache.loadView(summaries.single.mailbox.id),
+        ))!;
+        final session = MailAccountSession(cache.account);
+        addTearDown(session.dispose);
+        await awaitOutboxOperation(
+          tester,
+          cache.saveView(
+            saved.mailbox,
+            [
+              for (final header in saved.headers)
+                MailHeaderRecord(
+                  id: header.id,
+                  remote: header.remote,
+                  envelope: header.envelope,
+                  flags: header.envelope.subject == 'Message two'
+                      ? const MailMessageFlags(isRead: false, isFlagged: true)
+                      : header.flags,
+                ),
+            ],
+            hasMore: saved.hasMore,
+            lease: session.begin(),
+          ),
+        );
+        await _until(tester, () {
+          final list = tester.widget<MailMessageList>(
+            find.byType(MailMessageList),
+          );
+          return list.items.first.isFlagged == true &&
+              list.items.first.isRead == false;
+        });
+        final projected = tester.widget<MailMessageList>(
+          find.byType(MailMessageList),
+        );
+        expect(projected.items.map((item) => item.id), originalIds);
+        expect(projected.selectedId, selectedId);
+        expect(
+          tester
+              .widget<MailMessageView>(find.byType(MailMessageView))
+              .controller,
+          same(reader),
+        );
+        expect(harness.provider!.headerReads, 1);
+        expect(harness.provider!.bodyReads, 1);
+        final sourceRemote = harness.provider!
+            .header(2, folder: kind == MailProviderKind.imap ? 'INBOX' : null)
+            .remote;
+        expect(harness.provider!.fetchedIdentities.single, sourceRemote);
+
+        // Losing the cache keeps the verified online window and reader usable.
+        await awaitOutboxOperation(tester, cache.clearCache());
+        await _until(
+          tester,
+          () => find.text(_strings.mailCacheSaveFailed).evaluate().isNotEmpty,
+        );
+        expect(
+          tester.widget<MailMessageList>(find.byType(MailMessageList)).items,
+          hasLength(2),
+        );
+        expect(
+          tester
+              .widget<MailMessageView>(find.byType(MailMessageView))
+              .controller,
+          same(reader),
+        );
+        await _tapMessage(tester, 'Message two');
+        await _until(tester, () => _listReady(tester));
+        expect(harness.provider!.bodyReads, 2);
+        expect(harness.provider!.fetchedIdentities, [
+          sourceRemote,
+          sourceRemote,
+        ]);
+        expect(tester.takeException(), isNull);
+      },
+    );
+
+    testWidgets(
+      '${kind.name} awaits repository cancellation before refresh and owner close',
+      (tester) async {
+        final harness = await _fixture(tester, kind);
+        harness.stores.observeWatches = true;
+        await _showHost(tester, harness);
+        final owner = harness.stores.owners.single;
+        final probe = owner.watchProbe!;
+        expect(probe.watches, 1);
+        final gate = probe.cancelGate = Completer<void>();
+        final before = harness.provider!.headerReads;
+        await tester.tap(find.byTooltip(_strings.refresh));
+        await _until(tester, () => probe.cancellations == 1);
+        expect(harness.provider!.headerReads, before);
+        expect(probe.completedCancellations, 0);
+        expect(owner.closed, isFalse);
+        gate.complete();
+        await _until(
+          tester,
+          () => harness.provider!.headerReads > before && _listReady(tester),
+        );
+        expect(probe.watches, 2);
+        expect(probe.completedCancellations, 1);
+
+        final closeGate = probe.cancelGate = Completer<void>();
+        await tester.tap(find.byTooltip(_strings.disconnect));
+        await _until(tester, () => probe.cancellations == 2);
+        expect(owner.closed, isFalse);
+        expect(probe.completedCancellations, 1);
+        closeGate.complete();
+        await _until(tester, () => owner.closed);
+        expect(probe.completedCancellations, 2);
+        expect(find.byType(MailMessageView), findsNothing);
+        expect(tester.takeException(), isNull);
+      },
+    );
+
     testWidgets(
       '${kind.name} persists visited headers and explicitly opened bytes across native close/reopen',
       (tester) async {

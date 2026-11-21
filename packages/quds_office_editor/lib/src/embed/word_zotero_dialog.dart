@@ -1318,7 +1318,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
       if (items != null) _selected.clear();
       setState(
         () => _notice = result.hasExportedDocument
-            ? 'The document is prepared for Zotero transfer. Save a copy as DOCX, open it in the destination word processor, and use Zotero Refresh to restore active citations. You can undo this operation.'
+            ? 'The document is prepared for Zotero transfer. Save a copy as DOCX for Word or ODT for LibreOffice, open it in the destination word processor, and use Zotero Refresh to restore active citations. You can undo this operation.'
             : result.hasImportedDocument
             ? 'Zotero restored and formatted the transferred references. Save the document to keep the active fields. You can undo the complete import.'
             : 'Zotero updated the document using its selected style. You can undo the complete operation.',
@@ -1412,7 +1412,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
               ),
               Tooltip(
                 message:
-                    'Convert active citations to Zotero transfer links, then save a DOCX copy for another word processor. Zotero Refresh restores the active fields in the destination.',
+                    'Convert active citations to Zotero transfer links, then save a DOCX copy for Word or an ODT copy for LibreOffice. Zotero Refresh restores the active fields in the destination.',
                 child: OutlinedButton(
                   key: const ValueKey('zotero-export-document'),
                   onPressed: _busy || !_canEdit || _isTransferDocument

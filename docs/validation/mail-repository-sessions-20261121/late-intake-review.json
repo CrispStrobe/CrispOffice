@@ -1,0 +1,279 @@
+{
+  "schema_version": 1,
+  "observed_cutoff_utc": "2026-11-21T06:03:26.415841+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "captured_remote_main": "84046975f286407e3c62e5e5352bc16bc89c0d26",
+  "our_committed_head": "6ec90c8a3acdc8fb5878f1decef0131e478e6b1d",
+  "scope": "Frozen review of four remote branch snapshots observed during Mail implementation. Later remote advancement is outside this intake cutoff.",
+  "recommended_merge_order": [
+    "1460876e70fcf3da49644e232e9942b7ee042d8d",
+    "a250152abef9ccb38c73ea1a319c2ef27dea400b",
+    "3da241d5f1f3e43d7be47f00bcf7fbe62bd8272b",
+    "5fcdb2db947f39f860fedf3dbcc16a394313e419"
+  ],
+  "branches": [
+    {
+      "branch": "perf/keystroke-trace-20261121",
+      "head": "1460876e70fcf3da49644e232e9942b7ee042d8d",
+      "readiness": "Small coherent follow-up; local syntax/fixture gate required.",
+      "summary": "Focus the profile harness and assert real layout work; pair GC begin/end trace events and separate NotifyIdle.",
+      "minimal_local_gates": [
+        "Python syntax check and synthetic report fixture covering complete GC events, matched begin/end, nested same-name events and NotifyIdle exclusion.",
+        "Analyze typing_profile_test.dart. Do not claim actual profile-device timing unless that integration harness runs on a target."
+      ],
+      "limitations": [
+        "No performance measurement is implied by merging instrumentation."
+      ],
+      "merge_base": "2cd11ced136a30354169fd0043e002079bcabfa3",
+      "new_commits": [
+        "1460876e70fcf3da49644e232e9942b7ee042d8d Keystroke trace: focus the editor in the profile harness, pair GC begin/end events"
+      ],
+      "changed_paths": [
+        "packages/quds_office_editor/example/integration_test/typing_profile_test.dart",
+        "tool/perf/keystroke_trace_report.py"
+      ],
+      "delta_stat": "2 files changed, 33 insertions(+), 7 deletions(-)",
+      "changed_path_blob_ids": {
+        "packages/quds_office_editor/example/integration_test/typing_profile_test.dart": "512da09eb72d6e4858e9fcd3d95597948fc79953",
+        "tool/perf/keystroke_trace_report.py": "d02422d55b5200a0c74084192ae14ecb47daf07b"
+      },
+      "pending_mail_worktree_path_overlap": [],
+      "merge_simulation": {
+        "base_head": "6ec90c8a3acdc8fb5878f1decef0131e478e6b1d",
+        "exit_code": 0,
+        "output": "81b1da683f489850ee23912de4b9a7aa9d11c328",
+        "stderr": "",
+        "worktree_or_refs_modified": false
+      },
+      "implementation_placeholder_scan": "No newly added TODO/FIXME/Unimplemented implementation stubs identified; protocol placeholders and explicit unsupported-content guards are real domain behavior."
+    },
+    {
+      "branch": "codex/word-vba-sections-20261121",
+      "head": "a250152abef9ccb38c73ea1a319c2ef27dea400b",
+      "supersedes_observed_head": "e44710e6c06436da7541449aecf683de8554cd1c",
+      "readiness": "Coherent implementation and substantial tests; this snapshot lacks final local qualification receipts. Qualify before main.",
+      "summary": "Word VBA section orientation/start controls, precision guards, compiler mappings, native transactional operations, example and portable smoke harness. Includes the Mail c375becb checkpoint by ancestry.",
+      "minimal_local_gates": [
+        "Engine strict analysis of lib/src/automation plus changed tests/tool/macros.",
+        "Native tests: office_macro_word_orientation_test, office_macro_word_section_start_test, office_vba_word_sections_test, office_vba_word_sections_integration_test, office_vba_word_page_setup_test, office_vba_word_page_setup_integration_test, word_section_clone_fidelity_test and word_structure_integrity_test.",
+        "Run actual word_sections.bas and word_page_setup.bas through supplied VM and compiled-JavaScript smoke harnesses; compare outputs (reproduce.py documents the defines)."
+      ],
+      "limitations": [
+        "The committed reproduce.py is a qualification recipe, not evidence of a run at this head."
+      ],
+      "merge_base": "c375becb51939dcca5c145bf1bcdb14a4febe041",
+      "new_commits": [
+        "a250152abef9ccb38c73ea1a319c2ef27dea400b Retain reproducible local gates and portable section precision cases [skip ci]",
+        "e44710e6c06436da7541449aecf683de8554cd1c Merge current Mail streams and document-layout recovery [skip ci]",
+        "9ec3308fc56b31e74ea2d1e4368da4a66a7ccd89 Qualify Word section controls and guard orientation precision [skip ci]",
+        "104788e9c6149bddf26a40fa5f1f4e463d7ba994 Extend Word VBA with section orientation and start controls [skip ci]",
+        "ccf42cc2d09ee56466413ba7b6bcde681f6081d0 Reconcile current fork branches and PRs before Word section macros [skip ci]"
+      ],
+      "changed_paths": [
+        "README.md",
+        "docs/MACROS.md",
+        "docs/VBA_PARITY_ROADMAP.md",
+        "docs/VBA_WORD_MACROS.md",
+        "docs/validation/word-vba-sections-20261121/intake-inventory.json",
+        "docs/validation/word-vba-sections-20261121/intake.md",
+        "docs/validation/word-vba-sections-20261121/late-intake.json",
+        "docs/validation/word-vba-sections-20261121/late-intake.md",
+        "docs/validation/word-vba-sections-20261121/reproduce.py",
+        "packages/quds_office_engine/CHANGELOG.md",
+        "packages/quds_office_engine/example/macros/word_sections.bas",
+        "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+        "packages/quds_office_engine/lib/src/automation/operations/word_page_setup_steps.dart",
+        "packages/quds_office_engine/lib/src/automation/operations/word_section_start_steps.dart",
+        "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+        "packages/quds_office_engine/test/office_macro_word_orientation_test.dart",
+        "packages/quds_office_engine/test/office_macro_word_section_start_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_page_setup_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_page_setup_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_sections_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_sections_test.dart",
+        "packages/quds_office_engine/tool/macros/web_vba_word_sections_smoke.dart"
+      ],
+      "delta_stat": "22 files changed, 5550 insertions(+), 64 deletions(-)",
+      "changed_path_blob_ids": {
+        "README.md": "8b5be921e10eff8b5cbd38400a92fc076c536f51",
+        "docs/MACROS.md": "efa2fd1ef4ec319c9658599af32694a61f73536b",
+        "docs/VBA_PARITY_ROADMAP.md": "35e7a0650965da847354d593c7ca45bebc0922b6",
+        "docs/VBA_WORD_MACROS.md": "4023ea6673e7f064f8cd8b3c0628c3fa324fcb8e",
+        "docs/validation/word-vba-sections-20261121/intake-inventory.json": "7088fbedbad9ff9bae1ee110ece800fa3c579d1c",
+        "docs/validation/word-vba-sections-20261121/intake.md": "67663c88024c317d6759703c12fec832f5a98fbe",
+        "docs/validation/word-vba-sections-20261121/late-intake.json": "ea5d9ec1ff391efbefc784046fd5424e7e2544cf",
+        "docs/validation/word-vba-sections-20261121/late-intake.md": "b0a5db0cde18fe382b4ac99abf2c9d2bdcc03cb6",
+        "docs/validation/word-vba-sections-20261121/reproduce.py": "1048fcda1e9551ff8f5dcc42ed22fc53a81f1343",
+        "packages/quds_office_engine/CHANGELOG.md": "e6391824667f9cdb963846f77ea666e0b0413c94",
+        "packages/quds_office_engine/example/macros/word_sections.bas": "0098b77ac45b0bf4c0ab399f5a241910bb172a54",
+        "packages/quds_office_engine/lib/src/automation/office_vba_language.dart": "cc4a841cfe52a9a4c466eda6b7e24035b2223297",
+        "packages/quds_office_engine/lib/src/automation/operations/word_page_setup_steps.dart": "1c8e32078961ea1f42f5812a715816b0d1f563c5",
+        "packages/quds_office_engine/lib/src/automation/operations/word_section_start_steps.dart": "b282c3445241abd52e72793064f76227c70ab770",
+        "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart": "b056d53b64eb455f208bb0c99fcce5b9dff90140",
+        "packages/quds_office_engine/test/office_macro_word_orientation_test.dart": "32ba840562a27ea6f01cd81a9743517915b51d28",
+        "packages/quds_office_engine/test/office_macro_word_section_start_test.dart": "554354b57d3a21e742d9210f9b5d18cc95731bb1",
+        "packages/quds_office_engine/test/office_vba_word_page_setup_integration_test.dart": "7085801411a6eaa5b2141657cc0be429866454f9",
+        "packages/quds_office_engine/test/office_vba_word_page_setup_test.dart": "65141d935f9edb506ae01c0863a75192b1c8995c",
+        "packages/quds_office_engine/test/office_vba_word_sections_integration_test.dart": "6162c61c8c90204c950f40efd1e37b72dee06f42",
+        "packages/quds_office_engine/test/office_vba_word_sections_test.dart": "489dbabdfcd127138c8b29b5635474ffb060005c",
+        "packages/quds_office_engine/tool/macros/web_vba_word_sections_smoke.dart": "9a719791a78ac577b071cc8467cc6e8181ac7ccd"
+      },
+      "pending_mail_worktree_path_overlap": [],
+      "merge_simulation": {
+        "base_head": "6ec90c8a3acdc8fb5878f1decef0131e478e6b1d",
+        "exit_code": 0,
+        "output": "1a00deb1462e7de34c649d6beef93887b98ca139",
+        "stderr": "",
+        "worktree_or_refs_modified": false
+      },
+      "implementation_placeholder_scan": "No newly added TODO/FIXME/Unimplemented implementation stubs identified; protocol placeholders and explicit unsupported-content guards are real domain behavior."
+    },
+    {
+      "branch": "codex/zotero-transfer-20261121",
+      "head": "3da241d5f1f3e43d7be47f00bcf7fbe62bd8272b",
+      "readiness": "Implementation checkpoint now includes model/editor integration and tests. Qualification is explicitly in progress; run focused gates before main.",
+      "summary": "Staged Zotero document export/import, carrier model, native field restoration, editor controls and undo/identity preservation. Restores original placeholder callback after tracing upstream caller.",
+      "minimal_local_gates": [
+        "Strict engine/editor analysis including exhaustive Zotero command switches.",
+        "Engine tests: word_zotero_transfer_session_test, zotero_transfer_protocol_test, word_zotero_citing_test, zotero_citing_test, zotero_add_note_protocol_test, word_zotero_add_note_test and word_zotero_document_data_test.",
+        "Editor tests: word_zotero_transfer_controller_test, word_zotero_transfer_dialog_test, word_zotero_citing_controller_test, word_zotero_citing_dialog_test and word_zotero_add_note_controller_test."
+      ],
+      "limitations": [
+        "Branch README still states model/editor/interoperability qualification is in progress.",
+        "Installed Word/LibreOffice/Zotero interoperability and direct native ODT reference-mark import remain separate.",
+        "Prior fb692a7f non-exhaustive command-switch issue is fixed in this snapshot; the speculative placeholder contract change is removed."
+      ],
+      "merge_base": "2cd11ced136a30354169fd0043e002079bcabfa3",
+      "new_commits": [
+        "3da241d5f1f3e43d7be47f00bcf7fbe62bd8272b Implement staged Zotero document transfer and native editor workflows [skip ci]",
+        "fb692a7fdee8020470eb772f7bb0adc4fa28545e Add Zotero transfer protocol and correct research-note callback contract [skip ci]",
+        "48411168cd33045bd6de807ab145e2b2eba9de37 Integrate recent keystroke tracing and document layout before Zotero transfer [skip ci]"
+      ],
+      "changed_paths": [
+        "docs/validation/zotero-transfer-20261121/README.md",
+        "docs/validation/zotero-transfer-20261121/intake/audit.json",
+        "docs/validation/zotero-transfer-20261121/intake/audit_intake.py",
+        "docs/validation/zotero-transfer-20261121/intake/fork-refs.tsv",
+        "docs/validation/zotero-transfer-20261121/intake/historical-equivalents.json",
+        "docs/validation/zotero-transfer-20261121/intake/incoming-review.json",
+        "docs/validation/zotero-transfer-20261121/intake/open-pull-requests.json",
+        "docs/validation/zotero-transfer-20261121/intake/post-integration-audit.json",
+        "docs/validation/zotero-transfer-20261121/intake/snapshot.json",
+        "docs/validation/zotero-transfer-20261121/intake/upstream-refs.tsv",
+        "docs/validation/zotero-transfer-20261121/upstream-sources.json",
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+        "packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+        "packages/quds_office_editor/test/word_zotero_transfer_dialog_test.dart",
+        "packages/quds_office_engine/lib/quds_office_engine.dart",
+        "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+        "packages/quds_office_engine/lib/src/word/model/word_zotero_data.dart",
+        "packages/quds_office_engine/lib/src/word/model/word_zotero_transfer.dart",
+        "packages/quds_office_engine/lib/src/zotero/zotero_citing.dart",
+        "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+        "packages/quds_office_engine/test/word_zotero_transfer_session_test.dart",
+        "packages/quds_office_engine/test/zotero_citing_test.dart",
+        "packages/quds_office_engine/test/zotero_transfer_protocol_test.dart"
+      ],
+      "delta_stat": "24 files changed, 10385 insertions(+), 40 deletions(-)",
+      "changed_path_blob_ids": {
+        "docs/validation/zotero-transfer-20261121/README.md": "ec509b3ed21152fa23828f7281efbe2c04becea0",
+        "docs/validation/zotero-transfer-20261121/intake/audit.json": "4430e87f9de0174bec27317e896d0a315ea553e5",
+        "docs/validation/zotero-transfer-20261121/intake/audit_intake.py": "32d2889cd6e004e7f6c96cea9af0424fb02104c9",
+        "docs/validation/zotero-transfer-20261121/intake/fork-refs.tsv": "9af2a11bbe28ad505349b6816afd379acecf6c0c",
+        "docs/validation/zotero-transfer-20261121/intake/historical-equivalents.json": "44a5d3f58e171b68e92f84b06614b93e62eaa0a7",
+        "docs/validation/zotero-transfer-20261121/intake/incoming-review.json": "7d100b3935b8533fcfa650c7b59460ae710a96ef",
+        "docs/validation/zotero-transfer-20261121/intake/open-pull-requests.json": "4d079a5a8068b627a4265214d2e875bdda109994",
+        "docs/validation/zotero-transfer-20261121/intake/post-integration-audit.json": "b513d6840055e2eba03e6c6b95cfecbb2823181a",
+        "docs/validation/zotero-transfer-20261121/intake/snapshot.json": "949343acd123390f7ed63aa018c75d1d7a217b7c",
+        "docs/validation/zotero-transfer-20261121/intake/upstream-refs.tsv": "37fe987db91c27a3d43b35c9c93797051b34278b",
+        "docs/validation/zotero-transfer-20261121/upstream-sources.json": "91336c5aeffc3b372baa672773bbb2efb1e36b47",
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart": "986065272a644cf7ec5b785f8d1a3e2af7307a8c",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart": "87866f7b87bdc4a2f1247be0a561575e41ce69df",
+        "packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart": "b49478b35731165eb5326cdbe4f2b51f2b7b6f90",
+        "packages/quds_office_editor/test/word_zotero_transfer_dialog_test.dart": "131e1387d7d4846d23a3f6cc99a63ded87661d60",
+        "packages/quds_office_engine/lib/quds_office_engine.dart": "15064c01bc9ae1f548e6bfc42f8773c57070b14e",
+        "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart": "33bce7f5d57fe29171bca71f7510fda9ce81ab3d",
+        "packages/quds_office_engine/lib/src/word/model/word_zotero_data.dart": "d5d41658d146811be71cb2158f0a7bd8e618b030",
+        "packages/quds_office_engine/lib/src/word/model/word_zotero_transfer.dart": "459b9c47a9c2192bca118a067dba09009641124d",
+        "packages/quds_office_engine/lib/src/zotero/zotero_citing.dart": "9fa151174306344dd8b22cbfdc0437b47c0acb0c",
+        "packages/quds_office_engine/test/word_zotero_citing_test.dart": "c563d8686fbff396c4c5160786df79142a59991b",
+        "packages/quds_office_engine/test/word_zotero_transfer_session_test.dart": "871c1551084a81ed9f4d571c59229b2ba40218ef",
+        "packages/quds_office_engine/test/zotero_citing_test.dart": "d0a19607eae8d80b0d177a769cebbcfa358cc7cc",
+        "packages/quds_office_engine/test/zotero_transfer_protocol_test.dart": "12645b631ef225e5d30761920f9c890eb3366210"
+      },
+      "pending_mail_worktree_path_overlap": [],
+      "merge_simulation": {
+        "base_head": "6ec90c8a3acdc8fb5878f1decef0131e478e6b1d",
+        "exit_code": 0,
+        "output": "6153d7e46298b23087358a2a60326d8ea183d07d",
+        "stderr": "",
+        "worktree_or_refs_modified": false
+      },
+      "implementation_placeholder_scan": "No newly added TODO/FIXME/Unimplemented implementation stubs identified; protocol placeholders and explicit unsupported-content guards are real domain behavior."
+    },
+    {
+      "branch": "feat/proofing-scheduling-20261121",
+      "head": "5fcdb2db947f39f860fedf3dbcc16a394313e419",
+      "readiness": "Three explicit WIP commits, but complete scheduler/settings/test paths are present and no implementation TODO or Unimplemented stub was found. Broad semantic change needs local qualification and documentation completion before main.",
+      "summary": "Provider-category scheduling, word/sentence completion checks, pause/idle work, visible-paragraph prioritization, persisted Studio settings and expanded scheduler tests.",
+      "minimal_local_gates": [
+        "Strict editor, engine proofing, Hunspell and Studio settings analysis.",
+        "Editor tests: word_typing_proofing_schedule_test, word_proofing_session_test, word_incremental_proofing_test, word_proofing_capture_cache_test, word_proofing_priority_test, word_manual_proofing_test, word_draft_proofing_test and platform_spelling_provider_test.",
+        "Studio example test: studio_settings_test. Engine: proofing/office_proofing_test, proofing/office_proofing_merge_test and proofing/german_spelling_test. Hunspell: hunspell_provider_test.",
+        "Add the referenced docs/proofing/scheduling.md or correct the source link; record the new public scheduling/provider-category APIs in appropriate package changelogs."
+      ],
+      "limitations": [
+        "No new qualification receipt or changelog entry exists in these WIP commits.",
+        "word_proofing.dart cites docs/proofing/scheduling.md, which is absent at the pinned head.",
+        "About 924 changed lines in the scheduler plus settings/provider changes warrant existing manual/draft/cache regression coverage."
+      ],
+      "merge_base": "84046975f286407e3c62e5e5352bc16bc89c0d26",
+      "new_commits": [
+        "5fcdb2db947f39f860fedf3dbcc16a394313e419 WIP: Studio proofing schedule settings and tests [skip ci]",
+        "9ee43c10535fe56874610b47b0634d8f264f95a0 WIP: schedule tests for word/sentence/pause/background rules [skip ci]",
+        "0b6b44a631ddceb52dc7ec0dfbdd7143ee1c3d1e WIP: proofing scheduler on word/sentence completion, pause and idle [skip ci]"
+      ],
+      "changed_paths": [
+        "packages/quds_office_editor/example/lib/studio_settings.dart",
+        "packages/quds_office_editor/example/lib/suite_workspace.dart",
+        "packages/quds_office_editor/example/lib/suite_workspace_settings.dart",
+        "packages/quds_office_editor/example/test/studio_settings_test.dart",
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "packages/quds_office_editor/lib/src/proofing/platform_spelling_provider.dart",
+        "packages/quds_office_editor/lib/src/proofing/word_proofing.dart",
+        "packages/quds_office_editor/test/word_typing_proofing_schedule_test.dart",
+        "packages/quds_office_engine/lib/src/proofing/german_spelling.dart",
+        "packages/quds_office_engine/lib/src/proofing/office_proofing.dart",
+        "packages/quds_proofing_hunspell/lib/src/hunspell_provider.dart"
+      ],
+      "delta_stat": "11 files changed, 1709 insertions(+), 326 deletions(-)",
+      "changed_path_blob_ids": {
+        "packages/quds_office_editor/example/lib/studio_settings.dart": "c3e7aad9f448286c184a3e740d82ce787984457d",
+        "packages/quds_office_editor/example/lib/suite_workspace.dart": "f0a0be6bf767c261d3fedd7b6caf555e2993cca0",
+        "packages/quds_office_editor/example/lib/suite_workspace_settings.dart": "7e534cebb57fcd705648a7d1e5922e5420abe554",
+        "packages/quds_office_editor/example/test/studio_settings_test.dart": "058ba1b52b4297d8a956ef40c8c3649c1e45592b",
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart": "0dec1b4dfc79f9e8fc468805185960970a9a8b93",
+        "packages/quds_office_editor/lib/src/proofing/platform_spelling_provider.dart": "3de028dc03febc62eab5e0c3af06eabd5ad39f3e",
+        "packages/quds_office_editor/lib/src/proofing/word_proofing.dart": "b608d4a95769eebe622a3489dbd8031e7274b0f1",
+        "packages/quds_office_editor/test/word_typing_proofing_schedule_test.dart": "3b3f80e89a7445fcb275be638b3fe0b4b5c3a8b2",
+        "packages/quds_office_engine/lib/src/proofing/german_spelling.dart": "5769c6e54dd72a21fb032973c1e86f887af8e798",
+        "packages/quds_office_engine/lib/src/proofing/office_proofing.dart": "2a117e23e93815d4e8cb7f999ac4b11786654367",
+        "packages/quds_proofing_hunspell/lib/src/hunspell_provider.dart": "59b3f63f7989f24bc156fd83a1e762d1fcd4638c"
+      },
+      "pending_mail_worktree_path_overlap": [],
+      "merge_simulation": {
+        "base_head": "6ec90c8a3acdc8fb5878f1decef0131e478e6b1d",
+        "exit_code": 0,
+        "output": "699a598b98520efaaf9f57000200e450ba0acbed",
+        "stderr": "",
+        "worktree_or_refs_modified": false
+      },
+      "implementation_placeholder_scan": "No newly added TODO/FIXME/Unimplemented implementation stubs identified; protocol placeholders and explicit unsupported-content guards are real domain behavior."
+    }
+  ],
+  "combined_overlap_review": "Zotero and proofing both touch office_controller.dart at separate functional locations. Their pairwise merge-tree simulation exited 0 with no conflicts; simulated tree e0817afdcb23ebf06876e9f573afa6de3a757dca. Retain the existing c375becb replacement-layout retry correction.",
+  "tests_executed_by_this_review": false,
+  "github_actions": "Not queried or awaited.",
+  "review_boundary": "Textual mergeability and source review do not establish behavioral qualification. Save Mail UI before merges; use these exact hashes and run targeted gates locally. No branch deletion, reset, force-push or ref mutation was performed."
+}

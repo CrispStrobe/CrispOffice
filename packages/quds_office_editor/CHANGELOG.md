@@ -4,6 +4,30 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Add **Prepare document for transfer…** to the native Zotero workspace and
+  recognize incoming transfer documents through **Import transferred references…**
+  and Refresh. Preserve one undo/redo transaction, cancellation, source-identity
+  and stale-result guards; keep carriers inactive and prevent citation editing
+  until import completes. Explain the DOCX/Word and ODT/LibreOffice save-copy
+  workflow and retain original document preferences when undoing an import.
+  Installed Word/LibreOffice/Zotero interoperability remains a separate gate.
+
+- Add `WordProofingMode`, `WordProofingSchedule` and live session scheduling
+  controls for completed-word spelling, sentence/pause grammar and idle
+  document checks. Prioritize visible paragraphs in background passes, keep
+  incomplete words' findings hidden while typing, preserve independent
+  provider-group coverage and retain explicit checks in manual mode. Persist
+  Studio's mode, provider-group, pause, background and visibility preferences;
+  see the [scheduling contract](../../docs/proofing/scheduling.md).
+
+- Observe saved mailbox views from native IMAP, EWS, Gmail and Microsoft 365
+  sessions while preserving original provider action identities. Keep cached
+  folders, read/star flags and saved-view unread counts current with repository
+  transactions; retain selected readers on metadata changes, reject stale
+  folder/account events and drain subscriptions before releasing local storage.
+- Preserve retry state after a failed deferred Word document layout, so the
+  next layout read cannot silently return the previous document's pages.
+
 - Let Zotero Add Note and Add Annotation replace ordinary text spanning several
   paragraphs in one body section, footnote or endnote. Map both Notes-pane
   selection endpoints, retain one undo/redo step and original selection direction,

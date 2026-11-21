@@ -1,5 +1,24 @@
 # Mail implementation status — 21 November 2026
 
+## Repository-observed foreground and cached sessions
+
+The [repository session continuation](repository-sessions.md) adds bounded
+post-commit folder/catalog streams and a provider-neutral selected-folder
+lifecycle. Native IMAP, EWS, Gmail and Microsoft 365 observe the successfully
+saved current window while preserving exact provider-owned action identities.
+Cached mail follows durable view changes and displays saved-view unread/unknown
+counts in English, German and Arabic. Metadata updates preserve the selected
+reader; account/folder changes and close reject stale completions and drain
+subscriptions before the shared owner closes.
+
+Failures retain the last valid saved view with an error; connected online
+fallback remains explicit when persistence or observation fails. This advances
+the repository session boundary but does not provide authoritative/background
+synchronization, a unified inbox, account-wide search or the complete shared
+`QudsMailWorkspace`. See the
+[local qualification record](../../validation/mail-repository-sessions-20261121/README.md)
+for actual source checkpoints and checks without waiting for GitHub Actions.
+
 ## Explicit recovery of uncertain read and flag actions
 
 Connected **Mail activity** now offers **Check current status** for completed

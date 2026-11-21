@@ -44,6 +44,10 @@ final class _CountingProvider extends OfficeProofingProvider {
   @override
   bool supportsLanguage(String language) => inner.supportsLanguage(language);
 
+  /// Forwards the wrapped provider's categories (they decide when it runs).
+  @override
+  Set<OfficeProofingCategory> get categories => inner.categories;
+
   @override
   Future<OfficeProofingResult> check(OfficeProofingRequest request) async {
     stats.providerCalls++;
@@ -315,6 +319,10 @@ void main() {
       controller.proofing.addListener(onSession);
       controller.addListener(onController);
       final providerCallsBefore = stats.providerCalls;
+      // Every pass the session starts, including checks of the typed text
+      // that never publish a "checking" state (the listener above misses
+      // those); compiles against older revisions too.
+      final sessionPassesBefore = controller.proofing.passCount;
       final detectorTextsBefore = stats.detectorTexts;
       final detectorCallsBefore = stats.detectorCalls;
       final providerMicrosBefore = stats.providerMicros;
@@ -419,7 +427,17 @@ void main() {
         'backgroundMsPerGap': _distribution(background),
         'jankyKeystrokeFrames': janky,
         'proofingPasses': stats.passes,
+        'sessionPasses': controller.proofing.passCount - sessionPassesBefore,
         'providerCalls': stats.providerCalls - providerCallsBefore,
+        'perKeystroke': {
+          'providerCalls':
+              (stats.providerCalls - providerCallsBefore) / script.length,
+          'passes':
+              (controller.proofing.passCount - sessionPassesBefore) /
+              script.length,
+          'statusLabelChanges': stats.labels.length / script.length,
+          'sessionNotifications': stats.sessionNotifications / script.length,
+        },
         'providerMs': (stats.providerMicros - providerMicrosBefore) / 1000,
         'detectorCalls': stats.detectorCalls - detectorCallsBefore,
         'detectorTexts': stats.detectorTexts - detectorTextsBefore,

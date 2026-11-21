@@ -11,13 +11,32 @@ Qualified code checkpoint: `47660815c429e15aa280005dc6d76bb36c53eca4`
 
 Qualified tree: `82d40c175d7aafb588dcb0f241c876fe5233dd73`
 
-Subsequent publication commits add only evidence and documentation. The exact
+Subsequent section-branch publication commits add only evidence and documentation. The exact
 command list, JSON test events, stdout/stderr, dependency identities and before/after
 source hashes are retained in [the evidence archive](local-qualification-evidence.tar.gz).
 [acceptance-summary.json](acceptance-summary.json),
 [qualification.json](qualification.json) and
 [source-applicability.json](source-applicability.json) give machine-readable
 results and source binding.
+
+## Mail integration provenance
+
+The section acceptance above is bound to its stated checkpoint and captured
+inputs. The later Mail integration retains that complete record and adds its
+own [incoming Word receipt](../mail-repository-sessions-20261121/incoming-word.json):
+294 passing native section tests, strict analysis and byte-identical VM/JavaScript
+outputs for both actual BAS examples, plus 70 passing layout-equivalence cases
+and eight expected image-only fixture skips. Its `incoming-word.tar.xz` retains
+exact commands, logs and source/runtime identities, including the replacement-
+layout retry regressions.
+
+Merging the section publication at main `e1ebcb0cd65716a2a78d2ea1114d9ee37a3017ec`
+into the frozen Mail source changes only validation documentation and evidence.
+Product source, tests, tools outside validation documentation, package manifests
+and dependency locks remain byte-identical to the Mail source checkpoint
+`721ad2c74a5d81d54c2eaa2af084e82ba5077991`. Later Zotero/proofing changes use their
+own source-bound receipts; the section branch's earlier broad test count is not
+being relabeled as a run against those later inputs.
 
 ## Delivered behavior
 

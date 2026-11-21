@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "result": "passed",
+  "scope": "Focused local qualification of pinned Zotero transfer and proofing scheduling branches after clean union with Mail, sections and performance work.",
+  "tests": {
+    "passed": 649,
+    "failed": 0,
+    "skipped": 0,
+    "cohorts": {
+      "zotero-engine": 237,
+      "zotero-editor": 182,
+      "proofing-editor": 139,
+      "proofing-settings": 21,
+      "proofing-engine": 59,
+      "hunspell-provider": 11
+    }
+  },
+  "targeted_analysis_groups_passed": 5,
+  "all_selected_gates_used_identical_source_trees": true,
+  "source_tree_hash_algorithm": "SHA256 sorted(relative_path + NUL + file_sha256 + LF) for Dart files",
+  "source_tree_hashes": {
+    "packages/quds_office_engine/lib": {
+      "file_count": 353,
+      "sha256": "28255bdd806159dc32ff7080bb78bf96400ad822750c21e63110c6a7d44a23d4"
+    },
+    "packages/quds_office_editor/lib": {
+      "file_count": 104,
+      "sha256": "2d6d41c1323f726a0b3f05a1a5eadcdd72df725979f00e9ccef52ac7a0c036a3"
+    },
+    "packages/quds_office_editor/example/lib": {
+      "file_count": 145,
+      "sha256": "9077974e0b40e0bae50a8d005446e02d7a4f788875d239b4d76adb9beaf36cee"
+    },
+    "packages/quds_proofing_hunspell/lib": {
+      "file_count": 10,
+      "sha256": "5479a81b4b4970795ca4349c3125460b9be1600e1d0b1b06653055a372b07600"
+    }
+  },
+  "pinned_incoming_heads": {
+    "perf/keystroke-trace-20261121": "1460876e70fcf3da49644e232e9942b7ee042d8d",
+    "codex/word-vba-sections-20261121": "a250152abef9ccb38c73ea1a319c2ef27dea400b",
+    "codex/zotero-transfer-20261121": "3da241d5f1f3e43d7be47f00bcf7fbe62bd8272b",
+    "feat/proofing-scheduling-20261121": "5fcdb2db947f39f860fedf3dbcc16a394313e419"
+  },
+  "production_correction": {
+    "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_transfer.dart",
+    "sha256": "9daac5af7a548a972618d5bed1920c966aa5914b70cd4f1121e6647815dcaf84",
+    "description": "21 mechanical curly_braces_in_flow_control_structures lint corrections only; no expression or control-flow changes."
+  },
+  "runtime": {
+    "dart_version": "3.13.7",
+    "flutter_version": "3.47.8",
+    "framework_revision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "engine_revision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "test_package_version": "1.31.1",
+    "platform": "linux_x64"
+  },
+  "archive": {
+    "path": "incoming-zotero-proofing.tar.xz",
+    "sha256": "5314f045a62d113bb29bedeec665c0f513dcf246dc21952afc774e0a2779d87a",
+    "bytes": 79236,
+    "files": 69,
+    "contents": "Whole incoming-zotero-proofing directory: README, reproducible runner, full manifest, per-gate receipts and lossless gzip stdout/stderr/JSON event logs, including superseded attempts.",
+    "full_manifest_path": "incoming-zotero-proofing/summary.json",
+    "full_manifest_sha256": "ab3a5d4b56c6b712d510a7efce2b5514d8e85f9ce99d4f43a22749e5f374ba58",
+    "all_archived_file_bytes_verified_against_originals": true
+  },
+  "limitations": [
+    "No GitHub Actions status, checks or queue were queried or awaited.",
+    "Pure Dart groups use locked package:test 1.31.1 direct kernel/VM runner; Flutter groups use genuine Flutter with --no-pub.",
+    "Local protocol/model/widget/adapter qualification only; installed Word/LibreOffice/Zotero interoperability and native ODT reference-mark import remain separate.",
+    "Hunspell and platform adapter tests use controlled transports; native dictionary installation and model quality were not qualified.",
+    "No comparative typing-performance claim. Separate Mail, sections and performance gates remain recorded separately."
+  ]
+}
