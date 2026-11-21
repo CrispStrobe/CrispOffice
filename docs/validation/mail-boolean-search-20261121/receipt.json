@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-21",
+  "repository": "CrispStrobe/quds_office_suite",
+  "base_main": "1ef5f7f88705e05bb2ebd2f5b639460dab52c3d0",
+  "source_commit": "c2b8138df334d1145003ef62bc8e395d901fd3ba",
+  "implementation_branch": "work/mail-triage-20261121",
+  "qualification": "runtime_not_run",
+  "intake": {
+    "captured_branches": 51,
+    "open_pull_requests": 0,
+    "ancestor_branch_heads": 38,
+    "equivalent_nonancestor_heads": 10,
+    "reviewed_missing_heads": 2,
+    "checkpoint": "4191be02ac9c7117e05ff4a052a5c92fbcfbf4b4"
+  },
+  "new_test_registrations": {
+    "core_boolean": 26,
+    "mailbox_widgets": 3,
+    "bulk_widgets": 1,
+    "host_locales": 3,
+    "total": 33,
+    "executed": 0
+  },
+  "source_readback": [
+    {
+      "path": "packages/quds_mail_ui/lib/src/workspace/message_list.dart",
+      "blob_sha": "7e189f4cf81cc309fd291ac83baeb690fbda7efc",
+      "content_matches": true,
+      "characters": 38822
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_workspace_strings.dart",
+      "blob_sha": "f8ee9dbe24c9465d6db6fade5e5c2928c083afef",
+      "content_matches": true,
+      "characters": 12452
+    },
+    {
+      "path": "packages/quds_mail_ui/test/message_list_test.dart",
+      "blob_sha": "ed9e611c1b69dafc666f6f5d15f54bb3d4913af0",
+      "content_matches": true,
+      "characters": 40367
+    },
+    {
+      "path": "packages/quds_mail_ui/test/bulk_message_list_test.dart",
+      "blob_sha": "c1e5976782e927b29516a118bcab37ab7c7fd095",
+      "content_matches": true,
+      "characters": 17538
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_boolean_search_strings_test.dart",
+      "blob_sha": "4ade3f24bc6fbe092a4ef2c6548ecef20503aad9",
+      "content_matches": true,
+      "characters": 1360
+    },
+    {
+      "path": "packages/quds_mail_core/lib/src/search/header_search.dart",
+      "blob_sha": "ff81401b4d28edad557d4fedd51d92c840ec3e2c",
+      "content_matches": true,
+      "characters": 16547
+    },
+    {
+      "path": "packages/quds_mail_core/test/header_search_test.dart",
+      "blob_sha": "0fd366b17885033d9d8f175badaaefd09f14b672",
+      "content_matches": "upstream agent verified",
+      "characters": 13645
+    },
+    {
+      "path": "packages/quds_mail_core/test/header_search_boolean_test.dart",
+      "blob_sha": "bf101d0ee4e36b081f4b574e96eac23daab3b2c2",
+      "content_matches": true,
+      "characters": 15442
+    }
+  ],
+  "independent_static_review": {
+    "core": "no blocking findings",
+    "ui": "NOT(...) RTL-example gap identified and fixed",
+    "runtime_inference": "none"
+  },
+  "regex_reference_check": {
+    "engine": "JavaScript RegExp with identical pattern",
+    "cases": 8,
+    "passed": 8,
+    "note": "Pattern-level check only; not a Dart or Flutter execution."
+  },
+  "runtime_gates": [
+    {
+      "gate": "Dart analyzer",
+      "status": "not_run"
+    },
+    {
+      "gate": "Dart formatter",
+      "status": "not_run"
+    },
+    {
+      "gate": "Dart core tests",
+      "status": "not_run"
+    },
+    {
+      "gate": "Flutter mailbox and host tests",
+      "status": "not_run"
+    },
+    {
+      "gate": "Office CLI intake tests and benchmark",
+      "status": "not_run"
+    },
+    {
+      "gate": "browser and installed/live-provider acceptance",
+      "status": "not_run"
+    }
+  ],
+  "environment_errors": [
+    "fatal: cannot create directory at 'docs/validation/office-continue-20261118': No space left on device",
+    "bwrap: Can't create file /workspace/scratch/9e481f678650/.git: No space left on device",
+    "exec-server rejected request (-32603): No such file or directory (os error 2)"
+  ],
+  "recovery": "Removal of newly cloned docs/apps could not launch in the sandbox. Escalation was rejected by the configured approval policy. No existing user work was deleted.",
+  "github_actions": "not queried, awaited, or rerun; checkpoints use [skip ci]"
+}

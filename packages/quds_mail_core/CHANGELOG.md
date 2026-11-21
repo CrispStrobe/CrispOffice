@@ -1,5 +1,11 @@
 ## Unreleased
 
+- Extend loaded-header search with uppercase AND/OR/NOT, implicit AND,
+  leading-minus negation and bounded parenthesis groups. Preserve literal
+  field/quoted values, strict parsing and unknown flag/date observations
+  through three-valued evaluation. Expose nesting/operator limits and typed
+  malformed-expression/depth errors; retain the existing query/term limits.
+
 - Add explicit bounded `MailBodyDownloadRunner` and an atomic complete-message
   cache port. Freeze canonical header identities, retain raw/body/attachment
   snapshots sequentially, skip existing complete cache entries on resume, and
