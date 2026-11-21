@@ -1,0 +1,62 @@
+{
+  "started_utc": "2026-11-21T21:55:09.712380+00:00",
+  "source_head": "a1b555979b25c5586f27915cf219a95e886febd7",
+  "cwd": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example",
+  "command": [
+    "/workspace/scratch/12e9ca120c75/runtime/bin/flutter",
+    "test",
+    "--no-pub",
+    "--reporter=json",
+    "--concurrency=1",
+    "test/studio_zotero_citing_transport_test.dart",
+    "test/studio_zotero_odt_export_test.dart",
+    "test/studio_zotero_shortcuts_test.dart"
+  ],
+  "input_scope": "All tracked files under .github/apps/packages/third_party/tool/tools, all tracked repository-root files, this runner, and generated package configurations beside tracked pubspec.yaml files. The after snapshot also retains every initial path so deletion or untracking cannot hide an input-content change.",
+  "input_count": 6319,
+  "input_manifest_sha256": "5c4d7dd437d3e09f5a2aef6c4b61076945343d67253f12662cf91bfb334e2cb8",
+  "exit_code": 0,
+  "duration_seconds": 38.333,
+  "inputs_unchanged": true,
+  "changed_inputs": [],
+  "tests": {
+    "passed": 38,
+    "failed": 0,
+    "skipped": 0,
+    "errors": 0,
+    "suites": 3,
+    "groups": 3,
+    "started": 41,
+    "completed": 41,
+    "hidden_passed": 3,
+    "hidden_failed": 0,
+    "hidden_skipped": 0,
+    "done": [
+      {
+        "success": true,
+        "type": "done",
+        "time": 36537
+      }
+    ],
+    "hooks_passed": 0,
+    "hooks_failed": 0,
+    "hooks_skipped": 0,
+    "hook_results": [],
+    "failures": [],
+    "skips": [],
+    "hidden_failures": [],
+    "hidden_skips": [],
+    "unparsed_lines": [],
+    "lifecycle_errors": []
+  },
+  "stdout.log": {
+    "bytes": 21446,
+    "sha256": "96d85b0bfbedc05e27b07faaa8acd315469bad895beb1a955eb464be344a0425"
+  },
+  "stderr.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "accepted": true,
+  "finished_utc": "2026-11-21T21:55:49.514893+00:00"
+}

@@ -1,0 +1,154 @@
+[
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "Studio online catalog GET keeps the cloud client and key"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "Studio local catalog GET stays direct with validated API headers"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "saved-search reads stay on direct loopback with the pinned database"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "saved-search writes and encoded route injection are refused before sending"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "citing execCommand sends only local UTF-8 JSON without redirects"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "citing respond sends only local UTF-8 JSON without redirects"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "citing rejects other origins and protocol routes before sending"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "citing requires POST and rejects cloud or catalog request bodies"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "citing accepts case-insensitive names but no secrets or extra headers"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "citing request bodies are valid JSON with a UTF-8 byte bound"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "citing redirects return once without forwarding document data"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "citing responses reject declared and streamed excess bytes"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "native dialog uses its own longer timeout"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "request timeout can shorten but cannot extend host limit"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "dispose settles pending citing immediately and ignores late response"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "dispose cancels a response body already being read"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "citing network failures never expose document or credential data"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "citing and catalog limits must be positive before client creation"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart",
+    "name": "Zotero copy names select ODT without changing the source name"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart",
+    "name": "exports an active Zotero copy and keeps normal save as DOCX (variant: TargetPlatform.windows)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart",
+    "name": "picker cancellation preserves dirty edits and re-enables export (variant: TargetPlatform.windows)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart",
+    "name": "edits during picking do not change the detached exported copy (variant: TargetPlatform.windows)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart",
+    "name": "invalid active Zotero data refuses before choosing a destination (variant: TargetPlatform.windows)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "Ctrl Alt C dispatches addEditCitation from the Word caret"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "Ctrl Alt R dispatches refresh from the Word caret"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "Cmd Alt C dispatches addEditCitation from the Word caret"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "Cmd Alt R dispatches refresh from the Word caret"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "body composition blocks shortcuts and saved ribbon callbacks"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "successive shortcuts return directly to the writing caret"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "Add Zotero note ribbon invokes its native picker"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "Add Zotero annotation ribbon invokes its native picker"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "Ctrl Alt C finds the citation in the focused Notes editor"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "citation shortcuts and saved ribbon callbacks respect viewing mode"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "citation commands stay inactive in other Studio applications"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "a covering modal blocks Zotero even when Word retains focus"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "rapid ribbon and shortcut activation opens one Zotero workspace"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "citation ribbon shows shortcuts for linux"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "citation ribbon shows shortcuts for macOS"
+  }
+]

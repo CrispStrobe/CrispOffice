@@ -1,0 +1,112 @@
+{
+  "status": "accepted",
+  "verified_utc": "2026-11-21T21:56:48.643483+00:00",
+  "source_head": "a1b555979b25c5586f27915cf219a95e886febd7",
+  "source_tree": "5bc178760195f03e809211913822fa6fac00ca04",
+  "input_count": 6319,
+  "input_manifest_sha256": "5c4d7dd437d3e09f5a2aef6c4b61076945343d67253f12662cf91bfb334e2cb8",
+  "current_inputs_match_every_accepted_gate": true,
+  "unique_test_cases_passed": 3738,
+  "successful_hooks_excluded_from_case_count": 18,
+  "failed_test_cases": 0,
+  "skipped_test_cases": 0,
+  "reruns_added_to_count": false,
+  "runtime_executables_sha256_rechecked": {
+    "dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "flutter_tester": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f"
+  },
+  "workspace_lock_sha256": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+  "gates": [
+    {
+      "gate": "engine-final",
+      "receipt": "checks/engine-final/receipt.json",
+      "passed": 2677,
+      "suites": 122,
+      "hooks": 0,
+      "duration_seconds": 142.948,
+      "accepted": true
+    },
+    {
+      "gate": "editor-batch1",
+      "receipt": "checks/editor-batch1/receipt.json",
+      "passed": 232,
+      "suites": 11,
+      "hooks": 6,
+      "duration_seconds": 51.263,
+      "accepted": true
+    },
+    {
+      "gate": "editor-batch2",
+      "receipt": "checks/editor-batch2/receipt.json",
+      "passed": 204,
+      "suites": 11,
+      "hooks": 2,
+      "duration_seconds": 88.358,
+      "accepted": true
+    },
+    {
+      "gate": "editor-batch3",
+      "receipt": "checks/editor-batch3/receipt.json",
+      "passed": 227,
+      "suites": 11,
+      "hooks": 2,
+      "duration_seconds": 53.544,
+      "accepted": true
+    },
+    {
+      "gate": "editor-batch4",
+      "receipt": "checks/editor-batch4/receipt.json",
+      "passed": 176,
+      "suites": 11,
+      "hooks": 4,
+      "duration_seconds": 32.232,
+      "accepted": true
+    },
+    {
+      "gate": "editor-batch5",
+      "receipt": "checks/editor-batch5/receipt.json",
+      "passed": 183,
+      "suites": 11,
+      "hooks": 2,
+      "duration_seconds": 58.866,
+      "accepted": true
+    },
+    {
+      "gate": "studio-final",
+      "receipt": "checks/studio-final/receipt.json",
+      "passed": 38,
+      "suites": 3,
+      "hooks": 0,
+      "duration_seconds": 38.333,
+      "accepted": true
+    },
+    {
+      "gate": "legacy-golden",
+      "receipt": "checks/legacy-golden/receipt.json",
+      "passed": 1,
+      "suites": 1,
+      "hooks": 2,
+      "duration_seconds": 9.806,
+      "accepted": true
+    },
+    {
+      "gate": "analysis-final",
+      "receipt": "checks/analysis-final/receipt.json",
+      "passed": null,
+      "suites": null,
+      "hooks": null,
+      "duration_seconds": 16.595,
+      "accepted": true
+    },
+    {
+      "gate": "format-final",
+      "receipt": "checks/format-final/receipt.json",
+      "passed": null,
+      "suites": null,
+      "hooks": null,
+      "duration_seconds": 0.522,
+      "accepted": true
+    }
+  ],
+  "github_actions_checks_or_status_queried_or_awaited": false
+}
