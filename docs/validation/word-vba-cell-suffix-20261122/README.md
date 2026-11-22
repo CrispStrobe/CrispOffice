@@ -34,6 +34,8 @@ There were no open PRs. Fork branches, upstream branches and PR heads were fetch
 Work is saved on `codex/word-vba-range-suffix-20261122`. Each remote update checks
 the expected prior head, uses a normal fast-forward, and verifies the uploaded
 tree against the local committed tree. The branch is retained after merging.
+The documentation-only closure was published through GitHub's API after local
+sandbox startup became unavailable; its changed-file scope is checked remotely.
 
 | Remote checkpoint | Saved work |
 | --- | --- |
@@ -45,6 +47,8 @@ tree against the local committed tree. The branch is retained after merging.
 | `61cee1c16825733ccac1370e66b3ee7f46dabcc9` | Receipt-preserving Mail projection guards |
 | `5326ad63426a604132175d756ebebf8bc67cd0af` | Completed Mail implementation reconciled with latest main and independent tests |
 | `ab7fb01999efab093f2d5c81c9c328bb2c16a41c` | Destination folder metadata bound and 14 independent projection safety tests |
+| `28b53ec8ac1151d86af5d18f6d3a22c28df857b0` | Sealed Word/Zotero evidence and intake archive |
+| `d4317dcc1ecc6c7b70a1773cc121f5639ad99428` | Late Mail clock guard and overlapping cache safeguards reconciled |
 
 Concurrent work appeared after the initial intake. Captured Zotero changes
 include damaged citation unlinking and native ODT note starts; main then advanced
@@ -56,6 +60,39 @@ exact tips rather than assuming branch names are immutable.
 
 No GitHub Actions, check suites or commit statuses were queried or awaited.
 Qualification uses local execution; checkpoint commits request `[skip ci]`.
+
+## Publication and qualification boundary
+
+[PR #371](https://github.com/CrispStrobe/quds_office_suite/pull/371) was incorporated
+indirectly on 22 November 2026 at 08:48:06 UTC when the concurrent arithmetic
+integration included its complete head `d4317dcc1ecc6c7b70a1773cc121f5639ad99428`.
+Remote main was subsequently observed at
+`8326f191067dac1a3befab81361c5829fee9a35d`, tree
+`314702d7cce8d85047db0338e0f7d92b1ac214c3`, following PR #370.
+GitHub comparison confirms d431 is an ancestor, with zero commits behind main.
+
+**The complete 141-suite result below qualifies the cell-suffix checkpoint through
+d431, not the subsequently changed arithmetic compiler.** The later integration
+adds integer division and signed remainder and has its own
+[qualification record](../word-vba-integer-arithmetic-20261122/README.md). Its
+reported focused arithmetic results do not turn the interrupted combined macro
+run into a completed gate.
+
+All 37 branch/upstream tips in the captured intake are ancestors of d431 and
+therefore of the observed main. A later 39-tip sweep also found the arithmetic
+work (now included), the subsequently created Mail organization branch
+`f25c62e38b422598873c3dc3bb638e746dfb53b9` and Mail identity tip
+`06b4e747c09851048d0b72a958e9114f7c83cc52`. Both were outside the first observed
+main's ancestry. During documentation closure, PR #372 advanced main to
+`682ca74fe994eb96a8133c963ae3e5f765023c2e`, tree
+`cd91db179b58d29bba860f403b018c6ffa8727b5`, and incorporated the Mail identity tip.
+The documentation follow-up preserves that newer main and its qualification
+record. The post-intake Mail organization branch remains separate and preserved
+remotely. This record does not claim every branch created after the captured
+intake was merged.
+
+[Publication summary](publication-summary.json) records the exact accepted scope,
+source-continuity verification and remaining execution/storage limitations.
 
 ## Accepted Word qualification
 
@@ -75,6 +112,13 @@ parameterized executions have duplicate generated names; the archive retains
 each execution and the index reports both counts. Strict engine analysis
 (`--fatal-infos`) and changed-engine Dart formatting passed. Each broad run
 recorded 1,211 stable input hashes.
+
+Before temporary local launcher changes, an independent continuity check at d431
+verified all 1,211 successful-recheck inputs byte-for-byte and all 1,208 tracked
+inputs against that commit's Git blobs. The canonical input-manifest SHA-256 was
+`f26e665b0e749216efc08865f40ff4d1e899d3f371c98488fe771234871d3837`.
+This is a historical source-binding check, not a later test rerun or a claim
+about the arithmetic compiler now on main.
 
 The initial broad run recorded 6,213 passes and 46 failures. Its 51 error events
 were 43 temporary-storage exhaustion events, five dependent teardown failures,
@@ -97,7 +141,7 @@ added to the aggregate above.
 Both the 73-case corpus and the actual committed `word_table_suffix.bas` execute
 successfully under the Dart VM and optimized `dart2js -O2` output running in Node.
 The respective VM and JavaScript JSON outputs are byte-identical. Final portable
-receipts bind the complete executable inputs at
+receipts bind 449 repository/input files and 12 runtime/dependency-receipt hashes at
 `ab9d9c0019b2168d3d5877e86aa54c94a40efe2d`, after the incoming ODT source merge.
 
 The BAS driver checks six operations, one committed revision, six recorded and
@@ -124,8 +168,38 @@ loaded window, and budgets complete retained destination metadata. A required
 nested savepoint prevents optional cache growth from discarding an otherwise
 admissible authoritative receipt. Receipt quota and unrelated storage failures
 retain outer-transaction rollback. The focused native projection, transition and
-migration gate passed all 47 tests. Broader merged Mail qualification is being
-closed and will be recorded separately before the final merge.
+migration gate passed all 47 tests before the last clock guard; that historical
+run is not added to final-source totals.
+
+### Partial Mail qualification at d431
+
+| Scope | Verified completed subset | Remaining limitation |
+| --- | --- | --- |
+| Core | 27 complete suites, 629 passes; exact source continuity | Historical d431 source attribution |
+| Store | 23 observed VM suites, 635 passes, zero failures/skips | 25 VM suites and the Node-only three-test suite unrun |
+| Core/store analysis | Strict analysis clean, exit 0 | No claim about later source edits |
+| Transport | One accepted, source-stable cohort: 8 files, 233 passes | Other cohorts need whole-file exclusions/source bridging; 3 JavaScript files unrun |
+| Studio | One accepted, source-stable cohort: 8 files, 132 passes | Another 321-pass cohort's source bridge was not sealed; two files failed before load |
+
+The transport attempts logged 573 raw passing cases and one environmental
+failure. This is **not** a deduplicated accepted total: the whole failing
+`host_store_integration_test.dart` file must be replaced by a successful rerun,
+and another cohort observed a temporary launcher change. Studio logged 453 raw
+passes across 16 files, with the bridge limitation described above. These raw
+counts are not promoted to a sealed final aggregate.
+
+The store's source-compiler retry failed before any test body, with one
+`ENOSPC` loader failure. Later transport/Studio retries, Node/COPYUID checks and
+remaining scoped checks could not run. Temporary-directory creation and finally
+sandbox initialization failed because the shared host exhausted available
+storage. An ordinary file-write probe succeeded but directory creation still
+failed; it was not treated as a passing test. No privileges, filesystem settings,
+SDK source or SDK binaries were changed to bypass the limit.
+
+The original successful and failed Mail logs remain local. **No final Mail
+archive or accepted aggregate was created or published.** The summary here is
+based on results inspected before sandbox initialization became unavailable.
+The existing sealed Word/Zotero archive is already preserved remotely.
 
 ## Reproduction and evidence
 
@@ -143,6 +217,11 @@ runner is for pure engine tests. Mail store tests must use ordinary `dart test`
 so SQLite native-asset build hooks run; bypassing those hooks is not a passing
 store qualification.
 
+The current reproduction driver requires every batch exit and every JSON runner
+completion to succeed, including signal-terminated batches. The sealed archive
+preserves the exact earlier driver used for its recorded runs; individual exits
+and completion events were checked independently during evidence assembly.
+
 [Evidence index](evidence/evidence-index.json) describes every member of
 [local-qualification.tar.gz](evidence/local-qualification.tar.gz), including raw
 logs, exact command receipts, input manifests, full accepted test keys, failed
@@ -150,6 +229,19 @@ attempts and reproduction scripts. Its 129 members exclude SDK/cache binaries,
 compiled JavaScript, source maps, credentials and bytecode. The deterministic
 archive is 1,300,946 bytes with SHA-256
 `97215d1b03589df9b0c91582d7798e4451fe5d1bb1b73fa06ff06dacd989c545`.
+
+## Local environment follow-up
+
+The final local checkout refresh and cleanup could not execute after sandbox
+startup failed. Temporary scheduling wrappers still abort with exit 75; their
+exact originals remain in `runtime/bin/dart.original_for_restore` and
+`runtime/bin/flutter.original_for_restore` in the task workspace. Restore those
+original helper launchers when ordinary filesystem operations are available.
+This affects the temporary test environment, not committed repository source or
+the SDK. Verified old historical-evidence copies were locally evicted with
+`skip-worktree` under storage pressure; their Git history is intact and the
+restoration manifest remains in `runtime/evicted-historical-evidence.json`.
+No clean or synchronized final local-checkout state is claimed.
 
 ## Compatibility limits
 
