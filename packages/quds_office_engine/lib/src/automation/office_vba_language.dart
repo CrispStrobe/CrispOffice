@@ -135,6 +135,7 @@ const _comparisonOperators = <String>{'=', '<>', '<', '>', '<=', '>='};
 const _numericIntrinsics = <String>{'abs', 'int', 'fix', 'sgn'};
 const _stringIntrinsics = <String>{
   'len',
+  'join',
   r'left$',
   r'right$',
   r'mid$',
@@ -3381,13 +3382,15 @@ class _Checker {
               property == 'sectionstart')) {
         return _Kind.number;
       }
-      if (receiver == _Kind.range && property == 'highlightcolorindex') {
+      final textRange =
+          receiver == _Kind.range || receiver == _Kind.wordCellRange;
+      if (textRange && property == 'highlightcolorindex') {
         return _Kind.number;
       }
-      if (receiver == _Kind.range && property == 'noproofing') {
+      if (textRange && property == 'noproofing') {
         return _Kind.boolean;
       }
-      if (receiver == _Kind.range &&
+      if (textRange &&
           (property == 'languageid' || property == 'languageidother')) {
         return _Kind.number;
       }
@@ -3917,6 +3920,29 @@ class _Checker {
   _Kind _stringIntrinsic(_Call expression) {
     final name = expression.token.lower;
     final arguments = expression.arguments;
+    if (name == 'join') {
+      if (arguments.isEmpty || arguments.length > 2) {
+        context.type(
+          expression.token,
+          'Join requires a local String array and an optional string delimiter.',
+        );
+      }
+      // Only this intrinsic and the existing array consumers accept a bare
+      // local array. Whole-array values, assignment and parameters stay out of
+      // the scalar expression model.
+      final source = _arraySymbol(arguments.first);
+      if (source.type != _Declared.string) {
+        context.type(
+          arguments.first.token,
+          'Join requires an array declared As String; implicit element conversions are unsupported.',
+        );
+      }
+      if (arguments.length == 2) {
+        final delimiter = arguments[1];
+        _compatible(_Kind.string, _expression(delimiter), delimiter.token);
+      }
+      return _Kind.string;
+    }
     if (name == 'strcomp') {
       if (arguments.length < 2 || arguments.length > 3) {
         context.type(
@@ -5108,7 +5134,7 @@ class _Evaluator {
             }
             context.unsupported(
               expression.token,
-              'A cell Range exposes Text assignment, Font and ParagraphFormat only; reads and subranges are unsupported.',
+              'A cell Range supports its explicit text controls, Font and ParagraphFormat; reads and subranges are unsupported.',
             );
           }
           if (receiver is _WordDocument &&
@@ -5341,7 +5367,7 @@ class _Evaluator {
     if (value is _WordCellRange) {
       context.unsupported(
         token,
-        'A cell Range exposes Text assignment, Font and ParagraphFormat only; paragraph insertion is unsupported.',
+        'A cell Range supports its explicit text controls, Font and ParagraphFormat; paragraph insertion is unsupported.',
       );
     }
     context.unsupported(
@@ -6001,6 +6027,7 @@ class _Evaluator {
 
   Object _stringIntrinsic(_Call expression, List<Object> arguments) {
     final name = expression.token.lower;
+    if (name == 'join') return _stringJoin(expression, arguments);
     if (name == 'strcomp') return _stringCompare(expression, arguments);
     if (name == 'space' ||
         name == r'space$' ||
@@ -6117,6 +6144,47 @@ class _Evaluator {
     if (count == 0) return '';
     final offset = name == r'right$' ? text.length - count : start;
     return text.substring(offset, offset + count);
+  }
+
+  String _stringJoin(_Call expression, List<Object> arguments) {
+    // Arguments have already been evaluated exactly once in source order.
+    // Binding restricts the first argument to a declared local String array;
+    // its physical element order is independent of Option Base/lower bound.
+    final array = arguments.first as _Array;
+    _allocatedBounds(array, expression.arguments.first.token);
+    var delimiter = ' ';
+    if (arguments.length == 2) {
+      final value = arguments[1];
+      final token = expression.arguments[1].token;
+      if (value == _VariantState.nullValue) _invalidNull(token);
+      delimiter = value == _VariantState.empty ? '' : _string(value, token);
+    }
+    var length = 0;
+    for (var index = 0; index < array.elements.length; index++) {
+      _tick(expression.token);
+      final text = _string(
+        array.elements[index],
+        expression.arguments.first.token,
+      );
+      final added = text.length + (index == 0 ? 0 : delimiter.length);
+      if (added > _maxString - length) {
+        context.limit(
+          expression.token,
+          'Joined strings exceed $_maxString UTF-16 code units.',
+        );
+      }
+      length += added;
+    }
+    // Charge all copied text and delimiters before allocating the result,
+    // including single-element and empty-string arrays. Array visits above
+    // are metered even when joining creates an empty result.
+    _charge(length, expression.token);
+    final result = StringBuffer();
+    for (var index = 0; index < array.elements.length; index++) {
+      if (index != 0) result.write(delimiter);
+      result.write(array.elements[index] as String);
+    }
+    return result.toString();
   }
 
   Object _stringCompare(_Call expression, List<Object> arguments) {
@@ -6936,10 +7004,21 @@ class _Evaluator {
       return;
     }
     if (receiver is _WordCellRange) {
-      context.unsupported(
-        token,
-        'A cell Range exposes Text assignment, Font and ParagraphFormat only; other direct properties are unsupported.',
-      );
+      if (!const {
+        'highlightcolorindex',
+        'noproofing',
+        'languageid',
+        'languageidother',
+      }.contains(property)) {
+        context.unsupported(
+          token,
+          'A cell Range supports Text, Font, ParagraphFormat, highlighting and proofing controls only; other direct properties are unsupported.',
+        );
+      }
+      // Only these visible-text writes project the cell's guarded paragraph.
+      // Keep the cell Range identity for all other members so an alias cannot
+      // acquire insertion, style, shading or arbitrary paragraph operations.
+      receiver = _WordRange(_WordParagraph(0, cell: receiver.cell));
     }
     if (receiver is _WordShading) {
       final number = _integer(value, token);
