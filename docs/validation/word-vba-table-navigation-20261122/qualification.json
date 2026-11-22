@@ -1,0 +1,63 @@
+{
+  "status": "passed",
+  "completed_at_utc": "2026-11-22T10:02:38.423356+00:00",
+  "feature_head_before_evidence_commit": "4eca268cfaab0a765816cd4f0bbadd7b414bfa30",
+  "current_main_included": "bbc4f82c7562e1004c59804b30a5baafcf53e4d1",
+  "macro_regression": {
+    "selected_files": 149,
+    "passed_tests": 7628,
+    "failed_tests": 0,
+    "exit_code": 0,
+    "receipt": "evidence/macro-regression.json"
+  },
+  "compiler_hash_unchanged_through_broad_run": true,
+  "source_manifest_verified_after_suite": true,
+  "source_files_sha256": {
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart": "52ffec0176fbfac6dfa761d51fbc97f5d73c8bdff21d8f31efb26224af3d5333",
+    "packages/quds_office_engine/test/office_vba_word_table_cells_test.dart": "3fdb1d4bd92449998cc9321675d17778cb31e95042583bb21fcf912e37371e9b",
+    "packages/quds_office_engine/test/fixtures/vba_conformance/word_table_navigation_v1.json": "5d0e794ccf906cd1c78499a1f4a433eda8c9dbb550912efb08b0d14acec0675b",
+    "packages/quds_office_engine/example/macros/word_table_navigation.bas": "2799eba82e8860326f50cba7b59ba3d5e9c05b5f959f76ab24c1c521ba890644",
+    "packages/quds_office_engine/test/office_vba_word_table_navigation_cli_test.dart": "ccf87be1d5cb146003aaf781a3245595177b590d980622099d817e2124b092c6",
+    "packages/quds_office_engine/test/office_vba_word_table_navigation_conformance_test.dart": "56607b33eda1f2dcbe78e2287459a80deb1e07281e6aab7155abc1a51e62d539",
+    "packages/quds_office_engine/test/office_vba_word_table_navigation_integration_test.dart": "061ae9b3e992f78d85e460420f8ccfd5e26ff54d78bd5d14506ac48e553852f8",
+    "packages/quds_office_engine/test/office_vba_word_table_navigation_test.dart": "99fb497ecbf1c315bf28821b2cba9e0e1a7b63e7bcb8af0b2217f90c1f69f69a",
+    "packages/quds_office_engine/tool/macros/web_vba_word_table_navigation_smoke.dart": "3c080717af40f544c2f82c6e671dbb80f065e4ca73f0c279852c44a8df36ca3b"
+  },
+  "new_feature_tests": {
+    "compiler_and_conformance": 185,
+    "native_integration": 16,
+    "cli_and_portable_wrapper": 4,
+    "note": "Included in the broad total; do not add counts."
+  },
+  "portable_conformance": {
+    "cases": 32,
+    "vm_and_javascript_identical": true,
+    "receipt": "evidence/navigation-conformance-verification.json"
+  },
+  "portable_document_example": {
+    "operations": 10,
+    "vm_and_javascript_structurally_identical": true,
+    "receipt": "evidence/table-navigation-verification.json"
+  },
+  "analysis": {
+    "files": 7,
+    "issues": 0,
+    "format_changes_needed": 0
+  },
+  "environment": {
+    "dart": "3.14.1",
+    "node": "24.22.3",
+    "dependency_entries_matching_repository_lock": 56,
+    "canonical_flutter_workspace_tested": false,
+    "installed_word_tested": false
+  },
+  "remote_checkpoints": [
+    "44516a907dc3c6cb4b953a665d1e7b2592f5c0f1",
+    "d1935ba19caa6b0aaead23198170ed3acefa58ea",
+    "ffd7324cbd04af8c0af55541304208ae881f3eeb",
+    "87171f31d8b9419d67d6b6c373ae9119db707ce0",
+    "4eca268cfaab0a765816cd4f0bbadd7b414bfa30"
+  ],
+  "concurrent_branch_disposition": "See final-intake.json for the later in-flight Zotero branch; it was preserved separately and is not claimed as qualified.",
+  "actions_waited": false
+}

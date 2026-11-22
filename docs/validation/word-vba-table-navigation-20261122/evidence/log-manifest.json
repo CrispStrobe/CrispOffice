@@ -63,5 +63,10 @@
     "path": "docs/validation/word-vba-table-navigation-20261122/evidence/navigation-conformance-node.log.gz",
     "uncompressed_sha256": "63a000ed0481a9e87483c06540c923254b6e8ebf6fa89ce38063bd924f521003",
     "bytes": 7632
+  },
+  {
+    "path": "docs/validation/word-vba-table-navigation-20261122/evidence/macro-regression.log.gz",
+    "uncompressed_sha256": "57a0a84f297d1d0f0240046003577f86db4c9eaf91b8c8b8ce6681ee8af190a3",
+    "bytes": 1153664
   }
 ]
