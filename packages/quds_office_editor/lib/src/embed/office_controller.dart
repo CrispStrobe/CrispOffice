@@ -8020,6 +8020,14 @@ class WordEditorController extends OfficeController {
   /// Reinspect after mutations or undo/redo: field handles are short-lived.
   List<WmlZoteroField> get zoteroFields => WordZotero.fields(document);
 
+  /// Whether a field has a complete result packet the native Zotero processor
+  /// can replace, even when its stored citation metadata is damaged. This is
+  /// an availability hint; the transaction rechecks document ownership,
+  /// protection and the complete field inventory before any change applies.
+  bool canEditZoteroFieldNatively(WmlZoteroField field) =>
+      field.canEditNativeResult ||
+      WordZotero.canRecoverNativeBibliography(document, field);
+
   WordZoteroTransaction? _zoteroContextOwner;
 
   /// Temporary context requested by Zotero while a detached operation runs.
@@ -8731,10 +8739,26 @@ class WordEditorController extends OfficeController {
   }
 
   /// Explicitly converts a citation/bibliography to ordinary text, with undo.
+  /// Damaged metadata is allowed only when its complete native result packet
+  /// has an unambiguous structural owner; its cached text stays unchanged.
   void unlinkZoteroField(WmlZoteroField field) {
     if (_disposed || !config.allowsMutation) return;
     _assertZoteroFieldOwner(field);
-    _commitZoteroChange(field.paragraphs, () => WordZotero.unlink(field));
+    if (!field.isValid) {
+      if (document.restrictEditing || !canEditZoteroFieldNatively(field)) {
+        throw UnsupportedError(
+          'This damaged Zotero reference does not have an editable, complete field result. Its text and metadata were kept unchanged.',
+        );
+      }
+      WordZotero.assertCompleteNativeFields(document);
+      WordZotero.nativeFieldOwners(document, [field]);
+      _commitZoteroChange(
+        field.paragraphs,
+        () => WordZotero.unlinkNative(field, document: document),
+      );
+    } else {
+      _commitZoteroChange(field.paragraphs, () => WordZotero.unlink(field));
+    }
   }
 
   /// Converts all modeled Zotero citations and bibliographies to ordinary
@@ -8946,16 +8970,17 @@ class WordEditorController extends OfficeController {
   }
 
   void _assertZoteroFieldOwner(WmlZoteroField field) {
-    if (!zoteroFields.any(
+    final owners = zoteroFields.where(
       (current) =>
           identical(current.paragraph, field.paragraph) &&
           current.start == field.start &&
           current.end == field.end &&
           current.instruction == field.instruction &&
           current.cachedText == field.cachedText,
-    )) {
+    );
+    if (owners.take(2).length != 1) {
       throw StateError(
-        'This Zotero field no longer belongs to the current document.',
+        'This Zotero field no longer has one owner in the current document.',
       );
     }
   }

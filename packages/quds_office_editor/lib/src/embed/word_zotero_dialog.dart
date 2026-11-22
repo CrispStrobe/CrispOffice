@@ -401,6 +401,34 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
     );
   });
 
+  Future<void> _unlinkField(WmlZoteroField field) => _run(() async {
+    _checkTarget();
+    if (!field.isValid) {
+      final confirmed = await _showReview<bool>(
+        (dialogContext) => AlertDialog(
+          title: const Text('Convert damaged reference to text?'),
+          scrollable: true,
+          content: const Text(
+            'The stored reference metadata is damaged. Converting this reference keeps its visible text and formatting, but Zotero will no longer update it. You can undo this change while the document remains open.',
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(dialogContext, false),
+              child: const Text('Cancel'),
+            ),
+            FilledButton(
+              key: const ValueKey('zotero-confirm-unlink-damaged'),
+              onPressed: () => Navigator.pop(dialogContext, true),
+              child: const Text('Convert to text'),
+            ),
+          ],
+        ),
+      );
+      if (!mounted || confirmed != true) return;
+    }
+    _write(() => _controller.unlinkZoteroField(field));
+  });
+
   void _clearLibrary() {
     _catalogGeneration++;
     _identity = null;
@@ -3061,6 +3089,9 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
               itemBuilder: (context, index) {
                 final field = fields[index];
                 final citation = field.citation;
+                final nativeResult = _controller.canEditZoteroFieldNatively(
+                  field,
+                );
                 return ListTile(
                   title: Text(
                     field.cachedText.isEmpty
@@ -3070,11 +3101,14 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                     overflow: TextOverflow.ellipsis,
                   ),
                   subtitle: Text(
-                    '${field.kind.name}${field.canEdit ? '' : ' · preserved, read-only structure'}${citation == null ? '' : ' · ${citation.items.length} source(s)'}',
+                    '${field.kind.name}${field.isValid ? '' : ' · damaged reference metadata'}${nativeResult ? '' : ' · preserved, read-only structure'}${citation == null ? '' : ' · ${citation.items.length} source(s)'}',
                   ),
                   trailing: PopupMenuButton<String>(
                     key: ValueKey('zotero-reference-actions-$index'),
-                    enabled: !_busy && !_controller.isDisposed && field.isValid,
+                    enabled:
+                        !_busy &&
+                        !_controller.isDisposed &&
+                        (field.isValid || nativeResult),
                     tooltip: 'Reference actions',
                     onSelected: (action) {
                       if (action == 'reveal') {
@@ -3098,9 +3132,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                         _bibliography(online: true, field: field);
                       }
                       if (action == 'unlink') {
-                        _run(() async {
-                          _write(() => _controller.unlinkZoteroField(field));
-                        });
+                        _unlinkField(field);
                       }
                     },
                     itemBuilder: (_) => [
@@ -3111,10 +3143,14 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                       ),
                       if (_canEdit &&
                           widget.localTransport != null &&
-                          field.canEdit)
-                        const PopupMenuItem(
+                          nativeResult)
+                        PopupMenuItem(
                           value: 'native',
-                          child: Text('Edit in Zotero…'),
+                          child: Text(
+                            field.isValid
+                                ? 'Edit in Zotero…'
+                                : 'Repair in Zotero…',
+                          ),
                         ),
                       if (_canEdit && citation != null && field.canEdit)
                         const PopupMenuItem(
@@ -3134,7 +3170,10 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                             child: Text('Update Zotero bibliography'),
                           ),
                       ],
-                      if (_canEdit && !field.locked && !field.nested)
+                      if (_canEdit &&
+                          !field.locked &&
+                          !field.nested &&
+                          (field.isValid || nativeResult))
                         const PopupMenuItem(
                           value: 'unlink',
                           child: Text('Convert to text (undoable)'),
@@ -3162,7 +3201,16 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                 : 'Bibliography at the caret',
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
-          if (field.canEdit) ...[
+          if (!field.isValid) ...[
+            const SizedBox(height: 8),
+            Text(
+              _controller.canEditZoteroFieldNatively(field)
+                  ? 'Stored reference metadata is damaged. Repair it with Zotero or convert this reference to keep its visible text.'
+                  : 'This damaged reference has a structure that cannot be repaired safely here. Its original text and metadata are preserved.',
+              key: const ValueKey('zotero-current-field-damaged'),
+            ),
+          ],
+          if (_controller.canEditZoteroFieldNatively(field)) ...[
             const SizedBox(height: 8),
             Wrap(
               spacing: 8,
@@ -3179,15 +3227,27 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                                 : ZoteroCitingCommand.addEditBibliography,
                             field: field,
                           ),
-                    child: const Text('Edit current reference in Zotero…'),
+                    child: Text(
+                      field.isValid
+                          ? 'Edit current reference in Zotero…'
+                          : 'Repair current reference in Zotero…',
+                    ),
                   ),
-                if (field.citation != null)
+                if (field.citation != null && field.canEdit)
                   OutlinedButton(
                     key: const ValueKey('zotero-edit-current'),
                     onPressed: _busy || !_canEdit
                         ? null
                         : () => _compose(field.citation!.items, field: field),
                     child: const Text('Edit current citation…'),
+                  ),
+                if (!field.isValid)
+                  OutlinedButton(
+                    key: const ValueKey('zotero-unlink-current-damaged'),
+                    onPressed: _busy || !_canEdit
+                        ? null
+                        : () => _unlinkField(field),
+                    child: const Text('Convert to text…'),
                   ),
               ],
             ),
