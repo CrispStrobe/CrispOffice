@@ -4,6 +4,19 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Format supported Word table cells through bounded VBA `Cell.Range.Font` and
+  `Cell.Range.ParagraphFormat`, including existing font controls, paragraph
+  spacing/alignment, custom line-spacing pairs, spacing methods and tab stops.
+  Retain cell coordinates through aliases and named `ByVal` helpers, and use
+  explicit guarded native cell selectors. Preserve the existing table text,
+  structural and transaction contracts; Font writes require nonempty ordinary
+  text and exclude paragraph/cell marks, while paragraph formatting accepts an
+  empty ordinary paragraph. Format detached run copies to keep shared mutable
+  public-model properties from changing unrelated content. Add a reusable 2×2
+  table BAS and compiler/native/CLI/MCP/portable-runtime regression coverage;
+  see the [contract](../../docs/vba-word-macros-details.md#formatting-existing-table-cells)
+  and [local record](../../docs/validation/word-vba-cell-formatting-20261122/README.md).
+
 - Retain document-wide footnote separator geometry through bounded native
   DOCX and editable ODT persistence, note pagination and Zotero transfer.
   Preserve supported gaps, thickness, relative width, physical alignment,

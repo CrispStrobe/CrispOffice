@@ -372,7 +372,13 @@ void applyStep(
         }
       }
     case 'runFormat':
-      final p = paragraph();
+      final target = paragraph();
+      // Public in-memory documents may share property objects or their import
+      // snapshots even when their runs are uniquely owned. Prepare cell edits
+      // on copied runs so formatting cannot leak into a neighboring paragraph.
+      final p = values['story'] == 'tableCell'
+          ? WmlClone.paragraph(target)
+          : target;
       final range = _range(p, s);
       if (range.$1 == range.$2) {
         throw ArgumentError('runFormat requires a non-empty text range');
@@ -609,6 +615,7 @@ void applyStep(
         if (position != null) r.positionHalfPoints = position.toInt();
         if (noProof != null) r.noProof = noProof;
       });
+      if (!identical(p, target)) target.inlines = p.inlines;
     case 'addNote':
       final p = paragraph();
       final at = s.integer(

@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:quds_office_engine/quds_office_automation.dart';
@@ -8,6 +9,15 @@ import '../tool/macros/web_vba_word_table_cells_smoke.dart' as table_fixture;
 
 const _cell = 'ActiveDocument.Tables(1).Cell(1, 1).Range';
 const _w = OfficeNamespaces.w;
+
+// The existing serializer materializes an inherited second-section header on
+// the first ordinary read/save. Establish that no-macro control save before
+// asserting that formatting preserves every untargeted part and owner.
+Uint8List _input({bool macroEnabled = true}) => WordSerializer().writeBytes(
+  WordDeserializer().readBytes(
+    table_fixture.wordTableInput(macroEnabled: macroEnabled),
+  ),
+);
 
 OfficeMacro _source(String source) => OfficeMacroLanguages().compile(
   OfficeMacroSource(
@@ -45,11 +55,37 @@ List<XmlElement> _elements(XmlElement root, String name) => [
   ],
 ];
 
-String _xml(XmlElement element) {
-  final writer = XmlWriter();
-  element.writeTo(writer);
-  return writer.toXml();
-}
+// Native saves may rebind a namespace on a preserved property packet. Compare
+// expanded names, all substantive attributes and ordered children, so that only
+// redundant xmlns declarations and prefix choices are ignored.
+Object _xmlValue(XmlNode node) => switch (node) {
+  XmlElement() => {
+    'name': [node.namespaceUri, node.localName],
+    'attributes': {
+      for (final attribute
+          in (node.attributes
+              .where(
+                (attribute) =>
+                    attribute.prefix != 'xmlns' &&
+                    !(attribute.prefix.isEmpty &&
+                        attribute.localName == 'xmlns'),
+              )
+              .toList()
+            ..sort(
+              (a, b) => '${a.namespaceUri}:${a.localName}'.compareTo(
+                '${b.namespaceUri}:${b.localName}',
+              ),
+            )))
+        '${attribute.namespaceUri}:${attribute.localName}': attribute.value,
+    },
+    'children': [for (final child in node.children) _xmlValue(child)],
+  },
+  XmlText() => {'text': node.text},
+  XmlCdata() => {'cdata': node.text},
+  XmlComment() => {'comment': node.text},
+};
+
+String _xml(XmlElement element) => jsonEncode(_xmlValue(element));
 
 Map<String, Object?> _untouched(Uint8List bytes) {
   final root = _documentXml(bytes);
@@ -67,7 +103,8 @@ Map<String, Object?> _untouched(Uint8List bytes) {
       name: [for (final element in _elements(root, name)) _xml(element)],
     'parts': {
       for (final part in package.parts)
-        if (part.uri != '/word/document.xml') part.uri: part.readBytes(),
+        if (part.uri != '/word/document.xml')
+          part.uri: package.getPart(part.uri)!.readBytes(),
     },
   };
 }
@@ -82,9 +119,9 @@ Sub Paint(ByVal target As Font)
   target.AllCaps = True
 End Sub
 Sub Main()
-  Dim cell As Cell, retained As Range, layout As ParagraphFormat
-  Set cell = Application.ActiveDocument.Tables.Item(1).Cell(1, 1)
-  Set retained = cell.Range
+  Dim targetCell As Cell, retained As Range, layout As ParagraphFormat
+  Set targetCell = Application.ActiveDocument.Tables.Item(1).Cell(1, 1)
+  Set retained = targetCell.Range
   retained.Text = "Quarterly 😀"
   Paint retained.Font
   Set layout = retained.ParagraphFormat
@@ -102,7 +139,7 @@ Sub Main()
     .TabStops.ClearAll
     .TabStops.Add Position:=72.5, Alignment:=wdAlignTabRight, Leader:=wdTabLeaderDots
   End With
-  Set cell = ActiveDocument.Tables(2).Cell(1, 1)
+  Set targetCell = ActiveDocument.Tables(2).Cell(1, 1)
   retained.Font.Underline = wdUnderlineDouble
 End Sub
 ''';
@@ -163,9 +200,30 @@ void _assertReport(Uint8List bytes) {
 }
 
 Uint8List _changed(void Function(WmlDocument document) change) {
-  final document = WordDeserializer().readBytes(table_fixture.wordTableInput());
+  final document = WordDeserializer().readBytes(_input());
   change(document);
   return WordSerializer().writeBytes(document);
+}
+
+Uint8List _inheritedTableStyleInput() {
+  final package = OpcPackage.openBytes(_input());
+  package.getPart('/word/document.xml')!.writeText('''
+<w:document xmlns:w="$_w"><w:body>
+<w:p><w:r><w:t>Untouched body</w:t></w:r></w:p>
+<w:tbl><w:tblPr><w:tblStyle w:val="CellFormattingBase"/></w:tblPr>
+<w:tblGrid><w:gridCol w:w="2400"/><w:gridCol w:w="2400"/></w:tblGrid>
+<w:tr><w:tc><w:p><w:r><w:t>Selected</w:t></w:r></w:p></w:tc>
+<w:tc><w:p><w:r><w:t>Neighbor</w:t></w:r></w:p></w:tc></w:tr>
+</w:tbl><w:sectPr/></w:body></w:document>
+''');
+  package.getPart('/word/styles.xml')!.writeText('''
+<w:styles xmlns:w="$_w">
+<w:style w:type="table" w:styleId="CellFormattingBase">
+<w:pPr><w:jc w:val="center"/><w:spacing w:before="240" w:after="120"/></w:pPr>
+<w:rPr><w:b/><w:caps/><w:color w:val="AABBCC"/></w:rPr>
+</w:style></w:styles>
+''');
+  return package.save();
 }
 
 Future<void> _assertRefused(Uint8List input, OfficeMacro plan) async {
@@ -184,7 +242,7 @@ void main() {
     test(
       '${macroEnabled ? 'DOCM' : 'DOCX'} report formats one cell atomically and preserves neighboring XML',
       () async {
-        final input = table_fixture.wordTableInput(macroEnabled: macroEnabled);
+        final input = _input(macroEnabled: macroEnabled);
         final untouched = _untouched(input);
         final session = OfficeMacroSession(
           input,
@@ -222,7 +280,7 @@ void main() {
   test(
     'formatting before cell text replacement survives later writes',
     () async {
-      final input = table_fixture.wordTableInput();
+      final input = _input();
       final untouched = _untouched(input);
       final session = OfficeMacroSession(input, format: OfficeMacroFormat.docx);
       await session.run(
@@ -261,7 +319,7 @@ End With
 
   test('cell selector remains distinct from body and other cells during spacing pairing', () async {
     final session = OfficeMacroSession(
-      table_fixture.wordTableInput(),
+      _input(),
       format: OfficeMacroFormat.docx,
     );
     await session.run(
@@ -275,8 +333,8 @@ Sub Main()
   Set retained = target
   retained.LineSpacingRule = wdLineSpaceExactly
   Set target = ActiveDocument.Tables(1).Cell(1, 2).Range.ParagraphFormat
-  target.Space2
   Finish retained, 19.5
+  target.Space2
   ActiveDocument.Paragraphs(1).Format.Space15
   ActiveDocument.Tables(2).Cell(1, 1).Range.Font.ColorIndex = wdBlue
 End Sub
@@ -308,7 +366,7 @@ End Sub
   test(
     'recorded native cell formatting replays to the same saved document',
     () async {
-      final input = table_fixture.wordTableInput();
+      final input = _input();
       final plan = _source(_report);
       final recorder = OfficeMacroSession(
         input,
@@ -332,9 +390,113 @@ End Sub
   );
 
   test(
+    'whole-cell font changes retain mixed ordinary run formatting',
+    () async {
+      final input = _changed((document) {
+        _paragraph(document).inlines = [
+          WmlRun(
+            text: 'First ',
+            properties: WmlRunProps(
+              italic: true,
+              color: '112233',
+              fontSizeHalfPoints: 20,
+            ),
+          ),
+          WmlRun(
+            text: 'second',
+            properties: WmlRunProps(color: '445566', fontSizeHalfPoints: 28),
+          ),
+        ];
+      });
+      final untouched = _untouched(input);
+      final session = OfficeMacroSession(input, format: OfficeMacroFormat.docx);
+      await session.run(
+        _compile('''
+$_cell.Font.Bold = True
+$_cell.ParagraphFormat.SpaceAfter = 9.5
+'''),
+      );
+      var saved = session.bytes;
+      for (var cycle = 0; cycle < 3; cycle++) {
+        final paragraph = _paragraph(WordDeserializer().readBytes(saved));
+        final runs = paragraph.inlines.whereType<WmlRun>().toList();
+        expect(paragraph.text, 'First second');
+        expect(paragraph.properties.spacingAfter, 9.5);
+        expect(runs.map((run) => run.text), ['First ', 'second']);
+        expect(runs.map((run) => run.properties.bold), [true, true]);
+        expect(runs.map((run) => run.properties.italic), [true, false]);
+        expect(runs.map((run) => run.properties.color), ['112233', '445566']);
+        expect(runs.map((run) => run.properties.fontSizeHalfPoints), [20, 28]);
+        expect(_untouched(saved), untouched);
+        if (cycle < 2) {
+          saved = WordSerializer().writeBytes(
+            WordDeserializer().readBytes(saved),
+          );
+        }
+      }
+    },
+  );
+
+  test(
+    'false and automatic values explicitly override inherited table styles',
+    () async {
+      final input = _inheritedTableStyleInput();
+      final original = WordDeserializer().readBytes(input);
+      final initialRun = _paragraph(original).inlines
+          .whereType<WmlRun>()
+          .single;
+      expect(initialRun.properties.bold, isTrue);
+      expect(initialRun.properties.allCaps, isTrue);
+      expect(initialRun.properties.color, 'AABBCC');
+      expect(_paragraph(original).properties.spacingBefore, 12);
+      final styles = OpcPackage.openBytes(input)
+          .getPart('/word/styles.xml')!
+          .readBytes();
+      final session = OfficeMacroSession(input, format: OfficeMacroFormat.docx);
+      await session.run(
+        _compile('''
+With $_cell
+  .Font.Bold = False
+  .Font.AllCaps = False
+  .Font.Color = wdColorAutomatic
+  .ParagraphFormat.Alignment = wdAlignParagraphLeft
+  .ParagraphFormat.SpaceBefore = 0
+End With
+'''),
+      );
+      var saved = session.bytes;
+      for (var cycle = 0; cycle < 3; cycle++) {
+        final document = WordDeserializer().readBytes(saved);
+        final target = _paragraph(document);
+        final run = target.inlines.whereType<WmlRun>().single;
+        expect(run.properties.bold, isFalse);
+        expect(run.properties.allCaps, isFalse);
+        expect(run.properties.color, 'auto');
+        expect(target.properties.justification, WmlJustification.left);
+        expect(target.properties.spacingBefore, 0);
+        expect(target.properties.spacingAfter, 6);
+        final neighbor = _paragraph(document, column: 1);
+        final otherRun = neighbor.inlines.whereType<WmlRun>().single;
+        expect(otherRun.properties.bold, isTrue);
+        expect(otherRun.properties.allCaps, isTrue);
+        expect(otherRun.properties.color, 'AABBCC');
+        expect(neighbor.properties.justification, WmlJustification.center);
+        expect(neighbor.properties.spacingBefore, 12);
+        expect(
+          OpcPackage.openBytes(saved).getPart('/word/styles.xml')!.readBytes(),
+          styles,
+        );
+        if (cycle < 2) {
+          saved = WordSerializer().writeBytes(document);
+        }
+      }
+    },
+  );
+
+  test(
     'MCP compiles, previews and applies the cell formatting source',
     () async {
-      final input = table_fixture.wordTableInput();
+      final input = _input();
       final session = OfficeMacroSession(input, format: OfficeMacroFormat.docx);
       final adapter = OfficeMacroMcp(session);
       final compiled = await adapter.callTool('office_macro_compile', {
@@ -414,10 +576,6 @@ End Sub
           _paragraph(document).properties.bookmarkName = 'CellBookmark',
     ),
     ('edit restriction', (document) => document.restrictEditing = true),
-    (
-      'format restriction',
-      (document) => document.protectionFormattingRestricted = true,
-    ),
     ('revision tracking', (document) => document.trackRevisions = true),
   ]) {
     test(
@@ -440,9 +598,41 @@ $formatting
     );
   }
 
+  test('native formatting restriction refuses cell writes', () async {
+    final package = OpcPackage.openBytes(_input());
+    final settings =
+        package.getPart('/word/settings.xml') ??
+        package.createPart(
+          '/word/settings.xml',
+          OfficeContentTypes.wordSettings,
+        );
+    settings.writeText('''
+<w:settings xmlns:w="$_w"><w:documentProtection
+w:formatting="1" w:enforcement="1" w:edit="readOnly"/></w:settings>
+''');
+    final relationships = package.relationshipsFor('/word/document.xml');
+    if (relationships.byType(RelationshipTypes.settings).isEmpty) {
+      relationships.add(
+        type: RelationshipTypes.settings,
+        target: 'settings.xml',
+      );
+    }
+    final input = package.save();
+    expect(
+      WordDeserializer().readBytes(input).protectionFormattingRestricted,
+      isTrue,
+    );
+    for (final body in [
+      '$_cell.Font.Bold = False',
+      '$_cell.ParagraphFormat.Alignment = wdAlignParagraphRight',
+    ]) {
+      await _assertRefused(input, _compile(body));
+    }
+  });
+
   test('late missing cell rolls back text, font, paragraph and recorded operations', () async {
     await _assertRefused(
-      table_fixture.wordTableInput(),
+      _input(),
       _compile('''
 $_cell.Text = "Do not publish"
 $_cell.Font.Bold = False
@@ -479,7 +669,7 @@ $_cell.ParagraphFormat.SpaceBefore = 6
     OfficeMacroPolicy(maxSteps: 1),
   ]) {
     test('cell formatting obeys session policy $policy', () async {
-      final input = table_fixture.wordTableInput();
+      final input = _input();
       final session = OfficeMacroSession(
         input,
         format: OfficeMacroFormat.docx,
@@ -500,7 +690,7 @@ $_cell.ParagraphFormat.Alignment = wdAlignParagraphRight
   test(
     'unsupported cell reads refuse the whole MCP compilation before mutation',
     () async {
-      final input = table_fixture.wordTableInput();
+      final input = _input();
       final session = OfficeMacroSession(input, format: OfficeMacroFormat.docx);
       final result = await OfficeMacroMcp(session)
           .callTool('office_macro_compile', {
