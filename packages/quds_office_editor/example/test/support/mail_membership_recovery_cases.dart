@@ -145,7 +145,7 @@ void _membershipRecoveryTests() {
         );
         expect(fixture.dispatched, hasLength(1));
         final before = (await tester.runAsync(() => fixture.store.load(_id)))!;
-        expect(before!.summary.unresolvedCount, 1);
+        expect(before.summary.unresolvedCount, 1);
         observer.respond = (identity) async =>
             MailSuccess(MailMembershipObservation.missing(identity: identity));
         fixture.now = fixture.now.add(const Duration(minutes: 1));
@@ -159,7 +159,7 @@ void _membershipRecoveryTests() {
         );
         expect(find.textContaining('Moved successfully'), findsNothing);
         final after = (await tester.runAsync(() => fixture.store.load(_id)))!;
-        expect(after!.membershipObservations, hasLength(1));
+        expect(after.membershipObservations, hasLength(1));
         expect(after.summary.unresolvedCount, 1);
         expect(fixture.dispatched, hasLength(1));
       },
@@ -247,7 +247,7 @@ void _membershipRecoveryTests() {
         );
         await _settle(tester);
         final saved = (await tester.runAsync(() => fixture.store.load(_id)))!;
-        expect(saved!.membershipObservations, isEmpty);
+        expect(saved.membershipObservations, isEmpty);
         expect(saved.summary.unresolvedCount, 1);
         expect(fixture.dispatched, hasLength(1));
       },
