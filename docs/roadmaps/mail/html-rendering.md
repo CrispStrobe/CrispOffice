@@ -46,7 +46,12 @@ Safe `<style>` blocks are retained when they contain no external resource.
 - Links call the same host approval path as the text reader.
 - Inline CID images render from validated static PNG/JPEG bytes.
 - Explicitly loaded remote images appear inline through the existing
-  `data-mail-remote` key; before that they show an external-image placeholder.
+  `data-mail-remote` key; before that they show a clickable **Load external
+  image** placeholder. The same load action remains available from the reader
+  actions.
+- Tables are forced to the available reader width with safe auto layout so
+  fixed-width transactional-mail tables cannot collapse into letter-wide
+  columns.
 - Rich mode uses Flutter `SelectionArea` for copying; the text mode keeps the
   explicit find, select-all and copy controls. Find is intentionally not
   highlighted over the rich layout.
