@@ -1,0 +1,172 @@
+{
+  "status": "locally qualified",
+  "date": "2026-11-22",
+  "timezone": "Europe/Berlin",
+  "repository": "CrispStrobe/quds_office_suite",
+  "work_branch": "work/mail-folder-search-20261122",
+  "intake_main": "c522851d165b395a7f60422a1be969dffc39c9ff",
+  "qualified_source_commit": "96b3e57c6c10f4419ed86ce4aa132e5d3c79c851",
+  "qualified_source_tree": "f360334ae8ba3d43a90c77fbe936f9ec9f1ebcdd",
+  "evidence_integration_commit": "02f66ee686ad196a0fe162da9394b5b016739abd",
+  "source_scope": "Tracked Dart, BAS, YAML and lock files in the four affected packages plus root pubspec and lock; inventory does not imply every listed file has exhaustive test coverage.",
+  "source_manifest": {
+    "file": "source-manifest.json.gz",
+    "sha256": "b66ec92700042d915d27bda32322adf88d05e3f36d9228f96308e083e4dcc7ba",
+    "entries": 1852
+  },
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "sqlite": "3.54.1",
+    "fts5": true,
+    "node": "24.22.3",
+    "dependency_resolution": "offline --enforce-lockfile; tracked lock and manifests unchanged"
+  },
+  "gates": [
+    {
+      "name": "Mail core full suite",
+      "passed": 503,
+      "exit_code": 0,
+      "receipt": "validation/mail-union-core-store-receipt.json"
+    },
+    {
+      "name": "Mail store full suite",
+      "passed": 970,
+      "exit_code": 0,
+      "receipt": "validation/mail-union-core-store-receipt.json"
+    },
+    {
+      "name": "Mail host/session",
+      "passed": 89,
+      "exit_code": 0,
+      "receipt": "runtime/logs/mail-union-host-receipt.json"
+    },
+    {
+      "name": "Mail UI/dialogs",
+      "passed": 70,
+      "exit_code": 0,
+      "receipt": "runtime/logs/mail-combined-ui-dialogs-receipt.json"
+    },
+    {
+      "name": "Word native regression gate",
+      "passed": 715,
+      "exit_code": 0,
+      "receipt": "runtime/logs/mail-union-word-native-receipt.json"
+    },
+    {
+      "name": "Zotero engine",
+      "passed": 180,
+      "exit_code": 0,
+      "receipt": "runtime/logs/mail-union-zotero-receipt.json"
+    },
+    {
+      "name": "Zotero editor",
+      "passed": 209,
+      "exit_code": 0,
+      "receipt": "runtime/logs/mail-union-zotero-receipt.json"
+    },
+    {
+      "name": "Zotero direct stale-host regression cases",
+      "passed": 3,
+      "exit_code": 0,
+      "receipt": "runtime/logs/mail-union-zotero-receipt.json"
+    }
+  ],
+  "distinct_mail_tests": 1632,
+  "distinct_integration_tests": 1107,
+  "distinct_total_tests": 2739,
+  "additional_checks": [
+    {
+      "name": "Word actual committed BAS on VM, JS compilation, Node and structured-result equivalence",
+      "status": "pass",
+      "receipt": "runtime/logs/mail-union-word-portable-receipt.json"
+    },
+    {
+      "name": "Strict changed-file analysis",
+      "exit_code": 0,
+      "files": 45,
+      "receipt": "runtime/logs/mail-final-changed-analysis-clean.json"
+    },
+    {
+      "name": "Read-only final formatter",
+      "exit_code": 0,
+      "files": 45,
+      "receipt": "runtime/logs/mail-final-format-clean.json"
+    },
+    {
+      "name": "Complete Mail core/store analysis",
+      "exit_code": 0,
+      "receipt": "validation/mail-union-core-store-receipt.json"
+    },
+    {
+      "name": "Formatter equivalence and post-interpolation picker verification",
+      "status": "pass",
+      "receipt": "runtime/mail-final-normalization/receipt.json"
+    }
+  ],
+  "counting": "Distinct successful final cases only. Focused subsets, repeat runs, initial 1609-case implementation and superseded fixture runs are excluded. Portable smoke executions are additional checks, not unit-test counts.",
+  "source_continuity": [
+    "Core/store package trees match their fully tested reconciliation trees byte for byte.",
+    "Final host/session and Zotero receipts bind working-file hashes and verify they stayed unchanged while Git identities advanced.",
+    "UI70 gate predates equivalent interpolation in retained compatibility picker; its three cases passed again afterward and are counted once.",
+    "Six late formatter-phase files have identical parsed AST toSource output. Word native and portable evidence carries across only that recorded formatting delta.",
+    "The final Zotero evidence integration changes documentation and archived evidence only; package and lock trees equal the qualified source checkpoint."
+  ],
+  "github_actions": "Not queried or awaited. Incremental commits use [skip ci]; final merge is requested immediately.",
+  "remote_checkpoints": [
+    {
+      "stage": "Intake",
+      "sha": "34358000669d52a3f18664586aa4c3223d7b9caf"
+    },
+    {
+      "stage": "Core/store",
+      "sha": "b4fd1ac4ffb2c65bd0805306781ce1406ddfb905"
+    },
+    {
+      "stage": "Host/session",
+      "sha": "cb6dbcdcdb6dfbcd2aa186cf0d1a98b2953b526e"
+    },
+    {
+      "stage": "Initial completed UI and roadmap",
+      "sha": "b0d5f867b3bdc0ee61549a09c09f942db0f68ee1"
+    },
+    {
+      "stage": "Published schema-11/API reconciliation",
+      "sha": "fe0f9ff5f0eb6d361d307bd99d03f3c0365b786e"
+    },
+    {
+      "stage": "Word/Zotero integration",
+      "sha": "1d26ac332c17f3633dd2720f7767b02ab1b748ad"
+    },
+    {
+      "stage": "Latest main ancestry",
+      "sha": "936ea62ae9be603830e8e13ee3cb90a03f3be554"
+    },
+    {
+      "stage": "Zotero stale-document fix",
+      "sha": "63f9803f1a37ad97d946c96da1dddcecf3f060ec"
+    },
+    {
+      "stage": "Qualified source normalization",
+      "sha": "96b3e57c6c10f4419ed86ce4aa132e5d3c79c851"
+    },
+    {
+      "stage": "Latest Zotero evidence",
+      "sha": "02f66ee686ad196a0fe162da9394b5b016739abd"
+    }
+  ],
+  "remote_intake": "remote-intake.json",
+  "raw_evidence": {
+    "archive": "raw-evidence.tar.gz",
+    "sha256": "ce6f51be0aa588eb78ebbf72c313878e81988a5caeb93b7ee7f5d02487ee3ed5",
+    "index": "raw-evidence-index.json",
+    "file_count": 116
+  },
+  "limits": [
+    "Not exhaustive whole-repository acceptance",
+    "No installed desktop/mobile/browser acceptance",
+    "No live-provider or account interoperability run",
+    "No claim of full Outlook/Thunderbird/eM Client parity",
+    "Header-only local discovery; no body/provider/background search added"
+  ]
+}

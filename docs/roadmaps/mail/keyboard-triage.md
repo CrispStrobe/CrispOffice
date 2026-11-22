@@ -97,12 +97,14 @@ No GitHub Actions result was queried or awaited.
 
 ## Next ordered boundaries
 
-1. Add explicit saved-search folder sets: stable account/mailbox identities,
-   existing-definition compatibility, no silent scope broadening, per-folder
-   coverage, deduplication and stale-scope recovery.
-2. Complete repository-observed unified navigation and durable move/delete
+The [saved-search folder-set continuation](folder-saved-search.md) now implements
+the discovery increment originally next here: stable account/mailbox identities,
+existing-definition compatibility, no silent scope broadening, per-folder
+coverage, deduplication and explicit recovery.
+
+1. Complete repository-observed unified navigation and durable move/delete
    before expanding automatic rules and background account work.
-3. Continue richer identities/composition, provider Sent reconciliation and
+2. Continue richer identities/composition, provider Sent reconciliation and
    installed-platform/live-provider qualification.
 
 The comparator references inform workflow design; this increment does not

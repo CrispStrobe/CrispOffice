@@ -23,13 +23,11 @@ final class StudioMailFolderOption {
 /// A deliberate choice between all retained folders and an exact folder set.
 /// Cancel returns null from showDialog and preserves the previous selection.
 final class StudioMailFolderChoice {
-  const StudioMailFolderChoice.all()
-      : allFolders = true,
-        folders = const [];
+  const StudioMailFolderChoice.all() : allFolders = true, folders = const [];
 
   StudioMailFolderChoice.exact(List<MailSavedHeaderSearchFolder> folders)
-      : allFolders = false,
-        folders = List.unmodifiable(folders);
+    : allFolders = false,
+      folders = List.unmodifiable(folders);
 
   final bool allFolders;
   final List<MailSavedHeaderSearchFolder> folders;
@@ -93,20 +91,14 @@ class _StudioMailFolderPickerDialogState
           for (final option in widget.options)
             CheckboxListTile(
               key: ValueKey(
-                'studio-mail-folder-' +
-                    option.folder.accountId +
-                    '-' +
-                    option.folder.mailboxId,
+                'studio-mail-folder-${option.folder.accountId}-${option.folder.mailboxId}',
               ),
               value: _checked.contains(option.folder),
               isThreeLine: true,
               title: Text(option.displayName),
               subtitle: Text(
-                option.accountLabel +
-                    '\n' +
-                    (option.available
-                        ? option.folder.mailboxId
-                        : widget.strings.mailSavedSearchFolderMissing),
+                '${option.accountLabel}\n'
+                '${option.available ? option.folder.mailboxId : widget.strings.mailSavedSearchFolderMissing}',
               ),
               onChanged: (selected) {
                 if (selected == true && !option.available) return;

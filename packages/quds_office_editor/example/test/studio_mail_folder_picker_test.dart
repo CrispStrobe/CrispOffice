@@ -34,8 +34,17 @@ final _options = [
 ];
 
 Finder _folder(MailSavedHeaderSearchFolder folder) => find.byKey(
-  ValueKey('studio-mail-folder-' + folder.accountId + '-' + folder.mailboxId),
+  ValueKey('studio-mail-folder-${folder.accountId}-${folder.mailboxId}'),
 );
+
+Future<void> _press(WidgetTester tester, Finder target) async {
+  // Missing folders can be below the dialog's clipped list viewport.
+  await Scrollable.ensureVisible(tester.element(target), alignment: 0.5);
+  await tester.pumpAndSettle();
+  expect(target.hitTestable(), findsOneWidget);
+  await tester.tap(target.hitTestable());
+  await tester.pumpAndSettle();
+}
 
 Future<StudioMailFolderChoice?> _show(
   WidgetTester tester, {
@@ -43,26 +52,28 @@ Future<StudioMailFolderChoice?> _show(
   List<MailSavedHeaderSearchFolder>? initial,
 }) async {
   StudioMailFolderChoice? outcome;
-  await tester.pumpWidget(MaterialApp(
-    home: Scaffold(
-      body: Builder(
-        builder: (context) => TextButton(
-          onPressed: () async {
-            outcome = await showDialog<StudioMailFolderChoice>(
-              context: context,
-              builder: (_) => StudioMailFolderPickerDialog(
-                strings: _strings,
-                accountIds: const ['account-a', 'account-b'],
-                options: options,
-                initialFolders: initial,
-              ),
-            );
-          },
-          child: const Text('Open folders'),
+  await tester.pumpWidget(
+    MaterialApp(
+      home: Scaffold(
+        body: Builder(
+          builder: (context) => TextButton(
+            onPressed: () async {
+              outcome = await showDialog<StudioMailFolderChoice>(
+                context: context,
+                builder: (_) => StudioMailFolderPickerDialog(
+                  strings: _strings,
+                  accountIds: const ['account-a', 'account-b'],
+                  options: options,
+                  initialFolders: initial,
+                ),
+              );
+            },
+            child: const Text('Open folders'),
+          ),
         ),
       ),
     ),
-  ));
+  );
   await tester.tap(find.text('Open folders'));
   await tester.pumpAndSettle();
   expect(find.byType(StudioMailFolderPickerDialog), findsOneWidget);
@@ -70,50 +81,57 @@ Future<StudioMailFolderChoice?> _show(
 }
 
 void main() {
-  testWidgets('folder selection requires coverage for every chosen account',
-      (tester) async {
+  testWidgets('folder selection requires coverage for every chosen account', (
+    tester,
+  ) async {
     await _show(tester, options: _options);
     Finder apply() => find.byKey(const ValueKey('studio-mail-folder-apply'));
     expect(tester.widget<FilledButton>(apply()).onPressed, isNotNull);
-    await tester.tap(_folder(_two));
+    await _press(tester, _folder(_two));
     await tester.pump();
     expect(tester.widget<FilledButton>(apply()).onPressed, isNull);
-    await tester.tap(_folder(_two));
+    await _press(tester, _folder(_two));
     await tester.pump();
     expect(tester.widget<FilledButton>(apply()).onPressed, isNotNull);
-    await tester.tap(apply());
+    await _press(tester, apply());
     await tester.pumpAndSettle();
     expect(find.byType(StudioMailFolderPickerDialog), findsNothing);
   });
 
-  testWidgets('missing selected folders stay explicit and cannot be applied',
-      (tester) async {
-    await _show(tester, options: [
-      ..._options,
-      const StudioMailFolderOption(
-        folder: _missing,
-        accountLabel: 'Account A',
-        displayName: 'Removed',
-        available: false,
-      ),
-    ], initial: [_missing, _two]);
+  testWidgets('missing selected folders stay explicit and cannot be applied', (
+    tester,
+  ) async {
+    await _show(
+      tester,
+      options: [
+        ..._options,
+        const StudioMailFolderOption(
+          folder: _missing,
+          accountLabel: 'Account A',
+          displayName: 'Removed',
+          available: false,
+        ),
+      ],
+      initial: [_missing, _two],
+    );
     final apply = find.byKey(const ValueKey('studio-mail-folder-apply'));
     expect(tester.widget<FilledButton>(apply).onPressed, isNull);
-    await tester.tap(_folder(_missing));
+    await _press(tester, _folder(_missing));
     await tester.pump();
     expect(tester.widget<FilledButton>(apply).onPressed, isNull);
-    await tester.tap(_folder(_one));
+    await _press(tester, _folder(_one));
     await tester.pump();
     expect(tester.widget<FilledButton>(apply).onPressed, isNotNull);
-    await tester.tap(apply);
+    await _press(tester, apply);
     await tester.pumpAndSettle();
     expect(find.byType(StudioMailFolderPickerDialog), findsNothing);
   });
 
-  testWidgets('all retained folders is a separate explicit choice',
-      (tester) async {
+  testWidgets('all retained folders is a separate explicit choice', (
+    tester,
+  ) async {
     await _show(tester, options: _options, initial: [_one, _two]);
-    await tester.tap(find.byKey(const ValueKey('studio-mail-folder-all')));
+    await _press(tester, find.byKey(const ValueKey('studio-mail-folder-all')));
     await tester.pumpAndSettle();
     expect(find.byType(StudioMailFolderPickerDialog), findsNothing);
   });

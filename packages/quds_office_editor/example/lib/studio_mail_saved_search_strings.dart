@@ -61,11 +61,8 @@ extension StudioMailSavedSearchStrings on StudioStrings {
     'Einige Konten dieser Suche sind hier nicht verfügbar. Die Suche wurde nicht ausgeführt. Wählen Sie einen verfügbaren Kontenbereich, um sie zu ändern.',
     'بعض حسابات هذا البحث غير متاحة هنا. لم يُنفّذ البحث. اختر نطاق حسابات متاحًا لتحديثه.',
   );
-  String get mailSavedSearchChooseFolders => _text(
-    'Choose folders…',
-    'Ordner auswählen…',
-    'اختيار المجلدات…',
-  );
+  String get mailSavedSearchChooseFolders =>
+      _text('Choose folders…', 'Ordner auswählen…', 'اختيار المجلدات…');
   String get mailSavedSearchAllFolders => _text(
     'All retained folders',
     'Alle gespeicherten Ordner',

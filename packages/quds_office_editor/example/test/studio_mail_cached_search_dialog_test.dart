@@ -156,9 +156,15 @@ Future<void> _idle(WidgetTester tester) => _until(
 );
 
 Future<void> _press(WidgetTester tester, Finder target) async {
-  await tester.ensureVisible(target);
+  // TextField focus can schedule its own scroll after entering a query. Let
+  // that bounded animation finish before centering the intended control.
+  // pumpAndSettle is unsuitable when a pending store operation animates the
+  // progress indicator, so only advance the focus/scroll interval here.
+  await tester.pump(const Duration(milliseconds: 350));
+  await Scrollable.ensureVisible(tester.element(target), alignment: 0.5);
   await tester.pump();
-  await tester.tap(target);
+  expect(target.hitTestable(), findsOneWidget);
+  await tester.tap(target.hitTestable());
   await tester.pump();
   await tester.pump(const Duration(milliseconds: 350));
 }

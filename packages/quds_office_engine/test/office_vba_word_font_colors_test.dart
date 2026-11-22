@@ -170,10 +170,9 @@ End With
       'explicit scalar conversions retain exact palette values: $expression',
       () {
         expect(
-          _compile('$_font.ColorIndex = $expression')
-              .steps
-              .single
-              .arguments['color'],
+          _compile(
+            '$_font.ColorIndex = $expression',
+          ).steps.single.arguments['color'],
           color,
         );
       },

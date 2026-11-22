@@ -1,22 +1,44 @@
 import 'header_search.dart';
 
-/// An exact folder in one verified host-directory account, not a display name.
-/// Mailbox IDs are scoped by the account; a provider's folder with the same
-/// name in another account never becomes an implicit match.
+/// One exact local folder in a host's verified account directory.
+///
+/// [displayName] is an optional retained label for unavailable-folder feedback;
+/// it is never used to resolve identity. Folder whitespace is significant.
 final class MailSavedHeaderSearchFolder {
   const MailSavedHeaderSearchFolder({
     required this.accountId,
     required this.mailboxId,
+    this.displayName,
   });
+
+  static const maxDisplayNameCodeUnits = 4096;
 
   final String accountId;
   final String mailboxId;
+  final String? displayName;
+
+  static bool isValidMailboxId(String value) =>
+      value.isNotEmpty &&
+      value.length <= MailSavedHeaderSearch.maxIdCodeUnits &&
+      !_controls.hasMatch(value) &&
+      _hasWellFormedUtf16(value);
+
+  static bool isValidDisplayName(String? value) =>
+      value == null ||
+      (value.length <= maxDisplayNameCodeUnits &&
+          !_controls.hasMatch(value) &&
+          _hasWellFormedUtf16(value));
+
+  bool get isValid =>
+      MailSavedHeaderSearch.isValidId(accountId) &&
+      isValidMailboxId(mailboxId) &&
+      isValidDisplayName(displayName);
 
   @override
   bool operator ==(Object other) =>
       other is MailSavedHeaderSearchFolder &&
-      other.accountId == accountId &&
-      other.mailboxId == mailboxId;
+      accountId == other.accountId &&
+      mailboxId == other.mailboxId;
 
   @override
   int get hashCode => Object.hash(accountId, mailboxId);
@@ -37,17 +59,19 @@ final class MailSavedHeaderSearch {
     required this.name,
     required this.query,
     required List<String> accountIds,
+    List<MailSavedHeaderSearchFolder>? folders,
     List<MailSavedHeaderSearchFolder>? folderScopes,
     this.revision = 0,
   }) : accountIds = List<String>.unmodifiable(accountIds),
-       folderScopes = folderScopes == null
-           ? null
-           : List<MailSavedHeaderSearchFolder>.unmodifiable(folderScopes);
+       folders = _folderSelection(folders, folderScopes);
 
   static const maxNameCodeUnits = 128;
   static const maxIdCodeUnits = 1024;
   static const maxAccountIds = 100;
-  static const maxFolderScopes = 200;
+  static const maxFolders = 200;
+
+  /// Published compatibility name for the same bounded exact folder set.
+  static const maxFolderScopes = maxFolders;
   static const maxRevision = 9007199254740991;
 
   final String id;
@@ -55,11 +79,26 @@ final class MailSavedHeaderSearch {
   final String query;
   final List<String> accountIds;
 
-  /// Null preserves the pre-folder-scope meaning: every retained folder in
-  /// each captured account. A nonempty list is an exact, fixed folder set.
-  /// Every account in [accountIds] must have at least one listed folder.
-  /// Missing folders must fail explicitly rather than widen the search.
-  final List<MailSavedHeaderSearchFolder>? folderScopes;
+  /// Null retains the legacy all-folders scope within [accountIds]. An explicit
+  /// set is nonempty and must represent every account exactly by its stable ID.
+  /// Missing folders remain in the definition and must never widen the search.
+  final List<MailSavedHeaderSearchFolder>? folders;
+
+  /// Published compatibility name; both accessors expose one immutable list.
+  List<MailSavedHeaderSearchFolder>? get folderScopes => folders;
+
+  static List<MailSavedHeaderSearchFolder>? _folderSelection(
+    List<MailSavedHeaderSearchFolder>? folders,
+    List<MailSavedHeaderSearchFolder>? folderScopes,
+  ) {
+    if (folders != null && folderScopes != null) {
+      throw ArgumentError('Supply one folder selection.');
+    }
+    final selected = folders ?? folderScopes;
+    return selected == null
+        ? null
+        : List<MailSavedHeaderSearchFolder>.unmodifiable(selected);
+  }
 
   /// Zero denotes an unsaved definition. Persisted revisions are assigned by
   /// the repository and must be supplied unchanged for update or deletion.
@@ -95,19 +134,20 @@ final class MailSavedHeaderSearch {
     for (final account in accountIds) {
       if (!isValidId(account) || !seen.add(account)) return false;
     }
-    if (folderScopes case final folders?) {
-      if (folders.isEmpty || folders.length > maxFolderScopes) return false;
-      final distinct = <MailSavedHeaderSearchFolder>{};
-      final covered = <String>{};
-      for (final folder in folders) {
-        if (!seen.contains(folder.accountId) ||
-            !isValidId(folder.mailboxId) ||
-            !distinct.add(folder)) {
+    final selected = folders;
+    if (selected != null) {
+      if (selected.isEmpty || selected.length > maxFolders) return false;
+      final identities = <MailSavedHeaderSearchFolder>{};
+      final represented = <String>{};
+      for (final folder in selected) {
+        if (!folder.isValid ||
+            !seen.contains(folder.accountId) ||
+            !identities.add(folder)) {
           return false;
         }
-        covered.add(folder.accountId);
+        represented.add(folder.accountId);
       }
-      if (covered.length != seen.length) return false;
+      if (represented.length != seen.length) return false;
     }
     try {
       MailHeaderSearchQuery.parse(query);
@@ -121,17 +161,24 @@ final class MailSavedHeaderSearch {
     String? name,
     String? query,
     List<String>? accountIds,
+    List<MailSavedHeaderSearchFolder>? folders,
     List<MailSavedHeaderSearchFolder>? folderScopes,
     bool allFolders = false,
     int? revision,
-  }) => MailSavedHeaderSearch(
-    id: id,
-    name: name ?? this.name,
-    query: query ?? this.query,
-    accountIds: accountIds ?? this.accountIds,
-    folderScopes: allFolders ? null : folderScopes ?? this.folderScopes,
-    revision: revision ?? this.revision,
-  );
+  }) {
+    final selected = _folderSelection(folders, folderScopes);
+    if (allFolders && selected != null) {
+      throw ArgumentError('Choose either explicit folders or all folders.');
+    }
+    return MailSavedHeaderSearch(
+      id: id,
+      name: name ?? this.name,
+      query: query ?? this.query,
+      accountIds: accountIds ?? this.accountIds,
+      folders: allFolders ? null : selected ?? this.folders,
+      revision: revision ?? this.revision,
+    );
+  }
 
   @override
   String toString() => 'MailSavedHeaderSearch(redacted)';

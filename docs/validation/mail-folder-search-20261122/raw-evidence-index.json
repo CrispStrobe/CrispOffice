@@ -1,0 +1,585 @@
+{
+  "archive": "raw-evidence.tar.gz",
+  "files": [
+    {
+      "path": "runtime/env.sh",
+      "sha256": "4b6a5746ddeee4cef8839ec3a9ee1e279569fb728c176c74a45fed90eec59f7c",
+      "bytes": 588
+    },
+    {
+      "path": "runtime/logs/flutter-tools-pub-get.log",
+      "sha256": "fcccf37d969787c76d4c55b19cba368cff68b1c3eb86b1f0f02274b9cc405829",
+      "bytes": 1228
+    },
+    {
+      "path": "runtime/logs/flutter-version.log",
+      "sha256": "80eccdf130810e1e30e20fa9d31eac21715139a2b1562b7f00252cd54271e6d2",
+      "bytes": 628
+    },
+    {
+      "path": "runtime/logs/folder-dialog-analysis-final.log",
+      "sha256": "b9a5f77f0f6f6fa0969cdc8000e8fe1a54341bfa38ee7a49168c1c609b0e0e61",
+      "bytes": 147
+    },
+    {
+      "path": "runtime/logs/folder-dialog-analysis.log",
+      "sha256": "55e50c931be40eeb397afdb57c17402583a48154da0425f7a64ee881db5b5f81",
+      "bytes": 339
+    },
+    {
+      "path": "runtime/logs/folder-picker-dialog-tests-rerun.log",
+      "sha256": "db6359701ced6c6b3a9abaaa1f3aee9ae74aafa541a990e3af6d6510d79d9d3e",
+      "bytes": 2953
+    },
+    {
+      "path": "runtime/logs/folder-picker-dialog-tests.log",
+      "sha256": "91dd9a467473a0284801d5d03e5fbc32e82c102c9cb68dfce9662e021a304995",
+      "bytes": 9499
+    },
+    {
+      "path": "runtime/logs/folder-picker-tests.log",
+      "sha256": "ac9905ac35b0a9982d013f4970f8df411c4a61572d77656ebd5a4b1e4dac1e1d",
+      "bytes": 1837
+    },
+    {
+      "path": "runtime/logs/folder-search-de-compact-navigation.log",
+      "sha256": "2dc062dc6ffe21b75a0349b2fefd51ebbf7a4d357f6b0e3ebd4d3ab1726e1432",
+      "bytes": 274
+    },
+    {
+      "path": "runtime/logs/folder-search-existing-dialogs.log",
+      "sha256": "cc1e0a0491f76a53233d5eee982a10b64bb05fbae475aaa20368cd7c75dbadd3",
+      "bytes": 17901
+    },
+    {
+      "path": "runtime/logs/folder-search-final-dialogs.log",
+      "sha256": "40b735e7b0e01535611a2f2b777f4347133902b144c198c91608a60b67628e70",
+      "bytes": 8114
+    },
+    {
+      "path": "runtime/logs/folder-search-final-refresh-dialogs.log",
+      "sha256": "ba1e455a4f141317d5ce6b10acb48b7d28a5390f0a3c61cdbfb00ae1b3d27c61",
+      "bytes": 1289
+    },
+    {
+      "path": "runtime/logs/mail-combined-ui-dialogs-initial-interrupted.log",
+      "sha256": "8df49c7ee72c7f59db470bcf87b182334d9aaa4c2abe778f97f0303bdc812ef6",
+      "bytes": 2813
+    },
+    {
+      "path": "runtime/logs/mail-combined-ui-dialogs-receipt.json",
+      "sha256": "fd60d573e33c699dd968887d603409915825758c126ef5a1126b9069e3b38fe2",
+      "bytes": 1205
+    },
+    {
+      "path": "runtime/logs/mail-combined-ui-dialogs.log",
+      "sha256": "bfe7b198eb7dd3eee8175112d1e088357be8e65a36e7a4a4a225dc947c6e52d9",
+      "bytes": 16227
+    },
+    {
+      "path": "runtime/logs/mail-final-changed-analysis-clean.json",
+      "sha256": "004fccd740511c5c1627025b69995cd332e12f6bb963210b80e737a5f0b0819a",
+      "bytes": 10549
+    },
+    {
+      "path": "runtime/logs/mail-final-changed-analysis-clean.log",
+      "sha256": "d595b302755010d24bf4ce7bea93919676888b46b67b0c02a416bccfb9499721",
+      "bytes": 1603
+    },
+    {
+      "path": "runtime/logs/mail-final-changed-analysis.json",
+      "sha256": "176a56981d32bd8354ae3be7e3812ffc0a8fb5cec91cce87b39f7a50cce029b3",
+      "bytes": 3659
+    },
+    {
+      "path": "runtime/logs/mail-final-changed-analysis.log",
+      "sha256": "b7b53114c6d05c7984a1267134343c1a90eb9f6b501d799de969fb0b5207ef3c",
+      "bytes": 2827
+    },
+    {
+      "path": "runtime/logs/mail-final-format-clean.json",
+      "sha256": "4a5a01a865b5d9dffb3fed9e39a431815ebc2c29d09b9838d80d74d47b9fe744",
+      "bytes": 10552
+    },
+    {
+      "path": "runtime/logs/mail-final-format-clean.log",
+      "sha256": "717ea160d8eb5d661c59e4cb56a23cce5db51481ee9b6f914408bd985a65091e",
+      "bytes": 48
+    },
+    {
+      "path": "runtime/logs/mail-final-format.json",
+      "sha256": "fb1ef7324f6edabfbf8cd910b2e4d9613173b1726cce6f25b27c7739e9c41b27",
+      "bytes": 3663
+    },
+    {
+      "path": "runtime/logs/mail-final-format.log",
+      "sha256": "aa72f4e78cb80e974a9f8dc5055cf996d222a5ea04373dd2bebc4e6a0c8e55fd",
+      "bytes": 550
+    },
+    {
+      "path": "runtime/logs/mail-final-normalization-analysis.log",
+      "sha256": "1c881b1c0f37b140da51f53b6f9a9d15fedd83997ccf865e191b0586a25bce3b",
+      "bytes": 292
+    },
+    {
+      "path": "runtime/logs/mail-final-normalization-ast.log",
+      "sha256": "0d88cfd3ba7ffb3c31464d31f2a3a4555a7fbbcea5766ae3212b3a536713cb7a",
+      "bytes": 1014
+    },
+    {
+      "path": "runtime/logs/mail-final-normalization-format.log",
+      "sha256": "2fc71b396bd7e7806e0cbd6b1bba297367403db47e993f52dbc49e2441671471",
+      "bytes": 561
+    },
+    {
+      "path": "runtime/logs/mail-final-normalization-interpolation-format.log",
+      "sha256": "43a0060b01f8d00290502db016cbde393b149f5a0971989771a4fe3fddc181e7",
+      "bytes": 47
+    },
+    {
+      "path": "runtime/logs/mail-final-normalization-picker-tests.log",
+      "sha256": "e582f2575c597054f80319fb411ccf2768cca940e6b13c6e20b47c56ad005daf",
+      "bytes": 375
+    },
+    {
+      "path": "runtime/logs/mail-incoming-compat-picker.log",
+      "sha256": "6b9279370e74b90ab9209a884cf9557c1c42f25f25453a4c710d8733de38a29a",
+      "bytes": 5520
+    },
+    {
+      "path": "runtime/logs/mail-incoming-compat-ui-rerun.log",
+      "sha256": "a52d109337a89b6de9893864429957b6680c399fbc2f142170f2981e0c285e28",
+      "bytes": 1118
+    },
+    {
+      "path": "runtime/logs/mail-union-host-final.jsonl",
+      "sha256": "699f7c42d6abcee831b5aed6b12e136a001275b1f1383c187537e2f29928ac33",
+      "bytes": 585270
+    },
+    {
+      "path": "runtime/logs/mail-union-host-receipt.json",
+      "sha256": "37019d543e295eddbfbee7927e3bc3527ef2ce88f8d8eda8512f83e8cc2ca73e",
+      "bytes": 3054
+    },
+    {
+      "path": "runtime/logs/mail-union-host-source-before.json",
+      "sha256": "9784cb84cab5e50030a42070ca76ce181017c21dd299f2db4b9440dbc4b5bbdc",
+      "bytes": 1198
+    },
+    {
+      "path": "runtime/logs/mail-union-word-compile-js.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "runtime/logs/mail-union-word-compile-js.stdout.log",
+      "sha256": "e4afaf6728362e0017baebd61daac6cf2cf2de6545f5fcc05816560d76554e9e",
+      "bytes": 114
+    },
+    {
+      "path": "runtime/logs/mail-union-word-native-receipt.json",
+      "sha256": "5eb8b847341a9f16060ee5d3116ac71f6075127abe9e22454b6110d8a3a4a772",
+      "bytes": 3204
+    },
+    {
+      "path": "runtime/logs/mail-union-word-native.log",
+      "sha256": "ea2760ee05d5faf99eec52e38dcea4daf2d4fa38bd3a5e906fab2438730e7de4",
+      "bytes": 81946
+    },
+    {
+      "path": "runtime/logs/mail-union-word-node.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "runtime/logs/mail-union-word-node.stdout.log",
+      "sha256": "082355476d48351932bbe2c7a7884e8b138ba82fffd53b7f0acf7bd78bcef69d",
+      "bytes": 1545
+    },
+    {
+      "path": "runtime/logs/mail-union-word-portable-receipt.json",
+      "sha256": "dbbc80474d320a54f7cbb2e774fe7bfd573b50387613708ccf0e476a34f79af1",
+      "bytes": 14377
+    },
+    {
+      "path": "runtime/logs/mail-union-word-portable.log",
+      "sha256": "ccb36456259325800982d74b757fb84e99928a4978d44a50fc3d7b408e637ff6",
+      "bytes": 2039
+    },
+    {
+      "path": "runtime/logs/mail-union-word-vm.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "runtime/logs/mail-union-word-vm.stdout.log",
+      "sha256": "90f24e046327bd48ca0660896664c610bb360ea078532f701b3696f0d8717bac",
+      "bytes": 1581
+    },
+    {
+      "path": "runtime/logs/mail-union-zotero-analysis-final.log",
+      "sha256": "407ba1345f7b8c8ded92347dbdb7d7521dd5d4bb29af2d9c988c30195395ea88",
+      "bytes": 158
+    },
+    {
+      "path": "runtime/logs/mail-union-zotero-analysis-integrated.log",
+      "sha256": "e6cb1106be88db21f4cc2ab546092e4012eb871c3487f8c4c9a5617a5b5dc21f",
+      "bytes": 193
+    },
+    {
+      "path": "runtime/logs/mail-union-zotero-analysis.log",
+      "sha256": "407ba1345f7b8c8ded92347dbdb7d7521dd5d4bb29af2d9c988c30195395ea88",
+      "bytes": 158
+    },
+    {
+      "path": "runtime/logs/mail-union-zotero-editor-final.jsonl",
+      "sha256": "ee09130fbc5b49864ded7a086f7e686702a745ddd9a585dad28d847f2f79475a",
+      "bytes": 103473
+    },
+    {
+      "path": "runtime/logs/mail-union-zotero-editor-integrated.jsonl",
+      "sha256": "7399bc8f13086b8ecc6ca3c83932a69b3fb176c8bb79dda0e0ecdc0acf7709d4",
+      "bytes": 103556
+    },
+    {
+      "path": "runtime/logs/mail-union-zotero-editor.jsonl",
+      "sha256": "67d0e230e2aa578dab459031df643595f0c89d1b46a36cd1ac5b552428ac215f",
+      "bytes": 104005
+    },
+    {
+      "path": "runtime/logs/mail-union-zotero-engine-final.jsonl",
+      "sha256": "73936e8d8bf384bde4bffc95be915134b5ec7364b95bc74b9b0ae6292afd415f",
+      "bytes": 84610
+    },
+    {
+      "path": "runtime/logs/mail-union-zotero-engine.jsonl",
+      "sha256": "3f62f5b42fccd4f47325e534bd3f5c2383a57950056f256f779cf98e4e2bde84",
+      "bytes": 4221
+    },
+    {
+      "path": "runtime/logs/mail-union-zotero-integrated-source-before.json",
+      "sha256": "210c8fb9085cfcc54552a965fbfd1f797678685fed6ad0626c9a716917508a4c",
+      "bytes": 3268
+    },
+    {
+      "path": "runtime/logs/mail-union-zotero-receipt.json",
+      "sha256": "dfbfa69e97c8ef0a6266439beaf866533dd3802ce76c8d8bccfc74a1887d2881",
+      "bytes": 9715
+    },
+    {
+      "path": "runtime/logs/mail-union-zotero-source-before.json",
+      "sha256": "aae1d174e498733fdae20b84f6f25f407767d5bdff09ec8d0ad2d995cb421109",
+      "bytes": 2971
+    },
+    {
+      "path": "runtime/logs/mail-union-zotero-stale-host.jsonl",
+      "sha256": "54d7d6abe5138e85db23a170bca146a5e077df9511c4a5681b406a5f7f6c3d05",
+      "bytes": 2222
+    },
+    {
+      "path": "runtime/logs/mail-union-zotero-superseded-fixture.patch",
+      "sha256": "0c6fe3ef92401c2a3b44b2f6c547b6f78dc2dc72d2baed7ea7bb8e966cec5158",
+      "bytes": 1129
+    },
+    {
+      "path": "runtime/logs/sqlite-readiness.log",
+      "sha256": "1add0471127824f774b78a833845f3537efa2b35bb15ab4d851b2a8e15b3c16e",
+      "bytes": 214
+    },
+    {
+      "path": "runtime/logs/studio-folder-lifecycle-analysis-final.log",
+      "sha256": "5697563c81b5a0dd9122ba359daa7df6af3fb3b78fdfdbbfcffa6ac47affa6c7",
+      "bytes": 76
+    },
+    {
+      "path": "runtime/logs/studio-folder-lifecycle-analysis.log",
+      "sha256": "5697563c81b5a0dd9122ba359daa7df6af3fb3b78fdfdbbfcffa6ac47affa6c7",
+      "bytes": 76
+    },
+    {
+      "path": "runtime/logs/studio-folder-lifecycle-tests-final.jsonl",
+      "sha256": "50bc850be135b4b628f2705b2cbd010e86a62a04a47eb038c144c7406cdd1638",
+      "bytes": 2620
+    },
+    {
+      "path": "runtime/logs/studio-folder-lifecycle-tests.jsonl",
+      "sha256": "4492608500d2492ea3eac93923fd08c1351cd7d804363514392fd661b920992a",
+      "bytes": 4606
+    },
+    {
+      "path": "runtime/logs/studio-folder-merged-analysis.log",
+      "sha256": "c46b6d6d4f2f85df3679e5aef785dbfa970fb964f6c73cd3620132eb208e6a27",
+      "bytes": 207
+    },
+    {
+      "path": "runtime/logs/studio-folder-merged-session-tests.jsonl",
+      "sha256": "a43d97e230b1f35eea5d172aef7d340693d4a8c563c81ccbc33c062e7c58c4fa",
+      "bytes": 584979
+    },
+    {
+      "path": "runtime/logs/studio-folder-session-regression-tests.jsonl",
+      "sha256": "c6fdf6e2a79b6b2151849e185264f6f81b4aec332e5f0a7c78241b6c595d1e7b",
+      "bytes": 567555
+    },
+    {
+      "path": "runtime/logs/studio-folder-session-tests.jsonl",
+      "sha256": "bd7dc8049f0593dc204c10758465f41e6af426dedcb9579f4a5b1b04881b5889",
+      "bytes": 172775
+    },
+    {
+      "path": "runtime/logs/test-runner-compile.log",
+      "sha256": "3107055585da7bf6e1ea02b88832abb5b35c4a3f9b6df55109291ad6d11665f2",
+      "bytes": 186
+    },
+    {
+      "path": "runtime/logs/test-runner-startup.log",
+      "sha256": "a047762d2cc2cf4a6818e566644f189682d8c8ece297a71dec7ce4d0fc4e79f2",
+      "bytes": 7
+    },
+    {
+      "path": "runtime/logs/workspace-pub-get.log",
+      "sha256": "3640d48177b802767785e357f56651162d2250e124b566cffdc2cb88ce7e7f9c",
+      "bytes": 214
+    },
+    {
+      "path": "runtime/mail-final-normalization/after_formatter/packages/quds_office_editor/example/lib/studio_mail_folder_picker.dart",
+      "sha256": "ca78d383dc2a6ea7ed2f023c77fe56731d55246c47102c18f330e4ac28327e40",
+      "bytes": 4930
+    },
+    {
+      "path": "runtime/mail-final-normalization/after_formatter/packages/quds_office_editor/example/lib/studio_mail_saved_search_strings.dart",
+      "sha256": "67ef180a1faf550e5344a6f94f98b1d5c842a0052026013897aa86df45a67555",
+      "bytes": 7576
+    },
+    {
+      "path": "runtime/mail-final-normalization/after_formatter/packages/quds_office_editor/example/test/studio_mail_cached_search_test.dart",
+      "sha256": "f4816bda44581565f3fa70166e37a4b25e7aa2b3cc8bb236463f8ee4daae7293",
+      "bytes": 25282
+    },
+    {
+      "path": "runtime/mail-final-normalization/after_formatter/packages/quds_office_editor/example/test/studio_mail_folder_picker_test.dart",
+      "sha256": "6ef097f4fb968cf3ad792d0f5b374af4d7444505c01b51090040a8a43091eba6",
+      "bytes": 4468
+    },
+    {
+      "path": "runtime/mail-final-normalization/after_formatter/packages/quds_office_engine/lib/src/automation/office_operations.dart",
+      "sha256": "7b8696cb623023d583ced329677aec2670a057dc1b761399b5819bf3110e891b",
+      "bytes": 29919
+    },
+    {
+      "path": "runtime/mail-final-normalization/after_formatter/packages/quds_office_engine/test/office_vba_word_cell_formatting_integration_test.dart",
+      "sha256": "1533fc3090ecc62974b0969e38fc7741f0046dc648ae29f4558c75cc883c1574",
+      "bytes": 25287
+    },
+    {
+      "path": "runtime/mail-final-normalization/after_formatter/packages/quds_office_engine/test/office_vba_word_font_colors_test.dart",
+      "sha256": "8dbc9570a71d7cb749fcf8a021879eb780322885fd28847556a57d8fe4866f0f",
+      "bytes": 8788
+    },
+    {
+      "path": "runtime/mail-final-normalization/before/packages/quds_office_editor/example/lib/studio_mail_folder_picker.dart",
+      "sha256": "cb341909aaedf959c74b728d6b1cd4b212500f95dabe9ab7601bea0e0fbaebf1",
+      "bytes": 4948
+    },
+    {
+      "path": "runtime/mail-final-normalization/before/packages/quds_office_editor/example/lib/studio_mail_saved_search_strings.dart",
+      "sha256": "bedda1c17d1eace81b956089689fb81140f1841376ee3110eabced3b5ae4acff",
+      "bytes": 7587
+    },
+    {
+      "path": "runtime/mail-final-normalization/before/packages/quds_office_editor/example/test/studio_mail_cached_search_test.dart",
+      "sha256": "f16e4c8f85551652a7be699da9efa3ef25d6ab37cf0bffb667e65464dc91d0ff",
+      "bytes": 25139
+    },
+    {
+      "path": "runtime/mail-final-normalization/before/packages/quds_office_editor/example/test/studio_mail_folder_picker_test.dart",
+      "sha256": "6ef097f4fb968cf3ad792d0f5b374af4d7444505c01b51090040a8a43091eba6",
+      "bytes": 4468
+    },
+    {
+      "path": "runtime/mail-final-normalization/before/packages/quds_office_engine/lib/src/automation/office_operations.dart",
+      "sha256": "7fe13f76cd15ef0618c73a9a15751745fcca2c3d90a60659dd1a32a045df349f",
+      "bytes": 29911
+    },
+    {
+      "path": "runtime/mail-final-normalization/before/packages/quds_office_engine/test/office_vba_word_cell_formatting_integration_test.dart",
+      "sha256": "25cf39a271999ebf28484356a49db18104704be692f2db91c742bc2c13342602",
+      "bytes": 25192
+    },
+    {
+      "path": "runtime/mail-final-normalization/before/packages/quds_office_engine/test/office_vba_word_font_colors_test.dart",
+      "sha256": "10cf072dd752959176fcae92c46cdd7ef64fb035d3176520f5acaa9dad9c021c",
+      "bytes": 8808
+    },
+    {
+      "path": "runtime/mail-final-normalization/complete.diff",
+      "sha256": "f259145eb1ff8db290dd86b18b00d185ada325cd1674e9fcd9314b867e92ab65",
+      "bytes": 14663
+    },
+    {
+      "path": "runtime/mail-final-normalization/final/packages/quds_office_editor/example/lib/studio_mail_folder_picker.dart",
+      "sha256": "5d29a08048a1653d5a518ebbda279ed9b879c508a6deda2209a89a6c92896767",
+      "bytes": 4794
+    },
+    {
+      "path": "runtime/mail-final-normalization/final/packages/quds_office_editor/example/lib/studio_mail_saved_search_strings.dart",
+      "sha256": "67ef180a1faf550e5344a6f94f98b1d5c842a0052026013897aa86df45a67555",
+      "bytes": 7576
+    },
+    {
+      "path": "runtime/mail-final-normalization/final/packages/quds_office_editor/example/test/studio_mail_cached_search_test.dart",
+      "sha256": "f4816bda44581565f3fa70166e37a4b25e7aa2b3cc8bb236463f8ee4daae7293",
+      "bytes": 25282
+    },
+    {
+      "path": "runtime/mail-final-normalization/final/packages/quds_office_editor/example/test/studio_mail_folder_picker_test.dart",
+      "sha256": "5e99134f1fbcc25b1b02b25116a5c2e3c6c8679874c8301085202bfa1923e931",
+      "bytes": 4463
+    },
+    {
+      "path": "runtime/mail-final-normalization/final/packages/quds_office_engine/lib/src/automation/office_operations.dart",
+      "sha256": "7b8696cb623023d583ced329677aec2670a057dc1b761399b5819bf3110e891b",
+      "bytes": 29919
+    },
+    {
+      "path": "runtime/mail-final-normalization/final/packages/quds_office_engine/test/office_vba_word_cell_formatting_integration_test.dart",
+      "sha256": "1533fc3090ecc62974b0969e38fc7741f0046dc648ae29f4558c75cc883c1574",
+      "bytes": 25287
+    },
+    {
+      "path": "runtime/mail-final-normalization/final/packages/quds_office_engine/test/office_vba_word_font_colors_test.dart",
+      "sha256": "8dbc9570a71d7cb749fcf8a021879eb780322885fd28847556a57d8fe4866f0f",
+      "bytes": 8788
+    },
+    {
+      "path": "runtime/mail-final-normalization/formatter-ast-equivalence.json",
+      "sha256": "aa6cfe2eb80b65e5ee7d8e49fb9c0ad77a97fdbe0b75b2e0cc0a238c72ccc552",
+      "bytes": 1278
+    },
+    {
+      "path": "runtime/mail-final-normalization/formatter-only.diff",
+      "sha256": "88923531eb8080adb59de9cd4d30d451d416b52e187337c9c44306b2f86570aa",
+      "bytes": 13150
+    },
+    {
+      "path": "runtime/mail-final-normalization/interpolation.diff",
+      "sha256": "7cac995007ed0c45ea42a7fadfb709eec02ab3f623cf8fedb908c2e66a1b15eb",
+      "bytes": 1754
+    },
+    {
+      "path": "runtime/mail-final-normalization/receipt.json",
+      "sha256": "a4fad737bf413b56345ec5b30c866f72f6fad1c215736bba1f887c529f3c099e",
+      "bytes": 11311
+    },
+    {
+      "path": "runtime/mail-final-normalization/verify_formatter_ast.dart",
+      "sha256": "6472fc837859dfd20dde23a9891420de8e1804d18e5833b11349b956ce988605",
+      "bytes": 1363
+    },
+    {
+      "path": "runtime/pub-cache-receipt.json",
+      "sha256": "0e84bca6b67b267da3699af602ab2f826ebcfcf358ff5bebd970457bf6968931",
+      "bytes": 51965
+    },
+    {
+      "path": "runtime/qualify_mail_union_word_portable.py",
+      "sha256": "03c00cbfba9447d2cef8174448afe3a5dbfdc11ac956dfd6c5fb650df99cb84c",
+      "bytes": 4981
+    },
+    {
+      "path": "runtime/runtime.json",
+      "sha256": "2b237ed4ebbb036b2c8ff6e2bcf205f6dbbb3c39347e38950c529b85f230fa37",
+      "bytes": 5706
+    },
+    {
+      "path": "runtime/sqlite-readiness.json",
+      "sha256": "82343b796b743ad73bb09e79bac2678c8df3e2a41fcc0c24b9256cde0e34c58d",
+      "bytes": 468
+    },
+    {
+      "path": "validation/mail-core-folders.log",
+      "sha256": "0229aa3b584a285a767b1a7ecec09d056105e2028711ea59a1ac8e0515976465",
+      "bytes": 4928
+    },
+    {
+      "path": "validation/mail-core-full.log",
+      "sha256": "e659afe26a6d2217329acca146c8a007035842138c4dd3fababa6a2fce7dc75e",
+      "bytes": 56416
+    },
+    {
+      "path": "validation/mail-core-store-union-analysis-final.log",
+      "sha256": "b1a1379e482e40774b52016e2c5950ccceb66835d2102b0cbf4300d6f0525bd1",
+      "bytes": 62
+    },
+    {
+      "path": "validation/mail-core-store-union-analysis.log",
+      "sha256": "fb2af4cb387a20bec85cec52f5022a13ca920f7844d8a98d2b83e2ff8a31de40",
+      "bytes": 1745
+    },
+    {
+      "path": "validation/mail-core-union-focused.log",
+      "sha256": "e4f06a0d5d1b4782a79094508fc3f100889eb85781da0bbcb4f2bc8494d45f6f",
+      "bytes": 5861
+    },
+    {
+      "path": "validation/mail-core-union-full.log",
+      "sha256": "e92ac4c88bd35a9598e6274f44b633271f1f2fe6ac9d02c67317766ef95cf2f0",
+      "bytes": 56614
+    },
+    {
+      "path": "validation/mail-final-remote-audit-after-integration.json",
+      "sha256": "fad7245e1c56ec7e3b40e081cd646927d0591e0454ff2d0500783d1cc5855a01",
+      "bytes": 4581
+    },
+    {
+      "path": "validation/mail-final-remote-audit.json",
+      "sha256": "25d29667cc2019163e757f534f88b9f36088d21ae01259673444b2ac74f00fd7",
+      "bytes": 4263
+    },
+    {
+      "path": "validation/mail-folders-analysis.log",
+      "sha256": "a97e4772956a98ee12e34cf380351616faa9a80815ab6ea3aa35a109eb431f95",
+      "bytes": 284
+    },
+    {
+      "path": "validation/mail-remote-audit-20261122-repository-intake.json",
+      "sha256": "978f9023871c38fef8f4c0fdd47d91799719a5cc6cb7999c1d43d33074e14f46",
+      "bytes": 10008
+    },
+    {
+      "path": "validation/mail-store-folders.log",
+      "sha256": "8acc476831021d41ccd4ec385b432573e6587120ad102d919cb65e753376147a",
+      "bytes": 10943
+    },
+    {
+      "path": "validation/mail-store-full.log",
+      "sha256": "802c2a868f931dd2457e8c8bbf9f539f5a703815c5ed0d982636c58d24b88e3d",
+      "bytes": 157539
+    },
+    {
+      "path": "validation/mail-store-sync-migration.log",
+      "sha256": "7526b26e3bbbe3afa58dff6a1edec47cbe24972cf3d4a301f22bac5598b6ac45",
+      "bytes": 1969
+    },
+    {
+      "path": "validation/mail-store-union-focused-final.log",
+      "sha256": "0dc7fae0f26622dd6167417521c144081ae14d31c95c1e214650f1e87784551a",
+      "bytes": 14511
+    },
+    {
+      "path": "validation/mail-store-union-focused.log",
+      "sha256": "c3bc3bbe983e732b9f7d70d41343cabd9d110f2c603b9a8c1e81b9029f5cde98",
+      "bytes": 12065
+    },
+    {
+      "path": "validation/mail-store-union-full.log",
+      "sha256": "c79fa806d2037bcdde9af595d23e5deb48766c78288c2c68a11f875b928548c1",
+      "bytes": 155384
+    },
+    {
+      "path": "validation/mail-union-core-store-receipt.json",
+      "sha256": "29b36d1fc63f692e26289cbd08a60178b9f8bf80d92c4db77f8eb9945311bb41",
+      "bytes": 4549
+    }
+  ]
+}
