@@ -1,0 +1,178 @@
+{
+  "archive": "/workspace/scratch/7c69340222d3/post-intake-engine-initial-failure.tar.xz",
+  "archive_sha256": "08e50b506f6e9a7ec4ee9721431c5466271fe75d96995410037fa84052374aa1",
+  "archive_bytes": 244656,
+  "created_at": "2026-11-22T12:17:43.552392+00:00",
+  "members": [
+    {
+      "name": "post-intake-engine-acceptance/acceptance.json",
+      "bytes": 3980,
+      "sha256": "026925d37d589f08a3c0f280268f8c1bd04a9fb7f68ca6763230dc3121587ddc"
+    },
+    {
+      "name": "post-intake-engine-acceptance/all-test-ledger.json",
+      "bytes": 850435,
+      "sha256": "54bc39ad25959263d6e892ccb8079b6f5d6b6465c6fff68d91ca14c3c9983a0e"
+    },
+    {
+      "name": "post-intake-engine-acceptance/analysis-selection.json",
+      "bytes": 384,
+      "sha256": "89c934968f9d5056bcbb09c91b25d78b6f5ace4c32b1ac92a9c8fa701cf1b120"
+    },
+    {
+      "name": "post-intake-engine-acceptance/analysis.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "post-intake-engine-acceptance/analysis.stdout",
+      "bytes": 288,
+      "sha256": "e257449e5f4cd0d509a094173d0addcd5c761c958354516ed910dbb91cfdf5b5"
+    },
+    {
+      "name": "post-intake-engine-acceptance/archive-index.json",
+      "bytes": 5250,
+      "sha256": "564ef80e535fbe9d6bb194724d97b4c2c5194682d66578579243cfc96ada5f7c"
+    },
+    {
+      "name": "post-intake-engine-acceptance/artifacts.json",
+      "bytes": 4151,
+      "sha256": "9514d8bdb33e17466944d2fa9a97fe023f41965da6970343ab35c906fbccb5fe"
+    },
+    {
+      "name": "post-intake-engine-acceptance/case-ledger.json",
+      "bytes": 830867,
+      "sha256": "aee411ed8c9a7205a90b5ec0aa2ae4e1ecc53710606752e86cc45365b007203f"
+    },
+    {
+      "name": "post-intake-engine-acceptance/commands.json",
+      "bytes": 7933,
+      "sha256": "f5ab77d54b56fdbdba5c2f7b93296ed536a0cfdf90fba1eb3d72e4031ca85b44"
+    },
+    {
+      "name": "post-intake-engine-acceptance/dart-version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "post-intake-engine-acceptance/dart-version.stdout",
+      "bytes": 82,
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4"
+    },
+    {
+      "name": "post-intake-engine-acceptance/dependencies-after.json",
+      "bytes": 101379,
+      "sha256": "341a0899770a990949dcc6204b215f0f3b76d8eb24dc9aaf49984223db5f8bf3"
+    },
+    {
+      "name": "post-intake-engine-acceptance/dependencies-before.json",
+      "bytes": 101379,
+      "sha256": "341a0899770a990949dcc6204b215f0f3b76d8eb24dc9aaf49984223db5f8bf3"
+    },
+    {
+      "name": "post-intake-engine-acceptance/failure.json",
+      "bytes": 93,
+      "sha256": "ceb2189a5c5db89e04bf532646f9292ed0e300968bd11014a1161320f92169e0"
+    },
+    {
+      "name": "post-intake-engine-acceptance/format.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "post-intake-engine-acceptance/format.stdout",
+      "bytes": 47,
+      "sha256": "326144984cac0afa3bfe5359454d772fa9b857172e017bc681bd8e7cb32de99e"
+    },
+    {
+      "name": "post-intake-engine-acceptance/head-advance.json",
+      "bytes": 893,
+      "sha256": "92664ac455799dbbfeadfd5c48f4183585fa2a60c34f54a11235886e47baee48"
+    },
+    {
+      "name": "post-intake-engine-acceptance/input-stability.json",
+      "bytes": 177,
+      "sha256": "943372ad0ed214a3f9e623225d558ef59d0cb44bfe24816fa575ed05963fd50a"
+    },
+    {
+      "name": "post-intake-engine-acceptance/inputs-after.json",
+      "bytes": 617262,
+      "sha256": "13d7fc80777cf450aacc04e08831c97dcc041bdd71499de61d7f0fff13548552"
+    },
+    {
+      "name": "post-intake-engine-acceptance/inputs-before.json",
+      "bytes": 617262,
+      "sha256": "13d7fc80777cf450aacc04e08831c97dcc041bdd71499de61d7f0fff13548552"
+    },
+    {
+      "name": "post-intake-engine-acceptance/invocation.json",
+      "bytes": 1929,
+      "sha256": "dc3e5713da91625cc99d0f6c34fbb54a945c45dfe32786e785ec9cca531d4e2f"
+    },
+    {
+      "name": "post-intake-engine-acceptance/node-version.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "post-intake-engine-acceptance/node-version.stdout",
+      "bytes": 9,
+      "sha256": "4409d3bfa08b82f385bd424eeda65fc63b756129f0e89e82df77f1fecafccc14"
+    },
+    {
+      "name": "post-intake-engine-acceptance/non-event-lines.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "name": "post-intake-engine-acceptance/run_acceptance.py",
+      "bytes": 20892,
+      "sha256": "7f80591b0f14dda6ce148f3d2cac0aa9afa8e4cdee52ed086dd8e582556a949b"
+    },
+    {
+      "name": "post-intake-engine-acceptance/source-diff-before.patch",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "post-intake-engine-acceptance/source-status-before.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "post-intake-engine-acceptance/suite-selection.json",
+      "bytes": 2538,
+      "sha256": "ee3f7588926fec1dd60b5bd1b308ca58642817e863ed0a2458c2a1e2ab15e3e6"
+    },
+    {
+      "name": "post-intake-engine-acceptance/test-errors.json",
+      "bytes": 6395,
+      "sha256": "d52f0e274b3fd39c03d01fc70f891a7356455b2ce2f62b5ced2a1c1ebd42ef71"
+    },
+    {
+      "name": "post-intake-engine-acceptance/test-summary.json",
+      "bytes": 3265,
+      "sha256": "9486276a91a61fe0a2ee440ed9758fd71d49c09830af0c3f2701faa37b414344"
+    },
+    {
+      "name": "post-intake-engine-acceptance/tests.jsonl",
+      "bytes": 840945,
+      "sha256": "fefb16ccf6c2b9e7bafb49e171b4e53278df8ef3c477c87014b2990d6c575fae"
+    },
+    {
+      "name": "post-intake-engine-acceptance/tests.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "post-intake-engine-acceptance/whitespace.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "post-intake-engine-acceptance/whitespace.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

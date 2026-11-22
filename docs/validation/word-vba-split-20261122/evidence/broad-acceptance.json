@@ -1,0 +1,13 @@
+{
+  "accepted": true,
+  "inputs": 3068,
+  "tests": {
+    "selected_suites": 179,
+    "cases": 9310,
+    "passed": 9310,
+    "failed": 0,
+    "skipped": 0,
+    "error_events": 0,
+    "terminal_success": true
+  }
+}

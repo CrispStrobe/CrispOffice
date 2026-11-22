@@ -1,0 +1,51 @@
+{
+  "qualified_source_commit": "8bbe17bc7d82964b67385aa796b7f43248c65149",
+  "qualified_source_tree": "f1b36d91a8fb6bc843bcbc9c448a911f47147566",
+  "qualified": true,
+  "passed": 563,
+  "failed": 0,
+  "skipped": 0,
+  "suite_count": 20,
+  "fresh_passed": 516,
+  "fresh_suite_count": 18,
+  "fresh_inputs": 8980,
+  "changed_during_run": 0,
+  "mail": {
+    "passed": 220,
+    "suites": 6,
+    "strict_analysis": "7 production/store + 6 navigation test files: no issues"
+  },
+  "zotero_editor": {
+    "passed": 296,
+    "suites": 12,
+    "strict_analysis": "converter controller test: no issues"
+  },
+  "store": {
+    "passed": 47,
+    "suites": 2,
+    "executed_source_commit": "3e3a8fb037bc5c3972cbf9994003bc060ca68bb3",
+    "continuity_inputs": 6381,
+    "changed_inputs": 0,
+    "verified_before_and_after_current_run": true
+  },
+  "changes_since_previous_qualification": {
+    "previous_source_commit": "c971ad0e1515db8deed59b7d8360960c64e13059",
+    "changed_snapshot_inputs": 9,
+    "engine_production_files": 6,
+    "mail_test_files": 3,
+    "all_mail_production_files_unchanged": true,
+    "exact_input_delta": "previous-qualification-input-delta.json",
+    "exact_package_patch": "package-changes-since-qualified-source.patch",
+    "complete_git_names": "changes-since-qualified-source.txt"
+  },
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "sqlite_package": "3.9.1",
+    "sqlite_native_version": "3.54.1",
+    "sqlite_native_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b"
+  },
+  "dependency_lock_sha256": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+  "github_ci_used": false,
+  "prior_failed_attempt_and_prior_passes_retained": true
+}
