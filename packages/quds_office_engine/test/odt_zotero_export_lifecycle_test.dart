@@ -733,7 +733,7 @@ void main() {
     'orphan-footnote',
     'note-table',
     'duplicate-note-anchor',
-    'roman-endnote',
+    'alphabetic-endnote',
   ]) {
     test('refuses $location citations without changing the source', () {
       final paragraph = _cited('unsupported', 'Keep');
@@ -789,13 +789,20 @@ void main() {
           document.paragraphs.single.inlines.add(
             WmlRun(text: '1', noteRefId: note.id),
           );
-        case 'roman-endnote':
+        case 'alphabetic-endnote':
           final note = WordNotes.insert(
             document,
             document.paragraphs.single,
             endnote: true,
           );
           WordZotero.insertCitation(note.paragraphs.single, _citation('roman'));
+          document.sections.single.sourceProperties = WmlSectionSource(
+            xml:
+                '<w:sectPr xmlns:w="${OfficeNamespaces.w}">'
+                '<w:endnotePr><w:numFmt w:val="lowerLetter"/></w:endnotePr>'
+                '</w:sectPr>',
+            values: const {},
+          );
       }
       _refusesUnchanged(document);
     });

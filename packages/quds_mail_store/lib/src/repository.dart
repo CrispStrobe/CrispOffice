@@ -19,6 +19,7 @@ part 'saved_header_searches.dart';
 part 'compose_settings.dart';
 part 'flag_journal.dart';
 part 'flag_reconciliation.dart';
+part 'membership_reconciliation.dart';
 
 /// One profile in one database, with native/browser setup in separate entries.
 ///
@@ -780,6 +781,18 @@ final class SqliteMailRepository implements MailRepository {
       ('flag_batches', ['id', 'mailbox', 'provider', 'action', 'destination']),
       ('flag_batch_items', ['batch', 'remote', 'subject']),
       ('flag_item_resolutions', ['batch', 'position', 'kind', 'checked_at']),
+      (
+        'membership_item_observations',
+        [
+          'batch',
+          'position',
+          'kind',
+          'mailboxes',
+          'deletion_mailbox',
+          'is_deleted',
+          'checked_at',
+        ],
+      ),
       ('credential_cleanup', ['reference']),
       ('mail_fts', ['message', 'content']),
       ('index_state', ['message']),

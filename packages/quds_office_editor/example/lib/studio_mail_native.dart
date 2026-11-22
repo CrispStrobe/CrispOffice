@@ -2704,6 +2704,16 @@ class _StudioMailDialogState extends State<StudioMailDialog>
               _error = widget.strings.mailWorkspaceRefreshRequired;
             }),
           ),
+          onReconcileMembership: studioMailMembershipRecovery(
+            store: store,
+            observer: loader,
+            provider: MailProviderKind.imap,
+            isCurrent: current,
+            onChecked: () => setState(() {
+              _needsRefresh = true;
+              _error = widget.strings.mailWorkspaceRefreshRequired;
+            }),
+          ),
         ),
       );
     } finally {

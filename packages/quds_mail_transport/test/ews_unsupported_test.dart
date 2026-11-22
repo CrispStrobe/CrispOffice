@@ -71,6 +71,12 @@ void main() {
         await (provider as MailFlagObserver).observeFlags(remote, lease: lease),
       );
       unsupported(await provider.listMailboxes(lease));
+      unsupported(
+        await (provider as MailMembershipObserver).observeMembership(
+          remote,
+          lease: lease,
+        ),
+      );
       unsupported(await provider.fetchHeaders(mailbox, limit: 1, lease: lease));
       unsupported(await provider.pullChanges(mailbox, limit: 1, lease: lease));
       unsupported(

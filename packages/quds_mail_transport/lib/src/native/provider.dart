@@ -50,7 +50,11 @@ final class _Operation {
 /// Stateless connections keep account generations and credentials isolated.
 /// A provider allows one active operation, and never automatically replays one.
 final class NativeMailImapProvider
-    implements MailProvider, MailImapHeaderBrowser, MailFlagObserver {
+    implements
+        MailProvider,
+        MailImapHeaderBrowser,
+        MailFlagObserver,
+        MailMembershipObserver {
   NativeMailImapProvider({
     required this.configuration,
     required this.credentialStore,
@@ -732,6 +736,37 @@ final class NativeMailImapProvider
           isAnswered: flags.contains(r'\answered'),
           isDraft: flags.contains(r'\draft'),
           isDeleted: flags.contains(r'\deleted'),
+        ),
+      );
+    });
+  }
+
+  @override
+  Future<MailResult<MailMembershipObservation>> observeMembership(
+    MailRemoteIdentity identity, {
+    required MailOperationLease lease,
+  }) async {
+    if (identity is! MailImapIdentity || !_mailboxValid(identity.mailbox)) {
+      return _failure(MailProblemCode.invalidInput);
+    }
+    return _run(lease, (client, operation) async {
+      final selected = await _select(client, operation, identity.mailbox);
+      if (selected.uidValidity != identity.uidValidity) {
+        return MailMembershipObservation.identityChanged(identity: identity);
+      }
+      // An exact source UID read can establish only its current presence and
+      // deletion marker. Absence cannot recover a MOVE destination UID.
+      final source = await _readIdentity(client, operation, identity);
+      if (source == null) {
+        return MailMembershipObservation.missing(identity: identity);
+      }
+      if (source.uid != identity.uid || source.flags == null) {
+        throw const _Failure(MailProblemCode.providerFailure);
+      }
+      return MailMembershipObservation.imap(
+        identity: identity,
+        isDeleted: source.flags!.any(
+          (flag) => flag.toLowerCase() == r'\deleted',
         ),
       );
     });

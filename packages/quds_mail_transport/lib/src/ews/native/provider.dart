@@ -53,7 +53,8 @@ final class _Operation {
 
 /// Native Exchange Server mail adapter. One active operation owns one HTTPS
 /// client and a fresh vault read. No operation, including send, is retried here.
-final class NativeMailEwsProvider implements MailEwsProvider, MailFlagObserver {
+final class NativeMailEwsProvider
+    implements MailEwsProvider, MailFlagObserver, MailMembershipObserver {
   NativeMailEwsProvider({
     required this.configuration,
     required this.credentialStore,
@@ -305,12 +306,18 @@ final class NativeMailEwsProvider implements MailEwsProvider, MailFlagObserver {
     int? maxMimeBytes,
     bool allowMissing = false,
     bool requireFlags = false,
+    bool requireMembership = false,
   }) async {
     if (ids.isEmpty) return const [];
     final xml = await operation.post(
       client,
       'GetItem',
-      _soap.getItems(ids, mime: mime, flagsOnly: requireFlags),
+      _soap.getItems(
+        ids,
+        mime: mime,
+        flagsOnly: requireFlags,
+        membershipOnly: requireMembership,
+      ),
     );
     final result = _soap.items(
       xml,
@@ -318,6 +325,7 @@ final class NativeMailEwsProvider implements MailEwsProvider, MailFlagObserver {
       maxMimeBytes: maxMimeBytes,
       allowMissing: allowMissing,
       requireFlags: requireFlags,
+      requireMembership: requireMembership,
     );
     if (result.length != ids.length) {
       throw const EwsException(MailProblemCode.providerFailure);
@@ -355,6 +363,53 @@ final class NativeMailEwsProvider implements MailEwsProvider, MailFlagObserver {
         throw const EwsException(MailProblemCode.providerFailure);
       }
       return MailFlagObservation.present(identity: identity, flags: flags);
+    });
+  }
+
+  @override
+  Future<MailResult<MailMembershipObservation>> observeMembership(
+    MailRemoteIdentity identity, {
+    required MailOperationLease lease,
+  }) async {
+    if (!_identityValid(identity)) {
+      return _failure(MailProblemCode.invalidInput);
+    }
+    final remote = identity as MailOpaqueIdentity;
+    return _run(lease, (client, operation) async {
+      final item = (await _items(
+        client,
+        operation,
+        [remote.value],
+        allowMissing: true,
+        requireMembership: true,
+      )).single;
+      if (item == null) {
+        // EWS may replace an item's ID on move. Missing the original ID cannot
+        // establish the replacement ID, destination or historical outcome.
+        return MailMembershipObservation.missing(identity: remote);
+      }
+      final parent = item.parentFolderId;
+      if (parent == null) {
+        throw const EwsException(MailProblemCode.providerFailure);
+      }
+      final folders = _soap
+          .folders(
+            await operation.post(
+              client,
+              'GetFolder',
+              _soap.getFolder('deleteditems', distinguished: true),
+            ),
+            'GetFolder',
+          )
+          .folders;
+      if (folders.length != 1 || !folders.single.isMailFolder) {
+        throw const EwsException(MailProblemCode.providerFailure);
+      }
+      return MailMembershipObservation.folders(
+        identity: remote,
+        mailboxes: [MailMailboxId(parent, account: account)],
+        deletionMailbox: MailMailboxId(folders.single.id, account: account),
+      );
     });
   }
 

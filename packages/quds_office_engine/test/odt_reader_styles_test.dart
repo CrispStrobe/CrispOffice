@@ -448,7 +448,7 @@ ${_paragraphStyle('Child', '', parent: 'Parent', text: 'fo:font-style="italic"')
         for (final attribute in [
           'text:start-value="0"',
           'text:start-value="2"',
-          'style:num-format="i"',
+          'style:num-format="a"',
           'style:num-prefix="["',
           'style:num-suffix="]"',
           'text:start-numbering-at="page"',
@@ -475,7 +475,7 @@ ${_paragraphStyle('Child', '', parent: 'Parent', text: 'fo:font-style="italic"')
         ]) {
           expect(
             () => configured(
-              '<text:notes-configuration text:note-class="footnote" text:$name="Custom"/>',
+              '<text:notes-configuration text:note-class="footnote" style:num-format="1" text:$name="Custom"/>',
             ).validateNoteConfiguration(false),
             // Marker styles now have a supported, validated form. An absent
             // referenced definition is malformed; paragraph/master settings
@@ -505,7 +505,7 @@ ${_paragraphStyle('Child', '', parent: 'Parent', text: 'fo:font-style="italic"')
 
     test('unused other note class does not block the supported class', () {
       final styles = configured(
-        '<text:notes-configuration text:note-class="endnote" style:num-format="i"/>',
+        '<text:notes-configuration text:note-class="endnote" style:num-format="a"/>',
       );
       styles.validateNoteConfiguration(false);
       expect(

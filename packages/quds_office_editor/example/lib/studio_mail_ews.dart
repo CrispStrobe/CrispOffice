@@ -2089,6 +2089,20 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
               _error = widget.strings.mailWorkspaceRefreshRequired;
             }),
           ),
+          onReconcileMembership: studioMailMembershipRecovery(
+            store: store,
+            observer: provider,
+            provider: switch (widget.cloudService) {
+              MailCloudService.gmail => MailProviderKind.gmail,
+              MailCloudService.microsoft365 => MailProviderKind.graph,
+              null => MailProviderKind.ews,
+            },
+            isCurrent: current,
+            onChecked: () => setState(() {
+              _needsRefresh = true;
+              _error = widget.strings.mailWorkspaceRefreshRequired;
+            }),
+          ),
         ),
       );
     } finally {

@@ -114,6 +114,86 @@ Future<MailStoredFlagBatch> _reopenMembershipReceipt(
 }
 
 void membershipHostTests() {
+  for (final kind in [
+    MailProviderKind.imap,
+    MailProviderKind.ews,
+    MailProviderKind.gmail,
+    MailProviderKind.graph,
+  ]) {
+    testWidgets(
+      '${kind.name} connected history checks membership without replay and requires refresh',
+      (tester) async {
+        final harness = _Harness(kind);
+        await _show(tester, harness);
+        final historical = await _historicalUncertainty(
+          tester,
+          harness,
+          action: kind == MailProviderKind.gmail
+              ? MailBulkFlagAction.delete
+              : MailBulkFlagAction.move,
+        );
+        final headerReads = harness.headerReads;
+        await _openActivity(tester, historical);
+        expect(harness.membershipObservations, isEmpty);
+        await tester.ensureVisible(_key('studio-mail-activity-check-location'));
+        await tester.tap(_key('studio-mail-activity-check-location'));
+        await _until(
+          tester,
+          () =>
+              _key('studio-mail-activity-location-0').evaluate().isNotEmpty &&
+              find.byType(LinearProgressIndicator).evaluate().isEmpty,
+        );
+        expect(harness.membershipObservations, hasLength(1));
+        final observed = harness.membershipObservations.single.$1;
+        expect(observed.account, harness.liveAccount);
+        expect(observed.provider, kind);
+        if (observed is MailImapIdentity) {
+          expect(
+            (observed.mailbox.value, observed.uidValidity, observed.uid),
+            ('Archive/2025', 191, 501),
+          );
+        } else {
+          expect((observed as MailOpaqueIdentity).value, 'historical-item-501');
+        }
+        expect(harness.flagObservations, isEmpty);
+        expect(harness.commands, isEmpty);
+        expect(harness.bodyReads, 0);
+        expect(harness.sends, 0);
+        expect(harness.headerReads, headerReads);
+        await tester.tap(_key('studio-mail-activity-close'));
+        await _until(
+          tester,
+          () => _key('studio-mail-activity-dialog').evaluate().isEmpty,
+        );
+        expect(
+          find.text(_strings.mailWorkspaceRefreshRequired),
+          findsOneWidget,
+        );
+        expect(_list(tester).bulkActionsEnabled, isFalse);
+        await tester.pumpWidget(const SizedBox.shrink());
+        await tester.pump();
+        await settleMailJournal(tester, harness.fixture.reopen);
+        final saved = (await tester.runAsync(
+          () => harness.fixture.store.load(historical.summary.id),
+        ))!;
+        expect(saved!.membershipObservations, hasLength(1));
+        expect(
+          saved.membershipObservations.single.observation.identity,
+          saved.report.items.first.message,
+        );
+        expect(saved.summary.unresolvedCount, 1);
+        expect(saved.summary.uncertainCount, 1);
+        expect(saved.summary.reconciledCount, 0);
+        expect(
+          saved.report.plan.destination,
+          historical.report.plan.destination,
+        );
+        expect(saved.resolutions, isEmpty);
+        expect(harness.commands, isEmpty);
+      },
+    );
+  }
+
   testWidgets('IMAP organization works without legacy flag setters', (
     tester,
   ) async {

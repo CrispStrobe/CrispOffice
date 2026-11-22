@@ -1,0 +1,1444 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "baseline_main": "ec09fdccf95eb3072b4cfe4da3608f8d9b13eb75",
+  "cutoff": {
+    "type": "bounded_snapshot",
+    "retrieved_date": "2026-11-22",
+    "main_rechecked": "ec09fdccf95eb3072b4cfe4da3608f8d9b13eb75",
+    "newest_pr_updated_at": "2026-11-22T06:26:19Z",
+    "oldest_pr_updated_at": "2026-11-21T11:03:37Z"
+  },
+  "branches": [
+    {
+      "name": "codex/mail-durable-mutations-20261122",
+      "sha": "afdcb327c650383e269a3d32f7251f68a9d766c6",
+      "ancestor_of_baseline_main": true,
+      "comparison": {
+        "branch": "codex/mail-durable-mutations-20261122",
+        "sha": "afdcb327c650383e269a3d32f7251f68a9d766c6",
+        "status": "ahead",
+        "ahead_by": 1,
+        "behind_by": 0,
+        "merge_base": "afdcb327c650383e269a3d32f7251f68a9d766c6",
+        "error": false
+      }
+    },
+    {
+      "name": "codex/word-vba-authoring-20261121",
+      "sha": "cf06b018ec125ce3b5abfda41a7fbbdcf7d30a47",
+      "ancestor_of_baseline_main": true,
+      "comparison": {
+        "branch": "codex/word-vba-authoring-20261121",
+        "sha": "cf06b018ec125ce3b5abfda41a7fbbdcf7d30a47",
+        "status": "ahead",
+        "ahead_by": 213,
+        "behind_by": 0,
+        "merge_base": "cf06b018ec125ce3b5abfda41a7fbbdcf7d30a47",
+        "error": false
+      }
+    },
+    {
+      "name": "codex/word-vba-cell-formatting-20261122",
+      "sha": "49f43824196c4d373f991e442fac2e73e68c5f9f",
+      "ancestor_of_baseline_main": true,
+      "comparison": {
+        "branch": "codex/word-vba-cell-formatting-20261122",
+        "sha": "49f43824196c4d373f991e442fac2e73e68c5f9f",
+        "status": "ahead",
+        "ahead_by": 77,
+        "behind_by": 0,
+        "merge_base": "49f43824196c4d373f991e442fac2e73e68c5f9f",
+        "error": false
+      }
+    },
+    {
+      "name": "codex/word-vba-cell-text-20261122",
+      "sha": "5f6e8686f1d6ddc1f3e523238808b78ccccc5b51",
+      "ancestor_of_baseline_main": true,
+      "comparison": {
+        "branch": "codex/word-vba-cell-text-20261122",
+        "sha": "5f6e8686f1d6ddc1f3e523238808b78ccccc5b51",
+        "status": "ahead",
+        "ahead_by": 42,
+        "behind_by": 0,
+        "merge_base": "5f6e8686f1d6ddc1f3e523238808b78ccccc5b51",
+        "error": false
+      }
+    },
+    {
+      "name": "codex/word-vba-comparison-colors-20261121",
+      "sha": "e3c4550b34a9a07de2a97b84b67ab6aecaa5a377",
+      "ancestor_of_baseline_main": true,
+      "comparison": {
+        "branch": "codex/word-vba-comparison-colors-20261121",
+        "sha": "e3c4550b34a9a07de2a97b84b67ab6aecaa5a377",
+        "status": "ahead",
+        "ahead_by": 122,
+        "behind_by": 0,
+        "merge_base": "e3c4550b34a9a07de2a97b84b67ab6aecaa5a377",
+        "error": false
+      }
+    },
+    {
+      "name": "codex/word-vba-compatibility-20261121",
+      "sha": "3058d36c5354d46bde418555d59282116cce1e26",
+      "ancestor_of_baseline_main": true,
+      "comparison": {
+        "branch": "codex/word-vba-compatibility-20261121",
+        "sha": "3058d36c5354d46bde418555d59282116cce1e26",
+        "status": "ahead",
+        "ahead_by": 170,
+        "behind_by": 0,
+        "merge_base": "3058d36c5354d46bde418555d59282116cce1e26",
+        "error": false
+      }
+    },
+    {
+      "name": "codex/word-vba-compatibility-20261122",
+      "sha": "934c33a57f3bed934df59a4e925ffc35fe406ee2",
+      "ancestor_of_baseline_main": true,
+      "comparison": {
+        "branch": "codex/word-vba-compatibility-20261122",
+        "sha": "934c33a57f3bed934df59a4e925ffc35fe406ee2",
+        "status": "ahead",
+        "ahead_by": 18,
+        "behind_by": 0,
+        "merge_base": "934c33a57f3bed934df59a4e925ffc35fe406ee2",
+        "error": false
+      }
+    },
+    {
+      "name": "codex/zotero-dispatch-recovery-20261121",
+      "sha": "32ef843db3a8192fe0add085e1ee173e18f4d462",
+      "ancestor_of_baseline_main": true,
+      "comparison": {
+        "branch": "codex/zotero-dispatch-recovery-20261121",
+        "sha": "32ef843db3a8192fe0add085e1ee173e18f4d462",
+        "status": "ahead",
+        "ahead_by": 167,
+        "behind_by": 0,
+        "merge_base": "32ef843db3a8192fe0add085e1ee173e18f4d462",
+        "error": false
+      }
+    },
+    {
+      "name": "codex/zotero-field-context-20261122",
+      "sha": "00ba542dc5b492040508a8137a80adbc9b13553d",
+      "ancestor_of_baseline_main": true,
+      "comparison": {
+        "branch": "codex/zotero-field-context-20261122",
+        "sha": "00ba542dc5b492040508a8137a80adbc9b13553d",
+        "status": "ahead",
+        "ahead_by": 24,
+        "behind_by": 0,
+        "merge_base": "00ba542dc5b492040508a8137a80adbc9b13553d",
+        "error": false
+      }
+    },
+    {
+      "name": "codex/zotero-field-recovery-20261122",
+      "sha": "762acfabdf32624154bc27c311b774e17d8ea243",
+      "ancestor_of_baseline_main": false,
+      "comparison": {
+        "branch": "codex/zotero-field-recovery-20261122",
+        "sha": "762acfabdf32624154bc27c311b774e17d8ea243",
+        "status": "diverged",
+        "ahead_by": 6,
+        "behind_by": 1,
+        "merge_base": "918e7dd12e66b79e75082a41c250887a92db0d4e",
+        "error": false
+      }
+    },
+    {
+      "name": "codex/zotero-footnote-separators-20261121",
+      "sha": "a70c0e7af251d737dc7639f44a48777bbea1bf51",
+      "ancestor_of_baseline_main": true,
+      "comparison": {
+        "branch": "codex/zotero-footnote-separators-20261121",
+        "sha": "a70c0e7af251d737dc7639f44a48777bbea1bf51",
+        "status": "ahead",
+        "ahead_by": 158,
+        "behind_by": 0,
+        "merge_base": "a70c0e7af251d737dc7639f44a48777bbea1bf51",
+        "error": false
+      }
+    },
+    {
+      "name": "codex/zotero-host-ownership-20261121",
+      "sha": "05cb866e6e5aaee95dae8b03da2892fcf633a84b",
+      "ancestor_of_baseline_main": true,
+      "comparison": {
+        "branch": "codex/zotero-host-ownership-20261121",
+        "sha": "05cb866e6e5aaee95dae8b03da2892fcf633a84b",
+        "status": "ahead",
+        "ahead_by": 158,
+        "behind_by": 0,
+        "merge_base": "05cb866e6e5aaee95dae8b03da2892fcf633a84b",
+        "error": false
+      }
+    },
+    {
+      "name": "codex/zotero-main-qualification-20261121",
+      "sha": "e2a1ed6073556d24194004221c545166b17c2d4e",
+      "ancestor_of_baseline_main": true,
+      "comparison": {
+        "branch": "codex/zotero-main-qualification-20261121",
+        "sha": "e2a1ed6073556d24194004221c545166b17c2d4e",
+        "status": "ahead",
+        "ahead_by": 113,
+        "behind_by": 0,
+        "merge_base": "e2a1ed6073556d24194004221c545166b17c2d4e",
+        "error": false
+      }
+    },
+    {
+      "name": "codex/zotero-note-layout-20261121",
+      "sha": "2089e1e35a8ba81ea7f0a077b348f93ca70953c8",
+      "ancestor_of_baseline_main": true,
+      "comparison": {
+        "branch": "codex/zotero-note-layout-20261121",
+        "sha": "2089e1e35a8ba81ea7f0a077b348f93ca70953c8",
+        "status": "ahead",
+        "ahead_by": 192,
+        "behind_by": 0,
+        "merge_base": "2089e1e35a8ba81ea7f0a077b348f93ca70953c8",
+        "error": false
+      }
+    },
+    {
+      "name": "codex/zotero-odt-roundtrip-20261121",
+      "sha": "05072dc2d59d0fa4ea97de4d6a842700ef333fab",
+      "ancestor_of_baseline_main": true,
+      "comparison": {
+        "branch": "codex/zotero-odt-roundtrip-20261121",
+        "sha": "05072dc2d59d0fa4ea97de4d6a842700ef333fab",
+        "status": "ahead",
+        "ahead_by": 207,
+        "behind_by": 0,
+        "merge_base": "05072dc2d59d0fa4ea97de4d6a842700ef333fab",
+        "error": false
+      }
+    },
+    {
+      "name": "codex/zotero-parity-20261122",
+      "sha": "da36652cf1d2296b59285788035555d512b9fa31",
+      "ancestor_of_baseline_main": true,
+      "comparison": {
+        "branch": "codex/zotero-parity-20261122",
+        "sha": "da36652cf1d2296b59285788035555d512b9fa31",
+        "status": "ahead",
+        "ahead_by": 47,
+        "behind_by": 0,
+        "merge_base": "da36652cf1d2296b59285788035555d512b9fa31",
+        "error": false
+      }
+    },
+    {
+      "name": "codex/zotero-select-navigation-20261122",
+      "sha": "8c1b8da71bb910d4025aa179dc56290cf1a8e72a",
+      "ancestor_of_baseline_main": true,
+      "comparison": {
+        "branch": "codex/zotero-select-navigation-20261122",
+        "sha": "8c1b8da71bb910d4025aa179dc56290cf1a8e72a",
+        "status": "ahead",
+        "ahead_by": 104,
+        "behind_by": 0,
+        "merge_base": "8c1b8da71bb910d4025aa179dc56290cf1a8e72a",
+        "error": false
+      }
+    },
+    {
+      "name": "codex/zotero-shortcut-host-recovery-20261121",
+      "sha": "2168011b6104f680100b87404bc1bd409f724939",
+      "ancestor_of_baseline_main": true,
+      "comparison": {
+        "branch": "codex/zotero-shortcut-host-recovery-20261121",
+        "sha": "2168011b6104f680100b87404bc1bd409f724939",
+        "status": "ahead",
+        "ahead_by": 167,
+        "behind_by": 0,
+        "merge_base": "2168011b6104f680100b87404bc1bd409f724939",
+        "error": false
+      }
+    },
+    {
+      "name": "codex/zotero-source-continuity-20261121-2135",
+      "sha": "c4c16d91d62ded0c341bee95e98de894de70483f",
+      "ancestor_of_baseline_main": true,
+      "comparison": {
+        "branch": "codex/zotero-source-continuity-20261121-2135",
+        "sha": "c4c16d91d62ded0c341bee95e98de894de70483f",
+        "status": "ahead",
+        "ahead_by": 167,
+        "behind_by": 0,
+        "merge_base": "c4c16d91d62ded0c341bee95e98de894de70483f",
+        "error": false
+      }
+    },
+    {
+      "name": "main",
+      "sha": "ec09fdccf95eb3072b4cfe4da3608f8d9b13eb75",
+      "ancestor_of_baseline_main": true,
+      "comparison": {
+        "status": "identical",
+        "ahead_by": 0,
+        "behind_by": 0,
+        "merge_base": "ec09fdccf95eb3072b4cfe4da3608f8d9b13eb75"
+      }
+    },
+    {
+      "name": "work/mail-folder-scoped-search-20261122",
+      "sha": "ff30d1064a052abbfbcdc99745ff66f8bc980aea",
+      "ancestor_of_baseline_main": true,
+      "comparison": {
+        "branch": "work/mail-folder-scoped-search-20261122",
+        "sha": "ff30d1064a052abbfbcdc99745ff66f8bc980aea",
+        "status": "ahead",
+        "ahead_by": 84,
+        "behind_by": 0,
+        "merge_base": "ff30d1064a052abbfbcdc99745ff66f8bc980aea",
+        "error": false
+      }
+    },
+    {
+      "name": "work/mail-folder-search-20261122",
+      "sha": "24e4b5d8a2a4e3c996e15013c5324a534c2e444f",
+      "ancestor_of_baseline_main": true,
+      "comparison": {
+        "branch": "work/mail-folder-search-20261122",
+        "sha": "24e4b5d8a2a4e3c996e15013c5324a534c2e444f",
+        "status": "ahead",
+        "ahead_by": 53,
+        "behind_by": 0,
+        "merge_base": "24e4b5d8a2a4e3c996e15013c5324a534c2e444f",
+        "error": false
+      }
+    },
+    {
+      "name": "work/mail-keyboard-triage-20261121",
+      "sha": "08d034d876073e2afc881dbfc11ba791acde3d67",
+      "ancestor_of_baseline_main": true,
+      "comparison": {
+        "branch": "work/mail-keyboard-triage-20261121",
+        "sha": "08d034d876073e2afc881dbfc11ba791acde3d67",
+        "status": "ahead",
+        "ahead_by": 118,
+        "behind_by": 0,
+        "merge_base": "08d034d876073e2afc881dbfc11ba791acde3d67",
+        "error": false
+      }
+    },
+    {
+      "name": "work/mail-live-search-20261121",
+      "sha": "c3d55be30d91694b1a427d261cddbe47b1dd5eec",
+      "ancestor_of_baseline_main": true,
+      "comparison": {
+        "branch": "work/mail-live-search-20261121",
+        "sha": "c3d55be30d91694b1a427d261cddbe47b1dd5eec",
+        "status": "ahead",
+        "ahead_by": 192,
+        "behind_by": 0,
+        "merge_base": "c3d55be30d91694b1a427d261cddbe47b1dd5eec",
+        "error": false
+      }
+    },
+    {
+      "name": "work/mail-parity-20261122-next",
+      "sha": "a7006171630915bbf91b6ce2ab7c4699bb79f69b",
+      "ancestor_of_baseline_main": true,
+      "comparison": {
+        "branch": "work/mail-parity-20261122-next",
+        "sha": "a7006171630915bbf91b6ce2ab7c4699bb79f69b",
+        "status": "ahead",
+        "ahead_by": 29,
+        "behind_by": 0,
+        "merge_base": "a7006171630915bbf91b6ce2ab7c4699bb79f69b",
+        "error": false
+      }
+    },
+    {
+      "name": "work/mail-range-selection-tests-20261121",
+      "sha": "5c7a385c5de40394d9eed736c5a2d975535c3df3",
+      "ancestor_of_baseline_main": true,
+      "comparison": {
+        "branch": "work/mail-range-selection-tests-20261121",
+        "sha": "5c7a385c5de40394d9eed736c5a2d975535c3df3",
+        "status": "ahead",
+        "ahead_by": 166,
+        "behind_by": 0,
+        "merge_base": "5c7a385c5de40394d9eed736c5a2d975535c3df3",
+        "error": false
+      }
+    },
+    {
+      "name": "work/mail-sync-address-search-20261121",
+      "sha": "33d8f956ec2ed1dfd748e1d7ccbc5add053ff565",
+      "ancestor_of_baseline_main": true,
+      "comparison": {
+        "branch": "work/mail-sync-address-search-20261121",
+        "sha": "33d8f956ec2ed1dfd748e1d7ccbc5add053ff565",
+        "status": "ahead",
+        "ahead_by": 169,
+        "behind_by": 0,
+        "merge_base": "33d8f956ec2ed1dfd748e1d7ccbc5add053ff565",
+        "error": false
+      }
+    }
+  ],
+  "upstream": {
+    "repository": "MohammedAsaadAsaad/quds_office_suite",
+    "branches": [
+      {
+        "name": "ci/flutter-workspace",
+        "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+        "ancestor_of_baseline_main": true
+      },
+      {
+        "name": "cursor/class-certificates-2db8",
+        "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+        "ancestor_of_baseline_main": true
+      },
+      {
+        "name": "cursor/cloud-agent-1790580069020-0rk1h",
+        "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+        "ancestor_of_baseline_main": true
+      },
+      {
+        "name": "main",
+        "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+        "ancestor_of_baseline_main": true
+      }
+    ],
+    "open_prs": []
+  },
+  "recent_pull_requests": [
+    {
+      "number": 363,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/363",
+      "head": "codex/mail-durable-mutations-20261122",
+      "head_sha": "afdcb327c650383e269a3d32f7251f68a9d766c6",
+      "base_sha": "52b1030bfc337b6c7551739dc3aefb491f720c93",
+      "merged": true,
+      "updated_at": "2026-11-22T06:26:19Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 362,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/362",
+      "head": "codex/word-vba-compatibility-20261122",
+      "head_sha": "934c33a57f3bed934df59a4e925ffc35fe406ee2",
+      "base_sha": "a5b4eb7d329b0700768b1fc72bb63cf58a9f5cd6",
+      "merged": true,
+      "updated_at": "2026-11-22T06:21:58Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 361,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/361",
+      "head": "codex/zotero-field-context-20261122",
+      "head_sha": "00ba542dc5b492040508a8137a80adbc9b13553d",
+      "base_sha": "89ad886f155cec05492241048c787bd9434ca4fa",
+      "merged": true,
+      "updated_at": "2026-11-22T05:46:17Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 360,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/360",
+      "head": "work/mail-parity-20261122-next",
+      "head_sha": "a7006171630915bbf91b6ce2ab7c4699bb79f69b",
+      "base_sha": "191ed89b23696c5634689bb90b87119c761f0c85",
+      "merged": true,
+      "updated_at": "2026-11-22T05:32:32Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 359,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/359",
+      "head": "codex/word-vba-cell-text-20261122",
+      "head_sha": "5f6e8686f1d6ddc1f3e523238808b78ccccc5b51",
+      "base_sha": "2eecf9aec2c7d1f979064448b911b516d3f56c73",
+      "merged": true,
+      "updated_at": "2026-11-22T05:21:09Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 358,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/358",
+      "head": "codex/zotero-parity-20261122",
+      "head_sha": "da36652cf1d2296b59285788035555d512b9fa31",
+      "base_sha": "171be42cf92ce875b7d5f6f3df216ff04d0204c5",
+      "merged": true,
+      "updated_at": "2026-11-22T03:03:48Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 357,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/357",
+      "head": "work/mail-folder-search-20261122",
+      "head_sha": "24e4b5d8a2a4e3c996e15013c5324a534c2e444f",
+      "base_sha": "82659acb0f617c57d4d241c91033338032b5caac",
+      "merged": true,
+      "updated_at": "2026-11-22T02:56:30Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 356,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/356",
+      "head": "work/mail-folder-search-20261122",
+      "head_sha": "f8b3857fca9e120be61c861baa786ff04c822ebe",
+      "base_sha": "ceddcd888c37f64e37a8d8d1669daaea31384daf",
+      "merged": true,
+      "updated_at": "2026-11-22T02:53:29Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 355,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/355",
+      "head": "codex/word-vba-cell-formatting-20261122",
+      "head_sha": "49f43824196c4d373f991e442fac2e73e68c5f9f",
+      "base_sha": "bcc55cb6e86e796056e2d75c3fdca50857dbf6e7",
+      "merged": true,
+      "updated_at": "2026-11-22T02:39:17Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 354,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/354",
+      "head": "work/mail-folder-scoped-search-20261122",
+      "head_sha": "ff30d1064a052abbfbcdc99745ff66f8bc980aea",
+      "base_sha": "c522851d165b395a7f60422a1be969dffc39c9ff",
+      "merged": true,
+      "updated_at": "2026-11-22T02:30:49Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 353,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/353",
+      "head": "codex/zotero-select-navigation-20261122",
+      "head_sha": "8c1b8da71bb910d4025aa179dc56290cf1a8e72a",
+      "base_sha": "3b375e1a71a6356371611421d6c1f6d19917b40a",
+      "merged": true,
+      "updated_at": "2026-11-22T01:52:43Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 352,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/352",
+      "head": "work/mail-keyboard-triage-20261121",
+      "head_sha": "08d034d876073e2afc881dbfc11ba791acde3d67",
+      "base_sha": "613c0ba130c538f18670be69dd6617b6560c0760",
+      "merged": true,
+      "updated_at": "2026-11-21T22:22:14Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 351,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/351",
+      "head": "codex/zotero-main-qualification-20261121",
+      "head_sha": "e2a1ed6073556d24194004221c545166b17c2d4e",
+      "base_sha": "b8a836ca647227155db45a7806c2077b82c8d4c3",
+      "merged": true,
+      "updated_at": "2026-11-21T22:31:43Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 350,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/350",
+      "head": "codex/word-vba-comparison-colors-20261121",
+      "head_sha": "e3c4550b34a9a07de2a97b84b67ab6aecaa5a377",
+      "base_sha": "ad577ea82695231b5932d6b973f92b5156b1d2d6",
+      "merged": true,
+      "updated_at": "2026-11-21T22:09:38Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 349,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/349",
+      "head": "work/mail-keyboard-triage-20261121",
+      "head_sha": "1dd56df51f97dc86fbb1ebe22d9045aab7921d1c",
+      "base_sha": "ad577ea82695231b5932d6b973f92b5156b1d2d6",
+      "merged": true,
+      "updated_at": "2026-11-21T22:23:18Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 348,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/348",
+      "head": "codex/zotero-footnote-separators-20261121",
+      "head_sha": "a70c0e7af251d737dc7639f44a48777bbea1bf51",
+      "base_sha": "cc797dc2e1921be0ee72f90799607af4d787d20b",
+      "merged": true,
+      "updated_at": "2026-11-21T22:31:44Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 347,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/347",
+      "head": "codex/zotero-host-ownership-20261121",
+      "head_sha": "05cb866e6e5aaee95dae8b03da2892fcf633a84b",
+      "base_sha": "cc797dc2e1921be0ee72f90799607af4d787d20b",
+      "merged": true,
+      "updated_at": "2026-11-21T21:56:43Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 346,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/346",
+      "head": "codex/word-vba-compatibility-20261121",
+      "head_sha": "00833ae9d4fd04efc04522ba786aa6e5c0defde7",
+      "base_sha": "b5f6cc4135c6de2cb52bab63015cae0f1a7339ee",
+      "merged": true,
+      "updated_at": "2026-11-21T21:13:21Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 345,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/345",
+      "head": "work/mail-live-search-20261121",
+      "head_sha": "c3d55be30d91694b1a427d261cddbe47b1dd5eec",
+      "base_sha": "ac94cb3faf840d3a8786fc9d3fb17cae07d4dcde",
+      "merged": true,
+      "updated_at": "2026-11-21T21:00:56Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 344,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/344",
+      "head": "feat/configurable-shortcuts",
+      "head_sha": "1ef820d06164bafd8a2d586e10ff4248ad6bf76e",
+      "base_sha": "e5940c79120859dbbeb99be0907f3443e696f10a",
+      "merged": true,
+      "updated_at": "2026-11-21T20:41:53Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 343,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/343",
+      "head": "codex/word-vba-authoring-20261121",
+      "head_sha": "cf06b018ec125ce3b5abfda41a7fbbdcf7d30a47",
+      "base_sha": "511df2a0b5dac893c31a646f8a2a822abcdfd7aa",
+      "merged": true,
+      "updated_at": "2026-11-21T20:30:21Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 342,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/342",
+      "head": "codex/zotero-note-layout-20261121",
+      "head_sha": "2089e1e35a8ba81ea7f0a077b348f93ca70953c8",
+      "base_sha": "ac94cb3faf840d3a8786fc9d3fb17cae07d4dcde",
+      "merged": true,
+      "updated_at": "2026-11-21T21:41:58Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 341,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/341",
+      "head": "perf/paragraph-frame-cache",
+      "head_sha": "d7e2a206d5d2a52ced5b6ad0a71134b27258fa37",
+      "base_sha": "d0b155e3f2652d07015d5b1589dab2ae0a63fa2b",
+      "merged": true,
+      "updated_at": "2026-11-21T20:13:27Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 340,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/340",
+      "head": "codex/zotero-roundtrip-complete-20261121",
+      "head_sha": "ac0c51d0f791e278a065ee636106aa9a4e3865fa",
+      "base_sha": "aa861c28e336b17bcd4c259351164380cd6b1438",
+      "merged": true,
+      "updated_at": "2026-11-21T20:15:04Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 339,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/339",
+      "head": "perf/page-text-layer",
+      "head_sha": "c7273ad41a4270f25488518b4dc27893a18507c2",
+      "base_sha": "28878f152d188ce8f01aac3883a4cd4966522f13",
+      "merged": true,
+      "updated_at": "2026-11-21T19:34:15Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 338,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/338",
+      "head": "work/mail-scheduled-send-20261121",
+      "head_sha": "dcceffda5377fc4cf51ed31e9ed22919f6cee5bb",
+      "base_sha": "3440c90bc63f9d43edb7e64172bfec3d82036fee",
+      "merged": true,
+      "updated_at": "2026-11-21T20:15:29Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 337,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/337",
+      "head": "codex/zotero-roundtrip-20261121",
+      "head_sha": "ea62776db7eedf1b9ffc266bf02d7dda318d071b",
+      "base_sha": "2058a434b2bcc76e7fc7e8a449ff6ce31488eb25",
+      "merged": true,
+      "updated_at": "2026-11-21T20:15:02Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 336,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/336",
+      "head": "codex/word-vba-typography-20261121",
+      "head_sha": "3b64f289f8b732c2a2767f5fc8d9ae63f7f21131",
+      "base_sha": "0de92d6f42b3b2d1f2df43ef56a7af8e0f49d059",
+      "merged": true,
+      "updated_at": "2026-11-21T20:14:13Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 335,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/335",
+      "head": "perf/proofing-selection-path-cache",
+      "head_sha": "d7c44360304f9f2bb96e021d36da4db4906b4307",
+      "base_sha": "5c59a062e86e24d043ba06cfe8f0a69074c44f62",
+      "merged": true,
+      "updated_at": "2026-11-21T19:14:38Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 334,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/334",
+      "head": "codex/word-vba-format-controls-20261121",
+      "head_sha": "26748a56f9597d3198c7652c26eade6a97da7c2f",
+      "base_sha": "4970f71f983535d045ce263e86835b499db4fda9",
+      "merged": true,
+      "updated_at": "2026-11-21T20:14:11Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 333,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/333",
+      "head": "codex/zotero-odt-roundtrip-20261121",
+      "head_sha": "05072dc2d59d0fa4ea97de4d6a842700ef333fab",
+      "base_sha": "e5940c79120859dbbeb99be0907f3443e696f10a",
+      "merged": true,
+      "updated_at": "2026-11-21T20:52:52Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 332,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/332",
+      "head": "perf/status-throttle",
+      "head_sha": "a2373a577181510899381ab3a294205e76e31597",
+      "base_sha": "c85e9ee773535d9d4e89d6679f1b314e03994fb0",
+      "merged": true,
+      "updated_at": "2026-11-21T18:31:44Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 331,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/331",
+      "head": "docs/typing-roadmap-update",
+      "head_sha": "947781484a006ec33f39b3cec83ea8ae2897505b",
+      "base_sha": "9ef26f12ff48c80bb40d875262ef1854cc9ce16d",
+      "merged": true,
+      "updated_at": "2026-11-21T18:11:56Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 330,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/330",
+      "head": "perf/text-painter-cache",
+      "head_sha": "b8e788b74af7694fb596ef14f1ec6837beb7fb03",
+      "base_sha": "ae3738ed2d338351ed28f273e577df29264e7180",
+      "merged": true,
+      "updated_at": "2026-11-21T18:11:09Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 329,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/329",
+      "head": "codex/word-vba-styles-complete-20261121",
+      "head_sha": "f086214c9e99bca547957d8ba9f6ee3ab15321dc",
+      "base_sha": "0172df91adeb4a1abb2f43346621e10999937572",
+      "merged": true,
+      "updated_at": "2026-11-21T20:14:13Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 328,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/328",
+      "head": "fix/ime-proofing-gate-20261121",
+      "head_sha": "ebd3c09740418084d61dde51d30adf2502a1f6af",
+      "base_sha": "39edc21d79d96a19083732090227b28c8d3689e7",
+      "merged": true,
+      "updated_at": "2026-11-21T17:46:57Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 327,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/327",
+      "head": "feat/word-autocorrect-adaptive-proofing",
+      "head_sha": "b57ad955311c67cbb8cd72ac41f0415e274fdfc7",
+      "base_sha": "c7380f53a55b47a5b7672eb3f7afee32d92def6e",
+      "merged": true,
+      "updated_at": "2026-11-21T17:45:09Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 326,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/326",
+      "head": "codex/zotero-editable-odt-20261121",
+      "head_sha": "b699f88501a10818e0f71bfd9c53cde53866cdf6",
+      "base_sha": "1078372da9213c1ef4cdd362ca2285db9acb8d7b",
+      "merged": true,
+      "updated_at": "2026-11-21T20:14:13Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 325,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/325",
+      "head": "work/mail-compose-tools-20261121",
+      "head_sha": "36d65c43f8981ed7cea00589ff8272d96ea7073d",
+      "base_sha": "50aeb50765b2ce4c586df19755fcae8f31481921",
+      "merged": true,
+      "updated_at": "2026-11-21T20:15:18Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 324,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/324",
+      "head": "fix/mail-restore-view-20261121",
+      "head_sha": "e05056dcbe3260b77916dd9255664a8c62e98bf0",
+      "base_sha": "3dbaa8429b14ac43721e165b4d50d3f6d2845309",
+      "merged": true,
+      "updated_at": "2026-11-21T17:18:29Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 323,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/323",
+      "head": "codex/zotero-parity-20261121-evening",
+      "head_sha": "1c20b4b7e1208a51dfcf6a65d8a94289ac438e4e",
+      "base_sha": "115f1c20131bf0157d047dfe2e9d704ddffb22a2",
+      "merged": true,
+      "updated_at": "2026-11-21T20:14:58Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 322,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/322",
+      "head": "codex/word-vba-extensions-20261121",
+      "head_sha": "03cdfc9be130ccca0a72db1b2d761917e2e090f7",
+      "base_sha": "4760902b654e3af5e4d3f0a83d28ac65a387c8f8",
+      "merged": true,
+      "updated_at": "2026-11-21T20:14:11Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 321,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/321",
+      "head": "fix/cache-mail-pane-20261121",
+      "head_sha": "f4061383ce16700e7780842bf1d3bd5108de4b57",
+      "base_sha": "c42bd75778a696fe3f1ea538c1460c9244c8b742",
+      "merged": true,
+      "updated_at": "2026-11-21T16:52:37Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 320,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/320",
+      "head": "fix/linux-word-selection-goldens-20261121",
+      "head_sha": "198b822eeab12b5641ac20290ce74d31c46691f4",
+      "base_sha": "ed01289aaae398d5731c186db2eb08da9bc2216b",
+      "merged": true,
+      "updated_at": "2026-11-21T16:26:17Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 319,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/319",
+      "head": "codex/word-vba-next-20261121",
+      "head_sha": "3684d3193c6d15f02954b32b2f300afcab553304",
+      "base_sha": "d4a1f2274e3e0147628f4daa1d937faac5ff81ce",
+      "merged": true,
+      "updated_at": "2026-11-21T16:06:25Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 318,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/318",
+      "head": "fix/goldens-about-20261121",
+      "head_sha": "a2ca0f86bcf3237c6c63e75e773d97e4da019480",
+      "base_sha": "f3a0a64a8ea2995221e262d65950283a6049dfb4",
+      "merged": true,
+      "updated_at": "2026-11-21T15:57:20Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 317,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/317",
+      "head": "fix/studio-mail-tests-20261121",
+      "head_sha": "7934a34c795327aa23d891048f068a230eac623c",
+      "base_sha": "08fe271f945dfc915dc817febb756ca111baed73",
+      "merged": true,
+      "updated_at": "2026-11-21T15:41:24Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 316,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/316",
+      "head": "codex/zotero-libreoffice-styles-20261121",
+      "head_sha": "b6c8eb26e219d1f7607fe943b3c91e9bfc4feb55",
+      "base_sha": "089d11cd073520208f27a09b2914d57615cef7ff",
+      "merged": true,
+      "updated_at": "2026-11-21T20:14:14Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 315,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/315",
+      "head": "fix/de-proofing-l10n-20261121",
+      "head_sha": "5e2aee335c35bd3c49d46601dfc751e75b2eb044",
+      "base_sha": "3397ead3752f65bb3fa0e764c5da1bc2dd0af485",
+      "merged": true,
+      "updated_at": "2026-11-21T15:19:43Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 314,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/314",
+      "head": "work/mail-client-next-20261121",
+      "head_sha": "4af5a00a906a82473d653a6b11a3a6e1c88c866f",
+      "base_sha": "49adcd6b693712b9e82f9fdefd2fdf09d0db4ee2",
+      "merged": true,
+      "updated_at": "2026-11-21T20:15:14Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 313,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/313",
+      "head": "docs/app-store-urls-20261121",
+      "head_sha": "160700603a4b2a3f0ea3fcb2e688f07f99ad0a90",
+      "base_sha": "29f00ddcf39712398292208586174096d857654e",
+      "merged": true,
+      "updated_at": "2026-11-21T14:44:32Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 312,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/312",
+      "head": "feat/about-privacy-link-20261121",
+      "head_sha": "139ce7ef1f6f8bf8545c75ce7b13e3322361f173",
+      "base_sha": "01517de8886ef7bd24947894be5dc823d0328869",
+      "merged": true,
+      "updated_at": "2026-11-21T14:44:10Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 311,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/311",
+      "head": "codex/word-vba-formatting-20261121",
+      "head_sha": "700ca3da8c6db0d837bbbefc374a7a7f17f8626e",
+      "base_sha": "3f6b9a2b9209693aa32bbad402bb7d093cf8b4db",
+      "merged": true,
+      "updated_at": "2026-11-21T20:14:11Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 310,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/310",
+      "head": "codex/zotero-parity-2026-11-21",
+      "head_sha": "a91dcea1e07181457c07bedde57bf0119002b627",
+      "base_sha": "d572de0bcfb9d1a033fd16f073db439e869057e6",
+      "merged": true,
+      "updated_at": "2026-11-21T20:14:14Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 309,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/309",
+      "head": "work/mail-parity-next-20261121",
+      "head_sha": "59866ce7c983869b16baa3f386b1f55dbb218833",
+      "base_sha": "dd9e63995c76683a01d4a10ac57a3de5cffd8c69",
+      "merged": true,
+      "updated_at": "2026-11-21T20:15:25Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 308,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/308",
+      "head": "codex/word-vba-language-controls-20261121",
+      "head_sha": "46f20b19193e474bed772fe99b0f602a50fa54db",
+      "base_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+      "merged": true,
+      "updated_at": "2026-11-21T20:14:11Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 307,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/307",
+      "head": "fix/system-keychain-write-probe-20261121",
+      "head_sha": "3307415dcc0d059cce960b3bce7a5279c7230859",
+      "base_sha": "995947e35f76bbb34dc16169b7352872631d092f",
+      "merged": true,
+      "updated_at": "2026-11-21T11:54:52Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 306,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/306",
+      "head": "fix/mail-compact-reader-20261121",
+      "head_sha": "ca5be88293949b49942bdc3c45338243d5416e8b",
+      "base_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+      "merged": true,
+      "updated_at": "2026-11-21T11:52:56Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 305,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/305",
+      "head": "work/mail-unified-cache-20261121",
+      "head_sha": "93404525ef245df6a98654710e352e78f85a987c",
+      "base_sha": "33733fa1e173720afd22f078208b4bf9026ba17e",
+      "merged": true,
+      "updated_at": "2026-11-21T20:14:13Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 304,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/304",
+      "head": "work/mail-unified-cache-20261121",
+      "head_sha": "b6e140263adb3f79a28096a331077a60811b4016",
+      "base_sha": "a85e5cc3f6d6acf9cb939f13081945d3ec085550",
+      "merged": true,
+      "updated_at": "2026-11-21T11:12:50Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 303,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/303",
+      "head": "codex/zotero-odt-inventory-20261121",
+      "head_sha": "fb386d6e42a2336f1431e38bf6d713552edd0978",
+      "base_sha": "64ebfc1bbc1daf9d3e9fc8a03ff8bf95f9973e04",
+      "merged": true,
+      "updated_at": "2026-11-21T20:14:14Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 302,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/302",
+      "head": "feat/touchid-vault-unlock-20261121",
+      "head_sha": "38b0dae033e50bd6409ad3a4930b083fb8b5b7c5",
+      "base_sha": "64ebfc1bbc1daf9d3e9fc8a03ff8bf95f9973e04",
+      "merged": true,
+      "updated_at": "2026-11-21T11:10:00Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 301,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/301",
+      "head": "codex/word-vba-text-intrinsics-20261121",
+      "head_sha": "4357f196507ca38a2f51409a981b8621d419b6d9",
+      "base_sha": "f50c4f23392ccb0ac9f486541ffae6a65a691b99",
+      "merged": true,
+      "updated_at": "2026-11-21T20:14:13Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 300,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/300",
+      "head": "work/mail-triage-20261121",
+      "head_sha": "575e671de665dc918886285dab2e3628f4309965",
+      "base_sha": "1ef5f7f88705e05bb2ebd2f5b639460dab52c3d0",
+      "merged": true,
+      "updated_at": "2026-11-21T20:14:13Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 299,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/299",
+      "head": "codex/zotero-native-odt-20261121",
+      "head_sha": "d9bfa44022781f0dd4493a923ca9f20316dc59f0",
+      "base_sha": "1ef5f7f88705e05bb2ebd2f5b639460dab52c3d0",
+      "merged": true,
+      "updated_at": "2026-11-21T20:14:14Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 298,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/298",
+      "head": "work/mail-offline-retention-20261121",
+      "head_sha": "9eb68b9f048d3c08274ece5d7f964f1249004485",
+      "base_sha": "f92c0d24f0513c5e13e61ae58507c36e9cf4f1c1",
+      "merged": true,
+      "updated_at": "2026-11-21T20:15:21Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 297,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/297",
+      "head": "codex/word-vba-paragraph-flow-20261121",
+      "head_sha": "13fa9ad5b9d140f1d7c085e46b4d0ce395000c49",
+      "base_sha": "97cfb09b277e0808f9228a4fb638a55748c6268f",
+      "merged": true,
+      "updated_at": "2026-11-21T20:14:12Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 296,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/296",
+      "head": "codex/zotero-parity-20261121-continuation",
+      "head_sha": "9942eb76f0ac818e464ad1b3bcec2cc4513d3e3f",
+      "base_sha": "c10416d39894031164be68313253db5bbb3a5ad2",
+      "merged": true,
+      "updated_at": "2026-11-21T20:14:56Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 295,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/295",
+      "head": "fix/app-store-screenshot-polish-20261121",
+      "head_sha": "7b3e45b4eb5f2aafedd4b40886e7b3acddde2f0e",
+      "base_sha": "f2025d3275c8b5ac8313f788286b17c657894567",
+      "merged": true,
+      "updated_at": "2026-11-21T08:37:58Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 294,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/294",
+      "head": "fix/mail-vault-native-menus-20261121",
+      "head_sha": "7b2d3f3f422edd21258fee2533085b9065aff883",
+      "base_sha": "4090feb56f308cd3657c5edd1d045ff1197ff79b",
+      "merged": true,
+      "updated_at": "2026-11-21T08:36:39Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 293,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/293",
+      "head": "codex/zotero-parity-20261121-next",
+      "head_sha": "d4470bab1095593739ddf87fdb9f249bbc948b65",
+      "base_sha": "9f23cbd2be72c527829b3990f22b356e5237ed96",
+      "merged": true,
+      "updated_at": "2026-11-21T20:15:00Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 292,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/292",
+      "head": "codex/word-vba-compatibility-20261121",
+      "head_sha": "38b07e58b7c0e2a5b04a823a7251805cea60fb77",
+      "base_sha": "4a1eaa69e7a068e354bdd851ec9b0323b89ae300",
+      "merged": true,
+      "updated_at": "2026-11-21T20:14:11Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 291,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/291",
+      "head": "work/mail-sync-foundation-20261121",
+      "head_sha": "66c98e8e6b303f11dd167305424b9c2f6a820342",
+      "base_sha": "eb286fb7254d6850c9f33b46e8aa65e2ea32f7f0",
+      "merged": true,
+      "updated_at": "2026-11-21T07:40:30Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 290,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/290",
+      "head": "feat/app-store-screenshots-20261120",
+      "head_sha": "e8d23a3a770037f7309e239e3ef6fe3bf570039a",
+      "base_sha": "e2abbcda6d19f932bfbacc85e0dafd41a3c478f8",
+      "merged": true,
+      "updated_at": "2026-11-21T07:33:31Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 289,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/289",
+      "head": "codex/zotero-parity-20261121-next",
+      "head_sha": "a6095c304ad2d6935f2ae6f8b74412038d19f142",
+      "base_sha": "e2abbcda6d19f932bfbacc85e0dafd41a3c478f8",
+      "merged": true,
+      "updated_at": "2026-11-21T07:40:32Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 288,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/288",
+      "head": "codex/zotero-transfer-20261121",
+      "head_sha": "a1995c9154357e603b89947654cf95f8bcba6a83",
+      "base_sha": "290dfa43e3bcf410d9bf1bd8194c997c4ee613ae",
+      "merged": true,
+      "updated_at": "2026-11-21T20:15:06Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 287,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/287",
+      "head": "feat/proofing-scheduling-20261121",
+      "head_sha": "ada16de93d75c67011399727d10a32d1025f7edb",
+      "base_sha": "17dde2e62cf3d23ae3d089e284ed3d8e1f8b2a5f",
+      "merged": true,
+      "updated_at": "2026-11-21T07:11:27Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 286,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/286",
+      "head": "codex/word-vba-sections-20261121",
+      "head_sha": "49665e51f9eacefc180748c3d0ed7851ef5da5d1",
+      "base_sha": "84046975f286407e3c62e5e5352bc16bc89c0d26",
+      "merged": true,
+      "updated_at": "2026-11-21T20:14:12Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 285,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/285",
+      "head": "perf/keystroke-trace-20261121",
+      "head_sha": "cb7ab4f7a41fa15414f6dd5ac229bda6e57cb0cd",
+      "base_sha": "84046975f286407e3c62e5e5352bc16bc89c0d26",
+      "merged": true,
+      "updated_at": "2026-11-21T07:13:26Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 284,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/284",
+      "head": "work/mail-repository-sessions-20261121",
+      "head_sha": "0491492d8622ad2ef09fb84e07d3dbba462f9320",
+      "base_sha": "e1ebcb0cd65716a2a78d2ea1114d9ee37a3017ec",
+      "merged": true,
+      "updated_at": "2026-11-21T20:15:27Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 283,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/283",
+      "head": "codex/zotero-multiparagraph-20261121",
+      "head_sha": "589ccd33243eabe57ce3074c92112e1fdf1325f1",
+      "base_sha": "ce1c37c6af1e2306d2c24231758f10ef6213f7dd",
+      "merged": true,
+      "updated_at": "2026-11-21T20:14:14Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 282,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/282",
+      "head": "work/mail-parity-20261121",
+      "head_sha": "fa59496840a36709fe3a6d867bdfe96ab99d72ab",
+      "base_sha": "3d01815908aeded5862d131109341365de637242",
+      "merged": true,
+      "updated_at": "2026-11-21T20:15:23Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 281,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/281",
+      "head": "codex/word-vba-paragraph-pagination-20261121",
+      "head_sha": "1581229f0e5aea24b5242c33a1e92f02d70b4c7e",
+      "base_sha": "bf761552d22dcd1eb8cbb0ab00ddab6507e1d572",
+      "merged": true,
+      "updated_at": "2026-11-21T20:14:12Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 280,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/280",
+      "head": "fix/bookmark-typing-20261120",
+      "head_sha": "45245b086fce889aff9a54291083d55d40ba3cb4",
+      "base_sha": "383c0c0c5d3b4b1a6edccc8d09ffd1ca64029537",
+      "merged": true,
+      "updated_at": "2026-11-21T00:00:38Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 279,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/279",
+      "head": "work/mail-command-journal-20261121",
+      "head_sha": "33ce2428ebab825a844895a767e0f9f1a4077d62",
+      "base_sha": "383c0c0c5d3b4b1a6edccc8d09ffd1ca64029537",
+      "merged": true,
+      "updated_at": "2026-11-21T20:15:16Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 278,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/278",
+      "head": "codex/word-vba-unit-conversions-20261120",
+      "head_sha": "0e4e999a08996a6b8696ca3adba11e303331b73e",
+      "base_sha": "329d03914808589d3e7650fa870df15a2408afe2",
+      "merged": true,
+      "updated_at": "2026-11-20T23:41:49Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 277,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/277",
+      "head": "codex/zotero-vertical-tables-20261120",
+      "head_sha": "a7d9f37ecbaaf70544f4866d7d9e572696948184",
+      "base_sha": "329d03914808589d3e7650fa870df15a2408afe2",
+      "merged": true,
+      "updated_at": "2026-11-21T20:15:08Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 276,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/276",
+      "head": "codex/zotero-parity-20261120-next",
+      "head_sha": "0da1b048546f36c658a7ddfb899117b73c5d3e7c",
+      "base_sha": "e975cec13b289fe067ef406cd3044701ecc44744",
+      "merged": true,
+      "updated_at": "2026-11-21T09:54:14Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 275,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/275",
+      "head": "work/mail-bulk-flags-20261120",
+      "head_sha": "bf0effdcc8f690972d762c5b53079e8847a5e65e",
+      "base_sha": "0a2afc41bae4e719b77657a7e2d8d3e7ec02849b",
+      "merged": true,
+      "updated_at": "2026-11-21T09:54:17Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 274,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/274",
+      "head": "codex/word-vba-measurements-20261120",
+      "head_sha": "cd306bdea352c6f6400b5d1af7cc33e737004462",
+      "base_sha": "b01cb23dc1b7bc94b691d68a2507b61dc6d48d7a",
+      "merged": true,
+      "updated_at": "2026-11-21T09:54:14Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 273,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/273",
+      "head": "work/mail-bulk-actions-20261120",
+      "head_sha": "1584a2da8b23128c113d95c3b05b6a12d2d3861e",
+      "base_sha": "698209aaa6e7f1350b6541df5eb192b7b233443d",
+      "merged": true,
+      "updated_at": "2026-11-21T09:54:17Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 272,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/272",
+      "head": "codex/word-vba-measurements-20261120",
+      "head_sha": "6d370884cd2b62ae83e627d9e71809ae9d795684",
+      "base_sha": "c954d00d2fc85604ae394674bca91ea8a1dede0e",
+      "merged": true,
+      "updated_at": "2026-11-20T20:42:57Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 271,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/271",
+      "head": "codex/word-vba-compatibility-20261120-continuation",
+      "head_sha": "8c54d5283804099f9c9023540921f2410b878eb1",
+      "base_sha": "22cf73b816328cd5fe54ec1793c89f1cc322db3b",
+      "merged": true,
+      "updated_at": "2026-11-21T09:54:13Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 270,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/270",
+      "head": "work/mail-parity-20261120",
+      "head_sha": "540eb7a41554620e1405807ac1db9dc38bd62148",
+      "base_sha": "52c7f27fc7b6998e209e3ac8c815d6cf1ca6f867",
+      "merged": true,
+      "updated_at": "2026-11-21T09:54:18Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 269,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/269",
+      "head": "feat/settings-arweb-20261120",
+      "head_sha": "e8db6b3f21401f8c6ac4dae4c2934edde8699f4b",
+      "base_sha": "d1e9cbc0c5dd38f0c8d28e3d76e7fdd59990f3f4",
+      "merged": true,
+      "updated_at": "2026-11-21T09:54:16Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 268,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/268",
+      "head": "codex/word-vba-paragraph-controls-20261120",
+      "head_sha": "90ecd41c8a3ef2a6f35967f1219223022e2b0d32",
+      "base_sha": "5ad4461a93c835479bf67acab63623944b3900a3",
+      "merged": true,
+      "updated_at": "2026-11-21T09:54:14Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 267,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/267",
+      "head": "feat/arabic-web-context-20261120",
+      "head_sha": "be47bed22a88382f016d823e526bae49590bd0eb",
+      "base_sha": "5ad4461a93c835479bf67acab63623944b3900a3",
+      "merged": true,
+      "updated_at": "2026-11-21T09:54:15Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 266,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/266",
+      "head": "docs/app-store-submission-20261120",
+      "head_sha": "b08e0a55b629ac22b33c54146b56438862965022",
+      "base_sha": "5ad4461a93c835479bf67acab63623944b3900a3",
+      "merged": true,
+      "updated_at": "2026-11-21T20:15:10Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 265,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/265",
+      "head": "chore/macos-13-minimum-20261120",
+      "head_sha": "a51c20737b1932d9c6475ea6dddc33fbd50b2c17",
+      "base_sha": "5ad4461a93c835479bf67acab63623944b3900a3",
+      "merged": true,
+      "updated_at": "2026-11-20T20:24:01Z",
+      "ancestor_of_baseline_main": true
+    },
+    {
+      "number": 264,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/264",
+      "head": "fix/main-green-20261120",
+      "head_sha": "1e723bd4bc96e07b1b790daf9b82897a846c6096",
+      "base_sha": "5ad4461a93c835479bf67acab63623944b3900a3",
+      "merged": true,
+      "updated_at": "2026-11-21T11:03:37Z",
+      "ancestor_of_baseline_main": true
+    }
+  ],
+  "open_pull_requests": [],
+  "ancestry_methods": [
+    "GitHub compare API: branch tip as base, baseline main as head; behind_by 0 and merge_base == branch tip proves ancestor.",
+    "Local git merge-base --is-ancestor on all 100 exact recent PR head SHAs; 100 passed, zero errors."
+  ],
+  "outstanding": [
+    {
+      "branch": "codex/zotero-field-recovery-20261122",
+      "sha": "762acfabdf32624154bc27c311b774e17d8ea243",
+      "merge_base": "918e7dd12e66b79e75082a41c250887a92db0d4e",
+      "unique_branch_commits": 1,
+      "unique_main_commits": 6,
+      "changed_files": 212,
+      "validation_files": 210,
+      "other_files": [
+        "packages/quds_office_editor/CHANGELOG.md",
+        "packages/quds_office_engine/CHANGELOG.md"
+      ],
+      "source_changes": false,
+      "message": "Record Zotero recovery and reconciled Office qualification: 3384 local passes [skip ci]",
+      "recommended_action": "ordinary history-preserving merge"
+    }
+  ],
+  "ci": {
+    "queried": false,
+    "awaited": false
+  },
+  "mutations": false
+}

@@ -72,6 +72,12 @@ void main() {
         );
         unsupported(await provider.listMailboxes(lease));
         unsupported(
+          await (provider as MailMembershipObserver).observeMembership(
+            identity,
+            lease: lease,
+          ),
+        );
+        unsupported(
           await provider.fetchHeaders(folder, limit: 1, lease: lease),
         );
         unsupported(await provider.pullChanges(folder, limit: 1, lease: lease));

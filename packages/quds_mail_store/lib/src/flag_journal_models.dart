@@ -15,6 +15,20 @@ final class MailStoredFlagResolution {
   final DateTime checkedAt;
 }
 
+/// Latest read-only location evidence for an uncertain membership command.
+/// This does not resolve its historical outcome or authorize command replay.
+final class MailStoredMembershipObservation {
+  const MailStoredMembershipObservation({
+    required this.index,
+    required this.observation,
+    required this.checkedAt,
+  });
+
+  final int index;
+  final MailMembershipObservation observation;
+  final DateTime checkedAt;
+}
+
 /// Content-light metadata for one retained foreground command receipt.
 /// Listing history never fetches message bodies, attachments or all item text.
 final class MailStoredFlagBatchSummary {
@@ -46,6 +60,7 @@ final class MailStoredFlagBatchSummary {
 
   /// Membership changes need provider-specific reconciliation, not flag reads.
   bool get canCheckFlags => action.isFlagAction;
+  bool get canCheckMembership => !action.isFlagAction;
   final DateTime createdAt;
   final DateTime updatedAt;
   final int revision;
@@ -91,11 +106,14 @@ final class MailStoredFlagBatch {
     required this.report,
     required List<String> subjects,
     List<MailStoredFlagResolution> resolutions = const [],
+    List<MailStoredMembershipObservation> membershipObservations = const [],
   }) : subjects = List.unmodifiable(subjects),
-       resolutions = List.unmodifiable(resolutions);
+       resolutions = List.unmodifiable(resolutions),
+       membershipObservations = List.unmodifiable(membershipObservations);
 
   final MailStoredFlagBatchSummary summary;
   final MailBulkFlagReport report;
   final List<String> subjects;
   final List<MailStoredFlagResolution> resolutions;
+  final List<MailStoredMembershipObservation> membershipObservations;
 }

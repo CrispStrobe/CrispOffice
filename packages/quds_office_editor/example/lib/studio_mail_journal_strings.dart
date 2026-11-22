@@ -47,9 +47,9 @@ extension StudioMailJournalStrings on StudioStrings {
     'مسح سجلات الإجراءات المكتملة',
   );
   String get mailActivityClearQuestion => _text(
-    'Clear completed receipts, including uncertain actions whose current status was checked? Running actions and unchecked uncertainty are kept. Mail on the server is unchanged.',
-    'Abgeschlossene Belege einschließlich ungewisser Aktionen mit geprüftem aktuellem Status löschen? Laufende Aktionen und ungeprüfte ungewisse Ergebnisse bleiben erhalten. Servernachrichten bleiben unverändert.',
-    'هل تريد مسح السجلات المكتملة، بما فيها الإجراءات غير المؤكدة التي فُحصت حالتها الحالية؟ تُحفظ الإجراءات الجارية والنتائج غير المؤكدة التي لم تُفحص. لا يتغير البريد على الخادم.',
+    'Clear completed receipts, including uncertain read/flag actions with a saved status check? Running actions, unchecked uncertainty and uncertain move/delete actions are kept. Mail on the server is unchanged.',
+    'Abgeschlossene Belege einschließlich ungewisser Lese- und Markierungsaktionen mit gespeicherter Statusprüfung löschen? Laufende Aktionen, ungeprüfte ungewisse Ergebnisse und ungewisse Verschiebe- oder Löschaktionen bleiben erhalten. Servernachrichten bleiben unverändert.',
+    'هل تريد مسح السجلات المكتملة، بما فيها إجراءات القراءة والعلامات غير المؤكدة ذات فحص حالة محفوظ؟ تُحفظ الإجراءات الجارية والنتائج غير المفحوصة وإجراءات النقل والحذف غير المؤكدة. لا يتغير البريد على الخادم.',
   );
   String get mailActivityCheck => _text(
     'Check current status',
@@ -58,6 +58,155 @@ extension StudioMailJournalStrings on StudioStrings {
   );
   String get mailActivityStopCheck =>
       _text('Stop checking', 'Prüfung anhalten', 'إيقاف الفحص');
+  String get mailActivityLocationCheck => _text(
+    'Check current location',
+    'Aktuellen Standort prüfen',
+    'فحص الموقع الحالي',
+  );
+  String get mailActivityLocationScope => _text(
+    'A location check only reads the server. It saves the latest observation, '
+        'without repeating the action or changing cached folders. The original '
+        'result stays uncertain, and this receipt remains protected from cleanup.',
+    'Eine Standortprüfung liest nur den Server. Sie speichert die neueste '
+        'Beobachtung, ohne die Aktion zu wiederholen oder gespeicherte Ordner zu '
+        'ändern. Das ursprüngliche Ergebnis bleibt ungewiss; dieser Beleg wird '
+        'bei der Verlaufsbereinigung nicht gelöscht.',
+    'يقرأ فحص الموقع الخادم فقط. ويحفظ أحدث ملاحظة دون تكرار الإجراء أو تغيير '
+        'المجلدات المحفوظة. تظل النتيجة الأصلية غير مؤكدة، ولا يُحذف هذا السجل '
+        'عند تنظيف المحفوظات.',
+  );
+  String get mailActivityLocationReconnect => _text(
+    'Connect this account with a provider that supports location checks to '
+        'observe the current state. Saved observations remain readable offline.',
+    'Verbinden Sie dieses Konto mit einem Anbieter, der Standortprüfungen '
+        'unterstützt, um den aktuellen Stand zu prüfen. Gespeicherte '
+        'Beobachtungen bleiben offline lesbar.',
+    'اتصل بهذا الحساب باستخدام موفر يدعم فحص الموقع لملاحظة الحالة الحالية. '
+        'تبقى الملاحظات المحفوظة قابلة للقراءة دون اتصال.',
+  );
+  String mailActivitySource(String folder) => _text(
+    'Original folder: $folder',
+    'Ursprünglicher Ordner: $folder',
+    'المجلد الأصلي: $folder',
+  );
+  String mailActivityLocationCount(int observed, int uncertain) => _text(
+    '$observed of $uncertain uncertain actions have a saved location check',
+    'Für $observed von $uncertain ungewissen Aktionen ist eine Standortprüfung gespeichert',
+    'حُفظ فحص الموقع لـ $observed من أصل $uncertain إجراء غير مؤكد',
+  );
+
+  List<String> mailActivityLocationDetails(
+    MailMembershipObservation observation,
+    MailStoredFlagBatchSummary batch,
+  ) {
+    if (observation.kind == MailMembershipObservationKind.missing) {
+      return [
+        _text(
+          'The original message identity is unavailable. Its destination and '
+              'the result of the earlier action are not verified.',
+          'Die ursprüngliche Nachrichtenkennung ist nicht verfügbar. Ihr Ziel '
+              'und das Ergebnis der früheren Aktion sind nicht bestätigt.',
+          'هوية الرسالة الأصلية غير متاحة. لم يُتحقق من وجهتها أو نتيجة الإجراء السابق.',
+        ),
+      ];
+    }
+    if (observation.kind == MailMembershipObservationKind.identityChanged) {
+      return [
+        _text(
+          'The original folder was reset or replaced. The old message identity '
+              'cannot be checked in the replacement folder.',
+          'Der ursprüngliche Ordner wurde zurückgesetzt oder ersetzt. Die alte '
+              'Nachrichtenkennung kann im neuen Ordner nicht geprüft werden.',
+          'أُعيد تعيين المجلد الأصلي أو استُبدل. لا يمكن فحص هوية الرسالة القديمة '
+              'في المجلد البديل.',
+        ),
+      ];
+    }
+    final folders = observation.mailboxes.map((box) => box.value).join(', ');
+    final labels = observation.identity.provider == MailProviderKind.gmail;
+    return [
+      if (labels)
+        folders.isEmpty
+            ? _text(
+                'Current labels: none',
+                'Aktuelle Labels: keine',
+                'التصنيفات الحالية: لا توجد',
+              )
+            : _text(
+                'Current labels: $folders',
+                'Aktuelle Labels: $folders',
+                'التصنيفات الحالية: $folders',
+              )
+      else
+        _text(
+          'Current folder: $folders',
+          'Aktueller Ordner: $folders',
+          'المجلد الحالي: $folders',
+        ),
+      if (observation.mailboxes.contains(batch.mailbox))
+        _text(
+          'The message was present in the original folder at the time of this check.',
+          'Die Nachricht befand sich zum Prüfzeitpunkt im ursprünglichen Ordner.',
+          'كانت الرسالة موجودة في المجلد الأصلي وقت هذا الفحص.',
+        )
+      else
+        _text(
+          'The message was outside the original folder at the time of this check.',
+          'Die Nachricht befand sich zum Prüfzeitpunkt außerhalb des ursprünglichen Ordners.',
+          'كانت الرسالة خارج المجلد الأصلي وقت هذا الفحص.',
+        ),
+      if (batch.destination != null)
+        if (observation.identity is MailImapIdentity)
+          _text(
+            'This check does not verify whether the message is in the destination folder.',
+            'Diese Prüfung bestätigt nicht, ob sich die Nachricht im Zielordner befindet.',
+            'لا يتحقق هذا الفحص مما إذا كانت الرسالة موجودة في المجلد الهدف.',
+          )
+        else if (observation.mailboxes.contains(batch.destination))
+          _text(
+            'The requested destination was among the observed locations. This does not prove the earlier move succeeded.',
+            'Das gewünschte Ziel gehörte zu den beobachteten Standorten. Dies beweist nicht, dass das frühere Verschieben erfolgreich war.',
+            'كانت الوجهة المطلوبة ضمن المواقع الملاحظة. لا يثبت ذلك نجاح النقل السابق.',
+          )
+        else
+          _text(
+            'The requested destination was not among the observed locations.',
+            'Das gewünschte Ziel gehörte nicht zu den beobachteten Standorten.',
+            'لم تكن الوجهة المطلوبة ضمن المواقع الملاحظة.',
+          ),
+      if (observation.identity is MailImapIdentity)
+        observation.isDeleted == true
+            ? _text(
+                'Marked deleted; not evidence of permanent removal.',
+                'Als gelöscht markiert; kein Nachweis einer endgültigen Entfernung.',
+                'محددة كمحذوفة؛ هذا ليس دليلًا على الإزالة النهائية.',
+              )
+            : _text(
+                'Not marked deleted at the time of the check.',
+                'Zum Prüfzeitpunkt nicht als gelöscht markiert.',
+                'لم تكن محددة كمحذوفة وقت الفحص.',
+              )
+      else if (observation.isDeleted == null)
+        _text(
+          'Deleted Items / Trash membership was not verified.',
+          'Die Zugehörigkeit zu Gelöschte Elemente / Papierkorb wurde nicht bestätigt.',
+          'لم يُتحقق من وجودها في العناصر المحذوفة / المهملات.',
+        )
+      else if (observation.isDeleted!)
+        _text(
+          'Present in Deleted Items / Trash at the time of the check.',
+          'Zum Prüfzeitpunkt in Gelöschte Elemente / Papierkorb vorhanden.',
+          'موجودة في العناصر المحذوفة / المهملات وقت الفحص.',
+        )
+      else
+        _text(
+          'Outside Deleted Items / Trash at the time of the check.',
+          'Zum Prüfzeitpunkt außerhalb von Gelöschte Elemente / Papierkorb.',
+          'خارج العناصر المحذوفة / المهملات وقت الفحص.',
+        ),
+    ];
+  }
+
   String get mailActivityReconnect => _text(
     'Connect this account and open Mail activity to check unresolved actions. Cached activity can be read without connecting.',
     'Verbinden Sie dieses Konto und öffnen Sie die Mail-Aktivitäten, um ungeklärte Aktionen zu prüfen. Gespeicherte Aktivitäten sind auch ohne Verbindung lesbar.',

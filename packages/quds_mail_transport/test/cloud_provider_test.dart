@@ -406,6 +406,424 @@ void main() {
     );
   });
 
+  group('read-only membership observation', () {
+    for (final service in MailCloudService.values) {
+      test(
+        '${service.name} records current exact location and trash with GET only',
+        () async {
+          final h = _Harness(service);
+          var inTrash = false;
+          h.transport.handler = (request) {
+            expect(request.method, 'GET');
+            expect(request.body, isEmpty);
+            if (service == MailCloudService.gmail) {
+              expect(request.uri.path, endsWith('/messages/message-1'));
+              expect(request.uri.queryParameters, {
+                'format': 'minimal',
+                'fields': 'id,labelIds',
+              });
+              return _json({
+                'id': 'message-1',
+                'labelIds': [inTrash ? 'TRASH' : 'Label_Case', 'STARRED'],
+              });
+            }
+            expect(request.headers['Prefer'], 'IdType="ImmutableId"');
+            if (request.uri.path.endsWith('/deleteditems')) {
+              expect(request.uri.queryParameters, {r'$select': 'id'});
+              return _json({'id': 'Trash_Opaque'});
+            }
+            expect(request.uri.path, endsWith('/messages/message-1'));
+            expect(request.uri.queryParameters, {
+              r'$select': 'id,parentFolderId',
+            });
+            return _json({
+              'id': 'message-1',
+              'parentFolderId': inTrash ? 'Trash_Opaque' : 'Folder_Case',
+            });
+          };
+          final first = _value(
+            await h.provider.observeMembership(h.identity(), lease: h.lease),
+          );
+          expect(first.identity, h.identity());
+          expect(first.kind, MailMembershipObservationKind.present);
+          expect(
+            first.mailboxes.map((folder) => folder.value),
+            service == MailCloudService.gmail
+                ? ['Label_Case', 'STARRED']
+                : ['Folder_Case'],
+          );
+          expect(first.isDeleted, isFalse);
+          inTrash = true;
+          final second = _value(
+            await h.provider.observeMembership(h.identity(), lease: h.lease),
+          );
+          expect(second.isDeleted, isTrue);
+          expect(
+            second.deletionMailbox?.value,
+            service == MailCloudService.gmail ? 'TRASH' : 'Trash_Opaque',
+          );
+          expect(
+            h.transport.requests.every(
+              (request) => request.method == 'GET' && request.body.isEmpty,
+            ),
+            isTrue,
+          );
+          expect(
+            h.transport.mailRequests,
+            hasLength(service == MailCloudService.gmail ? 2 : 4),
+          );
+        },
+      );
+
+      test(
+        '${service.name} only an exact-message 404 is an absence observation',
+        () async {
+          final h = _Harness(service);
+          h.transport.handler = (_) => _error(
+            404,
+            code: service == MailCloudService.gmail
+                ? 'notFound'
+                : 'ErrorItemNotFound',
+          );
+          final missing = _value(
+            await h.provider.observeMembership(h.identity(), lease: h.lease),
+          );
+          expect(missing.kind, MailMembershipObservationKind.missing);
+          expect(missing.identity, h.identity());
+          expect(missing.mailboxes, isEmpty);
+          expect(missing.isDeleted, isNull);
+          expect(h.transport.mailRequests, hasLength(1));
+          for (final (status, code) in [
+            (401, MailProblemCode.authenticationRequired),
+            (403, MailProblemCode.permissionDenied),
+            (410, MailProblemCode.conflict),
+            (429, MailProblemCode.quotaExceeded),
+            (503, MailProblemCode.unavailable),
+          ]) {
+            h.transport.handler = (_) => _error(status);
+            expect(
+              _problem(
+                await h.provider.observeMembership(
+                  h.identity(),
+                  lease: h.lease,
+                ),
+                code,
+              ).mutationMayHaveOccurred,
+              isFalse,
+            );
+          }
+          h.transport.profileHandler = (_) => _error(404);
+          final before = h.transport.mailRequests.length;
+          _problem(
+            await h.provider.observeMembership(h.identity(), lease: h.lease),
+            MailProblemCode.conflict,
+          );
+          expect(h.transport.mailRequests.length, before);
+        },
+      );
+
+      test(
+        '${service.name} omitted or malformed membership never means empty',
+        () async {
+          final h = _Harness(service);
+          final malformed = service == MailCloudService.gmail
+              ? <Map<String, Object?>>[
+                  {'id': 'message-1'},
+                  {'id': 'message-1', 'labelIds': null},
+                  {'id': 'message-1', 'labelIds': 'INBOX'},
+                  {
+                    'id': 'message-1',
+                    'labelIds': [1],
+                  },
+                  {
+                    'id': 'message-1',
+                    'labelIds': [''],
+                  },
+                  {
+                    'id': 'message-1',
+                    'labelIds': ['TRASH', 'TRASH'],
+                  },
+                  {
+                    'id': 'message-1',
+                    'labelIds': ['bad\nlabel'],
+                  },
+                  {
+                    'id': 'MESSAGE-1',
+                    'labelIds': ['TRASH'],
+                  },
+                ]
+              : <Map<String, Object?>>[
+                  {'id': 'message-1'},
+                  {'id': 'message-1', 'parentFolderId': null},
+                  {'id': 'message-1', 'parentFolderId': 1},
+                  {'id': 'message-1', 'parentFolderId': ''},
+                  {'id': 'message-1', 'parentFolderId': 'bad\nfolder'},
+                  {'id': 'MESSAGE-1', 'parentFolderId': 'Trash_Opaque'},
+                ];
+          for (final data in malformed) {
+            h.transport.handler = (_) => _json(data);
+            _problem(
+              await h.provider.observeMembership(h.identity(), lease: h.lease),
+              MailProblemCode.providerFailure,
+            );
+          }
+          expect(
+            h.transport.mailRequests.every(
+              (request) => request.uri.path.endsWith('/messages/message-1'),
+            ),
+            isTrue,
+          );
+        },
+      );
+
+      test(
+        '${service.name} invalid identity and stale leases avoid tokens and IO',
+        () async {
+          final h = _Harness(service);
+          _problem(
+            await h.provider.observeMembership(
+              MailOpaqueIdentity(
+                account: _other,
+                provider: h.identity().provider,
+                value: 'message-1',
+              ),
+              lease: h.lease,
+            ),
+            MailProblemCode.invalidInput,
+          );
+          _problem(
+            await h.provider.observeMembership(
+              MailOpaqueIdentity(
+                account: _account,
+                provider: MailProviderKind.ews,
+                value: 'message-1',
+              ),
+              lease: h.lease,
+            ),
+            MailProblemCode.invalidInput,
+          );
+          _problem(
+            await h.provider.observeMembership(
+              h.identity(),
+              lease: MailAccountSession(_other).begin(),
+            ),
+            MailProblemCode.invalidInput,
+          );
+          final stale = h.lease;
+          h.session.invalidate();
+          _problem(
+            await h.provider.observeMembership(h.identity(), lease: stale),
+            MailProblemCode.staleOperation,
+          );
+          final cancellation = MailCancellationSource();
+          final cancelled = h.session.begin(cancellation: cancellation.token);
+          cancellation.cancel();
+          _problem(
+            await h.provider.observeMembership(h.identity(), lease: cancelled),
+            MailProblemCode.cancelled,
+          );
+          expect(h.tokens.calls, isEmpty);
+          expect(h.transport.requests, isEmpty);
+        },
+      );
+
+      for (final cancel in [false, true]) {
+        test(
+          '${service.name} ${cancel ? 'cancelled' : 'retired'} check rejects late membership',
+          () async {
+            final h = _Harness(service);
+            final started = Completer<void>();
+            final release = Completer<MailCloudHttpResponse>();
+            h.transport.handler = (_) {
+              started.complete();
+              return release.future;
+            };
+            final cancellation = MailCancellationSource();
+            final pending = h.provider.observeMembership(
+              h.identity(),
+              lease: h.session.begin(cancellation: cancellation.token),
+            );
+            await started.future;
+            if (cancel) {
+              cancellation.cancel();
+            } else {
+              h.session.invalidate();
+            }
+            _problem(
+              await pending,
+              cancel
+                  ? MailProblemCode.cancelled
+                  : MailProblemCode.staleOperation,
+            );
+            release.complete(
+              _json(
+                service == MailCloudService.gmail
+                    ? {
+                        'id': 'message-1',
+                        'labelIds': ['TRASH'],
+                      }
+                    : {'id': 'message-1', 'parentFolderId': 'Trash_Opaque'},
+              ),
+            );
+            await Future<void>.delayed(Duration.zero);
+            expect(h.transport.mailRequests, hasLength(1));
+            expect(h.transport.mailRequests.single.method, 'GET');
+          },
+        );
+      }
+
+      test('${service.name} oversized membership is a failed check', () async {
+        final h = _Harness(
+          service,
+          limits: const MailCloudLimits(maxHeaderBytes: 128),
+        );
+        h.transport.handler = (_) =>
+            _json({'id': 'message-1', 'unexpected': 'x' * 256});
+        _problem(
+          await h.provider.observeMembership(h.identity(), lease: h.lease),
+          MailProblemCode.quotaExceeded,
+        );
+      });
+    }
+
+    test(
+      'Graph mailbox-level and unspecified 404 errors remain failed checks',
+      () async {
+        final h = _Harness(MailCloudService.microsoft365);
+        for (final code in [
+          'MailboxNotEnabledForRESTAPI',
+          'MailboxNotSupportedForRESTAPI',
+          'unknown',
+          '',
+        ]) {
+          h.transport.handler = (_) => _error(404, code: code);
+          _problem(
+            await h.provider.observeMembership(h.identity(), lease: h.lease),
+            MailProblemCode.conflict,
+          );
+        }
+        h.transport.handler = (_) => _json({}, status: 404);
+        _problem(
+          await h.provider.observeMembership(h.identity(), lease: h.lease),
+          MailProblemCode.conflict,
+        );
+        expect(
+          h.transport.mailRequests.every((request) => request.method == 'GET'),
+          isTrue,
+        );
+      },
+    );
+
+    test('Gmail unspecified 404 does not invent a missing message', () async {
+      final h = _Harness(MailCloudService.gmail);
+      h.transport.handler = (_) => _error(404, code: 'unknown');
+      _problem(
+        await h.provider.observeMembership(h.identity(), lease: h.lease),
+        MailProblemCode.conflict,
+      );
+    });
+
+    test(
+      'Gmail explicit empty labels are a complete label observation',
+      () async {
+        final h = _Harness(MailCloudService.gmail);
+        h.transport.handler = (_) =>
+            _json({'id': 'message-1', 'labelIds': <String>[]});
+        final observed = _value(
+          await h.provider.observeMembership(h.identity(), lease: h.lease),
+        );
+        expect(observed.kind, MailMembershipObservationKind.present);
+        expect(observed.mailboxes, isEmpty);
+        expect(observed.isDeleted, isFalse);
+      },
+    );
+
+    test('Gmail label count respects the configured mailbox budget', () async {
+      final h = _Harness(
+        MailCloudService.gmail,
+        limits: const MailCloudLimits(maxMailboxes: 2),
+      );
+      h.transport.handler = (_) => _json({
+        'id': 'message-1',
+        'labelIds': ['INBOX', 'TRASH', 'STARRED'],
+      });
+      _problem(
+        await h.provider.observeMembership(h.identity(), lease: h.lease),
+        MailProblemCode.quotaExceeded,
+      );
+    });
+
+    test(
+      'Graph Deleted Items 404 does not turn a present message into missing',
+      () async {
+        final h = _Harness(MailCloudService.microsoft365);
+        h.transport.handler = (request) =>
+            request.uri.path.endsWith('/deleteditems')
+            ? _error(404)
+            : _json({'id': 'message-1', 'parentFolderId': 'INBOX'});
+        _problem(
+          await h.provider.observeMembership(h.identity(), lease: h.lease),
+          MailProblemCode.conflict,
+        );
+        expect(h.transport.mailRequests, hasLength(2));
+      },
+    );
+
+    test(
+      'Graph refuses malformed Deleted Items IDs without fabricating status',
+      () async {
+        final h = _Harness(MailCloudService.microsoft365);
+        for (final data in <Map<String, Object?>>[
+          {},
+          {'id': null},
+          {'id': ''},
+          {'id': 2},
+          {'id': 'bad\nfolder'},
+        ]) {
+          h.transport.handler = (request) =>
+              request.uri.path.endsWith('/deleteditems')
+              ? _json(data)
+              : _json({'id': 'message-1', 'parentFolderId': 'INBOX'});
+          _problem(
+            await h.provider.observeMembership(h.identity(), lease: h.lease),
+            MailProblemCode.providerFailure,
+          );
+        }
+      },
+    );
+
+    test(
+      'Graph cancelling during trash-folder lookup discards partial evidence',
+      () async {
+        final h = _Harness(MailCloudService.microsoft365);
+        final started = Completer<void>();
+        final release = Completer<MailCloudHttpResponse>();
+        h.transport.handler = (request) {
+          if (request.uri.path.endsWith('/deleteditems')) {
+            started.complete();
+            return release.future;
+          }
+          return _json({'id': 'message-1', 'parentFolderId': 'Trash_Opaque'});
+        };
+        final cancellation = MailCancellationSource();
+        final pending = h.provider.observeMembership(
+          h.identity(),
+          lease: h.session.begin(cancellation: cancellation.token),
+        );
+        await started.future;
+        cancellation.cancel();
+        _problem(await pending, MailProblemCode.cancelled);
+        release.complete(_json({'id': 'Trash_Opaque'}));
+        await Future<void>.delayed(Duration.zero);
+        expect(h.transport.mailRequests, hasLength(2));
+        expect(
+          h.transport.mailRequests.every((request) => request.method == 'GET'),
+          isTrue,
+        );
+      },
+    );
+  });
+
   group('read-only flag observation', () {
     for (final service in MailCloudService.values) {
       test(

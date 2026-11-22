@@ -95,6 +95,12 @@ are rejected instead of becoming executable intent.
 
 ## Qualification and next increments
 
+The subsequent [membership recovery increment](membership-recovery.md) now
+implements explicit provider-specific current-location checks with persisted
+evidence. It preserves historical uncertainty and dated cache views. The
+sequence below is the original plan; identity-transition capture and atomic
+cache reconciliation remain the unfinished part of its first step.
+
 The [local qualification record](../../validation/mail-durable-mutations-20261122/README.md)
 records the remote intake, incremental checkpoints, source-bound native/Node
 checks, process-kill recovery, localized UI review, environment limitations and

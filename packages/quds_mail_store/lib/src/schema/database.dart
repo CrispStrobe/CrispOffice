@@ -4,6 +4,7 @@ import 'package:quds_mail_core/quds_mail_core.dart';
 import '../errors.dart';
 import '../models.dart';
 import 'flag_journal_schema.dart';
+import 'membership_observation_schema.dart';
 
 /// Explicit SQL schema; public access is through typed repository DTOs.
 /// Drift owns query execution and transaction zones. The repository publishes
@@ -14,7 +15,7 @@ final class MailStoreDatabase extends GeneratedDatabase {
   final MailStoreFaultInjector? faultInjector;
 
   @override
-  int get schemaVersion => 13;
+  int get schemaVersion => 14;
 
   @override
   Iterable<TableInfo<Table, Object?>> get allTables => const [];
@@ -62,11 +63,14 @@ final class MailStoreDatabase extends GeneratedDatabase {
       for (final statement in schemaV13) {
         await customStatement(statement);
       }
+      for (final statement in schemaV14) {
+        await customStatement(statement);
+      }
       // Include the version in the same transaction as schema creation.
-      await customStatement('PRAGMA user_version = 13');
+      await customStatement('PRAGMA user_version = 14');
     }),
     onUpgrade: (_, from, to) async {
-      if (from < 1 || from > 12 || to != 13) {
+      if (from < 1 || from > 13 || to != 14) {
         throw const MailStoreStorageException(MailProblemCode.unsupported);
       }
       await transaction(() async {
@@ -126,12 +130,17 @@ final class MailStoreDatabase extends GeneratedDatabase {
             await customStatement(statement);
           }
         }
-        await _validateCommandJournalUpgrade();
-        for (final statement in schemaV13) {
+        if (from < 13) {
+          await _validateCommandJournalUpgrade();
+          for (final statement in schemaV13) {
+            await customStatement(statement);
+          }
+        }
+        for (final statement in schemaV14) {
           await customStatement(statement);
         }
         await faultInjector?.call(MailStoreCheckpoint.migrationCreated);
-        await customStatement('PRAGMA user_version = 13');
+        await customStatement('PRAGMA user_version = 14');
       });
     },
     beforeOpen: (_) async {

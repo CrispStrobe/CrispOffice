@@ -10,6 +10,7 @@ export 'src/model/parse.dart';
 export 'src/model/result.dart';
 export 'src/ports/codec.dart';
 export 'src/ports/hosts.dart';
+export 'src/ports/membership.dart';
 export 'src/ports/provider.dart';
 export 'src/ports/repository.dart';
 export 'src/search/conversations.dart';
