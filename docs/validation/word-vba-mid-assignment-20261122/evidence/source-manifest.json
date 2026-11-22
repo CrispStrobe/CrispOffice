@@ -1,0 +1,19 @@
+{
+  "commit": "19a63d4455540bd797e546ab82ec14db128abea0",
+  "engine_lib_tree": "e2f56bf3c15b6201e06b98ce80d75f149a7f5fcd",
+  "inputs": {
+    "packages/quds_office_engine/example/macros/word_fixed_width_labels.bas": "1d967f5595c21253bd8963abfc24d689b44763d3c300517d5067647b7264878d",
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart": "b0f6347e22a29bb802cbcc7d45a709ecd32f3cc74235c7ac3fcbd6a8aac1f588",
+    "packages/quds_office_engine/test/fixtures/vba_conformance/mid_assignment_v1.json": "b02fc1cd54b04c92d505992d4aa9752026f0deecc1ed9d208bd630e86c5d8b08",
+    "packages/quds_office_engine/test/office_vba_mid_assignment_conformance_test.dart": "0954e923cc4e7ef8143ef194faedc567141cc9668ded7f5b660aa13060d530b4",
+    "packages/quds_office_engine/test/office_vba_mid_assignment_test.dart": "3e12e1c2e09264ac7a753072bb70306efc26dc589f5cbbeab23654b3385c65b6",
+    "packages/quds_office_engine/test/office_vba_word_mid_assignment_cli_test.dart": "a8e8fac8b0d136d4cc6c3e02359131d6dc43f0ae12bd5e7f253451f42b76a371",
+    "packages/quds_office_engine/test/office_vba_word_mid_assignment_integration_test.dart": "82e1681826946c6f0d11f31e05373b6782e34aef98ca219266aa823008cd123f",
+    "packages/quds_office_engine/tool/macros/web_vba_mid_assignment_smoke.dart": "80c69a0fd9ea01a83e554b87e440f726f0f73ce0675a75434afb13e71a15b43f",
+    "packages/quds_office_engine/tool/macros/web_vba_word_mid_assignment_smoke.dart": "c902964b816cd3d483808a4c329b6775644c1f8104479adb2e716848fb94920b",
+    "packages/quds_office_engine/tool/macros/web_vba_word_cell_paragraphs_smoke.dart": "4ede0fc4381dad80b347e85c042b03e5b03509f68f24219e408161a0da38ed30",
+    "packages/quds_office_engine/tool/macros/web_vba_word_cell_prefix_smoke.dart": "06306a4f9a834c2c022da177ab87b620e529017877b35e48b652bcc1db47b96b",
+    "packages/quds_office_engine/test/support/office_macro_cli.dart": "a99c9fa6df165eb5fe864104a92d971af3ebc1595bde8504e04b704524078c3a",
+    "packages/quds_office_engine/test/support/vba_conformance.dart": "f70c51531c2d2ac8024fa5ba14469094bbabc9275462f9bf4962c4e769ee9000"
+  }
+}

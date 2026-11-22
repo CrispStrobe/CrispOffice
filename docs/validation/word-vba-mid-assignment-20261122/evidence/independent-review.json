@@ -1,0 +1,17 @@
+{
+  "scope": "compiler, all new focused/native/CLI/conformance/portable files, BAS and five updated documentation files",
+  "findings": [],
+  "checks": [
+    "local and array-element ownership",
+    "helper frame restoration and function results",
+    "once-only target/index/start/length/replacement evaluation",
+    "inactive-source and call graph checks",
+    "strict values and exact indexes",
+    "nonempty copy work, no-op work and array quota accounting",
+    "UTF-16 and native publication guards",
+    "independent adapter mapping and diagnostic positions",
+    "DOCX/DOCM/CLI/MCP preservation and rollback"
+  ],
+  "code_changes_required": false,
+  "additional_tests_added": false
+}

@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "qualifiedSourceCommit": "19a63d4455540bd797e546ab82ec14db128abea0",
+  "workspaceHeadAtStart": "19a63d4455540bd797e546ab82ec14db128abea0",
+  "startedAt": "2026-11-22T10:37:28.597262+00:00",
+  "reason": "Recompiled canonical Mid corpus after the final no-op copy-budget refinement.",
+  "sourceFiles": [
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+      "gitBlob": "830509347b60f706ed2a85732657c3b3c2d2a8da",
+      "sha256": "b0f6347e22a29bb802cbcc7d45a709ecd32f3cc74235c7ac3fcbd6a8aac1f588",
+      "bytes": 279272
+    },
+    {
+      "path": "packages/quds_office_engine/tool/macros/web_vba_mid_assignment_smoke.dart",
+      "gitBlob": "693c04359f2d143218c989be172e065b3752b90c",
+      "sha256": "80c69a0fd9ea01a83e554b87e440f726f0f73ce0675a75434afb13e71a15b43f",
+      "bytes": 3160
+    },
+    {
+      "path": "packages/quds_office_engine/test/support/vba_conformance.dart",
+      "gitBlob": "6274968065687cb03ce4e552650e7de3ac669359",
+      "sha256": "f70c51531c2d2ac8024fa5ba14469094bbabc9275462f9bf4962c4e769ee9000",
+      "bytes": 11361
+    },
+    {
+      "path": "packages/quds_office_engine/test/fixtures/vba_conformance/mid_assignment_v1.json",
+      "gitBlob": "b8a5c3af825532e25f0c6304a596e6f4d7bcb9f3",
+      "sha256": "b02fc1cd54b04c92d505992d4aa9752026f0deecc1ed9d208bd630e86c5d8b08",
+      "bytes": 84382
+    }
+  ],
+  "workingDirectory": "/workspace/scratch/e436a4cfb2da/quds_office_suite/packages/quds_office_engine",
+  "define": {
+    "name": "VBA_CONFORMANCE_BASE64",
+    "encoding": "base64",
+    "file": "/workspace/scratch/e436a4cfb2da/quds_office_suite/packages/quds_office_engine/test/fixtures/vba_conformance/mid_assignment_v1.json"
+  },
+  "commands": [
+    {
+      "argvTemplate": [
+        "/workspace/scratch/e436a4cfb2da/.runtime/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/e436a4cfb2da/quds_office_suite/.dart_tool/package_config.json",
+        "-DVBA_CONFORMANCE_BASE64=${VBA_CONFORMANCE_BASE64}",
+        "/workspace/scratch/e436a4cfb2da/quds_office_suite/packages/quds_office_engine/tool/macros/web_vba_mid_assignment_smoke.dart"
+      ],
+      "output": "/workspace/scratch/e436a4cfb2da/.runtime/mid-assignment-vm.json",
+      "exitCode": 0,
+      "elapsedSeconds": 11.465
+    },
+    {
+      "argvTemplate": [
+        "/workspace/scratch/e436a4cfb2da/.runtime/dart-sdk/bin/dart",
+        "compile",
+        "js",
+        "--packages=/workspace/scratch/e436a4cfb2da/quds_office_suite/.dart_tool/package_config.json",
+        "-O2",
+        "-DVBA_CONFORMANCE_BASE64=${VBA_CONFORMANCE_BASE64}",
+        "/workspace/scratch/e436a4cfb2da/quds_office_suite/packages/quds_office_engine/tool/macros/web_vba_mid_assignment_smoke.dart",
+        "-o",
+        "/workspace/scratch/e436a4cfb2da/.runtime/mid-assignment.js"
+      ],
+      "output": "/workspace/scratch/e436a4cfb2da/.runtime/mid-assignment-js-compile.log",
+      "exitCode": 0,
+      "elapsedSeconds": 8.309
+    },
+    {
+      "argvTemplate": [
+        "node",
+        "-e",
+        "globalThis.self = globalThis; require(process.argv[1]);",
+        "/workspace/scratch/e436a4cfb2da/.runtime/mid-assignment.js"
+      ],
+      "output": "/workspace/scratch/e436a4cfb2da/.runtime/mid-assignment-node.json",
+      "exitCode": 0,
+      "elapsedSeconds": 0.236
+    }
+  ],
+  "completedAt": "2026-11-22T10:37:48.631483+00:00",
+  "workspaceHeadAtEnd": "19a63d4455540bd797e546ab82ec14db128abea0",
+  "sourceUnchangedDuringRun": true,
+  "byteIdenticalReceipts": true,
+  "adapterCount": 3,
+  "caseCountPerRuntime": 231,
+  "receiptBytes": 53194,
+  "receiptSha256": "00eaab6a03ae58eb453cfa82846bf0c56c755514bff4746a6c3c088fe67249f2",
+  "compiledJavaScriptSha256": "8291d0612cb3382666c7d38da36f94f236fd063bd6c70e9049435193b98ef82a"
+}

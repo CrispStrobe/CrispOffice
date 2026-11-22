@@ -720,12 +720,12 @@ evaluated. Wrong arity and statically incompatible types produce `vba_type_error
 including in unused code. Value-dependent
 errors in unexecuted branches are not evaluated.
 
-The original substring slice provides these four signatures; the binary text
-functions below extend it. Unsuffixed `Left`, `Right`, and `Mid`,
-`LenB`/byte variants, `Len$`, named arguments, VBA qualification, and the
-assignable `Mid$` statement remain unsupported. The `$` suffix is recognized
-only for the implemented substring and Trim-family names; arbitrary variable and
-procedure type suffixes are not enabled. Builtin names cannot be shadowed.
+The original substring slice provides these four expression signatures; the
+binary text functions below extend it. Unsuffixed `Left`, `Right`, and `Mid`
+expressions, `LenB`/byte variants, `Len$`, named arguments and VBA qualification
+remain unsupported. The separate `Mid` / `Mid$` assignment statement is
+described below. Arbitrary variable and procedure type suffixes are not
+enabled. Builtin names cannot be shadowed.
 Function calls remain disallowed in constants and fixed-array bounds.
 
 Every returned substring unit consumes one unit of the shared 100,000-work
@@ -750,6 +750,80 @@ dart run tool/macros/office_macro.dart compile-vba \
 behavior, intentional dialect restrictions, and separately recorded Office
 host observations. The current string corpus has no Office host execution
 provenance; VM/JavaScript agreement establishes portability of this subset.
+
+### Replacing part of a source String
+
+All three adapters accept the standalone statement
+`Mid(target, start[, length]) = replacement` and its `Mid$` spelling. It edits
+a mutable local String, a scalar Variant currently containing a String, or an
+allocated String/Variant array element. Local `ByVal` helper parameters and
+String/Variant function results use the same rules; changing a helper's local
+copy does not modify its caller.
+
+```vb
+Sub Main()
+    Dim label As String, fields(1 To 2) As String
+    label = "INV-0000 | OPEN"
+    Mid$(label, 5, 4) = "0042"
+    Mid(label, 12) = "DONE"
+    fields(1) = "Item: ------"
+    Mid$(fields(1), 7, 6) = "Widget"
+    ActiveDocument.Tables(1).Cell(1, 1).Range.Text = label
+    ActiveDocument.Tables(1).Cell(1, 2).Range.Text = fields(1)
+End Sub
+```
+
+This writes `INV-0042 | DONE` and `Item: Widget`. The replacement starts at a
+one-based UTF-16 position and leaves the target length unchanged. It copies
+the smallest of the requested length, replacement length and available target
+suffix; omitted length uses the replacement length. Short replacement text
+leaves the rest of the target intact. Long text is truncated without padding
+or insertion. A valid zero length or empty replacement leaves the value alone.
+
+| Input or target | Bounded contract |
+| --- | --- |
+| Start | Exact numeric integer in `1..2147483647`, also no greater than the current target length |
+| Explicit length | Exact numeric integer in `0..2147483647` |
+| String-valued Variant | Uses its actual String, including in a Variant array element |
+| Empty, Null, numeric or Boolean text | `vba_type_error`; no implicit String coercion |
+| Empty target or start after its last unit | `vba_type_error`, including with zero length or empty replacement |
+| Fixed or dynamic array element | Existing bound/allocation checks; all other elements and bounds retained |
+| Array element during `For Each` | Element edits are allowed; the existing resize/Erase locks still apply |
+| Constant, whole array, property or temporary target | Refused during static checking, including inactive source |
+
+Resolve the target and any array subscript once, then evaluate start, optional
+length and replacement once in written order. Value checks follow that
+evaluation, so no-op replacements still evaluate and validate the supplied
+values. Static type, lvalue and argument-shape checks apply to all procedures
+and branches. Out-of-range or unallocated arrays retain the existing
+`vba_subscript_out_of_range` diagnostic.
+
+The strict actual-String and exact-integer rules follow the existing dialect;
+they do not implement VBA's broader Let coercion. `MidB` / `MidB$`,
+`Let`/`Set`/`Call` prefixes, named arguments, omitted interior arguments,
+property lvalues and array parameters are outside this statement's contract.
+Existing implicit Variant locals remain available when `Option Explicit` is
+absent; their current value must still be a String. The existing `Mid$`
+expression is unchanged, and
+unsuffixed `Mid` is supported here only as an assignment statement.
+
+UTF-16 units may be split and recombined locally. Normal native publication
+still refuses lone surrogates and format-invalid control characters. Each
+nonempty edit charges the full resulting String's copy work before allocation,
+even if the replacement text is identical. Empty edits retain ordinary
+statement/expression work. The 32,767-unit String limit, 100,000-work budget and
+active-array String accounting remain in force; no partial plan is returned
+on failure. The statement itself emits no native document operation.
+
+The [complete Word label example](../packages/quds_office_engine/example/macros/word_fixed_width_labels.bas)
+combines String array elements, a reusable function, named helper arguments
+and calculated table selectors. See the [versioned corpus](VBA_CONFORMANCE.md)
+and [local qualification record](validation/word-vba-mid-assignment-20261122/README.md).
+The [Microsoft Mid statement reference](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/mid-statement)
+and [MS-VBAL statement specification](https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/2a8f3567-c8e0-4176-a802-cf2edeba425f)
+describe the replacement span and no-growth behavior. Corpus provenance
+separates those expectations from the strict Quds rules above; no installed
+Office-host result is claimed.
 
 ### Joining source String arrays
 
@@ -1179,6 +1253,7 @@ dart run tool/macros/office_macro.dart run-vba \
 | Numeric intrinsics | `Abs`, `Int`, `Fix`, `Sgn`; one positional numeric/Variant argument, explicit Empty/Null behavior and bounded portable arithmetic |
 | Text | Double-quoted literals with doubled embedded quotes and `&` concatenation of scalar values |
 | String intrinsics | `Len`, `Left$`, `Right$`, `Mid$`, binary `InStr` / `InStrRev` / `Replace`, and Trim/LTrim/RTrim with their `$` forms; actual Strings, UTF-16 units, bounded exact integer arguments, no implicit coercion |
+| String span assignment | Standalone `Mid` / `Mid$` edits local String/Variant values and allocated String/Variant array elements, with no growth and shared copy/array budgets |
 | Array text assembly | `Join` consumes an allocated local String array and an optional String/Empty delimiter; preserves bounds/order and empty entries, with preallocation text/work limits |
 | String comparison | Binary `StrComp(left, right[, compare])`, exact `-1`/`0`/`1` results, explicit Empty/Null behavior, strict types and metered UTF-16 comparison |
 | Comparisons | `=`, `<>`, `<`, `>`, `<=`, `>=` between matching scalar types, contextual `Empty`, or propagating `Null`; strings use binary ordering |
