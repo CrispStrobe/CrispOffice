@@ -1,6 +1,6 @@
 # Mail implementation status
 
-Updated **21 November 2026**. This page is the current summary. The detailed
+Updated **22 November 2026**. This page is the current summary. The detailed
 change log and per-feature qualification record is preserved in
 [Mail status details](status-details.md).
 
@@ -18,13 +18,29 @@ interrupted work.
 | Gmail / Microsoft 365 | Implemented through provider presets; live-account acceptance open |
 | Offline store | Durable drafts, Outbox, cached headers/bodies, search journal |
 | Scheduled send | Foreground only; UTC deadlines and a short Undo window |
-| Search | Local cached headers and saved queries; no body/provider discovery |
+| Search | Local cached headers, saved queries and exact saved folder sets; no body/provider discovery |
 | Conversations | Folding of explicitly loaded threaded headers |
 | Compose tools | Signatures, Quick Text, attachments and draft recovery |
 | Account persistence | Native account store, schema migrations and reconnect |
 | Browser store | Implemented path; quota/reload/Web Locks acceptance remains open |
 
-## Latest increment: keyboard triage and address search
+## Current increment: exact saved-search folder sets
+
+The [exact folder-set continuation](folder-scoped-search.md) now offers
+**Choose folders…** in Search saved mail. Reusable searches can bind selected
+retained folders to the original account IDs; a missing folder or unsupported
+legacy host cannot widen a search. Schema 11 preserves old all-folder searches
+and adds revision-guarded ordered folder identities. Scoped SQL filters both
+browse and sync memberships before counting or paging. The picker reads only
+retained local folder inventory, then releases owners.
+
+**Validation pending execution.** Model, store, migration, SQLite search,
+session and picker regression tests are checked in, but new Dart/Flutter
+tests could not be run in the editing environment, which lacks those runtimes.
+GitHub Actions were not awaited. This status does not inherit qualification
+from the earlier keyboard-triage run.
+
+## Previous locally qualified increment: keyboard triage and address search
 
 Loaded mailbox lists now support growing and shrinking checked ranges with
 Shift+Up/Down/Home/End, Shift+Space and Shift+click, with English, German and
@@ -52,7 +68,7 @@ and [work record](../../validation/mail-keyboard-triage-20261121/README.md).
 Search covered by the current implementation:
 
 - local cached headers, including account/folder provenance;
-- saved, named header searches with fixed account scopes;
+- saved, named header searches with fixed account scopes and optional exact folder sets;
 - Boolean header expressions;
 - explicit selection of a cached result to open retained bytes.
 

@@ -61,6 +61,42 @@ extension StudioMailSavedSearchStrings on StudioStrings {
     'Einige Konten dieser Suche sind hier nicht verfügbar. Die Suche wurde nicht ausgeführt. Wählen Sie einen verfügbaren Kontenbereich, um sie zu ändern.',
     'بعض حسابات هذا البحث غير متاحة هنا. لم يُنفّذ البحث. اختر نطاق حسابات متاحًا لتحديثه.',
   );
+  String get mailSavedSearchChooseFolders => _text(
+    'Choose folders…',
+    'Ordner auswählen…',
+    'اختيار المجلدات…',
+  );
+  String get mailSavedSearchAllFolders => _text(
+    'All retained folders',
+    'Alle gespeicherten Ordner',
+    'جميع المجلدات المحفوظة',
+  );
+  String mailSavedSearchSelectedFolders(int count) => _text(
+    '$count selected folders',
+    '$count ausgewählte Ordner',
+    '$count مجلدات محددة',
+  );
+  String get mailSavedSearchFolderScopeHelp => _text(
+    'Select at least one retained folder per account. Only checked folders will be searched. Missing folders must be removed explicitly.',
+    'Wählen Sie mindestens einen gespeicherten Ordner pro Konto. Nur markierte Ordner werden durchsucht. Fehlende Ordner müssen ausdrücklich entfernt werden.',
+    'اختر مجلدًا محفوظًا واحدًا على الأقل لكل حساب. سيُبحث فقط في المجلدات المحددة. يجب إزالة المجلدات المفقودة صراحةً.',
+  );
+  String get mailSavedSearchApplyFolders => _text(
+    'Use selected folders',
+    'Ausgewählte Ordner verwenden',
+    'استخدام المجلدات المحددة',
+  );
+  String get mailSavedSearchFolderMissing => _text(
+    'A selected folder is no longer available in retained mail. The search was not expanded. Choose folders again to recover.',
+    'Ein ausgewählter Ordner ist nicht mehr im gespeicherten Bestand verfügbar. Die Suche wurde nicht erweitert. Wählen Sie die Ordner erneut.',
+    'لم يعد أحد المجلدات المحددة متاحًا في البريد المحفوظ. لم يتم توسيع البحث. اختر المجلدات مجددًا للاستعادة.',
+  );
+  String get mailSavedSearchFolderReadFailed => _text(
+    'Retained folder inventory could not be verified. The previous selection is unchanged; retry Choose folders.',
+    'Die gespeicherten Ordner konnten nicht überprüft werden. Die bisherige Auswahl bleibt erhalten; versuchen Sie „Ordner auswählen“ erneut.',
+    'تعذر التحقق من قائمة المجلدات المحفوظة. لم يتغير التحديد السابق؛ أعد محاولة اختيار المجلدات.',
+  );
+
   String get mailSavedSearchLoadFailed => _text(
     'Saved searches could not be loaded. Reload to try again.',
     'Gespeicherte Suchen konnten nicht geladen werden. Versuchen Sie es mit „Neu laden“ erneut.',
