@@ -11,6 +11,7 @@ The canonical fixtures are:
 
 | Suite | Cases | Scope |
 | --- | ---: | --- |
+| [`word_cell_paragraphs_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_cell_paragraphs_v1.json) | 32 | Explicit cell paragraph selection, Style/Shading, retained aliases/helpers, existing formatting, strict selectors and direct/projected range refusals |
 | [`word_join_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_join_v1.json) | 25 | Join of fixed/dynamic String arrays, lower bounds, array lifecycle, delimiters, Unicode, exact output limits and positioned refusals |
 | [`string_intrinsics_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/string_intrinsics_v1.json) | 69 | Strict String intrinsics, UTF-16 and publication boundaries |
 | [`text_intrinsics_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/text_intrinsics_v1.json) | 95 | Binary forward/reverse search, replacement, Trim families, UTF-16, strict argument shapes and shared work/output limits |
@@ -24,6 +25,17 @@ The canonical fixtures are:
 
 The same fixture bytes are consumed by each VM test and the portable
 JavaScript runner; there is no separately maintained copy of expected results.
+
+The cell paragraph suite independently specifies 14 complete successful plans
+and 18 positioned diagnostics. It covers direct and Item selection, existing
+style names/constants, palette/RGB/automatic backgrounds, alias and helper
+identity, source-only loops, existing body/header behavior, and strict
+cell-paragraph boundaries. It includes a regression for unsupported insertion
+inside inactive source. The VM and portable JavaScript runner consume the same
+fixture bytes; no case claims observation from an installed Office host. Native
+document and transaction checks are separate. See the
+[contract](vba-word-macros-details.md#formatting-a-cell-paragraph) and
+[local qualification](validation/word-vba-cell-paragraphs-20261122/README.md).
 
 The Join suite independently specifies 16 complete successful Word plans and
 nine positioned diagnostics. It exercises allocated local String arrays,
