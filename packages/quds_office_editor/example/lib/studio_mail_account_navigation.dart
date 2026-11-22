@@ -125,6 +125,34 @@ final class StudioMailAccountNavigationTarget {
     }
   }
 
+  /// Refreshes a fulfilled sign-in only if its selected shortcut still exists
+  /// unchanged. Older/custom directories without an atomic refresh capability
+  /// keep their existing metadata; a read followed by an unconditional remember
+  /// could otherwise recreate a shortcut removed during sign-in.
+  Future<void> rememberConnection(
+    StudioMailLocalAccountStore store,
+    StudioMailDraftAccount actual, {
+    required bool Function() isCurrent,
+  }) async {
+    requireMatches(actual);
+    void checkCurrent() {
+      if (!isCurrent()) {
+        throw const StudioMailDraftStoreException(MailProblemCode.staleOperation);
+      }
+    }
+
+    checkCurrent();
+    await validateCurrent(store);
+    checkCurrent();
+    if (store is StudioMailLocalAccountReconnectStore) {
+      await (store as StudioMailLocalAccountReconnectStore).rememberSelected(
+        actual,
+        expectedRecord: record,
+      );
+    }
+    checkCurrent();
+  }
+
   static Never _invalid() =>
       throw const StudioMailDraftStoreException(MailProblemCode.invalidInput);
 

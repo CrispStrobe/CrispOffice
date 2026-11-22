@@ -16,6 +16,16 @@ abstract interface class StudioMailLocalAccountStore {
   Future<void> forget(MailLocalAccountRecord record);
 }
 
+/// Optional atomic refresh of a previously selected account shortcut.
+/// Implementations must compare the complete selected record in the same
+/// transaction as the refresh. A removed or replaced shortcut is never recreated.
+abstract interface class StudioMailLocalAccountReconnectStore {
+  Future<void> rememberSelected(
+    StudioMailDraftAccount identity, {
+    required MailLocalAccountRecord expectedRecord,
+  });
+}
+
 /// Reconstruct the historical draft namespace exactly; reject a redirected row.
 StudioMailDraftAccount studioMailLocalAccountIdentity(
   MailLocalAccountRecord record,
@@ -39,7 +49,10 @@ StudioMailDraftAccount studioMailLocalAccountIdentity(
 /// profile. Like local drafts, this non-secret directory is not encrypted.
 /// The directory never contains message content, passwords or OAuth tokens.
 final class NativeStudioMailLocalAccountStore
-    implements StudioMailLocalAccountStore, StudioMailSavedSearchStore {
+    implements
+        StudioMailLocalAccountStore,
+        StudioMailLocalAccountReconnectStore,
+        StudioMailSavedSearchStore {
   NativeStudioMailLocalAccountStore({
     this.appDirectory,
     DateTime Function()? clock,
@@ -146,7 +159,18 @@ final class NativeStudioMailLocalAccountStore
       });
 
   @override
-  Future<void> remember(StudioMailDraftAccount identity) {
+  Future<void> remember(StudioMailDraftAccount identity) => _remember(identity);
+
+  @override
+  Future<void> rememberSelected(
+    StudioMailDraftAccount identity, {
+    required MailLocalAccountRecord expectedRecord,
+  }) => _remember(identity, expectedRecord: expectedRecord);
+
+  Future<void> _remember(
+    StudioMailDraftAccount identity, {
+    MailLocalAccountRecord? expectedRecord,
+  }) {
     final record = MailLocalAccountRecord(
       id: identity.account.value,
       provider: identity.provider,
@@ -156,11 +180,19 @@ final class NativeStudioMailLocalAccountStore
       lastConnectedAt: _clock().toUtc(),
     );
     studioMailLocalAccountIdentity(record);
+    if (expectedRecord != null) {
+      studioMailLocalAccountIdentity(expectedRecord);
+    }
     return _withStore((repository) async {
       for (final existing in _value(await repository.listLocalAccounts())) {
         studioMailLocalAccountIdentity(existing);
       }
-      _value(await repository.rememberLocalAccount(record));
+      _value(
+        await repository.rememberLocalAccount(
+          record,
+          expectedRecord: expectedRecord,
+        ),
+      );
     });
   }
 
