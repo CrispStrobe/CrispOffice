@@ -1,0 +1,246 @@
+00:00 +0: loading test/word_zotero_field_selection_test.dart
+00:00 +0: test/word_zotero_field_selection_test.dart: implicit cursor and constructor selection do not request a highlight
+00:00 +1: test/word_zotero_citing_test.dart: application and field objects expose the current HTTP contract
+00:00 +2: test/word_zotero_citing_test.dart: application and field objects expose the current HTTP contract
+00:00 +3: test/word_zotero_field_selection_test.dart: later select replaces context without moving any source text
+00:00 +4: test/word_zotero_citing_test.dart: reading order follows body and note anchors including noncitation notes
+00:00 +5: test/word_zotero_citing_test.dart: reading order follows body and note anchors including noncitation notes
+00:00 +6: test/word_zotero_citing_test.dart: reading order follows body and note anchors including noncitation notes
+00:00 +7: test/word_zotero_field_selection_test.dart: multipart bibliography exposes every unchanged entry range
+00:00 +8: test/word_zotero_citing_test.dart: body table fields retain reading order with surrounding paragraphs
+00:00 +9: test/word_zotero_citing_test.dart: body table fields retain reading order with surrounding paragraphs
+00:00 +10: test/word_zotero_field_selection_test.dart: detached research-note placeholder never resolves into source prose
+00:00 +11: test/word_zotero_citing_test.dart: codes results and preferences stay staged until complete and apply
+00:00 +12: test/word_zotero_field_selection_test.dart: transfer import exposes no detached clone as a live source
+00:00 +13: test/word_zotero_field_selection_test.dart: transfer import exposes no detached clone as a live source
+00:00 +14: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:00 +15: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:00 +16: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:00 +17: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:00 +18: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:00 +19: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:00 +20: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:00 +21: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:00 +22: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:00 +23: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:00 +24: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:00 +25: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:00 +26: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:00 +27: test/word_zotero_writing_position_test.dart: refresh retains prose and field boundaries for "(A much longer author citation)"
+00:00 +28: test/word_zotero_citing_test.dart: native text-only refresh retires basic formatting
+00:00 +29: test/word_zotero_citing_test.dart: native text-only refresh retires basic formatting
+00:00 +30: test/word_zotero_citing_test.dart: native text-only refresh retires basic formatting
+00:00 +31: test/word_zotero_writing_position_test.dart: multiple refreshes combine offsets, command order=false
+00:00 +32: test/word_zotero_citing_test.dart: native code-only refresh retires basic formatting
+00:00 +33: test/word_zotero_citing_test.dart: native code-only refresh retires basic formatting
+00:00 +34: test/word_zotero_citing_test.dart: native code-only refresh retires basic formatting
+00:00 +35: test/word_zotero_citing_test.dart: native code-only refresh retires basic formatting
+00:00 +36: test/word_zotero_writing_position_test.dart: rich with identical text preserves positions inside a citation
+00:00 +37: test/word_zotero_citing_test.dart: new citation inserts as note type 0 and survives DOCX
+00:00 +38: test/word_zotero_citing_test.dart: new citation inserts as note type 0 and survives DOCX
+00:00 +39: test/word_zotero_citing_test.dart: new citation inserts as note type 0 and survives DOCX
+00:00 +40: test/word_zotero_citing_test.dart: new citation inserts as note type 0 and survives DOCX
+00:00 +41: test/word_zotero_citing_test.dart: new citation inserts as note type 0 and survives DOCX
+00:00 +42: test/word_zotero_writing_position_test.dart: both adjacent citation resizes preserve their shared boundary
+00:00 +43: test/word_zotero_writing_position_test.dart: bibliography reflow retains following paragraph identity: New
+00:00 +44: test/word_zotero_citing_test.dart: new citation inserts as note type 1 and survives DOCX
+00:00 +45: test/word_zotero_citing_test.dart: new citation inserts as note type 1 and survives DOCX
+00:00 +46: test/word_zotero_citing_test.dart: new citation inserts as note type 1 and survives DOCX
+00:00 +47: test/word_zotero_citing_test.dart: new citation inserts as note type 1 and survives DOCX
+00:00 +48: test/word_zotero_citing_test.dart: new citation inserts as note type 1 and survives DOCX
+00:00 +49: test/word_zotero_writing_position_test.dart: authored footnote prose follows refresh
+00:00 +50: test/word_zotero_citing_test.dart: new citation inserts as note type 2 and survives DOCX
+00:00 +51: test/word_zotero_citing_test.dart: new citation inserts as note type 2 and survives DOCX
+00:00 +52: test/word_zotero_citing_test.dart: new citation inserts as note type 2 and survives DOCX
+00:00 +53: test/word_zotero_citing_test.dart: new citation inserts as note type 2 and survives DOCX
+00:00 +54: test/word_zotero_citing_test.dart: new citation inserts as note type 2 and survives DOCX
+00:00 +55: test/word_zotero_citing_test.dart: new citation inserts as note type 2 and survives DOCX
+00:00 +56: test/word_zotero_writing_position_test.dart: sole-note delete keeps body prose and gives removed content a boundary (false)
+00:00 +57: test/word_zotero_citing_test.dart: caret follows inserted note type 0 after an earlier citation expands
+00:00 +58: test/word_zotero_citing_test.dart: caret follows inserted note type 0 after an earlier citation expands
+00:00 +59: test/word_zotero_citing_test.dart: caret follows inserted note type 0 after an earlier citation expands
+00:00 +60: test/word_zotero_writing_position_test.dart: sole-note delete keeps body prose and gives removed content a boundary (true)
+00:00 +61: test/word_zotero_citing_test.dart: caret follows inserted note type 1 after an earlier citation expands
+00:00 +62: test/word_zotero_citing_test.dart: caret follows inserted note type 1 after an earlier citation expands
+00:00 +63: test/word_zotero_writing_position_test.dart: HTTP capability replay reaches native adapter, explicit=false
+00:00 +64: test/word_zotero_writing_position_test.dart: HTTP capability replay reaches native adapter, explicit=false
+00:00 +65: test/word_zotero_writing_position_test.dart: HTTP capability replay reaches native adapter, explicit=false
+00:00 +66: test/word_zotero_citing_test.dart: a note inserted directly before an existing marker uses its new order
+00:00 +67: test/word_zotero_citing_test.dart: a note inserted directly before an existing marker uses its new order
+00:00 +68: test/word_zotero_citing_test.dart: a sole citation converts from note type 0 to 1 without losing text
+00:00 +69: test/word_zotero_citing_test.dart: a sole citation converts from note type 0 to 2 without losing text
+00:00 +70: test/word_zotero_citing_test.dart: a sole citation converts from note type 1 to 0 without losing text
+00:00 +71: test/word_zotero_citing_test.dart: a sole citation converts from note type 1 to 2 without losing text
+00:01 +72: test/word_zotero_citing_test.dart: a sole citation converts from note type 2 to 0 without losing text
+00:01 +73: test/word_zotero_citing_test.dart: a sole citation converts from note type 2 to 1 without losing text
+00:01 +74: test/word_zotero_citing_test.dart: conversion refuses extra note prose without staging earlier conversions
+00:01 +75: test/word_zotero_citing_test.dart: two citations in one note share the note index and refuse note conversion
+00:01 +76: test/word_zotero_citing_test.dart: conversion refuses a citation note with an unrelated empty PAGE field
+00:01 +77: test/word_zotero_citing_test.dart: deleting a citation keeps its note containing an unrelated empty PAGE field
+00:01 +78: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +79: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +80: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +81: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +82: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +83: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +84: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +85: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +86: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +87: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +88: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +89: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +90: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +91: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +92: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +93: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +94: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +95: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +96: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +97: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +98: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +99: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +100: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +101: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +102: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +103: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +104: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +105: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +106: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +107: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +108: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +109: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +110: test/word_zotero_add_note_test.dart: default Zotero annotation export keeps heading quote comment and active citation
+00:01 +111: test/word_zotero_add_note_test.dart: default Zotero annotation export keeps heading quote comment and active citation
+00:01 +112: test/word_zotero_add_note_test.dart: default Zotero annotation export keeps heading quote comment and active citation
+00:01 +113: test/word_zotero_add_note_test.dart: default Zotero annotation export keeps heading quote comment and active citation
+00:01 +114: test/word_zotero_add_note_test.dart: default Zotero annotation export keeps heading quote comment and active citation
+00:01 +115: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:01 +116: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:01 +117: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:01 +118: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:01 +119: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:01 +120: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:01 +121: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:01 +122: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:01 +123: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:01 +124: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:02 +125: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:02 +126: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:02 +127: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:02 +128: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:02 +129: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:02 +130: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:02 +131: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:02 +132: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:02 +133: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:02 +134: test/word_zotero_simple_field_test.dart: rich simple citations retain one linked field and styled cache
+00:02 +135: test/word_zotero_add_note_test.dart: incomplete repeated or unknown placeholder request [] is atomic
+00:02 +136: test/word_zotero_simple_field_test.dart: ordinary one-run simple citations keep their atomic representation
+00:02 +137: test/word_zotero_simple_field_test.dart: ordinary one-run simple citations keep their atomic representation
+00:02 +138: test/word_zotero_simple_field_test.dart: ordinary one-run simple citations keep their atomic representation
+00:02 +139: test/word_zotero_simple_field_test.dart: ordinary one-run simple citations keep their atomic representation
+00:02 +140: test/word_zotero_simple_field_test.dart: ordinary one-run simple citations keep their atomic representation
+00:02 +141: test/word_zotero_simple_field_test.dart: ordinary one-run simple citations keep their atomic representation
+00:02 +142: test/word_zotero_simple_field_test.dart: ordinary one-run simple citations keep their atomic representation
+00:02 +143: test/word_zotero_simple_field_test.dart: ordinary one-run simple citations keep their atomic representation
+00:02 +144: test/word_zotero_simple_field_test.dart: ordinary one-run simple citations keep their atomic representation
+00:02 +145: test/word_zotero_simple_field_test.dart: ordinary one-run simple citations keep their atomic representation
+00:02 +146: test/word_zotero_add_note_test.dart: unsupported or malformed note is refused before edits: <a href="https://www.zotero.org/?ABC123"><p>Cross</p><p>paragraphs</p></a>
+00:02 +147: test/word_zotero_simple_field_test.dart: locked rich simple citations refuse replacement and unlinking
+00:02 +148: test/word_zotero_simple_field_test.dart: locked rich simple citations refuse replacement and unlinking
+00:02 +149: test/word_zotero_simple_field_test.dart: locked rich simple citations refuse replacement and unlinking
+00:02 +150: test/word_zotero_simple_field_test.dart: locked rich simple citations refuse replacement and unlinking
+00:02 +151: test/word_zotero_simple_field_test.dart: locked rich simple citations refuse replacement and unlinking
+00:02 +152: test/word_zotero_simple_field_test.dart: locked rich simple citations refuse replacement and unlinking
+00:02 +153: test/word_zotero_simple_field_test.dart: locked rich simple citations refuse replacement and unlinking
+00:02 +154: test/word_zotero_simple_field_test.dart: locked rich simple citations refuse replacement and unlinking
+00:02 +155: test/word_zotero_simple_field_test.dart: locked rich simple citations refuse replacement and unlinking
+00:02 +156: test/word_zotero_simple_field_test.dart: locked rich simple citations refuse replacement and unlinking
+00:02 +157: test/zotero_citing_test.dart: replays command shapes generated by the pinned Zotero HTTP wrapper
+00:02 +158: test/word_zotero_simple_field_test.dart: nested simple citations retain both identities and refuse edits
+00:02 +159: test/word_zotero_simple_field_test.dart: nested simple citations retain both identities and refuse edits
+00:02 +160: test/word_zotero_simple_field_test.dart: nested simple citations retain both identities and refuse edits
+00:02 +161: test/word_zotero_simple_field_test.dart: nested simple citations retain both identities and refuse edits
+00:02 +162: test/word_zotero_simple_field_test.dart: nested simple citations retain both identities and refuse edits
+00:02 +163: test/word_zotero_simple_field_test.dart: nested simple citations retain both identities and refuse edits
+00:02 +164: test/word_zotero_simple_field_test.dart: nested simple citations retain both identities and refuse edits
+00:02 +165: test/word_zotero_simple_field_test.dart: nested simple citations retain both identities and refuse edits
+00:02 +166: test/word_zotero_simple_field_test.dart: nested simple citations retain both identities and refuse edits
+00:02 +167: test/word_zotero_simple_field_test.dart: nested simple citations retain both identities and refuse edits
+00:02 +168: test/word_zotero_simple_field_test.dart: nested simple citations retain both identities and refuse edits
+00:02 +169: test/word_zotero_simple_field_test.dart: nested simple citations retain both identities and refuse edits
+00:02 +170: test/zotero_citing_test.dart: handler error sends safe payload and drains alert/activate/complete
+00:02 +171: test/word_zotero_simple_field_test.dart: a generic simple parent does not expose its nested Zotero cache
+00:02 +172: test/word_zotero_simple_field_test.dart: a generic simple parent does not expose its nested Zotero cache
+00:02 +173: test/word_zotero_simple_field_test.dart: a generic simple parent does not expose its nested Zotero cache
+00:02 +174: test/word_zotero_simple_field_test.dart: a generic simple parent does not expose its nested Zotero cache
+00:02 +175: test/word_zotero_simple_field_test.dart: a generic simple parent does not expose its nested Zotero cache
+00:02 +176: test/word_zotero_simple_field_test.dart: a generic simple parent does not expose its nested Zotero cache
+00:02 +177: test/word_zotero_simple_field_test.dart: a generic simple parent does not expose its nested Zotero cache
+00:02 +178: test/word_zotero_simple_field_test.dart: a generic simple parent does not expose its nested Zotero cache
+00:02 +179: test/word_zotero_simple_field_test.dart: a generic simple parent does not expose its nested Zotero cache
+00:02 +180: test/word_zotero_simple_field_test.dart: a generic simple parent does not expose its nested Zotero cache
+00:02 +181: test/word_zotero_simple_field_test.dart: a generic simple parent does not expose its nested Zotero cache
+00:02 +182: test/word_zotero_simple_field_test.dart: a generic simple parent does not expose its nested Zotero cache
+00:02 +183: test/word_zotero_simple_field_test.dart: a generic simple parent does not expose its nested Zotero cache
+00:02 +184: test/word_zotero_simple_field_test.dart: a generic simple parent does not expose its nested Zotero cache
+00:02 +185: test/word_zotero_simple_field_test.dart: a generic simple parent does not expose its nested Zotero cache
+00:02 +186: test/zotero_citing_test.dart: citation merging capability true travels through the client
+00:02 +187: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=false
+00:02 +188: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=false
+00:02 +189: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=false
+00:02 +190: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=false
+00:02 +191: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=false
+00:02 +192: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=false
+00:02 +193: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=false
+00:02 +194: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=false
+00:02 +195: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=false
+00:02 +196: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=false
+00:02 +197: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=false
+00:02 +198: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=false
+00:02 +199: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=false
+00:02 +200: test/zotero_citing_test.dart: cyclic and non-JSON handler values never escape to transport
+00:02 +201: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=true
+00:02 +202: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=true
+00:02 +203: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=true
+00:02 +204: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=true
+00:02 +205: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=true
+00:02 +206: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=true
+00:02 +207: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=true
+00:02 +208: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=true
+00:02 +209: test/word_zotero_simple_field_test.dart: simple extension attributes stay opaque through saves: rich=true
+00:02 +210: test/word_zotero_simple_field_test.dart: rich simple bibliographies keep their field metadata and styles
+00:02 +211: test/word_zotero_simple_field_test.dart: tracked rich simple cache retains real paragraph revision offsets
+00:02 +212: test/word_zotero_simple_field_test.dart: malformed rich simple metadata stays a preserved uneditable field
+00:02 +213: test/word_zotero_simple_field_test.dart: disjoint imported tracked ranges inside one rich citation remain exact
+00:02 +214: test/word_zotero_simple_field_test.dart: page locator does not discard numeric citation cache: isolate=false
+00:03 +215: test/word_zotero_simple_field_test.dart: an earlier PAGE field does not consume later numbers: isolate=false
+00:03 +216: test/zotero_transfer_protocol_test.dart: export command preserves field type, instructions and preferences
+00:03 +217: test/word_zotero_simple_field_test.dart: page locator does not discard numeric citation cache: isolate=true
+00:03 +218: test/word_zotero_simple_field_test.dart: page locator does not discard numeric citation cache: isolate=true
+00:03 +219: test/word_zotero_simple_field_test.dart: page locator does not discard numeric citation cache: isolate=true
+00:03 +220: test/word_zotero_simple_field_test.dart: page locator does not discard numeric citation cache: isolate=true
+00:03 +221: test/word_zotero_simple_field_test.dart: page locator does not discard numeric citation cache: isolate=true
+00:03 +222: test/word_zotero_simple_field_test.dart: page locator does not discard numeric citation cache: isolate=true
+00:03 +223: test/zotero_transfer_protocol_test.dart: rejects malformed Document.exportDocument arguments [quds-transfer-document, Field, Open this copy in another word processor and refresh.]
+00:03 +224: test/word_zotero_simple_field_test.dart: an earlier PAGE field does not consume later numbers: isolate=true
+00:03 +225: test/word_zotero_simple_field_test.dart: an earlier PAGE field does not consume later numbers: isolate=true
+00:03 +226: test/word_zotero_simple_field_test.dart: an earlier PAGE field does not consume later numbers: isolate=true
+00:03 +227: test/word_zotero_simple_field_test.dart: an earlier PAGE field does not consume later numbers: isolate=true
+00:03 +228: test/word_zotero_simple_field_test.dart: an earlier PAGE field does not consume later numbers: isolate=true
+00:03 +229: test/word_zotero_simple_field_test.dart: an earlier PAGE field does not consume later numbers: isolate=true
+00:03 +230: test/word_zotero_simple_field_test.dart: an earlier PAGE field does not consume later numbers: isolate=true
+00:03 +231: test/word_zotero_simple_field_test.dart: an earlier PAGE field does not consume later numbers: isolate=true
+00:03 +232: test/word_zotero_simple_field_test.dart: an earlier PAGE field does not consume later numbers: isolate=true
+00:03 +233: test/word_zotero_simple_field_test.dart: an earlier PAGE field does not consume later numbers: isolate=true
+00:03 +234: test/zotero_transfer_protocol_test.dart: import requires a boolean result instead of 1
+00:03 +235: test/zotero_transfer_protocol_test.dart: import requires a boolean result instead of true
+00:03 +236: test/word_zotero_simple_field_test.dart: PAGE used as a field argument keeps its numeric result
+00:03 +237: test/word_zotero_simple_field_test.dart: PAGE used as a field argument keeps its numeric result
+00:03 +238: test/word_zotero_simple_field_test.dart: PAGE used as a field argument keeps its numeric result
+00:03 +239: test/word_zotero_simple_field_test.dart: PAGE used as a field argument keeps its numeric result
+00:03 +240: test/word_zotero_simple_field_test.dart: PAGE used as a field argument keeps its numeric result
+00:03 +241: test/word_zotero_simple_field_test.dart: whole-paragraph native PAGE remains a dynamic page field
+00:03 +242: test/word_zotero_simple_field_test.dart: a PAGE fragment inside citation JSON is not a PAGE command
+00:03 +243: test/word_zotero_simple_field_test.dart: tracked native PAGE cache keeps valid revision text and boundaries
+00:03 +244: All tests passed!

@@ -1,0 +1,457 @@
+00:00 +0: loading test/office_vba_join_test.dart
+00:00 +0: test/office_vba_join_test.dart: source String array joining vba-word Join(parts) preserves empty slots and order
+00:00 +1: test/office_vba_join_test.dart: source String array joining vba-word jOiN(parts, "|") preserves empty slots and order
+00:00 +2: test/office_vba_join_test.dart: source String array joining vba-word Join(parts, "") preserves empty slots and order
+00:00 +3: test/office_vba_join_test.dart: source String array joining vba-word Join(parts, " :: ") preserves empty slots and order
+00:00 +4: test/office_vba_join_test.dart: source String array joining vba-word Join(parts, CVar("|")) preserves empty slots and order
+00:00 +5: test/office_vba_join_test.dart: source String array joining vba-word Join(parts, Empty) preserves empty slots and order
+00:00 +6: test/office_vba_join_test.dart: source String array joining vba-word Join(parts, CVar(Empty)) preserves empty slots and order
+00:00 +7: test/office_vba_join_test.dart: source String array joining vba-excel Join(parts) preserves empty slots and order
+00:00 +8: test/office_vba_join_test.dart: source String array joining vba-excel jOiN(parts, "|") preserves empty slots and order
+00:00 +9: test/office_vba_join_test.dart: source String array joining vba-excel Join(parts, "") preserves empty slots and order
+00:00 +10: test/office_vba_join_test.dart: source String array joining vba-excel Join(parts, " :: ") preserves empty slots and order
+00:00 +11: test/office_vba_join_test.dart: source String array joining vba-excel Join(parts, CVar("|")) preserves empty slots and order
+00:00 +12: test/office_vba_join_test.dart: source String array joining vba-excel Join(parts, Empty) preserves empty slots and order
+00:00 +13: test/office_vba_join_test.dart: source String array joining vba-excel Join(parts, CVar(Empty)) preserves empty slots and order
+00:00 +14: test/office_vba_join_test.dart: source String array joining vba-powerpoint Join(parts) preserves empty slots and order
+00:00 +15: test/office_vba_join_test.dart: source String array joining vba-powerpoint jOiN(parts, "|") preserves empty slots and order
+00:00 +16: test/office_vba_join_test.dart: source String array joining vba-powerpoint Join(parts, "") preserves empty slots and order
+00:00 +17: test/office_vba_join_test.dart: source String array joining vba-powerpoint Join(parts, " :: ") preserves empty slots and order
+00:00 +18: test/office_vba_join_test.dart: source String array joining vba-powerpoint Join(parts, CVar("|")) preserves empty slots and order
+00:00 +19: test/office_vba_join_test.dart: source String array joining vba-powerpoint Join(parts, Empty) preserves empty slots and order
+00:00 +20: test/office_vba_join_test.dart: source String array joining vba-powerpoint Join(parts, CVar(Empty)) preserves empty slots and order
+00:00 +21: test/office_vba_join_test.dart: source String array joining both Option Base values retain the complete declared bounds
+00:00 +22: test/office_vba_join_test.dart: source String array joining single-element arrays add no leading or trailing separator
+00:00 +23: test/office_vba_join_test.dart: source String array joining Unicode and embedded units are concatenated without normalization
+00:00 +24: test/office_vba_join_test.dart: source String array joining Join follows Preserve, shrink, regrow and fixed-array Erase
+00:00 +25: test/office_vba_join_test.dart: source String array joining joining during For Each reads without mutating or locking anew
+00:00 +26: test/office_vba_join_test.dart: source String array joining delimiter helper evaluates once before the joined write
+00:00 +27: test/office_vba_join_test.dart: source String array joining typed scalar helper result can return Join of its local array
+00:00 +28: test/office_vba_join_test.dart: Join type and source boundaries Dim parts(1) As Long is refused without implicit element coercion
+00:00 +29: test/office_vba_join_test.dart: Join type and source boundaries Dim parts(1) As Double is refused without implicit element coercion
+00:00 +30: test/office_vba_join_test.dart: Join type and source boundaries Dim parts(1) As Boolean is refused without implicit element coercion
+00:00 +31: test/office_vba_join_test.dart: Join type and source boundaries Dim parts(1) As Variant is refused without implicit element coercion
+00:00 +32: test/office_vba_join_test.dart: Join type and source boundaries Dim parts(1) is refused without implicit element coercion
+00:00 +33: test/office_vba_join_test.dart: Join type and source boundaries Dim parts As String is refused without implicit element coercion
+00:00 +34: test/office_vba_join_test.dart: Join type and source boundaries Dim parts As Variant is refused without implicit element coercion
+00:00 +35: test/office_vba_join_test.dart: Join type and source boundaries Dim parts As Document is refused without implicit element coercion
+00:00 +36: test/office_vba_join_test.dart: Join type and source boundaries refuses invalid source/arity Join()
+00:00 +37: test/office_vba_join_test.dart: Join type and source boundaries refuses invalid source/arity Join(parts, ",", 1)
+00:00 +38: test/office_vba_join_test.dart: Join type and source boundaries refuses invalid source/arity Join(parts(1))
+00:00 +39: test/office_vba_join_test.dart: Join type and source boundaries refuses invalid source/arity Join("text")
+00:00 +40: test/office_vba_join_test.dart: Join type and source boundaries refuses invalid source/arity Join(sourcearray:=parts)
+00:00 +41: test/office_vba_join_test.dart: Join type and source boundaries an application root cannot act as a local array name
+00:00 +42: test/office_vba_join_test.dart: Join type and source boundaries refuses unsupported argument shape Join(parts, delimiter:=",")
+00:00 +43: test/office_vba_join_test.dart: Join type and source boundaries refuses unsupported argument shape Join(parts,)
+00:00 +44: test/office_vba_join_test.dart: Join type and source boundaries rejects delimiter conversion 1 even for one element
+00:00 +45: test/office_vba_join_test.dart: Join type and source boundaries rejects delimiter conversion True even for one element
+00:00 +46: test/office_vba_join_test.dart: Join type and source boundaries rejects delimiter conversion CVar(1) even for one element
+00:00 +47: test/office_vba_join_test.dart: Join type and source boundaries rejects delimiter conversion CVar(False) even for one element
+00:00 +48: test/office_vba_join_test.dart: Join type and source boundaries Null delimiter Null produces a positioned diagnostic
+00:00 +49: test/office_vba_join_test.dart: Join type and source boundaries Null delimiter CVar(Null) produces a positioned diagnostic
+00:00 +50: test/office_vba_join_test.dart: Join type and source boundaries unallocated dynamic array is not silently treated as empty
+00:00 +51: test/office_vba_join_test.dart: Join type and source boundaries unallocated dynamic array is not silently treated as empty
+00:00 +52: test/office_vba_join_test.dart: Join type and source boundaries unused code receives static array and delimiter validation
+00:00 +53: test/office_vba_join_test.dart: Join type and source boundaries Join cannot be shadowed by local, helper or parameter
+00:00 +54: test/office_vba_join_test.dart: Join type and source boundaries bare arrays remain unavailable to ordinary expressions
+00:00 +55: test/office_vba_join_test.dart: Join resource limits accepts exact UTF-16 output limit and refuses one excess unit
+00:00 +56: test/office_vba_join_test.dart: Join resource limits meters repeated copies even when the result is discarded
+00:00 +57: test/office_vba_join_test.dart: Join resource limits meters array visits even for empty joined output
+00:00 +58: test/office_vba_join_test.dart: Join resource limits separator expansion is bounded before materializing output
+00:00 +59: test/office_vba_join_conformance_test.dart: Join default separator: omitted-delimiter
+00:00 +60: test/office_vba_join_conformance_test.dart: Join empty separator: empty-delimiter
+00:00 +61: test/office_vba_join_conformance_test.dart: Join multi-character separator: multichar-delimiter
+00:00 +62: test/office_vba_join_conformance_test.dart: Join singleton: single-element
+00:00 +63: test/office_vba_join_conformance_test.dart: Join empty substrings: empty-elements
+00:00 +64: test/office_vba_join_conformance_test.dart: Join physical element order: negative-lower-bound
+00:00 +65: test/office_vba_join_conformance_test.dart: Join Option Base: option-base-one
+00:00 +66: test/office_vba_join_conformance_test.dart: Join dynamic lifecycle: dynamic-preserve-grow
+00:00 +67: test/office_vba_join_conformance_test.dart: Join dynamic lifecycle: dynamic-preserve-shrink
+00:00 +68: test/office_vba_join_conformance_test.dart: Join fixed-array defaults: fixed-erase
+00:00 +69: test/office_vba_join_conformance_test.dart: Join Empty delimiter: empty-variant-delimiter
+00:00 +70: test/office_vba_join_conformance_test.dart: Join Variant delimiter: string-variant-delimiter
+00:00 +71: test/office_vba_join_conformance_test.dart: Join UTF-16 content: unicode-preserved
+00:00 +72: test/office_vba_join_conformance_test.dart: Join read-only source: retained-array-elements
+00:00 +73: test/office_vba_word_cell_text_controls_test.dart: ThisDocument.Tables keeps direct cell identity
+00:00 +74: test/office_vba_word_cell_text_controls_test.dart: ThisDocument.Tables keeps direct cell identity
+00:00 +75: test/office_vba_word_cell_text_controls_test.dart: ThisDocument.Tables keeps direct cell identity
+00:00 +76: test/office_vba_word_cell_text_controls_test.dart: ThisDocument.Tables keeps direct cell identity
+00:00 +77: test/office_vba_word_cell_text_controls_test.dart: ThisDocument.Tables keeps direct cell identity
+00:00 +78: test/office_vba_word_cell_text_controls_test.dart: ThisDocument.Tables keeps direct cell identity
+00:00 +79: test/office_vba_word_cell_text_controls_test.dart: ThisDocument.Tables keeps direct cell identity
+00:00 +80: test/office_vba_word_cell_text_controls_test.dart: ThisDocument.Tables keeps direct cell identity
+00:00 +81: test/office_vba_word_cell_text_controls_test.dart: ThisDocument.Tables keeps direct cell identity
+00:00 +82: test/office_vba_word_cell_text_controls_test.dart: ThisDocument.Tables keeps direct cell identity
+00:00 +83: test/office_vba_word_cell_text_controls_test.dart: ThisDocument.Tables keeps direct cell identity
+00:00 +84: test/office_vba_word_cell_text_controls_test.dart: ThisDocument.Tables keeps direct cell identity
+00:01 +85: test/office_vba_join_conformance_test.dart: Join corpus distinguishes specification and bounded-dialect evidence
+00:01 +86: test/office_vba_join_conformance_test.dart: Join corpus distinguishes specification and bounded-dialect evidence
+00:01 +87: test/office_vba_join_conformance_test.dart: Join corpus distinguishes specification and bounded-dialect evidence
+00:01 +88: test/office_vba_join_conformance_test.dart: Join corpus distinguishes specification and bounded-dialect evidence
+00:01 +89: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +90: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +91: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +92: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +93: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +94: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +95: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +96: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +97: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +98: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +99: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +100: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +101: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +102: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +103: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +104: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +105: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +106: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +107: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +108: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +109: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +110: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +111: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +112: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +113: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +114: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +115: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +116: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +117: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +118: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +119: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +120: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +121: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +122: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +123: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +124: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +125: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +126: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:01 +127: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +128: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +129: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +130: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +131: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +132: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +133: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +134: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +135: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +136: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +137: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +138: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +139: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +140: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +141: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +142: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +143: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +144: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +145: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +146: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +147: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +148: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +149: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +150: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +151: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +152: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +153: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +154: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +155: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +156: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +157: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +158: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +159: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +160: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +161: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +162: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +163: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +164: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +165: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +166: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +167: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +168: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +169: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +170: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +171: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +172: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +173: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +174: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +175: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +176: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +177: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +178: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +179: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +180: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +181: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +182: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +183: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +184: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +185: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +186: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +187: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +188: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +189: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +190: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +191: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +192: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +193: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +194: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +195: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +196: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +197: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +198: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +199: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +200: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +201: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +202: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +203: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +204: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +205: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +206: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +207: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +208: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +209: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +210: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +211: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +212: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +213: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +214: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +215: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +216: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +217: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +218: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +219: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +220: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +221: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +222: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +223: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +224: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +225: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +226: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +227: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +228: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +229: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +230: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +231: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +232: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +233: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +234: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +235: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +236: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +237: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +238: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +239: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +240: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +241: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +242: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +243: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +244: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +245: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +246: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +247: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +248: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +249: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +250: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +251: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +252: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +253: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +254: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +255: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +256: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +257: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +258: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +259: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +260: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +261: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +262: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +263: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +264: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +265: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +266: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +267: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +268: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +269: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +270: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +271: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +272: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +273: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +274: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +275: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +276: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +277: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +278: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +279: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +280: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +281: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +282: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +283: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +284: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +285: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +286: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +287: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +288: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +289: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +290: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +291: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +292: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +293: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +294: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +295: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +296: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +297: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +298: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +299: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +300: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +301: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +302: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +303: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +304: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:02 +305: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +306: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +307: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +308: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +309: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +310: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +311: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +312: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +313: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +314: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +315: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +316: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +317: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +318: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +319: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +320: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +321: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +322: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +323: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +324: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +325: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +326: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +327: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +328: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +329: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +330: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +331: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +332: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +333: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +334: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +335: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +336: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +337: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +338: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +339: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:03 +340: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +341: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +342: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +343: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +344: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +345: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +346: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +347: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +348: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +349: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +350: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +351: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +352: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +353: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +354: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +355: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +356: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +357: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +358: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +359: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +360: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +361: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +362: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +363: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +364: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +365: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +366: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +367: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +368: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +369: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +370: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +371: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +372: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +373: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +374: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +375: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +376: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +377: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +378: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +379: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +380: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +381: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +382: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +383: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:04 +384: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +385: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +386: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +387: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +388: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +389: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +390: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +391: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +392: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +393: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +394: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +395: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +396: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +397: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +398: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +399: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +400: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +401: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +402: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +403: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +404: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +405: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +406: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +407: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +408: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +409: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +410: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +411: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +412: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +413: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +414: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +415: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +416: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +417: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +418: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +419: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +420: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +421: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +422: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +423: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:05 +424: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:06 +425: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:06 +426: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:06 +427: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:06 +428: test/office_vba_word_cell_text_controls_integration_test.dart: (setUpAll)
+00:09 +428: test/office_vba_word_join_report_integration_test.dart: DOCX actual Join report previews, saves, reopens and replays
+00:10 +429: test/office_vba_word_cell_text_controls_integration_test.dart: DOCX multilingual table example round-trips and replays
+00:10 +430: test/office_vba_word_join_report_integration_test.dart: DOCM actual Join report previews, saves, reopens and replays
+00:10 +431: test/office_vba_word_cell_text_controls_integration_test.dart: DOCM multilingual table example round-trips and replays
+00:10 +432: test/office_vba_word_cell_text_controls_integration_test.dart: DOCM multilingual table example round-trips and replays
+00:11 +433: test/office_vba_word_cell_text_controls_integration_test.dart: DOCM multilingual table example round-trips and replays
+00:11 +434: test/office_vba_word_join_report_integration_test.dart: CLI runs the actual Join report and preserves existing output after late failure
+00:11 +435: test/office_vba_word_join_report_integration_test.dart: CLI runs the actual Join report and preserves existing output after late failure
+00:11 +436: test/office_vba_word_join_report_integration_test.dart: CLI runs the actual Join report and preserves existing output after late failure
+00:11 +437: test/office_vba_word_join_report_integration_test.dart: CLI runs the actual Join report and preserves existing output after late failure
+00:11 +438: test/office_vba_word_join_report_integration_test.dart: CLI runs the actual Join report and preserves existing output after late failure
+00:11 +439: test/office_vba_word_join_report_integration_test.dart: CLI runs the actual Join report and preserves existing output after late failure
+00:11 +440: test/office_vba_word_join_report_integration_test.dart: CLI runs the actual Join report and preserves existing output after late failure
+00:11 +441: test/office_vba_word_join_report_integration_test.dart: CLI runs the actual Join report and preserves existing output after late failure
+00:11 +442: test/office_vba_word_join_report_integration_test.dart: CLI runs the actual Join report and preserves existing output after late failure
+00:11 +443: test/office_vba_word_join_report_integration_test.dart: CLI runs the actual Join report and preserves existing output after late failure
+00:11 +444: test/office_vba_word_join_report_integration_test.dart: CLI runs the actual Join report and preserves existing output after late failure
+00:12 +445: test/office_vba_word_join_report_integration_test.dart: CLI runs the actual Join report and preserves existing output after late failure
+00:12 +446: test/office_vba_word_join_report_integration_test.dart: CLI runs the actual Join report and preserves existing output after late failure
+00:12 +447: test/office_vba_word_join_report_integration_test.dart: CLI runs the actual Join report and preserves existing output after late failure
+00:12 +448: test/office_vba_word_join_report_integration_test.dart: CLI runs the actual Join report and preserves existing output after late failure
+00:12 +449: test/office_vba_word_join_report_integration_test.dart: CLI runs the actual Join report and preserves existing output after late failure
+00:12 +450: test/office_vba_word_join_report_integration_test.dart: CLI runs the actual Join report and preserves existing output after late failure
+00:12 +451: test/office_vba_word_join_report_integration_test.dart: CLI runs the actual Join report and preserves existing output after late failure
+00:13 +452: test/office_vba_word_cell_text_controls_integration_test.dart: CLI compiles, validates, runs and preserves output on late failure
+00:14 +453: test/office_vba_word_cell_text_controls_integration_test.dart: (tearDownAll)
+00:14 +453: All tests passed!

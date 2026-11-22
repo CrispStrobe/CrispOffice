@@ -1,0 +1,23 @@
+{
+  "cwd": "/workspace/scratch/2437eaf6f35d/quds_mail_intake/packages/quds_office_editor/example",
+  "argv": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "expanded",
+    "test/studio_mail_retained_folders_test.dart",
+    "test/studio_mail_mailbox_sync_session_test.dart",
+    "test/studio_mail_retained_navigation_test.dart",
+    "test/studio_mail_mailbox_session_test.dart",
+    "test/studio_mail_cached_mail_test.dart",
+    "test/studio_mail_cached_host_test.dart",
+    "test/studio_shortcut_host_ownership_test.dart",
+    "test/suite_workspace_mail_shortcuts_test.dart"
+  ],
+  "started_utc": "2026-11-22T05:26:04.834115+00:00",
+  "head": "29fc72a0a7cffa7cfed2abdac2a3f82d2ff17f95",
+  "exit_code": 0,
+  "finished_utc": "2026-11-22T05:28:40.963234+00:00",
+  "log_sha256": "b7ebdecdf5bc61ce9cc979814618876e821563d716b2624042a7f1f5a33338c6"
+}

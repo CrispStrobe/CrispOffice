@@ -1,0 +1,50 @@
+{
+  "scope": "Two added regular workspace layout cases; not the final integrated suite.",
+  "argv": [
+    "/workspace/scratch/2437eaf6f35d/toolchains/flutter/bin/flutter",
+    "--no-version-check",
+    "--suppress-analytics",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "json",
+    "--name",
+    "^regular references workspace",
+    "test/word_zotero_field_context_dialog_test.dart"
+  ],
+  "cwd": "/workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor",
+  "started_utc": "2026-11-22T05:23:51.388373+00:00",
+  "finished_utc": "2026-11-22T05:24:04.223023+00:00",
+  "exit_code": 1,
+  "source_before": {
+    "packages/quds_office_editor/test/word_zotero_field_context_dialog_test.dart": "f8470a79eafb2f14aba3f2689548ed0a440242ecf5bc2005d37024b3a7f9d8e6",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_field_context.dart": "cf794597e59b4ea5447b3656deab56b2a1d2b03a69b7e12655d581106d5704f3",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart": "0e576b72d5f564c8114ef59ffc4035dccd6f3a3175c66a9f3ff287dc2debaaed",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "539f10782611a7bbc3f994727d6d75dbb58ed0dfb97a5af5c8ef6166ab12b47c",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart": "b509530d510f3b3c256e07d7ed16dc0a0a21864bcd56a50d65a43d6d765dab74"
+  },
+  "source_after": {
+    "packages/quds_office_editor/test/word_zotero_field_context_dialog_test.dart": "f8470a79eafb2f14aba3f2689548ed0a440242ecf5bc2005d37024b3a7f9d8e6",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_field_context.dart": "cf794597e59b4ea5447b3656deab56b2a1d2b03a69b7e12655d581106d5704f3",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart": "0e576b72d5f564c8114ef59ffc4035dccd6f3a3175c66a9f3ff287dc2debaaed",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "539f10782611a7bbc3f994727d6d75dbb58ed0dfb97a5af5c8ef6166ab12b47c",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart": "b509530d510f3b3c256e07d7ed16dc0a0a21864bcd56a50d65a43d6d765dab74"
+  },
+  "sources_unchanged": true,
+  "CI": "true",
+  "cases": [
+    {
+      "name": "regular references workspace supports native alert cancellation in a short scaled window",
+      "result": "error",
+      "skipped": false
+    },
+    {
+      "name": "regular references workspace supports operation cancellation in a short scaled window",
+      "result": "error",
+      "skipped": false
+    }
+  ],
+  "case_count": 2,
+  "events_sha256": "421cd5a5896eac1e00678e40b35f4bcedff1516505a71534dc1fde73cae1b299",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

@@ -1,0 +1,17 @@
+[
+  "packages/quds_office_editor/example/lib/studio_mail_cached_mail.dart",
+  "packages/quds_office_editor/example/lib/studio_mail_cached_strings.dart",
+  "packages/quds_office_editor/example/lib/studio_mail_mailbox_session.dart",
+  "packages/quds_office_editor/example/lib/studio_mail_retained_folders.dart",
+  "packages/quds_office_editor/example/test/studio_mail_mailbox_sync_session_test.dart",
+  "packages/quds_office_editor/example/test/studio_mail_retained_folders_test.dart",
+  "packages/quds_office_editor/example/test/studio_mail_retained_navigation_test.dart",
+  "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart",
+  "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+  "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+  "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+  "packages/quds_office_editor/lib/src/embed/word_zotero_field_context.dart",
+  "packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart",
+  "packages/quds_office_editor/test/word_zotero_field_context_dialog_test.dart",
+  "packages/quds_office_editor/test/word_zotero_field_context_render_test.dart"
+]

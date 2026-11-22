@@ -45,6 +45,15 @@ at its start stays before it. If a citation-only note is removed or converted,
 its writing position returns to the corresponding body anchor. Undo restores
 the original selection, and redo restores the updated position.
 
+When Zotero explicitly selects a citation or bibliography for a native prompt,
+Quds temporarily highlights that reference and shows its current document text with its body,
+footnote or endnote location. The prompt includes surrounding prose and a
+scrollable excerpt for long references. Your writing selection stays in place.
+The temporary view ends when Zotero finishes or the operation is cancelled;
+any scrolling or zooming you do while reviewing it is respected. A new or
+transferred reference whose position is still being prepared is identified
+as pending.
+
 Switching from Word to Mail or another app cancels the pending operation for
 that Word view, including when you return before Zotero responds. Close and
 reopen the Zotero workspace to start a new operation. The citation and refresh
@@ -138,6 +147,19 @@ document view and navigation generation; it stays true while Zotero's own
 modal dialogs are open. A stale operation cannot publish changes or take
 editing focus after completion. See the
 [host-ownership qualification](validation/zotero-host-ownership-20261121/README.md).
+
+Custom native hosts should drive callbacks through
+`WordZoteroTransaction.handle`, retain their own `Document.displayAlert` UI,
+and call `clearFieldContext` in their finally/disposal path. The optional
+`isCurrent` predicate on `beginZoteroTransaction` also guards temporary
+presentation. `presentedFieldContext` belongs to one operation;
+`WordCanvas.zoteroFieldRanges` accepts its validated `sourceRanges`. Re-read
+`presentedFieldContext` on controller changes instead of caching live source
+ranges across document mutations. Use
+`clearFieldContext(notify: false)` during widget teardown and schedule any
+surviving editor repaint after unmount. The
+[selected-field context record](validation/zotero-field-context-20261122/README.md)
+documents this API and its local qualification.
 
 See the [details](zotero-support-details.md) for exact command names,
 async completion and cancellation behavior, and the native bibliography layout

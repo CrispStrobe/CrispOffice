@@ -15,7 +15,10 @@ All notable changes to `quds_office_editor` are documented here.
   bounded source excerpts keep the writing selection, Notes target and undo
   history intact; completion, cancellation, errors and stale targets discard
   the context. Pending insertions and transfer imports are clearly identified
-  without exposing an uncommitted field as a live document range.
+  without exposing an uncommitted field as a live document range. Reveal
+  offscreen references safely at high zoom, restore the prior viewport when
+  appropriate, and keep cancellation reachable in a short, enlarged-text
+  workspace.
 
 - Let saved-mail searches keep an explicit folder set across verified local
   accounts. Select folders locally, save/reopen the exact scope, inspect each

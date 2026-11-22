@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 
@@ -45,7 +46,7 @@ WmlDocument _twoFields() {
   return document;
 }
 
-WmlDocument _bibliographyDocument() {
+WmlDocument _bibliographyDocument({String? html}) {
   final document = WmlDocument.empty(text: 'Introduction');
   document.sections.single.blocks.add(
     WmlParagraph(inlines: [WmlRun(text: 'Continue writing')]),
@@ -68,8 +69,9 @@ WmlDocument _bibliographyDocument() {
   session.handle('Field.setText', [
     id,
     field['id'],
-    '<div class="csl-entry">Alpha Book.</div>'
-        '<div class="csl-entry">Beta Book.</div>',
+    html ??
+        '<div class="csl-entry">Alpha Book.</div>'
+            '<div class="csl-entry">Beta Book.</div>',
     true,
   ]);
   session.handle('Document.complete', [id]);
@@ -177,6 +179,7 @@ Future<WordEditorController> _mount(
   _Desktop desktop, {
   WmlDocument? document,
   ZoteroCitingCommand command = ZoteroCitingCommand.refresh,
+  bool closeAfterCommand = true,
   bool Function()? isCurrent,
   Size size = const Size(1100, 900),
   double textScale = 1,
@@ -214,7 +217,7 @@ Future<WordEditorController> _mount(
               controller: controller,
               localTransport: desktop.send,
               initialCommand: command,
-              closeAfterCommand: true,
+              closeAfterCommand: closeAfterCommand,
               isCurrent: isCurrent,
             ),
             child: const Text('Run Zotero'),
@@ -645,4 +648,139 @@ void main() {
       expect(tester.takeException(), isNull);
     },
   );
+
+  for (final cancelPending in [false, true]) {
+    testWidgets(
+      'regular references workspace supports ${cancelPending ? 'operation' : 'native alert'} cancellation in a short scaled window',
+      (tester) async {
+        final layoutErrors = <FlutterErrorDetails>[];
+        final reportError = FlutterError.onError;
+        FlutterError.onError = (details) {
+          layoutErrors.add(details);
+          reportError?.call(details);
+        };
+        addTearDown(() => FlutterError.onError = reportError);
+        final html = List.generate(
+          12,
+          (index) =>
+              '<div class="csl-entry">Reference ${index + 1}. '
+              '${List.filled(16, 'Long bibliography entry with source details.').join(' ')}'
+              '</div>',
+        ).join();
+        final document = _bibliographyDocument(html: html);
+        final gate = Completer<void>();
+        addTearDown(() async {
+          if (!gate.isCompleted) gate.complete();
+          await _pump(tester);
+        });
+        final desktop = _Desktop(_selectionScript(buttons: 1))
+          ..pauses[3] = gate;
+        final controller = await _mount(
+          tester,
+          desktop,
+          document: document,
+          closeAfterCommand: false,
+          size: const Size(700, 440),
+          textScale: 2,
+        );
+        final selection = _selection(controller);
+        final originalText = document.paragraphs.map((p) => p.text).join('\n');
+        await _run(tester);
+
+        expect(find.byKey(_directKey), findsNothing);
+        expect(find.text('Zotero references'), findsOneWidget);
+        expect(find.byKey(_contextKey), findsOneWidget);
+        expect(controller.zoteroFieldContext!.sourceRanges, hasLength(12));
+        expect(
+          tester.takeException(),
+          isNull,
+          reason: [
+            ...layoutErrors.map((error) => error.toString()),
+            if (layoutErrors.isNotEmpty)
+              ...tester
+                  .renderObject<RenderFlex>(
+                    find
+                        .ancestor(
+                          of: find.text('Zotero references'),
+                          matching: find.byType(Column),
+                        )
+                        .first,
+                  )
+                  .debugDescribeChildren()
+                  .map((node) {
+                    final child = node.value! as RenderBox;
+                    return '${child.runtimeType}: ${child.size}; ${child.debugCreator}';
+                  }),
+          ].join('\n'),
+        );
+
+        // Both the whole context and its long excerpt must remain reachable in
+        // the fixed-height workspace, independently of the direct-mode dialog.
+        await tester.ensureVisible(find.byKey(_textKey));
+        await _pump(tester);
+        final excerptScroll = find
+            .ancestor(
+              of: find.byKey(_textKey),
+              matching: find.byType(Scrollable),
+            )
+            .first;
+        final position = tester.state<ScrollableState>(excerptScroll).position;
+        expect(position.maxScrollExtent, greaterThan(0));
+        final offsetBefore = position.pixels;
+        await tester.drag(excerptScroll, const Offset(0, -80));
+        await _pump(tester);
+        expect(position.pixels, greaterThan(offsetBefore));
+        expect(
+          tester
+              .widget<SelectableText>(find.byKey(_textKey))
+              .textSpan!
+              .toPlainText(),
+          contains('Reference 1.'),
+        );
+        expect(tester.takeException(), isNull);
+
+        final cancel = find.widgetWithText(TextButton, 'Cancel operation');
+        expect(tester.widget<TextButton>(cancel).onPressed, isNotNull);
+        await tester.ensureVisible(cancel);
+        await _pump(tester);
+        expect(cancel.hitTestable(), findsOneWidget);
+        _expectUnchanged(controller, selection, originalText);
+
+        if (cancelPending) {
+          await tester.tap(cancel);
+          await _pump(tester);
+          gate.complete();
+          await _pump(tester);
+          expect(_prompt, findsNothing);
+        } else {
+          gate.complete();
+          await _pump(tester);
+          expect(_prompt, findsOneWidget);
+          expect(_inPrompt(_contextKey), findsOneWidget);
+          expect(_excerpt(tester), contains('Reference 1.'));
+          expect(tester.takeException(), isNull);
+          await _answer(tester, 'Cancel');
+          expect(desktop.replies.last, 0);
+        }
+
+        expect(controller.zoteroFieldContext, isNull);
+        expect(find.byKey(_contextKey), findsNothing);
+        expect(find.text('Zotero references'), findsOneWidget);
+        expect(find.text('Cancel operation'), findsNothing);
+        expect(
+          tester
+              .widget<IconButton>(
+                find.byWidgetPredicate(
+                  (widget) =>
+                      widget is IconButton && widget.tooltip == 'Close Zotero',
+                ),
+              )
+              .onPressed,
+          isNotNull,
+        );
+        _expectUnchanged(controller, selection, originalText);
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
 }
