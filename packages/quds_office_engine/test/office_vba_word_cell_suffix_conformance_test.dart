@@ -19,12 +19,13 @@ OfficeMacro _body(String source) => _source('Sub Main()\n$source\nEnd Sub');
 const _cell = 'ActiveDocument.Tables(1).Cell(1, 1).Range';
 const _suffix = 'docx.tableCellRangeInsertAfter';
 
-Matcher _diagnostic(String code) => isA<OfficeVbaCompileException>()
-    .having((error) => error.code, 'code', code)
-    .having((error) => error.moduleName, 'module', 'CellSuffixConformance')
-    .having((error) => error.entryPoint, 'entry', 'Main')
-    .having((error) => error.line, 'line', greaterThan(0))
-    .having((error) => error.column, 'column', greaterThan(0));
+TypeMatcher<OfficeVbaCompileException> _diagnostic(String code) =>
+    isA<OfficeVbaCompileException>()
+        .having((error) => error.code, 'code', code)
+        .having((error) => error.moduleName, 'module', 'CellSuffixConformance')
+        .having((error) => error.entryPoint, 'entry', 'Main')
+        .having((error) => error.line, 'line', greaterThan(0))
+        .having((error) => error.column, 'column', greaterThan(0));
 
 void main() {
   final suite = VbaConformanceSuite.parse(
@@ -115,21 +116,38 @@ Next i
       );
     });
 
-    test('aggregate native JSON is bounded independently of each String', () {
-      final plan = _body(repeated(31, 'String(32767, "x")'));
-      expect(plan.steps, hasLength(31));
-      expect(
-        () => _body(repeated(32, 'String(32767, "x")')),
-        throwsA(_diagnostic('vba_limit_exceeded')),
-      );
-    });
+    test(
+      'repeated valid Strings retain the shared compilation work budget',
+      () {
+        final plan = _body(repeated(2, 'String(32767, "x")'));
+        expect(plan.steps, hasLength(2));
+        expect(
+          () => _body(repeated(3, 'String(32767, "x")')),
+          throwsA(
+            _diagnostic('vba_limit_exceeded').having(
+              (error) => error.message,
+              'shared work budget',
+              contains('100000 work units'),
+            ),
+          ),
+        );
+      },
+    );
 
     test('aggregate JSON counts UTF-8 bytes rather than UTF-16 text units', () {
-      final plan = _body(repeated(10, 'String(32767, "界")'));
-      expect(plan.steps, hasLength(10));
+      final ascii = _body(repeated(10000, '"xxxx"'));
+      final unicode = _body(repeated(9000, '"界界界界"'));
+      expect(ascii.steps, hasLength(10000));
+      expect(unicode.steps, hasLength(9000));
       expect(
-        () => _body(repeated(11, 'String(32767, "界")')),
-        throwsA(_diagnostic('vba_limit_exceeded')),
+        () => _body(repeated(10000, '"界界界界"')),
+        throwsA(
+          _diagnostic('vba_limit_exceeded').having(
+            (error) => error.message,
+            'native JSON byte budget',
+            contains('Compiled native JSON exceeds 1 MiB'),
+          ),
+        ),
       );
     });
   });

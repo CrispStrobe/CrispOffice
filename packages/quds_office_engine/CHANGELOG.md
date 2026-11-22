@@ -4,6 +4,17 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Append to current Word table-cell text through direct VBA
+  `Cell.Range.InsertAfter`, including named `Text:=`, typed aliases, nested
+  `With` and `ByVal` helpers. Preserve original runs, sparse and zero-width
+  metadata, table ownership and opaque DOCM parts; inherit the current text's
+  end formatting and retain whole-run validation, rollback, policy and
+  recording boundaries. Keep paragraph Range projections and structural text
+  insertion refused. Include a complete BAS, independent conformance corpus,
+  native preservation and CLI/MCP checks, with portable VM/JavaScript drivers.
+  See the [append contract](../../docs/vba-word-macros-details.md#appending-existing-cell-text)
+  and [qualification](../../docs/validation/word-vba-cell-suffix-20261122/README.md).
+
 - Preserve continuous automatic decimal and lower/upper Roman footnote/endnote
   numbering in editable Zotero ODT export/import, including Word's default
   Roman endnotes. Verify exact native settings and every ordinal in a cited

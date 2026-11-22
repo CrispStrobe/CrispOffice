@@ -2252,7 +2252,6 @@ class _Checker {
   // not admit mark replacement/insertion in unexecuted source paths.
   final Map<String, List<(_Expr, List<_Expr>)>> wordSelectorBindings =
       <String, List<(_Expr, List<_Expr>)>>{};
-  final Map<String, bool> wordCellRangeBindings = <String, bool>{};
   final Map<String, bool> wordCellSelectorBindings = <String, bool>{};
   final Set<String> counters = <String>{};
   final Set<String> eachCounters = <String>{};
@@ -2390,7 +2389,6 @@ class _Checker {
       withKinds.clear();
       withTargets.clear();
       wordSelectorBindings.clear();
-      wordCellRangeBindings.clear();
       wordCellSelectorBindings.clear();
       counters.clear();
       eachCounters.clear();
@@ -2728,45 +2726,52 @@ class _Checker {
     }
   }
 
-  bool _isWordCellRangeSource(
-    _Expr expression,
-    List<_Expr> scopes,
-    Set<String> visiting,
-  ) {
-    if (expression is _WithValue) {
-      return scopes.isNotEmpty &&
-          _isWordCellRangeSource(
-            scopes.last,
-            scopes.sublist(0, scopes.length - 1),
-            visiting,
-          );
+  bool _isWordCellRangeSource(_Expr expression, List<_Expr> scopes) {
+    // Inspect the complete local binding graph. A visited alias is an edge,
+    // not an unsupported origin: Set a = cell.Range / Set b = a / Set a = b
+    // still denotes a direct cell. Every reachable terminal must nevertheless
+    // be a direct cell or generic Range parameter, and a rootless cycle cannot
+    // invent a selector. Avoid caching partial results inside a cycle, which
+    // could hide a later paragraph binding from another alias in that cycle.
+    final pending = <(_Expr, List<_Expr>)>[(expression, scopes)];
+    final visited = <String>{};
+    var hasOrigin = false;
+    while (pending.isNotEmpty) {
+      final (current, contexts) = pending.removeLast();
+      if (current is _WithValue) {
+        if (contexts.isEmpty) return false;
+        pending.add((contexts.last, contexts.sublist(0, contexts.length - 1)));
+        continue;
+      }
+      if (current is _Member) {
+        if (current.token.lower != 'range' ||
+            !_isWordCellSource(current.receiver, contexts)) {
+          return false;
+        }
+        hasOrigin = true;
+        continue;
+      }
+      if (current is! _Name ||
+          symbols[current.token.lower]?.type != _Declared.range) {
+        return false;
+      }
+      final name = current.token.lower;
+      if (!visited.add(name)) continue;
+      final parameter = currentProcedure.parameters.any(
+        (parameter) => parameter.name.lower == name,
+      );
+      // Incoming helper parameters remain origins even when local assignments
+      // form a cycle through them. Their additional bindings are checked too.
+      // The evaluator checks their actual selector before each cell-only use.
+      if (parameter) hasOrigin = true;
+      final bindings = wordSelectorBindings[name];
+      if (bindings != null) {
+        pending.addAll(bindings);
+      } else if (!parameter) {
+        return false;
+      }
     }
-    if (expression is _Member) {
-      return expression.token.lower == 'range' &&
-          _isWordCellSource(expression.receiver, scopes);
-    }
-    if (expression is! _Name ||
-        symbols[expression.token.lower]?.type != _Declared.range) {
-      return false;
-    }
-    final name = expression.token.lower;
-    if (wordCellRangeBindings[name] case final cached?) return cached;
-    if (!visiting.add(name)) return false;
-    final bindings = wordSelectorBindings[name];
-    // A generic ByVal Range helper is checked again against its actual selector
-    // during source evaluation. Locals known to receive paragraph/story ranges
-    // never gain the cell-only Text property, even in dead branches.
-    final result = bindings == null
-        ? currentProcedure.parameters.any(
-            (parameter) => parameter.name.lower == name,
-          )
-        : bindings.every(
-            (binding) =>
-                _isWordCellRangeSource(binding.$1, binding.$2, visiting),
-          );
-    visiting.remove(name);
-    wordCellRangeBindings[name] = result;
-    return result;
+    return hasOrigin;
   }
 
   // True only for selectors whose local origins are all explicitly cells.
@@ -3156,7 +3161,7 @@ class _Checker {
     }
     if (member.token.lower == 'insertafter' &&
         receiver != _Kind.wordCellRange &&
-        !_isWordCellRangeSource(member.receiver, withTargets, {})) {
+        !_isWordCellRangeSource(member.receiver, withTargets)) {
       // A whole paragraph range ends after its structural paragraph mark in
       // Word. Only the direct Cell.Range contract appends inside the cell.
       // Resolve generic ByVal Range parameters again during evaluation.
@@ -3464,7 +3469,7 @@ class _Checker {
       if (property == 'text' &&
           (receiver == _Kind.wordCellRange ||
               receiver == _Kind.range &&
-                  _isWordCellRangeSource(target.receiver, withTargets, {}))) {
+                  _isWordCellRangeSource(target.receiver, withTargets))) {
         return _Kind.string;
       }
       if (receiver == _Kind.wordShading &&

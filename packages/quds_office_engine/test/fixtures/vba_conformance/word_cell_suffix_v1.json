@@ -314,7 +314,7 @@
     {
       "id": "typed-aliases-capture-cell",
       "feature": "Selector identity",
-      "source": "Option Explicit\nSub Main()\n  Dim doc As Document, table As Table, cell As Cell, target As Range\n  Set doc = ThisDocument\n  Set table = doc.Tables(2)\n  Set cell = table.Cell(3, 4)\n  Set target = cell.Range\n  Set cell = doc.Tables(1).Cell(1, 1)\n  target.InsertAfter \"original\"\n  cell.Range.InsertAfter \"other\"\nEnd Sub\n",
+      "source": "Option Explicit\nSub Main()\n  Dim doc As Document, report As Table, selected As Cell, target As Range\n  Set doc = ThisDocument\n  Set report = doc.Tables(2)\n  Set selected = report.Cell(3, 4)\n  Set target = selected.Range\n  Set selected = doc.Tables(1).Cell(1, 1)\n  target.InsertAfter \"original\"\n  selected.Range.InsertAfter \"other\"\nEnd Sub\n",
       "expected": {
         "steps": [
           {
@@ -919,7 +919,7 @@
         "diagnostic": {
           "code": "vba_type_error",
           "line": 3,
-          "column": 63
+          "column": 45
         }
       },
       "provenance": {
@@ -941,7 +941,7 @@
         "diagnostic": {
           "code": "vba_type_error",
           "line": 3,
-          "column": 63
+          "column": 45
         }
       },
       "provenance": {
