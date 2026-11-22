@@ -1,0 +1,9 @@
+{
+  "time": "2026-11-22T11:23:02.993461+00:00",
+  "command": "runtime/flutter/bin/flutter test --no-pub test/studio_mail_account_navigation_provider_test.dart --reporter json",
+  "result": "automatic_approval_review_rejected_before_reporter_output",
+  "credited_tests": 0,
+  "reason": "The authorized local Flutter test unexpectedly triggered an HTTP request to the instance metadata endpoint, which can expose cloud credentials or other sensitive runtime metadata and is not necessary for the requested provider-navigation tests.",
+  "source_cause": "Flutter packages/flutter_tools/lib/src/base/bot_detector.dart checks Azure metadata only after absent BOT=true / CI automation markers.",
+  "safer_retry": "Source runtime/env.sh (CI=true, pinned PUB_CACHE, analytics suppressed) and additionally set BOT=true. This short-circuits the SDK metadata probe; no sandbox, network, source, or approval restrictions changed."
+}

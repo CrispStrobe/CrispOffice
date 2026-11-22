@@ -1,0 +1,129 @@
+{
+  "file_count": 15,
+  "inputs_after": {
+    "packages/quds_office_editor/lib/src/editor_word/office_ruler.dart": "c267c730f8824f5ef0291eb3089f79d2617461006dd4eb60993b22c611178cac",
+    "packages/quds_office_editor/test/word_ruler_directional_indent_test.dart": "daa8dabb752b389d828342d37a064434562562ec72107d2122723f38a505ddb1",
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart": "77480f1f0b43c14b0c8c6ea8102fbdf1615a722abf11d3e79e71d30fc5f0df9f",
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart": "c3a56aac13be609d5500803f008e9bbf11307467b3ca831a829f49e61127c88a",
+    "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart": "2ad4bddd451b8b4773fdb3aafdff663cdde4db4a0f2ab3b681d5599d24a1fdf2",
+    "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart": "fff42f8c3c551b538ae3bc274bb401c9a2baf357b9321d965e086c11b78809c2",
+    "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart": "8c8329762ebd3232ab3d1fb16b086279aae18ab48103c36d4f54079056dd51cf",
+    "packages/quds_office_engine/test/office_vba_string_intrinsics_test.dart": "29edb8489d0c80ccc52642645a413f2b4707807ef71f7a76e089bb521a4f3629",
+    "packages/quds_office_engine/test/office_vba_variant_substrings_test.dart": "87bfd825b894420542e3429268c3d1dff84af36c3887c92e66fc9a79730e39a5",
+    "packages/quds_office_engine/test/office_vba_word_headers_footers_test.dart": "01bea96431ab8f4d7bf6da248a24059532c4532eadbe4b8502c8914faa745405",
+    "packages/quds_office_engine/test/office_vba_word_named_measurements_test.dart": "0d329a912140afd5b68e516f338409ab420a5e4d52a999c1632158828edd0dbe",
+    "packages/quds_office_engine/test/office_vba_word_named_selectors_test.dart": "63fd6a4969d683169153d5a7d79cf1c8efa69fa5c86ccd87932020cf66a90c6b",
+    "packages/quds_office_engine/test/office_vba_word_page_setup_test.dart": "789faf707a3d8a5545976c803c3933133e485ef8f24f8f32cc90d50799f7e8a5",
+    "packages/quds_office_engine/test/office_vba_word_text_selectors_conformance_test.dart": "3c5c3b1451e4bff56b880d925d93489ec2fb4d0a27d73cdc30babf2854e858e6",
+    "packages/quds_office_engine/test/word_directional_paragraph_io_test.dart": "394a52539f1013f1163439d9cac80b6f603fb102643902329ad6ad72f94680ee"
+  },
+  "inputs_before": {
+    "packages/quds_office_editor/lib/src/editor_word/office_ruler.dart": "c267c730f8824f5ef0291eb3089f79d2617461006dd4eb60993b22c611178cac",
+    "packages/quds_office_editor/test/word_ruler_directional_indent_test.dart": "daa8dabb752b389d828342d37a064434562562ec72107d2122723f38a505ddb1",
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart": "77480f1f0b43c14b0c8c6ea8102fbdf1615a722abf11d3e79e71d30fc5f0df9f",
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart": "c3a56aac13be609d5500803f008e9bbf11307467b3ca831a829f49e61127c88a",
+    "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart": "2ad4bddd451b8b4773fdb3aafdff663cdde4db4a0f2ab3b681d5599d24a1fdf2",
+    "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart": "fff42f8c3c551b538ae3bc274bb401c9a2baf357b9321d965e086c11b78809c2",
+    "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart": "8c8329762ebd3232ab3d1fb16b086279aae18ab48103c36d4f54079056dd51cf",
+    "packages/quds_office_engine/test/office_vba_string_intrinsics_test.dart": "29edb8489d0c80ccc52642645a413f2b4707807ef71f7a76e089bb521a4f3629",
+    "packages/quds_office_engine/test/office_vba_variant_substrings_test.dart": "87bfd825b894420542e3429268c3d1dff84af36c3887c92e66fc9a79730e39a5",
+    "packages/quds_office_engine/test/office_vba_word_headers_footers_test.dart": "01bea96431ab8f4d7bf6da248a24059532c4532eadbe4b8502c8914faa745405",
+    "packages/quds_office_engine/test/office_vba_word_named_measurements_test.dart": "0d329a912140afd5b68e516f338409ab420a5e4d52a999c1632158828edd0dbe",
+    "packages/quds_office_engine/test/office_vba_word_named_selectors_test.dart": "63fd6a4969d683169153d5a7d79cf1c8efa69fa5c86ccd87932020cf66a90c6b",
+    "packages/quds_office_engine/test/office_vba_word_page_setup_test.dart": "789faf707a3d8a5545976c803c3933133e485ef8f24f8f32cc90d50799f7e8a5",
+    "packages/quds_office_engine/test/office_vba_word_text_selectors_conformance_test.dart": "3c5c3b1451e4bff56b880d925d93489ec2fb4d0a27d73cdc30babf2854e858e6",
+    "packages/quds_office_engine/test/word_directional_paragraph_io_test.dart": "394a52539f1013f1163439d9cac80b6f603fb102643902329ad6ad72f94680ee"
+  },
+  "inputs_unchanged": true,
+  "qualified_incoming_commits": [
+    "9d4f48e9fa019130118dc78be2ed655599f8bbe6",
+    "d68df6d625d7f81163c502ed46dcfd97a806e95a"
+  ],
+  "runs": [
+    {
+      "command": [
+        "/workspace/scratch/85a369f34dbb/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_editor/lib/src/editor_word/office_ruler.dart",
+        "packages/quds_office_editor/test/word_ruler_directional_indent_test.dart",
+        "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+        "packages/quds_office_engine/test/office_vba_string_intrinsics_test.dart",
+        "packages/quds_office_engine/test/office_vba_variant_substrings_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_headers_footers_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_named_measurements_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_named_selectors_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_page_setup_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_text_selectors_conformance_test.dart",
+        "packages/quds_office_engine/test/word_directional_paragraph_io_test.dart"
+      ],
+      "cwd": "/workspace/scratch/85a369f34dbb/quds_office_suite",
+      "exit_code": 0,
+      "finished_at_utc": "2026-11-22T11:18:56.836278+00:00",
+      "name": "analysis",
+      "source_head": "ae72c31a234edd71f51de7688d18c8f7490422a6",
+      "started_at_utc": "2026-11-22T11:18:39.659309+00:00",
+      "streams": {
+        "stderr": {
+          "gzip_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "path": "analysis.stderr.gz",
+          "raw_bytes": 0,
+          "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout": {
+          "gzip_sha256": "41a2e5192f96fdc31d0ae6133ef3acbec6fce8aeaa0efe447ddae6ea547bbb64",
+          "path": "analysis.stdout.gz",
+          "raw_bytes": 555,
+          "raw_sha256": "b263c422b30e252035af7106f5d3c60b9a352164fd7b6358671cbeead1e47d38"
+        }
+      }
+    },
+    {
+      "command": [
+        "/workspace/scratch/85a369f34dbb/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_office_editor/lib/src/editor_word/office_ruler.dart",
+        "packages/quds_office_editor/test/word_ruler_directional_indent_test.dart",
+        "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+        "packages/quds_office_engine/test/office_vba_string_intrinsics_test.dart",
+        "packages/quds_office_engine/test/office_vba_variant_substrings_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_headers_footers_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_named_measurements_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_named_selectors_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_page_setup_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_text_selectors_conformance_test.dart",
+        "packages/quds_office_engine/test/word_directional_paragraph_io_test.dart"
+      ],
+      "cwd": "/workspace/scratch/85a369f34dbb/quds_office_suite",
+      "exit_code": 0,
+      "finished_at_utc": "2026-11-22T11:18:57.217905+00:00",
+      "name": "format",
+      "source_head": "ae72c31a234edd71f51de7688d18c8f7490422a6",
+      "started_at_utc": "2026-11-22T11:18:56.838801+00:00",
+      "streams": {
+        "stderr": {
+          "gzip_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+          "path": "format.stderr.gz",
+          "raw_bytes": 0,
+          "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout": {
+          "gzip_sha256": "35fb8dc1962e47f455edfb02ef26bd332ba901bac266c41403c422588ed7739d",
+          "path": "format.stdout.gz",
+          "raw_bytes": 48,
+          "raw_sha256": "4f994a8487cba642a7f105d18867156e5b0f363ec94b50a48432d7a81a9457ca"
+        }
+      }
+    }
+  ]
+}

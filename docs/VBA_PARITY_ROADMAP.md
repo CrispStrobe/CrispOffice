@@ -19,6 +19,8 @@ an empty String, under the existing strict index and work limits.
 Standalone `Mid` / `Mid$` assignment also replaces a span of a mutable local
 String or String-valued Variant, including allocated array elements, without
 changing its length.
+Direct `Split` assignment now fills or replaces a local dynamic String array
+from source text, with zero-based binary results and the existing array budgets.
 Scalar Variants now support explicit
 `Empty`/`Null`, state predicates and bounded `CVar`/`CBool`/`CDbl`/`CLng`/`CStr`
 conversions, including default array/function behavior and native Empty clears.
@@ -63,7 +65,24 @@ and [the native macro contract](MACROS.md).
 
 ## Ordered milestones and acceptance
 
-The current continuation adds ordinary Variant-returning `Left`, `Right` and
+The current continuation adds direct `Split` assignment to local dynamic
+String arrays across all three adapters. It supports binary UTF-16 delimiters,
+optional result limits, retained empty fields and allocated empty arrays.
+Source arguments evaluate once in written order while the old array remains
+readable; replacement preserves frame ownership, active enumeration locks and
+shared String/slot/work budgets. General array values and live document reads
+remain separate work. This advances the source-language part of Stage 2.
+
+The [complete delimited Word report](../packages/quds_office_engine/example/macros/word_split_report.bas),
+[independent corpus](../packages/quds_office_engine/test/fixtures/vba_conformance/split_v1.json),
+[exact contract](vba-macros-details.md#splitting-source-string-arrays) and
+[local qualification](validation/word-vba-split-20261122/README.md) define the
+increment. Existing native Word operations handle the resulting table writes;
+document admission and embedded VBA behavior are unchanged. Named/omitted
+intrinsic arguments, locale comparison, general array passing/returning and
+installed Office differential acceptance remain separate milestones.
+
+The preceding continuation adds ordinary Variant-returning `Left`, `Right` and
 expression `Mid`, required named `Index` arguments on Word body/story/section
 selectors, and typed `Sections`/`Paragraphs` collection aliases and `ByVal`
 helpers. Existing UTF-16 slices, exact-index checks, source-order evaluation,

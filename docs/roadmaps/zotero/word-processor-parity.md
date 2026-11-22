@@ -63,6 +63,25 @@ The native controls use Zotero's own CSL processor. The separate basic/offline
 citation and single-item preview/export paths retain their narrower formatting
 contract; they are not evidence of complete document-wide CSL parity.
 
+## Delivered increment: editable original LibreOffice converter files
+
+The [converter continuation](../../validation/zotero-converter-parity-20261122/README.md)
+uses the preceding increment's original files and unchanged expected snapshots.
+Bounded direct character formatting on DOCX field boundaries and empty code
+runs now retains native editability. Code/cache updates preserve the accepted
+envelope, while locks, revisions, foreign metadata and unsupported structural
+owners remain guarded. ODT input accepts the exact inert unnumbered outline
+forms emitted over successive Writer saves and clear character shading paired
+with a local explicit background.
+
+Native refresh, save/reopen, selected-field context, detached publication and
+editor undo/redo are exercised on the original body, footnote and table-cell
+files. This closes the previously recorded local outline/editability failures
+for that fixture set. It does not qualify installed Zotero or Word/LibreOffice
+plugin behavior. Converted DOCX table borders remain outside the native ODT
+reader envelope; ordinary text links with distinct visited styles, continued
+lists and richer heading numbering retain their separate boundaries.
+
 ## Delivered increment: research-note paragraph layout and colors
 
 The [formatting continuation](../../validation/zotero-note-formatting-20261122/README.md)
@@ -742,12 +761,13 @@ Installed Zotero/Word/LibreOffice acceptance remains a separate next step.
    Retain failing historical relative-table files and continued-list conversions as separate
    regression targets rather than treating regenerated passing fixtures as
    evidence for those earlier routes.
-   The paragraph/color fixtures additionally identify two concrete follow-ups:
-   qualify benign run formatting on citation instruction/separator/end boundaries
-   before relaxing the opaque-field guard, and extend or explicitly normalize
-   the LibreOffice outline-style forms that currently prevent native ODT
-   reopening. Retain the original failing files and require native editing and
-   actual plugin Refresh, not only intact metadata or visual appearance.
+   The [converter continuation](../../validation/zotero-converter-parity-20261122/README.md)
+   closes the original paragraph/color fixtures' native DOCX editability and
+   ODT outline/shading failures. Preserve those exact files for installed
+   plugin Refresh and repeated application saves. Next, qualify ordinary-link
+   visited styles and converted DOCX table borders without losing appearance,
+   and retain continued-list failures as independent regression targets.
+   Intact metadata or visual appearance alone is insufficient acceptance.
 3. **Extend table structure and formatting.** Improve merged-row height distribution and map
    header/footer row groups and custom styles to native structures with explicit
    ownership. Qualify their citation order, geometry, save/reopen behavior and
