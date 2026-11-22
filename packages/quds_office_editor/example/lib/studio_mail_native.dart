@@ -3461,7 +3461,6 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         _busy ||
         _dialogOpen ||
         _connecting ||
-        _credentialPending ||
         _client != null) {
       return;
     }
@@ -4515,10 +4514,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                     padding: const EdgeInsets.only(bottom: 8),
                     child: OutlinedButton.icon(
                       key: ValueKey('studio-mail-open-${service.name}'),
-                      onPressed:
-                          _connecting ||
-                              _credentialPending ||
-                              _retiredNavigationStore != null
+                      onPressed: _connecting || _retiredNavigationStore != null
                           ? null
                           : () => _openProviderSetup(
                               service == MailCloudService.gmail
@@ -4535,10 +4531,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                   ),
                 OutlinedButton.icon(
                   key: const ValueKey<String>('studio-mail-open-ews'),
-                  onPressed:
-                      _connecting ||
-                          _credentialPending ||
-                          _retiredNavigationStore != null
+                  onPressed: _connecting || _retiredNavigationStore != null
                       ? null
                       : () => _openProviderSetup(MailProviderKind.ews),
                   icon: const Icon(Icons.dns_outlined),

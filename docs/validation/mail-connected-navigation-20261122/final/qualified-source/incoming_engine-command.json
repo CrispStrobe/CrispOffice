@@ -1,0 +1,59 @@
+{
+  "command": [
+    "/workspace/scratch/85a369f34dbb/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "test",
+    "--concurrency=2",
+    "--reporter=json",
+    "test/word_directional_paragraph_io_test.dart",
+    "test/office_vba_string_intrinsics_test.dart",
+    "test/office_vba_variant_substrings_test.dart",
+    "test/office_vba_word_headers_footers_test.dart",
+    "test/office_vba_word_named_measurements_test.dart",
+    "test/office_vba_word_named_selectors_test.dart",
+    "test/office_vba_word_page_setup_test.dart",
+    "test/office_vba_word_text_selectors_conformance_test.dart",
+    "test/office_vba_word_cell_paragraphs_test.dart",
+    "test/office_vba_word_named_measurements_integration_test.dart",
+    "test/office_vba_word_text_selectors_cli_test.dart",
+    "test/office_vba_word_text_selectors_directional_test.dart",
+    "test/office_vba_word_text_selectors_integration_test.dart",
+    "test/word_zotero_paragraph_format_test.dart"
+  ],
+  "cwd": "packages/quds_office_engine",
+  "exit_code": 0,
+  "expected_suites": [
+    "packages/quds_office_engine/test/word_directional_paragraph_io_test.dart",
+    "packages/quds_office_engine/test/office_vba_string_intrinsics_test.dart",
+    "packages/quds_office_engine/test/office_vba_variant_substrings_test.dart",
+    "packages/quds_office_engine/test/office_vba_word_headers_footers_test.dart",
+    "packages/quds_office_engine/test/office_vba_word_named_measurements_test.dart",
+    "packages/quds_office_engine/test/office_vba_word_named_selectors_test.dart",
+    "packages/quds_office_engine/test/office_vba_word_page_setup_test.dart",
+    "packages/quds_office_engine/test/office_vba_word_text_selectors_conformance_test.dart",
+    "packages/quds_office_engine/test/office_vba_word_cell_paragraphs_test.dart",
+    "packages/quds_office_engine/test/office_vba_word_named_measurements_integration_test.dart",
+    "packages/quds_office_engine/test/office_vba_word_text_selectors_cli_test.dart",
+    "packages/quds_office_engine/test/office_vba_word_text_selectors_directional_test.dart",
+    "packages/quds_office_engine/test/office_vba_word_text_selectors_integration_test.dart",
+    "packages/quds_office_engine/test/word_zotero_paragraph_format_test.dart"
+  ],
+  "finished_at_utc": "2026-11-22T11:52:46.764690+00:00",
+  "interrupted": false,
+  "kind": "tests",
+  "name": "incoming_engine",
+  "observed_head": "d53f30f1874b38d36a791d1d3881583e4e42a2d6",
+  "started_at_utc": "2026-11-22T11:51:59.053345+00:00",
+  "status": "completed",
+  "stderr": {
+    "gzip_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "path": "incoming_engine.stderr.gz",
+    "raw_bytes": 0,
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "gzip_sha256": "3f8c37fe9eb6303d6d62041b5fab8215aedf8a0bd624d7d9b1897023b988c30a",
+    "path": "incoming_engine.jsonl.gz",
+    "raw_bytes": 443795,
+    "raw_sha256": "7eef1572f1578c94847bb2ad712aa4955d4fd9c519129180b1cf7c7c597fe2e7"
+  }
+}

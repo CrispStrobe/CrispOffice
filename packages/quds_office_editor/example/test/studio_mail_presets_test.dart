@@ -139,6 +139,7 @@ void main() {
           home: StudioMailDialog(
             strings: _strings,
             credentialStore: memoryStudioMailCredentialStore(),
+            autoConnectSavedAccount: false,
           ),
         ),
       );

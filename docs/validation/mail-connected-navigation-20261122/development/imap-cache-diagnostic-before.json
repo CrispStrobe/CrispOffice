@@ -1,0 +1,11 @@
+{
+  "head": "d53f30f1874b38d36a791d1d3881583e4e42a2d6",
+  "phase": "before diagnostic exact-case run; concurrent root/provider source edits permitted",
+  "sha256": {
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart": "8ce36e6bda57eecc5dacf5a33b9f0873dd998c3779ca8784aff90646bf5b8265",
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart": "f99eaf064d3fa1f446cf64444e42ac3b2d6581388b2c8db7123022c722d5d4f5",
+    "packages/quds_office_editor/example/lib/studio_mail_draft_store.dart": "8c7a972571367f11267f2eeea0530ce0ba74beb1f19d7f30ad96d624f6b96927",
+    "packages/quds_office_editor/example/lib/studio_mail_mailbox_session.dart": "bb7eaf388795a4e5eddec0c4e9924f9f4853e637e510486afcb46065f2064b4a",
+    "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart": "906abe8acb3344ed710f47cb26fc92d21ad820b0036bf7f78f7d608fe7573d7e"
+  }
+}
