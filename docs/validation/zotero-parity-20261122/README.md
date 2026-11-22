@@ -205,6 +205,13 @@ binds the accepted execution inputs to this integration checkpoint. The final PR
 completed qualification record and retains this branch's remaining checkpoint
 history; the implementation is already present in main through PR #356.
 
+The final publication check also incorporated documentation-only Mail PR #357
+at `171be42cf92ce875b7d5f6f3df216ff04d0204c5`. Its five changed paths only add
+reconciliation evidence and preserve later checkpoint ancestry. The
+[final remote intake](final-remote-intake.json) verifies that every runtime,
+test, dependency and configuration path remains unchanged, so the accepted
+qualification carries without another test execution.
+
 ## Remaining parity work
 
 This completes a native writing-position and protocol-compatibility increment,

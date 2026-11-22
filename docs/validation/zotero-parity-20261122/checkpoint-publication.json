@@ -122,6 +122,15 @@
         "82659acb0f617c57d4d241c91033338032b5caac"
       ],
       "message": "merge: retain completed Mail reconciliation before Zotero final qualification [skip ci]\n\n# Conflicts:\n#\tpackages/quds_office_editor/example/lib/studio_mail_cached_search_dialog.dart"
+    },
+    {
+      "local_commit": "4c75661929f1960e68f03be2ff6f3d8fb08d8b2f",
+      "published_commit": "61536ae6c0fb4088e975bef6be8dc491fc21e1d9",
+      "identical_tree": "114cf2f320ea7dd266aebe9e5c5a3acae7024a7d",
+      "parents": [
+        "fce7a97f297181f3524b31e90e7a49ce061b0954"
+      ],
+      "message": "docs(zotero): publish final 2529-case qualification and reconciled intake [skip ci]"
     }
   ]
 }
