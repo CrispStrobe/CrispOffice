@@ -149,3 +149,10 @@ preview tree for PR #391. Subsequent task changes only record this evidence.
 See [final-main-review.json](final-main-review.json) for this exact integration.
 Runtime acceptance remains pending; source/tree agreement is not a Dart/Flutter
 test result.
+
+The final [branch ancestry proof](branch-ancestry.json) checks all **51** current
+fork branch heads (50 distinct commits) against
+`5dc2b6c97b2bb5193679d548d943934814bb34f6`. Every comparison reports zero commits behind
+and that branch head as the merge base. This includes the finalized Word and
+Zotero branches, refreshed main, and all initially captured work. The evidence
+checkpoint is a direct child of that reviewed head and preserves the proof.
