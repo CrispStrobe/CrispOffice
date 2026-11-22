@@ -1,5 +1,6 @@
 import '../model/identity.dart';
 import '../model/result.dart';
+import '../ports/mutation_receipt.dart';
 import '../ports/provider.dart';
 import 'cancellation.dart';
 
@@ -156,18 +157,34 @@ final class MailBulkFlagAttempt {
               : MailBulkFlagAttempt.uncertain(problem),
       };
 
-  const MailBulkFlagAttempt.confirmed()
+  factory MailBulkFlagAttempt.fromReceiptResult(
+    MailResult<MailMutationReceipt> result,
+  ) => switch (result) {
+    MailSuccess<MailMutationReceipt>(:final value) =>
+      MailBulkFlagAttempt.confirmed(
+        identityTransition: value.identityTransition,
+      ),
+    MailFailure<MailMutationReceipt>(:final problem) =>
+      problem.mutationMayHaveOccurred == false
+          ? MailBulkFlagAttempt.failed(problem)
+          : MailBulkFlagAttempt.uncertain(problem),
+  };
+
+  const MailBulkFlagAttempt.confirmed({this.identityTransition})
     : outcome = MailBulkFlagOutcome.confirmed,
       problem = null;
 
   const MailBulkFlagAttempt.failed(MailProblem this.problem)
-    : outcome = MailBulkFlagOutcome.failed;
+    : outcome = MailBulkFlagOutcome.failed,
+      identityTransition = null;
 
   const MailBulkFlagAttempt.uncertain(MailProblem this.problem)
-    : outcome = MailBulkFlagOutcome.uncertain;
+    : outcome = MailBulkFlagOutcome.uncertain,
+      identityTransition = null;
 
   final MailBulkFlagOutcome outcome;
   final MailProblem? problem;
+  final MailMoveIdentityTransition? identityTransition;
 }
 
 typedef MailBulkFlagApply =
@@ -181,12 +198,14 @@ final class MailBulkFlagItemResult {
     required this.operation,
     required this.outcome,
     this.problem,
+    this.identityTransition,
   });
 
   factory MailBulkFlagItemResult.restore({
     required MailOperation operation,
     required MailBulkFlagOutcome outcome,
     MailProblem? problem,
+    MailMoveIdentityTransition? identityTransition,
   }) {
     if (operation is! MailSetRead &&
             operation is! MailSetFlagged &&
@@ -196,13 +215,17 @@ final class MailBulkFlagItemResult {
                 outcome == MailBulkFlagOutcome.unattempted) &&
             problem != null) ||
         (outcome == MailBulkFlagOutcome.failed &&
-            (problem == null || problem.mutationMayHaveOccurred == true))) {
+            (problem == null || problem.mutationMayHaveOccurred == true)) ||
+        (identityTransition != null &&
+            (outcome != MailBulkFlagOutcome.confirmed ||
+                !identityTransition.matches(operation)))) {
       throw ArgumentError('Invalid flag receipt evidence.');
     }
     return MailBulkFlagItemResult(
       operation: operation,
       outcome: outcome,
       problem: problem,
+      identityTransition: identityTransition,
     );
   }
 
@@ -210,6 +233,7 @@ final class MailBulkFlagItemResult {
   MailRemoteIdentity get message => operation.message;
   final MailBulkFlagOutcome outcome;
   final MailProblem? problem;
+  final MailMoveIdentityTransition? identityTransition;
 }
 
 /// Immutable receipt for every identity, always in the original selection order.
@@ -239,7 +263,16 @@ final class MailBulkFlagReport {
         operation: results[i].operation,
         outcome: results[i].outcome,
         problem: results[i].problem,
+        identityTransition: results[i].identityTransition,
       );
+      if (results[i].identityTransition case final transition?) {
+        if (!transition.matches(
+          results[i].operation,
+          sourceMailbox: plan.mailbox,
+        )) {
+          throw ArgumentError('Move evidence must retain its frozen source.');
+        }
+      }
       final expected = plan.operationAt(i);
       final actual = results[i].operation;
       if (actual.id != expected.id ||
@@ -555,6 +588,18 @@ Future<MailBulkFlagReport> _runBulkFlags({
         MailProblem(MailProblemCode.providerFailure),
       );
     }
+    if (attempt.identityTransition case final transition?) {
+      if (attempt.outcome != MailBulkFlagOutcome.confirmed ||
+          !transition.matches(
+            results[index].operation,
+            sourceMailbox: plan.mailbox,
+          )) {
+        // Malformed acknowledgements cannot authorize projection or a retry.
+        attempt = const MailBulkFlagAttempt.uncertain(
+          MailProblem(MailProblemCode.conflict, mutationMayHaveOccurred: true),
+        );
+      }
+    }
     final problem = attempt.problem;
     final outcome =
         attempt.outcome == MailBulkFlagOutcome.failed &&
@@ -565,6 +610,7 @@ Future<MailBulkFlagReport> _runBulkFlags({
       operation: results[index].operation,
       outcome: outcome,
       problem: problem,
+      identityTransition: attempt.identityTransition,
     );
     if (outcome == MailBulkFlagOutcome.uncertain) {
       stopProblem = problem;

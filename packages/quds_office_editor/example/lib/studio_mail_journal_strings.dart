@@ -89,6 +89,35 @@ extension StudioMailJournalStrings on StudioStrings {
     'Ursprünglicher Ordner: $folder',
     'المجلد الأصلي: $folder',
   );
+  String get mailActivityMoveEvidence => _text(
+    'Saved move acknowledgement',
+    'Gespeicherte Verschiebebestätigung',
+    'تأكيد النقل المحفوظ',
+  );
+  String mailActivityMoveRecordedAt(String date) => _text(
+    'Acknowledgement saved: $date',
+    'Bestätigung gespeichert: $date',
+    'حُفظ التأكيد: $date',
+  );
+  String mailActivityMoveCacheStatus(bool projected) => projected
+      ? _text(
+          'Saved folder entries were updated from the server acknowledgement. '
+              'Refresh or synchronize to check the current folder contents.',
+          'Gespeicherte Ordnereinträge wurden anhand der Serverbestätigung '
+              'aktualisiert. Aktualisieren oder synchronisieren Sie, um den '
+              'aktuellen Ordnerinhalt zu prüfen.',
+          'حُدثت إدخالات المجلدات المحفوظة بناءً على تأكيد الخادم. '
+              'حدّث أو زامن للتحقق من محتويات المجلد الحالية.',
+        )
+      : _text(
+          'The move acknowledgement is saved. Saved folder entries could not '
+              'be updated from it; refresh or synchronize the folders.',
+          'Die Verschiebebestätigung ist gespeichert. Gespeicherte '
+              'Ordnereinträge konnten daraus nicht aktualisiert werden; '
+              'aktualisieren oder synchronisieren Sie die Ordner.',
+          'حُفظ تأكيد النقل. تعذر تحديث إدخالات المجلدات المحفوظة بناءً عليه؛ '
+              'حدّث المجلدات أو زامنها.',
+        );
   String mailActivityLocationCount(int observed, int uncertain) => _text(
     '$observed of $uncertain uncertain actions have a saved location check',
     'Für $observed von $uncertain ungewissen Aktionen ist eine Standortprüfung gespeichert',

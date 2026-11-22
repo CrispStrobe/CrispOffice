@@ -39,17 +39,20 @@ extension StudioMailMutationStrings on StudioStrings {
   );
 
   String get mailMutationHistoryScope => _text(
-    'This receipt records the original action. Cached folders retain their last '
-        'saved observation until refreshed or synchronized. Later location checks '
+    'This receipt records the original action. A saved move acknowledgement may '
+        'update exact folder entries; folder coverage keeps its original date '
+        'until refreshed or synchronized. Later location checks '
         'do not prove whether the original action worked. Uncertain actions stay '
         'saved and are never repeated automatically.',
-    'Dieser Beleg hält die ursprüngliche Aktion fest. Gespeicherte Ordner '
-        'behalten ihren letzten Stand bis zur Aktualisierung oder '
-        'Synchronisierung. Spätere Standortprüfungen beweisen nicht, ob die '
+    'Dieser Beleg hält die ursprüngliche Aktion fest. Eine gespeicherte '
+        'Verschiebebestätigung kann einzelne Ordnereinträge aktualisieren; '
+        'der erfasste Ordnerumfang behält sein ursprüngliches Datum bis zur '
+        'Aktualisierung oder Synchronisierung. Spätere Standortprüfungen beweisen nicht, ob die '
         'ursprüngliche Aktion erfolgreich war. Ungewisse Aktionen bleiben '
         'gespeichert und werden nie automatisch wiederholt.',
-    'يسجل هذا السجل الإجراء الأصلي. تحتفظ المجلدات المحفوظة بآخر حالة حتى '
-        'تحديثها أو مزامنتها. لا تثبت فحوص الموقع اللاحقة نجاح الإجراء الأصلي. '
+    'يسجل هذا السجل الإجراء الأصلي. قد يحدّث تأكيد النقل المحفوظ إدخالات '
+        'محددة في المجلدات؛ ويحتفظ نطاق المحتوى المحفوظ بتاريخه الأصلي حتى '
+        'التحديث أو المزامنة. لا تثبت فحوص الموقع اللاحقة نجاح الإجراء الأصلي. '
         'تبقى الإجراءات غير المؤكدة محفوظة ولا تُكرر تلقائيًا.',
   );
 

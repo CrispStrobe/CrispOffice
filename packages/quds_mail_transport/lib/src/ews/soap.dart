@@ -415,6 +415,7 @@ final class EwsSoap {
             _itemId(builder, id, changeKey);
           },
         );
+        builder.element('m:ReturnNewItemIds', nest: 'true');
       });
 
   String deleteItem(String id, String changeKey) => _request(
@@ -763,7 +764,7 @@ final class EwsSoap {
     }
     if (action == 'DeleteItem' || action == 'CreateItem') {
       if (result.isNotEmpty) _invalid();
-    } else if (result.length != 1) {
+    } else if (action == 'MoveItem' ? result.length > 1 : result.length != 1) {
       _invalid();
     }
     return List.unmodifiable(result);
