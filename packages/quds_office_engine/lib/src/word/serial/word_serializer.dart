@@ -1500,10 +1500,15 @@ class WordSerializer {
       prefix: 'w',
       attributes: <String, String>{'w:val': '${r.fontSizeHalfPoints}'},
     );
-    final String? highlight = WmlHighlight.toName(r.highlight);
+    final useShading = WordPropertyIo.usesRunShading(r);
+    final String? highlight = useShading
+        ? null
+        : WmlHighlight.toName(r.highlight);
     // An explicit clear on an authored run must override inherited styles even
     // without a sparse import snapshot. Omission would revive the old color.
-    if (highlight != null || r.explicitProperties.contains('highlight')) {
+    if (highlight != null ||
+        useShading ||
+        r.explicitProperties.contains('highlight')) {
       w.writeEmptyElement(
         'highlight',
         prefix: 'w',
@@ -1515,6 +1520,17 @@ class WordSerializer {
         'u',
         prefix: 'w',
         attributes: <String, String>{'w:val': r.underline.xmlValue},
+      );
+    }
+    if (useShading) {
+      w.writeEmptyElement(
+        'shd',
+        prefix: 'w',
+        attributes: {
+          'w:val': 'clear',
+          'w:color': 'auto',
+          'w:fill': WmlHighlight.toRgb(r.highlight) ?? 'auto',
+        },
       );
     }
     // Baseline is also an owned value after an explicit script-mode clear.
