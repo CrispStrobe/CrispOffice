@@ -75,9 +75,17 @@ and positional arguments after a named argument are refused. Typed row,
 column and cell collection objects may also be passed to required `ByVal`
 helpers. See the [exact table selector contract](vba-word-macros-details.md#table-row-and-column-navigation).
 
+Word `Paragraphs`, `Sections`, `Headers` and `Footers` selectors and their
+explicit `Item` forms also accept their required case-insensitive `Index:=`.
+`Paragraphs` and `Sections` support typed `Set` bindings and required `ByVal`
+parameters. Collection aliases use `.Item(Index:=...)`; nested `With`, body,
+independent header/footer and projected cell-paragraph identity are retained.
+The receiver is evaluated before its index expression, and each expression
+runs once. No index may be omitted, duplicated or supplied under another name.
+See the [selector contract](vba-word-macros-details.md#named-document-and-story-selectors).
+
 Named arguments are not added to `RGB`, the String or Variant intrinsics,
-array subscripts, or application members such as `Paragraphs`, `Shapes` and
-`Range`.
+array subscripts, or other application members such as `Shapes` and `Range`.
 
 ## Declaring optional parameters
 
