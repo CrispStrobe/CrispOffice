@@ -66,15 +66,18 @@ class _ZoteroOpenItemButtonState extends State<_ZoteroOpenItemButton> {
       if (_failure != null)
         Semantics(
           liveRegion: true,
-          child: Text(
-            _failure!,
-            key: const ValueKey('zotero-desktop-selection-error'),
+          child: SizedBox(
+            width: 180,
+            child: Text(
+              _failure!,
+              textAlign: TextAlign.center,
+              key: const ValueKey('zotero-desktop-selection-error'),
+            ),
           ),
         ),
     ],
   );
 }
-
 
 List<(String, String)> _detailFields(ZoteroItem item) => [
   ('Title', zoteroHtmlToPlainText(item.title)),
