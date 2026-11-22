@@ -77,10 +77,12 @@ background color. The retained body, footnote and table-cell DOCX files retain
 editable citations through native Refresh and repeated DOCX saves. The retained
 ODT files also pass native DOCX and editable ODT save/reopen checks. The retained
 DOCX table-cell file now reopens through explicit editable ODT export with its
-supported borders and active citations intact. Installed Word/LibreOffice Zotero-plugin
-acceptance remains a separate check. See the
+four supported border sides and active citations intact, including borders
+stored using Word's leading/trailing edge names. Installed Word/LibreOffice
+Zotero-plugin acceptance remains a separate check. See the
 [converter work record](validation/zotero-converter-parity-20261122/README.md)
-and [supported input details](zotero-support-details.md#libreoffice-field-formatting).
+and the later [border qualification](validation/zotero-table-borders-20261122/README.md),
+along with [supported input details](zotero-support-details.md#libreoffice-field-formatting).
 
 ## Repair damaged reference metadata
 
@@ -203,10 +205,25 @@ a width from 0.25 to 12 pt in eighth-point steps, with individual sides enabled
 or disabled. Nested tables can use different strokes. Inherited styles,
 explicitly disabled edges and supported merged cells retain their ownership;
 uniform cell padding is preserved. Import requires an explicit collapsing border
-model. Mixed widths/colors within a table, dashed/double borders, visible
-separating borders and conflicting covered-cell overrides remain unsupported.
-See the [border interoperability record](validation/zotero-table-borders-20261122/README.md)
-for native, converter and installed-plugin validation boundaries.
+model. The bounded ODT reader refuses mixed widths/colors within a table,
+dashed/double borders, visible separating borders and conflicting covered-cell
+overrides. This does not qualify arbitrary per-cell strokes or styles in an
+external DOCX.
+
+DOCX opening and saving now place leading/trailing cell borders on the correct
+physical side after resolving the table's direction, including inherited
+direction. Editable ODT export still refuses tables with right-to-left column
+order before writing the copy; the original document and citations stay
+unchanged. Supported right-to-left paragraphs inside a left-to-right table are
+separate from that table-order limit.
+
+Three research-table cases pass six actual LibreOffice saves and twelve paired
+native DOCX/ODT cycles, with all 376 captured engine inputs unchanged. These
+include the original black-bordered DOCX cell, a colored table with disabled
+sides, and a colored vertically merged cell. The
+[border interoperability record](validation/zotero-table-borders-20261122/README.md)
+identifies the LibreOfficeDev build and exact scope; installed Word/LibreOffice
+Zotero-plugin acceptance and identical rendering remain separate checks.
 
 Editable ODT exchange preserves automatic decimal and lower/upper Roman
 footnote and endnote numbering, including Word's default Roman endnotes.

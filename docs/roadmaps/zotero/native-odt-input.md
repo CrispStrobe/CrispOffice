@@ -610,10 +610,27 @@ compensation would introduce save-cycle drift. Table-position and vertical
 layout differences remain separately qualified; negative table margins are not
 accepted merely because a border is supported.
 
+Table writing-mode properties remain outside the bounded ODT reader. Editable
+ODT output likewise refuses right-to-left table column order before returning
+bytes, with the source document and active fields unchanged. Supported
+right-to-left paragraph direction inside a left-to-right table is a separate
+capability and keeps its existing mapping.
+
 The [work record](../../validation/zotero-table-borders-20261122/README.md)
 includes unchanged retained Writer DOCX cell fixtures, native Refresh and
-repeated editable ODT/DOCX checks. It distinguishes native tests from actual
-converter evidence and installed Word/LibreOffice Zotero-plugin acceptance.
+repeated editable ODT/DOCX checks. The DOCX source now has an independent
+four-side assertion: `start`/`end` take precedence over legacy `left`/`right`,
+effective table direction is resolved before mapping to physical sides, and
+DOCX output maps those sides back consistently. This fixes the source alias
+loss discovered during converter qualification; it does not extend the native
+common-stroke model to arbitrary DOCX per-cell strokes or styles.
+
+Three cases pass six actual LibreOffice saves and twelve paired native
+DOCX/ODT cycles in the identified LibreOfficeDev build, with all 376 captured
+engine inputs unchanged. They cover the original black-bordered DOCX cell,
+colored explicit-off sides and a colored vertical merge. Native tests, actual
+converter evidence and installed Word/LibreOffice Zotero-plugin acceptance
+remain separate, and earlier failed evidence is retained.
 
 ## Increment 10: installed-host acceptance
 

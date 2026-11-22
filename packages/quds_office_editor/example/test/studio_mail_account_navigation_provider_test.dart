@@ -752,6 +752,7 @@ void main() {
           // Counts distinguish an attempted atomic write from a committed one.
           await _until(tester, () => harness.directory.selectedRemembers == 1);
           expect(harness.directory.rememberAttempts, 1);
+          expect(harness.directory.selectedRemembers, 1);
           expect(harness.directory.remembers, 0);
           if (removed) {
             harness.directory.records.remove(harness.identity.account.value);
@@ -1787,6 +1788,10 @@ void main() {
             await _pump(tester);
             expect(harness.providers.single.lease!.isCurrent, isFalse);
             expect(harness.directory.remembers, 0);
+            expect(
+              harness.directory.rememberAttempts,
+              boundary == 'atomic account refresh' ? 1 : 0,
+            );
             expect(harness.owner.closed, 1);
             expect(find.text('Current account message'), findsNothing);
             expect(
@@ -1869,6 +1874,12 @@ void main() {
                       : 'cloud-connect',
                 ),
               )
+              .onPressed,
+          isNull,
+        );
+        expect(
+          tester
+              .widget<IconButton>(_key('studio-mail-switch-account'))
               .onPressed,
           isNull,
         );

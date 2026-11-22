@@ -121,11 +121,33 @@ visible merged owner; the exporter refuses a conflicting mask before returning
 bytes. The original document and active citation data remain unchanged.
 
 Uniform padding is emitted unchanged, without adding or subtracting border
-width. Unsupported width/color values, mixed imported border strokes, visible
-separating models and richer table indentation remain outside this contract.
+width. Output checks the native modeled stroke and side ownership. Unsupported
+width/color values, richer table indentation and right-to-left table column
+order remain outside this contract; input rejects mixed ODT strokes and visible
+separating models. Arbitrary per-cell stroke properties or styles in external
+DOCX remain unqualified by the native common-stroke model.
+
+DOCX source cell borders recognize modern `start`/`end` names with precedence
+over legacy `left`/`right`, independent of XML order. Both forms map to physical
+left/right sides after the default/named table style and direct `bidiVisual`
+overrides resolve, including explicit false overriding inherited true. Native
+DOCX saving applies the inverse mapping. An independent comparison with the
+source XML now verifies all four borders in the retained Writer DOCX cell
+fixture, catching the alias loss that a native snapshot alone had missed.
+
+Editable ODT refuses an effective right-to-left table before returning bytes,
+leaving the original model and active citations unchanged. It does not yet
+represent reversed table column order. Supported right-to-left paragraphs
+inside left-to-right tables are distinct and keep their existing direction
+mapping. Ordinary cached-result ODT output keeps its previous contract.
+
 The [border record](../../validation/zotero-table-borders-20261122/README.md)
-separates native persistence, actual converter controls and installed-plugin
-acceptance. It does not establish identical pagination in every application.
+records three passing cases through six actual LibreOffice saves and twelve
+paired native DOCX/ODT cycles, with all 376 captured engine inputs unchanged.
+The identified LibreOfficeDev run covers the original black-bordered cell,
+colored disabled sides and a colored vertical merge. The record separates
+native persistence, actual converter controls and installed-plugin acceptance;
+it does not establish identical pagination in every application.
 
 Cited note classes support continuous automatic decimal, lower-Roman or
 upper-Roman numbering with an initial number from 1 to 32,768, including Word's

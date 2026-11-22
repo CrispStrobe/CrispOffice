@@ -991,6 +991,10 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       if (mailboxOwner != null && records != null) {
         final owner = candidate;
         await _stopCachedView();
+        if (!_currentSession(client, generation) ||
+            !identical(owner, _draftStore)) {
+          return false;
+        }
         await verifyTarget();
         if (!_currentSession(client, generation) ||
             !identical(owner, _draftStore)) {
@@ -1039,37 +1043,37 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       final owner = candidate;
       if (owner != null && identical(owner, _retiredNavigationStore)) {
         // Disconnect or a failed cache drain already owns this candidate and
-        // its observers. That release drains restoration before closing it.
-      } else if (owner != null && identical(owner, _draftStore)) {
-        if (targetRejected && wasCurrent) {
-          // A revoked route can already own live observers. Keep their handles
-          // together until both cancellation and exclusive-owner close succeed.
-          _holdNavigationAccount();
-          outcomeGeneration = _sessionGeneration;
-          try {
-            await _releaseRetiredNavigationAccount();
-          } on Object {
-            // The explicit retry retains the failed owner and observers.
+        // its observers. That release must drain restoration before closing it.
+      } else if (owner != null && (!adopted || identical(_draftStore, owner))) {
+        if (identical(_draftStore, owner)) {
+          // An adopted owner can already have repository observers and pending
+          // receipts. Preserve their handles and drain them before closing it.
+          if (wasCurrent && targetRejected) {
+            _holdNavigationAccount();
+            outcomeGeneration = _sessionGeneration;
+            try {
+              await _releaseRetiredNavigationAccount();
+            } on Object {
+              // The explicit retry keeps the exact owner and failed observers.
+            }
           }
+          // An ordinary local-storage failure does not discard an adopted owner.
+        } else {
+          await closeUnadopted(owner);
         }
-        // An ordinary storage error does not discard an adopted owner.
-      } else if (owner != null && !adopted) {
-        await closeUnadopted(owner);
       }
-      if (wasCurrent &&
-          _currentAttempt(outcomeGeneration) &&
-          (targetRejected || _navigationReleaseRequired)) {
-        if (_currentSession(client, generation)) _disconnect();
-        if (mounted) {
+      if (wasCurrent && _currentAttempt(outcomeGeneration)) {
+        if (targetRejected || _navigationReleaseRequired) {
+          if (_currentSession(client, generation)) _disconnect();
           setState(() {
             _navigationTarget = expectedTarget;
             _error = _navigationReleaseRequired
                 ? widget.strings.mailDraftStorageFailed
                 : widget.strings.mailAccountNavigationChanged;
           });
+        } else {
+          setState(() => _error = widget.strings.mailDraftStorageFailed);
         }
-      } else if (_currentSession(client, generation)) {
-        setState(() => _error = widget.strings.mailDraftStorageFailed);
       }
       return false;
     } finally {

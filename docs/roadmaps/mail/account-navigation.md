@@ -90,8 +90,9 @@ directories without conditional refresh keep their existing metadata. See the
 The selected shortcut's successful-connection refresh compares its identity,
 revision and connection timestamp in the same repository transaction as the
 write. A shortcut forgotten or replaced while sign-in waits cannot be recreated
-by a late refresh. The local draft owner is adopted only after that comparison
-succeeds. Custom directory implementations without the optional atomic refresh
+by a late refresh. The selected connection intent is fulfilled only after that
+comparison succeeds; revoked setup retains and drains any already acquired
+owner and its observers. Custom directories without the optional atomic refresh
 capability retain their existing metadata instead of falling back to an
 unconditional write.
 

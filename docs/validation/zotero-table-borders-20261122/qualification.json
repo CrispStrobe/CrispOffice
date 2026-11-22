@@ -1,0 +1,99 @@
+{
+  "created_utc": "2026-11-22T12:58:56.813616+00:00",
+  "result": "pass",
+  "scope": "Selected affected local regressions and controlled real LibreOffice file interoperability; not complete repository, stable LibreOffice, installed Zotero-plugin, or Microsoft Word certification.",
+  "source_local_commit": "a60698d7775a71364eeae9547e22d0afff49294a",
+  "source_local_tree": "f80876b3b13b22529c397b176fa61ca203c357d6",
+  "source_remote_equivalent_commit": "ca87f7b3ce5563e0f03df323c91c9fc7a7582877",
+  "source_remote_equivalent_tree": "f80876b3b13b22529c397b176fa61ca203c357d6",
+  "cohorts": [
+    {
+      "cohort": "engine",
+      "suites": 130,
+      "passed": 3143,
+      "failed": 0,
+      "skipped": 0,
+      "accepted": true,
+      "execution_source_commit": "f3cfa49dfb891dcf0bcb0dd7af448d0378016160",
+      "captured_inputs": 3833,
+      "changed_during_execution": [],
+      "differences_from_final_source": [
+        "packages/quds_office_editor/example/lib/studio_mail_ews.dart"
+      ],
+      "receipt_member": "final/engine.receipt.json",
+      "cases_member": "final/engine.cases.json"
+    },
+    {
+      "cohort": "editor",
+      "suites": 29,
+      "passed": 643,
+      "failed": 0,
+      "skipped": 0,
+      "accepted": true,
+      "execution_source_commit": "a60698d7775a71364eeae9547e22d0afff49294a",
+      "captured_inputs": 3833,
+      "changed_during_execution": [],
+      "differences_from_final_source": [],
+      "receipt_member": "final/editor.receipt.json",
+      "cases_member": "final/editor.cases.json"
+    },
+    {
+      "cohort": "studio",
+      "suites": 4,
+      "passed": 48,
+      "failed": 0,
+      "skipped": 0,
+      "accepted": true,
+      "execution_source_commit": "a60698d7775a71364eeae9547e22d0afff49294a",
+      "captured_inputs": 3833,
+      "changed_during_execution": [],
+      "differences_from_final_source": [],
+      "receipt_member": "final/studio.receipt.json",
+      "cases_member": "final/studio.cases.json"
+    }
+  ],
+  "mail": {
+    "suites": 9,
+    "passed": 332,
+    "failed": 0,
+    "skipped": 0,
+    "captured_inputs": 315,
+    "changed_during_execution": [],
+    "differences_from_final_source": [],
+    "qualification": "evidence/mail-qualification.json"
+  },
+  "total_selected_suites": 172,
+  "total_passing_visible_tests": 4166,
+  "no_skips_or_reporter_errors_in_accepted_runs": true,
+  "source_carryforward": {
+    "engine": "Only captured final-source delta is the Mail example Refresh guard. The pure Dart engine package has no dependency on quds_office_editor or its Flutter example; engine/library/tests, engine dependencies, locked configuration, runner and all other 3832 captured inputs are identical. No engine rerun is attributed to the Mail-only fix.",
+    "engine_execution_remote_equivalent": "fb51ed7bdd03a8c67d0b20542606807f3131db7b",
+    "editor_studio": "All 3833 captured inputs match the final product source.",
+    "mail": "Retry ran with f3cfa49d HEAD and guard working change; all 315 recorded input hashes match a60698d7 and current files. Exact provenance retained in Mail qualification.",
+    "converter": "All 376 captured engine/tool/fixture/configuration hashes match final product source; original execution at 6b1eb622 is equivalent to remote fb1d57d140c5368051f853c5e088b45cee911024."
+  },
+  "static_checks": {
+    "non_mail_dart_paths": 12,
+    "non_mail_accepted": true,
+    "mail_dart_paths": 13,
+    "mail_accepted": true,
+    "source_changed_during_checks": false
+  },
+  "converter": {
+    "qualified_cases": 3,
+    "actual_libreoffice_saves": 6,
+    "paired_native_docx_odt_cycles": 12,
+    "individual_native_saves_in_cycles": 24,
+    "captured_inputs": 376,
+    "changed_during_execution": [],
+    "differences_from_final_source": [],
+    "qualification": "evidence/converter-qualification.json"
+  },
+  "native_archive": {
+    "path": "evidence/native-local-evidence.tar.xz",
+    "sha256": "1f2fbbb9412fdec5dd2bb6029e12eea03e2938ef489e295e168c4e5322af9bbc",
+    "members": 40
+  },
+  "github_actions": "Neither queried nor awaited. No workflow/protection changes.",
+  "remaining_work": "Follow the Word/LibreOffice parity roadmap; unsupported document structures and installed-plugin workflows retain separate acceptance boundaries."
+}

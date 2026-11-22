@@ -1756,10 +1756,44 @@ modeled stroke and explicit collapsing ODT border semantics; import resolves
 cell-style inheritance, shorthand resets and side overrides. Borderless cells
 keep absent sides distinct from explicit off sides. Covered-cell declarations
 must agree with the merged owner. Uniform padding remains numerically unchanged.
-Mixed strokes, unsupported line styles/colors/widths, visible separating borders
-and conflicting covered overrides refuse before the operation returns a result.
-See the [border qualification](validation/zotero-table-borders-20261122/README.md)
-for exact native and converter scope and remaining installed-plugin acceptance.
+The bounded ODT reader refuses mixed strokes, unsupported line
+styles/colors/widths, visible separating borders and conflicting covered
+overrides. Editable output checks the native modeled stroke and merged-cell
+side ownership before returning bytes. Arbitrary per-cell stroke properties or
+styles in external DOCX are not qualified by this contract; the native model
+still has one common table stroke.
+
+DOCX cell-border input recognizes logical `start`/`end` and legacy `left`/`right`
+names. `start` takes precedence over a sibling `left`, and `end` over a sibling
+`right`, regardless of XML order. Both naming forms describe leading/trailing
+edges in a table. Quds resolves effective table `bidiVisual` through the named
+style's inheritance chain, or the unique default table style when no style is
+selected, followed by direct overrides, before mapping those edges to physical
+left/right sides. An explicit false value overrides
+inherited right-to-left direction. DOCX saving applies the inverse mapping, so
+repeated native saves retain the intended physical side. Absent edges remain
+distinct from explicit off (`nil`/`none`). Foreign or nested lookalikes cannot
+select a table style, set its direction or supply a native cell-border edge.
+The [Word leading-border specification](https://learn.microsoft.com/en-us/openspecs/office_standards/ms-oi29500/95b4a3c3-bcd6-41ad-9761-29b98779e979)
+and [table-cell right-border semantics](https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.wordprocessing.rightborder?view=openxml-3.0.1)
+describe the naming and direction rules.
+
+Editable ODT output refuses effective right-to-left table column order before
+returning a copy, preserving the source document and active citations. The
+bounded ODT reader also excludes table writing-mode properties. This is
+separate from supported right-to-left paragraph direction inside a
+left-to-right table. Ordinary cached-result ODT export retains its existing
+contract.
+
+The [border qualification](validation/zotero-table-borders-20261122/README.md)
+records three passing cases across six actual saves in the identified
+LibreOfficeDev build and twelve paired native DOCX/ODT cycles, with all 376
+captured engine inputs unchanged. Its original retained DOCX cell is checked
+against all four borders in the source XML, independently of the native
+snapshot; the other cases cover colored disabled sides and vertical merged-cell
+ownership. This closes the source alias loss found during converter checking.
+It does not establish installed Zotero-plugin acceptance, arbitrary Word border
+fidelity or identical application rendering.
 
 Editable ODT export also refuses effective absolute raised/lowered baseline
 positions in text, paragraph marks and note markers. Inherited positions are

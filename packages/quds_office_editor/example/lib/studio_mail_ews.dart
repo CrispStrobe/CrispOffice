@@ -1373,6 +1373,14 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     }
   }
 
+  Future<void> _refreshMailbox() async {
+    final mailbox = _mailbox;
+    // A retained button callback can run after Disconnect has cleared the
+    // selected mailbox or quarantined its observer and storage owner.
+    if (mailbox == null || _blocked) return;
+    await _loadHeaders(mailbox);
+  }
+
   Future<void> _loadHeaders(MailMailbox mailbox, {bool more = false}) async {
     final provider = _provider;
     final session = _session;
@@ -3140,7 +3148,9 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
               IconButton(
                 tooltip: widget.strings.refresh,
                 icon: const Icon(Icons.refresh),
-                onPressed: _blocked ? null : _loadCurrentHeadersAction(),
+                onPressed: _blocked || _mailbox == null
+                    ? null
+                    : _forCurrentConnection(_refreshMailbox),
               ),
               if (_draft != null)
                 IconButton(
