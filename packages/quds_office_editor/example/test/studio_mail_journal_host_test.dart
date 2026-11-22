@@ -498,18 +498,17 @@ final class _Harness {
           : MailCloudService.microsoft365,
       initialClientId: 'synthetic-desktop-client',
       draftStoreFactory: openStore,
-      cloudAuthorizer: ({
-        required configuration,
-        required account,
-        required openBrowser,
-        required lease,
-        log,
-      }) async => MailSuccess(_Tokens()),
-      cloudProviderFactory: ({
-        required configuration,
-        required tokenSource,
-        log,
-      }) => _CloudProvider(this, configuration),
+      cloudAuthorizer:
+          ({
+            required configuration,
+            required account,
+            required openBrowser,
+            required lease,
+            log,
+          }) async => MailSuccess(_Tokens()),
+      cloudProviderFactory:
+          ({required configuration, required tokenSource, log}) =>
+              _CloudProvider(this, configuration),
     );
   }
 
@@ -659,9 +658,9 @@ Future<void> _openActivity(
   await _until(
     tester,
     () =>
-        _key('studio-mail-activity-${batch.summary.id}')
-            .evaluate()
-            .isNotEmpty &&
+        _key(
+          'studio-mail-activity-${batch.summary.id}',
+        ).evaluate().isNotEmpty &&
         find.byType(LinearProgressIndicator).evaluate().isEmpty,
   );
   await tester.tap(_key('studio-mail-activity-${batch.summary.id}'));
@@ -742,9 +741,9 @@ void main() {
         await _until(
           tester,
           () =>
-              _key('studio-mail-activity-observation-0')
-                  .evaluate()
-                  .isNotEmpty &&
+              _key(
+                'studio-mail-activity-observation-0',
+              ).evaluate().isNotEmpty &&
               find.byType(LinearProgressIndicator).evaluate().isEmpty,
         );
         _expectHistoricalTarget(harness);

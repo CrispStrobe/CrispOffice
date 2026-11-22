@@ -144,12 +144,13 @@ Flutter fixtures qualify those local paths. They do not establish live account
 interoperability, browser persistence or installed-platform release readiness.
 Full Outlook, Thunderbird and eM Client parity remains open.
 
-The next ordered implementation is durable visible-selection move/archive/delete:
-freeze the visible identities and destination preview, preserve per-message
-outcomes, stop after the current operation, and reuse this journal/recovery
-contract. Extend authoritative provider membership receipts where appropriate;
-never treat Gmail labels as exclusive folders or IMAP deletion markers as purge.
-Then continue connected multi-account navigation, indexed body search and
+The [visible-selection Move/Delete continuation](bulk-organization.md) now freezes
+the selected identities and destination preview, preserves per-message outcomes
+and stop-after-current, and reuses this journal/recovery contract. Explicit
+special-folder discovery and Archive remain open. Extend authoritative provider
+membership receipts where appropriate; never treat Gmail labels as exclusive
+folders or IMAP deletion markers as purge.
+Continue connected multi-account navigation, indexed body search and
 cross-folder conversations, tags/categories and ordered rule previews, richer
 composition, provider Drafts/Sent reconciliation, and live/platform qualification.
 

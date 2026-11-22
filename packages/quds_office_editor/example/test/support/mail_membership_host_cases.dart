@@ -254,8 +254,9 @@ void membershipHostTests() {
           tester,
           () => harness.commands.isNotEmpty && !_list(tester).busy,
         );
-        final survivor = _list(tester).items
-            .singleWhere((item) => item.id == survivorId);
+        final survivor = _list(
+          tester,
+        ).items.singleWhere((item) => item.id == survivorId);
         expect(survivor.isRead, isFalse);
         expect(survivor.isFlagged, isTrue);
         expect(_status(tester).report.confirmedCount, confirmed ? 1 : 0);

@@ -24,7 +24,24 @@ interrupted work.
 | Account persistence | Native account store, schema migrations and reconnect |
 | Browser store | Implemented path; quota/reload/Web Locks acceptance remains open |
 
-## Latest increment: authoritative move identities and atomic cache reconciliation
+## Latest increment: durable visible-selection Move/Delete
+
+Connected mailbox lists now expose Move/Delete only for supported provider
+actions. A confirmation shows selected count, account and source; Move requires
+an explicit exact destination and a separate Apply action. Hosts freeze and
+revalidate every selected identity across prompts, then use the existing durable
+sequential coordinator. Per-message results, uncertainty, stop-after-current and
+restart receipts remain available in Mail activity.
+
+IMAP Delete marks `\\Deleted` without expunge; EWS/Graph/Gmail retain their
+existing trash semantics. Gmail never exposes folder-style Move. Cached views
+remain read-only, and the shared list defaults to its prior four flag actions.
+The [workflow and ordered continuation](bulk-organization.md) and
+[local qualification record](../../validation/mail-bulk-organization-20261122/README.md)
+define the implemented scope and validation status. This does not close M04W or
+full desktop-client parity.
+
+## Previous increment: authoritative move identities and atomic cache reconciliation
 
 IMAP and EWS moves can retain the exact destination identities returned by the
 server. Schema 15 saves those acknowledgements with the existing durable journal
@@ -43,7 +60,7 @@ and [the local qualification record](../../validation/mail-identity-reconciliati
 This increment covers IMAP/EWS Move identity evidence. Generic results, deletion
 semantics, historical uncertainty and explicit connected-folder refresh remain.
 New target headers do not acquire a fabricated cached body. Durable bulk
-organization is the next workspace increment; complete desktop parity remains open.
+organization is continued above; complete desktop parity remains open.
 
 ## Previous increment: current-location recovery for uncertain Move/Delete
 

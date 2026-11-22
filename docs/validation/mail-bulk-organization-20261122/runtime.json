@@ -1,0 +1,43 @@
+{
+  "release": {
+    "hash": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "channel": "stable",
+    "version": "3.47.8",
+    "dart_sdk_version": "3.13.7",
+    "dart_sdk_arch": "x64",
+    "release_date": "2026-10-23T19:02:25.384067Z",
+    "archive": "stable/linux/flutter_linux_3.47.8-stable.tar.xz",
+    "sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2"
+  },
+  "downloaded_sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+  "downloaded_bytes": 1581444364,
+  "extracted_bytes": 474216643,
+  "excluded_unneeded_files": [
+    "flutter/bin/cache/artifacts/engine/linux-x64/libflutter_linux_gtk.so",
+    "flutter/bin/cache/dart-sdk/bin/dartaotruntime_asan",
+    "flutter/bin/cache/dart-sdk/bin/dartaotruntime_msan",
+    "flutter/bin/cache/dart-sdk/bin/dartaotruntime_tsan",
+    "flutter/bin/cache/dart-sdk/bin/dartvm.sym",
+    "flutter/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot",
+    "flutter/bin/cache/dart-sdk/bin/snapshots/dart2bytecode.dart.snapshot",
+    "flutter/bin/cache/dart-sdk/bin/snapshots/dart2js_aot.dart.snapshot",
+    "flutter/bin/cache/dart-sdk/bin/snapshots/dart2wasm_product.snapshot",
+    "flutter/bin/cache/dart-sdk/bin/snapshots/dartdevc.dart.snapshot",
+    "flutter/bin/cache/dart-sdk/bin/snapshots/dartdevc_aot.dart.snapshot"
+  ],
+  "excluded_prefixes": [
+    "flutter/bin/cache/dart-sdk/bin/resources/devtools/",
+    "flutter/packages/flutter_tools/test/",
+    "flutter/packages/flutter_tools/test_data/",
+    "flutter/packages/flutter/test/",
+    "flutter/packages/flutter/test_fixes/",
+    "flutter/packages/flutter/coverage/",
+    "flutter/packages/flutter_test/test/",
+    "flutter/packages/flutter_driver/test/",
+    "flutter/packages/flutter_localizations/test/",
+    "flutter/.git/objects/",
+    "flutter/bin/cache/dart-sdk/lib/_internal/dart2js_",
+    "flutter/bin/cache/dart-sdk/lib/_internal/dart2wasm_",
+    "flutter/bin/cache/dart-sdk/lib/_internal/ddc_"
+  ]
+}

@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased — durable bulk Mail organization
+
+- Add provider-scoped Move/Delete for checked connected-mailbox selections,
+  with explicit count/account/folder/destination confirmation in EN/DE/AR.
+- Preserve exact frozen identities, per-message durable receipts, partial
+  results, cancellation and no-replay restart recovery across IMAP/EWS/Graph/Gmail.
+- Keep IMAP Deleted markers distinct from expunge and Gmail Trash distinct from
+  unsupported folder-style Move. Cached views remain read-only.
+
 All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased

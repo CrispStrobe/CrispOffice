@@ -1,0 +1,61 @@
+{
+  "captured_at": "2026-11-22T08:33:24.027700+00:00",
+  "integrated_baseline": "7ea871c890760f17dfa84efe2eec6cf467766153",
+  "heads": {
+    "identity": {
+      "sha": "06b4e747c09851048d0b72a958e9114f7c83cc52",
+      "new_commits": [
+        "06b4e747c09851048d0b72a958e9114f7c83cc52 merge: reconcile concurrent Word VBA branch for local qualification [skip ci]",
+        "03595b1fe2addbcd3c52a0024d84c6275a10213a fix(mail): bound destination folder labels during move reconciliation [skip ci]"
+      ],
+      "changed_paths_vs_integration": [
+        "packages/quds_mail_core/CHANGELOG.md",
+        "packages/quds_mail_store/CHANGELOG.md",
+        "packages/quds_mail_store/lib/src/move_identity_transitions.dart",
+        "packages/quds_mail_store/test/move_identity_transition_test.dart"
+      ],
+      "host_difference_vs_integration": ""
+    },
+    "suffix": {
+      "sha": "d4317dcc1ecc6c7b70a1773cc121f5639ad99428",
+      "new_commits": [
+        "d4317dcc1ecc6c7b70a1773cc121f5639ad99428 merge: reconcile late Mail clock and cache safeguards [skip ci]",
+        "28b53ec8ac1151d86af5d18f6d3a22c28df857b0 docs(word): preserve local qualification evidence and intake receipts [skip ci]"
+      ],
+      "changed_paths_vs_integration": [
+        "docs/roadmaps/mail/identity-transitions.md",
+        "docs/validation/word-vba-cell-suffix-20261122/README.md",
+        "docs/validation/word-vba-cell-suffix-20261122/evidence/build_evidence.py",
+        "docs/validation/word-vba-cell-suffix-20261122/evidence/evidence-index.json",
+        "docs/validation/word-vba-cell-suffix-20261122/evidence/local-qualification.tar.gz",
+        "docs/validation/word-vba-cell-suffix-20261122/evidence/remote-intake-final.json",
+        "docs/validation/word-vba-cell-suffix-20261122/evidence/remote-intake-refresh.json",
+        "docs/validation/word-vba-cell-suffix-20261122/intake.json",
+        "docs/validation/word-vba-cell-suffix-20261122/run_local.py",
+        "packages/quds_mail_core/lib/src/ports/repository.dart",
+        "packages/quds_mail_store/lib/src/move_identity_transitions.dart",
+        "packages/quds_mail_store/test/move_identity_transition_test.dart"
+      ],
+      "host_difference_vs_integration": ""
+    },
+    "extended": {
+      "sha": "fcabea23fec4d18597ed4293ebd65857bd958b30",
+      "new_commits": [
+        "fcabea23fec4d18597ed4293ebd65857bd958b30 merge: reconcile latest Word suffix and Mail identity branches [skip ci]"
+      ],
+      "changed_paths_vs_integration": [
+        "packages/quds_mail_store/lib/src/move_identity_transitions.dart"
+      ],
+      "host_difference_vs_integration": ""
+    }
+  },
+  "actions": "No GitHub Actions, check/status endpoints queried or awaited. No refs mutated.",
+  "recommendation": {
+    "history": "Normal merges preserve all three captured heads; no feature needs replaying from scratch.",
+    "source": "Keep integrated bounded destination metadata accumulation/LIMIT scan and authoritative receipt savepoint logic. All quota fixes from identity03595b are already retained.",
+    "tests": "Accept deletion of duplicate saveView calls after saveSync in move_identity_transition_test.dart; original saveView calls before saveSync remain. No new test family beyond current baseline.",
+    "docs": "Import suffix dated Word qualification README, intake, run_local.py, evidence builder/index/archive and records; preserve latest bulk organization docs. Do not present historical tests as current combined-source qualification.",
+    "bulk": "All three advanced heads have exact same Studio host source blobs as integrated7ea; no new overlap with our bulk host or dialogs.",
+    "extended": "Only comments in move_identity_transitions.dart differ from integrated7ea; no extended new VBA feature at this captured head."
+  }
+}

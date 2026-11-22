@@ -170,13 +170,14 @@ final class _Harness {
           : MailCloudService.microsoft365,
       initialClientId: 'synthetic-desktop-client',
       draftStoreFactory: drafts.open,
-      cloudAuthorizer: ({
-        required configuration,
-        required account,
-        required openBrowser,
-        required lease,
-        log,
-      }) async => MailSuccess(_Tokens()),
+      cloudAuthorizer:
+          ({
+            required configuration,
+            required account,
+            required openBrowser,
+            required lease,
+            log,
+          }) async => MailSuccess(_Tokens()),
       cloudProviderFactory:
           ({required configuration, required tokenSource, log}) {
             final provider = _CloudProvider(configuration);
@@ -411,7 +412,7 @@ void main() {
         await _show(tester, harness);
         final previous = harness.provider;
         final disconnect = tester
-            .widget<IconButton>(find.byTooltip(_strings.disconnect))
+            .widget<IconButton>(find.widgetWithIcon(IconButton, Icons.logout))
             .onPressed!;
         await _start(tester, harness.action);
         // A previously captured host disconnect callback invalidates the exact
