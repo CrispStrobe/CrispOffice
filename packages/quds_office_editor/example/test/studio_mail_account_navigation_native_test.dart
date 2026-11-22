@@ -7,6 +7,7 @@ import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_office_studio/studio_mail_account_navigation.dart';
 import 'package:quds_office_studio/studio_mail_account_navigation_strings.dart';
+import 'package:quds_office_studio/studio_mail_archive_settings_store.dart';
 import 'package:quds_office_studio/studio_mail_credentials.dart';
 import 'package:quds_office_studio/studio_mail_draft.dart';
 import 'package:quds_office_studio/studio_mail_draft_store.dart';
@@ -169,6 +170,49 @@ final class _CatalogStore extends Fake
 
   @override
   Future<StudioMailStoredDraft?> load() async => null;
+
+  @override
+  Future<void> close() async {
+    closes++;
+  }
+}
+
+/// The Archive capability must enforce ownership without relying on a second
+/// optional interface such as DraftCatalog or Outbox to reject a foreign store.
+final class _ArchiveOnlyStore extends Fake
+    implements StudioMailDraftStore, StudioMailArchiveSettingsStore {
+  _ArchiveOnlyStore(this.account);
+
+  @override
+  final MailAccountId account;
+  int loads = 0;
+  int settingsReads = 0;
+  int settingsWrites = 0;
+  int closes = 0;
+
+  @override
+  Future<StudioMailStoredDraft?> load() async {
+    loads++;
+    return null;
+  }
+
+  @override
+  Future<MailArchiveDestinationSettings> loadArchiveSettings() async {
+    settingsReads++;
+    return MailArchiveDestinationSettings(
+      account: account,
+      destination: MailMailboxId('Archive', account: account),
+    );
+  }
+
+  @override
+  Future<MailArchiveDestinationSettings> saveArchiveSettings(
+    MailArchiveDestinationSettings settings, {
+    required int expectedRevision,
+  }) async {
+    settingsWrites++;
+    return settings.copyWith(revision: expectedRevision + 1);
+  }
 
   @override
   Future<void> close() async {
@@ -449,6 +493,50 @@ Future<void> _choose(WidgetTester tester, StudioMailDraftAccount target) async {
 }
 
 void main() {
+  for (final scope in ['account', 'profile']) {
+    testWidgets(
+      'native refuses an archive settings-only owner from another $scope before loading it',
+      (tester) async {
+        final identity = _identity(_first);
+        final directory = _Directory();
+        await directory.remember(identity);
+        final remembers = directory.remembers;
+        final owner = _ArchiveOnlyStore(
+          MailAccountId(
+            scope == 'account' ? 'foreign-account' : identity.account.value,
+            profile: scope == 'profile'
+                ? MailProfileId(
+                    identity.account.profile.value,
+                    hostId: 'foreign-host',
+                  )
+                : identity.account.profile,
+          ),
+        );
+        final opened = <StudioMailDraftAccount>[];
+        await _show(
+          tester,
+          directory: directory,
+          created: [],
+          clients: [],
+          initialAccount: directory.target(identity),
+          open: (account) async {
+            opened.add(account);
+            return owner;
+          },
+        );
+        await _connect(tester);
+        expect(opened.single.account, identity.account);
+        expect(owner.loads, 0);
+        expect(owner.settingsReads, 0);
+        expect(owner.settingsWrites, 0);
+        expect(owner.closes, 1);
+        expect(directory.remembers, remembers);
+        expect(find.text(_strings.mailDraftStorageFailed), findsOneWidget);
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
+
   testWidgets(
     'selected account uses only its saved route and requires explicit Connect',
     (tester) async {

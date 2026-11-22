@@ -9,6 +9,7 @@ import 'package:quds_mail_transport/quds_mail_transport.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
 import 'package:quds_office_studio/studio_mail_account_navigation.dart';
 import 'package:quds_office_studio/studio_mail_account_navigation_strings.dart';
+import 'package:quds_office_studio/studio_mail_archive_settings_store.dart';
 import 'package:quds_office_studio/studio_mail_cloud.dart';
 import 'package:quds_office_studio/studio_mail_compose.dart';
 import 'package:quds_office_studio/studio_mail_draft_store.dart';
@@ -296,6 +297,49 @@ final class _DraftStore extends Fake
   }
 }
 
+/// Deliberately omits the other account-owned optional interfaces: Archive
+/// settings must reject a foreign owner through its own capability boundary.
+final class _ArchiveOnlyStore extends Fake
+    implements StudioMailDraftStore, StudioMailArchiveSettingsStore {
+  _ArchiveOnlyStore(this.account);
+
+  @override
+  final MailAccountId account;
+  int loads = 0;
+  int settingsReads = 0;
+  int settingsWrites = 0;
+  int closes = 0;
+
+  @override
+  Future<StudioMailStoredDraft?> load() async {
+    loads++;
+    return null;
+  }
+
+  @override
+  Future<MailArchiveDestinationSettings> loadArchiveSettings() async {
+    settingsReads++;
+    return MailArchiveDestinationSettings(
+      account: account,
+      destination: MailMailboxId('Archive', account: account),
+    );
+  }
+
+  @override
+  Future<MailArchiveDestinationSettings> saveArchiveSettings(
+    MailArchiveDestinationSettings settings, {
+    required int expectedRevision,
+  }) async {
+    settingsWrites++;
+    return settings.copyWith(revision: expectedRevision + 1);
+  }
+
+  @override
+  Future<void> close() async {
+    closes++;
+  }
+}
+
 final class _JournalStore extends Fake implements StudioMailFlagJournalStore {
   _JournalStore(this.account);
   @override
@@ -478,6 +522,7 @@ final class _Harness {
   late final StudioMailDraftAccount destination;
   late final StudioMailAccountNavigationTarget target;
   late final _DraftStore owner;
+  StudioMailDraftStore? alternateOwner;
   final tokens = _Tokens();
   final navigations = <StudioMailAccountNavigationTarget>[];
   final providers = <_Provider>[];
@@ -504,7 +549,7 @@ final class _Harness {
     expect(account.account, identity.account);
     storeOpens++;
     await openGate?.future;
-    return owner;
+    return alternateOwner ?? owner;
   }
 
   Widget dialog() => kind == MailProviderKind.ews
@@ -663,6 +708,38 @@ void main() {
     MailProviderKind.gmail,
     MailProviderKind.graph,
   ]) {
+    for (final scope in ['account', 'profile']) {
+      testWidgets(
+        '${kind.name}: refuses an archive settings-only owner from another $scope before loading it',
+        (tester) async {
+          final harness = _Harness(kind);
+          final account = harness.identity.account;
+          final owner = _ArchiveOnlyStore(
+            MailAccountId(
+              scope == 'account' ? 'foreign-account' : account.value,
+              profile: scope == 'profile'
+                  ? MailProfileId(account.profile.value, hostId: 'foreign-host')
+                  : account.profile,
+            ),
+          );
+          harness.alternateOwner = owner;
+          await _show(tester, harness);
+          await _connect(tester, harness);
+          await _until(tester, () => owner.closes == 1);
+          expect(harness.storeOpens, 1);
+          expect(owner.loads, 0);
+          expect(owner.settingsReads, 0);
+          expect(owner.settingsWrites, 0);
+          expect(owner.closes, 1);
+          expect(harness.directory.remembers, 0);
+          expect(harness.providers.single.commands, isEmpty);
+          expect(harness.providers.single.submissions, isEmpty);
+          expect(find.text(_strings.mailDraftStorageFailed), findsOneWidget);
+          expect(tester.takeException(), isNull);
+        },
+      );
+    }
+
     for (final removed in [true, false]) {
       testWidgets(
         '${kind.name}: atomic selected refresh preserves a ${removed ? 'removed' : 'revised'} shortcut',
