@@ -1,0 +1,10 @@
+[
+  {
+    "testID": 388,
+    "error": "Expected: throws <Instance of 'UnsupportedError'>\n  Actual: <Closure: () => WordZoteroCitingSession>\n   Which: returned <Instance of 'WordZoteroCitingSession'>\n",
+    "stackTrace": "package:matcher                                  expect\ntest/word_zotero_note_insertion_test.dart 619:9  main.<fn>\n",
+    "isFailure": true,
+    "type": "error",
+    "time": 17904
+  }
+]

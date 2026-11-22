@@ -1,0 +1,13 @@
+{
+  "started_at_utc": "2026-11-22T06:17:59.155340+00:00",
+  "baseline": "a5b4eb7d329b0700768b1fc72bb63cf58a9f5cd6",
+  "expected_head": "6ba219a03a9933eded77980f9d7cdbd118183ee1",
+  "analysis_path_count": 58,
+  "working_directory": "/workspace/scratch/fbb55a1db052/quds_office_suite",
+  "environment_setup": "source /workspace/scratch/fbb55a1db052/toolchains/env.sh",
+  "source_snapshot_scope": "All tracked Dart files and pubspec/lock/analysis/melos configuration outside docs/validation.",
+  "dependency_snapshot_scope": "All tracked pubspec/lock/analysis/melos configuration outside docs/validation plus every workspace .dart_tool/package_config.json and package_graph.json.",
+  "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "dart_executable": "/workspace/scratch/fbb55a1db052/toolchains/bin/dart",
+  "source_mutations_permitted": false
+}

@@ -1,0 +1,214 @@
+{
+  "captured_utc": "2026-11-22T06:34:05.059Z",
+  "qualified_source": "918e7dd12e66b79e75082a41c250887a92db0d4e",
+  "work_branch_parent": "762acfabdf32624154bc27c311b774e17d8ea243",
+  "latest_main_parent": "ec09fdccf95eb3072b4cfe4da3608f8d9b13eb75",
+  "merged_incoming_prs": [
+    362,
+    363
+  ],
+  "open_pull_requests": [],
+  "branch_snapshot": [
+    {
+      "name": "codex/mail-durable-mutations-20261122",
+      "sha": "afdcb327c650383e269a3d32f7251f68a9d766c6",
+      "contained_by_merge_parents": true
+    },
+    {
+      "name": "codex/word-vba-authoring-20261121",
+      "sha": "cf06b018ec125ce3b5abfda41a7fbbdcf7d30a47",
+      "contained_by_merge_parents": true
+    },
+    {
+      "name": "codex/word-vba-cell-formatting-20261122",
+      "sha": "49f43824196c4d373f991e442fac2e73e68c5f9f",
+      "contained_by_merge_parents": true
+    },
+    {
+      "name": "codex/word-vba-cell-text-20261122",
+      "sha": "5f6e8686f1d6ddc1f3e523238808b78ccccc5b51",
+      "contained_by_merge_parents": true
+    },
+    {
+      "name": "codex/word-vba-comparison-colors-20261121",
+      "sha": "e3c4550b34a9a07de2a97b84b67ab6aecaa5a377",
+      "contained_by_merge_parents": true
+    },
+    {
+      "name": "codex/word-vba-compatibility-20261121",
+      "sha": "3058d36c5354d46bde418555d59282116cce1e26",
+      "contained_by_merge_parents": true
+    },
+    {
+      "name": "codex/word-vba-compatibility-20261122",
+      "sha": "934c33a57f3bed934df59a4e925ffc35fe406ee2",
+      "contained_by_merge_parents": true
+    },
+    {
+      "name": "codex/zotero-dispatch-recovery-20261121",
+      "sha": "32ef843db3a8192fe0add085e1ee173e18f4d462",
+      "contained_by_merge_parents": true
+    },
+    {
+      "name": "codex/zotero-field-context-20261122",
+      "sha": "00ba542dc5b492040508a8137a80adbc9b13553d",
+      "contained_by_merge_parents": true
+    },
+    {
+      "name": "codex/zotero-field-recovery-20261122",
+      "sha": "762acfabdf32624154bc27c311b774e17d8ea243",
+      "contained_by_merge_parents": true
+    },
+    {
+      "name": "codex/zotero-footnote-separators-20261121",
+      "sha": "a70c0e7af251d737dc7639f44a48777bbea1bf51",
+      "contained_by_merge_parents": true
+    },
+    {
+      "name": "codex/zotero-host-ownership-20261121",
+      "sha": "05cb866e6e5aaee95dae8b03da2892fcf633a84b",
+      "contained_by_merge_parents": true
+    },
+    {
+      "name": "codex/zotero-main-qualification-20261121",
+      "sha": "e2a1ed6073556d24194004221c545166b17c2d4e",
+      "contained_by_merge_parents": true
+    },
+    {
+      "name": "codex/zotero-note-layout-20261121",
+      "sha": "2089e1e35a8ba81ea7f0a077b348f93ca70953c8",
+      "contained_by_merge_parents": true
+    },
+    {
+      "name": "codex/zotero-odt-roundtrip-20261121",
+      "sha": "05072dc2d59d0fa4ea97de4d6a842700ef333fab",
+      "contained_by_merge_parents": true
+    },
+    {
+      "name": "codex/zotero-parity-20261122",
+      "sha": "da36652cf1d2296b59285788035555d512b9fa31",
+      "contained_by_merge_parents": true
+    },
+    {
+      "name": "codex/zotero-select-navigation-20261122",
+      "sha": "8c1b8da71bb910d4025aa179dc56290cf1a8e72a",
+      "contained_by_merge_parents": true
+    },
+    {
+      "name": "codex/zotero-shortcut-host-recovery-20261121",
+      "sha": "2168011b6104f680100b87404bc1bd409f724939",
+      "contained_by_merge_parents": true
+    },
+    {
+      "name": "codex/zotero-source-continuity-20261121-2135",
+      "sha": "c4c16d91d62ded0c341bee95e98de894de70483f",
+      "contained_by_merge_parents": true
+    },
+    {
+      "name": "main",
+      "sha": "ec09fdccf95eb3072b4cfe4da3608f8d9b13eb75",
+      "contained_by_merge_parents": true
+    },
+    {
+      "name": "work/mail-folder-scoped-search-20261122",
+      "sha": "ff30d1064a052abbfbcdc99745ff66f8bc980aea",
+      "contained_by_merge_parents": true
+    },
+    {
+      "name": "work/mail-folder-search-20261122",
+      "sha": "24e4b5d8a2a4e3c996e15013c5324a534c2e444f",
+      "contained_by_merge_parents": true
+    },
+    {
+      "name": "work/mail-keyboard-triage-20261121",
+      "sha": "08d034d876073e2afc881dbfc11ba791acde3d67",
+      "contained_by_merge_parents": true
+    },
+    {
+      "name": "work/mail-live-search-20261121",
+      "sha": "c3d55be30d91694b1a427d261cddbe47b1dd5eec",
+      "contained_by_merge_parents": true
+    },
+    {
+      "name": "work/mail-parity-20261122-next",
+      "sha": "a7006171630915bbf91b6ce2ab7c4699bb79f69b",
+      "contained_by_merge_parents": true
+    },
+    {
+      "name": "work/mail-range-selection-tests-20261121",
+      "sha": "5c7a385c5de40394d9eed736c5a2d975535c3df3",
+      "contained_by_merge_parents": true
+    },
+    {
+      "name": "work/mail-sync-address-search-20261121",
+      "sha": "33d8f956ec2ed1dfd748e1d7ccbc5add053ff565",
+      "contained_by_merge_parents": true
+    }
+  ],
+  "main_changes_since_qualified_source": [
+    "docs/validation/mail-durable-mutations-20261122/README.md",
+    "docs/validation/mail-durable-mutations-20261122/core-store-receipt.json",
+    "docs/validation/mail-durable-mutations-20261122/incoming-office-receipt.json",
+    "docs/validation/mail-durable-mutations-20261122/local-evidence.tar.gz",
+    "docs/validation/mail-durable-mutations-20261122/node-receipt.json",
+    "docs/validation/mail-durable-mutations-20261122/qualification.json",
+    "docs/validation/mail-durable-mutations-20261122/qualified-source-sha256.json",
+    "docs/validation/mail-durable-mutations-20261122/remote-intake.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/README.md",
+    "docs/validation/word-vba-cell-paragraphs-20261122/acceptance-artifacts-sha256.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/acceptance-summary.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/corpus-compile-js.stderr.log",
+    "docs/validation/word-vba-cell-paragraphs-20261122/corpus-compile-js.stdout.log",
+    "docs/validation/word-vba-cell-paragraphs-20261122/corpus-js.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/corpus-js.stderr.log",
+    "docs/validation/word-vba-cell-paragraphs-20261122/corpus-summary.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/corpus-vm.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/corpus-vm.stderr.log",
+    "docs/validation/word-vba-cell-paragraphs-20261122/deadline-isolation/artifacts-sha256.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/deadline-isolation/command.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/deadline-isolation/source-manifest-after.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/deadline-isolation/source-manifest-before.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/deadline-isolation/stderr.log",
+    "docs/validation/word-vba-cell-paragraphs-20261122/deadline-isolation/stdout.jsonl.gz",
+    "docs/validation/word-vba-cell-paragraphs-20261122/deadline-isolation/summary.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/failure-resolutions.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/remote-intake.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/setup-attempt/artifacts-sha256.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/setup-attempt/attempt-notes.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/setup-attempt/gate-summary.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/setup-attempt/loaded-suites.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/setup-attempt/runtime.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/setup-attempt/source-manifest-after.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/setup-attempt/source-manifest-before.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/setup-attempt/suites.txt",
+    "docs/validation/word-vba-cell-paragraphs-20261122/setup-attempt/test-command.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/setup-attempt/test-errors.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/setup-attempt/tests-summary.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/setup-attempt/tests.stderr.log",
+    "docs/validation/word-vba-cell-paragraphs-20261122/setup-attempt/tests.stdout.jsonl.gz",
+    "docs/validation/word-vba-cell-paragraphs-20261122/source-manifest-final.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/supplemental-sequential/artifacts-sha256.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/supplemental-sequential/interruption.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/supplemental-sequential/runtime.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/supplemental-sequential/source-manifest-after.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/supplemental-sequential/source-manifest-before.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/supplemental-sequential/suites.txt",
+    "docs/validation/word-vba-cell-paragraphs-20261122/supplemental-sequential/test-command.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/supplemental-sequential/tests-summary.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/supplemental-sequential/tests.stderr.log",
+    "docs/validation/word-vba-cell-paragraphs-20261122/supplemental-sequential/tests.stdout.interrupted.jsonl.gz.partial",
+    "docs/validation/word-vba-cell-paragraphs-20261122/supplemental-sequential/tests.stdout.jsonl.gz",
+    "docs/validation/zotero-field-recovery-20261122/README.md",
+    "docs/validation/zotero-field-recovery-20261122/intake.json"
+  ],
+  "main_delta_documentation_only": true,
+  "work_checkpoint_delta_documentation_and_changelogs_only": true,
+  "test_source_inputs_unchanged": true,
+  "conflict_resolution": {
+    "path": "docs/validation/zotero-field-recovery-20261122/README.md",
+    "incoming_difference": "Removal of one terminal empty line from the preliminary README.",
+    "resolution": "Keep the complete accepted qualification report and append this final reconciliation record.",
+    "initial_intake": "Preserve the incoming terminal-empty-line cleanup in intake.json."
+  },
+  "method": "Two-parent merge preserving the qualified checkpoint and latest main; expected-head non-force remote update. No CI query or wait."
+}

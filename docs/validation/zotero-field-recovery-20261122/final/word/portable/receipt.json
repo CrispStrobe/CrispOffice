@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "gate": "word-portable",
+  "head_before": "6ba219a03a9933eded77980f9d7cdbd118183ee1",
+  "workflow_path": ".github/workflows/office-macros.yml",
+  "workflow_revision": "45a1c0846f3fb78a203f2967e5b80a79fdca2ca9",
+  "workflow_blob": "12d9faaed8013e3dba36c43282da326165aa70c8",
+  "workflow_sha256": "a7b965464b9d7db96a53aecdb7deb3990f0ade6c43bd5474bdb7cc63bd3084d0",
+  "command_scope": "Only the newly added cell-paragraph BAS smoke route and word_cell_paragraphs_v1 conformance loop member; every VM, JS, Node and comparison command is copied from workflow revision 45a1c0846f3fb78a203f2967e5b80a79fdca2ca9. Product source under test remains 6ba219a03a9933eded77980f9d7cdbd118183ee1. The incoming Word delta 708bf4a6..45a1c084 changes docs, validation and the smoke comparison, with no production/test changes.",
+  "started_utc": "2026-11-22T06:18:08.557697+00:00",
+  "environment_script_sha256": "2728b014890d467a20680a9d0d6b9ce2509c54b4bdf16436e58f347e1f00d88a",
+  "runtime": {
+    "frameworkVersion": "3.47.8",
+    "channel": "stable",
+    "repositoryUrl": "https://github.com/flutter/flutter.git",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineBuildDate": "2026-10-22 20:34:48.330",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "flutterVersion": "3.47.8",
+    "flutterRoot": "/workspace/scratch/fbb55a1db052/toolchains/flutter"
+  },
+  "node_version": "v24.22.3",
+  "runner_sha256": "657bb52588e0825058735ee3437bd32ee0220a49fd259369105651cca8cd5afe",
+  "runs": [
+    {
+      "name": "smoke",
+      "argv": [
+        "bash",
+        "/workspace/scratch/fbb55a1db052/quds_office_suite/docs/validation/zotero-field-recovery-20261122/final/word/portable/smoke-commands.sh"
+      ],
+      "cwd": "/workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_engine",
+      "script_sha256": "5ef7d8a180bfbafa1a98f4e10653f77dfb7083afa0e517c48d5a6b380bfcd6a0",
+      "started_utc": "2026-11-22T06:18:08.675557+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 39.607,
+      "finished_utc": "2026-11-22T06:18:48.282792+00:00",
+      "stdout": {
+        "raw_bytes": 114,
+        "raw_sha256": "0a07d4933f9e35555bcf0632663c052421f05513aa6bcfd4f85ee5553aed1b63",
+        "gzip_sha256": "b9e01d11954997ce9c009076da93973623e128304b6c795284d858352cfe7979"
+      },
+      "stderr": {
+        "raw_bytes": 0,
+        "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "gzip_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+      }
+    },
+    {
+      "name": "conformance",
+      "argv": [
+        "bash",
+        "/workspace/scratch/fbb55a1db052/quds_office_suite/docs/validation/zotero-field-recovery-20261122/final/word/portable/conformance-commands.sh"
+      ],
+      "cwd": "/workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_engine",
+      "script_sha256": "d632db9dbc09789712c425c7147284cd33f0b8aa94f1528b2a84e06c8494d9f3",
+      "started_utc": "2026-11-22T06:18:48.284512+00:00",
+      "exit_code": 0,
+      "elapsed_seconds": 26.261,
+      "finished_utc": "2026-11-22T06:19:14.545883+00:00",
+      "stdout": {
+        "raw_bytes": 112,
+        "raw_sha256": "5a3c092552986fd0b250d2ac422f7ec943f305dc1de87f1ab0cf9c24275ab7e5",
+        "gzip_sha256": "5b0be7a81b744bd46f41317f57daace7eab1dddb6408fcd3da7c1544a7005173"
+      },
+      "stderr": {
+        "raw_bytes": 0,
+        "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "gzip_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+      }
+    }
+  ],
+  "status": "passed",
+  "conformance_fixture_cases": 32,
+  "outputs": {
+    "word-cell-paragraphs": {
+      "byte_identical": false,
+      "parsed_json_equal": true,
+      "vm_sha256": "f54e3399b472d84f71307393df512a645e9fe05460402c2e4d746351df16a537",
+      "js_sha256": "e60104f4e03421bd2aee94fcf789c8ea4b25b08d9aa6b0d6e9b8f294c68a0f77",
+      "bytes": 956,
+      "json_keys": [
+        "operations",
+        "revision",
+        "recordedSteps",
+        "additionalReopens",
+        "untouchedLayoutAndParts",
+        "opaqueVbaPreserved",
+        "state"
+      ]
+    },
+    "word_cell_paragraphs_v1": {
+      "byte_identical": true,
+      "parsed_json_equal": true,
+      "vm_sha256": "fda0c564cf9461dab37906b8e8d80788b9719b5e9b9eebd06271d37623bfd58c",
+      "js_sha256": "fda0c564cf9461dab37906b8e8d80788b9719b5e9b9eebd06271d37623bfd58c",
+      "bytes": 8557,
+      "json_keys": [
+        "caseCount",
+        "cases",
+        "dialect",
+        "schemaVersion",
+        "suite"
+      ]
+    }
+  },
+  "source_changes": [],
+  "head_after": "6ba219a03a9933eded77980f9d7cdbd118183ee1",
+  "finished_utc": "2026-11-22T06:19:14.635409+00:00"
+}

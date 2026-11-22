@@ -1,0 +1,15 @@
+[
+  "M\tpackages/quds_mail_ui/test/bulk_message_list_test.dart",
+  "M\tpackages/quds_mail_ui/test/message_list_bulk_test.dart",
+  "M\tpackages/quds_office_editor/example/lib/studio_mail_ews.dart",
+  "M\tpackages/quds_office_editor/example/lib/studio_mail_native.dart",
+  "M\tpackages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart",
+  "M\tpackages/quds_office_editor/example/test/studio_mail_bulk_visual_test.dart",
+  "M\tpackages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+  "M\tpackages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+  "M\tpackages/quds_office_editor/example/test/studio_mail_flag_journal_test.dart",
+  "M\tpackages/quds_office_editor/example/test/studio_mail_journal_dialog_test.dart",
+  "M\tpackages/quds_office_editor/example/test/studio_mail_journal_host_test.dart",
+  "M\tpackages/quds_office_editor/example/test/studio_mail_workspace_test.dart",
+  "A\tpackages/quds_office_editor/example/test/support/mail_membership_host_cases.dart"
+]

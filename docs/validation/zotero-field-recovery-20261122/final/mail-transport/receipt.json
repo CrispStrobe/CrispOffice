@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "gate": "mail-transport",
+  "head_before": "6ba219a03a9933eded77980f9d7cdbd118183ee1",
+  "tree_before": "ebf0f4ee3c44c14f666b4057b53200c084a3dc02",
+  "started_utc": "2026-11-22T06:15:51.922315+00:00",
+  "argv": [
+    "/workspace/scratch/fbb55a1db052/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+    "test",
+    "--concurrency=4",
+    "--reporter=json",
+    "test/native_provider_test.dart",
+    "test/ews_provider_test.dart",
+    "test/cloud_provider_test.dart"
+  ],
+  "cwd": "/workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_transport",
+  "environment_script": "/workspace/scratch/fbb55a1db052/toolchains/env.sh",
+  "environment_script_sha256": "2728b014890d467a20680a9d0d6b9ce2509c54b4bdf16436e58f347e1f00d88a",
+  "runner_sha256": "b505a07031972ecae264fa0384d94c0f903ac0a238266c95fa86ec754cfdd81f",
+  "suite_count": 3,
+  "suites": [
+    "native_provider_test.dart",
+    "ews_provider_test.dart",
+    "cloud_provider_test.dart"
+  ],
+  "runtime": {
+    "frameworkVersion": "3.47.8",
+    "channel": "stable",
+    "repositoryUrl": "https://github.com/flutter/flutter.git",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineBuildDate": "2026-10-22 20:34:48.330",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "flutterVersion": "3.47.8",
+    "flutterRoot": "/workspace/scratch/fbb55a1db052/toolchains/flutter"
+  },
+  "dart_binary_sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+  "dependency_archive_receipt_sha256": "0e84bca6b67b267da3699af602ab2f826ebcfcf358ff5bebd970457bf6968931",
+  "status": "passed",
+  "exit_code": 0,
+  "elapsed_seconds": 34.35,
+  "finished_utc": "2026-11-22T06:16:26.601621+00:00",
+  "source_changes": [],
+  "dependency_changes": [],
+  "head_after": "6ba219a03a9933eded77980f9d7cdbd118183ee1",
+  "tree_after": "ebf0f4ee3c44c14f666b4057b53200c084a3dc02",
+  "counts": {
+    "success": 250,
+    "failure": 0,
+    "error": 0,
+    "skipped": 0
+  },
+  "test_count": 250,
+  "loading_or_hidden_count": 3,
+  "done_events": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 9958
+    }
+  ],
+  "error_event_count": 0,
+  "unparsed_stdout_lines": 1,
+  "stdout.jsonl.gz": {
+    "sha256": "76f32e5e95dba7057e0920a56f2aefc34791382dd15616759ab4d2a6c0c5e334",
+    "raw_sha256": "b41b12f439ec2050f2e0ba8efaebbe50840b062d40f7d2089b27535c9d9392e6",
+    "raw_bytes": 116678,
+    "compressed_bytes": 10605
+  },
+  "stderr.log.gz": {
+    "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_bytes": 0,
+    "compressed_bytes": 20
+  }
+}

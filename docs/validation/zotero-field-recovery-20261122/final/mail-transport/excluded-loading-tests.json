@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "suite": "test/native_provider_test.dart",
+    "name": "loading test/native_provider_test.dart",
+    "result": "success",
+    "skipped": false,
+    "hidden": true,
+    "line": null,
+    "column": null,
+    "url": null
+  },
+  {
+    "id": 3,
+    "suite": "test/ews_provider_test.dart",
+    "name": "loading test/ews_provider_test.dart",
+    "result": "success",
+    "skipped": false,
+    "hidden": true,
+    "line": null,
+    "column": null,
+    "url": null
+  },
+  {
+    "id": 5,
+    "suite": "test/cloud_provider_test.dart",
+    "name": "loading test/cloud_provider_test.dart",
+    "result": "success",
+    "skipped": false,
+    "hidden": true,
+    "line": null,
+    "column": null,
+    "url": null
+  }
+]

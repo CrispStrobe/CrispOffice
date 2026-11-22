@@ -1,0 +1,2784 @@
+[
+  {
+    "test": {
+      "id": 13,
+      "name": "remote image candidate aliases agree by ordered URI values",
+      "suiteID": 4,
+      "groupIDs": [
+        12
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 23,
+      "column": 3,
+      "url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/bulk_api_aliases_test.dart"
+    },
+    "result": {
+      "testID": 13,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 10671
+    }
+  },
+  {
+    "test": {
+      "id": 14,
+      "name": "remote image alias useUris=true retains a defensive copy",
+      "suiteID": 4,
+      "groupIDs": [
+        12
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 46,
+      "column": 5,
+      "url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/bulk_api_aliases_test.dart"
+    },
+    "result": {
+      "testID": 14,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 10677
+    }
+  },
+  {
+    "test": {
+      "id": 15,
+      "name": "remote image alias useUris=false retains a defensive copy",
+      "suiteID": 4,
+      "groupIDs": [
+        12
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 46,
+      "column": 5,
+      "url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/bulk_api_aliases_test.dart"
+    },
+    "result": {
+      "testID": 15,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 10683
+    }
+  },
+  {
+    "test": {
+      "id": 16,
+      "name": "published selection and enabled spellings expose one value",
+      "suiteID": 4,
+      "groupIDs": [
+        12
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 65,
+      "column": 3,
+      "url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/bulk_api_aliases_test.dart"
+    },
+    "result": {
+      "testID": 16,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 10691
+    }
+  },
+  {
+    "test": {
+      "id": 17,
+      "name": "contradictory aliases fail before constructing a selection",
+      "suiteID": 4,
+      "groupIDs": [
+        12
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 80,
+      "column": 3,
+      "url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/bulk_api_aliases_test.dart"
+    },
+    "result": {
+      "testID": 17,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 10697
+    }
+  },
+  {
+    "test": {
+      "id": 9,
+      "name": "checkbox selection never opens a message and freezes exact IDs",
+      "suiteID": 0,
+      "groupIDs": [
+        8
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 141,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/bulk_message_list_test.dart"
+    },
+    "result": {
+      "testID": 9,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 11090
+    }
+  },
+  {
+    "test": {
+      "id": 21,
+      "name": "row collection is immutable and identities cannot alias",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 133,
+      "column": 3,
+      "url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 21,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 11166
+    }
+  },
+  {
+    "test": {
+      "id": 19,
+      "name": "explicit markRead requests are not inferred toggles",
+      "suiteID": 0,
+      "groupIDs": [
+        8
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 166,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/bulk_message_list_test.dart"
+    },
+    "result": {
+      "testID": 19,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 11449
+    }
+  },
+  {
+    "test": {
+      "id": 11,
+      "name": "cached hosts have no mutable bulk controls",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 131,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 11,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 11610
+    }
+  },
+  {
+    "test": {
+      "id": 23,
+      "name": "explicit markUnread requests are not inferred toggles",
+      "suiteID": 0,
+      "groupIDs": [
+        8
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 166,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/bulk_message_list_test.dart"
+    },
+    "result": {
+      "testID": 23,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 11716
+    }
+  },
+  {
+    "test": {
+      "id": 25,
+      "name": "explicit flag requests are not inferred toggles",
+      "suiteID": 0,
+      "groupIDs": [
+        8
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 166,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/bulk_message_list_test.dart"
+    },
+    "result": {
+      "testID": 25,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 11979
+    }
+  },
+  {
+    "test": {
+      "id": 18,
+      "name": "visible label alias supplies the rendered select-shown button",
+      "suiteID": 4,
+      "groupIDs": [
+        12
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 103,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/bulk_api_aliases_test.dart"
+    },
+    "result": {
+      "testID": 18,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 12185
+    }
+  },
+  {
+    "test": {
+      "id": 26,
+      "name": "explicit unflag requests are not inferred toggles",
+      "suiteID": 0,
+      "groupIDs": [
+        8
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 166,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/bulk_message_list_test.dart"
+    },
+    "result": {
+      "testID": 26,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 12284
+    }
+  },
+  {
+    "test": {
+      "id": 24,
+      "name": "checking rows and selecting visible never opens or loads mail",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 139,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 24,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 12298
+    }
+  },
+  {
+    "test": {
+      "id": 22,
+      "name": "shows honest loaded scope without opening or fetching",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 151,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 22,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 12726
+    }
+  },
+  {
+    "test": {
+      "id": 27,
+      "name": "explicit move requests are not inferred toggles",
+      "suiteID": 0,
+      "groupIDs": [
+        8
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 166,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/bulk_message_list_test.dart"
+    },
+    "result": {
+      "testID": 27,
+      "result": "error",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 13011
+    }
+  },
+  {
+    "test": {
+      "id": 29,
+      "name": "a fully loaded folder hides the loaded-scope line",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 170,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 29,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 13184
+    }
+  },
+  {
+    "test": {
+      "id": 28,
+      "name": "MailBulkFlagAction.markRead freezes visible order and clears before callback",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 166,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 28,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 13251
+    }
+  },
+  {
+    "test": {
+      "id": 31,
+      "name": "search matches subject and sender without network work",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 185,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 31,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 13622
+    }
+  },
+  {
+    "test": {
+      "id": 30,
+      "name": "explicit delete requests are not inferred toggles",
+      "suiteID": 0,
+      "groupIDs": [
+        8
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 166,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/bulk_message_list_test.dart"
+    },
+    "result": {
+      "testID": 30,
+      "result": "error",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 13949
+    }
+  },
+  {
+    "test": {
+      "id": 33,
+      "name": "unread and flagged filters intersect and exclude unknown flags",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 220,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 33,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 14028
+    }
+  },
+  {
+    "test": {
+      "id": 32,
+      "name": "MailBulkFlagAction.markUnread freezes visible order and clears before callback",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 166,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 32,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 14065
+    }
+  },
+  {
+    "test": {
+      "id": 35,
+      "name": "structured header terms are conjunctive and use recipients",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 242,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 35,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 14253
+    }
+  },
+  {
+    "test": {
+      "id": 34,
+      "name": "Select shown respects filters and never adds hidden rows",
+      "suiteID": 0,
+      "groupIDs": [
+        8
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 183,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/bulk_message_list_test.dart"
+    },
+    "result": {
+      "testID": 34,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 14359
+    }
+  },
+  {
+    "test": {
+      "id": 37,
+      "name": "dates use timestamps rather than the localized display label",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 276,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 37,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 14415
+    }
+  },
+  {
+    "test": {
+      "id": 36,
+      "name": "MailBulkFlagAction.flag freezes visible order and clears before callback",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 166,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 36,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 14641
+    }
+  },
+  {
+    "test": {
+      "id": 39,
+      "name": "invalid query shows localized error, no rows, and explicit clear",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 309,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 39,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 14820
+    }
+  },
+  {
+    "test": {
+      "id": 38,
+      "name": "filters prune hidden selection and invalid queries clear it",
+      "suiteID": 0,
+      "groupIDs": [
+        8
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 199,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/bulk_message_list_test.dart"
+    },
+    "result": {
+      "testID": 38,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 14821
+    }
+  },
+  {
+    "test": {
+      "id": 41,
+      "name": "oversized search fails closed without discarding trailing predicates",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 368,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 41,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 15091
+    }
+  },
+  {
+    "test": {
+      "id": 42,
+      "name": "sorting preserves checkboxes and uses displayed selection order",
+      "suiteID": 0,
+      "groupIDs": [
+        8
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 227,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/bulk_message_list_test.dart"
+    },
+    "result": {
+      "testID": 42,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 15142
+    }
+  },
+  {
+    "test": {
+      "id": 40,
+      "name": "MailBulkFlagAction.unflag freezes visible order and clears before callback",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 166,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 40,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 15161
+    }
+  },
+  {
+    "test": {
+      "id": 43,
+      "name": "search preserves active IME text and composing ranges",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 411,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 43,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 15294
+    }
+  },
+  {
+    "test": {
+      "id": 44,
+      "name": "newly loaded rows stay unchecked and removed rows are pruned",
+      "suiteID": 0,
+      "groupIDs": [
+        8
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 244,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/bulk_message_list_test.dart"
+    },
+    "result": {
+      "testID": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 15432
+    }
+  },
+  {
+    "test": {
+      "id": 46,
+      "name": "stale row callbacks cannot open filtered or invalid-query rows",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 450,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 46,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 15512
+    }
+  },
+  {
+    "test": {
+      "id": 47,
+      "name": "keyboard selection stays separate from opening a body",
+      "suiteID": 0,
+      "groupIDs": [
+        8
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 258,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/bulk_message_list_test.dart"
+    },
+    "result": {
+      "testID": 47,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 15627
+    }
+  },
+  {
+    "test": {
+      "id": 48,
+      "name": "stale callbacks cannot cross mailbox scopes with overlapping ids",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 478,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 48,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 15678
+    }
+  },
+  {
+    "test": {
+      "id": 49,
+      "name": "A to B to A rejects old checkbox and action callbacks",
+      "suiteID": 0,
+      "groupIDs": [
+        8
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 280,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/bulk_message_list_test.dart"
+    },
+    "result": {
+      "testID": 49,
+      "result": "error",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 16187
+    }
+  },
+  {
+    "test": {
+      "id": 45,
+      "name": "MailBulkFlagAction.move freezes visible order and clears before callback",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 166,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 45,
+      "result": "error",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 16283
+    }
+  },
+  {
+    "test": {
+      "id": 50,
+      "name": "date sorting is stable and unknown dates always follow known dates",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 506,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 50,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 16296
+    }
+  },
+  {
+    "test": {
+      "id": 53,
+      "name": "sender and subject sorting preserve case-insensitive ties",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 571,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 53,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 16684
+    }
+  },
+  {
+    "test": {
+      "id": 51,
+      "name": "a popup opened for an older selection cannot command a new one",
+      "suiteID": 0,
+      "groupIDs": [
+        8
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 303,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/bulk_message_list_test.dart"
+    },
+    "result": {
+      "testID": 51,
+      "result": "error",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 16705
+    }
+  },
+  {
+    "test": {
+      "id": 54,
+      "name": "keyboard identity survives local sorting without activating a row",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 590,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 54,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 17054
+    }
+  },
+  {
+    "test": {
+      "id": 52,
+      "name": "MailBulkFlagAction.delete freezes visible order and clears before callback",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 166,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 52,
+      "result": "error",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 17068
+    }
+  },
+  {
+    "test": {
+      "id": 56,
+      "name": "scope change resets sort and clears a previous query error",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 607,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 56,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 17393
+    }
+  },
+  {
+    "test": {
+      "id": 55,
+      "name": "refresh invalidates selection but preserves search and sorting",
+      "suiteID": 0,
+      "groupIDs": [
+        8
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 321,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/bulk_message_list_test.dart"
+    },
+    "result": {
+      "testID": 55,
+      "result": "error",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 17419
+    }
+  },
+  {
+    "test": {
+      "id": 58,
+      "name": "no matches retains explicit pagination even with no visible rows",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 636,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 58,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 17609
+    }
+  },
+  {
+    "test": {
+      "id": 57,
+      "name": "filtering prunes hidden rows and never restores their checks",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 194,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 57,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 17716
+    }
+  },
+  {
+    "test": {
+      "id": 60,
+      "name": "empty and loading states remain distinct",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 656,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 60,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 17766
+    }
+  },
+  {
+    "test": {
+      "id": 59,
+      "name": "busy state blocks new work but keeps stop available",
+      "suiteID": 0,
+      "groupIDs": [
+        8
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 356,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/bulk_message_list_test.dart"
+    },
+    "result": {
+      "testID": 59,
+      "result": "error",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 17796
+    }
+  },
+  {
+    "test": {
+      "id": 62,
+      "name": "busy blocks opening and pagination while preserving local filters",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 666,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 62,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 18050
+    }
+  },
+  {
+    "test": {
+      "id": 64,
+      "name": "host row activation uses stable id and explicit selection",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 694,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 64,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 18156
+    }
+  },
+  {
+    "test": {
+      "id": 61,
+      "name": "unread filters prune unknown flags and invalid search clears all",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 213,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 61,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 18168
+    }
+  },
+  {
+    "test": {
+      "id": 65,
+      "name": "arrows Home and End move focus without opening messages",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 706,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 65,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 18380
+    }
+  },
+  {
+    "test": {
+      "id": 63,
+      "name": "an accepted menu callback cannot be replayed after completion",
+      "suiteID": 0,
+      "groupIDs": [
+        8
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 374,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/bulk_message_list_test.dart"
+    },
+    "result": {
+      "testID": 63,
+      "result": "error",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 18414
+    }
+  },
+  {
+    "test": {
+      "id": 66,
+      "name": "removed rows are pruned and appended pages are not selected",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 229,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 66,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 18544
+    }
+  },
+  {
+    "test": {
+      "id": 67,
+      "name": "search owns editing keys and Enter does not open a row",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 727,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 67,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 18552
+    }
+  },
+  {
+    "test": {
+      "id": 68,
+      "name": "refresh-required disables changes and clears the old selection",
+      "suiteID": 0,
+      "groupIDs": [
+        8
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 391,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/bulk_message_list_test.dart"
+    },
+    "result": {
+      "testID": 68,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 18611
+    }
+  },
+  {
+    "test": {
+      "id": 70,
+      "name": "modifier navigation is not consumed as plain list movement",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 755,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 70,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 18649
+    }
+  },
+  {
+    "test": {
+      "id": 71,
+      "name": "read-only hosts expose no mutation selection or shortcuts",
+      "suiteID": 0,
+      "groupIDs": [
+        8
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 413,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/bulk_message_list_test.dart"
+    },
+    "result": {
+      "testID": 71,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 18687
+    }
+  },
+  {
+    "test": {
+      "id": 72,
+      "name": "keyboard cursor follows stable identity through a row reorder",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 767,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 72,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 18813
+    }
+  },
+  {
+    "test": {
+      "id": 69,
+      "name": "scope resets checks and rejects overlapping stale rows",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 250,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 69,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 18843
+    }
+  },
+  {
+    "test": {
+      "id": 74,
+      "name": "removed keyboard target falls back without opening stale data",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 782,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 74,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 19074
+    }
+  },
+  {
+    "test": {
+      "id": 75,
+      "name": "revision resets checks and rejects overlapping stale rows",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 250,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 75,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 19156
+    }
+  },
+  {
+    "test": {
+      "id": 73,
+      "name": "disposed callbacks cannot dispatch commands",
+      "suiteID": 0,
+      "groupIDs": [
+        8
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 425,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/bulk_message_list_test.dart"
+    },
+    "result": {
+      "testID": 73,
+      "result": "error",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 19165
+    }
+  },
+  {
+    "test": {
+      "id": 76,
+      "name": "new pages retain the current query and keyboard identity",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 798,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 76,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 19240
+    }
+  },
+  {
+    "test": {
+      "id": 79,
+      "name": "account or mailbox scope change resets query filters and focus",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 818,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 79,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 19449
+    }
+  },
+  {
+    "test": {
+      "id": 78,
+      "name": "compact enlarged selection controls remain usable TextDirection.rtl",
+      "suiteID": 0,
+      "groupIDs": [
+        8
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 439,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/bulk_message_list_test.dart"
+    },
+    "result": {
+      "testID": 78,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 19555
+    }
+  },
+  {
+    "test": {
+      "id": 77,
+      "name": "refresh revision clears checks while preserving query and sort",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 281,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 77,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 19561
+    }
+  },
+  {
+    "test": {
+      "id": 80,
+      "name": "End reveals the final virtualized row and Enter opens that id",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 865,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 80,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 19749
+    }
+  },
+  {
+    "test": {
+      "id": 82,
+      "name": "pending menu cannot survive a filter change",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 306,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 82,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 19805
+    }
+  },
+  {
+    "test": {
+      "id": 83,
+      "name": "host pagination key and limit explanation remain available",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 891,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 83,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 19858
+    }
+  },
+  {
+    "test": {
+      "id": 81,
+      "name": "compact enlarged selection controls remain usable TextDirection.ltr",
+      "suiteID": 0,
+      "groupIDs": [
+        8
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 439,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/bulk_message_list_test.dart"
+    },
+    "result": {
+      "testID": 81,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 19957
+    }
+  },
+  {
+    "test": {
+      "id": 84,
+      "name": "pending menu cannot survive a selection change",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 306,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 84,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 20026
+    }
+  },
+  {
+    "test": {
+      "id": 85,
+      "name": "RTL help preserves prose and displays exact query examples LTR",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 913,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 85,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 20049
+    }
+  },
+  {
+    "test": {
+      "id": 87,
+      "name": "pending menu cannot survive a sort change",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 306,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 87,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 20282
+    }
+  },
+  {
+    "test": {
+      "id": 89,
+      "name": "pending menu cannot survive a host change",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 306,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 89,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 20462
+    }
+  },
+  {
+    "test": {
+      "id": 88,
+      "name": "compact de header scrolls while rows remain usable",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 1014,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 88,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 20498
+    }
+  },
+  {
+    "test": {
+      "id": 86,
+      "name": "Boolean edits prune checks and reject an earlier bulk menu",
+      "suiteID": 0,
+      "groupIDs": [
+        8
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 465,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/bulk_message_list_test.dart"
+    },
+    "result": {
+      "testID": 86,
+      "result": "error",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 20695
+    }
+  },
+  {
+    "test": {
+      "id": 90,
+      "name": "actual open popup rejects a scope change",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 332,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 90,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 20982
+    }
+  },
+  {
+    "test": {
+      "id": 91,
+      "name": "compact ar header scrolls while rows remain usable",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 1014,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 91,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 21010
+    }
+  },
+  {
+    "test": {
+      "id": 92,
+      "name": "actual open popup rejects a filter change",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 332,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 92,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 21434
+    }
+  },
+  {
+    "test": {
+      "id": 93,
+      "name": "narrow TextDirection.rtl and enlarged text stay within the list",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 1090,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 93,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 21548
+    }
+  },
+  {
+    "test": {
+      "id": 94,
+      "name": "actual open popup rejects a selection change",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 332,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 94,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 21662
+    }
+  },
+  {
+    "test": {
+      "id": 96,
+      "name": "actual open popup rejects a sort change",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 332,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 96,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 21923
+    }
+  },
+  {
+    "test": {
+      "id": 95,
+      "name": "narrow TextDirection.ltr and enlarged text stay within the list",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 1090,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 95,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 21956
+    }
+  },
+  {
+    "test": {
+      "id": 97,
+      "name": "actual open popup rejects a host change",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 332,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 97,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 22136
+    }
+  },
+  {
+    "test": {
+      "id": 98,
+      "name": "Boolean groups combine with chips without provider work",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 1140,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 98,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 22162
+    }
+  },
+  {
+    "test": {
+      "id": 99,
+      "name": "actual open popup is inert after host refresh",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 366,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 99,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 22415
+    }
+  },
+  {
+    "test": {
+      "id": 101,
+      "name": "stale select-visible and clear callbacks cannot change selection",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 380,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 101,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 22561
+    }
+  },
+  {
+    "test": {
+      "id": 100,
+      "name": "malformed Boolean expressions fail closed and recover",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 1178,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 100,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 22614
+    }
+  },
+  {
+    "test": {
+      "id": 102,
+      "name": "busy and refresh-required hosts reject all selection and actions",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 400,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 102,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 22739
+    }
+  },
+  {
+    "test": {
+      "id": 103,
+      "name": "changing account clears a Boolean query and stale row callback",
+      "suiteID": 6,
+      "groupIDs": [
+        20
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 1221,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart"
+    },
+    "result": {
+      "testID": 103,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 22767
+    }
+  },
+  {
+    "test": {
+      "id": 104,
+      "name": "LogicalKeyboardKey#d0ba2(keyId: \"0x200000100\", keyLabel: \"Control Left\", debugName: \"Control Left\")+A checks visible loaded rows; Enter still opens",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 447,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 104,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 22991
+    }
+  },
+  {
+    "test": {
+      "id": 105,
+      "name": "LogicalKeyboardKey#e3a44(keyId: \"0x200000106\", keyLabel: \"Meta Left\", debugName: \"Meta Left\")+A checks visible loaded rows; Enter still opens",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 447,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 105,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 23237
+    }
+  },
+  {
+    "test": {
+      "id": 106,
+      "name": "Escape clears checked rows without opening or changing mail",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 475,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 106,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 23495
+    }
+  },
+  {
+    "test": {
+      "id": 107,
+      "name": "Escape with no checked rows remains available to the host",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 496,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 107,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 23715
+    }
+  },
+  {
+    "test": {
+      "id": 108,
+      "name": "search editing keeps Ctrl+A and Space without checking mail",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 526,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 108,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 23843
+    }
+  },
+  {
+    "test": {
+      "id": 109,
+      "name": "disposed list ignores all captured bulk callbacks",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 545,
+      "root_column": 3,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 109,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 23963
+    }
+  },
+  {
+    "test": {
+      "id": 110,
+      "name": "compact de controls and results remain usable at 1.4x",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 616,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 110,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 24223
+    }
+  },
+  {
+    "test": {
+      "id": 111,
+      "name": "compact ar controls and results remain usable at 1.4x",
+      "suiteID": 2,
+      "groupIDs": [
+        10
+      ],
+      "metadata": {
+        "skip": false,
+        "skipReason": null
+      },
+      "line": 174,
+      "column": 5,
+      "url": "package:flutter_test/src/widget_tester.dart",
+      "root_line": 616,
+      "root_column": 5,
+      "root_url": "file:///workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart"
+    },
+    "result": {
+      "testID": 111,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 24466
+    }
+  }
+]

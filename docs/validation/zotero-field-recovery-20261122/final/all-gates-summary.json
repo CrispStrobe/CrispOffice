@@ -1,0 +1,63 @@
+{
+  "qualified_source": "918e7dd12e66b79e75082a41c250887a92db0d4e",
+  "total_distinct_cases": 3384,
+  "zotero_cases": 1007,
+  "zero_failures_errors_skips": true,
+  "unique_identity": "suite path plus full case name, excluding hidden/loading events",
+  "gates": [
+    {
+      "gate": "engine",
+      "cases": 620,
+      "source": "6ba219a03a9933eded77980f9d7cdbd118183ee1",
+      "raw_sha256": "221700b27539fe8beb9ebf1d271f95973a30befaa0d88199e8d1adf01b500af3"
+    },
+    {
+      "gate": "editor",
+      "cases": 347,
+      "source": "6ba219a03a9933eded77980f9d7cdbd118183ee1",
+      "raw_sha256": "80cb341fd4e19a09ea8f358cbd0d4cf34d34175a77f4d9d254f81ef2ed8a388c"
+    },
+    {
+      "gate": "studio",
+      "cases": 40,
+      "source": "918e7dd12e66b79e75082a41c250887a92db0d4e",
+      "raw_sha256": "5d5c5394406e35e0d462d2a9be233b777f8e76dd5c82fe1b6317c1dbae104780"
+    },
+    {
+      "gate": "word",
+      "cases": 397,
+      "source": "6ba219a03a9933eded77980f9d7cdbd118183ee1",
+      "raw_sha256": "060e26a6f834837810cbcf445c8e8b5bb784ecaec08a786e629e98cda8ac6c43"
+    },
+    {
+      "gate": "mail-core",
+      "cases": 115,
+      "source": "6ba219a03a9933eded77980f9d7cdbd118183ee1",
+      "raw_sha256": "38566415b783bf1acba15734948560861b5c6aba6a581423a939004acc83f591"
+    },
+    {
+      "gate": "mail-store",
+      "cases": 1010,
+      "source": "6ba219a03a9933eded77980f9d7cdbd118183ee1",
+      "raw_sha256": "3ef87987291663f37d1a09f181fcdceb994e16154e1926c148ae469fd6ece513"
+    },
+    {
+      "gate": "mail-transport",
+      "cases": 250,
+      "source": "6ba219a03a9933eded77980f9d7cdbd118183ee1",
+      "raw_sha256": "b41b12f439ec2050f2e0ba8efaebbe50840b062d40f7d2089b27535c9d9392e6"
+    },
+    {
+      "gate": "mail-ui",
+      "cases": 97,
+      "source": "918e7dd12e66b79e75082a41c250887a92db0d4e",
+      "raw_sha256": "bae07ad97c86649febc147c17a68f5e4df92573046504121932f304097a26e50"
+    },
+    {
+      "gate": "mail-studio",
+      "cases": 508,
+      "source": "918e7dd12e66b79e75082a41c250887a92db0d4e",
+      "raw_sha256": "be3f3d03ec17460973fd92ef6391828b21ba94fd32329aac119c56ee09642d02"
+    }
+  ]
+}
