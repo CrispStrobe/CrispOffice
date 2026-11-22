@@ -39,6 +39,17 @@ void _validate(String levels) => OdtReaderStyles(
   _definitions(_outline(levels)),
 ).validateHeadingConfiguration();
 
+String _textStyle(String name, String properties, {String parent = ''}) =>
+    '<style:style style:name="$name" style:family="text" '
+    '${parent.isEmpty ? '' : 'style:parent-style-name="$parent"'}>'
+    '<style:text-properties $properties/></style:style>';
+
+Object? _call(
+  WordZoteroCitingSession session,
+  String command, [
+  List<Object?> arguments = const [],
+]) => session.handle(command, ['odt-converter-refresh', ...arguments]);
+
 Uint8List _replaceStyles(Uint8List source, String from, String to) {
   final archive = ZipReader.fromBytes(source);
   final writer = ZipWriter();
@@ -58,6 +69,91 @@ Uint8List _replaceStyles(Uint8List source, String from, String to) {
 }
 
 void main() {
+  test(
+    'clear character shading retains explicit RGB and transparent resets',
+    () {
+      final styles = OdtReaderStyles(
+        _definitions(
+          _textStyle(
+                'Color',
+                'fo:background-color="#fae696" loext:char-shading-value="0"',
+              ) +
+              _textStyle('Inherited', 'fo:color="#123456"', parent: 'Color') +
+              _textStyle(
+                'Reset',
+                'fo:background-color="transparent" loext:char-shading-value="0"',
+                parent: 'Color',
+              ) +
+              _textStyle(
+                'Override',
+                'fo:background-color="#ccddee" loext:char-shading-value="0"',
+                parent: 'Color',
+              ),
+        ),
+      );
+      expect(
+        styles.runProperties('Color').nativeProperties().highlight,
+        'FAE696',
+      );
+      expect(
+        styles.runProperties('Inherited').nativeProperties().highlight,
+        'FAE696',
+      );
+      expect(
+        styles.runProperties('Reset').nativeProperties().highlight,
+        isNull,
+      );
+      expect(
+        styles.runProperties('Override').nativeProperties().highlight,
+        'CCDDEE',
+      );
+    },
+  );
+  for (final value in ['1', '14', '65535', '-1', '00', '0.0', 'clear', '']) {
+    test(
+      'refuses unrepresented or noncanonical character shading "$value"',
+      () {
+        final styles = OdtReaderStyles(
+          _definitions(
+            _textStyle(
+              'Pattern',
+              'fo:background-color="#fae696" loext:char-shading-value="$value"',
+            ),
+          ),
+        );
+        expect(() => styles.runProperties('Pattern'), throwsUnsupportedError);
+      },
+    );
+  }
+  for (final inherited in [false, true]) {
+    test(
+      'refuses shading-only compound brush reset (inherited=$inherited)',
+      () {
+        final styles = OdtReaderStyles(
+          _definitions(
+            _textStyle('Parent', 'fo:background-color="#fae696"') +
+                _textStyle(
+                  'Only',
+                  'loext:char-shading-value="0"',
+                  parent: inherited ? 'Parent' : '',
+                ),
+          ),
+        );
+        expect(() => styles.runProperties('Only'), throwsUnsupportedError);
+      },
+    );
+  }
+  test('refuses same-named shading in an unrelated namespace', () {
+    final styles = OdtReaderStyles(
+      _definitions(
+        _textStyle(
+          'Foreign',
+          'fo:background-color="#fae696" foreign:char-shading-value="0"',
+        ),
+      ),
+    );
+    expect(() => styles.runProperties('Foreign'), throwsUnsupportedError);
+  });
   test('accepts Writer unnumbered alignment over all ten outline levels', () {
     for (final template in [false, true]) {
       _validate(
@@ -192,6 +288,106 @@ void main() {
 
   for (final cycle in [1, 2]) {
     for (final kind in ['body', 'footnote', 'cell']) {
+      test(
+        'refreshes retained Writer ODT cycle $cycle $kind transactionally',
+        () async {
+          final source = File(
+            '$zoteroConverterFixtureRoot/odt-cycle-$cycle/$kind.odt',
+          ).readAsBytesSync();
+          final original = Uint8List.fromList(source);
+          var document = await OdtDocumentReader.readBytes(source);
+          final before = converterSnapshot(document, kind);
+          final preferences = WordZoteroDocumentData.read(document);
+          final originalFields = WordZotero.fields(document);
+          final items = originalFields
+              .map(
+                (field) =>
+                    field.citation!.items.map((item) => item.toJson()).toList(),
+              )
+              .toList();
+          final originalText = converterStory(
+            document,
+            kind,
+          ).map((p) => p.text.trim()).toList();
+          final session = WordZoteroCitingSession(
+            document: document,
+            documentId: 'odt-converter-refresh',
+            insertionParagraph: document.paragraphs.first,
+          );
+          final fields =
+              (_call(session, 'Document.getFields', ['Http']) as List<Object?>)
+                  .cast<Map<String, Object>>();
+          expect(fields, hasLength(2));
+          for (var i = 0; i < fields.length; i++) {
+            final updated = originalFields[i].citation!.withItems(
+              originalFields[i].citation!.items,
+              plainCitation: '(Updated ${i + 1})',
+              noteIndex: fields[i]['noteIndex'] as int,
+            );
+            _call(session, 'Field.setCode', [
+              fields[i]['id'],
+              'ITEM CSL_CITATION ${jsonEncode(updated.toJson())}',
+            ]);
+            _call(session, 'Field.setText', [
+              fields[i]['id'],
+              '<i>(Updated ${i + 1})</i>',
+              true,
+            ]);
+          }
+          expect(converterSnapshot(document, kind), before);
+          _call(session, 'Document.complete');
+          expect(converterSnapshot(document, kind), before);
+          session.apply();
+          for (var save = 0; save < 3; save++) {
+            final actualFields = WordZotero.fields(document);
+            expect(actualFields.map((f) => f.cachedText), [
+              '(Updated 1)',
+              '(Updated 2)',
+            ]);
+            expect(actualFields.map((f) => f.citation!.citationId), [
+              'FIRST1',
+              'SECOND2',
+            ]);
+            expect(
+              actualFields.map(
+                (f) => f.citation!.items.map((item) => item.toJson()).toList(),
+              ),
+              items,
+            );
+            expect(
+              actualFields.every(
+                (f) =>
+                    f.canEdit &&
+                    converterStory(document, kind).contains(f.paragraph),
+              ),
+              isTrue,
+            );
+            expect(WordFieldSpans.unbalanced(document), isEmpty);
+            expect(WordZoteroDocumentData.read(document), preferences);
+            expect(
+              converterStory(document, kind).map((p) => p.text.trim()),
+              originalText.map(
+                (text) => text
+                    .replaceFirst('(FIRST1)', '(Updated 1)')
+                    .replaceFirst('(SECOND2)', '(Updated 2)'),
+              ),
+            );
+            expect(
+              converterSnapshot(document, kind)['colors'],
+              before['colors'],
+            );
+            expect(converterSnapshot(document, kind)['empty'], before['empty']);
+            document = save.isEven
+                ? WordDeserializer().readBytes(
+                    WordSerializer().writeBytes(document),
+                  )
+                : await OdtDocumentReader.readBytes(
+                    OdtDocumentWriter.writeEditableZoteroBytes(document),
+                  );
+          }
+          expect(source, original);
+        },
+      );
       test(
         'reopens retained Writer ODT cycle $cycle $kind without semantic loss',
         () async {

@@ -1261,6 +1261,17 @@ final class OdtReaderStyles {
           : _color(background);
       result.explicitProperties.add('highlight');
     }
+    // Writer stores its shading pattern separately from the background.
+    // CharShadingValue 0 is CLEAR (no pattern), not a transparent background.
+    // Require the same declaration's color: Writer's compound brush property
+    // can otherwise reset an inherited background when only shading is set.
+    // Solid/patterned/unknown values require a richer native brush model.
+    final shading = take(_loext, 'char-shading-value');
+    if (shading != null && (shading != '0' || background == null)) {
+      throw UnsupportedError(
+        'ODT character shading requires a clear pattern with an explicit background.',
+      );
+    }
     final underline = take(_style, 'text-underline-style');
     final underlineType = take(_style, 'text-underline-type');
     final underlineWidth = take(_style, 'text-underline-width');
