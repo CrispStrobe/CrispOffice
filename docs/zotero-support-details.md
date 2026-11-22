@@ -139,7 +139,7 @@ The whole insertion, including new footnotes/endnotes, bibliography callbacks
 and document style preferences, is staged until completion and applied as one
 undoable operation. The active body or Notes caret finishes after the imported
 content. Surrounding
-prose and its formatting remain intact; headings and list items occupy their own
+prose and its formatting remain intact; headings, list items and block quotations occupy their own
 paragraphs. Undo restores the original selection, including its direction, and
 the previous numbering definitions; unrelated
 document parts and relationships remain intact after saving and undo/redo.
@@ -180,6 +180,39 @@ formatting are refused with an explanation before application. Ordered-list
 starting numbers must be integers from 1 to 999999. Malformed, missing, repeated
 or unconverted citation placeholders also refuse the whole
 result. Nothing is silently flattened to make these structures fit.
+
+### Block quotations in research notes
+
+Add Note and Add Annotation accept Zotero's block quotations, including nested
+quotations up to eight levels. Each level adds **18 pt of left indentation** to
+its native paragraphs. Paragraphs, authored empty paragraphs, headings, rich
+text, ordinary links, supported inline pictures and citation placeholders keep
+their content and order. Headings and lists may appear inside a quotation;
+list markers and continuation paragraphs retain their own additional indent.
+
+This is Quds' native quotation layout. Zotero exports the quote structure
+without its note editor's stylesheet, so the editor-only blue border and
+spacing are not reproduced. Arbitrary quote layout CSS, paragraph `dir` and
+`data-indent` attributes remain outside the accepted note-content contract.
+
+Quoted content can replace supported selections in body text, authored
+footnotes/endnotes or one existing table cell. A quotation inside an imported
+research table retains that cell as its owner, including merged cells.
+Surrounding prose remains outside the quotation with its original paragraph
+formatting. The entire insertion remains one undoable operation; cancellation,
+an incomplete citation conversion or a changed destination keeps the original
+document unchanged. Active fields and quote indentation persist through DOCX
+saving and reopening.
+
+Quotes must contain supported block children. Direct inline-only quote text,
+quotes nested inside list items, tables nested inside quotes and depth above
+eight are refused before publication. Otherwise empty notes remain refused;
+picture-only notes and empty tables retain their earlier support. Editable ODT quote exchange has separate bounded
+qualification; support for native quoted lists does not remove the existing
+ODT continued-list limitations. LibreOffice-saved quotations with distinct
+visited/unvisited text-link styles also remain refused by the native ODT reader.
+See the
+[implementation and validation record](validation/zotero-workflow-parity-20261122/README.md).
 
 ### Tables in notes and annotations
 

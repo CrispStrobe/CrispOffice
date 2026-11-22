@@ -216,6 +216,8 @@ extension StudioMailWorkspaceStrings on StudioStrings {
     markUnread: ewsMarkUnread,
     flag: _text('Flag', 'Kennzeichnen', 'وضع علامة'),
     unflag: _text('Remove flag', 'Kennzeichnung entfernen', 'إزالة العلامة'),
+    move: _text('Move…', 'Verschieben…', 'نقل…'),
+    delete: _text('Delete…', 'Löschen…', 'حذف…'),
     stopBulk: _text(
       'Stop after current message',
       'Nach aktueller Nachricht stoppen',

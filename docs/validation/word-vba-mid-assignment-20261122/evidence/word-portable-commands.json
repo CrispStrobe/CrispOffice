@@ -1,0 +1,246 @@
+{
+  "source_sha256": "1d967f5595c21253bd8963abfc24d689b44763d3c300517d5067647b7264878d",
+  "commands": [
+    {
+      "name": "mid-word-portable-vm",
+      "command": [
+        "/workspace/scratch/e436a4cfb2da/.runtime/dart-sdk/bin/dart",
+        "--packages=/workspace/scratch/e436a4cfb2da/quds_office_suite/.dart_tool/package_config.json",
+        "-DWORD_MID_ASSIGNMENT_BAS_BASE64=T3B0aW9uIEV4cGxpY2l0CgonIFByZXBhcmUgc291cmNlLWtub3duIGZpeGVkLXdpZHRoIGxhYmVscywgdGhlbiBmaWxsIGFuIGV4aXN0aW5nIDJ4MiB0YWJsZS4KJyBNaWQvTWlkJCBjaGFuZ2VzIGxvY2FsIHN0cmluZ3M7IGl0IG5ldmVyIHJlYWRzIHRleHQgZnJvbSB0aGUgZG9jdW1lbnQuCkZ1bmN0aW9uIFN0YXR1c0xhYmVsKEJ5VmFsIHRlbXBsYXRlIEFzIFN0cmluZywgQnlWYWwgZmlyc3RQYXJ0IEFzIFN0cmluZywgQnlWYWwgbGFzdFBhcnQgQXMgU3RyaW5nKSBBcyBTdHJpbmcKICAgIFN0YXR1c0xhYmVsID0gdGVtcGxhdGUKICAgIE1pZCQoU3RhdHVzTGFiZWwsIDEsIDQpID0gZmlyc3RQYXJ0CiAgICBNaWQoU3RhdHVzTGFiZWwsIDYsIDQpID0gbGFzdFBhcnQKRW5kIEZ1bmN0aW9uCgpTdWIgTWFpbigpCiAgICBEaW0gbGFiZWxzKDEgVG8gNCkgQXMgU3RyaW5nCiAgICBEaW0gc3RhdHVzVGVtcGxhdGUgQXMgU3RyaW5nLCBpIEFzIExvbmcKICAgIERpbSByZXBvcnQgQXMgVGFibGUsIHRhcmdldCBBcyBSYW5nZQoKICAgIGxhYmVscygxKSA9ICJJdGVtOiAtLS0tLS0iCiAgICBNaWQkKGxhYmVscygxKSwgNywgNikgPSAiV2lkZ2V0IgogICAgbGFiZWxzKDIpID0gIlN0YXRlOiAgICAgICAgIgogICAgTWlkKGxhYmVscygyKSwgOCwgNSkgPSAiUmVhZHkiCiAgICBsYWJlbHMoMykgPSAiQ29kZTogMDAwMCIKICAgIE1pZCQobGFiZWxzKDMpLCA3KSA9ICIwMDQyIgogICAgc3RhdHVzVGVtcGxhdGUgPSAiPz8/Py8/Pz8/IgogICAgbGFiZWxzKDQpID0gU3RhdHVzTGFiZWwodGVtcGxhdGU6PXN0YXR1c1RlbXBsYXRlLCBmaXJzdFBhcnQ6PSJPUEVOIiwgbGFzdFBhcnQ6PSJET05FIikKCiAgICBTZXQgcmVwb3J0ID0gQWN0aXZlRG9jdW1lbnQuVGFibGVzKEluZGV4Oj0xKQogICAgRm9yIGkgPSBMQm91bmQobGFiZWxzKSBUbyBVQm91bmQobGFiZWxzKQogICAgICAgIFNldCB0YXJnZXQgPSByZXBvcnQuQ2VsbChSb3c6PShpIC0gMSkgXCAyICsgMSwgQ29sdW1uOj0oaSAtIDEpIE1vZCAyICsgMSkuUmFuZ2UKICAgICAgICB0YXJnZXQuVGV4dCA9IGxhYmVscyhpKQogICAgICAgIHRhcmdldC5Gb250LkJvbGQgPSBpIDw9IDIKICAgIE5leHQgaQpFbmQgU3ViCg==",
+        "tool/macros/web_vba_word_mid_assignment_smoke.dart"
+      ],
+      "cwd": "/workspace/scratch/e436a4cfb2da/quds_office_suite/packages/quds_office_engine",
+      "exit_code": 0,
+      "seconds": 13.09,
+      "log": "/workspace/scratch/e436a4cfb2da/.runtime/logs/mid-word-portable-vm.log",
+      "log_sha256": "8992705db088006529449d199d4072312789751dea55864736e50bc6233d1ae5"
+    },
+    {
+      "name": "mid-word-portable-compile",
+      "command": [
+        "/workspace/scratch/e436a4cfb2da/.runtime/dart-sdk/bin/dart",
+        "compile",
+        "js",
+        "--packages=/workspace/scratch/e436a4cfb2da/quds_office_suite/.dart_tool/package_config.json",
+        "-DWORD_MID_ASSIGNMENT_BAS_BASE64=T3B0aW9uIEV4cGxpY2l0CgonIFByZXBhcmUgc291cmNlLWtub3duIGZpeGVkLXdpZHRoIGxhYmVscywgdGhlbiBmaWxsIGFuIGV4aXN0aW5nIDJ4MiB0YWJsZS4KJyBNaWQvTWlkJCBjaGFuZ2VzIGxvY2FsIHN0cmluZ3M7IGl0IG5ldmVyIHJlYWRzIHRleHQgZnJvbSB0aGUgZG9jdW1lbnQuCkZ1bmN0aW9uIFN0YXR1c0xhYmVsKEJ5VmFsIHRlbXBsYXRlIEFzIFN0cmluZywgQnlWYWwgZmlyc3RQYXJ0IEFzIFN0cmluZywgQnlWYWwgbGFzdFBhcnQgQXMgU3RyaW5nKSBBcyBTdHJpbmcKICAgIFN0YXR1c0xhYmVsID0gdGVtcGxhdGUKICAgIE1pZCQoU3RhdHVzTGFiZWwsIDEsIDQpID0gZmlyc3RQYXJ0CiAgICBNaWQoU3RhdHVzTGFiZWwsIDYsIDQpID0gbGFzdFBhcnQKRW5kIEZ1bmN0aW9uCgpTdWIgTWFpbigpCiAgICBEaW0gbGFiZWxzKDEgVG8gNCkgQXMgU3RyaW5nCiAgICBEaW0gc3RhdHVzVGVtcGxhdGUgQXMgU3RyaW5nLCBpIEFzIExvbmcKICAgIERpbSByZXBvcnQgQXMgVGFibGUsIHRhcmdldCBBcyBSYW5nZQoKICAgIGxhYmVscygxKSA9ICJJdGVtOiAtLS0tLS0iCiAgICBNaWQkKGxhYmVscygxKSwgNywgNikgPSAiV2lkZ2V0IgogICAgbGFiZWxzKDIpID0gIlN0YXRlOiAgICAgICAgIgogICAgTWlkKGxhYmVscygyKSwgOCwgNSkgPSAiUmVhZHkiCiAgICBsYWJlbHMoMykgPSAiQ29kZTogMDAwMCIKICAgIE1pZCQobGFiZWxzKDMpLCA3KSA9ICIwMDQyIgogICAgc3RhdHVzVGVtcGxhdGUgPSAiPz8/Py8/Pz8/IgogICAgbGFiZWxzKDQpID0gU3RhdHVzTGFiZWwodGVtcGxhdGU6PXN0YXR1c1RlbXBsYXRlLCBmaXJzdFBhcnQ6PSJPUEVOIiwgbGFzdFBhcnQ6PSJET05FIikKCiAgICBTZXQgcmVwb3J0ID0gQWN0aXZlRG9jdW1lbnQuVGFibGVzKEluZGV4Oj0xKQogICAgRm9yIGkgPSBMQm91bmQobGFiZWxzKSBUbyBVQm91bmQobGFiZWxzKQogICAgICAgIFNldCB0YXJnZXQgPSByZXBvcnQuQ2VsbChSb3c6PShpIC0gMSkgXCAyICsgMSwgQ29sdW1uOj0oaSAtIDEpIE1vZCAyICsgMSkuUmFuZ2UKICAgICAgICB0YXJnZXQuVGV4dCA9IGxhYmVscyhpKQogICAgICAgIHRhcmdldC5Gb250LkJvbGQgPSBpIDw9IDIKICAgIE5leHQgaQpFbmQgU3ViCg==",
+        "tool/macros/web_vba_word_mid_assignment_smoke.dart",
+        "-o",
+        "/workspace/scratch/e436a4cfb2da/.runtime/mid-word-smoke.js"
+      ],
+      "cwd": "/workspace/scratch/e436a4cfb2da/quds_office_suite/packages/quds_office_engine",
+      "exit_code": 0,
+      "seconds": 15.76,
+      "log": "/workspace/scratch/e436a4cfb2da/.runtime/logs/mid-word-portable-compile.log",
+      "log_sha256": "4ac1e183ca9bd850bed8576d6ed3378dddd9c50c80961c8de3c6ac8c43044328"
+    },
+    {
+      "name": "mid-word-portable-node",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+        "-e",
+        "globalThis.self=globalThis;require(process.argv[1]);",
+        "/workspace/scratch/e436a4cfb2da/.runtime/mid-word-smoke.js"
+      ],
+      "cwd": "/workspace/scratch/e436a4cfb2da/quds_office_suite/packages/quds_office_engine",
+      "exit_code": 0,
+      "seconds": 2.544,
+      "log": "/workspace/scratch/e436a4cfb2da/.runtime/logs/mid-word-portable-node.log",
+      "log_sha256": "495768e1056447fabb03f14f931058042e5b4ca02ad1d1f4856678601651deba"
+    }
+  ],
+  "identical_vm_node": true,
+  "receipts": {
+    "docx": {
+      "language": "vba-word",
+      "operations": 8,
+      "revision": 1,
+      "recordedSteps": 8,
+      "additionalReopens": 2,
+      "untouchedGeometryAndParts": true,
+      "opaqueVbaPreserved": false,
+      "immutableValidation": true,
+      "lateRollbackAndRecording": true,
+      "mcpCompileValidateRun": true,
+      "sourceFailureNoPublication": true,
+      "readOnlyPolicy": true,
+      "state": [
+        {
+          "text": "Item: Widget",
+          "style": "NormalNative",
+          "shading": "DDEEFF",
+          "after": 3.0,
+          "alignment": "center",
+          "runs": [
+            {
+              "text": "Item: Widget",
+              "bold": true,
+              "font": "Courier New",
+              "size": 24,
+              "color": "17365D"
+            }
+          ]
+        },
+        {
+          "text": "State: Ready  ",
+          "style": null,
+          "shading": "CCDDFF",
+          "after": 3.0,
+          "alignment": "center",
+          "runs": [
+            {
+              "text": "State: Ready  ",
+              "bold": true,
+              "font": "Courier New",
+              "size": 24,
+              "color": "1F4E79"
+            }
+          ]
+        },
+        {
+          "text": "Code: 0042",
+          "style": null,
+          "shading": "CCDDFF",
+          "after": 3.0,
+          "alignment": "center",
+          "runs": [
+            {
+              "text": "Code: 0042",
+              "bold": false,
+              "font": "Arial",
+              "size": 22,
+              "color": "000000"
+            }
+          ]
+        },
+        {
+          "text": "OPEN/DONE",
+          "style": null,
+          "shading": "CCDDFF",
+          "after": 3.0,
+          "alignment": "center",
+          "runs": [
+            {
+              "text": "OPEN/DONE",
+              "bold": false,
+              "font": "Courier New",
+              "size": 24,
+              "color": "1F4E79"
+            }
+          ]
+        },
+        {
+          "text": "second 0/0",
+          "style": null,
+          "shading": "CCDDFF",
+          "after": 3.0,
+          "alignment": "center",
+          "runs": [
+            {
+              "text": "second 0/0",
+              "bold": true,
+              "font": "Courier New",
+              "size": 24,
+              "color": "1F4E79"
+            }
+          ]
+        }
+      ]
+    },
+    "docm": {
+      "language": "vba-word",
+      "operations": 8,
+      "revision": 1,
+      "recordedSteps": 8,
+      "additionalReopens": 2,
+      "untouchedGeometryAndParts": true,
+      "opaqueVbaPreserved": true,
+      "immutableValidation": true,
+      "lateRollbackAndRecording": true,
+      "mcpCompileValidateRun": true,
+      "sourceFailureNoPublication": true,
+      "readOnlyPolicy": true,
+      "state": [
+        {
+          "text": "Item: Widget",
+          "style": "NormalNative",
+          "shading": "DDEEFF",
+          "after": 3.0,
+          "alignment": "center",
+          "runs": [
+            {
+              "text": "Item: Widget",
+              "bold": true,
+              "font": "Courier New",
+              "size": 24,
+              "color": "17365D"
+            }
+          ]
+        },
+        {
+          "text": "State: Ready  ",
+          "style": null,
+          "shading": "CCDDFF",
+          "after": 3.0,
+          "alignment": "center",
+          "runs": [
+            {
+              "text": "State: Ready  ",
+              "bold": true,
+              "font": "Courier New",
+              "size": 24,
+              "color": "1F4E79"
+            }
+          ]
+        },
+        {
+          "text": "Code: 0042",
+          "style": null,
+          "shading": "CCDDFF",
+          "after": 3.0,
+          "alignment": "center",
+          "runs": [
+            {
+              "text": "Code: 0042",
+              "bold": false,
+              "font": "Arial",
+              "size": 22,
+              "color": "000000"
+            }
+          ]
+        },
+        {
+          "text": "OPEN/DONE",
+          "style": null,
+          "shading": "CCDDFF",
+          "after": 3.0,
+          "alignment": "center",
+          "runs": [
+            {
+              "text": "OPEN/DONE",
+              "bold": false,
+              "font": "Courier New",
+              "size": 24,
+              "color": "1F4E79"
+            }
+          ]
+        },
+        {
+          "text": "second 0/0",
+          "style": null,
+          "shading": "CCDDFF",
+          "after": 3.0,
+          "alignment": "center",
+          "runs": [
+            {
+              "text": "second 0/0",
+              "bold": true,
+              "font": "Courier New",
+              "size": 24,
+              "color": "1F4E79"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

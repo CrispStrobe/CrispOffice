@@ -1,0 +1,49 @@
+{
+  "source_commit": "19a63d4455540bd797e546ab82ec14db128abea0",
+  "files": [
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+    "packages/quds_office_engine/test/office_vba_mid_assignment_conformance_test.dart",
+    "packages/quds_office_engine/test/office_vba_mid_assignment_test.dart",
+    "packages/quds_office_engine/test/office_vba_word_mid_assignment_cli_test.dart",
+    "packages/quds_office_engine/test/office_vba_word_mid_assignment_integration_test.dart",
+    "packages/quds_office_engine/tool/macros/web_vba_mid_assignment_smoke.dart",
+    "packages/quds_office_engine/tool/macros/web_vba_word_mid_assignment_smoke.dart"
+  ],
+  "checks": [
+    {
+      "name": "analysis",
+      "exit_code": 0,
+      "command": [
+        "dart",
+        "analyze",
+        "--fatal-infos",
+        "/workspace/scratch/e436a4cfb2da/quds_office_suite/packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+        "/workspace/scratch/e436a4cfb2da/quds_office_suite/packages/quds_office_engine/test/office_vba_mid_assignment_conformance_test.dart",
+        "/workspace/scratch/e436a4cfb2da/quds_office_suite/packages/quds_office_engine/test/office_vba_mid_assignment_test.dart",
+        "/workspace/scratch/e436a4cfb2da/quds_office_suite/packages/quds_office_engine/test/office_vba_word_mid_assignment_cli_test.dart",
+        "/workspace/scratch/e436a4cfb2da/quds_office_suite/packages/quds_office_engine/test/office_vba_word_mid_assignment_integration_test.dart",
+        "/workspace/scratch/e436a4cfb2da/quds_office_suite/packages/quds_office_engine/tool/macros/web_vba_mid_assignment_smoke.dart",
+        "/workspace/scratch/e436a4cfb2da/quds_office_suite/packages/quds_office_engine/tool/macros/web_vba_word_mid_assignment_smoke.dart"
+      ],
+      "output": "Analyzing office_vba_language.dart, office_vba_mid_assignment_conformance_test.dart, office_vba_mid_assignment_test.dart, office_vba_word_mid_assignment_cli_test.dart, office_vba_word_mid_assignment_integration_test.dart, web_vba_mid_assignment_smoke.dart, web_vba_word_mid_assignment_smoke.dart...\nNo issues found!\n"
+    },
+    {
+      "name": "format",
+      "exit_code": 0,
+      "command": [
+        "dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "/workspace/scratch/e436a4cfb2da/quds_office_suite/packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+        "/workspace/scratch/e436a4cfb2da/quds_office_suite/packages/quds_office_engine/test/office_vba_mid_assignment_conformance_test.dart",
+        "/workspace/scratch/e436a4cfb2da/quds_office_suite/packages/quds_office_engine/test/office_vba_mid_assignment_test.dart",
+        "/workspace/scratch/e436a4cfb2da/quds_office_suite/packages/quds_office_engine/test/office_vba_word_mid_assignment_cli_test.dart",
+        "/workspace/scratch/e436a4cfb2da/quds_office_suite/packages/quds_office_engine/test/office_vba_word_mid_assignment_integration_test.dart",
+        "/workspace/scratch/e436a4cfb2da/quds_office_suite/packages/quds_office_engine/tool/macros/web_vba_mid_assignment_smoke.dart",
+        "/workspace/scratch/e436a4cfb2da/quds_office_suite/packages/quds_office_engine/tool/macros/web_vba_word_mid_assignment_smoke.dart"
+      ],
+      "output": "Formatted 7 files (0 changed) in 0.27 seconds.\n"
+    }
+  ]
+}

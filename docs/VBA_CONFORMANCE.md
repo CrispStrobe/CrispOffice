@@ -11,6 +11,8 @@ The canonical fixtures are:
 
 | Suite | Cases | Scope |
 | --- | ---: | --- |
+| [`mid_assignment_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/mid_assignment_v1.json) | 77 | Local `Mid` / `Mid$` String edits, array/helper ownership, source-order evaluation, UTF-16 and positioned refusals across all three adapters |
+| [`word_table_navigation_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_table_navigation_v1.json) | 32 | Typed row/column cell selection, named indexes, captured aliases/helpers, existing cell operations and positioned refusals |
 | [`word_integer_arithmetic_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_integer_arithmetic_v1.json) | 54 | Integer division and signed Mod, rounding, precedence, Empty/Null, Long bounds, complete cell plans and positioned refusals |
 | [`word_cell_suffix_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_cell_suffix_v1.json) | 73 | Direct cell appends, named Text, aliases/helpers, evaluation order, Unicode and strict paragraph/story/argument refusals |
 | [`word_cell_prefix_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_cell_prefix_v1.json) | 78 | Direct/projected cell prefixes, named Text, captured aliases/helpers, portable text constants, strict argument/content/selector boundaries |
@@ -29,6 +31,18 @@ The canonical fixtures are:
 The same fixture bytes are consumed by each VM test and the portable
 JavaScript runner; there is no separately maintained copy of expected results.
 
+The Mid assignment corpus independently specifies 41 successful plans and
+36 positioned diagnostics. A portable adapter mapping changes only the fixed
+output sink and corresponding native-step expectation, allowing the same local
+String behavior to run through Word, Excel and PowerPoint. It distinguishes
+the documented no-growth replacement rules from the explicit strict-String,
+exact-index, lvalue and source-evaluation contracts. No case claims an
+installed Office observation. The VM and JavaScript runner consume the exact
+same corpus bytes; the actual Word BAS separately exercises serialization,
+opaque-part preservation and transaction boundaries. See the
+[String-editing contract](vba-macros-details.md#replacing-part-of-a-source-string)
+and [local qualification](validation/word-vba-mid-assignment-20261122/README.md).
+
 The integer arithmetic suite specifies 44 complete Word plans and ten
 positioned diagnostics. The same exact corpus runs on the VM and compiled
 JavaScript. Positive published examples are `spec-derived`; strict coercion,
@@ -38,6 +52,16 @@ is not presented as resolved by an Office-host run. The complete grouped BAS
 separately exercises document publication, preservation, replay and rollback.
 See the [arithmetic contract](vba-macros-details.md#integer-division-and-remainder)
 and [local record](validation/word-vba-integer-arithmetic-20261122/README.md).
+
+The table navigation suite independently specifies 20 complete plans and 12
+positioned refusals. It verifies row/column axis mapping, typed collections,
+named argument binding, preserved aliases/helpers and direct-cell origin
+restrictions. Its expectations distinguish Microsoft member documentation from
+the explicit Quds no-read and strict-index contracts; no installed Word result
+is claimed. The same corpus runs through the generic VM/JavaScript conformance
+driver. Native document preservation and the complete BAS example are qualified
+separately; see the [selector contract](vba-word-macros-details.md#table-row-and-column-navigation)
+and [local record](validation/word-vba-table-navigation-20261122/README.md).
 
 The cell suffix suite independently specifies 27 complete plans and 46
 positioned diagnostics. It distinguishes direct `Cell.Range.InsertAfter`

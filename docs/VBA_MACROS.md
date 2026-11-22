@@ -76,6 +76,7 @@ The supported subset includes:
 - fixed and dynamic one-dimensional arrays, `ReDim`, `Erase`, `Option Base`;
 - `Variant` states including `Empty`, `Null` and `IsMissing`;
 - numeric and string intrinsics, including metered binary `StrComp` and `Join` over local String arrays;
+- `Mid` / `Mid$` assignment to local String values and String/Variant array elements, with bounded replacement and unchanged target length;
 - integer division (`\`) and signed remainder (`Mod`) with ties-to-even Long operands and VBA operator precedence;
 - strict argument types, named arguments and optional scalar `ByVal` values;
 - bounded compilation and execution budgets.

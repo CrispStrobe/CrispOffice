@@ -1,0 +1,130 @@
+{
+  "reviewed_at_utc": "2026-11-22T09:05:27.481059+00:00",
+  "mode": "read-only Git object and GitHub PR metadata review; no Git/source/ref mutations and no CI queries",
+  "repository": "CrispStrobe/quds_office_suite",
+  "feature_checkpoint": "f6fcc21f9e6a05f45f8160a69b2b2707eda6d03c",
+  "incoming_main": "8326f191067dac1a3befab81361c5829fee9a35d",
+  "incoming_word_head": "43df8a9f6170109589f2f6885312d5cf15068a88",
+  "shared_merge_base": "ad27e97263eee11dbd7b76f846bfea0a8e250499",
+  "incoming_main_and_word_tree": "314702d7cce8d85047db0338e0f7d92b1ac214c3",
+  "incoming_new_commits": [
+    {
+      "sha": "43df8a9f6170109589f2f6885312d5cf15068a88",
+      "subject": "docs(vba): preserve local verification results and explicit execution limits [skip ci]"
+    },
+    {
+      "sha": "8326f191067dac1a3befab81361c5829fee9a35d",
+      "subject": "Merge Word VBA integer arithmetic and reconciled Office history (#370) [skip ci]",
+      "tree_identical_to_second_parent": true
+    }
+  ],
+  "incoming_diff_summary": "4 files changed, 389 insertions(+), 29 deletions(-)",
+  "incoming_paths": [
+    {
+      "path": ".github/workflows/office-macros.yml",
+      "category": "workflow coverage",
+      "blob": "b2bfce4eacff6d346fd80982d8137ffa76554a2e",
+      "sha256": "d9edeb329b0ef9b9541e58f27e85dddd99fce25952c0867e296054fbfce40bbb",
+      "bytes": 14775
+    },
+    {
+      "path": "docs/validation/word-vba-integer-arithmetic-20261122/README.md",
+      "category": "historical validation narrative",
+      "blob": "d024338a6fa3f301cdbbd43762c0c1454709f02b",
+      "sha256": "6d66e0aada425d4af975a50a0ea575692ffdce7e9ff33979f072ade258112c83",
+      "bytes": 7529
+    },
+    {
+      "path": "docs/validation/word-vba-integer-arithmetic-20261122/qualification.json",
+      "category": "historical machine-readable validation receipt",
+      "blob": "a9fd6c8ad682a6b66eaa0f5fb33957a398aff15b",
+      "sha256": "bcd0551164f742ec0a6df87fad299970357214fede3ed1385bb4fe8f17e1d4b4",
+      "bytes": 4192
+    },
+    {
+      "path": "docs/validation/word-vba-integer-arithmetic-20261122/run_portable.py",
+      "category": "standalone verification tooling; not executed during this audit",
+      "blob": "004fe321ddf295cb06e9e3b0e1de374fc35a24d6",
+      "sha256": "2c5ca52156edb5a47394c330b749e9382301f3443e26ddbdc482836a2e7ffec2",
+      "bytes": 5319
+    }
+  ],
+  "incoming_dart_source_or_test_changes": [],
+  "word_production_file": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+  "word_production_sha256": {
+    "base": "0847838044cb18fe844fc2660870a0141a9f8d16b3c9d98f183297afff94d60b",
+    "feature": "0847838044cb18fe844fc2660870a0141a9f8d16b3c9d98f183297afff94d60b",
+    "incoming_main": "0847838044cb18fe844fc2660870a0141a9f8d16b3c9d98f183297afff94d60b"
+  },
+  "feature_changed_paths_count": 28,
+  "feature_incoming_changed_path_intersection": [],
+  "feature_changed_paths_to_preserve": [
+    "docs/roadmaps/mail/README.md",
+    "docs/roadmaps/mail/bulk-organization.md",
+    "docs/roadmaps/mail/identity-transitions.md",
+    "docs/roadmaps/mail/implementation-plan.md",
+    "docs/roadmaps/mail/status.md",
+    "docs/validation/mail-bulk-organization-20261122/README.md",
+    "docs/validation/mail-bulk-organization-20261122/advanced-heads-audit.json",
+    "docs/validation/mail-bulk-organization-20261122/advanced-heads-review.md",
+    "docs/validation/mail-bulk-organization-20261122/dependency-resolution.json",
+    "docs/validation/mail-bulk-organization-20261122/intake-review.md",
+    "docs/validation/mail-bulk-organization-20261122/intake.json",
+    "docs/validation/mail-bulk-organization-20261122/runtime.json",
+    "packages/quds_mail_store/lib/src/move_identity_transitions.dart",
+    "packages/quds_mail_ui/CHANGELOG.md",
+    "packages/quds_mail_ui/README.md",
+    "packages/quds_mail_ui/lib/src/workspace/message_list.dart",
+    "packages/quds_mail_ui/test/message_list_organization_test.dart",
+    "packages/quds_office_editor/CHANGELOG.md",
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_mutation_strings.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_organization_dialog.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_workspace_strings.dart",
+    "packages/quds_office_editor/example/test/studio_mail_bulk_organization_provider_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_journal_host_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_organization_dialog_test.dart",
+    "packages/quds_office_editor/example/test/support/mail_bulk_organization_host_cases.dart",
+    "packages/quds_office_editor/example/test/support/mail_membership_host_cases.dart"
+  ],
+  "material_changes": [
+    "Workflow adds three integer-arithmetic Dart suites, actual grouped-report BAS VM/JS smoke comparison, and word_integer_arithmetic_v1 portable corpus.",
+    "Word validation README and qualification.json preserve prior-source local execution claims, intake ancestry, exclusions and uncompleted gates; these are historical incoming records rather than executions by this audit.",
+    "run_portable.py records source/output hashes and compares three corpora plus the actual BAS on VM and JavaScript, then removes only reproducible named JavaScript outputs. It was not run in this audit.",
+    "No runtime Dart, dependency-lock, Mail store, Mail UI, native host, EWS host or Dart test change is incoming beyond arithmetic already contained at ad27."
+  ],
+  "safe_integration": [
+    "Checkpoint the current authorized working-tree fixture/format/evidence updates before integration.",
+    "Ordinary ancestry-preserving merge of incoming main into the feature is expected to be conflict-free because the exact changed-path sets from shared base ad27 are disjoint.",
+    "Preserve all feature-side mail bulk organization source/tests/docs and packages/quds_mail_store/lib/src/move_identity_transitions.dart unchanged; accept the four incoming paths.",
+    "Merging incoming main also retains Word head 43df as ancestry. Preserve the incoming validation report as its original source-bound historical record and add current acceptance evidence separately.",
+    "The main merge commit adds no tree content relative to Word head; it supplies publication ancestry."
+  ],
+  "github_pr_metadata": [
+    {
+      "number": 370,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/370",
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "head_sha": "43df8a9f6170109589f2f6885312d5cf15068a88",
+      "merge_commit_sha": "8326f191067dac1a3befab81361c5829fee9a35d",
+      "merged_at": "2026-11-22T08:48:06Z",
+      "source": "GitHub get_pr_info"
+    },
+    {
+      "number": 371,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/371",
+      "state": "closed",
+      "merged": true,
+      "draft": true,
+      "head_sha": "d4317dcc1ecc6c7b70a1773cc121f5639ad99428",
+      "merge_commit_sha": "ad27e97263eee11dbd7b76f846bfea0a8e250499",
+      "merged_at": "2026-11-22T08:48:06Z",
+      "source": "GitHub get_pr_info; head and merge commit already ancestors of feature"
+    }
+  ],
+  "github_actions_queried": false,
+  "github_actions_awaited": false
+}

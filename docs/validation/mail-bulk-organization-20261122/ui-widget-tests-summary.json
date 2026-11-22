@@ -1,0 +1,30 @@
+{
+  "runner": "Pinned Flutter 3.47.8 / Dart 3.13.7 frontend and flutter_tester with anonymous-RAM kernel and test_core directRunTests",
+  "tests_completed": 139,
+  "passed": 139,
+  "failures": [],
+  "skipped": 0,
+  "hidden": 0,
+  "error_events": [],
+  "print_events": [],
+  "unclassified_output": [],
+  "groups": {
+    "suite0: message_list_organization_test.dart": 18,
+    "suite1: message_list_bulk_test.dart": 32,
+    "suite2: bulk_message_list_test.dart": 22,
+    "suite3: message_list_range_selection_test.dart": 43,
+    "suite4: message_list_conversations_test.dart": 18,
+    "suite5: bulk_api_aliases_test.dart": 6
+  },
+  "done_events": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 23231
+    }
+  ],
+  "assertions_enabled": true,
+  "flutter_tester_exit": 0,
+  "log_sha256": "19ea31b750becba59d619d9d6aeade6dfca26b7fc1512013e2e773ce5d066c8a",
+  "log_bytes": 55042
+}

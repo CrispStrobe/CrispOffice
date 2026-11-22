@@ -57,6 +57,7 @@ document supplied to the macro session. They never search for another file.
 | --- | --- |
 | `Document.Paragraphs(i)` | Existing body paragraphs |
 | `Document.Tables(i)` / `Table.Cell(row, column)` | Existing main-story table cells |
+| `Table.Rows(i).Cells(j)` / `Table.Columns(j).Cells(i)` | The same cells through typed row/column collections |
 | `Cell.Range.InsertAfter` | Append to current cell text with retained run formatting |
 | `Cell.Range.InsertBefore` / `.Paragraphs(1).Range.InsertBefore` | Prefix current cell text with retained run formatting |
 | `Cell.Range.Font` / `.ParagraphFormat` | Current cell text and its one ordinary paragraph |
@@ -90,6 +91,33 @@ The native plan can apply the documented subset of:
 Unsupported whole-object assignment, `Duplicate`, runtime type discovery and
 property reads are refused. A `ByVal` object helper retains the selector passed
 to it; rebinding the helper parameter does not retarget the caller.
+
+## Editing fixed-width template labels
+
+`Mid(label, start[, length]) = text` and `Mid$(...) = text` replace part of a
+local String without changing its length. They also edit allocated
+String/Variant array elements and helper-local String values. The indexes count
+UTF-16 units; the start must address an existing unit, and replacement text is
+truncated to the requested and available span.
+
+```vb
+Sub Main()
+    Dim label As String
+    label = "INV-0000 | OPEN"
+    Mid$(label, 5, 4) = "0042"
+    Mid(label, 12) = "DONE"
+    ActiveDocument.Tables(1).Cell(1, 1).Range.Text = label
+End Sub
+```
+
+The cell receives `INV-0042 | DONE`. All text comes from source-local values;
+this statement does not read or edit a document Range directly. The
+[complete 2×2 label example](../packages/quds_office_engine/example/macros/word_fixed_width_labels.bas)
+combines array elements, a reusable function and calculated table selectors.
+See the [exact String-editing contract](vba-macros-details.md#replacing-part-of-a-source-string)
+for types, bounds, evaluation order, Unicode and budgets, and the
+[local qualification](validation/word-vba-mid-assignment-20261122/README.md)
+for the executed scope.
 
 ## Grouping labels into a table
 
@@ -153,6 +181,46 @@ formatting can target an empty paragraph. Direct cell-range `Style`, `Shading`,
 `Range.Paragraphs(1)` to style or shade the existing cell paragraph.
 See the [exact cell-formatting contract](vba-word-macros-details.md#formatting-existing-table-cells)
 and [local qualification](validation/word-vba-cell-formatting-20261122/README.md).
+
+## Navigating table rows and columns
+
+```vb
+Sub Main()
+    Dim report As Table, heading As Row, statusColumn As Column
+    Dim selectedCells As Cells, status As Range
+    Set report = ActiveDocument.Tables(Index:=1)
+    Set heading = report.Rows.Item(Index:=1)
+    heading.Cells(1).Range.Text = "Item"
+
+    Set statusColumn = report.Columns(Index:=2)
+    Set selectedCells = statusColumn.Cells
+    Set status = selectedCells.Item(Index:=2).Range
+    status.Text = "Ready"
+    status.InsertAfter Text:=vbTab & "Reviewed"
+    status.Font.ColorIndex = wdGreen
+
+    report.Cell(Column:=1, Row:=2).Range.Text = "Quarterly report"
+End Sub
+```
+
+`Rows`, `Row`, `Columns`, `Column` and `Cells` support typed aliases, nested
+`With` and required `ByVal` helpers. A row's cell index chooses a column; a
+column's cell index chooses a row. Captured selectors retain their original
+table and coordinates when another variable is rebound.
+
+`Tables`, `Rows`, `Columns` and their `Item` calls, plus row/column `Cells` and
+`Cells.Item`, accept the required case-insensitive `Index:=` argument.
+`Table.Cell` accepts required `Row:=` and `Column:=` in either named order.
+Expressions evaluate once in their written order; positional arguments must
+precede named arguments. Use `.Item(i)` when indexing a collection alias.
+
+All writes reuse the existing guarded cell operations. The table must have a
+supported unmerged grid, and the selected cell must contain one ordinary
+paragraph. Collection counts, `First`/`Last`, enumeration, whole-row/column
+ranges and document reads remain outside this increment. See the
+[complete 10-operation BAS](../packages/quds_office_engine/example/macros/word_table_navigation.bas),
+[exact selector contract](vba-word-macros-details.md#table-row-and-column-navigation)
+and [local qualification](validation/word-vba-table-navigation-20261122/README.md).
 
 ## Appending to existing table text
 

@@ -1,0 +1,67 @@
+{
+  "reviewed_at_utc": "2026-11-22T09:12:15.311224+00:00",
+  "mode": "read-only fixed Git objects; no source, index, ref or object mutations; no CI queries",
+  "ours": "aaf88978177425d8d26caedb385f91d0638bb01a",
+  "mail_head": "b48fa00a3f4461ae10fdf95e444baf3983d051b4",
+  "mail_parents": [
+    "06b4e747c09851048d0b72a958e9114f7c83cc52",
+    "8326f191067dac1a3befab81361c5829fee9a35d"
+  ],
+  "mail_best_merge_bases": [
+    "8326f191067dac1a3befab81361c5829fee9a35d",
+    "06b4e747c09851048d0b72a958e9114f7c83cc52"
+  ],
+  "mail_unique_paths": {
+    "docs/validation/mail-identity-reconciliation-20261122/README.md": "dcdcb0a9ce56af7cdeecafb08278d10105455564",
+    "docs/validation/mail-identity-reconciliation-20261122/incoming-qualification-review.json": "0046d8aab51e1986bf72b95dc6c910c0e8f1758d",
+    "docs/validation/mail-identity-reconciliation-20261122/qualification-summary.json": "98765b4b2c1f118e73b2dd54f409410d8347ff6b",
+    "docs/validation/mail-identity-reconciliation-20261122/reconciliation.json": "57aeef300865a272f57b884f63311decd392bd52"
+  },
+  "word_head": "1fc04e42691328ef8ea56aac5e3bab03e9764823",
+  "word_parents": [
+    "8326f191067dac1a3befab81361c5829fee9a35d"
+  ],
+  "word_best_merge_bases": [
+    "8326f191067dac1a3befab81361c5829fee9a35d"
+  ],
+  "word_unique_paths": {
+    "docs/validation/word-vba-cell-suffix-20261122/README.md": "c2b3725c3291bb20ac9d0c2bb83917b8182f66c8",
+    "docs/validation/word-vba-cell-suffix-20261122/publication-summary.json": "11e00d07e6ead89f8752c6df5796516c64ceec5d"
+  },
+  "unique_definition": "Blob differs from every direct parent; all other incoming source content already exists in retained parent ancestry.",
+  "new_runtime_source_files": [],
+  "new_dart_test_files": [],
+  "preserve_existing_resolutions": [
+    {
+      "path": "packages/quds_mail_store/lib/src/move_identity_transitions.dart",
+      "ours": "7a21cba4b51cd79884c48d5ca8a5495eaa421e6f",
+      "incoming_mail": "244bca9cae70b23d923cc45714b3d57783aca4a8",
+      "incoming_equals_prior_parent": true,
+      "choice": "retain ours"
+    },
+    {
+      "path": "docs/roadmaps/mail/identity-transitions.md",
+      "ours": "a15178315876991d31e2ef934fec6a9c02e18d23",
+      "incoming_mail": "54dfd1c93a3d8fd1793ad523a7a564331513b57f",
+      "incoming_equals_prior_parent": true,
+      "choice": "retain ours"
+    }
+  ],
+  "source_review": [
+    "Mail merge b48 retains the exact store blob and roadmap from its prior parent 06b4. These are not new fixes.",
+    "Replacing ours with that older store blob would remove our SQL LIMIT and early destination metadata-budget exits, while retaining the folder-label accounting. Preserve current bounded implementation.",
+    "Replacing ours with that older roadmap would remove the delivered bulk organization link/status and return Move/Delete to the next-work list. Preserve current roadmap.",
+    "Word 1fc introduces no source change; both unique paths are historical publication evidence."
+  ],
+  "new_document_material": [
+    "Mail identity README plus incoming-qualification-review.json, qualification-summary.json and reconciliation.json preserve source-bound historical acceptance claims, counted overlap, incoming Office evidence, failed/blocked Studio attempts and raw-export limits.",
+    "Word cell-suffix README plus publication-summary.json record indirect publication through PR371/ad27 into PR370/main8326, historical source scope, partial Mail results and environmental/publication limits.",
+    "Incoming historical acceptance totals were read as published evidence, not independently rerun or added to current acceptance counts by this audit."
+  ],
+  "safe_merge": [
+    "Retain both incoming heads as genuine merge parents/history; accept their six unique validation documents.",
+    "Preserve our current production/tests and especially the two explicit source/roadmap resolutions above; all purported incoming runtime deltas already exist in retained parent ancestry.",
+    "For b48, do not rely on a single git diff A...B base: two best bases exist and Git warns that it chooses one.",
+    "For 1fc, the two unique validation paths are unchanged on our side since its sole parent 8326, so they merge without competing content edits."
+  ]
+}

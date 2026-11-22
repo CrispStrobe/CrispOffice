@@ -1,0 +1,137 @@
+{
+  "head": "d1935ba19caa6b0aaead23198170ed3acefa58ea",
+  "working_files_sha256": {
+    "packages/quds_office_engine/tool/macros/web_vba_word_table_navigation_smoke.dart": "3c080717af40f544c2f82c6e671dbb80f065e4ca73f0c279852c44a8df36ca3b",
+    "packages/quds_office_engine/test/office_vba_word_table_navigation_cli_test.dart": "ccf87be1d5cb146003aaf781a3245595177b590d980622099d817e2124b092c6",
+    "packages/quds_office_engine/example/macros/word_table_navigation.bas": "2799eba82e8860326f50cba7b59ba3d5e9c05b5f959f76ab24c1c521ba890644"
+  },
+  "tests": {
+    "file": "packages/quds_office_engine/test/office_vba_word_table_navigation_cli_test.dart",
+    "command": "/workspace/scratch/3706fdacd6ce/runtime-word/run-engine-tests.sh test/office_vba_word_table_navigation_cli_test.dart -r expanded",
+    "exit_code": 0,
+    "passed": 4
+  },
+  "analysis": {
+    "files": [
+      "packages/quds_office_engine/tool/macros/web_vba_word_table_navigation_smoke.dart",
+      "packages/quds_office_engine/test/office_vba_word_table_navigation_cli_test.dart"
+    ],
+    "exit_code": 0,
+    "issues": 0
+  },
+  "portable": {
+    "vm_exit_code": 0,
+    "dart2js_exit_code": 0,
+    "node_exit_code": 0,
+    "vm_js_receipts_equal": true,
+    "result": {
+      "language": "vba-word",
+      "operations": 10,
+      "revision": 1,
+      "additionalReopens": 2,
+      "untouchedGeometryAndParts": true,
+      "opaqueVbaPreserved": true,
+      "immutableValidation": true,
+      "lateRollbackAndRecording": true,
+      "mcpCompileValidateRun": true,
+      "inactiveNamedArgumentRejected": true,
+      "readOnlyPolicy": true,
+      "state": [
+        {
+          "text": "Item",
+          "style": "NormalNative",
+          "shading": "DDEEFF",
+          "after": 3.0,
+          "alignment": "center",
+          "runs": [
+            {
+              "text": "Item",
+              "bold": true,
+              "font": "Courier New",
+              "size": 24,
+              "color": "17365D"
+            }
+          ]
+        },
+        {
+          "text": "Status",
+          "style": null,
+          "shading": "CCDDFF",
+          "after": 3.0,
+          "alignment": "center",
+          "runs": [
+            {
+              "text": "Status",
+              "bold": true,
+              "font": "Courier New",
+              "size": 24,
+              "color": "1F4E79"
+            }
+          ]
+        },
+        {
+          "text": "Document: Quarterly report",
+          "style": null,
+          "shading": "CCDDFF",
+          "after": 3.0,
+          "alignment": "center",
+          "runs": [
+            {
+              "text": "Document: ",
+              "bold": false,
+              "font": "Arial",
+              "size": 22,
+              "color": "000000"
+            },
+            {
+              "text": "Quarterly report",
+              "bold": false,
+              "font": "Arial",
+              "size": 22,
+              "color": "000000"
+            }
+          ]
+        },
+        {
+          "text": "Ready\tReviewed",
+          "style": null,
+          "shading": "CCDDFF",
+          "after": 3.0,
+          "alignment": "right",
+          "runs": [
+            {
+              "text": "Ready\tReviewed",
+              "bold": true,
+              "font": "Courier New",
+              "size": 24,
+              "color": "008000"
+            }
+          ]
+        },
+        {
+          "text": "second 0/0",
+          "style": null,
+          "shading": "CCDDFF",
+          "after": 3.0,
+          "alignment": "center",
+          "runs": [
+            {
+              "text": "second 0/0",
+              "bold": true,
+              "font": "Courier New",
+              "size": 24,
+              "color": "1F4E79"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "logs_sha256": {
+    "table-navigation-cli.log": "6d9491f86762aaee2d7f6305f103fdccd3d05ed28ee981ac2851b225e436aa58",
+    "table-navigation-portable-analysis.log": "79aa264d87940d894f7a311292b719077e05a97f6ebbca2607fdc1886e64fe29",
+    "table-navigation-portable-vm.log": "5bc185f98221acdd5aca9df651f91cb4bb91589e5c479db3b92bc43b57c74ff8",
+    "table-navigation-portable-compile.log": "304fd2c8ac01c911272c568825f45a7df3b147c617e5beef27ef17fb5eea5b54",
+    "table-navigation-portable-node.log": "ee82f8781d1bab7ee983795cdbcdc6ec7de5392392435245c21d34eebdb3baad"
+  }
+}

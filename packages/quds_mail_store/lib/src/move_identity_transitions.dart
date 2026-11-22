@@ -349,25 +349,25 @@ extension MailMoveIdentityTransitions on SqliteMailRepository {
     if (!destinationInView) {
       var units =
           destinationView.mailbox.id.value.length +
-          destinationView.mailbox.displayName.length;
+          destinationView.mailbox.displayName.length +
+          destinationId.length +
+          destinationRemote.length +
+          (targets.isEmpty ? source : targets.single)
+              .read<String>('envelope')
+              .length;
+      if (units > _viewMetadataLimit) return false;
       for (final row in await _rows(
-        'SELECT m.id,m.remote,m.envelope FROM messages m JOIN mailbox_view_members v '
-        'ON v.account=m.account AND v.message=m.id WHERE v.account=? AND v.mailbox=?',
-        [account.value, transition.destinationMailbox.value],
+        'SELECT m.id,m.remote,m.envelope FROM mailbox_view_members v '
+        'JOIN messages m ON m.account=v.account AND m.id=v.message '
+        'WHERE v.account=? AND v.mailbox=? LIMIT ?',
+        [account.value, transition.destinationMailbox.value, _viewHeaderLimit],
       )) {
         units +=
             row.read<String>('id').length +
             row.read<String>('remote').length +
             row.read<String>('envelope').length;
+        if (units > _viewMetadataLimit) return false;
       }
-      final targetEnvelope = targets.isEmpty
-          ? source.read<String>('envelope')
-          : targets.single.read<String>('envelope');
-      units +=
-          destinationId.length +
-          destinationRemote.length +
-          targetEnvelope.length;
-      if (units > _viewMetadataLimit) return false;
     }
     if (destinationSync.isNotEmpty) {
       final members = await _rows(

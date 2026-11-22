@@ -443,10 +443,13 @@ void membershipHostTests() {
       await _show(tester, harness);
       await _openFirst(tester);
       final bodyReads = harness.bodyReads;
+      final capabilityReads = harness.capabilityReads;
       await tester.tap(_key('studio-mail-move-message'));
       await _until(
         tester,
-        () => !_list(tester).busy && harness.capabilityReads == 1,
+        () =>
+            !_list(tester).busy &&
+            harness.capabilityReads == capabilityReads + 1,
       );
       expect(find.text(_strings.mailMutationUnavailable), findsOneWidget);
       expect(harness.commands, isEmpty);

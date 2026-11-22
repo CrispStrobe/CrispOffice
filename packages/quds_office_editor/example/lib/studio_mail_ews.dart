@@ -31,6 +31,7 @@ import 'studio_mail_local_accounts.dart';
 import 'studio_mail_local_accounts_dialog.dart';
 import 'studio_mail_local_accounts_strings.dart';
 import 'studio_mail_operation.dart';
+import 'studio_mail_organization_dialog.dart';
 import 'studio_mail_reply.dart';
 import 'studio_mail_strings.dart';
 import 'studio_mail_workspace_strings.dart';
@@ -1111,7 +1112,107 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       ['ews-message-${selected.id.value}'],
       mailboxGeneration: _mailboxGeneration,
       singleMessage: true,
+      membershipConfirmed: true,
       destination: command is MailMove ? command.destination : null,
+    );
+  }
+
+  Future<void> _applyBulkAction(
+    MailBulkFlagAction action,
+    List<String> ids, {
+    required int mailboxGeneration,
+  }) async {
+    if (action.isFlagAction) {
+      await _applyCommands(action, ids, mailboxGeneration: mailboxGeneration);
+      return;
+    }
+    final provider = _provider;
+    final session = _session;
+    final mailbox = _mailbox;
+    final owner = _draftStore;
+    if (!mounted ||
+        provider == null ||
+        session == null ||
+        mailbox == null ||
+        _blocked ||
+        _needsRefresh ||
+        mailboxGeneration != _mailboxGeneration ||
+        ids.isEmpty ||
+        ids.length > MailBulkFlagPlan.maxMessages ||
+        ids.toSet().length != ids.length ||
+        (action == MailBulkFlagAction.move &&
+            (widget.cloudService == MailCloudService.gmail ||
+                !_capabilities.supports(MailCapability.move))) ||
+        (action == MailBulkFlagAction.delete &&
+            !_capabilities.supports(MailCapability.delete))) {
+      return;
+    }
+    final frozenIds = List<String>.unmodifiable(ids);
+    final selected = <MailHeaderRecord>[];
+    for (final id in frozenIds) {
+      final matches = _headers.where(
+        (header) => 'ews-message-${header.id.value}' == id,
+      );
+      if (matches.length != 1) return;
+      selected.add(matches.single);
+    }
+    final frozenSelection = List<MailHeaderRecord>.unmodifiable(selected);
+    final lease = session.begin();
+    bool currentScope() {
+      if (!_current(provider, lease) ||
+          !identical(_session, session) ||
+          !identical(_draftStore, owner) ||
+          !identical(_mailbox, mailbox) ||
+          mailboxGeneration != _mailboxGeneration ||
+          _busy ||
+          _needsRefresh) {
+        return false;
+      }
+      final current = {for (final header in _headers) header.id: header.remote};
+      return frozenSelection.every(
+        (target) => current[target.id] == target.remote,
+      );
+    }
+
+    MailMailboxId? destination;
+    var confirmed = false;
+    setState(() => _dialogOpen = true);
+    try {
+      if (action == MailBulkFlagAction.move) {
+        destination = await showStudioMailMoveSelection(
+          context,
+          strings: widget.strings,
+          count: frozenSelection.length,
+          accountLabel: _sender,
+          source: mailbox,
+          destinations: List<MailMailbox>.unmodifiable(_mailboxes),
+        );
+        confirmed = destination != null;
+      } else {
+        confirmed = await confirmStudioMailDeleteSelection(
+          context,
+          strings: widget.strings,
+          count: frozenSelection.length,
+          accountLabel: _sender,
+          source: mailbox,
+          provider: frozenSelection.first.remote.provider,
+        );
+      }
+    } finally {
+      if (mounted &&
+          identical(_provider, provider) &&
+          identical(_session, session)) {
+        setState(() => _dialogOpen = false);
+      }
+    }
+    if (!confirmed || !currentScope()) return;
+    await _applyCommands(
+      action,
+      frozenIds,
+      mailboxGeneration: mailboxGeneration,
+      membershipConfirmed: true,
+      frozenSelection: frozenSelection,
+      destination: destination,
     );
   }
 
@@ -1120,6 +1221,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     List<String> ids, {
     required int mailboxGeneration,
     bool singleMessage = false,
+    bool membershipConfirmed = false,
+    List<MailHeaderRecord>? frozenSelection,
     MailMailboxId? destination,
   }) async {
     final provider = _provider;
@@ -1135,9 +1238,10 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         ids.isEmpty ||
         ids.length > MailBulkFlagPlan.maxMessages ||
         ids.toSet().length != ids.length ||
-        (!action.isFlagAction && (!singleMessage || ids.length != 1)) ||
+        (!action.isFlagAction && !membershipConfirmed) ||
         (action == MailBulkFlagAction.move &&
-            (!_capabilities.supports(MailCapability.move) ||
+            (widget.cloudService == MailCloudService.gmail ||
+                !_capabilities.supports(MailCapability.move) ||
                 destination == null ||
                 destination == mailbox.id ||
                 !_mailboxes.any((folder) => folder.id == destination))) ||
@@ -1146,13 +1250,22 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         (action != MailBulkFlagAction.move && destination != null)) {
       return;
     }
+    if (frozenSelection != null && frozenSelection.length != ids.length) {
+      return;
+    }
     final selected = <MailHeaderRecord>[];
-    for (final id in ids) {
+    for (var index = 0; index < ids.length; index++) {
       final matches = _headers.where(
-        (header) => 'ews-message-${header.id.value}' == id,
+        (header) => 'ews-message-${header.id.value}' == ids[index],
       );
       if (matches.length != 1) return;
-      selected.add(matches.single);
+      final frozen = frozenSelection?[index];
+      if (frozen != null &&
+          (frozen.id != matches.single.id ||
+              frozen.remote != matches.single.remote)) {
+        return;
+      }
+      selected.add(frozen ?? matches.single);
     }
     final lease = session.begin();
     final plan = MailBulkFlagPlan(
@@ -2732,8 +2845,23 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                 : 'ews-message-${_selected!.id.value}',
             busy: _blocked,
             onBulkAction: (action, ids) => unawaited(
-              _applyCommands(action, ids, mailboxGeneration: mailboxGeneration),
+              _applyBulkAction(
+                action,
+                ids,
+                mailboxGeneration: mailboxGeneration,
+              ),
             ),
+            supportedBulkActions: {
+              MailBulkFlagAction.markRead,
+              MailBulkFlagAction.markUnread,
+              MailBulkFlagAction.flag,
+              MailBulkFlagAction.unflag,
+              if (widget.cloudService != MailCloudService.gmail &&
+                  _capabilities.supports(MailCapability.move))
+                MailBulkFlagAction.move,
+              if (_capabilities.supports(MailCapability.delete))
+                MailBulkFlagAction.delete,
+            },
             bulkActionsEnabled: !_needsRefresh,
             onCancelBulk: cancellation == null
                 ? null
@@ -2859,7 +2987,10 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           ),
           PopupMenuButton<MailMailbox>(
             tooltip: widget.strings.ewsMove,
-            enabled: canChange && _capabilities.supports(MailCapability.move),
+            enabled:
+                canChange &&
+                widget.cloudService != MailCloudService.gmail &&
+                _capabilities.supports(MailCapability.move),
             icon: const Icon(Icons.drive_file_move_outline),
             itemBuilder: (context) => [
               for (final box in _mailboxes)

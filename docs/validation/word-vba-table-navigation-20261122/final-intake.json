@@ -1,0 +1,332 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "fork_branches": [
+    {
+      "name": "codex/mail-durable-mutations-20261122",
+      "sha": "afdcb327c650383e269a3d32f7251f68a9d766c6",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "codex/mail-identity-reconciliation-20261122",
+      "sha": "b48fa00a3f4461ae10fdf95e444baf3983d051b4",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "codex/mail-membership-recovery-20261122",
+      "sha": "bb991a98b73fb2518b2999c37e42d7da4c821fae",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "codex/word-vba-authoring-20261121",
+      "sha": "cf06b018ec125ce3b5abfda41a7fbbdcf7d30a47",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "codex/word-vba-cell-formatting-20261122",
+      "sha": "49f43824196c4d373f991e442fac2e73e68c5f9f",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "codex/word-vba-cell-text-20261122",
+      "sha": "5f6e8686f1d6ddc1f3e523238808b78ccccc5b51",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "codex/word-vba-comparison-colors-20261121",
+      "sha": "e3c4550b34a9a07de2a97b84b67ab6aecaa5a377",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "codex/word-vba-compatibility-20261121",
+      "sha": "3058d36c5354d46bde418555d59282116cce1e26",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "codex/word-vba-compatibility-20261122",
+      "sha": "934c33a57f3bed934df59a4e925ffc35fe406ee2",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "codex/word-vba-continuation-20261122",
+      "sha": "dd844f4ae1d5d4dab897fd7e49f94e25be52581a",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "codex/word-vba-extended-20261122",
+      "sha": "43df8a9f6170109589f2f6885312d5cf15068a88",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "codex/word-vba-objects-20261122",
+      "sha": "4eca268cfaab0a765816cd4f0bbadd7b414bfa30",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "codex/word-vba-range-suffix-20261122",
+      "sha": "360673e0736e98d65d6c3cacef90bf842391288d",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "codex/zotero-dispatch-recovery-20261121",
+      "sha": "32ef843db3a8192fe0add085e1ee173e18f4d462",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "codex/zotero-field-context-20261122",
+      "sha": "00ba542dc5b492040508a8137a80adbc9b13553d",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "codex/zotero-field-recovery-20261122",
+      "sha": "e78e98d3a07647794e4426f833782ccbddc04960",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "codex/zotero-footnote-separators-20261121",
+      "sha": "a70c0e7af251d737dc7639f44a48777bbea1bf51",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "codex/zotero-host-ownership-20261121",
+      "sha": "05cb866e6e5aaee95dae8b03da2892fcf633a84b",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "codex/zotero-main-qualification-20261121",
+      "sha": "e2a1ed6073556d24194004221c545166b17c2d4e",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "codex/zotero-native-parity-20261122",
+      "sha": "d300c76f0966d8f676b0fa38a7799f0e01cbc10d",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "codex/zotero-note-layout-20261121",
+      "sha": "2089e1e35a8ba81ea7f0a077b348f93ca70953c8",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "codex/zotero-odt-roundtrip-20261121",
+      "sha": "05072dc2d59d0fa4ea97de4d6a842700ef333fab",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "codex/zotero-parity-20261122",
+      "sha": "da36652cf1d2296b59285788035555d512b9fa31",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "codex/zotero-parity-next-20261122",
+      "sha": "98ac4254f04acdeff53ea28c9c184ecfb141e868",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "codex/zotero-select-navigation-20261122",
+      "sha": "8c1b8da71bb910d4025aa179dc56290cf1a8e72a",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "codex/zotero-shortcut-host-recovery-20261121",
+      "sha": "2168011b6104f680100b87404bc1bd409f724939",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "codex/zotero-source-continuity-20261121-2135",
+      "sha": "c4c16d91d62ded0c341bee95e98de894de70483f",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "codex/zotero-workflow-parity-20261122",
+      "sha": "e3f6b4e74241f805531156e0f1308041813c4f70",
+      "ancestor_of_feature_head": false
+    },
+    {
+      "name": "main",
+      "sha": "bbc4f82c7562e1004c59804b30a5baafcf53e4d1",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "work/mail-bulk-organization-20261122",
+      "sha": "a29742adf28c5779016ae939e5baf6ac3c4a302c",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "work/mail-folder-scoped-search-20261122",
+      "sha": "ff30d1064a052abbfbcdc99745ff66f8bc980aea",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "work/mail-folder-search-20261122",
+      "sha": "24e4b5d8a2a4e3c996e15013c5324a534c2e444f",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "work/mail-keyboard-triage-20261121",
+      "sha": "08d034d876073e2afc881dbfc11ba791acde3d67",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "work/mail-live-search-20261121",
+      "sha": "c3d55be30d91694b1a427d261cddbe47b1dd5eec",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "work/mail-parity-20261122-next",
+      "sha": "a7006171630915bbf91b6ce2ab7c4699bb79f69b",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "work/mail-range-selection-tests-20261121",
+      "sha": "5c7a385c5de40394d9eed736c5a2d975535c3df3",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "work/mail-sync-address-search-20261121",
+      "sha": "33d8f956ec2ed1dfd748e1d7ccbc5add053ff565",
+      "ancestor_of_feature_head": true
+    }
+  ],
+  "upstream_repository": "MohammedAsaadAsaad/quds_office_suite",
+  "upstream_branches": [
+    {
+      "name": "ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "ancestor_of_feature_head": true
+    },
+    {
+      "name": "main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "ancestor_of_feature_head": true
+    }
+  ],
+  "open_pull_requests": [],
+  "recent_prs": [
+    {
+      "number": 375,
+      "title": "docs(mail): record verified merge and late intake limits [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-22T09:35:21Z",
+      "head": "a29742adf28c5779016ae939e5baf6ac3c4a302c",
+      "base": "5d18df8dccaed89fd42720bb63dae09ae83d90ae",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/375"
+    },
+    {
+      "number": 374,
+      "title": "feat(mail): add durable bulk organization and reconcile recent Office work [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-22T09:31:48Z",
+      "head": "0e1d6932a96d49c4f59a2ff718650254bb6f1217",
+      "base": "c691191c3ff37f52bc78b203ebb1cb554e607d12",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/374"
+    },
+    {
+      "number": 373,
+      "title": "Close Word macro qualification and publication record [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-22T09:06:16Z",
+      "head": "360673e0736e98d65d6c3cacef90bf842391288d",
+      "base": "682ca74fe994eb96a8133c963ae3e5f765023c2e",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/373"
+    },
+    {
+      "number": 371,
+      "title": "Extend Word VBA cell-range InsertAfter and reconcile recent branches",
+      "state": "closed",
+      "merged_at": "2026-11-22T08:48:06Z",
+      "head": "d4317dcc1ecc6c7b70a1773cc121f5639ad99428",
+      "base": "b38f2e38369855056eb9e23792f83fd1ab86ea24",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/371"
+    },
+    {
+      "number": 372,
+      "title": "Finalize authoritative Mail move identities and reconciliation [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-22T09:03:41Z",
+      "head": "b48fa00a3f4461ae10fdf95e444baf3983d051b4",
+      "base": "8326f191067dac1a3befab81361c5829fee9a35d",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/372"
+    },
+    {
+      "number": 370,
+      "title": "Extend Word VBA integer arithmetic and reconcile recent Office work [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-22T08:48:06Z",
+      "head": "43df8a9f6170109589f2f6885312d5cf15068a88",
+      "base": "b38f2e38369855056eb9e23792f83fd1ab86ea24",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/370"
+    },
+    {
+      "number": 369,
+      "title": "Extend Zotero unlink recovery and non-one note numbering [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-22T08:09:09Z",
+      "head": "98ac4254f04acdeff53ea28c9c184ecfb141e868",
+      "base": "b2bba1638924237435460e4238d4bd98c407fc3a",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/369"
+    },
+    {
+      "number": 368,
+      "title": "Finalize Mail current-location recovery and integrated qualification [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-22T07:26:35Z",
+      "head": "bb991a98b73fb2518b2999c37e42d7da4c821fae",
+      "base": "253c7d2861bb65ccb6b844a8c4d162dabbce9ae5",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/368"
+    },
+    {
+      "number": 367,
+      "title": "Preserve automatic Roman Zotero notes across editable ODT exchange [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-22T07:15:13Z",
+      "head": "d300c76f0966d8f676b0fa38a7799f0e01cbc10d",
+      "base": "8589e6f99baf4c2732f60a96ca68d44e6dea9935",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/367"
+    },
+    {
+      "number": 366,
+      "title": "Record completed Word VBA publication and clarify evidence timing [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-22T07:08:15Z",
+      "head": "dd844f4ae1d5d4dab897fd7e49f94e25be52581a",
+      "base": "ffdf603cc71fbb9083c93db3d1b6fe47949f62e7",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/366"
+    }
+  ],
+  "actions_queried_or_waited": false,
+  "audited_at_utc": "2026-11-22T09:58:47.725336+00:00",
+  "feature_head": "4eca268cfaab0a765816cd4f0bbadd7b414bfa30",
+  "main_sha": "bbc4f82c7562e1004c59804b30a5baafcf53e4d1",
+  "uncontained_refs": [
+    {
+      "name": "codex/zotero-workflow-parity-20261122",
+      "sha": "e3f6b4e74241f805531156e0f1308041813c4f70",
+      "ancestor_of_feature_head": false
+    }
+  ],
+  "concurrent_branch_disposition": {
+    "branch": "codex/zotero-workflow-parity-20261122",
+    "sha": "e3f6b4e74241f805531156e0f1308041813c4f70",
+    "disposition": "observed after initial intake; preserved on its own remote branch",
+    "reason": "Substantive unrelated Zotero engine and Flutter controller work remains in progress, with no completed qualification receipt or ready PR at the observed head. It already contains our complete Word checkpoint.",
+    "word_checkpoint_already_contained": "4eca268cfaab0a765816cd4f0bbadd7b414bfa30",
+    "integration_parent": "0fda534bc517556f8cf159f0a400496783a60527",
+    "unique_files": [
+      "docs/validation/zotero-workflow-parity-20261122/intake.json",
+      "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+      "packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart",
+      "packages/quds_office_engine/test/word_zotero_blockquote_test.dart",
+      "packages/quds_office_editor/test/word_zotero_blockquote_controller_test.dart"
+    ]
+  }
+}

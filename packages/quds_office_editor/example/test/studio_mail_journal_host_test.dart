@@ -27,6 +27,7 @@ import 'package:quds_office_studio/studio_strings.dart';
 import 'support/mail_flag_journal.dart';
 
 part 'support/mail_membership_host_cases.dart';
+part 'support/mail_bulk_organization_host_cases.dart';
 
 const _strings = StudioStrings(StudioLanguage.en);
 const _success = MailSuccess<MailUnit>(MailUnit.value);
@@ -395,6 +396,7 @@ final class _Harness {
   bool allowMembership = true;
   bool nativeFlagsKnown = true;
   bool membershipOnly = false;
+  _ImapBrowser? imapBrowser;
   MailMessageFlags? nativeObservedFlags = const MailMessageFlags(isRead: true);
   MailCapabilities get capabilities => MailCapabilities([
     MailCapability.mail,
@@ -471,6 +473,7 @@ final class _Harness {
     if (kind == MailProviderKind.imap) {
       final client = _ImapClient(this);
       final browser = _ImapBrowser(this);
+      imapBrowser = browser;
       return StudioMailDialog(
         strings: _strings,
         credentialStore: _Credentials(),
@@ -709,6 +712,7 @@ void _expectHistoricalTarget(_Harness harness) {
 }
 
 void main() {
+  membershipBulkHostTests();
   membershipHostTests();
   for (final kind in [
     MailProviderKind.imap,
