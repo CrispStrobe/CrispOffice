@@ -2804,8 +2804,6 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     var saving = false;
     setState(() => _navigating = true);
     try {
-      await _draftRestoration;
-      if (!current()) return;
       if (_mailboxViewReleaseFailed) {
         await _stopCachedView(retryFailed: true);
         if (!current()) return;
@@ -2819,7 +2817,23 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         saving = false;
         _disconnect(forNavigation: true, deferLocalClose: true);
       }
+      // A pending first repository snapshot is part of draft restoration.
+      // Begin its cancellation before waiting for restoration, retaining the
+      // exclusive owner until both that cancellation and restoration settle.
+      // Save failure above leaves the current connection and draft intact.
+      var observerReleased = true;
+      final observerDrain = _stopCachedView().catchError((
+        Object _,
+        StackTrace _,
+      ) {
+        observerReleased = false;
+      });
+      await _draftRestoration;
+      await observerDrain;
+      if (!current()) return;
+      if (!observerReleased) throw const _AccountOwnerReleaseFailure();
       await _releaseRetiredAccount();
+      _checkDraftStoresReleased();
       if (!mounted || !current()) return;
       setState(() => _allowPop = true);
       Navigator.pop(context);
