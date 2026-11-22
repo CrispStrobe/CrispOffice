@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "captured_at_utc": "2026-11-22T05:11:24.894642+00:00",
+  "local_head_sha": "9c8816b26b34a8e046cd2e3a3a5254b90d945029",
+  "scope": "Focused rendering qualification only; these checks do not qualify the entire concurrent working tree or installed Zotero hosts.",
+  "environment": "source /workspace/scratch/2437eaf6f35d/toolchains/env.sh",
+  "checks": [
+    {
+      "command": "flutter --no-version-check --suppress-analytics test --no-pub packages/quds_office_editor/test/word_zotero_field_context_render_test.dart --reporter expanded",
+      "exit_code": 0,
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0,
+      "log": "focused-tests.txt"
+    },
+    {
+      "command": "dart analyze packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart packages/quds_office_editor/test/word_zotero_field_context_render_test.dart",
+      "exit_code": 0,
+      "issues": 0,
+      "log": "analyze.txt"
+    }
+  ],
+  "development_attempt": {
+    "exit_code": 1,
+    "test_cases_executed": 0,
+    "reason": "Test fixture attempted to set read-only bidiBaseLevel; corrected to supported rightToLeft setter.",
+    "diagnostic": "development-compile-failure.txt",
+    "initial_render_sha256": "4433c284efc1b8d6b0dc3d5290d8e9cff08f916c0ee2e82296b7eb5d53145598",
+    "initial_test_sha256": "2665dc4c8a8a54d1540b543e2b69c711f5be6bd4b885cd420488f6980e739b11"
+  },
+  "fingerprints": {
+    "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart": "4433c284efc1b8d6b0dc3d5290d8e9cff08f916c0ee2e82296b7eb5d53145598",
+    "packages/quds_office_editor/test/word_zotero_field_context_render_test.dart": "7533871069659c37e146f55abcfda806f0621d4ff269a87bd5a0a0f09ed8461a",
+    "docs/validation/zotero-field-context-20261122/checks/render/focused-tests.txt": "c07800ebd0a9e0baea96478baa7f19a8f86419b85a5a469d171fd72e816b1917",
+    "docs/validation/zotero-field-context-20261122/checks/render/analyze.txt": "ec4b5a0aa3b04c677e7b868ca12dfabda7036960d29d7ee34d454ff2d968e0b2",
+    "docs/validation/zotero-field-context-20261122/checks/render/development-compile-failure.txt": "540b15092c3a2970b6bb23b418092944199419de619dac8a8ef0c094a80a8b39"
+  },
+  "fingerprint_note": "Captured after focused test and analysis completion; the render implementation and fixture were not edited during these accepted executions. Other agents were working on separate source files.",
+  "github_actions_waited": false
+}

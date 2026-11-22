@@ -85,6 +85,7 @@ class WordCanvas extends LeafRenderObjectWidget {
     this.onCommitRulerEdit,
     this.compact = false,
     this.findHits = const <OfficeFindHit>[],
+    this.zoteroFieldRanges = const <WordZoteroFieldSelectionRange>[],
     this.proofingFindings = const <WmlParagraph, List<OfficeProofingFinding>>{},
     this.activeFindIndex = -1,
   });
@@ -289,6 +290,10 @@ class WordCanvas extends LeafRenderObjectWidget {
   /// findHits API.
   final List<OfficeFindHit> findHits;
 
+  /// Temporary Zotero prompt context in original document coordinates.
+  /// This overlay is independent of the writing selection, focus and Find.
+  final List<WordZoteroFieldSelectionRange> zoteroFieldRanges;
+
   /// Current source-bound findings, indexed by exact paragraph identity.
   final Map<WmlParagraph, List<OfficeProofingFinding>> proofingFindings;
 
@@ -358,6 +363,7 @@ class WordCanvas extends LeafRenderObjectWidget {
       onCommitRulerEdit: onCommitRulerEdit,
       compact: compact,
       findHits: findHits,
+      zoteroFieldRanges: zoteroFieldRanges,
       proofingFindings: proofingFindings,
       activeFindIndex: activeFindIndex,
     );
@@ -434,6 +440,7 @@ class WordCanvas extends LeafRenderObjectWidget {
       ..onCommitRulerEdit = onCommitRulerEdit
       ..compact = compact
       ..findHits = findHits
+      ..zoteroFieldRanges = zoteroFieldRanges
       ..proofingFindings = proofingFindings
       ..activeFindIndex = activeFindIndex;
     if (viewport != null && !identical(renderObject.viewport, viewport)) {
@@ -548,6 +555,7 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
     this.onCommitRulerEdit,
     this.compact = false,
     this.findHits = const <OfficeFindHit>[],
+    this.zoteroFieldRanges = const <WordZoteroFieldSelectionRange>[],
     this.proofingFindings = const <WmlParagraph, List<OfficeProofingFinding>>{},
     this.activeFindIndex = -1,
   });
@@ -749,6 +757,10 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
 
   /// findHits API.
   List<OfficeFindHit> findHits;
+
+  /// Source-bound Zotero prompt context; never a replacement caret selection.
+  List<WordZoteroFieldSelectionRange> zoteroFieldRanges;
+
   Map<WmlParagraph, List<OfficeProofingFinding>> proofingFindings;
 
   /// activeFindIndex API.
@@ -3584,6 +3596,7 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
   /// paint API.
   void paint(PaintingContext context, Offset offset) {
     _resetPaintFit();
+    final zoteroRanges = _zoteroRangesForDocument();
     final Canvas canvas = context.canvas;
     canvas.save();
     canvas.translate(offset.dx, offset.dy);
@@ -3598,6 +3611,12 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
         _paintFrames(canvas, laidOut.pages.first);
         _paintSelectionBand(canvas, laidOut.pages.first);
         for (final LaidOutLine line in laidOut.pages.first.lines) {
+          _paintZoteroFieldRanges(
+            canvas,
+            laidOut.pages.first,
+            line,
+            zoteroRanges[line.sourceParagraph],
+          );
           if (_paintsLineSelection(line, laidOut.pages.first)) {
             _paintFindHits(canvas, line);
           }
@@ -3720,6 +3739,12 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
               Rect.fromLTWH(cell.x, cell.y, cell.width, cell.height),
             );
           }
+          _paintZoteroFieldRanges(
+            canvas,
+            page,
+            line,
+            zoteroRanges[line.sourceParagraph],
+          );
           if (_paintsLineSelection(line, page)) {
             _paintFindHits(canvas, line);
           }
@@ -3775,6 +3800,12 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
         );
       }
       for (final LaidOutLine line in page.notes) {
+        _paintZoteroFieldRanges(
+          canvas,
+          page,
+          line,
+          zoteroRanges[line.sourceParagraph],
+        );
         _drawLine(
           canvas,
           line,
@@ -4062,6 +4093,92 @@ class RenderWordCanvas extends RenderBox implements MouseTrackerAnnotation {
         canvas.drawRect(r, Paint()..color = fill);
       }
     }
+  }
+
+  Map<WmlParagraph, List<WordZoteroFieldSelectionRange>>
+  _zoteroRangesForDocument() {
+    if (zoteroFieldRanges.isEmpty) return const {};
+    final owners = Set<WmlParagraph>.identity()..addAll(document.paragraphs);
+    for (final note in [...document.footnotes, ...document.endnotes]) {
+      owners.addAll(note.allParagraphs);
+    }
+    final ranges =
+        Map<WmlParagraph, List<WordZoteroFieldSelectionRange>>.identity();
+    for (final range in zoteroFieldRanges) {
+      if (!owners.contains(range.paragraph) ||
+          range.start < 0 ||
+          range.end <= range.start ||
+          range.end > range.paragraph.text.length) {
+        continue;
+      }
+      ranges.putIfAbsent(range.paragraph, () => []).add(range);
+    }
+    return ranges;
+  }
+
+  void _paintZoteroFieldRanges(
+    Canvas canvas,
+    LaidOutPage page,
+    LaidOutLine line,
+    List<WordZoteroFieldSelectionRange>? ranges,
+  ) {
+    if (ranges == null || ranges.isEmpty) return;
+    // Never infer ownership from a body index: note indexes are local and
+    // incremental layout can reuse/renumber body lines after structural edits.
+    final band = Path();
+    TextPainter? painter;
+    double? overlayX;
+    if (line.glyphs.isEmpty && line.overlayText?.isNotEmpty == true) {
+      painter = _overlayPainter(line);
+      overlayX = _overlayOrigin(
+        line,
+        painter,
+        pageWidth: page.width,
+        marginRight: _marginRightOf(page),
+      );
+    }
+    for (final range in ranges) {
+      // Notes introduce display-only automatic labels. Project source offsets
+      // before measuring, so highlighting never includes or shifts by a label.
+      for (final display in WordProofingGeometry.displayRanges(
+        line,
+        range.start,
+        range.end,
+      )) {
+        if (painter != null) {
+          for (final box in painter.getBoxesForSelection(
+            TextSelection(baseOffset: display.start, extentOffset: display.end),
+          )) {
+            band.addRect(box.toRect().shift(Offset(overlayX!, line.y)));
+          }
+        } else if (line.glyphs.isNotEmpty) {
+          for (final rect in CaretEngine.rangeRectsOnLine(
+            line,
+            line.y,
+            line.height,
+            display.start,
+            display.end,
+          )) {
+            band.addRect(rect);
+          }
+        }
+      }
+    }
+    painter?.dispose();
+    if (band.getBounds().isEmpty) return;
+    canvas.save();
+    final cell = line.paragraphIndex >= 0 ? _cellForLine(page, line) : null;
+    if (cell != null) {
+      canvas.clipRect(Rect.fromLTWH(cell.x, cell.y, cell.width, cell.height));
+    } else if (line.paragraphIndex < 0 && line.boxWidth > 0) {
+      // Note layout retains the exact content box even though its table
+      // models are detached clones and cannot be matched by body indexes.
+      canvas.clipRect(
+        Rect.fromLTWH(line.boxX, line.y, line.boxWidth, line.height),
+      );
+    }
+    canvas.drawPath(band, Paint()..color = const Color(0x667E57C2));
+    canvas.restore();
   }
 
   /// Fill for selected text, cells and in-range pictures.

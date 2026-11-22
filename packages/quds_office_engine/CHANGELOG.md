@@ -17,6 +17,13 @@ All notable changes to `quds_office_engine` are documented here.
   [Join contract](../../docs/vba-macros-details.md#joining-source-string-arrays)
   and [local qualification](../../docs/validation/word-vba-cell-text-20261122/README.md).
 
+- Expose typed, read-only context for native Zotero `Field.select` requests.
+  Resolve original body, note and multipart bibliography ranges against the
+  unchanged live document without moving the writing caret or applying staged
+  results. Distinguish new insertions and detached transfer fields without
+  exposing them as live source ranges, and clear context on deletion, unlinking
+  and transaction completion.
+
 - Format supported Word table cells through bounded VBA `Cell.Range.Font` and
   `Cell.Range.ParagraphFormat`, including existing font controls, paragraph
   spacing/alignment, custom line-spacing pairs, spacing methods and tab stops.
