@@ -217,8 +217,6 @@ extension MailMoveIdentityTransitions on SqliteMailRepository {
         SqliteMailRepository._fail(MailProblemCode.quotaExceeded);
       }
     }
-    final projected =
-        canProject && await _projectMoveIdentityTransition(transition);
     await _db.customStatement(
       'INSERT INTO move_identity_transitions('
       'account,batch,position,destination_remote,destination_message,recorded_at,cache_projected) '
@@ -230,9 +228,33 @@ extension MailMoveIdentityTransitions on SqliteMailRepository {
         encoded,
         transition.destinationMessageId.value,
         now,
-        projected ? 1 : 0,
+        0,
       ],
     );
+    if (canProject) {
+      try {
+        // The receipt belongs to the outer journal transaction. Optional cache
+        // growth must not discard it when only that growth exceeds the account
+        // quota. A required savepoint prevents partial projection on backends
+        // that cannot provide independently rollbackable nested transactions.
+        await _db.transaction(() async {
+          if (!await _projectMoveIdentityTransition(transition)) return;
+          await _db.customStatement(
+            'UPDATE move_identity_transitions SET cache_projected=1 '
+            'WHERE account=? AND batch=? AND position=?',
+            [
+              account.value,
+              batch.read<String>('id'),
+              item.read<int>('position'),
+            ],
+          );
+          await _quota(account);
+        }, requireNew: true);
+      } on MailStoreStorageException catch (error) {
+        if (error.code != MailProblemCode.quotaExceeded) rethrow;
+        // The outer quota check still rejects a receipt that cannot itself fit.
+      }
+    }
   }
 
   Future<bool> _projectMoveIdentityTransition(
@@ -261,6 +283,11 @@ extension MailMoveIdentityTransitions on SqliteMailRepository {
     final destinationView = await _loadMailboxView(
       transition.destinationMailbox,
     );
+    // An absent browse view has no CAS revision. A browse request started before
+    // this move could otherwise publish its old window afterwards with a null
+    // expected revision. Keep the receipt, but defer projection until both
+    // folders have existing views whose revisions can fence those writers.
+    if (sourceView == null || destinationView == null) return false;
     await _checkSyncMailboxes(account);
     final sourceSync = await _rows(
       'SELECT revision FROM mailbox_sync_state WHERE account=? AND mailbox=?',
@@ -274,12 +301,11 @@ extension MailMoveIdentityTransitions on SqliteMailRepository {
       'SELECT 1 AS present FROM memberships WHERE account=? AND mailbox=? AND message=?',
       [account.value, transition.sourceMailbox.value, sourceId],
     );
-    final inSourceView =
-        sourceView?.headers.any((header) => header.id.value == sourceId) ??
-        false;
+    final inSourceView = sourceView.headers.any(
+      (header) => header.id.value == sourceId,
+    );
     if (sourceMembership.isNotEmpty && sourceSync.isEmpty ||
-        !inSourceView && sourceMembership.isEmpty ||
-        destinationView == null && destinationSync.isEmpty) {
+        !inSourceView && sourceMembership.isEmpty) {
       return false;
     }
     final targets = await _rows(
@@ -293,23 +319,45 @@ extension MailMoveIdentityTransitions on SqliteMailRepository {
     )) {
       return false;
     }
-    final destinationInView =
-        destinationView?.headers.any(
-          (header) => header.id.value == destinationId,
-        ) ??
-        false;
-    if (destinationView != null &&
-        !destinationInView &&
+    final destinationInView = destinationView.headers.any(
+      (header) => header.id.value == destinationId,
+    );
+    if (!destinationInView &&
         destinationView.headers.length >= _viewHeaderLimit) {
       return false;
     }
+    if (!destinationInView) {
+      // Check the exact stored representation that the projected view will
+      // expose. A retained destination row can have a different envelope from
+      // the source; it must retain its own metadata and quota contribution.
+      var units =
+          destinationView.mailbox.id.value.length +
+          destinationView.mailbox.displayName.length +
+          destinationId.length +
+          destinationRemote.length +
+          (targets.isEmpty ? source : targets.single)
+              .read<String>('envelope')
+              .length;
+      if (units > _viewMetadataLimit) return false;
+      for (final row in await _rows(
+        'SELECT m.id,m.remote,m.envelope FROM mailbox_view_members v '
+        'JOIN messages m ON m.account=v.account AND m.id=v.message '
+        'WHERE v.account=? AND v.mailbox=? LIMIT ?',
+        [account.value, transition.destinationMailbox.value, _viewHeaderLimit],
+      )) {
+        units +=
+            row.read<String>('id').length +
+            row.read<String>('remote').length +
+            row.read<String>('envelope').length;
+        if (units > _viewMetadataLimit) return false;
+      }
+    }
     if (transition.destination case MailImapIdentity(:final uidValidity)) {
-      if (destinationView != null &&
-          destinationView.headers.any(
-            (header) =>
-                header.remote is! MailImapIdentity ||
-                (header.remote as MailImapIdentity).uidValidity != uidValidity,
-          )) {
+      if (destinationView.headers.any(
+        (header) =>
+            header.remote is! MailImapIdentity ||
+            (header.remote as MailImapIdentity).uidValidity != uidValidity,
+      )) {
         return false;
       }
       final members = await _rows(
@@ -402,34 +450,20 @@ extension MailMoveIdentityTransitions on SqliteMailRepository {
         [account.value, transition.destinationMailbox.value, destinationId],
       );
     }
-    if (inSourceView) {
-      final retained = [
-        for (final header in sourceView!.headers)
-          if (header.id.value != sourceId) header.id.value,
-      ];
-      await _replaceMoveViewMembers(
-        transition.sourceMailbox,
-        retained,
-        counter + 1,
-      );
-    }
-    if (destinationView != null) {
-      final retained = [
-        for (final header in destinationView.headers) header.id.value,
-        if (!destinationInView) destinationId,
-      ];
-      await _replaceMoveViewMembers(
-        transition.destinationMailbox,
-        retained,
-        counter + 1,
-      );
-    }
-    if (inSourceView || destinationView != null) {
-      await _db.customStatement(
-        'UPDATE store_profile SET mailbox_view_revision=?',
-        [counter + 1],
-      );
-    }
+    // Even a source window that omitted this synchronized member must advance
+    // its CAS revision, so a pending old browse response cannot reintroduce it.
+    await _replaceMoveViewMembers(transition.sourceMailbox, [
+      for (final header in sourceView.headers)
+        if (header.id.value != sourceId) header.id.value,
+    ], counter + 1);
+    await _replaceMoveViewMembers(transition.destinationMailbox, [
+      for (final header in destinationView.headers) header.id.value,
+      if (!destinationInView) destinationId,
+    ], counter + 1);
+    await _db.customStatement(
+      'UPDATE store_profile SET mailbox_view_revision=?',
+      [counter + 1],
+    );
     for (final mailbox in [
       transition.sourceMailbox,
       transition.destinationMailbox,
