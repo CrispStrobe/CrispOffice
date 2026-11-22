@@ -1,0 +1,49 @@
+{
+  "format_version": 1,
+  "purpose": "Package the final mail bulk-organization qualification evidence, including failed attempts, without aggregating test counts.",
+  "target_repository_directory": "docs/validation/mail-bulk-organization-20261122/evidence",
+  "evidence_directory": "/workspace/scratch/f1082e82ac57/integration-audit",
+  "staging_directory": "/workspace/scratch/f1082e82ac57",
+  "snapshot_requires_explicit_finalize": true,
+  "allowed_suffixes": [".log", ".jsonl", ".json", ".py", ".c", ".dart", ".md", ".diff", ".txt", ".sh", ".csv", ".yaml", ".yml"],
+  "excluded_suffixes": [".so", ".dylib", ".dll", ".a", ".o", ".pyc", ".zip", ".gz", ".xz", ".bz2", ".tar", ".7z", ".lock"],
+  "excluded_names": {
+    "advanced-heads-connector-comparisons.json": "Duplicate connector transport/comparison envelope; material findings and exact refs are retained in advanced-heads-audit.json, advanced-heads-review.md and intake audits."
+  },
+  "generated_prefix": "mail-bulk-organization-evidence",
+  "required_files": [
+    "audit.json",
+    "initial-refs.json",
+    "advanced-heads-audit.json",
+    "advanced-heads-review.md",
+    "late-main-word-intake-review.json",
+    "provider-dialog-validation.json",
+    "widget-provider-dialog-ram.jsonl",
+    "ui-widget-tests-summary.json",
+    "ui-widget-tests.log",
+    "journal-host-tests-summary.json",
+    "journal-host-tests.jsonl",
+    "ram_flutter_test.py",
+    "run_standalone_tests.py",
+    "temp_dir_pool.c",
+    "temp_dir_pool_smoke.py",
+    "temp_dir_pool_dart_smoke.dart",
+    "temp-dir-pool-validation.md",
+    "temp-dir-pool-manifest.json",
+    "temp-dir-pool-inodes.txt",
+    "restore_temp_dir_pool.py",
+    "sqlite-native-assets.json",
+    "sqlite-native-asset-verification.json",
+    "core-source-tests-enospc.log",
+    "word-integer-failed-attempt.log",
+    "word-cli-failed-attempt-summary.json"
+  ],
+  "extra_files": [
+    "/workspace/scratch/f1082e82ac57/toolchains/validation_env.sh",
+    "/workspace/scratch/f1082e82ac57/widget-provider-dialog-initial-attempt.md",
+    "/workspace/scratch/f1082e82ac57/late-advanced-heads-review.json"
+  ],
+  "counting_policy": "The package index counts evidence files, helper sources, command records and ref records only. It does not sum passed, failed or skipped tests across attempts or suites.",
+  "determinism": "Sorted archive paths; UTF-8 canonical JSON; tar uid/gid 0, names empty, mode 0644, mtime 0; gzip filename empty and mtime 0. Identical file bytes, context and git observations produce identical archive bytes.",
+  "safety": "Only explicitly selected UTF-8 evidence is included. Symlinks, binaries, generated archives, lockfiles and credential-shaped content are rejected or excluded with a recorded reason. No evidence is deleted. No repository files or refs are modified."
+}
