@@ -786,14 +786,14 @@
       }
     },
     {
-      "id": "projected-insertbefore-refused",
+      "id": "projected-insertafter-refused",
       "feature": "Projected range boundary",
-      "source": "Option Explicit\nSub Main()\n  ActiveDocument.Tables(2).Cell(3, 4).Range.Paragraphs(1).Range.InsertBefore \"prefix\"\nEnd Sub\n",
+      "source": "Option Explicit\nSub Main()\n  ActiveDocument.Tables(2).Cell(3, 4).Range.Paragraphs(1).Range.InsertAfter \"prefix\"\nEnd Sub\n",
       "expected": {
         "diagnostic": {
           "code": "vba_unsupported",
           "line": 3,
-          "column": 65
+          "column": 3
         }
       },
       "provenance": {
@@ -920,12 +920,12 @@
     {
       "id": "inactive-unsafe-projection-refused",
       "feature": "Static admission",
-      "source": "Option Explicit\nSub Main()\n  If False Then\n    ActiveDocument.Tables(2).Cell(3, 4).Range.Paragraphs(1).Range.InsertBefore \"prefix\"\n  End If\nEnd Sub\n",
+      "source": "Option Explicit\nSub Main()\n  If False Then\n    ActiveDocument.Tables(2).Cell(3, 4).Range.Paragraphs(1).Range.InsertAfter \"prefix\"\n  End If\nEnd Sub\n",
       "expected": {
         "diagnostic": {
           "code": "vba_unsupported",
           "line": 4,
-          "column": 67
+          "column": 5
         }
       },
       "provenance": {

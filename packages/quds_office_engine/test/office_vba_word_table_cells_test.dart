@@ -377,7 +377,7 @@ End Function
       'value = ActiveDocument.Tables(1).Cell(1,1).RowIndex',
       '$_target.Shading.BackgroundPatternColor = wdColorRed',
       '$_target.Style = wdStyleNormal',
-      '$_target.Paragraphs(1).Range.InsertBefore "x"',
+      '$_target.Paragraphs(1).Range.InsertAfter "x"',
       '$_target.Value = "x"',
       'ActiveDocument.Sections(1).Headers(1).Range.Tables(1).Cell(1,1).Range.Text = "x"',
       'ActiveDocument.Paragraphs(1).Range.Text = "x"',
@@ -485,8 +485,8 @@ target.Text = "x"
 
     for (final statement in <String>[
       'selected.ListFormat.ApplyBulletDefault',
-      'selected.InsertBefore "x"',
-      'selected.Paragraphs(1).Range.InsertBefore "x"',
+      'selected.InsertAfter "x"',
+      'selected.Paragraphs(1).Range.InsertAfter "x"',
     ]) {
       test('a generic Range cannot escape its cell target: $statement', () {
         expect(

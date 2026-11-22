@@ -114,6 +114,7 @@ const wordOperations = <String, List<String>>{
   'hyperlink': ['paragraph', 'run', 'target', ..._storyFields],
   'tableCellText': ['table', 'row', 'column', 'gridColumn', 'text'],
   'tableCellRangeText': ['table', 'row', 'column', 'text'],
+  'tableCellRangeInsertBefore': ['table', 'row', 'column', 'text'],
   'headerFooterText': ['section', 'story', 'paragraph', 'text'],
   'sectionFormat': [
     'section',
@@ -790,6 +791,8 @@ void applyStep(
         ..add(WmlParagraph(inlines: <WmlInline>[WmlRun(text: text)]));
     case 'tableCellRangeText':
       setWordTableCellRangeText(doc, s);
+    case 'tableCellRangeInsertBefore':
+      insertBeforeWordTableCellRange(doc, s);
     case 'headerFooterText':
       final story = s.string('story');
       if (!_headerStories.contains(story)) {

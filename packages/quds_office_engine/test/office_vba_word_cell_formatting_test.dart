@@ -412,7 +412,7 @@ ActiveDocument.Tables(1).Cell(1, 1).Range.ParagraphFormat.LineSpacing = 18
     }
 
     for (final statement in [
-      'selected.InsertBefore "x"',
+      'selected.InsertAfter "x"',
       'selected.Style = wdStyleNormal',
       'selected.Shading.BackgroundPatternColor = wdColorRed',
       'selected.ListFormat.ApplyBulletDefault',

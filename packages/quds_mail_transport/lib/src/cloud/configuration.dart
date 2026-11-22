@@ -173,6 +173,7 @@ enum MailCloudOperation {
   listMailboxes,
   fetchHeaders,
   observeFlags,
+  observeMembership,
   fetchMessage,
   pullChanges,
   apply,

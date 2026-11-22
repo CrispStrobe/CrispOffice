@@ -332,7 +332,7 @@ $_first.Shading.BackgroundPatternColorIndex = wdYellow
         _source('''
 Sub Main()
   $_first.Style = "Report Label"
-  $_second.Range.InsertBefore "unsupported"
+  $_second.Range.InsertAfter "unsupported"
 End Sub
 '''),
       );
@@ -423,7 +423,7 @@ End Sub
         '''
 Sub Main()
   $_first.Style = "Report Label"
-  $_second.Range.InsertBefore "unsupported"
+  $_second.Range.InsertAfter "unsupported"
 End Sub
 ''',
       ]) {
