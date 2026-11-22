@@ -19,7 +19,9 @@ the retained draft and uncertain-submission state, drains observers, journal
 writes and owners, and fences stale routes and late acquisitions. Atomic
 selected-record refresh cannot recreate a forgotten shortcut. One account stays
 connected at a time; retained simultaneous sessions and an account-aware unified
-workspace remain open. The linked work records identify actual qualification.
+workspace remain open. Failed observer/owner release is retained for explicit
+close recovery before another account is admitted. The linked work records
+identify actual qualification.
 
 The [explicit Archive continuation](provider-archive.md) adds reviewed single and
 checked-selection Archive to connected mail. Gmail removes only Inbox membership;

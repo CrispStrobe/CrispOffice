@@ -40,6 +40,14 @@ reusable `QudsMailWorkspace` milestone remains open.
   journal writes and draft-owner release before handing control to another
   provider. A late owner acquisition is fenced and released before another
   owner is admitted.
+- Retain an observer or owner whose cancellation/close failed. An explicit
+  release retry must finish that work before a new target can acquire ownership.
+  Hidden pointer/keyboard input and duplicate or late route callbacks remain
+  blocked while a handoff is pending.
+- Apply that release boundary to ordinary Disconnect, Refresh and folder
+  changes as well as account switching. Disconnect starts observer cancellation
+  before waiting for draft restoration, so a pending initial saved-mail view
+  cannot prevent cleanup. Storage ownership ends only after both have drained.
 - Restore drafts, cached state, Outbox and historical uncertainty only through
   their owning account. Navigation never treats unknown delivery as success
   and never replays a send or mailbox command.
@@ -52,10 +60,12 @@ reusable `QudsMailWorkspace` milestone remains open.
   existing directory metadata unchanged; a read followed by an unconditional
   write would not provide the required race protection.
 
-If an owner cannot finish closing, navigation/sign-in remains blocked. Recovery
-depends on the host and owner implementation. A failed native owner close may
-require restarting the host; this feature does not guarantee that retrying in
-the same session succeeds.
+If an observer or owner cannot finish closing, navigation/sign-in remains
+blocked. Native **Retry closing account** makes the next release attempt
+explicit; EWS/cloud Close and Back preserve the retained draft and release work.
+The existing native Close action still hides its mounted pane. Recovery depends
+on the host and owner implementation: a persistent close failure may require
+restarting the host, and an in-session retry is not guaranteed to succeed.
 
 ## Scope and qualification
 
@@ -71,6 +81,12 @@ catalog conflicts, account replacement during sign-in, draft/uncertainty
 preservation, observer cancellation, late owner acquisition and conditional
 SQLite refresh. Shared Mail regressions and incoming Word work have separate
 receipts. No final Studio test count is inferred from those other cohorts.
+
+The [initial account-navigation guide](account-navigation.md) and
+[development work record](../../validation/mail-connected-navigation-20261122/README.md)
+are retained for provenance, including the incoming owner/observer release
+continuation. Its final qualification plan was prepared without execution;
+it is not a passing result for the current combined source.
 
 Live-provider, installed-platform and full desktop-client acceptance remain
 separate from deterministic local fixtures. GitHub Actions queue completion is

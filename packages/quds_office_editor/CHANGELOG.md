@@ -13,9 +13,13 @@ All notable changes to `quds_office_editor` are documented here.
   without recreating forgotten shortcuts. Removed or replaced destinations
   invalidate late refresh completion before the connection handoff. Fresh
   connections register their account normally. Custom directories without
-  conditional refresh retain their existing metadata. Native Close hides the mounted Mail
-  pane; failed owner release blocks another sign-in and can require a host
-  restart. Provider Close/Back preserves draft recovery. One account remains
+  conditional refresh retain their existing metadata. Retain failed observer/owner
+  release for explicit native Retry closing account and provider Close/Back
+  recovery; another account stays blocked until release succeeds. Apply the same
+  retained cleanup to Disconnect, Refresh and folder changes, cancelling
+  observers waiting for an initial snapshot before draining restoration.
+  Native Close hides the mounted Mail pane; persistent release failure can
+  require a host restart. Provider Close/Back preserves draft recovery. One account remains
   connected at a time. See the [account-navigation workflow](../../docs/roadmaps/mail/account-navigation.md)
   and [connected-account guide](../../docs/roadmaps/mail/connected-account-navigation.md)
   for scope, qualification and remaining multi-account workspace work.

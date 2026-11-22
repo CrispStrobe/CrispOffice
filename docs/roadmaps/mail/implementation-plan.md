@@ -313,7 +313,9 @@ inspection receipt, not a complete dependency or runtime certification.
   Microsoft 365 in Studio. Preserve exact non-secret routes, explicit sign-in,
   account-owned drafts/uncertainty and one foreground connection. Drain cached
   observers, journal writes and owners before handoff; fence late acquisitions
-  and retired callbacks. Refresh selected native directory records atomically
+  and retired callbacks. Retain failed observer/owner release for explicit close
+  recovery; a failed release never authorizes another account. Refresh selected
+  native directory records atomically
   against the expected record; custom directories without conditional refresh
   retain their existing metadata. See
   [connected-account-navigation.md](connected-account-navigation.md) and its

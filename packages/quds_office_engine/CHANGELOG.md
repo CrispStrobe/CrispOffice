@@ -4,6 +4,12 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Preserve complete run-property XML, including opaque formatting revisions,
+  on native Word field boundaries through repeated DOCX saves. Keep those
+  fields guarded instead of discarding their history or creating empty text
+  revisions. Ordinary text retains its existing formatting review behavior,
+  including text that originally shared a run with a field marker.
+
 - Keep bounded LibreOffice-formatted Zotero DOCX fields editable while
   preserving their raw instruction/boundary formatting and empty code runs.
   Refresh or unlink empty results using cached-result or surrounding text

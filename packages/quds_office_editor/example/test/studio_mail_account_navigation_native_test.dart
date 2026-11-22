@@ -55,6 +55,8 @@ final class _Directory
         StudioMailLocalAccountStore,
         StudioMailLocalAccountReconnectStore {
   final records = <String, MailLocalAccountRecord>{};
+  // Only the selected compare-and-update waits; independent catalog writes
+  // must remain able to remove or revise that shortcut while it is pending.
   Completer<void>? rememberGate;
   // Attempts include blocked CAS operations; remembers counts committed writes.
   int rememberAttempts = 0;
@@ -184,7 +186,7 @@ final class _Client extends Fake implements mail.MailClient {
 
   Completer<void>? connectGate;
   Completer<void>? folderGate;
-  final Completer<void>? selectGate;
+  Completer<void>? selectGate;
   Completer<void>? headerGate;
   final inbox = mail.Mailbox(
     encodedName: 'INBOX',
@@ -995,10 +997,9 @@ void main() {
       await _tap(tester, _key('studio-mail-navigation-release'));
       expect(owners.single.closeAttempts, 3);
       expect(owners.single.closes, 1);
+      expect(clients.single.disconnections, 1);
       expect(_key('studio-mail-navigation-release'), findsNothing);
       await _choose(tester, second);
-      expect(owners.single.closes, 1);
-      expect(clients.single.disconnections, 1);
       expect(_fieldText(tester, _strings.emailAddress), _second.email);
       expect(tester.takeException(), isNull);
     },
@@ -1068,11 +1069,16 @@ void main() {
         await _pump(tester);
         expect(owners.first.closes, 1);
         expect(owners.first.loads, 0);
+        // Disconnect keeps its release pending until the late owner drains.
+        // Requests made during that release cannot open a successor account.
         if (destination == 'connect') {
+          await tester.enterText(_field(_strings.password), _first.password);
+          await _connect(tester);
           expect(clients, hasLength(2));
           expect(acquisitions, 2);
           expect(owners.last.loads, 1);
         } else {
+          await _tap(tester, _key('studio-mail-open-ews'));
           expect(_key('ews-connect'), findsOneWidget);
           expect(clients, hasLength(1));
           expect(acquisitions, 1);
@@ -1118,12 +1124,17 @@ void main() {
         }
 
         await attempt();
-        expect(oldOwner.closeAttempts, 2);
+        expect(oldOwner.closeAttempts, 1);
         expect(oldOwner.closes, 0);
         expect(clients, hasLength(1));
         expect(owners, hasLength(1));
         expect(_key('ews-connect'), findsNothing);
+        await _tap(tester, _key('studio-mail-navigation-release'));
+        expect(oldOwner.closeAttempts, 2);
+        expect(oldOwner.closes, 0);
         oldOwner.failClose = false;
+        await _tap(tester, _key('studio-mail-navigation-release'));
+        expect(oldOwner.closes, 1);
         await attempt();
         expect(oldOwner.closes, 1);
         if (destination == 'connect') {
