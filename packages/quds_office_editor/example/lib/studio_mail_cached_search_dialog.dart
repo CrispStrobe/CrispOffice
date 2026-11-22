@@ -1179,6 +1179,29 @@ class _StudioMailCachedSearchDialogState
                 _invalidate();
               },
       ),
+      const SizedBox(height: 8),
+      Wrap(
+        spacing: 8,
+        runSpacing: 8,
+        crossAxisAlignment: WrapCrossAlignment.center,
+        children: [
+          OutlinedButton.icon(
+            key: const ValueKey('studio-mail-saved-search-choose-folders'),
+            onPressed: !_current || _loading || _busy || _savedBusy
+                ? null
+                : _chooseFolders,
+            icon: const Icon(Icons.folder_open_outlined),
+            label: Text(widget.strings.mailSavedSearchChooseFolders),
+          ),
+          Text(
+            _folderScopes == null
+                ? widget.strings.mailSavedSearchAllFolders
+                : widget.strings.mailSavedSearchSelectedFolders(
+                    _folderScopes!.length,
+                  ),
+          ),
+        ],
+      ),
       const SizedBox(height: 12),
       TextField(
         key: const ValueKey('studio-mail-cached-search-query'),
@@ -1343,7 +1366,12 @@ class _StudioMailCachedSearchDialogState
             ),
           ),
           if (entry.problem != null)
-            Text(widget.strings.mailCachedSearchAccountFailed),
+            Text(
+              entry.problem == MailProblemCode.unavailable &&
+                      _folderScopes != null
+                  ? widget.strings.mailSavedSearchFolderMissing
+                  : widget.strings.mailCachedSearchAccountFailed,
+            ),
           if (entry.problem == null && entry.complete)
             Text(widget.strings.mailCachedSearchLocalFinished),
           if (incomplete) Text(widget.strings.mailCachedSearchPartialFolders),
