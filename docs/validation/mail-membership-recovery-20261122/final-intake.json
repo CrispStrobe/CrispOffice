@@ -747,8 +747,24 @@
       "head_sha": "dd844f4ae1d5d4dab897fd7e49f94e25be52581a",
       "merge_sha": "8589e6f99baf4c2732f60a96ca68d44e6dea9935",
       "contained": true
+    },
+    {
+      "number": 367,
+      "head_sha": "d300c76f0966d8f676b0fa38a7799f0e01cbc10d",
+      "merge_sha": "253c7d2861bb65ccb6b844a8c4d162dabbce9ae5",
+      "contained": true
     }
   ],
-  "total_recorded_pr_heads": 103,
-  "verified_publication_history": "3fdcaf1e476be4f928aec3359e013302888ee889"
+  "total_recorded_pr_heads": 104,
+  "verified_publication_history": "3fdcaf1e476be4f928aec3359e013302888ee889",
+  "final_main_reconciliation": {
+    "main_sha": "253c7d2861bb65ccb6b844a8c4d162dabbce9ae5",
+    "preserving_merge": "d85b1937fafd3f3583d01472a1eccded1726a5a6",
+    "production_changed": false,
+    "test_cleanup_files": [
+      "packages/quds_office_editor/example/test/support/mail_membership_host_cases.dart",
+      "packages/quds_office_editor/example/test/support/mail_membership_recovery_cases.dart"
+    ],
+    "acceptance": "publication-acceptance.json"
+  }
 }

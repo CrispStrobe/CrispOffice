@@ -43,6 +43,16 @@ During publication, main advanced through Word PRs #365 and #366 to
 validation/documentation artifacts; executable inputs are unchanged. The final
 intake therefore records 103 PR heads including those two publication PRs.
 
+Zotero PR #367 subsequently merged to main at
+`253c7d2861bb65ccb6b844a8c4d162dabbce9ae5`. Merge checkpoint
+`d85b1937fafd3f3583d01472a1eccded1726a5a6` preserves its completed evidence.
+The only additional executable-file delta removes four redundant null assertions
+from two Mail test helpers; production source and the guarded XML fix are
+unchanged. A new 277-case host run and focused helper analysis/format checks
+qualify those final bytes. The [publication supplement](publication-acceptance.json)
+is the final composite acceptance record; earlier bundles remain immutable.
+The intake now contains 104 recorded PR heads.
+
 ## Implemented behavior
 
 - An optional `MailMembershipObserver` reports current membership independently
@@ -85,8 +95,11 @@ executed on two platforms represents two distinct features.
 | Portable store suites, Node | 52 | Codec, platform configuration, browser problem and archive manifest logic |
 | **Total** | **3,036** | Final accepted executions; repeated diagnostic runs are excluded |
 
-The [machine acceptance record](mail-acceptance.json) identifies the exact final
-receipts, commands, source/runtime hashes and current applicability audit.
+The [publication acceptance record](publication-acceptance.json) identifies the
+final composite receipts and source/runtime applicability. It reuses the
+unchanged native/Node cohorts and replaces only the counted host run. The
+[original machine record](mail-acceptance.json) retains its earlier exact source
+snapshot, commands and hashes without rewriting history.
 Core native/Node tests contain two distinct parameter cases sharing one display
 label; their different inputs and execution IDs are retained. The aggregate
 counts completed executions and discloses that label collision.
@@ -136,6 +149,11 @@ captured-source Word results, final changed-Word results, final Zotero results
 and earlier diagnostics. Counts from overlapping or repeated cohorts are not
 summed as unique tests.
 
+The final Zotero Studio receipt excludes both changed Mail-only helpers and
+remains fully applicable: all its recorded source inputs still match. The
+publication supplement audits actual receipt membership instead of assuming
+that unrelated test-support files affect every Studio invocation.
+
 ## Runtime, evidence and replay
 
 Qualification uses the verified pinned Flutter **3.47.8**, Dart **3.13.7** and
@@ -155,6 +173,8 @@ runner invocations avoid the ordinary `dart test` launcher's setup stall.
 | [mail-evidence-manifest.json](mail-evidence-manifest.json) | Mail archive inventory, per-file hashes and packaging audit |
 | [integration-evidence.tar.gz](integration-evidence.tar.gz) | Incoming Word/Zotero logs, receipts, source maps, runner scripts and retained diagnostics |
 | [integration-evidence-manifest.json](integration-evidence-manifest.json) | Integration archive inventory and hashes |
+| [publication-evidence.tar.gz](publication-evidence.tar.gz) | Post-main host logs, source/runtime snapshots and helper analysis; identical PNGs are referenced by digest |
+| [publication-evidence-manifest.json](publication-evidence-manifest.json) | Final supplement inventory and hashes |
 
 Original receipts and logs are retained without rewriting failures into passes.
 Diagnostics include initial test-helper/import/legacy-schema-fixture corrections,
