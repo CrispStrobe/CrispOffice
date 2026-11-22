@@ -1,32 +1,84 @@
 {
-  "status": "FINAL_AFFECTED_COHORT_RUNNING",
+  "status": "PASS",
+  "generated_at_utc": "2026-11-22T13:56:51.237179+00:00",
   "source_commit": "3dca1265f7abfc2cdca7eb0c6b0b582f85f4b015",
-  "generated_at_utc": "2026-11-22T13:45:47.943405+00:00",
+  "source_tree": "b84647e6932218d083d32a12e934211fa798e607",
+  "evidence_parent_checkpoint": "cf3e92af26b90e8ea65ee5443ebe92c6d6d180e7",
   "github_actions_used_as_gate": false,
-  "shared_mail": {
-    "status": "PASS",
-    "suites": 126,
-    "substantive_cases": 2761
+  "substantive_passes": 5685,
+  "unique_suites": 253,
+  "accepted_failures": 0,
+  "accepted_skips": 0,
+  "accepted_incomplete": 0,
+  "cohorts": [
+    {
+      "area": "Mail core",
+      "suites": 29,
+      "passed": 659
+    },
+    {
+      "area": "Mail store (VM and Node)",
+      "suites": 53,
+      "passed": 1190
+    },
+    {
+      "area": "Mail transport (VM and Node)",
+      "suites": 26,
+      "passed": 618
+    },
+    {
+      "area": "Shared Mail UI",
+      "suites": 18,
+      "passed": 294
+    },
+    {
+      "area": "Studio Mail accepted coverage",
+      "suites": 113,
+      "passed": 2538
+    },
+    {
+      "area": "Incoming Word/Zotero engine and editor",
+      "suites": 14,
+      "passed": 386
+    }
+  ],
+  "studio_accounting": {
+    "baseline_suite_count": 112,
+    "baseline_passed": 2484,
+    "baseline_failed": 7,
+    "carryforward_suite_count": 85,
+    "carryforward_pass_count": 1542,
+    "replaced_baseline_suite_count": 27,
+    "discarded_baseline_case_count": 949,
+    "final_affected_suite_count": 28,
+    "final_affected_pass_count": 996,
+    "additional_final_suites": [
+      "test/studio_credential_selection_race_test.dart"
+    ],
+    "no_doublecount_rule": "Accept every substantive case from the 85 unaffected baseline suites and every substantive case from the 28 final suites. Discard all cases, including successful ones, from the 27 overlapping baseline suites. Never union by test name."
   },
-  "studio_baseline": {
-    "status": "FAIL",
-    "suites": 112,
-    "passed": 2484,
-    "failed": 7,
-    "source_commit": "46ec49f02026994dbadae41f2d139cf1d2544551",
-    "all_inputs_unchanged": true,
-    "acceptance_note": "The seven failing suites/cases are not accepted; final affected-suite results will replace their complete suites."
+  "final_studio_inputs": {
+    "scoped_count": 6043,
+    "dependency_count": 4171,
+    "source_unchanged": true,
+    "dependencies_unchanged": true
   },
-  "final_studio_selection": {
-    "affected_suites": 28,
-    "unaffected_baseline_suites": 85,
-    "status": "RUNNING"
+  "mail_static": {
+    "qualified": true,
+    "changed_dart_files": 43,
+    "format_changes": 0,
+    "strict_analysis": "No issues found"
   },
-  "incoming_engine_editor": {
-    "unique_cases": 386,
-    "original_unique_cases": 326,
-    "additional_outline_cases": 60,
-    "overlap_note": "Final helper-consumer and converter reruns replace overlapping cases; they are not added again."
-  },
+  "portable_checks": [
+    "Core JavaScript compile and Node smoke",
+    "Store browser-entry compile",
+    "Store browser-worker compile"
+  ],
+  "engine_accounting": "326 original unique cases plus60 new outline cases =386. The later106 and30 overlapping reruns replace earlier observations and are not counted again.",
+  "scope_limits": [
+    "Local deterministic qualification; no live-provider or installed-platform acceptance",
+    "Portable compilation and Node checks do not establish real-browser storage acceptance",
+    "Captured input and dependency scopes are explicit; not a full-repository release gate"
+  ],
   "intake_all_captured_refs_included": true
 }

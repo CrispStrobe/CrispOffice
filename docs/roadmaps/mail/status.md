@@ -48,6 +48,11 @@ The [workflow guide](remembered-archive.md) and
 [local qualification record](../../validation/mail-remembered-archive-20261122/README.md)
 describe source reconciliation, executed tests and remaining acceptance limits.
 
+Local qualification accepts **5,685 distinct cases**, including 2,538 Studio
+cases with the final affected workflows rerun. All 43 changed Mail Dart paths
+pass strict analysis and formatting. The linked work record preserves the
+original failures, corrections, exact source bindings and count deduplication.
+
 Categories/tags and previewable ordered rules are next, followed by body/provider
 search, persistent conversations, provider Drafts/Sent reconciliation and fuller
 multi-account background work. Full desktop-client parity remains open.

@@ -24,7 +24,7 @@ user path and remaining product boundaries.
   eviction; account/profile removal clears them. Revision tombstones prevent a
   stale dialog from recreating a cleared preference. Existing v16 Archive
   commands and pending journal entries survive migration.
-- Close retires provider authority and first-snapshot observers before waiting
+- Provider Close retires transport authority and first-snapshot observers before waiting
   for pending account opening. Late owners and uncertain drafts remain owned
   through release. Failed saves, observer cancellation and owner release keep
   explicit recovery paths. A new account cannot enter before accepted pending
@@ -60,8 +60,38 @@ branch; branch updates used the expected previous SHA and no force push.
 
 ## Executed qualification
 
-Final accepted counts and source bindings are recorded in `qualification.json`.
-This section is completed after the final combined-source gate.
+**PASS: 5,685 distinct substantive cases across 253 suites**, with no accepted
+failures, skips or incomplete cases. The final source checkpoint is
+`3dca1265f7abfc2cdca7eb0c6b0b582f85f4b015` (tree
+`b84647e6932218d083d32a12e934211fa798e607`). Subsequent publication commits
+contain documentation and evidence only. `qualification.json` and
+`source-continuity.json` record the counts and source bindings.
+
+| Accepted cohort | Suites | Passes |
+| --- | ---: | ---: |
+| Mail core | 29 | 659 |
+| Mail store, VM plus Node behavior | 53 | 1,190 |
+| Mail transport, VM plus Node behavior | 26 | 618 |
+| Shared Mail UI | 18 | 294 |
+| Studio Mail | 113 | 2,538 |
+| Incoming Word/Zotero engine and editor | 14 | 386 |
+| **Total** | **253** | **5,685** |
+
+All **43 changed Mail Dart files** pass formatting without edits and strict
+analysis (`--fatal-infos`), with unchanged inputs and no issues. The final Studio
+run passed **996 cases across 28 suites on its first attempt**. Its 6,043 scoped
+inputs and 4,171 resolved dependency inputs remained unchanged and match the
+qualified source. The 85 unaffected baseline suites contribute 1,542 cases;
+their complete reachable dependency closures are unchanged. The additional
+credential-selection race suite contributes six cases outside the original
+112-suite selection.
+
+The complete original Studio run observed 2,484 passes and seven failures. All
+949 cases from its 27 overlapping suites, including 942 passes, are discarded
+when constructing the accepted ledger; the complete final suites replace them.
+The original failures are retained with their raw diagnostic events. Incoming
+engine/editor counts likewise include 326 original cases plus 60 new outline
+cases, without adding the overlapping later reruns.
 
 Counts exclude test loaders and hidden lifecycle records. A rerun replaces its
 earlier suite result; repeated focused cases are not added again. The first full
@@ -95,6 +125,10 @@ integrated account lifecycle regressions.
   The corrected tests explicitly observe blocked admission and completed release
   before reconnecting, retain overlapping account/row identities and stale
   callbacks, and wait for actual route dismissal. They do not bypass cleanup.
+- Review found a merge-time retry race: Close could silently retry a pending
+  Refresh cancellation that failed after Close began. The final code captures
+  retry authority at Close entry. Three provider regressions require the first
+  failure to remain visible and another explicit Close before retrying.
 - Pending-snapshot save assertions were adapted to the incoming staged-admission
   contract: an unadopted persisted draft is not resaved. Persisted content and
   uncertainty must survive unchanged; dirty-save failure remains tested after

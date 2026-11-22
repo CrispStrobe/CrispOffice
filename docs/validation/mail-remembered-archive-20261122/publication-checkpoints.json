@@ -2,6 +2,7 @@
   "repository": "CrispStrobe/quds_office_suite",
   "branch": "work/mail-client-progress-20261122",
   "qualified_source_checkpoint": "3dca1265f7abfc2cdca7eb0c6b0b582f85f4b015",
+  "completed_evidence_checkpoint": "cf3e92af26b90e8ea65ee5443ebe92c6d6d180e7",
   "local_to_remote_aliases": {
     "39eb9e9e41f57268f03ed3de9e1b25cd5b4a0669": "9ccf8026f92f2f9ce5613c6b73e8be6ceeaea69f",
     "c9d4babe76d49292d3cdd70fbb88f602084a99d1": "a8a828c1cf4f00dfc036ff0d82208c873a10f9c7",
@@ -18,6 +19,7 @@
     "7dd97852b523e71a721c37c7a2040ea31e8148b6": "e7d67766bee11cc5cd0194794bddd6ccdc754d83",
     "4731e02ad595194b408a81e727e64cb972b7a6a8": "16d5bfb9b4050ac06d15337be841ef7e4e2553ec",
     "634ea086b2f66aab9788a696e1f33b9b46ed22cb": "70c2e90d12912aca5824ecd72d9fead8a280bcb5",
-    "afe539bdf7a800b5a08828da1eeeeaf703552ca7": "3dca1265f7abfc2cdca7eb0c6b0b582f85f4b015"
+    "afe539bdf7a800b5a08828da1eeeeaf703552ca7": "3dca1265f7abfc2cdca7eb0c6b0b582f85f4b015",
+    "040fa0c45deaa8d8247a5edc077077fadf852d23": "cf3e92af26b90e8ea65ee5443ebe92c6d6d180e7"
   }
 }
