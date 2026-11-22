@@ -723,7 +723,8 @@ including in unused code. Value-dependent
 errors in unexecuted branches are not evaluated.
 
 The unsuffixed forms return scalar Variants and preserve Null through nested
-`Left`, `Right` and `Mid` expressions. An Empty String argument becomes `""`;
+`Left`, `Right` and `Mid` expressions. An Empty Variant passed as the text
+argument becomes `""`;
 the returned value is an ordinary empty String, not an Empty Variant. Handle
 a nullable result with `IsNull` before assigning it to a typed String or
 publishing Word text. Numeric and Boolean text arguments still require an

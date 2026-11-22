@@ -2361,11 +2361,11 @@ remain outside this slice.
 Conversions emit no native operation themselves. Resulting writes use the
 same detached transaction, permissions, allowlists, operation limits,
 cancellation and atomic publication as other Word macros. Native formatting
-ownership also remains unchanged: indentation edits replace the native
-`w:ind` property group, so foreign attributes inside that edited group are
-not promised to survive. Unrelated paragraph metadata, untouched paragraphs,
-style parts and opaque DOCM project/signature bytes are covered by the saved
-document tests. See the [local qualification record](validation/word-vba-final-integration-20261120/README.md)
+ownership remains explicit: indentation edits replace the modeled geometry
+in the native `w:ind` property while preserving unrelated extension attributes
+inside that property. Unrelated paragraph metadata, untouched paragraphs,
+style parts and opaque DOCM project/signature bytes are also covered by the
+saved document tests. See the [local qualification record](validation/word-vba-final-integration-20261120/README.md)
 for executed VM, JavaScript, CLI and MCP checks.
 
 Primary references: Microsoft Word's
