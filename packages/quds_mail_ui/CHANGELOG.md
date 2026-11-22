@@ -1,5 +1,9 @@
 ## Unreleased
 
+- Document `recipient:` and `participant:` in loaded-mail search help and
+  recognize their examples in right-to-left help layouts. The shared query
+  engine searches public recipient/correspondent headers without opening mail.
+
 - Add an opt-in, localizable Archive selection action while preserving the
   default flag actions and read-only views. The host owns provider semantics,
   exact destination review, durable dispatch and recovery.

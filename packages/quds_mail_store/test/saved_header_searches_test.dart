@@ -96,6 +96,48 @@ void main() {
     },
   );
 
+  test('people queries preserve saved account and folder scope', () async {
+    const query = 'participant:alice NOT recipient:team';
+    const folder = MailSavedHeaderSearchFolder(
+      accountId: 'verified-account-a',
+      mailboxId: 'INBOX',
+    );
+    _value(
+      await store.saveSavedHeaderSearch(
+        _search(
+          query: query,
+          accountIds: ['verified-account-a'],
+          folderScopes: [folder],
+        ),
+      ),
+    );
+    final loaded = _value(await store.listSavedHeaderSearches()).single;
+    expect(loaded.query, query);
+    expect(loaded.accountIds, ['verified-account-a']);
+    expect(loaded.folderScopes, [folder]);
+    final parsed = MailHeaderSearchQuery.parse(loaded.query);
+    expect(
+      parsed.matches(
+        const MailHeaderSearchDocument(
+          subject: 'Review',
+          sender: 'Alice <alice@example.test>',
+          to: 'owner@example.test',
+        ),
+      ),
+      isTrue,
+    );
+    expect(
+      parsed.matches(
+        const MailHeaderSearchDocument(
+          subject: 'Review',
+          sender: 'Alice <alice@example.test>',
+          to: 'team@example.test',
+        ),
+      ),
+      isFalse,
+    );
+  });
+
   test(
     'exact folder sets are transactional and legacy searches stay broad',
     () async {

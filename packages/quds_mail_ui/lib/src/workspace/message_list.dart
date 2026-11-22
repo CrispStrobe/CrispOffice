@@ -76,8 +76,11 @@ final class MailMessageListStrings {
         'Separate terms or use AND to require every match. Use OR for '
         'alternatives and NOT or a leading - to exclude a match. '
         'NOT applies before AND, then OR; parentheses group conditions. '
-        'Use from:, to:, cc:, subject:, is:read, is:unread, is:flagged '
-        'or is:unflagged. Use before:YYYY-MM-DD, after:YYYY-MM-DD or '
+        'Use from:, to:, cc:, recipient:, participant:, subject:, '
+        'is:read, is:unread, is:flagged or is:unflagged. '
+        'recipient: searches To or Cc; participant: searches From, To or Cc. '
+        'Both match names and addresses and exclude Bcc. '
+        'Use before:YYYY-MM-DD, after:YYYY-MM-DD or '
         'on:YYYY-MM-DD for dates. Before and after exclude the named day. '
         'Unknown dates and flags remain unknown, including with NOT. '
         'Put phrases or literal operators in double quotes. '
@@ -219,7 +222,7 @@ String _defaultSearchError(MailHeaderSearchError error) => switch (error) {
 };
 
 final _searchExampleLine = RegExp(
-  r'^\s*(?:[-(]\s*|NOT\b\s*)*(?:from|subject|to|cc|is|before|after|on):',
+  r'^\s*(?:[-(]\s*|NOT\b\s*)*(?:from|subject|to|cc|recipient|participant|is|before|after|on):',
   caseSensitive: false,
 );
 

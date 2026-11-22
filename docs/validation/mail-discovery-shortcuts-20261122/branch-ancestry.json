@@ -1,0 +1,575 @@
+{
+  "date": "2026-11-22",
+  "repository": "CrispStrobe/quds_office_suite",
+  "reviewed_head": "5dc2b6c97b2bb5193679d548d943934814bb34f6",
+  "reviewed_tree": "eff517f48cff80d6f711cae834b4ca3f56218084",
+  "method": "Compare every current branch-head commit to the reviewed head; require behind_by=0 and merge_base equal to that branch-head SHA.",
+  "branch_count": 51,
+  "unique_head_count": 50,
+  "all_retained": true,
+  "branches": [
+    {
+      "name": "codex/mail-durable-mutations-20261122",
+      "sha": "afdcb327c650383e269a3d32f7251f68a9d766c6",
+      "proof": {
+        "sha": "afdcb327c650383e269a3d32f7251f68a9d766c6",
+        "status": "ahead",
+        "ahead_by": 251,
+        "behind_by": 0,
+        "merge_base": "afdcb327c650383e269a3d32f7251f68a9d766c6"
+      }
+    },
+    {
+      "name": "codex/mail-identity-reconciliation-20261122",
+      "sha": "b48fa00a3f4461ae10fdf95e444baf3983d051b4",
+      "proof": {
+        "sha": "b48fa00a3f4461ae10fdf95e444baf3983d051b4",
+        "status": "ahead",
+        "ahead_by": 182,
+        "behind_by": 0,
+        "merge_base": "b48fa00a3f4461ae10fdf95e444baf3983d051b4"
+      }
+    },
+    {
+      "name": "codex/mail-membership-recovery-20261122",
+      "sha": "bb991a98b73fb2518b2999c37e42d7da4c821fae",
+      "proof": {
+        "sha": "bb991a98b73fb2518b2999c37e42d7da4c821fae",
+        "status": "ahead",
+        "ahead_by": 211,
+        "behind_by": 0,
+        "merge_base": "bb991a98b73fb2518b2999c37e42d7da4c821fae"
+      }
+    },
+    {
+      "name": "codex/word-vba-array-data-20261122",
+      "sha": "5d79e934c5400594410bb6dfcb347d279fe0c335",
+      "proof": {
+        "sha": "5d79e934c5400594410bb6dfcb347d279fe0c335",
+        "status": "ahead",
+        "ahead_by": 118,
+        "behind_by": 0,
+        "merge_base": "5d79e934c5400594410bb6dfcb347d279fe0c335"
+      }
+    },
+    {
+      "name": "codex/word-vba-authoring-20261121",
+      "sha": "cf06b018ec125ce3b5abfda41a7fbbdcf7d30a47",
+      "proof": {
+        "sha": "cf06b018ec125ce3b5abfda41a7fbbdcf7d30a47",
+        "status": "ahead",
+        "ahead_by": 463,
+        "behind_by": 0,
+        "merge_base": "cf06b018ec125ce3b5abfda41a7fbbdcf7d30a47"
+      }
+    },
+    {
+      "name": "codex/word-vba-cell-formatting-20261122",
+      "sha": "49f43824196c4d373f991e442fac2e73e68c5f9f",
+      "proof": {
+        "sha": "49f43824196c4d373f991e442fac2e73e68c5f9f",
+        "status": "ahead",
+        "ahead_by": 327,
+        "behind_by": 0,
+        "merge_base": "49f43824196c4d373f991e442fac2e73e68c5f9f"
+      }
+    },
+    {
+      "name": "codex/word-vba-cell-text-20261122",
+      "sha": "5f6e8686f1d6ddc1f3e523238808b78ccccc5b51",
+      "proof": {
+        "sha": "5f6e8686f1d6ddc1f3e523238808b78ccccc5b51",
+        "status": "ahead",
+        "ahead_by": 292,
+        "behind_by": 0,
+        "merge_base": "5f6e8686f1d6ddc1f3e523238808b78ccccc5b51"
+      }
+    },
+    {
+      "name": "codex/word-vba-comparison-colors-20261121",
+      "sha": "e3c4550b34a9a07de2a97b84b67ab6aecaa5a377",
+      "proof": {
+        "sha": "e3c4550b34a9a07de2a97b84b67ab6aecaa5a377",
+        "status": "ahead",
+        "ahead_by": 372,
+        "behind_by": 0,
+        "merge_base": "e3c4550b34a9a07de2a97b84b67ab6aecaa5a377"
+      }
+    },
+    {
+      "name": "codex/word-vba-compatibility-20261121",
+      "sha": "3058d36c5354d46bde418555d59282116cce1e26",
+      "proof": {
+        "sha": "3058d36c5354d46bde418555d59282116cce1e26",
+        "status": "ahead",
+        "ahead_by": 420,
+        "behind_by": 0,
+        "merge_base": "3058d36c5354d46bde418555d59282116cce1e26"
+      }
+    },
+    {
+      "name": "codex/word-vba-compatibility-20261122",
+      "sha": "934c33a57f3bed934df59a4e925ffc35fe406ee2",
+      "proof": {
+        "sha": "934c33a57f3bed934df59a4e925ffc35fe406ee2",
+        "status": "ahead",
+        "ahead_by": 268,
+        "behind_by": 0,
+        "merge_base": "934c33a57f3bed934df59a4e925ffc35fe406ee2"
+      }
+    },
+    {
+      "name": "codex/word-vba-continuation-20261122",
+      "sha": "dd844f4ae1d5d4dab897fd7e49f94e25be52581a",
+      "proof": {
+        "sha": "dd844f4ae1d5d4dab897fd7e49f94e25be52581a",
+        "status": "ahead",
+        "ahead_by": 239,
+        "behind_by": 0,
+        "merge_base": "dd844f4ae1d5d4dab897fd7e49f94e25be52581a"
+      }
+    },
+    {
+      "name": "codex/word-vba-extended-20261122",
+      "sha": "43df8a9f6170109589f2f6885312d5cf15068a88",
+      "proof": {
+        "sha": "43df8a9f6170109589f2f6885312d5cf15068a88",
+        "status": "ahead",
+        "ahead_by": 186,
+        "behind_by": 0,
+        "merge_base": "43df8a9f6170109589f2f6885312d5cf15068a88"
+      }
+    },
+    {
+      "name": "codex/word-vba-objects-20261122",
+      "sha": "26370962b40dc761f17f5f7038a628f06d5189f8",
+      "proof": {
+        "sha": "26370962b40dc761f17f5f7038a628f06d5189f8",
+        "status": "ahead",
+        "ahead_by": 143,
+        "behind_by": 0,
+        "merge_base": "26370962b40dc761f17f5f7038a628f06d5189f8"
+      }
+    },
+    {
+      "name": "codex/word-vba-range-suffix-20261122",
+      "sha": "360673e0736e98d65d6c3cacef90bf842391288d",
+      "proof": {
+        "sha": "360673e0736e98d65d6c3cacef90bf842391288d",
+        "status": "ahead",
+        "ahead_by": 179,
+        "behind_by": 0,
+        "merge_base": "360673e0736e98d65d6c3cacef90bf842391288d"
+      }
+    },
+    {
+      "name": "codex/word-vba-source-text-20261122",
+      "sha": "8e1e786bcbf3f608ccb52ca6c92a6d833d05eacf",
+      "proof": {
+        "sha": "8e1e786bcbf3f608ccb52ca6c92a6d833d05eacf",
+        "status": "ahead",
+        "ahead_by": 14,
+        "behind_by": 0,
+        "merge_base": "8e1e786bcbf3f608ccb52ca6c92a6d833d05eacf"
+      }
+    },
+    {
+      "name": "codex/word-vba-string-search-20261122",
+      "sha": "4dafb6f7e7fc844d11cb7219add5a82acfed5135",
+      "proof": {
+        "sha": "4dafb6f7e7fc844d11cb7219add5a82acfed5135",
+        "status": "ahead",
+        "ahead_by": 133,
+        "behind_by": 0,
+        "merge_base": "4dafb6f7e7fc844d11cb7219add5a82acfed5135"
+      }
+    },
+    {
+      "name": "codex/word-vba-text-authoring-20261122",
+      "sha": "23a934cf49f64cd61f0df3ad3cdd7d9bd4a069dd",
+      "proof": {
+        "sha": "23a934cf49f64cd61f0df3ad3cdd7d9bd4a069dd",
+        "status": "ahead",
+        "ahead_by": 74,
+        "behind_by": 0,
+        "merge_base": "23a934cf49f64cd61f0df3ad3cdd7d9bd4a069dd"
+      }
+    },
+    {
+      "name": "codex/word-vba-text-selectors-20261122",
+      "sha": "d40e1a2c3731eb303bcf82724432d9927d53a889",
+      "proof": {
+        "sha": "d40e1a2c3731eb303bcf82724432d9927d53a889",
+        "status": "ahead",
+        "ahead_by": 102,
+        "behind_by": 0,
+        "merge_base": "d40e1a2c3731eb303bcf82724432d9927d53a889"
+      }
+    },
+    {
+      "name": "codex/zotero-continued-parity-20261122",
+      "sha": "f4d89bf436c81c32097c3255240aac3bb7929f52",
+      "proof": {
+        "sha": "f4d89bf436c81c32097c3255240aac3bb7929f52",
+        "status": "ahead",
+        "ahead_by": 7,
+        "behind_by": 0,
+        "merge_base": "f4d89bf436c81c32097c3255240aac3bb7929f52"
+      }
+    },
+    {
+      "name": "codex/zotero-converter-parity-20261122",
+      "sha": "5bf13601caac2c08fe97de25fe853c9d642f0cb1",
+      "proof": {
+        "sha": "5bf13601caac2c08fe97de25fe853c9d642f0cb1",
+        "status": "ahead",
+        "ahead_by": 85,
+        "behind_by": 0,
+        "merge_base": "5bf13601caac2c08fe97de25fe853c9d642f0cb1"
+      }
+    },
+    {
+      "name": "codex/zotero-dispatch-recovery-20261121",
+      "sha": "32ef843db3a8192fe0add085e1ee173e18f4d462",
+      "proof": {
+        "sha": "32ef843db3a8192fe0add085e1ee173e18f4d462",
+        "status": "ahead",
+        "ahead_by": 417,
+        "behind_by": 0,
+        "merge_base": "32ef843db3a8192fe0add085e1ee173e18f4d462"
+      }
+    },
+    {
+      "name": "codex/zotero-field-context-20261122",
+      "sha": "00ba542dc5b492040508a8137a80adbc9b13553d",
+      "proof": {
+        "sha": "00ba542dc5b492040508a8137a80adbc9b13553d",
+        "status": "ahead",
+        "ahead_by": 274,
+        "behind_by": 0,
+        "merge_base": "00ba542dc5b492040508a8137a80adbc9b13553d"
+      }
+    },
+    {
+      "name": "codex/zotero-field-recovery-20261122",
+      "sha": "e78e98d3a07647794e4426f833782ccbddc04960",
+      "proof": {
+        "sha": "e78e98d3a07647794e4426f833782ccbddc04960",
+        "status": "ahead",
+        "ahead_by": 248,
+        "behind_by": 0,
+        "merge_base": "e78e98d3a07647794e4426f833782ccbddc04960"
+      }
+    },
+    {
+      "name": "codex/zotero-footnote-separators-20261121",
+      "sha": "a70c0e7af251d737dc7639f44a48777bbea1bf51",
+      "proof": {
+        "sha": "a70c0e7af251d737dc7639f44a48777bbea1bf51",
+        "status": "ahead",
+        "ahead_by": 408,
+        "behind_by": 0,
+        "merge_base": "a70c0e7af251d737dc7639f44a48777bbea1bf51"
+      }
+    },
+    {
+      "name": "codex/zotero-host-ownership-20261121",
+      "sha": "05cb866e6e5aaee95dae8b03da2892fcf633a84b",
+      "proof": {
+        "sha": "05cb866e6e5aaee95dae8b03da2892fcf633a84b",
+        "status": "ahead",
+        "ahead_by": 408,
+        "behind_by": 0,
+        "merge_base": "05cb866e6e5aaee95dae8b03da2892fcf633a84b"
+      }
+    },
+    {
+      "name": "codex/zotero-main-qualification-20261121",
+      "sha": "e2a1ed6073556d24194004221c545166b17c2d4e",
+      "proof": {
+        "sha": "e2a1ed6073556d24194004221c545166b17c2d4e",
+        "status": "ahead",
+        "ahead_by": 363,
+        "behind_by": 0,
+        "merge_base": "e2a1ed6073556d24194004221c545166b17c2d4e"
+      }
+    },
+    {
+      "name": "codex/zotero-native-parity-20261122",
+      "sha": "d300c76f0966d8f676b0fa38a7799f0e01cbc10d",
+      "proof": {
+        "sha": "d300c76f0966d8f676b0fa38a7799f0e01cbc10d",
+        "status": "ahead",
+        "ahead_by": 220,
+        "behind_by": 0,
+        "merge_base": "d300c76f0966d8f676b0fa38a7799f0e01cbc10d"
+      }
+    },
+    {
+      "name": "codex/zotero-note-formatting-20261122",
+      "sha": "b91fba039e123d3db767bc5178de59922a163e74",
+      "proof": {
+        "sha": "b91fba039e123d3db767bc5178de59922a163e74",
+        "status": "ahead",
+        "ahead_by": 111,
+        "behind_by": 0,
+        "merge_base": "b91fba039e123d3db767bc5178de59922a163e74"
+      }
+    },
+    {
+      "name": "codex/zotero-note-layout-20261121",
+      "sha": "2089e1e35a8ba81ea7f0a077b348f93ca70953c8",
+      "proof": {
+        "sha": "2089e1e35a8ba81ea7f0a077b348f93ca70953c8",
+        "status": "ahead",
+        "ahead_by": 442,
+        "behind_by": 0,
+        "merge_base": "2089e1e35a8ba81ea7f0a077b348f93ca70953c8"
+      }
+    },
+    {
+      "name": "codex/zotero-odt-roundtrip-20261121",
+      "sha": "05072dc2d59d0fa4ea97de4d6a842700ef333fab",
+      "proof": {
+        "sha": "05072dc2d59d0fa4ea97de4d6a842700ef333fab",
+        "status": "ahead",
+        "ahead_by": 457,
+        "behind_by": 0,
+        "merge_base": "05072dc2d59d0fa4ea97de4d6a842700ef333fab"
+      }
+    },
+    {
+      "name": "codex/zotero-parity-20261122",
+      "sha": "da36652cf1d2296b59285788035555d512b9fa31",
+      "proof": {
+        "sha": "da36652cf1d2296b59285788035555d512b9fa31",
+        "status": "ahead",
+        "ahead_by": 297,
+        "behind_by": 0,
+        "merge_base": "da36652cf1d2296b59285788035555d512b9fa31"
+      }
+    },
+    {
+      "name": "codex/zotero-parity-next-20261122",
+      "sha": "98ac4254f04acdeff53ea28c9c184ecfb141e868",
+      "proof": {
+        "sha": "98ac4254f04acdeff53ea28c9c184ecfb141e868",
+        "status": "ahead",
+        "ahead_by": 206,
+        "behind_by": 0,
+        "merge_base": "98ac4254f04acdeff53ea28c9c184ecfb141e868"
+      }
+    },
+    {
+      "name": "codex/zotero-parity-progress-20261122",
+      "sha": "96240d35f609aee05a1f81e7ce58036aea0c6296",
+      "proof": {
+        "sha": "96240d35f609aee05a1f81e7ce58036aea0c6296",
+        "status": "ahead",
+        "ahead_by": 58,
+        "behind_by": 0,
+        "merge_base": "96240d35f609aee05a1f81e7ce58036aea0c6296"
+      }
+    },
+    {
+      "name": "codex/zotero-select-navigation-20261122",
+      "sha": "8c1b8da71bb910d4025aa179dc56290cf1a8e72a",
+      "proof": {
+        "sha": "8c1b8da71bb910d4025aa179dc56290cf1a8e72a",
+        "status": "ahead",
+        "ahead_by": 354,
+        "behind_by": 0,
+        "merge_base": "8c1b8da71bb910d4025aa179dc56290cf1a8e72a"
+      }
+    },
+    {
+      "name": "codex/zotero-shortcut-host-recovery-20261121",
+      "sha": "2168011b6104f680100b87404bc1bd409f724939",
+      "proof": {
+        "sha": "2168011b6104f680100b87404bc1bd409f724939",
+        "status": "ahead",
+        "ahead_by": 417,
+        "behind_by": 0,
+        "merge_base": "2168011b6104f680100b87404bc1bd409f724939"
+      }
+    },
+    {
+      "name": "codex/zotero-source-continuity-20261121-2135",
+      "sha": "c4c16d91d62ded0c341bee95e98de894de70483f",
+      "proof": {
+        "sha": "c4c16d91d62ded0c341bee95e98de894de70483f",
+        "status": "ahead",
+        "ahead_by": 417,
+        "behind_by": 0,
+        "merge_base": "c4c16d91d62ded0c341bee95e98de894de70483f"
+      }
+    },
+    {
+      "name": "codex/zotero-workflow-parity-20261122",
+      "sha": "69e20b56a8c919fb5d9c1b9717f7688e5ff6c55d",
+      "proof": {
+        "sha": "69e20b56a8c919fb5d9c1b9717f7688e5ff6c55d",
+        "status": "ahead",
+        "ahead_by": 138,
+        "behind_by": 0,
+        "merge_base": "69e20b56a8c919fb5d9c1b9717f7688e5ff6c55d"
+      }
+    },
+    {
+      "name": "main",
+      "sha": "f4d89bf436c81c32097c3255240aac3bb7929f52",
+      "proof": {
+        "sha": "f4d89bf436c81c32097c3255240aac3bb7929f52",
+        "status": "ahead",
+        "ahead_by": 7,
+        "behind_by": 0,
+        "merge_base": "f4d89bf436c81c32097c3255240aac3bb7929f52"
+      }
+    },
+    {
+      "name": "work/mail-account-workspace-20261122",
+      "sha": "ccb302f45edde33608f8918a489c959022ffefc9",
+      "proof": {
+        "sha": "ccb302f45edde33608f8918a489c959022ffefc9",
+        "status": "ahead",
+        "ahead_by": 21,
+        "behind_by": 0,
+        "merge_base": "ccb302f45edde33608f8918a489c959022ffefc9"
+      }
+    },
+    {
+      "name": "work/mail-bulk-organization-20261122",
+      "sha": "a29742adf28c5779016ae939e5baf6ac3c4a302c",
+      "proof": {
+        "sha": "a29742adf28c5779016ae939e5baf6ac3c4a302c",
+        "status": "ahead",
+        "ahead_by": 150,
+        "behind_by": 0,
+        "merge_base": "a29742adf28c5779016ae939e5baf6ac3c4a302c"
+      }
+    },
+    {
+      "name": "work/mail-client-progress-20261122",
+      "sha": "29cb02cec4344e85b0731dde8cd964fdd1aad9fa",
+      "proof": {
+        "sha": "29cb02cec4344e85b0731dde8cd964fdd1aad9fa",
+        "status": "ahead",
+        "ahead_by": 31,
+        "behind_by": 0,
+        "merge_base": "29cb02cec4344e85b0731dde8cd964fdd1aad9fa"
+      }
+    },
+    {
+      "name": "work/mail-connected-navigation-20261122",
+      "sha": "a59e986a12d50c0d115b99c14cd8f746921c6f44",
+      "proof": {
+        "sha": "a59e986a12d50c0d115b99c14cd8f746921c6f44",
+        "status": "ahead",
+        "ahead_by": 52,
+        "behind_by": 0,
+        "merge_base": "a59e986a12d50c0d115b99c14cd8f746921c6f44"
+      }
+    },
+    {
+      "name": "work/mail-connected-workspace-20261122",
+      "sha": "16e8a572c061f4eb7d2411bf7a28709896c63df6",
+      "proof": {
+        "sha": "16e8a572c061f4eb7d2411bf7a28709896c63df6",
+        "status": "ahead",
+        "ahead_by": 115,
+        "behind_by": 0,
+        "merge_base": "16e8a572c061f4eb7d2411bf7a28709896c63df6"
+      }
+    },
+    {
+      "name": "work/mail-folder-scoped-search-20261122",
+      "sha": "ff30d1064a052abbfbcdc99745ff66f8bc980aea",
+      "proof": {
+        "sha": "ff30d1064a052abbfbcdc99745ff66f8bc980aea",
+        "status": "ahead",
+        "ahead_by": 334,
+        "behind_by": 0,
+        "merge_base": "ff30d1064a052abbfbcdc99745ff66f8bc980aea"
+      }
+    },
+    {
+      "name": "work/mail-folder-search-20261122",
+      "sha": "24e4b5d8a2a4e3c996e15013c5324a534c2e444f",
+      "proof": {
+        "sha": "24e4b5d8a2a4e3c996e15013c5324a534c2e444f",
+        "status": "ahead",
+        "ahead_by": 303,
+        "behind_by": 0,
+        "merge_base": "24e4b5d8a2a4e3c996e15013c5324a534c2e444f"
+      }
+    },
+    {
+      "name": "work/mail-keyboard-triage-20261121",
+      "sha": "08d034d876073e2afc881dbfc11ba791acde3d67",
+      "proof": {
+        "sha": "08d034d876073e2afc881dbfc11ba791acde3d67",
+        "status": "ahead",
+        "ahead_by": 368,
+        "behind_by": 0,
+        "merge_base": "08d034d876073e2afc881dbfc11ba791acde3d67"
+      }
+    },
+    {
+      "name": "work/mail-live-search-20261121",
+      "sha": "c3d55be30d91694b1a427d261cddbe47b1dd5eec",
+      "proof": {
+        "sha": "c3d55be30d91694b1a427d261cddbe47b1dd5eec",
+        "status": "ahead",
+        "ahead_by": 442,
+        "behind_by": 0,
+        "merge_base": "c3d55be30d91694b1a427d261cddbe47b1dd5eec"
+      }
+    },
+    {
+      "name": "work/mail-local-tags-20261122",
+      "sha": "5dc2b6c97b2bb5193679d548d943934814bb34f6",
+      "proof": {
+        "sha": "5dc2b6c97b2bb5193679d548d943934814bb34f6",
+        "status": "identical",
+        "ahead_by": 0,
+        "behind_by": 0,
+        "merge_base": "5dc2b6c97b2bb5193679d548d943934814bb34f6"
+      }
+    },
+    {
+      "name": "work/mail-parity-20261122-next",
+      "sha": "a7006171630915bbf91b6ce2ab7c4699bb79f69b",
+      "proof": {
+        "sha": "a7006171630915bbf91b6ce2ab7c4699bb79f69b",
+        "status": "ahead",
+        "ahead_by": 279,
+        "behind_by": 0,
+        "merge_base": "a7006171630915bbf91b6ce2ab7c4699bb79f69b"
+      }
+    },
+    {
+      "name": "work/mail-range-selection-tests-20261121",
+      "sha": "5c7a385c5de40394d9eed736c5a2d975535c3df3",
+      "proof": {
+        "sha": "5c7a385c5de40394d9eed736c5a2d975535c3df3",
+        "status": "ahead",
+        "ahead_by": 416,
+        "behind_by": 0,
+        "merge_base": "5c7a385c5de40394d9eed736c5a2d975535c3df3"
+      }
+    },
+    {
+      "name": "work/mail-sync-address-search-20261121",
+      "sha": "33d8f956ec2ed1dfd748e1d7ccbc5add053ff565",
+      "proof": {
+        "sha": "33d8f956ec2ed1dfd748e1d7ccbc5add053ff565",
+        "status": "ahead",
+        "ahead_by": 419,
+        "behind_by": 0,
+        "merge_base": "33d8f956ec2ed1dfd748e1d7ccbc5add053ff565"
+      }
+    }
+  ],
+  "ci_queried": false,
+  "runtime_tests_executed": false
+}

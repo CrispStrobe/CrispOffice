@@ -1,0 +1,73 @@
+{
+  "date": "2026-11-22",
+  "task_pr": 391,
+  "own_head": "d7e3fc41bb5c17fcf5bf2ef9a61a2fbaf6d3d53e",
+  "incoming_main": "f4d89bf436c81c32097c3255240aac3bb7929f52",
+  "completed_prs": [
+    {
+      "number": 389,
+      "merge": "bed699fb8b993e9b4f15896a7be22fdff6349985"
+    },
+    {
+      "number": 390,
+      "merge": "f4d89bf436c81c32097c3255240aac3bb7929f52"
+    }
+  ],
+  "independently_constructed_union_tree": "ff870a8b0f7675a4fd271222121d2cadb822b003",
+  "github_native_preview_commit": "c42d38242afb825f20a6d026e170f0b28e3a20a3",
+  "github_native_preview_tree": "ff870a8b0f7675a4fd271222121d2cadb822b003",
+  "tree_equality_verified": true,
+  "imported_entries": [
+    {
+      "path": "packages/quds_office_engine",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "1db28a5bd6e94d426deeeac51668ec9b59131a01"
+    },
+    {
+      "path": "docs/zotero-support-details.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "701e24c799e7b3740e58306f15363a64fe1664c9"
+    },
+    {
+      "path": "docs/zotero-support.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "aacb38c3f901328ba0946df09c5694ebb4c15df9"
+    },
+    {
+      "path": "docs/roadmaps/zotero",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "acf2652b65bd64f10b0d084273c5a604aca23bac"
+    },
+    {
+      "path": "docs/validation/zotero-link-equivalence-20261122",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "09ff30cda370149a7bd35fc65e6344162747adad"
+    },
+    {
+      "path": "docs/validation/mail-connected-navigation-20261122/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "914069034b0e618028c2269264485dbefa56e36e"
+    },
+    {
+      "path": "docs/roadmaps/mail/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "content_resolution": "Retain own correspondent-search introduction; incorporate main's workflow-area table wording."
+    }
+  ],
+  "engine_tree": "1db28a5bd6e94d426deeeac51668ec9b59131a01",
+  "final_inventory": {
+    "fork_branches": 51,
+    "only_open_pr": 391,
+    "upstream_branches": 4,
+    "upstream_open_prs": 0
+  },
+  "qualification": "Exact object/contents review only. All authored Dart/Flutter tests, analyzer, formatter and application builds remain unexecuted.",
+  "ci": "No Actions state queried or awaited."
+}

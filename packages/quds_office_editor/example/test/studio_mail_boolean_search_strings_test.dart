@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
+import 'package:quds_office_studio/studio_mail_cached_search_strings.dart';
 import 'package:quds_office_studio/studio_mail_workspace_strings.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
@@ -18,6 +19,23 @@ void main() {
         strings.searchHelpText,
         contains('from:alice -subject:"weekly digest"'),
       );
+      expect(strings.searchHelpText, contains('recipient:"Review Team"'));
+      expect(
+        strings.searchHelpText,
+        contains('participant:alice@example.test'),
+      );
+      expect(
+        strings.searchError(MailHeaderSearchError.unknownField),
+        contains('recipient'),
+      );
+      expect(
+        strings.searchError(MailHeaderSearchError.unknownField),
+        contains('participant'),
+      );
+      final cachedHelp = StudioStrings(language).mailCachedSearchGrammar;
+      expect(cachedHelp, contains('recipient:'));
+      expect(cachedHelp, contains('participant:'));
+      expect(cachedHelp, contains('Bcc'));
       for (final error in [
         MailHeaderSearchError.invalidExpression,
         MailHeaderSearchError.nestingTooDeep,

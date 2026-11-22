@@ -1,0 +1,194 @@
+{
+  "date": "2026-11-22",
+  "repository": "CrispStrobe/quds_office_suite",
+  "base_main": "ea7ae724bea2f1e9052aa17f9926eb0659ae4262",
+  "merge_base": "ab3457c98b6d9a0d1da8147db3048dfc50d174d3",
+  "incoming_branch": "work/mail-connected-navigation-20261122",
+  "incoming_head": "a59e986a12d50c0d115b99c14cd8f746921c6f44",
+  "incoming_unique_commits": [
+    "051b20c774929f25f424c73a5ca14c3b611bb59e",
+    "a59e986a12d50c0d115b99c14cd8f746921c6f44"
+  ],
+  "intake": {
+    "fork_branches": 48,
+    "non_main_ancestral": 46,
+    "divergent_branches": 1,
+    "open_prs_before_this_task": 0,
+    "recent_prs_inspected": 100,
+    "recent_prs_all_merged": true,
+    "upstream_branches_all_ancestral": true,
+    "upstream_open_prs": 0
+  },
+  "upstream_heads": {
+    "main": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+    "ci/flutter-workspace": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+    "cursor/class-certificates-2db8": "f45099688e7a3f67a1302efdb442830d052f2240",
+    "cursor/cloud-agent-1790580069020-0rk1h": "9930be8df44ffe117fb22778c514eea0ee73ce21"
+  },
+  "automatic_additions": [
+    {
+      "path": "docs/validation/mail-connected-navigation-20261122/pr384-intake.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "384c75921b0a880d0ee17e6c9bb76d4fd5025a60"
+    },
+    {
+      "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "4144226e1d7621018f8d4eb7c8743c25603587a6"
+    },
+    {
+      "path": "docs/validation/mail-connected-navigation-20261122/final/selective-preflight-inputs.json.gz",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fbb95a602003d246ed1dc66fc8798e70f29d19a0"
+    },
+    {
+      "path": "docs/validation/mail-connected-navigation-20261122/final/selective-preflight.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "2159fd72df21ddd879d4703baa6be2f288f3e308"
+    },
+    {
+      "path": "docs/validation/mail-connected-navigation-20261122/final/selective-recovery-plan.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0c42b57a1d2f59b350703c98847945d0ba4c0d4b"
+    },
+    {
+      "path": "docs/validation/mail-connected-navigation-20261122/final/selective_recovery.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "46c4469a8450d088af43616091d3c80e9c1e12a2"
+    },
+    {
+      "path": "docs/validation/mail-connected-navigation-20261122/development/main-384-provider",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "8d828e132e3d37dd093a15dfed3d516c074baa4c"
+    }
+  ],
+  "conflicts": [
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "main_blob": "39101d075526d260a782567405d9940f59709427",
+      "incoming_blob": "3032904310fbda1705baa90671fba26a82477b31",
+      "resolution": "retain_main",
+      "reason": "Retain newer Archive and delivery-receipt descriptions."
+    },
+    {
+      "path": "docs/validation/mail-connected-navigation-20261122/README.md",
+      "main_blob": "d8351c8717cc918ec12a2089b490edfd9b01f105",
+      "incoming_blob": "a0e7f3617dad7792799304037b22119fb63c321a",
+      "resolution": "incoming_additive_superset",
+      "reason": "Accept incoming additive superset; preserve original failure and unexecuted-plan labels."
+    },
+    {
+      "path": "docs/roadmaps/mail/README.md",
+      "main_blob": "fedaefe961dba61d96a7ff1a453348386e6961a5",
+      "incoming_blob": "ba5d1fcd60a2a4e82c961bddbf02b759bb3e8074",
+      "resolution": "retain_main",
+      "reason": "Retain newer roadmap; incoming table-label alternative remains in parent history."
+    },
+    {
+      "path": "docs/roadmaps/mail/account-navigation.md",
+      "main_blob": "381709c6a535dc168f8a18674d6bea29365d6439",
+      "incoming_blob": "08551c859ac780c86ae2435777613bba57936a79",
+      "resolution": "retain_main",
+      "reason": "Retain main: incoming lifecycle behavior already present, plus newer qualification references."
+    },
+    {
+      "path": "docs/roadmaps/mail/connected-account-navigation.md",
+      "main_blob": "68c5bf608d9a06f44f24bdfde1d135ed78d7d817",
+      "incoming_blob": "747a6c959daef53e62cf8b560a8987b6a0cbe36a",
+      "resolution": "retain_main",
+      "reason": "Retain current combined qualification and later Archive/submission ownership."
+    },
+    {
+      "path": "docs/roadmaps/mail/implementation-plan.md",
+      "main_blob": "d33ed3f807182c08e41a51dd262a47e7d733b62f",
+      "incoming_blob": "c53d0142ba64d419f9a707532237ecb2f328e444",
+      "resolution": "retain_main",
+      "reason": "Retain newer Archive settings; earlier local directory/recovery wording already present."
+    },
+    {
+      "path": "docs/roadmaps/mail/status.md",
+      "main_blob": "665cd98994709f7a8884a79420cf89d4dced2e0b",
+      "incoming_blob": "fd30d66a60ebbfbad45d6bad700510cdc7e2ac92",
+      "resolution": "retain_main",
+      "reason": "Retain newer Archive and submission-receipt status and source-bound qualification."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_release_test.dart",
+      "main_blob": "41e45aef17b99a2a27d8d61de1790edbcd32c979",
+      "incoming_blob": "70ff080c3c0b239543160a55fea115ba77c0e060",
+      "resolution": "retain_main",
+      "reason": "Retain current release suite; older delayed cancellation-failure regression remains in incoming parent for runtime-qualified adaptation."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart",
+      "main_blob": "c922d6869e869320b7ff8758d2037b32bdb25981",
+      "incoming_blob": "a2b3e3f432289b7aaac6da7d726e048d8f3f2d62",
+      "resolution": "retain_main",
+      "reason": "Retain current tests: current UI blocks pending handoff through AbsorbPointer, ExcludeFocus and handler guards instead of requiring null onPressed callbacks."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_account_navigation_provider_test.dart",
+      "main_blob": "46cd0ea8b9e9ce0bb4dffb34a4e3642c393cf01e",
+      "incoming_blob": "a1ffd8b0f998643af02c0f1263f40eb1c4ccd0e2",
+      "resolution": "retain_main",
+      "reason": "Retain newer immediate-first-failure and gated-retry fixture contract, late Close failure and admission cases."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart",
+      "main_blob": "09dddc40a345f6366b197379167cf08492b1b881",
+      "incoming_blob": "fb9eb86a416c4694611c8bf5cabd3e02a5dd28ed",
+      "resolution": "retain_main",
+      "reason": "Retain corrected fixture ordering: injected owner has no durable journal; retired leases isolate late foreground replies. Older durable-wait assertion is in history."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+      "main_blob": "5b211206bfe4998fee6a99982d68ed3f43314bc3",
+      "incoming_blob": "4858c4247f9941d3de4fc086f6dcd03ddcd211f3",
+      "resolution": "retain_main",
+      "reason": "Retain newer tests; bounded _waitForHostDismissal already subsumes incoming helper behavior."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+      "main_blob": "7a58c54398e13cdcc7eaa7b1c23608589309e19f",
+      "incoming_blob": "b44b5862addfd60e40423362085f2c9e52800068",
+      "resolution": "retain_main",
+      "reason": "Retain shared bounded dismissal helper and newer owner/delivery/transport tests."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+      "main_blob": "0880d51887701861c4d5c38e2c6bf797893812f2",
+      "incoming_blob": "4646c38b216214425420df1e04d9fc2e362b200b",
+      "resolution": "retain_main",
+      "reason": "Retain main stale Connect rejection, late-owner drain and old-account uncertainty tests plus newer submission regressions."
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+      "main_blob": "b4ec0535509174d71fd2e7fdafdc8315fcc004da",
+      "incoming_blob": "4324e52d5aaba108a107a09aede476db81d1b33e",
+      "resolution": "retain_main",
+      "reason": "Retain newer admissionClosing, failed-observer state, durable receipt waits and release checks."
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "main_blob": "65a0cef19fec8f660dfe75b0eab2dc779d7bc3c1",
+      "incoming_blob": "ca16d8b095f832899915f75b12ca831af9168827",
+      "resolution": "retain_main",
+      "reason": "Retain newer receipt drains and admission ownership; incoming predicate rename and broader early-return guard do not establish a missing reachable case."
+    }
+  ],
+  "verification": {
+    "tree_walk": "Exact three-way tree walk with all 48 conflict blobs read.",
+    "production_and_tests": "All packages source/test blobs retained exactly from base main in this reconciliation.",
+    "readme_main_lines_preserved": 225,
+    "readme_added_lines": 72,
+    "local_execution": "Blocked before shell startup: bwrap ENOSPC. No new Dart/Flutter qualification.",
+    "ci": "No Actions checks queried or awaited."
+  }
+}

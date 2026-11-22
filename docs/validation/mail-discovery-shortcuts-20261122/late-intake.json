@@ -1,0 +1,74 @@
+{
+  "date": "2026-11-22",
+  "own_head": "6cb1439d64fd18690cf1ac5a3b81936d6fe0e142",
+  "incoming_main": "bed699fb8b993e9b4f15896a7be22fdff6349985",
+  "incoming_pr": 389,
+  "incoming_pr_state": "merged",
+  "incoming_feature_head": "8e1e786bcbf3f608ccb52ca6c92a6d833d05eacf",
+  "source_validation": "Word task records independent source review and authored regressions; no Dart/Flutter/analyzer/formatter execution. This merge does not upgrade that status.",
+  "automatic_entries": [
+    {
+      "path": "packages/quds_office_engine",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "5a4050a7b56303b5cc98db019b80c96bdd386794"
+    },
+    {
+      "path": "docs/VBA_MACROS.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5787384c1bb381a78f782c167ab64c5664af6c26"
+    },
+    {
+      "path": "docs/VBA_PARITY_ROADMAP.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "068074001b64d259f2da3f254bebafdfd819c2f9"
+    },
+    {
+      "path": "docs/VBA_WORD_MACROS.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "01074726d44a72232928f6397f757f25f4a4f625"
+    },
+    {
+      "path": "docs/vba-macros-details.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "092eef8ac4a77f63decbead9ad9de9a952a7b8a2"
+    },
+    {
+      "path": "docs/validation/word-vba-source-text-20261122",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "30ddb9ba2bc58ba1c3ba9f08c67f0c48b904dfec"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "cea77bcba2212c8d4c42c44c6f0e1535de4faa09"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bcc9c6fada7a5a5042054af2c07dbab3ad20ad0b"
+    }
+  ],
+  "conflict": {
+    "path": "docs/validation/mail-connected-navigation-20261122/README.md",
+    "base_blob": "d8351c8717cc918ec12a2089b490edfd9b01f105",
+    "ours_blob": "a0e7f3617dad7792799304037b22119fb63c321a",
+    "theirs_blob": "09a3f234a57813f928bb54a83157aeabe007fd11",
+    "resolution": "Verified theirs starts with base; retain all ours then append theirs suffix.",
+    "ours_lines": 297,
+    "added_lines": 29
+  },
+  "other_concurrent_work": {
+    "branch": "codex/zotero-continued-parity-20261122",
+    "observed_head": "ebff641386f6f2c349cf7eb56dd20d92aa0faac2",
+    "status": "Still closing out at this snapshot; branch preserved. Recheck main before final publication."
+  },
+  "ci": "No Actions state queried or awaited."
+}
