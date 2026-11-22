@@ -29,5 +29,38 @@ before final publication to preserve concurrent work.
 Installed Zotero, Word and LibreOffice plugin acceptance remains a separate
 requirement; controlled protocol tests and file round trips do not establish it.
 
-This is the initial work checkpoint. Implementation and qualification are in
-progress; no new behavior or test result is claimed yet.
+## Implemented contract
+
+Canonical paragraph/heading `dir`, `data-indent` and `text-align` now map to
+native properties. The redundant 40 CSS px compatibility padding is counted
+once at 30 pt per level. Explicit alignment is independent of reading order;
+absent direction stays automatic. Formatting follows the final paragraph
+owners through merged cells and composes after heading/list/quote styles.
+Structured insertion protects the unselected surrounding paragraphs.
+
+Opaque exported foreground/background colors use opt-in note parsing, keeping
+ordinary CSL formatting unchanged. Arbitrary RGB highlights persist through
+native Word run shading. Authored highlights paint opaquely in the canvas,
+matching PDF and export semantics. Heading styling preserves explicit colors.
+
+The controller distinguishes authored empty-paragraph direction from its own
+automatic language-following state. Native directions survive relayout,
+typing, undo/redo and DOCX reopening; ordinary blank paragraphs still follow
+the selected interface language until the user sets their direction.
+
+The support details and parity roadmap document the accepted forms and
+remaining boundaries. In particular, directional lists, RTL child paragraphs
+inside lists, indent levels above seven, alpha/dynamic colors and arbitrary
+layout CSS remain guarded. Installed-plugin acceptance is still open.
+
+## Remote checkpoints
+
+| Checkpoint | Commit |
+| --- | --- |
+| Intake audit and execution plan | `e84fc1d6c872d450dc485f1b981562792fbd082f` |
+| Paragraph/color implementation and regression cases | `7b9d50259f9d6bb9b39678ec4afced644e88c38b` |
+
+Local development checks have exercised the implementation and identified the
+empty-paragraph and alignment/direction fixes above. Final integrated source
+qualification, actual converter observations and publication reconciliation
+are in progress. Their exact results will replace this progress note.

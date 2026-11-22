@@ -135,6 +135,19 @@ supported; quotations inside list items and tables inside quotations remain
 outside this increment. See the
 [quotation details](zotero-support-details.md#block-quotations-in-research-notes).
 
+Research-note paragraphs and headings also retain explicit left-to-right or
+right-to-left direction, left/right/center/justified alignment, and Zotero's
+exported indentation levels 1–7. Each indent level adds 30 pt on the exported
+side, alongside any list or quotation indentation. Authored empty paragraphs
+keep their direction when you return to writing.
+
+Opaque text colors and highlights in exported notes are preserved in the
+editor and through DOCX saving, including highlight colors outside Word's
+named palette. Unsupported color expressions or paragraph layouts cause the
+whole insertion to be refused. See the
+[note-formatting details](zotero-support-details.md#paragraph-layout-and-colors-in-research-notes)
+for the accepted forms and exchange boundaries.
+
 ## Open a reference in Zotero
 
 In a loaded reference's details, or the details of an embedded citation

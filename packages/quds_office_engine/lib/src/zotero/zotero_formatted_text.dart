@@ -41,7 +41,9 @@ final class ZoteroTextSpan {
 /// A bounded, inert rendering of Zotero's formatted XHTML.
 ///
 /// Supports bold, italic, underline, strike-through, small caps, subscript and
-/// superscript.
+/// superscript. Research notes can additionally opt into bounded opaque RGB
+/// foreground/background colors; ordinary CSL parsing retains its existing
+/// supported-formatting boundary.
 /// Links are retained as text; resources, scripts and stylesheets are never
 /// loaded or evaluated. Arbitrary CSS and paragraph layout are not
 /// implemented. [unsupportedFormatting] reports fixed labels for those limits.
@@ -59,6 +61,9 @@ final class ZoteroFormattedText {
       paragraphBreakOffsets = List<int>.unmodifiable(paragraphBreakOffsets),
       plainText = spans.map((span) => span.text).join();
 
+  /// [allowNoteColors] accepts exported note marks with #RGB, #RRGGBB or
+  /// integer rgb() colors. Alpha, named colors and dynamic CSS remain reported
+  /// as unsupported so a note importer can refuse them before editing.
   factory ZoteroFormattedText.fromHtml(
     String html, {
     bool allowNoteColors = false,

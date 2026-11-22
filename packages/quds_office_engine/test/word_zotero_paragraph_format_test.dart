@@ -164,6 +164,33 @@ void main() {
     },
   );
 
+  test('right alignment leaves unspecified reading direction automatic', () {
+    final document = _insert('<p style="text-align:right">ABC (123) مرحبا</p>');
+    final paragraph = document.paragraphs.single;
+    expect(paragraph.properties.rightToLeft, isNull);
+    expect(paragraph.properties.explicitJustification, isTrue);
+    expect(paragraph.properties.bidiBaseLevel, isNull);
+    List<int> glyphs() => [
+          for (final page in WordLayoutEngine(font: null).layout(document).pages)
+        for (final line in page.lines)
+          for (final glyph in line.glyphs) glyph.glyph.codePoint,
+    ];
+    final automatic = glyphs();
+    paragraph.properties.rightToLeft = false;
+    expect(
+      glyphs(),
+      automatic,
+      reason: 'The first strong Latin text chooses LTR',
+    );
+    paragraph.properties.rightToLeft = true;
+    expect(glyphs(), isNot(automatic));
+    // Existing implicit-right direction hints retain their legacy behavior.
+    expect(
+      WmlParagraphProps(justification: WmlJustification.right).bidiBaseLevel,
+      1,
+    );
+  });
+
   test('layout composes once with quotes and numbered item continuations', () {
     final document = _insert(
       '<blockquote><p dir="rtl" data-indent="2" '
