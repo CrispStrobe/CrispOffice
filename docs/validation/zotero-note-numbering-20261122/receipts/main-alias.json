@@ -1,0 +1,216 @@
+{
+  "result": "PASS",
+  "recordedUtc": "2026-11-22T07:10:27.375769+00:00",
+  "qualifiedSource": "1896e11febd0d08159c85ddbbcd94743383f1e61",
+  "qualifiedTree": "2f955065ec1ee94ea3db8e3cfbda7fcc94036fc1",
+  "publicationSource": "dde9845f1783d61272acbba314603c4bb51d87fb",
+  "publicationTree": "cfac7ab903d7a20e3d5c1c9b47411bf860c6c0c9",
+  "parents": [
+    "1896e11febd0d08159c85ddbbcd94743383f1e61",
+    "ffdf603cc71fbb9083c93db3d1b6fe47949f62e7"
+  ],
+  "mainReconciliationReceiptSha256": "2b1c0eb31bb4743d6f64719d786194cf055f06eed17322d1e2a0899b58a42d82",
+  "intakeReceiptSha256": "9dd5cb9178f9ab02914e5420afe4951bcbe571d948d6b550ebc6a2af8277ad64",
+  "changedPaths": [
+    "docs/VBA_PARITY_ROADMAP.md",
+    "docs/validation/word-vba-cell-prefix-20261122/README.md",
+    "docs/validation/word-vba-cell-prefix-20261122/final-intake.json",
+    "docs/validation/word-vba-cell-prefix-20261122/final/archive-manifest.json",
+    "docs/validation/word-vba-cell-prefix-20261122/final/artifacts.json",
+    "docs/validation/word-vba-cell-prefix-20261122/final/committed-source-index.json.gz",
+    "docs/validation/word-vba-cell-prefix-20261122/final/publication-premerge.json",
+    "docs/validation/word-vba-cell-prefix-20261122/final/qualification.json",
+    "docs/validation/word-vba-cell-prefix-20261122/final/raw-evidence.tar.xz",
+    "docs/validation/word-vba-cell-prefix-20261122/suites.txt"
+  ],
+  "protectedRepositoryPathsCompared": 6303,
+  "protectedChangedPaths": [],
+  "capturedHeadAncestry": [
+    {
+      "ref": "refs/remotes/origin/codex/mail-durable-mutations-20261122",
+      "sha": "afdcb327c650383e269a3d32f7251f68a9d766c6",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/mail-membership-recovery-20261122",
+      "sha": "430bcf26f770c06278ea64ee40255d071d69e066",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/word-vba-authoring-20261121",
+      "sha": "cf06b018ec125ce3b5abfda41a7fbbdcf7d30a47",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/word-vba-cell-formatting-20261122",
+      "sha": "49f43824196c4d373f991e442fac2e73e68c5f9f",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/word-vba-cell-text-20261122",
+      "sha": "5f6e8686f1d6ddc1f3e523238808b78ccccc5b51",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/word-vba-comparison-colors-20261121",
+      "sha": "e3c4550b34a9a07de2a97b84b67ab6aecaa5a377",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/word-vba-compatibility-20261121",
+      "sha": "3058d36c5354d46bde418555d59282116cce1e26",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/word-vba-compatibility-20261122",
+      "sha": "934c33a57f3bed934df59a4e925ffc35fe406ee2",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/word-vba-continuation-20261122",
+      "sha": "806525fdb06d501fff09d4fb6b12ee95ef6cf4b2",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-dispatch-recovery-20261121",
+      "sha": "32ef843db3a8192fe0add085e1ee173e18f4d462",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-field-context-20261122",
+      "sha": "00ba542dc5b492040508a8137a80adbc9b13553d",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-field-recovery-20261122",
+      "sha": "e78e98d3a07647794e4426f833782ccbddc04960",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-footnote-separators-20261121",
+      "sha": "a70c0e7af251d737dc7639f44a48777bbea1bf51",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-host-ownership-20261121",
+      "sha": "05cb866e6e5aaee95dae8b03da2892fcf633a84b",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-main-qualification-20261121",
+      "sha": "e2a1ed6073556d24194004221c545166b17c2d4e",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-native-parity-20261122",
+      "sha": "89789360590b6dd0af0a378bfc257a3c4a18fc9c",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-note-layout-20261121",
+      "sha": "2089e1e35a8ba81ea7f0a077b348f93ca70953c8",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-odt-roundtrip-20261121",
+      "sha": "05072dc2d59d0fa4ea97de4d6a842700ef333fab",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-parity-20261122",
+      "sha": "da36652cf1d2296b59285788035555d512b9fa31",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-select-navigation-20261122",
+      "sha": "8c1b8da71bb910d4025aa179dc56290cf1a8e72a",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-shortcut-host-recovery-20261121",
+      "sha": "2168011b6104f680100b87404bc1bd409f724939",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/codex/zotero-source-continuity-20261121-2135",
+      "sha": "c4c16d91d62ded0c341bee95e98de894de70483f",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/main",
+      "sha": "b13a170cdb5fd42b9a0f2c77d97c996caf5d0d7f",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/work/mail-folder-scoped-search-20261122",
+      "sha": "ff30d1064a052abbfbcdc99745ff66f8bc980aea",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/work/mail-folder-search-20261122",
+      "sha": "24e4b5d8a2a4e3c996e15013c5324a534c2e444f",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/work/mail-keyboard-triage-20261121",
+      "sha": "08d034d876073e2afc881dbfc11ba791acde3d67",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/work/mail-live-search-20261121",
+      "sha": "c3d55be30d91694b1a427d261cddbe47b1dd5eec",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/work/mail-parity-20261122-next",
+      "sha": "a7006171630915bbf91b6ce2ab7c4699bb79f69b",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/work/mail-range-selection-tests-20261121",
+      "sha": "5c7a385c5de40394d9eed736c5a2d975535c3df3",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/origin/work/mail-sync-address-search-20261121",
+      "sha": "33d8f956ec2ed1dfd748e1d7ccbc5add053ff565",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/upstream/ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/upstream/cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/upstream/cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "ancestor": true
+    },
+    {
+      "ref": "refs/remotes/upstream/main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "ancestor": true
+    },
+    {
+      "ref": "observed_remote_main",
+      "sha": "ffdf603cc71fbb9083c93db3d1b6fe47949f62e7",
+      "ancestor": true
+    }
+  ],
+  "incomingMainChangedTestByteMatches": {
+    "packages/quds_office_engine/test/office_macro_word_cell_prefix_test.dart": true,
+    "packages/quds_office_engine/test/office_vba_word_cell_prefix_conformance_test.dart": true
+  },
+  "appliesPassingUniqueCases": 2723,
+  "sourceEvidence": "receipt.json in this directory; all original source identities retained",
+  "productReruns": 0,
+  "errors": [],
+  "capturedWordSource": "806525fdb06d501fff09d4fb6b12ee95ef6cf4b2",
+  "incomingMainTestComparison": "Captured Word806525fd to observed mainffdf603c; whole-PR first-parent comparison is not this bounded delta.",
+  "retainedLocalIntegrationAssertions": "The existing qualified integration test keeps its additional permission_denied/isRecording assertions. It remains byte-identical in the publication merge."
+}

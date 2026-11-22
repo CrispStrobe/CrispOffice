@@ -120,7 +120,9 @@ final class MailSyncRunner {
       }
       final runLease = session.begin(cancellation: cancellation);
       activeLease = runLease;
-      final guardedRepository = _RunRepository(repository, runLease, state);
+      final guardedRepository = repository is MailSyncSnapshotRepository
+          ? _SnapshotRunRepository(repository, runLease, state)
+          : _RunRepository(repository, runLease, state);
       const coordinator = MailSyncCoordinator();
       for (var pageIndex = 0; pageIndex < maxPages; pageIndex++) {
         runLease.checkCurrent();
@@ -231,17 +233,9 @@ final class _RunRepository implements MailSyncRepository {
       final result = await delegate.readCursor(mailbox);
       runLease.checkCurrent();
       if (result case MailSuccess<MailCursor?>(:final value)) {
-        if (value != null && value.mailbox != mailbox) {
-          return const MailFailure(MailProblem(MailProblemCode.storageFailure));
+        if (_rememberCursor(mailbox, value) case final problem?) {
+          return MailFailure(problem);
         }
-        if (state.cursorWasRead &&
-            (value?.mailbox != state.cursor?.mailbox ||
-                value?.value != state.cursor?.value)) {
-          return const MailFailure(MailProblem(MailProblemCode.conflict));
-        }
-        state.cursorWasRead = true;
-        state.cursor = value;
-        if (value != null) state.seenCursors.add(value.value);
       }
       return result;
     } on MailCancelled {
@@ -251,11 +245,42 @@ final class _RunRepository implements MailSyncRepository {
     }
   }
 
+  MailProblem? _rememberCursor(MailMailboxId mailbox, MailCursor? value) {
+    if (value != null && value.mailbox != mailbox) {
+      return const MailProblem(MailProblemCode.storageFailure);
+    }
+    if (state.cursorWasRead &&
+        (value?.mailbox != state.cursor?.mailbox ||
+            value?.value != state.cursor?.value)) {
+      return const MailProblem(MailProblemCode.conflict);
+    }
+    state.cursorWasRead = true;
+    state.cursor = value;
+    if (value != null) state.seenCursors.add(value.value);
+    return null;
+  }
+
   @override
   Future<MailResult<MailUnit>> commitSyncPage(
     MailSyncPage page, {
     required MailCursor? expectedCursor,
     required MailOperationLease lease,
+  }) => _commitPage(
+    page,
+    expectedCursor: expectedCursor,
+    lease: lease,
+    commit: () => delegate.commitSyncPage(
+      page,
+      expectedCursor: expectedCursor,
+      lease: lease,
+    ),
+  );
+
+  Future<MailResult<MailUnit>> _commitPage(
+    MailSyncPage page, {
+    required MailCursor? expectedCursor,
+    required MailOperationLease lease,
+    required Future<MailResult<MailUnit>> Function() commit,
   }) async {
     try {
       runLease.checkCurrent();
@@ -266,11 +291,7 @@ final class _RunRepository implements MailSyncRepository {
       if (repeatsCursor && !unchangedTerminal) {
         return const MailFailure(MailProblem(MailProblemCode.providerFailure));
       }
-      final result = await delegate.commitSyncPage(
-        page,
-        expectedCursor: expectedCursor,
-        lease: lease,
-      );
+      final result = await commit();
       if (result is MailSuccess<MailUnit>) {
         // Keep the acknowledged receipt even if cancellation arrived after the
         // repository's atomic commit but before this continuation resumed.
@@ -283,4 +304,58 @@ final class _RunRepository implements MailSyncRepository {
       return const MailFailure(MailProblem(MailProblemCode.storageFailure));
     }
   }
+}
+
+/// Forward snapshot support only when the delegate actually provides it.
+/// Sharing guards with the legacy wrapper keeps run progress, cursor-cycle
+/// checks and cancellation-after-commit accounting identical on both paths.
+final class _SnapshotRunRepository extends _RunRepository
+    implements MailSyncSnapshotRepository {
+  _SnapshotRunRepository(
+    this.snapshotDelegate,
+    MailOperationLease runLease,
+    _SyncRunState state,
+  ) : super(snapshotDelegate, runLease, state);
+
+  final MailSyncSnapshotRepository snapshotDelegate;
+
+  @override
+  Future<MailResult<MailSyncRepositorySnapshot>> readSyncSnapshot(
+    MailMailboxId mailbox,
+  ) async {
+    try {
+      runLease.checkCurrent();
+      final result = await snapshotDelegate.readSyncSnapshot(mailbox);
+      runLease.checkCurrent();
+      if (result case MailSuccess<MailSyncRepositorySnapshot>(:final value)) {
+        if (value.mailbox != mailbox) {
+          return const MailFailure(MailProblem(MailProblemCode.storageFailure));
+        }
+        if (_rememberCursor(mailbox, value.cursor) case final problem?) {
+          return MailFailure(problem);
+        }
+      }
+      return result;
+    } on MailCancelled {
+      rethrow;
+    } on Object {
+      return const MailFailure(MailProblem(MailProblemCode.storageFailure));
+    }
+  }
+
+  @override
+  Future<MailResult<MailUnit>> commitSyncPageWithSnapshot(
+    MailSyncPage page, {
+    required MailSyncRepositorySnapshot expectedSnapshot,
+    required MailOperationLease lease,
+  }) => _commitPage(
+    page,
+    expectedCursor: expectedSnapshot.cursor,
+    lease: lease,
+    commit: () => snapshotDelegate.commitSyncPageWithSnapshot(
+      page,
+      expectedSnapshot: expectedSnapshot,
+      lease: lease,
+    ),
+  );
 }

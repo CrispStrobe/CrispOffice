@@ -100,6 +100,12 @@ power-loss behavior. Complete Outlook/Thunderbird/eM Client parity remains open.
 
 ## Ordered continuation
 
+The first step below is now implemented for authoritative IMAP/EWS Move replies
+in [identity transitions](identity-transitions.md), with schema-15 evidence,
+conditional atomic retained-cache reconciliation and null-safe sync snapshots.
+Generic results and unavailable mappings remain refresh-only. Read-only
+membership observations in this document retain their original semantics.
+
 1. Persist authoritative identity transitions when mutation responses provide
    them, including IMAP COPYUID and EWS new IDs. Reconcile exact source/destination
    cache memberships atomically with view revisions, without changing historical

@@ -176,7 +176,7 @@ void membershipHostTests() {
         final saved = (await tester.runAsync(
           () => harness.fixture.store.load(historical.summary.id),
         ))!;
-        expect(saved!.membershipObservations, hasLength(1));
+        expect(saved.membershipObservations, hasLength(1));
         expect(
           saved.membershipObservations.single.observation.identity,
           saved.report.items.first.message,

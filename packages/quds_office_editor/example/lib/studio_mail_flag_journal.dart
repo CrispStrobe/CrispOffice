@@ -309,13 +309,38 @@ final class _StudioMailFlagJournal implements MailBulkFlagJournal {
                 (expected as MailSetFlagged).flagged ||
         result.operation is MailMove &&
             (result.operation as MailMove).destination !=
-                (expected as MailMove).destination) {
+                (expected as MailMove).destination ||
+        result.identityTransition != null &&
+            !result.identityTransition!.matches(
+              expected,
+              sourceMailbox: source.mailbox,
+            )) {
       throw const StudioMailFlagJournalException(MailProblemCode.conflict);
     }
+    final transition = result.identityTransition;
+    final destination = transition == null
+        ? null
+        : _remote(transition.destination);
     return MailBulkFlagItemResult.restore(
       operation: _local!.operationAt(index),
       outcome: result.outcome,
       problem: result.problem,
+      identityTransition: transition == null
+          ? null
+          : MailMoveIdentityTransition(
+              operationId: transition.operationId,
+              source: _remote(transition.source),
+              sourceMailbox: MailMailboxId(
+                transition.sourceMailbox.value,
+                account: store.account,
+              ),
+              destination: destination!,
+              destinationMailbox: MailMailboxId(
+                transition.destinationMailbox.value,
+                account: store.account,
+              ),
+              destinationMessageId: studioMailCachedMessageId(destination),
+            ),
     );
   }
 

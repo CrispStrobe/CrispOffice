@@ -509,6 +509,82 @@ Only supported member names are admitted. `Merge`, `ColumnWidth`, `NumberFormat`
 `FormulaR1C1`, worksheet dynamic spill formulas, named ranges, whole rows/columns, discontiguous
 ranges, and default members are not translated into approximate operations.
 
+## Integer division and remainder
+
+The shared source language supports integer division (`\`) and remainder
+(`Mod`) in all three adapters. They are useful for template row/column
+selection, alternating formatting and grouping source-known report data:
+
+```vb
+row = ordinal \ 2 + 1
+column = ordinal Mod 2 + 1
+target.Font.Bold = (ordinal Mod 2 = 0)
+```
+
+Both operands are evaluated exactly once, from left to right. Numeric values
+and numeric scalar Variants are accepted; `Empty` acts as zero. Strings and
+Booleans require explicit numeric conversion. Arrays, object selectors and
+missing optional values are refused. Statically incompatible operands are
+checked even in unused procedures or inactive branches.
+
+Each non-null operand is rounded to the nearest integer, with exact midpoint
+ties resolved to even. The rounded value must fit a signed 32-bit Long
+(`-2147483648..2147483647`). This deliberately shares the existing `CLng`
+rounded-result bound, including `-2147483648.5` rounding to the minimum Long;
+it does not implement VBA's full numeric subtype and coercion system.
+
+`\` truncates the quotient toward zero. `Mod` computes
+`dividend - truncatedQuotient * divisor`, retaining the dividend's sign when
+the remainder is nonzero. A rounded zero divisor reports
+`vba_arithmetic_error`; a rounded operand or integer-division result outside
+the Long range reports `vba_type_error`. The intermediate quotient for
+`-2147483648 Mod -1` need not fit Long because the published remainder is zero.
+Zero results are normalized identically on the Dart VM and JavaScript.
+
+| Expression | Result |
+| --- | ---: |
+| `11 \ 4` | `2` |
+| `-11 \ 4` | `-2` |
+| `5.5 \ 2` | `3` |
+| `4.5 \ 2` | `2` |
+| `12.6 Mod 5` | `3` |
+| `-11 Mod 4` | `-3` |
+| `11 Mod -4` | `3` |
+| `20 \ 3 * 2` | `3` |
+| `20 Mod 6 \ 2` | `2` |
+
+Within supported arithmetic, precedence is unary `+`/`-`, then `*`/`/`, then
+`\`, then `Mod`, then `+`/`-`, followed by `&`, comparisons and logical
+operators. Equal-precedence binary operators associate left to right;
+parentheses override precedence. Both operators work in local/module Const
+expressions, array bounds and indexes, optional defaults, loops and helper
+results under the existing work and output budgets.
+
+If either operand is `Null`, the result is `Null` after both expressions have
+been evaluated and the other operand has passed the existing strict numeric
+and finite portable-value checks. Integer rounding and divisor-zero checks do
+not run in that case: `IsNull(Null \ 0)` is True. A Null result still cannot
+be assigned to a numeric local or published as ordinary Word text without an
+explicit supported conversion or branch.
+
+The arithmetic/rounding/precedence references are Microsoft's
+[integer division](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/backslash-operator),
+[Mod](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/mod-operator),
+[operator precedence](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/operator-precedence),
+and [ties-to-even definition](https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/98152b5a-4d86-4acb-b875-66cb1f49433e).
+**Sign qualification boundary:** MS-VBAL's
+[Mod section](https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/09fdf266-a9d5-4ecb-b7d8-ffd1361cb349)
+describes an absolute remainder, while Microsoft's
+[Visual Basic remainder reference](https://learn.microsoft.com/en-us/dotnet/visual-basic/language-reference/operators/mod-operator)
+describes the dividend-signed result. The latter is a different language
+reference, not an Office-host observation. Quds explicitly chooses the signed
+formula above; signed cases are labeled `dialect-contract`, and installed
+Office differential qualification remains pending.
+
+See the [complete Word grouped report](../packages/quds_office_engine/example/macros/word_grouped_report.bas),
+[versioned corpus](../packages/quds_office_engine/test/fixtures/vba_conformance/word_integer_arithmetic_v1.json)
+and [local validation record](validation/word-vba-integer-arithmetic-20261122/README.md).
+
 ## Numeric intrinsics
 
 The shared Word, Excel and PowerPoint source dialects support `Abs`, `Int`,
@@ -1099,7 +1175,7 @@ dart run tool/macros/office_macro.dart run-vba \
 | Object types | `Worksheet` and `Range` variables, assigned with `Set`; object default members are unsupported |
 | Constants | Literals, supported unary/binary expressions, and previously declared constants; function calls in constant initializers are unsupported |
 | Assignment | Scalar assignment, optional `Let`, and explicitly supported writable object properties |
-| Arithmetic | Decimal/exponent literals, parentheses, unary `+`/`-`, and binary `+`, `-`, `*`, `/` |
+| Arithmetic | Decimal/exponent literals, parentheses, unary `+`/`-`, binary `+`, `-`, `*`, `/`, and bounded Long integer division `\` / remainder `Mod` |
 | Numeric intrinsics | `Abs`, `Int`, `Fix`, `Sgn`; one positional numeric/Variant argument, explicit Empty/Null behavior and bounded portable arithmetic |
 | Text | Double-quoted literals with doubled embedded quotes and `&` concatenation of scalar values |
 | String intrinsics | `Len`, `Left$`, `Right$`, `Mid$`, binary `InStr` / `InStrRev` / `Replace`, and Trim/LTrim/RTrim with their `$` forms; actual Strings, UTF-16 units, bounded exact integer arguments, no implicit coercion |

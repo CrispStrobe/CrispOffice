@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "ad27e97263eee11dbd7b76f846bfea0a8e250499",
+  "sourceTree": "b8f7179bf971fcde9d007e3bee28e70487bdd322",
+  "productionFile": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+  "productionSha256": "0847838044cb18fe844fc2660870a0141a9f8d16b3c9d98f183297afff94d60b",
+  "runtime": {
+    "dart": "3.13.7",
+    "flutter": "3.47.8",
+    "node": "24.22.3",
+    "sourceLockSha256": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+    "lockedPureDartEntries": 75,
+    "sourceLockChanged": false
+  },
+  "completed": {
+    "integerNumericVariant": {
+      "executions": 687,
+      "suites": 5,
+      "failures": 0,
+      "skips": 0,
+      "errors": 0,
+      "stderrEmpty": true,
+      "exitCode": 0,
+      "counts": {
+        "office_vba_integer_arithmetic_test.dart": 94,
+        "office_vba_numeric_intrinsics_test.dart": 133,
+        "office_vba_numeric_conformance_test.dart": 59,
+        "office_vba_variant_conformance_test.dart": 162,
+        "office_vba_variant_conversions_test.dart": 239
+      }
+    },
+    "mailBackend": {
+      "executions": 1258,
+      "uniqueSuiteNameIdentities": 1257,
+      "suites": 55,
+      "failures": 0,
+      "skips": 0,
+      "errors": 0,
+      "stderrEmpty": true,
+      "sourceInputs": 441,
+      "allInputsBoundToSourceCommit": true,
+      "strictAnalysisGatesPassed": 4,
+      "counts": {
+        "core": 629,
+        "store": 389,
+        "transport": 218,
+        "vendoredImap": 22
+      },
+      "excludedAttempts": [
+        "Initial SQLite native hook stopped by ENOSPC before tests",
+        "Supplemental vendor tests using separately resolved newer dev tooling; replaced by locked-runner execution"
+      ]
+    }
+  },
+  "partialOrBlocked": {
+    "initialGroupedWordAndCorpus": {
+      "status": "test expectations corrected; full corrected suites not completed",
+      "observedSuccessfulChecks": [
+        "actual BAS CLI compile, validation, DOCM execution and existing-output protection",
+        "calculated row/column/format native plans",
+        "MCP arithmetic-failure publication refusal",
+        "read-only/tool-allowlist/step-budget refusal"
+      ],
+      "correctedFixtureMistakes": [
+        "Static type diagnostics locate the incompatible operand, not the binary operator",
+        "Native run does not record its own expansion; fixture now records individual callTool operations"
+      ],
+      "productionChangedForTheseCorrections": false
+    },
+    "broadMacroRegression": {
+      "selectedSuites": 145,
+      "status": "interrupted after ENOSPC",
+      "exitCode": 130,
+      "acceptedPassCount": null,
+      "note": "Partial successes are not counted as a completed gate. Reproduce in small batches to bound retained compiler kernels."
+    },
+    "portableVmJavaScript": {
+      "status": "not executed to completion"
+    },
+    "flutterMailUi": {
+      "status": "not executed"
+    },
+    "finalEngineAnalysis": {
+      "status": "not executed"
+    }
+  },
+  "intake": {
+    "initialMain": "b38f2e38369855056eb9e23792f83fd1ab86ea24",
+    "capturedForkHeads": 35,
+    "capturedUpstreamHeads": 4,
+    "recentUpdatedPrHeads": 100,
+    "prHeadAncestors": 96,
+    "prHeadCompleteTreeEquivalents": 4,
+    "capturedRefsAccountedFor": 139,
+    "uncoveredCapturedRefs": 0,
+    "branchHeadsIntegrated": [
+      "ab7fb01999efab093f2d5c81c9c328bb2c16a41c",
+      "8da0e8385794e4ec0af10cd4fbd4d489f98acb01",
+      "d4317dcc1ecc6c7b70a1773cc121f5639ad99428"
+    ],
+    "laterConcurrentWork": "Mail identity 06b4e747 and bulk organization f25c62e3 were published after the bounded intake; not claimed as qualified by this continuation."
+  },
+  "boundaries": [
+    "Bounded source-to-native-plan dialect, not a full VBA runtime",
+    "Signed Mod is an explicit dialect choice; MS-VBAL absolute-remainder wording is recorded, with installed Office differential qualification pending",
+    "No installed Office, live provider or platform acceptance claim",
+    "Raw local streams and manifests remain in scratch; the second ENOSPC prevented packaging/upload of the complete raw archive"
+  ],
+  "githubActionsQueried": false,
+  "githubActionsAwaited": false
+}

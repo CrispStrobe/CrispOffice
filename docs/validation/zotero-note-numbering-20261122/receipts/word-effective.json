@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "recorded_utc": "2026-11-22T07:03:34.789555+00:00",
+  "method": "Latest complete execution replaces each whole suite. Original and supplemental results are retained only when exact suite and dependency hashes still match. The final integration suite replaces its prior 14 cases without double counting.",
+  "qualification_commit": "89789360590b6dd0af0a378bfc257a3c4a18fc9c",
+  "qualification_tree": "f3b0f40e2fe06ae372e4f69654058a36b4170e9c",
+  "counts": {
+    "passed": 583,
+    "failed": 0,
+    "skipped": 0,
+    "unfinished": 0
+  },
+  "suite_count": 10,
+  "new_case_count": 0,
+  "removed_case_count": 0,
+  "count_change": 0,
+  "retained_case_counts_by_gate": {
+    "final-word-supplement": 146,
+    "final-word": 423,
+    "final-word-latest-integration": 14
+  },
+  "latest_execution_case_count": 14,
+  "source_receipts": {
+    "final-word/receipt.json": "b5e7dcd94a5f65b7f1084665f095e609c2828abc7732c42b1b1b30561055028b",
+    "final-word-supplement/receipt.json": "b6e7322d59551915e6789435b24018d99efcca087ef5cf25a663dec697b7cd8f",
+    "final-word-latest-integration/receipt.json": "c8dc9bff76a59823038006e8ad8519da8edf640a6e76582a1db553b871da6119"
+  },
+  "runtime_receipt_sha256": "75caa1b71e20e8c983345720d6511a2879137d6c1a87c3cb29b5deb89b47c228",
+  "cases_sha256": "d28212412d265558db3e4db9c81380e92d19f838e77cae0e1d844b667c678df9",
+  "source_equivalence_sha256": "8f958b2a49848a3a4d8874b3ec8ac179c9d6419fbd764020d3fb18be21ac6bb3",
+  "runner_sha256": "51a955492a4b427d44fe3030b670ffad1828fbadb769068f3a389b404fbd50fb"
+}

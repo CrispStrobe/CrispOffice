@@ -1,0 +1,208 @@
+{
+  "recorded_at_utc": "2026-11-22 08:57:59 UTC",
+  "repository": "CrispStrobe/quds_office_suite",
+  "initial_main": "b2bba1638924237435460e4238d4bd98c407fc3a",
+  "initial_intake": "intake.json",
+  "initial_fork_heads": 30,
+  "initial_non_main_heads_already_ancestors": 29,
+  "initial_upstream_heads_already_ancestors": 4,
+  "initial_recent_prs": 100,
+  "initial_open_fork_prs": 0,
+  "initial_open_upstream_prs": 0,
+  "late_main": "8326f191067dac1a3befab81361c5829fee9a35d",
+  "late_fork_branches": [
+    {
+      "name": "codex/mail-durable-mutations-20261122",
+      "sha": "afdcb327c650383e269a3d32f7251f68a9d766c6"
+    },
+    {
+      "name": "codex/mail-identity-reconciliation-20261122",
+      "sha": "06b4e747c09851048d0b72a958e9114f7c83cc52"
+    },
+    {
+      "name": "codex/mail-membership-recovery-20261122",
+      "sha": "bb991a98b73fb2518b2999c37e42d7da4c821fae"
+    },
+    {
+      "name": "codex/word-vba-authoring-20261121",
+      "sha": "cf06b018ec125ce3b5abfda41a7fbbdcf7d30a47"
+    },
+    {
+      "name": "codex/word-vba-cell-formatting-20261122",
+      "sha": "49f43824196c4d373f991e442fac2e73e68c5f9f"
+    },
+    {
+      "name": "codex/word-vba-cell-text-20261122",
+      "sha": "5f6e8686f1d6ddc1f3e523238808b78ccccc5b51"
+    },
+    {
+      "name": "codex/word-vba-comparison-colors-20261121",
+      "sha": "e3c4550b34a9a07de2a97b84b67ab6aecaa5a377"
+    },
+    {
+      "name": "codex/word-vba-compatibility-20261121",
+      "sha": "3058d36c5354d46bde418555d59282116cce1e26"
+    },
+    {
+      "name": "codex/word-vba-compatibility-20261122",
+      "sha": "934c33a57f3bed934df59a4e925ffc35fe406ee2"
+    },
+    {
+      "name": "codex/word-vba-continuation-20261122",
+      "sha": "dd844f4ae1d5d4dab897fd7e49f94e25be52581a"
+    },
+    {
+      "name": "codex/word-vba-extended-20261122",
+      "sha": "43df8a9f6170109589f2f6885312d5cf15068a88"
+    },
+    {
+      "name": "codex/word-vba-range-suffix-20261122",
+      "sha": "d4317dcc1ecc6c7b70a1773cc121f5639ad99428"
+    },
+    {
+      "name": "codex/zotero-dispatch-recovery-20261121",
+      "sha": "32ef843db3a8192fe0add085e1ee173e18f4d462"
+    },
+    {
+      "name": "codex/zotero-field-context-20261122",
+      "sha": "00ba542dc5b492040508a8137a80adbc9b13553d"
+    },
+    {
+      "name": "codex/zotero-field-recovery-20261122",
+      "sha": "e78e98d3a07647794e4426f833782ccbddc04960"
+    },
+    {
+      "name": "codex/zotero-footnote-separators-20261121",
+      "sha": "a70c0e7af251d737dc7639f44a48777bbea1bf51"
+    },
+    {
+      "name": "codex/zotero-host-ownership-20261121",
+      "sha": "05cb866e6e5aaee95dae8b03da2892fcf633a84b"
+    },
+    {
+      "name": "codex/zotero-main-qualification-20261121",
+      "sha": "e2a1ed6073556d24194004221c545166b17c2d4e"
+    },
+    {
+      "name": "codex/zotero-native-parity-20261122",
+      "sha": "d300c76f0966d8f676b0fa38a7799f0e01cbc10d"
+    },
+    {
+      "name": "codex/zotero-note-layout-20261121",
+      "sha": "2089e1e35a8ba81ea7f0a077b348f93ca70953c8"
+    },
+    {
+      "name": "codex/zotero-odt-roundtrip-20261121",
+      "sha": "05072dc2d59d0fa4ea97de4d6a842700ef333fab"
+    },
+    {
+      "name": "codex/zotero-parity-20261122",
+      "sha": "da36652cf1d2296b59285788035555d512b9fa31"
+    },
+    {
+      "name": "codex/zotero-parity-next-20261122",
+      "sha": "98ac4254f04acdeff53ea28c9c184ecfb141e868"
+    },
+    {
+      "name": "codex/zotero-select-navigation-20261122",
+      "sha": "8c1b8da71bb910d4025aa179dc56290cf1a8e72a"
+    },
+    {
+      "name": "codex/zotero-shortcut-host-recovery-20261121",
+      "sha": "2168011b6104f680100b87404bc1bd409f724939"
+    },
+    {
+      "name": "codex/zotero-source-continuity-20261121-2135",
+      "sha": "c4c16d91d62ded0c341bee95e98de894de70483f"
+    },
+    {
+      "name": "main",
+      "sha": "8326f191067dac1a3befab81361c5829fee9a35d"
+    },
+    {
+      "name": "work/mail-bulk-organization-20261122",
+      "sha": "f25c62e38b422598873c3dc3bb638e746dfb53b9"
+    },
+    {
+      "name": "work/mail-folder-scoped-search-20261122",
+      "sha": "ff30d1064a052abbfbcdc99745ff66f8bc980aea"
+    },
+    {
+      "name": "work/mail-folder-search-20261122",
+      "sha": "24e4b5d8a2a4e3c996e15013c5324a534c2e444f"
+    },
+    {
+      "name": "work/mail-keyboard-triage-20261121",
+      "sha": "08d034d876073e2afc881dbfc11ba791acde3d67"
+    },
+    {
+      "name": "work/mail-live-search-20261121",
+      "sha": "c3d55be30d91694b1a427d261cddbe47b1dd5eec"
+    },
+    {
+      "name": "work/mail-parity-20261122-next",
+      "sha": "a7006171630915bbf91b6ce2ab7c4699bb79f69b"
+    },
+    {
+      "name": "work/mail-range-selection-tests-20261121",
+      "sha": "5c7a385c5de40394d9eed736c5a2d975535c3df3"
+    },
+    {
+      "name": "work/mail-sync-address-search-20261121",
+      "sha": "33d8f956ec2ed1dfd748e1d7ccbc5add053ff565"
+    }
+  ],
+  "late_open_fork_prs": [],
+  "late_upstream": [
+    {
+      "name": "ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98"
+    },
+    {
+      "name": "cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240"
+    },
+    {
+      "name": "cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21"
+    },
+    {
+      "name": "main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+    }
+  ],
+  "upstream_unchanged": true,
+  "late_reconciled_histories": [
+    "b38f2e38369855056eb9e23792f83fd1ab86ea24",
+    "ab7fb01999efab093f2d5c81c9c328bb2c16a41c",
+    "d4317dcc1ecc6c7b70a1773cc121f5639ad99428",
+    "8326f191067dac1a3befab81361c5829fee9a35d"
+  ],
+  "later_separate_work": {
+    "branch": "work/mail-bulk-organization-20261122",
+    "head": "f25c62e38b422598873c3dc3bb638e746dfb53b9",
+    "reason": "New branch created after this task's initial 30-head intake; it adds further UI behavior and is not included in this bounded identity-reconciliation milestone."
+  },
+  "resolution": {
+    "base_tree": "314702d7cce8d85047db0338e0f7d92b1ac214c3",
+    "preserve_published_engine_tree": "002eb1303548d534dcf44282b6ff7265c9a4121b",
+    "qualified_mail_source": "06b4e747c09851048d0b72a958e9114f7c83cc52",
+    "root_differences": [
+      ".github",
+      "docs",
+      "packages"
+    ],
+    "editor_tree_identical": true,
+    "third_party_tree_identical": true,
+    "transport_tree_identical": true,
+    "mail_mime_tree_identical": true,
+    "core_executable_and_test_blobs_identical": true,
+    "store_executable_and_test_blobs_identical_except_projection": true,
+    "projection_blob_retained": "244bca9cae70b23d923cc45714b3d57783aca4a8",
+    "projection_source": "packages/quds_mail_store/lib/src/move_identity_transitions.dart",
+    "projection_decision": "Retain the exact locally qualified implementation, including both-view CAS fencing, unconditional source browse revision, required quota savepoint, aggregate target metadata and folder-label budget. Published main has an equivalent preflight expression/early-return variant; no other Mail executable or test file differs.",
+    "mail_contract_blob_retained": "54dfd1c93a3d8fd1793ad523a7a564331513b57f",
+    "root_manifests_and_lockfile_identical": true,
+    "qualification_boundary": "Mail production/test inputs are preserved from the qualified source. The incoming arithmetic compiler is retained from published main with its own explicitly limited historical acceptance; no new complete combined-host or full arithmetic regression result is claimed."
+  }
+}

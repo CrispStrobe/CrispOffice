@@ -780,6 +780,7 @@ extension MailStoreLocalOperations on SqliteMailRepository {
       'pending_operations',
       'flag_batch_items',
       'flag_batches',
+      'mailbox_move_revisions',
       'tombstones',
       'cached_messages',
       'outbox_attempts',

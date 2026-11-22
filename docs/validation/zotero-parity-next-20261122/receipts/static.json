@@ -1,0 +1,80 @@
+{
+  "source_commit": "f06afa63a7e321482a60d3f3a4fc39c522fdb29d",
+  "files": [
+    "packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+    "packages/quds_office_editor/test/word_odt_note_numbering_test.dart",
+    "packages/quds_office_editor/test/word_zotero_document_actions_test.dart",
+    "packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+    "packages/quds_office_editor/test/word_zotero_unlink_recovery_test.dart",
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_reader.dart",
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+    "packages/quds_office_engine/lib/src/word/serial/odt_note_start_convention.dart",
+    "packages/quds_office_engine/lib/src/word/serial/odt_reader_styles.dart",
+    "packages/quds_office_engine/test/odt_reader_styles_test.dart",
+    "packages/quds_office_engine/test/odt_zotero_note_numbering_test.dart"
+  ],
+  "commands": [
+    {
+      "name": "format",
+      "argv": [
+        "dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart",
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+        "packages/quds_office_editor/test/word_odt_note_numbering_test.dart",
+        "packages/quds_office_editor/test/word_zotero_document_actions_test.dart",
+        "packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+        "packages/quds_office_editor/test/word_zotero_unlink_recovery_test.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_reader.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_note_start_convention.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_reader_styles.dart",
+        "packages/quds_office_engine/test/odt_reader_styles_test.dart",
+        "packages/quds_office_engine/test/odt_zotero_note_numbering_test.dart"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "analyze",
+      "argv": [
+        "dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart",
+        "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+        "packages/quds_office_editor/test/word_odt_note_numbering_test.dart",
+        "packages/quds_office_editor/test/word_zotero_document_actions_test.dart",
+        "packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+        "packages/quds_office_editor/test/word_zotero_unlink_recovery_test.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_reader.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_note_start_convention.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_reader_styles.dart",
+        "packages/quds_office_engine/test/odt_reader_styles_test.dart",
+        "packages/quds_office_engine/test/odt_zotero_note_numbering_test.dart"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "sha256": {
+    "packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart": "74d2bdb0a8e43c929eb2173db2a8e96b71768ad259e3cacb6b06dd6172c9470b",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "f8e620978ffe142c9a236a53fef44b3c2e9a151901f36092affee58f0ec35d9e",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart": "dcc9176011359bb42d71b458fc3cd646f57ec15fc0c59b5f4152a3f0b15b28bf",
+    "packages/quds_office_editor/test/word_odt_note_numbering_test.dart": "7131ce11e89c3796dd906df95f1a2f7d483a08552fc37a4068f4ecc3afc037fc",
+    "packages/quds_office_editor/test/word_zotero_document_actions_test.dart": "158e72d32c1ffadb7ada1d48600801efcbf67a378b1bfea0e0be90a64f204fb1",
+    "packages/quds_office_editor/test/word_zotero_unlink_all_test.dart": "5c49b2aeb2d5a8b9388a79d4e3fe07a2981fdec667bac6c0aaf88e8a93cc2d64",
+    "packages/quds_office_editor/test/word_zotero_unlink_recovery_test.dart": "c5495a436cd6ee69db90edccab29666912b81b51bd572c35e3e3379f38ca4940",
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_reader.dart": "d743c36a88a7ef33b8081a94fc04cf1e6a9d8976811ab97f4b2528a778c642f6",
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart": "de9409130e89acbd4f2edfa43336c415e0e2206f56b8a4726ff3d8c3e5b4e491",
+    "packages/quds_office_engine/lib/src/word/serial/odt_note_start_convention.dart": "8dfb592bfeae1d9dc5447bdbfd7d462246c1829e1a5b03f33c3e33b4118520f9",
+    "packages/quds_office_engine/lib/src/word/serial/odt_reader_styles.dart": "430db00fb6aa4e1714866ac5f1f97ed63486338667b0c6fc7dac0d0efa455066",
+    "packages/quds_office_engine/test/odt_reader_styles_test.dart": "d912aeafab19ccb018dc3debc763bf9b915017af338789537fa08a6d092239de",
+    "packages/quds_office_engine/test/odt_zotero_note_numbering_test.dart": "a41bd6a12c9cb68a4fe408e4898868c5630f2fee90434a8a00dbb518b0bfd199"
+  }
+}

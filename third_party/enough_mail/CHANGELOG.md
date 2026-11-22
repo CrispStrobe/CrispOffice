@@ -1,5 +1,10 @@
 # Unreleased (Quds fork)
 
+- Retain every tagged/untagged COPYUID response code, including case variants
+  and duplicates, independently of later unrelated response codes. Mark missing
+  closing delimiters and exclude bracketed prose so consumers can validate
+  authoritative move identities without expanding untrusted UID sets.
+
 - Settle a pending SMTP command when aborting its connection, allowing a queued
   high-level send/disconnect transaction to finish even if the server stays silent.
 

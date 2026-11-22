@@ -1,0 +1,52 @@
+{
+  "source_commit": "f06afa63a7e321482a60d3f3a4fc39c522fdb29d",
+  "source_tree": "df98875d455fcd0a5fc648e5af1af4f4c302d54c",
+  "package": "packages/quds_office_editor/example",
+  "command": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--reporter=json",
+    "--concurrency=2",
+    "test/studio_zotero_odt_export_test.dart",
+    "test/studio_zotero_shortcuts_test.dart"
+  ],
+  "tests": [
+    "test/studio_zotero_odt_export_test.dart",
+    "test/studio_zotero_shortcuts_test.dart"
+  ],
+  "runtime_receipt": "/workspace/scratch/8a80441c4c60/toolchains/runtime.json",
+  "started_at_utc": "2026-11-22T08:01:19Z",
+  "status": "passed",
+  "runtime_receipt_sha256": "077aae1120a653cd157738b2a3031fb6e65d6538f66cef619d0c234eb4ed8d17",
+  "exit_code": 0,
+  "inputs_unchanged": true,
+  "input_count": 4456,
+  "changed_inputs": [],
+  "counts": {
+    "passed": 27,
+    "failed": 0,
+    "skipped": 0,
+    "unfinished": 0
+  },
+  "loaded_suites": 2,
+  "duplicate_identities": 0,
+  "error_event_count": 0,
+  "done_events": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 45170
+    }
+  ],
+  "non_json_lines": [],
+  "finished_at_utc": "2026-11-22T08:02:08Z",
+  "artifacts_sha256": {
+    "cases.json": "3ded5bba393818d93b4e98af66b4fd63fbc4419cb630a18fb3c4fdf3f8691b44",
+    "errors.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "events.jsonl.gz": "91b3133d6ff30720d8f41d61c8afcad9cf244bf793202bdc0aeefe6e65145f88",
+    "inputs-after.json.gz": "92a3cf78a8063a8d1b48633e672327378199db0736490d83821a9f6fc8cf750c",
+    "inputs-before.json.gz": "82fed097ca1b88cd6d659adf39da4224ab4ef1766c8776319c70244c293fadeb",
+    "stderr.log": "e79d957dc156378e662f738d5731d4aea7ee13f9d634b349525a57c30a3c9b39"
+  }
+}

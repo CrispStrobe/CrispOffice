@@ -1,0 +1,71 @@
+{
+  "qualification_commit": "89789360590b6dd0af0a378bfc257a3c4a18fc9c",
+  "current_head_at_audit": "89789360590b6dd0af0a378bfc257a3c4a18fc9c",
+  "suite_proofs": {
+    "final-word": {
+      "executed_source_commit": "52f53c99059b1521dd08b9f8f4f65133e87e980b",
+      "word_dependency_input_count": 825,
+      "word_dependency_inputs_unchanged": true,
+      "retained_suites": [
+        "test/office_vba_string_constants_test.dart",
+        "test/office_vba_word_cell_formatting_test.dart",
+        "test/office_vba_word_cell_paragraphs_conformance_test.dart",
+        "test/office_vba_word_cell_paragraphs_integration_test.dart",
+        "test/office_vba_word_cell_paragraphs_test.dart",
+        "test/office_vba_word_cell_prefix_test.dart",
+        "test/office_vba_word_table_cells_test.dart"
+      ],
+      "retained_cases": 423,
+      "source_receipt_sha256": "b5e7dcd94a5f65b7f1084665f095e609c2828abc7732c42b1b1b30561055028b"
+    },
+    "final-word-supplement": {
+      "executed_source_commit": "8e18fb2ee53e11d0b96a449ea7e698223423dca2",
+      "word_dependency_input_count": 825,
+      "word_dependency_inputs_unchanged": true,
+      "retained_suites": [
+        "test/office_macro_word_cell_prefix_test.dart",
+        "test/office_vba_word_cell_prefix_conformance_test.dart"
+      ],
+      "retained_cases": 146,
+      "source_receipt_sha256": "b6e7322d59551915e6789435b24018d99efcca087ef5cf25a663dec697b7cd8f"
+    },
+    "final-word-latest-integration": {
+      "executed_source_commit": "89789360590b6dd0af0a378bfc257a3c4a18fc9c",
+      "word_dependency_input_count": 825,
+      "word_dependency_inputs_unchanged": true,
+      "retained_suites": [
+        "test/office_vba_word_cell_prefix_integration_test.dart"
+      ],
+      "retained_cases": 14,
+      "source_receipt_sha256": "c8dc9bff76a59823038006e8ad8519da8edf640a6e76582a1db553b871da6119"
+    }
+  },
+  "portability": {
+    "executed_source_commit": "52f53c99059b1521dd08b9f8f4f65133e87e980b",
+    "relevant_input_count": 893,
+    "engine_parser_tools_bas_fixtures_support_and_dependencies_unchanged": true,
+    "source_receipt_sha256": "8135e86a5aee5899d732970b0845605e4702b7eb126812dd51d6a79610f1246e",
+    "checks": {
+      "prefix_json_equal": true,
+      "prefix_summary": {
+        "operations": 6,
+        "revision": 1,
+        "recordedSteps": 6,
+        "additionalReopens": 2,
+        "untouchedLayoutAndParts": true,
+        "opaqueVbaPreserved": true,
+        "lateRollback": true
+      },
+      "conformance_bytes_equal": true,
+      "conformance_case_count": 78
+    },
+    "rerun_required": false
+  },
+  "roman_converter": {
+    "executed_source_commit": "52f53c99059b1521dd08b9f8f4f65133e87e980b",
+    "input_count": 525,
+    "all_recorded_engine_parser_and_manifest_inputs_unchanged": true,
+    "source_receipt_sha256": "9ab128c201afee5bbf61e621a24b10fde75c928b677503af6413ef87450a491d",
+    "rerun_required": false
+  }
+}

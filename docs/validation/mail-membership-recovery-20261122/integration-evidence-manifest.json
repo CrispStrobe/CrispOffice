@@ -1,0 +1,647 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-11-22T07:15:33.993723+00:00",
+  "archive": {
+    "file": "integration-evidence.tar.gz",
+    "sha256": "669d294cbbf0dfded855a233caf8f5f4d0ae5b47c7f2a2166dd2085370c0e5d7",
+    "bytes": 1387294,
+    "members": 92,
+    "uncompressed_member_bytes": 5978076
+  },
+  "acceptance_report": {
+    "file": "integration-acceptance.json",
+    "sha256": "8115670c3bddaaea599a63d48f936043339b9ecc0124d3fe421b04c19f506536",
+    "bytes": 21776
+  },
+  "members": [
+    {
+      "path": "logs/final-word-delta/bootstrap-diagnostic.txt",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/final-word-delta/bootstrap-diagnostic.txt",
+      "bytes": 876,
+      "sha256": "7a5d606b729238fd4c78444355b47040a9251e6c69c8c41fab912805b9f49173"
+    },
+    {
+      "path": "logs/final-word-delta/native-tests.stderr",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/final-word-delta/native-tests.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/final-word-delta/native-tests.stdout",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/final-word-delta/native-tests.stdout",
+      "bytes": 74387,
+      "sha256": "42d5a30712a8dab6af31620cd07e2a3b861a59202da03e7e4dfb3b34bf7ba530"
+    },
+    {
+      "path": "logs/final-word-delta/receipt.json",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/final-word-delta/receipt.json",
+      "bytes": 371268,
+      "sha256": "2086a59a6a662ef5edd397d7dfc173007101360161dd13ffac09859c4ad1b1c9"
+    },
+    {
+      "path": "logs/final-word-delta/strict-analysis.stderr",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/final-word-delta/strict-analysis.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/final-word-delta/strict-analysis.stdout",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/final-word-delta/strict-analysis.stdout",
+      "bytes": 172,
+      "sha256": "a0742d4e8e83c2c3ad2d6b1decdb312d08b2dfa185a3c79f18da2eee88f62c4d"
+    },
+    {
+      "path": "logs/final-word-delta/test-summary.json",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/final-word-delta/test-summary.json",
+      "bytes": 28863,
+      "sha256": "f27c94f599a6ec4f8b9af2809a206c8e549f4bb644231c7bf6cd029bb070160b"
+    },
+    {
+      "path": "logs/incoming-word-cell-prefix/analysis.stderr",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/incoming-word-cell-prefix/analysis.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/incoming-word-cell-prefix/analysis.stdout",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/incoming-word-cell-prefix/analysis.stdout",
+      "bytes": 1226,
+      "sha256": "64e3929d824fcc6440655a8966f0f44db43f333031b9ded862754468a7ea21f1"
+    },
+    {
+      "path": "logs/incoming-word-cell-prefix/current-applicability.json",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/incoming-word-cell-prefix/current-applicability.json",
+      "bytes": 196596,
+      "sha256": "f848a9178b1fc2af8f4a9a4d01f3b177f528405026b5ff6ea2e9261fcf8cd035"
+    },
+    {
+      "path": "logs/incoming-word-cell-prefix/native-cases.json",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/incoming-word-cell-prefix/native-cases.json",
+      "bytes": 376304,
+      "sha256": "db1273ec91538b3e1c4166db574c45db6a7493efb58ecd492574d5bf19d40d46"
+    },
+    {
+      "path": "logs/incoming-word-cell-prefix/native-tests.stderr",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/incoming-word-cell-prefix/native-tests.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/incoming-word-cell-prefix/native-tests.stdout",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/incoming-word-cell-prefix/native-tests.stdout",
+      "bytes": 782170,
+      "sha256": "872ae39058710cdce7027cd44d80cea873a1bcacc5f2b564cdcdc61c5f27aa18"
+    },
+    {
+      "path": "logs/incoming-word-cell-prefix/paragraph-conformance-compile.stderr",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/incoming-word-cell-prefix/paragraph-conformance-compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/incoming-word-cell-prefix/paragraph-conformance-compile.stdout",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/incoming-word-cell-prefix/paragraph-conformance-compile.stdout",
+      "bytes": 112,
+      "sha256": "7c66e8c293939223801cae2980342cbdbb64d6d67d77b62a4c9ba69220d580a8"
+    },
+    {
+      "path": "logs/incoming-word-cell-prefix/paragraph-conformance-node.stderr",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/incoming-word-cell-prefix/paragraph-conformance-node.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/incoming-word-cell-prefix/paragraph-conformance-node.stdout",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/incoming-word-cell-prefix/paragraph-conformance-node.stdout",
+      "bytes": 8554,
+      "sha256": "f6509bac7214f29db70cd7199408517d0ce91629c99a35941711a81252b90c2f"
+    },
+    {
+      "path": "logs/incoming-word-cell-prefix/paragraph-conformance-vm.stderr",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/incoming-word-cell-prefix/paragraph-conformance-vm.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/incoming-word-cell-prefix/paragraph-conformance-vm.stdout",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/incoming-word-cell-prefix/paragraph-conformance-vm.stdout",
+      "bytes": 8554,
+      "sha256": "f6509bac7214f29db70cd7199408517d0ce91629c99a35941711a81252b90c2f"
+    },
+    {
+      "path": "logs/incoming-word-cell-prefix/prefix-bas-compile.stderr",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/incoming-word-cell-prefix/prefix-bas-compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/incoming-word-cell-prefix/prefix-bas-compile.stdout",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/incoming-word-cell-prefix/prefix-bas-compile.stdout",
+      "bytes": 114,
+      "sha256": "ea5438a56d54868f5499e34d7ff2dddf86932b4585b48cb456003d43d2440f33"
+    },
+    {
+      "path": "logs/incoming-word-cell-prefix/prefix-bas-node.stderr",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/incoming-word-cell-prefix/prefix-bas-node.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/incoming-word-cell-prefix/prefix-bas-node.stdout",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/incoming-word-cell-prefix/prefix-bas-node.stdout",
+      "bytes": 1357,
+      "sha256": "87bf1928283ec6e7a32378e438ea5378df3fe9d265a599f86ec85aa78681060e"
+    },
+    {
+      "path": "logs/incoming-word-cell-prefix/prefix-bas-vm.stderr",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/incoming-word-cell-prefix/prefix-bas-vm.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/incoming-word-cell-prefix/prefix-bas-vm.stdout",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/incoming-word-cell-prefix/prefix-bas-vm.stdout",
+      "bytes": 1357,
+      "sha256": "87bf1928283ec6e7a32378e438ea5378df3fe9d265a599f86ec85aa78681060e"
+    },
+    {
+      "path": "logs/incoming-word-cell-prefix/prefix-conformance-compile.stderr",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/incoming-word-cell-prefix/prefix-conformance-compile.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/incoming-word-cell-prefix/prefix-conformance-compile.stdout",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/incoming-word-cell-prefix/prefix-conformance-compile.stdout",
+      "bytes": 112,
+      "sha256": "42cd40d447609d04ed6685a18cf913f7663ab31eaea795ec9a80cbb3cf1a6019"
+    },
+    {
+      "path": "logs/incoming-word-cell-prefix/prefix-conformance-node.stderr",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/incoming-word-cell-prefix/prefix-conformance-node.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/incoming-word-cell-prefix/prefix-conformance-node.stdout",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/incoming-word-cell-prefix/prefix-conformance-node.stdout",
+      "bytes": 17627,
+      "sha256": "0fe8e5ac55e1ac5aee5afc39ab874c5095d73e02188c882340c853adbca30c75"
+    },
+    {
+      "path": "logs/incoming-word-cell-prefix/prefix-conformance-vm.stderr",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/incoming-word-cell-prefix/prefix-conformance-vm.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/incoming-word-cell-prefix/prefix-conformance-vm.stdout",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/incoming-word-cell-prefix/prefix-conformance-vm.stdout",
+      "bytes": 17627,
+      "sha256": "0fe8e5ac55e1ac5aee5afc39ab874c5095d73e02188c882340c853adbca30c75"
+    },
+    {
+      "path": "logs/incoming-word-cell-prefix/receipt.json",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/incoming-word-cell-prefix/receipt.json",
+      "bytes": 734218,
+      "sha256": "20432429a5696cb1baf20bda05e764e1f4a921546c707d74208907659bcbb5a7"
+    },
+    {
+      "path": "logs/incoming-zotero-xml-guard/focused-receipt.json",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/incoming-zotero-xml-guard/focused-receipt.json",
+      "bytes": 109278,
+      "sha256": "4f6ec356864c11a5a825a4d82982bb465a97d5cb130ddf463058bbe738a0935c"
+    },
+    {
+      "path": "logs/incoming-zotero-xml-guard/focused.stderr",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/incoming-zotero-xml-guard/focused.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/incoming-zotero-xml-guard/focused.stdout",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/incoming-zotero-xml-guard/focused.stdout",
+      "bytes": 1644,
+      "sha256": "c0dac5a48689d5cc036a23549b0520f0ad0f39cfed85f1351852c316ba1b080c"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/editor-final/cases.json",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/editor-final/cases.json",
+      "bytes": 3021,
+      "sha256": "9696c73519d9ad5887ca9e74e16567a9bcef5820e62baa6e0bb23531119aa5bd"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/editor-final/receipt.json",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/editor-final/receipt.json",
+      "bytes": 172495,
+      "sha256": "9a91c2cd40474e088f84454e00e5ed6aa38ce33d79d83c955dbb7f99d1775ed9"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/editor-final/test.jsonl",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/editor-final/test.jsonl",
+      "bytes": 8034,
+      "sha256": "79d72aa83780bc0fd71117737d629f123ca4bdb09156314352b3961fb740d235"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/editor-final/test.stderr",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/editor-final/test.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/editor/cases.json",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/editor/cases.json",
+      "bytes": 3021,
+      "sha256": "eed51fd30d157d3878a71a27f843b8126f470f0f8fbabae991cc0f1db37eed47"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/editor/receipt.json",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/editor/receipt.json",
+      "bytes": 172370,
+      "sha256": "f888ff6c73b7d3e7baeb98050b61f1cdb0b28d064fdd5ce23b82e04690dc81e2"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/editor/test.jsonl",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/editor/test.jsonl",
+      "bytes": 8067,
+      "sha256": "b1625227b51099ace4764dca59f078cce7fde068515577220bfca1e6b122d138"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/editor/test.stderr",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/editor/test.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/engine-final/cases.json",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/engine-final/cases.json",
+      "bytes": 80800,
+      "sha256": "65898e766a797f108f80dace8c70b45aa4dcc6f64a8fff0e05319157d4e8e671"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/engine-final/receipt.json",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/engine-final/receipt.json",
+      "bytes": 139123,
+      "sha256": "3ae00806291a9824301fa2eba22a8876bdf36fa645b885bd8246788ae598651a"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/engine-final/test.jsonl",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/engine-final/test.jsonl",
+      "bytes": 195641,
+      "sha256": "f867409f00a464057893b7a4dfd3992b260a0024092346ed6987e9053343788a"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/engine-final/test.stderr",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/engine-final/test.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/engine-isolated/cases.json",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/engine-isolated/cases.json",
+      "bytes": 69465,
+      "sha256": "a754155f4308709754eaa0685f427647f2ac6dc79f97d146ce3a0110d64e39ad"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/engine-isolated/receipt.json",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/engine-isolated/receipt.json",
+      "bytes": 138535,
+      "sha256": "f5d879cae64c18b216058c57612c25a6e9383a9e1fdf05242522131b8dee1128"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/engine-isolated/test.jsonl",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/engine-isolated/test.jsonl",
+      "bytes": 167122,
+      "sha256": "a64952bc61f610abdbc8508d035454508f135d352b5aae9e62d18f1d8ced5f2b"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/engine-isolated/test.stderr",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/engine-isolated/test.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/engine/cases.json",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/engine/cases.json",
+      "bytes": 63271,
+      "sha256": "2bf6b268081d373dca9666746491c118a400163aab90f88222509bd820b8ea7a"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/engine/receipt.json",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/engine/receipt.json",
+      "bytes": 139216,
+      "sha256": "62ffa12779623da4618656bf4d37e9e061398dd770c1159032aa9459648d9c46"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/engine/test.jsonl",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/engine/test.jsonl",
+      "bytes": 154485,
+      "sha256": "801dd09575a71cfe96da984db80c812c69aa8b05053fc9f0c0cb0bdf38a8ee38"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/engine/test.stderr",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/engine/test.stderr",
+      "bytes": 67,
+      "sha256": "e79d957dc156378e662f738d5731d4aea7ee13f9d634b349525a57c30a3c9b39"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/static-checks/analyze.stderr",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/static-checks/analyze.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/static-checks/analyze.stdout",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/static-checks/analyze.stdout",
+      "bytes": 270,
+      "sha256": "3f8c79b95c0bfba663a65af81584e08b6c962c99fc9b46f3c98674cd67d063a2"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/static-checks/format.stderr",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/static-checks/format.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/static-checks/format.stdout",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/static-checks/format.stdout",
+      "bytes": 47,
+      "sha256": "307ba323503a8c604d5d2ff46605f7b9de101272925632b9291f389b314e95c9"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/static-checks/receipt.json",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/static-checks/receipt.json",
+      "bytes": 312254,
+      "sha256": "b48c8e1ddd2381d74c9b2c4878e74b194a4f244d04888a1e328db28e09c5938c"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/static-final/analyze.stderr",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/static-final/analyze.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/static-final/analyze.stdout",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/static-final/analyze.stdout",
+      "bytes": 324,
+      "sha256": "3123785a3a37a734c194faf4375225fd81a2e244648e52486f5ffcf1268680ae"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/static-final/format.stderr",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/static-final/format.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/static-final/format.stdout",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/static-final/format.stdout",
+      "bytes": 47,
+      "sha256": "496e595f1c6c48775fe87dc8f716b26746dc64a8405f3168ac13bf5d14248b1a"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/static-final/receipt.json",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/static-final/receipt.json",
+      "bytes": 312832,
+      "sha256": "ee91ab6cfd1efaf833401c89e3d7e1d98c0720af02ca3d2faebff65a58bcc8d4"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/studio-final/cases.json",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/studio-final/cases.json",
+      "bytes": 2033,
+      "sha256": "664b37b2f777d10967621e38acd1ca659b374ada27224a0d7a525c61d7f5d3db"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/studio-final/receipt.json",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/studio-final/receipt.json",
+      "bytes": 308870,
+      "sha256": "9ee008aeb33f3c249fda342ea92cd74d9a17ccf746df926dd966a6f61cfa675d"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/studio-final/test.jsonl",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/studio-final/test.jsonl",
+      "bytes": 5368,
+      "sha256": "5dd8041b906d83e131d3df0d9dbbd9a5a20a4090f6ae7614e6cb4d786dd04db7"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/studio-final/test.stderr",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/studio-final/test.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/studio-isolated/cases.json",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/studio-isolated/cases.json",
+      "bytes": 2033,
+      "sha256": "664b37b2f777d10967621e38acd1ca659b374ada27224a0d7a525c61d7f5d3db"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/studio-isolated/receipt.json",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/studio-isolated/receipt.json",
+      "bytes": 308813,
+      "sha256": "ad65a48e3a1479e4a13e842f14581f5b6b085a89451602804237a4277b3e2751"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/studio-isolated/test.jsonl",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/studio-isolated/test.jsonl",
+      "bytes": 5362,
+      "sha256": "b90626b1e70092f6955af4394469ff7812fdb1fdfd2f06e73e4704ee9bdae14d"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/studio-isolated/test.stderr",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/studio-isolated/test.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/studio/cases.json",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/studio/cases.json",
+      "bytes": 2035,
+      "sha256": "d6b60f5bcdd21113edf98ed3eb3bc0a73468f83e3bf917adbd516df6d72aeec0"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/studio/receipt.json",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/studio/receipt.json",
+      "bytes": 308751,
+      "sha256": "705b61027e69461af7e9dcff62aa666bd47c7f26f34e105d2ebaf3c6ecdc0b3f"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/studio/test.jsonl",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/studio/test.jsonl",
+      "bytes": 6707,
+      "sha256": "e43b3eae3ecb3a1c7fa073ab8b646f2770fe3fad077407dc99cdcdbedaf1333d"
+    },
+    {
+      "path": "logs/membership-integrated-zotero/studio/test.stderr",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/logs/membership-integrated-zotero/studio/test.stderr",
+      "bytes": 67,
+      "sha256": "e79d957dc156378e662f738d5731d4aea7ee13f9d634b349525a57c30a3c9b39"
+    },
+    {
+      "path": "repository-helpers/tools/mail/check_reader.py",
+      "source_path": "/workspace/scratch/be9367db5e45/quds_office_suite/tools/mail/check_reader.py",
+      "bytes": 10166,
+      "sha256": "243426de3c9260ebe36ff28e29d7c5a82c077c81d6b16f2597a00b17b3cd1826"
+    },
+    {
+      "path": "repository-helpers/tools/mail/check_store.py",
+      "source_path": "/workspace/scratch/be9367db5e45/quds_office_suite/tools/mail/check_store.py",
+      "bytes": 20143,
+      "sha256": "d56b7abce9d4693b21ea9d3f3cb81456a6712a4543323e58ac1c21169caed998"
+    },
+    {
+      "path": "runners/check_integrated_zotero.py",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/check_integrated_zotero.py",
+      "bytes": 4183,
+      "sha256": "1830ed34abe64ec9e2b59c9ac43641156e05cc26f0acce94db0997f1bd7390fa"
+    },
+    {
+      "path": "runners/check_integrated_zotero_final.py",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/check_integrated_zotero_final.py",
+      "bytes": 4410,
+      "sha256": "75f88cb672f9f3d17d61c9cc27eb9b0be867f4a41dc53b01959c914075575d14"
+    },
+    {
+      "path": "runners/package_integration_evidence.py",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/package_integration_evidence.py",
+      "bytes": 19693,
+      "sha256": "573c8d06f931d72a7d3385a7db8c5f7dbc051012eb3ef41c8a46cd695229b4d8"
+    },
+    {
+      "path": "runners/run_final_word_delta.py",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/run_final_word_delta.py",
+      "bytes": 5466,
+      "sha256": "0bbf1693bdbbc5ada1c0a641e0acabd7de9152f2f5751daad97b811efc832f38"
+    },
+    {
+      "path": "runners/run_incoming_word_acceptance.py",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/run_incoming_word_acceptance.py",
+      "bytes": 8747,
+      "sha256": "636a3de2f9004b86b30f0cee0f19f3f7577671b64a2c73d752c46c9f053c9586"
+    },
+    {
+      "path": "runners/run_integrated_zotero.py",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/run_integrated_zotero.py",
+      "bytes": 7314,
+      "sha256": "78124a9b1307186b816d2e64b6f1480b0e2e6f13f4fb5317258f72f1b0d19eae"
+    },
+    {
+      "path": "runners/run_integrated_zotero_final.py",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/run_integrated_zotero_final.py",
+      "bytes": 7469,
+      "sha256": "5ad2a918243a1f2697957976fe830c884fcced93f251c5cb3b838bb3198fa3aa"
+    },
+    {
+      "path": "runners/run_integrated_zotero_isolated.py",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/run_integrated_zotero_isolated.py",
+      "bytes": 7347,
+      "sha256": "a34beda407feadf39f40c3f35030eeb0cbbe27e9389e1b5cbf6f56da0834e610"
+    },
+    {
+      "path": "runtime/bin/dart",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/bin/dart",
+      "bytes": 162,
+      "sha256": "9643f2c82543af7827a99e6a8dca0d8e7cd86a39bac8c7f4df33df456e40475f"
+    },
+    {
+      "path": "runtime/bin/flutter",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/bin/flutter",
+      "bytes": 146,
+      "sha256": "cdf8a454ce83665722924e2bc5e46e299d1cb489f07342dfdc309a8bcfc9f3db"
+    },
+    {
+      "path": "runtime/env.sh",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/env.sh",
+      "bytes": 664,
+      "sha256": "80718ed6a6f68a92b37aa07439a5de390cd2f00cf9aa1b35be8386395b6bfd43"
+    },
+    {
+      "path": "runtime/package-restoration.json",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/package-restoration.json",
+      "bytes": 55307,
+      "sha256": "8c47de7dd4c32f510633ca7bcc712063cdc89293abe72099d109647d55ec80e7"
+    },
+    {
+      "path": "runtime/runtime.json",
+      "source_path": "/workspace/scratch/be9367db5e45/mail-runtime/runtime.json",
+      "bytes": 3897,
+      "sha256": "94de7ab0b4c64d7a56f631996f87170cbb6bed6c106cd74e9730ef9f7c90ec72"
+    }
+  ],
+  "excluded_reproducible_files": [
+    {
+      "path": "logs/incoming-word-cell-prefix/paragraph-conformance.js",
+      "bytes": 797470,
+      "sha256": "cc02c3370dc7f86c93823fbd1213636545da1ea70aa01e716a8ebafd9203af3a",
+      "reason": "Reproducible compiler output. Original command, source/fixture hashes, compiler logs and VM/Node semantic outputs are retained."
+    },
+    {
+      "path": "logs/incoming-word-cell-prefix/paragraph-conformance.js.deps",
+      "bytes": 133731,
+      "sha256": "253e21b32f87c174e0edc985fe6747d2a3b395a373baef0a09f1fb053239e0f2",
+      "reason": "Reproducible compiler output. Original command, source/fixture hashes, compiler logs and VM/Node semantic outputs are retained."
+    },
+    {
+      "path": "logs/incoming-word-cell-prefix/paragraph-conformance.js.map",
+      "bytes": 266830,
+      "sha256": "0ca39616c1fef9d56f435708606149ea6d5d426d8b695ad2196d5699ecfe9cd1",
+      "reason": "Reproducible compiler output. Original command, source/fixture hashes, compiler logs and VM/Node semantic outputs are retained."
+    },
+    {
+      "path": "logs/incoming-word-cell-prefix/prefix-bas.js",
+      "bytes": 3485293,
+      "sha256": "8a990f49681ce333803cbb08ee2b736c8bfcea686fae031086a63250af6c4baf",
+      "reason": "Reproducible compiler output. Original command, source/fixture hashes, compiler logs and VM/Node semantic outputs are retained."
+    },
+    {
+      "path": "logs/incoming-word-cell-prefix/prefix-bas.js.deps",
+      "bytes": 133893,
+      "sha256": "2aa266113c16f3f1a827f5bbb61615f837882a3f79f9206318e553144f3112b8",
+      "reason": "Reproducible compiler output. Original command, source/fixture hashes, compiler logs and VM/Node semantic outputs are retained."
+    },
+    {
+      "path": "logs/incoming-word-cell-prefix/prefix-bas.js.map",
+      "bytes": 1198793,
+      "sha256": "cdea04520c556cfe739add48d6a9e1b6b849a8a032d1f5d55f64ad62653b83cb",
+      "reason": "Reproducible compiler output. Original command, source/fixture hashes, compiler logs and VM/Node semantic outputs are retained."
+    },
+    {
+      "path": "logs/incoming-word-cell-prefix/prefix-conformance.js",
+      "bytes": 852030,
+      "sha256": "cf4e8fe40704d40c22e7f5afa05871f770a9070121800f8e2dccfeef0cdeaef2",
+      "reason": "Reproducible compiler output. Original command, source/fixture hashes, compiler logs and VM/Node semantic outputs are retained."
+    },
+    {
+      "path": "logs/incoming-word-cell-prefix/prefix-conformance.js.deps",
+      "bytes": 133870,
+      "sha256": "dcd6a0f6f9ac7d1b0fe980e680c0192ff74080b36ae977d1ba27a1bb70caf78c",
+      "reason": "Reproducible compiler output. Original command, source/fixture hashes, compiler logs and VM/Node semantic outputs are retained."
+    },
+    {
+      "path": "logs/incoming-word-cell-prefix/prefix-conformance.js.map",
+      "bytes": 266955,
+      "sha256": "bdf0ada3c8a4a1c6650e4c176d23b436e8194d3638230dab7d7771b83e96bab4",
+      "reason": "Reproducible compiler output. Original command, source/fixture hashes, compiler logs and VM/Node semantic outputs are retained."
+    }
+  ],
+  "unselected_runtime_roots": [
+    {
+      "path": "mail-runtime/flutter/",
+      "reason": "SDK/tool binaries are reproducible from the verified runtime archive; runtime metadata and hashes are retained."
+    },
+    {
+      "path": "mail-runtime/pub-cache/",
+      "reason": "Dependency cache binaries/source are reproducible from lockfile and verified package-archive metadata."
+    },
+    {
+      "path": "mail-runtime/tmp/ and SDK/package downloads",
+      "reason": "Ephemeral compiler/build outputs and downloaded archives are unnecessary to inspect the original execution records."
+    }
+  ],
+  "archive_policy": "Only regular files; normalized tar ownership/mode/time and gzip timestamp. Original file bytes are unchanged. No receipt is rewritten.",
+  "verification": {
+    "every_member_sha256_and_size_read_back_from_archive": true,
+    "member_set_exact_no_duplicates": true,
+    "original_inputs_still_match_after_archiving": true,
+    "verified_members": 92
+  }
+}

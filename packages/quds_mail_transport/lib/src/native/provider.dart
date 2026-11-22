@@ -7,6 +7,7 @@ import 'package:quds_mail_core/quds_mail_core.dart';
 
 import '../configuration.dart';
 import '../cursor.dart';
+import 'copy_uid.dart';
 
 /// Internal test seam. The supported package API never exposes library clients.
 typedef ImapClientFactory =
@@ -54,7 +55,8 @@ final class NativeMailImapProvider
         MailProvider,
         MailImapHeaderBrowser,
         MailFlagObserver,
-        MailMembershipObserver {
+        MailMembershipObserver,
+        MailMutationReceiptProvider {
   NativeMailImapProvider({
     required this.configuration,
     required this.credentialStore,
@@ -797,6 +799,15 @@ final class NativeMailImapProvider
   Future<MailResult<MailUnit>> apply(
     MailOperation command,
     MailOperationLease lease,
+  ) async => switch (await applyWithReceipt(command, lease)) {
+    MailSuccess<MailMutationReceipt>() => const MailSuccess(MailUnit.value),
+    MailFailure<MailMutationReceipt>(:final problem) => MailFailure(problem),
+  };
+
+  @override
+  Future<MailResult<MailMutationReceipt>> applyWithReceipt(
+    MailOperation command,
+    MailOperationLease lease,
   ) async {
     final identity = command.message;
     if (identity is! MailImapIdentity ||
@@ -825,6 +836,7 @@ final class NativeMailImapProvider
         throw const _Failure(MailProblemCode.unavailable);
       }
       final sequence = imap.MessageSequence.fromId(identity.uid, isUid: true);
+      MailMoveIdentityTransition? transition;
       switch (command) {
         case MailSetRead(:final read):
           await _setFlag(
@@ -847,10 +859,36 @@ final class NativeMailImapProvider
             throw const _Failure(MailProblemCode.unsupported);
           }
           operation.mutationStarted = true;
-          await client.uidMove(sequence, targetMailboxPath: destination.value);
+          final moved = await client.uidMove(
+            sequence,
+            targetMailboxPath: destination.value,
+          );
           operation.check();
+          if (moved.malformedCopyUidResponse ||
+              moved.copyUidResponseCodes.length > 1) {
+            throw const _Failure(MailProblemCode.conflict);
+          }
+          final target = parseSingleCopyUid(
+            moved.copyUidResponseCodes.singleOrNull,
+            sourceUid: identity.uid,
+          );
           if (await _readIdentity(client, operation, identity) != null) {
             throw const _Failure(MailProblemCode.conflict);
+          }
+          if (target != null) {
+            final remote = MailImapIdentity(
+              mailbox: destination,
+              uidValidity: target.uidValidity,
+              uid: target.uid,
+            );
+            transition = MailMoveIdentityTransition(
+              operationId: command.id,
+              source: identity,
+              sourceMailbox: identity.mailbox,
+              destination: remote,
+              destinationMailbox: destination,
+              destinationMessageId: imapMessageId(remote),
+            );
           }
         case MailDelete():
           // Delete marks the specific UID. No mailbox-wide EXPUNGE or CLOSE.
@@ -863,7 +901,7 @@ final class NativeMailImapProvider
           );
       }
       operation.check();
-      return MailUnit.value;
+      return MailMutationReceipt(identityTransition: transition);
     });
   }
 }

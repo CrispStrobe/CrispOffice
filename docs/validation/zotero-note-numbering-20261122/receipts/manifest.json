@@ -1,0 +1,122 @@
+[
+  {
+    "file": "receipts/engine.json",
+    "original_workspace_path": "/workspace/scratch/1bb837b7ac66/validation_work/engine-gate/final/receipt.json",
+    "sha256": "5f407240939d027468b29b1cf0e4e0455f433d0ff5d0a77b6edb46ce801295fa",
+    "bytes": 2543
+  },
+  {
+    "file": "receipts/editor.json",
+    "original_workspace_path": "/workspace/scratch/1bb837b7ac66/validation_work/final-editor/receipt.json",
+    "sha256": "8da879f63b6952bd88887ab82ef7c92daa0856d9629f0d7680333782176514c6",
+    "bytes": 1980
+  },
+  {
+    "file": "receipts/studio.json",
+    "original_workspace_path": "/workspace/scratch/1bb837b7ac66/validation_work/final-studio-latest/receipt.json",
+    "sha256": "50cb78d75ccc1249c84ba80a5c6e0b8c9eaa7e99a35f2672cdfe1be0c64c47c2",
+    "bytes": 1716
+  },
+  {
+    "file": "receipts/word-effective.json",
+    "original_workspace_path": "/workspace/scratch/1bb837b7ac66/validation_work/final-word-effective-latest/receipt.json",
+    "sha256": "6756ad4c3a957cb90832a7f22b91d0e9b04774b7421299ae5f25199787cc9a57",
+    "bytes": 1552
+  },
+  {
+    "file": "receipts/word-source-equivalence.json",
+    "original_workspace_path": "/workspace/scratch/1bb837b7ac66/validation_work/final-word-effective-latest/source-equivalence.json",
+    "sha256": "8f958b2a49848a3a4d8874b3ec8ac179c9d6419fbd764020d3fb18be21ac6bb3",
+    "bytes": 2905
+  },
+  {
+    "file": "receipts/mail-core.json",
+    "original_workspace_path": "/workspace/scratch/1bb837b7ac66/validation_work/final-mail-core-late/receipt.json",
+    "sha256": "e00a1f654bd0d5938838f38a84535042f9a3525d6bf192518ece65ea64b1f24f",
+    "bytes": 1604
+  },
+  {
+    "file": "receipts/mail-transport.json",
+    "original_workspace_path": "/workspace/scratch/1bb837b7ac66/validation_work/final-mail-transport-late/receipt.json",
+    "sha256": "e6a45aa5c5d65ce48c72036fc4b72f78dcb058a306c19d76618f4388daf53d8b",
+    "bytes": 2300
+  },
+  {
+    "file": "receipts/mail-store.json",
+    "original_workspace_path": "/workspace/scratch/1bb837b7ac66/validation_work/final-mail-store-late/receipt.json",
+    "sha256": "7efe3bf1616415b8a307d61490f97f22f7581e5e1ac32e671ab11ce2b1fc83cf",
+    "bytes": 5397
+  },
+  {
+    "file": "receipts/mail-studio-effective.json",
+    "original_workspace_path": "/workspace/scratch/1bb837b7ac66/validation_work/final-mail-studio-effective/receipt.json",
+    "sha256": "97545fbdc42800b7018aaaf2cf7551d42178040aa2fa187a9396ef8abb908b5d",
+    "bytes": 4006
+  },
+  {
+    "file": "receipts/converter.json",
+    "original_workspace_path": "/workspace/scratch/1bb837b7ac66/validation_work/roman-converter/accepted-52f53c99/receipt.json",
+    "sha256": "9ab128c201afee5bbf61e621a24b10fde75c928b677503af6413ef87450a491d",
+    "bytes": 15020
+  },
+  {
+    "file": "receipts/baseline.json",
+    "original_workspace_path": "/workspace/scratch/1bb837b7ac66/validation_work/baseline-receipt.json",
+    "sha256": "0f0d0dc4767e02ac7d15f719d0752e1a8d1d997a0e5d2493bf0e1b5764db4b91",
+    "bytes": 1679
+  },
+  {
+    "file": "receipts/alphabetic-probe.json",
+    "original_workspace_path": "/workspace/scratch/1bb837b7ac66/validation_work/alpha-probe-canonical/receipt.json",
+    "sha256": "c49c6d886dcf0f2b7d41e702bfd25d8be4a45e35b30f77644a989cd76bb3fb8d",
+    "bytes": 13746
+  },
+  {
+    "file": "receipts/static.json",
+    "original_workspace_path": "/workspace/scratch/1bb837b7ac66/validation_work/final-static-clean/receipt.json",
+    "sha256": "7fcf7d714c769c6af310d052d101f0ebc4a3d8d9f556f10b5440f84a1c48e884",
+    "bytes": 38272
+  },
+  {
+    "file": "receipts/source-applicability.json",
+    "original_workspace_path": "/workspace/scratch/1bb837b7ac66/validation_work/source-applicability-89789360/receipt.json",
+    "sha256": "69a26279ffc4134f4607e04d5f211e010a89d8c20c1c2853a24435bb6ff5eb48",
+    "bytes": 55473
+  },
+  {
+    "file": "receipts/independent-audit.json",
+    "original_workspace_path": "/workspace/scratch/1bb837b7ac66/validation_work/independent-audit-1896e11f/receipt.json",
+    "sha256": "6a0cd08ac80886c21721bab0f124d790d0a5b0ce06bcbee9e12b2daccdb4291d",
+    "bytes": 14726
+  },
+  {
+    "file": "receipts/main-alias.json",
+    "original_workspace_path": "/workspace/scratch/1bb837b7ac66/validation_work/independent-audit-1896e11f/main-alias.json",
+    "sha256": "008a0ec1d8540f5d73341199d2b0a8272758153715b601604fbfa05160b1e2d5",
+    "bytes": 8020
+  },
+  {
+    "file": "receipts/runtime.json",
+    "original_workspace_path": "/workspace/scratch/1bb837b7ac66/runtime/runtime.json",
+    "sha256": "75caa1b71e20e8c983345720d6511a2879137d6c1a87c3cb29b5deb89b47c228",
+    "bytes": 3417
+  },
+  {
+    "file": "receipts/evidence-package.json",
+    "original_workspace_path": "/workspace/scratch/1bb837b7ac66/evidence_package/package-receipt.json",
+    "sha256": "9341e8ea945624b89b5f017c78a8c83a4df774fa3a483aae1ae8837c4bc9d325",
+    "bytes": 1365
+  },
+  {
+    "file": "evidence.tar.xz",
+    "original_workspace_path": "/workspace/scratch/1bb837b7ac66/evidence_package/evidence.tar.xz",
+    "sha256": "5bfcb640ed221ae37b4b72df949280ffc70ee65b7b8769b4640325f41db18d43",
+    "bytes": 2371200
+  },
+  {
+    "file": "evidence-index.json",
+    "original_workspace_path": "/workspace/scratch/1bb837b7ac66/evidence_package/evidence.index.json",
+    "sha256": "9419ab1f1e25bd494d4936b1be3b992db4164e1e8749f20ba993c3d24ac75c20",
+    "bytes": 62598
+  }
+]

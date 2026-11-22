@@ -1,0 +1,270 @@
+{
+  "captured_at_utc": "2026-11-22T07:03:59.629706+00:00",
+  "main": "b13a170cdb5fd42b9a0f2c77d97c996caf5d0d7f",
+  "word_checkpoint": "258ae2a5d73bccd293b4b423918fc3d7646e9bc4",
+  "completed_main_integrated": true,
+  "latest_completed_pr": 364,
+  "open_prs": [],
+  "open_pr_query": "GitHub connector search_prs state=open, repository CrispStrobe/quds_office_suite, topn=30; empty result",
+  "fork_refs": [
+    {
+      "ref": "origin",
+      "sha": "b13a170cdb5fd42b9a0f2c77d97c996caf5d0d7f",
+      "ancestor_of_main": true,
+      "ancestor_of_word_checkpoint": true,
+      "contains_word_checkpoint": false
+    },
+    {
+      "ref": "origin/codex/mail-durable-mutations-20261122",
+      "sha": "afdcb327c650383e269a3d32f7251f68a9d766c6",
+      "ancestor_of_main": true,
+      "ancestor_of_word_checkpoint": true,
+      "contains_word_checkpoint": false
+    },
+    {
+      "ref": "origin/codex/mail-membership-recovery-20261122",
+      "sha": "430bcf26f770c06278ea64ee40255d071d69e066",
+      "ancestor_of_main": false,
+      "ancestor_of_word_checkpoint": false,
+      "contains_word_checkpoint": false
+    },
+    {
+      "ref": "origin/codex/word-vba-authoring-20261121",
+      "sha": "cf06b018ec125ce3b5abfda41a7fbbdcf7d30a47",
+      "ancestor_of_main": true,
+      "ancestor_of_word_checkpoint": true,
+      "contains_word_checkpoint": false
+    },
+    {
+      "ref": "origin/codex/word-vba-cell-formatting-20261122",
+      "sha": "49f43824196c4d373f991e442fac2e73e68c5f9f",
+      "ancestor_of_main": true,
+      "ancestor_of_word_checkpoint": true,
+      "contains_word_checkpoint": false
+    },
+    {
+      "ref": "origin/codex/word-vba-cell-text-20261122",
+      "sha": "5f6e8686f1d6ddc1f3e523238808b78ccccc5b51",
+      "ancestor_of_main": true,
+      "ancestor_of_word_checkpoint": true,
+      "contains_word_checkpoint": false
+    },
+    {
+      "ref": "origin/codex/word-vba-comparison-colors-20261121",
+      "sha": "e3c4550b34a9a07de2a97b84b67ab6aecaa5a377",
+      "ancestor_of_main": true,
+      "ancestor_of_word_checkpoint": true,
+      "contains_word_checkpoint": false
+    },
+    {
+      "ref": "origin/codex/word-vba-compatibility-20261121",
+      "sha": "3058d36c5354d46bde418555d59282116cce1e26",
+      "ancestor_of_main": true,
+      "ancestor_of_word_checkpoint": true,
+      "contains_word_checkpoint": false
+    },
+    {
+      "ref": "origin/codex/word-vba-compatibility-20261122",
+      "sha": "934c33a57f3bed934df59a4e925ffc35fe406ee2",
+      "ancestor_of_main": true,
+      "ancestor_of_word_checkpoint": true,
+      "contains_word_checkpoint": false
+    },
+    {
+      "ref": "origin/codex/word-vba-continuation-20261122",
+      "sha": "258ae2a5d73bccd293b4b423918fc3d7646e9bc4",
+      "ancestor_of_main": false,
+      "ancestor_of_word_checkpoint": true,
+      "contains_word_checkpoint": true
+    },
+    {
+      "ref": "origin/codex/zotero-dispatch-recovery-20261121",
+      "sha": "32ef843db3a8192fe0add085e1ee173e18f4d462",
+      "ancestor_of_main": true,
+      "ancestor_of_word_checkpoint": true,
+      "contains_word_checkpoint": false
+    },
+    {
+      "ref": "origin/codex/zotero-field-context-20261122",
+      "sha": "00ba542dc5b492040508a8137a80adbc9b13553d",
+      "ancestor_of_main": true,
+      "ancestor_of_word_checkpoint": true,
+      "contains_word_checkpoint": false
+    },
+    {
+      "ref": "origin/codex/zotero-field-recovery-20261122",
+      "sha": "e78e98d3a07647794e4426f833782ccbddc04960",
+      "ancestor_of_main": true,
+      "ancestor_of_word_checkpoint": true,
+      "contains_word_checkpoint": false
+    },
+    {
+      "ref": "origin/codex/zotero-footnote-separators-20261121",
+      "sha": "a70c0e7af251d737dc7639f44a48777bbea1bf51",
+      "ancestor_of_main": true,
+      "ancestor_of_word_checkpoint": true,
+      "contains_word_checkpoint": false
+    },
+    {
+      "ref": "origin/codex/zotero-host-ownership-20261121",
+      "sha": "05cb866e6e5aaee95dae8b03da2892fcf633a84b",
+      "ancestor_of_main": true,
+      "ancestor_of_word_checkpoint": true,
+      "contains_word_checkpoint": false
+    },
+    {
+      "ref": "origin/codex/zotero-main-qualification-20261121",
+      "sha": "e2a1ed6073556d24194004221c545166b17c2d4e",
+      "ancestor_of_main": true,
+      "ancestor_of_word_checkpoint": true,
+      "contains_word_checkpoint": false
+    },
+    {
+      "ref": "origin/codex/zotero-native-parity-20261122",
+      "sha": "8e18fb2ee53e11d0b96a449ea7e698223423dca2",
+      "ancestor_of_main": false,
+      "ancestor_of_word_checkpoint": false,
+      "contains_word_checkpoint": false
+    },
+    {
+      "ref": "origin/codex/zotero-note-layout-20261121",
+      "sha": "2089e1e35a8ba81ea7f0a077b348f93ca70953c8",
+      "ancestor_of_main": true,
+      "ancestor_of_word_checkpoint": true,
+      "contains_word_checkpoint": false
+    },
+    {
+      "ref": "origin/codex/zotero-odt-roundtrip-20261121",
+      "sha": "05072dc2d59d0fa4ea97de4d6a842700ef333fab",
+      "ancestor_of_main": true,
+      "ancestor_of_word_checkpoint": true,
+      "contains_word_checkpoint": false
+    },
+    {
+      "ref": "origin/codex/zotero-parity-20261122",
+      "sha": "da36652cf1d2296b59285788035555d512b9fa31",
+      "ancestor_of_main": true,
+      "ancestor_of_word_checkpoint": true,
+      "contains_word_checkpoint": false
+    },
+    {
+      "ref": "origin/codex/zotero-select-navigation-20261122",
+      "sha": "8c1b8da71bb910d4025aa179dc56290cf1a8e72a",
+      "ancestor_of_main": true,
+      "ancestor_of_word_checkpoint": true,
+      "contains_word_checkpoint": false
+    },
+    {
+      "ref": "origin/codex/zotero-shortcut-host-recovery-20261121",
+      "sha": "2168011b6104f680100b87404bc1bd409f724939",
+      "ancestor_of_main": true,
+      "ancestor_of_word_checkpoint": true,
+      "contains_word_checkpoint": false
+    },
+    {
+      "ref": "origin/codex/zotero-source-continuity-20261121-2135",
+      "sha": "c4c16d91d62ded0c341bee95e98de894de70483f",
+      "ancestor_of_main": true,
+      "ancestor_of_word_checkpoint": true,
+      "contains_word_checkpoint": false
+    },
+    {
+      "ref": "origin/main",
+      "sha": "b13a170cdb5fd42b9a0f2c77d97c996caf5d0d7f",
+      "ancestor_of_main": true,
+      "ancestor_of_word_checkpoint": true,
+      "contains_word_checkpoint": false
+    },
+    {
+      "ref": "origin/work/mail-folder-scoped-search-20261122",
+      "sha": "ff30d1064a052abbfbcdc99745ff66f8bc980aea",
+      "ancestor_of_main": true,
+      "ancestor_of_word_checkpoint": true,
+      "contains_word_checkpoint": false
+    },
+    {
+      "ref": "origin/work/mail-folder-search-20261122",
+      "sha": "24e4b5d8a2a4e3c996e15013c5324a534c2e444f",
+      "ancestor_of_main": true,
+      "ancestor_of_word_checkpoint": true,
+      "contains_word_checkpoint": false
+    },
+    {
+      "ref": "origin/work/mail-keyboard-triage-20261121",
+      "sha": "08d034d876073e2afc881dbfc11ba791acde3d67",
+      "ancestor_of_main": true,
+      "ancestor_of_word_checkpoint": true,
+      "contains_word_checkpoint": false
+    },
+    {
+      "ref": "origin/work/mail-live-search-20261121",
+      "sha": "c3d55be30d91694b1a427d261cddbe47b1dd5eec",
+      "ancestor_of_main": true,
+      "ancestor_of_word_checkpoint": true,
+      "contains_word_checkpoint": false
+    },
+    {
+      "ref": "origin/work/mail-parity-20261122-next",
+      "sha": "a7006171630915bbf91b6ce2ab7c4699bb79f69b",
+      "ancestor_of_main": true,
+      "ancestor_of_word_checkpoint": true,
+      "contains_word_checkpoint": false
+    },
+    {
+      "ref": "origin/work/mail-range-selection-tests-20261121",
+      "sha": "5c7a385c5de40394d9eed736c5a2d975535c3df3",
+      "ancestor_of_main": true,
+      "ancestor_of_word_checkpoint": true,
+      "contains_word_checkpoint": false
+    },
+    {
+      "ref": "origin/work/mail-sync-address-search-20261121",
+      "sha": "33d8f956ec2ed1dfd748e1d7ccbc5add053ff565",
+      "ancestor_of_main": true,
+      "ancestor_of_word_checkpoint": true,
+      "contains_word_checkpoint": false
+    }
+  ],
+  "upstream_heads": [
+    {
+      "ref": "ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "unchanged_since_initial_intake": true,
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "unchanged_since_initial_intake": true,
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "unchanged_since_initial_intake": true,
+      "ancestor_of_main": true
+    },
+    {
+      "ref": "main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "unchanged_since_initial_intake": true,
+      "ancestor_of_main": true
+    }
+  ],
+  "late_active_branches": {
+    "codex/mail-membership-recovery-20261122": {
+      "sha": "430bcf26f770c06278ea64ee40255d071d69e066",
+      "state": "Implementation includes provider, store and host work; README explicitly says qualification in progress. Validation directory only README.md/intake.json. Preserve active branch; no completed release gate at captured tip.",
+      "evidence": "docs/validation/mail-membership-recovery-20261122/README.md",
+      "refresh_note": "Latest checkpoint reconciles captured Zotero and Word histories; its validation README still explicitly disclaims passed local acceptance."
+    },
+    "codex/zotero-native-parity-20261122": {
+      "sha": "8e18fb2ee53e11d0b96a449ea7e698223423dca2",
+      "state": "Continuous decimal/Roman note numbering implementation and tests present; README explicitly says qualification in progress. Runner exists but completed receipts absent. Preserve active branch at captured tip.",
+      "evidence": "docs/validation/zotero-note-numbering-20261122/README.md",
+      "refresh_note": "Latest checkpoint corrects incoming Word policy fixtures and formatting; its validation README still reports local qualification in progress."
+    }
+  },
+  "github_actions_queried_or_awaited": false,
+  "readiness_cutoff": "Initial intake fully reconciled before implementation. Completed main refresh included. Active unrelated branches created after intake remain intact and are not represented as qualified Word changes."
+}

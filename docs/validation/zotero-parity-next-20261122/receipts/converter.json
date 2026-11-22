@@ -1,0 +1,515 @@
+{
+  "startedUtc": "2026-11-22T07:59:49.383671+00:00",
+  "commands": [
+    {
+      "name": "dart-version",
+      "argv": [
+        "/workspace/scratch/8a80441c4c60/toolchains/bin/dart",
+        "--version"
+      ],
+      "cwd": "/workspace/scratch/8a80441c4c60/quds_office_suite",
+      "exitCode": 0,
+      "seconds": 0.004,
+      "stdout": "logs/dart-version.stdout.log",
+      "stderr": "logs/dart-version.stderr.log",
+      "stdoutSha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "libreoffice-version",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/native/libreoffice-headless/libreoffice/program/soffice",
+        "-env:UserInstallation=file:///workspace/scratch/8a80441c4c60/validation/converter/final-source/version-profile",
+        "--version"
+      ],
+      "cwd": "/workspace/scratch/8a80441c4c60/quds_office_suite",
+      "exitCode": 0,
+      "seconds": 0.32,
+      "stdout": "logs/libreoffice-version.stdout.log",
+      "stderr": "logs/libreoffice-version.stderr.log",
+      "stdoutSha256": "6d49d29516f9fb3b3f02bf33238f0beae9980c1743128ce831deddcfb69bce89",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "create-and-verify-original",
+      "argv": [
+        "/workspace/scratch/8a80441c4c60/toolchains/bin/dart",
+        "--packages=/workspace/scratch/8a80441c4c60/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/8a80441c4c60/validation/converter/note_start_fixtures.dart",
+        "create",
+        "/workspace/scratch/8a80441c4c60/validation/converter/final-source/original"
+      ],
+      "cwd": "/workspace/scratch/8a80441c4c60/quds_office_suite",
+      "exitCode": 0,
+      "seconds": 14.962,
+      "stdout": "logs/create-and-verify-original.stdout.log",
+      "stderr": "logs/create-and-verify-original.stderr.log",
+      "stdoutSha256": "b1a07615f34709c66a8da61aad515babbb2fb987fb3ba156fef5b3f18cf23976",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "libreoffice-save-1",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/native/libreoffice-headless/libreoffice/program/soffice",
+        "-env:UserInstallation=file:///workspace/scratch/8a80441c4c60/validation/converter/final-source/profile-1",
+        "--headless",
+        "--convert-to",
+        "odt:writer8",
+        "--outdir",
+        "/workspace/scratch/8a80441c4c60/validation/converter/final-source/lo-save-1",
+        "/workspace/scratch/8a80441c4c60/validation/converter/final-source/original/mixed-starts.odt",
+        "/workspace/scratch/8a80441c4c60/validation/converter/final-source/original/roman-boundary.odt",
+        "/workspace/scratch/8a80441c4c60/validation/converter/final-source/original/decimal-boundary.odt"
+      ],
+      "cwd": "/workspace/scratch/8a80441c4c60/quds_office_suite",
+      "exitCode": 0,
+      "seconds": 1.938,
+      "stdout": "logs/libreoffice-save-1.stdout.log",
+      "stderr": "logs/libreoffice-save-1.stderr.log",
+      "stdoutSha256": "8711132bfe201203a5bc8a440c96c5d9ce89fdaceeb4793286a728c50a549c3f",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "verify-save-1",
+      "argv": [
+        "/workspace/scratch/8a80441c4c60/toolchains/bin/dart",
+        "--packages=/workspace/scratch/8a80441c4c60/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/8a80441c4c60/validation/converter/note_start_fixtures.dart",
+        "verify",
+        "/workspace/scratch/8a80441c4c60/validation/converter/final-source/lo-save-1"
+      ],
+      "cwd": "/workspace/scratch/8a80441c4c60/quds_office_suite",
+      "exitCode": 0,
+      "seconds": 14.919,
+      "stdout": "logs/verify-save-1.stdout.log",
+      "stderr": "logs/verify-save-1.stderr.log",
+      "stdoutSha256": "3870a9dd399f1e55e2ee5d07dce620a1deca64f85c6814b1dd4aa4e313f0d7c9",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "libreoffice-save-2",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/native/libreoffice-headless/libreoffice/program/soffice",
+        "-env:UserInstallation=file:///workspace/scratch/8a80441c4c60/validation/converter/final-source/profile-2",
+        "--headless",
+        "--convert-to",
+        "odt:writer8",
+        "--outdir",
+        "/workspace/scratch/8a80441c4c60/validation/converter/final-source/lo-save-2",
+        "/workspace/scratch/8a80441c4c60/validation/converter/final-source/lo-save-1/mixed-starts.odt",
+        "/workspace/scratch/8a80441c4c60/validation/converter/final-source/lo-save-1/roman-boundary.odt",
+        "/workspace/scratch/8a80441c4c60/validation/converter/final-source/lo-save-1/decimal-boundary.odt"
+      ],
+      "cwd": "/workspace/scratch/8a80441c4c60/quds_office_suite",
+      "exitCode": 0,
+      "seconds": 1.118,
+      "stdout": "logs/libreoffice-save-2.stdout.log",
+      "stderr": "logs/libreoffice-save-2.stderr.log",
+      "stdoutSha256": "c626e48d49a4682fb1ef5d0ed76ce30da8675d2e4664e1fcf4dd6c45cf23ee64",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "verify-save-2",
+      "argv": [
+        "/workspace/scratch/8a80441c4c60/toolchains/bin/dart",
+        "--packages=/workspace/scratch/8a80441c4c60/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/8a80441c4c60/validation/converter/note_start_fixtures.dart",
+        "verify",
+        "/workspace/scratch/8a80441c4c60/validation/converter/final-source/lo-save-2"
+      ],
+      "cwd": "/workspace/scratch/8a80441c4c60/quds_office_suite",
+      "exitCode": 0,
+      "seconds": 15.366,
+      "stdout": "logs/verify-save-2.stdout.log",
+      "stderr": "logs/verify-save-2.stderr.log",
+      "stdoutSha256": "3870a9dd399f1e55e2ee5d07dce620a1deca64f85c6814b1dd4aa4e313f0d7c9",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "sourceBinding": "sourceCommit/sourceTree identify checkout HEAD context. Exact tested working tree is bound by inputs-before.json and inputs-after.json, including any uncommitted files.",
+  "scope": "Synthetic active Zotero ODT; two actual LibreOffice saves; Quds import and DOCX save/reopen; two Quds reexports per stage. No installed Zotero plugin, Microsoft Word execution or visual rendering claim.",
+  "sourceCommit": "231926adfa3ed47c6753ab9ba41b41adaa4aebb9",
+  "sourceTree": "4e58472a2bac1023c6aa27d26e25b7fce4772913",
+  "dartVersion": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "libreOfficeVersion": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+  "runtimeHashes": {
+    "dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "soffice.bin": "d905a74dc92eaccb22481ba2de1345666a074a5f0d48322aaad1b6dc8a9e1e40"
+  },
+  "sourceInputsUnchanged": true,
+  "changedInputPaths": [],
+  "result": "PASS",
+  "uniqueFixtures": 3,
+  "uniqueNotes": 10,
+  "uniqueActiveCitations": 6,
+  "libreOfficeSaveCycles": 2,
+  "odtImportAndDocxReopenStagesPerFixture": 3,
+  "reexportCyclesPerStage": 2,
+  "finishedUtc": "2026-11-22T08:00:38.205113+00:00",
+  "artifactHashes": {
+    "inputs-after.json": {
+      "sha256": "92a884333ca5819653977c56fb0e0d7f11eda2c3883217e07e58c287b7255d96",
+      "bytes": 52656
+    },
+    "inputs-before.json": {
+      "sha256": "92a884333ca5819653977c56fb0e0d7f11eda2c3883217e07e58c287b7255d96",
+      "bytes": 52656
+    },
+    "lo-save-1/decimal-boundary.observed.json": {
+      "sha256": "6a702aab38f87d7f186a1146a7caf6d15b9e15a6b945c9b550be57800188feed",
+      "bytes": 5882
+    },
+    "lo-save-1/decimal-boundary.odt": {
+      "sha256": "644b421a501d8a6d795078c3ca1ce52d3152e0e10ea4b142e22615e48bc7d29a",
+      "bytes": 12652
+    },
+    "lo-save-1/decimal-boundary.reexport-1.docx": {
+      "sha256": "999a5f63e0f7f31b5210b3673609da01bd7d5e9551947ddf48d80f1a42e82cfe",
+      "bytes": 7948
+    },
+    "lo-save-1/decimal-boundary.reexport-1.odt": {
+      "sha256": "b27d4db7e918a7b619212fa58d2f2659b8d3e91221e9101d014cf33cba94fff1",
+      "bytes": 4165
+    },
+    "lo-save-1/decimal-boundary.reexport-2.docx": {
+      "sha256": "2df27df079c9d92444d3339f3e9a86c1c282d30ff4c1646359103d53fc13ea19",
+      "bytes": 7948
+    },
+    "lo-save-1/decimal-boundary.reexport-2.odt": {
+      "sha256": "7e6fdb4bdeae1562278b631c7ea27b4ac181a823b3a5868bb5800378d65a8c4a",
+      "bytes": 4165
+    },
+    "lo-save-1/decimal-boundary.reopened.docx": {
+      "sha256": "6e94d4064675326f308fb9a016d1f740214a09d4d5ef0d2d51d851d9fe9a57e5",
+      "bytes": 8259
+    },
+    "lo-save-1/independent-xml.json": {
+      "sha256": "de36d86f6ea9c35c29365206fc076977690c446135c110450235f3943a5744da",
+      "bytes": 4209
+    },
+    "lo-save-1/mixed-starts.observed.json": {
+      "sha256": "175615d75b1dcd82681badda472434c2b174d560e510ead4c1086c642914a55a",
+      "bytes": 11937
+    },
+    "lo-save-1/mixed-starts.odt": {
+      "sha256": "fd3b5cd9f01bdd72cf57008c8b77ddafabdda829927d7e869443387b667074ab",
+      "bytes": 14754
+    },
+    "lo-save-1/mixed-starts.reexport-1.docx": {
+      "sha256": "eb35ffc8be5de257c56ce316ec93f4ef61529d364217f931d2abe6c8314e2525",
+      "bytes": 10772
+    },
+    "lo-save-1/mixed-starts.reexport-1.odt": {
+      "sha256": "5422ba2c026dd1f48407e6e08eebf4645b79ef252cd2845e0466281aa780038d",
+      "bytes": 4471
+    },
+    "lo-save-1/mixed-starts.reexport-2.docx": {
+      "sha256": "92ba3e6dba7bcb0efb1731348d1f8e2dbbad19690fe3686f09edb5688766af0f",
+      "bytes": 10771
+    },
+    "lo-save-1/mixed-starts.reexport-2.odt": {
+      "sha256": "1c627aca72ae38aafa31f4d04be0f52b82868ffc5df56b190120e3c581cfd77b",
+      "bytes": 4469
+    },
+    "lo-save-1/mixed-starts.reopened.docx": {
+      "sha256": "df78d11db0c6f29cc70f455d891791d25989fe7d384e6c1d8e66edbd68c0c0ea",
+      "bytes": 11521
+    },
+    "lo-save-1/report.json": {
+      "sha256": "bdfaad5c3f9478a51f66ee0b722815ec9c2b573ec7958c8bb2e3dee09e1e0973",
+      "bytes": 27781
+    },
+    "lo-save-1/roman-boundary.observed.json": {
+      "sha256": "1267709b2665c1f8cd1b13e6480ecac3693e929ab942fa2d5bda12793f5130fb",
+      "bytes": 5896
+    },
+    "lo-save-1/roman-boundary.odt": {
+      "sha256": "7dde4b26fe7d49639313f6627cd4877ea0409cfad58d47d989f0bedf45018195",
+      "bytes": 10547
+    },
+    "lo-save-1/roman-boundary.reexport-1.docx": {
+      "sha256": "4ae3e8b0bd53c5aac3bb1b3a9b99a1468d3ab5d9f8fe71271c360d5e1f06687a",
+      "bytes": 8013
+    },
+    "lo-save-1/roman-boundary.reexport-1.odt": {
+      "sha256": "ced4e0afcfbe450e039ec3dc5b44da9fe758d5694ad46c0fc4149e2bb3c36f19",
+      "bytes": 4162
+    },
+    "lo-save-1/roman-boundary.reexport-2.docx": {
+      "sha256": "a322941ed69e9052ce190bb2f1f79fa97f060fdd1740765eebe97a0bbc47bcba",
+      "bytes": 8011
+    },
+    "lo-save-1/roman-boundary.reexport-2.odt": {
+      "sha256": "6eff84136170158ac7288863b16b00a4ebb984afd2b45647c972e2a362348784",
+      "bytes": 4160
+    },
+    "lo-save-1/roman-boundary.reopened.docx": {
+      "sha256": "f8a64704ead2788d6b143e663f54d54b51d63481531a63ba167e8cad267c2aa1",
+      "bytes": 8336
+    },
+    "lo-save-2/decimal-boundary.observed.json": {
+      "sha256": "6a702aab38f87d7f186a1146a7caf6d15b9e15a6b945c9b550be57800188feed",
+      "bytes": 5882
+    },
+    "lo-save-2/decimal-boundary.odt": {
+      "sha256": "11a1071be34782375da187679b0059b3e9af9b9b066cef59ffe7bf282f36d53c",
+      "bytes": 12669
+    },
+    "lo-save-2/decimal-boundary.reexport-1.docx": {
+      "sha256": "c286971d92b99cd03297b2f5519371b9c33d4a2a4ac48f4b35e27f841728d7de",
+      "bytes": 7947
+    },
+    "lo-save-2/decimal-boundary.reexport-1.odt": {
+      "sha256": "cb547980e333afd5345aef18fe49f0e6bae850632d10ef9ea37d79a07bfe3cbe",
+      "bytes": 4164
+    },
+    "lo-save-2/decimal-boundary.reexport-2.docx": {
+      "sha256": "c484b172e294e24724ebb596a0a84d1d5705471c57cf5ccdf0206cad46c3be86",
+      "bytes": 7948
+    },
+    "lo-save-2/decimal-boundary.reexport-2.odt": {
+      "sha256": "37c4148428f53aae0f93ff58087e600e5ca01b00a337cfcff098a29678b78d41",
+      "bytes": 4165
+    },
+    "lo-save-2/decimal-boundary.reopened.docx": {
+      "sha256": "32bfef5530f50150d9b5b9bc086ccb098595d7d34f0a049f442477e4d0909b84",
+      "bytes": 8258
+    },
+    "lo-save-2/independent-xml.json": {
+      "sha256": "de36d86f6ea9c35c29365206fc076977690c446135c110450235f3943a5744da",
+      "bytes": 4209
+    },
+    "lo-save-2/mixed-starts.observed.json": {
+      "sha256": "175615d75b1dcd82681badda472434c2b174d560e510ead4c1086c642914a55a",
+      "bytes": 11937
+    },
+    "lo-save-2/mixed-starts.odt": {
+      "sha256": "1b369dbb413f7ccba1064613d7d01f045583ec0e54e81cdcf036d51bc2203d0e",
+      "bytes": 14779
+    },
+    "lo-save-2/mixed-starts.reexport-1.docx": {
+      "sha256": "4922cd9054fd0bac47c03fca5a573c466b8cb6ad0e8e60bd8638632f573b77b0",
+      "bytes": 10772
+    },
+    "lo-save-2/mixed-starts.reexport-1.odt": {
+      "sha256": "c33d6bd555cf8ac1c570b92de0e35657d70e54d5620f4a87e7314700a15c7c2a",
+      "bytes": 4471
+    },
+    "lo-save-2/mixed-starts.reexport-2.docx": {
+      "sha256": "5092bb9513538a97d0ec9e3ebee9faa9aa9623296ae3006cad5bdf1d7dfb3e71",
+      "bytes": 10772
+    },
+    "lo-save-2/mixed-starts.reexport-2.odt": {
+      "sha256": "dd9d26595b22a4cb9c2f99b4b91cf812a18114db521bf6449e398f35d1780661",
+      "bytes": 4471
+    },
+    "lo-save-2/mixed-starts.reopened.docx": {
+      "sha256": "9923bf749ab6c2e88fc3e8de62600c8374807889cb7dc0be17a503e6f2c5f994",
+      "bytes": 11521
+    },
+    "lo-save-2/report.json": {
+      "sha256": "bdfaad5c3f9478a51f66ee0b722815ec9c2b573ec7958c8bb2e3dee09e1e0973",
+      "bytes": 27781
+    },
+    "lo-save-2/roman-boundary.observed.json": {
+      "sha256": "1267709b2665c1f8cd1b13e6480ecac3693e929ab942fa2d5bda12793f5130fb",
+      "bytes": 5896
+    },
+    "lo-save-2/roman-boundary.odt": {
+      "sha256": "9ab703ec2ebc096dde249f3c63c1ab5109cde942eaa77bccc9b23a1ec8db2277",
+      "bytes": 10566
+    },
+    "lo-save-2/roman-boundary.reexport-1.docx": {
+      "sha256": "9beb1c9cb238beba70aacc6369c8c8f783cffb0ae596405711fa5126bac2be66",
+      "bytes": 8014
+    },
+    "lo-save-2/roman-boundary.reexport-1.odt": {
+      "sha256": "4fbd3cb41bb0de90b08408d1ce3cd07855fff0d8812835e7dbd3c9845fd18a38",
+      "bytes": 4162
+    },
+    "lo-save-2/roman-boundary.reexport-2.docx": {
+      "sha256": "c121f58230b22173f8fa4b16853e0ec71c6ab36e7cf1a6aa14f9995541ec2490",
+      "bytes": 8014
+    },
+    "lo-save-2/roman-boundary.reexport-2.odt": {
+      "sha256": "0de1ae5072b8e0b8873a60d6b4a8a1b2db554d3574328963e612747d190436b0",
+      "bytes": 4162
+    },
+    "lo-save-2/roman-boundary.reopened.docx": {
+      "sha256": "805f62a5181e4e6e06114d6cc3f66f52bb408e854ff38429297d212384026f9b",
+      "bytes": 8336
+    },
+    "logs/create-and-verify-original.stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "logs/create-and-verify-original.stdout.log": {
+      "sha256": "b1a07615f34709c66a8da61aad515babbb2fb987fb3ba156fef5b3f18cf23976",
+      "bytes": 81
+    },
+    "logs/dart-version.stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "logs/dart-version.stdout.log": {
+      "sha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4",
+      "bytes": 82
+    },
+    "logs/libreoffice-save-1.stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "logs/libreoffice-save-1.stdout.log": {
+      "sha256": "8711132bfe201203a5bc8a440c96c5d9ce89fdaceeb4793286a728c50a549c3f",
+      "bytes": 732
+    },
+    "logs/libreoffice-save-2.stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "logs/libreoffice-save-2.stdout.log": {
+      "sha256": "c626e48d49a4682fb1ef5d0ed76ce30da8675d2e4664e1fcf4dd6c45cf23ee64",
+      "bytes": 735
+    },
+    "logs/libreoffice-version.stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "logs/libreoffice-version.stdout.log": {
+      "sha256": "6d49d29516f9fb3b3f02bf33238f0beae9980c1743128ce831deddcfb69bce89",
+      "bytes": 73
+    },
+    "logs/verify-save-1.stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "logs/verify-save-1.stdout.log": {
+      "sha256": "3870a9dd399f1e55e2ee5d07dce620a1deca64f85c6814b1dd4aa4e313f0d7c9",
+      "bytes": 81
+    },
+    "logs/verify-save-2.stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "logs/verify-save-2.stdout.log": {
+      "sha256": "3870a9dd399f1e55e2ee5d07dce620a1deca64f85c6814b1dd4aa4e313f0d7c9",
+      "bytes": 81
+    },
+    "original/decimal-boundary.expected.json": {
+      "sha256": "9a56d2cc51f37bf932c8563d7eb186513c02cbbc60180f063e05e3c518ff4045",
+      "bytes": 1559
+    },
+    "original/decimal-boundary.observed.json": {
+      "sha256": "5c200df5d617fc4f8c14b46231160d700987f8431381c287056c199dd9e15379",
+      "bytes": 5815
+    },
+    "original/decimal-boundary.odt": {
+      "sha256": "35555261b683d8e40c0674a80686ddf6898a507ca0f41df337a70a4fb37f83a7",
+      "bytes": 4000
+    },
+    "original/decimal-boundary.reexport-1.docx": {
+      "sha256": "80f4129665565023102933f7a115dc9be714a98e9010d72c54d61b97e43feb4b",
+      "bytes": 7563
+    },
+    "original/decimal-boundary.reexport-1.odt": {
+      "sha256": "89e08d83a5098a96adf729db892c3c7b81f11f22512734752d315c003e98876e",
+      "bytes": 4051
+    },
+    "original/decimal-boundary.reexport-2.docx": {
+      "sha256": "ad1d971d9e1f895477eb9d7ecac5f10bd583b86bc8453ae516548b80a3a97875",
+      "bytes": 7563
+    },
+    "original/decimal-boundary.reexport-2.odt": {
+      "sha256": "0312c5b7a91f713a896dd241dbe9113beb9187b09f20c8117e8c4496e95fb779",
+      "bytes": 4051
+    },
+    "original/decimal-boundary.reopened.docx": {
+      "sha256": "061e13cc95b63ef7264166d89fc0b397b5355dbe6d7adbc84a706cc096ea07fc",
+      "bytes": 7555
+    },
+    "original/decimal-boundary.source.docx": {
+      "sha256": "4b011b52f75800639c7e06a6fca22d58527f60c5830d23f2b69a3752b86125f9",
+      "bytes": 6704
+    },
+    "original/independent-xml.json": {
+      "sha256": "b053a66a218c2251c636ba7c6dab69f5ffe0d3fee119b795c1db9b201f1685a8",
+      "bytes": 3813
+    },
+    "original/mixed-starts.expected.json": {
+      "sha256": "a967a74ecfb001ccf11ae5758d3129c9dc2b9240623f98eea39ff8725b7400b3",
+      "bytes": 3431
+    },
+    "original/mixed-starts.observed.json": {
+      "sha256": "537d8e19eeb4288f36c3d67bb6f83c102b28f41b672d60d5e394b714aa6b7123",
+      "bytes": 11870
+    },
+    "original/mixed-starts.odt": {
+      "sha256": "ba97f929266c72468d53726cd19d9c5ff3c522d989d38acf65ebb34441ec66f3",
+      "bytes": 4306
+    },
+    "original/mixed-starts.reexport-1.docx": {
+      "sha256": "ebef86b9419c4bf2831115667cc34978e23639473fa6d10fa191c43b5e5630a2",
+      "bytes": 10447
+    },
+    "original/mixed-starts.reexport-1.odt": {
+      "sha256": "73a6466e802da0551b6bded777a5c7c16c2fd0101bec59049af45d868ca1b429",
+      "bytes": 4357
+    },
+    "original/mixed-starts.reexport-2.docx": {
+      "sha256": "19338977971818beea886b5726dd3ba9b80d40d30d5a79ba70d32785a8c073c9",
+      "bytes": 10448
+    },
+    "original/mixed-starts.reexport-2.odt": {
+      "sha256": "2bbc026c165e0c029f1f662c6e2c50c94e14eea20726d00a818182ad4a70d736",
+      "bytes": 4359
+    },
+    "original/mixed-starts.reopened.docx": {
+      "sha256": "649979bd15b0b2f317489bbea20b564091618a0a37a8870396c240b9a5a2b9d7",
+      "bytes": 10437
+    },
+    "original/mixed-starts.source.docx": {
+      "sha256": "3dce928fe08dcfc7950ddecdcd46ebc18b5edbbbcde69cb21fd75d328ed4e964",
+      "bytes": 7705
+    },
+    "original/report.json": {
+      "sha256": "3dc91545b53f42cc28915a7efdab3eb418b09ab2f5da2e666c161eecb6ecc4ba",
+      "bytes": 27580
+    },
+    "original/roman-boundary.expected.json": {
+      "sha256": "76cdb23c98eca66dd150eb1507796557bfdbee65faf75182a1b53fecd857c2b2",
+      "bytes": 1569
+    },
+    "original/roman-boundary.observed.json": {
+      "sha256": "1ad53f43150a39a7efe31b8a08564525fce1a1ff3a7a6b3870997812c87ce841",
+      "bytes": 5829
+    },
+    "original/roman-boundary.odt": {
+      "sha256": "a33464c97d7484a570dde864d1565704d7422c83412f618f5344b702b191f897",
+      "bytes": 3997
+    },
+    "original/roman-boundary.reexport-1.docx": {
+      "sha256": "2d90bb6af83ad8a9c968813ee13d58f9c709ccf93a813260e6b887a7b5aaa3eb",
+      "bytes": 7563
+    },
+    "original/roman-boundary.reexport-1.odt": {
+      "sha256": "f5d9576f6d956275f95f06a9f95a68c4985b22a0e387b7059da5416f19bb6ad8",
+      "bytes": 4048
+    },
+    "original/roman-boundary.reexport-2.docx": {
+      "sha256": "0315c7b4bfe0159ba104e02eba3edc0a9d4fee95e10038e956c6cee422d0c2f4",
+      "bytes": 7563
+    },
+    "original/roman-boundary.reexport-2.odt": {
+      "sha256": "9597123afcabc4968afa2cd25f47a2437427820650a6ee83d771f5f61227868b",
+      "bytes": 4048
+    },
+    "original/roman-boundary.reopened.docx": {
+      "sha256": "fe333ee2dc07a73de253013c74d91f58eb5fcd169cb5a535170135fd66bc3a9c",
+      "bytes": 7555
+    },
+    "original/roman-boundary.source.docx": {
+      "sha256": "e6c0dc2b751d629b38828eee2022477b844166e4a654f9b2742a680df224de62",
+      "bytes": 6706
+    }
+  }
+}

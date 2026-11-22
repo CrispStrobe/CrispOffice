@@ -106,7 +106,17 @@ abstract interface class StudioMailSyncStore implements MailSyncRepository {
 /// The account is the enclosing repository namespace; RFC Message-ID is not an
 /// identity. Keeping this encoding unchanged preserves previously cached bodies.
 MailHeaderRecord studioMailCachedHeader(MailHeaderRecord source) {
-  final remote = source.remote;
+  return MailHeaderRecord(
+    id: studioMailCachedMessageId(source.remote),
+    remote: source.remote,
+    envelope: source.envelope,
+    flags: source.flags,
+  );
+}
+
+/// Uses the same stable identity for browsed, synchronized and moved headers.
+/// Provider-local IDs must be translated before writing into Studio's cache.
+MailMessageId studioMailCachedMessageId(MailRemoteIdentity remote) {
   final key = jsonEncode([
     'studio-mail-cache-v1',
     remote.provider.name,
@@ -119,12 +129,7 @@ MailHeaderRecord studioMailCachedHeader(MailHeaderRecord source) {
       MailOpaqueIdentity(:final value) => [value],
     },
   ]);
-  return MailHeaderRecord(
-    id: MailMessageId(sha256.convert(utf8.encode(key)).toString()),
-    remote: remote,
-    envelope: source.envelope,
-    flags: source.flags,
-  );
+  return MailMessageId(sha256.convert(utf8.encode(key)).toString());
 }
 
 final class StudioMailMailboxStoreException implements Exception {
@@ -147,7 +152,8 @@ final class SqliteStudioMailMailboxStore
         StudioMailCachedHeaderSearchStore,
         StudioMailScopedHeaderSearchStore,
         StudioMailFolderScopedHeaderSearchStore,
-        StudioMailSyncStore {
+        StudioMailSyncStore,
+        MailSyncSnapshotRepository {
   SqliteStudioMailMailboxStore({
     required this._repository,
     required this.account,
@@ -266,18 +272,52 @@ final class SqliteStudioMailMailboxStore
       _sync(mailbox.account, () => _repository.readCursor(mailbox));
 
   @override
+  Future<MailResult<MailSyncRepositorySnapshot>> readSyncSnapshot(
+    MailMailboxId mailbox,
+  ) => _sync(mailbox.account, () => _repository.readSyncSnapshot(mailbox));
+
+  @override
   Future<MailResult<MailUnit>> commitSyncPage(
     MailSyncPage page, {
     required MailCursor? expectedCursor,
     required MailOperationLease lease,
-  }) => _sync(page.mailbox.account, () async {
+  }) => _commitSyncPage(
+    page,
+    lease,
+    (cached) => _repository.commitSyncPage(
+      cached,
+      expectedCursor: expectedCursor,
+      lease: lease,
+    ),
+  );
+
+  @override
+  Future<MailResult<MailUnit>> commitSyncPageWithSnapshot(
+    MailSyncPage page, {
+    required MailSyncRepositorySnapshot expectedSnapshot,
+    required MailOperationLease lease,
+  }) => _commitSyncPage(
+    page,
+    lease,
+    (cached) => _repository.commitSyncPageWithSnapshot(
+      cached,
+      expectedSnapshot: expectedSnapshot,
+      lease: lease,
+    ),
+  );
+
+  Future<MailResult<MailUnit>> _commitSyncPage(
+    MailSyncPage page,
+    MailOperationLease lease,
+    Future<MailResult<MailUnit>> Function(MailSyncPage) write,
+  ) => _sync(page.mailbox.account, () async {
     _scope(lease.account);
     lease.checkCurrent();
     final ids = <MailMessageId>{};
     if (page.upserts.any((header) => !ids.add(header.id))) {
       return const MailFailure(MailProblem(MailProblemCode.invalidInput));
     }
-    return _repository.commitSyncPage(
+    return write(
       MailSyncPage(
         mailbox: page.mailbox,
         upserts: [
@@ -289,8 +329,6 @@ final class SqliteStudioMailMailboxStore
         resetRequired: page.resetRequired,
         imapRange: page.imapRange,
       ),
-      expectedCursor: expectedCursor,
-      lease: lease,
     );
   });
 

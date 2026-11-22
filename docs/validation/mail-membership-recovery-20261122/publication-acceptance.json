@@ -1,0 +1,161 @@
+{
+  "accepted_executions": 3036,
+  "boundaries": [
+    "No live-provider account qualification",
+    "No browser runtime or persistent browser storage qualification",
+    "No installed Android/iOS/macOS/Windows/Linux package qualification",
+    "Incoming Word/Zotero integration tests are outside this Mail archive"
+  ],
+  "checkout_commit_at_packaging": "d85b1937fafd3f3583d01472a1eccded1726a5a6",
+  "counting": "Successful substantive executions with platform overlap, not globally unique test names. Loading/hidden events, prior host repetitions and diagnostic runs do not add passes. Original distinct core parameter label collisions remain documented in mail-acceptance.json.",
+  "evidence_archive": {
+    "bytes": 212541,
+    "manifest": "publication-evidence-manifest.json",
+    "members": 29,
+    "path": "publication-evidence.tar.gz",
+    "sha256": "a95318179199b07b5775f51580098edd1b9abccdceb8970563d14f735fffefbc"
+  },
+  "github_actions": "NOT USED OR AWAITED",
+  "original_artifact_policy": "All three original files remain byte-identical historical records. This supplement replaces only the accepted host cohort and the static coverage for the two changed helpers.",
+  "original_artifacts": {
+    "mail-acceptance.json": {
+      "bytes": 11676,
+      "sha256": "eb968cd1cefe4dbc1e540d8d55d717a331e6e76ef83ce050ba3134ced5280d11"
+    },
+    "mail-evidence-manifest.json": {
+      "bytes": 50219,
+      "sha256": "38d8aa7b87479d772fcd4c9b7de5c13d31bcfa7c3371bb5ebfb4491d4583cc73"
+    },
+    "mail-evidence.tar.gz": {
+      "bytes": 6605538,
+      "sha256": "9460977aa493ff0a145c778ba055e08183de6281b154f0689559dce240ef856b"
+    }
+  },
+  "post_main_host": {
+    "exit_code": 0,
+    "flutter_daemon_frames_separated": 6,
+    "original_raw_log_preserved": true,
+    "receipt": "mail-runtime/logs/membership-host-post-main-final/receipt.json",
+    "receipt_sha256": "c83434ccf4246457ebf4d6cc80092b7536d124a2bd945568d939ae51c8ca75d0",
+    "runtime_inputs": 10,
+    "runtime_unchanged": true,
+    "source_inputs": 1074,
+    "source_unchanged": true,
+    "tests": {
+      "all_failed": 0,
+      "all_skipped": 0,
+      "errors": 0,
+      "excluded_failed": 0,
+      "excluded_skipped": 0,
+      "failed": 0,
+      "incomplete": 0,
+      "passed": 277,
+      "protocol_errors": 0,
+      "protocol_issues": [],
+      "skipped": 0,
+      "start_events": 1,
+      "terminal_events": 1,
+      "terminal_success": true,
+      "valid": true
+    },
+    "unique_passed": 277
+  },
+  "previous_host_executions_replaced": 277,
+  "replacement_host_executions": 277,
+  "reused_cohorts": [
+    {
+      "current_applicability": "PASS",
+      "name": "native-core-store",
+      "original_archive": "mail-evidence.tar.gz",
+      "passed": 1635,
+      "receipt": "mail-runtime/logs/membership/native-core-store-receipt.json",
+      "receipt_sha256": "05fad2b81094b56bc77691402a00f1bc19fada225e86c403c95d6e5b46527167"
+    },
+    {
+      "current_applicability": "PASS",
+      "name": "native-providers",
+      "original_archive": "mail-evidence.tar.gz",
+      "passed": 338,
+      "receipt": "mail-runtime/logs/membership-transport-native-final/receipt.json",
+      "receipt_sha256": "fbb8e25b7541b6bd000b11624907f2d3c87dc6eea9e9d5890c1d0b160d73f554"
+    },
+    {
+      "current_applicability": "PASS",
+      "name": "node-core",
+      "original_archive": "mail-evidence.tar.gz",
+      "passed": 574,
+      "receipt": "mail-runtime/logs/membership-node-core-final/receipt.json",
+      "receipt_sha256": "4a1bb87aa22922958bc5574acdbf59710fd11e3730de38f594021a6bab056a23"
+    },
+    {
+      "current_applicability": "PASS",
+      "name": "node-transport",
+      "original_archive": "mail-evidence.tar.gz",
+      "passed": 160,
+      "receipt": "mail-runtime/logs/membership-node-transport-final/receipt.json",
+      "receipt_sha256": "f9099086e1faadeea3bd65068f7ee041df3a72551a113e14c2784838e3c90c37"
+    },
+    {
+      "current_applicability": "PASS",
+      "name": "node-portable-store",
+      "original_archive": "mail-evidence.tar.gz",
+      "passed": 52,
+      "receipt": "mail-runtime/logs/membership-node-portable-store-final/receipt.json",
+      "receipt_sha256": "650a27d80cb06896a76fd4f8f22c0933b9605bc6e94c360c89d93d8ed3b2e1ac"
+    }
+  ],
+  "reused_executions": 2759,
+  "runtime_applicability": {
+    "composite_runtime_inputs": 21,
+    "current_mismatches": 0,
+    "dart": "3.13.7",
+    "flutter": "3.47.8",
+    "lock_sha256": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+    "node": "v24.22.3",
+    "original_lock_unchanged": true,
+    "original_runtime_provenance_preserved": true,
+    "status": "PASS"
+  },
+  "schema_version": 1,
+  "scope": "Composite Mail acceptance after reconciling remote main 253c7d28",
+  "screenshots": {
+    "byte_identical_to_original_archive": 12,
+    "comparison": "mail-runtime/logs/membership-host-post-main-final/screenshot-comparison.json",
+    "decoded_rgba_identical": 12,
+    "embedded_pngs": 0,
+    "new_captures": 12,
+    "references": "mail-runtime/logs/membership-host-post-main-final/image-references.json",
+    "status": "PASS",
+    "visual_review": "The new captures are byte- and pixel-identical to the previously inspected archived English/German/Arabic and other fixture captures. No new direct visual-inspection claim is required."
+  },
+  "source_applicability": {
+    "audit": "mail-runtime/logs/membership-host-post-main-final/composite-input-audit.json",
+    "change": "Four redundant non-null assertions removed from two Mail test-support parts.",
+    "composite_source_inputs": 1170,
+    "current_mismatches": 0,
+    "delta": "mail-runtime/logs/membership-host-post-main-final/source-delta.json",
+    "prior_changed_inputs": [
+      "packages/quds_office_editor/example/test/support/mail_membership_host_cases.dart",
+      "packages/quds_office_editor/example/test/support/mail_membership_recovery_cases.dart"
+    ],
+    "production_changes": [],
+    "source_union": "qualification/composite-source-sha256.json",
+    "source_union_sha256": "dffbeb2acec9a7fc9f9b4c1c3e7cee03a8f8010b03e3f7a625bb410ae294d017",
+    "status": "PASS"
+  },
+  "static_checks": {
+    "helper_format_changes": 0,
+    "helper_strict_analysis": "No issues found",
+    "newly_formatted_helpers": 2,
+    "original_46_file_format_unchanged_inputs": 44,
+    "original_core_store_transport_analysis_applicability": "Unchanged sources; original clean analysis retained.",
+    "receipt": "mail-runtime/logs/membership-host-post-main-final/static/receipt.json",
+    "receipt_sha256": "c56ab8a36b49f7b94def17b849e231d779f628508f0e16cb8eba9c056846b953",
+    "status": "PASS"
+  },
+  "status": "PASS",
+  "zotero_scope_note": {
+    "note": "Broad historical Studio snapshots can include unused Mail-only support fixtures. The checked local final Zotero Studio receipt excludes both changed helpers and has zero current source mismatches; no Zotero production or invoked Zotero test changed during main reconciliation. Zotero counts/logs remain outside Mail acceptance.",
+    "record": "mail-runtime/logs/membership-host-post-main-final/zotero-scope-note.json"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "recordedUtc": "2026-11-22T06:46:42.471915+00:00",
+  "scope": "Independent public engine API reproduction against frozen baseline lib source; default Word Roman endnote export refusal and explicit-decimal control.",
+  "sourceCommit": "b13a170cdb5fd42b9a0f2c77d97c996caf5d0d7f",
+  "sourceTree": "6921f6ca74b5892e823af8a91c73fd3a97a2d5dc",
+  "frozenSourceFileCount": 436,
+  "frozenSourceUnchanged": true,
+  "script": {
+    "path": "reproduce_endnote_export.dart",
+    "sha256": "83e66211ab2206dfea2230cbe58fd24284cb37c86b96ff28820ade66eb96d6c9"
+  },
+  "packageConfigSha256": "81f453371fc434b9abfbfc5635c55df174ed9a4a629296eb2390166d9dc9c704",
+  "command": [
+    "/workspace/scratch/1bb837b7ac66/runtime/bin/dart",
+    "--packages=/workspace/scratch/1bb837b7ac66/validation_work/baseline-package-config.json",
+    "/workspace/scratch/1bb837b7ac66/validation_work/reproduce_endnote_export.dart",
+    "/workspace/scratch/1bb837b7ac66/validation_work/baseline-results"
+  ],
+  "exitCode": 0,
+  "result": "reproduced",
+  "files": {
+    "baseline-results/default-roman-endnote.docx": {
+      "sha256": "3c99deb6b496f1b601bbd44b7f4cd75bd321fe7156789b022abe651566917988",
+      "bytes": 6322
+    },
+    "baseline-results/explicit-decimal-control.docx": {
+      "sha256": "e6388a3b67d7847710d0e129d8201afd2a57ef7b8441501915bfe22ae6680cc7",
+      "bytes": 6357
+    },
+    "baseline-results/explicit-decimal-control.odt": {
+      "sha256": "a266b478b9a395749cae69e83c5bf6fa3bf675d47dbc57e3d63c22eb58a4e1e6",
+      "bytes": 3653
+    },
+    "baseline-results/report.json": {
+      "sha256": "284835ea39d8024b2c21ad8e9021ba25f4052ea05eaa99f18003f6eb0e37d222",
+      "bytes": 5423
+    }
+  }
+}
