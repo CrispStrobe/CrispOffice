@@ -1,0 +1,431 @@
+{
+  "purpose": "Carry the accepted engine and editor Zotero executions to qualified snapshot 99a285c0 after the Studio Mail compile/lint repair. This receipt is not a new execution. Later main changes require additional qualification.",
+  "qualified_snapshot_commit": "99a285c07ad2c08999ae64a68785376123bed4f3",
+  "qualified_snapshot_tree": "4b15ae5ddb295275f248cb48984249d45e2da1fd",
+  "new_execution": false,
+  "additional_test_credit": 0,
+  "qualified_input_manifest": {
+    "path": "studio-zotero-qualified-inputs.json.gz",
+    "gzip_sha256": "1f6935edff5eafcc1cbfdbb8b1facd5b53b0ccd824722898c6709323b0fdb4f4"
+  },
+  "qualified_input_count": 16086,
+  "preceding_engine_carry_receipt": {
+    "path": "engine-zotero-carry-forward-final-receipt.json",
+    "sha256": "4ebcc22c8f0c00a24d22248197f5ee52aa80e6393247ea58bb2c4f15f40889e2"
+  },
+  "single_repair_after_preceding_carry": {
+    "path": "repo/packages/quds_office_editor/example/lib/studio_mail_cached_search_dialog.dart",
+    "kind": "modified",
+    "before": {
+      "sha256": "708ed0e291775be555b7fb339deb512270753b95e2c66fb4738bc1aaca1b703e",
+      "size": 58185
+    },
+    "qualified": {
+      "sha256": "eeacdfa992679d0fe6bd90bd6e9855bafb9b254a46baf432401574220c9f6b9d",
+      "size": 58539
+    }
+  },
+  "repair_scope": "Explicit Mail mailbox-store import, guarded interface casts, async BuildContext guard/string lint cleanup and Dart formatting in the cached-search dialog.",
+  "engine": {
+    "original_receipt": "engine-zotero-receipt.json",
+    "original_input_count": 16079,
+    "qualified_input_count": 16086,
+    "complete_key_sets_compared": true,
+    "unchanged_inputs": 16056,
+    "modified_inputs": 23,
+    "added_inputs": 7,
+    "removed_inputs": 0,
+    "differences": [
+      {
+        "path": "repo/packages/quds_mail_core/lib/src/search/saved_header_search.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "46823d08203cc9e7bf29c8882875a6c50b05bcf6c958d6b1f03eb034cab2abb9",
+          "size": 3384
+        },
+        "qualified": {
+          "sha256": "f04eef25d4a515d8172e542df47c5ca7bbb4f98b2d5309605eb97fd9ddf1e0d2",
+          "size": 5377
+        }
+      },
+      {
+        "path": "repo/packages/quds_mail_core/test/saved_header_search_test.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "c85c0bbb68fcdec16557f4de60a76a4595c5738209d994bf7c55109ec0e2ede2",
+          "size": 4310
+        },
+        "qualified": {
+          "sha256": "9b05060fae962289387c120cab43bdc02a838e54ae072c14e054ecda319c38c4",
+          "size": 6709
+        }
+      },
+      {
+        "path": "repo/packages/quds_mail_store/lib/src/cached_header_search.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "6c476b4106645f6ce1abb6a040b0c5959e9fe7d856b0e97fb8c5980f966b7171",
+          "size": 15580
+        },
+        "qualified": {
+          "sha256": "664f52c7050f98fcae04a0dc6a5bd2c29e30ec68a20c1c5a7fd7fc11dd7b3791",
+          "size": 18125
+        }
+      },
+      {
+        "path": "repo/packages/quds_mail_store/lib/src/saved_header_searches.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "01552b8cd2d7879bf42a47b55fc1307e705b476fb7d74ede95ff3bcf81164a21",
+          "size": 9813
+        },
+        "qualified": {
+          "sha256": "a3b81b6c209c1804c7cff65a43ff0d720daea9add904a326ec983fac6ba96fc0",
+          "size": 12589
+        }
+      },
+      {
+        "path": "repo/packages/quds_mail_store/lib/src/schema/database.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "a532bab49f92eb20e875d699fc51aed2101af218febef18daf631afb2b362574",
+          "size": 14010
+        },
+        "qualified": {
+          "sha256": "ed1a3ece53871df2f3f2a78c5c1ad422cc91fd1b479a5a41d604fe99678e1c37",
+          "size": 15057
+        }
+      },
+      {
+        "path": "repo/packages/quds_mail_store/test/cached_header_search_test.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "5f01cf855686b53cb15c1370d63fdb317cc55a7b96bbccac53d82ee4d8ccef00",
+          "size": 20543
+        },
+        "qualified": {
+          "sha256": "829f26ee63b29fef4a7fccb66296c48175eb65134db0fa01d4bac63e2676c4cb",
+          "size": 23598
+        }
+      },
+      {
+        "path": "repo/packages/quds_mail_store/test/migration_test.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "0b39e36d701264d5d7d9b939c9504470303fc07445e2738552c29777783cc0de",
+          "size": 40856
+        },
+        "qualified": {
+          "sha256": "b7829662249d09dad2c10964f459f6b160bc95ca410751a405d0d481fba711b9",
+          "size": 40856
+        }
+      },
+      {
+        "path": "repo/packages/quds_mail_store/test/saved_header_searches_test.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "b49680da3f6d66b6094e641f24293654184d7dfa6cf785d5224ec912bfecdc96",
+          "size": 21214
+        },
+        "qualified": {
+          "sha256": "1aec7cc3bb67f1a92e5a9aa0431cead1f7e1fdf2f3b47547cee05d4fce0ebbfe",
+          "size": 23489
+        }
+      },
+      {
+        "path": "repo/packages/quds_office_editor/example/lib/studio_mail_cached_search.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "7d13424c88167a79aa04333bd9c8d40ef30bba54eca8782b568524bce3632c97",
+          "size": 14480
+        },
+        "qualified": {
+          "sha256": "1d7b3a7d15a7084e2ca633a28ee444e88a7a5d06bf2ac6372b6f6d1c1645ce40",
+          "size": 15977
+        }
+      },
+      {
+        "path": "repo/packages/quds_office_editor/example/lib/studio_mail_cached_search_dialog.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "1f24b38af93a8f59f1054d5ad30ea2bea79933610a4df40bb29aad3840308fc3",
+          "size": 50057
+        },
+        "qualified": {
+          "sha256": "eeacdfa992679d0fe6bd90bd6e9855bafb9b254a46baf432401574220c9f6b9d",
+          "size": 58539
+        }
+      },
+      {
+        "path": "repo/packages/quds_office_editor/example/lib/studio_mail_folder_picker.dart",
+        "kind": "added",
+        "before": null,
+        "qualified": {
+          "sha256": "cb341909aaedf959c74b728d6b1cd4b212500f95dabe9ab7601bea0e0fbaebf1",
+          "size": 4948
+        }
+      },
+      {
+        "path": "repo/packages/quds_office_editor/example/lib/studio_mail_mailbox_store.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "e24401be2402643939df936a98792c8211f90bed71dee38c945c703b992417ec",
+          "size": 17513
+        },
+        "qualified": {
+          "sha256": "880ab9115194034c02e2abef0095d258f55064fc1920a58d7489b359bea505fd",
+          "size": 18522
+        }
+      },
+      {
+        "path": "repo/packages/quds_office_editor/example/lib/studio_mail_saved_search_strings.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "5eb3219a9a80f2999e68fc1250f263c8693d06719d9ff398d5d2c466a90a40d9",
+          "size": 5315
+        },
+        "qualified": {
+          "sha256": "bedda1c17d1eace81b956089689fb81140f1841376ee3110eabced3b5ae4acff",
+          "size": 7587
+        }
+      },
+      {
+        "path": "repo/packages/quds_office_editor/example/test/studio_mail_cached_search_test.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "cd5d2369e0ec710e954f54b205be3ea6f0b1da0aad9156a2ed131866e51f9d6f",
+          "size": 22604
+        },
+        "qualified": {
+          "sha256": "f16e4c8f85551652a7be699da9efa3ef25d6ab37cf0bffb667e65464dc91d0ff",
+          "size": 25139
+        }
+      },
+      {
+        "path": "repo/packages/quds_office_editor/example/test/studio_mail_folder_picker_test.dart",
+        "kind": "added",
+        "before": null,
+        "qualified": {
+          "sha256": "756a540952f19541b54b4fde6c7baa91c8fc78bae5503e9160c17e7fb9df11dc",
+          "size": 3978
+        }
+      },
+      {
+        "path": "repo/packages/quds_office_editor/example/test/studio_mail_saved_search_dialog_test.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "676476fea51bb04d76cadb6da6281755c9deebb8eb35cb7c4b9cba73b900fc49",
+          "size": 16548
+        },
+        "qualified": {
+          "sha256": "b1a5dd94292953476701708a34938a62a63a172d46418e497d7d1ff44b28214d",
+          "size": 18202
+        }
+      },
+      {
+        "path": "repo/packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "fe981bbb5c6f7a0a8eebcfd1850ac3a66aec77f39bd6bceed9b170cb2b459123",
+          "size": 513343
+        },
+        "qualified": {
+          "sha256": "01ab971b8324c42e975f4bec2bb0e9e411c2d42a2553dd7f0b3e81de6841ecfa",
+          "size": 513515
+        }
+      },
+      {
+        "path": "repo/packages/quds_office_editor/test/word_zotero_writing_position_test.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "785c8bc195e93d79dae5c9b8ec44149d80b892092531ae5b44ac58a1b81e58c5",
+          "size": 20510
+        },
+        "qualified": {
+          "sha256": "742d6c68c5c73dd99a2227d4631c41707ce5465c457e4bc716c2cb28965a6488",
+          "size": 20795
+        }
+      },
+      {
+        "path": "repo/packages/quds_office_engine/CHANGELOG.md",
+        "kind": "modified",
+        "before": {
+          "sha256": "d7ac90543301f47f0434229817205437b410486686d566efc5eff7ae51b071b4",
+          "size": 104292
+        },
+        "qualified": {
+          "sha256": "50c71db57a9931b8ac10f59c1ead655caef8861458b2312f0a292825230d8616",
+          "size": 105252
+        }
+      },
+      {
+        "path": "repo/packages/quds_office_engine/example/macros/word_table_formatting.bas",
+        "kind": "added",
+        "before": null,
+        "qualified": {
+          "sha256": "610db3a19ec8ddc2fc54194b324a12c5472c1feb06892302334ce72cda69a496",
+          "size": 1530
+        }
+      },
+      {
+        "path": "repo/packages/quds_office_engine/lib/src/automation/office_operations.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "0371839732af168084b4bd397d4de054e33a6ee1ab797711d20bff04399d3b39",
+          "size": 29867
+        },
+        "qualified": {
+          "sha256": "7fe13f76cd15ef0618c73a9a15751745fcca2c3d90a60659dd1a32a045df349f",
+          "size": 29911
+        }
+      },
+      {
+        "path": "repo/packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "0b419bf9f13443c0090d74cb0bfca7a4542809ffabeafb070c1622e75501b7b7",
+          "size": 249124
+        },
+        "qualified": {
+          "sha256": "1dc3808ac9665dc9c2e4f3d46b4cdb21b7d82da8b137d3f874c8400821a9886f",
+          "size": 250302
+        }
+      },
+      {
+        "path": "repo/packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "8b661f58db52b1b49496ddb7b8035b481665ce3797719dd8492cc61e55126785",
+          "size": 46854
+        },
+        "qualified": {
+          "sha256": "74c2838516a3561066d2d245e1d25e59e00a061c225190668945e6c272e757eb",
+          "size": 48539
+        }
+      },
+      {
+        "path": "repo/packages/quds_office_engine/lib/src/automation/operations/word_table_cell_text_steps.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "9baa94c1b55403d5f4cbe6d545597f567f14cc33f87d163e9238487900f42e2e",
+          "size": 19837
+        },
+        "qualified": {
+          "sha256": "67a17b190d5579bbb73015f9d8f8b08ed85ca1b3f51e9cb02142c6e58ed2666c",
+          "size": 20284
+        }
+      },
+      {
+        "path": "repo/packages/quds_office_engine/test/office_macro_word_cell_formatting_test.dart",
+        "kind": "added",
+        "before": null,
+        "qualified": {
+          "sha256": "5a09ab2d91fa4a7cec9b094821a0b74c1a1497473aaa3b2d73e827bb1989509b",
+          "size": 9169
+        }
+      },
+      {
+        "path": "repo/packages/quds_office_engine/test/office_vba_word_cell_formatting_integration_test.dart",
+        "kind": "added",
+        "before": null,
+        "qualified": {
+          "sha256": "25cf39a271999ebf28484356a49db18104704be692f2db91c742bc2c13342602",
+          "size": 25192
+        }
+      },
+      {
+        "path": "repo/packages/quds_office_engine/test/office_vba_word_cell_formatting_test.dart",
+        "kind": "added",
+        "before": null,
+        "qualified": {
+          "sha256": "0131583fb1eba36928610fcd4a0fb502505b5af2c8f038349471425c4e609e65",
+          "size": 15542
+        }
+      },
+      {
+        "path": "repo/packages/quds_office_engine/test/office_vba_word_font_colors_test.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "addcf9d015bbb97da86c1633043f17db7cc346eb83b8abc50482dea2ade291c8",
+          "size": 8793
+        },
+        "qualified": {
+          "sha256": "10cf072dd752959176fcae92c46cdd7ef64fb035d3176520f5acaa9dad9c021c",
+          "size": 8808
+        }
+      },
+      {
+        "path": "repo/packages/quds_office_engine/test/office_vba_word_table_cells_test.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "564d307a735c21d76089f3af340273c29dab7ff55daf6dd68175beb367fe33b2",
+          "size": 16594
+        },
+        "qualified": {
+          "sha256": "6162df26f89e62ee7b61fe08fc66f694f4fba19ef245449114dab5f71fe9b09f",
+          "size": 16607
+        }
+      },
+      {
+        "path": "repo/packages/quds_office_engine/tool/macros/web_vba_word_cell_formatting_smoke.dart",
+        "kind": "added",
+        "before": null,
+        "qualified": {
+          "sha256": "13dd877b1569c0b4d933b61d967a3220c187c0f5a99796fe8d727eee2088fd44",
+          "size": 11671
+        }
+      }
+    ],
+    "import_closure_manifest": {
+      "path": "engine-zotero-carry-forward-final-inputs.json.gz",
+      "gzip_sha256": "dc26894bc474db4f5ec1b8ca634569b1136b31ec5728fb37a70e412879727edf",
+      "member": "static_import_closure_inputs"
+    },
+    "unchanged_import_closure_files": 1347,
+    "all_import_inputs_identical": true,
+    "substantive_passes_credited_once": 1494
+  },
+  "editor": {
+    "original_receipt": "editor-zotero-final-receipt.json",
+    "original_input_count": 16086,
+    "qualified_input_count": 16086,
+    "complete_key_sets_compared": true,
+    "unchanged_inputs": 16085,
+    "modified_inputs": 1,
+    "added_inputs": 0,
+    "removed_inputs": 0,
+    "differences": [
+      {
+        "path": "repo/packages/quds_office_editor/example/lib/studio_mail_cached_search_dialog.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "708ed0e291775be555b7fb339deb512270753b95e2c66fb4738bc1aaca1b703e",
+          "size": 58185
+        },
+        "qualified": {
+          "sha256": "eeacdfa992679d0fe6bd90bd6e9855bafb9b254a46baf432401574220c9f6b9d",
+          "size": 58539
+        }
+      }
+    ],
+    "import_closure_manifest": {
+      "path": "editor-zotero-import-closure.json.gz",
+      "gzip_sha256": "901b572c5002f95b2adaa3cce79977daf26eba9b947915d96c527aac63a7f324",
+      "member": "static_import_closure_inputs"
+    },
+    "unchanged_import_closure_files": 2221,
+    "all_import_inputs_identical": true,
+    "substantive_passes_credited_once": 980
+  },
+  "runtime_and_resolved_dependency_comparison": {
+    "all_8634_dependency_inputs_identical": true,
+    "all_1127_sdk_inputs_identical": true,
+    "both_resolved_configs_identical": true,
+    "complete_non_repository_key_sets_compared": true
+  },
+  "limits": [
+    "Carries only the named Zotero test cohorts; it does not qualify the entire incoming Mail or VBA features.",
+    "Static import/export/part closures conservatively include all conditional URI branches; complete runtime/dependency maps are compared separately.",
+    "No installed Zotero/Word/LibreOffice workflow or native release build is claimed."
+  ]
+}

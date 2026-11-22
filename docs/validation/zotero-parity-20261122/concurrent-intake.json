@@ -1,0 +1,948 @@
+{
+  "github": {
+    "provider": "GitHub connector",
+    "observed_at_utc": "2026-11-22T02:38:10.969Z",
+    "pr354": {
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/354",
+      "number": 354,
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "title": "Mail: exact folder-scoped saved searches with safe local recovery",
+      "head": "work/mail-folder-scoped-search-20261122",
+      "head_sha": "ff30d1064a052abbfbcdc99745ff66f8bc980aea",
+      "base": "main",
+      "base_sha": "c522851d165b395a7f60422a1be969dffc39c9ff",
+      "merge_commit_sha": "bcc55cb6e86e796056e2d75c3fdca50857dbf6e7",
+      "commits": 19,
+      "changed_files": 19,
+      "additions": 1280,
+      "deletions": 59,
+      "merged_at": "2026-11-22T02:30:49Z"
+    },
+    "open_prs": [],
+    "source_branch_prs": {
+      "work/mail-folder-search-20261122": [],
+      "codex/word-vba-cell-formatting-20261122": []
+    },
+    "main_pr_qualification": "PR #354 explicitly states its new Dart/Flutter tests were committed but not run because that editing environment had no Dart/Flutter SDK."
+  },
+  "schema_version": 1,
+  "observed_at_utc": "2026-11-22T02:38:48.515870+00:00",
+  "audit_scope": "Read-only incoming-ref and source comparison. No checkout, merge, commit, ref update, CI query or test execution by this audit. Only these concurrent-intake artifacts are written.",
+  "repository": "CrispStrobe/quds_office_suite",
+  "qualified_zotero_base": "c522851d165b395a7f60422a1be969dffc39c9ff",
+  "local_zotero_checkpoint_observed": "da52f5e9f89918f7e6a9f4c4abaf07bf65ab726a",
+  "current_remote_main": "bcc55cb6e86e796056e2d75c3fdca50857dbf6e7",
+  "initial_historical_intake_continuity": "All 380 original observations remain accounted for by historical-intake-equivalence.json because their qualified base is an ancestor of current main. Newly observed unfinished branches are explicitly separate; no claim that all current branch tips are ancestors.",
+  "main_advance": {
+    "commits": [
+      {
+        "sha": "bcc55cb6e86e796056e2d75c3fdca50857dbf6e7",
+        "subject": "Merge Mail exact folder-scoped saved searches (#354) [skip ci]"
+      },
+      {
+        "sha": "ff30d1064a052abbfbcdc99745ff66f8bc980aea",
+        "subject": "fix(mail): show missing-folder warning in visible search results [skip ci]"
+      },
+      {
+        "sha": "65bcbb21f2526f38dfc2e5df87f40b87cb5a4177",
+        "subject": "test(mail): Studio restores exact saved folders and persists deliberate All reset [skip ci]"
+      },
+      {
+        "sha": "a7b3f61816e599511e6c8925e57d1fa3b1b211f8",
+        "subject": "fix(mail): retain failed folder-store releases for explicit retry on close [skip ci]"
+      },
+      {
+        "sha": "16ff571299361043b79e912162c8e6090ab4519c",
+        "subject": "docs(mail): update parity roadmap with exact folder search and validation limits [skip ci]"
+      },
+      {
+        "sha": "ddec01892fb7cfa26aee0042dcd76a1d495edcb3",
+        "subject": "docs(mail): exact folder-set behavior, compatibility and truthful validation scope [skip ci]"
+      },
+      {
+        "sha": "bd47cb49e2a652a15e4872036465f3ab90361119",
+        "subject": "fix(test): assert provider UID rather than hashed local cache ID [skip ci]"
+      },
+      {
+        "sha": "564e6962b76d5319c5b77692d4dcc51356e806b1",
+        "subject": "test(mail): folder chooser requires exact account coverage and missing recovery [skip ci]"
+      },
+      {
+        "sha": "4775a82e6864abd2e1c6638b89ec3f18dc70e216",
+        "subject": "test(mail): native scoped sessions, adapter fallback denial and exact identities [skip ci]"
+      },
+      {
+        "sha": "c4ccd7b7141991beadc57261e3d5c96eb7f601d7",
+        "subject": "test(mail): exact SQLite folder membership, paging and missing-scope denial [skip ci]"
+      },
+      {
+        "sha": "1be83f3261d705752c89f5ff6bcaa96f71f0793a",
+        "subject": "test(mail): exact folder scope validation, durable revisions and schema 11 upgrades [skip ci]"
+      },
+      {
+        "sha": "c17c8788137fff24305dd923c443d667e45a5786",
+        "subject": "fix(mail): make folder chooser initialization unambiguous [skip ci]"
+      },
+      {
+        "sha": "e4f50e07b362ac8e54922a2aec5de277308fd2ed",
+        "subject": "feat(mail): surface folder choices and missing-folder coverage in Studio [skip ci]"
+      },
+      {
+        "sha": "2979c03a5002794eab6f2262964d93b021776c1e",
+        "subject": "feat(mail): acquire exact local folder inventories with identity fences [skip ci]"
+      },
+      {
+        "sha": "f8a3c757cad8aac5b88ab49e62018169baf4a2f8",
+        "subject": "feat(mail): reusable offline saved-search folder chooser [skip ci]"
+      },
+      {
+        "sha": "b6007c61b88d0061184150b7a58ca7bfcc5ac937",
+        "subject": "feat(mail): localize exact folder-scope choices and recovery [skip ci]"
+      },
+      {
+        "sha": "8d83c463dbeb506bc1cd51796c93792401672d9a",
+        "subject": "feat(mail): preserve exact folder scopes through search sessions and saved revisions [skip ci]"
+      },
+      {
+        "sha": "109b308c9c59dfc92b5318cbe6fd0963bd640fde",
+        "subject": "feat(mail): enforce exact folder membership in cached search and session [skip ci]"
+      },
+      {
+        "sha": "42fe2dbf140651b78a7b3ba305375a2dfae54976",
+        "subject": "feat(mail): persist exact folder sets with bounded, transactional validation [skip ci]"
+      },
+      {
+        "sha": "ad088d3ada6d52b88c245c92fb70fa2bad5a67d0",
+        "subject": "feat(mail): model exact saved-search folder sets and additive schema 11 [skip ci]"
+      }
+    ],
+    "commit_count": 20,
+    "changed_files": [
+      {
+        "path": "docs/roadmaps/mail/README.md",
+        "status": "M",
+        "base_blob": "2e5baf6966e07afad1cfe77fd682453456e32c53",
+        "incoming_blob": "7c714793823c93d1998d66d1dd858a68603c30d9",
+        "added": 11,
+        "deleted": 5
+      },
+      {
+        "path": "docs/roadmaps/mail/folder-scoped-search.md",
+        "status": "A",
+        "base_blob": "0000000000000000000000000000000000000000",
+        "incoming_blob": "ecc9be16cfd1b6a4cad320a86c9782724c0161c7",
+        "added": 69,
+        "deleted": 0
+      },
+      {
+        "path": "docs/roadmaps/mail/status.md",
+        "status": "M",
+        "base_blob": "7694bc4eb1b62f491c03e08762a54a3bf0e08154",
+        "incoming_blob": "9843e1c6569f956ddd8fb77c1edfec98370b9172",
+        "added": 20,
+        "deleted": 4
+      },
+      {
+        "path": "packages/quds_mail_core/lib/src/search/saved_header_search.dart",
+        "status": "M",
+        "base_blob": "7d4bb7d955ff559caa5de5cf3cd07002db7da923",
+        "incoming_blob": "9a4ce28592331dbd6696889144be148ddd2ff562",
+        "added": 54,
+        "deleted": 1
+      },
+      {
+        "path": "packages/quds_mail_core/test/saved_header_search_test.dart",
+        "status": "M",
+        "base_blob": "44ae413b3b69ba140e2ae04664d97b2ab8a58aef",
+        "incoming_blob": "7e5a353b26cd9c1fbaac6b87979517b307e3ee0d",
+        "added": 71,
+        "deleted": 0
+      },
+      {
+        "path": "packages/quds_mail_store/lib/src/cached_header_search.dart",
+        "status": "M",
+        "base_blob": "5b6e9b934d03afcfce3f855798b471095e2b5f50",
+        "incoming_blob": "512ed59dc19c8418facdbcbb30ac0af810a09107",
+        "added": 64,
+        "deleted": 8
+      },
+      {
+        "path": "packages/quds_mail_store/lib/src/saved_header_searches.dart",
+        "status": "M",
+        "base_blob": "8c4c161ab300a0cbddfe72221888b2d4d2f110fd",
+        "incoming_blob": "2b5c48aaf55a19b1c1fb856d5a0c42bb670b8db5",
+        "added": 79,
+        "deleted": 11
+      },
+      {
+        "path": "packages/quds_mail_store/lib/src/schema/database.dart",
+        "status": "M",
+        "base_blob": "2c8f822f838ad8f182f4900794364cc6a949e696",
+        "incoming_blob": "c8907cae295405fc81a94a7e00bb114e9295cc09",
+        "added": 29,
+        "deleted": 5
+      },
+      {
+        "path": "packages/quds_mail_store/test/cached_header_search_test.dart",
+        "status": "M",
+        "base_blob": "7441a76c7d79816b702ba06107323cac5fb2bc0a",
+        "incoming_blob": "ee01e18538b9a7844e4f1307f8c235fe6461cb1d",
+        "added": 80,
+        "deleted": 0
+      },
+      {
+        "path": "packages/quds_mail_store/test/migration_test.dart",
+        "status": "M",
+        "base_blob": "43afd52279ec5c26f789b59386ea5184f445aa77",
+        "incoming_blob": "a9ac801e271ae7b91f9a590bd7208735f079b4ef",
+        "added": 8,
+        "deleted": 8
+      },
+      {
+        "path": "packages/quds_mail_store/test/saved_header_searches_test.dart",
+        "status": "M",
+        "base_blob": "ca534ba2d510840206b7bf7b429fa20edcff4ee4",
+        "incoming_blob": "83ccb14b5cf9c6fb223b52475fad5c8ff8142005",
+        "added": 69,
+        "deleted": 0
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_cached_search.dart",
+        "status": "M",
+        "base_blob": "43acc9cb087d6ebf38191eb2e8d14698c58974e6",
+        "incoming_blob": "de5d500579c598a79286bf477d7909554274b698",
+        "added": 47,
+        "deleted": 7
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_cached_search_dialog.dart",
+        "status": "M",
+        "base_blob": "611095a5b80b7632c8d199f460c783660d36a812",
+        "incoming_blob": "1e7c85fbe31b673062ee0390fe5b657928981f1c",
+        "added": 218,
+        "deleted": 9
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_folder_picker.dart",
+        "status": "A",
+        "base_blob": "0000000000000000000000000000000000000000",
+        "incoming_blob": "b185d9acc4d460ad6052268fb04d6abffd98c5fc",
+        "added": 150,
+        "deleted": 0
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_mailbox_store.dart",
+        "status": "M",
+        "base_blob": "b2c7b016ec77bac32253f7431bbdf9b66e42bb0a",
+        "incoming_blob": "a129922a276fb14d1de330a228a979621f8c1029",
+        "added": 35,
+        "deleted": 1
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_saved_search_strings.dart",
+        "status": "M",
+        "base_blob": "01b8dab8e3c0dd8e1a4ee26fa85f6cc1919a0f27",
+        "incoming_blob": "6029e4bbec6c092dca5d1e521448fb82ba74a405",
+        "added": 36,
+        "deleted": 0
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_cached_search_test.dart",
+        "status": "M",
+        "base_blob": "3d653cc8f8837ced2962a74f49728f8359b41f69",
+        "incoming_blob": "75f4611a88a294217018709ad987338e6f2cd4b6",
+        "added": 76,
+        "deleted": 0
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_folder_picker_test.dart",
+        "status": "A",
+        "base_blob": "0000000000000000000000000000000000000000",
+        "incoming_blob": "8eb554be41f5f5fe04c83d8f9c6f9f261049db4f",
+        "added": 120,
+        "deleted": 0
+      },
+      {
+        "path": "packages/quds_office_editor/example/test/studio_mail_saved_search_dialog_test.dart",
+        "status": "M",
+        "base_blob": "a5c739463f9864d811394827d550019d0c1f3b0f",
+        "incoming_blob": "48a375ab32f3ebba5abdc610aedb10591aec010e",
+        "added": 44,
+        "deleted": 0
+      }
+    ],
+    "changed_file_count": 19,
+    "additions": 1280,
+    "deletions": 59,
+    "overlap_with_zotero_checkpoint_paths": [],
+    "unchanged_engine_tree": true,
+    "unchanged_editor_library_tree": true,
+    "unchanged_dependency_manifests": true
+  },
+  "remote_branches_excluding_current_work_and_fork_main": [
+    {
+      "ref": "origin/codex/word-vba-authoring-20261121",
+      "sha": "cf06b018ec125ce3b5abfda41a7fbbdcf7d30a47",
+      "ahead_current_main": 0,
+      "behind_current_main": 130,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "origin/codex/word-vba-cell-formatting-20261122",
+      "sha": "81d6023b30def58fda5be2279445a08b925d53a5",
+      "ahead_current_main": 5,
+      "behind_current_main": 0,
+      "merge_base": "bcc55cb6e86e796056e2d75c3fdca50857dbf6e7",
+      "ahead_commits": [
+        {
+          "sha": "81d6023b30def58fda5be2279445a08b925d53a5",
+          "subject": "Merge latest remote main with Mail folder-scoped searches [skip ci]"
+        },
+        {
+          "sha": "ca4d7ea9d8e4850f3d5d451724c87e1e45cca3cd",
+          "subject": "test(vba-word): verify cell report preservation across native save metadata [skip ci]"
+        },
+        {
+          "sha": "75e067c9749de0f1acaf7214d28c61ace6b4f411",
+          "subject": "test(vba-word): assert refused cell edits against live model state [skip ci]"
+        },
+        {
+          "sha": "b140de98d97991623e9aeeb81472928fce6a35d2",
+          "subject": "fix(vba-word): isolate cell formatting and add portable report coverage [skip ci]"
+        },
+        {
+          "sha": "84427d975fca0ee8ed9ec59ce8476827cdff75ec",
+          "subject": "feat(vba-word): support guarded table-cell font and paragraph formatting [skip ci]"
+        }
+      ],
+      "changed_paths": [
+        {
+          "path": "docs/MACROS.md",
+          "status": "M",
+          "base_blob": "9e680821dc61bdf6c3c303065d56d7563627483b",
+          "incoming_blob": "b67f025604b91856c44b020aeec90f55e251ebdc",
+          "added": 35,
+          "deleted": 0
+        },
+        {
+          "path": "docs/VBA_PARITY_ROADMAP.md",
+          "status": "M",
+          "base_blob": "6afcb549562b6498ee6c0c12bfbf15de03e65fb1",
+          "incoming_blob": "518015079d14884c2fd1bd0b5e693d705e066f61",
+          "added": 29,
+          "deleted": 4
+        },
+        {
+          "path": "docs/VBA_WORD_MACROS.md",
+          "status": "M",
+          "base_blob": "9ee2588011dee031c79b0952b3e65947bcf2f149",
+          "incoming_blob": "152a4fcc944bbf6ac3c8ef7df05748667e1d4d9f",
+          "added": 32,
+          "deleted": 9
+        },
+        {
+          "path": "docs/validation/word-vba-cell-formatting-20261122/README.md",
+          "status": "A",
+          "base_blob": "0000000000000000000000000000000000000000",
+          "incoming_blob": "046011e8a431d3f1dc4d711d16af325ecb12887b",
+          "added": 65,
+          "deleted": 0
+        },
+        {
+          "path": "docs/validation/word-vba-cell-formatting-20261122/intake.json",
+          "status": "A",
+          "base_blob": "0000000000000000000000000000000000000000",
+          "incoming_blob": "d4c3741670fa0c405ad0948f0c661235e25034f9",
+          "added": 112,
+          "deleted": 0
+        },
+        {
+          "path": "docs/vba-word-macros-details.md",
+          "status": "M",
+          "base_blob": "d9f3b53a0b1cae46048a238a9a154c5b8827380e",
+          "incoming_blob": "09eb71174cfcebb2dc02626c8591f09953d90df4",
+          "added": 121,
+          "deleted": 9
+        },
+        {
+          "path": "packages/quds_office_engine/CHANGELOG.md",
+          "status": "M",
+          "base_blob": "3ba0ec735bcb6ebf4078cc64e80781cf8057c1fb",
+          "incoming_blob": "08f840c25a359a55e8e564b305a79203498553df",
+          "added": 13,
+          "deleted": 0
+        },
+        {
+          "path": "packages/quds_office_engine/example/macros/word_table_formatting.bas",
+          "status": "A",
+          "base_blob": "0000000000000000000000000000000000000000",
+          "incoming_blob": "5f700b8c1a7c6ee6513c11fe48038beb212a5fa4",
+          "added": 48,
+          "deleted": 0
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/automation/office_operations.dart",
+          "status": "M",
+          "base_blob": "1d00960f328bbd355ce3e204591aa1b39c6c4233",
+          "incoming_blob": "c3c844d9cca012ed3ae91d2e4158b5c15f37d8db",
+          "added": 6,
+          "deleted": 5
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+          "status": "M",
+          "base_blob": "a4bfcb52386c8c462e0845912543c33d89629314",
+          "incoming_blob": "e0457d9e0c9430258e51d4a960a8691360783ca3",
+          "added": 28,
+          "deleted": 5
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+          "status": "M",
+          "base_blob": "80cb771c7e422d4141e2a71f328da4ff035be3e4",
+          "incoming_blob": "fedb5b7d77fb2361e57e67732f84acb1511c51c5",
+          "added": 59,
+          "deleted": 7
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/automation/operations/word_table_cell_text_steps.dart",
+          "status": "M",
+          "base_blob": "3a7723ccc8cb94e4d831a785eb8edccd0c14986b",
+          "incoming_blob": "616f85e92c36a2291e57695a498fe998072e159e",
+          "added": 29,
+          "deleted": 18
+        },
+        {
+          "path": "packages/quds_office_engine/test/office_macro_word_cell_formatting_test.dart",
+          "status": "A",
+          "base_blob": "0000000000000000000000000000000000000000",
+          "incoming_blob": "605e34ccbbae172f0448651d90a40cb8b6a571a6",
+          "added": 271,
+          "deleted": 0
+        },
+        {
+          "path": "packages/quds_office_engine/test/office_vba_word_cell_formatting_integration_test.dart",
+          "status": "A",
+          "base_blob": "0000000000000000000000000000000000000000",
+          "incoming_blob": "725f64e29badb9176a3fa8e93448bec845ae81bb",
+          "added": 743,
+          "deleted": 0
+        },
+        {
+          "path": "packages/quds_office_engine/test/office_vba_word_cell_formatting_test.dart",
+          "status": "A",
+          "base_blob": "0000000000000000000000000000000000000000",
+          "incoming_blob": "930efd474459577046c927a0afc798db2e703ac2",
+          "added": 468,
+          "deleted": 0
+        },
+        {
+          "path": "packages/quds_office_engine/test/office_vba_word_font_colors_test.dart",
+          "status": "M",
+          "base_blob": "7669fcbf0fad1aa268c1c33e2e2bed2a301528db",
+          "incoming_blob": "ee0fdc1accc14a25ee98ebff79216e60bc31393f",
+          "added": 5,
+          "deleted": 4
+        },
+        {
+          "path": "packages/quds_office_engine/test/office_vba_word_table_cells_test.dart",
+          "status": "M",
+          "base_blob": "7cb761520b85e94f21e053844bd46d3e3e49daca",
+          "incoming_blob": "b4290db0c9f96f33dfba86f8c63a7fac2eef22ac",
+          "added": 3,
+          "deleted": 3
+        },
+        {
+          "path": "packages/quds_office_engine/tool/macros/web_vba_word_cell_formatting_smoke.dart",
+          "status": "A",
+          "base_blob": "0000000000000000000000000000000000000000",
+          "incoming_blob": "93e820c8c88dfbde42b14d9f1cca2fbbcd34bf93",
+          "added": 306,
+          "deleted": 0
+        }
+      ],
+      "disposition": "retain_unfinished_branch_do_not_merge_checkpoint",
+      "reason": "No PR. Committed qualification record says validation is being completed and final receipt remains pending. Includes current Mail main and four substantive VBA automation commits.",
+      "qualification_document": "docs/validation/word-vba-cell-formatting-20261122/README.md",
+      "qualification_document_blob": "046011e8a431d3f1dc4d711d16af325ecb12887b"
+    },
+    {
+      "ref": "origin/codex/word-vba-comparison-colors-20261121",
+      "sha": "e3c4550b34a9a07de2a97b84b67ab6aecaa5a377",
+      "ahead_current_main": 0,
+      "behind_current_main": 39,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "origin/codex/word-vba-compatibility-20261121",
+      "sha": "3058d36c5354d46bde418555d59282116cce1e26",
+      "ahead_current_main": 0,
+      "behind_current_main": 87,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "origin/codex/zotero-dispatch-recovery-20261121",
+      "sha": "32ef843db3a8192fe0add085e1ee173e18f4d462",
+      "ahead_current_main": 0,
+      "behind_current_main": 84,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "origin/codex/zotero-footnote-separators-20261121",
+      "sha": "a70c0e7af251d737dc7639f44a48777bbea1bf51",
+      "ahead_current_main": 0,
+      "behind_current_main": 75,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "origin/codex/zotero-host-ownership-20261121",
+      "sha": "05cb866e6e5aaee95dae8b03da2892fcf633a84b",
+      "ahead_current_main": 0,
+      "behind_current_main": 75,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "origin/codex/zotero-main-qualification-20261121",
+      "sha": "e2a1ed6073556d24194004221c545166b17c2d4e",
+      "ahead_current_main": 0,
+      "behind_current_main": 30,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "origin/codex/zotero-note-layout-20261121",
+      "sha": "2089e1e35a8ba81ea7f0a077b348f93ca70953c8",
+      "ahead_current_main": 0,
+      "behind_current_main": 109,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "origin/codex/zotero-odt-roundtrip-20261121",
+      "sha": "05072dc2d59d0fa4ea97de4d6a842700ef333fab",
+      "ahead_current_main": 0,
+      "behind_current_main": 124,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "origin/codex/zotero-select-navigation-20261122",
+      "sha": "8c1b8da71bb910d4025aa179dc56290cf1a8e72a",
+      "ahead_current_main": 0,
+      "behind_current_main": 21,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "origin/codex/zotero-shortcut-host-recovery-20261121",
+      "sha": "2168011b6104f680100b87404bc1bd409f724939",
+      "ahead_current_main": 0,
+      "behind_current_main": 84,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "origin/codex/zotero-source-continuity-20261121-2135",
+      "sha": "c4c16d91d62ded0c341bee95e98de894de70483f",
+      "ahead_current_main": 0,
+      "behind_current_main": 84,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "origin/work/mail-folder-scoped-search-20261122",
+      "sha": "ff30d1064a052abbfbcdc99745ff66f8bc980aea",
+      "ahead_current_main": 0,
+      "behind_current_main": 1,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "origin/work/mail-folder-search-20261122",
+      "sha": "b0d5f867b3bdc0ee61549a09c09f942db0f68ee1",
+      "ahead_current_main": 4,
+      "behind_current_main": 20,
+      "merge_base": "c522851d165b395a7f60422a1be969dffc39c9ff",
+      "ahead_commits": [
+        {
+          "sha": "b0d5f867b3bdc0ee61549a09c09f942db0f68ee1",
+          "subject": "feat(mail): complete folder selection, coverage and recovery workflows [skip ci]"
+        },
+        {
+          "sha": "cb6dbcdcdb6dfbcd2aa186cf0d1a98b2953b526e",
+          "subject": "feat(mail): resolve exact folder sets through guarded local search sessions [skip ci]"
+        },
+        {
+          "sha": "b4fd1ac4ffb2c65bd0805306781ce1406ddfb905",
+          "subject": "feat(mail): persist exact folder scopes and bounded retained-header queries [skip ci]"
+        },
+        {
+          "sha": "34358000669d52a3f18664586aa4c3223d7b9caf",
+          "subject": "docs(mail): record reconciled intake and folder-search acceptance [skip ci]"
+        }
+      ],
+      "changed_paths": [
+        {
+          "path": "docs/roadmaps/mail/README.md",
+          "status": "M",
+          "base_blob": "2e5baf6966e07afad1cfe77fd682453456e32c53",
+          "incoming_blob": "8fdca1882df33f53ee907446344b927aa8b98859",
+          "added": 10,
+          "deleted": 3
+        },
+        {
+          "path": "docs/roadmaps/mail/folder-saved-search.md",
+          "status": "A",
+          "base_blob": "0000000000000000000000000000000000000000",
+          "incoming_blob": "6f68e8fc2916d3133d2096bc86d8457fef3a0d90",
+          "added": 149,
+          "deleted": 0
+        },
+        {
+          "path": "docs/roadmaps/mail/implementation-plan.md",
+          "status": "M",
+          "base_blob": "9e9cfdce1cb1f87feddeb2fe07b8c73e4e5daa68",
+          "incoming_blob": "d443fa63d560f85eaf825267471cb732e9d811bd",
+          "added": 7,
+          "deleted": 0
+        },
+        {
+          "path": "docs/roadmaps/mail/keyboard-triage.md",
+          "status": "M",
+          "base_blob": "99e4a22d1fe9108226e8bf2e19d2f3f511dfc155",
+          "incoming_blob": "18bbff7160435a244728b93c1a2c1e22d96575ff",
+          "added": 7,
+          "deleted": 5
+        },
+        {
+          "path": "docs/roadmaps/mail/saved-searches.md",
+          "status": "M",
+          "base_blob": "ebe1cbfcc9b1a2a86b86cd17b415254ca1006722",
+          "incoming_blob": "16ba239521c77c504862bf9370501c41f8a593c0",
+          "added": 6,
+          "deleted": 2
+        },
+        {
+          "path": "docs/roadmaps/mail/status.md",
+          "status": "M",
+          "base_blob": "7694bc4eb1b62f491c03e08762a54a3bf0e08154",
+          "incoming_blob": "d37cdc910daf6321e9a5f55bf9d479106a17a314",
+          "added": 21,
+          "deleted": 5
+        },
+        {
+          "path": "docs/validation/mail-folder-search-20261122/README.md",
+          "status": "A",
+          "base_blob": "0000000000000000000000000000000000000000",
+          "incoming_blob": "d8a8c59a6a04ca9d67efc2580cc537e459343fe9",
+          "added": 57,
+          "deleted": 0
+        },
+        {
+          "path": "packages/quds_mail_core/CHANGELOG.md",
+          "status": "M",
+          "base_blob": "b15ea7d83911aa9dfdc85c6679259418600fac9b",
+          "incoming_blob": "a999769225501118bb9adea7c64339b10d24fa5b",
+          "added": 6,
+          "deleted": 0
+        },
+        {
+          "path": "packages/quds_mail_core/lib/src/search/saved_header_search.dart",
+          "status": "M",
+          "base_blob": "7d4bb7d955ff559caa5de5cf3cd07002db7da923",
+          "incoming_blob": "4774f78c1c5b0383f3841d2bc6cbf0569c5a8673",
+          "added": 88,
+          "deleted": 8
+        },
+        {
+          "path": "packages/quds_mail_core/test/saved_header_search_folders_test.dart",
+          "status": "A",
+          "base_blob": "0000000000000000000000000000000000000000",
+          "incoming_blob": "363558c91d7eba0c8635e2e5af352aea88821849",
+          "added": 149,
+          "deleted": 0
+        },
+        {
+          "path": "packages/quds_mail_store/CHANGELOG.md",
+          "status": "M",
+          "base_blob": "4f1e62f5dcb5f8d16c45eae93101569d71b0f957",
+          "incoming_blob": "aade2ee9ecbae80dab9b419a29fa929f5c830caf",
+          "added": 9,
+          "deleted": 0
+        },
+        {
+          "path": "packages/quds_mail_store/lib/src/cached_header_search.dart",
+          "status": "M",
+          "base_blob": "5b6e9b934d03afcfce3f855798b471095e2b5f50",
+          "incoming_blob": "9b0087ef2e105dacf7df7bf60a0f175eb16b6928",
+          "added": 187,
+          "deleted": 22
+        },
+        {
+          "path": "packages/quds_mail_store/lib/src/saved_header_searches.dart",
+          "status": "M",
+          "base_blob": "8c4c161ab300a0cbddfe72221888b2d4d2f110fd",
+          "incoming_blob": "8ec933aa54708a2df8552b258105da45c18ea8f1",
+          "added": 85,
+          "deleted": 11
+        },
+        {
+          "path": "packages/quds_mail_store/lib/src/schema/database.dart",
+          "status": "M",
+          "base_blob": "2c8f822f838ad8f182f4900794364cc6a949e696",
+          "incoming_blob": "18aa45c96111a89c3b36b7f6784d582e75523caa",
+          "added": 32,
+          "deleted": 5
+        },
+        {
+          "path": "packages/quds_mail_store/test/cached_header_search_folders_test.dart",
+          "status": "A",
+          "base_blob": "0000000000000000000000000000000000000000",
+          "incoming_blob": "ecad3eca4fbff5af6f168a92b9cb95a277718a34",
+          "added": 370,
+          "deleted": 0
+        },
+        {
+          "path": "packages/quds_mail_store/test/compose_settings_test.dart",
+          "status": "M",
+          "base_blob": "b0a9d4133155b1f32c7601661d529a60bcc17d80",
+          "incoming_blob": "21f7febdc77283e043cad24563bed39fbe0e70c0",
+          "added": 1,
+          "deleted": 1
+        },
+        {
+          "path": "packages/quds_mail_store/test/flag_reconciliation_test.dart",
+          "status": "M",
+          "base_blob": "aa585637912e5df2ffdab71beffab3ede9c08a35",
+          "incoming_blob": "9959f4a0975237953ba45895c549d0b861182383",
+          "added": 1,
+          "deleted": 1
+        },
+        {
+          "path": "packages/quds_mail_store/test/migration_test.dart",
+          "status": "M",
+          "base_blob": "43afd52279ec5c26f789b59386ea5184f445aa77",
+          "incoming_blob": "a9ac801e271ae7b91f9a590bd7208735f079b4ef",
+          "added": 8,
+          "deleted": 8
+        },
+        {
+          "path": "packages/quds_mail_store/test/saved_header_search_folders_test.dart",
+          "status": "A",
+          "base_blob": "0000000000000000000000000000000000000000",
+          "incoming_blob": "1d73595311a16b3d90c5a2dd9cd5c043a3b98087",
+          "added": 381,
+          "deleted": 0
+        },
+        {
+          "path": "packages/quds_mail_store/test/saved_search_folder_migration_test.dart",
+          "status": "A",
+          "base_blob": "0000000000000000000000000000000000000000",
+          "incoming_blob": "3ddf99764278eeedecefcd94357e49bbc5842a61",
+          "added": 184,
+          "deleted": 0
+        },
+        {
+          "path": "packages/quds_mail_store/test/sync_mailboxes_test.dart",
+          "status": "M",
+          "base_blob": "19fd5e3341f2ba53b38050372c6fe42bc0fef86f",
+          "incoming_blob": "e0515b4278c1c337729f0d081be52f73a8b73eac",
+          "added": 4,
+          "deleted": 2
+        },
+        {
+          "path": "packages/quds_office_editor/CHANGELOG.md",
+          "status": "M",
+          "base_blob": "ddf1a282699a62e7b434c1e3f2280c9e65c8e82e",
+          "incoming_blob": "8d87075f5692553e09f99f6323f656372c05229d",
+          "added": 6,
+          "deleted": 0
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_cached_search.dart",
+          "status": "M",
+          "base_blob": "43acc9cb087d6ebf38191eb2e8d14698c58974e6",
+          "incoming_blob": "fa744fdc166ca6150688e854dce32e57dadade99",
+          "added": 319,
+          "deleted": 20
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_cached_search_dialog.dart",
+          "status": "M",
+          "base_blob": "611095a5b80b7632c8d199f460c783660d36a812",
+          "incoming_blob": "439d653abd661de6b55fdc2245fb7f4c8c24b195",
+          "added": 214,
+          "deleted": 8
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_cached_search_refresh.dart",
+          "status": "M",
+          "base_blob": "c29e55c6474df2480f7d33419765ed5771ed9498",
+          "incoming_blob": "8603f3ee14fce5a6fbd762c30c8bf9004f4172ef",
+          "added": 8,
+          "deleted": 3
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_mailbox_store.dart",
+          "status": "M",
+          "base_blob": "b2c7b016ec77bac32253f7431bbdf9b66e42bb0a",
+          "incoming_blob": "ffa433076727f2da421e6b4b393ac4daafe3b94d",
+          "added": 51,
+          "deleted": 0
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_search_folder_picker.dart",
+          "status": "A",
+          "base_blob": "0000000000000000000000000000000000000000",
+          "incoming_blob": "93e33b95a3ea0f309fecff959116f3c4d265e026",
+          "added": 238,
+          "deleted": 0
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_search_folder_strings.dart",
+          "status": "A",
+          "base_blob": "0000000000000000000000000000000000000000",
+          "incoming_blob": "499f374255b4edba85f6b30e7389c4e1a30d93dd",
+          "added": 91,
+          "deleted": 0
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_cached_search_dialog_test.dart",
+          "status": "M",
+          "base_blob": "1438c86c6411283b6ebc1c66f3e571ab54417053",
+          "incoming_blob": "773cee7bc91116b1d73418bdf1c398a3892a37e2",
+          "added": 8,
+          "deleted": 2
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_folder_search_dialog_test.dart",
+          "status": "A",
+          "base_blob": "0000000000000000000000000000000000000000",
+          "incoming_blob": "400d66589fc47f2553676e2a72f91364d514c4a0",
+          "added": 381,
+          "deleted": 0
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_folder_search_lifecycle_test.dart",
+          "status": "A",
+          "base_blob": "0000000000000000000000000000000000000000",
+          "incoming_blob": "aed3c33edffc76de9aef4169dd0b2cf4a932762d",
+          "added": 392,
+          "deleted": 0
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_folder_search_test.dart",
+          "status": "A",
+          "base_blob": "0000000000000000000000000000000000000000",
+          "incoming_blob": "60dd00b175a5fbbb684206084692df7f3b3ee140",
+          "added": 750,
+          "deleted": 0
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_search_folder_picker_test.dart",
+          "status": "A",
+          "base_blob": "0000000000000000000000000000000000000000",
+          "incoming_blob": "dd63a712fed7df2d50e65dcbe7df4b6613b6ae15",
+          "added": 293,
+          "deleted": 0
+        }
+      ],
+      "disposition": "retain_parallel_unfinished_implementation_requires_deliberate_reconciliation",
+      "reason": "No PR. Committed qualification record states implementation and fresh qualification are in progress. Overlaps already-merged PR354 but has incompatible public names and schema11 layout, so neither equivalent nor safe to replay blindly.",
+      "qualification_document": "docs/validation/mail-folder-search-20261122/README.md",
+      "qualification_document_blob": "d8a8c59a6a04ca9d67efc2580cc537e459343fe9"
+    },
+    {
+      "ref": "origin/work/mail-keyboard-triage-20261121",
+      "sha": "08d034d876073e2afc881dbfc11ba791acde3d67",
+      "ahead_current_main": 0,
+      "behind_current_main": 35,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "origin/work/mail-live-search-20261121",
+      "sha": "c3d55be30d91694b1a427d261cddbe47b1dd5eec",
+      "ahead_current_main": 0,
+      "behind_current_main": 109,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "origin/work/mail-range-selection-tests-20261121",
+      "sha": "5c7a385c5de40394d9eed736c5a2d975535c3df3",
+      "ahead_current_main": 0,
+      "behind_current_main": 83,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "origin/work/mail-sync-address-search-20261121",
+      "sha": "33d8f956ec2ed1dfd748e1d7ccbc5add053ff565",
+      "ahead_current_main": 0,
+      "behind_current_main": 86,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "upstream/ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "ahead_current_main": 0,
+      "behind_current_main": 3509,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "upstream/cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "ahead_current_main": 0,
+      "behind_current_main": 3502,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "upstream/cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "ahead_current_main": 0,
+      "behind_current_main": 3512,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "upstream/main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "ahead_current_main": 0,
+      "behind_current_main": 3496,
+      "disposition": "already_ancestor"
+    }
+  ],
+  "branch_counts": {
+    "fork_non_main_excluding_current_work": 19,
+    "upstream": 4,
+    "ahead": 2,
+    "already_ancestor": 21
+  },
+  "parallel_mail_differences": [
+    {
+      "surface": "MailSavedHeaderSearch field/constructor/copyWith",
+      "merged_main": "folderScopes",
+      "unfinished_branch": "folders"
+    },
+    {
+      "surface": "Explicit folder bound",
+      "merged_main": "200",
+      "unfinished_branch": "1000"
+    },
+    {
+      "surface": "Schema11 discriminator column",
+      "merged_main": "has_folder_scope",
+      "unfinished_branch": "folder_scope"
+    },
+    {
+      "surface": "Schema11 saved_header_search_folders",
+      "merged_main": "search FK to saved_header_searches(id); no display_name",
+      "unfinished_branch": "composite (search,account_id) FK to saved_header_search_accounts; display_name column"
+    }
+  ],
+  "validation_implications": {
+    "engine_and_editor_zotero": "Mail main changes no engine or editor-library production sources or dependency manifests. Existing source-bound engine/editor results can be carried forward by input comparison; broad unrelated reruns are not justified by this merge alone.",
+    "studio": "Studio workspace suites compile changed Mail code through suite_workspace.dart -> studio_mail.dart -> studio_mail_native.dart -> studio_mail_local_accounts_dialog.dart -> studio_mail_cached_search_dialog.dart, and import the changed Mail core/store libraries. Run the planned four-file Studio Zotero/host-ownership cohort after integration; do not attribute a pre-merge Studio run to final combined source.",
+    "studio_cohort_relative_to_example": [
+      "test/studio_zotero_citing_transport_test.dart",
+      "test/studio_zotero_shortcuts_test.dart",
+      "test/studio_zotero_odt_export_test.dart",
+      "test/studio_shortcut_host_ownership_test.dart"
+    ],
+    "mail_qualification_limit": "Merged PR354 explicitly has no executed new-test evidence. Passing the Studio Zotero cohort establishes its compilation and affected Zotero workspace behavior, not full Mail folder-search feature qualification.",
+    "future_vba_integration": "If the active VBA branch is completed and later incorporated, its four changed automation production libraries enter through the separate quds_office_automation.dart entry point, not the general quds_office_engine.dart umbrella. Refresh actual source input comparisons and targeted compiler/automation checks then; do not claim whole-engine input manifests remain byte-identical after that integration.",
+    "publication": "Re-read remote main and ahead branch/PR status immediately before publication. Preserve current main ancestry, all remote work branches and their incremental checkpoints."
+  }
+}
