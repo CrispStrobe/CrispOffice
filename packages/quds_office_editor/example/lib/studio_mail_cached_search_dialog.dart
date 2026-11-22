@@ -1330,7 +1330,12 @@ class _StudioMailCachedSearchDialogState
         Text(widget.strings.mailCachedSearchMatches(_hits.length)),
         for (final entry in _coverage.where((value) => value.problem != null))
           Text(
-            '${entry.account.sender}: ${widget.strings.mailCachedSearchAccountFailed}',
+            entry.account.sender +
+                ': ' +
+                (entry.problem == MailProblemCode.unavailable &&
+                        _folderScopes != null
+                    ? widget.strings.mailSavedSearchFolderMissing
+                    : widget.strings.mailCachedSearchAccountFailed),
           ),
         if (_hits.isEmpty && !_busy)
           Text(
