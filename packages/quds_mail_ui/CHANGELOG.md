@@ -1,5 +1,10 @@
 ## Unreleased
 
+- Let connected hosts opt in to checked-message Move/Delete with an immutable
+  `supportedBulkActions` snapshot and localized labels. Preserve the flag-only
+  default, visible-order selection, hidden-row exclusion and stale-menu guards;
+  hosts own destination previews, confirmation and durable provider dispatch.
+
 - Keep the generic checked-message menu limited to explicit flag assignments
   when the shared journal adds Move/Delete; membership commands require their
   host's separate destination or confirmation workflow.
