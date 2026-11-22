@@ -2884,6 +2884,37 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     label: Text(widget.strings.mailLocalAccounts),
   );
 
+  VoidCallback _forCurrentConnection(VoidCallback action) {
+    final provider = _provider;
+    final session = _session;
+    final mailbox = _mailbox;
+    final mailboxGeneration = _mailboxGeneration;
+    final initialAccount = widget.initialAccount;
+    final directory = _localAccounts;
+    return () {
+      if (!mounted ||
+          !identical(provider, _provider) ||
+          !identical(session, _session) ||
+          !identical(mailbox, _mailbox) ||
+          mailboxGeneration != _mailboxGeneration ||
+          !identical(initialAccount, widget.initialAccount) ||
+          !identical(directory, _localAccounts)) {
+        return;
+      }
+      // Admission remains action-specific: Disconnect must still cancel an
+      // authorization or restoration while the ordinary toolbar is busy.
+      action();
+    };
+  }
+
+  VoidCallback? _loadCurrentHeadersAction({bool more = false}) {
+    final mailbox = _mailbox;
+    if (mailbox == null) return null;
+    return _forCurrentConnection(
+      () => unawaited(_loadHeaders(mailbox, more: more)),
+    );
+  }
+
   @override
   Widget build(BuildContext context) => PopScope<Object?>(
     canPop: _allowPop || _routeRetired,
@@ -2900,7 +2931,9 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                 key: const ValueKey('studio-mail-switch-account'),
                 tooltip: widget.strings.mailAccountNavigationTitle,
                 icon: const Icon(Icons.switch_account_outlined),
-                onPressed: _blocked ? null : _navigateAccount,
+                onPressed: _blocked
+                    ? null
+                    : _forCurrentConnection(_navigateAccount),
               ),
             if (_connected) ...[
               if (_draftStore is StudioMailMailboxStoreOwner)
@@ -2910,44 +2943,50 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                   icon: const Icon(Icons.sync),
                   onPressed: _blocked || _mailbox == null
                       ? null
-                      : _openSynchronization,
+                      : _forCurrentConnection(_openSynchronization),
                 ),
               IconButton(
                 tooltip: widget.strings.compose,
                 icon: const Icon(Icons.edit_outlined),
-                onPressed: _blocked ? null : () => _compose(),
+                onPressed: _blocked
+                    ? null
+                    : _forCurrentConnection(() => _compose()),
               ),
               IconButton(
                 key: const ValueKey('studio-mail-open-drafts'),
                 tooltip: widget.strings.mailDrafts,
                 icon: const Icon(Icons.drafts_outlined),
-                onPressed: _blocked ? null : _openDrafts,
+                onPressed: _blocked ? null : _forCurrentConnection(_openDrafts),
               ),
               IconButton(
                 key: const ValueKey('studio-mail-open-outbox'),
                 tooltip: widget.strings.mailOutbox,
                 icon: const Icon(Icons.outbox_outlined),
-                onPressed: _blocked || !_canSend ? null : _openOutbox,
+                onPressed: _blocked || !_canSend
+                    ? null
+                    : _forCurrentConnection(_openOutbox),
               ),
               if (_draftStore is StudioMailFlagJournalOwner)
                 IconButton(
                   key: const ValueKey('studio-mail-open-activity'),
                   icon: const Icon(Icons.history),
                   tooltip: widget.strings.mailActivity,
-                  onPressed: _blocked ? null : _openFlagHistory,
+                  onPressed: _blocked
+                      ? null
+                      : _forCurrentConnection(_openFlagHistory),
                 ),
               IconButton(
                 tooltip: widget.strings.refresh,
                 icon: const Icon(Icons.refresh),
-                onPressed: _blocked || _mailbox == null
-                    ? null
-                    : () => _loadHeaders(_mailbox!),
+                onPressed: _blocked ? null : _loadCurrentHeadersAction(),
               ),
               if (_draft != null)
                 IconButton(
                   tooltip: widget.strings.mailDiscardDraft,
                   icon: const Icon(Icons.delete_outline),
-                  onPressed: _blocked ? null : _discardDraft,
+                  onPressed: _blocked
+                      ? null
+                      : _forCurrentConnection(_discardDraft),
                 ),
             ],
             if (_session != null)
@@ -2961,7 +3000,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                         _mailboxViewReleaseFailed ||
                         _retiredDraftStore != null
                     ? null
-                    : _disconnectFromUi,
+                    : _forCurrentConnection(_disconnectFromUi),
               ),
             IconButton(
               tooltip: widget.strings.close,
@@ -3554,9 +3593,9 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                   },
             hasMore: _next != null && _headers.length < _maxHeaders,
             loadMoreKey: const ValueKey('ews-load-more'),
-            onLoadMore: _needsRefresh || _mailbox == null
+            onLoadMore: _needsRefresh
                 ? null
-                : () => unawaited(_loadHeaders(_mailbox!, more: true)),
+                : _loadCurrentHeadersAction(more: true),
             limitNotice: _headers.length >= _maxHeaders && _next != null
                 ? widget.strings.mailWorkspaceLimit
                 : null,
