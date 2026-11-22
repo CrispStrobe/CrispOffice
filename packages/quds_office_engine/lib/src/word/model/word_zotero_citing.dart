@@ -247,6 +247,7 @@ final class WordZoteroCitingSession {
   late final String? _originalDataOverride;
   late String _nativeData;
   _CitingField? _selected;
+  _CitingField? _selectedForContext;
   _CitingField? _stagedInsertion;
   WordZoteroNoteText? _noteText;
   late final _ResearchRangeOwner? _originalNoteTextOwner;
@@ -316,6 +317,82 @@ final class WordZoteroCitingSession {
   }
 
   bool get isComplete => _complete;
+
+  /// The last explicit `Field.select` request in this active transaction.
+  ///
+  /// This is a read-only source highlight, independent of the host's writing
+  /// caret and the implicit field selected when the session opened. Resolve it
+  /// again after each callback; completion, deletion and unlinking clear it.
+  /// A changed source throws [StateError] rather than exposing stale ranges.
+  ///
+  /// Existing fields resolve exclusively against the unchanged live document,
+  /// even after Zotero stages different text, codes or note placement. Newly
+  /// inserted fields and fields in a detached transfer import have no live
+  /// source range. Their context identifies that distinction without exposing
+  /// staged text, codes or detached model objects as document content.
+  WordZoteroFieldSelectionContext? get selectedFieldContext {
+    if (_complete || _applied) return null;
+    final imported = _importSession;
+    final field = imported == null
+        ? _selectedForContext
+        : imported._selectedForContext;
+    if (field == null || field.deleted || field.unlinked) return null;
+    assertUnchanged();
+    if (imported != null) {
+      imported.assertUnchanged();
+      return WordZoteroFieldSelectionContext._(
+        fieldId: field.id,
+        kind:
+            field.original?.kind ??
+            (field.code == 'TEMP' ? null : _kind(field)),
+        source: WordZoteroFieldSelectionSource.importedDocument,
+      );
+    }
+    final original = field.original;
+    if (original == null) {
+      return WordZoteroFieldSelectionContext._(
+        fieldId: field.id,
+        kind: field.code == 'TEMP' ? null : _kind(field),
+        source: WordZoteroFieldSelectionSource.stagedInsertion,
+      );
+    }
+    // Return a freshly located live field, not a captured run handle which
+    // could have been replaced by equivalent native markup. Match the entire
+    // paragraph span so multipart bibliography ranges cannot be shortened.
+    final matches = WordZotero.fields(document)
+        .where(
+          (candidate) =>
+              _sameField(candidate, original) &&
+              candidate.cachedText == original.cachedText &&
+              candidate.paragraphs.length == original.paragraphs.length &&
+              candidate.paragraphs.indexed.every(
+                (entry) => identical(entry.$2, original.paragraphs[entry.$1]),
+              ),
+        )
+        .toList();
+    if (matches.length != 1) {
+      throw StateError('The selected Zotero source field changed.');
+    }
+    final source = matches.single;
+    return WordZoteroFieldSelectionContext._(
+      fieldId: field.id,
+      kind: source.kind,
+      source: WordZoteroFieldSelectionSource.document,
+      sourceField: source,
+      sourceNote: field.note,
+      sourceRanges: [
+        for (final (index, paragraph) in source.paragraphs.indexed)
+          (
+            paragraph: paragraph,
+            start: index == 0 ? source.start : 0,
+            end: index == source.paragraphs.length - 1
+                ? source.end
+                : paragraph.text.length,
+          ),
+      ],
+    );
+  }
+
   bool get hasInsertedNoteText =>
       _importSession?.hasInsertedNoteText ?? (_noteText != null);
   String get documentData => _importSession?.documentData ?? _nativeData;
@@ -435,7 +512,10 @@ final class WordZoteroCitingSession {
         );
       }
       final result = imported.handle(command, args);
-      if (command == 'Document.complete') _complete = true;
+      if (command == 'Document.complete') {
+        _selectedForContext = null;
+        _complete = true;
+      }
       return result;
     }
     if (hasExportedDocument &&
@@ -651,19 +731,29 @@ final class WordZoteroCitingSession {
         for (final field in _fields) {
           if (!field.deleted && !field.unlinked) _validateCode(field.code);
         }
+        _selectedForContext = null;
         _complete = true;
         return null;
       case 'Field.select':
         _arity(args, 2);
-        _selected = _field(args[1]);
+        final field = _field(args[1]);
+        if (field.unlinked) {
+          throw const FormatException('Zotero addressed an unlinked field.');
+        }
+        _selected = field;
+        _selectedForContext = field;
         return null;
       case 'Field.delete':
         _arity(args, 2);
-        _field(args[1]).deleted = true;
+        final field = _field(args[1]);
+        field.deleted = true;
+        if (identical(_selectedForContext, field)) _selectedForContext = null;
         return null;
       case 'Field.removeCode':
         _arity(args, 2);
-        _field(args[1]).unlinked = true;
+        final field = _field(args[1]);
+        field.unlinked = true;
+        if (identical(_selectedForContext, field)) _selectedForContext = null;
         return null;
       case 'Field.setCode':
         _arity(args, 3);
@@ -1751,6 +1841,7 @@ final class WordZoteroCitingSession {
     }
     _noteText = parsed;
     _selected = null;
+    _selectedForContext = null;
   }
 
   void _assertNoteBlockTarget(WordZoteroNoteText text) {
@@ -2181,6 +2272,7 @@ final class WordZoteroCitingSession {
     _addField(result);
     _stagedInsertion = result;
     _selected = result;
+    _selectedForContext = null;
     return result;
   }
 
@@ -2531,6 +2623,62 @@ final class WordZoteroCitingSession {
       }
     }
   }
+}
+
+/// A half-open text range in an original live document paragraph.
+/// Offsets use the same UTF-16 units as [WmlParagraph.text].
+typedef WordZoteroFieldSelectionRange = ({
+  WmlParagraph paragraph,
+  int start,
+  int end,
+});
+
+/// Where Zotero's explicitly selected field exists before a staged edit applies.
+enum WordZoteroFieldSelectionSource {
+  /// An existing body, footnote, endnote or bibliography field.
+  document,
+
+  /// An insertion or research-note placeholder not yet in the live document.
+  stagedInsertion,
+
+  /// A field in the detached result of a transfer import.
+  importedDocument,
+}
+
+/// Read-only context for an explicit native Zotero `Field.select` request.
+///
+/// Obtain this from [WordZoteroCitingSession.selectedFieldContext]. The context
+/// is valid only for that checked source state; resolve it again after each
+/// native callback and discard it when the transaction ends. It never changes
+/// the document, host selection, active note or writing caret.
+final class WordZoteroFieldSelectionContext {
+  WordZoteroFieldSelectionContext._({
+    required this.fieldId,
+    required this.kind,
+    required this.source,
+    this.sourceField,
+    this.sourceNote,
+    List<WordZoteroFieldSelectionRange> sourceRanges = const [],
+  }) : sourceRanges = List.unmodifiable(sourceRanges);
+
+  final String fieldId;
+
+  /// Null until Zotero assigns a kind to a newly inserted temporary field.
+  final ZoteroFieldKind? kind;
+  final WordZoteroFieldSelectionSource source;
+
+  /// The live original field; never a field in a detached staged document.
+  final WmlZoteroField? sourceField;
+
+  /// The original owning note, or null for body fields and staged selections.
+  final WmlNote? sourceNote;
+
+  /// Original visible result ranges, in paragraph order. Empty when no live
+  /// source exists. Multipart bibliographies include each entry paragraph.
+  final List<WordZoteroFieldSelectionRange> sourceRanges;
+
+  /// Original cached result text only; no uncommitted Zotero result is exposed.
+  String? get sourceText => sourceField?.cachedText;
 }
 
 /// A session-owned writing endpoint captured before a Zotero operation applies.
