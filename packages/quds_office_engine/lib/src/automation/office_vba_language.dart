@@ -823,7 +823,7 @@ class _Lexer {
         statementStart = false;
         continue;
       }
-      if ('().,+-*/&=<>:'.contains(String.fromCharCode(code))) {
+      if (r'().,+-*/\&=<>:'.contains(String.fromCharCode(code))) {
         _advance();
         if (code == 58 &&
             offset < source.length &&
@@ -2051,8 +2051,10 @@ class _Parser {
     '&': 5,
     '+': 6,
     '-': 6,
-    '*': 7,
-    '/': 7,
+    'mod': 7,
+    r'\': 8,
+    '*': 9,
+    '/': 9,
   };
 
   _Expr _expression([int minimum = 1]) {
@@ -2063,7 +2065,9 @@ class _Parser {
     if (_is('+') || _is('-') || _is('not')) {
       final token = current;
       position++;
-      left = _bounded(_Unary(token, _expression(token.lower == 'not' ? 4 : 8)));
+      left = _bounded(
+        _Unary(token, _expression(token.lower == 'not' ? 4 : 10)),
+      );
     } else {
       left = _postfix();
     }
@@ -2288,6 +2292,7 @@ class _Checker {
     'and',
     'or',
     'xor',
+    'mod',
     'option',
     'explicit',
     'attribute',
@@ -5479,6 +5484,32 @@ class _Evaluator {
             ? null
             : _arithmeticNumber(right, expression.token).toDouble();
         if (a == null || b == null) return _VariantState.nullValue;
+        if (operator == r'\' || operator == 'mod') {
+          final name = operator == 'mod' ? 'Mod' : 'Integer division';
+          final dividend = _roundedLong(a, expression.token, '$name operand');
+          final divisor = _roundedLong(b, expression.token, '$name operand');
+          if (divisor == 0) {
+            context.fail(
+              expression.token,
+              'vba_arithmetic_error',
+              '$name by zero after rounding.',
+            );
+          }
+          // With signed Long operands, the truncated quotient and its product
+          // stay within the shared VM/JavaScript exact-integer range.
+          // Remainder follows the dividend's sign; Dart's % is Euclidean and
+          // would silently turn a negative remainder positive. The temporary
+          // quotient may be 2147483648 for Long-min / -1: Mod still yields 0.
+          final quotient = (dividend / divisor).truncate();
+          if (operator == 'mod') return dividend - quotient * divisor;
+          if (quotient < -2147483648 || quotient > 2147483647) {
+            context.type(
+              expression.token,
+              'Integer division overflows its signed 32-bit result.',
+            );
+          }
+          return quotient;
+        }
         if (operator == '/' && b == 0) {
           context.fail(
             expression.token,
@@ -6021,6 +6052,10 @@ class _Evaluator {
     if (name == 'cdbl') return number.toDouble();
     // Explicit CLng follows ties-to-even. Ordinary Long assignment still
     // requires an exact integer and does not acquire this coercion.
+    return _roundedLong(number, token, 'CLng');
+  }
+
+  int _roundedLong(num number, _Token token, String operation) {
     final lower = number.floor();
     final fraction = number - lower;
     final rounded = fraction < 0.5
@@ -6033,7 +6068,7 @@ class _Evaluator {
     if (rounded < -2147483648 || rounded > 2147483647) {
       context.type(
         token,
-        'CLng overflows its signed 32-bit range after rounding.',
+        '$operation overflows its signed 32-bit range after rounding.',
       );
     }
     return rounded;

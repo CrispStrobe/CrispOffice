@@ -288,8 +288,6 @@ void main() {
       await saveSync(_destination, [
         _header(_destination, 60),
       ], 'destination-cursor');
-      await saveView(_source, [_header(_source, 2)]);
-      await saveView(_destination, [_header(_destination, 60)]);
       final oldSource = _value(await store.readCursor(_source));
       final oldDestination = _value(await store.readSyncSnapshot(_destination));
       final before = _value(await store.listSyncMailboxes(_account));
