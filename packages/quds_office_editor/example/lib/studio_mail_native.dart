@@ -38,6 +38,8 @@ import 'studio_mail_drafts_strings.dart';
 import 'studio_mail_local_accounts.dart';
 import 'studio_mail_local_accounts_dialog.dart';
 import 'studio_mail_local_accounts_strings.dart';
+import 'studio_mail_tag_strings.dart';
+import 'studio_mail_tags_dialog.dart';
 import 'studio_mail_ews.dart';
 import 'studio_mail_local_drafts.dart';
 import 'studio_mail_message_loader.dart';
@@ -5576,6 +5578,82 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     );
   }
 
+  Future<void> _editSelectedTags() async {
+    final selected = _selected;
+    final mailbox = _messageMailbox;
+    final store = _mailboxCapture?.store;
+    final tagStore = store is StudioMailTagStore
+        ? store as StudioMailTagStore
+        : null;
+    if (selected == null ||
+        mailbox == null ||
+        tagStore == null ||
+        selected.uid == null ||
+        _busy ||
+        _dialogOpen) {
+      return;
+    }
+    final generation = _mailboxGeneration;
+    final sessionGeneration = _sessionGeneration;
+    final message = studioMailCachedMessageId(
+      MailImapIdentity(
+        mailbox: MailMailboxId(mailbox.path, account: tagStore.account),
+        uidValidity: mailbox.uidValidity ?? 0,
+        uid: selected.uid!,
+      ),
+    );
+    try {
+      final current = await tagStore.loadMessageTags(message);
+      final known = await tagStore.listMessageTags();
+      if (!mounted ||
+          generation != _mailboxGeneration ||
+          sessionGeneration != _sessionGeneration ||
+          !identical(selected, _selected)) {
+        return;
+      }
+      final result = await showStudioMailTagsDialog(
+        context,
+        strings: widget.strings,
+        selected: current,
+        known: known,
+      );
+      if (result == null ||
+          !mounted ||
+          generation != _mailboxGeneration ||
+          sessionGeneration != _sessionGeneration ||
+          !identical(selected, _selected)) {
+        return;
+      }
+      await tagStore.setMessageTags(message, result);
+      if (!mounted ||
+          generation != _mailboxGeneration ||
+          sessionGeneration != _sessionGeneration) {
+        return;
+      }
+      setState(() => _notice = widget.strings.mailTagSaved);
+    } on Object {
+      if (mounted &&
+          generation == _mailboxGeneration &&
+          sessionGeneration == _sessionGeneration) {
+        setState(() => _error = widget.strings.mailTagSaveFailed);
+      }
+    }
+  }
+
+  Widget _tagsAction() {
+    if (_selected == null || _mailboxCapture?.store is! StudioMailTagStore) {
+      return const SizedBox.shrink();
+    }
+    return IconButton(
+      key: const ValueKey('studio-mail-tags'),
+      tooltip: widget.strings.mailTags,
+      icon: const Icon(Icons.sell_outlined),
+      onPressed: _busy || _dialogOpen
+          ? null
+          : () => unawaited(_editSelectedTags()),
+    );
+  }
+
   Widget _archiveMessageAction() {
     final message = _selected;
     final generation = _mailboxGeneration;
@@ -5617,6 +5695,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           ),
           writer: widget.archiveWriter,
         ),
+        _tagsAction(),
         _folderArchiveButton(),
         IconButton(
           onPressed: _busy ? null : _reply,

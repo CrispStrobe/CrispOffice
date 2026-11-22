@@ -154,7 +154,8 @@ not an acceptance dependency; record the actual local commands and scope.
 Safe formatted HTML rendering is now available behind the Studio host's rich
 reader flag; scripts, external CSS resources and network image loading remain
 disabled. The compose body autofocuses, retains a visible caret across Enter,
-and normalizes CRLF for display while preserving original bytes. The next delivery sequence is categories/tags and ordered rules,
+and normalizes CRLF for display while preserving original bytes. Local tags/categories with exact `tag:` search and assignment are now
+implemented. The next delivery sequence is ordered rules,
 broader indexed/provider search beyond the delivered local retained-plain-text
 `body:` mode, persistent conversations and provider Drafts/Sent reconciliation,
 then fuller background multi-account work.

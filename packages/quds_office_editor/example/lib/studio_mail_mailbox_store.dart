@@ -29,6 +29,19 @@ abstract interface class StudioMailCachedHeaderSearchStore {
   });
 }
 
+/// Optional local tag/category assignment for retained messages. This is local
+/// metadata only; it never writes provider keywords or changes membership.
+abstract interface class StudioMailTagStore {
+  MailAccountId get account;
+  Future<List<MailTag>> loadMessageTags(MailMessageId message);
+  Future<List<MailTag>> listMessageTags();
+  Future<void> setMessageTags(
+    MailMessageId message,
+    Iterable<String> tags, {
+    MailOperationLease? lease,
+  });
+}
+
 /// Published string-ID capability retained for existing hosts. Missing folders
 /// fail the legacy query instead of returning partial folder coverage. New
 /// hosts can implement [StudioMailFolderScopedHeaderSearchStore] to expose the
@@ -152,6 +165,7 @@ final class SqliteStudioMailMailboxStore
         StudioMailCachedHeaderSearchStore,
         StudioMailScopedHeaderSearchStore,
         StudioMailFolderScopedHeaderSearchStore,
+        StudioMailTagStore,
         StudioMailSyncStore,
         MailSyncSnapshotRepository {
   SqliteStudioMailMailboxStore({
@@ -197,6 +211,27 @@ final class SqliteStudioMailMailboxStore
       ),
     ),
   );
+
+  @override
+  Future<List<MailTag>> loadMessageTags(MailMessageId message) => _serialize(
+    () async => _value(await _repository.loadMessageTags(account, message)),
+  );
+
+  @override
+  Future<List<MailTag>> listMessageTags() => _serialize(
+    () async => _value(await _repository.listMessageTags(account)),
+  );
+
+  @override
+  Future<void> setMessageTags(
+    MailMessageId message,
+    Iterable<String> tags, {
+    MailOperationLease? lease,
+  }) => _serialize(() async {
+    _value(
+      await _repository.setMessageTags(account, message, tags, lease: lease),
+    );
+  });
 
   @override
   Future<List<MailMailbox>> listSearchFolders() => _serialize(
