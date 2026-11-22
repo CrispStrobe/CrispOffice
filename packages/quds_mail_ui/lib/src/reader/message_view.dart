@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 
 import 'controller.dart';
+import 'html_body.dart';
 import 'presentation.dart';
 import 'selection_surface.dart';
 
@@ -36,6 +37,7 @@ class MailMessageView extends StatefulWidget {
     this.onOpenSource,
     this.onCopy,
     this.onFindRequested,
+    this.richHtml = false,
   });
   final MailReaderController controller;
   final bool compact;
@@ -46,6 +48,10 @@ class MailMessageView extends StatefulWidget {
   final MailSourceAction? onOpenSource;
   final MailCopyAction? onCopy;
   final ValueChanged<MailReaderController>? onFindRequested;
+
+  /// Render the sanitized HTML body with the bounded rich renderer. Hosts opt
+  /// in explicitly; the default text surface remains available for find/copy.
+  final bool richHtml;
 
   @override
   State<MailMessageView> createState() => _MailMessageViewState();
@@ -219,6 +225,10 @@ class _MailMessageViewState extends State<MailMessageView> {
           builder: (context, child) {
             final result = controller.result;
             final presentation = controller.presentation;
+            final rich =
+                widget.richHtml &&
+                presentation.usedHtml &&
+                presentation.safeHtml != null;
             final message = result.message;
             final links = presentation.runs
                 .map((run) => run.link)
@@ -258,28 +268,31 @@ class _MailMessageViewState extends State<MailMessageView> {
                               spacing: 8,
                               runSpacing: 4,
                               children: [
-                                TextButton.icon(
-                                  key: const ValueKey('mail-select-all'),
-                                  onPressed: presentation.text.isEmpty
-                                      ? null
-                                      : controller.selectAll,
-                                  icon: const Icon(Icons.select_all),
-                                  label: Text(labels.selectAll),
-                                ),
-                                TextButton.icon(
-                                  key: const ValueKey('mail-copy'),
-                                  onPressed: controller.selection.isCollapsed
-                                      ? null
-                                      : () => unawaited(_copy()),
-                                  icon: const Icon(Icons.copy),
-                                  label: Text(labels.copySelection),
-                                ),
-                                TextButton.icon(
-                                  key: const ValueKey('mail-find'),
-                                  onPressed: _showFind,
-                                  icon: const Icon(Icons.search),
-                                  label: Text(labels.findInMessage),
-                                ),
+                                if (!rich)
+                                  TextButton.icon(
+                                    key: const ValueKey('mail-select-all'),
+                                    onPressed: presentation.text.isEmpty
+                                        ? null
+                                        : controller.selectAll,
+                                    icon: const Icon(Icons.select_all),
+                                    label: Text(labels.selectAll),
+                                  ),
+                                if (!rich)
+                                  TextButton.icon(
+                                    key: const ValueKey('mail-copy'),
+                                    onPressed: controller.selection.isCollapsed
+                                        ? null
+                                        : () => unawaited(_copy()),
+                                    icon: const Icon(Icons.copy),
+                                    label: Text(labels.copySelection),
+                                  ),
+                                if (!rich)
+                                  TextButton.icon(
+                                    key: const ValueKey('mail-find'),
+                                    onPressed: _showFind,
+                                    icon: const Icon(Icons.search),
+                                    label: Text(labels.findInMessage),
+                                  ),
                                 if (result.original != null &&
                                     widget.onOpenSource != null)
                                   for (final view in MailSourceView.values)
@@ -318,7 +331,7 @@ class _MailMessageViewState extends State<MailMessageView> {
                                   ),
                               ],
                             ),
-                            if (_findVisible)
+                            if (_findVisible && !rich)
                               Padding(
                                 padding: const EdgeInsets.symmetric(
                                   vertical: 8,
@@ -394,33 +407,52 @@ class _MailMessageViewState extends State<MailMessageView> {
                               ),
                             const Divider(),
                             if (!presentation.rejected)
-                              MailSelectionSurface(
-                                key: _surfaceKey,
-                                controller: controller,
-                                textDirection: direction,
-                                style:
-                                    (Theme.of(context).textTheme.bodyLarge ??
-                                            const TextStyle(fontSize: 16))
-                                        .copyWith(
-                                          color: Theme.of(
-                                            context,
-                                          ).colorScheme.onSurface,
-                                        ),
-                                linkColor: Theme.of(
-                                  context,
-                                ).colorScheme.primary,
-                                textScaler: MediaQuery.textScalerOf(context),
-                                onFocusRequest: _focus.requestFocus,
-                                onCopy: () => unawaited(_copy()),
-                                onLink: widget.onOpenApprovedLink == null
-                                    ? null
-                                    : (target) => unawaited(_openLink(target)),
-                              ),
+                              if (rich)
+                                MailHtmlMessageBody(
+                                  key: const ValueKey('mail-rich-body'),
+                                  presentation: presentation,
+                                  textStyle:
+                                      (Theme.of(context).textTheme.bodyLarge ??
+                                              const TextStyle(fontSize: 16))
+                                          .copyWith(
+                                            color: Theme.of(
+                                              context,
+                                            ).colorScheme.onSurface,
+                                          ),
+                                  onOpenLink: widget.onOpenApprovedLink == null
+                                      ? null
+                                      : _openLink,
+                                )
+                              else
+                                MailSelectionSurface(
+                                  key: _surfaceKey,
+                                  controller: controller,
+                                  textDirection: direction,
+                                  style:
+                                      (Theme.of(context).textTheme.bodyLarge ??
+                                              const TextStyle(fontSize: 16))
+                                          .copyWith(
+                                            color: Theme.of(
+                                              context,
+                                            ).colorScheme.onSurface,
+                                          ),
+                                  linkColor: Theme.of(
+                                    context,
+                                  ).colorScheme.primary,
+                                  textScaler: MediaQuery.textScalerOf(context),
+                                  onFocusRequest: _focus.requestFocus,
+                                  onCopy: () => unawaited(_copy()),
+                                  onLink: widget.onOpenApprovedLink == null
+                                      ? null
+                                      : (target) =>
+                                            unawaited(_openLink(target)),
+                                ),
                           ],
                         ),
                       ),
                     ),
                     if (!presentation.rejected &&
+                        !rich &&
                         presentation.images.isNotEmpty)
                       SliverPadding(
                         padding: EdgeInsets.symmetric(horizontal: padding),
@@ -435,6 +467,7 @@ class _MailMessageViewState extends State<MailMessageView> {
                         ),
                       ),
                     if (!presentation.rejected &&
+                        !rich &&
                         links.isNotEmpty &&
                         widget.onOpenApprovedLink != null)
                       SliverPadding(

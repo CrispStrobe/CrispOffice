@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:quds_mail_core/quds_mail_core.dart';
 
 import 'labels.dart';
+import 'safe_html.dart';
 
 /// Static text styling. No source HTML or CSS reaches the rendering surface.
 final class MailTextRun {
@@ -42,6 +43,7 @@ final class MailReaderPresentation {
     this.bodyText = '',
     this.rejected = false,
     this.usedHtml = false,
+    this.safeHtml,
     this.blockedResourceCount = 0,
     List<Uri>? remoteImageUrls,
     List<Uri>? remoteImageUris,
@@ -74,6 +76,10 @@ final class MailReaderPresentation {
   final List<MailDiagnostic> diagnostics;
   final bool rejected;
   final bool usedHtml;
+
+  /// Bounded, inert HTML for the formatted host renderer. Null means the host
+  /// must use the text projection; it is never a claim that the HTML was safe.
+  final String? safeHtml;
   final int blockedResourceCount;
 
   /// Unloaded, explicit HTTP(S) images in the admitted HTML projection.
@@ -315,6 +321,12 @@ MailReaderPresentation buildMailPresentation(
       );
     }
     diagnostics.addAll(builder.diagnostics);
+    String? safeHtml;
+    if (useHtml) {
+      final safe = sanitizeMailHtml(body.html!, budget: budget);
+      safeHtml = safe.html;
+      diagnostics.addAll(safe.diagnostics);
+    }
     final text = builder.text.toString();
     return MailReaderPresentation(
       text: text,
@@ -323,6 +335,7 @@ MailReaderPresentation buildMailPresentation(
       images: builder.images,
       diagnostics: diagnostics,
       usedHtml: useHtml,
+      safeHtml: safeHtml,
       blockedResourceCount: builder.blocked,
       remoteImageUrls: builder.remoteImageUrls,
     );

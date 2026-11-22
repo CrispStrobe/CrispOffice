@@ -748,7 +748,8 @@ class _StudioMailCachedMailDialogState
   );
 
   Widget _message() {
-    if (_reader case final reader?) return MailMessageView(controller: reader);
+    if (_reader case final reader?)
+      return MailMessageView(controller: reader, richHtml: true);
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(16),

@@ -24,6 +24,7 @@ interrupted work.
 | Archive organization | Durable single/bulk actions; account-owned custom folders for IMAP/EWS/Microsoft 365 with revision checks and missing-folder repair; Gmail Inbox-label removal |
 | Account persistence/navigation | Native account store, schema migrations and a verified four-provider chooser with exact non-secret routes, draft-safe explicit sign-in and guarded foreground handoff; one connected account at a time |
 | Browser store | Implemented path; quota/reload/Web Locks acceptance remains open |
+| Formatted HTML | Safe table/style rendering with bounded sanitizer, inline CID images and explicit remote-image placeholders; plain-text view and find/copy remain available |
 
 ## Latest integration: account ownership and remembered Archive
 

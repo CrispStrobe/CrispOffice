@@ -1518,7 +1518,7 @@ class _StudioMailCachedSearchDialogState
         ),
         Expanded(
           child: reader != null
-              ? MailMessageView(controller: reader)
+              ? MailMessageView(controller: reader, richHtml: true)
               : SingleChildScrollView(
                   padding: const EdgeInsets.all(16),
                   child: Text(

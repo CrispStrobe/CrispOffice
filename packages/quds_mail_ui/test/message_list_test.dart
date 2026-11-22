@@ -158,10 +158,7 @@ void main() {
         _list(onOpen: (_) => opens++, hasMore: true, onLoadMore: () => loads++),
       ),
     );
-    expect(
-      find.text('4 shown · 4 loaded'),
-      findsOneWidget,
-    );
+    expect(find.text('4 shown · 4 loaded'), findsOneWidget);
     expect(find.text('Load more messages'), findsOneWidget);
     expect(opens, 0);
     expect(loads, 0);
@@ -201,10 +198,7 @@ void main() {
     expect(_row('three'), findsOneWidget);
     expect(_row('two'), findsNothing);
     expect(_row('unknown'), findsNothing);
-    expect(
-      find.text('2 shown · 4 loaded'),
-      findsOneWidget,
-    );
+    expect(find.text('2 shown · 4 loaded'), findsOneWidget);
     await tester.enterText(
       find.byKey(const ValueKey('mail-list-search')),
       'planning',
@@ -258,10 +252,7 @@ void main() {
     expect(_row('two'), findsNothing);
     expect(_row('three'), findsNothing);
     expect(_row('unknown'), findsNothing);
-    expect(
-      find.text('1 shown · 4 loaded'),
-      findsOneWidget,
-    );
+    expect(find.text('1 shown · 4 loaded'), findsOneWidget);
     await tester.enterText(
       find.byKey(const ValueKey('mail-list-search')),
       'is:unflagged',
@@ -428,10 +419,7 @@ void main() {
       expect(find.text('The search is too long.'), findsOneWidget);
       expect(_row('one'), findsNothing);
       expect(_row('three'), findsNothing);
-      expect(
-        find.text('0 shown · 4 loaded'),
-        findsOneWidget,
-      );
+      expect(find.text('0 shown · 4 loaded'), findsOneWidget);
       await _focusList(tester);
       await tester.sendKeyEvent(LogicalKeyboardKey.enter);
       expect(opens, 0);
@@ -503,7 +491,7 @@ void main() {
       expect(_row('one'), findsNothing);
       staleTap();
       expect(opened, isEmpty);
-      await tester.enterText(search, 'body:private');
+      await tester.enterText(search, 'bcc:private');
       staleTap();
       await tester.pump();
       expect(
@@ -651,7 +639,7 @@ void main() {
     await _sortBy(tester, MailMessageListSort.senderAscending);
     await tester.enterText(
       find.byKey(const ValueKey('mail-list-search')),
-      'body:private',
+      'bcc:private',
     );
     await tester.pump();
     expect(
@@ -1188,11 +1176,7 @@ void main() {
     var loads = 0;
     await tester.pumpWidget(
       _app(
-        _list(
-          onOpen: (_) => opens++,
-          hasMore: true,
-          onLoadMore: () => loads++,
-        ),
+        _list(onOpen: (_) => opens++, hasMore: true, onLoadMore: () => loads++),
       ),
     );
     final search = find.byKey(const ValueKey('mail-list-search'));
@@ -1226,23 +1210,22 @@ void main() {
     var loads = 0;
     await tester.pumpWidget(
       _app(
-        _list(
-          onOpen: (_) => opens++,
-          hasMore: true,
-          onLoadMore: () => loads++,
-        ),
+        _list(onOpen: (_) => opens++, hasMore: true, onLoadMore: () => loads++),
       ),
     );
     final search = find.byKey(const ValueKey('mail-list-search'));
     for (final query in [
       'from:alice OR',
       '(from:alice OR from:bob',
-      'from:alice OR body:hidden',
+      'from:alice OR bcc:hidden',
       'NOT',
     ]) {
       await tester.enterText(search, query);
       await tester.pump();
-      expect(find.byKey(const ValueKey('mail-list-search-error')), findsOneWidget);
+      expect(
+        find.byKey(const ValueKey('mail-list-search-error')),
+        findsOneWidget,
+      );
       expect(_row('one'), findsNothing);
       expect(_row('two'), findsNothing);
       expect(_row('three'), findsNothing);
@@ -1262,27 +1245,30 @@ void main() {
     expect(loads, 0);
   });
 
-  testWidgets('changing account clears a Boolean query and stale row callback', (
-    tester,
-  ) async {
-    final opened = <String>[];
-    await tester.pumpWidget(_app(_list(onOpen: opened.add)));
-    final search = find.byKey(const ValueKey('mail-list-search'));
-    await tester.enterText(search, '(from:alice OR from:bob) -subject:update');
-    await tester.pump();
-    final staleTap = tester
-        .widget<InkWell>(
-          find.descendant(of: _row('one'), matching: find.byType(InkWell)),
-        )
-        .onTap!;
-    await tester.pumpWidget(
-      _app(_list(onOpen: opened.add, scopeId: 'account-b/inbox')),
-    );
-    await tester.pump();
-    expect(tester.widget<TextField>(search).controller!.text, isEmpty);
-    staleTap();
-    expect(opened, isEmpty);
-    expect(_row('three'), findsOneWidget);
-  });
-
+  testWidgets(
+    'changing account clears a Boolean query and stale row callback',
+    (tester) async {
+      final opened = <String>[];
+      await tester.pumpWidget(_app(_list(onOpen: opened.add)));
+      final search = find.byKey(const ValueKey('mail-list-search'));
+      await tester.enterText(
+        search,
+        '(from:alice OR from:bob) -subject:update',
+      );
+      await tester.pump();
+      final staleTap = tester
+          .widget<InkWell>(
+            find.descendant(of: _row('one'), matching: find.byType(InkWell)),
+          )
+          .onTap!;
+      await tester.pumpWidget(
+        _app(_list(onOpen: opened.add, scopeId: 'account-b/inbox')),
+      );
+      await tester.pump();
+      expect(tester.widget<TextField>(search).controller!.text, isEmpty);
+      staleTap();
+      expect(opened, isEmpty);
+      expect(_row('three'), findsOneWidget);
+    },
+  );
 }

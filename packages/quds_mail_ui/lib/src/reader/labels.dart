@@ -57,7 +57,7 @@ class MailReaderLabels {
   String get rawSource => 'Raw source';
   String get hex => 'Hex';
   String get showPlainText => 'Show plain text';
-  String get showStaticHtml => 'Show static HTML';
+  String get showStaticHtml => 'Show formatted';
   String matches(int count, {required bool more}) =>
       '$count${more ? '+' : ''} ${count == 1 && !more ? 'match' : 'matches'}';
   String get previousMatch => 'Previous match (Shift+F3)';

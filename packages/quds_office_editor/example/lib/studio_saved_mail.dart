@@ -199,7 +199,9 @@ class _StudioSavedMailViewState extends State<StudioSavedMailView> {
               style: TextStyle(color: Theme.of(context).colorScheme.error),
             ),
           ),
-        Expanded(child: MailMessageView(controller: _controller)),
+        Expanded(
+          child: MailMessageView(controller: _controller, richHtml: true),
+        ),
       ],
     ),
   );

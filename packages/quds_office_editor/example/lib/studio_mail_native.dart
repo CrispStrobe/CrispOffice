@@ -5518,7 +5518,10 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                               children: <Widget>[
                                 _messageActions(),
                                 Expanded(
-                                  child: MailMessageView(controller: _reader!),
+                                  child: MailMessageView(
+                                    controller: _reader!,
+                                    richHtml: true,
+                                  ),
                                 ),
                               ],
                             ),
@@ -5963,7 +5966,9 @@ class _StudioMailDialogState extends State<StudioMailDialog>
               ],
             ),
             _messageActions(),
-            Expanded(child: MailMessageView(controller: _reader!)),
+            Expanded(
+              child: MailMessageView(controller: _reader!, richHtml: true),
+            ),
           ],
         ),
     ],

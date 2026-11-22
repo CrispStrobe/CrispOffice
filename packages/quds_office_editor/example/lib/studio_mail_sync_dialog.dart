@@ -712,7 +712,8 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
   );
 
   Widget _message() {
-    if (_reader case final reader?) return MailMessageView(controller: reader);
+    if (_reader case final reader?)
+      return MailMessageView(controller: reader, richHtml: true);
     return Center(
       // This is host status/recovery chrome, not the document reader. Keep its
       // action reachable with long translations and enlarged system text.

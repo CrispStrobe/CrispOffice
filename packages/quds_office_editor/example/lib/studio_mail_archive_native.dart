@@ -1727,6 +1727,7 @@ class _StudioMailArchiveDialogState extends State<StudioMailArchiveDialog> {
               ? const SizedBox.shrink()
               : MailMessageView(
                   controller: _reader!,
+                  richHtml: true,
                   compact: compact,
                   textDirection: s.language == StudioLanguage.ar
                       ? TextDirection.rtl

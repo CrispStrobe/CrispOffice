@@ -3637,7 +3637,12 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                     Column(
                       children: [
                         _actions(compact: true),
-                        Expanded(child: MailMessageView(controller: _reader!)),
+                        Expanded(
+                          child: MailMessageView(
+                            controller: _reader!,
+                            richHtml: true,
+                          ),
+                        ),
                       ],
                     ),
                 ],
@@ -3698,7 +3703,10 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                             children: [
                               _actions(compact: false),
                               Expanded(
-                                child: MailMessageView(controller: _reader!),
+                                child: MailMessageView(
+                                  controller: _reader!,
+                                  richHtml: true,
+                                ),
                               ),
                             ],
                           ),
