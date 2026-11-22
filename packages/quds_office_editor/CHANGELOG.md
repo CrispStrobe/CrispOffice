@@ -4,6 +4,11 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Reopen supported bordered research tables from editable Zotero ODT exports.
+  Retain citation editability, cell border appearance, selected-field context
+  and the existing detached Refresh/undo transaction across DOCX/ODT saves.
+  Unsupported border structures keep their explicit import/export refusal.
+
 - Add a verified remembered-account chooser across IMAP/SMTP, Exchange EWS,
   Gmail and Microsoft 365 in English, German and Arabic. Preserve exact
   non-secret routes and require explicit sign-in; save account-owned drafts and
@@ -14,10 +19,13 @@ All notable changes to `quds_office_editor` are documented here.
   invalidate late refresh completion before the connection handoff. Fresh
   connections register their account normally. Custom directories without
   conditional refresh retain their existing metadata. Native Close retains its
-  mounted-pane behavior after pending ownership settles; failed owner release
-  keeps an explicit retry path and blocks another owner. Provider Close/Back
-  preserves draft recovery, cancels remaining dispatch and waits for late store
-  admission and cleanup before returning to the root pane. One account remains
+  mounted-pane behavior after pending ownership settles; failed observer or
+  owner release keeps an explicit retry path and blocks another owner. Provider
+  Close/Back preserves draft recovery, cancels remaining dispatch and waits for
+  late store admission and cleanup before returning to the root pane. Apply the
+  same retained cleanup to Disconnect, Refresh and folder changes; cancel an
+  observer waiting for its initial saved-mail snapshot before draining admission,
+  and close its owner only after both have finished. One account remains
   connected at a time. See the [account-navigation workflow](../../docs/roadmaps/mail/account-navigation.md)
   and [connected-account guide](../../docs/roadmaps/mail/connected-account-navigation.md)
   for scope, qualification and remaining multi-account workspace work.

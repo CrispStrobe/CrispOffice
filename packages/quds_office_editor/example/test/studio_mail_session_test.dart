@@ -664,6 +664,8 @@ void main() {
         drafts: drafts,
       );
       await _manual(tester);
+      final connect = find.widgetWithText(FilledButton, _strings.connect);
+      final previousConnect = tester.widget<FilledButton>(connect).onPressed!;
       await _connect(tester);
       await _pump(tester);
       final oldKey = drafts.identities.single.account.value;
@@ -678,12 +680,7 @@ void main() {
       await tester.tap(find.byTooltip(_strings.disconnect));
       await _pump(tester);
       drafts.openGate = null;
-      await tester.enterText(
-        _field(_strings.emailAddress),
-        'other@example.invalid',
-      );
-      await tester.enterText(_field(_strings.password), 'other-test-password');
-      await _connect(tester);
+      previousConnect();
       await _pump(tester);
       // Reconnect must wait for the previous admission to release its late
       // owner. Starting another client here would bypass that ownership fence.
@@ -695,15 +692,26 @@ void main() {
       expect(drafts.identities, hasLength(1));
       expect(drafts.closes, 0);
       expect(find.text('Second account message'), findsNothing);
-      expect(
-        tester
-            .widget<FilledButton>(
-              find.widgetWithText(FilledButton, _strings.connect),
-            )
-            .onPressed,
-        isNull,
-      );
+      expect(tester.widget<FilledButton>(connect).onPressed, isNull);
       openGate.complete();
+      for (var attempt = 0; attempt < 50; attempt++) {
+        await tester.pump(const Duration(milliseconds: 20));
+        if (drafts.closes == 1 &&
+            tester.widget<FilledButton>(connect).onPressed != null) {
+          break;
+        }
+      }
+      expect(drafts.closes, 1);
+      expect(attempts, 1);
+      expect(tester.widget<FilledButton>(connect).onPressed, isNotNull);
+      // Disconnect does not queue an ignored reconnect. Once its release has
+      // settled, the next account still requires an explicit Connect action.
+      await tester.enterText(
+        _field(_strings.emailAddress),
+        'other@example.invalid',
+      );
+      await tester.enterText(_field(_strings.password), 'other-test-password');
+      await _connect(tester);
       final compose = find.widgetWithIcon(TextButton, Icons.edit_outlined);
       for (var attempt = 0; attempt < 50; attempt++) {
         await tester.pump(const Duration(milliseconds: 20));

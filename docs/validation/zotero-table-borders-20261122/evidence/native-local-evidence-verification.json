@@ -1,0 +1,9 @@
+{
+  "archive": "native-local-evidence.tar.xz",
+  "sha256": "1f2fbbb9412fdec5dd2bb6029e12eea03e2938ef489e295e168c4e5322af9bbc",
+  "bytes": 344816,
+  "regular_members": 40,
+  "all_sizes_and_hashes_verified": true,
+  "safe_relative_paths": true,
+  "verification": "Read completed archive and hash every extracted regular member without materializing files."
+}

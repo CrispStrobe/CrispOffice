@@ -1,0 +1,12 @@
+{
+  "verifiedAtUtc": "2026-11-22T12:49:18.315604+00:00",
+  "archive": "converter-evidence.tar.xz",
+  "archiveBytes": 232440,
+  "archiveSha256": "4ef3f95efcfcb51616ab8c3840e7324e48c7ea2d09b0c23832ffb2f1f955d963",
+  "memberCount": 244,
+  "allMembersRegularFiles": true,
+  "safeRelativePaths": true,
+  "memberNamesExact": true,
+  "allMemberSizesAndSha256MatchReadback": true,
+  "excluded": "All LibreOffice profile/profile-* directories and unrelated runtime caches/artifacts."
+}

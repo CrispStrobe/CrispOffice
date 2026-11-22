@@ -44,10 +44,12 @@ Directory refresh compares the selected record atomically, so successful
 sign-in cannot recreate a concurrently forgotten or replaced shortcut. Custom
 directories without conditional refresh retain their existing metadata. A late
 store opener remains part of its retiring account until cleanup settles; failed
-release keeps the owner available for explicit retry and blocks another owner.
-Native Close retains its existing mounted-pane behavior once pending ownership
-has settled. Provider Close/Back preserves draft recovery and waits for late
-account admission and release before returning to the root Mail pane.
+observer or owner release retains the work for explicit retry and blocks another
+owner. Native Close retains its mounted-pane behavior once pending ownership and
+release have settled. **Retry closing account** exposes native release recovery.
+Provider Close/Back preserves drafts, cancels remaining dispatch and waits for
+late account admission and release before returning to the root Mail pane.
+Disconnect must finish draining the old account before a new explicit connection.
 
 See both the [workflow and ownership contract](account-navigation.md) and
 [connected-account continuation](connected-account-navigation.md), with their

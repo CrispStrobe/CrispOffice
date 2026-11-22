@@ -17,8 +17,9 @@ verified remembered-account chooser across IMAP/SMTP, Exchange EWS, Gmail and
 Microsoft 365. Exact non-secret routes lead to explicit sign-in. Switching saves
 the retained draft and uncertain-submission state, drains observers, journal
 writes and owners, and fences stale routes and late acquisitions. Atomic
-selected-record refresh cannot recreate a forgotten shortcut. One account stays
-connected at a time; retained simultaneous sessions and an account-aware unified
+selected-record refresh cannot recreate a forgotten shortcut. Failed observer or
+owner release remains held for explicit Retry closing account or provider
+Close/Back recovery before another sign-in. One account stays connected at a time; retained simultaneous sessions and an account-aware unified
 workspace remain open. The linked work records identify actual qualification.
 
 The [explicit Archive continuation](provider-archive.md) adds reviewed single and

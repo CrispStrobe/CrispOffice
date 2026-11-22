@@ -203,7 +203,7 @@ to network/approval controls. All final commands use that explicit environment.
 
 The incoming Archive record documents a preexisting Word visual-golden mismatch. This continuation does not refresh that golden or represent its historical failure as passing. No GitHub Actions queue is queried or awaited; local qualification is the acceptance evidence.
 
-## Reconciled source and final fixture recovery
+## PR #383 source and fixture recovery
 
 The reconciled source is remote commit
 `604a939991f568e7c6ad3f13958c6a4e204cafe1`, tree
@@ -230,20 +230,48 @@ Both conflict with the owner-release barrier already present in incoming main:
 the old receipt/admission and owner must settle before another owner is admitted.
 More pumping cannot satisfy either ordering cycle.
 
-Only `studio_mail_bulk_provider_test.dart` and `studio_mail_session_test.dart`
-are corrected. The original case names remain. Each case now asserts the pending
+Checkpoint `051b20c774929f25f424c73a5ca14c3b611bb59e` corrects only
+`studio_mail_bulk_provider_test.dart` and `studio_mail_session_test.dart`. The original case names remain. Each case now asserts the pending
 barrier, releases its own gate, waits for a usable replacement account, and keeps
 its old-owner/stale-callback/draft-uncertainty assertions. The provider cases also
 prove that a fresh callback succeeds. No production source changes accompany
 this correction.
 
-The selective recovery reruns both complete files: 39 bulk-provider and 21
-session cases. All 60 earlier results from those files are excluded from retained
+The proposed selective recovery would rerun both complete files: 39 bulk-provider
+and 21 session cases. This plan was not executed before main advanced again. All 60 earlier results from those files are excluded from retained
 credit. The other 108 Studio suites contribute 2,314 passing cases; engine,
 editor, Studio Zotero and the independently retained UI/store gates contribute
 4,943. Their combined 7,257 retained cases are eligible only after exact input,
 runtime, immutable-evidence and transitive-import checks. The fresh 60 cases must
 pass with unchanged case identities before a combined acceptance can be issued.
+
+## PR #384 reconciliation
+
+Before publication, main advanced to
+`ab3457c98b6d9a0d1da8147db3048dfc50d174d3` through PR #384. Its Word/Zotero
+changes preserve supported editable ODT table borders, logical DOCX cell-border
+aliases and opaque revision history on field boundaries. Its Mail changes retain
+failed ordinary observer shutdown, drain Disconnect and guard retained Refresh
+callbacks. All of that work and its original evidence are retained.
+
+The merge combines that ordinary shutdown contract with this branch's staged
+admission, captured first observer-close attempt, conditional directory refresh,
+cancellable Close, failed-owner retry and guarded native local-entry paths. It
+does not replace either host wholesale. A cache candidate remains unadopted until
+its staged observation and selected-record comparison finish, so the reconciled
+native continuation checks the current admission token at that boundary.
+
+Disconnect now drains the retiring account before another explicit connection
+is available. The corrected bulk-provider and native-session fixtures first
+assert that pending barrier, release their held reply or factory, wait for drain,
+and then explicitly start the next connection. A Connect action issued while
+cleanup is blocked cannot queue a later connection.
+
+This production and Word delta supersedes the two-file selective-recovery plan.
+Its preflight is retained as unexecuted planning evidence, with no passing credit.
+Final acceptance requires fresh checks of the combined Mail hosts; incoming Word
+results can be retained only with exact source, dependency, runtime and immutable
+reporter provenance. The original runs with failures stay unchanged.
 
 ## Incremental publication
 
@@ -261,6 +289,7 @@ Working branch: `work/mail-connected-navigation-20261122`.
 | `93cc695d8e96774a5bc5f8b1498fb7144db1aa62` | Complete expanded local run, original reporter results, source manifests and raw evidence preserved |
 | `893cca7a17b6bcda966f44248fa966084c5f1a74` | PR #383 reconciled with both Mail histories, immutable reporter correction, and aligned continuation plan |
 | `604a939991f568e7c6ad3f13958c6a4e204cafe1` | Final reconciled source with late-admission/observer release recovery, 207 focused passing cases and the exact final qualification plan |
+| `051b20c774929f25f424c73a5ca14c3b611bb59e` | Complete PR #383-source run with its four original failures, the two fixture corrections |
 
 Each remote tree was checked against its local checkpoint before moving the
 branch with an expected-head lease and `force=false`. The qualification

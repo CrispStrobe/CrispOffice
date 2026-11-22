@@ -40,6 +40,14 @@ reusable `QudsMailWorkspace` milestone remains open.
   journal writes and draft-owner release before handing control to another
   provider. A late owner acquisition is fenced and released before another
   owner is admitted.
+- Retain an observer or owner whose cancellation/close failed. An explicit
+  release retry must finish that work before a new target can acquire ownership.
+  Hidden pointer/keyboard input and duplicate or late route callbacks remain
+  blocked while a handoff is pending.
+- Apply that release boundary to ordinary Disconnect, Refresh and folder
+  changes as well as account switching. Disconnect starts observer cancellation
+  before waiting for draft restoration, so a pending initial saved-mail view
+  cannot prevent cleanup. Storage ownership ends only after both have drained.
 - Restore drafts, cached state, Outbox and historical uncertainty only through
   their owning account. Navigation never treats unknown delivery as success
   and never replays a send or mailbox command.
@@ -52,11 +60,14 @@ reusable `QudsMailWorkspace` milestone remains open.
   existing directory metadata unchanged; a read followed by an unconditional
   write would not provide the required race protection.
 
-If an owner cannot finish closing, navigation and another owner acquisition
-remain blocked. Native Mail exposes **Retry closing account**; provider dialogs
-retain their explicit Close recovery path. An unsuccessful retry keeps the
-owner and failure visible. Pending store factories, loads and selected-record
-refreshes must settle before a provider route can return to the root pane.
+If an observer or owner cannot finish closing, navigation and another owner
+acquisition remain blocked. Native Mail exposes **Retry closing account**;
+provider dialogs retain their explicit Close recovery path. An unsuccessful retry
+keeps the release work and failure visible. Pending store factories, loads and
+selected-record refreshes must settle before a provider route can return to the
+root pane. Native Close hides its mounted pane only after pending ownership and
+release work have settled. Disconnect drains the retiring account before a new
+explicit connection is available.
 
 ## Scope and qualification
 
@@ -74,6 +85,12 @@ catalog conflicts, account replacement during sign-in, draft/uncertainty
 preservation, observer cancellation, late owner acquisition and conditional
 SQLite refresh. Shared Mail regressions and incoming Word work have separate
 receipts. No final Studio test count is inferred from those other cohorts.
+
+The [initial account-navigation guide](account-navigation.md) and
+[development work record](../../validation/mail-connected-navigation-20261122/README.md)
+are retained for provenance, including the incoming owner/observer release
+continuation. Historical plans and reports retain their original source
+boundaries; the reconciled record identifies the results accepted for publication.
 
 Live-provider, installed-platform and full desktop-client acceptance remain
 separate from deterministic local fixtures. GitHub Actions queue completion is

@@ -626,27 +626,29 @@ void main() {
         await tester.tap(find.byTooltip(_strings.disconnect));
         await _pump(tester);
         harness.configure = null;
-        await _beginConnect(tester, kind);
-        // Reconnect must wait for the retired account's outstanding receipt
-        // and owner release before creating another provider or draft owner.
+        final connectKey = _key(
+          kind == MailProviderKind.ews ? 'ews-connect' : 'cloud-connect',
+        );
+        // Disconnect retains the old owner until its outstanding receipt is
+        // durable. Reconnect requires an explicit click after that drain.
         expect(oldProvider.leases.single.isCurrent, isFalse);
         expect(harness.providers, hasLength(1));
         expect(harness.drafts.identities, hasLength(1));
         expect(harness.drafts.closes, 0);
         expect(find.byType(MailMessageList), findsNothing);
-        expect(
-          tester
-              .widget<FilledButton>(
-                _key(
-                  kind == MailProviderKind.ews
-                      ? 'ews-connect'
-                      : 'cloud-connect',
-                ),
-              )
-              .onPressed,
-          isNull,
-        );
+        expect(tester.widget<FilledButton>(connectKey).onPressed, isNull);
         gate.complete(_success);
+        for (var attempt = 0; attempt < 100; attempt++) {
+          if (tester.widget<FilledButton>(connectKey).onPressed != null) break;
+          await tester.pump(const Duration(milliseconds: 10));
+          await tester.runAsync(() => Future<void>.delayed(Duration.zero));
+        }
+        expect(tester.widget<FilledButton>(connectKey).onPressed, isNotNull);
+        expect(harness.providers, hasLength(1));
+        expect(harness.drafts.identities, hasLength(1));
+        expect(harness.drafts.closes, 1);
+        expect(find.byType(MailMessageList), findsNothing);
+        await _beginConnect(tester, kind);
         for (var attempt = 0; attempt < 100; attempt++) {
           if (find.byType(MailMessageList).evaluate().length == 1 &&
               !_list(tester).busy) {

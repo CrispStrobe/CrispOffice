@@ -1,0 +1,12 @@
+{
+  "verifiedAtUtc": "2026-11-22T12:57:31.832978+00:00",
+  "archive": "mail-local-evidence.tar.xz",
+  "archiveBytes": 41912,
+  "archiveSha256": "d0a1cc47fc85349bb1c0af664f0426d5b16d126b94ba37c91c9ecba3687384f9",
+  "memberCount": 32,
+  "allMembersRegularFiles": true,
+  "safeRelativePaths": true,
+  "memberNamesExact": true,
+  "allMemberSizesAndSha256MatchReadback": true,
+  "excluded": "Flutter/Dart SDKs, build outputs, kernel/compiler caches, temporary databases and unrelated validation artifacts."
+}

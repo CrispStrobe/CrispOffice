@@ -1,5 +1,13 @@
 # Account navigation with explicit sign-in
 
+> **Initial increment and release-recovery continuation.** The canonical
+> combined contract and current delivery order are in
+> [Connected account navigation](connected-account-navigation.md), which also
+> records atomic selected-record refresh and late-owner fences. This guide and
+> its original development evidence remain linked for provenance. The incoming
+> final qualification plan was prepared, not executed; it does not establish a
+> final pass on the combined source.
+
 ## Everyday workflow
 
 Use **Choose an account** from the Mail toolbar to browse accounts that have
@@ -74,12 +82,17 @@ Pending connection callbacks cannot continue into folder/header/store work
 after the selected record becomes stale. A successful verified connection
 fulfills the initial selection intent; a later explicit reconnect does not
 reuse the obsolete directory revision from before that successful connection.
+The combined continuation refreshes a selected native directory row only when
+its expected saved record still matches inside the same transaction. Custom
+directories without conditional refresh keep their existing metadata. See the
+[current identity and recovery contract](connected-account-navigation.md#identity-ownership-and-recovery).
 
 The selected shortcut's successful-connection refresh compares its identity,
 revision and connection timestamp in the same repository transaction as the
 write. A shortcut forgotten or replaced while sign-in waits cannot be recreated
-by a late refresh. The local draft owner is adopted only after that comparison
-succeeds. Custom directory implementations without the optional atomic refresh
+by a late refresh. The selected connection intent is fulfilled only after that
+comparison succeeds; revoked setup retains and drains any already acquired
+owner and its observers. Custom directories without the optional atomic refresh
 capability retain their existing metadata instead of falling back to an
 unconditional write.
 
@@ -110,25 +123,17 @@ same Close request cannot silently retry it and open the next route.
 This is cross-provider navigation with explicit reconnection. It does not
 complete M04W, retain several simultaneous live sessions, provide a unified
 inbox, synchronize provider Drafts/Sent, or qualify installed OS credentials and
-live provider accounts. The next workspace increment should introduce an
+live provider accounts. Completing the shared workspace still requires an
 account-owned session coordinator with an explicit active/inactive lifecycle,
 bounded connection retention, per-account folder/selection state, and an
 account-aware unified view over repository observations. It must preserve the
 ownership and no-replay guarantees established here.
 
-The remaining ordered product work follows the reconciled Mail plan:
-
-1. Remembered custom Archive destinations with exact identities and repair for
-   missing folders.
-2. Categories/tags and ordered rules with a preview and recoverable partial
-   outcomes.
-3. Indexed local body search, explicit provider-search coverage, and persistent
-   cross-folder conversations.
-4. Provider-side Drafts and Sent reconciliation with explicit conflict handling.
-5. Retained multi-account sessions, the repository-driven unified workspace, and
-   account-owned background synchronization and sending.
-6. Rich message alternatives, Office attachment editing, Calendar/People,
-   encryption/signatures where supported, and installed/live-provider acceptance.
+Follow the [current ordered continuation](connected-account-navigation.md#comparison-targets-and-next-increments):
+remembered Archive destinations, categories/rules, body/provider search,
+persistent conversations and provider Drafts/Sent reconciliation, then fuller
+background multi-account work. Rich authoring, Office attachments, Calendar/People
+and platform qualification retain their broader roadmap dependencies.
 
 The comparison targets support account-aware navigation and sending context.
 Thunderbird documents [account and unified folder presentations](https://support.mozilla.org/en-US/kb/switching-folder-pane-view).
@@ -138,5 +143,7 @@ These sources were checked on 22 November 2026; behavior differs between
 product editions. They guide the workflow target and do not establish parity
 for this increment.
 
-Actual source checkpoints, fresh local commands, results and remaining limits
-are recorded in the [qualification record](../../validation/mail-connected-navigation-20261122/README.md).
+The [initial qualification record](../../validation/mail-connected-navigation-20261122/README.md)
+retains its actual development commands, source checkpoints and unexecuted final
+plan. Use the [combined work record](../../validation/mail-account-workspace-20261122/README.md)
+for subsequent integrated acceptance and source boundaries.

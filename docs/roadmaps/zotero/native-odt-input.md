@@ -470,9 +470,9 @@ Optional `text:use-soft-page-breaks` flags and empty cached soft-page markers ar
 validated and recomputed by native layout. Authored hard page breaks retain
 their distinct paragraph/run properties; reexport does not copy stale hints.
 
-Known separating/collapsing table border-model defaults are inert only within
-the existing borderless reader: visible borders remain guarded. Increment 8
-adds bounded uniform padding and accepts explicit borderless declarations.
+Known separating/collapsing table border-model defaults are inert for
+borderless tables. Increment 8 adds bounded uniform padding; the solid-border
+continuation below extends visible input with an explicit collapsing model.
 Editable export now pairs absolute widths with physical left/center/right
 alignment. The earlier `margins` alignment expanded tables in LibreOffice and
 converted their columns to unsupported relative-only widths. Historical files
@@ -521,8 +521,9 @@ asymmetric sides and differing visible-cell margins refuse. The existing
 row/column `table:default-cell-style-name` forms remain unsupported. A covered
 cell without any effective padding declaration adds no override; authored or
 inherited padding must agree with its merged origin. Border declarations with
-the value `none` are inert and accepted; visible or unrepresented borders still
-refuse. Hidden covered-cell content remains outside the contract.
+the value `none` are accepted; the solid-border continuation below extends the
+earlier visible-border boundary. Hidden covered-cell content remains outside
+the contract.
 
 The native scalar margin is bounded by the DOCX storage limit of 32,767
 twentieths of a point (1,638.35 pt). Padding must leave positive content width in
@@ -585,6 +586,51 @@ persistence does not claim that route preserves their appearance. Installed
 Word and actual Zotero plugin sessions remain separate acceptance gates.
 
 <a id="increment-8-installed-host-acceptance"></a>
+
+## Solid-border continuation: editable research tables
+
+Visible cell borders require an explicitly resolved `table:border-model="collapsing"`.
+All visible edges in one table must use one solid opaque `#RRGGBB` stroke with
+a width from 0.25 to 12 pt in exact eighth-point steps. The parser accepts the
+supported absolute length units; widths that would change when saved as DOCX
+refuse. Named colors, alpha, dashed/double lines, mixed widths/colors and visible
+separating or unspecified models remain unsupported.
+
+The cell-family default, parent styles and selected cell style are resolved in
+order. At each layer, `fo:border` resets all four sides before explicit side
+properties override them, independent of XML attribute order. `none` clears an
+inherited edge. Covered cells may omit a border declaration, but any effective
+declared side must agree with its merged owner. No covered content or citation
+is duplicated. Each nested table resolves its own stroke. Explicit native masks
+keep absent/disabled sides from inheriting the stored table stroke on DOCX save.
+
+Uniform cell padding retains the preceding contract and is stored numerically
+unchanged. Actual LibreOffice controls show that uniform halfstroke padding
+compensation would introduce save-cycle drift. Table-position and vertical
+layout differences remain separately qualified; negative table margins are not
+accepted merely because a border is supported.
+
+Table writing-mode properties remain outside the bounded ODT reader. Editable
+ODT output likewise refuses right-to-left table column order before returning
+bytes, with the source document and active fields unchanged. Supported
+right-to-left paragraph direction inside a left-to-right table is a separate
+capability and keeps its existing mapping.
+
+The [work record](../../validation/zotero-table-borders-20261122/README.md)
+includes unchanged retained Writer DOCX cell fixtures, native Refresh and
+repeated editable ODT/DOCX checks. The DOCX source now has an independent
+four-side assertion: `start`/`end` take precedence over legacy `left`/`right`,
+effective table direction is resolved before mapping to physical sides, and
+DOCX output maps those sides back consistently. This fixes the source alias
+loss discovered during converter qualification; it does not extend the native
+common-stroke model to arbitrary DOCX per-cell strokes or styles.
+
+Three cases pass six actual LibreOffice saves and twelve paired native
+DOCX/ODT cycles in the identified LibreOfficeDev build, with all 376 captured
+engine inputs unchanged. They cover the original black-bordered DOCX cell,
+colored explicit-off sides and a colored vertical merge. Native tests, actual
+converter evidence and installed Word/LibreOffice Zotero-plugin acceptance
+remain separate, and earlier failed evidence is retained.
 
 ## Increment 10: installed-host acceptance
 
