@@ -113,16 +113,18 @@ bounded connection retention, per-account folder/selection state, and an
 account-aware unified view over repository observations. It must preserve the
 ownership and no-replay guarantees established here.
 
-The remaining ordered product work is:
+The remaining ordered product work follows the reconciled Mail plan:
 
-1. Retained multi-account sessions and the repository-driven unified workspace.
-2. Remembered custom Archive destinations, then categories/tags and ordered
-   rules with a preview and recoverable partial outcomes.
+1. Remembered custom Archive destinations with exact identities and repair for
+   missing folders.
+2. Categories/tags and ordered rules with a preview and recoverable partial
+   outcomes.
 3. Indexed local body search, explicit provider-search coverage, and persistent
    cross-folder conversations.
-4. Provider-side Drafts and Sent reconciliation, followed by account-owned
-   background synchronization and sending.
-5. Rich message alternatives, Office attachment editing, Calendar/People,
+4. Provider-side Drafts and Sent reconciliation with explicit conflict handling.
+5. Retained multi-account sessions, the repository-driven unified workspace, and
+   account-owned background synchronization and sending.
+6. Rich message alternatives, Office attachment editing, Calendar/People,
    encryption/signatures where supported, and installed/live-provider acceptance.
 
 The comparison targets support account-aware navigation and sending context.

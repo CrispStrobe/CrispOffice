@@ -1,6 +1,25 @@
 # Mail implementation status — 21 November 2026
 > **Detailed reference.** See [status.md](status.md) for the current overview. This file preserves the pre-rewrite detail and historical qualification notes.
 
+## Connected account navigation — 22 November 2026
+
+Studio's shared remembered-account chooser now routes IMAP/SMTP, EWS, Gmail and
+Microsoft 365 to exact, reviewed non-secret settings and explicit sign-in.
+It saves the current account's draft and uncertainty before handoff, drains
+observers/journal writes/owners and fences late acquisitions and retired callbacks.
+Native selected-record refresh compares the expected identity, revision and
+connection timestamp atomically; concurrent Forget/replacement cannot be
+overwritten by reconnect. Custom directories without conditional refresh keep
+their existing metadata.
+
+Native Close retains its mounted-pane behavior. A failed native owner release
+may require a host restart; repeated in-session retry is not guaranteed.
+The [workflow guide](connected-account-navigation.md) and
+[current qualification record](../../validation/mail-account-workspace-20261122/README.md)
+separate implementation, executed local gates and live-provider/platform limits.
+Simultaneous background accounts, unified live folders, new secret persistence
+and the complete shared-workspace milestone remain open.
+
 
 ## Range selection and synchronized address search — locally qualified
 
@@ -1140,7 +1159,11 @@ embed `MailMessageView` using `MailReaderController.fromBytes` and
 `const QudsMimeCodec()` without accounts or network setup. It is a reader
 harness, not the standalone Office application.
 
-## Next implementation order
+## Historical next implementation order
+
+This earlier sequence is retained with its qualification history. Current
+completed increments and the next delivery order are in the
+[roadmap overview](README.md) and [connected account continuation](connected-account-navigation.md).
 
 1. Preserve the completed integrated qualification and its source/runtime
    identities. Rerun affected checks for subsequent source changes and retain

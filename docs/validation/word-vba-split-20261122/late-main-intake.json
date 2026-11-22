@@ -1,0 +1,15 @@
+{
+  "recorded_at_utc": "2026-11-22T12:25:55.433696+00:00",
+  "previous_topic_checkpoint": "c971ad0e1515db8deed59b7d8360960c64e13059",
+  "remote_main": "4cc604810fb2f41ac7ba04cbed65cb76300bff59",
+  "merged_pr": 382,
+  "merged_pr_head": "5bf13601caac2c08fe97de25fe853c9d642f0cb1",
+  "common_ancestor": "8f2e943bf5aa1dd157e72f7ec47d0f7c2ccd5dd4",
+  "resolution": {
+    "engine": "Preserve main revision-provenance, XML-fragment, serializer/style/copy and edit guards; retain our independently reproduced empty-code formatting correction. No replacement parser rewrite.",
+    "mail": "Preserve the previously qualified final guarded atomic refresh and retained-owner release sequencing, avoid duplicate refresh transactions, and retain every new main regression. The three overlapping production files remain byte-identical to c971ad0e.",
+    "tests": "Retain original converter goldens and compare post-refresh text/metadata only against explicit requested citation deltas; preserve all remaining snapshot assertions.",
+    "verification": "Reconciled boundary suite passed 89 cases before final combined engine/editor/navigation qualification. See subsequent source-bound acceptance receipts."
+  },
+  "hosted_ci_queried_or_awaited": false
+}

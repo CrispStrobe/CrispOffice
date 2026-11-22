@@ -1,0 +1,414 @@
+{
+  "accepted_reporter": true,
+  "case_registry_sha256": "6c07a47964bfc21e2ff8b698fe276aed36be160c8561ec5d9ae6d5bb985c1a60",
+  "complete_lifecycle_registry_sha256": "a4a66f3a15ca20806e727049dde856af14af633e5d2943efd66cd9a2792c77b2",
+  "completed_lifecycles": 3996,
+  "done_events": [
+    {
+      "success": true,
+      "time": 160646,
+      "type": "done"
+    }
+  ],
+  "duplicate_case_names": 0,
+  "duplicate_completion_ids": [],
+  "duplicate_start_ids": [],
+  "errors": [],
+  "excluded_loader_hook_lifecycles": 104,
+  "expected_suite_count": 92,
+  "failed_cases": 0,
+  "incomplete_cases": 0,
+  "incomplete_lifecycle_ids": [],
+  "missing_suites": [],
+  "native_build_hook_progress": [],
+  "original_command": [
+    "/workspace/scratch/85a369f34dbb/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "test",
+    "--concurrency=2",
+    "--reporter=json",
+    "test/odf_zotero_ownership_test.dart",
+    "test/odf_zotero_preferences_test.dart",
+    "test/odf_zotero_reference_marks_test.dart",
+    "test/odf_zotero_resource_test.dart",
+    "test/odt_document_reader_test.dart",
+    "test/odt_image_style_review_test.dart",
+    "test/odt_libreoffice_bibliography_test.dart",
+    "test/odt_libreoffice_fixture_test.dart",
+    "test/odt_libreoffice_note_offsets_test.dart",
+    "test/odt_merged_table_zotero_test.dart",
+    "test/odt_outline_compatibility_test.dart",
+    "test/odt_reader_guards_test.dart",
+    "test/odt_reader_images_test.dart",
+    "test/odt_reader_libreoffice_defaults_test.dart",
+    "test/odt_reader_script_styles_test.dart",
+    "test/odt_reader_styles_test.dart",
+    "test/odt_reader_table_preservation_test.dart",
+    "test/odt_zotero_export_lifecycle_test.dart",
+    "test/odt_zotero_image_lifecycle_test.dart",
+    "test/odt_zotero_note_numbering_test.dart",
+    "test/odt_zotero_position_guard_test.dart",
+    "test/odt_zotero_table_geometry_test.dart",
+    "test/odt_zotero_writer_test.dart",
+    "test/office_vba_arrays_boundaries_test.dart",
+    "test/office_vba_arrays_integration_test.dart",
+    "test/office_vba_arrays_test.dart",
+    "test/office_vba_conformance_test.dart",
+    "test/office_vba_dynamic_arrays_integration_test.dart",
+    "test/office_vba_dynamic_arrays_test.dart",
+    "test/office_vba_join_conformance_test.dart",
+    "test/office_vba_split_test.dart",
+    "test/office_vba_string_constants_test.dart",
+    "test/office_vba_string_intrinsics_integration_test.dart",
+    "test/office_vba_string_intrinsics_test.dart",
+    "test/office_vba_text_intrinsics_test.dart",
+    "test/office_vba_variant_substrings_test.dart",
+    "test/office_vba_word_cell_paragraphs_test.dart",
+    "test/office_vba_word_headers_footers_test.dart",
+    "test/office_vba_word_named_measurements_integration_test.dart",
+    "test/office_vba_word_named_measurements_test.dart",
+    "test/office_vba_word_named_selectors_test.dart",
+    "test/office_vba_word_page_setup_test.dart",
+    "test/office_vba_word_split_cli_test.dart",
+    "test/office_vba_word_split_integration_test.dart",
+    "test/office_vba_word_text_selectors_cli_test.dart",
+    "test/office_vba_word_text_selectors_conformance_test.dart",
+    "test/office_vba_word_text_selectors_directional_test.dart",
+    "test/office_vba_word_text_selectors_integration_test.dart",
+    "test/word_directional_paragraph_io_test.dart",
+    "test/word_empty_formatted_run_test.dart",
+    "test/word_extended_revision_test.dart",
+    "test/word_field_span_test.dart",
+    "test/word_package_preservation_test.dart",
+    "test/word_revision_scaling_test.dart",
+    "test/word_revision_story_test.dart",
+    "test/word_revision_validation_test.dart",
+    "test/word_table_grid_addressing_test.dart",
+    "test/word_zotero_add_note_test.dart",
+    "test/word_zotero_adjacent_citations_test.dart",
+    "test/word_zotero_bibliography_layout_test.dart",
+    "test/word_zotero_bibliography_style_fidelity_test.dart",
+    "test/word_zotero_blockquote_test.dart",
+    "test/word_zotero_boundary_formatting_test.dart",
+    "test/word_zotero_caret_test.dart",
+    "test/word_zotero_citing_test.dart",
+    "test/word_zotero_document_data_test.dart",
+    "test/word_zotero_field_recovery_test.dart",
+    "test/word_zotero_field_selection_test.dart",
+    "test/word_zotero_formatted_bibliography_test.dart",
+    "test/word_zotero_multiparagraph_test.dart",
+    "test/word_zotero_nested_note_tables_test.dart",
+    "test/word_zotero_nested_table_test.dart",
+    "test/word_zotero_nested_tables_integration_test.dart",
+    "test/word_zotero_note_image_test.dart",
+    "test/word_zotero_note_images_integration_test.dart",
+    "test/word_zotero_note_insertion_test.dart",
+    "test/word_zotero_note_list_test.dart",
+    "test/word_zotero_note_table_test.dart",
+    "test/word_zotero_note_tables_integration_test.dart",
+    "test/word_zotero_paragraph_format_test.dart",
+    "test/word_zotero_preference_flow_test.dart",
+    "test/word_zotero_research_target_test.dart",
+    "test/word_zotero_rich_edit_test.dart",
+    "test/word_zotero_scaling_test.dart",
+    "test/word_zotero_simple_field_test.dart",
+    "test/word_zotero_source_identity_test.dart",
+    "test/word_zotero_style_preferences_review_test.dart",
+    "test/word_zotero_table_cell_replacement_test.dart",
+    "test/word_zotero_test.dart",
+    "test/word_zotero_transfer_session_test.dart",
+    "test/word_zotero_transfer_test.dart",
+    "test/word_zotero_writing_position_test.dart"
+  ],
+  "original_cwd": "packages/quds_office_engine",
+  "original_exit_code": 0,
+  "original_result": "../merged-source-recovery/incoming_engine-result.json",
+  "orphan_completion_ids": [],
+  "passed_cases": 3892,
+  "per_file_counts": {
+    "packages/quds_office_engine/test/odf_zotero_ownership_test.dart": {
+      "passed": 38
+    },
+    "packages/quds_office_engine/test/odf_zotero_preferences_test.dart": {
+      "passed": 60
+    },
+    "packages/quds_office_engine/test/odf_zotero_reference_marks_test.dart": {
+      "passed": 38
+    },
+    "packages/quds_office_engine/test/odf_zotero_resource_test.dart": {
+      "passed": 13
+    },
+    "packages/quds_office_engine/test/odt_document_reader_test.dart": {
+      "passed": 45
+    },
+    "packages/quds_office_engine/test/odt_image_style_review_test.dart": {
+      "passed": 40
+    },
+    "packages/quds_office_engine/test/odt_libreoffice_bibliography_test.dart": {
+      "passed": 35
+    },
+    "packages/quds_office_engine/test/odt_libreoffice_fixture_test.dart": {
+      "passed": 5
+    },
+    "packages/quds_office_engine/test/odt_libreoffice_note_offsets_test.dart": {
+      "passed": 38
+    },
+    "packages/quds_office_engine/test/odt_merged_table_zotero_test.dart": {
+      "passed": 40
+    },
+    "packages/quds_office_engine/test/odt_outline_compatibility_test.dart": {
+      "passed": 60
+    },
+    "packages/quds_office_engine/test/odt_reader_guards_test.dart": {
+      "passed": 12
+    },
+    "packages/quds_office_engine/test/odt_reader_images_test.dart": {
+      "passed": 52
+    },
+    "packages/quds_office_engine/test/odt_reader_libreoffice_defaults_test.dart": {
+      "passed": 31
+    },
+    "packages/quds_office_engine/test/odt_reader_script_styles_test.dart": {
+      "passed": 11
+    },
+    "packages/quds_office_engine/test/odt_reader_styles_test.dart": {
+      "passed": 51
+    },
+    "packages/quds_office_engine/test/odt_reader_table_preservation_test.dart": {
+      "passed": 23
+    },
+    "packages/quds_office_engine/test/odt_zotero_export_lifecycle_test.dart": {
+      "passed": 21
+    },
+    "packages/quds_office_engine/test/odt_zotero_image_lifecycle_test.dart": {
+      "passed": 9
+    },
+    "packages/quds_office_engine/test/odt_zotero_note_numbering_test.dart": {
+      "passed": 141
+    },
+    "packages/quds_office_engine/test/odt_zotero_position_guard_test.dart": {
+      "passed": 11
+    },
+    "packages/quds_office_engine/test/odt_zotero_table_geometry_test.dart": {
+      "passed": 19
+    },
+    "packages/quds_office_engine/test/odt_zotero_writer_test.dart": {
+      "passed": 11
+    },
+    "packages/quds_office_engine/test/office_vba_arrays_boundaries_test.dart": {
+      "passed": 144
+    },
+    "packages/quds_office_engine/test/office_vba_arrays_integration_test.dart": {
+      "passed": 11
+    },
+    "packages/quds_office_engine/test/office_vba_arrays_test.dart": {
+      "passed": 32
+    },
+    "packages/quds_office_engine/test/office_vba_conformance_test.dart": {
+      "passed": 115
+    },
+    "packages/quds_office_engine/test/office_vba_dynamic_arrays_integration_test.dart": {
+      "passed": 11
+    },
+    "packages/quds_office_engine/test/office_vba_dynamic_arrays_test.dart": {
+      "passed": 50
+    },
+    "packages/quds_office_engine/test/office_vba_join_conformance_test.dart": {
+      "passed": 26
+    },
+    "packages/quds_office_engine/test/office_vba_split_test.dart": {
+      "passed": 364
+    },
+    "packages/quds_office_engine/test/office_vba_string_constants_test.dart": {
+      "passed": 73
+    },
+    "packages/quds_office_engine/test/office_vba_string_intrinsics_integration_test.dart": {
+      "passed": 11
+    },
+    "packages/quds_office_engine/test/office_vba_string_intrinsics_test.dart": {
+      "passed": 102
+    },
+    "packages/quds_office_engine/test/office_vba_text_intrinsics_test.dart": {
+      "passed": 156
+    },
+    "packages/quds_office_engine/test/office_vba_variant_substrings_test.dart": {
+      "passed": 108
+    },
+    "packages/quds_office_engine/test/office_vba_word_cell_paragraphs_test.dart": {
+      "passed": 66
+    },
+    "packages/quds_office_engine/test/office_vba_word_headers_footers_test.dart": {
+      "passed": 94
+    },
+    "packages/quds_office_engine/test/office_vba_word_named_measurements_integration_test.dart": {
+      "passed": 11
+    },
+    "packages/quds_office_engine/test/office_vba_word_named_measurements_test.dart": {
+      "passed": 160
+    },
+    "packages/quds_office_engine/test/office_vba_word_named_selectors_test.dart": {
+      "passed": 133
+    },
+    "packages/quds_office_engine/test/office_vba_word_page_setup_test.dart": {
+      "passed": 88
+    },
+    "packages/quds_office_engine/test/office_vba_word_split_cli_test.dart": {
+      "passed": 1
+    },
+    "packages/quds_office_engine/test/office_vba_word_split_integration_test.dart": {
+      "passed": 8
+    },
+    "packages/quds_office_engine/test/office_vba_word_text_selectors_cli_test.dart": {
+      "passed": 1
+    },
+    "packages/quds_office_engine/test/office_vba_word_text_selectors_conformance_test.dart": {
+      "passed": 65
+    },
+    "packages/quds_office_engine/test/office_vba_word_text_selectors_directional_test.dart": {
+      "passed": 2
+    },
+    "packages/quds_office_engine/test/office_vba_word_text_selectors_integration_test.dart": {
+      "passed": 4
+    },
+    "packages/quds_office_engine/test/word_directional_paragraph_io_test.dart": {
+      "passed": 43
+    },
+    "packages/quds_office_engine/test/word_empty_formatted_run_test.dart": {
+      "passed": 17
+    },
+    "packages/quds_office_engine/test/word_extended_revision_test.dart": {
+      "passed": 23
+    },
+    "packages/quds_office_engine/test/word_field_span_test.dart": {
+      "passed": 7
+    },
+    "packages/quds_office_engine/test/word_package_preservation_test.dart": {
+      "passed": 32
+    },
+    "packages/quds_office_engine/test/word_revision_scaling_test.dart": {
+      "passed": 2
+    },
+    "packages/quds_office_engine/test/word_revision_story_test.dart": {
+      "passed": 11
+    },
+    "packages/quds_office_engine/test/word_revision_validation_test.dart": {
+      "passed": 7
+    },
+    "packages/quds_office_engine/test/word_table_grid_addressing_test.dart": {
+      "passed": 22
+    },
+    "packages/quds_office_engine/test/word_zotero_add_note_test.dart": {
+      "passed": 35
+    },
+    "packages/quds_office_engine/test/word_zotero_adjacent_citations_test.dart": {
+      "passed": 23
+    },
+    "packages/quds_office_engine/test/word_zotero_bibliography_layout_test.dart": {
+      "passed": 14
+    },
+    "packages/quds_office_engine/test/word_zotero_bibliography_style_fidelity_test.dart": {
+      "passed": 6
+    },
+    "packages/quds_office_engine/test/word_zotero_blockquote_test.dart": {
+      "passed": 19
+    },
+    "packages/quds_office_engine/test/word_zotero_boundary_formatting_test.dart": {
+      "passed": 80
+    },
+    "packages/quds_office_engine/test/word_zotero_caret_test.dart": {
+      "passed": 9
+    },
+    "packages/quds_office_engine/test/word_zotero_citing_test.dart": {
+      "passed": 59
+    },
+    "packages/quds_office_engine/test/word_zotero_document_data_test.dart": {
+      "passed": 49
+    },
+    "packages/quds_office_engine/test/word_zotero_field_recovery_test.dart": {
+      "passed": 38
+    },
+    "packages/quds_office_engine/test/word_zotero_field_selection_test.dart": {
+      "passed": 14
+    },
+    "packages/quds_office_engine/test/word_zotero_formatted_bibliography_test.dart": {
+      "passed": 11
+    },
+    "packages/quds_office_engine/test/word_zotero_multiparagraph_test.dart": {
+      "passed": 59
+    },
+    "packages/quds_office_engine/test/word_zotero_nested_note_tables_test.dart": {
+      "passed": 11
+    },
+    "packages/quds_office_engine/test/word_zotero_nested_table_test.dart": {
+      "passed": 20
+    },
+    "packages/quds_office_engine/test/word_zotero_nested_tables_integration_test.dart": {
+      "passed": 6
+    },
+    "packages/quds_office_engine/test/word_zotero_note_image_test.dart": {
+      "passed": 30
+    },
+    "packages/quds_office_engine/test/word_zotero_note_images_integration_test.dart": {
+      "passed": 10
+    },
+    "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart": {
+      "passed": 42
+    },
+    "packages/quds_office_engine/test/word_zotero_note_list_test.dart": {
+      "passed": 38
+    },
+    "packages/quds_office_engine/test/word_zotero_note_table_test.dart": {
+      "passed": 118
+    },
+    "packages/quds_office_engine/test/word_zotero_note_tables_integration_test.dart": {
+      "passed": 32
+    },
+    "packages/quds_office_engine/test/word_zotero_paragraph_format_test.dart": {
+      "passed": 26
+    },
+    "packages/quds_office_engine/test/word_zotero_preference_flow_test.dart": {
+      "passed": 11
+    },
+    "packages/quds_office_engine/test/word_zotero_research_target_test.dart": {
+      "passed": 35
+    },
+    "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart": {
+      "passed": 30
+    },
+    "packages/quds_office_engine/test/word_zotero_scaling_test.dart": {
+      "passed": 5
+    },
+    "packages/quds_office_engine/test/word_zotero_simple_field_test.dart": {
+      "passed": 19
+    },
+    "packages/quds_office_engine/test/word_zotero_source_identity_test.dart": {
+      "passed": 14
+    },
+    "packages/quds_office_engine/test/word_zotero_style_preferences_review_test.dart": {
+      "passed": 20
+    },
+    "packages/quds_office_engine/test/word_zotero_table_cell_replacement_test.dart": {
+      "passed": 62
+    },
+    "packages/quds_office_engine/test/word_zotero_test.dart": {
+      "passed": 16
+    },
+    "packages/quds_office_engine/test/word_zotero_transfer_session_test.dart": {
+      "passed": 8
+    },
+    "packages/quds_office_engine/test/word_zotero_transfer_test.dart": {
+      "passed": 81
+    },
+    "packages/quds_office_engine/test/word_zotero_writing_position_test.dart": {
+      "passed": 38
+    }
+  },
+  "raw_reporter_sha256": "e8b99213e0e73a3f8404591996172c29204a7e669eef78ea853391a65b33845a",
+  "recovered_test_starts": [],
+  "skipped_cases": 0,
+  "started_lifecycles": 3996,
+  "suite_count": 92,
+  "unexpected_suites": [],
+  "unique_completed_cases": 3892,
+  "unique_started_cases": 3892,
+  "unrecognized_physical_lines": []
+}

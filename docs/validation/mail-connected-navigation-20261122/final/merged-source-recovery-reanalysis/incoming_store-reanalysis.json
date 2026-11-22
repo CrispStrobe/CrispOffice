@@ -1,0 +1,62 @@
+{
+  "accepted_reporter": true,
+  "case_registry_sha256": "f6e5292dfed35ef6f825c8009035f9522e0317a5091bdc0002414341395284d4",
+  "complete_lifecycle_registry_sha256": "57cba1a8c6ac6a6fae69c83457ca18bdd4fe22cef157f89e4bbba3dd995d1e32",
+  "completed_lifecycles": 49,
+  "done_events": [
+    {
+      "success": true,
+      "time": 3660,
+      "type": "done"
+    }
+  ],
+  "duplicate_case_names": 0,
+  "duplicate_completion_ids": [],
+  "duplicate_start_ids": [],
+  "errors": [],
+  "excluded_loader_hook_lifecycles": 2,
+  "expected_suite_count": 2,
+  "failed_cases": 0,
+  "incomplete_cases": 0,
+  "incomplete_lifecycle_ids": [],
+  "missing_suites": [],
+  "native_build_hook_progress": [
+    {
+      "following_event": "start",
+      "physical_line": 1,
+      "prefix": "Running build hooks...",
+      "raw_line_sha256": "1edaf7fb9ac2576ff7fb8c77453964f0d5823ceda8ff0c939b6d242cc6c1271c",
+      "repetitions": 2
+    }
+  ],
+  "original_command": [
+    "/workspace/scratch/85a369f34dbb/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "test",
+    "--concurrency=2",
+    "--reporter=json",
+    "test/local_accounts_test.dart",
+    "test/local_accounts_expected_record_test.dart"
+  ],
+  "original_cwd": "packages/quds_mail_store",
+  "original_exit_code": 0,
+  "original_result": "../merged-source-recovery/incoming_store-result.json",
+  "orphan_completion_ids": [],
+  "passed_cases": 47,
+  "per_file_counts": {
+    "packages/quds_mail_store/test/local_accounts_expected_record_test.dart": {
+      "passed": 21
+    },
+    "packages/quds_mail_store/test/local_accounts_test.dart": {
+      "passed": 26
+    }
+  },
+  "raw_reporter_sha256": "c133b2883d77f4e464a7664d29e8fd7720224e1f7fd29fce5be4391fc846aef1",
+  "recovered_test_starts": [],
+  "skipped_cases": 0,
+  "started_lifecycles": 49,
+  "suite_count": 2,
+  "unexpected_suites": [],
+  "unique_completed_cases": 47,
+  "unique_started_cases": 47,
+  "unrecognized_physical_lines": []
+}

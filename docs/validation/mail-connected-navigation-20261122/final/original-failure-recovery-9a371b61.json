@@ -1,0 +1,175 @@
+{
+  "cases": [
+    {
+      "name": "ews: invalid selections are refused atomically and closed dialogs stop further dispatch",
+      "original_id": 542,
+      "original_result": "error",
+      "recovery_id": 571,
+      "recovery_result": "success",
+      "recovery_skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart"
+    },
+    {
+      "name": "gmail: invalid selections are refused atomically and closed dialogs stop further dispatch",
+      "original_id": 567,
+      "original_result": "error",
+      "recovery_id": 596,
+      "recovery_result": "success",
+      "recovery_skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart"
+    },
+    {
+      "name": "graph: invalid selections are refused atomically and closed dialogs stop further dispatch",
+      "original_id": 596,
+      "original_result": "error",
+      "recovery_id": 623,
+      "recovery_result": "success",
+      "recovery_skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart"
+    },
+    {
+      "name": "imap repository flags preserve live reader and provider identities",
+      "original_id": 632,
+      "original_result": "error",
+      "recovery_id": 667,
+      "recovery_result": "success",
+      "recovery_skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "ews delete survives metadata updates and cannot resurrect cached rows",
+      "original_id": 700,
+      "original_result": "error",
+      "recovery_id": 732,
+      "recovery_result": "success",
+      "recovery_skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "gmail delete survives metadata updates and cannot resurrect cached rows",
+      "original_id": 816,
+      "original_result": "error",
+      "recovery_id": 853,
+      "recovery_result": "success",
+      "recovery_skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "Gmail closes late draft storage without adopting a retired session",
+      "original_id": 833,
+      "original_result": "error",
+      "recovery_id": 861,
+      "recovery_result": "success",
+      "recovery_skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart"
+    },
+    {
+      "name": "native setup offers Gmail, Microsoft 365 and Exchange",
+      "original_id": 835,
+      "original_result": "error",
+      "recovery_id": 862,
+      "recovery_result": "success",
+      "recovery_skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart"
+    },
+    {
+      "name": "graph delete survives metadata updates and cannot resurrect cached rows",
+      "original_id": 886,
+      "original_result": "error",
+      "recovery_id": 922,
+      "recovery_result": "success",
+      "recovery_skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "EWS retires a draft store opened after its host was closed",
+      "original_id": 1269,
+      "original_result": "error",
+      "recovery_id": 1298,
+      "recovery_result": "success",
+      "recovery_skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_ews_test.dart"
+    },
+    {
+      "name": "native account setup exposes the Exchange Server entry",
+      "original_id": 1274,
+      "original_result": "error",
+      "recovery_id": 1299,
+      "recovery_result": "success",
+      "recovery_skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_ews_test.dart"
+    },
+    {
+      "name": "disposing during send ignores a late acceptance",
+      "original_id": 1307,
+      "original_result": "error",
+      "recovery_id": 1334,
+      "recovery_result": "success",
+      "recovery_skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_ews_test.dart"
+    },
+    {
+      "name": "closing Mail ignores a pending file picker result",
+      "original_id": 1395,
+      "original_result": "error",
+      "recovery_id": 1428,
+      "recovery_result": "success",
+      "recovery_skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart"
+    },
+    {
+      "name": "imap cached-mail button opens only the local mailbox",
+      "original_id": 1413,
+      "original_result": "error",
+      "recovery_id": 1437,
+      "recovery_result": "success",
+      "recovery_skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_local_accounts_dialog_test.dart"
+    },
+    {
+      "name": "ews cached-mail button opens only the local mailbox",
+      "original_id": 1418,
+      "original_result": "error",
+      "recovery_id": 1441,
+      "recovery_result": "success",
+      "recovery_skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_local_accounts_dialog_test.dart"
+    },
+    {
+      "name": "gmail cached-mail button opens only the local mailbox",
+      "original_id": 1420,
+      "original_result": "error",
+      "recovery_id": 1443,
+      "recovery_result": "success",
+      "recovery_skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_local_accounts_dialog_test.dart"
+    },
+    {
+      "name": "graph cached-mail button opens only the local mailbox",
+      "original_id": 1422,
+      "original_result": "error",
+      "recovery_id": 1445,
+      "recovery_result": "success",
+      "recovery_skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_local_accounts_dialog_test.dart"
+    },
+    {
+      "name": "choosing a preset clears old credentials and exposes app-password guidance",
+      "original_id": 2016,
+      "original_result": "error",
+      "recovery_id": 2058,
+      "recovery_result": "success",
+      "recovery_skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_presets_test.dart"
+    }
+  ],
+  "now_passed": 18,
+  "original_result_sha256": "29865cbf2c70eeecfe3bf741fe2ee6ff8ad572839ce29614b0433a41eb8de6a5",
+  "original_source_commit": "d53f30f1874b38d36a791d1d3881583e4e42a2d6",
+  "previously_failed_cases": 18,
+  "record_decoding": "UTF-8 JSON records delimited only by LF bytes; exact suite path and case name equality.",
+  "recovery_raw_reporter_sha256": "c85c7fe3cb25b3fd886c864be3a35a0fb0bbd393342fe5b30f0f7dedf3075c82",
+  "recovery_result_sha256": "57f2f54e75d809a205d9fd4ddf3c06168a6717c6e29b4af4af6a449dd1564104",
+  "recovery_source_commit": "9a371b616ae0fa0dbbecaed04708837125694d7c",
+  "scope": "Exact case-identity comparison between captured d53 failed run and captured9a successful execution; not acceptance of subsequent source changes."
+}

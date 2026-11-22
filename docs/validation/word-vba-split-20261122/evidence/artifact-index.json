@@ -1,0 +1,196 @@
+{
+  "schema": 1,
+  "qualified_source_commit": "8bbe17bc7d82964b67385aa796b7f43248c65149",
+  "artifacts": [
+    {
+      "file": "broad-acceptance.json",
+      "bytes": 213,
+      "sha256": "e88013d5dcb520753718def3e617a4891808e9fb73687f38e969ba852a500243"
+    },
+    {
+      "file": "dart-sdk.json",
+      "bytes": 281,
+      "sha256": "b192a014e4229dcb0ebe4bace7d7b6fd72502af6ebf127157f20556224c5021f"
+    },
+    {
+      "file": "engine-runtime.json",
+      "bytes": 1359,
+      "sha256": "bb9124af02c65e4c48ca81c88acd753f2606c823c23c2e80c5d03efffef657a3"
+    },
+    {
+      "file": "final-engine-acceptance.json",
+      "bytes": 4198,
+      "sha256": "bbb051d9e6884d4dfd925a30fe9bcabd87cc407405d042e392d7e6ef9ac2731c"
+    },
+    {
+      "file": "final-intake-qualification.json",
+      "bytes": 1715,
+      "sha256": "b48d84ebccb361de0da4449043a7166ab6dc364ebe7a15ab87696fc59c87c33d"
+    },
+    {
+      "file": "final-merged-intake-evidence.json",
+      "bytes": 774,
+      "sha256": "f8e5dfef4e43f928e09feda30c3dd66cd2794dfc0e0cf2788b81a7e72313c731"
+    },
+    {
+      "file": "final-merged-intake-evidence.tar.xz",
+      "bytes": 474116,
+      "sha256": "24f282df74fbfee8dbb6fe0bb71afc57f5f4f8b5c91651813fecde71badb5265",
+      "role": "Accepted final 220 Mail and 296 editor cases plus 47 unchanged store cases; includes prior-intake evidence"
+    },
+    {
+      "file": "final-word-portability.json",
+      "bytes": 536,
+      "sha256": "29938ab696880a57586a8456754f2584d13675c34ea289e6943abdc895f8a303"
+    },
+    {
+      "file": "flutter-runtime.json",
+      "bytes": 4057,
+      "sha256": "7163f313e6032c77708e52372765d667768c4d6be4cad0fc60265ce29700f343"
+    },
+    {
+      "file": "flutter-sdk.json",
+      "bytes": 552,
+      "sha256": "447f4eae355f92b14163cab2c7c3878717186876bf7bac48560f154bc16fe2b1"
+    },
+    {
+      "file": "independent-review.json",
+      "bytes": 3929,
+      "sha256": "ac06d3317d1a523f651f2f360c7dca6bcdfc04b1e055dfa29a386a2585356270"
+    },
+    {
+      "file": "intermediate-intake-qualification.json",
+      "bytes": 1960,
+      "sha256": "4bd0182480f8af172606e2f29eaa9fd8637dcc0d0afee8e5753f70ee9a3ac318"
+    },
+    {
+      "file": "latest-intake-evidence.json",
+      "bytes": 522,
+      "sha256": "c6dca840fc946803822203c64444616137590352d14acde231a0e771714c9820"
+    },
+    {
+      "file": "latest-intake-evidence.tar.xz",
+      "bytes": 450916,
+      "sha256": "73d59f684609de77038414d8428e82c16c68458b7e3eec66691dc14c05283c07",
+      "role": "Intermediate c971 Mail/editor/store qualification and prior failed test fixtures"
+    },
+    {
+      "file": "mail-archive-members.json",
+      "bytes": 8058,
+      "sha256": "34378551fd8c17479b4c215e66f11bf3b73dff19fd35426096d3970dbebd7f3a"
+    },
+    {
+      "file": "mail-local-checks.tar.xz",
+      "bytes": 366992,
+      "sha256": "dfa95e92905b1b6b79cfab547b05b2a0367a5007ff23eb591ef735f77281b52a",
+      "role": "Earlier initial/final Mail intake, including original failures and passing store tests"
+    },
+    {
+      "file": "mail-qualification.json",
+      "bytes": 2630,
+      "sha256": "05cb23f1273fee6a76557c3f8ccb04a78dcca3992dcbb431121d8ee7b221a966"
+    },
+    {
+      "file": "mail-retention.json",
+      "bytes": 914,
+      "sha256": "26368701a08d88d70602dfa33599fc120098c870733501dc87b3951cd147dbc9"
+    },
+    {
+      "file": "post-intake-engine-final-acceptance.members.json",
+      "bytes": 7833,
+      "sha256": "d799b870b79711dcf62aa5660a2337e0aec76f1d5875ca2e3f7bbdfe507dddad"
+    },
+    {
+      "file": "post-intake-engine-final-acceptance.tar.xz",
+      "bytes": 251392,
+      "sha256": "8a5533bf855b274f7239dc6b22b882952e44273bc61cd23c2e08cf622aabf1b1",
+      "role": "Accepted final 1798-case engine/revision gate and Word portability"
+    },
+    {
+      "file": "post-intake-engine-final-acceptance.verification.json",
+      "bytes": 651,
+      "sha256": "5f3875aed8a8ebd9431b1b6aae6d9c4c6b6f994c8710fdf6c4b304287466ee93"
+    },
+    {
+      "file": "post-intake-engine-initial-failure.members.json",
+      "bytes": 6453,
+      "sha256": "ae500c3f74b709b919c05191747df483b5da7d572cfc0b21e110974a10b50641"
+    },
+    {
+      "file": "post-intake-engine-initial-failure.tar.xz",
+      "bytes": 244656,
+      "sha256": "08e50b506f6e9a7ec4ee9721431c5466271fe75d96995410037fa84052374aa1",
+      "role": "Historical 55-suite run: 1695 passes and seven failures; not an accepted gate"
+    },
+    {
+      "file": "post-intake-engine-initial-failure.verification.json",
+      "bytes": 653,
+      "sha256": "dd5632e08f13775804b3b3a0e272a13e207858b1889320feb4c0fc9af034f598"
+    },
+    {
+      "file": "word-split-broad-evidence.manifest.json",
+      "bytes": 10174,
+      "sha256": "6f69ba6c88effa4097167b119ed694c7100d1de6f5e64afbfe9fc13560eeb85e"
+    },
+    {
+      "file": "word-split-broad-evidence.tar.xz",
+      "bytes": 466600,
+      "sha256": "12272ca1c60d1c73c436e4d85caa4f1c0b503fc4b7fcd28d9f6a7bc7b92b1b0b",
+      "role": "Accepted 9310-case broad gate with preserved reporter recovery"
+    },
+    {
+      "file": "word-split-broad-evidence.verification.json",
+      "bytes": 3515,
+      "sha256": "9624f273da0086b4a636b653cfa6260df2f6dc6c940241aa35523fa87b222939"
+    },
+    {
+      "file": "word-split-development-evidence.manifest.json",
+      "bytes": 9586,
+      "sha256": "1fdb2fc267b8f2a9d347af170fe6968f313d43932c5994ed51fca949a6f17369"
+    },
+    {
+      "file": "word-split-development-evidence.tar.xz",
+      "bytes": 83968,
+      "sha256": "a2b5f930ae6cc9286ff599a19c7064add1fd96faf73c76a04ad6384b45782010",
+      "role": "Split development, pinned acceptance, independent review and portability"
+    },
+    {
+      "file": "word-split-development-evidence.verification.json",
+      "bytes": 4016,
+      "sha256": "0277059e61fdc768853d2d8a5268180480c9fcde23e75197c483338039716b81"
+    },
+    {
+      "file": "zotero-empty-code-review.json",
+      "bytes": 7298,
+      "sha256": "de6a6571ea6dc90af7d20b4039849c0f6d47bb9639986ad96fe9702f4e060760"
+    },
+    {
+      "file": "zotero-empty-code-review.manifest.json",
+      "bytes": 2129,
+      "sha256": "1593622da9fa286738caf9ef43421a5e54663a458cb4692910c12d46ab1a27d5"
+    },
+    {
+      "file": "zotero-empty-code-review.tar.xz",
+      "bytes": 8336,
+      "sha256": "22faf3d268d696b65fa018dc945a04149a464a98a4b069b9604b747aa1e078b0",
+      "role": "Reproduced formatting leak and nine passing correction regressions"
+    },
+    {
+      "file": "zotero-main-reconciliation-qualification.manifest.json",
+      "bytes": 2176,
+      "sha256": "1af8e1a3d110fa2f1a1506c1b3424551321fa59bf494d228860b44e90b721def"
+    },
+    {
+      "file": "zotero-main-reconciliation-qualification.tar.xz",
+      "bytes": 10128,
+      "sha256": "7c16421d3f520ef24ff19ee108b8323455fbe0cde5f26b43dd2612f002c6534f",
+      "role": "89-case boundary qualification of reconciled latest main and stronger snapshot oracle"
+    },
+    {
+      "file": "zotero-main-reconciliation-review.json",
+      "bytes": 4825,
+      "sha256": "7963468a860521157ead9b293ed78a70afaac4292a845339f431abe4217ce7c6"
+    }
+  ],
+  "index_does_not_hash_itself": true
+}

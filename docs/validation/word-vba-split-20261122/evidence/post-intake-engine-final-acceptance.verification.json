@@ -1,0 +1,20 @@
+{
+  "verified": true,
+  "accepted": true,
+  "expected_failures": 0,
+  "archive_sha256": "8a5533bf855b274f7239dc6b22b882952e44273bc61cd23c2e08cf622aabf1b1",
+  "archive_bytes": 251392,
+  "verified_members": 40,
+  "source_commit": "8bbe17bc7d82964b67385aa796b7f43248c65149",
+  "runtime": "Flutter 3.47.8 / Dart 3.13.7",
+  "suite_count": 61,
+  "case_count": 1798,
+  "source_input_count": 3223,
+  "dependency_packages": 166,
+  "raw_events_match_case_ledger": true,
+  "source_and_dependencies_unchanged": true,
+  "all_commands_successful": true,
+  "word_vm_js_parsed_equal": true,
+  "word_vm_js_byte_equal": false,
+  "excluded_generated_javascript": true
+}

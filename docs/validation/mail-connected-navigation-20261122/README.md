@@ -48,6 +48,14 @@ ODT changes. Our newer Close/dispatch fences, native held-owner recovery and
 fixture corrections remain present. `late-main-intake.json` records the exact
 delta and merge receipt.
 
+Main then advanced to `b4f1150b18348f348489c93108158a397c922abe` through
+PR #383. Its concurrent Mail work adds exact-port routing, timestamp checks,
+dependency-replacement fencing, late-owner tracking and cache-boundary tests.
+The Word change keeps invisible Zotero instruction-run formatting out of visible
+results. Both sides' Mail regressions are retained during reconciliation.
+The two textual conflicts were in the Mail status summary and provider test
+teardown; neither was resolved by discarding one side's implementation.
+
 ## Local qualification and correction
 
 The first combined source was frozen at remote commit
@@ -64,7 +72,7 @@ suites and 14 incoming engine suites, plus strict analysis and formatting of
 generated package configuration/graph stayed unchanged after every gate and
 matched the exact source commit. The runner itself stayed unchanged.
 
-| Original gate at `d53f30f1` | Passed | Failed | Skipped / incomplete |
+| Original reported gate at `d53f30f1` | Passed | Failed | Skipped / incomplete |
 | --- | ---: | ---: | ---: |
 | Incoming engine, 14 suites | 903 | 0 | 0 / 0 |
 | Studio Mail, 110 suites | 2,203 | 18 | 0 / 0 |
@@ -129,6 +137,28 @@ the unchanged 18-suite selection, generated resolution, runtime identity and
 original evidence checksums match. Only its 294 cases may enter the retained
 total. Fresh results are recorded under `final/merged-source-recovery/`.
 
+Every command in that expanded run exited zero. Its original summary nevertheless
+reported `accepted: false`: the parser split valid JSON test names on Unicode
+line separators and missed three starts. A separate, checksummed
+[reporter re-analysis](final/REPORTER_REANALYSIS.md) uses physical LF-delimited
+records, pairs every start and completion, and verifies the original artifacts,
+captured inputs and exact archived runner. It establishes 6,893 fresh passes
+(3,892 engine, 653 editor, 47 store, 48 Studio Zotero and 2,253 Studio Mail), with
+zero failed, skipped or incomplete cases. The retained UI adds 294 cases, for
+7,187 cases on source `9a371b61` only. The raw run and its original summary are
+unchanged. The earlier `d53f30f1` reported Mail total also omitted three passed
+Unicode-name cases; its 18 actual failures remain unchanged and all 18 pass in
+the expanded run. Neither historical total qualifies subsequent source edits.
+
+Independent review after that run identified a missing ownership boundary:
+provider Close could return while an unadopted store factory, load or atomic
+refresh was pending, and a late cleanup failure could lose its live retry path.
+The incoming PR #383 adds related ownership barriers but also requires explicit
+Close ordering and native local-entry reconciliation. Those corrections and
+their targeted regressions precede the next frozen source. The final gates
+requalify affected Studio and Word inputs; unchanged gates are retained only
+with exact source, dependency, runtime and evidence continuity.
+
 Initial failed test attempts and their corrections remain in `development/`.
 The first provider startup was rejected by automatic review because an
 unsourced Flutter invocation attempted its Azure metadata bot-detection probe.
@@ -151,6 +181,7 @@ Working branch: `work/mail-connected-navigation-20261122`.
 | `6d63c6e2a44848b4f2fb9d7177d2d605506f98cb` | Complete first combined run with its failures, restored cancellable Close and independent provider setup, and corrective regressions |
 | `4015d7544ec3aa392ce2f375a35f00a4c3d4c5a3` | Corrected fixtures, all focused recovery evidence and the source immediately before the final main advance |
 | `9a371b616ae0fa0dbbecaed04708837125694d7c` | Latest main reconciled, atomic reconnect retained with the corrected lifecycle, and expanded final qualification frozen |
+| `93cc695d8e96774a5bc5f8b1498fb7144db1aa62` | Complete expanded local run, original reporter results, source manifests and raw evidence preserved |
 
 Each remote tree was checked against its local checkpoint before moving the
 branch with an expected-head lease and `force=false`. The qualification

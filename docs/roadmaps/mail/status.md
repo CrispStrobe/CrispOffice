@@ -21,32 +21,43 @@ interrupted work.
 | Search | Local cached headers and saved queries with exact account/folder scope and missing-folder recovery; no body/provider discovery |
 | Conversations | Folding of explicitly loaded threaded headers |
 | Compose tools | Signatures, Quick Text, attachments and draft recovery |
-| Account persistence/navigation | Native account store, schema migrations, verified cross-provider chooser and draft-safe explicit reconnect; one connected account at a time |
+| Account persistence/navigation | Native account store, schema migrations and a verified four-provider chooser with exact non-secret routes, draft-safe explicit sign-in and guarded foreground handoff; one connected account at a time |
 | Browser store | Implemented path; quota/reload/Web Locks acceptance remains open |
 
-## Latest increment: verified cross-provider account navigation
+## Latest increment: verified connected-account navigation
 
-**Choose an account** now offers verified IMAP/SMTP, Exchange EWS, Gmail and
-Microsoft 365 accounts in one localized chooser. The transition saves the old
-account's retained draft and uncertain-send status, drains its session and local
-owner, and opens explicit sign-in for the selected destination. A failed save or
-owner release cannot authorize another account. Provider Close/Back also follows
-the retained-draft recovery path.
+**Choose an account** offers verified remembered IMAP/SMTP, Exchange EWS, Gmail
+and Microsoft 365 accounts in one localized chooser. Exact non-secret routes
+open the selected provider's explicit sign-in flow. Selection and directory
+refresh do not start synchronization, send mail or replay journal commands.
+Current drafts and uncertain-submission state remain account-owned; a failed
+save prevents the switch.
 
-Selected provider/endpoint/login/sender identities and directory revisions are
-revalidated across asynchronous setup. Removed targets, edited identities,
-delayed route callbacks and hidden keyboard input cannot redirect a newer
-session. IMAP SMTP-route ambiguity requires an explicit remembered-route choice.
-Selection never starts synchronization, sends mail or replays journal commands.
-The selected shortcut is refreshed atomically before local-owner adoption, so a
-record forgotten or replaced during sign-in cannot be recreated by a late write.
+The foreground handoff drains cached observers, pending journal writes and owners
+before opening the destination. Selected provider, endpoint, login, sender and
+directory revision are revalidated across asynchronous setup. Removed targets,
+edited identities, stale route callbacks, hidden keyboard input and late owner
+acquisitions cannot redirect or revive another account. Ambiguous IMAP SMTP
+routes require an explicit remembered-route choice.
 
-See the [workflow and ownership contract](account-navigation.md) and
-[local qualification record](../../validation/mail-connected-navigation-20261122/README.md)
-for the current source and actual verification results. This delivers explicit
-single-session reconnection across providers. Retained simultaneous sessions,
-the account-aware unified workspace, complete M04W and full desktop-client
-parity remain open, along with live-provider/installed-platform acceptance.
+Directory refresh compares the selected record atomically, so successful
+sign-in cannot recreate a concurrently forgotten or replaced shortcut. Custom
+directories without conditional refresh retain their existing metadata. A late
+store opener remains part of its retiring account until cleanup settles; failed
+release keeps the owner available for explicit retry and blocks another owner.
+Native Close retains its existing mounted-pane behavior once pending ownership
+has settled. Provider Close/Back preserves draft recovery and waits for late
+account admission and release before returning to the root Mail pane.
+
+See both the [workflow and ownership contract](account-navigation.md) and
+[connected-account continuation](connected-account-navigation.md), with their
+[connected-navigation qualification](../../validation/mail-connected-navigation-20261122/README.md)
+and [account-workspace qualification](../../validation/mail-account-workspace-20261122/README.md)
+records, for actual source boundaries and executed acceptance. Remembered Archive
+destinations, categories/rules, body/provider search, persistent conversations
+and provider Drafts/Sent reconciliation remain open. Retained simultaneous
+sessions, a unified live Inbox, complete M04W, full desktop-client parity and
+live-provider/installed-platform acceptance remain open too.
 
 ## Previous increment: explicit provider Archive
 
@@ -75,7 +86,7 @@ visual-golden mismatch, reproduced on the pre-integration source with exactly
 the same failing pixels.
 
 Account navigation is continued above. Retained multi-account sessions and the
-unified workspace remain the next M04W boundary; full desktop parity and
+unified workspace remain open within M04W; full desktop parity and
 live-provider/platform acceptance remain open.
 
 ## Previous increment: durable visible-selection Move/Delete
@@ -138,7 +149,7 @@ Cached mailbox observations stay dated until explicit refresh or sync.
 See the [workflow and ordered continuation](membership-recovery.md) and
 [local qualification record](../../validation/mail-membership-recovery-20261122/README.md).
 IMAP/EWS identity-transition capture and guarded cache reconciliation are now
-continued above. Bulk organization and connected multi-account navigation remain next.
+continued above, followed by bulk organization and connected account navigation.
 
 ## Previous increment: durable foreground Move/Delete
 
@@ -153,7 +164,7 @@ read/flag observation. Schema 13 preserves earlier data with additive migration.
 See the [workflow, boundaries and ordered continuation](durable-mutations.md)
 and [local qualification record](../../validation/mail-durable-mutations-20261122/README.md).
 Current-location evidence is continued above. Authoritative cache reconciliation,
-bulk organization and connected multi-account navigation remain subsequent work.
+bulk organization and connected account navigation are continued above.
 
 ## Previous increment: unified retained-folder navigation
 
@@ -250,6 +261,11 @@ never retry automatically.
 
 ## Accounts and credentials
 
+The four-provider navigation directory retains verified non-secret identity
+shortcuts. It requires a fresh selection when the chosen record changes during
+sign-in and refreshes native records through an atomic expected-record check.
+Opening that directory grants no connection authority and stores no new secrets.
+
 The native account store retains provider settings, server identity and
 credential references. Saved accounts can reconnect after relaunch when the
 selected credential store is available. Manual edits during asynchronous
@@ -298,6 +314,8 @@ Host-specific limits:
 - Persistent account-wide conversation indexes and cross-folder discovery.
 - Indexed body search and server-side discovery.
 - Continuous refresh of shared saved views.
+- Simultaneous background accounts and a live cross-account unified Inbox.
+- Remembered custom Archive destinations and provider-aware categories/rules.
 - A complete unified Mail workspace across every host.
 - Live-provider, installed-platform and browser acceptance for new features.
 - Full MailStore parity and encrypted local storage.
@@ -317,6 +335,7 @@ Host-specific limits:
 
 - [Mail roadmap](README.md)
 - [Implementation plan](implementation-plan.md)
+- [Connected account navigation](connected-account-navigation.md)
 - [Durable sync](durable-sync.md)
 - [Scheduled send](scheduled-send.md)
 - [Saved searches](saved-searches.md)

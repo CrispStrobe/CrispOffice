@@ -1,0 +1,10 @@
+{
+  "source": "packages/quds_office_engine/example/macros/word_split_report.bas",
+  "source_sha256": "6dc12791b65923513bce5ce8ea12e978fb614d03c8e3376d6ffb7801ed176a10",
+  "driver": "tool/macros/web_vba_word_split_smoke.dart",
+  "driver_sha256": "5c54bc65dde2378ea1529f9b8d7e59aaa6afbf81c9a871576602de018e0dfead",
+  "equal_parsed_receipts": true,
+  "byte_equal": false,
+  "vm_sha256": "fc85b00ae0b31827b003f992be1a4841c4f9750f0f73abb06de3e0be967d0a02",
+  "js_sha256": "f52a7951d0755289e1d972dd6301091971cda848cd40f28e41185a37dbf5db94"
+}

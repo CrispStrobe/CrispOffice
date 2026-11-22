@@ -1,0 +1,19 @@
+{
+  "archive": "/workspace/scratch/7c69340222d3/final-merged-intake-evidence.tar.xz",
+  "sha256": "24f282df74fbfee8dbb6fe0bb71afc57f5f4f8b5c91651813fecde71badb5265",
+  "bytes": 474116,
+  "member_count": 86,
+  "verified_all_members": true,
+  "qualified_source_commit": "8bbe17bc7d82964b67385aa796b7f43248c65149",
+  "qualified_source_tree": "f1b36d91a8fb6bc843bcbc9c448a911f47147566",
+  "passed": 563,
+  "fresh_passed": 516,
+  "scope_counts": {
+    "mail": 220,
+    "zotero_editor": 296,
+    "mail_store": 47
+  },
+  "member_digest_manifest": "/workspace/scratch/7c69340222d3/final-merged-intake-acceptance/archive-members.json",
+  "prior_archive_sha256": "73d59f684609de77038414d8428e82c16c68458b7e3eec66691dc14c05283c07",
+  "prior_archive_complete_contents_retained": true
+}

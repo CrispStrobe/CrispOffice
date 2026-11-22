@@ -1,7 +1,13 @@
 {
+  "merged-source-recovery": {
+    "path": "qualify_mail_9a371b61.py",
+    "reason": "Exact unmodified qualification runner archived before standalone newline-only reporter re-analysis.",
+    "sha256": "e0e1d208beae75dba5de37b4d0ce1f4a9c24ab72864ce5435b1c6e234bd04e85",
+    "source_commit": "9a371b616ae0fa0dbbecaed04708837125694d7c"
+  },
   "qualified-source": {
-    "source_commit": "d53f30f1874b38d36a791d1d3881583e4e42a2d6",
     "path": "qualify_mail_d53f30f1.py",
-    "sha256": "e69c5597c005addfbc3398b77d5edfe6e15c5dba568cc387a2d359425137074c"
+    "sha256": "e69c5597c005addfbc3398b77d5edfe6e15c5dba568cc387a2d359425137074c",
+    "source_commit": "d53f30f1874b38d36a791d1d3881583e4e42a2d6"
   }
 }

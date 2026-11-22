@@ -1,0 +1,63 @@
+{
+  "accepted_reporter": true,
+  "case_registry_sha256": "aae3e2b1ae5905b1b7b83c6abcbd47f550a1a1ec6c9c18a818ea71c8724d6abd",
+  "complete_lifecycle_registry_sha256": "bedf1da4a935c0a8c1fb27bd04e1cfa83c92507bc51719e834543df176fef8df",
+  "completed_lifecycles": 52,
+  "done_events": [
+    {
+      "success": true,
+      "time": 50363,
+      "type": "done"
+    }
+  ],
+  "duplicate_case_names": 0,
+  "duplicate_completion_ids": [],
+  "duplicate_start_ids": [],
+  "errors": [],
+  "excluded_loader_hook_lifecycles": 4,
+  "expected_suite_count": 4,
+  "failed_cases": 0,
+  "incomplete_cases": 0,
+  "incomplete_lifecycle_ids": [],
+  "missing_suites": [],
+  "native_build_hook_progress": [],
+  "original_command": [
+    "/workspace/scratch/85a369f34dbb/runtime/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=2",
+    "--reporter=json",
+    "test/studio_odt_open_test.dart",
+    "test/studio_zotero_citing_transport_test.dart",
+    "test/studio_zotero_odt_export_test.dart",
+    "test/studio_zotero_shortcuts_test.dart"
+  ],
+  "original_cwd": "packages/quds_office_editor/example",
+  "original_exit_code": 0,
+  "original_result": "../merged-source-recovery/studio_zotero-result.json",
+  "orphan_completion_ids": [],
+  "passed_cases": 48,
+  "per_file_counts": {
+    "packages/quds_office_editor/example/test/studio_odt_open_test.dart": {
+      "passed": 3
+    },
+    "packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart": {
+      "passed": 18
+    },
+    "packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart": {
+      "passed": 10
+    },
+    "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart": {
+      "passed": 17
+    }
+  },
+  "raw_reporter_sha256": "8e9d89afb47ae953dbf68bf6ab83dca05f7dfcc45a097b986d5641ec889e5499",
+  "recovered_test_starts": [],
+  "skipped_cases": 0,
+  "started_lifecycles": 52,
+  "suite_count": 4,
+  "unexpected_suites": [],
+  "unique_completed_cases": 48,
+  "unique_started_cases": 48,
+  "unrecognized_physical_lines": []
+}
