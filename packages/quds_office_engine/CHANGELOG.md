@@ -4,6 +4,14 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Add bounded VBA `StrReverse` for source-known text in Word, Excel and
+  PowerPoint. Reverse UTF-16 code units with once-only argument evaluation,
+  explicit Empty/Null handling, strict String payloads and preallocation work
+  accounting. Existing native text guards reject malformed UTF-16 at publication.
+  Regression tests are authored; this increment's execution status and exact
+  compatibility boundary are recorded in
+  [the source-text record](../../docs/validation/word-vba-source-text-20261122/README.md).
+
 - Preserve supported visible table borders in native Zotero ODT import and
   explicit editable export: one solid RGB stroke per table, exact eighth-point
   widths from 0.25 to 12 pt, and independent cell sides. Resolve inherited
