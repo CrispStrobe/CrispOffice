@@ -1,0 +1,14 @@
+{
+  "exit_code": 0,
+  "passed": 8006,
+  "failed": 0,
+  "skipped": 0,
+  "done": {
+    "success": true,
+    "type": "done",
+    "time": 162137
+  },
+  "errors": [],
+  "completed_at": "2026-11-22T10:37:14.882830+00:00",
+  "inputs_unchanged": true
+}
