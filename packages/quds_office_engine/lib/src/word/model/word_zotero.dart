@@ -1603,8 +1603,14 @@ abstract final class WordZotero {
 
   static void _unlinkPacket(WmlZoteroField field) {
     _assertCurrent(field);
-    for (final paragraph in field.paragraphs) {
-      WordContentControls.assertCanEdit(paragraph, 0, paragraph.text.length);
+    for (final (index, paragraph) in field.paragraphs.indexed) {
+      WordContentControls.assertCanEdit(
+        paragraph,
+        index == 0 ? field.start : 0,
+        index == field.paragraphs.length - 1
+            ? field.end
+            : paragraph.text.length,
+      );
     }
     if (field.run != null) {
       field.run!
