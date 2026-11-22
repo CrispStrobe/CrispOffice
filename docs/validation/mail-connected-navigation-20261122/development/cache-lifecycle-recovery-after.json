@@ -1,0 +1,13 @@
+{
+  "head": "6d63c6e2a44848b4f2fb9d7177d2d605506f98cb",
+  "phase": "after scoped recovery batch",
+  "sha256": {
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart": "8ce36e6bda57eecc5dacf5a33b9f0873dd998c3779ca8784aff90646bf5b8265",
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart": "f99eaf064d3fa1f446cf64444e42ac3b2d6581388b2c8db7123022c722d5d4f5",
+    "packages/quds_office_editor/example/lib/studio_mail_draft_store.dart": "8c7a972571367f11267f2eeea0530ce0ba74beb1f19d7f30ad96d624f6b96927",
+    "packages/quds_office_editor/example/lib/studio_mail_mailbox_session.dart": "bb7eaf388795a4e5eddec0c4e9924f9f4853e637e510486afcb46065f2064b4a",
+    "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart": "f0aef58aeeccf81f724d2b048cbb5c4f27b98e9421623f0cc3bf08a78b444bb1",
+    "packages/quds_office_editor/example/test/studio_mail_local_accounts_dialog_test.dart": "1e6cf378ce0a0c8cde6e513c864ab2466ddebf7ea5b302f512a0cc15c37d5b35",
+    "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart": "8397810dba68a9ea54416e87c6840a4d72709142bd721fb58acbb4330689a6cb"
+  }
+}

@@ -51,6 +51,7 @@ final class _Provider extends Fake
   final fetchedIdentities = <MailRemoteIdentity>[];
   final commands = <MailOperation>[];
   bool paginate = false;
+  bool supportsDelete = false;
   int disposals = 0;
   int bodyVersion = 1;
   String bodyFiller = '';
@@ -125,7 +126,11 @@ final class _Provider extends Fake
   Future<MailResult<MailCapabilities>> capabilities(
     MailOperationLease lease,
   ) async => MailSuccess(
-    MailCapabilities(const [MailCapability.mail, MailCapability.folders]),
+    MailCapabilities([
+      MailCapability.mail,
+      MailCapability.folders,
+      if (supportsDelete) MailCapability.delete,
+    ]),
   );
 
   @override
@@ -245,6 +250,8 @@ final class _Owner
   final _closeCompleted = Completer<void>();
   Future<void> get whenClosed => _closeCompleted.future;
   bool closed = false;
+  int closeRequests = 0;
+  String? closeProblem;
   int loads = 0;
   final saveFailures = <MailProblemCode>[];
   @override
@@ -299,10 +306,18 @@ final class _Owner
       delegate.discardDraft(summary);
   @override
   Future<void> close() {
+    closeRequests++;
     if (!_closeCompleted.isCompleted) {
       _closeCompleted.complete(() async {
-        await delegate.close();
-        closed = true;
+        try {
+          await delegate.close();
+          closed = true;
+        } on Object catch (error) {
+          closeProblem = error is StudioMailDraftStoreException
+              ? error.code.name
+              : error.runtimeType.toString();
+          rethrow;
+        }
       }());
     }
     return whenClosed;
@@ -410,6 +425,7 @@ final class _Stores {
   _Stores(this.directory);
   final Directory directory;
   final owners = <_Owner>[];
+  final openStages = <String>[];
   StudioMailDraftAccount? identity;
   bool seedUncertain = false;
   bool seedAttachment = false;
@@ -423,6 +439,36 @@ final class _Stores {
   Completer<void>? reachedCommit;
 
   Future<StudioMailDraftStore> open(StudioMailDraftAccount account) async {
+    openStages.add('started');
+    try {
+      final owner = await _open(account);
+      openStages.add('completed');
+      return owner;
+    } on Object catch (error) {
+      openStages.add(
+        'failed:${error is StudioMailDraftStoreException ? error.code.name : error.runtimeType}',
+      );
+      rethrow;
+    }
+  }
+
+  Map<String, Object?> get diagnostics => {
+    'openStages': openStages,
+    'owners': [
+      for (final owner in owners)
+        {
+          'loads': owner.loads,
+          'closeRequests': owner.closeRequests,
+          'closed': owner.closed,
+          'closeProblem': owner.closeProblem,
+          'watches': owner.watchProbe?.watches,
+          'cancelRequests': owner.watchProbe?.cancellations,
+          'cancelled': owner.watchProbe?.completedCancellations,
+        },
+    ],
+  };
+
+  Future<StudioMailDraftStore> _open(StudioMailDraftAccount account) async {
     if (identity != null) expectSync(account.account, identity!.account);
     identity = account;
     final delegate =
@@ -491,11 +537,14 @@ final class _Harness {
   int authorizations = 0;
   int providerCreations = 0;
   bool paginate = false;
+  bool supportsDelete = false;
   final client = _Client();
 
   _Provider create(MailAccountId account) {
     if (provider?.account != account) {
-      provider = _Provider(account, kind)..paginate = paginate;
+      provider = _Provider(account, kind)
+        ..paginate = paginate
+        ..supportsDelete = supportsDelete;
       providerCreations++;
     }
     return provider!;
@@ -591,7 +640,14 @@ Future<_Harness> _fixture(WidgetTester tester, MailProviderKind kind) async {
     for (final owner in stores.owners.reversed) {
       // The host drains live repository reads before closing its owner. A
       // competing fixture close can tear down SQLite during that drain.
-      await awaitOutboxOperation(tester, owner.whenClosed);
+      try {
+        await awaitOutboxOperation(tester, owner.whenClosed);
+      } on Object {
+        debugPrint(
+          'Cached host close failure: ${jsonEncode(stores.diagnostics)}',
+        );
+        rethrow;
+      }
     }
     await tester.runAsync(() => directory.delete(recursive: true));
     await tester.binding.setSurfaceSize(null);
@@ -649,6 +705,13 @@ Future<void> _showHost(WidgetTester tester, _Harness harness) async {
     await tester.tap(_key('cloud-connect'));
   }
   await _until(tester, () => _listReady(tester));
+  expect(
+    harness.stores.owners,
+    isNotEmpty,
+    reason:
+        'Cached fixture requires a retained owner: '
+        '${jsonEncode(harness.stores.diagnostics)}',
+  );
 }
 
 Future<void> _tapMessage(WidgetTester tester, String subject) async {
@@ -994,6 +1057,7 @@ void main() {
         '${kind.name} delete survives metadata updates and cannot resurrect cached rows',
         (tester) async {
           final harness = await _fixture(tester, kind);
+          harness.supportsDelete = true;
           harness.stores.observeWatches = true;
           await _showHost(tester, harness);
           await _tapMessage(tester, 'Message two');
@@ -1008,8 +1072,18 @@ void main() {
           final label = kind == MailProviderKind.ews
               ? _strings.ewsDelete
               : _strings.mailCloudDelete;
-          await tester.tap(find.byTooltip(label));
+          final action = find.byWidgetPredicate(
+            (widget) => widget is IconButton && widget.tooltip == label,
+          );
+          expect(tester.widget<IconButton>(action).onPressed, isNotNull);
+          await tester.tap(action);
           await tester.pumpAndSettle();
+          final confirmation = find.widgetWithText(FilledButton, label);
+          expect(confirmation, findsOneWidget);
+          expect(
+            tester.widget<FilledButton>(confirmation).onPressed,
+            isNotNull,
+          );
           final session = MailAccountSession(cache.account);
           addTearDown(session.dispose);
           final before = cache.emissions;
@@ -1033,7 +1107,7 @@ void main() {
             ),
           );
           await _until(tester, () => cache.emissions > before);
-          await tester.tap(find.widgetWithText(FilledButton, label));
+          await tester.tap(confirmation);
           await _until(
             tester,
             () => harness.provider!.commands.isNotEmpty && _listReady(tester),

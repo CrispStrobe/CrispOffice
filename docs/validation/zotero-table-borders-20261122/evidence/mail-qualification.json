@@ -1,0 +1,138 @@
+{
+  "qualifiedAtUtc": "2026-11-22T12:57:31.832978+00:00",
+  "status": "passed",
+  "scope": "Nine focused local Mail navigation, ownership, cache, lifecycle, preset and local-account suites plus strict analysis of the thirteen changed Mail Dart paths. No GitHub Actions wait and no live-provider acceptance claimed.",
+  "boundSourceCommit": "a60698d7775a71364eeae9547e22d0afff49294a",
+  "boundSourceTree": "f80876b3b13b22529c397b176fa61ca203c357d6",
+  "initialIntake": {
+    "sourceCommit": "665da6ee5313dc15525da193ef39132ef8eaf9d1",
+    "exitCode": 0,
+    "parsed": {
+      "completedCases": 308,
+      "uniqueCases": 308,
+      "passed": 308,
+      "failed": 0,
+      "skipped": 0,
+      "errorEvents": 0,
+      "terminal": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 189603
+        }
+      ]
+    },
+    "hashedInputCount": 315,
+    "inputsUnchanged": true,
+    "strictAnalysisExitCode": 0,
+    "strictAnalysisFileCount": 13,
+    "evidencePrefix": "intake-308/"
+  },
+  "finalFirstAttempt": {
+    "sourceCommit": "f3cfa49dfb891dcf0bcb0dd7af448d0378016160",
+    "exitCode": 1,
+    "parsed": {
+      "completedCases": 332,
+      "uniqueCases": 332,
+      "passed": 283,
+      "failed": 49,
+      "skipped": 0,
+      "errorEvents": 49,
+      "terminal": [
+        {
+          "success": false,
+          "type": "done",
+          "time": 82768
+        }
+      ]
+    },
+    "inputsUnchanged": true,
+    "productErrors": 3,
+    "environmentErrors": 46,
+    "unclassifiedErrors": 0,
+    "productDiagnosis": "Retained Refresh callbacks dereferenced _mailbox! after Disconnect cleared it; reproduced for EWS, Gmail and Graph.",
+    "environmentDiagnosis": "Cached-host fixtures could not create temporary directories after a concurrent engine compiler filled available workspace bytes (OS errno 28). Disk space recovered after that compiler finished and removed its temporary kernels.",
+    "evidencePrefix": "final-first-attempt/",
+    "classification": "final-first-attempt/first-run-classification.json"
+  },
+  "finalRetry": {
+    "recordedHead": "f3cfa49dfb891dcf0bcb0dd7af448d0378016160",
+    "provenance": "The retry started from f3cfa49d with the Refresh guard uncommitted, alongside documentation/evidence edits. Its 315 recorded Mail input hashes were subsequently compared with every corresponding Git blob in a60698d7 and with current files; all match exactly.",
+    "boundSourceCommit": "a60698d7775a71364eeae9547e22d0afff49294a",
+    "command": [
+      "flutter",
+      "test",
+      "--no-pub",
+      "--concurrency=2",
+      "--reporter=json",
+      "test/studio_mail_account_navigation_test.dart",
+      "test/studio_mail_account_navigation_native_test.dart",
+      "test/studio_mail_account_navigation_native_release_test.dart",
+      "test/studio_mail_account_navigation_provider_test.dart",
+      "test/studio_mail_account_navigation_router_test.dart",
+      "test/studio_mail_cached_host_test.dart",
+      "test/studio_mail_lifecycle_test.dart",
+      "test/studio_mail_presets_test.dart",
+      "test/studio_mail_local_accounts_dialog_test.dart"
+    ],
+    "exitCode": 0,
+    "parsed": {
+      "completedCases": 332,
+      "uniqueCases": 332,
+      "passed": 332,
+      "failed": 0,
+      "skipped": 0,
+      "errorEvents": 0,
+      "terminal": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 129340
+        }
+      ]
+    },
+    "hashedInputCount": 315,
+    "inputsUnchanged": true,
+    "sourceChangesSinceFirstAttempt": [
+      "packages/quds_office_editor/example/lib/studio_mail_ews.dart"
+    ],
+    "fix": "Refresh uses a named handler that checks the selected mailbox and blocked state before forwarding to the existing guarded loader. All incoming regression expectations remain intact.",
+    "bindingEvidence": "final-retry/source-binding.json",
+    "evidencePrefix": "final-retry/"
+  },
+  "strictAnalysis": {
+    "sourceCommit": "a60698d7775a71364eeae9547e22d0afff49294a",
+    "command": [
+      "dart",
+      "analyze",
+      "--fatal-infos",
+      "packages/quds_office_editor/example/lib/studio_mail_account_navigation.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_account_navigation_strings.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_release_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_account_navigation_provider_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_account_navigation_router_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_account_navigation_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_local_accounts_dialog_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_presets_test.dart"
+    ],
+    "exitCode": 0,
+    "fileCount": 13,
+    "inputsUnchanged": true,
+    "output": "No issues found!",
+    "evidence": "final-retry/analysis-command.json"
+  },
+  "archive": {
+    "path": "mail-local-evidence.tar.xz",
+    "bytes": 41912,
+    "sha256": "d0a1cc47fc85349bb1c0af664f0426d5b16d126b94ba37c91c9ecba3687384f9",
+    "memberCount": 32,
+    "members": "mail-local-evidence-members.json",
+    "readbackVerification": "mail-local-evidence-verification.json"
+  },
+  "remainingAcceptance": "Live-provider, installed-platform and full Mail-client parity remain outside these local gates."
+}

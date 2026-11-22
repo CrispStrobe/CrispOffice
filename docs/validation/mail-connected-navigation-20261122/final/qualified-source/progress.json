@@ -1,0 +1,41 @@
+{
+  "completed_gates": [
+    "analysis",
+    "format",
+    "incoming_engine",
+    "studio_mail",
+    "shared_mail_ui"
+  ],
+  "source_checks": [
+    {
+      "after_gate": "analysis",
+      "changed_source_inputs": [],
+      "generated_inputs_unchanged": true,
+      "stable": true
+    },
+    {
+      "after_gate": "format",
+      "changed_source_inputs": [],
+      "generated_inputs_unchanged": true,
+      "stable": true
+    },
+    {
+      "after_gate": "incoming_engine",
+      "changed_source_inputs": [],
+      "generated_inputs_unchanged": true,
+      "stable": true
+    },
+    {
+      "after_gate": "studio_mail",
+      "changed_source_inputs": [],
+      "generated_inputs_unchanged": true,
+      "stable": true
+    },
+    {
+      "after_gate": "shared_mail_ui",
+      "changed_source_inputs": [],
+      "generated_inputs_unchanged": true,
+      "stable": true
+    }
+  ]
+}

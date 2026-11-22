@@ -1,0 +1,2360 @@
+{
+  "command": [
+    "/workspace/scratch/85a369f34dbb/runtime/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=2",
+    "--reporter=json",
+    "test/body_presentation_contract_test.dart",
+    "test/body_presentation_test.dart",
+    "test/bulk_api_aliases_test.dart",
+    "test/bulk_message_list_test.dart",
+    "test/controller_test.dart",
+    "test/example_test.dart",
+    "test/message_list_bulk_test.dart",
+    "test/message_list_conversations_test.dart",
+    "test/message_list_organization_test.dart",
+    "test/message_list_range_selection_test.dart",
+    "test/message_list_test.dart",
+    "test/message_view_test.dart",
+    "test/presentation_test.dart",
+    "test/presentation_whitespace_test.dart",
+    "test/reader_image_updates_test.dart",
+    "test/reader_labels_test.dart",
+    "test/reader_theme_scroll_test.dart",
+    "test/remote_images_test.dart"
+  ],
+  "cwd": "packages/quds_mail_ui",
+  "exit_code": 0,
+  "expected_suites": [
+    "packages/quds_mail_ui/test/body_presentation_contract_test.dart",
+    "packages/quds_mail_ui/test/body_presentation_test.dart",
+    "packages/quds_mail_ui/test/bulk_api_aliases_test.dart",
+    "packages/quds_mail_ui/test/bulk_message_list_test.dart",
+    "packages/quds_mail_ui/test/controller_test.dart",
+    "packages/quds_mail_ui/test/example_test.dart",
+    "packages/quds_mail_ui/test/message_list_bulk_test.dart",
+    "packages/quds_mail_ui/test/message_list_conversations_test.dart",
+    "packages/quds_mail_ui/test/message_list_organization_test.dart",
+    "packages/quds_mail_ui/test/message_list_range_selection_test.dart",
+    "packages/quds_mail_ui/test/message_list_test.dart",
+    "packages/quds_mail_ui/test/message_view_test.dart",
+    "packages/quds_mail_ui/test/presentation_test.dart",
+    "packages/quds_mail_ui/test/presentation_whitespace_test.dart",
+    "packages/quds_mail_ui/test/reader_image_updates_test.dart",
+    "packages/quds_mail_ui/test/reader_labels_test.dart",
+    "packages/quds_mail_ui/test/reader_theme_scroll_test.dart",
+    "packages/quds_mail_ui/test/remote_images_test.dart"
+  ],
+  "finished_at_utc": "2026-11-22T12:06:42.977145+00:00",
+  "interrupted": false,
+  "kind": "tests",
+  "name": "shared_mail_ui",
+  "observed_head": "d53f30f1874b38d36a791d1d3881583e4e42a2d6",
+  "reporter": {
+    "case_attempts": 294,
+    "cases": [
+      {
+        "id": 5,
+        "name": "explicit empty plain text wins without scanning the HTML alternative",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_contract_test.dart"
+      },
+      {
+        "id": 6,
+        "name": "explicit HTML preference budgets only the selected alternative",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_contract_test.dart"
+      },
+      {
+        "id": 7,
+        "name": "HTML-only quotation has no envelope or attachment chrome",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_contract_test.dart"
+      },
+      {
+        "id": 8,
+        "name": "active HTML and image resources cannot enter a quotation",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_contract_test.dart"
+      },
+      {
+        "id": 9,
+        "name": "a missing body rejects while an explicitly empty HTML body succeeds",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_contract_test.dart"
+      },
+      {
+        "id": 10,
+        "name": "selected body limits count UTF-8 bytes and admit the exact boundary",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_contract_test.dart"
+      },
+      {
+        "id": 11,
+        "name": "text output limit discards every partially projected character",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_contract_test.dart"
+      },
+      {
+        "id": 12,
+        "name": "HTML node limit discards every partially projected character",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_contract_test.dart"
+      },
+      {
+        "id": 13,
+        "name": "HTML depth limit discards every partially projected character",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_contract_test.dart"
+      },
+      {
+        "id": 14,
+        "name": "incomplete HTML rejects the entire quotation instead of its prefix",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_contract_test.dart"
+      },
+      {
+        "id": 15,
+        "name": "strict quotation rejection leaves the existing reader tolerant",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_contract_test.dart"
+      },
+      {
+        "id": 19,
+        "name": "plain quotation preserves literal text and Unicode exactly",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_test.dart"
+      },
+      {
+        "id": 20,
+        "name": "explicitly empty plain text never falls back to HTML by default",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_test.dart"
+      },
+      {
+        "id": 21,
+        "name": "unselected alternatives are not scanned or budgeted",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_test.dart"
+      },
+      {
+        "id": 22,
+        "name": "HTML-only text uses inert entities, breaks and styling",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_test.dart"
+      },
+      {
+        "id": 23,
+        "name": "paragraphs, lists and table cells retain readable separation",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_test.dart"
+      },
+      {
+        "id": 24,
+        "name": "explicit HTML preference can select the alternate body",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_test.dart"
+      },
+      {
+        "id": 25,
+        "name": "missing bodies reject without inventing quoted source",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_test.dart"
+      },
+      {
+        "id": 26,
+        "name": "envelopes and attachments cannot affect body-only quotation",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_test.dart"
+      },
+      {
+        "id": 27,
+        "name": "active markup and resource attributes never enter quoted text",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_test.dart"
+      },
+      {
+        "id": 28,
+        "name": "decoded markup remains literal text and is never reparsed",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_test.dart"
+      },
+      {
+        "id": 29,
+        "name": "remote and CID images have no attachment lookup or resource path",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_test.dart"
+      },
+      {
+        "id": 30,
+        "name": "safe links remain inert metadata; destinations are not quoted",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_test.dart"
+      },
+      {
+        "id": 31,
+        "name": "selected input counts complete UTF-8 scalar values",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_test.dart"
+      },
+      {
+        "id": 32,
+        "name": "selected HTML input is bounded before markup projection",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_test.dart"
+      },
+      {
+        "id": 33,
+        "name": "decoded content budget is independently enforced",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_test.dart"
+      },
+      {
+        "id": 34,
+        "name": "render output limit discards an already projected prefix",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_test.dart"
+      },
+      {
+        "id": 35,
+        "name": "HTML node and attribute limits discard the whole projection",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_test.dart"
+      },
+      {
+        "id": 36,
+        "name": "HTML nesting is bounded before deeper content is admitted",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_test.dart"
+      },
+      {
+        "id": 37,
+        "name": "incomplete HTML rejects instead of returning its prefix: <p>Prefix</p><!--private tail",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_test.dart"
+      },
+      {
+        "id": 38,
+        "name": "incomplete HTML rejects instead of returning its prefix: <p>Prefix</p><a href=\"private tail",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_test.dart"
+      },
+      {
+        "id": 39,
+        "name": "incomplete HTML rejects instead of returning its prefix: <p>Prefix</p><script>private tail",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_test.dart"
+      },
+      {
+        "id": 40,
+        "name": "incomplete HTML rejects instead of returning its prefix: <p>Prefix</p><style>private tail",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_test.dart"
+      },
+      {
+        "id": 41,
+        "name": "incomplete HTML rejects instead of returning its prefix: <p>Prefix</p><iframe>private tail",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_test.dart"
+      },
+      {
+        "id": 42,
+        "name": "incomplete HTML rejects instead of returning its prefix: <p>Prefix</p><form>private tail",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_test.dart"
+      },
+      {
+        "id": 43,
+        "name": "incomplete HTML rejects instead of returning its prefix: <p>Prefix</p><svg><text>private tail",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_test.dart"
+      },
+      {
+        "id": 44,
+        "name": "incomplete HTML rejects instead of returning its prefix: <p>Prefix</p><plaintext>private tail",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_test.dart"
+      },
+      {
+        "id": 45,
+        "name": "incomplete HTML rejects instead of returning its prefix: <p>Prefix</p><@>private tail",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_test.dart"
+      },
+      {
+        "id": 46,
+        "name": "incomplete HTML rejects instead of returning its prefix: <p>Prefix</p><>private tail",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_test.dart"
+      },
+      {
+        "id": 47,
+        "name": "ordinary optional closing tags do not lose complete visible text",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_test.dart"
+      },
+      {
+        "id": 48,
+        "name": "strict quotation does not change legacy reader recovery behavior",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_test.dart"
+      },
+      {
+        "id": 49,
+        "name": "invalid caller budgets fail before any projection",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_test.dart"
+      },
+      {
+        "id": 53,
+        "name": "remote image candidate aliases agree by ordered URI values",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/bulk_api_aliases_test.dart"
+      },
+      {
+        "id": 54,
+        "name": "remote image alias useUris=true retains a defensive copy",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/bulk_api_aliases_test.dart"
+      },
+      {
+        "id": 55,
+        "name": "remote image alias useUris=false retains a defensive copy",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/bulk_api_aliases_test.dart"
+      },
+      {
+        "id": 56,
+        "name": "published selection and enabled spellings expose one value",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/bulk_api_aliases_test.dart"
+      },
+      {
+        "id": 57,
+        "name": "contradictory aliases fail before constructing a selection",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/bulk_api_aliases_test.dart"
+      },
+      {
+        "id": 58,
+        "name": "visible label alias supplies the rendered select-shown button",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/bulk_api_aliases_test.dart"
+      },
+      {
+        "id": 60,
+        "name": "checkbox selection never opens a message and freezes exact IDs",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/bulk_message_list_test.dart"
+      },
+      {
+        "id": 64,
+        "name": "full and preview modes pass their actual raw budgets into the codec",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/controller_test.dart"
+      },
+      {
+        "id": 65,
+        "name": "search, selection and decoded copy include displayed headers and body",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/controller_test.dart"
+      },
+      {
+        "id": 66,
+        "name": "selection never splits a surrogate or combined grapheme",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/controller_test.dart"
+      },
+      {
+        "id": 67,
+        "name": "match limit is explicit and result replacement clears stale selection",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/controller_test.dart"
+      },
+      {
+        "id": 68,
+        "name": "switching body alternative preserves raw bytes and invalidates action revision",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/controller_test.dart"
+      },
+      {
+        "id": 69,
+        "name": "remote image batches append once and retain immutable source ownership",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/controller_test.dart"
+      },
+      {
+        "id": 70,
+        "name": "image admission resets stale selection and rebuilds exact search offsets",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/controller_test.dart"
+      },
+      {
+        "id": 71,
+        "name": "remote image pixels share the cumulative CID budget across batches",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/controller_test.dart"
+      },
+      {
+        "id": 72,
+        "name": "remote bytes count both bodies and all original attachments",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/controller_test.dart"
+      },
+      {
+        "id": 73,
+        "name": "remote image count includes attachments that are not displayed images",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/controller_test.dart"
+      },
+      {
+        "id": 74,
+        "name": "invalid remote images leave the view unchanged and cannot erase a valid peer",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/controller_test.dart"
+      },
+      {
+        "id": 75,
+        "name": "per-image attachment limits apply before remote publication",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/controller_test.dart"
+      },
+      {
+        "id": 76,
+        "name": "rejected and disposed readers cannot admit remote images",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/controller_test.dart"
+      },
+      {
+        "id": 79,
+        "name": "explicit markRead requests are not inferred toggles",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/bulk_message_list_test.dart"
+      },
+      {
+        "id": 80,
+        "name": "explicit markUnread requests are not inferred toggles",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/bulk_message_list_test.dart"
+      },
+      {
+        "id": 81,
+        "name": "explicit flag requests are not inferred toggles",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/bulk_message_list_test.dart"
+      },
+      {
+        "id": 83,
+        "name": "actual example MIME bytes provide the displayed body, CID and exact attachment",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/example_test.dart"
+      },
+      {
+        "id": 84,
+        "name": "explicit unflag requests are not inferred toggles",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/bulk_message_list_test.dart"
+      },
+      {
+        "id": 87,
+        "name": "generic checkbox menu offers only the four flag assignments",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/bulk_message_list_test.dart"
+      },
+      {
+        "id": 88,
+        "name": "Select shown respects filters and never adds hidden rows",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/bulk_message_list_test.dart"
+      },
+      {
+        "id": 90,
+        "name": "cached hosts have no mutable bulk controls",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_bulk_test.dart"
+      },
+      {
+        "id": 91,
+        "name": "filters prune hidden selection and invalid queries clear it",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/bulk_message_list_test.dart"
+      },
+      {
+        "id": 92,
+        "name": "checking rows and selecting visible never opens or loads mail",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_bulk_test.dart"
+      },
+      {
+        "id": 93,
+        "name": "sorting preserves checkboxes and uses displayed selection order",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/bulk_message_list_test.dart"
+      },
+      {
+        "id": 94,
+        "name": "newly loaded rows stay unchecked and removed rows are pruned",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/bulk_message_list_test.dart"
+      },
+      {
+        "id": 95,
+        "name": "MailBulkFlagAction.markRead freezes visible order and clears before callback",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_bulk_test.dart"
+      },
+      {
+        "id": 96,
+        "name": "keyboard selection stays separate from opening a body",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/bulk_message_list_test.dart"
+      },
+      {
+        "id": 97,
+        "name": "MailBulkFlagAction.markUnread freezes visible order and clears before callback",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_bulk_test.dart"
+      },
+      {
+        "id": 98,
+        "name": "A to B to A rejects old checkbox and action callbacks",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/bulk_message_list_test.dart"
+      },
+      {
+        "id": 99,
+        "name": "a popup opened for an older selection cannot command a new one",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/bulk_message_list_test.dart"
+      },
+      {
+        "id": 100,
+        "name": "MailBulkFlagAction.flag freezes visible order and clears before callback",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_bulk_test.dart"
+      },
+      {
+        "id": 101,
+        "name": "refresh invalidates selection but preserves search and sorting",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/bulk_message_list_test.dart"
+      },
+      {
+        "id": 102,
+        "name": "MailBulkFlagAction.unflag freezes visible order and clears before callback",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_bulk_test.dart"
+      },
+      {
+        "id": 103,
+        "name": "busy state blocks new work but keeps stop available",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/bulk_message_list_test.dart"
+      },
+      {
+        "id": 104,
+        "name": "an accepted menu callback cannot be replayed after completion",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/bulk_message_list_test.dart"
+      },
+      {
+        "id": 105,
+        "name": "filtering prunes hidden rows and never restores their checks",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_bulk_test.dart"
+      },
+      {
+        "id": 106,
+        "name": "refresh-required disables changes and clears the old selection",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/bulk_message_list_test.dart"
+      },
+      {
+        "id": 107,
+        "name": "read-only hosts expose no mutation selection or shortcuts",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/bulk_message_list_test.dart"
+      },
+      {
+        "id": 108,
+        "name": "disposed callbacks cannot dispatch commands",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/bulk_message_list_test.dart"
+      },
+      {
+        "id": 109,
+        "name": "unread filters prune unknown flags and invalid search clears all",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_bulk_test.dart"
+      },
+      {
+        "id": 110,
+        "name": "compact enlarged selection controls remain usable TextDirection.rtl",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/bulk_message_list_test.dart"
+      },
+      {
+        "id": 111,
+        "name": "compact enlarged selection controls remain usable TextDirection.ltr",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/bulk_message_list_test.dart"
+      },
+      {
+        "id": 112,
+        "name": "removed rows are pruned and appended pages are not selected",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_bulk_test.dart"
+      },
+      {
+        "id": 113,
+        "name": "scope resets checks and rejects overlapping stale rows",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_bulk_test.dart"
+      },
+      {
+        "id": 114,
+        "name": "Boolean edits prune checks and reject an earlier bulk menu",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/bulk_message_list_test.dart"
+      },
+      {
+        "id": 115,
+        "name": "revision resets checks and rejects overlapping stale rows",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_bulk_test.dart"
+      },
+      {
+        "id": 118,
+        "name": "refresh revision clears checks while preserving query and sort",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_bulk_test.dart"
+      },
+      {
+        "id": 119,
+        "name": "pending menu cannot survive a filter change",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_bulk_test.dart"
+      },
+      {
+        "id": 121,
+        "name": "groups explicit loaded threads without collapsing or fetching",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_conversations_test.dart"
+      },
+      {
+        "id": 122,
+        "name": "pending menu cannot survive a selection change",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_bulk_test.dart"
+      },
+      {
+        "id": 123,
+        "name": "pending menu cannot survive a sort change",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_bulk_test.dart"
+      },
+      {
+        "id": 124,
+        "name": "pending menu cannot survive a host change",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_bulk_test.dart"
+      },
+      {
+        "id": 125,
+        "name": "actual open popup rejects a scope change",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_bulk_test.dart"
+      },
+      {
+        "id": 126,
+        "name": "actual open popup rejects a filter change",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_bulk_test.dart"
+      },
+      {
+        "id": 127,
+        "name": "search and bulk operate only on actually visible rows",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_conversations_test.dart"
+      },
+      {
+        "id": 128,
+        "name": "actual open popup rejects a selection change",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_bulk_test.dart"
+      },
+      {
+        "id": 129,
+        "name": "actual open popup rejects a sort change",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_bulk_test.dart"
+      },
+      {
+        "id": 130,
+        "name": "actual open popup rejects a host change",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_bulk_test.dart"
+      },
+      {
+        "id": 131,
+        "name": "actual open popup is inert after host refresh",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_bulk_test.dart"
+      },
+      {
+        "id": 132,
+        "name": "account namespaces prevent false conversation grouping",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_conversations_test.dart"
+      },
+      {
+        "id": 133,
+        "name": "stale select-visible and clear callbacks cannot change selection",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_bulk_test.dart"
+      },
+      {
+        "id": 134,
+        "name": "busy and refresh-required hosts reject all selection and actions",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_bulk_test.dart"
+      },
+      {
+        "id": 135,
+        "name": "absent metadata does not offer a misleading grouping control",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_conversations_test.dart"
+      },
+      {
+        "id": 136,
+        "name": "changing account or folder scope resets the grouping choice",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_conversations_test.dart"
+      },
+      {
+        "id": 137,
+        "name": "LogicalKeyboardKey#d0ba2(keyId: \"0x200000100\", keyLabel: \"Control Left\", debugName: \"Control Left\")+A checks visible loaded rows; Enter still opens",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_bulk_test.dart"
+      },
+      {
+        "id": 138,
+        "name": "collapse prunes hidden selection and bulk uses shown identities",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_conversations_test.dart"
+      },
+      {
+        "id": 139,
+        "name": "LogicalKeyboardKey#e3a44(keyId: \"0x200000106\", keyLabel: \"Meta Left\", debugName: \"Meta Left\")+A checks visible loaded rows; Enter still opens",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_bulk_test.dart"
+      },
+      {
+        "id": 140,
+        "name": "Escape clears checked rows without opening or changing mail",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_bulk_test.dart"
+      },
+      {
+        "id": 141,
+        "name": "Escape with no checked rows remains available to the host",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_bulk_test.dart"
+      },
+      {
+        "id": 142,
+        "name": "search editing keeps Ctrl+A and Space without checking mail",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_bulk_test.dart"
+      },
+      {
+        "id": 143,
+        "name": "aggregate counts use observed filtered members even when collapsed",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_conversations_test.dart"
+      },
+      {
+        "id": 144,
+        "name": "disposed list ignores all captured bulk callbacks",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_bulk_test.dart"
+      },
+      {
+        "id": 145,
+        "name": "compact de controls and results remain usable at 1.4x",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_bulk_test.dart"
+      },
+      {
+        "id": 146,
+        "name": "collapse follows stable members through sorting and growth",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_conversations_test.dart"
+      },
+      {
+        "id": 147,
+        "name": "compact ar controls and results remain usable at 1.4x",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_bulk_test.dart"
+      },
+      {
+        "id": 150,
+        "name": "expanded choice clears hidden members remembered before filtering",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_conversations_test.dart"
+      },
+      {
+        "id": 152,
+        "name": "default action snapshot remains the four immutable flag choices",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_organization_test.dart"
+      },
+      {
+        "id": 153,
+        "name": "keyboard disclosure follows TextDirection.rtl and keeps individual opening",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_conversations_test.dart"
+      },
+      {
+        "id": 154,
+        "name": "host action set is defensively copied before it can change",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_organization_test.dart"
+      },
+      {
+        "id": 155,
+        "name": "legacy list menu does not acquire organization actions",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_organization_test.dart"
+      },
+      {
+        "id": 156,
+        "name": "keyboard disclosure follows TextDirection.ltr and keeps individual opening",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_conversations_test.dart"
+      },
+      {
+        "id": 157,
+        "name": "collapse rejects old row callbacks and an already opened bulk menu",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_conversations_test.dart"
+      },
+      {
+        "id": 158,
+        "name": "stale disclosure cannot change refreshed or replaced scope",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_conversations_test.dart"
+      },
+      {
+        "id": 159,
+        "name": "same local IDs in another account do not inherit collapse state",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_conversations_test.dart"
+      },
+      {
+        "id": 160,
+        "name": "menu exposes exactly the supported set {MailBulkFlagAction.move}",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_organization_test.dart"
+      },
+      {
+        "id": 161,
+        "name": "busy state disables disclosure and does not prune selection",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_conversations_test.dart"
+      },
+      {
+        "id": 162,
+        "name": "menu exposes exactly the supported set {MailBulkFlagAction.delete}",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_organization_test.dart"
+      },
+      {
+        "id": 163,
+        "name": "compact RTL with enlarged text keeps disclosure usable",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_conversations_test.dart"
+      },
+      {
+        "id": 164,
+        "name": "menu exposes exactly the supported set {MailBulkFlagAction.archive}",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_organization_test.dart"
+      },
+      {
+        "id": 165,
+        "name": "menu exposes exactly the supported set {MailBulkFlagAction.markRead, MailBulkFlagAction.markUnread, MailBulkFlagAction.flag, MailBulkFlagAction.unflag, MailBulkFlagAction.move, MailBulkFlagAction.delete}",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_organization_test.dart"
+      },
+      {
+        "id": 166,
+        "name": "disclosure exposes the current accessible expansion action",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_conversations_test.dart"
+      },
+      {
+        "id": 167,
+        "name": "cached host never shows actions even when a set is supplied",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_organization_test.dart"
+      },
+      {
+        "id": 168,
+        "name": "an empty supported set cannot select or invoke an action",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_organization_test.dart"
+      },
+      {
+        "id": 169,
+        "name": "observed metadata refresh updates a collapsed aggregate",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_conversations_test.dart"
+      },
+      {
+        "id": 170,
+        "name": "MailBulkFlagAction.move receives immutable visible order without reads",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_organization_test.dart"
+      },
+      {
+        "id": 173,
+        "name": "MailBulkFlagAction.move excludes collapsed and filtered checked members",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_organization_test.dart"
+      },
+      {
+        "id": 175,
+        "name": "LogicalKeyboardKey#df100(keyId: \"0x200000102\", keyLabel: \"Shift Left\", debugName: \"Shift Left\") ranges grow, shrink and reverse around the same anchor",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 176,
+        "name": "MailBulkFlagAction.delete receives immutable visible order without reads",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_organization_test.dart"
+      },
+      {
+        "id": 177,
+        "name": "MailBulkFlagAction.delete excludes collapsed and filtered checked members",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_organization_test.dart"
+      },
+      {
+        "id": 178,
+        "name": "MailBulkFlagAction.archive receives immutable visible order without reads",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_organization_test.dart"
+      },
+      {
+        "id": 179,
+        "name": "MailBulkFlagAction.archive excludes collapsed and filtered checked members",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_organization_test.dart"
+      },
+      {
+        "id": 180,
+        "name": "open menu is retired when capabilities become {MailBulkFlagAction.delete}",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_organization_test.dart"
+      },
+      {
+        "id": 181,
+        "name": "open menu is retired when capabilities become {MailBulkFlagAction.move, MailBulkFlagAction.delete}",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_organization_test.dart"
+      },
+      {
+        "id": 182,
+        "name": "LogicalKeyboardKey#d8251(keyId: \"0x200000103\", keyLabel: \"Shift Right\", debugName: \"Shift Right\") ranges grow, shrink and reverse around the same anchor",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 183,
+        "name": "open menu is retired when capabilities become {}",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_organization_test.dart"
+      },
+      {
+        "id": 184,
+        "name": "mutating the caller set cannot alter an already opened menu",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_organization_test.dart"
+      },
+      {
+        "id": 185,
+        "name": "Shift Home and End include endpoints and cross the anchor",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 186,
+        "name": "de organization labels fit narrow enlarged menus",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_organization_test.dart"
+      },
+      {
+        "id": 187,
+        "name": "the initial cursor anchors a range and endpoints are bounded",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 188,
+        "name": "ar organization labels fit narrow enlarged menus",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_organization_test.dart"
+      },
+      {
+        "id": 191,
+        "name": "range gestures are inert for an empty loaded view",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 192,
+        "name": "separate checks survive contraction on both sides of a range",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 193,
+        "name": "Shift Space selects the cursor without toggling or opening",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 195,
+        "name": "row collection is immutable and identities cannot alias",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 196,
+        "name": "shows honest loaded scope without opening or fetching",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 197,
+        "name": "Shift clicking a row extends and contracts without opening",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 198,
+        "name": "Shift clicking a checkbox extends and contracts without opening",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 199,
+        "name": "a fully loaded folder hides the loaded-scope line",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 200,
+        "name": "plain navigation starts a new range without losing old checks",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 201,
+        "name": "search matches subject and sender without network work",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 202,
+        "name": "plain Space unchecks the cursor and establishes a new anchor",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 203,
+        "name": "unread and flagged filters intersect and exclude unknown flags",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 204,
+        "name": "ordinary row activation establishes the next pointer anchor",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 205,
+        "name": "structured header terms are conjunctive and use recipients",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 206,
+        "name": "Escape clears the old range and its anchor",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 207,
+        "name": "dates use timestamps rather than the localized display label",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 208,
+        "name": "invalid query shows localized error, no rows, and explicit clear",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 209,
+        "name": "Enter opens only the cursor and never submits its checked range",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 210,
+        "name": "oversized search fails closed without discarding trailing predicates",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 211,
+        "name": "query changes prune hidden rows and restart range ownership",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 212,
+        "name": "search preserves active IME text and composing ranges",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 213,
+        "name": "stale row callbacks cannot open filtered or invalid-query rows",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 214,
+        "name": "stale callbacks cannot cross mailbox scopes with overlapping ids",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 215,
+        "name": "date sorting is stable and unknown dates always follow known dates",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 216,
+        "name": "invalid queries clear checks and cannot retain a hidden anchor",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 217,
+        "name": "sender and subject sorting preserve case-insensitive ties",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 218,
+        "name": "keyboard identity survives local sorting without activating a row",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 219,
+        "name": "quick filters exclude hidden rows from keyboard ranges",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 220,
+        "name": "scope change resets sort and clears a previous query error",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 221,
+        "name": "no matches retains explicit pagination even with no visible rows",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 222,
+        "name": "sorting resets the anchor while preserving independent checks",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 223,
+        "name": "empty and loading states remain distinct",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 224,
+        "name": "busy blocks opening and pagination while preserving local filters",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 225,
+        "name": "host row activation uses stable id and explicit selection",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 226,
+        "name": "arrows Home and End move focus without opening messages",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 227,
+        "name": "folding removes hidden checks and re-expansion keeps them clear",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 228,
+        "name": "search owns editing keys and Enter does not open a row",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 229,
+        "name": "modifier navigation is not consumed as plain list movement",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 230,
+        "name": "keyboard cursor follows stable identity through a row reorder",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 231,
+        "name": "removed keyboard target falls back without opening stale data",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 232,
+        "name": "refresh ends the previous keyboard range",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 233,
+        "name": "new pages retain the current query and keyboard identity",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 234,
+        "name": "revision ends the previous keyboard range",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 235,
+        "name": "account or mailbox scope change resets query filters and focus",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 236,
+        "name": "End reveals the final virtualized row and Enter opens that id",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 237,
+        "name": "host pagination key and limit explanation remain available",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 238,
+        "name": "RTL help preserves prose and displays exact query examples LTR",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 239,
+        "name": "account ends the previous keyboard range",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 240,
+        "name": "compact de header scrolls while rows remain usable",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 241,
+        "name": "removed range members cannot reappear in a later extension",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 242,
+        "name": "compact ar header scrolls while rows remain usable",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 243,
+        "name": "captured row and checkbox callbacks cannot extend after selection",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 244,
+        "name": "narrow TextDirection.rtl and enlarged text stay within the list",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 245,
+        "name": "captured row and checkbox callbacks cannot extend after query",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 246,
+        "name": "narrow TextDirection.ltr and enlarged text stay within the list",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 247,
+        "name": "captured row and checkbox callbacks cannot extend after sort",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 248,
+        "name": "captured row and checkbox callbacks cannot extend after refresh",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 249,
+        "name": "Boolean groups combine with chips without provider work",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 250,
+        "name": "captured row and checkbox callbacks cannot extend after revision",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 251,
+        "name": "captured row and checkbox callbacks cannot extend after account",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 252,
+        "name": "malformed Boolean expressions fail closed and recover",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 253,
+        "name": "captured row and checkbox callbacks cannot extend after dispose",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 254,
+        "name": "collapsed-child callbacks cannot select or open hidden mail",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 255,
+        "name": "changing account clears a Boolean query and stale row callback",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 256,
+        "name": "busy hosts refuse every range gesture",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 259,
+        "name": "disabled hosts refuse every range gesture",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 260,
+        "name": "read-only hosts ignore range keys and retain ordinary opening",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 262,
+        "name": "disposing the view invalidates a pending explicit link decision",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_view_test.dart"
+      },
+      {
+        "id": 263,
+        "name": "Shift plus LogicalKeyboardKey#d0ba2(keyId: \"0x200000100\", keyLabel: \"Control Left\", debugName: \"Control Left\") does not acquire a selection gesture",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 264,
+        "name": "Shift plus LogicalKeyboardKey#e3a44(keyId: \"0x200000106\", keyLabel: \"Meta Left\", debugName: \"Meta Left\") does not acquire a selection gesture",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 265,
+        "name": "Shift plus LogicalKeyboardKey#e5ce6(keyId: \"0x200000104\", keyLabel: \"Alt Left\", debugName: \"Alt Left\") does not acquire a selection gesture",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 266,
+        "name": "held range arrows repeat but held Shift Space never toggles",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 267,
+        "name": "search-field selection and IME editing never select messages",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 268,
+        "name": "find chrome accepts arbitrary query and finds attachment names",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_view_test.dart"
+      },
+      {
+        "id": 269,
+        "name": "range commands produce an immutable snapshot in visible order",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 270,
+        "name": "a pending bulk popup cannot outlive a new range selection",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 271,
+        "name": "runtime network denial is active, independently of the injected policy",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_view_test.dart"
+      },
+      {
+        "id": 272,
+        "name": "hostile saved HTML causes zero policy and runtime outbound requests",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_view_test.dart"
+      },
+      {
+        "id": 273,
+        "name": "keyboard ranges include offscreen loaded rows without fetching",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 274,
+        "name": "link activation is denied until host policy explicitly approves it",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_view_test.dart"
+      },
+      {
+        "id": 275,
+        "name": "late link approval cannot act on a replaced message or disposed view",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_view_test.dart"
+      },
+      {
+        "id": 276,
+        "name": "RTL preserves vertical range direction and row identities",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 277,
+        "name": "attachment and source/hex callbacks receive exact immutable snapshots",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_view_test.dart"
+      },
+      {
+        "id": 278,
+        "name": "custom RenderBox supports keyboard select/copy and meaningful semantics",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_view_test.dart"
+      },
+      {
+        "id": 279,
+        "name": "render rejection remains visible with exact source fallback",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_view_test.dart"
+      },
+      {
+        "id": 280,
+        "name": "compact enlarged RTL view preserves actions without overflow",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_view_test.dart"
+      },
+      {
+        "id": 281,
+        "name": "bounded CID PNG decodes locally under runtime network denial",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_view_test.dart"
+      },
+      {
+        "id": 287,
+        "name": "nested transactional HTML wrappers do not create blank lines",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/presentation_test.dart"
+      },
+      {
+        "id": 288,
+        "name": "existing presentation constructors default to an empty body projection",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/presentation_test.dart"
+      },
+      {
+        "id": 289,
+        "name": "plain body projection excludes reader metadata",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/presentation_test.dart"
+      },
+      {
+        "id": 290,
+        "name": "HTML body projection excludes reader metadata",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/presentation_test.dart"
+      },
+      {
+        "id": 291,
+        "name": "direct DTO plain/HTML bodies share one cumulative body budget",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/presentation_test.dart"
+      },
+      {
+        "id": 292,
+        "name": "hostile HTML becomes inert text and explicit absolute link metadata",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/presentation_test.dart"
+      },
+      {
+        "id": 293,
+        "name": "script raw text cannot smuggle fake nested style or image content",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/presentation_test.dart"
+      },
+      {
+        "id": 294,
+        "name": "all CSS, event, srcset, SVG and image schemes are inert",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/presentation_test.dart"
+      },
+      {
+        "id": 295,
+        "name": "link admission refuses encoded active schemes, protocol-relative, user info and controls",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/presentation_test.dart"
+      },
+      {
+        "id": 296,
+        "name": "node and nesting rejection discards the entire partial projection",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/presentation_test.dart"
+      },
+      {
+        "id": 297,
+        "name": "oversized text, body, header and input are explicitly rejected",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/presentation_test.dart"
+      },
+      {
+        "id": 298,
+        "name": "decoded and attachment budgets are cumulative before presentation",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/presentation_test.dart"
+      },
+      {
+        "id": 299,
+        "name": "CID PNG is admitted by exact identity without touching source snapshots",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/presentation_test.dart"
+      },
+      {
+        "id": 300,
+        "name": "duplicate and unsupported CID inputs do not decode arbitrary images",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/presentation_test.dart"
+      },
+      {
+        "id": 301,
+        "name": "PNG pixel bombs and truncated chunks are refused before native decode",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/presentation_test.dart"
+      },
+      {
+        "id": 302,
+        "name": "cumulative CID pixels count unique images and refuse excess",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/presentation_test.dart"
+      },
+      {
+        "id": 303,
+        "name": "plain alternative can be selected without changing original data",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/presentation_test.dart"
+      },
+      {
+        "id": 304,
+        "name": "HTML whitespace preserves words in <b>Alpha</b> <i>Beta</i>",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/presentation_test.dart"
+      },
+      {
+        "id": 305,
+        "name": "HTML whitespace preserves words in <b>Alpha </b> \n\t<i> Beta</i>",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/presentation_test.dart"
+      },
+      {
+        "id": 306,
+        "name": "HTML whitespace preserves words in <span>Alpha</span><!-- gap --> <span>Beta</span>",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/presentation_test.dart"
+      },
+      {
+        "id": 307,
+        "name": "HTML whitespace preserves words in <b>Alpha</b>&nbsp;<i>Beta</i>",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/presentation_test.dart"
+      },
+      {
+        "id": 308,
+        "name": "HTML whitespace preserves words in <div>\n  <div><b>Alpha</b> <i>Beta</i></div>\n  <div>Gamma</div>\n</div>",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/presentation_test.dart"
+      },
+      {
+        "id": 309,
+        "name": "remote image discovery uses admitted image elements and decoded URLs",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/presentation_test.dart"
+      },
+      {
+        "id": 313,
+        "name": "whitespace-only nodes preserve word boundaries across inline tags",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/presentation_whitespace_test.dart"
+      },
+      {
+        "id": 314,
+        "name": "whitespace collapses across inline boundaries without erasing NBSP",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/presentation_whitespace_test.dart"
+      },
+      {
+        "id": 315,
+        "name": "preformatted spaces, tabs and line breaks survive nested styling",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/presentation_whitespace_test.dart"
+      },
+      {
+        "id": 316,
+        "name": "source indentation between nested block wrappers stays collapsed",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/presentation_whitespace_test.dart"
+      },
+      {
+        "id": 317,
+        "name": "plain text whitespace remains verbatim",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/presentation_whitespace_test.dart"
+      },
+      {
+        "id": 321,
+        "name": "appending images consumes each input once and keeps prior images",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/reader_image_updates_test.dart"
+      },
+      {
+        "id": 322,
+        "name": "only successfully loaded URI placeholders disappear",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/reader_image_updates_test.dart"
+      },
+      {
+        "id": 323,
+        "name": "plain mode cannot admit remote images and mode changes retain HTML images",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/reader_image_updates_test.dart"
+      },
+      {
+        "id": 324,
+        "name": "a local image can exhaust the shared budget before a remote action",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/reader_image_updates_test.dart"
+      },
+      {
+        "id": 325,
+        "name": "external image admission preserves count, pixels and format limits",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/reader_image_updates_test.dart"
+      },
+      {
+        "id": 326,
+        "name": "rejected source cannot become an image-bearing success",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/reader_image_updates_test.dart"
+      },
+      {
+        "id": 327,
+        "name": "HTML spacing preserves inline word boundaries and preformatted text",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/reader_image_updates_test.dart"
+      },
+      {
+        "id": 328,
+        "name": "remote candidates come only from inert image nodes and remain bounded",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/reader_image_updates_test.dart"
+      },
+      {
+        "id": 332,
+        "name": "default labels format the date and attachment size readably",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/reader_labels_test.dart"
+      },
+      {
+        "id": 333,
+        "name": "host labels replace every header label",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/reader_labels_test.dart"
+      },
+      {
+        "id": 334,
+        "name": "a completely decoded message shows no status line",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/reader_labels_test.dart"
+      },
+      {
+        "id": 336,
+        "name": "reader colors and scrolling preserve its surface, dark=false",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/reader_theme_scroll_test.dart"
+      },
+      {
+        "id": 339,
+        "name": "reader colors and scrolling preserve its surface, dark=true",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/reader_theme_scroll_test.dart"
+      },
+      {
+        "id": 341,
+        "name": "offers only inert explicit image sources, with entities decoded",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/remote_images_test.dart"
+      },
+      {
+        "id": 342,
+        "name": "candidate count remains bounded after the first eight are loaded",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/remote_images_test.dart"
+      },
+      {
+        "id": 343,
+        "name": "partial loads keep accurate placeholders and accumulate across actions",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/remote_images_test.dart"
+      },
+      {
+        "id": 344,
+        "name": "unrequested URLs and stale message completions cannot attach images",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/remote_images_test.dart"
+      },
+      {
+        "id": 345,
+        "name": "untrusted dimensions cannot bypass cumulative local and remote pixels",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/remote_images_test.dart"
+      },
+      {
+        "id": 346,
+        "name": "remote bytes share the cumulative decoded message budget",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/remote_images_test.dart"
+      },
+      {
+        "id": 347,
+        "name": "malformed remote rasters retain their original blocked placeholder",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/remote_images_test.dart"
+      }
+    ],
+    "completed_lifecycles": 312,
+    "done_events": [
+      {
+        "success": true,
+        "time": 251351,
+        "type": "done"
+      }
+    ],
+    "duplicate_case_names": [],
+    "duplicate_completion_ids": [],
+    "duplicate_start_ids": [],
+    "errors": [],
+    "excluded_lifecycles": [
+      {
+        "id": 1,
+        "name": "loading /workspace/scratch/85a369f34dbb/quds_office_suite/packages/quds_mail_ui/test/body_presentation_contract_test.dart",
+        "reason": "hidden",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_contract_test.dart"
+      },
+      {
+        "id": 3,
+        "name": "loading /workspace/scratch/85a369f34dbb/quds_office_suite/packages/quds_mail_ui/test/body_presentation_test.dart",
+        "reason": "hidden",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/body_presentation_test.dart"
+      },
+      {
+        "id": 17,
+        "name": "loading /workspace/scratch/85a369f34dbb/quds_office_suite/packages/quds_mail_ui/test/bulk_api_aliases_test.dart",
+        "reason": "hidden",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/bulk_api_aliases_test.dart"
+      },
+      {
+        "id": 51,
+        "name": "loading /workspace/scratch/85a369f34dbb/quds_office_suite/packages/quds_mail_ui/test/bulk_message_list_test.dart",
+        "reason": "hidden",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/bulk_message_list_test.dart"
+      },
+      {
+        "id": 62,
+        "name": "loading /workspace/scratch/85a369f34dbb/quds_office_suite/packages/quds_mail_ui/test/controller_test.dart",
+        "reason": "hidden",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/controller_test.dart"
+      },
+      {
+        "id": 78,
+        "name": "loading /workspace/scratch/85a369f34dbb/quds_office_suite/packages/quds_mail_ui/test/example_test.dart",
+        "reason": "hidden",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/example_test.dart"
+      },
+      {
+        "id": 86,
+        "name": "loading /workspace/scratch/85a369f34dbb/quds_office_suite/packages/quds_mail_ui/test/message_list_bulk_test.dart",
+        "reason": "hidden",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_bulk_test.dart"
+      },
+      {
+        "id": 117,
+        "name": "loading /workspace/scratch/85a369f34dbb/quds_office_suite/packages/quds_mail_ui/test/message_list_conversations_test.dart",
+        "reason": "hidden",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_conversations_test.dart"
+      },
+      {
+        "id": 149,
+        "name": "loading /workspace/scratch/85a369f34dbb/quds_office_suite/packages/quds_mail_ui/test/message_list_organization_test.dart",
+        "reason": "hidden",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_organization_test.dart"
+      },
+      {
+        "id": 172,
+        "name": "loading /workspace/scratch/85a369f34dbb/quds_office_suite/packages/quds_mail_ui/test/message_list_range_selection_test.dart",
+        "reason": "hidden",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_range_selection_test.dart"
+      },
+      {
+        "id": 190,
+        "name": "loading /workspace/scratch/85a369f34dbb/quds_office_suite/packages/quds_mail_ui/test/message_list_test.dart",
+        "reason": "hidden",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_list_test.dart"
+      },
+      {
+        "id": 258,
+        "name": "loading /workspace/scratch/85a369f34dbb/quds_office_suite/packages/quds_mail_ui/test/message_view_test.dart",
+        "reason": "hidden",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/message_view_test.dart"
+      },
+      {
+        "id": 283,
+        "name": "loading /workspace/scratch/85a369f34dbb/quds_office_suite/packages/quds_mail_ui/test/presentation_test.dart",
+        "reason": "hidden",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/presentation_test.dart"
+      },
+      {
+        "id": 285,
+        "name": "loading /workspace/scratch/85a369f34dbb/quds_office_suite/packages/quds_mail_ui/test/presentation_whitespace_test.dart",
+        "reason": "hidden",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/presentation_whitespace_test.dart"
+      },
+      {
+        "id": 311,
+        "name": "loading /workspace/scratch/85a369f34dbb/quds_office_suite/packages/quds_mail_ui/test/reader_image_updates_test.dart",
+        "reason": "hidden",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/reader_image_updates_test.dart"
+      },
+      {
+        "id": 319,
+        "name": "loading /workspace/scratch/85a369f34dbb/quds_office_suite/packages/quds_mail_ui/test/reader_labels_test.dart",
+        "reason": "hidden",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/reader_labels_test.dart"
+      },
+      {
+        "id": 330,
+        "name": "loading /workspace/scratch/85a369f34dbb/quds_office_suite/packages/quds_mail_ui/test/reader_theme_scroll_test.dart",
+        "reason": "hidden",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/reader_theme_scroll_test.dart"
+      },
+      {
+        "id": 338,
+        "name": "loading /workspace/scratch/85a369f34dbb/quds_office_suite/packages/quds_mail_ui/test/remote_images_test.dart",
+        "reason": "hidden",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_ui/test/remote_images_test.dart"
+      }
+    ],
+    "expected_suite_count": 18,
+    "failed_cases": 0,
+    "incomplete_cases": 0,
+    "incomplete_lifecycle_ids": [],
+    "missing_suites": [],
+    "non_json_output": [],
+    "orphan_completion_ids": [],
+    "passed_cases": 294,
+    "per_file_counts": {
+      "packages/quds_mail_ui/test/body_presentation_contract_test.dart": {
+        "passed": 11
+      },
+      "packages/quds_mail_ui/test/body_presentation_test.dart": {
+        "passed": 31
+      },
+      "packages/quds_mail_ui/test/bulk_api_aliases_test.dart": {
+        "passed": 6
+      },
+      "packages/quds_mail_ui/test/bulk_message_list_test.dart": {
+        "passed": 22
+      },
+      "packages/quds_mail_ui/test/controller_test.dart": {
+        "passed": 13
+      },
+      "packages/quds_mail_ui/test/example_test.dart": {
+        "passed": 1
+      },
+      "packages/quds_mail_ui/test/message_list_bulk_test.dart": {
+        "passed": 32
+      },
+      "packages/quds_mail_ui/test/message_list_conversations_test.dart": {
+        "passed": 18
+      },
+      "packages/quds_mail_ui/test/message_list_organization_test.dart": {
+        "passed": 21
+      },
+      "packages/quds_mail_ui/test/message_list_range_selection_test.dart": {
+        "passed": 43
+      },
+      "packages/quds_mail_ui/test/message_list_test.dart": {
+        "passed": 37
+      },
+      "packages/quds_mail_ui/test/message_view_test.dart": {
+        "passed": 11
+      },
+      "packages/quds_mail_ui/test/presentation_test.dart": {
+        "passed": 23
+      },
+      "packages/quds_mail_ui/test/presentation_whitespace_test.dart": {
+        "passed": 5
+      },
+      "packages/quds_mail_ui/test/reader_image_updates_test.dart": {
+        "passed": 8
+      },
+      "packages/quds_mail_ui/test/reader_labels_test.dart": {
+        "passed": 3
+      },
+      "packages/quds_mail_ui/test/reader_theme_scroll_test.dart": {
+        "passed": 2
+      },
+      "packages/quds_mail_ui/test/remote_images_test.dart": {
+        "passed": 7
+      }
+    },
+    "reporter_success": true,
+    "skipped_cases": 0,
+    "started_lifecycles": 312,
+    "suite_count": 18,
+    "unexpected_suites": [],
+    "unique_completed_cases": 294,
+    "unique_started_cases": 294
+  },
+  "started_at_utc": "2026-11-22T12:02:26.304693+00:00",
+  "status": "completed",
+  "stderr": {
+    "gzip_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "path": "shared_mail_ui.stderr.gz",
+    "raw_bytes": 0,
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "gzip_sha256": "95aa90894461f9d0d623842213b5f774cfa1485e70b862f38868541d3967c281",
+    "path": "shared_mail_ui.jsonl.gz",
+    "raw_bytes": 159511,
+    "raw_sha256": "10621a86068142cbbe67a20898d3b59acecf616d043bd0bb537a5ade8f7f28ea"
+  }
+}

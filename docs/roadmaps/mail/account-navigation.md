@@ -1,5 +1,13 @@
 # Account navigation with explicit sign-in
 
+> **Initial increment and release-recovery continuation.** The canonical
+> combined contract and current delivery order are in
+> [Connected account navigation](connected-account-navigation.md), which also
+> records atomic selected-record refresh and late-owner fences. This guide and
+> its original development evidence remain linked for provenance. The incoming
+> final qualification plan was prepared, not executed; it does not establish a
+> final pass on the combined source.
+
 ## Everyday workflow
 
 Use **Choose an account** from the Mail toolbar to browse accounts that have
@@ -27,6 +35,12 @@ from EWS to Gmail, Microsoft 365 or IMAP replaces the previous provider route;
 it does not accumulate connected dialogs. Close and Back on these hosts also
 preserve a retained draft and wait for the account owner to drain.
 
+Provider Close remains available while work is pending. It immediately stops
+the remaining bulk sequence, and later draft-marker completions cannot start
+a new send after that Close request, including when the retained-draft save
+fails. Submissions already dispatched keep their existing outcome and
+uncertainty handling.
+
 ## Sign-in data and routing
 
 | Provider | Reused non-secret settings | Still required |
@@ -41,6 +55,10 @@ refresh tokens, SMTP route, EWS authentication method or OAuth client registrati
 It is never treated as a substitute credential store. Existing provider setup
 paths remain available for new accounts. The native **New account** action
 explicitly clears a selected destination constraint.
+
+Opening new Gmail, Microsoft 365 or EWS setup does not depend on completion of
+the unrelated IMAP credential catalog. A late catalog result cannot overwrite
+the active provider setup or trigger an IMAP connection behind it.
 
 IMAP accounts that share an incoming draft identity but use different SMTP
 routes remain distinct entries in the remembered sign-in chooser. When more
@@ -64,6 +82,19 @@ Pending connection callbacks cannot continue into folder/header/store work
 after the selected record becomes stale. A successful verified connection
 fulfills the initial selection intent; a later explicit reconnect does not
 reuse the obsolete directory revision from before that successful connection.
+The combined continuation refreshes a selected native directory row only when
+its expected saved record still matches inside the same transaction. Custom
+directories without conditional refresh keep their existing metadata. See the
+[current identity and recovery contract](connected-account-navigation.md#identity-ownership-and-recovery).
+
+The selected shortcut's successful-connection refresh compares its identity,
+revision and connection timestamp in the same repository transaction as the
+write. A shortcut forgotten or replaced while sign-in waits cannot be recreated
+by a late refresh. The selected connection intent is fulfilled only after that
+comparison succeeds; revoked setup retains and drains any already acquired
+owner and its observers. Custom directories without the optional atomic refresh
+capability retain their existing metadata instead of falling back to an
+unconditional write.
 
 While a transition is pending, the underlying native Mail pane accepts neither
 pointer nor keyboard edits. Each provider route can return a destination once,
@@ -89,23 +120,17 @@ behind their explicit Close path.
 This is cross-provider navigation with explicit reconnection. It does not
 complete M04W, retain several simultaneous live sessions, provide a unified
 inbox, synchronize provider Drafts/Sent, or qualify installed OS credentials and
-live provider accounts. The next workspace increment should introduce an
+live provider accounts. Completing the shared workspace still requires an
 account-owned session coordinator with an explicit active/inactive lifecycle,
 bounded connection retention, per-account folder/selection state, and an
 account-aware unified view over repository observations. It must preserve the
 ownership and no-replay guarantees established here.
 
-The remaining ordered product work is:
-
-1. Retained multi-account sessions and the repository-driven unified workspace.
-2. Remembered custom Archive destinations, then categories/tags and ordered
-   rules with a preview and recoverable partial outcomes.
-3. Indexed local body search, explicit provider-search coverage, and persistent
-   cross-folder conversations.
-4. Provider-side Drafts and Sent reconciliation, followed by account-owned
-   background synchronization and sending.
-5. Rich message alternatives, Office attachment editing, Calendar/People,
-   encryption/signatures where supported, and installed/live-provider acceptance.
+Follow the [current ordered continuation](connected-account-navigation.md#comparison-targets-and-next-increments):
+remembered Archive destinations, categories/rules, body/provider search,
+persistent conversations and provider Drafts/Sent reconciliation, then fuller
+background multi-account work. Rich authoring, Office attachments, Calendar/People
+and platform qualification retain their broader roadmap dependencies.
 
 The comparison targets support account-aware navigation and sending context.
 Thunderbird documents [account and unified folder presentations](https://support.mozilla.org/en-US/kb/switching-folder-pane-view).
@@ -115,5 +140,7 @@ These sources were checked on 22 November 2026; behavior differs between
 product editions. They guide the workflow target and do not establish parity
 for this increment.
 
-Actual source checkpoints, fresh local commands, results and remaining limits
-are recorded in the [qualification record](../../validation/mail-connected-navigation-20261122/README.md).
+The [initial qualification record](../../validation/mail-connected-navigation-20261122/README.md)
+retains its actual development commands, source checkpoints and unexecuted final
+plan. Use the [combined work record](../../validation/mail-account-workspace-20261122/README.md)
+for subsequent integrated acceptance and source boundaries.

@@ -43,9 +43,10 @@ routes require an explicit remembered-route choice.
 Native directory refresh compares the selected record atomically, so successful
 sign-in cannot recreate a concurrently forgotten or replaced shortcut. Custom
 directories without conditional refresh retain their existing metadata. Native
-Close continues to hide the mounted Mail pane. Failed owner release blocks
-another sign-in; a failed native close may require a host restart. Provider
-Close/Back retains the account's draft recovery path.
+Close continues to hide the mounted Mail pane. Failed owner or observer release
+blocks another sign-in. Native **Retry closing account** and provider Close/Back
+retain the release work and draft recovery for an explicit retry; persistent
+failure may require a host restart.
 
 See both the [workflow and ownership contract](account-navigation.md) and
 [connected-account continuation](connected-account-navigation.md), with their

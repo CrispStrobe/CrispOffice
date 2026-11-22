@@ -1,0 +1,47 @@
+{
+  "kind": "Parallel assistant implementation and interoperability review; not a human or installed-plugin certification",
+  "reviewed_hashes": {
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_reader.dart": "7fe2a7d6292706c3cb556b751337f64243e1483487399710205ddfbfe641c77f",
+    "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart": "a95d3999ac40aa0ddf6e50872ea9843d08c87f7a954d9f4cbee51f2f708bc8f5",
+    "packages/quds_office_engine/lib/src/word/serial/odt_table_borders.dart": "1dce60cc0aee19f62a2863c469d3119684d616364a752d2dd747c413d4145363",
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart": "57a874938b26a586cfd67f798f889151c0ba61f5c04e4901de31141e94616a17",
+    "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart": "bb264afb1f51144bf1db5d740548ecc8aca202f64add7ae599a910792d4c95ef",
+    "packages/quds_office_engine/test/word_table_border_alias_test.dart": "9aa4e272bbcbb937298560e89c8e75fb84b28424ec70fc2ff85a11b90ae127e5",
+    "packages/quds_office_engine/test/odt_table_borders_test.dart": "c025305d336ee0112f9d9e89b51cb69c365a8849167b1c7f8d6a264ec790c8df",
+    "packages/quds_office_engine/tool/zotero/table_border_acceptance.dart": "1faf96862c5306703d7bfd446b7d833257d5e72e9aa7559bb2bf841e60022cfd",
+    "packages/quds_office_editor/test/word_zotero_converter_controller_test.dart": "13f3f8ad4feabd80b8a40940d8cfd4dea711edca308e90764bff1dbc0329eeef"
+  },
+  "resolved_findings": [
+    {
+      "finding": "Native-derived snapshots missed existing logical DOCX edge loss.",
+      "resolution": "Independent retained fixture hash and raw-source four-edge oracle; modern and legacy leading/trailing declarations map after effective table direction; inverse save mapping."
+    },
+    {
+      "finding": "Foreign table-style selectors or foreign/nested table properties could choose an inherited RTL direction.",
+      "resolution": "Native namespace and direct-depth checks; targeted foreign-selector, foreign-container and nested-container regressions."
+    },
+    {
+      "finding": "Borderless explicit off masks could share a style-cache entry with absent sides.",
+      "resolution": "Cache identity retains raw off-mask distinction when no common stroke is visible."
+    },
+    {
+      "finding": "Uniform halfstroke padding compensation was not supported by actual converter geometry.",
+      "resolution": "Retain modeled padding; archive controlled actual conversion/PDF measurements separately."
+    }
+  ],
+  "reviewed_contracts": [
+    "ODT border shorthand resets precede same-layer side overrides and inherited defaults.",
+    "Supported tables use one opaque RGB solid stroke at exact eighth-point widths from 0.25 through 12 pt.",
+    "Visible ODT input requires effective collapsing border model; unsupported mixed/styled/covered structures refuse.",
+    "Merged ownership and nested-table independence survive supported conversion.",
+    "Explicit direct off overrides inherited/default RTL; modern start/end take precedence regardless of order.",
+    "Editable ODT refuses unsupported RTL table column order while paragraph RTL remains separate.",
+    "Field-boundary source properties and opaque revision-history code are not modified by the border alias correction."
+  ],
+  "remaining_blocking_findings": [],
+  "limits": [
+    "No arbitrary external DOCX per-cell stroke fidelity claim.",
+    "No installed Zotero-plugin or Microsoft Word acceptance.",
+    "No unrestricted ODF, stable LibreOffice qualification or pixel-equivalent rendering claim."
+  ]
+}
