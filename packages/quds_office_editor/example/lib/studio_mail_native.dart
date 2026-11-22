@@ -39,6 +39,7 @@ import 'studio_mail_mutation_strings.dart';
 import 'studio_mail_mailbox_store.dart';
 import 'studio_mail_mailbox_session.dart';
 import 'studio_mail_operation.dart';
+import 'studio_mail_organization_dialog.dart';
 import 'studio_mail_outbox.dart';
 import 'studio_mail_outbox_dialog.dart';
 import 'studio_mail_outbox_strings.dart';
@@ -199,6 +200,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   mail.MailClient? _client;
   mail.MailClient? _pendingClient;
   StudioMailMessageLoader? _messageLoader;
+  MailCapabilities _membershipCapabilities = const MailCapabilities.none();
   StudioMailMessageLoader? _pendingLoader;
   mail.Mailbox? _messageMailbox;
   int _sessionGeneration = 0;
@@ -753,37 +755,32 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       candidate = await (widget.draftStoreFactory ?? openStudioMailDraftStore)(
         identity,
       );
-      if (candidate case StudioMailOutboxStore(
-        :final account,
-      ) when account != identity.account) {
+      if (candidate case StudioMailOutboxStore(:final account)
+          when account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
       }
-      if (candidate case StudioMailComposeToolsStore(
-        :final account,
-      ) when account != identity.account) {
+      if (candidate case StudioMailComposeToolsStore(:final account)
+          when account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
       }
-      if (candidate case StudioMailDraftCatalog(
-        :final account,
-      ) when account != identity.account) {
+      if (candidate case StudioMailDraftCatalog(:final account)
+          when account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
       }
-      if (candidate case StudioMailMailboxStoreOwner(
-        :final mailboxStore,
-      ) when mailboxStore.account != identity.account) {
+      if (candidate case StudioMailMailboxStoreOwner(:final mailboxStore)
+          when mailboxStore.account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
       }
-      if (candidate case StudioMailFlagJournalOwner(
-        :final flagJournal,
-      ) when flagJournal.account != identity.account) {
+      if (candidate case StudioMailFlagJournalOwner(:final flagJournal)
+          when flagJournal.account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
@@ -1202,11 +1199,14 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       }
       if (!_currentAttempt(generation)) return;
       _validateHeaderPage(page, observedMailbox, limit: _pageSize);
+      final membershipCapabilities = await _readMembershipCapabilities(loader);
+      if (!_currentAttempt(generation)) return;
       final previous = _reader;
       setState(() {
         _client = client;
         _pendingClient = null;
         _messageLoader = loader;
+        _membershipCapabilities = membershipCapabilities;
         _pendingLoader = null;
         _messageMailbox = observedMailbox;
         _account = account;
@@ -1295,6 +1295,22 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     }
   }
 
+  Future<MailCapabilities> _readMembershipCapabilities(
+    StudioMailMessageLoader loader,
+  ) async {
+    if (loader is! StudioMailMembershipActions) {
+      return const MailCapabilities.none();
+    }
+    try {
+      return await (loader as StudioMailMembershipActions)
+          .membershipCapabilities();
+    } on Object {
+      // Reading remains usable when optional organization discovery fails.
+      // A folder refresh or an explicit reader action can check again.
+      return const MailCapabilities.none();
+    }
+  }
+
   Future<void> _selectMailbox(mail.Mailbox mailbox, {bool more = false}) =>
       runStudioMailOperation(() async {
         final client = _client;
@@ -1372,6 +1388,10 @@ class _StudioMailDialogState extends State<StudioMailDialog>
             cursor: cursor,
             limit: limit,
           );
+          final membershipCapabilities = more
+              ? _membershipCapabilities
+              : await _readMembershipCapabilities(loader);
+          if (!_currentSession(client, generation)) return;
           final messages = <String, mail.MimeMessage>{
             if (more)
               for (final message in _messages) _messageKey(message): message,
@@ -1381,6 +1401,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           setState(() {
             if (cursor != null) _usedHeaderCursors.add(cursor.value);
             _messages = messages.values.toList();
+            _membershipCapabilities = membershipCapabilities;
             final retained = Set<mail.MimeMessage>.identity()
               ..addAll(_messages);
             _confirmedFlags.removeWhere(
@@ -2292,6 +2313,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     try {
       final capabilities = await membership.membershipCapabilities();
       if (!mounted || !current()) return;
+      setState(() => _membershipCapabilities = capabilities);
       if (!capabilities.supports(
             delete ? MailCapability.delete : MailCapability.move,
           ) ||
@@ -2380,6 +2402,178 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     );
   }
 
+  Future<void> _organizeMessages(
+    MailBulkFlagAction action,
+    List<String> selectedIds, {
+    required int mailboxGeneration,
+  }) async {
+    final client = _client;
+    final loader = _messageLoader;
+    final mailbox = _messageMailbox;
+    final account = _account;
+    if (!mounted ||
+        action.isFlagAction ||
+        client == null ||
+        account == null ||
+        loader is! StudioMailMembershipActions ||
+        loader is! StudioMailMailboxRecords ||
+        mailbox == null ||
+        _busy ||
+        _dialogOpen ||
+        _needsRefresh ||
+        mailboxGeneration != _mailboxGeneration ||
+        selectedIds.isEmpty ||
+        selectedIds.length > MailBulkFlagPlan.maxMessages ||
+        selectedIds.toSet().length != selectedIds.length) {
+      return;
+    }
+    final membership = loader as StudioMailMembershipActions;
+    final records = loader as StudioMailMailboxRecords;
+    final ids = List<String>.unmodifiable(selectedIds);
+    final generation = _sessionGeneration;
+    final path = mailbox.path;
+    final validity = mailbox.uidValidity;
+    final source = MailMailbox(
+      id: MailMailboxId(path, account: records.account),
+      displayName: mailbox.name,
+    );
+    final targets = <mail.MimeMessage>[];
+    final headers = <MailHeaderRecord>[];
+    try {
+      for (final id in ids) {
+        final matches = _messages.where(
+          (message) => _messageKey(message) == id,
+        );
+        if (matches.length != 1) return;
+        final message = matches.single;
+        final header = records.observedHeader(mailbox, message);
+        final remote = header.remote;
+        if (remote is! MailImapIdentity ||
+            remote.account != records.account ||
+            remote.mailbox != source.id ||
+            remote.uidValidity != validity ||
+            remote.uid != message.uid) {
+          throw const StudioMailMessageLoadException(MailProblemCode.conflict);
+        }
+        targets.add(message);
+        headers.add(header);
+      }
+    } on Object {
+      setState(() {
+        _needsRefresh = true;
+        _error = widget.strings.mailWorkspaceRefreshRequired;
+      });
+      return;
+    }
+    final destinations = <MailMailbox>[
+      for (final box in _mailboxes)
+        if (!box.isNotSelectable &&
+            box.path != path &&
+            !(box.path.toUpperCase() == 'INBOX' &&
+                path.toUpperCase() == 'INBOX'))
+          MailMailbox(
+            id: MailMailboxId(box.path, account: records.account),
+            displayName: box.name,
+          ),
+    ];
+    bool hostCurrent() =>
+        _currentSession(client, generation) &&
+        identical(loader, _messageLoader) &&
+        identical(account, _account) &&
+        mailboxGeneration == _mailboxGeneration;
+    bool current() {
+      if (!hostCurrent() ||
+          !identical(mailbox, _messageMailbox) ||
+          mailbox.path != path ||
+          mailbox.uidValidity != validity ||
+          records.account != source.id.account) {
+        return false;
+      }
+      try {
+        final loaded = Set<mail.MimeMessage>.identity()..addAll(_messages);
+        for (var i = 0; i < targets.length; i++) {
+          final message = targets[i];
+          if (!loaded.contains(message) || _messageKey(message) != ids[i]) {
+            return false;
+          }
+          final latest = records.observedHeader(mailbox, message);
+          if (latest.id != headers[i].id ||
+              latest.remote != headers[i].remote) {
+            return false;
+          }
+        }
+        return true;
+      } on Object {
+        return false;
+      }
+    }
+
+    setState(() {
+      _busy = true;
+      _error = null;
+      _notice = null;
+    });
+    MailMailboxId? destination;
+    var accepted = false;
+    try {
+      final capabilities = await membership.membershipCapabilities();
+      if (!current()) return;
+      setState(() => _membershipCapabilities = capabilities);
+      if (!capabilities.supports(
+            action == MailBulkFlagAction.move
+                ? MailCapability.move
+                : MailCapability.delete,
+          ) ||
+          action == MailBulkFlagAction.move && destinations.isEmpty) {
+        setState(() => _error = widget.strings.mailMutationUnavailable);
+        return;
+      }
+      setState(() {
+        _busy = false;
+        _dialogOpen = true;
+      });
+      if (action == MailBulkFlagAction.move) {
+        destination = await showStudioMailMoveSelection(
+          context,
+          strings: widget.strings,
+          count: ids.length,
+          accountLabel: account.email,
+          source: source,
+          destinations: destinations,
+        );
+        accepted = destination != null;
+      } else {
+        accepted = await confirmStudioMailDeleteSelection(
+          context,
+          strings: widget.strings,
+          count: ids.length,
+          accountLabel: account.email,
+          source: source,
+          provider: MailProviderKind.imap,
+        );
+      }
+    } on Object {
+      if (hostCurrent()) {
+        setState(() => _error = widget.strings.mailMutationCheckFailed);
+      }
+    } finally {
+      if (hostCurrent()) {
+        setState(() {
+          _busy = false;
+          _dialogOpen = false;
+        });
+      }
+    }
+    if (!accepted || !current()) return;
+    await _changeCommands(
+      action,
+      ids,
+      mailboxGeneration: mailboxGeneration,
+      destination: destination,
+      membershipConfirmed: true,
+    );
+  }
+
   Future<void> _changeCommands(
     MailBulkFlagAction action,
     List<String> ids, {
@@ -2403,9 +2597,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         ids.length > MailBulkFlagPlan.maxMessages ||
         ids.toSet().length != ids.length ||
         (!action.isFlagAction &&
-            (!membershipConfirmed ||
-                ids.length != 1 ||
-                loader is! StudioMailMembershipActions)) ||
+            (!membershipConfirmed || loader is! StudioMailMembershipActions)) ||
         (action == MailBulkFlagAction.move &&
             (destination == null ||
                 destination.value == mailbox.path ||
@@ -2873,6 +3065,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       _client = null;
       _pendingClient = null;
       _messageLoader = null;
+      _membershipCapabilities = const MailCapabilities.none();
       _pendingLoader = null;
       _messageMailbox = null;
       _reader = null;
@@ -4428,15 +4621,36 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       ],
       selectedId: _selected == null ? null : _messageKey(_selected!),
       busy: _busy || _dialogOpen,
+      supportedBulkActions: {
+        if (_messageLoader is StudioMailMessageActions) ...[
+          MailBulkFlagAction.markRead,
+          MailBulkFlagAction.markUnread,
+          MailBulkFlagAction.flag,
+          MailBulkFlagAction.unflag,
+        ],
+        if (_messageLoader is StudioMailMembershipActions) ...[
+          if (_membershipCapabilities.supports(MailCapability.move))
+            MailBulkFlagAction.move,
+          if (_membershipCapabilities.supports(MailCapability.delete))
+            MailBulkFlagAction.delete,
+        ],
+      },
       onBulkAction:
-          _messageLoader is StudioMailMessageActions &&
-              _messageLoader is StudioMailMailboxRecords
+          _messageLoader is StudioMailMailboxRecords &&
+              (_messageLoader is StudioMailMessageActions ||
+                  _messageLoader is StudioMailMembershipActions)
           ? (action, ids) => unawaited(
-              _changeCommands(
-                action,
-                ids,
-                mailboxGeneration: mailboxGeneration,
-              ),
+              action.isFlagAction
+                  ? _changeCommands(
+                      action,
+                      ids,
+                      mailboxGeneration: mailboxGeneration,
+                    )
+                  : _organizeMessages(
+                      action,
+                      ids,
+                      mailboxGeneration: mailboxGeneration,
+                    ),
             )
           : null,
       bulkActionsEnabled: !_needsRefresh,

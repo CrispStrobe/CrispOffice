@@ -12,6 +12,62 @@ extension StudioMailMutationStrings on StudioStrings {
   String get mailMoveMessage =>
       _text('Move message', 'Nachricht verschieben', 'نقل الرسالة');
 
+  String get mailMoveSelection => _text(
+    'Move selected messages',
+    'Ausgewählte Nachrichten verschieben',
+    'نقل الرسائل المحددة',
+  );
+
+  String mailOrganizationCount(int count) => _text(
+    'Selected messages: $count',
+    'Ausgewählte Nachrichten: $count',
+    'الرسائل المحددة: $count',
+  );
+
+  String get mailOrganizationSource =>
+      _text('Source folder', 'Quellordner', 'المجلد المصدر');
+
+  String get mailOrganizationDestination => _text(
+    'Choose destination',
+    'Zielordner auswählen',
+    'اختيار المجلد الهدف',
+  );
+
+  String get mailOrganizationNoDestination => _text(
+    'No other folder is available for this account.',
+    'Für dieses Konto ist kein anderer Ordner verfügbar.',
+    'لا يتوفر مجلد آخر لهذا الحساب.',
+  );
+
+  String get mailOrganizationMoveExplanation => _text(
+    'Move these selected messages from the source folder to the chosen destination.',
+    'Diese ausgewählten Nachrichten aus dem Quellordner in den gewählten Zielordner verschieben.',
+    'نقل هذه الرسائل المحددة من المجلد المصدر إلى المجلد الهدف المختار.',
+  );
+
+  String get mailOrganizationApplyMove => _text('Move', 'Verschieben', 'نقل');
+
+  String mailOrganizationDeleteExplanation(MailProviderKind provider) =>
+      provider == MailProviderKind.imap
+      ? _text(
+          'Mark the selected messages deleted on the IMAP server. This action '
+              'does not purge them; another mail client or the server may later '
+              'permanently remove messages marked deleted.',
+          'Die ausgewählten Nachrichten auf dem IMAP-Server als gelöscht '
+              'markieren. Diese Aktion entfernt sie nicht endgültig; ein '
+              'anderer Mail-Client oder der Server kann sie später endgültig '
+              'entfernen.',
+          'تحديد الرسائل المختارة كمحذوفة على خادم IMAP. لا يزيلها هذا '
+              'الإجراء نهائيًا؛ قد يزيل عميل بريد آخر أو الخادم الرسائل '
+              'المحددة كمحذوفة لاحقًا.',
+        )
+      : _text(
+          'Move the selected messages to this account’s deleted items or trash.',
+          'Die ausgewählten Nachrichten in Gelöschte Elemente oder den '
+              'Papierkorb dieses Kontos verschieben.',
+          'نقل الرسائل المحددة إلى العناصر المحذوفة أو المهملات في هذا الحساب.',
+        );
+
   String get mailMarkDeleted =>
       _text('Mark deleted', 'Als gelöscht markieren', 'تحديد كمحذوفة');
 
