@@ -486,7 +486,7 @@ class _StudioMailCachedSearchDialogState
               MailProblemCode.unsupported,
             );
           }
-          final mailbox = owner.mailboxStore;
+          final mailbox = (owner as StudioMailMailboxStoreOwner).mailboxStore;
           if (mailbox.account != identity.account) {
             throw const StudioMailDraftStoreException(
               MailProblemCode.permissionDenied,
@@ -494,7 +494,8 @@ class _StudioMailCachedSearchDialogState
           }
           final browsed = await mailbox.listViews();
           final sync = mailbox is StudioMailSyncStore
-              ? switch (await mailbox.listSyncMailboxes()) {
+              ? switch (await (mailbox as StudioMailSyncStore)
+                    .listSyncMailboxes()) {
                   MailSuccess<List<MailMailboxSyncSummary>>(:final value) =>
                     value,
                   MailFailure<List<MailMailboxSyncSummary>>(:final problem) =>
