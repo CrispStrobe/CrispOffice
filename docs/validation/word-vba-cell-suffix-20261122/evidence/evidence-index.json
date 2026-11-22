@@ -1,0 +1,985 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Closed local Word/VBA qualification and incoming Zotero evidence; GitHub Actions was not queried or awaited.",
+  "archive": {
+    "path": "local-qualification.tar.gz",
+    "sha256": "97215d1b03589df9b0c91582d7798e4451fe5d1bb1b73fa06ff06dacd989c545",
+    "bytes": 1300946,
+    "members": 129,
+    "determinism": "Lexicographic members; UTF-8 payloads unchanged; tar uid/gid/mtime zero and mode0644; gzip filename empty and mtime zero."
+  },
+  "acceptedWordCoverage": {
+    "suiteCount": 141,
+    "uniqueTestKeys": 7214,
+    "passingExecutions": 7235,
+    "duplicateNameExecutions": 21,
+    "failures": 0,
+    "skips": 0,
+    "runnerErrors": 0,
+    "doesNotClaimOneCleanMonolithicRun": true,
+    "testKeySha256": "f2897f977b9fe853d8eb26ca19a864dbde9fd9e69a8bcc5b7421020b1d39d17d"
+  },
+  "coverageRecord": "accepted-word-coverage.json inside archive; includes every selected suite and full deduplication key.",
+  "commandReceipts": {
+    "initialBroadRun": "initial-failed-word-run/macro-regressions.json",
+    "wholeFileRecheck": [
+      "accepted-word-recheck/macro-batch-01.json",
+      "accepted-word-recheck/macro-batch-02.json",
+      "accepted-word-recheck/macro-batch-03.json",
+      "accepted-word-recheck/macro-batch-04.json",
+      "accepted-word-recheck/macro-batch-05.json"
+    ],
+    "analysis": "accepted-word-recheck/analysis.json",
+    "format": "accepted-word-recheck/format.json",
+    "portable": "accepted-portable/qualification/receipt.json",
+    "zotero": [
+      "incoming-zotero/incoming-zotero-engine.receipt.json",
+      "incoming-zotero/incoming-zotero-editor.receipt.json",
+      "incoming-zotero/incoming-zotero-studio.receipt.json",
+      "incoming-zotero/incoming-zotero-analysis.receipt.json"
+    ],
+    "note": "JSON receipts retain exact argv and working-directory provenance; reproduction scripts are included. Historical standalone logs do not invent missing argv or source manifests."
+  },
+  "initialWordFailure": {
+    "sourceCommit": "ab9d9c0019b2168d3d5877e86aa54c94a40efe2d",
+    "suiteCount": 141,
+    "passed": 6213,
+    "failed": 46,
+    "skipped": 0,
+    "errorEvents": {
+      "ENOSPC": 43,
+      "dependentTeardown": 5,
+      "positionDiagnostic": 3
+    },
+    "errorEventCount": 51,
+    "wholePassingSuites": 101,
+    "wholeFailingSuites": 40,
+    "selectedUniqueTestKeys": 6166,
+    "selectedPassingExecutions": 6176,
+    "excludedPartialPassingExecutions": 37,
+    "acceptedAsWholeRun": false,
+    "formatExitCode": 1,
+    "analysisExitCode": 0
+  },
+  "finalWholeFileRecheck": {
+    "sourceCommit": "c7ceb679d5eab34be1d889ebf80c4a6722b3c6d3",
+    "suiteCount": 40,
+    "uniqueTestKeys": 1048,
+    "passingExecutions": 1059,
+    "counts": {
+      "passed": 1059,
+      "failed": 0,
+      "skipped": 0,
+      "hiddenErrors": 0
+    },
+    "allBatchesSucceeded": true,
+    "inputsStable": true,
+    "analysisExitCode": 0,
+    "formatExitCode": 0
+  },
+  "betweenWordRuns": {
+    "engineProductionUnchanged": true,
+    "changedInputs": [
+      "packages/quds_office_engine/test/fixtures/vba_conformance/word_cell_paragraphs_v1.json"
+    ],
+    "fixtureCorrection": {
+      "path": "packages/quds_office_engine/test/fixtures/vba_conformance/word_cell_paragraphs_v1.json",
+      "changes": [
+        {
+          "id": "projected-insertafter-refused",
+          "columnBefore": 3,
+          "columnAfter": 65
+        },
+        {
+          "id": "inactive-unsafe-projection-refused",
+          "columnBefore": 5,
+          "columnAfter": 67
+        }
+      ],
+      "scope": "Position columns only; source, error codes, behavior expectations and test counts retained. Its entire containing suite was rechecked."
+    },
+    "resourceRecovery": "The full failing files were rerun in bounded batches after temporary storage cleanup. The original ENOSPC and dependent teardown events are preserved, not reclassified as passes."
+  },
+  "checkpointResults": [
+    {
+      "log": "checkpoint-logs/native-cell-suffix-tests.log",
+      "terminalPassedCount": 220,
+      "scopeFromLog": [
+        "test/office_macro_word_cell_prefix_test.dart",
+        "test/office_macro_word_cell_suffix_test.dart",
+        "test/office_macro_word_table_cells_test.dart"
+      ],
+      "commandProvenance": "Standalone terminal log; exact launcher and input manifest are not independently recorded in this file.",
+      "includedInAggregate": false
+    },
+    {
+      "log": "checkpoint-logs/suffix-source-integration-tests.log",
+      "terminalPassedCount": 326,
+      "scopeFromLog": [
+        "test/office_vba_word_cell_suffix_integration_test.dart"
+      ],
+      "commandProvenance": "Standalone terminal log; exact launcher and input manifest are not independently recorded in this file.",
+      "includedInAggregate": false
+    },
+    {
+      "log": "checkpoint-logs/word-cell-alias-graph-tests.log",
+      "terminalPassedCount": 144,
+      "scopeFromLog": [
+        "test/office_vba_word_cell_alias_graph_test.dart",
+        "test/office_vba_word_table_cells_test.dart"
+      ],
+      "commandProvenance": "Standalone terminal log; exact launcher and input manifest are not independently recorded in this file.",
+      "includedInAggregate": false
+    }
+  ],
+  "independentSuffixCorpus": {
+    "cases": 73,
+    "wholeFileTests": 84,
+    "nativePlans": 27,
+    "positionedDiagnostics": 46,
+    "portableReceipt": "accepted-portable/corpus/word-cell-suffix-portability.json",
+    "vmAndJavaScriptReceiptsByteIdentical": true,
+    "note": "Checkpoint counts overlap broad Word coverage and are not added to it."
+  },
+  "actualBasPortable": {
+    "sourceCommit": "ab9d9c0019b2168d3d5877e86aa54c94a40efe2d",
+    "operations": 6,
+    "receipt": "accepted-portable/actual-bas/receipt.json",
+    "vmAndJavaScriptReceiptsByteIdentical": true,
+    "inputsStable": true
+  },
+  "incomingZotero": [
+    {
+      "scope": "engine",
+      "sourceCommit": "ab9d9c0019b2168d3d5877e86aa54c94a40efe2d",
+      "passed": 468,
+      "failed": 0,
+      "skipped": 0,
+      "exitCode": 0,
+      "inputCount": 454,
+      "inputsStable": true,
+      "receipt": "incoming-zotero/incoming-zotero-engine.receipt.json"
+    },
+    {
+      "scope": "editor",
+      "sourceCommit": "ab9d9c0019b2168d3d5877e86aa54c94a40efe2d",
+      "passed": 210,
+      "failed": 0,
+      "skipped": 0,
+      "exitCode": 0,
+      "inputCount": 563,
+      "inputsStable": true,
+      "receipt": "incoming-zotero/incoming-zotero-editor.receipt.json"
+    },
+    {
+      "scope": "studio",
+      "sourceCommit": "ab9d9c0019b2168d3d5877e86aa54c94a40efe2d",
+      "passed": 27,
+      "failed": 0,
+      "skipped": 0,
+      "exitCode": 0,
+      "inputCount": 964,
+      "inputsStable": true,
+      "receipt": "incoming-zotero/incoming-zotero-studio.receipt.json"
+    },
+    {
+      "scope": "analysis",
+      "sourceCommit": "ab9d9c0019b2168d3d5877e86aa54c94a40efe2d",
+      "passed": null,
+      "failed": 0,
+      "skipped": 0,
+      "exitCode": 0,
+      "inputCount": 956,
+      "inputsStable": true,
+      "receipt": "incoming-zotero/incoming-zotero-analysis.receipt.json"
+    }
+  ],
+  "incomingZoteroExecutions": 705,
+  "incomingMail": {
+    "status": "pending-separate-qualification",
+    "note": "Mail repair tests were still running while this archive was prepared. No Mail qualification is inferred from a passing Zotero host test. The prior Studio receipt remains bound to its recorded store input; later Mail store changes require separate reconciliation."
+  },
+  "limitations": [
+    "Specification-derived VBA cases do not claim an installed Microsoft Word run.",
+    "Local Flutter host tests use test fixtures and mocks; no live Zotero desktop acceptance is claimed.",
+    "The initial broad run failed and remains preserved. Accepted Word coverage combines complete passing files from two runs, not one clean monolithic execution.",
+    "Historical checkpoint logs and portable receipts overlap accepted coverage and are not summed.",
+    "Compiled JavaScript, source maps, SDK bytes, caches and credentials are excluded. Their recorded hashes remain in receipts."
+  ],
+  "files": [
+    {
+      "path": "accepted-portable/actual-bas/compile-js.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "category": "accepted-portable"
+    },
+    {
+      "path": "accepted-portable/actual-bas/compile-js.stdout",
+      "sha256": "30fde89c80e2bd5e60c7fd43016e246d4f548b895ec5c0be54e85dae67904913",
+      "bytes": 114,
+      "category": "accepted-portable"
+    },
+    {
+      "path": "accepted-portable/actual-bas/fixture-sources.json",
+      "sha256": "3e3733d7f1d1696517ce6ef8c40826b7fb97f16971fd061faafa82468ccae84a",
+      "bytes": 938,
+      "category": "accepted-portable"
+    },
+    {
+      "path": "accepted-portable/actual-bas/node.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "category": "accepted-portable"
+    },
+    {
+      "path": "accepted-portable/actual-bas/node.stdout",
+      "sha256": "9c87247e15d2035b8fbb917ab4675f1467bfc75c745528c7a7b31dea789a8b0e",
+      "bytes": 1369,
+      "category": "accepted-portable"
+    },
+    {
+      "path": "accepted-portable/actual-bas/receipt.json",
+      "sha256": "d01add97f9805447a9a6e00586f7f7e0e1d9d142a2b814f60ba4ac8a881d12af",
+      "bytes": 9736,
+      "category": "accepted-portable"
+    },
+    {
+      "path": "accepted-portable/actual-bas/runtime-after.json",
+      "sha256": "18aa6b6c00bdfc34a403785be07d568dbe9d2ffc15c6a7bf7186495648f6454a",
+      "bytes": 1990,
+      "category": "accepted-portable"
+    },
+    {
+      "path": "accepted-portable/actual-bas/runtime-before.json",
+      "sha256": "18aa6b6c00bdfc34a403785be07d568dbe9d2ffc15c6a7bf7186495648f6454a",
+      "bytes": 1990,
+      "category": "accepted-portable"
+    },
+    {
+      "path": "accepted-portable/actual-bas/source-after.json",
+      "sha256": "e7e95d7bc88e21c2d68d99da5e6657c580eec435811441b9d1afe9b844530a84",
+      "bytes": 79821,
+      "category": "accepted-portable"
+    },
+    {
+      "path": "accepted-portable/actual-bas/source-before.json",
+      "sha256": "e7e95d7bc88e21c2d68d99da5e6657c580eec435811441b9d1afe9b844530a84",
+      "bytes": 79821,
+      "category": "accepted-portable"
+    },
+    {
+      "path": "accepted-portable/actual-bas/vm.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "category": "accepted-portable"
+    },
+    {
+      "path": "accepted-portable/actual-bas/vm.stdout",
+      "sha256": "9c87247e15d2035b8fbb917ab4675f1467bfc75c745528c7a7b31dea789a8b0e",
+      "bytes": 1369,
+      "category": "accepted-portable"
+    },
+    {
+      "path": "accepted-portable/corpus/final-portable-qualification-driver.log",
+      "sha256": "37b1154f3423f680cf80abe0e103c100b715acf3701fe74c68d48158b89e0885",
+      "bytes": 975,
+      "category": "accepted-portable"
+    },
+    {
+      "path": "accepted-portable/corpus/word-cell-suffix-conformance-final-driver.log",
+      "sha256": "9c392e7b4d34cb23b0297a29856ee068e550d9c663ee0ff8210abf8c899ba79c",
+      "bytes": 138,
+      "category": "accepted-portable"
+    },
+    {
+      "path": "accepted-portable/corpus/word-cell-suffix-conformance-js-compile.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "category": "accepted-portable"
+    },
+    {
+      "path": "accepted-portable/corpus/word-cell-suffix-conformance-node.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "category": "accepted-portable"
+    },
+    {
+      "path": "accepted-portable/corpus/word-cell-suffix-conformance-vm.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "category": "accepted-portable"
+    },
+    {
+      "path": "accepted-portable/corpus/word-cell-suffix-conformance.js-compile.log",
+      "sha256": "7950288fdbf1271b5e7ea6bbb2310d74ac846620683da94f2c4106e08436e7c8",
+      "bytes": 112,
+      "category": "accepted-portable"
+    },
+    {
+      "path": "accepted-portable/corpus/word-cell-suffix-conformance.node.json",
+      "sha256": "fd59882f488a4b577c1b212fdbe5b9d358b54dc4dfc1dcc649af6b524f018e0c",
+      "bytes": 15902,
+      "category": "accepted-portable"
+    },
+    {
+      "path": "accepted-portable/corpus/word-cell-suffix-conformance.vm.json",
+      "sha256": "fd59882f488a4b577c1b212fdbe5b9d358b54dc4dfc1dcc649af6b524f018e0c",
+      "bytes": 15902,
+      "category": "accepted-portable"
+    },
+    {
+      "path": "accepted-portable/corpus/word-cell-suffix-portability.json",
+      "sha256": "56034d62b474b06f3864d7ec46854a111822549a1d7a66f7dc275cc105558aab",
+      "bytes": 124184,
+      "category": "accepted-portable"
+    },
+    {
+      "path": "accepted-portable/corpus/word-cell-suffix-portable-driver.log",
+      "sha256": "a7a5566172c1572218890b7d3615856649f8160848127b0dcccac9d5ef1e83eb",
+      "bytes": 297,
+      "category": "accepted-portable"
+    },
+    {
+      "path": "accepted-portable/qualification/receipt.json",
+      "sha256": "0610c4d8c117bbded7358d3b538279a76ec66249363a3c9b5d5b41e7bcaf8cc0",
+      "bytes": 5131,
+      "category": "accepted-portable"
+    },
+    {
+      "path": "accepted-portable/qualification/runtime-after.json",
+      "sha256": "b83c73c104c0d1f16ad1d6bb618684cef458d7a2140437b78413233ce96fa23e",
+      "bytes": 1852,
+      "category": "accepted-portable"
+    },
+    {
+      "path": "accepted-portable/qualification/runtime-before.json",
+      "sha256": "b83c73c104c0d1f16ad1d6bb618684cef458d7a2140437b78413233ce96fa23e",
+      "bytes": 1852,
+      "category": "accepted-portable"
+    },
+    {
+      "path": "accepted-portable/qualification/source-after.json",
+      "sha256": "3a23b9eb9d9c5f1f2a6dd82223ede5d49b278d1a223b36d605f28854ab5fbf86",
+      "bytes": 62774,
+      "category": "accepted-portable"
+    },
+    {
+      "path": "accepted-portable/qualification/source-before.json",
+      "sha256": "3a23b9eb9d9c5f1f2a6dd82223ede5d49b278d1a223b36d605f28854ab5fbf86",
+      "bytes": 62774,
+      "category": "accepted-portable"
+    },
+    {
+      "path": "accepted-portable/qualification/source-head-binding.json",
+      "sha256": "ce15a1d753939fd1af09cbe7ff090a13e8611e154855f658781c01f5b14e951f",
+      "bytes": 208834,
+      "category": "accepted-portable"
+    },
+    {
+      "path": "accepted-portable/qualification/summary.json",
+      "sha256": "ef83576efdb2f8bfed3958ace508432384d40b95735777240e25404c48e9a6ee",
+      "bytes": 1263,
+      "category": "accepted-portable"
+    },
+    {
+      "path": "accepted-word-coverage.json",
+      "sha256": "ac42e5700adf79ead2690c27f3d7ecab3e0e5af0205fd02eb92a44a95e0dc229",
+      "bytes": 1232210,
+      "category": "deduplicated-coverage"
+    },
+    {
+      "path": "accepted-word-recheck/analysis.json",
+      "sha256": "72ab3d1fe5d5b7aee24d139cc26e21d549c69518f5f2b7aa94f43b1aa6b8f81c",
+      "bytes": 194,
+      "category": "accepted-recheck"
+    },
+    {
+      "path": "accepted-word-recheck/analysis.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "category": "accepted-recheck"
+    },
+    {
+      "path": "accepted-word-recheck/analysis.stdout",
+      "sha256": "2a646156060188c736fdabe5d47d1e0f3924a3ad529b35df51badf9cdd230a65",
+      "bytes": 46,
+      "category": "accepted-recheck"
+    },
+    {
+      "path": "accepted-word-recheck/format.json",
+      "sha256": "a8af8faf460ec98d395800a747d404f7ca71130de0de2b729e9dcf7c994533be",
+      "bytes": 2691,
+      "category": "accepted-recheck"
+    },
+    {
+      "path": "accepted-word-recheck/format.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "category": "accepted-recheck"
+    },
+    {
+      "path": "accepted-word-recheck/format.stdout",
+      "sha256": "92d00d9dc4936ca5b377878486c37d39ee2b16cf9026785a83f4fd30d2e239d6",
+      "bytes": 48,
+      "category": "accepted-recheck"
+    },
+    {
+      "path": "accepted-word-recheck/inputs-after.json",
+      "sha256": "4b0966d8b3812886b2f50c6ec0e83ef9c03b3baf94340039108eb78652d2a0c0",
+      "bytes": 170885,
+      "category": "accepted-recheck"
+    },
+    {
+      "path": "accepted-word-recheck/inputs-before.json",
+      "sha256": "4b0966d8b3812886b2f50c6ec0e83ef9c03b3baf94340039108eb78652d2a0c0",
+      "bytes": 170885,
+      "category": "accepted-recheck"
+    },
+    {
+      "path": "accepted-word-recheck/macro-batch-01.json",
+      "sha256": "34eb018a6ec1f66e13fe82e0c55e59dbd9e6266b9d99195e54dda0d8599efbd7",
+      "bytes": 832,
+      "category": "accepted-recheck"
+    },
+    {
+      "path": "accepted-word-recheck/macro-batch-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "category": "accepted-recheck"
+    },
+    {
+      "path": "accepted-word-recheck/macro-batch-01.stdout",
+      "sha256": "5b3476e6bd60183cdbc835f249406464e3e0a7e06da9c628adbd6639280a6d1d",
+      "bytes": 64611,
+      "category": "accepted-recheck"
+    },
+    {
+      "path": "accepted-word-recheck/macro-batch-02.json",
+      "sha256": "a0041d5b18a935010922893f227ce7e45c4173a3cff446748a7d10d94bd43cf7",
+      "bytes": 862,
+      "category": "accepted-recheck"
+    },
+    {
+      "path": "accepted-word-recheck/macro-batch-02.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "category": "accepted-recheck"
+    },
+    {
+      "path": "accepted-word-recheck/macro-batch-02.stdout",
+      "sha256": "c290d96fbfdb8321e4ebf404ff610a820a061b0fd4b2259e76c1a0db895ef4bd",
+      "bytes": 61177,
+      "category": "accepted-recheck"
+    },
+    {
+      "path": "accepted-word-recheck/macro-batch-03.json",
+      "sha256": "fa42ed60eeab3fe19ce4c7ab6a00bf2a284baedf0fec0a4024bd288d005f1da3",
+      "bytes": 873,
+      "category": "accepted-recheck"
+    },
+    {
+      "path": "accepted-word-recheck/macro-batch-03.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "category": "accepted-recheck"
+    },
+    {
+      "path": "accepted-word-recheck/macro-batch-03.stdout",
+      "sha256": "f34ac5adc109a64adf7b181ffb6f247cbc8edd1ebbb167d5fc2e65797588204e",
+      "bytes": 77828,
+      "category": "accepted-recheck"
+    },
+    {
+      "path": "accepted-word-recheck/macro-batch-04.json",
+      "sha256": "68caec486092adef520642d70efd8284a7733ef8783eacd9a3c72649340db2e7",
+      "bytes": 826,
+      "category": "accepted-recheck"
+    },
+    {
+      "path": "accepted-word-recheck/macro-batch-04.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "category": "accepted-recheck"
+    },
+    {
+      "path": "accepted-word-recheck/macro-batch-04.stdout",
+      "sha256": "b920052a7102c90b022a134a82af739120085a0611acac94078f390ee85822c9",
+      "bytes": 129015,
+      "category": "accepted-recheck"
+    },
+    {
+      "path": "accepted-word-recheck/macro-batch-05.json",
+      "sha256": "6a1f4d876f37b5179b3cb2dbfcd22abc72f031052eb5e6c4115dfda22d8a0db9",
+      "bytes": 814,
+      "category": "accepted-recheck"
+    },
+    {
+      "path": "accepted-word-recheck/macro-batch-05.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "category": "accepted-recheck"
+    },
+    {
+      "path": "accepted-word-recheck/macro-batch-05.stdout",
+      "sha256": "093bdb84c640c90b149dde8b8c55823338f1c8423a665b42db22fbaf76f39e5a",
+      "bytes": 224590,
+      "category": "accepted-recheck"
+    },
+    {
+      "path": "accepted-word-recheck/macro-regressions-counts.json",
+      "sha256": "6b6e0fd6286d420e00dcac4eba1fdaf347e2d1b58197d7d4a1afea229eb312c3",
+      "bytes": 193,
+      "category": "accepted-recheck"
+    },
+    {
+      "path": "accepted-word-recheck/macro-regressions.stdout",
+      "sha256": "8353a2c9c0e3a78708335464ad267ad1da714b5d1acfbc1cec5395b57f5aa76d",
+      "bytes": 557221,
+      "category": "accepted-recheck"
+    },
+    {
+      "path": "accepted-word-recheck/suites.txt",
+      "sha256": "cd08d680899d923f56b558013ba8c78b4a8d55bbd3b91ea0eb351d85898a0e63",
+      "bytes": 2098,
+      "category": "accepted-recheck"
+    },
+    {
+      "path": "accepted-word-recheck/summary.json",
+      "sha256": "24bcdf492dd851c42fceb0c24cc547f60f6510e4f4572cbb3cfaef036e85e549",
+      "bytes": 8523,
+      "category": "accepted-recheck"
+    },
+    {
+      "path": "checkpoint-logs/engine-analysis.log",
+      "sha256": "c557a0c697cdb937104f1423d3c02d6a1062917cb0bcb2830d91db8cf6192af0",
+      "bytes": 49,
+      "category": "completed-checkpoint"
+    },
+    {
+      "path": "checkpoint-logs/native-cell-suffix-analysis.log",
+      "sha256": "599d79e57444cbc6f88b80466672611a2e917fc92cd3773b88e8782408d85a83",
+      "bytes": 144,
+      "category": "completed-checkpoint"
+    },
+    {
+      "path": "checkpoint-logs/native-cell-suffix-tests.log",
+      "sha256": "34963ac7c1e158766fb0b8b5177c99dbd15a9557a5c89d6023ed61161d904407",
+      "bytes": 28575,
+      "category": "completed-checkpoint"
+    },
+    {
+      "path": "checkpoint-logs/suffix-source-integration-tests.log",
+      "sha256": "ba50ba9023996ac468eac57e47d3c7f00f510f159b1a43bda7333ed7be5c9d8a",
+      "bytes": 26585,
+      "category": "completed-checkpoint"
+    },
+    {
+      "path": "checkpoint-logs/word-cell-alias-graph-analysis.log",
+      "sha256": "7d9b61ce2f31ba8464ce3604f5287b83b58db6c15e4b4f722b8e87c0950b5ce4",
+      "bytes": 99,
+      "category": "completed-checkpoint"
+    },
+    {
+      "path": "checkpoint-logs/word-cell-alias-graph-tests.log",
+      "sha256": "ba5f2f6f228950c758ecdc94f6079a780ae1f13850dfb8c2ed1d37212ce31567",
+      "bytes": 21967,
+      "category": "completed-checkpoint"
+    },
+    {
+      "path": "checkpoint-logs/word-cell-suffix-conformance.jsonl",
+      "sha256": "244965ebe3bcc78c7de51e1093b316b4729e0c2527d7ec9d3a6d084c3d8e01ce",
+      "bytes": 39050,
+      "category": "completed-checkpoint"
+    },
+    {
+      "path": "checkpoint-logs/word-cell-suffix-conformance.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "category": "completed-checkpoint"
+    },
+    {
+      "path": "historical-portable/relocation.json",
+      "sha256": "75c360d80a7aed1dab97d033e9c392ff29749ec857d22a744c6df5901e92f532",
+      "bytes": 8567,
+      "category": "superseded-portable-checkpoint"
+    },
+    {
+      "path": "historical-portable/run_cell_suffix_portable.py",
+      "sha256": "b4ef990576be392c5f2a973c5b38add3d869d71b994e963c7f6e77ecb261f428",
+      "bytes": 7615,
+      "category": "superseded-portable-checkpoint"
+    },
+    {
+      "path": "historical-portable/run_suffix_portability.py",
+      "sha256": "88a087fb09368ad8e29df65a34969be05af8406e95df3d34c6f9a329db560102",
+      "bytes": 3690,
+      "category": "superseded-portable-checkpoint"
+    },
+    {
+      "path": "historical-portable/word-cell-suffix-conformance-js-compile.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "category": "superseded-portable-checkpoint"
+    },
+    {
+      "path": "historical-portable/word-cell-suffix-conformance-node.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "category": "superseded-portable-checkpoint"
+    },
+    {
+      "path": "historical-portable/word-cell-suffix-conformance-vm.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "category": "superseded-portable-checkpoint"
+    },
+    {
+      "path": "historical-portable/word-cell-suffix-conformance.js-compile.log",
+      "sha256": "f81601563d540fcc4045687a10bfaf31bfa69e915111003f7c93ad3748717031",
+      "bytes": 112,
+      "category": "superseded-portable-checkpoint"
+    },
+    {
+      "path": "historical-portable/word-cell-suffix-conformance.node.json",
+      "sha256": "fd59882f488a4b577c1b212fdbe5b9d358b54dc4dfc1dcc649af6b524f018e0c",
+      "bytes": 15902,
+      "category": "superseded-portable-checkpoint"
+    },
+    {
+      "path": "historical-portable/word-cell-suffix-conformance.vm.json",
+      "sha256": "fd59882f488a4b577c1b212fdbe5b9d358b54dc4dfc1dcc649af6b524f018e0c",
+      "bytes": 15902,
+      "category": "superseded-portable-checkpoint"
+    },
+    {
+      "path": "historical-portable/word-cell-suffix-portability.json",
+      "sha256": "adcaadc1ba6d07662a4d3e19c8e88e83e62d823ad0a948787cba035494ce657b",
+      "bytes": 123840,
+      "category": "superseded-portable-checkpoint"
+    },
+    {
+      "path": "historical-portable/word-cell-suffix-portable-driver.log",
+      "sha256": "f7885ac0cca02b5066f4553cb81d778ba853d51643c29b727f222b135306759c",
+      "bytes": 297,
+      "category": "superseded-portable-checkpoint"
+    },
+    {
+      "path": "historical-portable/word-cell-suffix-portable/compile-js.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "category": "superseded-portable-checkpoint"
+    },
+    {
+      "path": "historical-portable/word-cell-suffix-portable/compile-js.stdout",
+      "sha256": "cde21c7deaf5b499330f6974ce295f31e8dd2d27cfbdcf5c42472989190fd8d2",
+      "bytes": 114,
+      "category": "superseded-portable-checkpoint"
+    },
+    {
+      "path": "historical-portable/word-cell-suffix-portable/fixture-sources.json",
+      "sha256": "3e3733d7f1d1696517ce6ef8c40826b7fb97f16971fd061faafa82468ccae84a",
+      "bytes": 938,
+      "category": "superseded-portable-checkpoint"
+    },
+    {
+      "path": "historical-portable/word-cell-suffix-portable/node.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "category": "superseded-portable-checkpoint"
+    },
+    {
+      "path": "historical-portable/word-cell-suffix-portable/node.stdout",
+      "sha256": "9c87247e15d2035b8fbb917ab4675f1467bfc75c745528c7a7b31dea789a8b0e",
+      "bytes": 1369,
+      "category": "superseded-portable-checkpoint"
+    },
+    {
+      "path": "historical-portable/word-cell-suffix-portable/receipt.json",
+      "sha256": "e60fe2478dbca58025d3e6b600ac372b2916cb022cc4d7b4aaf7aa36709ba893",
+      "bytes": 9736,
+      "category": "superseded-portable-checkpoint"
+    },
+    {
+      "path": "historical-portable/word-cell-suffix-portable/runtime-after.json",
+      "sha256": "18aa6b6c00bdfc34a403785be07d568dbe9d2ffc15c6a7bf7186495648f6454a",
+      "bytes": 1990,
+      "category": "superseded-portable-checkpoint"
+    },
+    {
+      "path": "historical-portable/word-cell-suffix-portable/runtime-before.json",
+      "sha256": "18aa6b6c00bdfc34a403785be07d568dbe9d2ffc15c6a7bf7186495648f6454a",
+      "bytes": 1990,
+      "category": "superseded-portable-checkpoint"
+    },
+    {
+      "path": "historical-portable/word-cell-suffix-portable/source-after.json",
+      "sha256": "a8c965dc5ebfd6f6008dbf9e484e20fd421e324eec17c0feee43977d3cd0d01f",
+      "bytes": 79631,
+      "category": "superseded-portable-checkpoint"
+    },
+    {
+      "path": "historical-portable/word-cell-suffix-portable/source-before.json",
+      "sha256": "a8c965dc5ebfd6f6008dbf9e484e20fd421e324eec17c0feee43977d3cd0d01f",
+      "bytes": 79631,
+      "category": "superseded-portable-checkpoint"
+    },
+    {
+      "path": "historical-portable/word-cell-suffix-portable/source-head-binding.json",
+      "sha256": "712e061f412df50523b09a74ab4306a69302c2751b459e3e1a5ffebb3701bdf7",
+      "bytes": 206473,
+      "category": "superseded-portable-checkpoint"
+    },
+    {
+      "path": "historical-portable/word-cell-suffix-portable/vm.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "category": "superseded-portable-checkpoint"
+    },
+    {
+      "path": "historical-portable/word-cell-suffix-portable/vm.stdout",
+      "sha256": "9c87247e15d2035b8fbb917ab4675f1467bfc75c745528c7a7b31dea789a8b0e",
+      "bytes": 1369,
+      "category": "superseded-portable-checkpoint"
+    },
+    {
+      "path": "incoming-zotero/incoming-zotero-analysis.log",
+      "sha256": "9529be6db4500e8b086a0e59bad279a7a76deab94b56cbf568f212df6a7acb05",
+      "bytes": 436,
+      "category": "accepted-incoming-zotero"
+    },
+    {
+      "path": "incoming-zotero/incoming-zotero-analysis.receipt.json",
+      "sha256": "d7e4bb4b849ba116803cbe780bf535a06910ccad05e0e7f5e7c3b0eae59d0cdf",
+      "bytes": 306071,
+      "category": "accepted-incoming-zotero"
+    },
+    {
+      "path": "incoming-zotero/incoming-zotero-analysis.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "category": "accepted-incoming-zotero"
+    },
+    {
+      "path": "incoming-zotero/incoming-zotero-editor.jsonl",
+      "sha256": "1c9060f5692bf99c3a57ca294226912fa488ac6a3557e87818a638955eeb0419",
+      "bytes": 112317,
+      "category": "accepted-incoming-zotero"
+    },
+    {
+      "path": "incoming-zotero/incoming-zotero-editor.receipt.json",
+      "sha256": "a83a785b435815a8f07e93f262da1230f68c6ccfacd12cbb060b1bea7fbfaa7c",
+      "bytes": 182703,
+      "category": "accepted-incoming-zotero"
+    },
+    {
+      "path": "incoming-zotero/incoming-zotero-editor.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "category": "accepted-incoming-zotero"
+    },
+    {
+      "path": "incoming-zotero/incoming-zotero-engine.jsonl",
+      "sha256": "9af10e1ab2073cfe10e7af25d7c5861d0bc2a8a15589bca3ab727e9dc1086c78",
+      "bytes": 227352,
+      "category": "accepted-incoming-zotero"
+    },
+    {
+      "path": "incoming-zotero/incoming-zotero-engine.receipt.json",
+      "sha256": "46db6d6371ff30c9b4952a624c0b1e272c4deb13a6030e33773d2857541e2b19",
+      "bytes": 147359,
+      "category": "accepted-incoming-zotero"
+    },
+    {
+      "path": "incoming-zotero/incoming-zotero-engine.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "category": "accepted-incoming-zotero"
+    },
+    {
+      "path": "incoming-zotero/incoming-zotero-studio.jsonl",
+      "sha256": "9101998efaab62b5bf8cb166010bcc9d29dd812637c0371be769854a71c35b85",
+      "bytes": 16385,
+      "category": "accepted-incoming-zotero"
+    },
+    {
+      "path": "incoming-zotero/incoming-zotero-studio.receipt.json",
+      "sha256": "35c651af3f35f915b76f7ea4520d34ad9bd93166490e20576499de858fa222b1",
+      "bytes": 308270,
+      "category": "accepted-incoming-zotero"
+    },
+    {
+      "path": "incoming-zotero/incoming-zotero-studio.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "category": "accepted-incoming-zotero"
+    },
+    {
+      "path": "initial-failed-corpus/attempt-accounting.json",
+      "sha256": "7a0c6aaff9847dd799119e4f0f9f6ce548e62efb53e009526bdbcb005deb73a0",
+      "bytes": 795,
+      "category": "historical-accounting"
+    },
+    {
+      "path": "initial-failed-corpus/word-cell-suffix-conformance.initial-failures.jsonl",
+      "sha256": "a4c50147c768b1025320bb98b9055c7b20badf3cf13b4e9c02476ab08c4f97df",
+      "bytes": 44952,
+      "category": "failed-historical-run"
+    },
+    {
+      "path": "initial-failed-corpus/word-cell-suffix-conformance.initial-failures.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "category": "failed-historical-run"
+    },
+    {
+      "path": "initial-failed-corpus/word-cell-suffix-conformance.initial-no-env.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "category": "interrupted-no-test-events"
+    },
+    {
+      "path": "initial-failed-corpus/word-cell-suffix-conformance.initial-no-env.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "category": "interrupted-no-test-events"
+    },
+    {
+      "path": "initial-failed-corpus/word-cell-suffix-conformance.repeat-initial-failures.jsonl",
+      "sha256": "86acab0f91f99760bcfb9e1f7bf373f6e2f198483e98fb94ab6b6a76b5ef0761",
+      "bytes": 44772,
+      "category": "failed-historical-run"
+    },
+    {
+      "path": "initial-failed-corpus/word-cell-suffix-conformance.repeat-initial-failures.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "category": "failed-historical-run"
+    },
+    {
+      "path": "initial-failed-word-run/analysis.json",
+      "sha256": "17251f906173bf20a1eae23fc8c419014997577f04aac8b13fa7ccc0ce0b498a",
+      "bytes": 194,
+      "category": "failed-historical-run"
+    },
+    {
+      "path": "initial-failed-word-run/analysis.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "category": "failed-historical-run"
+    },
+    {
+      "path": "initial-failed-word-run/analysis.stdout",
+      "sha256": "2a646156060188c736fdabe5d47d1e0f3924a3ad529b35df51badf9cdd230a65",
+      "bytes": 46,
+      "category": "failed-historical-run"
+    },
+    {
+      "path": "initial-failed-word-run/format.json",
+      "sha256": "976e7ebf1ba2813eb25845a166ffe3158772f789fe9816f326c3c72be0b3b45f",
+      "bytes": 7804,
+      "category": "failed-historical-run"
+    },
+    {
+      "path": "initial-failed-word-run/format.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "category": "failed-historical-run"
+    },
+    {
+      "path": "initial-failed-word-run/format.stdout",
+      "sha256": "5c1b12de9d21f7532db1882679a69e3bf6a9be00ded49f884a1002d149c5fe8d",
+      "bytes": 178,
+      "category": "failed-historical-run"
+    },
+    {
+      "path": "initial-failed-word-run/inputs-after.json",
+      "sha256": "75f972026a2d44f1c31384bcb3cfdd0e1eae81a7e3d1acdde21be0850ff8d8e6",
+      "bytes": 170885,
+      "category": "failed-historical-run"
+    },
+    {
+      "path": "initial-failed-word-run/inputs-before.json",
+      "sha256": "75f972026a2d44f1c31384bcb3cfdd0e1eae81a7e3d1acdde21be0850ff8d8e6",
+      "bytes": 170885,
+      "category": "failed-historical-run"
+    },
+    {
+      "path": "initial-failed-word-run/macro-regressions-counts.json",
+      "sha256": "f81d120ddce7d2800d65dada061dd7c9ba5fa9a0bf7c14487345b20261987399",
+      "bytes": 21558,
+      "category": "failed-historical-run"
+    },
+    {
+      "path": "initial-failed-word-run/macro-regressions.json",
+      "sha256": "71619338152f8a57f6903743c6b1a902cd1c61eeb8ecaf62b5499f2049ef6ff1",
+      "bytes": 8064,
+      "category": "failed-historical-run"
+    },
+    {
+      "path": "initial-failed-word-run/macro-regressions.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "category": "failed-historical-run"
+    },
+    {
+      "path": "initial-failed-word-run/macro-regressions.stdout",
+      "sha256": "3196dec5150db7648911a0457b82037b0f64d9f166110c88661a5a50f980c258",
+      "bytes": 3146583,
+      "category": "failed-historical-run"
+    },
+    {
+      "path": "initial-failed-word-run/suites.txt",
+      "sha256": "4a5fb9afd89899f44bd9240d0205e5d6b6b7472e615134f990421deab8a50163",
+      "bytes": 6710,
+      "category": "failed-historical-run"
+    },
+    {
+      "path": "initial-failed-word-run/summary.json",
+      "sha256": "0b2dc28e5cb6fb7359ef8433357052e63727bdb26525e15966759c9cf24b538e",
+      "bytes": 17419,
+      "category": "failed-historical-run"
+    },
+    {
+      "path": "intake/initial.json",
+      "sha256": "5c6816312e28d2d8da47666da54c37dcfdb7e6b80e396d6ff55e0e720d0c9c89",
+      "bytes": 32580,
+      "category": "intake"
+    },
+    {
+      "path": "intake/refresh.json",
+      "sha256": "1802ad4428bc31a3ff19212888642ecea7f9c9810c4de2a4d59095c106fdff11",
+      "bytes": 20058,
+      "category": "intake"
+    },
+    {
+      "path": "reproduction/build_evidence.py",
+      "sha256": "309f4bd40a270720aac7ed1ec021e28b5326a6a938627524f7e3e133bdf72f72",
+      "bytes": 20238,
+      "category": "reproduction"
+    },
+    {
+      "path": "reproduction/run_cell_suffix_portable.py",
+      "sha256": "b4ef990576be392c5f2a973c5b38add3d869d71b994e963c7f6e77ecb261f428",
+      "bytes": 7615,
+      "category": "reproduction"
+    },
+    {
+      "path": "reproduction/run_incoming_zotero.py",
+      "sha256": "4fefd08dafd5cbfa37a9fb6b8def0d2e798eba25a289015c92cdd5cf4a0b44a0",
+      "bytes": 7301,
+      "category": "reproduction"
+    },
+    {
+      "path": "reproduction/run_local.py",
+      "sha256": "08ecf88d60b658b6767fa7606efdd7ce56f1fe96b99eaf6acae7f425508ccf6b",
+      "bytes": 6606,
+      "category": "reproduction"
+    },
+    {
+      "path": "reproduction/run_suffix_portability.py",
+      "sha256": "88a087fb09368ad8e29df65a34969be05af8406e95df3d34c6f9a329db560102",
+      "bytes": 3690,
+      "category": "reproduction"
+    }
+  ]
+}

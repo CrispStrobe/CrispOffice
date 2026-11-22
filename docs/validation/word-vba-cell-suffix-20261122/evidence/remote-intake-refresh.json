@@ -1,0 +1,542 @@
+{
+  "schemaVersion": 1,
+  "repository": "CrispStrobe/quds_office_suite",
+  "comparisonBase": "2f8562cda86fc150347672dc6e1c1cb68824d3d7",
+  "recordedAt": "2026-11-22 08:11:32 UTC",
+  "noCiEndpointsQueried": true,
+  "openPullRequests": [],
+  "recentPullRequests": [
+    {
+      "number": 369,
+      "title": "Extend Zotero unlink recovery and non-one note numbering [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "head": "codex/zotero-parity-next-20261122",
+      "headSha": "98ac4254f04acdeff53ea28c9c184ecfb141e868"
+    },
+    {
+      "number": 368,
+      "title": "Finalize Mail current-location recovery and integrated qualification [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "head": "codex/mail-membership-recovery-20261122",
+      "headSha": "bb991a98b73fb2518b2999c37e42d7da4c821fae"
+    },
+    {
+      "number": 367,
+      "title": "Preserve automatic Roman Zotero notes across editable ODT exchange [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "head": "codex/zotero-native-parity-20261122",
+      "headSha": "d300c76f0966d8f676b0fa38a7799f0e01cbc10d"
+    },
+    {
+      "number": 366,
+      "title": "Record completed Word VBA publication and clarify evidence timing [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "head": "codex/word-vba-continuation-20261122",
+      "headSha": "dd844f4ae1d5d4dab897fd7e49f94e25be52581a"
+    },
+    {
+      "number": 365,
+      "title": "Extend Word VBA with guarded cell prefixes and portable String constants [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "head": "codex/word-vba-continuation-20261122",
+      "headSha": "6fbd992393ce94df87b095197c088c11799c391d"
+    },
+    {
+      "number": 364,
+      "title": "Finalize Zotero metadata recovery and reconciled local qualification [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "head": "codex/zotero-field-recovery-20261122",
+      "headSha": "e78e98d3a07647794e4426f833782ccbddc04960"
+    },
+    {
+      "number": 363,
+      "title": "Add durable foreground Mail Move/Delete and reconcile recent Office work [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "head": "codex/mail-durable-mutations-20261122",
+      "headSha": "afdcb327c650383e269a3d32f7251f68a9d766c6"
+    },
+    {
+      "number": 362,
+      "title": "Extend Word VBA cell paragraph styles and shading [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "head": "codex/word-vba-compatibility-20261122",
+      "headSha": "934c33a57f3bed934df59a4e925ffc35fe406ee2"
+    },
+    {
+      "number": 361,
+      "title": "Complete native Zotero selected-field context and local qualification [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "head": "codex/zotero-field-context-20261122",
+      "headSha": "00ba542dc5b492040508a8137a80adbc9b13553d"
+    },
+    {
+      "number": 360,
+      "title": "Mail: unify retained-folder navigation and reconcile current Office work [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "head": "work/mail-parity-20261122-next",
+      "headSha": "a7006171630915bbf91b6ce2ab7c4699bb79f69b"
+    },
+    {
+      "number": 359,
+      "title": "Extend Word VBA cell highlighting/proofing and shared Join",
+      "state": "closed",
+      "merged": true,
+      "head": "codex/word-vba-cell-text-20261122",
+      "headSha": "5f6e8686f1d6ddc1f3e523238808b78ccccc5b51"
+    },
+    {
+      "number": 358,
+      "title": "Finalize Zotero writing-position parity and reconciled qualification [skip ci]",
+      "state": "closed",
+      "merged": true,
+      "head": "codex/zotero-parity-20261122",
+      "headSha": "da36652cf1d2296b59285788035555d512b9fa31"
+    }
+  ],
+  "branches": [
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "name": "codex/mail-durable-mutations-20261122",
+      "sha": "afdcb327c650383e269a3d32f7251f68a9d766c6",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 51,
+      "mergeBase": "afdcb327c650383e269a3d32f7251f68a9d766c6",
+      "changedPaths": []
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "name": "codex/mail-identity-reconciliation-20261122",
+      "sha": "9b3b6378dc3f80040e1e2a0ab206600ac5a528bc",
+      "status": "diverged",
+      "aheadBy": 1,
+      "behindBy": 8,
+      "mergeBase": "5ecbd68b5ad1869b20b4b6e711a5200842abae34",
+      "changedPaths": [
+        "docs/roadmaps/mail/README.md",
+        "docs/roadmaps/mail/identity-transitions.md",
+        "docs/roadmaps/mail/implementation-plan.md",
+        "docs/roadmaps/mail/membership-recovery.md",
+        "docs/roadmaps/mail/status.md",
+        "packages/quds_mail_core/CHANGELOG.md",
+        "packages/quds_mail_core/lib/src/ports/mutation_receipt.dart",
+        "packages/quds_mail_core/lib/src/ports/repository.dart",
+        "packages/quds_mail_core/lib/src/sync/coordinator.dart",
+        "packages/quds_mail_core/lib/src/sync/runner.dart",
+        "packages/quds_mail_core/test/mutation_receipt_test.dart",
+        "packages/quds_mail_core/test/sync_snapshot_test.dart",
+        "packages/quds_mail_store/lib/src/move_identity_transitions.dart",
+        "packages/quds_mail_store/lib/src/schema/move_identity_schema.dart",
+        "packages/quds_mail_store/test/move_identity_migration_test.dart",
+        "packages/quds_mail_store/test/move_identity_transition_test.dart",
+        "packages/quds_mail_transport/CHANGELOG.md",
+        "packages/quds_mail_transport/README.md",
+        "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart",
+        "packages/quds_office_editor/example/test/studio_mail_journal_dialog_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_move_identity_test.dart",
+        "third_party/enough_mail/CHANGELOG.md",
+        "third_party/enough_mail/test/src/imap/generic_copy_uid_test.dart"
+      ]
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "name": "codex/mail-membership-recovery-20261122",
+      "sha": "bb991a98b73fb2518b2999c37e42d7da4c821fae",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 11,
+      "mergeBase": "bb991a98b73fb2518b2999c37e42d7da4c821fae",
+      "changedPaths": []
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "name": "codex/word-vba-authoring-20261121",
+      "sha": "cf06b018ec125ce3b5abfda41a7fbbdcf7d30a47",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 263,
+      "mergeBase": "cf06b018ec125ce3b5abfda41a7fbbdcf7d30a47",
+      "changedPaths": []
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "name": "codex/word-vba-cell-formatting-20261122",
+      "sha": "49f43824196c4d373f991e442fac2e73e68c5f9f",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 127,
+      "mergeBase": "49f43824196c4d373f991e442fac2e73e68c5f9f",
+      "changedPaths": []
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "name": "codex/word-vba-cell-text-20261122",
+      "sha": "5f6e8686f1d6ddc1f3e523238808b78ccccc5b51",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 92,
+      "mergeBase": "5f6e8686f1d6ddc1f3e523238808b78ccccc5b51",
+      "changedPaths": []
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "name": "codex/word-vba-comparison-colors-20261121",
+      "sha": "e3c4550b34a9a07de2a97b84b67ab6aecaa5a377",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 172,
+      "mergeBase": "e3c4550b34a9a07de2a97b84b67ab6aecaa5a377",
+      "changedPaths": []
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "name": "codex/word-vba-compatibility-20261121",
+      "sha": "3058d36c5354d46bde418555d59282116cce1e26",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 220,
+      "mergeBase": "3058d36c5354d46bde418555d59282116cce1e26",
+      "changedPaths": []
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "name": "codex/word-vba-compatibility-20261122",
+      "sha": "934c33a57f3bed934df59a4e925ffc35fe406ee2",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 68,
+      "mergeBase": "934c33a57f3bed934df59a4e925ffc35fe406ee2",
+      "changedPaths": []
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "name": "codex/word-vba-continuation-20261122",
+      "sha": "dd844f4ae1d5d4dab897fd7e49f94e25be52581a",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 39,
+      "mergeBase": "dd844f4ae1d5d4dab897fd7e49f94e25be52581a",
+      "changedPaths": []
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "name": "codex/word-vba-range-suffix-20261122",
+      "sha": "2f8562cda86fc150347672dc6e1c1cb68824d3d7",
+      "status": "identical",
+      "aheadBy": 0,
+      "behindBy": 0,
+      "mergeBase": "2f8562cda86fc150347672dc6e1c1cb68824d3d7",
+      "changedPaths": []
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "name": "codex/zotero-dispatch-recovery-20261121",
+      "sha": "32ef843db3a8192fe0add085e1ee173e18f4d462",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 217,
+      "mergeBase": "32ef843db3a8192fe0add085e1ee173e18f4d462",
+      "changedPaths": []
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "name": "codex/zotero-field-context-20261122",
+      "sha": "00ba542dc5b492040508a8137a80adbc9b13553d",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 74,
+      "mergeBase": "00ba542dc5b492040508a8137a80adbc9b13553d",
+      "changedPaths": []
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "name": "codex/zotero-field-recovery-20261122",
+      "sha": "e78e98d3a07647794e4426f833782ccbddc04960",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 48,
+      "mergeBase": "e78e98d3a07647794e4426f833782ccbddc04960",
+      "changedPaths": []
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "name": "codex/zotero-footnote-separators-20261121",
+      "sha": "a70c0e7af251d737dc7639f44a48777bbea1bf51",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 208,
+      "mergeBase": "a70c0e7af251d737dc7639f44a48777bbea1bf51",
+      "changedPaths": []
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "name": "codex/zotero-host-ownership-20261121",
+      "sha": "05cb866e6e5aaee95dae8b03da2892fcf633a84b",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 208,
+      "mergeBase": "05cb866e6e5aaee95dae8b03da2892fcf633a84b",
+      "changedPaths": []
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "name": "codex/zotero-main-qualification-20261121",
+      "sha": "e2a1ed6073556d24194004221c545166b17c2d4e",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 163,
+      "mergeBase": "e2a1ed6073556d24194004221c545166b17c2d4e",
+      "changedPaths": []
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "name": "codex/zotero-native-parity-20261122",
+      "sha": "d300c76f0966d8f676b0fa38a7799f0e01cbc10d",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 20,
+      "mergeBase": "d300c76f0966d8f676b0fa38a7799f0e01cbc10d",
+      "changedPaths": []
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "name": "codex/zotero-note-layout-20261121",
+      "sha": "2089e1e35a8ba81ea7f0a077b348f93ca70953c8",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 242,
+      "mergeBase": "2089e1e35a8ba81ea7f0a077b348f93ca70953c8",
+      "changedPaths": []
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "name": "codex/zotero-odt-roundtrip-20261121",
+      "sha": "05072dc2d59d0fa4ea97de4d6a842700ef333fab",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 257,
+      "mergeBase": "05072dc2d59d0fa4ea97de4d6a842700ef333fab",
+      "changedPaths": []
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "name": "codex/zotero-parity-20261122",
+      "sha": "da36652cf1d2296b59285788035555d512b9fa31",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 97,
+      "mergeBase": "da36652cf1d2296b59285788035555d512b9fa31",
+      "changedPaths": []
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "name": "codex/zotero-parity-next-20261122",
+      "sha": "98ac4254f04acdeff53ea28c9c184ecfb141e868",
+      "status": "diverged",
+      "aheadBy": 1,
+      "behindBy": 7,
+      "mergeBase": "f06afa63a7e321482a60d3f3a4fc39c522fdb29d",
+      "changedPaths": [
+        "docs/roadmaps/zotero/native-odt-input.md",
+        "docs/roadmaps/zotero/native-odt-output.md",
+        "docs/roadmaps/zotero/word-processor-parity.md",
+        "docs/validation/zotero-parity-next-20261122/README.md",
+        "docs/validation/zotero-parity-next-20261122/evidence-index.json",
+        "docs/validation/zotero-parity-next-20261122/evidence.tar.xz",
+        "docs/validation/zotero-parity-next-20261122/late-intake.json",
+        "docs/validation/zotero-parity-next-20261122/receipts/converter-source.json",
+        "docs/validation/zotero-parity-next-20261122/receipts/converter.json",
+        "docs/validation/zotero-parity-next-20261122/receipts/editor.json",
+        "docs/validation/zotero-parity-next-20261122/receipts/engine.json",
+        "docs/validation/zotero-parity-next-20261122/receipts/independent-review.json",
+        "docs/validation/zotero-parity-next-20261122/receipts/runtime.json",
+        "docs/validation/zotero-parity-next-20261122/receipts/static.json",
+        "docs/validation/zotero-parity-next-20261122/receipts/studio.json",
+        "docs/validation/zotero-parity-next-20261122/summary.json",
+        "docs/zotero-support-details.md",
+        "docs/zotero-support.md",
+        "docs/zotero-validation.md"
+      ]
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "name": "codex/zotero-select-navigation-20261122",
+      "sha": "8c1b8da71bb910d4025aa179dc56290cf1a8e72a",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 154,
+      "mergeBase": "8c1b8da71bb910d4025aa179dc56290cf1a8e72a",
+      "changedPaths": []
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "name": "codex/zotero-shortcut-host-recovery-20261121",
+      "sha": "2168011b6104f680100b87404bc1bd409f724939",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 217,
+      "mergeBase": "2168011b6104f680100b87404bc1bd409f724939",
+      "changedPaths": []
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "name": "codex/zotero-source-continuity-20261121-2135",
+      "sha": "c4c16d91d62ded0c341bee95e98de894de70483f",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 217,
+      "mergeBase": "c4c16d91d62ded0c341bee95e98de894de70483f",
+      "changedPaths": []
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "name": "main",
+      "sha": "b38f2e38369855056eb9e23792f83fd1ab86ea24",
+      "status": "diverged",
+      "aheadBy": 2,
+      "behindBy": 7,
+      "mergeBase": "f06afa63a7e321482a60d3f3a4fc39c522fdb29d",
+      "changedPaths": [
+        "docs/roadmaps/zotero/native-odt-input.md",
+        "docs/roadmaps/zotero/native-odt-output.md",
+        "docs/roadmaps/zotero/word-processor-parity.md",
+        "docs/validation/zotero-parity-next-20261122/README.md",
+        "docs/validation/zotero-parity-next-20261122/evidence-index.json",
+        "docs/validation/zotero-parity-next-20261122/evidence.tar.xz",
+        "docs/validation/zotero-parity-next-20261122/late-intake.json",
+        "docs/validation/zotero-parity-next-20261122/receipts/converter-source.json",
+        "docs/validation/zotero-parity-next-20261122/receipts/converter.json",
+        "docs/validation/zotero-parity-next-20261122/receipts/editor.json",
+        "docs/validation/zotero-parity-next-20261122/receipts/engine.json",
+        "docs/validation/zotero-parity-next-20261122/receipts/independent-review.json",
+        "docs/validation/zotero-parity-next-20261122/receipts/runtime.json",
+        "docs/validation/zotero-parity-next-20261122/receipts/static.json",
+        "docs/validation/zotero-parity-next-20261122/receipts/studio.json",
+        "docs/validation/zotero-parity-next-20261122/summary.json",
+        "docs/zotero-support-details.md",
+        "docs/zotero-support.md",
+        "docs/zotero-validation.md"
+      ]
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "name": "work/mail-folder-scoped-search-20261122",
+      "sha": "ff30d1064a052abbfbcdc99745ff66f8bc980aea",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 134,
+      "mergeBase": "ff30d1064a052abbfbcdc99745ff66f8bc980aea",
+      "changedPaths": []
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "name": "work/mail-folder-search-20261122",
+      "sha": "24e4b5d8a2a4e3c996e15013c5324a534c2e444f",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 103,
+      "mergeBase": "24e4b5d8a2a4e3c996e15013c5324a534c2e444f",
+      "changedPaths": []
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "name": "work/mail-keyboard-triage-20261121",
+      "sha": "08d034d876073e2afc881dbfc11ba791acde3d67",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 168,
+      "mergeBase": "08d034d876073e2afc881dbfc11ba791acde3d67",
+      "changedPaths": []
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "name": "work/mail-live-search-20261121",
+      "sha": "c3d55be30d91694b1a427d261cddbe47b1dd5eec",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 242,
+      "mergeBase": "c3d55be30d91694b1a427d261cddbe47b1dd5eec",
+      "changedPaths": []
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "name": "work/mail-parity-20261122-next",
+      "sha": "a7006171630915bbf91b6ce2ab7c4699bb79f69b",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 79,
+      "mergeBase": "a7006171630915bbf91b6ce2ab7c4699bb79f69b",
+      "changedPaths": []
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "name": "work/mail-range-selection-tests-20261121",
+      "sha": "5c7a385c5de40394d9eed736c5a2d975535c3df3",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 216,
+      "mergeBase": "5c7a385c5de40394d9eed736c5a2d975535c3df3",
+      "changedPaths": []
+    },
+    {
+      "repository": "CrispStrobe/quds_office_suite",
+      "name": "work/mail-sync-address-search-20261121",
+      "sha": "33d8f956ec2ed1dfd748e1d7ccbc5add053ff565",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 219,
+      "mergeBase": "33d8f956ec2ed1dfd748e1d7ccbc5add053ff565",
+      "changedPaths": []
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "name": "ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 3642,
+      "mergeBase": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "changedPaths": []
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "name": "cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 3635,
+      "mergeBase": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "changedPaths": []
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "name": "cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 3645,
+      "mergeBase": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "changedPaths": []
+    },
+    {
+      "repository": "MohammedAsaadAsaad/quds_office_suite",
+      "name": "main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 3629,
+      "mergeBase": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "changedPaths": []
+    }
+  ]
+}

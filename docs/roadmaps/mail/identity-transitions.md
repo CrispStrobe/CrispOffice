@@ -85,12 +85,22 @@ newer metadata. Original capture/update timestamps, continuation/completeness
 flags and provider cursor bytes are preserved. No new complete folder catalog
 or synchronization checkpoint is invented.
 
+Both source and destination browse views must already exist. Synchronized
+membership alone does not create a browse view or establish its capture. Both
+existing browse revisions advance even if the moved source is outside the
+currently retained source window, so an earlier browse writer cannot restore
+stale membership. Destination limits include the complete retained headers,
+identities and synchronized folder metadata, including the folder display name.
+
 Missing source/target coverage, mixed IMAP generations, identity collisions,
 full destination windows, incompatible local state, revision exhaustion and
 aggregate metadata limits prevent projection. The receipt states that folder
-refresh is required. Any failure in the transaction rolls back the new receipt
-and cache changes together. If storage cannot retain the acknowledgement, the
-live report keeps it, but restart recovery remains uncertain; no command is
+refresh is required. Optional cache projection runs in a required nested
+savepoint: if cache growth alone exceeds the account quota, its changes roll
+back while an otherwise admissible acknowledgement remains saved with
+`cacheProjected: false`. Receipt quota failures and other storage errors still
+roll back the outer transaction. If storage cannot retain the acknowledgement,
+the live report keeps it, but restart recovery remains uncertain; no command is
 replayed to recover a lost mapping.
 
 Original source message bytes and blob references remain under the original
