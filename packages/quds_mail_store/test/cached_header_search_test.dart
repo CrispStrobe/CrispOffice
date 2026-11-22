@@ -171,6 +171,86 @@ void main() {
     database.close();
   });
 
+  test('exact folder sets constrain counts, hits and cursor ownership', () async {
+    final archive = MailMailboxId('archive', account: _account);
+    await saveView([_header(1), _header(2)]);
+    await saveView([
+      _header(3, mailbox: archive),
+      _header(4, mailbox: archive),
+    ], mailbox: archive);
+    // A duplicate observation of inbox membership must not duplicate a hit.
+    await sync(_inbox, [_header(1), _header(2)]);
+
+    final all = _value(await store.searchCachedHeaders(_account, ''));
+    expect(all.totalCount, 4);
+    expect(all.hits.map((hit) => hit.header.id.value), [
+      'id-0001', 'id-0002', 'id-0003', 'id-0004',
+    ]);
+    final inbox = _value(await store.searchCachedHeaders(
+      _account, '', folderIds: ['inbox'], limit: 1,
+    ));
+    expect(inbox.totalCount, 2);
+    expect(inbox.scannedCount, 1);
+    expect(inbox.hits.single.header.id.value, 'id-0001');
+    expect(inbox.hits.single.folders.map((folder) => folder.id.value), ['inbox']);
+    expect(inbox.nextCursor, isNotNull);
+
+    _problem(await store.searchCachedHeaders(
+      _account, '', folderIds: ['archive'], cursor: inbox.nextCursor,
+    ), MailProblemCode.conflict);
+    _problem(await store.searchCachedHeaders(
+      _account, '', cursor: inbox.nextCursor,
+    ), MailProblemCode.conflict);
+    final next = _value(await store.searchCachedHeaders(
+      _account, '', folderIds: ['inbox'], cursor: inbox.nextCursor, limit: 1,
+    ));
+    expect(next.hits.single.header.id.value, 'id-0002');
+    expect(next.nextCursor, isNull);
+    expect(next.totalCount, 2);
+
+    final archived = _value(await store.searchCachedHeaders(
+      _account, '', folderIds: ['archive'],
+    ));
+    expect(archived.totalCount, 2);
+    expect(archived.hits.map((hit) => hit.header.id.value), [
+      'id-0003', 'id-0004',
+    ]);
+    expect(archived.hits.every(
+      (hit) => hit.folders.every((folder) => folder.id == archive),
+    ), isTrue);
+    final both = _value(await store.searchCachedHeaders(
+      _account, '', folderIds: ['inbox', 'archive'],
+    ));
+    expect(both.totalCount, 4);
+    expect(both.hits.map((hit) => hit.header.id.value).toSet(), hasLength(4));
+  });
+
+  test('missing or malformed folders fail without a broader fallback', () async {
+    await saveView([_header(1), _header(2)]);
+    for (final bad in [
+      <String>[],
+      ['inbox', 'inbox'],
+      [''],
+      ['invalid\nfolder'],
+      ['x' * 1025],
+      List.generate(201, (index) => 'folder-$index'),
+    ]) {
+      _problem(await store.searchCachedHeaders(
+        _account, '', folderIds: bad,
+      ), MailProblemCode.invalidInput);
+    }
+    for (final missing in ['archive', "' OR 1=1 --"]) {
+      _problem(await store.searchCachedHeaders(
+        _account, '', folderIds: [missing],
+      ), MailProblemCode.unavailable);
+    }
+    final observed = _value(await store.searchCachedHeaders(
+      _account, '', folderIds: ['inbox'],
+    ));
+    expect(observed.hits, hasLength(2));
+    expect(_value(await store.searchCachedHeaders(_account, '')).totalCount, 2);
+  });
+
   test('empty saved coverage is a successful empty local search', () async {
     final page = _value(await store.searchCachedHeaders(_account, ''));
     expect(page.hits, isEmpty);
