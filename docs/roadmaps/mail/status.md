@@ -47,6 +47,9 @@ Close continues to hide the mounted Mail pane. Failed observer/owner release
 blocks another sign-in. Native **Retry closing account** and provider Close/Back
 retain release work for explicit recovery; persistent failure can require a
 host restart. Draft recovery stays with the owning account.
+Late store acquisitions remain owned by the retiring account until cleanup
+settles; provider Close/Back waits for admission and release before returning to
+the root Mail pane.
 
 See both the [workflow and ownership contract](account-navigation.md) and
 [connected-account continuation](connected-account-navigation.md), with their

@@ -13,8 +13,8 @@ under its existing account, preserves any uncertain-submission warning, retires
 the previous foreground session and opens the selected provider's setup. The
 destination requires an explicit connection/sign-in action. Cancelling the
 chooser leaves the current account in place; a draft-save failure prevents the
-switch. Native **Close** still hides the mounted Mail pane as before; it does
-not perform an account switch or destroy that pane's session.
+switch. Native **Close** retains its mounted-pane behavior once pending account
+admission and owner release have settled; it does not perform an account switch.
 
 | Provider | Exact route retained by the chooser | Sign-in boundary |
 | --- | --- | --- |
@@ -66,6 +66,8 @@ explicit; EWS/cloud Close and Back preserve the retained draft and release work.
 The existing native Close action still hides its mounted pane. Recovery depends
 on the host and owner implementation: a persistent close failure may require
 restarting the host, and an in-session retry is not guaranteed to succeed.
+Pending store factories, loads and selected-record refreshes settle before a
+provider route returns to the root pane.
 
 ## Scope and qualification
 
@@ -74,9 +76,11 @@ reuses the host's existing credential boundary. It does not add simultaneous
 background accounts, a unified live Inbox, automatic account reconnection,
 cross-account message mutation or a new background sending permission.
 
-The [current work and qualification record](../../validation/mail-account-workspace-20261122/README.md)
+The [reconciled qualification record](../../validation/mail-connected-navigation-20261122/README.md)
 records exact source checkpoints, executed tests, runtime provenance and
-remaining acceptance gates. The focused coverage includes provider routing,
+remaining acceptance gates; the incoming
+[account-workspace record](../../validation/mail-account-workspace-20261122/README.md)
+remains intact as historical evidence. The focused coverage includes provider routing,
 catalog conflicts, account replacement during sign-in, draft/uncertainty
 preservation, observer cancellation, late owner acquisition and conditional
 SQLite refresh. Shared Mail regressions and incoming Word work have separate

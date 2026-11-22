@@ -1,0 +1,167 @@
+{
+  "accepted_reporter": true,
+  "case_registry_sha256": "5584cf8e970076a1f175513a03402e329ad9fb8174d503423dc6e903380b7c1c",
+  "complete_lifecycle_registry_sha256": "80f966fb7a952da9434e80ecd5635b3dd828d9b18e88e97d04e9d2179983f35c",
+  "completed_lifecycles": 705,
+  "done_events": [
+    {
+      "success": true,
+      "time": 55671,
+      "type": "done"
+    }
+  ],
+  "duplicate_case_names": 0,
+  "duplicate_completion_ids": [],
+  "duplicate_start_ids": [],
+  "errors": [],
+  "excluded_loader_hook_lifecycles": 52,
+  "expected_suite_count": 30,
+  "failed_cases": 0,
+  "incomplete_cases": 0,
+  "incomplete_lifecycle_ids": [],
+  "missing_suites": [],
+  "native_build_hook_progress": [],
+  "original_command": [
+    "/workspace/scratch/85a369f34dbb/runtime/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=2",
+    "--reporter=json",
+    "test/word_odt_image_load_test.dart",
+    "test/word_odt_load_test.dart",
+    "test/word_odt_merged_table_load_test.dart",
+    "test/word_odt_note_numbering_test.dart",
+    "test/word_ruler_directional_indent_test.dart",
+    "test/word_zotero_add_note_controller_test.dart",
+    "test/word_zotero_adjacent_citations_controller_test.dart",
+    "test/word_zotero_bibliography_controller_test.dart",
+    "test/word_zotero_blockquote_controller_test.dart",
+    "test/word_zotero_citing_controller_test.dart",
+    "test/word_zotero_controller_test.dart",
+    "test/word_zotero_converter_controller_test.dart",
+    "test/word_zotero_document_actions_test.dart",
+    "test/word_zotero_field_at_caret_test.dart",
+    "test/word_zotero_field_context_controller_test.dart",
+    "test/word_zotero_field_context_dialog_test.dart",
+    "test/word_zotero_field_context_render_test.dart",
+    "test/word_zotero_multiparagraph_controller_test.dart",
+    "test/word_zotero_nested_table_controller_test.dart",
+    "test/word_zotero_note_color_controller_test.dart",
+    "test/word_zotero_note_image_controller_test.dart",
+    "test/word_zotero_paragraph_format_controller_test.dart",
+    "test/word_zotero_recovery_controller_test.dart",
+    "test/word_zotero_recovery_dialog_test.dart",
+    "test/word_zotero_rich_controller_test.dart",
+    "test/word_zotero_transfer_controller_test.dart",
+    "test/word_zotero_unlink_all_test.dart",
+    "test/word_zotero_unlink_recovery_test.dart",
+    "test/word_zotero_vertical_table_controller_test.dart",
+    "test/word_zotero_writing_position_test.dart"
+  ],
+  "original_cwd": "packages/quds_office_editor",
+  "original_exit_code": 0,
+  "original_result": "../merged-source-recovery/incoming_editor-result.json",
+  "orphan_completion_ids": [],
+  "passed_cases": 653,
+  "per_file_counts": {
+    "packages/quds_office_editor/test/word_odt_image_load_test.dart": {
+      "passed": 7
+    },
+    "packages/quds_office_editor/test/word_odt_load_test.dart": {
+      "passed": 9
+    },
+    "packages/quds_office_editor/test/word_odt_merged_table_load_test.dart": {
+      "passed": 3
+    },
+    "packages/quds_office_editor/test/word_odt_note_numbering_test.dart": {
+      "passed": 12
+    },
+    "packages/quds_office_editor/test/word_ruler_directional_indent_test.dart": {
+      "passed": 10
+    },
+    "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart": {
+      "passed": 108
+    },
+    "packages/quds_office_editor/test/word_zotero_adjacent_citations_controller_test.dart": {
+      "passed": 6
+    },
+    "packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart": {
+      "passed": 13
+    },
+    "packages/quds_office_editor/test/word_zotero_blockquote_controller_test.dart": {
+      "passed": 16
+    },
+    "packages/quds_office_editor/test/word_zotero_citing_controller_test.dart": {
+      "passed": 21
+    },
+    "packages/quds_office_editor/test/word_zotero_controller_test.dart": {
+      "passed": 17
+    },
+    "packages/quds_office_editor/test/word_zotero_converter_controller_test.dart": {
+      "passed": 12
+    },
+    "packages/quds_office_editor/test/word_zotero_document_actions_test.dart": {
+      "passed": 12
+    },
+    "packages/quds_office_editor/test/word_zotero_field_at_caret_test.dart": {
+      "passed": 4
+    },
+    "packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart": {
+      "passed": 31
+    },
+    "packages/quds_office_editor/test/word_zotero_field_context_dialog_test.dart": {
+      "passed": 21
+    },
+    "packages/quds_office_editor/test/word_zotero_field_context_render_test.dart": {
+      "passed": 9
+    },
+    "packages/quds_office_editor/test/word_zotero_multiparagraph_controller_test.dart": {
+      "passed": 109
+    },
+    "packages/quds_office_editor/test/word_zotero_nested_table_controller_test.dart": {
+      "passed": 15
+    },
+    "packages/quds_office_editor/test/word_zotero_note_color_controller_test.dart": {
+      "passed": 2
+    },
+    "packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart": {
+      "passed": 25
+    },
+    "packages/quds_office_editor/test/word_zotero_paragraph_format_controller_test.dart": {
+      "passed": 13
+    },
+    "packages/quds_office_editor/test/word_zotero_recovery_controller_test.dart": {
+      "passed": 22
+    },
+    "packages/quds_office_editor/test/word_zotero_recovery_dialog_test.dart": {
+      "passed": 6
+    },
+    "packages/quds_office_editor/test/word_zotero_rich_controller_test.dart": {
+      "passed": 8
+    },
+    "packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart": {
+      "passed": 29
+    },
+    "packages/quds_office_editor/test/word_zotero_unlink_all_test.dart": {
+      "passed": 13
+    },
+    "packages/quds_office_editor/test/word_zotero_unlink_recovery_test.dart": {
+      "passed": 16
+    },
+    "packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart": {
+      "passed": 60
+    },
+    "packages/quds_office_editor/test/word_zotero_writing_position_test.dart": {
+      "passed": 24
+    }
+  },
+  "raw_reporter_sha256": "f3d5f3c1a152d0d2aec0e4377906ac894eb48cd1747de5a85f3f8b0cfd849694",
+  "recovered_test_starts": [],
+  "skipped_cases": 0,
+  "started_lifecycles": 705,
+  "suite_count": 30,
+  "unexpected_suites": [],
+  "unique_completed_cases": 653,
+  "unique_started_cases": 653,
+  "unrecognized_physical_lines": []
+}
