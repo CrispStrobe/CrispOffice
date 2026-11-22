@@ -105,7 +105,7 @@ Use **Insert → References** in Quds Studio to:
 - browse imported references and inspect metadata and attachments;
 - search and sort local or online libraries;
 - insert text and image annotations from Zotero;
-- insert research notes with supported lists, links and pictures;
+- insert research notes with supported quotations, lists, links and pictures;
 - change the sources in an existing citation;
 - navigate from a citation to its bibliography entry;
 - open a verified local or group-library item in Zotero desktop;
@@ -119,14 +119,21 @@ conversion path.
 
 ## Notes and annotations
 
-**Add Zotero note** imports research notes with supported formatting, lists,
-pictures and links. **Add Zotero annotation** imports selected text or image
+**Add Zotero note** imports research notes with supported formatting, block
+quotations, lists, pictures and links. **Add Zotero annotation** imports selected text or image
 annotations directly. Both commands require a caret or selection outside an
 existing field.
 
 Inserted pictures become native inline images. Unsupported content is refused
 rather than flattened into an unrelated style. Annotation placement follows the
 document's Zotero preferences for inline, footnote or endnote citations.
+
+Block quotations keep their own paragraphs and active citations, with 18 pt
+of additional left indentation per level, up to eight levels. Following prose
+keeps its original formatting. Headings and lists inside a quotation are
+supported; quotations inside list items and tables inside quotations remain
+outside this increment. See the
+[quotation details](zotero-support-details.md#block-quotations-in-research-notes).
 
 ## Open a reference in Zotero
 

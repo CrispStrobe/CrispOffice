@@ -46,7 +46,7 @@ results retain their original source and platform attribution.
 | Damaged reference metadata | Native repair for structurally complete citation packets with invalid JSON/schema and owned bibliography ranges with invalid JSON; original-source retention until completion; confirmed individual conversion to ordinary text, undo and DOCX persistence | No inferred field boundaries or shared/cross-owner repairs; incomplete, nested, locked and opaque packets remain guarded; native delete and unlink callbacks retain distinct effects; installed-plugin acceptance remains open |
 | Bibliography | Native add/edit, entry paragraphs, rich runs, hanging indents, spacing and tab stops | Replacement requires a complete exclusively owned bibliography range |
 | Unlink citations | Explicit individual and document-wide conversion with undo, including complete damaged metadata with a disclosed count and native ownership checks | Incomplete, locked, nested, opaque or ambiguously owned fields block the whole conversion; verify final target-application files separately |
-| Add Note | Rich paragraphs, headings, nested lists up to nine levels, multiparagraph items, links, pictures, rectangular tables nested up to eight levels with combined row/column spans and active citations; insertion in body or authored notes and replacement across consecutive ordinary paragraphs in one section, note or table cell | Table payloads require a main-flow destination; cross-cell/control ranges, selected protected/structural content, compact merged-row height distribution, header/footer row groups, custom table styling and custom/reversed list markers remain unsupported |
+| Add Note | Rich paragraphs, headings, block quotations up to eight levels, nested lists up to nine levels, multiparagraph items, links, pictures, rectangular tables nested up to eight levels with combined row/column spans and active citations; insertion in body or authored notes and replacement across consecutive ordinary paragraphs in one section, note or table cell | Quote indentation uses a documented native mapping; quotes inside list items and tables inside quotes remain guarded. Table payloads require a main-flow destination; cross-cell/control ranges, selected protected/structural content, compact merged-row height distribution, header/footer row groups, custom table styling and custom/reversed list markers remain unsupported |
 | Add Annotation | Zotero 9+ native annotation picker, text/comments and supported PNG image/ink content with active citations | Uses the same bounded image/content envelope as Add Note |
 | Library/source discovery | Local/online catalogs, collections, saved searches, tags, source details, cited-source reuse and occurrence navigation, and validated local/group **Open in Zotero** navigation from reference details | Local and online catalog APIs have different connection/version requirements; desktop selection is unavailable for unverified personal-web or offline identities |
 | Research materials | Read-only direct-child note previews and attachment metadata | No separate attachment-file download or Zotero library write workflow |
@@ -61,6 +61,30 @@ results retain their original source and platform attribution.
 The native controls use Zotero's own CSL processor. The separate basic/offline
 citation and single-item preview/export paths retain their narrower formatting
 contract; they are not evidence of complete document-wide CSL parity.
+
+## Delivered increment: quoted research notes
+
+The [quote continuation](../../validation/zotero-workflow-parity-20261122/README.md)
+accepts the literal `blockquote` structure exported by Zotero's note editor.
+Up to eight levels map to an additional 18 pt of native left indentation per
+level. Rich paragraphs, empty paragraphs, headings, lists inside quotes,
+inline pictures, links and active citations retain their content and reading
+order. Quotes in research-table cells retain their actual native owners,
+including the paragraph remapping needed by vertical merged cells.
+
+Quote indentation composes after heading and list formatting. Any note with
+quotes follows the structured insertion path, preserving surrounding prose and
+its paragraph properties. Body, authored-note and supported cell selections
+retain detached completion, source guards, undo/redo and DOCX persistence.
+An independent empty-heading regression prevents an extra blank quote paragraph.
+
+The exported HTML does not carry Zotero's editor-only quote stylesheet; Quds'
+mapping does not claim its blue border or exact spacing. Inline-only quote
+content, quotes inside list items, tables inside quotes, arbitrary layout CSS
+and greater depth remain guarded. Quote-only editable ODT acceptance does not
+establish continued-list ODT or installed Zotero/Word/LibreOffice parity.
+Canonical paragraph direction/indent attributes and inline note colors are
+separate, useful future content increments.
 
 ## Delivered increment: automatic Roman notes in editable ODT
 

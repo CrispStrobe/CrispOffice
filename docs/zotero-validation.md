@@ -1,5 +1,23 @@
 # Zotero validation
 
+## 22 November 2026 — quoted research notes
+
+The [quote continuation](validation/zotero-workflow-parity-20261122/README.md)
+adds bounded native blockquotes to Add Note and Add Annotation, preserving
+active citations, rich content, body/note/cell ownership and undo/DOCX behavior.
+The engine/editor/Studio cohorts pass **734 cases**, including 35 new quote
+cases, and the incoming Word navigation work passes a separate 205-case intake
+gate. Changed Dart analysis and formatting are clean; exact source and input
+continuity are retained in the record.
+
+Actual LibreOffice saves preserve quote structure and active metadata in three
+linked fixtures, but their reimport exposes the existing distinct visited-link
+style guard. A separate no-ordinary-link quote control passes two real saves
+and native ODT/DOCX reopening; it does not qualify the linked route. Continued
+list ODT and installed Zotero/Word/stable-LibreOffice acceptance remain separate.
+All recent captured branches/PR heads were incorporated, incremental remote
+checkpoints preserve the work, and GitHub Actions were neither queried nor awaited.
+
 ## 22 November 2026 — batch unlink recovery and continuous note starts
 
 The [parity continuation](validation/zotero-parity-next-20261122/README.md)

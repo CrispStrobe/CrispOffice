@@ -4,6 +4,15 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Import Zotero research-note blockquotes as distinct native paragraphs, with
+  up to eight quote levels and 18 pt of additional left indentation per level.
+  Preserve supported headings, lists, links, pictures and active citations;
+  retain quote ownership through merged table cells and DOCX saves. Keep
+  surrounding paragraph formatting separate and refuse unsupported nesting
+  before applying any document changes. See the
+  [quote contract](../../docs/zotero-support-details.md#block-quotations-in-research-notes)
+  and [qualification](../../docs/validation/zotero-workflow-parity-20261122/README.md).
+
 - Add typed Word VBA `Rows`, `Row`, `Columns`, `Column` and `Cells` selectors,
   including explicit `Item`, nested `With`, retained aliases and required
   `ByVal` helpers. Support required named `Index` arguments on table

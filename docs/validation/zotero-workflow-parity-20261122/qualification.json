@@ -1,0 +1,145 @@
+{
+  "implementation_commit": "e3f6b4e74241f805531156e0f1308041813c4f70",
+  "implementation_tree": "6f16fa1faf934e33138e354ff295902d9edf137c",
+  "new_engine_tests": 19,
+  "new_editor_tests": 16,
+  "cohorts": [
+    {
+      "cohort": "engine",
+      "source": "e3f6b4e74241f805531156e0f1308041813c4f70",
+      "suites": 8,
+      "passed": 341,
+      "failed": 0,
+      "skipped": 0,
+      "errors": [],
+      "unfinished": [],
+      "done": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 5209
+        }
+      ],
+      "reporter_sha256": "4732d984d9d60017a45b77a23579bf0f9e85b9fd32827d5523326931eebe3b0e",
+      "source_attribution": "Authored working-tree implementation later preserved at the implementation commit. No separate contemporaneous before/after input manifest was captured for this engine run.",
+      "exit_code": 0,
+      "cwd": "/workspace/scratch/1cd79da773f9/quds_office_suite/packages/quds_office_engine",
+      "environment_script": "/workspace/scratch/1cd79da773f9/toolchains/env.sh",
+      "command": [
+        "dart",
+        "--packages=/workspace/scratch/1cd79da773f9/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/1cd79da773f9/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "test/word_zotero_blockquote_test.dart",
+        "test/word_zotero_add_note_test.dart",
+        "test/word_zotero_note_table_test.dart",
+        "test/word_zotero_nested_table_test.dart",
+        "test/word_zotero_research_target_test.dart",
+        "test/word_zotero_table_cell_replacement_test.dart",
+        "test/word_zotero_note_insertion_test.dart",
+        "test/word_zotero_note_images_integration_test.dart",
+        "--reporter",
+        "json"
+      ]
+    },
+    {
+      "cohort": "editor",
+      "source": "e3f6b4e74241f805531156e0f1308041813c4f70",
+      "suites": 9,
+      "passed": 348,
+      "failed": 0,
+      "skipped": 0,
+      "errors": [],
+      "unfinished": [],
+      "done": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 18170
+        }
+      ],
+      "reporter_sha256": "54178f207c440ec68bbf1e90847e2e02db09d1d2f01d92b11b7d9f67fbeac64d"
+    },
+    {
+      "cohort": "studio",
+      "source": "e3f6b4e74241f805531156e0f1308041813c4f70",
+      "suites": 3,
+      "passed": 45,
+      "failed": 0,
+      "skipped": 0,
+      "errors": [],
+      "unfinished": [],
+      "done": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 53082
+        }
+      ],
+      "reporter_sha256": "6acdb5ac7f8721316b5bcfd976fac9a05587798fc0444dd9eefe55dc0bf5f9d2"
+    },
+    {
+      "cohort": "incoming_word",
+      "source": "0fda534bc517556f8cf159f0a400496783a60527",
+      "suites": 4,
+      "passed": 205,
+      "failed": 0,
+      "skipped": 0,
+      "errors": [],
+      "unfinished": [],
+      "done": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 23571
+        }
+      ],
+      "reporter_sha256": "d425617eb68295c59cf55607dff12b4bdd512bb5aa47f7a682af8cedfdbeea55"
+    }
+  ],
+  "zotero_passed": 734,
+  "incoming_word_passed": 205,
+  "product_inputs": {
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart": "281addb9e678e95c5575eba8f0baa43d1f85d147b6bdf1cc21ecd6fc4d555d20",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart": "71b62608f97fd041aea896b0a1fdcddc945b0616054327cf984c54185d944bf2",
+    "packages/quds_office_engine/test/word_zotero_blockquote_test.dart": "6c2a285be20d6b8616798931e5896670c92f5cba67db0a56b078ccc76ab68ef8",
+    "packages/quds_office_editor/test/word_zotero_blockquote_controller_test.dart": "689e5c2b009f32fe37e68ff8d409273df8cd0c520065466a104c86a5777c25cc"
+  },
+  "static_analysis": {
+    "files": [
+      "packages/quds_office_engine/lib/src/word/model/word_zotero_note.dart",
+      "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+      "packages/quds_office_engine/test/word_zotero_blockquote_test.dart",
+      "packages/quds_office_editor/test/word_zotero_blockquote_controller_test.dart"
+    ],
+    "result": "No issues found",
+    "format_changed": 0
+  },
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "sdk_sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+    "locked_dependency_archives_verified": 204
+  },
+  "converter": {
+    "version": "LibreOfficeDev 26.8.0.0.alpha0",
+    "build": "2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+    "primary_linked_fixtures": 3,
+    "primary_native_original_roundtrips_passed": 3,
+    "primary_actual_saves_succeeded": 6,
+    "primary_converted_native_reimports_refused": 6,
+    "reason": "Distinct visited ODT hyperlink styles are not supported",
+    "independent_xml_stages_passed": 9,
+    "separate_no_ordinary_link_control_fixtures": 1,
+    "separate_control_actual_saves_and_native_roundtrips_passed": 2,
+    "installed_zotero_word_libreoffice_plugin_acceptance": false
+  },
+  "archive": {
+    "file": "evidence.tar.xz",
+    "bytes": 566176,
+    "sha256": "848e59d341a2abfbf2d8cd60cd51e8bbbc815a781d9cbb93fce7b77975569b4b",
+    "members": 41
+  },
+  "archive_members_independently_verified": true,
+  "github_actions_queried": false,
+  "github_actions_waited": false
+}
