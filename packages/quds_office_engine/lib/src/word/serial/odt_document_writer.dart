@@ -247,9 +247,9 @@ abstract final class OdtDocumentWriter {
       attributes: {'style:name': 'Standard', 'style:family': 'paragraph'},
     );
     if (layout.zotero != null) {
-      // Automatic notes must declare the qualified decimal sequence. Writer's
-      // default endnote format is Roman and otherwise replaces the exported
-      // decimal cache during a save. Fixed labels remain explicitly authored.
+      // Automatic notes declare their qualified per-class sequence. A cached
+      // label alone cannot establish the numbering format for later edits.
+      // Fixed labels in unrelated note classes remain explicitly authored.
       for (final endnote in [false, true]) {
         if (!layout.notes.emitted.keys.any((key) => key.$1 == endnote)) {
           continue;
@@ -274,7 +274,7 @@ abstract final class OdtDocumentWriter {
           prefix: 'text',
           attributes: {
             'text:note-class': endnote ? 'endnote' : 'footnote',
-            'style:num-format': '1',
+            'style:num-format': layout.notes.automaticFormats[endnote] ?? '1',
             'text:citation-style-name': '${prefix}Symbol',
             'text:citation-body-style-name': '${prefix}Anchor',
             // Native endnotes use the final section's regular page geometry,
@@ -1443,13 +1443,14 @@ abstract final class OdtDocumentWriter {
     // Roman/custom note and let the consumer silently renumber it.
     final automaticNumber =
         (layout.notes.automaticCounts[reference.noteRefEndnote] ?? 0) + 1;
-    final automaticLabel =
-        !reference.noteRefCustomMark && label == '$automaticNumber';
-    if (layout.zotero?.hasFieldsInNote(note) == true && !automaticLabel) {
-      throw UnsupportedError(
-        'Editable Zotero ODT requires ordinary decimal numbering for cited notes.',
-      );
-    }
+    final automaticLabel = layout.zotero != null
+        ? layout.notes.useAutomaticLabel(
+            reference,
+            note,
+            label,
+            automaticNumber,
+          )
+        : false;
     if (layout.zotero == null || !automaticLabel) {
       w.writeAttribute('text:label', label.isEmpty ? '\u2060' : label);
     } else {
@@ -2045,12 +2046,15 @@ class _OdtBookmarks {
 
 /// Note definitions and labels are independent of per-part style registries.
 class _OdtNotes {
-  _OdtNotes(this.document) {
+  _OdtNotes(this.document, {OdtWriterZoteroPlan? zotero}) {
     for (final endnote in [false, true]) {
       for (final note in endnote ? document.endnotes : document.footnotes) {
         if (note.endnote != endnote) continue;
         final key = (endnote, note.id);
         definitions[key] = definitions.containsKey(key) ? null : note;
+        if (zotero?.hasFieldsInNote(note) == true) {
+          _activeClasses.add(endnote);
+        }
       }
     }
   }
@@ -2059,6 +2063,8 @@ class _OdtNotes {
   final definitions = <(bool, int), WmlNote?>{};
   final emitted = <(bool, int), _OdtNoteRecord>{};
   final automaticCounts = <bool, int>{};
+  final automaticFormats = <bool, String>{};
+  final _activeClasses = <bool>{};
   late final numbering = WordNoteNumbering(
     document,
     emptyReferencesAreAutomatic: true,
@@ -2067,6 +2073,42 @@ class _OdtNotes {
 
   WmlNote? resolve(WmlRun reference) =>
       definitions[(reference.noteRefEndnote, reference.noteRefId!)];
+
+  bool useAutomaticLabel(
+    WmlRun reference,
+    WmlNote note,
+    String label,
+    int expectedOrdinal,
+  ) {
+    if (!_activeClasses.contains(note.endnote)) {
+      // Retain the ordinary writer's fixed-label treatment for note classes
+      // without active references. Their custom marks do not consume counters.
+      return !reference.noteRefCustomMark && label == '$expectedOrdinal';
+    }
+    final native = numbering.automaticNumberFor(note);
+    final format = switch (native?.format) {
+      'decimal' => '1',
+      'lowerRoman' => 'i',
+      'upperRoman' => 'I',
+      _ => null,
+    };
+    final previousFormat = automaticFormats[note.endnote];
+    if (reference.noteRefCustomMark ||
+        native == null ||
+        format == null ||
+        native.start != 1 ||
+        native.restart != 'continuous' ||
+        native.number != expectedOrdinal ||
+        numbering.referenceLabel(reference) != label ||
+        WordNoteNumbering.formatLabel(native.number, native.format) != label ||
+        (previousFormat != null && previousFormat != format)) {
+      throw UnsupportedError(
+        'Editable Zotero ODT requires one continuous decimal or Roman note sequence starting at one per cited note class, with exact automatic labels.',
+      );
+    }
+    automaticFormats[note.endnote] = format;
+    return true;
+  }
 
   String labelFor(WmlRun reference, WmlNote note) =>
       numbering.referenceLabel(reference) ??
@@ -2220,7 +2262,7 @@ class _OdtLayout {
        _pictureNames = sharedMedia?._pictureNames ?? <String, String>{},
        _pictureNameCounters =
            sharedMedia?._pictureNameCounters ?? <String, int>{},
-       notes = sharedMedia?.notes ?? _OdtNotes(document),
+       notes = sharedMedia?.notes ?? _OdtNotes(document, zotero: zotero),
        comments = sharedMedia?.comments ?? _OdtComments(document),
        bookmarks = sharedMedia?.bookmarks ?? _OdtBookmarks(document),
        zotero = zotero ?? sharedMedia?.zotero,

@@ -14,6 +14,20 @@ const _draw = 'urn:oasis:names:tc:opendocument:xmlns:drawing:1.0';
 const _loext =
     'urn:org:documentfoundation:names:experimental:office:xmlns:loext:1.0';
 
+/// A validated, continuous, start-one ODT automatic note sequence.
+final class OdtReaderNoteConfiguration {
+  const OdtReaderNoteConfiguration({
+    this.nativeFormat = 'decimal',
+    this.verifyCachedOrdinal = false,
+  });
+
+  final String nativeFormat;
+  final bool verifyCachedOrdinal;
+
+  String? labelFor(int ordinal) =>
+      WordNoteNumbering.formatLabel(ordinal, nativeFormat);
+}
+
 /// Resolves the bounded style subset supported by the rich ODT reader.
 ///
 /// Formatting is flattened into model properties, without creating dangling
@@ -104,8 +118,9 @@ final class OdtReaderStyles {
   /// LibreOffice writes its zero-based StartAt offset instead. The caller may
   /// opt into that producer convention only after qualifying the metadata, and
   /// must require a nonempty cached label matching each native ordinal when
-  /// this returns true. Unknown producers retain the normative interpretation.
-  bool validateNoteConfiguration(
+  /// [OdtReaderNoteConfiguration.verifyCachedOrdinal] is true. Unknown
+  /// producers retain the normative start-value interpretation.
+  OdtReaderNoteConfiguration validateNoteConfiguration(
     bool endnote, {
     bool libreOfficeNoteOffsets = false,
   }) {
@@ -125,7 +140,7 @@ final class OdtReaderStyles {
     if (matching.length > 1) {
       throw const FormatException('Duplicate ODT note configuration.');
     }
-    if (matching.isEmpty) return false;
+    if (matching.isEmpty) return const OdtReaderNoteConfiguration();
     final configuration = matching.single;
     if (!RegExp(r'^[ \t\r\n]*$').hasMatch(configuration.text)) {
       throw UnsupportedError('Authored ODT note configuration text.');
@@ -144,9 +159,12 @@ final class OdtReaderStyles {
       _style: {'num-format', 'num-prefix', 'num-suffix', 'num-letter-sync'},
     });
     final format = _attr(configuration, _style, 'num-format');
-    if (format != null && format != '1') {
-      throw UnsupportedError('Nondecimal ODT note numbering is not supported.');
-    }
+    final nativeFormat = switch (format) {
+      null || '1' => 'decimal',
+      'i' => 'lowerRoman',
+      'I' => 'upperRoman',
+      _ => throw UnsupportedError('Unsupported ODT note numbering format.'),
+    };
     for (final name in ['num-prefix', 'num-suffix']) {
       final value = _attr(configuration, _style, name);
       if (value != null && value.isNotEmpty) {
@@ -225,7 +243,10 @@ final class OdtReaderStyles {
         );
       }
     }
-    return libreOfficeNoteOffsets;
+    return OdtReaderNoteConfiguration(
+      nativeFormat: nativeFormat,
+      verifyCachedOrdinal: libreOfficeNoteOffsets,
+    );
   }
 
   void _validateNoteMarkerStyle(String name) {
