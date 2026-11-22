@@ -1,0 +1,91 @@
+{
+  "recorded_at": "2026-11-22T06:04:49.130945+00:00",
+  "scope": [
+    "packages/quds_mail_core",
+    "packages/quds_mail_store"
+  ],
+  "runtime": {
+    "dart": "3.13.7",
+    "flutter": "3.47.8",
+    "platform": "Linux x64"
+  },
+  "source_manifest": "core-store-source.json",
+  "source_unchanged_after_checks": true,
+  "changed_files": [],
+  "checks": [
+    {
+      "name": "core-final",
+      "command": "flutter test --no-pub --machine test",
+      "cwd": "packages/quds_mail_core",
+      "exit_code": 0,
+      "passed_cases": 521,
+      "successful_end": true,
+      "log": "core-tests-final.jsonl"
+    },
+    {
+      "name": "core-store-analysis",
+      "command": "dart analyze --fatal-infos packages/quds_mail_core packages/quds_mail_store",
+      "cwd": ".",
+      "exit_code": 0,
+      "log": "core-store-analysis-final.log"
+    },
+    {
+      "name": "format",
+      "command": "dart format --output=none --set-exit-if-changed [21 changed Dart paths]",
+      "cwd": ".",
+      "exit_code": 0,
+      "changed_files": 0
+    },
+    {
+      "name": "focused-store-journal",
+      "command": "flutter test --no-pub --reporter expanded test/membership_journal_test.dart test/membership_journal_migration_test.dart test/flag_journal_test.dart test/flag_reconciliation_test.dart test/migration_test.dart test/sync_mailboxes_test.dart test/saved_search_folder_migration_test.dart test/compose_settings_test.dart",
+      "cwd": "packages/quds_mail_store",
+      "exit_code": 0,
+      "passed_cases": 180,
+      "log": "store-journal-tests.log"
+    },
+    {
+      "name": "store-flutter-complete",
+      "command": "flutter test --no-pub --reporter expanded test",
+      "cwd": "packages/quds_mail_store",
+      "exit_code": 1,
+      "passed_cases": 975,
+      "failed_cases": 35,
+      "failure": "All 35 subprocess cases require Isolate.resolvePackageUri, unsupported by the Flutter test isolate. They failed before entering child-process barriers and passed in native Dart reruns.",
+      "log": "store-all-tests.log"
+    },
+    {
+      "name": "store-journal-native-crash",
+      "command": "dart test --reporter expanded test/crash_recovery_test.dart",
+      "cwd": "packages/quds_mail_store",
+      "exit_code": 0,
+      "passed_cases": 28,
+      "log": "store-crash-native.log"
+    },
+    {
+      "name": "store-other-native-process",
+      "command": "dart test --reporter expanded --name 'SIGKILL|process termination' test/archive_native_test.dart test/archive_restore_native_test.dart test/native_platform_test.dart test/archive_export_native_test.dart",
+      "cwd": "packages/quds_mail_store",
+      "exit_code": 0,
+      "passed_cases": 7,
+      "log": "store-other-process-native.log"
+    }
+  ],
+  "store_unique_cases_covered_successfully": 1010,
+  "store_new_cases": 40,
+  "core_new_cases": 18,
+  "limits": [
+    "No live-provider interoperability, installed-platform or hardware power-loss qualification is claimed.",
+    "Generic flag observations do not resolve uncertain move/delete membership commands."
+  ],
+  "log_sha256": {
+    "core-store-analysis-final.log": "b1a1379e482e40774b52016e2c5950ccceb66835d2102b0cbf4300d6f0525bd1",
+    "core-store-analysis.log": "371654b4cb0efa9419e9a90acbb3b5358ffb87b32dde0c192c61454e73b1a727",
+    "core-tests-final.jsonl": "2d7e9b4d8592c141fe9eaad2ff66af952bb5d1ad98a482a32d0e1dc82a3f1d21",
+    "core-tests-final.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "store-all-tests.log": "45ba8860fadef953b45cf0dd8e25e05adbd5476dbe7cc38d63f31629284f3a62",
+    "store-crash-native.log": "84b7a5267b8d1dc422bc0e43e166d1583781feab9b80c354e48bdfe4790cfd61",
+    "store-journal-tests.log": "869827eccff5cff5e93a3f6317756cd87f5ac7193b488c7c966e8babe62fe088",
+    "store-other-process-native.log": "b7fe69e09fa5a43eee862fcffe8be7a05b9cd0e31cd2d19b843886f76cd4e7d3"
+  }
+}

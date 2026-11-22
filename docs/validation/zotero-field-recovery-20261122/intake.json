@@ -393,4 +393,3 @@
   "upstreamOpenPullRequests": [],
   "verification": "All captured fork and upstream tips passed git merge-base --is-ancestor against the baseline. No CI endpoints queried or awaited."
 }
-

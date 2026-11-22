@@ -208,3 +208,15 @@ separate identified application, Zotero and plugin versions. The
 and [parity roadmap](../../roadmaps/zotero/word-processor-parity.md) provide the
 next acceptance/implementation sequence, including release-host editable ODT,
 separator compatibility and remaining bounded content limits.
+
+## Final main reconciliation
+
+After the qualification checkpoint, PRs #362 (Word) and #363 (Mail) merged
+into main at ec09fdccf95eb3072b4cfe4da3608f8d9b13eb75. The
+[publication receipt](final/publication-premerge.json) records the refreshed
+branch tips and confirms that all are contained by the merge parents. Those
+late main commits add qualification documentation only; every tested source,
+fixture and dependency input remains unchanged. The sole merge conflict was
+removal of a terminal empty line from the preliminary version of this README.
+The complete accepted report is retained, along with the incoming histories
+and their own qualification evidence.
