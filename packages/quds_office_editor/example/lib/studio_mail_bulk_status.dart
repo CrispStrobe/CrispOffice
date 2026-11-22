@@ -3,6 +3,7 @@ import 'package:quds_mail_core/quds_mail_core.dart';
 
 import 'studio_strings.dart';
 import 'studio_mail_journal_strings.dart';
+import 'studio_mail_mutation_strings.dart';
 
 /// Foreground progress and an immutable, per-message command receipt.
 ///
@@ -61,6 +62,8 @@ class StudioMailBulkStatus extends StatelessWidget {
       'Kennzeichnung entfernen',
       'إزالة تعليم الرسائل',
     ),
+    MailBulkFlagAction.move => strings.mailMoveMessage,
+    MailBulkFlagAction.delete => strings.mailDeleteAction(report.plan.provider),
   };
 
   String _outcome(MailBulkFlagOutcome value) => switch (value) {
@@ -89,6 +92,17 @@ class StudioMailBulkStatus extends StatelessWidget {
       'Die Anfrage ist fehlgeschlagen, ohne diese Nachricht zu ändern.',
       'فشل الطلب دون تغيير هذه الرسالة.',
     ),
+    MailBulkFlagOutcome.uncertain when !report.plan.action.isFlagAction =>
+      _text(
+        'The server may have changed this message. Refresh the source and '
+            'destination folders before deciding what to do next. This action '
+            'will not be repeated automatically.',
+        'Der Server könnte diese Nachricht geändert haben. Aktualisieren Sie '
+            'Quell- und Zielordner, bevor Sie über den nächsten Schritt '
+            'entscheiden. Diese Aktion wird nicht automatisch wiederholt.',
+        'ربما غيّر الخادم هذه الرسالة. حدّث مجلدي المصدر والهدف قبل اتخاذ '
+            'الخطوة التالية. لن يُكرر هذا الإجراء تلقائيًا.',
+      ),
     MailBulkFlagOutcome.uncertain => _text(
       historical
           ? 'The original action was not confirmed. Later status checks appear separately in Mail activity.'
@@ -230,6 +244,13 @@ class StudioMailBulkStatus extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(_action, style: const TextStyle(fontWeight: FontWeight.w600)),
+            if (report.plan.destination case final destination?) ...[
+              const SizedBox(height: 4),
+              Text(
+                strings.mailMutationDestination(destination.value),
+                key: const ValueKey('studio-mail-mutation-destination'),
+              ),
+            ],
             const SizedBox(height: 4),
             Semantics(
               key: const ValueKey('studio-mail-bulk-counts'),

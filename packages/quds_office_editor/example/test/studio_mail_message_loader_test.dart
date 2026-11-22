@@ -12,6 +12,7 @@ import 'package:quds_office_studio/studio_mail_message_loader.dart';
 
 void main() {
   _bulkAdapterTests();
+  _membershipAdapterTests();
   _flagObservationTests();
   _archiveAdapterTests();
   _browsingTests();
@@ -2260,6 +2261,9 @@ typedef _ObserveAnswer =
       MailOperationLease lease,
     );
 
+typedef _CapabilitiesAnswer =
+    Future<MailResult<MailCapabilities>> Function(MailOperationLease lease);
+
 final class _HeadersRequest {
   _HeadersRequest(this.mailbox, this.cursor, this.limit, this.lease);
   final MailMailboxId mailbox;
@@ -2299,10 +2303,12 @@ final class _Harness {
   final headerRequests = <_HeadersRequest>[];
   final requestedValidities = <int>[];
   final flagObservations = <(MailRemoteIdentity, MailOperationLease)>[];
+  final capabilityRequests = <MailOperationLease>[];
   _Answer? answer;
   _ApplyAnswer? applyAnswer;
   _HeadersAnswer? headersAnswer;
   _ObserveAnswer? observeAnswer;
+  _CapabilitiesAnswer? capabilitiesAnswer;
   void Function()? beforeCreate;
   Object? factoryError;
   MailAccountId? providerAccount;
@@ -2358,6 +2364,11 @@ final class _Harness {
               ),
             );
       },
+      (lease) {
+        capabilityRequests.add(lease);
+        return capabilitiesAnswer?.call(lease) ??
+            Future.value(const MailSuccess(MailCapabilities.none()));
+      },
     );
   }
 }
@@ -2371,6 +2382,7 @@ final class _Provider
     this.headersAnswer,
     this.observeValidity,
     this.observeAnswer,
+    this.capabilitiesAnswer,
   );
 
   @override
@@ -2380,6 +2392,11 @@ final class _Provider
   final _HeadersAnswer headersAnswer;
   final void Function(int) observeValidity;
   final _ObserveAnswer observeAnswer;
+  final _CapabilitiesAnswer capabilitiesAnswer;
+
+  @override
+  Future<MailResult<MailCapabilities>> capabilities(MailOperationLease lease) =>
+      capabilitiesAnswer(lease);
 
   @override
   Future<MailResult<MailFlagObservation>> observeFlags(
@@ -2815,6 +2832,317 @@ void _flagObservationTests() {
       expect(harness.flagObservations, hasLength(1));
       noMailActions(harness);
     });
+  });
+}
+
+void _membershipAdapterTests() {
+  group('native foreground membership adapter', () {
+    MailOperation command(
+      NativeStudioMailMessageLoader loader,
+      MailBulkFlagAction action,
+    ) {
+      final identity = MailImapIdentity(
+        mailbox: MailMailboxId('INBOX', account: loader.account),
+        uidValidity: 83,
+        uid: 0xffffffff,
+      );
+      return action == MailBulkFlagAction.move
+          ? MailMove(
+              id: 'persisted-move:0',
+              message: identity,
+              destination: MailMailboxId(
+                'Archive/2026',
+                account: loader.account,
+              ),
+            )
+          : MailDelete(id: 'persisted-delete:0', message: identity);
+    }
+
+    void noReads(_Harness harness) {
+      expect(harness.requests, isEmpty);
+      expect(harness.headerRequests, isEmpty);
+      expect(harness.flagObservations, isEmpty);
+    }
+
+    test(
+      'capability discovery is read only and retains unsupported actions',
+      () async {
+        final harness = _Harness();
+        final loader = _loader(harness);
+        addTearDown(loader.dispose);
+        final supported = MailCapabilities([MailCapability.delete]);
+        harness.capabilitiesAnswer = (_) async => MailSuccess(supported);
+        final capabilities = await loader.membershipCapabilities();
+        expect(capabilities, same(supported));
+        expect(capabilities.supports(MailCapability.move), isFalse);
+        expect(capabilities.supports(MailCapability.delete), isTrue);
+        expect(harness.capabilityRequests.single.account, loader.account);
+        expect(harness.capabilityRequests.single.isCurrent, isTrue);
+        expect(harness.mutations, isEmpty);
+        noReads(harness);
+      },
+    );
+
+    test(
+      'capability errors stay typed and do not attempt a mutation',
+      () async {
+        final harness = _Harness()
+          ..capabilitiesAnswer = (_) async => const MailFailure(
+            MailProblem(
+              MailProblemCode.unsupported,
+              mutationMayHaveOccurred: false,
+            ),
+          );
+        final loader = _loader(harness);
+        addTearDown(loader.dispose);
+        await expectLater(
+          loader.membershipCapabilities(),
+          throwsA(_problemEvidence(MailProblemCode.unsupported, false)),
+        );
+        expect(harness.mutations, isEmpty);
+        noReads(harness);
+      },
+    );
+
+    test(
+      'disposed capability discovery refuses work before provider construction',
+      () async {
+        final harness = _Harness();
+        final loader = _loader(harness)..dispose();
+        await expectLater(
+          loader.membershipCapabilities(),
+          throwsA(_problemEvidence(MailProblemCode.staleOperation, false)),
+        );
+        expect(harness.factoryCalls, 0);
+        expect(harness.capabilityRequests, isEmpty);
+        expect(harness.mutations, isEmpty);
+      },
+    );
+
+    test(
+      'capability discovery cannot cancel or overlap an applying command',
+      () async {
+        final response = Completer<MailResult<MailUnit>>();
+        final harness = _Harness()..applyAnswer = (_, _) => response.future;
+        final loader = _loader(harness);
+        final session = MailAccountSession(loader.account);
+        addTearDown(loader.dispose);
+        addTearDown(session.dispose);
+        final pending = loader.applyMembership(
+          command(loader, MailBulkFlagAction.delete),
+          session.begin(),
+        );
+        await expectLater(
+          loader.membershipCapabilities(),
+          throwsA(_problemEvidence(MailProblemCode.unavailable, false)),
+        );
+        expect(harness.mutations.single.$2.isCurrent, isTrue);
+        expect(harness.capabilityRequests, isEmpty);
+        response.complete(const MailSuccess(MailUnit.value));
+        expect(await pending, isA<MailSuccess<MailUnit>>());
+        expect(harness.factoryCalls, 1);
+      },
+    );
+
+    for (final action in [MailBulkFlagAction.move, MailBulkFlagAction.delete]) {
+      test(
+        '${action.name} retains the exact persisted operation and identity',
+        () async {
+          final harness = _Harness();
+          final loader = _loader(harness);
+          final session = MailAccountSession(loader.account);
+          addTearDown(loader.dispose);
+          addTearDown(session.dispose);
+          final requested = command(loader, action);
+          expect(
+            await loader.applyMembership(requested, session.begin()),
+            isA<MailSuccess<MailUnit>>(),
+          );
+          expect(harness.mutations.single.$1, same(requested));
+          final identity =
+              harness.mutations.single.$1.message as MailImapIdentity;
+          expect(identity.uidValidity, 83);
+          expect(identity.uid, 0xffffffff);
+          expect(identity.mailbox.value, 'INBOX');
+          expect(harness.capabilityRequests, isEmpty);
+          noReads(harness);
+        },
+      );
+
+      test('${action.name} cannot use the flag-only dispatch seam', () async {
+        final harness = _Harness();
+        final loader = _loader(harness);
+        final session = MailAccountSession(loader.account);
+        addTearDown(loader.dispose);
+        addTearDown(session.dispose);
+        final result = await loader.applyBulkFlag(
+          command(loader, action),
+          session.begin(),
+        );
+        expect(result, isA<MailFailure<MailUnit>>());
+        final problem = (result as MailFailure<MailUnit>).problem;
+        expect(problem.code, MailProblemCode.invalidInput);
+        expect(problem.mutationMayHaveOccurred, isFalse);
+        expect(harness.factoryCalls, 0);
+        expect(harness.mutations, isEmpty);
+      });
+
+      for (final evidence in <bool?>[false, true, null]) {
+        test(
+          '${action.name} preserves provider mutation evidence $evidence',
+          () async {
+            final problem = MailProblem(
+              evidence == false
+                  ? MailProblemCode.unsupported
+                  : MailProblemCode.conflict,
+              mutationMayHaveOccurred: evidence,
+              retryAfter: const Duration(seconds: 19),
+            );
+            final harness = _Harness()
+              ..applyAnswer = (_, _) async => MailFailure(problem);
+            final loader = _loader(harness);
+            final session = MailAccountSession(loader.account);
+            addTearDown(loader.dispose);
+            addTearDown(session.dispose);
+            final result = await loader.applyMembership(
+              command(loader, action),
+              session.begin(),
+            );
+            expect(result, isA<MailFailure<MailUnit>>());
+            expect((result as MailFailure<MailUnit>).problem, same(problem));
+            expect(harness.mutations, hasLength(1));
+            noReads(harness);
+          },
+        );
+      }
+
+      for (final confirmed in [true, false]) {
+        test(
+          '${action.name} retains late ${confirmed ? 'confirmation' : 'uncertainty'} after disposal',
+          () async {
+            final response = Completer<MailResult<MailUnit>>();
+            final harness = _Harness()..applyAnswer = (_, _) => response.future;
+            final loader = _loader(harness);
+            final session = MailAccountSession(loader.account);
+            addTearDown(session.dispose);
+            final requested = command(loader, action);
+            final pending = loader.applyMembership(requested, session.begin());
+            loader.dispose();
+            expect(harness.mutations.single.$2.isCurrent, isFalse);
+            final expected = confirmed
+                ? const MailSuccess<MailUnit>(MailUnit.value)
+                : const MailFailure<MailUnit>(
+                    MailProblem(
+                      MailProblemCode.conflict,
+                      mutationMayHaveOccurred: true,
+                    ),
+                  );
+            response.complete(expected);
+            expect(await pending, same(expected));
+            final later =
+                await loader.applyMembership(requested, session.begin())
+                    as MailFailure<MailUnit>;
+            expect(later.problem.code, MailProblemCode.staleOperation);
+            expect(later.problem.mutationMayHaveOccurred, isFalse);
+            expect(harness.mutations, hasLength(1));
+          },
+        );
+      }
+    }
+
+    test(
+      'rejects flags, foreign scope, wrong provider and same-folder moves',
+      () async {
+        final harness = _Harness();
+        final loader = _loader(harness);
+        final session = MailAccountSession(loader.account);
+        final foreign = MailAccountSession(
+          MailAccountId('foreign', profile: loader.account.profile),
+        );
+        addTearDown(loader.dispose);
+        addTearDown(session.dispose);
+        addTearDown(foreign.dispose);
+        final identity = command(loader, MailBulkFlagAction.delete).message;
+        final invalid = <(MailOperation, MailOperationLease)>[
+          (
+            MailSetRead(id: 'read', message: identity, read: true),
+            session.begin(),
+          ),
+          (
+            MailSetFlagged(id: 'flag', message: identity, flagged: true),
+            session.begin(),
+          ),
+          (MailDelete(id: 'foreign-lease', message: identity), foreign.begin()),
+          (
+            MailDelete(
+              id: 'foreign-message',
+              message: MailImapIdentity(
+                mailbox: MailMailboxId('INBOX', account: foreign.account),
+                uidValidity: 83,
+                uid: 7,
+              ),
+            ),
+            session.begin(),
+          ),
+          (
+            MailDelete(
+              id: 'foreign-provider',
+              message: MailOpaqueIdentity(
+                account: loader.account,
+                provider: MailProviderKind.graph,
+                value: 'remote',
+              ),
+            ),
+            session.begin(),
+          ),
+          (
+            MailMove(
+              id: 'same-folder',
+              message: identity,
+              destination: (identity as MailImapIdentity).mailbox,
+            ),
+            session.begin(),
+          ),
+        ];
+        for (final (requested, lease) in invalid) {
+          final result =
+              await loader.applyMembership(requested, lease)
+                  as MailFailure<MailUnit>;
+          expect(result.problem.code, MailProblemCode.invalidInput);
+          expect(result.problem.mutationMayHaveOccurred, isFalse);
+        }
+        expect(harness.factoryCalls, 0);
+        expect(harness.mutations, isEmpty);
+      },
+    );
+
+    test(
+      'retired host generation prevents dispatch and provider exceptions stay uncertain',
+      () async {
+        final harness = _Harness();
+        final loader = _loader(harness);
+        final session = MailAccountSession(loader.account);
+        addTearDown(loader.dispose);
+        addTearDown(session.dispose);
+        final requested = command(loader, MailBulkFlagAction.delete);
+        final stale = session.begin();
+        session.invalidate();
+        final refused =
+            await loader.applyMembership(requested, stale)
+                as MailFailure<MailUnit>;
+        expect(refused.problem.code, MailProblemCode.staleOperation);
+        expect(refused.problem.mutationMayHaveOccurred, isFalse);
+        expect(harness.factoryCalls, 0);
+        harness.applyAnswer = (_, _) =>
+            throw StateError('private provider failure');
+        final failed =
+            await loader.applyMembership(requested, session.begin())
+                as MailFailure<MailUnit>;
+        expect(failed.problem.code, MailProblemCode.providerFailure);
+        expect(failed.problem.mutationMayHaveOccurred, isTrue);
+        expect(harness.mutations, hasLength(1));
+      },
+    );
   });
 }
 

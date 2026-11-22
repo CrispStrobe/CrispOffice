@@ -30,6 +30,118 @@ MailProblemCode _code<T>(MailResult<T> result) =>
     (result as MailFailure<T>).problem.code;
 
 void main() {
+  group('foreground move/delete evidence', () {
+    for (final destination in ['INBOX', 'inbox', 'iNbOx']) {
+      test(
+        'same-folder MOVE to $destination is refused before login',
+        () async {
+          final fixture = ImapFixture(messages: {1: _message()});
+          final result = await fixture.provider().apply(
+            MailMove(
+              id: 'same-folder',
+              message: _identity(fixture),
+              destination: MailMailboxId(destination, account: fixture.account),
+            ),
+            _lease(fixture),
+          );
+          expect(_code(result), MailProblemCode.invalidInput);
+          expect(
+            (result as MailFailure<MailUnit>).problem.mutationMayHaveOccurred,
+            isFalse,
+          );
+          expect(fixture.credentials.loads, 0);
+          expect(fixture.commands, isEmpty);
+          expect(fixture.messages, hasLength(1));
+        },
+      );
+    }
+
+    for (final action in [MailBulkFlagAction.move, MailBulkFlagAction.delete]) {
+      test(
+        '${action.name} on a read-only mailbox proves no mutation',
+        () async {
+          final fixture = ImapFixture(messages: {1: _message()})
+            ..readOnly = true;
+          final plan = MailBulkFlagPlan(
+            id: 'read-only',
+            mailbox: fixture.mailbox,
+            action: action,
+            destination: action == MailBulkFlagAction.move
+                ? MailMailboxId('Archive', account: fixture.account)
+                : null,
+            messages: [_identity(fixture)],
+          );
+          final result = await fixture.provider().apply(
+            plan.operationAt(0),
+            _lease(fixture),
+          );
+          expect(_code(result), MailProblemCode.permissionDenied);
+          expect(
+            (result as MailFailure<MailUnit>).problem.mutationMayHaveOccurred,
+            isFalse,
+          );
+          expect(
+            fixture.commands.where(
+              (command) =>
+                  command.startsWith('UID MOVE ') ||
+                  command.startsWith('UID STORE '),
+            ),
+            isEmpty,
+          );
+        },
+      );
+
+      for (final lostReply in [true, false]) {
+        test(
+          '${action.name} ${lostReply ? 'lost reply' : 'unconfirmed effect'} stops without replay',
+          () async {
+            final fixture =
+                ImapFixture(messages: {1: _message(), 2: _message()})
+                  ..closeAfterMutation = lostReply
+                  ..acknowledgeWithoutChange = !lostReply;
+            final provider = fixture.provider();
+            final report = await MailBulkFlagRunner().run(
+              plan: MailBulkFlagPlan(
+                id: 'membership-evidence',
+                mailbox: fixture.mailbox,
+                action: action,
+                destination: action == MailBulkFlagAction.move
+                    ? MailMailboxId('Archive', account: fixture.account)
+                    : null,
+                messages: [_identity(fixture), _identity(fixture, 2)],
+              ),
+              lease: _lease(fixture),
+              apply: provider.apply,
+              isScopeCurrent: () => true,
+            );
+            expect(report.uncertainCount, 1);
+            expect(report.unattemptedCount, 1);
+            expect(report.items.first.problem?.mutationMayHaveOccurred, isTrue);
+            expect(report.requiresRefresh, isTrue);
+            expect(
+              fixture.commands.where(
+                (command) =>
+                    command.startsWith('UID MOVE ') ||
+                    command.startsWith('UID STORE '),
+              ),
+              hasLength(1),
+            );
+            expect(
+              fixture.commands.any(
+                (command) =>
+                    command.contains('EXPUNGE') ||
+                    command.contains('COPY') ||
+                    command == 'CLOSE',
+              ),
+              isFalse,
+            );
+            expect(fixture.messages[2]!.flags, isEmpty);
+          },
+        );
+      }
+    }
+  });
+
   test(
     'bulk IMAP failures distinguish stale generation from uncertain STORE',
     () async {
@@ -228,6 +340,7 @@ void main() {
       expect((result as MailSuccess<MailCapabilities>).value.supported, {
         MailCapability.mail,
         MailCapability.folders,
+        MailCapability.delete,
       });
     },
   );

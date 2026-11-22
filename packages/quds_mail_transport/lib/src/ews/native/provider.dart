@@ -248,6 +248,7 @@ final class NativeMailEwsProvider implements MailEwsProvider, MailFlagObserver {
           MailCapability.mail,
           MailCapability.folders,
           MailCapability.move,
+          MailCapability.delete,
           MailCapability.send,
         ]);
       });

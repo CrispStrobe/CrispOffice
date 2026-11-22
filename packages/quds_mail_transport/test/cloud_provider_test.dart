@@ -274,6 +274,138 @@ final class _Harness {
 }
 
 void main() {
+  group('foreground move/delete evidence', () {
+    for (final service in MailCloudService.values) {
+      for (final action in [
+        if (service == MailCloudService.microsoft365) MailBulkFlagAction.move,
+        MailBulkFlagAction.delete,
+      ]) {
+        for (final status in [400, 429, 503]) {
+          test(
+            '${service.name} ${action.name} HTTP $status preserves dispatch evidence',
+            () async {
+              final h = _Harness(service);
+              var mutations = 0;
+              h.transport.handler = (request) {
+                if (request.method == 'GET') {
+                  expect(request.uri.path, endsWith('/deleteditems'));
+                  return _json({'id': 'trash-id'});
+                }
+                expect(request.method, 'POST');
+                expect(
+                  request.uri.path,
+                  endsWith(
+                    service == MailCloudService.gmail ? '/trash' : '/move',
+                  ),
+                );
+                if (++mutations == 1) return _error(status, retry: '17');
+                expect(status, 400, reason: 'Only definite failures continue');
+                if (service == MailCloudService.gmail) {
+                  return _json({
+                    'id': 'message-2',
+                    'labelIds': ['TRASH'],
+                  });
+                }
+                expect(request.headers['Prefer'], contains('ImmutableId'));
+                final body =
+                    jsonDecode(utf8.decode(request.body))
+                        as Map<String, Object?>;
+                return _json({
+                  'id': 'message-2',
+                  'parentFolderId': body['destinationId'],
+                }, status: 201);
+              };
+              final report = await MailBulkFlagRunner().run(
+                plan: MailBulkFlagPlan(
+                  id: 'membership-evidence',
+                  mailbox: _mailbox,
+                  action: action,
+                  destination: action == MailBulkFlagAction.move
+                      ? MailMailboxId('destination', account: _account)
+                      : null,
+                  messages: [h.identity(), h.identity('message-2')],
+                ),
+                lease: h.lease,
+                apply: h.provider.apply,
+                isScopeCurrent: () => true,
+              );
+              expect(
+                report.items.first.problem?.mutationMayHaveOccurred,
+                status == 503,
+              );
+              expect(report.failedCount, status == 503 ? 0 : 1);
+              expect(report.uncertainCount, status == 503 ? 1 : 0);
+              expect(report.confirmedCount, status == 400 ? 1 : 0);
+              expect(report.unattemptedCount, status == 400 ? 0 : 1);
+              expect(mutations, status == 400 ? 2 : 1);
+              if (status == 429) {
+                expect(report.stopReason, MailBulkFlagStopReason.rateLimited);
+                expect(
+                  report.items.first.problem?.retryAfter,
+                  const Duration(seconds: 17),
+                );
+              }
+              expect(
+                h.transport.mailRequests.any(
+                  (request) => request.method == 'DELETE',
+                ),
+                isFalse,
+              );
+            },
+          );
+        }
+      }
+
+      test(
+        '${service.name} unconfirmed trash response stays uncertain',
+        () async {
+          final h = _Harness(service);
+          h.transport.handler = (request) {
+            if (request.method == 'GET') return _json({'id': 'trash-id'});
+            return _json({
+              'id': 'message-1',
+              if (service == MailCloudService.gmail)
+                'labelIds': ['INBOX']
+              else
+                'parentFolderId': 'INBOX',
+            });
+          };
+          final result = await h.provider.apply(
+            MailDelete(id: 'trash-unconfirmed', message: h.identity()),
+            h.lease,
+          );
+          final problem = _problem(result, MailProblemCode.conflict);
+          expect(problem.mutationMayHaveOccurred, isTrue);
+          expect(
+            h.transport.mailRequests.where(
+              (request) => request.method == 'POST',
+            ),
+            hasLength(1),
+          );
+        },
+      );
+    }
+
+    test(
+      'Graph oversize destination is refused before token or network',
+      () async {
+        final h = _Harness(MailCloudService.microsoft365);
+        final result = await h.provider.apply(
+          MailMove(
+            id: 'invalid-destination',
+            message: h.identity(),
+            destination: MailMailboxId('x' * 2049, account: _account),
+          ),
+          h.lease,
+        );
+        final problem = _problem(result, MailProblemCode.invalidInput);
+        expect(problem.mutationMayHaveOccurred, isFalse);
+        expect(h.tokens.calls, isEmpty);
+        expect(h.transport.requests, isEmpty);
+      },
+    );
+  });
+
   group('read-only flag observation', () {
     for (final service in MailCloudService.values) {
       test(
@@ -704,6 +836,7 @@ void main() {
           final capabilities = _value(await h.provider.capabilities(h.lease));
           expect(capabilities.supports(MailCapability.mail), isTrue);
           expect(capabilities.supports(MailCapability.send), isTrue);
+          expect(capabilities.supports(MailCapability.delete), isTrue);
           expect(
             capabilities.supports(MailCapability.move),
             service == MailCloudService.microsoft365,

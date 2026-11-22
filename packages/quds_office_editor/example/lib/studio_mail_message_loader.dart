@@ -116,6 +116,17 @@ abstract interface class StudioMailBulkMessageActions {
   );
 }
 
+/// Optional exact-identity organization commands. Reader-only and older flag
+/// adapters do not acquire Move/Delete controls merely by implementing flags.
+abstract interface class StudioMailMembershipActions {
+  Future<MailCapabilities> membershipCapabilities();
+
+  Future<MailResult<MailUnit>> applyMembership(
+    MailOperation command,
+    MailOperationLease hostLease,
+  );
+}
+
 /// Optional folder archiving capability, separate from existing reader fakes.
 /// Hosts supply a stable mailbox profile and own the archive's lifetime.
 abstract interface class StudioMailMailboxArchiver {
@@ -130,11 +141,12 @@ abstract interface class StudioMailMailboxArchiver {
 
 /// An injection seam for deterministic tests; production uses the bounded IMAP
 /// provider, including its TLS verification, literal quotas and MIME budgets.
-typedef StudioMailProviderFactory = MailProvider Function({
-  required MailImapConfiguration configuration,
-  required MailCredentialStore credentialStore,
-  required MailTransportLimits limits,
-});
+typedef StudioMailProviderFactory =
+    MailProvider Function({
+      required MailImapConfiguration configuration,
+      required MailCredentialStore credentialStore,
+      required MailTransportLimits limits,
+    });
 
 /// Fixed explanations never include server replies, message data or secrets.
 final class StudioMailMessageLoadException implements Exception {
@@ -163,7 +175,8 @@ final class StudioMailMessageLoadException implements Exception {
       'The message exceeds the supported reading limits.',
     MailProblemCode.invalidInput =>
       'The account or message identity is incomplete or invalid.',
-    MailProblemCode.conflict => 'The mailbox changed. Refresh its message list before opening this message.',
+    MailProblemCode.conflict =>
+      'The mailbox changed. Refresh its message list before opening this message.',
     MailProblemCode.providerFailure || MailProblemCode.storageFailure =>
       'The message could not be loaded. Try again.',
   };
@@ -189,6 +202,7 @@ final class NativeStudioMailMessageLoader
         StudioMailMailboxRecords,
         StudioMailMessageActions,
         StudioMailBulkMessageActions,
+        StudioMailMembershipActions,
         MailFlagObserver,
         StudioMailMailboxArchiver {
   factory NativeStudioMailMessageLoader(
@@ -673,10 +687,62 @@ final class NativeStudioMailMessageLoader
     MailOperation command,
     MailOperationLease hostLease,
   ) async {
+    if (command is! MailSetRead && command is! MailSetFlagged) {
+      return const MailFailure(
+        MailProblem(
+          MailProblemCode.invalidInput,
+          mutationMayHaveOccurred: false,
+        ),
+      );
+    }
+    return _applyCommand(command, hostLease);
+  }
+
+  @override
+  Future<MailCapabilities> membershipCapabilities() async {
+    if (_session.isDisposed) {
+      throw const StudioMailMessageLoadException(
+        MailProblemCode.staleOperation,
+        mutationMayHaveOccurred: false,
+      );
+    }
+    if (_active != null) {
+      throw const StudioMailMessageLoadException(
+        MailProblemCode.unavailable,
+        mutationMayHaveOccurred: false,
+      );
+    }
+    return _run((provider, lease) => provider.capabilities(lease));
+  }
+
+  @override
+  Future<MailResult<MailUnit>> applyMembership(
+    MailOperation command,
+    MailOperationLease hostLease,
+  ) async {
+    if (command is! MailMove && command is! MailDelete ||
+        command is MailMove &&
+            (command.destination.account != account ||
+                command.message is MailImapIdentity &&
+                    (command.message as MailImapIdentity).mailbox ==
+                        command.destination)) {
+      return const MailFailure(
+        MailProblem(
+          MailProblemCode.invalidInput,
+          mutationMayHaveOccurred: false,
+        ),
+      );
+    }
+    return _applyCommand(command, hostLease);
+  }
+
+  Future<MailResult<MailUnit>> _applyCommand(
+    MailOperation command,
+    MailOperationLease hostLease,
+  ) async {
     MailFailure<MailUnit> failure(MailProblemCode code, bool dispatched) =>
         MailFailure(MailProblem(code, mutationMayHaveOccurred: dispatched));
-    if (command is! MailSetRead && command is! MailSetFlagged ||
-        command.message is! MailImapIdentity ||
+    if (command.message is! MailImapIdentity ||
         command.message.account != account ||
         hostLease.account != account) {
       return failure(MailProblemCode.invalidInput, false);

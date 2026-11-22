@@ -1,5 +1,12 @@
 ## Unreleased
 
+- Extend the existing durable foreground runner to exact-destination move and
+  recoverable delete commands. Retain legacy flag API names, strict frozen
+  receipt restoration and no automatic replay. Expose flag-only action checks
+  and a distinct recoverable-delete provider capability; confirmed membership
+  commands require a fresh view because a unit receipt does not establish
+  destination membership.
+
 - Add immutable exact folder sets to saved header searches. Keep null as the
   legacy all-folders scope, preserve significant mailbox whitespace and retained
   display labels, and require nonempty unique folder identities representing

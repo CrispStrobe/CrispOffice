@@ -742,6 +742,9 @@ class _MailMessageListState extends State<MailMessageList> {
     MailBulkFlagAction.markUnread => widget.strings.markUnread,
     MailBulkFlagAction.flag => widget.strings.flag,
     MailBulkFlagAction.unflag => widget.strings.unflag,
+    MailBulkFlagAction.move || MailBulkFlagAction.delete => throw StateError(
+      'Membership commands require a separate destination or confirmation.',
+    ),
   };
 
   void _runBulk(_BulkChoice choice) {
@@ -1196,7 +1199,9 @@ class _MailMessageListState extends State<MailMessageList> {
                     ]);
                     final menuGeneration = _interactionGeneration;
                     return [
-                      for (final action in MailBulkFlagAction.values)
+                      for (final action in MailBulkFlagAction.values.where(
+                        (action) => action.isFlagAction,
+                      ))
                         PopupMenuItem(
                           key: ValueKey('mail-list-bulk-${action.name}'),
                           value: _BulkChoice(action, ids, menuGeneration),

@@ -32,6 +32,9 @@ MailBulkFlagPlan _plan({
   provider: provider,
   messages: messages ?? _messages(3, provider: provider),
   action: action,
+  destination: action == MailBulkFlagAction.move
+      ? MailMailboxId('Archive', account: (mailbox ?? _mailbox).account)
+      : null,
 );
 
 Future<MailBulkFlagReport> _run({
@@ -163,7 +166,7 @@ void main() {
       });
     }
 
-    test('each action assigns exactly one flag without reading old flags', () {
+    test('each action freezes its command without reading old flags', () {
       for (final action in MailBulkFlagAction.values) {
         final operation = _plan(action: action).operationAt(1);
         expect(operation.id, 'batch:1');
@@ -180,6 +183,14 @@ void main() {
           case MailBulkFlagAction.unflag:
             expect(operation, isA<MailSetFlagged>());
             expect((operation as MailSetFlagged).flagged, isFalse);
+          case MailBulkFlagAction.move:
+            expect(operation, isA<MailMove>());
+            expect(
+              (operation as MailMove).destination,
+              MailMailboxId('Archive', account: _account),
+            );
+          case MailBulkFlagAction.delete:
+            expect(operation, isA<MailDelete>());
         }
       }
     });
