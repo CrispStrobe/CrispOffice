@@ -11,6 +11,7 @@ import 'word_zotero_children.dart';
 import 'word_zotero_composer.dart';
 import 'word_zotero_document_sources.dart';
 import 'word_zotero_format.dart';
+import 'word_zotero_field_context.dart';
 import 'word_zotero_import.dart';
 import 'word_zotero_library.dart';
 import 'word_zotero_snapshot.dart';
@@ -207,6 +208,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
   var _busy = false;
   var _reviewing = false;
   ZoteroCitingCancellation? _citingCancellation;
+  WordZoteroTransaction? _citingTransaction;
   String? _error;
   String? _notice;
   final _selected = <String, ZoteroCitationItem>{};
@@ -266,6 +268,16 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
   @override
   void dispose() {
     _citingCancellation?.cancel();
+    final transaction = _citingTransaction;
+    if (transaction != null) {
+      // Clear synchronously, but repaint the surviving editor only after
+      // Flutter has finished unmounting this route and its listener widgets.
+      transaction.clearFieldContext(notify: false);
+      final controller = _controller;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!controller.isDisposed) controller.refreshView();
+      });
+    }
     for (final controller in [
       _key,
       _style,
@@ -1161,9 +1173,13 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
       selectedField: selectedField,
       seedCitation: chooseStyle ? null : seed,
       command: command,
+      isCurrent: widget.isCurrent,
     );
     final cancellation = ZoteroCitingCancellation();
-    setState(() => _citingCancellation = cancellation);
+    setState(() {
+      _citingCancellation = cancellation;
+      _citingTransaction = transaction;
+    });
     try {
       Future<void> execute(ZoteroCitingCommand operation) =>
           ZoteroCitingClient(transport: transport).execute(
@@ -1203,7 +1219,18 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                       content: SizedBox(
                         width: 560,
                         child: SingleChildScrollView(
-                          child: SelectableText(arguments[1] as String),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              SelectableText(arguments[1] as String),
+                              WordZoteroFieldContextView(
+                                controller: _controller,
+                                transaction: transaction,
+                                isCurrent: widget.isCurrent,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       actions: [
@@ -1221,7 +1248,7 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                 transaction.assertCurrent();
                 return answer ?? (buttons == 0 ? 1 : 0);
               }
-              return transaction.session.handle(name, arguments);
+              return transaction.handle(name, arguments);
             },
           );
       if (chooseStyle) {
@@ -1335,7 +1362,13 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
             : 'Zotero updated the document using its selected style. You can undo the complete operation.',
       );
     } finally {
-      if (mounted) setState(() => _citingCancellation = null);
+      transaction.clearFieldContext();
+      if (mounted) {
+        setState(() {
+          _citingCancellation = null;
+          _citingTransaction = null;
+        });
+      }
     }
   }, closeOnSuccess: widget.closeAfterCommand);
 
@@ -1836,6 +1869,13 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                 ),
                 if (_busy && !_reviewing)
                   const LinearProgressIndicator(minHeight: 2),
+                if (_busy && !_reviewing && _citingTransaction != null)
+                  WordZoteroFieldContextView(
+                    controller: _controller,
+                    transaction: _citingTransaction!,
+                    isCurrent: widget.isCurrent,
+                    compact: true,
+                  ),
                 if (!_canEdit || _error != null || _notice != null)
                   ConstrainedBox(
                     constraints: BoxConstraints(
@@ -1913,6 +1953,13 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                     'Finish or cancel the open dialog in Zotero. You will return to your document when Zotero finishes.',
                 key: const ValueKey('zotero-command-status'),
               ),
+              if (_busy && !_reviewing && _citingTransaction != null)
+                WordZoteroFieldContextView(
+                  controller: _controller,
+                  transaction: _citingTransaction!,
+                  isCurrent: widget.isCurrent,
+                  compact: true,
+                ),
               if (command == ZoteroCitingCommand.addAnnotation) ...[
                 const SizedBox(height: 12),
                 const Text(

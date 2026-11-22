@@ -4,6 +4,13 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Show the citation or bibliography selected by native Zotero while handling
+  manual-edit and repair prompts. Temporary body/table/note highlights and
+  bounded source excerpts keep the writing selection, Notes target and undo
+  history intact; completion, cancellation, errors and stale targets discard
+  the context. Pending insertions and transfer imports are clearly identified
+  without exposing an uncommitted field as a live document range.
+
 - Let saved-mail searches keep an explicit folder set across verified local
   accounts. Select folders locally, save/reopen the exact scope, inspect each
   folder's retained-header coverage, and repair unavailable selections without
