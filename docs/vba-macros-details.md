@@ -23,7 +23,7 @@ one-dimensional local arrays and `For Each` loops support bounded source-data
 processing and explicit cell-range iteration within those same budgets.
 Dynamic local arrays add `ReDim`, `ReDim Preserve`, and `Erase`; module
 `Option Base` controls omitted lower bounds for both fixed and dynamic arrays.
-String expressions can use `Len`, `Left$`, `Right$`, and `Mid$` with explicit
+String expressions can use `Len`, `Left`/`Left$`, `Right`/`Right$`, and `Mid`/`Mid$` with explicit
 UTF-16 indexing, strict argument types, and the shared compilation work budget.
 Scalar Variants now distinguish `Empty` and `Null`, with state predicates,
 explicit bounded conversions, and an explicit native-publication contract.
@@ -679,6 +679,8 @@ operate on source-known values and do not read document contents.
 | `Left$(text, count)` | First `count` units, clamped to the available text |
 | `Right$(text, count)` | Last `count` units, clamped to the available text |
 | `Mid$(text, start[, count])` | Units starting at one-based `start`; omitted `count` returns the remaining suffix |
+| `Left(text, count)` / `Right(text, count)` | The same bounded slice as the `$` form, returned as a scalar Variant; Empty becomes `""`, and Null text returns Null |
+| `Mid(text, start[, count])` | The same bounded middle/suffix slice, with Variant String/Empty/Null input behavior |
 
 `count` must be an exact integer from `0` through `2147483647`; `start` must be
 an exact integer from `1` through `2147483647`. An integral `Double` or assigned
@@ -710,7 +712,7 @@ preserved through the native plan and workbook round trip.
 
 This slice keeps the dialect's strict conversion rules. Numeric/Boolean text
 arguments, numeric `Len`, fractional counts, String-to-number conversion,
-`Empty`, and `Null` are refused by these strict String signatures. Use
+`Empty`, and `Null` are refused by `Len` and the strict `$` signatures. Use
 `CStr` or a numeric conversion explicitly where appropriate; `CStr(Null)` is
 itself an error. Full VBA also gives `Len` storage-size
 semantics for typed non-String variables and applies numeric Let-coercion;
@@ -720,9 +722,33 @@ evaluated. Wrong arity and statically incompatible types produce `vba_type_error
 including in unused code. Value-dependent
 errors in unexecuted branches are not evaluated.
 
-The original substring slice provides these four expression signatures; the
-binary text functions below extend it. Unsuffixed `Left`, `Right`, and `Mid`
-expressions, `LenB`/byte variants, `Len$`, named arguments and VBA qualification
+The unsuffixed forms return scalar Variants and preserve Null through nested
+`Left`, `Right` and `Mid` expressions. An Empty String argument becomes `""`;
+the returned value is an ordinary empty String, not an Empty Variant. Handle
+a nullable result with `IsNull` before assigning it to a typed String or
+publishing Word text. Numeric and Boolean text arguments still require an
+explicit conversion, including when they are held in Variants.
+
+```vb
+Dim reference As Variant, number As Variant
+reference = "INV-0042-DE"
+number = Mid(reference, 5, 4)  ' "0042"
+reference = Null
+If IsNull(Left(reference, 3)) Then
+    reference = "Pending"
+End If
+```
+
+Every supplied expression evaluates once in written order. All supplied numeric
+indices are checked before Null text propagates, so `Mid(Null, 0)` and
+`Left(Null, -1)` remain errors. This invalid-argument precedence is an explicit
+Quds contract, not an installed Office observation. A Null result consumes no
+substring copy work, while expression and argument evaluation remain metered.
+The [Microsoft return-type distinction](https://learn.microsoft.com/en-us/office/vba/language/concepts/getting-started/returning-strings-from-functions)
+explains the Variant forms; the [combined Word example](../packages/quds_office_engine/example/macros/word_text_selectors.bas)
+uses them to prepare reference labels for existing document stories.
+
+`LenB`/byte variants, `Len$`, named intrinsic arguments and VBA qualification
 remain unsupported. The separate `Mid` / `Mid$` assignment statement is
 described below. Arbitrary variable and procedure type suffixes are not
 enabled. Builtin names cannot be shadowed.
@@ -803,9 +829,10 @@ they do not implement VBA's broader Let coercion. `MidB` / `MidB$`,
 `Let`/`Set`/`Call` prefixes, named arguments, omitted interior arguments,
 property lvalues and array parameters are outside this statement's contract.
 Existing implicit Variant locals remain available when `Option Explicit` is
-absent; their current value must still be a String. The existing `Mid$`
-expression is unchanged, and
-unsuffixed `Mid` is supported here only as an assignment statement.
+absent; their current value must still be a String. The expression forms
+`Mid` and `Mid$` are described in [String intrinsics](#string-intrinsics).
+Standalone assignment remains a separate, strict String mutation; it does not
+inherit the unsuffixed expression's Empty/Null input behavior.
 
 UTF-16 units may be split and recombined locally. Normal native publication
 still refuses lone surrogates and format-invalid control characters. Each
@@ -1252,7 +1279,7 @@ dart run tool/macros/office_macro.dart run-vba \
 | Arithmetic | Decimal/exponent literals, parentheses, unary `+`/`-`, binary `+`, `-`, `*`, `/`, and bounded Long integer division `\` / remainder `Mod` |
 | Numeric intrinsics | `Abs`, `Int`, `Fix`, `Sgn`; one positional numeric/Variant argument, explicit Empty/Null behavior and bounded portable arithmetic |
 | Text | Double-quoted literals with doubled embedded quotes and `&` concatenation of scalar values |
-| String intrinsics | `Len`, `Left$`, `Right$`, `Mid$`, binary `InStr` / `InStrRev` / `Replace`, and Trim/LTrim/RTrim with their `$` forms; actual Strings, UTF-16 units, bounded exact integer arguments, no implicit coercion |
+| String intrinsics | `Len`, `Left`/`Left$`, `Right`/`Right$`, `Mid`/`Mid$`, binary `InStr` / `InStrRev` / `Replace`, and Trim/LTrim/RTrim with their `$` forms; UTF-16 units and bounded exact integer arguments; unsuffixed substring forms additionally accept Empty/Null text |
 | String span assignment | Standalone `Mid` / `Mid$` edits local String/Variant values and allocated String/Variant array elements, with no growth and shared copy/array budgets |
 | Array text assembly | `Join` consumes an allocated local String array and an optional String/Empty delimiter; preserves bounds/order and empty entries, with preallocation text/work limits |
 | String comparison | Binary `StrComp(left, right[, compare])`, exact `-1`/`0`/`1` results, explicit Empty/Null behavior, strict types and metered UTF-16 comparison |

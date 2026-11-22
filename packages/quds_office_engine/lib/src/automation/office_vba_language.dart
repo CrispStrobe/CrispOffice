@@ -2327,7 +2327,6 @@ class _Checker {
   // not admit mark replacement/insertion in unexecuted source paths.
   final Map<String, List<(_Expr, List<_Expr>)>> wordSelectorBindings =
       <String, List<(_Expr, List<_Expr>)>>{};
-  final Map<String, bool> wordCellSelectorBindings = <String, bool>{};
   final Set<String> counters = <String>{};
   final Set<String> eachCounters = <String>{};
   final Map<_Symbol, Object> constantValues = <_Symbol, Object>{};
@@ -2467,7 +2466,6 @@ class _Checker {
       withKinds.clear();
       withTargets.clear();
       wordSelectorBindings.clear();
-      wordCellSelectorBindings.clear();
       counters.clear();
       eachCounters.clear();
       doDepth = 0;
@@ -2861,55 +2859,55 @@ class _Checker {
   // True only for selectors whose local origins are all explicitly cells.
   // Generic helper parameters and mixed body/cell aliases are checked against
   // their actual selector during evaluation, preserving shared helpers.
-  bool _knownWordCellSelector(
-    _Expr expression,
-    List<_Expr> scopes,
-    Set<String> visiting,
-  ) {
-    if (expression is _WithValue) {
-      return scopes.isNotEmpty &&
-          _knownWordCellSelector(
-            scopes.last,
-            scopes.sublist(0, scopes.length - 1),
-            visiting,
-          );
-    }
-    if (expression is _Member) {
-      if (expression.token.lower == 'range' &&
-          _isWordCellSource(expression.receiver, scopes)) {
-        return true;
+  bool _knownWordCellSelector(_Expr expression, List<_Expr> scopes) {
+    // Follow the whole binding graph, including collection aliases. An alias
+    // cycle is an edge, not a new noncell origin; every reachable terminal
+    // must be an explicit cell, and a rootless cycle cannot prove ownership.
+    final pending = <(_Expr, List<_Expr>)>[(expression, scopes)];
+    final visited = <String>{};
+    var hasOrigin = false;
+    while (pending.isNotEmpty) {
+      final (current, contexts) = pending.removeLast();
+      if (current is _WithValue) {
+        if (contexts.isEmpty) return false;
+        pending.add((contexts.last, contexts.sublist(0, contexts.length - 1)));
+        continue;
       }
-      return const {
-            'range',
-            'paragraphs',
-            'item',
-          }.contains(expression.token.lower) &&
-          _knownWordCellSelector(expression.receiver, scopes, visiting);
+      if (current is _Member) {
+        if (current.token.lower == 'range' &&
+            _isWordCellSource(current.receiver, contexts)) {
+          hasOrigin = true;
+          continue;
+        }
+        if (!const {
+          'range',
+          'paragraphs',
+          'item',
+        }.contains(current.token.lower)) {
+          return false;
+        }
+        pending.add((current.receiver, contexts));
+        continue;
+      }
+      if (current is! _Name) return false;
+      final name = current.token.lower;
+      final type = symbols[name]?.type;
+      if (type != _Declared.range &&
+          type != _Declared.paragraph &&
+          type != _Declared.paragraphs) {
+        return false;
+      }
+      if (currentProcedure.parameters.any(
+        (parameter) => parameter.name.lower == name,
+      )) {
+        return false;
+      }
+      if (!visited.add(name)) continue;
+      final bindings = wordSelectorBindings[name];
+      if (bindings == null || bindings.isEmpty) return false;
+      pending.addAll(bindings);
     }
-    if (expression is! _Name) return false;
-    final name = expression.token.lower;
-    final type = symbols[name]?.type;
-    if (type != _Declared.range &&
-        type != _Declared.paragraph &&
-        type != _Declared.paragraphs) {
-      return false;
-    }
-    if (currentProcedure.parameters.any(
-      (parameter) => parameter.name.lower == name,
-    )) {
-      return false;
-    }
-    if (wordCellSelectorBindings[name] case final cached?) return cached;
-    if (!visiting.add(name)) return false;
-    final bindings = wordSelectorBindings[name];
-    final result =
-        bindings != null &&
-        bindings.every(
-          (binding) => _knownWordCellSelector(binding.$1, binding.$2, visiting),
-        );
-    visiting.remove(name);
-    wordCellSelectorBindings[name] = result;
-    return result;
+    return hasOrigin;
   }
 
   bool _isWordCellSource(_Expr expression, List<_Expr> scopes) =>
@@ -4072,7 +4070,7 @@ class _Checker {
                   name == 'listformat')) {
             _arguments(expression, 0, allowProperty: true);
             if (name == 'listformat' &&
-                _knownWordCellSelector(expression.receiver, withTargets, {})) {
+                _knownWordCellSelector(expression.receiver, withTargets)) {
               context.unsupported(
                 expression.token,
                 'ListFormat is unsupported on explicitly selected cell paragraphs.',

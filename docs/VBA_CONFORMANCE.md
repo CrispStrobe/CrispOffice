@@ -11,6 +11,7 @@ The canonical fixtures are:
 
 | Suite | Cases | Scope |
 | --- | ---: | --- |
+| [`word_text_selectors_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_text_selectors_v1.json) | 64 | Variant substring expressions, named body/story/section indexes, typed collection identity, source-order evaluation and positioned refusals |
 | [`mid_assignment_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/mid_assignment_v1.json) | 77 | Local `Mid` / `Mid$` String edits, array/helper ownership, source-order evaluation, UTF-16 and positioned refusals across all three adapters |
 | [`word_table_navigation_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_table_navigation_v1.json) | 32 | Typed row/column cell selection, named indexes, captured aliases/helpers, existing cell operations and positioned refusals |
 | [`word_integer_arithmetic_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_integer_arithmetic_v1.json) | 54 | Integer division and signed Mod, rounding, precedence, Empty/Null, Long bounds, complete cell plans and positioned refusals |
@@ -30,6 +31,16 @@ The canonical fixtures are:
 
 The same fixture bytes are consumed by each VM test and the portable
 JavaScript runner; there is no separately maintained copy of expected results.
+
+The text/selector suite independently specifies 34 complete plans and 30
+positioned diagnostics. It distinguishes Microsoft substring and collection
+member contracts from Quds exact-index, invalid-argument precedence and
+no-document-read rules. Typed collection helpers, all six header/footer
+variants, projected cell paragraphs and inactive source are covered. The
+original String corpus's three unsuffixed-function refusal cases are now
+positive plans; its total case count is unchanged. Native document/CLI/MCP
+checks separately execute the complete reference-label BAS. See the
+[local qualification](validation/word-vba-text-selectors-20261122/README.md).
 
 The Mid assignment corpus independently specifies 41 successful plans and
 36 positioned diagnostics. A portable adapter mapping changes only the fixed

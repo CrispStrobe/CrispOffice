@@ -50,8 +50,8 @@ Sub Main()
 End Sub
 ```
 
-`Document`, `Section`, `PageSetup`, `TextColumns`, `HeadersFooters`, `HeaderFooter`,
-`Tables`, `Table`, `Rows`, `Row`, `Columns`, `Column`, `Cells`, `Cell`, `Paragraph`, `Range`, `Font`,
+`Document`, `Sections`, `Section`, `PageSetup`, `TextColumns`, `HeadersFooters`, `HeaderFooter`,
+`Tables`, `Table`, `Rows`, `Row`, `Columns`, `Column`, `Cells`, `Cell`, `Paragraphs`, `Paragraph`, `Range`, `Font`,
 `ParagraphFormat`, `TabStops`, and `ListFormat` declarations support explicit
 `Set` bindings and `ByVal` helper parameters. `With` may target these supported
 objects or the range's `Font` and `ParagraphFormat`. All bindings remain
@@ -87,14 +87,67 @@ functions accept their one required argument by position or by its official
 name. `TextColumns.SetCount` accepts its required `NumColumns` argument by
 position or name. Supported `Range.InsertBefore` and `InsertAfter` calls accept
 their required `Text` by position or name. The table selectors described below
-accept required named `Index`, `Row` and `Column` arguments; other Word members
-retain their existing argument contracts.
+accept required named `Index`, `Row` and `Column` arguments. `Paragraphs`,
+`Sections`, `Headers`, `Footers` and their `Item` methods accept required named
+`Index`; other Word members retain their existing argument contracts.
 
 The common source language includes the existing local procedures and scalar
 functions, bounded control flow, typed arrays, string intrinsics, and explicit
 Variant states and conversions described in [the shared language
 contract](VBA_MACROS.md). Excel object members are unavailable in `vba-word`.
 Word object members are unavailable in `vba-excel`.
+
+## Named document and story selectors
+
+The supported collection selectors accept exactly one numeric argument, either
+positional or case-insensitive `Index:=`. Direct and explicit `Item` syntax
+select the same existing object:
+
+| Collection | Meaning of `Index` |
+| --- | --- |
+| `Document.Paragraphs` | One-based paragraph in the existing native body traversal |
+| `Document.Sections` | One-based existing section |
+| `Section.Headers` / `.Footers` | `wdHeaderFooterPrimary`, `wdHeaderFooterFirstPage` or `wdHeaderFooterEvenPages` |
+| Independent header/footer `Range.Paragraphs` | One-based paragraph in that explicitly selected story |
+| Selected paragraph or supported cell `Range.Paragraphs` | Only `1`, retaining the original paragraph and cell/story identity |
+
+```vb
+Dim parts As Sections, lines As Paragraphs, retained As Range
+Set parts = ActiveDocument.Sections
+Set lines = parts.Item(Index:=2).Headers(Index:=wdHeaderFooterPrimary).Range.Paragraphs
+Set retained = lines.Item(Index:=1).Range
+Set lines = ActiveDocument.Paragraphs
+retained.InsertBefore Text:="INV " & Mid("INV-0042-DE", 5, 4) & ": "
+```
+
+`Sections` and `Paragraphs` are typed selector collections. `Set`, nested
+`With` and required `ByVal` helpers preserve them without reading a document.
+A helper may rebind its local collection; previously captured selectors and
+the caller's binding keep their original target. Use `.Item(...)` when
+indexing a collection variable; default-member calls on variable names remain
+unsupported. The existing reserved global name `Paragraphs` cannot be used
+as a variable or helper name; the declared type is available after `As`.
+
+Each receiver is captured before its index expression. Index helpers execute
+once in source order, including nested section/story/paragraph selection.
+Unknown names, duplicate/missing arguments, scalar-to-object bindings and
+statically incompatible types are rejected even in inactive source. Actual
+numeric values retain their existing exact-index/enum checks, and document
+existence and ownership are validated by the native transaction.
+
+No `Count`, `First`, `Last`, enumeration, document-value reads or new native
+write operation is introduced. Optional or `ByRef` object parameters,
+object-returning functions, object arrays and object-containing scalar Variants
+remain unsupported. Cell collection aliases, including rooted cycles, retain
+the existing prohibition on projected cell list operations. Direct cell
+`InsertAfter` still cannot be applied to a projected paragraph range.
+
+See the [complete reference-label BAS](../packages/quds_office_engine/example/macros/word_text_selectors.bas),
+[64-case independent corpus](../packages/quds_office_engine/test/fixtures/vba_conformance/word_text_selectors_v1.json)
+and [local qualification](validation/word-vba-text-selectors-20261122/README.md).
+Primary member contracts are Microsoft's [Paragraphs.Item](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphs.item),
+[Sections.Item](https://learn.microsoft.com/en-us/office/vba/api/word.sections.item)
+and [HeadersFooters.Item](https://learn.microsoft.com/en-us/office/vba/api/word.headersfooters.item).
 
 ## Filling existing table cells
 

@@ -343,6 +343,41 @@ End Sub
       },
     );
 
+    test('cell-only alias cycles retain inactive-source list restrictions', () {
+      for (final declaration in ['Range', 'Paragraph', 'Paragraphs']) {
+        final initial = switch (declaration) {
+          'Range' =>
+            'ThisDocument.Tables(1).Cell(1, 1).Range.Paragraphs(1).Range',
+          'Paragraph' =>
+            'ThisDocument.Tables(1).Cell(1, 1).Range.Paragraphs(1)',
+          _ => 'ThisDocument.Tables(1).Cell(1, 1).Range.Paragraphs',
+        };
+        final target = switch (declaration) {
+          'Range' => 'retained',
+          'Paragraph' => 'retained.Range',
+          _ => 'retained.Item(Index:=1).Range',
+        };
+        for (final invoked in [false, true]) {
+          expect(
+            () => _source('''
+Sub Main()
+  ${invoked ? 'Apply' : ''}
+End Sub
+Sub Apply()
+  Dim selected As $declaration, retained As $declaration
+  Set selected = $initial
+  Set retained = selected
+  Set selected = retained
+  $target.ListFormat.ApplyBulletDefault
+End Sub
+'''),
+            throwsA(_error('vba_unsupported')),
+            reason: '$declaration invoked=$invoked',
+          );
+        }
+      }
+    });
+
     final selectors = <(String, String)>[
       ('ThisDocument.Paragraphs', '.Range.Font.Bold = True'),
       ('ThisDocument.Paragraphs.Item', '.Range.Font.Bold = True'),
