@@ -612,6 +612,8 @@ void main() {
         )) {
           database.execute('DROP TRIGGER "${trigger['name']}"');
         }
+        database.execute('DROP TABLE move_identity_transitions');
+        database.execute('DROP TABLE mailbox_move_revisions');
         database.execute('DROP TABLE membership_item_observations');
         database.execute('DROP TABLE saved_header_search_folders');
         database.execute('DROP TABLE account_quick_texts');
@@ -639,7 +641,7 @@ void main() {
           failAt = null;
         }
         store = _value(await open());
-        expect(database.userVersion, 14);
+        expect(database.userVersion, 15);
         expect(_value(await store.loadComposeSettings(_account)).revision, 0);
         expect(snapshot()..remove('mailbox_sync_state'), prior);
         expect(_value(await store.loadSyncMailbox(_mailbox)), isNull);

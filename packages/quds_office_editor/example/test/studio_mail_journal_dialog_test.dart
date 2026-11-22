@@ -16,6 +16,7 @@ import 'package:quds_office_studio/studio_mail_flag_journal.dart';
 import 'package:quds_office_studio/studio_mail_journal_dialog.dart';
 import 'package:quds_office_studio/studio_mail_journal_strings.dart';
 import 'package:quds_office_studio/studio_mail_mutation_strings.dart';
+import 'package:quds_office_studio/studio_mail_mailbox_store.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
 import 'support/mail_flag_journal.dart';
@@ -288,6 +289,97 @@ Future<void> _membership(
   } finally {
     session.dispose();
   }
+}
+
+Future<void> _mappedMove(
+  TestMailFlagJournal fixture, {
+  required bool projectCache,
+}) async {
+  final source = fixture.plan('mapped-receipt', count: 1);
+  final plan = MailBulkFlagPlan(
+    id: source.id,
+    mailbox: source.mailbox,
+    action: MailBulkFlagAction.move,
+    messages: source.messages,
+    destination: MailMailboxId(
+      'Archive/Projects 2026',
+      account: source.mailbox.account,
+    ),
+  );
+  if (projectCache) {
+    final localSession = MailAccountSession(fixture.account);
+    try {
+      final localSource = MailMailboxId('INBOX', account: fixture.account);
+      final localDestination = MailMailboxId(
+        'Archive/Projects 2026',
+        account: fixture.account,
+      );
+      final header = studioMailCachedHeader(
+        MailHeaderRecord(
+          id: MailMessageId('source-provider-id'),
+          remote: MailImapIdentity(
+            mailbox: localSource,
+            uidValidity: 71,
+            uid: 1,
+          ),
+          envelope: MailEnvelope(subject: 'Saved move subject'),
+        ),
+      );
+      TestMailFlagJournal.success(
+        await fixture.repository.saveMailboxView(
+          MailMailbox(id: localSource, displayName: 'Inbox'),
+          [header],
+          expectedRevision: null,
+          hasMore: false,
+          lease: localSession.begin(),
+        ),
+      );
+      TestMailFlagJournal.success(
+        await fixture.repository.saveMailboxView(
+          MailMailbox(id: localDestination, displayName: 'Projects'),
+          [],
+          expectedRevision: null,
+          hasMore: false,
+          lease: localSession.begin(),
+        ),
+      );
+    } finally {
+      localSession.dispose();
+    }
+  }
+  final session = MailAccountSession(plan.mailbox.account);
+  try {
+    final report = await MailBulkFlagCoordinator().run(
+      plan: plan,
+      lease: session.begin(),
+      isScopeCurrent: () => true,
+      journal: fixture.bind(plan, subjects: ['Saved move subject']),
+      apply: (command, _) async {
+        fixture.dispatched.add(command);
+        return MailBulkFlagAttempt.confirmed(
+          identityTransition: MailMoveIdentityTransition(
+            operationId: command.id,
+            source: command.message,
+            sourceMailbox: plan.mailbox,
+            destination: MailImapIdentity(
+              mailbox: plan.destination!,
+              uidValidity: 81,
+              uid: 201,
+            ),
+            destinationMailbox: plan.destination!,
+            destinationMessageId: MailMessageId('new-provider-id'),
+          ),
+        );
+      },
+    );
+    expect(report.confirmedCount, 1);
+    expect(report.persistenceProblem, isNull);
+  } finally {
+    session.dispose();
+  }
+  await fixture.reopen();
+  final stored = (await fixture.store.load(plan.id))!;
+  expect(stored.identityTransitions.single.cacheProjected, projectCache);
 }
 
 void main() {
@@ -609,6 +701,83 @@ void main() {
       expect(fixture.dispatched, hasLength(1));
     },
   );
+
+  for (final language in StudioLanguage.values) {
+    for (final projected in [false, true]) {
+      testWidgets(
+        '${language.name} saved move acknowledgement projected=$projected fits narrow text',
+        (tester) async {
+          final fixture = (await tester.runAsync(() async {
+            final fixture = await TestMailFlagJournal.create();
+            await _mappedMove(fixture, projectCache: projected);
+            return fixture;
+          }))!;
+          addTearDown(() => settleMailJournal(tester, fixture.dispose));
+          final store = _RecordingStore(fixture.store);
+          final strings = StudioStrings(language);
+          await _show(
+            tester,
+            store,
+            language: language,
+            size: const Size(390, 844),
+            scale: 1.6,
+          );
+          await _tap(tester, 'studio-mail-activity-mapped-receipt');
+          expect(_key('studio-mail-activity-move-0'), findsOneWidget);
+          expect(find.text(strings.mailActivityMoveEvidence), findsOneWidget);
+          final status = find.text(
+            strings.mailActivityMoveCacheStatus(projected),
+          );
+          expect(status, findsOneWidget);
+          await tester.ensureVisible(status);
+          await tester.pumpAndSettle();
+          await _capture(tester, '${language.name}-move-ack-$projected');
+          expect(_key('studio-mail-activity-check-location'), findsNothing);
+          expect(
+            _key('studio-mail-activity-close').hitTestable(),
+            findsOneWidget,
+          );
+          expect(store.binds, 0);
+          expect(fixture.dispatched, hasLength(1));
+          expect(tester.takeException(), isNull);
+        },
+      );
+    }
+  }
+
+  testWidgets('activity rejects a mismatched saved move evidence index', (
+    tester,
+  ) async {
+    final fixture = (await tester.runAsync(() async {
+      final fixture = await TestMailFlagJournal.create();
+      await _mappedMove(fixture, projectCache: false);
+      return fixture;
+    }))!;
+    addTearDown(() => settleMailJournal(tester, fixture.dispose));
+    final store = _RecordingStore(fixture.store)
+      ..loadOverride = (id) async {
+        final saved = (await fixture.store.load(id))!;
+        final entry = saved.identityTransitions.single;
+        return MailStoredFlagBatch(
+          summary: saved.summary,
+          report: saved.report,
+          subjects: saved.subjects,
+          identityTransitions: [
+            MailStoredMoveIdentityTransition(
+              index: 999,
+              transition: entry.transition,
+              recordedAt: entry.recordedAt,
+              cacheProjected: entry.cacheProjected,
+            ),
+          ],
+        );
+      };
+    await _show(tester, store);
+    await _tap(tester, 'studio-mail-activity-mapped-receipt');
+    expect(_key('studio-mail-activity-error'), findsOneWidget);
+    expect(_key('studio-mail-activity-move-999'), findsNothing);
+    expect(tester.takeException(), isNull);
+  });
 
   for (final language in StudioLanguage.values) {
     for (final action in [MailBulkFlagAction.move, MailBulkFlagAction.delete]) {

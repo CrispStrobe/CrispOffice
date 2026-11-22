@@ -2541,6 +2541,12 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         },
         apply: (operation, lease) async {
           if (operation is MailMove || operation is MailDelete) {
+            if (loader is StudioMailMembershipReceiptActions) {
+              return MailBulkFlagAttempt.fromReceiptResult(
+                await (loader as StudioMailMembershipReceiptActions)
+                    .applyMembershipWithReceipt(operation, lease),
+              );
+            }
             return MailBulkFlagAttempt.fromResult(
               await (loader as StudioMailMembershipActions).applyMembership(
                 operation,

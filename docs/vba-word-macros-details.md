@@ -141,7 +141,7 @@ invalid cell rolls back a multi-step run. Validation, tool allowlists, mutation
 grants, step budgets, recording, replay, CLI and MCP use the ordinary transaction
 boundary. Existing native `docx.tableCellText` behavior remains unchanged.
 
-Cell ranges expose the supported `Text` setter, `InsertBefore` method, and
+Cell ranges expose the supported `Text` setter, `InsertBefore`/`InsertAfter` methods, and
 the `Font` and `ParagraphFormat` selectors described below. Text reads, `Count`, table/row/cell
 enumeration, `Rows`/`Columns`, table creation or merging and arbitrary range
 offsets remain unsupported. Paragraph or whole-story `Range.Text` assignment is
@@ -243,8 +243,9 @@ Unicode and XML-escaped characters are allowed. Line/paragraph/cell controls,
 isolated surrogates and XML-invalid characters remain refused. Use the shared
 [portable text constants](vba-macros-details.md#portable-text-constants) for
 source computations and normalize unsupported controls before publication.
-`InsertAfter`, structural text insertion, arbitrary offsets, multiple paragraphs
-per cell and live document reads remain separate work.
+Direct cell `InsertAfter` is covered by the append contract below. Projected
+paragraph `InsertAfter`, structural text insertion, arbitrary offsets,
+multiple paragraphs per cell and live document reads remain separate work.
 
 The [complete 2×2 BAS](../packages/quds_office_engine/example/macros/word_table_prefix.bas)
 combines source cleanup, named helper rebinding, direct/projected prefixes and
@@ -256,6 +257,101 @@ Microsoft's [Range.InsertBefore](https://learn.microsoft.com/en-us/office/vba/ap
 and [Paragraph.Range](https://learn.microsoft.com/en-us/office/vba/api/word.paragraph.range)
 specify the source API. Full Word permits broader structures and controls than
 this bounded dialect.
+
+## Appending existing cell text
+
+Direct `Cell.Range.InsertAfter` appends a required String to the current text
+of an existing supported cell. A retained cell-range alias still denotes the
+entire cell after the append, so later text controls and Font writes include
+both original and inserted characters. Repeated calls append in source order;
+repeating the macro appends to the text currently in the document.
+
+```vb
+Sub AppendLabel(ByVal target As Range, ByVal label As String)
+    target.InsertAfter Text:=label
+End Sub
+
+Sub Main()
+    Dim selected As Range
+    Set selected = ActiveDocument.Tables.Item(1).Cell(2, 1).Range
+    AppendLabel label:="Ready", target:=selected
+    With selected
+        Call .InsertAfter(Text:=vbTab & "Reviewed")
+        .Font.Bold = True
+    End With
+End Sub
+```
+
+Bare, parenthesized and `Call` forms accept the required String by position or
+the case-insensitive official name `Text:=`. Missing, repeated, omitted,
+unknown or extra arguments fail with positioned source diagnostics. Typed
+Document/Table/Cell/Range aliases, nested `With`, and named `ByVal` helpers
+preserve the captured table/row/column selector. The receiver is evaluated
+before the argument, and each expression runs once. Rebinding a `ByVal`
+parameter cannot retarget the caller's range.
+
+The emitted operation is deliberately separate from ordinary paragraph text
+replacement:
+
+```json
+{
+  "tool": "docx.tableCellRangeInsertAfter",
+  "arguments": {"table": 0, "row": 1, "column": 0, "text": "Ready"}
+}
+```
+
+Native table/row/column indexes are zero-based; VBA selectors are one-based.
+The native operation requires exactly those four arguments, with no offset,
+story override or omitted default selector. Source compilation does not open
+the document or infer a cell's current text length.
+
+The same guarded table-cell resolver checks a complete unmerged main-story
+grid, unique acyclic ownership, one ordinary paragraph, editable protection
+state and supported source XML. It retains existing paragraph and table
+properties, original characters, every run and its distinct formatting,
+unselected content and opaque package parts. Merged/nested tables, multiple
+paragraphs, fields, hyperlinks, bookmarks, revisions, anchored content and
+ambiguous native packets remain refused. Unsupported neighboring table
+packets can also prevent admission.
+
+Mutation first clones the paragraph's runs, appends one separate run and
+publishes the detached inline list only after validation. Original runs are
+not coalesced. Appended text inherits the last existing text character's
+formatting; if all retained runs are empty, it inherits the last empty run;
+if there are no runs, it uses retained paragraph-mark formatting or defaults.
+Trailing zero-width runs remain in their original order before the appended
+run and do not override a nonempty cell's last-character formatting. These
+are the explicit Quds native formatting rules, not an installed Word-host
+observation. Paragraph and cell delimiters remain structural and unchanged.
+
+An empty suffix still validates the target and consumes an operation, but
+adds no run and leaves inline identity unchanged. Tabs, XML-escaped characters
+and well-formed Unicode are accepted. Paragraph/line/cell control characters,
+invalid XML characters and unpaired UTF-16 surrogates are refused. String,
+work, emitted-operation and encoded-plan budgets remain enforced; an insertion
+cannot interrupt a pending custom line-spacing pair.
+
+Only a direct cell Range has this append contract. A projected
+`Cell.Range.Paragraphs(1).Range` and body/header/footer paragraph ranges keep
+their `InsertAfter` refusal. Known unsupported local origins are checked even
+in inactive source; generic `ByVal Range` parameters are checked again against
+the actual selector during evaluation. No partial plan is returned on a source
+failure. Native validation/run failures preserve the session bytes, revision,
+recording and previously published CLI output. Tool allowlists, mutation
+permissions and cancellation use the ordinary macro transaction.
+
+The [complete BAS](../packages/quds_office_engine/example/macros/word_table_suffix.bas)
+fills an empty cell, appends to rich existing text, rebinds a local helper and
+formats the retained range. The [independent corpus](../packages/quds_office_engine/test/fixtures/vba_conformance/word_cell_suffix_v1.json)
+and [local qualification](validation/word-vba-cell-suffix-20261122/README.md)
+cover compiler/native/CLI/MCP behavior and VM/JavaScript agreement.
+Microsoft's [Table.Cell](https://learn.microsoft.com/en-us/office/vba/api/word.table.cell),
+[Range.Cells](https://learn.microsoft.com/en-us/office/vba/api/word.range.cells)
+and [table examples](https://learn.microsoft.com/en-us/office/vba/word/concepts/working-with-word/working-with-tables)
+show direct cell insertion. Its
+[Range.InsertAfter documentation](https://learn.microsoft.com/en-us/office/vba/api/word.range.insertafter)
+describes paragraph-mark behavior separately. This increment does not claim
+full Word object-model or installed-host differential parity.
 
 ## Formatting existing table cells
 
@@ -350,9 +446,9 @@ serialization behavior. Cell run formatting uses detached copies before
 publication, preventing shared public-model run properties or imported-value
 maps from modifying an unrelated cell or body run.
 
-Direct cell-range `Style`, `Shading`, `ListFormat`, `InsertAfter`
-and arbitrary subranges remain unavailable. `InsertBefore` is supported by
-the dedicated prefix operation described below. Explicit `Paragraphs(1)`
+Direct cell-range `Style`, `Shading`, `ListFormat`
+and arbitrary subranges remain unavailable. `InsertBefore` and `InsertAfter`
+use the dedicated cell insertion operations described above. Explicit `Paragraphs(1)`
 selection is described below. Property reads, `Duplicate` and
 whole-object Font/ParagraphFormat assignment remain unsupported. These are
 deliberate bounds on the Quds adapter, including its treatment of structural
@@ -1771,9 +1867,11 @@ Microsoft's paragraph range includes its ending paragraph mark. Its
 [InsertAfter documentation](https://learn.microsoft.com/en-us/office/vba/api/word.range.insertafter)
 explains how that affects insertion into the next paragraph. Quds's native
 `replaceText` addresses paragraph **content**, so this dialect deliberately
-exposes only insertion at the beginning. `Range.Text`, `InsertAfter`, range
-endpoints, and structural characters are unsupported instead of being lowered
-to a different paragraph-mark behavior.
+exposes only insertion at the beginning of these paragraph ranges. Their
+`Range.Text`, `InsertAfter`, range endpoints and structural characters remain
+unsupported instead of being lowered to a different paragraph-mark behavior.
+Direct `Cell.Range.InsertAfter` has a separate guarded contract above; a
+projected cell paragraph Range does not acquire that behavior.
 
 Font operations likewise affect the paragraph's current **text**, without
 formatting its paragraph mark. Native `runFormat` rejects an empty text range.

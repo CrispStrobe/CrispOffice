@@ -66,10 +66,12 @@ String _item(
   String key = 'fresh-key',
   bool read = false,
   bool flagged = false,
+  String? parent = 'inbox-id',
   List<int>? mime,
 }) => _success(
   'GetItem',
   '<m:Items><t:Message><t:ItemId Id="$id" ChangeKey="$key"/>'
+      '${parent == null ? '' : '<t:ParentFolderId Id="$parent"/>'}'
       '${mime == null ? '' : '<t:MimeContent>${base64.encode(mime)}</t:MimeContent>'}'
       '<t:Subject>Exchange message</t:Subject><t:IsDraft>false</t:IsDraft>'
       '<t:From><t:Mailbox><t:EmailAddress>sender@example.test</t:EmailAddress>'
@@ -221,6 +223,247 @@ MailPreparedMessage _prepared({List<String>? recipients}) =>
     );
 
 void main() {
+  for (final stableIdentity in [false, true]) {
+    test(
+      'MoveItem ${stableIdentity ? 'stable' : 'replacement'} ID is verified in the exact destination',
+      () async {
+        final fixture = _Fixture();
+        final newId = stableIdentity ? 'one' : 'replacement-id';
+        fixture.scripts.add([
+          (
+            'GetItem',
+            (envelope) {
+              expect(envelope, contains('item:ParentFolderId'));
+              expect(envelope, isNot(contains('item:Subject')));
+              return _response('GetItem', _membershipItem('one'));
+            },
+          ),
+          (
+            'MoveItem',
+            (envelope) {
+              expect(
+                envelope,
+                contains('<m:ReturnNewItemIds>true</m:ReturnNewItemIds>'),
+              );
+              expect(envelope, contains('Id="one" ChangeKey="current-key"'));
+              return _response(
+                'MoveItem',
+                _success(
+                  'MoveItem',
+                  '<m:Items><t:Message><t:ItemId Id="$newId" ChangeKey="new-key"/></t:Message></m:Items>',
+                ),
+              );
+            },
+          ),
+          if (!stableIdentity)
+            (
+              'GetItem',
+              (envelope) {
+                expect(envelope, contains('Id="one"'));
+                return _response(
+                  'GetItem',
+                  _error('GetItem', 'ErrorItemNotFound'),
+                );
+              },
+            ),
+          (
+            'GetItem',
+            (envelope) {
+              expect(envelope, contains('Id="$newId"'));
+              expect(envelope, contains('item:ParentFolderId'));
+              expect(envelope, isNot(contains('item:Subject')));
+              return _response(
+                'GetItem',
+                _membershipItem(newId, parent: 'destination'),
+              );
+            },
+          ),
+        ]);
+        final command = MailMove(
+          id: 'move:0',
+          message: _identity('one'),
+          destination: MailMailboxId('destination', account: _account),
+        );
+        final receipt = _value(
+          await fixture.provider().applyWithReceipt(
+            command,
+            fixture.session.begin(),
+          ),
+        );
+        final transition = receipt.identityTransition!;
+        expect(transition.matches(command, sourceMailbox: _mailbox), isTrue);
+        expect(transition.destination, _identity(newId));
+        expect(transition.destinationMessageId, ewsMessageId(_identity(newId)));
+        expect(fixture.clients.single.steps, isEmpty);
+        expect(
+          fixture.clients.single.requests.where((request) => request.$3),
+          hasLength(1),
+        );
+      },
+    );
+  }
+
+  test(
+    'MoveItem without returned ID preserves generic success after exact source check',
+    () async {
+      final fixture = _Fixture();
+      fixture.scripts.add([
+        ('GetItem', (_) => _response('GetItem', _membershipItem('one'))),
+        (
+          'MoveItem',
+          (_) => _response('MoveItem', _success('MoveItem', '<m:Items/>')),
+        ),
+        (
+          'GetItem',
+          (_) => _response('GetItem', _error('GetItem', 'ErrorItemNotFound')),
+        ),
+      ]);
+      final receipt = _value(
+        await fixture.provider().applyWithReceipt(
+          MailMove(
+            id: 'move:0',
+            message: _identity('one'),
+            destination: MailMailboxId('destination', account: _account),
+          ),
+          fixture.session.begin(),
+        ),
+      );
+      expect(receipt.identityTransition, isNull);
+      expect(
+        fixture.clients.single.requests.where(
+          (request) => request.$1 == 'GetItem',
+        ),
+        hasLength(2),
+      );
+      expect(fixture.clients.single.steps, isEmpty);
+    },
+  );
+
+  test(
+    'MoveItem to its observed source folder fails before mutation',
+    () async {
+      final fixture = _Fixture();
+      fixture.scripts.add([
+        ('GetItem', (_) => _response('GetItem', _membershipItem('one'))),
+      ]);
+      final result = await fixture.provider().applyWithReceipt(
+        MailMove(
+          id: 'move:0',
+          message: _identity('one'),
+          destination: _mailbox,
+        ),
+        fixture.session.begin(),
+      );
+      _problem(result, MailProblemCode.invalidInput);
+      expect(
+        (result as MailFailure<MailMutationReceipt>)
+            .problem
+            .mutationMayHaveOccurred,
+        isFalse,
+      );
+      expect(
+        fixture.clients.single.requests.where((request) => request.$3),
+        isEmpty,
+      );
+    },
+  );
+
+  for (final invalidDestination in [
+    'wrong-id',
+    'wrong-parent',
+    'missing-parent',
+    'missing-item',
+  ]) {
+    test(
+      'MoveItem $invalidDestination evidence stays uncertain without inferred destination',
+      () async {
+        final fixture = _Fixture();
+        fixture.scripts.add([
+          ('GetItem', (_) => _response('GetItem', _membershipItem('one'))),
+          (
+            'MoveItem',
+            (_) => _response(
+              'MoveItem',
+              _success(
+                'MoveItem',
+                '<m:Items><t:Message><t:ItemId Id="replacement" ChangeKey="new"/></t:Message></m:Items>',
+              ),
+            ),
+          ),
+          (
+            'GetItem',
+            (_) => _response('GetItem', _error('GetItem', 'ErrorItemNotFound')),
+          ),
+          (
+            'GetItem',
+            (_) => _response('GetItem', switch (invalidDestination) {
+              'wrong-id' => _membershipItem('other', parent: 'destination'),
+              'wrong-parent' => _membershipItem('replacement', parent: 'other'),
+              'missing-parent' => _item('replacement', parent: null),
+              _ => _error('GetItem', 'ErrorItemNotFound'),
+            }),
+          ),
+        ]);
+        final result = await fixture.provider().applyWithReceipt(
+          MailMove(
+            id: 'move:0',
+            message: _identity('one'),
+            destination: MailMailboxId('destination', account: _account),
+          ),
+          fixture.session.begin(),
+        );
+        _problem(result, MailProblemCode.conflict);
+        expect(
+          (result as MailFailure<MailMutationReceipt>)
+              .problem
+              .mutationMayHaveOccurred,
+          isTrue,
+        );
+        expect(
+          fixture.clients.single.requests.where((request) => request.$3),
+          hasLength(1),
+        );
+        expect(fixture.clients.single.steps, isEmpty);
+      },
+    );
+  }
+
+  for (final payload in [
+    '<m:Items><t:Message><t:ItemId Id="replacement" ChangeKey="key"/></t:Message><t:Message><t:ItemId Id="extra" ChangeKey="key"/></t:Message></m:Items>',
+    '<m:Items><t:Message><t:ItemId Id="" ChangeKey="key"/></t:Message></m:Items>',
+    '<m:Items><t:Message><t:ItemId Id="replacement"/></t:Message></m:Items>',
+  ]) {
+    test(
+      'MoveItem malformed ID response is uncertain without a replacement lookup ($payload)',
+      () async {
+        final fixture = _Fixture();
+        fixture.scripts.add([
+          ('GetItem', (_) => _response('GetItem', _membershipItem('one'))),
+          (
+            'MoveItem',
+            (_) => _response('MoveItem', _success('MoveItem', payload)),
+          ),
+        ]);
+        final result = await fixture.provider().applyWithReceipt(
+          MailMove(
+            id: 'move:0',
+            message: _identity('one'),
+            destination: MailMailboxId('destination', account: _account),
+          ),
+          fixture.session.begin(),
+        );
+        _problem(result, MailProblemCode.conflict);
+        expect(
+          (result as MailFailure<MailMutationReceipt>)
+              .problem
+              .mutationMayHaveOccurred,
+          isTrue,
+        );
+        expect(fixture.clients.single.requests, hasLength(2));
+      },
+    );
+  }
+
   test('capabilities explicitly include recoverable delete', () async {
     final fixture = _Fixture();
     fixture.scripts.add([

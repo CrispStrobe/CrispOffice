@@ -40,6 +40,14 @@ class GenericImapResult {
   /// Optional response code as text
   String? responseCode;
 
+  /// All raw COPYUID response codes in arrival order, including duplicates.
+  /// Kept separately so an unrelated tagged code cannot hide move evidence.
+  /// Consumers must validate cardinality and bound UID-set parsing themselves.
+  final List<String> copyUidResponseCodes = <String>[];
+
+  /// A COPYUID response code was present but lacked its closing delimiter.
+  bool malformedCopyUidResponse = false;
+
   /// Optional details as text
   String? details;
 

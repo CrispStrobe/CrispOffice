@@ -2,6 +2,28 @@
 
 ## Unreleased
 
+- Add schema v15 for authoritative move identity transitions. Retain confirmed
+  replacement identities with journal receipts and atomically reconcile eligible
+  retained cache memberships behind a dispatch epoch fence. Preserve original
+  capture times, coverage and provider cursors; keep source message bytes and
+  avoid inventing destination bodies. Stale or unavailable cache projections
+  retain the acknowledgement and require explicit refresh. Earlier receipt
+  schemas migrate without inventing mappings or changing uncertainty.
+  Fence both retained browse views and null-cursor synchronization snapshots;
+  preserve durable sync fences through cache cleanup. Isolate optional cache
+  growth in a savepoint so a cache quota cannot discard an admitted receipt.
+  Reject backward journal timestamps atomically, including after reply capture.
+
+- Bound move projection by the complete destination browse-window metadata,
+  including retained destination identities. Preserve the confirmed receipt
+  without cache writes if either browse window is absent or the combined window
+  would exceed quota. Advance both existing browse revisions even when a moved
+  synchronized item was outside the loaded source window, rejecting stale
+  browse writes while retaining the original capture times and bodies. Isolate
+  optional projection in a required savepoint so cache growth that exceeds the
+  account quota cannot discard an otherwise admissible confirmed receipt;
+  receipt quota and unrelated storage failures still roll back atomically.
+
 - Add schema v14 for bounded latest membership evidence on uncertain Move/Delete
   receipts. Preserve all earlier schemas transactionally; retain original
   uncertainty and cleanup protection. Fence explicit checks by exact identity,

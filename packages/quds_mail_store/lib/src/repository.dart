@@ -20,13 +20,15 @@ part 'compose_settings.dart';
 part 'flag_journal.dart';
 part 'flag_reconciliation.dart';
 part 'membership_reconciliation.dart';
+part 'move_identity_transitions.dart';
 
 /// One profile in one database, with native/browser setup in separate entries.
 ///
 /// An injected executor must have exclusive ownership for the lifetime of this
 /// repository. The supplied platform openers enforce that ownership. Ordinary
 /// SQLite stores are not encrypted; the host owns the app container and vault.
-final class SqliteMailRepository implements MailRepository {
+final class SqliteMailRepository
+    implements MailRepository, MailSyncSnapshotRepository {
   SqliteMailRepository._(this._db, this.profile, this.limits, this._clock);
 
   final MailStoreDatabase _db;
@@ -289,6 +291,7 @@ final class SqliteMailRepository implements MailRepository {
         : MailCursor(
             mailbox: mailbox,
             value: rows.single.read<String>('cursor'),
+            repositoryRevision: await _mailboxMoveRevision(mailbox),
           );
   }
 
@@ -300,9 +303,55 @@ final class SqliteMailRepository implements MailRepository {
       });
 
   @override
+  Future<MailResult<MailSyncRepositorySnapshot>> readSyncSnapshot(
+    MailMailboxId mailbox,
+  ) => _run(
+    () => _db.transaction(() async {
+      await _account(mailbox.account);
+      _id(mailbox.value);
+      return MailSyncRepositorySnapshot(
+        mailbox: mailbox,
+        cursor: await _cursor(mailbox),
+        revision: await _mailboxMoveRevision(mailbox),
+      );
+    }),
+  );
+
+  @override
+  Future<MailResult<MailUnit>> commitSyncPageWithSnapshot(
+    MailSyncPage page, {
+    required MailSyncRepositorySnapshot expectedSnapshot,
+    required MailOperationLease lease,
+  }) {
+    if (expectedSnapshot.mailbox != page.mailbox) {
+      return Future.value(
+        const MailFailure(MailProblem(MailProblemCode.invalidInput)),
+      );
+    }
+    return _commitSyncPage(
+      page,
+      expectedCursor: expectedSnapshot.cursor,
+      expectedMoveRevision: expectedSnapshot.revision,
+      lease: lease,
+    );
+  }
+
+  @override
   Future<MailResult<MailUnit>> commitSyncPage(
     MailSyncPage page, {
     required MailCursor? expectedCursor,
+    required MailOperationLease lease,
+  }) => _commitSyncPage(
+    page,
+    expectedCursor: expectedCursor,
+    expectedMoveRevision: expectedCursor?.repositoryRevision ?? 0,
+    lease: lease,
+  );
+
+  Future<MailResult<MailUnit>> _commitSyncPage(
+    MailSyncPage page, {
+    required MailCursor? expectedCursor,
+    required int expectedMoveRevision,
     required MailOperationLease lease,
   }) => _run(
     () => _commit(() async {
@@ -318,7 +367,8 @@ final class SqliteMailRepository implements MailRepository {
       }
       final current = await _cursor(page.mailbox);
       if (current?.value != expectedCursor?.value ||
-          (current == null) != (expectedCursor == null)) {
+          (current == null) != (expectedCursor == null) ||
+          await _mailboxMoveRevision(page.mailbox) != expectedMoveRevision) {
         _fail(MailProblemCode.conflict);
       }
       final provider = row.read<String>('provider');
@@ -793,6 +843,18 @@ final class SqliteMailRepository implements MailRepository {
           'checked_at',
         ],
       ),
+      (
+        'move_identity_transitions',
+        [
+          'batch',
+          'position',
+          'destination_remote',
+          'destination_message',
+          'recorded_at',
+          'cache_projected',
+        ],
+      ),
+      ('mailbox_move_revisions', ['mailbox', 'revision']),
       ('credential_cleanup', ['reference']),
       ('mail_fts', ['message', 'content']),
       ('index_state', ['message']),

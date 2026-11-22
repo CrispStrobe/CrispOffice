@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Return authoritative move identities through an optional receipt port while
+  preserving generic `apply`. Validate single-UID IMAP COPYUID without expanding
+  UID sets; reject malformed/ambiguous evidence and retain generic confirmation
+  when no mapping was supplied. EWS requests new IDs, confirms the exact new
+  parent and original disappearance when applicable, and never derives a
+  replacement from absence alone. Lost acknowledgements remain uncertain.
+
 - Add read-only current-location observations for uncertain Move/Delete:
   exact IMAP source UID/generation and Deleted marker, Gmail's complete label
   set/Trash, and Graph/EWS parent folders with resolved Deleted Items IDs.

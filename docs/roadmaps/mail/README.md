@@ -11,13 +11,22 @@ archive, Studio workflows and remaining MailStore parity work.
 
 ## Desktop mail parity: ordered increments
 
+The [authoritative move continuation](identity-transitions.md) preserves IMAP
+COPYUID and EWS replacement identities through the durable journal. Exact
+retained folder entries reconcile atomically when local evidence is current;
+stale state or cache limits keep the acknowledgement and require refresh.
+Null-safe synchronization snapshots prevent older pages from restoring moved
+messages. Studio translates stable account/cache identities and shows saved
+acknowledgement status in EN/DE/AR. Durable bulk organization is next.
+
 The [membership recovery continuation](membership-recovery.md) adds explicit
 current-location checks for uncertain Move/Delete in connected Mail activity.
 IMAP UID generations/deletion markers, Gmail labels and Graph/EWS parent folders
 have separate exact-identity semantics. Latest observations persist with check
 times while original uncertainty, cleanup protection and dated cache views stay
-intact. Identity-transition capture and cache reconciliation precede broader
-durable bulk organization and connected multi-account navigation.
+intact. IMAP/EWS identity transitions and guarded cache reconciliation are
+continued above, preceding broader durable bulk organization and connected
+multi-account navigation.
 
 The [durable Move/Delete continuation](durable-mutations.md) journals connected
 single-message organization with exact destinations, pre-dispatch persistence,
@@ -75,7 +84,7 @@ plan rather than treating provider connectivity as full product parity.
 | Order | Workflow | Current position | Next acceptance boundary |
 | --- | --- | --- | --- |
 | 1 | Recoverable composition | Multiple account-scoped local drafts, independent reply/forward drafts, attachment/reply recovery and interrupted-send warnings; offline draft entry for verified IMAP (including discovery), EWS, Gmail and Microsoft 365 accounts | Provider-side Drafts synchronization with explicit conflicts and repository-backed offline sessions |
-| 2 | Everyday mailbox workspace (M04W/M06) | Repository-observed loaded/cached sessions, durable single/bulk flag receipts and single-message Move/Delete, fresh flag checks and saved provider-specific membership observations, resumable folder-header synchronization and explicit bounded offline body/attachment downloads across IMAP, EWS, Gmail and Microsoft 365 | Complete shared synchronized workspace, durable retention policy/background scheduling, unified inbox, authoritative identity transitions/cache reconciliation and bulk organization |
+| 2 | Everyday mailbox workspace (M04W/M06) | Repository-observed loaded/cached sessions, durable single/bulk flag receipts and single-message Move/Delete, fresh flag checks, saved provider-specific membership observations and authoritative IMAP/EWS move/cache reconciliation, resumable folder-header synchronization and explicit bounded offline body/attachment downloads across IMAP, EWS, Gmail and Microsoft 365 | Complete shared synchronized workspace, durable retention policy/background scheduling, unified inbox, broader provider membership reconciliation and bulk organization |
 | 3 | Sending and outbox (M07) | Native durable Outbox, atomic draft transfer/edit-copy, frozen MIME/envelopes, review/export, restart recovery, explicit send/retry/cancel, saved UTC schedules and a ten-second Undo window with explicit foreground resume across SMTP/EWS/Gmail/Microsoft 365 | Account-owned background execution, provider-specific Sent reconciliation and installed/live-provider qualification |
 | 4 | Efficient discovery and organization | Independent archive FTS, saved archive searches, Boolean header queries, bounded saved-header discovery, persistent named searches with exact account/folder scopes, missing-folder recovery and optional foreground refresh, expandable loaded conversations and observed counts, stable local sorting and journaled visible-selection read/flag commands | Repository-event-driven shared saved views, indexed body/server search, persistent cross-folder conversations, tags/categories, broader durable bulk commands and ordered rule execution with preview/recovery |
 | 5 | Rich authoring and Office workflows (M07/M08) | Word-based plain text, To/Cc/Bcc, reply all, inert text quotes, attachments, locally qualified account signatures and reusable Quick Text | Identity routing/full-message templates, HTML alternatives, inline images, attach current document/PDF and edit a copy of a received attachment |
