@@ -107,7 +107,21 @@ $_cell.Paragraphs(1).Range.InsertBefore Text:="second: "
         input,
         format: OfficeMacroFormat.docx,
         policy: policy,
-      )..startRecording('Denied prefixes');
+      );
+      if (policy.allowMutation) {
+        session.startRecording('Denied prefixes');
+      } else {
+        expect(
+          () => session.startRecording('Denied prefixes'),
+          throwsA(
+            isA<OfficeMacroException>().having(
+              (error) => error.code,
+              'code',
+              'permission_denied',
+            ),
+          ),
+        );
+      }
       await expectLater(
         session.run(
           portable.wordCellPrefixSource(File(_example).readAsStringSync()),
@@ -116,7 +130,11 @@ $_cell.Paragraphs(1).Range.InsertBefore Text:="second: "
       );
       expect(session.bytes, input);
       expect(session.revision, 0);
-      expect(session.stopRecording().steps, isEmpty);
+      if (policy.allowMutation) {
+        expect(session.stopRecording().steps, isEmpty);
+      } else {
+        expect(session.isRecording, isFalse);
+      }
     });
   }
 
@@ -262,7 +280,7 @@ End Sub
     final error = _structured(response)['error']! as Map<String, Object?>;
     expect(error['code'], 'vba_name_error');
     expect(error['moduleName'], 'CellPrefixIntegration');
-    expect(error['line'], 5);
+    expect(error['line'], 4);
     expect(session.bytes, input);
     expect(session.revision, 0);
   });

@@ -201,9 +201,9 @@ void main() {
         expect(document.sections.first.header.single.text, 'Header');
         final saved = WordSerializer().writeBytes(document);
         expect(
-          OpcPackage.openBytes(saved)
-              .getPart('/word/vbaProject.bin')!
-              .readBytes(),
+          OpcPackage.openBytes(
+            saved,
+          ).getPart('/word/vbaProject.bin')!.readBytes(),
           [0, 1, 7, 255, 48, 66],
         );
         document = WordDeserializer().readBytes(saved);
@@ -362,9 +362,9 @@ void main() {
         isNot(contains('empty-retained')),
       );
       final bytes = WordSerializer().writeBytes(document);
-      final xml = OpcPackage.openBytes(bytes)
-          .getPart('/word/document.xml')!
-          .readText();
+      final xml = OpcPackage.openBytes(
+        bytes,
+      ).getPart('/word/document.xml')!.readText();
       expect(RegExp('empty-retained').allMatches(xml), hasLength(1));
       document = WordDeserializer().readBytes(bytes);
     }
@@ -413,9 +413,9 @@ void main() {
       for (var cycle = 0; cycle < 3; cycle++) {
         _apply(document, _arguments(text: '[$cycle]'));
         final bytes = WordSerializer().writeBytes(document);
-        final xml = OpcPackage.openBytes(bytes)
-            .getPart('/word/document.xml')!
-            .readText();
+        final xml = OpcPackage.openBytes(
+          bytes,
+        ).getPart('/word/document.xml')!.readText();
         expect(xml, contains('paragraph-retained'));
         expect(xml, contains('run-retained'));
         expect(xml, contains('urn:prefix-test'));
@@ -484,9 +484,9 @@ void main() {
     ),
     (
       'multiple paragraphs',
-      (d) =>
-          _tables(d).first.rows.first.cells.first.blocks
-              .add(_paragraph('Second paragraph')),
+      (d) => _tables(
+        d,
+      ).first.rows.first.cells.first.blocks.add(_paragraph('Second paragraph')),
     ),
     (
       'field result',
@@ -617,8 +617,9 @@ void main() {
     'a later invalid cell discards earlier prefixes during validation and run',
     () async {
       final document = _document();
-      _tables(document).last.rows.last.cells.last.blocks
-          .add(_paragraph('Unsupported second paragraph'));
+      _tables(document).last.rows.last.cells.last.blocks.add(
+        _paragraph('Unsupported second paragraph'),
+      );
       final input = WordSerializer().writeBytes(document);
       final session = OfficeMacroSession(input, format: OfficeMacroFormat.docx);
       session.startRecording('Atomic prefix attempt');
