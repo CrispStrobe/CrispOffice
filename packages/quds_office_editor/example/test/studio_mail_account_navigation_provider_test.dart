@@ -952,6 +952,84 @@ void main() {
       },
     );
 
+    testWidgets(
+      '${kind.name}: Close during Refresh does not retry a newly failed observer cancellation',
+      (tester) async {
+        final harness = _Harness(kind);
+        harness.owner.snapshot = const StudioMailStoredDraft(
+          draft: _draft,
+          submissionUncertain: true,
+        );
+        await _show(tester, harness);
+        await _connect(tester, harness);
+        final mailbox = harness.owner.mailboxStore;
+        final cancellation = Completer<void>();
+        mailbox.cancelGate = cancellation;
+        await _press(tester, _icon(_strings.refresh));
+        await _until(tester, () => mailbox.cancellations == 1);
+        expect(harness.providers.single.headers, 1);
+        expect(mailbox.cancellationsFinished, 0);
+
+        await _press(tester, _icon(_strings.close));
+        expect(harness.providers.single.lease!.isCurrent, isFalse);
+        expect(harness.owner.closeCalls, 0);
+        expect(mailbox.cancellations, 1);
+        expect(find.byType(StudioMailEwsDialog), findsOneWidget);
+
+        // The in-flight attempt fails only after Close began. A fresh attempt
+        // would succeed, but this Close has no authority to retry that failure.
+        mailbox.cancelGate = null;
+        cancellation.completeError(
+          const StudioMailDraftStoreException(MailProblemCode.storageFailure),
+        );
+        await _until(
+          tester,
+          () =>
+              harness.owner.closed != 0 ||
+              _icon(_strings.close).evaluate().isNotEmpty &&
+                  tester.widget<IconButton>(_icon(_strings.close)).onPressed !=
+                      null,
+        );
+        await _pump(tester);
+        expect(mailbox.cancellations, 1);
+        expect(mailbox.cancellationsFinished, 0);
+        expect(harness.owner.closeCalls, 0);
+        expect(harness.owner.closed, 0);
+        expect(harness.owner.saves, 1);
+        expect(harness.owner.snapshot!.submissionUncertain, isTrue);
+        expect(
+          find.text(_strings.mailAccountNavigationReleaseFailed),
+          findsOneWidget,
+        );
+        expect(find.byType(StudioMailEwsDialog), findsOneWidget);
+
+        mailbox.cancelGate = Completer<void>();
+        harness.owner.closeGate = Completer<void>();
+        await _press(tester, _icon(_strings.close));
+        await _until(tester, () => mailbox.cancellations == 2);
+        expect(harness.owner.closeCalls, 0);
+        mailbox.cancelGate!.complete();
+        await _until(tester, () => harness.owner.closeCalls == 1);
+        expect(mailbox.cancellationsFinished, 1);
+        expect(harness.owner.closed, 0);
+        harness.owner.closeGate!.complete();
+        await _until(
+          tester,
+          () => find.byType(StudioMailEwsDialog).evaluate().isEmpty,
+        );
+        expect(mailbox.cancellations, 2);
+        expect(harness.owner.closeCalls, 1);
+        expect(harness.owner.closed, 1);
+        expect(harness.owner.snapshot!.submissionUncertain, isTrue);
+        expect(harness.providers.single.commands, isEmpty);
+        expect(harness.providers.single.submissions, isEmpty);
+        expect(harness.providers, hasLength(1));
+        expect(harness.storeOpens, 1);
+        expect(harness.navigations, isEmpty);
+        expect(tester.takeException(), isNull);
+      },
+    );
+
     for (final duringOpen in [true, false]) {
       testWidgets(
         '${kind.name}: removed target during store ${duringOpen ? 'open' : 'load'} retires an unadopted candidate',

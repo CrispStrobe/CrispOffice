@@ -2984,6 +2984,9 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       return;
     }
     final epoch = ++_accountEpoch;
+    // A failure that arrives while this Close waits still needs a later,
+    // explicit retry. Only failures already visible at entry may be retried.
+    final retryObserverRelease = _mailboxViewReleaseFailed;
     final previouslyFailed = List<StudioMailDraftStore>.of(
       _unreleasedDraftStores,
     );
@@ -3017,7 +3020,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       )) {
         throw const _AccountOwnerReleaseFailure();
       }
-      await _releaseRetiredAccount(retryFailed: true);
+      await _releaseRetiredAccount(retryFailed: retryObserverRelease);
       if (!current()) return;
       await _requireReleasedDraftStores();
       _checkDraftStoresReleased();
