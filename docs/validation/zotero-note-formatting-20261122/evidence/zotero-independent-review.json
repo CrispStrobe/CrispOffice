@@ -1,0 +1,230 @@
+{
+  "task": "independent Zotero paragraph review and opaque highlight renderer correction",
+  "date": "2026-11-22",
+  "changed_files": {
+    "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart": "18fb386a9e75890c7169f5061190c7bda9ac858170192d5842f646a3a37ad72c",
+    "packages/quds_office_editor/test/word_zotero_note_color_render_test.dart": "f233623b3709ba8513c03c6491f50c01183e32036bbf1d1fcf632b8b9fb89a63",
+    "packages/quds_office_editor/test/goldens/linux/office_fidelity_word.png": "f351f30eb401d03d1f59c5c6a6c4fcde2dd410f8367b7467e2c3909fb8493a5f"
+  },
+  "findings": [
+    {
+      "id": "authored-highlight-opacity",
+      "status": "fixed",
+      "detail": "Removed alpha .45 from native Word highlight paint and its dark-paper ink backing calculation. Other transient overlay opacity unchanged. PDF already emits opaque RGB."
+    },
+    {
+      "id": "right-alignment-bidi",
+      "status": "fixed_by_parent",
+      "detail": "Independent mixed Latin/Arabic probe found explicit right alignment without dir forced RTL via legacy fallback. Parent limits fallback to non-explicit justification. Before/after probe JSON retained."
+    },
+    {
+      "id": "paragraph-metadata",
+      "status": "reviewed",
+      "detail": "Per-paragraph marker, merged-cell remapping, reapplication after heading/list/quote transforms, and structured-insertion trigger are consistent. Directional list limitations remain explicit."
+    },
+    {
+      "id": "fidelity-golden",
+      "status": "preexisting_failure_isolated",
+      "detail": "Initial main 3f3cb8508 already differs from reviewed Linux golden in 3378 pixels. Candidate introduces exactly 1522 additional pixels wholly within authored highlight. Only that expected delta was patched; all preexisting drift is preserved."
+    }
+  ],
+  "development_checks": [
+    {
+      "reporter": "/workspace/scratch/eba1aedcc131/validation/color-render-dev.jsonl",
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0,
+      "success": true
+    },
+    {
+      "reporter": "/workspace/scratch/eba1aedcc131/paragraph-review-test.jsonl",
+      "passed": 25,
+      "failed": 0,
+      "skipped": 0,
+      "success": true
+    }
+  ],
+  "analysis": {
+    "files": [
+      "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart",
+      "packages/quds_office_editor/test/word_zotero_note_color_render_test.dart"
+    ],
+    "fatal_infos": true,
+    "result": "No issues found"
+  },
+  "golden_evidence": {
+    "baseline_commit": "3f3cb8508",
+    "baseline_existing_golden_drift_pixels": 3378,
+    "candidate_original_golden_drift_pixels": 4900,
+    "renderer_delta_pixels": 1522,
+    "renderer_delta_bounds_inclusive": [
+      160,
+      148,
+      221,
+      172
+    ],
+    "golden_patched": "packages/quds_office_editor/test/goldens/linux/office_fidelity_word.png",
+    "golden_before_sha256": "8d3cb6f2a8e82f6fc15e62c2c53ba9907cbf33ff9e213dbe1f4dfc46cfd74ace",
+    "golden_after_sha256": "f351f30eb401d03d1f59c5c6a6c4fcde2dd410f8367b7467e2c3909fb8493a5f",
+    "remaining_golden_drift_pixels": 3378,
+    "remaining_drift_locations_identical_to_initial_main": true,
+    "renderer_delta_region_initial_main_matches_original_golden": true,
+    "post_patch_test_reporter": "/workspace/scratch/eba1aedcc131/validation/color-fidelity-targeted-golden.jsonl",
+    "post_patch_test_status": "failed only in the same preexisting 3378 pixels",
+    "initial_main_reporter": "/workspace/scratch/eba1aedcc131/validation/color-fidelity-initial-main.jsonl",
+    "candidate_before_patch_reporter": "/workspace/scratch/eba1aedcc131/validation/color-fidelity-golden-review.jsonl"
+  },
+  "limits": [
+    "Development runs supplement but do not replace final source-frozen qualification.",
+    "Generic and macOS fidelity goldens require their respective host qualification; not modified here.",
+    "Installed Zotero/Word/LibreOffice application acceptance remains separate."
+  ],
+  "bidi_probe_before": [
+    {
+      "direction": "",
+      "rightToLeft": null,
+      "baseLevel": 1,
+      "visualCodePoints": [
+        65166,
+        65170,
+        65187,
+        65198,
+        65251,
+        32,
+        40,
+        65,
+        66,
+        67,
+        32,
+        40,
+        49,
+        50,
+        51
+      ],
+      "visualText": "\ufe8e\ufe92\ufea3\ufeae\ufee3 (ABC (123"
+    },
+    {
+      "direction": " dir=\"ltr\"",
+      "rightToLeft": false,
+      "baseLevel": 0,
+      "visualCodePoints": [
+        65,
+        66,
+        67,
+        32,
+        40,
+        49,
+        50,
+        51,
+        41,
+        32,
+        65166,
+        65170,
+        65187,
+        65198,
+        65251
+      ],
+      "visualText": "ABC (123) \ufe8e\ufe92\ufea3\ufeae\ufee3"
+    },
+    {
+      "direction": " dir=\"rtl\"",
+      "rightToLeft": true,
+      "baseLevel": 1,
+      "visualCodePoints": [
+        65166,
+        65170,
+        65187,
+        65198,
+        65251,
+        32,
+        40,
+        65,
+        66,
+        67,
+        32,
+        40,
+        49,
+        50,
+        51
+      ],
+      "visualText": "\ufe8e\ufe92\ufea3\ufeae\ufee3 (ABC (123"
+    }
+  ],
+  "bidi_probe_after": [
+    {
+      "direction": "",
+      "rightToLeft": null,
+      "baseLevel": null,
+      "visualCodePoints": [
+        65,
+        66,
+        67,
+        32,
+        40,
+        49,
+        50,
+        51,
+        41,
+        32,
+        65166,
+        65170,
+        65187,
+        65198,
+        65251
+      ],
+      "visualText": "ABC (123) \ufe8e\ufe92\ufea3\ufeae\ufee3"
+    },
+    {
+      "direction": " dir=\"ltr\"",
+      "rightToLeft": false,
+      "baseLevel": 0,
+      "visualCodePoints": [
+        65,
+        66,
+        67,
+        32,
+        40,
+        49,
+        50,
+        51,
+        41,
+        32,
+        65166,
+        65170,
+        65187,
+        65198,
+        65251
+      ],
+      "visualText": "ABC (123) \ufe8e\ufe92\ufea3\ufeae\ufee3"
+    },
+    {
+      "direction": " dir=\"rtl\"",
+      "rightToLeft": true,
+      "baseLevel": 1,
+      "visualCodePoints": [
+        65166,
+        65170,
+        65187,
+        65198,
+        65251,
+        32,
+        40,
+        65,
+        66,
+        67,
+        32,
+        40,
+        49,
+        50,
+        51
+      ],
+      "visualText": "\ufe8e\ufe92\ufea3\ufeae\ufee3 (ABC (123"
+    }
+  ],
+  "source_contract_urls": [
+    "https://github.com/zotero/note-editor/blob/bdf61e0c275e483c3068ce4fcb86b44691b22afc/src/core/schema/nodes.js",
+    "https://github.com/zotero/note-editor/blob/bdf61e0c275e483c3068ce4fcb86b44691b22afc/src/core/schema/marks.js",
+    "https://github.com/zotero/note-editor/blob/bdf61e0c275e483c3068ce4fcb86b44691b22afc/src/stylesheets/components/core/_core.scss",
+    "https://github.com/zotero/zotero/blob/5fa1cdac02a94475bab5672e60e36454905c7aab/chrome/content/zotero/xpcom/data/notes.js"
+  ]
+}

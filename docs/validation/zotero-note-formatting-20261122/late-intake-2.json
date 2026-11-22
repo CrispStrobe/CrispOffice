@@ -1,0 +1,781 @@
+{
+  "observed_at_utc": "2026-11-22T10:47:33.955049+00:00",
+  "ci_queried": false,
+  "captured_heads": {
+    "main": "05bb203e1b74f8aff0873a6325d9ac18b83515f3",
+    "word": "4dafb6f7e7fc844d11cb7219add5a82acfed5135",
+    "mail": "a61f7c0746219f1fc82d44b5e9e9b3c6cdb13dd1",
+    "zotero_source": "aac3dda7a052c18f6f5bcc5e84a8d7c8cea8af95",
+    "initial_main": "3f3cb8508663dde917e913867908dbfd6c3efcf0",
+    "qualified_word": "19a63d4455540bd797e546ab82ec14db128abea0"
+  },
+  "worktree_head_at_audit": "50895a7b9670058e27d3f081626defac9ea1aebc",
+  "ancestor_matrix": {
+    "main": {
+      "main": true,
+      "word": false,
+      "mail": false,
+      "zotero_source": false,
+      "initial_main": false,
+      "qualified_word": false
+    },
+    "word": {
+      "main": true,
+      "word": true,
+      "mail": false,
+      "zotero_source": false,
+      "initial_main": false,
+      "qualified_word": false
+    },
+    "mail": {
+      "main": false,
+      "word": false,
+      "mail": true,
+      "zotero_source": false,
+      "initial_main": false,
+      "qualified_word": false
+    },
+    "zotero_source": {
+      "main": false,
+      "word": false,
+      "mail": false,
+      "zotero_source": true,
+      "initial_main": false,
+      "qualified_word": false
+    },
+    "initial_main": {
+      "main": true,
+      "word": true,
+      "mail": true,
+      "zotero_source": true,
+      "initial_main": true,
+      "qualified_word": true
+    },
+    "qualified_word": {
+      "main": true,
+      "word": true,
+      "mail": false,
+      "zotero_source": false,
+      "initial_main": false,
+      "qualified_word": true
+    }
+  },
+  "head_details": {
+    "main": {
+      "sha": "05bb203e1b74f8aff0873a6325d9ac18b83515f3",
+      "tree": "c911dab0a1b841d1baeddc98feaa0c26d39c9cb0",
+      "subject": "Merge Word Mid substring assignments and local qualification (#378) [skip ci]",
+      "parents": "3f3cb8508663dde917e913867908dbfd6c3efcf0 4dafb6f7e7fc844d11cb7219add5a82acfed5135"
+    },
+    "word": {
+      "sha": "4dafb6f7e7fc844d11cb7219add5a82acfed5135",
+      "tree": "c911dab0a1b841d1baeddc98feaa0c26d39c9cb0",
+      "subject": "docs(word): record 8006 local macro checks and reconciled intake [skip ci]",
+      "parents": "19a63d4455540bd797e546ab82ec14db128abea0"
+    },
+    "mail": {
+      "sha": "a61f7c0746219f1fc82d44b5e9e9b3c6cdb13dd1",
+      "tree": "30cca72c2525f776997206f3f42d9c146080e84b",
+      "subject": "feat(mail): expose reviewed Archive actions and durable recovery tests [skip ci]",
+      "parents": "dd00d169b8763994adda707ca16cd54c2f93c395"
+    },
+    "zotero_source": {
+      "sha": "aac3dda7a052c18f6f5bcc5e84a8d7c8cea8af95",
+      "tree": "fde69fc683bd5122345a298ef087c4104f7fe52c",
+      "subject": "fix(zotero): preserve authored direction and exact note highlight rendering [skip ci]",
+      "parents": "7b9d50259f9d6bb9b39678ec4afced644e88c38b"
+    },
+    "initial_main": {
+      "sha": "3f3cb8508663dde917e913867908dbfd6c3efcf0",
+      "tree": "736487b35108d6b5f7c74aa9bcc6c998affcd16c",
+      "subject": "Merge Zotero quoted research notes and local qualification (#377) [skip ci]",
+      "parents": "1efcd62b9386da473bc5884834955ab2cdcd10a2 69e20b56a8c919fb5d9c1b9717f7688e5ff6c55d"
+    },
+    "qualified_word": {
+      "sha": "19a63d4455540bd797e546ab82ec14db128abea0",
+      "tree": "b1bf264e41fc9782ab7fe48800faf184009de361",
+      "subject": "test(word): qualify substring template publication and portable execution [skip ci]",
+      "parents": "dcb769977857e5104570dad761e2b2b323459883"
+    }
+  },
+  "word_delta_since_qualification": [
+    "docs/validation/word-vba-mid-assignment-20261122/README.md",
+    "docs/validation/word-vba-mid-assignment-20261122/evidence/conformance-portable-commands.json",
+    "docs/validation/word-vba-mid-assignment-20261122/evidence/independent-review.json",
+    "docs/validation/word-vba-mid-assignment-20261122/evidence/log-manifest.json",
+    "docs/validation/word-vba-mid-assignment-20261122/evidence/macro-regression-command.json",
+    "docs/validation/word-vba-mid-assignment-20261122/evidence/macro-regression-result.json",
+    "docs/validation/word-vba-mid-assignment-20261122/evidence/mid-assignment-js-compile.log.gz",
+    "docs/validation/word-vba-mid-assignment-20261122/evidence/mid-assignment-node.json.gz",
+    "docs/validation/word-vba-mid-assignment-20261122/evidence/mid-assignment-vm.json.gz",
+    "docs/validation/word-vba-mid-assignment-20261122/evidence/mid-broad.jsonl.gz",
+    "docs/validation/word-vba-mid-assignment-20261122/evidence/mid-compiler-regression.log.gz",
+    "docs/validation/word-vba-mid-assignment-20261122/evidence/mid-conformance-test.log.gz",
+    "docs/validation/word-vba-mid-assignment-20261122/evidence/mid-final-analysis.log.gz",
+    "docs/validation/word-vba-mid-assignment-20261122/evidence/mid-final-format.log.gz",
+    "docs/validation/word-vba-mid-assignment-20261122/evidence/mid-word-portable-compile.log.gz",
+    "docs/validation/word-vba-mid-assignment-20261122/evidence/mid-word-portable-node.log.gz",
+    "docs/validation/word-vba-mid-assignment-20261122/evidence/mid-word-portable-vm.log.gz",
+    "docs/validation/word-vba-mid-assignment-20261122/evidence/mid-word-targeted-accepted.log.gz",
+    "docs/validation/word-vba-mid-assignment-20261122/evidence/runtime-provenance.json",
+    "docs/validation/word-vba-mid-assignment-20261122/evidence/source-manifest.json",
+    "docs/validation/word-vba-mid-assignment-20261122/evidence/static-checks.json",
+    "docs/validation/word-vba-mid-assignment-20261122/evidence/word-portable-commands.json",
+    "docs/validation/word-vba-mid-assignment-20261122/final-intake.json",
+    "docs/validation/word-vba-mid-assignment-20261122/qualification.json"
+  ],
+  "mail_delta_since_checkpoint": [
+    "docs/roadmaps/mail/README.md",
+    "docs/roadmaps/mail/bulk-organization.md",
+    "docs/roadmaps/mail/implementation-plan.md",
+    "docs/roadmaps/mail/provider-archive.md",
+    "docs/roadmaps/mail/status.md",
+    "docs/validation/mail-provider-archive-20261122/README.md",
+    "packages/quds_mail_core/CHANGELOG.md",
+    "packages/quds_mail_core/lib/src/sync/bulk_flags.dart",
+    "packages/quds_mail_core/test/archive_commands_test.dart",
+    "packages/quds_mail_core/test/bulk_flags_coordinator_test.dart",
+    "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+    "packages/quds_mail_core/test/bulk_flags_test.dart",
+    "packages/quds_mail_store/CHANGELOG.md",
+    "packages/quds_mail_store/lib/src/flag_journal.dart",
+    "packages/quds_mail_store/lib/src/membership_reconciliation.dart",
+    "packages/quds_mail_store/lib/src/schema/database.dart",
+    "packages/quds_mail_store/lib/src/search_journal.dart",
+    "packages/quds_mail_store/test/archive_journal_migration_test.dart",
+    "packages/quds_mail_store/test/archive_journal_test.dart",
+    "packages/quds_mail_store/test/compose_settings_test.dart",
+    "packages/quds_mail_store/test/flag_reconciliation_test.dart",
+    "packages/quds_mail_store/test/membership_journal_migration_test.dart",
+    "packages/quds_mail_store/test/membership_observation_migration_test.dart",
+    "packages/quds_mail_store/test/migration_test.dart",
+    "packages/quds_mail_store/test/move_identity_migration_test.dart",
+    "packages/quds_mail_store/test/saved_search_folder_migration_test.dart",
+    "packages/quds_mail_store/test/sync_mailboxes_test.dart",
+    "packages/quds_mail_transport/CHANGELOG.md",
+    "packages/quds_mail_transport/lib/src/cloud/provider.dart",
+    "packages/quds_mail_transport/lib/src/ews/native/provider.dart",
+    "packages/quds_mail_transport/lib/src/native/provider.dart",
+    "packages/quds_mail_transport/test/cloud_provider_test.dart",
+    "packages/quds_mail_transport/test/ews_provider_test.dart",
+    "packages/quds_mail_transport/test/native_archive_test.dart",
+    "packages/quds_mail_transport/test/support/imap_fixture.dart",
+    "packages/quds_mail_ui/CHANGELOG.md",
+    "packages/quds_mail_ui/lib/src/workspace/message_list.dart",
+    "packages/quds_mail_ui/test/message_list_organization_test.dart",
+    "packages/quds_office_editor/CHANGELOG.md",
+    "packages/quds_office_editor/example/lib/studio_mail_bulk_status.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_journal_strings.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_mutation_strings.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_organization_dialog.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_workspace_strings.dart",
+    "packages/quds_office_editor/example/test/studio_mail_journal_host_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_organization_dialog_test.dart",
+    "packages/quds_office_editor/example/test/support/mail_bulk_organization_host_cases.dart",
+    "packages/quds_office_editor/example/test/support/mail_provider_archive_host_cases.dart"
+  ],
+  "mail_delta_since_initial_main": [
+    "docs/roadmaps/mail/README.md",
+    "docs/roadmaps/mail/bulk-organization.md",
+    "docs/roadmaps/mail/implementation-plan.md",
+    "docs/roadmaps/mail/provider-archive.md",
+    "docs/roadmaps/mail/status.md",
+    "docs/validation/mail-provider-archive-20261122/README.md",
+    "docs/validation/mail-provider-archive-20261122/intake.json",
+    "packages/quds_mail_core/CHANGELOG.md",
+    "packages/quds_mail_core/lib/src/model/capabilities.dart",
+    "packages/quds_mail_core/lib/src/ports/provider.dart",
+    "packages/quds_mail_core/lib/src/sync/bulk_flags.dart",
+    "packages/quds_mail_core/test/archive_commands_test.dart",
+    "packages/quds_mail_core/test/bulk_flags_coordinator_test.dart",
+    "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+    "packages/quds_mail_core/test/bulk_flags_test.dart",
+    "packages/quds_mail_store/CHANGELOG.md",
+    "packages/quds_mail_store/lib/src/flag_journal.dart",
+    "packages/quds_mail_store/lib/src/membership_reconciliation.dart",
+    "packages/quds_mail_store/lib/src/schema/database.dart",
+    "packages/quds_mail_store/lib/src/search_journal.dart",
+    "packages/quds_mail_store/test/archive_journal_migration_test.dart",
+    "packages/quds_mail_store/test/archive_journal_test.dart",
+    "packages/quds_mail_store/test/compose_settings_test.dart",
+    "packages/quds_mail_store/test/flag_reconciliation_test.dart",
+    "packages/quds_mail_store/test/membership_journal_migration_test.dart",
+    "packages/quds_mail_store/test/membership_observation_migration_test.dart",
+    "packages/quds_mail_store/test/migration_test.dart",
+    "packages/quds_mail_store/test/move_identity_migration_test.dart",
+    "packages/quds_mail_store/test/saved_search_folder_migration_test.dart",
+    "packages/quds_mail_store/test/sync_mailboxes_test.dart",
+    "packages/quds_mail_transport/CHANGELOG.md",
+    "packages/quds_mail_transport/lib/src/cloud/provider.dart",
+    "packages/quds_mail_transport/lib/src/ews/native/provider.dart",
+    "packages/quds_mail_transport/lib/src/native/provider.dart",
+    "packages/quds_mail_transport/test/cloud_provider_test.dart",
+    "packages/quds_mail_transport/test/ews_provider_test.dart",
+    "packages/quds_mail_transport/test/native_archive_test.dart",
+    "packages/quds_mail_transport/test/support/imap_fixture.dart",
+    "packages/quds_mail_ui/CHANGELOG.md",
+    "packages/quds_mail_ui/lib/src/workspace/message_list.dart",
+    "packages/quds_mail_ui/test/message_list_organization_test.dart",
+    "packages/quds_office_editor/CHANGELOG.md",
+    "packages/quds_office_editor/example/lib/studio_mail_bulk_status.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_journal_strings.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_mutation_strings.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_organization_dialog.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_workspace_strings.dart",
+    "packages/quds_office_editor/example/test/studio_mail_journal_host_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_organization_dialog_test.dart",
+    "packages/quds_office_editor/example/test/support/mail_bulk_organization_host_cases.dart",
+    "packages/quds_office_editor/example/test/support/mail_provider_archive_host_cases.dart"
+  ],
+  "mail_commits": [
+    "a61f7c0746219f1fc82d44b5e9e9b3c6cdb13dd1 feat(mail): expose reviewed Archive actions and durable recovery tests [skip ci]",
+    "dd00d169b8763994adda707ca16cd54c2f93c395 feat(mail): add provider Archive and durable journal support [skip ci]",
+    "9d8758e5552f74ceb418b181d009e1ba96009350 feat(mail): define explicit Archive intent and preserve intake checkpoint [skip ci]"
+  ],
+  "release_candidate_head_observed": "50895a7b9670058e27d3f081626defac9ea1aebc",
+  "release_candidate_contains": {
+    "main": true,
+    "word": true,
+    "mail": false,
+    "zotero_source": true,
+    "initial_main": true,
+    "qualified_word": true
+  },
+  "pull_request": {
+    "number": 378,
+    "title": "feat(word): add bounded Mid substring assignments [skip ci]",
+    "state": "closed",
+    "merged_at": "2026-11-22T10:40:51Z",
+    "head_ref": "codex/word-vba-string-search-20261122",
+    "head_sha": "4dafb6f7e7fc844d11cb7219add5a82acfed5135",
+    "merge_commit_sha": "05bb203e1b74f8aff0873a6325d9ac18b83515f3",
+    "api": "https://api.github.com/repos/CrispStrobe/quds_office_suite/pulls/378"
+  },
+  "mail_pr_status": "No Mail PR was present among the ten most recently updated PRs at this snapshot; branch is an active checkpoint.",
+  "word_executable_source_changed_after_independent_qualification": false,
+  "word_prior_qualification": [
+    {
+      "source_sha": "19a63d4455540bd797e546ab82ec14db128abea0",
+      "cohort": "word-mid-tests",
+      "test_paths": [
+        "packages/quds_office_engine/test/office_vba_mid_assignment_test.dart",
+        "packages/quds_office_engine/test/office_vba_mid_assignment_conformance_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_mid_assignment_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_mid_assignment_cli_test.dart"
+      ],
+      "case_count": 405,
+      "passed": true,
+      "reporter": "/workspace/scratch/eba1aedcc131/validation/late-intake-1.word-mid-tests.jsonl"
+    },
+    {
+      "source_sha": "19a63d4455540bd797e546ab82ec14db128abea0",
+      "cohort": "word-shared-tests",
+      "test_paths": [
+        "packages/quds_office_engine/test/office_vba_string_intrinsics_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_arrays_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_arrays_boundaries_test.dart",
+        "packages/quds_office_engine/test/office_vba_text_intrinsics_test.dart",
+        "packages/quds_office_engine/test/office_vba_arrays_test.dart",
+        "packages/quds_office_engine/test/office_vba_string_intrinsics_test.dart",
+        "packages/quds_office_engine/test/office_vba_string_constants_test.dart"
+      ],
+      "case_count": 529,
+      "passed": true,
+      "reporter": "/workspace/scratch/eba1aedcc131/validation/late-intake-1.word-shared-tests.jsonl"
+    }
+  ],
+  "word_prior_portable": [
+    {
+      "name": "mid-adapters",
+      "source_head": "19a63d4455540bd797e546ab82ec14db128abea0",
+      "fixture_sha256": "b02fc1cd54b04c92d505992d4aa9752026f0deecc1ed9d208bd630e86c5d8b08",
+      "entry_sha256": "80c69a0fd9ea01a83e554b87e440f726f0f73ce0675a75434afb13e71a15b43f",
+      "vm_exit_code": 0,
+      "compile_exit_code": 0,
+      "node_exit_code": 0,
+      "canonical_json_equal": true,
+      "case_count": 231,
+      "receipt_keys": [
+        "adapterCount",
+        "adapters",
+        "caseCount",
+        "schemaVersion",
+        "suite"
+      ],
+      "node_host_setup": "ordinary Node require"
+    },
+    {
+      "name": "mid-native",
+      "source_head": "19a63d4455540bd797e546ab82ec14db128abea0",
+      "fixture_sha256": "1d967f5595c21253bd8963abfc24d689b44763d3c300517d5067647b7264878d",
+      "entry_sha256": "c902964b816cd3d483808a4c329b6775644c1f8104479adb2e716848fb94920b",
+      "vm_exit_code": 0,
+      "compile_exit_code": 0,
+      "node_exit_code": 0,
+      "canonical_json_equal": true,
+      "case_count": null,
+      "receipt_keys": [
+        "docx",
+        "docm"
+      ],
+      "node_host_setup": "globalThis.self=globalThis before require",
+      "prior_attempt": "Ordinary Node completed without emitting a native async receipt; parity parser rejected that attempt. Supported self global was then provided, consistent with repository JS-smoke runners."
+    }
+  ],
+  "mail_author_claims": {
+    "source": "docs/validation/mail-provider-archive-20261122/README.md at a61f7c0746219f1fc82d44b5e9e9b3c6cdb13dd1",
+    "complete_core_cases": 648,
+    "provider_cases": 336,
+    "sqlite_archive_migration_cases": 20,
+    "full_store_and_flutter": "still running; not claimed at captured head",
+    "analysis_and_format": "claimed clean for changes",
+    "status": "work in progress"
+  },
+  "mail_summary": {
+    "production_dart_files": 19,
+    "schema_change": "15 -> 16; new persisted Archive intent admitted; older version containing unexplained Archive intent refused before upgrade",
+    "provider_semantics": [
+      "Gmail removes only INBOX with explicit returned labels",
+      "Native IMAP requires authoritative unique selectable Archive folder",
+      "Microsoft Graph ordinary well-known Archive destination",
+      "EWS or absent authoritative destination requires reviewed explicit move target"
+    ],
+    "previous_enum_compile_blockers": "All previously identified missing Archive switch arms fixed",
+    "review_risks": [
+      "Schema and journal replay compatibility: run all store tests",
+      "Changed Studio provider orchestration: run three affected widget files",
+      "Actual provider authentication, network and platform behavior remains a live qualification gap"
+    ]
+  },
+  "mail_independent_qualification": {
+    "mail-core": {
+      "source_sha": "a61f7c0746219f1fc82d44b5e9e9b3c6cdb13dd1",
+      "test_paths": [
+        "packages/quds_mail_core/test/archive_commands_test.dart",
+        "packages/quds_mail_core/test/bulk_flags_coordinator_test.dart",
+        "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart",
+        "packages/quds_mail_core/test/bulk_flags_test.dart"
+      ],
+      "reporter": "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-core.jsonl",
+      "completed": true,
+      "passed": true,
+      "case_count": 120,
+      "failures": 0,
+      "sha256": "3f7a5f10ddcdded5bc520588ae07ef7da11981120bd42f8f179ccd6105e118c6",
+      "errors": [],
+      "exit_code": 0
+    },
+    "mail-transport": {
+      "source_sha": "a61f7c0746219f1fc82d44b5e9e9b3c6cdb13dd1",
+      "test_paths": [
+        "packages/quds_mail_transport/test/cloud_provider_test.dart",
+        "packages/quds_mail_transport/test/ews_provider_test.dart",
+        "packages/quds_mail_transport/test/native_archive_test.dart"
+      ],
+      "reporter": "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-transport.jsonl",
+      "completed": true,
+      "passed": true,
+      "case_count": 256,
+      "failures": 0,
+      "sha256": "36d7d6f0ac1f58ef9082a723a1bdf15a73cc25c6eb274350d78a621a64962c20",
+      "errors": [],
+      "exit_code": 0
+    },
+    "mail-store-sqlite": {
+      "source_sha": "a61f7c0746219f1fc82d44b5e9e9b3c6cdb13dd1",
+      "test_paths": [
+        "packages/quds_mail_store/test/archive_journal_test.dart",
+        "packages/quds_mail_store/test/archive_journal_migration_test.dart"
+      ],
+      "reporter": "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-store-sqlite.jsonl",
+      "completed": true,
+      "passed": true,
+      "case_count": 20,
+      "failures": 0,
+      "sha256": "81302c039ce99741c2a6bf152f0f82182b4be90e6df31aac320709c78b9f9c94",
+      "errors": [],
+      "exit_code": 0
+    },
+    "mail-ui-ready": {
+      "source_sha": "a61f7c0746219f1fc82d44b5e9e9b3c6cdb13dd1",
+      "test_paths": [
+        "packages/quds_mail_ui/test/message_list_organization_test.dart"
+      ],
+      "reporter": "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-ui-ready.jsonl",
+      "completed": true,
+      "passed": true,
+      "case_count": 21,
+      "failures": 0,
+      "sha256": "c12638994705283cd251a60ecc79590f0cd29fcf9206e1d1258a8cf4d55006f3",
+      "errors": [],
+      "exit_code": 0
+    },
+    "mail-studio": {
+      "source_sha": "a61f7c0746219f1fc82d44b5e9e9b3c6cdb13dd1",
+      "test_paths": [
+        "packages/quds_office_editor/example/test/studio_mail_journal_host_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_organization_dialog_test.dart"
+      ],
+      "reporter": "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-studio.jsonl",
+      "completed": true,
+      "passed": false,
+      "case_count": 275,
+      "failures": 1,
+      "sha256": "21d31c3a58ae4f0ddef95cf0975e09fa36d379bca39152622c419a8f322355b7",
+      "errors": [
+        {
+          "test": "Archive fallback never guesses by folder name and excludes foreign folders",
+          "message": "Test failed. See exception logs above.\nThe test description was: Archive fallback never guesses by folder name and excludes foreign folders",
+          "stack": ""
+        }
+      ],
+      "exit_code": 1
+    },
+    "mail-store-full": {
+      "source_sha": "a61f7c0746219f1fc82d44b5e9e9b3c6cdb13dd1",
+      "test_paths": [
+        "packages/quds_mail_store/test/"
+      ],
+      "reporter": "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-store-full.jsonl",
+      "completed": false,
+      "passed": null,
+      "case_count": 1121,
+      "failures": 1,
+      "sha256": "e127fe560d34773f880d7d8701a5199454354999d0e1b0a256efef1b21b26c87",
+      "errors": [
+        {
+          "test": "future schema 16 is rejected without changing existing data",
+          "message": "Expected: MailProblemCode:<MailProblemCode.unsupported>\n  Actual: MailProblemCode:<MailProblemCode.storageFailure>\n",
+          "stack": "package:matcher                 expect\ntest/migration_test.dart 891:9  main.<fn>\n"
+        }
+      ],
+      "exit_code": 130,
+      "cancelled": true,
+      "reason": "After 1116 passing cases and one stale schema expectation, inherited crash_recovery_test.dart launched dart run child via adjacent official CLI; child had not reached READY. Cancelled rather than waiting through Pub/native-hook startup. No full-store acceptance claim."
+    },
+    "strict_analysis": {
+      "passed": true,
+      "production_file_count": 19,
+      "fatal_infos": true,
+      "log": "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-analyze.log"
+    }
+  },
+  "environment_adjustments": [
+    "Copied the established workspace package_config.json and package_graph.json to the isolated detached Mail worktree. Hosted dependency roots unchanged and local package roots resolve into isolated source.",
+    "Store tests use command-specific LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libsqlite3.so.0, a real system SQLite library, to satisfy @Native process fallback. No source or lockfile modifications.",
+    "Initial store launch without native assets and initial Flutter launch without package_graph.json are preserved as setup failures and excluded from passed acceptance counts."
+  ],
+  "mail_worktree": {
+    "path": "/workspace/scratch/eba1aedcc131/mail-archive-qualification",
+    "head": "a61f7c0746219f1fc82d44b5e9e9b3c6cdb13dd1",
+    "tracked_source_clean": true
+  },
+  "source_hashes": {
+    "packages/quds_mail_core/lib/src/model/capabilities.dart": "9a56f300cabbe43afa359c5c820b5f2c499551f5600096e43605f0bf9902e99e",
+    "packages/quds_mail_core/lib/src/ports/provider.dart": "be9465375c7fc780aab00af436dbdbb6b7e649d25b87d51d72bd5bb2f8791ff9",
+    "packages/quds_mail_core/lib/src/sync/bulk_flags.dart": "84a6355406d5130522c07bb5ff6e1c2582d43532c2b1438ef9063c21488bb2cf",
+    "packages/quds_mail_core/test/archive_commands_test.dart": "2feb323c51fe51ddb7fcdcd4a29f4514bf5e970ebeb9ffb4d133e6efa6dc5e3b",
+    "packages/quds_mail_core/test/bulk_flags_coordinator_test.dart": "cb5a84f73b5c727e1140288a05336982c368aacedb6d65f1261a82b407ef223f",
+    "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart": "43f95ff04e90af8dac6b8967d62fb0cf43cee73e4679f68e3a5310737f605989",
+    "packages/quds_mail_core/test/bulk_flags_test.dart": "b2bce4c7a6e26ec2b274b2ebd3aeae7d50d7bfbd9e2d2ddcc237e6c56e5c8ac5",
+    "packages/quds_mail_store/lib/src/flag_journal.dart": "d24bf5b1d6bfb657d7f3a5c8491a75cdd38c91da520d9f2a5496c4f99055bbb9",
+    "packages/quds_mail_store/lib/src/membership_reconciliation.dart": "5fd34b6d03342ad71f517369a3effa28c997a3d91dc9536be1e92e4adc245210",
+    "packages/quds_mail_store/lib/src/schema/database.dart": "5b86e838b329bfcd6f9916400eea8feecc91ccaf0ea7cebb8dfc09b883332632",
+    "packages/quds_mail_store/lib/src/search_journal.dart": "7393fd3f9539a055ac62f125f9d672ad78ee95586781dbc79d2d2bfe52263d03",
+    "packages/quds_mail_store/test/archive_journal_migration_test.dart": "d1b212ea55fa0aa5470d2cce7299a768ad1bfc9b015cd55d7942d7f5c74a07e4",
+    "packages/quds_mail_store/test/archive_journal_test.dart": "8bb9e9d4d27b333322f39c149fc399e3e16bd5bed55de32695c77581f2ffe1ae",
+    "packages/quds_mail_store/test/compose_settings_test.dart": "e10fd2e82595bab71672f41053cff00e610a26fb345a7c12e0310f371d14ada4",
+    "packages/quds_mail_store/test/flag_reconciliation_test.dart": "e2ebde54c823fc0eb8a5224a8392bfaee60a1f5add8e3fdcc15fd4bb40aa0fb1",
+    "packages/quds_mail_store/test/membership_journal_migration_test.dart": "431fa36f32494310ea06643e9088cef5ed6bcd34bf4d3ae25971c394afbd211f",
+    "packages/quds_mail_store/test/membership_observation_migration_test.dart": "b7f5ddd5b794da69b0604233a46075e71edd2609d7d53cf88b0a6bffad452c96",
+    "packages/quds_mail_store/test/migration_test.dart": "b9964a787bf5af8c6e8b8f828a059eef7a26494d72a09b0d01bb2bfbd4ca7298",
+    "packages/quds_mail_store/test/move_identity_migration_test.dart": "e68b6db44f14379daa8d3c140339533c1e93cdc36ea45ae9d630ab2184669f93",
+    "packages/quds_mail_store/test/saved_search_folder_migration_test.dart": "32a1704133e492bde6e2740255050bb90207fcc71eac83635d4ed3efc3ad685a",
+    "packages/quds_mail_store/test/sync_mailboxes_test.dart": "38d6a1c79507d8b6d7bc7196499dc332eb6571a43cdcfe49ae995809b8598743",
+    "packages/quds_mail_transport/lib/src/cloud/provider.dart": "d4ec71795e12553f5b768cc42dba09ab6099711b20be6d1910b17e719c96b334",
+    "packages/quds_mail_transport/lib/src/ews/native/provider.dart": "336cb54abc4634236e49288cd7770a73e1fe561db027a36fb3437f791e29356f",
+    "packages/quds_mail_transport/lib/src/native/provider.dart": "656ab8c9f5c3e8ae64c0c0afd8c67fcb013438b8f315a8eb092d1e771a156cc3",
+    "packages/quds_mail_transport/test/cloud_provider_test.dart": "0b3a92f9e6b4182c5c2350fd49f498728284d560a91a7f540301c5282aceec79",
+    "packages/quds_mail_transport/test/ews_provider_test.dart": "4cb94cf5e2294d855d963b86ec94345394bec3fefcc1313e000ea5715a97c368",
+    "packages/quds_mail_transport/test/native_archive_test.dart": "be5bcb2b8541ff6d6008f3783973e5f9153db9d0ee364271099ac268fd7eb116",
+    "packages/quds_mail_transport/test/support/imap_fixture.dart": "e96134becac49251d36d466f06ccef3072af947afa7cdf4e408e2969194a7802",
+    "packages/quds_mail_ui/lib/src/workspace/message_list.dart": "fa686cf56c6af3583b769d495204e9008557c365f208f920ef07edbf514fd4f1",
+    "packages/quds_mail_ui/test/message_list_organization_test.dart": "08c5961019e5c7a3937ae2abe924cbd8317a51321f9688c57b53e1938185f4d6",
+    "packages/quds_office_editor/example/lib/studio_mail_bulk_status.dart": "a46dde9e8d10c7b4bc93a5ae5bdce7b09f6856d862cf6c341b2ee56e0c20bb05",
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart": "c5e7555c3004a07b2cda100477b1982b5c667b6a0613b10acd87094eb319a286",
+    "packages/quds_office_editor/example/lib/studio_mail_journal_strings.dart": "c6a904cdaab744eacf76471b9fb9e6818309c4a54710ed00732aaef1e8c7e7a5",
+    "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart": "af6b699db0776c95721dcfeb27b606dfafabb0e4bb7324a74cb9bb217e4673b5",
+    "packages/quds_office_editor/example/lib/studio_mail_mutation_strings.dart": "988ed51b3be504d76f8bf2526bd4993c18df037688f542ed61e942790d5017b8",
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart": "7a62ce836cfaa924df1a86f6b0daa34840e2d216996f72e19eddb0b56a78f153",
+    "packages/quds_office_editor/example/lib/studio_mail_organization_dialog.dart": "fa0372eda1acfcd56b6587768cf485e6220347478807910cd99e69c901bd1959",
+    "packages/quds_office_editor/example/lib/studio_mail_workspace_strings.dart": "cd397556d4571d243d87c1494cef853d704f7ae3793073d3b2231789eb1e2080",
+    "packages/quds_office_editor/example/test/studio_mail_journal_host_test.dart": "0f549c197d179467435fa3ebb4d1e0390e855c3147993d36e41cabc2b01ca6d8",
+    "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart": "8f9ce46e7f0c07ac3aab7851bcbc06580098299ad63e8b005dd3bc92f47d5b45",
+    "packages/quds_office_editor/example/test/studio_mail_organization_dialog_test.dart": "fce2a83dc991a63940dd6e47febcfcb4d3b9acb4ead1c2162d8d0002f2996d06",
+    "packages/quds_office_editor/example/test/support/mail_bulk_organization_host_cases.dart": "b94b06f26592ad706c21edee5ef0e2af8245ace516de17c0ba0079cda07afdad",
+    "packages/quds_office_editor/example/test/support/mail_provider_archive_host_cases.dart": "68de84690acab4942fe4f0da39186c0e37fb4cd0e0b620f53a19e118736601bc"
+  },
+  "updated_at_utc": "2026-11-22T10:52:45.946857+00:00",
+  "mail_qualification_disposition": "Initial a61f7c test failures were corrected by author a886d7d. New independent migration/native/Studio qualification is recorded under subsequent_remote_updates. Reconciled828 has byte-identical Mail source plus existing Word/Zotero changes; no separate patch is necessary.",
+  "required_test_corrections": [
+    {
+      "path": "packages/quds_mail_store/test/migration_test.dart",
+      "line_at_captured_source": 876,
+      "issue": "future schema test still iterates [16,17] although current schema is16. Test with a dummy schema16 lacks current tables and rightly returns storageFailure, while fixture expects unsupported.",
+      "recommended_correction": "Use genuinely future schema versions e.g. [17,18]. Preserve byte-for-byte nonmutation checks."
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_organization_dialog_test.dart",
+      "line_at_captured_source": 280,
+      "issue": "Archive destination index1 sits below scroll viewport; tap misses (y568) and selection stays null.",
+      "recommended_correction": "Ensure destination widget is visible before tapping, then retain reviewed selection expectation. Do not silence hit-test warning."
+    }
+  ],
+  "qualification_limits": [
+    "No authenticated live-provider or platform release qualification.",
+    "Mail source is exact a61f7c; latest author branch may subsequently advance.",
+    "Store-focused cohort overlaps full-store partial cohort; do not add those counts as distinct cases.",
+    "Flutter three-file cohort failed one existing newly-added test at captured head; 275 passing cases are partial evidence, not suite acceptance.",
+    "Word portable corpus and host executions are repeat qualifications of same cases, not additive distinct-case counts.",
+    "No GitHub Actions were queried or waited for."
+  ],
+  "commands": {
+    "dart_tests": "source /workspace/scratch/eba1aedcc131/toolchains/env.sh; dart --packages=../../.dart_tool/package_config.json /workspace/scratch/eba1aedcc131/toolchains/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart <recorded paths> --reporter json",
+    "sqlite_setup": "LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libsqlite3.so.0 on each store/Flutter test process",
+    "flutter_tests": "source /workspace/scratch/eba1aedcc131/toolchains/env.sh; flutter test --no-pub <recorded paths> --reporter json",
+    "strict_analysis": "dart analyze --fatal-infos <all19 changed production Dart paths>"
+  },
+  "environment_hashes": {
+    "mail-archive-qualification/.dart_tool/package_config.json": "5aa37f84be70ed04f5f2294b1c817405fbc59600f52a8a611df59c0ae7afa570",
+    "mail-archive-qualification/.dart_tool/package_graph.json": "e5109a54fc62e65508ee3fcfcf5e95592a49d3d225b4eb4cfda2d5d822bf6b84",
+    "toolchains/env.sh": "bd5e7b7fa8e9a389468d5cd7366009c22f45ad6da9f16fad20b1164d89b1d91a",
+    "toolchains/flutter/bin/cache/dart-sdk/bin/dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "toolchains/flutter/bin/cache/flutter_tools.snapshot": "803f5eabe0f147bbd7cbfb5810d012f88d909d092d15de36a62be43c42af0da9",
+    "/usr/lib/x86_64-linux-gnu/libsqlite3.so.0": "317d80bf5d592f98a71e14d2330591d6a339f631f37c5977835af748a1f26715"
+  },
+  "raw_report_hashes": {
+    "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-analyze.log": "f9cc03f772e44346ef97b26e47b4b02a7b0ecb85bc61f4d1ee56bdbb099117be",
+    "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-core.jsonl": "3f7a5f10ddcdded5bc520588ae07ef7da11981120bd42f8f179ccd6105e118c6",
+    "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-core.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-final-analyze.log": "37eb45b9d20c50a54f030cbf7bf4b35b4f71605561cd5ca028c859e1d5e1d316",
+    "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-final-migration.jsonl": "c08a0c9f57d3954a5adb486ee02d4726df6ac5cd90b0771d189274e85707de0f",
+    "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-final-migration.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-final-native.jsonl": "077ca45397e028a0edd530c70e14199d353bf9f01c2ba353ac62bd7d206c2bce",
+    "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-final-native.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-final-studio.jsonl": "7b4f341822424a35176535b4e24ed08475a883adeb5e97e4ecfc8abdaad39cf0",
+    "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-final-studio.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-store-full.jsonl": "e127fe560d34773f880d7d8701a5199454354999d0e1b0a256efef1b21b26c87",
+    "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-store-full.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-store-sqlite.jsonl": "81302c039ce99741c2a6bf152f0f82182b4be90e6df31aac320709c78b9f9c94",
+    "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-store-sqlite.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-store.jsonl": "87bb1a1fd49d59770e73950ae3e54c3e1e4e6fb5293c3f18953a46f881d5174c",
+    "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-store.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-studio.jsonl": "21d31c3a58ae4f0ddef95cf0975e09fa36d379bca39152622c419a8f322355b7",
+    "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-studio.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-transport.jsonl": "36d7d6f0ac1f58ef9082a723a1bdf15a73cc25c6eb274350d78a621a64962c20",
+    "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-transport.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-ui-ready.jsonl": "c12638994705283cd251a60ecc79590f0cd29fcf9206e1d1258a8cf4d55006f3",
+    "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-ui-ready.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-ui.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-ui.stderr": "50910cb51641cc83f375a043e12e4b758431b1a99bbd7fc569ee86e1488ea0c1"
+  },
+  "subsequent_remote_updates": {
+    "observed_at_utc": "2026-11-22T10:52:06.913625+00:00",
+    "heads": {
+      "main": "4621326a5a452da475f219353c298d0f9b12470e",
+      "mail_fixes": "a886d7d79ae3d63e78f09a9caeb8569da81243c9",
+      "mail_reconciled": "8280277cd27bcc276d66b61f8073eddf37ca6e5e",
+      "zotero_release_before_mail": "50895a7b9670058e27d3f081626defac9ea1aebc",
+      "zotero_source": "aac3dda7a052c18f6f5bcc5e84a8d7c8cea8af95",
+      "word": "4dafb6f7e7fc844d11cb7219add5a82acfed5135"
+    },
+    "ancestor_matrix": {
+      "main": {
+        "main": true,
+        "mail_fixes": false,
+        "mail_reconciled": true,
+        "zotero_release_before_mail": false,
+        "zotero_source": false,
+        "word": false
+      },
+      "mail_fixes": {
+        "main": false,
+        "mail_fixes": true,
+        "mail_reconciled": true,
+        "zotero_release_before_mail": false,
+        "zotero_source": false,
+        "word": false
+      },
+      "mail_reconciled": {
+        "main": false,
+        "mail_fixes": false,
+        "mail_reconciled": true,
+        "zotero_release_before_mail": false,
+        "zotero_source": false,
+        "word": false
+      },
+      "zotero_release_before_mail": {
+        "main": false,
+        "mail_fixes": false,
+        "mail_reconciled": true,
+        "zotero_release_before_mail": true,
+        "zotero_source": false,
+        "word": false
+      },
+      "zotero_source": {
+        "main": false,
+        "mail_fixes": false,
+        "mail_reconciled": true,
+        "zotero_release_before_mail": true,
+        "zotero_source": true,
+        "word": false
+      },
+      "word": {
+        "main": true,
+        "mail_fixes": false,
+        "mail_reconciled": true,
+        "zotero_release_before_mail": true,
+        "zotero_source": false,
+        "word": true
+      }
+    },
+    "main_delta_from_05bb": [],
+    "mail_fix_delta": [
+      "packages/quds_mail_store/test/migration_test.dart",
+      "packages/quds_mail_transport/lib/src/native/provider.dart",
+      "packages/quds_mail_transport/test/native_archive_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_organization_dialog_test.dart"
+    ],
+    "mail_reconciled_mail_paths_delta": [],
+    "no_local_patch_needed": true,
+    "fixes": "Author a886d7d already implements both exact recommended test corrections; adds native INBOX alias duplicate protection and four focused cases.",
+    "head_trees": {
+      "main": "c911dab0a1b841d1baeddc98feaa0c26d39c9cb0",
+      "mail_fixes": "cde0c2612040f8fbc6b30a6b0be0fa1aecc63778",
+      "mail_reconciled": "7587dec4e385c015f81c62df7992af378642cfed",
+      "zotero_release_before_mail": "e34da129ee67d960dd4c5a88cba73d1ed66670c3",
+      "zotero_source": "fde69fc683bd5122345a298ef087c4104f7fe52c",
+      "word": "c911dab0a1b841d1baeddc98feaa0c26d39c9cb0"
+    },
+    "source_hashes": {
+      "packages/quds_mail_core/lib/src/model/capabilities.dart": "9a56f300cabbe43afa359c5c820b5f2c499551f5600096e43605f0bf9902e99e",
+      "packages/quds_mail_core/lib/src/ports/provider.dart": "be9465375c7fc780aab00af436dbdbb6b7e649d25b87d51d72bd5bb2f8791ff9",
+      "packages/quds_mail_core/lib/src/sync/bulk_flags.dart": "84a6355406d5130522c07bb5ff6e1c2582d43532c2b1438ef9063c21488bb2cf",
+      "packages/quds_mail_core/test/archive_commands_test.dart": "2feb323c51fe51ddb7fcdcd4a29f4514bf5e970ebeb9ffb4d133e6efa6dc5e3b",
+      "packages/quds_mail_core/test/bulk_flags_coordinator_test.dart": "cb5a84f73b5c727e1140288a05336982c368aacedb6d65f1261a82b407ef223f",
+      "packages/quds_mail_core/test/bulk_flags_provider_results_test.dart": "43f95ff04e90af8dac6b8967d62fb0cf43cee73e4679f68e3a5310737f605989",
+      "packages/quds_mail_core/test/bulk_flags_test.dart": "b2bce4c7a6e26ec2b274b2ebd3aeae7d50d7bfbd9e2d2ddcc237e6c56e5c8ac5",
+      "packages/quds_mail_store/lib/src/flag_journal.dart": "d24bf5b1d6bfb657d7f3a5c8491a75cdd38c91da520d9f2a5496c4f99055bbb9",
+      "packages/quds_mail_store/lib/src/membership_reconciliation.dart": "5fd34b6d03342ad71f517369a3effa28c997a3d91dc9536be1e92e4adc245210",
+      "packages/quds_mail_store/lib/src/schema/database.dart": "5b86e838b329bfcd6f9916400eea8feecc91ccaf0ea7cebb8dfc09b883332632",
+      "packages/quds_mail_store/lib/src/search_journal.dart": "7393fd3f9539a055ac62f125f9d672ad78ee95586781dbc79d2d2bfe52263d03",
+      "packages/quds_mail_store/test/archive_journal_migration_test.dart": "d1b212ea55fa0aa5470d2cce7299a768ad1bfc9b015cd55d7942d7f5c74a07e4",
+      "packages/quds_mail_store/test/archive_journal_test.dart": "8bb9e9d4d27b333322f39c149fc399e3e16bd5bed55de32695c77581f2ffe1ae",
+      "packages/quds_mail_store/test/compose_settings_test.dart": "e10fd2e82595bab71672f41053cff00e610a26fb345a7c12e0310f371d14ada4",
+      "packages/quds_mail_store/test/flag_reconciliation_test.dart": "e2ebde54c823fc0eb8a5224a8392bfaee60a1f5add8e3fdcc15fd4bb40aa0fb1",
+      "packages/quds_mail_store/test/membership_journal_migration_test.dart": "431fa36f32494310ea06643e9088cef5ed6bcd34bf4d3ae25971c394afbd211f",
+      "packages/quds_mail_store/test/membership_observation_migration_test.dart": "b7f5ddd5b794da69b0604233a46075e71edd2609d7d53cf88b0a6bffad452c96",
+      "packages/quds_mail_store/test/migration_test.dart": "2bb1ef440ddaf26a2e88442e9b1afd95813908fedb8fa6a2a791acc698746ebb",
+      "packages/quds_mail_store/test/move_identity_migration_test.dart": "e68b6db44f14379daa8d3c140339533c1e93cdc36ea45ae9d630ab2184669f93",
+      "packages/quds_mail_store/test/saved_search_folder_migration_test.dart": "32a1704133e492bde6e2740255050bb90207fcc71eac83635d4ed3efc3ad685a",
+      "packages/quds_mail_store/test/sync_mailboxes_test.dart": "38d6a1c79507d8b6d7bc7196499dc332eb6571a43cdcfe49ae995809b8598743",
+      "packages/quds_mail_transport/lib/src/cloud/provider.dart": "d4ec71795e12553f5b768cc42dba09ab6099711b20be6d1910b17e719c96b334",
+      "packages/quds_mail_transport/lib/src/ews/native/provider.dart": "336cb54abc4634236e49288cd7770a73e1fe561db027a36fb3437f791e29356f",
+      "packages/quds_mail_transport/lib/src/native/provider.dart": "daeebdb870efd4ad2852946940d4a499bfd5eac117bdc95c16e3a57574941b9e",
+      "packages/quds_mail_transport/test/cloud_provider_test.dart": "0b3a92f9e6b4182c5c2350fd49f498728284d560a91a7f540301c5282aceec79",
+      "packages/quds_mail_transport/test/ews_provider_test.dart": "4cb94cf5e2294d855d963b86ec94345394bec3fefcc1313e000ea5715a97c368",
+      "packages/quds_mail_transport/test/native_archive_test.dart": "fccb744543c76686a7d5971ea70e562e706830b6657c4ac620e2d3d695b5bade",
+      "packages/quds_mail_transport/test/support/imap_fixture.dart": "e96134becac49251d36d466f06ccef3072af947afa7cdf4e408e2969194a7802",
+      "packages/quds_mail_ui/lib/src/workspace/message_list.dart": "fa686cf56c6af3583b769d495204e9008557c365f208f920ef07edbf514fd4f1",
+      "packages/quds_mail_ui/test/message_list_organization_test.dart": "08c5961019e5c7a3937ae2abe924cbd8317a51321f9688c57b53e1938185f4d6",
+      "packages/quds_office_editor/example/lib/studio_mail_bulk_status.dart": "a46dde9e8d10c7b4bc93a5ae5bdce7b09f6856d862cf6c341b2ee56e0c20bb05",
+      "packages/quds_office_editor/example/lib/studio_mail_ews.dart": "c5e7555c3004a07b2cda100477b1982b5c667b6a0613b10acd87094eb319a286",
+      "packages/quds_office_editor/example/lib/studio_mail_journal_strings.dart": "c6a904cdaab744eacf76471b9fb9e6818309c4a54710ed00732aaef1e8c7e7a5",
+      "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart": "af6b699db0776c95721dcfeb27b606dfafabb0e4bb7324a74cb9bb217e4673b5",
+      "packages/quds_office_editor/example/lib/studio_mail_mutation_strings.dart": "988ed51b3be504d76f8bf2526bd4993c18df037688f542ed61e942790d5017b8",
+      "packages/quds_office_editor/example/lib/studio_mail_native.dart": "7a62ce836cfaa924df1a86f6b0daa34840e2d216996f72e19eddb0b56a78f153",
+      "packages/quds_office_editor/example/lib/studio_mail_organization_dialog.dart": "fa0372eda1acfcd56b6587768cf485e6220347478807910cd99e69c901bd1959",
+      "packages/quds_office_editor/example/lib/studio_mail_workspace_strings.dart": "cd397556d4571d243d87c1494cef853d704f7ae3793073d3b2231789eb1e2080",
+      "packages/quds_office_editor/example/test/studio_mail_journal_host_test.dart": "0f549c197d179467435fa3ebb4d1e0390e855c3147993d36e41cabc2b01ca6d8",
+      "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart": "8f9ce46e7f0c07ac3aab7851bcbc06580098299ad63e8b005dd3bc92f47d5b45",
+      "packages/quds_office_editor/example/test/studio_mail_organization_dialog_test.dart": "15d015585981b6f27e141991ed8026b7d970c0969e0e016667b8720b6ffe53cf",
+      "packages/quds_office_editor/example/test/support/mail_bulk_organization_host_cases.dart": "b94b06f26592ad706c21edee5ef0e2af8245ace516de17c0ba0079cda07afdad",
+      "packages/quds_office_editor/example/test/support/mail_provider_archive_host_cases.dart": "68de84690acab4942fe4f0da39186c0e37fb4cd0e0b620f53a19e118736601bc"
+    },
+    "qualification": {
+      "mail-final-migration": {
+        "source_sha": "a886d7d79ae3d63e78f09a9caeb8569da81243c9",
+        "test_paths": [
+          "packages/quds_mail_store/test/migration_test.dart",
+          "packages/quds_mail_store/test/archive_journal_test.dart",
+          "packages/quds_mail_store/test/archive_journal_migration_test.dart"
+        ],
+        "completed": true,
+        "passed": true,
+        "case_count": 37,
+        "failures": 0,
+        "reporter": "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-final-migration.jsonl",
+        "sha256": "c08a0c9f57d3954a5adb486ee02d4726df6ac5cd90b0771d189274e85707de0f",
+        "exit_code": 0
+      },
+      "mail-final-native": {
+        "source_sha": "a886d7d79ae3d63e78f09a9caeb8569da81243c9",
+        "test_paths": [
+          "packages/quds_mail_transport/test/native_archive_test.dart"
+        ],
+        "completed": true,
+        "passed": true,
+        "case_count": 15,
+        "failures": 0,
+        "reporter": "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-final-native.jsonl",
+        "sha256": "077ca45397e028a0edd530c70e14199d353bf9f01c2ba353ac62bd7d206c2bce",
+        "exit_code": 0
+      },
+      "mail-final-studio": {
+        "source_sha": "a886d7d79ae3d63e78f09a9caeb8569da81243c9",
+        "test_paths": [
+          "packages/quds_office_editor/example/test/studio_mail_journal_host_test.dart",
+          "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+          "packages/quds_office_editor/example/test/studio_mail_organization_dialog_test.dart"
+        ],
+        "completed": true,
+        "passed": true,
+        "case_count": 276,
+        "failures": 0,
+        "reporter": "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-final-studio.jsonl",
+        "sha256": "7b4f341822424a35176535b4e24ed08475a883adeb5e97e4ecfc8abdaad39cf0",
+        "exit_code": 0
+      },
+      "strict_analysis": {
+        "source_sha": "a886d7d79ae3d63e78f09a9caeb8569da81243c9",
+        "passed": true,
+        "exit_code": 0,
+        "file_count": 4,
+        "fatal_infos": true,
+        "log": "/workspace/scratch/eba1aedcc131/validation/late-intake-2.mail-final-analyze.log",
+        "sha256": "37eb45b9d20c50a54f030cbf7bf4b35b4f71605561cd5ca028c859e1d5e1d316"
+      }
+    },
+    "disposition": "All focused reruns pass. Both earlier test failures were corrected upstream. Mail a886 source is independently qualified within the tested scopes; reconciled828 contains identical Mail source and adds already audited Word/Zotero merges. No local source patch was necessary.",
+    "tracked_source_clean": true,
+    "final_isolated_worktree_head": "a886d7d79ae3d63e78f09a9caeb8569da81243c9",
+    "release_candidate_at_report": "168297fea2df1f49cb1362f8ac21002edd222ac4",
+    "release_candidate_contains": {
+      "main": true,
+      "mail_fixes": true,
+      "mail_reconciled": true,
+      "zotero_release_before_mail": true,
+      "zotero_source": true,
+      "word": true
+    }
+  }
+}

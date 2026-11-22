@@ -3805,5 +3805,74 @@
     "advertised_pr_heads_included": 363,
     "advertised_pr_head_objects_missing": 14
   },
-  "remote_branch_api_lsremote_differences": []
+  "remote_branch_api_lsremote_differences": [],
+  "isolated_word_qualification": [
+    {
+      "source_sha": "19a63d4455540bd797e546ab82ec14db128abea0",
+      "cohort": "word-mid-tests",
+      "test_paths": [
+        "packages/quds_office_engine/test/office_vba_mid_assignment_test.dart",
+        "packages/quds_office_engine/test/office_vba_mid_assignment_conformance_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_mid_assignment_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_mid_assignment_cli_test.dart"
+      ],
+      "case_count": 405,
+      "passed": true,
+      "reporter": "/workspace/scratch/eba1aedcc131/validation/late-intake-1.word-mid-tests.jsonl"
+    },
+    {
+      "source_sha": "19a63d4455540bd797e546ab82ec14db128abea0",
+      "cohort": "word-shared-tests",
+      "test_paths": [
+        "packages/quds_office_engine/test/office_vba_string_intrinsics_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_arrays_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_arrays_boundaries_test.dart",
+        "packages/quds_office_engine/test/office_vba_text_intrinsics_test.dart",
+        "packages/quds_office_engine/test/office_vba_arrays_test.dart",
+        "packages/quds_office_engine/test/office_vba_string_intrinsics_test.dart",
+        "packages/quds_office_engine/test/office_vba_string_constants_test.dart"
+      ],
+      "case_count": 529,
+      "passed": true,
+      "reporter": "/workspace/scratch/eba1aedcc131/validation/late-intake-1.word-shared-tests.jsonl"
+    }
+  ],
+  "isolated_word_portable": [
+    {
+      "name": "mid-adapters",
+      "source_head": "19a63d4455540bd797e546ab82ec14db128abea0",
+      "fixture_sha256": "b02fc1cd54b04c92d505992d4aa9752026f0deecc1ed9d208bd630e86c5d8b08",
+      "entry_sha256": "80c69a0fd9ea01a83e554b87e440f726f0f73ce0675a75434afb13e71a15b43f",
+      "vm_exit_code": 0,
+      "compile_exit_code": 0,
+      "node_exit_code": 0,
+      "canonical_json_equal": true,
+      "case_count": 231,
+      "receipt_keys": [
+        "adapterCount",
+        "adapters",
+        "caseCount",
+        "schemaVersion",
+        "suite"
+      ],
+      "node_host_setup": "ordinary Node require"
+    },
+    {
+      "name": "mid-native",
+      "source_head": "19a63d4455540bd797e546ab82ec14db128abea0",
+      "fixture_sha256": "1d967f5595c21253bd8963abfc24d689b44763d3c300517d5067647b7264878d",
+      "entry_sha256": "c902964b816cd3d483808a4c329b6775644c1f8104479adb2e716848fb94920b",
+      "vm_exit_code": 0,
+      "compile_exit_code": 0,
+      "node_exit_code": 0,
+      "canonical_json_equal": true,
+      "case_count": null,
+      "receipt_keys": [
+        "docx",
+        "docm"
+      ],
+      "node_host_setup": "globalThis.self=globalThis before require",
+      "prior_attempt": "Ordinary Node completed without emitting a native async receipt; parity parser rejected that attempt. Supported self global was then provided, consistent with repository JS-smoke runners."
+    }
+  ]
 }
