@@ -1,0 +1,633 @@
+{
+  "schemaVersion": 1,
+  "repository": "CrispStrobe/quds_office_suite",
+  "branch": "codex/word-vba-cell-text-20261122",
+  "initial_main": "2eecf9aec2c7d1f979064448b911b516d3f56c73",
+  "qualified_source_commit": "d16649e94bc0106c000a9f2a00e70447e4a5ffa2",
+  "compiler_sha256": "d271062b8e73089a4d087764bbd5cb8a359b209ac35ba458c3d906a32c28f053",
+  "source_manifest_files": 3198,
+  "source_unchanged_after_validation": true,
+  "remote_checkpoints": [
+    "3fd8197508ded7fb4de82ecf7264ab6b307e0cb9",
+    "4b6eeacfc72902efd628e6f0ff5b943554344726",
+    "d16649e94bc0106c000a9f2a00e70447e4a5ffa2"
+  ],
+  "checks": {
+    "baseline": {
+      "passed": 225,
+      "files": 6,
+      "source_commit": "2eecf9aec2c7d1f979064448b911b516d3f56c73"
+    },
+    "final_tests": {
+      "exit_code": 0,
+      "files": 134,
+      "passed": 6753,
+      "failed": 0,
+      "skipped": 0,
+      "macro_vba_files": 129,
+      "macro_vba_passed": 6630,
+      "additional_native_word_files": 5,
+      "additional_native_word_passed": 123,
+      "changed_non_markdown_source_after_snapshot": [],
+      "join_corpus_dependencies_changed_since_previous_portable_run": [],
+      "counting": "Distinct visible test registrations in one final broad run. Hidden loading/setup events and earlier retries are excluded. Files are counted once."
+    },
+    "strict_analysis": {
+      "exit_code": 0,
+      "files": 10,
+      "fatal_infos": true
+    },
+    "join_portability": {
+      "cases": 25,
+      "vm_js_byte_identical": true,
+      "fixture_sha256": "a25c54eca3fb488508ac8c62beecaead721afbe715bc82d2438593fb94d5c180",
+      "stages": [
+        {
+          "stage": "vm",
+          "exit_code": 0,
+          "seconds": 12.03,
+          "command": [
+            "/workspace/scratch/f21b0fe576fb/toolchain/dart-sdk/bin/dart",
+            "-DVBA_CONFORMANCE_BASE64=<base64 of canonical word_join_v1.json>",
+            "tool/macros/web_vba_join_conformance.dart"
+          ],
+          "stdout": "/workspace/scratch/f21b0fe576fb/validation-results/join-conformance-portable-vm.stdout.log",
+          "stderr": "/workspace/scratch/f21b0fe576fb/validation-results/join-conformance-portable-vm.stderr.log"
+        },
+        {
+          "stage": "compile-js",
+          "exit_code": 0,
+          "seconds": 7.43,
+          "command": [
+            "/workspace/scratch/f21b0fe576fb/toolchain/dart-sdk/bin/dart",
+            "compile",
+            "js",
+            "-O1",
+            "-DVBA_CONFORMANCE_BASE64=<base64 of canonical word_join_v1.json>",
+            "tool/macros/web_vba_join_conformance.dart",
+            "-o",
+            "/workspace/scratch/f21b0fe576fb/validation-results/join-conformance-portable.js"
+          ],
+          "stdout": "/workspace/scratch/f21b0fe576fb/validation-results/join-conformance-portable-compile-js.stdout.log",
+          "stderr": "/workspace/scratch/f21b0fe576fb/validation-results/join-conformance-portable-compile-js.stderr.log"
+        },
+        {
+          "stage": "node",
+          "exit_code": 0,
+          "seconds": 0.25,
+          "command": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+            "-e",
+            "globalThis.self = globalThis; require(process.argv[1]);",
+            "/workspace/scratch/f21b0fe576fb/validation-results/join-conformance-portable.js"
+          ],
+          "stdout": "/workspace/scratch/f21b0fe576fb/validation-results/join-conformance-portable-node.stdout.log",
+          "stderr": "/workspace/scratch/f21b0fe576fb/validation-results/join-conformance-portable-node.stderr.log"
+        }
+      ]
+    },
+    "cell_report_portability": {
+      "vm_js_byte_identical": true,
+      "vm_js_structurally_equivalent": true,
+      "source_sha256": "5b7962e295045c1b688b84c484e96daa831d17b595c7605c2fc75414174d2882",
+      "stages": [
+        {
+          "stage": "vm",
+          "exit_code": 0,
+          "seconds": 15.42,
+          "command": [
+            "/workspace/scratch/f21b0fe576fb/toolchain/dart-sdk/bin/dart",
+            "-DWORD_CELL_TEXT_BAS_BASE64=<base64 of actual word_table_text_controls.bas>",
+            "tool/macros/web_vba_word_cell_text_controls_smoke.dart"
+          ],
+          "stdout": "/workspace/scratch/f21b0fe576fb/validation-results/final-cell-text-controls-portable-vm.stdout.log",
+          "stderr": "/workspace/scratch/f21b0fe576fb/validation-results/final-cell-text-controls-portable-vm.stderr.log"
+        },
+        {
+          "stage": "compile-js",
+          "exit_code": 0,
+          "seconds": 18.2,
+          "command": [
+            "/workspace/scratch/f21b0fe576fb/toolchain/dart-sdk/bin/dart",
+            "compile",
+            "js",
+            "-O1",
+            "-DWORD_CELL_TEXT_BAS_BASE64=<base64 of actual word_table_text_controls.bas>",
+            "tool/macros/web_vba_word_cell_text_controls_smoke.dart",
+            "-o",
+            "/workspace/scratch/f21b0fe576fb/validation-results/final-cell-text-controls-portable.js"
+          ],
+          "stdout": "/workspace/scratch/f21b0fe576fb/validation-results/final-cell-text-controls-portable-compile-js.stdout.log",
+          "stderr": "/workspace/scratch/f21b0fe576fb/validation-results/final-cell-text-controls-portable-compile-js.stderr.log"
+        },
+        {
+          "stage": "node",
+          "exit_code": 0,
+          "seconds": 2.57,
+          "command": [
+            "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+            "-e",
+            "globalThis.self = globalThis; require(process.argv[1]);",
+            "/workspace/scratch/f21b0fe576fb/validation-results/final-cell-text-controls-portable.js"
+          ],
+          "stdout": "/workspace/scratch/f21b0fe576fb/validation-results/final-cell-text-controls-portable-node.stdout.log",
+          "stderr": "/workspace/scratch/f21b0fe576fb/validation-results/final-cell-text-controls-portable-node.stderr.log"
+        }
+      ],
+      "result": {
+        "operations": 17,
+        "revision": 2,
+        "recordedSteps": 17,
+        "additionalReopens": 2,
+        "untouchedLayoutAndParts": true,
+        "opaqueVbaPreserved": true,
+        "lateRollback": true,
+        "state": [
+          {
+            "text": "Product",
+            "runs": [
+              {
+                "text": "Product",
+                "language": "en-US",
+                "complexLanguage": null,
+                "noProof": false,
+                "highlight": null,
+                "bold": true,
+                "italic": false,
+                "font": "Courier New",
+                "size": 24,
+                "color": "1F4E79"
+              }
+            ]
+          },
+          {
+            "text": "Artikel",
+            "runs": [
+              {
+                "text": "Artikel",
+                "language": "de-DE",
+                "complexLanguage": null,
+                "noProof": false,
+                "highlight": "FFFF00",
+                "bold": true,
+                "italic": false,
+                "font": "Courier New",
+                "size": 24,
+                "color": "1F4E79"
+              }
+            ]
+          },
+          {
+            "text": "SKU-042",
+            "runs": [
+              {
+                "text": "SKU-042",
+                "language": "en-US",
+                "complexLanguage": null,
+                "noProof": true,
+                "highlight": null,
+                "bold": true,
+                "italic": false,
+                "font": "Courier New",
+                "size": 24,
+                "color": "1F4E79"
+              }
+            ]
+          },
+          {
+            "text": "Prêt 😀",
+            "runs": [
+              {
+                "text": "Prêt 😀",
+                "language": "fr-FR",
+                "complexLanguage": null,
+                "noProof": false,
+                "highlight": "00FF00",
+                "bold": true,
+                "italic": false,
+                "font": "Courier New",
+                "size": 24,
+                "color": "1F4E79"
+              }
+            ]
+          },
+          {
+            "text": "second 0/0",
+            "runs": [
+              {
+                "text": "second 0/0",
+                "language": null,
+                "complexLanguage": null,
+                "noProof": null,
+                "highlight": null,
+                "bold": true,
+                "italic": false,
+                "font": "Courier New",
+                "size": 24,
+                "color": "1F4E79"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "new_test_file_cases": 146,
+  "net_macro_vba_case_increase": 139,
+  "initial_failures": [
+    {
+      "check": "checkpoint-join-cell-controls",
+      "reason": "One authored diagnostic expectation and two styles-part fixtures missing ordinary serializer XML declarations. Corrected expectations/control-save baselines; full byte preservation assertions retained."
+    },
+    {
+      "check": "join-conformance",
+      "reason": "Authored diagnostic code names and a declaration after executable statements did not match the existing language contract. Fixed fixture expectations/leading declaration; no production change."
+    },
+    {
+      "check": "final-changed-analysis",
+      "reason": "One missing-braces lint in the new integration test; braces added before final analysis and broad gate."
+    }
+  ],
+  "qualification_limits": [
+    "No installed Microsoft Office differential execution",
+    "No Flutter UI execution",
+    "No complete VBA runtime or embedded project execution",
+    "Source-only bounded language; no live document reads"
+  ],
+  "github_actions": {
+    "queried": false,
+    "waited": false,
+    "used_as_gate": false,
+    "settings_changed": false
+  },
+  "evidence": [
+    {
+      "source": "baseline-control-flow-cell-formatting.receipt.json",
+      "path": "logs/baseline-control-flow-cell-formatting.receipt.json.gz",
+      "bytes": 791,
+      "sha256": "8c8a32ddcfea1a469ec83d589bef400e6c972ed0639370b881dd9be618e4adcf",
+      "gzip_bytes": 356,
+      "gzip_sha256": "256536c67cf5bb980426c0e5283dd945ce5a845a013d08f4264addc92730f21f"
+    },
+    {
+      "source": "baseline-control-flow-cell-formatting.source-manifest.json",
+      "path": "logs/baseline-control-flow-cell-formatting.source-manifest.json.gz",
+      "bytes": 485035,
+      "sha256": "479400a243c7216fcb4b84f60c85f5d5050f9e86ac92a9a284e878e3bebed548",
+      "gzip_bytes": 147337,
+      "gzip_sha256": "2e00b0763e267f61617d946051ac0c1cd6cbf01de660a822e1dbb0dea3c9a782"
+    },
+    {
+      "source": "baseline-control-flow-cell-formatting.stdout.log",
+      "path": "logs/baseline-control-flow-cell-formatting.stdout.log.gz",
+      "bytes": 117485,
+      "sha256": "11f7ebd3f6c88013ad7afce4ad20ececfdac2ccbeeb550060f97ecec30ae10a4",
+      "gzip_bytes": 9450,
+      "gzip_sha256": "d99a80ff4ca2abc64c055c631625e321ffbaedab56d8a7d9a1e8eea0883fb323"
+    },
+    {
+      "source": "baseline-control-flow-cell-formatting.stderr.log",
+      "path": "logs/baseline-control-flow-cell-formatting.stderr.log.gz",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzip_bytes": 20,
+      "gzip_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "source": "checkpoint-join-cell-controls.receipt.json",
+      "path": "logs/checkpoint-join-cell-controls.receipt.json.gz",
+      "bytes": 7473,
+      "sha256": "5524a4fd0ca1767d29ecf743651083fcbdb05d9a4f9003876ac64a023f9b36a9",
+      "gzip_bytes": 1461,
+      "gzip_sha256": "844830fe1a467f7d88216e788d2973dd7d0edafbb64b6a3334661e66fcefc81d"
+    },
+    {
+      "source": "checkpoint-join-cell-controls.stdout.log",
+      "path": "logs/checkpoint-join-cell-controls.stdout.log.gz",
+      "bytes": 62093,
+      "sha256": "03e0ffab34855954dbb084db1fab234d774c300f7c874e5d518148c5c3c5e1fb",
+      "gzip_bytes": 5375,
+      "gzip_sha256": "dac2c8c44402ece8f382ec732aba38cd6b36fd95344ea93cb3f4c403ac999087"
+    },
+    {
+      "source": "checkpoint-join-cell-controls.stderr.log",
+      "path": "logs/checkpoint-join-cell-controls.stderr.log.gz",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzip_bytes": 20,
+      "gzip_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "source": "checkpoint-join-cell-controls-corrected.receipt.json",
+      "path": "logs/checkpoint-join-cell-controls-corrected.receipt.json.gz",
+      "bytes": 1053,
+      "sha256": "49ddd109e4cde93392587193c8d3037f72760525b4a090f2e24f09c3e230fbdd",
+      "gzip_bytes": 372,
+      "gzip_sha256": "dc579939f5e1cce4befbbdebf00955dc0cdc3629cf390bd0c12e3328ee5c3520"
+    },
+    {
+      "source": "join-conformance.receipt.json",
+      "path": "logs/join-conformance.receipt.json.gz",
+      "bytes": 8069,
+      "sha256": "87b0527370bb84a975d0ea76599995196c4ebf7e0eea0d09b423db616500a1e1",
+      "gzip_bytes": 1084,
+      "gzip_sha256": "6944bf378d122f5a98c682155b2f0f55388f4db1f0d50115ac4ae7f0db7aa7d0"
+    },
+    {
+      "source": "join-conformance.stdout.log",
+      "path": "logs/join-conformance.stdout.log.gz",
+      "bytes": 15359,
+      "sha256": "5ffa033a9fecb5a561a2e88fa3e6ec6d20658028a72018327b94e632fe351f9d",
+      "gzip_bytes": 1707,
+      "gzip_sha256": "50383f398b203fef6acb80073618e568df6be674503985cdf03ed73c08e79aa8"
+    },
+    {
+      "source": "join-conformance.stderr.log",
+      "path": "logs/join-conformance.stderr.log.gz",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzip_bytes": 20,
+      "gzip_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "source": "join-conformance-corrected.receipt.json",
+      "path": "logs/join-conformance-corrected.receipt.json.gz",
+      "bytes": 781,
+      "sha256": "7a93455e7782c90e5a3ee0535a261c4910fe357dcbe31358025d94b3830c5cca",
+      "gzip_bytes": 323,
+      "gzip_sha256": "81b38e5b26ab31bf7fce4a3e737fe1584ea27befeef3dbd5f3b2a148c7df4e00"
+    },
+    {
+      "source": "final-changed-analysis.receipt.json",
+      "path": "logs/final-changed-analysis.receipt.json.gz",
+      "bytes": 1151,
+      "sha256": "0c3f1e8fb97f7e89b52c29fcc5192e251d5d80d33f2b7ea07928c3411a28548a",
+      "gzip_bytes": 374,
+      "gzip_sha256": "729af2adf9372d689e8c32e7af97c79a33d568281d729e9d3759f6a364283134"
+    },
+    {
+      "source": "final-changed-analysis.stdout.log",
+      "path": "logs/final-changed-analysis.stdout.log.gz",
+      "bytes": 638,
+      "sha256": "9c32d47b1f13cd6ec2000bc9799e7cfe37e5979327a733d2f22a1b2e47bca407",
+      "gzip_bytes": 262,
+      "gzip_sha256": "01f7ded807e3066f344bc67192b28122322612ac16cbf826409ebf497bc5f5b1"
+    },
+    {
+      "source": "final-changed-analysis.stderr.log",
+      "path": "logs/final-changed-analysis.stderr.log.gz",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzip_bytes": 20,
+      "gzip_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "source": "final-changed-analysis-corrected.receipt.json",
+      "path": "logs/final-changed-analysis-corrected.receipt.json.gz",
+      "bytes": 1190,
+      "sha256": "186a7913562f60cd3c2fe5559fce2fb5f9e015c1679d388f7f0ecd335271a8df",
+      "gzip_bytes": 380,
+      "gzip_sha256": "b2c888f8ec49332e8592d943bc8ba200423409294ab61c8e5bb7b73470c5aedc"
+    },
+    {
+      "source": "final-changed-analysis-corrected.stdout.log",
+      "path": "logs/final-changed-analysis-corrected.stdout.log.gz",
+      "bytes": 433,
+      "sha256": "9b4e9ae030663df5c88c097d687fd35f2a403f07d534f335b65c4dd031197749",
+      "gzip_bytes": 168,
+      "gzip_sha256": "a7a9b2826af6abf323039d026b29b9e3c950700ad835a5e6a1af15a84e806388"
+    },
+    {
+      "source": "final-changed-analysis-corrected.stderr.log",
+      "path": "logs/final-changed-analysis-corrected.stderr.log.gz",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzip_bytes": 20,
+      "gzip_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "source": "final-full-macro-vba-native-word.receipt.json",
+      "path": "logs/final-full-macro-vba-native-word.receipt.json.gz",
+      "bytes": 7979,
+      "sha256": "75dabec8f540f7de6b01a92e85a9e22ead8b33e57643e2130361cbd18310ad8a",
+      "gzip_bytes": 1118,
+      "gzip_sha256": "c0188c0c209eab26a3d40be658e4c5298b5e2e377917e4dae39df4db286298a4"
+    },
+    {
+      "source": "final-full-macro-vba-native-word.stdout.log",
+      "path": "logs/final-full-macro-vba-native-word.stdout.log.gz",
+      "bytes": 3354329,
+      "sha256": "34f66bd794da964ae101a22c7dc1b51314e2394e2b9b785cb3822f690acaae1e",
+      "gzip_bytes": 223755,
+      "gzip_sha256": "4d19c24ad4e982d3efefeae377bad34de554715061ac73c527e649e33d18148d"
+    },
+    {
+      "source": "final-full-macro-vba-native-word.stderr.log",
+      "path": "logs/final-full-macro-vba-native-word.stderr.log.gz",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzip_bytes": 20,
+      "gzip_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "source": "final-full-macro-vba-native-word.source-manifest.json",
+      "path": "logs/final-full-macro-vba-native-word.source-manifest.json.gz",
+      "bytes": 486511,
+      "sha256": "6b106ee4a3d5fbef2bf0d50996d69318f5f4fca630b4b0c744c5be3a9bd86c3c",
+      "gzip_bytes": 147808,
+      "gzip_sha256": "a51682a6788e755d2b4b57902210de36f889299925808b555b724034aa13afff"
+    },
+    {
+      "source": "final-full-suite-request.json",
+      "path": "logs/final-full-suite-request.json.gz",
+      "bytes": 7267,
+      "sha256": "e68211a879f3d8e932aca5c08bee4502f9c34c7f647a89db5ca83ed67884788e",
+      "gzip_bytes": 872,
+      "gzip_sha256": "60389eb8655e32b864b60141fab763c889da0997927b63dcddc525c1aa8bc2e9"
+    },
+    {
+      "source": "final-qualified-cases.json",
+      "path": "logs/final-qualified-cases.json.gz",
+      "bytes": 1376233,
+      "sha256": "261e5f4bb32955b1f5c01da5a52ad52c15eb8ebd74604e4c8c4a273c5c02e69b",
+      "gzip_bytes": 111659,
+      "gzip_sha256": "7d844cbc05d2a319e290dd02446eee6f83b1d5e63462d4baa8d59172cbda4b8e"
+    },
+    {
+      "source": "final-qualified-summary.json",
+      "path": "logs/final-qualified-summary.json.gz",
+      "bytes": 16851,
+      "sha256": "ef66333e0412a019faab63251a6a49c445f06e3b25fecd143405ec2ac573aacc",
+      "gzip_bytes": 1550,
+      "gzip_sha256": "292994ea6715a93c187286426c5a59f64d3d535818c21c87d5c8a435704116c6"
+    },
+    {
+      "source": "join-conformance-portable.receipt.json",
+      "path": "logs/join-conformance-portable.receipt.json.gz",
+      "bytes": 2513,
+      "sha256": "611a7af95743a33751409ec19c1a11b1f3d6414124a84679dcad1ead09971671",
+      "gzip_bytes": 647,
+      "gzip_sha256": "cf3d7b598279a2a38e62452ee8903d179ae5873b90496a95f948fbb5c4b5e91d"
+    },
+    {
+      "source": "join-conformance-portable.source-manifest.json",
+      "path": "logs/join-conformance-portable.source-manifest.json.gz",
+      "bytes": 486218,
+      "sha256": "13e9efdd47a6e089be95ad55df3e41bd76d8244722f61b614899b2799d17e066",
+      "gzip_bytes": 147711,
+      "gzip_sha256": "1d3d210c4c3902c6da747929fd59379a3be2c681993abe0e182c9ee40a2ce126"
+    },
+    {
+      "source": "join-corpus-final-source-applicability.json",
+      "path": "logs/join-corpus-final-source-applicability.json.gz",
+      "bytes": 32793,
+      "sha256": "4898d27a3d69f76295a9017470cbc3e0337820cb0f2a5f5f29250d71273e268d",
+      "gzip_bytes": 3255,
+      "gzip_sha256": "af7d7d5f01d9e615f49cdbfffdefb0ce68c9e6315122844764bb6b85f55c621a"
+    },
+    {
+      "source": "final-cell-text-controls-portable.receipt.json",
+      "path": "logs/final-cell-text-controls-portable.receipt.json.gz",
+      "bytes": 7237,
+      "sha256": "d7f6d96e0631f342949e6f1c242973f0932af17dfaaf43a8f80ac971a9206596",
+      "gzip_bytes": 1053,
+      "gzip_sha256": "6f7a2cbba040dc2f8e66e0626d10d25d9f11752cff220a0926cb6a62e86389d1"
+    },
+    {
+      "source": "final-cell-text-controls-portable.source-manifest.json",
+      "path": "logs/final-cell-text-controls-portable.source-manifest.json.gz",
+      "bytes": 486511,
+      "sha256": "6b106ee4a3d5fbef2bf0d50996d69318f5f4fca630b4b0c744c5be3a9bd86c3c",
+      "gzip_bytes": 147808,
+      "gzip_sha256": "a51682a6788e755d2b4b57902210de36f889299925808b555b724034aa13afff"
+    },
+    {
+      "source": "join-conformance-portable-vm.stdout.log",
+      "path": "logs/join-conformance-portable-vm.stdout.log.gz",
+      "bytes": 5516,
+      "sha256": "b0ec34f392d496df12bffc94c60d9cb4f56b7822fbcedfe9e86df00d006f5a31",
+      "gzip_bytes": 954,
+      "gzip_sha256": "b3422d7f8cc84cefb0b765e10ef886732a431e7b5b4c609fbb1db3900efb13ba"
+    },
+    {
+      "source": "join-conformance-portable-vm.stderr.log",
+      "path": "logs/join-conformance-portable-vm.stderr.log.gz",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzip_bytes": 20,
+      "gzip_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "source": "join-conformance-portable-compile-js.stdout.log",
+      "path": "logs/join-conformance-portable-compile-js.stdout.log.gz",
+      "bytes": 112,
+      "sha256": "765ff165308886154dd08c61bb89f5a011781cfea02012a7a3a3bf810a8a8e55",
+      "gzip_bytes": 120,
+      "gzip_sha256": "9aa29b66b42c2a50cadecae1c1e3c98872f00637f0e556d9057dba00ab467f6b"
+    },
+    {
+      "source": "join-conformance-portable-compile-js.stderr.log",
+      "path": "logs/join-conformance-portable-compile-js.stderr.log.gz",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzip_bytes": 20,
+      "gzip_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "source": "join-conformance-portable-node.stdout.log",
+      "path": "logs/join-conformance-portable-node.stdout.log.gz",
+      "bytes": 5516,
+      "sha256": "b0ec34f392d496df12bffc94c60d9cb4f56b7822fbcedfe9e86df00d006f5a31",
+      "gzip_bytes": 954,
+      "gzip_sha256": "b3422d7f8cc84cefb0b765e10ef886732a431e7b5b4c609fbb1db3900efb13ba"
+    },
+    {
+      "source": "join-conformance-portable-node.stderr.log",
+      "path": "logs/join-conformance-portable-node.stderr.log.gz",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzip_bytes": 20,
+      "gzip_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "source": "final-cell-text-controls-portable-vm.stdout.log",
+      "path": "logs/final-cell-text-controls-portable-vm.stdout.log.gz",
+      "bytes": 1159,
+      "sha256": "0dd63280671dbef6351da0b6f2e202fa75064d5ab883987c3ff2cbe78c5019a1",
+      "gzip_bytes": 362,
+      "gzip_sha256": "147411248560aa0b5950fac5940bed68d258ff4582be9ae69edc1ead61682cec"
+    },
+    {
+      "source": "final-cell-text-controls-portable-vm.stderr.log",
+      "path": "logs/final-cell-text-controls-portable-vm.stderr.log.gz",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzip_bytes": 20,
+      "gzip_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "source": "final-cell-text-controls-portable-compile-js.stdout.log",
+      "path": "logs/final-cell-text-controls-portable-compile-js.stdout.log.gz",
+      "bytes": 114,
+      "sha256": "02d6169e1aea739557f7c83d0d238dd516a227288e66a1d4f5291da1db7f3d81",
+      "gzip_bytes": 121,
+      "gzip_sha256": "0a43ccf9b39baa5374a05e5f587e5451da96168405224d9c287fe0380c0dea58"
+    },
+    {
+      "source": "final-cell-text-controls-portable-compile-js.stderr.log",
+      "path": "logs/final-cell-text-controls-portable-compile-js.stderr.log.gz",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzip_bytes": 20,
+      "gzip_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "source": "final-cell-text-controls-portable-node.stdout.log",
+      "path": "logs/final-cell-text-controls-portable-node.stdout.log.gz",
+      "bytes": 1159,
+      "sha256": "0dd63280671dbef6351da0b6f2e202fa75064d5ab883987c3ff2cbe78c5019a1",
+      "gzip_bytes": 362,
+      "gzip_sha256": "147411248560aa0b5950fac5940bed68d258ff4582be9ae69edc1ead61682cec"
+    },
+    {
+      "source": "final-cell-text-controls-portable-node.stderr.log",
+      "path": "logs/final-cell-text-controls-portable-node.stderr.log.gz",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzip_bytes": 20,
+      "gzip_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "source": "toolchain/run_dart.py",
+      "path": "logs/run_dart.py.gz",
+      "bytes": 2875,
+      "sha256": "78ac170e1e3b85ab0c6930b5f4aeb10e7553dda223adb777bcbc77d47d2acdba",
+      "gzip_bytes": 1163,
+      "gzip_sha256": "0c9784fd1ad5c7a80e2d3a81c30251f7d107fd387db9e6aba933c6f50390e85f"
+    },
+    {
+      "source": "toolchain/sync_validation.py",
+      "path": "logs/sync_validation.py.gz",
+      "bytes": 1774,
+      "sha256": "b76d0328c90e05998db009e6e2e787d2abcb7ed619d1f18135c7c349ed5c1d81",
+      "gzip_bytes": 741,
+      "gzip_sha256": "5f42b86798d6450015a9f8b2864bf8efd03ba9f318a4f649e6da401572ae2f07"
+    },
+    {
+      "source": "toolchain/qualify_join_conformance.py",
+      "path": "logs/qualify_join_conformance.py.gz",
+      "bytes": 2520,
+      "sha256": "764c51b72f3588bb10c75ccd35d46b8629b2cb13f14b5439bdbaef48e9977375",
+      "gzip_bytes": 1116,
+      "gzip_sha256": "59568423169e6f6e59ea346a8848b6eaf431d42191a7515d621d7960b3224b5a"
+    },
+    {
+      "source": "toolchain/qualify_cell_text_controls.py",
+      "path": "logs/qualify_cell_text_controls.py.gz",
+      "bytes": 3464,
+      "sha256": "65e2b824cfb544f65d23717f44c57dc1727d57af096f8a1409c29501c03643f8",
+      "gzip_bytes": 1433,
+      "gzip_sha256": "8436ab813ffebaffec56cfffd41907ed02e1920f95c451801e953701e3861324"
+    }
+  ]
+}

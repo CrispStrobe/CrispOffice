@@ -1,0 +1,33 @@
+{
+  "source_commit": "2eecf9aec2c7d1f979064448b911b516d3f56c73",
+  "source_root": "/workspace/scratch/f21b0fe576fb/quds_office_suite",
+  "target_root": "/workspace/scratch/f21b0fe576fb/engine-validation",
+  "repository_lock_sha256": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+  "package_manifests": {
+    "packages/legacy_doc_parser/pubspec.yaml": "150af8d89562635bf5a876c0a539c20ae48b58ea3666db071b5e4ebd3addf153",
+    "packages/quds_office_engine/pubspec.yaml": "225773e48bab7333652a4098e5747f37eab2aac9fc6a14de1e814590ab03fb7a",
+    "packages/quds_office_engine/example/pubspec.yaml": "9f1b07bb8665c2125d92074aef74f2892963e34171ab0ea381df7a1cf798fb6c"
+  },
+  "isolation": "Only temporary root pubspec.yaml is reduced. Engine, legacy parser, engine example and editor font fixtures are copied unchanged.",
+  "runtime": {
+    "dart_version": "3.14.1 stable, linux_x64",
+    "archive_url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.14.1/sdk/dartsdk-linux-x64-release.zip",
+    "checksum_url": "https://storage.googleapis.com/dart-archive/channels/stable/release/3.14.1/sdk/dartsdk-linux-x64-release.zip.sha256sum",
+    "archive_bytes": 267277716,
+    "archive_sha256": "759bed01e0aeb50e1a0b0a19474ba5c80c6087ce1d37b3214e475c81a44430e8",
+    "published_checksum_verified": true,
+    "dart_executable": "/workspace/scratch/f21b0fe576fb/toolchain/dart-sdk/bin/dart",
+    "env": {
+      "PUB_CACHE": "/workspace/scratch/f21b0fe576fb/toolchain/pub-cache",
+      "TMPDIR": "/workspace/scratch/f21b0fe576fb/toolchain/tmp",
+      "DART_SUPPRESS_ANALYTICS": "true",
+      "CI": "true"
+    }
+  },
+  "dependencies": {
+    "resolved_packages": 56,
+    "all_entries_identical_to_repository_lock": true,
+    "differences": [],
+    "resolved_lock_sha256": "0c3f527784e6f4a057d4fdf0a4e124e841a5ef0f521db06d7485c86cb0d6bf09"
+  }
+}
