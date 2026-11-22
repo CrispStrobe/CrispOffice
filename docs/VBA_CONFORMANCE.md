@@ -11,6 +11,7 @@ The canonical fixtures are:
 
 | Suite | Cases | Scope |
 | --- | ---: | --- |
+| [`word_integer_arithmetic_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_integer_arithmetic_v1.json) | 54 | Integer division and signed Mod, rounding, precedence, Empty/Null, Long bounds, complete cell plans and positioned refusals |
 | [`word_cell_suffix_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_cell_suffix_v1.json) | 73 | Direct cell appends, named Text, aliases/helpers, evaluation order, Unicode and strict paragraph/story/argument refusals |
 | [`word_cell_prefix_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_cell_prefix_v1.json) | 78 | Direct/projected cell prefixes, named Text, captured aliases/helpers, portable text constants, strict argument/content/selector boundaries |
 | [`word_cell_paragraphs_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_cell_paragraphs_v1.json) | 32 | Explicit cell paragraph selection, Style/Shading, retained aliases/helpers, existing formatting, strict selectors and direct/projected range refusals |
@@ -27,6 +28,16 @@ The canonical fixtures are:
 
 The same fixture bytes are consumed by each VM test and the portable
 JavaScript runner; there is no separately maintained copy of expected results.
+
+The integer arithmetic suite specifies 44 complete Word plans and ten
+positioned diagnostics. The same exact corpus runs on the VM and compiled
+JavaScript. Positive published examples are `spec-derived`; strict coercion,
+rounded-result bounds and signed remainder are explicit `dialect-contract`
+cases. In particular, the documented MS-VBAL absolute-remainder discrepancy
+is not presented as resolved by an Office-host run. The complete grouped BAS
+separately exercises document publication, preservation, replay and rollback.
+See the [arithmetic contract](vba-macros-details.md#integer-division-and-remainder)
+and [local record](validation/word-vba-integer-arithmetic-20261122/README.md).
 
 The cell suffix suite independently specifies 27 complete plans and 46
 positioned diagnostics. It distinguishes direct `Cell.Range.InsertAfter`

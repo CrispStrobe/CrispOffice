@@ -91,6 +91,20 @@ Unsupported whole-object assignment, `Duplicate`, runtime type discovery and
 property reads are refused. A `ByVal` object helper retains the selector passed
 to it; rebinding the helper parameter does not retarget the caller.
 
+## Grouping labels into a table
+
+The shared source operators `\` and `Mod` calculate row groups, column
+positions and repeating formatting choices. For a zero-based source ordinal,
+`ordinal \ 2 + 1` chooses a two-column row and `ordinal Mod 2 + 1` chooses its
+column. The [complete grouped report](../packages/quds_office_engine/example/macros/word_grouped_report.bas)
+combines arrays, Const/default expressions, named helpers, retained Range
+aliases and direct cell suffixes in twelve native operations.
+
+Run it with `compile-word-vba`, `validate-word-vba` or `run-word-vba` against an
+existing supported 2×2 table. It uses source data; it does not enumerate or
+read existing table text. See the [arithmetic contract](vba-macros-details.md#integer-division-and-remainder)
+for rounding, signed remainder, overflow and explicit compatibility limits.
+
 ## Comparing labels and choosing colors
 
 `Font.ColorIndex` accepts all 16 fixed `WdColorIndex` colors plus `wdAuto`.

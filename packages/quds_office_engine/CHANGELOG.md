@@ -4,6 +4,16 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Add shared VBA integer division (`\`) and signed remainder (`Mod`), with
+  ties-to-even Long operands, VBA precedence, strict Empty/Null/conversion
+  rules, positioned errors and existing compilation budgets. Include a
+  complete grouped Word table report, a 54-case conformance corpus and
+  document/CLI/MCP/portable regression coverage. The
+  [contract](../../docs/vba-macros-details.md#integer-division-and-remainder)
+  records exact bounds and the signed-Mod specification discrepancy;
+  [local qualification](../../docs/validation/word-vba-integer-arithmetic-20261122/README.md)
+  is separate from installed Office compatibility.
+
 - Append to current Word table-cell text through direct VBA
   `Cell.Range.InsertAfter`, including named `Text:=`, typed aliases, nested
   `With` and `ByVal` helpers. Preserve original runs, sparse and zero-width

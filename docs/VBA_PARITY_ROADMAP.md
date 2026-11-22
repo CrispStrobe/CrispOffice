@@ -56,7 +56,25 @@ and [the native macro contract](MACROS.md).
 
 ## Ordered milestones and acceptance
 
-The current continuation adds direct `Cell.Range.InsertAfter`, including
+The current continuation adds shared integer division (`\`) and signed
+remainder (`Mod`) for source-known grouping and template calculations in Word,
+Excel and PowerPoint. It preserves VBA precedence, left-to-right evaluation,
+strict numeric/Variant operands, Empty/Null behavior and compilation budgets.
+Operands use the existing ties-to-even Long conversion boundary; zero divisors
+and overflow refuse publication. The complete grouped Word BAS combines
+calculated table selectors, direct suffixes, named helpers and alternating
+formatting under the ordinary native transaction. This advances Stage 2.
+
+The [exact contract](vba-macros-details.md#integer-division-and-remainder),
+[54-case corpus](../packages/quds_office_engine/test/fixtures/vba_conformance/word_integer_arithmetic_v1.json)
+and [local record](validation/word-vba-integer-arithmetic-20261122/README.md)
+distinguish deterministic Quds behavior from installed Office qualification.
+Signed Mod deliberately follows the dividend-signed formula, while MS-VBAL's
+absolute-remainder wording is recorded as an unresolved source discrepancy.
+Full numeric subtype coercion, live document reads and embedded VBA execution
+remain separate work.
+
+The preceding continuation adds direct `Cell.Range.InsertAfter`, including
 required named `Text:=`, typed aliases, nested `With` and named `ByVal` helpers.
 The dedicated native append operation preserves original characters, run
 boundaries, kerning and zero-width metadata, while keeping cell and paragraph
