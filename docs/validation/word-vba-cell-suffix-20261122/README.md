@@ -82,9 +82,14 @@ All 37 branch/upstream tips in the captured intake are ancestors of d431 and
 therefore of the observed main. A later 39-tip sweep also found the arithmetic
 work (now included), the subsequently created Mail organization branch
 `f25c62e38b422598873c3dc3bb638e746dfb53b9` and Mail identity tip
-`06b4e747c09851048d0b72a958e9114f7c83cc52`. The latter two were still outside the
-observed main's ancestry and remain preserved remotely. This record does not
-claim that every branch created after the captured intake was merged.
+`06b4e747c09851048d0b72a958e9114f7c83cc52`. Both were outside the first observed
+main's ancestry. During documentation closure, PR #372 advanced main to
+`682ca74fe994eb96a8133c963ae3e5f765023c2e`, tree
+`cd91db179b58d29bba860f403b018c6ffa8727b5`, and incorporated the Mail identity tip.
+The documentation follow-up preserves that newer main and its qualification
+record. The post-intake Mail organization branch remains separate and preserved
+remotely. This record does not claim every branch created after the captured
+intake was merged.
 
 [Publication summary](publication-summary.json) records the exact accepted scope,
 source-continuity verification and remaining execution/storage limitations.

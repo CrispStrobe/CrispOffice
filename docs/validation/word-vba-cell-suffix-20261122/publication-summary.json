@@ -156,10 +156,13 @@
     "allCapturedLaterTipsAncestorsOfFeatureCheckpoint": true,
     "laterSweepTips": 39,
     "laterObservedOutsideMain": [
+      "f25c62e38b422598873c3dc3bb638e746dfb53b9"
+    ],
+    "arithmeticTipIncludedInObservedMain": "ad27e97263eee11dbd7b76f846bfea0a8e250499",
+    "initialPublicationOutsideMain": [
       "f25c62e38b422598873c3dc3bb638e746dfb53b9",
       "06b4e747c09851048d0b72a958e9114f7c83cc52"
-    ],
-    "arithmeticTipIncludedInObservedMain": "ad27e97263eee11dbd7b76f846bfea0a8e250499"
+    ]
   },
   "executionLimits": {
     "githubActionsQueried": false,
@@ -181,5 +184,13 @@
     "sdkSourceBinariesAndGitMetadataUnmodified": true,
     "committedRepositorySourceUnmodifiedByScheduling": true,
     "historicalEvidenceRestorationManifest": "runtime/evicted-historical-evidence.json"
+  },
+  "subsequentPublication": {
+    "main": "682ca74fe994eb96a8133c963ae3e5f765023c2e",
+    "tree": "cd91db179b58d29bba860f403b018c6ffa8727b5",
+    "pullRequest": 372,
+    "priorMainAncestor": true,
+    "mailIdentityTipIncluded": "06b4e747c09851048d0b72a958e9114f7c83cc52",
+    "organizationTipOutsideMain": "f25c62e38b422598873c3dc3bb638e746dfb53b9"
   }
 }
