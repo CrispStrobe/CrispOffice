@@ -4,6 +4,12 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Show saved browsing windows and synchronized folders in one local Mail
+  catalog. Keep their coverage distinct, switch sources explicitly, page
+  synchronized headers in batches of 100, and repair pages after membership
+  changes. Repository updates preserve matching readers and retire stale body
+  loads. EN/DE/AR controls include local refresh and guarded cleanup/close.
+
 - Let saved-mail searches keep an explicit folder set across verified local
   accounts. Select folders locally, save/reopen the exact scope, inspect each
   folder's retained-header coverage, and repair unavailable selections without

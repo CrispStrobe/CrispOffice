@@ -195,6 +195,10 @@ final class StudioMailMailboxSession {
           ? remaining
           : limit;
       if (view.mailbox.id != mailbox ||
+          view.mailbox.id.value.length > 1024 ||
+          view.mailbox.displayName.length > 4096 ||
+          view.updatedAt.millisecondsSinceEpoch < 0 ||
+          view.updatedAt.millisecondsSinceEpoch > 8640000000000000 ||
           view.revision < 1 ||
           view.revision > 9007199254740991 ||
           view.revision < _highestRevision ||
@@ -246,12 +250,16 @@ final class StudioMailMailboxSession {
   Future<void> _cancelObservation() async {
     final old = _subscription;
     final read = _pendingRead;
-    _subscription = null;
-    _pendingRead = null;
-    await old?.cancel();
-    // A canceled Stream.fromFuture does not cancel the underlying local read.
-    // Its owner must remain open until that read has settled too.
-    await read;
+    try {
+      await old?.cancel();
+      if (identical(_subscription, old)) _subscription = null;
+    } finally {
+      // A canceled Stream.fromFuture does not cancel the underlying local read.
+      // Drain it even if cancellation failed; retain each owner handle until
+      // its own drain succeeds so a later close cannot report false success.
+      await read;
+      if (identical(_pendingRead, read)) _pendingRead = null;
+    }
   }
 
   /// Completes on the first result, or when another selection/close supersedes
@@ -401,16 +409,21 @@ final class StudioMailMailboxSession {
   /// Retires the selection immediately and drains its read/observer. The
   /// session stays reusable; a later selection cannot receive old callbacks.
   Future<void> clear() {
-    if (_closed) return _closing ?? Future<void>.value();
-    final generation = ++_generation;
+    if (_closed) return close();
+    _generation++;
     _highestRevision = 0;
     _finishFirst();
     _publish(
       const StudioMailMailboxSnapshot(phase: StudioMailMailboxPhase.idle),
     );
-    return _transition = _transition.then((_) async {
-      if (_current(generation)) await _cancelObservation();
-    });
+    final clearing = _transition.then((_) => _cancelObservation());
+    // The caller receives the drain failure. Future selections/close still
+    // reach the retained handles instead of inheriting a poisoned chain.
+    _transition = clearing.then<void>(
+      (_) {},
+      onError: (Object _, StackTrace _) {},
+    );
+    return clearing;
   }
 
   /// Immediately clears selection and invalidates late work; cancellation is
@@ -423,9 +436,20 @@ final class StudioMailMailboxSession {
     _publish(
       const StudioMailMailboxSnapshot(phase: StudioMailMailboxPhase.closed),
     );
-    return _closing = _transition.then((_) async {
+    final closing = _transition.then((_) async {
       await _cancelObservation();
       await _changes.close();
     });
+    late final Future<void> result;
+    result = closing.catchError((Object error, StackTrace stack) {
+      if (identical(_closing, result)) _closing = null;
+      Error.throwWithStackTrace(error, stack);
+    });
+    _closing = result;
+    _transition = result.then<void>(
+      (_) {},
+      onError: (Object _, StackTrace _) {},
+    );
+    return result;
   }
 }

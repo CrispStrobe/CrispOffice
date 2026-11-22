@@ -42,6 +42,8 @@ MailMailboxSyncSnapshot _sync(
   bool partial = false,
   List<MailHeaderRecord>? headers,
   bool? hasMoreHeaders,
+  DateTime? updatedAt,
+  String? displayName,
 }) {
   final page =
       headers ??
@@ -51,9 +53,12 @@ MailMailboxSyncSnapshot _sync(
       ];
   return MailMailboxSyncSnapshot(
     summary: MailMailboxSyncSummary(
-      mailbox: MailMailbox(id: mailbox, displayName: mailbox.value),
+      mailbox: MailMailbox(
+        id: mailbox,
+        displayName: displayName ?? mailbox.value,
+      ),
       revision: revision,
-      updatedAt: DateTime.utc(2026, 11, 22),
+      updatedAt: updatedAt ?? DateTime.utc(2026, 11, 22),
       hasMore: partial,
       headerCount: count,
     ),
@@ -73,6 +78,43 @@ MailCachedMailboxView _browse(MailMailboxId mailbox) => MailCachedMailboxView(
 
 typedef _PageRequest = ({MailMailboxId mailbox, int limit, int offset});
 
+/// Allows a failed cancellation to leave the underlying observer live until a
+/// later attempt succeeds, exercising the session's retained ownership handles.
+final class _CancellationStream<T> extends Stream<T> {
+  _CancellationStream(this.source, this.beforeCancel);
+  final Stream<T> source;
+  final Future<void> Function() beforeCancel;
+
+  @override
+  StreamSubscription<T> listen(
+    void Function(T)? onData, {
+    Function? onError,
+    void Function()? onDone,
+    bool? cancelOnError,
+  }) => _CancellationSubscription(
+    source.listen(
+      onData,
+      onError: onError,
+      onDone: onDone,
+      cancelOnError: cancelOnError,
+    ),
+    beforeCancel,
+  );
+}
+
+final class _CancellationSubscription<T> extends Fake
+    implements StreamSubscription<T> {
+  _CancellationSubscription(this.source, this.beforeCancel);
+  final StreamSubscription<T> source;
+  final Future<void> Function() beforeCancel;
+
+  @override
+  Future<void> cancel() async {
+    await beforeCancel();
+    await source.cancel();
+  }
+}
+
 final class _Store extends Fake
     implements
         StudioMailMailboxStore,
@@ -88,6 +130,16 @@ final class _Store extends Fake
       <StreamController<MailResult<MailCachedMailboxView?>>>[];
   Completer<void>? cancellationGate;
   int cancellations = 0;
+  int cancellationAttempts = 0;
+  bool failNextCancellation = false;
+
+  Future<void> _beforeCancel() async {
+    cancellationAttempts++;
+    if (failNextCancellation) {
+      failNextCancellation = false;
+      throw StateError('injected cancellation failure');
+    }
+  }
 
   @override
   Stream<MailResult<MailMailboxSyncSnapshot?>> watchSyncMailbox(
@@ -105,7 +157,7 @@ final class _Store extends Fake
       },
     );
     syncStreams.add(controller);
-    return controller.stream;
+    return _CancellationStream(controller.stream, _beforeCancel);
   }
 
   @override
@@ -380,6 +432,14 @@ void main() {
         _sync(_inbox, revision: 9007199254740992, count: 3, limit: 2),
         _sync(_inbox, revision: 4, count: -1, headers: []),
         _sync(_inbox, revision: 4, count: 9007199254740992, headers: []),
+        _sync(
+          _inbox,
+          revision: 4,
+          count: 3,
+          limit: 2,
+          updatedAt: DateTime.utc(1960),
+        ),
+        _sync(_inbox, revision: 4, count: 3, limit: 2, displayName: 'x' * 4097),
         _sync(_inbox, revision: 4, count: 3, limit: 2, offset: 1),
         _sync(_inbox, revision: 4, count: 3, headers: [_header(_inbox, 1)]),
         _sync(_inbox, revision: 4, count: 3, limit: 2, hasMoreHeaders: false),
@@ -576,6 +636,66 @@ void main() {
       expect(closed, isTrue);
     },
   );
+
+  test('oversize synchronized mailbox identity is rejected', () async {
+    final oversized = MailMailboxId('x' * 1025, account: _account);
+    await open(oversized, _sync(oversized));
+    expect(session.snapshot.phase, StudioMailMailboxPhase.failed);
+    expect(session.snapshot.problem!.code, MailProblemCode.conflict);
+    expect(session.snapshot.headers, isEmpty);
+  });
+
+  test(
+    'failed clear keeps its observer owned and permits a later selection',
+    () async {
+      await open(_inbox, _sync(_inbox));
+      store.failNextCancellation = true;
+      await expectLater(session.clear(), throwsStateError);
+      expect(session.snapshot.phase, StudioMailMailboxPhase.idle);
+      expect(store.cancellations, 0);
+      store.syncStreams.single.add(MailSuccess(_sync(_inbox, revision: 2)));
+      expect(session.snapshot.headers, isEmpty);
+      await open(_archive, _sync(_archive));
+      expect(store.cancellationAttempts, 2);
+      expect(store.cancellations, 1);
+      expect(session.snapshot.mailbox, _archive);
+      expect(session.snapshot.phase, StudioMailMailboxPhase.ready);
+    },
+  );
+
+  test(
+    'failed close retries retained cancellation before closing changes',
+    () async {
+      await open(_inbox, _sync(_inbox));
+      var changesClosed = false;
+      final listening = session.changes.listen(
+        (_) {},
+        onDone: () => changesClosed = true,
+      );
+      store.failNextCancellation = true;
+      await expectLater(session.close(), throwsStateError);
+      expect(session.snapshot.phase, StudioMailMailboxPhase.closed);
+      expect(store.cancellations, 0);
+      expect(changesClosed, isFalse);
+      store.syncStreams.single.add(MailSuccess(_sync(_inbox, revision: 2)));
+      expect(session.snapshot.headers, isEmpty);
+      await session.close();
+      expect(store.cancellationAttempts, 2);
+      expect(store.cancellations, 1);
+      expect(changesClosed, isTrue);
+      await listening.cancel();
+    },
+  );
+
+  test('close after failed clear drains the retained observer', () async {
+    await open(_inbox, _sync(_inbox));
+    store.failNextCancellation = true;
+    await expectLater(session.clear(), throwsStateError);
+    await session.close();
+    expect(store.cancellationAttempts, 2);
+    expect(store.cancellations, 1);
+    expect(session.snapshot.phase, StudioMailMailboxPhase.closed);
+  });
 
   test('an unsupported sync store fails without loading browse data', () async {
     final oneShot = _OneShotStore();

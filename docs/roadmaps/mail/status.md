@@ -24,7 +24,22 @@ interrupted work.
 | Account persistence | Native account store, schema migrations and reconnect |
 | Browser store | Implemented path; quota/reload/Web Locks acceptance remains open |
 
-## Latest increment: saved-search folder sets
+## Latest increment: unified retained-folder navigation
+
+Cached mail now lists saved browsing windows and synchronized folders together
+for the selected account. A folder appears once, keeps its two coverage sources
+separate, and offers explicit source switching. Synchronized headers have bounded
+100-row pages, local refresh and repair when membership changes remove the
+displayed last page. Repository updates preserve a matching reader and reject
+stale body results after folder, source, page or cleanup changes. EN/DE/AR
+controls retain browse-only host compatibility.
+
+See the [workflow and ownership contract](retained-folder-navigation.md) and
+[fresh qualification record](../../validation/mail-retained-navigation-20261122/README.md).
+This is one account's local navigation. Connected multi-account navigation and
+durable move/delete remain subsequent work.
+
+## Previous increment: saved-search folder sets
 
 Studio can select exact local folders across accounts, persist/reopen the scope,
 and display each folder's retained-header coverage. Missing folders remain in
@@ -63,6 +78,8 @@ and [work record](../../validation/mail-keyboard-triage-20261121/README.md).
 - Synchronize one or more folders explicitly and resume from durable
   checkpoints.
 - Read retained message bytes without contacting the provider again.
+- Navigate saved browse windows and synchronized folders in one local catalog,
+  with explicit coverage sources and paged synchronized headers.
 - Mark read/unread and flagged state with recoverable foreground commands.
 - Use Conversations for explicitly loaded threaded headers. Subjects alone
   never create a thread.
@@ -165,6 +182,7 @@ Host-specific limits:
 - [Scheduled send](scheduled-send.md)
 - [Saved searches](saved-searches.md)
 - [Saved-search folder sets](folder-saved-search.md)
+- [Unified retained-folder navigation](retained-folder-navigation.md)
 - [Conversations](conversations.md)
 - [Keyboard triage](keyboard-triage.md)
 - [Compose tools](compose-tools.md)
