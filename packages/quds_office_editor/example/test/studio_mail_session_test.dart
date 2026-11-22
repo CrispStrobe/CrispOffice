@@ -685,14 +685,48 @@ void main() {
       await tester.enterText(_field(_strings.password), 'other-test-password');
       await _connect(tester);
       await _pump(tester);
+      // Reconnect must wait for the previous admission to release its late
+      // owner. Starting another client here would bypass that ownership fence.
+      _expectClosed(first);
+      expect(attempts, 1);
+      expect(second.connects, 0);
+      expect(second.lists, 0);
+      expect(second.fetches, 0);
+      expect(drafts.identities, hasLength(1));
+      expect(drafts.closes, 0);
+      expect(find.text('Second account message'), findsNothing);
+      expect(
+        tester
+            .widget<FilledButton>(
+              find.widgetWithText(FilledButton, _strings.connect),
+            )
+            .onPressed,
+        isNull,
+      );
+      openGate.complete();
+      final compose = find.widgetWithIcon(TextButton, Icons.edit_outlined);
+      for (var attempt = 0; attempt < 50; attempt++) {
+        await tester.pump(const Duration(milliseconds: 20));
+        if (find.text('Second account message').evaluate().length == 1 &&
+            compose.evaluate().length == 1 &&
+            tester.widget<TextButton>(compose).onPressed != null) {
+          break;
+        }
+      }
       expect(find.text('Second account message'), findsOneWidget);
+      expect(tester.widget<TextButton>(compose).onPressed, isNotNull);
+      expect(attempts, 2);
+      expect(second.connects, 1);
+      expect(drafts.identities, hasLength(2));
+      expect(drafts.closes, 1);
+      expect(find.text(_strings.mailDraftRestored), findsNothing);
+      expect(find.text(_strings.mailSubmissionUncertain), findsNothing);
       await _compose(tester);
       await tester.enterText(_field(_strings.subject), 'Current account draft');
       await _saveAndCloseCompose(tester);
       final newKey = drafts.identities.last.account.value;
       expect(newKey, isNot(oldKey));
       expect(drafts.records[newKey]!.draft.subject, 'Current account draft');
-      openGate.complete();
       await _pump(tester);
       expect(drafts.closes, 1);
       expect(find.text('Second account message'), findsOneWidget);
@@ -708,6 +742,8 @@ void main() {
       expect(first.sends + second.sends, 0);
       await _saveAndCloseCompose(tester);
       expect(drafts.records[oldKey]!.draft.body, 'Old account body');
+      expect(drafts.records[oldKey]!.submissionUncertain, isTrue);
+      expect(drafts.records[newKey]!.submissionUncertain, isFalse);
       expect(tester.takeException(), isNull);
     },
   );

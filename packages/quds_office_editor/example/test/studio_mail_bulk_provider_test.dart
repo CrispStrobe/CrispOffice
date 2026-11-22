@@ -228,6 +228,11 @@ Future<void> _show(WidgetTester tester, _Harness harness) async {
 }
 
 Future<void> _connect(WidgetTester tester, MailProviderKind kind) async {
+  await _beginConnect(tester, kind);
+  expect(find.byType(MailMessageList), findsOneWidget);
+}
+
+Future<void> _beginConnect(WidgetTester tester, MailProviderKind kind) async {
   if (kind == MailProviderKind.ews) {
     await tester.enterText(
       _key('ews-endpoint'),
@@ -245,7 +250,6 @@ Future<void> _connect(WidgetTester tester, MailProviderKind kind) async {
   await tester.ensureVisible(connect);
   await tester.tap(connect);
   await _pump(tester);
-  expect(find.byType(MailMessageList), findsOneWidget);
 }
 
 MailMessageList _list(WidgetTester tester) =>
@@ -622,15 +626,48 @@ void main() {
         await tester.tap(find.byTooltip(_strings.disconnect));
         await _pump(tester);
         harness.configure = null;
-        await _connect(tester, kind);
+        await _beginConnect(tester, kind);
+        // Reconnect must wait for the retired account's outstanding receipt
+        // and owner release before creating another provider or draft owner.
+        expect(oldProvider.leases.single.isCurrent, isFalse);
+        expect(harness.providers, hasLength(1));
+        expect(harness.drafts.identities, hasLength(1));
+        expect(harness.drafts.closes, 0);
+        expect(find.byType(MailMessageList), findsNothing);
+        expect(
+          tester
+              .widget<FilledButton>(
+                _key(
+                  kind == MailProviderKind.ews
+                      ? 'ews-connect'
+                      : 'cloud-connect',
+                ),
+              )
+              .onPressed,
+          isNull,
+        );
+        gate.complete(_success);
+        for (var attempt = 0; attempt < 100; attempt++) {
+          if (find.byType(MailMessageList).evaluate().length == 1 &&
+              !_list(tester).busy) {
+            break;
+          }
+          await tester.pump(const Duration(milliseconds: 10));
+          await tester.runAsync(() => Future<void>.delayed(Duration.zero));
+        }
+        expect(find.byType(MailMessageList), findsOneWidget);
+        expect(_list(tester).busy, isFalse);
+        expect(harness.providers, hasLength(2));
+        expect(harness.drafts.identities, hasLength(2));
+        expect(harness.drafts.closes, 1);
+        expect(_ids(tester), ids);
+        expect(_list(tester).items.first.isRead, isNull);
+        expect(find.byType(StudioMailBulkStatus), findsNothing);
         final currentProvider = harness.provider;
         // Since 45f0e503 the account id is derived from the stable account
         // settings, so a reconnect to the same mailbox reuses it. Isolation
         // now rests on the per-connection provider and session lease.
         expect(currentProvider, isNot(same(oldProvider)));
-        expect(oldProvider.leases.single.isCurrent, isFalse);
-        gate.complete(_success);
-        await _pump(tester);
         oldCallback(MailBulkFlagAction.flag, ids);
         await _pump(tester);
         expect(oldProvider.commands, hasLength(1));
@@ -638,6 +675,13 @@ void main() {
         expect(_list(tester).items.first.isRead, isNull);
         expect(find.byType(StudioMailBulkStatus), findsNothing);
         expect(oldProvider.bodyReads + currentProvider.bodyReads, 0);
+        // A fresh callback succeeds, so the stale callback was not merely
+        // rejected because the replacement mailbox was still busy.
+        _list(tester).onBulkAction!(MailBulkFlagAction.flag, [ids.first]);
+        await _pump(tester);
+        expect(oldProvider.commands, hasLength(1));
+        expect(currentProvider.commands, hasLength(1));
+        expect(_list(tester).items.first.isFlagged, isTrue);
         expect(tester.takeException(), isNull);
       },
     );

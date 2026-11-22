@@ -1,0 +1,41 @@
+{
+  "fresh_execution_gate": "incoming_editor",
+  "historical_cases_added_to_fresh_total": false,
+  "inputs": {
+    "packages/quds_office_editor/lib/src/editor_word/office_ruler.dart": {
+      "current_sha256": "c267c730f8824f5ef0291eb3089f79d2617461006dd4eb60993b22c611178cac",
+      "qualified_sha256": "c267c730f8824f5ef0291eb3089f79d2617461006dd4eb60993b22c611178cac",
+      "unchanged": true
+    },
+    "packages/quds_office_editor/lib/src/editor_word/paint_run_text.dart": {
+      "current_sha256": "583ca87255354c1fe46c201e52422ecbf5c877f88b4cfc06bba8a1bc9d8e3bc3",
+      "qualified_sha256": "583ca87255354c1fe46c201e52422ecbf5c877f88b4cfc06bba8a1bc9d8e3bc3",
+      "unchanged": true
+    },
+    "packages/quds_office_editor/lib/src/embed/office_theme.dart": {
+      "current_sha256": "2704b61e00882dc572634417011bba8139eba6646aafdbf881030a17cc6fa8f8",
+      "qualified_sha256": "2704b61e00882dc572634417011bba8139eba6646aafdbf881030a17cc6fa8f8",
+      "unchanged": true
+    },
+    "packages/quds_office_editor/lib/src/ui_components/office_chrome.dart": {
+      "current_sha256": "d3be67712a86c1daa718ce29c62e06c151d4ebdb488f67034c9afb74dfa61cf0",
+      "qualified_sha256": "d3be67712a86c1daa718ce29c62e06c151d4ebdb488f67034c9afb74dfa61cf0",
+      "unchanged": true
+    },
+    "packages/quds_office_editor/test/word_ruler_directional_indent_test.dart": {
+      "current_sha256": "daa8dabb752b389d828342d37a064434562562ec72107d2122723f38a505ddb1",
+      "qualified_sha256": "daa8dabb752b389d828342d37a064434562562ec72107d2122723f38a505ddb1",
+      "unchanged": true
+    },
+    "packages/quds_office_engine/lib/src/word/properties/wml_properties.dart": {
+      "current_sha256": "f0177c039b9e7983ead6211bee08691952a7e6c891f3ddfecfb98aeff66c9f8c",
+      "qualified_sha256": "d215b5f520e4c5e0ad03d07d28e83e53d157300ab365dd0917fd888710026ca7",
+      "unchanged": false
+    }
+  },
+  "original_passed_cases": 10,
+  "qualification": "../incoming/editor-result.json",
+  "retained_for_current_acceptance": false,
+  "scope": "Historical 10-case ruler evidence only. PR #382 changed WmlRunProps, so the ruler suite is included once in the fresh editor gate and none of its historical cases are carried forward.",
+  "unchanged": false
+}
