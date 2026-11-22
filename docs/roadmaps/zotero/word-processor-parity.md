@@ -81,6 +81,16 @@ opaque RGB, matching PDF/export semantics. Ordinary CSL formatting keeps its
 existing contract. Exact forms and deliberate limits are described in the
 [support details](../../zotero-support-details.md#paragraph-layout-and-colors-in-research-notes).
 
+Independent LibreOffice conversion also exposed a shared DOCX mapping defect:
+Word's paragraph indentation and left/right alignment values are relative to
+the effective paragraph direction. Both the native reader and writer previously
+treated them as physical sides, making a Quds-only round trip appear correct.
+The corrected mapping handles logical aliases and effective direction while
+retaining sparse source properties. The original failing files and geometry
+probes remain part of this increment's evidence.
+RTL ruler markers and drags use the same physical indent sides as document
+layout, preserving first-line and hanging-indent behavior during later edits.
+
 Installed native Zotero dialogs and Word/LibreOffice plugin acceptance remain
 open. Controlled callbacks, native file cycles and converter observations have
 separate evidence and do not establish complete application parity.
@@ -732,6 +742,12 @@ Installed Zotero/Word/LibreOffice acceptance remains a separate next step.
    Retain failing historical relative-table files and continued-list conversions as separate
    regression targets rather than treating regenerated passing fixtures as
    evidence for those earlier routes.
+   The paragraph/color fixtures additionally identify two concrete follow-ups:
+   qualify benign run formatting on citation instruction/separator/end boundaries
+   before relaxing the opaque-field guard, and extend or explicitly normalize
+   the LibreOffice outline-style forms that currently prevent native ODT
+   reopening. Retain the original failing files and require native editing and
+   actual plugin Refresh, not only intact metadata or visual appearance.
 3. **Extend table structure and formatting.** Improve merged-row height distribution and map
    header/footer row groups and custom styles to native structures with explicit
    ownership. Qualify their citation order, geometry, save/reopen behavior and

@@ -3594,9 +3594,7 @@ class _ZoteroFormattedPreview extends StatelessWidget {
           ? null
           : span.highlight == 'none'
           ? Colors.transparent
-          : Color(
-              0xff000000 | int.parse(span.highlight!, radix: 16),
-            ),
+          : Color(0xff000000 | int.parse(span.highlight!, radix: 16)),
       fontWeight: span.bold ? FontWeight.bold : FontWeight.normal,
       fontStyle: span.italic ? FontStyle.italic : FontStyle.normal,
       decoration: TextDecoration.combine([

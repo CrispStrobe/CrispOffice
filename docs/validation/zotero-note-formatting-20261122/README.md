@@ -48,6 +48,12 @@ automatic language-following state. Native directions survive relayout,
 typing, undo/redo and DOCX reopening; ordinary blank paragraphs still follow
 the selected interface language until the user sets their direction.
 
+Actual LibreOffice conversion exposed a shared DOCX physical/logical mapping
+defect. Paragraph indentation and alignment are translated using effective
+direction, including inherited styles and sparse property edits. Explicit
+first-line/hanging resets remain effective after reopening. RTL ruler handles
+use the same physical margins as layout during later editing.
+
 The support details and parity roadmap document the accepted forms and
 remaining boundaries. In particular, directional lists, RTL child paragraphs
 inside lists, indent levels above seven, alpha/dynamic colors and arbitrary
@@ -60,6 +66,10 @@ layout CSS remain guarded. Installed-plugin acceptance is still open.
 | Intake audit and execution plan | `e84fc1d6c872d450dc485f1b981562792fbd082f` |
 | Paragraph/color implementation and regression cases | `7b9d50259f9d6bb9b39678ec4afced644e88c38b` |
 | Direction lifecycle, exact highlight rendering and support contract | `aac3dda7a052c18f6f5bcc5e84a8d7c8cea8af95` |
+| Qualified incoming Word history | `5429be3c19cb8f74f8f7fca8178a29ecc9416b36` |
+| Published Word/main qualification | `50895a7b9670058e27d3f081626defac9ea1aebc` |
+| Completed Mail and latest main ancestry | `168297fea2df1f49cb1362f8ac21002edd222ac4` |
+| Original converter failures, independent probes and pinned runtime | `5d79e934c5400594410bb6dfcb347d279fe0c335` |
 
 The first late intake identified new Word substring-assignment work and an
 unfinished Mail Archive checkpoint. The Word head
@@ -68,11 +78,20 @@ shared language suites in an independent checkout before integration. Its
 original ancestry and author evidence are retained. Final integrated checks
 will report their own counts separately from development/isolated runs.
 
-Mail head `9d8758e55` was explicitly marked unfinished and added an enum case
-without all downstream switch handling. It remains preserved on its source
-branch while a completed successor is checked before publication. The exact
-late-ref audit is `late-intake-1.json`; this does not change the initial proof
-that all captured starting branches/PRs were already included in main.
+Mail head `9d8758e55` was initially unfinished. Its completed successor adds
+the missing switch handling and qualified provider, journal and UI behavior.
+Independent checks at `a61f7c07` found two outdated test assumptions; author
+checkpoint `a886d7d7` fixes both and adds native INBOX-alias duplicate handling.
+Reconciled Mail `8280277c` retains identical Mail source and incorporates our
+existing Zotero checkpoint, Word and main `4621326a`. Main `4621326a` is an
+ancestry-only merge with the same tree as Word publication `05bb203e`.
+All these heads are ancestors of our saved `168297fe` checkpoint.
+
+The exact late-ref audits are `late-intake-1.json` and `late-intake-2.json`.
+The latter retains the initial failures and successful corrected-head reruns:
+37 selected migration/journal cases, 15 native Archive cases and 276 affected
+Studio cases. Earlier overlapping checks and the interrupted full-store attempt
+are reported separately; they are not summed into a final acceptance total.
 
 Local development checks have exercised the implementation and identified the
 empty-paragraph and alignment/direction fixes above. Final integrated source

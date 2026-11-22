@@ -234,6 +234,13 @@ padding value without `dir` can originate in an RTL Zotero interface; Quds
 keeps that physical indent without inventing a reading direction. Explicit
 alignment alone never changes the paragraph's reading order.
 
+Native paragraph alignment and indentation use physical page sides. DOCX
+reads and writes translate these to Word's direction-relative paragraph
+values, including `start`/`end` and their `left`/`right` aliases. Effective
+paragraph direction is resolved before that translation, including inherited
+styles. This prevents an RTL indent or alignment from changing sides in an
+external word processor even when a Quds-only round trip would hide the error.
+
 The accepted color forms are three- or six-digit hex and integer `rgb(r,g,b)`
 with components from 0 to 255. A background shorthand containing only such a
 color is accepted. Nested styles restore their enclosing color when they end;
@@ -269,6 +276,13 @@ and visited/unvisited hyperlink-style limits are unchanged.
 The [implementation record](validation/zotero-note-formatting-20261122/README.md)
 tracks local checks, actual converter observations and the remaining installed
 Zotero/Word/LibreOffice plugin acceptance.
+
+The retained LibreOffice conversion fixtures expose separate reopening limits:
+formatted citation boundary runs can remain guarded as opaque metadata, and
+LibreOffice-added outline styles can exceed the native ODT reader's supported
+contract. Preserved text, formatting and citation payloads do not by themselves
+establish editable citation round trips. These routes remain explicit follow-up
+work in the parity roadmap.
 
 ### Tables in notes and annotations
 

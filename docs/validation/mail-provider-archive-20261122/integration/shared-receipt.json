@@ -1,0 +1,45 @@
+{
+  "gate": "shared",
+  "cwd": "/workspace/scratch/a4918868bf38/quds_office_suite/packages/quds_mail_ui",
+  "argv": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "json",
+    "test/bulk_message_list_test.dart",
+    "test/message_list_bulk_test.dart",
+    "test/message_list_conversations_test.dart",
+    "test/message_list_organization_test.dart",
+    "test/message_list_range_selection_test.dart",
+    "test/message_list_test.dart",
+    "test/bulk_api_aliases_test.dart"
+  ],
+  "shell_command": "source /workspace/scratch/a4918868bf38/toolchains/env.sh\nexec flutter test --no-pub --reporter json test/bulk_message_list_test.dart test/message_list_bulk_test.dart test/message_list_conversations_test.dart test/message_list_organization_test.dart test/message_list_range_selection_test.dart test/message_list_test.dart test/bulk_api_aliases_test.dart",
+  "started_at_utc": "2026-11-22T10:53:42.933157+00:00",
+  "ended_at_utc": "2026-11-22T10:54:05.879054+00:00",
+  "elapsed_seconds": 22.945897,
+  "exit_code": 0,
+  "visible_cases": 179,
+  "visible_passed": 179,
+  "skipped": 0,
+  "error_events": 0,
+  "done_events": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 22194
+    }
+  ],
+  "working_inputs_unchanged": true,
+  "head_before": "8280277cd27bcc276d66b61f8073eddf37ca6e5e",
+  "head_after": "8280277cd27bcc276d66b61f8073eddf37ca6e5e",
+  "tree_before": "7587dec4e385c015f81c62df7992af378642cfed",
+  "tree_after": "7587dec4e385c015f81c62df7992af378642cfed",
+  "logs": {
+    "reporter": "/workspace/scratch/a4918868bf38/runtime-evidence/archive-integration-shared.jsonl",
+    "stderr": "/workspace/scratch/a4918868bf38/runtime-evidence/archive-integration-shared.stderr.log",
+    "source_before": "/workspace/scratch/a4918868bf38/runtime-evidence/archive-integration-shared.source-before.json",
+    "source_after": "/workspace/scratch/a4918868bf38/runtime-evidence/archive-integration-shared.source-after.json"
+  }
+}
