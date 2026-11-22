@@ -34,6 +34,10 @@ to schema 12. Scoped paging, refresh
 and reader ownership retain identity and stale-operation guards. EN/DE/AR
 controls include localized narrow-layout regressions.
 
+**Locally qualified:** 503 core, 970 storage, 89 host/session and 70 UI/dialog
+cases pass. The combined Word/Zotero integration and exact source evidence are
+recorded in the linked qualification record.
+
 See the [workflow and API contract](folder-saved-search.md) and the
 [fresh local qualification record](../../validation/mail-folder-search-20261122/README.md).
 Installed platforms, live providers and adoption of this new host UI in
