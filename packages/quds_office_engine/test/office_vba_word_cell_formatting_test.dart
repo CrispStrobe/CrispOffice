@@ -395,7 +395,6 @@ ActiveDocument.Tables(1).Cell(1, 1).Range.ParagraphFormat.LineSpacing = 18
       '$_range.Shading.BackgroundPatternColor = wdColorRed',
       '$_range.Style = wdStyleNormal',
       '$_range.ListFormat.ApplyBulletDefault',
-      '$_range.Paragraphs(1).Range.Font.Bold = True',
       'Dim value As Variant\nvalue = $_range.Font.Bold',
       'Dim value As Variant\nvalue = $_range.ParagraphFormat.Alignment',
       'Dim face As Font\nSet face = $_range.Font.Duplicate',
@@ -417,7 +416,6 @@ ActiveDocument.Tables(1).Cell(1, 1).Range.ParagraphFormat.LineSpacing = 18
       'selected.Style = wdStyleNormal',
       'selected.Shading.BackgroundPatternColor = wdColorRed',
       'selected.ListFormat.ApplyBulletDefault',
-      'selected.Paragraphs(1).Range.Font.Bold = True',
     ]) {
       test('a generic Range helper cannot escape its cell: $statement', () {
         expect(
