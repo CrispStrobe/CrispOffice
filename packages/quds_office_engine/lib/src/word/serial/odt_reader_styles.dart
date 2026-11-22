@@ -322,6 +322,7 @@ final class OdtReaderStyles {
 
   /// Validates a document-wide outline before importing any heading.
   /// Numbered outlines and list-level indentation need separate conversion.
+  /// LibreOffice's explicit unnumbered, unpositioned alignment is inert.
   void validateHeadingConfiguration() {
     if (_outlineStyles.length > 1) {
       throw const FormatException('Ambiguous ODT outline styles.');
@@ -331,6 +332,9 @@ final class OdtReaderStyles {
     _checkAttributes(outline, {
       _style: {'name', 'display-name'},
     });
+    if (!RegExp(r'^[ \t\r\n]*$').hasMatch(outline.text)) {
+      throw UnsupportedError('Authored ODT outline style text.');
+    }
     final levels = <int>{};
     for (final level in outline.childElements) {
       if (level.namespaceUri != odfTextNamespace ||
@@ -340,6 +344,7 @@ final class OdtReaderStyles {
       _checkAttributes(level, {
         odfTextNamespace: {'level'},
         _style: {'num-format'},
+        _loext: {'num-list-format'},
       });
       final number = int.tryParse(
         _attr(level, odfTextNamespace, 'level') ?? '',
@@ -347,11 +352,54 @@ final class OdtReaderStyles {
       if (number == null || number < 1 || number > 10 || !levels.add(number)) {
         throw const FormatException('Invalid ODT outline level.');
       }
-      if (_attr(level, _style, 'num-format') != '' ||
-          level.childElements.isNotEmpty) {
+      if (_attr(level, _style, 'num-format') != '') {
         throw UnsupportedError(
           'Numbered or positioned ODT outlines are not supported.',
         );
+      }
+      // The single matching placeholder is emitted on subsequent Writer
+      // saves even with an empty num-format. Do not admit literal labels,
+      // other levels or any wider extension-language interpretation.
+      final format = _attr(level, _loext, 'num-list-format');
+      if (format != null && format != '%$number%') {
+        throw UnsupportedError('Unsupported ODT outline number template.');
+      }
+      final children = level.childElements.toList();
+      if (children.isEmpty) continue;
+      if (children.length != 1 ||
+          children.single.namespaceUri != _style ||
+          children.single.localName != 'list-level-properties') {
+        throw UnsupportedError('Unsupported ODT outline level properties.');
+      }
+      final properties = children.single;
+      _checkAttributes(properties, {
+        odfTextNamespace: {'list-level-position-and-space-mode'},
+      });
+      if (_attr(
+            properties,
+            odfTextNamespace,
+            'list-level-position-and-space-mode',
+          ) !=
+          'label-alignment') {
+        throw UnsupportedError('Positioned ODT outlines are not supported.');
+      }
+      final alignments = properties.childElements.toList();
+      if (alignments.length != 1 ||
+          alignments.single.namespaceUri != _style ||
+          alignments.single.localName != 'list-level-label-alignment') {
+        throw UnsupportedError('Unsupported ODT outline label alignment.');
+      }
+      final alignment = alignments.single;
+      _checkAttributes(alignment, {
+        odfTextNamespace: {'label-followed-by'},
+      });
+      // ODF 1.3 §§17.20, 19.504 and 19.833: an empty num-format emits no
+      // number; "nothing" emits no following character. With no positioning
+      // properties, paragraph indentation is the only effective geometry.
+      if (_attr(alignment, odfTextNamespace, 'label-followed-by') !=
+              'nothing' ||
+          alignment.childElements.isNotEmpty) {
+        throw UnsupportedError('Positioned ODT outlines are not supported.');
       }
     }
   }
