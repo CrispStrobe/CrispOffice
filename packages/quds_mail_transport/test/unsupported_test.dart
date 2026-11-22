@@ -43,6 +43,12 @@ void main() {
       );
       _unsupported(await provider.listMailboxes(lease));
       _unsupported(
+        await (provider as MailMembershipObserver).observeMembership(
+          _identity,
+          lease: lease,
+        ),
+      );
+      _unsupported(
         await provider.fetchHeaders(_mailbox, limit: 1, lease: lease),
       );
       _unsupported(

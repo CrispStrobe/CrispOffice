@@ -24,7 +24,7 @@ Future<MailResult<MailCloudTokenSource>> authorizeMailCloud({
 }) async => const MailFailure(MailProblem(MailProblemCode.unsupported));
 
 final class _UnsupportedCloudProvider
-    implements MailCloudProvider, MailFlagObserver {
+    implements MailCloudProvider, MailFlagObserver, MailMembershipObserver {
   _UnsupportedCloudProvider(this.account);
   @override
   final MailAccountId account;
@@ -37,6 +37,11 @@ final class _UnsupportedCloudProvider
   ) async => _failure();
   @override
   Future<MailResult<MailFlagObservation>> observeFlags(
+    MailRemoteIdentity identity, {
+    required MailOperationLease lease,
+  }) async => _failure();
+  @override
+  Future<MailResult<MailMembershipObservation>> observeMembership(
     MailRemoteIdentity identity, {
     required MailOperationLease lease,
   }) async => _failure();

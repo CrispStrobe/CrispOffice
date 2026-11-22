@@ -145,6 +145,29 @@ void main() {
       );
     });
 
+    test('membership projection requests only the exact parent folder', () {
+      final xml = _codec().getItems(['one'], membershipOnly: true);
+      final fields = XmlDocument.parse(xml)
+          .findAllElements('FieldURI', namespaceUri: _t)
+          .map((element) => element.getAttribute('FieldURI'));
+      expect(fields, ['item:ParentFolderId']);
+      expect(xml, isNot(contains('IncludeMimeContent')));
+      expect(xml, isNot(contains('ExtendedFieldURI')));
+      expect(_element(xml, 'ItemId', _t).getAttribute('Id'), 'one');
+      final item = _codec()
+          .items(
+            _response(
+              'GetItem',
+              _itemResponse('one', fields: '<t:ParentFolderId Id="parent"/>'),
+            ),
+            requireMembership: true,
+          )
+          .single!;
+      expect(item.parentFolderId, 'parent');
+      expect(item.flags, isNull);
+      expect(item.mimeBytes, isNull);
+    });
+
     test('sync state is omitted on first sync and escaped on continuation', () {
       final codec = _codec();
       expect(

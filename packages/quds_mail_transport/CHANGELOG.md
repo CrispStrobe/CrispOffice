@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Add read-only current-location observations for uncertain Move/Delete:
+  exact IMAP source UID/generation and Deleted marker, Gmail's complete label
+  set/Trash, and Graph/EWS parent folders with resolved Deleted Items IDs.
+  Missing original identities never establish a destination or historical
+  success. Checks use bounded metadata and preserve account/cancellation
+  fences; unsupported factories access no credentials or network.
+
 - Advertise recoverable Delete explicitly for IMAP, Exchange EWS, Gmail and
   Microsoft 365. IMAP marks only the selected UID as Deleted without expunge;
   the other adapters use their existing Trash/Deleted Items operations.

@@ -16,7 +16,7 @@ MailEwsProvider createMailEwsProvider({
 }
 
 final class _UnsupportedEwsProvider
-    implements MailEwsProvider, MailFlagObserver {
+    implements MailEwsProvider, MailFlagObserver, MailMembershipObserver {
   _UnsupportedEwsProvider(this.account);
   @override
   final MailAccountId account;
@@ -32,6 +32,12 @@ final class _UnsupportedEwsProvider
 
   @override
   Future<MailResult<MailFlagObservation>> observeFlags(
+    MailRemoteIdentity identity, {
+    required MailOperationLease lease,
+  }) async => _unsupported();
+
+  @override
+  Future<MailResult<MailMembershipObservation>> observeMembership(
     MailRemoteIdentity identity, {
     required MailOperationLease lease,
   }) async => _unsupported();
