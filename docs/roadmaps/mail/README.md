@@ -18,8 +18,12 @@ From/To/Cc names and addresses consistently. EN/DE/AR selection help and focused
 regressions are included. Fresh native qualification passed 272 shared Mail UI
 and 176 Studio cases, including the 48 new regressions; changed Dart paths also
 pass strict analysis and formatting. The original outage and interrupted test
-attempt remain in the work record. The next discovery increment is explicit
-saved-search folder sets with identity/coverage and missing-folder recovery.
+attempt remain in the work record. The [22 November exact folder-set
+increment](folder-scoped-search.md) now adds explicit account/folder identities
+and missing-folder denial to reusable local saved searches. Its new tests are
+committed but not yet locally run; earlier test totals do not qualify this
+increment. The next discovery boundary is event-driven shared views and
+persistent unified navigation.
 
 The [saved-search refresh increment](live-saved-search.md) adds an explicit
 replacement scan and opt-in 30-second foreground updates over retained headers.
@@ -54,7 +58,7 @@ plan rather than treating provider connectivity as full product parity.
 | 1 | Recoverable composition | Multiple account-scoped local drafts, independent reply/forward drafts, attachment/reply recovery and interrupted-send warnings; offline draft entry for verified IMAP (including discovery), EWS, Gmail and Microsoft 365 accounts | Provider-side Drafts synchronization with explicit conflicts and repository-backed offline sessions |
 | 2 | Everyday mailbox workspace (M04W/M06) | Repository-observed loaded/cached sessions, durable single/bulk flag receipts, fresh uncertainty checks, resumable folder-header synchronization and explicit bounded offline body/attachment downloads across IMAP, EWS, Gmail and Microsoft 365 | Complete shared synchronized workspace, durable retention policy/background scheduling, unified inbox and consistent move/delete |
 | 3 | Sending and outbox (M07) | Native durable Outbox, atomic draft transfer/edit-copy, frozen MIME/envelopes, review/export, restart recovery, explicit send/retry/cancel, saved UTC schedules and a ten-second Undo window with explicit foreground resume across SMTP/EWS/Gmail/Microsoft 365 | Account-owned background execution, provider-specific Sent reconciliation and installed/live-provider qualification |
-| 4 | Efficient discovery and organization | Independent archive FTS, saved archive searches, Boolean header queries, bounded saved-header discovery, persistent named searches with fixed account scopes and optional foreground refresh, expandable loaded conversations and observed counts, stable local sorting and journaled visible-selection read/flag commands | Repository-event-driven shared saved views, indexed body/server search, persistent cross-folder conversations, tags/categories, broader durable bulk commands and ordered rule execution with preview/recovery |
+| 4 | Efficient discovery and organization | Independent archive FTS, saved archive searches, Boolean header queries, bounded saved-header discovery, persistent named searches with fixed account and optional exact folder scopes and foreground refresh, expandable loaded conversations and observed counts, stable local sorting and journaled visible-selection read/flag commands | Repository-event-driven shared saved views, indexed body/server search, persistent cross-folder conversations, tags/categories, broader durable bulk commands and ordered rule execution with preview/recovery |
 | 5 | Rich authoring and Office workflows (M07/M08) | Word-based plain text, To/Cc/Bcc, reply all, inert text quotes, attachments, locally qualified account signatures and reusable Quick Text | Identity routing/full-message templates, HTML alternatives, inline images, attach current document/PDF and edit a copy of a received attachment |
 | 6 | Integrated productivity and release (M09–M13) | Provider adapters and shared foundations available | Calendar/People, invitation workflows, provider-specific shared mailboxes, encryption/signatures where supported, installed-platform and live-provider qualification |
 
@@ -74,8 +78,10 @@ The [cached-search continuation](unified-cached-search.md) reuses the same query
 across retained folder memberships and native account profiles, with bounded
 continuation, account/folder provenance, partial coverage and explicit offline
 body opening. [Persistent saved searches](saved-searches.md) now reuse that
-workflow with revision-guarded name/query/scope management. These features do
-not claim server-wide or body-content search.
+workflow with revision-guarded name/query/scope management. [Exact folder
+sets](folder-scoped-search.md) extend the saved definitions without widening
+missing account/folder identities. These features do not claim server-wide
+or body-content search.
 
 The [foreground bulk contract](bulk-flags.md) describes checked visible selections,
 explicit read/unread/flag/unflag commands, outcome counts, stop-after-current
