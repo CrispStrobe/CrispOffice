@@ -828,8 +828,9 @@ geometry has its separate mapping below. Supported cell `Font`, text controls
 and `ParagraphFormat` members reuse their corresponding formatting rows with
 the explicit [table-cell selector](#formatting-existing-table-cells).
 An [explicitly selected cell paragraph](#formatting-a-cell-paragraph) also
-reuses Style and Shading rows. Insertion and list operations remain unavailable
-through these cell selectors.
+reuses Style and Shading rows. Cell insertion uses the separate prefix/suffix
+operations documented above. List operations remain unavailable, and projected
+cell paragraph ranges still refuse `InsertAfter`.
 
 | Word source operation | Native operation | Arguments in addition to `paragraph: p` |
 | --- | --- | --- |

@@ -320,9 +320,10 @@ The expansion adds case-insensitive named arguments and optional scalar
 `ByVal` parameters for declared module helpers. Supplied arguments evaluate in
 source order; defaults are checked in module scope, including unused helpers.
 An omitted optional Variant is distinct from Empty and Null and can be tested
-with bounded `IsMissing`. Named/omitted arguments on intrinsic or application
-members, optional objects, ByRef, and general Variant Error propagation remain
-unsupported. See the exact [argument contract](VBA_ARGUMENTS.md).
+with bounded `IsMissing`. That increment did not add named or omitted arguments
+on intrinsic or application members. Later application-specific exceptions are
+documented in the [argument contract](VBA_ARGUMENTS.md). Optional objects,
+ByRef and general Variant Error propagation remain unsupported.
 
 Word adds typed Font/ParagraphFormat aliases and helpers, Paragraph.Format,
 explicit reading order, and single/1.5/double line-spacing presets. Granular
