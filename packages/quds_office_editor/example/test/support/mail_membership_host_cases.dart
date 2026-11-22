@@ -254,9 +254,8 @@ void membershipHostTests() {
           tester,
           () => harness.commands.isNotEmpty && !_list(tester).busy,
         );
-        final survivor = _list(
-          tester,
-        ).items.singleWhere((item) => item.id == survivorId);
+        final survivor = _list(tester).items
+            .singleWhere((item) => item.id == survivorId);
         expect(survivor.isRead, isFalse);
         expect(survivor.isFlagged, isTrue);
         expect(_status(tester).report.confirmedCount, confirmed ? 1 : 0);
@@ -443,10 +442,13 @@ void membershipHostTests() {
       await _show(tester, harness);
       await _openFirst(tester);
       final bodyReads = harness.bodyReads;
+      final capabilityReads = harness.capabilityReads;
       await tester.tap(_key('studio-mail-move-message'));
       await _until(
         tester,
-        () => !_list(tester).busy && harness.capabilityReads == 1,
+        () =>
+            !_list(tester).busy &&
+            harness.capabilityReads == capabilityReads + 1,
       );
       expect(find.text(_strings.mailMutationUnavailable), findsOneWidget);
       expect(harness.commands, isEmpty);

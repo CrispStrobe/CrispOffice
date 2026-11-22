@@ -2980,7 +2980,10 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           ),
           PopupMenuButton<MailMailbox>(
             tooltip: widget.strings.ewsMove,
-            enabled: canChange && _capabilities.supports(MailCapability.move),
+            enabled:
+                canChange &&
+                widget.cloudService != MailCloudService.gmail &&
+                _capabilities.supports(MailCapability.move),
             icon: const Icon(Icons.drive_file_move_outline),
             itemBuilder: (context) => [
               for (final box in _mailboxes)
