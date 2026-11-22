@@ -12,7 +12,8 @@ const _w = OfficeNamespaces.w;
 
 // The existing serializer materializes an inherited second-section header on
 // the first ordinary read/save. Establish that no-macro control save before
-// asserting that formatting preserves every untargeted part and owner.
+// checking XML semantics, opaque part bytes and core metadata other than the
+// ordinary save timestamp.
 Uint8List _input({bool macroEnabled = true}) => WordSerializer().writeBytes(
   WordDeserializer().readBytes(
     table_fixture.wordTableInput(macroEnabled: macroEnabled),
@@ -87,6 +88,22 @@ Object _xmlValue(XmlNode node) => switch (node) {
 
 String _xml(XmlElement element) => jsonEncode(_xmlValue(element));
 
+String _coreMetadata(String source) {
+  final root = XmlDocument.parse(source).root!;
+  // An ordinary save refreshes only this timestamp. Keep all other core
+  // metadata, the modified element itself, and its attributes in the check.
+  for (final modified in root.childrenNamed(
+    'modified',
+    namespaceUri: 'http://purl.org/dc/terms/',
+  )) {
+    expect(modified.childElements, isEmpty);
+    expect(DateTime.tryParse(modified.text), isNotNull);
+    modified.children.clear();
+    modified.addText('save timestamp');
+  }
+  return _xml(root);
+}
+
 Map<String, Object?> _untouched(Uint8List bytes) {
   final root = _documentXml(bytes);
   final body = root.childrenNamed('body', namespaceUri: _w).single;
@@ -104,7 +121,9 @@ Map<String, Object?> _untouched(Uint8List bytes) {
     'parts': {
       for (final part in package.parts)
         if (part.uri != '/word/document.xml')
-          part.uri: package.getPart(part.uri)!.readBytes(),
+          part.uri: part.uri == '/docProps/core.xml'
+              ? _coreMetadata(package.getPart(part.uri)!.readText())
+              : package.getPart(part.uri)!.readBytes(),
     },
   };
 }
@@ -240,7 +259,7 @@ Future<void> _assertRefused(Uint8List input, OfficeMacro plan) async {
 void main() {
   for (final macroEnabled in [false, true]) {
     test(
-      '${macroEnabled ? 'DOCM' : 'DOCX'} report formats one cell atomically and preserves neighboring XML',
+      '${macroEnabled ? 'DOCM' : 'DOCX'} report preserves neighboring XML semantics and opaque part bytes',
       () async {
         final input = _input(macroEnabled: macroEnabled);
         final untouched = _untouched(input);
@@ -449,9 +468,11 @@ $_cell.ParagraphFormat.SpaceAfter = 9.5
       expect(initialRun.properties.allCaps, isTrue);
       expect(initialRun.properties.color, 'AABBCC');
       expect(_paragraph(original).properties.spacingBefore, 12);
-      final styles = OpcPackage.openBytes(input)
-          .getPart('/word/styles.xml')!
-          .readBytes();
+      final styles = _xml(
+        XmlDocument.parse(
+          OpcPackage.openBytes(input).getPart('/word/styles.xml')!.readText(),
+        ).root!,
+      );
       final session = OfficeMacroSession(input, format: OfficeMacroFormat.docx);
       await session.run(
         _compile('''
@@ -483,7 +504,13 @@ End With
         expect(neighbor.properties.justification, WmlJustification.center);
         expect(neighbor.properties.spacingBefore, 12);
         expect(
-          OpcPackage.openBytes(saved).getPart('/word/styles.xml')!.readBytes(),
+          _xml(
+            XmlDocument.parse(
+              OpcPackage.openBytes(saved)
+                  .getPart('/word/styles.xml')!
+                  .readText(),
+            ).root!,
+          ),
           styles,
         );
         if (cycle < 2) {

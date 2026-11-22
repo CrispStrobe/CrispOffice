@@ -11,7 +11,8 @@ const _w = OfficeNamespaces.w;
 
 // Establish the serializer's ordinary control-save state: its first read/save
 // materializes the inherited second-section header even without a macro.
-// Subsequent formatting must preserve these untargeted native parts exactly.
+// Check XML semantics, opaque part bytes and all core metadata except the
+// ordinary save timestamp after subsequent formatting.
 Uint8List wordCellFormattingInput() => WordSerializer().writeBytes(
   WordDeserializer().readBytes(fixture.wordTableInput()),
 );
@@ -164,6 +165,24 @@ Object _xmlValue(XmlNode node) => switch (node) {
 
 String _xml(XmlElement element) => jsonEncode(_xmlValue(element));
 
+String _coreMetadata(String source) {
+  final root = XmlDocument.parse(source).root!;
+  // Saves refresh dcterms:modified. Every other metadata value, attribute and
+  // node remains part of the preservation comparison.
+  for (final modified in root.childrenNamed(
+    'modified',
+    namespaceUri: 'http://purl.org/dc/terms/',
+  )) {
+    if (modified.childElements.isNotEmpty ||
+        DateTime.tryParse(modified.text) == null) {
+      throw StateError('A saved modification timestamp is not a scalar date');
+    }
+    modified.children.clear();
+    modified.addText('save timestamp');
+  }
+  return _xml(root);
+}
+
 String _untouched(Uint8List bytes) {
   final root = _root(bytes);
   final body = root.childrenNamed('body', namespaceUri: _w).single;
@@ -179,7 +198,9 @@ String _untouched(Uint8List bytes) {
     'parts': {
       for (final part in package.parts)
         if (part.uri != '/word/document.xml')
-          part.uri: base64Encode(package.getPart(part.uri)!.readBytes()),
+          part.uri: part.uri == '/docProps/core.xml'
+              ? _coreMetadata(package.getPart(part.uri)!.readText())
+              : base64Encode(package.getPart(part.uri)!.readBytes()),
     },
   });
 }
@@ -266,7 +287,9 @@ End Sub
     'revision': session.revision,
     'recordedSteps': recording.steps.length,
     'additionalReopens': 2,
-    'untargetedXmlPreserved': true,
+    'untargetedXmlSemanticsPreserved': true,
+    'opaquePartBytesPreserved': true,
+    'coreMetadataPreservedExceptSaveTimestamp': true,
     'opaqueVbaPreserved': true,
     'lateRollback': true,
     'state': wordCellFormattingState(saved),
