@@ -204,3 +204,10 @@ incoming source while the new bulk runtime gates were still pending then.
 Publication preserves merge ancestry and the working branch. The pull request
 and remote commit history provide the final publication receipt. **GitHub
 Actions, commit statuses and check queues were neither queried nor awaited.**
+
+## Final merge and concurrent intake
+
+[The final merge receipt](merge-receipt.md) records PR #374, the concurrent
+main update retained by GitHub, completed structural checks, and the additional
+fidelity execution interrupted by replacement of the local environment.
+The accepted 1,269-case total is unchanged; no unexecuted late cases are counted.
