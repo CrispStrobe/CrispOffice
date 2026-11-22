@@ -1142,6 +1142,7 @@ class WordDeserializer {
   ) {
     final List<WmlInline> inlines = <WmlInline>[];
     XmlElement? formattingChange;
+    String? boundaryRunPropertiesXml;
     var hasOrdinaryRunIdentity = false;
     var hasNonTextContent = false;
     final WmlRun run = WmlRun()..properties.sourcePropertiesXml = '';
@@ -1161,7 +1162,9 @@ class WordDeserializer {
         hasNonTextContent |= !ordinary;
       }
       if (reader.localName == 'rPr') {
-        formattingChange = _readRPr(reader, run.properties);
+        final properties = _readRPr(reader, run.properties);
+        formattingChange = properties.change;
+        boundaryRunPropertiesXml = properties.sourceXml;
       } else if (reader.localName == 't' || reader.localName == 'delText') {
         final String text = _elementText(reader);
         // A PAGE instruction elsewhere in this paragraph must not consume a
@@ -1246,10 +1249,8 @@ class WordDeserializer {
         final boundary = WmlFieldBoundary(
           kind: WmlFieldBoundaryKind.instruction,
           text: instr,
-          runPropertiesXml: _fieldRunProperties(
-            run.properties,
-            formattingChange,
-          ),
+          runPropertiesXml:
+              boundaryRunPropertiesXml ?? run.properties.sourcePropertiesXml,
         );
         inlines.add(boundary);
         _noteFieldInstruction(boundary);
@@ -1272,10 +1273,8 @@ class WordDeserializer {
             sourceXml: XmlDocument(
               root: fldChar,
             ).toXmlString(declaration: false),
-            runPropertiesXml: _fieldRunProperties(
-              run.properties,
-              formattingChange,
-            ),
+            runPropertiesXml:
+                boundaryRunPropertiesXml ?? run.properties.sourcePropertiesXml,
           );
           inlines.add(boundary);
           _noteFieldChar(boundary);
@@ -1396,7 +1395,13 @@ class WordDeserializer {
       run.commentIds.addAll(_openCommentIds);
       inlines.add(run);
     }
-    if (formattingChange != null) {
+    // Field markers have no ordinary text range to own a formatting revision.
+    // Their complete rPr stays on the boundary, keeping unsupported history
+    // opaque through saves instead of turning it into an empty text revision.
+    final onlyFieldBoundaries =
+        inlines.isNotEmpty &&
+        inlines.every((inline) => inline is WmlFieldBoundary);
+    if (formattingChange != null && !onlyFieldBoundaries) {
       if (run.text.isEmpty && inlines.contains(run)) {
         run.properties.hasEmptyFormattingRevision = true;
       }
@@ -2150,23 +2155,6 @@ class WordDeserializer {
     run.text = '';
   }
 
-  // Formatting revisions still belong to the document's existing revision
-  // model. Keep their original XML on field boundaries too: a field-code run
-  // is not an ordinary visible cache run that Zotero may replace or normalize.
-  // Incomplete/ambiguous revision targets retain the existing save guards.
-  static String? _fieldRunProperties(
-    WmlRunProps properties,
-    XmlElement? formattingChange,
-  ) {
-    final source = properties.sourcePropertiesXml;
-    if (formattingChange == null || source == null || source.isEmpty) {
-      return source;
-    }
-    final document = XmlDocument.parse(source);
-    document.root!.addChild(formattingChange.copy());
-    return document.toXmlString(declaration: false);
-  }
-
   bool get _insideToc => _openFields.any((entry) => entry.$2);
 
   void _noteFieldChar(WmlFieldBoundary boundary) {
@@ -2509,8 +2497,12 @@ class WordDeserializer {
     );
   }
 
-  XmlElement? _readRPr(XmlPullReader reader, WmlRunProps props) {
+  ({XmlElement? change, String sourceXml}) _readRPr(
+    XmlPullReader reader,
+    WmlRunProps props,
+  ) {
     final XmlElement node = XmlDocument.readElement(reader);
+    final sourceXml = XmlDocument(root: node).toXmlString(declaration: false);
     final change = node.firstChild(
       'rPrChange',
       namespaceUri: OfficeNamespaces.w,
@@ -2523,7 +2515,7 @@ class WordDeserializer {
       props.sourcePropertiesXml!,
     )..next();
     _parseRPr(source, props);
-    return change;
+    return (change: change, sourceXml: sourceXml);
   }
 
   void _parseRPr(XmlPullReader reader, WmlRunProps props) {

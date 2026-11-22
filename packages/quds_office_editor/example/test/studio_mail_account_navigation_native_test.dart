@@ -181,7 +181,7 @@ final class _Client extends Fake implements mail.MailClient {
 
   Completer<void>? connectGate;
   Completer<void>? folderGate;
-  final Completer<void>? selectGate;
+  Completer<void>? selectGate;
   Completer<void>? headerGate;
   final inbox = mail.Mailbox(
     encodedName: 'INBOX',

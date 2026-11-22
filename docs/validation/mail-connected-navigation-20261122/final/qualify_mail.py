@@ -21,6 +21,7 @@ import signal
 import subprocess
 import sys
 import time
+from urllib.parse import unquote, urlparse
 
 
 HERE = Path(__file__).resolve().parent
@@ -222,6 +223,176 @@ def runtime_info():
     }
 
 
+def local_import_closure(seed_files, root_package):
+    """Inspect declared dependencies and actual local Dart directives."""
+    configuration = json.loads((REPO / '.dart_tool/package_config.json').read_text())
+    graph = json.loads((REPO / '.dart_tool/package_graph.json').read_text())
+    graph_packages = {entry['name']: entry for entry in graph['packages']}
+    package_roots, library_roots = {}, {}
+    for package in configuration['packages']:
+        uri = urlparse(package['rootUri'])
+        if uri.scheme == 'file':
+            root = Path(unquote(uri.path)).resolve()
+        elif not uri.scheme:
+            root = (REPO / '.dart_tool' / unquote(package['rootUri'])).resolve()
+        else:
+            raise RuntimeError(f'Unsupported package root URI for {package["name"]}')
+        package_roots[package['name']] = root
+        library_roots[package['name']] = root / package.get('packageUri', 'lib/')
+    studio_root = (REPO / STUDIO).resolve()
+    declared = set()
+    pending_packages = [root_package]
+    root_dev = graph_packages[root_package].get('devDependencies', [])
+    pending_packages.extend(root_dev)
+    while pending_packages:
+        name = pending_packages.pop()
+        if name in declared:
+            continue
+        declared.add(name)
+        entry = graph_packages.get(name)
+        if entry is None:
+            raise RuntimeError(f'Dependency {name} is absent from package graph')
+        pending_packages.extend(entry.get('dependencies', []))
+    declared_studio = sorted(name for name in declared
+        if package_roots[name].is_relative_to(studio_root))
+    pending_files = [(REPO / path).resolve() for path in seed_files]
+    visited, resolved_packages, studio_references, unresolved = {}, set(), [], []
+    # Requiring the URI literal immediately after the keyword distinguishes a
+    # Dart directive from ordinary identifiers such as `part = ...` or a
+    # variable named `export` in generated-content helpers.
+    directive = re.compile(r'''(?m)^\s*(?:import|export|part)\s+(?=r?['"])([^;]*);''')
+    quoted = re.compile(r"['\"]([^'\"]+)['\"]")
+    while pending_files:
+        path = pending_files.pop()
+        if path in visited:
+            continue
+        if path.is_relative_to(studio_root):
+            studio_references.append(str(path.relative_to(REPO)))
+            continue
+        if not path.is_relative_to(REPO):
+            # SDK and hosted packages are version/integrity pinned by the
+            # unchanged lock/config; repository-owned directives are walked.
+            continue
+        if not path.is_file():
+            unresolved.append(str(path))
+            continue
+        source = stable_bytes(path)
+        visited[path] = digest(source)
+        for statement in directive.findall(source.decode()):
+            for uri in quoted.findall(statement):
+                if uri.startswith('dart:'):
+                    continue
+                if uri.startswith('package:'):
+                    name, separator, suffix = uri[len('package:'):].partition('/')
+                    resolved_packages.add(name)
+                    if not separator or name not in library_roots:
+                        unresolved.append(uri)
+                        continue
+                    target = (library_roots[name] / suffix).resolve()
+                elif urlparse(uri).scheme:
+                    unresolved.append(uri)
+                    continue
+                else:
+                    target = (path.parent / uri).resolve()
+                if target.is_relative_to(studio_root):
+                    studio_references.append(str(target.relative_to(REPO)))
+                elif target.is_relative_to(REPO):
+                    pending_files.append(target)
+    resolved_studio = sorted(name for name in resolved_packages
+        if name in package_roots and package_roots[name].is_relative_to(studio_root))
+    return {
+        'root_package': root_package, 'test_and_cli_seeds': seed_files,
+        'declared_dependency_closure': sorted(declared),
+        'declared_studio_dependencies': declared_studio,
+        'resolved_package_imports': sorted(resolved_packages),
+        'resolved_studio_packages': resolved_studio,
+        'local_dart_source_sha256': {str(path.relative_to(REPO)): value for path, value in sorted(visited.items())},
+        'studio_source_references': sorted(set(studio_references)),
+        'unresolved_directives': sorted(set(unresolved)),
+        'excludes_studio': not declared_studio and not resolved_studio and not studio_references and not unresolved,
+        'scope': 'Declared runtime dependency closure plus root test dependencies; actual import/export/part directives recursively walked for repository-owned files, including conditional branches. SDK/hosted dependencies remain pinned by unchanged root lock/config and SDK identity.',
+    }
+
+
+def retained_continuity(original_name, current_inputs, runtime):
+    """Retain only independent accepted gates after exact input comparison."""
+    original = HERE / original_name
+    if not re.fullmatch(r'[a-zA-Z0-9_-]+', original_name) or not original.is_dir():
+        raise RuntimeError('Retained evidence must name an existing run directory')
+    checksum_path = original / 'SHA256SUMS.txt'
+    verified_artifacts = []
+    for line in checksum_path.read_text().splitlines():
+        expected, name = line.split('  ', 1)
+        if Path(name).name != name or name in ('.', '..'):
+            raise RuntimeError('Invalid original evidence checksum path')
+        if digest(stable_bytes(original / name)) != expected:
+            raise RuntimeError(f'Original evidence checksum mismatch: {name}')
+        verified_artifacts.append(name)
+    summary = json.loads((original / 'summary.json').read_text())
+    before = json.loads(gzip.decompress((original / 'inputs-before.json.gz').read_bytes()))
+    original_runtime = json.loads((original / 'runtime.json').read_text())
+    archive = json.loads((HERE / 'runner_versions/index.json').read_text())[original_name]
+    archived_runner = HERE / 'runner_versions' / archive['path']
+    original_runner_unchanged = (
+        digest(stable_bytes(archived_runner)) == archive['sha256']
+        == summary['runner_sha256_before'] == summary['runner_sha256_after'])
+    studio_prefix = STUDIO.as_posix() + '/'
+    left = {path: value for path, value in before['entries'].items() if not path.startswith(studio_prefix)}
+    right = {path: value for path, value in current_inputs['entries'].items() if not path.startswith(studio_prefix)}
+    changed = []
+    for path in sorted(set(left) | set(right)):
+        a, b = left.get(path, {}), right.get(path, {})
+        if (a.get('sha256'), a.get('symlink_target_sha256'), a.get('missing')) != (
+            b.get('sha256'), b.get('symlink_target_sha256'), b.get('missing')):
+            changed.append(path)
+    generated_unchanged = before['generated'] == current_inputs['generated']
+    runtime_unchanged = (original_runtime['version'] == runtime['version']
+        and original_runtime['executables_sha256'] == runtime['executables_sha256'])
+    original_source_stable = (not summary['inputs_not_matching_source_commit']
+        and all(check['stable'] for check in summary['source_checks']))
+    selections = json.loads((original / 'selection.json').read_text())['suite_selection']
+    engine_seeds = list(selections['incoming_engine'])
+    # The selected CLI tests start these executables through Process, so inspect
+    # their directives as well as the regular static test imports.
+    engine_seeds.extend(path.relative_to(REPO).as_posix()
+        for path in sorted((REPO / ENGINE / 'tool/macros').glob('*.dart')))
+    closures = {
+        'incoming_engine': local_import_closure(engine_seeds, 'quds_office_engine'),
+        'shared_mail_ui': local_import_closure(selections['shared_mail_ui'], 'quds_mail_ui'),
+    }
+    gates = []
+    for name in ('incoming_engine', 'shared_mail_ui'):
+        record = json.loads((original / (name + '-result.json')).read_text())
+        report = record['reporter']
+        accepted = (record['exit_code'] == 0 and report['reporter_success']
+            and not report['failed_cases'] and not report['skipped_cases'] and not report['incomplete_cases']
+            and not report['incomplete_lifecycle_ids'] and not report['orphan_completion_ids']
+            and not report['duplicate_start_ids'] and not report['duplicate_completion_ids']
+            and not report['missing_suites'] and not report['unexpected_suites'])
+        gates.append({'name': name, 'original_result': f'../{original_name}/{name}-result.json',
+            'original_source_head': summary['expected_source_head'], 'accepted_original_gate': accepted,
+            'passed_cases': report['passed_cases'], 'suite_count': report['suite_count'],
+            'freshly_reexecuted_in_recovery': False})
+    return {
+        'original_run': original_name, 'original_source_head': summary['expected_source_head'],
+        'current_source_head': current_inputs['expected_head'],
+        'original_artifacts_verified': verified_artifacts,
+        'original_checksum_index_sha256': digest(stable_bytes(checksum_path)),
+        'archived_original_runner': str(archived_runner.relative_to(HERE)),
+        'original_runner_sha256': archive['sha256'], 'original_runner_verified': original_runner_unchanged,
+        'original_source_stable': original_source_stable,
+        'compared_inputs_outside_studio': len(left), 'changed_inputs_outside_studio': changed,
+        'generated_configuration_unchanged': generated_unchanged, 'runtime_identity_unchanged': runtime_unchanged,
+        'studio_changes': [path for path in source_drift(before, current_inputs)['changed_source_inputs'] if path.startswith(studio_prefix)],
+        'import_dependency_closures': closures, 'retained_gates': gates,
+        'retained_passed_cases': sum(gate['passed_cases'] for gate in gates),
+        'accepted': (not changed and generated_unchanged and runtime_unchanged and original_source_stable
+            and original_runner_unchanged and all(gate['accepted_original_gate'] for gate in gates)
+            and all(closure['excludes_studio'] for closure in closures.values())),
+        'scope': 'All captured repository package/third_party inputs outside Studio, root configuration and generated package graph/config match exactly. Retained gates have no Studio dependency/import path. The failed original Studio gate contributes no carried-forward cases.',
+    }
+
+
 def commands(selected, static, ruler):
     sdk = Path(os.environ.get('FLUTTER_ROOT', REPO.parent / 'runtime/flutter'))
     dart = str(sdk / 'bin/cache/dart-sdk/bin/dart')
@@ -414,11 +585,29 @@ def main():
     mode.add_argument('--run', action='store_true')
     parser.add_argument('--expected-head')
     parser.add_argument('--run-id')
+    parser.add_argument('--gates', nargs='+', choices=[
+        'analysis', 'format', 'incoming_engine', 'studio_mail', 'shared_mail_ui', 'changed_ruler',
+    ], help='Run only these named gates, retaining their normal sequential order.')
+    parser.add_argument('--retain-from', help='Existing original run whose independent accepted engine/UI gates must pass continuity checks.')
     args = parser.parse_args()
     planned = plan()
+    planned['available_gate_names'] = [gate['name'] for gate in planned['commands']]
+    if args.gates:
+        if len(set(args.gates)) != len(args.gates):
+            parser.error('--gates must not repeat a gate')
+        unavailable = set(args.gates) - set(planned['available_gate_names'])
+        if unavailable:
+            parser.error('Unavailable gates: ' + ', '.join(sorted(unavailable)))
+        planned['commands'] = [gate for gate in planned['commands'] if gate['name'] in args.gates]
+    planned['selected_gate_names'] = [gate['name'] for gate in planned['commands']]
+    planned['selected_suite_counts'] = {name: count for name, count in planned['suite_counts'].items()
+        if name in planned['selected_gate_names']}
+    planned['retained_evidence_request'] = args.retain_from
+    if args.retain_from and set(planned['selected_gate_names']) & {'incoming_engine', 'shared_mail_ui'}:
+        parser.error('Retained independent gates must not also be selected for fresh execution')
     if args.plan:
         write_json(HERE / 'plan.json', planned)
-        print(json.dumps({key: planned[key] for key in ('observed_head', 'suite_counts', 'static_path_count', 'planned_source_input_count', 'missing_planned_suites')}, indent=2))
+        print(json.dumps({key: planned[key] for key in ('observed_head', 'suite_counts', 'selected_suite_counts', 'selected_gate_names', 'static_path_count', 'planned_source_input_count', 'missing_planned_suites')}, indent=2))
         return 0
     if not args.expected_head or current_head() != args.expected_head:
         parser.error('--run requires --expected-head equal to the current exact Git HEAD')
@@ -439,6 +628,18 @@ def main():
     write_json(directory / 'runtime.json', runtime)
     write_json(directory / 'retained-ruler.json', planned['retained_ruler'])
     manifests = [save_manifest(directory, 'inputs-before.json', before)]
+    retention = None
+    if args.retain_from:
+        retention = retained_continuity(args.retain_from, before, runtime)
+        write_json(directory / 'retained-continuity.json', retention)
+        if not retention['accepted']:
+            write_json(directory / 'summary.json', {
+                'accepted': False, 'gates_executed': [],
+                'reason': 'Independent gate continuity failed before recovery execution.',
+                'continuity': 'retained-continuity.json',
+            })
+            print('Retained continuity failed; no recovery gates executed.', flush=True)
+            return 1
     results, drifts = [], []
     runner_sha = digest(Path(__file__).read_bytes())
     for gate in planned['commands']:
@@ -475,12 +676,18 @@ def main():
         'gate_summaries': [{key: record[key] for key in ('name', 'exit_code', 'started_at_utc', 'finished_at_utc')} |
             ({key: record['reporter'][key] for key in ('suite_count', 'passed_cases', 'failed_cases', 'skipped_cases', 'per_file_counts')} if record['kind'] == 'tests' else {}) for record in results],
         'historical_results_added_to_fresh_total': False,
+        'retained_continuity': 'retained-continuity.json' if retention else None,
+        'retained_accepted_cases': retention['retained_passed_cases'] if retention else 0,
+        'retained_evidence_accepted': retention['accepted'] if retention else None,
         'scope': 'Local normal-runner regression only; no live-provider, installed-platform or complete product-parity claim. GitHub Actions not queried or awaited.',
     }
     summary['accepted'] = (summary['all_planned_gates_completed'] and summary['all_commands_exit_zero']
         and protocols_ok and all(row['stable'] for row in drifts)
         and not summary['inputs_not_matching_source_commit']
+        and (retention is None or retention['accepted'])
         and summary['runner_sha256_before'] == summary['runner_sha256_after'])
+    summary['combined_accepted_case_count'] = (summary['fresh_unique_passed_cases']
+        + summary['retained_accepted_cases']) if summary['accepted'] else None
     write_json(directory / 'summary.json', summary)
     sums = [digest(path.read_bytes()) + '  ' + path.name for path in sorted(directory.iterdir()) if path.is_file() and path.name != 'SHA256SUMS.txt']
     (directory / 'SHA256SUMS.txt').write_text('\n'.join(sums) + '\n')

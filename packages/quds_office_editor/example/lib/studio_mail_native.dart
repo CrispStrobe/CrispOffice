@@ -818,7 +818,12 @@ class _StudioMailDialogState extends State<StudioMailDialog>
 
   Future<void> _requireReleasedDraftStores() async {
     await _draftStoreClosing;
-    if (_retiredNavigationStore != null) {
+    // A preceding restoration can acquire a stale owner while this transition
+    // waits. A failed release still needs the explicit release control even
+    // when no retained owner existed at this transition's entry check.
+    if (_retiredNavigationStore != null ||
+        _retiredNavigationView != null ||
+        _retiredNavigationSubscription != null) {
       throw const StudioMailDraftStoreException(MailProblemCode.storageFailure);
     }
     for (final owner in List<StudioMailDraftStore>.of(_unreleasedDraftStores)) {
@@ -1534,7 +1539,9 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       if (adopted && error is _StudioMailNavigationExpired) _disconnect();
       setState(() {
         _connecting = false;
-        _error = error is _StudioMailNavigationExpired
+        _error = _retiredNavigationStore != null
+            ? widget.strings.mailDraftStorageFailed
+            : error is _StudioMailNavigationExpired
             ? widget.strings.mailAccountNavigationChanged
             : error is StudioMailDraftStoreException && target != null
             ? error.code == MailProblemCode.permissionDenied
@@ -3566,7 +3573,6 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         _busy ||
         _dialogOpen ||
         _connecting ||
-        _credentialPending ||
         _client != null) {
       return;
     }
@@ -4621,10 +4627,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                     padding: const EdgeInsets.only(bottom: 8),
                     child: OutlinedButton.icon(
                       key: ValueKey('studio-mail-open-${service.name}'),
-                      onPressed:
-                          _connecting ||
-                              _credentialPending ||
-                              _retiredNavigationStore != null
+                      onPressed: _connecting || _retiredNavigationStore != null
                           ? null
                           : () => _openProviderSetup(
                               service == MailCloudService.gmail
@@ -4641,10 +4644,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                   ),
                 OutlinedButton.icon(
                   key: const ValueKey<String>('studio-mail-open-ews'),
-                  onPressed:
-                      _connecting ||
-                          _credentialPending ||
-                          _retiredNavigationStore != null
+                  onPressed: _connecting || _retiredNavigationStore != null
                       ? null
                       : () => _openProviderSetup(MailProviderKind.ews),
                   icon: const Icon(Icons.dns_outlined),

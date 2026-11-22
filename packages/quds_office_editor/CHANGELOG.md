@@ -12,8 +12,9 @@ All notable changes to `quds_office_editor` are documented here.
   retired callbacks, and atomically refresh selected native directory records
   without recreating forgotten shortcuts. Custom directories without conditional
   refresh retain their existing metadata. Native Close hides the mounted Mail
-  pane; failed owner release blocks another sign-in and can require a host
-  restart. Provider Close/Back preserves draft recovery. One account remains
+  pane; failed observer or owner release blocks another sign-in until explicit
+  native Retry closing account or provider Close/Back recovery succeeds.
+  Persistent release failure can require a host restart. One account remains
   connected at a time. See the [account-navigation workflow](../../docs/roadmaps/mail/account-navigation.md)
   and [connected-account guide](../../docs/roadmaps/mail/connected-account-navigation.md)
   for scope, qualification and remaining multi-account workspace work.

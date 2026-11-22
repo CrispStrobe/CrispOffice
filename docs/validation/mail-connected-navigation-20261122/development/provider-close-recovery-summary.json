@@ -1,0 +1,469 @@
+{
+  "command": "source runtime/env.sh; BOT=true flutter test --no-pub --concurrency=1 --reporter=json test/studio_mail_account_navigation_provider_test.dart",
+  "cwd": "packages/quds_office_editor/example",
+  "caseCount": 64,
+  "passed": 64,
+  "failed": 0,
+  "skipped": 0,
+  "errors": [],
+  "done": {
+    "success": true,
+    "type": "done",
+    "time": 32344
+  },
+  "sourceSha256": {
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart": "f99eaf064d3fa1f446cf64444e42ac3b2d6581388b2c8db7123022c722d5d4f5",
+    "packages/quds_office_editor/example/lib/studio_mail_cloud.dart": "d2bb1e11b739afcc080af882524cf85a1fc73b22478d66670f5f1cc489983bd4",
+    "packages/quds_office_editor/example/test/studio_mail_account_navigation_provider_test.dart": "2605d342cfacfa9bbe9b455b2f4fa7c4a920a107d15abb895d528267665153c0"
+  },
+  "cases": [
+    {
+      "id": 3,
+      "name": "ews: non-secret prefill waits for explicit sign-in",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 4,
+      "name": "ews: edited ews-mailbox cannot redirect selected identity",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 5,
+      "name": "ews: edited ews-endpoint cannot redirect selected identity",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 6,
+      "name": "ews: edited ews-domain cannot redirect selected identity",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 7,
+      "name": "ews: edited ews-login cannot redirect selected identity",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 8,
+      "name": "ews: removed target fails before provider authorization",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 9,
+      "name": "ews: revised target fails before provider authorization",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 10,
+      "name": "ews: late target validation cannot authenticate a closed host",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 11,
+      "name": "ews: target removal during authorization blocks later dispatch",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 12,
+      "name": "ews: setup picker selection never opens a provider or draft store",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 13,
+      "name": "ews: removed target during store open retires an unadopted candidate",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 14,
+      "name": "ews: removed target during store load retires an unadopted candidate",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 15,
+      "name": "ews: failed release of a stale open candidate blocks another account",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 16,
+      "name": "ews: failed switch save retains the current connected uncertain draft",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 17,
+      "name": "ews: switch revalidates destination after saving and retains source on removal",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 18,
+      "name": "ews: switch drains observers and draft owner before one callback",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 19,
+      "name": "ews: close retains connection on failed draft save",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 20,
+      "name": "ews: close stops bulk dispatch before saving and drains its receipt",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 21,
+      "name": "ews: close intent prevents first send after a pending marker",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 22,
+      "name": "ews: close intent prevents first send after a pending marker even when close save fails",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 23,
+      "name": "ews: own remembered revision permits a later explicit reconnect",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 24,
+      "name": "ews: switch never exits after failed owner release",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 25,
+      "name": "ews: close never exits after failed owner release",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 26,
+      "name": "gmail: non-secret prefill waits for explicit sign-in",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 27,
+      "name": "gmail: edited cloud-mailbox cannot redirect selected identity",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 28,
+      "name": "gmail: removed target fails before provider authorization",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 29,
+      "name": "gmail: revised target fails before provider authorization",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 30,
+      "name": "gmail: late target validation cannot authenticate a closed host",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 31,
+      "name": "gmail: target removal during authorization blocks later dispatch",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 32,
+      "name": "gmail: setup picker selection never opens a provider or draft store",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 33,
+      "name": "gmail: removed target during store open retires an unadopted candidate",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 34,
+      "name": "gmail: removed target during store load retires an unadopted candidate",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 35,
+      "name": "gmail: failed release of a stale open candidate blocks another account",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 36,
+      "name": "gmail: failed switch save retains the current connected uncertain draft",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 37,
+      "name": "gmail: switch revalidates destination after saving and retains source on removal",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 38,
+      "name": "gmail: switch drains observers and draft owner before one callback",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 39,
+      "name": "gmail: close retains connection on failed draft save",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 40,
+      "name": "gmail: close stops bulk dispatch before saving and drains its receipt",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 41,
+      "name": "gmail: close intent prevents first send after a pending marker",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 42,
+      "name": "gmail: close intent prevents first send after a pending marker even when close save fails",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 43,
+      "name": "gmail: own remembered revision permits a later explicit reconnect",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 44,
+      "name": "gmail: switch never exits after failed owner release",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 45,
+      "name": "gmail: close never exits after failed owner release",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 46,
+      "name": "graph: non-secret prefill waits for explicit sign-in",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 47,
+      "name": "graph: edited cloud-mailbox cannot redirect selected identity",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 48,
+      "name": "graph: edited cloud-tenant cannot redirect selected identity",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 49,
+      "name": "graph: removed target fails before provider authorization",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 50,
+      "name": "graph: revised target fails before provider authorization",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 51,
+      "name": "graph: late target validation cannot authenticate a closed host",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 52,
+      "name": "graph: target removal during authorization blocks later dispatch",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 53,
+      "name": "graph: setup picker selection never opens a provider or draft store",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 54,
+      "name": "graph: removed target during store open retires an unadopted candidate",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 55,
+      "name": "graph: removed target during store load retires an unadopted candidate",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 56,
+      "name": "graph: failed release of a stale open candidate blocks another account",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 57,
+      "name": "graph: failed switch save retains the current connected uncertain draft",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 58,
+      "name": "graph: switch revalidates destination after saving and retains source on removal",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 59,
+      "name": "graph: switch drains observers and draft owner before one callback",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 60,
+      "name": "graph: close retains connection on failed draft save",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 61,
+      "name": "graph: close stops bulk dispatch before saving and drains its receipt",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 62,
+      "name": "graph: close intent prevents first send after a pending marker",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 63,
+      "name": "graph: close intent prevents first send after a pending marker even when close save fails",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 64,
+      "name": "graph: own remembered revision permits a later explicit reconnect",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 65,
+      "name": "graph: switch never exits after failed owner release",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    },
+    {
+      "id": 66,
+      "name": "graph: close never exits after failed owner release",
+      "result": "success",
+      "skipped": false,
+      "hidden": false
+    }
+  ]
+}

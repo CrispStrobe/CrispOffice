@@ -1,0 +1,75 @@
+{
+  "purpose": "Read-only diagnosis of the first frozen broad Studio qualification failures; no package edits or reruns at the time of capture.",
+  "qualified_source": "d53f30f1874b38d36a791d1d3881583e4e42a2d6",
+  "baseline": "ae72c31a",
+  "preexisting_comparison": {
+    "command": [
+      "git",
+      "diff",
+      "--exit-code",
+      "ae72c31a",
+      "HEAD",
+      "--",
+      "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_local_accounts_dialog_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_cached_mail.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_local_accounts_dialog.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_mailbox_session.dart"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "original_failure_log": "../final/qualified-source/studio_mail.jsonl",
+  "findings": [
+    {
+      "case": "imap repository flags preserve live reader and provider identities",
+      "test_id": 632,
+      "evidence": "All body assertions completed; the only reported error is teardown waiting 15 seconds for owner.whenClosed. No navigation is exercised; expectedTarget is null, pending flag action remains null, and no held navigation owner exists.",
+      "unresolved": "Existing marker cannot distinguish host waiting for observer cancellation from delegate database close. Storage uses a background native SQLite isolate. An isolated unchanged case is approved after the broad run; instrument close stages only if needed. Do not extend the timeout or classify as a flake without evidence."
+    },
+    {
+      "case": "EWS/Gmail/Graph delete survives metadata updates and cannot resurrect cached rows",
+      "test_ids": [
+        700,
+        816,
+        886
+      ],
+      "evidence": "The shared fake provider advertises only MailCapability.mail and folders. Production disables Delete and refuses _delete without MailCapability.delete. Therefore no confirmation is opened when the test taps the disabled action.",
+      "approved_correction": "Advertise delete only in the deletion fixture; assert action and confirmation readiness before changing cached metadata."
+    },
+    {
+      "case": "all four provider cached-mail button opens only the local mailbox",
+      "test_ids": [
+        1413,
+        1418,
+        1420,
+        1422
+      ],
+      "evidence": "SqliteStudioMailMailboxStore supports StudioMailSyncStore. The empty combined retained-folder view renders mailCacheRetainedEmpty; the tests wait for and expect mailCacheEmpty.",
+      "approved_correction": "Match the sync-capable retained-folder empty text and predicate."
+    },
+    {
+      "case": "closing Mail ignores a pending file picker result",
+      "test_id": 1395,
+      "evidence": "Failure is the first pumpAndSettle after opening default native Mail at test line39. The saved-message pane, file picker, and Close action are never reached. Default credential-loading/autoconnect rendering has a live progress indicator.",
+      "approved_correction": "Use an explicit session credential store and autoConnectSavedAccount false to reach the intended file-picker lifecycle."
+    },
+    {
+      "case": "native setup offers Gmail/Microsoft365/Exchange and exposes Exchange entry",
+      "test_ids": [
+        835,
+        1274
+      ],
+      "evidence": "Tests tap provider setup immediately while default IMAP credential catalog loading is pending. Newly introduced credentialPending method/button guards suppress the provider launch.",
+      "root_owned_resolution": "Keep independent provider setup usable while unrelated IMAP credential catalog loads; add delayed-catalog regression instead of hiding this behavior in fixtures."
+    },
+    {
+      "case": "choosing a preset clears old credentials and exposes app-password guidance",
+      "test_id": 2016,
+      "evidence": "The fixture injects a memory credential catalog but leaves automatic restoration enabled, then enters Password before catalog readiness. The restoration view temporarily replaces setup.",
+      "root_owned_correction": "Explicitly disable autoConnectSavedAccount for this manual-settings fixture and settle catalog readiness."
+    }
+  ]
+}

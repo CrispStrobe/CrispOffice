@@ -104,6 +104,21 @@ const _imapCredentials = StudioMailCredentials(
   startTls: false,
 );
 
+final class _DelayedAccountCatalog extends Fake
+    implements StudioMailCredentialStore, StudioMailAccountCatalogStore {
+  final result = Completer<StudioMailAccountCatalogResult>();
+  int loads = 0;
+  bool completed = false;
+
+  @override
+  Future<StudioMailAccountCatalogResult> loadAccounts() async {
+    loads++;
+    final catalog = await result.future;
+    completed = true;
+    return catalog;
+  }
+}
+
 final class _NativeClient extends Fake implements mail.MailClient {
   _NativeClient(this.account);
   @override
@@ -330,14 +345,18 @@ Future<void> _press(WidgetTester tester, Finder finder) async {
   await _pump(tester);
 }
 
-Future<void> _show(WidgetTester tester, _RouterFixture fixture) async {
+Future<void> _show(
+  WidgetTester tester,
+  _RouterFixture fixture, {
+  StudioMailCredentialStore? credentials,
+}) async {
   await tester.binding.setSurfaceSize(const Size(1280, 1600));
   addTearDown(() => tester.binding.setSurfaceSize(null));
   await tester.pumpWidget(
     MaterialApp(
       home: StudioMailDialog(
         strings: _strings,
-        credentialStore: SessionMailCredentials(),
+        credentialStore: credentials ?? SessionMailCredentials(),
         localAccountStore: fixture.directory,
         autoConnectSavedAccount: false,
         accountDestinationBuilder: fixture.destination,
@@ -385,6 +404,56 @@ Future<void> _showConnected(
 }
 
 void main() {
+  for (final (button, provider) in [
+    ('studio-mail-open-gmail', MailProviderKind.gmail),
+    ('studio-mail-open-microsoft365', MailProviderKind.graph),
+    ('studio-mail-open-ews', MailProviderKind.ews),
+  ]) {
+    testWidgets(
+      '${provider.name} setup opens while the IMAP credential catalog is pending',
+      (tester) async {
+        final fixture = _RouterFixture();
+        final credentials = _DelayedAccountCatalog();
+        await _show(tester, fixture, credentials: credentials);
+        expect(credentials.loads, 1);
+        expect(credentials.completed, isFalse);
+        final email = tester.widget<TextField>(_email).controller!;
+        expect(email.text, isEmpty);
+
+        await _press(tester, _key(button));
+        expect(fixture.routes.single.provider, provider);
+        expect(fixture.routes.single.target, isNull);
+        expect(credentials.completed, isFalse);
+
+        credentials.result.complete(
+          StudioMailAccountCatalogResult.success(
+            StudioMailAccountCatalog(
+              accounts: [
+                StudioMailSavedAccount(
+                  id: _imapCredentials.accountId,
+                  credentials: _imapCredentials,
+                ),
+              ],
+              selectedAccountId: _imapCredentials.accountId,
+            ),
+          ),
+        );
+        await _pump(tester);
+        expect(credentials.completed, isTrue);
+        expect(fixture.routes.single.route.isCurrent, isTrue);
+        expect(email.text, isEmpty);
+        expect(fixture.clientCreations, 0);
+        expect(fixture.storeOpens, 0);
+
+        await _press(tester, _key('fixture-close-provider'));
+        expect(email.text, isEmpty);
+        expect(fixture.clientCreations, 0);
+        expect(fixture.storeOpens, 0);
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
+
   testWidgets('connected IMAP to EWS to IMAP retains each draft and owner', (
     tester,
   ) async {
