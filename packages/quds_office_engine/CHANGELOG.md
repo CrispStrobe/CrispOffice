@@ -4,6 +4,17 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Add typed Word VBA `Rows`, `Row`, `Columns`, `Column` and `Cells` selectors,
+  including explicit `Item`, nested `With`, retained aliases and required
+  `ByVal` helpers. Support required named `Index` arguments on table
+  collections and named `Row`/`Column` on `Table.Cell`, with once-only source
+  evaluation order. Lower selected cells to the existing guarded native
+  operations and preserve direct-cell/paragraph origin restrictions, strict
+  index validation and atomic rollback. Include a 10-operation table BAS,
+  an independent 32-case conformance corpus and native/CLI/MCP/portable tests.
+  See the [contract](../../docs/vba-word-macros-details.md#table-row-and-column-navigation)
+  and [local qualification](../../docs/validation/word-vba-table-navigation-20261122/README.md).
+
 - Add shared VBA integer division (`\`) and signed remainder (`Mod`), with
   ties-to-even Long operands, VBA precedence, strict Empty/Null/conversion
   rules, positioned errors and existing compilation budgets. Include a

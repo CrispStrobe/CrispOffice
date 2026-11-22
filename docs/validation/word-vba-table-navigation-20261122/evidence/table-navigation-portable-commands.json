@@ -1,0 +1,39 @@
+[
+  {
+    "label": "table-navigation-portable-vm",
+    "command": [
+      "/workspace/scratch/3706fdacd6ce/runtime-word/dart-sdk/bin/dart",
+      "--packages=/workspace/scratch/3706fdacd6ce/quds_office_suite/.dart_tool/package_config.json",
+      "-DWORD_TABLE_NAVIGATION_BAS_BASE64=T3B0aW9uIEV4cGxpY2l0CgonIEZpbGwgYW4gZXhpc3Rpbmcgb3JkaW5hcnkgdHdvLXJvdywgdHdvLWNvbHVtbiBtYWluLXN0b3J5IHRhYmxlLgonIEFsbCBpbmRleGVzIGFuZCBsYWJlbHMgY29tZSBmcm9tIHNvdXJjZTsgZXhpc3RpbmcgZG9jdW1lbnQgdmFsdWVzIGFyZSBub3QgcmVhZC4KU3ViIFdyaXRlTGFiZWwoQnlWYWwgdGFyZ2V0IEFzIENlbGxzLCBCeVZhbCBpbmRleCBBcyBMb25nLCBCeVZhbCBsYWJlbCBBcyBTdHJpbmcpCiAgICBXaXRoIHRhcmdldC5JdGVtKEluZGV4Oj1pbmRleCkuUmFuZ2UKICAgICAgICAuVGV4dCA9IGxhYmVsCiAgICAgICAgLkZvbnQuQm9sZCA9IFRydWUKICAgIEVuZCBXaXRoCkVuZCBTdWIKClN1YiBNYWluKCkKICAgIERpbSByZXBvcnQgQXMgVGFibGUsIGhlYWRpbmdzIEFzIFJvdywgc3RhdHVzQ29sdW1uIEFzIENvbHVtbgogICAgRGltIHN0YXR1cyBBcyBSYW5nZQoKICAgIFNldCByZXBvcnQgPSBBY3RpdmVEb2N1bWVudC5UYWJsZXMoSW5kZXg6PTEpCiAgICBTZXQgaGVhZGluZ3MgPSByZXBvcnQuUm93cy5JdGVtKEluZGV4Oj0xKQogICAgV3JpdGVMYWJlbCB0YXJnZXQ6PWhlYWRpbmdzLkNlbGxzLCBpbmRleDo9MSwgbGFiZWw6PSJJdGVtIgogICAgV3JpdGVMYWJlbCB0YXJnZXQ6PWhlYWRpbmdzLkNlbGxzLCBpbmRleDo9MiwgbGFiZWw6PSJTdGF0dXMiCgogICAgcmVwb3J0LlJvd3MoMikuQ2VsbHMoMSkuUmFuZ2UuVGV4dCA9ICJRdWFydGVybHkgcmVwb3J0IgogICAgU2V0IHN0YXR1c0NvbHVtbiA9IHJlcG9ydC5Db2x1bW5zKEluZGV4Oj0yKQogICAgU2V0IHN0YXR1cyA9IHN0YXR1c0NvbHVtbi5DZWxscy5JdGVtKEluZGV4Oj0yKS5SYW5nZQogICAgc3RhdHVzLlRleHQgPSAiUmVhZHkiCiAgICBzdGF0dXMuSW5zZXJ0QWZ0ZXIgVGV4dDo9dmJUYWIgJiAiUmV2aWV3ZWQiCiAgICBzdGF0dXMuRm9udC5Db2xvckluZGV4ID0gd2RHcmVlbgogICAgc3RhdHVzLlBhcmFncmFwaEZvcm1hdC5BbGlnbm1lbnQgPSB3ZEFsaWduUGFyYWdyYXBoUmlnaHQKCiAgICAnIE5hbWVkIENlbGwgYXJndW1lbnRzIGNhbiBhcHBlYXIgaW4gZWl0aGVyIG5hbWVkIG9yZGVyLgogICAgcmVwb3J0LkNlbGwoQ29sdW1uOj0xLCBSb3c6PTIpLlJhbmdlLkluc2VydEJlZm9yZSBUZXh0Oj0iRG9jdW1lbnQ6ICIKRW5kIFN1Ygo=",
+      "tool/macros/web_vba_word_table_navigation_smoke.dart"
+    ],
+    "exit_code": 0,
+    "seconds": 9.531320268999934
+  },
+  {
+    "label": "table-navigation-portable-compile",
+    "command": [
+      "/workspace/scratch/3706fdacd6ce/runtime-word/dart-sdk/bin/dart",
+      "compile",
+      "js",
+      "--packages=/workspace/scratch/3706fdacd6ce/quds_office_suite/.dart_tool/package_config.json",
+      "-O1",
+      "-DWORD_TABLE_NAVIGATION_BAS_BASE64=T3B0aW9uIEV4cGxpY2l0CgonIEZpbGwgYW4gZXhpc3Rpbmcgb3JkaW5hcnkgdHdvLXJvdywgdHdvLWNvbHVtbiBtYWluLXN0b3J5IHRhYmxlLgonIEFsbCBpbmRleGVzIGFuZCBsYWJlbHMgY29tZSBmcm9tIHNvdXJjZTsgZXhpc3RpbmcgZG9jdW1lbnQgdmFsdWVzIGFyZSBub3QgcmVhZC4KU3ViIFdyaXRlTGFiZWwoQnlWYWwgdGFyZ2V0IEFzIENlbGxzLCBCeVZhbCBpbmRleCBBcyBMb25nLCBCeVZhbCBsYWJlbCBBcyBTdHJpbmcpCiAgICBXaXRoIHRhcmdldC5JdGVtKEluZGV4Oj1pbmRleCkuUmFuZ2UKICAgICAgICAuVGV4dCA9IGxhYmVsCiAgICAgICAgLkZvbnQuQm9sZCA9IFRydWUKICAgIEVuZCBXaXRoCkVuZCBTdWIKClN1YiBNYWluKCkKICAgIERpbSByZXBvcnQgQXMgVGFibGUsIGhlYWRpbmdzIEFzIFJvdywgc3RhdHVzQ29sdW1uIEFzIENvbHVtbgogICAgRGltIHN0YXR1cyBBcyBSYW5nZQoKICAgIFNldCByZXBvcnQgPSBBY3RpdmVEb2N1bWVudC5UYWJsZXMoSW5kZXg6PTEpCiAgICBTZXQgaGVhZGluZ3MgPSByZXBvcnQuUm93cy5JdGVtKEluZGV4Oj0xKQogICAgV3JpdGVMYWJlbCB0YXJnZXQ6PWhlYWRpbmdzLkNlbGxzLCBpbmRleDo9MSwgbGFiZWw6PSJJdGVtIgogICAgV3JpdGVMYWJlbCB0YXJnZXQ6PWhlYWRpbmdzLkNlbGxzLCBpbmRleDo9MiwgbGFiZWw6PSJTdGF0dXMiCgogICAgcmVwb3J0LlJvd3MoMikuQ2VsbHMoMSkuUmFuZ2UuVGV4dCA9ICJRdWFydGVybHkgcmVwb3J0IgogICAgU2V0IHN0YXR1c0NvbHVtbiA9IHJlcG9ydC5Db2x1bW5zKEluZGV4Oj0yKQogICAgU2V0IHN0YXR1cyA9IHN0YXR1c0NvbHVtbi5DZWxscy5JdGVtKEluZGV4Oj0yKS5SYW5nZQogICAgc3RhdHVzLlRleHQgPSAiUmVhZHkiCiAgICBzdGF0dXMuSW5zZXJ0QWZ0ZXIgVGV4dDo9dmJUYWIgJiAiUmV2aWV3ZWQiCiAgICBzdGF0dXMuRm9udC5Db2xvckluZGV4ID0gd2RHcmVlbgogICAgc3RhdHVzLlBhcmFncmFwaEZvcm1hdC5BbGlnbm1lbnQgPSB3ZEFsaWduUGFyYWdyYXBoUmlnaHQKCiAgICAnIE5hbWVkIENlbGwgYXJndW1lbnRzIGNhbiBhcHBlYXIgaW4gZWl0aGVyIG5hbWVkIG9yZGVyLgogICAgcmVwb3J0LkNlbGwoQ29sdW1uOj0xLCBSb3c6PTIpLlJhbmdlLkluc2VydEJlZm9yZSBUZXh0Oj0iRG9jdW1lbnQ6ICIKRW5kIFN1Ygo=",
+      "tool/macros/web_vba_word_table_navigation_smoke.dart",
+      "-o",
+      "/workspace/scratch/3706fdacd6ce/runtime-word/table-navigation.js"
+    ],
+    "exit_code": 0,
+    "seconds": 14.80275639699994
+  },
+  {
+    "label": "table-navigation-portable-node",
+    "command": [
+      "node",
+      "-e",
+      "globalThis.self=globalThis;require(\"/workspace/scratch/3706fdacd6ce/runtime-word/table-navigation.js\")"
+    ],
+    "exit_code": 0,
+    "seconds": 1.0183195970000725
+  }
+]

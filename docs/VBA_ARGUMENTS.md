@@ -63,9 +63,21 @@ Word [`TabStops.Add`](VBA_WORD_MACROS.md#custom-paragraph-tab-stops) and
 Each has its own fixed argument contract and retains source-order evaluation.
 Measurement conversions accept exactly one required numeric value, by position
 or its official name (`Inches`, `Centimeters`, `Millimeters`, `Picas`, `Lines`
-or `Points`); omissions are not supported. This does not add named arguments to `RGB`, the String or Variant intrinsics,
-array subscripts, or application members such as `Paragraphs`, `Shapes`,
-`Range`, or `InsertBefore`.
+or `Points`); omissions are not supported. Supported Word `InsertBefore` and
+`InsertAfter` calls also accept their required `Text:=`, and
+`TextColumns.SetCount` accepts required `NumColumns:=`.
+
+Word table navigation accepts required `Index:=` on `Tables`, `Rows`,
+`Columns`, row/column `Cells` and their explicit `Item` forms. `Table.Cell`
+accepts required `Row:=` and `Column:=`, including reversed named order.
+The receiver and supplied expressions keep written evaluation order; omissions
+and positional arguments after a named argument are refused. Typed row,
+column and cell collection objects may also be passed to required `ByVal`
+helpers. See the [exact table selector contract](vba-word-macros-details.md#table-row-and-column-navigation).
+
+Named arguments are not added to `RGB`, the String or Variant intrinsics,
+array subscripts, or application members such as `Paragraphs`, `Shapes` and
+`Range`.
 
 ## Declaring optional parameters
 

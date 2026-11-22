@@ -1,0 +1,72 @@
+[
+  {
+    "path": "docs/validation/word-vba-table-navigation-20261122/evidence/navigation-tests.log.gz",
+    "uncompressed_sha256": "4315a087dc3caff73b41a6ac96a0aa08722a761fef7b7bd355618e88aa38a813",
+    "bytes": 30862
+  },
+  {
+    "path": "docs/validation/word-vba-table-navigation-20261122/evidence/navigation-test-analysis.log.gz",
+    "uncompressed_sha256": "56cba663ea02111ce12617bbcc3eaebb45188f4b817fa0b21c8aa55ead5a6161",
+    "bytes": 129
+  },
+  {
+    "path": "docs/validation/word-vba-table-navigation-20261122/evidence/navigation-regressions.log.gz",
+    "uncompressed_sha256": "669826084fafa41083416dba26b1e91dc96b06ecd2bf8ce222931f4a7355a5fc",
+    "bytes": 34610
+  },
+  {
+    "path": "docs/validation/word-vba-table-navigation-20261122/evidence/navigation-final-format.log.gz",
+    "uncompressed_sha256": "cf481250cc89e8647fbdd03227049fba99bff06a8ade9f20411d43eac6fa9910",
+    "bytes": 47
+  },
+  {
+    "path": "docs/validation/word-vba-table-navigation-20261122/evidence/navigation-final-analysis.log.gz",
+    "uncompressed_sha256": "c61edb47f6a658380761fc15e4a0776f2ab70ec4e20bed98b6d4daa2e66f5e70",
+    "bytes": 340
+  },
+  {
+    "path": "docs/validation/word-vba-table-navigation-20261122/evidence/table-navigation-cli.log.gz",
+    "uncompressed_sha256": "6d9491f86762aaee2d7f6305f103fdccd3d05ed28ee981ac2851b225e436aa58",
+    "bytes": 508
+  },
+  {
+    "path": "docs/validation/word-vba-table-navigation-20261122/evidence/table-navigation-portable-analysis.log.gz",
+    "uncompressed_sha256": "79aa264d87940d894f7a311292b719077e05a97f6ebbca2607fdc1886e64fe29",
+    "bytes": 119
+  },
+  {
+    "path": "docs/validation/word-vba-table-navigation-20261122/evidence/table-navigation-portable-vm.log.gz",
+    "uncompressed_sha256": "5bc185f98221acdd5aca9df651f91cb4bb91589e5c479db3b92bc43b57c74ff8",
+    "bytes": 1274
+  },
+  {
+    "path": "docs/validation/word-vba-table-navigation-20261122/evidence/table-navigation-portable-compile.log.gz",
+    "uncompressed_sha256": "304fd2c8ac01c911272c568825f45a7df3b147c617e5beef27ef17fb5eea5b54",
+    "bytes": 114
+  },
+  {
+    "path": "docs/validation/word-vba-table-navigation-20261122/evidence/table-navigation-portable-node.log.gz",
+    "uncompressed_sha256": "ee82f8781d1bab7ee983795cdbcdc6ec7de5392392435245c21d34eebdb3baad",
+    "bytes": 1264
+  },
+  {
+    "path": "docs/validation/word-vba-table-navigation-20261122/evidence/navigation-conformance-vm.log.gz",
+    "uncompressed_sha256": "63a000ed0481a9e87483c06540c923254b6e8ebf6fa89ce38063bd924f521003",
+    "bytes": 7632
+  },
+  {
+    "path": "docs/validation/word-vba-table-navigation-20261122/evidence/navigation-conformance-compile.log.gz",
+    "uncompressed_sha256": "20510e4657bc77705ea8cc447299e52362c5274d45cafc6ffddbefc5a3d0bf69",
+    "bytes": 112
+  },
+  {
+    "path": "docs/validation/word-vba-table-navigation-20261122/evidence/navigation-conformance-node.log.gz",
+    "uncompressed_sha256": "63a000ed0481a9e87483c06540c923254b6e8ebf6fa89ce38063bd924f521003",
+    "bytes": 7632
+  },
+  {
+    "path": "docs/validation/word-vba-table-navigation-20261122/evidence/macro-regression.log.gz",
+    "uncompressed_sha256": "57a0a84f297d1d0f0240046003577f86db4c9eaf91b8c8b8ce6681ee8af190a3",
+    "bytes": 1153664
+  }
+]
