@@ -38,6 +38,8 @@ revalidated across asynchronous setup. Removed targets, edited identities,
 delayed route callbacks and hidden keyboard input cannot redirect a newer
 session. IMAP SMTP-route ambiguity requires an explicit remembered-route choice.
 Selection never starts synchronization, sends mail or replays journal commands.
+The selected shortcut is refreshed atomically before local-owner adoption, so a
+record forgotten or replaced during sign-in cannot be recreated by a late write.
 
 See the [workflow and ownership contract](account-navigation.md) and
 [local qualification record](../../validation/mail-connected-navigation-20261122/README.md)

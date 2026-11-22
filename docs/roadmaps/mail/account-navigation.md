@@ -75,6 +75,14 @@ after the selected record becomes stale. A successful verified connection
 fulfills the initial selection intent; a later explicit reconnect does not
 reuse the obsolete directory revision from before that successful connection.
 
+The selected shortcut's successful-connection refresh compares its identity,
+revision and connection timestamp in the same repository transaction as the
+write. A shortcut forgotten or replaced while sign-in waits cannot be recreated
+by a late refresh. The local draft owner is adopted only after that comparison
+succeeds. Custom directory implementations without the optional atomic refresh
+capability retain their existing metadata instead of falling back to an
+unconditional write.
+
 While a transition is pending, the underlying native Mail pane accepts neither
 pointer nor keyboard edits. Each provider route can return a destination once,
 and only while that exact route is current. Delayed or duplicate callbacks from

@@ -4,6 +4,12 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Refresh selected Mail reconnect shortcuts atomically before adopting their
+  local draft owner. Forgetting or replacing a shortcut during the awaited
+  write now rejects the stale completion without recreating its metadata.
+  Fresh connections still register their account, and older custom directories
+  retain their existing metadata when atomic refresh is unavailable.
+
 - Add a verified account chooser across native IMAP/SMTP, Exchange EWS, Gmail
   and Microsoft 365. Preserve retained drafts and submission uncertainty while
   switching, drain the previous account owner, and require explicit sign-in

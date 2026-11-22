@@ -50,11 +50,16 @@ StudioMailDraftAccount _identity(MailProviderKind kind) {
   );
 }
 
-final class _Directory implements StudioMailLocalAccountStore {
+final class _Directory
+    implements
+        StudioMailLocalAccountStore,
+        StudioMailLocalAccountReconnectStore {
   final records = <String, MailLocalAccountRecord>{};
   Completer<void>? loadGate;
+  Completer<void>? rememberGate;
   int loads = 0;
   int remembers = 0;
+  int selectedRemembers = 0;
 
   void seed(StudioMailDraftAccount identity, {int revision = 1}) {
     records[identity.account.value] = MailLocalAccountRecord(
@@ -78,6 +83,29 @@ final class _Directory implements StudioMailLocalAccountStore {
   @override
   Future<void> remember(StudioMailDraftAccount identity) async {
     remembers++;
+    await rememberGate?.future;
+    _remember(identity);
+  }
+
+  @override
+  Future<void> rememberSelected(
+    StudioMailDraftAccount identity, {
+    required MailLocalAccountRecord expectedRecord,
+  }) async {
+    remembers++;
+    selectedRemembers++;
+    await rememberGate?.future;
+    final current = records[identity.account.value];
+    if (current == null ||
+        !current.hasSameIdentity(expectedRecord) ||
+        current.revision != expectedRecord.revision ||
+        current.lastConnectedAt != expectedRecord.lastConnectedAt) {
+      throw const StudioMailDraftStoreException(MailProblemCode.conflict);
+    }
+    _remember(identity);
+  }
+
+  void _remember(StudioMailDraftAccount identity) {
     seed(
       identity,
       revision: (records[identity.account.value]?.revision ?? 0) + 1,
@@ -456,6 +484,10 @@ String _text(WidgetTester tester, String key) =>
     tester.widget<TextField>(_key(key)).controller!.text;
 
 Future<void> _pump(WidgetTester tester) async {
+  // Stream cancellation can await Dart's shared root-zone completed future.
+  // Give that future a real event turn; fake clock pumps alone leave cleanup
+  // pending until test teardown even after the explicit cancellation gate opens.
+  await tester.runAsync(() => Future<void>.delayed(Duration.zero));
   await tester.pump();
   await tester.pump(const Duration(milliseconds: 350));
   await tester.pump();
@@ -485,6 +517,7 @@ Future<void> _show(WidgetTester tester, _Harness harness) async {
   addTearDown(() async {
     for (final gate in [
       harness.directory.loadGate,
+      harness.directory.rememberGate,
       harness.openGate,
       harness.owner.loadGate,
       harness.owner.saveGate,
@@ -553,6 +586,45 @@ void main() {
     MailProviderKind.gmail,
     MailProviderKind.graph,
   ]) {
+    for (final removed in [true, false]) {
+      testWidgets(
+        '${kind.name}: atomic selected refresh preserves a ${removed ? 'removed' : 'revised'} shortcut',
+        (tester) async {
+          final harness = _Harness(kind);
+          final gate = Completer<void>();
+          harness.directory.rememberGate = gate;
+          await _show(tester, harness);
+          await _connect(tester, harness);
+          await _until(tester, () => harness.directory.remembers == 1);
+          if (removed) {
+            harness.directory.records.remove(harness.identity.account.value);
+          } else {
+            harness.directory.seed(harness.identity, revision: 2);
+          }
+          final replacement =
+              harness.directory.records[harness.identity.account.value];
+          gate.complete();
+          await _pump(tester);
+          expect(
+            harness.directory.records[harness.identity.account.value],
+            same(replacement),
+          );
+          expect(harness.directory.selectedRemembers, 1);
+          await _until(tester, () => harness.owner.closed == 1);
+          expect(harness.providers.single.lease!.isCurrent, isFalse);
+          if (kind != MailProviderKind.ews) {
+            expect(harness.providers.single.disposals, 1);
+            expect(harness.tokens.disposals, 1);
+          }
+          expect(
+            find.text(_strings.mailAccountNavigationChanged),
+            findsOneWidget,
+          );
+          expect(tester.takeException(), isNull);
+        },
+      );
+    }
+
     testWidgets('${kind.name}: non-secret prefill waits for explicit sign-in', (
       tester,
     ) async {

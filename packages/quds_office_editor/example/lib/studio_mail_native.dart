@@ -815,11 +815,12 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     });
     StudioMailDraftStore? candidate;
     var targetRejected = false;
+    final targetDirectory = _localAccounts;
     Future<void> verifyTarget() async {
       if (expectedTarget == null) return;
       try {
-        final directory = _localAccounts;
-        if (directory == null) {
+        final directory = targetDirectory;
+        if (directory == null || !identical(directory, _localAccounts)) {
           throw const StudioMailDraftStoreException(
             MailProblemCode.unavailable,
           );
@@ -894,6 +895,29 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         }
         return false;
       }
+      if (expectedTarget != null && candidate is StudioMailDraftCatalog) {
+        try {
+          final directory = targetDirectory;
+          if (directory == null) {
+            throw const StudioMailDraftStoreException(
+              MailProblemCode.unavailable,
+            );
+          }
+          // Compare and refresh the selected snapshot atomically before its
+          // local owner is adopted. A late completion must not recreate a
+          // shortcut forgotten while this write was waiting for the store.
+          await expectedTarget.rememberConnection(
+            directory,
+            identity,
+            isCurrent: () =>
+                _currentSession(client, generation) &&
+                identical(directory, _localAccounts),
+          );
+        } on Object {
+          targetRejected = true;
+          rethrow;
+        }
+      }
       setState(() {
         _draftStore = candidate;
         _draft = restored?.draft;
@@ -932,7 +956,9 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         await _saveCachedView(client, generation);
       }
       final directory = _localAccounts;
-      if (directory != null && candidate is StudioMailDraftCatalog) {
+      if (expectedTarget == null &&
+          directory != null &&
+          candidate is StudioMailDraftCatalog) {
         try {
           await directory.remember(identity);
         } on Object {

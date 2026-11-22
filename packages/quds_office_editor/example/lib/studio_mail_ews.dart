@@ -923,6 +923,30 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         await _closeDraftStore(candidate);
         return false;
       }
+      final target = _connectionTarget;
+      if (target != null && candidate is StudioMailDraftCatalog) {
+        try {
+          final directory = _connectionDirectory;
+          if (directory == null) {
+            throw const _EwsAccountSelectionFailure();
+          }
+          // Keep the candidate unadopted until the selected shortcut has been
+          // refreshed in the same transaction that compares its old snapshot.
+          await target.rememberConnection(
+            directory,
+            identity,
+            isCurrent: () =>
+                _current(provider, lease) &&
+                identical(target, _connectionTarget) &&
+                identical(target, _expectedAccount) &&
+                identical(_initialAccountSource, widget.initialAccount) &&
+                identical(directory, _connectionDirectory) &&
+                identical(directory, _localAccounts),
+          );
+        } on Object {
+          throw const _EwsAccountSelectionFailure();
+        }
+      }
       setState(() {
         _draftStore = candidate;
         _draft = restored?.draft;
@@ -953,7 +977,9 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         await _saveCachedView(provider, lease);
       }
       final directory = _localAccounts;
-      if (directory != null && candidate is StudioMailDraftCatalog) {
+      if (target == null &&
+          directory != null &&
+          candidate is StudioMailDraftCatalog) {
         try {
           await _validateActiveAccount();
           if (!_current(provider, lease)) return false;

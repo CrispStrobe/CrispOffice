@@ -1,0 +1,1255 @@
+{
+  "capturedAtUtc": "2026-11-22T12:19:17.648041+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "operation": "git fetch --no-tags origin refs/heads/main:refs/remotes/origin/main",
+  "previousMain": "a9bfc961a7efdf2c8da198108bd71174b91f89fd",
+  "fetchedMain": "4cc604810fb2f41ac7ba04cbed65cb76300bff59",
+  "comparedLocalHead": "66fbd1c7c0ae759d200d13bcbc5115601f472768",
+  "localHeadAtReceipt": "4015d7544ec3aa392ce2f375a35f00a4c3d4c5a3",
+  "mainCommit": "commit 4cc604810fb2f41ac7ba04cbed65cb76300bff59\nMerge: a9bfc961 5bf13601\nAuthor:     CrispStrobe <154636388+CrispStrobe@users.noreply.github.com>\nAuthorDate: Sun Nov 22 13:16:48 2026 +0100\nCommit:     GitHub <noreply@github.com>\nCommitDate: Sun Nov 22 13:16:48 2026 +0100\n\n    Merge PR #382: restore editable Zotero converter fields [skip ci]\n    \n    Locally qualified with 4,694 visible passing tests across 130 suites and clean final static checks. Preserves captured Word/Mail histories and incremental Zotero checkpoints; no GitHub Actions wait.",
+  "advanceIsFastForward": true,
+  "newMainCommitsBeyondComparedLocalHead": [
+    "4cc604810fb2f41ac7ba04cbed65cb76300bff59 Merge PR #382: restore editable Zotero converter fields [skip ci]",
+    "5bf13601caac2c08fe97de25fe853c9d642f0cb1 test: record 4694 local passes for Zotero converter parity [skip ci]",
+    "307b1aa8965c9e8a9338bee289a6dac5055b4bff style(mail): normalize incoming reconnect guard formatting [skip ci]",
+    "81e9da16f9672530d4b39e9cf6cfec979af12830 fix: complete guarded Zotero converter interoperability and reconcile Mail reconnect [skip ci]",
+    "8f2e943bf5aa1dd157e72f7ec47d0f7c2ccd5dd4 merge: preserve current Word and Mail work with Zotero controller coverage [skip ci]",
+    "373b7fe9bcb9c282fb6fe0bfbc7832a87faf2baa test(word): cover Split authoring and reconcile incoming recovery fixes [skip ci]",
+    "58011672bf8a3bec22ef5766c7416789203992ad checkpoint(zotero): retain formatted field envelopes while qualifying converter edits [skip ci]",
+    "41d388d895cebed2da21a8b3cdd288240ab868c0 feat(vba): split source records into bounded dynamic String arrays [skip ci]",
+    "f4516c13937b9ce5cec771bf331dc91d9f37105d fix(mail): preserve selected account identity during reconnect [skip ci]",
+    "2d19bb8daf76d8305e47f136c92060b5cd5da019 fix(zotero): preserve clear ODT shading and verify retained-file refresh [skip ci]",
+    "90cce1f7711111e92f6d01708539bfaa56b4a08d feat(zotero): qualify inert Writer outlines and retain original converter regressions [skip ci]",
+    "921a84a08395800445898eee4679ae74ee09d47e merge: reconcile recent Office histories before VBA Split authoring [skip ci]"
+  ],
+  "mergeBasesWithComparedLocalHead": [
+    "0cb4057ae80162d754a2d5c3f145fc7f38bb0590",
+    "77f8ede7e1bd3e08094a4bcc1a09aa911cce4b10",
+    "a9bfc961a7efdf2c8da198108bd71174b91f89fd",
+    "550abcef192899461f0350e4731d37f45b8f6433"
+  ],
+  "deltaFromPreviousMain": [
+    {
+      "status": "M",
+      "path": "docs/VBA_CONFORMANCE.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/VBA_MACROS.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/VBA_PARITY_ROADMAP.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/VBA_WORD_MACROS.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/roadmaps/mail/README.md"
+    },
+    {
+      "status": "A",
+      "path": "docs/roadmaps/mail/account-navigation.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/roadmaps/mail/implementation-plan.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/roadmaps/mail/status.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/roadmaps/zotero/native-odt-input.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/roadmaps/zotero/word-processor-parity.md"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/native-recovery-summary.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/native-recovery.jsonl"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/native-recovery.stderr"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/native-release.jsonl"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/native-release.stderr"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/provider-final-summary.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/provider-final.jsonl"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/provider-final.stderr"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/provider-native.jsonl"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/provider-native.stderr"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/provider-recovery-summary.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/provider-recovery.jsonl"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/provider-recovery.stderr"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/provider-startup-rejection.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/shared-picker-router-development-summary.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/README.md"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/plan.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualify_mail.py"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/incoming/README.md"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/incoming/SHA256SUMS.txt"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/incoming/analysis.stderr.gz"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/incoming/analysis.stdout.gz"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/incoming/editor-command.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/incoming/editor-result.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/incoming/editor-startup-interrupted.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/incoming/editor-verbose.jsonl.gz"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/incoming/editor-verbose.stderr.gz"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/incoming/editor.jsonl.gz"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/incoming/editor.stderr.gz"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/incoming/engine-result.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/incoming/engine.jsonl.gz"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/incoming/engine.stderr.gz"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/incoming/format.stderr.gz"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/incoming/format.stdout.gz"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/incoming/inputs-after-interruption.json.gz"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/incoming/inputs-after.json.gz"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/incoming/inputs-before.json.gz"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/incoming/runtime.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/incoming/static-result.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/incoming/summary.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/mail-connected-navigation-20261122/working-intake.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/word-vba-split-20261122/README.md"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/word-vba-split-20261122/initial-intake.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-converter-parity-20261122/README.md"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-converter-parity-20261122/evidence-index.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-converter-parity-20261122/initial-intake.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-converter-parity-20261122/late-intake.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-converter-parity-20261122/local-evidence.tar.xz"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-converter-parity-20261122/publication-plan.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-converter-parity-20261122/qualification.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-converter-parity-20261122/run_checks.py"
+    },
+    {
+      "status": "M",
+      "path": "docs/vba-macros-details.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/zotero-support-details.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/zotero-support.md"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_mail_store/CHANGELOG.md"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_mail_store/lib/src/local_accounts.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_mail_store/test/local_accounts_expected_record_test.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/CHANGELOG.md"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_editor/example/lib/studio_mail_account_navigation.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_editor/example/lib/studio_mail_account_navigation_strings.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/lib/studio_mail_cloud.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/lib/studio_mail_ews.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/lib/studio_mail_local_accounts.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_editor/example/test/studio_mail_account_navigation_dialog_test.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_editor/example/test/studio_mail_account_navigation_provider_test.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_editor/example/test/studio_mail_account_navigation_router_test.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_editor/example/test/studio_mail_account_navigation_test.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_editor/test/word_zotero_converter_controller_test.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/CHANGELOG.md"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/example/macros/word_split_report.bas"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/lib/src/word/model/wml_run_edit.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/lib/src/word/model/word_field_spans.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/lib/src/word/model/word_revision.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/lib/src/word/properties/wml_properties.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_reader_styles.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/vba_conformance/split_v1.json"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/README.md"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/docx-cycle-1/body.docx"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/docx-cycle-1/cell.docx"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/docx-cycle-1/footnote.docx"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/docx-cycle-2/body.docx"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/docx-cycle-2/cell.docx"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/docx-cycle-2/footnote.docx"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/manifest.json"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/odt-cycle-1/body.odt"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/odt-cycle-1/cell.odt"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/odt-cycle-1/footnote.odt"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/odt-cycle-2/body.odt"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/odt-cycle-2/cell.odt"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/odt-cycle-2/footnote.odt"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/original/body.docx"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/original/body.expected.json"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/original/body.odt"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/original/cell.docx"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/original/cell.expected.json"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/original/cell.odt"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/original/footnote.docx"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/original/footnote.expected.json"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/original/footnote.odt"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/odt_outline_compatibility_test.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/office_vba_split_test.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/office_vba_word_split_cli_test.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/office_vba_word_split_integration_test.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/support/zotero_converter_fixtures.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/word_zotero_boundary_formatting_test.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/test/word_zotero_field_recovery_test.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/tool/macros/web_vba_split_conformance.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/tool/macros/web_vba_word_split_smoke.dart"
+    }
+  ],
+  "applicationSourceDeltaFromPreviousMain": [
+    "packages/quds_mail_store/lib/src/local_accounts.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_account_navigation.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_account_navigation_strings.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_cloud.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_local_accounts.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+    "packages/quds_office_engine/lib/src/word/model/wml_run_edit.dart",
+    "packages/quds_office_engine/lib/src/word/model/word_field_spans.dart",
+    "packages/quds_office_engine/lib/src/word/model/word_revision.dart",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero.dart",
+    "packages/quds_office_engine/lib/src/word/properties/wml_properties.dart",
+    "packages/quds_office_engine/lib/src/word/serial/odt_reader_styles.dart",
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+    "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart"
+  ],
+  "treeDifferencesFromComparedLocalHead": [
+    {
+      "status": "M",
+      "path": "docs/VBA_CONFORMANCE.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/VBA_MACROS.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/VBA_PARITY_ROADMAP.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/VBA_WORD_MACROS.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/roadmaps/mail/account-navigation.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/roadmaps/zotero/native-odt-input.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/roadmaps/zotero/word-processor-parity.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/validation/mail-connected-navigation-20261122/README.md"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/cache-lifecycle-analysis-final.txt"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/cache-lifecycle-analysis.txt"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/cache-lifecycle-diagnosis.json"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/cache-lifecycle-recovery-after.json"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/cache-lifecycle-recovery-before.json"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/cache-lifecycle-recovery-summary.json"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/cache-lifecycle-recovery.jsonl"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/cache-lifecycle-recovery.stderr"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/imap-cache-diagnostic-before.json"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/imap-cache-diagnostic.jsonl"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/imap-cache-diagnostic.stderr"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/imap-cache-studio-cwd.jsonl"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/imap-cache-studio-cwd.stderr"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/imap-cached-teardown-unchanged.jsonl"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/imap-cached-teardown-unchanged.stderr"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/native-observer-analysis.txt"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/native-observer-recovery-summary.json"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/native-observer-recovery.jsonl"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/native-observer-recovery.stderr"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/native-release-final.jsonl"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/native-release-final.stderr"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/native-release-summary.json"
+    },
+    {
+      "status": "M",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/native-release.jsonl"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/provider-close-recovery-analyze.log"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/provider-close-recovery-summary.json"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/provider-close-recovery.jsonl"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/router-presets-recovery/SHA256SUMS.txt"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/router-presets-recovery/inputs-after.json.gz"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/router-presets-recovery/inputs-before.json.gz"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/router-presets-recovery/router_presets-command.json"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/router-presets-recovery/router_presets-result.json"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/router-presets-recovery/router_presets.jsonl.gz"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/router-presets-recovery/router_presets.stderr.gz"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/router-presets-recovery/run.py"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/router-presets-recovery/runtime.json"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/development/router-presets-recovery/summary.json"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final-intake.json"
+    },
+    {
+      "status": "M",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/README.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/plan.json"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualified-source/SHA256SUMS.txt"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualified-source/analysis-command.json"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualified-source/analysis-result.json"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualified-source/analysis.stderr.gz"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualified-source/analysis.stdout.gz"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualified-source/format-command.json"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualified-source/format-result.json"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualified-source/format.stderr.gz"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualified-source/format.stdout.gz"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualified-source/incoming_engine-command.json"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualified-source/incoming_engine-result.json"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualified-source/incoming_engine.jsonl.gz"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualified-source/incoming_engine.stderr.gz"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualified-source/inputs-after-analysis.json.gz"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualified-source/inputs-after-format.json.gz"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualified-source/inputs-after-incoming_engine.json.gz"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualified-source/inputs-after-shared_mail_ui.json.gz"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualified-source/inputs-after-studio_mail.json.gz"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualified-source/inputs-before.json.gz"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualified-source/progress.json"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualified-source/retained-ruler.json"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualified-source/runtime.json"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualified-source/selection.json"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualified-source/shared_mail_ui-command.json"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualified-source/shared_mail_ui-result.json"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualified-source/shared_mail_ui.jsonl.gz"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualified-source/shared_mail_ui.stderr.gz"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualified-source/studio_mail-command.json"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualified-source/studio_mail-result.json"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualified-source/studio_mail.jsonl.gz"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualified-source/studio_mail.stderr.gz"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualified-source/summary.json"
+    },
+    {
+      "status": "M",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/qualify_mail.py"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/runner_versions/index.json"
+    },
+    {
+      "status": "D",
+      "path": "docs/validation/mail-connected-navigation-20261122/final/runner_versions/qualify_mail_d53f30f1.py"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/word-vba-split-20261122/README.md"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/word-vba-split-20261122/initial-intake.json"
+    },
+    {
+      "status": "M",
+      "path": "docs/validation/zotero-converter-parity-20261122/README.md"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-converter-parity-20261122/evidence-index.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-converter-parity-20261122/late-intake.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-converter-parity-20261122/local-evidence.tar.xz"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-converter-parity-20261122/publication-plan.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-converter-parity-20261122/qualification.json"
+    },
+    {
+      "status": "A",
+      "path": "docs/validation/zotero-converter-parity-20261122/run_checks.py"
+    },
+    {
+      "status": "M",
+      "path": "docs/vba-macros-details.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/zotero-support-details.md"
+    },
+    {
+      "status": "M",
+      "path": "docs/zotero-support.md"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_mail_store/CHANGELOG.md"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_mail_store/lib/src/local_accounts.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_mail_store/test/local_accounts_expected_record_test.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/CHANGELOG.md"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/lib/studio_mail_account_navigation.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/lib/studio_mail_ews.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/lib/studio_mail_local_accounts.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart"
+    },
+    {
+      "status": "D",
+      "path": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_release_test.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/test/studio_mail_account_navigation_provider_test.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/test/studio_mail_account_navigation_router_test.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/test/studio_mail_account_navigation_test.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/test/studio_mail_local_accounts_dialog_test.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_editor/example/test/studio_mail_presets_test.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_editor/test/word_zotero_converter_controller_test.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/CHANGELOG.md"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/example/macros/word_split_report.bas"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/lib/src/word/model/wml_run_edit.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/lib/src/word/model/word_field_spans.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/lib/src/word/model/word_revision.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/lib/src/word/properties/wml_properties.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_reader_styles.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/vba_conformance/split_v1.json"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/README.md"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/docx-cycle-1/body.docx"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/docx-cycle-1/cell.docx"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/docx-cycle-1/footnote.docx"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/docx-cycle-2/body.docx"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/docx-cycle-2/cell.docx"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/docx-cycle-2/footnote.docx"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/manifest.json"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/odt-cycle-1/body.odt"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/odt-cycle-1/cell.odt"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/odt-cycle-1/footnote.odt"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/odt-cycle-2/body.odt"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/odt-cycle-2/cell.odt"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/odt-cycle-2/footnote.odt"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/original/body.docx"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/original/body.expected.json"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/original/body.odt"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/original/cell.docx"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/original/cell.expected.json"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/original/cell.odt"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/original/footnote.docx"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/original/footnote.expected.json"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/fixtures/zotero/converter/original/footnote.odt"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/odt_outline_compatibility_test.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/office_vba_split_test.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/office_vba_word_split_cli_test.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/office_vba_word_split_integration_test.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/support/zotero_converter_fixtures.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/test/word_zotero_boundary_formatting_test.dart"
+    },
+    {
+      "status": "M",
+      "path": "packages/quds_office_engine/test/word_zotero_field_recovery_test.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/tool/macros/web_vba_split_conformance.dart"
+    },
+    {
+      "status": "A",
+      "path": "packages/quds_office_engine/tool/macros/web_vba_word_split_smoke.dart"
+    }
+  ],
+  "applicationSourceDifferencesFromComparedLocalHead": [
+    "packages/quds_mail_store/lib/src/local_accounts.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_account_navigation.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_local_accounts.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+    "packages/quds_office_engine/lib/src/word/model/wml_run_edit.dart",
+    "packages/quds_office_engine/lib/src/word/model/word_field_spans.dart",
+    "packages/quds_office_engine/lib/src/word/model/word_revision.dart",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero.dart",
+    "packages/quds_office_engine/lib/src/word/properties/wml_properties.dart",
+    "packages/quds_office_engine/lib/src/word/serial/odt_reader_styles.dart",
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+    "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart"
+  ],
+  "classification": [
+    {
+      "area": "Mail atomic reconnect",
+      "commits": [
+        "f4516c13937b9ce5cec771bf331dc91d9f37105d",
+        "81e9da16f9672530d4b39e9cf6cfec979af12830",
+        "307b1aa8965c9e8a9338bee289a6dac5055b4bff"
+      ],
+      "detail": "Expected selected-record identity/revision/timestamp checked in same transaction as directory refresh; optional host atomic refresh; selected EWS/native candidate not adopted until refresh succeeds. Custom stores without atomic capability do not unconditionally remember selected routes."
+    },
+    {
+      "area": "VBA Split",
+      "commits": [
+        "41d388d895cebed2da21a8b3cdd288240ab868c0"
+      ],
+      "detail": "Bounded dynamic String-array Split implementation, conformance fixture, Word authoring/CLI integration and web tools."
+    },
+    {
+      "area": "Zotero and Word converter preservation",
+      "commits": [
+        "90cce1f7711111e92f6d01708539bfaa56b4a08d",
+        "2d19bb8daf76d8305e47f136c92060b5cd5da019",
+        "58011672bf8a3bec22ef5766c7416789203992ad",
+        "81e9da16f9672530d4b39e9cf6cfec979af12830"
+      ],
+      "detail": "Editable field recovery with formatting/revision preservation, ODT style/outline compatibility and converter fixtures/controller coverage."
+    }
+  ],
+  "integrationCautions": [
+    "Multiple merge bases; do not classify new content using one arbitrary merge-base diff.",
+    "Incoming main contains older Mail checkpoints. Preserve corrected Close cancellation/dispatch epoch fencing, native observer recovery, native release test file and final fixture corrections while adding atomic reconnect logic.",
+    "Selected-route custom directory fixture behavior changes: incoming fixtures/reconnect tests must be reconciled with current additional regressions; current targeted pass counts alone do not qualify combined source."
+  ],
+  "qualificationImplications": [
+    "Merge/reconcile substantive main before final Studio source freeze, then rerun complete planned Studio recovery/static gates on combined source.",
+    "Run quds_mail_store/test/local_accounts_expected_record_test.dart and existing local-account store tests for new transaction API.",
+    "Run changed/new VBA Split, Zotero/Word fields/converter/ODT suites and editor word_zotero_converter_controller_test.dart; prior engine qualification from a9 does not cover new engine source.",
+    "Imported PR382 evidence claims 4694 passing local tests; retain as incoming evidence without relabeling it as this combined-tree qualification."
+  ],
+  "noWorktreeMutation": true,
+  "noRemoteWrite": true,
+  "noGitHubActionsQueries": true,
+  "newCorrectedCheckpoint": "4015d7544ec3aa392ce2f375a35f00a4c3d4c5a3",
+  "packageDeltaBetweenComparedHeadAndNewCheckpoint": [],
+  "newMainCommitsBeyondCorrectedCheckpoint": [
+    "4cc604810fb2f41ac7ba04cbed65cb76300bff59 Merge PR #382: restore editable Zotero converter fields [skip ci]",
+    "5bf13601caac2c08fe97de25fe853c9d642f0cb1 test: record 4694 local passes for Zotero converter parity [skip ci]",
+    "307b1aa8965c9e8a9338bee289a6dac5055b4bff style(mail): normalize incoming reconnect guard formatting [skip ci]",
+    "81e9da16f9672530d4b39e9cf6cfec979af12830 fix: complete guarded Zotero converter interoperability and reconcile Mail reconnect [skip ci]",
+    "8f2e943bf5aa1dd157e72f7ec47d0f7c2ccd5dd4 merge: preserve current Word and Mail work with Zotero controller coverage [skip ci]",
+    "373b7fe9bcb9c282fb6fe0bfbc7832a87faf2baa test(word): cover Split authoring and reconcile incoming recovery fixes [skip ci]",
+    "58011672bf8a3bec22ef5766c7416789203992ad checkpoint(zotero): retain formatted field envelopes while qualifying converter edits [skip ci]",
+    "41d388d895cebed2da21a8b3cdd288240ab868c0 feat(vba): split source records into bounded dynamic String arrays [skip ci]",
+    "f4516c13937b9ce5cec771bf331dc91d9f37105d fix(mail): preserve selected account identity during reconnect [skip ci]",
+    "2d19bb8daf76d8305e47f136c92060b5cd5da019 fix(zotero): preserve clear ODT shading and verify retained-file refresh [skip ci]",
+    "90cce1f7711111e92f6d01708539bfaa56b4a08d feat(zotero): qualify inert Writer outlines and retain original converter regressions [skip ci]",
+    "921a84a08395800445898eee4679ae74ee09d47e merge: reconcile recent Office histories before VBA Split authoring [skip ci]"
+  ],
+  "integration": {
+    "local_merge_commit": "b843c81b15158ed0f4010b589f8ecdefd1a642fb",
+    "merged_tree": "edadcc8898dbf8f19468b31303262a3f7a9f55a2",
+    "main_parent": "4cc604810fb2f41ac7ba04cbed65cb76300bff59",
+    "previous_corrected_remote_source": "4015d7544ec3aa392ce2f375a35f00a4c3d4c5a3",
+    "checked_at_utc": "2026-11-22T12:23:22.927259+00:00",
+    "method": "Normal recursive merge; resulting tree exactly matched git merge-tree. Preserved current lifecycle guards and added atomic selected-record refresh before owner adoption."
+  }
+}

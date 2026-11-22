@@ -118,6 +118,33 @@ also uses a typed collection helper, body and footer targets, and a missing
 reference handled with `IsNull`. Numeric text coercion and named intrinsic
 arguments remain outside the bounded [String contract](vba-macros-details.md#string-intrinsics).
 
+## Filling a table from delimited records
+
+Use `Split` to populate a local dynamic String array from source-known text:
+
+```vb
+Sub Main()
+    Dim fields() As String, column As Long
+    fields = Split("Item|Status", "|")
+    For column = LBound(fields) To UBound(fields)
+        ActiveDocument.Tables(1).Cell(1, column + 1).Range.Text = fields(column)
+    Next column
+End Sub
+```
+
+`Split` always produces zero-based elements, independently of `Option Base`.
+It accepts an optional delimiter, result limit and binary comparison mode.
+Empty fields are retained; an empty input produces no elements. The
+[complete 2×2 report](../packages/quds_office_engine/example/macros/word_split_report.bas)
+splits both records and fields, fills the cells, emphasizes the headings and
+colors the status cell in seven native operations.
+
+The target must be a local dynamic String array. General array values,
+locale comparison and live document reads remain unsupported. All writes use
+the existing table-cell admission, detached validation and publication rules.
+See the [exact Split contract](vba-macros-details.md#splitting-source-string-arrays)
+and [local qualification](validation/word-vba-split-20261122/README.md).
+
 ## Editing fixed-width template labels
 
 `Mid(label, start[, length]) = text` and `Mid$(...) = text` replace part of a

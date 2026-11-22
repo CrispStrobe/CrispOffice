@@ -39,7 +39,9 @@ MailLocalAccountRecord _record({
   return MailLocalAccountRecord(
     id: identity.account.value,
     provider: identity.provider,
-    endpoint: identity.endpoint,
+    // Preserve the stored input. Canonicalizing here would erase an explicit
+    // zero port before the production navigation boundary can validate it.
+    endpoint: endpoint ?? identity.endpoint,
     login: identity.login,
     sender: identity.sender,
     lastConnectedAt: DateTime.utc(2026, 11, 22),
@@ -118,8 +120,41 @@ void main() {
     expect(target.identity.endpoint, 'imaps://[2001:db8::1]:993');
   });
 
+  for (final endpoint in [
+    'imaps://imap.example.test',
+    'imaps://[2001:db8::1]',
+  ]) {
+    test('IMAP route requires its explicit socket port: $endpoint', () {
+      expect(
+        () => StudioMailAccountNavigationTarget.fromRecord(
+          _record(endpoint: endpoint),
+        ),
+        throwsA(_problem(MailProblemCode.invalidInput)),
+      );
+    });
+  }
+
   final invalidRoutes = <({String name, MailLocalAccountRecord record})>[
     (name: 'IMAP zero port', record: _record(endpoint: 'imap://host.test:0')),
+    (
+      name: 'noncanonical IMAP port with leading zeroes',
+      record: _record(endpoint: 'imaps://host.test:000993'),
+    ),
+    (
+      name: 'noncanonical explicit HTTPS default port',
+      record: _record(
+        provider: 'ews',
+        endpoint: 'https://exchange.example.test:443/EWS',
+      ),
+    ),
+    (
+      name: 'IMAP zero port with leading zeroes',
+      record: _record(endpoint: 'imaps://host.test:000'),
+    ),
+    (
+      name: 'IMAP IPv6 zero port',
+      record: _record(endpoint: 'imaps://[2001:db8::1]:0'),
+    ),
     (
       name: 'IMAP oversized port',
       record: _record(endpoint: 'imaps://host.test:65536'),
@@ -270,6 +305,45 @@ void main() {
         target.validateCurrent(directory),
         throwsA(_problem(MailProblemCode.conflict)),
       );
+    },
+  );
+
+  test(
+    'legacy directory keeps selected metadata without a non-atomic write',
+    () async {
+      final record = _record();
+      final directory = _Directory([record]);
+      final target = StudioMailAccountNavigationTarget.fromRecord(record);
+      await target.rememberConnection(
+        directory,
+        target.identity,
+        isCurrent: () => true,
+      );
+      expect(directory.loads, 1);
+      expect(directory.rows.single, same(record));
+    },
+  );
+
+  test(
+    'expired selected refresh stops after pending directory validation',
+    () async {
+      final record = _record();
+      final directory = _Directory([record])..gate = Completer<void>();
+      final target = StudioMailAccountNavigationTarget.fromRecord(record);
+      var current = true;
+      final pending = target.rememberConnection(
+        directory,
+        target.identity,
+        isCurrent: () => current,
+      );
+      final rejected = expectLater(
+        pending,
+        throwsA(_problem(MailProblemCode.staleOperation)),
+      );
+      current = false;
+      directory.gate!.complete();
+      await rejected;
+      expect(directory.rows.single, same(record));
     },
   );
 
