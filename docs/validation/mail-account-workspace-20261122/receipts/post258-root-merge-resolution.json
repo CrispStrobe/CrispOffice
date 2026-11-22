@@ -1,0 +1,8 @@
+{
+  "incoming_main": "25850fd310910cb6d852f2e3c480dbc8697fe549",
+  "source_before": "9ce2b057ed8fac6bf6746a1700a6b3ca84f7f405",
+  "shared_route_resolution": "Preserve ours: only explanatory comment differs; same port validation.",
+  "shared_strings_resolution": "Preserve ours: incoming only reorders the identical release-failed getter.",
+  "roadmaps": "Retain incoming Archive workflow and schema17; add complete submission storage ownership, pending admission/release, current qualification link, and remove obsolete remembered-Archive gap.",
+  "editor_changelog": "Union incoming Archive and delayed admission protections with current complete delivery receipt ownership and original-preservation contract."
+}

@@ -1,0 +1,119 @@
+{
+  "cohort": "mail-transport-js",
+  "started_at_utc": "2026-11-22T14:42:11.662614+00:00",
+  "expected_head": "df8571cb70e8677660ce6843c26de017f5524c52",
+  "head_at_start": "df8571cb70e8677660ce6843c26de017f5524c52",
+  "command": [
+    "dart",
+    "test",
+    "--platform",
+    "node",
+    "--reporter=json",
+    "--concurrency=2",
+    "test/cloud_unsupported_test.dart",
+    "test/ews_unsupported_test.dart",
+    "test/unsupported_test.dart"
+  ],
+  "cwd": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_mail_transport",
+  "expected_suites": [
+    "test/cloud_unsupported_test.dart",
+    "test/ews_unsupported_test.dart",
+    "test/unsupported_test.dart"
+  ],
+  "expected_passes": 6,
+  "input_counts": {
+    "workspace": 6342,
+    "resolved_packages": 6200,
+    "runtime": 4
+  },
+  "capture_scope": {
+    "workspace": "All tracked packages, third_party, tools/tool and root manifests/config; package-root publication README/CHANGELOG/LICENSE and docs directories excluded; include generated package_config/package_graph when present. Snapshot inventory is recomputed before and after.",
+    "resolved_packages": "All resolved non-workspace package lib/bin/hook files plus pubspec; package roots derived from active package_config.",
+    "runtime": "Dart executables and SDK/Flutter version metadata. Pinned unmodified official runtime qualification remains separate evidence.",
+    "qualification": "Strict process exit, one successful done, no duplicate/orphan/incomplete lifecycle events, exact suite inventory, zero errors/failures/skips, planned count and input invariance; LF byte framing; only recorded exact build-hook prefixes tolerated."
+  },
+  "runner_sha256": "cf0441aa0a67648bc85c7986b33b44e7a035bcf14a33e1ff0b2abaa8ac9ceb2e",
+  "plan_sha256": "5c44c8292cdeb5afca2dea6f94975070d61ba7d6738cc64f32c391db51029daa",
+  "environment": {
+    "CI": "true",
+    "FLUTTER_ROOT": "/workspace/scratch/7fc035b3e3ba/.runtime/flutter",
+    "PUB_CACHE": "/workspace/scratch/7fc035b3e3ba/.runtime/pub-cache",
+    "TMPDIR": "/workspace/scratch/7fc035b3e3ba/.runtime/tmp",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true"
+  },
+  "executables": {
+    "dart": "/workspace/scratch/7fc035b3e3ba/.runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "flutter": "/workspace/scratch/7fc035b3e3ba/.runtime/flutter/bin/flutter",
+    "node": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node"
+  },
+  "github_actions_queried": false,
+  "github_actions_waited": false,
+  "finished_at_utc": "2026-11-22T14:42:52.687383+00:00",
+  "head_at_end": "df8571cb70e8677660ce6843c26de017f5524c52",
+  "exit_code": 0,
+  "interrupted": false,
+  "changed_inputs": {
+    "workspace": [],
+    "resolved_packages": [],
+    "runtime": []
+  },
+  "source_unchanged": true,
+  "results": {
+    "passed": 6,
+    "failed": 0,
+    "skipped": 0,
+    "suite_count": 3,
+    "observed_suites": [
+      "test/cloud_unsupported_test.dart",
+      "test/ews_unsupported_test.dart",
+      "test/unsupported_test.dart"
+    ],
+    "per_suite": {
+      "test/cloud_unsupported_test.dart": {
+        "passed": 2
+      },
+      "test/ews_unsupported_test.dart": {
+        "passed": 1
+      },
+      "test/unsupported_test.dart": {
+        "passed": 3
+      }
+    },
+    "missing_suites": [],
+    "unexpected_suites": [],
+    "incomplete_test_ids": [],
+    "orphan_completion_ids": [],
+    "duplicate_start_ids": [],
+    "duplicate_completion_ids": [],
+    "unknown_suite_ids": [],
+    "reporter_errors": [],
+    "reporter_done": [
+      {
+        "success": true,
+        "type": "done",
+        "time": 8039
+      }
+    ],
+    "recorded_build_hook_prefixes": [
+      {
+        "line": 1,
+        "prefix": "Running build hooks...Running build hooks..."
+      }
+    ],
+    "invalid_json_lines": [],
+    "protocol_complete": true
+  },
+  "expected_case_count_matches": true,
+  "runner_unchanged": true,
+  "plan_unchanged": true,
+  "artifact_sha256": {
+    "tests.jsonl": "9f10dc8d39263390110e9d09b611ace1d69b0aa36334db1c33a14e700dfcf965",
+    "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "test-cases.json": "1f8bf92b491550b152cbd91d7f28c750b37a71e2f41f1b54bfe19ebd9ff1e0cb",
+    "inputs-before.json": "098c56301d1417b52011201f2cfee4270bbfee954b6dc9bea71a6408cc49b0cd",
+    "inputs-after.json": "098c56301d1417b52011201f2cfee4270bbfee954b6dc9bea71a6408cc49b0cd",
+    "command.json": "d10c50b28e3902388fd42380c42aae322e8588f7dfd3d23fc05dd475afb2f18d"
+  },
+  "qualified": true
+}

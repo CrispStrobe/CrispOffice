@@ -1,0 +1,22 @@
+{
+  "source_checkpoint": "df8571cb70e8677660ce6843c26de017f5524c52",
+  "incoming_main": "25850fd310910cb6d852f2e3c480dbc8697fe549",
+  "reviews_are_readonly_not_execution_credit": true,
+  "native_union_review": {
+    "status": "No concrete issue found in bounded read-only review; execution pending.",
+    "admission": "Before adoption, one restoration owns candidate/cache/CAS and its finally owns release; Disconnect/dispose retires first snapshot without racing a second owner close.",
+    "submission": "Submissions start only after admission completes. Exact-owner registration spans enqueue/attempt/transport/receipt or legacy preservation/accepted clear. Three owner-close paths await matching completions.",
+    "retry": "RetireAdmissionView retains the same cancellation Future; drain consumes it once; observed failure remains held until retryFailed explicit release.",
+    "close": "Close and captured Close are blocked by admission, queued closes, navigation or held failure. An ordinary live native pane Close keeps its existing hide behavior; disposal still retains the owner through a send receipt.",
+    "merge_resolution": "Incoming admission and Archive logic retained; source delta from258 is only the prior native whole-submission retention/guard/drains. Duplicated auto-merged delayed-open fixture gate completion removed; original pending uncertainty assertions retained."
+  },
+  "ews_union_review": {
+    "status": "No concrete issue found in bounded independent read-only review; execution pending.",
+    "admission": "_draftAdmission serializes factory/load/cache/CAS and owns unadopted cleanup. _blocked and restore await prevent a send from starting on an unadopted owner.",
+    "submission": "Close shares the original preservation Future; final owner release awaits completion by identical owner. Failed preservation reports failure; queued dialog entries begin preserved and track the full helper.",
+    "retry": "Close captures observer retry authority and previously failed owners at entry. A new cancellation failure is surfaced without a repeat attempt; explicit later Close can retry.",
+    "dependency": "Owner release awaits pending writes/receipts, never the admission Future that invokes it; admission completes before ordinary sends can register."
+  },
+  "source_audit_sha256": "5d4db2b894d6566ce31583aeb2a0a9f10475cbe1ea539c767e8d982114bc1228",
+  "source_audit_archive_path": "integration/latest-main-258/audit.json"
+}

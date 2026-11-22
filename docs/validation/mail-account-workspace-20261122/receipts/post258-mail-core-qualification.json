@@ -1,0 +1,270 @@
+{
+  "cohort": "mail-core",
+  "started_at_utc": "2026-11-22T14:37:39.550922+00:00",
+  "expected_head": "df8571cb70e8677660ce6843c26de017f5524c52",
+  "head_at_start": "df8571cb70e8677660ce6843c26de017f5524c52",
+  "command": [
+    "dart",
+    "test",
+    "--platform",
+    "vm",
+    "--reporter=json",
+    "--concurrency=2",
+    "test/archive_commands_test.dart",
+    "test/archive_settings_test.dart",
+    "test/body_download_test.dart",
+    "test/bulk_flags_compatibility_test.dart",
+    "test/bulk_flags_coordinator_test.dart",
+    "test/bulk_flags_journal_test.dart",
+    "test/bulk_flags_provider_results_test.dart",
+    "test/bulk_flags_test.dart",
+    "test/cancellation_test.dart",
+    "test/compose_settings_test.dart",
+    "test/conversations_test.dart",
+    "test/ews_identity_test.dart",
+    "test/header_search_boolean_regression_test.dart",
+    "test/header_search_boolean_test.dart",
+    "test/header_search_test.dart",
+    "test/imap_sync_range_test.dart",
+    "test/membership_commands_test.dart",
+    "test/membership_observation_test.dart",
+    "test/models_test.dart",
+    "test/mutation_receipt_test.dart",
+    "test/outbox_management_test.dart",
+    "test/outbox_schedule_test.dart",
+    "test/outbox_test.dart",
+    "test/saved_header_search_folders_test.dart",
+    "test/saved_header_search_test.dart",
+    "test/sync_coordinator_test.dart",
+    "test/sync_runner_test.dart",
+    "test/sync_snapshot_reconciliation_test.dart",
+    "test/sync_snapshot_test.dart"
+  ],
+  "cwd": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_mail_core",
+  "expected_suites": [
+    "test/archive_commands_test.dart",
+    "test/archive_settings_test.dart",
+    "test/body_download_test.dart",
+    "test/bulk_flags_compatibility_test.dart",
+    "test/bulk_flags_coordinator_test.dart",
+    "test/bulk_flags_journal_test.dart",
+    "test/bulk_flags_provider_results_test.dart",
+    "test/bulk_flags_test.dart",
+    "test/cancellation_test.dart",
+    "test/compose_settings_test.dart",
+    "test/conversations_test.dart",
+    "test/ews_identity_test.dart",
+    "test/header_search_boolean_regression_test.dart",
+    "test/header_search_boolean_test.dart",
+    "test/header_search_test.dart",
+    "test/imap_sync_range_test.dart",
+    "test/membership_commands_test.dart",
+    "test/membership_observation_test.dart",
+    "test/models_test.dart",
+    "test/mutation_receipt_test.dart",
+    "test/outbox_management_test.dart",
+    "test/outbox_schedule_test.dart",
+    "test/outbox_test.dart",
+    "test/saved_header_search_folders_test.dart",
+    "test/saved_header_search_test.dart",
+    "test/sync_coordinator_test.dart",
+    "test/sync_runner_test.dart",
+    "test/sync_snapshot_reconciliation_test.dart",
+    "test/sync_snapshot_test.dart"
+  ],
+  "expected_passes": 659,
+  "input_counts": {
+    "workspace": 6342,
+    "resolved_packages": 6200,
+    "runtime": 4
+  },
+  "capture_scope": {
+    "workspace": "All tracked packages, third_party, tools/tool and root manifests/config; package-root publication README/CHANGELOG/LICENSE and docs directories excluded; include generated package_config/package_graph when present. Snapshot inventory is recomputed before and after.",
+    "resolved_packages": "All resolved non-workspace package lib/bin/hook files plus pubspec; package roots derived from active package_config.",
+    "runtime": "Dart executables and SDK/Flutter version metadata. Pinned unmodified official runtime qualification remains separate evidence.",
+    "qualification": "Strict process exit, one successful done, no duplicate/orphan/incomplete lifecycle events, exact suite inventory, zero errors/failures/skips, planned count and input invariance; LF byte framing; only recorded exact build-hook prefixes tolerated."
+  },
+  "runner_sha256": "cf0441aa0a67648bc85c7986b33b44e7a035bcf14a33e1ff0b2abaa8ac9ceb2e",
+  "plan_sha256": "5c44c8292cdeb5afca2dea6f94975070d61ba7d6738cc64f32c391db51029daa",
+  "environment": {
+    "CI": "true",
+    "FLUTTER_ROOT": "/workspace/scratch/7fc035b3e3ba/.runtime/flutter",
+    "PUB_CACHE": "/workspace/scratch/7fc035b3e3ba/.runtime/pub-cache",
+    "TMPDIR": "/workspace/scratch/7fc035b3e3ba/.runtime/tmp",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true"
+  },
+  "executables": {
+    "dart": "/workspace/scratch/7fc035b3e3ba/.runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "flutter": "/workspace/scratch/7fc035b3e3ba/.runtime/flutter/bin/flutter",
+    "node": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node"
+  },
+  "github_actions_queried": false,
+  "github_actions_waited": false,
+  "finished_at_utc": "2026-11-22T14:38:17.700225+00:00",
+  "head_at_end": "df8571cb70e8677660ce6843c26de017f5524c52",
+  "exit_code": 0,
+  "interrupted": false,
+  "changed_inputs": {
+    "workspace": [],
+    "resolved_packages": [],
+    "runtime": []
+  },
+  "source_unchanged": true,
+  "results": {
+    "passed": 659,
+    "failed": 0,
+    "skipped": 0,
+    "suite_count": 29,
+    "observed_suites": [
+      "test/archive_commands_test.dart",
+      "test/archive_settings_test.dart",
+      "test/body_download_test.dart",
+      "test/bulk_flags_compatibility_test.dart",
+      "test/bulk_flags_coordinator_test.dart",
+      "test/bulk_flags_journal_test.dart",
+      "test/bulk_flags_provider_results_test.dart",
+      "test/bulk_flags_test.dart",
+      "test/cancellation_test.dart",
+      "test/compose_settings_test.dart",
+      "test/conversations_test.dart",
+      "test/ews_identity_test.dart",
+      "test/header_search_boolean_regression_test.dart",
+      "test/header_search_boolean_test.dart",
+      "test/header_search_test.dart",
+      "test/imap_sync_range_test.dart",
+      "test/membership_commands_test.dart",
+      "test/membership_observation_test.dart",
+      "test/models_test.dart",
+      "test/mutation_receipt_test.dart",
+      "test/outbox_management_test.dart",
+      "test/outbox_schedule_test.dart",
+      "test/outbox_test.dart",
+      "test/saved_header_search_folders_test.dart",
+      "test/saved_header_search_test.dart",
+      "test/sync_coordinator_test.dart",
+      "test/sync_runner_test.dart",
+      "test/sync_snapshot_reconciliation_test.dart",
+      "test/sync_snapshot_test.dart"
+    ],
+    "per_suite": {
+      "test/archive_commands_test.dart": {
+        "passed": 19
+      },
+      "test/archive_settings_test.dart": {
+        "passed": 11
+      },
+      "test/body_download_test.dart": {
+        "passed": 63
+      },
+      "test/bulk_flags_compatibility_test.dart": {
+        "passed": 28
+      },
+      "test/bulk_flags_coordinator_test.dart": {
+        "passed": 31
+      },
+      "test/bulk_flags_journal_test.dart": {
+        "passed": 16
+      },
+      "test/bulk_flags_provider_results_test.dart": {
+        "passed": 38
+      },
+      "test/bulk_flags_test.dart": {
+        "passed": 32
+      },
+      "test/cancellation_test.dart": {
+        "passed": 3
+      },
+      "test/compose_settings_test.dart": {
+        "passed": 27
+      },
+      "test/conversations_test.dart": {
+        "passed": 10
+      },
+      "test/ews_identity_test.dart": {
+        "passed": 5
+      },
+      "test/header_search_boolean_regression_test.dart": {
+        "passed": 47
+      },
+      "test/header_search_boolean_test.dart": {
+        "passed": 26
+      },
+      "test/header_search_test.dart": {
+        "passed": 27
+      },
+      "test/imap_sync_range_test.dart": {
+        "passed": 18
+      },
+      "test/membership_commands_test.dart": {
+        "passed": 14
+      },
+      "test/membership_observation_test.dart": {
+        "passed": 53
+      },
+      "test/models_test.dart": {
+        "passed": 9
+      },
+      "test/mutation_receipt_test.dart": {
+        "passed": 15
+      },
+      "test/outbox_management_test.dart": {
+        "passed": 7
+      },
+      "test/outbox_schedule_test.dart": {
+        "passed": 6
+      },
+      "test/outbox_test.dart": {
+        "passed": 16
+      },
+      "test/saved_header_search_folders_test.dart": {
+        "passed": 19
+      },
+      "test/saved_header_search_test.dart": {
+        "passed": 34
+      },
+      "test/sync_coordinator_test.dart": {
+        "passed": 9
+      },
+      "test/sync_runner_test.dart": {
+        "passed": 36
+      },
+      "test/sync_snapshot_reconciliation_test.dart": {
+        "passed": 15
+      },
+      "test/sync_snapshot_test.dart": {
+        "passed": 25
+      }
+    },
+    "missing_suites": [],
+    "unexpected_suites": [],
+    "incomplete_test_ids": [],
+    "orphan_completion_ids": [],
+    "duplicate_start_ids": [],
+    "duplicate_completion_ids": [],
+    "unknown_suite_ids": [],
+    "reporter_errors": [],
+    "reporter_done": [
+      {
+        "success": true,
+        "type": "done",
+        "time": 3803
+      }
+    ],
+    "recorded_build_hook_prefixes": [],
+    "invalid_json_lines": [],
+    "protocol_complete": true
+  },
+  "expected_case_count_matches": true,
+  "runner_unchanged": true,
+  "plan_unchanged": true,
+  "artifact_sha256": {
+    "tests.jsonl": "2ebd355db9ef3c7ec85f7c7eb88ac6aa0462f66abfcb560ee6bb59100b219018",
+    "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "test-cases.json": "577d538da2b32f38d6658675a7637bb9c5ba97db39382a862aeb633f68d3169d",
+    "inputs-before.json": "098c56301d1417b52011201f2cfee4270bbfee954b6dc9bea71a6408cc49b0cd",
+    "inputs-after.json": "098c56301d1417b52011201f2cfee4270bbfee954b6dc9bea71a6408cc49b0cd",
+    "command.json": "c33983f3df19776d8a88c3f1539ee0323fa86a222f7737ad5d75c495bea9f043"
+  },
+  "qualified": true
+}

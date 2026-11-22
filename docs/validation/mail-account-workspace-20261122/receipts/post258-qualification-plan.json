@@ -1,0 +1,62 @@
+{
+  "prepared_at_utc": "2026-11-22T14:35:11.700969+00:00",
+  "status": "frozen_union_pending_fresh_gates",
+  "premerge_qualified_source": "9ce2b057ed8fac6bf6746a1700a6b3ca84f7f405",
+  "premerge_evidence_checkpoint": "b25acd58cb31f1910e96a031b465bfeb5a683e35",
+  "premerge_evidence_tree": "5294ced91b71c6d2624047ae64633ce89b91587e",
+  "premerge_archive_sha256": "9a3f61b29d6f727e2916ead14e2685b4c359745770dd32c9964a5044441d7f71",
+  "incoming_main": "25850fd310910cb6d852f2e3c480dbc8697fe549",
+  "retained": {
+    "engine_cases": 2805,
+    "engine_suites": 64,
+    "editor_cases": 51,
+    "editor_suites": 3,
+    "proof": "post258-retained-scopes/qualification-plan.json",
+    "final_source_binding_required": false,
+    "bound_receipt": "post258-retained-scopes/qualification.json"
+  },
+  "fresh_planned": {
+    "shared_mail_store": {
+      "cases_predicted": 2761,
+      "suites_predicted": 126,
+      "cohorts": {
+        "core": {
+          "cases_predicted": 659,
+          "suites": 29
+        },
+        "transport_vm_node": {
+          "cases_predicted": 618,
+          "suites": 26
+        },
+        "shared_ui": {
+          "cases_predicted": 294,
+          "suites": 18
+        },
+        "store_vm_node": {
+          "cases_predicted": 1190,
+          "suites": 53
+        }
+      }
+    },
+    "studio": {
+      "suite_count": 113,
+      "case_count": "actual reporter count pending"
+    },
+    "engine_boundary": {
+      "suite": "packages/quds_office_engine/test/word_zotero_boundary_formatting_test.dart",
+      "cases_predicted": 94,
+      "suites": 1
+    },
+    "static": {
+      "fresh_paths": 57,
+      "retained_engine_paths": 38,
+      "total_paths": 95
+    }
+  },
+  "accounting": "Replace all earlier2722 shared/store cases and2368 Studio cases with fresh full scopes. Retain2805 engine+51 editor only after exact dependency/resource/config binding. Fresh94 replaces the prior94-case engine entrypoint. Predictions are never acceptance counts.",
+  "github_actions_queried": false,
+  "github_actions_waited": false,
+  "source_checkpoint": "df8571cb70e8677660ce6843c26de017f5524c52",
+  "source_tree": "696f6bbb5c6deef20e2939ec477b2767dd56bfc1",
+  "local_source_alias": "594a7e502181e6ce2467f1c3163318bfa79a8733"
+}

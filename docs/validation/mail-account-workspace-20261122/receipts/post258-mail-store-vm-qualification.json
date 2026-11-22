@@ -1,0 +1,413 @@
+{
+  "cohort": "mail-store-vm",
+  "started_at_utc": "2026-11-22T14:38:18.866468+00:00",
+  "expected_head": "df8571cb70e8677660ce6843c26de017f5524c52",
+  "head_at_start": "df8571cb70e8677660ce6843c26de017f5524c52",
+  "command": [
+    "dart",
+    "test",
+    "--platform",
+    "vm",
+    "--reporter=json",
+    "--concurrency=2",
+    "test/adversarial_store_test.dart",
+    "test/archive_directory_native_test.dart",
+    "test/archive_export_manifest_test.dart",
+    "test/archive_export_native_test.dart",
+    "test/archive_export_plan_test.dart",
+    "test/archive_journal_migration_test.dart",
+    "test/archive_journal_test.dart",
+    "test/archive_multi_origin_test.dart",
+    "test/archive_native_test.dart",
+    "test/archive_query_test.dart",
+    "test/archive_repository_test.dart",
+    "test/archive_restore_adversarial_test.dart",
+    "test/archive_restore_checkpoint_test.dart",
+    "test/archive_restore_native_test.dart",
+    "test/archive_restore_resume_test.dart",
+    "test/archive_runner_test.dart",
+    "test/archive_settings_test.dart",
+    "test/cache_cleanup_test.dart",
+    "test/cache_metadata_test.dart",
+    "test/cached_header_search_folders_test.dart",
+    "test/cached_header_search_test.dart",
+    "test/codec_test.dart",
+    "test/compose_settings_test.dart",
+    "test/crash_recovery_test.dart",
+    "test/draft_catalog_test.dart",
+    "test/draft_editor_state_test.dart",
+    "test/ews_store_test.dart",
+    "test/flag_journal_test.dart",
+    "test/flag_reconciliation_test.dart",
+    "test/imap_sync_range_test.dart",
+    "test/local_accounts_expected_record_test.dart",
+    "test/local_accounts_test.dart",
+    "test/mailbox_view_streams_test.dart",
+    "test/mailbox_views_test.dart",
+    "test/membership_journal_migration_test.dart",
+    "test/membership_journal_test.dart",
+    "test/membership_observation_migration_test.dart",
+    "test/membership_reconciliation_test.dart",
+    "test/migration_test.dart",
+    "test/move_identity_migration_test.dart",
+    "test/move_identity_projection_safety_test.dart",
+    "test/move_identity_transition_test.dart",
+    "test/native_platform_test.dart",
+    "test/outbox_draft_transfer_test.dart",
+    "test/outbox_management_test.dart",
+    "test/outbox_schedule_test.dart",
+    "test/platform_configuration_test.dart",
+    "test/repository_test.dart",
+    "test/saved_header_search_folders_test.dart",
+    "test/saved_header_searches_test.dart",
+    "test/saved_search_folder_migration_test.dart",
+    "test/sync_mailboxes_test.dart"
+  ],
+  "cwd": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_mail_store",
+  "expected_suites": [
+    "test/adversarial_store_test.dart",
+    "test/archive_directory_native_test.dart",
+    "test/archive_export_manifest_test.dart",
+    "test/archive_export_native_test.dart",
+    "test/archive_export_plan_test.dart",
+    "test/archive_journal_migration_test.dart",
+    "test/archive_journal_test.dart",
+    "test/archive_multi_origin_test.dart",
+    "test/archive_native_test.dart",
+    "test/archive_query_test.dart",
+    "test/archive_repository_test.dart",
+    "test/archive_restore_adversarial_test.dart",
+    "test/archive_restore_checkpoint_test.dart",
+    "test/archive_restore_native_test.dart",
+    "test/archive_restore_resume_test.dart",
+    "test/archive_runner_test.dart",
+    "test/archive_settings_test.dart",
+    "test/cache_cleanup_test.dart",
+    "test/cache_metadata_test.dart",
+    "test/cached_header_search_folders_test.dart",
+    "test/cached_header_search_test.dart",
+    "test/codec_test.dart",
+    "test/compose_settings_test.dart",
+    "test/crash_recovery_test.dart",
+    "test/draft_catalog_test.dart",
+    "test/draft_editor_state_test.dart",
+    "test/ews_store_test.dart",
+    "test/flag_journal_test.dart",
+    "test/flag_reconciliation_test.dart",
+    "test/imap_sync_range_test.dart",
+    "test/local_accounts_expected_record_test.dart",
+    "test/local_accounts_test.dart",
+    "test/mailbox_view_streams_test.dart",
+    "test/mailbox_views_test.dart",
+    "test/membership_journal_migration_test.dart",
+    "test/membership_journal_test.dart",
+    "test/membership_observation_migration_test.dart",
+    "test/membership_reconciliation_test.dart",
+    "test/migration_test.dart",
+    "test/move_identity_migration_test.dart",
+    "test/move_identity_projection_safety_test.dart",
+    "test/move_identity_transition_test.dart",
+    "test/native_platform_test.dart",
+    "test/outbox_draft_transfer_test.dart",
+    "test/outbox_management_test.dart",
+    "test/outbox_schedule_test.dart",
+    "test/platform_configuration_test.dart",
+    "test/repository_test.dart",
+    "test/saved_header_search_folders_test.dart",
+    "test/saved_header_searches_test.dart",
+    "test/saved_search_folder_migration_test.dart",
+    "test/sync_mailboxes_test.dart"
+  ],
+  "expected_passes": 1187,
+  "input_counts": {
+    "workspace": 6342,
+    "resolved_packages": 6200,
+    "runtime": 4
+  },
+  "capture_scope": {
+    "workspace": "All tracked packages, third_party, tools/tool and root manifests/config; package-root publication README/CHANGELOG/LICENSE and docs directories excluded; include generated package_config/package_graph when present. Snapshot inventory is recomputed before and after.",
+    "resolved_packages": "All resolved non-workspace package lib/bin/hook files plus pubspec; package roots derived from active package_config.",
+    "runtime": "Dart executables and SDK/Flutter version metadata. Pinned unmodified official runtime qualification remains separate evidence.",
+    "qualification": "Strict process exit, one successful done, no duplicate/orphan/incomplete lifecycle events, exact suite inventory, zero errors/failures/skips, planned count and input invariance; LF byte framing; only recorded exact build-hook prefixes tolerated."
+  },
+  "runner_sha256": "cf0441aa0a67648bc85c7986b33b44e7a035bcf14a33e1ff0b2abaa8ac9ceb2e",
+  "plan_sha256": "5c44c8292cdeb5afca2dea6f94975070d61ba7d6738cc64f32c391db51029daa",
+  "environment": {
+    "CI": "true",
+    "FLUTTER_ROOT": "/workspace/scratch/7fc035b3e3ba/.runtime/flutter",
+    "PUB_CACHE": "/workspace/scratch/7fc035b3e3ba/.runtime/pub-cache",
+    "TMPDIR": "/workspace/scratch/7fc035b3e3ba/.runtime/tmp",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true"
+  },
+  "executables": {
+    "dart": "/workspace/scratch/7fc035b3e3ba/.runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "flutter": "/workspace/scratch/7fc035b3e3ba/.runtime/flutter/bin/flutter",
+    "node": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node"
+  },
+  "github_actions_queried": false,
+  "github_actions_waited": false,
+  "finished_at_utc": "2026-11-22T14:40:50.455965+00:00",
+  "head_at_end": "df8571cb70e8677660ce6843c26de017f5524c52",
+  "exit_code": 0,
+  "interrupted": false,
+  "changed_inputs": {
+    "workspace": [],
+    "resolved_packages": [],
+    "runtime": []
+  },
+  "source_unchanged": true,
+  "results": {
+    "passed": 1187,
+    "failed": 0,
+    "skipped": 0,
+    "suite_count": 52,
+    "observed_suites": [
+      "test/adversarial_store_test.dart",
+      "test/archive_directory_native_test.dart",
+      "test/archive_export_manifest_test.dart",
+      "test/archive_export_native_test.dart",
+      "test/archive_export_plan_test.dart",
+      "test/archive_journal_migration_test.dart",
+      "test/archive_journal_test.dart",
+      "test/archive_multi_origin_test.dart",
+      "test/archive_native_test.dart",
+      "test/archive_query_test.dart",
+      "test/archive_repository_test.dart",
+      "test/archive_restore_adversarial_test.dart",
+      "test/archive_restore_checkpoint_test.dart",
+      "test/archive_restore_native_test.dart",
+      "test/archive_restore_resume_test.dart",
+      "test/archive_runner_test.dart",
+      "test/archive_settings_test.dart",
+      "test/cache_cleanup_test.dart",
+      "test/cache_metadata_test.dart",
+      "test/cached_header_search_folders_test.dart",
+      "test/cached_header_search_test.dart",
+      "test/codec_test.dart",
+      "test/compose_settings_test.dart",
+      "test/crash_recovery_test.dart",
+      "test/draft_catalog_test.dart",
+      "test/draft_editor_state_test.dart",
+      "test/ews_store_test.dart",
+      "test/flag_journal_test.dart",
+      "test/flag_reconciliation_test.dart",
+      "test/imap_sync_range_test.dart",
+      "test/local_accounts_expected_record_test.dart",
+      "test/local_accounts_test.dart",
+      "test/mailbox_view_streams_test.dart",
+      "test/mailbox_views_test.dart",
+      "test/membership_journal_migration_test.dart",
+      "test/membership_journal_test.dart",
+      "test/membership_observation_migration_test.dart",
+      "test/membership_reconciliation_test.dart",
+      "test/migration_test.dart",
+      "test/move_identity_migration_test.dart",
+      "test/move_identity_projection_safety_test.dart",
+      "test/move_identity_transition_test.dart",
+      "test/native_platform_test.dart",
+      "test/outbox_draft_transfer_test.dart",
+      "test/outbox_management_test.dart",
+      "test/outbox_schedule_test.dart",
+      "test/platform_configuration_test.dart",
+      "test/repository_test.dart",
+      "test/saved_header_search_folders_test.dart",
+      "test/saved_header_searches_test.dart",
+      "test/saved_search_folder_migration_test.dart",
+      "test/sync_mailboxes_test.dart"
+    ],
+    "per_suite": {
+      "test/adversarial_store_test.dart": {
+        "passed": 16
+      },
+      "test/archive_directory_native_test.dart": {
+        "passed": 44
+      },
+      "test/archive_export_manifest_test.dart": {
+        "passed": 6
+      },
+      "test/archive_export_native_test.dart": {
+        "passed": 46
+      },
+      "test/archive_export_plan_test.dart": {
+        "passed": 13
+      },
+      "test/archive_journal_migration_test.dart": {
+        "passed": 8
+      },
+      "test/archive_journal_test.dart": {
+        "passed": 16
+      },
+      "test/archive_multi_origin_test.dart": {
+        "passed": 9
+      },
+      "test/archive_native_test.dart": {
+        "passed": 13
+      },
+      "test/archive_query_test.dart": {
+        "passed": 94
+      },
+      "test/archive_repository_test.dart": {
+        "passed": 81
+      },
+      "test/archive_restore_adversarial_test.dart": {
+        "passed": 15
+      },
+      "test/archive_restore_checkpoint_test.dart": {
+        "passed": 37
+      },
+      "test/archive_restore_native_test.dart": {
+        "passed": 15
+      },
+      "test/archive_restore_resume_test.dart": {
+        "passed": 12
+      },
+      "test/archive_runner_test.dart": {
+        "passed": 54
+      },
+      "test/archive_settings_test.dart": {
+        "passed": 24
+      },
+      "test/cache_cleanup_test.dart": {
+        "passed": 10
+      },
+      "test/cache_metadata_test.dart": {
+        "passed": 18
+      },
+      "test/cached_header_search_folders_test.dart": {
+        "passed": 8
+      },
+      "test/cached_header_search_test.dart": {
+        "passed": 21
+      },
+      "test/codec_test.dart": {
+        "passed": 39
+      },
+      "test/compose_settings_test.dart": {
+        "passed": 40
+      },
+      "test/crash_recovery_test.dart": {
+        "passed": 28
+      },
+      "test/draft_catalog_test.dart": {
+        "passed": 11
+      },
+      "test/draft_editor_state_test.dart": {
+        "passed": 5
+      },
+      "test/ews_store_test.dart": {
+        "passed": 8
+      },
+      "test/flag_journal_test.dart": {
+        "passed": 26
+      },
+      "test/flag_reconciliation_test.dart": {
+        "passed": 42
+      },
+      "test/imap_sync_range_test.dart": {
+        "passed": 15
+      },
+      "test/local_accounts_expected_record_test.dart": {
+        "passed": 21
+      },
+      "test/local_accounts_test.dart": {
+        "passed": 26
+      },
+      "test/mailbox_view_streams_test.dart": {
+        "passed": 11
+      },
+      "test/mailbox_views_test.dart": {
+        "passed": 38
+      },
+      "test/membership_journal_migration_test.dart": {
+        "passed": 5
+      },
+      "test/membership_journal_test.dart": {
+        "passed": 21
+      },
+      "test/membership_observation_migration_test.dart": {
+        "passed": 3
+      },
+      "test/membership_reconciliation_test.dart": {
+        "passed": 48
+      },
+      "test/migration_test.dart": {
+        "passed": 17
+      },
+      "test/move_identity_migration_test.dart": {
+        "passed": 2
+      },
+      "test/move_identity_projection_safety_test.dart": {
+        "passed": 14
+      },
+      "test/move_identity_transition_test.dart": {
+        "passed": 41
+      },
+      "test/native_platform_test.dart": {
+        "passed": 7
+      },
+      "test/outbox_draft_transfer_test.dart": {
+        "passed": 19
+      },
+      "test/outbox_management_test.dart": {
+        "passed": 20
+      },
+      "test/outbox_schedule_test.dart": {
+        "passed": 10
+      },
+      "test/platform_configuration_test.dart": {
+        "passed": 4
+      },
+      "test/repository_test.dart": {
+        "passed": 19
+      },
+      "test/saved_header_search_folders_test.dart": {
+        "passed": 19
+      },
+      "test/saved_header_searches_test.dart": {
+        "passed": 39
+      },
+      "test/saved_search_folder_migration_test.dart": {
+        "passed": 6
+      },
+      "test/sync_mailboxes_test.dart": {
+        "passed": 23
+      }
+    },
+    "missing_suites": [],
+    "unexpected_suites": [],
+    "incomplete_test_ids": [],
+    "orphan_completion_ids": [],
+    "duplicate_start_ids": [],
+    "duplicate_completion_ids": [],
+    "unknown_suite_ids": [],
+    "reporter_errors": [],
+    "reporter_done": [
+      {
+        "success": true,
+        "type": "done",
+        "time": 121664
+      }
+    ],
+    "recorded_build_hook_prefixes": [
+      {
+        "line": 1,
+        "prefix": "Running build hooks...Running build hooks..."
+      }
+    ],
+    "invalid_json_lines": [],
+    "protocol_complete": true
+  },
+  "expected_case_count_matches": true,
+  "runner_unchanged": true,
+  "plan_unchanged": true,
+  "artifact_sha256": {
+    "tests.jsonl": "704c7ccb965570dbefb7e3086b27e4fa0a08a9259be236c08495f9ec3cbe79d0",
+    "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "test-cases.json": "dc26840f980ed3ce6eabfd4e58ff11c3e3a923eb58ff0a1b9c96d4217927a57c",
+    "inputs-before.json": "098c56301d1417b52011201f2cfee4270bbfee954b6dc9bea71a6408cc49b0cd",
+    "inputs-after.json": "098c56301d1417b52011201f2cfee4270bbfee954b6dc9bea71a6408cc49b0cd",
+    "command.json": "ac43a6de4645fd51d339edd35257f6b0e59c5c4d6c20809df443809e04caf43b"
+  },
+  "qualified": true
+}

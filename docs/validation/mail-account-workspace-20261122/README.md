@@ -2,39 +2,38 @@
 
 ## Current status
 
-**The frozen `9ce2b057` candidate is qualified: 8,040 passing test executions
-across 302 suite executions, with zero failures or skips in accepted scopes.**
-This comprises **4,859 fresh executions** and **3,181 retained executions** whose
-relevant inputs are verified unchanged. The engine, editor and complete
-110-suite Studio scope are accepted, and all 65 changed Dart paths pass strict
-analysis/read-only formatting. Reconciliation with the newer main remains
-pending; this is a complete pre-reconciliation checkpoint.
+**The integrated `df8571cb` candidate is qualified: 8,249 passing test executions
+across 307 suite executions, with zero failures or skips in accepted scopes.**
+This comprises **5,393 fresh executions** and **2,856 retained executions**
+whose relevant inputs are proved unchanged. Main `25850fd3` is integrated
+and the source is saved remotely. The current frozen source is
+`df8571cb70e8677660ce6843c26de017f5524c52`, tree
+`696f6bbb5c6deef20e2939ec477b2767dd56bfc1`; local alias
+`594a7e502181e6ce2467f1c3163318bfa79a8733` has the same tree.
+Its parents are the preserved pre258 evidence checkpoint `b25acd58` and main
+`25850fd310910cb6d852f2e3c480dbc8697fe549`.
 
-The current frozen candidate is
-`9ce2b057ed8fac6bf6746a1700a6b3ca84f7f405`, tree
-`0abc1d252dbbff5d70bc717c3740ee24673723ee`; local alias
-`229d6f78c2b6f25e5d8304658c131659978fe63d` has the same tree. It includes main
-`ab3457c98b6d9a0d1da8147db3048dfc50d174d3`. Main subsequently advanced to
-`25850fd310910cb6d852f2e3c480dbc8697fe549`; that delta is being audited before
-reconciliation. Qualification applies specifically to `9ce2b057`. This report does not claim
-acceptance of the later main delta or a final merge.
+Fresh gates pass **2,761 Mail core/store/transport/UI cases**, **94 changed
+engine-boundary cases**, and **2,538 cases across all 113 Studio Mail
+suites**. Retained results are exactly 2,805 engine cases from 64 unchanged
+suites and 51 editor cases from three unchanged suites. Transitive source,
+configuration and resource inputs are verified against the frozen union.
+All **95 changed Dart paths** are covered by strict analysis/read-only
+formatting: 57 fresh paths and 38 unchanged engine paths.
 
-Retained results are explicit: **2,722 earlier shared-Mail/store cases** plus
-**459 cases from 14 complete, error-free Studio suites**. The latter came from
-an 18-suite process that failed in four different files. Its original exit 1
-and unsuccessful final reporter event remain unchanged. The 14 suites are
-retained only after exact dependency and input checks; all 173 results from
-the four failed files, including their earlier 164 passes, are replaced by
-the fresh successful run. No suite or case is counted twice.
+All older 2,722 Mail and 2,368 Studio results have zero current credit; the
+Archive changes are covered by the fresh replacement gates. The full pre258 qualification
+of 8,040 cases is preserved as source-bound history at `b25acd58`, including its
+explicit 14-suite retention proof. No historical test is counted twice.
 
 See [qualification.json](qualification.json),
-[the source proof](receipts/final-frozen-source-proof.json),
-[the scoped input binding](receipts/accepted-scopes-at-final-source.json) and
-[the 14-suite carry-forward proof](receipts/studio-fourteen-suite-carry-forward.json).
-The work advances explicit connected-account navigation across IMAP/SMTP,
-Exchange EWS, Gmail and Microsoft 365 while preserving concurrent Word and
-Zotero work. The [feature guide](../../roadmaps/mail/connected-account-navigation.md)
-describes the user-facing contract and remaining desktop Mail roadmap.
+[the current source proof](receipts/post258-frozen-source-proof.json),
+[the final aggregate](receipts/post258-final-aggregate.json),
+[fresh raw-reporter/input audit](receipts/post258-completed-cohorts.json), and
+[retained engine/editor proof](receipts/post258-retained-engine-editor.json).
+The work advances [connected-account navigation](../../roadmaps/mail/connected-account-navigation.md)
+and integrates [remembered Archive destinations](../../roadmaps/mail/remembered-archive.md).
+Full desktop-client parity remains an open roadmap goal.
 
 ## Remote intake and incremental preservation
 
@@ -50,7 +49,7 @@ and connected Mail navigation branches were integrated with their ancestry.
 source checkpoint**. Later main
 `4cc604810fb2f41ac7ba04cbed65cb76300bff59` and then
 `b4f1150b18348f348489c93108158a397c922abe`, followed by
-`ab3457c98b6d9a0d1da8147db3048dfc50d174d3`, were integrated before the replacement
+`ab3457c98b6d9a0d1da8147db3048dfc50d174d3`, were integrated before their replacement
 gates. These main refreshes preserve additional Zotero/revision/table-border
 coverage and the concurrent Mail account-removal/revision regressions. The
 union retains one atomic selected-account refresh after the cache checks. See
@@ -81,337 +80,244 @@ Remote work branch: `work/mail-account-workspace-20261122`.
 | `460c9050b2e0a23301061944324f301a69945388` | Native immediate/dialog/legacy send ownership and four gated SQLite cases across both hosts |
 | `e6487fc634ec45298f161432bb0396865190d5bb` | Nonnullable retry-fixture binding caught by strict analysis; assertions unchanged |
 | `9ce2b057ed8fac6bf6746a1700a6b3ca84f7f405` | Four test-entrypoint corrections: typed tooltip lookup, bounded dismissal settlement and serialized replacement-session assertions |
+| `b25acd58cb31f1910e96a031b465bfeb5a683e35` | Complete source-bound pre258 evidence: 8,040 passing executions |
+| `df8571cb70e8677660ce6843c26de017f5524c52` | Main `25850fd3`, remembered Archive destinations and preserved account/Outbox ownership |
 
 Each checkpoint was published with a non-forced expected-head ref update after
 checking that the remote Git tree equals the local tree. Source branches were
 not deleted or rewritten. GitHub Actions, statuses and queue state were not
 queried or awaited; no workflow or repository protection was changed.
 
-## Validation accounting
+## Current validation accounting
 
-### Retained results with unchanged inputs
+### Fresh gates on the integrated source
 
-The earlier normal local runs remain applicable to the integrated source:
-all 571 captured shared-Mail inputs and all 170 captured store inputs match
-their before/after manifests and the current source bytes. The carry-forward
-audit also found no added or removed scoped paths. This is **2,722 retained
-passing test executions across 124 suites, with zero failures or skips**; it
-is not 2,722 fresh executions on the final checkpoint.
-
-| Retained cohort | Passed | Suites | Execution boundary |
+| Cohort | Passed | Suites | Status |
 | --- | ---: | ---: | --- |
-| Mail core | 648 | 28 | Dart VM at `f4516c13` |
-| Mail transport | 612 | 23 | Dart VM at `f4516c13` |
-| Shared Mail UI | 294 | 18 | Flutter at `f4516c13` |
-| Transport JavaScript boundaries | 6 | 3 | Node at `f4516c13` |
-| Mail SQLite store | 1,159 | 51 | Dart VM; includes real interruption recovery |
-| Store browser-error classification | 3 | 1 | Node |
-| **Retained total** | **2,722** | **124** | **Exact relevant-input equality verified** |
+| Mail core, Dart VM | 659 | 29 | Passed |
+| Mail SQLite store, Dart VM | 1,187 | 52 | Passed |
+| Store browser-error classification, Node | 3 | 1 | Passed |
+| Mail transport, Dart VM | 612 | 23 | Passed |
+| Mail transport JavaScript boundaries, Node | 6 | 3 | Passed |
+| Shared Mail UI, Flutter | 294 | 18 | Passed |
+| **Fresh Mail subtotal** | **2,761** | **126** | **Zero failures or skips** |
+| Changed engine boundary-formatting entrypoint | 94 | 1 | Passed; replaces its previous 94 cases |
+| Complete Studio Mail scope | 2,538 | 113 | Passed fresh; replaces every earlier Studio case |
 
-[The original carry-forward audit](receipts/carry-forward-audit.json),
-[the latest-main input audit](receipts/retained-mail-after-ab.json),
-[the final checkpoint rehash](receipts/accepted-scopes-at-final-source.json),
-[independent raw-reporter recount](receipts/retained-raw-reporter-audit.json)
-and [store receipt](receipts/mail-store-qualification.json) record the evidence.
-The recount requires one successful final reporter event, no error events,
-no unfinished tests and no malformed JSON events. Hidden loader/setup events
-are excluded. Two different parameter rows in Mail core share a display name;
-they have distinct test IDs and are not duplicate executions.
+Every completed fresh process exited zero and produced one successful final
+reporter event. Independent LF-byte parsing verifies the full declared suite
+inventory, complete per-test lifecycle, exact case inventories and no failures,
+skips, orphan completions, duplicate IDs or malformed JSON records. Known
+literal `Running build hooks...` prefixes are recorded explicitly rather than
+silently accepting arbitrary non-JSON output.
 
-### Qualified fresh gates
+All **6,342 workspace inputs, 6,200 resolved-package inputs and four runtime
+inputs** match before, after, between completed cohorts and at independent
+verification. Tracked Git blobs match the frozen checkpoint. Commands, stderr,
+raw JSONL, case inventories and artifact hashes are retained in the evidence.
+The [independent audit](receipts/post258-completed-cohorts.json) links each
+completed cohort to its exact reporter and input-manifest hashes.
 
-| Gate | Cases passed | Suites | Disposition |
-| --- | ---: | ---: | --- |
-| Word/VBA engine | 1,831 | 20 | Accepted |
-| Zotero/ODT/revision/style/table engine | 1,068 | 45 | Accepted |
-| Editor Zotero integration | 51 | 3 | Accepted on the frozen candidate |
-| Repaired Studio Mail files | 173 | 4 | Accepted fresh run; replaces every result from those previously failed files |
-| Remaining Studio Mail files | 1,736 | 92 | Accepted fresh run on the same frozen candidate |
-| **Fresh total** | **4,859** | **164** | **Zero failures or skips** |
+The full Studio run passes **2,538 cases across exactly 113 suites**
+in one normal Flutter process, with exit zero and a successful final
+reporter event. All **6,236 captured workspace inputs**
+match before, after and at independent verification. The 6,192 inputs
+shared with the broader Mail snapshot also match; the 44 Studio-only
+package publication documents are independently unchanged. Every discovered `*mail*_test.dart`
+entrypoint is observed exactly once, including the saved-Mail and workspace
+shortcut suites. See [the Studio receipt](receipts/post258-studio-qualification.json)
+and [independent raw audit](receipts/post258-studio-raw-audit.json).
 
-The fresh engine gate ran all 65 suites on exact current engine inputs in two
-normal VM processes. Its 39 changed Dart paths passed read-only formatting
-before tests and strict analysis afterward. All ten commands exited zero,
-every declared suite and test lifecycle completed, and raw reporter counts
-match the full case inventories. The independent audit also verifies all
-command-output hashes and the complete declared source inventory. See
-[the engine summary](receipts/final-ab-engine-summary.md),
-[qualification](receipts/final-ab-engine-qualification.json),
-[raw-reporter audit](receipts/final-ab-engine-raw-audit.json) and
-[scope audit](receipts/final-ab-engine-scope-audit.json).
-
-Engine execution began at `800c3dfd` and ended after the Mail-only `8bbe6bcb`
-checkpoint. Those repository trees differ. All **1,421 engine/transitive/config
-inputs** are byte-identical before, after and at the current candidate; engine
-library/test/tool bytes also match integrated main `ab3457c9`. The manifest
-SHA-256 is
-`7efde2fa97ad094c16cc8f76df6ad9cdd4670133992cdcedeed9ee5dd4e7543f`.
-Mail host/editor files are outside this scope and receive no acceptance from
-these engine executions. No normalization bridge is needed for this gate.
-
-All **65 changed Dart paths** pass strict analysis and read-only formatting:
-39 engine and 26 Mail/editor paths. Their disjoint union exactly matches the
-changes from initial main. All 26 host static input hashes match before,
-after and at the current candidate. See
-[the static receipt](receipts/mail-static-final-qualification.json) and
-[independent union audit](receipts/final-static-union-audit.json).
-
-The earlier 25-path analysis found one nullable retry-fixture variable before
-any Studio tests started. A nonnullable final queued entry fixed that type
-error without changing assertions. Its
-[failed analysis receipt](receipts/mail-static-attempt-05-qualification.json)
-remains diagnostic evidence. Later corrections add the cloud-test entrypoint
-to the changed-file union, giving the current 26 host paths.
-
-The editor run and four-file repaired run each capture **6,224 inputs**, all
-unchanged before, after and at independent verification. The repaired run
-passes all 173 cases, including the four previously unsettled route-dismissal
-cases, four real-SQLite receipt/owner cases and the stronger native replacement
-session contract. See [the editor receipt](receipts/editor-zotero-final-qualification.json),
-[editor raw audit](receipts/editor-zotero-final-raw-audit.json),
-[four-file receipt](receipts/studio-four-fresh-qualification.json) and
-[four-file raw audit](receipts/studio-four-fresh-raw-audit.json).
-
-### Retained successful Studio suites from a failed process
-
-The preceding 18-suite process ran 632 substantive cases: 623 passed and nine
-failed. It exited 1 and reported `done.success = false`. All failures belong
-to four entrypoint files. **Only the other 14 complete suites, containing 459
-successful cases, are retained.** Each retained suite has the expected declared
-root-group case count, complete successful test/loader/hook lifecycles, no
-errors and no skips. The original process is never relabeled as successful.
-
-Between that execution and `9ce2b057`, exactly the four excluded test
-entrypoints changed; all other 6,220 captured input bytes match. A transitive
-Dart import/export/part audit follows 3,896 source files, including 865 repository
-files and all conditional branches. None reaches or names an excluded
-entrypoint. The retained entrypoints, production, support, fixtures, config,
-locked dependencies and runtime remain unchanged. The four-file diff changes
-only test lookup, settlement waits and same-session ownership assertions; it
-changes no shared resource or fixture. The complete graph, hashes, source
-manifests and raw reporters are preserved in
-[the carry-forward proof](receipts/studio-fourteen-suite-carry-forward.json).
-
-All **173 cases** from the four excluded files are replaced by the fresh run,
-including their old 164 passes. The final Studio accounting is therefore
-**14 retained suites + 4 fresh repaired suites + 92 fresh remaining suites**,
-with exactly 110 unique paths. The final actual count is **459 retained +
-1,909 fresh (173 + 1,736) = 2,368 Studio cases**. Both fresh processes exited
-zero with successful final reporter events; all 6,224 input maps match before,
-after, between fresh runs and at final verification. The retained graph's
-source hashes also match. See [the accepted-scope plan](receipts/studio-final-accepted-scopes.json)
-and [the authoritative aggregate](receipts/studio-final-aggregate.json).
-
-The earlier prediction of 2,365 missed three incoming router cases: that suite
-grew from five to eight. The actual per-suite inventory shows 17 added cases
-since attempt 3: nine provider, three router, one EWS accepted-cleanup and four
-Outbox owner cases. See [the inventory delta](receipts/studio-case-inventory-delta.json).
-Predictions are replaced by observed counts.
-
-| Accounting group | Passing cases | Suite executions |
+| Accepted accounting group | Passing cases | Suite executions |
 | --- | ---: | ---: |
-| Fresh engine, editor and 96 Studio suites | 4,859 | 164 |
-| Retained earlier Mail core/store/transport/shared UI | 2,722 | 124 |
-| Retained 14 independent successful Studio suites | 459 | 14 |
-| **Accepted total at `9ce2b057`** | **8,040** | **302** |
+| Fresh Mail, changed engine boundary and complete Studio scope | 5,393 | 240 |
+| Retained unchanged engine and editor scopes | 2,856 | 67 |
+| **Accepted total at `df8571cb`** | **8,249** | **307** |
 
-The older 2,722 retained Mail cases remain separate from the 459 retained
-Studio cases. Portability adapter checks are also separate and are not added
-to this total.
+The [final aggregate](receipts/post258-final-aggregate.json) verifies unique
+scope/platform, repository suite path and test-ID identities. The previous
+94 engine-boundary cases, all previous 2,722 Mail cases and all previous
+2,368 Studio cases are excluded before fresh replacement. Portability
+adapter checks remain separate. No display-name coincidence adds or
+removes a real parameterized test execution.
 
-### Superseded engine and development evidence
+### Retained engine and editor scopes
 
-The preceding 2,594-case gate was qualified at `7c2f6e74`. Its VM tests and
-analysis ran at `415265e4`, followed by a one-test-file formatter normalization
-and the remaining format/portability checks. The bridge proves identical
-recursive ASTs and AST-rendered source, zero parser diagnostics and exact
-before/after file hashes. The formatter also removed one optional trailing
-map comma; complete token inventories intentionally differ by that token,
-while every other token and comment matches. No token-byte or whitespace-only
-identity is claimed. The VM cases were counted once, with no rerun solely for
-formatting. That valid historical proof remains in
-[the bridge](receipts/engine-normalization-bridge.json) and
-[independent normalization audit](receipts/engine-normalization-audit.json).
+| Retained scope | Passing cases | Suites | Evidence boundary |
+| --- | ---: | ---: | --- |
+| Word/VBA/Zotero/ODT/revision/style/table engine, excluding changed boundary test | 2,805 | 64 | Successful original 65-suite gate, with all 94 changed-entrypoint cases removed |
+| Editor Zotero integration | 51 | 3 | Successful original editor gate; reachable source and configuration unchanged |
+| **Retained total** | **2,856** | **67** | **No fresh executions claimed** |
 
-Main `ab3457c9` subsequently changed production readers/serializers and added
-table-border behavior. The fresh 2,899-case gate therefore **replaces** the
-2,594-case result for current-source acceptance. Both original and normalized
-historical evidence are retained as diagnostics. The older 2,585-case gate,
-initial Word 1,458, intermediate engine 2,544, focused 82, provider-development
-103 and repeated earlier editor 51 runs add no final cases. Studio attempts
-1–4 contribute zero. The sole exception for a failed process is the explicitly
-proved 14-suite subset of attempt 6 above; all four failed suite files are fully
-replaced. The 103-case provider run also observed three concurrent Word input changes.
+The engine production library is unchanged by main 258. Its only executable
+delta is one boundary-test entrypoint using independent constant expectations;
+that entire 94-case suite is rerun fresh. A CHANGELOG paragraph also moved.
+The retained engine graph reaches 494 repository Dart files; the editor graph
+reaches 505. Complete import/export/part graphs follow all conditional URI
+branches. Neither retained scope can reach the changed test entrypoint.
+All 207 captured fixture/macro resources and 11 scoped configuration inputs
+are unchanged, as are the pinned runtime and locked dependencies.
 
-## Repairs and portability evidence
+The original engine run captured 1,421 inputs. Only the excluded boundary
+entrypoint differs. The editor's earlier broad workspace snapshot includes
+changed Mail files, but its actual dependency graph reaches none of them;
+the proof does not pretend the entire repository tree stayed identical.
+Original successful reporter lifecycles, exact retained case lists, graph
+hashes and current-source bindings are preserved in
+[the retention receipt](receipts/post258-retained-engine-editor.json).
+An [independent review](receipts/post258-retention-independent-review.json)
+recomputed both closures and exactly matched the retained raw-case multisets.
+No AST normalization bridge is required for these retained scopes.
 
-The first Studio attempt exited with 132 passing cases and one error, with all
-6,220 inputs unchanged. The existing EWS Disconnect/failed-observer regression
-exposed a retained Refresh callback reading a mailbox that Disconnect had
-cleared. Binding the mailbox and guarding callback identity fixed that null
-assertion. See [the first repair record](receipts/studio-repair-notes.json) and
-[failed-run receipt](receipts/studio-first-attempt-qualification.json).
+### Static coverage
 
-The second attempt recorded 564 substantive passes and one error. The new
-callback guard rejected an intentionally captured same-session Disconnect
-during an ordinary modal bulk-action review; confirming then moved messages on
-**the previous provider**, before any reconnect. It did not demonstrate
-commands entering a new session. The correction preserves identity checks while
-allowing that cancellation; the account chooser raises its navigation fence
-at entry so account handoff stays protected. The existing regression was not
-weakened. See [the modal-cancel repair](receipts/studio-modal-cancel-repair-notes.json).
+All 57 fresh paths pass `dart analyze --fatal-infos --fatal-warnings` and
+read-only formatting. The other 38 engine paths retain their passing analysis
+and format results by exact path, engine-production and configuration equality.
+The two sets are disjoint and their union exactly matches all 95 Dart paths
+changed from initial main. The pinned formatter also examined the full union
+without changes. See [the fresh static receipt](receipts/post258-static-qualification.json)
+and [independent path/input audit](receipts/post258-static-union-audit.json).
 
-That attempt also exposed a Python receipt-parser error. `str.splitlines()`
-split valid JSON strings at U+0085, U+2028 and U+2029 inside three unsafe-filename
-test names, then the parser raised `KeyError: 569`. The original JSONL is valid
-when split only on ASCII LF. Cases 569, 570 and 571 are three real successful
-attachment-filename tests; their starts were present in the raw bytes. Correct
-LF framing restores all three, changing the earlier incomplete subtotal of
-561 to **564 passing cases**. The superseded reconstruction is retained.
+## Preserved integration behavior
 
-The child exit code was not persisted before that original parser exception
-and remains unavailable. Raw reporters, stderr and unchanged before/after
-manifests are preserved. The corrected runner persists the child exit code
-first, uses LF framing and reports genuinely unmatched visible completions as
-errors. It runs the complete next cohort without fail-fast. See
-[the corrected diagnostic receipt](receipts/studio-second-attempt-qualification.json)
-and [the framing audit](receipts/studio-reporter-lf-framing-audit.json).
-Neither failed attempt contributes final passing credit.
+The final main union retains the atomic account compare-and-set implementation
+and its regression test byte-for-byte. Selected-account refresh validates the
+same identity, revision and connection timestamp in one SQLite write; a stale
+request cannot recreate a removed or replaced shortcut or consume metadata on
+conflict. See [the exact CAS preservation record](receipts/post258-cas-preservation.json).
 
-The third attempt ran all 110 suites to completion and exited with child code
-1: **2,329 passes, 22 errors and no skips**, with all 6,220 inputs unchanged.
-The original parser reported 2,326 passes; LF framing restores the same three
-attachment-name cases. Both original and corrected receipts are preserved.
-Nine errors were covered by incoming fixture corrections: three Delete tests
-needed an explicit capability, four local-cache tests needed the retained-empty
-message, and two setup/lifecycle tests needed deterministic native account
-setup. Other failures required lifecycle, submission-preservation or setup
-contract repair. Classification alone supplies no passing credit. See
-[the full failed-run receipt](receipts/studio-third-attempt-qualification.json)
-and [the authoritative LF summary](receipts/studio-third-attempt-lf-summary.json).
+Native and EWS admission still serialize draft-store opening, restoration,
+cache selection and account refresh. A failed observer or owner close remains
+held until explicit cleanup succeeds. Observer retirement starts before waiting
+for a pending first snapshot, and generation/identity fences reject stale
+callbacks. Full send operations retain their exact owner through the final
+durable outcome receipt, including compose, manual/scheduled Outbox and
+acknowledged retry paths. A network reply alone does not end ownership.
 
-The fourth attempt selected 13 repaired suites at `8bbe6bcb` and was
-intentionally interrupted after 318 substantive passes, zero observed errors
-and eight started suites. There is no final reporter event. The execution
-session returned 130; the Flutter child exit code was not persisted and is
-unavailable. All 6,224 captured inputs matched before and after interruption.
-It contributes zero passing credit. See
-[the interruption record](receipts/studio-fourth-attempt-interruption.json) and
-[independent LF recount](receipts/studio-fourth-attempt-lf-summary.json).
+Remembered Archive destinations add an account-local exact folder preference
+for IMAP, EWS and Microsoft 365. The saved folder is validated against a fresh
+provider catalog **before confirmation**. After confirmation, the saved
+revision and destination are reloaded **before dispatch** into the durable
+Move journal. Settings support save, change, clear and missing-folder repair.
+Gmail retains its Inbox-label removal behavior. Schema 17 persistence preserves
+migration/journal data and account-removal cleanup.
 
-That interruption preserves a review boundary: manual, scheduled and
-acknowledged Outbox-dialog attempts share a helper that commits the outcome
-*after* awaiting the provider. Tracking only the network callback would end
-ownership too early. The full-operation fix registers the exact owner before invoking
-the complete helper and retains it through its final local receipt, with
-independent provider-response and receipt-write gates in four SQLite
-regressions across EWS and native. The source review found no further issue in
-that changed boundary, and all four SQLite cases passed in the corrected
-four-file run. See
-[the bounded source review](receipts/outbox-ownership-review.json). A
-persisted submitting marker already recovers conservatively as uncertain;
-the identified defect loses the actual late outcome receipt and releases the
-owner early. It is not evidence of an automatic replay.
+The bounded independent native/EWS reviews found no additional concrete defect
+in the union; reviews supply no test-case credit. Their ownership reasoning and
+the root's resolution decisions are recorded in
+[the cross-review summary](receipts/post258-cross-review-summary.json) and
+[merge-resolution receipt](receipts/post258-root-merge-resolution.json).
 
-The sixth Studio attempt is the preserved 18-suite diagnostic described above:
-623 passes, nine failures, exit 1 and all 6,224 inputs unchanged. Four new SQLite
-cases selected a `RawTooltip` and cast it to `IconButton` before reaching the
-send path; the typed button finder now reaches the intended callback. Four
-cloud/EWS cases needed a bounded wait for dismissal after their gated cleanup
-had completed. The native session case now asserts that reconnect remains
-blocked until retired send storage settles, while preserving uncertainty and
-preventing dispatch from the new session. The four-file fresh rerun passes
-all 173 cases, with every old assertion retained or strengthened. See
-[the original failed receipt](receipts/studio-sixth-attempt-qualification.json)
-and [the exact test-only delta](receipts/fixture-only-source-delta.json).
-The 14-suite exception is accounted separately; the failed process stays failed.
+## Historical qualification and repairs
 
-The first incoming engine gate exposed seven Zotero failures: six expectations
-compared refreshed citation text against the unmodified source fixture, and
-one parser defect discarded opaque `rPrChange` history on field boundaries.
-The fixture helper now accepts explicit citation-text overrides while
-retaining the other formatting and structural assertions. The parser retains
-the complete original run properties on field-boundary nodes, while ordinary
-text revisions retain their existing handling. Original fixture bytes were
-not changed. Five additional regressions cover the boundary kinds and a mixed
-text/marker run across repeated saves. Incoming real empty-code-run revision
-provenance, copying and accept/reject checks also survived the final merge.
-See [the repair record](receipts/zotero-repair-notes.json). The failed run and
-the focused repair run remain diagnostic evidence, not additional passing
-credit. The later main also adds nine instruction-side style exclusion
-regressions and preserves the original golden snapshot before Refresh, the
-non-cascading expected-text helper and all raw-boundary history checks.
+The complete pre258 source `9ce2b057` qualified **8,040 passing executions
+across 302 suite executions**: 2,899 engine, 51 editor, 2,368 Studio and 2,722
+earlier Mail cases. Within its Studio total, 459 cases from 14 independent,
+fully successful suites were retained from an 18-suite process that failed
+in four other files. All 173 cases in those four files were replaced by a
+fresh run, and another 92-suite fresh process passed 1,736 cases. The original
+18-suite process retains exit 1 and `done.success = false`.
 
-Portability uses the output contract of each tool. The canonical Split
-conformance corpus on the accepted engine scope matched VM and Node raw bytes: **174 adapter cases across
-Word, Excel and PowerPoint**, SHA-256
+That complete source-bound report is saved at `b25acd58`; its
+[qualification JSON](receipts/pre258-qualification.json) and original README
+remain in the evidence. Main258 changes Mail production inputs, so **none of
+the old 2,722 Mail or 2,368 Studio results—including the 459-case subset—is
+credited to the current union**. Only the explicitly proved 2,805 engine and
+51 editor cases carry forward. Older failed, interrupted and superseded runs
+remain diagnostic evidence, with no current passing credit.
+
+| Preserved diagnostic | Observed result and repair boundary |
+| --- | --- |
+| Studio attempt 1 | 132 passes/1 error, child exit 1; retained Refresh callback dereferenced a cleared mailbox. Bound mailbox and identity/generation guards fixed it. |
+| Studio attempt 2 | 564 passes/1 error by LF recount; child exit unavailable after parser exception. Captured same-session Disconnect was rejected during modal review, so three moves stayed on the previous provider; no new-session dispatch was shown. Cancellation semantics were repaired. |
+| Studio attempt 3 | All 110 suites, 2,329 passes/22 errors/0 skips, child exit 1. Lifecycle and setup/capability/fixture corrections were qualified by subsequent source-bound runs. |
+| Studio attempt 4 | Deliberately interrupted after 318 passes/0 observed errors and eight started suites; no final reporter event. Session exit 130, Flutter child exit unavailable. Review found Outbox outcome ownership ended before the final local receipt. |
+| Static attempt 5 | Nullable retry-fixture variable found before Studio tests started; nonnullable binding preserved assertions. |
+| Studio attempt 6 | 623 passes/9 failures across 18 suites, child exit 1. Four typed tooltip captures, four bounded route-settlement waits and the strict replacement-session assertion were corrected in four test entrypoints. |
+
+Raw JSONL must be framed using **ASCII LF bytes only**. Python `str.splitlines()`
+incorrectly split U+0085, U+2028 and U+2029 embedded in three real attachment
+filename test names. In attempt 2, their successful IDs 569–571 restore the
+incomplete 561 subtotal to 564; they are not hooks or hidden loaders. Attempt 3
+similarly restores 2,326 to 2,329. Original raw files and superseded parser
+receipts remain preserved. The repaired runner saves child exit status before
+parsing and rejects genuinely incomplete or unmatched lifecycles. See
+[the framing audit](receipts/studio-reporter-lf-framing-audit.json).
+
+The first incoming engine gate found six stale citation-text fixture
+expectations and one parser defect losing opaque `rPrChange` history on field
+boundaries. Explicit expected-text overrides retain independent formatting and
+structure assertions; parser repair preserves complete original boundary run
+properties. Original fixture bytes were unchanged, and five regressions were
+added. Later incoming empty-code-run provenance and nine instruction-side
+style exclusions remain covered. See [the repair notes](receipts/zotero-repair-notes.json).
+
+The earlier 2,594-case engine gate combined passing VM/analysis results with a
+one-test formatter normalization and remaining format/portability checks.
+Its proof has identical recursive AST and AST-rendered source with zero parser
+diagnostics. One optional map trailing comma was removed; other tokens/comments
+match, so no whitespace-only or full-token-byte identity is claimed. That
+[normalization bridge](receipts/engine-normalization-bridge.json) is valid
+historical evidence, superseded by the later 2,899-case engine scope. The older
+2,585, 2,544, initial Word 1,458, focused 82 and provider-development 103 counts
+add no cases. The provider 103 run also observed three concurrent Word inputs
+change, so it remains development evidence only.
+
+## Portability
+
+The unchanged accepted engine tools/resources retain the complete VM/Node
+portability receipts. The canonical Split corpus is raw-byte identical for
+**174 adapter cases across Word, Excel and PowerPoint**, SHA-256
 `7836c5c824b9585d17b7818f1dc7271e061340ec0202acda8f30121d9ced9e8b`.
-These adapter cases are recorded separately from the Dart test counts.
+Those adapter cases are separate from the Dart test totals.
 
-The BAS smoke emits ordinary `jsonEncode`: VM integral doubles such as `0.0`
-and JavaScript `0` are compared after normalizing only finite integral numeric
-representations and sorting JSON keys. Strings, booleans, arrays, structure
-and values must otherwise agree. The replacement DOCX/DOCM smoke receipts
-have equal canonical JSON, SHA-256
+The BAS smoke uses ordinary `jsonEncode`, so VM integral doubles such as `0.0`
+and JavaScript `0` differ in raw bytes. Only finite integral numeric
+representations are normalized; all strings, booleans, arrays, structure and
+values must otherwise agree. DOCX/DOCM output has exactly 58 such encoding
+differences and zero other semantic differences. Canonical SHA-256 is
 `0bbdfe5579a2604573d57f2c20727b1bd986d5c2c76b190572be633079bc4480`.
-Their raw bytes do not match. An independent comparison of those outputs
-found exactly 58 integral-number encoding differences and zero other
-differences; see [the final portability audit](receipts/final-ab-portability-audit.json).
-The same raw smoke hashes appeared in the preceding diagnostic comparison;
-the accepted engine scope was executed and independently compared again. Both the original
-overly strict raw-byte failure and the corrected comparison are retained in
-[the development portability record](receipts/development-portability-comparison.json).
+The [independent portability audit](receipts/final-ab-portability-audit.json),
+raw outputs and earlier overly strict comparison remain available. This is
+retained evidence on unchanged inputs, not a fresh portability execution.
 
 ## Evidence and reproduction
 
 [Runtime provenance](runtime-provenance.json) records the unchanged official
-Flutter 3.47.8 / Dart 3.13.7 SDK and Node 24.22.3. All 204 required hosted
-package archives match lockfile hashes; ordinary enforced-lockfile restoration
-left the repository lockfile unchanged. No SDK, test framework or compiler
-source was patched to obtain results.
+Flutter 3.47.8 / Dart 3.13.7 SDK and Node 24.22.3. All 204 required hosted package
+archives match lockfile hashes; enforced-lockfile restoration left the
+repository lockfile unchanged. No SDK, test framework or compiler source was
+patched to obtain results.
 
-Small qualification and source receipts are kept under `receipts/`.
-[The evidence archive](local-evidence.tar.xz) and
-[its hash index](evidence-index.json) retain raw JSON reporters, full case
-inventories, source manifests, commands, runtime hashes, diagnostic attempts
-and runners. The archive contains complete qualification for the frozen
-`9ce2b057` candidate, including accepted fresh gates, the 14-suite dependency
-proof, and every preserved failed/interrupted diagnostic. A later main merge
-will require its own explicit source binding or affected-scope qualification.
+Small source/qualification receipts are kept under `receipts/`.
+The [archive](local-evidence.tar.xz) contains **676 files**
+(5,194,160 bytes); [its index](evidence-index.json) records every
+member size and SHA-256. Archive SHA-256:
+`f450f0c9fe9d9f5ddefeb53fd53bf555f45d21a9c4f1855523b4a42f595fb9c4`.
+It preserves current raw reporters, complete inventories, exact input
+manifests, commands, runtime hashes, all diagnostics and reproduction
+scripts, including the complete historical pre258 report. Historical
+files add no duplicate test credit.
 
 | Archive directory | Evidence role |
 | --- | --- |
-| `shared-mail/`, `mail-store/` | Retained 2,722 passing cases and exact-input carry-forward evidence |
-| `incoming-engine/` | Accepted 2,899-case/65-suite engine run, full manifests, static checks and portability receipts |
-| `development/engine-b4-original-vm-analysis/`, `development/engine-b4-normalized/` | Superseded 2,594-case receipt, initial format mismatch and exact normalization proof |
-| `development/` | Earlier engine runs, original failed/interrupted Studio processes, earlier editor/static runs and diagnostic probes |
-| `studio-carry-forward/` | Exact 14-suite/459-case subset proof and dependency graph with 3,896 files; original 18-suite process remains failed |
-| `studio-mail/`, `editor-zotero/`, `studio-mail-static/` | Fresh 4/92 Studio cohorts, final aggregate, editor 51 and 26-path host static checks |
-| `runners/`, `runtime/`, `integration/` | Reproduction scripts, pinned runtime/package hashes and intake/source audits |
+| `post258-mail/` | Six fresh Mail cohorts plus the separately counted 94-case boundary suite |
+| `post258-studio/`, `post258-static/` | Complete 113-suite Studio gate and 57 fresh static paths |
+| `post258-retained/`, `post258-audit/` | Retained engine/editor dependency graphs, case lists, source binding and independent recounts |
+| `incoming-engine/`, `editor-zotero/` | Original accepted raw results underpinning retained engine/editor cases |
+| `shared-mail/`, `mail-store/`, `studio-mail/`, `studio-carry-forward/` | Historical pre258 Mail/Studio results and prior 14-suite proof; no current case credit |
+| `development/` | Earlier engine runs, all failed/interrupted Studio runs, parser diagnostics and complete pre258 report |
+| `integration/`, `runners/`, `runtime/` | Exact intake, source/merge audits, reproducible scripts and pinned environment hashes |
 
-Receipt paths and commands preserve their original workspace locations. In the
-archive, `incoming-engine/` corresponds to `final-ab-engine`. The two
-`development/engine-b4-*` directories preserve the original and normalized
-preceding gate. Commands and environments are recorded verbatim. Source
-manifests, raw historical proof inputs and the Dart normalization script remain
-included. Historical b4 receipts keep their original archive labels:
-`incoming-engine-original-vm-analysis/` now maps to
-`development/engine-b4-original-vm-analysis/`, and their old `incoming-engine/`
-label maps to `development/engine-b4-normalized/`. Current accepted engine
-receipts use `incoming-engine/` directly. Compiled JavaScript is
-a reproducible intermediate; its source, compile command, hash and execution
-receipts are retained. No GitHub Actions output is used as test evidence.
+Original receipt paths and commands retain their workspace locations. In the
+archive, `incoming-engine/` maps to `final-ab-engine`; older b4 normalization
+labels map to `development/engine-b4-original-vm-analysis/` and
+`development/engine-b4-normalized/`. Compiled JavaScript is a reproducible
+intermediate; source, commands, hashes and execution receipts are retained.
+No GitHub Actions output is used as evidence.
 
 ## Scope and remaining acceptance
-
-The account store performs an atomic compare-and-set against identity,
-revision and connection timestamp, so stale reconnects cannot recreate a
-deleted or replaced shortcut. Hosts reject changed targets at asynchronous
-boundaries, drain pending restoration, retain failed observer/owner handles
-and block new ownership until explicit cleanup succeeds. Ordinary Disconnect
-begins observer retirement before waiting for a first cache snapshot, avoiding
-a restoration/close deadlock. A generation fence rejects callbacks while
-cleanup still retains their resources.
 
 No real account credentials, user mail, provider mutations or outbound messages
 were used. Live-provider and installed-platform acceptance remain open, as do
@@ -420,3 +326,4 @@ Thunderbird or eM Client parity. Node execution does not establish browser UI
 acceptance. A concrete native SQLite owner memoizes a failed close future;
 owners that cannot later close successfully may require a host restart.
 Custom owners can recover in process only when their explicit retry succeeds.
+This report does not claim the final remote-main merge before it is verified.

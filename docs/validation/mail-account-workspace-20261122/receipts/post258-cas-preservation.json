@@ -1,0 +1,16 @@
+[
+  {
+    "path": "packages/quds_mail_store/lib/src/local_accounts.dart",
+    "before_blob": "b738689cfeb9a424ab3abf2aab390a37b2ce6d18",
+    "current_blob": "b738689cfeb9a424ab3abf2aab390a37b2ce6d18",
+    "equal": true,
+    "sha256": "d0519b141a4614dbe20e972af834c13002c06e0601e45e31e66e2b88afeece96"
+  },
+  {
+    "path": "packages/quds_mail_store/test/local_accounts_expected_record_test.dart",
+    "before_blob": "d0e89738fea8641afdead9d4ad016d457483075c",
+    "current_blob": "d0e89738fea8641afdead9d4ad016d457483075c",
+    "equal": true,
+    "sha256": "a0c31d03b18d1587f8bc3428db92ba81e37225b0d88101cebd1bf6753ff4b3a7"
+  }
+]

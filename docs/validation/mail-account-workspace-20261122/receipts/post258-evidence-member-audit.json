@@ -1,0 +1,14 @@
+{
+  "verified_at_utc": "2026-11-22T14:59:58.852928+00:00",
+  "source_checkpoint": "df8571cb70e8677660ce6843c26de017f5524c52",
+  "archive_sha256": "f450f0c9fe9d9f5ddefeb53fd53bf555f45d21a9c4f1855523b4a42f595fb9c4",
+  "archive_bytes": 5194160,
+  "archive_member_count": 676,
+  "all_member_paths_sizes_sha256_verified": true,
+  "all_readable_receipt_hashes_verified": true,
+  "readable_receipt_count_before_this_audit": 90,
+  "all_readme_relative_links_resolve": true,
+  "current_aggregate_and_studio_success_preserved": true,
+  "root_merge_resolution_preserved": true,
+  "no_test_or_analysis_execution": true
+}

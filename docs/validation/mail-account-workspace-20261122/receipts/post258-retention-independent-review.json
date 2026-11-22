@@ -1,0 +1,107 @@
+{
+  "recorded_at_utc": "2026-11-22T14:58:20.506911+00:00",
+  "reviewer": "mail_design",
+  "status": "no_concrete_dependency_or_accounting_gap_found",
+  "scope": "Bounded independent read-only review of retained engine/editor evidence; records completed checks without fresh test or analyzer execution.",
+  "source_checkpoint": "df8571cb70e8677660ce6843c26de017f5524c52",
+  "source_tree": "696f6bbb5c6deef20e2939ec477b2767dd56bfc1",
+  "prior_qualified_source": "9ce2b057ed8fac6bf6746a1700a6b3ca84f7f405",
+  "proof_files": {
+    "qualification.json": {
+      "relative_path": "../post258-retained-scopes/qualification.json",
+      "sha256": "f61f612b31912c44adfe530960a849b510ede5169f3d6c41500c8c8e60b7d3dd"
+    },
+    "dependency-graphs.json": {
+      "relative_path": "../post258-retained-scopes/dependency-graphs.json",
+      "sha256": "ba70196b08ccb11cd90197890ad4f18fa2459f4418c91b50d520f92de0f6f3ef"
+    },
+    "unchanged-resources.json": {
+      "relative_path": "../post258-retained-scopes/unchanged-resources.json",
+      "sha256": "910648351fc90cc919ad3d6b3bc7a21adfbb521b6d508cfa2e312b3ecc2c187f"
+    },
+    "unchanged-configs.json": {
+      "relative_path": "../post258-retained-scopes/unchanged-configs.json",
+      "sha256": "eb5b656fe2adef4c467095d66f14f857a0f73264518ff7715ac29c07f628d1cd"
+    },
+    "retained-engine-cases.json": {
+      "relative_path": "../post258-retained-scopes/retained-engine-cases.json",
+      "sha256": "c7ccdde76412eabbbb61f8f9fcf1cb34555131d622dce603b2dad70b6a5f68a1"
+    },
+    "retained-editor-cases.json": {
+      "relative_path": "../post258-retained-scopes/retained-editor-cases.json",
+      "sha256": "ce780f68e808b51c05a4ade058d3de1da5b67a0a40332f39c29bc428b51ce74b"
+    }
+  },
+  "dependency_findings": {
+    "graph_node_count": 2391,
+    "all_current_node_hashes_match": true,
+    "engine_closure_nodes": 1399,
+    "editor_closure_nodes": 2174,
+    "independently_recomputed_closures_match": true,
+    "all_resolved_directive_targets_match_package_config": true,
+    "missing_parsed_import_export_part_directives": 0,
+    "unresolved_non_dart_directives": 0,
+    "missing_graph_edges": 0,
+    "local_union_nodes": 611,
+    "changed_local_reachable_paths": [],
+    "unchanged_resource_files": 207,
+    "unchanged_config_files": 11,
+    "resource_and_config_hash_mismatches": [],
+    "resource_and_config_source_delta": [],
+    "declared_graph_resource_config_receipt_hashes_match": true,
+    "changed_boundary_entrypoint_in_graph": false
+  },
+  "raw_case_findings": {
+    "reporter_split": "ASCII LF bytes; hidden loader completions excluded",
+    "engine": {
+      "cases": 2805,
+      "suites": 64,
+      "all_successful": true,
+      "skipped": 0,
+      "unique_suite_and_name_pairs": 2805,
+      "exact_raw_case_multiset_match": true
+    },
+    "editor": {
+      "cases": 51,
+      "suites": 3,
+      "all_successful": true,
+      "skipped": 0,
+      "unique_suite_and_name_pairs": 51,
+      "exact_raw_case_multiset_match": true
+    },
+    "case_suites_match_dependency_roots": true,
+    "excluded_engine_entrypoint": "packages/quds_office_engine/test/word_zotero_boundary_formatting_test.dart",
+    "excluded_original_boundary_cases": 94,
+    "excluded_entrypoint_cases_retained": 0,
+    "retained_total_cases": 2856,
+    "retained_total_suites": 67,
+    "old_mail_and_studio_current_case_credit": 0
+  },
+  "raw_reporters": [
+    {
+      "name": "word-vm",
+      "sha256": "9f4c4dca1200fb8028d810edd7c10c11ea367ed3e9942e5b865482f24ad26770",
+      "visible_cases": 1831,
+      "successful_done_events": 1,
+      "errors": 0
+    },
+    {
+      "name": "zotero-odt-vm",
+      "sha256": "72c6ac380c4b524e4c7883b1d2be2fd8c92738e2ff314bb1c145934cb21e1d0e",
+      "visible_cases": 1068,
+      "successful_done_events": 1,
+      "errors": 0
+    },
+    {
+      "name": "editor",
+      "sha256": "b14b04c09311643ac1a87485dcbf3907fccd8a2bab2af07f546516dfa01fa280",
+      "visible_cases": 51,
+      "successful_done_events": 1,
+      "errors": 0
+    }
+  ],
+  "fresh_test_execution": false,
+  "fresh_analyzer_execution": false,
+  "tracked_source_or_test_edits": false,
+  "qualification_limit": "This review validates the retained scopes only. It does not credit the pending post258 Studio execution or establish live-provider/installed-platform acceptance."
+}
