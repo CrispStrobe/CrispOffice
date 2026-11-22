@@ -194,6 +194,7 @@ The existing property value, enum, unit and precision contracts apply:
 
 | Cell selector | Supported members |
 | --- | --- |
+| `Range` text controls | `HighlightColorIndex`, `NoProofing`, `LanguageID`, `LanguageIDOther` |
 | `Range.Font` | `Name`, `NameBi`, `Size`, `Bold`, `Italic`, `Underline`, `StrikeThrough`, `SmallCaps`, `AllCaps`, `Superscript`, `Subscript`, `Position`, `Kerning`, `Color`, `ColorIndex` |
 | `Range.ParagraphFormat` | `Alignment`, `SpaceBefore`, `SpaceAfter`, `LeftIndent`, `RightIndent`, `FirstLineIndent`, `KeepTogether`, `PageBreakBefore`, `Hyphenation`, `ReadingOrder`, `LineSpacingRule`, `LineSpacing` |
 | `Range.ParagraphFormat` methods | `Space1`, `Space15`, `Space2`, `OpenUp`, `CloseUp`, `OpenOrCloseUp` |
@@ -243,10 +244,11 @@ source packets remain refused. Unsupported neighboring table packets can also
 prevent admission. The existing document-wide mutation, signature and protection
 guards and whole-run rollback remain in force.
 
-Font writes affect only current nonempty ordinary text runs. They do not format
-the paragraph mark, the end-of-cell marker or future insertion text. An empty
-cell therefore rejects a Font write; assign `Range.Text` first when filling an
-empty template. ParagraphFormat writes, including tabs and spacing controls,
+Font and direct Range text-control writes affect only current nonempty ordinary
+text runs. They do not format the paragraph mark, the end-of-cell marker or
+future insertion text. An empty cell therefore rejects these writes; assign
+`Range.Text` first when filling an empty template. ParagraphFormat writes,
+including tabs and spacing controls,
 can target an empty ordinary paragraph. The cell text setter keeps its prior
 replacement and formatting-preservation contract. Supported false/zero assignments,
 automatic colors and explicit theme overrides retain the existing sparse native
@@ -254,9 +256,8 @@ serialization behavior. Cell run formatting uses detached copies before
 publication, preventing shared public-model run properties or imported-value
 maps from modifying an unrelated cell or body run.
 
-Direct cell-range `Style`, `Shading`, `ListFormat`, `HighlightColorIndex`,
-`LanguageID`, `LanguageIDOther`, `NoProofing`, `Paragraphs`, insertion methods and
-arbitrary subranges remain unavailable. Property reads, `Duplicate` and
+Direct cell-range `Style`, `Shading`, `ListFormat`, `Paragraphs`, insertion
+methods and arbitrary subranges remain unavailable. Property reads, `Duplicate` and
 whole-object Font/ParagraphFormat assignment remain unsupported. These are
 deliberate bounds on the Quds adapter, including its treatment of structural
 marks. Microsoft Word exposes a broader object model.
@@ -271,6 +272,88 @@ claiming installed Microsoft Word differential parity. Microsoft's
 [Range.ParagraphFormat](https://learn.microsoft.com/en-us/office/vba/api/word.range.paragraphformat)
 define the object vocabulary; the guarded selector and visible-text boundaries
 above define the supported implementation.
+
+### Cell highlighting and proofing controls
+
+An explicit `Cell.Range` also accepts the existing text-control setters. This
+lets a report highlight a status, exclude a product identifier from proofing,
+and attach a normal-slot language to multilingual cell text:
+
+```vb
+Sub ReviewCell(ByVal target As Range, ByVal language As Long)
+    target.LanguageID = language
+    target.NoProofing = False
+    target.HighlightColorIndex = wdYellow
+End Sub
+
+Sub Main()
+    Dim target As Range
+    Set target = ActiveDocument.Tables(1).Cell(2, 1).Range
+    target.Text = "Artikel"
+    ReviewCell language:=wdGerman, target:=target
+    With ActiveDocument.Tables(1).Cell(2, 2).Range
+        .Text = "SKU-042"
+        .NoProofing = True
+        .HighlightColorIndex = wdNoHighlight
+    End With
+End Sub
+```
+
+| Setter | Accepted source value | Native field |
+| --- | --- | --- |
+| `Range.HighlightColorIndex` | `wdNoHighlight` (`0`) or a fixed `WdColorIndex` in `1..16` | `highlight`, with an explicit `null` for removal |
+| `Range.NoProofing` | Actual `True` or `False` | `noProof` |
+| `Range.LanguageID` | One of the 30 supported normal-slot `WdLanguageID` constants or its exact numeric value | `language` |
+| `Range.LanguageIDOther` | The same normal-slot language contract | `language` |
+
+Each assignment emits one `docx.runFormat` operation with the complete guarded
+`story: "tableCell"`, table, row and column selector above. Direct selectors,
+typed `Range` aliases, nested `With`, and required `ByVal Range` helper arguments
+keep their selected cell when another variable is rebound. The same helper can
+accept a supported body paragraph, independent header/footer paragraph or cell
+range. A text-control write remains a document mutation and cannot intervene
+between custom `LineSpacingRule` / `LineSpacing` setters.
+
+The [normal-slot language contract](#proofing-language-and-complex-script-font-controls)
+and [fixed highlight contract](#typography-and-highlighting) apply unchanged.
+Both language setters own only `w:lang/@w:val`; existing complex-script,
+East Asian and foreign native language metadata remain intact. Explicit false,
+highlight removal and same-value assignments preserve native overrides of
+inherited styles. Other rich run formatting and paragraph-mark properties are
+unchanged. Proofing eligibility and language metadata do not install or run a
+dictionary, grammar service or other provider.
+
+The cell must satisfy the existing single-paragraph, ordinary nonempty text,
+unmerged-grid, ownership and package-fidelity guards. Native formatting prepares
+detached copies of runs, preventing shared mutable properties from changing
+other cells. Detached preview, policy limits, cancellation, recording and
+whole-plan rollback remain the ordinary native macro behavior. Missing cells,
+unsupported structure or protection refuse the complete transaction, including
+earlier successful-looking writes.
+
+The [multilingual table example](../packages/quds_office_engine/example/macros/word_table_text_controls.bas)
+fills a 2×2 table, uses named helper arguments, and exercises all four setters.
+It runs through the existing `compile-word-vba`, `validate-word-vba`,
+`run-word-vba`, and MCP source entry points. The portable
+[example runner](../packages/quds_office_engine/tool/macros/web_vba_word_cell_text_controls_smoke.dart)
+uses that exact BAS source and checks saved controls, retained layout and opaque
+parts, repeated reopen, native recording/replay and late-failure rollback.
+The accompanying [source tests](../packages/quds_office_engine/test/office_vba_word_cell_text_controls_test.dart)
+and [transaction tests](../packages/quds_office_engine/test/office_vba_word_cell_text_controls_integration_test.dart)
+also cover alias identity, strict value diagnostics, direct/inherited formatting,
+paragraph marks, native metadata and public-model property sharing.
+
+This extends the bounded write-only adapter. It does not add document property
+reads, numeric Boolean coercions, mixed-value results, automatic language
+detection, arbitrary ranges, broader table structures or embedded VBA execution.
+Microsoft's [Cell.Range](https://learn.microsoft.com/en-us/office/vba/api/word.cell.range),
+[Range.HighlightColorIndex](https://learn.microsoft.com/en-us/office/vba/api/word.range.highlightcolorindex),
+[Range.NoProofing](https://learn.microsoft.com/en-us/office/vba/api/word.range.noproofing),
+[Range.LanguageID](https://learn.microsoft.com/en-us/office/vba/api/word.range.languageid)
+and [Range.LanguageIDOther](https://learn.microsoft.com/en-us/office/vba/api/word.range.languageidother)
+define the object vocabulary. These references are specification inputs;
+local Quds validation is separate from installed Microsoft Word differential
+qualification.
 
 ## Calculating Word layout values
 

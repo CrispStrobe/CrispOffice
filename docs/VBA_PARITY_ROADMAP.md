@@ -13,7 +13,8 @@ bounded, document-independent subset: scalar expressions, typed locals,
 explicit worksheet/range bindings, reusable `ByVal` procedures and scalar
 functions, conditions, loops, fixed and dynamic one-dimensional arrays, `ReDim`/`Preserve`,
 `Erase`, module `Option Base`, `For Each`, and the bounded String intrinsics
-`Len`, `Left$`, `Right$`, and `Mid$`. Scalar Variants now support explicit
+`Len`, `Left$`, `Right$`, `Mid$`, and `Join` over allocated local String arrays.
+Scalar Variants now support explicit
 `Empty`/`Null`, state predicates and bounded `CVar`/`CBool`/`CDbl`/`CLng`/`CStr`
 conversions, including default array/function behavior and native Empty clears.
 It generates an immutable native plan; runtime policy, detached validation,
@@ -33,6 +34,8 @@ its insertion and formatting operations; linked stories, arbitrary text
 ranges and live reads remain separate work. Existing plain, single-paragraph
 table cells support `Range.Text`, `Range.Font` and `Range.ParagraphFormat`,
 including paragraph spacing and tabs, through guarded main-story selectors.
+Their current text also accepts direct highlighting, proofing exclusion and
+mapped normal-slot language setters through the same cell-aware native guards.
 The `vba-powerpoint` adapter adds explicit presentation,
 slide, shape and text-range bindings, one-based/index-or-name selection,
 whole-shape text, font/alignment writes and geometry. Native collection guards
@@ -46,7 +49,29 @@ and [the native macro contract](MACROS.md).
 
 ## Ordered milestones and acceptance
 
-The current Word continuation adds `Cell.Range.Font` and
+The current continuation adds direct `Cell.Range.HighlightColorIndex`,
+`NoProofing`, `LanguageID` and `LanguageIDOther` writes, plus shared source-only
+`Join` for allocated local String arrays. The Word writes reuse guarded native
+run formatting with retained table/row/column identity, detached property
+copies and whole-run rollback. They affect current nonempty ordinary text,
+preserve paragraph/cell marks and other language slots, and retain existing
+grid/content/protection refusals. Source-only Join preserves array order and
+empty slots, supports fixed/dynamic array lifecycle and explicit separators,
+and meters array visits and copied text before allocating the result.
+
+This advances Stage 2 and the bounded Stage 4 adapter. The independent Join
+corpus distinguishes primary-source expectations from explicit dialect
+restrictions, and the complete multilingual table example combines both
+capabilities through CLI/MCP/native transactions. See the
+[Join contract](vba-macros-details.md#joining-source-string-arrays),
+[cell text controls](vba-word-macros-details.md#cell-highlighting-and-proofing-controls),
+[combined report](../packages/quds_office_engine/example/macros/word_join_report.bas)
+and [local qualification](validation/word-vba-cell-text-20261122/README.md).
+Live document reads, multidimensional/Variant-array joining, array parameters,
+embedded VBA execution and installed Office differential qualification remain
+separate work.
+
+The preceding Word continuation adds `Cell.Range.Font` and
 `Cell.Range.ParagraphFormat` to the existing guarded table text workflow. It
 reuses the bounded font and paragraph member contracts, line-spacing pairs,
 spacing-control methods and paragraph tab operations. Typed aliases and named
@@ -58,8 +83,9 @@ marks and future insertion formatting. Paragraph formatting can target an empty
 cell paragraph. Detached run formatting prevents shared public-model properties
 from affecting unrelated cells. The existing unmerged-grid, single-paragraph,
 source-fidelity and protection restrictions stay in force. Direct cell-range
-style/shading/list/proofing/language members, insertion, subranges, collection
-reads and embedded execution remain outside this increment.
+style/shading/list members, insertion, subranges, collection reads and embedded
+execution remain outside that formatting increment. Direct proofing/language
+and highlighting setters are added by the current continuation above.
 
 This advances the bounded Stage 4 application adapter. See the
 [cell-formatting contract](vba-word-macros-details.md#formatting-existing-table-cells),

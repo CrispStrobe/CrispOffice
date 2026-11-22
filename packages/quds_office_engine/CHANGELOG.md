@@ -4,6 +4,19 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Extend bounded Word VBA with direct `Cell.Range.HighlightColorIndex`,
+  `NoProofing`, `LanguageID` and `LanguageIDOther` writes. Preserve table/cell
+  identity through aliases and helpers, reuse guarded detached run formatting,
+  and retain current-text-only, structural, protection and atomic-publication
+  boundaries. Add shared `Join` for allocated local String arrays, with
+  explicit delimiters, arbitrary lower bounds, fixed/dynamic array lifecycle,
+  strict conversion rules and metered UTF-16 output. Include complete table
+  report examples, versioned Join expectations, VM/JavaScript conformance and
+  native DOCX/DOCM, CLI/MCP, recording and rollback tests. See the
+  [cell text contract](../../docs/vba-word-macros-details.md#cell-highlighting-and-proofing-controls),
+  [Join contract](../../docs/vba-macros-details.md#joining-source-string-arrays)
+  and [local qualification](../../docs/validation/word-vba-cell-text-20261122/README.md).
+
 - Format supported Word table cells through bounded VBA `Cell.Range.Font` and
   `Cell.Range.ParagraphFormat`, including existing font controls, paragraph
   spacing/alignment, custom line-spacing pairs, spacing methods and tab stops.

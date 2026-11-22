@@ -606,13 +606,20 @@ ordinary paragraph.
 
 The source adapter retains `Range`, `Font`, `ParagraphFormat` and `TabStops`
 aliases and `ByVal` helpers, including named helper arguments. It permits the
-existing Font/ParagraphFormat members and paragraph-format methods but keeps
-direct cell-range `Style`, `Shading`, `ListFormat`, proofing/language setters,
-`Paragraphs`, insertion methods and reads unavailable. `Cell.Range.Text` keeps
+existing Font/ParagraphFormat members and paragraph-format methods. Direct
+`Cell.Range.HighlightColorIndex`, `.NoProofing`, `.LanguageID` and
+`.LanguageIDOther` also emit the guarded `docx.runFormat` cell selector, with
+the same current-text-only contract and sparse property ownership. Direct
+cell-range `Style`, `Shading`, `ListFormat`, `Paragraphs`, insertion methods
+and reads remain unavailable. `Cell.Range.Text` keeps
 its existing operation and arguments. See the
 [full formatting contract](vba-word-macros-details.md#formatting-existing-table-cells),
 [table example](../packages/quds_office_engine/example/macros/word_table_formatting.bas)
 and [qualification record](validation/word-vba-cell-formatting-20261122/README.md).
+The [text-control continuation](vba-word-macros-details.md#cell-highlighting-and-proofing-controls)
+and source-only [Join](vba-macros-details.md#joining-source-string-arrays) support
+multilingual report assembly through the same transaction boundary; see the
+[combined qualification](validation/word-vba-cell-text-20261122/README.md).
 
 The Word adapter lowers explicit `ThisDocument.Paragraphs(i).Range` operations
 to `docx.replaceText`, `docx.runFormat` and `docx.paragraphFormat`, and custom-tab
