@@ -110,10 +110,13 @@ execution policy or new database schema.
 
 When native Mail cannot finish releasing the previous owner, it displays
 **Retry closing account**. Connection, provider setup and local-account/draft
-entry points stay blocked until release succeeds. Selected-target store admission
-also temporarily disables Disconnect so an unfinished store opener cannot be
-abandoned in favor of another account. EWS and cloud recovery retains the owner
-behind their explicit Close path.
+entry points stay blocked until release succeeds. Native Close is also blocked
+while admission or owner cleanup is pending. Selected-target store admission
+temporarily disables Disconnect so an unfinished store opener cannot be
+abandoned in favor of another account. EWS and cloud Close retire the provider
+before awaiting admission and keep the dialog alive until cleanup succeeds.
+A failed late candidate close remains held for a separate explicit retry; the
+same Close request cannot silently retry it and open the next route.
 
 ## Acceptance boundary and ordered continuation
 

@@ -9,6 +9,7 @@ import 'package:quds_office_studio/studio_mail_account_navigation.dart';
 import 'package:quds_office_studio/studio_mail_credentials.dart';
 import 'package:quds_office_studio/studio_mail_draft.dart';
 import 'package:quds_office_studio/studio_mail_draft_store.dart';
+import 'package:quds_office_studio/studio_mail_local_accounts.dart';
 import 'package:quds_office_studio/studio_mail_local_accounts_dialog.dart';
 import 'package:quds_office_studio/studio_mail_local_drafts.dart';
 import 'package:quds_office_studio/studio_mail_mailbox_store.dart';
@@ -49,6 +50,52 @@ const _snapshot = StudioMailStoredDraft(
   ),
   submissionUncertain: true,
 );
+
+final class _GuardedDirectory
+    implements
+        StudioMailLocalAccountStore,
+        StudioMailLocalAccountReconnectStore {
+  _GuardedDirectory(this.delegate);
+  final MemoryMailLocalAccounts delegate;
+  Completer<void>? refreshGate;
+  int refreshAttempts = 0;
+
+  @override
+  Future<List<MailLocalAccountRecord>> load() => delegate.load();
+
+  @override
+  Future<void> remember(StudioMailDraftAccount identity) =>
+      delegate.remember(identity);
+
+  @override
+  Future<void> forget(MailLocalAccountRecord record) => delegate.forget(record);
+
+  @override
+  Future<void> rememberSelected(
+    StudioMailDraftAccount identity, {
+    required MailLocalAccountRecord expectedRecord,
+  }) async {
+    refreshAttempts++;
+    await refreshGate?.future;
+    final current = delegate.records[identity.account.value];
+    if (current == null ||
+        !current.hasSameIdentity(expectedRecord) ||
+        current.revision != expectedRecord.revision ||
+        current.lastConnectedAt.millisecondsSinceEpoch !=
+            expectedRecord.lastConnectedAt.millisecondsSinceEpoch) {
+      throw const StudioMailDraftStoreException(MailProblemCode.conflict);
+    }
+    delegate.records[identity.account.value] = MailLocalAccountRecord(
+      id: current.id,
+      provider: current.provider,
+      endpoint: current.endpoint,
+      login: current.login,
+      sender: current.sender,
+      lastConnectedAt: current.lastConnectedAt,
+      revision: current.revision + 1,
+    );
+  }
+}
 
 /// A host observer can fail before it has released its underlying resource.
 /// Its subsequent cancellation must retry that resource, not report success
@@ -112,6 +159,7 @@ final class _Mailbox extends Fake
   int cancelFailures = 0;
   int cancelCalls = 0;
   int cancelled = 0;
+  bool emitInitial = true;
 
   @override
   Future<MailCachedMailboxView> saveView(
@@ -132,6 +180,7 @@ final class _Mailbox extends Fake
     late final StreamController<MailResult<MailCachedMailboxView?>> controller;
     controller = StreamController<MailResult<MailCachedMailboxView?>>(
       onListen: () {
+        if (!emitInitial) return;
         final gate = firstViewGate;
         if (gate == null) {
           controller.add(MailSuccess(view));
@@ -149,7 +198,7 @@ final class _Mailbox extends Fake
   }
 }
 
-final class _Owner
+final class _Owner extends Fake
     implements StudioMailDraftStore, StudioMailMailboxStoreOwner {
   _Owner(this.events) : mailboxStore = _Mailbox(events);
   final List<String> events;
@@ -207,6 +256,17 @@ final class _Owner
   }
 }
 
+final class _CatalogOwner extends _Owner implements StudioMailDraftCatalog {
+  _CatalogOwner(super.events);
+
+  @override
+  MailAccountId get account => _source.account;
+  @override
+  String get selectedDraftId => 'retained';
+  @override
+  int get selectionEpoch => 0;
+}
+
 final class _Loader extends Fake
     implements StudioMailMessageLoader, StudioMailMailboxRecords {
   @override
@@ -251,14 +311,17 @@ final class _Client extends Fake implements mail.MailClient {
 }
 
 final class _Harness {
-  _Harness() {
+  _Harness({this.catalogOwner = false}) {
     directory.seed(_source);
     directory.seed(_destination);
   }
   final directory = MemoryMailLocalAccounts();
   final credentials = memoryStudioMailCredentialStore();
   final events = <String>[];
-  late final owner = _Owner(events);
+  final bool catalogOwner;
+  late final _Owner owner = catalogOwner
+      ? _CatalogOwner(events)
+      : _Owner(events);
   final clients = <_Client>[];
   final routed = <StudioMailAccountNavigationTarget>[];
   Completer<void>? openGate;
@@ -319,7 +382,9 @@ Future<void> _until(WidgetTester tester, bool Function() ready) async {
 Future<void> _show(
   WidgetTester tester,
   _Harness harness, {
-  bool selectedTarget = true,
+  bool selectedAccount = true,
+  StudioMailLocalAccountStore? directory,
+  VoidCallback? onClose,
 }) async {
   await (harness.credentials as StudioMailAccountCatalogStore).saveAccount(
     _credentials,
@@ -332,6 +397,7 @@ Future<void> _show(
       harness.owner.closeGate,
       harness.owner.mailboxStore.firstViewGate,
       harness.owner.mailboxStore.cancelGate,
+      if (directory is _GuardedDirectory) directory.refreshGate,
     ]) {
       if (gate != null && !gate.isCompleted) gate.complete();
     }
@@ -348,9 +414,10 @@ Future<void> _show(
     MaterialApp(
       home: StudioMailDialog(
         strings: _strings,
+        onClose: onClose,
         credentialStore: harness.credentials,
-        localAccountStore: harness.directory,
-        initialAccount: selectedTarget ? harness.initial : null,
+        localAccountStore: directory ?? harness.directory,
+        initialAccount: selectedAccount ? harness.initial : null,
         autoConnectSavedAccount: false,
         draftStoreFactory: harness.open,
         accountDestinationBuilder: harness.destination,
@@ -600,7 +667,7 @@ void main() {
       final mailbox = harness.owner.mailboxStore;
       mailbox.firstViewGate = Completer<void>();
       mailbox.cancelFailures = 1;
-      await _show(tester, harness, selectedTarget: false);
+      await _show(tester, harness, selectedAccount: false);
       await _press(tester, _connect);
       await _until(tester, () => mailbox.controllers.isNotEmpty);
       expect(mailbox.view, isNotNull);
@@ -663,7 +730,7 @@ void main() {
           harness.owner.loadGate = gate;
         }
         harness.owner.failClose = true;
-        await _show(tester, harness, selectedTarget: false);
+        await _show(tester, harness, selectedAccount: false);
         final previousConnect = tester
             .widget<FilledButton>(_connect)
             .onPressed!;
@@ -924,4 +991,164 @@ void main() {
       expect(tester.takeException(), isNull);
     },
   );
+
+  testWidgets(
+    'selected cache remains unadopted until CAS and retains failed observer cleanup',
+    (tester) async {
+      final harness = _Harness(catalogOwner: true);
+      final directory = _GuardedDirectory(harness.directory)
+        ..refreshGate = Completer<void>();
+      var closes = 0;
+      await _show(
+        tester,
+        harness,
+        directory: directory,
+        onClose: () => closes++,
+      );
+      final staleClose = tester
+          .widget<IconButton>(_icon(_strings.close))
+          .onPressed!;
+      await _press(tester, _connect);
+      await _until(tester, () => directory.refreshAttempts == 1);
+      final mailbox = harness.owner.mailboxStore;
+      expect(mailbox.controllers, hasLength(1));
+      expect(harness.owner.loads, 1);
+      expect(find.text(_strings.mailDraftRestored), findsNothing);
+      expect(
+        tester.widget<IconButton>(_icon(_strings.close)).onPressed,
+        isNull,
+      );
+      staleClose();
+      expect(closes, 0);
+      mailbox.cancelFailures = 1;
+      harness.directory.records.remove(_source.account.value);
+      directory.refreshGate!.complete();
+      await _until(tester, () => mailbox.cancelCalls == 1);
+      await _until(
+        tester,
+        () =>
+            _key('studio-mail-navigation-release').evaluate().isNotEmpty &&
+            tester
+                    .widget<OutlinedButton>(
+                      _key('studio-mail-navigation-release'),
+                    )
+                    .onPressed !=
+                null,
+      );
+      expect(mailbox.cancelled, 0);
+      expect(harness.owner.closeCalls, 0);
+      expect(harness.clients.single.disconnections, 1);
+      expect(
+        harness.directory.records.containsKey(_source.account.value),
+        isFalse,
+      );
+      expect(find.text(_strings.mailDraftRestored), findsNothing);
+      expect(harness.owner.snapshot.submissionUncertain, isTrue);
+      staleClose();
+      expect(closes, 0);
+
+      mailbox.cancelGate = Completer<void>();
+      harness.owner.closeGate = Completer<void>();
+      await _press(tester, _key('studio-mail-navigation-release'));
+      await _until(tester, () => mailbox.cancelCalls == 2);
+      expect(harness.owner.closeCalls, 0);
+      mailbox.cancelGate!.complete();
+      await _until(tester, () => harness.owner.closeCalls == 1);
+      expect(mailbox.cancelled, 1);
+      staleClose();
+      expect(closes, 0);
+      harness.owner.closeGate!.complete();
+      await _until(
+        tester,
+        () => _key('studio-mail-navigation-release').evaluate().isEmpty,
+      );
+      expect(harness.owner.closed, 1);
+      expect(harness.owner.snapshot.draft.body, _snapshot.draft.body);
+      staleClose();
+      expect(closes, 1);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'ordinary Disconnect retires a non-emitting staged observer once before explicit retry',
+    (tester) async {
+      final harness = _Harness();
+      final mailbox = harness.owner.mailboxStore
+        ..emitInitial = false
+        ..cancelFailures = 1;
+      var closes = 0;
+      await _show(
+        tester,
+        harness,
+        selectedAccount: false,
+        onClose: () => closes++,
+      );
+      final staleClose = tester
+          .widget<IconButton>(_icon(_strings.close))
+          .onPressed!;
+      await _press(tester, _connect);
+      await _until(tester, () => mailbox.controllers.isNotEmpty);
+      expect(find.text(_strings.mailDraftRestored), findsNothing);
+      expect(
+        tester.widget<IconButton>(_icon(_strings.close)).onPressed,
+        isNull,
+      );
+      await _press(tester, _icon(_strings.disconnect));
+      await _until(
+        tester,
+        () =>
+            _key('studio-mail-navigation-release').evaluate().isNotEmpty &&
+            tester
+                    .widget<OutlinedButton>(
+                      _key('studio-mail-navigation-release'),
+                    )
+                    .onPressed !=
+                null,
+      );
+      expect(mailbox.cancelCalls, 1);
+      expect(mailbox.cancelled, 0);
+      expect(harness.owner.closeCalls, 0);
+      expect(harness.clients.single.disconnections, 1);
+      expect(harness.opens, 1);
+      staleClose();
+      expect(closes, 0);
+
+      mailbox.cancelGate = Completer<void>();
+      await _press(tester, _key('studio-mail-navigation-release'));
+      await _until(tester, () => mailbox.cancelCalls == 2);
+      expect(harness.owner.closeCalls, 0);
+      mailbox.cancelGate!.complete();
+      await _until(tester, () => harness.owner.closed == 1);
+      await _pump(tester);
+      expect(mailbox.cancelled, 1);
+      expect(harness.owner.closeCalls, 1);
+      expect(find.text(_strings.mailDraftRestored), findsNothing);
+      staleClose();
+      expect(closes, 1);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets('disposing a staged observer drains its candidate only once', (
+    tester,
+  ) async {
+    final harness = _Harness();
+    final mailbox = harness.owner.mailboxStore
+      ..emitInitial = false
+      ..cancelGate = Completer<void>();
+    await _show(tester, harness, selectedAccount: false);
+    await _press(tester, _connect);
+    await _until(tester, () => mailbox.controllers.isNotEmpty);
+    await tester.pumpWidget(const SizedBox.shrink());
+    await _until(tester, () => mailbox.cancelCalls == 1);
+    expect(harness.owner.closeCalls, 0);
+    mailbox.cancelGate!.complete();
+    await _until(tester, () => harness.owner.closed == 1);
+    await _pump(tester);
+    expect(mailbox.cancelCalls, 1);
+    expect(harness.owner.closeCalls, 1);
+    expect(harness.clients.single.disconnections, 1);
+    expect(tester.takeException(), isNull);
+  });
 }

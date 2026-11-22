@@ -13,9 +13,10 @@ All notable changes to `quds_office_editor` are documented here.
   dialogs and optional settings-owner identity. See the
   [workflow guide](../../docs/roadmaps/mail/remembered-archive.md).
 - Fix provider Close while the first cached-mail snapshot is pending. Save
-  retained drafts first, cancel observers before draining restoration, and wait
-  for late acquisitions and owner release before leaving the account. Keep failed
-  draft saves and cancellation recoverable without replaying commands.
+  adopted drafts first; preserve a staged draft's durable snapshot without
+  resaving it. Cancel observers before draining admission, and wait for late
+  acquisitions and owner release before leaving the account. Keep failed draft
+  saves and cancellation recoverable without replaying commands.
 
 - Reopen supported bordered research tables from editable Zotero ODT exports.
   Retain citation editability, cell border appearance, selected-field context
@@ -27,7 +28,7 @@ All notable changes to `quds_office_editor` are documented here.
   non-secret routes and require explicit sign-in; save account-owned drafts and
   uncertain-submission state before switching. Drain observers, journal writes
   and owners, fence stale routes, hidden keyboard input, late acquisitions and
-  retired callbacks, and atomically refresh selected native directory records
+  retired callbacks, and atomically refresh selected local directory records
   without recreating forgotten shortcuts. Removed or replaced destinations
   invalidate late refresh completion before the connection handoff. Fresh
   connections register their account normally. Custom directories without
@@ -35,12 +36,16 @@ All notable changes to `quds_office_editor` are documented here.
   release for explicit native Retry closing account and provider Close/Back
   recovery; another account stays blocked until release succeeds. Apply the same
   retained cleanup to Disconnect, Refresh and folder changes, cancelling
-  observers waiting for an initial snapshot before draining restoration.
+  observers waiting for an initial snapshot before draining admission.
+  Publish restored drafts only after cache setup and selected-record refresh;
+  keep late acquisition and failed cleanup owned by the pending admission.
   Bind toolbar callbacks to their original session and mailbox. Preserve
   same-session cancellation during ordinary modal reviews while fencing
   the full account-chooser handoff.
-  Native Close hides the mounted Mail pane; persistent release failure can
-  require a host restart. Provider Close/Back preserves draft recovery. One account remains
+  Native Close hides the mounted Mail pane after pending ownership settles;
+  retained owner failures keep an explicit retry path. Provider Close/Back
+  preserves draft recovery, cancels remaining dispatch and waits for late store
+  admission and cleanup before returning to the root pane. One account remains
   connected at a time. See the [account-navigation workflow](../../docs/roadmaps/mail/account-navigation.md)
   and [connected-account guide](../../docs/roadmaps/mail/connected-account-navigation.md)
   for scope, qualification and remaining multi-account workspace work.

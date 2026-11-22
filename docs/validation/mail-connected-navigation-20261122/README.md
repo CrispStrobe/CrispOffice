@@ -159,6 +159,41 @@ their targeted regressions precede the next frozen source. The final gates
 requalify affected Studio and Word inputs; unchanged gates are retained only
 with exact source, dependency, runtime and evidence continuity.
 
+The reconciled lifecycle stages cached-mail setup before the selected-record
+comparison and final draft-owner adoption. Retirement cancels transport
+authority before awaiting admission. If a cache watcher has not produced its
+first snapshot, retirement starts one retained observer-close attempt to release
+that waiter; admission drains that exact attempt and every sibling cancellation
+before closing the owner. Failed cleanup remains visible for explicit retry.
+Native local-account/draft entry and Close cannot bypass pending or retained
+ownership. Provider Close keeps its route alive until the same boundary settles.
+
+The revised final scope contains 236 fresh suites: 92 engine, 30 editor, four
+Studio Zotero and 110 Studio Mail. The engine/editor/Studio results from `9a371b61`
+are not retained after the PR #383 and ownership changes. The only retained
+cases are the original 294 shared UI cases and the 47 account-store cases from
+`9a371b61`. Store retention checks all 170 relevant package/root inputs, 59 actual
+local Dart imports, generated resolution, runtime identity and immutable raw
+reporter/re-analysis checksums. Its dependency closure is limited to unchanged
+store/core packages. Each retained gate has its own provenance; 341 retained
+cases may be counted once alongside the new execution.
+
+Focused qualification of this reconciled lifecycle passed 207 cases: 145 provider
+navigation cases, two standalone EWS/Gmail late-store cases, 45 native navigation
+cases, seven native release/admission cases and eight cross-provider router cases.
+The provider suite includes 30 new cancellation/admission regressions. The native
+cases also cover blocked local entry/Close, explicit failed-close retry and cache
+watchers that have never emitted a first snapshot. Strict analysis is clean and
+the captured source hashes remain stable. These focused passes are not added to
+the final fresh total, which executes the containing suites again.
+
+The first attempt at the two strengthened standalone cases failed only their
+final route-absence assertions after owner release. Their fixed-duration wait
+was replaced with a bounded wait for observable route removal; both then passed.
+The earlier raw attempt stays in `development/provider-admission-standalone.jsonl`
+with no acceptance credit. Provider production source did not change after its
+145-case pass. Complete focused receipts are in `development/`.
+
 Initial failed test attempts and their corrections remain in `development/`.
 The first provider startup was rejected by automatic review because an
 unsourced Flutter invocation attempted its Azure metadata bot-detection probe.
@@ -182,6 +217,7 @@ Working branch: `work/mail-connected-navigation-20261122`.
 | `4015d7544ec3aa392ce2f375a35f00a4c3d4c5a3` | Corrected fixtures, all focused recovery evidence and the source immediately before the final main advance |
 | `9a371b616ae0fa0dbbecaed04708837125694d7c` | Latest main reconciled, atomic reconnect retained with the corrected lifecycle, and expanded final qualification frozen |
 | `93cc695d8e96774a5bc5f8b1498fb7144db1aa62` | Complete expanded local run, original reporter results, source manifests and raw evidence preserved |
+| `893cca7a17b6bcda966f44248fa966084c5f1a74` | PR #383 reconciled with both Mail histories, immutable reporter correction, and aligned continuation plan |
 
 Each remote tree was checked against its local checkpoint before moving the
 branch with an expected-head lease and `force=false`. The qualification

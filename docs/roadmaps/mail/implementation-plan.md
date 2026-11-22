@@ -317,9 +317,10 @@ inspection receipt, not a complete dependency or runtime certification.
   observers, journal writes and owners before handoff; fence late acquisitions
   and retired callbacks. Retain failed observer/owner release for explicit close
   recovery; a failed release never authorizes another account. Refresh selected
-  native directory records atomically
+  local directory records atomically
   against the expected record; custom directories without conditional refresh
-  retain their existing metadata. See
+  retain their existing metadata. Keep late store acquisition and failed release
+  behind an explicit recovery path before Close or another owner is admitted. See
   [connected-account-navigation.md](connected-account-navigation.md) and its
   source-bound qualification record. This does not complete the shared workspace.
 - [x] Remember custom Archive destinations for connected IMAP, EWS and Microsoft

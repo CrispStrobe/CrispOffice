@@ -1,0 +1,13 @@
+{
+  "captured_at_utc": "2026-11-22T13:06:40.028045+00:00",
+  "head": "893cca7a17b6bcda966f44248fa966084c5f1a74",
+  "sampled_source_sha256": {
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart": "ceb1653b66561f8cf07a1e7125d54026269ab9a5d7c42f328566c82ee48079b5",
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart": "cafe31cc7ab543a58451d4c5618e67f07678f58fcc667b363dec3093613a0ae2",
+    "packages/quds_office_editor/example/lib/studio_mail_account_navigation.dart": "ea2e6ae79bbc0112ed5a03063a5a53b72c2e1afc2555c5e082f6af8932010141",
+    "packages/quds_office_editor/example/lib/studio_mail_local_accounts.dart": "85f431e864d0dc9ddfdb76407c1c492683a694c2fce05e64d3900c313250c7cc",
+    "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart": "3e2480dcc7797a4f54f305fa7b5904803fae6b06e553c25d5f7a349bc40aeb3c",
+    "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_release_test.dart": "a4167b09e29169027a92b20722f50da4b757d45ca473bfb5422b8af81bee24c7",
+    "packages/quds_office_editor/example/test/studio_mail_account_navigation_router_test.dart": "291dbf246c21249d3b940298f5e1404cc0d82466e5ccd4fd259c4d0b3645b9ae"
+  }
+}

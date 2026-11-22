@@ -1053,8 +1053,18 @@ void main() {
       final provider = harness.provider!;
       await tester.tap(find.byTooltip(_strings.close));
       await _pump(tester);
+      expect(provider.disposals, 1);
+      expect(drafts.closes, 0);
+      expect(find.byType(StudioMailCloudDialog), findsOneWidget);
       gate.complete();
-      await _pump(tester);
+      for (
+        var turn = 0;
+        turn < 100 && find.byType(StudioMailCloudDialog).evaluate().isNotEmpty;
+        turn++
+      ) {
+        await tester.pump(const Duration(milliseconds: 10));
+        await tester.runAsync(() => Future<void>.delayed(Duration.zero));
+      }
       expect(drafts.closes, 1);
       expect(drafts.records, isEmpty);
       expect(provider.disposals, 1);

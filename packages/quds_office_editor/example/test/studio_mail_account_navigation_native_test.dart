@@ -12,6 +12,8 @@ import 'package:quds_office_studio/studio_mail_credentials.dart';
 import 'package:quds_office_studio/studio_mail_draft.dart';
 import 'package:quds_office_studio/studio_mail_draft_store.dart';
 import 'package:quds_office_studio/studio_mail_local_accounts.dart';
+import 'package:quds_office_studio/studio_mail_local_accounts_dialog.dart';
+import 'package:quds_office_studio/studio_mail_local_drafts.dart';
 import 'package:quds_office_studio/studio_mail_message_loader.dart';
 import 'package:quds_office_studio/studio_mail_native.dart';
 import 'package:quds_office_studio/studio_mail_strings.dart';
@@ -338,6 +340,7 @@ final class _ObservedStore extends Fake
   @override
   final MailAccountId account;
   final Completer<void>? loadGate;
+  Completer<void>? closeGate;
   bool failClose = false;
   int loads = 0;
   int closeAttempts = 0;
@@ -347,6 +350,10 @@ final class _ObservedStore extends Fake
   String get selectedDraftId => 'selected';
   @override
   int get selectionEpoch => 0;
+
+  @override
+  Future<StudioMailDraftCatalogPage> listDrafts({String? afterId}) async =>
+      StudioMailDraftCatalogPage(drafts: const []);
 
   @override
   Future<StudioMailStoredDraft?> load() async {
@@ -376,6 +383,7 @@ final class _ObservedStore extends Fake
   @override
   Future<void> close() async {
     closeAttempts++;
+    await closeGate?.future;
     if (failClose) {
       throw const StudioMailDraftStoreException(MailProblemCode.storageFailure);
     }
@@ -422,6 +430,9 @@ final class _ClosingStore implements StudioMailDraftStore {
 }
 
 Finder _key(String value) => find.byKey(ValueKey(value));
+Finder _icon(String tooltip) => find.byWidgetPredicate(
+  (widget) => widget is IconButton && widget.tooltip == tooltip,
+);
 Finder _field(String label) => find.byWidgetPredicate(
   (widget) => widget is TextField && widget.decoration?.labelText == label,
 );
@@ -432,6 +443,14 @@ Future<void> _pump(WidgetTester tester) async {
   await tester.pump();
   await tester.pump(const Duration(milliseconds: 350));
   await tester.pump();
+}
+
+Future<void> _until(WidgetTester tester, bool Function() ready) async {
+  for (var turn = 0; turn < 100 && !ready(); turn++) {
+    await tester.pump(const Duration(milliseconds: 10));
+    await tester.runAsync(() => Future<void>.delayed(Duration.zero));
+  }
+  expect(ready(), isTrue, reason: 'Native account ownership must settle.');
 }
 
 Future<void> _tap(WidgetTester tester, Finder finder) async {
@@ -453,6 +472,7 @@ Future<void> _show(
   void Function(_Client)? configureClient,
   _Client Function()? clientBuilder,
   StudioMailMessageLoader? loader,
+  VoidCallback? onClose,
 }) async {
   await tester.binding.setSurfaceSize(const Size(1200, 1050));
   addTearDown(() => tester.binding.setSurfaceSize(null));
@@ -460,6 +480,7 @@ Future<void> _show(
     MaterialApp(
       home: StudioMailDialog(
         strings: _strings,
+        onClose: onClose,
         credentialStore: credentials ?? _Credentials(),
         localAccountStore: directory,
         initialAccount: initialAccount,
@@ -1219,7 +1240,7 @@ void main() {
         expect(oldOwner.closes, 0);
         oldOwner.failClose = false;
         await _tap(tester, _key('studio-mail-navigation-release'));
-        expect(oldOwner.closes, 1);
+        await _until(tester, () => oldOwner.closes == 1);
         await attempt();
         expect(oldOwner.closes, 1);
         if (destination == 'connect') {
@@ -1233,6 +1254,193 @@ void main() {
       },
     );
   }
+
+  for (final stage in ['open', 'load']) {
+    for (final localDrafts in [false, true]) {
+      testWidgets(
+        'pending ordinary $stage blocks Close and local ${localDrafts ? 'drafts' : 'accounts'} after Disconnect',
+        (tester) async {
+          final directory = _Directory();
+          await directory.remember(_identity(_first));
+          final drafts = MemoryStudioMailDrafts();
+          final owners = <_ObservedStore>[];
+          final clients = <_Client>[];
+          final gate = Completer<void>();
+          var acquisitions = 0;
+          var closes = 0;
+          addTearDown(() {
+            if (!gate.isCompleted) gate.complete();
+          });
+          await _show(
+            tester,
+            directory: directory,
+            created: [],
+            clients: clients,
+            onClose: () => closes++,
+            open: (account) async {
+              final first = ++acquisitions == 1;
+              if (first && stage == 'open') await gate.future;
+              final owner = _ObservedStore(
+                await drafts.open(account),
+                account.account,
+                loadGate: first && stage == 'load' ? gate : null,
+              );
+              owners.add(owner);
+              return owner;
+            },
+          );
+          final entry = _key(
+            localDrafts
+                ? 'studio-mail-open-local-drafts'
+                : 'studio-mail-known-drafts',
+          );
+          final staleEntry = tester.widget<OutlinedButton>(entry).onPressed!;
+          final staleClose = tester
+              .widget<IconButton>(_icon(_strings.close))
+              .onPressed!;
+          await _connect(tester);
+          expect(acquisitions, 1);
+          expect(
+            tester.widget<IconButton>(_icon(_strings.close)).onPressed,
+            isNull,
+          );
+          staleClose();
+          expect(closes, 0);
+          await _tap(tester, _icon(_strings.disconnect));
+          expect(clients.single.disconnections, 1);
+          staleEntry();
+          staleClose();
+          await _pump(tester);
+          expect(tester.widget<OutlinedButton>(entry).onPressed, isNull);
+          expect(find.byType(StudioMailLocalAccountsDialog), findsNothing);
+          expect(find.byType(StudioMailLocalDraftsDialog), findsNothing);
+          expect(acquisitions, 1);
+          expect(closes, 0);
+
+          gate.complete();
+          await _until(
+            tester,
+            () => owners.isNotEmpty && owners.first.closes == 1,
+          );
+          await _pump(tester);
+          expect(owners.first.loads, stage == 'open' ? 0 : 1);
+          expect(acquisitions, 1);
+          expect(tester.widget<OutlinedButton>(entry).onPressed, isNotNull);
+          staleClose();
+          expect(closes, 1);
+          await _tap(tester, entry);
+          if (localDrafts) {
+            await _until(tester, () => acquisitions == 2);
+            expect(find.byType(StudioMailLocalDraftsDialog), findsOneWidget);
+          } else {
+            expect(find.byType(StudioMailLocalAccountsDialog), findsOneWidget);
+            expect(acquisitions, 1);
+          }
+          expect(owners.first.closes, 1);
+          expect(tester.takeException(), isNull);
+        },
+      );
+    }
+  }
+
+  testWidgets(
+    'ordinary close failure keeps Close and local entries blocked until explicit release',
+    (tester) async {
+      final directory = _Directory();
+      await directory.remember(_identity(_first));
+      final drafts = MemoryStudioMailDrafts();
+      final owners = <_ObservedStore>[];
+      var closes = 0;
+      await _show(
+        tester,
+        directory: directory,
+        created: [],
+        clients: [],
+        onClose: () => closes++,
+        open: (account) async {
+          final owner = _ObservedStore(
+            await drafts.open(account),
+            account.account,
+          );
+          owners.add(owner);
+          return owner;
+        },
+      );
+      final staleClose = tester
+          .widget<IconButton>(_icon(_strings.close))
+          .onPressed!;
+      final staleAccounts = tester
+          .widget<OutlinedButton>(_key('studio-mail-known-drafts'))
+          .onPressed!;
+      final staleDrafts = tester
+          .widget<OutlinedButton>(_key('studio-mail-open-local-drafts'))
+          .onPressed!;
+      await _connect(tester);
+      final owner = owners.single;
+      final gate = Completer<void>();
+      owner.closeGate = gate;
+      owner.failClose = true;
+      addTearDown(() {
+        owner.failClose = false;
+        if (!gate.isCompleted) gate.complete();
+      });
+      await _tap(tester, _icon(_strings.disconnect));
+      expect(owner.closeAttempts, 1);
+      expect(
+        tester.widget<IconButton>(_icon(_strings.close)).onPressed,
+        isNull,
+      );
+      staleClose();
+      staleAccounts();
+      staleDrafts();
+      await _pump(tester);
+      expect(closes, 0);
+      expect(owners, hasLength(1));
+      expect(find.byType(StudioMailLocalAccountsDialog), findsNothing);
+      expect(find.byType(StudioMailLocalDraftsDialog), findsNothing);
+
+      gate.complete();
+      await _until(
+        tester,
+        () => _key('studio-mail-navigation-release').evaluate().isNotEmpty,
+      );
+      expect(owner.closeAttempts, 1);
+      staleClose();
+      staleAccounts();
+      staleDrafts();
+      await _pump(tester);
+      expect(closes, 0);
+      expect(owner.closeAttempts, 1);
+      await _tap(tester, _key('studio-mail-navigation-release'));
+      expect(owner.closeAttempts, 2);
+      expect(owner.closes, 0);
+      expect(
+        tester.widget<IconButton>(_icon(_strings.close)).onPressed,
+        isNull,
+      );
+      owner.failClose = false;
+      await _tap(tester, _key('studio-mail-navigation-release'));
+      await _until(tester, () => owner.closes == 1);
+      await _pump(tester);
+      expect(_key('studio-mail-navigation-release'), findsNothing);
+      expect(
+        tester
+            .widget<OutlinedButton>(_key('studio-mail-known-drafts'))
+            .onPressed,
+        isNotNull,
+      );
+      expect(
+        tester
+            .widget<OutlinedButton>(_key('studio-mail-open-local-drafts'))
+            .onPressed,
+        isNotNull,
+      );
+      staleClose();
+      expect(closes, 1);
+      expect(owner.closeAttempts, 3);
+      expect(tester.takeException(), isNull);
+    },
+  );
 
   testWidgets(
     'successful target can disconnect and reconnect after directory revision advances',
