@@ -1,0 +1,85 @@
+{
+  "files": {
+    "color-render-golden-comparison.json": {
+      "bytes": 704,
+      "sha256": "27037d688354998e91fd744b40441f62a2bbb2c5a3005d18825f8a4f88d846a0"
+    },
+    "converter-after-fix-summary.json": {
+      "bytes": 2339,
+      "sha256": "e8d8c599e6d73285637f21fea0714c22626dec7f92b838459bcf65680a974c2f"
+    },
+    "converter-after-fix.md": {
+      "bytes": 5136,
+      "sha256": "d4560b1d7f3ddcf8bd7f837684ed57e75f3697f0a40f7192a5b41984dfa8ddcc"
+    },
+    "converter-after-fix.tar.xz": {
+      "bytes": 988396,
+      "sha256": "5892777fc9ce6d25378b7abcc0a8504db0e44ea639e401c95fb9299e14986578"
+    },
+    "converter-before-fix-summary.json": {
+      "bytes": 995,
+      "sha256": "113bd18251276d3481e2a972fb45d5893cd4423106e5cc18c8846afb7835bd6c"
+    },
+    "converter-before-fix.md": {
+      "bytes": 5086,
+      "sha256": "7e0f2c99295091ece9ceb24669a69b410ba3b1093feb6cfe8161449fa22cddf2"
+    },
+    "converter-before-fix.tar.xz": {
+      "bytes": 992484,
+      "sha256": "cfcc594b8c7388499cd79ee8176d123993e7ce6fd3d28c9c308418e9856a30d5"
+    },
+    "converter-direction-probes.tar.xz": {
+      "bytes": 20600,
+      "sha256": "2d57879ff8834d5717b98db8ddd9ed302da4d34fd8ca2dc66a8968f26ffb04ba"
+    },
+    "converter-firstline-probe.tar.xz": {
+      "bytes": 15448,
+      "sha256": "f944be953d2257e232620dd0c6c5e082a2d5e3e7f3fee8230494eec75981c82e"
+    },
+    "directional-paragraph-io-review.json": {
+      "bytes": 4461,
+      "sha256": "7a9f90fe0d348776db34e899eb6ea3b4b5859a99c4e7bb9abbed6614aa8c3443"
+    },
+    "local-checks-index.json": {
+      "bytes": 31971,
+      "sha256": "76f38ab289179f1d10ca4737df2c85615b35458ecc085c3731d8bcadaf03fa90"
+    },
+    "local-checks.tar.xz": {
+      "bytes": 631716,
+      "sha256": "a38f78b6fe6a088899a399c789840371de7d201c7f64860ddca2033e75b707fb"
+    },
+    "rtl-io-review.json": {
+      "bytes": 6868,
+      "sha256": "bb577b1f88ab22ede45c3c35160ed83526c1d795ff5130e5f4651e1b3d0372f7"
+    },
+    "rtl-ruler-validation.json": {
+      "bytes": 2566,
+      "sha256": "7041099bf2fe22f064773ecc1a1da9be1aceeb6101518e0e8bc226da27d7e294"
+    },
+    "runtime-manifest-after.json": {
+      "bytes": 2528,
+      "sha256": "0020d62cfc67aceadfd10447da71030a87ae5e37e233830b26a7cc10a5699287"
+    },
+    "runtime-manifest-before.json": {
+      "bytes": 2528,
+      "sha256": "0020d62cfc67aceadfd10447da71030a87ae5e37e233830b26a7cc10a5699287"
+    },
+    "runtime-official-release.json": {
+      "bytes": 512,
+      "sha256": "87dcfaaec32adfb3b4043b3bc8086179ee1a793071a5b1f4b64c49fb46695b61"
+    },
+    "runtime-provenance.json": {
+      "bytes": 3709,
+      "sha256": "82b7b24bca21afea714073cfa6fa9b23178f700af777d183744da2dfbd1fcc40"
+    },
+    "runtime-pub-cache-receipt.json": {
+      "bytes": 51965,
+      "sha256": "0e84bca6b67b267da3699af602ab2f826ebcfcf358ff5bebd970457bf6968931"
+    },
+    "zotero-independent-review.json": {
+      "bytes": 6845,
+      "sha256": "2c9672bb690756783269fe9c5e0bbdb4bc45f3b1b44d914b806fb3877db40d88"
+    }
+  },
+  "local_checks_members_verified": 199
+}

@@ -1,0 +1,71 @@
+{
+  "review": "directional native paragraph IO correction",
+  "utc": "2026-11-22T11:05:02.551278+00:00",
+  "source_sha256": {
+    "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart": "fff42f8c3c551b538ae3bc274bb401c9a2baf357b9321d965e086c11b78809c2",
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart": "c3a56aac13be609d5500803f008e9bbf11307467b3ca831a829f49e61127c88a",
+    "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart": "2ad4bddd451b8b4773fdb3aafdff663cdde4db4a0f2ab3b681d5599d24a1fdf2",
+    "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart": "8c8329762ebd3232ab3d1fb16b086279aae18ab48103c36d4f54079056dd51cf",
+    "packages/quds_office_engine/test/word_directional_paragraph_io_test.dart": "394a52539f1013f1163439d9cac80b6f603fb102643902329ad6ad72f94680ee"
+  },
+  "contract": [
+    "Native model left/right paragraph margins and alignment are physical.",
+    "OOXML start/end and transitional left/right paragraph indent and jc aliases are logical relative to effective w:bidi.",
+    "Resolve paragraph jc/ind after reading effective bidi, independently of XML element order.",
+    "Normalize ind aliases per cascade layer, retaining sparse original XML; empty native bidi overrides inherited false.",
+    "Sparse edits preserve native namespace aliases, extension attributes, unowned indent groups, and inherited direction.",
+    "First-line and hanging occupy one inheritance slot; emit one explicit zero to reset inherited values.",
+    "Catalog style changes retain native own bidi/metadata, encode physical owned margins and alignment against the current basedOn chain/defaults, and keep omitted margins inherited."
+  ],
+  "authoritative_sources": [
+    {
+      "url": "https://ecma-international.org/wp-content/uploads/ECMA-376-4_5th_edition_december_2016.zip",
+      "sections": [
+        "14.3.1.2 (ind aliases), printed page 35 / PDF page 51",
+        "14.11.2 (ST_Jc aliases), printed page 182 / PDF page 198"
+      ],
+      "evidence": "converter/indent-spec-extract.json"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/dotnet/api/documentformat.openxml.wordprocessing.bidi?view=openxml-3.0.1"
+    }
+  ],
+  "independent_consumer_probes": [
+    "direction-semantics-probe/results.json: LibreOffice bidi0/1 by jc left/right/start/end confirms logical interpretation",
+    "direction-semantics-probe/indent-alias-results.json: same-node conflicting alias precedence retains left/right independent of XML attribute order",
+    "firstline-semantics-probe/results.json: direct firstLine/hanging replace the opposing inherited slot"
+  ],
+  "regression_test_file": "word_directional_paragraph_io_test.dart",
+  "regression_test_count": 43,
+  "development_cohort": {
+    "report": "directional-paragraph-io-dev-final.jsonl",
+    "passed_behavioral_tests": 165,
+    "loader_events": 6,
+    "files": {
+      "word_directional_paragraph_io_test.dart": 43,
+      "word_zotero_paragraph_format_test.dart": 26,
+      "style_cascade_test.dart": 11,
+      "word_styles_layout_test.dart": 17,
+      "word_style_introduction_test.dart": 4,
+      "word_paragraph_style_assignment_test.dart": 64
+    },
+    "analysis_report": "directional-paragraph-analysis.txt",
+    "strict_analysis": "No issues found!"
+  },
+  "initial_development_failure": "One assertion compared styles XML with and without the XML declaration; fixed by comparing parsed canonical XML. Initial broad mapping tests passed. Separate reviewer diagnostics identified inherited reset and sparse style edit defects, fixed and covered by final regressions.",
+  "qualification_limits": [
+    "These are local native regression and LibreOffice converter checks. No installed Word/Zotero plugin acceptance claim.",
+    "Root is responsible for the final source-bound converter rerun and merged branch qualification.",
+    "Native paragraph first-line/hanging scalar IO is covered; this change does not claim new RTL list marker layout support."
+  ],
+  "independent_review": {
+    "report": "rtl-io-review.json",
+    "status": "all four identified probes pass on unchanged source hashes",
+    "cases": [
+      "Inherited first-line reset remains zero",
+      "Unrelated derived RTL style edit preserves physical margins/alignment",
+      "Partial style rebase retains new inherited left35 and owned right45",
+      "Foreign same-ID style payload preserved with exactly one native style"
+    ]
+  }
+}
