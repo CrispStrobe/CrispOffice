@@ -135,8 +135,8 @@ void main() {
         ),
         common: 'fo:color="#234567"',
         extraStyles:
-            '${_style('Bold', 'fo:font-weight="bold')}'
-            '${_style('Italic', 'fo:font-style="italic')}',
+            '${_style('Bold', 'fo:font-weight="bold"')}'
+            '${_style('Italic', 'fo:font-style="italic"')}',
       ),
     );
     for (final current in [document, _reopen(document)]) {

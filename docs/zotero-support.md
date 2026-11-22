@@ -84,6 +84,16 @@ Zotero-plugin acceptance remains a separate check. See the
 and the later [border qualification](validation/zotero-table-borders-20261122/README.md),
 along with [supported input details](zotero-support-details.md#libreoffice-field-formatting).
 
+### Matching hyperlink styles in ODT
+
+An ODT may give an ordinary hyperlink separate style names for its visited and
+unvisited states. Native import now accepts those names when their supported
+formatting and inheritance behavior are equivalent, including Western,
+complex-script and Asian text. Links with genuinely different appearances,
+missing styles, or differences hidden only by a child span remain refused.
+See the [continuation record](validation/zotero-link-equivalence-20261122/README.md)
+for the exact scope and pending executable qualification.
+
 ## Repair damaged reference metadata
 
 An existing citation or bibliography can retain readable text even when its

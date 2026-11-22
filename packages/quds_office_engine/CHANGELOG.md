@@ -4,6 +4,16 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Accept separately named visited/unvisited ODT hyperlink styles when resolved
+  supported formatting and inheritance state match across all script slots.
+  Preserve nullable fallback and explicit-property distinctions so child spans
+  cannot reveal a hidden difference. Keep actual visited-state differences,
+  missing styles and unsupported formatting guarded. Add 20 focused regression
+  cases for multilingual links, adjacent active Zotero fields, DOCX persistence
+  and refusal boundaries. This increment is source-reviewed; executable
+  qualification remains pending after workspace exhaustion. See the
+  [continuation record](../../docs/validation/zotero-link-equivalence-20261122/README.md).
+
 - Preserve supported visible table borders in native Zotero ODT import and
   explicit editable export: one solid RGB stroke per table, exact eighth-point
   widths from 0.25 to 12 pt, and independent cell sides. Resolve inherited
