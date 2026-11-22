@@ -277,8 +277,10 @@ after source-range reconstruction, preserving editor and DOCX offsets.
 The import is all-or-nothing. Invalid/ambiguous marks, crossed owners, protected
 or linked sections, ordinary unsupported sections, bookmarks, unsupported drawings,
 annotations, revisions, embedded objects, unsupported used styles and resource
-exhaustion refuse before publication. Relative/internal hyperlinks and distinct
-visited-link styles on authored text require further ownership/formatting support. A citation
+exhaustion refuse before publication. Relative/internal hyperlinks and genuinely
+different visited-link formatting on authored text require further ownership/
+formatting support. The equivalent-style continuation below permits different
+names only when supported formatting and inheritance state match. A citation
 whose cached runs contain a hyperlink also remains outside the native editable
 field contract; ordinary external hyperlinks outside citations are preserved.
 Unused style
@@ -631,6 +633,21 @@ engine inputs unchanged. They cover the original black-bordered DOCX cell,
 colored explicit-off sides and a colored vertical merge. Native tests, actual
 converter evidence and installed Word/LibreOffice Zotero-plugin acceptance
 remain separate, and earlier failed evidence is retained.
+
+## Equivalent hyperlink style continuation
+
+Ordinary hyperlinks may use different unvisited and visited style names when
+both resolve in the same inherited context to equivalent supported formatting
+and inheritance state. Compare all native script projections and retained
+script XML, plus raw nullable complex/Asian slots and explicit-property state;
+equal current glyph appearance alone is insufficient for nested spans.
+
+The [continuation record](../../validation/zotero-link-equivalence-20261122/README.md)
+contains 20 authored regression cases and independent source-review findings.
+Runtime tests, analyzer/formatter checks and converter/plugin acceptance remain
+pending. Actual state-dependent appearance, missing definitions and child-only
+masking of unequal parent styles stay refused. Existing glyph-free image-link
+handling is preserved.
 
 ## Increment 10: installed-host acceptance
 

@@ -134,10 +134,10 @@ Full threaded inboxes, event-driven shared search views, background synchronizat
 and cross-folder conversation indexing remain open.
 
 Outlook, Thunderbird and eM Client are comparison targets for complete workflows,
-reliability and usability. The following order extends the existing M00–M14
-plan rather than treating provider connectivity as full product parity.
+reliability and usability. The workflow areas below organize the existing
+M00–M14 scope. The immediate delivery sequence appears after the table.
 
-| Order | Workflow | Current position | Next acceptance boundary |
+| Area | Workflow | Current position | Next acceptance boundary |
 | --- | --- | --- | --- |
 | 1 | Recoverable composition | Multiple account-scoped local drafts, independent reply/forward drafts, attachment/reply recovery and interrupted-send warnings; offline draft entry for verified IMAP (including discovery), EWS, Gmail and Microsoft 365 accounts | Provider-side Drafts synchronization with explicit conflicts and repository-backed offline sessions |
 | 2 | Everyday mailbox workspace (M04W/M06) | Verified four-provider remembered-account chooser with exact routing, draft-safe explicit sign-in and guarded foreground handoff; repository-observed loaded/cached sessions, durable single/bulk flags, Move/Delete and Archive with remembered custom destinations, membership recovery, resumable header sync and bounded offline downloads | Retained multi-account sessions, complete shared synchronized workspace and unified live Inbox, durable retention/background scheduling and broader provider membership reconciliation |

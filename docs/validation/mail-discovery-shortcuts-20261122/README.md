@@ -115,9 +115,13 @@ The production delta relative to refreshed main is limited to the shared query
 predicate and its help copy; there is no engine/protocol/storage implementation
 delta. See [publication-review.json](publication-review.json).
 
-The concurrent Zotero continuation was still closing out on its own branch at
-the last snapshot. Its work is retained there, and main must be refreshed again
-immediately before merging this task. No unfinished branch is overwritten.
+The Zotero continuation subsequently completed and merged through PR #390.
+Remote main advanced to `f4d89bf436c81c32097c3255240aac3bb7929f52`.
+The final integration retains that main as a direct parent, including both the
+Word and Zotero increments. The engine tree is unchanged from that main; the two
+documentation overlaps preserve the correspondent-search introduction and all
+historical provenance. All 51 branch heads in the final inventory are accounted
+for; only this task's PR #391 remains open before publication.
 
 For the next executable checkout, start sparse so historical evidence archives
 do not exhaust the workspace before the pinned runtime is available:
@@ -132,3 +136,16 @@ The omitted historical evidence remains in Git and is readable by exact commit.
 Qualify the source with the committed regression suites before claiming runtime
 acceptance for this increment or beginning the larger storage-backed tag/rule
 implementation.
+
+## Final combined source
+
+The source union of task head
+`d7e3fc41bb5c17fcf5bf2ef9a61a2fbaf6d3d53e` and refreshed main
+`f4d89bf436c81c32097c3255240aac3bb7929f52` produces tree
+`ff870a8b0f7675a4fd271222121d2cadb822b003`.
+The independently constructed tree is **identical** to GitHub's native merge
+preview tree for PR #391. Subsequent task changes only record this evidence.
+
+See [final-main-review.json](final-main-review.json) for this exact integration.
+Runtime acceptance remains pending; source/tree agreement is not a Dart/Flutter
+test result.

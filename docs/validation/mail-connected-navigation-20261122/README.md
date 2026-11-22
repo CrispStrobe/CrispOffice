@@ -295,6 +295,19 @@ Each remote tree was checked against its local checkpoint before moving the
 branch with an expected-head lease and `force=false`. The qualification
 checkpoint follows the source checkpoint. GitHub Actions are not awaited.
 
+## Later ancestry reconciliation (22 November 2026)
+
+The Zotero continuation preserves this source-bound historical record and all
+38 original files in `final/reconciled-source-recovery/`. Main at
+`ea7ae724bea2f1e9052aa17f9926eb0659ae4262` contains the newer finalized
+bulk-provider and native-session fixtures, which supersede the variants above.
+Owners without a durable mutation journal do not wait for a late foreground
+reply; late owner admission still drains before explicit replacement sign-in.
+The [account-workspace record](../mail-account-workspace-20261122/README.md)
+documents that subsequent integration. This ancestry reconciliation executes
+no new tests and assigns no passing credit to the historical failed run or
+unexecuted recovery plans.
+
 ## Historical checkpoint recovery (2026-11-22)
 
 The Word source-text continuation reconciles the two remaining commits from
@@ -307,7 +320,9 @@ results, selective planning files, development analysis log and PR #384 intake
 remain reachable with their original blob identities and paths. The
 [original branch narrative](https://github.com/CrispStrobe/quds_office_suite/blob/a59e986a12d50c0d115b99c14cd8f746921c6f44/docs/validation/mail-connected-navigation-20261122/README.md)
 records their source bindings and failures. These historical artifacts are
-referenced in the continuation intake, without copying them into this checkout.
+referenced in the Word continuation intake without copying them into that
+checkpoint. The Zotero ancestry reconciliation preserves the 38 original
+recovery blobs in the reconciled tree.
 Their counts and proposed recovery plans do not qualify the current source.
 
 Current main's later Mail implementation and reconnect ordering are retained.
