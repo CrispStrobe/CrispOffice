@@ -48,6 +48,13 @@ reusable `QudsMailWorkspace` milestone remains open.
   changes as well as account switching. Disconnect starts observer cancellation
   before waiting for draft restoration, so a pending initial saved-mail view
   cannot prevent cleanup. Storage ownership ends only after both have drained.
+- Keep Exchange/cloud Close available while a request or draft restoration is
+  in progress. Stop further batch dispatch before awaiting a save, retire the
+  connection after the draft or Outbox transfer is preserved, and drain observers
+  before waiting for restoration. A submission shares its original preservation
+  with Close; a second save must not recreate an accepted or queued draft. Keep
+  its owner open until a known provider outcome finishes local persistence.
+  Failed preservation leaves the session and retained draft available for retry.
 - Restore drafts, cached state, Outbox and historical uncertainty only through
   their owning account. Navigation never treats unknown delivery as success
   and never replays a send or mailbox command.

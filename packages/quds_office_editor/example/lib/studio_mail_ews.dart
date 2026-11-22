@@ -191,6 +191,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   bool _needsRefresh = false;
   int _mailboxGeneration = 0;
   Future<void>? _pendingFlagWrite;
+  _SubmissionStorage? _submissionStorage;
   MailCancellationSource? _bulkCancellation;
   MailBulkFlagReport? _bulkReport;
   Map<MailRemoteIdentity, String> _bulkSubjects = const {};
@@ -798,26 +799,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     }
     final epoch = ++_accountEpoch;
     bool current() => mounted && epoch == _accountEpoch;
-    // Cancel provider work immediately, including authorization or a pending
-    // draft factory. A later sign-in still waits for every acquired local owner.
-    _disconnect(forNavigation: true, deferLocalClose: true);
-    var observerReleased = true;
-    final observerDrain = _stopCachedView().catchError((
-      Object _,
-      StackTrace _,
-    ) {
-      observerReleased = false;
-    });
     try {
-      // Closing the observer also resolves a restoration waiting for its first
-      // cache snapshot. Drain both before owner close, preserving the first
-      // failed cancellation for explicit Close instead of silently retrying it.
-      await _draftRestoration;
-      await observerDrain;
-      if (!current()) return;
-      if (!observerReleased) throw const _AccountOwnerReleaseFailure();
-      await _releaseRetiredAccount();
-      _checkDraftStoresReleased();
+      await _retireCurrentConnection(current);
     } on Object {
       if (current()) {
         setState(
@@ -827,6 +810,25 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     } finally {
       if (current()) setState(() => _navigating = false);
     }
+  }
+
+  Future<void> _retireCurrentConnection(bool Function() current) async {
+    // Cancel provider work immediately, including authorization or a pending
+    // draft factory. A later sign-in still waits for every acquired local owner.
+    _disconnect(forNavigation: true, deferLocalClose: true);
+    final observationReleased = _stopCachedView().then<bool>(
+      (_) => true,
+      onError: (Object _, StackTrace _) => false,
+    );
+    // Observer retirement also resolves a restoration waiting for its first
+    // cache snapshot. Start it before waiting for restoration, and preserve a
+    // first cancellation failure for explicit Close instead of retrying it here.
+    await _draftRestoration;
+    final released = await observationReleased;
+    if (!current()) return;
+    if (!released) throw const _AccountOwnerReleaseFailure();
+    await _releaseRetiredAccount();
+    _checkDraftStoresReleased();
   }
 
   void _disconnect({bool forNavigation = false, bool deferLocalClose = false}) {
@@ -903,6 +905,10 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       // release and must not open the next account while the owner is held.
       await _stopCachedView(retryFailed: true);
       await _pendingFlagWrite;
+      final submission = _submissionStorage;
+      if (submission != null && identical(submission.owner, owner)) {
+        await submission.completed;
+      }
       await owner?.close();
       if (identical(_retiredDraftStore, owner)) _retiredDraftStore = null;
     }();
@@ -938,6 +944,10 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       }
       await _mailboxViewClosing;
       await _pendingFlagWrite;
+      final submission = _submissionStorage;
+      if (submission != null && identical(submission.owner, store)) {
+        await submission.completed;
+      }
       if (mailboxStore != null &&
           identical(_mailboxCapture?.store, mailboxStore)) {
         _mailboxCapture?.dispose();
@@ -1806,8 +1816,12 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
 
     final cancellation = MailCancellationSource();
     final owner = _draftStore;
-    final settled = Completer<void>();
-    _pendingFlagWrite = settled.future;
+    // Foreground-only custom hosts have no receipt to write after a late reply.
+    // Durable owners must remain open until their coordinator finishes it.
+    final settled = owner is StudioMailFlagJournalOwner
+        ? Completer<void>()
+        : null;
+    if (settled != null) _pendingFlagWrite = settled.future;
     setState(() {
       _bulkCancellation = cancellation;
       _bulkReport = null;
@@ -1943,9 +1957,11 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       // The cache stop reports the failure and retains its observer handles.
       // No membership command may dispatch until explicit cleanup succeeds.
     } finally {
-      settled.complete();
-      if (identical(_pendingFlagWrite, settled.future)) {
-        _pendingFlagWrite = null;
+      if (settled != null) {
+        settled.complete();
+        if (identical(_pendingFlagWrite, settled.future)) {
+          _pendingFlagWrite = null;
+        }
       }
       if (_current(provider, lease) &&
           identical(_bulkCancellation, cancellation)) {
@@ -2138,6 +2154,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     final sender = _sender;
     final submission = _submission!;
     final accountEpoch = _accountEpoch;
+    final storage = _SubmissionStorage(_draftStore!);
+    _submissionStorage = storage;
     setState(() {
       _draft = draft;
       _busy = true;
@@ -2148,6 +2166,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     try {
       final entry = await store.enqueueOutbox(draft, sender);
       queued = true;
+      storage.markPreserved();
       if (!_current(provider, lease)) return;
       setState(() {
         _draft = null;
@@ -2188,6 +2207,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         });
       }
     } finally {
+      storage.complete();
+      if (identical(_submissionStorage, storage)) _submissionStorage = null;
       if (_current(provider, lease)) setState(() => _busy = false);
     }
   }
@@ -2399,6 +2420,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     var attempted = false;
     final wasPreviouslyUncertain = _submissionUncertain;
     final accountEpoch = _accountEpoch;
+    final storage = _SubmissionStorage(store);
+    _submissionStorage = storage;
     try {
       final wire = buildStudioMailMessage(draft, _sender).renderMessage();
       final attempt = '${_cloud ? 'cloud' : 'ews'}-send-${++_serial}';
@@ -2414,11 +2437,11 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       );
       lease.checkCurrent();
       await store.save(draft, submissionUncertain: true);
+      storage.markPreserved();
       lease.checkCurrent();
       _submissionUncertain = true;
-      // Closing can wait for a separate retained-draft save. Its intent must
-      // still stop this first dispatch if that save later fails and the host
-      // remains open. A response already in flight keeps its persistence path.
+      // Closing can wait for this preservation. Its intent must still stop the
+      // first dispatch; a response already in flight keeps its persistence path.
       if (_navigating || accountEpoch != _accountEpoch) {
         setState(() => _notice = null);
         return;
@@ -2484,6 +2507,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
             : widget.strings.ewsSubmissionRejected;
       });
     } finally {
+      storage.complete();
+      if (identical(_submissionStorage, storage)) _submissionStorage = null;
       if (_current(provider, lease) && _busy) {
         setState(() => _busy = false);
       }
@@ -2714,6 +2739,17 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   }
 
   Future<void> _saveRetainedDraft() async {
+    final submission = _submissionStorage;
+    if (submission != null && identical(submission.owner, _draftStore)) {
+      // The submission owns this revision until its final outcome is stored.
+      // Another save could recreate an accepted draft or one moved to outbox.
+      if (!await submission.preserved) {
+        throw const StudioMailDraftStoreException(
+          MailProblemCode.storageFailure,
+        );
+      }
+      return;
+    }
     final draft = _draft;
     if (draft == null) return;
     final store = _draftStore;
@@ -2816,8 +2852,6 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     var saving = false;
     setState(() => _navigating = true);
     try {
-      await _draftRestoration;
-      if (!current()) return;
       if (_mailboxViewReleaseFailed) {
         await _stopCachedView(retryFailed: true);
         if (!current()) return;
@@ -2829,9 +2863,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         await _saveRetainedDraft();
         if (!current()) return;
         saving = false;
-        _disconnect(forNavigation: true, deferLocalClose: true);
       }
-      await _releaseRetiredAccount();
+      await _retireCurrentConnection(current);
       if (!mounted || !current()) return;
       setState(() => _allowPop = true);
       Navigator.pop(context);
@@ -3809,6 +3842,26 @@ final class _AccountNavigationExpired implements Exception {
 
 final class _AccountOwnerReleaseFailure implements Exception {
   const _AccountOwnerReleaseFailure();
+}
+
+/// Preserves one submitted revision before retirement and keeps its owner alive
+/// until any accepted/rejected outcome has completed its local persistence.
+final class _SubmissionStorage {
+  _SubmissionStorage(this.owner);
+
+  final StudioMailDraftStore owner;
+  final _preserved = Completer<bool>();
+  final _completed = Completer<void>();
+
+  Future<bool> get preserved => _preserved.future;
+  Future<void> get completed => _completed.future;
+
+  void markPreserved() => _preserved.complete(true);
+
+  void complete() {
+    if (!_preserved.isCompleted) _preserved.complete(false);
+    _completed.complete();
+  }
 }
 
 /// Session-scoped vault implementation. No preferences, files or logs are used.
