@@ -4,6 +4,7 @@ import '../../opc/package_part.dart';
 import '../../opc/relationships.dart';
 import '../../xml/namespaces.dart';
 import '../../xml/xml_node.dart';
+import '../../xml/xml_reader.dart';
 import '../properties/wml_properties.dart';
 import 'wml_clone.dart';
 import 'wml_document.dart';

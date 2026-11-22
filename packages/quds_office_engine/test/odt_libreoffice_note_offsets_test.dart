@@ -266,7 +266,7 @@ void main() {
           _note('one', ''),
           generator: 'Other/1.0',
           configuration:
-              '<text:notes-configuration text:note-class="footnote" text:start-value="1"/>',
+              '<text:notes-configuration text:note-class="footnote" style:num-format="1" text:start-value="1"/>',
         ),
       );
       expect(

@@ -262,18 +262,87 @@ final class WordNoteNumbering {
     XmlElement? root,
     String rootName,
     bool endnote,
-  ) =>
-      source == null ||
-      source.isEmpty ||
-      (root?.localName == rootName &&
-          root?.namespaceUri == OfficeNamespaces.w &&
-          root!
-                  .childrenNamed(
-                    endnote ? 'endnotePr' : 'footnotePr',
-                    namespaceUri: OfficeNamespaces.w,
-                  )
-                  .length <=
-              1);
+  ) {
+    if (source == null || source.isEmpty) return true;
+    if (root == null ||
+        root.localName != rootName ||
+        root.namespaceUri != OfficeNamespaces.w ||
+        !_completeNumberingXml(source)) {
+      return false;
+    }
+    final name = endnote ? 'endnotePr' : 'footnotePr';
+    if (root.childrenNamed(name, namespaceUri: OfficeNamespaces.w).length > 1) {
+      return false;
+    }
+    bool containsProperties(XmlElement element) =>
+        (element.localName == name &&
+            element.namespaceUri == OfficeNamespaces.w) ||
+        element.childElements.any(containsProperties);
+    // This reader does not project markup-compatibility alternatives. A
+    // wrapped native configuration must not masquerade as an absent one.
+    return root.childElements.every(
+      (child) =>
+          child.localName == name && child.namespaceUri == OfficeNamespaces.w ||
+          !containsProperties(child),
+    );
+  }
+
+  // The shared DOM reader intentionally tolerates incomplete native source
+  // for preservation. Exportable numbering needs a stronger proof without
+  // changing that reader or the editor's existing label fallback.
+  static bool _completeNumberingXml(String source) {
+    if (source.length > 8 * 1024 * 1024) return false;
+    final stack = <String>[];
+    var roots = 0;
+    var elements = 0;
+    try {
+      final reader = XmlPullReader(source);
+      while (reader.next()) {
+        switch (reader.eventType) {
+          case XmlEventType.startElement:
+            if (++elements > 50000 ||
+                stack.length >= 128 ||
+                reader.attributeCount > 128) {
+              return false;
+            }
+            if (stack.isEmpty && ++roots != 1) return false;
+            final qualifiedAttributes = <String>{};
+            final expandedAttributes = <(String, String)>{};
+            for (var index = 0; index < reader.attributeCount; index++) {
+              if (!qualifiedAttributes.add(
+                    reader.attributeQualifiedName(index),
+                  ) ||
+                  !expandedAttributes.add((
+                    reader.attributeNamespace(index),
+                    reader.attributeLocalName(index),
+                  ))) {
+                return false;
+              }
+            }
+            stack.add(reader.qualifiedName);
+          case XmlEventType.endElement:
+            if (stack.isEmpty || stack.removeLast() != reader.qualifiedName) {
+              return false;
+            }
+          case XmlEventType.characters:
+            if (stack.isEmpty && !reader.isWhitespace) return false;
+          case XmlEventType.cdata:
+            if (stack.isEmpty) return false;
+          case XmlEventType.dtd:
+            return false;
+          case XmlEventType.none:
+          case XmlEventType.xmlDeclaration:
+          case XmlEventType.processingInstruction:
+          case XmlEventType.comment:
+          case XmlEventType.endDocument:
+            break;
+        }
+      }
+      return roots == 1 && stack.isEmpty;
+    } on FormatException {
+      return false;
+    }
+  }
 
   /// Formats an exact positive ordinal using a supported native Word format.
   /// Returns null outside the native implementation's supported range.
@@ -353,6 +422,24 @@ final class _NoteNumberOptions {
         ?.firstChild(name, namespaceUri: OfficeNamespaces.w)
         ?.getAttribute('val', namespaceUri: OfficeNamespaces.w);
     var exact = this.unambiguous && unambiguous;
+    if (properties != null &&
+        (properties.childElements.any(
+              (child) =>
+                  child.namespaceUri != OfficeNamespaces.w ||
+                  !const {
+                    'pos',
+                    'numFmt',
+                    'numStart',
+                    'numRestart',
+                    'footnote',
+                    'endnote',
+                  }.contains(child.localName) ||
+                  child.childElements.isNotEmpty ||
+                  !RegExp(r'^[ \t\r\n]*$').hasMatch(child.text),
+            ) ||
+            !RegExp(r'^[ \t\r\n]*$').hasMatch(properties.text))) {
+      exact = false;
+    }
     for (final name in ['numFmt', 'numStart', 'numRestart']) {
       final matches = properties
           ?.childrenNamed(name, namespaceUri: OfficeNamespaces.w)
@@ -363,6 +450,7 @@ final class _NoteNumberOptions {
           raw == null ||
           raw.isEmpty ||
           matches.single.childElements.isNotEmpty ||
+          !RegExp(r'^[ \t\r\n]*$').hasMatch(matches.single.text) ||
           (name == 'numStart' &&
               (!RegExp(r'^[0-9]+$').hasMatch(raw) ||
                   int.tryParse(raw) == null))) {
