@@ -41,6 +41,52 @@ WmlDocument _document() {
   return document;
 }
 
+WmlDocument _romanEndnotes({bool uppercase = false, bool restart = false}) {
+  final cited = WmlParagraph(inlines: [WmlRun(text: 'Cited note ')]);
+  WordZotero.insertCitation(
+    cited,
+    WordZotero.fields(_document()).single.citation!,
+  );
+  return WmlDocument(
+    zoteroDocumentData: _preferences,
+    sections: [
+      WmlSection(
+        sourceProperties: uppercase || restart
+            ? WmlSectionSource(
+                xml:
+                    '<w:sectPr xmlns:w="${OfficeNamespaces.w}">'
+                    '<w:endnotePr><w:numFmt w:val="${uppercase ? 'upperRoman' : 'lowerRoman'}"/>'
+                    '${restart ? '<w:numRestart w:val="eachSect"/>' : ''}'
+                    '</w:endnotePr></w:sectPr>',
+                values: const {},
+              )
+            : null,
+        blocks: [
+          WmlParagraph(
+            inlines: [
+              WmlRun(text: 'Uncited '),
+              WmlRun(text: '41', noteRefId: 41, noteRefEndnote: true),
+              WmlRun(text: ' cited '),
+              WmlRun(text: '72', noteRefId: 72, noteRefEndnote: true),
+              WmlRun(text: ' tail'),
+            ],
+          ),
+        ],
+      ),
+    ],
+    endnotes: [
+      WmlNote(
+        id: 41,
+        endnote: true,
+        paragraphs: [
+          WmlParagraph(inlines: [WmlRun(text: 'Uncited note')]),
+        ],
+      ),
+      WmlNote(id: 72, endnote: true, paragraphs: [cited]),
+    ],
+  );
+}
+
 class _Picker extends FilePicker {
   String? savePath;
   Completer<String?>? pending;
@@ -272,4 +318,96 @@ void main() {
     },
     variant: TargetPlatformVariant.only(TargetPlatform.windows),
   );
+
+  for (final upper in [false, true]) {
+    testWidgets(
+      '${upper ? 'upper' : 'default lower'} Roman endnotes export as an editable copy',
+      (tester) async {
+        final directory = Directory.systemTemp.createTempSync('zotero-roman-');
+        addTearDown(() => directory.deleteSync(recursive: true));
+        final copy = File('${directory.path}/roman.odt');
+        final saved = File('${directory.path}/Research.docx');
+        final picker = _Picker()..savePath = copy.path;
+        FilePicker.platform = picker;
+        final word = await _studio(
+          tester,
+          document: _romanEndnotes(uppercase: upper),
+        );
+        word.caret.logicalIndex = 0;
+        word.caret.collapseSelection();
+        word.insertText('Edited ');
+        await _frames(tester);
+        final original = word.document;
+        final revision = word.contentRevision;
+        final instruction = word.zoteroFields.single.instruction;
+        final labels = upper ? ['I', 'II'] : ['i', 'ii'];
+
+        _action(tester, 'export-zotero-odt').onSelected!();
+        await _frames(tester);
+        await _waitFor(tester, () => copy.existsSync());
+        await _waitFor(
+          tester,
+          () => _action(tester, 'save').onSelected != null,
+        );
+        expect(word.document, same(original));
+        expect(word.contentRevision, revision);
+        expect(word.isDirty, isTrue);
+        expect(word.canUndo, isTrue);
+        expect(word.zoteroFields.single.instruction, instruction);
+        final imported = await tester.runAsync(
+          () => OdtDocumentReader.readBytes(copy.readAsBytesSync()),
+        );
+        final numbering = WordNoteNumbering(imported!);
+        expect(imported.endnotes.map(numbering.labelFor), labels);
+        expect(
+          WordZotero.fields(imported).single.paragraph,
+          same(imported.endnotes[1].paragraphs.single),
+        );
+        expect(WordZotero.fields(imported).single.instruction, instruction);
+        expect(picker.names, ['Research.odt']);
+
+        picker.savePath = saved.path;
+        _action(tester, 'save').onSelected!();
+        await _frames(tester);
+        await _waitFor(tester, () => !word.isDirty);
+        final reopened = WordDeserializer().readBytes(saved.readAsBytesSync());
+        final reopenedNumbering = WordNoteNumbering(reopened);
+        expect(reopened.endnotes.map(reopenedNumbering.labelFor), labels);
+        expect(WordZotero.fields(reopened).single.instruction, instruction);
+        expect(picker.names, ['Research.odt', 'Research.docx']);
+        expect(tester.takeException(), isNull);
+      },
+      variant: TargetPlatformVariant.only(TargetPlatform.windows),
+    );
+  }
+
+  testWidgets('restarting Roman notes refuse before destination selection', (
+    tester,
+  ) async {
+    final picker = _Picker();
+    FilePicker.platform = picker;
+    final document = _romanEndnotes(restart: true);
+    final word = await _studio(tester, document: document);
+    word.insertText('Unsaved ');
+    await _frames(tester);
+    final revision = word.contentRevision;
+    final originalText = document.paragraphs.single.text;
+    _action(tester, 'export-zotero-odt').onSelected!();
+    await _frames(tester);
+    await _waitFor(
+      tester,
+      () => find
+          .textContaining('Could not export Zotero ODT.')
+          .evaluate()
+          .isNotEmpty,
+    );
+    expect(picker.names, isEmpty);
+    expect(word.document, same(document));
+    expect(word.contentRevision, revision);
+    expect(document.paragraphs.single.text, originalText);
+    expect(word.isDirty, isTrue);
+    expect(word.canUndo, isTrue);
+    expect(_action(tester, 'export-zotero-odt').onSelected, isNotNull);
+    expect(tester.takeException(), isNull);
+  }, variant: TargetPlatformVariant.only(TargetPlatform.windows));
 }
