@@ -11,6 +11,7 @@ The canonical fixtures are:
 
 | Suite | Cases | Scope |
 | --- | ---: | --- |
+| [`word_table_navigation_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_table_navigation_v1.json) | 32 | Typed row/column cell selection, named indexes, captured aliases/helpers, existing cell operations and positioned refusals |
 | [`word_integer_arithmetic_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_integer_arithmetic_v1.json) | 54 | Integer division and signed Mod, rounding, precedence, Empty/Null, Long bounds, complete cell plans and positioned refusals |
 | [`word_cell_suffix_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_cell_suffix_v1.json) | 73 | Direct cell appends, named Text, aliases/helpers, evaluation order, Unicode and strict paragraph/story/argument refusals |
 | [`word_cell_prefix_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_cell_prefix_v1.json) | 78 | Direct/projected cell prefixes, named Text, captured aliases/helpers, portable text constants, strict argument/content/selector boundaries |
@@ -38,6 +39,16 @@ is not presented as resolved by an Office-host run. The complete grouped BAS
 separately exercises document publication, preservation, replay and rollback.
 See the [arithmetic contract](vba-macros-details.md#integer-division-and-remainder)
 and [local record](validation/word-vba-integer-arithmetic-20261122/README.md).
+
+The table navigation suite independently specifies 20 complete plans and 12
+positioned refusals. It verifies row/column axis mapping, typed collections,
+named argument binding, preserved aliases/helpers and direct-cell origin
+restrictions. Its expectations distinguish Microsoft member documentation from
+the explicit Quds no-read and strict-index contracts; no installed Word result
+is claimed. The same corpus runs through the generic VM/JavaScript conformance
+driver. Native document preservation and the complete BAS example are qualified
+separately; see the [selector contract](vba-word-macros-details.md#table-row-and-column-navigation)
+and [local record](validation/word-vba-table-navigation-20261122/README.md).
 
 The cell suffix suite independently specifies 27 complete plans and 46
 positioned diagnostics. It distinguishes direct `Cell.Range.InsertAfter`

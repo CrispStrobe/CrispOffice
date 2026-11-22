@@ -1,0 +1,19 @@
+{
+  "source_commit": "5d18df8dccaed89fd42720bb63dae09ae83d90ae",
+  "dart_version": "Dart SDK version: 3.14.1 (stable) (Tue Nov 17 00:01:24 2026 -0800) on \"linux_x64\"",
+  "node_version": "v24.22.3",
+  "repository_lock_sha256": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+  "resolved_lock_sha256": "0c3f527784e6f4a057d4fdf0a4e124e841a5ef0f521db06d7485c86cb0d6bf09",
+  "resolved_package_count": 56,
+  "dependency_changes": {},
+  "isolation": "Reduced scratch root workspace; original package manifests, sources, tests, fixtures, and tools unchanged; local package config maps to working checkout. Canonical Flutter workspace has not been resolved.",
+  "runner": "/workspace/scratch/3706fdacd6ce/runtime-word/run-engine-tests.sh",
+  "env": {
+    "PUB_CACHE": "/workspace/scratch/3706fdacd6ce/runtime-word/pub-cache",
+    "TMPDIR": "/workspace/scratch/3706fdacd6ce/runtime-word/tmp",
+    "XDG_CONFIG_HOME": "/workspace/scratch/3706fdacd6ce/runtime-word/config",
+    "XDG_CACHE_HOME": "/workspace/scratch/3706fdacd6ce/runtime-word/cache",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "CI": "true"
+  }
+}
