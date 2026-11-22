@@ -14,6 +14,9 @@ explicit worksheet/range bindings, reusable `ByVal` procedures and scalar
 functions, conditions, loops, fixed and dynamic one-dimensional arrays, `ReDim`/`Preserve`,
 `Erase`, module `Option Base`, `For Each`, and the bounded String intrinsics
 `Len`, `Left$`, `Right$`, `Mid$`, and `Join` over allocated local String arrays.
+Standalone `Mid` / `Mid$` assignment also replaces a span of a mutable local
+String or String-valued Variant, including allocated array elements, without
+changing its length.
 Scalar Variants now support explicit
 `Empty`/`Null`, state predicates and bounded `CVar`/`CBool`/`CDbl`/`CLng`/`CStr`
 conversions, including default array/function behavior and native Empty clears.
@@ -58,7 +61,23 @@ and [the native macro contract](MACROS.md).
 
 ## Ordered milestones and acceptance
 
-The current continuation adds typed table row/column navigation. `Rows`, `Row`,
+The current continuation adds source-only `Mid` / `Mid$` assignment for fixed-width
+labels and template data. Local String/Variant variables, allocated String/Variant
+array elements, `ByVal` helper parameters and function results retain their
+existing ownership. Target/index, start, length and replacement are evaluated
+once in source order. Bounded UTF-16 replacement never grows the target, and
+copy work is charged before allocation. Strict types, inactive-source checks,
+array accounting and native publication guards remain shared across adapters.
+
+The [complete BAS](../packages/quds_office_engine/example/macros/word_fixed_width_labels.bas),
+[independent corpus](../packages/quds_office_engine/test/fixtures/vba_conformance/mid_assignment_v1.json),
+[exact contract](vba-macros-details.md#replacing-part-of-a-source-string) and
+[local qualification](validation/word-vba-mid-assignment-20261122/README.md)
+define this Stage 2 increment. Property lvalues, byte-mode edits, implicit String
+coercion, live document reads and installed Office differential acceptance
+remain separate work.
+
+The preceding continuation adds typed table row/column navigation. `Rows`, `Row`,
 `Columns`, `Column` and `Cells` bindings retain their selected table and axis
 through aliases, nested `With` and required `ByVal` helpers. Direct collection
 selection and `Item` accept required named `Index` values, including `Tables`;

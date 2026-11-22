@@ -59,6 +59,20 @@ layout CSS remain guarded. Installed-plugin acceptance is still open.
 | --- | --- |
 | Intake audit and execution plan | `e84fc1d6c872d450dc485f1b981562792fbd082f` |
 | Paragraph/color implementation and regression cases | `7b9d50259f9d6bb9b39678ec4afced644e88c38b` |
+| Direction lifecycle, exact highlight rendering and support contract | `aac3dda7a052c18f6f5bcc5e84a8d7c8cea8af95` |
+
+The first late intake identified new Word substring-assignment work and an
+unfinished Mail Archive checkpoint. The Word head
+`19a63d4455540bd797e546ab82ec14db128abea0` passed its four new suites and seven
+shared language suites in an independent checkout before integration. Its
+original ancestry and author evidence are retained. Final integrated checks
+will report their own counts separately from development/isolated runs.
+
+Mail head `9d8758e55` was explicitly marked unfinished and added an enum case
+without all downstream switch handling. It remains preserved on its source
+branch while a completed successor is checked before publication. The exact
+late-ref audit is `late-intake-1.json`; this does not change the initial proof
+that all captured starting branches/PRs were already included in main.
 
 Local development checks have exercised the implementation and identified the
 empty-paragraph and alignment/direction fixes above. Final integrated source
