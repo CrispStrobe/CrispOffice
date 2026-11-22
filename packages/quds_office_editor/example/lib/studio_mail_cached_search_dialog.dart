@@ -49,6 +49,7 @@ class _StudioMailCachedSearchDialogState
     with WidgetsBindingObserver {
   final _query = TextEditingController();
   final _retired = <StudioMailCachedSearchSession>{};
+  final _folderOwners = <StudioMailDraftStore>{};
   late final Future<void> _opening;
   late final StudioMailSavedSearchStore? _savedStore;
   Future<void>? _saving;
@@ -223,6 +224,7 @@ class _StudioMailCachedSearchDialogState
     await _accountRefresh;
     try {
       await _releaseRetired();
+      await _releaseFolderOwners();
     } on Object {
       // A forced route disposal has no surface on which to report a failure.
     }
@@ -456,6 +458,7 @@ class _StudioMailCachedSearchDialogState
     final epoch = _epoch;
     await _savedOperation(() async {
       await _releaseRetired();
+      await _releaseFolderOwners();
       if (!_active(epoch)) return;
       final options = <StudioMailFolderOption>[];
       for (final expected in accounts) {
@@ -471,6 +474,7 @@ class _StudioMailCachedSearchDialogState
         final identity = studioMailLocalAccountIdentity(expected);
         final factory = widget.draftStoreFactory ?? openStudioMailDraftStore;
         final owner = await factory(identity);
+        _folderOwners.add(owner);
         try {
           if (!_active(epoch)) return;
           if (owner is! StudioMailMailboxStoreOwner) {
@@ -533,6 +537,7 @@ class _StudioMailCachedSearchDialogState
           }
         } finally {
           await owner.close();
+          _folderOwners.remove(owner);
         }
       }
       if (!_active(epoch)) return;
@@ -659,6 +664,16 @@ class _StudioMailCachedSearchDialogState
     } finally {
       if (mounted) setState(() => _savedBusy = false);
       _scheduleRefresh();
+    }
+  }
+
+  /// A failed local owner release remains visible for a later explicit retry.
+  /// Never open another folder inventory over a lease that failed to close.
+  Future<void> _releaseFolderOwners() async {
+    while (_folderOwners.isNotEmpty) {
+      final owner = _folderOwners.first;
+      await owner.close();
+      _folderOwners.remove(owner);
     }
   }
 
@@ -1035,6 +1050,7 @@ class _StudioMailCachedSearchDialogState
     await _accountRefresh;
     try {
       await _releaseRetired();
+      await _releaseFolderOwners();
     } on Object {
       if (mounted) {
         setState(() {
