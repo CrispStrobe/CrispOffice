@@ -1,0 +1,18 @@
+{
+  "baseline_commit": "3f3cb8508",
+  "baseline_existing_golden_drift_pixels": 3378,
+  "candidate_original_golden_drift_pixels": 4900,
+  "renderer_delta_pixels": 1522,
+  "renderer_delta_bounds_inclusive": [
+    160,
+    148,
+    221,
+    172
+  ],
+  "golden_patched": "packages/quds_office_editor/test/goldens/linux/office_fidelity_word.png",
+  "golden_before_sha256": "8d3cb6f2a8e82f6fc15e62c2c53ba9907cbf33ff9e213dbe1f4dfc46cfd74ace",
+  "golden_after_sha256": "f351f30eb401d03d1f59c5c6a6c4fcde2dd410f8367b7467e2c3909fb8493a5f",
+  "remaining_golden_drift_pixels": 3378,
+  "remaining_drift_locations_identical_to_initial_main": true,
+  "renderer_delta_region_initial_main_matches_original_golden": true
+}

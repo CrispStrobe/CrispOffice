@@ -1,0 +1,97 @@
+{
+  "reviewer": "intake_audit",
+  "status": "complete; no unresolved findings in agreed changed-path scope",
+  "completed_at_utc": "2026-11-22T11:05:03.215018+00:00",
+  "head_at_review": "5d79e934c5400594410bb6dfcb347d279fe0c335",
+  "scope": [
+    "Native paragraph logical/physical indentation and alignment",
+    "Inherited/overridden bidi and edited style definitions",
+    "Sparse source XML, native namespace aliases and extension retention",
+    "Unmodified field/run-color preservation paths"
+  ],
+  "findings": [
+    {
+      "id": "inherited-firstline-reset",
+      "status": "resolved",
+      "before": "Reset0 reopened inherited12",
+      "after": "Reset0 remains0 after DOCX reopen",
+      "fix": "Owned first-line/hanging group writes explicit zero; cascade removes opposing inherited slot."
+    },
+    {
+      "id": "rtl-style-edit",
+      "status": "resolved",
+      "before": "Unrelated derived RTL font-size edit mirrored L12/R45/right alignment to L45/R12/left",
+      "after": "L12/R45/right alignment preserved",
+      "fix": "Catalog serialization resolves effective direction using current style bases/defaults and retains own native bidi."
+    },
+    {
+      "id": "sparse-style-rebase",
+      "status": "resolved",
+      "before": "RTL to LTR base change stamped unowned physical left0",
+      "after": "Inherited left35 and authored right45 retained",
+      "fix": "Sparse source side ownership migrates with direction, including explicit zero and raw native units."
+    },
+    {
+      "id": "foreign-style-id-collision",
+      "status": "resolved",
+      "before": "Foreign same-ID style overwritten; two native IDs created",
+      "after": "One native style, one foreign style and opaque payload retained",
+      "fix": "Style lookup/removal uses native namespace and native styleId."
+    },
+    {
+      "id": "rtl-ruler-side-ownership",
+      "status": "resolved by reviewer under explicit root assignment",
+      "before": "RTL leading family used physical left instead of right",
+      "after": "Physical right leads in RTL; left remains trailing. Markers, hit targets, guides and drags agree.",
+      "tests": "19 passed in dedicated directional10 plus existing cell-margin9; see rtl-ruler-validation.json"
+    }
+  ],
+  "checked_probes": {
+    "firstline_reset_stays_zero": true,
+    "unrelated_rtl_style_edit_preserves_layout": true,
+    "rebase_retains_authored_side_and_inherited_side": true,
+    "native_style_id_unique": true,
+    "foreign_style_preserved": true
+  },
+  "reviewed_file_hashes": {
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart": "c3a56aac13be609d5500803f008e9bbf11307467b3ca831a829f49e61127c88a",
+    "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart": "2ad4bddd451b8b4773fdb3aafdff663cdde4db4a0f2ab3b681d5599d24a1fdf2",
+    "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart": "fff42f8c3c551b538ae3bc274bb401c9a2baf357b9321d965e086c11b78809c2",
+    "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart": "8c8329762ebd3232ab3d1fb16b086279aae18ab48103c36d4f54079056dd51cf",
+    "packages/quds_office_engine/test/word_directional_paragraph_io_test.dart": "394a52539f1013f1163439d9cac80b6f603fb102643902329ad6ad72f94680ee"
+  },
+  "source_unchanged_during_final_probes": true,
+  "initial_observed_file_hashes": {
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart": "c3a56aac13be609d5500803f008e9bbf11307467b3ca831a829f49e61127c88a",
+    "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart": "e779c7f7ed732bcc58fa1608bb856515265428e7b44b611575204ae2f6f4f773",
+    "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart": "6ebefc968707ddebceacd3919865481a01f9d9f2ffae71a24e96daf472a4e562",
+    "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart": "8c8329762ebd3232ab3d1fb16b086279aae18ab48103c36d4f54079056dd51cf",
+    "packages/quds_office_engine/test/word_directional_paragraph_io_test.dart": "6eb0d62d4220d703d9bd8393088064ef5312ba119ee87a3115925f1d293123de"
+  },
+  "final_probe_source_snapshot": "/workspace/scratch/eba1aedcc131/validation/rtl-io-review-final-sources.json",
+  "ruler_validation": "/workspace/scratch/eba1aedcc131/validation/rtl-ruler-validation.json",
+  "code_review_observations": [
+    "Direct paragraph ind/jc are resolved after effective bidi; native aliases merge by logical side across styles/direct formatting.",
+    "Sparse ind side and first-line groups retain unowned source metadata and inheritance; old aggregate snapshot ownership remains supported.",
+    "Unchanged native style definitions remain byte-preserved; edited style packets retain own bidi, source namespaces/extensions and unowned pPr/rPr.",
+    "Paragraph field metadata transfer and run color/highlight preservation paths remain intact; this review does not claim a new full field/color suite execution."
+  ],
+  "evidence_hashes": {
+    "rtl-io-review-final-sources.json": "26772be88513895489dc2064e057ba4007c43060af8adc383248a59f9f0c05b8",
+    "rtl-io-review-initial.json": "b6b7c2329dca060f6b8e1e77a01fe22006cabecc7b31969488bfda0606e587ff",
+    "rtl-io-review-probe-final.jsonl": "5db89eb1efcfc1c2ce4ee3a4cb42e8a721c0f95eb2b868b4f5f2b46c0ac5ce7d",
+    "rtl-io-review-probe-final.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "rtl-io-review-probe-fixed.jsonl": "5db89eb1efcfc1c2ce4ee3a4cb42e8a721c0f95eb2b868b4f5f2b46c0ac5ce7d",
+    "rtl-io-review-probe-fixed.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "rtl-io-review-probe.dart": "fc477e1edf89ce5c9583f284dd35097e4e9ce329fc629fd6d57a830af68850f6",
+    "rtl-io-review-probe.jsonl": "a71cea54fa536d46549c0371208eaa7be401cda5a6ccb53233b6ac76955e09f6",
+    "rtl-io-review-probe.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "rtl-io-style-inheritance-probe-final.jsonl": "8fa388fefa7ae69e9241574a2f175732e7796d4b7a5308d8afe01a55727de6ae",
+    "rtl-io-style-inheritance-probe-final.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "rtl-io-style-inheritance-probe.dart": "5c70b7873682a5b98d94ec719004cf751749c7baf0f3e78bd96e11a0c7678d5f",
+    "rtl-io-style-inheritance-probe.jsonl": "2a1f38a1136d242a78d8ad2628175210c081dfa8385e6d86f21ee69741cec642",
+    "rtl-io-style-inheritance-probe.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "execution_limits": "Only four bounded diagnostic scenarios rerun for review; no full suites or CI. Ruler own targeted tests separately ran19. Root will perform frozen combined source acceptance.",
+  "edits": "Reviewer edited only office_ruler.dart and word_ruler_directional_indent_test.dart under root authorization. No index/commit/remote mutations; IO production changes belong to IO agent."
+}

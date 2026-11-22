@@ -1,0 +1,35 @@
+{
+  "observed_at_utc": "2026-11-22T11:03:08.943390+00:00",
+  "scope": "Bounded RTL ruler physical-margin correction; markers, hit/guide coordinates, side ownership, firstLine/hanging drags, DOCX reopen.",
+  "production_path": "packages/quds_office_editor/lib/src/editor_word/office_ruler.dart",
+  "new_test_path": "packages/quds_office_editor/test/word_ruler_directional_indent_test.dart",
+  "existing_test_path": "packages/quds_office_editor/test/word_ruler_cell_margin_test.dart",
+  "new_cases": 10,
+  "existing_cases": 9,
+  "passed_cases": 19,
+  "completed": true,
+  "success": true,
+  "command": "flutter test --no-pub test/word_ruler_directional_indent_test.dart test/word_ruler_cell_margin_test.dart --reporter json",
+  "strict_analysis": "dart analyze --fatal-infos packages/quds_office_editor/lib/src/editor_word/office_ruler.dart packages/quds_office_editor/test/word_ruler_directional_indent_test.dart",
+  "analysis_exit": 0,
+  "source_hashes": {
+    "packages/quds_office_editor/lib/src/editor_word/office_ruler.dart": "c267c730f8824f5ef0291eb3089f79d2617461006dd4eb60993b22c611178cac",
+    "packages/quds_office_editor/test/word_ruler_directional_indent_test.dart": "daa8dabb752b389d828342d37a064434562562ec72107d2122723f38a505ddb1",
+    "packages/quds_office_editor/test/word_ruler_cell_margin_test.dart": "c5c48efa09073f2bf7733cb2e8a78dcdc4801d6b117f09ebe779956ea4efc1b0"
+  },
+  "own_source_unchanged_during_targeted_rerun": true,
+  "full_rerun_context_snapshot": "/workspace/scratch/eba1aedcc131/validation/rtl-review-rerun-sources.json",
+  "other_context_files_changed_since_snapshot": [
+    "packages/quds_office_engine/lib/src/word/serial/word_property_io.dart",
+    "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart"
+  ],
+  "reports": {
+    "rtl-ruler-dev.stderr": "dc7f12c99c9c29245dbf31184201af69348360a4127f96c2469681575b4158fd",
+    "rtl-ruler-analyze.log": "7e52d4717f956de393249a49c1cb4b5ecd51d78db0acf591eaec3cdf7ac4882f",
+    "rtl-ruler-dev.jsonl": "37abd001ca4a744d606a2e70b4170b221049be855884a5b04cd93bab62314b36",
+    "rtl-ruler-accepted.jsonl": "ff8d6f4c875fdb2b54af5571034518b2ab6e164b2796d59239f4d81c052a41c3",
+    "rtl-ruler-accepted.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "initial_compile_failure": "The first reporter rtl-ruler-dev encountered the IO agent incomplete _preserveCatalogStyle edit. It is preserved and excluded from acceptance.",
+  "source_mutations": "Only office_ruler.dart and dedicated new ruler test edited. No index, commit or remote changes."
+}
