@@ -27,7 +27,8 @@ final class StudioMailAccountNavigationTarget {
         if ((endpoint.scheme != 'imap' && endpoint.scheme != 'imaps') ||
             endpoint.path.isNotEmpty ||
             !endpoint.hasPort ||
-            endpoint.port <= 0) {
+            endpoint.port <= 0 ||
+            endpoint.port > 65535) {
           // Native account fingerprints include the exact server port. Dart
           // canonicalizes port zero away for these non-HTTP schemes; a missing
           // port must not silently turn that invalid route into a default.

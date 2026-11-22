@@ -1,0 +1,29 @@
+{
+  "cases_credited": 0,
+  "command": [
+    "/workspace/scratch/85a369f34dbb/runtime/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=2",
+    "--reporter=json",
+    "test/word_ruler_directional_indent_test.dart"
+  ],
+  "cwd": "/workspace/scratch/85a369f34dbb/quds_office_suite/packages/quds_office_editor",
+  "exit_code": 130,
+  "interrupted_at_utc": "2026-11-22T11:17:26.065959+00:00",
+  "name": "editor-startup-interrupted",
+  "reason": "Official Flutter invocation held the artifact cache startup lock for several minutes with no stdout/stderr or test events. Interrupted cleanly to rerun with verbosity; no lock deletion or SDK patches.",
+  "start_time_lower_bound_utc": "2026-11-22T11:13:52.775021+00:00",
+  "stderr": {
+    "gzip_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "path": "editor.stderr.gz",
+    "raw_bytes": 0,
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "gzip_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "path": "editor.jsonl.gz",
+    "raw_bytes": 0,
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

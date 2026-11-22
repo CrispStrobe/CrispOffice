@@ -1,0 +1,18 @@
+{
+  "scope": "development regression; final combined qualification is recorded separately",
+  "environment": "source runtime/env.sh (CI=true, pinned SDK/PUB_CACHE, analytics suppressed), BOT=true",
+  "test_cases": 12,
+  "passing": 12,
+  "failed": 0,
+  "skipped": 0,
+  "done": {
+    "success": true,
+    "type": "done",
+    "time": 14327
+  },
+  "source_hashes_at_summary": {
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart": "9ea970eb3fc4e51089ddb0e9f964ec8e70fca0d7f474d9556a84f10c2cdcb2ab",
+    "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart": "d31b102c49442a337e332f563ca9ee0c0ee30ad2eeadc3331339fce055a8b8d2"
+  },
+  "jsonl_sha256": "1affa214ea86f8b56ae2eb0bb19fa0f5329e45fde927baa9fdb1bef3beee3baf"
+}

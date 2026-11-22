@@ -41,7 +41,9 @@ concurrently forgotten or replaced shortcut. Custom directories without that
 conditional capability retain their existing metadata.
 
 Native Close continues to hide the mounted Mail pane. Failed owner release
-blocks another sign-in; a failed native close may require a host restart.
+or observer cancellation blocks another sign-in. Native **Retry closing account**
+and provider Close/Back preserve the retained release work for an explicit
+recovery attempt; a persistent failure may still require a host restart.
 Simultaneous background accounts, a unified live Inbox and new secret persistence
 are outside this increment.
 
@@ -51,6 +53,10 @@ for actual source boundaries and executed acceptance gates. The next sequence is
 remembered Archive destinations, categories/rules, body/provider search,
 persistent conversations and provider Drafts/Sent reconciliation, then fuller
 background multi-account work. M04W and complete desktop-client parity remain open.
+
+The [initial account-navigation continuation](account-navigation.md) and its
+development evidence are retained. Its prepared final qualification plan is
+not evidence that the final suite ran or passed on this combined source.
 
 ## Previous increment: explicit provider Archive
 

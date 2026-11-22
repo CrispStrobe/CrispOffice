@@ -150,10 +150,10 @@ final class _Client extends Fake implements mail.MailClient {
     this.headerGate,
   });
 
-  final Completer<void>? connectGate;
-  final Completer<void>? folderGate;
-  final Completer<void>? selectGate;
-  final Completer<void>? headerGate;
+  Completer<void>? connectGate;
+  Completer<void>? folderGate;
+  Completer<void>? selectGate;
+  Completer<void>? headerGate;
   final inbox = mail.Mailbox(
     encodedName: 'INBOX',
     encodedPath: 'INBOX',
@@ -310,11 +310,16 @@ final class _ObservedStore extends Fake
 final class _ClosingStore implements StudioMailDraftStore {
   _ClosingStore(this.delegate, this.gate, this.events);
   final StudioMailDraftStore delegate;
-  final Completer<void> gate;
+  final Completer<void>? gate;
   final List<String> events;
+  int loads = 0;
 
   @override
-  Future<StudioMailStoredDraft?> load() => delegate.load();
+  Future<StudioMailStoredDraft?> load() {
+    loads++;
+    return delegate.load();
+  }
+
   @override
   Future<void> save(
     StudioMailDraft draft, {
@@ -333,7 +338,7 @@ final class _ClosingStore implements StudioMailDraftStore {
   @override
   Future<void> close() async {
     events.add('closing');
-    await gate.future;
+    await gate?.future;
     await delegate.close();
     events.add('closed');
   }
@@ -370,6 +375,7 @@ Future<void> _show(
   bool autoConnect = false,
   _Client Function()? clientBuilder,
   StudioMailMessageLoader? loader,
+  void Function(_Client)? configureClient,
 }) async {
   await tester.binding.setSurfaceSize(const Size(1200, 1050));
   addTearDown(() => tester.binding.setSurfaceSize(null));
@@ -385,6 +391,7 @@ Future<void> _show(
         clientFactory: (account) {
           created.add(account);
           final client = clientBuilder?.call() ?? _Client();
+          configureClient?.call(client);
           clients.add(client);
           return client;
         },
@@ -907,7 +914,7 @@ void main() {
   });
 
   testWidgets(
-    'failed owner release keeps the source account and supports explicit retry',
+    'failed owner release retains the source owner until explicit release retry',
     (tester) async {
       final directory = _Directory();
       final first = _identity(_first);
@@ -936,13 +943,16 @@ void main() {
       await _choose(tester, second);
       expect(owners.single.closeAttempts, 1);
       expect(owners.single.closes, 0);
-      expect(clients.single.disconnections, 0);
+      expect(clients.single.disconnections, 1);
       expect(_key('studio-mail-navigation-target'), findsNothing);
-      expect(find.text(_strings.mailAccountNavigationFailed), findsOneWidget);
+      expect(find.text(_strings.mailDraftStorageFailed), findsOneWidget);
+      expect(_key('studio-mail-navigation-release'), findsOneWidget);
       owners.single.failClose = false;
-      await _choose(tester, second);
+      await _tap(tester, _key('studio-mail-navigation-release'));
       expect(owners.single.closes, 1);
       expect(clients.single.disconnections, 1);
+      expect(_key('studio-mail-navigation-release'), findsNothing);
+      await _choose(tester, second);
       expect(_fieldText(tester, _strings.emailAddress), _second.email);
       expect(tester.takeException(), isNull);
     },
@@ -965,7 +975,6 @@ void main() {
           directory: directory,
           created: [],
           clients: clients,
-          initialAccount: directory.target(identity),
           open: (account) async {
             acquisitions++;
             if (acquisitions == 1) await gate.future;
@@ -1098,6 +1107,83 @@ void main() {
       expect(created, hasLength(2));
       expect(clients.last.folderReads, 1);
       expect(find.text(_strings.mailAccountNavigationChanged), findsNothing);
+    },
+  );
+
+  for (final stage in ['connect', 'folders', 'headers']) {
+    testWidgets('removed target after delayed $stage cannot admit later work', (
+      tester,
+    ) async {
+      final directory = _Directory();
+      final identity = _identity(_second);
+      await directory.remember(identity);
+      final gate = Completer<void>();
+      final clients = <_Client>[];
+      final drafts = MemoryStudioMailDrafts();
+      await _show(
+        tester,
+        directory: directory,
+        created: [],
+        clients: clients,
+        drafts: drafts,
+        initialAccount: directory.target(identity),
+        configureClient: (client) {
+          switch (stage) {
+            case 'connect':
+              client.connectGate = gate;
+            case 'folders':
+              client.folderGate = gate;
+            case 'headers':
+              client.headerGate = gate;
+          }
+        },
+      );
+      await _connect(tester);
+      directory.records.clear();
+      gate.complete();
+      await _pump(tester);
+      expect(clients.single.disconnections, 1);
+      expect(drafts.identities, isEmpty);
+      if (stage == 'connect') expect(clients.single.folderReads, 0);
+      if (stage != 'headers') expect(clients.single.headerReads, 0);
+      expect(find.text(_strings.mailAccountNavigationChanged), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    });
+  }
+
+  testWidgets(
+    'removed target during store open closes the candidate without adoption',
+    (tester) async {
+      final directory = _Directory();
+      final identity = _identity(_second);
+      await directory.remember(identity);
+      final drafts = MemoryStudioMailDrafts();
+      final gate = Completer<void>();
+      drafts.openGate = gate;
+      final clients = <_Client>[];
+      _ClosingStore? candidate;
+      await _show(
+        tester,
+        directory: directory,
+        created: [],
+        clients: clients,
+        drafts: drafts,
+        initialAccount: directory.target(identity),
+        open: (account) async {
+          candidate = _ClosingStore(await drafts.open(account), null, []);
+          return candidate!;
+        },
+      );
+      await _connect(tester);
+      expect(drafts.identities, hasLength(1));
+      directory.records.clear();
+      gate.complete();
+      await _pump(tester);
+      expect(drafts.closes, 1);
+      expect(candidate!.loads, 0);
+      expect(clients.single.disconnections, 1);
+      expect(find.text(_strings.mailAccountNavigationChanged), findsOneWidget);
+      expect(tester.takeException(), isNull);
     },
   );
 }

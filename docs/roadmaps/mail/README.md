@@ -17,6 +17,10 @@ Exact non-secret routes lead to explicit sign-in; current drafts and uncertainty
 remain account-owned while observers, journal writes and owners finish closing.
 Late acquisitions and callbacks cannot revive a retired account, and atomic
 selected-record refresh cannot recreate a concurrently forgotten shortcut.
+The combined continuation retains failed observer/owner release and provides
+explicit close recovery before another account can be admitted. The original
+[account-navigation guide](account-navigation.md) remains as its source and
+development-history reference.
 This is a Studio foreground navigation increment; simultaneous background
 accounts and a unified live Inbox remain open. Actual qualification and source
 boundaries are recorded in the linked work record.

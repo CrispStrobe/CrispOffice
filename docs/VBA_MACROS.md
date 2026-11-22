@@ -74,6 +74,7 @@ The supported subset includes:
 - local `Sub` and scalar `Function` helpers;
 - `If`, `Select Case`, `Do`, `While`, `For` and `For Each`;
 - fixed and dynamic one-dimensional arrays, `ReDim`, `Erase`, `Option Base`;
+- direct `Split` assignment to local dynamic String arrays, with zero-based binary substrings, optional delimiter/limit/compare and bounded storage;
 - `Variant` states including `Empty`, `Null` and `IsMissing`;
 - numeric and string intrinsics, including metered binary `StrComp` and `Join` over local String arrays;
 - ordinary `Left`, `Right` and expression `Mid`, with Variant String/Empty/Null behavior and the same bounded UTF-16 slices as their strict `$` forms;

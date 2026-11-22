@@ -11,10 +11,15 @@ All notable changes to `quds_office_editor` are documented here.
   fence late acquisitions/retired callbacks, and atomically refresh selected
   native directory records without recreating forgotten shortcuts. Custom
   directories without conditional refresh retain their existing metadata.
-  Native Close continues to hide the mounted Mail pane; failed owner release
-  blocks another account and can require a host restart. See the
+  Block hidden keyboard edits and ambiguous SMTP-route selection. Retain failed
+  observer/owner release for explicit native Retry closing account and provider
+  Close/Back recovery; another account stays blocked until release succeeds.
+  Native Close continues to hide the mounted Mail pane, and persistent release
+  failures can require a host restart. See the
   [connected account guide](../../docs/roadmaps/mail/connected-account-navigation.md)
-  for scope, qualification and the remaining multi-account workspace work.
+  for the current contract, qualification and remaining multi-account work; the
+  [initial navigation guide](../../docs/roadmaps/mail/account-navigation.md)
+  retains its development lineage.
 
 - Add explicit connected-mail Archive for a selected message or checked visible
   rows, with English/German/Arabic confirmation. Gmail removes only Inbox
