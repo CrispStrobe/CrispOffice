@@ -14,6 +14,8 @@ import 'studio_credential_settings.dart';
 import 'studio_credential_storage.dart';
 import 'studio_credential_vault_unlock.dart';
 import 'studio_mail_archive_action.dart';
+import 'studio_mail_account_navigation.dart';
+import 'studio_mail_account_navigation_strings.dart';
 import 'studio_mail_bulk_status.dart';
 import 'studio_mail_body_download.dart';
 import 'studio_mail_flag_journal.dart';
@@ -108,6 +110,8 @@ class StudioMailDialog extends StatefulWidget {
     this.draftStoreFactory,
     this.localAccountStore,
     this.remoteImageLoaderFactory,
+    this.initialAccount,
+    this.accountDestinationBuilder,
   });
 
   final StudioStrings strings;
@@ -126,6 +130,19 @@ class StudioMailDialog extends StatefulWidget {
   final StudioMailArchiveFolderWriter? archiveFolderWriter;
   final StudioMailDraftStoreFactory? draftStoreFactory;
   final StudioMailLocalAccountStore? localAccountStore;
+
+  /// A verified non-secret destination; choosing it never starts a connection.
+  final StudioMailAccountNavigationTarget? initialAccount;
+
+  /// Embedders may supply provider setup while retaining the guarded router.
+  /// The callback is invoked only after the preceding session has drained.
+  final Widget Function(
+    BuildContext context,
+    MailProviderKind provider,
+    StudioMailAccountNavigationTarget? target,
+    ValueChanged<StudioMailAccountNavigationTarget> onNavigate,
+  )?
+  accountDestinationBuilder;
   final StudioMailRemoteImageLoader Function()? remoteImageLoaderFactory;
 
   /// Creates a fresh client for each connection attempt. Tests use this seam
@@ -190,6 +207,10 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   bool _startTls = false;
   bool _hasSavedCredentials = false;
   bool _credentialPending = false;
+  bool _accountNavigationPending = false;
+  bool _explicitAccountNavigation = false;
+  StudioMailAccountNavigationTarget? _navigationTarget;
+  Future<void> _transportClosing = Future<void>.value();
   Object? _autoConnectTicket;
   bool _remoteImagesLoading = false;
   StudioMailRemoteImageLoader? _remoteImageLoader;
@@ -254,6 +275,10 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     if (widget.credentialStore == null) {
       StudioCredentialStorage.instance.addListener(_credentialStorageChanged);
     }
+    final initialAccount = widget.initialAccount;
+    if (initialAccount != null) {
+      _prefillNavigationTarget(initialAccount);
+    }
     unawaited(_loadCredentials());
   }
 
@@ -289,9 +314,13 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       _hasSavedCredentials = saved != null;
       if (saved == null ||
           _connecting ||
+          _accountNavigationPending ||
           _client != null ||
           settings != _settingsRevision) {
         return;
+      }
+      if (_navigationTarget case final target?) {
+        if (!_credentialMatchesTarget(saved, target)) return;
       }
       _applyCredentials(saved);
       adopted = true;
@@ -300,8 +329,12 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   }
 
   bool get _autoConnectEnabled =>
-      widget.autoConnectSavedAccount ??
-      (widget.clientFactory == null && widget.messageLoaderFactory == null);
+      !_explicitAccountNavigation &&
+      !_accountNavigationPending &&
+      _navigationTarget == null &&
+      (widget.autoConnectSavedAccount ??
+          (widget.clientFactory == null &&
+              widget.messageLoaderFactory == null));
 
   void _scheduleAutoConnect() {
     if (!_autoConnectEnabled ||
@@ -414,6 +447,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           session == _sessionGeneration &&
           settings == _settingsRevision &&
           !_connecting &&
+          !_accountNavigationPending &&
           _client == null;
       if (!result.isSuccess) {
         if (current) {
@@ -429,7 +463,20 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       _accountCatalog = result.catalog!;
       if (current) {
         _credentialError = null;
-        final saved = result.catalog!.selectedAccount;
+        final target = _navigationTarget;
+        final matches = target == null
+            ? const <StudioMailSavedAccount>[]
+            : result.catalog!.accounts
+                  .where(
+                    (entry) =>
+                        _credentialMatchesTarget(entry.credentials, target),
+                  )
+                  .toList();
+        final saved = target == null
+            ? result.catalog!.selectedAccount
+            : matches.length == 1
+            ? matches.single
+            : null;
         if (saved != null) {
           _applySavedAccount(saved);
           adopted = true;
@@ -500,7 +547,11 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         _client != null) {
       return;
     }
-    setState(_clearAccountSettings);
+    setState(() {
+      _navigationTarget = null;
+      _explicitAccountNavigation = true;
+      _clearAccountSettings();
+    });
   }
 
   Future<StudioMailAccountCatalogResult> _saveAccountChoice(
@@ -1072,6 +1123,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     if (_connecting ||
         _busy ||
         _dialogOpen ||
+        _accountNavigationPending ||
         _client != null ||
         _accountCatalogStore != null && _credentialPending) {
       return;
@@ -1095,11 +1147,25 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     final icloudFullAddressLogin = _icloudFullAddressLogin;
     final imapHost = _imapHost.text.trim();
     final smtpHost = _smtpHost.text.trim();
+    final target = _navigationTarget;
     mail.MailClient? candidate;
     StudioMailMessageLoader? candidateLoader;
     bool adopted = false;
     try {
+      if (target != null) {
+        final directory = _localAccounts;
+        if (directory == null) {
+          throw const StudioMailDraftStoreException(
+            MailProblemCode.unavailable,
+          );
+        }
+        await target.validateCurrent(directory);
+        if (!_currentAttempt(generation)) return;
+      }
       mail.MailAccount account;
+      if (target != null && manual && smtpHost.isEmpty) {
+        throw const StudioMailDraftStoreException(MailProblemCode.unavailable);
+      }
       if (preset != null) {
         account = createStudioMailPresetAccount(
           preset: preset,
@@ -1159,6 +1225,11 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           userName: email,
         );
       }
+      target?.requireMatches(_imapLocalIdentity(account));
+      if (target != null) {
+        await target.validateCurrent(_localAccounts!);
+        if (!_currentAttempt(generation)) return;
+      }
       final client =
           widget.clientFactory?.call(account) ??
           mail.MailClient(account, isLogEnabled: false);
@@ -1215,6 +1286,10 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         _pendingLoader = null;
         _messageMailbox = observedMailbox;
         _account = account;
+        // The selected sign-in intent is fulfilled by this exact session.
+        // Remembering the successful connection advances the directory revision;
+        // a later explicit reconnect must not reuse that old selection receipt.
+        _navigationTarget = null;
         _mailboxes = boxes;
         _mailbox = inbox;
         _messages = page.messages;
@@ -1252,11 +1327,17 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         remember,
         storeRevision: storeRevision,
       );
-    } on Object {
+    } on Object catch (error) {
       if (!_currentAttempt(generation)) return;
       setState(() {
         _connecting = false;
-        _error = widget.strings.mailConnectionFailed;
+        _error = error is StudioMailDraftStoreException && target != null
+            ? error.code == MailProblemCode.permissionDenied
+                  ? widget.strings.mailAccountNavigationIdentityMismatch
+                  : error.code == MailProblemCode.unavailable
+                  ? widget.strings.mailAccountNavigationRouteUnavailable
+                  : widget.strings.mailAccountNavigationChanged
+            : widget.strings.mailConnectionFailed;
         if (preset == null && !manual && domain.isNotEmpty) {
           _imapHost.text = 'imap.$domain';
           _smtpHost.text = 'smtp.$domain';
@@ -3059,6 +3140,310 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     }
   }
 
+  bool _credentialMatchesTarget(
+    StudioMailCredentials credentials,
+    StudioMailAccountNavigationTarget target,
+  ) {
+    if (target.provider != MailProviderKind.imap) return false;
+    final route = credentials.connectionIdentity;
+    try {
+      final identity = StudioMailDraftAccount(
+        provider: 'imap',
+        endpoint: Uri(
+          scheme: route.imapStartTls ? 'imap' : 'imaps',
+          host: route.imapHost,
+          port: route.imapPort,
+        ).toString(),
+        login: route.imapLogin,
+        sender: route.sender,
+      );
+      return identity.account == target.identity.account;
+    } on Object {
+      return false;
+    }
+  }
+
+  void _prefillNavigationTarget(StudioMailAccountNavigationTarget target) {
+    if (target.provider != MailProviderKind.imap) {
+      throw const StudioMailDraftStoreException(MailProblemCode.invalidInput);
+    }
+    _clearAccountSettings();
+    _navigationTarget = target;
+    _explicitAccountNavigation = true;
+    _autoConnectTicket = null;
+    _email.text = target.identity.sender;
+    final endpoint = Uri.parse(target.identity.endpoint);
+    _imapHost.text = endpoint.host;
+    _manual = true;
+    _startTls = endpoint.scheme == 'imap';
+    // The local directory has no SMTP route or password. Discovery/manual
+    // setup remains explicit and its resulting identity must match the target.
+    _notice = widget.strings.mailAccountNavigationReconnectHelp;
+  }
+
+  Future<void> _loadNavigationTarget(
+    StudioMailAccountNavigationTarget target,
+  ) async {
+    final directory = _localAccounts;
+    if (directory == null) {
+      throw const StudioMailDraftStoreException(MailProblemCode.unavailable);
+    }
+    final entryGeneration = _sessionGeneration;
+    final entryCredentials = _credentialStoreRevision;
+    await target.validateCurrent(directory);
+    if (!_currentAttempt(entryGeneration) ||
+        entryCredentials != _credentialStoreRevision) {
+      return;
+    }
+    setState(() => _prefillNavigationTarget(target));
+    final generation = _sessionGeneration;
+    final storeRevision = _credentialStoreRevision;
+    final settingsRevision = _settingsRevision;
+    final credentialGeneration = ++_credentialGeneration;
+    bool current() =>
+        _currentAttempt(generation) &&
+        storeRevision == _credentialStoreRevision &&
+        credentialGeneration == _credentialGeneration &&
+        settingsRevision == _settingsRevision &&
+        identical(_navigationTarget, target);
+    final catalogStore = _accountCatalogStore;
+    try {
+      if (catalogStore != null) {
+        final result = await catalogStore.loadAccounts();
+        if (!current()) return;
+        if (!result.isSuccess) {
+          setState(
+            () => _credentialError = widget.strings.mailAccountsLoadFailed,
+          );
+          return;
+        }
+        final catalog = result.catalog!;
+        final matches = catalog.accounts
+            .where(
+              (entry) => _credentialMatchesTarget(entry.credentials, target),
+            )
+            .toList();
+        setState(() {
+          _accountCatalog = catalog;
+          if (matches.length == 1) {
+            _applySavedAccount(matches.single);
+          } else {
+            // Several SMTP routes can own the same existing draft namespace.
+            // Leave the remembered chooser available for an explicit choice.
+            _notice = widget.strings.mailAccountNavigationRouteUnavailable;
+          }
+        });
+      } else {
+        final saved = await _credentials.load();
+        if (!current()) return;
+        if (saved != null && _credentialMatchesTarget(saved, target)) {
+          setState(() {
+            _applyCredentials(saved);
+            _hasSavedCredentials = true;
+          });
+        }
+      }
+    } on Object {
+      if (current()) {
+        setState(
+          () => _credentialError = widget.strings.mailAccountsLoadFailed,
+        );
+      }
+    }
+  }
+
+  Future<void> _openAccountNavigation() async {
+    final directory = _localAccounts;
+    if (directory == null ||
+        _accountNavigationPending ||
+        _busy ||
+        _dialogOpen ||
+        _connecting ||
+        _credentialPending) {
+      return;
+    }
+    final generation = _sessionGeneration;
+    final credentialRevision = _credentialStoreRevision;
+    bool current() =>
+        _currentAttempt(generation) &&
+        credentialRevision == _credentialStoreRevision;
+    setState(() {
+      _accountNavigationPending = true;
+      _dialogOpen = true;
+      _autoConnectTicket = null;
+    });
+    try {
+      final target = await showStudioMailAccountNavigation(
+        context: context,
+        strings: widget.strings,
+        store: directory,
+        currentAccount: _account == null ? null : _imapLocalIdentity(_account!),
+        isCurrent: current,
+      );
+      if (!current() || target == null) return;
+      await target.validateCurrent(directory);
+      if (!current()) return;
+      final draft = _draft;
+      if (draft != null) {
+        final store = _draftStore;
+        if (store == null) {
+          throw const StudioMailDraftStoreException(
+            MailProblemCode.unavailable,
+          );
+        }
+        try {
+          await store.save(draft, submissionUncertain: _submissionUncertain);
+        } on Object {
+          if (current()) {
+            setState(() => _error = widget.strings.mailDraftSaveFailed);
+          }
+          return;
+        }
+      }
+      if (!current()) return;
+      // A selection can be forgotten while the old draft is being saved.
+      await target.validateCurrent(directory);
+      if (!current()) return;
+      await _stopCachedView();
+      await _mailboxViewClosing;
+      await _pendingFlagWrite;
+      await _draftStoreClosing;
+      if (!current()) return;
+      final store = _draftStore;
+      await store?.close();
+      if (!current()) return;
+      _draftStore = null;
+      _explicitAccountNavigation = true;
+      _disconnect();
+      await _transportClosing;
+      await _draftStoreClosing;
+      if (!mounted) return;
+      await target.validateCurrent(directory);
+      if (!mounted) return;
+      if (target.provider == MailProviderKind.imap) {
+        await _loadNavigationTarget(target);
+      } else {
+        _navigationTarget = null;
+        await _routeProviderAccounts(target.provider, target: target);
+      }
+    } on Object {
+      if (mounted) {
+        setState(() => _error = widget.strings.mailAccountNavigationFailed);
+      }
+    } finally {
+      if (mounted) {
+        setState(() {
+          _accountNavigationPending = false;
+          _dialogOpen = false;
+          _busy = false;
+        });
+      }
+    }
+  }
+
+  Future<void> _openProviderSetup(MailProviderKind provider) async {
+    if (_accountNavigationPending ||
+        _busy ||
+        _dialogOpen ||
+        _connecting ||
+        _credentialPending ||
+        _client != null) {
+      return;
+    }
+    setState(() {
+      _accountNavigationPending = true;
+      _explicitAccountNavigation = true;
+      _autoConnectTicket = null;
+      _dialogOpen = true;
+    });
+    try {
+      await _draftStoreClosing;
+      await _transportClosing;
+      if (mounted) await _routeProviderAccounts(provider);
+    } on Object {
+      if (mounted) {
+        setState(() => _error = widget.strings.mailAccountNavigationFailed);
+      }
+    } finally {
+      if (mounted) {
+        setState(() {
+          _accountNavigationPending = false;
+          _dialogOpen = false;
+        });
+      }
+    }
+  }
+
+  Future<void> _routeProviderAccounts(
+    MailProviderKind provider, {
+    StudioMailAccountNavigationTarget? target,
+  }) async {
+    var nextProvider = provider;
+    var nextTarget = target;
+    while (mounted) {
+      final chosenProvider = nextProvider;
+      final chosenTarget = nextTarget;
+      var routeRetired = false;
+      final returned = await showDialog<StudioMailAccountNavigationTarget>(
+        context: context,
+        barrierDismissible: false,
+        builder: (dialogContext) {
+          void navigate(StudioMailAccountNavigationTarget value) {
+            if (routeRetired ||
+                !dialogContext.mounted ||
+                ModalRoute.of(dialogContext)?.isCurrent != true) {
+              return;
+            }
+            routeRetired = true;
+            Navigator.of(dialogContext).pop(value);
+          }
+
+          final builder = widget.accountDestinationBuilder;
+          if (builder != null) {
+            return builder(
+              dialogContext,
+              chosenProvider,
+              chosenTarget,
+              navigate,
+            );
+          }
+          if (chosenProvider == MailProviderKind.ews) {
+            return StudioMailEwsDialog(
+              strings: widget.strings,
+              initialAccount: chosenTarget,
+              onAccountNavigation: navigate,
+              draftStoreFactory: widget.draftStoreFactory,
+              localAccountStore: _localAccounts,
+            );
+          }
+          return StudioMailCloudDialog(
+            strings: widget.strings,
+            service: chosenProvider == MailProviderKind.gmail
+                ? MailCloudService.gmail
+                : MailCloudService.microsoft365,
+            initialAccount: chosenTarget,
+            onAccountNavigation: navigate,
+            draftStoreFactory: widget.draftStoreFactory,
+            localAccountStore: _localAccounts,
+          );
+        },
+      ).whenComplete(() => routeRetired = true);
+      if (!mounted || returned == null) return;
+      final directory = _localAccounts;
+      if (directory == null) {
+        throw const StudioMailDraftStoreException(MailProblemCode.unavailable);
+      }
+      await returned.validateCurrent(directory);
+      if (!mounted) return;
+      if (returned.provider == MailProviderKind.imap) {
+        await _loadNavigationTarget(returned);
+        return;
+      }
+      nextProvider = returned.provider;
+      nextTarget = returned;
+    }
+  }
+
   Future<void> _switchAccount() async {
     final client = _client;
     if (client == null ||
@@ -3148,8 +3533,12 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     _retireReader(previous);
     loader?.dispose();
     pendingLoader?.dispose();
-    unawaited(_disconnectQuietly(client));
-    unawaited(_disconnectQuietly(pending));
+    _transportClosing = Future.wait<void>([
+      _transportClosing,
+      _disconnectQuietly(client),
+      _disconnectQuietly(pending),
+    ]).then<void>((_) {});
+    unawaited(_transportClosing);
     _draftStoreClosing = _draftStoreClosing.then(
       (_) => _closeDraftStore(draftStore),
     );
@@ -3295,37 +3684,47 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-    backgroundColor: Theme.of(context).colorScheme.surface,
-    body: Column(
-      children: [
-        if (widget.chromeBuilder != null)
-          widget.chromeBuilder!(context)
-        else if (Theme.of(context).platform == TargetPlatform.macOS)
-          const SizedBox(height: 32),
-        _mailChrome(context),
-        Expanded(
-          child: RepaintBoundary(
-            child: LayoutBuilder(
-              builder: (context, constraints) => IndexedStack(
-                index: _showSavedMessages ? 1 : 0,
-                children: <Widget>[
-                  _accountView(context, compact: constraints.maxWidth < 800),
-                  if (_savedMessagesVisited)
-                    StudioSavedMailView(
-                      strings: widget.strings,
-                      onClose: widget.onClose,
-                      onAccounts: () =>
-                          setState(() => _showSavedMessages = false),
-                    )
-                  else
-                    const SizedBox.shrink(),
-                ],
+  Widget build(BuildContext context) => AbsorbPointer(
+    absorbing: _accountNavigationPending,
+    child: ExcludeFocus(
+      excluding: _accountNavigationPending,
+      child: Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        body: Column(
+          children: [
+            if (widget.chromeBuilder != null)
+              widget.chromeBuilder!(context)
+            else if (Theme.of(context).platform == TargetPlatform.macOS)
+              const SizedBox(height: 32),
+            _mailChrome(context),
+            if (_accountNavigationPending) const LinearProgressIndicator(),
+            Expanded(
+              child: RepaintBoundary(
+                child: LayoutBuilder(
+                  builder: (context, constraints) => IndexedStack(
+                    index: _showSavedMessages ? 1 : 0,
+                    children: <Widget>[
+                      _accountView(
+                        context,
+                        compact: constraints.maxWidth < 800,
+                      ),
+                      if (_savedMessagesVisited)
+                        StudioSavedMailView(
+                          strings: widget.strings,
+                          onClose: widget.onClose,
+                          onAccounts: () =>
+                              setState(() => _showSavedMessages = false),
+                        )
+                      else
+                        const SizedBox.shrink(),
+                    ],
+                  ),
+                ),
               ),
             ),
-          ),
+          ],
         ),
-      ],
+      ),
     ),
   );
 
@@ -3343,7 +3742,8 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       !_credentialSettingsOpen &&
       !_connecting &&
       !_busy &&
-      !_dialogOpen;
+      !_dialogOpen &&
+      !_accountNavigationPending;
 
   void _credentialStorageChanged() {
     if (!mounted) return;
@@ -3538,6 +3938,20 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         id: 'mailbox',
         title: 'Mailbox',
         children: <Widget>[
+          if (_localAccounts != null)
+            command(
+              key: const ValueKey('studio-mail-navigate-account'),
+              icon: Icons.manage_accounts_outlined,
+              tooltip: widget.strings.mailAccountNavigationTitle,
+              onPressed:
+                  _busy ||
+                      _dialogOpen ||
+                      _connecting ||
+                      _credentialPending ||
+                      _accountNavigationPending
+                  ? null
+                  : _openAccountNavigation,
+            ),
           if (_messageLoader is StudioMailMailboxSynchronizer &&
               _draftStore is StudioMailMailboxStoreOwner)
             command(
@@ -3590,7 +4004,9 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           command(
             icon: Icons.logout,
             tooltip: widget.strings.disconnect,
-            onPressed: _client == null ? null : _disconnect,
+            onPressed: _client == null || _accountNavigationPending
+                ? null
+                : _disconnect,
           ),
         ],
       ),
@@ -3765,6 +4181,24 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                   ],
                 ),
                 const SizedBox(height: 20),
+                if (_navigationTarget case final target?) ...[
+                  Text(
+                    target.identity.sender,
+                    key: const ValueKey('studio-mail-navigation-target'),
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  Text(target.description),
+                  const SizedBox(height: 8),
+                  Text(widget.strings.mailAccountNavigationReconnectHelp),
+                  TextButton(
+                    key: const ValueKey('studio-mail-navigation-clear-target'),
+                    onPressed: _connecting || _busy || _credentialPending
+                        ? null
+                        : _newAccount,
+                    child: Text(widget.strings.mailNewAccount),
+                  ),
+                  const Divider(height: 24),
+                ],
                 if (_accountCatalogStore != null) ...[
                   _rememberedAccounts(context),
                   if (_localDraftSavedAccount != null)
@@ -3816,16 +4250,12 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                     padding: const EdgeInsets.only(bottom: 8),
                     child: OutlinedButton.icon(
                       key: ValueKey('studio-mail-open-${service.name}'),
-                      onPressed: _connecting
+                      onPressed: _connecting || _credentialPending
                           ? null
-                          : () => showDialog<void>(
-                              context: context,
-                              builder: (_) => StudioMailCloudDialog(
-                                strings: widget.strings,
-                                service: service,
-                                draftStoreFactory: widget.draftStoreFactory,
-                                localAccountStore: _localAccounts,
-                              ),
+                          : () => _openProviderSetup(
+                              service == MailCloudService.gmail
+                                  ? MailProviderKind.gmail
+                                  : MailProviderKind.graph,
                             ),
                       icon: const Icon(Icons.cloud_outlined),
                       label: Text(
@@ -3837,16 +4267,9 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                   ),
                 OutlinedButton.icon(
                   key: const ValueKey<String>('studio-mail-open-ews'),
-                  onPressed: _connecting
+                  onPressed: _connecting || _credentialPending
                       ? null
-                      : () => showDialog<void>(
-                          context: context,
-                          builder: (_) => StudioMailEwsDialog(
-                            strings: widget.strings,
-                            draftStoreFactory: widget.draftStoreFactory,
-                            localAccountStore: _localAccounts,
-                          ),
-                        ),
+                      : () => _openProviderSetup(MailProviderKind.ews),
                   icon: const Icon(Icons.dns_outlined),
                   label: Text(widget.strings.ewsTitle),
                 ),

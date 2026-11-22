@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
 
+import 'studio_mail_account_navigation.dart';
 import 'studio_mail_archive_action.dart';
 import 'studio_mail_archive_folder_action.dart';
 import 'studio_mail_ews.dart';
@@ -23,6 +24,8 @@ class StudioMailCloudDialog extends StatelessWidget {
     this.archiveFolderWriter,
     this.draftStoreFactory,
     this.localAccountStore,
+    this.initialAccount,
+    this.onAccountNavigation,
   });
 
   final StudioStrings strings;
@@ -35,6 +38,8 @@ class StudioMailCloudDialog extends StatelessWidget {
   final StudioMailArchiveFolderWriter? archiveFolderWriter;
   final StudioMailDraftStoreFactory? draftStoreFactory;
   final StudioMailLocalAccountStore? localAccountStore;
+  final StudioMailAccountNavigationTarget? initialAccount;
+  final ValueChanged<StudioMailAccountNavigationTarget>? onAccountNavigation;
 
   @override
   Widget build(BuildContext context) => StudioMailEwsDialog.cloud(
@@ -48,5 +53,7 @@ class StudioMailCloudDialog extends StatelessWidget {
     archiveFolderWriter: archiveFolderWriter,
     draftStoreFactory: draftStoreFactory,
     localAccountStore: localAccountStore,
+    initialAccount: initialAccount,
+    onAccountNavigation: onAccountNavigation,
   );
 }

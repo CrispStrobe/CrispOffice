@@ -1,0 +1,67 @@
+{
+  "captured_main": "659b81462224a40f50975cfbfca39f636538b836",
+  "latest_observed_main": "a9bfc961a7efdf2c8da198108bd71174b91f89fd",
+  "latest_main_message": "Merge Word VBA text functions and named selectors (#381) [skip ci]\n\nPreserve incremental implementation and current main history. Qualified locally with 9,482 substantive cases across 193 suites, source-bound portable receipts, strict analysis and native RTL integration. GitHub Actions were not awaited.",
+  "latest_main_parents": [
+    "659b81462224a40f50975cfbfca39f636538b836",
+    "d40e1a2c3731eb303bcf82724432d9927d53a889"
+  ],
+  "fork_branch_count_initial": 45,
+  "recent_pr_heads_checked": 100,
+  "recent_pr_heads_all_ancestors": true,
+  "open_pr_count": 0,
+  "upstream_repository": "MohammedAsaadAsaad/quds_office_suite",
+  "upstream_heads": [
+    {
+      "name": "ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "ancestor_of_initial_main": true
+    },
+    {
+      "name": "cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "ancestor_of_initial_main": true
+    },
+    {
+      "name": "cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "ancestor_of_initial_main": true
+    },
+    {
+      "name": "main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "ancestor_of_initial_main": true
+    }
+  ],
+  "outstanding_initial": [
+    {
+      "branch": "codex/word-vba-text-selectors-20261122",
+      "sha": "d40e1a2c3731eb303bcf82724432d9927d53a889",
+      "ahead": 8,
+      "behind": 1,
+      "merge_conflicts": [],
+      "latest_state": "Merged concurrently via PR #381 into a9bfc961a7efdf2c8da198108bd71174b91f89fd",
+      "qualification_claim": "9,482 local cases across 193 suites; archives present; this audit read the report but did not replay it."
+    },
+    {
+      "branch": "work/mail-connected-navigation-20261122",
+      "sha": "622d9fda2a6564638af153de887adea922bc26f8",
+      "ahead": 3,
+      "behind": 4,
+      "merge_conflicts_against_initial_main": [
+        "docs/roadmaps/zotero/word-processor-parity.md",
+        "docs/validation/zotero-note-formatting-20261122/README.md"
+      ],
+      "qualification_state": "Strict production analysis passed per commit message; local behavioral qualification explicitly in progress.",
+      "unique_change": "Cross-provider exact-account navigation with explicit sign-in, draft-safe transitions, stale-route fencing, and 5 new test suites."
+    }
+  ],
+  "notes": [
+    "No remote mutation, git index/ref mutation, checkout change, Actions/check/status lookup, or test execution performed by audit agent.",
+    "Read-only git merge-tree predicted documentation-only conflicts for Mail; actual integration should inspect them against current main.",
+    "No AGENTS.md found in initial main tracked tree."
+  ],
+  "latest_branch_snapshot_file": "intake-final-branches.json",
+  "pr_snapshot_file": "intake-prs.json",
+  "ancestry_file": "intake-ancestry.json"
+}
