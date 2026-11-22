@@ -4,7 +4,10 @@ Status: **Bounded horizontal/vertical merged-table input is locally qualified
 by the [editable-output continuation](../../validation/zotero-editable-odt-20261121/README.md).
 Imported decimal and lower/upper Roman notes retain their numbering through
 DOCX saves; the [numbering continuation](../../validation/zotero-note-numbering-20261122/README.md)
-adds exact continuous start-one sequences and native settings. Earlier
+adds exact continuous start-one sequences and native settings. The
+[next continuation](../../validation/zotero-parity-next-20261122/README.md)
+supports independent continuous starts from 1 to 32,768 with explicit producer
+conventions and exact cached labels. Earlier
 rich-import and LibreOffice style results retain their original sources.
 The [picture continuation](../../validation/zotero-odt-images-20261121/README.md)
 adds bounded embedded inline PNG/JPEG input, with local lifecycle checks and
@@ -265,7 +268,7 @@ after source-range reconstruction, preserving editor and DOCX offsets.
 | Paragraphs and runs | Paragraphs, unnumbered headings, literal/explicit spaces, tabs, line breaks, supported character formatting and absolute external hyperlinks. Named, default and automatic style inheritance is resolved into model properties. |
 | Formatting and page layout | Supported fonts, exact half-point sizes, bold/italic, underline/strike, small capitals, semantic superscript/subscript, colors, language, explicit paragraph direction/alignment, indents, spacing and supported tab stops. One compatible page layout may supply page size, margins and equal-width columns. Used unsupported properties reject the import. |
 | Zotero fields | Canonical citation ReferenceMarks and bibliography ReferenceMarks/TextSections become active native fields. Multi-item options, unknown citation/bibliography metadata, rich cache, empty bibliography paragraphs and distinct adjacent/identical-looking fields survive DOCX reopening. |
-| Authored notes | Footnotes/endnotes with supported blocks, continuous document-wide automatic decimal or lower/upper Roman numbering starting at one and live body anchors; citations retain their actual note story. Roman ordinals are limited to 1–3,999. Custom labels, alphabetic formats, restarts, unsupported styles, nested notes and citations enclosing note anchors are refused. |
+| Authored notes | Footnotes/endnotes with supported blocks, continuous document-wide automatic decimal or lower/upper Roman numbering with independent starts from 1 to 32,768 and live body anchors; citations retain their actual note story. Roman ordinals are limited to 1–3,999. Custom labels, alphabetic formats, restarts, unsupported styles, nested notes and citations enclosing note anchors are refused. |
 | Tables | Rectangular tables with bounded horizontal/vertical merges and explicit covered cells, nested up to eight levels; supported widths/alignment, row minimum height/keep behavior, inherited shading and uniform effective padding. Citations retain their originating cell. Hidden covered content, conflicting effective shading/padding, asymmetric or per-cell margins, repeated rows/cells and ambiguous coverage refuse. Increments 4 and 8 define the merge and padding boundaries. |
 | Lists | Simple decimal or supported depth-specific bullets, up to nine levels, explicit starts/restarts and multiple paragraphs per item. Independent sequences, nested continuations and source paragraph margins are retained. Continuation references/consecutive numbering, bullet affixes, conflicting first-line geometry and tables inside list items are refused. |
 | Inline pictures | Embedded static PNG and upright RGB/YCbCr JPEG in character-anchored frames; original bytes, physical dimensions, title/description, supported run properties and ordinary hyperlinks. Pictures own one native character; adjacent Zotero ranges retain exact offsets. The picture continuation below defines the bounds. |
@@ -439,10 +442,16 @@ Unicode separator; their authored content and active sequence fields refuse.
 LibreOffice stores the note configuration's starting value as a zero-based
 offset, unlike the normative ODF initial-number description. An unambiguous
 stock LibreOffice/LibreOfficeDev generator with a complete project revision
-qualifies that convention. Only zero offsets and exact visible ordinals are
-accepted; the numbering continuation admits decimal and lower/upper Roman
-formats. Independent footnote/endnote sequences survive DOCX conversion.
-Unknown or ambiguous producers retain the normative start-value convention.
+qualifies that convention. Offsets from 0 to 32,767 require exact visible
+labels; the numbering continuation admits decimal and lower/upper Roman
+formats. The exact generator `CrispOffice Zotero ODT note-offsets/1` declares the
+same offset encoding for Quds editable exports without enabling LibreOffice
+defaults or style quirks. It requires explicit per-class configurations, formats
+and start values. Independent footnote/endnote sequences and their native
+`numStart` settings survive DOCX conversion. Unknown producers retain the
+normative initial-number convention; recognized malformed or ambiguous offset
+declarations are refused. Non-one literal starts also require exact nonempty
+cached labels. Numbering is never inferred from those labels.
 Alphabetic/other formats, restarts, custom labels and unsupported note styling
 remain refused. A present generic configuration must declare its numbering
 format. Qualified LibreOffice omission defaults require matching cached labels;

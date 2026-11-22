@@ -1,0 +1,49 @@
+{
+  "source_commit": "f06afa63a7e321482a60d3f3a4fc39c522fdb29d",
+  "source_tree": "df98875d455fcd0a5fc648e5af1af4f4c302d54c",
+  "baseline": "b2bba1638924237435460e4238d4bd98c407fc3a",
+  "branch": "codex/zotero-parity-next-20261122",
+  "checkpoints": {
+    "intake_plan": "29214ad0f362da2000d7ff20ae9287d33025c46b",
+    "batch_unlink": "231926adfa3ed47c6753ab9ba41b41adaa4aebb9",
+    "note_start_exchange": "f06afa63a7e321482a60d3f3a4fc39c522fdb29d"
+  },
+  "accepted_tests": {
+    "engine": 717,
+    "editor": 154,
+    "studio": 27,
+    "total": 898,
+    "suites": 33,
+    "failed": 0,
+    "skipped": 0
+  },
+  "static_dart_files": 13,
+  "converter": {
+    "libreOfficeVersion": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+    "uniqueFixtures": 3,
+    "uniqueNotes": 10,
+    "uniqueActiveCitations": 6,
+    "libreOfficeSaveCycles": 2,
+    "odtImportAndDocxReopenStagesPerFixture": 3,
+    "reexportCyclesPerStage": 2
+  },
+  "intake": {
+    "initial_fork_branches": 30,
+    "upstream_branches": 4,
+    "pr_heads_fetched": 368,
+    "older_superseded_pr_heads": 14
+  },
+  "limitations": [
+    "Controlled native protocol tests and actual headless LibreOffice development-build conversion do not establish installed Zotero/Word/stable-LibreOffice plugin parity.",
+    "The bounded reader retains its separate 10000-notes-per-class limit; not every exporter-sized document is a supported native import.",
+    "Alphabetic numbering, custom labels, page/section restarts and broader ODF structures remain guarded."
+  ],
+  "ci": "GitHub Actions were neither queried nor awaited.",
+  "evidence": {
+    "archive": "evidence.tar.xz",
+    "bytes": 440028,
+    "sha256": "9a2a5e810f9cea30c3f37cd10e8549b42e9244c0b173d9af6763cc90e680bfdf",
+    "members": 260,
+    "all_member_hashes_verified": true
+  }
+}

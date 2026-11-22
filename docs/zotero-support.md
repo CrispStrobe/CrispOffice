@@ -87,6 +87,11 @@ file contains ordinary text. Zotero controls its own repair choices and can
 request deletion, so its native **No** button is not a substitute for Quds'
 explicit conversion action.
 
+**Document → Unlink all citations…** also converts complete references with
+damaged metadata. Its confirmation shows the damaged-field count. The complete
+document conversion keeps visible text, formatting and notes in one undo step;
+if any reference cannot be converted safely, every field stays unchanged.
+
 Locked, nested, opaque, incomplete or ambiguously owned fields remain
 protected. Quds does not infer missing field boundaries or repair a field
 shared across incompatible owners. See the
@@ -155,13 +160,15 @@ unreviewed page styles remain outside the conversion.
 
 Editable ODT exchange preserves automatic decimal and lower/upper Roman
 footnote and endnote numbering, including Word's default Roman endnotes.
-Each note class must use one continuous sequence starting at one. Ordinary
+Each note class must use one continuous sequence with a starting number from
+1 to 32,768. Footnotes and endnotes can start at different numbers. Ordinary
 uncited notes participate in the sequence, and citation identity and numeric
 note order remain separate from the visible Roman labels. Accepted numbering
 survives opening the ODT and saving the result as DOCX. Roman ordinals are
-supported through 3,999. Custom labels, alphabetic formats, mixed settings and
-page/section restarts remain outside this exchange path. See the
-[note-numbering record](validation/zotero-note-numbering-20261122/README.md).
+supported through 3,999, and decimal sequences through 65,535. Custom labels,
+alphabetic formats, mixed settings within one note class and page/section
+restarts remain outside this exchange path. See the
+[numbering and unlink continuation](validation/zotero-parity-next-20261122/README.md).
 
 Supported footnote separators retain their color, width, alignment and spacing,
 with matching pagination and editor/PDF rendering. Direct editable ODT exchange

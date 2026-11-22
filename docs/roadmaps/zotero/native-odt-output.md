@@ -111,21 +111,33 @@ Ordinary `writeBytes` keeps its existing table-formatting and cached-result
 contract; uniform-padding output is specific to the explicit editable path.
 
 Cited note classes support continuous automatic decimal, lower-Roman or
-upper-Roman numbering starting at one, including Word's default Roman endnotes.
+upper-Roman numbering with an initial number from 1 to 32,768, including Word's
+default Roman endnotes.
 All emitted notes in a cited class, including uncited notes, must have compatible
 effective native settings and exact ordinals. Footnotes and endnotes remain
-independent. The exporter writes one explicit ODF format per class and omits
-the start value so both normative start-one and LibreOffice's zero-offset
-convention agree. Roman ordinals are limited to 1–3,999. Custom labels, mixed
+independent. The exporter writes one explicit ODF format per class. For
+start-one sequences it omits the start value so the normative initial-number
+and LibreOffice zero-offset conventions agree. When a cited class starts above
+one, it declares the exact generator `CrispOffice Zotero ODT note-offsets/1`
+and writes explicit zero-based offsets for every emitted note class. Quds
+accepts that versioned convention independently of LibreOffice's unrelated
+style/default handling. Generic ODF producers retain literal initial-number
+semantics; recognized malformed or ambiguous offset declarations refuse.
+Roman ordinals are limited to 1–3,999 and decimal ordinals to 65,535. Custom labels, mixed
 formats, unsupported settings and section/page restarts refuse before bytes
 are returned. Alphabetic numbering remains deferred because ODF and
 LibreOffice disagree on letter synchronization.
 
-The reader stores the accepted formats explicitly in native section properties
-so DOCX reopening preserves them. This uses genuine automatic note numbering;
+The reader stores the accepted formats and starts explicitly in native section
+properties so DOCX reopening preserves them. Offset conventions and non-one
+literal starts require a nonempty, exactly matching cached label for every
+note. Zotero's numeric note indexes remain physical document order. This uses
+genuine automatic note numbering;
 the ordinary writer retains its existing fixed-label contract. See the
-[note-numbering work record](../../validation/zotero-note-numbering-20261122/README.md)
-for source-bound local and converter qualification.
+[numbering and unlink work record](../../validation/zotero-parity-next-20261122/README.md)
+for source-bound local and converter qualification; the preceding
+[Roman increment](../../validation/zotero-note-numbering-20261122/README.md)
+retains its own historical results.
 
 The ordinary ODT writer's document-formatting envelope still applies. Editable
 Zotero metadata does not establish arbitrary Word/ODF formatting fidelity.

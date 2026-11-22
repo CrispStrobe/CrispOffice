@@ -1,5 +1,21 @@
 # Zotero validation
 
+## 22 November 2026 — batch unlink recovery and continuous note starts
+
+The [parity continuation](validation/zotero-parity-next-20261122/README.md)
+qualifies atomic document-wide unlinking of structurally complete damaged
+reference metadata and decimal/Roman editable ODT sequences starting above one.
+Source `f06afa63a7e321482a60d3f3a4fc39c522fdb29d` passes **898 cases across 33
+suites**, with zero failures/skips and 13 clean changed-file static checks.
+Three fixtures with ten notes and six active citations pass two actual
+LibreOffice saves plus native ODT/DOCX lifecycle checks. Explicit producer
+conventions and exact cache checks prevent off-by-one imports. The record
+preserves the independently reproduced ambiguity fix, source bindings, initial
+30-branch/368-PR/four-upstream intake, late WIP reviews and incremental remote
+checkpoints. Installed Zotero/Word/stable-LibreOffice acceptance remains open.
+GitHub Actions were neither queried nor awaited. Earlier results below retain
+their own source attribution and are not added to this total.
+
 ## 21 November 2026 — active separators and combined-main qualification
 
 The [separator increment](validation/zotero-footnote-separators-20261121/README.md)
