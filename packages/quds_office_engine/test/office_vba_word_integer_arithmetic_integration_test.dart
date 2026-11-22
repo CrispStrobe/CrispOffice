@@ -67,15 +67,17 @@ void main() {
           File(_example).readAsStringSync(),
           'ActiveDocument.Tables(1).Cell(1, 1).Range.Text = CStr($expression)',
         );
-        final result = await OfficeMacroMcp(session)
-            .callTool('office_macro_compile', {
-              'source': {
-                'language': 'vba-word',
-                'format': 'docx',
-                'moduleName': 'GroupedReport',
-                'source': source,
-              },
-            });
+        final result = await OfficeMacroMcp(session).callTool(
+          'office_macro_compile',
+          {
+            'source': {
+              'language': 'vba-word',
+              'format': 'docx',
+              'moduleName': 'GroupedReport',
+              'source': source,
+            },
+          },
+        );
         expect(result['isError'], isTrue, reason: '$result');
         expect(session.bytes, input);
         expect(session.revision, 0);
@@ -110,44 +112,51 @@ void main() {
     });
   }
 
-  test('CLI runs actual grouped BAS and protects existing output on arithmetic failure', () async {
-    final directory = Directory.systemTemp.createTempSync(
-      'word-grouped-report-',
-    );
-    addTearDown(() => directory.deleteSync(recursive: true));
-    final input = File('${directory.path}/input.docm')
-      ..writeAsBytesSync(fixture.wordCellSuffixInput());
-    final source = File(_example).absolute.path;
-    final plan = File('${directory.path}/plan.json');
-    final output = File('${directory.path}/output.docm');
-    for (final arguments in [
-      ['compile-word-vba', source, plan.path],
-      ['validate-word-vba', input.path, source],
-      ['run-word-vba', input.path, source, output.path],
-    ]) {
-      final result = await runOfficeMacroCli(arguments);
-      expect(result.exitCode, 0, reason: '${result.stdout}\n${result.stderr}');
-    }
-    expect(OfficeMacro.parse(plan.readAsStringSync()).steps, hasLength(12));
-    final saved = output.readAsBytesSync();
-    expect(
-      fixture.wordCellSuffixState(saved).map((cell) => cell['text']),
-      portable.groupedReportText,
-    );
-    final invalid = File('${directory.path}/invalid.bas')
-      ..writeAsStringSync(
-        portable.appendGroupedReportStatement(
-          File(_example).readAsStringSync(),
-          r'ActiveDocument.Tables(1).Cell(1, 1).Range.Text = CStr(1 \ 0)',
-        ),
+  test(
+    'CLI runs actual grouped BAS and protects existing output on arithmetic failure',
+    () async {
+      final directory = Directory.systemTemp.createTempSync(
+        'word-grouped-report-',
       );
-    final result = await runOfficeMacroCli([
-      'run-word-vba',
-      input.path,
-      invalid.path,
-      output.path,
-    ]);
-    expect(result.exitCode, isNot(0));
-    expect(output.readAsBytesSync(), saved);
-  });
+      addTearDown(() => directory.deleteSync(recursive: true));
+      final input = File('${directory.path}/input.docm')
+        ..writeAsBytesSync(fixture.wordCellSuffixInput());
+      final source = File(_example).absolute.path;
+      final plan = File('${directory.path}/plan.json');
+      final output = File('${directory.path}/output.docm');
+      for (final arguments in [
+        ['compile-word-vba', source, plan.path],
+        ['validate-word-vba', input.path, source],
+        ['run-word-vba', input.path, source, output.path],
+      ]) {
+        final result = await runOfficeMacroCli(arguments);
+        expect(
+          result.exitCode,
+          0,
+          reason: '${result.stdout}\n${result.stderr}',
+        );
+      }
+      expect(OfficeMacro.parse(plan.readAsStringSync()).steps, hasLength(12));
+      final saved = output.readAsBytesSync();
+      expect(
+        fixture.wordCellSuffixState(saved).map((cell) => cell['text']),
+        portable.groupedReportText,
+      );
+      final invalid = File('${directory.path}/invalid.bas')
+        ..writeAsStringSync(
+          portable.appendGroupedReportStatement(
+            File(_example).readAsStringSync(),
+            r'ActiveDocument.Tables(1).Cell(1, 1).Range.Text = CStr(1 \ 0)',
+          ),
+        );
+      final result = await runOfficeMacroCli([
+        'run-word-vba',
+        input.path,
+        invalid.path,
+        output.path,
+      ]);
+      expect(result.exitCode, isNot(0));
+      expect(output.readAsBytesSync(), saved);
+    },
+  );
 }

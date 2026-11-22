@@ -82,7 +82,9 @@ limiting, stale scope, cancellation or a persistence failure stops later dispatc
 Stop never claims to cancel a request already accepted by a provider. A crash
 or missing result write leaves the applying marker uncertain after recovery.
 The live report can retain a confirmed provider acknowledgement even when its
-local receipt write failed; the durable record then correctly remains uncertain.
+local result write failed. The original owner may still settle that applying
+marker while finalizing the batch; if persistence remains unavailable, recovery
+correctly retains uncertainty.
 
 Loaded rows remain stable while the coordinator checks the frozen selection.
 Confirmed moves/trash outcomes are projected after the run completes. IMAP

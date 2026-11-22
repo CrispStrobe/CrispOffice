@@ -184,11 +184,13 @@ void membershipBulkHostTests() {
     );
 
     testWidgets(
-      '${kind.name} bulk receipt write failure retains remote success and blocks later dispatch',
+      '${kind.name} persistent bulk receipt write failure retains remote success and blocks later dispatch',
       (tester) async {
         final harness = _Harness(kind);
         harness.respond = (_) async {
-          harness.fixture.failCommit = harness.fixture.commits + 1;
+          // Both the result write and the final receipt remain unavailable.
+          // A single transient failure can be settled by journal.finish().
+          harness.fixture.failWrites = true;
           return _success;
         };
         await _show(tester, harness);
@@ -202,7 +204,6 @@ void membershipBulkHostTests() {
         expect(report.unattemptedCount, 2);
         expect(report.persistenceProblem?.code, MailProblemCode.storageFailure);
         expect(report.stopReason, MailBulkFlagStopReason.persistenceFailure);
-        harness.fixture.failCommit = null;
         final receipt = await _reopenMembershipReceipt(tester, harness);
         expect(receipt.report.uncertainCount, 1);
         expect(receipt.report.unattemptedCount, 2);

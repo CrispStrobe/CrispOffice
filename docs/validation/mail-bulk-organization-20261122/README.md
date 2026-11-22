@@ -61,13 +61,25 @@ checks across awaits; both were corrected and the gate passed on rerun.
 Formatting was reapplied after resolution so the workspace language version
 controls it consistently. No manifest or lockfile was changed.
 
-At this checkpoint the focused core suite passed **145/145** real tests using
-the pinned test package's supported standalone execution with `--enable-asserts`.
-Word suffix macro/conformance checks passed **153/153**. The CLI integration
-suite executed zero cases because its setup could not create a temporary
-directory (`ENOSPC`). Further widget, transport and persistence checks are in
-progress; the completed record will identify actual execution and limitations.
-Test source alone is not a passing-test claim.
+The new mail increment is locally qualified: **257/257 widget cases passed**,
+including **78 new regressions**. The shared-list gate passed 139 cases, provider
+and confirmation gates passed 37, and the real SQLite host gate passed 81.
+The latter includes all 23 new durable bulk cases: pre-dispatch persistence,
+frozen identities, cancellation, uncertain middle results, stop-after-current,
+persistent receipt failure and close/reopen recovery without replay.
+
+Focused core/transport/store and incoming Word gates also execute with the
+pinned test package's real Engine/Invoker and `--enable-asserts`. Additional
+store and incoming Word checks are in progress at this checkpoint. The final
+record will identify exact totals and any remaining failures; historical
+incoming qualification counts are not substituted for this combined source.
+
+Runtime checks corrected a tooltip-finder assumption in three provider tests.
+Review also corrected four receipt-failure fixtures: a transient failed result
+write can still settle during `finish`, so the intended uncertain-recovery
+scenario now keeps both result and finalization writes unavailable. All four
+passed against actual SQLite after the correction. No production behavior was
+changed to make those assertions pass.
 
 ## Environment and scope limits
 
@@ -80,10 +92,20 @@ reclaimed. No unrelated work or dependency implementation was changed.
 Standalone execution uses the real pinned test Engine/Invoker and assertions,
 but lacks the conventional runner's per-file process isolation and file-level
 annotation handling. Selected VM suites were checked for those annotations.
-Persistence and CLI fixtures still need writable temporary directories.
-Any direct widget-engine execution is documented separately from the Flutter
-CLI path. The minimal SDK does not qualify installed-platform packaging,
-browser builds, live providers or asset packaging.
+Persistence fixtures now use real temporary directories, regular files and the
+exact pinned SQLite asset. A scoped allocator reuses preallocated empty directory
+inodes because new directory allocation fails; it does not intercept file or
+SQLite I/O. Its own checks include 20 actual WAL database close/reopen cycles.
+It is limited to quiescent test-owned teardown and does not qualify concurrent
+writers racing directory deletion or general filesystem behavior.
+
+Direct widget execution uses the original frontend, patched SDK, engine, stock
+shaders, automated binding and assertions, with the kernel held in anonymous
+memory. The durable gate also drains the real event loop after completion and
+rejects late raw or JSON errors, even after an apparent success event. This is
+documented separately from normal Flutter CLI orchestration. The minimal SDK
+does not qualify installed-platform packaging, browser builds, live providers,
+project asset packaging or plugin/native-hook discovery.
 
 GitHub Actions were neither polled nor awaited. Local gates that actually ran,
 their failures and the explicit remaining limits determine this record.
