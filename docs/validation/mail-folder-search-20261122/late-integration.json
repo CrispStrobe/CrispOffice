@@ -1,0 +1,29 @@
+{
+  "recorded_at_utc": "2026-11-22T02:55:30.476409+00:00",
+  "observed_after_pr": 356,
+  "main_merge": "82659acb0f617c57d4d241c91033338032b5caac",
+  "incoming_branch": "codex/zotero-parity-20261122",
+  "incoming_head": "ad965773bd4e0b7b5cfd9237aafce3ca17bded63",
+  "incoming_commits": [
+    "067ca3a472b57ffff86b6cfb3f54c7bfa60ee45c",
+    "ad965773bd4e0b7b5cfd9237aafce3ca17bded63"
+  ],
+  "incoming_change": "Import optional Mail store interfaces and cast their guarded views in the older dialog-owned picker implementation.",
+  "resolution": "Retain the already qualified dialog and its dedicated StudioMailCachedSearchSession.loadFolderCatalog typed catalog path. The incoming edits target the retired direct-picker method; carrying over its unused import or resurrecting its old method would undo the reconciled ownership/recovery path. Both incoming commits are retained as merge ancestors.",
+  "resolved_file": "packages/quds_office_editor/example/lib/studio_mail_cached_search_dialog.dart",
+  "resolved_sha256": "84b338b776405d9851470735895aad5f367e8a249fcf3d13dd92720c93caa6b9",
+  "qualified_source_commit": "96b3e57c6c10f4419ed86ce4aa132e5d3c79c851",
+  "all_package_and_lock_files_unchanged": true,
+  "verification": [
+    "git diff --cached --exit-code HEAD -- packages pubspec.yaml pubspec.lock",
+    "git diff --exit-code 96b3e57c6c10f4419ed86ce4aa132e5d3c79c851 -- packages pubspec.yaml pubspec.lock"
+  ],
+  "verification_exits": [
+    0,
+    0
+  ],
+  "test_continuity": "No production or test source changes; prior 2739-case qualification and strict45-file gate remain applicable. No redundant test rerun.",
+  "incoming_patch": "late-legacy-picker-delta.patch.gz",
+  "incoming_patch_sha256": "b37f59059e271f2ba645d57408648dba5cb6d12de89c99bcef555ddcf554de1b",
+  "github_actions": "Not queried or awaited"
+}

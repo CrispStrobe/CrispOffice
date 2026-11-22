@@ -168,5 +168,6 @@
     "No live-provider or account interoperability run",
     "No claim of full Outlook/Thunderbird/eM Client parity",
     "Header-only local discovery; no body/provider/background search added"
-  ]
+  ],
+  "late_followup_reconciliation": "late-integration.json"
 }
