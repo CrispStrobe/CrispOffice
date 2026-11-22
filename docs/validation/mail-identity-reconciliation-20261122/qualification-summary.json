@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-11-22 08:57:59 UTC",
+  "kind": "reported local qualification summary; raw evidence export blocked",
+  "qualified_mail_source": "06b4e747c09851048d0b72a958e9114f7c83cc52",
+  "incoming_main": "8326f191067dac1a3befab81361c5829fee9a35d",
+  "counts": {
+    "case_occurrences": 3405,
+    "strict_named_keys": 3403,
+    "groups": {
+      "core_vm": {
+        "strict_named_keys": 628,
+        "case_occurrences": 629,
+        "baseline": 614,
+        "supplement": 85,
+        "overlap": 70
+      },
+      "core_node": {
+        "strict_named_keys": 628,
+        "case_occurrences": 629,
+        "baseline": 614,
+        "supplement": 85,
+        "overlap": 70
+      },
+      "store_vm": {
+        "strict_named_keys": 1118,
+        "case_occurrences": 1118,
+        "baseline": 1104,
+        "supplement": 118,
+        "overlap": 104
+      },
+      "store_node": {
+        "strict_named_keys": 46,
+        "case_occurrences": 46,
+        "baseline": 46
+      },
+      "transport_vm": {
+        "strict_named_keys": 574,
+        "case_occurrences": 574,
+        "baseline": 574,
+        "supplement": 10,
+        "overlap": 10
+      },
+      "transport_node": {
+        "strict_named_keys": 208,
+        "case_occurrences": 208,
+        "baseline": 208
+      },
+      "vendor_vm": {
+        "strict_named_keys": 201,
+        "case_occurrences": 201,
+        "baseline": 201,
+        "supplement": 26,
+        "overlap": 26
+      }
+    },
+    "method": "Accepted baseline and supplement occurrences are unioned by runtime, repository-relative suite path and full test name, retaining the maximum multiplicity of each key. Repeated supplement runs, loader cases, diagnostics and historical incoming Office runs are excluded.",
+    "duplicate_name": {
+      "suite": "packages/quds_mail_core/test/saved_header_search_folders_test.dart",
+      "name": "rejects malformed account with length 2",
+      "multiplicity_per_runtime": 2,
+      "runtimes": [
+        "vm",
+        "node"
+      ]
+    }
+  },
+  "independent_recount": {
+    "accepted_cohorts": 12,
+    "raw_counts_match_receipts": true,
+    "protocol_errors": 0,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "incomplete": 0,
+    "method": "Strict LF-framed JSON event reparse with unique IDs, matched completion, terminal success and suite/runtime identity."
+  },
+  "source_binding": {
+    "mode": "Composed broad-baseline and focused-supplement qualification, not a fresh full-suite run at final HEAD.",
+    "all_accepted_runs_have_unchanged_pre_post_source_and_runtime": true,
+    "deltas": [
+      {
+        "change": "Reject a cursor repository revision that disagrees with the captured snapshot revision.",
+        "coverage": "85 native and 85 actual Node snapshot/coordinator/runner cases; 15 new cases per runtime; final full core strict analysis."
+      },
+      {
+        "change": "Required projection savepoint, receipt preservation at cache-only quota, existing browse views and both browse revisions.",
+        "coverage": "Full store 1104 native, 46 Node, both browser JS compile probes."
+      },
+      {
+        "change": "Include retained folder display name in synchronized destination metadata budget.",
+        "coverage": "Only production delta after full store run; 118 final native cases including 14 added safety cases, final store analysis/format and 10 final transport/store integration cases."
+      },
+      {
+        "change": "Vendor parser braces and equivalent test call/cascade style.",
+        "coverage": "Exact style-only diff reviewed; 26 affected parser/response cases and strict analysis supplement the 201-case baseline."
+      }
+    ],
+    "portable_transport": "208 actual Node cases are retained through reviewed shared-core and style-only vendor deltas; no fresh complete transport Node rerun on final bytes is claimed.",
+    "canonical_local_record": "mail-runtime-evidence/final-semantic-supplement/final-applicability.json"
+  },
+  "static_checks": {
+    "core_strict": "passed on final Mail source",
+    "transport_strict": "passed on final Mail source",
+    "store_strict_and_format": "passed on final Mail source",
+    "changed_vendor_strict": "passed on final Mail source",
+    "store_browser_entry_compile": "passed before the sole later folder-label budget guard",
+    "store_browser_worker_compile": "passed at the same full-store snapshot",
+    "browser_runtime": "not qualified by Node or compilation"
+  },
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "node": "24.22.3",
+    "sdk_archive_sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+    "dependency_archives_verified": 204,
+    "lockfile_sha256": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+    "lockfile_changed": false,
+    "sqlite_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b"
+  },
+  "host": {
+    "accepted_final_cases": null,
+    "development_checks": "Initial host regressions and EN/DE/AR activity screenshots passed development checks; complete before/after manifests were not captured for those early checks, so they are excluded from final acceptance totals.",
+    "attempts": [
+      {
+        "concurrency": 2,
+        "exit_code": 1,
+        "passed": 181,
+        "failed": 119,
+        "error_events": 153,
+        "accepted": false,
+        "reason": "ENOSPC creating temporary databases and later cascading failures"
+      },
+      {
+        "concurrency": 1,
+        "exit_code": 1,
+        "passed": 178,
+        "failed": 83,
+        "error_events": 89,
+        "accepted": false,
+        "reason": "Shared disk capacity was exhausted again despite a recovered reserve"
+      }
+    ],
+    "source_and_runtime_unchanged_during_attempts": true,
+    "final_combined_studio_qualification": "incomplete; neither failed run is counted as passing"
+  },
+  "diagnostics_excluded": [
+    "Earlier full-store ENOSPC attempt",
+    "Store 1091-pass/3-obsolete-migration-fixture-failure run, replaced by accepted 1104 full run",
+    "Initial host compile failure from a missing store extension import, subsequently corrected",
+    "Initial vendor strict style infos, replaced by accepted style supplement",
+    "Both final host ENOSPC attempts"
+  ],
+  "evidence_export": {
+    "raw_archive_created": false,
+    "raw_archive_uploaded": false,
+    "reason": "Global ENOSPC prevented staging and then prevented new sandbox filesystem processes from starting. An unsandboxed disposable-checkpoint cleanup was automatically rejected because this session disables sandbox escalation; no files were removed by that attempt.",
+    "local_receipts": [
+      "/workspace/scratch/4fa1ba921f9d/mail-runtime-evidence/final-semantic-supplement/final-applicability.json",
+      "/workspace/scratch/4fa1ba921f9d/store-final-qualification/receipt.json",
+      "/workspace/scratch/4fa1ba921f9d/store-final-label-supplement/receipt.json"
+    ],
+    "local_packager": "/workspace/scratch/4fa1ba921f9d/evidence-packaging/package_evidence.py",
+    "status": "Source checkpoints and this summary are remote. The raw local receipts, logs, manifests and screenshots remain in the workspace and have not been exported as a full Mail bundle."
+  },
+  "github_actions": {
+    "queried": false,
+    "awaited": false,
+    "required_checks_or_protections_changed": false
+  },
+  "limits": [
+    "No live IMAP/EWS account or installed-platform release qualification",
+    "No browser storage runtime qualification",
+    "Full Outlook/Thunderbird/eM Client parity is not claimed",
+    "Destination identity changes do not fabricate cached body bytes",
+    "New bulk-organization branch published after initial intake is separate concurrent work"
+  ]
+}

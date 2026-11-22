@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "kind": "Incoming historical qualification review; not new executions in this task",
+  "zotero": {
+    "incoming_main": "b38f2e38369855056eb9e23792f83fd1ab86ea24",
+    "qualified_source": "f06afa63a7e321482a60d3f3a4fc39c522fdb29d",
+    "evidence_directory": "docs/validation/zotero-parity-next-20261122",
+    "archive_bytes": 440028,
+    "archive_sha256": "9a2a5e810f9cea30c3f37cd10e8549b42e9244c0b173d9af6763cc90e680bfdf",
+    "members_verified": 260,
+    "all_indexed_sizes_and_hashes_match": true,
+    "git_inputs_matched": {
+      "engine": 1037,
+      "editor": 4455,
+      "studio": 4455,
+      "converter": 372
+    },
+    "pre_post_manifests_identical": true,
+    "accepted_cases": {
+      "engine": 717,
+      "editor": 154,
+      "studio": 27,
+      "total": 898,
+      "suites": 33
+    },
+    "static_file_hashes_matched": 13,
+    "converter_artifact_hashes_matched": 91,
+    "converter_commands_exit_zero": 7,
+    "scope": "Verified archived local qualification of the retained product source; real development-build LibreOffice saves are not installed Zotero/Word/stable-LibreOffice plugin acceptance.",
+    "included_in_current_mail_3405": false
+  },
+  "word_suffix": {
+    "incoming_tip": "d4317dcc1ecc6c7b70a1773cc121f5639ad99428",
+    "compared_source": "06b4e747c09851048d0b72a958e9114f7c83cc52",
+    "evidence_directory": "docs/validation/word-vba-cell-suffix-20261122/evidence",
+    "archive_blob": "fb1f003d8c781c36544e0e4829a659ebaf83af78",
+    "archive_bytes": 1300946,
+    "archive_sha256": "97215d1b03589df9b0c91582d7798e4451fe5d1bb1b73fa06ff06dacd989c545",
+    "members_verified": 129,
+    "all_indexed_sizes_and_hashes_match": true,
+    "native": {
+      "passing_occurrences": 7235,
+      "strict_suite_name_keys": 7214,
+      "suites": 141,
+      "original_wholly_passing_suites": 101,
+      "original_accepted_occurrences": 6176,
+      "whole_file_recheck_suites": 40,
+      "recheck_occurrences": 1059,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "raw_events_independently_recomputed": true,
+      "failed_monolithic_run_not_counted": true,
+      "formatting_suite_included": true,
+      "test_key_sha256": "f2897f977b9fe853d8eb26ca19a864dbde9fd9e69a8bcc5b7421020b1d39d17d"
+    },
+    "source": {
+      "recheck_git_inputs_matched": 1208,
+      "recheck_manifest_entries": 1211,
+      "portable_git_inputs_matched": 449,
+      "pre_post_manifests_identical": true,
+      "initial_fixture_delta": "Only two expected diagnostic columns in word_cell_paragraphs_v1.json changed (3 to65,5 to67); containing complete suite was rechecked.",
+      "four_unique_production_blobs_match_06b4": true
+    },
+    "static": {
+      "strict_analysis": "dart analyze --fatal-infos lib test tool",
+      "analysis_exit_code": 0,
+      "changed_dart_format_exit_code": 0,
+      "format_files": 19
+    },
+    "portable": {
+      "actual_vm_dart2js_and_node_commands_verified": true,
+      "actual_bas_exit_codes": [
+        0,
+        0,
+        0
+      ],
+      "actual_bas_vm_node_output_sha256": "9c87247e15d2035b8fbb917ab4675f1467bfc75c745528c7a7b31dea789a8b0e",
+      "suffix_cases": 73,
+      "suffix_native_plans": 27,
+      "suffix_positioned_diagnostics": 46,
+      "suffix_vm_node_output_sha256": "fd59882f488a4b577c1b212fdbe5b9d358b54dc4dfc1dcc649af6b524f018e0c",
+      "all_eleven_corpora_executed": false
+    },
+    "limitations": [
+      "Historical source-matched acceptance at06b4; not a fresh combined-workspace execution.",
+      "Later arithmetic main changes the compiler, so the entire7235-case cohort is not source-identical qualification of final main.",
+      "Final redundant normalization of a separate445-entry BAS manifest and case-by-case expected-value comparison were interrupted by ENOSPC; completed archive/raw-output/449-input checks remain attributed as verified.",
+      "Twelve additional nonmacro workflow suites and prefix/paragraph portable followups were prepared but not run.",
+      "No installed Microsoft Office differential qualification.",
+      "Author-overlapping Zotero705 is not added to separate898."
+    ],
+    "included_in_current_mail_3405": false
+  },
+  "word_arithmetic": {
+    "incoming_main": "8326f191067dac1a3befab81361c5829fee9a35d",
+    "source_commit": "ad27e97263eee11dbd7b76f846bfea0a8e250499",
+    "qualification_file": "docs/validation/word-vba-integer-arithmetic-20261122/qualification.json",
+    "kind": "Author-reported historical results; raw archive not exported",
+    "production_sha256": "0847838044cb18fe844fc2660870a0141a9f8d16b3c9d98f183297afff94d60b",
+    "new_unit_test_sha256": "d43f1852854423aced48c6f9daeec3040aa61b4e2dd0195b5402cd60dd279eb9",
+    "recorded_source_hashes_independently_matched": true,
+    "production_and_test_blobs_unchanged_from_source_commit": true,
+    "source_review": "No concrete source-level blocker identified in the bounded arithmetic addition.",
+    "reported_arithmetic_cases": 687,
+    "reported_arithmetic_suites": 5,
+    "reported_mail_cases": 1258,
+    "reported_mail_suites": 55,
+    "raw_counts_independently_recomputed": false,
+    "uncompleted": [
+      "Corrected grouped-document integration and54-case corpus",
+      "Complete145-suite macro regression",
+      "Actual VM/JavaScript new-corpus and BAS comparisons",
+      "Affected Flutter Mail UI",
+      "Final engine static analysis"
+    ],
+    "included_in_current_mail_3405": false
+  }
+}
