@@ -878,6 +878,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       _localAccountWarning = null;
     });
     StudioMailDraftStore? candidate;
+    var adopted = false;
     try {
       await _requireReleasedDraftStores();
       if (!_currentSession(client, generation)) return false;
@@ -939,6 +940,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         );
         return false;
       }
+      adopted = true;
       setState(() {
         _draftStore = candidate;
         _draft = restored?.draft;
@@ -1007,6 +1009,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     } on Object catch (error) {
       final expired = error is _StudioMailNavigationExpired;
       final wasCurrent = _currentSession(client, generation);
+      var outcomeGeneration = generation;
       if (candidate != null && identical(candidate, _retiredNavigationStore)) {
         // Disconnect or a failed cache drain already owns this candidate and
         // its observers. That release must drain restoration before closing it.
@@ -1015,6 +1018,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           // A revoked selected route can already own live repository observers.
           // Keep those handles together until each drain and owner close works.
           _holdNavigationAccount();
+          outcomeGeneration = _sessionGeneration;
           try {
             await _releaseRetiredNavigationAccount();
           } on Object {
@@ -1022,13 +1026,15 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           }
         }
         // An ordinary local-storage failure does not discard an adopted owner.
-      } else if (candidate != null) {
+      } else if (candidate != null && !adopted) {
         await _retireDraftCandidate(
           candidate,
           selectedTarget: expectedTarget != null,
         );
       }
-      if (wasCurrent && (expired || _navigationReleaseRequired)) {
+      if (wasCurrent &&
+          _currentAttempt(outcomeGeneration) &&
+          (expired || _navigationReleaseRequired)) {
         if (_currentSession(client, generation)) _disconnect();
         if (mounted) {
           setState(() {
@@ -1078,6 +1084,10 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     try {
       await candidate.close();
     } on Object {
+      // A selected candidate has one retry owner, never both release queues.
+      _unreleasedDraftStores.removeWhere(
+        (owner) => identical(owner, candidate),
+      );
       _retiredNavigationStore = candidate;
       if (mounted) {
         setState(() => _error = widget.strings.mailDraftStorageFailed);

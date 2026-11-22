@@ -55,9 +55,10 @@ final class _Directory
         StudioMailLocalAccountStore,
         StudioMailLocalAccountReconnectStore {
   final records = <String, MailLocalAccountRecord>{};
-  // Only the selected compare-and-update waits; independent catalog writes
-  // must remain able to remove or revise that shortcut while it is pending.
+  // Gate the selected CAS while independent catalog writes remain possible.
   Completer<void>? rememberGate;
+  // Attempts include blocked CAS operations; remembers counts committed writes.
+  int rememberAttempts = 0;
   int remembers = 0;
   int selectedRemembers = 0;
 
@@ -67,7 +68,7 @@ final class _Directory
 
   @override
   Future<void> remember(StudioMailDraftAccount identity) async {
-    remembers++;
+    rememberAttempts++;
     _remember(identity);
   }
 
@@ -76,20 +77,22 @@ final class _Directory
     StudioMailDraftAccount identity, {
     required MailLocalAccountRecord expectedRecord,
   }) async {
-    remembers++;
+    rememberAttempts++;
     selectedRemembers++;
     await rememberGate?.future;
     final current = records[identity.account.value];
     if (current == null ||
         !current.hasSameIdentity(expectedRecord) ||
         current.revision != expectedRecord.revision ||
-        current.lastConnectedAt != expectedRecord.lastConnectedAt) {
+        current.lastConnectedAt.millisecondsSinceEpoch !=
+            expectedRecord.lastConnectedAt.millisecondsSinceEpoch) {
       throw const StudioMailDraftStoreException(MailProblemCode.conflict);
     }
     _remember(identity);
   }
 
   void _remember(StudioMailDraftAccount identity) {
+    remembers++;
     final previous = records[identity.account.value];
     records[identity.account.value] = MailLocalAccountRecord(
       id: identity.account.value,
@@ -944,7 +947,7 @@ void main() {
   });
 
   testWidgets(
-    'failed owner release retains the source owner until explicit release retry',
+    'failed owner release retains source ownership until explicit release retry',
     (tester) async {
       final directory = _Directory();
       final first = _identity(_first);
@@ -977,12 +980,26 @@ void main() {
       expect(_key('studio-mail-navigation-target'), findsNothing);
       expect(find.text(_strings.mailDraftStorageFailed), findsOneWidget);
       expect(_key('studio-mail-navigation-release'), findsOneWidget);
+      expect(
+        tester
+            .widget<FilledButton>(
+              find.widgetWithText(FilledButton, _strings.connect),
+            )
+            .onPressed,
+        isNull,
+      );
+      await _tap(tester, _key('studio-mail-navigation-release'));
+      expect(owners.single.closeAttempts, 2);
+      expect(owners.single.closes, 0);
+      expect(_key('studio-mail-navigation-release'), findsOneWidget);
       owners.single.failClose = false;
       await _tap(tester, _key('studio-mail-navigation-release'));
+      expect(owners.single.closeAttempts, 3);
       expect(owners.single.closes, 1);
-      expect(clients.single.disconnections, 1);
       expect(_key('studio-mail-navigation-release'), findsNothing);
       await _choose(tester, second);
+      expect(owners.single.closes, 1);
+      expect(clients.single.disconnections, 1);
       expect(_fieldText(tester, _strings.emailAddress), _second.email);
       expect(tester.takeException(), isNull);
     },
@@ -1023,6 +1040,18 @@ void main() {
         await _connect(tester);
         expect(acquisitions, 1);
         expect(owners, isEmpty);
+        expect(
+          tester
+              .widget<IconButton>(
+                find.byWidgetPredicate(
+                  (widget) =>
+                      widget is IconButton &&
+                      widget.tooltip == _strings.disconnect,
+                ),
+              )
+              .onPressed,
+          isNotNull,
+        );
         await _tap(tester, find.byTooltip(_strings.disconnect));
         if (destination == 'connect') {
           await tester.enterText(_field(_strings.password), _first.password);
@@ -1213,16 +1242,18 @@ void main() {
           },
         );
         await _connect(tester);
-        expect(directory.remembers, 2);
+        expect(directory.rememberAttempts, 2);
         if (removed) {
           directory.records.remove(identity.account.value);
         } else {
           directory._remember(identity);
         }
         final replacement = directory.records[identity.account.value];
+        final committedWrites = directory.remembers;
         gate.complete();
         await _pump(tester);
         expect(directory.records[identity.account.value], same(replacement));
+        expect(directory.remembers, committedWrites);
         expect(directory.selectedRemembers, 1);
         expect(owners.single.closes, 1);
         expect(clients.single.disconnections, 1);

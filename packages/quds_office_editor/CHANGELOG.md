@@ -17,6 +17,9 @@ All notable changes to `quds_office_editor` are documented here.
   Apply the same retained cleanup to Disconnect, Refresh and folder changes;
   cancel observers waiting for an initial saved-mail snapshot before draining
   restoration, and close their owner only after both have finished.
+  Bind toolbar callbacks to their original session and mailbox. Preserve
+  same-session host cancellation during ordinary modal reviews while fencing
+  the full account-chooser handoff. Fresh connections register normally.
   Native Close continues to hide the mounted Mail pane, and persistent release
   failures can require a host restart. See the
   [connected account guide](../../docs/roadmaps/mail/connected-account-navigation.md)

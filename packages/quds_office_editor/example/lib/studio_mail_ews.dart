@@ -787,8 +787,9 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   }
 
   Future<void> _disconnectFromUi() async {
+    // A captured host callback may cancel this exact session during ordinary
+    // modal review. Account selection and handoff have their own navigation fence.
     if (_session == null ||
-        _dialogOpen ||
         _navigating ||
         _routeRetired ||
         _retiredDraftStore != null ||
@@ -964,14 +965,13 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     for (final store in List<StudioMailDraftStore>.of(_unreleasedDraftStores)) {
       await _closeDraftStore(store);
     }
-    _checkDraftStoresReleased();
-    if (!allowRetired && _retiredDraftStore != null) {
-      throw const _AccountOwnerReleaseFailure();
-    }
+    _checkDraftStoresReleased(allowRetired: allowRetired);
   }
 
-  void _checkDraftStoresReleased() {
-    if (_unreleasedDraftStores.isNotEmpty || _mailboxViewReleaseFailed) {
+  void _checkDraftStoresReleased({bool allowRetired = false}) {
+    if (_unreleasedDraftStores.isNotEmpty ||
+        _mailboxViewReleaseFailed ||
+        !allowRetired && _retiredDraftStore != null) {
       throw const _AccountOwnerReleaseFailure();
     }
   }
@@ -1003,6 +1003,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     final identity = _draftIdentity;
     if (identity == null) return false;
     StudioMailDraftStore? candidate;
+    var adopted = false;
     setState(() {
       _busy = true;
       _localAccountWarning = null;
@@ -1065,6 +1066,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         }
         return false;
       }
+      adopted = true;
       setState(() {
         _draftStore = candidate;
         _draft = restored?.draft;
@@ -1141,15 +1143,19 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         if (error is _AccountNavigationExpired) rethrow;
         return false;
       }
+      final ownsCandidate =
+          candidate != null && (!adopted || identical(candidate, _draftStore));
       if (error is _AccountNavigationExpired) {
-        if (identical(_draftStore, candidate)) {
-          _draftStore = null;
-          _draft = null;
-          _submissionUncertain = false;
-        }
-        _mailboxCapture?.dispose();
-        _mailboxCapture = null;
-        if (candidate != null) {
+        if (ownsCandidate) {
+          if (identical(_draftStore, candidate)) {
+            _draftStore = null;
+            _draft = null;
+            _submissionUncertain = false;
+          }
+          _mailboxCapture?.dispose();
+          _mailboxCapture = null;
+          // An adopted candidate detached by another transition already has
+          // a cleanup owner. Only this restoration's candidate can retire here.
           _retiredDraftStore = candidate;
           try {
             await _releaseRetiredAccount();
@@ -1160,12 +1166,14 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         }
         rethrow;
       }
-      if (identical(candidate, _draftStore)) {
-        _draftStore = null;
-        _draft = null;
-        _submissionUncertain = false;
+      if (ownsCandidate) {
+        if (identical(candidate, _draftStore)) {
+          _draftStore = null;
+          _draft = null;
+          _submissionUncertain = false;
+        }
+        await _closeDraftStore(candidate);
       }
-      await _closeDraftStore(candidate);
       if (_current(provider, lease)) {
         setState(() => _error = widget.strings.mailDraftStorageFailed);
       }
@@ -2723,7 +2731,10 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         identical(owner, _draftStore);
     var retired = false;
     var saving = false;
-    setState(() => _dialogOpen = true);
+    setState(() {
+      _dialogOpen = true;
+      _navigating = true;
+    });
     try {
       await _draftRestoration;
       if (!current()) return;
@@ -2739,7 +2750,6 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       if (target == null || !current()) return;
       await target.validateCurrent(directory);
       if (!current()) return;
-      setState(() => _navigating = true);
       saving = true;
       await _saveRetainedDraft();
       saving = false;
@@ -2784,7 +2794,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     }
     final epoch = ++_accountEpoch;
     bool current() => mounted && epoch == _accountEpoch;
-    var saving = _retiredDraftStore == null;
+    var saving = false;
     setState(() => _navigating = true);
     try {
       await _draftRestoration;
@@ -2796,6 +2806,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       await _requireReleasedDraftStores(allowRetired: true);
       if (!current()) return;
       if (_retiredDraftStore == null) {
+        saving = true;
         await _saveRetainedDraft();
         if (!current()) return;
         saving = false;

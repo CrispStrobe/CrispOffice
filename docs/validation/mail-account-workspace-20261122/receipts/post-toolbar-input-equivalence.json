@@ -1,0 +1,47 @@
+{
+  "checked_at_utc": "2026-11-22T12:46:47.136684+00:00",
+  "head_at_check": "e034ae75d31063d06eabfbc3fe62b39d53d8c3b4",
+  "tree_at_check": "60b95ca8b52e5059a05dc1bce079db2751598b1e",
+  "meaning": "The EWS toolbar correction is outside these exact captured input sets. Original executions remain applicable by byte equality; this audit runs no tests.",
+  "cohorts": [
+    {
+      "cohort": "engine",
+      "captured_input_count": 1415,
+      "manifest": ".runtime/validation/final-integrated-engine/inputs-before.json",
+      "manifest_sha256": "974370de30188c3b43f3b35346a2c03236f1889a76e359d416b82032134ced01",
+      "all_inputs_match_corrected_source": true,
+      "changed_or_missing": [],
+      "passing_cases_from_original_execution": 2585,
+      "suites": 52,
+      "new_test_executions": 0
+    },
+    {
+      "cohort": "retained-shared-mail",
+      "captured_input_count": 571,
+      "manifest": ".runtime/validation/mail-core-source-before.json",
+      "manifest_sha256": "470afd0aec2f5d36a4a2c9611ac96bcada9dbdde2740eedb32d2bb09be67869a",
+      "all_inputs_match_corrected_source": true,
+      "changed_or_missing": [],
+      "passing_cases_from_original_execution": 1560,
+      "suites": 72,
+      "new_test_executions": 0
+    },
+    {
+      "cohort": "retained-mail-store",
+      "captured_input_count": 170,
+      "manifest": "store-full-validation/inputs-before.json",
+      "manifest_sha256": "788810a5012bf87e17c286e3e9784fa8b9b38eee8d47acf0e12621042e6486ee",
+      "all_inputs_match_corrected_source": true,
+      "changed_or_missing": [],
+      "passing_cases_from_original_execution": 1162,
+      "suites": 52,
+      "new_test_executions": 0
+    }
+  ],
+  "all_inputs_match": true,
+  "new_test_executions": 0,
+  "github_actions_used": false,
+  "canonical_source_commit": "8403ddfd202637e1ebe7c4350d5e765347ef7023",
+  "canonical_tree": "60b95ca8b52e5059a05dc1bce079db2751598b1e",
+  "local_baseline_alias": "e034ae75d31063d06eabfbc3fe62b39d53d8c3b4"
+}

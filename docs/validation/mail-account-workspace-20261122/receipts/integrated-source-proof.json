@@ -1,8 +1,8 @@
 {
-  "checked_at_utc": "2026-11-22T12:36:39.824438+00:00",
-  "canonical_source_commit": "3e57fda4de6317c4a547f69220d7ed83802fd19f",
-  "local_source_alias": "e6b5c23e3d0dfee29fb86fe1a5f6132b3f34de3d",
-  "identical_tree": "f410d8165bc8af58df6f1154905878ea4b63875b",
+  "checked_at_utc": "2026-11-22T12:48:04.647273+00:00",
+  "canonical_source_commit": "8403ddfd202637e1ebe7c4350d5e765347ef7023",
+  "local_source_alias": "e034ae75d31063d06eabfbc3fe62b39d53d8c3b4",
+  "identical_tree": "60b95ca8b52e5059a05dc1bce079db2751598b1e",
   "integrated_remote_main": "4cc604810fb2f41ac7ba04cbed65cb76300bff59",
   "captured_observations": 298,
   "captured_unique_commits": 120,
@@ -154,5 +154,8 @@
   ],
   "test_executions": 0,
   "refs_updated": false,
-  "github_actions_used": false
+  "github_actions_used": false,
+  "previous_integrated_source_commit": "3e57fda4de6317c4a547f69220d7ed83802fd19f",
+  "previous_integrated_source_tree": "f410d8165bc8af58df6f1154905878ea4b63875b",
+  "source_change_after_previous_gate": "EWS connected toolbar callback identity guard only; preserved static and editor attempts are superseded by their corrected-source reruns."
 }

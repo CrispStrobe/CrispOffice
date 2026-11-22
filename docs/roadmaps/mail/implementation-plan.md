@@ -47,6 +47,8 @@ sign-in and guarded foreground handoff, combining the
 selected-record refresh and late-owner fences. Remembered Archive destinations,
 categories/rules, body/provider search, persistent conversations and provider
 Drafts/Sent reconciliation precede fuller background multi-account work.
+Retained simultaneous account sessions and the shared unified workspace remain
+open within M04W.
 These increments do not close M04W or the complete desktop-client parity goal.
 
 ## 2. New package layout

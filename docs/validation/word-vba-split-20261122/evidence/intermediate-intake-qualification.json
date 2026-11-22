@@ -1,0 +1,58 @@
+{
+  "qualified_source_commit": "c971ad0e1515db8deed59b7d8360960c64e13059",
+  "qualified": true,
+  "passed": 552,
+  "failed": 0,
+  "skipped": 0,
+  "suite_count": 20,
+  "scopes": [
+    {
+      "scope": "mail",
+      "cases": 209,
+      "suites": 6,
+      "source_commit": "c971ad0e1515db8deed59b7d8360960c64e13059",
+      "receipt": "final-mail/qualification.json",
+      "strict_analysis": "13 selected production/test files, no issues",
+      "input_count": 8980,
+      "input_changes": 0
+    },
+    {
+      "scope": "zotero-editor",
+      "cases": 296,
+      "suites": 12,
+      "source_commit": "cbb7ae3b26b17d0225ecd082d4a5226f8fcfc9d5",
+      "receipt": "qualification.json: results.zotero-editor-tests",
+      "strict_analysis": "new converter controller test, no issues",
+      "continuity_receipt": "editor-continuity.json",
+      "changed_relevant_inputs": 0
+    },
+    {
+      "scope": "mail-store",
+      "cases": 47,
+      "suites": 2,
+      "source_commit": "3e3a8fb037bc5c3972cbf9994003bc060ca68bb3",
+      "receipt": "prior-mail-store/qualification.json: results.store-tests",
+      "continuity_receipt": "store-continuity.json",
+      "compared_inputs": 6381,
+      "changed_relevant_inputs": 0
+    }
+  ],
+  "initial_attempt": {
+    "source_commit": "cbb7ae3b26b17d0225ecd082d4a5226f8fcfc9d5",
+    "mail_passed": 107,
+    "mail_failed": 2,
+    "suite_loading_failures": 1,
+    "cause": "Duplicate fixture field and two invalid RawTooltip-to-IconButton fixture casts; no production changes required. All raw outputs retained.",
+    "editor_passed": 296
+  },
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "sqlite_package": "3.9.1",
+    "sqlite_runtime": "3.54.1",
+    "genuine_native_sqlite_sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b"
+  },
+  "lock_sha256": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+  "no_dependency_manifest_changes": true,
+  "github_ci_used": false
+}

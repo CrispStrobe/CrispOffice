@@ -2,15 +2,16 @@
 
 ## Current status
 
-**Partial qualification: the full Studio Mail acceptance run is still in
-progress.** The final integrated engine, editor integration and static gates
-have passed. This document does not yet claim a fully qualified final tree or
-a completed merge to main.
+**Partial qualification: the first full Studio Mail run found a stale
+Refresh-callback defect, which has been corrected.** The corrected-source
+editor and static reruns have passed; the complete Studio rerun is in progress.
+The engine gate remains valid for its unchanged inputs. This document does not
+yet claim a fully qualified final tree or a completed merge to main.
 
-The integrated source checkpoint is
-`3e57fda4de6317c4a547f69220d7ed83802fd19f`, tree
-`f410d8165bc8af58df6f1154905878ea4b63875b`. Local test baseline
-`e6b5c23e3d0dfee29fb86fe1a5f6132b3f34de3d` has exactly the same tree.
+The corrected source checkpoint is
+`8403ddfd202637e1ebe7c4350d5e765347ef7023`, tree
+`60b95ca8b52e5059a05dc1bce079db2751598b1e`. Local test baseline
+`e034ae75d31063d06eabfbc3fe62b39d53d8c3b4` has exactly the same tree.
 Documentation can advance independently of this frozen source boundary. See
 [qualification.json](qualification.json) for the machine-readable state and
 [the source proof](receipts/integrated-source-proof.json) for exact hashes and
@@ -53,7 +54,9 @@ Remote work branch: `work/mail-account-workspace-20261122`.
 | `fb8d637210b54c5ede44aa73557076864dda6995` | Later Office branch union and strict handoff cleanup |
 | `068c46395a58c67a9537874b6a2030008296793e` | Opaque Word field-boundary revision preservation |
 | `180a1267d99cc2d4a139976b57b64a4f61db278a` | Retained observer/owner cleanup, ordinary Disconnect and first-snapshot recovery |
-| `3e57fda4de6317c4a547f69220d7ed83802fd19f` | Final source reconciliation with main `4cc60481` |
+| `3e57fda4de6317c4a547f69220d7ed83802fd19f` | Source reconciliation with main `4cc60481` |
+| `d09c3c0eda381d96e1dc28dea96e0026a75bbb01` | Partial qualification records and the first evidence archive |
+| `8403ddfd202637e1ebe7c4350d5e765347ef7023` | Stale connected-toolbar callback rejection and bound Refresh/More mailbox |
 
 Each checkpoint was published with a non-forced expected-head ref update after
 checking that the remote Git tree equals the local tree. Source branches were
@@ -96,9 +99,9 @@ they have distinct test IDs and are not duplicate executions.
 | Word/VBA engine | 20 VM suites | Passed: 1,831 cases |
 | Zotero/ODT/revision/run/style engine | 32 VM suites | Passed: 754 cases |
 | Engine VM/Node portability | Split corpus and DOCX/DOCM BAS smoke | Passed; separate from test counts |
-| Editor Zotero integration | 3 controller suites | Passed: 51 cases |
-| Studio Mail acceptance | All 110 `*mail*_test.dart` suites in the example | Pending |
-| Changed Dart analysis/format | All 47 changed Dart paths (32 engine and 15 other) | Passed: strict analysis and read-only format |
+| Editor Zotero integration | 3 controller suites | Corrected-source rerun passed: 51 cases |
+| Studio Mail acceptance | All 110 `*mail*_test.dart` suites in the example | First run failed: 132 passed / 1 error; complete corrected-source rerun pending |
+| Changed Dart analysis/format | All 47 changed Dart paths (32 engine and 15 other) | Passed; 15-path gate rerun after host correction |
 
 The completed engine gate contributes **2,585 fresh passing test executions
 across 52 suites**, with zero failures or skips. All ten commands exited zero,
@@ -109,13 +112,16 @@ reporters match the expected suite inventories. See
 [complete receipt](receipts/final-engine-qualification.json) and
 [independent recount](receipts/final-engine-raw-audit.json).
 
-The editor controller gate adds **51 fresh passing cases across three suites**;
-all 6,220 captured inputs remained unchanged. See its
+The corrected-source editor controller gate passed **51 cases across three
+suites**, with all 6,220 captured inputs unchanged. See its
 [receipt](receipts/editor-zotero-qualification.json) and
-[independent recount](receipts/editor-zotero-raw-audit.json). Completed fresh
-execution therefore totals **2,636 cases across 55 suites** so far. The
-[remaining static receipt](receipts/mail-static-qualification.json) completes
-strict analysis and read-only formatting for all 47 changed Dart files.
+[independent recount](receipts/editor-zotero-raw-audit.json). Together with the
+engine gate, this is **2,636 cases across 55 suites from fresh qualification
+runs**. The engine ran on the preceding integrated source; all 1,415 engine
+inputs match the corrected source exactly, as do the 571 shared-Mail and 170
+store inputs. See [the post-fix equivalence audit](receipts/post-toolbar-input-equivalence.json).
+The 15-path Mail static gate also passed after the correction. Earlier
+editor/static runs are retained diagnostically and do not add passing credit.
 
 The provider host union is expected to include 127 cases and native navigation
 50; those are scope checks, not completed acceptance results in this partial
@@ -129,6 +135,17 @@ totals. They overlap later coverage or ran against earlier source. The
 changes and is explicitly not a final integrated-source gate.
 
 ## Repairs and portability evidence
+
+The first Studio gate exited naturally with 132 passing cases and one error,
+with all 6,220 inputs unchanged. The existing EWS Disconnect/failed-observer
+regression exposed a stale Refresh callback reading a mailbox that Disconnect
+had cleared. The correction captures callback identity and a non-null mailbox
+at build time and rejects stale dispatch before dereferencing state. It keeps
+pending Disconnect available and leaves the regression assertions unchanged.
+See [the Studio repair record](receipts/studio-repair-notes.json) and
+[failed-run receipt](receipts/studio-first-attempt-qualification.json). The
+failed attempt contributes no final passing credit. Its raw evidence and the
+preceding editor/static runs are retained for the final archive.
 
 The first incoming engine gate exposed seven Zotero failures: six expectations
 compared refreshed citation text against the unmodified source fixture, and

@@ -22,21 +22,25 @@ interrupted work.
 | Conversations | Folding of explicitly loaded threaded headers |
 | Compose tools | Signatures, Quick Text, attachments and draft recovery |
 | Account persistence | Native account store, schema migrations and reconnect |
-| Connected account navigation | Four-provider remembered-account chooser; exact non-secret routes, explicit sign-in and guarded foreground handoff |
+| Connected account navigation | Four-provider remembered-account chooser; exact non-secret routes, explicit sign-in and guarded foreground handoff; one connected account at a time |
 | Browser store | Implemented path; quota/reload/Web Locks acceptance remains open |
 
 ## Latest increment: connected account navigation
 
-Studio now offers one remembered-account chooser across IMAP/SMTP, Exchange
-EWS, Gmail and Microsoft 365. It shows exact non-secret routes and opens the
-selected provider's explicit sign-in flow. Selecting or refreshing an account
-does not perform provider work. Current drafts and uncertain-submission state
-remain under their owning account, and a failed draft save prevents the switch.
+**Choose an account** offers remembered IMAP/SMTP, Exchange EWS, Gmail and
+Microsoft 365 accounts in one localized chooser. It shows exact non-secret
+routes and opens the selected provider's explicit sign-in flow. Selecting or
+refreshing the directory does not start synchronization, send mail or replay
+journal commands. Current drafts and uncertain-submission state remain under
+their owning account, and a failed draft save prevents the switch.
 
 The foreground handoff drains cached observers, pending journal writes and
-owners before opening the destination. Late owner acquisitions and retired
-callbacks cannot restore the previous account. Native directory refresh compares
-the selected record atomically, so a successful sign-in cannot recreate a
+owners before opening the destination. Selected provider, endpoint, login,
+sender and directory revision are revalidated across asynchronous setup. Removed targets,
+edited identities, hidden keyboard input, stale route callbacks and late owner
+acquisitions cannot redirect or revive another account. Ambiguous IMAP SMTP
+routes require an explicit remembered-route choice. Native directory refresh
+compares the selected record atomically, so a successful sign-in cannot recreate a
 concurrently forgotten or replaced shortcut. Custom directories without that
 conditional capability retain their existing metadata.
 
@@ -44,11 +48,12 @@ Native Close continues to hide the mounted Mail pane. Failed owner release
 or observer cancellation blocks another sign-in. Native **Retry closing account**
 and provider Close/Back preserve the retained release work for an explicit
 recovery attempt; a persistent failure may still require a host restart.
-Simultaneous background accounts, a unified live Inbox and new secret persistence
-are outside this increment.
+Retained simultaneous account sessions, a shared unified live workspace and
+new secret persistence are outside this increment. M04W remains open.
 
-See the [workflow and continuation](connected-account-navigation.md) and
-[current work and qualification record](../../validation/mail-account-workspace-20261122/README.md)
+See the [workflow and ownership contract](account-navigation.md),
+[connected-account continuation](connected-account-navigation.md)
+and [current work and qualification record](../../validation/mail-account-workspace-20261122/README.md)
 for actual source boundaries and executed acceptance gates. The next sequence is
 remembered Archive destinations, categories/rules, body/provider search,
 persistent conversations and provider Drafts/Sent reconciliation, then fuller

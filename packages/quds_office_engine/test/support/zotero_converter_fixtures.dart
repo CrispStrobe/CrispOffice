@@ -75,10 +75,13 @@ Map<String, Object?> converterSnapshot(WmlDocument document, String kind) {
   };
 }
 
+/// Checks the original golden, allowing only explicitly requested citation text
+/// changes. Expected values always come from the golden and the caller's edits,
+/// never from the document under test.
 void expectConverterSnapshot(
   WmlDocument document,
   String kind, {
-  Map<String, String> refreshedCitationText = const {},
+  Map<String, String> refreshedCitations = const {},
 }) {
   final expected =
       jsonDecode(
@@ -86,39 +89,66 @@ void expectConverterSnapshot(
               '$zoteroConverterFixtureRoot/original/$kind.expected.json',
             ).readAsStringSync(),
           )
-          as Map<String, Object?>;
-  // A Refresh intentionally changes citation text and its two cache metadata
-  // values. Derive only those expected changes from the unchanged fixture;
-  // all paragraph geometry, colors, story ownership and other metadata still
-  // use the independently recorded converter snapshot.
-  final fields = (expected['fields']! as List<Object?>)
-      .cast<Map<String, Object?>>();
-  final replaced = <String>{};
-  for (final field in fields) {
-    final metadata = field['metadata']! as Map<String, Object?>;
-    final id = metadata['citationID']! as String;
-    final replacement = refreshedCitationText[id];
-    if (replacement == null) continue;
-    replaced.add(id);
-    final previous = field['text']! as String;
-    field['text'] = replacement;
-    final properties = metadata['properties']! as Map<String, Object?>;
-    properties['plainCitation'] = replacement;
-    properties['formattedCitation'] = replacement;
-    final paragraphs = expected['paragraphs']! as Map<String, Object?>;
-    for (final raw in paragraphs.values) {
-      final paragraph = raw! as Map<String, Object?>;
-      paragraph['text'] = (paragraph['text']! as String).replaceAll(
-        previous,
-        replacement,
+          as Map<String, dynamic>;
+  if (refreshedCitations.isNotEmpty) {
+    final fields = (expected['fields'] as List<Object?>)
+        .cast<Map<String, dynamic>>();
+    final text = (expected['text'] as List<Object?>).cast<String>();
+    final replacements = <String, String>{};
+    for (final entry in refreshedCitations.entries) {
+      final matches = fields
+          .where(
+            (field) =>
+                (field['metadata'] as Map<String, dynamic>)['citationID'] ==
+                entry.key,
+          )
+          .toList();
+      expect(
+        matches,
+        hasLength(1),
+        reason: '$kind: refresh must identify exactly one golden citation.',
       );
+      final field = matches.single;
+      final oldText = field['text'] as String;
+      expect(
+        oldText,
+        isNotEmpty,
+        reason: '$kind: golden cache must be explicit.',
+      );
+      expect(
+        replacements.containsKey(oldText),
+        isFalse,
+        reason: '$kind: citation caches must be distinguishable.',
+      );
+      final literal = RegExp(RegExp.escape(oldText));
+      expect(
+        text.fold<int>(
+          0,
+          (count, paragraph) => count + literal.allMatches(paragraph).length,
+        ),
+        1,
+        reason: '$kind: replacement must select one golden citation cache.',
+      );
+      replacements[oldText] = entry.value;
+      field['text'] = entry.value;
+      final metadata = field['metadata'] as Map<String, dynamic>;
+      final properties = metadata['properties'] as Map<String, dynamic>;
+      properties['plainCitation'] = entry.value;
+      properties['formattedCitation'] = entry.value;
     }
-    expected['text'] = [
-      for (final text in expected['text']! as List<Object?>)
-        (text! as String).replaceAll(previous, replacement),
-    ];
+    // Match the original text once, so a replacement cannot cascade into a
+    // second replacement when requested text contains another citation cache.
+    final literal = RegExp(replacements.keys.map(RegExp.escape).join('|'));
+    String refreshed(String value) => value.replaceAllMapped(
+      literal,
+      (match) => replacements[match.group(0)]!,
+    );
+    final paragraphs = expected['paragraphs'] as Map<String, dynamic>;
+    for (final paragraph in paragraphs.values.cast<Map<String, dynamic>>()) {
+      paragraph['text'] = refreshed(paragraph['text'] as String);
+    }
+    expected['text'] = text.map(refreshed).toList();
   }
-  expect(replaced, refreshedCitationText.keys.toSet());
   _expectSnapshot(expected, converterSnapshot(document, kind), kind);
 }
 

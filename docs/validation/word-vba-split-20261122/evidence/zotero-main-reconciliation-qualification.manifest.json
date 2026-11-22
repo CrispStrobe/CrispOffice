@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "archive": {
+    "path": "zotero-main-reconciliation-qualification.tar.xz",
+    "bytes": 10128,
+    "sha256": "7c16421d3f520ef24ff19ee108b8323455fbe0cde5f26b43dd2612f002c6534f"
+  },
+  "members": [
+    {
+      "path": "MEMBERS.json",
+      "bytes": 1845,
+      "sha256": "3512d4fe02b19c809620f42c426a1ba4e085b028dc88a84d7ab72675b66273ef"
+    },
+    {
+      "path": "README.txt",
+      "bytes": 1670,
+      "sha256": "7fa04ec4d71dd1fa6e9f3b321744102f09bb22c33a2c03434b218be94e8be091"
+    },
+    {
+      "path": "case-ledger.json",
+      "bytes": 11385,
+      "sha256": "430a1ab30c1c15f1bdd7bdf120b0395f3a83798782d86e9daa7226425d2d6240"
+    },
+    {
+      "path": "errors.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "events.jsonl",
+      "bytes": 40891,
+      "sha256": "e0e9d9e42c289acedf8e56e9edc2a306bb5518d4eaa0a281ac7094a7b2189d69"
+    },
+    {
+      "path": "independent-review.json",
+      "bytes": 4825,
+      "sha256": "7963468a860521157ead9b293ed78a70afaac4292a845339f431abe4217ce7c6"
+    },
+    {
+      "path": "inputs-after.json",
+      "bytes": 6866,
+      "sha256": "f52d682b16eff96ad349f1b9fddf09de16b13a9ce5d54544e2beea9061b47794"
+    },
+    {
+      "path": "inputs-before.json",
+      "bytes": 6866,
+      "sha256": "f52d682b16eff96ad349f1b9fddf09de16b13a9ce5d54544e2beea9061b47794"
+    },
+    {
+      "path": "metadata.json",
+      "bytes": 890,
+      "sha256": "3464ca325ffbdd53398beae1f2da8a2a69c384b735e7936a27327e2ee503d3f0"
+    },
+    {
+      "path": "run_boundary_qualification.py",
+      "bytes": 3577,
+      "sha256": "69e72355a6dee25592f1245fd123f8635d14f974e6119b35cd36b7c7c83a9f8d"
+    },
+    {
+      "path": "stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 281,
+      "sha256": "8ece078d7410d8edab489a678f6f4984fa0af9a694e29cff48025c8b3c9825d8"
+    },
+    {
+      "path": "verification.json",
+      "bytes": 613,
+      "sha256": "a46e4c8c0fbaee4a82a484fc1fa880df449f0402ef4f47a3c96a4ed13da6b8d8"
+    }
+  ]
+}
