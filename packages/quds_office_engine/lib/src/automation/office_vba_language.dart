@@ -3656,6 +3656,11 @@ class _Checker {
             _arguments(expression, 0, allowProperty: true);
             return _Kind.wordCellRange;
           }
+          if (receiver == _Kind.wordCellRange &&
+              (name == 'font' || name == 'paragraphformat')) {
+            _arguments(expression, 0, allowProperty: true);
+            return name == 'font' ? _Kind.font : _Kind.paragraphFormat;
+          }
           if (receiver == _Kind.document && name == 'sections') {
             if (expression.arguments == null) return _Kind.wordSections;
             final argument = _arguments(expression, 1).single;
@@ -4287,14 +4292,18 @@ class _WordParagraphs {
 }
 
 class _WordParagraph {
-  const _WordParagraph(this.index, {this.headerFooter});
+  const _WordParagraph(this.index, {this.headerFooter, this.cell});
   final int index;
   final _WordHeaderFooter? headerFooter;
+  final _WordCell? cell;
 
   bool sameTarget(_WordParagraph other) =>
       index == other.index &&
       headerFooter?.section.index == other.headerFooter?.section.index &&
-      headerFooter?.story == other.headerFooter?.story;
+      headerFooter?.story == other.headerFooter?.story &&
+      cell?.table.index == other.cell?.table.index &&
+      cell?.row == other.cell?.row &&
+      cell?.column == other.cell?.column;
 }
 
 class _WordRange {
@@ -5089,9 +5098,17 @@ class _Evaluator {
           }
           if (receiver is _WordCell) return _WordCellRange(receiver);
           if (receiver is _WordCellRange) {
+            // A cell Range retains its own identity. Only these formatting
+            // objects project its guarded, single ordinary paragraph; the
+            // Range itself never gains paragraph insertion or subranges.
+            final range = _WordRange(_WordParagraph(0, cell: receiver.cell));
+            if (expression.token.lower == 'font') return _WordFont(range);
+            if (expression.token.lower == 'paragraphformat') {
+              return _WordParagraphFormat(range);
+            }
             context.unsupported(
               expression.token,
-              'A cell Range supports only Text assignment; reads, subranges and formatting are unsupported.',
+              'A cell Range exposes Text assignment, Font and ParagraphFormat only; reads and subranges are unsupported.',
             );
           }
           if (receiver is _WordDocument &&
@@ -5324,7 +5341,7 @@ class _Evaluator {
     if (value is _WordCellRange) {
       context.unsupported(
         token,
-        'A cell Range supports only Text assignment; paragraph insertion and formatting are unsupported.',
+        'A cell Range exposes Text assignment, Font and ParagraphFormat only; paragraph insertion is unsupported.',
       );
     }
     context.unsupported(
@@ -6921,7 +6938,7 @@ class _Evaluator {
     if (receiver is _WordCellRange) {
       context.unsupported(
         token,
-        'A cell Range supports only Text assignment; formatting is unsupported.',
+        'A cell Range exposes Text assignment, Font and ParagraphFormat only; other direct properties are unsupported.',
       );
     }
     if (receiver is _WordShading) {
@@ -7412,6 +7429,12 @@ class _Evaluator {
       if (range.paragraph.headerFooter case final story?) ...{
         'story': story.story,
         'section': story.section.index,
+      },
+      if (range.paragraph.cell case final cell?) ...{
+        'story': 'tableCell',
+        'table': cell.table.index,
+        'row': cell.row,
+        'column': cell.column,
       },
       ...fields,
     }, token);

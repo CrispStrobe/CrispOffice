@@ -14,6 +14,15 @@ import 'word_table_cell_text_steps.dart';
 import 'word_text_columns_steps.dart';
 
 const _storyFields = <String>['story', 'section', 'note', 'comment'];
+const _formatStoryFields = <String>[..._storyFields, 'table', 'row', 'column'];
+const _cellFormattingOperations = <String>{
+  'runFormat',
+  'paragraphFormat',
+  'tabStop',
+  'clearTabStops',
+  'lineSpacing',
+  'paragraphSpaceBefore',
+};
 const wordOperations = <String, List<String>>{
   ...wordStructureOperations,
   'replaceText': ['paragraph', 'text', 'start', 'end', ..._storyFields],
@@ -24,10 +33,16 @@ const wordOperations = <String, List<String>>{
   'characterStyle': ['paragraph', 'run', 'style', ..._storyFields],
   'tableStyle': ['table', 'style'],
   'styleDefinition': ['style', 'type', 'rPr', 'pPr', 'tblPr', 'tcPr'],
-  'tabStop': ['paragraph', 'position', 'alignment', 'leader', ..._storyFields],
-  'clearTabStops': ['paragraph', ..._storyFields],
-  'lineSpacing': ['paragraph', 'rule', 'points', ..._storyFields],
-  'paragraphSpaceBefore': ['paragraph', 'action', ..._storyFields],
+  'tabStop': [
+    'paragraph',
+    'position',
+    'alignment',
+    'leader',
+    ..._formatStoryFields,
+  ],
+  'clearTabStops': ['paragraph', ..._formatStoryFields],
+  'lineSpacing': ['paragraph', 'rule', 'points', ..._formatStoryFields],
+  'paragraphSpaceBefore': ['paragraph', 'action', ..._formatStoryFields],
   'pageSetup': ['section', 'property', 'points'],
   'pageOrientation': ['section', 'orientation'],
   'sectionStart': ['section', 'kind'],
@@ -52,7 +67,7 @@ const wordOperations = <String, List<String>>{
     'dropCapLines',
     'shading',
     'border',
-    ..._storyFields,
+    ..._formatStoryFields,
   ],
   'runFormat': [
     'paragraph',
@@ -75,7 +90,7 @@ const wordOperations = <String, List<String>>{
     'smallCaps',
     'superscript',
     'subscript',
-    ..._storyFields,
+    ..._formatStoryFields,
   ],
   'addNote': ['paragraph', 'text', 'endnote', 'offset'],
   'editNote': ['id', 'text', 'endnote'],
@@ -128,6 +143,7 @@ void applyStep(
   final fields = wordOperations[op];
   if (fields == null) throw ArgumentError('Unknown DOCX operation: $op');
   s.fields(fields);
+  _validateCellFormattingSelector(s, op);
   WmlParagraph paragraph() => s.item('paragraph', _paragraphs(doc, s));
   WmlSection section() => s.item('section', doc.sections, fallback: 0);
   WmlTable table() => s.item('table', _tables(doc));
@@ -356,7 +372,13 @@ void applyStep(
         }
       }
     case 'runFormat':
-      final p = paragraph();
+      final target = paragraph();
+      // Public in-memory documents may share property objects or their import
+      // snapshots even when their runs are uniquely owned. Prepare cell edits
+      // on copied runs so formatting cannot leak into a neighboring paragraph.
+      final p = values['story'] == 'tableCell'
+          ? WmlClone.paragraph(target)
+          : target;
       final range = _range(p, s);
       if (range.$1 == range.$2) {
         throw ArgumentError('runFormat requires a non-empty text range');
@@ -593,6 +615,7 @@ void applyStep(
         if (position != null) r.positionHalfPoints = position.toInt();
         if (noProof != null) r.noProof = noProof;
       });
+      if (!identical(p, target)) target.inlines = p.inlines;
     case 'addNote':
       final p = paragraph();
       final at = s.integer(
@@ -1106,8 +1129,37 @@ String _complexScriptFont(String value) {
   return value;
 }
 
+void _validateCellFormattingSelector(StepInput s, String op) {
+  final cellStory = s.values['story'] == 'tableCell';
+  if (!cellStory) {
+    if (_cellFormattingOperations.contains(op) &&
+        const ['table', 'row', 'column'].any(s.has)) {
+      throw ArgumentError(
+        'Cell formatting coordinates require story: tableCell',
+      );
+    }
+    return;
+  }
+  if (!_cellFormattingOperations.contains(op)) {
+    throw UnsupportedError('The tableCell story supports only cell formatting');
+  }
+  if (const ['section', 'note', 'comment', 'start', 'end'].any(s.has)) {
+    throw ArgumentError(
+      'Cell formatting requires the whole cell paragraph without other story '
+      'selectors or text offsets',
+    );
+  }
+  s.integer('paragraph', max: 0);
+  for (final field in const ['table', 'row', 'column']) {
+    s.integer(field);
+  }
+}
+
 Iterable<WmlParagraph> _paragraphs(WmlDocument doc, StepInput s) {
   final story = s.string('story', fallback: 'body');
+  if (story == 'tableCell') {
+    return [editableWordTableCellRangeParagraph(doc, s)];
+  }
   if (story == 'body') return doc.paragraphs;
   if (story == 'comment') return _comment(doc, s).paragraphs;
   if (story == 'footnote' || story == 'endnote') {

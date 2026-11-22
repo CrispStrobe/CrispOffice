@@ -5,10 +5,10 @@ import 'step_input.dart';
 const _w = OfficeNamespaces.w;
 
 Never _refuse(String reason) =>
-    throw UnsupportedError('Word table cell Range.Text $reason');
+    throw UnsupportedError('Word table cell range $reason');
 
 /// Checks graph ownership before admission performs ordinary recursive walks.
-/// The public native-operation catalog calls this for cell Range.Text writes.
+/// The public catalog calls this for cell text and formatting operations.
 void checkWordTableCellRangeOwnership(WmlDocument document) {
   _tables(document);
 }
@@ -23,6 +23,29 @@ void checkWordTableCellRangeOwnership(WmlDocument document) {
 void setWordTableCellRangeText(WmlDocument document, StepInput step) {
   final text = step.string('text');
   _text(text);
+  final paragraph = editableWordTableCellRangeParagraph(document, step);
+
+  // Work on detached runs first. Neither properties nor structural ownership
+  // are replaced, and rejection cannot leave a partly edited live paragraph.
+  final replacement = WmlClone.paragraph(paragraph);
+  if (replacement.inlines.isEmpty) {
+    if (paragraph.properties.importedParagraphMark case final mark?) {
+      replacement.inlines.add(WmlRun(properties: mark.copy()));
+    }
+  }
+  WmlRunEdit.replaceRange(replacement, 0, replacement.text.length, text);
+  paragraph.inlines = replacement.inlines;
+}
+
+/// Resolves the one ordinary paragraph of an explicitly selected table cell.
+///
+/// Cell text and formatting share the same ownership, source-fidelity and
+/// document-protection checks. This selector never falls back to the recursive
+/// body paragraph/table collections or creates a missing cell or paragraph.
+WmlParagraph editableWordTableCellRangeParagraph(
+  WmlDocument document,
+  StepInput step,
+) {
   final tableIndex = step.integer('table');
   final rowIndex = step.integer('row');
   final columnIndex = step.integer('column');
@@ -49,17 +72,7 @@ void setWordTableCellRangeText(WmlDocument document, StepInput step) {
   _plainParagraph(paragraph);
   _anchors(document, paragraph);
   _source(document, tables);
-
-  // Work on detached runs first. Neither properties nor structural ownership
-  // are replaced, and rejection cannot leave a partly edited live paragraph.
-  final replacement = WmlClone.paragraph(paragraph);
-  if (replacement.inlines.isEmpty) {
-    if (paragraph.properties.importedParagraphMark case final mark?) {
-      replacement.inlines.add(WmlRun(properties: mark.copy()));
-    }
-  }
-  WmlRunEdit.replaceRange(replacement, 0, replacement.text.length, text);
-  paragraph.inlines = replacement.inlines;
+  return paragraph;
 }
 
 void _text(String text) {
@@ -216,13 +229,13 @@ void _anchors(WmlDocument document, WmlParagraph target) {
   }
   for (final range in WordBookmarks.ranges(document)) {
     if (range.paragraphs.any((paragraph) => identical(paragraph, target))) {
-      _refuse('cannot replace text inside a bookmarked range.');
+      _refuse('cannot edit inside a bookmarked range.');
     }
   }
   var fieldDepth = 0;
   for (final paragraph in paragraphs) {
     if (identical(paragraph, target) && fieldDepth != 0) {
-      _refuse('cannot replace text inside a cross-paragraph field.');
+      _refuse('cannot edit inside a cross-paragraph field.');
     }
     for (final inline in paragraph.inlines.whereType<WmlFieldBoundary>()) {
       if (inline.kind == WmlFieldBoundaryKind.begin) fieldDepth++;
@@ -283,9 +296,7 @@ void _source(WmlDocument document, List<WmlTable> tables) {
         _refuse('requires direct native main-story tables.');
       }
       if (openComments.isNotEmpty || fieldDepth != 0) {
-        _refuse(
-          'cannot replace cell text inside an enclosing native comment or field.',
-        );
+        _refuse('cannot edit inside an enclosing native comment or field.');
       }
       sourceTables.add(node);
     } else if (_word(node, 'commentRangeStart')) {

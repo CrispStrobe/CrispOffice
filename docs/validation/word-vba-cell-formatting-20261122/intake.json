@@ -1,0 +1,112 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "initial_main": "c522851d165b395a7f60422a1be969dffc39c9ff",
+  "work_branch": "codex/word-vba-cell-formatting-20261122",
+  "initial_remote_refs": [
+    {
+      "branch": "main",
+      "sha": "c522851d165b395a7f60422a1be969dffc39c9ff",
+      "included_in_initial_main": true
+    },
+    {
+      "branch": "codex/word-vba-authoring-20261121",
+      "sha": "cf06b018ec125ce3b5abfda41a7fbbdcf7d30a47",
+      "included_in_initial_main": true
+    },
+    {
+      "branch": "codex/word-vba-comparison-colors-20261121",
+      "sha": "e3c4550b34a9a07de2a97b84b67ab6aecaa5a377",
+      "included_in_initial_main": true
+    },
+    {
+      "branch": "codex/word-vba-compatibility-20261121",
+      "sha": "3058d36c5354d46bde418555d59282116cce1e26",
+      "included_in_initial_main": true
+    },
+    {
+      "branch": "codex/zotero-dispatch-recovery-20261121",
+      "sha": "32ef843db3a8192fe0add085e1ee173e18f4d462",
+      "included_in_initial_main": true
+    },
+    {
+      "branch": "codex/zotero-footnote-separators-20261121",
+      "sha": "a70c0e7af251d737dc7639f44a48777bbea1bf51",
+      "included_in_initial_main": true
+    },
+    {
+      "branch": "codex/zotero-host-ownership-20261121",
+      "sha": "05cb866e6e5aaee95dae8b03da2892fcf633a84b",
+      "included_in_initial_main": true
+    },
+    {
+      "branch": "codex/zotero-main-qualification-20261121",
+      "sha": "e2a1ed6073556d24194004221c545166b17c2d4e",
+      "included_in_initial_main": true
+    },
+    {
+      "branch": "codex/zotero-note-layout-20261121",
+      "sha": "2089e1e35a8ba81ea7f0a077b348f93ca70953c8",
+      "included_in_initial_main": true
+    },
+    {
+      "branch": "codex/zotero-odt-roundtrip-20261121",
+      "sha": "05072dc2d59d0fa4ea97de4d6a842700ef333fab",
+      "included_in_initial_main": true
+    },
+    {
+      "branch": "codex/zotero-select-navigation-20261122",
+      "sha": "8c1b8da71bb910d4025aa179dc56290cf1a8e72a",
+      "included_in_initial_main": true
+    },
+    {
+      "branch": "codex/zotero-shortcut-host-recovery-20261121",
+      "sha": "2168011b6104f680100b87404bc1bd409f724939",
+      "included_in_initial_main": true
+    },
+    {
+      "branch": "codex/zotero-source-continuity-20261121-2135",
+      "sha": "c4c16d91d62ded0c341bee95e98de894de70483f",
+      "included_in_initial_main": true
+    },
+    {
+      "branch": "work/mail-folder-scoped-search-20261122",
+      "sha": "c522851d165b395a7f60422a1be969dffc39c9ff",
+      "included_in_initial_main": true
+    },
+    {
+      "branch": "work/mail-keyboard-triage-20261121",
+      "sha": "08d034d876073e2afc881dbfc11ba791acde3d67",
+      "included_in_initial_main": true
+    },
+    {
+      "branch": "work/mail-live-search-20261121",
+      "sha": "c3d55be30d91694b1a427d261cddbe47b1dd5eec",
+      "included_in_initial_main": true
+    },
+    {
+      "branch": "work/mail-range-selection-tests-20261121",
+      "sha": "5c7a385c5de40394d9eed736c5a2d975535c3df3",
+      "included_in_initial_main": true
+    },
+    {
+      "branch": "work/mail-sync-address-search-20261121",
+      "sha": "33d8f956ec2ed1dfd748e1d7ccbc5add053ff565",
+      "included_in_initial_main": true
+    }
+  ],
+  "open_pull_requests_at_intake": [],
+  "recent_prs_already_merged": [
+    353,
+    352,
+    351,
+    350,
+    349,
+    348,
+    347,
+    346,
+    343
+  ],
+  "integration_conclusion": "All 17 non-main tips were already contained in initial main; no preliminary merge required.",
+  "validation_policy": "Local Dart checks; no GitHub Actions queue polling or CI gate changes.",
+  "capture_method": "GitHub branches API and pinned-main comparisons at task intake. Later concurrent branch changes are not rewritten into this historical record."
+}

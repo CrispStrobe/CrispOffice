@@ -583,6 +583,37 @@ indexes and refuses cells whose structure or metadata cannot be preserved.
 The [exact table-cell contract](vba-word-macros-details.md#filling-existing-table-cells)
 defines its supported grid, content and native source envelope.
 
+`Cell.Range.Font` and `.ParagraphFormat` additionally reuse the native formatting
+operations below. Their cell selector is explicit and cannot be combined with
+body/header/note/comment selectors or text offsets:
+
+| Native operation | Cell selector and behavior |
+| --- | --- |
+| `docx.runFormat` | `story: "tableCell"`, zero-based `table`, `row`, `column`, and `paragraph: 0`; format current nonempty ordinary text runs |
+| `docx.paragraphFormat` | The same selector; edit the cell's one ordinary paragraph |
+| `docx.lineSpacing` / `docx.paragraphSpaceBefore` | The same selector; retain exact spacing pairs and native open/close/toggle behavior |
+| `docx.tabStop` / `docx.clearTabStops` | The same selector; use the existing guarded paragraph tab implementation |
+
+All three coordinates and `paragraph: 0` are required. Coordinates without the
+`tableCell` story, a nonzero paragraph, `section`/`note`/`comment`, `start`/`end`
+and use of this story with another operation are refused. The same strict table
+structure, source, protection and graph checks as cell text edits apply. Font
+formatting uses detached copies before publishing selected inlines so aliased
+public-model run properties do not alter another cell. Paragraph/cell marks and
+future insertion formatting remain outside the Font contract; fill an empty
+template cell before formatting its text. Paragraph formatting can edit an empty
+ordinary paragraph.
+
+The source adapter retains `Range`, `Font`, `ParagraphFormat` and `TabStops`
+aliases and `ByVal` helpers, including named helper arguments. It permits the
+existing Font/ParagraphFormat members and paragraph-format methods but keeps
+direct cell-range `Style`, `Shading`, `ListFormat`, proofing/language setters,
+`Paragraphs`, insertion methods and reads unavailable. `Cell.Range.Text` keeps
+its existing operation and arguments. See the
+[full formatting contract](vba-word-macros-details.md#formatting-existing-table-cells),
+[table example](../packages/quds_office_engine/example/macros/word_table_formatting.bas)
+and [qualification record](validation/word-vba-cell-formatting-20261122/README.md).
+
 The Word adapter lowers explicit `ThisDocument.Paragraphs(i).Range` operations
 to `docx.replaceText`, `docx.runFormat` and `docx.paragraphFormat`, and custom-tab
 selectors to `docx.tabStop` and `docx.clearTabStops`. Typed `Range.ListFormat`
@@ -642,6 +673,10 @@ Procedure, control-flow, and array suites add unit, boundary, and integration co
 Word source adds compiler, conformance and end-to-end native/CLI/MCP regressions,
 including document-kind preservation, immutable validation, policy denial and
 rollback after a later invalid paragraph.
+The cell-formatting suites add selector identity, typed aliases, formatting
+preservation, empty-cell behavior, malformed/aliased public models and late-cell
+rollback coverage. Its [local record](validation/word-vba-cell-formatting-20261122/README.md)
+lists the actual commands and results for the source under qualification.
 
 These tests cover shared handler parity, package admission,
 immutable/parameterized plans, publish-on-success, recording, bounded source

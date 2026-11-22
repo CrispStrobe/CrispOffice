@@ -1,0 +1,20 @@
+{
+  "source_commit": "ca4d7ea9d8e4850f3d5d451724c87e1e45cca3cd",
+  "method": "Python zipfile independently compared nonempty input/output OPC payloads after the executed CLI run.",
+  "input_sha256": "8ffe6d578a4a8fd199b3234443eccce8c30f4ebad2300383d8c8ccb436427612",
+  "output_sha256": "0442748550a06dcf4ed81817614cfc10949182038fd2582f30df6641e345f03b",
+  "parts": [
+    {
+      "part": "word/vbaProject.bin",
+      "bytes": 5,
+      "sha256": "d6f46ecf40f63a4f141c61d29bbc2188e7220a9c5a6c4b239f66e9e91c49df08",
+      "byte_identical": true
+    },
+    {
+      "part": "customXml/table.xml",
+      "bytes": 57,
+      "sha256": "98383d62b63cda3cc214e8d2a5cad9e945505114e8ac1d3b2393974ea1a03cf9",
+      "byte_identical": true
+    }
+  ]
+}
