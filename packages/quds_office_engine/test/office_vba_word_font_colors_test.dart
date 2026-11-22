@@ -170,9 +170,10 @@ End With
       'explicit scalar conversions retain exact palette values: $expression',
       () {
         expect(
-          _compile(
-            '$_font.ColorIndex = $expression',
-          ).steps.single.arguments['color'],
+          _compile('$_font.ColorIndex = $expression')
+              .steps
+              .single
+              .arguments['color'],
           color,
         );
       },
@@ -223,7 +224,7 @@ $_font.$property = $expression
     'ActiveDocument.Paragraphs(1).Range.ColorIndex = wdRed',
     'ActiveDocument.Paragraphs(1).Range.ParagraphFormat.ColorIndex = wdRed',
     'ThisDocument.Sections(1).Headers(1).Range.Font.ColorIndex = wdRed',
-    'ThisDocument.Tables(1).Cell(1, 1).Range.Font.ColorIndex = wdRed',
+    'ThisDocument.Tables(1).Cell(1, 1).Range.ColorIndex = wdRed',
     'Dim value As Long\nvalue = $_font.ColorIndex',
     'Dim value As Long\nvalue = $_font.Color',
     '$_font.ColorIndex(wdRed)',
