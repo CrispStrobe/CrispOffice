@@ -35,6 +35,25 @@ extension MailMoveIdentityTransitions on SqliteMailRepository {
   }
 
   Future<void> _checkMoveIdentityTransitions(MailAccountId account) async {
+    final invalidFences = (await _rows(
+      'SELECT count(*) AS n FROM mailbox_move_revisions WHERE account=? AND ('
+      "typeof(mailbox)!='text' OR length(CAST(mailbox AS BLOB)) NOT BETWEEN 1 AND 4096 OR "
+      "typeof(revision)!='integer' OR revision NOT BETWEEN 1 AND 9007199254740991)",
+      [account.value],
+    )).single.read<int>('n');
+    if (invalidFences != 0) {
+      SqliteMailRepository._fail(MailProblemCode.storageFailure);
+    }
+    for (final row in await _rows(
+      'SELECT mailbox FROM mailbox_move_revisions WHERE account=?',
+      [account.value],
+    )) {
+      final mailbox = row.read<String>('mailbox');
+      if (mailbox.length > 1024 ||
+          RegExp(r'[\x00-\x1f\x7f]').hasMatch(mailbox)) {
+        SqliteMailRepository._fail(MailProblemCode.storageFailure);
+      }
+    }
     final invalid = (await _rows(
       'SELECT count(*) AS n FROM move_identity_transitions t '
       'LEFT JOIN flag_batches b ON b.account=t.account AND b.id=t.batch '
@@ -351,6 +370,39 @@ extension MailMoveIdentityTransitions on SqliteMailRepository {
             row.read<String>('envelope').length;
         if (units > _viewMetadataLimit) return false;
       }
+    }
+    if (destinationSync.isNotEmpty) {
+      final members = await _rows(
+        'SELECT m.id,m.remote,m.envelope FROM messages m JOIN memberships s '
+        'ON s.account=m.account AND s.message=m.id WHERE s.account=? AND s.mailbox=? LIMIT ?',
+        [
+          account.value,
+          transition.destinationMailbox.value,
+          _syncHeaderLimit + 1,
+        ],
+      );
+      // A projection is bounded to one retained page; larger destinations use
+      // explicit synchronization rather than an unbounded metadata scan.
+      if (members.length > _syncHeaderLimit) return false;
+      var units = transition.destinationMailbox.value.length;
+      var present = false;
+      for (final member in members) {
+        present |= member.read<String>('id') == destinationId;
+        units +=
+            member.read<String>('id').length +
+            member.read<String>('remote').length +
+            member.read<String>('envelope').length;
+      }
+      if (!present) {
+        if (members.length >= _syncHeaderLimit) return false;
+        units +=
+            destinationId.length +
+            destinationRemote.length +
+            (targets.isEmpty
+                ? source.read<String>('envelope').length
+                : targets.single.read<String>('envelope').length);
+      }
+      if (units > _syncMetadataLimit) return false;
     }
     if (transition.destination case MailImapIdentity(:final uidValidity)) {
       if (destinationView.headers.any(

@@ -1,10 +1,15 @@
 ## Unreleased
 
-- Add an optional atomic sync snapshot port that retains local membership
-  revisions even before a mailbox has a provider cursor. Negotiate it through
-  single-page coordination and bounded runs, preserving legacy repositories,
-  lease checks, cursor-cycle detection and acknowledged progress. Stale pages
-  cannot erase a confirmed move; fresh first-page sync can resume afterward.
+- Add optional mutation receipts carrying validated authoritative Move identity
+  transitions and canonical destination cache keys. Preserve generic provider
+  and flag APIs; carry exact move evidence through the shared durable runner,
+  reject mismatched/nonconfirmed evidence, and validate restored receipts.
+  Add optional repository-only cursor revisions and a null-safe atomic sync
+  snapshot port for local membership fencing. Coordinator and bounded runner
+  preserve that optional capability while retaining legacy repository support.
+  Retain local revisions before the first provider cursor; reject inconsistent
+  cursor stamps and stale pages while allowing a fresh first synchronization.
+  Preserve lease checks, cursor-cycle detection and acknowledged run progress.
 
 - Add optional read-only membership observation with immutable exact identity,
   IMAP generation/deletion semantics, complete Gmail labels and Graph/EWS parent

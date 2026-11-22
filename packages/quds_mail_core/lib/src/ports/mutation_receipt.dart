@@ -23,6 +23,9 @@ final class MailMoveIdentityTransition {
         source.account != destinationMailbox.account ||
         source.provider != destination.provider ||
         sourceMailbox == destinationMailbox ||
+        (source.provider == MailProviderKind.imap &&
+            sourceMailbox.value.toUpperCase() == 'INBOX' &&
+            destinationMailbox.value.toUpperCase() == 'INBOX') ||
         !const {
           MailProviderKind.imap,
           MailProviderKind.graph,

@@ -148,6 +148,21 @@ void main() {
     },
   );
 
+  test('IMAP INBOX case aliases cannot fabricate a different destination', () {
+    final alias = MailMailboxId('inbox', account: _account);
+    expect(
+      () => MailMoveIdentityTransition(
+        operationId: 'move:0',
+        source: _remote,
+        sourceMailbox: _source,
+        destination: MailImapIdentity(mailbox: alias, uidValidity: 3, uid: 20),
+        destinationMailbox: alias,
+        destinationMessageId: MailMessageId('key'),
+      ),
+      throwsArgumentError,
+    );
+  });
+
   for (final provider in [MailProviderKind.graph, MailProviderKind.ews]) {
     test(
       '${provider.name} identities may stay stable across different folders',

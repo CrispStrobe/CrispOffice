@@ -45,7 +45,7 @@ results retain their original source and platform attribution.
 | Native selected-field context | Temporary original-source highlights and prompt excerpts for explicit `Field.select`, including body/table/note citations, damaged metadata and multipart bibliographies; independent writing selection, lifecycle cleanup and guarded viewport restoration | Pending insertions and transfer clones have no live source range; incomplete or ambiguous structural recovery and installed-host acceptance remain separate |
 | Damaged reference metadata | Native repair for structurally complete citation packets with invalid JSON/schema and owned bibliography ranges with invalid JSON; original-source retention until completion; confirmed individual conversion to ordinary text, undo and DOCX persistence | No inferred field boundaries or shared/cross-owner repairs; incomplete, nested, locked and opaque packets remain guarded; native delete and unlink callbacks retain distinct effects; installed-plugin acceptance remains open |
 | Bibliography | Native add/edit, entry paragraphs, rich runs, hanging indents, spacing and tab stops | Replacement requires a complete exclusively owned bibliography range |
-| Unlink citations | Explicit individual and document-wide conversion with undo | Verify final target-application files separately |
+| Unlink citations | Explicit individual and document-wide conversion with undo, including complete damaged metadata with a disclosed count and native ownership checks | Incomplete, locked, nested, opaque or ambiguously owned fields block the whole conversion; verify final target-application files separately |
 | Add Note | Rich paragraphs, headings, nested lists up to nine levels, multiparagraph items, links, pictures, rectangular tables nested up to eight levels with combined row/column spans and active citations; insertion in body or authored notes and replacement across consecutive ordinary paragraphs in one section, note or table cell | Table payloads require a main-flow destination; cross-cell/control ranges, selected protected/structural content, compact merged-row height distribution, header/footer row groups, custom table styling and custom/reversed list markers remain unsupported |
 | Add Annotation | Zotero 9+ native annotation picker, text/comments and supported PNG image/ink content with active citations | Uses the same bounded image/content envelope as Add Note |
 | Library/source discovery | Local/online catalogs, collections, saved searches, tags, source details, cited-source reuse and occurrence navigation, and validated local/group **Open in Zotero** navigation from reference details | Local and online catalog APIs have different connection/version requirements; desktop selection is unavailable for unverified personal-web or offline identities |
@@ -64,7 +64,16 @@ contract; they are not evidence of complete document-wide CSL parity.
 
 ## Delivered increment: automatic Roman notes in editable ODT
 
-Editable ODT exchange now preserves continuous automatic decimal and
+The [numbering and unlink continuation](../../validation/zotero-parity-next-20261122/README.md)
+extends the automatic-note path below to continuous sequences starting from
+1 to 32,768. Footnotes/endnotes keep independent starts; decimal ordinals stay
+within 65,535 and Roman ordinals within 3,999. It distinguishes literal ODF
+starts from identified LibreOffice offsets and a versioned Quds export
+convention, requires exact caches, and preserves numeric Zotero note indexes.
+It also extends document-wide unlinking to structurally complete damaged
+metadata, with confirmation, atomic refusal, undo/redo and DOCX persistence.
+
+The preceding Roman increment preserves continuous automatic decimal and
 lower/upper Roman notes starting at one, including Word's default endnotes.
 The exporter verifies effective native format, ordinal, start and restart
 settings for every note in a cited class, including uncited notes. It emits
@@ -628,7 +637,11 @@ original code, and a reopened converted file contains ordinary text. Native
 `Field.removeCode` likewise preserves cached text, while `Field.delete` removes
 it. The adapter follows the callback Zotero sends: a native corrupt-reference
 **No** choice must not be documented as invariably preserving the result.
-Document-wide unlinking retains its existing malformed-field refusal.
+Document-wide unlinking now uses the same native ownership checks for complete
+damaged fields. Its confirmation identifies the damaged count, and every field
+is retained if any conversion is unsafe. The
+[continuation record](../../validation/zotero-parity-next-20261122/README.md)
+owns this extension's source and qualification.
 
 Locked, nested, opaque or incomplete packets, cross-owner ranges, shared
 paragraph/result objects and unsupported stories remain guarded. This

@@ -22,23 +22,28 @@ abstract interface class MailSyncRepository {
   });
 }
 
-/// One atomic repository observation, including a mailbox without a cursor.
+/// One atomic read of a mailbox's provider cursor and local membership fence.
 ///
-/// [revision] fences local membership changes independently of opaque provider
-/// cursor bytes. It must be retained even when [cursor] is null, so an in-flight
-/// first page cannot overwrite a move acknowledged after the read.
+/// A null cursor still carries [revision]: a local move can change retained
+/// membership before the mailbox's first provider synchronization. Capturing
+/// both values together prevents an older first page from restoring that mail.
 final class MailSyncRepositorySnapshot {
   MailSyncRepositorySnapshot({
     required this.mailbox,
     required this.cursor,
     required this.revision,
   }) {
-    if (revision < 0 ||
-        revision > 0x1fffffffffffff ||
-        cursor != null && cursor!.mailbox != mailbox ||
-        cursor?.repositoryRevision != null &&
-            cursor!.repositoryRevision != revision) {
-      throw ArgumentError('Sync snapshots require one mailbox and revision.');
+    if (revision < 0 || revision > 0x1fffffffffffff) {
+      throw ArgumentError('Sync snapshot revisions must be bounded.');
+    }
+    if (cursor != null && cursor!.mailbox != mailbox) {
+      throw ArgumentError('Sync snapshots must retain their exact mailbox.');
+    }
+    if (cursor?.repositoryRevision != null &&
+        cursor!.repositoryRevision != revision) {
+      throw ArgumentError(
+        'Sync snapshot cursor and membership revisions must agree.',
+      );
     }
   }
 
@@ -47,15 +52,19 @@ final class MailSyncRepositorySnapshot {
   final int revision;
 }
 
-/// Optional atomic cursor/membership fence, preserving the legacy sync port.
+/// Optional null-safe synchronization fence for repositories with local moves.
+/// Legacy repositories retain [MailSyncRepository]'s cursor-only contract.
 abstract interface class MailSyncSnapshotRepository
     implements MailSyncRepository {
+  /// Read the cursor and membership revision from the same database snapshot.
   Future<MailResult<MailSyncRepositorySnapshot>> readSyncSnapshot(
     MailMailboxId mailbox,
   );
 
-  /// Compare both cursor and local revision in the same transaction as the
-  /// page writes. A missing cursor still carries the snapshot's revision.
+  /// Compare the complete [expectedSnapshot], including a null cursor, inside
+  /// the transaction that commits the page. A changed local revision conflicts
+  /// even when provider cursor bytes did not change. Preserve the regular
+  /// [MailSyncRepository.commitSyncPage] lease and atomicity requirements.
   Future<MailResult<MailUnit>> commitSyncPageWithSnapshot(
     MailSyncPage page, {
     required MailSyncRepositorySnapshot expectedSnapshot,

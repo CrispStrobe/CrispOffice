@@ -17,7 +17,8 @@ final schemaV15 = List<String>.unmodifiable([
   // This counter is independent of mailbox rows so cleanup/recreation cannot
   // make an old cursor stamp valid again. Provider cursor bytes stay unchanged.
   '''CREATE TABLE mailbox_move_revisions (
-    account TEXT NOT NULL REFERENCES accounts(id), mailbox TEXT NOT NULL,
+    account TEXT NOT NULL REFERENCES accounts(id), mailbox TEXT NOT NULL
+      CHECK(typeof(mailbox)='text' AND length(CAST(mailbox AS BLOB)) BETWEEN 1 AND 4096),
     revision INTEGER NOT NULL CHECK(typeof(revision)='integer' AND revision BETWEEN 1 AND 9007199254740991),
     PRIMARY KEY(account,mailbox)
   )''',

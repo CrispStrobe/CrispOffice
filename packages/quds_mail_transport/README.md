@@ -161,8 +161,14 @@ Read/flagged/delete operations verify the UID exists, use UID STORE, then read
 that same UID's observed flags before reporting success. **Delete only sets
 `\Deleted`; it never issues mailbox-wide EXPUNGE or CLOSE.** MOVE requires the
 server's MOVE capability, stays within one account, and confirms source absence
-after acknowledgment. The destination needs its own synchronization; this
-adapter does not yet expose COPYUID destination identity mapping. An attempted
+after acknowledgment. The optional `MailMutationReceiptProvider` path preserves
+strict single-message COPYUID mappings (including untagged replies) and EWS
+replacement IDs verified in the requested destination. Missing mapping evidence
+retains generic success without inventing an identity. Hosts can atomically
+reconcile retained entries through the durable store; destination coverage still
+needs explicit synchronization. See the
+[identity-transition contract](../../docs/roadmaps/mail/identity-transitions.md).
+An attempted
 write followed by cancellation, loss, malformed data, or failed confirmation
 returns `conflict` for host reconciliation, without a retry hint.
 

@@ -25,20 +25,22 @@ final class MailSyncCoordinator {
     }
     try {
       final lease = session.begin(cancellation: cancellation);
-      final snapshots = repository is MailSyncSnapshotRepository
-          ? repository
-          : null;
+      final MailSyncSnapshotRepository? snapshotRepository =
+          repository is MailSyncSnapshotRepository ? repository : null;
       MailSyncRepositorySnapshot? snapshot;
       final MailCursor? cursor;
-      if (snapshots != null) {
-        final result = await snapshots.readSyncSnapshot(mailbox);
+      if (snapshotRepository != null) {
+        final snapshotResult = await snapshotRepository.readSyncSnapshot(
+          mailbox,
+        );
         lease.checkCurrent();
-        if (result case MailFailure<MailSyncRepositorySnapshot>(
+        if (snapshotResult case MailFailure<MailSyncRepositorySnapshot>(
           :final problem,
         )) {
           return MailFailure(problem);
         }
-        snapshot = (result as MailSuccess<MailSyncRepositorySnapshot>).value;
+        snapshot =
+            (snapshotResult as MailSuccess<MailSyncRepositorySnapshot>).value;
         if (snapshot.mailbox != mailbox) {
           return const MailFailure(MailProblem(MailProblemCode.storageFailure));
         }
@@ -69,15 +71,15 @@ final class MailSyncCoordinator {
           page.upserts.length + page.tombstones.length > limit) {
         return const MailFailure(MailProblem(MailProblemCode.providerFailure));
       }
-      final committed = snapshots != null
-          ? await snapshots.commitSyncPageWithSnapshot(
-              page,
-              expectedSnapshot: snapshot!,
-              lease: lease,
-            )
-          : await repository.commitSyncPage(
+      final committed = snapshotRepository == null
+          ? await repository.commitSyncPage(
               page,
               expectedCursor: cursor,
+              lease: lease,
+            )
+          : await snapshotRepository.commitSyncPageWithSnapshot(
+              page,
+              expectedSnapshot: snapshot!,
               lease: lease,
             );
       lease.checkCurrent();
