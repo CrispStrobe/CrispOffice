@@ -50,7 +50,8 @@ Sub Main()
 End Sub
 ```
 
-`Document`, `Section`, `PageSetup`, `TextColumns`, `HeadersFooters`, `HeaderFooter`, `Paragraph`, `Range`, `Font`,
+`Document`, `Section`, `PageSetup`, `TextColumns`, `HeadersFooters`, `HeaderFooter`,
+`Tables`, `Table`, `Rows`, `Row`, `Columns`, `Column`, `Cells`, `Cell`, `Paragraph`, `Range`, `Font`,
 `ParagraphFormat`, `TabStops`, and `ListFormat` declarations support explicit
 `Set` bindings and `ByVal` helper parameters. `With` may target these supported
 objects or the range's `Font` and `ParagraphFormat`. All bindings remain
@@ -84,8 +85,10 @@ unsupported. `TabStops.Add` and the supported `ListFormat` methods also accept
 named optional arguments as described below. The measurement conversion
 functions accept their one required argument by position or by its official
 name. `TextColumns.SetCount` accepts its required `NumColumns` argument by
-position or name. `Range.InsertBefore` accepts its required `Text` by position
-or name; other Word members retain their existing argument contracts.
+position or name. Supported `Range.InsertBefore` and `InsertAfter` calls accept
+their required `Text` by position or name. The table selectors described below
+accept required named `Index`, `Row` and `Column` arguments; other Word members
+retain their existing argument contracts.
 
 The common source language includes the existing local procedures and scalar
 functions, bounded control flow, typed arrays, string intrinsics, and explicit
@@ -117,8 +120,8 @@ one-based exact integers in `1..2147483647`; existence is checked during native
 validation or execution. `Tables`, `Table` and `Cell` declarations, `With`,
 aliases and required `ByVal` object helpers are supported. A `Range` alias
 retains its selected cell when the original cell or a helper parameter is
-rebound. Module helpers retain named arguments; the `Tables`, `Item` and `Cell`
-selectors themselves take positional arguments only.
+rebound. The table selectors now accept required named arguments as described
+in [table row and column navigation](#table-row-and-column-navigation).
 
 Each text assignment emits one `docx.tableCellRangeText` operation with
 zero-based `table`, `row`, `column` and String `text`. Its main-story table
@@ -143,7 +146,7 @@ boundary. Existing native `docx.tableCellText` behavior remains unchanged.
 
 Cell ranges expose the supported `Text` setter, `InsertBefore`/`InsertAfter` methods, and
 the `Font` and `ParagraphFormat` selectors described below. Text reads, `Count`, table/row/cell
-enumeration, `Rows`/`Columns`, table creation or merging and arbitrary range
+enumeration, table creation or merging and arbitrary range
 offsets remain unsupported. Paragraph or whole-story `Range.Text` assignment is
 still refused because those ranges have
 different structural delimiters. Embedded VBA projects remain inert and
@@ -157,6 +160,95 @@ paragraph. Run it through `compile-word-vba`, `validate-word-vba` and
 contains independently authored source-to-plan expectations. The
 [local qualification record](validation/word-vba-table-cells-20261121/README.md)
 separates executed checks from broader Word compatibility claims.
+
+### Table row and column navigation
+
+Existing main-story table cells can also be selected through Word's typed row
+and column collections. These are immutable source selectors: the compiler
+does not open a document, enumerate a table or read its dimensions.
+
+| Source expression | Result | Equivalent explicit cell identity |
+| --- | --- | --- |
+| `table.Rows` / `table.Columns` | `Rows` / `Columns` | Selected table retained |
+| `table.Rows(r)` / `table.Rows.Item(r)` | `Row` | Selected table and row retained |
+| `table.Columns(c)` / `table.Columns.Item(c)` | `Column` | Selected table and column retained |
+| `row.Cells` / `column.Cells` | `Cells` | Selected table, axis and fixed index retained |
+| `table.Rows(r).Cells(c)` / `.Cells.Item(c)` | `Cell` | `table.Cell(r, c)` |
+| `table.Columns(c).Cells(r)` / `.Cells.Item(r)` | `Cell` | `table.Cell(r, c)` |
+
+`Rows`, `Row`, `Columns`, `Column` and `Cells` declarations support `Set`,
+nested `With` and required `ByVal` object parameters. A collection or Range
+alias retains its original table and fixed coordinate when its parent variable
+is rebound, including when a `Cells` variable is switched from row to column
+selection. Rebinding a helper parameter remains local to that helper. Object
+arrays, object return values, optional object parameters, `New`, `Nothing`,
+whole-object assignment and scalar/Variant object coercion remain unsupported.
+
+```vb
+Sub Fill(ByVal selected As Cells, ByVal index As Long, ByVal label As String)
+    With selected.Item(Index:=index).Range
+        .Text = label
+        .Font.Bold = True
+    End With
+End Sub
+
+Sub Main()
+    Dim report As Table, statusColumn As Column
+    Set report = ActiveDocument.Tables(Index:=1)
+    Set statusColumn = report.Columns.Item(Index:=2)
+    Fill selected:=statusColumn.Cells, index:=2, label:="Ready"
+    report.Rows(Index:=1).Cells(Index:=2).Range.Text = "Status"
+    report.Cell(Column:=1, Row:=2).Range.Text = "Quarterly report"
+End Sub
+```
+
+Every supported table collection selector accepts its required argument by
+position or case-insensitive `Index:=`. This includes direct `Tables(i)`,
+`Rows(i)`, `Columns(i)` and row/column `Cells(i)` syntax and their explicit
+`Item` forms. A collection variable must use `.Item(i)`; implicit default
+invocation such as `selected(i)` remains unsupported. `Table.Cell` accepts its
+two required numeric arguments by position, by `Row:=`/`Column:=` in either
+named order, or with a positional row followed by named `Column:=`.
+
+The receiver is evaluated first. Supplied argument expressions then evaluate
+exactly once in written order before their values are placed in formal slots.
+Thus `Cell(Column:=Mark(2), Row:=Mark(1))` preserves that helper-call order.
+Duplicate/unknown names, missing/omitted arguments, extra arguments, and a
+positional argument after a named argument fail with positioned diagnostics.
+Argument shapes, object types and unsupported members are checked even in
+inactive branches and unused helpers. Evaluated indices require exact numeric
+integers in `1..2147483647`; Strings, Booleans, Empty, Null and fractions do not
+receive implicit index conversion. Native validation/execution checks actual
+table and cell existence.
+
+The resulting `Cell.Range` uses the same `docx.tableCellRangeText`, prefix,
+suffix, formatting, proofing and projected-paragraph operations as direct
+`Table.Cell`. There is no new native mutation or expanded admission envelope.
+Table grids must remain supported, rectangular and unmerged; a selected cell
+must contain one ordinary paragraph. Existing protection, source-fidelity,
+policy, work/step budgets, detached validation and complete-run rollback apply.
+Captured Range origins still distinguish direct cells from paragraph projections,
+so navigating collections cannot grant paragraph `InsertAfter` or list behavior.
+
+This does not add `Table.Cells`, `Table.Range.Cells`, collection `Count`,
+`First`/`Last`, `For Each` over objects, whole-row/column `Range`, collection-wide
+formatting, row/column insertion/deletion, merged-cell indexing or property
+reads. Source-known `For` loops can select individual cells with computed indices.
+
+The [complete 10-operation example](../packages/quds_office_engine/example/macros/word_table_navigation.bas)
+fills and formats an existing 2×2 table. The independently authored
+[32-case corpus](../packages/quds_office_engine/test/fixtures/vba_conformance/word_table_navigation_v1.json)
+specifies complete plans and positioned refusals. See the
+[local qualification](validation/word-vba-table-navigation-20261122/README.md)
+for executed native, CLI/MCP and portable checks; no installed Word execution
+is implied. Primary member and argument references are Microsoft's
+[Rows.Item](https://learn.microsoft.com/en-us/office/vba/api/word.rows.item),
+[Columns.Item](https://learn.microsoft.com/en-us/office/vba/api/word.columns.item),
+[Cells.Item](https://learn.microsoft.com/en-us/office/vba/api/word.cells.item),
+[Tables.Item](https://learn.microsoft.com/en-us/office/vba/api/word.tables.item),
+[Row.Cells](https://learn.microsoft.com/en-us/office/vba/api/word.row.cells),
+[Column.Cells](https://learn.microsoft.com/en-us/office/vba/api/word.column.cells)
+and [Table.Cell](https://learn.microsoft.com/en-us/office/vba/api/word.table.cell).
 
 The API shape follows Microsoft's [Document.Tables](https://learn.microsoft.com/en-us/office/vba/api/word.document.tables),
 [Table.Cell](https://learn.microsoft.com/en-us/office/vba/api/word.table.cell),
@@ -2789,7 +2881,7 @@ transaction and repeated-save results on VM and compiled JavaScript.
 Unsupported scope includes document-content reads,
 `Selection`, `Paragraphs.Count`, `Sections.Count`, live collection iteration,
 editable character subranges, paragraph/section creation, whole-document ranges,
-document-wide page setup, tables as Word objects,
+document-wide page setup, general table creation and structural editing,
 linked header/footer editing, whole-story writes, event entry points, COM, external files,
 and execution or editing of an embedded VBA project.
 

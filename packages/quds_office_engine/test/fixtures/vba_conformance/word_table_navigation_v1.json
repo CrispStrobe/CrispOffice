@@ -23,6 +23,7 @@
       "provenance": {
         "kind": "spec-derived",
         "references": [
+          "https://learn.microsoft.com/en-us/office/vba/api/word.tables.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.table.rows",
           "https://learn.microsoft.com/en-us/office/vba/api/word.rows.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.columns.item",
@@ -54,6 +55,7 @@
       "provenance": {
         "kind": "spec-derived",
         "references": [
+          "https://learn.microsoft.com/en-us/office/vba/api/word.tables.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.table.rows",
           "https://learn.microsoft.com/en-us/office/vba/api/word.rows.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.columns.item",
@@ -85,6 +87,7 @@
       "provenance": {
         "kind": "spec-derived",
         "references": [
+          "https://learn.microsoft.com/en-us/office/vba/api/word.tables.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.table.rows",
           "https://learn.microsoft.com/en-us/office/vba/api/word.rows.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.columns.item",
@@ -116,6 +119,7 @@
       "provenance": {
         "kind": "spec-derived",
         "references": [
+          "https://learn.microsoft.com/en-us/office/vba/api/word.tables.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.table.rows",
           "https://learn.microsoft.com/en-us/office/vba/api/word.rows.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.columns.item",
@@ -147,6 +151,7 @@
       "provenance": {
         "kind": "spec-derived",
         "references": [
+          "https://learn.microsoft.com/en-us/office/vba/api/word.tables.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.table.rows",
           "https://learn.microsoft.com/en-us/office/vba/api/word.rows.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.columns.item",
@@ -178,6 +183,7 @@
       "provenance": {
         "kind": "spec-derived",
         "references": [
+          "https://learn.microsoft.com/en-us/office/vba/api/word.tables.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.table.rows",
           "https://learn.microsoft.com/en-us/office/vba/api/word.rows.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.columns.item",
@@ -209,6 +215,7 @@
       "provenance": {
         "kind": "spec-derived",
         "references": [
+          "https://learn.microsoft.com/en-us/office/vba/api/word.tables.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.table.rows",
           "https://learn.microsoft.com/en-us/office/vba/api/word.rows.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.columns.item",
@@ -240,6 +247,7 @@
       "provenance": {
         "kind": "spec-derived",
         "references": [
+          "https://learn.microsoft.com/en-us/office/vba/api/word.tables.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.table.rows",
           "https://learn.microsoft.com/en-us/office/vba/api/word.rows.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.columns.item",
@@ -271,6 +279,7 @@
       "provenance": {
         "kind": "spec-derived",
         "references": [
+          "https://learn.microsoft.com/en-us/office/vba/api/word.tables.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.table.rows",
           "https://learn.microsoft.com/en-us/office/vba/api/word.rows.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.columns.item",
@@ -302,6 +311,7 @@
       "provenance": {
         "kind": "spec-derived",
         "references": [
+          "https://learn.microsoft.com/en-us/office/vba/api/word.tables.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.table.rows",
           "https://learn.microsoft.com/en-us/office/vba/api/word.rows.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.columns.item",
@@ -333,6 +343,7 @@
       "provenance": {
         "kind": "spec-derived",
         "references": [
+          "https://learn.microsoft.com/en-us/office/vba/api/word.tables.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.table.rows",
           "https://learn.microsoft.com/en-us/office/vba/api/word.rows.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.columns.item",
@@ -366,6 +377,7 @@
       "provenance": {
         "kind": "spec-derived",
         "references": [
+          "https://learn.microsoft.com/en-us/office/vba/api/word.tables.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.table.rows",
           "https://learn.microsoft.com/en-us/office/vba/api/word.rows.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.columns.item",
@@ -399,6 +411,7 @@
       "provenance": {
         "kind": "spec-derived",
         "references": [
+          "https://learn.microsoft.com/en-us/office/vba/api/word.tables.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.table.rows",
           "https://learn.microsoft.com/en-us/office/vba/api/word.rows.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.columns.item",
@@ -432,6 +445,7 @@
       "provenance": {
         "kind": "spec-derived",
         "references": [
+          "https://learn.microsoft.com/en-us/office/vba/api/word.tables.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.table.rows",
           "https://learn.microsoft.com/en-us/office/vba/api/word.rows.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.columns.item",
@@ -472,6 +486,7 @@
       "provenance": {
         "kind": "dialect-contract",
         "references": [
+          "https://learn.microsoft.com/en-us/office/vba/api/word.tables.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.table.rows",
           "https://learn.microsoft.com/en-us/office/vba/api/word.rows.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.columns.item",
@@ -521,6 +536,7 @@
       "provenance": {
         "kind": "dialect-contract",
         "references": [
+          "https://learn.microsoft.com/en-us/office/vba/api/word.tables.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.table.rows",
           "https://learn.microsoft.com/en-us/office/vba/api/word.rows.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.columns.item",
@@ -561,6 +577,7 @@
       "provenance": {
         "kind": "spec-derived",
         "references": [
+          "https://learn.microsoft.com/en-us/office/vba/api/word.tables.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.table.rows",
           "https://learn.microsoft.com/en-us/office/vba/api/word.rows.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.columns.item",
@@ -592,6 +609,7 @@
       "provenance": {
         "kind": "dialect-contract",
         "references": [
+          "https://learn.microsoft.com/en-us/office/vba/api/word.tables.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.table.rows",
           "https://learn.microsoft.com/en-us/office/vba/api/word.rows.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.columns.item",
@@ -623,6 +641,7 @@
       "provenance": {
         "kind": "dialect-contract",
         "references": [
+          "https://learn.microsoft.com/en-us/office/vba/api/word.tables.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.table.rows",
           "https://learn.microsoft.com/en-us/office/vba/api/word.rows.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.columns.item",
@@ -681,6 +700,7 @@
       "provenance": {
         "kind": "dialect-contract",
         "references": [
+          "https://learn.microsoft.com/en-us/office/vba/api/word.tables.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.table.rows",
           "https://learn.microsoft.com/en-us/office/vba/api/word.rows.item",
           "https://learn.microsoft.com/en-us/office/vba/api/word.columns.item",
@@ -706,6 +726,7 @@
       "provenance": {
         "kind": "dialect-contract",
         "references": [
+          "https://learn.microsoft.com/en-us/office/vba/api/word.tables.item",
           "https://github.com/CrispStrobe/quds_office_suite/blob/main/docs/vba-word-macros-details.md",
           "https://learn.microsoft.com/en-us/office/vba/api/word.table.rows",
           "https://learn.microsoft.com/en-us/office/vba/api/word.rows.item",
@@ -732,6 +753,7 @@
       "provenance": {
         "kind": "dialect-contract",
         "references": [
+          "https://learn.microsoft.com/en-us/office/vba/api/word.tables.item",
           "https://github.com/CrispStrobe/quds_office_suite/blob/main/docs/vba-word-macros-details.md",
           "https://learn.microsoft.com/en-us/office/vba/api/word.table.rows",
           "https://learn.microsoft.com/en-us/office/vba/api/word.rows.item",
@@ -758,6 +780,7 @@
       "provenance": {
         "kind": "dialect-contract",
         "references": [
+          "https://learn.microsoft.com/en-us/office/vba/api/word.tables.item",
           "https://github.com/CrispStrobe/quds_office_suite/blob/main/docs/vba-word-macros-details.md",
           "https://learn.microsoft.com/en-us/office/vba/api/word.table.rows",
           "https://learn.microsoft.com/en-us/office/vba/api/word.rows.item",
@@ -784,6 +807,7 @@
       "provenance": {
         "kind": "dialect-contract",
         "references": [
+          "https://learn.microsoft.com/en-us/office/vba/api/word.tables.item",
           "https://github.com/CrispStrobe/quds_office_suite/blob/main/docs/vba-word-macros-details.md",
           "https://learn.microsoft.com/en-us/office/vba/api/word.table.rows",
           "https://learn.microsoft.com/en-us/office/vba/api/word.rows.item",
@@ -810,6 +834,7 @@
       "provenance": {
         "kind": "dialect-contract",
         "references": [
+          "https://learn.microsoft.com/en-us/office/vba/api/word.tables.item",
           "https://github.com/CrispStrobe/quds_office_suite/blob/main/docs/vba-word-macros-details.md",
           "https://learn.microsoft.com/en-us/office/vba/api/word.table.rows",
           "https://learn.microsoft.com/en-us/office/vba/api/word.rows.item",
@@ -836,6 +861,7 @@
       "provenance": {
         "kind": "dialect-contract",
         "references": [
+          "https://learn.microsoft.com/en-us/office/vba/api/word.tables.item",
           "https://github.com/CrispStrobe/quds_office_suite/blob/main/docs/vba-word-macros-details.md",
           "https://learn.microsoft.com/en-us/office/vba/api/word.table.rows",
           "https://learn.microsoft.com/en-us/office/vba/api/word.rows.item",
@@ -862,6 +888,7 @@
       "provenance": {
         "kind": "dialect-contract",
         "references": [
+          "https://learn.microsoft.com/en-us/office/vba/api/word.tables.item",
           "https://github.com/CrispStrobe/quds_office_suite/blob/main/docs/vba-word-macros-details.md",
           "https://learn.microsoft.com/en-us/office/vba/api/word.table.rows",
           "https://learn.microsoft.com/en-us/office/vba/api/word.rows.item",
@@ -888,6 +915,7 @@
       "provenance": {
         "kind": "dialect-contract",
         "references": [
+          "https://learn.microsoft.com/en-us/office/vba/api/word.tables.item",
           "https://github.com/CrispStrobe/quds_office_suite/blob/main/docs/vba-word-macros-details.md",
           "https://learn.microsoft.com/en-us/office/vba/api/word.table.rows",
           "https://learn.microsoft.com/en-us/office/vba/api/word.rows.item",
@@ -914,6 +942,7 @@
       "provenance": {
         "kind": "dialect-contract",
         "references": [
+          "https://learn.microsoft.com/en-us/office/vba/api/word.tables.item",
           "https://github.com/CrispStrobe/quds_office_suite/blob/main/docs/vba-word-macros-details.md",
           "https://learn.microsoft.com/en-us/office/vba/api/word.table.rows",
           "https://learn.microsoft.com/en-us/office/vba/api/word.rows.item",
@@ -940,6 +969,7 @@
       "provenance": {
         "kind": "dialect-contract",
         "references": [
+          "https://learn.microsoft.com/en-us/office/vba/api/word.tables.item",
           "https://github.com/CrispStrobe/quds_office_suite/blob/main/docs/vba-word-macros-details.md",
           "https://learn.microsoft.com/en-us/office/vba/api/word.table.rows",
           "https://learn.microsoft.com/en-us/office/vba/api/word.rows.item",
@@ -966,6 +996,7 @@
       "provenance": {
         "kind": "dialect-contract",
         "references": [
+          "https://learn.microsoft.com/en-us/office/vba/api/word.tables.item",
           "https://github.com/CrispStrobe/quds_office_suite/blob/main/docs/vba-word-macros-details.md",
           "https://learn.microsoft.com/en-us/office/vba/api/word.table.rows",
           "https://learn.microsoft.com/en-us/office/vba/api/word.rows.item",
@@ -992,6 +1023,7 @@
       "provenance": {
         "kind": "dialect-contract",
         "references": [
+          "https://learn.microsoft.com/en-us/office/vba/api/word.tables.item",
           "https://github.com/CrispStrobe/quds_office_suite/blob/main/docs/vba-word-macros-details.md",
           "https://learn.microsoft.com/en-us/office/vba/api/word.table.rows",
           "https://learn.microsoft.com/en-us/office/vba/api/word.rows.item",
