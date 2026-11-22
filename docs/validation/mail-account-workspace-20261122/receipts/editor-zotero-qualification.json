@@ -1,6 +1,6 @@
 {
-  "started_at_utc": "2026-11-22T12:37:52.399594+00:00",
-  "head_at_start": "3e57fda4de6317c4a547f69220d7ed83802fd19f",
+  "started_at_utc": "2026-11-22T12:45:56.419112+00:00",
+  "head_at_start": "e034ae75d31063d06eabfbc3fe62b39d53d8c3b4",
   "command": [
     "flutter",
     "test",
@@ -24,8 +24,8 @@
     "FLUTTER_SUPPRESS_ANALYTICS": "true"
   },
   "status": "passed",
-  "finished_at_utc": "2026-11-22T12:38:17.116823+00:00",
-  "head_at_finish": "3e57fda4de6317c4a547f69220d7ed83802fd19f",
+  "finished_at_utc": "2026-11-22T12:46:07.530045+00:00",
+  "head_at_finish": "e034ae75d31063d06eabfbc3fe62b39d53d8c3b4",
   "exit_code": 0,
   "source_unchanged": true,
   "changed_inputs": [],
@@ -57,6 +57,6 @@
   "reporter_done": {
     "success": true,
     "type": "done",
-    "time": 22546
+    "time": 10065
   }
 }

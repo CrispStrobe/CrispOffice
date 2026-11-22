@@ -23,6 +23,9 @@ All notable changes to `quds_office_editor` are documented here.
   recovery; another account stays blocked until release succeeds. Apply the same
   retained cleanup to Disconnect, Refresh and folder changes, cancelling
   observers waiting for an initial snapshot before draining restoration.
+  Bind toolbar callbacks to their original session and mailbox. Preserve
+  same-session cancellation during ordinary modal reviews while fencing
+  the full account-chooser handoff.
   Native Close hides the mounted Mail pane; persistent release failure can
   require a host restart. Provider Close/Back preserves draft recovery. One account remains
   connected at a time. See the [account-navigation workflow](../../docs/roadmaps/mail/account-navigation.md)

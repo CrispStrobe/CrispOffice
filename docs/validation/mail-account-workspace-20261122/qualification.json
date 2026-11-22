@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-11-22T12:40:17.233443+00:00",
-  "status": "partial_pending_studio",
+  "updated_at_utc": "2026-11-22T12:48:04.648607+00:00",
+  "status": "partial_pending_corrected_studio_rerun",
   "qualified": false,
   "source": {
-    "canonical_source_commit": "3e57fda4de6317c4a547f69220d7ed83802fd19f",
-    "local_source_alias": "e6b5c23e3d0dfee29fb86fe1a5f6132b3f34de3d",
-    "identical_tree": "f410d8165bc8af58df6f1154905878ea4b63875b",
+    "canonical_source_commit": "8403ddfd202637e1ebe7c4350d5e765347ef7023",
+    "local_source_alias": "e034ae75d31063d06eabfbc3fe62b39d53d8c3b4",
+    "identical_tree": "60b95ca8b52e5059a05dc1bce079db2751598b1e",
     "integrated_remote_main": "4cc604810fb2f41ac7ba04cbed65cb76300bff59"
   },
   "integration": {
@@ -165,7 +165,10 @@
           ]
         }
       },
-      "independent_portability_check": "receipts/final-portability-audit.json"
+      "independent_portability_check": "receipts/final-portability-audit.json",
+      "executed_source_commit": "3e57fda4de6317c4a547f69220d7ed83802fd19f",
+      "relevant_inputs_match_final_source": true,
+      "post_toolbar_equivalence_receipt": "receipts/post-toolbar-input-equivalence.json"
     },
     "editor_zotero": {
       "status": "passed",
@@ -176,13 +179,16 @@
       "captured_inputs": 6220,
       "all_inputs_unchanged": true,
       "receipt": "receipts/editor-zotero-qualification.json",
-      "independent_raw_recount": "receipts/editor-zotero-raw-audit.json"
+      "independent_raw_recount": "receipts/editor-zotero-raw-audit.json",
+      "executed_source_commit": "e034ae75d31063d06eabfbc3fe62b39d53d8c3b4",
+      "canonical_source_commit": "8403ddfd202637e1ebe7c4350d5e765347ef7023"
     },
     "studio_mail": {
-      "status": "pending",
+      "status": "first_attempt_failed_corrected_source_rerun_pending",
       "expected_suites": 110,
       "expected_provider_navigation_cases": 127,
-      "expected_native_navigation_cases": 50
+      "expected_native_navigation_cases": 50,
+      "failed_attempt_receipt": "receipts/studio-first-attempt-qualification.json"
     },
     "static": {
       "status": "passed",
@@ -241,7 +247,8 @@
         "packages/quds_office_engine/tool/macros/web_vba_word_split_smoke.dart",
         "packages/quds_office_engine/tool/macros/web_vba_word_text_selectors_smoke.dart"
       ],
-      "exact_changed_path_union_verified": true
+      "exact_changed_path_union_verified": true,
+      "canonical_source_commit": "8403ddfd202637e1ebe7c4350d5e765347ef7023"
     }
   },
   "excluded_development_counts": [
@@ -282,7 +289,9 @@
     "work_branch": "work/mail-account-workspace-20261122",
     "source_published": true,
     "main_merge_status": "pending_final_qualification",
-    "no_force_push": true
+    "no_force_push": true,
+    "partial_documentation_checkpoint": "d09c3c0eda381d96e1dc28dea96e0026a75bbb01",
+    "corrected_source_checkpoint": "8403ddfd202637e1ebe7c4350d5e765347ef7023"
   },
   "limitations": [
     "One foreground Mail account with explicit sign-in; not simultaneous background accounts or unified live folders.",
@@ -297,19 +306,24 @@
     "receipts/carry-forward-audit.json": "ceacde523a181c66a4dc683eae540650f157eb00fa6d6783158ba044871e22fa",
     "receipts/checkpoint-alias.json": "f05238d43fb578d62466f6d9a2d305b42db5ce2d6346a003e672ae6f201f675f",
     "receipts/development-portability-comparison.json": "295dc9420482e50ab8e7e414ff3575132d2e581db8af3d24b38b5fee1b7e5d6d",
-    "receipts/editor-zotero-qualification.json": "52664f27dab9b354a68acf983b990e2a3c9fefe0b3662768ab0dfdb9a8a08098",
-    "receipts/editor-zotero-raw-audit.json": "8df5b2c2adf186de601e53521c1f56d9f0f51b5345b2fa8468c4d785346d8cd7",
+    "receipts/editor-zotero-qualification.json": "ed1ef0e67a259a3e5330f6189412b86dcf70a242684e17dedcf32053b4ed10f0",
+    "receipts/editor-zotero-raw-audit.json": "759b37aa3a282a155f65f84239086a177b9d9aceac36632b98b9d2efa5c798ca",
     "receipts/final-engine-qualification.json": "91ce0ece541991fbd6ccabf38204533051f18899627725311bced29168a7a851",
     "receipts/final-engine-raw-audit.json": "d2736166afdefdc5613d8524bf5cdbbca1463f9ad5f7a5fd97b9fe7f5b5697a9",
     "receipts/final-engine-summary.md": "39abbd7182dfb7ab339e6858c94cf18b473a95e94b15e8427d09c21cc2d20e58",
     "receipts/final-portability-audit.json": "c4234496317c118d239de260368b5f635b80e4fabea26f020c5177cb08f1cd1e",
-    "receipts/integrated-source-proof.json": "2a9a293ca0e0b991ac1936941734d4a2e045c6c068baf5ee3ed1d532a5bd3391",
+    "receipts/final-source-alias.json": "ea0db5897386210d5e1cc1872a3911e512c168fc844366e7791216271784a269",
+    "receipts/integrated-source-proof.json": "a39e6e527dfbc8a8ea2db53b609bdfd2f3935cd0baed75ddae2c982723a964c0",
     "receipts/mail-source-review-before-main-refresh.json": "24be0a59227f7558bae5bf96f26a0ac331766ad0658642d18d93e22d09275cd7",
-    "receipts/mail-static-qualification.json": "69998d096075fd95e58a315b0efb434dd0566d44b4815b139260a3a452792943",
+    "receipts/mail-static-qualification.json": "6d5661c4f5904220316031eebcba7d2e1bcc86fb308992ae020e36f272a4231e",
     "receipts/mail-store-qualification.json": "c9e51167f2d311fabe2315b6657fbce8640ed9e758fe2f3c2b0064eca4fcada9",
     "receipts/main-merge-mail-reconciliation.json": "2338f9e56f176e3f24775e68bc0d121a09ad9ec86f10e20674a7e00ae683d2b3",
+    "receipts/post-toolbar-input-equivalence.json": "c20e000a7b46cf3ff08f1e7b913f54a2b973f643de472ae92c2938b900607b03",
     "receipts/retained-raw-reporter-audit.json": "58d4ab1ab59fcd67fd6eec97e08e0fd9bfc0225027fd9c6303a7aa0142023f6a",
     "receipts/shared-mail-summary.json": "e4801aec3e9d463866025d52b1fb30d62e36a135d43faeb3366a4afa9a330159",
+    "receipts/studio-first-attempt-qualification.json": "3362c0edcd2f12a6bf00386565ebf3e80c1a3ca05178e2e5dd749f31ae732419",
+    "receipts/studio-repair-notes.json": "dda26bd326dd44190dfdb7c98588a0de0cd554365bba876473356d93658050c2",
     "receipts/zotero-repair-notes.json": "d1b7ecdd4a80966464d01ad74c3aef6bc0a3ca88198bb859953ca2b3160e5176"
-  }
+  },
+  "studio_repair_notes": "receipts/studio-repair-notes.json"
 }

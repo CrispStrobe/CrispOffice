@@ -1112,7 +1112,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     try {
       await candidate.close();
     } on Object {
-      // Selected candidates use the visible retry owner, never both queues.
+      // A selected candidate has one retry owner, never both release queues.
       _unreleasedDraftStores.removeWhere(
         (owner) => identical(owner, candidate),
       );

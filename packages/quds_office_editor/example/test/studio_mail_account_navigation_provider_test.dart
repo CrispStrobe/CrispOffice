@@ -1844,7 +1844,7 @@ void main() {
     );
 
     testWidgets(
-      '${kind.name}: failed owner release blocks handoff until explicit Close retry',
+      '${kind.name}: failed owner release blocks handoff and can be retried',
       (tester) async {
         final harness = _Harness(kind);
         await _show(tester, harness);

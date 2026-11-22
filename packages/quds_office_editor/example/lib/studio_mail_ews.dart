@@ -789,8 +789,9 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   }
 
   Future<void> _disconnectFromUi() async {
+    // A captured host callback may cancel this exact session during ordinary
+    // modal review. Account selection and handoff have their own navigation fence.
     if (_session == null ||
-        _dialogOpen ||
         _navigating ||
         _routeRetired ||
         _retiredDraftStore != null ||
@@ -2864,7 +2865,10 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         identical(owner, _draftStore);
     var retired = false;
     var saving = false;
-    setState(() => _dialogOpen = true);
+    setState(() {
+      _dialogOpen = true;
+      _navigating = true;
+    });
     try {
       await _draftRestoration;
       if (!current()) return;
@@ -2880,7 +2884,6 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       if (target == null || !current()) return;
       await target.validateCurrent(directory);
       if (!current()) return;
-      setState(() => _navigating = true);
       saving = true;
       await _saveRetainedDraft();
       saving = false;
