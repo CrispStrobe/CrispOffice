@@ -763,7 +763,7 @@ void main() {
         if (remove) {
           directory.records.clear();
         } else {
-          await directory.remember(identity);
+          directory._remember(identity);
         }
         directory.rememberGate!.complete();
         await _pump(tester);
@@ -997,9 +997,10 @@ void main() {
       await _tap(tester, _key('studio-mail-navigation-release'));
       expect(owners.single.closeAttempts, 3);
       expect(owners.single.closes, 1);
-      expect(clients.single.disconnections, 1);
       expect(_key('studio-mail-navigation-release'), findsNothing);
       await _choose(tester, second);
+      expect(owners.single.closes, 1);
+      expect(clients.single.disconnections, 1);
       expect(_fieldText(tester, _strings.emailAddress), _second.email);
       expect(tester.takeException(), isNull);
     },

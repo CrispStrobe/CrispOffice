@@ -912,32 +912,37 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         await closeUnadopted(candidate);
         return false;
       }
-      if (candidate case StudioMailOutboxStore(:final account)
-          when account != identity.account) {
+      if (candidate case StudioMailOutboxStore(
+        :final account,
+      ) when account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
       }
-      if (candidate case StudioMailComposeToolsStore(:final account)
-          when account != identity.account) {
+      if (candidate case StudioMailComposeToolsStore(
+        :final account,
+      ) when account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
       }
-      if (candidate case StudioMailDraftCatalog(:final account)
-          when account != identity.account) {
+      if (candidate case StudioMailDraftCatalog(
+        :final account,
+      ) when account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
       }
-      if (candidate case StudioMailMailboxStoreOwner(:final mailboxStore)
-          when mailboxStore.account != identity.account) {
+      if (candidate case StudioMailMailboxStoreOwner(
+        :final mailboxStore,
+      ) when mailboxStore.account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
       }
-      if (candidate case StudioMailFlagJournalOwner(:final flagJournal)
-          when flagJournal.account != identity.account) {
+      if (candidate case StudioMailFlagJournalOwner(
+        :final flagJournal,
+      ) when flagJournal.account != identity.account) {
         throw const StudioMailDraftStoreException(
           MailProblemCode.permissionDenied,
         );
@@ -3595,6 +3600,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         await _stopCachedViewForNavigation();
         await _mailboxViewClosing;
         await _pendingFlagWrite;
+        await _draftStoreClosing;
         if (!current()) return;
         await _draftStore?.close();
       } on Object {
