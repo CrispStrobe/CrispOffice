@@ -226,6 +226,7 @@ final class _OdtReader {
   final _bibliographySections = <String>{};
   final _nativeMarks = <String>{};
   final _noteIds = <String>{};
+  final _noteConfigurations = <bool, OdtReaderNoteConfiguration>{};
   var _tableCount = 0;
   var _cellCount = 0;
   var _listCount = 0;
@@ -306,16 +307,25 @@ final class _OdtReader {
       hasFootnotes: document.footnotes.isNotEmpty,
       libreOfficeZeroSeparatorLengths: libreOfficeNoteOffsets,
     );
-    if (document.endnotes.isNotEmpty) {
-      // This reader admits only automatic decimal notes starting at one and
-      // continuing through the document. Word defaults endnotes to lower
-      // Roman, so preserve the qualified ODT numbering explicitly in its new
-      // native section rather than changing labels on the next DOCX save.
+    if (_noteConfigurations.isNotEmpty) {
+      // Automatic numbering has one exact, continuous start-one sequence per
+      // note class. Store both classes explicitly: Word defaults endnotes to
+      // lower Roman and cannot infer the ODT format from cached labels.
+      final noteProperties = StringBuffer();
+      for (final endnote in [false, true]) {
+        final configuration = _noteConfigurations[endnote];
+        if (configuration == null) continue;
+        final tag = endnote ? 'endnotePr' : 'footnotePr';
+        noteProperties.write(
+          '<w:$tag><w:numFmt w:val="${configuration.nativeFormat}"/>'
+          '<w:numStart w:val="1"/><w:numRestart w:val="continuous"/>'
+          '</w:$tag>',
+        );
+      }
       section.sourceProperties = WmlSectionSource(
         xml:
             '<w:sectPr xmlns:w="${OfficeNamespaces.w}">'
-            '<w:endnotePr><w:numFmt w:val="decimal"/>'
-            '</w:endnotePr></w:sectPr>',
+            '$noteProperties</w:sectPr>',
         values: const <String, String>{},
       );
     }
@@ -639,9 +649,12 @@ final class _OdtReader {
     }
     final kind = _attr(element, 'note-class', odfTextNamespace) ?? 'footnote';
     if (kind != 'footnote' && kind != 'endnote') _unsupported(element);
-    final verifyCachedOrdinal = styles.validateNoteConfiguration(
+    final configuration = _noteConfigurations.putIfAbsent(
       kind == 'endnote',
-      libreOfficeNoteOffsets: libreOfficeNoteOffsets,
+      () => styles.validateNoteConfiguration(
+        kind == 'endnote',
+        libreOfficeNoteOffsets: libreOfficeNoteOffsets,
+      ),
     );
     final children = element.childElements.toList();
     if (children.length != 2 ||
@@ -656,8 +669,13 @@ final class _OdtReader {
     if (notes.length >= 10000) throw const OdfZoteroLimitException('notes');
     final id = notes.length + 1;
     final rawLabel = children[0].text;
-    final label = verifyCachedOrdinal ? rawLabel : rawLabel.trim();
-    if ((verifyCachedOrdinal || label.isNotEmpty) && label != '$id') {
+    final label = configuration.verifyCachedOrdinal
+        ? rawLabel
+        : rawLabel.trim();
+    final expectedLabel = configuration.labelFor(id);
+    if (expectedLabel == null ||
+        ((configuration.verifyCachedOrdinal || label.isNotEmpty) &&
+            label != expectedLabel)) {
       throw UnsupportedError('Custom ODT note numbering is not supported.');
     }
     final blocks = _blocks(children[1], inNote: true);

@@ -153,6 +153,16 @@ The bounded ODT path supports the documented Zotero field, citation, note and
 inline-picture subset. Unknown ODF XML, unsupported field structures and
 unreviewed page styles remain outside the conversion.
 
+Editable ODT exchange preserves automatic decimal and lower/upper Roman
+footnote and endnote numbering, including Word's default Roman endnotes.
+Each note class must use one continuous sequence starting at one. Ordinary
+uncited notes participate in the sequence, and citation identity and numeric
+note order remain separate from the visible Roman labels. Accepted numbering
+survives opening the ODT and saving the result as DOCX. Roman ordinals are
+supported through 3,999. Custom labels, alphabetic formats, mixed settings and
+page/section restarts remain outside this exchange path. See the
+[note-numbering record](validation/zotero-note-numbering-20261122/README.md).
+
 Supported footnote separators retain their color, width, alignment and spacing,
 with matching pagination and editor/PDF rendering. Direct editable ODT exchange
 preserves the tested geometry through LibreOffice saves. Quds also retains a
