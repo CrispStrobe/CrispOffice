@@ -58,13 +58,13 @@ class StudioMailFolderPickerDialog extends StatefulWidget {
 
 class _StudioMailFolderPickerDialogState
     extends State<StudioMailFolderPickerDialog> {
-  late final Set<MailSavedHeaderSearchFolder> _checked = {
-    if (widget.initialFolders == null)
-      for (final option in widget.options)
-        if (option.available) option.folder
-    else
-      ...widget.initialFolders!,
-  };
+  late final Set<MailSavedHeaderSearchFolder> _checked =
+      widget.initialFolders == null
+      ? {
+          for (final option in widget.options)
+            if (option.available) option.folder,
+        }
+      : widget.initialFolders!.toSet();
 
   bool get _valid {
     if (_checked.isEmpty ||
