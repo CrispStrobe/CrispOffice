@@ -505,6 +505,7 @@ abstract final class OfficeOperationCatalog {
     // document admission walks the tree. Other tools keep their contracts.
     if (document is WmlDocument &&
         (values['op'] == 'tableCellRangeText' ||
+            values['op'] == 'tableCellRangeInsertBefore' ||
             values['story'] == 'tableCell')) {
       checkWordTableCellRangeOwnership(document);
     }

@@ -163,6 +163,20 @@ const _stringComparisonConstants = <String, int>{
   'vbdatabasecompare': 2,
   'vbusecompareoption': -1,
 };
+// Portable source characters from the VBA constants module. These remain
+// ordinary Strings; each application still validates text before publication.
+// Host-dependent vbNewLine and the external-call vbNullString sentinel are
+// intentionally not represented as portable source values.
+const _stringConstants = <String, String>{
+  'vbcrlf': '\r\n',
+  'vbcr': '\r',
+  'vblf': '\n',
+  'vbnullchar': '\u0000',
+  'vbtab': '\t',
+  'vbback': '\b',
+  'vbformfeed': '\f',
+  'vbverticaltab': '\u000b',
+};
 const _variantIntrinsics = <String>{
   'isempty',
   'isnull',
@@ -591,6 +605,7 @@ class _Context {
   bool reserved(String name) =>
       _Checker._reserved.contains(name) ||
       constants.containsKey(name) ||
+      _stringConstants.containsKey(name) ||
       (isWord &&
           (_wordReserved.contains(name) ||
               _wordUnitConversions.containsKey(name))) ||
@@ -2550,7 +2565,8 @@ class _Checker {
       final current = pending.removeLast();
       switch (current) {
         case _Name():
-          if (context.constants.containsKey(current.token.lower)) {
+          if (context.constants.containsKey(current.token.lower) ||
+              _stringConstants.containsKey(current.token.lower)) {
             break;
           }
           final symbol = _symbol(current.token);
@@ -2600,7 +2616,8 @@ class _Checker {
         break;
       case _Name():
         if (!(symbols[expression.token.lower]?.isConst ?? false) &&
-            !context.constants.containsKey(expression.token.lower)) {
+            !context.constants.containsKey(expression.token.lower) &&
+            !_stringConstants.containsKey(expression.token.lower)) {
           context.unsupported(
             expression.token,
             'Const expressions may only refer to previously declared constants.',
@@ -2918,28 +2935,7 @@ class _Checker {
             );
           }
         case _InsertBefore():
-          final arguments = _arguments(statement.target, 1);
-          if (_expression(statement.target.receiver) != _Kind.range) {
-            context.type(
-              statement.target.token,
-              'InsertBefore requires an explicit Word Range.',
-            );
-          }
-          if (_knownWordCellSelector(
-            statement.target.receiver,
-            withTargets,
-            {},
-          )) {
-            context.unsupported(
-              statement.target.token,
-              'An explicitly selected cell paragraph supports formatting only; text insertion is unsupported.',
-            );
-          }
-          _compatible(
-            _Kind.string,
-            _expression(arguments.single),
-            arguments.single.token,
-          );
+          _wordInsertBeforeCall(statement.target);
         case _WordTabOperation():
           _wordTabCall(statement.target);
         case _WordListOperation():
@@ -3144,6 +3140,33 @@ class _Checker {
           }
       }
     }
+  }
+
+  void _wordInsertBeforeCall(_Member member) {
+    final receiver = _expression(member.receiver);
+    if (receiver != _Kind.range && receiver != _Kind.wordCellRange) {
+      context.type(
+        member.token,
+        'InsertBefore requires an explicit Word Range.',
+      );
+    }
+    final arguments = member.arguments ?? const <_Expr>[];
+    if (arguments.length != 1) {
+      context.type(member.token, 'InsertBefore requires one Text argument.');
+    }
+    final argument = arguments.single;
+    if (argument is _NamedArgument && argument.token.lower != 'text') {
+      context.fail(
+        argument.token,
+        'vba_name_error',
+        'Unknown named argument ${argument.token.text} for Range.InsertBefore.',
+      );
+    }
+    final value = argument is _NamedArgument ? argument.value : argument;
+    if (value is _OmittedArgument) {
+      context.type(value.token, 'Required argument Text cannot be omitted.');
+    }
+    _compatible(_Kind.string, _expression(value), value.token);
   }
 
   void _wordTextColumnsCall(_Member member) {
@@ -3535,6 +3558,9 @@ class _Checker {
             ? _Kind.boolean
             : _Kind.string;
       case _Name():
+        if (_stringConstants.containsKey(expression.token.lower)) {
+          return _Kind.string;
+        }
         if (context.constants.containsKey(expression.token.lower)) {
           return _Kind.number;
         }
@@ -4835,17 +4861,38 @@ class _Evaluator {
               'value': null,
             }, statement.token);
           case _InsertBefore():
-            final range = _wordParagraphRange(
-              _evaluate(statement.target.receiver),
-              statement.target.token,
-            );
-            final value = _evaluate(statement.target.arguments!.single);
-            final text = _wordText(value, statement.target.token);
-            _emitWord(range, 'replaceText', <String, Object?>{
-              'start': 0,
-              'end': 0,
-              'text': text,
-            }, statement.target.token);
+            final receiver = _evaluate(statement.target.receiver);
+            final range = receiver is _WordCellRange
+                ? _WordRange(_WordParagraph(0, cell: receiver.cell))
+                : _wordParagraphRange(receiver, statement.target.token);
+            final argument = statement.target.arguments!.single;
+            final value = argument is _NamedArgument
+                ? argument.value
+                : argument;
+            final text = _wordText(_evaluate(value), statement.target.token);
+            if (range.paragraph.cell case final cell?) {
+              // Prefixing a cell uses its own guarded operation. Generic
+              // replacement offsets and paragraph/cell marks remain outside
+              // the ordinary paragraph-formatting selector contract.
+              if (steps.length >= _maxSteps) {
+                context.limit(
+                  statement.target.token,
+                  'Word writes exceed $_maxSteps emitted operations.',
+                );
+              }
+              _emitNative('docx.tableCellRangeInsertBefore', <String, Object?>{
+                'table': cell.table.index,
+                'row': cell.row,
+                'column': cell.column,
+                'text': text,
+              }, statement.target.token);
+            } else {
+              _emitWord(range, 'replaceText', <String, Object?>{
+                'start': 0,
+                'end': 0,
+                'text': text,
+              }, statement.target.token);
+            }
           case _WordTabOperation():
             _wordTabs(statement.target);
           case _WordListOperation():
@@ -5065,6 +5112,8 @@ class _Evaluator {
       case _Literal():
         return expression.value;
       case _Name():
+        final stringConstant = _stringConstants[expression.token.lower];
+        if (stringConstant != null) return stringConstant;
         final constant = context.constants[expression.token.lower];
         if (constant != null) return constant;
         if (context.isPowerPoint) {
@@ -5445,7 +5494,7 @@ class _Evaluator {
     if (value is _WordCellRange) {
       context.unsupported(
         token,
-        'A cell Range supports its explicit text controls, Font, ParagraphFormat and Paragraphs(1); paragraph insertion is unsupported.',
+        'A cell Range requires its explicit supported operations; select Paragraphs(1) for paragraph formatting.',
       );
     }
     context.unsupported(
@@ -7592,7 +7641,7 @@ class _Evaluator {
         }.contains(operation)) {
       context.unsupported(
         token,
-        'An explicitly selected cell paragraph supports formatting only; text insertion, replacement and list operations are unsupported.',
+        'An explicitly selected cell paragraph requires its dedicated insertion operation; generic text replacement and list operations are unsupported.',
       );
     }
     if (steps.length >= _maxSteps) {
