@@ -10,7 +10,9 @@ All notable changes to `quds_office_engine` are documented here.
   note class, count uncited notes, retain independent class formats, and persist
   them through DOCX reopening. Keep custom/mixed/restarted/ambiguous numbering
   guarded and ordinary ODT export unchanged. Expose read-only automatic-note
-  metadata separately from cached labels. See the
+  metadata separately from cached labels. Malformed native XML retains cached
+  label fallback and causes controlled editable-export refusal, including the
+  native parser's mismatched-tag and unterminated-tag exceptions. See the
   [numbering qualification](../../docs/validation/zotero-note-numbering-20261122/README.md).
 
 - Prefix existing Word table-cell text through VBA `Cell.Range.InsertBefore`
