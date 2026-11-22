@@ -1,0 +1,56 @@
+# Provider-side folder search
+
+**Status:** IMAP implementation 23 November 2026. EWS, Gmail and Microsoft 365
+provider search remain open.
+
+## User path
+
+Connected native IMAP Mail now exposes **Search on server** in the View ribbon.
+The dialog chooses one field — message body, subject, From or To — and a text
+term. Searching covers the currently selected folder at the provider's current
+snapshot, shows the total match count and displays the first 50 envelope rows.
+Opening a row loads that message through the normal reader, body cache and safe
+HTML path.
+
+## Coverage contract
+
+- Exactly one selected folder is searched. Other folders and the unified/local
+  cache are not included.
+- Body search is performed by the IMAP server, not by downloading every body.
+  Provider indexing and server capabilities determine what body text matches;
+  attachment text is outside the search.
+- The result count is the provider's match count. At most 50 rows are returned;
+  `truncated` explicitly means more matches exist than are shown.
+- A row must have a UID. Search never fabricates a result or silently falls back
+  to a local substring filter.
+- Results do not change flags, read state, folders or membership.
+- The query is 1–512 characters and rejects control characters. No raw IMAP
+  grammar is accepted; this slice searches one field at a time.
+
+## Cancellation and failure
+
+Stopping requests cooperative cancellation. enough_mail cannot abort an
+already-written `SEARCH` command, so the dialog keeps a bounded progress state
+until that command returns; the result is then discarded and no later page or
+row is adopted. Closing the dialog cancels adoption immediately. A provider or
+protocol failure shows a generic error and preserves the folder and messages.
+
+## Verification
+
+- Server-search dialog behavior: **3/3** (run, invalid input, stop/discard).
+- Live mailbox.org test: connected over IMAP, fetched envelope rows, searched a
+  real selected folder by From, verified match rows have UIDs, searched body
+  text taken from a downloaded plain-text message, and verified an already
+  cancelled token throws before doing work.
+- Changed-file analysis and formatting remain clean.
+
+## Limits
+
+- IMAP only in this increment; the capability is not exposed for EWS, Gmail or
+  Microsoft 365 without a provider-specific implementation.
+- One field and one literal term; Boolean operators, date ranges, attachment
+  text and multi-folder scope remain subsequent work.
+- Server-side indexing is not guaranteed. A zero result is evidence only for
+  the provider's searchable content, not proof that a message is absent.
+- In-flight IMAP `SEARCH` commands are not hard-cancelled by the current
+  enough_mail client.

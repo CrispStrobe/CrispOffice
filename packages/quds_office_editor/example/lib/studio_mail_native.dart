@@ -39,6 +39,9 @@ import 'studio_mail_local_accounts.dart';
 import 'studio_mail_local_accounts_dialog.dart';
 import 'studio_mail_local_accounts_strings.dart';
 import 'studio_mail_rule_strings.dart';
+import 'studio_mail_server_search.dart';
+import 'studio_mail_server_search_dialog.dart';
+import 'studio_mail_server_search_strings.dart';
 import 'studio_mail_rules_dialog.dart';
 import 'studio_mail_tag_strings.dart';
 import 'studio_mail_tags_dialog.dart';
@@ -3479,6 +3482,91 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     }
   });
 
+  Future<void> _openServerSearch() async {
+    final client = _client;
+    final mailbox = _messageMailbox;
+    if (client == null || mailbox == null || _busy || _dialogOpen) return;
+    final generation = _sessionGeneration;
+    final mailboxGeneration = _mailboxGeneration;
+    bool current() =>
+        mounted &&
+        _currentSession(client, generation) &&
+        mailboxGeneration == _mailboxGeneration &&
+        identical(mailbox, _messageMailbox);
+    mail.MimeMessage? chosen;
+    setState(() => _dialogOpen = true);
+    try {
+      chosen = await showStudioMailServerSearchDialog(
+        context,
+        strings: widget.strings,
+        mailboxName: mailbox.name,
+        search: (field, query, cancellation) {
+          if (!current()) {
+            throw const MailCancelled(MailCancellationReason.accountChanged);
+          }
+          return studioMailServerSearch(
+            client: client,
+            mailbox: mailbox,
+            field: field,
+            query: query,
+            limit: 50,
+            cancellation: cancellation,
+          );
+        },
+      );
+    } finally {
+      if (current()) setState(() => _dialogOpen = false);
+    }
+    if (chosen == null || !current()) return;
+    await _openServerSearchResult(chosen);
+  }
+
+  Future<void> _openServerSearchResult(mail.MimeMessage message) =>
+      runStudioMailOperation(() async {
+        final client = _client;
+        final loader = _messageLoader;
+        final mailbox = _messageMailbox;
+        if (client == null ||
+            loader == null ||
+            mailbox == null ||
+            _busy ||
+            _dialogOpen) {
+          return;
+        }
+        final generation = _sessionGeneration;
+        setState(() {
+          _busy = true;
+          _error = null;
+          _notice = null;
+        });
+        try {
+          final raw = await loader.fetch(mailbox, message);
+          if (!_currentSession(client, generation)) return;
+          final reader = MailReaderController.fromBytes(
+            raw,
+            codec: const QudsMimeCodec(),
+            preferHtml: false,
+            includeHeaders: false,
+            labels: StudioMailReaderLabels(widget.strings.language),
+          );
+          final previous = _reader;
+          setState(() {
+            _selected = message;
+            _reader = reader;
+            _showCompactMessage = true;
+            _busy = false;
+          });
+          _retireReader(previous);
+        } on Object {
+          if (_currentSession(client, generation)) {
+            setState(() {
+              _busy = false;
+              _error = widget.strings.mailMessageFailed;
+            });
+          }
+        }
+      });
+
   Future<void> _openRules() async {
     final capture = _mailboxCapture;
     final store = capture?.store;
@@ -4943,6 +5031,18 @@ class _StudioMailDialogState extends State<StudioMailDialog>
             )
           else
             imagesCommand(),
+          command(
+            key: const ValueKey('studio-mail-server-search'),
+            icon: Icons.manage_search,
+            tooltip: widget.strings.mailServerSearch,
+            onPressed:
+                _client == null ||
+                    _messageMailbox == null ||
+                    _busy ||
+                    _dialogOpen
+                ? null
+                : _openServerSearch,
+          ),
           command(
             key: const ValueKey('studio-mail-saved-messages'),
             icon: Icons.folder_open_outlined,

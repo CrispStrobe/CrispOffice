@@ -17,7 +17,7 @@ clients are references, not compatibility claims.
 | Organization | Read/flag, Move/Delete, Archive, remembered destinations, durable journal, local tags/categories with `tag:` search, ordered local tag rules with preview | Tag colors/shared tags, server keyword mapping, scheduled/background rules |
 | Compose | Plain-text Word surface, signatures, Quick Text, attachments, drafts | Rich HTML composition, inline images, full-message templates, sender identities |
 | Send | Durable Outbox, scheduling, Undo, retry/uncertain outcomes | Background execution, provider Sent reconciliation, live SMTP transcripts |
-| Search | Headers, Boolean/people fields, saved queries, cached body, archive FTS | Provider-side body search, indexed body/provider discovery, unified live views |
+| Search | Headers, Boolean/people fields, saved queries, cached body, archive FTS, IMAP one-folder provider search | EWS/Gmail/Graph provider search, Boolean/date provider grammar, multi-folder scope, indexed discovery |
 | Attachments | Bounded read-only open; attach files | Attach current document/PDF, edit received attachment copy, Office workflow |
 | Calendar/People | Not implemented | Calendars, invitations, contacts, address completion, mail-to-task |
 | Offline | Cached headers/bodies, durable drafts/Outbox | Complete account/folder offline sessions and bounded background refresh |
@@ -91,7 +91,7 @@ Use these as comparison targets, not pixel-copy targets:
 1. ~~Local tags/categories with `tag:` search and assignment UI.~~ Implemented.
 2. ~~Ordered rules with preview and explicit local-rules-only scope.~~ Implemented.
 3. ~~Persistent cross-folder conversation index.~~ Implemented.
-4. Provider-side body search with explicit coverage and cancellation.
+4. ~~IMAP provider-side body search with explicit one-folder coverage and cooperative cancellation.~~ EWS/Graph/Gmail search remains open.
 5. Multiple sender identities and full-message templates.
 
 ## Acceptance rules
