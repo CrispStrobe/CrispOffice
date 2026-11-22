@@ -4,9 +4,9 @@
 authorize the explicit `--run` invocation. `--plan` only inspects local files and
 Git metadata; it runs no Dart or Flutter gates.
 
-The current plan selects **109 Studio Mail suites**, **18 shared Mail UI suites**
+The current plan selects **110 Studio Mail suites**, **18 shared Mail UI suites**
 and **14 incoming engine suites**. Strict analysis and pinned formatting cover
-all 86 live Dart paths changed since initial main
+all 87 live Dart paths changed since initial main
 `4621326a5a452da475f219353c298d0f9b12470e`, including incoming Archive/Word/Zotero
 changes and this navigation increment. The exact selection is recalculated and
 frozen at execution time.
