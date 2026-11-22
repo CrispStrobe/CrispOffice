@@ -72,7 +72,7 @@ explicit per-class configurations while leaving footnote/endnote sequences
 independent. Import checks the cached labels against the declared sequence
 and stores native numbering settings for subsequent DOCX saves.
 
-Custom labels, mixed formats, restarts, malformed settings and Roman ordinals
+Custom labels, format changes within one note class, restarts, malformed settings and Roman ordinals
 outside 1–3,999 remain guarded. Alphabetic numbering requires a separate
 producer-aware contract: current LibreOffice and the ODF prose disagree on
 letter synchronization. Omitted format/default behavior and the LibreOffice

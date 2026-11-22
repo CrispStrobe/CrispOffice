@@ -1,0 +1,49 @@
+{
+  "source_commit": "89789360590b6dd0af0a378bfc257a3c4a18fc9c",
+  "source_tree": "f3b0f40e2fe06ae372e4f69654058a36b4170e9c",
+  "package": "packages/quds_mail_core",
+  "command": [
+    "dart",
+    "test",
+    "--reporter=json",
+    "--concurrency=2",
+    "test/membership_observation_test.dart"
+  ],
+  "tests": [
+    "test/membership_observation_test.dart"
+  ],
+  "runtime_receipt": "/workspace/scratch/1bb837b7ac66/runtime/runtime.json",
+  "started_at_utc": "2026-11-22T07:02:51Z",
+  "status": "passed",
+  "runtime_receipt_sha256": "75caa1b71e20e8c983345720d6511a2879137d6c1a87c3cb29b5deb89b47c228",
+  "exit_code": 0,
+  "inputs_unchanged": true,
+  "input_count": 4454,
+  "changed_inputs": [],
+  "counts": {
+    "passed": 53,
+    "failed": 0,
+    "skipped": 0,
+    "unfinished": 0
+  },
+  "loaded_suites": 1,
+  "duplicate_identities": 0,
+  "error_event_count": 0,
+  "done_events": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 1388
+    }
+  ],
+  "non_json_lines": [],
+  "finished_at_utc": "2026-11-22T07:03:18Z",
+  "artifacts_sha256": {
+    "cases.json": "dc7355fd4d2cf42d6bbf59249b0d67df2cbb69a29bfe8f00f4eeed109222ee37",
+    "errors.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "events.jsonl.gz": "3103ed0ec1b3a4ab06bed6e52376c61ee8508e69ce82fabc0fd13de68bae010d",
+    "inputs-after.json.gz": "ddd3fa7bedf2f4edbe53339f0b49882323808e78e1a669e2c7213367d4209634",
+    "inputs-before.json.gz": "328f7fa1c72bc8d3f2b2f5eeb76a2ef6e8a46bf9c9cf68f378fe86ab3e9a84b6",
+    "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

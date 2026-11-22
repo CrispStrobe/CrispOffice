@@ -1,0 +1,77 @@
+{
+  "status": "passed",
+  "method": "Latest complete execution per suite. Two support-consuming suites replace their earlier executions; all production/dependency inputs and five retained Studio suites have identical hashes.",
+  "qualification_commit": "1896e11febd0d08159c85ddbbcd94743383f1e61",
+  "qualification_tree": "2f955065ec1ee94ea3db8e3cfbda7fcc94036fc1",
+  "counts": {
+    "passed": 305,
+    "failed": 0,
+    "skipped": 0,
+    "unfinished": 0
+  },
+  "suite_count": 7,
+  "per_suite_counts": {
+    "/workspace/scratch/1bb837b7ac66/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_flag_journal_test.dart": 28,
+    "/workspace/scratch/1bb837b7ac66/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_flag_reconciliation_test.dart": 24,
+    "/workspace/scratch/1bb837b7ac66/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_flag_recovery_dialog_test.dart": 25,
+    "/workspace/scratch/1bb837b7ac66/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_journal_dialog_test.dart": 19,
+    "/workspace/scratch/1bb837b7ac66/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_journal_host_test.dart": 58,
+    "/workspace/scratch/1bb837b7ac66/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_membership_reconciliation_test.dart": 13,
+    "/workspace/scratch/1bb837b7ac66/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart": 138
+  },
+  "retained_cases": 222,
+  "replacement_cases": 83,
+  "superseded_suites": [
+    "/workspace/scratch/1bb837b7ac66/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_flag_recovery_dialog_test.dart",
+    "/workspace/scratch/1bb837b7ac66/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_journal_host_test.dart"
+  ],
+  "changed_inputs": [
+    "packages/quds_office_editor/example/test/support/mail_membership_host_cases.dart",
+    "packages/quds_office_editor/example/test/support/mail_membership_recovery_cases.dart"
+  ],
+  "source_receipts": {
+    "final-mail-studio-late/receipt.json": "86f92858ddf963aaf78671ee2c747e28eb0a74a4c1f0d528f79967fcd86b7228",
+    "final-mail-studio-late-supplement/receipt.json": "307a20ad17ed82de154873a32f7b8523bd06f65b1e9729d0a500bd17e932798b"
+  },
+  "cases_sha256": "4727b2f91271d2882419d7c2cd16839f6c5a9383ebab8ee846870787adb8d18e",
+  "runner_sha256": "b8b0541ff050d851fed076285ef4bd0cb3b5018695a4b56b64cb387e994e8846",
+  "runtime_receipt_sha256": "75caa1b71e20e8c983345720d6511a2879137d6c1a87c3cb29b5deb89b47c228",
+  "retained_package_gates": {
+    "final-mail-core-late": {
+      "executed_source_commit": "89789360590b6dd0af0a378bfc257a3c4a18fc9c",
+      "qualification_commit": "1896e11febd0d08159c85ddbbcd94743383f1e61",
+      "all_production_and_package_test_inputs_unchanged": true,
+      "counts": {
+        "passed": 53,
+        "failed": 0,
+        "skipped": 0,
+        "unfinished": 0
+      },
+      "receipt_sha256": "e00a1f654bd0d5938838f38a84535042f9a3525d6bf192518ece65ea64b1f24f"
+    },
+    "final-mail-transport-late": {
+      "executed_source_commit": "89789360590b6dd0af0a378bfc257a3c4a18fc9c",
+      "qualification_commit": "1896e11febd0d08159c85ddbbcd94743383f1e61",
+      "all_production_and_package_test_inputs_unchanged": true,
+      "counts": {
+        "passed": 258,
+        "failed": 0,
+        "skipped": 0,
+        "unfinished": 0
+      },
+      "receipt_sha256": "e6a45aa5c5d65ce48c72036fc4b72f78dcb058a306c19d76618f4388daf53d8b"
+    },
+    "final-mail-store-late": {
+      "executed_source_commit": "89789360590b6dd0af0a378bfc257a3c4a18fc9c",
+      "qualification_commit": "1896e11febd0d08159c85ddbbcd94743383f1e61",
+      "all_production_and_package_test_inputs_unchanged": true,
+      "counts": {
+        "passed": 1061,
+        "failed": 0,
+        "skipped": 0,
+        "unfinished": 0
+      },
+      "receipt_sha256": "7efe3bf1616415b8a307d61490f97f22f7581e5e1ac32e671ab11ce2b1fc83cf"
+    }
+  }
+}

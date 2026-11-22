@@ -1,0 +1,364 @@
+{
+  "result": "PASS",
+  "targetSource": "1896e11febd0d08159c85ddbbcd94743383f1e61",
+  "targetTree": "2f955065ec1ee94ea3db8e3cfbda7fcc94036fc1",
+  "createdUtc": "2026-11-22T07:08:54.680874+00:00",
+  "method": "Read-only independent reporter recount, Git-source binding and whole-suite replacement; no product reruns.",
+  "totalUniquePassingCases": 2723,
+  "zoteroCases": 463,
+  "effectiveWordCases": 583,
+  "mailCoreCases": 53,
+  "mailTransportCases": 258,
+  "mailStoreCases": 1061,
+  "effectiveStudioMailCases": 305,
+  "retainedCasesByGate": {
+    "engine-gate/final": 372,
+    "final-editor": 80,
+    "final-mail-core-late": 53,
+    "final-mail-store-late": 1061,
+    "final-mail-studio-late": 222,
+    "final-mail-studio-late-supplement": 83,
+    "final-mail-transport-late": 258,
+    "final-studio-latest": 11,
+    "final-word": 423,
+    "final-word-latest-integration": 14,
+    "final-word-supplement": 146
+  },
+  "gates": {
+    "engine-gate/final": {
+      "source": "52f53c99059b1521dd08b9f8f4f65133e87e980b",
+      "package": "packages/quds_office_engine",
+      "status": "passed",
+      "counts": {
+        "passed": 372,
+        "failed": 0,
+        "skipped": 0,
+        "unfinished": 0
+      },
+      "suites": {
+        "test/odf_zotero_reference_marks_test.dart": 38,
+        "test/odt_libreoffice_note_offsets_test.dart": 38,
+        "test/odt_note_configuration_styles_test.dart": 59,
+        "test/odt_note_fidelity_test.dart": 26,
+        "test/odt_reader_styles_test.dart": 46,
+        "test/odt_zotero_export_lifecycle_test.dart": 19,
+        "test/odt_zotero_note_numbering_test.dart": 60,
+        "test/odt_zotero_writer_test.dart": 11,
+        "test/word_note_numbering_test.dart": 22,
+        "test/word_zotero_note_insertion_test.dart": 42,
+        "test/word_zotero_preference_flow_test.dart": 11
+      },
+      "inputCount": 4447,
+      "gitBoundInputs": 4446,
+      "externalInputs": [
+        ".dart_tool/package_config.json"
+      ],
+      "nonJsonLines": []
+    },
+    "final-editor": {
+      "source": "8e18fb2ee53e11d0b96a449ea7e698223423dca2",
+      "package": "packages/quds_office_editor",
+      "status": "passed",
+      "counts": {
+        "passed": 80,
+        "failed": 0,
+        "skipped": 0,
+        "unfinished": 0
+      },
+      "suites": {
+        "/workspace/scratch/1bb837b7ac66/quds_office_suite/packages/quds_office_editor/test/word_note_numbering_test.dart": 7,
+        "/workspace/scratch/1bb837b7ac66/quds_office_suite/packages/quds_office_editor/test/word_odt_load_test.dart": 9,
+        "/workspace/scratch/1bb837b7ac66/quds_office_suite/packages/quds_office_editor/test/word_odt_note_numbering_test.dart": 7,
+        "/workspace/scratch/1bb837b7ac66/quds_office_suite/packages/quds_office_editor/test/word_zotero_note_target_test.dart": 33,
+        "/workspace/scratch/1bb837b7ac66/quds_office_suite/packages/quds_office_editor/test/word_zotero_writing_position_test.dart": 24
+      },
+      "inputCount": 4447,
+      "gitBoundInputs": 4446,
+      "externalInputs": [
+        ".dart_tool/package_config.json"
+      ],
+      "nonJsonLines": []
+    },
+    "final-studio-latest": {
+      "source": "89789360590b6dd0af0a378bfc257a3c4a18fc9c",
+      "package": "packages/quds_office_editor/example",
+      "status": "passed",
+      "counts": {
+        "passed": 11,
+        "failed": 0,
+        "skipped": 0,
+        "unfinished": 0
+      },
+      "suites": {
+        "/workspace/scratch/1bb837b7ac66/quds_office_suite/packages/quds_office_editor/example/test/studio_odt_open_test.dart": 3,
+        "/workspace/scratch/1bb837b7ac66/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart": 8
+      },
+      "inputCount": 4454,
+      "gitBoundInputs": 4453,
+      "externalInputs": [
+        ".dart_tool/package_config.json"
+      ],
+      "nonJsonLines": []
+    },
+    "final-word": {
+      "source": "52f53c99059b1521dd08b9f8f4f65133e87e980b",
+      "package": "packages/quds_office_engine",
+      "status": "not_accepted",
+      "counts": {
+        "passed": 581,
+        "failed": 2,
+        "skipped": 0,
+        "unfinished": 0
+      },
+      "suites": {
+        "test/office_macro_word_cell_prefix_test.dart": 67,
+        "test/office_vba_string_constants_test.dart": 73,
+        "test/office_vba_word_cell_formatting_test.dart": 77,
+        "test/office_vba_word_cell_paragraphs_conformance_test.dart": 33,
+        "test/office_vba_word_cell_paragraphs_integration_test.dart": 17,
+        "test/office_vba_word_cell_paragraphs_test.dart": 66,
+        "test/office_vba_word_cell_prefix_conformance_test.dart": 79,
+        "test/office_vba_word_cell_prefix_integration_test.dart": 14,
+        "test/office_vba_word_cell_prefix_test.dart": 52,
+        "test/office_vba_word_table_cells_test.dart": 105
+      },
+      "inputCount": 4447,
+      "gitBoundInputs": 4446,
+      "externalInputs": [
+        ".dart_tool/package_config.json"
+      ],
+      "nonJsonLines": []
+    },
+    "final-word-supplement": {
+      "source": "8e18fb2ee53e11d0b96a449ea7e698223423dca2",
+      "package": "packages/quds_office_engine",
+      "status": "passed",
+      "counts": {
+        "passed": 160,
+        "failed": 0,
+        "skipped": 0,
+        "unfinished": 0
+      },
+      "suites": {
+        "test/office_macro_word_cell_prefix_test.dart": 67,
+        "test/office_vba_word_cell_prefix_conformance_test.dart": 79,
+        "test/office_vba_word_cell_prefix_integration_test.dart": 14
+      },
+      "inputCount": 4447,
+      "gitBoundInputs": 4446,
+      "externalInputs": [
+        ".dart_tool/package_config.json"
+      ],
+      "nonJsonLines": []
+    },
+    "final-word-latest-integration": {
+      "source": "89789360590b6dd0af0a378bfc257a3c4a18fc9c",
+      "package": "packages/quds_office_engine",
+      "status": "passed",
+      "counts": {
+        "passed": 14,
+        "failed": 0,
+        "skipped": 0,
+        "unfinished": 0
+      },
+      "suites": {
+        "test/office_vba_word_cell_prefix_integration_test.dart": 14
+      },
+      "inputCount": 4454,
+      "gitBoundInputs": 4453,
+      "externalInputs": [
+        ".dart_tool/package_config.json"
+      ],
+      "nonJsonLines": []
+    },
+    "final-mail-core-late": {
+      "source": "89789360590b6dd0af0a378bfc257a3c4a18fc9c",
+      "package": "packages/quds_mail_core",
+      "status": "passed",
+      "counts": {
+        "passed": 53,
+        "failed": 0,
+        "skipped": 0,
+        "unfinished": 0
+      },
+      "suites": {
+        "test/membership_observation_test.dart": 53
+      },
+      "inputCount": 4454,
+      "gitBoundInputs": 4453,
+      "externalInputs": [
+        ".dart_tool/package_config.json"
+      ],
+      "nonJsonLines": []
+    },
+    "final-mail-transport-late": {
+      "source": "89789360590b6dd0af0a378bfc257a3c4a18fc9c",
+      "package": "packages/quds_mail_transport",
+      "status": "passed",
+      "counts": {
+        "passed": 258,
+        "failed": 0,
+        "skipped": 0,
+        "unfinished": 0
+      },
+      "suites": {
+        "test/cloud_provider_test.dart": 154,
+        "test/ews_provider_test.dart": 57,
+        "test/ews_soap_test.dart": 24,
+        "test/native_flag_observation_test.dart": 11,
+        "test/native_membership_observation_test.dart": 12
+      },
+      "inputCount": 4454,
+      "gitBoundInputs": 4453,
+      "externalInputs": [
+        ".dart_tool/package_config.json"
+      ],
+      "nonJsonLines": [
+        "Running build hooks...Running build hooks...{\"protocolVersion\":\"0.1.1\",\"runnerVersion\":\"1.31.1\",\"pid\":8,\"type\":\"start\",\"time\":0}"
+      ]
+    },
+    "final-mail-store-late": {
+      "source": "89789360590b6dd0af0a378bfc257a3c4a18fc9c",
+      "package": "packages/quds_mail_store",
+      "status": "passed",
+      "counts": {
+        "passed": 1061,
+        "failed": 0,
+        "skipped": 0,
+        "unfinished": 0
+      },
+      "suites": {
+        "test/adversarial_store_test.dart": 16,
+        "test/archive_directory_native_test.dart": 44,
+        "test/archive_export_manifest_test.dart": 6,
+        "test/archive_export_native_test.dart": 46,
+        "test/archive_export_plan_test.dart": 13,
+        "test/archive_multi_origin_test.dart": 9,
+        "test/archive_native_test.dart": 13,
+        "test/archive_query_test.dart": 94,
+        "test/archive_repository_test.dart": 81,
+        "test/archive_restore_adversarial_test.dart": 15,
+        "test/archive_restore_checkpoint_test.dart": 37,
+        "test/archive_restore_native_test.dart": 15,
+        "test/archive_restore_resume_test.dart": 12,
+        "test/archive_runner_test.dart": 54,
+        "test/cache_cleanup_test.dart": 10,
+        "test/cache_metadata_test.dart": 18,
+        "test/cached_header_search_folders_test.dart": 8,
+        "test/cached_header_search_test.dart": 21,
+        "test/codec_test.dart": 39,
+        "test/compose_settings_test.dart": 40,
+        "test/crash_recovery_test.dart": 28,
+        "test/draft_catalog_test.dart": 11,
+        "test/draft_editor_state_test.dart": 5,
+        "test/ews_store_test.dart": 8,
+        "test/flag_journal_test.dart": 26,
+        "test/flag_reconciliation_test.dart": 42,
+        "test/imap_sync_range_test.dart": 15,
+        "test/local_accounts_test.dart": 26,
+        "test/mailbox_view_streams_test.dart": 11,
+        "test/mailbox_views_test.dart": 38,
+        "test/membership_journal_migration_test.dart": 5,
+        "test/membership_journal_test.dart": 21,
+        "test/membership_observation_migration_test.dart": 3,
+        "test/membership_reconciliation_test.dart": 48,
+        "test/migration_test.dart": 17,
+        "test/native_platform_test.dart": 7,
+        "test/outbox_draft_transfer_test.dart": 19,
+        "test/outbox_management_test.dart": 20,
+        "test/outbox_schedule_test.dart": 10,
+        "test/platform_configuration_test.dart": 4,
+        "test/repository_test.dart": 19,
+        "test/saved_header_search_folders_test.dart": 19,
+        "test/saved_header_searches_test.dart": 39,
+        "test/saved_search_folder_migration_test.dart": 6,
+        "test/sync_mailboxes_test.dart": 23
+      },
+      "inputCount": 4454,
+      "gitBoundInputs": 4453,
+      "externalInputs": [
+        ".dart_tool/package_config.json"
+      ],
+      "nonJsonLines": [
+        "Running build hooks...Running build hooks...{\"protocolVersion\":\"0.1.1\",\"runnerVersion\":\"1.31.1\",\"pid\":10,\"type\":\"start\",\"time\":0}"
+      ]
+    },
+    "final-mail-studio-late": {
+      "source": "89789360590b6dd0af0a378bfc257a3c4a18fc9c",
+      "package": "packages/quds_office_editor/example",
+      "status": "passed",
+      "counts": {
+        "passed": 305,
+        "failed": 0,
+        "skipped": 0,
+        "unfinished": 0
+      },
+      "suites": {
+        "/workspace/scratch/1bb837b7ac66/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_flag_journal_test.dart": 28,
+        "/workspace/scratch/1bb837b7ac66/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_flag_reconciliation_test.dart": 24,
+        "/workspace/scratch/1bb837b7ac66/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_flag_recovery_dialog_test.dart": 25,
+        "/workspace/scratch/1bb837b7ac66/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_journal_dialog_test.dart": 19,
+        "/workspace/scratch/1bb837b7ac66/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_journal_host_test.dart": 58,
+        "/workspace/scratch/1bb837b7ac66/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_membership_reconciliation_test.dart": 13,
+        "/workspace/scratch/1bb837b7ac66/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart": 138
+      },
+      "inputCount": 4454,
+      "gitBoundInputs": 4453,
+      "externalInputs": [
+        ".dart_tool/package_config.json"
+      ],
+      "nonJsonLines": []
+    },
+    "final-mail-studio-late-supplement": {
+      "source": "1896e11febd0d08159c85ddbbcd94743383f1e61",
+      "package": "packages/quds_office_editor/example",
+      "status": "passed",
+      "counts": {
+        "passed": 83,
+        "failed": 0,
+        "skipped": 0,
+        "unfinished": 0
+      },
+      "suites": {
+        "/workspace/scratch/1bb837b7ac66/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_flag_recovery_dialog_test.dart": 25,
+        "/workspace/scratch/1bb837b7ac66/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_journal_host_test.dart": 58
+      },
+      "inputCount": 4454,
+      "gitBoundInputs": 4453,
+      "externalInputs": [
+        ".dart_tool/package_config.json"
+      ],
+      "nonJsonLines": []
+    }
+  },
+  "sourceClosureReceiptSha256": "69a26279ffc4134f4607e04d5f211e010a89d8c20c1c2853a24435bb6ff5eb48",
+  "finalAliasChangedPaths": [
+    "packages/quds_office_editor/example/test/support/mail_membership_host_cases.dart",
+    "packages/quds_office_editor/example/test/support/mail_membership_recovery_cases.dart"
+  ],
+  "sourceReceiptHashes": {
+    "engine-gate/final": "5f407240939d027468b29b1cf0e4e0455f433d0ff5d0a77b6edb46ce801295fa",
+    "final-editor": "8da879f63b6952bd88887ab82ef7c92daa0856d9629f0d7680333782176514c6",
+    "final-studio-latest": "50cb78d75ccc1249c84ba80a5c6e0b8c9eaa7e99a35f2672cdfe1be0c64c47c2",
+    "final-word": "b5e7dcd94a5f65b7f1084665f095e609c2828abc7732c42b1b1b30561055028b",
+    "final-word-supplement": "b6e7322d59551915e6789435b24018d99efcca087ef5cf25a663dec697b7cd8f",
+    "final-word-latest-integration": "c8dc9bff76a59823038006e8ad8519da8edf640a6e76582a1db553b871da6119",
+    "final-mail-core-late": "e00a1f654bd0d5938838f38a84535042f9a3525d6bf192518ece65ea64b1f24f",
+    "final-mail-transport-late": "e6a45aa5c5d65ce48c72036fc4b72f78dcb058a306c19d76618f4388daf53d8b",
+    "final-mail-store-late": "7efe3bf1616415b8a307d61490f97f22f7581e5e1ac32e671ab11ce2b1fc83cf",
+    "final-mail-studio-late": "86f92858ddf963aaf78671ee2c747e28eb0a74a4c1f0d528f79967fcd86b7228",
+    "final-mail-studio-late-supplement": "307a20ad17ed82de154873a32f7b8523bd06f65b1e9729d0a500bd17e932798b"
+  },
+  "static": {
+    "passed": true,
+    "changedDartFiles": 72,
+    "source": "1896e11febd0d08159c85ddbbcd94743383f1e61",
+    "receiptSha256": "7fcf7d714c769c6af310d052d101f0ebc4a3d8d9f556f10b5440f84a1c48e884",
+    "unchangedManifestAndLockSnapshotFiles": 91
+  },
+  "auditFunctionsSha256": "2ba2ceff993543063ed70f556ec9543a6641e58ab51bedc9c358b9984ab3bc74",
+  "auditRunnerSha256": "431021585477a2d1056cb8770f26185d2cafb9b383f19aa841d6c5757a0e0a9c",
+  "effectiveCasesSha256": "880861485e54f240be3d825ea3c1c1cfc7e2b8c9abaf33104550bb795d5b9568",
+  "gitBlobsIndependentlyHashed": 4315,
+  "errors": []
+}
