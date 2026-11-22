@@ -12,6 +12,7 @@ The full implementation and validation record is preserved in
 | You want to | Use | Requirement |
 | --- | --- | --- |
 | Browse and search references | **Insert → References** | Local catalog or Zotero Web API |
+| Open a library item in Zotero desktop | **Reference details → Open in Zotero** | Validated local or group identity and a desktop protocol handler |
 | Insert/edit citations with Zotero's picker | **Insert → Zotero → Document** | Zotero desktop running on the same computer |
 | Insert a note or annotation | **Add Zotero note / annotation** | Zotero 9+ for direct annotations |
 | Refresh citations and build a bibliography | **Document** commands | Active citation fields in an editable DOCX |
@@ -54,6 +55,7 @@ Use **Insert → References** in Quds Studio to:
 - insert research notes with supported lists, links and pictures;
 - change the sources in an existing citation;
 - navigate from a citation to its bibliography entry;
+- open a verified local or group-library item in Zotero desktop;
 - convert citations to ordinary text;
 - export an editable Zotero ODT copy.
 
@@ -72,6 +74,22 @@ existing field.
 Inserted pictures become native inline images. Unsupported content is refused
 rather than flattened into an unrelated style. Annotation placement follows the
 document's Zotero preferences for inline, footnote or endnote citations.
+
+## Open a reference in Zotero
+
+In a loaded reference's details, or the details of an embedded citation
+source, choose **Open in Zotero** to ask the operating system to select that
+item in the desktop Zotero application. This uses Zotero's
+`zotero://select/…` protocol; it does not edit or refresh the reference.
+
+The action is offered only for an item from the active local desktop catalog
+or an unambiguous stored local/group source identity. Group-library selection
+depends on having that group accessible in Zotero. A remote personal-library
+Web API ID does **not** establish which Zotero desktop profile is active, so
+Quds does not guess or offer a selection link for it. Offline records,
+malformed URIs and conflicting library identities also have no launch action.
+If Zotero or the protocol handler is unavailable, the details remain open;
+the citation is unchanged.
 
 ## ODT interoperability
 
@@ -129,3 +147,4 @@ contract.
   round-tripping.
 - No model, citation style or library data is downloaded automatically.
 - Live-provider and installed-platform acceptance is separate from local tests.
+- Opening a Zotero item requires an installed desktop protocol handler; an accepted launch does not guarantee the item exists in the active library.
