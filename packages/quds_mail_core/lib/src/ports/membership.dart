@@ -75,7 +75,15 @@ final class MailMembershipObservation {
       MailOpaqueIdentity(:final value) => value,
     };
     _checkIdentifier(identityValue);
-    var units = identityValue.length;
+    final account = identity.account;
+    _checkIdentifier(account.value);
+    _checkIdentifier(account.profile.value);
+    _checkIdentifier(account.profile.hostId);
+    var units =
+        identityValue.length +
+        account.value.length +
+        account.profile.value.length +
+        account.profile.hostId.length;
     final seen = <MailMailboxId>{};
     for (final mailbox in this.mailboxes) {
       _checkIdentifier(mailbox.value);
@@ -122,9 +130,26 @@ final class MailMembershipObservation {
   static void _checkIdentifier(String value) {
     if (value.isEmpty ||
         value.length > maxIdentifierCodeUnits ||
-        value.contains(RegExp(r'[\x00-\x1f\x7f]'))) {
+        value.contains(RegExp(r'[\x00-\x1f\x7f]')) ||
+        !_hasWellFormedUtf16(value)) {
       throw ArgumentError('Observed identifiers must be bounded and nonempty.');
     }
+  }
+
+  // SQLite stores UTF-8: an encoder must never replace an unpaired surrogate
+  // and silently change an exact account/message/folder identifier on reopen.
+  static bool _hasWellFormedUtf16(String value) {
+    for (var index = 0; index < value.length; index++) {
+      final unit = value.codeUnitAt(index);
+      if (unit >= 0xd800 && unit <= 0xdbff) {
+        if (++index == value.length) return false;
+        final low = value.codeUnitAt(index);
+        if (low < 0xdc00 || low > 0xdfff) return false;
+      } else if (unit >= 0xdc00 && unit <= 0xdfff) {
+        return false;
+      }
+    }
+    return true;
   }
 
   final MailRemoteIdentity identity;

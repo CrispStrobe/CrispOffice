@@ -14,6 +14,64 @@ MailOpaqueIdentity _opaque(MailProviderKind provider) => MailOpaqueIdentity(
 );
 
 void main() {
+  for (final malformed in ['\ud800', '\udfff', '\ud800x', '\udc00\ud800']) {
+    for (final field in [
+      'message',
+      'mailbox',
+      'deletion mailbox',
+      'account',
+      'profile',
+      'host',
+    ]) {
+      test('refuses unpaired UTF-16 $field ${malformed.codeUnits}', () {
+        final profile = MailProfileId(
+          field == 'profile' ? malformed : 'profile',
+          hostId: field == 'host' ? malformed : 'host',
+        );
+        final account = MailAccountId(
+          field == 'account' ? malformed : 'account',
+          profile: profile,
+        );
+        expect(
+          () => MailMembershipObservation.folders(
+            identity: MailOpaqueIdentity(
+              account: account,
+              provider: MailProviderKind.graph,
+              value: field == 'message' ? malformed : 'message',
+            ),
+            mailboxes: [
+              MailMailboxId(
+                field == 'mailbox' ? malformed : 'folder',
+                account: account,
+              ),
+            ],
+            deletionMailbox: MailMailboxId(
+              field == 'deletion mailbox' ? malformed : 'trash',
+              account: account,
+            ),
+          ),
+          throwsArgumentError,
+        );
+      });
+    }
+  }
+
+  test('valid supplementary Unicode and exact whitespace are preserved', () {
+    final mailbox = MailMailboxId('  📨 / e\u0301  ', account: _account);
+    final observation = MailMembershipObservation.folders(
+      identity: MailOpaqueIdentity(
+        account: _account,
+        provider: MailProviderKind.graph,
+        value: 'message-🧭',
+      ),
+      mailboxes: [mailbox],
+      deletionMailbox: mailbox,
+    );
+    expect(observation.mailboxes.single.value, '  📨 / e\u0301  ');
+    expect(observation.deletionMailbox, mailbox);
+    expect(observation.isDeleted, isTrue);
+  });
+
   for (final deleted in [false, true]) {
     test('IMAP preserves exact generation and Deleted=$deleted', () {
       final observation = MailMembershipObservation.imap(

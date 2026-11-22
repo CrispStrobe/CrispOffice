@@ -40,17 +40,17 @@ extension StudioMailMutationStrings on StudioStrings {
 
   String get mailMutationHistoryScope => _text(
     'This receipt records the original action. Cached folders retain their last '
-        'saved observation until refreshed or synchronized. Move and delete '
-        'status checks are not available yet; an uncertain action stays saved '
-        'and is never repeated automatically.',
+        'saved observation until refreshed or synchronized. Later location checks '
+        'do not prove whether the original action worked. Uncertain actions stay '
+        'saved and are never repeated automatically.',
     'Dieser Beleg hält die ursprüngliche Aktion fest. Gespeicherte Ordner '
         'behalten ihren letzten Stand bis zur Aktualisierung oder '
-        'Synchronisierung. Statusprüfungen für Verschieben und Löschen sind '
-        'noch nicht verfügbar; eine ungewisse Aktion bleibt gespeichert und '
-        'wird nie automatisch wiederholt.',
+        'Synchronisierung. Spätere Standortprüfungen beweisen nicht, ob die '
+        'ursprüngliche Aktion erfolgreich war. Ungewisse Aktionen bleiben '
+        'gespeichert und werden nie automatisch wiederholt.',
     'يسجل هذا السجل الإجراء الأصلي. تحتفظ المجلدات المحفوظة بآخر حالة حتى '
-        'تحديثها أو مزامنتها. لا تتوفر فحوص حالة النقل والحذف بعد؛ يبقى '
-        'الإجراء غير المؤكد محفوظًا ولا يُكرر تلقائيًا.',
+        'تحديثها أو مزامنتها. لا تثبت فحوص الموقع اللاحقة نجاح الإجراء الأصلي. '
+        'تبقى الإجراءات غير المؤكدة محفوظة ولا تُكرر تلقائيًا.',
   );
 
   String mailMutationDestination(String destination) => _text(

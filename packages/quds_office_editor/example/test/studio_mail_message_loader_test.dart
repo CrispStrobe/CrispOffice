@@ -14,6 +14,7 @@ void main() {
   _bulkAdapterTests();
   _membershipAdapterTests();
   _flagObservationTests();
+  _membershipObservationTests();
   _archiveAdapterTests();
   _browsingTests();
 
@@ -2261,6 +2262,12 @@ typedef _ObserveAnswer =
       MailOperationLease lease,
     );
 
+typedef _MembershipObserveAnswer =
+    Future<MailResult<MailMembershipObservation>> Function(
+      MailRemoteIdentity identity,
+      MailOperationLease lease,
+    );
+
 typedef _CapabilitiesAnswer =
     Future<MailResult<MailCapabilities>> Function(MailOperationLease lease);
 
@@ -2303,11 +2310,13 @@ final class _Harness {
   final headerRequests = <_HeadersRequest>[];
   final requestedValidities = <int>[];
   final flagObservations = <(MailRemoteIdentity, MailOperationLease)>[];
+  final membershipObservations = <(MailRemoteIdentity, MailOperationLease)>[];
   final capabilityRequests = <MailOperationLease>[];
   _Answer? answer;
   _ApplyAnswer? applyAnswer;
   _HeadersAnswer? headersAnswer;
   _ObserveAnswer? observeAnswer;
+  _MembershipObserveAnswer? membershipObserveAnswer;
   _CapabilitiesAnswer? capabilitiesAnswer;
   void Function()? beforeCreate;
   Object? factoryError;
@@ -2364,6 +2373,18 @@ final class _Harness {
               ),
             );
       },
+      (identity, lease) {
+        membershipObservations.add((identity, lease));
+        return membershipObserveAnswer?.call(identity, lease) ??
+            Future.value(
+              MailSuccess(
+                MailMembershipObservation.imap(
+                  identity: identity as MailImapIdentity,
+                  isDeleted: false,
+                ),
+              ),
+            );
+      },
       (lease) {
         capabilityRequests.add(lease);
         return capabilitiesAnswer?.call(lease) ??
@@ -2374,7 +2395,11 @@ final class _Harness {
 }
 
 final class _Provider
-    implements MailProvider, MailImapHeaderBrowser, MailFlagObserver {
+    implements
+        MailProvider,
+        MailImapHeaderBrowser,
+        MailFlagObserver,
+        MailMembershipObserver {
   _Provider(
     this.account,
     this.answer,
@@ -2382,6 +2407,7 @@ final class _Provider
     this.headersAnswer,
     this.observeValidity,
     this.observeAnswer,
+    this.membershipObserveAnswer,
     this.capabilitiesAnswer,
   );
 
@@ -2392,11 +2418,18 @@ final class _Provider
   final _HeadersAnswer headersAnswer;
   final void Function(int) observeValidity;
   final _ObserveAnswer observeAnswer;
+  final _MembershipObserveAnswer membershipObserveAnswer;
   final _CapabilitiesAnswer capabilitiesAnswer;
 
   @override
   Future<MailResult<MailCapabilities>> capabilities(MailOperationLease lease) =>
       capabilitiesAnswer(lease);
+
+  @override
+  Future<MailResult<MailMembershipObservation>> observeMembership(
+    MailRemoteIdentity identity, {
+    required MailOperationLease lease,
+  }) => membershipObserveAnswer(identity, lease);
 
   @override
   Future<MailResult<MailFlagObservation>> observeFlags(
@@ -3339,6 +3372,183 @@ void _bulkAdapterTests() {
       expect(later.problem.code, MailProblemCode.staleOperation);
       expect(later.problem.mutationMayHaveOccurred, isFalse);
       expect(harness.mutations, hasLength(1));
+    });
+  });
+}
+
+void _membershipObservationTests() {
+  group('native historical membership observation adapter', () {
+    MailImapIdentity historical(NativeStudioMailMessageLoader loader) =>
+        MailImapIdentity(
+          mailbox: MailMailboxId('Archive/2025', account: loader.account),
+          uidValidity: 191,
+          uid: 0xffffffff,
+        );
+    Matcher failure(MailProblemCode code) =>
+        isA<MailFailure<MailMembershipObservation>>().having(
+          (result) => result.problem.code,
+          'problem code',
+          code,
+        );
+    void noMailActions(_Harness harness) {
+      expect(harness.requests, isEmpty);
+      expect(harness.headerRequests, isEmpty);
+      expect(harness.flagObservations, isEmpty);
+      expect(harness.mutations, isEmpty);
+    }
+
+    for (final kind in MailMembershipObservationKind.values) {
+      test(
+        'forwards exact ${kind.name} evidence without a browse, body, flag read or command',
+        () async {
+          final harness = _Harness();
+          final loader = _loader(harness);
+          final session = MailAccountSession(loader.account);
+          final cancellation = MailCancellationSource();
+          addTearDown(loader.dispose);
+          addTearDown(session.dispose);
+          final identity = historical(loader);
+          final observed = switch (kind) {
+            MailMembershipObservationKind.present =>
+              MailMembershipObservation.imap(
+                identity: identity,
+                isDeleted: true,
+              ),
+            MailMembershipObservationKind.missing =>
+              MailMembershipObservation.missing(identity: identity),
+            MailMembershipObservationKind.identityChanged =>
+              MailMembershipObservation.identityChanged(identity: identity),
+          };
+          harness.membershipObserveAnswer = (_, _) async =>
+              MailSuccess(observed);
+          final result = await loader.observeMembership(
+            identity,
+            lease: session.begin(cancellation: cancellation.token),
+          );
+          expect(result, isA<MailSuccess<MailMembershipObservation>>());
+          expect(
+            (result as MailSuccess<MailMembershipObservation>).value,
+            same(observed),
+          );
+          expect(harness.membershipObservations.single.$1, same(identity));
+          expect(
+            harness.membershipObservations.single.$2.cancellation,
+            same(cancellation.token),
+          );
+          expect(
+            harness.membershipObservations.single.$2.account,
+            loader.account,
+          );
+          noMailActions(harness);
+        },
+      );
+    }
+
+    test(
+      'a provider without membership observation remains unsupported',
+      () async {
+        final loader = NativeStudioMailMessageLoader(
+          _account(),
+          providerFactory:
+              ({
+                required configuration,
+                required credentialStore,
+                required limits,
+              }) => _ReaderOnlyProvider(configuration.account),
+        );
+        final session = MailAccountSession(loader.account);
+        addTearDown(loader.dispose);
+        addTearDown(session.dispose);
+        expect(
+          await loader.observeMembership(
+            historical(loader),
+            lease: session.begin(),
+          ),
+          failure(MailProblemCode.unsupported),
+        );
+      },
+    );
+
+    test(
+      'foreign identity and foreign provider are rejected without observation',
+      () async {
+        final harness = _Harness();
+        final loader = _loader(harness);
+        final session = MailAccountSession(loader.account);
+        addTearDown(loader.dispose);
+        addTearDown(session.dispose);
+        final foreign = MailAccountId(
+          'foreign',
+          profile: loader.account.profile,
+        );
+        final identity = MailImapIdentity(
+          mailbox: MailMailboxId('INBOX', account: foreign),
+          uidValidity: 191,
+          uid: 1,
+        );
+        expect(
+          await loader.observeMembership(identity, lease: session.begin()),
+          failure(MailProblemCode.invalidInput),
+        );
+        expect(harness.factoryCalls, 0);
+        harness.providerAccount = foreign;
+        expect(
+          await loader.observeMembership(
+            historical(loader),
+            lease: session.begin(),
+          ),
+          failure(MailProblemCode.invalidInput),
+        );
+        expect(harness.membershipObservations, isEmpty);
+        noMailActions(harness);
+      },
+    );
+
+    test(
+      'overlapping observation is refused and cancellation prevents late publication',
+      () async {
+        final response = Completer<MailResult<MailMembershipObservation>>();
+        final harness = _Harness()
+          ..membershipObserveAnswer = (_, _) => response.future;
+        final loader = _loader(harness);
+        final session = MailAccountSession(loader.account);
+        addTearDown(loader.dispose);
+        addTearDown(session.dispose);
+        final identity = historical(loader);
+        final pending = loader.observeMembership(
+          identity,
+          lease: session.begin(),
+        );
+        expect(
+          await loader.observeMembership(identity, lease: session.begin()),
+          failure(MailProblemCode.unavailable),
+        );
+        loader.cancel();
+        expect(await pending, failure(MailProblemCode.staleOperation));
+        response.complete(
+          MailSuccess(MailMembershipObservation.missing(identity: identity)),
+        );
+        await Future<void>.delayed(Duration.zero);
+        expect(harness.membershipObservations, hasLength(1));
+        noMailActions(harness);
+      },
+    );
+
+    test('a cancelled lease cannot create a provider', () async {
+      final harness = _Harness();
+      final loader = _loader(harness);
+      final session = MailAccountSession(loader.account);
+      final cancellation = MailCancellationSource();
+      final lease = session.begin(cancellation: cancellation.token);
+      cancellation.cancel();
+      addTearDown(loader.dispose);
+      addTearDown(session.dispose);
+      expect(
+        await loader.observeMembership(historical(loader), lease: lease),
+        failure(MailProblemCode.cancelled),
+      );
+      expect(harness.factoryCalls, 0);
+      noMailActions(harness);
     });
   });
 }

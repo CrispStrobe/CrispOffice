@@ -17,12 +17,14 @@ class StudioMailJournalDialog extends StatefulWidget {
     required this.store,
     required this.isCurrent,
     this.onReconcile,
+    this.onReconcileMembership,
   });
 
   final StudioStrings strings;
   final StudioMailFlagJournalStore store;
   final bool Function() isCurrent;
   final StudioMailReconcileFlagBatch? onReconcile;
+  final StudioMailReconcileMembershipBatch? onReconcileMembership;
 
   @override
   State<StudioMailJournalDialog> createState() =>
@@ -84,6 +86,23 @@ class _StudioMailJournalDialogState extends State<StudioMailJournalDialog> {
             resolution.index < receipt.report.items.length &&
             receipt.report.items[resolution.index].outcome ==
                 MailBulkFlagOutcome.uncertain,
+      ) &&
+      (receipt.summary.canCheckMembership ||
+          receipt.membershipObservations.isEmpty) &&
+      receipt.membershipObservations
+              .map((entry) => entry.index)
+              .toSet()
+              .length ==
+          receipt.membershipObservations.length &&
+      receipt.membershipObservations.every(
+        (entry) =>
+            receipt.summary.complete &&
+            entry.index >= 0 &&
+            entry.index < receipt.report.items.length &&
+            receipt.report.items[entry.index].outcome ==
+                MailBulkFlagOutcome.uncertain &&
+            entry.observation.identity ==
+                receipt.report.items[entry.index].message,
       );
 
   void _acceptReceipt(MailStoredFlagBatch receipt) {
@@ -96,11 +115,12 @@ class _StudioMailJournalDialogState extends State<StudioMailJournalDialog> {
 
   Future<void> _checkStatus() async {
     final selected = _selected;
-    final reconcile = widget.onReconcile;
+    final reconcile = selected?.summary.canCheckMembership == true
+        ? widget.onReconcileMembership
+        : widget.onReconcile;
     if (_busy ||
         selected == null ||
         reconcile == null ||
-        !selected.summary.canCheckFlags ||
         !selected.summary.complete ||
         selected.summary.unresolvedCount == 0 ||
         !widget.isCurrent()) {
@@ -155,6 +175,86 @@ class _StudioMailJournalDialogState extends State<StudioMailJournalDialog> {
       }
     }
   }
+
+  Widget _membershipEvidence(MailStoredFlagBatch selected) => Padding(
+    padding: const EdgeInsets.all(16),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(widget.strings.mailActivityLocationScope),
+        const SizedBox(height: 12),
+        Text(widget.strings.mailActivitySource(selected.summary.mailbox.value)),
+        Text(
+          widget.strings.mailActivityLocationCount(
+            selected.membershipObservations.length,
+            selected.summary.uncertainCount,
+          ),
+          key: const ValueKey('studio-mail-activity-location-counts'),
+        ),
+        for (final entry in selected.membershipObservations)
+          Card(
+            key: ValueKey('studio-mail-activity-location-${entry.index}'),
+            margin: const EdgeInsets.only(top: 12),
+            child: Padding(
+              padding: const EdgeInsets.all(12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    selected.subjects[entry.index].isEmpty
+                        ? widget.strings.mailActivityNoSubject
+                        : selected.subjects[entry.index],
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                  const SizedBox(height: 6),
+                  for (final detail
+                      in widget.strings.mailActivityLocationDetails(
+                        entry.observation,
+                        selected.summary,
+                      ))
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 6),
+                      child: Text(detail),
+                    ),
+                  Text(
+                    widget.strings.mailActivityCheckedAt(
+                      _date(entry.checkedAt),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        const SizedBox(height: 12),
+        if (widget.onReconcileMembership == null)
+          Text(
+            widget.strings.mailActivityLocationReconnect,
+            key: const ValueKey('studio-mail-activity-location-reconnect'),
+          )
+        else
+          Align(
+            alignment: AlignmentDirectional.centerStart,
+            child: FilledButton.icon(
+              key: const ValueKey('studio-mail-activity-check-location'),
+              onPressed: _busy || !widget.isCurrent() ? null : _checkStatus,
+              icon: const Icon(Icons.location_searching),
+              label: Text(widget.strings.mailActivityLocationCheck),
+            ),
+          ),
+        if (_checking)
+          Align(
+            alignment: AlignmentDirectional.centerStart,
+            child: TextButton(
+              key: const ValueKey('studio-mail-activity-stop-check'),
+              onPressed: () => _checkCancellation?.cancel(),
+              child: Text(widget.strings.mailActivityStopCheck),
+            ),
+          ),
+      ],
+    ),
+  );
 
   Future<void> _load({int offset = 0}) async {
     final generation = ++_generation;
@@ -362,6 +462,10 @@ class _StudioMailJournalDialogState extends State<StudioMailJournalDialog> {
                               ),
                             ),
                           ),
+                        if (selected.summary.canCheckMembership &&
+                            selected.summary.complete &&
+                            selected.summary.uncertainCount != 0)
+                          _membershipEvidence(selected),
                         if (selected.summary.canCheckFlags &&
                             selected.summary.complete &&
                             selected.summary.uncertainCount != 0)

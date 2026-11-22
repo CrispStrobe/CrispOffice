@@ -19,6 +19,8 @@ import 'package:quds_office_studio/studio_strings.dart';
 
 import 'support/mail_flag_journal.dart';
 
+part 'support/mail_membership_recovery_cases.dart';
+
 const _output = String.fromEnvironment('MAIL_RECOVERY_SCREENSHOT_DIR');
 const _captureKey = ValueKey('recovery-visual-capture');
 const _id = 'recover-this-action';
@@ -159,6 +161,7 @@ Future<void> _show(
   WidgetTester tester,
   StudioMailFlagJournalStore store, {
   StudioMailReconcileFlagBatch? recovery,
+  StudioMailReconcileMembershipBatch? membershipRecovery,
   StudioLanguage language = StudioLanguage.en,
   Size size = const Size(900, 760),
   double scale = 1,
@@ -203,6 +206,7 @@ Future<void> _show(
                     store: store,
                     isCurrent: isCurrent ?? () => true,
                     onReconcile: recovery,
+                    onReconcileMembership: membershipRecovery,
                   ),
                 ),
                 child: Text(strings.mailActivity),
@@ -271,6 +275,7 @@ Future<void> _capture(WidgetTester tester, String name) async {
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   setUpAll(_fonts);
+  _membershipRecoveryTests();
 
   testWidgets(
     'cached activity and repeated opening never create a provider request',
