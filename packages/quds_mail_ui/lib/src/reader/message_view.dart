@@ -37,6 +37,7 @@ class MailMessageView extends StatefulWidget {
     this.onOpenSource,
     this.onCopy,
     this.onFindRequested,
+    this.onLoadRemoteImages,
     this.richHtml = false,
   });
   final MailReaderController controller;
@@ -48,6 +49,9 @@ class MailMessageView extends StatefulWidget {
   final MailSourceAction? onOpenSource;
   final MailCopyAction? onCopy;
   final ValueChanged<MailReaderController>? onFindRequested;
+
+  /// Explicit host action that may load remote images into this controller.
+  final VoidCallback? onLoadRemoteImages;
 
   /// Render the sanitized HTML body with the bounded rich renderer. Hosts opt
   /// in explicitly; the default text surface remains available for find/copy.
@@ -422,6 +426,8 @@ class _MailMessageViewState extends State<MailMessageView> {
                                   onOpenLink: widget.onOpenApprovedLink == null
                                       ? null
                                       : _openLink,
+                                  onLoadRemoteImages:
+                                      widget.onLoadRemoteImages,
                                 )
                               else
                                 MailSelectionSurface(

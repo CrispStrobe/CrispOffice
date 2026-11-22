@@ -5520,6 +5520,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                                   child: MailMessageView(
                                     controller: _reader!,
                                     richHtml: true,
+                                    onLoadRemoteImages: _loadRemoteImages,
                                   ),
                                 ),
                               ],
@@ -5953,7 +5954,11 @@ class _StudioMailDialogState extends State<StudioMailDialog>
             ),
             _messageActions(),
             Expanded(
-              child: MailMessageView(controller: _reader!, richHtml: true),
+              child: MailMessageView(
+                controller: _reader!,
+                richHtml: true,
+                onLoadRemoteImages: _loadRemoteImages,
+              ),
             ),
           ],
         ),

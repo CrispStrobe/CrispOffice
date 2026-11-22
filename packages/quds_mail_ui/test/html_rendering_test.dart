@@ -74,9 +74,8 @@ void main() {
     expect(safe, isNot(contains('position:fixed')));
   });
 
-  testWidgets('rich HTML renders in the reader without network image loading', (
-    tester,
-  ) async {
+  testWidgets('rich HTML offers explicit remote-image loading', (tester) async {
+    var loaded = 0;
     final controller = MailReaderController(
       result: _htmlResult(
         '<p>Hello <strong>formatted</strong> mail.</p>'
@@ -88,13 +87,19 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
-          body: MailMessageView(controller: controller, richHtml: true),
+          body: MailMessageView(
+            controller: controller,
+            richHtml: true,
+            onLoadRemoteImages: () => loaded++,
+          ),
         ),
       ),
     );
     await tester.pumpAndSettle();
     expect(find.byKey(const ValueKey('mail-rich-body')), findsOneWidget);
-    expect(find.text('External image blocked'), findsOneWidget);
+    expect(find.text('Load external image'), findsOneWidget);
+    await tester.tap(find.text('Load external image'));
+    expect(loaded, 1);
     expect(find.byKey(const ValueKey('mail-copy')), findsNothing);
   });
 }

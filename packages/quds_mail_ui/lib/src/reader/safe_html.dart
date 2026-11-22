@@ -45,12 +45,13 @@ MailSafeHtml sanitizeMailHtml(String source, {required MailReadBudget budget}) {
       }
       styles.add(css);
     }
-    final output = StringBuffer();
+    final output = StringBuffer('<style>');
+    output.write(_baseCss);
     if (styles.isNotEmpty) {
-      output.write('<style>');
+      output.write('\n');
       output.write(styles.join('\n'));
-      output.write('</style>');
     }
+    output.write('</style>');
     var nodes = 0;
     var outputBytes = output.length;
     void visit(dom.Node node, int depth) {
@@ -166,6 +167,13 @@ final class _SafeHtmlReject implements Exception {
   const _SafeHtmlReject(this.message);
   final String message;
 }
+
+const _baseCss = '''
+html,body{max-width:100%;overflow-x:hidden}
+table{width:100%!important;max-width:100%;table-layout:auto}
+td,th{word-break:normal;overflow-wrap:normal;vertical-align:top}
+img{max-width:100%;height:auto}
+''';
 
 const _discarded = <String>{
   'script',

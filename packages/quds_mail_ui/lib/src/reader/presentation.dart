@@ -311,12 +311,14 @@ MailReaderPresentation buildMailPresentation(
         );
       }
     }
-    if (builder.blocked > 0) {
+    if (builder.blocked > builder.remoteImageUrls.length) {
       diagnostics.add(
         const MailDiagnostic(
           code: MailDiagnosticCode.renderLimit,
           severity: MailDiagnosticSeverity.information,
-          message: 'Active markup and external resources were blocked.',
+          message:
+              'Active markup was removed. External images use explicit '
+              'placeholders.',
         ),
       );
     }

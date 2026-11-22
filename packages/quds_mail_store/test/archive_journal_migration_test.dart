@@ -315,14 +315,21 @@ void main() {
         }
         final after = sqlite.sqlite3.open(file.path);
         try {
-          expect(after.userVersion, 17);
+          expect(after.userVersion, 18);
           expect(
-            _schema(
-              after,
-            ).where((row) => row['tbl_name'] != 'account_archive_settings'),
+            _schema(after).where(
+              (row) =>
+                  row['tbl_name'] != 'account_archive_settings' &&
+                  row['tbl_name'] != 'message_tags',
+            ),
             beforeSchema,
           );
-          expect(_snapshot(after)..remove('account_archive_settings'), before);
+          expect(
+            _snapshot(after)
+              ..remove('account_archive_settings')
+              ..remove('message_tags'),
+            before,
+          );
           expect(
             after.select('SELECT * FROM account_archive_settings'),
             isEmpty,
@@ -394,15 +401,19 @@ void main() {
           }
           final migrated = sqlite.sqlite3.open(file.path);
           try {
-            expect(migrated.userVersion, 17);
+            expect(migrated.userVersion, 18);
             expect(
-              _snapshot(migrated)..remove('account_archive_settings'),
+              _snapshot(migrated)
+                ..remove('account_archive_settings')
+                ..remove('message_tags'),
               before,
             );
             expect(
-              _schema(
-                migrated,
-              ).where((row) => row['tbl_name'] != 'account_archive_settings'),
+              _schema(migrated).where(
+                (row) =>
+                    row['tbl_name'] != 'account_archive_settings' &&
+                    row['tbl_name'] != 'message_tags',
+              ),
               schema,
             );
             expect(migrated.select('PRAGMA foreign_key_check'), isEmpty);

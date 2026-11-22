@@ -16,7 +16,7 @@ final class MailStoreDatabase extends GeneratedDatabase {
   final MailStoreFaultInjector? faultInjector;
 
   @override
-  int get schemaVersion => 17;
+  int get schemaVersion => 18;
 
   @override
   Iterable<TableInfo<Table, Object?>> get allTables => const [];
@@ -73,11 +73,14 @@ final class MailStoreDatabase extends GeneratedDatabase {
       for (final statement in schemaV17) {
         await customStatement(statement);
       }
+      for (final statement in schemaV18) {
+        await customStatement(statement);
+      }
       // Include the version in the same transaction as schema creation.
-      await customStatement('PRAGMA user_version = 17');
+      await customStatement('PRAGMA user_version = 18');
     }),
     onUpgrade: (_, from, to) async {
-      if (from < 1 || from > 16 || to != 17) {
+      if (from < 1 || from > 17 || to != 18) {
         throw const MailStoreStorageException(MailProblemCode.unsupported);
       }
       await transaction(() async {
@@ -159,8 +162,11 @@ final class MailStoreDatabase extends GeneratedDatabase {
         for (final statement in schemaV17) {
           await customStatement(statement);
         }
+        for (final statement in schemaV18) {
+          await customStatement(statement);
+        }
         await faultInjector?.call(MailStoreCheckpoint.migrationCreated);
-        await customStatement('PRAGMA user_version = 17');
+        await customStatement('PRAGMA user_version = 18');
       });
     },
     beforeOpen: (_) async {
@@ -479,4 +485,18 @@ const schemaV17 = <String>[
       (typeof(destination) = 'text' AND
        length(CAST(destination AS BLOB)) BETWEEN 1 AND 4096))
   )''',
+];
+
+/// Local tags/categories are account-scoped metadata. They never change provider
+/// keywords or membership and are removed with their owning message/account.
+const schemaV18 = <String>[
+  '''CREATE TABLE message_tags (
+    account TEXT NOT NULL,
+    message TEXT NOT NULL,
+    tag_key TEXT NOT NULL,
+    name TEXT NOT NULL,
+    PRIMARY KEY(account,message,tag_key),
+    FOREIGN KEY(account,message) REFERENCES messages(account,id) ON DELETE CASCADE
+  )''',
+  'CREATE INDEX message_tags_tag ON message_tags(account,tag_key,message)',
 ];

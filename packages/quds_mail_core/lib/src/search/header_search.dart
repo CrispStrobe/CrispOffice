@@ -14,6 +14,7 @@ final class MailHeaderSearchDocument {
     this.to = '',
     this.cc = '',
     this.body = '',
+    this.tags = const [],
     this.date,
     this.isRead,
     this.isFlagged,
@@ -24,6 +25,10 @@ final class MailHeaderSearchDocument {
   final String to;
   final String cc;
   final String body;
+
+  /// Local mail tags. Matching is exact and case-insensitive after the host
+  /// supplies normalized display values.
+  final List<String> tags;
   final DateTime? date;
   final bool? isRead;
   final bool? isFlagged;
@@ -43,7 +48,8 @@ final class MailHeaderSearchDocument {
 /// adjacent value, for example `from:alice subject:"quarterly report"`.
 /// `recipient` matches To or Cc; `participant` matches From, To or Cc.
 /// `body` searches only [MailHeaderSearchDocument.body] and is never implied by
-/// an unqualified term.
+/// an unqualified term. `tag` matches one complete local tag or category name,
+/// not a substring and not a provider keyword.
 /// Names and addresses use the same case-insensitive substring matching.
 /// A phrase must match within one header group; Bcc is never searched.
 ///
@@ -63,6 +69,7 @@ final class MailHeaderSearchQuery {
     this._expression,
     this._termCount, {
     required this.searchesBody,
+    required this.searchesTags,
   });
 
   factory MailHeaderSearchQuery.parse(String input) {
@@ -91,6 +98,9 @@ final class MailHeaderSearchQuery {
   /// True when the expression contains a `body:` term. Hosts use this to decide
   /// whether retained body text must be supplied to [matches].
   final bool searchesBody;
+
+  /// True when the expression contains a `tag:` term.
+  final bool searchesTags;
 
   int get termCount => _termCount;
   bool get isEmpty => _expression == null;
@@ -133,7 +143,17 @@ final class MailHeaderSearchException implements Exception {
       'MailHeaderSearchException(${code.name}, offset=$offset)';
 }
 
-enum _TextField { any, subject, sender, to, cc, recipient, participant, body }
+enum _TextField {
+  any,
+  subject,
+  sender,
+  to,
+  cc,
+  recipient,
+  participant,
+  body,
+  tag,
+}
 
 enum _DateRelation { before, after, on }
 
@@ -147,6 +167,9 @@ final class _SearchDocumentView {
   late final String to = source.to.toLowerCase();
   late final String cc = source.cc.toLowerCase();
   late final String body = source.body.toLowerCase();
+  late final Set<String> tags = {
+    for (final tag in source.tags) tag.toLowerCase(),
+  };
   late final int? day = _localDay();
 
   int? _localDay() {
@@ -185,6 +208,7 @@ final class _TextTerm extends _HeaderSearchTerm {
           document.to.contains(value) ||
           document.cc.contains(value),
     _TextField.body => document.body.contains(value),
+    _TextField.tag => document.tags.any((tag) => tag.toLowerCase() == value),
   };
 }
 
@@ -259,11 +283,17 @@ final class _HeaderSearchParser {
   int _termCount = 0;
   int _operatorCount = 0;
   bool _searchesBody = false;
+  bool _searchesTags = false;
 
   MailHeaderSearchQuery parse() {
     _skipWhitespace();
     if (offset == input.length) {
-      return MailHeaderSearchQuery._(null, 0, searchesBody: false);
+      return MailHeaderSearchQuery._(
+        null,
+        0,
+        searchesBody: false,
+        searchesTags: false,
+      );
     }
     final expression = _or(0);
     _skipWhitespace();
@@ -272,6 +302,7 @@ final class _HeaderSearchParser {
       expression,
       _termCount,
       searchesBody: _searchesBody,
+      searchesTags: _searchesTags,
     );
   }
 
@@ -401,6 +432,7 @@ final class _HeaderSearchParser {
       'recipient',
       'participant',
       'body',
+      'tag',
       'is',
       'before',
       'after',
@@ -434,6 +466,7 @@ final class _HeaderSearchParser {
       'recipient' => _TextTerm(_TextField.recipient, normalized),
       'participant' => _TextTerm(_TextField.participant, normalized),
       'body' => _bodyTerm(normalized),
+      'tag' => _tagTerm(normalized),
       'is' => switch (normalized) {
         'read' => const _FlagTerm(read: true, value: true),
         'unread' => const _FlagTerm(read: true, value: false),
@@ -454,6 +487,11 @@ final class _HeaderSearchParser {
   _HeaderSearchTerm _bodyTerm(String value) {
     _searchesBody = true;
     return _TextTerm(_TextField.body, value);
+  }
+
+  _HeaderSearchTerm _tagTerm(String value) {
+    _searchesTags = true;
+    return _TextTerm(_TextField.tag, value);
   }
 
   String _bare({required bool stopAtColon}) {

@@ -20,11 +20,13 @@ class MailHtmlMessageBody extends StatelessWidget {
     required this.presentation,
     this.textStyle,
     this.onOpenLink,
+    this.onLoadRemoteImages,
   });
 
   final MailReaderPresentation presentation;
   final TextStyle? textStyle;
   final Future<void> Function(Uri target)? onOpenLink;
+  final VoidCallback? onLoadRemoteImages;
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +55,7 @@ class MailHtmlMessageBody extends StatelessWidget {
                 element: element,
                 images: images,
                 textStyle: textStyle,
+                onLoadRemoteImages: onLoadRemoteImages,
               );
             case 'iframe':
             case 'object':
@@ -95,11 +98,13 @@ class _MailHtmlImage extends StatelessWidget {
     required this.element,
     required this.images,
     this.textStyle,
+    this.onLoadRemoteImages,
   });
 
   final dom.Element element;
   final _MailHtmlImages images;
   final TextStyle? textStyle;
+  final VoidCallback? onLoadRemoteImages;
 
   @override
   Widget build(BuildContext context) {
@@ -108,10 +113,11 @@ class _MailHtmlImage extends StatelessWidget {
     final alt = element.attributes['alt'];
     final image = images.find(cid, remote);
     if (image == null) {
-      final label = remote == null
-          ? (alt == null || alt.isEmpty ? 'Inline image unavailable' : alt)
-          : 'External image blocked';
-      return Container(
+      final isRemote = remote != null;
+      final label = isRemote
+          ? 'Load external image'
+          : (alt == null || alt.isEmpty ? 'Inline image unavailable' : alt);
+      final placeholder = Container(
         constraints: const BoxConstraints(maxWidth: 420),
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
         decoration: BoxDecoration(
@@ -124,7 +130,9 @@ class _MailHtmlImage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(
-              Icons.image_not_supported_outlined,
+              isRemote
+                  ? Icons.image_outlined
+                  : Icons.image_not_supported_outlined,
               size: 18,
               color: Theme.of(context).colorScheme.onSurfaceVariant,
             ),
@@ -140,6 +148,14 @@ class _MailHtmlImage extends StatelessWidget {
           ],
         ),
       );
+      if (isRemote && onLoadRemoteImages != null) {
+        return InkWell(
+          key: ValueKey<String>('mail-load-remote-$remote'),
+          onTap: onLoadRemoteImages,
+          child: placeholder,
+        );
+      }
+      return placeholder;
     }
     final content = image.attachment.content;
     return Image.memory(

@@ -9,6 +9,7 @@ export 'src/model/identity.dart';
 export 'src/model/message.dart';
 export 'src/model/parse.dart';
 export 'src/model/result.dart';
+export 'src/model/tag.dart';
 export 'src/ports/archive_settings_repository.dart';
 export 'src/ports/codec.dart';
 export 'src/ports/hosts.dart';
