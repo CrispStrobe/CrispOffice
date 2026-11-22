@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "status": "accepted-after-targeted-reruns",
+  "accepted": true,
+  "singleClean149SuiteExecution": false,
+  "sourceCommit": "708bf4a6cf2651a2f08f900631119f357aef4611",
+  "checkoutCommitAtAcceptance": "45a1c0846f3fb78a203f2967e5b80a79fdca2ca9",
+  "completedAt": "2026-11-22T06:16:48.230248+00:00",
+  "completeInitialRun": {
+    "selectedSuiteCount": 149,
+    "loadedSuiteCount": 149,
+    "exitCode": 1,
+    "normalCompletion": true,
+    "visibleTests": {
+      "passed": 7218,
+      "failed": 6,
+      "skipped": 0
+    },
+    "summary": "setup-attempt/tests-summary.json",
+    "log": "setup-attempt/tests.stdout.jsonl.gz"
+  },
+  "targetedDeadlineIsolation": {
+    "suiteCount": 2,
+    "exitCode": 0,
+    "normalCompletion": true,
+    "visibleTests": {
+      "passed": 37,
+      "failed": 0,
+      "skipped": 0
+    },
+    "timeoutBudgetChanged": false,
+    "summary": "deadline-isolation/summary.json",
+    "log": "deadline-isolation/stdout.jsonl.gz"
+  },
+  "supplementalSequentialRun": {
+    "selectedSuiteCount": 149,
+    "loadedSuiteCount": 63,
+    "normalCompletion": false,
+    "interrupted": true,
+    "execSessionExitCode": 130,
+    "dartTestExitCode": null,
+    "visibleTests": {
+      "passed": 3029,
+      "failed": 0,
+      "skipped": 0
+    },
+    "summary": "supplemental-sequential/tests-summary.json",
+    "log": "supplemental-sequential/tests.stdout.jsonl.gz",
+    "originalInterruptedLog": "supplemental-sequential/tests.stdout.interrupted.jsonl.gz.partial"
+  },
+  "reconciliation": {
+    "initialVisibleCaseCount": 7224,
+    "initialSuccessfulCases": 7218,
+    "initialFailedCases": 6,
+    "successfullyRerunOriginalFailures": 6,
+    "accountedForCaseCount": 7224,
+    "unresolvedOriginalFailures": 0,
+    "resolutionMap": "failure-resolutions.json",
+    "countingNote": "This accounts for the 7,224 cases in the complete 149-suite run using 7,218 original successes and six exact successful reruns. It does not claim a single clean 149-suite execution or add duplicate supplemental passes to the case count."
+  },
+  "sourceIntegrity": {
+    "allOriginallyManifestedInputsUnchanged": true,
+    "all1221FinalInputsUnchangedSinceFontRestoration": true,
+    "initialFullRunInputFileCount": 1205,
+    "finalInputFileCount": 1221,
+    "addedInputs": "16 existing tracked editor font files restored from the same source checkpoint; no code changes.",
+    "finalInputsSha256": "e95f5d032dd2161fec666cf88d62d5720badf2a22d3b335b1da784c2f797a886",
+    "finalManifest": "source-manifest-final.json",
+    "sourceChangesForReruns": false,
+    "productionOrTestBudgetChanges": false
+  },
+  "portableConformance": {
+    "caseCount": 32,
+    "nativePlans": 14,
+    "diagnostics": 18,
+    "vmJsByteIdentical": true,
+    "originalReceiptSummary": "corpus-summary.json",
+    "vmReceipt": "corpus-vm.json",
+    "jsReceipt": "corpus-js.json",
+    "provenanceNote": "Original portable receipts copied unchanged, including their original fixture/output hashes and exit statuses. No historical full-source hashes were added. The controlling agent confirms compiler source remained at source checkpoint708bf4a6 since that parity run; the complete regression run also executed the same canonical corpus on the VM."
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "authoritative": false,
+  "purpose": "Initial complete149-suite run before fixture availability correction and deadline isolation diagnosis.",
+  "sourceCommit": "708bf4a6cf2651a2f08f900631119f357aef4611",
+  "visiblePassed": 7218,
+  "visibleFailed": 6,
+  "skipped": 0,
+  "failureKinds": {
+    "missingEditorFont": 4,
+    "thirtySecondDeadline": 2
+  },
+  "sourceInputsUnchanged": true,
+  "followup": "Restore existing tracked editor fonts; diagnose affected section/proofing suites sequentially without budget changes; final full gate runs sequentially."
+}

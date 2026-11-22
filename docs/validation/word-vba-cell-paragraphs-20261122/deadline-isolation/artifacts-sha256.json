@@ -1,0 +1,26 @@
+{
+  "command.json": {
+    "sha256": "25ce3d5fcf1977c0d87b5eaebb2eeb8b85d9ea7040bc79dea3f3e9498d830f37",
+    "bytes": 446
+  },
+  "source-manifest-after.json": {
+    "sha256": "f402ed18c315cb6b9e9eaadef3d72ea28c612fd9e94c7cea3281f6be9c72311b",
+    "bytes": 231310
+  },
+  "source-manifest-before.json": {
+    "sha256": "ce8c104caa56cba2748314f6f9267fcd6e1098664ee71f14d762865ea5cf0812",
+    "bytes": 231310
+  },
+  "stderr.log": {
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  },
+  "stdout.jsonl.gz": {
+    "sha256": "f19ca934012a58902ca36a39866d2b471573e0321a5161e14fbf855f8e42ebe0",
+    "bytes": 2348
+  },
+  "summary.json": {
+    "sha256": "1de945f8cd5ba8d648758a2feeada6cbf607c13b6e95a25fe19272caa2c29742",
+    "bytes": 587
+  }
+}
