@@ -674,6 +674,9 @@ void main() {
     'authored configuration text':
         '<w:settings xmlns:w="${OfficeNamespaces.w}"><w:endnotePr><w:numFmt w:val="lowerRoman">authored</w:numFmt></w:endnotePr></w:settings>',
     'unclosed root': '<w:settings xmlns:w="${OfficeNamespaces.w}">',
+    'mismatched closing tag':
+        '<w:settings xmlns:w="${OfficeNamespaces.w}"><w:endnotePr></w:settings>',
+    'unterminated child tag': '<w:settings xmlns:w="${OfficeNamespaces.w}"><',
     'wrong root': '<w:wrong xmlns:w="${OfficeNamespaces.w}"/>',
     'multiple roots':
         '<w:settings xmlns:w="${OfficeNamespaces.w}"/><w:settings xmlns:w="${OfficeNamespaces.w}"/>',
@@ -698,10 +701,9 @@ void main() {
             [],
           );
       settings.writeText(settingsXml);
-      expect(
-        WordNoteNumbering(source).automaticNumberFor(source.endnotes.single),
-        isNull,
-      );
+      final numbering = WordNoteNumbering(source);
+      expect(numbering.labelFor(source.endnotes.single), 'i');
+      expect(numbering.automaticNumberFor(source.endnotes.single), isNull);
       _unchangedAfterRefusal(source);
     });
   }

@@ -1,0 +1,180 @@
+{
+  "acceptance": {
+    "bytes": 7095,
+    "path": "publication-acceptance.json",
+    "sha256": "2e7cc5a68dd5f9764f06a9ae9b9b979aa2d7566eba88250c841e323ea8b7735a"
+  },
+  "archive": {
+    "bytes": 212541,
+    "manifest": "publication-evidence-manifest.json",
+    "members": 29,
+    "path": "publication-evidence.tar.gz",
+    "sha256": "a95318179199b07b5775f51580098edd1b9abccdceb8970563d14f735fffefbc"
+  },
+  "embedded_pngs": 0,
+  "format": "gzip POSIX pax tar; regular files only; deterministic order; normalized owner and zero timestamps",
+  "members": [
+    {
+      "bytes": 414,
+      "path": "mail-runtime/logs/membership-host-post-main-final/base-artifact-integrity-after.json",
+      "sha256": "78fec24e4516049b98a9e1110c241f69246c2d59793cc83ff717b9ef11311ba9"
+    },
+    {
+      "bytes": 414,
+      "path": "mail-runtime/logs/membership-host-post-main-final/base-artifact-integrity-before.json",
+      "sha256": "02d78b64466e3c123d5ddba8e27f0fc24ca6c1b1a394868f5438b416360627e3"
+    },
+    {
+      "bytes": 92466,
+      "path": "mail-runtime/logs/membership-host-post-main-final/cases.json",
+      "sha256": "7c14a1a25b9c4786a80a56f5cbd5f221e80b129c66b108034b7ba3258a0402c7"
+    },
+    {
+      "bytes": 1960,
+      "path": "mail-runtime/logs/membership-host-post-main-final/compare_screenshots.py",
+      "sha256": "f25f032f2778f84551c371e229845d0bce566570a7fc1c035c25e95cd4a2ba49"
+    },
+    {
+      "bytes": 4078,
+      "path": "mail-runtime/logs/membership-host-post-main-final/composite-input-audit.json",
+      "sha256": "485be04584f020151bc3ac45c2cb8594a959e6ba22a0eac37f01a2c180501ed1"
+    },
+    {
+      "bytes": 6533,
+      "path": "mail-runtime/logs/membership-host-post-main-final/image-references.json",
+      "sha256": "7066dcd5498a06442026107a5a7c242a16989812725cb171afe86724a3c26a08"
+    },
+    {
+      "bytes": 312268,
+      "path": "mail-runtime/logs/membership-host-post-main-final/receipt.json",
+      "sha256": "c83434ccf4246457ebf4d6cc80092b7536d124a2bd945568d939ae51c8ca75d0"
+    },
+    {
+      "bytes": 6533,
+      "path": "mail-runtime/logs/membership-host-post-main-final/run.py",
+      "sha256": "0d1ce21233d1ab95f3dfb45c12c0ac9e82d3d3928e24095a3d2738c2d66d31bf"
+    },
+    {
+      "bytes": 3531,
+      "path": "mail-runtime/logs/membership-host-post-main-final/run_static.py",
+      "sha256": "56117d5dcfc5fb48eb76bbb412963780552ae6e8c5c54db6436cddb0a5610e2c"
+    },
+    {
+      "bytes": 8560,
+      "path": "mail-runtime/logs/membership-host-post-main-final/runner.log",
+      "sha256": "a7b0a5d7d9aeeea0e015891f11d389df2061c6c3b9d75aaf85945b0f85c46645"
+    },
+    {
+      "bytes": 9037,
+      "path": "mail-runtime/logs/membership-host-post-main-final/screenshot-comparison.json",
+      "sha256": "ce93ba6df7219dda7b202c77f3b4d26b517af844218a8c97738ed10dc4c444c3"
+    },
+    {
+      "bytes": 9037,
+      "path": "mail-runtime/logs/membership-host-post-main-final/screenshot-comparison.log",
+      "sha256": "ce93ba6df7219dda7b202c77f3b4d26b517af844218a8c97738ed10dc4c444c3"
+    },
+    {
+      "bytes": 3138,
+      "path": "mail-runtime/logs/membership-host-post-main-final/source-delta.json",
+      "sha256": "3498135372953ca0ebe5b23a4b2e25e26847dd9488df31dc4d44fd776d4ea7a0"
+    },
+    {
+      "bytes": 1682,
+      "path": "mail-runtime/logs/membership-host-post-main-final/static-runner.log",
+      "sha256": "16a5c1eeb833d2bb2bab3c95f475252bd786848d021f1402f46bad8ef557a25b"
+    },
+    {
+      "bytes": 0,
+      "path": "mail-runtime/logs/membership-host-post-main-final/static/analysis.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 99,
+      "path": "mail-runtime/logs/membership-host-post-main-final/static/analysis.txt",
+      "sha256": "eff35c0a4da165bd25c062904709163fe0e7354d4d56c60abe0ac8f9b7ade4f1"
+    },
+    {
+      "bytes": 0,
+      "path": "mail-runtime/logs/membership-host-post-main-final/static/format.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 47,
+      "path": "mail-runtime/logs/membership-host-post-main-final/static/format.txt",
+      "sha256": "11a57d97889bc161aad83f19055424c45a757ed0654809f75c0ad99f31bb11b7"
+    },
+    {
+      "bytes": 5722,
+      "path": "mail-runtime/logs/membership-host-post-main-final/static/receipt.json",
+      "sha256": "c56ab8a36b49f7b94def17b849e231d779f628508f0e16cb8eba9c056846b953"
+    },
+    {
+      "bytes": 149579,
+      "path": "mail-runtime/logs/membership-host-post-main-final/test-events.jsonl",
+      "sha256": "798d0d137c19a74aa79cbb9fbb8a8e4cc62720db143bf9dfdf59436276492213"
+    },
+    {
+      "bytes": 149975,
+      "path": "mail-runtime/logs/membership-host-post-main-final/test.jsonl",
+      "sha256": "9ff87a35aaf7c54d521f2cf8c571242b6eb3f51474c3bd798b57600bcd63f016"
+    },
+    {
+      "bytes": 0,
+      "path": "mail-runtime/logs/membership-host-post-main-final/test.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 4308,
+      "path": "mail-runtime/logs/membership-host-post-main-final/zotero-scope-note.json",
+      "sha256": "601c8bdd9041c4bfc727899079f5300b9c6007354d59895842161d4f79ae4750"
+    },
+    {
+      "bytes": 3216,
+      "path": "qualification/composite-runtime-sha256.json",
+      "sha256": "47af6917efdaa0942f28e711910b6153b96bd1977a7953d389bdfca42fa0cb40"
+    },
+    {
+      "bytes": 160731,
+      "path": "qualification/composite-source-sha256.json",
+      "sha256": "dffbeb2acec9a7fc9f9b4c1c3e7cee03a8f8010b03e3f7a625bb410ae294d017"
+    },
+    {
+      "bytes": 312,
+      "path": "qualification/strict-host-reparse.json",
+      "sha256": "82f8abcf2f16088f1570d372b9f6f51b58e0f4869b368eeb007d52f775e41e95"
+    },
+    {
+      "bytes": 1782,
+      "path": "replay/POST_MAIN_REPLAY.md",
+      "sha256": "d5c5cd760111d2b4e738f5025d42045483f5496720053c72b03dbc47593ac59f"
+    },
+    {
+      "bytes": 18681,
+      "path": "replay/package_publication_supplement.py",
+      "sha256": "43694c3a57ba2cc795dc36fafae562a73c90e46339020246026891ebed75ba64"
+    },
+    {
+      "bytes": 3207,
+      "path": "replay/verify_publication_supplement.py",
+      "sha256": "7a3f9d582f57a7b831474482a054fd3ba9d31d1dcdecec91f3d69f103b5578f9"
+    }
+  ],
+  "original_artifacts": {
+    "mail-acceptance.json": {
+      "bytes": 11676,
+      "sha256": "eb968cd1cefe4dbc1e540d8d55d717a331e6e76ef83ce050ba3134ced5280d11"
+    },
+    "mail-evidence-manifest.json": {
+      "bytes": 50219,
+      "sha256": "38d8aa7b87479d772fcd4c9b7de5c13d31bcfa7c3371bb5ebfb4491d4583cc73"
+    },
+    "mail-evidence.tar.gz": {
+      "bytes": 6605538,
+      "sha256": "9460977aa493ff0a145c778ba055e08183de6281b154f0689559dce240ef856b"
+    }
+  },
+  "schema_version": 1,
+  "uncompressed_member_bytes": 957310,
+  "verification": "Every member read back and SHA-256 checked; original artifacts and current composite inputs rechecked before acceptance."
+}

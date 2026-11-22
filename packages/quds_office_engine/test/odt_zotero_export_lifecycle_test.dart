@@ -497,6 +497,66 @@ void main() {
     },
   );
 
+  for (final uppercase in [false, true]) {
+    test(
+      'Roman endnote lifecycle preserves ownership, uppercase=$uppercase',
+      () async {
+        final document = WmlDocument.empty(text: 'Body');
+        document.zoteroDocumentData = _preferences();
+        if (uppercase) {
+          document.sections.single.sourceProperties = WmlSectionSource(
+            xml:
+                '<w:sectPr xmlns:w="${OfficeNamespaces.w}">'
+                '<w:endnotePr><w:numFmt w:val="upperRoman"/></w:endnotePr>'
+                '</w:sectPr>',
+            values: const {},
+          );
+        }
+        WordNotes.insert(
+          document,
+          document.paragraphs.single,
+          endnote: true,
+          text: 'Uncited',
+        );
+        final cited = WordNotes.insert(
+          document,
+          document.paragraphs.single,
+          endnote: true,
+          text: 'Cited ',
+        );
+        WordZotero.insertCitation(cited.paragraphs.single, _citation('roman'));
+        var current = document;
+        for (var cycle = 0; cycle < 2; cycle++) {
+          final bytes = _exportUnchanged(current);
+          final styles = XmlDocument.parse(
+            OpcPackage.openBytes(bytes).getPart('/styles.xml')!.readText(),
+          ).root!.firstChild('styles')!;
+          final configuration = styles
+              .childrenNamed('notes-configuration')
+              .singleWhere(
+                (item) => item.getAttribute('note-class') == 'endnote',
+              );
+          expect(
+            configuration.getAttribute('num-format'),
+            uppercase ? 'I' : 'i',
+          );
+          current = _docx(await OdtDocumentReader.readBytes(bytes));
+          final numbering = WordNoteNumbering(current);
+          expect(
+            current.endnotes.map(numbering.labelFor),
+            uppercase ? ['I', 'II'] : ['i', 'ii'],
+          );
+          expect(
+            _field(current, 'roman').paragraph,
+            same(current.endnotes[1].paragraphs.single),
+          );
+          expect(_field(current, 'roman').cachedText, _same);
+          expect(WordZotero.fields(current), hasLength(1));
+        }
+      },
+    );
+  }
+
   test('a fixed earlier note cannot silently renumber a later cited note', () {
     final firstAnchor = _plain('Roman endnote');
     final secondAnchor = _plain('Decimal endnote');
@@ -790,18 +850,21 @@ void main() {
             WmlRun(text: '1', noteRefId: note.id),
           );
         case 'alphabetic-endnote':
-          final note = WordNotes.insert(
-            document,
-            document.paragraphs.single,
-            endnote: true,
-          );
-          WordZotero.insertCitation(note.paragraphs.single, _citation('roman'));
           document.sections.single.sourceProperties = WmlSectionSource(
             xml:
                 '<w:sectPr xmlns:w="${OfficeNamespaces.w}">'
                 '<w:endnotePr><w:numFmt w:val="lowerLetter"/></w:endnotePr>'
                 '</w:sectPr>',
             values: const {},
+          );
+          final note = WordNotes.insert(
+            document,
+            document.paragraphs.single,
+            endnote: true,
+          );
+          WordZotero.insertCitation(
+            note.paragraphs.single,
+            _citation('alphabetic'),
           );
       }
       _refusesUnchanged(document);
