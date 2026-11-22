@@ -78,20 +78,29 @@ relevant local write retires projection authority, while the confirmed receipt
 can still be saved. Finishing a previously saved item checks evidence equality
 and never projects it twice.
 
-Eligible projection removes only the exact source entry, compacts retained browse
-positions, adds the authoritative target header to already-retained destination
-coverage, and advances browse/sync revisions. Existing target headers keep their
-newer metadata. Original capture/update timestamps, continuation/completeness
-flags and provider cursor bytes are preserved. No new complete folder catalog
-or synchronization checkpoint is invented.
+Eligible projection requires existing source and destination browse views. It
+removes only the exact source entry, compacts retained browse positions, adds the
+authoritative target header to already-retained destination coverage, and
+advances both browse revisions, even when the moved synchronized source was
+outside the retained browse window. It also advances applicable sync revisions.
+Existing target headers keep their newer metadata. Original capture/update
+timestamps, continuation/completeness flags and provider cursor bytes are
+preserved. No new complete folder catalog or synchronization checkpoint is
+invented. Requiring both browse views conservatively leaves sync-only caches
+unprojected until browse commits can carry their own persistent move fence.
 
 Missing source/target coverage, mixed IMAP generations, identity collisions,
 full destination windows, incompatible local state, revision exhaustion and
 aggregate metadata limits prevent projection. The receipt states that folder
-refresh is required. Any failure in the transaction rolls back the new receipt
-and cache changes together. If storage cannot retain the acknowledgement, the
-live report keeps it, but restart recovery remains uncertain; no command is
-replayed to recover a lost mapping.
+refresh is required. The receipt is written in the outer journal transaction;
+optional cache projection and its account-quota check use a nested savepoint. A
+quota failure caused only by cache growth rolls back that projection while
+retaining the acknowledgement. Receipt storage still must satisfy the ordinary
+quota, and other transaction failures roll back all new writes. A backwards
+wall-clock correction also rolls back settlement rather than persisting a
+receipt whose recorded time exceeds the batch update time. If storage cannot
+retain the acknowledgement, the live report keeps it, but restart recovery
+remains uncertain; no command is replayed to recover a lost mapping.
 
 Original source message bytes and blob references remain under the original
 identity. A newly created destination row is header-only until its body is

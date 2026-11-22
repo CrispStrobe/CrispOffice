@@ -31,9 +31,13 @@ class GenericParser extends ResponseParser<GenericImapResult> {
       r'^OK \[COPYUID(?: |\]|$)',
       caseSensitive: false,
     ).firstMatch(text);
-    if (match == null) return false;
+    if (match == null) {
+      return false;
+    }
     final end = text.indexOf(']', 4);
-    if (end == -1) _result.malformedCopyUidResponse = true;
+    if (end == -1) {
+      _result.malformedCopyUidResponse = true;
+    }
     final code = text.substring(4, end == -1 ? text.length : end);
     _result.copyUidResponseCodes.add(code);
     _result.responseCode = code;

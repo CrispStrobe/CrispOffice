@@ -9,8 +9,10 @@ import 'package:test/test.dart';
 
 ImapResponse _read(String text) {
   final responses = <ImapResponse>[];
-  final reader = ImapResponseReader(responses.add, maxLiteralSize: 1024);
-  reader.onData(Uint8List.fromList(utf8.encode('$text\r\n')));
+  ImapResponseReader(
+    responses.add,
+    maxLiteralSize: 1024,
+  ).onData(Uint8List.fromList(utf8.encode('$text\r\n')));
   // ImapClient removes the command tag/untagged prefix before GenericParser.
   return responses.single..parseText = text.substring(text.indexOf(' ') + 1);
 }
@@ -34,8 +36,8 @@ void main() {
   test(
     'duplicate evidence remains visible instead of replacing earlier COPYUID',
     () {
-      final parser = GenericParser(ImapClient(), null);
-      parser.parseUntagged(_read('* OK [COPYUID 77 1 9] copied'), null);
+      final parser = GenericParser(ImapClient(), null)
+        ..parseUntagged(_read('* OK [COPYUID 77 1 9] copied'), null);
       final result = parser.parse(
         _read('a1 OK [COPYUID 88 1 10] moved'),
         Response<GenericImapResult>(),
@@ -67,8 +69,8 @@ void main() {
   test(
     'unterminated COPYUID is marked malformed after a later tagged success',
     () {
-      final parser = GenericParser(ImapClient(), null);
-      parser.parseUntagged(_read('* OK [COPYUID 77 1 9'), null);
+      final parser = GenericParser(ImapClient(), null)
+        ..parseUntagged(_read('* OK [COPYUID 77 1 9'), null);
       final result = parser.parse(
         _read('a1 OK moved'),
         Response<GenericImapResult>(),

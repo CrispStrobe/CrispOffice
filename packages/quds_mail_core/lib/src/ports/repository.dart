@@ -39,6 +39,12 @@ final class MailSyncRepositorySnapshot {
     if (cursor != null && cursor!.mailbox != mailbox) {
       throw ArgumentError('Sync snapshots must retain their exact mailbox.');
     }
+    if (cursor?.repositoryRevision != null &&
+        cursor!.repositoryRevision != revision) {
+      throw ArgumentError(
+        'Sync snapshot cursor and local revision must agree.',
+      );
+    }
   }
 
   final MailMailboxId mailbox;
