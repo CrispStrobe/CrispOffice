@@ -25,7 +25,12 @@ final class StudioMailAccountNavigationTarget {
     switch (identity.provider) {
       case MailProviderKind.imap:
         if ((endpoint.scheme != 'imap' && endpoint.scheme != 'imaps') ||
-            endpoint.path.isNotEmpty) {
+            endpoint.path.isNotEmpty ||
+            // The native account namespace records its actual socket port.
+            // Uri folds :0 into a missing port for these non-default schemes;
+            // neither representation can identify a reconnectable route.
+            endpoint.port <= 0 ||
+            endpoint.port > 65535) {
           _invalid();
         }
       case MailProviderKind.ews:
@@ -123,6 +128,34 @@ final class StudioMailAccountNavigationTarget {
         current.single.record.revision != record.revision) {
       throw const StudioMailDraftStoreException(MailProblemCode.conflict);
     }
+  }
+
+  /// Refreshes a fulfilled sign-in only if its selected shortcut still exists
+  /// unchanged. Older/custom directories without an atomic refresh capability
+  /// keep their existing metadata; a read followed by an unconditional remember
+  /// could otherwise recreate a shortcut removed during sign-in.
+  Future<void> rememberConnection(
+    StudioMailLocalAccountStore store,
+    StudioMailDraftAccount actual, {
+    required bool Function() isCurrent,
+  }) async {
+    requireMatches(actual);
+    void checkCurrent() {
+      if (!isCurrent()) {
+        throw const StudioMailDraftStoreException(MailProblemCode.staleOperation);
+      }
+    }
+
+    checkCurrent();
+    await validateCurrent(store);
+    checkCurrent();
+    if (store is StudioMailLocalAccountReconnectStore) {
+      await (store as StudioMailLocalAccountReconnectStore).rememberSelected(
+        actual,
+        expectedRecord: record,
+      );
+    }
+    checkCurrent();
   }
 
   static Never _invalid() =>

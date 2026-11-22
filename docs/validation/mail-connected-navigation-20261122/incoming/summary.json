@@ -1,0 +1,58 @@
+{
+  "all_accepted_commands_exit_zero": true,
+  "all_static_commands_exit_zero": true,
+  "all_test_lifecycles_completed": true,
+  "bookkeeping_interruption": "The second stop signal arrived after the verbose Flutter test exited successfully and its complete reporter/result was saved. It interrupted only the harness before capturing the final input manifest. This process captures those final inputs without re-executing or duplicating any tests.",
+  "earlier_attempt": "editor-startup-interrupted.json",
+  "finished_source_head": "f8baf34fd121614ad3a9e72bf235c0a31d1329d4",
+  "gates": [
+    "engine-result.json",
+    "editor-result.json"
+  ],
+  "generated_inputs_unchanged": true,
+  "input_manifests": [
+    {
+      "gzip_sha256": "4e3d1d94dc168a316061095874ebb2df4e91d5cb230b809d15110ee0b7971e5b",
+      "path": "inputs-before.json.gz",
+      "raw_bytes": 1338339,
+      "raw_sha256": "38c6b982d6fcc02878860e4121ca9eac271a4b1a8fbf034eb8be8131a37b2860"
+    },
+    {
+      "gzip_sha256": "c929fa8f1af4873a795f0080fcfefd80d89d9f3fdc746b001390b75c55529423",
+      "path": "inputs-after-interruption.json.gz",
+      "raw_bytes": 1338339,
+      "raw_sha256": "1f55b13a1e31ef867473d1fc4efd0e38dafd4e8f3a2a9b038a9c74d92326ee94"
+    },
+    {
+      "gzip_sha256": "20c85f68fb5cea4258fc8245d2633295c53d6d977819bd1783d171695949706a",
+      "path": "inputs-after.json.gz",
+      "raw_bytes": 1338339,
+      "raw_sha256": "fb9ca604d2cc48699a485bbc765bb1608d92aae741f0634a5c4af08fe09d2c59"
+    }
+  ],
+  "requested_integration_head": "982ea168648c7b24be9dd61cac3e9cd5ab76d274",
+  "requested_source_differences": [],
+  "scope_limitations": "Focused local regression only; no installed/live-provider or full-editor/full-engine claim. GitHub Actions not queried or awaited.",
+  "started_source_head": "a867f9e8edcd46665a2609043d189423fa5ed620",
+  "static_file_count": 15,
+  "static_inputs_unchanged": true,
+  "suite_count": 9,
+  "suite_pass_counts": {
+    "/workspace/scratch/85a369f34dbb/quds_office_suite/packages/quds_office_editor/test/word_ruler_directional_indent_test.dart": 10,
+    "test/office_vba_string_intrinsics_test.dart": 102,
+    "test/office_vba_variant_substrings_test.dart": 108,
+    "test/office_vba_word_headers_footers_test.dart": 94,
+    "test/office_vba_word_named_measurements_test.dart": 160,
+    "test/office_vba_word_named_selectors_test.dart": 132,
+    "test/office_vba_word_page_setup_test.dart": 88,
+    "test/office_vba_word_text_selectors_conformance_test.dart": 65,
+    "test/word_directional_paragraph_io_test.dart": 43
+  },
+  "tests_failed": 0,
+  "tests_passed": 802,
+  "tests_skipped": 0,
+  "tracked_input_changes": [],
+  "tracked_input_count": 4650,
+  "tracked_inputs_all_match_finish_head": true,
+  "tracked_inputs_all_match_start_head": true
+}

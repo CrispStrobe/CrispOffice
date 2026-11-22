@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:enough_mail/enough_mail.dart' as mail;
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_office_studio/studio_mail_account_navigation.dart';
 import 'package:quds_office_studio/studio_mail_account_navigation_strings.dart';
@@ -120,6 +121,26 @@ final class _Loader extends Fake implements StudioMailMessageLoader {
   void cancel() {}
 }
 
+final class _CatalogStore extends Fake
+    implements StudioMailDraftStore, StudioMailDraftCatalog {
+  _CatalogStore(this.account);
+  @override
+  final MailAccountId account;
+  @override
+  String get selectedDraftId => 'reconnect';
+  @override
+  int get selectionEpoch => 0;
+  int closes = 0;
+
+  @override
+  Future<StudioMailStoredDraft?> load() async => null;
+
+  @override
+  Future<void> close() async {
+    closes++;
+  }
+}
+
 final class _Client extends Fake implements mail.MailClient {
   final inbox = mail.Mailbox(
     encodedName: 'INBOX',
@@ -132,12 +153,17 @@ final class _Client extends Fake implements mail.MailClient {
   int connections = 0;
   int disconnections = 0;
   int folderReads = 0;
+  int headerReads = 0;
+  Completer<void>? connectGate;
+  Completer<void>? folderGate;
+  Completer<void>? headerGate;
 
   @override
   mail.Mailbox get selectedMailbox => inbox;
   @override
   Future<void> connect({Duration timeout = const Duration(seconds: 20)}) async {
     connections++;
+    await connectGate?.future;
   }
 
   @override
@@ -150,6 +176,7 @@ final class _Client extends Fake implements mail.MailClient {
     List<mail.MailboxFlag>? order,
   }) async {
     folderReads++;
+    await folderGate?.future;
     return [inbox];
   }
 
@@ -160,17 +187,26 @@ final class _Client extends Fake implements mail.MailClient {
     int page = 1,
     mail.FetchPreference fetchPreference =
         mail.FetchPreference.fullWhenWithinSize,
-  }) async => [];
+  }) async {
+    headerReads++;
+    await headerGate?.future;
+    return [];
+  }
 }
 
 final class _ClosingStore implements StudioMailDraftStore {
   _ClosingStore(this.delegate, this.gate, this.events);
   final StudioMailDraftStore delegate;
-  final Completer<void> gate;
+  final Completer<void>? gate;
   final List<String> events;
+  int loads = 0;
 
   @override
-  Future<StudioMailStoredDraft?> load() => delegate.load();
+  Future<StudioMailStoredDraft?> load() {
+    loads++;
+    return delegate.load();
+  }
+
   @override
   Future<void> save(
     StudioMailDraft draft, {
@@ -189,7 +225,7 @@ final class _ClosingStore implements StudioMailDraftStore {
   @override
   Future<void> close() async {
     events.add('closing');
-    await gate.future;
+    await gate?.future;
     await delegate.close();
     events.add('closed');
   }
@@ -224,6 +260,7 @@ Future<void> _show(
   StudioMailAccountNavigationTarget? initialAccount,
   StudioMailDraftStoreFactory? open,
   bool autoConnect = false,
+  void Function(_Client)? configureClient,
 }) async {
   await tester.binding.setSurfaceSize(const Size(1200, 1050));
   addTearDown(() => tester.binding.setSurfaceSize(null));
@@ -239,6 +276,7 @@ Future<void> _show(
         clientFactory: (account) {
           created.add(account);
           final client = _Client();
+          configureClient?.call(client);
           clients.add(client);
           return client;
         },
@@ -517,24 +555,114 @@ void main() {
       final initial = directory.target(identity);
       final created = <mail.MailAccount>[];
       final clients = <_Client>[];
+      final owners = <_CatalogStore>[];
       await _show(
         tester,
         directory: directory,
         created: created,
         clients: clients,
         initialAccount: initial,
+        open: (account) async {
+          final owner = _CatalogStore(account.account);
+          owners.add(owner);
+          return owner;
+        },
       );
       await _connect(tester);
+      expect(owners.single.account, identity.account);
       expect(
         directory.records[identity.account.value]!.revision,
-        greaterThan(initial.record.revision),
+        initial.record.revision + 1,
       );
       await _tap(tester, find.byTooltip(_strings.disconnect));
       await tester.enterText(_field(_strings.password), _second.password);
       await _connect(tester);
       expect(created, hasLength(2));
+      expect(owners, hasLength(2));
+      expect(owners.first.closes, 1);
       expect(clients.last.folderReads, 1);
+      expect(
+        directory.records[identity.account.value]!.revision,
+        initial.record.revision + 2,
+      );
       expect(find.text(_strings.mailAccountNavigationChanged), findsNothing);
+    },
+  );
+
+  for (final stage in ['connect', 'folders', 'headers']) {
+    testWidgets('removed target after delayed $stage cannot admit later work', (
+      tester,
+    ) async {
+      final directory = _Directory();
+      final identity = _identity(_second);
+      await directory.remember(identity);
+      final gate = Completer<void>();
+      final clients = <_Client>[];
+      final drafts = MemoryStudioMailDrafts();
+      await _show(
+        tester,
+        directory: directory,
+        created: [],
+        clients: clients,
+        drafts: drafts,
+        initialAccount: directory.target(identity),
+        configureClient: (client) {
+          switch (stage) {
+            case 'connect':
+              client.connectGate = gate;
+            case 'folders':
+              client.folderGate = gate;
+            case 'headers':
+              client.headerGate = gate;
+          }
+        },
+      );
+      await _connect(tester);
+      directory.records.clear();
+      gate.complete();
+      await _pump(tester);
+      expect(clients.single.disconnections, 1);
+      expect(drafts.identities, isEmpty);
+      if (stage == 'connect') expect(clients.single.folderReads, 0);
+      if (stage != 'headers') expect(clients.single.headerReads, 0);
+      expect(find.text(_strings.mailAccountNavigationChanged), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    });
+  }
+
+  testWidgets(
+    'removed target during store open closes the candidate without adoption',
+    (tester) async {
+      final directory = _Directory();
+      final identity = _identity(_second);
+      await directory.remember(identity);
+      final drafts = MemoryStudioMailDrafts();
+      final gate = Completer<void>();
+      drafts.openGate = gate;
+      final clients = <_Client>[];
+      _ClosingStore? candidate;
+      await _show(
+        tester,
+        directory: directory,
+        created: [],
+        clients: clients,
+        drafts: drafts,
+        initialAccount: directory.target(identity),
+        open: (account) async {
+          candidate = _ClosingStore(await drafts.open(account), null, []);
+          return candidate!;
+        },
+      );
+      await _connect(tester);
+      expect(drafts.identities, hasLength(1));
+      directory.records.clear();
+      gate.complete();
+      await _pump(tester);
+      expect(drafts.closes, 1);
+      expect(candidate!.loads, 0);
+      expect(clients.single.disconnections, 1);
+      expect(find.text(_strings.mailAccountNavigationChanged), findsOneWidget);
+      expect(tester.takeException(), isNull);
     },
   );
 }

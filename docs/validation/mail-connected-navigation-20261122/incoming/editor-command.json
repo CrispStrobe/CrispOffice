@@ -1,0 +1,19 @@
+{
+  "command": [
+    "/workspace/scratch/85a369f34dbb/runtime/flutter/bin/flutter",
+    "--verbose",
+    "test",
+    "--no-pub",
+    "--concurrency=2",
+    "--reporter=json",
+    "test/word_ruler_directional_indent_test.dart"
+  ],
+  "cwd": "/workspace/scratch/85a369f34dbb/quds_office_suite/packages/quds_office_editor",
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-22T11:20:52.311903+00:00",
+  "name": "editor",
+  "result": "editor-result.json",
+  "source_head_at_start": "ae72c31a234edd71f51de7688d18c8f7490422a6",
+  "started_at_utc": "2026-11-22T11:17:27.410667+00:00",
+  "status": "completed"
+}

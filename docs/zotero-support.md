@@ -63,6 +63,22 @@ chords remain reserved when customizing workspace shortcuts.
 Native desktop integration is available even before the catalog browser is
 connected. The Zotero windows may open behind the office app.
 
+## Reopen references saved by LibreOffice
+
+Supported LibreOffice-saved DOCX citations remain editable when Writer has
+added ordinary character formatting or empty formatted runs inside the field
+code. Refresh and citation editing retain that internal formatting; the full
+operation is still one undo step. Unknown field metadata, locks, revisions and
+incomplete structures continue to block editing.
+
+Native ODT opening also accepts the observed unnumbered heading declarations
+and unpatterned character backgrounds produced by Writer. The retained body,
+footnote and table-cell files are tested through native refresh and repeated
+DOCX/ODT saves. This is a bounded file-compatibility improvement; installed
+Word/LibreOffice Zotero-plugin acceptance remains a separate check. See the
+[converter work record](validation/zotero-converter-parity-20261122/README.md)
+and [supported input details](zotero-support-details.md#libreoffice-field-formatting).
+
 ## Repair damaged reference metadata
 
 An existing citation or bibliography can retain readable text even when its

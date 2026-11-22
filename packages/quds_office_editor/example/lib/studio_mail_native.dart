@@ -208,9 +208,11 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   bool _hasSavedCredentials = false;
   bool _credentialPending = false;
   bool _accountNavigationPending = false;
+  bool _navigationOwnerPending = false;
   bool _explicitAccountNavigation = false;
   StudioMailAccountNavigationTarget? _navigationTarget;
   Future<void> _transportClosing = Future<void>.value();
+  StudioMailDraftStore? _retiredNavigationStore;
   Object? _autoConnectTicket;
   bool _remoteImagesLoading = false;
   StudioMailRemoteImageLoader? _remoteImageLoader;
@@ -331,6 +333,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   bool get _autoConnectEnabled =>
       !_explicitAccountNavigation &&
       !_accountNavigationPending &&
+      _retiredNavigationStore == null &&
       _navigationTarget == null &&
       (widget.autoConnectSavedAccount ??
           (widget.clientFactory == null &&
@@ -480,6 +483,8 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         if (saved != null) {
           _applySavedAccount(saved);
           adopted = true;
+        } else if (target != null) {
+          _notice = widget.strings.mailAccountNavigationRouteUnavailable;
         }
       }
     });
@@ -750,6 +755,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     _messageLoader?.dispose();
     _pendingLoader?.dispose();
     unawaited(_closeDraftStore(_draftStore));
+    unawaited(_closeDraftStore(_retiredNavigationStore));
     _draftStore = null;
     unawaited(_disconnectQuietly(_client));
     unawaited(_disconnectQuietly(_pendingClient));
@@ -790,17 +796,38 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   Future<bool> _restoreDraftStore(
     mail.MailClient client,
     mail.MailAccount account,
-    int generation,
-  ) async {
+    int generation, {
+    StudioMailAccountNavigationTarget? expectedTarget,
+  }) async {
     if (!_currentSession(client, generation)) return false;
     if (_draftStore != null) return true;
     setState(() {
       _busy = true;
+      _navigationOwnerPending = expectedTarget != null;
       _localAccountWarning = null;
     });
     StudioMailDraftStore? candidate;
+    var targetRejected = false;
+    Future<void> verifyTarget() async {
+      if (expectedTarget == null) return;
+      try {
+        final directory = _localAccounts;
+        if (directory == null) {
+          throw const StudioMailDraftStoreException(
+            MailProblemCode.unavailable,
+          );
+        }
+        await expectedTarget.validateCurrent(directory);
+      } on Object {
+        targetRejected = true;
+        rethrow;
+      }
+    }
+
     try {
       await _draftStoreClosing;
+      if (!_currentSession(client, generation)) return false;
+      await verifyTarget();
       if (!_currentSession(client, generation)) return false;
       final identity = _imapLocalIdentity(account);
       candidate = await (widget.draftStoreFactory ?? openStudioMailDraftStore)(
@@ -841,9 +868,23 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           MailProblemCode.permissionDenied,
         );
       }
-      final restored = await candidate.load();
+      await verifyTarget();
       if (!_currentSession(client, generation)) {
-        await _closeDraftStore(candidate);
+        if (expectedTarget != null) {
+          await _closeNavigationCandidate(candidate);
+        } else {
+          await _closeDraftStore(candidate);
+        }
+        return false;
+      }
+      final restored = await candidate.load();
+      await verifyTarget();
+      if (!_currentSession(client, generation)) {
+        if (expectedTarget != null) {
+          await _closeNavigationCandidate(candidate);
+        } else {
+          await _closeDraftStore(candidate);
+        }
         return false;
       }
       setState(() {
@@ -898,13 +939,47 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       }
       return _currentSession(client, generation);
     } on Object {
-      await _closeDraftStore(candidate);
+      if (expectedTarget != null && candidate != null) {
+        // An already adopted owner stays with its current session. Rejected
+        // candidates have not acquired that session's observers or receipts.
+        if (!identical(_draftStore, candidate)) {
+          await _closeNavigationCandidate(candidate);
+        }
+      } else {
+        await _closeDraftStore(candidate);
+      }
       if (_currentSession(client, generation)) {
-        setState(() => _error = widget.strings.mailDraftStorageFailed);
+        if (targetRejected || _retiredNavigationStore != null) {
+          _disconnect();
+          setState(() {
+            _navigationTarget = expectedTarget;
+            _error = _retiredNavigationStore != null
+                ? widget.strings.mailDraftStorageFailed
+                : widget.strings.mailAccountNavigationChanged;
+          });
+        } else {
+          setState(() => _error = widget.strings.mailDraftStorageFailed);
+        }
       }
       return false;
     } finally {
-      if (_currentSession(client, generation)) setState(() => _busy = false);
+      if (mounted) {
+        setState(() {
+          _navigationOwnerPending = false;
+          if (_currentSession(client, generation)) _busy = false;
+        });
+      }
+    }
+  }
+
+  Future<void> _closeNavigationCandidate(StudioMailDraftStore candidate) async {
+    try {
+      await candidate.close();
+    } on Object {
+      _retiredNavigationStore = candidate;
+      if (mounted) {
+        setState(() => _error = widget.strings.mailDraftStorageFailed);
+      }
     }
   }
 
@@ -1124,6 +1199,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         _busy ||
         _dialogOpen ||
         _accountNavigationPending ||
+        _retiredNavigationStore != null ||
         _client != null ||
         _accountCatalogStore != null && _credentialPending) {
       return;
@@ -1148,6 +1224,19 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     final imapHost = _imapHost.text.trim();
     final smtpHost = _smtpHost.text.trim();
     final target = _navigationTarget;
+    final targetDirectory = _localAccounts;
+    Future<bool> targetStillCurrent() async {
+      if (!_currentAttempt(generation)) return false;
+      if (target != null) {
+        if (targetDirectory == null ||
+            !identical(targetDirectory, _localAccounts)) {
+          throw const StudioMailDraftStoreException(MailProblemCode.conflict);
+        }
+        await target.validateCurrent(targetDirectory);
+      }
+      return _currentAttempt(generation);
+    }
+
     mail.MailClient? candidate;
     StudioMailMessageLoader? candidateLoader;
     bool adopted = false;
@@ -1244,9 +1333,9 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       candidateLoader = loader;
       _pendingLoader = loader;
       await client.connect();
-      if (!_currentAttempt(generation)) return;
+      if (!await targetStillCurrent()) return;
       final boxes = await client.listMailboxes();
-      if (!_currentAttempt(generation)) return;
+      if (!await targetStillCurrent()) return;
       final inbox =
           boxes.where((b) => b.isInbox && !b.isNotSelectable).firstOrNull ??
           boxes.where((b) => !b.isNotSelectable).firstOrNull;
@@ -1257,7 +1346,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       final mail.Mailbox observedMailbox;
       if (loader is StudioMailMailboxBrowser) {
         final selected = await client.selectMailbox(inbox);
-        if (!_currentAttempt(generation)) return;
+        if (!await targetStillCurrent()) return;
         observedMailbox = (client.selectedMailbox ?? selected).copyWith();
         page = await (loader as StudioMailMailboxBrowser).fetchHeaders(
           observedMailbox,
@@ -1276,7 +1365,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       if (!_currentAttempt(generation)) return;
       _validateHeaderPage(page, observedMailbox, limit: _pageSize);
       final membershipCapabilities = await _readMembershipCapabilities(loader);
-      if (!_currentAttempt(generation)) return;
+      if (!await targetStillCurrent()) return;
       final previous = _reader;
       setState(() {
         _client = client;
@@ -1306,7 +1395,12 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       });
       adopted = true;
       _retireReader(previous);
-      await _restoreDraftStore(client, account, generation);
+      await _restoreDraftStore(
+        client,
+        account,
+        generation,
+        expectedTarget: target,
+      );
       await _persistCredentials(
         client,
         generation,
@@ -3256,6 +3350,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     final directory = _localAccounts;
     if (directory == null ||
         _accountNavigationPending ||
+        _retiredNavigationStore != null ||
         _busy ||
         _dialogOpen ||
         _connecting ||
@@ -3304,13 +3399,22 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       // A selection can be forgotten while the old draft is being saved.
       await target.validateCurrent(directory);
       if (!current()) return;
-      await _stopCachedView();
+      await _stopCachedViewForNavigation();
       await _mailboxViewClosing;
       await _pendingFlagWrite;
       await _draftStoreClosing;
       if (!current()) return;
       final store = _draftStore;
-      await store?.close();
+      try {
+        await store?.close();
+      } on Object {
+        if (current()) {
+          _retiredNavigationStore = store;
+          _draftStore = null;
+          _disconnect();
+        }
+        rethrow;
+      }
       if (!current()) return;
       _draftStore = null;
       _explicitAccountNavigation = true;
@@ -3328,7 +3432,11 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       }
     } on Object {
       if (mounted) {
-        setState(() => _error = widget.strings.mailAccountNavigationFailed);
+        setState(
+          () => _error = _retiredNavigationStore == null
+              ? widget.strings.mailAccountNavigationFailed
+              : widget.strings.mailDraftStorageFailed,
+        );
       }
     } finally {
       if (mounted) {
@@ -3343,6 +3451,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
 
   Future<void> _openProviderSetup(MailProviderKind provider) async {
     if (_accountNavigationPending ||
+        _retiredNavigationStore != null ||
         _busy ||
         _dialogOpen ||
         _connecting ||
@@ -3371,6 +3480,44 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           _dialogOpen = false;
         });
       }
+    }
+  }
+
+  Future<void> _stopCachedViewForNavigation() async {
+    final session = _mailboxViewSession;
+    final subscription = _mailboxViewSubscription;
+    _mailboxCapture?.invalidateView();
+    await _mailboxViewClosing;
+    // A visible account transition cannot discard a failed cancellation's
+    // ownership handles. Only retire them after both independent drains finish.
+    await Future.wait<void>([
+      if (session != null) session.close(),
+      if (subscription != null) subscription.cancel(),
+    ]);
+    if (identical(_mailboxViewSession, session)) _mailboxViewSession = null;
+    if (identical(_mailboxViewSubscription, subscription)) {
+      _mailboxViewSubscription = null;
+    }
+    _repositoryFlags.clear();
+  }
+
+  Future<void> _retryNavigationRelease() async {
+    final owner = _retiredNavigationStore;
+    if (owner == null || _accountNavigationPending || _connecting) return;
+    setState(() => _accountNavigationPending = true);
+    try {
+      await owner.close();
+      if (!mounted || !identical(owner, _retiredNavigationStore)) return;
+      setState(() {
+        _retiredNavigationStore = null;
+        _error = null;
+      });
+    } on Object {
+      if (mounted) {
+        setState(() => _error = widget.strings.mailDraftStorageFailed);
+      }
+    } finally {
+      if (mounted) setState(() => _accountNavigationPending = false);
     }
   }
 
@@ -3548,6 +3695,8 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   Future<void> _openLocalAccounts() async {
     final directory = _localAccounts;
     if (directory == null ||
+        _retiredNavigationStore != null ||
+        _accountNavigationPending ||
         _client != null ||
         _busy ||
         _dialogOpen ||
@@ -3617,6 +3766,8 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   Future<void> _openLocalDrafts() async {
     final saved = _localDraftSavedAccount;
     if (saved == null ||
+        _retiredNavigationStore != null ||
+        _accountNavigationPending ||
         _client != null ||
         _busy ||
         _dialogOpen ||
@@ -3697,6 +3848,26 @@ class _StudioMailDialogState extends State<StudioMailDialog>
             else if (Theme.of(context).platform == TargetPlatform.macOS)
               const SizedBox(height: 32),
             _mailChrome(context),
+            if (_retiredNavigationStore != null)
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
+                child: Column(
+                  children: [
+                    Text(widget.strings.mailAccountNavigationReleaseHelp),
+                    OutlinedButton.icon(
+                      key: const ValueKey('studio-mail-navigation-release'),
+                      onPressed: _accountNavigationPending
+                          ? null
+                          : _retryNavigationRelease,
+                      icon: const Icon(Icons.refresh),
+                      label: Text(widget.strings.mailAccountNavigationRelease),
+                    ),
+                  ],
+                ),
+              ),
             if (_accountNavigationPending) const LinearProgressIndicator(),
             Expanded(
               child: RepaintBoundary(
@@ -3948,6 +4119,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                       _dialogOpen ||
                       _connecting ||
                       _credentialPending ||
+                      _retiredNavigationStore != null ||
                       _accountNavigationPending
                   ? null
                   : _openAccountNavigation,
@@ -4004,7 +4176,10 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           command(
             icon: Icons.logout,
             tooltip: widget.strings.disconnect,
-            onPressed: _client == null || _accountNavigationPending
+            onPressed:
+                _client == null ||
+                    _accountNavigationPending ||
+                    _navigationOwnerPending
                 ? null
                 : _disconnect,
           ),
@@ -4190,6 +4365,17 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                   Text(target.description),
                   const SizedBox(height: 8),
                   Text(widget.strings.mailAccountNavigationReconnectHelp),
+                  if (_notice ==
+                          widget
+                              .strings
+                              .mailAccountNavigationRouteUnavailable &&
+                      _error != _notice)
+                    Text(
+                      _notice!,
+                      key: const ValueKey(
+                        'studio-mail-navigation-route-choice',
+                      ),
+                    ),
                   TextButton(
                     key: const ValueKey('studio-mail-navigation-clear-target'),
                     onPressed: _connecting || _busy || _credentialPending
@@ -4210,6 +4396,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                             _busy ||
                                 _dialogOpen ||
                                 _connecting ||
+                                _retiredNavigationStore != null ||
                                 _credentialPending
                             ? null
                             : _openLocalDrafts,
@@ -4228,6 +4415,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                           _connecting ||
                               _busy ||
                               _dialogOpen ||
+                              _retiredNavigationStore != null ||
                               _credentialPending
                           ? null
                           : _openLocalAccounts,
@@ -4250,7 +4438,10 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                     padding: const EdgeInsets.only(bottom: 8),
                     child: OutlinedButton.icon(
                       key: ValueKey('studio-mail-open-${service.name}'),
-                      onPressed: _connecting || _credentialPending
+                      onPressed:
+                          _connecting ||
+                              _credentialPending ||
+                              _retiredNavigationStore != null
                           ? null
                           : () => _openProviderSetup(
                               service == MailCloudService.gmail
@@ -4267,7 +4458,10 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                   ),
                 OutlinedButton.icon(
                   key: const ValueKey<String>('studio-mail-open-ews'),
-                  onPressed: _connecting || _credentialPending
+                  onPressed:
+                      _connecting ||
+                          _credentialPending ||
+                          _retiredNavigationStore != null
                       ? null
                       : () => _openProviderSetup(MailProviderKind.ews),
                   icon: const Icon(Icons.dns_outlined),
@@ -4447,6 +4641,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                       _connecting ||
                           _busy ||
                           _dialogOpen ||
+                          _retiredNavigationStore != null ||
                           _accountCatalogStore != null && _credentialPending
                       ? null
                       : _connect,

@@ -39,7 +39,9 @@ MailLocalAccountRecord _record({
   return MailLocalAccountRecord(
     id: identity.account.value,
     provider: identity.provider,
-    endpoint: identity.endpoint,
+    // Preserve the stored input. Canonicalizing here would erase an explicit
+    // zero port before the production navigation boundary can validate it.
+    endpoint: endpoint ?? identity.endpoint,
     login: identity.login,
     sender: identity.sender,
     lastConnectedAt: DateTime.utc(2026, 11, 22),
@@ -118,8 +120,39 @@ void main() {
     expect(target.identity.endpoint, 'imaps://[2001:db8::1]:993');
   });
 
+  for (final endpoint in [
+    'imaps://imap.example.test',
+    'imaps://[2001:db8::1]',
+  ]) {
+    test('valid implicit or explicit port retains its route: $endpoint', () {
+      final target = StudioMailAccountNavigationTarget.fromRecord(
+        _record(endpoint: endpoint),
+      );
+      expect(target.identity.endpoint, Uri.parse(endpoint).toString());
+    });
+  }
+
   final invalidRoutes = <({String name, MailLocalAccountRecord record})>[
     (name: 'IMAP zero port', record: _record(endpoint: 'imap://host.test:0')),
+    (
+      name: 'noncanonical IMAP port with leading zeroes',
+      record: _record(endpoint: 'imaps://host.test:000993'),
+    ),
+    (
+      name: 'noncanonical explicit HTTPS default port',
+      record: _record(
+        provider: 'ews',
+        endpoint: 'https://exchange.example.test:443/EWS',
+      ),
+    ),
+    (
+      name: 'IMAP zero port with leading zeroes',
+      record: _record(endpoint: 'imaps://host.test:000'),
+    ),
+    (
+      name: 'IMAP IPv6 zero port',
+      record: _record(endpoint: 'imaps://[2001:db8::1]:0'),
+    ),
     (
       name: 'IMAP oversized port',
       record: _record(endpoint: 'imaps://host.test:65536'),
