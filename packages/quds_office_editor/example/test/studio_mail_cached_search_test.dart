@@ -344,9 +344,12 @@ void main() {
       ),
     ];
     final exact = await session(folderScopes: folders);
-    expect((await exact.nextPage()).map(
-      (hit) => hit.result.header.id.value,
-    ), ['message-0001', 'message-0002']);
+    final hits = await exact.nextPage();
+    expect(hits, hasLength(2));
+    expect(
+      hits.map((hit) => (hit.result.header.remote as MailImapIdentity).uid),
+      [1, 2],
+    );
     expect(exact.coverage.single.complete, isTrue);
 
     final missing = await session(folderScopes: [
