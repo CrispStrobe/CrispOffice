@@ -14,7 +14,7 @@ final class MailStoreDatabase extends GeneratedDatabase {
   final MailStoreFaultInjector? faultInjector;
 
   @override
-  int get schemaVersion => 12;
+  int get schemaVersion => 13;
 
   @override
   Iterable<TableInfo<Table, Object?>> get allTables => const [];
@@ -59,11 +59,14 @@ final class MailStoreDatabase extends GeneratedDatabase {
       for (final statement in schemaV12) {
         await customStatement(statement);
       }
+      for (final statement in schemaV13) {
+        await customStatement(statement);
+      }
       // Include the version in the same transaction as schema creation.
-      await customStatement('PRAGMA user_version = 12');
+      await customStatement('PRAGMA user_version = 13');
     }),
     onUpgrade: (_, from, to) async {
-      if (from < 1 || from > 11 || to != 12) {
+      if (from < 1 || from > 12 || to != 13) {
         throw const MailStoreStorageException(MailProblemCode.unsupported);
       }
       await transaction(() async {
@@ -117,12 +120,18 @@ final class MailStoreDatabase extends GeneratedDatabase {
             await customStatement(statement);
           }
         }
-        await _validateFolderScopeUpgrade();
-        for (final statement in schemaV12) {
+        if (from < 12) {
+          await _validateFolderScopeUpgrade();
+          for (final statement in schemaV12) {
+            await customStatement(statement);
+          }
+        }
+        await _validateCommandJournalUpgrade();
+        for (final statement in schemaV13) {
           await customStatement(statement);
         }
         await faultInjector?.call(MailStoreCheckpoint.migrationCreated);
-        await customStatement('PRAGMA user_version = 12');
+        await customStatement('PRAGMA user_version = 13');
       });
     },
     beforeOpen: (_) async {
@@ -135,6 +144,19 @@ final class MailStoreDatabase extends GeneratedDatabase {
 
   Future<void> fault(MailStoreCheckpoint point) async {
     await faultInjector?.call(point);
+  }
+
+  // Earlier schemas admit only flag actions. Refuse an unexplained action
+  // rather than interpreting it as a new command with missing intent metadata.
+  Future<void> _validateCommandJournalUpgrade() async {
+    final invalid = await customSelect(
+      "SELECT 1 AS invalid FROM flag_batches WHERE "
+      "typeof(action)!='text' OR action NOT IN "
+      "('markRead','markUnread','flag','unflag') LIMIT 1",
+    ).get();
+    if (invalid.isNotEmpty) {
+      throw const MailStoreStorageException(MailProblemCode.storageFailure);
+    }
   }
 
   // Published v11 folders reference definitions but not their account rows.

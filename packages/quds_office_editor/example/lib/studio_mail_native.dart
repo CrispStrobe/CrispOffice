@@ -35,6 +35,7 @@ import 'studio_mail_local_accounts_strings.dart';
 import 'studio_mail_ews.dart';
 import 'studio_mail_local_drafts.dart';
 import 'studio_mail_message_loader.dart';
+import 'studio_mail_mutation_strings.dart';
 import 'studio_mail_mailbox_store.dart';
 import 'studio_mail_mailbox_session.dart';
 import 'studio_mail_operation.dart';
@@ -2147,7 +2148,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       return;
     }
     if (loader is StudioMailMailboxRecords && actions != null) {
-      await _changeBulkFlags(
+      await _changeCommands(
         read != null
             ? (read
                   ? MailBulkFlagAction.markRead
@@ -2212,10 +2213,160 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     }
   });
 
-  Future<void> _changeBulkFlags(
+  Future<void> _organizeSelected({required bool delete}) async {
+    final client = _client;
+    final loader = _messageLoader;
+    final mailbox = _messageMailbox;
+    final message = _selected;
+    if (client == null ||
+        loader is! StudioMailMembershipActions ||
+        loader is! StudioMailMailboxRecords ||
+        mailbox == null ||
+        message == null ||
+        _busy ||
+        _dialogOpen ||
+        _needsRefresh) {
+      return;
+    }
+    final membership = loader as StudioMailMembershipActions;
+    final records = loader as StudioMailMailboxRecords;
+    final generation = _sessionGeneration;
+    final mailboxGeneration = _mailboxGeneration;
+    final path = mailbox.path;
+    final validity = mailbox.uidValidity;
+    final header = records.observedHeader(mailbox, message);
+    final destinations = <MailMailbox>[
+      for (final box in _mailboxes)
+        if (!box.isNotSelectable &&
+            box.path != path &&
+            !(box.path.toUpperCase() == 'INBOX' &&
+                path.toUpperCase() == 'INBOX'))
+          MailMailbox(
+            id: MailMailboxId(box.path, account: records.account),
+            displayName: box.name,
+          ),
+    ];
+    bool hostCurrent() =>
+        _currentSession(client, generation) &&
+        identical(loader, _messageLoader) &&
+        mailboxGeneration == _mailboxGeneration;
+    bool current() {
+      if (!hostCurrent() ||
+          !identical(message, _selected) ||
+          !identical(mailbox, _messageMailbox) ||
+          mailbox.path != path ||
+          mailbox.uidValidity != validity) {
+        return false;
+      }
+      try {
+        return records.observedHeader(mailbox, message).remote == header.remote;
+      } on Object {
+        return false;
+      }
+    }
+
+    setState(() {
+      _busy = true;
+      _error = null;
+      _notice = null;
+    });
+    MailMailboxId? destination;
+    var accepted = false;
+    try {
+      final capabilities = await membership.membershipCapabilities();
+      if (!mounted || !current()) return;
+      if (!capabilities.supports(
+            delete ? MailCapability.delete : MailCapability.move,
+          ) ||
+          !delete && destinations.isEmpty) {
+        setState(() => _error = widget.strings.mailMutationUnavailable);
+        return;
+      }
+      setState(() {
+        _busy = false;
+        _dialogOpen = true;
+      });
+      if (delete) {
+        accepted =
+            await showDialog<bool>(
+              context: context,
+              builder: (context) => AlertDialog(
+                key: const ValueKey('studio-mail-confirm-delete'),
+                title: Text(widget.strings.mailMarkDeleted),
+                content: Text(widget.strings.mailMarkDeletedExplanation),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(context, false),
+                    child: Text(widget.strings.cancel),
+                  ),
+                  FilledButton(
+                    key: const ValueKey('studio-mail-confirm-delete-apply'),
+                    onPressed: () => Navigator.pop(context, true),
+                    child: Text(widget.strings.mailMarkDeleted),
+                  ),
+                ],
+              ),
+            ) ==
+            true;
+      } else {
+        destination = await showDialog<MailMailboxId>(
+          context: context,
+          builder: (context) => AlertDialog(
+            key: const ValueKey('studio-mail-move-picker'),
+            title: Text(widget.strings.mailMoveMessage),
+            content: SizedBox(
+              width: 480,
+              height: 320,
+              child: ListView.builder(
+                itemCount: destinations.length,
+                itemBuilder: (context, index) {
+                  final folder = destinations[index];
+                  return ListTile(
+                    key: ValueKey('studio-mail-move-destination-$index'),
+                    leading: const Icon(Icons.folder_outlined),
+                    title: Text(folder.displayName),
+                    subtitle: Text(folder.id.value),
+                    onTap: () => Navigator.pop(context, folder.id),
+                  );
+                },
+              ),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text(widget.strings.cancel),
+              ),
+            ],
+          ),
+        );
+        accepted = destination != null;
+      }
+    } on Object {
+      if (hostCurrent()) {
+        setState(() => _error = widget.strings.mailMutationCheckFailed);
+      }
+    } finally {
+      if (hostCurrent()) {
+        setState(() {
+          _busy = false;
+          _dialogOpen = false;
+        });
+      }
+    }
+    if (!accepted || !current()) return;
+    await _changeCommands(
+      delete ? MailBulkFlagAction.delete : MailBulkFlagAction.move,
+      [_messageKey(message)],
+      mailboxGeneration: mailboxGeneration,
+      destination: destination,
+    );
+  }
+
+  Future<void> _changeCommands(
     MailBulkFlagAction action,
     List<String> ids, {
     required int mailboxGeneration,
+    MailMailboxId? destination,
   }) => runStudioMailOperation(() async {
     final client = _client;
     final loader = _messageLoader;
@@ -2231,7 +2382,18 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         mailboxGeneration != _mailboxGeneration ||
         ids.isEmpty ||
         ids.length > MailBulkFlagPlan.maxMessages ||
-        ids.toSet().length != ids.length) {
+        ids.toSet().length != ids.length ||
+        (!action.isFlagAction &&
+            (ids.length != 1 || loader is! StudioMailMembershipActions)) ||
+        (action == MailBulkFlagAction.move &&
+            (destination == null ||
+                destination.value == mailbox.path ||
+                !_mailboxes.any(
+                  (folder) =>
+                      !folder.isNotSelectable &&
+                      folder.path == destination.value,
+                ))) ||
+        (action != MailBulkFlagAction.move && destination != null)) {
       return;
     }
     final actions = loader as StudioMailMessageActions;
@@ -2268,6 +2430,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         provider: MailProviderKind.imap,
         messages: [for (final header in observed) header.remote],
         action: action,
+        destination: destination,
       );
     } on Object {
       if (_currentSession(client, generation)) {
@@ -2334,6 +2497,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       _notice = null;
     });
     try {
+      if (!action.isFlagAction) await _stopCachedView();
       final report = await MailBulkFlagCoordinator().run(
         plan: plan,
         lease: session.begin(),
@@ -2354,6 +2518,14 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           }
         },
         apply: (operation, lease) async {
+          if (operation is MailMove || operation is MailDelete) {
+            return MailBulkFlagAttempt.fromResult(
+              await (loader as StudioMailMembershipActions).applyMembership(
+                operation,
+                lease,
+              ),
+            );
+          }
           if (loader is StudioMailBulkMessageActions) {
             return MailBulkFlagAttempt.fromResult(
               await (loader as StudioMailBulkMessageActions).applyBulkFlag(
@@ -2405,6 +2577,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         });
         return;
       }
+      MailReaderController? retiredReader;
       setState(() {
         _bulkReport = report;
         for (var i = 0; i < report.items.length; i++) {
@@ -2412,6 +2585,26 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           if (result.outcome != MailBulkFlagOutcome.confirmed) continue;
           final message = targets[i];
           final operation = result.operation;
+          if (operation is MailMove || operation is MailDelete) {
+            _nextHeaders = null;
+            if (operation is MailMove) {
+              _messages = _messages
+                  .where((row) => !identical(row, message))
+                  .toList();
+              _confirmedFlags.remove(message);
+              _repositoryFlags.remove(message);
+              if (identical(_selected, message)) {
+                retiredReader = _reader;
+                _reader = null;
+                _selected = null;
+                _showCompactMessage = false;
+              }
+            } else {
+              // IMAP Delete is a confirmed Deleted flag, never EXPUNGE.
+              message.setFlag(mail.MessageFlags.deleted, true);
+            }
+            continue;
+          }
           _confirmedFlags[message] = (
             read: operation is MailSetRead
                 ? operation.read
@@ -2432,6 +2625,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           _error = widget.strings.mailWorkspaceRefreshRequired;
         }
       });
+      if (retiredReader != null) _retireReader(retiredReader);
     } finally {
       session.dispose();
       settled.complete();
@@ -4038,6 +4232,27 @@ class _StudioMailDialogState extends State<StudioMailDialog>
             tooltip: widget.strings.markRead,
             icon: const Icon(Icons.mark_email_read_outlined),
           ),
+        if (_messageLoader is StudioMailMembershipActions &&
+            _messageLoader is StudioMailMailboxRecords) ...[
+          IconButton(
+            key: const ValueKey('studio-mail-move-message'),
+            tooltip: widget.strings.mailMoveMessage,
+            icon: const Icon(Icons.drive_file_move_outline),
+            onPressed:
+                _busy || _dialogOpen || _needsRefresh || _selected == null
+                ? null
+                : () => _organizeSelected(delete: false),
+          ),
+          IconButton(
+            key: const ValueKey('studio-mail-delete-message'),
+            tooltip: widget.strings.mailMarkDeleted,
+            icon: const Icon(Icons.delete_outline),
+            onPressed:
+                _busy || _dialogOpen || _needsRefresh || _selected == null
+                ? null
+                : () => _organizeSelected(delete: true),
+          ),
+        ],
         const SizedBox(width: 8),
       ],
     ),
@@ -4173,7 +4388,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           _messageLoader is StudioMailMessageActions &&
               _messageLoader is StudioMailMailboxRecords
           ? (action, ids) => unawaited(
-              _changeBulkFlags(
+              _changeCommands(
                 action,
                 ids,
                 mailboxGeneration: mailboxGeneration,

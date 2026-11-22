@@ -777,7 +777,7 @@ final class SqliteMailRepository implements MailRepository {
       ('pending_operations', ['id', 'remote', 'kind', 'argument', 'state']),
       // Reserve fixed typed outcome metadata before dispatch, so recording a
       // reply does not need new logical-byte admission after the remote write.
-      ('flag_batches', ['id', 'mailbox', 'provider', 'action']),
+      ('flag_batches', ['id', 'mailbox', 'provider', 'action', 'destination']),
       ('flag_batch_items', ['batch', 'remote', 'subject']),
       ('flag_item_resolutions', ['batch', 'position', 'kind', 'checked_at']),
       ('credential_cleanup', ['reference']),

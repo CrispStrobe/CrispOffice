@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Advertise recoverable Delete explicitly for IMAP, Exchange EWS, Gmail and
+  Microsoft 365. IMAP marks only the selected UID as Deleted without expunge;
+  the other adapters use their existing Trash/Deleted Items operations.
+  Reject IMAP moves to the source folder, including INBOX case aliases,
+  before credentials or network work. Preserve uncertain outcomes after a
+  possibly accepted move/delete and never replay the command automatically.
+
 - Observe current read/flag state without mutation for exact IMAP, EWS, Gmail
   and Microsoft 365 identities. Use bounded metadata reads, validate IMAP
   UIDVALIDITY and returned identity, reject incomplete flag observations, and

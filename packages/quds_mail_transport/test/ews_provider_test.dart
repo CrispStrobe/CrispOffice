@@ -210,6 +210,115 @@ MailPreparedMessage _prepared({List<String>? recipients}) =>
     );
 
 void main() {
+  test('capabilities explicitly include recoverable delete', () async {
+    final fixture = _Fixture();
+    fixture.scripts.add([
+      (
+        'GetFolder',
+        (_) => _response(
+          'GetFolder',
+          _success(
+            'GetFolder',
+            '<m:Folders>${_folder('inbox-id')}</m:Folders>',
+          ),
+        ),
+      ),
+    ]);
+    final capabilities = _value(
+      await fixture.provider().capabilities(fixture.session.begin()),
+    );
+    expect(capabilities.supports(MailCapability.move), isTrue);
+    expect(capabilities.supports(MailCapability.delete), isTrue);
+    expect(fixture.clients.single.mutationStarted, isFalse);
+  });
+
+  test('oversize move destination is rejected before credentials', () async {
+    final fixture = _Fixture();
+    final result = await fixture.provider().apply(
+      MailMove(
+        id: 'invalid-destination',
+        message: _identity('one'),
+        destination: MailMailboxId('x' * 1025, account: _account),
+      ),
+      fixture.session.begin(),
+    );
+    _problem(result, MailProblemCode.invalidInput);
+    expect(
+      (result as MailFailure<MailUnit>).problem.mutationMayHaveOccurred,
+      isFalse,
+    );
+    expect(fixture.vault.loads, 0);
+    expect(fixture.clients, isEmpty);
+  });
+
+  for (final action in [MailBulkFlagAction.move, MailBulkFlagAction.delete]) {
+    for (final lostReply in [true, false]) {
+      test(
+        '${action.name} ${lostReply ? 'lost reply' : 'source still present'} stays uncertain without replay',
+        () async {
+          final fixture = _Fixture();
+          final soapAction = action == MailBulkFlagAction.move
+              ? 'MoveItem'
+              : 'DeleteItem';
+          fixture.scripts.add([
+            ('GetItem', (_) => _response('GetItem', _item('one'))),
+            (
+              soapAction,
+              (envelope) {
+                expect(envelope, contains('Id="one" ChangeKey="fresh-key"'));
+                expect(envelope, isNot(contains('HardDelete')));
+                if (action == MailBulkFlagAction.delete) {
+                  expect(envelope, contains('DeleteType="MoveToDeletedItems"'));
+                } else {
+                  expect(envelope, contains('Id="destination"'));
+                }
+                if (lostReply) {
+                  throw const EwsException(MailProblemCode.unavailable);
+                }
+                return _response(
+                  soapAction,
+                  _success(
+                    soapAction,
+                    action == MailBulkFlagAction.move
+                        ? '<m:Items><t:Message><t:ItemId Id="moved-id" ChangeKey="new"/></t:Message></m:Items>'
+                        : '',
+                  ),
+                );
+              },
+            ),
+            if (!lostReply)
+              ('GetItem', (_) => _response('GetItem', _item('one'))),
+          ]);
+          final provider = fixture.provider();
+          final report = await MailBulkFlagRunner().run(
+            plan: MailBulkFlagPlan(
+              id: 'membership-evidence',
+              mailbox: _mailbox,
+              action: action,
+              destination: action == MailBulkFlagAction.move
+                  ? MailMailboxId('destination', account: _account)
+                  : null,
+              messages: [_identity('one'), _identity('two')],
+            ),
+            lease: fixture.session.begin(),
+            apply: provider.apply,
+            isScopeCurrent: () => true,
+          );
+          expect(report.uncertainCount, 1);
+          expect(report.unattemptedCount, 1);
+          expect(report.items.first.problem?.mutationMayHaveOccurred, isTrue);
+          expect(report.requiresRefresh, isTrue);
+          expect(fixture.clients, hasLength(1));
+          expect(
+            fixture.clients.single.requests.where((request) => request.$3),
+            hasLength(1),
+          );
+          expect(fixture.clients.single.steps, isEmpty);
+        },
+      );
+    }
+  }
+
   group('read-only flag observation', () {
     test(
       'reads exact current flags without envelope, MIME or mutation',

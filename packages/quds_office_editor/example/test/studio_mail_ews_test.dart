@@ -43,6 +43,7 @@ final class _Provider extends Fake implements MailEwsProvider {
     MailCapability.folders,
     MailCapability.send,
     MailCapability.move,
+    MailCapability.delete,
   ]);
   MailProblem? mutationProblem;
   Future<MailResult<MailUnit>> Function(MailOperation, MailOperationLease)?

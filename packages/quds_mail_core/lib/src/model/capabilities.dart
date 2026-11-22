@@ -10,6 +10,10 @@ enum MailCapability {
   calendar,
   contacts,
   sharedAccounts,
+
+  /// Provider-defined recoverable deletion, such as Trash or IMAP's Deleted
+  /// flag. This does not authorize permanent purge or mailbox-wide expunge.
+  delete,
 }
 
 final class MailCapabilities {

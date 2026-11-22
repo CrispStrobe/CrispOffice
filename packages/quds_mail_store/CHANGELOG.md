@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Add schema v13 with exact account-owned move destinations in the existing
+  foreground command journal. Preserve earlier receipts through transactional
+  migration, include destinations in quotas and reject substituted commands or
+  corrupt intent. Move/delete retain dispatch/restart uncertainty and history;
+  they neither invent cache membership from a unit acknowledgement nor permit
+  generic flag observations to resolve membership uncertainty.
+
 - Add schema-v12 retained folder labels without changing the published v11
   exact folder identities, discriminator, ordering or 200-folder constraint.
   Preserve the published `folderScopes` and string `folderIds` APIs alongside

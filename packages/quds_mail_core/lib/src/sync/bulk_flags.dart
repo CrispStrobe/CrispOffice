@@ -3,8 +3,24 @@ import '../model/result.dart';
 import '../ports/provider.dart';
 import 'cancellation.dart';
 
-/// Explicit desired states, never a toggle based on a possibly stale flag.
-enum MailBulkFlagAction { markRead, markUnread, flag, unflag }
+/// Explicit foreground commands, never a toggle based on possibly stale state.
+///
+/// The original flag API name is retained for existing consumers. Membership
+/// commands share its durable dispatch ordering and conservative receipts.
+enum MailBulkFlagAction {
+  markRead,
+  markUnread,
+  flag,
+  unflag,
+  move,
+  delete;
+
+  /// Only these actions can be checked through a [MailFlagObserver].
+  bool get isFlagAction => switch (this) {
+    markRead || markUnread || flag || unflag => true,
+    move || delete => false,
+  };
+}
 
 enum MailBulkFlagOutcome { confirmed, failed, uncertain, unattempted }
 
@@ -33,6 +49,7 @@ final class MailBulkFlagPlan {
     required this.action,
     required List<MailRemoteIdentity> messages,
     MailProviderKind? provider,
+    this.destination,
   }) : messages = _freeze(messages) {
     if (id.trim().isEmpty ||
         id.length > 256 ||
@@ -44,6 +61,14 @@ final class MailBulkFlagPlan {
     if (this.provider == MailProviderKind.local ||
         (provider != null && provider != this.provider)) {
       throw ArgumentError('Bulk flags require the selected remote provider.');
+    }
+    if ((action == MailBulkFlagAction.move) != (destination != null) ||
+        (destination != null &&
+            (destination!.account != mailbox.account ||
+                destination == mailbox))) {
+      throw ArgumentError(
+        'Only move requires a different destination in the same account.',
+      );
     }
     final identities = <MailRemoteIdentity>{};
     int? validity;
@@ -78,6 +103,7 @@ final class MailBulkFlagPlan {
   final String id;
   final MailMailboxId mailbox;
   final MailBulkFlagAction action;
+  final MailMailboxId? destination;
   final List<MailRemoteIdentity> messages;
 
   /// The frozen provider namespace, optionally checked by the constructor.
@@ -98,6 +124,15 @@ final class MailBulkFlagPlan {
         id: operationId,
         message: message,
         flagged: action == MailBulkFlagAction.flag,
+      ),
+      MailBulkFlagAction.move => MailMove(
+        id: operationId,
+        message: message,
+        destination: destination!,
+      ),
+      MailBulkFlagAction.delete => MailDelete(
+        id: operationId,
+        message: message,
       ),
     };
   }
@@ -153,7 +188,10 @@ final class MailBulkFlagItemResult {
     required MailBulkFlagOutcome outcome,
     MailProblem? problem,
   }) {
-    if (operation is! MailSetRead && operation is! MailSetFlagged ||
+    if (operation is! MailSetRead &&
+            operation is! MailSetFlagged &&
+            operation is! MailMove &&
+            operation is! MailDelete ||
         ((outcome == MailBulkFlagOutcome.confirmed ||
                 outcome == MailBulkFlagOutcome.unattempted) &&
             problem != null) ||
@@ -210,6 +248,9 @@ final class MailBulkFlagReport {
             (final MailSetRead a, final MailSetRead b) => a.read != b.read,
             (final MailSetFlagged a, final MailSetFlagged b) =>
               a.flagged != b.flagged,
+            (final MailMove a, final MailMove b) =>
+              a.destination != b.destination,
+            (MailDelete(), MailDelete()) => false,
             _ => true,
           }) {
         throw ArgumentError('A receipt must retain its frozen commands.');
@@ -248,6 +289,7 @@ final class MailBulkFlagReport {
   int get uncertainCount => count(MailBulkFlagOutcome.uncertain);
   int get unattemptedCount => count(MailBulkFlagOutcome.unattempted);
   bool get requiresRefresh =>
+      (!plan.action.isFlagAction && confirmedCount != 0) ||
       uncertainCount != 0 ||
       persistenceProblem != null ||
       stopReason == MailBulkFlagStopReason.persistenceFailure ||
