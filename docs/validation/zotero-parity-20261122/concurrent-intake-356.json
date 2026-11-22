@@ -1,0 +1,1972 @@
+{
+  "github": {
+    "provider": "GitHub connector",
+    "observed_at_utc": "2026-11-22T02:58:17.262Z",
+    "pr356": {
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/356",
+      "number": 356,
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "title": "Mail: recoverable saved-search folder sets and combined local qualification",
+      "head": "work/mail-folder-search-20261122",
+      "head_sha": "f8b3857fca9e120be61c861baa786ff04c822ebe",
+      "base": "main",
+      "base_sha": "ceddcd888c37f64e37a8d8d1669daaea31384daf",
+      "merge_commit_sha": "82659acb0f617c57d4d241c91033338032b5caac",
+      "commits": 20,
+      "changed_files": 132,
+      "additions": 16397,
+      "deletions": 844,
+      "merged_at": "2026-11-22T02:53:29Z"
+    },
+    "open_prs": [],
+    "qualification_attribution": "PR356 reports 2,739 distinct passing cases across Mail, Word and selected Zotero gates on pinned Flutter3.47.8/Dart3.13.7, plus scoped analysis, format and Word VM/JavaScript checks. These are incoming-source claims; this audit does not independently rerun or add them to this task's fresh Zotero counts."
+  },
+  "schema_version": 1,
+  "observed_at_utc": "2026-11-22T02:58:22.950491+00:00",
+  "audit_scope": "Read-only final incoming-main and dependency audit; only these documentation artifacts written. No source edits, checkout, merge, commit, ref updates, test execution or GitHub Actions queries by this audit. Remote activity is frozen only for this recorded observation.",
+  "previous_main": "ceddcd888c37f64e37a8d8d1669daaea31384daf",
+  "incoming_main": "82659acb0f617c57d4d241c91033338032b5caac",
+  "previously_qualified_work_source": "99a285c07ad2c08999ae64a68785376123bed4f3",
+  "common_ancestor": "3660a9d94e3100885e61b244f9dba7bdc5403cfb",
+  "incoming_commits": [
+    {
+      "sha": "82659acb0f617c57d4d241c91033338032b5caac",
+      "subject": "Merge Mail folder-search recovery and combined qualification (#356) [skip ci]"
+    },
+    {
+      "sha": "f8b3857fca9e120be61c861baa786ff04c822ebe",
+      "subject": "test(mail): preserve combined local qualification and exact source evidence [skip ci]"
+    },
+    {
+      "sha": "02f66ee686ad196a0fe162da9394b5b016739abd",
+      "subject": "merge: preserve latest Zotero qualification evidence [skip ci]"
+    },
+    {
+      "sha": "96b3e57c6c10f4419ed86ce4aa132e5d3c79c851",
+      "subject": "chore: normalize integrated Dart sources and compatibility picker lints [skip ci]"
+    },
+    {
+      "sha": "3660a9d94e3100885e61b244f9dba7bdc5403cfb",
+      "subject": "test(zotero): retain source-bound local qualification and failure evidence [skip ci]"
+    },
+    {
+      "sha": "63f9803f1a37ad97d946c96da1dddcecf3f060ec",
+      "subject": "merge: include latest Zotero stale-document contract fix [skip ci]"
+    },
+    {
+      "sha": "d4b4392fe538473a3accd15294288347e8bc2b56",
+      "subject": "merge: preserve completed Word VBA integration during Zotero qualification [skip ci]"
+    },
+    {
+      "sha": "b7758d482a0381c5c3ad526675321de80989465e",
+      "subject": "fix(zotero): preserve stale-target contract before capturing writing positions [skip ci]"
+    },
+    {
+      "sha": "936ea62ae9be603830e8e13ee3cb90a03f3be554",
+      "subject": "merge: record latest remote main ancestry after Word integration [skip ci]"
+    },
+    {
+      "sha": "1d26ac332c17f3633dd2720f7767b02ab1b748ad",
+      "subject": "merge: integrate current Word and Zotero source with Mail recovery [skip ci]"
+    },
+    {
+      "sha": "fe0f9ff5f0eb6d361d307bd99d03f3c0365b786e",
+      "subject": "merge(mail): reconcile published folder scopes with migration-safe recovery [skip ci]"
+    },
+    {
+      "sha": "d1c9673c7caa24a3dc41f9255d2916846d6cdbaf",
+      "subject": "merge: retain completed Mail folder-search main during Zotero qualification [skip ci]"
+    },
+    {
+      "sha": "da52f5e9f89918f7e6a9f4c4abaf07bf65ab726a",
+      "subject": "test(zotero): cover passive writing targets and document position behavior [skip ci]"
+    },
+    {
+      "sha": "d2bf64462b43abc16543de3dedc3da76f6bc4b1d",
+      "subject": "fix(zotero): preserve writing selections after native refresh and style changes [skip ci]"
+    },
+    {
+      "sha": "b0d5f867b3bdc0ee61549a09c09f942db0f68ee1",
+      "subject": "feat(mail): complete folder selection, coverage and recovery workflows [skip ci]"
+    },
+    {
+      "sha": "4d0b1ea1669b5509d27921ed16fc86dece11a260",
+      "subject": "feat(zotero): track native writing positions through citation updates [skip ci]"
+    },
+    {
+      "sha": "cb6dbcdcdb6dfbcd2aa186cf0d1a98b2953b526e",
+      "subject": "feat(mail): resolve exact folder sets through guarded local search sessions [skip ci]"
+    },
+    {
+      "sha": "b4fd1ac4ffb2c65bd0805306781ce1406ddfb905",
+      "subject": "feat(mail): persist exact folder scopes and bounded retained-header queries [skip ci]"
+    },
+    {
+      "sha": "2ea779693ff25f67fd76b658393244fe2188153a",
+      "subject": "docs(zotero): verify historical intake and define writing-position milestone [skip ci]"
+    },
+    {
+      "sha": "b12205e4235c7c56b14445031d1a0a4a09cac3c3",
+      "subject": "docs(zotero): capture reconciled parity baseline and remote refs [skip ci]"
+    },
+    {
+      "sha": "34358000669d52a3f18664586aa4c3223d7b9caf",
+      "subject": "docs(mail): record reconciled intake and folder-search acceptance [skip ci]"
+    }
+  ],
+  "incoming_commit_count": 21,
+  "incoming_files": [
+    {
+      "path": "docs/roadmaps/mail/README.md",
+      "status": "M",
+      "previous_blob": "7c714793823c93d1998d66d1dd858a68603c30d9",
+      "current_blob": "8fdca1882df33f53ee907446344b927aa8b98859",
+      "additions": 12,
+      "deletions": 11
+    },
+    {
+      "path": "docs/roadmaps/mail/folder-saved-search.md",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "dba53dda57621a80fb3f0122b09e3c0744cbd260",
+      "additions": 165,
+      "deletions": 0
+    },
+    {
+      "path": "docs/roadmaps/mail/folder-scoped-search.md",
+      "status": "M",
+      "previous_blob": "ecc9be16cfd1b6a4cad320a86c9782724c0161c7",
+      "current_blob": "2bc7a0e285998d038050d878827aa3b6b90dca12",
+      "additions": 10,
+      "deletions": 0
+    },
+    {
+      "path": "docs/roadmaps/mail/implementation-plan.md",
+      "status": "M",
+      "previous_blob": "9e9cfdce1cb1f87feddeb2fe07b8c73e4e5daa68",
+      "current_blob": "d443fa63d560f85eaf825267471cb732e9d811bd",
+      "additions": 7,
+      "deletions": 0
+    },
+    {
+      "path": "docs/roadmaps/mail/keyboard-triage.md",
+      "status": "M",
+      "previous_blob": "99e4a22d1fe9108226e8bf2e19d2f3f511dfc155",
+      "current_blob": "18bbff7160435a244728b93c1a2c1e22d96575ff",
+      "additions": 7,
+      "deletions": 5
+    },
+    {
+      "path": "docs/roadmaps/mail/saved-searches.md",
+      "status": "M",
+      "previous_blob": "ebe1cbfcc9b1a2a86b86cd17b415254ca1006722",
+      "current_blob": "16ba239521c77c504862bf9370501c41f8a593c0",
+      "additions": 6,
+      "deletions": 2
+    },
+    {
+      "path": "docs/roadmaps/mail/status.md",
+      "status": "M",
+      "previous_blob": "9843e1c6569f956ddd8fb77c1edfec98370b9172",
+      "current_blob": "e4fb90f0b3cd699e63084ef9e2d01941182098c3",
+      "additions": 22,
+      "deletions": 17
+    },
+    {
+      "path": "docs/roadmaps/zotero/word-processor-parity.md",
+      "status": "M",
+      "previous_blob": "c197a4c4195b163f5d1a5967dccc433de50f3e3f",
+      "current_blob": "758101e6778baf801e03a414900690135b87f8bf",
+      "additions": 22,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/mail-folder-search-20261122/README.md",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "5a7bbd81620de90e3038eebf56293425aa97c24e",
+      "additions": 188,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/mail-folder-search-20261122/SHA256SUMS",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "b525cfb011fe696983740c4f3b9a7cdd77957874",
+      "additions": 7,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/mail-folder-search-20261122/qualification.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "f53ff6e673e0d651e35a08946c80f2e11f64dad4",
+      "additions": 172,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/mail-folder-search-20261122/raw-evidence-index.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "afdf1c214d60a8b0cb0af337781db7054431b196",
+      "additions": 585,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/mail-folder-search-20261122/raw-evidence.tar.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "107035f10eb173e0d5ca452cb57708c1f1d88ac9",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/mail-folder-search-20261122/remote-intake.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "34af4467e6def273a0ee99339ff168612ee9c129",
+      "additions": 147,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/mail-folder-search-20261122/runtime-provenance.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "01a880b215878ffc81437c39921dac0a52ebffcd",
+      "additions": 125,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/mail-folder-search-20261122/source-manifest.json.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "8a6a4172bd198b3af279cde997d568281491ce22",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/README.md",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "9f37cfd2f666c4cc055f349bc6ef7d3d1d46e109",
+      "additions": 36,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checkpoint-publication.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "a134cfd00d7a22224fec0a756bfc262ec1094414",
+      "additions": 81,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/analysis-final-fixes-inputs.json.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "7ac1131ebf3d989fb5905978113200f3ff3be1b1",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/analysis-final-fixes-receipt.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "f06c03c4d991bf5f140642fa8e20457f61f07761",
+      "additions": 61,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/analysis-final-fixes.stderr.txt.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "86e43ea3218b5890302b754bbf8927f94e79f7ee",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/analysis-final-fixes.stdout.txt.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "87c525fb917ed5e332f7ce60d06332590c0caef5",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/analysis-final-inputs.json.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "f773cb40c81f49340e1734a69a01864c81a70ab6",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/analysis-final-receipt.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "47311aee536873ed4cd08e6ddbda566dc201523c",
+      "additions": 61,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/analysis-final.stderr.txt.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "86e43ea3218b5890302b754bbf8927f94e79f7ee",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/analysis-final.stdout.txt.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "87c525fb917ed5e332f7ce60d06332590c0caef5",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/analysis-inputs.json.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "d5eccd6d4ff838bab78d77b8138cd2b539635b80",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/analysis-receipt.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "f565861280088b65885a31612588b1af8a406120",
+      "additions": 61,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/analysis.stderr.txt.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "86e43ea3218b5890302b754bbf8927f94e79f7ee",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/analysis.stdout.txt.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "87c525fb917ed5e332f7ce60d06332590c0caef5",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/baseline-editor-position-receipt.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "f1e3800dec48cd1fb5e1293efee393f122c3d4fc",
+      "additions": 51,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/baseline-editor-position-source-reconstruction.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "d4e75615895f83eb970037158a5aa184f5e12126",
+      "additions": 21,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/baseline-editor-position-test.dart.txt",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "936ec9d93894acc16074af34bb9df1f516ff6a9c",
+      "additions": 554,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/baseline-editor-position.jsonl",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "3dfcdaa6d6fc1d76d214c59fe6640cb75b978e09",
+      "additions": 65,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/baseline-editor-position.stderr.txt",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "additions": 0,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/editor-position-cases.json.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "fc8ac349afcc2a6f9185a8d511167e7f1be0250c",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/editor-position-fixes-cases.json.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "b00b8498367918124309fbc690028c32e94997be",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/editor-position-fixes-inputs.json.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "7ac1131ebf3d989fb5905978113200f3ff3be1b1",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/editor-position-fixes-receipt.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "eede6188f1ba5c9f24471973bb0e8c0b9fae27e3",
+      "additions": 84,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/editor-position-fixes.jsonl.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "6336f74113769ff4803ef8fd2141317949b5b54d",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/editor-position-fixes.stderr.txt.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "86e43ea3218b5890302b754bbf8927f94e79f7ee",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/editor-position-inputs.json.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "d5eccd6d4ff838bab78d77b8138cd2b539635b80",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/editor-position-receipt.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "1441ce2217c454f014347b701fc72a0255fdf207",
+      "additions": 81,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/editor-position.jsonl.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "d6aa66589eedbbef99df9f36e0c8a70543c4363c",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/editor-position.stderr.txt.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "86e43ea3218b5890302b754bbf8927f94e79f7ee",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/editor-zotero-cases.json.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "6fd79c01ea2b8b3fd8fd9cc5651f7cc17fbb1e2b",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/editor-zotero-inputs.json.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "d04726a703a5ce01aa1dc4a236530f01097ce0ef",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/editor-zotero-receipt.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "d32b0541a650aa1c868e6386da1e8bddf85ffaa6",
+      "additions": 186,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/editor-zotero.jsonl.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "df8f5695e16cb6401d0c23051b74d5e78041c4da",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/editor-zotero.stderr.txt.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "86e43ea3218b5890302b754bbf8927f94e79f7ee",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/engine-position-analysis-final-receipt.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "d8497b5987fc4f40350c51fd71edefcaf3526ac2",
+      "additions": 389,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/engine-position-analysis-final.stderr",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "additions": 0,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/engine-position-analysis-receipt.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "59a87a184e4854af91b9eebbd65a3bdd9d8d6323",
+      "additions": 15,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/engine-position-format-receipt.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "0b51907be34a70fd0cf79633a488bab0336f1fb1",
+      "additions": 390,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/engine-position-format.stderr",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "additions": 0,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/engine-position-initial-receipt.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "d5478b3a0245656cb6f9c106f1ea6751729a0f01",
+      "additions": 694,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/engine-position-initial.jsonl",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "2f0ca04673539ac47771a03616302b81d7cd6783",
+      "additions": 79,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/engine-position-initial.stderr",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "additions": 0,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/engine-position-tests-receipt.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "9daf0a313e2cd7877bd15ca6970c7e91409131d4",
+      "additions": 818,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/engine-position-tests.jsonl",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "0972f60954944960b662aa4024e8838e0435f99a",
+      "additions": 83,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/engine-position-tests.stderr",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "additions": 0,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/engine-zotero-carry-forward-inputs.json.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "50010116b155fe55f83ceed7e52ccf9930771f28",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/engine-zotero-carry-forward-receipt.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "a97ce48262ae69b1b070181b6b5e5a6333b74635",
+      "additions": 282,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/engine-zotero-cases.json.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "2a303940253a73f773e3562f2afc6a87ca24d30f",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/engine-zotero-inputs.json.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "f773cb40c81f49340e1734a69a01864c81a70ab6",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/engine-zotero-receipt.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "b7fc964fbfc1f43ef98ec7923d40bcb6ffb37263",
+      "additions": 188,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/engine-zotero.jsonl.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "59cc99ee7e34d0f9377097c1b7c606b347fe4098",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/engine-zotero.stderr.txt.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "86e43ea3218b5890302b754bbf8927f94e79f7ee",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/format-final-fixes-inputs.json.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "7ac1131ebf3d989fb5905978113200f3ff3be1b1",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/format-final-fixes-receipt.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "e84452d5cd912494359c937a90bc159b43714511",
+      "additions": 62,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/format-final-fixes.stderr.txt.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "86e43ea3218b5890302b754bbf8927f94e79f7ee",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/format-final-fixes.stdout.txt.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "7f39c623f9a735bbfe4c9ecfc3bf749526365e0b",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/format-final-inputs.json.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "f773cb40c81f49340e1734a69a01864c81a70ab6",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/format-final-receipt.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "2c2472b585084bd8363a33eb51906b936f7f7340",
+      "additions": 62,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/format-final.stderr.txt.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "86e43ea3218b5890302b754bbf8927f94e79f7ee",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/format-final.stdout.txt.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "b488bc6bfaad62c51d981656a50eb5e96ffc0851",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/format-inputs.json.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "d5eccd6d4ff838bab78d77b8138cd2b539635b80",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/format-receipt.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "d7d75f19dec9aa4029f636bce1cedf12a1b44e60",
+      "additions": 62,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/format.stderr.txt.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "86e43ea3218b5890302b754bbf8927f94e79f7ee",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/format.stdout.txt.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "7f39c623f9a735bbfe4c9ecfc3bf749526365e0b",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/run_local_checks.py",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "0f2796c90b70062b9dfa0e0ca19046a46aade198",
+      "additions": 232,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/run_local_checks_followup.py",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "d880ae805941c99274496e6aba1e82146b3eed61",
+      "additions": 234,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/runtime/README.md",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "0a9579a5da3a5ef73cbaefbe6407c811f67abaa3",
+      "additions": 41,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/runtime/flutter-provenance.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "2095119ca46a5d95b6026d91a087a9b3250ccd66",
+      "additions": 17,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/runtime/manifest-hashes-before.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "89115091222e0ef8d66156d670e7f4e775c545f6",
+      "additions": 24,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/checks/runtime/workspace-resolution.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "c69503bed9e1cdabc0eaaffe5603aa283c7fe41d",
+      "additions": 10,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/historical-intake-equivalence.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "d69d84113369acac4773829a5cebe9c185e49d49",
+      "additions": 377,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/historical-intake-equivalence.md",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "7848aef38bfc6948ef5c91656ed71bc5340dc88c",
+      "additions": 26,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/zotero-parity-20261122/intake.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "25e9e6a967bd1aabf2812abed30a20d23e3b27b8",
+      "additions": 2666,
+      "deletions": 0
+    },
+    {
+      "path": "docs/zotero-support.md",
+      "status": "M",
+      "previous_blob": "5da777e8b9f4d6156ef081cc5d572a3d72b31c20",
+      "current_blob": "0f3d79fb1e0263e266c7b7eb92f633026781da90",
+      "additions": 8,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_mail_core/CHANGELOG.md",
+      "status": "M",
+      "previous_blob": "b15ea7d83911aa9dfdc85c6679259418600fac9b",
+      "current_blob": "985e56b308a666bdc2710314fe914fd5cba43f69",
+      "additions": 8,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_mail_core/lib/src/search/saved_header_search.dart",
+      "status": "M",
+      "previous_blob": "9a4ce28592331dbd6696889144be148ddd2ff562",
+      "current_blob": "5c26f257759e17a27e09ae4f654e02560fc4054e",
+      "additions": 79,
+      "deletions": 32
+    },
+    {
+      "path": "packages/quds_mail_core/test/saved_header_search_folders_test.dart",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "8486cea5fbd627f2d452056057de8dca41d2ec0e",
+      "additions": 207,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_mail_core/test/saved_header_search_test.dart",
+      "status": "M",
+      "previous_blob": "7e5a353b26cd9c1fbaac6b87979517b307e3ee0d",
+      "current_blob": "a9552b3d3f7522874e1e999571d34d485ecc1a2b",
+      "additions": 23,
+      "deletions": 13
+    },
+    {
+      "path": "packages/quds_mail_store/CHANGELOG.md",
+      "status": "M",
+      "previous_blob": "4f1e62f5dcb5f8d16c45eae93101569d71b0f957",
+      "current_blob": "4940fd9b0ff2214713108a9d5c194c8473835bbe",
+      "additions": 11,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/cached_header_search.dart",
+      "status": "M",
+      "previous_blob": "512ed59dc19c8418facdbcbb30ac0af810a09107",
+      "current_blob": "9f238f883a02053a6291458dcc467e0e7d5eaa44",
+      "additions": 207,
+      "deletions": 70
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/saved_header_searches.dart",
+      "status": "M",
+      "previous_blob": "2b5c48aaf55a19b1c1fb856d5a0c42bb670b8db5",
+      "current_blob": "20ea07a3fb09c9fd6ffa9bbbba1ba5a3d2a1b474",
+      "additions": 47,
+      "deletions": 34
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/schema/database.dart",
+      "status": "M",
+      "previous_blob": "c8907cae295405fc81a94a7e00bb114e9295cc09",
+      "current_blob": "aeeca7d14b3988f015532f93478ff3a4a8e3faba",
+      "additions": 44,
+      "deletions": 5
+    },
+    {
+      "path": "packages/quds_mail_store/test/cached_header_search_folders_test.dart",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "a5f0b64d98f48353d705c4b2db026773ed26d7cc",
+      "additions": 404,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_mail_store/test/cached_header_search_test.dart",
+      "status": "M",
+      "previous_blob": "ee01e18538b9a7844e4f1307f8c235fe6461cb1d",
+      "current_blob": "90230840ef50e9b76010bd14bafd992437edeb8a",
+      "additions": 119,
+      "deletions": 77
+    },
+    {
+      "path": "packages/quds_mail_store/test/compose_settings_test.dart",
+      "status": "M",
+      "previous_blob": "b0a9d4133155b1f32c7601661d529a60bcc17d80",
+      "current_blob": "f16f78f4778bb830235e40066e91b82e3f951708",
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "packages/quds_mail_store/test/flag_reconciliation_test.dart",
+      "status": "M",
+      "previous_blob": "aa585637912e5df2ffdab71beffab3ede9c08a35",
+      "current_blob": "5556ad82a4f2d16f1ed6df735f177048cc9e5f92",
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "packages/quds_mail_store/test/migration_test.dart",
+      "status": "M",
+      "previous_blob": "a9ac801e271ae7b91f9a590bd7208735f079b4ef",
+      "current_blob": "850acc4c6469e4618a076d5d656c48c9e07ddc7e",
+      "additions": 8,
+      "deletions": 8
+    },
+    {
+      "path": "packages/quds_mail_store/test/saved_header_search_folders_test.dart",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "c437ce539663b1c0f23a89f8d23448728d9ef454",
+      "additions": 381,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_mail_store/test/saved_header_searches_test.dart",
+      "status": "M",
+      "previous_blob": "83ccb14b5cf9c6fb223b52475fad5c8ff8142005",
+      "current_blob": "1fa2a7eaca261ad9929a5c9ca9d3157290bb24e4",
+      "additions": 84,
+      "deletions": 66
+    },
+    {
+      "path": "packages/quds_mail_store/test/saved_search_folder_migration_test.dart",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "f0908cb4b5a96cc8550a3e47a84909aa9fe3a034",
+      "additions": 382,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_mail_store/test/sync_mailboxes_test.dart",
+      "status": "M",
+      "previous_blob": "19fd5e3341f2ba53b38050372c6fe42bc0fef86f",
+      "current_blob": "c100934263ca59b5a087abac2302ac007dbcd513",
+      "additions": 4,
+      "deletions": 2
+    },
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "status": "M",
+      "previous_blob": "ddf1a282699a62e7b434c1e3f2280c9e65c8e82e",
+      "current_blob": "a1422f7fea312141598ff6e19535fda2ca48d337",
+      "additions": 12,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_cached_search.dart",
+      "status": "M",
+      "previous_blob": "de5d500579c598a79286bf477d7909554274b698",
+      "current_blob": "66c79d73d1bee9710c72a1165f78844dda4f9279",
+      "additions": 385,
+      "deletions": 40
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_cached_search_dialog.dart",
+      "status": "M",
+      "previous_blob": "1e7c85fbe31b673062ee0390fe5b657928981f1c",
+      "current_blob": "439d653abd661de6b55fdc2245fb7f4c8c24b195",
+      "additions": 194,
+      "deletions": 197
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_cached_search_refresh.dart",
+      "status": "M",
+      "previous_blob": "c29e55c6474df2480f7d33419765ed5771ed9498",
+      "current_blob": "8603f3ee14fce5a6fbd762c30c8bf9004f4172ef",
+      "additions": 8,
+      "deletions": 3
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_folder_picker.dart",
+      "status": "M",
+      "previous_blob": "b185d9acc4d460ad6052268fb04d6abffd98c5fc",
+      "current_blob": "5f0f5d13c832bf9f2e14a03adaad7cb4bbacc5d6",
+      "additions": 6,
+      "deletions": 14
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_mailbox_store.dart",
+      "status": "M",
+      "previous_blob": "a129922a276fb14d1de330a228a979621f8c1029",
+      "current_blob": "c0bffb2759951703480925e6ca6d78e240b1aef9",
+      "additions": 58,
+      "deletions": 15
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_saved_search_strings.dart",
+      "status": "M",
+      "previous_blob": "6029e4bbec6c092dca5d1e521448fb82ba74a405",
+      "current_blob": "9e61f3e99bc219bebc68f96a683982a7a03ce070",
+      "additions": 2,
+      "deletions": 5
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_search_folder_picker.dart",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "93e33b95a3ea0f309fecff959116f3c4d265e026",
+      "additions": 238,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_search_folder_strings.dart",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "499f374255b4edba85f6b30e7389c4e1a30d93dd",
+      "additions": 91,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_cached_search_dialog_test.dart",
+      "status": "M",
+      "previous_blob": "1438c86c6411283b6ebc1c66f3e571ab54417053",
+      "current_blob": "773cee7bc91116b1d73418bdf1c398a3892a37e2",
+      "additions": 8,
+      "deletions": 2
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_cached_search_test.dart",
+      "status": "M",
+      "previous_blob": "75f4611a88a294217018709ad987338e6f2cd4b6",
+      "current_blob": "e5092315a7016777e835fb47ec040b096de29489",
+      "additions": 55,
+      "deletions": 47
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_folder_picker_test.dart",
+      "status": "M",
+      "previous_blob": "8eb554be41f5f5fe04c83d8f9c6f9f261049db4f",
+      "current_blob": "5506a5500ecdda68fb64172f36a7904086187041",
+      "additions": 58,
+      "deletions": 40
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_folder_search_dialog_test.dart",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "400d66589fc47f2553676e2a72f91364d514c4a0",
+      "additions": 381,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_folder_search_lifecycle_test.dart",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "aed3c33edffc76de9aef4169dd0b2cf4a932762d",
+      "additions": 392,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_folder_search_test.dart",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "b58a2e6d59d35f386f2f2f1034e92fb7890dc702",
+      "additions": 913,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_saved_search_dialog_test.dart",
+      "status": "M",
+      "previous_blob": "48a375ab32f3ebba5abdc610aedb10591aec010e",
+      "current_blob": "cb7119f9294145b04e58fa7e58137796d185ad8a",
+      "additions": 51,
+      "deletions": 40
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_search_folder_picker_test.dart",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "dd63a712fed7df2d50e65dcbe7df4b6613b6ae15",
+      "additions": 293,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "status": "M",
+      "previous_blob": "f3d8095481c55d0b6680b414dd1b2e1cd43efdbc",
+      "current_blob": "59c811be2f85f374bf5d50889d057adb0887174c",
+      "additions": 145,
+      "deletions": 28
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_zotero_writing_position_test.dart",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "2009b755e91ee385e4d820842e9d03d7291b6231",
+      "additions": 608,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_engine/CHANGELOG.md",
+      "status": "M",
+      "previous_blob": "08f840c25a359a55e8e564b305a79203498553df",
+      "current_blob": "b6a5c59ca7ecfc5ca131ef562e7787e38a43ebae",
+      "additions": 6,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_operations.dart",
+      "status": "M",
+      "previous_blob": "c3c844d9cca012ed3ae91d2e4158b5c15f37d8db",
+      "current_blob": "2fb71e51605b1cf9d29dced5a79dde72db2c5985",
+      "additions": 3,
+      "deletions": 2
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+      "status": "M",
+      "previous_blob": "bdc12d6e6e7a2508fe9ade5d4803c32d323a444d",
+      "current_blob": "74a3fb0f3f84ddc410222f554d517b4512a582f7",
+      "additions": 250,
+      "deletions": 8
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_cell_formatting_integration_test.dart",
+      "status": "M",
+      "previous_blob": "725f64e29badb9176a3fa8e93448bec845ae81bb",
+      "current_blob": "0852b476610f8294e6f427d90b68459e7da7f899",
+      "additions": 65,
+      "deletions": 55
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_font_colors_test.dart",
+      "status": "M",
+      "previous_blob": "ee0fdc1accc14a25ee98ebff79216e60bc31393f",
+      "current_blob": "e91c6901ea62c21ed0cf67522908e9bf101c2139",
+      "additions": 3,
+      "deletions": 4
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_writing_position_test.dart",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "077f49a46f62c65fb6423c816f17cd3331c9b75b",
+      "additions": 586,
+      "deletions": 0
+    }
+  ],
+  "incoming_file_count": 132,
+  "incoming_text_additions": 16397,
+  "incoming_text_deletions": 844,
+  "delta_vs_qualified_work": [
+    {
+      "path": "docs/roadmaps/mail/README.md",
+      "status": "M",
+      "previous_blob": "7c714793823c93d1998d66d1dd858a68603c30d9",
+      "current_blob": "8fdca1882df33f53ee907446344b927aa8b98859",
+      "additions": 12,
+      "deletions": 11
+    },
+    {
+      "path": "docs/roadmaps/mail/folder-saved-search.md",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "dba53dda57621a80fb3f0122b09e3c0744cbd260",
+      "additions": 165,
+      "deletions": 0
+    },
+    {
+      "path": "docs/roadmaps/mail/folder-scoped-search.md",
+      "status": "M",
+      "previous_blob": "ecc9be16cfd1b6a4cad320a86c9782724c0161c7",
+      "current_blob": "2bc7a0e285998d038050d878827aa3b6b90dca12",
+      "additions": 10,
+      "deletions": 0
+    },
+    {
+      "path": "docs/roadmaps/mail/implementation-plan.md",
+      "status": "M",
+      "previous_blob": "9e9cfdce1cb1f87feddeb2fe07b8c73e4e5daa68",
+      "current_blob": "d443fa63d560f85eaf825267471cb732e9d811bd",
+      "additions": 7,
+      "deletions": 0
+    },
+    {
+      "path": "docs/roadmaps/mail/keyboard-triage.md",
+      "status": "M",
+      "previous_blob": "99e4a22d1fe9108226e8bf2e19d2f3f511dfc155",
+      "current_blob": "18bbff7160435a244728b93c1a2c1e22d96575ff",
+      "additions": 7,
+      "deletions": 5
+    },
+    {
+      "path": "docs/roadmaps/mail/saved-searches.md",
+      "status": "M",
+      "previous_blob": "ebe1cbfcc9b1a2a86b86cd17b415254ca1006722",
+      "current_blob": "16ba239521c77c504862bf9370501c41f8a593c0",
+      "additions": 6,
+      "deletions": 2
+    },
+    {
+      "path": "docs/roadmaps/mail/status.md",
+      "status": "M",
+      "previous_blob": "9843e1c6569f956ddd8fb77c1edfec98370b9172",
+      "current_blob": "e4fb90f0b3cd699e63084ef9e2d01941182098c3",
+      "additions": 22,
+      "deletions": 17
+    },
+    {
+      "path": "docs/validation/mail-folder-search-20261122/README.md",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "5a7bbd81620de90e3038eebf56293425aa97c24e",
+      "additions": 188,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/mail-folder-search-20261122/SHA256SUMS",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "b525cfb011fe696983740c4f3b9a7cdd77957874",
+      "additions": 7,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/mail-folder-search-20261122/qualification.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "f53ff6e673e0d651e35a08946c80f2e11f64dad4",
+      "additions": 172,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/mail-folder-search-20261122/raw-evidence-index.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "afdf1c214d60a8b0cb0af337781db7054431b196",
+      "additions": 585,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/mail-folder-search-20261122/raw-evidence.tar.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "107035f10eb173e0d5ca452cb57708c1f1d88ac9",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/mail-folder-search-20261122/remote-intake.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "34af4467e6def273a0ee99339ff168612ee9c129",
+      "additions": 147,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/mail-folder-search-20261122/runtime-provenance.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "01a880b215878ffc81437c39921dac0a52ebffcd",
+      "additions": 125,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/mail-folder-search-20261122/source-manifest.json.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "8a6a4172bd198b3af279cde997d568281491ce22",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "packages/quds_mail_core/CHANGELOG.md",
+      "status": "M",
+      "previous_blob": "b15ea7d83911aa9dfdc85c6679259418600fac9b",
+      "current_blob": "985e56b308a666bdc2710314fe914fd5cba43f69",
+      "additions": 8,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_mail_core/lib/src/search/saved_header_search.dart",
+      "status": "M",
+      "previous_blob": "9a4ce28592331dbd6696889144be148ddd2ff562",
+      "current_blob": "5c26f257759e17a27e09ae4f654e02560fc4054e",
+      "additions": 79,
+      "deletions": 32
+    },
+    {
+      "path": "packages/quds_mail_core/test/saved_header_search_folders_test.dart",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "8486cea5fbd627f2d452056057de8dca41d2ec0e",
+      "additions": 207,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_mail_core/test/saved_header_search_test.dart",
+      "status": "M",
+      "previous_blob": "7e5a353b26cd9c1fbaac6b87979517b307e3ee0d",
+      "current_blob": "a9552b3d3f7522874e1e999571d34d485ecc1a2b",
+      "additions": 23,
+      "deletions": 13
+    },
+    {
+      "path": "packages/quds_mail_store/CHANGELOG.md",
+      "status": "M",
+      "previous_blob": "4f1e62f5dcb5f8d16c45eae93101569d71b0f957",
+      "current_blob": "4940fd9b0ff2214713108a9d5c194c8473835bbe",
+      "additions": 11,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/cached_header_search.dart",
+      "status": "M",
+      "previous_blob": "512ed59dc19c8418facdbcbb30ac0af810a09107",
+      "current_blob": "9f238f883a02053a6291458dcc467e0e7d5eaa44",
+      "additions": 207,
+      "deletions": 70
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/saved_header_searches.dart",
+      "status": "M",
+      "previous_blob": "2b5c48aaf55a19b1c1fb856d5a0c42bb670b8db5",
+      "current_blob": "20ea07a3fb09c9fd6ffa9bbbba1ba5a3d2a1b474",
+      "additions": 47,
+      "deletions": 34
+    },
+    {
+      "path": "packages/quds_mail_store/lib/src/schema/database.dart",
+      "status": "M",
+      "previous_blob": "c8907cae295405fc81a94a7e00bb114e9295cc09",
+      "current_blob": "aeeca7d14b3988f015532f93478ff3a4a8e3faba",
+      "additions": 44,
+      "deletions": 5
+    },
+    {
+      "path": "packages/quds_mail_store/test/cached_header_search_folders_test.dart",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "a5f0b64d98f48353d705c4b2db026773ed26d7cc",
+      "additions": 404,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_mail_store/test/cached_header_search_test.dart",
+      "status": "M",
+      "previous_blob": "ee01e18538b9a7844e4f1307f8c235fe6461cb1d",
+      "current_blob": "90230840ef50e9b76010bd14bafd992437edeb8a",
+      "additions": 119,
+      "deletions": 77
+    },
+    {
+      "path": "packages/quds_mail_store/test/compose_settings_test.dart",
+      "status": "M",
+      "previous_blob": "b0a9d4133155b1f32c7601661d529a60bcc17d80",
+      "current_blob": "f16f78f4778bb830235e40066e91b82e3f951708",
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "packages/quds_mail_store/test/flag_reconciliation_test.dart",
+      "status": "M",
+      "previous_blob": "aa585637912e5df2ffdab71beffab3ede9c08a35",
+      "current_blob": "5556ad82a4f2d16f1ed6df735f177048cc9e5f92",
+      "additions": 1,
+      "deletions": 1
+    },
+    {
+      "path": "packages/quds_mail_store/test/migration_test.dart",
+      "status": "M",
+      "previous_blob": "a9ac801e271ae7b91f9a590bd7208735f079b4ef",
+      "current_blob": "850acc4c6469e4618a076d5d656c48c9e07ddc7e",
+      "additions": 8,
+      "deletions": 8
+    },
+    {
+      "path": "packages/quds_mail_store/test/saved_header_search_folders_test.dart",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "c437ce539663b1c0f23a89f8d23448728d9ef454",
+      "additions": 381,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_mail_store/test/saved_header_searches_test.dart",
+      "status": "M",
+      "previous_blob": "83ccb14b5cf9c6fb223b52475fad5c8ff8142005",
+      "current_blob": "1fa2a7eaca261ad9929a5c9ca9d3157290bb24e4",
+      "additions": 84,
+      "deletions": 66
+    },
+    {
+      "path": "packages/quds_mail_store/test/saved_search_folder_migration_test.dart",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "f0908cb4b5a96cc8550a3e47a84909aa9fe3a034",
+      "additions": 382,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_mail_store/test/sync_mailboxes_test.dart",
+      "status": "M",
+      "previous_blob": "19fd5e3341f2ba53b38050372c6fe42bc0fef86f",
+      "current_blob": "c100934263ca59b5a087abac2302ac007dbcd513",
+      "additions": 4,
+      "deletions": 2
+    },
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "status": "M",
+      "previous_blob": "7d3645c1960613e2f492bbabfdc2a1d85a1b3f53",
+      "current_blob": "a1422f7fea312141598ff6e19535fda2ca48d337",
+      "additions": 6,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_cached_search.dart",
+      "status": "M",
+      "previous_blob": "de5d500579c598a79286bf477d7909554274b698",
+      "current_blob": "66c79d73d1bee9710c72a1165f78844dda4f9279",
+      "additions": 385,
+      "deletions": 40
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_cached_search_dialog.dart",
+      "status": "M",
+      "previous_blob": "f6aacca9cfcbed190fe2bde27e3feccd095aa25b",
+      "current_blob": "439d653abd661de6b55fdc2245fb7f4c8c24b195",
+      "additions": 195,
+      "deletions": 211
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_cached_search_refresh.dart",
+      "status": "M",
+      "previous_blob": "c29e55c6474df2480f7d33419765ed5771ed9498",
+      "current_blob": "8603f3ee14fce5a6fbd762c30c8bf9004f4172ef",
+      "additions": 8,
+      "deletions": 3
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_folder_picker.dart",
+      "status": "M",
+      "previous_blob": "b185d9acc4d460ad6052268fb04d6abffd98c5fc",
+      "current_blob": "5f0f5d13c832bf9f2e14a03adaad7cb4bbacc5d6",
+      "additions": 6,
+      "deletions": 14
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_mailbox_store.dart",
+      "status": "M",
+      "previous_blob": "a129922a276fb14d1de330a228a979621f8c1029",
+      "current_blob": "c0bffb2759951703480925e6ca6d78e240b1aef9",
+      "additions": 58,
+      "deletions": 15
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_saved_search_strings.dart",
+      "status": "M",
+      "previous_blob": "6029e4bbec6c092dca5d1e521448fb82ba74a405",
+      "current_blob": "9e61f3e99bc219bebc68f96a683982a7a03ce070",
+      "additions": 2,
+      "deletions": 5
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_search_folder_picker.dart",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "93e33b95a3ea0f309fecff959116f3c4d265e026",
+      "additions": 238,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_search_folder_strings.dart",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "499f374255b4edba85f6b30e7389c4e1a30d93dd",
+      "additions": 91,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_cached_search_dialog_test.dart",
+      "status": "M",
+      "previous_blob": "1438c86c6411283b6ebc1c66f3e571ab54417053",
+      "current_blob": "773cee7bc91116b1d73418bdf1c398a3892a37e2",
+      "additions": 8,
+      "deletions": 2
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_cached_search_test.dart",
+      "status": "M",
+      "previous_blob": "75f4611a88a294217018709ad987338e6f2cd4b6",
+      "current_blob": "e5092315a7016777e835fb47ec040b096de29489",
+      "additions": 55,
+      "deletions": 47
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_folder_picker_test.dart",
+      "status": "M",
+      "previous_blob": "8eb554be41f5f5fe04c83d8f9c6f9f261049db4f",
+      "current_blob": "5506a5500ecdda68fb64172f36a7904086187041",
+      "additions": 58,
+      "deletions": 40
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_folder_search_dialog_test.dart",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "400d66589fc47f2553676e2a72f91364d514c4a0",
+      "additions": 381,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_folder_search_lifecycle_test.dart",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "aed3c33edffc76de9aef4169dd0b2cf4a932762d",
+      "additions": 392,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_folder_search_test.dart",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "b58a2e6d59d35f386f2f2f1034e92fb7890dc702",
+      "additions": 913,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_saved_search_dialog_test.dart",
+      "status": "M",
+      "previous_blob": "48a375ab32f3ebba5abdc610aedb10591aec010e",
+      "current_blob": "cb7119f9294145b04e58fa7e58137796d185ad8a",
+      "additions": 51,
+      "deletions": 40
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_search_folder_picker_test.dart",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "dd63a712fed7df2d50e65dcbe7df4b6613b6ae15",
+      "additions": 293,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_engine/CHANGELOG.md",
+      "status": "M",
+      "previous_blob": "0128f280331c7bfb5aa774754df217520b9e98d7",
+      "current_blob": "b6a5c59ca7ecfc5ca131ef562e7787e38a43ebae",
+      "additions": 6,
+      "deletions": 6
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_operations.dart",
+      "status": "M",
+      "previous_blob": "c3c844d9cca012ed3ae91d2e4158b5c15f37d8db",
+      "current_blob": "2fb71e51605b1cf9d29dced5a79dde72db2c5985",
+      "additions": 3,
+      "deletions": 2
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_cell_formatting_integration_test.dart",
+      "status": "M",
+      "previous_blob": "725f64e29badb9176a3fa8e93448bec845ae81bb",
+      "current_blob": "0852b476610f8294e6f427d90b68459e7da7f899",
+      "additions": 65,
+      "deletions": 55
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_font_colors_test.dart",
+      "status": "M",
+      "previous_blob": "ee0fdc1accc14a25ee98ebff79216e60bc31393f",
+      "current_blob": "e91c6901ea62c21ed0cf67522908e9bf101c2139",
+      "additions": 3,
+      "deletions": 4
+    }
+  ],
+  "changed_production_libraries_vs_qualified_work": [
+    "packages/quds_mail_core/lib/src/search/saved_header_search.dart",
+    "packages/quds_mail_store/lib/src/cached_header_search.dart",
+    "packages/quds_mail_store/lib/src/saved_header_searches.dart",
+    "packages/quds_mail_store/lib/src/schema/database.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_cached_search.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_cached_search_dialog.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_cached_search_refresh.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_folder_picker.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_mailbox_store.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_saved_search_strings.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_search_folder_picker.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_search_folder_strings.dart",
+    "packages/quds_office_engine/lib/src/automation/office_operations.dart"
+  ],
+  "canonical_integration": {
+    "local_merge": "ff45b281ca1d93c463d801ccf008d5a755e14cfb",
+    "canonical_published_merge": "fce7a97f297181f3524b31e90e7a49ce061b0954",
+    "incoming_main": "82659acb0f617c57d4d241c91033338032b5caac",
+    "shared_complete_tree": "3a728f96ac95588e45c9ab0c7d12e0881f702783",
+    "complete_tree_identical": true,
+    "incoming_paths_preserved": 132,
+    "different_paths": [],
+    "meaning": "Both merge commits retain the complete incoming main tree byte-for-byte, including all production, tests, manifests and documentation. Only ancestry differs at this checkpoint; later final-evidence documentation additions remain separate."
+  },
+  "overlap": {
+    "own_paths_changed_since_common_ancestor": [
+      "packages/quds_office_editor/example/lib/studio_mail_cached_search_dialog.dart"
+    ],
+    "dialog_resolution": "Retain incoming completed Mail dialog whole file. It replaces the inline mailbox-owner chooser with StudioMailCachedSearchSession.loadFolderCatalog and the new picker/labels; all three old mailbox-store type references, direct-owner lifecycle and associated casts are removed. The temporary import/cast repair is superseded, not accidentally discarded.",
+    "incoming_dialog_blob": "439d653abd661de6b55fdc2245fb7f4c8c24b195",
+    "integrated_dialog_blob": "439d653abd661de6b55fdc2245fb7f4c8c24b195",
+    "removed_old_type_references": [
+      "StudioMailMailboxStoreOwner",
+      "StudioMailSyncStore",
+      "StudioMailMailboxStoreException"
+    ],
+    "incoming_catalog_library_imports_required_mailbox_types": true
+  },
+  "unchanged_source_subtrees": [
+    {
+      "path": "packages/quds_office_engine/lib/src/word",
+      "own_tree": "864038b9355a10e1d6bae86e5920f05dfa07ebdd",
+      "main_tree": "864038b9355a10e1d6bae86e5920f05dfa07ebdd"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/zotero",
+      "own_tree": "94a40df2539adb1f9d176f89ea67dd519fffd1b7",
+      "main_tree": "94a40df2539adb1f9d176f89ea67dd519fffd1b7"
+    },
+    {
+      "path": "packages/quds_office_editor/lib",
+      "own_tree": "55e28f04f4018f8cea68d9ec0599a41da39f7668",
+      "main_tree": "55e28f04f4018f8cea68d9ec0599a41da39f7668"
+    },
+    {
+      "path": "apps",
+      "own_tree": "e97767581d70416a246cd149cdcd5e0a8d3f2352",
+      "main_tree": "e97767581d70416a246cd149cdcd5e0a8d3f2352"
+    },
+    {
+      "path": "third_party",
+      "own_tree": "ea59395f2db91760ce742cad60962f4f25286d87",
+      "main_tree": "ea59395f2db91760ce742cad60962f4f25286d87"
+    }
+  ],
+  "dependency_manifest_changes": [],
+  "selected_test_entrypoints": {
+    "engine_zotero": {
+      "entrypoint_count": 56,
+      "paths": [
+        "packages/quds_office_engine/test/odf_zotero_ownership_test.dart",
+        "packages/quds_office_engine/test/odf_zotero_preferences_test.dart",
+        "packages/quds_office_engine/test/odf_zotero_reference_marks_test.dart",
+        "packages/quds_office_engine/test/odf_zotero_resource_test.dart",
+        "packages/quds_office_engine/test/odt_merged_table_zotero_test.dart",
+        "packages/quds_office_engine/test/odt_zotero_export_lifecycle_test.dart",
+        "packages/quds_office_engine/test/odt_zotero_image_lifecycle_test.dart",
+        "packages/quds_office_engine/test/odt_zotero_position_guard_test.dart",
+        "packages/quds_office_engine/test/odt_zotero_table_geometry_test.dart",
+        "packages/quds_office_engine/test/odt_zotero_writer_test.dart",
+        "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+        "packages/quds_office_engine/test/word_zotero_adjacent_citations_test.dart",
+        "packages/quds_office_engine/test/word_zotero_bibliography_layout_test.dart",
+        "packages/quds_office_engine/test/word_zotero_bibliography_style_fidelity_test.dart",
+        "packages/quds_office_engine/test/word_zotero_caret_test.dart",
+        "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+        "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+        "packages/quds_office_engine/test/word_zotero_formatted_bibliography_test.dart",
+        "packages/quds_office_engine/test/word_zotero_multiparagraph_test.dart",
+        "packages/quds_office_engine/test/word_zotero_nested_note_tables_test.dart",
+        "packages/quds_office_engine/test/word_zotero_nested_table_test.dart",
+        "packages/quds_office_engine/test/word_zotero_nested_tables_integration_test.dart",
+        "packages/quds_office_engine/test/word_zotero_note_image_test.dart",
+        "packages/quds_office_engine/test/word_zotero_note_images_integration_test.dart",
+        "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+        "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+        "packages/quds_office_engine/test/word_zotero_note_table_test.dart",
+        "packages/quds_office_engine/test/word_zotero_note_tables_integration_test.dart",
+        "packages/quds_office_engine/test/word_zotero_preference_flow_test.dart",
+        "packages/quds_office_engine/test/word_zotero_research_target_test.dart",
+        "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+        "packages/quds_office_engine/test/word_zotero_scaling_test.dart",
+        "packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+        "packages/quds_office_engine/test/word_zotero_source_identity_test.dart",
+        "packages/quds_office_engine/test/word_zotero_style_preferences_review_test.dart",
+        "packages/quds_office_engine/test/word_zotero_table_cell_replacement_test.dart",
+        "packages/quds_office_engine/test/word_zotero_test.dart",
+        "packages/quds_office_engine/test/word_zotero_transfer_session_test.dart",
+        "packages/quds_office_engine/test/word_zotero_transfer_test.dart",
+        "packages/quds_office_engine/test/word_zotero_writing_position_test.dart",
+        "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart",
+        "packages/quds_office_engine/test/zotero_all_caps_test.dart",
+        "packages/quds_office_engine/test/zotero_backoff_state_test.dart",
+        "packages/quds_office_engine/test/zotero_catalog_query_test.dart",
+        "packages/quds_office_engine/test/zotero_citing_test.dart",
+        "packages/quds_office_engine/test/zotero_client_test.dart",
+        "packages/quds_office_engine/test/zotero_formatted_text_test.dart",
+        "packages/quds_office_engine/test/zotero_identity_client_test.dart",
+        "packages/quds_office_engine/test/zotero_item_children_test.dart",
+        "packages/quds_office_engine/test/zotero_item_details_test.dart",
+        "packages/quds_office_engine/test/zotero_metadata_batch_test.dart",
+        "packages/quds_office_engine/test/zotero_paragraph_runs_test.dart",
+        "packages/quds_office_engine/test/zotero_saved_search_test.dart",
+        "packages/quds_office_engine/test/zotero_tag_catalog_test.dart",
+        "packages/quds_office_engine/test/zotero_tag_filter_test.dart",
+        "packages/quds_office_engine/test/zotero_transfer_protocol_test.dart"
+      ],
+      "changed_entrypoints": []
+    },
+    "editor_zotero": {
+      "entrypoint_count": 53,
+      "paths": [
+        "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+        "packages/quds_office_editor/test/word_zotero_adjacent_citations_controller_test.dart",
+        "packages/quds_office_editor/test/word_zotero_backoff_session_test.dart",
+        "packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart",
+        "packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart",
+        "packages/quds_office_editor/test/word_zotero_catalog_query_test.dart",
+        "packages/quds_office_editor/test/word_zotero_children_dialog_test.dart",
+        "packages/quds_office_editor/test/word_zotero_children_test.dart",
+        "packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+        "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+        "packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart",
+        "packages/quds_office_editor/test/word_zotero_composer_test.dart",
+        "packages/quds_office_editor/test/word_zotero_connected_alias_test.dart",
+        "packages/quds_office_editor/test/word_zotero_controller_test.dart",
+        "packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart",
+        "packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+        "packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+        "packages/quds_office_editor/test/word_zotero_document_actions_test.dart",
+        "packages/quds_office_editor/test/word_zotero_document_reuse_test.dart",
+        "packages/quds_office_editor/test/word_zotero_document_source_picker_test.dart",
+        "packages/quds_office_editor/test/word_zotero_document_sources_test.dart",
+        "packages/quds_office_editor/test/word_zotero_field_at_caret_test.dart",
+        "packages/quds_office_editor/test/word_zotero_format_test.dart",
+        "packages/quds_office_editor/test/word_zotero_import_search_test.dart",
+        "packages/quds_office_editor/test/word_zotero_library_details_test.dart",
+        "packages/quds_office_editor/test/word_zotero_multiparagraph_controller_test.dart",
+        "packages/quds_office_editor/test/word_zotero_navigation_dialog_test.dart",
+        "packages/quds_office_editor/test/word_zotero_navigation_pane_test.dart",
+        "packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+        "packages/quds_office_editor/test/word_zotero_nested_table_controller_test.dart",
+        "packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+        "packages/quds_office_editor/test/word_zotero_note_preview_test.dart",
+        "packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+        "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+        "packages/quds_office_editor/test/word_zotero_occurrence_navigation_test.dart",
+        "packages/quds_office_editor/test/word_zotero_rich_controller_test.dart",
+        "packages/quds_office_editor/test/word_zotero_saved_search_test.dart",
+        "packages/quds_office_editor/test/word_zotero_selection_navigation_test.dart",
+        "packages/quds_office_editor/test/word_zotero_selection_uri_test.dart",
+        "packages/quds_office_editor/test/word_zotero_snapshot_test.dart",
+        "packages/quds_office_editor/test/word_zotero_source_identity_test.dart",
+        "packages/quds_office_editor/test/word_zotero_source_occurrences_dialog_test.dart",
+        "packages/quds_office_editor/test/word_zotero_source_occurrences_test.dart",
+        "packages/quds_office_editor/test/word_zotero_source_resolver_test.dart",
+        "packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart",
+        "packages/quds_office_editor/test/word_zotero_stored_details_test.dart",
+        "packages/quds_office_editor/test/word_zotero_tag_browser_test.dart",
+        "packages/quds_office_editor/test/word_zotero_tag_filter_test.dart",
+        "packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+        "packages/quds_office_editor/test/word_zotero_transfer_dialog_test.dart",
+        "packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+        "packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+        "packages/quds_office_editor/test/word_zotero_writing_position_test.dart"
+      ],
+      "changed_entrypoints": []
+    },
+    "studio_zotero": {
+      "entrypoint_count": 4,
+      "paths": [
+        "packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+        "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+        "packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart",
+        "packages/quds_office_editor/example/test/studio_shortcut_host_ownership_test.dart"
+      ],
+      "changed_entrypoints": []
+    }
+  },
+  "validation_implications": {
+    "engine_and_editor": "Native Word and Zotero engine trees, complete editor library and selected test entrypoints remain byte-identical to99a285c0; dependency manifests, apps and third_party also match. The only engine production difference is a line-wrap/trailing-comma formatting change in automation/office_operations.dart, outside the previously audited Zotero import graph. Carry applicable standalone engine/editor execution forward; a broad rerun is not justified by this incoming delta.",
+    "studio": "Four Mail core/store and eight Studio Mail production libraries change versus99a285c0 (one former picker is replaced in the workspace path by two new picker/string files). These are actual shared-workspace compilation/behavior dependencies. Rerun the existing four-file Studio Zotero/host-ownership cohort on the canonical final tree; its entrypoint files themselves are unchanged.",
+    "formatting_review": "The only engine production patch rewrites FormulaFunctions.stripFutureFunctionPrefix(name).toUpperCase() across lines with a trailing argument comma. Two non-Zotero VBA test files also change formatting. No additional engine behavior or source import change was found in those patches.",
+    "manifest_claims": "Whole-workspace/whole-engine captured manifests change. Attribute source applicability with the exact retained subtree/blob comparison and bounded dependency exclusion; do not call every captured input byte-identical.",
+    "incoming_evidence": "PR356 qualification is preserved with its own attribution; reported incoming cases are not added to this task's freshly executed Zotero case count.",
+    "final_publication": "The implementation and stale-document guard already reached remote main through PR356 and shared ancestor3660a9d9. Final Zotero publication principally records final combined-source qualification, evidence and retained merge history."
+  },
+  "remote_branches_excluding_current_work_and_fork_main": [
+    {
+      "ref": "origin/codex/word-vba-authoring-20261121",
+      "sha": "cf06b018ec125ce3b5abfda41a7fbbdcf7d30a47",
+      "ahead_main": 0,
+      "behind_main": 158
+    },
+    {
+      "ref": "origin/codex/word-vba-cell-formatting-20261122",
+      "sha": "49f43824196c4d373f991e442fac2e73e68c5f9f",
+      "ahead_main": 0,
+      "behind_main": 22
+    },
+    {
+      "ref": "origin/codex/word-vba-comparison-colors-20261121",
+      "sha": "e3c4550b34a9a07de2a97b84b67ab6aecaa5a377",
+      "ahead_main": 0,
+      "behind_main": 67
+    },
+    {
+      "ref": "origin/codex/word-vba-compatibility-20261121",
+      "sha": "3058d36c5354d46bde418555d59282116cce1e26",
+      "ahead_main": 0,
+      "behind_main": 115
+    },
+    {
+      "ref": "origin/codex/zotero-dispatch-recovery-20261121",
+      "sha": "32ef843db3a8192fe0add085e1ee173e18f4d462",
+      "ahead_main": 0,
+      "behind_main": 112
+    },
+    {
+      "ref": "origin/codex/zotero-footnote-separators-20261121",
+      "sha": "a70c0e7af251d737dc7639f44a48777bbea1bf51",
+      "ahead_main": 0,
+      "behind_main": 103
+    },
+    {
+      "ref": "origin/codex/zotero-host-ownership-20261121",
+      "sha": "05cb866e6e5aaee95dae8b03da2892fcf633a84b",
+      "ahead_main": 0,
+      "behind_main": 103
+    },
+    {
+      "ref": "origin/codex/zotero-main-qualification-20261121",
+      "sha": "e2a1ed6073556d24194004221c545166b17c2d4e",
+      "ahead_main": 0,
+      "behind_main": 58
+    },
+    {
+      "ref": "origin/codex/zotero-note-layout-20261121",
+      "sha": "2089e1e35a8ba81ea7f0a077b348f93ca70953c8",
+      "ahead_main": 0,
+      "behind_main": 137
+    },
+    {
+      "ref": "origin/codex/zotero-odt-roundtrip-20261121",
+      "sha": "05072dc2d59d0fa4ea97de4d6a842700ef333fab",
+      "ahead_main": 0,
+      "behind_main": 152
+    },
+    {
+      "ref": "origin/codex/zotero-select-navigation-20261122",
+      "sha": "8c1b8da71bb910d4025aa179dc56290cf1a8e72a",
+      "ahead_main": 0,
+      "behind_main": 49
+    },
+    {
+      "ref": "origin/codex/zotero-shortcut-host-recovery-20261121",
+      "sha": "2168011b6104f680100b87404bc1bd409f724939",
+      "ahead_main": 0,
+      "behind_main": 112
+    },
+    {
+      "ref": "origin/codex/zotero-source-continuity-20261121-2135",
+      "sha": "c4c16d91d62ded0c341bee95e98de894de70483f",
+      "ahead_main": 0,
+      "behind_main": 112
+    },
+    {
+      "ref": "origin/work/mail-folder-scoped-search-20261122",
+      "sha": "ff30d1064a052abbfbcdc99745ff66f8bc980aea",
+      "ahead_main": 0,
+      "behind_main": 29
+    },
+    {
+      "ref": "origin/work/mail-folder-search-20261122",
+      "sha": "f8b3857fca9e120be61c861baa786ff04c822ebe",
+      "ahead_main": 0,
+      "behind_main": 1
+    },
+    {
+      "ref": "origin/work/mail-keyboard-triage-20261121",
+      "sha": "08d034d876073e2afc881dbfc11ba791acde3d67",
+      "ahead_main": 0,
+      "behind_main": 63
+    },
+    {
+      "ref": "origin/work/mail-live-search-20261121",
+      "sha": "c3d55be30d91694b1a427d261cddbe47b1dd5eec",
+      "ahead_main": 0,
+      "behind_main": 137
+    },
+    {
+      "ref": "origin/work/mail-range-selection-tests-20261121",
+      "sha": "5c7a385c5de40394d9eed736c5a2d975535c3df3",
+      "ahead_main": 0,
+      "behind_main": 111
+    },
+    {
+      "ref": "origin/work/mail-sync-address-search-20261121",
+      "sha": "33d8f956ec2ed1dfd748e1d7ccbc5add053ff565",
+      "ahead_main": 0,
+      "behind_main": 114
+    },
+    {
+      "ref": "upstream/ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "ahead_main": 0,
+      "behind_main": 3537
+    },
+    {
+      "ref": "upstream/cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "ahead_main": 0,
+      "behind_main": 3530
+    },
+    {
+      "ref": "upstream/cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "ahead_main": 0,
+      "behind_main": 3540
+    },
+    {
+      "ref": "upstream/main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "ahead_main": 0,
+      "behind_main": 3524
+    }
+  ],
+  "branch_counts": {
+    "fork_non_main_excluding_current_work": 19,
+    "upstream": 4,
+    "already_ancestor": 23,
+    "ahead": 0
+  },
+  "outstanding_work_disposition": "The formerly unfinished Mail branch is now completed and merged as PR356 at f8b3857f. All23 other captured branch tips are ancestors of incoming main; zero open PRs at the recorded connector observation. No current unique fetched branch work remains outside main other than this task's own publication/history continuation.",
+  "reported_final_gates": {
+    "qualified_source": "fce7a97f297181f3524b31e90e7a49ce061b0954",
+    "source_tree_matches_main": "82659acb0f617c57d4d241c91033338032b5caac",
+    "studio_cases_passed": 55,
+    "strict_analysis_file_count": 5,
+    "strict_analysis_result": "pass",
+    "format_file_count": 5,
+    "format_result": "pass",
+    "attribution": "Parent reports accepted final gate results; source preservation is independently verified by this read-only audit. Exact execution receipts remain in the parent work record."
+  }
+}

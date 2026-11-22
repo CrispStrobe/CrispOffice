@@ -1,0 +1,67 @@
+{
+  "cohort": "analysis-integrated",
+  "kind": "analysis",
+  "started_utc": "2026-11-22T02:52:03.871852+00:00",
+  "finished_utc": "2026-11-22T02:52:25.593163+00:00",
+  "head_before": "067ca3a472b57ffff86b6cfb3f54c7bfa60ee45c",
+  "head_after": "067ca3a472b57ffff86b6cfb3f54c7bfa60ee45c",
+  "command": [
+    "/workspace/scratch/0bc03d5773e3/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+    "analyze",
+    "--fatal-infos",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+    "packages/quds_office_engine/test/word_zotero_writing_position_test.dart",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "packages/quds_office_editor/test/word_zotero_writing_position_test.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_cached_search_dialog.dart"
+  ],
+  "cwd": ".",
+  "selected_test_files": [],
+  "exit_code": 1,
+  "input_count": 16086,
+  "inputs_unchanged": true,
+  "input_differences": [],
+  "input_manifest": {
+    "path": "analysis-integrated-inputs.json.gz",
+    "gzip_sha256": "deaabfa6a0cea83c621d9300e5a6be507b95032f9f6716b33a01cc9f2a9e1076"
+  },
+  "logs": {
+    "analysis-integrated.stdout.txt.gz": {
+      "raw_sha256": "6b827243bc4d6d7efc5dd26849632d40b60e431bb033a1cac61507c3dac7832f",
+      "gzip_sha256": "9fdf482755b94e85d0578ef866ffed998a9353c95336bbf7ec5f03daac0a014e",
+      "raw_bytes": 720
+    },
+    "analysis-integrated.stderr.txt.gz": {
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzip_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "raw_bytes": 0
+    }
+  },
+  "runner_path": "run_local_checks_integrated.py",
+  "runner_sha256": "40f16d593c157f20378ef8784121ed2343c42948cdcf60841b7919020e5e9fd8",
+  "runtime": "Flutter 3.47.8 / Dart 3.13.7 Linux x64",
+  "changed_sources": {
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart": {
+      "sha256": "b5ddffec3204d795835fdcf50e23254dd75a5ca19c81e192a8aad22c36fb74f3",
+      "size": 101638
+    },
+    "packages/quds_office_engine/test/word_zotero_writing_position_test.dart": {
+      "sha256": "fea9ba3c824a10fc721b9fcc99cec41a294c020939cd5f2163a6453fea70112f",
+      "size": 22496
+    },
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": {
+      "sha256": "01ab971b8324c42e975f4bec2bb0e9e411c2d42a2553dd7f0b3e81de6841ecfa",
+      "size": 513515
+    },
+    "packages/quds_office_editor/test/word_zotero_writing_position_test.dart": {
+      "sha256": "742d6c68c5c73dd99a2227d4631c41707ce5465c457e4bc716c2cb28965a6488",
+      "size": 20795
+    },
+    "packages/quds_office_editor/example/lib/studio_mail_cached_search_dialog.dart": {
+      "sha256": "43c64c8254bb8a9dfb0fa986dbd09375d81afa119dd601160f4b1d910d6d517e",
+      "size": 58527
+    }
+  },
+  "test_summary": null,
+  "result_detail": null
+}

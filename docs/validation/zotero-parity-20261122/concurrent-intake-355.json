@@ -1,0 +1,1613 @@
+{
+  "github": {
+    "provider": "GitHub connector",
+    "observed_at_utc": "2026-11-22T02:46:53.615Z",
+    "pr355": {
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/355",
+      "number": 355,
+      "state": "closed",
+      "merged": true,
+      "draft": false,
+      "title": "Extend Word VBA formatting for existing table cells",
+      "head": "codex/word-vba-cell-formatting-20261122",
+      "head_sha": "49f43824196c4d373f991e442fac2e73e68c5f9f",
+      "base": "main",
+      "base_sha": "bcc55cb6e86e796056e2d75c3fdca50857dbf6e7",
+      "merge_commit_sha": "ceddcd888c37f64e37a8d8d1669daaea31384daf",
+      "commits": 6,
+      "changed_files": 73,
+      "additions": 3846,
+      "deletions": 64,
+      "merged_at": "2026-11-22T02:39:16Z"
+    },
+    "open_prs": [],
+    "mail_branch_prs": [],
+    "pr355_qualification_attribution": "The completed upstream branch record reports 6,614 distinct source-equivalent passes across 129 files, plus scoped analysis and VM/JavaScript/CLI checks. This audit reads that record; it does not independently rerun or add those cases to local Zotero acceptance counts."
+  },
+  "schema_version": 1,
+  "observed_at_utc": "2026-11-22T02:46:59.325378+00:00",
+  "audit_scope": "Read-only incoming-main/source/branch audit; no checkout, merge, commit, ref mutation, test execution or CI query. This addendum updates the earlier concurrent-intake snapshot without rewriting historical observations.",
+  "previous_main": "bcc55cb6e86e796056e2d75c3fdca50857dbf6e7",
+  "current_main": "ceddcd888c37f64e37a8d8d1669daaea31384daf",
+  "local_checkpoint_observed": "a08e25d0d417f90db3d328356bcf4b59cb71f2e0",
+  "incoming_commits": [
+    {
+      "sha": "ceddcd888c37f64e37a8d8d1669daaea31384daf",
+      "subject": "Merge Word VBA table-cell formatting (#355) [skip ci]"
+    },
+    {
+      "sha": "49f43824196c4d373f991e442fac2e73e68c5f9f",
+      "subject": "docs(vba-word): record local cell formatting qualification and source continuity [skip ci]"
+    },
+    {
+      "sha": "81d6023b30def58fda5be2279445a08b925d53a5",
+      "subject": "Merge latest remote main with Mail folder-scoped searches [skip ci]"
+    },
+    {
+      "sha": "ca4d7ea9d8e4850f3d5d451724c87e1e45cca3cd",
+      "subject": "test(vba-word): verify cell report preservation across native save metadata [skip ci]"
+    },
+    {
+      "sha": "75e067c9749de0f1acaf7214d28c61ace6b4f411",
+      "subject": "test(vba-word): assert refused cell edits against live model state [skip ci]"
+    },
+    {
+      "sha": "b140de98d97991623e9aeeb81472928fce6a35d2",
+      "subject": "fix(vba-word): isolate cell formatting and add portable report coverage [skip ci]"
+    },
+    {
+      "sha": "84427d975fca0ee8ed9ec59ce8476827cdff75ec",
+      "subject": "feat(vba-word): support guarded table-cell font and paragraph formatting [skip ci]"
+    }
+  ],
+  "incoming_commit_count": 7,
+  "incoming_files": [
+    {
+      "path": "docs/MACROS.md",
+      "status": "M",
+      "previous_blob": "9e680821dc61bdf6c3c303065d56d7563627483b",
+      "current_blob": "b67f025604b91856c44b020aeec90f55e251ebdc",
+      "additions": 35,
+      "deletions": 0
+    },
+    {
+      "path": "docs/VBA_PARITY_ROADMAP.md",
+      "status": "M",
+      "previous_blob": "6afcb549562b6498ee6c0c12bfbf15de03e65fb1",
+      "current_blob": "518015079d14884c2fd1bd0b5e693d705e066f61",
+      "additions": 29,
+      "deletions": 4
+    },
+    {
+      "path": "docs/VBA_WORD_MACROS.md",
+      "status": "M",
+      "previous_blob": "9ee2588011dee031c79b0952b3e65947bcf2f149",
+      "current_blob": "152a4fcc944bbf6ac3c8ef7df05748667e1d4d9f",
+      "additions": 32,
+      "deletions": 9
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/README.md",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "c4070fce5db588ffde7fb5437e5e115f7426b762",
+      "additions": 124,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/SHA256SUMS",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "61e0d8e19017ae6494744f30964a597bbbfb0084",
+      "additions": 56,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/analyzer-receipt.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "93db3a7873fe8444efce91bd4037e8915a42db01",
+      "additions": 22,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/cli-package-comparison.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "aef655b1c13328fb5658ccfd0948bcd1c298de8f",
+      "additions": 20,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/files.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "1be59e99e539a49f51bd5a1d0de01d1f44e4ac12",
+      "additions": 279,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/intake.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "d4c3741670fa0c405ad0948f0c661235e25034f9",
+      "additions": 112,
+      "deletions": 0
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/analyzer-receipt.json.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "79c20c539efa21ee4c1d0bff9aa63863908f5f0d",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/baseline-line-spacing-fixture-retry.jsonl.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "c3310928ec1896d973b414113562ccaea4091f24",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/baseline-line-spacing-fixture-retry.stderr.log.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/baseline-macro-suite.jsonl.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "f7b4835f5d483cc55b804c8c9863ebcbcaf432b8",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/baseline-macro-suite.stderr.log.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/baseline-source-manifest.json.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "2e9d1d3a979229f47b881dbd74e788c7d184c94e",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/checkpoint-cell-formatting.jsonl.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "aa002a321ccca014867047c94c3acccd3ad02a68",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/checkpoint-cell-formatting.stderr.log.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/checkpoint2-cell-formatting.jsonl.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "47b43b08d6a04f671c79c89254a2581fae6973e0",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/checkpoint2-cell-formatting.stderr.log.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/checkpoint2-portable-vm.stderr.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "3b7fe339893ceba6eaa4f2fbc312fde0222741dd",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/checkpoint2-portable-vm.stdout.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/checkpoint3-full-macro-suite.jsonl.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "4c971b83921b06c2550d1d1e596136decd24a362",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/checkpoint3-full-macro-suite.stderr.log.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/cli-compile-kernel.stderr.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/cli-compile-kernel.stdout.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "337615085f10b799e6cd8b21e92c97676c2a707f",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/cli-compile-word-vba.stderr.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/cli-compile-word-vba.stdout.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "2d5ff642786a7433bcea28231a9b38030f579e45",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/cli-compiled-word-table-formatting.json.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "d8bb201dc6062c9752e1af8a76b5135917ce684c",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/cli-fixture-probe.dart.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "4514799276c5b010eb7df9bfdcd4f846379df5fa",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/cli-fixture_probe.dart.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "4514799276c5b010eb7df9bfdcd4f846379df5fa",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/cli-inspect-output.stderr.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/cli-inspect-output.stdout.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "9189467f6b64f06685abffbd6e7a4d355fd87d76",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/cli-invalid-late-cell.bas.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "bb12d554ba54294088a3214f6b7ab763b63d67e5",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/cli-prepare.stderr.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/cli-prepare.stdout.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "f4c14bb14dfed4a662e0df21000021252252e4ab",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/cli-reject-late-cell.stderr.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "39e9de38d4f7d1fd9c6d38c98c8625bce4500758",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/cli-reject-late-cell.stdout.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/cli-run-word-vba.stderr.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/cli-run-word-vba.stdout.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "ff1603d5f1b4a13822713a35417ef54acb7461d0",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/cli-validate-word-vba.stderr.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/cli-validate-word-vba.stdout.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "59b4ec93a0e7854f2c4ce3c04a2899514e87747f",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/dev-native-cell-formatting.jsonl.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "e370db0afac3e1bed4e815a3a2d53a9019109d30",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/dev-native-cell-formatting.stderr.log.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/final-cell-formatting-integration.jsonl.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "5177a019a8502d88668434b49edf988f8a9c2d24",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/final-cell-formatting-integration.stderr.log.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/final-cell-formatting-portable-compile-js.stderr.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/final-cell-formatting-portable-compile-js.stdout.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "956750fb5fa7b9729a602821ad721668a886407c",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/final-cell-formatting-portable-node.stderr.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/final-cell-formatting-portable-node.stdout.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "3b1c33b6553899f7c12e2610c17d881e648652d0",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/final-cell-formatting-portable-vm.stderr.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/final-cell-formatting-portable-vm.stdout.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "fe56823ee78eb7ae7839ca8329259dfed8d26089",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/final-native-word-regressions.jsonl.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "7cdb4bc572c193cfdbf0857b17e2ab0eff85721d",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/final-native-word-regressions.stderr.log.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/final-qualified-cases.json.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "844d25df56fd9c34b85bc30db497a50e6bf1a8a7",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/final-source-manifest.json.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "7c35478310c3ca1949c62e49e73e244911d896df",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/native-development-overlay-manifest.json.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "b5556323056fe4205c8ce78df0aaeec5d9f641c0",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/run_cell_formatting_cli.py.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "51d987454139cad0a990521f873871c574fa930e",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/run_cell_formatting_portable.py.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "a547f720f3e71f84e357323995f37911b4bb9e32",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/logs/run_macro_validation.py.gz",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "3a1e1f2fa791ed17f52023e938375096ee57ca7a",
+      "additions": null,
+      "deletions": null
+    },
+    {
+      "path": "docs/validation/word-vba-cell-formatting-20261122/validation.json",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "0c475fde5ae77b68c870fc62f1fb70096d588766",
+      "additions": 1037,
+      "deletions": 0
+    },
+    {
+      "path": "docs/vba-word-macros-details.md",
+      "status": "M",
+      "previous_blob": "d9f3b53a0b1cae46048a238a9a154c5b8827380e",
+      "current_blob": "09eb71174cfcebb2dc02626c8591f09953d90df4",
+      "additions": 121,
+      "deletions": 9
+    },
+    {
+      "path": "packages/quds_office_engine/CHANGELOG.md",
+      "status": "M",
+      "previous_blob": "3ba0ec735bcb6ebf4078cc64e80781cf8057c1fb",
+      "current_blob": "08f840c25a359a55e8e564b305a79203498553df",
+      "additions": 13,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/word_table_formatting.bas",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "5f700b8c1a7c6ee6513c11fe48038beb212a5fa4",
+      "additions": 48,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_operations.dart",
+      "status": "M",
+      "previous_blob": "1d00960f328bbd355ce3e204591aa1b39c6c4233",
+      "current_blob": "c3c844d9cca012ed3ae91d2e4158b5c15f37d8db",
+      "additions": 6,
+      "deletions": 5
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+      "status": "M",
+      "previous_blob": "a4bfcb52386c8c462e0845912543c33d89629314",
+      "current_blob": "e0457d9e0c9430258e51d4a960a8691360783ca3",
+      "additions": 28,
+      "deletions": 5
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+      "status": "M",
+      "previous_blob": "80cb771c7e422d4141e2a71f328da4ff035be3e4",
+      "current_blob": "fedb5b7d77fb2361e57e67732f84acb1511c51c5",
+      "additions": 59,
+      "deletions": 7
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/automation/operations/word_table_cell_text_steps.dart",
+      "status": "M",
+      "previous_blob": "3a7723ccc8cb94e4d831a785eb8edccd0c14986b",
+      "current_blob": "616f85e92c36a2291e57695a498fe998072e159e",
+      "additions": 29,
+      "deletions": 18
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_macro_word_cell_formatting_test.dart",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "605e34ccbbae172f0448651d90a40cb8b6a571a6",
+      "additions": 271,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_cell_formatting_integration_test.dart",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "725f64e29badb9176a3fa8e93448bec845ae81bb",
+      "additions": 743,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_cell_formatting_test.dart",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "930efd474459577046c927a0afc798db2e703ac2",
+      "additions": 468,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_font_colors_test.dart",
+      "status": "M",
+      "previous_blob": "7669fcbf0fad1aa268c1c33e2e2bed2a301528db",
+      "current_blob": "ee0fdc1accc14a25ee98ebff79216e60bc31393f",
+      "additions": 5,
+      "deletions": 4
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_table_cells_test.dart",
+      "status": "M",
+      "previous_blob": "7cb761520b85e94f21e053844bd46d3e3e49daca",
+      "current_blob": "b4290db0c9f96f33dfba86f8c63a7fac2eef22ac",
+      "additions": 3,
+      "deletions": 3
+    },
+    {
+      "path": "packages/quds_office_engine/tool/macros/web_vba_word_cell_formatting_smoke.dart",
+      "status": "A",
+      "previous_blob": "0000000000000000000000000000000000000000",
+      "current_blob": "93e820c8c88dfbde42b14d9f1cca2fbbcd34bf93",
+      "additions": 306,
+      "deletions": 0
+    }
+  ],
+  "incoming_file_count": 73,
+  "incoming_text_additions": 3846,
+  "incoming_text_deletions": 64,
+  "incoming_production_libraries": [
+    "packages/quds_office_engine/lib/src/automation/office_operations.dart",
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+    "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+    "packages/quds_office_engine/lib/src/automation/operations/word_table_cell_text_steps.dart"
+  ],
+  "overlap_with_own_paths_since_intake": [
+    "packages/quds_office_engine/CHANGELOG.md"
+  ],
+  "unchanged_native_word_model_tree": true,
+  "unchanged_editor_tree": true,
+  "unchanged_dependency_manifests": true,
+  "remote_branches": [
+    {
+      "ref": "origin/codex/word-vba-authoring-20261121",
+      "sha": "cf06b018ec125ce3b5abfda41a7fbbdcf7d30a47",
+      "ahead_current_main": 0,
+      "behind_current_main": 137,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "origin/codex/word-vba-cell-formatting-20261122",
+      "sha": "49f43824196c4d373f991e442fac2e73e68c5f9f",
+      "ahead_current_main": 0,
+      "behind_current_main": 1,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "origin/codex/word-vba-comparison-colors-20261121",
+      "sha": "e3c4550b34a9a07de2a97b84b67ab6aecaa5a377",
+      "ahead_current_main": 0,
+      "behind_current_main": 46,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "origin/codex/word-vba-compatibility-20261121",
+      "sha": "3058d36c5354d46bde418555d59282116cce1e26",
+      "ahead_current_main": 0,
+      "behind_current_main": 94,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "origin/codex/zotero-dispatch-recovery-20261121",
+      "sha": "32ef843db3a8192fe0add085e1ee173e18f4d462",
+      "ahead_current_main": 0,
+      "behind_current_main": 91,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "origin/codex/zotero-footnote-separators-20261121",
+      "sha": "a70c0e7af251d737dc7639f44a48777bbea1bf51",
+      "ahead_current_main": 0,
+      "behind_current_main": 82,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "origin/codex/zotero-host-ownership-20261121",
+      "sha": "05cb866e6e5aaee95dae8b03da2892fcf633a84b",
+      "ahead_current_main": 0,
+      "behind_current_main": 82,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "origin/codex/zotero-main-qualification-20261121",
+      "sha": "e2a1ed6073556d24194004221c545166b17c2d4e",
+      "ahead_current_main": 0,
+      "behind_current_main": 37,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "origin/codex/zotero-note-layout-20261121",
+      "sha": "2089e1e35a8ba81ea7f0a077b348f93ca70953c8",
+      "ahead_current_main": 0,
+      "behind_current_main": 116,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "origin/codex/zotero-odt-roundtrip-20261121",
+      "sha": "05072dc2d59d0fa4ea97de4d6a842700ef333fab",
+      "ahead_current_main": 0,
+      "behind_current_main": 131,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "origin/codex/zotero-select-navigation-20261122",
+      "sha": "8c1b8da71bb910d4025aa179dc56290cf1a8e72a",
+      "ahead_current_main": 0,
+      "behind_current_main": 28,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "origin/codex/zotero-shortcut-host-recovery-20261121",
+      "sha": "2168011b6104f680100b87404bc1bd409f724939",
+      "ahead_current_main": 0,
+      "behind_current_main": 91,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "origin/codex/zotero-source-continuity-20261121-2135",
+      "sha": "c4c16d91d62ded0c341bee95e98de894de70483f",
+      "ahead_current_main": 0,
+      "behind_current_main": 91,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "origin/work/mail-folder-scoped-search-20261122",
+      "sha": "ff30d1064a052abbfbcdc99745ff66f8bc980aea",
+      "ahead_current_main": 0,
+      "behind_current_main": 8,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "origin/work/mail-folder-search-20261122",
+      "sha": "936ea62ae9be603830e8e13ee3cb90a03f3be554",
+      "ahead_current_main": 13,
+      "behind_current_main": 0,
+      "disposition": "retain_active_qualification_pending_branch",
+      "ahead_commits": [
+        {
+          "sha": "936ea62ae9be603830e8e13ee3cb90a03f3be554",
+          "subject": "merge: record latest remote main ancestry after Word integration [skip ci]"
+        },
+        {
+          "sha": "1d26ac332c17f3633dd2720f7767b02ab1b748ad",
+          "subject": "merge: integrate current Word and Zotero source with Mail recovery [skip ci]"
+        },
+        {
+          "sha": "fe0f9ff5f0eb6d361d307bd99d03f3c0365b786e",
+          "subject": "merge(mail): reconcile published folder scopes with migration-safe recovery [skip ci]"
+        },
+        {
+          "sha": "d1c9673c7caa24a3dc41f9255d2916846d6cdbaf",
+          "subject": "merge: retain completed Mail folder-search main during Zotero qualification [skip ci]"
+        },
+        {
+          "sha": "da52f5e9f89918f7e6a9f4c4abaf07bf65ab726a",
+          "subject": "test(zotero): cover passive writing targets and document position behavior [skip ci]"
+        },
+        {
+          "sha": "d2bf64462b43abc16543de3dedc3da76f6bc4b1d",
+          "subject": "fix(zotero): preserve writing selections after native refresh and style changes [skip ci]"
+        },
+        {
+          "sha": "b0d5f867b3bdc0ee61549a09c09f942db0f68ee1",
+          "subject": "feat(mail): complete folder selection, coverage and recovery workflows [skip ci]"
+        },
+        {
+          "sha": "4d0b1ea1669b5509d27921ed16fc86dece11a260",
+          "subject": "feat(zotero): track native writing positions through citation updates [skip ci]"
+        },
+        {
+          "sha": "cb6dbcdcdb6dfbcd2aa186cf0d1a98b2953b526e",
+          "subject": "feat(mail): resolve exact folder sets through guarded local search sessions [skip ci]"
+        },
+        {
+          "sha": "b4fd1ac4ffb2c65bd0805306781ce1406ddfb905",
+          "subject": "feat(mail): persist exact folder scopes and bounded retained-header queries [skip ci]"
+        },
+        {
+          "sha": "2ea779693ff25f67fd76b658393244fe2188153a",
+          "subject": "docs(zotero): verify historical intake and define writing-position milestone [skip ci]"
+        },
+        {
+          "sha": "b12205e4235c7c56b14445031d1a0a4a09cac3c3",
+          "subject": "docs(zotero): capture reconciled parity baseline and remote refs [skip ci]"
+        },
+        {
+          "sha": "34358000669d52a3f18664586aa4c3223d7b9caf",
+          "subject": "docs(mail): record reconciled intake and folder-search acceptance [skip ci]"
+        }
+      ],
+      "changed_paths_since_main": [
+        {
+          "path": "docs/roadmaps/mail/README.md",
+          "status": "M",
+          "previous_blob": "7c714793823c93d1998d66d1dd858a68603c30d9",
+          "current_blob": "8fdca1882df33f53ee907446344b927aa8b98859",
+          "additions": 12,
+          "deletions": 11
+        },
+        {
+          "path": "docs/roadmaps/mail/folder-saved-search.md",
+          "status": "A",
+          "previous_blob": "0000000000000000000000000000000000000000",
+          "current_blob": "dba53dda57621a80fb3f0122b09e3c0744cbd260",
+          "additions": 165,
+          "deletions": 0
+        },
+        {
+          "path": "docs/roadmaps/mail/folder-scoped-search.md",
+          "status": "M",
+          "previous_blob": "ecc9be16cfd1b6a4cad320a86c9782724c0161c7",
+          "current_blob": "2bc7a0e285998d038050d878827aa3b6b90dca12",
+          "additions": 10,
+          "deletions": 0
+        },
+        {
+          "path": "docs/roadmaps/mail/implementation-plan.md",
+          "status": "M",
+          "previous_blob": "9e9cfdce1cb1f87feddeb2fe07b8c73e4e5daa68",
+          "current_blob": "d443fa63d560f85eaf825267471cb732e9d811bd",
+          "additions": 7,
+          "deletions": 0
+        },
+        {
+          "path": "docs/roadmaps/mail/keyboard-triage.md",
+          "status": "M",
+          "previous_blob": "99e4a22d1fe9108226e8bf2e19d2f3f511dfc155",
+          "current_blob": "18bbff7160435a244728b93c1a2c1e22d96575ff",
+          "additions": 7,
+          "deletions": 5
+        },
+        {
+          "path": "docs/roadmaps/mail/saved-searches.md",
+          "status": "M",
+          "previous_blob": "ebe1cbfcc9b1a2a86b86cd17b415254ca1006722",
+          "current_blob": "16ba239521c77c504862bf9370501c41f8a593c0",
+          "additions": 6,
+          "deletions": 2
+        },
+        {
+          "path": "docs/roadmaps/mail/status.md",
+          "status": "M",
+          "previous_blob": "9843e1c6569f956ddd8fb77c1edfec98370b9172",
+          "current_blob": "08177b5f4c3b34cdea6b2c47dfbc2eef108b95f7",
+          "additions": 18,
+          "deletions": 17
+        },
+        {
+          "path": "docs/roadmaps/zotero/word-processor-parity.md",
+          "status": "M",
+          "previous_blob": "c197a4c4195b163f5d1a5967dccc433de50f3e3f",
+          "current_blob": "758101e6778baf801e03a414900690135b87f8bf",
+          "additions": 22,
+          "deletions": 0
+        },
+        {
+          "path": "docs/validation/mail-folder-search-20261122/README.md",
+          "status": "A",
+          "previous_blob": "0000000000000000000000000000000000000000",
+          "current_blob": "265b5d324ebf1d3f3ce65b66e7ce8af0f9a53f24",
+          "additions": 92,
+          "deletions": 0
+        },
+        {
+          "path": "docs/validation/zotero-parity-20261122/README.md",
+          "status": "A",
+          "previous_blob": "0000000000000000000000000000000000000000",
+          "current_blob": "9f37cfd2f666c4cc055f349bc6ef7d3d1d46e109",
+          "additions": 36,
+          "deletions": 0
+        },
+        {
+          "path": "docs/validation/zotero-parity-20261122/historical-intake-equivalence.json",
+          "status": "A",
+          "previous_blob": "0000000000000000000000000000000000000000",
+          "current_blob": "d69d84113369acac4773829a5cebe9c185e49d49",
+          "additions": 377,
+          "deletions": 0
+        },
+        {
+          "path": "docs/validation/zotero-parity-20261122/historical-intake-equivalence.md",
+          "status": "A",
+          "previous_blob": "0000000000000000000000000000000000000000",
+          "current_blob": "7848aef38bfc6948ef5c91656ed71bc5340dc88c",
+          "additions": 26,
+          "deletions": 0
+        },
+        {
+          "path": "docs/validation/zotero-parity-20261122/intake.json",
+          "status": "A",
+          "previous_blob": "0000000000000000000000000000000000000000",
+          "current_blob": "25e9e6a967bd1aabf2812abed30a20d23e3b27b8",
+          "additions": 2666,
+          "deletions": 0
+        },
+        {
+          "path": "docs/zotero-support.md",
+          "status": "M",
+          "previous_blob": "5da777e8b9f4d6156ef081cc5d572a3d72b31c20",
+          "current_blob": "0f3d79fb1e0263e266c7b7eb92f633026781da90",
+          "additions": 8,
+          "deletions": 0
+        },
+        {
+          "path": "packages/quds_mail_core/CHANGELOG.md",
+          "status": "M",
+          "previous_blob": "b15ea7d83911aa9dfdc85c6679259418600fac9b",
+          "current_blob": "985e56b308a666bdc2710314fe914fd5cba43f69",
+          "additions": 8,
+          "deletions": 0
+        },
+        {
+          "path": "packages/quds_mail_core/lib/src/search/saved_header_search.dart",
+          "status": "M",
+          "previous_blob": "9a4ce28592331dbd6696889144be148ddd2ff562",
+          "current_blob": "5c26f257759e17a27e09ae4f654e02560fc4054e",
+          "additions": 79,
+          "deletions": 32
+        },
+        {
+          "path": "packages/quds_mail_core/test/saved_header_search_folders_test.dart",
+          "status": "A",
+          "previous_blob": "0000000000000000000000000000000000000000",
+          "current_blob": "8486cea5fbd627f2d452056057de8dca41d2ec0e",
+          "additions": 207,
+          "deletions": 0
+        },
+        {
+          "path": "packages/quds_mail_core/test/saved_header_search_test.dart",
+          "status": "M",
+          "previous_blob": "7e5a353b26cd9c1fbaac6b87979517b307e3ee0d",
+          "current_blob": "a9552b3d3f7522874e1e999571d34d485ecc1a2b",
+          "additions": 23,
+          "deletions": 13
+        },
+        {
+          "path": "packages/quds_mail_store/CHANGELOG.md",
+          "status": "M",
+          "previous_blob": "4f1e62f5dcb5f8d16c45eae93101569d71b0f957",
+          "current_blob": "4940fd9b0ff2214713108a9d5c194c8473835bbe",
+          "additions": 11,
+          "deletions": 0
+        },
+        {
+          "path": "packages/quds_mail_store/lib/src/cached_header_search.dart",
+          "status": "M",
+          "previous_blob": "512ed59dc19c8418facdbcbb30ac0af810a09107",
+          "current_blob": "9f238f883a02053a6291458dcc467e0e7d5eaa44",
+          "additions": 207,
+          "deletions": 70
+        },
+        {
+          "path": "packages/quds_mail_store/lib/src/saved_header_searches.dart",
+          "status": "M",
+          "previous_blob": "2b5c48aaf55a19b1c1fb856d5a0c42bb670b8db5",
+          "current_blob": "20ea07a3fb09c9fd6ffa9bbbba1ba5a3d2a1b474",
+          "additions": 47,
+          "deletions": 34
+        },
+        {
+          "path": "packages/quds_mail_store/lib/src/schema/database.dart",
+          "status": "M",
+          "previous_blob": "c8907cae295405fc81a94a7e00bb114e9295cc09",
+          "current_blob": "aeeca7d14b3988f015532f93478ff3a4a8e3faba",
+          "additions": 44,
+          "deletions": 5
+        },
+        {
+          "path": "packages/quds_mail_store/test/cached_header_search_folders_test.dart",
+          "status": "A",
+          "previous_blob": "0000000000000000000000000000000000000000",
+          "current_blob": "a5f0b64d98f48353d705c4b2db026773ed26d7cc",
+          "additions": 404,
+          "deletions": 0
+        },
+        {
+          "path": "packages/quds_mail_store/test/cached_header_search_test.dart",
+          "status": "M",
+          "previous_blob": "ee01e18538b9a7844e4f1307f8c235fe6461cb1d",
+          "current_blob": "90230840ef50e9b76010bd14bafd992437edeb8a",
+          "additions": 119,
+          "deletions": 77
+        },
+        {
+          "path": "packages/quds_mail_store/test/compose_settings_test.dart",
+          "status": "M",
+          "previous_blob": "b0a9d4133155b1f32c7601661d529a60bcc17d80",
+          "current_blob": "f16f78f4778bb830235e40066e91b82e3f951708",
+          "additions": 1,
+          "deletions": 1
+        },
+        {
+          "path": "packages/quds_mail_store/test/flag_reconciliation_test.dart",
+          "status": "M",
+          "previous_blob": "aa585637912e5df2ffdab71beffab3ede9c08a35",
+          "current_blob": "5556ad82a4f2d16f1ed6df735f177048cc9e5f92",
+          "additions": 1,
+          "deletions": 1
+        },
+        {
+          "path": "packages/quds_mail_store/test/migration_test.dart",
+          "status": "M",
+          "previous_blob": "a9ac801e271ae7b91f9a590bd7208735f079b4ef",
+          "current_blob": "850acc4c6469e4618a076d5d656c48c9e07ddc7e",
+          "additions": 8,
+          "deletions": 8
+        },
+        {
+          "path": "packages/quds_mail_store/test/saved_header_search_folders_test.dart",
+          "status": "A",
+          "previous_blob": "0000000000000000000000000000000000000000",
+          "current_blob": "c437ce539663b1c0f23a89f8d23448728d9ef454",
+          "additions": 381,
+          "deletions": 0
+        },
+        {
+          "path": "packages/quds_mail_store/test/saved_header_searches_test.dart",
+          "status": "M",
+          "previous_blob": "83ccb14b5cf9c6fb223b52475fad5c8ff8142005",
+          "current_blob": "1fa2a7eaca261ad9929a5c9ca9d3157290bb24e4",
+          "additions": 84,
+          "deletions": 66
+        },
+        {
+          "path": "packages/quds_mail_store/test/saved_search_folder_migration_test.dart",
+          "status": "A",
+          "previous_blob": "0000000000000000000000000000000000000000",
+          "current_blob": "f0908cb4b5a96cc8550a3e47a84909aa9fe3a034",
+          "additions": 382,
+          "deletions": 0
+        },
+        {
+          "path": "packages/quds_mail_store/test/sync_mailboxes_test.dart",
+          "status": "M",
+          "previous_blob": "19fd5e3341f2ba53b38050372c6fe42bc0fef86f",
+          "current_blob": "c100934263ca59b5a087abac2302ac007dbcd513",
+          "additions": 4,
+          "deletions": 2
+        },
+        {
+          "path": "packages/quds_office_editor/CHANGELOG.md",
+          "status": "M",
+          "previous_blob": "ddf1a282699a62e7b434c1e3f2280c9e65c8e82e",
+          "current_blob": "a1422f7fea312141598ff6e19535fda2ca48d337",
+          "additions": 12,
+          "deletions": 0
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_cached_search.dart",
+          "status": "M",
+          "previous_blob": "de5d500579c598a79286bf477d7909554274b698",
+          "current_blob": "66c79d73d1bee9710c72a1165f78844dda4f9279",
+          "additions": 385,
+          "deletions": 40
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_cached_search_dialog.dart",
+          "status": "M",
+          "previous_blob": "1e7c85fbe31b673062ee0390fe5b657928981f1c",
+          "current_blob": "439d653abd661de6b55fdc2245fb7f4c8c24b195",
+          "additions": 194,
+          "deletions": 197
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_cached_search_refresh.dart",
+          "status": "M",
+          "previous_blob": "c29e55c6474df2480f7d33419765ed5771ed9498",
+          "current_blob": "8603f3ee14fce5a6fbd762c30c8bf9004f4172ef",
+          "additions": 8,
+          "deletions": 3
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_mailbox_store.dart",
+          "status": "M",
+          "previous_blob": "a129922a276fb14d1de330a228a979621f8c1029",
+          "current_blob": "c0bffb2759951703480925e6ca6d78e240b1aef9",
+          "additions": 58,
+          "deletions": 15
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_search_folder_picker.dart",
+          "status": "A",
+          "previous_blob": "0000000000000000000000000000000000000000",
+          "current_blob": "93e33b95a3ea0f309fecff959116f3c4d265e026",
+          "additions": 238,
+          "deletions": 0
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_search_folder_strings.dart",
+          "status": "A",
+          "previous_blob": "0000000000000000000000000000000000000000",
+          "current_blob": "499f374255b4edba85f6b30e7389c4e1a30d93dd",
+          "additions": 91,
+          "deletions": 0
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_cached_search_dialog_test.dart",
+          "status": "M",
+          "previous_blob": "1438c86c6411283b6ebc1c66f3e571ab54417053",
+          "current_blob": "773cee7bc91116b1d73418bdf1c398a3892a37e2",
+          "additions": 8,
+          "deletions": 2
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_folder_picker_test.dart",
+          "status": "M",
+          "previous_blob": "8eb554be41f5f5fe04c83d8f9c6f9f261049db4f",
+          "current_blob": "836ef544c02ce83bbf7f6dd26c3e42be3b84edce",
+          "additions": 57,
+          "deletions": 39
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_folder_search_dialog_test.dart",
+          "status": "A",
+          "previous_blob": "0000000000000000000000000000000000000000",
+          "current_blob": "400d66589fc47f2553676e2a72f91364d514c4a0",
+          "additions": 381,
+          "deletions": 0
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_folder_search_lifecycle_test.dart",
+          "status": "A",
+          "previous_blob": "0000000000000000000000000000000000000000",
+          "current_blob": "aed3c33edffc76de9aef4169dd0b2cf4a932762d",
+          "additions": 392,
+          "deletions": 0
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_folder_search_test.dart",
+          "status": "A",
+          "previous_blob": "0000000000000000000000000000000000000000",
+          "current_blob": "b58a2e6d59d35f386f2f2f1034e92fb7890dc702",
+          "additions": 913,
+          "deletions": 0
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_saved_search_dialog_test.dart",
+          "status": "M",
+          "previous_blob": "48a375ab32f3ebba5abdc610aedb10591aec010e",
+          "current_blob": "cb7119f9294145b04e58fa7e58137796d185ad8a",
+          "additions": 51,
+          "deletions": 40
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_search_folder_picker_test.dart",
+          "status": "A",
+          "previous_blob": "0000000000000000000000000000000000000000",
+          "current_blob": "dd63a712fed7df2d50e65dcbe7df4b6613b6ae15",
+          "additions": 293,
+          "deletions": 0
+        },
+        {
+          "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+          "status": "M",
+          "previous_blob": "f3d8095481c55d0b6680b414dd1b2e1cd43efdbc",
+          "current_blob": "bf2ea9369f5c7cd4409e9f0bfda8f64868f9ae5c",
+          "additions": 142,
+          "deletions": 28
+        },
+        {
+          "path": "packages/quds_office_editor/test/word_zotero_writing_position_test.dart",
+          "status": "A",
+          "previous_blob": "0000000000000000000000000000000000000000",
+          "current_blob": "07c0ec6582bae62172fa7f8e0bf7a6cf4383819f",
+          "additions": 600,
+          "deletions": 0
+        },
+        {
+          "path": "packages/quds_office_engine/CHANGELOG.md",
+          "status": "M",
+          "previous_blob": "08f840c25a359a55e8e564b305a79203498553df",
+          "current_blob": "b6a5c59ca7ecfc5ca131ef562e7787e38a43ebae",
+          "additions": 6,
+          "deletions": 0
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+          "status": "M",
+          "previous_blob": "bdc12d6e6e7a2508fe9ade5d4803c32d323a444d",
+          "current_blob": "74a3fb0f3f84ddc410222f554d517b4512a582f7",
+          "additions": 250,
+          "deletions": 8
+        },
+        {
+          "path": "packages/quds_office_engine/test/word_zotero_writing_position_test.dart",
+          "status": "A",
+          "previous_blob": "0000000000000000000000000000000000000000",
+          "current_blob": "077f49a46f62c65fb6423c816f17cd3331c9b75b",
+          "additions": 586,
+          "deletions": 0
+        }
+      ],
+      "qualification_document": "docs/validation/mail-folder-search-20261122/README.md",
+      "qualification_document_blob": "265b5d324ebf1d3f3ce65b66e7ce8af0f9a53f24",
+      "reason": "Latest record explicitly says the worktree is not merge-qualified while reconciliation is in progress. It now preserves published schema11, adds schema12, retains folderScopes compatibility and the 200-folder limit; the prior incompatible schema11 report applies only to the older captured head.",
+      "latest_shared_zotero_checkpoint": "d1c9673c7caa24a3dc41f9255d2916846d6cdbaf",
+      "contains_latest_local_checkpoint": false
+    },
+    {
+      "ref": "origin/work/mail-keyboard-triage-20261121",
+      "sha": "08d034d876073e2afc881dbfc11ba791acde3d67",
+      "ahead_current_main": 0,
+      "behind_current_main": 42,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "origin/work/mail-live-search-20261121",
+      "sha": "c3d55be30d91694b1a427d261cddbe47b1dd5eec",
+      "ahead_current_main": 0,
+      "behind_current_main": 116,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "origin/work/mail-range-selection-tests-20261121",
+      "sha": "5c7a385c5de40394d9eed736c5a2d975535c3df3",
+      "ahead_current_main": 0,
+      "behind_current_main": 90,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "origin/work/mail-sync-address-search-20261121",
+      "sha": "33d8f956ec2ed1dfd748e1d7ccbc5add053ff565",
+      "ahead_current_main": 0,
+      "behind_current_main": 93,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "upstream/ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "ahead_current_main": 0,
+      "behind_current_main": 3516,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "upstream/cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "ahead_current_main": 0,
+      "behind_current_main": 3509,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "upstream/cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "ahead_current_main": 0,
+      "behind_current_main": 3519,
+      "disposition": "already_ancestor"
+    },
+    {
+      "ref": "upstream/main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "ahead_current_main": 0,
+      "behind_current_main": 3503,
+      "disposition": "already_ancestor"
+    }
+  ],
+  "branch_counts": {
+    "captured": 23,
+    "ahead": 1,
+    "already_ancestor": 22
+  },
+  "repository_local_dependency_audit": {
+    "method": "Recursively parse import/export/part directives, including every conditional URI, resolving repository-local package roots from existing package_config.json. Skip SDK and external dependency sources; no source execution. This conservatively checks local compile-graph reachability, not exact compiler output.",
+    "closures": {
+      "engine_zotero": {
+        "root_count": 56,
+        "roots": [
+          "packages/quds_office_engine/test/odf_zotero_ownership_test.dart",
+          "packages/quds_office_engine/test/odf_zotero_preferences_test.dart",
+          "packages/quds_office_engine/test/odf_zotero_reference_marks_test.dart",
+          "packages/quds_office_engine/test/odf_zotero_resource_test.dart",
+          "packages/quds_office_engine/test/odt_merged_table_zotero_test.dart",
+          "packages/quds_office_engine/test/odt_zotero_export_lifecycle_test.dart",
+          "packages/quds_office_engine/test/odt_zotero_image_lifecycle_test.dart",
+          "packages/quds_office_engine/test/odt_zotero_position_guard_test.dart",
+          "packages/quds_office_engine/test/odt_zotero_table_geometry_test.dart",
+          "packages/quds_office_engine/test/odt_zotero_writer_test.dart",
+          "packages/quds_office_engine/test/word_zotero_add_note_test.dart",
+          "packages/quds_office_engine/test/word_zotero_adjacent_citations_test.dart",
+          "packages/quds_office_engine/test/word_zotero_bibliography_layout_test.dart",
+          "packages/quds_office_engine/test/word_zotero_bibliography_style_fidelity_test.dart",
+          "packages/quds_office_engine/test/word_zotero_caret_test.dart",
+          "packages/quds_office_engine/test/word_zotero_citing_test.dart",
+          "packages/quds_office_engine/test/word_zotero_document_data_test.dart",
+          "packages/quds_office_engine/test/word_zotero_formatted_bibliography_test.dart",
+          "packages/quds_office_engine/test/word_zotero_multiparagraph_test.dart",
+          "packages/quds_office_engine/test/word_zotero_nested_note_tables_test.dart",
+          "packages/quds_office_engine/test/word_zotero_nested_table_test.dart",
+          "packages/quds_office_engine/test/word_zotero_nested_tables_integration_test.dart",
+          "packages/quds_office_engine/test/word_zotero_note_image_test.dart",
+          "packages/quds_office_engine/test/word_zotero_note_images_integration_test.dart",
+          "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+          "packages/quds_office_engine/test/word_zotero_note_list_test.dart",
+          "packages/quds_office_engine/test/word_zotero_note_table_test.dart",
+          "packages/quds_office_engine/test/word_zotero_note_tables_integration_test.dart",
+          "packages/quds_office_engine/test/word_zotero_preference_flow_test.dart",
+          "packages/quds_office_engine/test/word_zotero_research_target_test.dart",
+          "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart",
+          "packages/quds_office_engine/test/word_zotero_scaling_test.dart",
+          "packages/quds_office_engine/test/word_zotero_simple_field_test.dart",
+          "packages/quds_office_engine/test/word_zotero_source_identity_test.dart",
+          "packages/quds_office_engine/test/word_zotero_style_preferences_review_test.dart",
+          "packages/quds_office_engine/test/word_zotero_table_cell_replacement_test.dart",
+          "packages/quds_office_engine/test/word_zotero_test.dart",
+          "packages/quds_office_engine/test/word_zotero_transfer_session_test.dart",
+          "packages/quds_office_engine/test/word_zotero_transfer_test.dart",
+          "packages/quds_office_engine/test/word_zotero_writing_position_test.dart",
+          "packages/quds_office_engine/test/zotero_add_note_protocol_test.dart",
+          "packages/quds_office_engine/test/zotero_all_caps_test.dart",
+          "packages/quds_office_engine/test/zotero_backoff_state_test.dart",
+          "packages/quds_office_engine/test/zotero_catalog_query_test.dart",
+          "packages/quds_office_engine/test/zotero_citing_test.dart",
+          "packages/quds_office_engine/test/zotero_client_test.dart",
+          "packages/quds_office_engine/test/zotero_formatted_text_test.dart",
+          "packages/quds_office_engine/test/zotero_identity_client_test.dart",
+          "packages/quds_office_engine/test/zotero_item_children_test.dart",
+          "packages/quds_office_engine/test/zotero_item_details_test.dart",
+          "packages/quds_office_engine/test/zotero_metadata_batch_test.dart",
+          "packages/quds_office_engine/test/zotero_paragraph_runs_test.dart",
+          "packages/quds_office_engine/test/zotero_saved_search_test.dart",
+          "packages/quds_office_engine/test/zotero_tag_catalog_test.dart",
+          "packages/quds_office_engine/test/zotero_tag_filter_test.dart",
+          "packages/quds_office_engine/test/zotero_transfer_protocol_test.dart"
+        ],
+        "repository_local_file_count": 442,
+        "sorted_path_list_sha256": "7bfccc428932c13f696ef6a42554b33bb71dc4656dca4b254016a609671d78ea",
+        "incoming_production_intersection": [],
+        "missing_local_paths": []
+      },
+      "editor_zotero": {
+        "root_count": 53,
+        "roots": [
+          "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart",
+          "packages/quds_office_editor/test/word_zotero_adjacent_citations_controller_test.dart",
+          "packages/quds_office_editor/test/word_zotero_backoff_session_test.dart",
+          "packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart",
+          "packages/quds_office_editor/test/word_zotero_catalog_citing_test.dart",
+          "packages/quds_office_editor/test/word_zotero_catalog_query_test.dart",
+          "packages/quds_office_editor/test/word_zotero_children_dialog_test.dart",
+          "packages/quds_office_editor/test/word_zotero_children_test.dart",
+          "packages/quds_office_editor/test/word_zotero_citing_controller_test.dart",
+          "packages/quds_office_editor/test/word_zotero_citing_dialog_test.dart",
+          "packages/quds_office_editor/test/word_zotero_collection_pagination_test.dart",
+          "packages/quds_office_editor/test/word_zotero_composer_test.dart",
+          "packages/quds_office_editor/test/word_zotero_connected_alias_test.dart",
+          "packages/quds_office_editor/test/word_zotero_controller_test.dart",
+          "packages/quds_office_editor/test/word_zotero_dialog_scaling_test.dart",
+          "packages/quds_office_editor/test/word_zotero_dialog_test.dart",
+          "packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+          "packages/quds_office_editor/test/word_zotero_document_actions_test.dart",
+          "packages/quds_office_editor/test/word_zotero_document_reuse_test.dart",
+          "packages/quds_office_editor/test/word_zotero_document_source_picker_test.dart",
+          "packages/quds_office_editor/test/word_zotero_document_sources_test.dart",
+          "packages/quds_office_editor/test/word_zotero_field_at_caret_test.dart",
+          "packages/quds_office_editor/test/word_zotero_format_test.dart",
+          "packages/quds_office_editor/test/word_zotero_import_search_test.dart",
+          "packages/quds_office_editor/test/word_zotero_library_details_test.dart",
+          "packages/quds_office_editor/test/word_zotero_multiparagraph_controller_test.dart",
+          "packages/quds_office_editor/test/word_zotero_navigation_dialog_test.dart",
+          "packages/quds_office_editor/test/word_zotero_navigation_pane_test.dart",
+          "packages/quds_office_editor/test/word_zotero_navigation_test.dart",
+          "packages/quds_office_editor/test/word_zotero_nested_table_controller_test.dart",
+          "packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+          "packages/quds_office_editor/test/word_zotero_note_preview_test.dart",
+          "packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+          "packages/quds_office_editor/test/word_zotero_notes_pane_test.dart",
+          "packages/quds_office_editor/test/word_zotero_occurrence_navigation_test.dart",
+          "packages/quds_office_editor/test/word_zotero_rich_controller_test.dart",
+          "packages/quds_office_editor/test/word_zotero_saved_search_test.dart",
+          "packages/quds_office_editor/test/word_zotero_selection_navigation_test.dart",
+          "packages/quds_office_editor/test/word_zotero_selection_uri_test.dart",
+          "packages/quds_office_editor/test/word_zotero_snapshot_test.dart",
+          "packages/quds_office_editor/test/word_zotero_source_identity_test.dart",
+          "packages/quds_office_editor/test/word_zotero_source_occurrences_dialog_test.dart",
+          "packages/quds_office_editor/test/word_zotero_source_occurrences_test.dart",
+          "packages/quds_office_editor/test/word_zotero_source_resolver_test.dart",
+          "packages/quds_office_editor/test/word_zotero_stored_details_dialog_test.dart",
+          "packages/quds_office_editor/test/word_zotero_stored_details_test.dart",
+          "packages/quds_office_editor/test/word_zotero_tag_browser_test.dart",
+          "packages/quds_office_editor/test/word_zotero_tag_filter_test.dart",
+          "packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+          "packages/quds_office_editor/test/word_zotero_transfer_dialog_test.dart",
+          "packages/quds_office_editor/test/word_zotero_unlink_all_test.dart",
+          "packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart",
+          "packages/quds_office_editor/test/word_zotero_writing_position_test.dart"
+        ],
+        "repository_local_file_count": 552,
+        "sorted_path_list_sha256": "abd7b10c943ad43ade41a1695cc2c9d86d9df9b34bdfaabca431d83d82b6f5a3",
+        "incoming_production_intersection": [],
+        "missing_local_paths": []
+      },
+      "studio_zotero": {
+        "root_count": 4,
+        "roots": [
+          "packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+          "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+          "packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart",
+          "packages/quds_office_editor/example/test/studio_shortcut_host_ownership_test.dart"
+        ],
+        "repository_local_file_count": 970,
+        "sorted_path_list_sha256": "cd64440c2b188913ae647ba53deb8c60e4780a8a035a2097a323b998939897ad",
+        "incoming_production_intersection": [],
+        "missing_local_paths": []
+      }
+    },
+    "directive_regex": "(?m)^[\\t ]*(?:import|export|part)[\\t ]+['\"][^;]*;",
+    "closure_observed_at_utc": "2026-11-22T02:47:31.076353+00:00",
+    "checkout_head_observed": "a08e25d0d417f90db3d328356bcf4b59cb71f2e0",
+    "summary": "All selected engine/editor/Studio Zotero entrypoints resolve their repository-local compile graph without missing local files; none reaches the four incoming VBA automation production libraries. Full path-list hashes are recorded; lists are reproducible from the recorded roots/regex/package roots."
+  },
+  "validation_implications": {
+    "main355": "Only four automation libraries change. They are reached through the separate quds_office_automation.dart entry point and are absent from all three repository-local Zotero cohort dependency closures. Main355 changes no native Word/Zotero model, editor/Studio source, dependency manifest or selected test. No broad Zotero runtime rerun is justified by355 alone; keep actual source applicability explicit.",
+    "input_manifest": "Whole-workspace or whole-engine receipts will observe the four automation source changes and new tests/docs. Do not claim their complete captured manifests remain byte-identical; record this bounded dependency-exclusion proof when carrying Zotero execution forward.",
+    "main354": "The previously identified Studio/Mail dependency change from PR354 remains relevant. Run or carry a qualifying Studio cohort on the combined source as appropriate; PR355 does not add another changed Studio dependency.",
+    "vba_evidence": "Preserve completed PR355 source and attribution. Its6,614 reported cases belong to its own qualification record and are not added to this task's fresh Zotero count.",
+    "mail_branch": "The ongoing Mail branch is retained, includes main355 and older Zotero checkpoints, and now has explicit compatibility/migration reconciliation. It remains no-PR and explicitly qualification-pending; recheck its status before final publication.",
+    "merge_overlap": "Resolved in canonical combined source d4b4392f: both engine changelog additions retained.72 other incoming paths exactly match current main ceddcd88. Evidence checkpoint3660a9d9 changes docs only."
+  },
+  "overlap_comparison_own_checkpoint": "b7758d482a0381c5c3ad526675321de80989465e",
+  "canonical_integration": {
+    "observed_at_utc": "2026-11-22T02:48:33.983681+00:00",
+    "canonical_combined_source": "d4b4392fe538473a3accd15294288347e8bc2b56",
+    "evidence_checkpoint": "3660a9d94e3100885e61b244f9dba7bdc5403cfb",
+    "upstream_main": "ceddcd888c37f64e37a8d8d1669daaea31384daf",
+    "incoming_paths_identical": 72,
+    "identical_paths": [
+      "docs/MACROS.md",
+      "docs/VBA_PARITY_ROADMAP.md",
+      "docs/VBA_WORD_MACROS.md",
+      "docs/validation/word-vba-cell-formatting-20261122/README.md",
+      "docs/validation/word-vba-cell-formatting-20261122/SHA256SUMS",
+      "docs/validation/word-vba-cell-formatting-20261122/analyzer-receipt.json",
+      "docs/validation/word-vba-cell-formatting-20261122/cli-package-comparison.json",
+      "docs/validation/word-vba-cell-formatting-20261122/files.json",
+      "docs/validation/word-vba-cell-formatting-20261122/intake.json",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/analyzer-receipt.json.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/baseline-line-spacing-fixture-retry.jsonl.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/baseline-line-spacing-fixture-retry.stderr.log.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/baseline-macro-suite.jsonl.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/baseline-macro-suite.stderr.log.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/baseline-source-manifest.json.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/checkpoint-cell-formatting.jsonl.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/checkpoint-cell-formatting.stderr.log.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/checkpoint2-cell-formatting.jsonl.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/checkpoint2-cell-formatting.stderr.log.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/checkpoint2-portable-vm.stderr.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/checkpoint2-portable-vm.stdout.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/checkpoint3-full-macro-suite.jsonl.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/checkpoint3-full-macro-suite.stderr.log.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/cli-compile-kernel.stderr.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/cli-compile-kernel.stdout.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/cli-compile-word-vba.stderr.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/cli-compile-word-vba.stdout.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/cli-compiled-word-table-formatting.json.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/cli-fixture-probe.dart.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/cli-fixture_probe.dart.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/cli-inspect-output.stderr.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/cli-inspect-output.stdout.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/cli-invalid-late-cell.bas.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/cli-prepare.stderr.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/cli-prepare.stdout.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/cli-reject-late-cell.stderr.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/cli-reject-late-cell.stdout.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/cli-run-word-vba.stderr.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/cli-run-word-vba.stdout.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/cli-validate-word-vba.stderr.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/cli-validate-word-vba.stdout.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/dev-native-cell-formatting.jsonl.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/dev-native-cell-formatting.stderr.log.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/final-cell-formatting-integration.jsonl.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/final-cell-formatting-integration.stderr.log.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/final-cell-formatting-portable-compile-js.stderr.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/final-cell-formatting-portable-compile-js.stdout.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/final-cell-formatting-portable-node.stderr.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/final-cell-formatting-portable-node.stdout.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/final-cell-formatting-portable-vm.stderr.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/final-cell-formatting-portable-vm.stdout.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/final-native-word-regressions.jsonl.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/final-native-word-regressions.stderr.log.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/final-qualified-cases.json.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/final-source-manifest.json.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/native-development-overlay-manifest.json.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/run_cell_formatting_cli.py.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/run_cell_formatting_portable.py.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/logs/run_macro_validation.py.gz",
+      "docs/validation/word-vba-cell-formatting-20261122/validation.json",
+      "docs/vba-word-macros-details.md",
+      "packages/quds_office_engine/example/macros/word_table_formatting.bas",
+      "packages/quds_office_engine/lib/src/automation/office_operations.dart",
+      "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+      "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+      "packages/quds_office_engine/lib/src/automation/operations/word_table_cell_text_steps.dart",
+      "packages/quds_office_engine/test/office_macro_word_cell_formatting_test.dart",
+      "packages/quds_office_engine/test/office_vba_word_cell_formatting_integration_test.dart",
+      "packages/quds_office_engine/test/office_vba_word_cell_formatting_test.dart",
+      "packages/quds_office_engine/test/office_vba_word_font_colors_test.dart",
+      "packages/quds_office_engine/test/office_vba_word_table_cells_test.dart",
+      "packages/quds_office_engine/tool/macros/web_vba_word_cell_formatting_smoke.dart"
+    ],
+    "different_paths": [
+      "packages/quds_office_engine/CHANGELOG.md"
+    ],
+    "difference_explanation": "The sole incoming path differing from PR355 main is the engine changelog; its merge resolution retains both the VBA cell-formatting and Zotero writing-position additions. All72 other incoming paths match main blobs exactly.",
+    "canonical_changelog_blob": "0128f280331c7bfb5aa774754df217520b9e98d7",
+    "evidence_checkpoint_changed_paths": [
+      "docs/validation/zotero-parity-20261122/checkpoint-publication.json",
+      "docs/validation/zotero-parity-20261122/checks/analysis-final-fixes-inputs.json.gz",
+      "docs/validation/zotero-parity-20261122/checks/analysis-final-fixes-receipt.json",
+      "docs/validation/zotero-parity-20261122/checks/analysis-final-fixes.stderr.txt.gz",
+      "docs/validation/zotero-parity-20261122/checks/analysis-final-fixes.stdout.txt.gz",
+      "docs/validation/zotero-parity-20261122/checks/analysis-final-inputs.json.gz",
+      "docs/validation/zotero-parity-20261122/checks/analysis-final-receipt.json",
+      "docs/validation/zotero-parity-20261122/checks/analysis-final.stderr.txt.gz",
+      "docs/validation/zotero-parity-20261122/checks/analysis-final.stdout.txt.gz",
+      "docs/validation/zotero-parity-20261122/checks/analysis-inputs.json.gz",
+      "docs/validation/zotero-parity-20261122/checks/analysis-receipt.json",
+      "docs/validation/zotero-parity-20261122/checks/analysis.stderr.txt.gz",
+      "docs/validation/zotero-parity-20261122/checks/analysis.stdout.txt.gz",
+      "docs/validation/zotero-parity-20261122/checks/baseline-editor-position-receipt.json",
+      "docs/validation/zotero-parity-20261122/checks/baseline-editor-position-source-reconstruction.json",
+      "docs/validation/zotero-parity-20261122/checks/baseline-editor-position-test.dart.txt",
+      "docs/validation/zotero-parity-20261122/checks/baseline-editor-position.jsonl",
+      "docs/validation/zotero-parity-20261122/checks/baseline-editor-position.stderr.txt",
+      "docs/validation/zotero-parity-20261122/checks/editor-position-cases.json.gz",
+      "docs/validation/zotero-parity-20261122/checks/editor-position-fixes-cases.json.gz",
+      "docs/validation/zotero-parity-20261122/checks/editor-position-fixes-inputs.json.gz",
+      "docs/validation/zotero-parity-20261122/checks/editor-position-fixes-receipt.json",
+      "docs/validation/zotero-parity-20261122/checks/editor-position-fixes.jsonl.gz",
+      "docs/validation/zotero-parity-20261122/checks/editor-position-fixes.stderr.txt.gz",
+      "docs/validation/zotero-parity-20261122/checks/editor-position-inputs.json.gz",
+      "docs/validation/zotero-parity-20261122/checks/editor-position-receipt.json",
+      "docs/validation/zotero-parity-20261122/checks/editor-position.jsonl.gz",
+      "docs/validation/zotero-parity-20261122/checks/editor-position.stderr.txt.gz",
+      "docs/validation/zotero-parity-20261122/checks/editor-zotero-cases.json.gz",
+      "docs/validation/zotero-parity-20261122/checks/editor-zotero-inputs.json.gz",
+      "docs/validation/zotero-parity-20261122/checks/editor-zotero-receipt.json",
+      "docs/validation/zotero-parity-20261122/checks/editor-zotero.jsonl.gz",
+      "docs/validation/zotero-parity-20261122/checks/editor-zotero.stderr.txt.gz",
+      "docs/validation/zotero-parity-20261122/checks/engine-position-analysis-final-receipt.json",
+      "docs/validation/zotero-parity-20261122/checks/engine-position-analysis-final.stderr",
+      "docs/validation/zotero-parity-20261122/checks/engine-position-analysis-receipt.json",
+      "docs/validation/zotero-parity-20261122/checks/engine-position-format-receipt.json",
+      "docs/validation/zotero-parity-20261122/checks/engine-position-format.stderr",
+      "docs/validation/zotero-parity-20261122/checks/engine-position-initial-receipt.json",
+      "docs/validation/zotero-parity-20261122/checks/engine-position-initial.jsonl",
+      "docs/validation/zotero-parity-20261122/checks/engine-position-initial.stderr",
+      "docs/validation/zotero-parity-20261122/checks/engine-position-tests-receipt.json",
+      "docs/validation/zotero-parity-20261122/checks/engine-position-tests.jsonl",
+      "docs/validation/zotero-parity-20261122/checks/engine-position-tests.stderr",
+      "docs/validation/zotero-parity-20261122/checks/engine-zotero-carry-forward-inputs.json.gz",
+      "docs/validation/zotero-parity-20261122/checks/engine-zotero-carry-forward-receipt.json",
+      "docs/validation/zotero-parity-20261122/checks/engine-zotero-cases.json.gz",
+      "docs/validation/zotero-parity-20261122/checks/engine-zotero-inputs.json.gz",
+      "docs/validation/zotero-parity-20261122/checks/engine-zotero-receipt.json",
+      "docs/validation/zotero-parity-20261122/checks/engine-zotero.jsonl.gz",
+      "docs/validation/zotero-parity-20261122/checks/engine-zotero.stderr.txt.gz",
+      "docs/validation/zotero-parity-20261122/checks/format-final-fixes-inputs.json.gz",
+      "docs/validation/zotero-parity-20261122/checks/format-final-fixes-receipt.json",
+      "docs/validation/zotero-parity-20261122/checks/format-final-fixes.stderr.txt.gz",
+      "docs/validation/zotero-parity-20261122/checks/format-final-fixes.stdout.txt.gz",
+      "docs/validation/zotero-parity-20261122/checks/format-final-inputs.json.gz",
+      "docs/validation/zotero-parity-20261122/checks/format-final-receipt.json",
+      "docs/validation/zotero-parity-20261122/checks/format-final.stderr.txt.gz",
+      "docs/validation/zotero-parity-20261122/checks/format-final.stdout.txt.gz",
+      "docs/validation/zotero-parity-20261122/checks/format-inputs.json.gz",
+      "docs/validation/zotero-parity-20261122/checks/format-receipt.json",
+      "docs/validation/zotero-parity-20261122/checks/format.stderr.txt.gz",
+      "docs/validation/zotero-parity-20261122/checks/format.stdout.txt.gz",
+      "docs/validation/zotero-parity-20261122/checks/run_local_checks.py",
+      "docs/validation/zotero-parity-20261122/checks/run_local_checks_followup.py",
+      "docs/validation/zotero-parity-20261122/checks/runtime/README.md",
+      "docs/validation/zotero-parity-20261122/checks/runtime/flutter-provenance.json",
+      "docs/validation/zotero-parity-20261122/checks/runtime/manifest-hashes-before.json",
+      "docs/validation/zotero-parity-20261122/checks/runtime/workspace-resolution.json"
+    ],
+    "evidence_changes_docs_only": true,
+    "validation_attribution": "Parent reports accepted local source qualification at canonical combined source d4b4392f. This read-only audit verifies content preservation and documentation-only continuation; it does not independently rerun those tests."
+  },
+  "snapshot_is_final_for_this_audit": true,
+  "final_snapshot_note": "Unmerged Mail936ea62a remains recorded as qualification-pending with no PR at the captured observation time. This bounded intake audit does not continuously follow that active work."
+}
