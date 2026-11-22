@@ -339,10 +339,12 @@ the scalar type, finite-number, `Long`, and string limits. `Let` is optional.
 an optional second argument specifying dimension **1**. Other dimensions are
 rejected. These intrinsics require a local array variable; array elements are
 ordinary scalar expressions and can be passed to existing scalar helpers.
-Arrays cannot be assigned, passed, returned, or placed inside another
-`Variant` as whole values. Multidimensional arrays, arrays of objects, `Array`,
-and `Split` remain outside this dialect. Dynamic array allocation and erasure
-are described below.
+General whole-array assignment, passing, returning, or storage inside a scalar
+`Variant` remains unsupported. The explicit exception is direct `Split(...)`
+assignment to a local dynamic String array, described under
+[splitting source String arrays](#splitting-source-string-arrays).
+Multidimensional arrays, arrays of objects and `Array` remain outside this
+dialect. Dynamic array allocation and erasure are described below.
 
 For an array, `For Each item In values` requires a `Variant` control variable.
 Without `Option Explicit`, an undeclared control variable may be introduced as
@@ -920,6 +922,107 @@ See the [versioned 25-case corpus](VBA_CONFORMANCE.md),
 [combined Word report](../packages/quds_office_engine/example/macros/word_join_report.bas)
 and [local qualification](validation/word-vba-cell-text-20261122/README.md).
 
+### Splitting source String arrays
+
+`parts = Split(expression[, delimiter[, limit[, compare]]])` allocates or
+replaces a local array declared `Dim parts() As String`. `Let` is optional.
+This explicit assignment is shared by Word, Excel and PowerPoint and operates
+only on source-known data. It does not read document content or external files.
+
+```vb
+Option Base 1
+
+Sub Main()
+    Dim parts() As String, index As Long
+    parts = Split("Item|Status|Owner", "|")
+    For index = LBound(parts) To UBound(parts)
+        ActiveDocument.Tables(1).Cell(1, index + 1).Range.Text = parts(index)
+    Next index
+End Sub
+```
+
+The input document needs a supported table with at least three cells in its
+first row. The source array has indexes **0 through 2**, even with
+`Option Base 1`. Every successful assignment replaces any previous bounds and
+elements. A previously allocated array is not required.
+
+| Argument | Bounded contract |
+| --- | --- |
+| `expression` | Required actual String, or a Variant containing String/Empty; Empty means `""` |
+| `delimiter` | Optional String/Empty; default is one U+0020 space, and Empty means `""` |
+| `limit` | Optional exact integer in `-1..2147483647`; default `-1` returns all parts, `0` returns no parts, a positive value caps the number of parts |
+| `compare` | Optional exact integer `0` / `vbBinaryCompare`; text, database and Option Compare modes are unsupported |
+
+All arguments are positional. Named arguments, comma omissions, implicit
+numeric/Boolean-to-String conversion and fractional Long coercion remain
+unsupported. Convert source values explicitly when needed. Null in any
+argument is refused with `vba_invalid_use_of_null`; Empty in a numeric
+argument is not implicitly converted.
+
+Matching is case-sensitive, nonoverlapping and based on UTF-16 code units.
+There is no Unicode normalization or locale conversion. A delimiter may have
+multiple units. Leading, adjacent and trailing delimiters retain empty String
+elements. The last element contains the entire remaining suffix once the
+positive limit is reached. A nonempty input with an empty or absent matching
+delimiter produces one element; `limit = 1` likewise keeps the input whole.
+
+```vb
+parts = Split("|a||b|", "|")       ' "", "a", "", "b", ""
+parts = Split("a|b|c", "|", 2)     ' "a", "b|c"
+parts = Split("a|b|c", "", -1)     ' "a|b|c"
+parts = Split("a|b|c", "|", 0)     ' no elements
+```
+
+An empty input also produces an allocated array with no elements, regardless
+of delimiter. In this dialect its bounds are `LBound(parts) = 0` and
+`UBound(parts) = -1`; `Join(parts, separator)` returns `""`, and `For Each`
+visits nothing. Element access still fails. This state is distinct from
+`Erase parts`, which deallocates the dynamic array and makes bound reads fail.
+`ReDim Preserve parts(0 To n)` may grow an allocated empty result; its normal
+lower-bound restriction still applies. Empty-result bound reads and zero-limit
+handling are explicit Quds contracts, not newly observed Office-host results.
+
+The target must be a local dynamic String array. Fixed arrays, other element
+types, scalar Variant array storage, object properties and `Set` are refused.
+`Split` results are not general expression values: inline indexing,
+`Join(Split(...))`, passing or returning arrays, and copying one entire array
+to another remain unsupported. Structural checks apply in inactive source and
+unused procedures as well as executed statements.
+
+The existing target remains readable while every argument expression runs
+once, in written order. Thus `parts = Split(parts(1), "|")` and
+`parts = Split(Join(parts, ";"), ";")` read the old array first. All supplied
+argument values are evaluated before semantic validation; validation is not
+skipped for empty input, zero limit, or an empty delimiter. Replacing an array
+currently enumerated by `For Each` fails with `vba_array_locked` before any
+argument expression executes. A helper's local arrays remain independently
+owned and release their resources when the helper returns.
+
+Splitting retains the existing limits: **4,096 elements per array**, **16,384
+active array slots**, **1,048,576 stored UTF-16 units** and **100,000 shared
+work units**. Binary matching uses the existing metered linear matcher. It
+stops once an additional match proves the result too large. Allocation,
+retirement and copied text are charged before constructing the new storage;
+the old slots and String units are credited only as part of replacement.
+Repeated assignment, helper calls, no-match input and empty results cannot
+reset the budget. Isolated surrogates may exist in source values, while native
+text publication retains its existing well-formed UTF-16 requirement.
+
+The [complete Word report](../packages/quds_office_engine/example/macros/word_split_report.bas)
+splits records and fields, fills a 2×2 table, emphasizes headings and colors a
+status cell through the existing native transaction. The
+[independent corpus](../packages/quds_office_engine/test/fixtures/vba_conformance/split_v1.json)
+separates specification-derived examples from deliberate dialect restrictions.
+See the [local qualification](validation/word-vba-split-20261122/README.md).
+
+Primary contracts: [Split function](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/split-function)
+and [MS-VBAL array assignment](https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/38315eed-8ea8-4e2a-b91c-25a96910407a).
+The [MS-VBAL Split section](https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/d9c2417c-2d36-45b1-b3d7-1876064e6085)
+lists a default limit of `-1` but describes `1` as returning all substrings in
+its parameter table. This implementation follows the VBA function reference's
+`-1` convention and documents the discrepancy; no installed Office differential
+qualification is claimed.
+
 ### Binary search, replacement, and trimming
 
 The shared language also accepts the following case-insensitive names. Optional
@@ -1270,7 +1373,7 @@ dart run tool/macros/office_macro.dart run-vba \
 | Declarations | `Dim` and `Const`, including comma-separated declarations; declarations must precede executable statements and remain outside control-flow blocks |
 | Fixed local arrays | One dimension of supported scalar elements, constant inclusive bounds, integer indexed reads/writes, `LBound`/`UBound` |
 | Dynamic local arrays | `Dim name()`, `ReDim` with source-expression bounds, upper-bound-only `ReDim Preserve`, and the same element/index/bound intrinsics |
-| Array lifecycle | `Erase` resets fixed arrays and deallocates dynamic arrays; active `For Each` collections cannot be resized or erased |
+| Array lifecycle | `Erase` resets fixed arrays and deallocates dynamic arrays; active `For Each` collections cannot be replaced, resized or erased |
 | Collection loops | `For Each` over a local array with a `Variant` control variable, or an explicit rectangular range with a `Range` control variable |
 | Scalar types | `Long`, `Double`, `String`, `Boolean`, and scalar `Variant`; omitted `As` means `Variant`, whose default is `Empty` |
 | Variant states and conversions | `Empty`, `Null`, `IsEmpty`, `IsNull`, `CVar`, `CBool`, `CDbl`, `CLng`, and `CStr`; bounded explicit conversion rules below |
@@ -1283,6 +1386,7 @@ dart run tool/macros/office_macro.dart run-vba \
 | String intrinsics | `Len`, `Left`/`Left$`, `Right`/`Right$`, `Mid`/`Mid$`, binary `InStr` / `InStrRev` / `Replace`, and Trim/LTrim/RTrim with their `$` forms; UTF-16 units and bounded exact integer arguments; unsuffixed substring forms additionally accept Empty/Null text |
 | String span assignment | Standalone `Mid` / `Mid$` edits local String/Variant values and allocated String/Variant array elements, with no growth and shared copy/array budgets |
 | Array text assembly | `Join` consumes an allocated local String array and an optional String/Empty delimiter; preserves bounds/order and empty entries, with preallocation text/work limits |
+| Source text splitting | Direct `Split` assignment replaces a local dynamic String array with zero-based binary substrings; optional delimiter/limit/compare, empty arrays and shared work/storage limits |
 | String comparison | Binary `StrComp(left, right[, compare])`, exact `-1`/`0`/`1` results, explicit Empty/Null behavior, strict types and metered UTF-16 comparison |
 | Comparisons | `=`, `<>`, `<`, `>`, `<=`, `>=` between matching scalar types, contextual `Empty`, or propagating `Null`; strings use binary ordering |
 | Boolean logic | `Not`, `And`, `Or`, `Xor` on Boolean/Null values; operands are evaluated eagerly; numeric/Empty bitwise forms are unsupported |

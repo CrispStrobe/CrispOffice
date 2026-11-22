@@ -4,6 +4,16 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Add bounded VBA `Split` assignment to local dynamic String arrays in Word,
+  Excel and PowerPoint. Preserve zero-based binary substring semantics,
+  delimiter/limit controls, empty arrays, once-only argument evaluation, frame
+  ownership, enumeration locks and metered array/String/work limits. Include a
+  delimited Word table report and compiler, document, CLI/MCP and portable
+  regression coverage. General array values and live document reads remain
+  outside this increment. See the
+  [contract](../../docs/vba-macros-details.md#splitting-source-string-arrays)
+  and [qualification](../../docs/validation/word-vba-split-20261122/README.md).
+
 - Add ordinary VBA `Left`, `Right` and expression `Mid` across Word, Excel
   and PowerPoint, with Variant String/Empty/Null behavior, bounded UTF-16
   slicing and unchanged strict `$` forms. Extend Word `Paragraphs`, `Sections`,
