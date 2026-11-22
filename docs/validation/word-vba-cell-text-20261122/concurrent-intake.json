@@ -1,0 +1,313 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "observed_at_utc": "2026-11-22 05:10:48 UTC",
+  "initial_main_sha": "2eecf9aec2c7d1f979064448b911b516d3f56c73",
+  "main_sha": "2eecf9aec2c7d1f979064448b911b516d3f56c73",
+  "open_pull_requests": [],
+  "fork_branches": [
+    {
+      "name": "codex/word-vba-authoring-20261121",
+      "sha": "cf06b018ec125ce3b5abfda41a7fbbdcf7d30a47"
+    },
+    {
+      "name": "codex/word-vba-cell-formatting-20261122",
+      "sha": "49f43824196c4d373f991e442fac2e73e68c5f9f"
+    },
+    {
+      "name": "codex/word-vba-cell-text-20261122",
+      "sha": "4b6eeacfc72902efd628e6f0ff5b943554344726"
+    },
+    {
+      "name": "codex/word-vba-comparison-colors-20261121",
+      "sha": "e3c4550b34a9a07de2a97b84b67ab6aecaa5a377"
+    },
+    {
+      "name": "codex/word-vba-compatibility-20261121",
+      "sha": "3058d36c5354d46bde418555d59282116cce1e26"
+    },
+    {
+      "name": "codex/zotero-dispatch-recovery-20261121",
+      "sha": "32ef843db3a8192fe0add085e1ee173e18f4d462"
+    },
+    {
+      "name": "codex/zotero-field-context-20261122",
+      "sha": "9c8816b26b34a8e046cd2e3a3a5254b90d945029"
+    },
+    {
+      "name": "codex/zotero-footnote-separators-20261121",
+      "sha": "a70c0e7af251d737dc7639f44a48777bbea1bf51"
+    },
+    {
+      "name": "codex/zotero-host-ownership-20261121",
+      "sha": "05cb866e6e5aaee95dae8b03da2892fcf633a84b"
+    },
+    {
+      "name": "codex/zotero-main-qualification-20261121",
+      "sha": "e2a1ed6073556d24194004221c545166b17c2d4e"
+    },
+    {
+      "name": "codex/zotero-note-layout-20261121",
+      "sha": "2089e1e35a8ba81ea7f0a077b348f93ca70953c8"
+    },
+    {
+      "name": "codex/zotero-odt-roundtrip-20261121",
+      "sha": "05072dc2d59d0fa4ea97de4d6a842700ef333fab"
+    },
+    {
+      "name": "codex/zotero-parity-20261122",
+      "sha": "da36652cf1d2296b59285788035555d512b9fa31"
+    },
+    {
+      "name": "codex/zotero-select-navigation-20261122",
+      "sha": "8c1b8da71bb910d4025aa179dc56290cf1a8e72a"
+    },
+    {
+      "name": "codex/zotero-shortcut-host-recovery-20261121",
+      "sha": "2168011b6104f680100b87404bc1bd409f724939"
+    },
+    {
+      "name": "codex/zotero-source-continuity-20261121-2135",
+      "sha": "c4c16d91d62ded0c341bee95e98de894de70483f"
+    },
+    {
+      "name": "main",
+      "sha": "2eecf9aec2c7d1f979064448b911b516d3f56c73"
+    },
+    {
+      "name": "work/mail-folder-scoped-search-20261122",
+      "sha": "ff30d1064a052abbfbcdc99745ff66f8bc980aea"
+    },
+    {
+      "name": "work/mail-folder-search-20261122",
+      "sha": "24e4b5d8a2a4e3c996e15013c5324a534c2e444f"
+    },
+    {
+      "name": "work/mail-keyboard-triage-20261121",
+      "sha": "08d034d876073e2afc881dbfc11ba791acde3d67"
+    },
+    {
+      "name": "work/mail-live-search-20261121",
+      "sha": "c3d55be30d91694b1a427d261cddbe47b1dd5eec"
+    },
+    {
+      "name": "work/mail-parity-20261122-next",
+      "sha": "72cb157f366e1c1c1391b1fc6b95c87bab86ed54"
+    },
+    {
+      "name": "work/mail-range-selection-tests-20261121",
+      "sha": "5c7a385c5de40394d9eed736c5a2d975535c3df3"
+    },
+    {
+      "name": "work/mail-sync-address-search-20261121",
+      "sha": "33d8f956ec2ed1dfd748e1d7ccbc5add053ff565"
+    }
+  ],
+  "upstream_repository": "MohammedAsaadAsaad/quds_office_suite",
+  "upstream_branches": [
+    {
+      "name": "ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98"
+    },
+    {
+      "name": "cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240"
+    },
+    {
+      "name": "cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21"
+    },
+    {
+      "name": "main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba"
+    }
+  ],
+  "changed_or_new_branch_comparisons": [
+    {
+      "name": "codex/word-vba-cell-text-20261122",
+      "sha": "4b6eeacfc72902efd628e6f0ff5b943554344726",
+      "previous_sha": null,
+      "status": "ahead",
+      "ahead_by": 2,
+      "behind_by": 0,
+      "merge_base": "2eecf9aec2c7d1f979064448b911b516d3f56c73",
+      "files": [
+        {
+          "path": "docs/validation/word-vba-cell-text-20261122/intake.json",
+          "status": "added",
+          "additions": 601,
+          "deletions": 0
+        },
+        {
+          "path": "docs/validation/word-vba-cell-text-20261122/intake.md",
+          "status": "added",
+          "additions": 27,
+          "deletions": 0
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+          "status": "modified",
+          "additions": 88,
+          "deletions": 9
+        },
+        {
+          "path": "packages/quds_office_engine/test/office_vba_join_test.dart",
+          "status": "added",
+          "additions": 347,
+          "deletions": 0
+        },
+        {
+          "path": "packages/quds_office_engine/test/office_vba_word_cell_formatting_test.dart",
+          "status": "modified",
+          "additions": 0,
+          "deletions": 5
+        },
+        {
+          "path": "packages/quds_office_engine/test/office_vba_word_cell_text_controls_test.dart",
+          "status": "added",
+          "additions": 243,
+          "deletions": 0
+        },
+        {
+          "path": "packages/quds_office_engine/test/office_vba_word_table_cells_test.dart",
+          "status": "modified",
+          "additions": 0,
+          "deletions": 2
+        }
+      ]
+    },
+    {
+      "name": "codex/zotero-field-context-20261122",
+      "sha": "9c8816b26b34a8e046cd2e3a3a5254b90d945029",
+      "previous_sha": null,
+      "status": "ahead",
+      "ahead_by": 2,
+      "behind_by": 0,
+      "merge_base": "2eecf9aec2c7d1f979064448b911b516d3f56c73",
+      "files": [
+        {
+          "path": "docs/validation/zotero-field-context-20261122/README.md",
+          "status": "added",
+          "additions": 38,
+          "deletions": 0
+        },
+        {
+          "path": "docs/validation/zotero-field-context-20261122/checks/engine/analyze.log",
+          "status": "added",
+          "additions": 2,
+          "deletions": 0
+        },
+        {
+          "path": "docs/validation/zotero-field-context-20261122/checks/engine/targeted-tests.log",
+          "status": "added",
+          "additions": 156,
+          "deletions": 0
+        },
+        {
+          "path": "docs/validation/zotero-field-context-20261122/checks/engine/validation.json",
+          "status": "added",
+          "additions": 28,
+          "deletions": 0
+        },
+        {
+          "path": "docs/validation/zotero-field-context-20261122/intake.json",
+          "status": "added",
+          "additions": 1214,
+          "deletions": 0
+        },
+        {
+          "path": "docs/validation/zotero-field-context-20261122/intake.md",
+          "status": "added",
+          "additions": 59,
+          "deletions": 0
+        },
+        {
+          "path": "packages/quds_office_engine/CHANGELOG.md",
+          "status": "modified",
+          "additions": 7,
+          "deletions": 0
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+          "status": "modified",
+          "additions": 152,
+          "deletions": 4
+        },
+        {
+          "path": "packages/quds_office_engine/test/word_zotero_field_selection_test.dart",
+          "status": "added",
+          "additions": 368,
+          "deletions": 0
+        }
+      ]
+    },
+    {
+      "name": "work/mail-parity-20261122-next",
+      "sha": "72cb157f366e1c1c1391b1fc6b95c87bab86ed54",
+      "previous_sha": null,
+      "status": "ahead",
+      "ahead_by": 2,
+      "behind_by": 0,
+      "merge_base": "2eecf9aec2c7d1f979064448b911b516d3f56c73",
+      "files": [
+        {
+          "path": "docs/validation/mail-retained-navigation-20261122/README.md",
+          "status": "added",
+          "additions": 37,
+          "deletions": 0
+        },
+        {
+          "path": "docs/validation/mail-retained-navigation-20261122/intake.json",
+          "status": "added",
+          "additions": 538,
+          "deletions": 0
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_mailbox_session.dart",
+          "status": "modified",
+          "additions": 248,
+          "deletions": 43
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_retained_folders.dart",
+          "status": "added",
+          "additions": 141,
+          "deletions": 0
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_mailbox_sync_session_test.dart",
+          "status": "added",
+          "additions": 613,
+          "deletions": 0
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_retained_folders_test.dart",
+          "status": "added",
+          "additions": 369,
+          "deletions": 0
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "All 20 original other fork branch tips remain unchanged; initial main remains unchanged, so the initial ancestry audit continues to apply to them.",
+    "All four captured upstream branch tips remain unchanged from initial intake.",
+    "New Mail and Zotero branches are active checkpoints with no open PRs; their work records explicitly mark implementation/validation incomplete. Preserve them remotely and reassess final main advancement, without treating these checkpoints as ready for premature merge.",
+    "No GitHub Actions runs or checks queried or awaited. This read-only snapshot is bounded to its capture time."
+  ],
+  "readiness": {
+    "codex/zotero-field-context-20261122": {
+      "sha": "9c8816b26b34a8e046cd2e3a3a5254b90d945029",
+      "status": "in-progress checkpoint",
+      "evidence": "README says implementation and local validation are in progress; captured engine selection source/tests and partial logs do not complete the stated native-host presentation target.",
+      "word_changed_path_overlap": [
+        "packages/quds_office_engine/CHANGELOG.md"
+      ]
+    },
+    "work/mail-parity-20261122-next": {
+      "sha": "72cb157f366e1c1c1391b1fc6b95c87bab86ed54",
+      "status": "in-progress checkpoint",
+      "evidence": "README says pending implementation and fresh local execution; no fresh validation record appears in the captured delta.",
+      "word_changed_path_overlap": []
+    }
+  }
+}
