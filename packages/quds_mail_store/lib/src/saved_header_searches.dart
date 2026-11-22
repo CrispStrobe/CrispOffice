@@ -10,7 +10,13 @@ extension MailSavedHeaderSearches on SqliteMailRepository {
       search.name.length +
       search.nameKey.length +
       search.query.length +
-      search.accountIds.fold<int>(0, (sum, id) => sum + id.length);
+      search.accountIds.fold<int>(0, (sum, id) => sum + id.length) +
+      (search.folderScopes?.fold<int>(
+            0,
+            (sum, folder) =>
+                sum + folder.accountId.length + folder.mailboxId.length,
+          ) ??
+          0);
 
   Future<({int revision, bool removed})> _savedHeaderSearchMarker() async {
     final row = (await _rows(
@@ -34,17 +40,21 @@ extension MailSavedHeaderSearches on SqliteMailRepository {
     // transfer, then DTO validation checks exact UTF-16 limits and controls.
     final counts = (await _rows(
       'SELECT (SELECT count(*) FROM saved_header_searches) AS searches,'
-      '(SELECT count(*) FROM saved_header_search_accounts) AS accounts',
+      '(SELECT count(*) FROM saved_header_search_accounts) AS accounts,'
+      '(SELECT count(*) FROM saved_header_search_folders) AS folders',
     )).single;
     if (counts.read<int>('searches') > maxSearches ||
         counts.read<int>('accounts') >
-            maxSearches * MailSavedHeaderSearch.maxAccountIds) {
+            maxSearches * MailSavedHeaderSearch.maxAccountIds ||
+        counts.read<int>('folders') >
+            maxSearches * MailSavedHeaderSearch.maxFolderScopes) {
       SqliteMailRepository._fail(MailProblemCode.quotaExceeded);
     }
     final invalid = await _rows(
       'SELECT 1 AS invalid FROM saved_header_searches WHERE '
       "typeof(id)!='text' OR typeof(name)!='text' OR "
       "typeof(name_key)!='text' OR typeof(query)!='text' OR "
+      "typeof(has_folder_scope)!='integer' OR has_folder_scope NOT IN (0,1) OR "
       'length(CAST(id AS BLOB))>4096 OR '
       'length(CAST(name AS BLOB))>512 OR '
       'length(CAST(name_key AS BLOB))>2048 OR '
@@ -56,7 +66,15 @@ extension MailSavedHeaderSearches on SqliteMailRepository {
       "typeof(a.account_id)!='text' OR typeof(a.position)!='integer' OR "
       'a.position<0 OR a.position>=100 OR '
       'length(CAST(a.search AS BLOB))>4096 OR '
-      'length(CAST(a.account_id AS BLOB))>4096 LIMIT 1',
+      'length(CAST(a.account_id AS BLOB))>4096 '
+      'UNION ALL SELECT 1 AS invalid FROM saved_header_search_folders f '
+      'LEFT JOIN saved_header_searches s ON s.id=f.search WHERE '
+      "s.id IS NULL OR typeof(f.search)!='text' OR "
+      "typeof(f.account_id)!='text' OR typeof(f.mailbox_id)!='text' OR "
+      "typeof(f.position)!='integer' OR f.position<0 OR f.position>=200 OR "
+      'length(CAST(f.search AS BLOB))>4096 OR '
+      'length(CAST(f.account_id AS BLOB))>4096 OR '
+      'length(CAST(f.mailbox_id AS BLOB))>4096 LIMIT 1',
       [counter],
     );
     if (invalid.isNotEmpty) {
@@ -67,12 +85,16 @@ extension MailSavedHeaderSearches on SqliteMailRepository {
       'length(CAST(name AS BLOB))+length(CAST(name_key AS BLOB))+'
       'length(CAST(query AS BLOB))),0) FROM saved_header_searches)+'
       '(SELECT coalesce(sum(length(CAST(account_id AS BLOB))),0) '
-      'FROM saved_header_search_accounts) AS bytes',
+      'FROM saved_header_search_accounts)+'
+      '(SELECT coalesce(sum(length(CAST(account_id AS BLOB))+'
+      'length(CAST(mailbox_id AS BLOB))),0) '
+      'FROM saved_header_search_folders) AS bytes',
     )).single.read<int>('bytes');
     // No valid catalog needs more than this, even with every permitted ID at
     // its maximum. Capping before multiplication prevents host-limit overflow.
     const maxCatalogUnits =
-        maxSearches * (1024 + 128 + 512 + 1024 + 100 * 1024);
+        maxSearches * (1024 + 128 + 512 + 1024 + 100 * 1024 +
+          200 * (1024 + 1024));
     final budget = limits.maxMetadataCodeUnits < maxCatalogUnits
         ? limits.maxMetadataCodeUnits
         : maxCatalogUnits;
@@ -84,7 +106,8 @@ extension MailSavedHeaderSearches on SqliteMailRepository {
     final ids = <String>{};
     var units = 0;
     for (final row in await _rows(
-      'SELECT id,name,name_key,query,revision FROM saved_header_searches '
+      'SELECT id,name,name_key,query,revision,has_folder_scope '
+      'FROM saved_header_searches '
       'ORDER BY name_key,id',
     )) {
       final id = row.read<String>('id');
@@ -102,6 +125,21 @@ extension MailSavedHeaderSearches on SqliteMailRepository {
           SqliteMailRepository._fail(MailProblemCode.storageFailure);
         }
       }
+      final folderRows = await _rows(
+        'SELECT position,account_id,mailbox_id FROM saved_header_search_folders '
+        'WHERE search=? ORDER BY position LIMIT 201',
+        [id],
+      );
+      final scoped = row.read<int>('has_folder_scope') == 1;
+      if (folderRows.length > MailSavedHeaderSearch.maxFolderScopes ||
+          (scoped ? folderRows.isEmpty : folderRows.isNotEmpty)) {
+        SqliteMailRepository._fail(MailProblemCode.storageFailure);
+      }
+      for (var i = 0; i < folderRows.length; i++) {
+        if (folderRows[i].read<int>('position') != i) {
+          SqliteMailRepository._fail(MailProblemCode.storageFailure);
+        }
+      }
       final search = MailSavedHeaderSearch(
         id: id,
         name: row.read<String>('name'),
@@ -109,6 +147,15 @@ extension MailSavedHeaderSearches on SqliteMailRepository {
         accountIds: [
           for (final account in accounts) account.read<String>('account_id'),
         ],
+        folderScopes: scoped
+            ? [
+                for (final folder in folderRows)
+                  MailSavedHeaderSearchFolder(
+                    accountId: folder.read<String>('account_id'),
+                    mailboxId: folder.read<String>('mailbox_id'),
+                  ),
+              ]
+            : null,
         revision: row.read<int>('revision'),
       );
       if (!search.isValid ||
@@ -183,11 +230,19 @@ extension MailSavedHeaderSearches on SqliteMailRepository {
     }
     final saved = search.copyWith(revision: marker.revision + 1);
     await _db.customStatement(
-      'INSERT INTO saved_header_searches(id,name,name_key,query,revision) '
-      'VALUES(?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET '
+      'INSERT INTO saved_header_searches('
+      'id,name,name_key,query,revision,has_folder_scope) '
+      'VALUES(?,?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET '
       'name=excluded.name,name_key=excluded.name_key,query=excluded.query,'
-      'revision=excluded.revision',
-      [saved.id, saved.name, saved.nameKey, saved.query, saved.revision],
+      'revision=excluded.revision,has_folder_scope=excluded.has_folder_scope',
+      [
+        saved.id,
+        saved.name,
+        saved.nameKey,
+        saved.query,
+        saved.revision,
+        saved.folderScopes == null ? 0 : 1,
+      ],
     );
     await _db.customStatement(
       'DELETE FROM saved_header_search_accounts WHERE search=?',
@@ -198,6 +253,19 @@ extension MailSavedHeaderSearches on SqliteMailRepository {
         'INSERT INTO saved_header_search_accounts(search,position,account_id) VALUES(?,?,?)',
         [saved.id, i, saved.accountIds[i]],
       );
+    }
+    await _db.customStatement(
+      'DELETE FROM saved_header_search_folders WHERE search=?',
+      [saved.id],
+    );
+    if (saved.folderScopes case final folders?) {
+      for (var i = 0; i < folders.length; i++) {
+        await _db.customStatement(
+          'INSERT INTO saved_header_search_folders('
+          'search,position,account_id,mailbox_id) VALUES(?,?,?,?)',
+          [saved.id, i, folders[i].accountId, folders[i].mailboxId],
+        );
+      }
     }
     await _db.customStatement(
       'UPDATE store_profile SET saved_header_search_revision=?',

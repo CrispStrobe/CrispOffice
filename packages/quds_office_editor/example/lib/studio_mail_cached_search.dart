@@ -58,10 +58,14 @@ final class StudioMailCachedSearchSession {
   StudioMailCachedSearchSession({
     required this.query,
     required List<MailLocalAccountRecord> accounts,
+    List<MailSavedHeaderSearchFolder>? folderScopes,
     required this.directory,
     required this.openStore,
     required this.isCurrent,
-  }) : _accounts = List.of(accounts) {
+  }) : _accounts = List.of(accounts),
+       _folderScopes = folderScopes == null
+           ? null
+           : List<MailSavedHeaderSearchFolder>.unmodifiable(folderScopes) {
     MailHeaderSearchQuery.parse(query);
     if (_accounts.length > MailLocalAccountDirectory.maxAccounts) {
       _fail(MailProblemCode.quotaExceeded);
@@ -71,6 +75,23 @@ final class StudioMailCachedSearchSession {
       studioMailLocalAccountIdentity(record);
       if (!ids.add(record.id)) _fail(MailProblemCode.conflict);
     }
+    if (_folderScopes case final folders?) {
+      if (folders.isEmpty ||
+          folders.length > MailSavedHeaderSearch.maxFolderScopes) {
+        _fail(MailProblemCode.invalidInput);
+      }
+      final seen = <MailSavedHeaderSearchFolder>{};
+      final covered = <String>{};
+      for (final folder in folders) {
+        if (!ids.contains(folder.accountId) ||
+            !MailSavedHeaderSearch.isValidId(folder.mailboxId) ||
+            !seen.add(folder)) {
+          _fail(MailProblemCode.invalidInput);
+        }
+        covered.add(folder.accountId);
+      }
+      if (covered.length != ids.length) _fail(MailProblemCode.invalidInput);
+    }
     _accounts.sort((left, right) => left.id.compareTo(right.id));
   }
 
@@ -79,6 +100,7 @@ final class StudioMailCachedSearchSession {
   final StudioMailDraftStoreFactory openStore;
   final bool Function() isCurrent;
   final List<MailLocalAccountRecord> _accounts;
+  final List<MailSavedHeaderSearchFolder>? _folderScopes;
   final Object _identity = Object();
   final Map<String, StudioMailCachedSearchCoverage> _coverage = {};
   int _index = 0;
@@ -253,12 +275,30 @@ final class StudioMailCachedSearchSession {
         _mailbox = mailbox;
         _search = mailbox as StudioMailCachedHeaderSearchStore;
       }
-      page = await _search!.searchCachedHeaders(
-        query,
-        cursor: _cursor,
-        limit: limit,
-        scanLimit: scanLimit,
-      );
+      final folders = _folderScopes == null
+          ? null
+          : [
+              for (final folder in _folderScopes!)
+                if (folder.accountId == record.id) folder.mailboxId,
+            ];
+      if (folders == null) {
+        page = await _search!.searchCachedHeaders(
+          query,
+          cursor: _cursor,
+          limit: limit,
+          scanLimit: scanLimit,
+        );
+      } else if (_search case final StudioMailScopedHeaderSearchStore scoped) {
+        page = await scoped.searchCachedHeadersInFolders(
+          query,
+          folderIds: folders,
+          cursor: _cursor,
+          limit: limit,
+          scanLimit: scanLimit,
+        );
+      } else {
+        _fail(MailProblemCode.unsupported);
+      }
       _check();
       await _verify(record);
       _validatePage(page, identity, limit, scanLimit);
