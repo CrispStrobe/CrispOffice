@@ -64,6 +64,7 @@ class StudioMailBulkStatus extends StatelessWidget {
     ),
     MailBulkFlagAction.move => strings.mailMoveMessage,
     MailBulkFlagAction.delete => strings.mailDeleteAction(report.plan.provider),
+    MailBulkFlagAction.archive => strings.mailArchiveMessages,
   };
 
   String _outcome(MailBulkFlagOutcome value) => switch (value) {

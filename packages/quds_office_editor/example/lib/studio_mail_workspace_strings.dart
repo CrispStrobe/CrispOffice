@@ -218,6 +218,7 @@ extension StudioMailWorkspaceStrings on StudioStrings {
     unflag: _text('Remove flag', 'Kennzeichnung entfernen', 'إزالة العلامة'),
     move: _text('Move…', 'Verschieben…', 'نقل…'),
     delete: _text('Delete…', 'Löschen…', 'حذف…'),
+    archive: _text('Archive…', 'Archivieren…', 'أرشفة…'),
     stopBulk: _text(
       'Stop after current message',
       'Nach aktueller Nachricht stoppen',

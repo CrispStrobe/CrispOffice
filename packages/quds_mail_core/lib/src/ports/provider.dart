@@ -189,6 +189,26 @@ final class MailDelete extends MailOperation {
   const MailDelete({required super.id, required super.message});
 }
 
+/// Remove the Gmail Inbox membership without changing other labels or flags.
+///
+/// Folder-based Archive uses [MailMove] with its exact destination frozen before
+/// dispatch. Other providers must reject this operation as unsupported.
+final class MailArchive extends MailOperation {
+  const MailArchive({required super.id, required super.message});
+}
+
+/// Optional read-only discovery of one ordinary Archive folder in this account.
+///
+/// Implementations use authoritative provider metadata, never display-name
+/// guesses or an online-archive mailbox. A missing or ambiguous destination is
+/// a typed failure. The host reviews the returned identity before constructing
+/// a durable [MailMove]; discovery itself never changes messages or folders.
+abstract interface class MailArchiveDestinationResolver {
+  Future<MailResult<MailMailbox>> resolveArchiveDestination(
+    MailOperationLease lease,
+  );
+}
+
 /// A provider never represents unsupported operations as empty success.
 abstract interface class MailProvider {
   MailAccountId get account;

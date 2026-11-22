@@ -38,7 +38,9 @@ uncertain-outcome handling. Provider-specific current-location recovery and
 atomic retained-cache reconciliation and null-safe sync fences, are now
 implemented. [Visible-selection Move/Delete](bulk-organization.md) now adds
 confirmed destinations, frozen identities and per-message outcomes through that
-same journal. Connected multi-account navigation is the next workspace boundary.
+same journal. [Explicit provider Archive](provider-archive.md) now adds Gmail
+Inbox-label removal and reviewed exact folder moves through the same durable
+pipeline. Connected multi-account navigation is the next workspace boundary.
 These increments do not close M04W or the complete desktop-client parity goal.
 
 ## 2. New package layout

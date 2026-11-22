@@ -223,6 +223,23 @@ MailPreparedMessage _prepared({List<String>? recipients}) =>
     );
 
 void main() {
+  test('EWS rejects Gmail Archive before credentials or SOAP', () async {
+    final fixture = _Fixture();
+    final provider = fixture.provider();
+    expect(provider, isNot(isA<MailArchiveDestinationResolver>()));
+    final result = await provider.apply(
+      MailArchive(id: 'archive', message: _identity('one')),
+      fixture.session.begin(),
+    );
+    _problem(result, MailProblemCode.unsupported);
+    expect(
+      (result as MailFailure<MailUnit>).problem.mutationMayHaveOccurred,
+      isFalse,
+    );
+    expect(fixture.clients, isEmpty);
+    expect(fixture.secrets, isEmpty);
+  });
+
   for (final stableIdentity in [false, true]) {
     test(
       'MoveItem ${stableIdentity ? 'stable' : 'replacement'} ID is verified in the exact destination',

@@ -47,6 +47,41 @@ extension StudioMailMutationStrings on StudioStrings {
 
   String get mailOrganizationApplyMove => _text('Move', 'Verschieben', 'نقل');
 
+  String get mailArchiveMessages =>
+      _text('Archive messages', 'Nachrichten archivieren', 'أرشفة الرسائل');
+
+  String get mailArchiveApply => _text('Archive', 'Archivieren', 'أرشفة');
+
+  String get mailArchiveFolderExplanation => _text(
+    'Move these messages to the archive destination in this account. The messages remain on the mail server.',
+    'Diese Nachrichten in den Archivzielordner dieses Kontos verschieben. Die Nachrichten bleiben auf dem Mail-Server.',
+    'نقل هذه الرسائل إلى مجلد الأرشيف في هذا الحساب. تبقى الرسائل على خادم البريد.',
+  );
+
+  String get mailArchiveChooseExplanation => _text(
+    'This account did not provide one unambiguous archive folder. Choose the exact destination for this action.',
+    'Dieses Konto hat keinen eindeutigen Archivordner angegeben. Wählen Sie den genauen Zielordner für diese Aktion.',
+    'لم يقدم هذا الحساب مجلد أرشيف واحدًا محددًا بوضوح. اختر المجلد الهدف لهذا الإجراء.',
+  );
+
+  String get mailArchiveResolvedDestination => _text(
+    'Archive destination reported by the server',
+    'Vom Server gemeldeter Archivzielordner',
+    'مجلد الأرشيف الذي حدده الخادم',
+  );
+
+  String get mailArchiveGmailExplanation => _text(
+    'Remove the selected messages from Inbox. They remain in All Mail and keep their other labels. This does not move them to Trash or save an independent local archive copy.',
+    'Die ausgewählten Nachrichten aus dem Posteingang entfernen. Sie bleiben in Alle Nachrichten und behalten ihre anderen Labels. Sie werden nicht in den Papierkorb verschoben; es wird keine unabhängige lokale Archivkopie gespeichert.',
+    'إزالة الرسائل المحددة من البريد الوارد. تبقى في كل البريد وتحتفظ بتصنيفاتها الأخرى. لا تُنقل إلى المهملات ولا تُحفظ نسخة أرشيف محلية مستقلة.',
+  );
+
+  String get mailArchiveSameFolder => _text(
+    'These messages are already in the archive destination. No message was changed.',
+    'Diese Nachrichten befinden sich bereits im Archivzielordner. Keine Nachricht wurde geändert.',
+    'هذه الرسائل موجودة بالفعل في مجلد الأرشيف. لم تُغيّر أي رسالة.',
+  );
+
   String mailOrganizationDeleteExplanation(MailProviderKind provider) =>
       provider == MailProviderKind.imap
       ? _text(

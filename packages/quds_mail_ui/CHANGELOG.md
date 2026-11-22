@@ -1,5 +1,9 @@
 ## Unreleased
 
+- Add an opt-in, localizable Archive selection action while preserving the
+  default flag actions and read-only views. The host owns provider semantics,
+  exact destination review, durable dispatch and recovery.
+
 - Let connected hosts opt in to checked-message Move/Delete with an immutable
   `supportedBulkActions` snapshot and localized labels. Preserve the flag-only
   default, visible-order selection, hidden-row exclusion and stale-menu guards;

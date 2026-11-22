@@ -15,6 +15,7 @@ void main() {
   _membershipAdapterTests();
   _flagObservationTests();
   _membershipObservationTests();
+  _archiveDestinationTests();
   _archiveAdapterTests();
   _browsingTests();
 
@@ -2312,6 +2313,8 @@ final class _Harness {
   final flagObservations = <(MailRemoteIdentity, MailOperationLease)>[];
   final membershipObservations = <(MailRemoteIdentity, MailOperationLease)>[];
   final capabilityRequests = <MailOperationLease>[];
+  final archiveRequests = <MailOperationLease>[];
+  Future<MailResult<MailMailbox>> Function(MailOperationLease)? archiveAnswer;
   _Answer? answer;
   _ApplyAnswer? applyAnswer;
   _HeadersAnswer? headersAnswer;
@@ -2390,6 +2393,21 @@ final class _Harness {
         return capabilitiesAnswer?.call(lease) ??
             Future.value(const MailSuccess(MailCapabilities.none()));
       },
+      (lease) {
+        archiveRequests.add(lease);
+        return archiveAnswer?.call(lease) ??
+            Future.value(
+              MailSuccess(
+                MailMailbox(
+                  id: MailMailboxId(
+                    'server-archive',
+                    account: configuration.account,
+                  ),
+                  displayName: 'Archiv',
+                ),
+              ),
+            );
+      },
     );
   }
 }
@@ -2399,6 +2417,7 @@ final class _Provider
         MailProvider,
         MailImapHeaderBrowser,
         MailFlagObserver,
+        MailArchiveDestinationResolver,
         MailMembershipObserver {
   _Provider(
     this.account,
@@ -2409,6 +2428,7 @@ final class _Provider
     this.observeAnswer,
     this.membershipObserveAnswer,
     this.capabilitiesAnswer,
+    this.archiveAnswer,
   );
 
   @override
@@ -2420,6 +2440,13 @@ final class _Provider
   final _ObserveAnswer observeAnswer;
   final _MembershipObserveAnswer membershipObserveAnswer;
   final _CapabilitiesAnswer capabilitiesAnswer;
+  final Future<MailResult<MailMailbox>> Function(MailOperationLease)
+  archiveAnswer;
+
+  @override
+  Future<MailResult<MailMailbox>> resolveArchiveDestination(
+    MailOperationLease lease,
+  ) => archiveAnswer(lease);
 
   @override
   Future<MailResult<MailCapabilities>> capabilities(MailOperationLease lease) =>
@@ -2485,6 +2512,147 @@ final class _ReaderOnlyProvider implements MailProvider {
   @override
   Object? noSuchMethod(Invocation invocation) =>
       throw StateError('Browsing must negotiate the optional provider port.');
+}
+
+void _archiveDestinationTests() {
+  for (final cancelLoader in [true, false]) {
+    test(
+      'Archive destination bridge rechecks ${cancelLoader ? 'loader' : 'host'} lease after provider creation',
+      () async {
+        final harness = _Harness();
+        final loader = _loader(harness);
+        addTearDown(loader.dispose);
+        final host = MailAccountSession(loader.account);
+        addTearDown(host.dispose);
+        harness.beforeCreate = cancelLoader ? loader.cancel : host.invalidate;
+        final result = await loader.resolveArchiveDestination(host.begin());
+        expect(result, isA<MailFailure<MailMailbox>>());
+        expect(harness.factoryCalls, 1);
+        expect(harness.archiveRequests, isEmpty);
+        expect(harness.mutations, isEmpty);
+      },
+    );
+  }
+
+  test(
+    'Archive destination bridge resolves an exact same-account folder without mail reads or writes',
+    () async {
+      final harness = _Harness();
+      final loader = _loader(harness);
+      addTearDown(loader.dispose);
+      final host = MailAccountSession(loader.account);
+      addTearDown(host.dispose);
+      final result = _success(
+        await loader.resolveArchiveDestination(host.begin()),
+      );
+      expect(
+        result.id,
+        MailMailboxId('server-archive', account: loader.account),
+      );
+      expect(result.displayName, 'Archiv');
+      expect(harness.archiveRequests, hasLength(1));
+      expect(harness.requests, isEmpty);
+      expect(harness.headerRequests, isEmpty);
+      expect(harness.mutations, isEmpty);
+    },
+  );
+
+  test(
+    'Archive destination bridge keeps unsupported distinct from network failure',
+    () async {
+      final harness = _Harness();
+      final loader = _loader(harness);
+      addTearDown(loader.dispose);
+      final host = MailAccountSession(loader.account);
+      addTearDown(host.dispose);
+      for (final code in [
+        MailProblemCode.unsupported,
+        MailProblemCode.unavailable,
+        MailProblemCode.permissionDenied,
+      ]) {
+        harness.archiveAnswer = (_) async => MailFailure(MailProblem(code));
+        final result = await loader.resolveArchiveDestination(host.begin());
+        expect(result, isA<MailFailure<MailMailbox>>());
+        expect((result as MailFailure<MailMailbox>).problem.code, code);
+      }
+      expect(harness.mutations, isEmpty);
+    },
+  );
+
+  test('Archive destination bridge rejects a foreign account result', () async {
+    final harness = _Harness();
+    final loader = _loader(harness);
+    addTearDown(loader.dispose);
+    final host = MailAccountSession(loader.account);
+    addTearDown(host.dispose);
+    harness.archiveAnswer = (_) async => MailSuccess(
+      MailMailbox(
+        id: MailMailboxId(
+          'archive',
+          account: MailAccountId('foreign', profile: loader.account.profile),
+        ),
+        displayName: 'Archive',
+      ),
+    );
+    final result = await loader.resolveArchiveDestination(host.begin());
+    expect(
+      (result as MailFailure<MailMailbox>).problem.code,
+      MailProblemCode.invalidInput,
+    );
+    expect(harness.mutations, isEmpty);
+  });
+
+  test(
+    'Archive destination bridge rejects stale or foreign host lease before provider construction',
+    () async {
+      final harness = _Harness();
+      final loader = _loader(harness);
+      addTearDown(loader.dispose);
+      final host = MailAccountSession(loader.account);
+      final stale = host.begin();
+      host.dispose();
+      final foreign = MailAccountSession(
+        MailAccountId('foreign', profile: loader.account.profile),
+      );
+      addTearDown(foreign.dispose);
+      expect(
+        (await loader.resolveArchiveDestination(stale)
+                as MailFailure<MailMailbox>)
+            .problem
+            .code,
+        MailProblemCode.staleOperation,
+      );
+      expect(
+        (await loader.resolveArchiveDestination(foreign.begin())
+                as MailFailure<MailMailbox>)
+            .problem
+            .code,
+        MailProblemCode.invalidInput,
+      );
+      expect(harness.factoryCalls, 0);
+    },
+  );
+
+  test(
+    'Archive destination bridge cancels a pending result on disposal',
+    () async {
+      final gate = Completer<MailResult<MailMailbox>>();
+      final harness = _Harness()..archiveAnswer = (_) => gate.future;
+      final loader = _loader(harness);
+      final host = MailAccountSession(loader.account);
+      addTearDown(host.dispose);
+      final pending = loader.resolveArchiveDestination(host.begin());
+      loader.dispose();
+      expect(
+        (await pending as MailFailure<MailMailbox>).problem.code,
+        MailProblemCode.staleOperation,
+      );
+      gate.completeError(StateError('Late provider response'));
+      await Future<void>.delayed(Duration.zero);
+      expect(harness.archiveRequests, hasLength(1));
+      expect(harness.mutations, isEmpty);
+    },
+  );
 }
 
 void _flagObservationTests() {
