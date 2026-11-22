@@ -1,0 +1,419 @@
+{
+  "checked_at_utc": "2026-11-22T12:26:40.527204+00:00",
+  "raw_vm_sha256": "fc85b00ae0b31827b003f992be1a4841c4f9750f0f73abb06de3e0be967d0a02",
+  "raw_node_sha256": "f52a7951d0755289e1d972dd6301091971cda848cd40f28e41185a37dbf5db94",
+  "raw_bytes_equal": false,
+  "strict_structural_equality_except_integral_number_encoding": true,
+  "integral_number_encoding_differences": [
+    {
+      "path": "/docm/state/body/0/after",
+      "vm": 8.0,
+      "node": 8,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docm/state/body/0/before",
+      "vm": 0.0,
+      "node": 0,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docm/state/body/1/after",
+      "vm": 8.0,
+      "node": 8,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docm/state/body/1/before",
+      "vm": 0.0,
+      "node": 0,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docm/state/body/2/after",
+      "vm": 8.0,
+      "node": 8,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docm/state/body/2/before",
+      "vm": 0.0,
+      "node": 0,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docm/state/body/3/after",
+      "vm": 8.0,
+      "node": 8,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docm/state/body/3/before",
+      "vm": 0.0,
+      "node": 0,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docm/state/stories/0/0/after",
+      "vm": 8.0,
+      "node": 8,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docm/state/stories/0/0/before",
+      "vm": 0.0,
+      "node": 0,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docm/state/stories/6/0/after",
+      "vm": 8.0,
+      "node": 8,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docm/state/stories/6/0/before",
+      "vm": 0.0,
+      "node": 0,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docm/state/tables/0/margin",
+      "vm": 4.0,
+      "node": 4,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docm/state/tables/0/rows/0/cells/0/paragraph/after",
+      "vm": 3.0,
+      "node": 3,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docm/state/tables/0/rows/0/cells/0/paragraph/before",
+      "vm": 0.0,
+      "node": 0,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docm/state/tables/0/rows/0/cells/0/width",
+      "vm": 120.0,
+      "node": 120,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docm/state/tables/0/rows/0/cells/1/paragraph/after",
+      "vm": 3.0,
+      "node": 3,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docm/state/tables/0/rows/0/cells/1/paragraph/before",
+      "vm": 0.0,
+      "node": 0,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docm/state/tables/0/rows/0/cells/1/width",
+      "vm": 120.0,
+      "node": 120,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docm/state/tables/0/rows/1/cells/0/paragraph/after",
+      "vm": 3.0,
+      "node": 3,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docm/state/tables/0/rows/1/cells/0/paragraph/before",
+      "vm": 0.0,
+      "node": 0,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docm/state/tables/0/rows/1/cells/0/width",
+      "vm": 120.0,
+      "node": 120,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docm/state/tables/0/rows/1/cells/1/paragraph/after",
+      "vm": 3.0,
+      "node": 3,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docm/state/tables/0/rows/1/cells/1/paragraph/before",
+      "vm": 0.0,
+      "node": 0,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docm/state/tables/0/rows/1/cells/1/width",
+      "vm": 120.0,
+      "node": 120,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docm/state/tables/1/margin",
+      "vm": 4.0,
+      "node": 4,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docm/state/tables/1/rows/0/cells/0/paragraph/after",
+      "vm": 3.0,
+      "node": 3,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docm/state/tables/1/rows/0/cells/0/paragraph/before",
+      "vm": 0.0,
+      "node": 0,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docm/state/tables/1/rows/0/cells/0/width",
+      "vm": 120.0,
+      "node": 120,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docx/state/body/0/after",
+      "vm": 8.0,
+      "node": 8,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docx/state/body/0/before",
+      "vm": 0.0,
+      "node": 0,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docx/state/body/1/after",
+      "vm": 8.0,
+      "node": 8,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docx/state/body/1/before",
+      "vm": 0.0,
+      "node": 0,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docx/state/body/2/after",
+      "vm": 8.0,
+      "node": 8,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docx/state/body/2/before",
+      "vm": 0.0,
+      "node": 0,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docx/state/body/3/after",
+      "vm": 8.0,
+      "node": 8,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docx/state/body/3/before",
+      "vm": 0.0,
+      "node": 0,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docx/state/stories/0/0/after",
+      "vm": 8.0,
+      "node": 8,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docx/state/stories/0/0/before",
+      "vm": 0.0,
+      "node": 0,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docx/state/stories/6/0/after",
+      "vm": 8.0,
+      "node": 8,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docx/state/stories/6/0/before",
+      "vm": 0.0,
+      "node": 0,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docx/state/tables/0/margin",
+      "vm": 4.0,
+      "node": 4,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docx/state/tables/0/rows/0/cells/0/paragraph/after",
+      "vm": 3.0,
+      "node": 3,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docx/state/tables/0/rows/0/cells/0/paragraph/before",
+      "vm": 0.0,
+      "node": 0,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docx/state/tables/0/rows/0/cells/0/width",
+      "vm": 120.0,
+      "node": 120,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docx/state/tables/0/rows/0/cells/1/paragraph/after",
+      "vm": 3.0,
+      "node": 3,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docx/state/tables/0/rows/0/cells/1/paragraph/before",
+      "vm": 0.0,
+      "node": 0,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docx/state/tables/0/rows/0/cells/1/width",
+      "vm": 120.0,
+      "node": 120,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docx/state/tables/0/rows/1/cells/0/paragraph/after",
+      "vm": 3.0,
+      "node": 3,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docx/state/tables/0/rows/1/cells/0/paragraph/before",
+      "vm": 0.0,
+      "node": 0,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docx/state/tables/0/rows/1/cells/0/width",
+      "vm": 120.0,
+      "node": 120,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docx/state/tables/0/rows/1/cells/1/paragraph/after",
+      "vm": 3.0,
+      "node": 3,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docx/state/tables/0/rows/1/cells/1/paragraph/before",
+      "vm": 0.0,
+      "node": 0,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docx/state/tables/0/rows/1/cells/1/width",
+      "vm": 120.0,
+      "node": 120,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docx/state/tables/1/margin",
+      "vm": 4.0,
+      "node": 4,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docx/state/tables/1/rows/0/cells/0/paragraph/after",
+      "vm": 3.0,
+      "node": 3,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docx/state/tables/1/rows/0/cells/0/paragraph/before",
+      "vm": 0.0,
+      "node": 0,
+      "vm_type": "float",
+      "node_type": "int"
+    },
+    {
+      "path": "/docx/state/tables/1/rows/0/cells/0/width",
+      "vm": 120.0,
+      "node": 120,
+      "vm_type": "float",
+      "node_type": "int"
+    }
+  ],
+  "other_differences": [],
+  "canonical_sha256": "0bbdfe5579a2604573d57f2c20727b1bd986d5c2c76b190572be633079bc4480",
+  "canonical_bytes_equal": true,
+  "note": "The tool emits ordinary jsonEncode, so Dart VM doubles such as 0.0 serialize as integers in JavaScript. The original scratch gate demanded raw byte identity incorrectly. Both raw receipts and the original failed harness result are retained; normalization changes only integral numeric encodings, not strings, booleans, objects, arrays or numeric values."
+}

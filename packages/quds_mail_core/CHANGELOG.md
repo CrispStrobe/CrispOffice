@@ -1,5 +1,10 @@
 ## Unreleased
 
+- Add immutable account-owned ordinary Archive settings and an optional
+  persistence port. Preserve exact mailbox values and Unicode, reject foreign
+  ownership and invalid metadata, and retain reset revisions for stale-write
+  protection. A saved preference grants no live provider or message authority.
+
 - Add explicit Gmail Inbox Archive to the durable foreground command model,
   retaining other labels and rejecting cross-provider, non-Inbox and invented
   destination plans. Archive outcomes retain the existing uncertain/no-replay

@@ -190,7 +190,7 @@ void main() {
           await store.close();
         }
         final migrated = sqlite.sqlite3.open(file.path);
-        expect(migrated.userVersion, 16);
+        expect(migrated.userVersion, 17);
         expect(_snapshot(migrated), before);
         expect(
           migrated

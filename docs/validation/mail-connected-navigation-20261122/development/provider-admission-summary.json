@@ -1,0 +1,1135 @@
+{
+  "recordedAtUtc": "2026-11-22T13:06:22.585457+00:00",
+  "baseHead": "893cca7a17b6bcda966f44248fa966084c5f1a74",
+  "cwd": "packages/quds_office_editor/example",
+  "runtime": "source /workspace/scratch/85a369f34dbb/runtime/env.sh; BOT=true; flutter test --no-pub --concurrency=1 --reporter=json",
+  "accepted": [
+    {
+      "raw": "provider-admission.jsonl",
+      "count": 145,
+      "passed": 145,
+      "failed": 0,
+      "skipped": 0,
+      "errors": [],
+      "done": {
+        "success": true,
+        "type": "done",
+        "time": 49696
+      },
+      "cases": [
+        {
+          "id": 3,
+          "name": "ews: atomic selected refresh preserves a removed shortcut",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 4,
+          "name": "ews: atomic selected refresh preserves a revised shortcut",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 5,
+          "name": "ews: non-secret prefill waits for explicit sign-in",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 6,
+          "name": "ews: edited ews-mailbox cannot redirect selected identity",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 7,
+          "name": "ews: edited ews-endpoint cannot redirect selected identity",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 8,
+          "name": "ews: edited ews-domain cannot redirect selected identity",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 9,
+          "name": "ews: edited ews-login cannot redirect selected identity",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 10,
+          "name": "ews: removed target fails before provider authorization",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 11,
+          "name": "ews: revised target fails before provider authorization",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 12,
+          "name": "ews: late target validation cannot authenticate a closed host",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 13,
+          "name": "ews: target removal during authorization blocks later dispatch",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 14,
+          "name": "ews: setup picker selection never opens a provider or draft store",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 15,
+          "name": "ews: removed target during store open retires an unadopted candidate",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 16,
+          "name": "ews: removed target during store load retires an unadopted candidate",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 17,
+          "name": "ews: failed release of a stale open candidate blocks another account",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 18,
+          "name": "ews: failed switch save retains the current connected uncertain draft",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 19,
+          "name": "ews: switch revalidates destination after saving and retains source on removal",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 20,
+          "name": "ews: switch drains observers and draft owner before one callback",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 21,
+          "name": "ews: close retains connection on failed draft save",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 22,
+          "name": "ews: removed account during owner acquisition retires the entire connection",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 23,
+          "name": "ews: revised account during owner acquisition retires the entire connection",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 24,
+          "name": "ews: removed account during draft restoration retires the entire connection",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 25,
+          "name": "ews: revised account during draft restoration retires the entire connection",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 26,
+          "name": "ews: removed account during cache persistence retires the entire connection",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 27,
+          "name": "ews: revised account during cache persistence retires the entire connection",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 28,
+          "name": "ews: removed account during cache observation retires the entire connection",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 29,
+          "name": "ews: revised account during cache observation retires the entire connection",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 30,
+          "name": "ews: removed account during atomic account refresh retires the entire connection",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 31,
+          "name": "ews: revised account during atomic account refresh retires the entire connection",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 32,
+          "name": "ews: Close prevents store admission when pending headers complete",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 33,
+          "name": "ews: Close retires pending factory and waits for one owner release",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 34,
+          "name": "ews: Close retires pending factory and retains failed release for explicit retry",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 35,
+          "name": "ews: Close retires pending load and waits for one owner release",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 36,
+          "name": "ews: Close retires pending load and retains failed release for explicit retry",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 37,
+          "name": "ews: Close retires pending selected refresh and waits for one owner release",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 38,
+          "name": "ews: Close retires pending selected refresh and retains failed release for explicit retry",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 39,
+          "name": "ews: Disconnect drains staged observers before explicit reconnect",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 40,
+          "name": "ews: Disconnect drains staged observers and retains a failed owner",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 41,
+          "name": "ews: Close completes when a pending factory fails without an owner",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 42,
+          "name": "ews: local draft failure preserves a valid connected mailbox",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 43,
+          "name": "ews: failed owner release blocks handoff until explicit Close retry",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 44,
+          "name": "ews: removed destination during owner release never dispatches a route",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 45,
+          "name": "ews: target replacement drains late owner before another sign-in",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 46,
+          "name": "ews: directory replacement drains late owner before another sign-in",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 47,
+          "name": "ews: close stops bulk dispatch before saving and drains its receipt",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 48,
+          "name": "ews: close intent prevents first send after a pending marker",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 49,
+          "name": "ews: close intent prevents first send after a pending marker even when close save fails",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 50,
+          "name": "ews: own remembered revision permits a later explicit reconnect",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 51,
+          "name": "ews: switch never exits after failed owner release",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 52,
+          "name": "ews: close never exits after failed owner release",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 53,
+          "name": "gmail: atomic selected refresh preserves a removed shortcut",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 54,
+          "name": "gmail: atomic selected refresh preserves a revised shortcut",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 55,
+          "name": "gmail: non-secret prefill waits for explicit sign-in",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 56,
+          "name": "gmail: edited cloud-mailbox cannot redirect selected identity",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 57,
+          "name": "gmail: removed target fails before provider authorization",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 58,
+          "name": "gmail: revised target fails before provider authorization",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 59,
+          "name": "gmail: late target validation cannot authenticate a closed host",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 60,
+          "name": "gmail: target removal during authorization blocks later dispatch",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 61,
+          "name": "gmail: setup picker selection never opens a provider or draft store",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 62,
+          "name": "gmail: removed target during store open retires an unadopted candidate",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 63,
+          "name": "gmail: removed target during store load retires an unadopted candidate",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 64,
+          "name": "gmail: failed release of a stale open candidate blocks another account",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 65,
+          "name": "gmail: failed switch save retains the current connected uncertain draft",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 66,
+          "name": "gmail: switch revalidates destination after saving and retains source on removal",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 67,
+          "name": "gmail: switch drains observers and draft owner before one callback",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 68,
+          "name": "gmail: close retains connection on failed draft save",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 69,
+          "name": "gmail: removed account during owner acquisition retires the entire connection",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 70,
+          "name": "gmail: revised account during owner acquisition retires the entire connection",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 71,
+          "name": "gmail: removed account during draft restoration retires the entire connection",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 72,
+          "name": "gmail: revised account during draft restoration retires the entire connection",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 73,
+          "name": "gmail: removed account during cache persistence retires the entire connection",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 74,
+          "name": "gmail: revised account during cache persistence retires the entire connection",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 75,
+          "name": "gmail: removed account during cache observation retires the entire connection",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 76,
+          "name": "gmail: revised account during cache observation retires the entire connection",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 77,
+          "name": "gmail: removed account during atomic account refresh retires the entire connection",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 78,
+          "name": "gmail: revised account during atomic account refresh retires the entire connection",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 79,
+          "name": "gmail: Close prevents store admission when pending headers complete",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 80,
+          "name": "gmail: Close retires pending factory and waits for one owner release",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 81,
+          "name": "gmail: Close retires pending factory and retains failed release for explicit retry",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 82,
+          "name": "gmail: Close retires pending load and waits for one owner release",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 83,
+          "name": "gmail: Close retires pending load and retains failed release for explicit retry",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 84,
+          "name": "gmail: Close retires pending selected refresh and waits for one owner release",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 85,
+          "name": "gmail: Close retires pending selected refresh and retains failed release for explicit retry",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 86,
+          "name": "gmail: Disconnect drains staged observers before explicit reconnect",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 87,
+          "name": "gmail: Disconnect drains staged observers and retains a failed owner",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 88,
+          "name": "gmail: Close completes when a pending factory fails without an owner",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 89,
+          "name": "gmail: local draft failure preserves a valid connected mailbox",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 90,
+          "name": "gmail: failed owner release blocks handoff until explicit Close retry",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 91,
+          "name": "gmail: removed destination during owner release never dispatches a route",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 92,
+          "name": "gmail: target replacement drains late owner before another sign-in",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 93,
+          "name": "gmail: directory replacement drains late owner before another sign-in",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 94,
+          "name": "gmail: close stops bulk dispatch before saving and drains its receipt",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 95,
+          "name": "gmail: close intent prevents first send after a pending marker",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 96,
+          "name": "gmail: close intent prevents first send after a pending marker even when close save fails",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 97,
+          "name": "gmail: own remembered revision permits a later explicit reconnect",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 98,
+          "name": "gmail: switch never exits after failed owner release",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 99,
+          "name": "gmail: close never exits after failed owner release",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 100,
+          "name": "graph: atomic selected refresh preserves a removed shortcut",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 101,
+          "name": "graph: atomic selected refresh preserves a revised shortcut",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 102,
+          "name": "graph: non-secret prefill waits for explicit sign-in",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 103,
+          "name": "graph: edited cloud-mailbox cannot redirect selected identity",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 104,
+          "name": "graph: edited cloud-tenant cannot redirect selected identity",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 105,
+          "name": "graph: removed target fails before provider authorization",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 106,
+          "name": "graph: revised target fails before provider authorization",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 107,
+          "name": "graph: late target validation cannot authenticate a closed host",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 108,
+          "name": "graph: target removal during authorization blocks later dispatch",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 109,
+          "name": "graph: setup picker selection never opens a provider or draft store",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 110,
+          "name": "graph: removed target during store open retires an unadopted candidate",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 111,
+          "name": "graph: removed target during store load retires an unadopted candidate",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 112,
+          "name": "graph: failed release of a stale open candidate blocks another account",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 113,
+          "name": "graph: failed switch save retains the current connected uncertain draft",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 114,
+          "name": "graph: switch revalidates destination after saving and retains source on removal",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 115,
+          "name": "graph: switch drains observers and draft owner before one callback",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 116,
+          "name": "graph: close retains connection on failed draft save",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 117,
+          "name": "graph: removed account during owner acquisition retires the entire connection",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 118,
+          "name": "graph: revised account during owner acquisition retires the entire connection",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 119,
+          "name": "graph: removed account during draft restoration retires the entire connection",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 120,
+          "name": "graph: revised account during draft restoration retires the entire connection",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 121,
+          "name": "graph: removed account during cache persistence retires the entire connection",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 122,
+          "name": "graph: revised account during cache persistence retires the entire connection",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 123,
+          "name": "graph: removed account during cache observation retires the entire connection",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 124,
+          "name": "graph: revised account during cache observation retires the entire connection",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 125,
+          "name": "graph: removed account during atomic account refresh retires the entire connection",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 126,
+          "name": "graph: revised account during atomic account refresh retires the entire connection",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 127,
+          "name": "graph: Close prevents store admission when pending headers complete",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 128,
+          "name": "graph: Close retires pending factory and waits for one owner release",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 129,
+          "name": "graph: Close retires pending factory and retains failed release for explicit retry",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 130,
+          "name": "graph: Close retires pending load and waits for one owner release",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 131,
+          "name": "graph: Close retires pending load and retains failed release for explicit retry",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 132,
+          "name": "graph: Close retires pending selected refresh and waits for one owner release",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 133,
+          "name": "graph: Close retires pending selected refresh and retains failed release for explicit retry",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 134,
+          "name": "graph: Disconnect drains staged observers before explicit reconnect",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 135,
+          "name": "graph: Disconnect drains staged observers and retains a failed owner",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 136,
+          "name": "graph: Close completes when a pending factory fails without an owner",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 137,
+          "name": "graph: local draft failure preserves a valid connected mailbox",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 138,
+          "name": "graph: failed owner release blocks handoff until explicit Close retry",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 139,
+          "name": "graph: removed destination during owner release never dispatches a route",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 140,
+          "name": "graph: target replacement drains late owner before another sign-in",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 141,
+          "name": "graph: directory replacement drains late owner before another sign-in",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 142,
+          "name": "graph: close stops bulk dispatch before saving and drains its receipt",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 143,
+          "name": "graph: close intent prevents first send after a pending marker",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 144,
+          "name": "graph: close intent prevents first send after a pending marker even when close save fails",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 145,
+          "name": "graph: own remembered revision permits a later explicit reconnect",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 146,
+          "name": "graph: switch never exits after failed owner release",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 147,
+          "name": "graph: close never exits after failed owner release",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        }
+      ]
+    },
+    {
+      "raw": "provider-admission-standalone-recovery.jsonl",
+      "count": 2,
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "errors": [],
+      "done": {
+        "success": true,
+        "type": "done",
+        "time": 10048
+      },
+      "cases": [
+        {
+          "id": 3,
+          "name": "EWS retires a draft store opened after its host was closed",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        },
+        {
+          "id": 7,
+          "name": "Gmail closes late draft storage without adopting a retired session",
+          "result": "success",
+          "skipped": false,
+          "hidden": false
+        }
+      ]
+    }
+  ],
+  "acceptedPassed": 147,
+  "acceptedFailed": 0,
+  "acceptedSkipped": 0,
+  "supersededStandaloneAttempt": {
+    "raw": "provider-admission-standalone.jsonl",
+    "count": 2,
+    "passed": 0,
+    "failed": 2,
+    "skipped": 0,
+    "errors": [
+      {
+        "testID": 3,
+        "error": "Test failed. See exception logs above.\nThe test description was: EWS retires a draft store opened after its host was closed",
+        "stackTrace": "",
+        "isFailure": false,
+        "type": "error",
+        "time": 10109
+      },
+      {
+        "testID": 7,
+        "error": "Test failed. See exception logs above.\nThe test description was: Gmail closes late draft storage without adopting a retired session",
+        "stackTrace": "",
+        "isFailure": false,
+        "type": "error",
+        "time": 12921
+      }
+    ],
+    "done": {
+      "success": false,
+      "type": "done",
+      "time": 12970
+    },
+    "cases": [
+      {
+        "id": 3,
+        "name": "EWS retires a draft store opened after its host was closed",
+        "result": "error",
+        "skipped": false,
+        "hidden": false
+      },
+      {
+        "id": 7,
+        "name": "Gmail closes late draft storage without adopting a retired session",
+        "result": "error",
+        "skipped": false,
+        "hidden": false
+      }
+    ]
+  },
+  "supersededReason": "Both cases observed successful late-owner release but their fixed fake-clock pump checked route absence before asynchronous admission drain and route dismissal finished. Only those final waits were changed to bounded observable route-removal loops with real event turns. The pre-release assertions continue to require a visible route and retired provider. No production source changed after provider145 pass.",
+  "acceptedSourceSha256": {
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart": "cafe31cc7ab543a58451d4c5618e67f07678f58fcc667b363dec3093613a0ae2",
+    "packages/quds_office_editor/example/lib/studio_mail_cloud.dart": "d2bb1e11b739afcc080af882524cf85a1fc73b22478d66670f5f1cc489983bd4",
+    "packages/quds_office_editor/example/test/studio_mail_account_navigation_provider_test.dart": "0402a1c5890c029e1c73de35f3096109cdceec9afc29078ef587f6858c8eb388",
+    "packages/quds_office_editor/example/test/studio_mail_ews_test.dart": "f51c1459088f8db02cd364bb335303e4ceeae413c09d7266442d82cc0a9461cc",
+    "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart": "1a96fabc94bbcd0bdd876b66146a2dbe6f622734197967c9c644b45634485158"
+  },
+  "newProviderCases": 30,
+  "newCoverage": [
+    "pending-header Close prevents new owner admission",
+    "Close pending factory/load/atomic refresh retires lease promptly, blocks route exit until one successful owner release",
+    "failed late-owner release retains live retry UI without implicit retry or further authentication",
+    "ordinary Disconnect cancels never-emitted staged watcher, awaits cancellation, and keeps owner alive until release",
+    "ordinary failed owner blocks reconnect until explicit Close retry",
+    "pending factory exception without owner completes Close",
+    "dependency replacement requires explicit new connect after admission drain"
+  ],
+  "notFinalCombinedQualification": true
+}

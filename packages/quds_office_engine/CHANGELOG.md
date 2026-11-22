@@ -27,6 +27,12 @@ All notable changes to `quds_office_engine` are documented here.
   retains all four source borders. Arbitrary external DOCX per-cell strokes and
   styles remain outside this native common-stroke qualification.
 
+- Preserve complete run-property XML, including opaque formatting revisions,
+  on native Word field boundaries through repeated DOCX saves. Keep those
+  fields guarded instead of discarding their history or creating empty text
+  revisions. Ordinary text retains its existing formatting review behavior,
+  including text that originally shared a run with a field marker.
+
 - Keep bounded LibreOffice-formatted Zotero DOCX fields editable while
   preserving their raw instruction/boundary formatting and empty code runs.
   Refresh or unlink empty results using cached-result or surrounding text
@@ -39,12 +45,6 @@ All notable changes to `quds_office_engine` are documented here.
   stale-result refusal. See the
   [converter qualification](../../docs/validation/zotero-converter-parity-20261122/README.md)
   for exact limits and remaining installed-plugin acceptance.
-
-- Preserve complete run-property XML, including opaque formatting revisions,
-  on native Word field boundaries through repeated DOCX saves. Keep those
-  fields guarded instead of discarding their history or creating empty text
-  revisions. Ordinary text retains its existing formatting review behavior,
-  including text that originally shared a run with a field marker.
 
 - Add bounded VBA `Split` assignment to local dynamic String arrays in Word,
   Excel and PowerPoint. Preserve zero-based binary substring semantics,

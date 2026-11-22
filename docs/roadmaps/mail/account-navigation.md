@@ -110,10 +110,13 @@ execution policy or new database schema.
 
 When native Mail cannot finish releasing the previous owner, it displays
 **Retry closing account**. Connection, provider setup and local-account/draft
-entry points stay blocked until release succeeds. Selected-target store admission
-also temporarily disables Disconnect so an unfinished store opener cannot be
-abandoned in favor of another account. EWS and cloud recovery retains the owner
-behind their explicit Close path.
+entry points stay blocked until release succeeds. Native Close is also blocked
+while admission or owner cleanup is pending. Selected-target store admission
+temporarily disables Disconnect so an unfinished store opener cannot be
+abandoned in favor of another account. EWS and cloud Close retire the provider
+before awaiting admission and keep the dialog alive until cleanup succeeds.
+A failed late candidate close remains held for a separate explicit retry; the
+same Close request cannot silently retry it and open the next route.
 
 ## Acceptance boundary and ordered continuation
 
@@ -127,10 +130,12 @@ account-aware unified view over repository observations. It must preserve the
 ownership and no-replay guarantees established here.
 
 Follow the [current ordered continuation](connected-account-navigation.md#comparison-targets-and-next-increments):
-remembered Archive destinations, categories/rules, body/provider search,
+categories/rules, body/provider search,
 persistent conversations and provider Drafts/Sent reconciliation, then fuller
 background multi-account work. Rich authoring, Office attachments, Calendar/People
 and platform qualification retain their broader roadmap dependencies.
+The [remembered Archive destination continuation](remembered-archive.md) is now
+implemented with exact identities and explicit missing-folder repair.
 
 The comparison targets support account-aware navigation and sending context.
 Thunderbird documents [account and unified folder presentations](https://support.mozilla.org/en-US/kb/switching-folder-pane-view).

@@ -1,0 +1,6 @@
+{
+  "local_baseline_commit": "e6b5c23e3d0dfee29fb86fe1a5f6132b3f34de3d",
+  "canonical_remote_commit": "3e57fda4de6317c4a547f69220d7ed83802fd19f",
+  "identical_tree": "f410d8165bc8af58df6f1154905878ea4b63875b",
+  "explanation": "Root published and canonicalized the exact integrated tree without changing captured source content."
+}

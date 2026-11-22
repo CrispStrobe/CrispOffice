@@ -1,0 +1,65 @@
+{
+  "source_commit": "3dca1265f7abfc2cdca7eb0c6b0b582f85f4b015",
+  "final_studio_input_map_sha256": "c78efeae4316fcb624853b4bcb0a493d5e1e139df5cea22d26883a695de3ee77",
+  "unchanged_gate_inputs": {
+    "shared-mail-qualification": {
+      "input_count": 423,
+      "matches_final_qualified_source": true,
+      "mismatches": [],
+      "additional_committed_files_checked": [
+        "packages/quds_mail_transport/test/fixtures/tls/README.md",
+        "packages/quds_mail_transport/test/support/tls/README.md"
+      ]
+    },
+    "final-intake-engine-qualification": {
+      "input_count": 3655,
+      "matches_final_qualified_source": true,
+      "mismatches": [],
+      "additional_committed_files_checked": [
+        "packages/legacy_doc_parser/test/fixtures/external/poi-20261114/README.md",
+        "packages/legacy_doc_parser/test/fixtures/external/poi-20261114/licenses/poi-README.md",
+        "packages/legacy_doc_parser/test/fixtures/fidelity/image-appearance/README.md",
+        "packages/legacy_doc_parser/test/fixtures/fidelity/media/README.md",
+        "packages/legacy_doc_parser/test/fixtures/word_native/POSITION-SOURCES.md",
+        "packages/legacy_doc_parser/test/fixtures/word_native/README.md",
+        "packages/legacy_doc_parser/tool/ink_metrics_oracle/README.md",
+        "packages/legacy_doc_parser/tool/ink_oracle/README.md",
+        "packages/legacy_doc_parser/tool/office-validation/README.md",
+        "packages/quds_office_editor/assets/thesaurus/en/notices/OEWN_LICENSE.md",
+        "packages/quds_office_engine/test/fixtures/fidelity/loss-probes/README.md",
+        "packages/quds_office_engine/test/fixtures/zotero/citing/README.md",
+        "packages/quds_office_engine/test/fixtures/zotero/converter/README.md",
+        "packages/quds_office_engine/test/fixtures/zotero/odt/README.md",
+        "packages/quds_office_engine/test/fixtures/zotero/separators/README.md",
+        "packages/quds_office_engine/tool/fidelity/README.md"
+      ]
+    },
+    "converter-helper-consumers-qualification": {
+      "input_count": 3655,
+      "matches_final_qualified_source": true,
+      "mismatches": [],
+      "additional_committed_files_checked": [
+        "packages/legacy_doc_parser/test/fixtures/external/poi-20261114/README.md",
+        "packages/legacy_doc_parser/test/fixtures/external/poi-20261114/licenses/poi-README.md",
+        "packages/legacy_doc_parser/test/fixtures/fidelity/image-appearance/README.md",
+        "packages/legacy_doc_parser/test/fixtures/fidelity/media/README.md",
+        "packages/legacy_doc_parser/test/fixtures/word_native/POSITION-SOURCES.md",
+        "packages/legacy_doc_parser/test/fixtures/word_native/README.md",
+        "packages/legacy_doc_parser/tool/ink_metrics_oracle/README.md",
+        "packages/legacy_doc_parser/tool/ink_oracle/README.md",
+        "packages/legacy_doc_parser/tool/office-validation/README.md",
+        "packages/quds_office_editor/assets/thesaurus/en/notices/OEWN_LICENSE.md",
+        "packages/quds_office_engine/test/fixtures/fidelity/loss-probes/README.md",
+        "packages/quds_office_engine/test/fixtures/zotero/citing/README.md",
+        "packages/quds_office_engine/test/fixtures/zotero/converter/README.md",
+        "packages/quds_office_engine/test/fixtures/zotero/odt/README.md",
+        "packages/quds_office_engine/test/fixtures/zotero/separators/README.md",
+        "packages/quds_office_engine/tool/fidelity/README.md"
+      ]
+    }
+  },
+  "initial_engine_delta": [
+    "packages/quds_office_engine/test/support/zotero_converter_fixtures.dart"
+  ],
+  "engine_delta_qualification": "All direct helper consumers rerun: boundary94, table borders30, outline60; editor converter12 also passed. Other190 original cases retain unchanged production/test source. These are explicitly scoped maps, not a complete universal compiled-input closure."
+}

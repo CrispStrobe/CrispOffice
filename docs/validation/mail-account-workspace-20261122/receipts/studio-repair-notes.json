@@ -1,0 +1,30 @@
+{
+  "recorded_at_utc": "2026-11-22T12:46:23.097816+00:00",
+  "failed_source": "3e57fda4de6317c4a547f69220d7ed83802fd19f",
+  "failed_receipt": "studio-first-attempt-qualification.json",
+  "failed_receipt_sha256": "3362c0edcd2f12a6bf00386565ebf3e80c1a3ca05178e2e5dd749f31ae732419",
+  "failed_reporter_sha256": "43fb3ada39a050fd09a9d6b7b1629dd9cbadb9c19024b4f0ecb8930fe989c261",
+  "passed_before_failure": 132,
+  "failed_substantive_cases": 1,
+  "skipped": 0,
+  "exit_code": 1,
+  "reporter_done_success": false,
+  "captured_inputs": 6220,
+  "source_unchanged": true,
+  "failed_case": "ews: disconnect retains failed observer and owner until explicit close",
+  "failure": "A retained Refresh callback dereferenced the mutable mailbox after Disconnect had cleared it, before the method-level guard could reject stale work.",
+  "fix": "Connected toolbar callbacks capture provider, session, mailbox and generation plus initial-account/directory identity, and reject stale or unmounted callbacks before dispatch. Refresh and Load More bind the non-null mailbox at widget build time instead of reading mutable _mailbox! when invoked.",
+  "disconnect_semantics": "Action-specific admission is preserved: no blanket busy guard was added, so pending authentication/restoration Disconnect remains available.",
+  "fixed_source_path": "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+  "fixed_source_sha256": "ecffa8655ff491aef47525828e943c2c8330bf71a90f608568d162a86182ad10",
+  "local_fix_commit": "e034ae75d31063d06eabfbc3fe62b39d53d8c3b4",
+  "regression_case_changed": false,
+  "test_counts_changed": false,
+  "final_disposition": "Corrected-source static and editor reruns passed; the complete 110-suite Studio rerun remains pending. This failed attempt contributes no final passing credit.",
+  "preserved_attempt_directories": [
+    "studio-mail-attempt-01",
+    "editor-zotero-attempt-01",
+    "studio-mail-static-attempt-01"
+  ],
+  "canonical_fix_commit": "8403ddfd202637e1ebe7c4350d5e765347ef7023"
+}

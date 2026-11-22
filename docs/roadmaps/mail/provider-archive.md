@@ -8,6 +8,10 @@ in the [local mail archive](archive-search.md).
 
 ## Provider behavior
 
+The table describes the provider-default/manual-choice path. The
+[remembered destination continuation](remembered-archive.md) now takes precedence
+when an exact custom folder is saved for IMAP, EWS or Microsoft 365.
+
 | Provider | Archive behavior | Destination review |
 | --- | --- | --- |
 | Gmail | Remove only the message's `INBOX` label. Preserve other labels, read/flag state and message content. Available for the exact connected Inbox view. | Confirm the selected count, account, source and label-removal semantics. There is no invented Archive label and no folder-style Move. |
@@ -21,9 +25,10 @@ perform no message mutation. Resolved folder IDs remain authoritative even when
 the displayed folder catalog is older. An already-selected Archive folder is
 reported as such rather than receiving a same-folder move.
 
-The current increment does not remember a custom Archive destination; selecting
-one is explicit for each operation. It does not create folders automatically.
-Cached views remain read-only.
+The [remembered destination continuation](remembered-archive.md) adds standalone
+save/change/clear controls, fresh exact-ID validation and missing-folder repair.
+Without a saved preference, destination selection remains explicit as described
+above. Neither workflow creates folders automatically. Cached views remain read-only.
 
 ## Identity, persistence and recovery
 
@@ -70,8 +75,9 @@ time is not an acceptance dependency.
 
 This completes an explicit organization workflow. The
 [connected account-navigation continuation](connected-account-navigation.md)
-now provides the next Studio foreground boundary. Subsequent increments include
-remembered Archive destinations, tags/categories, previewable ordered rules,
+provides the next Studio foreground boundary, followed by
+[remembered Archive destinations](remembered-archive.md). Subsequent increments include
+tags/categories, previewable ordered rules,
 indexed retained-body/provider search, persistent cross-folder conversations,
 provider-side Drafts/Sent reconciliation and controlled background execution.
 Live-provider and installed-platform qualification remain separate acceptance

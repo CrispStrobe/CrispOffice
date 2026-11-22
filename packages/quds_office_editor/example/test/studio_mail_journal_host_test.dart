@@ -12,11 +12,16 @@ import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_mail_transport/quds_mail_transport.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
+import 'package:quds_office_studio/studio_mail_archive_destination.dart';
+import 'package:quds_office_studio/studio_mail_archive_settings_store.dart';
+import 'package:quds_office_studio/studio_mail_archive_settings_strings.dart';
 import 'package:quds_office_studio/studio_mail_bulk_status.dart';
 import 'package:quds_office_studio/studio_mail_credentials.dart';
 import 'package:quds_office_studio/studio_mail_draft_store.dart';
 import 'package:quds_office_studio/studio_mail_ews.dart';
+import 'package:quds_office_studio/studio_mail_flag_journal.dart';
 import 'package:quds_office_studio/studio_mail_journal_strings.dart';
+import 'package:quds_office_studio/studio_mail_mailbox_store.dart';
 import 'package:quds_office_studio/studio_mail_message_loader.dart';
 import 'package:quds_office_studio/studio_mail_mutation_strings.dart';
 import 'package:quds_office_studio/studio_mail_native.dart';
@@ -87,20 +92,25 @@ final class _ImapClient extends Fake implements mail.MailClient {
   @override
   Future<List<mail.Mailbox>> listMailboxes({
     List<mail.MailboxFlag>? order,
-  }) async => [
-    mail.Mailbox(
-      encodedName: 'INBOX',
-      encodedPath: 'INBOX',
-      pathSeparator: '/',
-      flags: [mail.MailboxFlag.inbox],
-    )..uidValidity = 71,
-    mail.Mailbox(
-      encodedName: 'Archive',
-      encodedPath: 'Archive',
-      pathSeparator: '/',
-      flags: [],
-    )..uidValidity = 72,
-  ];
+  }) async {
+    harness.folderReads++;
+    if (harness.imapFolders != null) return harness.imapFolders!();
+    return [
+      mail.Mailbox(
+        encodedName: 'INBOX',
+        encodedPath: 'INBOX',
+        pathSeparator: '/',
+        flags: [mail.MailboxFlag.inbox],
+      )..uidValidity = 71,
+      mail.Mailbox(
+        encodedName: 'Archive',
+        encodedPath: 'Archive',
+        pathSeparator: '/',
+        flags: [],
+      )..uidValidity = 72,
+    ];
+  }
+
   @override
   Future<mail.Mailbox> selectMailbox(
     mail.Mailbox mailbox, {
@@ -129,15 +139,16 @@ final class _ImapBrowser
         MailArchiveDestinationResolver,
         MailFlagObserver,
         MailMembershipObserver {
-  _ImapBrowser(this.harness) {
+  _ImapBrowser(this.harness)
+    : account = MailAccountId(
+        'imap-live-connection-${++harness.connections}',
+        profile: MailProfileId('ephemeral', hostId: 'native-test'),
+      ) {
     harness.liveAccount = account;
   }
   final _Harness harness;
   @override
-  final account = MailAccountId(
-    'imap-live-connection',
-    profile: MailProfileId('ephemeral', hostId: 'native-test'),
-  );
+  final MailAccountId account;
   final observations = Map<mail.MimeMessage, MailHeaderRecord>.identity();
   @override
   Future<StudioMailHeaderPage> fetchHeaders(
@@ -147,7 +158,7 @@ final class _ImapBrowser
   }) async {
     harness.headerReads++;
     final messages = [
-      for (var uid = 1; uid <= 3; uid++)
+      for (var uid = 1; uid <= harness.messageCount; uid++)
         mail.MimeMessage.fromEnvelope(
           mail.Envelope(
             subject: 'Frozen subject $uid',
@@ -276,7 +287,7 @@ class _Provider extends Fake
   @override
   final MailAccountId account;
   List<MailHeaderRecord> get headers => [
-    for (var i = 1; i <= 3; i++)
+    for (var i = 1; i <= harness.messageCount; i++)
       MailHeaderRecord(
         id: MailMessageId('message-$i'),
         remote: MailOpaqueIdentity(
@@ -299,21 +310,27 @@ class _Provider extends Fake
   @override
   Future<MailResult<List<MailMailbox>>> listMailboxes(
     MailOperationLease lease,
-  ) async => MailSuccess([
-    MailMailbox(
-      id: MailMailboxId(
-        harness.archiveEnabled && harness.kind == MailProviderKind.gmail
-            ? 'INBOX'
-            : 'inbox',
-        account: account,
+  ) async {
+    harness.folderReads++;
+    lease.checkCurrent();
+    if (harness.providerFolders != null) return harness.providerFolders!(lease);
+    return MailSuccess([
+      MailMailbox(
+        id: MailMailboxId(
+          harness.archiveEnabled && harness.kind == MailProviderKind.gmail
+              ? 'INBOX'
+              : 'inbox',
+          account: account,
+        ),
+        displayName: 'Inbox',
       ),
-      displayName: 'Inbox',
-    ),
-    MailMailbox(
-      id: MailMailboxId('archive', account: account),
-      displayName: 'Archive',
-    ),
-  ]);
+      MailMailbox(
+        id: MailMailboxId('archive', account: account),
+        displayName: 'Archive',
+      ),
+    ]);
+  }
+
   @override
   Future<MailResult<MailHeaderPage>> fetchHeaders(
     MailMailboxId mailbox, {
@@ -406,6 +423,15 @@ final class _Harness {
   final flagObservations = <(MailRemoteIdentity, MailOperationLease)>[];
   final membershipObservations = <(MailRemoteIdentity, MailOperationLease)>[];
   MailAccountId? liveAccount;
+  int connections = 0;
+  int messageCount = 3;
+  int folderReads = 0;
+  Future<List<mail.Mailbox>> Function()? imapFolders;
+  Future<MailResult<List<MailMailbox>>> Function(MailOperationLease)?
+  providerFolders;
+  bool spyArchiveSettings = false;
+  int archiveSettingsReads = 0;
+  int archiveSettingsWrites = 0;
   int headerReads = 0;
   int bodyReads = 0;
   int sends = 0;
@@ -457,8 +483,13 @@ final class _Harness {
   Future<StudioMailDraftStore> openStore(
     StudioMailDraftAccount identity,
   ) async {
-    _fixture = await TestMailFlagJournal.create(identity: identity);
-    return fixture.owner;
+    if (_fixture == null) {
+      _fixture = await TestMailFlagJournal.create(identity: identity);
+    } else {
+      expectSync(identity.account, fixture.account);
+      await fixture.reopen();
+    }
+    return spyArchiveSettings ? _ArchiveSettingsSpy(this) : fixture.owner;
   }
 
   Future<MailResult<MailUnit>> record(MailOperation operation) async {
@@ -574,7 +605,11 @@ Future<void> _until(WidgetTester tester, bool Function() predicate) async {
   fail('The synthetic host did not settle.');
 }
 
-Future<void> _show(WidgetTester tester, _Harness harness) async {
+Future<void> _show(
+  WidgetTester tester,
+  _Harness harness, {
+  String mailbox = 'reader@example.test',
+}) async {
   tester.view
     ..physicalSize = const Size(1400, 1000)
     ..devicePixelRatio = 1;
@@ -584,15 +619,16 @@ Future<void> _show(WidgetTester tester, _Harness harness) async {
   await tester.pumpWidget(MaterialApp(home: harness.dialog()));
   await tester.pump(const Duration(milliseconds: 350));
   if (harness.kind == MailProviderKind.imap) {
-    await tester.enterText(
-      _field(_strings.emailAddress),
-      'reader@example.test',
-    );
+    await tester.enterText(_field(_strings.emailAddress), mailbox);
     await tester.enterText(_field(_strings.password), 'synthetic-password');
-    await tester.tap(
-      find.widgetWithText(SwitchListTile, _strings.manualServers),
+    final manualServers = find.widgetWithText(
+      SwitchListTile,
+      _strings.manualServers,
     );
-    await tester.pump();
+    if (!tester.widget<SwitchListTile>(manualServers).value) {
+      await tester.tap(manualServers);
+      await tester.pump();
+    }
     await tester.enterText(_field(_strings.imapHost), 'imap.example.test');
     await tester.enterText(_field(_strings.smtpHost), 'smtp.example.test');
     await tester.ensureVisible(find.text(_strings.connect));
@@ -602,12 +638,12 @@ Future<void> _show(WidgetTester tester, _Harness harness) async {
       _key('ews-endpoint'),
       'https://mail.example.test/EWS/Exchange.asmx',
     );
-    await tester.enterText(_key('ews-mailbox'), 'reader@example.test');
+    await tester.enterText(_key('ews-mailbox'), mailbox);
     await tester.enterText(_key('ews-login'), 'reader');
     await tester.enterText(_key('ews-password'), 'synthetic-password');
     await tester.tap(_key('ews-connect'));
   } else {
-    await tester.enterText(_key('cloud-mailbox'), 'reader@example.test');
+    await tester.enterText(_key('cloud-mailbox'), mailbox);
     await tester.tap(_key('cloud-connect'));
   }
   await _until(

@@ -654,6 +654,9 @@ void main() {
     'a delayed native draft open cannot install the previous account store',
     (tester) async {
       final openGate = Completer<void>();
+      addTearDown(() {
+        if (!openGate.isCompleted) openGate.complete();
+      });
       final drafts = MemoryStudioMailDrafts()..openGate = openGate;
       final first = _Client();
       final second = _Client()..messages = [_message('Second account message')];
@@ -664,6 +667,8 @@ void main() {
         drafts: drafts,
       );
       await _manual(tester);
+      final connect = find.widgetWithText(FilledButton, _strings.connect);
+      final staleConnect = tester.widget<FilledButton>(connect).onPressed!;
       await _connect(tester);
       await _pump(tester);
       final oldKey = drafts.identities.single.account.value;
@@ -677,6 +682,38 @@ void main() {
       );
       await tester.tap(find.byTooltip(_strings.disconnect));
       await _pump(tester);
+      expect(first.disconnects, 1);
+      expect(attempts, 1);
+      expect(drafts.identities, hasLength(1));
+      expect(drafts.closes, 0);
+      expect(second.connects, 0);
+      expect(connect.hitTestable(), findsNothing);
+      staleConnect();
+      await _pump(tester);
+      expect(attempts, 1);
+      expect(drafts.identities, hasLength(1));
+      expect(drafts.closes, 0);
+      expect(find.text('Second account message'), findsNothing);
+
+      // Disconnect must drain the late candidate before another account can
+      // acquire storage. Its saved uncertainty remains in the old namespace.
+      openGate.complete();
+      await tester.ensureVisible(connect);
+      for (
+        var turn = 0;
+        turn < 100 &&
+            (drafts.closes != 1 || connect.hitTestable().evaluate().isEmpty);
+        turn++
+      ) {
+        await tester.pump(const Duration(milliseconds: 10));
+        await tester.runAsync(() => Future<void>.delayed(Duration.zero));
+      }
+      expect(drafts.closes, 1);
+      expect(connect.hitTestable(), findsOneWidget);
+      expect(attempts, 1);
+      expect(drafts.identities, hasLength(1));
+      expect(drafts.records[oldKey]!.submissionUncertain, isTrue);
+      expect(drafts.records[oldKey]!.draft.body, 'Old account body');
       drafts.openGate = null;
       await tester.enterText(
         _field(_strings.emailAddress),
@@ -685,6 +722,9 @@ void main() {
       await tester.enterText(_field(_strings.password), 'other-test-password');
       await _connect(tester);
       await _pump(tester);
+      expect(attempts, 2);
+      expect(second.connects, 1);
+      expect(drafts.identities, hasLength(2));
       expect(find.text('Second account message'), findsOneWidget);
       await _compose(tester);
       await tester.enterText(_field(_strings.subject), 'Current account draft');
@@ -692,7 +732,6 @@ void main() {
       final newKey = drafts.identities.last.account.value;
       expect(newKey, isNot(oldKey));
       expect(drafts.records[newKey]!.draft.subject, 'Current account draft');
-      openGate.complete();
       await _pump(tester);
       expect(drafts.closes, 1);
       expect(find.text('Second account message'), findsOneWidget);
@@ -708,6 +747,7 @@ void main() {
       expect(first.sends + second.sends, 0);
       await _saveAndCloseCompose(tester);
       expect(drafts.records[oldKey]!.draft.body, 'Old account body');
+      expect(drafts.records[oldKey]!.submissionUncertain, isTrue);
       expect(tester.takeException(), isNull);
     },
   );

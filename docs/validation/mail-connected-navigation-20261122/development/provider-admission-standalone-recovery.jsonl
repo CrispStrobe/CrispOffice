@@ -1,0 +1,15 @@
+{"protocolVersion":"0.1.1","runnerVersion":"1.31.1","pid":30,"type":"start","time":0}
+{"suite":{"id":0,"platform":"vm","path":"/workspace/scratch/85a369f34dbb/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_ews_test.dart"},"type":"suite","time":0}
+{"test":{"id":1,"name":"loading /workspace/scratch/85a369f34dbb/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_ews_test.dart","suiteID":0,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":2}
+{"count":2,"time":14,"type":"allSuites"}
+{"testID":1,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":5708}
+{"group":{"id":2,"suiteID":0,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":1,"line":null,"column":null,"url":null},"type":"group","time":5711}
+{"test":{"id":3,"name":"EWS retires a draft store opened after its host was closed","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":1864,"root_column":3,"root_url":"file:///workspace/scratch/85a369f34dbb/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_ews_test.dart"},"type":"testStart","time":5711}
+{"testID":3,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":7604}
+{"suite":{"id":4,"platform":"vm","path":"/workspace/scratch/85a369f34dbb/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart"},"type":"suite","time":7636}
+{"test":{"id":5,"name":"loading /workspace/scratch/85a369f34dbb/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart","suiteID":4,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":7636}
+{"testID":5,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":8459}
+{"group":{"id":6,"suiteID":4,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":1,"line":null,"column":null,"url":null},"type":"group","time":8459}
+{"test":{"id":7,"name":"Gmail closes late draft storage without adopting a retired session","suiteID":4,"groupIDs":[6],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":1044,"root_column":3,"root_url":"file:///workspace/scratch/85a369f34dbb/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart"},"type":"testStart","time":8459}
+{"testID":7,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":10011}
+{"success":true,"type":"done","time":10048}

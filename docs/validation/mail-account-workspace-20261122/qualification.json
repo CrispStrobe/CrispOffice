@@ -1,0 +1,329 @@
+{
+  "schema_version": 1,
+  "updated_at_utc": "2026-11-22T12:48:04.648607+00:00",
+  "status": "partial_pending_corrected_studio_rerun",
+  "qualified": false,
+  "source": {
+    "canonical_source_commit": "8403ddfd202637e1ebe7c4350d5e765347ef7023",
+    "local_source_alias": "e034ae75d31063d06eabfbc3fe62b39d53d8c3b4",
+    "identical_tree": "60b95ca8b52e5059a05dc1bce079db2751598b1e",
+    "integrated_remote_main": "4cc604810fb2f41ac7ba04cbed65cb76300bff59"
+  },
+  "integration": {
+    "captured_observations": 298,
+    "captured_unique_commits": 120,
+    "all_captured_commits_ancestors": true,
+    "integrated_main_is_ancestor": true,
+    "receipt": "receipts/integrated-source-proof.json",
+    "intake_boundary": "Initial and later recorded snapshots; no claim about refs created after the boundary."
+  },
+  "accounting": {
+    "retained_passing_cases": 2722,
+    "retained_suites": 124,
+    "fresh_completed_passing_cases": 2636,
+    "fresh_completed_suites": 55,
+    "final_combined_passing_cases": null,
+    "final_combined_suites": null,
+    "failed_in_credited_cohorts": 0,
+    "skipped_in_credited_cohorts": 0,
+    "portable_corpus_cases_counted_separately": 174,
+    "principle": "One completed final gate per cohort; historical Mail runs carried only by exact relevant-input equality; no repeated development, focused, bootstrap or superseded execution added."
+  },
+  "retained": {
+    "status": "source_equivalent",
+    "cases": 2722,
+    "suites": 124,
+    "shared_input_count": 571,
+    "store_input_count": 170,
+    "all_inputs_before_after_current_equal": true,
+    "receipt": "receipts/carry-forward-audit.json",
+    "independent_raw_recount": "receipts/retained-raw-reporter-audit.json",
+    "fresh_executions": 0,
+    "cohorts": [
+      {
+        "name": "mail-core",
+        "reporter_sha256": "7df1f1a6ede0955ca2fb734130653049c7296d728792752565af974adf4f0980",
+        "passed": 648,
+        "failed": 0,
+        "skipped": 0,
+        "suites": 28
+      },
+      {
+        "name": "mail-transport-vm",
+        "reporter_sha256": "35edce70a927747c8bd3ef69b65befe9568c1505067265d530e57fc72eeb70dd",
+        "passed": 612,
+        "failed": 0,
+        "skipped": 0,
+        "suites": 23
+      },
+      {
+        "name": "mail-shared-ui",
+        "reporter_sha256": "68101cc0a107fa94a81f9be6d987ef2ea6018778e423e431ed3725bae212d806",
+        "passed": 294,
+        "failed": 0,
+        "skipped": 0,
+        "suites": 18
+      },
+      {
+        "name": "mail-transport-js",
+        "reporter_sha256": "8e90fcec03881da28be68ea8a800e4bf1089292a207459b587c798e03ab72f43",
+        "passed": 6,
+        "failed": 0,
+        "skipped": 0,
+        "suites": 3
+      },
+      {
+        "name": "mail-store-vm",
+        "reporter_sha256": "4b09a0bc4aa291fd3258666cd9237805eb2c124129b463d47f394441130f8c89",
+        "passed": 1159,
+        "failed": 0,
+        "skipped": 0,
+        "suites": 51
+      },
+      {
+        "name": "mail-store-node",
+        "reporter_sha256": "d1bf7f765dd0f233aaf418c2db0ba805a3787b45ee9e70aa156d548570932bfd",
+        "passed": 3,
+        "failed": 0,
+        "skipped": 0,
+        "suites": 1
+      }
+    ]
+  },
+  "fresh_gates": {
+    "engine": {
+      "status": "passed",
+      "passed": 2585,
+      "failed": 0,
+      "skipped": 0,
+      "suites": 52,
+      "captured_inputs": 1415,
+      "all_inputs_unchanged": true,
+      "command_count": 10,
+      "all_command_exits_zero": true,
+      "receipt": "receipts/final-engine-qualification.json",
+      "independent_raw_recount": "receipts/final-engine-raw-audit.json",
+      "cohorts": [
+        {
+          "name": "word-vm",
+          "reporter": "word-vm.jsonl",
+          "sha256": "1d17ef15f45c3f10470a8cb9324e673dc78f6d669a7e58deddd7914960183e59",
+          "passed": 1831,
+          "failed": 0,
+          "skipped": 0,
+          "suites": 20,
+          "hidden_events_excluded": 28,
+          "one_successful_done_event": true,
+          "all_started_tests_completed": true,
+          "suite_inventory_matches_receipt": true
+        },
+        {
+          "name": "zotero-odt-vm",
+          "reporter": "zotero-odt-vm.jsonl",
+          "sha256": "f4a6c976204a1af7b8c9f43fc293706eb91572407eac3fc7ac8d761d2dbfa6bb",
+          "passed": 754,
+          "failed": 0,
+          "skipped": 0,
+          "suites": 32,
+          "hidden_events_excluded": 32,
+          "one_successful_done_event": true,
+          "all_started_tests_completed": true,
+          "suite_inventory_matches_receipt": true
+        }
+      ],
+      "portability": {
+        "split-conformance": {
+          "fixture": "test/fixtures/vba_conformance/split_v1.json",
+          "fixture_sha256": "009e418986b9ea918135838346d87be628611ab3c1d290836c9051e032505f64",
+          "vm_node_bytes_equal": true,
+          "vm_node_json_equal": true,
+          "vm_sha256": "7836c5c824b9585d17b7818f1dc7271e061340ec0202acda8f30121d9ced9e8b",
+          "node_sha256": "7836c5c824b9585d17b7818f1dc7271e061340ec0202acda8f30121d9ced9e8b",
+          "canonical_json_equal": true,
+          "canonical_vm_sha256": "7836c5c824b9585d17b7818f1dc7271e061340ec0202acda8f30121d9ced9e8b",
+          "canonical_node_sha256": "7836c5c824b9585d17b7818f1dc7271e061340ec0202acda8f30121d9ced9e8b",
+          "raw_identity_required": true,
+          "normalization": "JSON keys sorted; only finite integral floats are encoded as integers. All values, arrays, strings and booleans remain compared.",
+          "adapter_count": 3,
+          "case_count": 174
+        },
+        "word-split-smoke": {
+          "fixture": "example/macros/word_split_report.bas",
+          "fixture_sha256": "6dc12791b65923513bce5ce8ea12e978fb614d03c8e3376d6ffb7801ed176a10",
+          "vm_node_bytes_equal": false,
+          "vm_node_json_equal": true,
+          "vm_sha256": "fc85b00ae0b31827b003f992be1a4841c4f9750f0f73abb06de3e0be967d0a02",
+          "node_sha256": "f52a7951d0755289e1d972dd6301091971cda848cd40f28e41185a37dbf5db94",
+          "canonical_json_equal": true,
+          "canonical_vm_sha256": "0bbdfe5579a2604573d57f2c20727b1bd986d5c2c76b190572be633079bc4480",
+          "canonical_node_sha256": "0bbdfe5579a2604573d57f2c20727b1bd986d5c2c76b190572be633079bc4480",
+          "raw_identity_required": false,
+          "normalization": "JSON keys sorted; only finite integral floats are encoded as integers. All values, arrays, strings and booleans remain compared.",
+          "formats": [
+            "docm",
+            "docx"
+          ]
+        }
+      },
+      "independent_portability_check": "receipts/final-portability-audit.json",
+      "executed_source_commit": "3e57fda4de6317c4a547f69220d7ed83802fd19f",
+      "relevant_inputs_match_final_source": true,
+      "post_toolbar_equivalence_receipt": "receipts/post-toolbar-input-equivalence.json"
+    },
+    "editor_zotero": {
+      "status": "passed",
+      "passed": 51,
+      "failed": 0,
+      "skipped": 0,
+      "suites": 3,
+      "captured_inputs": 6220,
+      "all_inputs_unchanged": true,
+      "receipt": "receipts/editor-zotero-qualification.json",
+      "independent_raw_recount": "receipts/editor-zotero-raw-audit.json",
+      "executed_source_commit": "e034ae75d31063d06eabfbc3fe62b39d53d8c3b4",
+      "canonical_source_commit": "8403ddfd202637e1ebe7c4350d5e765347ef7023"
+    },
+    "studio_mail": {
+      "status": "first_attempt_failed_corrected_source_rerun_pending",
+      "expected_suites": 110,
+      "expected_provider_navigation_cases": 127,
+      "expected_native_navigation_cases": 50,
+      "failed_attempt_receipt": "receipts/studio-first-attempt-qualification.json"
+    },
+    "static": {
+      "status": "passed",
+      "engine_dart_paths_passed": 32,
+      "other_dart_paths_passed": 15,
+      "total_changed_dart_paths": 47,
+      "all_source_inputs_unchanged": true,
+      "engine_receipt": "receipts/final-engine-qualification.json",
+      "mail_receipt": "receipts/mail-static-qualification.json",
+      "changed_dart_paths": [
+        "packages/quds_mail_store/lib/src/local_accounts.dart",
+        "packages/quds_mail_store/test/local_accounts_expected_record_test.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_account_navigation.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_account_navigation_strings.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_cloud.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_local_accounts.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+        "packages/quds_office_editor/example/test/studio_mail_account_navigation_dialog_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_release_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_account_navigation_provider_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_account_navigation_router_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_account_navigation_test.dart",
+        "packages/quds_office_editor/test/word_zotero_converter_controller_test.dart",
+        "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+        "packages/quds_office_engine/lib/src/word/model/wml_run_edit.dart",
+        "packages/quds_office_engine/lib/src/word/model/word_field_spans.dart",
+        "packages/quds_office_engine/lib/src/word/model/word_revision.dart",
+        "packages/quds_office_engine/lib/src/word/model/word_zotero.dart",
+        "packages/quds_office_engine/lib/src/word/properties/wml_properties.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_reader_styles.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+        "packages/quds_office_engine/test/odt_outline_compatibility_test.dart",
+        "packages/quds_office_engine/test/office_vba_split_test.dart",
+        "packages/quds_office_engine/test/office_vba_string_intrinsics_test.dart",
+        "packages/quds_office_engine/test/office_vba_variant_substrings_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_cell_paragraphs_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_headers_footers_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_named_measurements_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_named_measurements_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_named_selectors_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_page_setup_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_split_cli_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_split_integration_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_text_selectors_cli_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_text_selectors_conformance_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_text_selectors_directional_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_text_selectors_integration_test.dart",
+        "packages/quds_office_engine/test/support/zotero_converter_fixtures.dart",
+        "packages/quds_office_engine/test/word_zotero_boundary_formatting_test.dart",
+        "packages/quds_office_engine/test/word_zotero_field_recovery_test.dart",
+        "packages/quds_office_engine/tool/macros/web_vba_split_conformance.dart",
+        "packages/quds_office_engine/tool/macros/web_vba_word_named_measurements_smoke.dart",
+        "packages/quds_office_engine/tool/macros/web_vba_word_split_smoke.dart",
+        "packages/quds_office_engine/tool/macros/web_vba_word_text_selectors_smoke.dart"
+      ],
+      "exact_changed_path_union_verified": true,
+      "canonical_source_commit": "8403ddfd202637e1ebe7c4350d5e765347ef7023"
+    }
+  },
+  "excluded_development_counts": [
+    {
+      "name": "initial Word/VBA",
+      "passed": 1458,
+      "reason": "superseded by final engine gate"
+    },
+    {
+      "name": "intermediate engine",
+      "passed": 2544,
+      "reason": "superseded before last main reconciliation; initial raw smoke comparator rejected numeric encoding differences"
+    },
+    {
+      "name": "focused engine repair",
+      "passed": 82,
+      "reason": "included in later final coverage"
+    },
+    {
+      "name": "provider union development",
+      "passed": 103,
+      "reason": "earlier source and three transitive Word input changes; superseded by final Studio gate"
+    }
+  ],
+  "repair_notes": "receipts/zotero-repair-notes.json",
+  "development_portability_comparison": "receipts/development-portability-comparison.json",
+  "evidence_archive": {
+    "status": "partial_complete_pending_studio",
+    "archive": "local-evidence.tar.xz",
+    "index": "evidence-index.json",
+    "archive_sha256": "05eb2254cfbc569865379f1687fda24a5ec292c3c7b2c2837dbc4bbba5aeaad2",
+    "archive_bytes": 492256,
+    "indexed_files": 196,
+    "all_indexed_member_hashes_verified": true,
+    "includes_final_studio_evidence": false
+  },
+  "publication": {
+    "work_branch": "work/mail-account-workspace-20261122",
+    "source_published": true,
+    "main_merge_status": "pending_final_qualification",
+    "no_force_push": true,
+    "partial_documentation_checkpoint": "d09c3c0eda381d96e1dc28dea96e0026a75bbb01",
+    "corrected_source_checkpoint": "8403ddfd202637e1ebe7c4350d5e765347ef7023"
+  },
+  "limitations": [
+    "One foreground Mail account with explicit sign-in; not simultaneous background accounts or unified live folders.",
+    "No live-provider credentials, mailbox mutations, outbound messages or installed-platform acceptance.",
+    "Node runs do not establish browser UI acceptance.",
+    "A failed close on the concrete memoized native SQLite owner may require restart; custom-owner recovery requires a later successful explicit close.",
+    "Full Outlook, Thunderbird or eM Client parity remains a roadmap goal."
+  ],
+  "github_actions_queried": false,
+  "github_actions_waited": false,
+  "receipt_sha256": {
+    "receipts/carry-forward-audit.json": "ceacde523a181c66a4dc683eae540650f157eb00fa6d6783158ba044871e22fa",
+    "receipts/checkpoint-alias.json": "f05238d43fb578d62466f6d9a2d305b42db5ce2d6346a003e672ae6f201f675f",
+    "receipts/development-portability-comparison.json": "295dc9420482e50ab8e7e414ff3575132d2e581db8af3d24b38b5fee1b7e5d6d",
+    "receipts/editor-zotero-qualification.json": "ed1ef0e67a259a3e5330f6189412b86dcf70a242684e17dedcf32053b4ed10f0",
+    "receipts/editor-zotero-raw-audit.json": "759b37aa3a282a155f65f84239086a177b9d9aceac36632b98b9d2efa5c798ca",
+    "receipts/final-engine-qualification.json": "91ce0ece541991fbd6ccabf38204533051f18899627725311bced29168a7a851",
+    "receipts/final-engine-raw-audit.json": "d2736166afdefdc5613d8524bf5cdbbca1463f9ad5f7a5fd97b9fe7f5b5697a9",
+    "receipts/final-engine-summary.md": "39abbd7182dfb7ab339e6858c94cf18b473a95e94b15e8427d09c21cc2d20e58",
+    "receipts/final-portability-audit.json": "c4234496317c118d239de260368b5f635b80e4fabea26f020c5177cb08f1cd1e",
+    "receipts/final-source-alias.json": "ea0db5897386210d5e1cc1872a3911e512c168fc844366e7791216271784a269",
+    "receipts/integrated-source-proof.json": "a39e6e527dfbc8a8ea2db53b609bdfd2f3935cd0baed75ddae2c982723a964c0",
+    "receipts/mail-source-review-before-main-refresh.json": "24be0a59227f7558bae5bf96f26a0ac331766ad0658642d18d93e22d09275cd7",
+    "receipts/mail-static-qualification.json": "6d5661c4f5904220316031eebcba7d2e1bcc86fb308992ae020e36f272a4231e",
+    "receipts/mail-store-qualification.json": "c9e51167f2d311fabe2315b6657fbce8640ed9e758fe2f3c2b0064eca4fcada9",
+    "receipts/main-merge-mail-reconciliation.json": "2338f9e56f176e3f24775e68bc0d121a09ad9ec86f10e20674a7e00ae683d2b3",
+    "receipts/post-toolbar-input-equivalence.json": "c20e000a7b46cf3ff08f1e7b913f54a2b973f643de472ae92c2938b900607b03",
+    "receipts/retained-raw-reporter-audit.json": "58d4ab1ab59fcd67fd6eec97e08e0fd9bfc0225027fd9c6303a7aa0142023f6a",
+    "receipts/shared-mail-summary.json": "e4801aec3e9d463866025d52b1fb30d62e36a135d43faeb3366a4afa9a330159",
+    "receipts/studio-first-attempt-qualification.json": "3362c0edcd2f12a6bf00386565ebf3e80c1a3ca05178e2e5dd749f31ae732419",
+    "receipts/studio-repair-notes.json": "dda26bd326dd44190dfdb7c98588a0de0cd554365bba876473356d93658050c2",
+    "receipts/zotero-repair-notes.json": "d1b7ecdd4a80966464d01ad74c3aef6bc0a3ca88198bb859953ca2b3160e5176"
+  },
+  "studio_repair_notes": "receipts/studio-repair-notes.json"
+}

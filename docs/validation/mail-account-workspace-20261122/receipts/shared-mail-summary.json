@@ -1,0 +1,109 @@
+{
+  "recorded_at_utc": "2026-11-22T11:49:27.481112+00:00",
+  "cohorts": [
+    {
+      "head_at_start": "f4516c13937b9ce5cec771bf331dc91d9f37105d",
+      "source_files": 571,
+      "source_unchanged": true,
+      "exit_code": 0,
+      "command": [
+        "dart",
+        "test",
+        "--reporter",
+        "json",
+        "--concurrency=2"
+      ],
+      "cwd": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_mail_core",
+      "name": "mail-core",
+      "suite_count": 28,
+      "passed": 648,
+      "failed": 0,
+      "skipped": 0,
+      "receipt": "mail-core-receipt.json",
+      "receipt_sha256": "6559e66c06833512830e55b2a7ed758d9f87bbda68944476dfbbe545e6bef1d5"
+    },
+    {
+      "head_at_start": "f4516c13937b9ce5cec771bf331dc91d9f37105d",
+      "source_files": 571,
+      "source_unchanged": true,
+      "exit_code": 0,
+      "command": [
+        "dart",
+        "test",
+        "--reporter",
+        "json",
+        "--concurrency=2"
+      ],
+      "cwd": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_mail_transport",
+      "name": "mail-transport-vm",
+      "suite_count": 23,
+      "passed": 612,
+      "failed": 0,
+      "skipped": 0,
+      "receipt": "mail-transport-vm-receipt.json",
+      "receipt_sha256": "367861e280bceb36ef8ed13a41245a1ecfb0e1cc21c1cf11dae5d5a4ab9a5210"
+    },
+    {
+      "head_at_start": "f4516c13937b9ce5cec771bf331dc91d9f37105d",
+      "source_files": 571,
+      "source_unchanged": true,
+      "exit_code": 0,
+      "command": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "json",
+        "--concurrency=2"
+      ],
+      "cwd": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_mail_ui",
+      "name": "mail-shared-ui",
+      "suite_count": 18,
+      "passed": 294,
+      "failed": 0,
+      "skipped": 0,
+      "receipt": "mail-shared-ui-receipt.json",
+      "receipt_sha256": "32c0f8012e9c6cccc4b5d8bda691b2c17005c17656d9af00d88c5fa3f7ca6d7a"
+    },
+    {
+      "head_at_start": "f4516c13937b9ce5cec771bf331dc91d9f37105d",
+      "source_files": 571,
+      "source_unchanged": true,
+      "exit_code": 0,
+      "command": [
+        "dart",
+        "test",
+        "--platform",
+        "node",
+        "--reporter",
+        "json",
+        "--concurrency=2",
+        "test/unsupported_test.dart",
+        "test/cloud_unsupported_test.dart",
+        "test/ews_unsupported_test.dart"
+      ],
+      "cwd": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_mail_transport",
+      "name": "mail-transport-js",
+      "suite_count": 3,
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "receipt": "mail-transport-js-receipt.json",
+      "receipt_sha256": "0a539f688588a6e997588086133808909f0bb56563751becdea04e8de2950a11"
+    }
+  ],
+  "total_passed": 1560,
+  "bootstrap_smokes_added": false,
+  "platform_scope": "Native VM and Flutter widget suites; three JavaScript-only transport refusal suites run separately on Node v24.22.3 via dart2js. No actual browser UI or live-provider acceptance claimed.",
+  "duplicate_display_name_count": 1,
+  "duplicate_display_name_note": {
+    "suite": "quds_mail_core/test/saved_header_search_folders_test.dart",
+    "name": "rejects malformed account with length 2",
+    "disposition": "Two distinct parameter cases from one run: leading whitespace (space+a), and a plus an unpaired high surrogate. Both have UTF-16 length2. These are not duplicate executions or overlapping cohorts.",
+    "case_ids": [
+      16,
+      18
+    ]
+  },
+  "overlapping_cohort_suite_paths": 0
+}

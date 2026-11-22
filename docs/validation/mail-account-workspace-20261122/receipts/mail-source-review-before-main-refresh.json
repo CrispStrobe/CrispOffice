@@ -1,0 +1,138 @@
+{
+  "reviewed_at_utc": "2026-11-22T12:27:22.842425+00:00",
+  "frozen_mail_head": "180a1267d99cc2d4a139976b57b64a4f61db278a",
+  "files": [
+    {
+      "path": "packages/quds_mail_store/lib/src/local_accounts.dart",
+      "git_blob": "b738689cfeb9a424ab3abf2aab390a37b2ce6d18",
+      "sha256": "d0519b141a4614dbe20e972af834c13002c06e0601e45e31e66e2b88afeece96",
+      "bytes": 7921
+    },
+    {
+      "path": "packages/quds_mail_store/test/local_accounts_expected_record_test.dart",
+      "git_blob": "d0e89738fea8641afdead9d4ad016d457483075c",
+      "sha256": "a0c31d03b18d1587f8bc3428db92ba81e37225b0d88101cebd1bf6753ff4b3a7",
+      "bytes": 14085
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_local_accounts.dart",
+      "git_blob": "a91dd33439ebd65a25efb014f919da7aaf40f706",
+      "sha256": "85f431e864d0dc9ddfdb76407c1c492683a694c2fce05e64d3900c313250c7cc",
+      "bytes": 6756
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_account_navigation.dart",
+      "git_blob": "c2ed567f8dc1ba271bf367fdcd35fe209a41a7ca",
+      "sha256": "05ebe4491713a644340c6254f0b806af8322815b57e5f48773c7afd4c204d621",
+      "bytes": 14218
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+      "git_blob": "0317b08fb12e4d71af038d06de9b4a18070320d1",
+      "sha256": "612bc10d104c8207b82159021aaf150cc60904721ff1b6f8fb54169e2941ea0a",
+      "bytes": 131381
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+      "git_blob": "f1a0a079f09044b4db2af1806bebbf24474006fa",
+      "sha256": "db11405b2f0655a6f6fca4ba881c3e8c1b233b4bbc7d046496b3143e88bff4d1",
+      "bytes": 203052
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_mailbox_session.dart",
+      "git_blob": "8ce1b9ba955d169a64904103d5849824a43b4a07",
+      "sha256": "bb7eaf388795a4e5eddec0c4e9924f9f4853e637e510486afcb46065f2064b4a",
+      "bytes": 15712
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_draft_store.dart",
+      "git_blob": "826ac9a86b39c145cf7265478a097b0c8b6df3d6",
+      "sha256": "8c7a972571367f11267f2eeea0530ce0ba74beb1f19d7f30ad96d624f6b96927",
+      "bytes": 29043
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_account_navigation_provider_test.dart",
+      "git_blob": "548adebee681c3ccf42ee26b1ed94a657d00db7f",
+      "sha256": "8ef47f1ea15ebc391fc114359329dc658f5f4cf0c81568eae93d34cc1d5d6d42",
+      "bytes": 58569
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart",
+      "git_blob": "5428049219d2fcb0cc772fb1ad8e3c88de7c470a",
+      "sha256": "4bd31aeef989a6f43e8681a0d5968887c6c1250d2bebd640931ebaaf6e708255",
+      "bytes": 38616
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_release_test.dart",
+      "git_blob": "800b542321570d425429ed36b266c8b2517f3be7",
+      "sha256": "32945be2661e10b9f635ab4acc97486c4be1cf42dad7d8320482235e77d9291c",
+      "bytes": 33012
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_account_navigation_test.dart",
+      "git_blob": "a9956f584e4d6f4aa2039e7ff5a87f97d531a117",
+      "sha256": "deb690291a19c9fc9221caa8ac77cc151600477319a308f88166a6ddfaab964a",
+      "bytes": 15446
+    }
+  ],
+  "review_method": "Read-only source and cross-agent lifecycle review; source hashes are read from the frozen Git commit, not mutable working tree.",
+  "invariants": [
+    {
+      "name": "atomic selected-account refresh",
+      "result": "reviewed",
+      "detail": "rememberLocalAccount expectedRecord guard compares identity, exact revision and persisted connection timestamp in the same SQLite write transaction; missing/replaced/revised rows fail without recreating a shortcut or advancing metadata. Null remains the fresh-registration API."
+    },
+    {
+      "name": "host identity and selected intent",
+      "result": "reviewed",
+      "detail": "Navigation validates exact provider/endpoint/login/sender plus full catalog snapshot. Native/EWS call guarded rememberConnection and retain identity/session fences across async boundaries. Legacy directories without atomic capability are validated without unconditional metadata writes."
+    },
+    {
+      "name": "one local owner per transition",
+      "result": "reviewed",
+      "detail": "New connection and account navigation wait for old restoration and owner cleanup. Failed owners remain identity-retained. Stale restoration does not close an already adopted owner transferred to an explicit transition, and does not silently retry its failed release."
+    },
+    {
+      "name": "strict observer release",
+      "result": "reviewed",
+      "detail": "Observer handles survive cancellation failure; view replacement/new account work are blocked until explicit cleanup. Independent session/subscription drains settle before owner close. Per-view generation fencing rejects callbacks while retained handles remain available for cleanup."
+    },
+    {
+      "name": "ordinary Disconnect and Refresh",
+      "result": "reviewed",
+      "detail": "Ordinary Disconnect cancels provider work immediately and uses strict observer/owner cleanup. Refresh/folder replacement cannot discard a failed observer. EWS Close and native Release expose explicit recovery."
+    },
+    {
+      "name": "first-cache-snapshot ordering",
+      "result": "reviewed",
+      "detail": "Ordinary Disconnect starts observer-only retirement before awaiting restoration, so session.close can resolve a pending first snapshot. Failure is observed at creation; owner close waits for both restoration and successful observer drain. A failed first drain remains held for explicit retry."
+    }
+  ],
+  "known_behavior": "SqliteStudioMailDraftStore.close memoizes its future, including failure. The native owner-locked executor releases its lease in finally; custom owners may retain resources on failure. Do not infer a persistent native lock from a rejected adapter close alone.",
+  "development_evidence": {
+    "receipt": "provider-test-merge/qualification.json",
+    "passed_cases": 103,
+    "prior85_preserved": true,
+    "tested_source_sha256": "d885666036407960af2ac56ce5a2e0d4c2e8409f6befc4983a4662acf9a375e5",
+    "source_is_older_than_frozen": true,
+    "transitive_word_drift_files": [
+      "packages/quds_office_engine/lib/src/word/model/word_field_spans.dart",
+      "packages/quds_office_engine/lib/src/word/model/word_zotero.dart",
+      "packages/quds_office_engine/lib/src/word/serial/odt_reader_styles.dart"
+    ],
+    "strict_analysis": "passed on the older103-case source",
+    "claim_limit": "The103-case result is development evidence only. It does not qualify frozen121-provider/47-native lifecycle changes."
+  },
+  "pending_final_qualification": {
+    "provider_cases_expected": 121,
+    "native_cases_expected": 47,
+    "owner": "root final broad Studio Mail gate",
+    "status": "not run by this audit"
+  },
+  "scope": {
+    "source_mutations": false,
+    "git_ref_mutations": false,
+    "ci_queries": false,
+    "ci_waits": false
+  }
+}
