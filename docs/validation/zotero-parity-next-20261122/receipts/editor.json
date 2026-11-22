@@ -1,0 +1,68 @@
+{
+  "source_commit": "f06afa63a7e321482a60d3f3a4fc39c522fdb29d",
+  "source_tree": "df98875d455fcd0a5fc648e5af1af4f4c302d54c",
+  "package": "packages/quds_office_editor",
+  "command": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--reporter=json",
+    "--concurrency=2",
+    "test/word_zotero_unlink_recovery_test.dart",
+    "test/word_zotero_unlink_all_test.dart",
+    "test/word_zotero_document_actions_test.dart",
+    "test/word_zotero_recovery_controller_test.dart",
+    "test/word_zotero_recovery_dialog_test.dart",
+    "test/word_odt_note_numbering_test.dart",
+    "test/word_odt_load_test.dart",
+    "test/word_note_numbering_test.dart",
+    "test/word_zotero_note_target_test.dart",
+    "test/word_zotero_writing_position_test.dart"
+  ],
+  "tests": [
+    "test/word_zotero_unlink_recovery_test.dart",
+    "test/word_zotero_unlink_all_test.dart",
+    "test/word_zotero_document_actions_test.dart",
+    "test/word_zotero_recovery_controller_test.dart",
+    "test/word_zotero_recovery_dialog_test.dart",
+    "test/word_odt_note_numbering_test.dart",
+    "test/word_odt_load_test.dart",
+    "test/word_note_numbering_test.dart",
+    "test/word_zotero_note_target_test.dart",
+    "test/word_zotero_writing_position_test.dart"
+  ],
+  "runtime_receipt": "/workspace/scratch/8a80441c4c60/toolchains/runtime.json",
+  "started_at_utc": "2026-11-22T08:01:19Z",
+  "status": "passed",
+  "runtime_receipt_sha256": "077aae1120a653cd157738b2a3031fb6e65d6538f66cef619d0c234eb4ed8d17",
+  "exit_code": 0,
+  "inputs_unchanged": true,
+  "input_count": 4456,
+  "changed_inputs": [],
+  "counts": {
+    "passed": 154,
+    "failed": 0,
+    "skipped": 0,
+    "unfinished": 0
+  },
+  "loaded_suites": 10,
+  "duplicate_identities": 0,
+  "error_event_count": 0,
+  "done_events": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 25669
+    }
+  ],
+  "non_json_lines": [],
+  "finished_at_utc": "2026-11-22T08:01:48Z",
+  "artifacts_sha256": {
+    "cases.json": "ca6d84d154adb193e83532c9aa0f0bb8bc558a94e0f4c63b780d5b19b7942d41",
+    "errors.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "events.jsonl.gz": "830c0dd6e698087522e08cf931d5646d985bb25d80b3b807a6b0a80a69d768a7",
+    "inputs-after.json.gz": "0e809c699ff2a5fc1668aff2c9b9304aa2b14f8cea833c3057c4536f46eaea52",
+    "inputs-before.json.gz": "5a181826a5bf375e1444580e5991d26a8d3e5629bf35f8413ecf1c47f9e15106",
+    "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}
