@@ -382,7 +382,9 @@ extension MailMoveIdentityTransitions on SqliteMailRepository {
       // A projection is bounded to one retained page; larger destinations use
       // explicit synchronization rather than an unbounded metadata scan.
       if (members.length > _syncHeaderLimit) return false;
-      var units = transition.destinationMailbox.value.length;
+      var units =
+          transition.destinationMailbox.value.length +
+          destinationView.mailbox.displayName.length;
       var present = false;
       for (final member in members) {
         present |= member.read<String>('id') == destinationId;
