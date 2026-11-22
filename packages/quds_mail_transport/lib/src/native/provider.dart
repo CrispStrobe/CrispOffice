@@ -340,7 +340,7 @@ final class NativeMailImapProvider
       if (box.path.isEmpty ||
           box.path.length > 1024 ||
           box.path.contains(RegExp(r'[\x00-\x1f\x7f]')) ||
-          !ids.add(box.path)) {
+          !ids.add(box.path.toUpperCase() == 'INBOX' ? 'INBOX' : box.path)) {
         throw const _Failure(MailProblemCode.providerFailure);
       }
       if (!box.flags.contains(imap.MailboxFlag.archive)) continue;

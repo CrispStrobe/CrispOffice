@@ -74,6 +74,55 @@ void main() {
     );
   });
 
+  for (final (first, second) in [('INBOX', 'inbox'), ('inbox', 'INBOX')]) {
+    test('Archive rejects duplicate Inbox aliases $first/$second', () async {
+      final fixture = ImapFixture()
+        ..mailboxResponses = [
+          '* LIST () "/" "$first"',
+          '* LIST (\\Archive) "/" "$second"',
+        ];
+      final result = await fixture.provider().resolveArchiveDestination(
+        MailAccountSession(fixture.account).begin(),
+      );
+      expect(
+        (result as MailFailure<MailMailbox>).problem.code,
+        MailProblemCode.providerFailure,
+      );
+      expect(result.problem.mutationMayHaveOccurred, isFalse);
+    });
+  }
+
+  test('Archive recognizes mixed-case special-use attributes', () async {
+    final fixture = ImapFixture()
+      ..mailboxResponses = [
+        '* LIST (\\archive \\NOSELECT) "/" "Container"',
+        '* LIST (\\aRcHiVe \\NONEXISTENT) "/" "Removed"',
+        '* LIST (\\ARCHIVE) "/" "Archiv"',
+      ];
+    final result = await fixture.provider().resolveArchiveDestination(
+      MailAccountSession(fixture.account).begin(),
+    );
+    expect(
+      (result as MailSuccess<MailMailbox>).value.id,
+      MailMailboxId('Archiv', account: fixture.account),
+    );
+  });
+
+  test('Archive retains case-sensitive non-Inbox folder identities', () async {
+    final fixture = ImapFixture()
+      ..mailboxResponses = [
+        '* LIST () "/" "Archive"',
+        '* LIST (\\Archive) "/" "archive"',
+      ];
+    final result = await fixture.provider().resolveArchiveDestination(
+      MailAccountSession(fixture.account).begin(),
+    );
+    expect(
+      (result as MailSuccess<MailMailbox>).value.id,
+      MailMailboxId('archive', account: fixture.account),
+    );
+  });
+
   test('Archive discovery honors mailbox limits', () async {
     final fixture = ImapFixture()
       ..mailboxResponses = [

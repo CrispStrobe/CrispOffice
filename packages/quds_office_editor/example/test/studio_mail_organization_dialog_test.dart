@@ -277,6 +277,7 @@ void _archiveTests() {
         isNull,
       );
       expect(find.text('Other account'), findsNothing);
+      await tester.ensureVisible(_key('studio-mail-archive-destination-1'));
       await tester.tap(_key('studio-mail-archive-destination-1'));
       await tester.pump();
       expect(result, isNull);

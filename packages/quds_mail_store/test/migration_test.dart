@@ -873,7 +873,7 @@ void main() {
     );
   }
 
-  for (final version in [16, 17]) {
+  for (final version in [17, 18]) {
     test(
       'future schema $version is rejected without changing existing data',
       () async {
