@@ -24,7 +24,9 @@ void main() {
       hasLength(34),
     );
     expect(
-      suite.cases.where((fixture) => fixture.expected.containsKey('diagnostic')),
+      suite.cases.where(
+        (fixture) => fixture.expected.containsKey('diagnostic'),
+      ),
       hasLength(44),
     );
     expect(suite.cases.map((fixture) => fixture.provenance['kind']).toSet(), {

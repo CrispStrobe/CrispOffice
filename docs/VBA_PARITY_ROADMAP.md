@@ -81,8 +81,8 @@ It reuses existing guarded native operations rather than broadening the table
 grid or content envelope. Paragraph/Range/Shading aliases and named `ByVal`
 helpers retain the original cell; empty paragraphs accept style/background
 writes without new text. Sparse XML ownership, direct formatting, unrelated
-cells and opaque VBA parts survive save/reopen. Known cell-paragraph insertion
-and list operations are rejected in inactive source as well as executed paths.
+cells and opaque VBA parts survive save/reopen. Cell-paragraph `InsertAfter`
+and list operations remain rejected in inactive source as well as executed paths.
 
 This advances the bounded Stage 4 adapter. The independently authored corpus,
 complete BAS example, native serialization and CLI/MCP transaction checks are
