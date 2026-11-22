@@ -26,6 +26,11 @@ All notable changes to `quds_office_editor` are documented here.
   Bind toolbar callbacks to their original session and mailbox. Preserve
   same-session host cancellation during ordinary modal reviews while fencing
   the full account-chooser handoff. Fresh connections register normally.
+  Retain exact storage owners through compose and Outbox delivery receipts,
+  including manual sends, acknowledged retries and foreground schedules. Close
+  shares an in-flight submission's preservation instead of issuing a duplicate
+  save that could recreate an accepted or queued draft. Initial save failure
+  retains the original session; final outcome persistence precedes owner close.
   Native Close continues to hide the mounted Mail pane, and persistent release
   failures can require a host restart. See the
   [connected account guide](../../docs/roadmaps/mail/connected-account-navigation.md)

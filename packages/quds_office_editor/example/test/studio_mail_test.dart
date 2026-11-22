@@ -14,6 +14,7 @@ import 'package:quds_office_studio/studio_chrome.dart';
 import 'package:quds_office_studio/studio_mail_message_loader.dart';
 import 'package:quds_office_studio/studio_mail_compose.dart';
 import 'package:quds_office_studio/studio_mail_credentials.dart';
+import 'package:quds_office_studio/studio_mail_draft_store.dart';
 import 'package:quds_office_studio/studio_mail_strings.dart';
 import 'package:quds_office_studio/studio_mail_workspace_strings.dart';
 import 'package:quds_office_studio/studio_mail_native.dart';
@@ -61,6 +62,50 @@ final class _CredentialStore extends Fake implements StudioMailCredentialStore {
     final succeeded = await onClear?.call() ?? true;
     if (succeeded) saved = null;
     return succeeded;
+  }
+}
+
+final class _GatedAcceptedDraftOwner implements StudioMailDraftStore {
+  _GatedAcceptedDraftOwner(this.delegate);
+
+  final StudioMailDraftStore delegate;
+  final clearGate = Completer<void>();
+  final events = <String>[];
+  bool clearStarted = false;
+  int closeCalls = 0;
+
+  @override
+  Future<StudioMailStoredDraft?> load() => delegate.load();
+
+  @override
+  Future<void> save(
+    StudioMailDraft draft, {
+    required bool submissionUncertain,
+  }) => delegate.save(draft, submissionUncertain: submissionUncertain);
+
+  @override
+  Future<void> saveRejectedDraft(
+    StudioMailDraft draft, {
+    required bool wasPreviouslyUncertain,
+  }) => delegate.saveRejectedDraft(
+    draft,
+    wasPreviouslyUncertain: wasPreviouslyUncertain,
+  );
+
+  @override
+  Future<void> clear() async {
+    clearStarted = true;
+    events.add('accepted clear started');
+    await clearGate.future;
+    await delegate.clear();
+    events.add('accepted clear persisted');
+  }
+
+  @override
+  Future<void> close() async {
+    closeCalls++;
+    events.add('owner closed');
+    await delegate.close();
   }
 }
 
@@ -272,6 +317,7 @@ Future<void> _open(
   bool fillForm = true,
   bool nativeLoader = false,
   MemoryStudioMailDrafts? drafts,
+  StudioMailDraftStoreFactory? draftStoreFactory,
   StudioMailArchiveWriter? archiveWriter,
   StudioMailArchiveFolderWriter? archiveFolderWriter,
 }) async {
@@ -287,7 +333,7 @@ Future<void> _open(
             onPressed: () => showDialog<void>(
               context: context,
               builder: (_) => StudioMailDialog(
-                draftStoreFactory: draftStorage.open,
+                draftStoreFactory: draftStoreFactory ?? draftStorage.open,
                 strings: strings,
                 clientFactory: (account) =>
                     createdClient = clientFactory(account),
@@ -1902,41 +1948,87 @@ void main() {
   });
 
   for (final outcome in ['success', 'error', 'accepted follow-up error']) {
-    testWidgets('disconnect during send ignores its late $outcome', (
-      tester,
-    ) async {
-      final client = _Client();
-      final gate = Completer<void>();
-      client.onSend = (_) => gate.future;
-      await _open(tester, (_) => client);
-      await _connect(tester);
-      await _compose(tester);
-      expect(find.text(_strings.sending), findsOneWidget);
-      await tester.tap(find.byTooltip(_strings.disconnect));
-      await _pump(tester);
-      if (outcome == 'accepted follow-up error') {
-        gate.completeError(
-          mail.MailSendPostSubmissionException(
-            client,
-            cleanupError: StateError('late cleanup failure'),
-          ),
+    testWidgets(
+      'disconnect during send retains storage for its late $outcome',
+      (tester) async {
+        final client = _Client();
+        final gate = Completer<void>();
+        final drafts = MemoryStudioMailDrafts();
+        _GatedAcceptedDraftOwner? heldOwner;
+        addTearDown(() {
+          if (!gate.isCompleted) gate.complete();
+          final owner = heldOwner;
+          if (owner != null && !owner.clearGate.isCompleted) {
+            owner.clearGate.complete();
+          }
+        });
+        client.onSend = (_) => gate.future;
+        await _open(
+          tester,
+          (_) => client,
+          drafts: drafts,
+          draftStoreFactory: (account) async =>
+              heldOwner = _GatedAcceptedDraftOwner(await drafts.open(account)),
         );
-      } else if (outcome == 'error') {
-        gate.completeError(StateError('late send failure'));
-      } else {
-        gate.complete();
-      }
-      await _pump(tester);
-      expect(
-        find.widgetWithText(FilledButton, _strings.connect),
-        findsOneWidget,
-      );
-      expect(find.text(_strings.mailSubmissionAccepted), findsNothing);
-      expect(find.text(_strings.mailSubmissionFollowUpFailed), findsNothing);
-      expect(find.textContaining('late send failure'), findsNothing);
-      expect(tester.takeException(), isNull);
-      await _close(tester);
-    });
+        await _connect(tester);
+        await _compose(tester);
+        final owner = heldOwner!;
+        expect(find.text(_strings.sending), findsOneWidget);
+        expect(drafts.records.values.single.submissionUncertain, isTrue);
+        await tester.tap(find.byTooltip(_strings.disconnect));
+        await _pump(tester);
+        expect(client.disconnects, 1);
+        expect(owner.closeCalls, 0);
+        expect(owner.clearStarted, isFalse);
+        expect(drafts.closes, 0);
+        if (outcome == 'accepted follow-up error') {
+          gate.completeError(
+            mail.MailSendPostSubmissionException(
+              client,
+              cleanupError: StateError('late cleanup failure'),
+            ),
+          );
+        } else if (outcome == 'error') {
+          gate.completeError(StateError('late send failure'));
+        } else {
+          gate.complete();
+        }
+        await _pump(tester);
+        if (outcome == 'error') {
+          expect(owner.clearStarted, isFalse);
+          expect(drafts.clears, 0);
+          expect(drafts.records.values.single.submissionUncertain, isTrue);
+          expect(owner.events, ['owner closed']);
+        } else {
+          expect(owner.clearStarted, isTrue);
+          expect(owner.closeCalls, 0);
+          expect(drafts.clears, 0);
+          expect(drafts.records.values.single.submissionUncertain, isTrue);
+          expect(owner.events, ['accepted clear started']);
+          owner.clearGate.complete();
+          await _pump(tester);
+          expect(drafts.clears, 1);
+          expect(drafts.records, isEmpty);
+          expect(owner.events, [
+            'accepted clear started',
+            'accepted clear persisted',
+            'owner closed',
+          ]);
+        }
+        expect(owner.closeCalls, 1);
+        expect(drafts.closes, 1);
+        expect(client.sent, hasLength(1));
+        expect(
+          find.widgetWithText(FilledButton, _strings.connect),
+          findsOneWidget,
+        );
+        expect(find.text(_strings.mailSubmissionAccepted), findsNothing);
+        expect(find.text(_strings.mailSubmissionFollowUpFailed), findsNothing);
+        expect(find.textContaining('late send failure'), findsNothing);
+        expect(tester.takeException(), isNull);
+        await _close(tester);
+      },
+    );
   }
 
   testWidgets('search tolerates messages with an empty sender list', (

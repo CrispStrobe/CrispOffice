@@ -156,6 +156,7 @@ final class _Client extends Fake implements mail.MailClient {
   final senders = <String?>[];
   final appendRequests = <bool>[];
   Future<void> Function()? onSend;
+  int disconnects = 0;
 
   @override
   mail.Mailbox get selectedMailbox => inbox;
@@ -164,7 +165,10 @@ final class _Client extends Fake implements mail.MailClient {
     Duration timeout = const Duration(seconds: 20),
   }) async {}
   @override
-  Future<void> disconnect() async {}
+  Future<void> disconnect() async {
+    disconnects++;
+  }
+
   @override
   Future<List<mail.Mailbox>> listMailboxes({
     List<mail.MailboxFlag>? order,
@@ -846,6 +850,211 @@ void main() {
     expect(await awaitOutboxOperation(tester, store.load()), isNull);
     expect(tester.takeException(), isNull);
   });
+
+  for (final mode in ['compose Send', 'Outbox Send', 'Outbox Retry']) {
+    testWidgets(
+      'native Disconnect during $mode retains the owner through its receipt',
+      (tester) async {
+        final fixture = await _fixture(tester);
+        final fromOutbox = mode != 'compose Send';
+        final retry = mode == 'Outbox Retry';
+        MailOutboxEntry? frozen;
+        if (fromOutbox) {
+          final seed = await awaitOutboxOperation(tester, fixture.openLoaded());
+          frozen = await awaitOutboxOperation(
+            tester,
+            seed.enqueueOutbox(
+              outboxFixtureDraft(subject: 'Retain the native receipt'),
+              _sender,
+            ),
+          );
+          if (retry) {
+            final attempt = await awaitOutboxOperation(
+              tester,
+              seed.beginOutboxAttempt(frozen),
+            );
+            frozen = await awaitOutboxOperation(
+              tester,
+              seed.completeOutboxAttempt(
+                attempt,
+                MailSubmissionResult(
+                  attemptId: attempt.attemptId!,
+                  outcome: MailSubmissionOutcome.uncertain,
+                ),
+              ),
+            );
+          }
+          await awaitOutboxOperation(tester, seed.close());
+        }
+        final owners = <_GatedOutboxOwner>[];
+        final replyGate = Completer<void>();
+        final replyStarted = Completer<void>();
+        addTearDown(() {
+          if (!replyGate.isCompleted) replyGate.complete();
+          for (final owner in owners) {
+            if (!owner.receiptGate.isCompleted) owner.receiptGate.complete();
+          }
+        });
+        final client = _Client()
+          ..onSend = () {
+            replyStarted.complete();
+            return replyGate.future;
+          };
+        await _native(
+          tester,
+          fixture,
+          client,
+          draftStoreFactory: (identity) async {
+            final delegate =
+                await fixture.open(identity) as SqliteStudioMailDraftStore;
+            final owner = _GatedOutboxOwner(delegate);
+            owners.add(owner);
+            return owner;
+          },
+        );
+        expect(owners, hasLength(1));
+        final owner = owners.single;
+        expect(owner.delegate, same(fixture.adapters.last));
+        final disconnect = tester
+            .widget<IconButton>(find.byTooltip(_strings.disconnect))
+            .onPressed!;
+        VoidCallback? retainedSend;
+        StudioMailOutboxSubmissionRunner? retainedRunner;
+        bool Function()? isCurrentOutbox;
+        if (fromOutbox) {
+          await _press(tester, _openOutbox);
+          final dialog = tester.widget<StudioMailOutboxDialog>(
+            find.byType(StudioMailOutboxDialog),
+          );
+          isCurrentOutbox = dialog.isCurrent;
+          retainedRunner = dialog.runSubmission!;
+          retainedSend = tester
+              .widget<FilledButton>(_action('send', frozen!))
+              .onPressed!;
+          retainedSend();
+          await _pump(tester);
+          if (retry) {
+            final confirm = find.byKey(
+              const ValueKey('studio-mail-outbox-confirm'),
+            );
+            expect(tester.widget<FilledButton>(confirm).onPressed, isNull);
+            await tester.tap(
+              find.byKey(const ValueKey('studio-mail-outbox-acknowledge')),
+            );
+            await tester.pump();
+            await tester.tap(confirm);
+          }
+        } else {
+          await _compose(tester, subject: 'Retain the native receipt');
+          await _press(
+            tester,
+            find.widgetWithText(FilledButton, _strings.send),
+          );
+        }
+        await awaitOutboxOperation(tester, replyStarted.future);
+        await _pump(tester);
+        expect(client.sent, hasLength(1));
+        if (fromOutbox) expect(isCurrentOutbox!(), isTrue);
+        final pending = (await awaitOutboxOperation(
+          tester,
+          owner.loadOutbox(),
+        )).single;
+        final original = frozen ?? pending;
+        expect(pending.state, MailOutboxState.submitting);
+        expect(pending.attemptNumber, retry ? 2 : 1);
+        expect(
+          client.sent.single.renderMessage(),
+          ascii.decode(original.prepared.wire.bytes),
+        );
+
+        // Native transport shutdown does not complete the still-pending SMTP
+        // future or its SQLite receipt. A retained modal hook can cancel it now.
+        disconnect();
+        await _pump(tester);
+        expect(client.disconnects, 1);
+        if (fromOutbox) expect(isCurrentOutbox!(), isFalse);
+        expect(owner.closeCalls, 0);
+        expect(owner.receiptCalls, 0);
+        expect(
+          tester
+              .widget<FilledButton>(
+                find.widgetWithText(
+                  FilledButton,
+                  _strings.connect,
+                  skipOffstage: false,
+                ),
+              )
+              .onPressed,
+          isNull,
+        );
+        retainedSend?.call();
+        if (retainedRunner case final runner?) {
+          var retiredInvocations = 0;
+          await expectLater(
+            runner(() async {
+              retiredInvocations++;
+              return pending;
+            }),
+            throwsA(
+              isA<StudioMailDraftStoreException>().having(
+                (failure) => failure.code,
+                'code',
+                MailProblemCode.unavailable,
+              ),
+            ),
+          );
+          expect(retiredInvocations, 0);
+        }
+        await _pump(tester);
+        expect(client.sent, hasLength(1));
+        expect(owners, hasLength(1));
+
+        replyGate.complete();
+        await awaitOutboxOperation(tester, owner.receiptStarted.future);
+        expect(owner.closeCalls, 0);
+        expect(owner.receiptCalls, 1);
+        expect(owner.events, ['receipt started']);
+        expect(
+          (await awaitOutboxOperation(tester, owner.loadOutbox())).single.state,
+          MailOutboxState.submitting,
+        );
+        owner.receiptGate.complete();
+        await awaitOutboxOperation(tester, owner.released.future);
+        await _pump(tester);
+        expect(owner.closeCalls, 1);
+        expect(owner.events, [
+          'receipt started',
+          'receipt persisted',
+          'owner closed',
+        ]);
+
+        final reopened = await awaitOutboxOperation(
+          tester,
+          fixture.openLoaded(),
+        );
+        final committed = (await awaitOutboxOperation(
+          tester,
+          reopened.loadOutbox(),
+        )).single;
+        expect(committed.id, original.id);
+        expect(committed.state, MailOutboxState.submitted);
+        expect(committed.attemptId, pending.attemptId);
+        expect(committed.attemptNumber, retry ? 2 : 1);
+        expect(committed.prepared.wire.bytes, original.prepared.wire.bytes);
+        expect(
+          committed.prepared.envelope.recipients,
+          original.prepared.envelope.recipients,
+        );
+        expect(await awaitOutboxOperation(tester, reopened.load()), isNull);
+        retainedSend?.call();
+        await _pump(tester);
+        expect(client.sent, hasLength(1));
+        expect(owner.receiptCalls, 1);
+        expect(owner.closeCalls, 1);
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
 
   testWidgets(
     'queue storage failure retains the editable and saved native draft',

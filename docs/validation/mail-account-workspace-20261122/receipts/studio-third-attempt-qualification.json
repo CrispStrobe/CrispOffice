@@ -1,0 +1,899 @@
+{
+  "started_at_utc": "2026-11-22T13:14:50.500336+00:00",
+  "head_at_start": "7c2f6e744b3489460035bbbb358d46e22e58ce20",
+  "command": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/studio_mail_account_catalog_test.dart",
+    "test/studio_mail_account_navigation_dialog_test.dart",
+    "test/studio_mail_account_navigation_native_release_test.dart",
+    "test/studio_mail_account_navigation_native_test.dart",
+    "test/studio_mail_account_navigation_provider_test.dart",
+    "test/studio_mail_account_navigation_router_test.dart",
+    "test/studio_mail_account_navigation_test.dart",
+    "test/studio_mail_account_stores_test.dart",
+    "test/studio_mail_accounts_test.dart",
+    "test/studio_mail_archive_action_test.dart",
+    "test/studio_mail_archive_directory_import_test.dart",
+    "test/studio_mail_archive_folder_action_test.dart",
+    "test/studio_mail_archive_host_test.dart",
+    "test/studio_mail_archive_portability_visual_test.dart",
+    "test/studio_mail_archive_restore_native_test.dart",
+    "test/studio_mail_archive_restore_test.dart",
+    "test/studio_mail_archive_test.dart",
+    "test/studio_mail_attachment_compose_test.dart",
+    "test/studio_mail_attachment_loader_test.dart",
+    "test/studio_mail_attachment_test.dart",
+    "test/studio_mail_autoconnect_test.dart",
+    "test/studio_mail_body_download_store_test.dart",
+    "test/studio_mail_boolean_search_strings_test.dart",
+    "test/studio_mail_bulk_organization_provider_test.dart",
+    "test/studio_mail_bulk_provider_test.dart",
+    "test/studio_mail_bulk_visual_test.dart",
+    "test/studio_mail_cached_host_test.dart",
+    "test/studio_mail_cached_mail_test.dart",
+    "test/studio_mail_cached_search_dialog_test.dart",
+    "test/studio_mail_cached_search_refresh_dialog_test.dart",
+    "test/studio_mail_cached_search_refresh_test.dart",
+    "test/studio_mail_cached_search_test.dart",
+    "test/studio_mail_calendar_date_test.dart",
+    "test/studio_mail_capture_projection_test.dart",
+    "test/studio_mail_cloud_test.dart",
+    "test/studio_mail_compose_cache_recovery_test.dart",
+    "test/studio_mail_compose_test.dart",
+    "test/studio_mail_compose_tools_dialog_test.dart",
+    "test/studio_mail_compose_tools_store_test.dart",
+    "test/studio_mail_compose_tools_test.dart",
+    "test/studio_mail_conversation_strings_test.dart",
+    "test/studio_mail_credential_backend_switch_test.dart",
+    "test/studio_mail_credentials_test.dart",
+    "test/studio_mail_discovery_test.dart",
+    "test/studio_mail_draft_autosave_test.dart",
+    "test/studio_mail_draft_catalog_test.dart",
+    "test/studio_mail_draft_host_recovery_test.dart",
+    "test/studio_mail_draft_store_test.dart",
+    "test/studio_mail_drafts_dialog_test.dart",
+    "test/studio_mail_ews_test.dart",
+    "test/studio_mail_flag_journal_test.dart",
+    "test/studio_mail_flag_reconciliation_test.dart",
+    "test/studio_mail_flag_recovery_dialog_test.dart",
+    "test/studio_mail_folder_picker_test.dart",
+    "test/studio_mail_folder_search_dialog_test.dart",
+    "test/studio_mail_folder_search_lifecycle_test.dart",
+    "test/studio_mail_folder_search_test.dart",
+    "test/studio_mail_forward_test.dart",
+    "test/studio_mail_journal_dialog_test.dart",
+    "test/studio_mail_journal_host_test.dart",
+    "test/studio_mail_lifecycle_test.dart",
+    "test/studio_mail_local_accounts_dialog_test.dart",
+    "test/studio_mail_local_accounts_test.dart",
+    "test/studio_mail_local_drafts_test.dart",
+    "test/studio_mail_mailbox_session_test.dart",
+    "test/studio_mail_mailbox_store_test.dart",
+    "test/studio_mail_mailbox_sync_session_test.dart",
+    "test/studio_mail_membership_reconciliation_test.dart",
+    "test/studio_mail_message_loader_test.dart",
+    "test/studio_mail_move_identity_test.dart",
+    "test/studio_mail_operation_test.dart",
+    "test/studio_mail_organization_dialog_test.dart",
+    "test/studio_mail_outbox_cloud_test.dart",
+    "test/studio_mail_outbox_content_test.dart",
+    "test/studio_mail_outbox_dialog_test.dart",
+    "test/studio_mail_outbox_export_test.dart",
+    "test/studio_mail_outbox_host_test.dart",
+    "test/studio_mail_outbox_management_test.dart",
+    "test/studio_mail_outbox_review_visual_test.dart",
+    "test/studio_mail_outbox_schedule_dialog_test.dart",
+    "test/studio_mail_outbox_schedule_session_test.dart",
+    "test/studio_mail_outbox_scheduling_store_test.dart",
+    "test/studio_mail_outbox_store_test.dart",
+    "test/studio_mail_outbox_submission_test.dart",
+    "test/studio_mail_presets_test.dart",
+    "test/studio_mail_quit_test.dart",
+    "test/studio_mail_recipients_test.dart",
+    "test/studio_mail_remote_images_host_test.dart",
+    "test/studio_mail_remote_images_incoming_test.dart",
+    "test/studio_mail_remote_images_test.dart",
+    "test/studio_mail_reply_test.dart",
+    "test/studio_mail_retained_folders_test.dart",
+    "test/studio_mail_retained_navigation_test.dart",
+    "test/studio_mail_saved_search_dialog_test.dart",
+    "test/studio_mail_saved_search_store_test.dart",
+    "test/studio_mail_schedule_picker_test.dart",
+    "test/studio_mail_search_folder_picker_test.dart",
+    "test/studio_mail_selected_store_integration_test.dart",
+    "test/studio_mail_selection_help_test.dart",
+    "test/studio_mail_session_test.dart",
+    "test/studio_mail_sync_dialog_test.dart",
+    "test/studio_mail_sync_host_test.dart",
+    "test/studio_mail_sync_native_test.dart",
+    "test/studio_mail_sync_store_test.dart",
+    "test/studio_mail_test.dart",
+    "test/studio_mail_threading_test.dart",
+    "test/studio_mail_web_test.dart",
+    "test/studio_mail_workspace_test.dart",
+    "test/studio_saved_mail_test.dart",
+    "test/suite_workspace_mail_shortcuts_test.dart"
+  ],
+  "cwd": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example",
+  "selected_suite_count": 110,
+  "captured_input_count": 6220,
+  "environment": {
+    "CI": "true",
+    "FLUTTER_ROOT": "/workspace/scratch/7fc035b3e3ba/.runtime/flutter",
+    "PUB_CACHE": "/workspace/scratch/7fc035b3e3ba/.runtime/pub-cache",
+    "TMPDIR": "/workspace/scratch/7fc035b3e3ba/.runtime/tmp",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true"
+  },
+  "status": "failed",
+  "exit_code": 1,
+  "finished_at_utc": "2026-11-22T13:32:27.574195+00:00",
+  "head_at_finish": "7c2f6e744b3489460035bbbb358d46e22e58ce20",
+  "source_unchanged": true,
+  "changed_inputs": [],
+  "suites": [
+    {
+      "id": 0,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_account_catalog_test.dart"
+    },
+    {
+      "id": 59,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_account_navigation_dialog_test.dart"
+    },
+    {
+      "id": 75,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_account_navigation_native_release_test.dart"
+    },
+    {
+      "id": 88,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 131,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_account_navigation_provider_test.dart"
+    },
+    {
+      "id": 261,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_account_navigation_router_test.dart"
+    },
+    {
+      "id": 269,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_account_navigation_test.dart"
+    },
+    {
+      "id": 324,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_account_stores_test.dart"
+    },
+    {
+      "id": 330,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_accounts_test.dart"
+    },
+    {
+      "id": 357,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_action_test.dart"
+    },
+    {
+      "id": 370,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_directory_import_test.dart"
+    },
+    {
+      "id": 405,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_folder_action_test.dart"
+    },
+    {
+      "id": 429,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_host_test.dart"
+    },
+    {
+      "id": 449,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart"
+    },
+    {
+      "id": 460,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_restore_native_test.dart"
+    },
+    {
+      "id": 464,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart"
+    },
+    {
+      "id": 489,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_archive_test.dart"
+    },
+    {
+      "id": 519,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_attachment_compose_test.dart"
+    },
+    {
+      "id": 533,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_attachment_loader_test.dart"
+    },
+    {
+      "id": 549,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_attachment_test.dart"
+    },
+    {
+      "id": 601,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_autoconnect_test.dart"
+    },
+    {
+      "id": 618,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_body_download_store_test.dart"
+    },
+    {
+      "id": 629,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_boolean_search_strings_test.dart"
+    },
+    {
+      "id": 635,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_bulk_organization_provider_test.dart"
+    },
+    {
+      "id": 663,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart"
+    },
+    {
+      "id": 705,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_bulk_visual_test.dart"
+    },
+    {
+      "id": 723,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "id": 786,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_cached_mail_test.dart"
+    },
+    {
+      "id": 826,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_cached_search_dialog_test.dart"
+    },
+    {
+      "id": 854,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_cached_search_refresh_dialog_test.dart"
+    },
+    {
+      "id": 873,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_cached_search_refresh_test.dart"
+    },
+    {
+      "id": 895,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_cached_search_test.dart"
+    },
+    {
+      "id": 922,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_calendar_date_test.dart"
+    },
+    {
+      "id": 936,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_capture_projection_test.dart"
+    },
+    {
+      "id": 960,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart"
+    },
+    {
+      "id": 1022,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_compose_cache_recovery_test.dart"
+    },
+    {
+      "id": 1041,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_compose_test.dart"
+    },
+    {
+      "id": 1068,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_compose_tools_dialog_test.dart"
+    },
+    {
+      "id": 1086,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_compose_tools_store_test.dart"
+    },
+    {
+      "id": 1100,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_compose_tools_test.dart"
+    },
+    {
+      "id": 1115,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_conversation_strings_test.dart"
+    },
+    {
+      "id": 1121,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_credential_backend_switch_test.dart"
+    },
+    {
+      "id": 1131,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_credentials_test.dart"
+    },
+    {
+      "id": 1163,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_discovery_test.dart"
+    },
+    {
+      "id": 1175,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_draft_autosave_test.dart"
+    },
+    {
+      "id": 1188,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_draft_catalog_test.dart"
+    },
+    {
+      "id": 1205,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_draft_host_recovery_test.dart"
+    },
+    {
+      "id": 1228,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_draft_store_test.dart"
+    },
+    {
+      "id": 1247,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_drafts_dialog_test.dart"
+    },
+    {
+      "id": 1257,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_ews_test.dart"
+    },
+    {
+      "id": 1337,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_flag_journal_test.dart"
+    },
+    {
+      "id": 1368,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_flag_reconciliation_test.dart"
+    },
+    {
+      "id": 1395,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_flag_recovery_dialog_test.dart"
+    },
+    {
+      "id": 1425,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_folder_picker_test.dart"
+    },
+    {
+      "id": 1431,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_folder_search_dialog_test.dart"
+    },
+    {
+      "id": 1438,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_folder_search_lifecycle_test.dart"
+    },
+    {
+      "id": 1444,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_folder_search_test.dart"
+    },
+    {
+      "id": 1470,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_forward_test.dart"
+    },
+    {
+      "id": 1483,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_journal_dialog_test.dart"
+    },
+    {
+      "id": 1514,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_journal_host_test.dart"
+    },
+    {
+      "id": 1628,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart"
+    },
+    {
+      "id": 1632,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_local_accounts_dialog_test.dart"
+    },
+    {
+      "id": 1653,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_local_accounts_test.dart"
+    },
+    {
+      "id": 1664,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_local_drafts_test.dart"
+    },
+    {
+      "id": 1680,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_mailbox_session_test.dart"
+    },
+    {
+      "id": 1697,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_mailbox_store_test.dart"
+    },
+    {
+      "id": 1723,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_mailbox_sync_session_test.dart"
+    },
+    {
+      "id": 1748,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_membership_reconciliation_test.dart"
+    },
+    {
+      "id": 1764,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart"
+    },
+    {
+      "id": 1919,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_move_identity_test.dart"
+    },
+    {
+      "id": 1933,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_operation_test.dart"
+    },
+    {
+      "id": 1943,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_organization_dialog_test.dart"
+    },
+    {
+      "id": 1966,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_outbox_cloud_test.dart"
+    },
+    {
+      "id": 1977,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_outbox_content_test.dart"
+    },
+    {
+      "id": 2008,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_outbox_dialog_test.dart"
+    },
+    {
+      "id": 2021,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_outbox_export_test.dart"
+    },
+    {
+      "id": 2027,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_outbox_host_test.dart"
+    },
+    {
+      "id": 2041,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_outbox_management_test.dart"
+    },
+    {
+      "id": 2050,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_outbox_review_visual_test.dart"
+    },
+    {
+      "id": 2059,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_outbox_schedule_dialog_test.dart"
+    },
+    {
+      "id": 2082,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_outbox_schedule_session_test.dart"
+    },
+    {
+      "id": 2094,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_outbox_scheduling_store_test.dart"
+    },
+    {
+      "id": 2104,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_outbox_store_test.dart"
+    },
+    {
+      "id": 2125,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_outbox_submission_test.dart"
+    },
+    {
+      "id": 2146,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_presets_test.dart"
+    },
+    {
+      "id": 2156,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_quit_test.dart"
+    },
+    {
+      "id": 2164,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_recipients_test.dart"
+    },
+    {
+      "id": 2198,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_remote_images_host_test.dart"
+    },
+    {
+      "id": 2202,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_remote_images_incoming_test.dart"
+    },
+    {
+      "id": 2223,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_remote_images_test.dart"
+    },
+    {
+      "id": 2237,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_reply_test.dart"
+    },
+    {
+      "id": 2283,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_retained_folders_test.dart"
+    },
+    {
+      "id": 2308,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_retained_navigation_test.dart"
+    },
+    {
+      "id": 2331,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_saved_search_dialog_test.dart"
+    },
+    {
+      "id": 2348,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_saved_search_store_test.dart"
+    },
+    {
+      "id": 2370,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_schedule_picker_test.dart"
+    },
+    {
+      "id": 2381,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_search_folder_picker_test.dart"
+    },
+    {
+      "id": 2393,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_selected_store_integration_test.dart"
+    },
+    {
+      "id": 2411,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_selection_help_test.dart"
+    },
+    {
+      "id": 2417,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_session_test.dart"
+    },
+    {
+      "id": 2441,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "id": 2479,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart"
+    },
+    {
+      "id": 2490,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_native_test.dart"
+    },
+    {
+      "id": 2498,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_sync_store_test.dart"
+    },
+    {
+      "id": 2507,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_test.dart"
+    },
+    {
+      "id": 2591,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_threading_test.dart"
+    },
+    {
+      "id": 2618,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_web_test.dart"
+    },
+    {
+      "id": 2623,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "id": 2692,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_saved_mail_test.dart"
+    },
+    {
+      "id": 2711,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/suite_workspace_mail_shortcuts_test.dart"
+    }
+  ],
+  "observed_suite_count": 110,
+  "missing_suites": [],
+  "unexpected_suites": [],
+  "unfinished_test_ids": [],
+  "passed": 2329,
+  "failed": 22,
+  "skipped": 0,
+  "reporter_errors": [
+    {
+      "testID": 676,
+      "error": "Test failed. See exception logs above.\nThe test description was: ews: disconnect and reconnect cannot project late results into overlapping row IDs",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 182736
+    },
+    {
+      "testID": 677,
+      "error": "Test failed. See exception logs above.\nThe test description was: ews: invalid selections are refused atomically and closed dialogs stop further dispatch",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 183568
+    },
+    {
+      "testID": 688,
+      "error": "Test failed. See exception logs above.\nThe test description was: gmail: disconnect and reconnect cannot project late results into overlapping row IDs",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 187755
+    },
+    {
+      "testID": 689,
+      "error": "Test failed. See exception logs above.\nThe test description was: gmail: invalid selections are refused atomically and closed dialogs stop further dispatch",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 188867
+    },
+    {
+      "testID": 700,
+      "error": "Test failed. See exception logs above.\nThe test description was: graph: disconnect and reconnect cannot project late results into overlapping row IDs",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 193130
+    },
+    {
+      "testID": 701,
+      "error": "Test failed. See exception logs above.\nThe test description was: graph: invalid selections are refused atomically and closed dialogs stop further dispatch",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 194264
+    },
+    {
+      "testID": 741,
+      "error": "Test failed. See exception logs above.\nThe test description was: ews delete survives metadata updates and cannot resurrect cached rows",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 246788
+    },
+    {
+      "testID": 756,
+      "error": "Test failed. See exception logs above.\nThe test description was: gmail delete survives metadata updates and cannot resurrect cached rows",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 273930
+    },
+    {
+      "testID": 771,
+      "error": "Test failed. See exception logs above.\nThe test description was: graph delete survives metadata updates and cannot resurrect cached rows",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 297495
+    },
+    {
+      "testID": 986,
+      "error": "Test failed. See exception logs above.\nThe test description was: Gmail closes late draft storage without adopting a retired session",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 396683
+    },
+    {
+      "testID": 987,
+      "error": "Test failed. See exception logs above.\nThe test description was: native setup offers Gmail, Microsoft 365 and Exchange",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 397405
+    },
+    {
+      "testID": 1274,
+      "error": "Test failed. See exception logs above.\nThe test description was: EWS bulk confirmation cannot enter a reconnected account or dispatch its tail",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 525053
+    },
+    {
+      "testID": 1304,
+      "error": "Test failed. See exception logs above.\nThe test description was: EWS retires a draft store opened after its host was closed",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 540107
+    },
+    {
+      "testID": 1305,
+      "error": "Test failed. See exception logs above.\nThe test description was: native account setup exposes the Exchange Server entry",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 540855
+    },
+    {
+      "testID": 1331,
+      "error": "Test failed. See exception logs above.\nThe test description was: disposing during send ignores a late acceptance",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 553314
+    },
+    {
+      "testID": 1631,
+      "error": "Test failed. See exception logs above.\nThe test description was: closing Mail ignores a pending file picker result",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 688862
+    },
+    {
+      "testID": 1635,
+      "error": "Test failed. See exception logs above.\nThe test description was: imap cached-mail button opens only the local mailbox",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 691617
+    },
+    {
+      "testID": 1636,
+      "error": "Test failed. See exception logs above.\nThe test description was: ews cached-mail button opens only the local mailbox",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 692198
+    },
+    {
+      "testID": 1637,
+      "error": "Test failed. See exception logs above.\nThe test description was: gmail cached-mail button opens only the local mailbox",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 692584
+    },
+    {
+      "testID": 1638,
+      "error": "Test failed. See exception logs above.\nThe test description was: graph cached-mail button opens only the local mailbox",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 693419
+    },
+    {
+      "testID": 2154,
+      "error": "Test failed. See exception logs above.\nThe test description was: choosing a preset clears old credentials and exposes app-password guidance",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 818202
+    },
+    {
+      "testID": 2429,
+      "error": "Test failed. See exception logs above.\nThe test description was: a delayed native draft open cannot install the previous account store",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 897342
+    }
+  ],
+  "reporter_done": {
+    "success": false,
+    "type": "done",
+    "time": 1052083
+  },
+  "unmatched_nonhidden_completions": [],
+  "malformed_lf_json_records": [],
+  "receipt_reconstructed_at_utc": "2026-11-22T13:42:52.149127+00:00",
+  "reporter_framing": "Raw bytes split only on ASCII LF. Literal U+0085/U+2028/U+2029 remain inside their valid JSON strings.",
+  "original_automated_receipt": "qualification-original-unicode-splitlines.json",
+  "original_automated_receipt_sha256": "4418a1e7cfd978498eb8ba376f9a6fb937c850c5abb8b74d97e06f75ba8ad9a6",
+  "original_automated_pass_count": 2326,
+  "unicode_line_separator_case_ids": [
+    569,
+    570,
+    571
+  ],
+  "counting_note": "2329 substantive passes and 22 substantive errors across all110 selected suites. Three actual attachment-filename tests omitted by str.splitlines() are now identified by valid LF framing. No test execution was repeated for this recount. This failed full cohort adds no final passing credit.",
+  "preserved_raw_file_sha256": {
+    "tests.jsonl": "7f3dceb5a6f1133d51c967e87ea531976137d4f7d3c66abb560c8e2b2eefeae3",
+    "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "inputs-before.json": "99517017dc09edad010c95adf5e662280dc6dbace23d05c1fc8ecc62c6f7ed36",
+    "inputs-after.json": "99517017dc09edad010c95adf5e662280dc6dbace23d05c1fc8ecc62c6f7ed36"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "stopped_at_utc": "2026-11-22T13:50:09.993864+00:00",
+  "source_checkpoint": "8bbe6bcb9d22681a765e85c8fc4a80859221b042",
+  "status": "intentionally_interrupted_for_review_fix",
+  "exec_session_exit_code": 130,
+  "flutter_child_exit_code": null,
+  "reason": "Independent review identified untracked owner lifetime for Outbox-dialog submissions after a provider response; source remains frozen while diagnostics are preserved.",
+  "captured_input_count": 6224,
+  "source_unchanged": true,
+  "qualifies_final_source": false
+}

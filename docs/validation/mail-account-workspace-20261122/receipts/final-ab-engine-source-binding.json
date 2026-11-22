@@ -1,0 +1,17 @@
+{
+  "verified_at_utc": "2026-11-22T13:46:53.764966+00:00",
+  "execution_baseline": "800c3dfd56b169831222d53a02e2b7b83f4f1857",
+  "execution_baseline_tree": "7c2a4a5a898c4c0ca8c1075e85c22e2b1468767f",
+  "later_host_checkpoint": "8bbe6bcb9d22681a765e85c8fc4a80859221b042",
+  "later_host_checkpoint_tree": "629881455d2e077eca73fea410b181321105445c",
+  "repository_trees_identical": false,
+  "captured_engine_inputs_identical": true,
+  "tracked_scoped_path_delta": [],
+  "input_count": 1421,
+  "before_manifest_sha256": "7efde2fa97ad094c16cc8f76df6ad9cdd4670133992cdcedeed9ee5dd4e7543f",
+  "after_manifest_sha256": "7efde2fa97ad094c16cc8f76df6ad9cdd4670133992cdcedeed9ee5dd4e7543f",
+  "current_manifest_sha256": "7efde2fa97ad094c16cc8f76df6ad9cdd4670133992cdcedeed9ee5dd4e7543f",
+  "engine_lib_test_tool_identical_to_main": "ab3457c98b6d9a0d1da8147db3048dfc50d174d3",
+  "excluded_scope": "Mail host/editor source and tests are not engine inputs and were not qualified by these engine executions.",
+  "normalization_bridge_required": false
+}

@@ -55,6 +55,11 @@ reusable `QudsMailWorkspace` milestone remains open.
   with Close; a second save must not recreate an accepted or queued draft. Keep
   its owner open until a known provider outcome finishes local persistence.
   Failed preservation leaves the session and retained draft available for retry.
+- Retain native and provider storage owners through complete foreground Outbox
+  attempts, including Send, acknowledged Check and retry, and scheduled sends.
+  Disconnect retires the live session immediately; the old owner's final receipt
+  must finish before the next account opens its storage. Reopening shows
+  the persisted outcome and the original frozen message contents.
 - Restore drafts, cached state, Outbox and historical uncertainty only through
   their owning account. Navigation never treats unknown delivery as success
   and never replays a send or mailbox command.
