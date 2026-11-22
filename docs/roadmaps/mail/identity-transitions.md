@@ -89,18 +89,21 @@ preserved. No new complete folder catalog or synchronization checkpoint is
 invented. Requiring both browse views conservatively leaves sync-only caches
 unprojected until browse commits can carry their own persistent move fence.
 
+Destination limits include the complete retained headers,
+identities and synchronized folder metadata, including the folder display name.
+
 Missing source/target coverage, mixed IMAP generations, identity collisions,
 full destination windows, incompatible local state, revision exhaustion and
 aggregate metadata limits prevent projection. The receipt states that folder
-refresh is required. The receipt is written in the outer journal transaction;
-optional cache projection and its account-quota check use a nested savepoint. A
-quota failure caused only by cache growth rolls back that projection while
-retaining the acknowledgement. Receipt storage still must satisfy the ordinary
-quota, and other transaction failures roll back all new writes. A backwards
-wall-clock correction also rolls back settlement rather than persisting a
-receipt whose recorded time exceeds the batch update time. If storage cannot
-retain the acknowledgement, the live report keeps it, but restart recovery
-remains uncertain; no command is replayed to recover a lost mapping.
+refresh is required. Optional cache projection runs in a required nested
+savepoint: if cache growth alone exceeds the account quota, its changes roll
+back while an otherwise admissible acknowledgement remains saved with
+`cacheProjected: false`. Receipt quota failures and other storage errors still
+roll back the outer transaction. A backwards wall-clock correction also rolls
+back settlement rather than persisting a receipt whose recorded time exceeds
+the batch update time. If storage cannot retain the acknowledgement, the live
+report keeps it, but restart recovery remains uncertain; no command is replayed
+to recover a lost mapping.
 
 Original source message bytes and blob references remain under the original
 identity. A newly created destination row is header-only until its body is
