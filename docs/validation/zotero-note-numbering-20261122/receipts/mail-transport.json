@@ -1,0 +1,65 @@
+{
+  "source_commit": "89789360590b6dd0af0a378bfc257a3c4a18fc9c",
+  "source_tree": "f3b0f40e2fe06ae372e4f69654058a36b4170e9c",
+  "package": "packages/quds_mail_transport",
+  "command": [
+    "dart",
+    "test",
+    "--reporter=json",
+    "--concurrency=2",
+    "test/native_membership_observation_test.dart",
+    "test/native_flag_observation_test.dart",
+    "test/cloud_provider_test.dart",
+    "test/ews_provider_test.dart",
+    "test/ews_soap_test.dart",
+    "test/cloud_unsupported_test.dart",
+    "test/ews_unsupported_test.dart",
+    "test/unsupported_test.dart"
+  ],
+  "tests": [
+    "test/native_membership_observation_test.dart",
+    "test/native_flag_observation_test.dart",
+    "test/cloud_provider_test.dart",
+    "test/ews_provider_test.dart",
+    "test/ews_soap_test.dart",
+    "test/cloud_unsupported_test.dart",
+    "test/ews_unsupported_test.dart",
+    "test/unsupported_test.dart"
+  ],
+  "runtime_receipt": "/workspace/scratch/1bb837b7ac66/runtime/runtime.json",
+  "started_at_utc": "2026-11-22T07:02:51Z",
+  "status": "passed",
+  "runtime_receipt_sha256": "75caa1b71e20e8c983345720d6511a2879137d6c1a87c3cb29b5deb89b47c228",
+  "exit_code": 0,
+  "inputs_unchanged": true,
+  "input_count": 4454,
+  "changed_inputs": [],
+  "counts": {
+    "passed": 258,
+    "failed": 0,
+    "skipped": 0,
+    "unfinished": 0
+  },
+  "loaded_suites": 5,
+  "duplicate_identities": 0,
+  "error_event_count": 0,
+  "done_events": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 5105
+    }
+  ],
+  "non_json_lines": [
+    "Running build hooks...Running build hooks...{\"protocolVersion\":\"0.1.1\",\"runnerVersion\":\"1.31.1\",\"pid\":8,\"type\":\"start\",\"time\":0}"
+  ],
+  "finished_at_utc": "2026-11-22T07:03:22Z",
+  "artifacts_sha256": {
+    "cases.json": "8186abd4e3676ec85b5743ae2f9e2998c18bea169129d74401a0983df8e0174f",
+    "errors.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "events.jsonl.gz": "0c396b26ed5b52b3d89a18509ad529526eaec01d8fd62e7fd5285a62b7dc4a14",
+    "inputs-after.json.gz": "18b69863d73f82d233b3b9bd359db3acbc9e85283808607cbfc9ddbea40f793f",
+    "inputs-before.json.gz": "f67d5f67c6d86b82afb00efe12eeb2987a940b0fb9f0f4dd59ee936c6eeed3c3",
+    "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

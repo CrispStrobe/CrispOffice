@@ -1,0 +1,253 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "recorded_at_utc": "2026-11-22T07:11:47.844258+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "branch": "codex/zotero-native-parity-20261122",
+  "baseline_source": "b13a170cdb5fd42b9a0f2c77d97c996caf5d0d7f",
+  "final_tested_source": "1896e11febd0d08159c85ddbbcd94743383f1e61",
+  "final_tested_tree": "2f955065ec1ee94ea3db8e3cfbda7fcc94036fc1",
+  "main_reconciliation_source": "dde9845f1783d61272acbba314603c4bb51d87fb",
+  "main_reconciliation_tree": "cfac7ab903d7a20e3d5c1c9b47411bf860c6c0c9",
+  "observed_main": "ffdf603cc71fbb9083c93db3d1b6fe47949f62e7",
+  "final_publication_applicability": "The final evidence commit is a documentation/artifact descendant of these sources. Product source, tests, fixtures, dependencies and the gate runner must remain identical; final Git tree/ancestry verification accompanies PR merge.",
+  "cohorts": [
+    {
+      "id": "zotero-engine",
+      "passed": 372,
+      "visible_suites": 11,
+      "receipt": "receipts/engine.json",
+      "source": "52f53c99059b1521dd08b9f8f4f65133e87e980b",
+      "applicability": "receipts/source-applicability.json"
+    },
+    {
+      "id": "zotero-editor",
+      "passed": 80,
+      "visible_suites": 5,
+      "receipt": "receipts/editor.json",
+      "source": "8e18fb2ee53e11d0b96a449ea7e698223423dca2",
+      "applicability": "receipts/source-applicability.json"
+    },
+    {
+      "id": "zotero-studio",
+      "passed": 11,
+      "visible_suites": 2,
+      "receipt": "receipts/studio.json",
+      "source": "89789360590b6dd0af0a378bfc257a3c4a18fc9c"
+    },
+    {
+      "id": "word-effective",
+      "passed": 583,
+      "visible_suites": 10,
+      "receipt": "receipts/word-effective.json",
+      "replacement_accounting": [
+        423,
+        146,
+        14
+      ]
+    },
+    {
+      "id": "mail-core",
+      "passed": 53,
+      "visible_suites": 1,
+      "receipt": "receipts/mail-core.json",
+      "source": "89789360590b6dd0af0a378bfc257a3c4a18fc9c"
+    },
+    {
+      "id": "mail-transport",
+      "passed": 258,
+      "selected_files": 8,
+      "visible_suites": 5,
+      "receipt": "receipts/mail-transport.json",
+      "source": "89789360590b6dd0af0a378bfc257a3c4a18fc9c"
+    },
+    {
+      "id": "mail-store-vm",
+      "passed": 1061,
+      "selected_files": 45,
+      "receipt": "receipts/mail-store.json",
+      "source": "89789360590b6dd0af0a378bfc257a3c4a18fc9c",
+      "excluded": "test/browser_problem_test.dart is explicitly Node-only"
+    },
+    {
+      "id": "mail-studio-effective",
+      "passed": 305,
+      "visible_suites": 7,
+      "receipt": "receipts/mail-studio-effective.json",
+      "replacement_accounting": [
+        222,
+        83
+      ]
+    }
+  ],
+  "effective_unique_unit_cases": 2723,
+  "failed": 0,
+  "skipped": 0,
+  "unfinished": 0,
+  "reporter_errors": 0,
+  "zotero_unique_cases": 463,
+  "word_unique_cases": 583,
+  "mail_unique_cases": 1677,
+  "new_zotero_cases": {
+    "engine": 60,
+    "editor": 7,
+    "studio": 3,
+    "total": 70,
+    "included_in_unit_total": true
+  },
+  "static": {
+    "changed_dart_files": 72,
+    "strict_format": "passed, zero changes",
+    "fatal_info_analysis": "passed, no issues",
+    "receipt": "receipts/static.json"
+  },
+  "tracked_manifest_and_lock_files": {
+    "count": 91,
+    "unchanged": true
+  },
+  "converter": {
+    "receipt": "receipts/converter.json",
+    "qualified_source": "52f53c99059b1521dd08b9f8f4f65133e87e980b",
+    "application": "LibreOfficeDev 26.8.0.0.alpha0",
+    "build": "2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+    "distinct_fixtures": 2,
+    "distinct_notes": 30,
+    "distinct_active_citations": 8,
+    "actual_save_cycles": 2,
+    "stages_per_fixture": 3,
+    "odt_packages": 6,
+    "docx_reopens": 6,
+    "successful_commands": 9,
+    "hashed_artifacts": 34,
+    "included_in_unit_total": false
+  },
+  "word_portability": {
+    "archive_receipt": "validation_work/final-word-portability/receipt.json",
+    "conformance_cases": 78,
+    "vm_js_outputs_byte_identical": true,
+    "smoke_operations": 6,
+    "smoke_revision": 1,
+    "included_in_unit_total": false
+  },
+  "independent_audit": {
+    "receipt": "receipts/independent-audit.json",
+    "publication_alias": "receipts/main-alias.json",
+    "unit_git_blobs_hashed": 4315,
+    "all_case_identities": "validation_work/independent-audit-1896e11f/effective-cases.json"
+  },
+  "evidence": {
+    "archive": "evidence.tar.xz",
+    "archive_sha256": "5bfcb640ed221ae37b4b72df949280ffc70ee65b7b8769b4640325f41db18d43",
+    "archive_bytes": 2371200,
+    "index": "evidence-index.json",
+    "index_sha256": "9419ab1f1e25bd494d4936b1be3b992db4164e1e8749f20ba993c3d24ac75c20",
+    "mirrored_receipts": "receipts/manifest.json",
+    "originals_preserved": true,
+    "includes_failed_and_superseded_attempts": true
+  },
+  "remote_checkpoints_before_evidence_publication": [
+    {
+      "sha": "be2908c7261e73859282cf759d825f563436897c",
+      "tree": "57f790b78f2d17586f91e3a5a00f841777239abf",
+      "parents": [
+        "b13a170cdb5fd42b9a0f2c77d97c996caf5d0d7f",
+        "13405f728a5a172951a71f078beab6aebc62f6ee",
+        "ee3ba4f6a7d5f2a9d73926d95d41e16580bf97c0"
+      ],
+      "subject": "Reconcile captured Office branches before Zotero note-numbering parity [skip ci]"
+    },
+    {
+      "sha": "fbe037421db2d09c5455167a4fd07f11c1d629fc",
+      "tree": "34d945b2e021c1427413f8efcaf5adf29e586b6f",
+      "parents": [
+        "be2908c7261e73859282cf759d825f563436897c"
+      ],
+      "subject": "Record reconciled Zotero note-numbering scope and intake [skip ci]"
+    },
+    {
+      "sha": "b5e9885f0d494fa35be5f8f68fd32570b086ff61",
+      "tree": "62a461f37118cb4a9fc7a529a13ac61ddfe1d191",
+      "parents": [
+        "fbe037421db2d09c5455167a4fd07f11c1d629fc"
+      ],
+      "subject": "Preserve continuous Roman note numbering in editable Zotero ODT [skip ci]"
+    },
+    {
+      "sha": "b075760623033039c877d96386eef1f25638a532",
+      "tree": "793ce8b2401f75efe335d8bf75b0736a9e6962f4",
+      "parents": [
+        "b5e9885f0d494fa35be5f8f68fd32570b086ff61"
+      ],
+      "subject": "Exercise Roman Zotero ODT import, refresh, undo, and Studio export [skip ci]"
+    },
+    {
+      "sha": "9553fb4f7f48cd34882e7a163ea032c3890cf256",
+      "tree": "d144b28e669d371c187033042f50519d8158a9d6",
+      "parents": [
+        "b075760623033039c877d96386eef1f25638a532"
+      ],
+      "subject": "Document Roman note exchange and complete Studio save lifecycle checks [skip ci]"
+    },
+    {
+      "sha": "f16400dc42d47a568d8275f7e2ec650cbb808eee",
+      "tree": "dcb24b341345338204a53e20d5ea8f88d42401dd",
+      "parents": [
+        "9553fb4f7f48cd34882e7a163ea032c3890cf256",
+        "f5b85557e21c19954a5eeb0db1d6ecc2e66ffe8d",
+        "e2639923376de79f7abfa9bdfba8746fe297cadb"
+      ],
+      "subject": "Reconcile captured Word and Mail continuations with Zotero numbering [skip ci]"
+    },
+    {
+      "sha": "52f53c99059b1521dd08b9f8f4f65133e87e980b",
+      "tree": "f8a367979b5beda4ed29a706a329b580637d7db4",
+      "parents": [
+        "f16400dc42d47a568d8275f7e2ec650cbb808eee"
+      ],
+      "subject": "Qualify numbering defaults and reject ambiguous native note settings [skip ci]"
+    },
+    {
+      "sha": "8e18fb2ee53e11d0b96a449ea7e698223423dca2",
+      "tree": "6a3124b14c76f52cd786fad7dabad971aee3c3ed",
+      "parents": [
+        "52f53c99059b1521dd08b9f8f4f65133e87e980b"
+      ],
+      "subject": "Correct incoming Word policy fixtures and normalize regression formatting [skip ci]"
+    },
+    {
+      "sha": "89789360590b6dd0af0a378bfc257a3c4a18fc9c",
+      "tree": "f3b0f40e2fe06ae372e4f69654058a36b4170e9c",
+      "parents": [
+        "8e18fb2ee53e11d0b96a449ea7e698223423dca2",
+        "430bcf26f770c06278ea64ee40255d071d69e066"
+      ],
+      "subject": "Reconcile captured Mail persistence and Word assertions [skip ci]"
+    },
+    {
+      "sha": "1896e11febd0d08159c85ddbbcd94743383f1e61",
+      "tree": "2f955065ec1ee94ea3db8e3cfbda7fcc94036fc1",
+      "parents": [
+        "89789360590b6dd0af0a378bfc257a3c4a18fc9c"
+      ],
+      "subject": "Remove redundant null assertions in captured Mail fixtures [skip ci]"
+    },
+    {
+      "sha": "dde9845f1783d61272acbba314603c4bb51d87fb",
+      "tree": "cfac7ab903d7a20e3d5c1c9b47411bf860c6c0c9",
+      "parents": [
+        "1896e11febd0d08159c85ddbbcd94743383f1e61",
+        "ffdf603cc71fbb9083c93db3d1b6fe47949f62e7"
+      ],
+      "subject": "Reconcile main PR365 and preserve its Word validation evidence [skip ci]"
+    }
+  ],
+  "acceptance_limits": [
+    "No installed Zotero plugin or Microsoft Word session was run.",
+    "Actual LibreOffice converter is a development build; stable-release host/plugin acceptance remains open.",
+    "No visual-layout equivalence is claimed.",
+    "Alphabetic numbering, custom marks, restarts, non-one starts and format changes within a note class remain guarded.",
+    "Mail protocols and Flutter tests are synthetic/local; no live-provider account acceptance is claimed.",
+    "Node-only Mail store test is excluded from the VM cohort."
+  ],
+  "github_actions": "Not queried or awaited; no repository protections changed."
+}

@@ -1,0 +1,1279 @@
+{
+  "result": "PASS",
+  "targetSource": "89789360590b6dd0af0a378bfc257a3c4a18fc9c",
+  "targetTree": "f3b0f40e2fe06ae372e4f69654058a36b4170e9c",
+  "createdUtc": "2026-11-22T07:05:01.599242+00:00",
+  "scope": "Repository source closure and unchanged resolved dependencies/runtime; no product tests rerun.",
+  "externalDependencyEvidence": "The prior locked resolution, package configuration and runtime receipt hashes remain identical. External manifest hashes record the current installed packages; they are not presented as a historical source snapshot.",
+  "workspaceManifestCount": 45,
+  "workspacePackageConfigSha256": "35d8b2b944c5b60d38ffc524306ac5580c207fd6a6ea06a0d8b00a1546402636",
+  "runtimeReceiptSha256": "75caa1b71e20e8c983345720d6511a2879137d6c1a87c3cb29b5deb89b47c228",
+  "qualifiedConverterFrozenFiles": 436,
+  "closures": [
+    {
+      "label": "engine372",
+      "qualifiedSource": "52f53c99059b1521dd08b9f8f4f65133e87e980b",
+      "targetSource": "89789360590b6dd0af0a378bfc257a3c4a18fc9c",
+      "dependencyPackageCount": 56,
+      "repositoryPackages": {
+        "quds_office_engine": "packages/quds_office_engine",
+        "legacy_doc_parser": "packages/legacy_doc_parser"
+      },
+      "importedRepositoryPackages": [
+        "legacy_doc_parser",
+        "quds_office_engine"
+      ],
+      "selectedTests": [
+        "packages/quds_office_engine/test/odt_zotero_note_numbering_test.dart",
+        "packages/quds_office_engine/test/word_note_numbering_test.dart",
+        "packages/quds_office_engine/test/odt_zotero_export_lifecycle_test.dart",
+        "packages/quds_office_engine/test/odt_libreoffice_note_offsets_test.dart",
+        "packages/quds_office_engine/test/odt_note_configuration_styles_test.dart",
+        "packages/quds_office_engine/test/odt_reader_styles_test.dart",
+        "packages/quds_office_engine/test/odt_note_fidelity_test.dart",
+        "packages/quds_office_engine/test/odt_zotero_writer_test.dart",
+        "packages/quds_office_engine/test/odf_zotero_reference_marks_test.dart",
+        "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+        "packages/quds_office_engine/test/word_zotero_preference_flow_test.dart"
+      ],
+      "repositoryClosureFiles": 1027,
+      "priorExecutionSnapshotMatches": 1012,
+      "byteIdenticalGitPaths": 1027,
+      "changedClosureFiles": [],
+      "changedPathsOutsideClosure": [
+        "docs/roadmaps/mail/README.md",
+        "docs/roadmaps/mail/durable-mutations.md",
+        "docs/roadmaps/mail/membership-recovery.md",
+        "docs/roadmaps/mail/status.md",
+        "packages/quds_mail_core/CHANGELOG.md",
+        "packages/quds_mail_core/lib/src/ports/membership.dart",
+        "packages/quds_mail_core/test/membership_observation_test.dart",
+        "packages/quds_mail_store/CHANGELOG.md",
+        "packages/quds_mail_store/lib/src/flag_journal.dart",
+        "packages/quds_mail_store/lib/src/flag_journal_models.dart",
+        "packages/quds_mail_store/lib/src/membership_reconciliation.dart",
+        "packages/quds_mail_store/lib/src/repository.dart",
+        "packages/quds_mail_store/lib/src/schema/database.dart",
+        "packages/quds_mail_store/lib/src/schema/membership_observation_schema.dart",
+        "packages/quds_mail_store/test/compose_settings_test.dart",
+        "packages/quds_mail_store/test/flag_reconciliation_test.dart",
+        "packages/quds_mail_store/test/membership_journal_migration_test.dart",
+        "packages/quds_mail_store/test/membership_observation_migration_test.dart",
+        "packages/quds_mail_store/test/membership_reconciliation_test.dart",
+        "packages/quds_mail_store/test/migration_test.dart",
+        "packages/quds_mail_store/test/saved_search_folder_migration_test.dart",
+        "packages/quds_mail_store/test/sync_mailboxes_test.dart",
+        "packages/quds_office_editor/CHANGELOG.md",
+        "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_flag_journal.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_journal_dialog.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_journal_strings.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_membership_reconciliation.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_mutation_strings.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+        "packages/quds_office_editor/example/test/studio_mail_flag_recovery_dialog_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_journal_host_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_membership_reconciliation_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+        "packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart",
+        "packages/quds_office_editor/example/test/support/mail_membership_host_cases.dart",
+        "packages/quds_office_editor/example/test/support/mail_membership_recovery_cases.dart",
+        "packages/quds_office_engine/test/office_macro_word_cell_prefix_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_cell_prefix_conformance_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_cell_prefix_integration_test.dart"
+      ],
+      "dependencyGraph": {
+        "quds_office_engine": {
+          "root": "/workspace/scratch/1bb837b7ac66/quds_office_suite/packages/quds_office_engine",
+          "dependencies": [
+            "archive",
+            "characters",
+            "crypto",
+            "image",
+            "legacy_doc_parser",
+            "lints",
+            "test"
+          ],
+          "pubspecSha256": "225773e48bab7333652a4098e5747f37eab2aac9fc6a14de1e814590ab03fb7a",
+          "repositoryPackage": true
+        },
+        "lints": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/lints-6.1.0",
+          "dependencies": [],
+          "pubspecSha256": "45a12e5d281279d245741c002b33ed10b0af776074d457f4e342d46ced8431e6",
+          "repositoryPackage": false
+        },
+        "legacy_doc_parser": {
+          "root": "/workspace/scratch/1bb837b7ac66/quds_office_suite/packages/legacy_doc_parser",
+          "dependencies": [
+            "archive"
+          ],
+          "pubspecSha256": "150af8d89562635bf5a876c0a539c20ae48b58ea3666db071b5e4ebd3addf153",
+          "repositoryPackage": true
+        },
+        "archive": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/archive-4.7.1",
+          "dependencies": [
+            "path",
+            "posix"
+          ],
+          "pubspecSha256": "0da0f03bcf1d54f67ea097861f606ed6f353db5283c8b28f2e7800e1c3424989",
+          "repositoryPackage": false
+        },
+        "posix": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/posix-6.5.4",
+          "dependencies": [
+            "ffi",
+            "meta",
+            "path"
+          ],
+          "pubspecSha256": "260129544aeeadbf4cf65b8914d6c84a5a9bb2a100920eb6268a0363a555dd00",
+          "repositoryPackage": false
+        },
+        "ffi": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/ffi-2.2.0",
+          "dependencies": [],
+          "pubspecSha256": "00eb29c9e0d66e1696dd41772e157c8ec4bcc6454ee7ab426128ec270722587b",
+          "repositoryPackage": false
+        },
+        "meta": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/meta-1.19.0",
+          "dependencies": [],
+          "pubspecSha256": "a003fe612d160e22c942289e654b50e6563f67c61847603485cf1eac6686e995",
+          "repositoryPackage": false
+        },
+        "path": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/path-1.9.1",
+          "dependencies": [],
+          "pubspecSha256": "94bc2793c42741c611722b22b0bc0f1a000ae4914f5ab52810d91e18ce4b1f6d",
+          "repositoryPackage": false
+        },
+        "characters": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/characters-1.4.1",
+          "dependencies": [],
+          "pubspecSha256": "5cca9e9296ee6f219922c5e9049b71559b46ac45095b10de9afc57da2c12f951",
+          "repositoryPackage": false
+        },
+        "image": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/image-4.13.1",
+          "dependencies": [
+            "archive"
+          ],
+          "pubspecSha256": "e57ebd30d4191d47e5a7450645e9a5c7d6bad6a03fc89913a070b4243db0361c",
+          "repositoryPackage": false
+        },
+        "crypto": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/crypto-3.0.8",
+          "dependencies": [],
+          "pubspecSha256": "b23d9b30e9dc877a17f0788b6fe02538e03625fc7051a1400901bab0b44896e5",
+          "repositoryPackage": false
+        },
+        "test": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/test-1.31.1",
+          "dependencies": [
+            "analyzer",
+            "async",
+            "boolean_selector",
+            "collection",
+            "coverage",
+            "http_multi_server",
+            "io",
+            "matcher",
+            "node_preamble",
+            "package_config",
+            "path",
+            "pool",
+            "shelf",
+            "shelf_packages_handler",
+            "shelf_static",
+            "shelf_web_socket",
+            "source_span",
+            "stack_trace",
+            "stream_channel",
+            "test_api",
+            "test_core",
+            "typed_data",
+            "web_socket_channel",
+            "webkit_inspection_protocol",
+            "yaml"
+          ],
+          "pubspecSha256": "ceddf4148e4e58654efb8965232596da97756c807b0ec57d1b45d14690740f9f",
+          "repositoryPackage": false
+        },
+        "typed_data": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/typed_data-1.4.0",
+          "dependencies": [
+            "collection"
+          ],
+          "pubspecSha256": "a9f411c96b3904fdb471b2c34b5c88569b899bc5b6bcb74fd08d1abfcdc1c79f",
+          "repositoryPackage": false
+        },
+        "collection": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/collection-1.19.1",
+          "dependencies": [],
+          "pubspecSha256": "0558412e31aacf6a97e6b226e0f9f6b10ab5ae95c57a8a562ff579ee1609f913",
+          "repositoryPackage": false
+        },
+        "analyzer": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/analyzer-13.3.0",
+          "dependencies": [
+            "_fe_analyzer_shared",
+            "collection",
+            "convert",
+            "crypto",
+            "glob",
+            "meta",
+            "package_config",
+            "path",
+            "pub_semver",
+            "source_span",
+            "watcher",
+            "yaml"
+          ],
+          "pubspecSha256": "38dedc0694f44e1500e6c92f6614578f477ecc16a855013831f1f136a31f9675",
+          "repositoryPackage": false
+        },
+        "convert": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/convert-3.1.2",
+          "dependencies": [
+            "typed_data"
+          ],
+          "pubspecSha256": "2970044ca804d99db9fa9b5bdf785a2c95e229d7b919d4bb9f4428f857bc60d2",
+          "repositoryPackage": false
+        },
+        "_fe_analyzer_shared": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/_fe_analyzer_shared-103.0.0",
+          "dependencies": [
+            "meta"
+          ],
+          "pubspecSha256": "96c66878866fc1ef6bfb360c3bb5cea4788459bed1c259212eb311df62ef82b0",
+          "repositoryPackage": false
+        },
+        "yaml": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/yaml-3.1.4",
+          "dependencies": [
+            "collection",
+            "source_span",
+            "string_scanner"
+          ],
+          "pubspecSha256": "49ceea90c889720a87eb828a20aa1d44ec8170c416be08afb082f25bd160a7fb",
+          "repositoryPackage": false
+        },
+        "string_scanner": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/string_scanner-1.4.1",
+          "dependencies": [
+            "source_span"
+          ],
+          "pubspecSha256": "e2e5e7815773dd7525a75cb446f05bfa6525457c3310ff9a676119b432296106",
+          "repositoryPackage": false
+        },
+        "source_span": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/source_span-1.10.2",
+          "dependencies": [
+            "collection",
+            "path",
+            "term_glyph"
+          ],
+          "pubspecSha256": "ef70b95ff6588bbe25c695f6fdd7f3eed6525b70955bf429fd08e676a6fc6d02",
+          "repositoryPackage": false
+        },
+        "term_glyph": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/term_glyph-1.2.2",
+          "dependencies": [],
+          "pubspecSha256": "8cc3f20df49edba351049c9a4080ac6f629da8c073fc7c63c5acc2de1230317a",
+          "repositoryPackage": false
+        },
+        "package_config": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/package_config-2.2.0",
+          "dependencies": [
+            "path"
+          ],
+          "pubspecSha256": "7c5033e163a22d6b19269f717983ae6eaa43db91f97ee2a34568a0e353f225f6",
+          "repositoryPackage": false
+        },
+        "watcher": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/watcher-1.2.1",
+          "dependencies": [
+            "async",
+            "path"
+          ],
+          "pubspecSha256": "b696d132a6ef7b099e8a63b4b8f8dadf2757be7fbffd04982f832b4d86e0d769",
+          "repositoryPackage": false
+        },
+        "async": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/async-2.13.1",
+          "dependencies": [
+            "collection",
+            "meta"
+          ],
+          "pubspecSha256": "e3e95b194e5b58db0e6a2649c4ad4957a92027d64a38cfa0de53a225601c030c",
+          "repositoryPackage": false
+        },
+        "pub_semver": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/pub_semver-2.2.1",
+          "dependencies": [
+            "collection"
+          ],
+          "pubspecSha256": "2563b0824a9e5d1196cd438b9e161f803a5fe64027b4d337b049b3e237fc9704",
+          "repositoryPackage": false
+        },
+        "glob": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/glob-2.2.0",
+          "dependencies": [
+            "async",
+            "collection",
+            "file",
+            "path",
+            "string_scanner"
+          ],
+          "pubspecSha256": "2500027a5a72ef32e877538c2656be680df534c0cc1a25122a80c14118dca72c",
+          "repositoryPackage": false
+        },
+        "file": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/file-7.0.1",
+          "dependencies": [
+            "meta",
+            "path"
+          ],
+          "pubspecSha256": "2431ce26b72e9f4000cda857183316cf98fcdc5f1c6143ef97ca54a333500d82",
+          "repositoryPackage": false
+        },
+        "io": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/io-1.1.0",
+          "dependencies": [
+            "meta",
+            "path",
+            "string_scanner"
+          ],
+          "pubspecSha256": "d1599e06a14e19ed30e520e461da4700de69350de3eac5b1db971ac7790ffdf5",
+          "repositoryPackage": false
+        },
+        "shelf_packages_handler": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/shelf_packages_handler-3.0.2",
+          "dependencies": [
+            "path",
+            "shelf",
+            "shelf_static"
+          ],
+          "pubspecSha256": "3ab547a6b9b9534bec7d652eafa4a8af91ca91c4c83adafcd0358df264d2215c",
+          "repositoryPackage": false
+        },
+        "shelf": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/shelf-1.4.3",
+          "dependencies": [
+            "async",
+            "collection",
+            "http_parser",
+            "path",
+            "stack_trace",
+            "stream_channel"
+          ],
+          "pubspecSha256": "f9f4aaa408bfbb20c8014985d5156dd38dc79f49ad3baab91804461fc509e3d8",
+          "repositoryPackage": false
+        },
+        "stack_trace": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/stack_trace-1.12.2",
+          "dependencies": [
+            "path"
+          ],
+          "pubspecSha256": "344b6425b2bfce54cadd1b45fa9d92f486c87a77c268954c9310b7ea12c7ea77",
+          "repositoryPackage": false
+        },
+        "stream_channel": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/stream_channel-2.1.4",
+          "dependencies": [
+            "async"
+          ],
+          "pubspecSha256": "bb9e840e71b1b060c6e32c4c33b73c845f1b9f9dfddd7a2f01c1d8ebb5ac5cae",
+          "repositoryPackage": false
+        },
+        "http_parser": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/http_parser-4.1.2",
+          "dependencies": [
+            "collection",
+            "source_span",
+            "string_scanner",
+            "typed_data"
+          ],
+          "pubspecSha256": "88a08953bcff87d5b003d46d689a87d4149d4abca5200f7d6534dd2e2aba4751",
+          "repositoryPackage": false
+        },
+        "shelf_static": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/shelf_static-1.2.0",
+          "dependencies": [
+            "convert",
+            "http_parser",
+            "mime",
+            "path",
+            "shelf"
+          ],
+          "pubspecSha256": "c0b572d0990bc89636ae277b949b673c95778713b2e57db5d4b7c09a7f55d96d",
+          "repositoryPackage": false
+        },
+        "mime": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/mime-2.1.0",
+          "dependencies": [],
+          "pubspecSha256": "476ebb13bb41cdb28e6ddf63e3cbfee9214083a50b9f5974dcfda19ca10c92bf",
+          "repositoryPackage": false
+        },
+        "test_api": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/test_api-0.7.12",
+          "dependencies": [
+            "async",
+            "boolean_selector",
+            "collection",
+            "meta",
+            "source_span",
+            "stack_trace",
+            "stream_channel",
+            "string_scanner",
+            "term_glyph"
+          ],
+          "pubspecSha256": "50cbb715c5dcc6cb62f9b682456dd6ba96d85abffc8f02e4b3f9c40b0a014fbb",
+          "repositoryPackage": false
+        },
+        "boolean_selector": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/boolean_selector-2.1.2",
+          "dependencies": [
+            "source_span",
+            "string_scanner"
+          ],
+          "pubspecSha256": "694e93a3e5cb9bea0868a4873f8ea9dd3856e00e3629ee7488cbbec42c41bc5c",
+          "repositoryPackage": false
+        },
+        "pool": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/pool-1.5.3",
+          "dependencies": [
+            "async",
+            "stack_trace"
+          ],
+          "pubspecSha256": "60ba063f0b07fdb4e0ac91d3663e3b88359d2f35ff32d38dfc4f18078d612737",
+          "repositoryPackage": false
+        },
+        "node_preamble": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/node_preamble-2.0.2",
+          "dependencies": [],
+          "pubspecSha256": "00e45a39f773b8ae80804910d25eef80de13b9d972893591bc04965553b2b79d",
+          "repositoryPackage": false
+        },
+        "http_multi_server": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/http_multi_server-3.2.3",
+          "dependencies": [
+            "async"
+          ],
+          "pubspecSha256": "45558e315643ff86c694a3ae7f288899c6fd349124805a060c3976d6b11dd3f7",
+          "repositoryPackage": false
+        },
+        "matcher": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/matcher-0.12.20",
+          "dependencies": [
+            "async",
+            "meta",
+            "stack_trace",
+            "term_glyph",
+            "test_api"
+          ],
+          "pubspecSha256": "6a130b3eeae616a766feef41bf2906a46d7aae4e92656f118eb8c5340649cac4",
+          "repositoryPackage": false
+        },
+        "web_socket_channel": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/web_socket_channel-3.0.3",
+          "dependencies": [
+            "async",
+            "crypto",
+            "stream_channel",
+            "web",
+            "web_socket"
+          ],
+          "pubspecSha256": "115000a10051194436a0597dacc62170887aa4b43157828a14a767c024d0e6b6",
+          "repositoryPackage": false
+        },
+        "web": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/web-1.1.2",
+          "dependencies": [],
+          "pubspecSha256": "f2a3911b7b588f3539ead69e15a73e23399c0c65396901cda778558ee6e0dca2",
+          "repositoryPackage": false
+        },
+        "web_socket": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/web_socket-1.0.1",
+          "dependencies": [
+            "web"
+          ],
+          "pubspecSha256": "cb772a2362eee485b4658be7d85f9edd87f0110cf2243041c7e5cd221a479814",
+          "repositoryPackage": false
+        },
+        "coverage": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/coverage-1.16.1",
+          "dependencies": [
+            "args",
+            "cli_config",
+            "cli_util",
+            "glob",
+            "logging",
+            "meta",
+            "package_config",
+            "path",
+            "source_maps",
+            "stack_trace",
+            "vm_service",
+            "yaml"
+          ],
+          "pubspecSha256": "f7ec53440d3e439885d3aa1ebf05ff30f1b2e93f8bbbbcd7edd15fe9292ec1e3",
+          "repositoryPackage": false
+        },
+        "source_maps": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/source_maps-0.10.14",
+          "dependencies": [
+            "source_span"
+          ],
+          "pubspecSha256": "9bd384bd917596c0185593208c7ed9e2a597e1f2741305616eac331ad2b97e27",
+          "repositoryPackage": false
+        },
+        "args": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/args-2.7.0",
+          "dependencies": [],
+          "pubspecSha256": "2b4cd847855bfce84a3dabae75c216974804e068c1ed0a5d663abb7d63006303",
+          "repositoryPackage": false
+        },
+        "cli_util": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/cli_util-0.6.0",
+          "dependencies": [
+            "ffi",
+            "meta",
+            "path"
+          ],
+          "pubspecSha256": "190c2b90437baf56bea98031f3130d3e40ff95b1fbf059506b275ea07b73dd18",
+          "repositoryPackage": false
+        },
+        "vm_service": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/vm_service-15.4.0",
+          "dependencies": [],
+          "pubspecSha256": "e5f3e30ec4d7f1d5475a3f616eb32551f2a0be5f4f2ff6ac06c312360c201119",
+          "repositoryPackage": false
+        },
+        "logging": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/logging-1.3.0",
+          "dependencies": [],
+          "pubspecSha256": "c2880dbeafc99cd7b16c5b4da088c06d111498107476544d3cdb60f9735f05fa",
+          "repositoryPackage": false
+        },
+        "cli_config": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/cli_config-0.2.0",
+          "dependencies": [
+            "args",
+            "yaml"
+          ],
+          "pubspecSha256": "1750408e11627ede23689dc41a2e31ccb513396be2d1caf17db698f1351ab7a1",
+          "repositoryPackage": false
+        },
+        "webkit_inspection_protocol": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/webkit_inspection_protocol-1.2.1",
+          "dependencies": [
+            "logging"
+          ],
+          "pubspecSha256": "482a37c78e5210593d4311d5c3ee832fb63fa49372ce080794c79856992d875d",
+          "repositoryPackage": false
+        },
+        "shelf_web_socket": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/shelf_web_socket-3.0.0",
+          "dependencies": [
+            "shelf",
+            "stream_channel",
+            "web_socket_channel"
+          ],
+          "pubspecSha256": "fe719937bbcd01978c475cf3c33c8fc3239d3e9880e96b4720f6f9b8c6d844a3",
+          "repositoryPackage": false
+        },
+        "test_core": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/test_core-0.6.18",
+          "dependencies": [
+            "analyzer",
+            "args",
+            "async",
+            "boolean_selector",
+            "collection",
+            "coverage",
+            "frontend_server_client",
+            "glob",
+            "io",
+            "meta",
+            "package_config",
+            "path",
+            "pool",
+            "source_map_stack_trace",
+            "source_maps",
+            "source_span",
+            "stack_trace",
+            "stream_channel",
+            "test_api",
+            "vm_service",
+            "yaml"
+          ],
+          "pubspecSha256": "cc92e721abe75942c5769586abe7884cfa50e7dd10c9791ff0baef43b82e9486",
+          "repositoryPackage": false
+        },
+        "source_map_stack_trace": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/source_map_stack_trace-2.1.2",
+          "dependencies": [
+            "path",
+            "source_maps",
+            "stack_trace"
+          ],
+          "pubspecSha256": "3799d273787f95aadee1c44040c0593b730beeb8ae0f74ff8954473e4ecb9713",
+          "repositoryPackage": false
+        },
+        "frontend_server_client": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/frontend_server_client-4.2.0",
+          "dependencies": [
+            "async",
+            "package_config",
+            "path"
+          ],
+          "pubspecSha256": "65f71de069be05a3046260c0c73fbe3962614df7a9a57675b230748d53679b41",
+          "repositoryPackage": false
+        }
+      }
+    },
+    {
+      "label": "editor80",
+      "qualifiedSource": "8e18fb2ee53e11d0b96a449ea7e698223423dca2",
+      "targetSource": "89789360590b6dd0af0a378bfc257a3c4a18fc9c",
+      "dependencyPackageCount": 47,
+      "repositoryPackages": {
+        "quds_office_editor": "packages/quds_office_editor",
+        "quds_reports": "packages/quds_reports",
+        "quds_office_engine": "packages/quds_office_engine",
+        "legacy_doc_parser": "packages/legacy_doc_parser"
+      },
+      "importedRepositoryPackages": [
+        "legacy_doc_parser",
+        "quds_office_editor",
+        "quds_office_engine",
+        "quds_reports"
+      ],
+      "selectedTests": [
+        "packages/quds_office_editor/test/word_odt_note_numbering_test.dart",
+        "packages/quds_office_editor/test/word_odt_load_test.dart",
+        "packages/quds_office_editor/test/word_note_numbering_test.dart",
+        "packages/quds_office_editor/test/word_zotero_note_target_test.dart",
+        "packages/quds_office_editor/test/word_zotero_writing_position_test.dart"
+      ],
+      "repositoryClosureFiles": 2207,
+      "priorExecutionSnapshotMatches": 2154,
+      "byteIdenticalGitPaths": 2207,
+      "changedClosureFiles": [],
+      "changedPathsOutsideClosure": [
+        "docs/roadmaps/mail/README.md",
+        "docs/roadmaps/mail/durable-mutations.md",
+        "docs/roadmaps/mail/membership-recovery.md",
+        "docs/roadmaps/mail/status.md",
+        "packages/quds_mail_core/CHANGELOG.md",
+        "packages/quds_mail_core/lib/src/ports/membership.dart",
+        "packages/quds_mail_core/test/membership_observation_test.dart",
+        "packages/quds_mail_store/CHANGELOG.md",
+        "packages/quds_mail_store/lib/src/flag_journal.dart",
+        "packages/quds_mail_store/lib/src/flag_journal_models.dart",
+        "packages/quds_mail_store/lib/src/membership_reconciliation.dart",
+        "packages/quds_mail_store/lib/src/repository.dart",
+        "packages/quds_mail_store/lib/src/schema/database.dart",
+        "packages/quds_mail_store/lib/src/schema/membership_observation_schema.dart",
+        "packages/quds_mail_store/test/compose_settings_test.dart",
+        "packages/quds_mail_store/test/flag_reconciliation_test.dart",
+        "packages/quds_mail_store/test/membership_journal_migration_test.dart",
+        "packages/quds_mail_store/test/membership_observation_migration_test.dart",
+        "packages/quds_mail_store/test/membership_reconciliation_test.dart",
+        "packages/quds_mail_store/test/migration_test.dart",
+        "packages/quds_mail_store/test/saved_search_folder_migration_test.dart",
+        "packages/quds_mail_store/test/sync_mailboxes_test.dart",
+        "packages/quds_office_editor/CHANGELOG.md",
+        "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_flag_journal.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_journal_dialog.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_journal_strings.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_membership_reconciliation.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_mutation_strings.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+        "packages/quds_office_editor/example/test/studio_mail_flag_recovery_dialog_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_journal_host_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_membership_reconciliation_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+        "packages/quds_office_editor/example/test/support/mail_membership_host_cases.dart",
+        "packages/quds_office_editor/example/test/support/mail_membership_recovery_cases.dart"
+      ],
+      "dependencyGraph": {
+        "quds_office_editor": {
+          "root": "/workspace/scratch/1bb837b7ac66/quds_office_suite/packages/quds_office_editor",
+          "dependencies": [
+            "crypto",
+            "flutter",
+            "flutter_lints",
+            "flutter_test",
+            "intl",
+            "quds_office_engine",
+            "quds_reports",
+            "url_launcher"
+          ],
+          "pubspecSha256": "536da824dbe7ade3c70080fb6fd5d507186021ca7052869dc47a41fffd82b272",
+          "repositoryPackage": true
+        },
+        "quds_reports": {
+          "root": "/workspace/scratch/1bb837b7ac66/quds_office_suite/packages/quds_reports",
+          "dependencies": [
+            "quds_office_engine"
+          ],
+          "pubspecSha256": "5e4bc0d98b2ed07463fede914e41d6536a985ede6746741df85a0bc743dbb98a",
+          "repositoryPackage": true
+        },
+        "quds_office_engine": {
+          "root": "/workspace/scratch/1bb837b7ac66/quds_office_suite/packages/quds_office_engine",
+          "dependencies": [
+            "characters",
+            "crypto",
+            "image",
+            "legacy_doc_parser"
+          ],
+          "pubspecSha256": "225773e48bab7333652a4098e5747f37eab2aac9fc6a14de1e814590ab03fb7a",
+          "repositoryPackage": true
+        },
+        "crypto": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/crypto-3.0.8",
+          "dependencies": [],
+          "pubspecSha256": "b23d9b30e9dc877a17f0788b6fe02538e03625fc7051a1400901bab0b44896e5",
+          "repositoryPackage": false
+        },
+        "characters": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/characters-1.4.1",
+          "dependencies": [],
+          "pubspecSha256": "5cca9e9296ee6f219922c5e9049b71559b46ac45095b10de9afc57da2c12f951",
+          "repositoryPackage": false
+        },
+        "image": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/image-4.13.1",
+          "dependencies": [
+            "archive"
+          ],
+          "pubspecSha256": "e57ebd30d4191d47e5a7450645e9a5c7d6bad6a03fc89913a070b4243db0361c",
+          "repositoryPackage": false
+        },
+        "archive": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/archive-4.7.1",
+          "dependencies": [
+            "path",
+            "posix"
+          ],
+          "pubspecSha256": "0da0f03bcf1d54f67ea097861f606ed6f353db5283c8b28f2e7800e1c3424989",
+          "repositoryPackage": false
+        },
+        "posix": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/posix-6.5.4",
+          "dependencies": [
+            "ffi",
+            "meta",
+            "path"
+          ],
+          "pubspecSha256": "260129544aeeadbf4cf65b8914d6c84a5a9bb2a100920eb6268a0363a555dd00",
+          "repositoryPackage": false
+        },
+        "ffi": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/ffi-2.2.0",
+          "dependencies": [],
+          "pubspecSha256": "00eb29c9e0d66e1696dd41772e157c8ec4bcc6454ee7ab426128ec270722587b",
+          "repositoryPackage": false
+        },
+        "meta": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/meta-1.19.0",
+          "dependencies": [],
+          "pubspecSha256": "a003fe612d160e22c942289e654b50e6563f67c61847603485cf1eac6686e995",
+          "repositoryPackage": false
+        },
+        "path": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/path-1.9.1",
+          "dependencies": [],
+          "pubspecSha256": "94bc2793c42741c611722b22b0bc0f1a000ae4914f5ab52810d91e18ce4b1f6d",
+          "repositoryPackage": false
+        },
+        "legacy_doc_parser": {
+          "root": "/workspace/scratch/1bb837b7ac66/quds_office_suite/packages/legacy_doc_parser",
+          "dependencies": [
+            "archive"
+          ],
+          "pubspecSha256": "150af8d89562635bf5a876c0a539c20ae48b58ea3666db071b5e4ebd3addf153",
+          "repositoryPackage": true
+        },
+        "flutter_lints": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/flutter_lints-6.0.0",
+          "dependencies": [
+            "lints"
+          ],
+          "pubspecSha256": "8b819dad320bf3f6a7464d3c10f98fe749e5687685cb097534f99e5be0032e9d",
+          "repositoryPackage": false
+        },
+        "lints": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/lints-6.1.0",
+          "dependencies": [],
+          "pubspecSha256": "45a12e5d281279d245741c002b33ed10b0af776074d457f4e342d46ced8431e6",
+          "repositoryPackage": false
+        },
+        "url_launcher": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/url_launcher-6.3.3",
+          "dependencies": [
+            "flutter",
+            "url_launcher_android",
+            "url_launcher_ios",
+            "url_launcher_linux",
+            "url_launcher_macos",
+            "url_launcher_platform_interface",
+            "url_launcher_web",
+            "url_launcher_windows"
+          ],
+          "pubspecSha256": "6375a44b5ff5f06fa306dc0894ba89f82bd5490b55ac838d776502465edcdec1",
+          "repositoryPackage": false
+        },
+        "url_launcher_android": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/url_launcher_android-6.3.35",
+          "dependencies": [
+            "flutter",
+            "meta",
+            "url_launcher_platform_interface"
+          ],
+          "pubspecSha256": "141e18030a3f5873a301a2ec37c9f0a9806c29f2a0872db7fff4a4c94fc3d1d9",
+          "repositoryPackage": false
+        },
+        "url_launcher_platform_interface": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/url_launcher_platform_interface-2.3.2",
+          "dependencies": [
+            "flutter",
+            "plugin_platform_interface"
+          ],
+          "pubspecSha256": "75acac1c733016373eb5d1ac709c3834e450d352d99131bf7ad4230b7030c9a6",
+          "repositoryPackage": false
+        },
+        "plugin_platform_interface": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.8",
+          "dependencies": [
+            "meta"
+          ],
+          "pubspecSha256": "f43e701a2009e7a535d2ef393f9375a0c131c0719243347a266827eea4c36c08",
+          "repositoryPackage": false
+        },
+        "flutter": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/flutter/packages/flutter",
+          "dependencies": [
+            "characters",
+            "collection",
+            "material_color_utilities",
+            "meta",
+            "sky_engine",
+            "vector_math"
+          ],
+          "pubspecSha256": "0b3422388c8001cfe2d3b82607902178342ab7f5014d03461d100b5fee027d0a",
+          "repositoryPackage": false
+        },
+        "vector_math": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/vector_math-2.4.4",
+          "dependencies": [],
+          "pubspecSha256": "384eae01eb147d629dd6306c2332ce67cdb0bdc85f9752d7e828cb4e81c023e7",
+          "repositoryPackage": false
+        },
+        "collection": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/collection-1.19.1",
+          "dependencies": [],
+          "pubspecSha256": "0558412e31aacf6a97e6b226e0f9f6b10ab5ae95c57a8a562ff579ee1609f913",
+          "repositoryPackage": false
+        },
+        "sky_engine": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/flutter/bin/cache/pkg/sky_engine",
+          "dependencies": [],
+          "pubspecSha256": "f2586b596944addbe3ce5da7080af416b80227eca064c274a47d61dfa36180d0",
+          "repositoryPackage": false
+        },
+        "material_color_utilities": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/material_color_utilities-0.13.0",
+          "dependencies": [
+            "collection"
+          ],
+          "pubspecSha256": "4c32df8a37a2548d4ccc5ad892b9f3780236ad655685273d366ca34aee39fa1d",
+          "repositoryPackage": false
+        },
+        "url_launcher_macos": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/url_launcher_macos-3.2.6",
+          "dependencies": [
+            "flutter",
+            "meta",
+            "url_launcher_platform_interface"
+          ],
+          "pubspecSha256": "ca7e1078bfc7d56bdfe7e9ceb3ca0d553fef5880360d841b8f6a7498165d68f3",
+          "repositoryPackage": false
+        },
+        "url_launcher_web": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/url_launcher_web-2.4.3",
+          "dependencies": [
+            "flutter",
+            "flutter_web_plugins",
+            "url_launcher_platform_interface",
+            "web"
+          ],
+          "pubspecSha256": "2ea3837b05bcc98c02e1738d7afe0f7cd75fda98b8e525b6ba8375812aa23afe",
+          "repositoryPackage": false
+        },
+        "flutter_web_plugins": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/flutter/packages/flutter_web_plugins",
+          "dependencies": [
+            "flutter"
+          ],
+          "pubspecSha256": "6bb6e1798ebaddbda510b0b447f9bd394d4d3d259719cc8e6dd9426d6637b70b",
+          "repositoryPackage": false
+        },
+        "web": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/web-1.1.2",
+          "dependencies": [],
+          "pubspecSha256": "f2a3911b7b588f3539ead69e15a73e23399c0c65396901cda778558ee6e0dca2",
+          "repositoryPackage": false
+        },
+        "url_launcher_windows": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/url_launcher_windows-3.1.6",
+          "dependencies": [
+            "flutter",
+            "meta",
+            "url_launcher_platform_interface"
+          ],
+          "pubspecSha256": "5c122cea28da2719d73f101a688672e3a3d15b259c4aba025ea0d0d66836405d",
+          "repositoryPackage": false
+        },
+        "url_launcher_ios": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/url_launcher_ios-6.4.2",
+          "dependencies": [
+            "flutter",
+            "meta",
+            "url_launcher_platform_interface"
+          ],
+          "pubspecSha256": "62f0267d5a52a0243ca829b1735a4fe7758c6cbb2ac7e40f958c6fd975f6c6db",
+          "repositoryPackage": false
+        },
+        "url_launcher_linux": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/url_launcher_linux-3.2.3",
+          "dependencies": [
+            "flutter",
+            "meta",
+            "url_launcher_platform_interface"
+          ],
+          "pubspecSha256": "62b850b546a75e0c883a46474a521694c8f69740107f8c770e74390f1fb7814e",
+          "repositoryPackage": false
+        },
+        "flutter_test": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/flutter/packages/flutter_test",
+          "dependencies": [
+            "clock",
+            "collection",
+            "fake_async",
+            "flutter",
+            "leak_tracker_flutter_testing",
+            "matcher",
+            "meta",
+            "path",
+            "stack_trace",
+            "stream_channel",
+            "test_api",
+            "vector_math"
+          ],
+          "pubspecSha256": "9596f58e0496dc277dd753a706feb4cc3495202c8a381ab4b14008d436074b54",
+          "repositoryPackage": false
+        },
+        "clock": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/clock-1.1.3",
+          "dependencies": [],
+          "pubspecSha256": "fa84373a6d748d8b6b6f26d4ee34186e01958a58f5f7b9de6282061a446f806c",
+          "repositoryPackage": false
+        },
+        "matcher": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/matcher-0.12.20",
+          "dependencies": [
+            "async",
+            "meta",
+            "stack_trace",
+            "term_glyph",
+            "test_api"
+          ],
+          "pubspecSha256": "6a130b3eeae616a766feef41bf2906a46d7aae4e92656f118eb8c5340649cac4",
+          "repositoryPackage": false
+        },
+        "async": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/async-2.13.1",
+          "dependencies": [
+            "collection",
+            "meta"
+          ],
+          "pubspecSha256": "e3e95b194e5b58db0e6a2649c4ad4957a92027d64a38cfa0de53a225601c030c",
+          "repositoryPackage": false
+        },
+        "term_glyph": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/term_glyph-1.2.2",
+          "dependencies": [],
+          "pubspecSha256": "8cc3f20df49edba351049c9a4080ac6f629da8c073fc7c63c5acc2de1230317a",
+          "repositoryPackage": false
+        },
+        "stack_trace": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/stack_trace-1.12.2",
+          "dependencies": [
+            "path"
+          ],
+          "pubspecSha256": "344b6425b2bfce54cadd1b45fa9d92f486c87a77c268954c9310b7ea12c7ea77",
+          "repositoryPackage": false
+        },
+        "test_api": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/test_api-0.7.12",
+          "dependencies": [
+            "async",
+            "boolean_selector",
+            "collection",
+            "meta",
+            "source_span",
+            "stack_trace",
+            "stream_channel",
+            "string_scanner",
+            "term_glyph"
+          ],
+          "pubspecSha256": "50cbb715c5dcc6cb62f9b682456dd6ba96d85abffc8f02e4b3f9c40b0a014fbb",
+          "repositoryPackage": false
+        },
+        "string_scanner": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/string_scanner-1.4.1",
+          "dependencies": [
+            "source_span"
+          ],
+          "pubspecSha256": "e2e5e7815773dd7525a75cb446f05bfa6525457c3310ff9a676119b432296106",
+          "repositoryPackage": false
+        },
+        "source_span": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/source_span-1.10.2",
+          "dependencies": [
+            "collection",
+            "path",
+            "term_glyph"
+          ],
+          "pubspecSha256": "ef70b95ff6588bbe25c695f6fdd7f3eed6525b70955bf429fd08e676a6fc6d02",
+          "repositoryPackage": false
+        },
+        "stream_channel": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/stream_channel-2.1.4",
+          "dependencies": [
+            "async"
+          ],
+          "pubspecSha256": "bb9e840e71b1b060c6e32c4c33b73c845f1b9f9dfddd7a2f01c1d8ebb5ac5cae",
+          "repositoryPackage": false
+        },
+        "boolean_selector": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/boolean_selector-2.1.2",
+          "dependencies": [
+            "source_span",
+            "string_scanner"
+          ],
+          "pubspecSha256": "694e93a3e5cb9bea0868a4873f8ea9dd3856e00e3629ee7488cbbec42c41bc5c",
+          "repositoryPackage": false
+        },
+        "leak_tracker_flutter_testing": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/leak_tracker_flutter_testing-3.0.10",
+          "dependencies": [
+            "flutter",
+            "leak_tracker",
+            "leak_tracker_testing",
+            "matcher",
+            "meta"
+          ],
+          "pubspecSha256": "230b28feb29c520794eb49924bad2c19073080d4cdf94240d222a73250877abb",
+          "repositoryPackage": false
+        },
+        "leak_tracker_testing": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/leak_tracker_testing-3.0.2",
+          "dependencies": [
+            "leak_tracker",
+            "matcher",
+            "meta"
+          ],
+          "pubspecSha256": "bda15ec4370d21476ed0eca93f25e86f2dfe3887c19720335821348c390f0b21",
+          "repositoryPackage": false
+        },
+        "leak_tracker": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/leak_tracker-11.0.2",
+          "dependencies": [
+            "clock",
+            "collection",
+            "meta",
+            "path",
+            "vm_service"
+          ],
+          "pubspecSha256": "baa761e9bf38ebeff3ccf67d4ea542ede08e7286695df569f91be867134b03a5",
+          "repositoryPackage": false
+        },
+        "vm_service": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/vm_service-15.4.0",
+          "dependencies": [],
+          "pubspecSha256": "e5f3e30ec4d7f1d5475a3f616eb32551f2a0be5f4f2ff6ac06c312360c201119",
+          "repositoryPackage": false
+        },
+        "fake_async": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/fake_async-1.3.3",
+          "dependencies": [
+            "clock",
+            "collection"
+          ],
+          "pubspecSha256": "e327702810254b2950d552c0cc5d0174fcd287a9b70ff4aa55d9fb5dd477e655",
+          "repositoryPackage": false
+        },
+        "intl": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/intl-0.20.3",
+          "dependencies": [
+            "clock",
+            "meta",
+            "path"
+          ],
+          "pubspecSha256": "e4dd54c2d05d7d9c0cf7a38ba91f7687d92f30dabbd1232bcc2b0786e36800d4",
+          "repositoryPackage": false
+        }
+      }
+    },
+    {
+      "label": "converter",
+      "qualifiedSource": "52f53c99059b1521dd08b9f8f4f65133e87e980b",
+      "targetSource": "89789360590b6dd0af0a378bfc257a3c4a18fc9c",
+      "dependencyPackageCount": 10,
+      "repositoryPackages": {
+        "quds_office_engine": "packages/quds_office_engine",
+        "legacy_doc_parser": "packages/legacy_doc_parser"
+      },
+      "importedRepositoryPackages": [
+        "legacy_doc_parser",
+        "quds_office_engine"
+      ],
+      "selectedTests": [],
+      "repositoryClosureFiles": 1016,
+      "priorExecutionSnapshotMatches": 469,
+      "byteIdenticalGitPaths": 1016,
+      "changedClosureFiles": [],
+      "changedPathsOutsideClosure": [
+        "docs/roadmaps/mail/README.md",
+        "docs/roadmaps/mail/durable-mutations.md",
+        "docs/roadmaps/mail/membership-recovery.md",
+        "docs/roadmaps/mail/status.md",
+        "packages/quds_mail_core/CHANGELOG.md",
+        "packages/quds_mail_core/lib/src/ports/membership.dart",
+        "packages/quds_mail_core/test/membership_observation_test.dart",
+        "packages/quds_mail_store/CHANGELOG.md",
+        "packages/quds_mail_store/lib/src/flag_journal.dart",
+        "packages/quds_mail_store/lib/src/flag_journal_models.dart",
+        "packages/quds_mail_store/lib/src/membership_reconciliation.dart",
+        "packages/quds_mail_store/lib/src/repository.dart",
+        "packages/quds_mail_store/lib/src/schema/database.dart",
+        "packages/quds_mail_store/lib/src/schema/membership_observation_schema.dart",
+        "packages/quds_mail_store/test/compose_settings_test.dart",
+        "packages/quds_mail_store/test/flag_reconciliation_test.dart",
+        "packages/quds_mail_store/test/membership_journal_migration_test.dart",
+        "packages/quds_mail_store/test/membership_observation_migration_test.dart",
+        "packages/quds_mail_store/test/membership_reconciliation_test.dart",
+        "packages/quds_mail_store/test/migration_test.dart",
+        "packages/quds_mail_store/test/saved_search_folder_migration_test.dart",
+        "packages/quds_mail_store/test/sync_mailboxes_test.dart",
+        "packages/quds_office_editor/CHANGELOG.md",
+        "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_flag_journal.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_journal_dialog.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_journal_strings.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_membership_reconciliation.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_message_loader.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_mutation_strings.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+        "packages/quds_office_editor/example/test/studio_mail_flag_recovery_dialog_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_journal_host_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_membership_reconciliation_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
+        "packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart",
+        "packages/quds_office_editor/example/test/support/mail_membership_host_cases.dart",
+        "packages/quds_office_editor/example/test/support/mail_membership_recovery_cases.dart",
+        "packages/quds_office_engine/test/office_macro_word_cell_prefix_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_cell_prefix_conformance_test.dart",
+        "packages/quds_office_engine/test/office_vba_word_cell_prefix_integration_test.dart"
+      ],
+      "dependencyGraph": {
+        "quds_office_engine": {
+          "root": "/workspace/scratch/1bb837b7ac66/quds_office_suite/packages/quds_office_engine",
+          "dependencies": [
+            "characters",
+            "crypto",
+            "image",
+            "legacy_doc_parser"
+          ],
+          "pubspecSha256": "225773e48bab7333652a4098e5747f37eab2aac9fc6a14de1e814590ab03fb7a",
+          "repositoryPackage": true
+        },
+        "crypto": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/crypto-3.0.8",
+          "dependencies": [],
+          "pubspecSha256": "b23d9b30e9dc877a17f0788b6fe02538e03625fc7051a1400901bab0b44896e5",
+          "repositoryPackage": false
+        },
+        "characters": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/characters-1.4.1",
+          "dependencies": [],
+          "pubspecSha256": "5cca9e9296ee6f219922c5e9049b71559b46ac45095b10de9afc57da2c12f951",
+          "repositoryPackage": false
+        },
+        "image": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/image-4.13.1",
+          "dependencies": [
+            "archive"
+          ],
+          "pubspecSha256": "e57ebd30d4191d47e5a7450645e9a5c7d6bad6a03fc89913a070b4243db0361c",
+          "repositoryPackage": false
+        },
+        "archive": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/archive-4.7.1",
+          "dependencies": [
+            "path",
+            "posix"
+          ],
+          "pubspecSha256": "0da0f03bcf1d54f67ea097861f606ed6f353db5283c8b28f2e7800e1c3424989",
+          "repositoryPackage": false
+        },
+        "posix": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/posix-6.5.4",
+          "dependencies": [
+            "ffi",
+            "meta",
+            "path"
+          ],
+          "pubspecSha256": "260129544aeeadbf4cf65b8914d6c84a5a9bb2a100920eb6268a0363a555dd00",
+          "repositoryPackage": false
+        },
+        "ffi": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/ffi-2.2.0",
+          "dependencies": [],
+          "pubspecSha256": "00eb29c9e0d66e1696dd41772e157c8ec4bcc6454ee7ab426128ec270722587b",
+          "repositoryPackage": false
+        },
+        "meta": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/meta-1.19.0",
+          "dependencies": [],
+          "pubspecSha256": "a003fe612d160e22c942289e654b50e6563f67c61847603485cf1eac6686e995",
+          "repositoryPackage": false
+        },
+        "path": {
+          "root": "/workspace/scratch/1bb837b7ac66/runtime/pub-cache/hosted/pub.dev/path-1.9.1",
+          "dependencies": [],
+          "pubspecSha256": "94bc2793c42741c611722b22b0bc0f1a000ae4914f5ab52810d91e18ce4b1f6d",
+          "repositoryPackage": false
+        },
+        "legacy_doc_parser": {
+          "root": "/workspace/scratch/1bb837b7ac66/quds_office_suite/packages/legacy_doc_parser",
+          "dependencies": [
+            "archive"
+          ],
+          "pubspecSha256": "150af8d89562635bf5a876c0a539c20ae48b58ea3666db071b5e4ebd3addf153",
+          "repositoryPackage": true
+        }
+      }
+    }
+  ],
+  "errors": []
+}
