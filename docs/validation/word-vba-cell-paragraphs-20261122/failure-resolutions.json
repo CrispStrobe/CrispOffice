@@ -1,0 +1,212 @@
+{
+  "schemaVersion": 1,
+  "originalFailureCount": 6,
+  "resolvedFailureCount": 6,
+  "unresolved": [],
+  "resolutions": [
+    {
+      "testFile": "test/office_macro_word_line_spacing_test.dart",
+      "testName": "exact 18.0 points reaches saved native line-box layout",
+      "initialFailure": {
+        "testID": 400,
+        "testFile": "test/office_macro_word_line_spacing_test.dart",
+        "testName": "exact 18.0 points reaches saved native line-box layout",
+        "result": "error",
+        "skipped": false,
+        "hidden": false,
+        "recordedTimeMs": 20604,
+        "sourceLine": 351,
+        "sourceColumn": 5
+      },
+      "initialLog": "setup-attempt/tests.stdout.jsonl.gz",
+      "classification": "missing tracked font fixture",
+      "resolution": {
+        "run": "supplemental-sequential",
+        "log": "supplemental-sequential/tests.stdout.jsonl.gz",
+        "testDone": {
+          "testID": 401,
+          "testFile": "test/office_macro_word_line_spacing_test.dart",
+          "testName": "exact 18.0 points reaches saved native line-box layout",
+          "result": "success",
+          "skipped": false,
+          "hidden": false,
+          "recordedTimeMs": 94199,
+          "sourceLine": 351,
+          "sourceColumn": 5
+        }
+      },
+      "sourceChanged": false,
+      "timeoutBudgetChanged": false
+    },
+    {
+      "testFile": "test/office_macro_word_line_spacing_test.dart",
+      "testName": "atLeast 8.0 points reaches saved native line-box layout",
+      "initialFailure": {
+        "testID": 401,
+        "testFile": "test/office_macro_word_line_spacing_test.dart",
+        "testName": "atLeast 8.0 points reaches saved native line-box layout",
+        "result": "error",
+        "skipped": false,
+        "hidden": false,
+        "recordedTimeMs": 20607,
+        "sourceLine": 351,
+        "sourceColumn": 5
+      },
+      "initialLog": "setup-attempt/tests.stdout.jsonl.gz",
+      "classification": "missing tracked font fixture",
+      "resolution": {
+        "run": "supplemental-sequential",
+        "log": "supplemental-sequential/tests.stdout.jsonl.gz",
+        "testDone": {
+          "testID": 402,
+          "testFile": "test/office_macro_word_line_spacing_test.dart",
+          "testName": "atLeast 8.0 points reaches saved native line-box layout",
+          "result": "success",
+          "skipped": false,
+          "hidden": false,
+          "recordedTimeMs": 94362,
+          "sourceLine": 351,
+          "sourceColumn": 5
+        }
+      },
+      "sourceChanged": false,
+      "timeoutBudgetChanged": false
+    },
+    {
+      "testFile": "test/office_macro_word_line_spacing_test.dart",
+      "testName": "atLeast 20.0 points reaches saved native line-box layout",
+      "initialFailure": {
+        "testID": 402,
+        "testFile": "test/office_macro_word_line_spacing_test.dart",
+        "testName": "atLeast 20.0 points reaches saved native line-box layout",
+        "result": "error",
+        "skipped": false,
+        "hidden": false,
+        "recordedTimeMs": 20614,
+        "sourceLine": 351,
+        "sourceColumn": 5
+      },
+      "initialLog": "setup-attempt/tests.stdout.jsonl.gz",
+      "classification": "missing tracked font fixture",
+      "resolution": {
+        "run": "supplemental-sequential",
+        "log": "supplemental-sequential/tests.stdout.jsonl.gz",
+        "testDone": {
+          "testID": 403,
+          "testFile": "test/office_macro_word_line_spacing_test.dart",
+          "testName": "atLeast 20.0 points reaches saved native line-box layout",
+          "result": "success",
+          "skipped": false,
+          "hidden": false,
+          "recordedTimeMs": 94447,
+          "sourceLine": 351,
+          "sourceColumn": 5
+        }
+      },
+      "sourceChanged": false,
+      "timeoutBudgetChanged": false
+    },
+    {
+      "testFile": "test/office_macro_word_line_spacing_test.dart",
+      "testName": "multiple 18.0 points reaches saved native line-box layout",
+      "initialFailure": {
+        "testID": 403,
+        "testFile": "test/office_macro_word_line_spacing_test.dart",
+        "testName": "multiple 18.0 points reaches saved native line-box layout",
+        "result": "error",
+        "skipped": false,
+        "hidden": false,
+        "recordedTimeMs": 20618,
+        "sourceLine": 351,
+        "sourceColumn": 5
+      },
+      "initialLog": "setup-attempt/tests.stdout.jsonl.gz",
+      "classification": "missing tracked font fixture",
+      "resolution": {
+        "run": "supplemental-sequential",
+        "log": "supplemental-sequential/tests.stdout.jsonl.gz",
+        "testDone": {
+          "testID": 404,
+          "testFile": "test/office_macro_word_line_spacing_test.dart",
+          "testName": "multiple 18.0 points reaches saved native line-box layout",
+          "result": "success",
+          "skipped": false,
+          "hidden": false,
+          "recordedTimeMs": 94532,
+          "sourceLine": 351,
+          "sourceColumn": 5
+        }
+      },
+      "sourceChanged": false,
+      "timeoutBudgetChanged": false
+    },
+    {
+      "testFile": "test/office_vba_word_sections_integration_test.dart",
+      "testName": "native recording excludes failures and replays exact selectors",
+      "initialFailure": {
+        "testID": 6575,
+        "testFile": "test/office_vba_word_sections_integration_test.dart",
+        "testName": "native recording excludes failures and replays exact selectors",
+        "result": "error",
+        "skipped": false,
+        "hidden": false,
+        "recordedTimeMs": 237976,
+        "sourceLine": 440,
+        "sourceColumn": 3
+      },
+      "initialLog": "setup-attempt/tests.stdout.jsonl.gz",
+      "classification": "execution deadline during parallel run",
+      "resolution": {
+        "run": "deadline-isolation",
+        "log": "deadline-isolation/stdout.jsonl.gz",
+        "testDone": {
+          "testID": 24,
+          "testFile": "test/office_vba_word_sections_integration_test.dart",
+          "testName": "native recording excludes failures and replays exact selectors",
+          "result": "success",
+          "skipped": false,
+          "hidden": false,
+          "recordedTimeMs": 14018,
+          "sourceLine": 440,
+          "sourceColumn": 3
+        }
+      },
+      "sourceChanged": false,
+      "timeoutBudgetChanged": false
+    },
+    {
+      "testFile": "test/office_vba_word_proofing_integration_test.dart",
+      "testName": "CLI validates and runs BAS while retaining its original DOCM",
+      "initialFailure": {
+        "testID": 6557,
+        "testFile": "test/office_vba_word_proofing_integration_test.dart",
+        "testName": "CLI validates and runs BAS while retaining its original DOCM",
+        "result": "failure",
+        "skipped": false,
+        "hidden": false,
+        "recordedTimeMs": 238076,
+        "sourceLine": 183,
+        "sourceColumn": 3
+      },
+      "initialLog": "setup-attempt/tests.stdout.jsonl.gz",
+      "classification": "execution deadline during parallel run",
+      "resolution": {
+        "run": "deadline-isolation",
+        "log": "deadline-isolation/stdout.jsonl.gz",
+        "testDone": {
+          "testID": 45,
+          "testFile": "test/office_vba_word_proofing_integration_test.dart",
+          "testName": "CLI validates and runs BAS while retaining its original DOCM",
+          "result": "success",
+          "skipped": false,
+          "hidden": false,
+          "recordedTimeMs": 29054,
+          "sourceLine": 183,
+          "sourceColumn": 3
+        }
+      },
+      "sourceChanged": false,
+      "timeoutBudgetChanged": false
+    }
+  ]
+}

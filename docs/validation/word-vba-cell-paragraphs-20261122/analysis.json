@@ -1,0 +1,19 @@
+{
+  "source_commit": "708bf4a6cf2651a2f08f900631119f357aef4611",
+  "command": [
+    "dart",
+    "analyze",
+    "--fatal-infos",
+    "lib",
+    "test",
+    "tool"
+  ],
+  "cwd": "packages/quds_office_engine",
+  "dart_version": "3.14.1 stable",
+  "exit_code": 0,
+  "result": "No issues found!",
+  "log_sha256": "2a646156060188c736fdabe5d47d1e0f3924a3ad529b35df51badf9cdd230a65",
+  "scope": "All engine lib, test and tool files in the checked-out tree; three referenced tracked PDF examples materialized for import resolution.",
+  "source_edits_required_for_analyzer": false,
+  "setup_note": "Initial full analysis reported six missing imports because sparse checkout omitted three tracked PDF examples. Restoring those exact tracked files resolved the environment issue; the final full analysis passed."
+}

@@ -1,0 +1,15 @@
+{
+  "cwd": "/workspace/scratch/485b85db20be/vba_test_workspace/packages/quds_office_engine",
+  "argv": [
+    "/workspace/scratch/485b85db20be/dart_runtime/dart",
+    "test",
+    "--reporter",
+    "json",
+    "--concurrency",
+    "1",
+    "test/office_vba_word_sections_integration_test.dart",
+    "test/office_vba_word_proofing_integration_test.dart"
+  ],
+  "sourceCommit": "708bf4a6cf2651a2f08f900631119f357aef4611",
+  "timeoutChanges": false
+}

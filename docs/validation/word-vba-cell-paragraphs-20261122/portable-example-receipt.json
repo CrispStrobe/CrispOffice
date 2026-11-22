@@ -1,0 +1,36 @@
+{
+  "additionalReopens": 2,
+  "artifactSha256": {
+    "portable-example-compile-js.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "portable-example-compile-js.stdout": "4535d9670a30cc3409fc72fb3836f06ad9e22d9ccc56cc781f59dabbe4b671f3",
+    "portable-example-js.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "portable-example-js.stdout": "e60104f4e03421bd2aee94fcf789c8ea4b25b08d9aa6b0d6e9b8f294c68a0f77",
+    "portable-example-source-sha256.json": "128bc671345e7141f727d805a92223fdbabd0a1cee029d4ab679da039466837f",
+    "portable-example-vm.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "portable-example-vm.stdout": "f54e3399b472d84f71307393df512a645e9fe05460402c2e4d746351df16a537"
+  },
+  "comparison": "Python json.loads equality; VM 6.0 and JavaScript 6 have equal numeric meaning",
+  "completedAt": "2026-11-22T06:02:04.829372+00:00",
+  "dart": "Dart SDK version: 3.14.1 (stable) (Tue Nov 17 00:01:24 2026 -0800) on \"linux_x64\"",
+  "define": "WORD_CELL_PARAGRAPHS_BAS_BASE64",
+  "entrypoint": "tool/macros/web_vba_word_cell_paragraphs_smoke.dart",
+  "example": "example/macros/word_table_paragraphs.bas",
+  "exitCodes": {
+    "compile-js": 0,
+    "js": 0,
+    "vm": 0
+  },
+  "node": "v24.22.3",
+  "officeHostExecuted": false,
+  "opaqueVbaPreserved": true,
+  "operations": 8,
+  "recordedSteps": 8,
+  "revision": 2,
+  "sourceCommit": "708bf4a6cf2651a2f08f900631119f357aef4611",
+  "sourceFileCount": 437,
+  "sourceFilesUnchangedDuringRun": true,
+  "sourceManifestSha256": "d587a663461688afbaa545ca624e1f66dffbb9659c985c6266fb3f2c8442543c",
+  "startedAt": "2026-11-22T06:01:04.718026+00:00",
+  "untouchedLayoutAndParts": true,
+  "vmJavascriptSemanticallyEqual": true
+}
