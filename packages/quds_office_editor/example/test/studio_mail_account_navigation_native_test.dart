@@ -1007,11 +1007,16 @@ void main() {
         await _pump(tester);
         expect(owners.first.closes, 1);
         expect(owners.first.loads, 0);
+        // Disconnect keeps its release pending until the late owner drains.
+        // Requests made during that release cannot open a successor account.
         if (destination == 'connect') {
+          await tester.enterText(_field(_strings.password), _first.password);
+          await _connect(tester);
           expect(clients, hasLength(2));
           expect(acquisitions, 2);
           expect(owners.last.loads, 1);
         } else {
+          await _tap(tester, _key('studio-mail-open-ews'));
           expect(_key('ews-connect'), findsOneWidget);
           expect(clients, hasLength(1));
           expect(acquisitions, 1);
@@ -1057,12 +1062,17 @@ void main() {
         }
 
         await attempt();
-        expect(oldOwner.closeAttempts, 2);
+        expect(oldOwner.closeAttempts, 1);
         expect(oldOwner.closes, 0);
         expect(clients, hasLength(1));
         expect(owners, hasLength(1));
         expect(_key('ews-connect'), findsNothing);
+        await _tap(tester, _key('studio-mail-navigation-release'));
+        expect(oldOwner.closeAttempts, 2);
+        expect(oldOwner.closes, 0);
         oldOwner.failClose = false;
+        await _tap(tester, _key('studio-mail-navigation-release'));
+        expect(oldOwner.closes, 1);
         await attempt();
         expect(oldOwner.closes, 1);
         if (destination == 'connect') {

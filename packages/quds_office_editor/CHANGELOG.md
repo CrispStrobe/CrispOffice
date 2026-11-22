@@ -14,6 +14,9 @@ All notable changes to `quds_office_editor` are documented here.
   Block hidden keyboard edits and ambiguous SMTP-route selection. Retain failed
   observer/owner release for explicit native Retry closing account and provider
   Close/Back recovery; another account stays blocked until release succeeds.
+  Apply the same retained cleanup to Disconnect, Refresh and folder changes;
+  cancel observers waiting for an initial saved-mail snapshot before draining
+  restoration, and close their owner only after both have finished.
   Native Close continues to hide the mounted Mail pane, and persistent release
   failures can require a host restart. See the
   [connected account guide](../../docs/roadmaps/mail/connected-account-navigation.md)
