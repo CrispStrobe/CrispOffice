@@ -1,0 +1,31 @@
+{
+  "purpose": "Focused native observer recovery qualification after the held-cleanup bypass fix.",
+  "command": "BOT=true CI=true flutter test --no-pub --concurrency=1 packages/quds_office_editor/example/test/studio_mail_account_navigation_native_release_test.dart packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart packages/quds_office_editor/example/test/studio_mail_account_navigation_router_test.dart --reporter json",
+  "runtime_environment_file": "/workspace/scratch/85a369f34dbb/runtime/env.sh",
+  "raw_log": "native-observer-recovery.jsonl",
+  "stderr": "native-observer-recovery.stderr",
+  "exit_code": 0,
+  "success": true,
+  "total": 21,
+  "passed": 21,
+  "failed": 0,
+  "suites": {
+    "studio_mail_account_navigation_native_release_test.dart": {
+      "total": 4,
+      "passed": 4,
+      "failed": 0
+    },
+    "studio_mail_account_navigation_native_test.dart": {
+      "total": 12,
+      "passed": 12,
+      "failed": 0
+    },
+    "studio_mail_account_navigation_router_test.dart": {
+      "total": 5,
+      "passed": 5,
+      "failed": 0
+    }
+  },
+  "scope": "Injected memory fixtures and fake transports only; no real account or mailbox access.",
+  "post_run_change": "Removed an unused test-only import flagged by analysis; no test or production behavior changed."
+}

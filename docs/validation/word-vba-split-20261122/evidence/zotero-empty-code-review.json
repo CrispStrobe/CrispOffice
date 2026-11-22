@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "reviewedRevision": "8f2e943bf5aa1dd157e72f7ec47d0f7c2ccd5dd4",
+  "comparedWithPreviouslyQualified": "2d19bb8daf76d8305e47f136c92060b5cd5da019",
+  "mergedBaselineHead": "0e0994d7d3d4d07872322167f23ba0c0687377e8",
+  "initialRunHead": "49c16aa5b64f46389d6224cb8e9810d421fc1fc2",
+  "baselineCommitTreesIdentical": true,
+  "scope": "Read-only review of incoming Zotero engine diff, corresponding boundary/recovery tests, and local documented preservation/refusal contract; root subsequently authorized the bounded two-file correction and focused regressions.",
+  "findingCount": 1,
+  "findings": [
+    {
+      "id": "ZOTERO-EMPTY-CODE-STYLE",
+      "priority": "P2",
+      "status": "fixed and focused regression verified; broader acceptance owned by root",
+      "summary": "Empty instruction-side run properties could become visible citation or bibliography result formatting.",
+      "incomingLocations": [
+        "word_zotero.dart:606",
+        "word_zotero.dart:1312",
+        "word_zotero.dart:1401",
+        "word_zotero.dart:1686",
+        "word_zotero.dart:1710",
+        "wml_run_edit.dart:12-26"
+      ],
+      "cause": "The incoming classifier admits empty formatted code runs. propsAt returns the last WmlRun properties when the requested offset is at paragraph end, so a field without cache runs acquired its empty code run color/font/weight.",
+      "observedBaseline": "Six independent paths produced code-only red FF0000 instead of explicit context123456/default000000: metadata citation update, native plain citation, native rich citation, native unlink with replacement text, native bibliography, native unlink bibliography.",
+      "fix": "Seven existing-field formatting-selection sites use a local helper. It excludes only recorded empty code runs from a read-only paragraph view, including adjacent complete Zotero fields sharing an empty text offset, then reuses propsAt with the original offset. Source metadata and the live paragraph remain untouched.",
+      "preservationControls": "Existing non-empty result style, following visible context fallback, and adjacent empty citation all pass; cases check live and DOCX save/reopen behavior."
+    }
+  ],
+  "otherMaterialFindings": [],
+  "reviewChecks": [
+    "Bounded direct run-property whitelist rejects unknown, style/theme/revision/hidden/nested state, invalid values, and contradictory duplicates.",
+    "Source fldChar validation checks element namespace/kind and recognizes locks on begin, separator and end markers.",
+    "Ownership accounting and stale-handle revalidation include empty code-run identity and all boundary identities.",
+    "Instruction/cache replacement retains accepted boundary runProperties XML and code-run positions; code-only updates keep existing result runs.",
+    "Standalone bibliography ownership includes code runs, preserves the field envelope when entry count changes, and keeps unlink/delete semantics distinct.",
+    "WordFieldSpans empty-run structural relaxation still requires native packet canEdit eligibility.",
+    "ODT reader difference against this qualified revision is comment-only.",
+    "Recovery-test change replaces newly supported bold formatting with still-guarded revision metadata; new positive/negative boundary tests cover the corresponding classification change."
+  ],
+  "focusedValidation": {
+    "baseline": {
+      "cases": 8,
+      "passed": 2,
+      "failed": 6,
+      "skipped": 0,
+      "errors": 6,
+      "reporterSuccess": false
+    },
+    "fixed": {
+      "cases": 9,
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0,
+      "errors": 0,
+      "reporterSuccess": true
+    },
+    "stderrBytes": {
+      "baseline": 0,
+      "fixed": 0
+    },
+    "distinctAcceptedRegressionCases": 9,
+    "duplicateExecutionCredit": 0,
+    "formatClean": true,
+    "diffWhitespaceClean": true
+  },
+  "sourceInputs": [
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_field_spans.dart",
+      "qualified": {
+        "gitBlob": "467670fec112ac26ec8790e92e93973dab75022b",
+        "sha256": "02c799161c6bbce89aff8844577723ab8c7e3d7f7cdc845bb3659fa1136b13c1",
+        "bytes": 7089
+      },
+      "incoming": {
+        "gitBlob": "208a48ebe466641c723a8f5c21884fb96ef0ee2c",
+        "sha256": "45ea6b14b015c6ff3e3d3b80b5394d4391d5946b05f21bffb9382f9e2d8170b8",
+        "bytes": 7395
+      }
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero.dart",
+      "qualified": {
+        "gitBlob": "40d9f1b7f8e63ce1fd77f52c95327eada0ea40ec",
+        "sha256": "692ab80f5e5c8e53c3ec6e2fbe973474d35c454ae30c33f54fa42d92e832342e",
+        "bytes": 69482
+      },
+      "incoming": {
+        "gitBlob": "ce9ae03f8451540021683fddf2699ea3276730b3",
+        "sha256": "5603fad0588f0fd011652413c6d04c2c544bb315e4abec57789374cf8c0cd01a",
+        "bytes": 80999
+      }
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_reader_styles.dart",
+      "qualified": {
+        "gitBlob": "060cca32ad29c3026dd9731a6af8f4a461093492",
+        "sha256": "0af7641389f89067f17662466ec83129dea2eff0f020b47acd4a7014bf27da7f",
+        "bytes": 77296
+      },
+      "incoming": {
+        "gitBlob": "e19f8dc03da9a1706bcb7215b2d6c7dad144a9e2",
+        "sha256": "743012213c470569e36ad11aa745b3b2e864660b51c56de0d93831cfb0e44186",
+        "bytes": 77291
+      }
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_boundary_formatting_test.dart",
+      "qualified": null,
+      "incoming": {
+        "gitBlob": "bff43ce2c20fccf729c783dbbcce401df1770a3e",
+        "sha256": "3f05ece8de8817a20e27c40b155f7d988459975b6a79ac50e332cc582f1dcde7",
+        "bytes": 20439
+      }
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_field_recovery_test.dart",
+      "qualified": {
+        "gitBlob": "e1b4e8fe082773f94a8bc815b4c7914b55434d4f",
+        "sha256": "2f33e70a1b6f9a38041a32dfdece4defe9761dc6b425841b141d102d69e3af6a",
+        "bytes": 28691
+      },
+      "incoming": {
+        "gitBlob": "58ed83995c76fa9ca3a66f7bc5dcc64a83585fca",
+        "sha256": "ff840c5d4a260c54ab05b32a8706279bf9843a3220ccfdb43f1bcac599534b2d",
+        "bytes": 28701
+      }
+    }
+  ],
+  "fixedSourceReceipt": {
+    "head": "0e0994d7d3d4d07872322167f23ba0c0687377e8",
+    "sources": {
+      "packages/quds_office_engine/lib/src/word/model/word_zotero.dart": {
+        "sha256": "24402804a615d20cf030e607e7c7669bd3fb927395f676cf13f80e60967e1e64",
+        "bytes": 82039
+      },
+      "packages/quds_office_engine/test/word_zotero_boundary_formatting_test.dart": {
+        "sha256": "7a09f3f1d78b9721ec8a09fb0dd42504cf86965353f2553786f7243710a7b08a",
+        "bytes": 28077
+      }
+    }
+  },
+  "limits": [
+    "Focused Dart engine regressions and source review; broader engine/editor acceptance is run and archived separately by root.",
+    "No installed Zotero, Microsoft Word, or LibreOffice application session was exercised.",
+    "Historical failure logs are retained as baseline evidence and are not counted as accepted cases."
+  ],
+  "gitMutationsMade": false,
+  "ciQueried": false,
+  "ownedTrackedEdits": [
+    "packages/quds_office_engine/lib/src/word/model/word_zotero.dart",
+    "packages/quds_office_engine/test/word_zotero_boundary_formatting_test.dart"
+  ]
+}

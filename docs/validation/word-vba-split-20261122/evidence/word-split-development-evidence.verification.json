@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "acceptedUniqueCases": 373,
+  "countEquation": "373 = 364 compiler + 8 native integration + 1 CLI",
+  "suiteCounts": {
+    "test/office_vba_split_test.dart": 364,
+    "test/office_vba_word_split_cli_test.dart": 1,
+    "test/office_vba_word_split_integration_test.dart": 8
+  },
+  "errors": 0,
+  "failures": 0,
+  "skips": 0,
+  "missingFinishes": [],
+  "duplicateCaseIdentities": [],
+  "hiddenLifecycleCasesExcluded": 5,
+  "hiddenLifecycleFailuresOrSkips": 0,
+  "reporterSuccess": true,
+  "ledgerExactlyMatchesRawEvents": true,
+  "stderrBytes": 0,
+  "pinnedRuntime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7"
+  },
+  "sourceContinuity": {
+    "capturedInputs": 473,
+    "allCapturedInputsUnchangedDuringAndAfterRun": true,
+    "currentInputChanges": [],
+    "omittedTransitiveFixture": "packages/quds_office_engine/tool/macros/web_vba_word_table_cells_smoke.dart",
+    "omittedFixtureSha256": "f43d8c566d4887e0fd0ad88591de82988ed2936d94b26a2911436c49b0ecd093",
+    "omittedFixtureBytes": 10058,
+    "omittedFixtureMatchesAcceptanceHead": true,
+    "acceptanceHead": "373b7fe9bcb9c282fb6fe0bfbc7832a87faf2baa",
+    "limitation": "The 473-input gate did not record this imported fixture at run time. Its current bytes match the acceptance HEAD. This post-run check is not a retroactive execution snapshot. The root final broad gate separately captures all selected engine tools, fixtures, tests and implementation."
+  },
+  "retainedArtifactManifestEntriesVerified": 10,
+  "developmentRuntime": {
+    "dart": "3.14.1"
+  },
+  "historicalAttempts": {
+    "initialExpandedCompiler": {
+      "passed": 316,
+      "failed": 12
+    },
+    "intermediateJsonCompiler": {
+      "cases": 328,
+      "failed": 9,
+      "errors": 9
+    },
+    "supersededCompilerSuccess": {
+      "cases": 328,
+      "failed": 0
+    },
+    "laterCompilerDevelopmentSuccess": {
+      "cases": 364,
+      "failed": 0
+    },
+    "earlierNativeAttempt": "Loading type mismatch and incorrect Null diagnostic expectation; retained as failed.",
+    "laterNativeDevelopmentSuccess": {
+      "cases": 9,
+      "failed": 0
+    },
+    "additionalUniqueAcceptanceCredit": 0
+  },
+  "compilerPortability": {
+    "cases": 174,
+    "adapters": 3,
+    "byteIdentical": true,
+    "sha256": "7836c5c824b9585d17b7818f1dc7271e061340ec0202acda8f30121d9ced9e8b",
+    "retainedInputsMatchCurrentCheckout": true,
+    "additionalUniqueCases": 0
+  },
+  "nativePortability": {
+    "formats": [
+      "docx",
+      "docm"
+    ],
+    "parsedReceiptsEqual": true,
+    "byteIdentical": false,
+    "integralDoubleSerializationDifferences": 58,
+    "vmSha256": "fc85b00ae0b31827b003f992be1a4841c4f9750f0f73abb06de3e0be967d0a02",
+    "jsSha256": "f52a7951d0755289e1d972dd6301091971cda848cd40f28e41185a37dbf5db94",
+    "onlyRawDifferencesAreIntegralDecimalSuffixes": true,
+    "retainedSourceInputsMatchCurrentCheckout": true,
+    "additionalUniqueCases": 0
+  },
+  "archive": {
+    "file": "word-split-development-evidence.tar.xz",
+    "bytes": 83968,
+    "sha256": "a2b5f930ae6cc9286ff599a19c7064add1fd96faf73c76a04ad6384b45782010"
+  },
+  "memberCount": 58,
+  "externalManifest": {
+    "file": "word-split-development-evidence.manifest.json",
+    "bytes": 9586,
+    "sha256": "1fdb2fc267b8f2a9d347af170fe6968f313d43932c5994ed51fca949a6f17369"
+  },
+  "fullVerificationMember": "verification/independent-verification.json",
+  "reopenedAndVerifiedEveryMember": true,
+  "deterministicRebuildByteIdentical": true,
+  "sourceEvidenceFilesUnchangedDuringPackaging": true,
+  "excluded": [
+    "Microsoft MS-VBAL PDF and extracted text source copies",
+    "Generated JavaScript, sourcemaps and dependency products",
+    "SDK and package binaries"
+  ],
+  "scope": "Three new Split suites, development history and portable source/native receipts. Root broad final gate is archived separately. No claim that the whole workspace or installed Microsoft Office was tested.",
+  "repositoryOrGitEditsMade": false,
+  "newTestsRunForPackaging": false,
+  "ciQueried": false
+}

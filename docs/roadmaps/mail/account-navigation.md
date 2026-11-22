@@ -77,6 +77,13 @@ provider session generations and leases continue to reject stale message,
 folder, compose and mutation callbacks. Navigation introduces no background
 execution policy or new database schema.
 
+When native Mail cannot finish releasing the previous owner, it displays
+**Retry closing account**. Connection, provider setup and local-account/draft
+entry points stay blocked until release succeeds. Selected-target store admission
+also temporarily disables Disconnect so an unfinished store opener cannot be
+abandoned in favor of another account. EWS and cloud recovery retains the owner
+behind their explicit Close path.
+
 ## Acceptance boundary and ordered continuation
 
 This is cross-provider navigation with explicit reconnection. It does not

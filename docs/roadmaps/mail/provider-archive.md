@@ -68,8 +68,9 @@ contains the source checkpoints, actual test commands and final publication
 receipt. Test source alone is not a passing execution claim. GitHub Actions queue
 time is not an acceptance dependency.
 
-This completes an explicit organization workflow. Connected multi-account
-navigation remains the next M04W workspace boundary. Subsequent increments include
+This completes an explicit organization workflow. The
+[connected account-navigation continuation](connected-account-navigation.md)
+now provides the next Studio foreground boundary. Subsequent increments include
 remembered Archive destinations, tags/categories, previewable ordered rules,
 indexed retained-body/provider search, persistent cross-folder conversations,
 provider-side Drafts/Sent reconciliation and controlled background execution.
