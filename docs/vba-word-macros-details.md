@@ -84,7 +84,8 @@ unsupported. `TabStops.Add` and the supported `ListFormat` methods also accept
 named optional arguments as described below. The measurement conversion
 functions accept their one required argument by position or by its official
 name. `TextColumns.SetCount` accepts its required `NumColumns` argument by
-position or name; other Word members retain their positional-only contract.
+position or name. `Range.InsertBefore` accepts its required `Text` by position
+or name; other Word members retain their existing argument contracts.
 
 The common source language includes the existing local procedures and scalar
 functions, bounded control flow, typed arrays, string intrinsics, and explicit
@@ -140,8 +141,8 @@ invalid cell rolls back a multi-step run. Validation, tool allowlists, mutation
 grants, step budgets, recording, replay, CLI and MCP use the ordinary transaction
 boundary. Existing native `docx.tableCellText` behavior remains unchanged.
 
-Cell ranges expose the supported `Text` setter and the `Font` and
-`ParagraphFormat` selectors described below. Text reads, `Count`, table/row/cell
+Cell ranges expose the supported `Text` setter, `InsertBefore` method, and
+the `Font` and `ParagraphFormat` selectors described below. Text reads, `Count`, table/row/cell
 enumeration, `Rows`/`Columns`, table creation or merging and arbitrary range
 offsets remain unsupported. Paragraph or whole-story `Range.Text` assignment is
 still refused because those ranges have
@@ -164,6 +165,97 @@ and [Range.Text](https://learn.microsoft.com/en-us/office/vba/api/word.range.tex
 contracts. These restrictions describe the bounded Quds dialect, and do not
 claim that Microsoft Word rejects the same broader inputs. Installed Word
 differential qualification remains separate work.
+
+## Prefixing existing cell text
+
+`Cell.Range.InsertBefore` prefixes the current text of a supported cell.
+`Cell.Range.Paragraphs(1).Range.InsertBefore` and the corresponding `.Item(1)`
+projection address the same beginning. Unlike the `Range.Text` setter, prefix
+insertion retains every existing character and run boundary.
+
+```vb
+Sub Prefix(ByVal target As Range, ByVal label As String)
+    target.InsertBefore Text:=Replace(label, vbCrLf, vbTab)
+End Sub
+
+Sub Main()
+    Dim original As Range
+    Set original = ActiveDocument.Tables(1).Cell(1, 1).Range
+    Prefix label:="Status" & vbCrLf, target:=original
+    Call original.Paragraphs(1).Range.InsertBefore(Text:="Review" & vbTab)
+    original.Font.Bold = True
+End Sub
+```
+
+The required argument is one actual String. Positional, parenthesized,
+`Call`, and case-insensitive named `Text:=` forms are supported. Unknown names,
+duplicate/extra/omitted arguments and non-String values are refused; scalar
+Variants must contain a String when evaluated. The checker validates argument
+shapes and statically known types in unused procedures and inactive branches.
+Named `Text:=` is also supported by existing body and explicit independent
+header/footer paragraph ranges. Other members keep their own argument rules.
+
+The receiver is captured before its argument is evaluated, each exactly once.
+Typed `Range` aliases, nested `With`, and required named `ByVal` helpers retain
+the captured table/row/column even after another variable or helper parameter
+is rebound. Generic helpers dispatch by their actual selector. A retained cell
+range includes the inserted text for subsequent supported formatting. Repeated
+prefixes apply to current text in plan order; a later prefix precedes an earlier
+one. Compiling still never reads the document.
+
+Each cell prefix emits a separate native operation:
+
+```json
+{
+  "tool": "docx.tableCellRangeInsertBefore",
+  "arguments": {"table": 0, "row": 0, "column": 0, "text": "Status\t"}
+}
+```
+
+Only `table`, `row`, `column` and `text` are admitted. Coordinates are zero-based
+native indexes into the direct main-story table collection. The native operation
+reuses the text setter's complete unique-ownership, source-fidelity, protection,
+rectangular-grid and one-ordinary-paragraph checks. It never accepts arbitrary
+`start`/`end` offsets, a `story` override or a paragraph selector. The existing
+body `docx.replaceText` and cell-formatting operation envelopes are unchanged.
+
+The prefix is one new run on a detached copy. Its formatting comes from the
+first visible text run, the first retained empty run when all runs are empty,
+or the imported paragraph mark when no runs exist (default run properties when
+none of those exist). This is Quds' explicit boundary-formatting contract;
+no installed Word differential formatting result is claimed. Existing runs,
+including zero-width metadata and distinct kerning/script settings, are copied
+without global coalescing. Table/row/cell/paragraph ownership, paragraph/cell
+marks and unrelated native metadata remain intact.
+
+An empty prefix still validates the target and emits a normal plan step, but
+leaves admitted native runs unchanged. A successful nonempty plan retains the
+ordinary session serialization/revision behavior even when its prefix is empty.
+Missing cells, merged/nested/irregular grids, selected fields, links, notes,
+bookmarks, comments, revisions, controls and unsupported native packets remain
+refused. Unsupported neighboring main-story tables can also prevent admission.
+A later failure rolls back the complete run and leaves existing CLI output
+untouched. Tool allowlists, mutation grants, recording/replay, work/String/plan
+limits, cancellation and pending custom line-spacing guards all apply.
+
+Prefix text must be XML-safe, well-formed UTF-16 single-paragraph text. Tabs,
+Unicode and XML-escaped characters are allowed. Line/paragraph/cell controls,
+isolated surrogates and XML-invalid characters remain refused. Use the shared
+[portable text constants](vba-macros-details.md#portable-text-constants) for
+source computations and normalize unsupported controls before publication.
+`InsertAfter`, structural text insertion, arbitrary offsets, multiple paragraphs
+per cell and live document reads remain separate work.
+
+The [complete 2×2 BAS](../packages/quds_office_engine/example/macros/word_table_prefix.bas)
+combines source cleanup, named helper rebinding, direct/projected prefixes and
+subsequent font formatting. The [independent corpus](../packages/quds_office_engine/test/fixtures/vba_conformance/word_cell_prefix_v1.json)
+and [local qualification](validation/word-vba-cell-prefix-20261122/README.md)
+cover native preservation, policy, CLI/MCP and VM/JavaScript behavior.
+Microsoft's [Range.InsertBefore](https://learn.microsoft.com/en-us/office/vba/api/word.range.insertbefore),
+[Cell.Range](https://learn.microsoft.com/en-us/office/vba/api/word.cell.range)
+and [Paragraph.Range](https://learn.microsoft.com/en-us/office/vba/api/word.paragraph.range)
+specify the source API. Full Word permits broader structures and controls than
+this bounded dialect.
 
 ## Formatting existing table cells
 
@@ -258,8 +350,9 @@ serialization behavior. Cell run formatting uses detached copies before
 publication, preventing shared public-model run properties or imported-value
 maps from modifying an unrelated cell or body run.
 
-Direct cell-range `Style`, `Shading`, `ListFormat`, insertion
-methods and arbitrary subranges remain unavailable. Explicit `Paragraphs(1)`
+Direct cell-range `Style`, `Shading`, `ListFormat`, `InsertAfter`
+and arbitrary subranges remain unavailable. `InsertBefore` is supported by
+the dedicated prefix operation described below. Explicit `Paragraphs(1)`
 selection is described below. Property reads, `Duplicate` and
 whole-object Font/ParagraphFormat assignment remain unsupported. These are
 deliberate bounds on the Quds adapter, including its treatment of structural
@@ -339,14 +432,15 @@ after success. Recording/replay, policy, allowlists, budgets and cancellation
 use the existing runtime.
 
 Direct `Cell.Range.Style` and `.Shading` remain unsupported: select its
-paragraph explicitly. `InsertBefore`, text replacement, `ListFormat`, arbitrary
+paragraph explicitly. `Range.InsertBefore` uses the dedicated prefix operation
+below. Whole-paragraph text replacement, `InsertAfter`, `ListFormat`, arbitrary
 subranges, `Duplicate`, property reads, `Paragraphs.Count` and collection
 enumeration remain unsupported through a selected cell paragraph. Known cell
-paragraph insertion/list operations are rejected in inactive source too when
+paragraph list operations are rejected in inactive source too when
 direct syntax or acyclic local bindings establish their origin. Generic
 parameters and mixed or cyclic alias origins are checked against the actual
-selector during source evaluation. No new native operation can escape the
-cell's formatting-only operation allowlist.
+selector during source evaluation. Prefix insertion has its own guarded native
+operation and does not widen the cell's formatting-operation allowlist.
 
 The [complete table template](../packages/quds_office_engine/example/macros/word_table_paragraphs.bas)
 uses a 2×2 table, named and built-in styles, RGB/palette/automatic shading and an
@@ -1665,7 +1759,8 @@ the plan.
 ### Text and paragraph-mark boundaries
 
 `InsertBefore` accepts one actual String, including an empty String. Bare and
-parenthesized forms and `Call range.InsertBefore("text")` are supported. Text
+parenthesized forms, `Call range.InsertBefore("text")`, and named `Text:=`
+forms are supported. Text
 must contain well-formed UTF-16 and XML 1.0 characters. Tabs are allowed;
 carriage returns and line feeds are refused because structural paragraph and
 line-break insertion is outside this slice. Other XML-invalid controls,

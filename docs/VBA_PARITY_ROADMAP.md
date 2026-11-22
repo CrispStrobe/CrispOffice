@@ -38,7 +38,9 @@ Their current text also accepts direct highlighting, proofing exclusion and
 mapped normal-slot language setters through the same cell-aware native guards.
 Explicit `Cell.Range.Paragraphs(1)` / `.Paragraphs.Item(1)` selectors now apply
 existing paragraph styles and solid background shading, including on empty
-ordinary paragraphs, with retained cell identity and formatting-only boundaries.
+ordinary paragraphs, with retained cell identity. Cell prefix insertion now
+retains original text/runs through a separate guarded operation, and standard
+portable String constants support source cleanup before publication.
 The `vba-powerpoint` adapter adds explicit presentation,
 slide, shape and text-range bindings, one-based/index-or-name selection,
 whole-shape text, font/alignment writes and geometry. Native collection guards
@@ -52,14 +54,35 @@ and [the native macro contract](MACROS.md).
 
 ## Ordered milestones and acceptance
 
-The current continuation adds explicit `Cell.Range.Paragraphs(1)` and
+The current continuation adds `Cell.Range.InsertBefore` and selected cell
+paragraph `Range.InsertBefore`, plus named `Text:=` on supported Word ranges.
+A dedicated native operation preserves all original runs and sparse metadata,
+including distinct kerning and zero-width properties, without changing table
+admission or generic replacement offsets. Captured aliases/helpers retain their
+cell; formatting after insertion includes the prefix. Empty prefixes still
+validate, and late failures retain atomic publication and recording boundaries.
+
+Shared source constants `vbTab`, `vbCr`, `vbLf`, `vbCrLf`, `vbBack`, `vbFormFeed`,
+`vbVerticalTab` and `vbNullChar` add their fixed String values to all adapters,
+including Const expressions and optional defaults. Native Word control-character
+refusals remain unchanged. Host-dependent or external-call sentinel constants
+remain separate work.
+
+This advances Stages 2 and 4. The [complete BAS](../packages/quds_office_engine/example/macros/word_table_prefix.bas),
+[independent corpus](../packages/quds_office_engine/test/fixtures/vba_conformance/word_cell_prefix_v1.json),
+[exact contract](vba-word-macros-details.md#prefixing-existing-cell-text), and
+[local record](validation/word-vba-cell-prefix-20261122/README.md) define the
+qualified scope. Live reads, arbitrary ranges, structural insertion, broader
+cell structures and installed Office differential acceptance remain separate.
+
+The preceding continuation adds explicit `Cell.Range.Paragraphs(1)` and
 `.Paragraphs.Item(1)` selection with paragraph Style and background Shading.
 It reuses existing guarded native operations rather than broadening the table
 grid or content envelope. Paragraph/Range/Shading aliases and named `ByVal`
 helpers retain the original cell; empty paragraphs accept style/background
 writes without new text. Sparse XML ownership, direct formatting, unrelated
-cells and opaque VBA parts survive save/reopen. Known cell-paragraph insertion
-and list operations are rejected in inactive source as well as executed paths.
+cells and opaque VBA parts survive save/reopen. Cell-paragraph `InsertAfter`
+and list operations remain rejected in inactive source as well as executed paths.
 
 This advances the bounded Stage 4 adapter. The independently authored corpus,
 complete BAS example, native serialization and CLI/MCP transaction checks are

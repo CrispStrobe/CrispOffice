@@ -212,7 +212,7 @@ End If
 
   group('cell paragraph boundaries', () {
     for (final member in [
-      'InsertBefore "x"',
+      'InsertAfter "x"',
       'ListFormat.ApplyBulletDefault',
       'ListFormat.ListLevelNumber = 1',
     ]) {
@@ -280,7 +280,7 @@ target.InsertBefore "Prefix: "
       ]);
     });
 
-    test('cyclic alias origins retain the active formatting-only guard', () {
+    test('cyclic alias origins retain the active list-operation guard', () {
       const bindings =
           '''
 Dim original As Range, retained As Range
@@ -290,12 +290,12 @@ Set original = retained
 ''';
       expect(
         _compile(
-          '${bindings}If False Then\noriginal.InsertBefore "x"\nEnd If',
+          '${bindings}If False Then\noriginal.ListFormat.ApplyBulletDefault\nEnd If',
         ).steps,
         isEmpty,
       );
       expect(
-        () => _compile('${bindings}original.InsertBefore "x"'),
+        () => _compile('${bindings}original.ListFormat.ApplyBulletDefault'),
         throwsA(_error('vba_unsupported')),
       );
     });
@@ -327,7 +327,7 @@ Set original = retained
     }
 
     for (final member in [
-      'InsertBefore "x"',
+      'InsertAfter "x"',
       'ListFormat.ApplyBulletDefault',
       'ListFormat.ListLevelNumber = 1',
       'Text = "replacement"',

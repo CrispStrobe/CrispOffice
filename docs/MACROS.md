@@ -585,6 +585,17 @@ indexes and refuses cells whose structure or metadata cannot be preserved.
 The [exact table-cell contract](vba-word-macros-details.md#filling-existing-table-cells)
 defines its supported grid, content and native source envelope.
 
+`Cell.Range.InsertBefore` and its selected paragraph Range emit
+`docx.tableCellRangeInsertBefore` with exactly the same zero-based table/row/column
+and String text fields. This dedicated operation prefixes current text using a
+detached new run and preserves original run boundaries, formatting and empty-run
+metadata. It applies the same cell admission and transaction guards without
+widening generic replacement offsets or story selectors. Empty prefixes validate
+the target before leaving its runs unchanged. Named `Text:=` is supported on cell,
+body and independent header/footer paragraph prefix calls. See the
+[prefix contract](vba-word-macros-details.md#prefixing-existing-cell-text) and
+[local qualification](validation/word-vba-cell-prefix-20261122/README.md).
+
 `Cell.Range.Font` and `.ParagraphFormat` additionally reuse the native formatting
 operations below. Their cell selector is explicit and cannot be combined with
 body/header/note/comment selectors or text offsets:
@@ -614,7 +625,7 @@ existing Font/ParagraphFormat members and paragraph-format methods. Direct
 `Cell.Range.HighlightColorIndex`, `.NoProofing`, `.LanguageID` and
 `.LanguageIDOther` also emit the guarded `docx.runFormat` cell selector, with
 the same current-text-only contract and sparse property ownership. Direct
-cell-range `Style`, `Shading`, `ListFormat`, insertion methods
+cell-range `Style`, `Shading`, `ListFormat`, `InsertAfter`
 and reads remain unavailable. `Cell.Range.Text` keeps
 its existing operation and arguments. See the
 [full formatting contract](vba-word-macros-details.md#formatting-existing-table-cells),
@@ -630,7 +641,7 @@ ordinary paragraph for Style/Shading and supported formatting. Their
 Paragraph/Range/Shading aliases and named `ByVal` helpers retain cell identity;
 empty paragraphs accept styles and backgrounds without introducing text.
 Paragraph styles/backgrounds are separate from cell fill and table styles.
-Known projected insertion/list operations are refused even in inactive source,
+Known projected list operations and InsertAfter are refused even in inactive source,
 and generic selectors retain evaluation-time checks. See the
 [cell paragraph contract](vba-word-macros-details.md#formatting-a-cell-paragraph),
 [example](../packages/quds_office_engine/example/macros/word_table_paragraphs.bas)
@@ -664,8 +675,9 @@ bounds, sparse native ownership and the custom-paper side effect. The
 [geometry qualification](validation/word-vba-paragraph-pagination-20261121/README.md)
 and [section-controls qualification](validation/word-vba-sections-20261121/README.md)
 separate executed engine checks from unexecuted Office hosts.
-`InsertBefore`
-uses the empty range at paragraph offset zero, preserving the paragraph mark.
+`InsertBefore` uses the beginning of supported paragraph/cell text, preserving
+structural marks. Cell prefixes use their dedicated guarded operation; body and
+independent header/footer paragraphs retain native offset-zero replacement.
 Word and Excel retain separate typed object members and native output formats;
 neither adapter receives a live document during compilation. Inactive branches
 and unused procedures are still checked for unsupported object access.
