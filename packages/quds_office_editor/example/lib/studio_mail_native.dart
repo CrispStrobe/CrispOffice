@@ -14,6 +14,10 @@ import 'studio_credential_settings.dart';
 import 'studio_credential_storage.dart';
 import 'studio_credential_vault_unlock.dart';
 import 'studio_mail_archive_action.dart';
+import 'studio_mail_archive_destination.dart';
+import 'studio_mail_archive_settings_dialog.dart';
+import 'studio_mail_archive_settings_store.dart';
+import 'studio_mail_archive_settings_strings.dart';
 import 'studio_mail_account_navigation.dart';
 import 'studio_mail_account_navigation_strings.dart';
 import 'studio_mail_bulk_status.dart';
@@ -913,6 +917,13 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         return false;
       }
       if (candidate case StudioMailOutboxStore(
+        :final account,
+      ) when account != identity.account) {
+        throw const StudioMailDraftStoreException(
+          MailProblemCode.permissionDenied,
+        );
+      }
+      if (candidate case StudioMailArchiveSettingsStore(
         :final account,
       ) when account != identity.account) {
         throw const StudioMailDraftStoreException(
@@ -2772,6 +2783,85 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     );
   }
 
+  Future<List<MailMailbox>> _archiveFolders(
+    mail.MailClient client,
+    MailAccountId providerAccount,
+  ) async => [
+    for (final box in await client.listMailboxes())
+      if (!box.isNotSelectable)
+        MailMailbox(
+          id: MailMailboxId(box.path, account: providerAccount),
+          displayName: box.name,
+        ),
+  ];
+
+  VoidCallback? _archiveDestinationAction() {
+    final client = _client;
+    final owner = _draftStore;
+    final generation = _sessionGeneration;
+    if (client == null ||
+        owner is! StudioMailArchiveSettingsStore ||
+        _busy ||
+        _dialogOpen ||
+        _connecting ||
+        _navigationReleaseRequired) {
+      return null;
+    }
+    return () {
+      if (_currentSession(client, generation) &&
+          identical(owner, _draftStore)) {
+        unawaited(_openArchiveDestination());
+      }
+    };
+  }
+
+  Future<void> _openArchiveDestination() => runStudioMailOperation(() async {
+    final client = _client;
+    final loader = _messageLoader;
+    final account = _account;
+    final owner = _draftStore;
+    if (client == null ||
+        account == null ||
+        loader is! StudioMailMailboxRecords ||
+        owner is! StudioMailArchiveSettingsStore ||
+        !_membershipCapabilities.supports(MailCapability.move) ||
+        _busy ||
+        _dialogOpen ||
+        _navigationReleaseRequired) {
+      return;
+    }
+    final generation = _sessionGeneration;
+    final providerAccount = (loader as StudioMailMailboxRecords).account;
+    bool current() =>
+        _currentSession(client, generation) &&
+        identical(loader, _messageLoader) &&
+        identical(owner, _draftStore);
+    setState(() => _dialogOpen = true);
+    try {
+      final saved = await showStudioMailArchiveSettings(
+        context,
+        strings: widget.strings,
+        accountLabel: account.email,
+        providerAccount: providerAccount,
+        store: owner as StudioMailArchiveSettingsStore,
+        loadFolders: () => _archiveFolders(client, providerAccount),
+        isCurrent: current,
+      );
+      if (saved && current()) {
+        setState(() {
+          _notice = widget.strings.mailArchiveSettingsUpdated;
+          _error = null;
+        });
+      }
+    } on Object {
+      if (current()) {
+        setState(() => _error = widget.strings.mailArchiveSettingsLoadFailed);
+      }
+    } finally {
+      if (current()) setState(() => _dialogOpen = false);
+    }
+  });
+
   Future<void> _organizeMessages(
     MailBulkFlagAction action,
     List<String> selectedIds, {
@@ -2803,6 +2893,20 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     final ids = List<String>.unmodifiable(selectedIds);
     final archive = action == MailBulkFlagAction.archive;
     final generation = _sessionGeneration;
+    if (archive) {
+      if (!await _restoreDraftStore(client, account, generation)) return;
+      if (!_currentSession(client, generation) ||
+          !identical(loader, _messageLoader) ||
+          !identical(mailbox, _messageMailbox) ||
+          mailboxGeneration != _mailboxGeneration ||
+          _needsRefresh) {
+        return;
+      }
+    }
+    final archiveOwner = _draftStore;
+    final archiveStore = archiveOwner is StudioMailArchiveSettingsStore
+        ? archiveOwner as StudioMailArchiveSettingsStore
+        : null;
     final path = mailbox.path;
     final validity = mailbox.uidValidity;
     final source = MailMailbox(
@@ -2852,6 +2956,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         _currentSession(client, generation) &&
         identical(loader, _messageLoader) &&
         identical(account, _account) &&
+        (!archive || identical(archiveOwner, _draftStore)) &&
         mailboxGeneration == _mailboxGeneration;
     bool current() {
       if (!hostCurrent() ||
@@ -2888,6 +2993,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     });
     MailMailboxId? destination;
     MailMailbox? resolvedArchive;
+    MailArchiveDestinationSettings? archiveSettings;
     MailAccountSession? archiveResolutionSession;
     var accepted = false;
     try {
@@ -2903,7 +3009,29 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         setState(() => _error = widget.strings.mailMutationUnavailable);
         return;
       }
-      if (archive && loader is MailArchiveDestinationResolver) {
+      if (archive && archiveStore != null) {
+        archiveSettings = await readStudioMailArchiveSettings(
+          archiveStore,
+          isCurrent: current,
+        );
+        resolvedArchive = await resolveStudioMailSavedArchiveDestination(
+          settings: archiveSettings,
+          providerAccount: records.account,
+          loadFolders: () => _archiveFolders(client, records.account),
+          isCurrent: current,
+        );
+        if (!current()) return;
+        if (resolvedArchive != null &&
+            (resolvedArchive.id == source.id ||
+                resolvedArchive.id.value.toUpperCase() == 'INBOX' &&
+                    path.toUpperCase() == 'INBOX')) {
+          setState(() => _notice = widget.strings.mailArchiveSameFolder);
+          return;
+        }
+      }
+      if (archive &&
+          resolvedArchive == null &&
+          loader is MailArchiveDestinationResolver) {
         archiveResolutionSession = MailAccountSession(records.account);
         final resolution = await (loader as MailArchiveDestinationResolver)
             .resolveArchiveDestination(archiveResolutionSession.begin());
@@ -2928,6 +3056,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
             }
         }
       }
+      if (!mounted || !current()) return;
       setState(() {
         _busy = false;
         _dialogOpen = true;
@@ -2941,6 +3070,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           source: source,
           destinations: destinations,
           resolvedDestination: resolvedArchive,
+          rememberedDestination: archiveSettings?.destination != null,
         );
         accepted = destination != null;
       } else if (action == MailBulkFlagAction.move) {
@@ -2963,9 +3093,30 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           provider: MailProviderKind.imap,
         );
       }
-    } on Object {
+      if (accepted && archiveSettings != null && archiveStore != null) {
+        await verifyStudioMailArchiveSettings(
+          archiveStore,
+          archiveSettings,
+          isCurrent: current,
+        );
+      }
+    } on StudioMailArchiveDestinationException catch (problem) {
+      accepted = false;
       if (hostCurrent()) {
-        setState(() => _error = widget.strings.mailMutationCheckFailed);
+        setState(
+          () => _error = widget.strings.mailArchiveDestinationFailure(
+            problem.failure,
+          ),
+        );
+      }
+    } on Object {
+      accepted = false;
+      if (hostCurrent()) {
+        setState(
+          () => _error = archive
+              ? widget.strings.mailArchiveSettingsLoadFailed
+              : widget.strings.mailMutationCheckFailed,
+        );
       }
     } finally {
       archiveResolutionSession?.dispose();
@@ -4444,6 +4595,15 @@ class _StudioMailDialogState extends State<StudioMailDialog>
                 ? null
                 : _openOutbox,
           ),
+          if (_draftStore is StudioMailArchiveSettingsStore &&
+              _messageLoader is StudioMailMailboxRecords &&
+              _membershipCapabilities.supports(MailCapability.move))
+            command(
+              key: const ValueKey('studio-mail-archive-settings'),
+              icon: Icons.archive_outlined,
+              tooltip: widget.strings.mailArchiveSettingsTitle,
+              onPressed: _archiveDestinationAction(),
+            ),
           if (_draftStore is StudioMailFlagJournalOwner)
             command(
               key: const ValueKey('studio-mail-open-activity'),

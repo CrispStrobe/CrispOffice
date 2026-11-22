@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 
 import 'studio_mail_mutation_strings.dart';
+import 'studio_mail_archive_settings_strings.dart';
 import 'studio_strings.dart';
 
 /// Reviews a server-resolved destination, or requires an explicit folder choice
@@ -15,6 +16,7 @@ Future<MailMailboxId?> showStudioMailArchiveSelection(
   required MailMailbox source,
   required List<MailMailbox> destinations,
   MailMailbox? resolvedDestination,
+  bool rememberedDestination = false,
 }) async {
   if (count < 1 || count > MailBulkFlagPlan.maxMessages) return null;
   if (resolvedDestination != null &&
@@ -63,7 +65,11 @@ Future<MailMailboxId?> showStudioMailArchiveSelection(
                 Text(strings.mailArchiveFolderExplanation),
                 const SizedBox(height: 16),
                 if (resolvedDestination != null) ...[
-                  Text(strings.mailArchiveResolvedDestination),
+                  Text(
+                    rememberedDestination
+                        ? strings.mailArchiveSettingsSavedDestination
+                        : strings.mailArchiveResolvedDestination,
+                  ),
                   Text(resolvedDestination.displayName),
                   Text(
                     resolvedDestination.id.value,

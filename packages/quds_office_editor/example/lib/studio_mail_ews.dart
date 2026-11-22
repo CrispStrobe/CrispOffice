@@ -11,6 +11,10 @@ import 'package:url_launcher/url_launcher.dart';
 import 'studio_mail_account_navigation.dart';
 import 'studio_mail_account_navigation_strings.dart';
 import 'studio_mail_archive_action.dart';
+import 'studio_mail_archive_destination.dart';
+import 'studio_mail_archive_settings_dialog.dart';
+import 'studio_mail_archive_settings_store.dart';
+import 'studio_mail_archive_settings_strings.dart';
 import 'studio_mail_bulk_status.dart';
 import 'studio_mail_body_download.dart';
 import 'studio_mail_flag_journal.dart';
@@ -1027,6 +1031,13 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           MailProblemCode.permissionDenied,
         );
       }
+      if (candidate case StudioMailArchiveSettingsStore(
+        :final account,
+      ) when account != identity.account) {
+        throw const StudioMailDraftStoreException(
+          MailProblemCode.permissionDenied,
+        );
+      }
       if (candidate case StudioMailComposeToolsStore(
         :final account,
       ) when account != identity.account) {
@@ -1558,6 +1569,69 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     );
   }
 
+  Future<List<MailMailbox>> _archiveFolders(
+    MailProvider provider,
+    MailOperationLease lease,
+  ) async {
+    final result = await provider.listMailboxes(lease);
+    return switch (result) {
+      MailSuccess<List<MailMailbox>>(:final value) => value,
+      MailFailure<List<MailMailbox>>() =>
+        throw const StudioMailArchiveDestinationException(
+          StudioMailArchiveDestinationFailure.unavailable,
+        ),
+    };
+  }
+
+  Future<void> _openArchiveDestination() async {
+    final provider = _provider;
+    final session = _session;
+    final owner = _draftStore;
+    if (provider == null ||
+        session == null ||
+        owner is! StudioMailArchiveSettingsStore ||
+        widget.cloudService == MailCloudService.gmail ||
+        !_capabilities.supports(MailCapability.move) ||
+        _blocked) {
+      return;
+    }
+    final lease = session.begin();
+    bool current() =>
+        _current(provider, lease) &&
+        identical(session, _session) &&
+        identical(owner, _draftStore) &&
+        !_routeRetired &&
+        !_navigating;
+    setState(() => _dialogOpen = true);
+    try {
+      final saved = await showStudioMailArchiveSettings(
+        context,
+        strings: widget.strings,
+        accountLabel: _sender,
+        providerAccount: provider.account,
+        store: owner as StudioMailArchiveSettingsStore,
+        loadFolders: () => _archiveFolders(provider, lease),
+        isCurrent: current,
+      );
+      if (saved && current()) {
+        setState(() {
+          _notice = widget.strings.mailArchiveSettingsUpdated;
+          _error = null;
+        });
+      }
+    } on Object {
+      if (current()) {
+        setState(() => _error = widget.strings.mailArchiveSettingsLoadFailed);
+      }
+    } finally {
+      if (mounted &&
+          identical(provider, _provider) &&
+          identical(session, _session)) {
+        setState(() => _dialogOpen = false);
+      }
+    }
+  }
+
   Future<void> _applyBulkAction(
     MailBulkFlagAction action,
     List<String> ids, {
@@ -1628,11 +1702,34 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
 
     MailMailboxId? destination;
     MailMailbox? resolvedArchive;
+    final archiveStore =
+        !gmailArchive && owner is StudioMailArchiveSettingsStore
+        ? owner as StudioMailArchiveSettingsStore
+        : null;
+    MailArchiveDestinationSettings? archiveSettings;
     var confirmed = false;
     setState(() => _dialogOpen = true);
     try {
+      if (archive && archiveStore != null) {
+        archiveSettings = await readStudioMailArchiveSettings(
+          archiveStore,
+          isCurrent: currentScope,
+        );
+        resolvedArchive = await resolveStudioMailSavedArchiveDestination(
+          settings: archiveSettings,
+          providerAccount: provider.account,
+          loadFolders: () => _archiveFolders(provider, lease),
+          isCurrent: currentScope,
+        );
+        if (!currentScope()) return;
+        if (resolvedArchive?.id == mailbox.id) {
+          setState(() => _notice = widget.strings.mailArchiveSameFolder);
+          return;
+        }
+      }
       if (archive &&
           !gmailArchive &&
+          resolvedArchive == null &&
           provider is MailArchiveDestinationResolver) {
         final resolution = await (provider as MailArchiveDestinationResolver)
             .resolveArchiveDestination(lease);
@@ -1673,6 +1770,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           source: mailbox,
           destinations: List<MailMailbox>.unmodifiable(_mailboxes),
           resolvedDestination: resolvedArchive,
+          rememberedDestination: archiveSettings?.destination != null,
         );
         confirmed = destination != null;
       } else if (action == MailBulkFlagAction.move) {
@@ -1695,9 +1793,30 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           provider: frozenSelection.first.remote.provider,
         );
       }
-    } on Object {
+      if (confirmed && archiveSettings != null && archiveStore != null) {
+        await verifyStudioMailArchiveSettings(
+          archiveStore,
+          archiveSettings,
+          isCurrent: currentScope,
+        );
+      }
+    } on StudioMailArchiveDestinationException catch (problem) {
+      confirmed = false;
       if (currentScope()) {
-        setState(() => _error = widget.strings.mailMutationCheckFailed);
+        setState(
+          () => _error = widget.strings.mailArchiveDestinationFailure(
+            problem.failure,
+          ),
+        );
+      }
+    } on Object {
+      confirmed = false;
+      if (currentScope()) {
+        setState(
+          () => _error = archive && !gmailArchive
+              ? widget.strings.mailArchiveSettingsLoadFailed
+              : widget.strings.mailMutationCheckFailed,
+        );
       }
     } finally {
       if (mounted &&
@@ -2998,6 +3117,17 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                     ? null
                     : _forCurrentConnection(_openOutbox),
               ),
+              if (widget.cloudService != MailCloudService.gmail &&
+                  _draftStore is StudioMailArchiveSettingsStore &&
+                  _capabilities.supports(MailCapability.move))
+                IconButton(
+                  key: const ValueKey('studio-mail-archive-settings'),
+                  icon: const Icon(Icons.archive_outlined),
+                  tooltip: widget.strings.mailArchiveSettingsTitle,
+                  onPressed: _blocked
+                      ? null
+                      : _forCurrentConnection(_openArchiveDestination),
+                ),
               if (_draftStore is StudioMailFlagJournalOwner)
                 IconButton(
                   key: const ValueKey('studio-mail-open-activity'),
