@@ -138,7 +138,11 @@ final class OdtReaderTextStyle extends WmlRunProps {
       );
       final currentValues = WordPropertyIo.runValues(current);
       final candidateValues = WordPropertyIo.runValues(candidate);
-      if (current.complexScript != candidate.complexScript ||
+      if (current.styleId != candidate.styleId ||
+          current.proofingLanguage != candidate.proofingLanguage ||
+          current.complexScriptLanguage != candidate.complexScriptLanguage ||
+          current.highlight != candidate.highlight ||
+          current.complexScript != candidate.complexScript ||
           current.sourcePropertiesXml != candidate.sourcePropertiesXml ||
           currentValues.length != candidateValues.length ||
           currentValues.entries.any(
