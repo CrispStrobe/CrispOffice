@@ -332,7 +332,7 @@ extension MailCachedHeaderSearch on SqliteMailRepository {
         scanLimit,
       ];
       final candidates =
-          'SELECT m.id,m.remote,m.envelope,m.flags FROM messages m '
+          'SELECT m.id,m.remote,m.envelope,m.flags,m.conversation FROM messages m '
           'WHERE $where ORDER BY m.id LIMIT ?';
       // The metadata preflight transfers numbers only. Oversized or malformed
       // stored text is rejected before decoding or allocating candidate DTOs.

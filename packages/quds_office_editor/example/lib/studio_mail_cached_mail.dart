@@ -711,6 +711,7 @@ class _StudioMailCachedMailDialogState
             header.remote.account.profile.value,
             header.remote.account.value,
           ].map(Uri.encodeComponent).join('/'),
+          conversationId: header.conversationId,
           messageId: header.envelope.messageId,
           inReplyTo: header.envelope.inReplyTo,
           references: header.envelope.references,
@@ -748,8 +749,9 @@ class _StudioMailCachedMailDialogState
   );
 
   Widget _message() {
-    if (_reader case final reader?)
+    if (_reader case final reader?) {
       return MailMessageView(controller: reader, richHtml: true);
+    }
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(16),

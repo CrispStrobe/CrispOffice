@@ -48,14 +48,15 @@ rules/tags. There is no partial application across a batch.
 ## Storage
 
 Schema **v19** adds `mail_rules(account,id,position,name,enabled,query,
-add_tags,remove_tags)` with an account/position index. Tag arrays are bounded
+add_tags,remove_tags)` with an account/position index; schema **v20** adds the
+conversation index and preserves these rules. Tag arrays are bounded
 JSON string arrays. v17 databases gain both `message_tags` and `mail_rules`; v18
 databases gain `mail_rules`. All earlier payloads are preserved. Future schemas are rejected.
 
 ## Verification
 
 - Core rule model/order/conflict tests: **6/6**.
-- Store persistence, isolation, atomic batch and v17/v18→v19 migration tests:
+- Store persistence, isolation, atomic batch and v17/v18→v20 migration tests:
   **6/6**.
 - Rules dialog add/preview/confirm/invalid tests: **4/4**.
 - Live mailbox.org test: fetched a real header, persisted an ordered rule,

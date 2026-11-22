@@ -141,6 +141,8 @@ void main() {
     await store.close();
     database.execute('DROP TABLE message_tags');
     database.execute('DROP TABLE mail_rules');
+    database.execute('DROP INDEX IF EXISTS messages_conversation');
+    database.execute('ALTER TABLE messages DROP COLUMN conversation');
     database.userVersion = 17;
 
     store = _value(
@@ -158,7 +160,7 @@ void main() {
       _value(await store.loadMessageTags(_account, MailMessageId('message-1'))),
       isEmpty,
     );
-    expect(database.select('PRAGMA user_version').single.values.single, 19);
+    expect(database.select('PRAGMA user_version').single.values.single, 20);
     expect(
       database
           .select(
@@ -174,6 +176,8 @@ void main() {
     await store.close();
     database.execute('DROP INDEX IF EXISTS mail_rules_order');
     database.execute('DROP TABLE mail_rules');
+    database.execute('DROP INDEX IF EXISTS messages_conversation');
+    database.execute('ALTER TABLE messages DROP COLUMN conversation');
     database.userVersion = 18;
 
     store = _value(
@@ -187,7 +191,7 @@ void main() {
       ),
     );
     expect(_value(await store.listMailRules(_account)), isEmpty);
-    expect(database.select('PRAGMA user_version').single.values.single, 19);
+    expect(database.select('PRAGMA user_version').single.values.single, 20);
     expect(
       database
           .select(

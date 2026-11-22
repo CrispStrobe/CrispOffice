@@ -7,7 +7,7 @@ The [archive and search guide](archive-search.md) tracks the independent durable
 archive, Studio workflows and remaining MailStore parity work.
 **Decision date:** 2026-11-18 (Europe/Berlin); on-premises EWS prioritized 2026-11-19.
 **Canonical repository:** CrispStrobe/quds_office_suite, branch main.
-**Entry point for a fresh coding agent:** read this file, then [implementation-plan.md](implementation-plan.md). The [desktop parity roadmap](desktop-parity.md) tracks the longer Outlook/Thunderbird/eM Client gap; [local rules](local-rules.md) and [local tags](local-tags.md) document the current organization slice. The [CrispCloud contract](crispcloud-integration.md) and [licensing/App Store requirements](licensing-and-app-store.md) are part of the same specification. No prior chat is required.
+**Entry point for a fresh coding agent:** read this file, then [implementation-plan.md](implementation-plan.md). The [desktop parity roadmap](desktop-parity.md) tracks the longer Outlook/Thunderbird/eM Client gap; [local rules](local-rules.md), [local tags](local-tags.md) and [persistent conversations](persistent-conversations.md) document the current organization slice. The [CrispCloud contract](crispcloud-integration.md) and [licensing/App Store requirements](licensing-and-app-store.md) are part of the same specification. No prior chat is required.
 
 ## Desktop mail parity: ordered increments
 
@@ -17,8 +17,8 @@ header query engine, with EN/DE/AR help and explicit Bcc/body exclusion.
 Its source and focused regressions are saved remotely; runtime qualification is
 pending a workspace process-startup failure, as recorded in the
 [work record](../../validation/mail-discovery-shortcuts-20261122/README.md).
-It introduces no storage migration. Local tags and ordered local tag rules are
-implemented; provider keyword mapping remains open.
+It introduces no storage migration. Local tags, ordered local tag rules and persistent cross-folder conversations
+are implemented; provider keyword mapping and provider body search remain open.
 
 The connected-account and Archive work is reconciled with complete compose
 and Outbox storage ownership. Manual sends, acknowledged retries and foreground
@@ -142,7 +142,7 @@ M00–M14 scope. The immediate delivery sequence appears after the table.
 | 1 | Recoverable composition | Multiple account-scoped local drafts, independent reply/forward drafts, attachment/reply recovery and interrupted-send warnings; offline draft entry for verified IMAP (including discovery), EWS, Gmail and Microsoft 365 accounts | Provider-side Drafts synchronization with explicit conflicts and repository-backed offline sessions |
 | 2 | Everyday mailbox workspace (M04W/M06) | Verified four-provider remembered-account chooser with exact routing, draft-safe explicit sign-in and guarded foreground handoff; repository-observed loaded/cached sessions, durable single/bulk flags, Move/Delete and Archive with remembered custom destinations, membership recovery, resumable header sync and bounded offline downloads | Retained multi-account sessions, complete shared synchronized workspace and unified live Inbox, durable retention/background scheduling and broader provider membership reconciliation |
 | 3 | Sending and outbox (M07) | Native durable Outbox, atomic draft transfer/edit-copy, frozen MIME/envelopes, review/export, restart recovery, explicit send/retry/cancel, saved UTC schedules and a ten-second Undo window with explicit foreground resume across SMTP/EWS/Gmail/Microsoft 365 | Account-owned background execution, provider-specific Sent reconciliation and installed/live-provider qualification |
-| 4 | Efficient discovery and organization | Independent archive FTS, saved archive searches, Boolean header queries, bounded saved-header discovery, persistent named searches with exact account/folder scopes, missing-folder recovery and optional foreground refresh, expandable loaded conversations and observed counts, stable local sorting and journaled visible-selection read/flag/Move/Delete and provider Archive commands with exact saved destinations | Repository-event-driven shared saved views, indexed body/server search, persistent cross-folder conversations, tags/categories and ordered rule execution with preview/recovery |
+| 4 | Efficient discovery and organization | Independent archive FTS, saved archive searches, Boolean header queries, bounded saved-header discovery, persistent named searches with exact account/folder scopes, missing-folder recovery and optional foreground refresh, expandable loaded conversations and observed counts, stable local sorting and journaled visible-selection read/flag/Move/Delete and provider Archive commands with exact saved destinations | Repository-event-driven shared saved views, indexed body/server search, provider-native thread discovery, provider keyword mapping and scheduled/background rule execution |
 | 5 | Rich authoring and Office workflows (M07/M08) | Word-based plain text, To/Cc/Bcc, reply all, inert text quotes, attachments, locally qualified account signatures and reusable Quick Text | Identity routing/full-message templates, HTML alternatives, inline images, attach current document/PDF and edit a copy of a received attachment |
 | 6 | Integrated productivity and release (M09–M13) | Provider adapters and shared foundations available | Calendar/People, invitation workflows, provider-specific shared mailboxes, encryption/signatures where supported, installed-platform and live-provider qualification |
 
@@ -154,11 +154,11 @@ not an acceptance dependency; record the actual local commands and scope.
 Safe formatted HTML rendering is now available behind the Studio host's rich
 reader flag; scripts, external CSS resources and network image loading remain
 disabled. The compose body autofocuses, retains a visible caret across Enter,
-and normalizes CRLF for display while preserving original bytes. Local tags/categories with exact `tag:` search and assignment are now
-implemented. The next delivery sequence is ordered rules,
-broader indexed/provider search beyond the delivered local retained-plain-text
-`body:` mode, persistent conversations and provider Drafts/Sent reconciliation,
-then fuller background multi-account work.
+and normalizes CRLF for display while preserving original bytes. Local tags/categories, ordered local tag rules and persistent cross-folder
+conversations are now implemented. The next delivery sequence is broader
+indexed/provider search beyond the delivered local retained-plain-text `body:`
+mode, provider Drafts/Sent reconciliation, then fuller background multi-account
+work.
 The [account-navigation guide](connected-account-navigation.md) defines these
 boundaries and maps them to official Outlook, Thunderbird and eM Client workflows.
 
@@ -193,7 +193,7 @@ adds explicit single-message/current-page body and attachment retention with
 restart skipping, bounded progress and guarded close. Unified cached-header
 discovery is now a separate local workflow. The next boundaries include saved
 continuously refreshed shared views, the complete shared synchronized workspace
-and persistent cross-folder conversations.
+and provider-native thread discovery.
 
 The [cached mailbox guide](cached-mailboxes.md) describes durable ordered views
 of visited folders, explicit body/attachment retention and credential-free

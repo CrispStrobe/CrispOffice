@@ -38,7 +38,8 @@ subject, sender or body. A tag search reads no message body.
 
 Schema **v18** added `message_tags(account,message,tag_key,name)` with an exact
 foreign key to the retained message and an account/tag search index. Schema
-**v19** adds ordered local rules and preserves these tags. Earlier schemas
+**v19** adds ordered local rules and schema **v20** adds persistent
+conversations; both preserve these tags. Earlier schemas
 upgrade additively and preserve every existing table and payload.
 
 ## Verification
@@ -46,7 +47,7 @@ upgrade additively and preserve every existing table and payload.
 - Core tag parser/search: **5/5**.
 - Store tag behavior: **4/4**, including account isolation, exact matching,
   atomic rejection and cached-search integration.
-- Schema/migration suites pass; the future-schema rejection moves to v20/v21.
+- Schema/migration suites pass; the future-schema rejection moves to v21/v22.
 - Studio tag dialog: **2/2**.
 - Live mailbox.org test: fetched a real header, retained its cached identity,
   added local tags, reloaded them and matched `tag:live` without a provider

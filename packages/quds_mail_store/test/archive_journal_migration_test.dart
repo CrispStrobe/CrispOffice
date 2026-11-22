@@ -215,7 +215,15 @@ List<Map<String, Object?>> _schema(sqlite.Database db) => [
   for (final row in db.select(
     'SELECT type,name,tbl_name,sql FROM sqlite_master ORDER BY type,name',
   ))
-    Map<String, Object?>.from(row),
+    if (row['name'] != 'messages_conversation')
+      {
+        ...Map<String, Object?>.from(row),
+        if (row['name'] == 'messages')
+          'sql': (row['sql'] as String?)?.replaceFirst(
+            RegExp(r', conversation TEXT'),
+            '',
+          ),
+      },
 ];
 
 void main() {
@@ -315,7 +323,7 @@ void main() {
         }
         final after = sqlite.sqlite3.open(file.path);
         try {
-          expect(after.userVersion, 19);
+          expect(after.userVersion, 20);
           expect(
             _schema(after).where(
               (row) =>
@@ -403,7 +411,7 @@ void main() {
           }
           final migrated = sqlite.sqlite3.open(file.path);
           try {
-            expect(migrated.userVersion, 19);
+            expect(migrated.userVersion, 20);
             expect(
               _snapshot(migrated)
                 ..remove('account_archive_settings')

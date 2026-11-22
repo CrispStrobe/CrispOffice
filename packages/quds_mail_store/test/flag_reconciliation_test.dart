@@ -1044,7 +1044,11 @@ void main() {
                 'SELECT * FROM $table ORDER BY rowid',
               ))
                 row.entries
-                    .where((entry) => entry.key != 'destination')
+                    .where(
+                      (entry) =>
+                          entry.key != 'destination' &&
+                          entry.key != 'conversation',
+                    )
                     .map((entry) => entry.value)
                     .toList(),
             ],
@@ -1079,7 +1083,7 @@ void main() {
         expect(saved.summary.unresolvedCount, 1);
         expect(saved.resolutions, isEmpty);
         final check = sqlite.sqlite3.open(file.path);
-        expect(check.userVersion, 19);
+        expect(check.userVersion, 20);
         expect(snapshot(check), original);
         expect(check.select('PRAGMA foreign_key_check'), isEmpty);
         check.close();

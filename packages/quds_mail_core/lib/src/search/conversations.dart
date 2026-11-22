@@ -5,6 +5,8 @@
 /// so hosts can apply a local sort/search *before* grouping.
 library;
 
+import '../model/message.dart';
+
 /// A single loaded header's threading projection.
 ///
 /// [id] identifies the row, not an RFC Message-ID. [accountId] prevents
@@ -16,6 +18,7 @@ final class MailConversationEntry {
     required this.accountId,
     this.messageId,
     this.inReplyTo,
+    this.conversationId,
     List<String> references = const [],
   }) : references = List<String>.unmodifiable(
          references.length <= maxReferences ? references : const <String>[],
@@ -32,6 +35,59 @@ final class MailConversationEntry {
   final String? messageId;
   final String? inReplyTo;
   final List<String> references;
+
+  /// Persistent account-scoped conversation key, when the host has one.
+  ///
+  /// Rows with the same explicit key join even when their loaded reference
+  /// headers are incomplete. A key is never treated as a Message-ID or row ID.
+  final String? conversationId;
+}
+
+/// Deterministic persisted conversation key for conservative threading.
+///
+/// The first valid reference is treated as the thread root. When no complete
+/// reference list is available, a valid In-Reply-To, then the message's own
+/// Message-ID, then an account-local fallback identifies the conversation.
+/// Malformed partial reference lists are ignored as a whole; no subject or
+/// participant guessing is performed.
+abstract final class MailConversationKey {
+  static String fromEnvelope(
+    MailEnvelope envelope, {
+    required String fallbackId,
+  }) => fromParts(
+    messageId: envelope.messageId,
+    inReplyTo: envelope.inReplyTo,
+    references: envelope.references,
+    fallbackId: fallbackId,
+  );
+
+  static String fromParts({
+    String? messageId,
+    String? inReplyTo,
+    List<String> references = const [],
+    required String fallbackId,
+  }) {
+    if (fallbackId.isEmpty || fallbackId.length > 1024) {
+      throw ArgumentError('Conversation fallback needs a bounded row ID.');
+    }
+    if (references.isNotEmpty &&
+        references.length <= MailConversationEntry.maxReferences) {
+      final canonical = <String>[];
+      var complete = true;
+      for (final reference in references) {
+        final id = _canonicalMessageId(reference);
+        if (id == null) {
+          complete = false;
+          break;
+        }
+        canonical.add(id);
+      }
+      if (complete) return canonical.first;
+    }
+    return _canonicalMessageId(inReplyTo) ??
+        _canonicalMessageId(messageId) ??
+        'local:$fallbackId';
+  }
 }
 
 /// A sequence of loaded rows connected by valid, explicit message IDs.
@@ -98,9 +154,7 @@ List<MailConversationGroup> groupMailConversations(
 
   // A referenced ancestor need not be present in the loaded window.
   final owners = <(String, String), int>{};
-  void link(int index, String? candidate) {
-    final id = _canonicalMessageId(candidate);
-    if (id == null) return;
+  void linkKey(int index, String id) {
     final key = (entries[index].accountId, id);
     final previous = owners[key];
     if (previous == null) {
@@ -110,8 +164,18 @@ List<MailConversationGroup> groupMailConversations(
     }
   }
 
+  void link(int index, String? candidate) {
+    final id = _canonicalMessageId(candidate);
+    if (id == null) return;
+    linkKey(index, id);
+  }
+
   for (var index = 0; index < entries.length; index++) {
     final entry = entries[index];
+    final conversation = entry.conversationId;
+    if (conversation != null && conversation.isNotEmpty) {
+      linkKey(index, 'conversation:$conversation');
+    }
     link(index, entry.messageId);
     final refs = entry.references;
     if (refs.isNotEmpty &&

@@ -1292,6 +1292,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       id: observed.id,
       remote: observed.remote,
       envelope: observed.envelope,
+      conversationId: observed.conversationId,
       // A per-flag confirmation must never invent the remaining unknown bits.
       flags: snapshot == null
           ? null
@@ -6082,6 +6083,14 @@ class _StudioMailDialogState extends State<StudioMailDialog>
             id: _messageKey(message),
             subject: message.decodeSubject() ?? '(no subject)',
             accountId: 'imap-session-$_sessionGeneration',
+            conversationId: MailConversationKey.fromParts(
+              messageId: message.getHeaderValue('Message-ID'),
+              inReplyTo: message.getHeaderValue('In-Reply-To'),
+              references: _studioMailLoadedReferences(
+                message.getHeaderValue('References'),
+              ),
+              fallbackId: _messageKey(message),
+            ),
             messageId: message.getHeaderValue('Message-ID'),
             inReplyTo: message.getHeaderValue('In-Reply-To'),
             references: _studioMailLoadedReferences(

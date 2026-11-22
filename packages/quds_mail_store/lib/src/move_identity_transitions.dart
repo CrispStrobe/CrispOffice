@@ -479,13 +479,15 @@ extension MailMoveIdentityTransitions on SqliteMailRepository {
     // back membership, header/index and revision changes together on quota loss.
     if (targets.isEmpty) {
       await _db.customStatement(
-        'INSERT INTO messages(account,id,remote,envelope,flags) VALUES(?,?,?,?,?)',
+        'INSERT INTO messages(account,id,remote,envelope,flags,conversation) '
+        'VALUES(?,?,?,?,?,?)',
         [
           account.value,
           destinationId,
           destinationRemote,
           source.read<String>('envelope'),
           source.readNullable<int>('flags'),
+          source.readNullable<String>('conversation'),
         ],
       );
       await _index(account, transition.destinationMessageId, envelope, null);

@@ -693,6 +693,7 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
             header.remote.account.profile.value,
             header.remote.account.value,
           ].map(Uri.encodeComponent).join('/'),
+          conversationId: header.conversationId,
           messageId: header.envelope.messageId,
           inReplyTo: header.envelope.inReplyTo,
           references: header.envelope.references,
@@ -712,8 +713,9 @@ class _StudioMailSyncDialogState extends State<StudioMailSyncDialog> {
   );
 
   Widget _message() {
-    if (_reader case final reader?)
+    if (_reader case final reader?) {
       return MailMessageView(controller: reader, richHtml: true);
+    }
     return Center(
       // This is host status/recovery chrome, not the document reader. Keep its
       // action reachable with long translations and enlarged system text.

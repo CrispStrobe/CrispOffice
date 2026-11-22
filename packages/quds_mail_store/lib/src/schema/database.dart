@@ -1,6 +1,7 @@
 import 'package:drift/drift.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 
+import '../codec.dart';
 import '../errors.dart';
 import '../models.dart';
 import 'flag_journal_schema.dart';
@@ -16,7 +17,7 @@ final class MailStoreDatabase extends GeneratedDatabase {
   final MailStoreFaultInjector? faultInjector;
 
   @override
-  int get schemaVersion => 19;
+  int get schemaVersion => 20;
 
   @override
   Iterable<TableInfo<Table, Object?>> get allTables => const [];
@@ -79,11 +80,14 @@ final class MailStoreDatabase extends GeneratedDatabase {
       for (final statement in schemaV19) {
         await customStatement(statement);
       }
+      for (final statement in schemaV20) {
+        await customStatement(statement);
+      }
       // Include the version in the same transaction as schema creation.
-      await customStatement('PRAGMA user_version = 19');
+      await customStatement('PRAGMA user_version = 20');
     }),
     onUpgrade: (_, from, to) async {
-      if (from < 1 || from > 18 || to != 19) {
+      if (from < 1 || from > 19 || to != 20) {
         throw const MailStoreStorageException(MailProblemCode.unsupported);
       }
       await transaction(() async {
@@ -177,8 +181,14 @@ final class MailStoreDatabase extends GeneratedDatabase {
             await customStatement(statement);
           }
         }
+        if (from < 20) {
+          for (final statement in schemaV20) {
+            await customStatement(statement);
+          }
+          await _backfillConversations();
+        }
         await faultInjector?.call(MailStoreCheckpoint.migrationCreated);
-        await customStatement('PRAGMA user_version = 19');
+        await customStatement('PRAGMA user_version = 20');
       });
     },
     beforeOpen: (_) async {
@@ -188,6 +198,36 @@ final class MailStoreDatabase extends GeneratedDatabase {
       await customSelect('SELECT rowid FROM mail_fts LIMIT 1').get();
     },
   );
+
+  Future<void> _backfillConversations() async {
+    var lastRow = 0;
+    while (true) {
+      final rows = await customSelect(
+        'SELECT rowid AS rid,id,envelope FROM messages '
+        'WHERE rowid>? ORDER BY rowid LIMIT 500',
+        variables: [Variable.withInt(lastRow)],
+      ).get();
+      if (rows.isEmpty) return;
+      for (final row in rows) {
+        final rid = row.read<int>('rid');
+        final id = row.read<String>('id');
+        final String key;
+        try {
+          key = MailConversationKey.fromEnvelope(
+            MailStoreCodec.decodeEnvelope(row.read<String>('envelope')),
+            fallbackId: id,
+          );
+        } on Object {
+          throw const MailStoreStorageException(MailProblemCode.storageFailure);
+        }
+        await customStatement(
+          'UPDATE messages SET conversation=? WHERE rowid=?',
+          [key, rid],
+        );
+        lastRow = rid;
+      }
+    }
+  }
 
   Future<void> fault(MailStoreCheckpoint point) async {
     await faultInjector?.call(point);
@@ -535,4 +575,12 @@ const schemaV19 = <String>[
     PRIMARY KEY(account,id), UNIQUE(account,position)
   )''',
   'CREATE INDEX mail_rules_order ON mail_rules(account,position)',
+];
+
+/// A persisted, account-scoped conversation root for cross-folder grouping.
+/// Existing rows are backfilled from their stored envelope; new rows compute the
+/// same conservative key before insertion.
+const schemaV20 = <String>[
+  'ALTER TABLE messages ADD COLUMN conversation TEXT',
+  'CREATE INDEX messages_conversation ON messages(account,conversation)',
 ];

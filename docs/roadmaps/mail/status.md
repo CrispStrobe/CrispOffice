@@ -19,7 +19,7 @@ interrupted work.
 | Offline store | Durable drafts, Outbox, cached headers/bodies, search journal |
 | Scheduled send | Foreground only; UTC deadlines and a short Undo window |
 | Search | Local cached headers and saved queries with exact account/folder scope and missing-folder recovery; explicit `body:` searches retained plain-text bodies locally; no provider/body discovery or attachment extraction |
-| Conversations | Folding of explicitly loaded threaded headers |
+| Conversations | Persisted cross-folder conversation keys (schema v20) with conservative reference-derived roots and loaded-row folding |
 | Compose tools | Signatures, Quick Text, attachments and draft recovery |
 | Archive organization | Durable single/bulk actions; account-owned custom folders for IMAP/EWS/Microsoft 365 with revision checks and missing-folder repair; Gmail Inbox-label removal |
 | Account persistence/navigation | Native account store, schema migrations and a verified four-provider chooser with exact non-secret routes, draft-safe explicit sign-in and guarded foreground handoff; one connected account at a time |
@@ -67,9 +67,9 @@ Those historical results retain their original source boundary. Acceptance for
 the combined source is recorded in the current integration record above, which
 preserves failures, corrections, exact source bindings and count deduplication.
 
-Local tags and previewable ordered rules are now implemented. Body/provider
-search, persistent conversations, provider Drafts/Sent reconciliation and fuller
-multi-account background work are next. Full desktop-client parity remains open.
+Local tags, previewable ordered rules and persistent cross-folder conversations
+are now implemented. Provider-side body search, provider Drafts/Sent
+reconciliation and fuller multi-account background work are next. Full desktop-client parity remains open.
 
 ## Previous increment: verified connected-account navigation
 
@@ -103,8 +103,7 @@ See both the [workflow and ownership contract](account-navigation.md) and
 [connected-navigation qualification](../../validation/mail-connected-navigation-20261122/README.md)
 and [account-workspace qualification](../../validation/mail-account-workspace-20261122/README.md)
 records, for actual source boundaries and executed acceptance. Remembered Archive
-destinations are continued above. Body/provider search, persistent conversations
-and provider Drafts/Sent reconciliation remain open. Retained simultaneous
+destinations are continued above. Provider-side body search and provider Drafts/Sent reconciliation remain open. Retained simultaneous
 sessions, a unified live Inbox, complete M04W, full desktop-client parity and
 live-provider/installed-platform acceptance remain open too.
 
@@ -360,11 +359,11 @@ Host-specific limits:
 
 - Server-side or OS-background scheduled send.
 - Provider Sent reconciliation after submission.
-- Persistent account-wide conversation indexes and cross-folder discovery.
+- Provider-native conversation/thread discovery beyond the local conservative key.
 - Indexed body search and server-side discovery.
 - Continuous refresh of shared saved views.
 - Simultaneous background accounts and a live cross-account unified Inbox.
-- Provider-aware categories/tags and ordered rules with preview and recovery.
+- Provider-aware categories/tags and scheduled/background rule execution.
 - A complete unified Mail workspace across every host.
 - Live-provider, installed-platform and browser acceptance for new features.
 - Full MailStore parity and encrypted local storage.

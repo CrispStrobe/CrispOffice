@@ -84,7 +84,7 @@ void main() {
       expect(_snapshot(file), before);
       final database = sqlite.sqlite3.open(file.path);
       try {
-        expect(database.userVersion, 19);
+        expect(database.userVersion, 20);
         expect(database.select('PRAGMA foreign_key_check'), isEmpty);
         expect(
           database.select('SELECT count(*) AS n FROM mail_fts').single['n'],
@@ -171,7 +171,7 @@ void main() {
 
       final database = sqlite.sqlite3.open(file.path);
       try {
-        expect(database.userVersion, 19);
+        expect(database.userVersion, 20);
         expect(database.select('PRAGMA foreign_key_check'), isEmpty);
         for (final invalid in <Object?>[-1, 32, 0.5, 'invalid']) {
           expect(
@@ -329,7 +329,7 @@ void main() {
       expect(_snapshot(file), before);
       final upgraded = sqlite.sqlite3.open(file.path);
       try {
-        expect(upgraded.userVersion, 19);
+        expect(upgraded.userVersion, 20);
       } finally {
         upgraded.close();
       }
@@ -405,7 +405,7 @@ void main() {
         await repository.close();
         expect(_snapshot(file), before);
         final current = sqlite.sqlite3.open(file.path);
-        expect(current.userVersion, 19);
+        expect(current.userVersion, 20);
         expect(current.select('PRAGMA foreign_key_check'), isEmpty);
         expect(
           current
@@ -481,6 +481,9 @@ void main() {
                     table == 'store_profile'
                         ? 'SELECT singleton,host_id,profile_id,removed,local_account_revision '
                               'FROM store_profile ORDER BY rowid'
+                        : table == 'messages'
+                        ? 'SELECT account,id,remote,envelope,flags '
+                              'FROM messages ORDER BY rowid'
                         : 'SELECT * FROM $table ORDER BY rowid',
                   ))
                     [
@@ -556,7 +559,7 @@ void main() {
         expect(original(), before);
         final current = sqlite.sqlite3.open(file.path);
         try {
-          expect(current.userVersion, 19);
+          expect(current.userVersion, 20);
           expect(current.select('PRAGMA foreign_key_check'), isEmpty);
           expect(
             current.select(
@@ -622,6 +625,8 @@ void main() {
                   for (final row in database.select(
                     table == 'store_profile'
                         ? 'SELECT singleton,host_id,profile_id,removed,local_account_revision,mailbox_view_revision FROM store_profile ORDER BY rowid'
+                        : table == 'messages'
+                        ? 'SELECT account,id,remote,envelope,flags FROM messages ORDER BY rowid'
                         : 'SELECT * FROM $table ORDER BY rowid',
                   ))
                     [
@@ -685,7 +690,7 @@ void main() {
         expect(original(), before);
         final check = sqlite.sqlite3.open(file.path);
         try {
-          expect(check.userVersion, 19);
+          expect(check.userVersion, 20);
           expect(check.select('PRAGMA foreign_key_check'), isEmpty);
         } finally {
           check.close();
@@ -758,6 +763,8 @@ void main() {
         } finally {
           initial.close();
         }
+        // The flag-observation epoch is migration-owned monotonic state.
+        tables['store_profile']?.remove('flag_observation_epoch');
         Map<String, List<List<Object?>>> snapshotV8() {
           final database = sqlite.sqlite3.open(file.path);
           try {
@@ -849,10 +856,13 @@ void main() {
         } finally {
           await repository.close();
         }
+        print(
+          'V8 BEFORE ${before['store_profile']} AFTER ${snapshotV8()['store_profile']}',
+        );
         expect(snapshotV8(), before);
         final current = sqlite.sqlite3.open(file.path);
         try {
-          expect(current.userVersion, 19);
+          expect(current.userVersion, 20);
           expect(current.select('PRAGMA foreign_key_check'), isEmpty);
           expect(
             current
@@ -873,7 +883,7 @@ void main() {
     );
   }
 
-  for (final version in [20, 21]) {
+  for (final version in [21, 22]) {
     test(
       'future schema $version is rejected without changing existing data',
       () async {

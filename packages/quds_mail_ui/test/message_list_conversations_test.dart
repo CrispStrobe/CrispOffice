@@ -201,6 +201,47 @@ void main() {
     expect(find.text('0 selected'), findsOneWidget);
   });
 
+  testWidgets('persistent keys group cross-folder rows without references', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      _app(
+        rows: [
+          const MailMessageListItem(
+            id: 'inbox',
+            subject: 'Plan',
+            sender: 'alice',
+            accountId: 'account-1',
+            conversationId: 'thread-1',
+            messageId: '<inbox-copy@threads.test>',
+          ),
+          const MailMessageListItem(
+            id: 'unrelated',
+            subject: 'Other',
+            sender: 'bob',
+            accountId: 'account-1',
+            messageId: '<other@threads.test>',
+          ),
+          const MailMessageListItem(
+            id: 'sent',
+            subject: 'Re: Plan',
+            sender: 'alice',
+            accountId: 'account-1',
+            conversationId: 'thread-1',
+            messageId: '<sent-copy@threads.test>',
+          ),
+        ],
+      ),
+    );
+    await _toggle(tester);
+    expect(_order(tester, ['inbox', 'unrelated', 'sent']), [
+      'inbox',
+      'sent',
+      'unrelated',
+    ]);
+    expect(find.byTooltip('2 loaded messages in conversation'), findsOneWidget);
+  });
+
   testWidgets('account namespaces prevent false conversation grouping', (
     tester,
   ) async {

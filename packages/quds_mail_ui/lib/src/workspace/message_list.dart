@@ -24,6 +24,7 @@ final class MailMessageListItem {
     this.accountId,
     this.messageId,
     this.inReplyTo,
+    this.conversationId,
     this.references = const [],
   });
 
@@ -45,6 +46,9 @@ final class MailMessageListItem {
   final String? accountId;
   final String? messageId;
   final String? inReplyTo;
+
+  /// Persistent account-scoped conversation key from the local index.
+  final String? conversationId;
   final List<String> references;
 }
 
@@ -370,7 +374,8 @@ class _MailMessageListState extends State<MailMessageList> {
   bool get _canGroupConversations => widget.items.any(
     (item) =>
         (item.accountId?.isNotEmpty ?? false) &&
-        (item.messageId != null ||
+        ((item.conversationId?.isNotEmpty ?? false) ||
+            item.messageId != null ||
             item.inReplyTo != null ||
             item.references.isNotEmpty),
   );
@@ -387,6 +392,7 @@ class _MailMessageListState extends State<MailMessageList> {
             : '\u0000unscoped:${item.id}',
         messageId: item.messageId,
         inReplyTo: item.inReplyTo,
+        conversationId: item.conversationId,
         references: item.references,
       ),
   ]);

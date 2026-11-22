@@ -44,10 +44,16 @@ final class MailHeaderRecord {
     required this.remote,
     required this.envelope,
     this.flags,
+    this.conversationId,
   });
   final MailMessageId id;
   final MailRemoteIdentity remote;
   final MailEnvelope envelope;
+
+  /// Persistent account-scoped conversation key, when the local repository has
+  /// one. Providers leave this null; repo reads may attach it for cross-folder
+  /// grouping without changing the mailbox row identity.
+  final String? conversationId;
 
   /// Null means not observed. Persisting an unobserved snapshot must not clear
   /// previously observed flags for this exact remote identity.

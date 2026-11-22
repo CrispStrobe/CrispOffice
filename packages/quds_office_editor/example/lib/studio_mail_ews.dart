@@ -1348,6 +1348,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       id: observed.id,
       remote: observed.remote,
       envelope: observed.envelope,
+      conversationId: observed.conversationId,
       flags: flags == null
           ? null
           : MailMessageFlags(
@@ -2073,6 +2074,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
             id: header.id,
             remote: header.remote,
             envelope: header.envelope,
+            conversationId: header.conversationId,
             flags: flags == null
                 ? null
                 : MailMessageFlags(
@@ -3796,6 +3798,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                     header.remote.account.profile.value,
                     header.remote.account.value,
                   ].map(Uri.encodeComponent).join('/'),
+                  conversationId: header.conversationId,
                   messageId: header.envelope.messageId,
                   inReplyTo: header.envelope.inReplyTo,
                   references: header.envelope.references,

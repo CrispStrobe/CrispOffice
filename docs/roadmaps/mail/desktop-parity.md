@@ -13,7 +13,7 @@ clients are references, not compatibility claims.
 | Area | State | Remaining gap |
 | --- | --- | --- |
 | Accounts | IMAP/SMTP, EWS, Gmail, Microsoft 365; remembered chooser; one live account at a time | Multiple simultaneous sessions, system-browser OAuth/PKCE, account discovery |
-| Mailbox | Browse, cached views, resumable sync, conversations loaded-only, search | Complete shared workspace, persistent cross-folder conversations, unified inbox |
+| Mailbox | Browse, cached views, resumable sync, persistent cross-folder conversation keys, search | Complete shared workspace, unified inbox, provider thread discovery |
 | Organization | Read/flag, Move/Delete, Archive, remembered destinations, durable journal, local tags/categories with `tag:` search, ordered local tag rules with preview | Tag colors/shared tags, server keyword mapping, scheduled/background rules |
 | Compose | Plain-text Word surface, signatures, Quick Text, attachments, drafts | Rich HTML composition, inline images, full-message templates, sender identities |
 | Send | Durable Outbox, scheduling, Undo, retry/uncertain outcomes | Background execution, provider Sent reconciliation, live SMTP transcripts |
@@ -90,7 +90,7 @@ Use these as comparison targets, not pixel-copy targets:
 
 1. ~~Local tags/categories with `tag:` search and assignment UI.~~ Implemented.
 2. ~~Ordered rules with preview and explicit local-rules-only scope.~~ Implemented.
-3. Persistent cross-folder conversation index.
+3. ~~Persistent cross-folder conversation index.~~ Implemented.
 4. Provider-side body search with explicit coverage and cancellation.
 5. Multiple sender identities and full-message templates.
 
