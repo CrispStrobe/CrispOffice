@@ -8367,6 +8367,9 @@ class WordEditorController extends OfficeController {
       throw StateError('Zotero has not completed the operation.');
     }
     if (!session.hasChanges) return;
+    // Reject stale host state before capturing endpoints from its live
+    // paragraphs, preserving the transaction's StateError contract.
+    session.assertUnchanged();
     final beforeCaret = caret.logicalIndex;
     final beforeParagraph = caret.paragraphIndex;
     final beforeAnchor = caret.selectionAnchor;
