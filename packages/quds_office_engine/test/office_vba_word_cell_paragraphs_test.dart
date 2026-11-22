@@ -211,6 +211,95 @@ End If
   });
 
   group('cell paragraph boundaries', () {
+    for (final member in [
+      'InsertBefore "x"',
+      'ListFormat.ApplyBulletDefault',
+      'ListFormat.ListLevelNumber = 1',
+    ]) {
+      for (final (binding, target) in [
+        ('', '$_paragraph.Range'),
+        ('Dim p As Paragraph\nSet p = $_paragraph\n', 'p.Range'),
+        (
+          'Dim p As Paragraph, retained As Range\nSet p = $_paragraph\nSet retained = p.Range\n',
+          'retained',
+        ),
+      ]) {
+        test('known $target refuses inactive $member', () {
+          expect(
+            () => _compile('${binding}If False Then\n$target.$member\nEnd If'),
+            throwsA(_error('vba_unsupported')),
+          );
+        });
+      }
+      test('nested With refuses inactive $member', () {
+        expect(
+          () => _compile('''
+With $_cellRange
+  With .Paragraphs.Item(1)
+    With .Range
+      If False Then
+        .$member
+      End If
+    End With
+  End With
+End With
+'''),
+          throwsA(_error('vba_unsupported')),
+        );
+      });
+    }
+
+    test('generic parameter can insert in body before rebinding to a cell', () {
+      final plan = _source('''
+Sub Prepare(ByVal target As Range)
+  target.InsertBefore "Prefix: "
+  Set target = $_paragraph.Range
+  target.Style = wdStyleNormal
+End Sub
+Sub Main()
+  Prepare ActiveDocument.Paragraphs(2).Range
+End Sub
+''');
+      expect(plan.steps.map((step) => step.arguments), [
+        {'paragraph': 1, 'start': 0, 'end': 0, 'text': 'Prefix: '},
+        _cell({'builtin': -1}),
+      ]);
+    });
+
+    test('mixed local origins are checked against their actual selector', () {
+      final plan = _compile('''
+Dim target As Range
+Set target = $_paragraph.Range
+target.Style = wdStyleNormal
+Set target = ActiveDocument.Paragraphs(2).Range
+target.InsertBefore "Prefix: "
+''');
+      expect(plan.steps.map((step) => step.arguments), [
+        _cell({'builtin': -1}),
+        {'paragraph': 1, 'start': 0, 'end': 0, 'text': 'Prefix: '},
+      ]);
+    });
+
+    test('cyclic alias origins retain the active formatting-only guard', () {
+      const bindings =
+          '''
+Dim original As Range, retained As Range
+Set original = $_paragraph.Range
+Set retained = original
+Set original = retained
+''';
+      expect(
+        _compile(
+          '${bindings}If False Then\noriginal.InsertBefore "x"\nEnd If',
+        ).steps,
+        isEmpty,
+      );
+      expect(
+        () => _compile('${bindings}original.InsertBefore "x"'),
+        throwsA(_error('vba_unsupported')),
+      );
+    });
+
     for (final index in ['0', '-1', '1.5', 'True', '"1"', 'Empty', 'Null']) {
       for (final item in ['', '.Item']) {
         test('Paragraphs$item rejects invalid index $index', () {

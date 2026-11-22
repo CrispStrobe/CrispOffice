@@ -82,6 +82,10 @@ jobs:
           test/office_vba_word_table_cells_test.dart
           test/office_vba_word_table_cells_conformance_test.dart
           test/office_vba_word_table_cells_integration_test.dart
+          test/office_vba_word_cell_paragraphs_test.dart
+          test/office_vba_word_cell_paragraphs_conformance_test.dart
+          test/office_vba_word_cell_paragraphs_integration_test.dart
+          test/word_table_cell_paragraph_formatting_test.dart
           test/word_empty_formatted_run_test.dart
           test/office_macro_word_position_test.dart
           test/office_vba_word_position_test.dart
@@ -132,6 +136,11 @@ jobs:
           dart compile js -O1 -DWORD_TABLE_BAS_BASE64="$WORD_TABLE_BAS_BASE64" tool/macros/web_vba_word_table_cells_smoke.dart -o build/macros/word-table.js
           node -e 'globalThis.self = globalThis; require("./build/macros/word-table.js")' > build/macros/word-table-js.json
           cmp build/macros/word-table-vm.json build/macros/word-table-js.json
+          WORD_CELL_PARAGRAPHS_BAS_BASE64=$(python3 -c 'import base64; from pathlib import Path; print(base64.b64encode(Path("example/macros/word_table_paragraphs.bas").read_bytes()).decode())')
+          dart -DWORD_CELL_PARAGRAPHS_BAS_BASE64="$WORD_CELL_PARAGRAPHS_BAS_BASE64" tool/macros/web_vba_word_cell_paragraphs_smoke.dart > build/macros/word-cell-paragraphs-vm.json
+          dart compile js -O1 -DWORD_CELL_PARAGRAPHS_BAS_BASE64="$WORD_CELL_PARAGRAPHS_BAS_BASE64" tool/macros/web_vba_word_cell_paragraphs_smoke.dart -o build/macros/word-cell-paragraphs.js
+          node -e 'globalThis.self = globalThis; require("./build/macros/word-cell-paragraphs.js")' > build/macros/word-cell-paragraphs-js.json
+          cmp build/macros/word-cell-paragraphs-vm.json build/macros/word-cell-paragraphs-js.json
           dart tool/macros/web_vba_strcomp_smoke.dart > build/macros/strcomp-vm.json
           dart compile js -O1 tool/macros/web_vba_strcomp_smoke.dart -o build/macros/strcomp.js
           node -e 'globalThis.self = globalThis; require("./build/macros/strcomp.js")' > build/macros/strcomp-js.json
@@ -146,7 +155,7 @@ jobs:
         run: |
           set -e
           mkdir -p build/macros
-          for suite in string_intrinsics_v1 variant_conversions_v1 variant_composition_v1 word_paragraphs_v1 word_font_position_v1 word_numeric_intrinsics_v1 word_table_cells_v1 word_comparison_colors_v1; do
+          for suite in string_intrinsics_v1 variant_conversions_v1 variant_composition_v1 word_paragraphs_v1 word_font_position_v1 word_numeric_intrinsics_v1 word_table_cells_v1 word_comparison_colors_v1 word_cell_paragraphs_v1; do
             VBA_CASES_BASE64=$(python3 -c 'import base64,sys; from pathlib import Path; print(base64.b64encode(Path(sys.argv[1]).read_bytes()).decode())' "test/fixtures/vba_conformance/${suite}.json")
             dart --packages=../../.dart_tool/package_config.json -DVBA_CONFORMANCE_BASE64="$VBA_CASES_BASE64" tool/macros/web_vba_conformance.dart > "build/macros/${suite}-vm.json"
             dart compile js -O1 --packages=../../.dart_tool/package_config.json -DVBA_CONFORMANCE_BASE64="$VBA_CASES_BASE64" tool/macros/web_vba_conformance.dart -o "build/macros/${suite}.js"

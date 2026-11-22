@@ -469,8 +469,9 @@ void main() {
       test('$op refuses $restriction protection before native changes', () {
         final doc = _read(_fixture());
         if (restriction == 'editing') doc.restrictEditing = true;
-        if (restriction == 'formatting')
+        if (restriction == 'formatting') {
           doc.protectionFormattingRestricted = true;
+        }
         if (restriction == 'tracking') doc.trackRevisions = true;
         _refuses(doc, op, _selector(values), lowLevel: true);
       });
