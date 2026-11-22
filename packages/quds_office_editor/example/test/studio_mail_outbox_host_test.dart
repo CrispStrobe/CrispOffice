@@ -861,17 +861,18 @@ void main() {
         MailOutboxEntry? frozen;
         if (fromOutbox) {
           final seed = await awaitOutboxOperation(tester, fixture.openLoaded());
-          frozen = await awaitOutboxOperation(
+          final queued = await awaitOutboxOperation(
             tester,
             seed.enqueueOutbox(
               outboxFixtureDraft(subject: 'Retain the native receipt'),
               _sender,
             ),
           );
+          frozen = queued;
           if (retry) {
             final attempt = await awaitOutboxOperation(
               tester,
-              seed.beginOutboxAttempt(frozen),
+              seed.beginOutboxAttempt(queued),
             );
             frozen = await awaitOutboxOperation(
               tester,
