@@ -54,6 +54,7 @@ void _refuse(
   Map<String, Object?> arguments, {
   Matcher matcher = throwsArgumentError,
   String tool = 'docx.runFormat',
+  bool lowLevel = false,
 }) {
   final target = _target(document);
   final inlines = target.inlines;
@@ -66,10 +67,23 @@ void _refuse(
     runProperties.italic,
     runProperties.color,
   );
-  expect(
-    () => OfficeOperationCatalog.apply(document, tool, arguments),
-    matcher,
+  final body = document.sections.first.blocks.first as WmlParagraph;
+  final bodyInlines = body.inlines;
+  final bodyRun = body.inlines.single as WmlRun;
+  final bodyProperties = bodyRun.properties;
+  final bodyBefore = (
+    body.text,
+    bodyProperties.bold,
+    bodyProperties.italic,
+    bodyProperties.color,
   );
+  expect(() {
+    if (lowLevel) {
+      native.applyStep(document, {'op': tool.split('.').last, ...arguments});
+    } else {
+      OfficeOperationCatalog.apply(document, tool, arguments);
+    }
+  }, matcher);
   expect(target.inlines, same(inlines));
   expect(target.properties, same(paragraphProperties));
   expect(run.properties, same(runProperties));
@@ -79,6 +93,14 @@ void _refuse(
     runProperties.italic,
     runProperties.color,
   ), before);
+  expect(body.inlines, same(bodyInlines));
+  expect(bodyRun.properties, same(bodyProperties));
+  expect((
+    body.text,
+    bodyProperties.bold,
+    bodyProperties.italic,
+    bodyProperties.color,
+  ), bodyBefore);
 }
 
 void main() {
@@ -143,16 +165,7 @@ void main() {
   }
 
   test('low-level native dispatch has the same cell-selector contract', () {
-    final document = _document();
-    final before = WordSerializer().writeBytes(document);
-    expect(
-      () => native.applyStep(document, {
-        'op': 'runFormat',
-        ..._arguments({'story': 'body'}),
-      }),
-      throwsArgumentError,
-    );
-    expect(WordSerializer().writeBytes(document), before);
+    _refuse(_document(), _arguments({'story': 'body'}), lowLevel: true);
   });
 
   test('cell story does not enable arbitrary native text edits', () {
