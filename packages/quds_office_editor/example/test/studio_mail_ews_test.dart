@@ -262,6 +262,17 @@ Future<void> _pump(WidgetTester tester) async {
   await tester.pump();
 }
 
+Future<void> _waitForHostDismissal(WidgetTester tester) async {
+  final route = find.byType(StudioMailEwsDialog);
+  // A gated release can finish after the ordinary pump starts its last frame.
+  // Drain real microtasks and allow the subsequent route animation to finish.
+  for (var frame = 0; frame < 40 && route.evaluate().isNotEmpty; frame++) {
+    await tester.pump();
+    await tester.runAsync(() => Future<void>.delayed(Duration.zero));
+    await tester.pump(const Duration(milliseconds: 25));
+  }
+}
+
 Finder _field(String key) => find.byKey(ValueKey(key));
 Finder _iconButton(String tooltip) => find.byWidgetPredicate(
   (widget) => widget is IconButton && widget.tooltip == tooltip,
@@ -1924,6 +1935,7 @@ void main() {
     expect(drafts.closes, 1);
     expect(drafts.records, isEmpty);
     expect(provider.submissions, isEmpty);
+    await _waitForHostDismissal(tester);
     expect(find.byType(StudioMailEwsDialog), findsNothing);
     expect(tester.takeException(), isNull);
   });
@@ -2949,6 +2961,7 @@ void main() {
       ),
     );
     await _pump(tester);
+    await _waitForHostDismissal(tester);
     expect(find.byType(StudioMailEwsDialog), findsNothing);
     expect(drafts.closes, 1);
     expect(drafts.clears, 1);
@@ -2990,6 +3003,7 @@ void main() {
 
     owner.clearGate.complete();
     await _pump(tester);
+    await _waitForHostDismissal(tester);
     expect(find.byType(StudioMailEwsDialog), findsNothing);
     expect(owner.clearCalls, 1);
     expect(owner.closeCalls, 1);

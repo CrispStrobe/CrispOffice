@@ -262,6 +262,10 @@ final class _EwsProvider extends Fake implements MailEwsProvider {
 Finder _field(String label) => find.byWidgetPredicate(
   (widget) => widget is TextField && widget.decoration?.labelText == label,
 );
+Finder _iconButton(String tooltip) => find.byWidgetPredicate(
+  (widget) => widget is IconButton && widget.tooltip == tooltip,
+  skipOffstage: false,
+);
 Finder _action(String action, MailOutboxEntry entry) =>
     find.byKey(ValueKey('studio-mail-outbox-$action-${entry.id}'));
 Finder get _openOutbox => find.byKey(const ValueKey('studio-mail-open-outbox'));
@@ -917,7 +921,7 @@ void main() {
         final owner = owners.single;
         expect(owner.delegate, same(fixture.adapters.last));
         final disconnect = tester
-            .widget<IconButton>(find.byTooltip(_strings.disconnect))
+            .widget<IconButton>(_iconButton(_strings.disconnect))
             .onPressed!;
         VoidCallback? retainedSend;
         StudioMailOutboxSubmissionRunner? retainedRunner;
@@ -1196,7 +1200,7 @@ void main() {
       final owner = owners.single;
       expect(owner.delegate, same(fixture.adapters.last));
       final disconnect = tester
-          .widget<IconButton>(find.byTooltip(_strings.disconnect))
+          .widget<IconButton>(_iconButton(_strings.disconnect))
           .onPressed!;
       provider.onSubmit = () {
         replyStarted.complete();

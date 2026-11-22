@@ -844,30 +844,61 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('late send failure cannot alter a replacement session', (
+  testWidgets('a replacement session waits for retired send storage', (
     tester,
   ) async {
+    final drafts = MemoryStudioMailDrafts();
     final oldClient = _Client();
     final newClient = _Client()
       ..messages = <mail.MimeMessage>[_message('New session message')];
     var attempts = 0;
-    await _show(tester, (_) => attempts++ == 0 ? oldClient : newClient);
+    await _show(
+      tester,
+      (_) => attempts++ == 0 ? oldClient : newClient,
+      drafts: drafts,
+    );
     await _manual(tester);
     await _connect(tester);
     await _pump(tester);
     oldClient.sendGate = Completer<void>();
+    addTearDown(() {
+      if (!oldClient.sendGate!.isCompleted) oldClient.sendGate!.complete();
+    });
     await _compose(tester);
     await tester.tap(find.widgetWithIcon(FilledButton, Icons.send));
     await tester.pump(const Duration(seconds: 1));
     expect(oldClient.sends, 1);
+    final key = drafts.identities.single.account.value;
+    expect(drafts.records[key]!.submissionUncertain, isTrue);
     await tester.tap(find.byTooltip(_strings.disconnect));
     await _pump(tester);
-    await _connect(tester);
-    await _pump(tester);
+    expect(
+      tester
+          .widget<FilledButton>(
+            find.widgetWithText(FilledButton, _strings.connect),
+          )
+          .onPressed,
+      isNull,
+    );
+    expect(attempts, 1);
+    expect(newClient.connects, 0);
+    expect(drafts.closes, 0);
+    expect(drafts.records[key]!.submissionUncertain, isTrue);
     oldClient.sendGate!.completeError(StateError('old send failed'));
+    await _pump(tester);
+    expect(drafts.closes, 1);
+    expect(drafts.clears, 0);
+    expect(drafts.records[key]!.draft.subject, 'Session draft');
+    expect(drafts.records[key]!.submissionUncertain, isTrue);
+    expect(find.textContaining('old send failed'), findsNothing);
+    await _connect(tester);
     await _pump(tester);
     expect(find.text('New session message'), findsOneWidget);
     expect(find.textContaining('old send failed'), findsNothing);
+    expect(attempts, 2);
+    expect(oldClient.sends, 1);
+    expect(newClient.sends, 0);
+    expect(drafts.records[key]!.submissionUncertain, isTrue);
     _expectClosed(oldClient);
     expect(tester.takeException(), isNull);
   });
