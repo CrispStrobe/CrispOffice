@@ -1,0 +1,42 @@
+{
+  "reviewer": "intake_audit independent review",
+  "base": "921a84a0",
+  "observedHead": "373b7fe9bcb9c282fb6fe0bfbc7832a87faf2baa",
+  "productionSha256": "930807027dcab5e3a16e0c6eda92702aaee64c714e2a9d452e193412ee438da2",
+  "productionGitBlob": "afe4664e189216e48971d2b5ad4954f1c6a99ebf",
+  "blockingFindings": [],
+  "verdict": "No production defect or unsupported completion/compatibility claim identified in the reviewed Split diff and current contract.",
+  "scope": [
+    "Dedicated static/runtime direct-assignment cases; Split name reservation; unaffected ordinary scalar/element/property assignment paths",
+    "Strict local dynamic String-array admission and recursive static checking of inactive source and unused procedures",
+    "Old descriptor reads and once-only, left-to-right argument evaluation; lock precedence; publish-after-validation/storage construction",
+    "Exact nonoverlapping UTF-16 matching, positive-limit suffix preservation, empty input and zero limit",
+    "Per-array and active-slot limits; stored String unit accounting; work charging for matching/allocation/retirement/copying",
+    "Allocated empty bounds, Join/For Each/indexing, Erase and ReDim Preserve interoperability",
+    "Caller versus helper frame ownership, local resource release, shared global work accounting",
+    "Corpus independence, native/CLI/MCP test assertions and portable output claims",
+    "Public contract distinctions between implemented dialect behavior and installed Office compatibility"
+  ],
+  "observations": [
+    "Result count is checked before List allocation; positive caps preserve the full remaining suffix. stringUnits equals source UTF-16 length less only matched delimiters, including capped results.",
+    "Replacement computes available capacity with old slot/String occupancy credited, charges retirement and new copy work before allocating, then updates counters and descriptor together.",
+    "For Each uses descriptor identity and finally/Exit cleanup; Split refuses a locked descriptor before invoking argument helpers. Empty descriptors are allocated with bounds 0..-1 and length 0.",
+    "Helpers cannot alias caller arrays under the existing parameter rules. Active caller counts stay charged during helper execution and are restored on return; global work is never reset.",
+    "The change does not modify native operations or document admission. Word integration and CLI tests verify atomic failures and inert payload preservation; they do not claim signature validity or embedded VBA execution.",
+    "The corpus has 58 independently authored cases, adapted to three fixed output sinks without deriving expected results from the compiler. Provenance separates spec-derived and dialect-contract cases.",
+    "Microsoft primary reference confirms zero-based results, default space, empty-input array, empty-delimiter behavior and -1 for all substrings. MS-VBAL has the documented 1/-1 inconsistency. Named/omitted arguments, general array values, coercion/locale modes and Office-host qualification remain explicitly excluded.",
+    "No broad test suite was rerun for this review. Earlier agent development acceptance was 9/9 new integration/CLI cases, clean scoped analysis, and parsed-equivalent actual-BAS VM/JS receipts; root final gate remains responsible for final integrated-source acceptance."
+  ],
+  "primarySources": [
+    "https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/split-function",
+    "https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/d9c2417c-2d36-45b1-b3d7-1876064e6085",
+    "https://learn.microsoft.com/en-us/openspecs/microsoft_general_purpose_programming_languages/ms-vbal/38315eed-8ea8-4e2a-b91c-25a96910407a"
+  ],
+  "corpusCaseCount": 58,
+  "corpusProvenanceCounts": {
+    "spec-derived": 22,
+    "dialect-contract": 36
+  },
+  "trackedEditsMade": false,
+  "ciQueried": false
+}
