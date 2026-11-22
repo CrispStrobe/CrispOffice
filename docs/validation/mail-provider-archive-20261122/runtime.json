@@ -1,0 +1,63 @@
+{
+  "release": {
+    "hash": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "channel": "stable",
+    "version": "3.47.8",
+    "dart_sdk_version": "3.13.7",
+    "dart_sdk_arch": "x64",
+    "release_date": "2026-10-23T19:02:25.384067Z",
+    "archive": "stable/linux/flutter_linux_3.47.8-stable.tar.xz",
+    "sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2"
+  },
+  "downloaded_sha256": "baf7dcc5a3dbba60fe863bf493a6cf203195621f7786eaa5a1bba02cd0d87dd2",
+  "archive_bytes": 1581444364,
+  "workspace_lockfile_sha256": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+  "workspace_dependency_resolution": {
+    "command": "dart pub get --enforce-lockfile",
+    "exit_code": 0,
+    "log": "runtime/workspace-resolution.log.gz",
+    "hosted_packages": 137
+  },
+  "flutter_tools_dependency_resolution": {
+    "command": "dart pub get --offline --enforce-lockfile",
+    "exit_code": 0,
+    "log": "runtime/flutter-tools-resolution.log.gz",
+    "hosted_packages": 101,
+    "new_exact_locked_archives_verified": 67,
+    "archive_receipt": "runtime/sdk-package-archives.json",
+    "note": "Standard online resolution was slow; exact missing archives were verified against the SDK lockfile before supported offline pub resolution."
+  },
+  "sqlite3_asset": {
+    "path": ".dart_tool/lib/libsqlite3.so",
+    "sha256": "0a65852703763619a7a34633b4959b3b86c4103804a4dfe4e8b27b5de1c0647b"
+  },
+  "smokes": [
+    {
+      "command": "dart test --reporter json test/models_test.dart",
+      "package": "quds_mail_core",
+      "passed": 9,
+      "exit_code": 0,
+      "log": "core-smoke-direct.jsonl"
+    },
+    {
+      "command": "dart test --reporter json test/mailbox_views_test.dart",
+      "package": "quds_mail_store",
+      "passed": 38,
+      "exit_code": 0,
+      "log": "store-smoke.jsonl"
+    },
+    {
+      "command": "flutter test --no-pub --reporter json test/reader_labels_test.dart",
+      "package": "quds_mail_ui",
+      "passed": 3,
+      "exit_code": 0,
+      "log": "ui-smoke-final.jsonl"
+    }
+  ],
+  "environment_notes": [
+    "PATH prioritizes bundled dart-sdk/bin/dart over Flutter bin/dart wrapper to avoid simultaneous wrapper engine.stamp.tmp PID collisions across sandbox namespaces.",
+    "No Flutter, Dart, package implementation, manifest or root lockfile was edited for validation.",
+    "One initial wrapper smoke failed before cases; one initial Flutter smoke was interrupted and one diagnostic retry timed out during SDK package resolution. Final smokes used normal pinned test runners."
+  ],
+  "smokes_note": "Bootstrap smokes are not added to the accepted product-test totals; scratch log names in their records identify original runtime setup observations."
+}

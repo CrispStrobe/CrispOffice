@@ -1,5 +1,11 @@
 ## Unreleased
 
+- Add explicit Gmail Inbox Archive to the durable foreground command model,
+  retaining other labels and rejecting cross-provider, non-Inbox and invented
+  destination plans. Archive outcomes retain the existing uncertain/no-replay
+  contract. Expose an optional read-only Archive destination resolver so folder
+  providers can freeze a reviewed ordinary folder in an existing Move plan.
+
 - Add optional mutation receipts carrying validated authoritative Move identity
   transitions and canonical destination cache keys. Preserve generic provider
   and flag APIs; carry exact move evidence through the shared durable runner,

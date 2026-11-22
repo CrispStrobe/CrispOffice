@@ -128,7 +128,9 @@ void main() {
     expect(_plan(messages: [gmail]).messages.single, same(gmail));
   });
 
-  for (final action in MailBulkFlagAction.values) {
+  for (final action in MailBulkFlagAction.values.where(
+    (action) => action != MailBulkFlagAction.archive,
+  )) {
     test(
       'explicit ${action.name} freezes desired state and ordered IDs',
       () async {

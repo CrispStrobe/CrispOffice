@@ -16,7 +16,7 @@ final class MailStoreDatabase extends GeneratedDatabase {
   final MailStoreFaultInjector? faultInjector;
 
   @override
-  int get schemaVersion => 15;
+  int get schemaVersion => 16;
 
   @override
   Iterable<TableInfo<Table, Object?>> get allTables => const [];
@@ -71,10 +71,10 @@ final class MailStoreDatabase extends GeneratedDatabase {
         await customStatement(statement);
       }
       // Include the version in the same transaction as schema creation.
-      await customStatement('PRAGMA user_version = 15');
+      await customStatement('PRAGMA user_version = 16');
     }),
     onUpgrade: (_, from, to) async {
-      if (from < 1 || from > 14 || to != 15) {
+      if (from < 1 || from > 15 || to != 16) {
         throw const MailStoreStorageException(MailProblemCode.unsupported);
       }
       await transaction(() async {
@@ -145,11 +145,14 @@ final class MailStoreDatabase extends GeneratedDatabase {
             await customStatement(statement);
           }
         }
-        for (final statement in schemaV15) {
-          await customStatement(statement);
+        if (from < 15) {
+          for (final statement in schemaV15) {
+            await customStatement(statement);
+          }
         }
+        await _validateArchiveJournalUpgrade();
         await faultInjector?.call(MailStoreCheckpoint.migrationCreated);
-        await customStatement('PRAGMA user_version = 15');
+        await customStatement('PRAGMA user_version = 16');
       });
     },
     beforeOpen: (_) async {
@@ -162,6 +165,20 @@ final class MailStoreDatabase extends GeneratedDatabase {
 
   Future<void> fault(MailStoreCheckpoint point) async {
     await faultInjector?.call(point);
+  }
+
+  // Schema 16 admits a new persisted command, without changing existing tables
+  // or receipts. Older clients must reject the newer schema instead of treating
+  // Archive as a flag or replaying an unknown operation. An older database
+  // cannot already contain this newly admitted intent.
+  Future<void> _validateArchiveJournalUpgrade() async {
+    final invalid = await customSelect(
+      "SELECT 1 AS invalid FROM flag_batches WHERE action='archive' "
+      "UNION ALL SELECT 1 AS invalid FROM pending_operations WHERE kind='archive' LIMIT 1",
+    ).get();
+    if (invalid.isNotEmpty) {
+      throw const MailStoreStorageException(MailProblemCode.storageFailure);
+    }
   }
 
   // Earlier schemas admit only flag actions. Refuse an unexplained action

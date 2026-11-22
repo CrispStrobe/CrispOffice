@@ -1,0 +1,68 @@
+{
+  "phase": "after-direction-io-fix",
+  "converter_version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+  "input_count": 22035,
+  "changed_inputs": [],
+  "expected_snapshots_identical_to_before_fix": {
+    "body": true,
+    "footnote": true,
+    "cell": true
+  },
+  "input_manifest_sha256": "02ac0222ceadae2316440251a4168e7801666f1b86317df1a13722e023fa8930",
+  "successful_save_operations": 12,
+  "strict_native_verdicts": {
+    "passed": 6,
+    "refused": 6,
+    "different": 6
+  },
+  "strict_xml_verdicts": {
+    "passed": 18
+  },
+  "docx_native_content_format_and_metadata": {
+    "passed": 9,
+    "total": 9,
+    "scope": "Existing fixture snapshot: story text; selected paragraph direction, alignment, physical indent, and heading level; empty paragraph format; foreground/highlight; field data/story ownership/balanced markers; preferences. Excludes only the separately reported editable flag; strict native assertions remain unchanged. This is not complete typography, spacing, or pagination qualification."
+  },
+  "docx_editability": {
+    "original_passed": 3,
+    "converted_guarded": 6
+  },
+  "odt_native_reopen": {
+    "passed": 3,
+    "refused": 6
+  },
+  "xml_color_and_highlight": {
+    "passed": 18,
+    "total": 18
+  },
+  "xml_fields_and_preferences": {
+    "passed": 18,
+    "total": 18
+  },
+  "centered_rtl_tail_geometry": {
+    "centers_points": {
+      "original-docx": 282.58148193359375,
+      "original-odt": 282.5994873046875,
+      "cycle-docx": 282.58148193359375
+    },
+    "original_docx_vs_odt_difference": 0.01800537109375,
+    "cycle_docx_vs_odt_difference": 0.01800537109375,
+    "tolerance_points": 0.5,
+    "passed": true
+  },
+  "retained_limits": [
+    "LibreOffice adds field-boundary run properties; existing opaqueMetadata guard prevents native field editing while retaining valid data.",
+    "LibreOffice-saved ODTs trigger existing outline-style guards."
+  ],
+  "word_or_zotero_plugin_acceptance": false,
+  "source_head_before": "d68df6d625d7f81163c502ed46dcfd97a806e95a",
+  "source_head_after": "d68df6d625d7f81163c502ed46dcfd97a806e95a",
+  "tracked_tree_clean_before_and_after": true,
+  "fixture_and_checkers_unchanged": {
+    "fixture.dart": true,
+    "check_xml.py": true,
+    "check_native.py": true,
+    "convert.py": true,
+    "geometry_probe.py": true
+  }
+}

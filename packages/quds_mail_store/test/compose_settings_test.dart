@@ -757,7 +757,7 @@ void main() {
       legacy.userVersion = version;
       final migrated = await _open(legacy);
       try {
-        expect(legacy.userVersion, 15);
+        expect(legacy.userVersion, 16);
         expect(legacy.select('PRAGMA foreign_key_check'), isEmpty);
         expect(
           _value(await migrated.loadComposeSettings(_account)).revision,

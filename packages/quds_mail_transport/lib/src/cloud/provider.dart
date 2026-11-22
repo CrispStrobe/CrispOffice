@@ -69,7 +69,11 @@ final class _Operation {
 /// No mail submission or mutation is retried. Each operation verifies that the
 /// supplied credential still belongs to its configured mailbox before mail IO.
 final class ApiMailCloudProvider
-    implements MailCloudProvider, MailFlagObserver, MailMembershipObserver {
+    implements
+        MailCloudProvider,
+        MailFlagObserver,
+        MailMembershipObserver,
+        MailArchiveDestinationResolver {
   ApiMailCloudProvider({
     required this.configuration,
     required this.tokenSource,
@@ -524,8 +528,36 @@ final class ApiMailCloudProvider
           MailCapability.send,
           MailCapability.delete,
           if (_gmail) MailCapability.labels else MailCapability.move,
+          if (_gmail) MailCapability.archive,
         ]),
       );
+
+  @override
+  Future<MailResult<MailMailbox>> resolveArchiveDestination(
+    MailOperationLease lease,
+  ) async {
+    if (_gmail) return _failure(MailProblemCode.unsupported);
+    return _run(lease, MailCloudOperation.listMailboxes, (operation) async {
+      final _Json folder;
+      try {
+        folder = await _json(
+          operation,
+          'GET',
+          _graphUri(['mailFolders', 'archive'], {r'$select': 'id,displayName'}),
+          responseLimit: limits.maxHeaderBytes,
+        );
+      } on _ResponseFailure catch (error) {
+        // A missing ordinary archive permits explicit user selection. Other
+        // failures must not masquerade as a harmless discovery fallback.
+        if (error.status == 404) _fail(MailProblemCode.unsupported);
+        rethrow;
+      }
+      return MailMailbox(
+        id: MailMailboxId(_text(folder['id']), account: account),
+        displayName: _text(folder['displayName']),
+      );
+    });
+  }
 
   @override
   Future<MailResult<List<MailMailbox>>> listMailboxes(
@@ -820,6 +852,20 @@ final class ApiMailCloudProvider
   Set<String> _labels(_Json data) => data['labelIds'] == null
       ? <String>{}
       : _array(data['labelIds']).map((value) => _text(value)).toSet();
+
+  Set<String> _archiveLabels(_Json data) {
+    // Removing Inbox is confirmed only by an explicit complete label array.
+    // Missing labels must never be interpreted as an empty successful result.
+    final values = _array(data['labelIds']);
+    if (values.length > limits.maxMailboxes) {
+      _fail(MailProblemCode.quotaExceeded);
+    }
+    final labels = <String>{};
+    for (final value in values) {
+      if (!labels.add(_text(value))) _fail(MailProblemCode.providerFailure);
+    }
+    return labels;
+  }
 
   String _headerValue(Object? value) {
     if (value is! String || value.length > limits.maxHeaderBytes) {
@@ -1505,6 +1551,9 @@ final class ApiMailCloudProvider
     if (_gmail && command is MailMove) {
       return _failure(MailProblemCode.unsupported);
     }
+    if (!_gmail && command is MailArchive) {
+      return _failure(MailProblemCode.unsupported);
+    }
     final remote = command.message as MailOpaqueIdentity;
     return _run(lease, MailCloudOperation.apply, (operation) async {
       if (_gmail) {
@@ -1520,6 +1569,7 @@ final class ApiMailCloudProvider
           final (label, add) = switch (command) {
             MailSetRead(:final read) => ('UNREAD', !read),
             MailSetFlagged(:final flagged) => ('STARRED', flagged),
+            MailArchive() => ('INBOX', false),
             _ => throw const MailCloudException(
               MailProblem(MailProblemCode.unsupported),
             ),
@@ -1535,12 +1585,15 @@ final class ApiMailCloudProvider
           );
         }
         if (_text(data['id']) != remote.value) _fail(MailProblemCode.conflict);
-        final labels = _labels(data);
+        final labels = command is MailArchive
+            ? _archiveLabels(data)
+            : _labels(data);
         final confirmed = switch (command) {
           MailSetRead(:final read) => labels.contains('UNREAD') == !read,
           MailSetFlagged(:final flagged) =>
             labels.contains('STARRED') == flagged,
           MailDelete() => labels.contains('TRASH'),
+          MailArchive() => !labels.contains('INBOX'),
           _ => false,
         };
         if (!confirmed) _fail(MailProblemCode.conflict);
@@ -1591,6 +1644,7 @@ final class ApiMailCloudProvider
             _object(data['flag'])['flagStatus'] ==
                 (flagged ? 'flagged' : 'notFlagged'),
           MailMove() || MailDelete() => data['parentFolderId'] == destination,
+          MailArchive() => false,
         };
         if (!confirmed) _fail(MailProblemCode.conflict);
       }

@@ -1,0 +1,43 @@
+{
+  "gate": "editor",
+  "cwd": "/workspace/scratch/a4918868bf38/quds_office_suite/packages/quds_office_editor",
+  "argv": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "json",
+    "test/word_empty_paragraph_direction_test.dart",
+    "test/word_zotero_note_color_controller_test.dart",
+    "test/word_zotero_note_color_render_test.dart",
+    "test/word_zotero_paragraph_format_controller_test.dart",
+    "test/office_fidelity_golden_test.dart"
+  ],
+  "shell_command": "source /workspace/scratch/a4918868bf38/toolchains/env.sh\nexec flutter test --no-pub --reporter json test/word_empty_paragraph_direction_test.dart test/word_zotero_note_color_controller_test.dart test/word_zotero_note_color_render_test.dart test/word_zotero_paragraph_format_controller_test.dart test/office_fidelity_golden_test.dart",
+  "started_at_utc": "2026-11-22T10:51:14.204879+00:00",
+  "ended_at_utc": "2026-11-22T10:51:42.017799+00:00",
+  "elapsed_seconds": 27.81292,
+  "exit_code": 1,
+  "visible_cases": 24,
+  "visible_passed": 23,
+  "skipped": 0,
+  "error_events": 1,
+  "done_events": [
+    {
+      "success": false,
+      "type": "done",
+      "time": 25853
+    }
+  ],
+  "working_inputs_unchanged": true,
+  "head_before": "8280277cd27bcc276d66b61f8073eddf37ca6e5e",
+  "head_after": "8280277cd27bcc276d66b61f8073eddf37ca6e5e",
+  "tree_before": "7587dec4e385c015f81c62df7992af378642cfed",
+  "tree_after": "7587dec4e385c015f81c62df7992af378642cfed",
+  "logs": {
+    "reporter": "/workspace/scratch/a4918868bf38/runtime-evidence/archive-integration-editor.jsonl",
+    "stderr": "/workspace/scratch/a4918868bf38/runtime-evidence/archive-integration-editor.stderr.log",
+    "source_before": "/workspace/scratch/a4918868bf38/runtime-evidence/archive-integration-editor.source-before.json",
+    "source_after": "/workspace/scratch/a4918868bf38/runtime-evidence/archive-integration-editor.source-after.json"
+  }
+}

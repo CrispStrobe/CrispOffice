@@ -1,0 +1,25 @@
+{
+  "phase": "before-direction-io-fix",
+  "converter_version": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+  "input_count": 22035,
+  "changed_inputs": [],
+  "input_manifest_sha256": "066b28505222354110f1833ec313e8a6071df22c8915f8f0a6532ecce8d9b417",
+  "successful_save_operations": 12,
+  "native": {
+    "passed": 6,
+    "different": 6,
+    "refused": 6
+  },
+  "independent_xml": {
+    "passed": 9,
+    "different": 9,
+    "error": 0
+  },
+  "retained_limits": [
+    "RTL DOCX physical indentation is reversed even in the original native export; symmetric native writer/reader masks it.",
+    "LibreOffice-saved DOCX empty explicit LTR paragraph jc=end reopens as left rather than intended right.",
+    "LibreOffice adds field-boundary run properties; existing opaqueMetadata guard prevents native field editing while retaining valid data.",
+    "LibreOffice-saved ODTs trigger the existing outline-style guards."
+  ],
+  "word_or_zotero_plugin_acceptance": false
+}

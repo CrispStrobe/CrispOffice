@@ -4,6 +4,179 @@ import 'package:quds_mail_core/quds_mail_core.dart';
 import 'studio_mail_mutation_strings.dart';
 import 'studio_strings.dart';
 
+/// Reviews a server-resolved destination, or requires an explicit folder choice
+/// when the provider has no unique ordinary Archive destination. No folder is
+/// inferred from a translated display name and this dialog performs no writes.
+Future<MailMailboxId?> showStudioMailArchiveSelection(
+  BuildContext context, {
+  required StudioStrings strings,
+  required int count,
+  required String accountLabel,
+  required MailMailbox source,
+  required List<MailMailbox> destinations,
+  MailMailbox? resolvedDestination,
+}) async {
+  if (count < 1 || count > MailBulkFlagPlan.maxMessages) return null;
+  if (resolvedDestination != null &&
+      (resolvedDestination.id.account != source.id.account ||
+          resolvedDestination.id == source.id ||
+          resolvedDestination.isLabel)) {
+    return null;
+  }
+  final candidates = List<MailMailbox>.unmodifiable(
+    destinations.where(
+      (folder) =>
+          folder.id.account == source.id.account &&
+          folder.id != source.id &&
+          !folder.isLabel,
+    ),
+  );
+  if (candidates.map((folder) => folder.id).toSet().length !=
+      candidates.length) {
+    return null;
+  }
+  var selected = resolvedDestination?.id;
+  return showDialog<MailMailboxId>(
+    context: context,
+    builder: (context) => StatefulBuilder(
+      builder: (context, setState) => Directionality(
+        textDirection: strings.language == StudioLanguage.ar
+            ? TextDirection.rtl
+            : TextDirection.ltr,
+        child: AlertDialog(
+          key: const ValueKey('studio-mail-archive-selection-dialog'),
+          scrollable: true,
+          title: Text(strings.mailArchiveMessages),
+          content: SizedBox(
+            width: 480,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                _SelectionScope(
+                  strings: strings,
+                  count: count,
+                  accountLabel: accountLabel,
+                  source: source,
+                ),
+                const SizedBox(height: 12),
+                Text(strings.mailArchiveFolderExplanation),
+                const SizedBox(height: 16),
+                if (resolvedDestination != null) ...[
+                  Text(strings.mailArchiveResolvedDestination),
+                  Text(resolvedDestination.displayName),
+                  Text(
+                    resolvedDestination.id.value,
+                    key: const ValueKey('studio-mail-archive-destination'),
+                    textDirection: TextDirection.ltr,
+                  ),
+                ] else ...[
+                  Text(strings.mailArchiveChooseExplanation),
+                  const SizedBox(height: 12),
+                  Text(strings.mailOrganizationDestination),
+                  if (candidates.isEmpty)
+                    Text(strings.mailOrganizationNoDestination),
+                  for (var index = 0; index < candidates.length; index++)
+                    ListTile(
+                      key: ValueKey('studio-mail-archive-destination-$index'),
+                      contentPadding: EdgeInsets.zero,
+                      selected: selected == candidates[index].id,
+                      title: Text(candidates[index].displayName),
+                      subtitle: Text(
+                        candidates[index].id.value,
+                        textDirection: TextDirection.ltr,
+                      ),
+                      leading: Icon(
+                        selected == candidates[index].id
+                            ? Icons.radio_button_checked
+                            : Icons.radio_button_unchecked,
+                      ),
+                      onTap: () =>
+                          setState(() => selected = candidates[index].id),
+                    ),
+                ],
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              key: const ValueKey('studio-mail-organization-cancel'),
+              onPressed: () => Navigator.pop(context),
+              child: Text(strings.cancel),
+            ),
+            FilledButton(
+              key: const ValueKey('studio-mail-archive-apply'),
+              onPressed: selected == null
+                  ? null
+                  : () => Navigator.pop(context, selected),
+              child: Text(strings.mailArchiveApply),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
+/// Gmail Archive removes only INBOX. Other labels and message bytes remain
+/// provider-owned; it is not a folder move or an independent local archive.
+Future<bool> confirmStudioMailGmailArchiveSelection(
+  BuildContext context, {
+  required StudioStrings strings,
+  required int count,
+  required String accountLabel,
+  required MailMailbox source,
+}) async {
+  if (count < 1 ||
+      count > MailBulkFlagPlan.maxMessages ||
+      source.id.value != 'INBOX') {
+    return false;
+  }
+  return await showDialog<bool>(
+        context: context,
+        builder: (context) => Directionality(
+          textDirection: strings.language == StudioLanguage.ar
+              ? TextDirection.rtl
+              : TextDirection.ltr,
+          child: AlertDialog(
+            key: const ValueKey('studio-mail-archive-selection-dialog'),
+            scrollable: true,
+            title: Text(strings.mailArchiveMessages),
+            content: SizedBox(
+              width: 480,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  _SelectionScope(
+                    strings: strings,
+                    count: count,
+                    accountLabel: accountLabel,
+                    source: source,
+                  ),
+                  const SizedBox(height: 12),
+                  Text(strings.mailArchiveGmailExplanation),
+                ],
+              ),
+            ),
+            actions: [
+              TextButton(
+                key: const ValueKey('studio-mail-organization-cancel'),
+                onPressed: () => Navigator.pop(context, false),
+                child: Text(strings.cancel),
+              ),
+              FilledButton(
+                key: const ValueKey('studio-mail-archive-apply'),
+                onPressed: () => Navigator.pop(context, true),
+                child: Text(strings.mailArchiveApply),
+              ),
+            ],
+          ),
+        ),
+      ) ??
+      false;
+}
+
 /// Review a frozen selection and choose an exact same-account destination.
 /// Selecting a folder only changes this dialog; the caller owns all commands.
 Future<MailMailboxId?> showStudioMailMoveSelection(

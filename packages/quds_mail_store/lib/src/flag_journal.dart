@@ -71,7 +71,8 @@ extension MailFlagCommandJournal on SqliteMailRepository {
       "typeof(b.id)!='text' OR length(CAST(b.id AS BLOB))>1024 OR "
       "typeof(b.mailbox)!='text' OR length(CAST(b.mailbox AS BLOB))>4096 OR "
       "b.provider NOT IN ('imap','ews','gmail','graph') OR "
-      "b.action NOT IN ('markRead','markUnread','flag','unflag','move','delete') OR "
+      "b.action NOT IN ('markRead','markUnread','flag','unflag','move','delete','archive') OR "
+      "(b.action='archive' AND (b.provider!='gmail' OR b.mailbox!='INBOX')) OR "
       "(b.action='move' AND (b.destination IS NULL OR typeof(b.destination)!='text' OR "
       'length(CAST(b.destination AS BLOB)) NOT BETWEEN 1 AND 4096 OR b.destination=b.mailbox)) OR '
       "(b.action!='move' AND b.destination IS NOT NULL) OR "
@@ -100,7 +101,7 @@ extension MailFlagCommandJournal on SqliteMailRepository {
     // SQL bounds the text before transfer. Typed validation also rejects
     // controls and oversized code-unit identities before cleanup or dispatch.
     for (final row in await _rows(
-      'SELECT action,mailbox,destination FROM flag_batches WHERE account=?',
+      'SELECT action,provider,mailbox,destination FROM flag_batches WHERE account=?',
       [account.value],
     )) {
       _flagDestination(row, account);
@@ -342,6 +343,7 @@ extension MailFlagCommandJournal on SqliteMailRepository {
         destination: _flagDestination(batch, account)!,
       ),
       MailBulkFlagAction.delete => MailDelete(id: id, message: remote),
+      MailBulkFlagAction.archive => MailArchive(id: id, message: remote),
     };
   }
 
@@ -354,6 +356,7 @@ extension MailFlagCommandJournal on SqliteMailRepository {
           a.flagged == b.flagged,
         (final MailMove a, final MailMove b) => a.destination == b.destination,
         (MailDelete(), MailDelete()) => true,
+        (MailArchive(), MailArchive()) => true,
         _ => false,
       };
 
@@ -361,6 +364,9 @@ extension MailFlagCommandJournal on SqliteMailRepository {
     final action = batch.read<String>('action');
     final destination = batch.readNullable<String>('destination');
     if (!MailBulkFlagAction.values.any((value) => value.name == action) ||
+        (action == MailBulkFlagAction.archive.name &&
+            (batch.read<String>('provider') != MailProviderKind.gmail.name ||
+                batch.read<String>('mailbox') != 'INBOX')) ||
         (action == MailBulkFlagAction.move.name) != (destination != null) ||
         (destination != null &&
             (destination.isEmpty ||
@@ -509,7 +515,11 @@ extension MailFlagCommandJournal on SqliteMailRepository {
   });
 
   Future<void> _projectFlagConfirmation(MailOperation operation) async {
-    if (operation is MailMove || operation is MailDelete) return;
+    if (operation is MailMove ||
+        operation is MailDelete ||
+        operation is MailArchive) {
+      return;
+    }
     final (bit, enabled) = switch (operation) {
       MailSetRead(:final read) => (1, read),
       MailSetFlagged(:final flagged) => (2, flagged),
