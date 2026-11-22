@@ -791,10 +791,7 @@ final class NativeStudioMailMessageLoader
     MailOperationLease hostLease,
     Future<MailResult<T>> Function(MailProvider, MailOperationLease) apply,
   ) async {
-    MailFailure<T> failure(
-      MailProblemCode code,
-      bool dispatched,
-    ) =>
+    MailFailure<T> failure(MailProblemCode code, bool dispatched) =>
         MailFailure(MailProblem(code, mutationMayHaveOccurred: dispatched));
     if (command.message is! MailImapIdentity ||
         command.message.account != account ||

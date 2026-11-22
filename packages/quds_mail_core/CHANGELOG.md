@@ -1,5 +1,13 @@
 ## Unreleased
 
+- Add optional mutation receipts carrying validated authoritative Move identity
+  transitions and canonical destination cache keys. Preserve generic provider
+  and flag APIs; carry exact move evidence through the shared durable runner,
+  reject mismatched/nonconfirmed evidence, and validate restored receipts.
+  Add optional repository-only cursor revisions and a null-safe atomic sync
+  snapshot port for local membership fencing. Coordinator and bounded runner
+  preserve that optional capability while retaining legacy repository support.
+
 - Add optional read-only membership observation with immutable exact identity,
   IMAP generation/deletion semantics, complete Gmail labels and Graph/EWS parent
   folders. Bound and validate provider evidence independently from command

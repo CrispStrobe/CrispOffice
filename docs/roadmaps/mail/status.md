@@ -24,7 +24,28 @@ interrupted work.
 | Account persistence | Native account store, schema migrations and reconnect |
 | Browser store | Implemented path; quota/reload/Web Locks acceptance remains open |
 
-## Latest increment: current-location recovery for uncertain Move/Delete
+## Latest increment: authoritative move identities and atomic cache reconciliation
+
+IMAP and EWS moves can retain the exact destination identities returned by the
+server. Schema 15 saves those acknowledgements with the existing durable journal
+and conditionally reconciles retained source/destination headers in the same
+transaction. Stale local evidence, incompatible generations, identity conflicts
+or cache limits preserve the receipt and require refresh.
+
+The coordinator, bounded sync runner and Studio now carry a null-safe repository
+snapshot so a page captured before a move cannot restore the old location,
+including a first sync with no prior cursor. Provider cursor bytes remain intact.
+Studio preserves stable account/canonical message IDs, and Mail activity shows
+saved acknowledgement and cache status in English, German and Arabic.
+
+See [the workflow, compatibility contract and continuation](identity-transitions.md)
+and [the local qualification record](../../validation/mail-identity-reconciliation-20261122/README.md).
+This increment covers IMAP/EWS Move identity evidence. Generic results, deletion
+semantics, historical uncertainty and explicit connected-folder refresh remain.
+New target headers do not acquire a fabricated cached body. Durable bulk
+organization is the next workspace increment; complete desktop parity remains open.
+
+## Previous increment: current-location recovery for uncertain Move/Delete
 
 Connected Mail activity offers **Check current location** through a separate
 read-only membership observer. IMAP checks the original folder generation and
@@ -40,8 +61,8 @@ Cached mailbox observations stay dated until explicit refresh or sync.
 
 See the [workflow and ordered continuation](membership-recovery.md) and
 [local qualification record](../../validation/mail-membership-recovery-20261122/README.md).
-Authoritative identity-transition capture and cache reconciliation, then bulk
-organization and connected multi-account navigation, remain next.
+IMAP/EWS identity-transition capture and guarded cache reconciliation are now
+continued above. Bulk organization and connected multi-account navigation remain next.
 
 ## Previous increment: durable foreground Move/Delete
 
@@ -120,8 +141,9 @@ and [work record](../../validation/mail-keyboard-triage-20261121/README.md).
 - Navigate saved browse windows and synchronized folders in one local catalog,
   with explicit coverage sources and paged synchronized headers.
 - Mark read/unread and flagged state with recoverable foreground commands.
-- Move or delete one connected message with durable intent, receipts and
-  explicit refresh; IMAP marks deleted without expunging.
+- Move or delete one connected message with durable intent and receipts;
+  authoritative IMAP/EWS moves can update retained folder entries atomically.
+  Connected views still require refresh; IMAP marks deleted without expunging.
 - Use Conversations for explicitly loaded threaded headers. Subjects alone
   never create a thread.
 - Open attachments through the shared attachment workflow.

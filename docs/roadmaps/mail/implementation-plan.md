@@ -33,8 +33,10 @@ ordered workspace task now includes one account's
 repository-observed browse/sync catalogs and bounded local pages. The next
 [durable single-message Move/Delete](durable-mutations.md) increment is also
 implemented, with explicit capabilities, persisted dispatch markers and
-uncertain-outcome handling. Provider-specific membership reconciliation and
-durable bulk organization now precede connected multi-account navigation.
+uncertain-outcome handling. Provider-specific current-location recovery and
+[authoritative IMAP/EWS identity transitions](identity-transitions.md), with
+atomic retained-cache reconciliation and null-safe sync fences, are now
+implemented. Durable bulk organization precedes connected multi-account navigation.
 These increments do not close M04W or the complete desktop-client parity goal.
 
 ## 2. New package layout

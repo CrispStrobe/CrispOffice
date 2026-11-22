@@ -35,6 +35,25 @@ extension MailMoveIdentityTransitions on SqliteMailRepository {
   }
 
   Future<void> _checkMoveIdentityTransitions(MailAccountId account) async {
+    final invalidFences = (await _rows(
+      'SELECT count(*) AS n FROM mailbox_move_revisions WHERE account=? AND ('
+      "typeof(mailbox)!='text' OR length(CAST(mailbox AS BLOB)) NOT BETWEEN 1 AND 4096 OR "
+      "typeof(revision)!='integer' OR revision NOT BETWEEN 1 AND 9007199254740991)",
+      [account.value],
+    )).single.read<int>('n');
+    if (invalidFences != 0) {
+      SqliteMailRepository._fail(MailProblemCode.storageFailure);
+    }
+    for (final row in await _rows(
+      'SELECT mailbox FROM mailbox_move_revisions WHERE account=?',
+      [account.value],
+    )) {
+      final mailbox = row.read<String>('mailbox');
+      if (mailbox.length > 1024 ||
+          RegExp(r'[\x00-\x1f\x7f]').hasMatch(mailbox)) {
+        SqliteMailRepository._fail(MailProblemCode.storageFailure);
+      }
+    }
     final invalid = (await _rows(
       'SELECT count(*) AS n FROM move_identity_transitions t '
       'LEFT JOIN flag_batches b ON b.account=t.account AND b.id=t.batch '
@@ -303,6 +322,65 @@ extension MailMoveIdentityTransitions on SqliteMailRepository {
         destinationView.headers.length >= _viewHeaderLimit) {
       return false;
     }
+    // Use the exact stored UTF-16 code-unit lengths read by the view loader,
+    // including a previously observed target's metadata when it is reused.
+    // Count and account quotas alone do not bound an individual retained view.
+    if (destinationView != null && !destinationInView) {
+      var units =
+          destinationView.mailbox.id.value.length +
+          destinationView.mailbox.displayName.length;
+      for (final row in await _rows(
+        'SELECT m.id,m.remote,m.envelope FROM messages m JOIN mailbox_view_members v '
+        'ON v.account=m.account AND v.message=m.id WHERE v.account=? AND v.mailbox=?',
+        [account.value, transition.destinationMailbox.value],
+      )) {
+        units +=
+            row.read<String>('id').length +
+            row.read<String>('remote').length +
+            row.read<String>('envelope').length;
+      }
+      final targetEnvelope = targets.isEmpty
+          ? source.read<String>('envelope')
+          : targets.single.read<String>('envelope');
+      units +=
+          destinationId.length +
+          destinationRemote.length +
+          targetEnvelope.length;
+      if (units > _viewMetadataLimit) return false;
+    }
+    if (destinationSync.isNotEmpty) {
+      final members = await _rows(
+        'SELECT m.id,m.remote,m.envelope FROM messages m JOIN memberships s '
+        'ON s.account=m.account AND s.message=m.id WHERE s.account=? AND s.mailbox=? LIMIT ?',
+        [
+          account.value,
+          transition.destinationMailbox.value,
+          _syncHeaderLimit + 1,
+        ],
+      );
+      // A projection is bounded to one retained page; larger destinations use
+      // explicit synchronization rather than an unbounded metadata scan.
+      if (members.length > _syncHeaderLimit) return false;
+      var units = transition.destinationMailbox.value.length;
+      var present = false;
+      for (final member in members) {
+        present |= member.read<String>('id') == destinationId;
+        units +=
+            member.read<String>('id').length +
+            member.read<String>('remote').length +
+            member.read<String>('envelope').length;
+      }
+      if (!present) {
+        if (members.length >= _syncHeaderLimit) return false;
+        units +=
+            destinationId.length +
+            destinationRemote.length +
+            (targets.isEmpty
+                ? source.read<String>('envelope').length
+                : targets.single.read<String>('envelope').length);
+      }
+      if (units > _syncMetadataLimit) return false;
+    }
     if (transition.destination case MailImapIdentity(:final uidValidity)) {
       if (destinationView != null &&
           destinationView.headers.any(
@@ -360,8 +438,9 @@ extension MailMoveIdentityTransitions on SqliteMailRepository {
     final counter = (await _rows(
       'SELECT mailbox_view_revision FROM store_profile',
     )).single.read<int>('mailbox_view_revision');
-    if (counter < 0 || counter >= MailFlagCommandJournal._maxFlagRevision)
+    if (counter < 0 || counter >= MailFlagCommandJournal._maxFlagRevision) {
       return false;
+    }
     final envelope = MailStoreCodec.decodeEnvelope(
       source.read<String>('envelope'),
     );
