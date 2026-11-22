@@ -11,6 +11,7 @@ final class MailCachedHeaderSearchCursor {
     this._revision,
     this._account,
     this._query,
+    this._folderScopeKey,
     this._afterId,
   );
 
@@ -18,6 +19,7 @@ final class MailCachedHeaderSearchCursor {
   final Object _revision;
   final MailAccountId _account;
   final String _query;
+  final String? _folderScopeKey;
   final String _afterId;
 
   @override
@@ -95,9 +97,23 @@ extension MailCachedHeaderSearch on SqliteMailRepository {
     MailAccountId account,
     String query, {
     MailCachedHeaderSearchCursor? cursor,
+    List<String>? folderIds,
     int limit = 100,
     int scanLimit = 500,
   }) => _run(() async {
+    // Null means legacy all retained folders; an explicit empty set never
+    // becomes an account-wide query. Bind every ID, never interpolate it.
+    final scopedFolders = folderIds == null
+        ? null
+        : List<String>.unmodifiable(folderIds);
+    if (scopedFolders != null &&
+        (scopedFolders.isEmpty ||
+            scopedFolders.length > MailSavedHeaderSearch.maxFolderScopes ||
+            scopedFolders.toSet().length != scopedFolders.length ||
+            scopedFolders.any((id) => !MailSavedHeaderSearch.isValidId(id)))) {
+      SqliteMailRepository._fail(MailProblemCode.invalidInput);
+    }
+    final folderScopeKey = scopedFolders == null ? null : jsonEncode(scopedFolders);
     if (limit < 1 ||
         limit > maxResultSize ||
         limit > limits.maxSearchResults ||
@@ -119,7 +135,8 @@ extension MailCachedHeaderSearch on SqliteMailRepository {
           (!identical(cursor._owner, _cachedSearchOwner) ||
               !identical(cursor._revision, revision) ||
               cursor._account != account ||
-              cursor._query != query)) {
+              cursor._query != query ||
+              cursor._folderScopeKey != folderScopeKey)) {
         SqliteMailRepository._fail(MailProblemCode.conflict);
       }
       final browsed = switch (await listMailboxViews(account)) {
@@ -142,18 +159,47 @@ extension MailCachedHeaderSearch on SqliteMailRepository {
       if (metadataUnits > _cachedSearchMetadataLimit) {
         SqliteMailRepository._fail(MailProblemCode.quotaExceeded);
       }
+      if (scopedFolders != null) {
+        final known = <String>{
+          for (final item in browsed) item.mailbox.id.value,
+          for (final item in synchronized) item.mailbox.id.value,
+        };
+        if (scopedFolders.any((id) => !known.contains(id))) {
+          SqliteMailRepository._fail(MailProblemCode.unavailable);
+        }
+      }
       await _checkCachedSearchMemberships(account);
+      // Membership tables can both contain one header. EXISTS deduplicates at
+      // the message level and scopes both sources to the same exact folder IDs.
+      final eligible = scopedFolders == null
+          ? _eligible
+          : '(EXISTS (SELECT 1 FROM memberships s '
+                'WHERE s.account=m.account AND s.message=m.id AND '
+                's.mailbox IN (${List.filled(scopedFolders.length, '?').join(',')})) OR '
+                'EXISTS (SELECT 1 FROM mailbox_view_members v JOIN mailbox_views w '
+                'ON w.account=v.account AND w.mailbox=v.mailbox '
+                'WHERE v.account=m.account AND v.message=m.id AND '
+                'v.mailbox IN (${List.filled(scopedFolders.length, '?').join(',')})))';
+      final scopeArgs = <Object?>[
+        if (scopedFolders != null) ...scopedFolders,
+        if (scopedFolders != null) ...scopedFolders,
+      ];
       final total = (await _rows(
-        'SELECT count(*) AS n FROM messages m WHERE m.account=? AND $_eligible',
-        [account.value],
+        'SELECT count(*) AS n FROM messages m WHERE m.account=? AND $eligible',
+        [account.value, ...scopeArgs],
       )).single.read<int>('n');
       if (total > limits.maxMessagesPerAccount) {
         SqliteMailRepository._fail(MailProblemCode.quotaExceeded);
       }
       final after = cursor?._afterId;
       final where =
-          'm.account=? AND $_eligible${after == null ? '' : ' AND m.id>?'}';
-      final arguments = <Object?>[account.value, ?after, scanLimit];
+          'm.account=? AND $eligible${after == null ? '' : ' AND m.id>?'}';
+      final arguments = <Object?>[
+        account.value,
+        ...scopeArgs,
+        ?after,
+        scanLimit,
+      ];
       final candidates =
           'SELECT m.id,m.remote,m.envelope,m.flags FROM messages m '
           'WHERE $where ORDER BY m.id LIMIT ?';
@@ -222,11 +268,20 @@ extension MailCachedHeaderSearch on SqliteMailRepository {
         scanned++;
         last = header.id.value;
         if (!parsed.matches(_cachedSearchDocument(header))) continue;
-        final folders = await _cachedSearchFolders(
+        final discovered = await _cachedSearchFolders(
           account,
           header,
           _cachedSearchMetadataLimit - metadataUnits,
         );
+        final folders = scopedFolders == null
+            ? discovered
+            : [
+                for (final folder in discovered)
+                  if (scopedFolders.contains(folder.id.value)) folder,
+              ];
+        if (folders.isEmpty) {
+          SqliteMailRepository._fail(MailProblemCode.storageFailure);
+        }
         for (final folder in folders) {
           metadataUnits += folder.id.value.length + folder.displayName.length;
         }
@@ -250,8 +305,8 @@ extension MailCachedHeaderSearch on SqliteMailRepository {
           last != null &&
           (await _rows(
                 'SELECT EXISTS(SELECT 1 FROM messages m '
-                'WHERE m.account=? AND $_eligible AND m.id>?) AS present',
-                [account.value, last],
+                'WHERE m.account=? AND $eligible AND m.id>?) AS present',
+                [account.value, ...scopeArgs, last],
               )).single.read<int>('present') ==
               1;
       return MailCachedHeaderSearchPage(
@@ -264,6 +319,7 @@ extension MailCachedHeaderSearch on SqliteMailRepository {
                 revision,
                 account,
                 query,
+                folderScopeKey,
                 last,
               )
             : null,

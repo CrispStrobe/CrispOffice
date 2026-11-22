@@ -29,6 +29,20 @@ abstract interface class StudioMailCachedHeaderSearchStore {
   });
 }
 
+/// Opt-in exact-folder discovery. Legacy in-memory hosts still implement
+/// account-wide search; scoped searches must fail unsupported on those hosts,
+/// never silently broaden to account-wide results.
+abstract interface class StudioMailScopedHeaderSearchStore
+    implements StudioMailCachedHeaderSearchStore {
+  Future<MailCachedHeaderSearchPage> searchCachedHeadersInFolders(
+    String query, {
+    required List<String> folderIds,
+    MailCachedHeaderSearchCursor? cursor,
+    int limit = 100,
+    int scanLimit = 500,
+  });
+}
+
 abstract interface class StudioMailMailboxStore {
   MailAccountId get account;
   Future<List<MailCachedMailboxSummary>> listViews();
@@ -111,7 +125,7 @@ final class SqliteStudioMailMailboxStore
     implements
         StudioMailMailboxStore,
         StudioMailMailboxWatchStore,
-        StudioMailCachedHeaderSearchStore,
+        StudioMailScopedHeaderSearchStore,
         StudioMailSyncStore {
   SqliteStudioMailMailboxStore({
     required this._repository,
@@ -150,6 +164,26 @@ final class SqliteStudioMailMailboxStore
       await _repository.searchCachedHeaders(
         account,
         query,
+        cursor: cursor,
+        limit: limit,
+        scanLimit: scanLimit,
+      ),
+    ),
+  );
+
+  @override
+  Future<MailCachedHeaderSearchPage> searchCachedHeadersInFolders(
+    String query, {
+    required List<String> folderIds,
+    MailCachedHeaderSearchCursor? cursor,
+    int limit = 100,
+    int scanLimit = 500,
+  }) => _serialize(
+    () async => _value(
+      await _repository.searchCachedHeaders(
+        account,
+        query,
+        folderIds: folderIds,
         cursor: cursor,
         limit: limit,
         scanLimit: scanLimit,
