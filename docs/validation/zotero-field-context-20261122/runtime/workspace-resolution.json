@@ -1,0 +1,16 @@
+{
+  "observed_utc": "2026-11-22T05:08:24.670083+00:00",
+  "manifest_count": 28,
+  "changed_manifests": [],
+  "package_count": 166,
+  "package_config_sha256": "ec6ce99c6a45a428f19b78e335d0ac4d7aecbb2ab430e70affe197662b36862d",
+  "workspace_lock_sha256": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+  "env": {
+    "TMPDIR": "/workspace/scratch/2437eaf6f35d/toolchains/tmp",
+    "PUB_CACHE": "/workspace/scratch/2437eaf6f35d/toolchains/pub-cache",
+    "FLUTTER_ROOT": "/workspace/scratch/2437eaf6f35d/toolchains/flutter",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true",
+    "CI": "true"
+  }
+}

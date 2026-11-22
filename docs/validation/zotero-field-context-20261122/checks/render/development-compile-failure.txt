@@ -1,0 +1,22 @@
+Development command: flutter test --no-pub packages/quds_office_editor/test/word_zotero_field_context_render_test.dart --reporter expanded
+Exit code: 1
+Scope: test fixture compile error before any test case executed. The fixture attempted to set read-only WmlParagraphProps.bidiBaseLevel; rightToLeft is the supported setter.
+Captured terminal diagnostic chunk follows (earlier formatting/loading output is not included).
+
+packages/quds_office_editor/test/word_zotero_field_context_render_test.dart:375:20: Error: The setter 'bidiBaseLevel' isn't defined for the type 'WmlParagraphProps'.
+ - 'WmlParagraphProps' is from 'package:quds_office_engine/src/word/properties/wml_properties.dart' ('packages/quds_office_engine/lib/src/word/properties/wml_properties.dart').
+Try correcting the name to the name of an existing setter, or defining a setter or field named 'bidiBaseLevel'.
+      ..properties.bidiBaseLevel = 1;
+                   ^^^^^^^^^^^^^
+00:00 +0 -1: loading /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_render_test.dart [E]
+  Failed to load "/workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_render_test.dart":
+  Compilation failed for testPath=/workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_render_test.dart: packages/quds_office_editor/test/word_zotero_field_context_render_test.dart:375:20: Error: The setter 'bidiBaseLevel' isn't defined for the type 'WmlParagraphProps'.
+   - 'WmlParagraphProps' is from 'package:quds_office_engine/src/word/properties/wml_properties.dart' ('packages/quds_office_engine/lib/src/word/properties/wml_properties.dart').
+  Try correcting the name to the name of an existing setter, or defining a setter or field named 'bidiBaseLevel'.
+        ..properties.bidiBaseLevel = 1;
+                     ^^^^^^^^^^^^^
+  .
+00:00 +0 -1: Some tests failed.
+
+Failing tests:
+  /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_render_test.dart: loading /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_render_test.dart
