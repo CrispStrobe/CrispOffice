@@ -630,26 +630,32 @@ final class _OdtReader {
           final link = WmlHyperlink(url: target);
           final styleName = _attr(node, 'style-name', odfTextNamespace);
           final visited = _attr(node, 'visited-style-name', odfTextNamespace);
-          if (visited != null && visited.isNotEmpty && visited != styleName) {
-            if (!OdtReaderImages.isImageOnlyLink(node)) {
-              throw UnsupportedError(
-                'Distinct visited ODT hyperlink styles are not supported.',
-              );
-            }
-            // No authored glyphs or text boxes use the visited character
-            // style. Writer can reference an undefined built-in visited style
-            // for such an image link. Validate a supplied definition, but do
-            // not invent one or widen the ordinary text-link contract.
-            if (styles.hasTextStyle(visited)) {
-              styles
-                  .runProperties(visited, inherited: properties)
-                  .validateEffective();
-            }
-          }
           final resolved = styles.runProperties(
             styleName,
             inherited: properties,
           );
+          if (visited != null && visited.isNotEmpty && visited != styleName) {
+            if (OdtReaderImages.isImageOnlyLink(node)) {
+              // No authored glyphs use this state. Writer can reference an
+              // undefined built-in visited style for a picture-only link.
+              // Validate supplied definitions without inventing missing ones.
+              if (styles.hasTextStyle(visited)) {
+                styles
+                    .runProperties(visited, inherited: properties)
+                    .validateEffective();
+              }
+            } else {
+              final visitedProperties = styles.runProperties(
+                visited,
+                inherited: properties,
+              );
+              if (!resolved.hasSameResolvedFormattingAs(visitedProperties)) {
+                throw UnsupportedError(
+                  'ODT hyperlink visited and unvisited text formatting differ.',
+                );
+              }
+            }
+          }
           _inlines(node, buffer, resolved, link, inNote: inNote);
         case 's':
           _attributes(node, {

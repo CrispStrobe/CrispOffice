@@ -203,6 +203,76 @@ to network/approval controls. All final commands use that explicit environment.
 
 The incoming Archive record documents a preexisting Word visual-golden mismatch. This continuation does not refresh that golden or represent its historical failure as passing. No GitHub Actions queue is queried or awaited; local qualification is the acceptance evidence.
 
+## PR #383 source and fixture recovery
+
+The reconciled source is remote commit
+`604a939991f568e7c6ad3f13958c6a4e204cafe1`, tree
+`982666d50720c4f5985619e7c6a70af5bd04956c`. The fetched remote tree exactly matches
+the clean local checkout, and main `b4f1150b` is an ancestor. The final runner
+captures all 6,151 source/configuration inputs, checks 111 changed Dart paths,
+executes the 236-suite fresh selection and verifies each of the 341 retained
+cases through its independent gate provenance. Results are recorded under
+`final/reconciled-source-recovery/`. Source, configuration, selected tests and
+the runner remained frozen throughout that execution.
+
+That complete run passed 3,901 engine, 653 editor and 48 Studio Zotero cases.
+Studio Mail passed 2,370 cases and failed four cases across two files, with zero
+skipped or incomplete cases. Analysis and formatting passed for all 111 selected
+Dart paths. Every reporter lifecycle is paired, and all 6,151 captured inputs and
+generated configuration remain unchanged. The original run remains **not
+accepted**, with its raw output, four failures and checksums preserved.
+
+Two independent reviews traced the four failures to fixture ordering. The three
+provider bulk-reconnect cases hold the previous mutation reply while requiring
+the new provider to open before that reply is released. The native session case
+holds the first draft-store factory while requiring the second client to open.
+Both conflict with the owner-release barrier already present in incoming main:
+the old receipt/admission and owner must settle before another owner is admitted.
+More pumping cannot satisfy either ordering cycle.
+
+Checkpoint `051b20c774929f25f424c73a5ca14c3b611bb59e` corrects only
+`studio_mail_bulk_provider_test.dart` and `studio_mail_session_test.dart`. The original case names remain. Each case now asserts the pending
+barrier, releases its own gate, waits for a usable replacement account, and keeps
+its old-owner/stale-callback/draft-uncertainty assertions. The provider cases also
+prove that a fresh callback succeeds. No production source changes accompany
+this correction.
+
+The proposed selective recovery would rerun both complete files: 39 bulk-provider
+and 21 session cases. This plan was not executed before main advanced again. All 60 earlier results from those files are excluded from retained
+credit. The other 108 Studio suites contribute 2,314 passing cases; engine,
+editor, Studio Zotero and the independently retained UI/store gates contribute
+4,943. Their combined 7,257 retained cases are eligible only after exact input,
+runtime, immutable-evidence and transitive-import checks. The fresh 60 cases must
+pass with unchanged case identities before a combined acceptance can be issued.
+
+## PR #384 reconciliation
+
+Before publication, main advanced to
+`ab3457c98b6d9a0d1da8147db3048dfc50d174d3` through PR #384. Its Word/Zotero
+changes preserve supported editable ODT table borders, logical DOCX cell-border
+aliases and opaque revision history on field boundaries. Its Mail changes retain
+failed ordinary observer shutdown, drain Disconnect and guard retained Refresh
+callbacks. All of that work and its original evidence are retained.
+
+The merge combines that ordinary shutdown contract with this branch's staged
+admission, captured first observer-close attempt, conditional directory refresh,
+cancellable Close, failed-owner retry and guarded native local-entry paths. It
+does not replace either host wholesale. A cache candidate remains unadopted until
+its staged observation and selected-record comparison finish, so the reconciled
+native continuation checks the current admission token at that boundary.
+
+Disconnect now drains the retiring account before another explicit connection
+is available. The corrected bulk-provider and native-session fixtures first
+assert that pending barrier, release their held reply or factory, wait for drain,
+and then explicitly start the next connection. A Connect action issued while
+cleanup is blocked cannot queue a later connection.
+
+This production and Word delta supersedes the two-file selective-recovery plan.
+Its preflight is retained as unexecuted planning evidence, with no passing credit.
+Final acceptance requires fresh checks of the combined Mail hosts; incoming Word
+results can be retained only with exact source, dependency, runtime and immutable
+reporter provenance. The original runs with failures stay unchanged.
+
 ## Incremental publication
 
 Working branch: `work/mail-connected-navigation-20261122`.
@@ -218,10 +288,25 @@ Working branch: `work/mail-connected-navigation-20261122`.
 | `9a371b616ae0fa0dbbecaed04708837125694d7c` | Latest main reconciled, atomic reconnect retained with the corrected lifecycle, and expanded final qualification frozen |
 | `93cc695d8e96774a5bc5f8b1498fb7144db1aa62` | Complete expanded local run, original reporter results, source manifests and raw evidence preserved |
 | `893cca7a17b6bcda966f44248fa966084c5f1a74` | PR #383 reconciled with both Mail histories, immutable reporter correction, and aligned continuation plan |
+| `604a939991f568e7c6ad3f13958c6a4e204cafe1` | Final reconciled source with late-admission/observer release recovery, 207 focused passing cases and the exact final qualification plan |
+| `051b20c774929f25f424c73a5ca14c3b611bb59e` | Complete PR #383-source run with its four original failures, the two fixture corrections |
 
 Each remote tree was checked against its local checkpoint before moving the
 branch with an expected-head lease and `force=false`. The qualification
 checkpoint follows the source checkpoint. GitHub Actions are not awaited.
+
+## Later ancestry reconciliation (22 November 2026)
+
+The Zotero continuation preserves this source-bound historical record and all
+38 original files in `final/reconciled-source-recovery/`. Main at
+`ea7ae724bea2f1e9052aa17f9926eb0659ae4262` contains the newer finalized
+bulk-provider and native-session fixtures, which supersede the variants above.
+Owners without a durable mutation journal do not wait for a late foreground
+reply; late owner admission still drains before explicit replacement sign-in.
+The [account-workspace record](../mail-account-workspace-20261122/README.md)
+documents that subsequent integration. This ancestry reconciliation executes
+no new tests and assigns no passing credit to the historical failed run or
+unexecuted recovery plans.
 
 ## Historical checkpoint recovery (2026-11-22)
 
@@ -235,7 +320,9 @@ results, selective planning files, development analysis log and PR #384 intake
 remain reachable with their original blob identities and paths. The
 [original branch narrative](https://github.com/CrispStrobe/quds_office_suite/blob/a59e986a12d50c0d115b99c14cd8f746921c6f44/docs/validation/mail-connected-navigation-20261122/README.md)
 records their source bindings and failures. These historical artifacts are
-referenced in the continuation intake, without copying them into this checkout.
+referenced in the Word continuation intake without copying them into that
+checkpoint. The Zotero ancestry reconciliation preserves the 38 original
+recovery blobs in the reconciled tree.
 Their counts and proposed recovery plans do not qualify the current source.
 
 Current main's later Mail implementation and reconnect ordering are retained.

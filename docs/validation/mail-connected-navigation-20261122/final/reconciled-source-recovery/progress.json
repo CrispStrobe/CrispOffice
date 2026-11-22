@@ -1,0 +1,48 @@
+{
+  "completed_gates": [
+    "analysis",
+    "format",
+    "incoming_engine",
+    "incoming_editor",
+    "studio_zotero",
+    "studio_mail"
+  ],
+  "source_checks": [
+    {
+      "after_gate": "analysis",
+      "changed_source_inputs": [],
+      "generated_inputs_unchanged": true,
+      "stable": true
+    },
+    {
+      "after_gate": "format",
+      "changed_source_inputs": [],
+      "generated_inputs_unchanged": true,
+      "stable": true
+    },
+    {
+      "after_gate": "incoming_engine",
+      "changed_source_inputs": [],
+      "generated_inputs_unchanged": true,
+      "stable": true
+    },
+    {
+      "after_gate": "incoming_editor",
+      "changed_source_inputs": [],
+      "generated_inputs_unchanged": true,
+      "stable": true
+    },
+    {
+      "after_gate": "studio_zotero",
+      "changed_source_inputs": [],
+      "generated_inputs_unchanged": true,
+      "stable": true
+    },
+    {
+      "after_gate": "studio_mail",
+      "changed_source_inputs": [],
+      "generated_inputs_unchanged": true,
+      "stable": true
+    }
+  ]
+}

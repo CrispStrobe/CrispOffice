@@ -209,8 +209,10 @@ quotes nested inside list items, tables nested inside quotes and depth above
 eight are refused before publication. Otherwise empty notes remain refused;
 picture-only notes and empty tables retain their earlier support. Editable ODT quote exchange has separate bounded
 qualification; support for native quoted lists does not remove the existing
-ODT continued-list limitations. LibreOffice-saved quotations with distinct
-visited/unvisited text-link styles also remain refused by the native ODT reader.
+ODT continued-list limitations. LibreOffice-saved quotations whose visited and
+unvisited text-link formatting genuinely differs remain refused by the native
+ODT reader. Separately named equivalent styles use the bounded exception in
+[Equivalent hyperlink styles in ODT](#equivalent-hyperlink-styles-in-odt).
 See the
 [implementation and validation record](validation/zotero-workflow-parity-20261122/README.md).
 
@@ -271,7 +273,8 @@ attributes remain refused. List-container direction and RTL paragraphs inside
 list items remain guarded because separate marker/text direction is not yet
 represented. Alpha, named/dynamic color expressions, gradients and duplicate
 color declarations are outside this increment. The existing ODT continued-list
-and visited/unvisited hyperlink-style limits are unchanged.
+and genuinely state-dependent hyperlink-style limits are unchanged; separately
+named equivalent link states have the later bounded exception described below.
 
 The [implementation record](validation/zotero-note-formatting-20261122/README.md)
 tracks local checks, actual converter observations and the remaining installed
@@ -1996,6 +1999,35 @@ the asynchronous API. Hosts saving the returned Word document must select a
 DOCX destination; Studio implements this routing automatically. The archived
 metadata preserves source information, while ordinary Zotero callbacks use
 the separately normalized native preferences.
+
+### Equivalent hyperlink styles in ODT
+
+The rich reader accepts different `text:style-name` and
+`text:visited-style-name` names on an ordinary external hyperlink only when
+both definitions resolve to the same supported formatting and inheritance
+state in that link's paragraph/inline context. The existing resolver handles
+named parents and supported property normalization.
+
+The check includes Western, complex-script and Asian native properties,
+retained native script XML, exact nullable script slots, explicit-property
+state and nullable language values. This intentionally distinguishes an
+inherited complex font/weight from an explicitly fixed matching value: a child
+span could otherwise make the visited and unvisited text diverge.
+
+True visited-state differences, missing/cyclic/unsupported text styles and
+different parent states hidden only by a child's formatting remain refused.
+The special case for glyph-free linked pictures keeps its previous contract.
+References adjacent to ordinary links still use the existing field ownership
+and UTF-16 coordinate rules; a citation cache containing a hyperlink retains
+its separate guard.
+
+This increment has independent source review and 20 authored regression cases.
+Those cases, analyzer/formatter checks, native DOCX cycles and installed
+Zotero/Word/LibreOffice behavior have not been executed in this continuation.
+The [work record](validation/zotero-link-equivalence-20261122/README.md) provides
+the runtime blocker, source checkpoints and exact follow-up commands. No claim
+is made that the original converter case with different link appearances is
+fixed.
 
 ## Inspect a native LibreOffice ODT
 

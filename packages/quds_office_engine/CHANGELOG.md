@@ -4,6 +4,16 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Accept separately named visited/unvisited ODT hyperlink styles when resolved
+  supported formatting and inheritance state match across all script slots.
+  Preserve nullable fallback and explicit-property distinctions so child spans
+  cannot reveal a hidden difference. Keep actual visited-state differences,
+  missing styles and unsupported formatting guarded. Add 20 focused regression
+  cases for multilingual links, adjacent active Zotero fields, DOCX persistence
+  and refusal boundaries. This increment is source-reviewed; executable
+  qualification remains pending after workspace exhaustion. See the
+  [continuation record](../../docs/validation/zotero-link-equivalence-20261122/README.md).
+
 - Add bounded VBA `StrReverse` for source-known text in Word, Excel and
   PowerPoint. Reverse UTF-16 code units with once-only argument evaluation,
   explicit Empty/Null handling, strict String payloads and preallocation work

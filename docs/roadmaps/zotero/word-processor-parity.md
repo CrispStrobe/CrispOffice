@@ -64,6 +64,24 @@ The native controls use Zotero's own CSL processor. The separate basic/offline
 citation and single-item preview/export paths retain their narrower formatting
 contract; they are not evidence of complete document-wide CSL parity.
 
+## Implemented increment: equivalent hyperlink styles in native ODT
+
+The [hyperlink continuation](../../validation/zotero-link-equivalence-20261122/README.md)
+allows separately named visited/unvisited hyperlink styles only when their
+resolved supported formatting and inheritance state agree. Equality includes
+all three script slots, nullable fallback values, explicit-property state,
+native properties and retained script metadata. The stricter inheritance check
+prevents a nested span from exposing a difference hidden by equal initial
+appearance.
+
+The source has independent review and 20 authored regression cases for mixed
+scripts, adjacent active citations, DOCX persistence and refusal boundaries.
+Executable tests, analysis, formatting and application/converter acceptance
+remain pending because this continuation's workspace could not launch commands.
+Historical passing results are not credited to the new source. Actual
+state-dependent link appearance, child-only masking of different styles and
+the retained original converter failure remain outside this bounded increment.
+
 ## Delivered increment: editable original LibreOffice converter files
 
 The [converter continuation](../../validation/zotero-converter-parity-20261122/README.md)
@@ -80,8 +98,10 @@ editor undo/redo are exercised on the original body, footnote and table-cell
 files. This closes the previously recorded local outline/editability failures
 for that fixture set. It does not qualify installed Zotero or Word/LibreOffice
 plugin behavior. The following border increment extends the retained DOCX
-table-cell export route. Ordinary text links with distinct visited styles,
-continued lists and richer heading numbering retain their separate boundaries.
+table-cell export route. Ordinary text links whose visited formatting actually
+differs, continued lists and richer heading numbering retain their separate
+boundaries. Separately named equivalent hyperlink states use the later bounded
+implementation above; its executable qualification is still pending.
 
 ## Delivered increment: editable research-table borders
 
@@ -814,7 +834,8 @@ Installed Zotero/Word/LibreOffice acceptance remains a separate next step.
    closes the native editable-ODT route for supported solid table borders.
    Its actual converter cases preserve source-verified borders through repeated
    saves; they do not qualify installed Zotero plugins. Next, qualify
-   ordinary-link visited styles, right-to-left table column order and additional
+   the equivalent-link implementation and genuinely different visited styles,
+   right-to-left table column order and additional
    table geometry without losing appearance. External DOCX per-cell stroke/style
    fidelity and continued-list failures retain independent regression targets.
    Intact metadata or visual appearance alone is insufficient acceptance.
