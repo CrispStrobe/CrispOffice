@@ -4,6 +4,15 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Preserve supported visible table borders in native Zotero ODT import and
+  explicit editable export: one solid RGB stroke per table, exact eighth-point
+  widths from 0.25 to 12 pt, and independent cell sides. Resolve inherited
+  shorthands, explicit off edges, merged ownership and nested tables without
+  changing uniform padding. Retain active citations through native Refresh and
+  repeated DOCX/ODT saves. Mixed strokes, visible separating borders and
+  conflicting covered-cell overrides remain guarded. See the
+  [border interoperability record](../../docs/validation/zotero-table-borders-20261122/README.md).
+
 - Keep bounded LibreOffice-formatted Zotero DOCX fields editable while
   preserving their raw instruction/boundary formatting and empty code runs.
   Refresh or unlink empty results using cached-result or surrounding text

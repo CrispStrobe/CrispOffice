@@ -52,7 +52,7 @@ results retain their original source and platform attribution.
 | Library/source discovery | Local/online catalogs, collections, saved searches, tags, source details, cited-source reuse and occurrence navigation, and validated local/group **Open in Zotero** navigation from reference details | Local and online catalog APIs have different connection/version requirements; desktop selection is unavailable for unverified personal-web or offline identities |
 | Research materials | Read-only direct-child note previews and attachment metadata | No separate attachment-file download or Zotero library write workflow |
 | DOCX persistence | Active fields/preferences, native notes, rich bibliography structure, tables and embedded pictures use supported save/reopen paths | Local tests are separate from actual Word/LibreOffice application round trips |
-| Table margins | Native measurement, wrapping, pagination, ruler insets and nested picture fitting use each table's modeled uniform margin; explicit editable ODT preserves bounded uniform padding through style inheritance and merged/nested ownership | Asymmetric/per-cell ODT padding and visible borders remain unsupported; ODT/DOCX geometry rounds to format precision, and exhausted final scaled widths refuse |
+| Table margins and borders | Native measurement, wrapping, pagination, ruler insets and nested picture fitting use each table's modeled uniform margin; editable ODT preserves uniform padding and one supported solid RGB stroke per table with independent cell sides, style inheritance and merged/nested ownership | Asymmetric/per-cell padding, mixed strokes, visible separating borders and conflicting covered styles remain unsupported; ODT/DOCX geometry rounds to format precision, and exhausted final scaled widths refuse |
 | Footnote separators | Explicit solid/hidden rules retain independent gaps, nominal thickness, relative width, physical alignment and color; matching native pagination, continuation-page layout, editor/PDF rendering, ODT persistence and bounded native DOCX persistence | One compatible document-wide geometry; dashed/dotted active rules and richer separator stories remain unsupported; LibreOffice normalizes custom DOCX separator paragraphs, so that converter route remains a recorded limitation |
 | Cross-word-processor transfer | Native export/import handshake, temporary metadata hyperlinks, DOCX import/save/reopen and ODT carrier export; complete native formatting before import publication | The qualified DOCX carrier route and native ODT conversion have separate envelopes; installed Zotero/Word/LibreOffice plugin acceptance remains open and actual converter findings are retained |
 | Native ODT inspection | Read-only inventory of citation ReferenceMarks, bibliography TextSections, exact story/paragraph/cell ownership, cached text and original preferences; JSON diagnostic CLI | Inspection reports eligibility and findings without publishing an editable document |
@@ -78,9 +78,31 @@ Native refresh, save/reopen, selected-field context, detached publication and
 editor undo/redo are exercised on the original body, footnote and table-cell
 files. This closes the previously recorded local outline/editability failures
 for that fixture set. It does not qualify installed Zotero or Word/LibreOffice
-plugin behavior. Converted DOCX table borders remain outside the native ODT
-reader envelope; ordinary text links with distinct visited styles, continued
-lists and richer heading numbering retain their separate boundaries.
+plugin behavior. The following border increment extends the retained DOCX
+table-cell export route. Ordinary text links with distinct visited styles,
+continued lists and richer heading numbering retain their separate boundaries.
+
+## Delivered increment: editable research-table borders
+
+The [border continuation](../../validation/zotero-table-borders-20261122/README.md)
+preserves one solid opaque RGB stroke per table, with independent cell sides,
+exact eighth-point widths from 0.25 to 12 pt, and explicit collapsing ODT border
+semantics. Family defaults, named parents and same-layer side overrides are
+resolved before requiring a representable common stroke. Covered-cell declarations
+must agree with the merged owner; nested tables resolve independently.
+
+Editable output now uses the modeled stroke and effective sides instead of
+hardcoded black half-point borders. Borderless cells keep absent and explicit
+off sides distinct. Uniform padding remains numerically stable through ODF and
+DOCX; actual LibreOffice controls rejected an inferred halfstroke compensation
+that would have introduced repeated-save drift.
+
+The original retained DOCX table-cell fixtures exercise native editable ODT
+reopening, active-field refresh, selected-field context, undo/redo and repeated
+DOCX/ODT saves. Unsupported colors/styles/widths, mixed strokes, visible
+separating models and conflicting covered overrides refuse before publication.
+Native checks and identified converter runs remain separate from installed
+Zotero/Word/LibreOffice plugin acceptance and pixel-identical rendering.
 
 ## Delivered increment: research-note paragraph layout and colors
 
@@ -764,9 +786,12 @@ Installed Zotero/Word/LibreOffice acceptance remains a separate next step.
    The [converter continuation](../../validation/zotero-converter-parity-20261122/README.md)
    closes the original paragraph/color fixtures' native DOCX editability and
    ODT outline/shading failures. Preserve those exact files for installed
-   plugin Refresh and repeated application saves. Next, qualify ordinary-link
-   visited styles and converted DOCX table borders without losing appearance,
-   and retain continued-list failures as independent regression targets.
+   plugin Refresh and repeated application saves. The
+   [border continuation](../../validation/zotero-table-borders-20261122/README.md)
+   closes the native editable-ODT route for supported solid table borders.
+   Next, qualify ordinary-link visited styles and additional table geometry
+   without losing appearance, and retain continued-list failures as independent
+   regression targets.
    Intact metadata or visual appearance alone is insufficient acceptance.
 3. **Extend table structure and formatting.** Improve merged-row height distribution and map
    header/footer row groups and custom styles to native structures with explicit

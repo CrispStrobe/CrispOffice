@@ -1749,6 +1749,18 @@ DOCX margins use twentieths of a point (0.05 pt). Cross-format saves can therefo
 round geometry. The [table-layout record](validation/zotero-table-layout-20261121/README.md)
 documents this bounded behavior rather than an exact-geometry guarantee.
 
+Editable research-table borders use one solid opaque RGB color and an exact
+eighth-point width from 0.25 to 12 pt per table, with independently enabled
+cell sides. Nested tables can use different strokes. Export emits the actual
+modeled stroke and explicit collapsing ODT border semantics; import resolves
+cell-style inheritance, shorthand resets and side overrides. Borderless cells
+keep absent sides distinct from explicit off sides. Covered-cell declarations
+must agree with the merged owner. Uniform padding remains numerically unchanged.
+Mixed strokes, unsupported line styles/colors/widths, visible separating borders
+and conflicting covered overrides refuse before the operation returns a result.
+See the [border qualification](validation/zotero-table-borders-20261122/README.md)
+for exact native and converter scope and remaining installed-plugin acceptance.
+
 Editable ODT export also refuses effective absolute raised/lowered baseline
 positions in text, paragraph marks and note markers. Inherited positions are
 checked; explicit zero overrides and supported superscript/subscript remain
@@ -1843,8 +1855,9 @@ Missing or overlapping coverage refuses the import. Covered cells containing
 stored content, including empty paragraph elements or non-XML whitespace,
 also refuse rather than losing hidden data. A covered cell's effective shading
 and authored or inherited padding must be absent or agree with its origin.
-Explicit borderless declarations are accepted; visible borders and other
-unrepresented covered-cell styling remain outside this subset. Repeated
+Explicit borderless declarations and supported solid borders are accepted;
+any effective covered-cell side must match its visible owner. Other
+unrepresented covered-cell styling remains outside this subset. Repeated
 rows/cells remain unsupported. The document-wide cell and paragraph limits
 include generated continuations and nested tables.
 

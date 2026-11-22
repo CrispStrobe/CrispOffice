@@ -94,10 +94,10 @@ origin's citation text. Existing cached-result export remains unchanged.
 This supports one effective value on all four sides and across all visible
 cells in each table. The native reader resolves family defaults and parent
 styles before testing that uniformity; authored or inherited covered-cell
-padding must agree with its merged origin. Asymmetric/per-cell padding,
-unsupported row/column default-cell styles and visible ODT borders remain
-outside that reader envelope. Border declarations with the value `none` are
-accepted. The [table-layout record](../../validation/zotero-table-layout-20261121/README.md)
+padding must agree with its merged origin. Asymmetric/per-cell padding and
+unsupported row/column default-cell styles remain outside the reader envelope.
+The solid-border continuation below extends the earlier borderless boundary.
+The [table-layout record](../../validation/zotero-table-layout-20261121/README.md)
 documents the delivered margin and padding scope.
 
 Margins must be finite, nonnegative and at most 32,767 DOCX twentieths of a point
@@ -109,6 +109,23 @@ exact-geometry guarantee across formats. Native layout may scale a table to its
 page or enclosing cell and refuses a final width exhausted by the margins.
 Ordinary `writeBytes` keeps its existing table-formatting and cached-result
 contract; uniform-padding output is specific to the explicit editable path.
+
+Editable output preserves a table's effective borders using one solid opaque
+RGB stroke with an exact eighth-point width from 0.25 to 12 pt. Each cell side
+can inherit the native table default or explicitly enable/disable its border.
+The output emits the actual stroke and an explicit collapsing border model.
+Borderless cells retain the distinction between an absent edge declaration and
+an explicit `none`, including when cell styles are reused. Nested tables use
+independent stroke plans. Vertical continuation overrides must agree with the
+visible merged owner; the exporter refuses a conflicting mask before returning
+bytes. The original document and active citation data remain unchanged.
+
+Uniform padding is emitted unchanged, without adding or subtracting border
+width. Unsupported width/color values, mixed imported border strokes, visible
+separating models and richer table indentation remain outside this contract.
+The [border record](../../validation/zotero-table-borders-20261122/README.md)
+separates native persistence, actual converter controls and installed-plugin
+acceptance. It does not establish identical pagination in every application.
 
 Cited note classes support continuous automatic decimal, lower-Roman or
 upper-Roman numbering with an initial number from 1 to 32,768, including Word's

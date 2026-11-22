@@ -4,6 +4,11 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Reopen supported bordered research tables from editable Zotero ODT exports.
+  Retain citation editability, cell border appearance, selected-field context
+  and the existing detached Refresh/undo transaction across DOCX/ODT saves.
+  Unsupported border structures keep their explicit import/export refusal.
+
 - Add a verified remembered-account chooser across IMAP/SMTP, Exchange EWS,
   Gmail and Microsoft 365 in English, German and Arabic. Preserve exact
   non-secret routes and require explicit sign-in; save account-owned drafts and
