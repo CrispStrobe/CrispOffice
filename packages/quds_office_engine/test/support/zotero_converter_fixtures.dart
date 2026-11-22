@@ -75,12 +75,50 @@ Map<String, Object?> converterSnapshot(WmlDocument document, String kind) {
   };
 }
 
-void expectConverterSnapshot(WmlDocument document, String kind) {
-  final expected = jsonDecode(
-    File(
-      '$zoteroConverterFixtureRoot/original/$kind.expected.json',
-    ).readAsStringSync(),
-  );
+void expectConverterSnapshot(
+  WmlDocument document,
+  String kind, {
+  Map<String, String> refreshedCitationText = const {},
+}) {
+  final expected =
+      jsonDecode(
+            File(
+              '$zoteroConverterFixtureRoot/original/$kind.expected.json',
+            ).readAsStringSync(),
+          )
+          as Map<String, Object?>;
+  // A Refresh intentionally changes citation text and its two cache metadata
+  // values. Derive only those expected changes from the unchanged fixture;
+  // all paragraph geometry, colors, story ownership and other metadata still
+  // use the independently recorded converter snapshot.
+  final fields = (expected['fields']! as List<Object?>)
+      .cast<Map<String, Object?>>();
+  final replaced = <String>{};
+  for (final field in fields) {
+    final metadata = field['metadata']! as Map<String, Object?>;
+    final id = metadata['citationID']! as String;
+    final replacement = refreshedCitationText[id];
+    if (replacement == null) continue;
+    replaced.add(id);
+    final previous = field['text']! as String;
+    field['text'] = replacement;
+    final properties = metadata['properties']! as Map<String, Object?>;
+    properties['plainCitation'] = replacement;
+    properties['formattedCitation'] = replacement;
+    final paragraphs = expected['paragraphs']! as Map<String, Object?>;
+    for (final raw in paragraphs.values) {
+      final paragraph = raw! as Map<String, Object?>;
+      paragraph['text'] = (paragraph['text']! as String).replaceAll(
+        previous,
+        replacement,
+      );
+    }
+    expected['text'] = [
+      for (final text in expected['text']! as List<Object?>)
+        (text! as String).replaceAll(previous, replacement),
+    ];
+  }
+  expect(replaced, refreshedCitationText.keys.toSet());
   _expectSnapshot(expected, converterSnapshot(document, kind), kind);
 }
 

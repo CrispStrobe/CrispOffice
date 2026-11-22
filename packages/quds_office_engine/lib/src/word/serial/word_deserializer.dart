@@ -1142,6 +1142,7 @@ class WordDeserializer {
   ) {
     final List<WmlInline> inlines = <WmlInline>[];
     XmlElement? formattingChange;
+    String? boundaryRunPropertiesXml;
     var hasOrdinaryRunIdentity = false;
     var hasNonTextContent = false;
     final WmlRun run = WmlRun()..properties.sourcePropertiesXml = '';
@@ -1161,7 +1162,9 @@ class WordDeserializer {
         hasNonTextContent |= !ordinary;
       }
       if (reader.localName == 'rPr') {
-        formattingChange = _readRPr(reader, run.properties);
+        final properties = _readRPr(reader, run.properties);
+        formattingChange = properties.change;
+        boundaryRunPropertiesXml = properties.sourceXml;
       } else if (reader.localName == 't' || reader.localName == 'delText') {
         final String text = _elementText(reader);
         // A PAGE instruction elsewhere in this paragraph must not consume a
@@ -1246,7 +1249,8 @@ class WordDeserializer {
         final boundary = WmlFieldBoundary(
           kind: WmlFieldBoundaryKind.instruction,
           text: instr,
-          runPropertiesXml: run.properties.sourcePropertiesXml,
+          runPropertiesXml:
+              boundaryRunPropertiesXml ?? run.properties.sourcePropertiesXml,
         );
         inlines.add(boundary);
         _noteFieldInstruction(boundary);
@@ -1269,7 +1273,8 @@ class WordDeserializer {
             sourceXml: XmlDocument(
               root: fldChar,
             ).toXmlString(declaration: false),
-            runPropertiesXml: run.properties.sourcePropertiesXml,
+            runPropertiesXml:
+                boundaryRunPropertiesXml ?? run.properties.sourcePropertiesXml,
           );
           inlines.add(boundary);
           _noteFieldChar(boundary);
@@ -1390,7 +1395,13 @@ class WordDeserializer {
       run.commentIds.addAll(_openCommentIds);
       inlines.add(run);
     }
-    if (formattingChange != null) {
+    // Field markers have no ordinary text range to own a formatting revision.
+    // Their complete rPr stays on the boundary, keeping unsupported history
+    // opaque through saves instead of turning it into an empty text revision.
+    final onlyFieldBoundaries =
+        inlines.isNotEmpty &&
+        inlines.every((inline) => inline is WmlFieldBoundary);
+    if (formattingChange != null && !onlyFieldBoundaries) {
       final text = inlines.whereType<WmlRun>().map((r) => r.text).join();
       _recordFormatting(
         paragraph,
@@ -2483,8 +2494,12 @@ class WordDeserializer {
     );
   }
 
-  XmlElement? _readRPr(XmlPullReader reader, WmlRunProps props) {
+  ({XmlElement? change, String sourceXml}) _readRPr(
+    XmlPullReader reader,
+    WmlRunProps props,
+  ) {
     final XmlElement node = XmlDocument.readElement(reader);
+    final sourceXml = XmlDocument(root: node).toXmlString(declaration: false);
     final change = node.firstChild(
       'rPrChange',
       namespaceUri: OfficeNamespaces.w,
@@ -2497,7 +2512,7 @@ class WordDeserializer {
       props.sourcePropertiesXml!,
     )..next();
     _parseRPr(source, props);
-    return change;
+    return (change: change, sourceXml: sourceXml);
   }
 
   void _parseRPr(XmlPullReader reader, WmlRunProps props) {

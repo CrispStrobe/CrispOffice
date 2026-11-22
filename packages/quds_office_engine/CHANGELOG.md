@@ -4,6 +4,12 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Preserve complete run-property XML, including opaque formatting revisions,
+  on native Word field boundaries through repeated DOCX saves. Keep those
+  fields guarded instead of discarding their history or creating empty text
+  revisions. Ordinary text retains its existing formatting review behavior,
+  including text that originally shared a run with a field marker.
+
 - Add bounded VBA `Split` assignment to local dynamic String arrays in Word,
   Excel and PowerPoint. Preserve zero-based binary substring semantics,
   delimiter/limit controls, empty arrays, once-only argument evaluation, frame
