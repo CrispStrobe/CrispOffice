@@ -1168,6 +1168,12 @@ class _Assignment extends _Statement {
   final bool isSet;
 }
 
+class _MidAssignment extends _Statement {
+  const _MidAssignment(super.token, this.call, this.value);
+  final _Call call;
+  final _Expr value;
+}
+
 class _Clear extends _Statement {
   const _Clear(super.token, this.target);
   final _Member target;
@@ -1561,6 +1567,12 @@ class _Parser {
         result.add(_Exit(token, kind));
       } else if (_is('call')) {
         position++;
+        if (_is('mid') || _is(r'mid$') || _is('midb')) {
+          context.unsupported(
+            current,
+            'Mid is an assignment statement and cannot be invoked with Call.',
+          );
+        }
         if (context.isWord) {
           final target = _postfix();
           if (target is _Member &&
@@ -1789,6 +1801,21 @@ class _Parser {
         _expect('if');
         _endStatement();
         result.add(_If(token, branches, otherwise));
+      } else if (_is('midb')) {
+        context.unsupported(current, 'Byte-oriented MidB is unsupported.');
+      } else if (_is('mid') || _is(r'mid$')) {
+        final token = current;
+        final call = _postfix();
+        if (call is! _Call) {
+          context.unsupported(
+            token,
+            'Mid assignment requires a local String target, start, and optional length in parentheses.',
+          );
+        }
+        _expect('=');
+        final value = _expression();
+        _endStatement();
+        result.add(_MidAssignment(token, call, value));
       } else if (current.kind == _TokenKind.identifier &&
           !_is('set') &&
           !_is('let') &&
@@ -1826,6 +1853,14 @@ class _Parser {
         final isSet = _take('set');
         final isLet = !isSet && _take('let');
         final target = _postfix();
+        if ((isSet || isLet) &&
+            target is _Call &&
+            (target.token.lower == 'mid' || target.token.lower == r'mid$')) {
+          context.unsupported(
+            token,
+            'Mid is a standalone assignment statement; Set and Let prefixes are unsupported.',
+          );
+        }
         if (_take('=')) {
           final value = _expression();
           _endStatement();
@@ -2320,6 +2355,7 @@ class _Checker {
     'or',
     'xor',
     'mod',
+    'mid',
     'option',
     'explicit',
     'attribute',
@@ -2676,6 +2712,10 @@ class _Checker {
       switch (statement) {
         case _Assignment(target: final _Name target):
           variable = target.token;
+        case _MidAssignment():
+          if (statement.call.arguments.firstOrNull case final _Name target) {
+            variable = target.token;
+          }
         case _For():
           variable = statement.counter;
           _implicit(statement.body);
@@ -2938,6 +2978,8 @@ class _Checker {
               context.type(target, 'Erase requires a declared local array.');
             }
           }
+        case _MidAssignment():
+          _midAssignment(statement);
         case _Assignment():
           final valueKind = _expression(statement.value);
           if (statement.target case final _Name target) {
@@ -3220,6 +3262,83 @@ class _Checker {
           }
       }
     }
+  }
+
+  void _midAssignment(_MidAssignment statement) {
+    final arguments = statement.call.arguments;
+    if (arguments.length < 2 || arguments.length > 3) {
+      context.type(
+        statement.token,
+        'Mid assignment requires a String variable or array element, start, and optional length.',
+      );
+    }
+    for (final argument in arguments) {
+      if (argument is _NamedArgument || argument is _OmittedArgument) {
+        context.unsupported(
+          argument.token,
+          'Named and omitted arguments are unsupported in Mid assignment.',
+        );
+      }
+    }
+    final target = arguments.first;
+    final _Symbol symbol;
+    if (target is _Name) {
+      if (context.reserved(target.token.lower)) {
+        context.unsupported(
+          target.token,
+          'Mid assignment cannot modify a built-in constant or object binding.',
+        );
+      }
+      symbol = _symbol(target.token);
+      if (symbol.isArray || symbol.isConst) {
+        context.unsupported(
+          target.token,
+          'Mid assignment requires a writable scalar variable or array element, not a constant or whole array.',
+        );
+      }
+    } else if (target is _Call) {
+      if (module.procedures.containsKey(target.token.lower) ||
+          context.reserved(target.token.lower)) {
+        context.unsupported(
+          target.token,
+          'Mid assignment cannot modify a temporary function result.',
+        );
+      }
+      symbol = _symbol(target.token);
+      if (!symbol.isArray) {
+        context.unsupported(
+          target.token,
+          'Mid assignment cannot modify a temporary function result.',
+        );
+      }
+      _arrayIndex(target);
+    } else {
+      context.unsupported(
+        target.token,
+        'Mid assignment requires a local variable or array element; expressions and document properties are unsupported.',
+      );
+    }
+    if (symbol.type != _Declared.string && symbol.type != _Declared.variant) {
+      context.type(
+        target.token,
+        'Mid assignment targets must be declared As String or As Variant.',
+      );
+    }
+    if (counters.contains(target.token.lower) &&
+        !eachCounters.contains(target.token.lower)) {
+      context.unsupported(
+        target.token,
+        'An active For counter cannot be assigned by Mid.',
+      );
+    }
+    for (final argument in arguments.skip(1)) {
+      _compatible(_Kind.number, _expression(argument), argument.token);
+    }
+    _compatible(
+      _Kind.string,
+      _expression(statement.value),
+      statement.value.token,
+    );
   }
 
   void _wordRangeInsertionCall(_Member member) {
@@ -5053,6 +5172,8 @@ class _Evaluator {
             for (final target in statement.targets) {
               _erase(target);
             }
+          case _MidAssignment():
+            _midAssignment(statement);
           case _Assignment():
             if (statement.target case final _Call target) {
               final array = values[target.token.lower]! as _Array;
@@ -5954,6 +6075,63 @@ class _Evaluator {
       );
     }
     return index - bounds.lower;
+  }
+
+  void _midAssignment(_MidAssignment statement) {
+    final arguments = statement.call.arguments;
+    final target = arguments.first;
+    // Resolve the writable slot, including a possibly effectful array index,
+    // once before evaluating the remaining expressions. Helper frames restore
+    // the caller's values, so retained arrays and local bindings keep identity.
+    _tick(target.token);
+    _Array? array;
+    int? index;
+    final Object original;
+    if (target is _Name) {
+      original = _initialized(values[target.token.lower]!, target.token);
+    } else {
+      final element = target as _Call;
+      array = values[element.token.lower]! as _Array;
+      index = _arrayOffset(array, element.arguments.single);
+      original = _initialized(array.elements[index], element.token);
+    }
+    final startValue = _evaluate(arguments[1]);
+    final lengthValue = arguments.length == 3 ? _evaluate(arguments[2]) : null;
+    final replacementValue = _evaluate(statement.value);
+    // Every supplied expression runs once in source order before validating
+    // scalar values. String coercion is explicit, as for the shared intrinsics.
+    final text = _string(original, target.token);
+    final start = _stringIndex(startValue, arguments[1].token, isStart: true);
+    final replacement = _string(replacementValue, statement.value.token);
+    final requested = lengthValue == null
+        ? replacement.length
+        : _stringIndex(lengthValue, arguments[2].token);
+    if (start > text.length) {
+      context.type(
+        arguments[1].token,
+        'Mid assignment start must address an existing UTF-16 code unit, including for an empty replacement or zero length.',
+      );
+    }
+    final offset = start - 1;
+    var count = text.length - offset;
+    if (count > requested) count = requested;
+    if (count > replacement.length) count = replacement.length;
+    // Mid never grows its target. Charge the full resulting String before
+    // allocating slices for a nonempty edit, even if its text is identical.
+    // Zero-length edits reuse the original value after all validation above.
+    if (count != 0) _charge(text.length, statement.token);
+    final result = count == 0
+        ? text
+        : text.substring(0, offset) +
+              replacement.substring(0, count) +
+              text.substring(offset + count);
+    if (array == null) {
+      values[target.token.lower] = result;
+    } else {
+      // Element writes retain the existing For Each contract: the descriptor
+      // stays locked against resize/erase, while individual values may change.
+      _writeArrayElement(array, index!, result, target.token);
+    }
   }
 
   void _writeArrayElement(_Array array, int index, Object value, _Token token) {

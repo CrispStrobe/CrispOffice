@@ -92,6 +92,33 @@ Unsupported whole-object assignment, `Duplicate`, runtime type discovery and
 property reads are refused. A `ByVal` object helper retains the selector passed
 to it; rebinding the helper parameter does not retarget the caller.
 
+## Editing fixed-width template labels
+
+`Mid(label, start[, length]) = text` and `Mid$(...) = text` replace part of a
+local String without changing its length. They also edit allocated
+String/Variant array elements and helper-local String values. The indexes count
+UTF-16 units; the start must address an existing unit, and replacement text is
+truncated to the requested and available span.
+
+```vb
+Sub Main()
+    Dim label As String
+    label = "INV-0000 | OPEN"
+    Mid$(label, 5, 4) = "0042"
+    Mid(label, 12) = "DONE"
+    ActiveDocument.Tables(1).Cell(1, 1).Range.Text = label
+End Sub
+```
+
+The cell receives `INV-0042 | DONE`. All text comes from source-local values;
+this statement does not read or edit a document Range directly. The
+[complete 2×2 label example](../packages/quds_office_engine/example/macros/word_fixed_width_labels.bas)
+combines array elements, a reusable function and calculated table selectors.
+See the [exact String-editing contract](vba-macros-details.md#replacing-part-of-a-source-string)
+for types, bounds, evaluation order, Unicode and budgets, and the
+[local qualification](validation/word-vba-mid-assignment-20261122/README.md)
+for the executed scope.
+
 ## Grouping labels into a table
 
 The shared source operators `\` and `Mod` calculate row groups, column
