@@ -107,17 +107,17 @@ workflow targets, rather than identical behavior across product editions:
 | [Thunderbird offers account-folder and unified-folder views](https://support.mozilla.org/en-US/kb/switching-folder-pane-view) | Exact account navigation and retained-folder browsing are available. A live cross-account unified Inbox remains open. |
 | [eM Client groups accounts and exposes a combined Inbox for a group](https://www.emclient.com/blog/declutter-your-sidebar-with-account-groups-821) | This increment handles one foreground account at a time. Account groups and concurrently maintained combined views remain open. |
 
-Continue in this order, preserving an explicit user path and recovery contract
-for every increment:
+The [remembered Archive destination continuation](remembered-archive.md) now
+delivers exact account/folder preferences, explicit change/clear controls and
+missing-folder recovery. Continue in this order, preserving an explicit user
+path and recovery contract for every increment:
 
-1. Remember custom Archive destinations with exact account/folder identity,
-   explicit change/clear controls and missing-folder recovery.
-2. Add categories/tags and ordered rules with a preview, provider capability
+1. Add categories/tags and ordered rules with a preview, provider capability
    checks and durable per-message outcomes.
-3. Extend indexed body and provider search with visible coverage, bounded
+2. Extend indexed body and provider search with visible coverage, bounded
    continuation and cancellation.
-4. Persist conversations across folders and reconcile provider Drafts/Sent
+3. Persist conversations across folders and reconcile provider Drafts/Sent
    without weakening draft conflicts or uncertain-send recovery.
-5. Extend the shared workspace to simultaneous account-owned background work,
+4. Extend the shared workspace to simultaneous account-owned background work,
    unified live folders and lifecycle/credential scheduling, followed by
    installed-platform and live-provider acceptance.

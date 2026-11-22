@@ -43,8 +43,10 @@ Inbox-label removal and reviewed exact folder moves through the same durable
 pipeline. [Account navigation](account-navigation.md) and the
 [connected-account continuation](connected-account-navigation.md) provide one
 verified four-provider chooser, exact routes, draft-safe ownership transfer and
-explicit sign-in with guarded foreground handoff. Remembered Archive destinations,
-categories/rules, body/provider search, persistent conversations and provider
+explicit sign-in with guarded foreground handoff. The
+[remembered Archive continuation](remembered-archive.md) now adds revision-checked
+account preferences, standalone repair controls and fresh exact-folder validation
+through the existing durable commands. Categories/rules, body/provider search, persistent conversations and provider
 Drafts/Sent reconciliation remain organization and discovery boundaries.
 Retained simultaneous account sessions and the shared unified workspace remain
 open within M04W.
@@ -320,9 +322,15 @@ inspection receipt, not a complete dependency or runtime certification.
   retain their existing metadata. See
   [connected-account-navigation.md](connected-account-navigation.md) and its
   source-bound qualification record. This does not complete the shared workspace.
+- [x] Remember custom Archive destinations for connected IMAP, EWS and Microsoft
+  365, with exact durable account/folder identity, revision-checked save/change/
+  clear, fresh provider catalogs and missing-folder repair. Keep Gmail's label
+  semantics. Persist metadata across restart/logout/cache eviction; clear it on
+  account removal. Revalidate preferences after confirmation and retain the
+  existing durable command/uncertainty contracts. See
+  [remembered-archive.md](remembered-archive.md) and its local qualification record.
 - [ ] Broaden provider-specific membership reconciliation and special-folder
-  discovery, remember custom Archive destinations, and add tags/categories with
-  preview and recovery.
+  discovery, and add tags/categories with preview and recovery.
 - [x] Implement visible checked ranges in the shared list with Shift navigation,
   Shift+click, preserved independent checks and generation/scope guards, plus
   EN/DE/AR help. Correct synchronized header search to include visible names

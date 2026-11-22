@@ -4,6 +4,19 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Remember custom Archive destinations per account in connected IMAP, Exchange
+  EWS and Microsoft 365. Add English/German/Arabic save/change/clear controls
+  that work without a selected message, fresh exact-folder validation,
+  missing-folder repair and revision checks before durable single/bulk moves.
+  Native preferences survive restart, logout and cache eviction; account removal
+  clears them. Preserve Gmail Inbox-label removal. Guard stale toolbar callbacks,
+  dialogs and optional settings-owner identity. See the
+  [workflow guide](../../docs/roadmaps/mail/remembered-archive.md).
+- Fix provider Close while the first cached-mail snapshot is pending. Save
+  retained drafts first, cancel observers before draining restoration, and wait
+  for late acquisitions and owner release before leaving the account. Keep failed
+  draft saves and cancellation recoverable without replaying commands.
+
 - Reopen supported bordered research tables from editable Zotero ODT exports.
   Retain citation editability, cell border appearance, selected-field context
   and the existing detached Refresh/undo transaction across DOCX/ODT saves.

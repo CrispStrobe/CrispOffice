@@ -8,10 +8,10 @@ final class _ArchiveSettingsSpy extends Fake
         StudioMailArchiveSettingsStore,
         StudioMailMailboxStoreOwner,
         StudioMailFlagJournalOwner {
-  _ArchiveSettingsSpy(this.harness);
+  _ArchiveSettingsSpy(this.harness) : owner = harness.fixture.owner;
 
   final _Harness harness;
-  SqliteStudioMailDraftStore get owner => harness.fixture.owner;
+  final SqliteStudioMailDraftStore owner;
 
   @override
   MailAccountId get account => owner.account;
@@ -153,7 +153,7 @@ Future<void> _expectNoArchiveIntent(
   expect(harness.commands, isEmpty);
   expect(harness.atDispatch, isEmpty);
   await settleMailJournal(tester, () async {
-    expect((await harness.fixture.store.list()).batches, isEmpty);
+    expectSync((await harness.fixture.store.list()).batches, isEmpty);
   });
   expect(harness.sends, 0);
 }
@@ -843,14 +843,24 @@ void rememberedArchiveHostTests() {
       (tester) async {
         final original = _Harness(kind)..archiveEnabled = true;
         await _show(tester, original);
+        final host = find.byType(
+          kind == MailProviderKind.imap
+              ? StudioMailDialog
+              : StudioMailEwsDialog,
+        );
+        final originalState = tester.state(host);
         final callback = tester
             .widget<IconButton>(_key('studio-mail-archive-settings'))
             .onPressed!;
-        await tester.pumpWidget(const SizedBox.shrink());
-        await tester.pump();
+        await tester.tap(find.byTooltip(_strings.disconnect));
+        await _until(
+          tester,
+          () => find.byType(MailMessageList).evaluate().isEmpty,
+        );
         await settleMailJournal(tester, original.fixture.owner.close);
         final replacement = _Harness(kind)..archiveEnabled = true;
         await _show(tester, replacement, mailbox: 'replacement@example.test');
+        expect(tester.state(host), same(originalState));
         expect(replacement.fixture.account, isNot(original.fixture.account));
         final replacementReads = replacement.folderReads;
         final originalReads = original.folderReads;

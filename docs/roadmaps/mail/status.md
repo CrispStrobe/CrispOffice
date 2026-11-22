@@ -21,10 +21,38 @@ interrupted work.
 | Search | Local cached headers and saved queries with exact account/folder scope and missing-folder recovery; no body/provider discovery |
 | Conversations | Folding of explicitly loaded threaded headers |
 | Compose tools | Signatures, Quick Text, attachments and draft recovery |
+| Archive organization | Durable single/bulk actions; account-owned custom folders for IMAP/EWS/Microsoft 365 with revision checks and missing-folder repair; Gmail Inbox-label removal |
 | Account persistence/navigation | Native account store, schema migrations and a verified four-provider chooser with exact non-secret routes, draft-safe explicit sign-in and guarded foreground handoff; one connected account at a time |
 | Browser store | Implemented path; quota/reload/Web Locks acceptance remains open |
 
-## Latest increment: verified connected-account navigation
+## Latest increment: remembered Archive destinations
+
+Connected IMAP, Exchange EWS and Microsoft 365 accounts with Move support now
+offer **Archive destination** without requiring a selected message. Save, change
+or clear an exact folder in English, German or Arabic. Settings survive restart,
+logout and cache eviction; account removal deletes them. Schema 17 preserves
+existing v16 Archive commands and receipts during migration.
+
+Archive reviews the current account, source, count and exact saved destination.
+Each action checks a fresh folder catalog and rechecks the settings revision
+after confirmation. Missing folders require explicit repair; no display-name
+match or alternate destination substitutes for the saved ID. Stale dialogs and
+callbacks cannot write another account's settings or dispatch its commands.
+Clearing restores the existing provider-default/manual-choice path. Gmail keeps
+its distinct Inbox-label removal behavior.
+
+The integrated provider Close path also cancels cached observers before waiting
+for a first snapshot, then drains late acquisitions and owners. Retained drafts
+save before disconnect; failed saves and cancellation retain explicit recovery.
+The [workflow guide](remembered-archive.md) and
+[local qualification record](../../validation/mail-remembered-archive-20261122/README.md)
+describe source reconciliation, executed tests and remaining acceptance limits.
+
+Categories/tags and previewable ordered rules are next, followed by body/provider
+search, persistent conversations, provider Drafts/Sent reconciliation and fuller
+multi-account background work. Full desktop-client parity remains open.
+
+## Previous increment: verified connected-account navigation
 
 **Choose an account** offers verified remembered IMAP/SMTP, Exchange EWS, Gmail
 and Microsoft 365 accounts in one localized chooser. Exact non-secret routes
@@ -56,7 +84,7 @@ See both the [workflow and ownership contract](account-navigation.md) and
 [connected-navigation qualification](../../validation/mail-connected-navigation-20261122/README.md)
 and [account-workspace qualification](../../validation/mail-account-workspace-20261122/README.md)
 records, for actual source boundaries and executed acceptance. Remembered Archive
-destinations, categories/rules, body/provider search, persistent conversations
+destinations are continued above. Categories/rules, body/provider search, persistent conversations
 and provider Drafts/Sent reconciliation remain open. Retained simultaneous
 sessions, a unified live Inbox, complete M04W, full desktop-client parity and
 live-provider/installed-platform acceptance remain open too.

@@ -621,10 +621,14 @@ Future<void> _show(
   if (harness.kind == MailProviderKind.imap) {
     await tester.enterText(_field(_strings.emailAddress), mailbox);
     await tester.enterText(_field(_strings.password), 'synthetic-password');
-    await tester.tap(
-      find.widgetWithText(SwitchListTile, _strings.manualServers),
+    final manualServers = find.widgetWithText(
+      SwitchListTile,
+      _strings.manualServers,
     );
-    await tester.pump();
+    if (!tester.widget<SwitchListTile>(manualServers).value) {
+      await tester.tap(manualServers);
+      await tester.pump();
+    }
     await tester.enterText(_field(_strings.imapHost), 'imap.example.test');
     await tester.enterText(_field(_strings.smtpHost), 'smtp.example.test');
     await tester.ensureVisible(find.text(_strings.connect));

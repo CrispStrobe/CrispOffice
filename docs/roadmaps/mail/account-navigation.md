@@ -127,10 +127,12 @@ account-aware unified view over repository observations. It must preserve the
 ownership and no-replay guarantees established here.
 
 Follow the [current ordered continuation](connected-account-navigation.md#comparison-targets-and-next-increments):
-remembered Archive destinations, categories/rules, body/provider search,
+categories/rules, body/provider search,
 persistent conversations and provider Drafts/Sent reconciliation, then fuller
 background multi-account work. Rich authoring, Office attachments, Calendar/People
 and platform qualification retain their broader roadmap dependencies.
+The [remembered Archive destination continuation](remembered-archive.md) is now
+implemented with exact identities and explicit missing-folder repair.
 
 The comparison targets support account-aware navigation and sending context.
 Thunderbird documents [account and unified folder presentations](https://support.mozilla.org/en-US/kb/switching-folder-pane-view).
