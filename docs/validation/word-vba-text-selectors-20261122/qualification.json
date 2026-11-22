@@ -1,0 +1,98 @@
+{
+  "recordedAt": "2026-11-22T11:33:29.311473+00:00",
+  "qualifiedSourceHead": "5949a298444cec06632a28858c75670541a914a9",
+  "compilerSha256": "d9126240652b062c5ffbb73d4333cd471e1076698af380e040bf424d58248ac5",
+  "accepted": true,
+  "substantiveCases": 9482,
+  "suites": 193,
+  "failed": 0,
+  "skipped": 0,
+  "unresolved": 0,
+  "caseIdentity": "Repository-relative suite plus ordinal within its single accepted run; repeated human-readable labels are allowed. No rerun is added twice. Loaders and lifecycle hooks are excluded.",
+  "macro": {
+    "broadSuites": 157,
+    "cases": 8317,
+    "broadPasses": 8314,
+    "broadFailures": 3,
+    "replacedWholeSuiteCases": 11,
+    "replacementPasses": 11,
+    "reason": "All three failures required obsolete deletion of foreign indentation XML. The helper now positively verifies preservation, without changing production code; its full 11-case suite and actual BAS were rerun."
+  },
+  "newRtlInteraction": {
+    "suites": 1,
+    "cases": 2
+  },
+  "incoming": {
+    "suites": 35,
+    "cases": 1163,
+    "groups": [
+      {
+        "package": "packages/quds_mail_core",
+        "passed": 120
+      },
+      {
+        "package": "packages/quds_mail_store",
+        "passed": 158
+      },
+      {
+        "package": "packages/quds_mail_transport",
+        "passed": 260
+      },
+      {
+        "package": "packages/quds_mail_ui",
+        "passed": 21
+      },
+      {
+        "package": "packages/quds_office_editor/example",
+        "passed": 276
+      },
+      {
+        "package": "packages/quds_office_editor",
+        "passed": 42
+      },
+      {
+        "package": "packages/quds_office_engine",
+        "passed": 286
+      }
+    ]
+  },
+  "portable": {
+    "canonicalCorpus": {
+      "cases": 64,
+      "vmJsByteEqual": true,
+      "receiptSha256": "b5f4a9b74b19022f1ce065469f905a28f26984cc9be46f598eb0665e2b8e7de1"
+    },
+    "actualTextSelectorBas": {
+      "vmJsSemanticEqual": true,
+      "vmJsByteEqual": false,
+      "difference": "72 integral spacing values use 0.0/8.0 on VM and 0/8 on JavaScript; all parsed values match."
+    },
+    "actualMeasurementBas": {
+      "vmJsSemanticEqual": true,
+      "vmJsByteEqual": true,
+      "receiptSha256": "579f31da832e2f32d78e8b7bd54a27dc4060abc73bb5584855c552892a040154"
+    }
+  },
+  "static": {
+    "wordChangedDartFiles": 15,
+    "strictAnalysis": "passed",
+    "format": "passed",
+    "incomingChangedDartFiles": 9,
+    "incomingNativeSerialDirectoryAnalysis": "passed"
+  },
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "node": "24.22.3",
+    "lockfileChanged": false
+  },
+  "sourceContinuity": "evidence/word-local-checks.tar.xz:word/final-source-continuity.json",
+  "priorAttempts": "Preserved in evidence archives and excluded from accepted totals.",
+  "githubActions": "No workflow/queue/status endpoint queried or awaited; local validation gates only.",
+  "limits": [
+    "Bounded source-to-native-plan VBA subset, not a full VBA interpreter.",
+    "No installed Microsoft Word differential acceptance performed for these VBA changes.",
+    "New collections remain immutable selectors without Count/enumeration/live document reads; ByVal-only object helpers.",
+    "Opaque embedded VBA/signature bytes are preserved, not executed or authenticated."
+  ]
+}
