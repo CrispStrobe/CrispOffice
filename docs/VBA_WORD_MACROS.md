@@ -57,6 +57,7 @@ document supplied to the macro session. They never search for another file.
 | --- | --- |
 | `Document.Paragraphs(i)` | Existing body paragraphs |
 | `Document.Tables(i)` / `Table.Cell(row, column)` | Existing main-story table cells |
+| `Cell.Range.InsertBefore` / `.Paragraphs(1).Range.InsertBefore` | Prefix current cell text with retained run formatting |
 | `Cell.Range.Font` / `.ParagraphFormat` | Current cell text and its one ordinary paragraph |
 | `Cell.Range.Paragraphs(1)` / `.Paragraphs.Item(1)` | The existing cell paragraph, including its Style and background Shading |
 | `Cell.Range.HighlightColorIndex` / `.NoProofing` / `.LanguageID` / `.LanguageIDOther` | Highlight and proofing metadata on current cell text |
@@ -138,6 +139,41 @@ formatting can target an empty paragraph. Direct cell-range `Style`, `Shading`,
 See the [exact cell-formatting contract](vba-word-macros-details.md#formatting-existing-table-cells)
 and [local qualification](validation/word-vba-cell-formatting-20261122/README.md).
 
+## Prefixing existing table text
+
+```vb
+Sub Main()
+    Dim target As Range
+    Set target = ActiveDocument.Tables(1).Cell(1, 1).Range
+    target.InsertBefore Text:="Status" & vbTab
+    target.Paragraphs(1).Range.InsertBefore Text:="Review" & vbTab
+    target.Font.Bold = True
+End Sub
+```
+
+Both prefixes become part of the retained cell range, so its later Font write
+also includes the inserted labels. Existing text and distinct run formatting
+survive the prefix operation; the inserted run inherits the supported formatting
+at the beginning. The cell must still contain one ordinary paragraph in a
+supported unmerged main-story table. An empty cell can be prefixed before
+formatting its text. Repeating the macro prefixes the current text again.
+
+`InsertBefore` accepts its required String by position or case-insensitive
+`Text:=`, including parenthesized and `Call` forms. The named argument also
+works on existing body and independent header/footer paragraph ranges. Typed
+aliases, nested `With`, and named `ByVal` helpers preserve selected cell identity.
+
+The shared source language includes the eight fixed VBA text constants,
+including `vbTab` and `vbCrLf`. A macro can normalize source lines with
+`Replace(label, vbCrLf, vbTab)` before inserting them. Tabs are supported in
+native Word text; structural line/paragraph controls remain outside the
+single-paragraph mutation contract.
+
+See the [complete BAS](../packages/quds_office_engine/example/macros/word_table_prefix.bas),
+[exact prefix contract](vba-word-macros-details.md#prefixing-existing-cell-text),
+[portable constants](vba-macros-details.md#portable-text-constants), and
+[local qualification](validation/word-vba-cell-prefix-20261122/README.md).
+
 ## Preparing multilingual table reports
 
 `Join(parts[, delimiter])` assembles source text from an allocated local array
@@ -194,8 +230,8 @@ nonempty current text.
 These operations change paragraph properties. They do not set cell fill or
 table styles. Only the first and sole ordinary paragraph is supported;
 multi-paragraph, merged and nested cells retain the existing admission guards.
-Insertion, list operations and live document reads remain unsupported through
-this selector. See the [exact contract](vba-word-macros-details.md#formatting-a-cell-paragraph),
+Prefix insertion is supported through the selected paragraph Range; list
+operations and live document reads remain unsupported through this selector. See the [exact contract](vba-word-macros-details.md#formatting-a-cell-paragraph),
 [complete BAS example](../packages/quds_office_engine/example/macros/word_table_paragraphs.bas)
 and [local qualification](validation/word-vba-cell-paragraphs-20261122/README.md).
 

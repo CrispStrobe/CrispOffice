@@ -37,6 +37,37 @@ void setWordTableCellRangeText(WmlDocument document, StepInput step) {
   paragraph.inlines = replacement.inlines;
 }
 
+/// Prefixes the current text of one ordinary cell without changing its range.
+///
+/// This operation deliberately has no offsets or alternate story selector.
+/// It uses the same table/cell admission as [setWordTableCellRangeText], keeps
+/// the existing text and run formatting, and leaves paragraph/cell delimiters
+/// structural. Inserted text inherits the formatting at the start of the
+/// current text, the first retained empty run, or the retained paragraph mark
+/// when the cell has no runs.
+void insertBeforeWordTableCellRange(WmlDocument document, StepInput step) {
+  final text = step.string('text');
+  _text(text);
+  final paragraph = editableWordTableCellRangeParagraph(document, step);
+  // Even an empty prefix validates the selector and its native ownership.
+  // Once admitted, it must not coalesce runs or create an empty insertion run.
+  if (text.isEmpty) return;
+
+  final replacement = WmlClone.paragraph(paragraph);
+  final hasText = replacement.inlines.whereType<WmlRun>().any(
+    (run) => run.text.isNotEmpty,
+  );
+  final properties = replacement.inlines.isEmpty
+      ? paragraph.properties.importedParagraphMark?.copy() ?? WmlRunProps()
+      : WmlRunEdit.propsAt(replacement, hasText ? 0 : -1).copy();
+  // Admission guarantees ordinary runs and insertion is always at offset
+  // zero. Keep every original run, including zero-width native metadata, and
+  // avoid global coalescing that could erase distinct formatting ownership.
+  // A separate inserted run also preserves the original text's script routing.
+  replacement.inlines.insert(0, WmlRun(text: text, properties: properties));
+  paragraph.inlines = replacement.inlines;
+}
+
 /// Resolves the one ordinary paragraph of an explicitly selected table cell.
 ///
 /// Cell text and formatting share the same ownership, source-fidelity and
