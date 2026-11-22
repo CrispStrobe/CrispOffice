@@ -1,0 +1,152 @@
+{
+  "start_time_utc": "2026-11-22T10:54:21.124394+00:00",
+  "before": {
+    "head": "a886d7d79ae3d63e78f09a9caeb8569da81243c9",
+    "root_tree": "cde0c2612040f8fbc6b30a6b0be0fa1aecc63778",
+    "engine_lib_tree": "d0f9bb7d78e159d4bcd2f1515db4c76afe817b6d",
+    "editor_lib_tree": "e55da68943b38eedbaf8313db25826d55d078759",
+    "tracked_status": "",
+    "inputs_sha256": {
+      "pubspec.lock": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+      "pubspec.yaml": "453a1f8ab62db1c5577c424b058b50033a8d3b49b99c83862ab58a7e1108f74f",
+      "packages/quds_office_editor/test/office_fidelity_golden_test.dart": "e339b23026538087a8c852a1376b90ec50da64ed9e61e54d6a93f4d867f3d920",
+      "packages/quds_office_editor/test/support/office_golden.dart": "a379efdd2ea6658fea371ae361e5321ca431cf121067b74dfd65be6fba3a2bf7",
+      "packages/quds_office_editor/test/goldens/linux/office_fidelity_word.png": "8d3cb6f2a8e82f6fc15e62c2c53ba9907cbf33ff9e213dbe1f4dfc46cfd74ace",
+      "packages/quds_office_engine/test/fixtures/fidelity/word.docx": "501bdd2f897b9a0d417988903b3a378bac958cacbcba5f842736802a5d47af1b"
+    }
+  },
+  "restore_command": [
+    "flutter",
+    "pub",
+    "get",
+    "--offline",
+    "--enforce-lockfile"
+  ],
+  "restore_cwd": "/workspace/scratch/a4918868bf38/quds_pre_zotero_golden",
+  "test_command": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "json",
+    "test/office_fidelity_golden_test.dart"
+  ],
+  "test_cwd": "/workspace/scratch/a4918868bf38/quds_pre_zotero_golden/packages/quds_office_editor",
+  "environment_script": "/workspace/scratch/a4918868bf38/toolchains/env.sh",
+  "restore_exit_code": 0,
+  "restore_log_sha256": "8f8eaec35c1eb26e37cc745f3fd799bdceace51af176465fd0709650a1b23f22",
+  "runtime": "{\n  \"frameworkVersion\": \"3.47.8\",\n  \"channel\": \"stable\",\n  \"repositoryUrl\": \"https://github.com/flutter/flutter.git\",\n  \"frameworkRevision\": \"737ba8f885dc774b53b442759999a312c9461e4e\",\n  \"frameworkCommitDate\": \"2026-10-22 21:37:31 -0700\",\n  \"engineRevision\": \"cf636b1dfb818dd6a3ff16e390e93b1a036969c8\",\n  \"engineCommitDate\": \"2026-10-23 02:13:38.000Z\",\n  \"engineContentHash\": \"dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2\",\n  \"engineBuildDate\": \"2026-10-22 20:34:48.330\",\n  \"dartSdkVersion\": \"3.13.7\",\n  \"devToolsVersion\": \"2.60.0\",\n  \"flutterVersion\": \"3.47.8\",\n  \"flutterRoot\": \"/workspace/scratch/a4918868bf38/toolchains/flutter\"\n}\n",
+  "package_config_sha256": "be0b34deeb10534cc8f03bc981a3ceeb3b045cb90599ca4c53b95838dc3aed52",
+  "workspace_package_roots": [
+    {
+      "name": "enough_mail",
+      "rootUri": "../third_party/enough_mail"
+    },
+    {
+      "name": "quds_office_suite",
+      "rootUri": "../"
+    },
+    {
+      "name": "quds_mail_core",
+      "rootUri": "../packages/quds_mail_core"
+    },
+    {
+      "name": "quds_mail_mime",
+      "rootUri": "../packages/quds_mail_mime"
+    },
+    {
+      "name": "quds_mail_store",
+      "rootUri": "../packages/quds_mail_store"
+    },
+    {
+      "name": "quds_mail_transport",
+      "rootUri": "../packages/quds_mail_transport"
+    },
+    {
+      "name": "quds_mail_ui",
+      "rootUri": "../packages/quds_mail_ui"
+    },
+    {
+      "name": "quds_mail_reader_example",
+      "rootUri": "../packages/quds_mail_ui/example"
+    },
+    {
+      "name": "legacy_doc_parser",
+      "rootUri": "../packages/legacy_doc_parser"
+    },
+    {
+      "name": "quds_office_engine",
+      "rootUri": "../packages/quds_office_engine"
+    },
+    {
+      "name": "quds_proofing_harper",
+      "rootUri": "../packages/quds_proofing_harper"
+    },
+    {
+      "name": "quds_proofing_gector",
+      "rootUri": "../packages/quds_proofing_gector"
+    },
+    {
+      "name": "quds_proofing_spacy",
+      "rootUri": "../packages/quds_proofing_spacy"
+    },
+    {
+      "name": "quds_proofing_hunspell",
+      "rootUri": "../packages/quds_proofing_hunspell"
+    },
+    {
+      "name": "quds_arabic_morph",
+      "rootUri": "../packages/quds_arabic_morph"
+    },
+    {
+      "name": "quds_language_id",
+      "rootUri": "../packages/quds_language_id"
+    },
+    {
+      "name": "quds_office_engine_example",
+      "rootUri": "../packages/quds_office_engine/example"
+    },
+    {
+      "name": "quds_reports",
+      "rootUri": "../packages/quds_reports"
+    },
+    {
+      "name": "quds_office_editor",
+      "rootUri": "../packages/quds_office_editor"
+    },
+    {
+      "name": "quds_office_studio",
+      "rootUri": "../packages/quds_office_editor/example"
+    },
+    {
+      "name": "quds_report_studio",
+      "rootUri": "../apps/quds_report_studio"
+    }
+  ],
+  "exit_code": 1,
+  "end_time_utc": "2026-11-22T10:54:43.674143+00:00",
+  "after": {
+    "head": "a886d7d79ae3d63e78f09a9caeb8569da81243c9",
+    "root_tree": "cde0c2612040f8fbc6b30a6b0be0fa1aecc63778",
+    "engine_lib_tree": "d0f9bb7d78e159d4bcd2f1515db4c76afe817b6d",
+    "editor_lib_tree": "e55da68943b38eedbaf8313db25826d55d078759",
+    "tracked_status": "",
+    "inputs_sha256": {
+      "pubspec.lock": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+      "pubspec.yaml": "453a1f8ab62db1c5577c424b058b50033a8d3b49b99c83862ab58a7e1108f74f",
+      "packages/quds_office_editor/test/office_fidelity_golden_test.dart": "e339b23026538087a8c852a1376b90ec50da64ed9e61e54d6a93f4d867f3d920",
+      "packages/quds_office_editor/test/support/office_golden.dart": "a379efdd2ea6658fea371ae361e5321ca431cf121067b74dfd65be6fba3a2bf7",
+      "packages/quds_office_editor/test/goldens/linux/office_fidelity_word.png": "8d3cb6f2a8e82f6fc15e62c2c53ba9907cbf33ff9e213dbe1f4dfc46cfd74ace",
+      "packages/quds_office_engine/test/fixtures/fidelity/word.docx": "501bdd2f897b9a0d417988903b3a378bac958cacbcba5f842736802a5d47af1b"
+    }
+  },
+  "test_log_sha256": "2368a502f562cd57adac387ea1e3f76f95dd5c4409949bb07a9dae4fab52ba30",
+  "test_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "source_inputs_unchanged": true,
+  "failure_images": {
+    "/workspace/scratch/a4918868bf38/runtime-evidence/pre-zotero-golden-failure/office_fidelity_word_testImage.png": "a77032bf57dc7cbd0381490560cab27585083e52bf105226c82f9357477f92c6",
+    "/workspace/scratch/a4918868bf38/runtime-evidence/pre-zotero-golden-failure/office_fidelity_word_isolatedDiff.png": "259667dd068dc3b6fcd46d2c3f264b3bca75b8ba17319dbb8518f9b0e5a9dd06",
+    "/workspace/scratch/a4918868bf38/runtime-evidence/pre-zotero-golden-failure/office_fidelity_word_masterImage.png": "8d3cb6f2a8e82f6fc15e62c2c53ba9907cbf33ff9e213dbe1f4dfc46cfd74ace",
+    "/workspace/scratch/a4918868bf38/runtime-evidence/pre-zotero-golden-failure/office_fidelity_word_maskedDiff.png": "aca6252626eb18b5db0b700ce1074fbd1f2515defef0a424bee83d1a9a965add"
+  }
+}

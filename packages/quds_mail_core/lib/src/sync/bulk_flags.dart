@@ -14,12 +14,13 @@ enum MailBulkFlagAction {
   flag,
   unflag,
   move,
-  delete;
+  delete,
+  archive;
 
   /// Only these actions can be checked through a [MailFlagObserver].
   bool get isFlagAction => switch (this) {
     markRead || markUnread || flag || unflag => true,
-    move || delete => false,
+    move || delete || archive => false,
   };
 }
 
@@ -69,6 +70,13 @@ final class MailBulkFlagPlan {
                 destination == mailbox))) {
       throw ArgumentError(
         'Only move requires a different destination in the same account.',
+      );
+    }
+    if (action == MailBulkFlagAction.archive &&
+        (this.provider != MailProviderKind.gmail || mailbox.value != 'INBOX')) {
+      throw ArgumentError(
+        'Native Archive requires a Gmail Inbox selection; folder providers '
+        'must freeze a move destination.',
       );
     }
     final identities = <MailRemoteIdentity>{};
@@ -132,6 +140,10 @@ final class MailBulkFlagPlan {
         destination: destination!,
       ),
       MailBulkFlagAction.delete => MailDelete(
+        id: operationId,
+        message: message,
+      ),
+      MailBulkFlagAction.archive => MailArchive(
         id: operationId,
         message: message,
       ),
@@ -210,7 +222,8 @@ final class MailBulkFlagItemResult {
     if (operation is! MailSetRead &&
             operation is! MailSetFlagged &&
             operation is! MailMove &&
-            operation is! MailDelete ||
+            operation is! MailDelete &&
+            operation is! MailArchive ||
         ((outcome == MailBulkFlagOutcome.confirmed ||
                 outcome == MailBulkFlagOutcome.unattempted) &&
             problem != null) ||
@@ -284,6 +297,7 @@ final class MailBulkFlagReport {
             (final MailMove a, final MailMove b) =>
               a.destination != b.destination,
             (MailDelete(), MailDelete()) => false,
+            (MailArchive(), MailArchive()) => false,
             _ => true,
           }) {
         throw ArgumentError('A receipt must retain its frozen commands.');

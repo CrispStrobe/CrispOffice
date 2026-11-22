@@ -1,0 +1,25 @@
+{
+  "captured_at_utc": "2026-11-22T10:59:55.182836+00:00",
+  "timing": "Post-execution evidence-packaging observation, not an additional test run",
+  "head": "168297fea2df1f49cb1362f8ac21002edd222ac4",
+  "committed_tree": "7587dec4e385c015f81c62df7992af378642cfed",
+  "test_snapshot": "integration/studio-source-after.json.gz",
+  "compared_test_inputs": 5891,
+  "changed_since_test_snapshot": [
+    {
+      "path": "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "tested_sha256": "905d397f3e12ef357b79931065641b932fbd41edc95c9e2fde41f7a63ce194f6",
+      "current_sha256": "5a3e505b6b3033ca145cb8626097c63608819ed83681cebfd3e21f525c1aa76f"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_paragraph_format_test.dart",
+      "tested_sha256": "7bf6e1f85d14ddfade3d61580bd91a152cbb43c66a91e263a74c29aaef607497",
+      "current_sha256": "365124c7bef6bc9a89903b066b979170ceab1f58e6c8dd6c85d8dc3dc8c0d15a"
+    }
+  ],
+  "all_other_captured_inputs_unchanged": true,
+  "all_67_final_static_inputs_match_current_files": true,
+  "normalization_diff": "integration/incoming-format-normalization.diff.gz",
+  "normalization_scope": "Formatter layout and optional trailing comma only",
+  "root_lockfile_sha256": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb"
+}

@@ -529,6 +529,12 @@ extension MailStoreLocalOperations on SqliteMailRepository {
         MailSetFlagged(:final flagged) => ('flag', flagged ? '1' : '0'),
         MailMove(:final destination) => ('move', destination.value),
         MailDelete() => ('delete', null),
+        MailArchive()
+            when operation.message.provider == MailProviderKind.gmail =>
+          ('archive', null),
+        MailArchive() => throw const MailStoreStorageException(
+          MailProblemCode.unsupported,
+        ),
       };
       if (operation is MailMove &&
           (await _rows(
@@ -583,6 +589,9 @@ extension MailStoreLocalOperations on SqliteMailRepository {
         destination: MailMailboxId(argument, account: account),
       ),
       'delete' when argument == null => MailDelete(id: id, message: remote),
+      'archive'
+          when argument == null && remote.provider == MailProviderKind.gmail =>
+        MailArchive(id: id, message: remote),
       _ => throw const MailStoreStorageException(
         MailProblemCode.storageFailure,
       ),

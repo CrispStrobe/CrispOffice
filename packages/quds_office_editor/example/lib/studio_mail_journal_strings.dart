@@ -289,7 +289,9 @@ extension StudioMailJournalStrings on StudioStrings {
         observed
             ? _text('Flagged', 'Gekennzeichnet', 'معلّمة')
             : _text('Not flagged', 'Nicht gekennzeichnet', 'غير معلّمة'),
-      MailBulkFlagAction.move || MailBulkFlagAction.delete => throw StateError(
+      MailBulkFlagAction.move ||
+      MailBulkFlagAction.delete ||
+      MailBulkFlagAction.archive => throw StateError(
         'A flag observation cannot resolve membership changes.',
       ),
     };
@@ -368,6 +370,11 @@ extension StudioMailJournalStrings on StudioStrings {
       'Delete action',
       'Löschaktion',
       'إجراء الحذف',
+    ),
+    MailBulkFlagAction.archive => _text(
+      'Archive from Inbox',
+      'Aus dem Posteingang archivieren',
+      'أرشفة من البريد الوارد',
     ),
   };
   String mailActivityCounts(MailStoredFlagBatchSummary batch) {

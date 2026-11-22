@@ -213,6 +213,7 @@ final class NativeStudioMailMessageLoader
         StudioMailBulkMessageActions,
         StudioMailMembershipActions,
         StudioMailMembershipReceiptActions,
+        MailArchiveDestinationResolver,
         MailFlagObserver,
         MailMembershipObserver,
         StudioMailMailboxArchiver {
@@ -724,6 +725,66 @@ final class NativeStudioMailMessageLoader
       );
     }
     return _run((provider, lease) => provider.capabilities(lease));
+  }
+
+  @override
+  Future<MailResult<MailMailbox>> resolveArchiveDestination(
+    MailOperationLease lease,
+  ) async {
+    if (lease.account != account) {
+      return const MailFailure(MailProblem(MailProblemCode.invalidInput));
+    }
+    if (_active != null) {
+      return const MailFailure(MailProblem(MailProblemCode.unavailable));
+    }
+    final operation = _MessageOperation();
+    _active = operation;
+    try {
+      lease.checkCurrent();
+      final localLease = _session.begin(cancellation: lease.cancellation);
+      final provider = _providerFactory(
+        configuration: _configuration,
+        credentialStore: _credentials,
+        limits: limits,
+      );
+      if (provider.account != account) {
+        return const MailFailure(MailProblem(MailProblemCode.invalidInput));
+      }
+      if (provider is! MailArchiveDestinationResolver) {
+        return const MailFailure(MailProblem(MailProblemCode.unsupported));
+      }
+      localLease.checkCurrent();
+      lease.checkCurrent();
+      final result = await Future.any<MailResult<MailMailbox>>([
+        (provider as MailArchiveDestinationResolver).resolveArchiveDestination(
+          localLease,
+        ),
+        operation.cancelled.future.then(
+          (code) => MailFailure(MailProblem(code)),
+        ),
+      ]);
+      localLease.checkCurrent();
+      lease.checkCurrent();
+      if (result case MailSuccess<MailMailbox>(:final value)) {
+        if (value.id.account != account || value.isLabel) {
+          return const MailFailure(MailProblem(MailProblemCode.invalidInput));
+        }
+      }
+      return result;
+    } on MailCancelled catch (error) {
+      return MailFailure(
+        MailProblem(
+          error.reason == MailCancellationReason.user ||
+                  error.reason == MailCancellationReason.budgetExpired
+              ? MailProblemCode.cancelled
+              : MailProblemCode.staleOperation,
+        ),
+      );
+    } on Object {
+      return const MailFailure(MailProblem(MailProblemCode.providerFailure));
+    } finally {
+      if (identical(_active, operation)) _active = null;
+    }
   }
 
   @override

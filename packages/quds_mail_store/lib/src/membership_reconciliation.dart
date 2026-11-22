@@ -47,7 +47,7 @@ extension MailMembershipReconciliation on SqliteMailRepository {
       "(o.kind!='present' AND (o.mailboxes!='[]' OR o.deletion_mailbox IS NOT NULL OR o.is_deleted IS NOT NULL)) OR "
       "typeof(o.checked_at)!='integer' OR o.checked_at NOT BETWEEN 0 AND 8640000000000000 OR "
       'b.id IS NULL OR i.position IS NULL OR b.complete!=1 OR '
-      "b.action NOT IN ('move','delete') OR i.state!='uncertain' OR "
+      "b.action NOT IN ('move','delete','archive') OR i.state!='uncertain' OR "
       "(o.kind='identityChanged' AND b.provider!='imap') OR "
       'o.checked_at<b.created_at OR o.checked_at>b.updated_at)',
       [account.value],

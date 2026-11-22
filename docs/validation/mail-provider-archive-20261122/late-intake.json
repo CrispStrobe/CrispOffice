@@ -1,0 +1,2091 @@
+{
+  "observed_at": "2026-11-22T10:51:50.219Z",
+  "integrated_candidate": "8280277cd27bcc276d66b61f8073eddf37ca6e5e",
+  "integrated_tree": "7587dec4e385c015f81c62df7992af378642cfed",
+  "initial_main": "3f3cb8508663dde917e913867908dbfd6c3efcf0",
+  "incorporated_late_main": "4621326a5a452da475f219353c298d0f9b12470e",
+  "incorporated_zotero_tip": "50895a7b9670058e27d3f081626defac9ea1aebc",
+  "fork_branches": [
+    {
+      "name": "codex/mail-durable-mutations-20261122",
+      "sha": "afdcb327c650383e269a3d32f7251f68a9d766c6",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "codex/mail-identity-reconciliation-20261122",
+      "sha": "b48fa00a3f4461ae10fdf95e444baf3983d051b4",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "codex/mail-membership-recovery-20261122",
+      "sha": "bb991a98b73fb2518b2999c37e42d7da4c821fae",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "codex/word-vba-authoring-20261121",
+      "sha": "cf06b018ec125ce3b5abfda41a7fbbdcf7d30a47",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "codex/word-vba-cell-formatting-20261122",
+      "sha": "49f43824196c4d373f991e442fac2e73e68c5f9f",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "codex/word-vba-cell-text-20261122",
+      "sha": "5f6e8686f1d6ddc1f3e523238808b78ccccc5b51",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "codex/word-vba-comparison-colors-20261121",
+      "sha": "e3c4550b34a9a07de2a97b84b67ab6aecaa5a377",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "codex/word-vba-compatibility-20261121",
+      "sha": "3058d36c5354d46bde418555d59282116cce1e26",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "codex/word-vba-compatibility-20261122",
+      "sha": "934c33a57f3bed934df59a4e925ffc35fe406ee2",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "codex/word-vba-continuation-20261122",
+      "sha": "dd844f4ae1d5d4dab897fd7e49f94e25be52581a",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "codex/word-vba-extended-20261122",
+      "sha": "43df8a9f6170109589f2f6885312d5cf15068a88",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "codex/word-vba-objects-20261122",
+      "sha": "26370962b40dc761f17f5f7038a628f06d5189f8",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "codex/word-vba-range-suffix-20261122",
+      "sha": "360673e0736e98d65d6c3cacef90bf842391288d",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "codex/word-vba-string-search-20261122",
+      "sha": "4dafb6f7e7fc844d11cb7219add5a82acfed5135",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "codex/zotero-dispatch-recovery-20261121",
+      "sha": "32ef843db3a8192fe0add085e1ee173e18f4d462",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "codex/zotero-field-context-20261122",
+      "sha": "00ba542dc5b492040508a8137a80adbc9b13553d",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "codex/zotero-field-recovery-20261122",
+      "sha": "e78e98d3a07647794e4426f833782ccbddc04960",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "codex/zotero-footnote-separators-20261121",
+      "sha": "a70c0e7af251d737dc7639f44a48777bbea1bf51",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "codex/zotero-host-ownership-20261121",
+      "sha": "05cb866e6e5aaee95dae8b03da2892fcf633a84b",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "codex/zotero-main-qualification-20261121",
+      "sha": "e2a1ed6073556d24194004221c545166b17c2d4e",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "codex/zotero-native-parity-20261122",
+      "sha": "d300c76f0966d8f676b0fa38a7799f0e01cbc10d",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "codex/zotero-note-formatting-20261122",
+      "sha": "50895a7b9670058e27d3f081626defac9ea1aebc",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "codex/zotero-note-layout-20261121",
+      "sha": "2089e1e35a8ba81ea7f0a077b348f93ca70953c8",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "codex/zotero-odt-roundtrip-20261121",
+      "sha": "05072dc2d59d0fa4ea97de4d6a842700ef333fab",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "codex/zotero-parity-20261122",
+      "sha": "da36652cf1d2296b59285788035555d512b9fa31",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "codex/zotero-parity-next-20261122",
+      "sha": "98ac4254f04acdeff53ea28c9c184ecfb141e868",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "codex/zotero-select-navigation-20261122",
+      "sha": "8c1b8da71bb910d4025aa179dc56290cf1a8e72a",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "codex/zotero-shortcut-host-recovery-20261121",
+      "sha": "2168011b6104f680100b87404bc1bd409f724939",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "codex/zotero-source-continuity-20261121-2135",
+      "sha": "c4c16d91d62ded0c341bee95e98de894de70483f",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "codex/zotero-workflow-parity-20261122",
+      "sha": "69e20b56a8c919fb5d9c1b9717f7688e5ff6c55d",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "main",
+      "sha": "4621326a5a452da475f219353c298d0f9b12470e",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "work/mail-bulk-organization-20261122",
+      "sha": "a29742adf28c5779016ae939e5baf6ac3c4a302c",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "work/mail-connected-workspace-20261122",
+      "sha": "8280277cd27bcc276d66b61f8073eddf37ca6e5e",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "work/mail-folder-scoped-search-20261122",
+      "sha": "ff30d1064a052abbfbcdc99745ff66f8bc980aea",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "work/mail-folder-search-20261122",
+      "sha": "24e4b5d8a2a4e3c996e15013c5324a534c2e444f",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "work/mail-keyboard-triage-20261121",
+      "sha": "08d034d876073e2afc881dbfc11ba791acde3d67",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "work/mail-live-search-20261121",
+      "sha": "c3d55be30d91694b1a427d261cddbe47b1dd5eec",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "work/mail-parity-20261122-next",
+      "sha": "a7006171630915bbf91b6ce2ab7c4699bb79f69b",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "work/mail-range-selection-tests-20261121",
+      "sha": "5c7a385c5de40394d9eed736c5a2d975535c3df3",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "work/mail-sync-address-search-20261121",
+      "sha": "33d8f956ec2ed1dfd748e1d7ccbc5add053ff565",
+      "protected": false,
+      "ancestor_of_integrated_candidate": true
+    }
+  ],
+  "recent_prs": [
+    {
+      "number": 378,
+      "title": "feat(word): add bounded Mid substring assignments [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-22T10:40:51Z",
+      "updated_at": "2026-11-22T10:40:51Z",
+      "head_branch": "codex/word-vba-string-search-20261122",
+      "head_sha": "4dafb6f7e7fc844d11cb7219add5a82acfed5135",
+      "base_branch": "main",
+      "merge_commit_sha": "05bb203e1b74f8aff0873a6325d9ac18b83515f3",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/378"
+    },
+    {
+      "number": 377,
+      "title": "feat(zotero): import quoted research notes with active fields [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-22T10:09:32Z",
+      "updated_at": "2026-11-22T10:10:57Z",
+      "head_branch": "codex/zotero-workflow-parity-20261122",
+      "head_sha": "69e20b56a8c919fb5d9c1b9717f7688e5ff6c55d",
+      "base_branch": "main",
+      "merge_commit_sha": "3f3cb8508663dde917e913867908dbfd6c3efcf0",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/377"
+    },
+    {
+      "number": 376,
+      "title": "feat(word): add typed table navigation and named selectors [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-22T10:04:05Z",
+      "updated_at": "2026-11-22T10:04:05Z",
+      "head_branch": "codex/word-vba-objects-20261122",
+      "head_sha": "26370962b40dc761f17f5f7038a628f06d5189f8",
+      "base_branch": "main",
+      "merge_commit_sha": "1efcd62b9386da473bc5884834955ab2cdcd10a2",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/376"
+    },
+    {
+      "number": 375,
+      "title": "docs(mail): record verified merge and late intake limits [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-22T09:35:21Z",
+      "updated_at": "2026-11-22T09:35:22Z",
+      "head_branch": "work/mail-bulk-organization-20261122",
+      "head_sha": "a29742adf28c5779016ae939e5baf6ac3c4a302c",
+      "base_branch": "main",
+      "merge_commit_sha": "bbc4f82c7562e1004c59804b30a5baafcf53e4d1",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/375"
+    },
+    {
+      "number": 374,
+      "title": "feat(mail): add durable bulk organization and reconcile recent Office work [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-22T09:31:48Z",
+      "updated_at": "2026-11-22T09:31:48Z",
+      "head_branch": "work/mail-bulk-organization-20261122",
+      "head_sha": "0e1d6932a96d49c4f59a2ff718650254bb6f1217",
+      "base_branch": "main",
+      "merge_commit_sha": "5d18df8dccaed89fd42720bb63dae09ae83d90ae",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/374"
+    },
+    {
+      "number": 373,
+      "title": "Close Word macro qualification and publication record [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-22T09:06:16Z",
+      "updated_at": "2026-11-22T09:07:52Z",
+      "head_branch": "codex/word-vba-range-suffix-20261122",
+      "head_sha": "360673e0736e98d65d6c3cacef90bf842391288d",
+      "base_branch": "main",
+      "merge_commit_sha": "c691191c3ff37f52bc78b203ebb1cb554e607d12",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/373"
+    },
+    {
+      "number": 371,
+      "title": "Extend Word VBA cell-range InsertAfter and reconcile recent branches",
+      "state": "closed",
+      "merged_at": "2026-11-22T08:48:06Z",
+      "updated_at": "2026-11-22T09:06:12Z",
+      "head_branch": "codex/word-vba-range-suffix-20261122",
+      "head_sha": "d4317dcc1ecc6c7b70a1773cc121f5639ad99428",
+      "base_branch": "main",
+      "merge_commit_sha": "ad27e97263eee11dbd7b76f846bfea0a8e250499",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/371"
+    },
+    {
+      "number": 372,
+      "title": "Finalize authoritative Mail move identities and reconciliation [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-22T09:03:41Z",
+      "updated_at": "2026-11-22T09:03:41Z",
+      "head_branch": "codex/mail-identity-reconciliation-20261122",
+      "head_sha": "b48fa00a3f4461ae10fdf95e444baf3983d051b4",
+      "base_branch": "main",
+      "merge_commit_sha": "682ca74fe994eb96a8133c963ae3e5f765023c2e",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/372"
+    },
+    {
+      "number": 370,
+      "title": "Extend Word VBA integer arithmetic and reconcile recent Office work [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-22T08:48:06Z",
+      "updated_at": "2026-11-22T08:48:46Z",
+      "head_branch": "codex/word-vba-extended-20261122",
+      "head_sha": "43df8a9f6170109589f2f6885312d5cf15068a88",
+      "base_branch": "main",
+      "merge_commit_sha": "8326f191067dac1a3befab81361c5829fee9a35d",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/370"
+    },
+    {
+      "number": 369,
+      "title": "Extend Zotero unlink recovery and non-one note numbering [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-22T08:09:09Z",
+      "updated_at": "2026-11-22T08:09:09Z",
+      "head_branch": "codex/zotero-parity-next-20261122",
+      "head_sha": "98ac4254f04acdeff53ea28c9c184ecfb141e868",
+      "base_branch": "main",
+      "merge_commit_sha": "b38f2e38369855056eb9e23792f83fd1ab86ea24",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/369"
+    },
+    {
+      "number": 368,
+      "title": "Finalize Mail current-location recovery and integrated qualification [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-22T07:26:35Z",
+      "updated_at": "2026-11-22T07:26:35Z",
+      "head_branch": "codex/mail-membership-recovery-20261122",
+      "head_sha": "bb991a98b73fb2518b2999c37e42d7da4c821fae",
+      "base_branch": "main",
+      "merge_commit_sha": "b2bba1638924237435460e4238d4bd98c407fc3a",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/368"
+    },
+    {
+      "number": 367,
+      "title": "Preserve automatic Roman Zotero notes across editable ODT exchange [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-22T07:15:13Z",
+      "updated_at": "2026-11-22T07:16:03Z",
+      "head_branch": "codex/zotero-native-parity-20261122",
+      "head_sha": "d300c76f0966d8f676b0fa38a7799f0e01cbc10d",
+      "base_branch": "main",
+      "merge_commit_sha": "253c7d2861bb65ccb6b844a8c4d162dabbce9ae5",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/367"
+    },
+    {
+      "number": 366,
+      "title": "Record completed Word VBA publication and clarify evidence timing [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-22T07:08:15Z",
+      "updated_at": "2026-11-22T07:08:15Z",
+      "head_branch": "codex/word-vba-continuation-20261122",
+      "head_sha": "dd844f4ae1d5d4dab897fd7e49f94e25be52581a",
+      "base_branch": "main",
+      "merge_commit_sha": "8589e6f99baf4c2732f60a96ca68d44e6dea9935",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/366"
+    },
+    {
+      "number": 365,
+      "title": "Extend Word VBA with guarded cell prefixes and portable String constants [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-22T07:06:22Z",
+      "updated_at": "2026-11-22T07:06:22Z",
+      "head_branch": "codex/word-vba-continuation-20261122",
+      "head_sha": "6fbd992393ce94df87b095197c088c11799c391d",
+      "base_branch": "main",
+      "merge_commit_sha": "ffdf603cc71fbb9083c93db3d1b6fe47949f62e7",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/365"
+    },
+    {
+      "number": 364,
+      "title": "Finalize Zotero metadata recovery and reconciled local qualification [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-22T06:35:46Z",
+      "updated_at": "2026-11-22T06:37:01Z",
+      "head_branch": "codex/zotero-field-recovery-20261122",
+      "head_sha": "e78e98d3a07647794e4426f833782ccbddc04960",
+      "base_branch": "main",
+      "merge_commit_sha": "b13a170cdb5fd42b9a0f2c77d97c996caf5d0d7f",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/364"
+    },
+    {
+      "number": 363,
+      "title": "Add durable foreground Mail Move/Delete and reconcile recent Office work [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-22T06:26:19Z",
+      "updated_at": "2026-11-22T06:26:19Z",
+      "head_branch": "codex/mail-durable-mutations-20261122",
+      "head_sha": "afdcb327c650383e269a3d32f7251f68a9d766c6",
+      "base_branch": "main",
+      "merge_commit_sha": "ec09fdccf95eb3072b4cfe4da3608f8d9b13eb75",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/363"
+    },
+    {
+      "number": 362,
+      "title": "Extend Word VBA cell paragraph styles and shading [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-22T06:21:58Z",
+      "updated_at": "2026-11-22T06:21:58Z",
+      "head_branch": "codex/word-vba-compatibility-20261122",
+      "head_sha": "934c33a57f3bed934df59a4e925ffc35fe406ee2",
+      "base_branch": "main",
+      "merge_commit_sha": "52b1030bfc337b6c7551739dc3aefb491f720c93",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/362"
+    },
+    {
+      "number": 361,
+      "title": "Complete native Zotero selected-field context and local qualification [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-22T05:46:17Z",
+      "updated_at": "2026-11-22T05:46:17Z",
+      "head_branch": "codex/zotero-field-context-20261122",
+      "head_sha": "00ba542dc5b492040508a8137a80adbc9b13553d",
+      "base_branch": "main",
+      "merge_commit_sha": "a5b4eb7d329b0700768b1fc72bb63cf58a9f5cd6",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/361"
+    },
+    {
+      "number": 360,
+      "title": "Mail: unify retained-folder navigation and reconcile current Office work [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-22T05:32:32Z",
+      "updated_at": "2026-11-22T05:32:32Z",
+      "head_branch": "work/mail-parity-20261122-next",
+      "head_sha": "a7006171630915bbf91b6ce2ab7c4699bb79f69b",
+      "base_branch": "main",
+      "merge_commit_sha": "89ad886f155cec05492241048c787bd9434ca4fa",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/360"
+    },
+    {
+      "number": 359,
+      "title": "Extend Word VBA cell highlighting/proofing and shared Join",
+      "state": "closed",
+      "merged_at": "2026-11-22T05:21:08Z",
+      "updated_at": "2026-11-22T05:21:09Z",
+      "head_branch": "codex/word-vba-cell-text-20261122",
+      "head_sha": "5f6e8686f1d6ddc1f3e523238808b78ccccc5b51",
+      "base_branch": "main",
+      "merge_commit_sha": "191ed89b23696c5634689bb90b87119c761f0c85",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/359"
+    },
+    {
+      "number": 358,
+      "title": "Finalize Zotero writing-position parity and reconciled qualification [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-22T03:03:47Z",
+      "updated_at": "2026-11-22T03:03:48Z",
+      "head_branch": "codex/zotero-parity-20261122",
+      "head_sha": "da36652cf1d2296b59285788035555d512b9fa31",
+      "base_branch": "main",
+      "merge_commit_sha": "2eecf9aec2c7d1f979064448b911b516d3f56c73",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/358"
+    },
+    {
+      "number": 357,
+      "title": "Reconcile late Mail picker commits without changing qualified source",
+      "state": "closed",
+      "merged_at": "2026-11-22T02:56:30Z",
+      "updated_at": "2026-11-22T02:56:30Z",
+      "head_branch": "work/mail-folder-search-20261122",
+      "head_sha": "24e4b5d8a2a4e3c996e15013c5324a534c2e444f",
+      "base_branch": "main",
+      "merge_commit_sha": "171be42cf92ce875b7d5f6f3df216ff04d0204c5",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/357"
+    },
+    {
+      "number": 356,
+      "title": "Mail: recoverable saved-search folder sets and combined local qualification",
+      "state": "closed",
+      "merged_at": "2026-11-22T02:53:29Z",
+      "updated_at": "2026-11-22T02:53:29Z",
+      "head_branch": "work/mail-folder-search-20261122",
+      "head_sha": "f8b3857fca9e120be61c861baa786ff04c822ebe",
+      "base_branch": "main",
+      "merge_commit_sha": "82659acb0f617c57d4d241c91033338032b5caac",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/356"
+    },
+    {
+      "number": 355,
+      "title": "Extend Word VBA formatting for existing table cells",
+      "state": "closed",
+      "merged_at": "2026-11-22T02:39:16Z",
+      "updated_at": "2026-11-22T02:39:17Z",
+      "head_branch": "codex/word-vba-cell-formatting-20261122",
+      "head_sha": "49f43824196c4d373f991e442fac2e73e68c5f9f",
+      "base_branch": "main",
+      "merge_commit_sha": "ceddcd888c37f64e37a8d8d1669daaea31384daf",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/355"
+    },
+    {
+      "number": 354,
+      "title": "Mail: exact folder-scoped saved searches with safe local recovery",
+      "state": "closed",
+      "merged_at": "2026-11-22T02:30:49Z",
+      "updated_at": "2026-11-22T02:30:49Z",
+      "head_branch": "work/mail-folder-scoped-search-20261122",
+      "head_sha": "ff30d1064a052abbfbcdc99745ff66f8bc980aea",
+      "base_branch": "main",
+      "merge_commit_sha": "bcc55cb6e86e796056e2d75c3fdca50857dbf6e7",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/354"
+    },
+    {
+      "number": 353,
+      "title": "Extend Zotero desktop item navigation with safe source identity [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-22T01:52:43Z",
+      "updated_at": "2026-11-22T01:52:43Z",
+      "head_branch": "codex/zotero-select-navigation-20261122",
+      "head_sha": "8c1b8da71bb910d4025aa179dc56290cf1a8e72a",
+      "base_branch": "main",
+      "merge_commit_sha": "c522851d165b395a7f60422a1be969dffc39c9ff",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/353"
+    },
+    {
+      "number": 348,
+      "title": "Preserve active Zotero footnote separators through native layout and ODT [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T21:59:42Z",
+      "updated_at": "2026-11-21T22:31:44Z",
+      "head_branch": "codex/zotero-footnote-separators-20261121",
+      "head_sha": "a70c0e7af251d737dc7639f44a48777bbea1bf51",
+      "base_branch": "main",
+      "merge_commit_sha": "ad577ea82695231b5932d6b973f92b5156b1d2d6",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/348"
+    },
+    {
+      "number": 351,
+      "title": "Qualify combined Zotero separator and host-ownership main [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T22:30:54Z",
+      "updated_at": "2026-11-21T22:31:43Z",
+      "head_branch": "codex/zotero-main-qualification-20261121",
+      "head_sha": "e2a1ed6073556d24194004221c545166b17c2d4e",
+      "base_branch": "main",
+      "merge_commit_sha": "3b375e1a71a6356371611421d6c1f6d19917b40a",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/351"
+    },
+    {
+      "number": 349,
+      "title": "Mail range triage, searchable addresses and qualified parity milestone [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T22:09:39Z",
+      "updated_at": "2026-11-21T22:23:18Z",
+      "head_branch": "work/mail-keyboard-triage-20261121",
+      "head_sha": "1dd56df51f97dc86fbb1ebe22d9045aab7921d1c",
+      "base_branch": "main",
+      "merge_commit_sha": "e3c4550b34a9a07de2a97b84b67ab6aecaa5a377",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/349"
+    },
+    {
+      "number": 352,
+      "title": "Complete Mail validation evidence after concurrent integration [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T22:22:13Z",
+      "updated_at": "2026-11-21T22:22:14Z",
+      "head_branch": "work/mail-keyboard-triage-20261121",
+      "head_sha": "08d034d876073e2afc881dbfc11ba791acde3d67",
+      "base_branch": "main",
+      "merge_commit_sha": "b8a836ca647227155db45a7806c2077b82c8d4c3",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/352"
+    },
+    {
+      "number": 350,
+      "title": "Extend Word VBA comparison and font colors with integrated local qualification [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T22:09:37Z",
+      "updated_at": "2026-11-21T22:09:38Z",
+      "head_branch": "codex/word-vba-comparison-colors-20261121",
+      "head_sha": "e3c4550b34a9a07de2a97b84b67ab6aecaa5a377",
+      "base_branch": "main",
+      "merge_commit_sha": "613c0ba130c538f18670be69dd6617b6560c0760",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/350"
+    },
+    {
+      "number": 347,
+      "title": "Protect Zotero host ownership and workspace shortcuts [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T21:56:43Z",
+      "updated_at": "2026-11-21T21:56:43Z",
+      "head_branch": "codex/zotero-host-ownership-20261121",
+      "head_sha": "05cb866e6e5aaee95dae8b03da2892fcf633a84b",
+      "base_branch": "main",
+      "merge_commit_sha": "2f7f5ffc668d7f6452facb13e006e6704c93f439",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/347"
+    },
+    {
+      "number": 342,
+      "title": "Preserve Zotero research-table margins through native layout and ODT [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T21:13:23Z",
+      "updated_at": "2026-11-21T21:41:58Z",
+      "head_branch": "codex/zotero-note-layout-20261121",
+      "head_sha": "2089e1e35a8ba81ea7f0a077b348f93ca70953c8",
+      "base_branch": "main",
+      "merge_commit_sha": "9d6fc334c6df86262cc5086caa253765b1b5fe86",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/342"
+    },
+    {
+      "number": 346,
+      "title": "Extend Word VBA with guarded table-cell authoring [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T21:13:21Z",
+      "updated_at": "2026-11-21T21:13:21Z",
+      "head_branch": "codex/word-vba-compatibility-20261121",
+      "head_sha": "00833ae9d4fd04efc04522ba786aa6e5c0defde7",
+      "base_branch": "main",
+      "merge_commit_sha": "3058d36c5354d46bde418555d59282116cce1e26",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/346"
+    },
+    {
+      "number": 345,
+      "title": "Mail: refresh saved searches safely and preserve selected readers",
+      "state": "closed",
+      "merged_at": "2026-11-21T20:59:45Z",
+      "updated_at": "2026-11-21T21:00:56Z",
+      "head_branch": "work/mail-live-search-20261121",
+      "head_sha": "c3d55be30d91694b1a427d261cddbe47b1dd5eec",
+      "base_branch": "main",
+      "merge_commit_sha": "b5f6cc4135c6de2cb52bab63015cae0f1a7339ee",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/345"
+    },
+    {
+      "number": 333,
+      "title": "Preserve native Zotero round trips through LibreOffice [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T20:48:31Z",
+      "updated_at": "2026-11-21T20:52:52Z",
+      "head_branch": "codex/zotero-odt-roundtrip-20261121",
+      "head_sha": "05072dc2d59d0fa4ea97de4d6a842700ef333fab",
+      "base_branch": "main",
+      "merge_commit_sha": "ac94cb3faf840d3a8786fc9d3fb17cae07d4dcde",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/333"
+    },
+    {
+      "number": 344,
+      "title": "Add Word/Writer shortcut catalog and configurator",
+      "state": "closed",
+      "merged_at": "2026-11-21T20:41:51Z",
+      "updated_at": "2026-11-21T20:41:53Z",
+      "head_branch": "feat/configurable-shortcuts",
+      "head_sha": "1ef820d06164bafd8a2d586e10ff4248ad6bf76e",
+      "base_branch": "main",
+      "merge_commit_sha": "2fdc0883b5c84b0b5133bb2be95c23af0dbcdd9f",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/344"
+    },
+    {
+      "number": 343,
+      "title": "Extend Word VBA numeric authoring and reconcile latest Office history [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T20:29:05Z",
+      "updated_at": "2026-11-21T20:30:21Z",
+      "head_branch": "codex/word-vba-authoring-20261121",
+      "head_sha": "cf06b018ec125ce3b5abfda41a7fbbdcf7d30a47",
+      "base_branch": "main",
+      "merge_commit_sha": "e5940c79120859dbbeb99be0907f3443e696f10a",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/343"
+    },
+    {
+      "number": 338,
+      "title": "Add durable Mail Send later and Undo; reconcile latest Office branches [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T19:22:50Z",
+      "updated_at": "2026-11-21T20:15:29Z",
+      "head_branch": "work/mail-scheduled-send-20261121",
+      "head_sha": "dcceffda5377fc4cf51ed31e9ed22919f6cee5bb",
+      "base_branch": "main",
+      "merge_commit_sha": "2058a434b2bcc76e7fc7e8a449ff6ce31488eb25",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/338"
+    },
+    {
+      "number": 284,
+      "title": "Mail: repository-backed sessions and reconciled Office updates [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T06:27:29Z",
+      "updated_at": "2026-11-21T20:15:27Z",
+      "head_branch": "work/mail-repository-sessions-20261121",
+      "head_sha": "0491492d8622ad2ef09fb84e07d3dbba462f9320",
+      "base_branch": "main",
+      "merge_commit_sha": "290dfa43e3bcf410d9bf1bd8194c997c4ee613ae",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/284"
+    },
+    {
+      "number": 309,
+      "title": "Mail: add account-scoped conversation ordering in loaded mailbox views [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T11:56:45Z",
+      "updated_at": "2026-11-21T20:15:25Z",
+      "head_branch": "work/mail-parity-next-20261121",
+      "head_sha": "59866ce7c983869b16baa3f386b1f55dbb218833",
+      "base_branch": "main",
+      "merge_commit_sha": "fcb2128884768553141f41c02bf804e2267f9dbb",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/309"
+    },
+    {
+      "number": 282,
+      "title": "Mail: recover uncertain actions and reconcile incoming Office work [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T05:02:18Z",
+      "updated_at": "2026-11-21T20:15:23Z",
+      "head_branch": "work/mail-parity-20261121",
+      "head_sha": "fa59496840a36709fe3a6d867bdfe96ab99d72ab",
+      "base_branch": "main",
+      "merge_commit_sha": "ce1c37c6af1e2306d2c24231758f10ef6213f7dd",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/282"
+    },
+    {
+      "number": 298,
+      "title": "Mail: durable offline downloads and reconciled Office integration [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T09:10:28Z",
+      "updated_at": "2026-11-21T20:15:21Z",
+      "head_branch": "work/mail-offline-retention-20261121",
+      "head_sha": "9eb68b9f048d3c08274ece5d7f964f1249004485",
+      "base_branch": "main",
+      "merge_commit_sha": "c10416d39894031164be68313253db5bbb3a5ad2",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/298"
+    },
+    {
+      "number": 325,
+      "title": "Mail: add account signatures and reusable Quick Text",
+      "state": "closed",
+      "merged_at": "2026-11-21T17:20:26Z",
+      "updated_at": "2026-11-21T20:15:18Z",
+      "head_branch": "work/mail-compose-tools-20261121",
+      "head_sha": "36d65c43f8981ed7cea00589ff8272d96ea7073d",
+      "base_branch": "main",
+      "merge_commit_sha": "1078372da9213c1ef4cdd362ca2285db9acb8d7b",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/325"
+    },
+    {
+      "number": 279,
+      "title": "Persist mail flag commands and activity history",
+      "state": "closed",
+      "merged_at": "2026-11-20T23:41:47Z",
+      "updated_at": "2026-11-21T20:15:16Z",
+      "head_branch": "work/mail-command-journal-20261121",
+      "head_sha": "33ce2428ebab825a844895a767e0f9f1a4077d62",
+      "base_branch": "main",
+      "merge_commit_sha": "653a03d2d2a7c47c3e5d6d648180a4fe0ffad298",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/279"
+    },
+    {
+      "number": 314,
+      "title": "Mail: saved searches and expandable conversations [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T15:07:28Z",
+      "updated_at": "2026-11-21T20:15:14Z",
+      "head_branch": "work/mail-client-next-20261121",
+      "head_sha": "4af5a00a906a82473d653a6b11a3a6e1c88c866f",
+      "base_branch": "main",
+      "merge_commit_sha": "3397ead3752f65bb3fa0e764c5da1bc2dd0af485",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/314"
+    },
+    {
+      "number": 266,
+      "title": "docs: Mac App Store submission package (CrispOffice)",
+      "state": "closed",
+      "merged_at": "2026-11-20T19:32:24Z",
+      "updated_at": "2026-11-21T20:15:10Z",
+      "head_branch": "docs/app-store-submission-20261120",
+      "head_sha": "b08e0a55b629ac22b33c54146b56438862965022",
+      "base_branch": "main",
+      "merge_commit_sha": "f4f0da7379822d030e3549292696e76a6fd05526",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/266"
+    },
+    {
+      "number": 277,
+      "title": "Zotero: vertical research tables and reconciled Office work [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-20T23:21:39Z",
+      "updated_at": "2026-11-21T20:15:08Z",
+      "head_branch": "codex/zotero-vertical-tables-20261120",
+      "head_sha": "a7d9f37ecbaaf70544f4866d7d9e572696948184",
+      "base_branch": "main",
+      "merge_commit_sha": "383c0c0c5d3b4b1a6edccc8d09ffd1ca64029537",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/277"
+    },
+    {
+      "number": 288,
+      "title": "Implement Zotero document transfer with qualified Office reconciliation",
+      "state": "closed",
+      "merged_at": "2026-11-21T07:01:03Z",
+      "updated_at": "2026-11-21T20:15:06Z",
+      "head_branch": "codex/zotero-transfer-20261121",
+      "head_sha": "a1995c9154357e603b89947654cf95f8bcba6a83",
+      "base_branch": "main",
+      "merge_commit_sha": "17dde2e62cf3d23ae3d089e284ed3d8e1f8b2a5f",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/288"
+    },
+    {
+      "number": 340,
+      "title": "Complete Zotero native round trips and reconcile Office qualification",
+      "state": "closed",
+      "merged_at": "2026-11-21T20:05:15Z",
+      "updated_at": "2026-11-21T20:15:04Z",
+      "head_branch": "codex/zotero-roundtrip-complete-20261121",
+      "head_sha": "ac0c51d0f791e278a065ee636106aa9a4e3865fa",
+      "base_branch": "main",
+      "merge_commit_sha": "d0b155e3f2652d07015d5b1589dab2ae0a63fa2b",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/340"
+    },
+    {
+      "number": 337,
+      "title": "Reconcile Zotero inline-picture support and preserve interoperability evidence [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T19:32:02Z",
+      "updated_at": "2026-11-21T20:15:02Z",
+      "head_branch": "codex/zotero-roundtrip-20261121",
+      "head_sha": "ea62776db7eedf1b9ffc266bf02d7dda318d071b",
+      "base_branch": "main",
+      "merge_commit_sha": "28878f152d188ce8f01aac3883a4cd4966522f13",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/337"
+    },
+    {
+      "number": 293,
+      "title": "Finalize Zotero table-cell integration on reconciled Office main [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T08:16:37Z",
+      "updated_at": "2026-11-21T20:15:00Z",
+      "head_branch": "codex/zotero-parity-20261121-next",
+      "head_sha": "d4470bab1095593739ddf87fdb9f249bbc948b65",
+      "base_branch": "main",
+      "merge_commit_sha": "4090feb56f308cd3657c5edd1d045ff1197ff79b",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/293"
+    },
+    {
+      "number": 323,
+      "title": "Support native ODT merged tables with Zotero ownership [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T17:08:14Z",
+      "updated_at": "2026-11-21T20:14:58Z",
+      "head_branch": "codex/zotero-parity-20261121-evening",
+      "head_sha": "1c20b4b7e1208a51dfcf6a65d8a94289ac438e4e",
+      "base_branch": "main",
+      "merge_commit_sha": "3dbaa8429b14ac43721e165b4d50d3f6d2845309",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/323"
+    },
+    {
+      "number": 296,
+      "title": "Zotero: qualify nested research tables and reconcile Office updates [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T09:31:18Z",
+      "updated_at": "2026-11-21T20:14:56Z",
+      "head_branch": "codex/zotero-parity-20261121-continuation",
+      "head_sha": "9942eb76f0ac818e464ad1b3bcec2cc4513d3e3f",
+      "base_branch": "main",
+      "merge_commit_sha": "1ef5f7f88705e05bb2ebd2f5b639460dab52c3d0",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/296"
+    },
+    {
+      "number": 316,
+      "title": "Qualify LibreOffice ODT styles for editable Zotero documents [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T15:33:22Z",
+      "updated_at": "2026-11-21T20:14:14Z",
+      "head_branch": "codex/zotero-libreoffice-styles-20261121",
+      "head_sha": "b6c8eb26e219d1f7607fe943b3c91e9bfc4feb55",
+      "base_branch": "main",
+      "merge_commit_sha": "08fe271f945dfc915dc817febb756ca111baed73",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/316"
+    },
+    {
+      "number": 310,
+      "title": "Complete native ODT Zotero import and local qualification",
+      "state": "closed",
+      "merged_at": "2026-11-21T12:39:25Z",
+      "updated_at": "2026-11-21T20:14:14Z",
+      "head_branch": "codex/zotero-parity-2026-11-21",
+      "head_sha": "a91dcea1e07181457c07bedde57bf0119002b627",
+      "base_branch": "main",
+      "merge_commit_sha": "01517de8886ef7bd24947894be5dc823d0328869",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/310"
+    },
+    {
+      "number": 303,
+      "title": "Add native ODT Zotero inventory and qualify recent integrations [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T10:48:36Z",
+      "updated_at": "2026-11-21T20:14:14Z",
+      "head_branch": "codex/zotero-odt-inventory-20261121",
+      "head_sha": "fb386d6e42a2336f1431e38bf6d713552edd0978",
+      "base_branch": "main",
+      "merge_commit_sha": "0214f49a2e9e5d7b459be90b6ebd948d262c6dd6",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/303"
+    },
+    {
+      "number": 299,
+      "title": "Zotero: preserve ODT input contract and outstanding intake (execution blocked) [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T10:00:26Z",
+      "updated_at": "2026-11-21T20:14:14Z",
+      "head_branch": "codex/zotero-native-odt-20261121",
+      "head_sha": "d9bfa44022781f0dd4493a923ca9f20316dc59f0",
+      "base_branch": "main",
+      "merge_commit_sha": "575e671de665dc918886285dab2e3628f4309965",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/299"
+    },
+    {
+      "number": 283,
+      "title": "Complete Zotero paragraph-range integration and local qualification [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T05:20:52Z",
+      "updated_at": "2026-11-21T20:14:14Z",
+      "head_branch": "codex/zotero-multiparagraph-20261121",
+      "head_sha": "589ccd33243eabe57ce3074c92112e1fdf1325f1",
+      "base_branch": "main",
+      "merge_commit_sha": "84046975f286407e3c62e5e5352bc16bc89c0d26",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/283"
+    },
+    {
+      "number": 336,
+      "title": "Extend Word VBA Font.Position and preserve integrated rendering",
+      "state": "closed",
+      "merged_at": "2026-11-21T19:50:38Z",
+      "updated_at": "2026-11-21T20:14:13Z",
+      "head_branch": "codex/word-vba-typography-20261121",
+      "head_sha": "3b64f289f8b732c2a2767f5fc8d9ae63f7f21131",
+      "base_branch": "main",
+      "merge_commit_sha": "aa861c28e336b17bcd4c259351164380cd6b1438",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/336"
+    },
+    {
+      "number": 329,
+      "title": "Complete Word VBA paragraph style assignment and integration qualification [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T17:55:48Z",
+      "updated_at": "2026-11-21T20:14:13Z",
+      "head_branch": "codex/word-vba-styles-complete-20261121",
+      "head_sha": "f086214c9e99bca547957d8ba9f6ee3ab15321dc",
+      "base_branch": "main",
+      "merge_commit_sha": "4760902b654e3af5e4d3f0a83d28ac65a387c8f8",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/329"
+    },
+    {
+      "number": 326,
+      "title": "Preserve editable Zotero fields in native ODT exports [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T17:37:59Z",
+      "updated_at": "2026-11-21T20:14:13Z",
+      "head_branch": "codex/zotero-editable-odt-20261121",
+      "head_sha": "b699f88501a10818e0f71bfd9c53cde53866cdf6",
+      "base_branch": "main",
+      "merge_commit_sha": "c7380f53a55b47a5b7672eb3f7afee32d92def6e",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/326"
+    },
+    {
+      "number": 305,
+      "title": "Preserve late performance qualification record [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T11:16:55Z",
+      "updated_at": "2026-11-21T20:14:13Z",
+      "head_branch": "work/mail-unified-cache-20261121",
+      "head_sha": "93404525ef245df6a98654710e352e78f85a987c",
+      "base_branch": "main",
+      "merge_commit_sha": "2f90a0c8f21499d5a1113943971cb7379183885c",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/305"
+    },
+    {
+      "number": 301,
+      "title": "Extend VBA text search, replacement and trimming [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T10:17:39Z",
+      "updated_at": "2026-11-21T20:14:13Z",
+      "head_branch": "codex/word-vba-text-intrinsics-20261121",
+      "head_sha": "4357f196507ca38a2f51409a981b8621d419b6d9",
+      "base_branch": "main",
+      "merge_commit_sha": "64ebfc1bbc1daf9d3e9fc8a03ff8bf95f9973e04",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/301"
+    },
+    {
+      "number": 300,
+      "title": "Mail: Boolean header search and reviewed recent-work integration [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T10:00:24Z",
+      "updated_at": "2026-11-21T20:14:13Z",
+      "head_branch": "work/mail-triage-20261121",
+      "head_sha": "575e671de665dc918886285dab2e3628f4309965",
+      "base_branch": "main",
+      "merge_commit_sha": "f50c4f23392ccb0ac9f486541ffae6a65a691b99",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/300"
+    },
+    {
+      "number": 297,
+      "title": "Extend Word VBA proofing controls and reconcile recent Office work [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T08:55:20Z",
+      "updated_at": "2026-11-21T20:14:12Z",
+      "head_branch": "codex/word-vba-paragraph-flow-20261121",
+      "head_sha": "13fa9ad5b9d140f1d7c085e46b4d0ce395000c49",
+      "base_branch": "main",
+      "merge_commit_sha": "f92c0d24f0513c5e13e61ae58507c36e9cf4f1c1",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/297"
+    },
+    {
+      "number": 286,
+      "title": "Extend Word VBA section controls and reconcile Office updates [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T06:20:22Z",
+      "updated_at": "2026-11-21T20:14:12Z",
+      "head_branch": "codex/word-vba-sections-20261121",
+      "head_sha": "49665e51f9eacefc180748c3d0ed7851ef5da5d1",
+      "base_branch": "main",
+      "merge_commit_sha": "e1ebcb0cd65716a2a78d2ea1114d9ee37a3017ec",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/286"
+    },
+    {
+      "number": 281,
+      "title": "Extend Word VBA with section PageSetup and reconcile recent work",
+      "state": "closed",
+      "merged_at": "2026-11-21T04:47:41Z",
+      "updated_at": "2026-11-21T20:14:12Z",
+      "head_branch": "codex/word-vba-paragraph-pagination-20261121",
+      "head_sha": "1581229f0e5aea24b5242c33a1e92f02d70b4c7e",
+      "base_branch": "main",
+      "merge_commit_sha": "3d01815908aeded5862d131109341365de637242",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/281"
+    },
+    {
+      "number": 334,
+      "title": "Extend Word VBA with paragraph shading and Unicode text construction",
+      "state": "closed",
+      "merged_at": "2026-11-21T18:57:33Z",
+      "updated_at": "2026-11-21T20:14:11Z",
+      "head_branch": "codex/word-vba-format-controls-20261121",
+      "head_sha": "26748a56f9597d3198c7652c26eade6a97da7c2f",
+      "base_branch": "main",
+      "merge_commit_sha": "5c59a062e86e24d043ba06cfe8f0a69074c44f62",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/334"
+    },
+    {
+      "number": 322,
+      "title": "Complete and reconcile Word VBA style compatibility [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T18:08:17Z",
+      "updated_at": "2026-11-21T20:14:11Z",
+      "head_branch": "codex/word-vba-extensions-20261121",
+      "head_sha": "03cdfc9be130ccca0a72db1b2d761917e2e090f7",
+      "base_branch": "main",
+      "merge_commit_sha": "ae3738ed2d338351ed28f273e577df29264e7180",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/322"
+    },
+    {
+      "number": 311,
+      "title": "Extend Word VBA AllCaps with native rendering and source preservation [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T14:59:02Z",
+      "updated_at": "2026-11-21T20:14:11Z",
+      "head_branch": "codex/word-vba-formatting-20261121",
+      "head_sha": "700ca3da8c6db0d837bbbefc374a7a7f17f8626e",
+      "base_branch": "main",
+      "merge_commit_sha": "49adcd6b693712b9e82f9fdefd2fdf09d0db4ee2",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/311"
+    },
+    {
+      "number": 308,
+      "title": "Extend Word VBA language/font controls and reconcile ODT intake [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T12:30:04Z",
+      "updated_at": "2026-11-21T20:14:11Z",
+      "head_branch": "codex/word-vba-language-controls-20261121",
+      "head_sha": "46f20b19193e474bed772fe99b0f602a50fa54db",
+      "base_branch": "main",
+      "merge_commit_sha": "d572de0bcfb9d1a033fd16f073db439e869057e6",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/308"
+    },
+    {
+      "number": 292,
+      "title": "Complete Word VBA header/footer compatibility and preservation guards",
+      "state": "closed",
+      "merged_at": "2026-11-21T07:54:39Z",
+      "updated_at": "2026-11-21T20:14:11Z",
+      "head_branch": "codex/word-vba-compatibility-20261121",
+      "head_sha": "38b07e58b7c0e2a5b04a823a7251805cea60fb77",
+      "base_branch": "main",
+      "merge_commit_sha": "9f23cbd2be72c527829b3990f22b356e5237ed96",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/292"
+    },
+    {
+      "number": 341,
+      "title": "Cache paragraph indices and frame owners per page",
+      "state": "closed",
+      "merged_at": "2026-11-21T20:13:25Z",
+      "updated_at": "2026-11-21T20:13:27Z",
+      "head_branch": "perf/paragraph-frame-cache",
+      "head_sha": "d7e2a206d5d2a52ced5b6ad0a71134b27258fa37",
+      "base_branch": "main",
+      "merge_commit_sha": "511df2a0b5dac893c31a646f8a2a822abcdfd7aa",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/341"
+    },
+    {
+      "number": 339,
+      "title": "Cache the page text layer and paint dynamic overlays separately",
+      "state": "closed",
+      "merged_at": "2026-11-21T19:34:13Z",
+      "updated_at": "2026-11-21T19:34:15Z",
+      "head_branch": "perf/page-text-layer",
+      "head_sha": "c7273ad41a4270f25488518b4dc27893a18507c2",
+      "base_branch": "main",
+      "merge_commit_sha": "28a1272ea82d09b078b2bad6b56aee7d908ede87",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/339"
+    },
+    {
+      "number": 335,
+      "title": "Cache proofing waves and selection bands across repaints",
+      "state": "closed",
+      "merged_at": "2026-11-21T19:14:36Z",
+      "updated_at": "2026-11-21T19:14:38Z",
+      "head_branch": "perf/proofing-selection-path-cache",
+      "head_sha": "d7c44360304f9f2bb96e021d36da4db4906b4307",
+      "base_branch": "main",
+      "merge_commit_sha": "a97295f9734eca570392dfead123bebcc93747cd",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/335"
+    },
+    {
+      "number": 332,
+      "title": "Throttle the Word status detail while typing",
+      "state": "closed",
+      "merged_at": "2026-11-21T18:31:42Z",
+      "updated_at": "2026-11-21T18:31:44Z",
+      "head_branch": "perf/status-throttle",
+      "head_sha": "a2373a577181510899381ab3a294205e76e31597",
+      "base_branch": "main",
+      "merge_commit_sha": "8246255f68550425f2fe1757966a83b2b11af79e",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/332"
+    },
+    {
+      "number": 331,
+      "title": "Record typing performance roadmap measurements",
+      "state": "closed",
+      "merged_at": "2026-11-21T18:11:54Z",
+      "updated_at": "2026-11-21T18:11:56Z",
+      "head_branch": "docs/typing-roadmap-update",
+      "head_sha": "947781484a006ec33f39b3cec83ea8ae2897505b",
+      "base_branch": "main",
+      "merge_commit_sha": "c85e9ee773535d9d4e89d6679f1b314e03994fb0",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/331"
+    },
+    {
+      "number": 330,
+      "title": "Cache laid-out text painters across Word repaints",
+      "state": "closed",
+      "merged_at": "2026-11-21T18:11:07Z",
+      "updated_at": "2026-11-21T18:11:09Z",
+      "head_branch": "perf/text-painter-cache",
+      "head_sha": "b8e788b74af7694fb596ef14f1ec6837beb7fb03",
+      "base_branch": "main",
+      "merge_commit_sha": "9ef26f12ff48c80bb40d875262ef1854cc9ce16d",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/330"
+    },
+    {
+      "number": 328,
+      "title": "Skip proofing observation during active IME composition",
+      "state": "closed",
+      "merged_at": "2026-11-21T17:46:54Z",
+      "updated_at": "2026-11-21T17:46:57Z",
+      "head_branch": "fix/ime-proofing-gate-20261121",
+      "head_sha": "ebd3c09740418084d61dde51d30adf2502a1f6af",
+      "base_branch": "main",
+      "merge_commit_sha": "0172df91adeb4a1abb2f43346621e10999937572",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/328"
+    },
+    {
+      "number": 327,
+      "title": "Add Word autocorrect and adaptive trailing proofing",
+      "state": "closed",
+      "merged_at": "2026-11-21T17:45:06Z",
+      "updated_at": "2026-11-21T17:45:09Z",
+      "head_branch": "feat/word-autocorrect-adaptive-proofing",
+      "head_sha": "b57ad955311c67cbb8cd72ac41f0415e274fdfc7",
+      "base_branch": "main",
+      "merge_commit_sha": "39edc21d79d96a19083732090227b28c8d3689e7",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/327"
+    },
+    {
+      "number": 324,
+      "title": "Show restore progress instead of the login form while saved Mail loads",
+      "state": "closed",
+      "merged_at": "2026-11-21T17:18:27Z",
+      "updated_at": "2026-11-21T17:18:29Z",
+      "head_branch": "fix/mail-restore-view-20261121",
+      "head_sha": "e05056dcbe3260b77916dd9255664a8c62e98bf0",
+      "base_branch": "main",
+      "merge_commit_sha": "50aeb50765b2ce4c586df19755fcae8f31481921",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/324"
+    },
+    {
+      "number": 321,
+      "title": "Cache the Mail pane across workspace app switches",
+      "state": "closed",
+      "merged_at": "2026-11-21T16:52:35Z",
+      "updated_at": "2026-11-21T16:52:37Z",
+      "head_branch": "fix/cache-mail-pane-20261121",
+      "head_sha": "f4061383ce16700e7780842bf1d3bd5108de4b57",
+      "base_branch": "main",
+      "merge_commit_sha": "115f1c20131bf0157d047dfe2e9d704ddffb22a2",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/321"
+    },
+    {
+      "number": 320,
+      "title": "editor: update Linux word_selection goldens (table cell padding)",
+      "state": "closed",
+      "merged_at": "2026-11-21T16:26:11Z",
+      "updated_at": "2026-11-21T16:26:17Z",
+      "head_branch": "fix/linux-word-selection-goldens-20261121",
+      "head_sha": "198b822eeab12b5641ac20290ce74d31c46691f4",
+      "base_branch": "main",
+      "merge_commit_sha": "c42bd75778a696fe3f1ea538c1460c9244c8b742",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/320"
+    },
+    {
+      "number": 319,
+      "title": "Add Word VBA TextColumns and preserve XML namespace scopes [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T16:06:25Z",
+      "updated_at": "2026-11-21T16:06:25Z",
+      "head_branch": "codex/word-vba-next-20261121",
+      "head_sha": "3684d3193c6d15f02954b32b2f300afcab553304",
+      "base_branch": "main",
+      "merge_commit_sha": "ed01289aaae398d5731c186db2eb08da9bc2216b",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/319"
+    },
+    {
+      "number": 318,
+      "title": "Studio About shows the bundle version; fix native-slides fidelity oracle",
+      "state": "closed",
+      "merged_at": "2026-11-21T15:57:11Z",
+      "updated_at": "2026-11-21T15:57:20Z",
+      "head_branch": "fix/goldens-about-20261121",
+      "head_sha": "a2ca0f86bcf3237c6c63e75e773d97e4da019480",
+      "base_branch": "main",
+      "merge_commit_sha": "d4a1f2274e3e0147628f4daa1d937faac5ff81ce",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/318"
+    },
+    {
+      "number": 317,
+      "title": "Studio Mail tests: follow the current Mail UI (stable account ids, plain-first reader, compact list, probes)",
+      "state": "closed",
+      "merged_at": "2026-11-21T15:41:15Z",
+      "updated_at": "2026-11-21T15:41:24Z",
+      "head_branch": "fix/studio-mail-tests-20261121",
+      "head_sha": "7934a34c795327aa23d891048f068a230eac623c",
+      "base_branch": "main",
+      "merge_commit_sha": "f3a0a64a8ea2995221e262d65950283a6049dfb4",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/317"
+    },
+    {
+      "number": 315,
+      "title": "Fix German proofing suite pollution, add German review strings, fix macOS editor tests and goldens",
+      "state": "closed",
+      "merged_at": "2026-11-21T15:19:30Z",
+      "updated_at": "2026-11-21T15:19:43Z",
+      "head_branch": "fix/de-proofing-l10n-20261121",
+      "head_sha": "5e2aee335c35bd3c49d46601dfc751e75b2eb044",
+      "base_branch": "main",
+      "merge_commit_sha": "089d11cd073520208f27a09b2914d57615cef7ff",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/315"
+    },
+    {
+      "number": 313,
+      "title": "docs: App Store support and privacy URLs",
+      "state": "closed",
+      "merged_at": "2026-11-21T14:44:29Z",
+      "updated_at": "2026-11-21T14:44:32Z",
+      "head_branch": "docs/app-store-urls-20261121",
+      "head_sha": "160700603a4b2a3f0ea3fcb2e688f07f99ad0a90",
+      "base_branch": "main",
+      "merge_commit_sha": "3f6b9a2b9209693aa32bbad402bb7d093cf8b4db",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/313"
+    },
+    {
+      "number": 312,
+      "title": "Studio About: link the CrispOffice privacy policy",
+      "state": "closed",
+      "merged_at": "2026-11-21T14:44:04Z",
+      "updated_at": "2026-11-21T14:44:10Z",
+      "head_branch": "feat/about-privacy-link-20261121",
+      "head_sha": "139ce7ef1f6f8bf8545c75ce7b13e3322361f173",
+      "base_branch": "main",
+      "merge_commit_sha": "29f00ddcf39712398292208586174096d857654e",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/312"
+    },
+    {
+      "number": 307,
+      "title": "Probe the data-protection keychain write path before selecting it",
+      "state": "closed",
+      "merged_at": "2026-11-21T11:54:50Z",
+      "updated_at": "2026-11-21T11:54:52Z",
+      "head_branch": "fix/system-keychain-write-probe-20261121",
+      "head_sha": "3307415dcc0d059cce960b3bce7a5279c7230859",
+      "base_branch": "main",
+      "merge_commit_sha": "dd9e63995c76683a01d4a10ac57a3de5cffd8c69",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/307"
+    },
+    {
+      "number": 306,
+      "title": "Prefer clean mail bodies and compact loaded-message controls",
+      "state": "closed",
+      "merged_at": "2026-11-21T11:52:53Z",
+      "updated_at": "2026-11-21T11:52:56Z",
+      "head_branch": "fix/mail-compact-reader-20261121",
+      "head_sha": "ca5be88293949b49942bdc3c45338243d5416e8b",
+      "base_branch": "main",
+      "merge_commit_sha": "995947e35f76bbb34dc16169b7352872631d092f",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/306"
+    },
+    {
+      "number": 304,
+      "title": "Add unified cached-mail search and harden vault recovery [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-21T11:12:49Z",
+      "updated_at": "2026-11-21T11:12:50Z",
+      "head_branch": "work/mail-unified-cache-20261121",
+      "head_sha": "b6e140263adb3f79a28096a331077a60811b4016",
+      "base_branch": "main",
+      "merge_commit_sha": "33733fa1e173720afd22f078208b4bf9026ba17e",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/304"
+    },
+    {
+      "number": 302,
+      "title": "Unlock the encrypted credential vault with Touch ID (macOS)",
+      "state": "closed",
+      "merged_at": "2026-11-21T11:09:57Z",
+      "updated_at": "2026-11-21T11:10:00Z",
+      "head_branch": "feat/touchid-vault-unlock-20261121",
+      "head_sha": "38b0dae033e50bd6409ad3a4930b083fb8b5b7c5",
+      "base_branch": "main",
+      "merge_commit_sha": "a85e5cc3f6d6acf9cb939f13081945d3ec085550",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/302"
+    },
+    {
+      "number": 264,
+      "title": "Make main CI green again",
+      "state": "closed",
+      "merged_at": "2026-11-20T20:01:23Z",
+      "updated_at": "2026-11-21T11:03:37Z",
+      "head_branch": "fix/main-green-20261120",
+      "head_sha": "1e723bd4bc96e07b1b790daf9b82897a846c6096",
+      "base_branch": "main",
+      "merge_commit_sha": "c954d00d2fc85604ae394674bca91ea8a1dede0e",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/264"
+    },
+    {
+      "number": 270,
+      "title": "Mail: structured header search and stable mailbox sorting",
+      "state": "closed",
+      "merged_at": "2026-11-20T19:32:22Z",
+      "updated_at": "2026-11-21T09:54:18Z",
+      "head_branch": "work/mail-parity-20261120",
+      "head_sha": "540eb7a41554620e1405807ac1db9dc38bd62148",
+      "base_branch": "main",
+      "merge_commit_sha": "0ff83fd3647096477a701430d372904ee5b0cdd7",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/270"
+    },
+    {
+      "number": 254,
+      "title": "Mail: review, export and safely edit durable Outbox messages [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-20T15:59:21Z",
+      "updated_at": "2026-11-21T09:54:18Z",
+      "head_branch": "work/mail-outbox-management-20261120",
+      "head_sha": "79e11935e16ea1d2fa576ead0712c83f22e15c28",
+      "base_branch": "main",
+      "merge_commit_sha": "79e11935e16ea1d2fa576ead0712c83f22e15c28",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/254"
+    },
+    {
+      "number": 250,
+      "title": "Mail: durable foreground Outbox with explicit recovery [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-20T13:32:06Z",
+      "updated_at": "2026-11-21T09:54:18Z",
+      "head_branch": "work/mail-outbox-20261120",
+      "head_sha": "9443612b024114c424ba2f8146e04050d6e049b0",
+      "base_branch": "main",
+      "merge_commit_sha": "13be50464d1b43e9f2100fb9ccc12f8fe22eb55e",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/250"
+    },
+    {
+      "number": 275,
+      "title": "Mail: guarded bulk read/flag actions and complete main reconciliation",
+      "state": "closed",
+      "merged_at": "2026-11-20T22:26:51Z",
+      "updated_at": "2026-11-21T09:54:17Z",
+      "head_branch": "work/mail-bulk-flags-20261120",
+      "head_sha": "bf0effdcc8f690972d762c5b53079e8847a5e65e",
+      "base_branch": "main",
+      "merge_commit_sha": "f67c18574176d34f48ddab14918aee5a787c3843",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/275"
+    },
+    {
+      "number": 273,
+      "title": "Mail: foreground bulk read and flag actions [skip ci]",
+      "state": "closed",
+      "merged_at": "2026-11-20T21:59:51Z",
+      "updated_at": "2026-11-21T09:54:17Z",
+      "head_branch": "work/mail-bulk-actions-20261120",
+      "head_sha": "1584a2da8b23128c113d95c3b05b6a12d2d3861e",
+      "base_branch": "main",
+      "merge_commit_sha": "0a2afc41bae4e719b77657a7e2d8d3e7ec02849b",
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/273"
+    }
+  ],
+  "open_prs": [],
+  "upstream_branches": [
+    {
+      "name": "ci/flutter-workspace",
+      "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98",
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "cursor/class-certificates-2db8",
+      "sha": "f45099688e7a3f67a1302efdb442830d052f2240",
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "cursor/cloud-agent-1790580069020-0rk1h",
+      "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21",
+      "ancestor_of_integrated_candidate": true
+    },
+    {
+      "name": "main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "ancestor_of_integrated_candidate": true
+    }
+  ],
+  "upstream_open_prs": [],
+  "scope": "All fetched branch tips are checked for ancestry; recent PR inspection is bounded to the 100 most recently updated records. Read-only intake; GitHub Actions not awaited.",
+  "all_observed_branch_tips_integrated": true,
+  "recent_pr_head_ancestry": [
+    {
+      "number": 378,
+      "head_sha": "4dafb6f7e7fc844d11cb7219add5a82acfed5135",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 377,
+      "head_sha": "69e20b56a8c919fb5d9c1b9717f7688e5ff6c55d",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 376,
+      "head_sha": "26370962b40dc761f17f5f7038a628f06d5189f8",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 375,
+      "head_sha": "a29742adf28c5779016ae939e5baf6ac3c4a302c",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 374,
+      "head_sha": "0e1d6932a96d49c4f59a2ff718650254bb6f1217",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 373,
+      "head_sha": "360673e0736e98d65d6c3cacef90bf842391288d",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 371,
+      "head_sha": "d4317dcc1ecc6c7b70a1773cc121f5639ad99428",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 372,
+      "head_sha": "b48fa00a3f4461ae10fdf95e444baf3983d051b4",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 370,
+      "head_sha": "43df8a9f6170109589f2f6885312d5cf15068a88",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 369,
+      "head_sha": "98ac4254f04acdeff53ea28c9c184ecfb141e868",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 368,
+      "head_sha": "bb991a98b73fb2518b2999c37e42d7da4c821fae",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 367,
+      "head_sha": "d300c76f0966d8f676b0fa38a7799f0e01cbc10d",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 366,
+      "head_sha": "dd844f4ae1d5d4dab897fd7e49f94e25be52581a",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 365,
+      "head_sha": "6fbd992393ce94df87b095197c088c11799c391d",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 364,
+      "head_sha": "e78e98d3a07647794e4426f833782ccbddc04960",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 363,
+      "head_sha": "afdcb327c650383e269a3d32f7251f68a9d766c6",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 362,
+      "head_sha": "934c33a57f3bed934df59a4e925ffc35fe406ee2",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 361,
+      "head_sha": "00ba542dc5b492040508a8137a80adbc9b13553d",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 360,
+      "head_sha": "a7006171630915bbf91b6ce2ab7c4699bb79f69b",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 359,
+      "head_sha": "5f6e8686f1d6ddc1f3e523238808b78ccccc5b51",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 358,
+      "head_sha": "da36652cf1d2296b59285788035555d512b9fa31",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 357,
+      "head_sha": "24e4b5d8a2a4e3c996e15013c5324a534c2e444f",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 356,
+      "head_sha": "f8b3857fca9e120be61c861baa786ff04c822ebe",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 355,
+      "head_sha": "49f43824196c4d373f991e442fac2e73e68c5f9f",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 354,
+      "head_sha": "ff30d1064a052abbfbcdc99745ff66f8bc980aea",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 353,
+      "head_sha": "8c1b8da71bb910d4025aa179dc56290cf1a8e72a",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 348,
+      "head_sha": "a70c0e7af251d737dc7639f44a48777bbea1bf51",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 351,
+      "head_sha": "e2a1ed6073556d24194004221c545166b17c2d4e",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 349,
+      "head_sha": "1dd56df51f97dc86fbb1ebe22d9045aab7921d1c",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 352,
+      "head_sha": "08d034d876073e2afc881dbfc11ba791acde3d67",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 350,
+      "head_sha": "e3c4550b34a9a07de2a97b84b67ab6aecaa5a377",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 347,
+      "head_sha": "05cb866e6e5aaee95dae8b03da2892fcf633a84b",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 342,
+      "head_sha": "2089e1e35a8ba81ea7f0a077b348f93ca70953c8",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 346,
+      "head_sha": "00833ae9d4fd04efc04522ba786aa6e5c0defde7",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 345,
+      "head_sha": "c3d55be30d91694b1a427d261cddbe47b1dd5eec",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 333,
+      "head_sha": "05072dc2d59d0fa4ea97de4d6a842700ef333fab",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 344,
+      "head_sha": "1ef820d06164bafd8a2d586e10ff4248ad6bf76e",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 343,
+      "head_sha": "cf06b018ec125ce3b5abfda41a7fbbdcf7d30a47",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 338,
+      "head_sha": "dcceffda5377fc4cf51ed31e9ed22919f6cee5bb",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 284,
+      "head_sha": "0491492d8622ad2ef09fb84e07d3dbba462f9320",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 309,
+      "head_sha": "59866ce7c983869b16baa3f386b1f55dbb218833",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 282,
+      "head_sha": "fa59496840a36709fe3a6d867bdfe96ab99d72ab",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 298,
+      "head_sha": "9eb68b9f048d3c08274ece5d7f964f1249004485",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 325,
+      "head_sha": "36d65c43f8981ed7cea00589ff8272d96ea7073d",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 279,
+      "head_sha": "33ce2428ebab825a844895a767e0f9f1a4077d62",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 314,
+      "head_sha": "4af5a00a906a82473d653a6b11a3a6e1c88c866f",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 266,
+      "head_sha": "b08e0a55b629ac22b33c54146b56438862965022",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 277,
+      "head_sha": "a7d9f37ecbaaf70544f4866d7d9e572696948184",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 288,
+      "head_sha": "a1995c9154357e603b89947654cf95f8bcba6a83",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 340,
+      "head_sha": "ac0c51d0f791e278a065ee636106aa9a4e3865fa",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 337,
+      "head_sha": "ea62776db7eedf1b9ffc266bf02d7dda318d071b",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 293,
+      "head_sha": "d4470bab1095593739ddf87fdb9f249bbc948b65",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 323,
+      "head_sha": "1c20b4b7e1208a51dfcf6a65d8a94289ac438e4e",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 296,
+      "head_sha": "9942eb76f0ac818e464ad1b3bcec2cc4513d3e3f",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 316,
+      "head_sha": "b6c8eb26e219d1f7607fe943b3c91e9bfc4feb55",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 310,
+      "head_sha": "a91dcea1e07181457c07bedde57bf0119002b627",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 303,
+      "head_sha": "fb386d6e42a2336f1431e38bf6d713552edd0978",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 299,
+      "head_sha": "d9bfa44022781f0dd4493a923ca9f20316dc59f0",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 283,
+      "head_sha": "589ccd33243eabe57ce3074c92112e1fdf1325f1",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 336,
+      "head_sha": "3b64f289f8b732c2a2767f5fc8d9ae63f7f21131",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 329,
+      "head_sha": "f086214c9e99bca547957d8ba9f6ee3ab15321dc",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 326,
+      "head_sha": "b699f88501a10818e0f71bfd9c53cde53866cdf6",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 305,
+      "head_sha": "93404525ef245df6a98654710e352e78f85a987c",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 301,
+      "head_sha": "4357f196507ca38a2f51409a981b8621d419b6d9",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 300,
+      "head_sha": "575e671de665dc918886285dab2e3628f4309965",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 297,
+      "head_sha": "13fa9ad5b9d140f1d7c085e46b4d0ce395000c49",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 286,
+      "head_sha": "49665e51f9eacefc180748c3d0ed7851ef5da5d1",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 281,
+      "head_sha": "1581229f0e5aea24b5242c33a1e92f02d70b4c7e",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 334,
+      "head_sha": "26748a56f9597d3198c7652c26eade6a97da7c2f",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 322,
+      "head_sha": "03cdfc9be130ccca0a72db1b2d761917e2e090f7",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 311,
+      "head_sha": "700ca3da8c6db0d837bbbefc374a7a7f17f8626e",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 308,
+      "head_sha": "46f20b19193e474bed772fe99b0f602a50fa54db",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 292,
+      "head_sha": "38b07e58b7c0e2a5b04a823a7251805cea60fb77",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 341,
+      "head_sha": "d7e2a206d5d2a52ced5b6ad0a71134b27258fa37",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 339,
+      "head_sha": "c7273ad41a4270f25488518b4dc27893a18507c2",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 335,
+      "head_sha": "d7c44360304f9f2bb96e021d36da4db4906b4307",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 332,
+      "head_sha": "a2373a577181510899381ab3a294205e76e31597",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 331,
+      "head_sha": "947781484a006ec33f39b3cec83ea8ae2897505b",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 330,
+      "head_sha": "b8e788b74af7694fb596ef14f1ec6837beb7fb03",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 328,
+      "head_sha": "ebd3c09740418084d61dde51d30adf2502a1f6af",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 327,
+      "head_sha": "b57ad955311c67cbb8cd72ac41f0415e274fdfc7",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 324,
+      "head_sha": "e05056dcbe3260b77916dd9255664a8c62e98bf0",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 321,
+      "head_sha": "f4061383ce16700e7780842bf1d3bd5108de4b57",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 320,
+      "head_sha": "198b822eeab12b5641ac20290ce74d31c46691f4",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 319,
+      "head_sha": "3684d3193c6d15f02954b32b2f300afcab553304",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 318,
+      "head_sha": "a2ca0f86bcf3237c6c63e75e773d97e4da019480",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 317,
+      "head_sha": "7934a34c795327aa23d891048f068a230eac623c",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 315,
+      "head_sha": "5e2aee335c35bd3c49d46601dfc751e75b2eb044",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 313,
+      "head_sha": "160700603a4b2a3f0ea3fcb2e688f07f99ad0a90",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 312,
+      "head_sha": "139ce7ef1f6f8bf8545c75ce7b13e3322361f173",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 307,
+      "head_sha": "3307415dcc0d059cce960b3bce7a5279c7230859",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 306,
+      "head_sha": "ca5be88293949b49942bdc3c45338243d5416e8b",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 304,
+      "head_sha": "b6e140263adb3f79a28096a331077a60811b4016",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 302,
+      "head_sha": "38b0dae033e50bd6409ad3a4930b083fb8b5b7c5",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 264,
+      "head_sha": "1e723bd4bc96e07b1b790daf9b82897a846c6096",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 270,
+      "head_sha": "540eb7a41554620e1405807ac1db9dc38bd62148",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 254,
+      "head_sha": "79e11935e16ea1d2fa576ead0712c83f22e15c28",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 250,
+      "head_sha": "9443612b024114c424ba2f8146e04050d6e049b0",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 275,
+      "head_sha": "bf0effdcc8f690972d762c5b53079e8847a5e65e",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    },
+    {
+      "number": 273,
+      "head_sha": "1584a2da8b23128c113d95c3b05b6a12d2d3861e",
+      "ancestor_of_integrated_candidate": true,
+      "object_available": true
+    }
+  ],
+  "subsequent_ancestry_reconciliation": {
+    "incoming_tip": "168297fea2df1f49cb1362f8ac21002edd222ac4",
+    "branch": "codex/zotero-note-formatting-20261122",
+    "parent_tips": [
+      "50895a7b9670058e27d3f081626defac9ea1aebc",
+      "8280277cd27bcc276d66b61f8073eddf37ca6e5e"
+    ],
+    "tree": "7587dec4e385c015f81c62df7992af378642cfed",
+    "qualified_tree_unchanged": true,
+    "method": "Fast-forward Mail checkpoint branch to the new incoming merge; its complete tree exactly matches the integration-qualified tree."
+  }
+}

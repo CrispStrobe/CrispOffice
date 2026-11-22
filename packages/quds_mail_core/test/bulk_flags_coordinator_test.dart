@@ -168,7 +168,15 @@ void main() {
 
     test('each action freezes its command without reading old flags', () {
       for (final action in MailBulkFlagAction.values) {
-        final operation = _plan(action: action).operationAt(1);
+        final operation = _plan(
+          action: action,
+          provider: action == MailBulkFlagAction.archive
+              ? MailProviderKind.gmail
+              : MailProviderKind.graph,
+          mailbox: action == MailBulkFlagAction.archive
+              ? MailMailboxId('INBOX', account: _account)
+              : _mailbox,
+        ).operationAt(1);
         expect(operation.id, 'batch:1');
         switch (action) {
           case MailBulkFlagAction.markRead:
@@ -191,6 +199,8 @@ void main() {
             );
           case MailBulkFlagAction.delete:
             expect(operation, isA<MailDelete>());
+          case MailBulkFlagAction.archive:
+            expect(operation, isA<MailArchive>());
         }
       }
     });

@@ -117,6 +117,7 @@ final class ImapFixture {
   final List<String> beforeFetchResponses = [];
   final List<String> afterFetchResponses = [];
   List<String>? searchResponses;
+  List<String>? mailboxResponses;
   String searchStatus = 'OK';
   final List<String> commands = [];
   final List<FixtureImapClient> clients = [];
@@ -234,11 +235,16 @@ final class ImapFixture {
         socket.text('$tag ${rejectLogin ? 'NO' : 'OK'} authentication\r\n');
       }
     } else if (command.startsWith('LIST ')) {
-      socket.text(
-        '* LIST () "/" "INBOX"\r\n'
-        '* LIST (\\Noselect) "/" "Container"\r\n'
-        '* LIST () "/" "Archive"\r\n$tag OK mailboxes\r\n',
-      );
+      for (final response
+          in mailboxResponses ??
+              [
+                '* LIST () "/" "INBOX"',
+                '* LIST (\\Noselect) "/" "Container"',
+                '* LIST () "/" "Archive"',
+              ]) {
+        socket.text('$response\r\n');
+      }
+      socket.text('$tag OK mailboxes\r\n');
     } else if (command.startsWith('SELECT ')) {
       socket.text(
         '* FLAGS (\\Seen \\Flagged \\Answered \\Draft \\Deleted)\r\n'

@@ -297,6 +297,7 @@ void membershipBulkHostTests() {
     expect(_list(tester).supportedBulkActions, {
       MailBulkFlagAction.move,
       MailBulkFlagAction.delete,
+      MailBulkFlagAction.archive,
     });
     await _startBulkOrganization(tester, MailBulkFlagAction.move, count: 2);
     await _until(

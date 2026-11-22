@@ -154,11 +154,13 @@ void main() {
     }
     expect(_key('mail-list-bulk-move'), findsNothing);
     expect(_key('mail-list-bulk-delete'), findsNothing);
+    expect(_key('mail-list-bulk-archive'), findsNothing);
   });
 
   for (final actions in [
     {MailBulkFlagAction.move},
     {MailBulkFlagAction.delete},
+    {MailBulkFlagAction.archive},
     {..._flags, MailBulkFlagAction.move, MailBulkFlagAction.delete},
   ]) {
     testWidgets('menu exposes exactly the supported set $actions', (
@@ -185,7 +187,13 @@ void main() {
   ) async {
     await tester.pumpWidget(
       _app(
-        _list(actions: {MailBulkFlagAction.move, MailBulkFlagAction.delete}),
+        _list(
+          actions: {
+            MailBulkFlagAction.move,
+            MailBulkFlagAction.delete,
+            MailBulkFlagAction.archive,
+          },
+        ),
       ),
     );
     expect(_key('mail-list-bulk-actions'), findsNothing);
@@ -211,7 +219,11 @@ void main() {
     );
   });
 
-  for (final action in [MailBulkFlagAction.move, MailBulkFlagAction.delete]) {
+  for (final action in [
+    MailBulkFlagAction.move,
+    MailBulkFlagAction.delete,
+    MailBulkFlagAction.archive,
+  ]) {
     testWidgets('$action receives immutable visible order without reads', (
       tester,
     ) async {

@@ -1,0 +1,60 @@
+{
+  "source_head": "8280277cd27bcc276d66b61f8073eddf37ca6e5e",
+  "source_tree": "7587dec4e385c015f81c62df7992af378642cfed",
+  "comparisons": [
+    {
+      "left": "initial3f3.png",
+      "right": "incoming-aac3.png",
+      "different_pixels": 1522,
+      "total_pixels": 896000,
+      "percentage": 0.16986607142857144,
+      "bounding_box": [
+        160,
+        148,
+        222,
+        173
+      ]
+    },
+    {
+      "left": "incoming-aac3.png",
+      "right": "office_fidelity_word_testImage.png",
+      "different_pixels": 3378,
+      "total_pixels": 896000,
+      "percentage": 0.3770089285714286,
+      "bounding_box": [
+        159,
+        236,
+        294,
+        377
+      ]
+    },
+    {
+      "left": "initial3f3.png",
+      "right": "office_fidelity_word_testImage.png",
+      "different_pixels": 4900,
+      "total_pixels": 896000,
+      "percentage": 0.546875,
+      "bounding_box": [
+        159,
+        148,
+        294,
+        377
+      ]
+    }
+  ],
+  "png_sha256": {
+    "incoming-aac3.png": "f351f30eb401d03d1f59c5c6a6c4fcde2dd410f8367b7467e2c3909fb8493a5f",
+    "incoming-parent.png": "8d3cb6f2a8e82f6fc15e62c2c53ba9907cbf33ff9e213dbe1f4dfc46cfd74ace",
+    "initial3f3.png": "8d3cb6f2a8e82f6fc15e62c2c53ba9907cbf33ff9e213dbe1f4dfc46cfd74ace",
+    "office_fidelity_word_isolatedDiff.png": "259667dd068dc3b6fcd46d2c3f264b3bca75b8ba17319dbb8518f9b0e5a9dd06",
+    "office_fidelity_word_maskedDiff.png": "8c945b685eee5689e6365a400b607020964e7b179d5fd52115cbf6e261d1968e",
+    "office_fidelity_word_masterImage.png": "4accb654706501e21b72272fe9e6978a4c282f4dbcc345b7a15da028404b80cd",
+    "office_fidelity_word_testImage.png": "9dce69e87fbf8baf2ba4281761e0c0b27caf4e9c2f96a2160e003b86442d7d9b"
+  },
+  "observations": [
+    "Incoming golden changes 1522 body-highlight pixels only; this region is disjoint from the failing region.",
+    "Integrated mismatch is 3378 pixels in the table, inline-image, and endnote area.",
+    "Pre-Zotero baseline test requested independently to establish whether the remaining difference predates integration."
+  ],
+  "baseline_changed": false
+}

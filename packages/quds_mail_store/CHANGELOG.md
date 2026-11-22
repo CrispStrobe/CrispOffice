@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+- Admit explicit Gmail Archive intent in schema v16 with exact Inbox/account
+  guards, durable per-message outcomes, pending-operation serialization and
+  read-only label observations after uncertainty. Preserve all prior tables and
+  payloads through a validation-only transactional migration; reject unexplained
+  Archive intent in older schemas. Archive does not fabricate cached membership
+  changes, erase other labels, replay after interruption or resolve historical
+  uncertainty from a later observation. Folder Archive continues to use exact
+  Move intent and its existing identity-transition receipts.
+
 - Add schema v15 for authoritative move identity transitions. Retain confirmed
   replacement identities with journal receipts and atomically reconcile eligible
   retained cache memberships behind a dispatch epoch fence. Preserve original

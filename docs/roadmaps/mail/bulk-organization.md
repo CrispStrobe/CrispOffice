@@ -103,8 +103,9 @@ The ordered next steps are:
 
 1. A shared connected workspace with coordinated account/folder navigation and
    repository-observed views, preserving these exact identity and command rules.
-2. Explicit special-folder discovery and Archive, then tags/categories and
-   ordered rule execution with preview and the same durable result handling.
+2. [Explicit special-folder discovery and Archive](provider-archive.md) is now
+   continued separately; remembered custom destinations, tags/categories and
+   ordered rule execution with preview remain subsequent work.
 3. Indexed body/provider search and persistent cross-folder conversations, with
    visible coverage and stable actions against original message identities.
 4. Provider-side Drafts/Sent reconciliation, controlled background scheduling,

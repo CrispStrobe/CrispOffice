@@ -38,7 +38,9 @@ uncertain-outcome handling. Provider-specific current-location recovery and
 atomic retained-cache reconciliation and null-safe sync fences, are now
 implemented. [Visible-selection Move/Delete](bulk-organization.md) now adds
 confirmed destinations, frozen identities and per-message outcomes through that
-same journal. Connected multi-account navigation is the next workspace boundary.
+same journal. [Explicit provider Archive](provider-archive.md) now adds Gmail
+Inbox-label removal and reviewed exact folder moves through the same durable
+pipeline. Connected multi-account navigation is the next workspace boundary.
 These increments do not close M04W or the complete desktop-client parity goal.
 
 ## 2. New package layout
@@ -294,8 +296,15 @@ inspection receipt, not a complete dependency or runtime certification.
   frozen identities, per-message outcomes, stop-after-current and durable restart
   evidence. See [bulk-organization.md](bulk-organization.md) for provider limits
   and the local validation record.
-- [ ] Extend provider-specific membership reconciliation and special-folder
-  discovery, then add durable Archive and tags/categories with preview/recovery.
+- [x] Add reviewed single-message and checked-selection Archive through the
+  durable journal. Gmail removes only Inbox membership; IMAP and Microsoft 365
+  resolve authoritative ordinary Archive destinations, and unavailable discovery
+  or EWS requires an explicit same-account folder. Preserve frozen identities,
+  exact Move receipts, uncertainty and restart recovery. See
+  [provider-archive.md](provider-archive.md).
+- [ ] Broaden provider-specific membership reconciliation and special-folder
+  discovery, remember custom Archive destinations, and add tags/categories with
+  preview and recovery.
 - [x] Implement visible checked ranges in the shared list with Shift navigation,
   Shift+click, preserved independent checks and generation/scope guards, plus
   EN/DE/AR help. Correct synchronized header search to include visible names
