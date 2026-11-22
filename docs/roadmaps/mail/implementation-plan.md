@@ -40,7 +40,10 @@ implemented. [Visible-selection Move/Delete](bulk-organization.md) now adds
 confirmed destinations, frozen identities and per-message outcomes through that
 same journal. [Explicit provider Archive](provider-archive.md) now adds Gmail
 Inbox-label removal and reviewed exact folder moves through the same durable
-pipeline. Connected multi-account navigation is the next workspace boundary.
+pipeline. [Account navigation](account-navigation.md) now provides one
+verified cross-provider chooser, draft-safe ownership transfer and explicit
+reconnection. Retained simultaneous account sessions and the shared unified
+workspace remain the next M04W boundary.
 These increments do not close M04W or the complete desktop-client parity goal.
 
 ## 2. New package layout

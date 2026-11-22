@@ -81,11 +81,20 @@ extension MailLocalAccountDirectory on SqliteMailRepository {
 
   /// Only a host that has established the connection may register its route.
   /// An existing ID can refresh its timestamp but cannot change its identity.
+  /// When [expectedRecord] is supplied, the selected directory snapshot must
+  /// still exist with exactly the same identity, revision and connection time.
+  /// The comparison and refresh share one transaction, so a selected route
+  /// removed during sign-in cannot be recreated by its late completion.
   Future<MailResult<MailUnit>> rememberLocalAccount(
-    MailLocalAccountRecord record,
-  ) => _write(() async {
-    if (!record.isValid) {
+    MailLocalAccountRecord record, {
+    MailLocalAccountRecord? expectedRecord,
+  }) => _write(() async {
+    if (!record.isValid ||
+        (expectedRecord != null && !expectedRecord.isValid)) {
       SqliteMailRepository._fail(MailProblemCode.invalidInput);
+    }
+    if (expectedRecord != null && !expectedRecord.hasSameIdentity(record)) {
+      SqliteMailRepository._fail(MailProblemCode.conflict);
     }
     if (_localAccountCodeUnits(record) > limits.maxMetadataCodeUnits) {
       SqliteMailRepository._fail(MailProblemCode.quotaExceeded);
@@ -107,6 +116,18 @@ extension MailLocalAccountDirectory on SqliteMailRepository {
     final existing = await _rows('SELECT * FROM local_accounts WHERE id=?', [
       record.id,
     ]);
+    if (expectedRecord != null) {
+      if (existing.isEmpty) {
+        SqliteMailRepository._fail(MailProblemCode.conflict);
+      }
+      final current = _localAccount(existing.single);
+      if (!current.hasSameIdentity(expectedRecord) ||
+          current.revision != expectedRecord.revision ||
+          current.lastConnectedAt.millisecondsSinceEpoch !=
+              expectedRecord.lastConnectedAt.millisecondsSinceEpoch) {
+        SqliteMailRepository._fail(MailProblemCode.conflict);
+      }
+    }
     if (existing.isNotEmpty) {
       if (!_localAccount(existing.single).hasSameIdentity(record)) {
         SqliteMailRepository._fail(MailProblemCode.conflict);

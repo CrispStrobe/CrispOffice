@@ -11,6 +11,7 @@ The canonical fixtures are:
 
 | Suite | Cases | Scope |
 | --- | ---: | --- |
+| [`split_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/split_v1.json) | 58 | Direct Split assignment, binary delimiters and result limits, zero-based/empty arrays, replacement ownership, source-order evaluation and positioned refusals across all three adapters |
 | [`word_text_selectors_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_text_selectors_v1.json) | 64 | Variant substring expressions, named body/story/section indexes, typed collection identity, source-order evaluation and positioned refusals |
 | [`mid_assignment_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/mid_assignment_v1.json) | 77 | Local `Mid` / `Mid$` String edits, array/helper ownership, source-order evaluation, UTF-16 and positioned refusals across all three adapters |
 | [`word_table_navigation_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_table_navigation_v1.json) | 32 | Typed row/column cell selection, named indexes, captured aliases/helpers, existing cell operations and positioned refusals |
@@ -31,6 +32,18 @@ The canonical fixtures are:
 
 The same fixture bytes are consumed by each VM test and the portable
 JavaScript runner; there is no separately maintained copy of expected results.
+
+The Split corpus independently specifies 46 complete successful plans and
+12 positioned refusals. The portable adapter mapping changes only the output
+sink and corresponding native plan, so the same source behavior is checked in
+Word, Excel and PowerPoint. Unit tests separately exercise exact slot/String
+budgets, repeated allocation, helper ownership, empty-array lifecycle and
+enumeration locks. Specification-derived cases follow Microsoft's String-array
+assignment and binary splitting examples; strict types, allocated empty bounds,
+error precedence and resource limits are explicit Quds contracts. Native
+DOCX/DOCM, CLI/MCP and portable tests execute the actual seven-operation table
+example separately. See the [Split contract](vba-macros-details.md#splitting-source-string-arrays)
+and [local qualification](validation/word-vba-split-20261122/README.md).
 
 The text/selector suite independently specifies 34 complete plans and 30
 positioned diagnostics. It distinguishes Microsoft substring and collection

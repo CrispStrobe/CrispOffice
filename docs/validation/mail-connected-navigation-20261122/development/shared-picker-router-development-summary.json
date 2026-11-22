@@ -1,0 +1,60 @@
+{
+  "purpose": "Development evidence only; final qualification must test the final source revision.",
+  "evidence_source": "Observed command outputs recorded in the working agent conversation. These earlier runs did not persist raw log files; this summary is not a reconstructed raw transcript.",
+  "tests": [
+    {
+      "scope": "Initial shared target, picker dialog, and three router regressions",
+      "files": [
+        "packages/quds_office_editor/example/test/studio_mail_account_navigation_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_account_navigation_dialog_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_account_navigation_router_test.dart"
+      ],
+      "total": 47,
+      "passed": 46,
+      "failed": 1,
+      "failure": "IMAP URI canonicalization removed an explicit zero port. The target validator initially accepted the resulting missing port.",
+      "correction": "Require a positive actual IMAP socket port, including when the URI no longer reports an explicit port."
+    },
+    {
+      "scope": "Corrected target validation",
+      "file": "packages/quds_office_editor/example/test/studio_mail_account_navigation_test.dart",
+      "total": 31,
+      "passed": 31,
+      "failed": 0,
+      "exit_code": 0
+    },
+    {
+      "scope": "Expanded root router integration regressions",
+      "file": "packages/quds_office_editor/example/test/studio_mail_account_navigation_router_test.dart",
+      "command": "BOT=true CI=true flutter test --no-pub --concurrency=1 packages/quds_office_editor/example/test/studio_mail_account_navigation_router_test.dart --reporter expanded",
+      "execution_session": 84491,
+      "total": 5,
+      "passed": 5,
+      "failed": 0,
+      "exit_code": 0,
+      "coverage": [
+        "Actual IMAP to injected EWS dialog to IMAP retains account-specific drafts and drains each owner before the next context.",
+        "Ambiguous SMTP routes permit explicit selection and connect through the chosen route.",
+        "Duplicate and delayed provider callbacks cannot pop a newer route.",
+        "Callbacks from a normally closed provider route remain retired.",
+        "Root account transition disables keyboard focus and input while asynchronous validation is pending."
+      ]
+    }
+  ],
+  "resolved_distinct_case_counts": {
+    "target": 31,
+    "picker_dialog": 13,
+    "router": 5,
+    "total": 49
+  },
+  "static_analysis": {
+    "shared_target_strings_and_initial_shared_tests": "No issues after adding an explicit BuildContext mounted check.",
+    "expanded_router_test": "No issues; execution session 63305 exited zero."
+  },
+  "runtime": {
+    "environment_file": "/workspace/scratch/85a369f34dbb/runtime/env.sh",
+    "network": "Memory-only account, credential, draft, and transport fixtures; no real mailbox or account access.",
+    "ci_environment": "The runtime environment set CI=true. The expanded router rerun additionally set BOT=true explicitly.",
+    "github_ci_waited": false
+  }
+}

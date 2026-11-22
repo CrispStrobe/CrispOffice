@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Add an optional exact selected-account snapshot to `rememberLocalAccount`.
+  Compare identity, revision and connection time atomically before refreshing
+  the directory row; reject removed, replaced or concurrently refreshed routes
+  without changing metadata or consuming the monotonic revision counter. Fresh
+  account registration keeps its existing behavior and schema.
+
 - Admit explicit Gmail Archive intent in schema v16 with exact Inbox/account
   guards, durable per-message outcomes, pending-operation serialization and
   read-only label observations after uncertainty. Preserve all prior tables and

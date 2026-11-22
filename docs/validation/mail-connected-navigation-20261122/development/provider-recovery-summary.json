@@ -1,0 +1,20 @@
+{
+  "command": "source /workspace/scratch/85a369f34dbb/runtime/env.sh && BOT=true flutter test --no-pub --concurrency=1 test/studio_mail_account_navigation_provider_test.dart --reporter json",
+  "reporter": "docs/validation/mail-connected-navigation-20261122/development/provider-recovery.jsonl",
+  "test_cases": 46,
+  "passing": 46,
+  "failed": 0,
+  "skipped": 0,
+  "done": {
+    "success": true,
+    "type": "done",
+    "time": 16811
+  },
+  "source_hashes": {
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart": "06e3c4014b14078adca77b9205cbe600499b24985f0e9d0cc6014cf251955952",
+    "packages/quds_office_editor/example/lib/studio_mail_cloud.dart": "d2bb1e11b739afcc080af882524cf85a1fc73b22478d66670f5f1cc489983bd4",
+    "packages/quds_office_editor/example/test/studio_mail_account_navigation_provider_test.dart": "10e3b680678dd954b92ce5e345f9a1b483d22ec4c54977ed0ce3360879e104e3"
+  },
+  "jsonl_sha256": "b7b6c63fc172db62ec8e8d914e95d9e6fb637089c4fb40e7dbedf7f21f42d1b0",
+  "strict_analysis": "dart analyze --fatal-infos lib/studio_mail_ews.dart lib/studio_mail_cloud.dart test/studio_mail_account_navigation_provider_test.dart: No issues found."
+}

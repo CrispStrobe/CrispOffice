@@ -999,7 +999,8 @@ argument expression executes. A helper's local arrays remain independently
 owned and release their resources when the helper returns.
 
 Splitting retains the existing limits: **4,096 elements per array**, **16,384
-active array slots**, **1,048,576 stored UTF-16 units** and **100,000 shared
+active array slots**, **32,767 UTF-16 units per String**, **1,048,576 stored
+UTF-16 units** and **100,000 shared
 work units**. Binary matching uses the existing metered linear matcher. It
 stops once an additional match proves the result too large. Allocation,
 retirement and copied text are charged before constructing the new storage;
