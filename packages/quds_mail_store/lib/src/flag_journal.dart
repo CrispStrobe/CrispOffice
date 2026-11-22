@@ -241,9 +241,22 @@ extension MailFlagCommandJournal on SqliteMailRepository {
         }
         _flagDestination(rows.single, handle.account);
         await body(rows.single);
+        final now = _flagNow();
+        final latestTransition = (await _rows(
+          'SELECT max(recorded_at) AS newest FROM move_identity_transitions '
+          'WHERE account=? AND batch=?',
+          [handle.account.value, handle.id],
+        )).single.readNullable<int>('newest');
+        // A wall-clock correction between receipt capture and this final write
+        // must roll back the entire settlement, not persist an unreadable date.
+        if (now < rows.single.read<int>('created_at') ||
+            now < rows.single.read<int>('updated_at') ||
+            latestTransition != null && now < latestTransition) {
+          SqliteMailRepository._fail(MailProblemCode.conflict);
+        }
         await _db.customStatement(
           'UPDATE flag_batches SET revision=?,updated_at=? WHERE account=? AND id=?',
-          [expected + 1, _flagNow(), handle.account.value, handle.id],
+          [expected + 1, now, handle.account.value, handle.id],
         );
         await _quota(handle.account);
         await _db.fault(MailStoreCheckpoint.beforeCommit);

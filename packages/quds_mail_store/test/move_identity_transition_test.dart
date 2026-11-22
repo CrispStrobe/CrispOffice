@@ -100,11 +100,12 @@ void main() {
   Future<SqliteMailRepository> open({
     MailStoreFaultInjector? faultInjector,
     MailStoreLimits limits = const MailStoreLimits(),
+    DateTime Function()? clock,
   }) async => _value(
     await SqliteMailRepository.open(
       executor: NativeDatabase(file),
       profile: _profile,
-      clock: () => _time,
+      clock: clock ?? () => _time,
       limits: limits,
       faultInjector:
           faultInjector ??
@@ -281,12 +282,12 @@ void main() {
   test(
     'synchronized memberships move atomically and stale provider cursors are fenced',
     () async {
+      await saveView(_source, [_header(_source, 2)]);
+      await saveView(_destination, [_header(_destination, 60)]);
       await saveSync(_source, [_header(_source, 2)], 'source-cursor');
       await saveSync(_destination, [
         _header(_destination, 60),
       ], 'destination-cursor');
-      await saveView(_source, [_header(_source, 2)]);
-      await saveView(_destination, [_header(_destination, 60)]);
       final oldSource = _value(await store.readCursor(_source));
       final oldDestination = _value(await store.readSyncSnapshot(_destination));
       final before = _value(await store.listSyncMailboxes(_account));
@@ -344,6 +345,82 @@ void main() {
           expectedSnapshot: fresh,
           lease: session.begin(),
         ),
+      );
+    },
+  );
+
+  for (final views in ['neither', 'source', 'destination']) {
+    test(
+      'synchronized membership awaits both browse CAS revisions; retained=$views',
+      () async {
+        await saveSync(_source, [_header(_source, 2)], 'source');
+        await saveSync(_destination, [], 'destination');
+        if (views == 'source') await saveView(_source, [_header(_source, 2)]);
+        if (views == 'destination') await saveView(_destination, []);
+        final sourceSnapshot = _value(await store.readSyncSnapshot(_source));
+        final destinationSnapshot = _value(
+          await store.readSyncSnapshot(_destination),
+        );
+        final plan = _plan();
+        final receipt = await finish(plan, await begin(plan));
+        expect(receipt.report.confirmedCount, 1);
+        expect(receipt.identityTransitions.single.cacheProjected, isFalse);
+        expect(
+          _value(await store.listHeaders(_source)).single.id,
+          _header(_source, 2).id,
+        );
+        expect(_value(await store.listHeaders(_destination)), isEmpty);
+        expect(
+          _value(await store.readSyncSnapshot(_source)).revision,
+          sourceSnapshot.revision,
+        );
+        expect(
+          _value(await store.readSyncSnapshot(_destination)).revision,
+          destinationSnapshot.revision,
+        );
+        await reopen();
+        expect(
+          _value(
+            await store.loadFlagBatch(_account, plan.id),
+          )!.identityTransitions.single.cacheProjected,
+          isFalse,
+        );
+        expect(
+          _value(await store.listMailboxViews(_account)).length,
+          views == 'neither' ? 0 : 1,
+        );
+      },
+    );
+  }
+
+  test(
+    'source browse revision advances even when its window omits the moved member',
+    () async {
+      await saveSync(_source, [_header(_source, 2)], 'source');
+      await saveSync(_destination, [], 'destination');
+      final source = await saveView(_source, [
+        _header(_source, 1),
+      ], hasMore: true);
+      await saveView(_destination, []);
+      final plan = _plan();
+      final receipt = await finish(plan, await begin(plan));
+      expect(receipt.identityTransitions.single.cacheProjected, isTrue);
+      final current = _value(await store.loadMailboxView(_source))!;
+      expect(current.headers.single.id, _header(_source, 1).id);
+      expect(current.revision, greaterThan(source.revision));
+      expect(current.capturedAt, source.capturedAt);
+      expect(current.hasMore, source.hasMore);
+      expect(_value(await store.listHeaders(_source)), isEmpty);
+      await reopen();
+      _problem(
+        await store.saveMailboxView(
+          source.mailbox,
+          [_header(_source, 1), _header(_source, 2)],
+          expectedRevision: source.revision,
+          hasMore: true,
+          lease: session.begin(),
+        ),
+        MailProblemCode.conflict,
       );
     },
   );
@@ -943,6 +1020,54 @@ void main() {
   }
 
   test(
+    'optional cache growth rolls back on account quota while receipt survives',
+    () async {
+      await store.close();
+      store = await open(limits: const MailStoreLimits(maxAccountBytes: 5000));
+      final source = await saveView(_source, [
+        _header(_source, 2, subject: 's' * 1000),
+      ]);
+      final destination = await saveView(_destination, []);
+      final plan = _plan();
+      final handle = await begin(plan);
+      final receipt = await finish(plan, handle);
+      expect(receipt.report.confirmedCount, 1);
+      expect(receipt.identityTransitions.single.cacheProjected, isFalse);
+      expect(
+        _value(await store.loadMailboxView(_source))!.revision,
+        source.revision,
+      );
+      expect(
+        _value(await store.loadMailboxView(_destination))!.revision,
+        destination.revision,
+      );
+      expect(
+        _value(await store.loadMailboxView(_destination))!.headers,
+        isEmpty,
+      );
+      expect(_value(await store.readSyncSnapshot(_source)).revision, 0);
+      expect(_value(await store.readSyncSnapshot(_destination)).revision, 0);
+      final db = sqlite.sqlite3.open(file.path);
+      expect(
+        db.select('SELECT id FROM messages').single['id'],
+        _header(_source, 2).id.value,
+      );
+      expect(db.select('SELECT * FROM mailbox_move_revisions'), isEmpty);
+      expect(db.select('SELECT * FROM tombstones'), isEmpty);
+      expect(
+        db.select('SELECT message FROM mail_fts').single['message'],
+        _header(_source, 2).id.value,
+      );
+      db.close();
+      await reopen();
+      final restored = _value(await store.loadFlagBatch(_account, plan.id))!;
+      expect(restored.summary.complete, isTrue);
+      expect(restored.identityTransitions.single.cacheProjected, isFalse);
+      expect(restored.identityTransitions.single.transition, _transition(plan));
+    },
+  );
+
+  test(
     'account byte quota includes authoritative replacement metadata',
     () async {
       await store.close();
@@ -977,6 +1102,137 @@ void main() {
       );
     },
   );
+
+  test(
+    'clock reversal during mapping settlement rolls back receipt and both views',
+    () async {
+      await store.close();
+      var clockReads = 100;
+      store = await open(
+        clock: () => ++clockReads >= 2 && clockReads < 100
+            ? _time.subtract(const Duration(milliseconds: 1))
+            : _time,
+      );
+      final source = await saveView(_source, [_header(_source, 2)]);
+      final destination = await saveView(_destination, []);
+      final plan = _plan();
+      final handle = await begin(plan);
+      clockReads = 0;
+      _problem(
+        await store.recordFlagResult(handle, 0, _result(plan)),
+        MailProblemCode.conflict,
+      );
+      final beforeFinish = _value(
+        await store.loadFlagBatch(_account, plan.id),
+      )!;
+      expect(beforeFinish.identityTransitions, isEmpty);
+      expect(beforeFinish.summary.complete, isFalse);
+      expect(
+        _value(await store.loadMailboxView(_source))!.revision,
+        source.revision,
+      );
+      expect(
+        _value(await store.loadMailboxView(_destination))!.revision,
+        destination.revision,
+      );
+      clockReads = 100;
+      _value(await store.finishFlagBatch(handle, _report(plan)));
+      final finished = _value(await store.loadFlagBatch(_account, plan.id))!;
+      expect(finished.report.confirmedCount, 1);
+      expect(finished.identityTransitions.single.recordedAt, _time);
+      expect(finished.summary.updatedAt, _time);
+      expect(finished.identityTransitions.single.cacheProjected, isTrue);
+    },
+  );
+
+  test(
+    'clock reversal during finish preserves already recorded mapping without applying twice',
+    () async {
+      await store.close();
+      var time = _time;
+      store = await open(clock: () => time);
+      await saveView(_source, [_header(_source, 2)]);
+      await saveView(_destination, []);
+      final plan = _plan();
+      final handle = await begin(plan);
+      _value(await store.recordFlagResult(handle, 0, _result(plan)));
+      final destination = _value(await store.loadMailboxView(_destination))!;
+      time = _time.subtract(const Duration(milliseconds: 1));
+      _problem(
+        await store.finishFlagBatch(handle, _report(plan)),
+        MailProblemCode.conflict,
+      );
+      final unfinished = _value(await store.loadFlagBatch(_account, plan.id))!;
+      expect(unfinished.report.confirmedCount, 1);
+      expect(unfinished.summary.complete, isFalse);
+      expect(unfinished.summary.updatedAt, _time);
+      expect(
+        _value(await store.loadMailboxView(_destination))!.revision,
+        destination.revision,
+      );
+      time = _time;
+      _value(await store.finishFlagBatch(handle, _report(plan)));
+      expect(
+        _value(await store.loadMailboxView(_destination))!.revision,
+        destination.revision,
+      );
+    },
+  );
+
+  for (final action in [
+    MailBulkFlagAction.markUnread,
+    MailBulkFlagAction.move,
+    MailBulkFlagAction.delete,
+  ]) {
+    test(
+      'clock reversal rolls back legacy ${action.name} result and keeps a valid receipt',
+      () async {
+        await store.close();
+        var time = _time;
+        store = await open(clock: () => time);
+        final original = await saveView(_source, [_header(_source, 2)]);
+        final plan = MailBulkFlagPlan(
+          id: 'clock-${action.name}',
+          mailbox: _source,
+          action: action,
+          messages: [_remote(_source, 2)],
+          destination: action == MailBulkFlagAction.move ? _destination : null,
+        );
+        final handle = await begin(plan);
+        final result = MailBulkFlagItemResult.restore(
+          operation: plan.operationAt(0),
+          outcome: MailBulkFlagOutcome.confirmed,
+        );
+        time = _time.subtract(const Duration(milliseconds: 1));
+        _problem(
+          await store.recordFlagResult(handle, 0, result),
+          MailProblemCode.conflict,
+        );
+        final retained = _value(await store.loadMailboxView(_source))!;
+        expect(retained.revision, original.revision);
+        expect(retained.headers.single.flags!.isRead, isTrue);
+        expect(
+          _value(
+            await store.loadFlagBatch(_account, plan.id),
+          )!.summary.updatedAt,
+          _time,
+        );
+        time = _time;
+        _value(
+          await store.finishFlagBatch(
+            handle,
+            MailBulkFlagReport.restore(plan: plan, results: [result]),
+          ),
+        );
+        expect(
+          _value(
+            await store.loadFlagBatch(_account, plan.id),
+          )!.report.confirmedCount,
+          1,
+        );
+      },
+    );
+  }
 
   for (final corruption in [
     "UPDATE mailbox_move_revisions SET mailbox=char(10)",

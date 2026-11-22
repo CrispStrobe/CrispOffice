@@ -9,6 +9,10 @@
   avoid inventing destination bodies. Stale or unavailable cache projections
   retain the acknowledgement and require explicit refresh. Earlier receipt
   schemas migrate without inventing mappings or changing uncertainty.
+  Fence both retained browse views and null-cursor synchronization snapshots;
+  preserve durable sync fences through cache cleanup. Isolate optional cache
+  growth in a savepoint so a cache quota cannot discard an admitted receipt.
+  Reject backward journal timestamps atomically, including after reply capture.
 
 - Bound move projection by the complete destination browse-window metadata,
   including retained destination identities. Preserve the confirmed receipt

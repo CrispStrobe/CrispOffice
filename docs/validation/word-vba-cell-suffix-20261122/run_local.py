@@ -96,12 +96,13 @@ for index, start in enumerate(range(0, len(relative_suites), args.batch_size)):
         '--reporter=json', '--concurrency=2', *relative_suites[start:start + args.batch_size]]))
     with combined.open('ab') as aggregate:
         aggregate.write((OUT / f'{name}.stdout').read_bytes())
-gates['tests'] = {'batches': batches, 'exitCode': max(g['exitCode'] for g in batches),
+gates['tests'] = {'batches': batches,
+                  'exitCode': 0 if batches and all(g['exitCode'] == 0 for g in batches) else 1,
                   'elapsedSeconds': round(sum(g['elapsedSeconds'] for g in batches), 3)}
 counts = {'passed': 0, 'failed': 0, 'skipped': 0, 'hiddenErrors': 0}
 known = {}
 failures = []
-done = None
+done_events = []
 for line in (OUT / 'macro-regressions.stdout').read_text().splitlines():
     try:
         event = json.loads(line)
@@ -117,9 +118,11 @@ for line in (OUT / 'macro-regressions.stdout').read_text().splitlines():
         elif not event.get('hidden'):
             counts['skipped' if event.get('skipped') else 'passed'] += 1
     elif event.get('type') == 'done':
-        done = event
+        done_events.append(event)
+runner_successful = (len(done_events) == len(batches) and
+                     all(event.get('success') for event in done_events))
 write('macro-regressions-counts.json', {'suiteCount': len(suites), **counts,
-                                     'failures': failures, 'runnerDone': done})
+                                     'failures': failures, 'runnerDone': done_events})
 gates['analysis'] = run('analysis', [str(DART), 'analyze', '--fatal-infos', 'lib', 'test', 'tool'])
 changed = subprocess.check_output(['git', 'diff', '--name-only',
     'b2bba1638924237435460e4238d4bd98c407fc3a', 'HEAD'], cwd=ROOT, text=True).splitlines()
@@ -133,9 +136,10 @@ write('summary.json', {'sourceCommit': subprocess.check_output(['git', 'rev-pars
     cwd=ROOT, text=True).strip(), 'sdkVersion': subprocess.check_output([str(DART), '--version'],
     text=True).strip(), 'suiteCount': len(suites), 'counts': counts, 'gates': gates,
     'sourceInputs': len(before), 'changedInputs': changes,
-    'runnerSuccessful': bool(done and done.get('success'))})
+    'runnerSuccessful': runner_successful})
 for path in OUT.glob('*.stdout'):
     with gzip.GzipFile(filename=str(path) + '.gz', mode='wb', mtime=0) as compressed:
         compressed.write(path.read_bytes())
-if changes or any(g['exitCode'] for g in gates.values()) or not done or not done.get('success'):
+if (changes or any(g['exitCode'] for g in gates.values()) or not runner_successful
+        or counts['failed'] or counts['hiddenErrors']):
     raise SystemExit(1)
