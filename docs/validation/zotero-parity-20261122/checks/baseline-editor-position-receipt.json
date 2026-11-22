@@ -1,0 +1,51 @@
+{
+  "attribution": "Original editor controller with candidate engine position-mapping API, not unchanged baseline main.",
+  "started_utc": "2026-11-22T02:31:18.517876+00:00",
+  "finished_utc": "2026-11-22T02:31:40.696145+00:00",
+  "command": [
+    "/workspace/scratch/0bc03d5773e3/toolchains/flutter/bin/flutter",
+    "--no-version-check",
+    "--suppress-analytics",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "json",
+    "test/word_zotero_writing_position_test.dart"
+  ],
+  "cwd": "packages/quds_office_editor",
+  "exit_code": 1,
+  "source_sha256_before": {
+    "packages/quds_office_editor/test/word_zotero_writing_position_test.dart": "ed5d1de1f3715290f44db6cb6410c31ef3aa883bd7355bdff047f30c763714e4",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "c76f37965401b60756729f5a2a6426a5757e8cfbc300f405f50863c1f82fa90d",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart": "b5ddffec3204d795835fdcf50e23254dd75a5ca19c81e192a8aad22c36fb74f3",
+    "pubspec.lock": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+    "pubspec.yaml": "453a1f8ab62db1c5577c424b058b50033a8d3b49b99c83862ab58a7e1108f74f",
+    ".fvmrc": "90bf8f8884c05a407f51d6ef651ba033fef99a656010f8bfcb65951e921f4294",
+    ".dart_tool/package_config.json": "a24f67b25ec81d20fe83253da21a5111dccde4ee65a83ee09ff5dc3b3c27bee8",
+    "packages/quds_office_editor/pubspec.yaml": "536da824dbe7ade3c70080fb6fd5d507186021ca7052869dc47a41fffd82b272",
+    "packages/quds_office_engine/pubspec.yaml": "225773e48bab7333652a4098e5747f37eab2aac9fc6a14de1e814590ab03fb7a"
+  },
+  "source_sha256_after": {
+    "packages/quds_office_editor/test/word_zotero_writing_position_test.dart": "ed5d1de1f3715290f44db6cb6410c31ef3aa883bd7355bdff047f30c763714e4",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "c76f37965401b60756729f5a2a6426a5757e8cfbc300f405f50863c1f82fa90d",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart": "b5ddffec3204d795835fdcf50e23254dd75a5ca19c81e192a8aad22c36fb74f3",
+    "pubspec.lock": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+    "pubspec.yaml": "453a1f8ab62db1c5577c424b058b50033a8d3b49b99c83862ab58a7e1108f74f",
+    ".fvmrc": "90bf8f8884c05a407f51d6ef651ba033fef99a656010f8bfcb65951e921f4294",
+    ".dart_tool/package_config.json": "a24f67b25ec81d20fe83253da21a5111dccde4ee65a83ee09ff5dc3b3c27bee8",
+    "packages/quds_office_editor/pubspec.yaml": "536da824dbe7ade3c70080fb6fd5d507186021ca7052869dc47a41fffd82b272",
+    "packages/quds_office_engine/pubspec.yaml": "225773e48bab7333652a4098e5747f37eab2aac9fc6a14de1e814590ab03fb7a"
+  },
+  "source_unchanged": true,
+  "runtime_sha256": {
+    "bin/cache/dart-sdk/bin/dart": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "bin/cache/flutter_tools.snapshot": "803f5eabe0f147bbd7cbfb5810d012f88d909d092d15de36a62be43c42af0da9",
+    "bin/cache/artifacts/engine/linux-x64/flutter_tester": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f",
+    "bin/cache/flutter.version.json": "88121c782cf2e3fca1161dd8a3beecca36a9f61940f800d65a6ed897a4e8b42f",
+    "bin/internal/engine.version": "d86a5372c28ba89bef3fa93796ba2066caa8a254a32d8387ed3c0720e7dda52c"
+  },
+  "flutter_version": "3.47.8",
+  "dart_version": "3.13.7",
+  "stdout_sha256": "18bee8dc3e4d4d7f9832132fcf98917cdb8ad655291205c3666379ce3f2718e2",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}
