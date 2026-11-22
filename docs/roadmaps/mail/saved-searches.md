@@ -2,6 +2,10 @@
 
 ## User workflow
 
+The [folder-set continuation](folder-saved-search.md) now adds **Choose folders…**
+and exact persisted account/folder scopes, with missing-folder feedback and
+explicit repair. Existing definitions retain the all-folder semantics below.
+
 Open **Search saved mail** from the native saved-account chooser. Select one
 account or all listed accounts, enter a query, and choose **Save search as…**.
 An empty query means all retained headers in the selected accounts. Give the
@@ -89,8 +93,8 @@ controls are tested at enlarged text sizes.
 
 This completes reusable saved queries over current retained mail. Optional
 bounded foreground refresh is described in the continuation above. Continuous
-subscription-driven refresh, arbitrary folder-set selection, persistent unified
-navigation, indexed body search and provider-capability-gated server search
+subscription-driven refresh, persistent unified navigation, indexed body search
+and provider-capability-gated server search
 remain open. They should extend the same exact scope and revision contracts.
 
 Primary comparator references checked on 21 November 2026:

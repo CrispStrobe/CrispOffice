@@ -3,7 +3,7 @@ library;
 
 import 'dart:io';
 
-import 'package:drift/drift.dart';
+import 'package:drift/drift.dart' hide isNull;
 import 'package:drift/native.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
@@ -96,72 +96,90 @@ void main() {
     },
   );
 
-  test('exact folder sets are transactional and legacy searches stay broad',
-      () async {
-    final a = const MailSavedHeaderSearchFolder(
-      accountId: 'verified-account-a',
-      mailboxId: 'INBOX',
-    );
-    final b = const MailSavedHeaderSearchFolder(
-      accountId: 'verified-account-b',
-      mailboxId: 'Archive',
-    );
-    final legacy = _value(
-      await store.saveSavedHeaderSearch(
-        _search(id: 'legacy', name: 'Legacy'),
-      ),
-    );
-    expect(legacy.folderScopes, isNull);
-    final saved = _value(
-      await store.saveSavedHeaderSearch(
-        _search(folderScopes: [a, b]),
-      ),
-    );
-    expect(_value(await store.listSavedHeaderSearches())
-        .singleWhere((item) => item.id == saved.id).folderScopes, [a, b]);
-    failCommit = true;
-    _problem(
-      await store.saveSavedHeaderSearch(
-        saved.copyWith(folderScopes: [b, a]),
-        expectedRevision: saved.revision,
-      ),
-      MailProblemCode.storageFailure,
-    );
-    failCommit = false;
-    expect(_value(await store.listSavedHeaderSearches())
-        .singleWhere((item) => item.id == saved.id).folderScopes, [a, b]);
-    final updated = _value(
-      await store.saveSavedHeaderSearch(
-        saved.copyWith(folderScopes: [
-          const MailSavedHeaderSearchFolder(
-            accountId: 'verified-account-a',
-            mailboxId: 'Sent',
+  test(
+    'exact folder sets are transactional and legacy searches stay broad',
+    () async {
+      final a = const MailSavedHeaderSearchFolder(
+        accountId: 'verified-account-a',
+        mailboxId: 'INBOX',
+      );
+      final b = const MailSavedHeaderSearchFolder(
+        accountId: 'verified-account-b',
+        mailboxId: 'Archive',
+      );
+      final legacy = _value(
+        await store.saveSavedHeaderSearch(
+          _search(id: 'legacy', name: 'Legacy'),
+        ),
+      );
+      expect(legacy.folderScopes, isNull);
+      final saved = _value(
+        await store.saveSavedHeaderSearch(_search(folderScopes: [a, b])),
+      );
+      expect(
+        _value(
+          await store.listSavedHeaderSearches(),
+        ).singleWhere((item) => item.id == saved.id).folderScopes,
+        [a, b],
+      );
+      failCommit = true;
+      _problem(
+        await store.saveSavedHeaderSearch(
+          saved.copyWith(folderScopes: [b, a]),
+          expectedRevision: saved.revision,
+        ),
+        MailProblemCode.storageFailure,
+      );
+      failCommit = false;
+      expect(
+        _value(
+          await store.listSavedHeaderSearches(),
+        ).singleWhere((item) => item.id == saved.id).folderScopes,
+        [a, b],
+      );
+      final updated = _value(
+        await store.saveSavedHeaderSearch(
+          saved.copyWith(
+            folderScopes: [
+              const MailSavedHeaderSearchFolder(
+                accountId: 'verified-account-a',
+                mailboxId: 'Sent',
+              ),
+              b,
+            ],
           ),
-          b,
-        ]),
-        expectedRevision: saved.revision,
-      ),
-    );
-    expect(updated.revision, greaterThan(saved.revision));
-    _problem(
-      await store.saveSavedHeaderSearch(
-        saved.copyWith(allFolders: true),
-        expectedRevision: saved.revision,
-      ),
-      MailProblemCode.conflict,
-    );
-    final broad = _value(
-      await store.saveSavedHeaderSearch(
-        updated.copyWith(allFolders: true),
-        expectedRevision: updated.revision,
-      ),
-    );
-    expect(broad.folderScopes, isNull);
-    expect(_value(await store.listSavedHeaderSearches())
-        .singleWhere((item) => item.id == saved.id).folderScopes, isNull);
-    expect(_value(await store.listSavedHeaderSearches())
-        .singleWhere((item) => item.id == legacy.id).folderScopes, isNull);
-  });
+          expectedRevision: saved.revision,
+        ),
+      );
+      expect(updated.revision, greaterThan(saved.revision));
+      _problem(
+        await store.saveSavedHeaderSearch(
+          saved.copyWith(allFolders: true),
+          expectedRevision: saved.revision,
+        ),
+        MailProblemCode.conflict,
+      );
+      final broad = _value(
+        await store.saveSavedHeaderSearch(
+          updated.copyWith(allFolders: true),
+          expectedRevision: updated.revision,
+        ),
+      );
+      expect(broad.folderScopes, isNull);
+      expect(
+        _value(
+          await store.listSavedHeaderSearches(),
+        ).singleWhere((item) => item.id == saved.id).folderScopes,
+        isNull,
+      );
+      expect(
+        _value(
+          await store.listSavedHeaderSearches(),
+        ).singleWhere((item) => item.id == legacy.id).folderScopes,
+        isNull,
+      );
+    },
+  );
 
   test(
     'names sort deterministically and Unicode spelling is retained',

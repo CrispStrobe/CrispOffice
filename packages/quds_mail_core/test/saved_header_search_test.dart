@@ -59,19 +59,26 @@ void main() {
         mailboxId: 'INBOX',
       ).hashCode,
     );
-    expect(saved.copyWith(query: 'is:flagged').folderScopes, saved.folderScopes);
+    expect(
+      saved.copyWith(query: 'is:flagged').folderScopes,
+      saved.folderScopes,
+    );
     expect(saved.copyWith(allFolders: true).folderScopes, isNull);
     expect(
-      saved.copyWith(folderScopes: [
-        const MailSavedHeaderSearchFolder(
-          accountId: 'account-a',
-          mailboxId: 'Other',
-        ),
-        const MailSavedHeaderSearchFolder(
-          accountId: 'account-b',
-          mailboxId: 'INBOX',
-        ),
-      ]).isValid,
+      saved
+          .copyWith(
+            folderScopes: [
+              const MailSavedHeaderSearchFolder(
+                accountId: 'account-a',
+                mailboxId: 'Other',
+              ),
+              const MailSavedHeaderSearchFolder(
+                accountId: 'account-b',
+                mailboxId: 'INBOX',
+              ),
+            ],
+          )
+          .isValid,
       isTrue,
     );
   });
@@ -82,8 +89,11 @@ void main() {
     for (final folders in [
       <MailSavedHeaderSearchFolder>[],
       [folder('account-a', 'INBOX')],
-      [folder('account-a', 'INBOX'), folder('account-a', 'INBOX'),
-       folder('account-b', 'INBOX')],
+      [
+        folder('account-a', 'INBOX'),
+        folder('account-a', 'INBOX'),
+        folder('account-b', 'INBOX'),
+      ],
       [folder('account-a', 'INBOX'), folder('unknown', 'INBOX')],
       [folder('account-a', ''), folder('account-b', 'INBOX')],
       [folder('account-a', 'Bad\nFolder'), folder('account-b', 'INBOX')],

@@ -1,5 +1,15 @@
 # Saved-search exact folder sets — 22 November 2026
 
+This is the historical scope and original qualification record for
+[PR #354](https://github.com/CrispStrobe/quds_office_suite/pull/354). The
+[reconciled folder-set continuation](folder-saved-search.md) is the current
+Studio workflow and API guide. It preserves this published schema-11 layout
+and the original public scope APIs, adds schema-12 display-label retention,
+and provides per-folder missing coverage and recovery through the typed path.
+Fresh combined local qualification is recorded in the
+[continuation work record](../../validation/mail-folder-search-20261122/README.md).
+The original runtime limitation below is retained as history.
+
 ## User workflow
 
 In **Search saved mail**, choose the retained account scope and then **Choose

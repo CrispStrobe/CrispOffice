@@ -29,14 +29,33 @@ abstract interface class StudioMailCachedHeaderSearchStore {
   });
 }
 
-/// Opt-in exact-folder discovery. Legacy in-memory hosts still implement
-/// account-wide search; scoped searches must fail unsupported on those hosts,
-/// never silently broaden to account-wide results.
+/// Published string-ID capability retained for existing hosts. Missing folders
+/// fail the legacy query instead of returning partial folder coverage. New
+/// hosts can implement [StudioMailFolderScopedHeaderSearchStore] to expose the
+/// bounded local catalog and account-bound IDs through the same query engine.
 abstract interface class StudioMailScopedHeaderSearchStore
     implements StudioMailCachedHeaderSearchStore {
   Future<MailCachedHeaderSearchPage> searchCachedHeadersInFolders(
     String query, {
     required List<String> folderIds,
+    MailCachedHeaderSearchCursor? cursor,
+    int limit = 100,
+    int scanLimit = 500,
+  });
+}
+
+/// Optional exact-folder discovery. Older hosts retain account-wide search;
+/// callers must never emulate an unsupported explicit scope by broadening it.
+abstract interface class StudioMailFolderScopedHeaderSearchStore {
+  MailAccountId get account;
+
+  /// Known local folders, including catalog rows without retained headers.
+  /// This neither contacts a provider nor reads message bodies or credentials.
+  Future<List<MailMailbox>> listSearchFolders();
+
+  Future<MailCachedHeaderSearchPage> searchCachedHeadersInFolders(
+    String query, {
+    required List<MailMailboxId> mailboxIds,
     MailCachedHeaderSearchCursor? cursor,
     int limit = 100,
     int scanLimit = 500,
@@ -125,7 +144,9 @@ final class SqliteStudioMailMailboxStore
     implements
         StudioMailMailboxStore,
         StudioMailMailboxWatchStore,
+        StudioMailCachedHeaderSearchStore,
         StudioMailScopedHeaderSearchStore,
+        StudioMailFolderScopedHeaderSearchStore,
         StudioMailSyncStore {
   SqliteStudioMailMailboxStore({
     required this._repository,
@@ -172,24 +193,46 @@ final class SqliteStudioMailMailboxStore
   );
 
   @override
+  Future<List<MailMailbox>> listSearchFolders() => _serialize(
+    () async => _value(await _repository.listCachedSearchMailboxes(account)),
+  );
+
+  @override
   Future<MailCachedHeaderSearchPage> searchCachedHeadersInFolders(
     String query, {
-    required List<String> folderIds,
+    List<MailMailboxId>? mailboxIds,
+    List<String>? folderIds,
     MailCachedHeaderSearchCursor? cursor,
     int limit = 100,
     int scanLimit = 500,
-  }) => _serialize(
-    () async => _value(
-      await _repository.searchCachedHeaders(
-        account,
-        query,
-        folderIds: folderIds,
-        cursor: cursor,
-        limit: limit,
-        scanLimit: scanLimit,
+  }) {
+    if ((mailboxIds == null) == (folderIds == null)) {
+      throw const StudioMailMailboxStoreException(MailProblemCode.invalidInput);
+    }
+    // Capture the caller's selection before the owner's queue can yield.
+    final selected = mailboxIds == null
+        ? null
+        : List<MailMailboxId>.unmodifiable(mailboxIds);
+    final legacy = folderIds == null
+        ? null
+        : List<String>.unmodifiable(folderIds);
+    for (final mailbox in selected ?? const <MailMailboxId>[]) {
+      _scope(mailbox.account);
+    }
+    return _serialize(
+      () async => _value(
+        await _repository.searchCachedHeaders(
+          account,
+          query,
+          mailboxIds: selected,
+          folderIds: legacy,
+          cursor: cursor,
+          limit: limit,
+          scanLimit: scanLimit,
+        ),
       ),
-    ),
-  );
+    );
+  }
 
   Future<MailResult<T>> _sync<T>(
     MailAccountId account,

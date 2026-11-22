@@ -1,0 +1,62 @@
+{
+  "cohort": "format",
+  "kind": "format",
+  "started_utc": "2026-11-22T02:34:51.957846+00:00",
+  "finished_utc": "2026-11-22T02:34:56.603736+00:00",
+  "head_before": "e2382051f73ad9f11393c46806348b5c6a7a73ee",
+  "head_after": "e2382051f73ad9f11393c46806348b5c6a7a73ee",
+  "command": [
+    "/workspace/scratch/0bc03d5773e3/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+    "format",
+    "--output=none",
+    "--set-exit-if-changed",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+    "packages/quds_office_engine/test/word_zotero_writing_position_test.dart",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+    "packages/quds_office_editor/test/word_zotero_writing_position_test.dart"
+  ],
+  "cwd": ".",
+  "selected_test_files": [],
+  "exit_code": 0,
+  "input_count": 16079,
+  "inputs_unchanged": true,
+  "input_differences": [],
+  "input_manifest": {
+    "path": "format-inputs.json.gz",
+    "gzip_sha256": "1d869b8606d3977cb640e0360c328f3e1457fac73a171d0bc9d1019639e760ef"
+  },
+  "logs": {
+    "format.stdout.txt.gz": {
+      "raw_sha256": "bb0f1e81fd007a81074f27e2577ef3b72d528d4d0afaff92ca8ca861d94a91d0",
+      "gzip_sha256": "99a355260e58f8bbcda846166b049b79840c3755dab84597a549632203f1b0c0",
+      "raw_bytes": 47
+    },
+    "format.stderr.txt.gz": {
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "gzip_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "raw_bytes": 0
+    }
+  },
+  "runner_sha256": "90de35d2cc2a16feb89c92a30901289a878f36a9da014509a039901420721f47",
+  "runtime": "Flutter 3.47.8 / Dart 3.13.7 Linux x64",
+  "changed_sources": {
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart": {
+      "sha256": "b5ddffec3204d795835fdcf50e23254dd75a5ca19c81e192a8aad22c36fb74f3",
+      "size": 101638
+    },
+    "packages/quds_office_engine/test/word_zotero_writing_position_test.dart": {
+      "sha256": "fea9ba3c824a10fc721b9fcc99cec41a294c020939cd5f2163a6453fea70112f",
+      "size": 22496
+    },
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": {
+      "sha256": "fe981bbb5c6f7a0a8eebcfd1850ac3a66aec77f39bd6bceed9b170cb2b459123",
+      "size": 513343
+    },
+    "packages/quds_office_editor/test/word_zotero_writing_position_test.dart": {
+      "sha256": "54af07cfb10f60f540e55caa442a02732bd3e7b4a4b285acc1754b2ead95bdfa",
+      "size": 18813
+    }
+  },
+  "test_summary": null,
+  "result_detail": null
+}

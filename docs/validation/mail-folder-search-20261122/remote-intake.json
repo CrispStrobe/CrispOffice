@@ -1,0 +1,147 @@
+{
+  "recorded_at_utc": "2026-11-22T02:51:51.597894+00:00",
+  "head": "02f66ee686ad196a0fe162da9394b5b016739abd",
+  "last_fetch": "git fetch --all --prune; latest Zotero evidence head 3660a9d94 was then merged",
+  "open_pr_count_at_api_snapshot": 0,
+  "open_pr_snapshot": "github_search_prs(repository_full_name=CrispStrobe/quds_office_suite, query=is:open, state=open, topn=100) returned issues=[] before the final PR was created",
+  "refs": [
+    {
+      "ref": "origin",
+      "sha": "ceddcd888c37f64e37a8d8d1669daaea31384daf",
+      "is_ancestor": true,
+      "unique_commits": 0
+    },
+    {
+      "ref": "origin/codex/word-vba-authoring-20261121",
+      "sha": "cf06b018ec125ce3b5abfda41a7fbbdcf7d30a47",
+      "is_ancestor": true,
+      "unique_commits": 0
+    },
+    {
+      "ref": "origin/codex/word-vba-cell-formatting-20261122",
+      "sha": "49f43824196c4d373f991e442fac2e73e68c5f9f",
+      "is_ancestor": true,
+      "unique_commits": 0
+    },
+    {
+      "ref": "origin/codex/word-vba-comparison-colors-20261121",
+      "sha": "e3c4550b34a9a07de2a97b84b67ab6aecaa5a377",
+      "is_ancestor": true,
+      "unique_commits": 0
+    },
+    {
+      "ref": "origin/codex/word-vba-compatibility-20261121",
+      "sha": "3058d36c5354d46bde418555d59282116cce1e26",
+      "is_ancestor": true,
+      "unique_commits": 0
+    },
+    {
+      "ref": "origin/codex/zotero-dispatch-recovery-20261121",
+      "sha": "32ef843db3a8192fe0add085e1ee173e18f4d462",
+      "is_ancestor": true,
+      "unique_commits": 0
+    },
+    {
+      "ref": "origin/codex/zotero-footnote-separators-20261121",
+      "sha": "a70c0e7af251d737dc7639f44a48777bbea1bf51",
+      "is_ancestor": true,
+      "unique_commits": 0
+    },
+    {
+      "ref": "origin/codex/zotero-host-ownership-20261121",
+      "sha": "05cb866e6e5aaee95dae8b03da2892fcf633a84b",
+      "is_ancestor": true,
+      "unique_commits": 0
+    },
+    {
+      "ref": "origin/codex/zotero-main-qualification-20261121",
+      "sha": "e2a1ed6073556d24194004221c545166b17c2d4e",
+      "is_ancestor": true,
+      "unique_commits": 0
+    },
+    {
+      "ref": "origin/codex/zotero-note-layout-20261121",
+      "sha": "2089e1e35a8ba81ea7f0a077b348f93ca70953c8",
+      "is_ancestor": true,
+      "unique_commits": 0
+    },
+    {
+      "ref": "origin/codex/zotero-odt-roundtrip-20261121",
+      "sha": "05072dc2d59d0fa4ea97de4d6a842700ef333fab",
+      "is_ancestor": true,
+      "unique_commits": 0
+    },
+    {
+      "ref": "origin/codex/zotero-parity-20261122",
+      "sha": "3660a9d94e3100885e61b244f9dba7bdc5403cfb",
+      "is_ancestor": true,
+      "unique_commits": 0
+    },
+    {
+      "ref": "origin/codex/zotero-select-navigation-20261122",
+      "sha": "8c1b8da71bb910d4025aa179dc56290cf1a8e72a",
+      "is_ancestor": true,
+      "unique_commits": 0
+    },
+    {
+      "ref": "origin/codex/zotero-shortcut-host-recovery-20261121",
+      "sha": "2168011b6104f680100b87404bc1bd409f724939",
+      "is_ancestor": true,
+      "unique_commits": 0
+    },
+    {
+      "ref": "origin/codex/zotero-source-continuity-20261121-2135",
+      "sha": "c4c16d91d62ded0c341bee95e98de894de70483f",
+      "is_ancestor": true,
+      "unique_commits": 0
+    },
+    {
+      "ref": "origin/main",
+      "sha": "ceddcd888c37f64e37a8d8d1669daaea31384daf",
+      "is_ancestor": true,
+      "unique_commits": 0
+    },
+    {
+      "ref": "origin/work/mail-folder-scoped-search-20261122",
+      "sha": "ff30d1064a052abbfbcdc99745ff66f8bc980aea",
+      "is_ancestor": true,
+      "unique_commits": 0
+    },
+    {
+      "ref": "origin/work/mail-folder-search-20261122",
+      "sha": "02f66ee686ad196a0fe162da9394b5b016739abd",
+      "is_ancestor": true,
+      "unique_commits": 0
+    },
+    {
+      "ref": "origin/work/mail-keyboard-triage-20261121",
+      "sha": "08d034d876073e2afc881dbfc11ba791acde3d67",
+      "is_ancestor": true,
+      "unique_commits": 0
+    },
+    {
+      "ref": "origin/work/mail-live-search-20261121",
+      "sha": "c3d55be30d91694b1a427d261cddbe47b1dd5eec",
+      "is_ancestor": true,
+      "unique_commits": 0
+    },
+    {
+      "ref": "origin/work/mail-range-selection-tests-20261121",
+      "sha": "5c7a385c5de40394d9eed736c5a2d975535c3df3",
+      "is_ancestor": true,
+      "unique_commits": 0
+    },
+    {
+      "ref": "origin/work/mail-sync-address-search-20261121",
+      "sha": "33d8f956ec2ed1dfd748e1d7ccbc5add053ff565",
+      "is_ancestor": true,
+      "unique_commits": 0
+    },
+    {
+      "ref": "upstream/main",
+      "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+      "is_ancestor": true,
+      "unique_commits": 0
+    }
+  ]
+}

@@ -25,6 +25,13 @@ A fresh agent should use [status.md](status.md) to resume the remaining work wit
 
 UI and storage work may proceed in parallel after the typed core contract is agreed. A task may have an interface dependency without requiring every later provider to exist. Unimplemented capabilities must report unavailable/unsupported explicitly; no successful empty results or TODO method bodies.
 
+**Discovery continuation, 22 November 2026:** explicit
+[saved-search folder sets](folder-saved-search.md) now preserve exact identities,
+legacy definitions, bounded paging and missing-folder recovery. The next
+ordered workspace task is repository-observed unified navigation and durable
+move/delete with explicit capability and uncertain-outcome handling. This
+continuation does not close M04W or the complete desktop-client parity goal.
+
 ## 2. New package layout
 
 ~~~text

@@ -1,0 +1,282 @@
+{
+  "purpose": "Carry the completed pre-Mail-merge engine Zotero cohort to the integrated candidate by exact dependency/source comparison; this is not a new execution.",
+  "new_execution": false,
+  "additional_test_credit": 0,
+  "audited_utc": "2026-11-22T02:40:20.952660+00:00",
+  "original_execution": {
+    "receipt_path": "engine-zotero-receipt.json",
+    "receipt_sha256": "ae167a204ee35cc5b0b0c9ae131bbd8289720503011681d258d92bc2300fea88",
+    "cohort": "engine-zotero",
+    "started_utc": "2026-11-22T02:36:02.820385+00:00",
+    "finished_utc": "2026-11-22T02:37:58.278707+00:00",
+    "head_before": "d2bf64462b43abc16543de3dedc3da76f6bc4b1d",
+    "head_after": "da52f5e9f89918f7e6a9f4c4abaf07bf65ab726a",
+    "substantive_passes": 1494,
+    "selected_suites": 56,
+    "unique_substantive_cases": 1494,
+    "started_lifecycles": 1550,
+    "completed_lifecycles": 1550,
+    "excluded_successful_loaders": 56,
+    "error_events": 0,
+    "skipped_cases": 0,
+    "incomplete_lifecycles": 0,
+    "duplicate_case_identities": 0,
+    "non_json_lines": 0,
+    "global_done_success": true,
+    "exit_code": 0,
+    "all_archived_log_and_detail_hashes_verified": true
+  },
+  "carry_forward_target": {
+    "integration_commit": "42ac1c3a9d19089efb4e8acc6cbb6276098ef46b",
+    "snapshot_head_before": "d1c9673c7caa24a3dc41f9255d2916846d6cdbaf",
+    "snapshot_head_after": "d1c9673c7caa24a3dc41f9255d2916846d6cdbaf",
+    "execution_repeated": false
+  },
+  "comparison": {
+    "original_input_manifest": {
+      "path": "engine-zotero-inputs.json.gz",
+      "gzip_sha256": "edfe491dd3c20d401cd9840f09c7f94d2dfa20ee715fa113775ab33fa1cb730e"
+    },
+    "current_input_manifest": {
+      "path": "engine-zotero-carry-forward-inputs.json.gz",
+      "gzip_sha256": "4fab6c3160a39cca8524090118c634ad3df9aecf9e9a155a7f9f2c544f3c0044"
+    },
+    "original_input_count": 16079,
+    "current_input_count": 16081,
+    "unchanged_inputs": 16065,
+    "modified_inputs": 14,
+    "added_inputs": 2,
+    "removed_inputs": 0,
+    "differences": [
+      {
+        "path": "repo/packages/quds_mail_core/lib/src/search/saved_header_search.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "46823d08203cc9e7bf29c8882875a6c50b05bcf6c958d6b1f03eb034cab2abb9",
+          "size": 3384
+        },
+        "current": {
+          "sha256": "f04eef25d4a515d8172e542df47c5ca7bbb4f98b2d5309605eb97fd9ddf1e0d2",
+          "size": 5377
+        }
+      },
+      {
+        "path": "repo/packages/quds_mail_core/test/saved_header_search_test.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "c85c0bbb68fcdec16557f4de60a76a4595c5738209d994bf7c55109ec0e2ede2",
+          "size": 4310
+        },
+        "current": {
+          "sha256": "9b05060fae962289387c120cab43bdc02a838e54ae072c14e054ecda319c38c4",
+          "size": 6709
+        }
+      },
+      {
+        "path": "repo/packages/quds_mail_store/lib/src/cached_header_search.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "6c476b4106645f6ce1abb6a040b0c5959e9fe7d856b0e97fb8c5980f966b7171",
+          "size": 15580
+        },
+        "current": {
+          "sha256": "664f52c7050f98fcae04a0dc6a5bd2c29e30ec68a20c1c5a7fd7fc11dd7b3791",
+          "size": 18125
+        }
+      },
+      {
+        "path": "repo/packages/quds_mail_store/lib/src/saved_header_searches.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "01552b8cd2d7879bf42a47b55fc1307e705b476fb7d74ede95ff3bcf81164a21",
+          "size": 9813
+        },
+        "current": {
+          "sha256": "a3b81b6c209c1804c7cff65a43ff0d720daea9add904a326ec983fac6ba96fc0",
+          "size": 12589
+        }
+      },
+      {
+        "path": "repo/packages/quds_mail_store/lib/src/schema/database.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "a532bab49f92eb20e875d699fc51aed2101af218febef18daf631afb2b362574",
+          "size": 14010
+        },
+        "current": {
+          "sha256": "ed1a3ece53871df2f3f2a78c5c1ad422cc91fd1b479a5a41d604fe99678e1c37",
+          "size": 15057
+        }
+      },
+      {
+        "path": "repo/packages/quds_mail_store/test/cached_header_search_test.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "5f01cf855686b53cb15c1370d63fdb317cc55a7b96bbccac53d82ee4d8ccef00",
+          "size": 20543
+        },
+        "current": {
+          "sha256": "829f26ee63b29fef4a7fccb66296c48175eb65134db0fa01d4bac63e2676c4cb",
+          "size": 23598
+        }
+      },
+      {
+        "path": "repo/packages/quds_mail_store/test/migration_test.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "0b39e36d701264d5d7d9b939c9504470303fc07445e2738552c29777783cc0de",
+          "size": 40856
+        },
+        "current": {
+          "sha256": "b7829662249d09dad2c10964f459f6b160bc95ca410751a405d0d481fba711b9",
+          "size": 40856
+        }
+      },
+      {
+        "path": "repo/packages/quds_mail_store/test/saved_header_searches_test.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "b49680da3f6d66b6094e641f24293654184d7dfa6cf785d5224ec912bfecdc96",
+          "size": 21214
+        },
+        "current": {
+          "sha256": "1aec7cc3bb67f1a92e5a9aa0431cead1f7e1fdf2f3b47547cee05d4fce0ebbfe",
+          "size": 23489
+        }
+      },
+      {
+        "path": "repo/packages/quds_office_editor/example/lib/studio_mail_cached_search.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "7d13424c88167a79aa04333bd9c8d40ef30bba54eca8782b568524bce3632c97",
+          "size": 14480
+        },
+        "current": {
+          "sha256": "1d7b3a7d15a7084e2ca633a28ee444e88a7a5d06bf2ac6372b6f6d1c1645ce40",
+          "size": 15977
+        }
+      },
+      {
+        "path": "repo/packages/quds_office_editor/example/lib/studio_mail_cached_search_dialog.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "1f24b38af93a8f59f1054d5ad30ea2bea79933610a4df40bb29aad3840308fc3",
+          "size": 50057
+        },
+        "current": {
+          "sha256": "708ed0e291775be555b7fb339deb512270753b95e2c66fb4738bc1aaca1b703e",
+          "size": 58185
+        }
+      },
+      {
+        "path": "repo/packages/quds_office_editor/example/lib/studio_mail_folder_picker.dart",
+        "kind": "added",
+        "before": null,
+        "current": {
+          "sha256": "cb341909aaedf959c74b728d6b1cd4b212500f95dabe9ab7601bea0e0fbaebf1",
+          "size": 4948
+        }
+      },
+      {
+        "path": "repo/packages/quds_office_editor/example/lib/studio_mail_mailbox_store.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "e24401be2402643939df936a98792c8211f90bed71dee38c945c703b992417ec",
+          "size": 17513
+        },
+        "current": {
+          "sha256": "880ab9115194034c02e2abef0095d258f55064fc1920a58d7489b359bea505fd",
+          "size": 18522
+        }
+      },
+      {
+        "path": "repo/packages/quds_office_editor/example/lib/studio_mail_saved_search_strings.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "5eb3219a9a80f2999e68fc1250f263c8693d06719d9ff398d5d2c466a90a40d9",
+          "size": 5315
+        },
+        "current": {
+          "sha256": "bedda1c17d1eace81b956089689fb81140f1841376ee3110eabced3b5ae4acff",
+          "size": 7587
+        }
+      },
+      {
+        "path": "repo/packages/quds_office_editor/example/test/studio_mail_cached_search_test.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "cd5d2369e0ec710e954f54b205be3ea6f0b1da0aad9156a2ed131866e51f9d6f",
+          "size": 22604
+        },
+        "current": {
+          "sha256": "f16e4c8f85551652a7be699da9efa3ef25d6ab37cf0bffb667e65464dc91d0ff",
+          "size": 25139
+        }
+      },
+      {
+        "path": "repo/packages/quds_office_editor/example/test/studio_mail_folder_picker_test.dart",
+        "kind": "added",
+        "before": null,
+        "current": {
+          "sha256": "756a540952f19541b54b4fde6c7baa91c8fc78bae5503e9160c17e7fb9df11dc",
+          "size": 3978
+        }
+      },
+      {
+        "path": "repo/packages/quds_office_editor/example/test/studio_mail_saved_search_dialog_test.dart",
+        "kind": "modified",
+        "before": {
+          "sha256": "676476fea51bb04d76cadb6da6281755c9deebb8eb35cb7c4b9cba73b900fc49",
+          "size": 16548
+        },
+        "current": {
+          "sha256": "b1a5dd94292953476701708a34938a62a63a172d46418e497d7d1ff44b28214d",
+          "size": 18202
+        }
+      }
+    ],
+    "complete_key_sets_compared": true,
+    "all_differences_equal_incoming_mail_code_paths": true,
+    "unaffected_non_repository_inputs": {
+      "dependency": 8634,
+      "resolved-config": 2,
+      "sdk": 1127
+    },
+    "runtime_dependencies_and_resolved_configs_unchanged": true,
+    "all_four_changed_zotero_sources_unchanged": true
+  },
+  "engine_import_audit": {
+    "method": "Conservative recursive import/export/part URI traversal from all 56 selected engine test files; every conditional URI branch traversed; package URIs resolved with actual workspace package_config.json; dart: libraries covered by complete unchanged SDK inputs.",
+    "directive_pattern": "(?m)^\\s*(?:import|export|part)\\s+(?=['\"])(.*?);",
+    "seed_suites": 56,
+    "traversed_dart_files": 1347,
+    "workspace_dart_files": 442,
+    "workspace_packages": {
+      "packages/legacy_doc_parser": 66,
+      "packages/quds_office_engine": 376
+    },
+    "external_dependency_dart_files": 905,
+    "missing_files": [],
+    "unresolved_uris": [],
+    "used_sdk_libraries": [
+      "dart:async",
+      "dart:collection",
+      "dart:convert",
+      "dart:core",
+      "dart:io",
+      "dart:isolate",
+      "dart:math",
+      "dart:typed_data"
+    ],
+    "all_traversed_files_fingerprinted_and_unchanged": true,
+    "engine_workspace_dependencies": [
+      "legacy_doc_parser"
+    ],
+    "mail_or_studio_files_in_import_closure": false
+  },
+  "limits": [
+    "This carries forward only the completed engine cohort. Editor and Studio cohorts execute after integration.",
+    "The conservative import closure follows all static import/export/part branches; runtime SDK and every resolved package input are compared independently.",
+    "This is Dart/Flutter source and widget evidence, not installed Zotero/Word/LibreOffice interoperability or a native release-build result."
+  ]
+}

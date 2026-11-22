@@ -8367,45 +8367,164 @@ class WordEditorController extends OfficeController {
       throw StateError('Zotero has not completed the operation.');
     }
     if (!session.hasChanges) return;
-    final before = _ZoteroDocumentSnapshot.capture(document);
-    before.assertRestorable(document);
-    late final _ZoteroDocumentSnapshot after;
-    try {
-      session.apply();
-      after = _ZoteroDocumentSnapshot.capture(document);
-    } finally {
-      before.restore(document);
-    }
+    // Reject stale host state before capturing endpoints from its live
+    // paragraphs, preserving the transaction's StateError contract.
+    session.assertUnchanged();
     final beforeCaret = caret.logicalIndex;
     final beforeParagraph = caret.paragraphIndex;
     final beforeAnchor = caret.selectionAnchor;
     final beforeAnchorParagraph = caret.selectionAnchorParagraph;
     final beforeNoteTarget = noteEditingTarget;
+    final sourceParagraphs = _paragraphs;
+    WordZoteroCitingPosition? captureBody(int paragraph, int offset) =>
+        paragraph >= 0 && paragraph < sourceParagraphs.length
+        ? session.capturePosition(
+            sourceParagraphs[paragraph],
+            offset.clamp(0, sourceParagraphs[paragraph].text.length),
+          )
+        : null;
+    WordZoteroCitingPosition? captureNote(int offset) {
+      if (beforeNoteTarget == null) return null;
+      final range = _noteSelectionRange((
+        note: beforeNoteTarget.note,
+        selection: TextSelection.collapsed(offset: offset),
+        composing: TextRange.empty,
+      ));
+      return range == null
+          ? null
+          : session.capturePosition(range.paragraph, range.start);
+    }
+
+    // Body and Notes selections have independent endpoints. Retain their
+    // native paragraph identities before bibliography reflow changes indexes.
+    final bodyExtent = captureBody(beforeParagraph, beforeCaret);
+    final bodyAnchor = captureBody(beforeAnchorParagraph, beforeAnchor);
+    final noteExtent = beforeNoteTarget == null
+        ? null
+        : captureNote(beforeNoteTarget.selection.extentOffset);
+    final noteAnchor = beforeNoteTarget == null
+        ? null
+        : captureNote(beforeNoteTarget.selection.baseOffset);
+    final before = _ZoteroDocumentSnapshot.capture(document);
+    before.assertRestorable(document);
+    late final _ZoteroDocumentSnapshot after;
+    late ({int paragraph, int offset}) afterExtent;
+    late ({int paragraph, int offset}) afterAnchor;
+    WordNoteEditingTarget? afterNoteTarget;
+    try {
+      session.apply();
+      final paragraphs = _paragraphs;
+      ({WmlParagraph paragraph, int offset})? resolve(
+        WordZoteroCitingPosition? position,
+      ) => position == null ? null : session.resolvePosition(position);
+      ({int paragraph, int offset}) bodyPosition(
+        ({WmlParagraph paragraph, int offset})? position, {
+        required int fallbackParagraph,
+        required int fallbackOffset,
+      }) {
+        final index = position == null
+            ? -1
+            : paragraphs.indexOf(position.paragraph);
+        final paragraph = (index < 0 ? fallbackParagraph : index).clamp(
+          0,
+          paragraphs.length - 1,
+        );
+        return (
+          paragraph: paragraph,
+          offset: (index < 0 ? fallbackOffset : position!.offset).clamp(
+            0,
+            paragraphs[paragraph].text.length,
+          ),
+        );
+      }
+
+      final mappedExtent = resolve(bodyExtent);
+      final mappedAnchor = resolve(bodyAnchor);
+      afterExtent = bodyPosition(
+        mappedExtent,
+        fallbackParagraph: beforeParagraph,
+        fallbackOffset: beforeCaret,
+      );
+      afterAnchor = mappedExtent == null || mappedAnchor == null
+          ? afterExtent
+          : bodyPosition(
+              mappedAnchor,
+              fallbackParagraph: beforeAnchorParagraph,
+              fallbackOffset: beforeAnchor,
+            );
+      final destination = session.caretAfter;
+      if (destination != null) {
+        // New citations and research content retain their explicit insertion
+        // destination; Refresh and style changes use the transformed source.
+        afterExtent = bodyPosition(
+          destination,
+          fallbackParagraph: afterExtent.paragraph,
+          fallbackOffset: afterExtent.offset,
+        );
+        afterAnchor = afterExtent;
+        afterNoteTarget = _noteTargetAt(
+          destination.paragraph,
+          destination.offset,
+        );
+      } else if (beforeNoteTarget != null) {
+        final extent = resolve(noteExtent);
+        final anchor = resolve(noteAnchor);
+        final extentTarget = extent == null
+            ? null
+            : _noteTargetAt(extent.paragraph, extent.offset);
+        final anchorTarget = anchor == null
+            ? null
+            : _noteTargetAt(anchor.paragraph, anchor.offset);
+        if (extentTarget != null) {
+          final sameNote =
+              anchorTarget != null &&
+              identical(anchorTarget.note, extentTarget.note);
+          afterNoteTarget = (
+            note: extentTarget.note,
+            selection: beforeNoteTarget.selection.copyWith(
+              baseOffset: sameNote
+                  ? anchorTarget.selection.extentOffset
+                  : extentTarget.selection.extentOffset,
+              extentOffset: extentTarget.selection.extentOffset,
+            ),
+            composing: TextRange.empty,
+          );
+        } else if (extent != null && paragraphs.contains(extent.paragraph)) {
+          // A removed or converted sole citation note returns to its body
+          // anchor. Never retain a Notes selection into a detached note.
+          afterExtent = bodyPosition(
+            extent,
+            fallbackParagraph: afterExtent.paragraph,
+            fallbackOffset: afterExtent.offset,
+          );
+          afterAnchor = anchor != null && paragraphs.contains(anchor.paragraph)
+              ? bodyPosition(
+                  anchor,
+                  fallbackParagraph: afterExtent.paragraph,
+                  fallbackOffset: afterExtent.offset,
+                )
+              : afterExtent;
+        } else {
+          afterNoteTarget = _clampNoteEditingTarget(beforeNoteTarget);
+        }
+      }
+      after = _ZoteroDocumentSnapshot.capture(document);
+    } finally {
+      before.restore(document);
+    }
     commands.commit(
       _CallbackCommand(
         executeFn: () {
           after.restore(document);
-          final paragraphs = _paragraphs;
-          final destination = session.caretAfter;
-          final destinationIndex = destination == null
-              ? -1
-              : paragraphs.indexOf(destination.paragraph);
-          caret.paragraphIndex =
-              (destinationIndex < 0 ? beforeParagraph : destinationIndex).clamp(
-                0,
-                paragraphs.length - 1,
-              );
-          caret.logicalIndex =
-              (destinationIndex < 0 ? beforeCaret : destination!.offset).clamp(
-                0,
-                paragraphs[caret.paragraphIndex].text.length,
-              );
-          caret.collapseSelection();
-          _restoreNoteEditingTarget(
-            destination == null
-                ? _clampNoteEditingTarget(beforeNoteTarget)
-                : _noteTargetAt(destination.paragraph, destination.offset),
-          );
+          caret
+            ..paragraphIndex = afterExtent.paragraph
+            ..logicalIndex = afterExtent.offset
+            ..selectionAnchorParagraph = afterAnchor.paragraph
+            ..selectionAnchor = afterAnchor.offset
+            ..resetBlink();
+          _restoreNoteEditingTarget(afterNoteTarget);
+          // Redo must retain the transformed selection, including direction.
+          _historyRestoredSelection = true;
         },
         undoFn: () {
           before.restore(document);
@@ -8414,8 +8533,6 @@ class WordEditorController extends OfficeController {
           caret.selectionAnchor = beforeAnchor;
           caret.selectionAnchorParagraph = beforeAnchorParagraph;
           _restoreNoteEditingTarget(beforeNoteTarget);
-          // The generic history hook normally collapses a selection. This
-          // command restores an exact selection snapshot instead.
           _historyRestoredSelection = true;
         },
       ),
