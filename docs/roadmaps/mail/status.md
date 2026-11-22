@@ -33,13 +33,18 @@ revalidate every selected identity across prompts, then use the existing durable
 sequential coordinator. Per-message results, uncertainty, stop-after-current and
 restart receipts remain available in Mail activity.
 
-IMAP Delete marks `\\Deleted` without expunge; EWS/Graph/Gmail retain their
+IMAP Delete marks `\Deleted` without expunge; EWS/Graph/Gmail retain their
 existing trash semantics. Gmail never exposes folder-style Move. Cached views
 remain read-only, and the shared list defaults to its prior four flag actions.
 The [workflow and ordered continuation](bulk-organization.md) and
 [local qualification record](../../validation/mail-bulk-organization-20261122/README.md)
 define the implemented scope and validation status. This does not close M04W or
 full desktop-client parity.
+
+Local acceptance passed 257 focused widget cases, including 78 new regressions
+and 81 real SQLite host cases. Changed Mail source and tests also passed pinned
+formatting and strict analysis. The qualification record retains the exact
+runtime, execution adapters, initial failures and remaining platform limits.
 
 ## Previous increment: authoritative move identities and atomic cache reconciliation
 

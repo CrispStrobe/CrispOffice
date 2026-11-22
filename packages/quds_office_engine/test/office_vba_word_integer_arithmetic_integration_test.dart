@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:quds_office_engine/quds_office_automation.dart';
+import 'package:quds_office_engine/quds_office_engine.dart';
 import 'package:test/test.dart';
 
 import '../tool/macros/web_vba_word_cell_suffix_smoke.dart' as fixture;
@@ -29,6 +30,75 @@ void main() {
         expect(result['lateRollback'], isTrue);
       },
     );
+  }
+
+  test('grouped preservation excludes exactly four selected cells', () async {
+    final input = fixture.wordCellSuffixInput();
+    final untouched = fixture.wordCellSuffixUntouched(
+      input,
+      selectedCellCount: 4,
+    );
+    final session = OfficeMacroSession(input, format: OfficeMacroFormat.docx);
+    await session.run(
+      portable.groupedReportSource(File(_example).readAsStringSync()),
+    );
+    expect(
+      fixture.wordCellSuffixUntouched(session.bytes, selectedCellCount: 4),
+      untouched,
+    );
+    expect(
+      fixture.wordCellSuffixUntouched(session.bytes),
+      isNot(fixture.wordCellSuffixUntouched(input)),
+      reason: 'The suffix default must still protect the fourth cell',
+    );
+    await session.callTool('docx.tableCellRangeText', {
+      'table': 1,
+      'row': 0,
+      'column': 0,
+      'text': 'Unexpected neighboring table edit',
+    });
+    expect(
+      fixture.wordCellSuffixUntouched(session.bytes, selectedCellCount: 4),
+      isNot(untouched),
+      reason: 'The grouped report must still protect the fifth cell',
+    );
+  });
+
+  for (final change in ['paragraph properties', 'table geometry']) {
+    test('grouped preservation detects selected-cell $change changes', () {
+      final input = fixture.wordCellSuffixInput();
+      final document = WordDeserializer().readBytes(input);
+      final table = document.sections.first.blocks.whereType<WmlTable>().first;
+      if (change == 'paragraph properties') {
+        final paragraph =
+            table.rows.first.cells.first.blocks.single as WmlParagraph;
+        paragraph.properties.spacingAfter = 9;
+      } else {
+        table.grid[0] += 1;
+      }
+      expect(
+        fixture.wordCellSuffixUntouched(
+          WordSerializer().writeBytes(document),
+          selectedCellCount: 4,
+        ),
+        isNot(fixture.wordCellSuffixUntouched(input, selectedCellCount: 4)),
+      );
+    });
+  }
+
+  for (final partUri in ['/customXml/table.xml', '/word/vbaProject.bin']) {
+    test('grouped preservation detects opaque $partUri changes', () {
+      final input = fixture.wordCellSuffixInput();
+      final package = OpcPackage.openBytes(input);
+      final part = package.getPart(partUri)!;
+      final changed = part.readBytes();
+      changed[0] ^= 1;
+      part.writeBytes(changed);
+      expect(
+        fixture.wordCellSuffixUntouched(package.save(), selectedCellCount: 4),
+        isNot(fixture.wordCellSuffixUntouched(input, selectedCellCount: 4)),
+      );
+    });
   }
 
   test(

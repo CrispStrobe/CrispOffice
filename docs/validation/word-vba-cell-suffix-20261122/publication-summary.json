@@ -1,0 +1,185 @@
+{
+  "schemaVersion": 1,
+  "recordKind": "Publication summary from inspected results; not an independently sealed final Mail aggregate",
+  "featureCheckpoint": {
+    "commit": "d4317dcc1ecc6c7b70a1773cc121f5639ad99428",
+    "tree": "2b5ba59c350436f7146c2b657ce2318213940aba"
+  },
+  "observedPublication": {
+    "main": "8326f191067dac1a3befab81361c5829fee9a35d",
+    "tree": "314702d7cce8d85047db0338e0f7d92b1ac214c3",
+    "featurePullRequest": 371,
+    "featurePullRequestMerged": true,
+    "featureIndirectMergeCommit": "ad27e97263eee11dbd7b76f846bfea0a8e250499",
+    "featureMergedAt": "2026-11-22T08:48:06Z",
+    "subsequentArithmeticPullRequest": 370,
+    "featureCheckpointAncestorOfMain": true
+  },
+  "word": {
+    "qualifiedThrough": "d4317dcc1ecc6c7b70a1773cc121f5639ad99428",
+    "suites": 141,
+    "passingExecutions": 7235,
+    "uniqueNamedTestKeys": 7214,
+    "failed": 0,
+    "skipped": 0,
+    "acceptedCoverageUsesWholePassingFiles": true,
+    "oneCleanMonolithicRun": false,
+    "strictAnalysisPassed": true,
+    "formatPassed": true,
+    "laterArithmeticCompilerIncludedInThisGate": false,
+    "corpusCases": 73,
+    "corpusPlans": 27,
+    "corpusDiagnostics": 46,
+    "vmAndOptimizedJavaScriptOutputsIdentical": true,
+    "actualBasOperations": 6,
+    "portableInputFiles": 449,
+    "portableRuntimeAndDependencyReceiptHashes": 12
+  },
+  "historicalContinuity": {
+    "commit": "d4317dcc1ecc6c7b70a1773cc121f5639ad99428",
+    "all1211RecheckInputsIdentical": true,
+    "trackedGitBlobMatches": 1208,
+    "canonicalInputManifestSha256": "f26e665b0e749216efc08865f40ff4d1e899d3f371c98488fe771234871d3837",
+    "verifiedBeforeTemporaryLauncherChanges": true,
+    "fullLocalBindingFilePublished": false
+  },
+  "sealedArchive": {
+    "path": "evidence/local-qualification.tar.gz",
+    "bytes": 1300946,
+    "members": 129,
+    "sha256": "97215d1b03589df9b0c91582d7798e4451fe5d1bb1b73fa06ff06dacd989c545",
+    "indexSha256": "bc0501c19184192844cd7d42a2a13110952e239b6ddfc309fccc2fb0b5dcddc7",
+    "unchanged": true
+  },
+  "incomingZotero": {
+    "executions": 705,
+    "engine": 468,
+    "editor": 210,
+    "studio": 27,
+    "sourceBoundHistoricalReceipts": true
+  },
+  "mail": {
+    "status": "partial-environment-blocked",
+    "qualifiedCheckpoint": "d4317dcc1ecc6c7b70a1773cc121f5639ad99428",
+    "core": {
+      "suites": 27,
+      "passed": 629,
+      "failed": 0,
+      "exactSourceContinuity": true
+    },
+    "store": {
+      "acceptedVmSuites": 23,
+      "passed": 635,
+      "failed": 0,
+      "skipped": 0,
+      "acceptedBatchNumbers": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "sourceInputs": 151,
+      "sourceInputsChanged": 0,
+      "unrunVmSuites": 25,
+      "unrunNodeSuites": 1,
+      "unrunNodeTests": 3,
+      "rejectedBatch6": {
+        "testBodies": 0,
+        "loaderErrors": 1,
+        "error": "ENOSPC during temporary-directory creation",
+        "exitCode": 255
+      }
+    },
+    "coreStoreStrictAnalysis": {
+      "exitCode": 0,
+      "clean": true
+    },
+    "historicalFocusedStore": {
+      "passed": 47,
+      "predatesFinalClockGuard": true,
+      "includedInFinalTotals": false
+    },
+    "transport": {
+      "acceptedStableCohortFiles": 8,
+      "acceptedStableCohortPassed": 233,
+      "rawOtherCohorts": [
+        {
+          "files": 8,
+          "passed": 195,
+          "failed": 1,
+          "cause": "ENOSPC in host_store_integration_test.dart; exclude entire file before aggregation"
+        },
+        {
+          "files": 6,
+          "passed": 145,
+          "failed": 0,
+          "limitation": "Generated launcher hash changed; SDK binary unchanged"
+        }
+      ],
+      "rawPassed": 573,
+      "rawFailed": 1,
+      "rawCountsAreAcceptedAggregate": false,
+      "unrunJavaScriptSuites": 3
+    },
+    "studio": {
+      "acceptedStableCohortFiles": 8,
+      "acceptedStableCohortPassed": 132,
+      "otherObservedCohort": {
+        "files": 8,
+        "passed": 321,
+        "finalSourceStartupLockBridgeRecorded": true,
+        "bridgeFinallySealed": false
+      },
+      "preloadFailedFiles": 2,
+      "preloadFailure": "ENOSPC",
+      "rawPassed": 453,
+      "rawCountsAreAcceptedAggregate": false
+    },
+    "finalCopyuidAndScopedChecks": "Unresolved; later invocations aborted before launch with exit 75",
+    "finalDriverReceiptClosureIndependentlyReread": false,
+    "finalArchiveCreated": false,
+    "finalArchivePublished": false,
+    "finalAcceptedAggregateProduced": false,
+    "browserPersistenceWebLocksAndWasmSavepointsQualified": false
+  },
+  "intake": {
+    "initialForkTopicTips": 29,
+    "initialUpstreamTips": 4,
+    "initialRecentPullRequests": 100,
+    "initialPrRange": [
+      269,
+      368
+    ],
+    "allInitialTipsAndPrHeadsInInitialMain": true,
+    "capturedLaterTips": 37,
+    "allCapturedLaterTipsAncestorsOfFeatureCheckpoint": true,
+    "laterSweepTips": 39,
+    "laterObservedOutsideMain": [
+      "f25c62e38b422598873c3dc3bb638e746dfb53b9",
+      "06b4e747c09851048d0b72a958e9114f7c83cc52"
+    ],
+    "arithmeticTipIncludedInObservedMain": "ad27e97263eee11dbd7b76f846bfea0a8e250499"
+  },
+  "executionLimits": {
+    "githubActionsQueried": false,
+    "githubCheckSuitesQueried": false,
+    "githubCommitStatusesQueried": false,
+    "githubCiAwaited": false,
+    "installedMicrosoftWordDifferentialRun": false,
+    "completeCombinedArithmeticMacroGate": false
+  },
+  "localEnvironment": {
+    "sandboxInitializationBlockedBy": "ENOSPC",
+    "finalCheckoutRefreshCompleted": false,
+    "originalHelperLaunchersRestored": false,
+    "originalHelperLauncherBackups": [
+      "runtime/bin/dart.original_for_restore",
+      "runtime/bin/flutter.original_for_restore"
+    ],
+    "currentGeneratedHelperLauncherExitCode": 75,
+    "sdkSourceBinariesAndGitMetadataUnmodified": true,
+    "committedRepositorySourceUnmodifiedByScheduling": true,
+    "historicalEvidenceRestorationManifest": "runtime/evicted-historical-evidence.json"
+  }
+}
