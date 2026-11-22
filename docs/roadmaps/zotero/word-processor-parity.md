@@ -52,12 +52,13 @@ results retain their original source and platform attribution.
 | Library/source discovery | Local/online catalogs, collections, saved searches, tags, source details, cited-source reuse and occurrence navigation, and validated local/group **Open in Zotero** navigation from reference details | Local and online catalog APIs have different connection/version requirements; desktop selection is unavailable for unverified personal-web or offline identities |
 | Research materials | Read-only direct-child note previews and attachment metadata | No separate attachment-file download or Zotero library write workflow |
 | DOCX persistence | Active fields/preferences, native notes, rich bibliography structure, tables and embedded pictures use supported save/reopen paths | Local tests are separate from actual Word/LibreOffice application round trips |
-| Table margins and borders | Native measurement, wrapping, pagination, ruler insets and nested picture fitting use each table's modeled uniform margin; editable ODT preserves uniform padding and one supported solid RGB stroke per table with independent cell sides, style inheritance and merged/nested ownership | Asymmetric/per-cell padding, mixed strokes, visible separating borders and conflicting covered styles remain unsupported; ODT/DOCX geometry rounds to format precision, and exhausted final scaled widths refuse |
+| Table margins and borders | Native measurement, wrapping, pagination, ruler insets and nested picture fitting use each table's modeled uniform margin; editable ODT preserves uniform padding and one supported solid RGB stroke per table with independent cell sides, style inheritance and merged/nested ownership | The bounded ODT path excludes asymmetric/per-cell padding, mixed strokes, visible separating borders and conflicting covered styles; arbitrary external DOCX cell strokes/styles remain unqualified; geometry rounds to format precision, and exhausted final scaled widths refuse |
+| DOCX table-border sides | Logical `start`/`end` take precedence over legacy `left`/`right`; effective inherited/direct table direction resolves before physical-side mapping, and DOCX saving applies the inverse mapping | One native common table stroke; editable ODT refuses right-to-left table column order, separately from supported paragraph direction |
 | Footnote separators | Explicit solid/hidden rules retain independent gaps, nominal thickness, relative width, physical alignment and color; matching native pagination, continuation-page layout, editor/PDF rendering, ODT persistence and bounded native DOCX persistence | One compatible document-wide geometry; dashed/dotted active rules and richer separator stories remain unsupported; LibreOffice normalizes custom DOCX separator paragraphs, so that converter route remains a recorded limitation |
 | Cross-word-processor transfer | Native export/import handshake, temporary metadata hyperlinks, DOCX import/save/reopen and ODT carrier export; complete native formatting before import publication | The qualified DOCX carrier route and native ODT conversion have separate envelopes; installed Zotero/Word/LibreOffice plugin acceptance remains open and actual converter findings are retained |
 | Native ODT inspection | Read-only inventory of citation ReferenceMarks, bibliography TextSections, exact story/paragraph/cell ownership, cached text and original preferences; JSON diagnostic CLI | Inspection reports eligibility and findings without publishing an editable document |
 | Native ODT import | Bounded rich paragraphs/styles, hyperlinks, authored notes, simple lists, supported merged/nested tables and embedded inline PNG/upright RGB JPEG pictures; canonical Zotero fields and preferences convert to an editable Word document; asynchronous editor/Studio opening and DOCX save/reopen | Used unsupported structure/formatting refuses atomically; content-sensitive guards limit dormant defaults; installed-plugin acceptance remains open |
-| Native editable ODT output | Explicit copy export with native citation ReferenceMarks, bibliography TextSections, preferences, bounded body/cell and automatic decimal/Roman note ownership and inline pictures with links/alternative text | General Word-to-ODT formatting limits remain; unsupported active-field or picture ownership refuses; release-host/plugin acceptance is separate from local and converter fixtures |
+| Native editable ODT output | Explicit copy export with native citation ReferenceMarks, bibliography TextSections, preferences, bounded body/cell and automatic decimal/Roman note ownership and inline pictures with links/alternative text | General Word-to-ODT formatting limits remain; unsupported active-field or picture ownership and right-to-left table column order refuse; release-host/plugin acceptance is separate from local and converter fixtures |
 
 The native controls use Zotero's own CSL processor. The separate basic/offline
 citation and single-item preview/export paths retain their narrower formatting
@@ -99,10 +100,31 @@ that would have introduced repeated-save drift.
 
 The original retained DOCX table-cell fixtures exercise native editable ODT
 reopening, active-field refresh, selected-field context, undo/redo and repeated
-DOCX/ODT saves. Unsupported colors/styles/widths, mixed strokes, visible
-separating models and conflicting covered overrides refuse before publication.
-Native checks and identified converter runs remain separate from installed
-Zotero/Word/LibreOffice plugin acceptance and pixel-identical rendering.
+DOCX/ODT saves. Independent comparison with the source XML exposed an earlier
+loss of `w:start`/`w:end` cell borders. The corrected Word reader gives modern
+logical names precedence over legacy `left`/`right` regardless of element order,
+resolves effective table direction from default/named styles and direct
+overrides, then maps both naming forms to physical sides. Explicit false
+direction overrides inherited true; DOCX saving applies the inverse mapping.
+Native namespace and direct-child scope checks prevent foreign or nested
+lookalikes from supplying those settings.
+
+Actual converter acceptance passes three cases through six LibreOffice saves
+and twelve paired native DOCX/ODT cycles, with all 376 captured engine inputs
+unchanged. The original retained black-bordered cell has an independent
+four-side source assertion; colored disabled sides and a colored vertical merge
+provide the other cases. The work record identifies the exact LibreOfficeDev
+build and preserves the failed discovery attempts separately.
+
+The bounded ODT reader refuses unsupported colors/styles/widths, mixed strokes,
+visible separating models and conflicting covered overrides. Editable output
+validates the native modeled stroke and merged ownership. The alias repair does
+not qualify arbitrary external DOCX per-cell strokes or styles. Editable ODT
+also refuses effective right-to-left table column order without changing the
+source or active fields; supported right-to-left paragraphs inside
+left-to-right tables retain their existing scope. Native checks and identified
+converter runs remain separate from installed Zotero/Word/LibreOffice plugin
+acceptance and pixel-identical rendering.
 
 ## Delivered increment: research-note paragraph layout and colors
 
@@ -619,7 +641,8 @@ authored or inherited, must match its merged origin; nested tables resolve
 separately. Asymmetric/per-cell padding, unsupported row/column default-cell
 styles and visible borders remain refused. Explicit borderless declarations
 are accepted. Ordinary cached-result ODT output keeps its previous formatting
-contract.
+contract. That increment's evidence retains its original boundary; the later
+solid-border continuation above adds the qualified visible-border subset.
 
 Margins must be finite, nonnegative, within the DOCX limit of 32,767 twentieths
 of a point (1,638.35 pt), and leave positive cell content width. Editable ODT
@@ -789,9 +812,11 @@ Installed Zotero/Word/LibreOffice acceptance remains a separate next step.
    plugin Refresh and repeated application saves. The
    [border continuation](../../validation/zotero-table-borders-20261122/README.md)
    closes the native editable-ODT route for supported solid table borders.
-   Next, qualify ordinary-link visited styles and additional table geometry
-   without losing appearance, and retain continued-list failures as independent
-   regression targets.
+   Its actual converter cases preserve source-verified borders through repeated
+   saves; they do not qualify installed Zotero plugins. Next, qualify
+   ordinary-link visited styles, right-to-left table column order and additional
+   table geometry without losing appearance. External DOCX per-cell stroke/style
+   fidelity and continued-list failures retain independent regression targets.
    Intact metadata or visual appearance alone is insufficient acceptance.
 3. **Extend table structure and formatting.** Improve merged-row height distribution and map
    header/footer row groups and custom styles to native structures with explicit

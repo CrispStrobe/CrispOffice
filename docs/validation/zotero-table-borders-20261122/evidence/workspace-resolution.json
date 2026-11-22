@@ -1,0 +1,8 @@
+{
+  "packages": 166,
+  "manifest_paths": 35,
+  "manifest_changes": [],
+  "dart_sdk": "3.13.7",
+  "command": "dart pub get --enforce-lockfile",
+  "exit_code": 0
+}

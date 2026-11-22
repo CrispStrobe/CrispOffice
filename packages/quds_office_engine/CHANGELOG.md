@@ -9,9 +9,23 @@ All notable changes to `quds_office_engine` are documented here.
   widths from 0.25 to 12 pt, and independent cell sides. Resolve inherited
   shorthands, explicit off edges, merged ownership and nested tables without
   changing uniform padding. Retain active citations through native Refresh and
-  repeated DOCX/ODT saves. Mixed strokes, visible separating borders and
-  conflicting covered-cell overrides remain guarded. See the
+  repeated DOCX/ODT saves. The bounded ODT reader guards mixed strokes, visible
+  separating borders and conflicting covered-cell overrides; editable output
+  checks the native modeled stroke and refuses right-to-left table column order
+  without changing the source or active fields. Supported right-to-left
+  paragraphs inside left-to-right tables remain distinct. Three cases pass six
+  actual LibreOffice saves and twelve paired native DOCX/ODT cycles with all 376
+  captured engine inputs unchanged. See the
   [border interoperability record](../../docs/validation/zotero-table-borders-20261122/README.md).
+
+- Preserve Word cell borders stored as logical `start`/`end`, giving those names
+  precedence over legacy `left`/`right` independently of XML order. Resolve
+  effective table direction from default/named styles and direct overrides
+  before mapping to physical sides, and apply the inverse mapping on DOCX save.
+  Keep absent edges distinct from explicit off (`nil`/`none`); guard namespace and
+  direct-child ownership. The retained Writer DOCX cell now independently
+  retains all four source borders. Arbitrary external DOCX per-cell strokes and
+  styles remain outside this native common-stroke qualification.
 
 - Keep bounded LibreOffice-formatted Zotero DOCX fields editable while
   preserving their raw instruction/boundary formatting and empty code runs.

@@ -1,0 +1,88 @@
+{
+  "acceptedAttempt": "converter/attempt-3",
+  "result": "pass",
+  "sourceCommitDuringExecution": "6b1eb622e56f844373df327568a2980f5fec4c74",
+  "sourceBinding": "Source-before and source-after SHA256 maps are identical; final integration commit binding is recorded separately by root.",
+  "sourceBeforeMember": "converter/attempt-3/source-before.json",
+  "sourceAfterMember": "converter/attempt-3/source-after.json",
+  "capturedInputs": 376,
+  "changedInputs": [],
+  "capturedScope": "All engine/lib Dart files, acceptance tool, retained DOCX fixture, engine/root manifests, root lockfile, root package configuration. This is not the complete transitive compiled-input closure.",
+  "startedUtc": "2026-11-22T12:46:56.705419Z",
+  "finishedUtc": "2026-11-22T12:47:01.273289Z",
+  "converter": "LibreOfficeDev 26.8.0.0.alpha0 2c87e51eeaa2b413ff4ae097b2705eea1995d8e5",
+  "dartVersion": "3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "cases": [
+    {
+      "name": "retained-cell",
+      "stages": [
+        "generated-1",
+        "libreoffice-1",
+        "cycle-1-1",
+        "cycle-1-2",
+        "generated-2",
+        "libreoffice-2",
+        "cycle-2-1",
+        "cycle-2-2"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "coloured-sides",
+      "stages": [
+        "generated-1",
+        "libreoffice-1",
+        "cycle-1-1",
+        "cycle-1-2",
+        "generated-2",
+        "libreoffice-2",
+        "cycle-2-1",
+        "cycle-2-2"
+      ],
+      "status": "passed"
+    },
+    {
+      "name": "merged-colour",
+      "stages": [
+        "generated-1",
+        "libreoffice-1",
+        "cycle-1-1",
+        "cycle-1-2",
+        "generated-2",
+        "libreoffice-2",
+        "cycle-2-1",
+        "cycle-2-2"
+      ],
+      "status": "passed"
+    }
+  ],
+  "actualLibreOfficeOdtSaves": 6,
+  "pairedNativeDocxOdtCycles": 12,
+  "individualNativeSaveReopensInThoseCycles": 24,
+  "allConverterExitCodes": 0,
+  "allConverterStderrEmpty": true,
+  "retainedFixture": "packages/quds_office_engine/test/fixtures/zotero/converter/docx-cycle-1/cell.docx",
+  "retainedFixtureSha256": "a91012793ddfd2d83fea7ee1754496fe9d4c0996f1fcce2701f001aa7286d5ef",
+  "independentSourceOracle": "Hash-bound retained fixture requires all four original 0.5pt black sides before any conversion; logical start/end are not inferred from an already-deserialized snapshot.",
+  "verified": "Original citation IDs, complete citation JSON including unknown fields, cached text, editable fields, field balance, table/cell ownership, document preferences, normalized paragraph text, side masks, common stroke color/width, padding, merged ownership and grid through two actual converter saves and four paired native DOCX/ODT cycles per case.",
+  "numericTolerance": "Stroke width 0.000001 pt; other captured geometry at most 0.05 pt from the original expectation in every cycle. Metadata compares exactly. Paragraph text comparison trims boundary whitespace.",
+  "priorAttempts": {
+    "converter/attempt-1": "Diagnostic only. Weaker native-derived oracle missed pre-existing DOCX logical start/end loss; retained-cell pass is not accepted as original-visible-border preservation.",
+    "converter/attempt-2": "Genuine failure from strengthened independent retained source oracle. No captured inputs changed. Coloured-side and merged cases passed; retained DOCX logical edges were lost before export."
+  },
+  "geometryEvidence": "geometry/ contains controlled input variants, unmodified actual converter outputs, PDF measurements and source provenance. They refuted uniform four-side halfstroke compensation; implementation retains padding values. Geometry probes are separate from final functional counts.",
+  "initialSmokeAttempts": {
+    "engine": "runtime/engine-smoke.jsonl: 34 visible passing cases, harness readiness only; no source-stability closure captured, not included in final acceptance counts.",
+    "flutter": "runtime/flutter-smoke.jsonl and .stderr: compile failed because an active concurrent merge had conflict markers. Not a product/runtime qualification result. No subsequent Flutter run by this agent."
+  },
+  "limits": [
+    "Converter is LibreOfficeDev 26.8.0.0.alpha0, not stable-release qualification.",
+    "No installed Zotero-plugin session or Microsoft Word execution.",
+    "No unrestricted ODF compatibility or pixel-identical layout claim.",
+    "Three controlled table cases; the wider regression suites are recorded separately.",
+    "Border support remains collapsing single solid common RGB stroke, bounded exact eighth-point widths and uniform padding; mixed or unsupported structures remain refused.",
+    "The acceptance snapshot does not measure every font/style/layout property."
+  ],
+  "evidenceArchive": "converter-evidence.tar.xz",
+  "evidenceArchiveSha256": "4ef3f95efcfcb51616ab8c3840e7324e48c7ea2d09b0c23832ffb2f1f955d963"
+}
