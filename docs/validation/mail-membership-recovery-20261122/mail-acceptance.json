@@ -1,0 +1,284 @@
+{
+  "accepted_executions": 3036,
+  "boundaries": [
+    "No live-provider account qualification",
+    "No browser runtime or persistent browser storage qualification",
+    "No installed Android/iOS/macOS/Windows/Linux package qualification",
+    "Incoming Word/Zotero integration tests are outside this Mail archive"
+  ],
+  "checkout_commit_at_packaging": "ae07e54aebf2af0fb9d5838c0eff5c8928ca2942",
+  "cohorts": [
+    {
+      "display_label_collisions": [
+        {
+          "executions": 2,
+          "label": "rejects malformed account with length 2",
+          "suite": "packages/quds_mail_core/test/saved_header_search_folders_test.dart"
+        }
+      ],
+      "name": "native-core-store",
+      "parsed_log": "mail-runtime/logs/membership/accepted-native-core-store.jsonl",
+      "parsed_log_sha256": "7829ea51ef5c9193d75500b74875bff1cf29192fffb31dd466abbf47ecaa7000",
+      "passed": 1635,
+      "platform": "native Dart",
+      "receipt": "mail-runtime/logs/membership/native-core-store-receipt.json",
+      "receipt_sha256": "05fad2b81094b56bc77691402a00f1bc19fada225e86c403c95d6e5b46527167",
+      "tests": {
+        "all_failed": 0,
+        "all_skipped": 0,
+        "errors": 0,
+        "excluded_failed": 0,
+        "excluded_skipped": 0,
+        "failed": 0,
+        "incomplete": 0,
+        "passed": 1635,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "skipped": 0,
+        "start_events": 1,
+        "terminal_events": 1,
+        "terminal_success": true,
+        "valid": true
+      }
+    },
+    {
+      "display_label_collisions": [],
+      "name": "native-providers",
+      "parsed_log": "mail-runtime/logs/membership-transport-native-final/test.jsonl",
+      "parsed_log_sha256": "6e74db393dd5d7486f55bd358cfdde1939ebf5f2ff4afeb3bd29305069d238fc",
+      "passed": 338,
+      "platform": "native Flutter",
+      "receipt": "mail-runtime/logs/membership-transport-native-final/receipt.json",
+      "receipt_sha256": "fbb8e25b7541b6bd000b11624907f2d3c87dc6eea9e9d5890c1d0b160d73f554",
+      "tests": {
+        "all_failed": 0,
+        "all_skipped": 0,
+        "errors": 0,
+        "excluded_failed": 0,
+        "excluded_skipped": 0,
+        "failed": 0,
+        "incomplete": 0,
+        "passed": 338,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "skipped": 0,
+        "start_events": 1,
+        "terminal_events": 1,
+        "terminal_success": true,
+        "valid": true
+      }
+    },
+    {
+      "display_label_collisions": [],
+      "name": "integrated-host",
+      "parsed_log": "mail-runtime/logs/membership-host-publication-final/test-events.jsonl",
+      "parsed_log_sha256": "68a255cbabaafc741a6ceb6da56a77b88aa2f41574f83d36da506059bf2ae186",
+      "passed": 277,
+      "platform": "native Flutter",
+      "receipt": "mail-runtime/logs/membership-host-publication-final/receipt.json",
+      "receipt_sha256": "ecc5beb73a06fc012b0d8e8a0d8c9e150cba18cd877a239de177042ffb41c4b9",
+      "tests": {
+        "all_failed": 0,
+        "all_skipped": 0,
+        "errors": 0,
+        "excluded_failed": 0,
+        "excluded_skipped": 0,
+        "failed": 0,
+        "incomplete": 0,
+        "passed": 277,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "skipped": 0,
+        "start_events": 1,
+        "terminal_events": 1,
+        "terminal_success": true,
+        "valid": true
+      }
+    },
+    {
+      "display_label_collisions": [
+        {
+          "executions": 2,
+          "label": "rejects malformed account with length 2",
+          "suite": "test/saved_header_search_folders_test.dart"
+        }
+      ],
+      "name": "node-core",
+      "parsed_log": "mail-runtime/logs/membership-node-core-final/test.jsonl",
+      "parsed_log_sha256": "3464cb57d2473aefcd8801028294954bab551d8da9e6e29bd18e4102d2fe23a0",
+      "passed": 574,
+      "platform": "Node / dart2js",
+      "receipt": "mail-runtime/logs/membership-node-core-final/receipt.json",
+      "receipt_sha256": "4a1bb87aa22922958bc5574acdbf59710fd11e3730de38f594021a6bab056a23",
+      "tests": {
+        "all_failed": 0,
+        "all_skipped": 0,
+        "errors": 0,
+        "excluded_failed": 0,
+        "excluded_skipped": 0,
+        "failed": 0,
+        "incomplete": 0,
+        "passed": 574,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "skipped": 0,
+        "start_events": 1,
+        "terminal_events": 1,
+        "terminal_success": true,
+        "valid": true
+      }
+    },
+    {
+      "display_label_collisions": [],
+      "name": "node-transport",
+      "parsed_log": "mail-runtime/logs/membership-node-transport-final/test.jsonl",
+      "parsed_log_sha256": "577ad2232363f46d22282700428961340c517b4e599d1fdeef0bc13d8284e28b",
+      "passed": 160,
+      "platform": "Node / dart2js",
+      "receipt": "mail-runtime/logs/membership-node-transport-final/receipt.json",
+      "receipt_sha256": "f9099086e1faadeea3bd65068f7ee041df3a72551a113e14c2784838e3c90c37",
+      "tests": {
+        "all_failed": 0,
+        "all_skipped": 0,
+        "errors": 0,
+        "excluded_failed": 0,
+        "excluded_skipped": 0,
+        "failed": 0,
+        "incomplete": 0,
+        "passed": 160,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "skipped": 0,
+        "start_events": 1,
+        "terminal_events": 1,
+        "terminal_success": true,
+        "valid": true
+      }
+    },
+    {
+      "display_label_collisions": [],
+      "name": "node-portable-store",
+      "parsed_log": "mail-runtime/logs/membership-node-portable-store-final/test.jsonl",
+      "parsed_log_sha256": "f084f554b82bad82d3129c6a3c20477619e55e5ec89610c16d1362c35ecef184",
+      "passed": 52,
+      "platform": "Node / dart2js",
+      "receipt": "mail-runtime/logs/membership-node-portable-store-final/receipt.json",
+      "receipt_sha256": "650a27d80cb06896a76fd4f8f22c0933b9605bc6e94c360c89d93d8ed3b2e1ac",
+      "tests": {
+        "all_failed": 0,
+        "all_skipped": 0,
+        "errors": 0,
+        "excluded_failed": 0,
+        "excluded_skipped": 0,
+        "failed": 0,
+        "incomplete": 0,
+        "passed": 52,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "skipped": 0,
+        "start_events": 1,
+        "terminal_events": 1,
+        "terminal_success": true,
+        "valid": true
+      }
+    }
+  ],
+  "counting": {
+    "duplicate_protocol_events": 0,
+    "excluded": "All diagnostic, setup smoke, preliminary and repeated cohorts; loading and hidden lifecycle events.",
+    "globally_unique_test_count_claimed": false,
+    "integrated_host": 277,
+    "label_collision": "Native core and Node core each execute two distinct parameter values with the label rejects malformed account with length 2: leading-space account and unpaired-surrogate account. Each has a separate test ID and completion; both executions count.",
+    "native_core": 574,
+    "native_providers": 338,
+    "native_store": 1061,
+    "node_core": 574,
+    "node_portable_store": 52,
+    "node_transport": 160,
+    "platform_overlap": true
+  },
+  "diagnostics_retained": [
+    "Initial native core/store generic-fixture, migration-import and synthetic-v7-fixture failures; preliminary full run predates final UTF-16 inputs.",
+    "Initial Node core has 549 passes but changed source inputs; initial Node transport/store are repeats. None contributes to the accepted total.",
+    "Initial native provider and host attempts, including host generic analyzer and corrected test expectations.",
+    "Preintegration host raw receipt reports protocol errors for Flutter daemon arrays; its exact-frame supplemental acceptance is retained. The integrated 277-case cohort is counted once.",
+    "Setup launcher stalls/interruption and readiness smoke are retained separately from feature qualification."
+  ],
+  "evidence_archive": {
+    "bytes": 6605538,
+    "manifest": "mail-evidence-manifest.json",
+    "members": 215,
+    "path": "mail-evidence.tar.gz",
+    "sha256": "9460977aa493ff0a145c778ba055e08183de6281b154f0689559dce240ef856b"
+  },
+  "github_actions": "NOT USED OR AWAITED",
+  "lock": {
+    "path": "pubspec.lock",
+    "sha256": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+    "unchanged_from_commit": "b13a170c",
+    "unchanged_from_setup": true,
+    "worktree_clean": true
+  },
+  "record_preservation": "Original record bodies and raw artifacts are archived byte for byte; added audits do not rewrite original receipts.",
+  "replay": "replay/REPLAY.md",
+  "runtime": {
+    "accepted_runtime_maps": 10,
+    "audit": "qualification/runtime-map-audit.json",
+    "current_mismatches": 0,
+    "dart": "3.13.7",
+    "dependency_archives_verified": 204,
+    "flutter": "3.47.8",
+    "native_core_store_limitation": "The native core/store runner recorded exact argv and source before/after but no separate per-run runtime hash pair. Shared pinned runtime provenance and current hashed runtime inputs are retained; no extra contemporaneous runtime snapshot is claimed.",
+    "node": "v24.22.3",
+    "provenance": "mail-runtime/runtime.json",
+    "status": "PASS",
+    "unique_runtime_paths": 19
+  },
+  "schema_version": 1,
+  "scope": "Mail membership recovery local qualification",
+  "source_applicability": {
+    "accepted_mismatches": 0,
+    "accepted_source_maps": 17,
+    "all_recorded_source_maps_audited": 31,
+    "audit": "qualification/source-map-audit.json",
+    "diagnostic_maps_with_differences": 11,
+    "integrated_host": "Contemporaneous before/after source/config/test inputs include the final captured Office production imports. Earlier host capture is retained as a repeated cohort.",
+    "method": "Current SHA-256 comparison of all recorded maps. Accepted before/after maps must agree with the checkout; diagnostic mismatches are retained explicitly. No modification-time chronology is inferred.",
+    "native_core_store": "142 contemporaneous before/after inputs plus seven supplemental unchanged subprocess fixtures.",
+    "source_union": "qualification/accepted-source-sha256.json",
+    "source_union_sha256": "631b8dfab7cfd5b2a429d60743bdcd068ce905ec6a76cc754d2dee58e93e5aa6",
+    "status": "PASS",
+    "unique_source_config_fixture_paths": 1170
+  },
+  "static_checks": {
+    "changed_dart_files_formatted": 46,
+    "format_changes": 0,
+    "native_core_store_analysis": "mail-runtime/logs/membership/analyze-core-store-acceptance.txt",
+    "prior_host_analysis": {
+      "binding": "Original post-run source binding limitation retained. This log adds no test executions.",
+      "log": "mail-runtime/logs/host-membership-analyze-final.log",
+      "result": "No issues found",
+      "sha256": "f999ee1a2717fe7b3166df1c7f83c0b96020e07e243cd05af0132841607c6973"
+    },
+    "receipt": "mail-runtime/logs/mail-static-final/receipt.json",
+    "receipt_sha256": "8549949bed44b4843e34a34777c7a968c76dac99a8796c2d911c327878f7da05",
+    "status": "PASS",
+    "strict_analysis_packages": [
+      "quds_mail_core",
+      "quds_mail_store",
+      "quds_mail_transport"
+    ]
+  },
+  "status": "PASS",
+  "visual": {
+    "accepted_receipt": "mail-runtime/logs/membership-host-publication-final/receipt.json",
+    "byte_identical_to_prior_integrated": 12,
+    "comparison": "mail-runtime/logs/membership-host-publication-final/screenshot-comparison.json",
+    "directly_inspected": 3,
+    "generated_integrated_pngs": 12,
+    "limitations": "Representative English/German/Arabic enlarged-text captures reviewed; synthetic widget runs do not establish installed-platform or live-account acceptance.",
+    "pixel_identical_to_prior_integrated": 12,
+    "review": "mail-runtime/logs/membership-host-publication-final/visual-review.json",
+    "status": "PASS"
+  }
+}

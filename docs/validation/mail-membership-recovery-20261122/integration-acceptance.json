@@ -1,0 +1,521 @@
+{
+  "schema_version": 1,
+  "kind": "captured_integration_acceptance",
+  "status": "PASS_WITH_EXPLICIT_HISTORICAL_WORD_SCOPE",
+  "created_at_utc": "2026-11-22T07:15:33.993723+00:00",
+  "checked_checkout_head": "3fdcaf1e476be4f928aec3359e013302888ee889",
+  "captured_tips": {
+    "word": {
+      "ref": "origin/codex/word-vba-continuation-20261122",
+      "sha": "258ae2a5d73bccd293b4b423918fc3d7646e9bc4"
+    },
+    "zotero": {
+      "ref": "origin/codex/zotero-native-parity-20261122",
+      "sha": "89789360590b6dd0af0a378bfc257a3c4a18fc9c"
+    }
+  },
+  "captured_tips_are_ancestors_of_checked_head": {
+    "word": true,
+    "zotero": true
+  },
+  "github_actions": "Not queried or awaited for acceptance.",
+  "final_source_bound_acceptance": {
+    "zotero_engine": {
+      "receipt": {
+        "path": "logs/membership-integrated-zotero/engine-final/receipt.json",
+        "sha256": "3ae00806291a9824301fa2eba22a8876bdf36fa645b885bd8246788ae598651a",
+        "bytes": 139123
+      },
+      "source_comparison": {
+        "checked_inputs": 455,
+        "matches_current_checkout": true,
+        "differences": []
+      },
+      "runtime_comparison": {
+        "checked_inputs": 15,
+        "matches_current_checkout": true,
+        "differences": []
+      },
+      "declared_artifacts_verified": 3,
+      "tests": {
+        "passed": 395,
+        "skipped": 0,
+        "failed": 0,
+        "errors": 0,
+        "all_failed": 0,
+        "all_skipped": 0,
+        "excluded_failed": 0,
+        "excluded_skipped": 0,
+        "terminal_success": true,
+        "start_events": 1,
+        "terminal_events": 1,
+        "incomplete": 0,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "valid": true
+      },
+      "raw_log": {
+        "path": "logs/membership-integrated-zotero/engine-final/test.jsonl",
+        "sha256": "f867409f00a464057893b7a4dfd3992b260a0024092346ed6987e9053343788a",
+        "bytes": 195641
+      }
+    },
+    "zotero_editor": {
+      "receipt": {
+        "path": "logs/membership-integrated-zotero/editor-final/receipt.json",
+        "sha256": "9a91c2cd40474e088f84454e00e5ed6aa38ce33d79d83c955dbb7f99d1775ed9",
+        "bytes": 172495
+      },
+      "source_comparison": {
+        "checked_inputs": 581,
+        "matches_current_checkout": true,
+        "differences": []
+      },
+      "runtime_comparison": {
+        "checked_inputs": 15,
+        "matches_current_checkout": true,
+        "differences": []
+      },
+      "declared_artifacts_verified": 3,
+      "tests": {
+        "passed": 14,
+        "skipped": 0,
+        "failed": 0,
+        "errors": 0,
+        "all_failed": 0,
+        "all_skipped": 0,
+        "excluded_failed": 0,
+        "excluded_skipped": 0,
+        "terminal_success": true,
+        "start_events": 1,
+        "terminal_events": 1,
+        "incomplete": 0,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "valid": true
+      },
+      "raw_log": {
+        "path": "logs/membership-integrated-zotero/editor-final/test.jsonl",
+        "sha256": "79d72aa83780bc0fd71117737d629f123ca4bdb09156314352b3961fb740d235",
+        "bytes": 8034
+      }
+    },
+    "zotero_studio": {
+      "receipt": {
+        "path": "logs/membership-integrated-zotero/studio-final/receipt.json",
+        "sha256": "9ee008aeb33f3c249fda342ea92cd74d9a17ccf746df926dd966a6f61cfa675d",
+        "bytes": 308870
+      },
+      "source_comparison": {
+        "checked_inputs": 1078,
+        "matches_current_checkout": true,
+        "differences": []
+      },
+      "runtime_comparison": {
+        "checked_inputs": 15,
+        "matches_current_checkout": true,
+        "differences": []
+      },
+      "declared_artifacts_verified": 3,
+      "tests": {
+        "passed": 8,
+        "skipped": 0,
+        "failed": 0,
+        "errors": 0,
+        "all_failed": 0,
+        "all_skipped": 0,
+        "excluded_failed": 0,
+        "excluded_skipped": 0,
+        "terminal_success": true,
+        "start_events": 1,
+        "terminal_events": 1,
+        "incomplete": 0,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "valid": true
+      },
+      "raw_log": {
+        "path": "logs/membership-integrated-zotero/studio-final/test.jsonl",
+        "sha256": "5dd8041b906d83e131d3df0d9dbbd9a5a20a4090f6ae7614e6cb4d786dd04db7",
+        "bytes": 5368
+      }
+    },
+    "zotero_static": {
+      "receipt": {
+        "path": "logs/membership-integrated-zotero/static-final/receipt.json",
+        "sha256": "ee91ab6cfd1efaf833401c89e3d7e1d98c0720af02ca3d2faebff65a58bcc8d4",
+        "bytes": 312832
+      },
+      "source_comparison": {
+        "checked_inputs": 1082,
+        "matches_current_checkout": true,
+        "differences": []
+      },
+      "runtime_comparison": {
+        "checked_inputs": 22,
+        "matches_current_checkout": true,
+        "differences": []
+      },
+      "declared_artifacts_verified": 4,
+      "checks": {
+        "analyze": {
+          "exit_code": 0,
+          "stdout": "Analyzing odt_reader_styles_test.dart, odt_zotero_export_lifecycle_test.dart, word_note_numbering.dart, word_notes.dart, odt_zotero_note_numbering_test.dart, odt_document_reader.dart, odt_document_writer.dart, odt_reader_styles.dart, word_odt_note_numbering_test.dart, studio_zotero_odt_export_test.dart...\nNo issues found!\n",
+          "stderr": ""
+        },
+        "format": {
+          "exit_code": 0,
+          "stdout": "Formatted 2 files (0 changed) in 0.04 seconds.\n",
+          "stderr": ""
+        }
+      },
+      "checked_source_files": [
+        "packages/quds_office_engine/test/odt_reader_styles_test.dart",
+        "packages/quds_office_engine/test/odt_zotero_export_lifecycle_test.dart",
+        "packages/quds_office_engine/lib/src/word/model/word_note_numbering.dart",
+        "packages/quds_office_engine/lib/src/word/model/word_notes.dart",
+        "packages/quds_office_engine/test/odt_zotero_note_numbering_test.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_reader.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+        "packages/quds_office_engine/lib/src/word/serial/odt_reader_styles.dart",
+        "packages/quds_office_editor/test/word_odt_note_numbering_test.dart",
+        "packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart"
+      ]
+    },
+    "xml_guard_focused": {
+      "receipt": {
+        "path": "logs/incoming-zotero-xml-guard/focused-receipt.json",
+        "sha256": "4f6ec356864c11a5a825a4d82982bb465a97d5cb130ddf463058bbe738a0935c",
+        "bytes": 109278
+      },
+      "source_comparison": {
+        "checked_inputs": 375,
+        "matches_current_checkout": true,
+        "differences": []
+      },
+      "runtime_comparison": {
+        "checked_inputs": 3,
+        "matches_current_checkout": true,
+        "differences": []
+      },
+      "declared_artifacts_verified": 2,
+      "tests": {
+        "passed": 2,
+        "skipped": 0,
+        "failed": 0,
+        "errors": 0,
+        "all_failed": 0,
+        "all_skipped": 0,
+        "excluded_failed": 0,
+        "excluded_skipped": 0,
+        "terminal_success": true,
+        "start_events": 1,
+        "terminal_events": 1,
+        "incomplete": 0,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "valid": true
+      },
+      "raw_log": {
+        "path": "logs/incoming-zotero-xml-guard/focused.stdout",
+        "sha256": "c0dac5a48689d5cc036a23549b0520f0ad0f39cfed85f1351852c316ba1b080c",
+        "bytes": 1644
+      }
+    },
+    "word_late_delta": {
+      "receipt": {
+        "path": "logs/final-word-delta/receipt.json",
+        "sha256": "2086a59a6a662ef5edd397d7dfc173007101360161dd13ffac09859c4ad1b1c9",
+        "bytes": 371268
+      },
+      "source_comparison": {
+        "checked_inputs": 1272,
+        "matches_current_checkout": true,
+        "differences": []
+      },
+      "runtime_comparison": {
+        "checked_inputs": 4,
+        "matches_current_checkout": true,
+        "differences": []
+      },
+      "declared_artifacts_verified": 7,
+      "tests": {
+        "passed": 160,
+        "skipped": 0,
+        "failed": 0,
+        "errors": 0,
+        "all_failed": 0,
+        "all_skipped": 0,
+        "excluded_failed": 0,
+        "excluded_skipped": 0,
+        "terminal_success": true,
+        "start_events": 1,
+        "terminal_events": 1,
+        "incomplete": 0,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "valid": true
+      },
+      "raw_log": {
+        "path": "logs/final-word-delta/native-tests.stdout",
+        "sha256": "42d5a30712a8dab6af31620cd07e2a3b861a59202da03e7e4dfb3b34bf7ba530",
+        "bytes": 74387
+      },
+      "strict_analysis": {
+        "exit_code": 0,
+        "log": {
+          "path": "logs/final-word-delta/strict-analysis.stdout",
+          "sha256": "a0742d4e8e83c2c3ad2d6b1decdb312d08b2dfa185a3c79f18da2eee88f62c4d",
+          "bytes": 172
+        }
+      },
+      "meaning": "The three late-changed Word assertion/formatting suites were run on the final source. This is not a rerun of all 1,564 original Word cases."
+    }
+  },
+  "case_count_interpretation": {
+    "final_zotero_substantive_cases": 417,
+    "zotero_components": {
+      "engine": 395,
+      "editor": 14,
+      "studio": 8
+    },
+    "final_changed_word_substantive_cases": 160,
+    "focused_xml_cases": 2,
+    "focused_xml_cases_overlap_zotero_engine": true,
+    "historical_word_native_cases": 1564,
+    "historical_word_vm_and_node_cases": {
+      "prefix_conformance": 78,
+      "paragraph_conformance": 32
+    },
+    "note": "Counts describe named cohorts. The XML proof is a subset of the final engine suite, and the late Word suite overlaps the earlier Word acceptance; these are not a single disjoint test total."
+  },
+  "historical_word_acceptance": {
+    "receipt": {
+      "path": "logs/incoming-word-cell-prefix/receipt.json",
+      "sha256": "20432429a5696cb1baf20bda05e764e1f4a921546c707d74208907659bcbb5a7",
+      "bytes": 734218
+    },
+    "incoming_tip_at_original_run": "806525fdb06d501fff09d4fb6b12ee95ef6cf4b2",
+    "starting_head": "430bcf26f770c06278ea64ee40255d071d69e066",
+    "started_at": "2026-11-22T06:55:56.393097+00:00",
+    "finished_at": "2026-11-22T07:00:07.355446+00:00",
+    "source_inputs_during_original_run": 1270,
+    "source_unchanged_during_original_run": true,
+    "runtime_unchanged_during_original_run": true,
+    "native_summary_reparsed_from_raw_log": {
+      "passed": 1564,
+      "skipped": 0,
+      "failed": 0,
+      "errors": 0,
+      "all_failed": 0,
+      "all_skipped": 0,
+      "excluded_failed": 0,
+      "excluded_skipped": 0,
+      "terminal_success": true,
+      "start_events": 1,
+      "terminal_events": 1,
+      "incomplete": 0,
+      "protocol_errors": 0,
+      "protocol_issues": [],
+      "valid": true
+    },
+    "portable": [
+      {
+        "name": "prefix-conformance",
+        "fixture": "test/fixtures/vba_conformance/word_cell_prefix_v1.json",
+        "fixture_sha256": "96de1771d137a2994f6f6ee2f8984a6facb949e51e0dce650ef794e7d356cdf1",
+        "vm_exit": 0,
+        "compile_exit": 0,
+        "node_exit": 0,
+        "semantic_json_equal": true,
+        "result": {
+          "caseCount": 78
+        },
+        "vm_output": {
+          "path": "logs/incoming-word-cell-prefix/prefix-conformance-vm.stdout",
+          "sha256": "0fe8e5ac55e1ac5aee5afc39ab874c5095d73e02188c882340c853adbca30c75",
+          "bytes": 17627
+        },
+        "node_output": {
+          "path": "logs/incoming-word-cell-prefix/prefix-conformance-node.stdout",
+          "sha256": "0fe8e5ac55e1ac5aee5afc39ab874c5095d73e02188c882340c853adbca30c75",
+          "bytes": 17627
+        },
+        "fixture_matches_current": true,
+        "source_scope": "Earlier captured source of the immutable original Word receipt; not a final-tree rerun."
+      },
+      {
+        "name": "paragraph-conformance",
+        "fixture": "test/fixtures/vba_conformance/word_cell_paragraphs_v1.json",
+        "fixture_sha256": "98e726ada967aba5b32aaacf0b013ed7b03ad7c7b19a24b4bbb1e957d6a967c4",
+        "vm_exit": 0,
+        "compile_exit": 0,
+        "node_exit": 0,
+        "semantic_json_equal": true,
+        "result": {
+          "caseCount": 32
+        },
+        "vm_output": {
+          "path": "logs/incoming-word-cell-prefix/paragraph-conformance-vm.stdout",
+          "sha256": "f6509bac7214f29db70cd7199408517d0ce91629c99a35941711a81252b90c2f",
+          "bytes": 8554
+        },
+        "node_output": {
+          "path": "logs/incoming-word-cell-prefix/paragraph-conformance-node.stdout",
+          "sha256": "f6509bac7214f29db70cd7199408517d0ce91629c99a35941711a81252b90c2f",
+          "bytes": 8554
+        },
+        "fixture_matches_current": true,
+        "source_scope": "Earlier captured source of the immutable original Word receipt; not a final-tree rerun."
+      },
+      {
+        "name": "prefix-bas",
+        "fixture": "example/macros/word_table_prefix.bas",
+        "fixture_sha256": "5b20510ac02822059f5335706ac673d28ccdcfe49f6a4fa56a0963676fa95799",
+        "vm_exit": 0,
+        "compile_exit": 0,
+        "node_exit": 0,
+        "semantic_json_equal": true,
+        "result": {
+          "operations": 6,
+          "revision": 1,
+          "recordedSteps": 6,
+          "additionalReopens": 2,
+          "untouchedLayoutAndParts": true,
+          "opaqueVbaPreserved": true,
+          "lateRollback": true
+        },
+        "vm_output": {
+          "path": "logs/incoming-word-cell-prefix/prefix-bas-vm.stdout",
+          "sha256": "87bf1928283ec6e7a32378e438ea5378df3fe9d265a599f86ec85aa78681060e",
+          "bytes": 1357
+        },
+        "node_output": {
+          "path": "logs/incoming-word-cell-prefix/prefix-bas-node.stdout",
+          "sha256": "87bf1928283ec6e7a32378e438ea5378df3fe9d265a599f86ec85aa78681060e",
+          "bytes": 1357
+        },
+        "fixture_matches_current": true,
+        "source_scope": "Earlier captured source of the immutable original Word receipt; not a final-tree rerun."
+      }
+    ],
+    "declared_original_artifacts_verified": 32,
+    "current_source_comparison": {
+      "checked_inputs": 1270,
+      "matches_current_checkout": false,
+      "differences": [
+        {
+          "path": "packages/quds_office_engine/lib/src/word/model/word_note_numbering.dart",
+          "recorded_sha256": "0912ed6db953f37231e20d0a205716ec1c8d05e09611734f03a6b44cfb7a6d6c",
+          "current_sha256": "f9adfd69b6e678fba06d300b73b87cc51413e94bd795fb5e0d40e00fb214a97a",
+          "classification": "reviewed Zotero numbering/default/parser production change"
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/model/word_notes.dart",
+          "recorded_sha256": "45b9d883f56c6d233d880dbbd48d8523daf75b90449f81d8a43f1f9cf0aa0ccc",
+          "current_sha256": "708c8d546b2de7417ff113b775e34d23d74ed86614bee78ca03af9658b2985e1",
+          "classification": "reviewed Zotero numbering/default/parser production change"
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/serial/odt_reader_styles.dart",
+          "recorded_sha256": "2d0869077c6d98a674f24de2ba072edf4cf96af622d844b06cb320a6147d8ac4",
+          "current_sha256": "8777393a22e86f2ad00069157ef708f7bed6bb5223c9b9290d74e51228d2e095",
+          "classification": "reviewed Zotero numbering/default/parser production change"
+        },
+        {
+          "path": "packages/quds_office_engine/test/odt_libreoffice_note_offsets_test.dart",
+          "recorded_sha256": "c2e78795647d3e81888f366982d6ff387d139fe8ef84f44123cb8631903c4336",
+          "current_sha256": "147605a143ac4f9f60c356d34803e54ea2ec9d433ceb9e8267cc5b7d9fc5dccc",
+          "classification": "reviewed Zotero fixture/acceptance update"
+        },
+        {
+          "path": "packages/quds_office_engine/test/odt_reader_styles_test.dart",
+          "recorded_sha256": "65085d0584a8287a46847ca7e99d997d7cb67c6298b885b004b63843c4a13946",
+          "current_sha256": "1978bbb7e1cee2442985eaeec751f080e619a3807e75105f0982306b7bd726e1",
+          "classification": "reviewed Zotero fixture/acceptance update"
+        },
+        {
+          "path": "packages/quds_office_engine/test/odt_zotero_export_lifecycle_test.dart",
+          "recorded_sha256": "d62721a7b1e683f17d71c90a79e03dcc7067e2d22d5004d6f934ec258840f06d",
+          "current_sha256": "ef095f618d25f26bca0669ec85bc0290250ed660ed41bc30d183c5120f7c3620",
+          "classification": "reviewed Zotero fixture/acceptance update"
+        },
+        {
+          "path": "packages/quds_office_engine/test/office_macro_word_cell_prefix_test.dart",
+          "recorded_sha256": "56bcf22a93722ad27caa8ad54209e5088f9e3d0eae99f3f8376d681599af4cbf",
+          "current_sha256": "58b94834e405cc150ef66449543130fff42cc864a672cc1b583c5d490765faf6",
+          "classification": "late Word assertion/formatting update; qualified by final 160-case delta"
+        },
+        {
+          "path": "packages/quds_office_engine/test/office_vba_word_cell_prefix_conformance_test.dart",
+          "recorded_sha256": "5326943326d0d6767d30e4f914432c2fee04494d7141babfa707e8fc035ffe66",
+          "current_sha256": "85823cd23c5dcc3602ffa898a1e6415dcaade9d001a5e4fcdc2b0fe6fb28584c",
+          "classification": "late Word assertion/formatting update; qualified by final 160-case delta"
+        },
+        {
+          "path": "packages/quds_office_engine/test/office_vba_word_cell_prefix_integration_test.dart",
+          "recorded_sha256": "bc065bdaa48d1041c2004cc3225c962585b30f1b0abee36a5b572ab18aa1cd9c",
+          "current_sha256": "1869ca9eb111df33718f7df6df9e06602c53cbde7f4ff06f33a09644251632f9",
+          "classification": "late Word assertion/formatting update; qualified by final 160-case delta"
+        }
+      ]
+    },
+    "word_automation_and_compiler_production": {
+      "checked_inputs": 22,
+      "matches_current_checkout": true,
+      "differences": []
+    },
+    "original_runtime_matches_current": {
+      "checked_inputs": 5,
+      "matches_current_checkout": true,
+      "differences": []
+    },
+    "qualification_limit": "The original 1,564-case native run plus VM/Node 78-case and 32-case conformance and six-operation BAS round trip is acceptance of its earlier captured source. Its full 1,270-input map now differs in nine reviewed note/parser/test inputs. It is not a complete final-tree Word rerun. The unchanged Word automation/compiler production, final 160-case changed-Word run and final 417-case Zotero run establish the stated narrower continuation evidence.",
+    "older_applicability_supplement": {
+      "path": "logs/incoming-word-cell-prefix/current-applicability.json",
+      "treatment": "Preserved historical snapshot for its recorded a76cd5c8 head. Its earlier two-test-difference conclusion is superseded for current applicability by the nine-input comparison in this report."
+    }
+  },
+  "independent_review_and_repairs": [
+    {
+      "finding": "Three older tests still required Roman note numbering to be rejected after Roman support was introduced.",
+      "repair": "Changed refusal fixtures to unsupported alphabetic numbering; retained the negative boundary and added four positive configuration cases and two source-preserving Roman lifecycle cases.",
+      "verification": "Final engine 395 cases and strict analysis pass; earlier assertion diagnostics retained."
+    },
+    {
+      "finding": "XmlPullReader throws XmlParseException while the strict numbering guards and legacy _xml helper caught only FormatException, allowing malformed native XML to escape the intended bounded fallback.",
+      "repair": "Added precise XmlParseException handling at the two catch sites, with mismatched-closing-tag and unterminated-child regression cases. Broader exception swallowing was not introduced.",
+      "verification": "Focused two-case receipt and final new 62-case numbering suite pass; all three affected production files are included in final strict analysis."
+    }
+  ],
+  "diagnostic_history": [
+    {
+      "path": "logs/membership-integrated-zotero/engine/receipt.json",
+      "meaning": "Interrupted initial engine run: 298 passes, three obsolete assertions, one stalled suite loader, no successful terminal event. Explicit diagnostic only."
+    },
+    {
+      "path": "logs/membership-integrated-zotero/studio/receipt.json",
+      "meaning": "Initial concurrent Studio attempt completed eight assertions but reported a Dart compiler exit and failed overall. Later sequential isolated and final runs passed."
+    },
+    {
+      "path": "logs/membership-integrated-zotero/engine-isolated/receipt.json",
+      "meaning": "Earlier 333-case corrected engine PASS before the final captured Zotero guard continuation; retained without relabeling it as final-source evidence."
+    },
+    {
+      "path": "logs/final-word-delta/bootstrap-diagnostic.txt",
+      "meaning": "Python runner import-path bootstrap error corrected before any Dart execution; no product source change."
+    }
+  ],
+  "limits": [
+    "Local synthetic/independently authored format and controller fixtures; no installed Microsoft Word, LibreOffice or live Zotero plugin run is claimed by this package.",
+    "Original receipts and logs are byte-preserved. Original commands retain their original workspace paths and runtime context.",
+    "Compiled JavaScript, source maps, dependency files, dill files, SDK/cache trees and downloads are excluded as reproducible outputs; command/source/runtime hashes and semantic execution logs remain available."
+  ],
+  "archive": {
+    "file": "integration-evidence.tar.gz",
+    "sha256": "669d294cbbf0dfded855a233caf8f5f4d0ae5b47c7f2a2166dd2085370c0e5d7",
+    "bytes": 1387294,
+    "members": 92,
+    "uncompressed_member_bytes": 5978076
+  }
+}
