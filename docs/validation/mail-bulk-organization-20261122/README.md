@@ -6,7 +6,7 @@ Date: 22 November 2026. Branch: `work/mail-bulk-organization-20261122`.
 **Source tree:** `7eeb47825d1755b247c1e77facd7abf49d7dab7a`
 
 The final evidence commit adds documentation and evidence to this source. The
-[qualification summary](qualification.json), [final intake](final-intake.json),
+[qualification summary](qualification.json), [qualified-source intake](final-intake.json),
 and [evidence index](evidence/mail-bulk-organization-evidence-index.json) bind the accepted gates,
 source identities, commands, raw logs and limitations. The
 [raw evidence archive](evidence/mail-bulk-organization-evidence.tar.gz) preserves
@@ -163,10 +163,15 @@ source diffs and accepted replacements remain in the evidence archive.
 Initial main: `b38f2e38369855056eb9e23792f83fd1ab86ea24`.
 The [initial intake](intake.json) and [review](intake-review.md) cover 414 fetched
 references. At that point 388 were ancestors, 24 were verified exact equivalents
-(15 unique alternative heads), and two required integration. The final capture
+(15 unique alternative heads), and two required integration. The qualified-source capture
 contains **417 references: 393 ancestors and the same 24 verified historical
 equivalents**. All four upstream branch heads were rechecked and unchanged.
-No unique incoming work remains unreviewed in that capture.
+No unique incoming work remains unreviewed in that capture. The
+[publication addendum](publication-addendum.json) records the later main
+`c691191c3ff37f52bc78b203ebb1cb554e607d12` and suffix
+`360673e0736e98d65d6c3cacef90bf842391288d`: only two additional historical
+Word documentation blobs were new. They and their merge ancestry are retained;
+qualified runtime source and tests remain unchanged.
 
 The initial merge retains authoritative Mail move identities and Word cell
 suffixes, both executable cache safeguards and both test families. Subsequent
