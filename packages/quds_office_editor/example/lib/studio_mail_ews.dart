@@ -1212,10 +1212,19 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
             setState(() => _bulkReport = report);
           }
         },
-        apply: (operation, operationLease) async =>
-            MailBulkFlagAttempt.fromResult(
-              await provider.apply(operation, operationLease),
-            ),
+        apply: (operation, operationLease) async {
+          if (provider is MailMutationReceiptProvider) {
+            return MailBulkFlagAttempt.fromReceiptResult(
+              await (provider as MailMutationReceiptProvider).applyWithReceipt(
+                operation,
+                operationLease,
+              ),
+            );
+          }
+          return MailBulkFlagAttempt.fromResult(
+            await provider.apply(operation, operationLease),
+          );
+        },
       );
       if (!currentScope()) return;
       MailReaderController? retiredReader;

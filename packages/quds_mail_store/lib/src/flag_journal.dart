@@ -9,6 +9,7 @@ final class MailFlagBatchHandle {
   final Object _owner;
   int _revision = 1;
   bool _complete = false;
+  final Map<int, int> _moveProjectionEpochs = {};
 }
 
 /// Durable evidence for foreground commands. There is deliberately no method
@@ -123,6 +124,7 @@ extension MailFlagCommandJournal on SqliteMailRepository {
       SqliteMailRepository._fail(MailProblemCode.storageFailure);
     }
     await _checkMembershipObservations(account);
+    await _checkMoveIdentityTransitions(account);
   }
 
   /// Saves the complete frozen selection atomically before any dispatch marker.
@@ -212,7 +214,9 @@ extension MailFlagCommandJournal on SqliteMailRepository {
     Future<void> Function(QueryRow batch) body, {
     MailOperationLease? lease,
     bool complete = false,
+    int? captureMoveProjection,
   }) async {
+    int? projectionEpoch;
     final expected = handle._revision;
     final result = await _run(
       () => _commit(() async {
@@ -244,12 +248,18 @@ extension MailFlagCommandJournal on SqliteMailRepository {
         await _quota(handle.account);
         await _db.fault(MailStoreCheckpoint.beforeCommit);
         lease?.checkCurrent();
+        if (captureMoveProjection != null) {
+          projectionEpoch = await _flagObservationEpoch();
+        }
         return MailUnit.value;
       }),
     );
     if (result is MailSuccess<MailUnit>) {
       handle._revision = expected + 1;
       handle._complete = complete;
+      if (projectionEpoch != null) {
+        handle._moveProjectionEpochs[captureMoveProjection!] = projectionEpoch!;
+      }
     }
     return result;
   }
@@ -260,28 +270,33 @@ extension MailFlagCommandJournal on SqliteMailRepository {
     MailFlagBatchHandle handle,
     int index, {
     required MailOperationLease lease,
-  }) => _flagMutation(handle, (batch) async {
-    if (index < 0 || index >= batch.read<int>('item_count')) {
-      SqliteMailRepository._fail(MailProblemCode.invalidInput);
-    }
-    final blocked = (await _rows(
-      'SELECT count(*) AS n FROM flag_batch_items WHERE account=? AND batch=? AND '
-      "(state IN ('applying','uncertain') OR (position<? AND state='unattempted') OR "
-      "(state='failed' AND problem_code IN ('cancelled','staleOperation','quotaExceeded')))",
-      [handle.account.value, handle.id, index],
-    )).single.read<int>('n');
-    final item = (await _rows(
-      'SELECT state FROM flag_batch_items WHERE account=? AND batch=? AND position=?',
-      [handle.account.value, handle.id, index],
-    )).single;
-    if (blocked != 0 || item.read<String>('state') != 'unattempted') {
-      SqliteMailRepository._fail(MailProblemCode.conflict);
-    }
-    await _db.customStatement(
-      "UPDATE flag_batch_items SET state='applying' WHERE account=? AND batch=? AND position=?",
-      [handle.account.value, handle.id, index],
-    );
-  }, lease: lease);
+  }) => _flagMutation(
+    handle,
+    (batch) async {
+      if (index < 0 || index >= batch.read<int>('item_count')) {
+        SqliteMailRepository._fail(MailProblemCode.invalidInput);
+      }
+      final blocked = (await _rows(
+        'SELECT count(*) AS n FROM flag_batch_items WHERE account=? AND batch=? AND '
+        "(state IN ('applying','uncertain') OR (position<? AND state='unattempted') OR "
+        "(state='failed' AND problem_code IN ('cancelled','staleOperation','quotaExceeded')))",
+        [handle.account.value, handle.id, index],
+      )).single.read<int>('n');
+      final item = (await _rows(
+        'SELECT state FROM flag_batch_items WHERE account=? AND batch=? AND position=?',
+        [handle.account.value, handle.id, index],
+      )).single;
+      if (blocked != 0 || item.read<String>('state') != 'unattempted') {
+        SqliteMailRepository._fail(MailProblemCode.conflict);
+      }
+      await _db.customStatement(
+        "UPDATE flag_batch_items SET state='applying' WHERE account=? AND batch=? AND position=?",
+        [handle.account.value, handle.id, index],
+      );
+    },
+    lease: lease,
+    captureMoveProjection: index,
+  );
 
   MailOperation _flagOperation(
     QueryRow batch,
@@ -397,7 +412,19 @@ extension MailFlagCommandJournal on SqliteMailRepository {
       operation: result.operation,
       outcome: result.outcome,
       problem: result.problem,
+      identityTransition: result.identityTransition,
     );
+    if (result.identityTransition case final transition?) {
+      if (!transition.matches(
+        expected,
+        sourceMailbox: MailMailboxId(
+          batch.read<String>('mailbox'),
+          account: handle.account,
+        ),
+      )) {
+        SqliteMailRepository._fail(MailProblemCode.conflict);
+      }
+    }
     if (!_sameFlagOperation(expected, result.operation)) {
       SqliteMailRepository._fail(MailProblemCode.conflict);
     }
@@ -406,6 +433,14 @@ extension MailFlagCommandJournal on SqliteMailRepository {
       if (finishing &&
           state == result.outcome.name &&
           _sameFlagProblem(_readFlagProblem(item), result.problem)) {
+        final stored = await _loadMoveIdentityTransition(
+          handle.account,
+          batch,
+          item,
+        );
+        if (stored?.transition != result.identityTransition) {
+          SqliteMailRepository._fail(MailProblemCode.conflict);
+        }
         return;
       }
       SqliteMailRepository._fail(MailProblemCode.conflict);
@@ -413,6 +448,10 @@ extension MailFlagCommandJournal on SqliteMailRepository {
     if (!finishing && result.outcome == MailBulkFlagOutcome.unattempted) {
       SqliteMailRepository._fail(MailProblemCode.conflict);
     }
+    final canProjectMove =
+        result.identityTransition != null &&
+        handle._moveProjectionEpochs[item.read<int>('position')] ==
+            await _flagObservationEpoch();
     await _db.customStatement(
       'UPDATE flag_batch_items SET state=?,problem_code=?,retry_after_us=?,mutation_possible=? '
       'WHERE account=? AND batch=? AND position=?',
@@ -426,13 +465,22 @@ extension MailFlagCommandJournal on SqliteMailRepository {
     );
     if (result.outcome == MailBulkFlagOutcome.confirmed) {
       await _projectFlagConfirmation(expected);
+      if (result.identityTransition case final transition?) {
+        await _writeMoveIdentityTransition(
+          handle.account,
+          batch,
+          item,
+          transition,
+          canProject: canProjectMove,
+        );
+      }
     }
   }
 
   /// Atomically retains provider evidence and patches only confirmed flag bits.
-  /// Membership commands retain historical cache observations until an explicit
-  /// refresh: a unit acknowledgement supplies no destination identity or full
-  /// membership evidence and cannot safely remove or create cached headers.
+  /// Membership unit acknowledgements retain dated cache observations. Exact
+  /// move mappings are stored with the reply and project only when the original
+  /// dispatch fence still holds and both retained folders can be reconciled.
   /// A retired view lease does not discard an already settled provider reply.
   Future<MailResult<MailUnit>> recordFlagResult(
     MailFlagBatchHandle handle,
@@ -712,8 +760,18 @@ extension MailFlagCommandJournal on SqliteMailRepository {
           ),
         );
       }
+      final identityTransitions = await _loadMoveIdentityTransitions(
+        account,
+        batch,
+        items,
+      );
+      final transitionsByIndex = {
+        for (final stored in identityTransitions)
+          stored.index: stored.transition,
+      };
       return MailStoredFlagBatch(
         summary: summary,
+        identityTransitions: identityTransitions,
         membershipObservations: await _loadMembershipObservations(
           account,
           id,
@@ -727,6 +785,7 @@ extension MailFlagCommandJournal on SqliteMailRepository {
             for (var i = 0; i < items.length; i++)
               MailBulkFlagItemResult.restore(
                 operation: plan.operationAt(i),
+                identityTransition: transitionsByIndex[i],
                 outcome: items[i].read<String>('state') == 'applying'
                     ? MailBulkFlagOutcome.uncertain
                     : MailBulkFlagOutcome.values.byName(

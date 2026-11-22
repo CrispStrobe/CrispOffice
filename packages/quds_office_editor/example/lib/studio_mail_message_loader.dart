@@ -127,6 +127,15 @@ abstract interface class StudioMailMembershipActions {
   );
 }
 
+/// Optional authoritative move receipts. Existing organization adapters remain
+/// compatible and never gain destination identity evidence from unit success.
+abstract interface class StudioMailMembershipReceiptActions {
+  Future<MailResult<MailMutationReceipt>> applyMembershipWithReceipt(
+    MailOperation command,
+    MailOperationLease hostLease,
+  );
+}
+
 /// Optional folder archiving capability, separate from existing reader fakes.
 /// Hosts supply a stable mailbox profile and own the archive's lifetime.
 abstract interface class StudioMailMailboxArchiver {
@@ -203,6 +212,7 @@ final class NativeStudioMailMessageLoader
         StudioMailMessageActions,
         StudioMailBulkMessageActions,
         StudioMailMembershipActions,
+        StudioMailMembershipReceiptActions,
         MailFlagObserver,
         MailMembershipObserver,
         StudioMailMailboxArchiver {
@@ -721,12 +731,7 @@ final class NativeStudioMailMessageLoader
     MailOperation command,
     MailOperationLease hostLease,
   ) async {
-    if (command is! MailMove && command is! MailDelete ||
-        command is MailMove &&
-            (command.destination.account != account ||
-                command.message is MailImapIdentity &&
-                    (command.message as MailImapIdentity).mailbox ==
-                        command.destination)) {
+    if (!_validMembershipCommand(command)) {
       return const MailFailure(
         MailProblem(
           MailProblemCode.invalidInput,
@@ -737,11 +742,59 @@ final class NativeStudioMailMessageLoader
     return _applyCommand(command, hostLease);
   }
 
-  Future<MailResult<MailUnit>> _applyCommand(
+  bool _validMembershipCommand(MailOperation command) =>
+      (command is MailMove || command is MailDelete) &&
+      (command is! MailMove ||
+          command.destination.account == account &&
+              (command.message is! MailImapIdentity ||
+                  (command.message as MailImapIdentity).mailbox !=
+                      command.destination));
+
+  @override
+  Future<MailResult<MailMutationReceipt>> applyMembershipWithReceipt(
     MailOperation command,
     MailOperationLease hostLease,
   ) async {
-    MailFailure<MailUnit> failure(MailProblemCode code, bool dispatched) =>
+    if (!_validMembershipCommand(command)) {
+      return const MailFailure(
+        MailProblem(
+          MailProblemCode.invalidInput,
+          mutationMayHaveOccurred: false,
+        ),
+      );
+    }
+    return _applyCommandResult(command, hostLease, (provider, lease) async {
+      if (provider is MailMutationReceiptProvider) {
+        return (provider as MailMutationReceiptProvider).applyWithReceipt(
+          command,
+          lease,
+        );
+      }
+      return switch (await provider.apply(command, lease)) {
+        MailSuccess<MailUnit>() => const MailSuccess(MailMutationReceipt()),
+        MailFailure<MailUnit>(:final problem) => MailFailure(problem),
+      };
+    });
+  }
+
+  Future<MailResult<MailUnit>> _applyCommand(
+    MailOperation command,
+    MailOperationLease hostLease,
+  ) => _applyCommandResult(
+    command,
+    hostLease,
+    (provider, lease) => provider.apply(command, lease),
+  );
+
+  Future<MailResult<T>> _applyCommandResult<T>(
+    MailOperation command,
+    MailOperationLease hostLease,
+    Future<MailResult<T>> Function(MailProvider, MailOperationLease) apply,
+  ) async {
+    MailFailure<T> failure(
+      MailProblemCode code,
+      bool dispatched,
+    ) =>
         MailFailure(MailProblem(code, mutationMayHaveOccurred: dispatched));
     if (command.message is! MailImapIdentity ||
         command.message.account != account ||
@@ -769,7 +822,7 @@ final class NativeStudioMailMessageLoader
       // Do not race cancellation against a provider acknowledgment or erase its
       // explicit pre-mutation evidence. The bounded provider owns completion;
       // the runner and host separately reject stale UI projection.
-      return await provider.apply(command, lease);
+      return await apply(provider, lease);
     } on MailCancelled catch (error) {
       return failure(
         error.reason == MailCancellationReason.user ||

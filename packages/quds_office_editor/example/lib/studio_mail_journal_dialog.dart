@@ -103,6 +103,25 @@ class _StudioMailJournalDialogState extends State<StudioMailJournalDialog> {
                 MailBulkFlagOutcome.uncertain &&
             entry.observation.identity ==
                 receipt.report.items[entry.index].message,
+      ) &&
+      receipt.identityTransitions.map((entry) => entry.index).toSet().length ==
+          receipt.identityTransitions.length &&
+      receipt.identityTransitions.length ==
+          receipt.report.items
+              .where((item) => item.identityTransition != null)
+              .length &&
+      receipt.identityTransitions.every(
+        (entry) =>
+            entry.index >= 0 &&
+            entry.index < receipt.report.items.length &&
+            receipt.report.items[entry.index].outcome ==
+                MailBulkFlagOutcome.confirmed &&
+            entry.transition ==
+                receipt.report.items[entry.index].identityTransition &&
+            entry.transition.matches(
+              receipt.report.items[entry.index].operation,
+              sourceMailbox: receipt.summary.mailbox,
+            ),
       );
 
   void _acceptReceipt(MailStoredFlagBatch receipt) {
@@ -175,6 +194,63 @@ class _StudioMailJournalDialogState extends State<StudioMailJournalDialog> {
       }
     }
   }
+
+  Widget _moveEvidence(MailStoredFlagBatch selected) => Padding(
+    padding: const EdgeInsets.all(16),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(
+          widget.strings.mailActivityMoveEvidence,
+          style: const TextStyle(fontWeight: FontWeight.w600),
+        ),
+        for (final entry in selected.identityTransitions)
+          Card(
+            key: ValueKey('studio-mail-activity-move-${entry.index}'),
+            margin: const EdgeInsets.only(top: 12),
+            child: Padding(
+              padding: const EdgeInsets.all(12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    selected.subjects[entry.index].isEmpty
+                        ? widget.strings.mailActivityNoSubject
+                        : selected.subjects[entry.index],
+                    maxLines: 3,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    widget.strings.mailActivitySource(
+                      entry.transition.sourceMailbox.value,
+                    ),
+                  ),
+                  Text(
+                    widget.strings.mailMutationDestination(
+                      entry.transition.destinationMailbox.value,
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    widget.strings.mailActivityMoveCacheStatus(
+                      entry.cacheProjected,
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    widget.strings.mailActivityMoveRecordedAt(
+                      _date(entry.recordedAt),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+      ],
+    ),
+  );
 
   Widget _membershipEvidence(MailStoredFlagBatch selected) => Padding(
     padding: const EdgeInsets.all(16),
@@ -462,6 +538,8 @@ class _StudioMailJournalDialogState extends State<StudioMailJournalDialog> {
                               ),
                             ),
                           ),
+                        if (selected.identityTransitions.isNotEmpty)
+                          _moveEvidence(selected),
                         if (selected.summary.canCheckMembership &&
                             selected.summary.complete &&
                             selected.summary.uncertainCount != 0)

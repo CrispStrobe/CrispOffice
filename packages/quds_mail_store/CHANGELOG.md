@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- Add schema v15 for authoritative move identity transitions. Retain confirmed
+  replacement identities with journal receipts and atomically reconcile eligible
+  retained cache memberships behind a dispatch epoch fence. Preserve original
+  capture times, coverage and provider cursors; keep source message bytes and
+  avoid inventing destination bodies. Stale or unavailable cache projections
+  retain the acknowledgement and require explicit refresh. Earlier receipt
+  schemas migrate without inventing mappings or changing uncertainty.
+
 - Add schema v14 for bounded latest membership evidence on uncertain Move/Delete
   receipts. Preserve all earlier schemas transactionally; retain original
   uncertainty and cleanup protection. Fence explicit checks by exact identity,

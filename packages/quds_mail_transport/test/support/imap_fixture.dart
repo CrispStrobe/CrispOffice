@@ -112,6 +112,8 @@ final class ImapFixture {
   bool bareFetchLiteral = false;
   bool acknowledgeWithoutChange = false;
   bool closeAfterMutation = false;
+  String? moveResponseCode;
+  final List<String> moveUntaggedResponses = [];
   final List<String> beforeFetchResponses = [];
   final List<String> afterFetchResponses = [];
   List<String>? searchResponses;
@@ -343,7 +345,12 @@ final class ImapFixture {
         await socket.drop();
         return;
       }
-      socket.text('$tag OK applied\r\n');
+      for (final response in moveUntaggedResponses) {
+        socket.text('$response\r\n');
+      }
+      socket.text(
+        '$tag OK ${moveResponseCode == null ? '' : '[$moveResponseCode] '}applied\r\n',
+      );
     } else {
       throw StateError('Unexpected fixture command: $command');
     }
