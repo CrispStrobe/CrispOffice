@@ -678,6 +678,13 @@ void main() {
         expect(_list(tester).selectedId, isNull);
         expect(find.byType(StudioMailBulkStatus), findsNothing);
         expect(oldProvider.bodyReads + currentProvider.bodyReads, 0);
+        // A fresh callback succeeds, so the stale callback was not merely
+        // rejected because the replacement mailbox was still busy.
+        _list(tester).onBulkAction!(MailBulkFlagAction.flag, [ids.first]);
+        await _pump(tester);
+        expect(oldProvider.commands, hasLength(1));
+        expect(currentProvider.commands, hasLength(1));
+        expect(_list(tester).items.first.isFlagged, isTrue);
         expect(tester.takeException(), isNull);
       },
     );

@@ -118,6 +118,31 @@ also uses a typed collection helper, body and footer targets, and a missing
 reference handled with `IsNull`. Numeric text coercion and named intrinsic
 arguments remain outside the bounded [String contract](vba-macros-details.md#string-intrinsics).
 
+## Restoring reversed import labels
+
+`StrReverse` now prepares source-local String data before existing Word writes:
+
+```vb
+Sub Main()
+    Dim label As String
+    label = StrReverse("troper ylretrauQ")
+    ThisDocument.Tables(1).Cell(1, 1).Range.Text = label
+End Sub
+```
+
+The cell receives `Quarterly report`. The
+[complete import macro](../packages/quds_office_engine/example/macros/word_reverse_import.bas)
+restores four delimited labels, fills an existing ordinary 2×2 table and
+formats its header/status cells in seven operations.
+
+Empty input gives an empty String; Null raises a source diagnostic. Numeric
+and Boolean values require explicit `CStr`. Reversal uses UTF-16 units and
+can separate surrogate pairs or combining marks; native text guards remain
+in force. This is source-data processing and does not read or reverse existing
+document text. See the [exact contract](vba-macros-details.md#reversing-source-strings)
+and [source review and execution status](validation/word-vba-source-text-20261122/README.md).
+The new tests are authored but could not be executed in the full workspace.
+
 ## Filling a table from delimited records
 
 Use `Split` to populate a local dynamic String array from source-known text:

@@ -222,3 +222,32 @@ Working branch: `work/mail-connected-navigation-20261122`.
 Each remote tree was checked against its local checkpoint before moving the
 branch with an expected-head lease and `force=false`. The qualification
 checkpoint follows the source checkpoint. GitHub Actions are not awaited.
+
+## Historical checkpoint recovery (2026-11-22)
+
+The Word source-text continuation reconciles the two remaining commits from
+`work/mail-connected-navigation-20261122`, ending at
+`a59e986a12d50c0d115b99c14cd8f746921c6f44`, with main
+`ea7ae724bea2f1e9052aa17f9926eb0659ae4262`.
+
+The incoming commit is retained as a merge parent. Its historical recovery
+results, selective planning files, development analysis log and PR #384 intake
+remain reachable with their original blob identities and paths. The
+[original branch narrative](https://github.com/CrispStrobe/quds_office_suite/blob/a59e986a12d50c0d115b99c14cd8f746921c6f44/docs/validation/mail-connected-navigation-20261122/README.md)
+records their source bindings and failures. These historical artifacts are
+referenced in the continuation intake, without copying them into this checkout.
+Their counts and proposed recovery plans do not qualify the current source.
+
+Current main's later Mail implementation and reconnect ordering are retained.
+The bulk-provider test's injected owner has no durable mutation journal, so its
+release need not wait for the foreground reply. The older branch's contrary
+test ordering is superseded. Its independent assertions that a fresh replacement
+callback succeeds and that a new account does not inherit submission uncertainty
+are retained in the current tests.
+
+This recovery was reviewed through repository source and Git objects. Local
+Dart/Flutter execution was unavailable because the workspace sandbox could not
+start (`No space left on device`). No test, analysis or formatting pass is
+claimed for this checkpoint, and GitHub Actions was not queried or awaited.
+The exact initial inventory, retained blob references and resolution record are
+in [the continuation intake](../word-vba-source-text-20261122/intake.json).
