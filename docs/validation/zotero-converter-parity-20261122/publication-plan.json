@@ -1,0 +1,13 @@
+{
+  "verified_at_utc": "2026-11-22T12:15:04.676700+00:00",
+  "target_repository": "CrispStrobe/quds_office_suite",
+  "branch": "codex/zotero-converter-parity-20261122",
+  "target_main_before_publication": "a9bfc961a7efdf2c8da198108bd71174b91f89fd",
+  "qualified_source_commit": "307b1aa8965c9e8a9338bee289a6dac5055b4bff",
+  "functional_test_source_commit": "81e9da16f9672530d4b39e9cf6cfec979af12830",
+  "local_evidence_sha256": "bab4eeacc34f18dc3e3622c1b817b6f853e170434f385553808ebabecad1df72",
+  "archive_members_verified": 136,
+  "all_captured_ref_ancestry_verified": true,
+  "publication_method": "Ordinary PR merge with expected head; no GitHub Actions wait.",
+  "unique_captured_ref_heads": 216
+}

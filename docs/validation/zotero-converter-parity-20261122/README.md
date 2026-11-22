@@ -6,8 +6,10 @@ This increment closes two reproducible gaps from the previous research-note
 formatting work: retained LibreOffice DOCX files kept their citation data but
 could not be edited natively, and the matching ODT files could not reopen in
 the native reader. The exact retained body, footnote and table-cell cases now
-have native editing and persistence regressions. Final source qualification is
-recorded below when complete; development runs are not release acceptance.
+have native editing and persistence regressions. Final local qualification
+passed 4,694 visible tests across 130 distinct suites, with no failures or skips.
+Strict analysis and formatting checks also pass for all 46 changed Dart files.
+The exact source transition, counts and evidence are recorded below.
 
 This is one bounded step toward the
 [Word/LibreOffice parity roadmap](../../roadmaps/zotero/word-processor-parity.md).
@@ -119,6 +121,8 @@ Remote checkpoints on `codex/zotero-converter-parity-20261122` preserve progress
 | `2d19bb8daf76d8305e47f136c92060b5cd5da019` | Exact paired clear shading and native ODT Refresh checks |
 | `58011672bf8a3bec22ef5766c7416789203992ad` | In-progress DOCX envelope implementation and regressions |
 | `8f2e943bf5aa1dd157e72f7ec47d0f7c2ccd5dd4` | Late Word/Mail ancestry, editor transactions and support contract |
+| `81e9da16f9672530d4b39e9cf6cfec979af12830` | Reviewed Zotero guards, incoming Mail race correction and frozen functional-test source |
+| `307b1aa8965c9e8a9338bee289a6dac5055b4bff` | Sole formatter normalization; final static-check source |
 
 These are ordinary forward branch updates with expected-head checks. Source
 ancestry and candidate tree equality are checked after remote publication.
@@ -131,8 +135,11 @@ The pinned runtime is Flutter `3.47.8` / Dart `3.13.7`. The official SDK archive
 and all downloaded Pub archives were hash-verified. Workspace dependency
 resolution used `--offline --enforce-lockfile`; the tracked manifests and
 lockfile remain unchanged. The final runner records commands, source commits,
-raw reporters, distinct visible cases and before/after hashes of materialized
-workspace source, fixtures, manifests and package configuration.
+raw reporters, distinct visible cases and before/after hashes of 3,826 selected
+materialized source, fixture, manifest and package-configuration inputs. The
+selection covers the extensions listed in the runner; it is not a complete
+compiled-input closure. Source commits and verified runtime/dependency archives
+provide the additional provenance.
 
 Run `run_checks.py` with the pinned SDK and locked dependencies active:
 
@@ -152,9 +159,70 @@ positive visible passes, no failures/skips/errors/unfinished cases, empty stderr
 and unchanged captured inputs. This is focused local qualification, not the
 full repository suite or a GitHub Actions result.
 
-Final counts, evidence hashes, source identity and the concrete incoming-work
-corrections are added after the frozen-source validation completes. Earlier
-failed or interrupted attempts remain diagnostic evidence, not accepted results.
+### Accepted results
+
+| Cohort | Suites | Visible passes | Failures / skips |
+| --- | ---: | ---: | ---: |
+| Zotero and preservation engine | 66 | 2,013 | 0 / 0 |
+| Editor and native transactions | 29 | 643 | 0 / 0 |
+| Studio transport, open/export and shortcuts | 4 | 48 | 0 / 0 |
+| Incoming Word and shared VBA regressions | 25 | 1,836 | 0 / 0 |
+| Incoming Mail navigation | 5 | 133 | 0 / 0 |
+| Real SQLite selected-record transactions | 1 | 21 | 0 / 0 |
+| **Distinct final union** | **130** | **4,694** | **0 / 0** |
+
+All six accepted functional cohorts ran against
+`81e9da16f9672530d4b39e9cf6cfec979af12830` with identical captured input maps
+before and after each run. Each ended normally with exit zero, one successful
+reporter completion, no error/unfinished records and empty stderr. Hidden loader
+records, earlier development runs and repeat attempts are excluded from these
+counts.
+
+The subsequent pinned Dart formatter wrapped one constructor call in the
+incoming Mail navigation file and added an optional trailing comma. The before
+and after files have identical canonical syntax trees and no parser diagnostics;
+the original patch and reproducible proof are retained. No other program source
+changed after the functional runs. Final strict analysis, format and diff checks
+ran on `307b1aa8965c9e8a9338bee289a6dac5055b4bff` and passed. SDK pins, tracked
+package manifests and lockfiles are unchanged from the intake baseline.
+
+An initial highly concurrent attempt produced a compiler exit and a timed-out
+editor opening test. The affected root-owned processes were interrupted; the
+same functional source passed when the Flutter cohorts ran sequentially. Their
+raw failures and startup-lock diagnostics remain in the evidence and are not
+accepted results. The first completed static run's formatting failure is also
+retained. No product assertion or timeout was relaxed to obtain acceptance.
+
+See [qualification.json](qualification.json) for source/tree identities, exact
+counts, runtime provenance, source-normalization proof and artifact hashes. The
+[local evidence archive](local-evidence.tar.xz) contains raw reporters, cases,
+commands, captured input maps, static logs, initial and late incoming bundles,
+ODT/DOCX development failures and independent fixture/guard review. Its
+[evidence index](evidence-index.json) hashes every member.
+
+- Archive bytes: 609,396; members: 136.
+- Archive SHA-256: `bab4eeacc34f18dc3e3622c1b817b6f853e170434f385553808ebabecad1df72`.
+- Root lockfile SHA-256: `2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb`.
+
+### Incoming integration corrections
+
+The initial Mail regression failures exposed fixture/event-loop mismatches:
+reconnect fixtures now implement the production catalog capability, asynchronous
+stream cancellation receives a real event-loop turn, and invalid stored port
+forms reach the route validator without test-helper normalization. The late
+incoming route contract requires explicit IMAP socket ports; its positive
+fixtures now follow that contract while invalid/noncanonical cases remain.
+
+The late Mail branch also introduced an atomic selected-record API that neither
+connection host called. An unconditional final write could recreate a shortcut
+forgotten during reconnect, or overwrite a revised selected record. Native IMAP
+and the shared EWS/Gmail/Graph host now refresh the selected snapshot atomically
+before adopting the candidate draft owner. Eight deterministic removal/revision
+regressions failed before this correction and pass afterward. Fresh connection
+registration, legacy directory metadata, rejected-owner release and explicit
+close/retry recovery remain covered. This correction is separate from the
+Zotero feature increment but required a consistent combined main.
+
 
 ## Remaining parity work
 
