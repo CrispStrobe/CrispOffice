@@ -63,6 +63,8 @@ and outcomes before upgrading this increment's runtime status.
 | `138fab37b26d12453bded81ddd5ebf5ab531843b` | History-preserving intake; production and test package tree equals original main |
 | `25e93061f640ec381feb45291ccb363401a20bc8` | New predicates and EN/DE/AR help |
 | `bb92051a07618b069f8fc03609d1af6863dc52a0` | Core, store, shared UI and locale regression source |
+| `6cb1439d64fd18690cf1ac5a3b81936d6fe0e142` | Scope documentation, static-review record and precise test wording |
+| `ff7e7cea6cea90c0a99da3f3d0a77b3231e3ad91` | Reconcile newly merged Word work from remote main without production conflicts |
 
 The intake package-tree SHA remains
 `6c50da559d4b1b199c36ffd5c3cdef1ae0a5f54c`, matching original main exactly.
@@ -96,3 +98,37 @@ an executable checkout using the pinned SDK:
 Run strict analysis and `dart format --output=none --set-exit-if-changed` on
 all changed Dart paths as well. These commands are a resumption plan; they were
 not executed here. GitHub Actions was neither awaited nor used as evidence.
+
+## Final publication preparation
+
+Remote main advanced during the task to
+`bed699fb8b993e9b4f15896a7be22fdff6349985` through Word PR #389.
+The task branch incorporates that exact main as a merge parent, preserving all
+Word code, fixtures and reviewed Mail assertions. The sole historical README
+overlap was resolved by retaining both additive records. See
+[late-intake.json](late-intake.json).
+
+At `ff7e7cea6cea90c0a99da3f3d0a77b3231e3ad91`, the branch is five
+commits ahead and zero behind that main. GitHub readback confirms all 17 intended
+feature, regression and documentation files exactly match the prepared content.
+The production delta relative to refreshed main is limited to the shared query
+predicate and its help copy; there is no engine/protocol/storage implementation
+delta. See [publication-review.json](publication-review.json).
+
+The concurrent Zotero continuation was still closing out on its own branch at
+the last snapshot. Its work is retained there, and main must be refreshed again
+immediately before merging this task. No unfinished branch is overwritten.
+
+For the next executable checkout, start sparse so historical evidence archives
+do not exhaust the workspace before the pinned runtime is available:
+
+```bash
+git clone --filter=blob:none --sparse https://github.com/CrispStrobe/quds_office_suite.git
+cd quds_office_suite
+git sparse-checkout set packages third_party apps tool tools docs/roadmaps/mail
+```
+
+The omitted historical evidence remains in Git and is readable by exact commit.
+Qualify the source with the committed regression suites before claiming runtime
+acceptance for this increment or beginning the larger storage-backed tag/rule
+implementation.

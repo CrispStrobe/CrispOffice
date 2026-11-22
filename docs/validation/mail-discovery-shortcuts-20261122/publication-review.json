@@ -1,0 +1,154 @@
+{
+  "date": "2026-11-22",
+  "reviewed_head": "ff7e7cea6cea90c0a99da3f3d0a77b3231e3ad91",
+  "reviewed_tree": "7f38c1488667af027f54d91d47f9fff074e04796",
+  "refreshed_main": "bed699fb8b993e9b4f15896a7be22fdff6349985",
+  "comparison": {
+    "status": "ahead",
+    "ahead": 5,
+    "behind": 0,
+    "changed_files": 64
+  },
+  "initial_intake": "All 48 captured branch heads retained by ancestry; all 4 upstream heads already ancestral.",
+  "concurrent_main_integrated": "PR389 Word source-text work, main bed699fb, retained through direct merge parent.",
+  "outstanding_concurrent_branch": {
+    "name": "codex/zotero-continued-parity-20261122",
+    "head": "ebff641386f6f2c349cf7eb56dd20d92aa0faac2",
+    "status_at_snapshot": "Active closeout; kept intact. Recheck main before publication."
+  },
+  "exact_remote_readback": [
+    {
+      "path": "packages/quds_mail_core/lib/src/search/header_search.dart",
+      "sha": "e7bbd56ed1d64ef26f146f0d477fb917e9475ff3"
+    },
+    {
+      "path": "packages/quds_mail_ui/lib/src/workspace/message_list.dart",
+      "sha": "8c1f99e8ba0e28b01cc6ce99060ce3e1512fa1ee"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_workspace_strings.dart",
+      "sha": "6edd507b546e7804f3aa1c4487646389aaf19b2a"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_cached_search_strings.dart",
+      "sha": "ce90f7653e093ab35d2713b5a50df19bfbbb489e"
+    },
+    {
+      "path": "packages/quds_mail_core/CHANGELOG.md",
+      "sha": "37c64b7a8874dd8b8cbc5c35a39eca3b21257b5e"
+    },
+    {
+      "path": "packages/quds_mail_ui/CHANGELOG.md",
+      "sha": "6d17fd5674d6528bafd5be969a3dec2d6e5af642"
+    },
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "sha": "f2e771bc90872464949a7064fb241b82acef3561"
+    },
+    {
+      "path": "packages/quds_mail_core/test/header_search_people_test.dart",
+      "sha": "6507ac52c9c91c59d871b765c3f98ddae5a4d798"
+    },
+    {
+      "path": "packages/quds_mail_ui/test/message_list_test.dart",
+      "sha": "f5dfcce6b595c8f7fa2b13f107189b1b90d38e1e"
+    },
+    {
+      "path": "packages/quds_mail_store/test/cached_header_search_test.dart",
+      "sha": "e4725ce951559dd573b8839ef9ad1454db859cd0"
+    },
+    {
+      "path": "packages/quds_mail_store/test/saved_header_searches_test.dart",
+      "sha": "e563d25649c1487489c980d0c090665337883d95"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_boolean_search_strings_test.dart",
+      "sha": "31820bceefdc9a4337131d3b36c010fdaa2763f5"
+    },
+    {
+      "path": "docs/roadmaps/mail/participant-search.md",
+      "sha": "2bab6903bcfc3de7ccd2a08b12245b33ab904565"
+    },
+    {
+      "path": "docs/roadmaps/mail/header-search.md",
+      "sha": "15b0799bff9bf76542d23c0879ad41a8a7822132"
+    },
+    {
+      "path": "docs/roadmaps/mail/README.md",
+      "sha": "6acaca68b5aff58a2ac09ed383c33ecc41a12533"
+    },
+    {
+      "path": "docs/validation/mail-discovery-shortcuts-20261122/README.md",
+      "sha": "30ab15e82818147bd31eac5770bd4e2934529294"
+    },
+    {
+      "path": "docs/validation/mail-discovery-shortcuts-20261122/static-review.json",
+      "sha": "036390e47dc1b05be0bbd0e7387ee580f2c7bd40"
+    }
+  ],
+  "package_delta": [
+    {
+      "path": "packages/quds_mail_core/CHANGELOG.md",
+      "additions": 5,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_mail_core/lib/src/search/header_search.dart",
+      "additions": 14,
+      "deletions": 1
+    },
+    {
+      "path": "packages/quds_mail_core/test/header_search_people_test.dart",
+      "additions": 179,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_mail_store/test/cached_header_search_test.dart",
+      "additions": 52,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_mail_store/test/saved_header_searches_test.dart",
+      "additions": 42,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_mail_ui/CHANGELOG.md",
+      "additions": 4,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_mail_ui/lib/src/workspace/message_list.dart",
+      "additions": 6,
+      "deletions": 3
+    },
+    {
+      "path": "packages/quds_mail_ui/test/message_list_test.dart",
+      "additions": 45,
+      "deletions": 1
+    },
+    {
+      "path": "packages/quds_office_editor/CHANGELOG.md",
+      "additions": 5,
+      "deletions": 0
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_cached_search_strings.dart",
+      "additions": 3,
+      "deletions": 3
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_workspace_strings.dart",
+      "additions": 18,
+      "deletions": 6
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_boolean_search_strings_test.dart",
+      "additions": 18,
+      "deletions": 0
+    }
+  ],
+  "runtime_status": "NOT EXECUTED: local Dart/Flutter, analyzer, formatter and builds could not start because sandbox launch fails with ENOSPC.",
+  "ci_status": "GitHub Actions not queried or awaited.",
+  "publication_method": "Normal merge with exact expected PR head; no force push or branch-rule changes."
+}
