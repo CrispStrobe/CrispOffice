@@ -202,10 +202,15 @@ extension MailCachedHeaderSearch on SqliteMailRepository {
   /// [limit] bounds returned matches; [scanLimit] bounds inspected candidates.
   /// A content change, account/query change or different owner rejects a cursor
   /// with conflict instead of skipping or duplicating a changing result set.
+  /// [folderIds] preserves the published string-ID API: any unavailable folder
+  /// fails the account query. [mailboxIds] additionally reports missing folders
+  /// as explicit coverage while retaining hits in present selected folders.
+  /// Supply only one of the two scope parameters.
   Future<MailResult<MailCachedHeaderSearchPage>> searchCachedHeaders(
     MailAccountId account,
     String query, {
     List<MailMailboxId>? mailboxIds,
+    List<String>? folderIds,
     MailCachedHeaderSearchCursor? cursor,
     int limit = 100,
     int scanLimit = 500,
@@ -218,10 +223,30 @@ extension MailCachedHeaderSearch on SqliteMailRepository {
         scanLimit > limits.maxPageSize) {
       SqliteMailRepository._fail(MailProblemCode.invalidInput);
     }
-    final selected = _cachedSearchMailboxScope(account, mailboxIds);
+    if (mailboxIds != null && folderIds != null) {
+      SqliteMailRepository._fail(MailProblemCode.invalidInput);
+    }
+    if (folderIds != null &&
+        (folderIds.isEmpty ||
+            folderIds.length > MailSavedHeaderSearch.maxFolders ||
+            folderIds.any(
+              (id) => !MailSavedHeaderSearchFolder.isValidMailboxId(id),
+            ))) {
+      SqliteMailRepository._fail(MailProblemCode.invalidInput);
+    }
+    final selected = _cachedSearchMailboxScope(
+      account,
+      mailboxIds ??
+          (folderIds == null
+              ? null
+              : [
+                  for (final id in folderIds)
+                    MailMailboxId(id, account: account),
+                ]),
+    );
     final scopeKey = selected == null ? null : jsonEncode(selected);
     final eligible = _cachedSearchEligible(selected);
-    // At most 2,003 parameters, bounded by the public 1,000-folder contract.
+    // At most 403 parameters, bounded by the published 200-folder contract.
     // Both membership sources use the same canonical exact folder set.
     final scopeArguments = <Object?>[...?selected, ...?selected];
     final MailHeaderSearchQuery parsed;
@@ -273,6 +298,9 @@ extension MailCachedHeaderSearch on SqliteMailRepository {
           if (!present.contains(id)) {
             missingMailboxIds.add(MailMailboxId(id, account: account));
           }
+        }
+        if (folderIds != null && missingMailboxIds.isNotEmpty) {
+          SqliteMailRepository._fail(MailProblemCode.unavailable);
         }
       }
       var metadataUnits =

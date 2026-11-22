@@ -6,12 +6,14 @@ MailSavedHeaderSearch _search({
   String name = 'Important mail',
   String query = 'is:unread OR is:flagged',
   List<String> accountIds = const ['account-a', 'account-b'],
+  List<MailSavedHeaderSearchFolder>? folderScopes,
   int revision = 0,
 }) => MailSavedHeaderSearch(
   id: id,
   name: name,
   query: query,
   accountIds: accountIds,
+  folderScopes: folderScopes,
   revision: revision,
 );
 
@@ -25,6 +27,85 @@ void main() {
     expect(saved.accountIds, ['second', 'first']);
     expect(() => saved.accountIds.add('new-account'), throwsUnsupportedError);
     expect(saved.isValid, isTrue);
+  });
+
+  test('exact folder set is immutable, account-owned and copyable', () {
+    final folders = [
+      const MailSavedHeaderSearchFolder(
+        accountId: 'account-a',
+        mailboxId: 'INBOX',
+      ),
+      const MailSavedHeaderSearchFolder(
+        accountId: 'account-b',
+        mailboxId: 'Archive',
+      ),
+    ];
+    final saved = _search(folderScopes: folders);
+    expect(saved.isValid, isTrue);
+    folders.clear();
+    expect(saved.folderScopes, hasLength(2));
+    expect(() => saved.folderScopes!.clear(), throwsUnsupportedError);
+    expect(
+      saved.folderScopes!.first,
+      const MailSavedHeaderSearchFolder(
+        accountId: 'account-a',
+        mailboxId: 'INBOX',
+      ),
+    );
+    expect(
+      saved.folderScopes!.first.hashCode,
+      const MailSavedHeaderSearchFolder(
+        accountId: 'account-a',
+        mailboxId: 'INBOX',
+      ).hashCode,
+    );
+    expect(
+      saved.copyWith(query: 'is:flagged').folderScopes,
+      saved.folderScopes,
+    );
+    expect(saved.copyWith(allFolders: true).folderScopes, isNull);
+    expect(
+      saved
+          .copyWith(
+            folderScopes: [
+              const MailSavedHeaderSearchFolder(
+                accountId: 'account-a',
+                mailboxId: 'Other',
+              ),
+              const MailSavedHeaderSearchFolder(
+                accountId: 'account-b',
+                mailboxId: 'INBOX',
+              ),
+            ],
+          )
+          .isValid,
+      isTrue,
+    );
+  });
+
+  test('rejects ambiguous, missing or excessive folder scopes', () {
+    MailSavedHeaderSearchFolder folder(String account, String box) =>
+        MailSavedHeaderSearchFolder(accountId: account, mailboxId: box);
+    for (final folders in [
+      <MailSavedHeaderSearchFolder>[],
+      [folder('account-a', 'INBOX')],
+      [
+        folder('account-a', 'INBOX'),
+        folder('account-a', 'INBOX'),
+        folder('account-b', 'INBOX'),
+      ],
+      [folder('account-a', 'INBOX'), folder('unknown', 'INBOX')],
+      [folder('account-a', ''), folder('account-b', 'INBOX')],
+      [folder('account-a', 'Bad\nFolder'), folder('account-b', 'INBOX')],
+      [folder('account-a', 'x' * 1025), folder('account-b', 'INBOX')],
+      [
+        for (var i = 0; i < 201; i++) folder('account-a', 'box-$i'),
+        folder('account-b', 'INBOX'),
+      ],
+    ]) {
+      expect(_search(folderScopes: folders).isValid, isFalse);
+    }
+    expect(_search().folderScopes, isNull);
   });
 
   test('accepts an empty query for all headers in the explicit scope', () {

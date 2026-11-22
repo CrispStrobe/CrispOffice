@@ -61,7 +61,7 @@ extension MailSavedHeaderSearches on SqliteMailRepository {
       'length(CAST(name AS BLOB))>512 OR '
       'length(CAST(name_key AS BLOB))>2048 OR '
       'length(CAST(query AS BLOB))>4096 OR '
-      "typeof(folder_scope)!='integer' OR folder_scope NOT IN (0,1) OR "
+      "typeof(has_folder_scope)!='integer' OR has_folder_scope NOT IN (0,1) OR "
       "typeof(revision)!='integer' OR revision<1 OR revision>? "
       'UNION ALL SELECT 1 AS invalid FROM saved_header_search_accounts a '
       'LEFT JOIN saved_header_searches s ON s.id=a.search WHERE '
@@ -74,11 +74,11 @@ extension MailSavedHeaderSearches on SqliteMailRepository {
       'LEFT JOIN saved_header_searches s ON s.id=f.search '
       'LEFT JOIN saved_header_search_accounts a '
       'ON a.search=f.search AND a.account_id=f.account_id WHERE '
-      "s.id IS NULL OR a.account_id IS NULL OR s.folder_scope!=1 OR "
+      "s.id IS NULL OR a.account_id IS NULL OR s.has_folder_scope!=1 OR "
       "typeof(f.search)!='text' OR typeof(f.account_id)!='text' OR "
       "typeof(f.mailbox_id)!='text' OR typeof(f.position)!='integer' OR "
       "(f.display_name IS NOT NULL AND typeof(f.display_name)!='text') OR "
-      'f.position<0 OR f.position>=1000 OR '
+      'f.position<0 OR f.position>=200 OR '
       'length(CAST(f.search AS BLOB))>4096 OR '
       'length(CAST(f.account_id AS BLOB))>4096 OR '
       'length(CAST(f.mailbox_id AS BLOB))>4096 OR '
@@ -103,7 +103,7 @@ extension MailSavedHeaderSearches on SqliteMailRepository {
     // its maximum. Capping before multiplication prevents host-limit overflow.
     const maxCatalogUnits =
         maxSearches *
-        (1024 + 128 + 512 + 1024 + 100 * 1024 + 1000 * (1024 + 1024 + 4096));
+        (1024 + 128 + 512 + 1024 + 100 * 1024 + 200 * (1024 + 1024 + 4096));
     final budget = limits.maxMetadataCodeUnits < maxCatalogUnits
         ? limits.maxMetadataCodeUnits
         : maxCatalogUnits;
@@ -115,7 +115,7 @@ extension MailSavedHeaderSearches on SqliteMailRepository {
     final ids = <String>{};
     var units = 0;
     for (final row in await _rows(
-      'SELECT id,name,name_key,query,revision,folder_scope FROM saved_header_searches '
+      'SELECT id,name,name_key,query,revision,has_folder_scope FROM saved_header_searches '
       'ORDER BY name_key,id',
     )) {
       final id = row.read<String>('id');
@@ -136,11 +136,11 @@ extension MailSavedHeaderSearches on SqliteMailRepository {
       final folderRows = await _rows(
         'SELECT position,account_id,mailbox_id,display_name '
         'FROM saved_header_search_folders WHERE search=? '
-        'ORDER BY position LIMIT 1001',
+        'ORDER BY position LIMIT 201',
         [id],
       );
       if (folderRows.length > MailSavedHeaderSearch.maxFolders ||
-          (row.read<int>('folder_scope') == 0 && folderRows.isNotEmpty)) {
+          (row.read<int>('has_folder_scope') == 0 && folderRows.isNotEmpty)) {
         SqliteMailRepository._fail(MailProblemCode.storageFailure);
       }
       for (var i = 0; i < folderRows.length; i++) {
@@ -155,7 +155,7 @@ extension MailSavedHeaderSearches on SqliteMailRepository {
         accountIds: [
           for (final account in accounts) account.read<String>('account_id'),
         ],
-        folders: row.read<int>('folder_scope') == 0
+        folders: row.read<int>('has_folder_scope') == 0
             ? null
             : [
                 for (final folder in folderRows)
@@ -239,10 +239,10 @@ extension MailSavedHeaderSearches on SqliteMailRepository {
     }
     final saved = search.copyWith(revision: marker.revision + 1);
     await _db.customStatement(
-      'INSERT INTO saved_header_searches(id,name,name_key,query,revision,folder_scope) '
+      'INSERT INTO saved_header_searches(id,name,name_key,query,revision,has_folder_scope) '
       'VALUES(?,?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET '
       'name=excluded.name,name_key=excluded.name_key,query=excluded.query,'
-      'revision=excluded.revision,folder_scope=excluded.folder_scope',
+      'revision=excluded.revision,has_folder_scope=excluded.has_folder_scope',
       [
         saved.id,
         saved.name,
@@ -251,6 +251,13 @@ extension MailSavedHeaderSearches on SqliteMailRepository {
         saved.revision,
         saved.folders == null ? 0 : 1,
       ],
+    );
+    // The published v11 foreign key owns folders by definition, independently
+    // of account rows. Clear the previous exact set explicitly before replacing
+    // its account scope; the whole operation remains one transaction.
+    await _db.customStatement(
+      'DELETE FROM saved_header_search_folders WHERE search=?',
+      [saved.id],
     );
     await _db.customStatement(
       'DELETE FROM saved_header_search_accounts WHERE search=?',

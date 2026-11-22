@@ -47,9 +47,44 @@ separate ordered milestones.
 
 ## Qualification and checkpoints
 
-Implementation and fresh local qualification are in progress. The repository
-pins Flutter 3.47.8; runtime preparation is being performed in the current
-workspace. No test pass is claimed by this initial checkpoint.
+### Initial implementation and qualification
+
+The first completed source was preserved remotely at
+`b0d5f867b3bdc0ee61549a09c09f942db0f68ee1`, preceded by the intake checkpoint
+`34358000669d52a3f18664586aa4c3223d7b9caf`, core/store checkpoint
+`b4fd1ac4ffb2c65bd0805306781ce1406ddfb905`, and host/session checkpoint
+`cb6dbcdcdb6dfbcd2aa186cf0d1a98b2953b526e`.
+
+That pre-reconciliation tree had passing coverage for 1,609 distinct native
+cases: 499 core, 962 storage, 82 host/session, 63 dialog and three additional
+manual-publication lifecycle cases. Focused subsets and reruns are not added
+again. The full storage run initially passed 960 and found two old schema-v7
+fixture failures; deleting the newly added child table when reconstructing
+that old fixture corrected them, and all 23 synchronization cases then passed.
+Initial UI fixture/virtualized-row/navigation failures were likewise corrected
+in tests, with actual hit testing retained. This historical result does not
+qualify the later combined source by itself.
+
+### Concurrent integration
+
+The final intake found main had advanced to
+`bcc55cb6e86e796056e2d75c3fdca50857dbf6e7` through
+[PR #354](https://github.com/CrispStrobe/quds_office_suite/pull/354), an
+independent implementation of exact folder scopes. Its source was preserved
+and incorporated; overlapping APIs and migrations are being reconciled into
+one implementation. In particular, its already-published schema 11 must remain
+valid. The continuation uses additive schema 12, preserves the published
+200-folder limit and old public scope APIs, and keeps stronger missing coverage
+on the new typed path. Incoming regression tests are retained and executed.
+
+New Word VBA cell-formatting and Zotero parity branches were also discovered
+after the initial clean intake. Their exact integrated heads and fresh combined
+qualification will be recorded in the completion section below. The worktree
+is not considered merge-qualified while this reconciliation is in progress.
+
+The genuine local runtime is repository-pinned Flutter 3.47.8 / Dart 3.13.7,
+with lock-enforced dependencies and SQLite 3.54.1 / FTS5. Runtime provenance and
+raw command logs will accompany the completed record.
 
 Completed stages will be committed and pushed to the remote work branch.
 Before merging, current main, branches and pull requests will be reconciled

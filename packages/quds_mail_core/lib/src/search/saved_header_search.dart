@@ -60,16 +60,18 @@ final class MailSavedHeaderSearch {
     required this.query,
     required List<String> accountIds,
     List<MailSavedHeaderSearchFolder>? folders,
+    List<MailSavedHeaderSearchFolder>? folderScopes,
     this.revision = 0,
   }) : accountIds = List<String>.unmodifiable(accountIds),
-       folders = folders == null
-           ? null
-           : List<MailSavedHeaderSearchFolder>.unmodifiable(folders);
+       folders = _folderSelection(folders, folderScopes);
 
   static const maxNameCodeUnits = 128;
   static const maxIdCodeUnits = 1024;
   static const maxAccountIds = 100;
-  static const maxFolders = 1000;
+  static const maxFolders = 200;
+
+  /// Published compatibility name for the same bounded exact folder set.
+  static const maxFolderScopes = maxFolders;
   static const maxRevision = 9007199254740991;
 
   final String id;
@@ -81,6 +83,22 @@ final class MailSavedHeaderSearch {
   /// set is nonempty and must represent every account exactly by its stable ID.
   /// Missing folders remain in the definition and must never widen the search.
   final List<MailSavedHeaderSearchFolder>? folders;
+
+  /// Published compatibility name; both accessors expose one immutable list.
+  List<MailSavedHeaderSearchFolder>? get folderScopes => folders;
+
+  static List<MailSavedHeaderSearchFolder>? _folderSelection(
+    List<MailSavedHeaderSearchFolder>? folders,
+    List<MailSavedHeaderSearchFolder>? folderScopes,
+  ) {
+    if (folders != null && folderScopes != null) {
+      throw ArgumentError('Supply one folder selection.');
+    }
+    final selected = folders ?? folderScopes;
+    return selected == null
+        ? null
+        : List<MailSavedHeaderSearchFolder>.unmodifiable(selected);
+  }
 
   /// Zero denotes an unsaved definition. Persisted revisions are assigned by
   /// the repository and must be supplied unchanged for update or deletion.
@@ -144,10 +162,12 @@ final class MailSavedHeaderSearch {
     String? query,
     List<String>? accountIds,
     List<MailSavedHeaderSearchFolder>? folders,
+    List<MailSavedHeaderSearchFolder>? folderScopes,
     bool allFolders = false,
     int? revision,
   }) {
-    if (allFolders && folders != null) {
+    final selected = _folderSelection(folders, folderScopes);
+    if (allFolders && selected != null) {
       throw ArgumentError('Choose either explicit folders or all folders.');
     }
     return MailSavedHeaderSearch(
@@ -155,7 +175,7 @@ final class MailSavedHeaderSearch {
       name: name ?? this.name,
       query: query ?? this.query,
       accountIds: accountIds ?? this.accountIds,
-      folders: allFolders ? null : folders ?? this.folders,
+      folders: allFolders ? null : selected ?? this.folders,
       revision: revision ?? this.revision,
     );
   }

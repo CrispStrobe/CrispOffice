@@ -159,8 +159,8 @@ void main() {
       );
       expect(
         database
-            .select('SELECT folder_scope FROM saved_header_searches')
-            .single['folder_scope'],
+            .select('SELECT has_folder_scope FROM saved_header_searches')
+            .single['has_folder_scope'],
         0,
       );
     },
@@ -297,7 +297,7 @@ void main() {
     (
       'overlong list',
       List.generate(
-        1001,
+        201,
         (index) => MailSavedHeaderSearchFolder(
           accountId: index.isEven ? 'a' : 'b',
           mailboxId: '$index',
@@ -329,7 +329,7 @@ void main() {
     ),
     (
       'legacy scope with folders',
-      'UPDATE saved_header_searches SET folder_scope=0',
+      'UPDATE saved_header_searches SET has_folder_scope=0',
       [],
     ),
     (

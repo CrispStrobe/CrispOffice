@@ -631,7 +631,7 @@ void main() {
           failAt = null;
         }
         store = _value(await open());
-        expect(database.userVersion, 11);
+        expect(database.userVersion, 12);
         expect(_value(await store.loadComposeSettings(_account)).revision, 0);
         expect(snapshot()..remove('mailbox_sync_state'), prior);
         expect(_value(await store.loadSyncMailbox(_mailbox)), isNull);

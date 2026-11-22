@@ -88,10 +88,10 @@ final class StudioMailCachedSearchSession {
     required this.openStore,
     required this.isCurrent,
     List<MailSavedHeaderSearchFolder>? folders,
+    List<MailSavedHeaderSearchFolder>? folderScopes,
   }) : _accounts = List.of(accounts),
-       folders = folders == null
-           ? null
-           : List<MailSavedHeaderSearchFolder>.unmodifiable(folders) {
+       folders = _captureFolders(folders, folderScopes),
+       _legacyFolderScopes = folderScopes != null {
     MailHeaderSearchQuery.parse(query);
     if (_accounts.length > MailLocalAccountDirectory.maxAccounts) {
       _fail(MailProblemCode.quotaExceeded);
@@ -130,6 +130,7 @@ final class StudioMailCachedSearchSession {
   final StudioMailDraftStoreFactory openStore;
   final bool Function() isCurrent;
   final List<MailSavedHeaderSearchFolder>? folders;
+  final bool _legacyFolderScopes;
   final List<MailLocalAccountRecord> _accounts;
   final Map<String, List<MailSavedHeaderSearchFolder>> _foldersByAccount = {};
   final Object _identity = Object();
@@ -140,6 +141,7 @@ final class StudioMailCachedSearchSession {
   StudioMailMailboxStore? _mailbox;
   StudioMailCachedHeaderSearchStore? _search;
   StudioMailFolderScopedHeaderSearchStore? _scopedSearch;
+  StudioMailScopedHeaderSearchStore? _legacyScopedSearch;
   StudioMailDraftStore? _temporaryOwner;
   Future<void>? _pending;
   Future<void>? _closing;
@@ -158,6 +160,19 @@ final class StudioMailCachedSearchSession {
 
   static Never _fail(MailProblemCode code) =>
       throw StudioMailMailboxStoreException(code);
+
+  static List<MailSavedHeaderSearchFolder>? _captureFolders(
+    List<MailSavedHeaderSearchFolder>? folders,
+    List<MailSavedHeaderSearchFolder>? folderScopes,
+  ) {
+    if (folders != null && folderScopes != null) {
+      _fail(MailProblemCode.invalidInput);
+    }
+    final selected = folders ?? folderScopes;
+    return selected == null
+        ? null
+        : List<MailSavedHeaderSearchFolder>.unmodifiable(selected);
+  }
 
   bool get _current => !_closed && isCurrent();
 
@@ -228,6 +243,7 @@ final class StudioMailCachedSearchSession {
       _mailbox = null;
       _search = null;
       _scopedSearch = null;
+      _legacyScopedSearch = null;
       _cursor = null;
     }
   }
@@ -426,6 +442,14 @@ final class StudioMailCachedSearchSession {
           _check();
           mailbox = _mailboxFor(_temporaryOwner!, identity);
         }
+        // The published legacy port supplies no catalog capability. Keep its
+        // original exact-query contract without pretending a catalog recheck
+        // was possible. Native dual-capability hosts retain the stronger check.
+        if (_legacyFolderScopes &&
+            mailbox is StudioMailScopedHeaderSearchStore &&
+            mailbox is! StudioMailFolderScopedHeaderSearchStore) {
+          continue;
+        }
         final available = await _currentFolderIds(record, identity, mailbox);
         missing = [
           for (final selected in _foldersByAccount[record.id]!)
@@ -494,6 +518,11 @@ final class StudioMailCachedSearchSession {
             _fail(MailProblemCode.unsupported);
           }
           _search = mailbox as StudioMailCachedHeaderSearchStore;
+        } else if (_legacyFolderScopes) {
+          if (mailbox is! StudioMailScopedHeaderSearchStore) {
+            _fail(MailProblemCode.unsupported);
+          }
+          _legacyScopedSearch = mailbox as StudioMailScopedHeaderSearchStore;
         } else {
           if (mailbox is! StudioMailFolderScopedHeaderSearchStore) {
             _fail(MailProblemCode.unsupported);
@@ -503,23 +532,34 @@ final class StudioMailCachedSearchSession {
         _mailbox = mailbox;
       }
       final selected = _foldersByAccount[record.id];
-      page = selected == null
-          ? await _search!.searchCachedHeaders(
-              query,
-              cursor: _cursor,
-              limit: limit,
-              scanLimit: scanLimit,
-            )
-          : await _scopedSearch!.searchCachedHeadersInFolders(
-              query,
-              mailboxIds: [
-                for (final folder in selected)
-                  MailMailboxId(folder.mailboxId, account: identity.account),
-              ],
-              cursor: _cursor,
-              limit: limit,
-              scanLimit: scanLimit,
-            );
+      if (selected == null) {
+        page = await _search!.searchCachedHeaders(
+          query,
+          cursor: _cursor,
+          limit: limit,
+          scanLimit: scanLimit,
+        );
+      } else if (_legacyFolderScopes) {
+        page = await _legacyScopedSearch!.searchCachedHeadersInFolders(
+          query,
+          folderIds: [for (final folder in selected) folder.mailboxId],
+          cursor: _cursor,
+          limit: limit,
+          scanLimit: scanLimit,
+        );
+        page = _projectLegacyCoverage(page, identity, selected);
+      } else {
+        page = await _scopedSearch!.searchCachedHeadersInFolders(
+          query,
+          mailboxIds: [
+            for (final folder in selected)
+              MailMailboxId(folder.mailboxId, account: identity.account),
+          ],
+          cursor: _cursor,
+          limit: limit,
+          scanLimit: scanLimit,
+        );
+      }
       _check();
       await _verify(record);
       _validatePage(page, identity, limit, scanLimit);
@@ -583,6 +623,49 @@ final class StudioMailCachedSearchSession {
         StudioMailCachedSearchHit._(record, hit, _identity),
     ]);
   });
+
+  /// Earlier adapters returned account-wide checkpoint metadata alongside
+  /// exact-folder hits. Validate its account boundary before projecting that
+  /// metadata to the requested set; hit provenance is still checked below.
+  MailCachedHeaderSearchPage _projectLegacyCoverage(
+    MailCachedHeaderSearchPage page,
+    StudioMailDraftAccount identity,
+    List<MailSavedHeaderSearchFolder> selected,
+  ) {
+    if (page.browsed.length > 1000 || page.synchronized.length > 1000) {
+      _fail(MailProblemCode.conflict);
+    }
+    final ids = {
+      for (final folder in selected)
+        MailMailboxId(folder.mailboxId, account: identity.account),
+    };
+    if (page.browsed.any(
+          (folder) => folder.mailbox.id.account != identity.account,
+        ) ||
+        page.synchronized.any(
+          (folder) => folder.mailbox.id.account != identity.account,
+        ) ||
+        page.missingMailboxIds.any((id) => !ids.contains(id))) {
+      _fail(MailProblemCode.permissionDenied);
+    }
+    if (page.missingMailboxIds.isNotEmpty) {
+      _fail(MailProblemCode.unavailable);
+    }
+    return MailCachedHeaderSearchPage(
+      hits: page.hits,
+      scannedCount: page.scannedCount,
+      totalCount: page.totalCount,
+      nextCursor: page.nextCursor,
+      browsed: [
+        for (final folder in page.browsed)
+          if (ids.contains(folder.mailbox.id)) folder,
+      ],
+      synchronized: [
+        for (final folder in page.synchronized)
+          if (ids.contains(folder.mailbox.id)) folder,
+      ],
+    );
+  }
 
   void _validatePage(
     MailCachedHeaderSearchPage page,
@@ -656,7 +739,10 @@ final class StudioMailCachedSearchSession {
             _check();
             mailbox = _mailboxFor(_temporaryOwner!, identity);
           }
-          if (folders != null) {
+          if (folders != null &&
+              !(_legacyFolderScopes &&
+                  mailbox is StudioMailScopedHeaderSearchStore &&
+                  mailbox is! StudioMailFolderScopedHeaderSearchStore)) {
             final available = await _currentFolderIds(
               hit.account,
               identity,

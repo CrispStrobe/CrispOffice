@@ -108,7 +108,7 @@ void main() {
       final before = preservedRows();
       final store = _value(await open());
       try {
-        expect(database.userVersion, 11);
+        expect(database.userVersion, 12);
         expect(preservedRows(), before);
         final saved = _value(await store.listSavedHeaderSearches()).single;
         expect(saved.folders, isNull);
@@ -159,7 +159,7 @@ void main() {
         database
             .select('PRAGMA table_info(saved_header_searches)')
             .map((row) => row['name']),
-        isNot(contains('folder_scope')),
+        isNot(contains('has_folder_scope')),
       );
       expect(
         database.select(
@@ -169,7 +169,7 @@ void main() {
       );
       final store = _value(await open());
       try {
-        expect(database.userVersion, 11);
+        expect(database.userVersion, 12);
         expect(
           _value(await store.listSavedHeaderSearches()).single.folders,
           isNull,
@@ -179,6 +179,204 @@ void main() {
       } finally {
         await store.close();
       }
+    },
+  );
+
+  void installPublishedV11() {
+    // Literal SQL published by PR #354, independent of today's schemaV11
+    // declaration. A future accidental rewrite cannot silently alter this
+    // regression fixture into the current schema before migration is exercised.
+    database.execute(
+      '''ALTER TABLE saved_header_searches ADD COLUMN has_folder_scope INTEGER
+      NOT NULL DEFAULT 0 CHECK(typeof(has_folder_scope) = 'integer' AND
+      has_folder_scope IN (0,1))''',
+    );
+    database.execute('''CREATE TABLE saved_header_search_folders (
+      search TEXT NOT NULL REFERENCES saved_header_searches(id) ON DELETE CASCADE,
+      position INTEGER NOT NULL CHECK(typeof(position) = 'integer' AND
+        position BETWEEN 0 AND 199),
+      account_id TEXT NOT NULL, mailbox_id TEXT NOT NULL,
+      PRIMARY KEY(search,position), UNIQUE(search,account_id,mailbox_id)
+    )''');
+    database.execute(
+      "UPDATE saved_header_searches SET has_folder_scope=1 WHERE id='existing'",
+    );
+    database.execute(
+      "INSERT INTO saved_header_search_folders(search,position,account_id,mailbox_id) VALUES('existing',0,'account','INBOX')",
+    );
+    database.execute(
+      "INSERT INTO saved_header_search_folders(search,position,account_id,mailbox_id) VALUES('existing',1,'account','Unavailable')",
+    );
+    database.execute(
+      "INSERT INTO saved_header_searches(id,name,name_key,query,revision) VALUES('legacy','Legacy','legacy','',17)",
+    );
+    database.execute(
+      "INSERT INTO saved_header_search_accounts(search,position,account_id) VALUES('legacy',0,'account')",
+    );
+    database.userVersion = 11;
+  }
+
+  List<Map<String, Object?>> publishedFolders() => [
+    for (final row in database.select(
+      'SELECT search,position,account_id,mailbox_id FROM saved_header_search_folders ORDER BY search,position',
+    ))
+      Map<String, Object?>.from(row),
+  ];
+
+  test(
+    'literal published v11 scopes migrate to v12 with identities and revisions intact',
+    () async {
+      installPublishedV11();
+      final original = preservedRows();
+      final originalFolders = publishedFolders();
+      final store = _value(await open());
+      try {
+        expect(database.userVersion, 12);
+        expect(preservedRows(), original);
+        expect(publishedFolders(), originalFolders);
+        final saved = _value(await store.listSavedHeaderSearches());
+        final scoped = saved.singleWhere((item) => item.id == 'existing');
+        expect(scoped.revision, 41);
+        expect(scoped.folderScopes!.map((folder) => folder.mailboxId), [
+          'INBOX',
+          'Unavailable',
+        ]);
+        expect(
+          scoped.folders!.map((folder) => folder.displayName),
+          everyElement(isNull),
+        );
+        expect(
+          saved.singleWhere((item) => item.id == 'legacy').folders,
+          isNull,
+        );
+        expect(
+          database
+              .select('SELECT saved_header_search_revision FROM store_profile')
+              .single['saved_header_search_revision'],
+          41,
+        );
+        final updated = _value(
+          await store.saveSavedHeaderSearch(
+            scoped.copyWith(
+              folders: [
+                const MailSavedHeaderSearchFolder(
+                  accountId: 'account',
+                  mailboxId: 'INBOX',
+                  displayName: 'Inbox',
+                ),
+                scoped.folders!.last,
+              ],
+            ),
+            expectedRevision: scoped.revision,
+          ),
+        );
+        expect(updated.revision, 42);
+        expect(updated.folderScopes!.first.displayName, 'Inbox');
+        expect(publishedFolders(), originalFolders);
+        expect(database.select('PRAGMA foreign_key_check'), isEmpty);
+        final cleared = _value(
+          await store.saveSavedHeaderSearch(
+            updated.copyWith(allFolders: true),
+            expectedRevision: updated.revision,
+          ),
+        );
+        expect(cleared.folderScopes, isNull);
+        expect(publishedFolders(), isEmpty);
+      } finally {
+        await store.close();
+      }
+    },
+  );
+
+  test(
+    'interrupted literal v11 label migration rolls back without altering exact scope',
+    () async {
+      installPublishedV11();
+      final original = preservedRows();
+      final originalFolders = publishedFolders();
+      final failed = await open(failMigration: true);
+      expect(failed, isA<MailFailure<SqliteMailRepository>>());
+      expect(
+        (failed as MailFailure<SqliteMailRepository>).problem.code,
+        MailProblemCode.storageFailure,
+      );
+      expect(database.userVersion, 11);
+      expect(preservedRows(), original);
+      expect(publishedFolders(), originalFolders);
+      expect(
+        database
+            .select('PRAGMA table_info(saved_header_search_folders)')
+            .map((row) => row['name']),
+        isNot(contains('display_name')),
+      );
+      final store = _value(await open());
+      try {
+        expect(database.userVersion, 12);
+        final saved = _value(await store.listSavedHeaderSearches());
+        expect(
+          saved.singleWhere((item) => item.id == 'existing').folders,
+          hasLength(2),
+        );
+        expect(
+          saved.singleWhere((item) => item.id == 'legacy').folders,
+          isNull,
+        );
+        expect(preservedRows(), original);
+        expect(publishedFolders(), originalFolders);
+        expect(database.select('PRAGMA foreign_key_check'), isEmpty);
+      } finally {
+        await store.close();
+      }
+    },
+  );
+
+  test(
+    'an invalid empty published explicit scope cannot migrate into all folders',
+    () async {
+      installPublishedV11();
+      database.execute('DELETE FROM saved_header_search_folders');
+      final failed = await open();
+      expect(failed, isA<MailFailure<SqliteMailRepository>>());
+      expect(
+        (failed as MailFailure<SqliteMailRepository>).problem.code,
+        MailProblemCode.storageFailure,
+      );
+      expect(database.userVersion, 11);
+      expect(
+        database
+            .select(
+              "SELECT has_folder_scope FROM saved_header_searches WHERE id='existing'",
+            )
+            .single['has_folder_scope'],
+        1,
+      );
+    },
+  );
+
+  test(
+    'published v11 foreign-account folder rows fail migration without losing data',
+    () async {
+      installPublishedV11();
+      // Published v11's definition-level foreign key allows this malformed row;
+      // the upgrade must independently verify membership of the saved account set.
+      database.execute(
+        "UPDATE saved_header_search_folders SET account_id='foreign' WHERE position=1",
+      );
+      final original = publishedFolders();
+      final failed = await open();
+      expect(failed, isA<MailFailure<SqliteMailRepository>>());
+      expect(
+        (failed as MailFailure<SqliteMailRepository>).problem.code,
+        MailProblemCode.storageFailure,
+      );
+      expect(database.userVersion, 11);
+      expect(publishedFolders(), original);
+      expect(
+        database
+            .select('PRAGMA table_info(saved_header_search_folders)')
+            .map((row) => row['name']),
+        isNot(contains('display_name')),
+      );
     },
   );
 }

@@ -2,9 +2,11 @@
 
 ## Unreleased
 
-- Add schema-v11 saved-search folder sets with atomic revision-guarded updates,
-  exact cross-profile account/folder identities and retained display labels.
-  Migrate older definitions as all folders without altering earlier payloads;
+- Add schema-v12 retained folder labels without changing the published v11
+  exact folder identities, discriminator, ordering or 200-folder constraint.
+  Preserve the published `folderScopes` and string `folderIds` APIs alongside
+  typed folder selection. Keep atomic revision-guarded updates and migrate
+  pre-v11 definitions as all folders without altering earlier payloads;
   reject corrupt empty explicit scopes rather than widening them. Filter cached
   search membership before counting and paging, bind cursors to a canonical
   folder set, preserve message deduplication and selected-folder provenance,

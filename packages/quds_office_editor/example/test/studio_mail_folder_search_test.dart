@@ -166,16 +166,60 @@ final class _FolderMailbox extends _LegacyMailbox
   }
 }
 
+/// The already-published scoped port has string IDs and no catalog method.
+/// Its old account-wide checkpoint metadata must be checked before filtering.
+final class _PublishedMailbox extends _LegacyMailbox
+    implements StudioMailScopedHeaderSearchStore {
+  _PublishedMailbox(super.delegate, {this.pageHook});
+
+  final _PageHook? pageHook;
+  int scopedCalls = 0;
+
+  @override
+  Future<MailCachedHeaderSearchPage> searchCachedHeadersInFolders(
+    String query, {
+    required List<String> folderIds,
+    MailCachedHeaderSearchCursor? cursor,
+    int limit = 100,
+    int scanLimit = 500,
+  }) async {
+    scopedCalls++;
+    final result = await (delegate as StudioMailScopedHeaderSearchStore)
+        .searchCachedHeadersInFolders(
+          query,
+          folderIds: folderIds,
+          cursor: cursor,
+          limit: limit,
+          scanLimit: scanLimit,
+        );
+    final page = MailCachedHeaderSearchPage(
+      hits: result.hits,
+      scannedCount: result.scannedCount,
+      totalCount: result.totalCount,
+      nextCursor: result.nextCursor,
+      browsed: await delegate.listViews(),
+      synchronized: result.synchronized,
+    );
+    return pageHook == null ? page : await pageHook!(page, scopedCalls);
+  }
+}
+
 final class _Owner
     implements StudioMailDraftStore, StudioMailMailboxStoreOwner {
   _Owner(
     this.delegate, {
     bool legacy = false,
+    bool published = false,
     _CatalogHook? catalogHook,
     _PageHook? pageHook,
   }) : mailboxStore = legacy
            ? _LegacyMailbox(
                (delegate as StudioMailMailboxStoreOwner).mailboxStore,
+             )
+           : published
+           ? _PublishedMailbox(
+               (delegate as StudioMailMailboxStoreOwner).mailboxStore,
+               pageHook: pageHook,
              )
            : _FolderMailbox(
                (delegate as StudioMailMailboxStoreOwner).mailboxStore,
@@ -291,12 +335,14 @@ void main() {
   Future<_Owner> open(
     StudioMailDraftAccount identity, {
     bool legacy = false,
+    bool published = false,
     _CatalogHook? catalogHook,
     _PageHook? pageHook,
   }) async {
     final owner = _Owner(
       await openStudioMailDraftStore(identity, appDirectory: files),
       legacy: legacy,
+      published: published,
       catalogHook: catalogHook,
       pageHook: pageHook,
     );
@@ -306,6 +352,7 @@ void main() {
 
   Future<StudioMailCachedSearchSession> session({
     List<MailSavedHeaderSearchFolder>? folders,
+    List<MailSavedHeaderSearchFolder>? folderScopes,
     List<MailLocalAccountRecord>? accounts,
     StudioMailDraftStoreFactory? factory,
   }) async {
@@ -313,6 +360,7 @@ void main() {
       query: '',
       accounts: accounts ?? await directory.load(),
       folders: folders,
+      folderScopes: folderScopes,
       directory: directory,
       openStore: factory ?? open,
       isCurrent: () => current,
@@ -745,6 +793,121 @@ void main() {
       );
       final search = await session(folders: [_folder(identity, 'inbox')]);
       expect(await search.nextPage(), hasLength(1));
+    },
+  );
+
+  test(
+    'published scoped adapters keep exact queries without a catalog port',
+    () async {
+      final identity = _identity('gmail', 'published-port@example.test');
+      await seed(identity, 'inbox', [_header(identity, 1)]);
+      await seed(identity, 'archive', [_header(identity, 2)]);
+      final search = await session(
+        folderScopes: [_folder(identity, 'inbox')],
+        factory: (identity) => open(identity, published: true),
+      );
+      final batch = await refreshStudioMailCachedSearch(search);
+      expect(batch.complete, isTrue);
+      expect(batch.hits, hasLength(1));
+      expect(batch.coverage.single.browsed.single.mailbox.id.value, 'inbox');
+      expect(
+        owners.every((owner) => owner.mailboxStore.legacyCalls == 0),
+        isTrue,
+      );
+      expect(await search.loadMessage(batch.hits.single), isNull);
+      final missing = await session(
+        folderScopes: [_folder(identity, 'gone')],
+        factory: (identity) => open(identity, published: true),
+      );
+      expect(await missing.nextPage(), isEmpty);
+      expect(missing.coverage.single.problem, MailProblemCode.unavailable);
+    },
+  );
+
+  test(
+    'new folder path requires its declared missing-aware capability',
+    () async {
+      final identity = _identity('ews', 'published-only@example.test');
+      await seed(identity, 'inbox', [_header(identity, 1)]);
+      final search = await session(
+        folders: [_folder(identity, 'inbox')],
+        factory: (identity) => open(identity, published: true),
+      );
+      expect(await search.nextPage(), isEmpty);
+      expect(search.coverage.single.problem, MailProblemCode.unsupported);
+      expect((owners.single.mailboxStore as _PublishedMailbox).scopedCalls, 0);
+    },
+  );
+
+  test(
+    'foreign legacy coverage cannot disappear behind selected-folder filtering',
+    () async {
+      final identity = _identity('gmail', 'foreign-legacy@example.test');
+      final foreign = _identity('gmail', 'foreign-other@example.test');
+      await seed(identity, 'inbox', [_header(identity, 1)]);
+      final search = await session(
+        folderScopes: [_folder(identity, 'inbox')],
+        factory: (identity) => open(
+          identity,
+          published: true,
+          pageHook: (page, _) async => MailCachedHeaderSearchPage(
+            hits: page.hits,
+            scannedCount: page.scannedCount,
+            totalCount: page.totalCount,
+            nextCursor: page.nextCursor,
+            browsed: [
+              ...page.browsed,
+              MailCachedMailboxSummary(
+                mailbox: MailMailbox(
+                  id: MailMailboxId('unselected', account: foreign.account),
+                  displayName: 'Foreign metadata',
+                ),
+                revision: 1,
+                capturedAt: DateTime.utc(2026, 11, 22),
+                headerCount: 1,
+                hasMore: false,
+              ),
+            ],
+            synchronized: page.synchronized,
+          ),
+        ),
+      );
+      expect(await search.nextPage(), isEmpty);
+      expect(search.coverage.single.problem, MailProblemCode.permissionDenied);
+    },
+  );
+
+  test(
+    'ambiguous scope aliases fail before reads or queued native work',
+    () async {
+      final identity = _identity('imap', 'ambiguous-scope@example.test');
+      await seed(identity, 'inbox', [_header(identity, 1)]);
+      final folders = [_folder(identity, 'inbox')];
+      await expectLater(
+        session(folders: folders, folderScopes: folders),
+        throwsA(_problem(MailProblemCode.invalidInput)),
+      );
+      expect(owners, isEmpty);
+      final raw = await openStudioMailDraftStore(identity, appDirectory: files);
+      try {
+        final mailbox =
+            (raw as StudioMailMailboxStoreOwner).mailboxStore
+                as SqliteStudioMailMailboxStore;
+        expect(
+          () => mailbox.searchCachedHeadersInFolders(''),
+          throwsA(_problem(MailProblemCode.invalidInput)),
+        );
+        expect(
+          () => mailbox.searchCachedHeadersInFolders(
+            '',
+            folderIds: ['inbox'],
+            mailboxIds: [MailMailboxId('inbox', account: identity.account)],
+          ),
+          throwsA(_problem(MailProblemCode.invalidInput)),
+        );
+      } finally {
+        await raw.close();
+      }
     },
   );
 }

@@ -66,18 +66,27 @@ Mailbox whitespace remains significant. Controls, malformed UTF-16, excessive
 lengths, duplicates and foreign account references are rejected.
 
 `MailSavedHeaderSearch.folders` is immutable. Null preserves all-folder
-semantics. An explicit list must contain 1–1,000 unique pairs and represent
+semantics. An explicit list must contain 1–200 unique pairs and represent
 exactly the definition's account IDs. The optional retained display label is
 bounded to 4,096 UTF-16 code units; IDs retain the 1,024-unit boundary. Existing
 query, name, account-count and whole-catalog metadata limits also apply.
 `copyWith(allFolders: true)` is the explicit API for clearing a fixed folder set.
 
-Schema **11** adds an all/explicit discriminator and ordered folder rows with
-foreign keys into the saved definition's account-scope rows. Existing records
-migrate as all folders. Updates, folder replacement and scope clearing remain
-transactional. Monotonic revision guards, profile retirement, count/type/byte
-preflight, quota and corruption checks include the new rows. Drafts, Outbox,
-message bytes, memberships and command journals retain their existing data.
+Schema **12** extends the independently published schema 11 with optional
+retained display labels. The published `has_folder_scope` discriminator,
+ordered folder identities, revisions and existing 200-folder limit are
+preserved. Pre-folder-scope records still migrate as all folders. Updates,
+folder replacement and scope clearing remain transactional. Monotonic revision
+guards, profile retirement, count/type/byte preflight, quota and corruption
+checks include the new rows. Drafts, Outbox, message bytes, memberships and
+command journals retain their existing data.
+
+The published `folderScopes` constructor/property/copy API and
+`maxFolderScopes` remain available alongside `folders` and `maxFolders`.
+Supplying both scope inputs is rejected. The legacy repository `folderIds`
+argument retains its explicit unavailable result for missing folders; the
+account-bound `mailboxIds` API reports missing-folder coverage with surviving
+selected results. Both delegate to the same bounded query implementation.
 
 ## Query and lifecycle contract
 
@@ -104,6 +113,13 @@ returns unsupported rather than delegating to an unscoped query. Catalog
 discovery owns one account store at a time, retains per-account errors, and caps
 the complete chooser at 2,000 entries / 2 Mi UTF-16 metadata units. Failed close
 retains ownership for an explicit retry before another store can open.
+
+The published `StudioMailScopedHeaderSearchStore` string-ID port and session
+`folderScopes` input remain compatible. The native adapter implements both
+ports, rejecting ambiguous simultaneous inputs. Legacy adapters keep their
+existing strict missing-folder contract; the active Studio UI uses the richer
+typed scope and catalog capability. The earlier picker remains available to
+existing direct consumers, while this route uses one canonical chooser.
 
 Directory identity/revision and folder provenance are revalidated on pages.
 Final scoped manual scans and staged refreshes recheck folder availability after

@@ -29,7 +29,8 @@ interrupted work.
 Studio can select exact local folders across accounts, persist/reopen the scope,
 and display each folder's retained-header coverage. Missing folders remain in
 the definition with explicit recovery; they never widen the query. Existing
-all-folder definitions migrate compatibly to schema 11. Scoped paging, refresh
+all-folder definitions and published schema-11 definitions migrate compatibly
+to schema 12. Scoped paging, refresh
 and reader ownership retain identity and stale-operation guards. EN/DE/AR
 controls include localized narrow-layout regressions.
 

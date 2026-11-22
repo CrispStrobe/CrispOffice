@@ -12,6 +12,7 @@ import 'package:quds_office_studio/studio_mail_local_accounts.dart';
 import 'package:quds_office_studio/studio_mail_mailbox_store.dart';
 import 'package:quds_office_studio/studio_mail_saved_searches.dart';
 import 'package:quds_office_studio/studio_mail_saved_search_strings.dart';
+import 'package:quds_office_studio/studio_mail_search_folder_strings.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
 import 'support/mail_local_accounts.dart';
@@ -228,6 +229,7 @@ Future<MailSavedHeaderSearch> _saveDirect(
   WidgetTester tester,
   _Fixture fixture, {
   String name = 'Reports',
+  List<MailSavedHeaderSearchFolder>? folderScopes,
 }) => awaitOutboxOperation(
   tester,
   fixture.native.saveSavedSearch(
@@ -236,6 +238,7 @@ Future<MailSavedHeaderSearch> _saveDirect(
       name: name,
       query: 'subject:Report is:unread',
       accountIds: [fixture.mail.identity.account.value],
+      folderScopes: folderScopes,
     ),
   ),
 );
@@ -271,6 +274,58 @@ void main() {
       await _choose(tester, 'Reports');
       expect(find.text(_strings.mailCachedSearchMatches(2)), findsOneWidget);
       expect(fixture.opened, [fixture.mail.identity.account.value]);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'saved folder set reopens and explicit All resets the definition',
+    (tester) async {
+      final fixture = await _fixture(tester);
+      final exact = [
+        MailSavedHeaderSearchFolder(
+          accountId: fixture.mail.identity.account.value,
+          mailboxId: 'Inbox',
+        ),
+      ];
+      await _saveDirect(tester, fixture, folderScopes: exact);
+      await _show(tester, fixture);
+      await _choose(tester, 'Reports');
+      expect(find.text(_strings.mailSearchFolderCount(1)), findsOneWidget);
+      expect(find.text(_strings.mailCachedSearchMatches(1)), findsOneWidget);
+
+      await _press(tester, _key('cached-search-choose-folders'));
+      for (
+        var i = 0;
+        i < 200 &&
+            find
+                .byKey(const ValueKey('studio-mail-folder-all'))
+                .evaluate()
+                .isEmpty;
+        i++
+      ) {
+        await tester.pump(const Duration(milliseconds: 10));
+        await tester.runAsync(
+          () => Future<void>.delayed(const Duration(milliseconds: 1)),
+        );
+      }
+      expect(
+        find.byKey(const ValueKey('studio-mail-folder-all')),
+        findsOneWidget,
+      );
+      expect(tester.widget<SwitchListTile>(_key('folder-all')).value, isFalse);
+      await _press(tester, _key('folder-all'));
+      await _press(tester, _key('folder-apply'));
+      await _idle(tester);
+      expect(find.text(_strings.mailSearchFolderAll), findsWidgets);
+      await _name(tester, 'Reports', update: true);
+      await _idle(tester);
+      final updated = (await awaitOutboxOperation(
+        tester,
+        fixture.native.loadSavedSearches(),
+      )).single;
+      expect(updated.folderScopes, isNull);
+      expect(updated.accountIds, [fixture.mail.identity.account.value]);
       expect(tester.takeException(), isNull);
     },
   );

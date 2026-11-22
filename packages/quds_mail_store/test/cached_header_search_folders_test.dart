@@ -123,6 +123,40 @@ void main() {
   });
 
   test(
+    'published string scope preserves unavailable failure and rejects two scope inputs',
+    () async {
+      await view(_inbox, [_header('a')]);
+      final missing = MailMailboxId('missing', account: _account);
+      _problem(
+        await store.searchCachedHeaders(
+          _account,
+          '',
+          folderIds: ['inbox', 'missing'],
+        ),
+        MailProblemCode.unavailable,
+      );
+      final typed = _value(
+        await store.searchCachedHeaders(
+          _account,
+          '',
+          mailboxIds: [_inbox, missing],
+        ),
+      );
+      expect(typed.hits.single.header.id.value, 'a');
+      expect(typed.missingMailboxIds, [missing]);
+      _problem(
+        await store.searchCachedHeaders(
+          _account,
+          '',
+          folderIds: ['inbox'],
+          mailboxIds: [_inbox],
+        ),
+        MailProblemCode.invalidInput,
+      );
+    },
+  );
+
+  test(
     'folder membership is filtered before candidate count and keyset scan',
     () async {
       await view(_inbox, [_header('001'), _header('002')]);
@@ -320,7 +354,7 @@ void main() {
         [MailMailboxId('m' * 1025, account: _account)],
         [MailMailboxId('bad\uD800', account: _account)],
         List.generate(
-          1001,
+          201,
           (index) => MailMailboxId('$index', account: _account),
         ),
       ]) {
@@ -333,13 +367,13 @@ void main() {
   );
 
   test(
-    'one thousand folders stay bounded and paginate at the full SQL parameter ceiling',
+    'two hundred folders stay bounded and paginate at the full SQL parameter ceiling',
     () async {
       await view(_inbox, [_header('a'), _header('b')]);
       final scope = [
         _inbox,
         ...List.generate(
-          999,
+          199,
           (index) => MailMailboxId('missing-$index', account: _account),
         ),
       ];
@@ -351,7 +385,7 @@ void main() {
           scanLimit: 1,
         ),
       );
-      expect(first.missingMailboxIds, hasLength(999));
+      expect(first.missingMailboxIds, hasLength(199));
       final second = _value(
         await store.searchCachedHeaders(
           _account,
@@ -363,7 +397,7 @@ void main() {
       );
       expect(second.hits.single.header.id.value, 'b');
       expect(second.nextCursor, isNull);
-      expect(probe.maximumArguments, 2003);
+      expect(probe.maximumArguments, 403);
       expect(first.totalCount, 2);
     },
   );

@@ -25,6 +25,64 @@ MailSavedHeaderSearch _search({
 
 void main() {
   test(
+    'published folderScopes aliases share one immutable canonical selection',
+    () {
+      final input = [_first, _second];
+      final saved = MailSavedHeaderSearch(
+        id: 'published',
+        name: 'Published',
+        query: '',
+        accountIds: ['a', 'b'],
+        folderScopes: input,
+      );
+      input.clear();
+      expect(saved.folders, [_first, _second]);
+      expect(identical(saved.folderScopes, saved.folders), isTrue);
+      expect(MailSavedHeaderSearch.maxFolderScopes, 200);
+      expect(
+        MailSavedHeaderSearch.maxFolders,
+        MailSavedHeaderSearch.maxFolderScopes,
+      );
+      expect(saved.copyWith(folderScopes: [_second, _first]).folders, [
+        _second,
+        _first,
+      ]);
+      expect(saved.copyWith(allFolders: true).folderScopes, isNull);
+    },
+  );
+
+  test(
+    'simultaneous legacy and typed selections cannot hide an ambiguous scope',
+    () {
+      expect(
+        () => MailSavedHeaderSearch(
+          id: 'ambiguous',
+          name: 'Ambiguous',
+          query: '',
+          accountIds: ['a', 'b'],
+          folders: [_first, _second],
+          folderScopes: [_second, _first],
+        ),
+        throwsArgumentError,
+      );
+      expect(
+        () => _search().copyWith(
+          folders: [_first, _second],
+          folderScopes: [_first, _second],
+        ),
+        throwsArgumentError,
+      );
+      expect(
+        () => _search().copyWith(
+          allFolders: true,
+          folderScopes: [_first, _second],
+        ),
+        throwsArgumentError,
+      );
+    },
+  );
+
+  test(
     'legacy scope remains all folders, explicit scope owns its snapshot',
     () {
       expect(_search().folders, isNull);
