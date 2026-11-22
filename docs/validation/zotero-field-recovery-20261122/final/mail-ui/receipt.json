@@ -1,0 +1,37 @@
+{
+  "gate": "mail-ui",
+  "source": "918e7dd12e66b79e75082a41c250887a92db0d4e",
+  "cwd": "packages/quds_mail_ui",
+  "argv": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--reporter=json",
+    "--concurrency=4",
+    "test/bulk_message_list_test.dart",
+    "test/message_list_bulk_test.dart",
+    "test/bulk_api_aliases_test.dart",
+    "test/message_list_test.dart"
+  ],
+  "started_utc": "2026-11-22T06:20:57.089674+00:00",
+  "input_scope": "Tracked local Dart libraries/tests, package manifests, analysis configuration, fonts and root lock/configuration",
+  "input_count": 2472,
+  "exit_code": 0,
+  "finished_utc": "2026-11-22T06:21:11.397960+00:00",
+  "changed_inputs": [],
+  "stdout.jsonl_sha256": "bae07ad97c86649febc147c17a68f5e4df92573046504121932f304097a26e50",
+  "stderr.txt_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "counts": {
+    "success": 97,
+    "failure": 0,
+    "error": 0,
+    "skipped": 0
+  },
+  "errors": [],
+  "done": {
+    "success": true,
+    "type": "done",
+    "time": 13595
+  },
+  "accepted": true
+}

@@ -1,0 +1,38 @@
+{
+  "gate": "studio",
+  "source": "0138eb8e1684e4adbb677a078a97ec09c6f5c37a",
+  "cwd": "packages/quds_office_editor/example",
+  "argv": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--reporter=json",
+    "--concurrency=4",
+    "test/studio_zotero_citing_transport_test.dart",
+    "test/studio_zotero_shortcuts_test.dart",
+    "test/studio_zotero_odt_export_test.dart"
+  ],
+  "started_utc": "2026-11-22T06:08:08.673057+00:00",
+  "input_scope": "Tracked local Dart libraries/tests, package manifests, analysis configuration, fonts and root lock/configuration",
+  "input_count": 2463,
+  "exit_code": 0,
+  "finished_utc": "2026-11-22T06:09:48.525355+00:00",
+  "changed_inputs": [
+    "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart"
+  ],
+  "stdout.jsonl_sha256": "d6f3740a340e2c48bdbc8d9ccf036f207e02e7675aec854108158a0a9c4a1985",
+  "stderr.txt_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "counts": {
+    "success": 40,
+    "failure": 0,
+    "error": 0,
+    "skipped": 0
+  },
+  "errors": [],
+  "done": {
+    "success": true,
+    "type": "done",
+    "time": 80178
+  },
+  "accepted": false
+}

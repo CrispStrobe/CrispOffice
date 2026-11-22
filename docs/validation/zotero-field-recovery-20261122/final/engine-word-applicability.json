@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "captured_utc": "2026-11-22T06:19:10.464445+00:00",
+  "tested_source": "6ba219a03a9933eded77980f9d7cdbd118183ee1",
+  "integrated_target": "918e7dd12e66b79e75082a41c250887a92db0d4e",
+  "working_head_at_check": "6ba219a03a9933eded77980f9d7cdbd118183ee1",
+  "gates": {
+    "engine": {
+      "gate_receipt_sha256": "810b1f820b8b65ad640e3f2c163af30350b6ce28d5b1551c33a290c17b62c76c",
+      "source_manifest_sha256": "0184f3d9cf3b522ac1fc8873a104b2996f0c73d8fd9c3502052d5d6dce902cf2",
+      "input_count": 1129,
+      "counts": {
+        "success": 620,
+        "failure": 0,
+        "error": 0,
+        "skipped": 0
+      },
+      "suite_count": 21
+    },
+    "word": {
+      "gate_receipt_sha256": "f24e2933d59c17e1c84e97b0bba8ecd4c9040c057fe393be308656f170207502",
+      "source_manifest_sha256": "bc47817f53f409ead35454d03f51899737e1b85db79f2b8fd3900f5dc87b6748",
+      "input_count": 1222,
+      "counts": {
+        "success": 397,
+        "failure": 0,
+        "error": 0,
+        "skipped": 0
+      },
+      "suite_count": 8
+    }
+  },
+  "tracked_input_count": 1220,
+  "generated_configuration_count": 2,
+  "dependency_manifest_count": 167,
+  "changed_qualified_inputs": [],
+  "status": "applicable",
+  "target_changes_outside_qualified_inputs": [
+    ".github/workflows/office-macros.yml",
+    "docs/roadmaps/mail/README.md",
+    "docs/roadmaps/mail/command-journal.md",
+    "docs/roadmaps/mail/durable-mutations.md",
+    "docs/roadmaps/mail/implementation-plan.md",
+    "docs/roadmaps/mail/retained-folder-navigation.md",
+    "docs/roadmaps/mail/status.md",
+    "docs/validation/mail-durable-mutations-20261122/README.md",
+    "docs/validation/word-vba-cell-paragraphs-20261122/analysis.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/analysis.stdout",
+    "docs/validation/word-vba-cell-paragraphs-20261122/portable-example-compile-js.stderr",
+    "docs/validation/word-vba-cell-paragraphs-20261122/portable-example-compile-js.stdout",
+    "docs/validation/word-vba-cell-paragraphs-20261122/portable-example-js.stderr",
+    "docs/validation/word-vba-cell-paragraphs-20261122/portable-example-js.stdout",
+    "docs/validation/word-vba-cell-paragraphs-20261122/portable-example-receipt.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/portable-example-source-sha256.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/portable-example-vm.stderr",
+    "docs/validation/word-vba-cell-paragraphs-20261122/portable-example-vm.stdout",
+    "docs/validation/word-vba-cell-paragraphs-20261122/remote-intake.json",
+    "docs/validation/word-vba-cell-paragraphs-20261122/review.json",
+    "docs/vba-word-macros-details.md",
+    "packages/quds_mail_ui/CHANGELOG.md",
+    "packages/quds_mail_ui/test/bulk_message_list_test.dart",
+    "packages/quds_mail_ui/test/message_list_bulk_test.dart",
+    "packages/quds_office_editor/CHANGELOG.md",
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+    "packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_bulk_visual_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_flag_journal_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_journal_dialog_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_journal_host_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart",
+    "packages/quds_office_editor/example/test/support/mail_membership_host_cases.dart"
+  ],
+  "workflow_note": "The target updates only the new BAS smoke comparison from bytewise cmp to parsed JSON equality. The portable gate separately executes that corrected workflow from Word commit 45a1c0846f3fb78a203f2967e5b80a79fdca2ca9; engine/Word unit suite inputs are unchanged."
+}
