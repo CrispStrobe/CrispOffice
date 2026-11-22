@@ -1,0 +1,72 @@
+{
+  "archive": "zotero-empty-code-review.tar.xz",
+  "bytes": 8336,
+  "sha256": "22faf3d268d696b65fa018dc945a04149a464a98a4b069b9604b747aa1e078b0",
+  "members": [
+    {
+      "path": "MEMBERS.json",
+      "bytes": 1859,
+      "sha256": "6130fea69194d44e1657f47fb535f56fcbd51d5d03b879b8b151227c03286f7f"
+    },
+    {
+      "path": "README.txt",
+      "bytes": 974,
+      "sha256": "e28400eb2d87748de982e11c1b5547ef5b7dddd9be8a7dbf252651892b951df1"
+    },
+    {
+      "path": "baseline-events.jsonl",
+      "bytes": 7304,
+      "sha256": "e75e0badf61dce152e5d55f4a5e57ad1aff3a91992ffb36703bb6a619c2f027e"
+    },
+    {
+      "path": "baseline-ledger.json",
+      "bytes": 3009,
+      "sha256": "1baf9f6aafc3814330de5567b927aa92d1918efe8745e83e5aee67882b86a08d"
+    },
+    {
+      "path": "baseline-source.json",
+      "bytes": 523,
+      "sha256": "259ba4aba24e77563389edad8332667df2b5f8d5638aa5d793a9b11283bb24d6"
+    },
+    {
+      "path": "baseline-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "commands.json",
+      "bytes": 1191,
+      "sha256": "ba39b8f2d06d177442e2259f48ae39d2aaa66a0d86bb5a0b0125a7f9fdae18b1"
+    },
+    {
+      "path": "fix.patch",
+      "bytes": 13073,
+      "sha256": "fe338319a654616e441159103e5272f855228075820cc7fb04b176f154190fbc"
+    },
+    {
+      "path": "fixed-events.jsonl",
+      "bytes": 4850,
+      "sha256": "e0a04a361da25d0b0ebd0ef0c158e86f0b39e20da3a89cc8ec76554c3fc5ab78"
+    },
+    {
+      "path": "fixed-ledger.json",
+      "bytes": 1419,
+      "sha256": "f01ef18c6eccc6e9782bb2f92f0260f648eee11df3d432fd3ecdcd556720c0cc"
+    },
+    {
+      "path": "fixed-source.json",
+      "bytes": 457,
+      "sha256": "f1e60c9153ddef45ebd86325e89da4282096eda45184621aa118183b805cbfef"
+    },
+    {
+      "path": "fixed-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "independent-review.json",
+      "bytes": 7298,
+      "sha256": "de6a6571ea6dc90af7d20b4039849c0f6d47bb9639986ad96fe9702f4e060760"
+    }
+  ]
+}

@@ -349,7 +349,6 @@ final class _Harness {
   Completer<void>? openGate;
   Completer<MailResult<MailCapabilities>>? capabilitiesGate;
   Completer<MailResult<MailCloudTokenSource>>? authorizationGate;
-  Completer<void>? openGate;
   int authorizations = 0;
   int storeOpens = 0;
 
@@ -399,11 +398,9 @@ final class _Harness {
                     ? MailSuccess(tokens)
                     : await authorizationGate!.future;
               },
-          providerFactory: ({
-            required configuration,
-            required tokenSource,
-            log,
-          }) => create(configuration.account),
+          providerFactory:
+              ({required configuration, required tokenSource, log}) =>
+                  create(configuration.account),
           onAccountNavigation: navigations.add,
         );
 }

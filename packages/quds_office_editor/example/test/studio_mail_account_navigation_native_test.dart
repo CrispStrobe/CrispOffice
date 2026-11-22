@@ -1032,7 +1032,13 @@ void main() {
         // drain before another connection or provider setup can start.
         expect(
           tester
-              .widget<IconButton>(find.byTooltip(_strings.disconnect))
+              .widget<IconButton>(
+                find.byWidgetPredicate(
+                  (widget) =>
+                      widget is IconButton &&
+                      widget.tooltip == _strings.disconnect,
+                ),
+              )
               .onPressed,
           isNotNull,
         );
