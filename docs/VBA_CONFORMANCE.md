@@ -11,6 +11,7 @@ The canonical fixtures are:
 
 | Suite | Cases | Scope |
 | --- | ---: | --- |
+| [`word_join_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_join_v1.json) | 25 | Join of fixed/dynamic String arrays, lower bounds, array lifecycle, delimiters, Unicode, exact output limits and positioned refusals |
 | [`string_intrinsics_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/string_intrinsics_v1.json) | 69 | Strict String intrinsics, UTF-16 and publication boundaries |
 | [`text_intrinsics_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/text_intrinsics_v1.json) | 95 | Binary forward/reverse search, replacement, Trim families, UTF-16, strict argument shapes and shared work/output limits |
 | [`variant_conversions_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/variant_conversions_v1.json) | 120 | Empty/Null lifecycle, operators, explicit conversions and deliberate limits |
@@ -23,6 +24,17 @@ The canonical fixtures are:
 
 The same fixture bytes are consumed by each VM test and the portable
 JavaScript runner; there is no separately maintained copy of expected results.
+
+The Join suite independently specifies 16 complete successful Word plans and
+nine positioned diagnostics. It exercises allocated local String arrays,
+negative/nonzero bounds, fixed/dynamic lifecycle, default/empty/multicharacter
+delimiters, empty elements, Unicode, unchanged array contents and the exact
+String limit. Type/allocation restrictions, Empty/Null behavior and budgets
+are labeled `dialect-contract`; no case claims installed Office execution.
+The same bytes run in `office_vba_join_conformance_test.dart` and the portable
+`web_vba_join_conformance.dart` via `VBA_CONFORMANCE_BASE64`. See the
+[Join contract](vba-macros-details.md#joining-source-string-arrays) and
+[qualification](validation/word-vba-cell-text-20261122/README.md).
 
 The comparison/color suite checks complete Word plans and positioned refusals.
 Its expectations were independently authored from Microsoft contracts and

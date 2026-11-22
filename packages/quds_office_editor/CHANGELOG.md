@@ -4,6 +4,12 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Show saved browsing windows and synchronized folders in one local Mail
+  catalog. Keep their coverage distinct, switch sources explicitly, page
+  synchronized headers in batches of 100, and repair pages after membership
+  changes. Repository updates preserve matching readers and retire stale body
+  loads. EN/DE/AR controls include local refresh and guarded cleanup/close.
+
 - Show the citation or bibliography selected by native Zotero while handling
   manual-edit and repair prompts. Temporary body/table/note highlights and
   bounded source excerpts keep the writing selection, Notes target and undo

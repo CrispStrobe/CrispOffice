@@ -1,0 +1,35 @@
+{
+  "branch": "origin/codex/zotero-field-context-20261122",
+  "commit": "a83700c69c2ec6d134b780a16a363839425101ae",
+  "command": "source /workspace/scratch/e171b31c21a6/runtime/env.sh\nflutter test --no-pub --machine test/word_zotero_field_context_render_test.dart test/word_proofing_geometry_test.dart test/word_zotero_field_at_caret_test.dart",
+  "working_directory": "/workspace/scratch/e171b31c21a6/incoming-zotero/packages/quds_office_editor",
+  "child_exit_code": null,
+  "note": "Flutter runner emitted successful done; receipt wrapper initially failed on a non-test JSON array from Flutter. Repaired event parser records completed run without reexecuting tests. Child process code was not retained before wrapper failed.",
+  "counts": {
+    "/workspace/scratch/e171b31c21a6/incoming-zotero/packages/quds_office_editor/test/word_zotero_field_context_render_test.dart": {
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0
+    },
+    "/workspace/scratch/e171b31c21a6/incoming-zotero/packages/quds_office_editor/test/word_proofing_geometry_test.dart": {
+      "passed": 13,
+      "failed": 0,
+      "skipped": 0
+    },
+    "/workspace/scratch/e171b31c21a6/incoming-zotero/packages/quds_office_editor/test/word_zotero_field_at_caret_test.dart": {
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "errors": [],
+  "done": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 19645
+    }
+  ],
+  "log": "/workspace/scratch/e171b31c21a6/runtime/logs/incoming-zotero-editor.jsonl",
+  "log_sha256": "c02ff6118b95fec1e8f30b2df8c88733bde563c3724020ac7800620e5d7f1d6c"
+}

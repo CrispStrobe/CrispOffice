@@ -1,0 +1,698 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "purpose": "Final integrated Mail compilation and behavior check after the Word and Zotero history merges.",
+  "started_at_utc": "2026-11-22T05:26:36.355066+00:00",
+  "command": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--machine",
+    "test/studio_mail_retained_folders_test.dart",
+    "test/studio_mail_mailbox_session_test.dart",
+    "test/studio_mail_mailbox_sync_session_test.dart",
+    "test/studio_mail_retained_navigation_test.dart",
+    "test/studio_mail_cached_mail_test.dart"
+  ],
+  "working_directory": "packages/quds_office_editor/example",
+  "environment": "Pinned Flutter 3.47.8 / Dart 3.13.7; existing locked workspace resolution; see runtime.json.",
+  "sources_before": {
+    "head": "83974fba4c3f7a09d66bd1a51df1062d60e777b0",
+    "tree": "584ce76d953495f1106a07bac5104952c5032952",
+    "tracked_changes": [],
+    "tracked_source_changes": [],
+    "source_sha256": {
+      ".fvmrc": "90bf8f8884c05a407f51d6ef651ba033fef99a656010f8bfcb65951e921f4294",
+      "packages/quds_office_editor/example/lib/studio_mail_cached_mail.dart": "39f6288d940de7e1e3aba749d8048379a914acf13c9257c3a9961578d830ed37",
+      "packages/quds_office_editor/example/lib/studio_mail_cached_strings.dart": "3fb9ed48d6e28a931096763c104f906dc54ccc854f2ed3ac0a5cc72a9a7ba3b7",
+      "packages/quds_office_editor/example/lib/studio_mail_mailbox_session.dart": "bb7eaf388795a4e5eddec0c4e9924f9f4853e637e510486afcb46065f2064b4a",
+      "packages/quds_office_editor/example/lib/studio_mail_retained_folders.dart": "1291c21000e755f155a569530d9b9a32aeca0705f58e1c66d697adaa80a9d59b",
+      "packages/quds_office_editor/example/pubspec.yaml": "97671571d22a1358d6be697cd5e63f39d693cd16e47bad9507afe3aa30b29bc9",
+      "packages/quds_office_editor/example/test/studio_mail_cached_mail_test.dart": "677c3d5474ebb45029e1fb11aa5d1ba7199dc5ade7459930439fe13bd9a3efd4",
+      "packages/quds_office_editor/example/test/studio_mail_mailbox_session_test.dart": "136e25a59dca6376a74ac5a01685dd874aef6155c8316c2611e7d26853ad7bfa",
+      "packages/quds_office_editor/example/test/studio_mail_mailbox_sync_session_test.dart": "e3226658a4318c98821c40d07f7d0ae47dc05d1f7c27c3764f92d14a15d1e82a",
+      "packages/quds_office_editor/example/test/studio_mail_retained_folders_test.dart": "c1fa24456fcba02a9b2911c0f1d0ffab9e62c5db9f48fe4cb990e38a0a7549ac",
+      "packages/quds_office_editor/example/test/studio_mail_retained_navigation_test.dart": "16a6493dece7fc5e5f4e9ea4beb51bfaa7f6eb75c937f635df72bec54d8b27ee",
+      "pubspec.lock": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+      "pubspec.yaml": "453a1f8ab62db1c5577c424b058b50033a8d3b49b99c83862ab58a7e1108f74f"
+    }
+  },
+  "counting_rule": "This reruns the same 115 targeted cases across five suites. It supersedes earlier process-exit uncertainty for the helper and does not add 115 new unique cases to earlier counts. The separate 124-case historical host gate remains an earlier-source result.",
+  "log": "logs/integrated-mail-final.jsonl",
+  "child_exit_code": 0,
+  "elapsed_seconds": 24.49,
+  "finished_at_utc": "2026-11-22T05:27:00.845873+00:00",
+  "log_sha256": "689edcf955da4aeeab5dd77a5cb74991f7bb1b979745add03e0a5c7a7b0cfbfd",
+  "log_bytes": 61798,
+  "sources_after": {
+    "head": "83974fba4c3f7a09d66bd1a51df1062d60e777b0",
+    "tree": "584ce76d953495f1106a07bac5104952c5032952",
+    "tracked_changes": [],
+    "tracked_source_changes": [],
+    "source_sha256": {
+      ".fvmrc": "90bf8f8884c05a407f51d6ef651ba033fef99a656010f8bfcb65951e921f4294",
+      "packages/quds_office_editor/example/lib/studio_mail_cached_mail.dart": "39f6288d940de7e1e3aba749d8048379a914acf13c9257c3a9961578d830ed37",
+      "packages/quds_office_editor/example/lib/studio_mail_cached_strings.dart": "3fb9ed48d6e28a931096763c104f906dc54ccc854f2ed3ac0a5cc72a9a7ba3b7",
+      "packages/quds_office_editor/example/lib/studio_mail_mailbox_session.dart": "bb7eaf388795a4e5eddec0c4e9924f9f4853e637e510486afcb46065f2064b4a",
+      "packages/quds_office_editor/example/lib/studio_mail_retained_folders.dart": "1291c21000e755f155a569530d9b9a32aeca0705f58e1c66d697adaa80a9d59b",
+      "packages/quds_office_editor/example/pubspec.yaml": "97671571d22a1358d6be697cd5e63f39d693cd16e47bad9507afe3aa30b29bc9",
+      "packages/quds_office_editor/example/test/studio_mail_cached_mail_test.dart": "677c3d5474ebb45029e1fb11aa5d1ba7199dc5ade7459930439fe13bd9a3efd4",
+      "packages/quds_office_editor/example/test/studio_mail_mailbox_session_test.dart": "136e25a59dca6376a74ac5a01685dd874aef6155c8316c2611e7d26853ad7bfa",
+      "packages/quds_office_editor/example/test/studio_mail_mailbox_sync_session_test.dart": "e3226658a4318c98821c40d07f7d0ae47dc05d1f7c27c3764f92d14a15d1e82a",
+      "packages/quds_office_editor/example/test/studio_mail_retained_folders_test.dart": "c1fa24456fcba02a9b2911c0f1d0ffab9e62c5db9f48fe4cb990e38a0a7549ac",
+      "packages/quds_office_editor/example/test/studio_mail_retained_navigation_test.dart": "16a6493dece7fc5e5f4e9ea4beb51bfaa7f6eb75c937f635df72bec54d8b27ee",
+      "pubspec.lock": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+      "pubspec.yaml": "453a1f8ab62db1c5577c424b058b50033a8d3b49b99c83862ab58a7e1108f74f"
+    }
+  },
+  "source_changes": [],
+  "repository_head_unchanged": true,
+  "repository_tree_unchanged": true,
+  "counts": {
+    "passed": 115,
+    "failed": 0,
+    "skipped": 0,
+    "incomplete": 0,
+    "excluded_loading_or_hidden": 5,
+    "excluded_failures": 0,
+    "error_events": 0
+  },
+  "suites": [
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_retained_folders_test.dart",
+      "passed": 22,
+      "cases": [
+        {
+          "name": "empty catalogs remain empty without inventing folders",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "browse-only and sync-only folders retain their distinct coverage",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "overlapping folder keeps both observations and sync display metadata",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "activity ordering uses newer browse or sync time with stable ID ties",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "result is immutable and independent of later source list edits",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "duplicate browse identities fail instead of choosing an observation",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "duplicate sync identities fail even when they also overlap browsing",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "foreign account cannot merge through matching folder text",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "foreign profile cannot merge through matching folder text",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "overlap may rename a folder but cannot change folder/label semantics",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "exactly 1000 distinct folders are retained without truncation",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "individually bounded catalogs cannot silently overflow merged limit",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "each input catalog is bounded before merging",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "invalid revision -1 is rejected in both sources",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "invalid revision 0 is rejected in both sources",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "invalid revision 9007199254740992 is rejected in both sources",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "safe maximum revisions and epoch observations remain valid",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "pre-epoch observations fail instead of sorting as valid retained mail",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "browse counts stay bounded separately from synchronized totals",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "oversized folder identifiers and display metadata fail explicitly",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "aggregate metadata is bounded even when individual names are valid",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "valid Unicode names and maximum-sized individual metadata survive",
+          "result": "success",
+          "skipped": false
+        }
+      ]
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_mailbox_session_test.dart",
+      "passed": 14,
+      "cases": [
+        {
+          "name": "initial load, bounded counts and same-revision flag updates",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "A to B to A cancels each previous observer and clears old state",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "superseding an unfinished selection completes it without stale subscription",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "cross-account selection fails without reading its repository",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "wrong mailbox, provider and duplicate identities cannot replace a good snapshot",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "typed and thrown failures retain saved content and recover on next event",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "missing, empty and retired then recreated views have distinct states",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "older revisions cannot roll back a selected folder",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "a listener can switch on ready without reentrant events or lost subscription",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "a listener can close on ready and drains its observer",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "an already queued snapshot cannot repopulate a switched or closed scope",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "close invalidates immediately and drains cancellation before releasing owner",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "unexpected live store closure is failure, with last good view retained",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "one-shot injected stores keep their ready snapshot after stream completion",
+          "result": "success",
+          "skipped": false
+        }
+      ]
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_mailbox_sync_session_test.dart",
+      "passed": 22,
+      "cases": [
+        {
+          "name": "synchronized pages retain their own coverage and source identity",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "same revision flag changes remain observable without changing page",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "switching sources and A-B-A ignores retired and queued callbacks",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "same-account ID in a different profile is rejected before reading",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "invalid limits and offsets never subscribe to local storage",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "wrong identity, generation and duplicate records cannot replace data",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "malformed counts, paging and revisions retain the last valid page",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "missing checkpoints and empty synchronized folders remain distinct",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "typed, thrown and terminal failures preserve synchronized data",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "a removed last page repairs to the last retained page",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "initial out-of-range wait finishes only after empty page repair",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "page repair keeps revision fence and cannot roll membership back",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "a source switch supersedes a pending page repair waiter",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "clear immediately retires selected data and remains reusable",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "clear settles unfinished selection and drains cancellation",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "close drains synchronized observer and prevents later selection",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "oversize synchronized mailbox identity is rejected",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "failed clear keeps its observer owned and permits a later selection",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "failed close retries retained cancellation before closing changes",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "close after failed clear drains the retained observer",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "an unsupported sync store fails without loading browse data",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "close drains a cancelled one-shot read before owner release",
+          "result": "success",
+          "skipped": false
+        }
+      ]
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_retained_navigation_test.dart",
+      "passed": 20,
+      "cases": [
+        {
+          "name": "sync-only retained folder is visible in the local mailbox reader",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "folder union contains one choice per folder across both catalogs",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "overlap defaults to sync and explicit source switches never mix rows",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "sync pages stay bounded and a shrinking last page repairs its offset",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "explicit refresh preserves selected sync page and discovers local changes",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "live flags preserve exact loaded reader while removal clears it",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "late body read cannot revive a removed synchronized membership",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "same local id with changed IMAP generation retires the previous reader",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "both catalog failures retain the reader and recover independently",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "selected page failure keeps prior rows until a successful page event",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "removed sync source never silently falls back to an older browse window",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "missing retained body explains offline availability without downloading",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "en retained sources and paging fit a narrow dialog",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "de retained sources and paging fit a narrow dialog",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "ar retained sources and paging fit a narrow dialog",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "close waits for browse catalog cancellation before closing owner",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "close waits for sync catalog cancellation before closing owner",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "close waits for sync view cancellation before closing owner",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "successful cleanup revokes stale page delivery before catalog cancellation and failed reloads",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "failed catalog cancellation still drains the selected view and retains its owner",
+          "result": "success",
+          "skipped": false
+        }
+      ]
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_cached_mail_test.dart",
+      "passed": 37,
+      "cases": [
+        {
+          "name": "live metadata updates preserve the selected reader and loaded query",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "live flag update during a delayed body load keeps the exact reader target",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "removed live view clears the reader, selection and counts",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "live failures recover independently and preserve operation errors",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "close drains live subscriptions before closing their owner",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "imap cached search needs no body or draft access",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "imap reads saved headers and body without draft access",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "ews cached search needs no body or draft access",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "ews reads saved headers and body without draft access",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "gmail cached search needs no body or draft access",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "gmail reads saved headers and body without draft access",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "graph cached search needs no body or draft access",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "graph reads saved headers and body without draft access",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "missing body keeps compact selection and search through Back",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "resize preserves the loaded list filter and selected reader",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "switching saved folders resets reader and filter scope",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "empty saved catalog is explicit and does not open drafts",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "close waits for pending open and releases a late owner once",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "disposal before open completion releases the late owner",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "close waits for pending message read before releasing owner",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "account invalidation refuses a delayed body",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "wrong-account storage owner is rejected and released",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "mismatching saved body identity is refused before rendering",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "read failure remains an error and keeps saved headers",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "failed catalog read is not reported as an empty catalog",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "failed close keeps ownership visible and offers close retry",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "narrow en saved workspace has no layout overflow",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "narrow de saved workspace has no layout overflow",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "narrow ar saved workspace has no layout overflow",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "real SQLite snapshot and cached body reopen through same owner",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "cache cleanup requires confirmation and cancel preserves the view",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "confirmed cleanup clears loaded state and releases reader",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "one confirmed cleanup reports more work without an automatic loop",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "cleanup failure retains the current view and reader",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "valid owner offers cleanup after a failed catalog read",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "close waits for a pending confirmed cleanup",
+          "result": "success",
+          "skipped": false
+        },
+        {
+          "name": "confirmed native cleanup restores quota-blocked draft admission after reopen",
+          "result": "success",
+          "skipped": false
+        }
+      ]
+    }
+  ],
+  "terminal_events": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 22212
+    }
+  ],
+  "runner_start_events": 1,
+  "known_flutter_process_notifications": 5,
+  "error_events": [],
+  "protocol_issues": []
+}

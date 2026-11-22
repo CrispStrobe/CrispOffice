@@ -58,6 +58,7 @@ document supplied to the macro session. They never search for another file.
 | `Document.Paragraphs(i)` | Existing body paragraphs |
 | `Document.Tables(i)` / `Table.Cell(row, column)` | Existing main-story table cells |
 | `Cell.Range.Font` / `.ParagraphFormat` | Current cell text and its one ordinary paragraph |
+| `Cell.Range.HighlightColorIndex` / `.NoProofing` / `.LanguageID` / `.LanguageIDOther` | Highlight and proofing metadata on current cell text |
 | `Document.Sections(i)` | Existing sections |
 | `Section.PageSetup` | Page geometry, orientation and section start |
 | `Section.PageSetup.TextColumns` | Uniform text columns |
@@ -79,7 +80,7 @@ The native plan can apply the documented subset of:
 - section page size, margins, orientation and start controls;
 - uniform section columns;
 - existing header/footer paragraph edits;
-- table-cell text, font formatting, paragraph spacing/alignment and custom tabs;
+- table-cell text, font formatting, paragraph spacing/alignment, custom tabs, highlighting and proofing metadata;
 - proofing language, kerning and complex-script font controls.
 
 Unsupported whole-object assignment, `Duplicate`, runtime type discovery and
@@ -128,11 +129,43 @@ fills and formats cells through a reusable helper.
 Each selected cell must contain one ordinary paragraph in a supported unmerged
 main-story table. Font writes affect its current nonempty text and leave
 paragraph/cell marks and future insertion formatting outside the contract.
-Fill an empty template cell before applying its Font; paragraph formatting can
-target an empty paragraph. Direct cell-range `Style`, `Shading`, `ListFormat`,
-`LanguageID`, `NoProofing`, subranges and document reads remain unsupported.
+Fill an empty template cell before applying its Font or text controls; paragraph
+formatting can target an empty paragraph. Direct cell-range `Style`, `Shading`,
+`ListFormat`, subranges and document reads remain unsupported.
 See the [exact cell-formatting contract](vba-word-macros-details.md#formatting-existing-table-cells)
 and [local qualification](validation/word-vba-cell-formatting-20261122/README.md).
+
+## Preparing multilingual table reports
+
+`Join(parts[, delimiter])` assembles source text from an allocated local array
+declared `As String`. It preserves every slot and its current array order, uses
+a space when the delimiter is omitted, and supports an explicit empty or
+multicharacter delimiter. Fixed and dynamic arrays share the same bounded
+String/work limits. See the [exact Join contract](vba-macros-details.md#joining-source-string-arrays).
+
+```vb
+Sub Main()
+    Dim parts(1 To 2) As String
+    parts(1) = "Prêt"
+    parts(2) = "à relire"
+    With ActiveDocument.Tables(1).Cell(1, 1).Range
+        .Text = Join(parts)
+        .LanguageIDOther = wdFrench
+        .NoProofing = False
+        .HighlightColorIndex = wdYellow
+    End With
+End Sub
+```
+
+The four direct cell controls reuse `docx.runFormat`, including the fixed
+highlight palette, strict Boolean proofing flag and 30 mapped normal-slot
+language IDs. Explicit false/no-highlight values override inherited settings;
+complex-script and East Asian language slots remain unchanged. They affect
+current nonempty ordinary runs and retain all cell structure, protection and
+atomic-publication checks. They do not install dictionaries or run a proofing
+provider. See the [cell text contract](vba-word-macros-details.md#cell-highlighting-and-proofing-controls),
+[combined report](../packages/quds_office_engine/example/macros/word_join_report.bas),
+and [local qualification](validation/word-vba-cell-text-20261122/README.md).
 
 ## Shared language
 

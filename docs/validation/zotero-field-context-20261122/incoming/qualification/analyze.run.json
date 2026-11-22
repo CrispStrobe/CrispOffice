@@ -1,0 +1,19 @@
+{
+  "cwd": "/workspace/scratch/2437eaf6f35d/quds_mail_intake/packages/quds_office_editor/example",
+  "argv": [
+    "dart",
+    "analyze",
+    "lib/studio_mail_cached_mail.dart",
+    "lib/studio_mail_cached_strings.dart",
+    "lib/studio_mail_mailbox_session.dart",
+    "lib/studio_mail_retained_folders.dart",
+    "test/studio_mail_mailbox_sync_session_test.dart",
+    "test/studio_mail_retained_folders_test.dart",
+    "test/studio_mail_retained_navigation_test.dart"
+  ],
+  "started_utc": "2026-11-22T05:26:04.843466+00:00",
+  "head": "29fc72a0a7cffa7cfed2abdac2a3f82d2ff17f95",
+  "exit_code": 0,
+  "finished_utc": "2026-11-22T05:26:19.540916+00:00",
+  "log_sha256": "f9caaa9e2130396f12a3991e977b7cbbaee40b5697e621ed1a4feaf39bcb4b63"
+}

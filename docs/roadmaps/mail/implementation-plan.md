@@ -28,9 +28,12 @@ UI and storage work may proceed in parallel after the typed core contract is agr
 **Discovery continuation, 22 November 2026:** explicit
 [saved-search folder sets](folder-saved-search.md) now preserve exact identities,
 legacy definitions, bounded paging and missing-folder recovery. The next
-ordered workspace task is repository-observed unified navigation and durable
-move/delete with explicit capability and uncertain-outcome handling. This
-continuation does not close M04W or the complete desktop-client parity goal.
+ordered workspace task now includes one account's
+[unified retained-folder navigation](retained-folder-navigation.md), with
+repository-observed browse/sync catalogs and bounded local pages. Next is durable
+move/delete with explicit capability and uncertain-outcome handling, followed by
+connected multi-account navigation. This continuation does not close M04W or
+the complete desktop-client parity goal.
 
 ## 2. New package layout
 

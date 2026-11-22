@@ -641,6 +641,73 @@ behavior, intentional dialect restrictions, and separately recorded Office
 host observations. The current string corpus has no Office host execution
 provenance; VM/JavaScript agreement establishes portability of this subset.
 
+### Joining source String arrays
+
+`Join(parts[, delimiter])` is shared by Word, Excel and PowerPoint. Its source
+must be an existing one-dimensional local array declared `As String`, either
+fixed or allocated with `ReDim`. It returns a scalar String containing every
+element in increasing subscript order. Negative and nonzero lower bounds,
+`Option Base`, `ReDim Preserve`, and fixed-array `Erase` retain their existing
+array semantics; Join neither changes the elements nor their bounds.
+
+| Input | Bounded behavior |
+| --- | --- |
+| Omitted delimiter | One ASCII space between each pair of elements |
+| String delimiter | Exact String between elements; `""` directly concatenates |
+| Variant currently holding a String | Same String behavior |
+| Empty delimiter | Empty String, including an unassigned scalar Variant |
+| Null delimiter | Positioned `vba_invalid_use_of_null` |
+| Numeric/Boolean delimiter | Refused; call `CStr` explicitly if intended |
+| Empty String elements | Retain their slots and surrounding delimiters |
+| One element | Its text, without leading/trailing delimiters; the supplied delimiter is still validated |
+| Unallocated or erased dynamic array | Existing `vba_subscript_out_of_range`; allocate with `ReDim` before use |
+
+```vb
+Sub Main()
+    Dim parts(-1 To 1) As String
+    parts(-1) = "SKU"
+    parts(0) = "2026"
+    parts(1) = "042"
+    ActiveDocument.Tables(1).Cell(1, 1).Range.Text = Join(parts, "-")
+End Sub
+```
+
+The result above is `SKU-2026-042`. Unassigned allocated String entries are
+`""`: joining `""`, `"A"`, `""` with `"|"` produces `"|A|"`. Fixed-array
+`Erase` empties the elements and preserves the separators implied by its size.
+Join reads the current array without mutating it, including during `For Each`.
+A scalar helper may return Join of its own local array, and its result may be
+passed to existing scalar or object-model operations.
+
+All supplied argument expressions evaluate once in the compiler's existing
+source order before the intrinsic validates their values. The array source is
+a local descriptor; this does not enable general whole-array values, array
+assignment, returned arrays, or array parameters. Numeric/Boolean/Variant
+arrays, multidimensional arrays, inline `Array`/`Split` results, named/omitted
+argument markers, `Join$`, and `VBA.Join` remain outside this increment.
+Convert source elements explicitly into a String array when needed. Static
+array-type and argument-shape checks also apply to unused procedures/branches.
+
+Every visited element consumes shared work even when the result is empty.
+The complete output length, including separators, is checked against 32,767
+UTF-16 units and its copy work is charged before allocating the result. The
+existing 100,000-work budget, array bounds and native-operation/output limits
+remain unchanged. Unicode units are preserved without normalization; the
+ordinary native-publication boundary still rejects malformed UTF-16 and
+format-invalid control characters. A failed compile returns no partial plan.
+
+The primary [Microsoft Join reference](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/join-function)
+specifies a one-dimensional array, default space and empty-delimiter behavior.
+The String-array-only type boundary, Empty/Null delimiter handling, allocation
+refusal and budgets above are explicit Quds dialect choices. Empty/Null
+handling follows the general [String conversion rules](https://learn.microsoft.com/en-us/office/vba/language/concepts/getting-started/type-conversion-functions);
+it is not an installed Word observation or a claim about every VBA Join error
+precedence or zero-element array case.
+
+See the [versioned 25-case corpus](VBA_CONFORMANCE.md),
+[combined Word report](../packages/quds_office_engine/example/macros/word_join_report.bas)
+and [local qualification](validation/word-vba-cell-text-20261122/README.md).
+
 ### Binary search, replacement, and trimming
 
 The shared language also accepts the following case-insensitive names. Optional
@@ -1002,6 +1069,7 @@ dart run tool/macros/office_macro.dart run-vba \
 | Numeric intrinsics | `Abs`, `Int`, `Fix`, `Sgn`; one positional numeric/Variant argument, explicit Empty/Null behavior and bounded portable arithmetic |
 | Text | Double-quoted literals with doubled embedded quotes and `&` concatenation of scalar values |
 | String intrinsics | `Len`, `Left$`, `Right$`, `Mid$`, binary `InStr` / `InStrRev` / `Replace`, and Trim/LTrim/RTrim with their `$` forms; actual Strings, UTF-16 units, bounded exact integer arguments, no implicit coercion |
+| Array text assembly | `Join` consumes an allocated local String array and an optional String/Empty delimiter; preserves bounds/order and empty entries, with preallocation text/work limits |
 | String comparison | Binary `StrComp(left, right[, compare])`, exact `-1`/`0`/`1` results, explicit Empty/Null behavior, strict types and metered UTF-16 comparison |
 | Comparisons | `=`, `<>`, `<`, `>`, `<=`, `>=` between matching scalar types, contextual `Empty`, or propagating `Null`; strings use binary ordering |
 | Boolean logic | `Not`, `And`, `Or`, `Xor` on Boolean/Null values; operands are evaluated eagerly; numeric/Empty bitwise forms are unsupported |
