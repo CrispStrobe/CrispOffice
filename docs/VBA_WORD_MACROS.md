@@ -74,6 +74,11 @@ Selectors are document-independent until native validation. Indexes are
 one-based exact integers; an out-of-range selector fails instead of creating
 content.
 
+`Paragraphs`, `Sections`, `Headers`, `Footers` and their `Item` calls accept
+required named `Index:=` as well as positional indexes. `Paragraphs` and
+`Sections` can be retained in typed variables and passed to required `ByVal`
+helpers. See the [exact selector contract](vba-word-macros-details.md#named-document-and-story-selectors).
+
 ## Formatting coverage
 
 The native plan can apply the documented subset of:
@@ -91,6 +96,27 @@ The native plan can apply the documented subset of:
 Unsupported whole-object assignment, `Duplicate`, runtime type discovery and
 property reads are refused. A `ByVal` object helper retains the selector passed
 to it; rebinding the helper parameter does not retarget the caller.
+
+## Extracting reference labels
+
+Ordinary `Left`, `Right` and expression `Mid` now work alongside their `$`
+forms. They extract source-known UTF-16 text and return scalar Variants;
+Empty input gives `""`, and Null text stays Null until explicitly handled.
+
+```vb
+Sub Main()
+    Dim lines As Paragraphs, reference As Variant
+    reference = "INV-0042-DE"
+    Set lines = ActiveDocument.Sections.Item(Index:=2).Headers(Index:=wdHeaderFooterPrimary).Range.Paragraphs
+    lines.Item(Index:=1).Range.InsertBefore Text:=Left(reference, 3) & " " & Mid(reference, 5, 4) & ": "
+End Sub
+```
+
+The selected existing header receives `INV 0042: ` before its current text.
+The [complete reference-label example](../packages/quds_office_engine/example/macros/word_text_selectors.bas)
+also uses a typed collection helper, body and footer targets, and a missing
+reference handled with `IsNull`. Numeric text coercion and named intrinsic
+arguments remain outside the bounded [String contract](vba-macros-details.md#string-intrinsics).
 
 ## Editing fixed-width template labels
 

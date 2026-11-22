@@ -13,7 +13,9 @@ bounded, document-independent subset: scalar expressions, typed locals,
 explicit worksheet/range bindings, reusable `ByVal` procedures and scalar
 functions, conditions, loops, fixed and dynamic one-dimensional arrays, `ReDim`/`Preserve`,
 `Erase`, module `Option Base`, `For Each`, and the bounded String intrinsics
-`Len`, `Left$`, `Right$`, `Mid$`, and `Join` over allocated local String arrays.
+`Len`, `Left`/`Left$`, `Right`/`Right$`, `Mid`/`Mid$`, and `Join` over allocated local String arrays.
+The unsuffixed substring forms additionally preserve Null and treat Empty as
+an empty String, under the existing strict index and work limits.
 Standalone `Mid` / `Mid$` assignment also replaces a span of a mutable local
 String or String-valued Variant, including allocated array elements, without
 changing its length.
@@ -61,7 +63,24 @@ and [the native macro contract](MACROS.md).
 
 ## Ordered milestones and acceptance
 
-The current continuation adds source-only `Mid` / `Mid$` assignment for fixed-width
+The current continuation adds ordinary Variant-returning `Left`, `Right` and
+expression `Mid`, required named `Index` arguments on Word body/story/section
+selectors, and typed `Sections`/`Paragraphs` collection aliases and `ByVal`
+helpers. Existing UTF-16 slices, exact-index checks, source-order evaluation,
+cell/story origins and native transactions remain shared. Cell-origin checks
+follow alias cycles before admitting projected list operations, including
+inactive source. This advances bounded Stages 2 and 4.
+
+The [complete reference-label BAS](../packages/quds_office_engine/example/macros/word_text_selectors.bas),
+[64-case independent corpus](../packages/quds_office_engine/test/fixtures/vba_conformance/word_text_selectors_v1.json),
+[String contract](vba-macros-details.md#string-intrinsics),
+[selector contract](vba-word-macros-details.md#named-document-and-story-selectors)
+and [local qualification](validation/word-vba-text-selectors-20261122/README.md)
+define this increment. Full coercion, named intrinsic arguments, document
+reads/enumeration and installed Office differential qualification remain
+separate work.
+
+The preceding continuation adds source-only `Mid` / `Mid$` assignment for fixed-width
 labels and template data. Local String/Variant variables, allocated String/Variant
 array elements, `ByVal` helper parameters and function results retain their
 existing ownership. Target/index, start, length and replacement are evaluated
