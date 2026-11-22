@@ -495,7 +495,7 @@ ${_paragraphStyle('Child', '', parent: 'Parent', text: 'fo:font-style="italic"')
         ]) {
           expect(
             () => configured(
-              '<text:notes-configuration text:note-class="footnote" text:$name="Custom"/>',
+              '<text:notes-configuration text:note-class="footnote" style:num-format="1" text:$name="Custom"/>',
             ).validateNoteConfiguration(false),
             // Marker styles now have a supported, validated form. An absent
             // referenced definition is malformed; paragraph/master settings

@@ -140,7 +140,18 @@ final class OdtReaderStyles {
     if (matching.length > 1) {
       throw const FormatException('Duplicate ODT note configuration.');
     }
-    if (matching.isEmpty) return const OdtReaderNoteConfiguration();
+    if (matching.isEmpty) {
+      // ODF leaves the absent-configuration defaults implementation-defined.
+      // Qualified LibreOffice producers use Roman endnotes and decimal
+      // footnotes. Keep the existing generic decimal default, never infer a
+      // different format from cached labels alone.
+      return OdtReaderNoteConfiguration(
+        nativeFormat: libreOfficeNoteOffsets && endnote
+            ? 'lowerRoman'
+            : 'decimal',
+        verifyCachedOrdinal: libreOfficeNoteOffsets,
+      );
+    }
     final configuration = matching.single;
     if (!RegExp(r'^[ \t\r\n]*$').hasMatch(configuration.text)) {
       throw UnsupportedError('Authored ODT note configuration text.');
@@ -160,7 +171,11 @@ final class OdtReaderStyles {
     });
     final format = _attr(configuration, _style, 'num-format');
     final nativeFormat = switch (format) {
-      null || '1' => 'decimal',
+      '1' => 'decimal',
+      // ODF's present-but-omitted format suppresses numbering. LibreOffice's
+      // importer instead starts an explicit configuration with decimal; use
+      // that producer convention only with its qualified exact-cache check.
+      null when libreOfficeNoteOffsets => 'decimal',
       'i' => 'lowerRoman',
       'I' => 'upperRoman',
       _ => throw UnsupportedError('Unsupported ODT note numbering format.'),
