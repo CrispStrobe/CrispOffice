@@ -65,7 +65,23 @@ and [the native macro contract](MACROS.md).
 
 ## Ordered milestones and acceptance
 
-The current continuation adds direct `Split` assignment to local dynamic
+The current source-text continuation adds `StrReverse` across all three
+adapters. It reverses source-known UTF-16 units with strict String/Variant
+payload handling, Empty/Null semantics, once-only evaluation and preallocation
+work charging. Word can use it with the existing table, paragraph and story
+operations; the native mutation and document-admission envelope is unchanged.
+
+The [complete Word import](../packages/quds_office_engine/example/macros/word_reverse_import.bas),
+[26-case corpus](../packages/quds_office_engine/test/fixtures/vba_conformance/strreverse_v1.json),
+[exact contract](vba-macros-details.md#reversing-source-strings) and
+[review/execution record](validation/word-vba-source-text-20261122/README.md)
+define the increment. Regression tests are authored but unexecuted because
+the local checkout exhausted workspace capacity. Source inspection and
+JavaScript oracle checks are not Dart/compiler or installed Office acceptance.
+This extends Stage 2 syntax; it does not add Stage 3 document reads, grapheme
+processing or general String coercion.
+
+The preceding continuation adds direct `Split` assignment to local dynamic
 String arrays across all three adapters. It supports binary UTF-16 delimiters,
 optional result limits, retained empty fields and allocated empty arrays.
 Source arguments evaluate once in written order while the old array remains

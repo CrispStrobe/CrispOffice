@@ -57,11 +57,19 @@ merged into the working branch after that ancestry-preserving commit. The
 42-path intake diff changes documentation/evidence only. Historical tests
 remain bound to their original source; none is credited as a fresh run.
 
-Concurrent Mail and VBA branches appeared after that initial intake. Their
-source checkpoints explicitly lack executable qualification or promised test
-completion. They remain on their own remote branches; recheck and retain any
-actual main advance before final publication, without silently importing
-unrelated active work.
+Concurrent Mail and VBA branches appeared after the initial intake. The VBA
+work subsequently merged as PR #389, advancing main to
+`bed699fb8b993e9b4f15896a7be22fdff6349985`. The final reconciliation retains that
+main advance, including its new tests and StrReverse code, and combines both
+changelog entries and historical Mail documentation. All Zotero production
+and support inputs remained unchanged between the two main baselines.
+
+Mail branch `work/mail-local-tags-20261122` was still separate at the final
+capture, head `bb92051a07618b069f8fc03609d1af6863dc52a0`. Its new recipient/
+participant search work remains on its own branch; it is not silently imported
+as a Zotero dependency. [final-intake.json](final-intake.json) records the
+51 captured heads, completed main advance and remaining concurrent branch.
+No runtime qualification from another continuation is claimed here.
 
 ## Source review and corrections
 
@@ -125,7 +133,7 @@ These commands are recorded follow-up work; they were not executed here.
 | `096a69c39b5f2ed2e3b81f0873355fbfb46be728` | Initial branch/PR reconciliation, 38 historical evidence blobs and intake record |
 | `7c9ecf1cfed7c7439f4b56eca7f51730907029e9` | Bounded hyperlink-state implementation |
 | `6d00f68d1fc37bcad0a76546a02930b9bf21b787` | Typed nullable comparisons and 20 authored regressions |
-| Following correction/documentation commit | Fixed XML fixture quotes and completed scope/validation documentation |
+| `ebff641386f6f2c349cf7eb56dd20d92aa0faac2` | Fixed XML fixture quotes and completed scope/validation documentation |
 
 ## Next parity steps
 
@@ -140,3 +148,11 @@ nested list direction with explicit overrides, apply physical right indentation
 for RTL, and verify numbering, wrapping, DOCX persistence and editor undo.
 The current parser/layout guard remains until that work is implemented and
 qualified. Full installed Word/LibreOffice plugin acceptance remains open.
+
+## Final source review
+
+Independent review re-read the complete 20-case suite and verified corrected
+test blob `53f0fcb78d5c968378b93efb692dc9ade89741f1`. Only the two required XML
+quote corrections distinguish it from the earlier reviewed test checkpoint.
+No further concrete API, ownership, grouping or UTF-16-bound defect was found.
+The review remains static; all executable checks above remain outstanding.
