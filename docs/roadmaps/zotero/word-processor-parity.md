@@ -42,7 +42,8 @@ results retain their original source and platform attribution.
 | Add/edit citation | Native Zotero picker, selected catalog sources, locators, prefixes/suffixes, multiple items, body and authored-note caret | Unsupported stories and structural ranges remain guarded |
 | Document preferences | Native style, locale and inline/footnote/endnote preferences stored in the document | Conversion refuses authored notes whose extra content would be lost |
 | Refresh | Complete supported document sequence sent to Zotero's processor, including note order, numeric renumbering, disambiguation, style-dependent ibid. and merging of directly touching citation packets | Merge hints require physical adjacency in the same paragraph/story/note; live acceptance must be repeated on the exact release/host |
-| Native selected-field context | Temporary original-source highlights and prompt excerpts for explicit `Field.select`, including body/table/note citations and multipart bibliographies; independent writing selection, lifecycle cleanup and guarded viewport restoration | Pending insertions and transfer clones have no live source range; malformed structural field recovery and installed-host acceptance remain separate |
+| Native selected-field context | Temporary original-source highlights and prompt excerpts for explicit `Field.select`, including body/table/note citations, damaged metadata and multipart bibliographies; independent writing selection, lifecycle cleanup and guarded viewport restoration | Pending insertions and transfer clones have no live source range; incomplete or ambiguous structural recovery and installed-host acceptance remain separate |
+| Damaged reference metadata | Native repair for structurally complete citation packets with invalid JSON/schema and owned bibliography ranges with invalid JSON; original-source retention until completion; confirmed individual conversion to ordinary text, undo and DOCX persistence | No inferred field boundaries or shared/cross-owner repairs; incomplete, nested, locked and opaque packets remain guarded; native delete and unlink callbacks retain distinct effects; installed-plugin acceptance remains open |
 | Bibliography | Native add/edit, entry paragraphs, rich runs, hanging indents, spacing and tab stops | Replacement requires a complete exclusively owned bibliography range |
 | Unlink citations | Explicit individual and document-wide conversion with undo | Verify final target-application files separately |
 | Add Note | Rich paragraphs, headings, nested lists up to nine levels, multiparagraph items, links, pictures, rectangular tables nested up to eight levels with combined row/column spans and active citations; insertion in body or authored notes and replacement across consecutive ordinary paragraphs in one section, note or table cell | Table payloads require a main-flow destination; cross-cell/control ranges, selected protected/structural content, compact merged-row height distribution, header/footer row groups, custom table styling and custom/reversed list markers remain unsupported |
@@ -553,8 +554,8 @@ tracks incoming-ref reconciliation, remote checkpoints and local validation.
 Passive positions in unchanged frames and generated contents paragraphs do
 not make those stories eligible for native Zotero fields. That position
 increment left visible `Field.select` context and malformed-field recovery as
-separate gaps. The following increment adds selected-field presentation;
-malformed-field recovery still needs a dedicated structural repair contract.
+separate gaps. The following increments add selected-field presentation and
+bounded recovery for damaged metadata with complete structural ownership.
 
 ### Selected-field context continuation (22 November 2026)
 
@@ -579,11 +580,43 @@ commands and the full references workspace.
 
 The [source and validation record](../../validation/zotero-field-context-20261122/README.md)
 separates controlled HTTP/controller/widget/raster checks from installed
-Zotero, Word and LibreOffice acceptance. Native malformed-field recovery is
-the next focused implementation milestone: define explicit structural owners
-and repair/unlink choices, retain the original source until the full operation
-completes, and qualify cancellation, undo and saved-file reopening before
-relaxing the current guards.
+Zotero, Word and LibreOffice acceptance. The metadata-recovery increment below
+builds on this original-source presentation.
+
+### Damaged-metadata recovery continuation (22 November 2026)
+
+Native transactions now admit recognized citation fields with malformed JSON
+or invalid citation schema, and bibliography fields with invalid JSON, when
+their complete result packets have exclusive supported owners. A citation
+still occupies one supported paragraph; a multipart bibliography must own
+complete, contiguous entry paragraphs in one actual block container. The
+native adapter sends the damaged payload to Zotero without manufacturing a
+repair. Explicit `Field.select` uses the original field's source highlight,
+excerpt and location while the prompt identifies its damaged metadata.
+
+All repair callbacks stay detached until completion. Zotero's temporary empty
+citation reset is accepted only as an intermediate recovery state and is never
+saved as an active citation. Every remaining active field must have valid final
+metadata. Cancellation, unfinished repair, changed source or stale host state
+keeps the staged result unapplied; a successful repair is one undoable change
+and persists through DOCX save/reopen.
+
+Quds also offers confirmed per-field **Convert to text** for eligible damaged
+metadata. This preserves the visible result and formatting; undo restores the
+original code, and a reopened converted file contains ordinary text. Native
+`Field.removeCode` likewise preserves cached text, while `Field.delete` removes
+it. The adapter follows the callback Zotero sends: a native corrupt-reference
+**No** choice must not be documented as invariably preserving the result.
+Document-wide unlinking retains its existing malformed-field refusal.
+
+Locked, nested, opaque or incomplete packets, cross-owner ranges, shared
+paragraph/result objects and unsupported stories remain guarded. This
+increment does not infer missing Word field boundaries or solve arbitrary
+structural corruption. The
+[recovery work record](../../validation/zotero-field-recovery-20261122/README.md)
+records the bounded contract and local qualification. Installed Zotero repair
+dialogs and Word/LibreOffice round trips still require acceptance against
+identified release versions; this is not a claim of complete plugin parity.
 
 The [combined round-trip completion](../../validation/zotero-roundtrip-complete-20261121/README.md)
 reconciles the latest accepted bibliography, image, note-style and Mail work.
@@ -634,7 +667,8 @@ Installed Zotero/Word/LibreOffice acceptance remains a separate next step.
    authored-note, stale-selection, composition and undo guarantees already delivered.
 6. **Run release-host acceptance.** Exercise current native Zotero, Word and
    LibreOffice with a synthetic library on each supported desktop platform.
-   Check picker cancellation, metadata updates, note-style conversion,
+   Check picker cancellation, damaged-metadata repair choices and their exact
+   delete/unlink behavior, metadata updates, note-style conversion,
    image/ink annotation and horizontally/vertically merged table insertion, adjacent-citation
    refresh, bibliography refresh, saved-file
    reopening and return-to-writing focus. Record exact application versions,
