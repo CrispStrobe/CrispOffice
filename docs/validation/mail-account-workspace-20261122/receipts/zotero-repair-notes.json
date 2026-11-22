@@ -1,0 +1,44 @@
+{
+  "recorded_at_utc": "2026-11-22T12:22:09.687296+00:00",
+  "baseline_failed_receipt": "/workspace/scratch/7fc035b3e3ba/.runtime/validation/final-engine/qualification.json",
+  "baseline_failed_receipt_sha256": "334189b8931b183b42a24f11879041b1d0345e594db9d4bbe7349ea810edef55",
+  "baseline_zotero_passed": 642,
+  "baseline_zotero_failed": 7,
+  "baseline_zotero_suites": 26,
+  "initial_source_unchanged": true,
+  "repair_commit": "a7fa61efff7223f7cc77b1da6a1acbbce6b85418",
+  "causes": [
+    {
+      "failure_count": 6,
+      "cause": "Transactional Refresh changed field text as requested; the test then incorrectly compared its full document to the unmodified source fixture.",
+      "fix": "Explicit citation-ID text overrides update only the independent expected text and its plain/formatted cache metadata; all other formatting, geometry, story, field and preference assertions remain."
+    },
+    {
+      "failure_count": 1,
+      "cause": "Native field-boundary rPrChange was stripped into an ordinary text-range revision before the run became instrText/fldChar model nodes, losing opaque source history.",
+      "fix": "Retain original complete rPr on field boundaries and do not invent empty text revisions for boundary-only runs; continue existing ordinary text revision handling."
+    }
+  ],
+  "new_regressions": 5,
+  "regression_scope": "Four field marker kinds and a mixed text/marker run, including three saves and ordinary text revision rejection. Existing unsupported source checks now run through three saves.",
+  "focused_cases": 82,
+  "focused_suites": 2,
+  "focused_passed": 82,
+  "focused_failed": 0,
+  "focused_skipped": 0,
+  "focused_receipt": "/workspace/scratch/7fc035b3e3ba/.runtime/validation/zotero-repair/focused-v1-summary.json",
+  "fixture_bytes_changed": false,
+  "final_counting": "Focused debug cases are included in final 50-suite qualification, not counted again. The failed pre-repair run is retained as evidence, not counted as a successful gate.",
+  "repair_file_sha256": {
+    "packages/quds_office_engine/CHANGELOG.md": "7acadad95e54cdaffb5becc11f0147fc712f56a8461f5fd8320eb35a3fb7de88",
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart": "04f0d0e4401c8a592dfca799bb20b2ee278444f707273a795bd03d61aec57424",
+    "packages/quds_office_engine/test/support/zotero_converter_fixtures.dart": "afa7ef3f7cbb44410940724ad17dee87487429dffef8ba394d65bfacc4b820cb",
+    "packages/quds_office_engine/test/word_zotero_boundary_formatting_test.dart": "edc5288faeeb299cccf734157162d8839547b34b3b2673b8b2a699a25f5f3d99"
+  },
+  "canonical_checkpoint": {
+    "local_baseline_commit": "a7fa61efff7223f7cc77b1da6a1acbbce6b85418",
+    "canonical_remote_commit": "068c46395a58c67a9537874b6a2030008296793e",
+    "identical_tree": "4b4792cabb7bbdb236f3e0069d9b151a9936244d",
+    "explanation": "Root published the exact tree under the canonical remote commit; no source inputs changed."
+  }
+}

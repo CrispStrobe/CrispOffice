@@ -1,0 +1,41 @@
+{
+  "integrated_remote_main": "4cc604810fb2f41ac7ba04cbed65cb76300bff59",
+  "previous_frozen_mail": "180a1267d99cc2d4a139976b57b64a4f61db278a",
+  "owned_files": [
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+      "sha256": "612bc10d104c8207b82159021aaf150cc60904721ff1b6f8fb54169e2941ea0a",
+      "unchanged_from_frozen": true,
+      "has_conflict_marker": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_account_navigation.dart",
+      "sha256": "05ebe4491713a644340c6254f0b806af8322815b57e5f48773c7afd4c204d621",
+      "unchanged_from_frozen": true,
+      "has_conflict_marker": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_account_navigation_provider_test.dart",
+      "sha256": "393e07f150b95fd9939703cb4d173fa6a2347336e5684c9d6abb90438a174f0b",
+      "unchanged_from_frozen": false,
+      "has_conflict_marker": false
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_account_navigation_test.dart",
+      "sha256": "7ec45f7e2f9442f35b7aa096940b8b903a8a69bef86b0a9ed6a751aa9f53abb1",
+      "unchanged_from_frozen": false,
+      "has_conflict_marker": false
+    }
+  ],
+  "decisions": [
+    "Preserve exact frozen EWS source and helper. Incoming before-adoption CAS is superseded by the guarded after-cache CAS; applying both would write twice and invalidate intervening original-record checks.",
+    "Retain every incoming provider remove/revise CAS test (six generated cases). Wait on selectedRemembers attempt count rather than successful remembers; assert zero committed writes on conflict.",
+    "Deduplicate automatically merged rememberSelected fixture implementation. Preserve millisecond-normalized timestamp comparison and success-only write counter needed by existing cases.",
+    "Preserve root-zone pump; remove duplicate added event turn without changing gate/control assertions.",
+    "Retain all incoming shared navigation boundary cases and raw endpoint fixture preservation: two explicit-port cases, four canonicalization/zero-port cases, legacy-directory no-write, stale pending validation."
+  ],
+  "expected_provider_case_count": 127,
+  "new_shared_navigation_cases": 8,
+  "test_status": "no heavy tests or analyzer executed; ready for root final gate",
+  "schema_or_api_changes": false
+}

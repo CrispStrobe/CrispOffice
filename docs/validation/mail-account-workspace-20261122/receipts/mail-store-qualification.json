@@ -1,0 +1,88 @@
+{
+  "completed_at_utc": "2026-11-22T11:51:14.697111+00:00",
+  "runtime": {
+    "dart_version": "3.13.7",
+    "flutter_pin": {
+      "flutter": "3.47.8"
+    },
+    "environment_file": "/workspace/scratch/7fc035b3e3ba/.runtime/env.sh",
+    "native_assets": "Normal Dart build hooks; real SQLite; process interruption tests used the adjacent official Dart CLI."
+  },
+  "commands": {
+    "environment": "source /workspace/scratch/7fc035b3e3ba/.runtime/env.sh",
+    "cwd": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_mail_store",
+    "vm": "dart test --platform vm --concurrency=2 --reporter=json",
+    "node": "dart test --platform node --concurrency=1 --reporter=json test/browser_problem_test.dart"
+  },
+  "cohorts": {
+    "vm": {
+      "exit_code": 0,
+      "cases": 1159,
+      "passed": 1159,
+      "failed": 0,
+      "skipped": 0,
+      "suites": 51,
+      "runner_completion": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 150664
+        }
+      ],
+      "errors": [],
+      "stdout_non_json_prefixes": [
+        {
+          "line": 1,
+          "prefix": "Running build hooks...Running build hooks..."
+        }
+      ]
+    },
+    "node": {
+      "exit_code": 0,
+      "cases": 3,
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "suites": 1,
+      "runner_completion": [
+        {
+          "success": true,
+          "type": "done",
+          "time": 5735
+        }
+      ],
+      "errors": [],
+      "stdout_non_json_prefixes": [
+        {
+          "line": 1,
+          "prefix": "Running build hooks...Running build hooks..."
+        }
+      ]
+    }
+  },
+  "distinct_cases": 1162,
+  "all_inputs_unchanged": true,
+  "input_count": 170,
+  "changed_inputs": [],
+  "added_inputs": [],
+  "removed_inputs": [],
+  "source_head_before": "f4516c13937b9ce5cec771bf331dc91d9f37105d",
+  "source_head_after": "f4516c13937b9ce5cec771bf331dc91d9f37105d",
+  "github_actions_queried": false,
+  "github_actions_waited": false,
+  "artifact_sha256": {
+    "commands.json": "921aedbadc29a2c55304920900ab8ee32be43a43d3ba4bb2499e6b3fb8969fe2",
+    "inputs-after.json": "b5399573bed0519f677ab01146b928258d8938eaaca087e3ba53a5ac0064b25b",
+    "inputs-before.json": "788810a5012bf87e17c286e3e9784fa8b9b38eee8d47acf0e12621042e6486ee",
+    "node-cases.json": "e49ffbf7f73f45d4fb6c532612eb36ee9e1a11c537d92ae54fa0f36b62e0ccf6",
+    "node.jsonl": "d1bf7f765dd0f233aaf418c2db0ba805a3787b45ee9e70aa156d548570932bfd",
+    "node.jsonl.gz": "f4c4b489791803d442053a5ac12f85a64a7070952df3a8ba8e45d917599b2436",
+    "node.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "node.stderr.gz": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "vm-cases.json": "0a388e4990a1f0e14ce51d05b7ccc49ece46af6c71601cce77aff7e02b1026f2",
+    "vm.jsonl": "4b09a0bc4aa291fd3258666cd9237805eb2c124129b463d47f394441130f8c89",
+    "vm.jsonl.gz": "3eee1c35031c42bcd2eea6130893b09b44f0bab7c41820968c73f597983ce2db",
+    "vm.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "vm.stderr.gz": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+  }
+}

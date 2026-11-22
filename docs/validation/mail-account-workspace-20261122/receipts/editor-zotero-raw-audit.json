@@ -1,0 +1,18 @@
+{
+  "checked_at_utc": "2026-11-22T12:39:34.669013+00:00",
+  "source_commit": "3e57fda4de6317c4a547f69220d7ed83802fd19f",
+  "passed": 51,
+  "failed": 0,
+  "skipped": 0,
+  "suites": 3,
+  "one_successful_done_event": true,
+  "all_started_tests_completed": true,
+  "hidden_events_excluded": 3,
+  "non_json_prefixes": [],
+  "input_count": 6220,
+  "all_inputs_before_after_current_equal": true,
+  "manifest_sha256": "b60a474b3062a1cb12e5db9bf84b03f5fb6e8db4cdba06042a6ce1e8e1715cdf",
+  "reporter_sha256": "9b61d20ad84fda39847eba20b1ac01000f394c02a06b060932974a3cb9c4d8ed",
+  "qualification_sha256": "52664f27dab9b354a68acf983b990e2a3c9fefe0b3662768ab0dfdb9a8a08098",
+  "additional_test_executions_by_this_audit": 0
+}
