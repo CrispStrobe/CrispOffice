@@ -1,0 +1,33 @@
+{
+  "reviewed_at_utc": "2026-11-22T06:02:04.751756+00:00",
+  "source_files_sha256": {
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart": "023d1c12a81f89c1bdad93a2e4491f486b233691bfa6159ed5ae6a96768a7992",
+    "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart": "c53ce2c12e257c158ae78bd56b3697c618ceb5dd227f22f753c34c858f54038f"
+  },
+  "blocking_findings": [],
+  "addressed_findings": [
+    {
+      "finding": "Unsupported projected cell insertion accepted in inactive direct source.",
+      "resolution": "Added conservative static origin checks for insertion/list members; direct and acyclic local origins refuse, including inactive source. Corpus and unit regressions retained."
+    },
+    {
+      "finding": "Native test missing braces under strict lint.",
+      "resolution": "Added braces; focused strict analysis passed."
+    },
+    {
+      "finding": "VM and JavaScript portable-example JSON differ in number spelling despite equal values.",
+      "resolution": "Workflow compares decoded JSON semantically; conformance canonical receipts remain byte-equal."
+    }
+  ],
+  "documented_evaluation_boundary": "Generic parameters, mixed origins and cyclic alias origins are validated against the actual selector during compile-time evaluation. Active cell insertion/list/text replacement remain refused by compiler guards and the native allowlist.",
+  "reviewed_areas": [
+    "selector identity through aliases, With, helper rebinding and repeated projections",
+    "strict native schema and cell ownership/source/grid/protection guards",
+    "detached style/shading mutation and sparse XML metadata",
+    "empty paragraphs, unrelated cells and direct-format preservation",
+    "DOCX/DOCM, recording/replay, CLI/MCP output publication",
+    "example prerequisites and independent conformance provenance"
+  ],
+  "independent_extra_selector_probes_passed": 12,
+  "installed_office_differential_run": false
+}

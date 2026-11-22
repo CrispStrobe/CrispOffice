@@ -350,7 +350,11 @@ cell's formatting-only operation allowlist.
 
 The [complete table template](../packages/quds_office_engine/example/macros/word_table_paragraphs.bas)
 uses a 2×2 table, named and built-in styles, RGB/palette/automatic shading and an
-empty cell paragraph. The [versioned corpus](../packages/quds_office_engine/test/fixtures/vba_conformance/word_cell_paragraphs_v1.json)
+empty cell paragraph. Its first cell must contain nonempty ordinary text for
+the Font write. The template needs a paragraph style with primary name
+`Report Label` (which may be custom), plus noncustom native paragraph styles
+with primary names `Normal` and `heading 1` for the built-in selectors.
+The [versioned corpus](../packages/quds_office_engine/test/fixtures/vba_conformance/word_cell_paragraphs_v1.json)
 independently specifies successful plans and positioned refusals. The
 [local record](validation/word-vba-cell-paragraphs-20261122/README.md) separates
 executed checks from installed Microsoft Office differential qualification.
