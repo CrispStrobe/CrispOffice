@@ -44,9 +44,12 @@ COHORTS = {'engine': ('packages/quds_office_engine',
              'odt_zotero_writer_test.dart',
              'word_empty_formatted_run_test.dart',
              'word_extended_revision_test.dart',
-             'word_table_grid_addressing_test.dart',
              'word_field_span_test.dart',
              'word_package_preservation_test.dart',
+             'word_revision_scaling_test.dart',
+             'word_revision_story_test.dart',
+             'word_revision_validation_test.dart',
+             'word_table_grid_addressing_test.dart',
              'word_zotero_add_note_test.dart',
              'word_zotero_adjacent_citations_test.dart',
              'word_zotero_bibliography_layout_test.dart',
@@ -115,13 +118,24 @@ COHORTS = {'engine': ('packages/quds_office_engine',
              'word_zotero_writing_position_test.dart'],
             True),
  'studio': ('packages/quds_office_editor/example',
-            ['studio_zotero_citing_transport_test.dart',
-             'studio_zotero_shortcuts_test.dart',
-             'studio_zotero_odt_export_test.dart', 'studio_odt_open_test.dart'],
+            ['studio_odt_open_test.dart',
+             'studio_zotero_citing_transport_test.dart',
+             'studio_zotero_odt_export_test.dart',
+             'studio_zotero_shortcuts_test.dart'],
             True),
  'incoming-word': ('packages/quds_office_engine',
-                   ['office_vba_conformance_test.dart',
+                   ['office_vba_arrays_boundaries_test.dart',
+                    'office_vba_arrays_integration_test.dart',
+                    'office_vba_arrays_test.dart',
+                    'office_vba_conformance_test.dart',
+                    'office_vba_dynamic_arrays_integration_test.dart',
+                    'office_vba_dynamic_arrays_test.dart',
+                    'office_vba_join_conformance_test.dart',
+                    'office_vba_split_test.dart',
+                    'office_vba_string_constants_test.dart',
+                    'office_vba_string_intrinsics_integration_test.dart',
                     'office_vba_string_intrinsics_test.dart',
+                    'office_vba_text_intrinsics_test.dart',
                     'office_vba_variant_substrings_test.dart',
                     'office_vba_word_cell_paragraphs_test.dart',
                     'office_vba_word_headers_footers_test.dart',
@@ -129,6 +143,8 @@ COHORTS = {'engine': ('packages/quds_office_engine',
                     'office_vba_word_named_measurements_test.dart',
                     'office_vba_word_named_selectors_test.dart',
                     'office_vba_word_page_setup_test.dart',
+                    'office_vba_word_split_cli_test.dart',
+                    'office_vba_word_split_integration_test.dart',
                     'office_vba_word_text_selectors_cli_test.dart',
                     'office_vba_word_text_selectors_conformance_test.dart',
                     'office_vba_word_text_selectors_directional_test.dart',
@@ -140,7 +156,10 @@ COHORTS = {'engine': ('packages/quds_office_engine',
                     'studio_mail_account_navigation_provider_test.dart',
                     'studio_mail_account_navigation_router_test.dart',
                     'studio_mail_account_navigation_test.dart'],
-                   True)}
+                   True),
+ 'incoming-store': ('packages/quds_mail_store',
+                    ['local_accounts_expected_record_test.dart'],
+                    False)}
 
 
 def sha256(path):
@@ -212,7 +231,10 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--cohort', choices=COHORTS, required=True)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--sqlite-library', type=Path, help='Optional real SQLite library to preload for incoming-store')
     args = parser.parse_args()
+    if args.sqlite_library is not None and args.cohort != 'incoming-store':
+        parser.error('--sqlite-library is only valid for incoming-store')
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=True)
     package, names, flutter = COHORTS[args.cohort]
@@ -246,10 +268,15 @@ def main():
         'cwd': str(cwd),
         'started_at_unix': time.time(),
     }
+    environment = os.environ.copy()
+    if args.sqlite_library is not None:
+        sqlite = args.sqlite_library.resolve(strict=True)
+        environment['LD_PRELOAD'] = str(sqlite)
+        receipt['sqlite_library'] = {'path': str(sqlite), 'sha256': sha256(sqlite), 'method': 'command-local LD_PRELOAD of a real installed library'}
     stdout_path, stderr_path = prefix.with_suffix('.jsonl'), prefix.with_suffix('.stderr')
     with stdout_path.open('w') as stdout, stderr_path.open('w') as stderr:
         try:
-            result = subprocess.run(command, cwd=cwd, stdout=stdout, stderr=stderr, timeout=900)
+            result = subprocess.run(command, cwd=cwd, stdout=stdout, stderr=stderr, timeout=900, env=environment)
             receipt['exit_code'] = result.returncode
         except subprocess.TimeoutExpired:
             receipt['exit_code'] = 124

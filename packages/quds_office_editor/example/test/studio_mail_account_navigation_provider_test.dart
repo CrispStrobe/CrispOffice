@@ -55,6 +55,8 @@ final class _Directory
   Completer<void>? loadGate;
   Completer<void>? rememberGate;
   int loads = 0;
+  // Attempts include blocked CAS operations; remembers counts committed writes.
+  int rememberAttempts = 0;
   int remembers = 0;
   int selectedRemembers = 0;
 
@@ -79,11 +81,8 @@ final class _Directory
 
   @override
   Future<void> remember(StudioMailDraftAccount identity) async {
-    remembers++;
-    seed(
-      identity,
-      revision: (records[identity.account.value]?.revision ?? 0) + 1,
-    );
+    rememberAttempts++;
+    _remember(identity);
   }
 
   @override
@@ -91,6 +90,7 @@ final class _Directory
     StudioMailDraftAccount identity, {
     required MailLocalAccountRecord expectedRecord,
   }) async {
+    rememberAttempts++;
     selectedRemembers++;
     await rememberGate?.future;
     final current = records[identity.account.value];
@@ -101,7 +101,15 @@ final class _Directory
             expectedRecord.lastConnectedAt.millisecondsSinceEpoch) {
       throw const StudioMailDraftStoreException(MailProblemCode.conflict);
     }
-    await remember(identity);
+    _remember(identity);
+  }
+
+  void _remember(StudioMailDraftAccount identity) {
+    remembers++;
+    seed(
+      identity,
+      revision: (records[identity.account.value]?.revision ?? 0) + 1,
+    );
   }
 
   @override
@@ -520,6 +528,47 @@ void main() {
     MailProviderKind.gmail,
     MailProviderKind.graph,
   ]) {
+    for (final removed in [true, false]) {
+      testWidgets(
+        '${kind.name}: atomic selected refresh preserves a ${removed ? 'removed' : 'revised'} shortcut',
+        (tester) async {
+          final harness = _Harness(kind);
+          final gate = Completer<void>();
+          harness.directory.rememberGate = gate;
+          await _show(tester, harness);
+          await _connect(tester, harness);
+          await _until(tester, () => harness.directory.rememberAttempts == 1);
+          if (removed) {
+            harness.directory.records.remove(harness.identity.account.value);
+          } else {
+            harness.directory.seed(harness.identity, revision: 2);
+          }
+          final replacement =
+              harness.directory.records[harness.identity.account.value];
+          final committedWrites = harness.directory.remembers;
+          gate.complete();
+          await _pump(tester);
+          expect(
+            harness.directory.records[harness.identity.account.value],
+            same(replacement),
+          );
+          expect(harness.directory.remembers, committedWrites);
+          expect(harness.directory.selectedRemembers, 1);
+          await _until(tester, () => harness.owner.closed == 1);
+          expect(harness.providers.single.lease!.isCurrent, isFalse);
+          if (kind != MailProviderKind.ews) {
+            expect(harness.providers.single.disposals, 1);
+            expect(harness.tokens.disposals, 1);
+          }
+          expect(
+            find.text(_strings.mailAccountNavigationChanged),
+            findsOneWidget,
+          );
+          expect(tester.takeException(), isNull);
+        },
+      );
+    }
+
     testWidgets('${kind.name}: non-secret prefill waits for explicit sign-in', (
       tester,
     ) async {

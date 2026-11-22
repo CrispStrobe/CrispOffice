@@ -21,7 +21,9 @@ def digest(path):
 
 
 def write_json(path, value):
-    path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n")
+    # VBA cases intentionally include isolated UTF-16 surrogates in names.
+    # Escape them in JSON instead of asking UTF-8 to encode invalid scalars.
+    path.write_text(json.dumps(value, ensure_ascii=True, indent=2) + "\n")
 
 
 def main():
@@ -32,12 +34,21 @@ def main():
     parser.add_argument("--test-wrapper")
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--concurrency", type=int, default=2)
+    parser.add_argument("--resume-tests-report", action="store_true",
+                        help="Resume reporting after a successful retained test command")
     args = parser.parse_args()
     root = args.root.resolve()
     engine = root / "packages/quds_office_engine"
     output = args.output.resolve()
-    output.mkdir(parents=True, exist_ok=False)
-    commands = []
+    if args.resume_tests_report and not output.is_dir():
+        raise RuntimeError("Resume requires an existing evidence directory")
+    output.mkdir(parents=True, exist_ok=args.resume_tests_report)
+    commands = json.loads((output / "commands.json").read_text()) if args.resume_tests_report else []
+    if args.resume_tests_report and (
+        len(commands) != 1 or commands[0]["name"] != "tests"
+        or commands[0]["exit_code"] != 0
+    ):
+        raise RuntimeError("Resume requires exactly one successful retained test command")
 
     names = subprocess.check_output(
         ["git", "ls-files", "-z"], cwd=root
@@ -64,8 +75,15 @@ def main():
         return {name: digest(root / name) for name in inputs}
 
     before = snapshot()
-    write_json(output / "inputs-before.json", before)
-    write_json(output / "invocation.json", {
+    if args.resume_tests_report:
+        if before != json.loads((output / "inputs-before.json").read_text()):
+            raise RuntimeError("Retained test inputs differ from the current source")
+        for stream in ("stdout", "stderr"):
+            if digest(output / f"tests.{stream}") != commands[0][f"{stream}_sha256"]:
+                raise RuntimeError("Retained test output digest mismatch")
+    else:
+        write_json(output / "inputs-before.json", before)
+    write_json(output / ("resume-invocation.json" if args.resume_tests_report else "invocation.json"), {
         "source_commit": subprocess.check_output(
             ["git", "rev-parse", "HEAD"], cwd=root
         ).decode().strip(),
@@ -111,10 +129,17 @@ def main():
         "test/odt_document_reader_test.dart", "test/odt_merged_table_zotero_test.dart",
         "test/odt_zotero_note_numbering_test.dart", "test/odt_zotero_writer_test.dart",
     })
-    write_json(output / "suite-selection.json", suites)
+    if args.resume_tests_report:
+        if suites != json.loads((output / "suite-selection.json").read_text()):
+            raise RuntimeError("Retained suite selection differs")
+    else:
+        write_json(output / "suite-selection.json", suites)
     try:
         test_command = [args.test_wrapper] if args.test_wrapper else [args.dart, "test"]
-        log = run("tests", test_command + suites + [f"--concurrency={args.concurrency}", "--reporter=json"])
+        if args.resume_tests_report:
+            log = output / "tests.stdout"
+        else:
+            log = run("tests", test_command + suites + [f"--concurrency={args.concurrency}", "--reporter=json"])
         events = [json.loads(line) for line in log.read_text().splitlines() if line.startswith("{")]
         started = {event["test"]["id"]: event["test"] for event in events if event.get("type") == "testStart"}
         completed = [event for event in events if event.get("type") == "testDone" and not event.get("hidden")]

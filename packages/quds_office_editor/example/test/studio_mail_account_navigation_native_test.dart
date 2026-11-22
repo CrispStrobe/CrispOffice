@@ -56,6 +56,9 @@ final class _Directory
         StudioMailLocalAccountReconnectStore {
   final records = <String, MailLocalAccountRecord>{};
   Completer<void>? rememberGate;
+  // Attempts include blocked CAS operations; remembers counts committed writes.
+  int rememberAttempts = 0;
+  int remembers = 0;
   int selectedRemembers = 0;
 
   @override
@@ -64,6 +67,31 @@ final class _Directory
 
   @override
   Future<void> remember(StudioMailDraftAccount identity) async {
+    rememberAttempts++;
+    _remember(identity);
+  }
+
+  @override
+  Future<void> rememberSelected(
+    StudioMailDraftAccount identity, {
+    required MailLocalAccountRecord expectedRecord,
+  }) async {
+    rememberAttempts++;
+    selectedRemembers++;
+    await rememberGate?.future;
+    final current = records[identity.account.value];
+    if (current == null ||
+        !current.hasSameIdentity(expectedRecord) ||
+        current.revision != expectedRecord.revision ||
+        current.lastConnectedAt.millisecondsSinceEpoch !=
+            expectedRecord.lastConnectedAt.millisecondsSinceEpoch) {
+      throw const StudioMailDraftStoreException(MailProblemCode.conflict);
+    }
+    _remember(identity);
+  }
+
+  void _remember(StudioMailDraftAccount identity) {
+    remembers++;
     final previous = records[identity.account.value];
     records[identity.account.value] = MailLocalAccountRecord(
       id: identity.account.value,
@@ -74,22 +102,6 @@ final class _Directory
       revision: (previous?.revision ?? 0) + 1,
       lastConnectedAt: DateTime.utc(2026, 11, 22),
     );
-  }
-
-  @override
-  Future<void> rememberSelected(
-    StudioMailDraftAccount identity, {
-    required MailLocalAccountRecord expectedRecord,
-  }) async {
-    selectedRemembers++;
-    await rememberGate?.future;
-    final current = records[identity.account.value];
-    if (current == null ||
-        !current.hasSameIdentity(expectedRecord) ||
-        current.revision != expectedRecord.revision) {
-      throw const StudioMailDraftStoreException(MailProblemCode.conflict);
-    }
-    await remember(identity);
   }
 
   @override
@@ -1168,6 +1180,83 @@ void main() {
       expect(find.text(_strings.mailAccountNavigationChanged), findsNothing);
     },
   );
+
+  testWidgets('fresh catalog connection still registers its account', (
+    tester,
+  ) async {
+    final directory = _Directory();
+    final owners = <_CatalogStore>[];
+    await _show(
+      tester,
+      directory: directory,
+      created: [],
+      clients: [],
+      open: (account) async {
+        final owner = _CatalogStore(account.account);
+        owners.add(owner);
+        return owner;
+      },
+    );
+    await _connect(tester);
+    final identity = _identity(_first);
+    expect(owners.single.account, identity.account);
+    expect(directory.records[identity.account.value]!.revision, 1);
+    expect(directory.remembers, 1);
+    expect(directory.selectedRemembers, 0);
+    expect(tester.takeException(), isNull);
+  });
+
+  for (final removed in [true, false]) {
+    testWidgets(
+      'atomic selected refresh preserves a ${removed ? 'removed' : 'revised'} native shortcut',
+      (tester) async {
+        final directory = _Directory();
+        final identity = _identity(_second);
+        await directory.remember(identity);
+        final selected = directory.target(identity);
+        final gate = Completer<void>();
+        directory.rememberGate = gate;
+        addTearDown(() {
+          if (!gate.isCompleted) gate.complete();
+        });
+        final clients = <_Client>[];
+        final owners = <_CatalogStore>[];
+        await _show(
+          tester,
+          directory: directory,
+          created: [],
+          clients: clients,
+          initialAccount: selected,
+          open: (account) async {
+            final owner = _CatalogStore(account.account);
+            owners.add(owner);
+            return owner;
+          },
+        );
+        await _connect(tester);
+        expect(directory.rememberAttempts, 2);
+        if (removed) {
+          directory.records.remove(identity.account.value);
+        } else {
+          directory._remember(identity);
+        }
+        final replacement = directory.records[identity.account.value];
+        final committedWrites = directory.remembers;
+        gate.complete();
+        await _pump(tester);
+        expect(directory.records[identity.account.value], same(replacement));
+        expect(directory.remembers, committedWrites);
+        expect(directory.selectedRemembers, 1);
+        expect(owners.single.closes, 1);
+        expect(clients.single.disconnections, 1);
+        expect(
+          find.text(_strings.mailAccountNavigationChanged),
+          findsOneWidget,
+        );
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
 
   for (final stage in ['connect', 'folders', 'headers']) {
     testWidgets('removed target after delayed $stage cannot admit later work', (

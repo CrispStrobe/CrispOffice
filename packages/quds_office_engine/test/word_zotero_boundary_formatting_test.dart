@@ -75,6 +75,20 @@ WmlDocument _converted(String story, int cycle) => WordDeserializer().readBytes(
   File('$_fixtureRoot/docx-cycle-$cycle/$story.docx').readAsBytesSync(),
 );
 
+WmlDocument _emptyCodeRevision() {
+  final package = WordSerializer().write(_synthetic());
+  final part = package.getPart('/word/document.xml')!;
+  part.writeText(
+    part.readText().replaceFirst(
+      '</w:instrText></w:r>',
+      '</w:instrText></w:r><w:r><w:rPr><w:b/>'
+          '<w:rPrChange w:id="17" w:author="Reviewer">'
+          '<w:rPr><w:i/></w:rPr></w:rPrChange></w:rPr></w:r>',
+    ),
+  );
+  return WordDeserializer().read(package);
+}
+
 List<WmlParagraph> _paragraphs(WmlDocument document) => [
   ...document.paragraphs,
   for (final note in [...document.footnotes, ...document.endnotes])
@@ -85,6 +99,23 @@ List<String?> _boundaryProperties(WmlDocument document) => [
   for (final paragraph in _paragraphs(document))
     for (final boundary in paragraph.inlines.whereType<WmlFieldBoundary>())
       _propertyFingerprint(boundary.runPropertiesXml),
+];
+
+List<WmlRun> _codeRuns(WmlDocument document) => [
+  for (final field in WordZotero.fields(document))
+    ...field.paragraph.inlines
+        .skipWhile((inline) => inline is! WmlFieldBoundary)
+        .takeWhile(
+          (inline) =>
+              inline is! WmlFieldBoundary ||
+              inline.kind != WmlFieldBoundaryKind.separate,
+        )
+        .whereType<WmlRun>(),
+];
+
+List<String?> _codeProperties(WmlDocument document) => [
+  for (final run in _codeRuns(document))
+    _propertyFingerprint(run.properties.sourcePropertiesXml),
 ];
 
 String? _propertyFingerprint(String? xml) {
@@ -107,6 +138,7 @@ String? _propertyFingerprint(String? xml) {
 String _snapshot(WmlDocument document) => jsonEncode({
   'text': [for (final paragraph in _paragraphs(document)) paragraph.text],
   'preferences': WordZoteroDocumentData.read(document),
+  'code-run-properties': _codeProperties(document),
   'fields': [
     for (final field in WordZotero.fields(document))
       {
@@ -174,9 +206,12 @@ void main() {
           final data = fields.map((field) => field.citation!.toJson()).toList();
           final text = _paragraphs(document).map((p) => p.text).toList();
           final properties = _boundaryProperties(document);
+          final codeProperties = _codeProperties(document);
           expect(properties.whereType<String>(), hasLength(6));
+          expect(codeProperties, hasLength(2));
           for (var nativeCycle = 0; nativeCycle < 3; nativeCycle++) {
             _assertFields(document);
+            expectConverterSnapshot(document, story);
             expect(
               WordZotero.fields(
                 document,
@@ -185,6 +220,7 @@ void main() {
             );
             expect(_paragraphs(document).map((p) => p.text), text);
             expect(_boundaryProperties(document), properties);
+            expect(_codeProperties(document), codeProperties);
             document = _reopen(document);
           }
         },
@@ -194,6 +230,7 @@ void main() {
         var document = _converted(story, cycle);
         final before = _snapshot(document);
         final properties = _boundaryProperties(document);
+        final codeProperties = _codeProperties(document);
         final sourceFields = WordZotero.fields(document);
         final beforeText = _paragraphs(document).map((p) => p.text).toList();
         final session = _session(document);
@@ -229,11 +266,19 @@ void main() {
         ];
         for (var nativeCycle = 0; nativeCycle < 3; nativeCycle++) {
           _assertFields(document);
-          expectConverterSnapshot(document, story);
+          expectConverterSnapshot(
+            document,
+            story,
+            refreshedCitations: const {
+              'FIRST1': 'Refreshed first',
+              'SECOND2': 'Refreshed second',
+            },
+          );
           final updated = WordZotero.fields(document);
           expect(updated.map((field) => field.cachedText), newText);
           expect(_paragraphs(document).map((p) => p.text), expectedText);
           expect(_boundaryProperties(document), properties);
+          expect(_codeProperties(document), codeProperties);
           for (var i = 0; i < updated.length; i++) {
             expect(
               updated[i].citation!.items.single.toJson(),
@@ -464,6 +509,7 @@ void main() {
     'invalid lock': '<w:fldChar w:fldCharType="begin" w:fldLock="unknown"/>',
     'invalid dirty': '<w:fldChar w:fldCharType="begin" w:dirty="unknown"/>',
     'form state': '<w:fldChar w:fldCharType="begin"><w:ffData/></w:fldChar>',
+    'EOF attribute': '<w:fldChar w:fldCharType=',
   };
   for (final entry in malformedMarkers.entries) {
     test('refuses ${entry.key} on a formatted field boundary', () {
@@ -485,6 +531,233 @@ void main() {
       expect(_snapshot(document), before);
     });
   }
+
+  final malformedFragments = <String, String>{
+    'multiple roots':
+        '<w:rPr xmlns:w="${OfficeNamespaces.w}"><w:vanish/></w:rPr>$_properties',
+    'unterminated root': _properties.replaceFirst('</w:rPr>', ''),
+    'EOF attribute': '<w:rPr xmlns:w=',
+    'processing instruction': '<?state preserve="yes"?>$_properties',
+    'DTD': '<!DOCTYPE w:rPr [<!ENTITY x "state">]>$_properties',
+    'prefix text': 'unmodeled$_properties',
+    'trailing CDATA': '$_properties<![CDATA[state]]>',
+    'duplicate attribute':
+        '<w:rPr xmlns:w="${OfficeNamespaces.w}"><w:b w:val="false" w:val="true"/></w:rPr>',
+  };
+  for (final entry in malformedFragments.entries) {
+    test('malformed property fragment ${entry.key} remains uneditable', () {
+      final document = _synthetic(properties: entry.value);
+      final field = WordZotero.fields(document).single;
+      final source = field.paragraph.inlines.toList();
+      expect(field.opaqueMetadata, isTrue);
+      expect(() => _session(document), throwsUnsupportedError);
+      expect(
+        () => WordZotero.updateCitation(field, _citation('(Changed)')),
+        throwsUnsupportedError,
+      );
+      expect(field.paragraph.inlines, orderedEquals(source));
+    });
+  }
+  test('multiple field-marker roots cannot hide a locked first marker', () {
+    final document = _synthetic();
+    document.paragraphs.single.inlines[1] = WmlFieldBoundary(
+      kind: WmlFieldBoundaryKind.begin,
+      sourceXml:
+          '<w:fldChar xmlns:w="${OfficeNamespaces.w}" '
+          'w:fldCharType="begin" w:fldLock="true"/>'
+          '<w:fldChar xmlns:w="${OfficeNamespaces.w}" w:fldCharType="begin"/>',
+    );
+    expect(WordZotero.fields(document).single.opaqueMetadata, isTrue);
+    expect(() => _session(document), throwsUnsupportedError);
+  });
+
+  final unsafeCode = <String, WmlInline Function()>{
+    'unknown formatting': () => WmlRun(
+      properties: WmlRunProps()
+        ..sourcePropertiesXml =
+            '<w:rPr xmlns:w="${OfficeNamespaces.w}"><w:vanish/></w:rPr>',
+    ),
+    'formatting revision': () => WmlRun(
+      properties: WmlRunProps()
+        ..sourcePropertiesXml =
+            '<w:rPr xmlns:w="${OfficeNamespaces.w}"><w:rPrChange/></w:rPr>',
+    ),
+    'modeled style inheritance': () =>
+        WmlRun(properties: WmlRunProps(styleId: 'HiddenStyle')),
+    'comment anchor': () => WmlRun(commentIds: [17]),
+    'locked run': () => WmlRun(fieldLocked: true),
+    'native field': () => WmlRun(fieldInstruction: ' DATE '),
+    'note reference': () => WmlRun(noteRefId: 7),
+    'hyperlink': () =>
+        WmlRun(hyperlink: WmlHyperlink(url: 'https://example.org')),
+    'bookmark': () => WmlBookmarkBoundary(id: '17', isStart: true),
+    'content control': () => WmlContentControlBoundary(
+      control: WmlContentControlData(
+        xml: '<w:sdt xmlns:w="${OfficeNamespaces.w}"><w:sdtContent/></w:sdt>',
+        sourcePartUri: '/word/document.xml',
+        relationships: [],
+      ),
+      start: true,
+    ),
+  };
+  for (final entry in unsafeCode.entries) {
+    test('empty code envelope refuses ${entry.key}', () {
+      final document = _synthetic();
+      document.paragraphs.single.inlines.insert(3, entry.value());
+      final field = WordZotero.fields(document).first;
+      expect(field.canEditNativeResult, isFalse);
+      expect(
+        WordFieldSpans.zoteroCitations(field.paragraph).first.canEdit,
+        isFalse,
+      );
+      expect(() => _session(document), throwsUnsupportedError);
+      expect(
+        () => WordZotero.updateCitation(field, _citation('(Changed)')),
+        throwsUnsupportedError,
+      );
+    });
+  }
+
+  test('an aliased empty code run has no unambiguous document owner', () {
+    final document = _synthetic();
+    final run = WmlRun();
+    document.paragraphs.single.inlines.insert(3, run);
+    document.sections.single.blocks.add(WmlParagraph(inlines: [run]));
+    expect(() => _session(document), throwsUnsupportedError);
+  });
+
+  test('replacing an empty code run invalidates an earlier field handle', () {
+    final document = _synthetic();
+    document.paragraphs.single.inlines.insert(3, WmlRun());
+    final field = WordZotero.fields(document).single;
+    document.paragraphs.single.inlines[3] = WmlRun();
+    expect(
+      () => WordZotero.updateCitation(field, _citation('(Changed)')),
+      throwsStateError,
+    );
+  });
+
+  test(
+    'imported empty-code-run revisions retain history and block all field edits',
+    () {
+      var document = _emptyCodeRevision();
+      for (var cycle = 0; cycle < 3; cycle++) {
+        final field = WordZotero.fields(document).single;
+        final before = _snapshot(document);
+        final inlines = field.paragraph.inlines.toList();
+        final revisions = WordRevisions.capture(document);
+        expect(field.opaqueMetadata, isTrue);
+        expect(
+          WordFieldSpans.zoteroCitations(field.paragraph).single.canEdit,
+          isFalse,
+        );
+        expect(
+          WordFieldSpans.zoteroCitations(
+            WmlClone.paragraph(field.paragraph),
+          ).single.canEdit,
+          isFalse,
+        );
+        expect(document.revisions, hasLength(1));
+        expect(document.revisions.single.author, 'Reviewer');
+        expect(
+          document.revisions.single.previousPropertiesXml,
+          contains('<w:i'),
+        );
+        expect(() => _session(document), throwsUnsupportedError);
+        expect(
+          () => WordZotero.updateCitation(field, _citation('(Changed)')),
+          throwsUnsupportedError,
+        );
+        expect(
+          () => WmlRunEdit.replaceRange(
+            field.paragraph,
+            field.start + 1,
+            field.end - 1,
+            'changed',
+          ),
+          throwsUnsupportedError,
+        );
+        expect(
+          () => WmlRunEdit.replaceRange(
+            field.paragraph,
+            field.start,
+            field.end,
+            '',
+          ),
+          throwsUnsupportedError,
+        );
+        expect(_snapshot(document), before);
+        expect(field.paragraph.inlines, orderedEquals(inlines));
+        expect(revisions.matches(document), isTrue);
+        final saved = WordSerializer().write(document);
+        expect(
+          saved.getPart('/word/document.xml')!.readText(),
+          contains('rPrChange'),
+        );
+        document = WordDeserializer().read(saved);
+      }
+    },
+  );
+
+  for (final accept in [true, false]) {
+    test(
+      '${accept ? 'accepting' : 'rejecting'} an empty-code formatting revision clears its guard without resurrecting history',
+      () {
+        var document = _emptyCodeRevision();
+        final originalText = document.paragraphs.single.text;
+        final revision = document.revisions.single;
+        if (accept) {
+          WordRevisions.accept(document, revision);
+        } else {
+          WordRevisions.reject(document, revision);
+        }
+        for (var cycle = 0; cycle < 3; cycle++) {
+          expect(document.revisions, isEmpty);
+          expect(document.paragraphs.single.text, originalText);
+          final field = WordZotero.fields(document).single;
+          expect(field.canEdit, isTrue);
+          expect(
+            WordFieldSpans.zoteroCitations(field.paragraph).single.canEdit,
+            isTrue,
+          );
+          final run = _codeRuns(document).single;
+          expect(run.properties.hasEmptyFormattingRevision, isFalse);
+          expect(run.properties.bold, accept);
+          expect(run.properties.italic, !accept);
+          final saved = WordSerializer().write(document);
+          expect(
+            saved.getPart('/word/document.xml')!.readText(),
+            isNot(contains('rPrChange')),
+          );
+          document = WordDeserializer().read(saved);
+        }
+      },
+    );
+  }
+
+  test('restoring an accepted revision restores its copied code-run guard', () {
+    final document = _emptyCodeRevision();
+    final paragraph = document.paragraphs.single;
+    final inlines = WmlClone.inlines(paragraph.inlines);
+    final history = WordRevisions.capture(document);
+    WordRevisions.accept(document, document.revisions.single);
+    expect(WordFieldSpans.zoteroCitations(paragraph).single.canEdit, isTrue);
+    paragraph.inlines
+      ..clear()
+      ..addAll(WmlClone.inlines(inlines));
+    history.restore(document);
+    for (final current in [document, _reopen(document)]) {
+      expect(current.revisions, hasLength(1));
+      expect(current.revisions.single.author, 'Reviewer');
+      expect(WordZotero.fields(current).single.canEdit, isFalse);
+      expect(
+        WordFieldSpans.zoteroCitations(
+          current.paragraphs.single,
+        ).single.canEdit,
+        isFalse,
+      );
+    }
+  });
 
   final unsupported = <String, String>{
     'run style inheritance': '<w:rStyle w:val="HiddenStyle"/>',
