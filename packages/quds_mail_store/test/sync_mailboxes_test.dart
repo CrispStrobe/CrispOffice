@@ -612,6 +612,8 @@ void main() {
         )) {
           database.execute('DROP TRIGGER "${trigger['name']}"');
         }
+        database.execute('DROP TABLE move_identity_transitions');
+        database.execute('DROP TABLE mailbox_move_revisions');
         database.execute('DROP TABLE membership_item_observations');
         database.execute('DROP TABLE saved_header_search_folders');
         database.execute('DROP TABLE account_quick_texts');
