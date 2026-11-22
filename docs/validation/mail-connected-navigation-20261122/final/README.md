@@ -1,107 +1,122 @@
 # Final local qualification plan
 
-The first frozen run completed against
-`d53f30f1874b38d36a791d1d3881583e4e42a2d6`. Its incoming engine gate passed 903
-cases and shared Mail UI passed 294. Studio completed 2,221 cases with 2,203
-passing and 18 failing; that run is **not accepted**. All captured inputs stayed
-unchanged. The complete failure record, raw logs, source manifests and checksums
-remain intact in [qualified-source](qualified-source/summary.json).
+The current plan follows PR #383 main
+`b4f1150b18348f348489c93108158a397c922abe`, reconciled with the local Mail work.
+It runs **236 fresh behavioral suites** and retains only **341 independent cases**
+after exact source, dependency, runtime and evidence checks. The current planning
+checkpoint is `893cca7a17b6bcda966f44248fa966084c5f1a74`; ongoing ownership fixes
+must be frozen remotely before executing the next run.
 
-Focused development checks then passed the corrected cache/lifecycle fixtures
-(79), provider navigation (64), and router/presets (15). These development counts
-are not added to final qualification totals.
+## Evidence preserved from earlier source snapshots
 
-## Late main intake and revised scope
+The first frozen run, `d53f30f1874b38d36a791d1d3881583e4e42a2d6`, had 18 actual
+Studio failures. Its original parser reported 2,203 passed and 18 failed Studio
+cases; three additional passed Unicode-name cases were omitted by that parser.
+The original run, raw output, summary and checksums remain unchanged in
+[qualified-source](qualified-source/summary.json).
 
-Remote main advanced to `4cc604810fb2f41ac7ba04cbed65cb76300bff59` through PR #382.
-Its new code includes bounded VBA `Split` authoring, Zotero converter field and
-revision preservation, ODT outline/shading guards, and atomic selected-account
-refresh during Mail reconnect. The branch was merged normally as
-`b843c81b15158ed0f4010b589f8ecdefd1a642fb`, preserving the local Mail recovery
-fixes. The exact proposal, merge bases and source-driven rationale are recorded
-in [main-382-intake.json](main-382-intake.json).
+The expanded run against `9a371b616ae0fa0dbbecaed04708837125694d7c` completed every
+command with exit code zero. Its original summary also rejected the same
+Unicode-name decoding issue. An independent checksummed [reporter re-analysis](REPORTER_REANALYSIS.md) recovered all starts and completions: **6,893 fresh cases
+across 238 suites**, plus **294 retained shared UI cases**, giving **7,187 accepted
+cases on that exact source**. All 6,151 captured inputs and generated resolution
+stayed unchanged. All 18 exact cases that failed in the first run passed in that
+execution. No test was rerun to repair the evidence parser.
 
-The prepared final scope runs **238 fresh behavioral suites**:
+These records qualify their captured sources, not subsequent edits. Focused
+development runs and imported upstream evidence are not added to final totals.
 
-| Gate | Suites | Why it is included |
+## Why the latest main requires fresh gates
+
+The [PR #383 intake receipt](main-383-intake.json) records the actual package delta
+from the qualified source. `word_zotero.dart` now excludes empty instruction-side
+runs when selecting visible citation/bibliography result formatting, including
+neighboring empty fields. Its fixture support and regression tests changed too.
+Editor production sources are otherwise unchanged, but their engine dependency
+changed. Mail hosts also receive the reconciled navigation work and pending
+store-admission/Close ownership corrections.
+
+| Fresh gate | Suites | Scope |
 | --- | ---: | --- |
-| Incoming engine | 92 | 66 affected Zotero/ODT/field/revision suites, 25 VBA array/string/Split/Word suites, and directional paragraph IO |
-| Incoming editor | 30 | 29 affected Zotero/ODT controller suites and the directional ruler suite |
-| Incoming Mail store | 2 | Existing local-account transactions and new expected-record atomic refresh |
+| Incoming engine | 92 | Affected Zotero/ODT/field/revision, VBA array/string/Split/Word, and directional paragraph regressions |
+| Incoming editor | 30 | Zotero/ODT controller regressions and the directional ruler suite, once |
 | Studio Zotero | 4 | ODT open/export, transport and shortcut integration |
-| Studio Mail | 110 | Complete selected Mail host, navigation, reader, compose, journal, outbox, cache and sign-in regressions |
+| Studio Mail | 110 | Complete selected host, navigation, reader, compose, journal, outbox, cache and sign-in regressions |
 
-Strict analysis and pinned formatting currently cover **109 live Dart paths**
-changed since initial main `4621326a5a452da475f219353c298d0f9b12470e`. The full
-source manifest currently contains **6,151 inputs**. Both counts and all suite
-paths are recalculated and frozen at execution time. `--plan` executes no Dart
+Strict analysis and pinned formatting currently cover **111 live Dart paths**
+changed since initial main `4621326a5a452da475f219353c298d0f9b12470e`. The manifest
+currently contains **6,151 inputs**. Suite paths, changed Dart paths and input
+counts are recalculated and frozen at execution time. `--plan` invokes no Dart
 or Flutter gate.
 
-The earlier 903 engine cases cannot be retained after these engine source
-changes. `wml_properties.dart` also changed, so the earlier 10 ruler cases are
-historical; that suite appears exactly once in the fresh editor gate. The earlier
-802-case incoming checkpoint and the imported PR #382 evidence remain historical
-and are never added to this run's fresh totals.
-
-## Run only after the corrected source is frozen
+## Command after the exact source freeze
 
 Source the prepared runtime environment, then invoke:
 
 ```sh
 python3 docs/validation/mail-connected-navigation-20261122/final/qualify_mail.py \
-  --run --expected-head FROZEN_FULL_COMMIT_SHA --run-id merged-source-recovery \
-  --gates analysis format incoming_engine incoming_editor incoming_store \
-    studio_zotero studio_mail --retain-from qualified-source
+  --run --expected-head FROZEN_FULL_COMMIT_SHA --run-id reconciled-source-recovery \
+  --gates analysis format incoming_engine incoming_editor studio_zotero studio_mail \
+  --retain-gate shared_mail_ui=qualified-source \
+  --retain-gate incoming_store=merged-source-recovery
 ```
 
 The supplied exact commit must match current HEAD. The runner verifies the
-repository-pinned Flutter version and explicitly sets `BOT=true`, `CI=true` and
-analytics suppression before any Dart/Flutter command. Those supported settings
-prevent Flutter's Azure metadata bot-detection fallback; SDK code and network
-controls remain unchanged. Native store checks use the normal pinned `dart test`
-runner from the Mail store package, and widget checks run from their own package
-directories with `flutter test --no-pub`.
+repository-pinned Flutter version and sets `BOT=true`, `CI=true` and analytics
+suppression before any runtime command. Those supported settings prevent
+Flutter's Azure metadata bot-detection fallback; SDK code and network controls
+remain unchanged. Normal pinned runners execute from their package directories.
 
-## Retain only independent shared Mail UI evidence
+## Retain only independent store and shared UI gates
 
-The 18 shared Mail UI suites previously passed **294 unique cases**. Before any
-new gate, the runner verifies every original evidence checksum and the archived
-original runner hash, then proves that this gate's exact inputs remain unchanged.
-It compares every captured file in the repository-owned declared/actual package
-closure, every actual local imported Dart file, root manifests/configuration,
-generated package graph/configuration, runtime identity and selected test paths.
+| Retained gate | Original source | Suites/cases | Current exact comparison |
+| --- | --- | ---: | --- |
+| Shared Mail UI | `d53f30f1` | 18 / 294 | 393 package/root inputs and 79 actual local Dart imports |
+| Mail store account transactions | `9a371b61` | 2 / 47 | 170 package/root inputs and 59 actual local Dart imports |
 
-The current proof covers **393 package/root inputs** and **79 actual local Dart
-imports**, across Mail core, MIME, shared UI and its example, and the vendored
-`enough_mail` package. That dependency/import closure excludes Office engine,
-Mail store and Studio. A read-only preflight passed; the proof is recalculated
-against the final frozen source before execution. It does not rely on the now
-invalid assumption that every package outside Studio stayed unchanged.
+Each proof verifies original artifact checksums and the archived runner, decodes
+its original raw reporter bytes with LF-only parsing, and checks all starts,
+completions, skips, errors and duplicates. The store proof additionally verifies
+the separate immutable `9a371b61` reporter re-analysis and its raw-output hashes.
 
-Any continuity failure prevents new qualification execution. Only the 294 shared
-UI cases are retained; no original engine, ruler or failed Studio cases are
-carried forward. Fresh and retained counts stay separate, and a combined accepted
-count is produced only after every new selected gate passes with stable inputs.
-The exact original runner remains archived in
+Every captured file in each repository-owned declared/actual dependency package,
+every actual imported Dart file, root manifests/configuration, generated package
+graph/configuration, runtime identity and selected suite path must match exactly.
+Store depends locally only on Mail store and Mail core; its closure excludes
+Office engine and Studio. Shared UI depends locally on Mail core, MIME, shared UI
+and its example, and vendored `enough_mail`. Read-only preflights passed, but both
+proofs are recalculated against the final frozen source before any new command.
+
+Any continuity failure prevents execution. The 341 retained cases remain separate
+from fresh cases. No engine, editor, Studio or historical ruler counts are carried
+forward. A combined accepted total is emitted only after all fresh selected gates
+and their source-stability checks pass.
+
+## Reporter correction and evidence policy
+
+The runner now splits JSON Lines only on LF bytes, preserving valid Unicode
+NEL/LINE SEPARATOR/PARAGRAPH SEPARATOR inside strings. Known native build-hook
+progress preceding a reporter-start event is recorded explicitly. The decoder
+requires a complete start/done protocol, exact suite selection and no missing,
+orphaned or duplicate lifecycle records, failures, skips or unknown output.
+The prior runners remain archived byte-for-byte in
 [runner_versions](runner_versions/index.json).
 
-## Evidence and limits
+Gates run sequentially with concurrency 2 and JSON reporting. No automatic rerun,
+CI polling, golden update, source edit, SDK patch or Git mutation is performed.
+Each run creates a new directory, preserving every earlier attempt. It captures
+all local package and third-party source/test/fixture/asset/example/CLI inputs
+excluding screenshots, root manifests and SDK pin, and generated resolution.
+Compressed manifests are captured before execution and after every gate. Changed
+inputs stop subsequent gates and prevent acceptance; initial inputs must match
+the supplied source commit.
 
-Gates run sequentially with test concurrency 2 and JSON reporting. No automatic
-rerun, CI polling, golden update, source edit, SDK patch or Git mutation is
-performed. Each run creates a new directory without replacing earlier attempts.
-It captures all local package and third-party source/test/fixture/asset/example/
-CLI files excluding screenshots, root manifests and SDK pin, and generated
-package resolution. Full compressed manifests are captured before execution and
-after every gate. Changed inputs stop later gates and prevent acceptance; all
-initial inputs must match the supplied source commit.
+Raw JSON reporters and stderr retain raw/gzip hashes, exact commands and times.
+Results distinguish unique cases from loaders/hooks and preserve per-file counts,
+errors, skips, interruptions and incomplete cases. No large old evidence archive
+is copied into a new run.
 
-Raw JSON reporters and stderr are compressed with raw/gzip checksums. Results
-retain commands, times, source commit, test lifecycles, excluded loaders/hooks,
-unique case identities, per-file counts, skips, errors and incomplete cases.
-Interrupted and failed attempts remain explicit.
-
-Acceptance covers the pinned Dart VM and Flutter widget scope. It does not
-establish new JavaScript/browser `Split` behavior, live-provider operation,
-installed-platform behavior, full Office visual goldens, installed converter
-sessions, or complete desktop-mail parity.
+Acceptance covers the pinned Dart VM and Flutter widgets. It does not establish
+new JavaScript/browser Split behavior, live-provider operation, installed-platform
+behavior, full Office visual goldens, installed converter sessions, or complete
+desktop-mail parity.

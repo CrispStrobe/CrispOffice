@@ -1,0 +1,22 @@
+{
+  "verified_at_utc": "2026-11-22 13:59:12 UTC",
+  "main_before_publication": {
+    "name": "main",
+    "sha": "ab3457c98b6d9a0d1da8147db3048dfc50d174d3",
+    "protected": false
+  },
+  "later_merged_pull_requests": [
+    {
+      "number": 384,
+      "title": "Preserve editable Zotero citations in bordered DOCX/ODT tables [skip ci]",
+      "head_sha": "96240d35f609aee05a1f81e7ce58036aea0c6296",
+      "merge_commit_sha": "ab3457c98b6d9a0d1da8147db3048dfc50d174d3",
+      "merged": true,
+      "url": "https://github.com/CrispStrobe/quds_office_suite/pull/384"
+    }
+  ],
+  "open_pull_requests_before_this_publication": [],
+  "qualified_source": "3dca1265f7abfc2cdca7eb0c6b0b582f85f4b015",
+  "captured_ref_intake": "intake.json",
+  "evidence_parent_checkpoint": "cf3e92af26b90e8ea65ee5443ebe92c6d6d180e7"
+}

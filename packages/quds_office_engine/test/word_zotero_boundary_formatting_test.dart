@@ -270,7 +270,10 @@ void main() {
           expectConverterSnapshot(
             document,
             story,
-            refreshedCitations: {'FIRST1': newText[0], 'SECOND2': newText[1]},
+            refreshedCitations: const {
+              'FIRST1': 'Refreshed first',
+              'SECOND2': 'Refreshed second',
+            },
           );
           final updated = WordZotero.fields(document);
           expect(updated.map((field) => field.cachedText), newText);

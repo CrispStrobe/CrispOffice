@@ -1,0 +1,45 @@
+{
+  "accepted": true,
+  "analysis": "analysis.txt",
+  "case_counts": {
+    "failed_cases": 0,
+    "incomplete_cases": 0,
+    "passed_cases": 60,
+    "per_file_counts": {
+      "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_release_test.dart": {
+        "passed": 7
+      },
+      "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart": {
+        "passed": 45
+      },
+      "packages/quds_office_editor/example/test/studio_mail_account_navigation_router_test.dart": {
+        "passed": 8
+      }
+    },
+    "skipped_cases": 0
+  },
+  "changes": [
+    "Guard native Close and stale callbacks while draft admission, queued close or retained ownership is pending.",
+    "Guard local account/draft entry and require settled release before a new local owner.",
+    "Use the explicit account-release retry for both ordinary failed-close owners and retained navigation owners.",
+    "Stage cache observations before exact selected-record CAS and final draft-owner adoption.",
+    "On Disconnect/dispose, preserve admission-owned observer handles and one captured close attempt; strict cleanup drains it once and retains failure for explicit retry."
+  ],
+  "command": "command.json",
+  "complete_reporter": true,
+  "exit_code": 0,
+  "raw_reporter": "native-admission.jsonl",
+  "regression_coverage": [
+    "Pending factory/load after ordinary Disconnect cannot hide Mail or open local account/draft views; successful release restores these actions.",
+    "Queued ordinary close failure blocks Close/local entry and requires explicit release retry.",
+    "Selected CAS failure after cache observation retains a failed observer and the unadopted draft owner.",
+    "A staged observer that never emits its first snapshot is cancelled once at Disconnect, with no automatic failed-close retry.",
+    "Forced disposal drains the staged observer and candidate once.",
+    "Existing native identity, cross-provider router, observer/receipt and stale-callback regressions."
+  ],
+  "runner_parser_sha256": "011edb05704918cd2c79315b1eda6fef8eba63c43eb4706e433a6aaa15f44935",
+  "sampled_source_stable": true,
+  "scope": "Focused development receipt. The later combined frozen-source qualification supersedes this run for final acceptance. Only sampled source hashes are compared here.",
+  "source_files_frozen_after_run": true,
+  "stderr": "native-admission.stderr"
+}

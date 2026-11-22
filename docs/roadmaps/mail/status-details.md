@@ -12,11 +12,16 @@ connection timestamp atomically; concurrent Forget/replacement cannot be
 overwritten by reconnect. Custom directories without conditional refresh keep
 their existing metadata.
 
-Native Close retains its mounted-pane behavior. A failed native owner release
-may require a host restart; repeated in-session retry is not guaranteed.
+The reconciled continuation retains pending store admission and failed owner
+release for explicit recovery. Native Close keeps its mounted-pane behavior
+after ownership settles and offers **Retry closing account** when release
+fails. Provider Close retires transport authority, drains late admission and
+keeps its dialog available when cleanup needs another explicit attempt.
 The [workflow guide](connected-account-navigation.md) and
-[current qualification record](../../validation/mail-account-workspace-20261122/README.md)
+[reconciled qualification record](../../validation/mail-connected-navigation-20261122/README.md)
 separate implementation, executed local gates and live-provider/platform limits.
+The [incoming qualification record](../../validation/mail-account-workspace-20261122/README.md)
+remains intact as historical evidence.
 Simultaneous background accounts, unified live folders, new secret persistence
 and the complete shared-workspace milestone remain open.
 

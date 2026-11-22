@@ -17,6 +17,7 @@ part 'sync_mailboxes.dart';
 part 'cached_header_search.dart';
 part 'saved_header_searches.dart';
 part 'compose_settings.dart';
+part 'account_archive_settings.dart';
 part 'flag_journal.dart';
 part 'flag_reconciliation.dart';
 part 'membership_reconciliation.dart';
@@ -28,7 +29,10 @@ part 'move_identity_transitions.dart';
 /// repository. The supplied platform openers enforce that ownership. Ordinary
 /// SQLite stores are not encrypted; the host owns the app container and vault.
 final class SqliteMailRepository
-    implements MailRepository, MailSyncSnapshotRepository {
+    implements
+        MailRepository,
+        MailSyncSnapshotRepository,
+        MailArchiveSettingsRepository {
   SqliteMailRepository._(this._db, this.profile, this.limits, this._clock);
 
   final MailStoreDatabase _db;
@@ -114,6 +118,17 @@ final class SqliteMailRepository
     _closed = true;
     await _db.close();
   }
+
+  @override
+  Future<MailResult<MailArchiveDestinationSettings>> loadArchiveSettings(
+    MailAccountId account,
+  ) => _loadArchiveSettings(account);
+
+  @override
+  Future<MailResult<MailArchiveDestinationSettings>> saveArchiveSettings(
+    MailArchiveDestinationSettings settings, {
+    required int expectedRevision,
+  }) => _saveArchiveSettings(settings, expectedRevision: expectedRevision);
 
   static Never _fail(MailProblemCode code) =>
       throw MailStoreStorageException(code);
@@ -823,6 +838,7 @@ final class SqliteMailRepository
         ['revision', 'signature', 'signature_new', 'signature_replies'],
       ),
       ('account_quick_texts', ['position', 'id', 'name', 'name_key', 'text']),
+      ('account_archive_settings', ['revision', 'destination']),
       ('outbox', ['id', 'state', 'attempt_id', 'data']),
       ('outbox_attempts', ['outbox', 'attempt_id']),
       ('pending_operations', ['id', 'remote', 'kind', 'argument', 'state']),

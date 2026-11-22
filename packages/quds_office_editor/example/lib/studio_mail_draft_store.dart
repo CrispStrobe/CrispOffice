@@ -5,6 +5,7 @@ import 'package:crypto/crypto.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
 
+import 'studio_mail_archive_settings_store.dart';
 import 'studio_mail_compose_tools.dart';
 import 'studio_mail_draft.dart';
 import 'studio_mail_flag_journal.dart';
@@ -205,6 +206,7 @@ final class SqliteStudioMailDraftStore
         StudioMailDraftStore,
         StudioMailDraftCatalog,
         StudioMailComposeToolsStore,
+        StudioMailArchiveSettingsStore,
         StudioMailMailboxStoreOwner,
         StudioMailFlagJournalOwner,
         StudioMailOutboxStore,
@@ -299,6 +301,30 @@ final class SqliteStudioMailDraftStore
       throw const StudioMailDraftStoreException(MailProblemCode.conflict);
     }
   }
+
+  @override
+  Future<MailArchiveDestinationSettings> loadArchiveSettings() =>
+      _serialize(() async {
+        return _value(await _repository.loadArchiveSettings(account));
+      });
+
+  @override
+  Future<MailArchiveDestinationSettings> saveArchiveSettings(
+    MailArchiveDestinationSettings settings, {
+    required int expectedRevision,
+  }) => _serialize(() async {
+    if (settings.account != account) {
+      throw const StudioMailDraftStoreException(
+        MailProblemCode.permissionDenied,
+      );
+    }
+    return _value(
+      await _repository.saveArchiveSettings(
+        settings,
+        expectedRevision: expectedRevision,
+      ),
+    );
+  });
 
   @override
   Future<MailComposeSettings> loadComposeSettings() => _serialize(() async {

@@ -1,6 +1,7 @@
 /// Host-neutral Mail contracts. This entry has no Flutter, socket or file APIs.
 library;
 
+export 'src/model/archive_settings.dart';
 export 'src/model/bytes.dart';
 export 'src/model/capabilities.dart';
 export 'src/model/compose_settings.dart';
@@ -8,6 +9,7 @@ export 'src/model/identity.dart';
 export 'src/model/message.dart';
 export 'src/model/parse.dart';
 export 'src/model/result.dart';
+export 'src/ports/archive_settings_repository.dart';
 export 'src/ports/codec.dart';
 export 'src/ports/hosts.dart';
 export 'src/ports/membership.dart';

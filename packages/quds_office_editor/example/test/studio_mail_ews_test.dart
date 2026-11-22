@@ -802,16 +802,25 @@ void main() {
     'EWS bulk confirmation cannot enter a reconnected account or dispatch its tail',
     (tester) async {
       late _Provider provider;
+      final providers = <_Provider>[];
+      final drafts = MemoryStudioMailDrafts();
       await _show(tester, (configuration, credentials) {
         provider = _Provider(configuration, credentials);
         provider.headerPage = (mailbox, cursor) =>
             MailHeaderPage(messages: _bulkHeaders(provider));
+        providers.add(provider);
         return provider;
-      });
+      }, drafts: drafts);
       await _connect(tester);
       final previous = provider;
       final oldCallback = _bulkList(tester).onBulkAction!;
+      final oldIds = _bulkList(tester).items.map((item) => item.id).toList();
       final gate = Completer<MailResult<MailUnit>>();
+      addTearDown(() {
+        if (!gate.isCompleted) {
+          gate.complete(const MailSuccess(MailUnit.value));
+        }
+      });
       previous.mutationHandler = (operation, lease) => gate.future;
       oldCallback(MailBulkFlagAction.markRead, [
         'ews-message-one',
@@ -820,7 +829,42 @@ void main() {
       await _pump(tester);
       await tester.tap(find.byTooltip(_strings.disconnect));
       await _pump(tester);
+      final connect = _field('ews-connect');
+      expect(previous.lastLease!.isCurrent, isFalse);
+      expect(providers, hasLength(1));
+      expect(drafts.identities, hasLength(1));
+      expect(find.byType(MailMessageList), findsNothing);
+      oldCallback(MailBulkFlagAction.flag, ['ews-message-one']);
+      await _pump(tester);
+      expect(providers, hasLength(1));
+      expect(drafts.identities, hasLength(1));
+      expect(previous.commands, hasLength(1));
+
+      // This custom owner has no durable mutation journal to finish. Retire
+      // its lease and owner now; the late foreground reply cannot enter the
+      // replacement session, even when its provider and row IDs overlap.
+      for (
+        var turn = 0;
+        turn < 100 && tester.widget<FilledButton>(connect).onPressed == null;
+        turn++
+      ) {
+        await tester.pump(const Duration(milliseconds: 10));
+        await tester.runAsync(() => Future<void>.delayed(Duration.zero));
+      }
+      expect(tester.widget<FilledButton>(connect).onPressed, isNotNull);
+      expect(drafts.closes, 1);
+      expect(providers, hasLength(1));
+      expect(drafts.identities, hasLength(1));
+      expect(find.byType(MailMessageList), findsNothing);
+      expect(gate.isCompleted, isFalse);
+
       await _connect(tester);
+      expect(provider, isNot(same(previous)));
+      expect(provider.account, previous.account);
+      expect(providers, hasLength(2));
+      expect(drafts.identities, hasLength(2));
+      expect(_bulkList(tester).items.map((item) => item.id), oldIds);
+      expect(_bulkList(tester).selectedId, isNull);
       gate.complete(const MailSuccess(MailUnit.value));
       await _pump(tester);
       oldCallback(MailBulkFlagAction.flag, ['ews-message-one']);
@@ -833,6 +877,7 @@ void main() {
       );
       expect(find.byType(StudioMailBulkStatus), findsNothing);
       expect(_bulkList(tester).busy, isFalse);
+      expect(_bulkList(tester).selectedId, isNull);
       expect(tester.takeException(), isNull);
     },
   );
@@ -1930,12 +1975,14 @@ void main() {
     expect(drafts.identities, hasLength(1));
     await tester.tap(find.byTooltip(_strings.close));
     await _pump(tester);
+    expect(provider.lastLease!.isCurrent, isFalse);
+    expect(drafts.closes, 0);
+    expect(find.byType(StudioMailEwsDialog), findsOneWidget);
     gate.complete();
-    await _pump(tester);
+    await _waitForHostDismissal(tester);
     expect(drafts.closes, 1);
     expect(drafts.records, isEmpty);
     expect(provider.submissions, isEmpty);
-    await _waitForHostDismissal(tester);
     expect(find.byType(StudioMailEwsDialog), findsNothing);
     expect(tester.takeException(), isNull);
   });

@@ -1,0 +1,97 @@
+{
+  "fresh_selected_gates": [
+    "analysis",
+    "format",
+    "incoming_engine",
+    "incoming_editor",
+    "studio_zotero",
+    "studio_mail"
+  ],
+  "fresh_suite_count": 236,
+  "fresh_suite_counts": {
+    "incoming_editor": 30,
+    "incoming_engine": 92,
+    "studio_mail": 110,
+    "studio_zotero": 4
+  },
+  "incoming_main": "b4f1150b18348f348489c93108158a397c922abe",
+  "local_merge_commit": "b5e6a5ec55ee5c489f7f28076675df81334e91e4",
+  "local_merge_tree": "949d6b372a36ee2f41a5cd0b9885328c9c3e4ff8",
+  "merge_parent_evidence_checkpoint": "93cc695d8e96774a5bc5f8b1498fb7144db1aa62",
+  "merge_parent_main": "b4f1150b18348f348489c93108158a397c922abe",
+  "package_delta_from_qualified_source_to_initial_merge": [
+    "packages/quds_office_editor/CHANGELOG.md",
+    "packages/quds_office_editor/example/lib/studio_mail_account_navigation.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_account_navigation_strings.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+    "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_account_navigation_provider_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_account_navigation_test.dart",
+    "packages/quds_office_engine/CHANGELOG.md",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero.dart",
+    "packages/quds_office_engine/test/support/zotero_converter_fixtures.dart",
+    "packages/quds_office_engine/test/word_zotero_boundary_formatting_test.dart"
+  ],
+  "parser_correction": "LF-byte-only JSON Lines parsing preserves Unicode NEL/U+2028/U+2029 inside test names. Known native build-hook prefixes are recorded before the start event; all lifecycle/header/completion/error/duplicate checks are strict.",
+  "planned_run_id": "reconciled-source-recovery",
+  "planning_head": "893cca7a17b6bcda966f44248fa966084c5f1a74",
+  "prepublication_format_check": {
+    "dart_paths": 111,
+    "evidence": "../development/main-383-prepublication-format/summary.json",
+    "exit_code": 0,
+    "formatter_changes": 0,
+    "selected_source_unchanged": true
+  },
+  "previous_qualified_source": "9a371b616ae0fa0dbbecaed04708837125694d7c",
+  "prior_qualification": "The immutable9a original summary remains unchanged. Its independent checksummed re-analysis accepts6893fresh+294retained=7187cases for9a only. No engine/editor/Studio cases from9a are carried into this new acceptance.",
+  "published_reconciliation_checkpoint": "893cca7a17b6bcda966f44248fa966084c5f1a74",
+  "published_reconciliation_tree": "99e7a8100968bcba97f447688302d03db24630b5",
+  "pull_request": 383,
+  "read_only_retention_preflight": {
+    "incoming_store": {
+      "accepted": true,
+      "cases": 47,
+      "compared_inputs": 170,
+      "local_dart_imports": 59,
+      "original_source": "9a371b616ae0fa0dbbecaed04708837125694d7c",
+      "package_roots": [
+        "packages/quds_mail_core",
+        "packages/quds_mail_store"
+      ],
+      "reanalysis_verified": true
+    },
+    "shared_mail_ui": {
+      "accepted": true,
+      "cases": 294,
+      "compared_inputs": 393,
+      "local_dart_imports": 79,
+      "original_source": "d53f30f1874b38d36a791d1d3881583e4e42a2d6",
+      "package_roots": [
+        "packages/quds_mail_core",
+        "packages/quds_mail_mime",
+        "packages/quds_mail_ui",
+        "packages/quds_mail_ui/example",
+        "third_party/enough_mail"
+      ],
+      "reanalysis_verified": null
+    }
+  },
+  "retained_case_count": 341,
+  "retained_gate_requests": {
+    "incoming_store": "merged-source-recovery",
+    "shared_mail_ui": "qualified-source"
+  },
+  "runtime_boundary": "Pinned Dart VM/Flutter widgets only. No new JavaScript/browser Split, live-provider, installed-platform or complete product-parity acceptance.",
+  "scope_status": "Prepared only. Native/EWS/cloud ownership corrections are still active; no final source freeze or runtime gate execution is authorized by this record.",
+  "selection_policy": "Suite paths, changed Dart paths and source inputs are recalculated at the final source freeze. Repeated --retain-gate GATE=RUN mappings keep each independent gate tied to its original immutable source.",
+  "source_input_count": 6151,
+  "source_reasoning": {
+    "editor": "Editor production library sources are otherwise unchanged, but the editor controllers depend on the changed engine. Refresh the established30-suite editor gate, including ruler once.",
+    "engine": "The engine production delta is word_zotero.dart: _resultBaseProperties excludes empty instruction-side code runs, including neighboring empty fields, when choosing visible citation/bibliography result formatting. Fixture support and boundary-formatting tests also change.",
+    "store_retention": "Mail store and Mail core are unchanged from9a; their declared and actual local dependency/import closure excludes Office engine and Studio. The normal47-case native store execution may be retained only after exact package/root/config/runtime proof and verified original9a reporter re-analysis.",
+    "studio": "Refresh full Mail110 plus Zotero4 for the merged account/navigation work and confirmed pending-store-admission/Close ownership corrections. Per-case changes inside those suites are captured at the final freeze.",
+    "ui_retention": "The original294-case shared UI gate remains independent of the changed engine/store/Studio surfaces and requires its existing exact393-input package/root proof."
+  },
+  "static_path_count": 111
+}

@@ -11,32 +11,44 @@ archive, Studio workflows and remaining MailStore parity work.
 
 ## Desktop mail parity: ordered increments
 
-The [connected account continuation](connected-account-navigation.md) adds one
-localized remembered-account chooser across IMAP/SMTP, EWS, Gmail and Microsoft
-365. Selected provider, endpoint, login, sender and directory revision are
-revalidated across asynchronous setup.
-Exact non-secret routes lead to explicit sign-in; current drafts and uncertainty
-remain account-owned while observers, journal writes and owners finish closing.
-Late acquisitions and callbacks cannot revive a retired account, and atomic
-selected-record refresh cannot recreate a concurrently forgotten shortcut.
-The combined continuation retains failed observer/owner release for explicit
-native **Retry closing account** or provider Close/Back recovery before another
-account can be admitted. The original
-[account-navigation guide](account-navigation.md) remains as its source and
-development-history reference.
-This is a Studio foreground navigation increment; retained simultaneous
-account sessions and a shared unified live workspace remain open within M04W.
-Actual qualification and source boundaries are recorded in the linked work
-records.
+The connected-account and Archive work is reconciled with complete compose
+and Outbox storage ownership. Manual sends, acknowledged retries and foreground
+schedules retain their original storage owner through final receipt persistence.
+Close shares the original draft preservation, and a replacement account waits
+for pending admission and release. The [current integration qualification](../../validation/mail-account-workspace-20261122/README.md)
+records this combined source and its executed acceptance gates.
+
+The [remembered Archive continuation](remembered-archive.md) adds account-owned
+custom destinations for connected IMAP, EWS and Microsoft 365. A standalone
+localized setting supports save, change, clear and missing-folder repair even
+with no selected message. Fresh catalog validation and revision checks preserve
+the exact account/folder choice through reviewed durable single/bulk moves.
+Gmail keeps Inbox-label removal. Schema 17 preserves these settings across
+restart, logout and cache eviction. The same increment fixes provider Close
+while the first cached-mail snapshot is pending; its
+[local qualification record](../../validation/mail-remembered-archive-20261122/README.md)
+records the reconciled source and actual results.
+
+The [account-navigation workflow](account-navigation.md) and
+[connected-account continuation](connected-account-navigation.md) provide one
+verified remembered-account chooser across IMAP/SMTP, Exchange EWS, Gmail and
+Microsoft 365. Exact non-secret routes lead to explicit sign-in. Switching saves
+the retained draft and uncertain-submission state, drains observers, journal
+writes and owners, and fences stale routes and late acquisitions. Atomic
+selected-record refresh cannot recreate a forgotten shortcut. One account stays
+connected at a time; retained simultaneous sessions and an account-aware unified
+workspace remain open. Failed observer/owner release is retained for explicit
+close recovery before another account is admitted. The linked work records
+identify actual qualification.
 
 The [explicit Archive continuation](provider-archive.md) adds reviewed single and
 checked-selection Archive to connected mail. Gmail removes only Inbox membership;
 IMAP and Microsoft 365 resolve an authoritative ordinary Archive destination,
 while EWS and unsupported discovery require explicit folder selection. All paths
-reuse durable command outcomes and restart recovery. Connected account navigation
-is continued above. Remembered custom Archive destinations, tags/categories and
-ordered rules are the next organization boundaries. Retained multi-account
-sessions and a unified workspace remain separate open M04W work.
+reuse durable command outcomes and restart recovery. Account navigation and
+remembered custom Archive destinations are continued above. Tags/categories and
+ordered rules remain organization boundaries; retained multi-account sessions
+and a unified workspace remain part of M04W.
 
 The [durable bulk organization continuation](bulk-organization.md) adds
 capability-scoped Move/Delete to checked visible selections. Confirmations show
@@ -119,9 +131,9 @@ plan rather than treating provider connectivity as full product parity.
 | Order | Workflow | Current position | Next acceptance boundary |
 | --- | --- | --- | --- |
 | 1 | Recoverable composition | Multiple account-scoped local drafts, independent reply/forward drafts, attachment/reply recovery and interrupted-send warnings; offline draft entry for verified IMAP (including discovery), EWS, Gmail and Microsoft 365 accounts | Provider-side Drafts synchronization with explicit conflicts and repository-backed offline sessions |
-| 2 | Everyday mailbox workspace (M04W/M06) | Four-provider remembered-account chooser with exact routing, explicit sign-in and guarded foreground handoff; repository-observed loaded/cached sessions, durable single/bulk flag, Move/Delete and Archive receipts, provider membership observations, IMAP/EWS move/cache reconciliation, resumable folder-header synchronization and bounded offline downloads | Remembered custom Archive destinations, retained multi-account sessions, complete shared synchronized workspace, durable retention policy/background scheduling, unified live Inbox and broader provider membership reconciliation |
+| 2 | Everyday mailbox workspace (M04W/M06) | Verified four-provider remembered-account chooser with exact routing, draft-safe explicit sign-in and guarded foreground handoff; repository-observed loaded/cached sessions, durable single/bulk flags, Move/Delete and Archive with remembered custom destinations, membership recovery, resumable header sync and bounded offline downloads | Retained multi-account sessions, complete shared synchronized workspace and unified live Inbox, durable retention/background scheduling and broader provider membership reconciliation |
 | 3 | Sending and outbox (M07) | Native durable Outbox, atomic draft transfer/edit-copy, frozen MIME/envelopes, review/export, restart recovery, explicit send/retry/cancel, saved UTC schedules and a ten-second Undo window with explicit foreground resume across SMTP/EWS/Gmail/Microsoft 365 | Account-owned background execution, provider-specific Sent reconciliation and installed/live-provider qualification |
-| 4 | Efficient discovery and organization | Independent archive FTS, saved archive searches, Boolean header queries, bounded saved-header discovery, persistent named searches with exact account/folder scopes, missing-folder recovery and optional foreground refresh, expandable loaded conversations and observed counts, stable local sorting and journaled visible-selection read/flag/Move/Delete and provider Archive commands | Repository-event-driven shared saved views, indexed body/server search, persistent cross-folder conversations, tags/categories, remembered custom Archive destinations and ordered rule execution with preview/recovery |
+| 4 | Efficient discovery and organization | Independent archive FTS, saved archive searches, Boolean header queries, bounded saved-header discovery, persistent named searches with exact account/folder scopes, missing-folder recovery and optional foreground refresh, expandable loaded conversations and observed counts, stable local sorting and journaled visible-selection read/flag/Move/Delete and provider Archive commands with exact saved destinations | Repository-event-driven shared saved views, indexed body/server search, persistent cross-folder conversations, tags/categories and ordered rule execution with preview/recovery |
 | 5 | Rich authoring and Office workflows (M07/M08) | Word-based plain text, To/Cc/Bcc, reply all, inert text quotes, attachments, locally qualified account signatures and reusable Quick Text | Identity routing/full-message templates, HTML alternatives, inline images, attach current document/PDF and edit a copy of a received attachment |
 | 6 | Integrated productivity and release (M09–M13) | Provider adapters and shared foundations available | Calendar/People, invitation workflows, provider-specific shared mailboxes, encryption/signatures where supported, installed-platform and live-provider qualification |
 
@@ -130,8 +142,8 @@ focused local tests and a remote source checkpoint before the next. Reconcile
 current main/branches/PRs before final publication. GitHub Actions queue time is
 not an acceptance dependency; record the actual local commands and scope.
 
-The next delivery sequence is remembered Archive destinations, categories/tags
-and ordered rules, indexed body/provider search, persistent conversations and
+The next delivery sequence is categories/tags and ordered rules, indexed
+body/provider search, persistent conversations and
 provider Drafts/Sent reconciliation, then fuller background multi-account work.
 The [account-navigation guide](connected-account-navigation.md) defines these
 boundaries and maps them to official Outlook, Thunderbird and eM Client workflows.

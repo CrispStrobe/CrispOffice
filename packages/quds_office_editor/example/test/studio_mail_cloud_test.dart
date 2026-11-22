@@ -1064,13 +1064,15 @@ void main() {
       final provider = harness.provider!;
       await tester.tap(find.byTooltip(_strings.close));
       await _pump(tester);
+      expect(provider.disposals, 1);
+      expect(drafts.closes, 0);
+      expect(find.byType(StudioMailCloudDialog), findsOneWidget);
       gate.complete();
-      await _pump(tester);
+      await _waitForHostDismissal(tester);
       expect(drafts.closes, 1);
       expect(drafts.records, isEmpty);
       expect(provider.disposals, 1);
       expect(provider.submissions, isEmpty);
-      await _waitForHostDismissal(tester);
       expect(find.byType(StudioMailCloudDialog), findsNothing);
       expect(tester.takeException(), isNull);
     },

@@ -1,0 +1,319 @@
+{
+  "schemaVersion": 1,
+  "baselineHead": "46ec49f0",
+  "lateAdmissionTip": "604a939991f568e7c6ad3f13958c6a4e204cafe1",
+  "baselineLog": "/workspace/scratch/c9f57cd904e3/studio-mail-qualification/studio-mail.jsonl",
+  "baselineLogStatusAtDiagnosis": "Full baseline run completed; original raw log remains untouched.",
+  "failedBulkCohort": [
+    "ews: disconnect and reconnect cannot project late results into overlapping row IDs",
+    "gmail: disconnect and reconnect cannot project late results into overlapping row IDs",
+    "graph: disconnect and reconnect cannot project late results into overlapping row IDs"
+  ],
+  "bulkCause": "The test invoked its successful-connect helper before completing the gated old mutation. The production Disconnect path in46ec retires the lease immediately, then waits for the old result and retained owner release. The helper asserted a new MailMessageList while new admission was deliberately blocked.",
+  "sourceBehavior": "46ec _disconnectFromUi -> _releaseRetiredAccount awaits _pendingFlagWrite.604 preserves drain-before-reacquisition through _closeDraftStore awaiting _pendingFlagWrite and _requireReleasedDraftStores awaiting _draftStoreClosing; integration retains the guarded Disconnect UI and staged-admission redesign.",
+  "repair": "Assert Connect disabled and no replacement provider/store while gated; invoke stale callback during drain; finish old reply; wait for owner release; explicitly reconnect; assert identical stable account and row IDs, unchanged selection/flags, zero new commands/body reads and no old bulk status.",
+  "separateCloudFailure": {
+    "test": "Gmail closes late draft storage without adopting a retired session",
+    "cause": "The exact owner/disposal checks pass, but the route remains mounted when a fixed pump helper expects removal.604 changes this exact test to observe pending retirement and wait boundedly for route disappearance.",
+    "additionalEditNeeded": false
+  },
+  "pendingSnapshotCompatibility": "Existing provider-navigation failed-save-before-first-snapshot cases assume premature draft adoption.604 stages the draft through snapshot setup and selected-route CAS; incoming_review is retaining admitted-draft save-failure coverage and asserting zero staged saves/uncertainty preservation.",
+  "rawFailureEvents": [
+    {
+      "testID": 790,
+      "messageType": "print",
+      "message": "\u2550\u2550\u2561 EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK \u255e\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\nThe following TestFailure was thrown running a test:\nExpected: exactly one matching candidate\n  Actual: _TypeWidgetFinder:<Found 0 widgets with type \"MailMessageList\": []>\n   Which: means none were found but one was expected\n\nWhen the exception was thrown, this was the stack:\n#4      _connect (file:///workspace/scratch/c9f57cd904e3/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart:248:3)\n<asynchronous suspension>\n#5      main.<anonymous closure> (file:///workspace/scratch/c9f57cd904e3/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart:625:9)\n<asynchronous suspension>\n#6      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)\n<asynchronous suspension>\n#7      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)\n<asynchronous suspension>\n<asynchronous suspension>\n(elided one frame from package:stack_trace)\n\nThis was caught by the test expectation on the following line:\n  file:///workspace/scratch/c9f57cd904e3/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart line 248\nThe test description was:\n  ews: disconnect and reconnect cannot project late results into overlapping row IDs\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550",
+      "type": "print",
+      "time": 240462,
+      "testName": "ews: disconnect and reconnect cannot project late results into overlapping row IDs"
+    },
+    {
+      "testID": 790,
+      "error": "Test failed. See exception logs above.\nThe test description was: ews: disconnect and reconnect cannot project late results into overlapping row IDs",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 240471,
+      "testName": "ews: disconnect and reconnect cannot project late results into overlapping row IDs"
+    },
+    {
+      "testID": 790,
+      "result": "error",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 240472,
+      "testName": "ews: disconnect and reconnect cannot project late results into overlapping row IDs"
+    },
+    {
+      "testID": 802,
+      "messageType": "print",
+      "message": "\u2550\u2550\u2561 EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK \u255e\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\nThe following TestFailure was thrown running a test:\nExpected: exactly one matching candidate\n  Actual: _TypeWidgetFinder:<Found 0 widgets with type \"MailMessageList\": []>\n   Which: means none were found but one was expected\n\nWhen the exception was thrown, this was the stack:\n#4      _connect (file:///workspace/scratch/c9f57cd904e3/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart:248:3)\n<asynchronous suspension>\n#5      main.<anonymous closure> (file:///workspace/scratch/c9f57cd904e3/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart:625:9)\n<asynchronous suspension>\n#6      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)\n<asynchronous suspension>\n#7      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)\n<asynchronous suspension>\n<asynchronous suspension>\n(elided one frame from package:stack_trace)\n\nThis was caught by the test expectation on the following line:\n  file:///workspace/scratch/c9f57cd904e3/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart line 248\nThe test description was:\n  gmail: disconnect and reconnect cannot project late results into overlapping row IDs\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550",
+      "type": "print",
+      "time": 246154,
+      "testName": "gmail: disconnect and reconnect cannot project late results into overlapping row IDs"
+    },
+    {
+      "testID": 802,
+      "error": "Test failed. See exception logs above.\nThe test description was: gmail: disconnect and reconnect cannot project late results into overlapping row IDs",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 246154,
+      "testName": "gmail: disconnect and reconnect cannot project late results into overlapping row IDs"
+    },
+    {
+      "testID": 802,
+      "result": "error",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 246155,
+      "testName": "gmail: disconnect and reconnect cannot project late results into overlapping row IDs"
+    },
+    {
+      "testID": 814,
+      "messageType": "print",
+      "message": "\u2550\u2550\u2561 EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK \u255e\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\nThe following TestFailure was thrown running a test:\nExpected: exactly one matching candidate\n  Actual: _TypeWidgetFinder:<Found 0 widgets with type \"MailMessageList\": []>\n   Which: means none were found but one was expected\n\nWhen the exception was thrown, this was the stack:\n#4      _connect (file:///workspace/scratch/c9f57cd904e3/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart:248:3)\n<asynchronous suspension>\n#5      main.<anonymous closure> (file:///workspace/scratch/c9f57cd904e3/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart:625:9)\n<asynchronous suspension>\n#6      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)\n<asynchronous suspension>\n#7      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)\n<asynchronous suspension>\n<asynchronous suspension>\n(elided one frame from package:stack_trace)\n\nThis was caught by the test expectation on the following line:\n  file:///workspace/scratch/c9f57cd904e3/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart line 248\nThe test description was:\n  graph: disconnect and reconnect cannot project late results into overlapping row IDs\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550",
+      "type": "print",
+      "time": 250186,
+      "testName": "graph: disconnect and reconnect cannot project late results into overlapping row IDs"
+    },
+    {
+      "testID": 814,
+      "error": "Test failed. See exception logs above.\nThe test description was: graph: disconnect and reconnect cannot project late results into overlapping row IDs",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 250186,
+      "testName": "graph: disconnect and reconnect cannot project late results into overlapping row IDs"
+    },
+    {
+      "testID": 814,
+      "result": "error",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 250186,
+      "testName": "graph: disconnect and reconnect cannot project late results into overlapping row IDs"
+    },
+    {
+      "testID": 1100,
+      "messageType": "print",
+      "message": "\u2550\u2550\u2561 EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK \u255e\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\nThe following TestFailure was thrown running a test:\nExpected: no matching candidates\n  Actual: _TypeWidgetFinder:<Found 1 widget with type \"StudioMailCloudDialog\": [\n            StudioMailCloudDialog,\n          ]>\n   Which: means one was found but none were expected\n\nWhen the exception was thrown, this was the stack:\n#4      main.<anonymous closure> (file:///workspace/scratch/c9f57cd904e3/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart:1062:7)\n<asynchronous suspension>\n#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)\n<asynchronous suspension>\n#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)\n<asynchronous suspension>\n<asynchronous suspension>\n(elided one frame from package:stack_trace)\n\nThis was caught by the test expectation on the following line:\n  file:///workspace/scratch/c9f57cd904e3/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart line 1062\nThe test description was:\n  Gmail closes late draft storage without adopting a retired session\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550",
+      "type": "print",
+      "time": 441391,
+      "testName": "Gmail closes late draft storage without adopting a retired session"
+    },
+    {
+      "testID": 1100,
+      "error": "Test failed. See exception logs above.\nThe test description was: Gmail closes late draft storage without adopting a retired session",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 441392,
+      "testName": "Gmail closes late draft storage without adopting a retired session"
+    },
+    {
+      "testID": 1100,
+      "result": "error",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 441394,
+      "testName": "Gmail closes late draft storage without adopting a retired session"
+    },
+    {
+      "testID": 1388,
+      "messageType": "print",
+      "message": "\u2550\u2550\u2561 EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK \u255e\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\nThe following TestFailure was thrown running a test:\nExpected: empty\n  Actual: [Instance of 'MailSetRead']\n\nWhen the exception was thrown, this was the stack:\n#4      main.<anonymous closure> (file:///workspace/scratch/c9f57cd904e3/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_ews_test.dart:776:7)\n<asynchronous suspension>\n#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)\n<asynchronous suspension>\n#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)\n<asynchronous suspension>\n<asynchronous suspension>\n(elided one frame from package:stack_trace)\n\nThis was caught by the test expectation on the following line:\n  file:///workspace/scratch/c9f57cd904e3/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_ews_test.dart line 776\nThe test description was:\n  EWS bulk confirmation cannot enter a reconnected account or dispatch its tail\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550",
+      "type": "print",
+      "time": 543220,
+      "testName": "EWS bulk confirmation cannot enter a reconnected account or dispatch its tail"
+    },
+    {
+      "testID": 1388,
+      "error": "Test failed. See exception logs above.\nThe test description was: EWS bulk confirmation cannot enter a reconnected account or dispatch its tail",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 543222,
+      "testName": "EWS bulk confirmation cannot enter a reconnected account or dispatch its tail"
+    },
+    {
+      "testID": 1388,
+      "result": "error",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 543223,
+      "testName": "EWS bulk confirmation cannot enter a reconnected account or dispatch its tail"
+    },
+    {
+      "testID": 1418,
+      "messageType": "print",
+      "message": "\u2550\u2550\u2561 EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK \u255e\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\nThe following TestFailure was thrown running a test:\nExpected: no matching candidates\n  Actual: _TypeWidgetFinder:<Found 1 widget with type \"StudioMailEwsDialog\": [\n            StudioMailEwsDialog(dependencies: [InheritedCupertinoTheme, _InheritedTheme,\n_LocalizationsScope-[GlobalKey#aacd6]], state: _StudioMailEwsDialogState#a9047),\n          ]>\n   Which: means one was found but none were expected\n\nWhen the exception was thrown, this was the stack:\n#4      main.<anonymous closure> (file:///workspace/scratch/c9f57cd904e3/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_ews_test.dart:1885:5)\n<asynchronous suspension>\n#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)\n<asynchronous suspension>\n#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)\n<asynchronous suspension>\n<asynchronous suspension>\n(elided one frame from package:stack_trace)\n\nThis was caught by the test expectation on the following line:\n  file:///workspace/scratch/c9f57cd904e3/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_ews_test.dart line 1885\nThe test description was:\n  EWS retires a draft store opened after its host was closed\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550",
+      "type": "print",
+      "time": 556451,
+      "testName": "EWS retires a draft store opened after its host was closed"
+    },
+    {
+      "testID": 1418,
+      "error": "Test failed. See exception logs above.\nThe test description was: EWS retires a draft store opened after its host was closed",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 556451,
+      "testName": "EWS retires a draft store opened after its host was closed"
+    },
+    {
+      "testID": 1418,
+      "result": "error",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 556451,
+      "testName": "EWS retires a draft store opened after its host was closed"
+    },
+    {
+      "testID": 2579,
+      "messageType": "print",
+      "message": "\nWarning: A call to tap() with finder \"Found 1 widget with type \"FilledButton\" that are ancestors of widget with text \"Connect\": [\n  FilledButton(dependencies: [IconTheme, InheritedCupertinoTheme, MediaQuery, _InheritedTheme, _LocalizationsScope-[GlobalKey#2b470], _ScrollableScope], state: _ButtonStyleState#06c27),\n]\" derived an Offset (Offset(650.0, 830.0)) that would not hit test on the specified widget.\nMaybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.\nThe finder corresponds to this RenderBox: RenderSemanticsAnnotations#9588a relayoutBoundary=up25\nThe hit test result at that offset is: HitTestResult(RenderPadding#94fe1@Offset(650.0, 830.0), RenderSemanticsAnnotations#ad424@Offset(650.0, 830.0), RenderPadding#a1517@Offset(650.0, 830.0), RenderSemanticsAnnotations#c1f07@Offset(650.0, 830.0), RenderRepaintBoundary#c11dc@Offset(650.0, 830.0), RenderIgnorePointer#16851@Offset(650.0, 830.0), RenderAnimatedOpacity#1c4a1@Offset(650.0, 830.0), RenderRepaintBoundary#41f28@Offset(650.0, 830.0), RenderSemanticsAnnotations#4ef2a@Offset(650.0, 830.0), RenderOffstage#2434f@Offset(650.0, 830.0), RenderSemanticsAnnotations#d6dc3@Offset(650.0, 830.0), _RenderTheater#34f6f@Offset(650.0, 830.0), RenderAbsorbPointer#5290d@Offset(650.0, 830.0), RenderPointerListener#6a95f@Offset(650.0, 830.0), RenderSemanticsAnnotations#489a2@Offset(650.0, 830.0), RenderCustomPaint#c4b44@Offset(650.0, 830.0), RenderSemanticsAnnotations#9dc77@Offset(650.0, 830.0), RenderSemanticsAnnotations#f75ae@Offset(650.0, 830.0), RenderSemanticsAnnotations#d07d5@Offset(650.0, 830.0), RenderTapRegionSurface#c7b25@Offset(650.0, 830.0), RenderSemanticsAnnotations#1aa09@Offset(650.0, 830.0), RenderSemanticsAnnotations#d9914@Offset(650.0, 830.0), HitTestEntry<HitTestTarget>#232bb(_ReusableRenderView#f8764), HitTestEntry<HitTestTarget>#dcdc8(<AutomatedTestWidgetsFlutterBinding>))\n#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2165:25)\n#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1947:12)\n#2      WidgetController.tap (package:flutter_test/src/controller.dart:1080:7)\n#3      _connect (file:///workspace/scratch/c9f57cd904e3/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_session_test.dart:249:16)\n<asynchronous suspension>\n#4      main.<anonymous closure> (file:///workspace/scratch/c9f57cd904e3/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_session_test.dart:686:7)\n<asynchronous suspension>\n#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)\n<asynchronous suspension>\n#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)\n<asynchronous suspension>\n#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)\n<asynchronous suspension>\nTo silence this warning, pass \"warnIfMissed: false\" to \"tap()\".\nTo make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.\n",
+      "type": "print",
+      "time": 899844,
+      "testName": "a delayed native draft open cannot install the previous account store"
+    },
+    {
+      "testID": 2579,
+      "messageType": "print",
+      "message": "\u2550\u2550\u2561 EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK \u255e\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\nThe following TestFailure was thrown running a test:\nExpected: exactly one matching candidate\n  Actual: _TextWidgetFinder:<Found 0 widgets with text \"Second account message\": []>\n   Which: means none were found but one was expected\n\nWhen the exception was thrown, this was the stack:\n#4      main.<anonymous closure> (file:///workspace/scratch/c9f57cd904e3/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_session_test.dart:688:7)\n<asynchronous suspension>\n#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)\n<asynchronous suspension>\n#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)\n<asynchronous suspension>\n<asynchronous suspension>\n(elided one frame from package:stack_trace)\n\nThis was caught by the test expectation on the following line:\n  file:///workspace/scratch/c9f57cd904e3/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_session_test.dart line 688\nThe test description was:\n  a delayed native draft open cannot install the previous account store\n\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550\u2550",
+      "type": "print",
+      "time": 900765,
+      "testName": "a delayed native draft open cannot install the previous account store"
+    },
+    {
+      "testID": 2579,
+      "error": "Test failed. See exception logs above.\nThe test description was: a delayed native draft open cannot install the previous account store",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 900766,
+      "testName": "a delayed native draft open cannot install the previous account store"
+    },
+    {
+      "testID": 2579,
+      "result": "error",
+      "skipped": false,
+      "hidden": false,
+      "type": "testDone",
+      "time": 900767,
+      "testName": "a delayed native draft open cannot install the previous account store"
+    }
+  ],
+  "separateEwsFailures": [
+    {
+      "test": "EWS bulk confirmation cannot enter a reconnected account or dispatch its tail",
+      "cause": "Its reconnect helper attempts Connect while the old mutation reply is gated and admission is blocked. It does not assert a successful new connection, so its provider variable still refers to the old provider; the expected-empty command assertion sees that old provider\u2019s legitimate first command.",
+      "repair": "Isolated EWS test block now includes disabled admission, one old provider/store until gated result and owner release settle, explicit reconnect to a distinct provider with the same stable account and row IDs, and unchanged selection/tail/read-state assertions."
+    },
+    {
+      "test": "EWS retires a draft store opened after its host was closed",
+      "cause": "All preceding store/disposal checks pass; fixed pump helper expects route disappearance before asynchronous Close settles.604 already changes the exact test to boundedly observe route removal.",
+      "additionalEditNeeded": false
+    }
+  ],
+  "isolatedPatches": [
+    {
+      "path": "/workspace/scratch/c9f57cd904e3/mail-late-integration/packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart",
+      "sha256": "1655c5a4753c828cbdc401b8fb474c64c7d9e14248546f69f9d0d642a8ed0959"
+    },
+    {
+      "path": "/workspace/scratch/c9f57cd904e3/mail-late-integration/packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+      "sha256": "eaa609d6e576c19900f62b4b1eee5ba3f1d9a112b8cd0afc49753b1a24983f5f"
+    },
+    {
+      "path": "/workspace/scratch/c9f57cd904e3/mail-late-integration/packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+      "sha256": "2e554ca16d53e710c29fd8b399570db9c40fc486b9d79ef4399241c03fd12f4e"
+    }
+  ],
+  "mainCheckoutEdited": false,
+  "runtimeVerification": "PASS: independently inspected authoritative local_runtime28-suite integrated qualification; no duplicate test run performed.",
+  "format": "dart format --language-version=3.12 (matches root package_config languageVersion); git diff --check clean.",
+  "separateNativeFailure": {
+    "test": "a delayed native draft open cannot install the previous account store",
+    "cause": "The test tries to hand off to a second account while the first draft factory is still gated. Native Disconnect absorbs input and blocks acquisition until that late owner returns and closes; its attempted Connect is blocked and no second account message exists.",
+    "repair": "Retain Connect callback; assert no second client/store during the gate, including a stale callback attempt. Complete old factory and wait for exactly one close and enabled hit testing before explicit second login; preserve all old/new draft identity, uncertainty, message, body and no-send assertions."
+  },
+  "baselineRun": {
+    "substantiveTests": 2491,
+    "passed": 2484,
+    "failed": 7,
+    "skipped": 0,
+    "done": {
+      "success": false,
+      "type": "done",
+      "time": 1048518
+    },
+    "logSha256": "adbc212cf7c3b820ef44979addb76e5718d3779673c6cbca710aec25982b8f15"
+  },
+  "finalIntegratedVerification": {
+    "sourceCommit": "3dca1265f7abfc2cdca7eb0c6b0b582f85f4b015",
+    "sourceTree": "b84647e6932218d083d32a12e934211fa798e607",
+    "status": "PASS",
+    "exitCode": 0,
+    "passed": 996,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "suiteCount": 28,
+    "allSevenBaselineFailures": [
+      {
+        "test": "ews: disconnect and reconnect cannot project late results into overlapping row IDs",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "test": "gmail: disconnect and reconnect cannot project late results into overlapping row IDs",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "test": "graph: disconnect and reconnect cannot project late results into overlapping row IDs",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "test": "Gmail closes late draft storage without adopting a retired session",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "test": "EWS bulk confirmation cannot enter a reconnected account or dispatch its tail",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "test": "EWS retires a draft store opened after its host was closed",
+        "result": "success",
+        "skipped": false
+      },
+      {
+        "test": "a delayed native draft open cannot install the previous account store",
+        "result": "success",
+        "skipped": false
+      }
+    ],
+    "qualification": "/workspace/scratch/c9f57cd904e3/late-studio-qualification/attempt-001/qualification.json",
+    "rawLog": "/workspace/scratch/c9f57cd904e3/late-studio-qualification/attempt-001/studio-mail.jsonl",
+    "rawLogSha256": "369b31a58d85672a6df8b627c7fc6b7bcdb226b4e9b451a4a23d597a6787a872",
+    "commitBinding": "/workspace/scratch/c9f57cd904e3/late-studio-qualification/attempt-001/final-commit-binding.json",
+    "bindingStatus": "PASS",
+    "bindingMismatches": [],
+    "inputsChangedSinceTest": [],
+    "journalHostCases": {
+      "passed": 147,
+      "failed": 0,
+      "skipped": 0
+    }
+  }
+}

@@ -102,7 +102,7 @@ void _payload(
   }
 }
 
-void _seed(File file, {String? unexplainedArchive}) {
+void _seed(File file, {String? unexplainedArchive, int version = 15}) {
   final db = sqlite.sqlite3.open(file.path);
   try {
     // Build the released v15 schema directly. Do not create today's schema
@@ -193,7 +193,7 @@ void _seed(File file, {String? unexplainedArchive}) {
     } else if (unexplainedArchive == 'pending') {
       db.execute("UPDATE pending_operations SET kind='archive',argument=NULL");
     }
-    db.userVersion = 15;
+    db.userVersion = version;
   } finally {
     db.close();
   }
@@ -315,9 +315,18 @@ void main() {
         }
         final after = sqlite.sqlite3.open(file.path);
         try {
-          expect(after.userVersion, 16);
-          expect(_schema(after), beforeSchema);
-          expect(_snapshot(after), before);
+          expect(after.userVersion, 17);
+          expect(
+            _schema(
+              after,
+            ).where((row) => row['tbl_name'] != 'account_archive_settings'),
+            beforeSchema,
+          );
+          expect(_snapshot(after)..remove('account_archive_settings'), before);
+          expect(
+            after.select('SELECT * FROM account_archive_settings'),
+            isEmpty,
+          );
           expect(after.select('PRAGMA foreign_key_check'), isEmpty);
         } finally {
           after.close();
@@ -327,6 +336,83 @@ void main() {
   }
 
   for (final target in ['journal', 'pending']) {
+    for (final interrupt in [false, true]) {
+      test(
+        'released v16 with legitimate Archive $target upgrades additively; interrupted=$interrupt',
+        () async {
+          // v16 changed the admitted journal actions without adding tables.
+          // Build the released layout, retaining real Archive intent.
+          _seed(file, unexplainedArchive: target, version: 16);
+          final original = sqlite.sqlite3.open(file.path);
+          final before = _snapshot(original);
+          final schema = _schema(original);
+          original.close();
+          if (interrupt) {
+            final failure = await open(interrupt: true);
+            expect(failure, isA<MailFailure<SqliteMailRepository>>());
+            final rollback = sqlite.sqlite3.open(file.path);
+            try {
+              expect(rollback.userVersion, 16);
+              expect(_snapshot(rollback), before);
+              expect(_schema(rollback), schema);
+            } finally {
+              rollback.close();
+            }
+          }
+          final store = _value(await open());
+          try {
+            final settings = _value(await store.loadArchiveSettings(_account));
+            expect(settings.revision, 0);
+            expect(settings.destination, isNull);
+            if (target == 'journal') {
+              final receipt = _value(
+                await store.loadFlagBatch(_account, 'markRead'),
+              )!;
+              expect(receipt.summary.action, MailBulkFlagAction.archive);
+              expect(receipt.summary.unresolvedCount, 1);
+            } else {
+              expect(
+                _value(
+                  await store.pendingOperations(_account),
+                ).single.operation,
+                isA<MailArchive>(),
+              );
+            }
+            final queued = _value(await store.recoverOutbox(_account)).single;
+            expect(
+              queued.prepared.wire.copyBytes(),
+              _outbox.prepared.wire.copyBytes(),
+            );
+            expect(
+              _value(
+                await store.loadDraft(_account, _draft.id),
+              )!.attachments.single.content.copyBytes(),
+              _draft.attachments.single.content.copyBytes(),
+            );
+          } finally {
+            await store.close();
+          }
+          final migrated = sqlite.sqlite3.open(file.path);
+          try {
+            expect(migrated.userVersion, 17);
+            expect(
+              _snapshot(migrated)..remove('account_archive_settings'),
+              before,
+            );
+            expect(
+              _schema(
+                migrated,
+              ).where((row) => row['tbl_name'] != 'account_archive_settings'),
+              schema,
+            );
+            expect(migrated.select('PRAGMA foreign_key_check'), isEmpty);
+          } finally {
+            migrated.close();
+          }
+        },
+      );
+    }
+
     test(
       'unexplained v15 Archive in $target refuses migration with exact rollback',
       () async {

@@ -1,0 +1,40 @@
+{
+  "command": [
+    "/workspace/scratch/85a369f34dbb/runtime/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=2",
+    "--reporter=json",
+    "test/studio_odt_open_test.dart",
+    "test/studio_zotero_citing_transport_test.dart",
+    "test/studio_zotero_odt_export_test.dart",
+    "test/studio_zotero_shortcuts_test.dart"
+  ],
+  "cwd": "packages/quds_office_editor/example",
+  "exit_code": 0,
+  "expected_suites": [
+    "packages/quds_office_editor/example/test/studio_odt_open_test.dart",
+    "packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart",
+    "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart"
+  ],
+  "finished_at_utc": "2026-11-22T12:34:58.492152+00:00",
+  "interrupted": false,
+  "kind": "tests",
+  "name": "studio_zotero",
+  "observed_head": "9a371b616ae0fa0dbbecaed04708837125694d7c",
+  "started_at_utc": "2026-11-22T12:34:06.261938+00:00",
+  "status": "completed",
+  "stderr": {
+    "gzip_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "path": "studio_zotero.stderr.gz",
+    "raw_bytes": 0,
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "gzip_sha256": "6742e7dd091883f8b28e4c5c2c17082236a5cbef1886494420b4f329933a9898",
+    "path": "studio_zotero.jsonl.gz",
+    "raw_bytes": 27789,
+    "raw_sha256": "8e9d89afb47ae953dbf68bf6ab83dca05f7dfcc45a097b986d5641ec889e5499"
+  }
+}

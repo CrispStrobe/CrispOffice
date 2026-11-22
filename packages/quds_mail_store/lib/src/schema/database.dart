@@ -16,7 +16,7 @@ final class MailStoreDatabase extends GeneratedDatabase {
   final MailStoreFaultInjector? faultInjector;
 
   @override
-  int get schemaVersion => 16;
+  int get schemaVersion => 17;
 
   @override
   Iterable<TableInfo<Table, Object?>> get allTables => const [];
@@ -70,11 +70,14 @@ final class MailStoreDatabase extends GeneratedDatabase {
       for (final statement in schemaV15) {
         await customStatement(statement);
       }
+      for (final statement in schemaV17) {
+        await customStatement(statement);
+      }
       // Include the version in the same transaction as schema creation.
-      await customStatement('PRAGMA user_version = 16');
+      await customStatement('PRAGMA user_version = 17');
     }),
     onUpgrade: (_, from, to) async {
-      if (from < 1 || from > 15 || to != 16) {
+      if (from < 1 || from > 16 || to != 17) {
         throw const MailStoreStorageException(MailProblemCode.unsupported);
       }
       await transaction(() async {
@@ -150,9 +153,14 @@ final class MailStoreDatabase extends GeneratedDatabase {
             await customStatement(statement);
           }
         }
-        await _validateArchiveJournalUpgrade();
+        if (from < 16) {
+          await _validateArchiveJournalUpgrade();
+        }
+        for (final statement in schemaV17) {
+          await customStatement(statement);
+        }
         await faultInjector?.call(MailStoreCheckpoint.migrationCreated);
-        await customStatement('PRAGMA user_version = 16');
+        await customStatement('PRAGMA user_version = 17');
       });
     },
     beforeOpen: (_) async {
@@ -456,4 +464,19 @@ const schemaV11 = <String>[
 /// null and never substitute for an exact account/folder identity.
 const schemaV12 = <String>[
   'ALTER TABLE saved_header_search_folders ADD COLUMN display_name TEXT',
+];
+
+/// An explicit ordinary Archive route belongs to its durable account, not the
+/// lifetime of a cached mailbox row. Null destinations retain revision history
+/// after reset; provider capability and current folder existence remain host
+/// checks. Earlier payloads, journal receipts and settings are unchanged.
+const schemaV17 = <String>[
+  '''CREATE TABLE account_archive_settings (
+    account TEXT NOT NULL PRIMARY KEY REFERENCES accounts(id) ON DELETE CASCADE,
+    revision INTEGER NOT NULL CHECK(typeof(revision) = 'integer' AND
+      revision BETWEEN 1 AND 9007199254740991),
+    destination TEXT CHECK(destination IS NULL OR
+      (typeof(destination) = 'text' AND
+       length(CAST(destination AS BLOB)) BETWEEN 1 AND 4096))
+  )''',
 ];

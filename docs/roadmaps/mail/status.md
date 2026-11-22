@@ -21,48 +21,89 @@ interrupted work.
 | Search | Local cached headers and saved queries with exact account/folder scope and missing-folder recovery; no body/provider discovery |
 | Conversations | Folding of explicitly loaded threaded headers |
 | Compose tools | Signatures, Quick Text, attachments and draft recovery |
-| Account persistence | Native account store, schema migrations and reconnect |
-| Connected account navigation | Four-provider remembered-account chooser; exact non-secret routes, explicit sign-in and guarded foreground handoff; one connected account at a time |
+| Archive organization | Durable single/bulk actions; account-owned custom folders for IMAP/EWS/Microsoft 365 with revision checks and missing-folder repair; Gmail Inbox-label removal |
+| Account persistence/navigation | Native account store, schema migrations and a verified four-provider chooser with exact non-secret routes, draft-safe explicit sign-in and guarded foreground handoff; one connected account at a time |
 | Browser store | Implemented path; quota/reload/Web Locks acceptance remains open |
 
-## Latest increment: connected account navigation
+## Latest integration: account ownership and remembered Archive
 
-**Choose an account** offers remembered IMAP/SMTP, Exchange EWS, Gmail and
-Microsoft 365 accounts in one localized chooser. It shows exact non-secret
-routes and opens the selected provider's explicit sign-in flow. Selecting or
-refreshing the directory does not start synchronization, send mail or replay
-journal commands. Current drafts and uncertain-submission state remain under
-their owning account, and a failed draft save prevents the switch.
+The [current integration record](../../validation/mail-account-workspace-20261122/README.md)
+records qualification for the combined connected-account and Archive source. Compose, manual
+Outbox Send, acknowledged retries and foreground schedules keep the exact old
+storage owner until the delivery outcome is persisted. Close shares initial
+preservation instead of creating a second draft; pending account admission,
+observer cancellation and owner release finish before another account proceeds.
+Failed saves or cleanup preserve explicit recovery.
 
-The foreground handoff drains cached observers, pending journal writes and
-owners before opening the destination. Selected provider, endpoint, login,
-sender and directory revision are revalidated across asynchronous setup. Removed targets,
-edited identities, hidden keyboard input, stale route callbacks and late owner
+### Remembered Archive destinations
+
+Connected IMAP, Exchange EWS and Microsoft 365 accounts with Move support now
+offer **Archive destination** without requiring a selected message. Save, change
+or clear an exact folder in English, German or Arabic. Settings survive restart,
+logout and cache eviction; account removal deletes them. Schema 17 preserves
+existing v16 Archive commands and receipts during migration.
+
+Archive reviews the current account, source, count and exact saved destination.
+Each action checks a fresh folder catalog and rechecks the settings revision
+after confirmation. Missing folders require explicit repair; no display-name
+match or alternate destination substitutes for the saved ID. Stale dialogs and
+callbacks cannot write another account's settings or dispatch its commands.
+Clearing restores the existing provider-default/manual-choice path. Gmail keeps
+its distinct Inbox-label removal behavior.
+
+The integrated provider Close path also cancels cached observers before waiting
+for a first snapshot, then drains late acquisitions and owners. Retained drafts
+save before disconnect; failed saves and cancellation retain explicit recovery.
+The [workflow guide](remembered-archive.md) and
+[local qualification record](../../validation/mail-remembered-archive-20261122/README.md)
+describe source reconciliation, executed tests and remaining acceptance limits.
+
+The incoming Archive checkpoint independently records **5,685 distinct cases**,
+including 2,538 Studio cases, and strict checks on 43 changed Mail Dart paths.
+Those historical results retain their original source boundary. Acceptance for
+the combined source is recorded in the current integration record above, which
+preserves failures, corrections, exact source bindings and count deduplication.
+
+Categories/tags and previewable ordered rules are next, followed by body/provider
+search, persistent conversations, provider Drafts/Sent reconciliation and fuller
+multi-account background work. Full desktop-client parity remains open.
+
+## Previous increment: verified connected-account navigation
+
+**Choose an account** offers verified remembered IMAP/SMTP, Exchange EWS, Gmail
+and Microsoft 365 accounts in one localized chooser. Exact non-secret routes
+open the selected provider's explicit sign-in flow. Selection and directory
+refresh do not start synchronization, send mail or replay journal commands.
+Current drafts and uncertain-submission state remain account-owned; a failed
+save prevents the switch.
+
+The foreground handoff drains cached observers, pending journal writes and owners
+before opening the destination. Selected provider, endpoint, login, sender and
+directory revision are revalidated across asynchronous setup. Removed targets,
+edited identities, stale route callbacks, hidden keyboard input and late owner
 acquisitions cannot redirect or revive another account. Ambiguous IMAP SMTP
-routes require an explicit remembered-route choice. Native directory refresh
-compares the selected record atomically, so a successful sign-in cannot recreate a
-concurrently forgotten or replaced shortcut. Custom directories without that
-conditional capability retain their existing metadata.
+routes require an explicit remembered-route choice.
 
-Native Close continues to hide the mounted Mail pane. Failed owner release
-or observer cancellation blocks another sign-in. Native **Retry closing account**
-and provider Close/Back preserve the retained release work and draft recovery
-for an explicit retry; a persistent failure may still require a host restart.
-Retained simultaneous account sessions, a shared unified live workspace and
-new secret persistence are outside this increment. M04W remains open.
+Native directory refresh compares the selected record atomically, so successful
+sign-in cannot recreate a concurrently forgotten or replaced shortcut. Custom
+directories without conditional refresh retain their existing metadata. Native
+Close continues to hide the mounted Mail pane. Failed observer/owner release
+blocks another sign-in. Native **Retry closing account** and provider Close/Back
+retain release work for explicit recovery; persistent failure can require a
+host restart. Draft recovery stays with the owning account.
+Late store acquisitions remain owned by the retiring account until cleanup
+settles; provider Close/Back waits for admission and release before returning to
+the root Mail pane.
 
-See the [workflow and ownership contract](account-navigation.md),
-[connected-account continuation](connected-account-navigation.md)
-and [current work and qualification record](../../validation/mail-account-workspace-20261122/README.md)
-for actual source boundaries and executed acceptance gates. The next sequence is
-remembered Archive destinations, categories/rules, body/provider search,
-persistent conversations and provider Drafts/Sent reconciliation, then fuller
-background multi-account work. M04W, complete desktop-client parity and
-live-provider/installed-platform acceptance remain open.
-
-The [initial account-navigation continuation](account-navigation.md) and its
-development evidence are retained. Its prepared final qualification plan is
-not evidence that the final suite ran or passed on this combined source.
+See both the [workflow and ownership contract](account-navigation.md) and
+[connected-account continuation](connected-account-navigation.md), with their
+[connected-navigation qualification](../../validation/mail-connected-navigation-20261122/README.md)
+and [account-workspace qualification](../../validation/mail-account-workspace-20261122/README.md)
+records, for actual source boundaries and executed acceptance. Remembered Archive
+destinations are continued above. Categories/rules, body/provider search, persistent conversations
+and provider Drafts/Sent reconciliation remain open. Retained simultaneous
+sessions, a unified live Inbox, complete M04W, full desktop-client parity and
+live-provider/installed-platform acceptance remain open too.
 
 ## Previous increment: explicit provider Archive
 
@@ -90,7 +131,8 @@ cases passed. The qualification record separately retains an existing Word
 visual-golden mismatch, reproduced on the pre-integration source with exactly
 the same failing pixels.
 
-Connected account navigation is continued above; full desktop parity and
+Account navigation is continued above. Retained multi-account sessions and the
+unified workspace remain open within M04W; full desktop parity and
 live-provider/platform acceptance remain open.
 
 ## Previous increment: durable visible-selection Move/Delete
@@ -319,7 +361,7 @@ Host-specific limits:
 - Indexed body search and server-side discovery.
 - Continuous refresh of shared saved views.
 - Simultaneous background accounts and a live cross-account unified Inbox.
-- Remembered custom Archive destinations and provider-aware categories/rules.
+- Provider-aware categories/tags and ordered rules with preview and recovery.
 - A complete unified Mail workspace across every host.
 - Live-provider, installed-platform and browser acceptance for new features.
 - Full MailStore parity and encrypted local storage.

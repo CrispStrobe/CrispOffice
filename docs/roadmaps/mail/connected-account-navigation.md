@@ -13,8 +13,8 @@ under its existing account, preserves any uncertain-submission warning, retires
 the previous foreground session and opens the selected provider's setup. The
 destination requires an explicit connection/sign-in action. Cancelling the
 chooser leaves the current account in place; a draft-save failure prevents the
-switch. Native **Close** still hides the mounted Mail pane as before; it does
-not perform an account switch or destroy that pane's session.
+switch. Native **Close** retains its mounted-pane behavior once pending account
+admission and owner release have settled; it does not perform an account switch.
 
 | Provider | Exact route retained by the chooser | Sign-in boundary |
 | --- | --- | --- |
@@ -78,6 +78,8 @@ explicit; EWS/cloud Close and Back preserve the retained draft and release work.
 The existing native Close action still hides its mounted pane. Recovery depends
 on the host and owner implementation: a persistent close failure may require
 restarting the host, and an in-session retry is not guaranteed to succeed.
+Pending store factories, loads and selected-record refreshes settle before a
+provider route returns to the root pane.
 
 ## Scope and qualification
 
@@ -86,9 +88,10 @@ reuses the host's existing credential boundary. It does not add simultaneous
 background accounts, a unified live Inbox, automatic account reconnection,
 cross-account message mutation or a new background sending permission.
 
-The [current work and qualification record](../../validation/mail-account-workspace-20261122/README.md)
+The [current integration qualification](../../validation/mail-account-workspace-20261122/README.md)
 records exact source checkpoints, executed tests, runtime provenance and
-remaining acceptance gates. The focused coverage includes provider routing,
+remaining acceptance gates for the combined navigation, Archive and submission
+ownership work. The focused coverage includes provider routing,
 catalog conflicts, account replacement during sign-in, draft/uncertainty
 preservation, observer cancellation, late owner acquisition and conditional
 SQLite refresh. Shared Mail regressions and incoming Word work have separate
@@ -97,8 +100,10 @@ receipts. No final Studio test count is inferred from those other cohorts.
 The [initial account-navigation guide](account-navigation.md) and
 [development work record](../../validation/mail-connected-navigation-20261122/README.md)
 are retained for provenance, including the incoming owner/observer release
-continuation. Its final qualification plan was prepared without execution;
-it is not a passing result for the current combined source.
+continuation and its independently executed source-bound gates. The
+[Archive qualification](../../validation/mail-remembered-archive-20261122/README.md)
+also retains its original boundary. The current record explicitly reconciles
+those sources; earlier passing counts are not automatically credited again.
 
 Live-provider, installed-platform and full desktop-client acceptance remain
 separate from deterministic local fixtures. GitHub Actions queue completion is
@@ -115,17 +120,17 @@ workflow targets, rather than identical behavior across product editions:
 | [Thunderbird offers account-folder and unified-folder views](https://support.mozilla.org/en-US/kb/switching-folder-pane-view) | Exact account navigation and retained-folder browsing are available. A live cross-account unified Inbox remains open. |
 | [eM Client groups accounts and exposes a combined Inbox for a group](https://www.emclient.com/blog/declutter-your-sidebar-with-account-groups-821) | This increment handles one foreground account at a time. Account groups and concurrently maintained combined views remain open. |
 
-Continue in this order, preserving an explicit user path and recovery contract
-for every increment:
+The [remembered Archive destination continuation](remembered-archive.md) now
+delivers exact account/folder preferences, explicit change/clear controls and
+missing-folder recovery. Continue in this order, preserving an explicit user
+path and recovery contract for every increment:
 
-1. Remember custom Archive destinations with exact account/folder identity,
-   explicit change/clear controls and missing-folder recovery.
-2. Add categories/tags and ordered rules with a preview, provider capability
+1. Add categories/tags and ordered rules with a preview, provider capability
    checks and durable per-message outcomes.
-3. Extend indexed body and provider search with visible coverage, bounded
+2. Extend indexed body and provider search with visible coverage, bounded
    continuation and cancellation.
-4. Persist conversations across folders and reconcile provider Drafts/Sent
+3. Persist conversations across folders and reconcile provider Drafts/Sent
    without weakening draft conflicts or uncertain-send recovery.
-5. Extend the shared workspace to simultaneous account-owned background work,
+4. Extend the shared workspace to simultaneous account-owned background work,
    unified live folders and lifecycle/credential scheduling, followed by
    installed-platform and live-provider acceptance.

@@ -609,6 +609,9 @@ void main() {
       '${kind.name}: disconnect and reconnect cannot project late results into overlapping row IDs',
       (tester) async {
         final gate = Completer<MailResult<MailUnit>>();
+        addTearDown(() {
+          if (!gate.isCompleted) gate.complete(_success);
+        });
         final harness = _Harness(kind)
           ..configure = (provider) {
             provider.respond = (_, _) => gate.future;
@@ -621,6 +624,37 @@ void main() {
         await _pump(tester);
         await tester.tap(find.byTooltip(_strings.disconnect));
         await _pump(tester);
+        final connect = _key(
+          kind == MailProviderKind.ews ? 'ews-connect' : 'cloud-connect',
+        );
+        // This injected owner has no durable mutation journal. Its release
+        // does not depend on a late foreground reply; the retired lease must
+        // still exclude that reply from a replacement with overlapping IDs.
+        expect(oldProvider.leases.single.isCurrent, isFalse);
+        expect(harness.providers, hasLength(1));
+        expect(harness.drafts.identities, hasLength(1));
+        expect(find.byType(MailMessageList), findsNothing);
+        oldCallback(MailBulkFlagAction.flag, ids);
+        await _pump(tester);
+        expect(harness.providers, hasLength(1));
+        expect(harness.drafts.identities, hasLength(1));
+        expect(oldProvider.commands, hasLength(1));
+
+        for (
+          var turn = 0;
+          turn < 100 && tester.widget<FilledButton>(connect).onPressed == null;
+          turn++
+        ) {
+          await tester.pump(const Duration(milliseconds: 10));
+          await tester.runAsync(() => Future<void>.delayed(Duration.zero));
+        }
+        expect(tester.widget<FilledButton>(connect).onPressed, isNotNull);
+        expect(harness.drafts.closes, 1);
+        expect(harness.providers, hasLength(1));
+        expect(harness.drafts.identities, hasLength(1));
+        expect(find.byType(MailMessageList), findsNothing);
+        expect(gate.isCompleted, isFalse);
+
         harness.configure = null;
         await _connect(tester, kind);
         final currentProvider = harness.provider;
@@ -628,7 +662,12 @@ void main() {
         // settings, so a reconnect to the same mailbox reuses it. Isolation
         // now rests on the per-connection provider and session lease.
         expect(currentProvider, isNot(same(oldProvider)));
+        expect(currentProvider.account, oldProvider.account);
         expect(oldProvider.leases.single.isCurrent, isFalse);
+        expect(harness.providers, hasLength(2));
+        expect(harness.drafts.identities, hasLength(2));
+        expect(_ids(tester), ids);
+        expect(_list(tester).selectedId, isNull);
         gate.complete(_success);
         await _pump(tester);
         oldCallback(MailBulkFlagAction.flag, ids);
@@ -636,6 +675,7 @@ void main() {
         expect(oldProvider.commands, hasLength(1));
         expect(currentProvider.commands, isEmpty);
         expect(_list(tester).items.first.isRead, isNull);
+        expect(_list(tester).selectedId, isNull);
         expect(find.byType(StudioMailBulkStatus), findsNothing);
         expect(oldProvider.bodyReads + currentProvider.bodyReads, 0);
         expect(tester.takeException(), isNull);

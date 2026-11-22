@@ -181,6 +181,10 @@ ROOT_INPUTS = {
     'dart_test.yaml', 'build.yaml',
 }
 GENERATED_INPUTS = ['.dart_tool/package_config.json', '.dart_tool/package_graph.json']
+RETAINABLE_GATE_PACKAGES = {
+    'shared_mail_ui': 'quds_mail_ui',
+    'incoming_store': 'quds_mail_store',
+}
 ENVIRONMENT_KEYS = [
     'BOT', 'CI', 'FLUTTER_ROOT', 'PUB_CACHE', 'TMPDIR',
     'FLUTTER_SUPPRESS_ANALYTICS', 'DART_SUPPRESS_ANALYTICS',
@@ -447,20 +451,22 @@ def local_import_closure(seed_files, root_package):
     }
 
 
-def retained_continuity(original_name, current_inputs, runtime):
-    """Retain only the independent shared Mail UI gate after exact proof."""
+def retained_continuity(original_name, current_inputs, runtime, gate_name='shared_mail_ui'):
+    """Retain one independent gate after exact evidence/package/import proof."""
+    if gate_name not in RETAINABLE_GATE_PACKAGES:
+        raise RuntimeError(f'Gate is not eligible for retention: {gate_name}')
     original = HERE / original_name
     if not re.fullmatch(r'[a-zA-Z0-9_-]+', original_name) or not original.is_dir():
         raise RuntimeError('Retained evidence must name an existing run directory')
     checksum_path = original / 'SHA256SUMS.txt'
-    verified_artifacts = []
+    verified_artifacts = {}
     for line in checksum_path.read_text().splitlines():
         expected, name = line.split('  ', 1)
         if Path(name).name != name or name in ('.', '..'):
             raise RuntimeError('Invalid original evidence checksum path')
         if digest(stable_bytes(original / name)) != expected:
             raise RuntimeError(f'Original evidence checksum mismatch: {name}')
-        verified_artifacts.append(name)
+        verified_artifacts[name] = expected
     summary = json.loads((original / 'summary.json').read_text())
     before = json.loads(gzip.decompress((original / 'inputs-before.json.gz').read_bytes()))
     original_runtime = json.loads((original / 'runtime.json').read_text())
@@ -470,9 +476,9 @@ def retained_continuity(original_name, current_inputs, runtime):
         digest(stable_bytes(archived_runner)) == archive['sha256']
         == summary['runner_sha256_before'] == summary['runner_sha256_after'])
     selections = json.loads((original / 'selection.json').read_text())['suite_selection']
-    files = selections['shared_mail_ui']
-    selection_unchanged = files == selection()['shared_mail_ui']
-    closure = local_import_closure(files, 'quds_mail_ui')
+    files = selections[gate_name]
+    selection_unchanged = files == selection()[gate_name]
+    closure = local_import_closure(files, RETAINABLE_GATE_PACKAGES[gate_name])
     package_roots = sorted(set(closure['repository_package_roots'].values()))
     closure_paths = set(closure['local_dart_source_sha256'])
 
@@ -496,14 +502,48 @@ def retained_continuity(original_name, current_inputs, runtime):
         and original_runtime['executables_sha256'] == runtime['executables_sha256'])
     original_source_stable = (not summary['inputs_not_matching_source_commit']
         and all(check['stable'] for check in summary['source_checks']))
-    name = 'shared_mail_ui'
+    name = gate_name
     record = json.loads((original / (name + '-result.json')).read_text())
-    report = record['reporter']
-    accepted_original = (record['exit_code'] == 0 and report['reporter_success']
-        and not report['failed_cases'] and not report['skipped_cases'] and not report['incomplete_cases']
-        and not report['incomplete_lifecycle_ids'] and not report['orphan_completion_ids']
-        and not report['duplicate_start_ids'] and not report['duplicate_completion_ids']
-        and not report['missing_suites'] and not report['unexpected_suites'])
+    packed = stable_bytes(original / record['stdout']['path'])
+    raw = gzip.decompress(packed)
+    raw_verified = (digest(packed) == record['stdout']['gzip_sha256']
+        and digest(raw) == record['stdout']['raw_sha256'])
+    report = parse_reporter(raw, REPO / record['cwd'], record['expected_suites'])
+    accepted_original = record['exit_code'] == 0 and complete_reporter(report)
+    reanalysis = None
+    reanalysis_verified = True
+    if archive.get('reporter_reanalysis'):
+        audit_name = archive['reporter_reanalysis']
+        if not re.fullmatch(r'[a-zA-Z0-9_-]+', audit_name):
+            raise RuntimeError('Invalid reporter re-analysis directory')
+        audit = HERE / audit_name
+        audit_hashes = {}
+        for line in (audit / 'SHA256SUMS.txt').read_text().split('\n'):
+            if not line:
+                continue
+            expected_hash, file = line.split('  ', 1)
+            if Path(file).name != file or file in ('.', '..'):
+                raise RuntimeError('Invalid re-analysis checksum path')
+            actual = digest(stable_bytes(audit / file))
+            if actual != expected_hash:
+                raise RuntimeError(f'Re-analysis checksum mismatch: {file}')
+            audit_hashes[file] = actual
+        audit_summary = json.loads((audit / 'summary.json').read_text())
+        audit_gate = json.loads((audit / (name + '-reanalysis.json')).read_text())
+        script_hash = digest(stable_bytes(HERE / 'reanalyze_reporters.py'))
+        comparable = ['suite_count', 'passed_cases', 'failed_cases', 'skipped_cases',
+            'incomplete_cases', 'started_lifecycles', 'completed_lifecycles']
+        reanalysis_verified = (audit_summary['accepted_reanalysis']
+            and audit_summary['source_commit'] == summary['expected_source_head']
+            and audit_summary['original_artifact_hashes_verified_before_and_after'] == verified_artifacts
+            and audit_summary['script_sha256_before'] == audit_summary['script_sha256_after'] == script_hash
+            and audit_gate['accepted_reporter']
+            and audit_gate['raw_reporter_sha256'] == record['stdout']['raw_sha256']
+            and audit_gate['original_command'] == record['command']
+            and audit_gate['original_exit_code'] == record['exit_code']
+            and all(audit_gate[key] == report[key] for key in comparable))
+        reanalysis = {'directory': audit_name, 'verified_artifacts': audit_hashes,
+            'script_sha256': script_hash, 'verified': reanalysis_verified}
     gate = {'name': name, 'original_result': f'../{original_name}/{name}-result.json',
         'original_source_head': summary['expected_source_head'], 'accepted_original_gate': accepted_original,
         'passed_cases': report['passed_cases'], 'suite_count': report['suite_count'],
@@ -513,6 +553,12 @@ def retained_continuity(original_name, current_inputs, runtime):
         'original_run': original_name, 'original_source_head': summary['expected_source_head'],
         'current_source_head': current_inputs['expected_head'],
         'original_artifacts_verified': verified_artifacts,
+        'raw_reporter_verified': raw_verified, 'reporter_reanalysis': reanalysis,
+        'reparsed_reporter_protocol': {key: report[key] for key in (
+            'reporter_success', 'reporter_start_events', 'started_lifecycles', 'completed_lifecycles',
+            'unique_started_cases', 'unique_completed_cases', 'passed_cases', 'failed_cases',
+            'skipped_cases', 'incomplete_cases', 'orphan_completion_ids', 'incomplete_lifecycle_ids',
+            'duplicate_start_ids', 'duplicate_completion_ids', 'non_json_output', 'native_build_hook_progress')},
         'original_checksum_index_sha256': digest(stable_bytes(checksum_path)),
         'archived_original_runner': str(archived_runner.relative_to(HERE)),
         'original_runner_sha256': archive['sha256'], 'original_runner_verified': original_runner_unchanged,
@@ -527,12 +573,12 @@ def retained_continuity(original_name, current_inputs, runtime):
         'import_dependency_closure': closure, 'retained_gates': [gate],
         'retained_passed_cases': report['passed_cases'],
         'changed_inputs_outside_retained_scope': [path for path in all_changed if not retained_input(path)],
-        'superseded_historical_gates': ['incoming_engine', 'changed_ruler'],
+        'fresh_gate_required_after_source_change': ['incoming_engine', 'incoming_editor', 'studio_zotero', 'studio_mail'],
         'accepted': (not changed and not uncaptured_closure and not closure_hash_mismatches
             and generated_unchanged and runtime_unchanged and original_source_stable
             and original_runner_unchanged and accepted_original and selection_unchanged
-            and closure['excludes_studio']),
-        'scope': 'Only shared Mail UI is retained. Every captured file within its repository-owned declared/actual dependency packages, actual imported Dart files, root configuration, generated package graph/config and runtime identity must match exactly. Engine and ruler are freshly executed; original failed Studio contributes no carried-forward cases.',
+            and raw_verified and reanalysis_verified and closure['excludes_studio']),
+        'scope': f'Only {gate_name} is retained by this proof. All captured files in its repository-owned declared/actual dependency packages, actual imported Dart files, root configuration, generated resolution and runtime identity must match exactly. Raw reporter bytes are re-decoded using LF delimiters; any linked re-analysis is independently checksum verified.',
     }
 
 
@@ -562,7 +608,23 @@ def commands(selected, static, ruler):
 def parse_reporter(path, cwd, expected):
     tests, completed, suites, errors, done = {}, {}, {}, [], []
     duplicate_starts, duplicate_completions, non_json = [], [], []
-    for number, line in enumerate(path.read_text(errors='replace').splitlines(), 1):
+    reporter_starts, build_hook_progress = [], []
+    raw = path if isinstance(path, bytes) else path.read_bytes()
+    # JSON Lines uses LF. str.splitlines() also splits valid JSON-string
+    # characters U+0085/U+2028/U+2029 in the unsafe-filename regression cases.
+    for number, physical_line in enumerate(raw.split(b'\n'), 1):
+        if not physical_line.strip(b' \t\r'):
+            continue
+        try:
+            line = physical_line.decode('utf-8')
+        except UnicodeDecodeError:
+            non_json.append({'line': number, 'raw_sha256': digest(physical_line), 'reason': 'invalid_utf8'})
+            continue
+        prefix = 'Running build hooks...'
+        prefix_count = 0
+        while line.startswith(prefix):
+            line = line[len(prefix):]
+            prefix_count += 1
         try:
             event = json.loads(line)
         except json.JSONDecodeError:
@@ -572,7 +634,16 @@ def parse_reporter(path, cwd, expected):
             non_json.append({'line': number, 'text': line})
             continue
         kind = event.get('type')
-        if kind == 'testStart':
+        if prefix_count:
+            if kind != 'start' or event.get('protocolVersion') != '0.1.1':
+                non_json.append({'line': number, 'text': physical_line.decode('utf-8'), 'reason': 'unexpected_build_hook_prefix'})
+                continue
+            build_hook_progress.append({'line': number, 'prefix': prefix,
+                'repetitions': prefix_count, 'following_event': kind,
+                'raw_line_sha256': digest(physical_line)})
+        if kind == 'start':
+            reporter_starts.append(event)
+        elif kind == 'testStart':
             identifier = event['test']['id']
             if identifier in tests:
                 duplicate_starts.append(identifier)
@@ -637,8 +708,20 @@ def parse_reporter(path, cwd, expected):
         'duplicate_start_ids': duplicate_starts, 'duplicate_completion_ids': duplicate_completions,
         'excluded_lifecycles': excluded, 'per_file_counts': dict(counts),
         'errors': errors, 'done_events': done, 'non_json_output': non_json, 'cases': cases,
+        'reporter_start_events': reporter_starts, 'native_build_hook_progress': build_hook_progress,
         'reporter_success': len(done) == 1 and done[0].get('success') is True,
     }
+
+
+def complete_reporter(report):
+    return (report['reporter_success'] and len(report['reporter_start_events']) == 1
+        and report['reporter_start_events'][0].get('protocolVersion') == '0.1.1'
+        and not report['errors'] and not report['non_json_output']
+        and not report['failed_cases'] and not report['skipped_cases'] and not report['incomplete_cases']
+        and not report['incomplete_lifecycle_ids'] and not report['orphan_completion_ids']
+        and not report['duplicate_start_ids'] and not report['duplicate_completion_ids']
+        and not report['duplicate_case_names']
+        and not report['missing_suites'] and not report['unexpected_suites'])
 
 
 def pack_file(path):
@@ -731,7 +814,9 @@ def main():
         'analysis', 'format', 'incoming_engine', 'incoming_editor', 'incoming_store',
         'studio_zotero', 'studio_mail', 'shared_mail_ui',
     ], help='Run only these named gates, retaining their normal sequential order.')
-    parser.add_argument('--retain-from', help='Existing original run whose accepted shared Mail UI gate must pass exact package/import/runtime continuity checks.')
+    parser.add_argument('--retain-from', help='Compatibility shorthand for --retain-gate shared_mail_ui=RUN.')
+    parser.add_argument('--retain-gate', action='append', default=[], metavar='GATE=RUN',
+        help='Retain one eligible independent gate from an immutable run after exact continuity proof; repeat for separate gates.')
     args = parser.parse_args()
     planned = plan()
     planned['available_gate_names'] = [gate['name'] for gate in planned['commands']]
@@ -745,9 +830,20 @@ def main():
     planned['selected_gate_names'] = [gate['name'] for gate in planned['commands']]
     planned['selected_suite_counts'] = {name: count for name, count in planned['suite_counts'].items()
         if name in planned['selected_gate_names']}
-    planned['retained_evidence_request'] = args.retain_from
-    if args.retain_from and 'shared_mail_ui' in planned['selected_gate_names']:
-        parser.error('The retained shared Mail UI gate must not also be selected for fresh execution')
+    retained_requests = {}
+    requested = list(args.retain_gate)
+    if args.retain_from:
+        requested.append('shared_mail_ui=' + args.retain_from)
+    for value in requested:
+        name, separator, run = value.partition('=')
+        if not separator or name not in RETAINABLE_GATE_PACKAGES or not re.fullmatch(r'[a-zA-Z0-9_-]+', run):
+            parser.error('Retained gates must be shared_mail_ui=RUN or incoming_store=RUN')
+        if name in retained_requests:
+            parser.error('Each retained gate may be requested only once')
+        if name in planned['selected_gate_names']:
+            parser.error('A retained gate must not also be selected for fresh execution')
+        retained_requests[name] = run
+    planned['retained_gate_requests'] = retained_requests
     if args.plan:
         write_json(HERE / 'plan.json', planned)
         print(json.dumps({key: planned[key] for key in ('observed_head', 'suite_counts', 'selected_suite_counts', 'selected_gate_names', 'static_path_count', 'planned_source_input_count', 'missing_planned_suites')}, indent=2))
@@ -772,8 +868,16 @@ def main():
     write_json(directory / 'historical-ruler.json', planned['historical_ruler'])
     manifests = [save_manifest(directory, 'inputs-before.json', before)]
     retention = None
-    if args.retain_from:
-        retention = retained_continuity(args.retain_from, before, runtime)
+    if retained_requests:
+        proofs = {name: retained_continuity(run, before, runtime, gate_name=name)
+            for name, run in retained_requests.items()}
+        retention = {
+            'accepted': all(proof['accepted'] for proof in proofs.values()),
+            'retained_passed_cases': sum(proof['retained_passed_cases'] for proof in proofs.values()),
+            'retained_gates': [gate for proof in proofs.values() for gate in proof['retained_gates']],
+            'gate_proofs': proofs,
+            'scope': 'Independent gate retention only, with separate immutable source/evidence provenance and exact package/import/configuration/runtime proof for each gate. No engine/editor/Studio cases carried forward.',
+        }
         write_json(directory / 'retained-continuity.json', retention)
         if not retention['accepted']:
             write_json(directory / 'summary.json', {
@@ -796,13 +900,7 @@ def main():
         if result['interrupted'] or not comparison['stable']:
             break
     test_results = [record for record in results if record['kind'] == 'tests']
-    protocols_ok = all(record['reporter']['reporter_success']
-        and not record['reporter']['incomplete_lifecycle_ids']
-        and not record['reporter']['orphan_completion_ids']
-        and not record['reporter']['duplicate_start_ids']
-        and not record['reporter']['duplicate_completion_ids']
-        and not record['reporter']['missing_suites']
-        and not record['reporter']['unexpected_suites'] for record in test_results)
+    protocols_ok = all(complete_reporter(record['reporter']) for record in test_results)
     summary = {
         'expected_source_head': expected, 'finished_head': current_head(),
         'runner_sha256_before': runner_sha, 'runner_sha256_after': digest(Path(__file__).read_bytes()),

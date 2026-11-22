@@ -4,6 +4,20 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Remember custom Archive destinations per account in connected IMAP, Exchange
+  EWS and Microsoft 365. Add English/German/Arabic save/change/clear controls
+  that work without a selected message, fresh exact-folder validation,
+  missing-folder repair and revision checks before durable single/bulk moves.
+  Native preferences survive restart, logout and cache eviction; account removal
+  clears them. Preserve Gmail Inbox-label removal. Guard stale toolbar callbacks,
+  dialogs and optional settings-owner identity. See the
+  [workflow guide](../../docs/roadmaps/mail/remembered-archive.md).
+- Fix provider Close while the first cached-mail snapshot is pending. Save
+  adopted drafts first; preserve a staged draft's durable snapshot without
+  resaving it. Cancel observers before draining admission, and wait for late
+  acquisitions and owner release before leaving the account. Keep failed draft
+  saves and cancellation recoverable without replaying commands.
+
 - Reopen supported bordered research tables from editable Zotero ODT exports.
   Retain citation editability, cell border appearance, selected-field context
   and the existing detached Refresh/undo transaction across DOCX/ODT saves.
@@ -23,6 +37,8 @@ All notable changes to `quds_office_editor` are documented here.
   Apply the same retained cleanup to Disconnect, Refresh and folder changes;
   cancel observers waiting for an initial saved-mail snapshot before draining
   restoration, and close their owner only after both have finished.
+  Publish restored drafts only after cache setup and selected-record refresh;
+  keep late acquisition and failed cleanup owned by the pending admission.
   Bind toolbar callbacks to their original session and mailbox. Preserve
   same-session host cancellation during ordinary modal reviews while fencing
   the full account-chooser handoff. Fresh connections register normally.
@@ -31,8 +47,8 @@ All notable changes to `quds_office_editor` are documented here.
   shares an in-flight submission's preservation instead of issuing a duplicate
   save that could recreate an accepted or queued draft. Initial save failure
   retains the original session; final outcome persistence precedes owner close.
-  Native Close continues to hide the mounted Mail pane, and persistent release
-  failures can require a host restart. See the
+  Native Close hides the mounted Mail pane after pending account admission and
+  ownership settle; persistent release failures can require a host restart. See the
   [connected account guide](../../docs/roadmaps/mail/connected-account-navigation.md)
   for the current contract, qualification and remaining multi-account work; the
   [initial navigation guide](../../docs/roadmaps/mail/account-navigation.md)

@@ -1,0 +1,499 @@
+{
+  "case_attempts": 60,
+  "cases": [
+    {
+      "id": 5,
+      "name": "selected account uses only its saved route and requires explicit Connect",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 7,
+      "name": "native switch drains observer then owner before routing",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_release_test.dart"
+    },
+    {
+      "id": 8,
+      "name": "edited identity fails before client construction or local store access",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 9,
+      "name": "forgotten destination fails before client construction",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 10,
+      "name": "removed destination during connect stops the next provider step",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 11,
+      "name": "failed native observer drain blocks stale disconnect and refresh until release",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_release_test.dart"
+    },
+    {
+      "id": 12,
+      "name": "revised destination during connect stops the next provider step",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 13,
+      "name": "removed destination during folders stops the next provider step",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 14,
+      "name": "failed stale candidate close blocks account ownership until explicit release",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_release_test.dart"
+    },
+    {
+      "id": 15,
+      "name": "revised destination during folders stops the next provider step",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 16,
+      "name": "removed destination during select stops the next provider step",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 17,
+      "name": "revised destination during select stops the next provider step",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 18,
+      "name": "native disconnect cannot retire pending target factory or load ownership",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_release_test.dart"
+    },
+    {
+      "id": 19,
+      "name": "removed destination during headers stops the next provider step",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 20,
+      "name": "selected cache remains unadopted until CAS and retains failed observer cleanup",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_release_test.dart"
+    },
+    {
+      "id": 21,
+      "name": "revised destination during headers stops the next provider step",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 22,
+      "name": "ordinary Disconnect retires a non-emitting staged observer once before explicit retry",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_release_test.dart"
+    },
+    {
+      "id": 23,
+      "name": "removed destination during capabilities stops the next provider step",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 24,
+      "name": "revised destination during capabilities stops the next provider step",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 25,
+      "name": "disposing a staged observer drains its candidate only once",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_release_test.dart"
+    },
+    {
+      "id": 28,
+      "name": "legacy header adapter also rejects a removed pending target",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 29,
+      "name": "removed destination during draft open cannot publish local content",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 30,
+      "name": "revised destination during draft open cannot publish local content",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 32,
+      "name": "gmail setup opens while the IMAP credential catalog is pending",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_router_test.dart"
+    },
+    {
+      "id": 33,
+      "name": "removed destination during draft load cannot publish local content",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 34,
+      "name": "revised destination during draft load cannot publish local content",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 35,
+      "name": "replacing host target retires a pending IMAP sign-in",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 36,
+      "name": "replacing host directory retires a pending IMAP sign-in",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 37,
+      "name": "replacing host draft factory retires a pending IMAP sign-in",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 38,
+      "name": "graph setup opens while the IMAP credential catalog is pending",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_router_test.dart"
+    },
+    {
+      "id": 39,
+      "name": "removed destination during final remember is never recreated",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 40,
+      "name": "revised destination during final remember is never recreated",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 41,
+      "name": "ews setup opens while the IMAP credential catalog is pending",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_router_test.dart"
+    },
+    {
+      "id": 42,
+      "name": "ambiguous SMTP routes require a choice and preserve STARTTLS prefill",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 43,
+      "name": "switch saves uncertainty and drains the old store before showing another setup",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 44,
+      "name": "connected IMAP to EWS to IMAP retains each draft and owner",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_router_test.dart"
+    },
+    {
+      "id": 45,
+      "name": "failed draft save retains the original connected account",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 46,
+      "name": "removal during draft persistence keeps the old connection",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 47,
+      "name": "failed owner release retains source ownership until explicit release retry",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 48,
+      "name": "ambiguous SMTP routes can be selected explicitly and connected",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_router_test.dart"
+    },
+    {
+      "id": 49,
+      "name": "duplicate and delayed callbacks cannot pop a newer provider",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_router_test.dart"
+    },
+    {
+      "id": 50,
+      "name": "late unselected owner acquisition drains before a subsequent connect",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 51,
+      "name": "callback from a normally closed provider route stays retired",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_router_test.dart"
+    },
+    {
+      "id": 52,
+      "name": "a failed disconnected owner blocks connect until explicit release retry",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 53,
+      "name": "setup keyboard input is retired during an async account change",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_router_test.dart"
+    },
+    {
+      "id": 54,
+      "name": "late unselected owner acquisition drains before a subsequent provider setup",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 55,
+      "name": "a failed disconnected owner blocks provider setup until explicit release retry",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 56,
+      "name": "pending ordinary open blocks Close and local accounts after Disconnect",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 57,
+      "name": "pending ordinary open blocks Close and local drafts after Disconnect",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 58,
+      "name": "pending ordinary load blocks Close and local accounts after Disconnect",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 59,
+      "name": "pending ordinary load blocks Close and local drafts after Disconnect",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 60,
+      "name": "ordinary close failure keeps Close and local entries blocked until explicit release",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 61,
+      "name": "successful target can disconnect and reconnect after directory revision advances",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 62,
+      "name": "fresh catalog connection still registers its account",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 63,
+      "name": "atomic selected refresh preserves a removed native shortcut",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 64,
+      "name": "atomic selected refresh preserves a revised native shortcut",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 65,
+      "name": "removed target after delayed connect cannot admit later work",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 66,
+      "name": "removed target after delayed folders cannot admit later work",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 67,
+      "name": "removed target after delayed headers cannot admit later work",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 68,
+      "name": "removed target during store open closes the candidate without adoption",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    }
+  ],
+  "completed_lifecycles": 63,
+  "done_events": [
+    {
+      "success": true,
+      "time": 23312,
+      "type": "done"
+    }
+  ],
+  "duplicate_case_names": [],
+  "duplicate_completion_ids": [],
+  "duplicate_start_ids": [],
+  "errors": [],
+  "excluded_lifecycles": [
+    {
+      "id": 1,
+      "name": "loading /workspace/scratch/85a369f34dbb/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart",
+      "reason": "hidden",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 3,
+      "name": "loading /workspace/scratch/85a369f34dbb/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_account_navigation_native_release_test.dart",
+      "reason": "hidden",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_release_test.dart"
+    },
+    {
+      "id": 27,
+      "name": "loading /workspace/scratch/85a369f34dbb/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_account_navigation_router_test.dart",
+      "reason": "hidden",
+      "result": "success",
+      "skipped": false,
+      "suite": "packages/quds_office_editor/example/test/studio_mail_account_navigation_router_test.dart"
+    }
+  ],
+  "expected_suite_count": 3,
+  "failed_cases": 0,
+  "incomplete_cases": 0,
+  "incomplete_lifecycle_ids": [],
+  "missing_suites": [],
+  "native_build_hook_progress": [],
+  "non_json_output": [],
+  "orphan_completion_ids": [],
+  "passed_cases": 60,
+  "per_file_counts": {
+    "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_release_test.dart": {
+      "passed": 7
+    },
+    "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart": {
+      "passed": 45
+    },
+    "packages/quds_office_editor/example/test/studio_mail_account_navigation_router_test.dart": {
+      "passed": 8
+    }
+  },
+  "reporter_start_events": [
+    {
+      "pid": 45,
+      "protocolVersion": "0.1.1",
+      "runnerVersion": "1.31.1",
+      "time": 0,
+      "type": "start"
+    }
+  ],
+  "reporter_success": true,
+  "skipped_cases": 0,
+  "started_lifecycles": 63,
+  "suite_count": 3,
+  "unexpected_suites": [],
+  "unique_completed_cases": 60,
+  "unique_started_cases": 60
+}

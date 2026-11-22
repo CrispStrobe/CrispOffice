@@ -797,6 +797,7 @@ extension MailStoreLocalOperations on SqliteMailRepository {
       'drafts',
       'account_quick_texts',
       'account_compose_settings',
+      'account_archive_settings',
       'blob_refs',
       'blobs',
       'memberships',
@@ -825,6 +826,7 @@ extension MailStoreLocalOperations on SqliteMailRepository {
     await _db.customStatement('DELETE FROM saved_header_searches');
     await _db.customStatement('DELETE FROM account_quick_texts');
     await _db.customStatement('DELETE FROM account_compose_settings');
+    await _db.customStatement('DELETE FROM account_archive_settings');
     for (final row in await _rows('SELECT id FROM accounts')) {
       await _removeLocalAccount(
         MailAccountId(row.read<String>('id'), profile: profile),
