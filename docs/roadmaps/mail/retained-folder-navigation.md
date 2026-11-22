@@ -83,9 +83,9 @@ listed after expendable body/cache data is removed.
 This increment closes the split between two local folder readers. The next
 ordered steps are:
 
-1. Durable foreground move/delete intent, dispatch markers and receipts for the
-   existing connected controls, with restart history and no automatic replay of
-   uncertain writes.
+1. [Durable foreground Move/Delete](durable-mutations.md) now continues this
+   task with exact intent, dispatch markers, restart receipts and no automatic
+   replay. Its separate provider-specific membership reconciliation remains open.
 2. Provider-specific membership reconciliation: IMAP deleted flags and MOVE,
    Gmail label/trash behavior, EWS changed IDs and Graph immutable IDs.
 3. Connected and multi-account navigation over the same repository contracts,

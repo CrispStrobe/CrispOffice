@@ -23,6 +23,7 @@ final class MailStoredFlagBatchSummary {
     required this.mailbox,
     required this.provider,
     required this.action,
+    this.destination,
     required this.createdAt,
     required this.updatedAt,
     required this.revision,
@@ -41,6 +42,10 @@ final class MailStoredFlagBatchSummary {
   final MailMailboxId mailbox;
   final MailProviderKind provider;
   final MailBulkFlagAction action;
+  final MailMailboxId? destination;
+
+  /// Membership changes need provider-specific reconciliation, not flag reads.
+  bool get canCheckFlags => action.isFlagAction;
   final DateTime createdAt;
   final DateTime updatedAt;
   final int revision;
@@ -59,6 +64,7 @@ final class MailStoredFlagBatchSummary {
   int get totalCount =>
       confirmedCount + failedCount + uncertainCount + unattemptedCount;
   bool get requiresRefresh =>
+      (!action.isFlagAction && confirmedCount != 0) ||
       unresolvedCount != 0 ||
       persistenceProblem != null ||
       stopReason == MailBulkFlagStopReason.persistenceFailure ||

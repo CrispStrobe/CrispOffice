@@ -242,6 +242,9 @@ final class _StudioMailFlagJournal implements MailBulkFlagJournal {
           provider: provider,
           messages: [for (final remote in plan.messages) _remote(remote)],
           action: plan.action,
+          destination: plan.destination == null
+              ? null
+              : MailMailboxId(plan.destination!.value, account: store.account),
         );
         final created = await store._repository.createFlagBatch(
           local,
@@ -279,7 +282,10 @@ final class _StudioMailFlagJournal implements MailBulkFlagJournal {
                 (expected as MailSetRead).read ||
         result.operation is MailSetFlagged &&
             (result.operation as MailSetFlagged).flagged !=
-                (expected as MailSetFlagged).flagged) {
+                (expected as MailSetFlagged).flagged ||
+        result.operation is MailMove &&
+            (result.operation as MailMove).destination !=
+                (expected as MailMove).destination) {
       throw const StudioMailFlagJournalException(MailProblemCode.conflict);
     }
     return MailBulkFlagItemResult.restore(

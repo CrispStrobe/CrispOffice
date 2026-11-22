@@ -15,6 +15,7 @@ import 'package:quds_office_studio/studio_mail_bulk_status.dart';
 import 'package:quds_office_studio/studio_mail_flag_journal.dart';
 import 'package:quds_office_studio/studio_mail_journal_dialog.dart';
 import 'package:quds_office_studio/studio_mail_journal_strings.dart';
+import 'package:quds_office_studio/studio_mail_mutation_strings.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
 import 'support/mail_flag_journal.dart';
@@ -111,6 +112,7 @@ Future<void> _show(
   Size size = const Size(900, 720),
   double scale = 1,
   bool Function()? isCurrent,
+  StudioMailReconcileFlagBatch? onReconcile,
 }) async {
   await tester.binding.setSurfaceSize(size);
   addTearDown(() => tester.binding.setSurfaceSize(null));
@@ -151,6 +153,7 @@ Future<void> _show(
                     strings: strings,
                     store: store,
                     isCurrent: isCurrent ?? () => true,
+                    onReconcile: onReconcile,
                   ),
                 ),
                 child: Text(strings.mailActivity),
@@ -238,6 +241,53 @@ Future<void> _mixed(
       ),
     },
   );
+}
+
+Future<void> _membership(
+  TestMailFlagJournal fixture,
+  MailBulkFlagAction action, {
+  String id = 'membership-receipt',
+}) async {
+  final selected = fixture.plan(id, count: 2);
+  final plan = MailBulkFlagPlan(
+    id: selected.id,
+    mailbox: selected.mailbox,
+    provider: selected.provider,
+    action: action,
+    messages: selected.messages,
+    destination: action == MailBulkFlagAction.move
+        ? MailMailboxId(
+            'Archive/Projects 2026',
+            account: selected.mailbox.account,
+          )
+        : null,
+  );
+  final session = MailAccountSession(plan.mailbox.account);
+  try {
+    await MailBulkFlagCoordinator().run(
+      plan: plan,
+      lease: session.begin(),
+      isScopeCurrent: () => fixture.current,
+      journal: fixture.bind(
+        plan,
+        subjects: const [
+          'Saved membership subject',
+          'Never dispatched subject',
+        ],
+      ),
+      apply: (operation, lease) async {
+        fixture.dispatched.add(operation);
+        return const MailBulkFlagAttempt.uncertain(
+          MailProblem(
+            MailProblemCode.providerFailure,
+            mutationMayHaveOccurred: true,
+          ),
+        );
+      },
+    );
+  } finally {
+    session.dispose();
+  }
 }
 
 void main() {
@@ -425,6 +475,215 @@ void main() {
       expect(store.clears, 0);
     },
   );
+
+  for (final provider in [MailProviderKind.imap, MailProviderKind.graph]) {
+    for (final action in [MailBulkFlagAction.move, MailBulkFlagAction.delete]) {
+      testWidgets(
+        '${provider.name} ${action.name} history retains its target and offers no flag status checks',
+        (tester) async {
+          final fixture = (await tester.runAsync(() async {
+            final fixture = await TestMailFlagJournal.create(
+              provider: provider,
+            );
+            await _membership(fixture, action);
+            await fixture.reopen();
+            return fixture;
+          }))!;
+          addTearDown(() => settleMailJournal(tester, fixture.dispose));
+          final store = _RecordingStore(fixture.store);
+          const strings = StudioStrings(StudioLanguage.en);
+          var checks = 0;
+          await _show(
+            tester,
+            store,
+            onReconcile: (batch, cancellation, isCurrent) async {
+              checks++;
+              return batch;
+            },
+          );
+          expect(find.text(strings.mailActivityAction(action)), findsOneWidget);
+          expect(checks, 0);
+          await _tap(tester, 'studio-mail-activity-membership-receipt');
+          final status = tester.widget<StudioMailBulkStatus>(
+            find.byType(StudioMailBulkStatus),
+          );
+          expect(status.report.plan.action, action);
+          expect(status.report.uncertainCount, 1);
+          expect(status.report.unattemptedCount, 1);
+          expect(status.historical, isTrue);
+          expect(status.report.plan.mailbox.account, fixture.account);
+          expect(
+            find.text(
+              action == MailBulkFlagAction.move
+                  ? strings.mailMoveMessage
+                  : strings.mailDeleteAction(provider),
+            ),
+            findsOneWidget,
+          );
+          if (action == MailBulkFlagAction.move) {
+            expect(
+              find.text(
+                strings.mailMutationDestination('Archive/Projects 2026'),
+              ),
+              findsOneWidget,
+            );
+            expect(status.report.plan.destination?.account, fixture.account);
+          } else {
+            expect(status.report.plan.destination, isNull);
+            expect(find.textContaining('Destination folder:'), findsNothing);
+          }
+          expect(find.text(strings.mailMutationHistoryScope), findsOneWidget);
+          expect(_key('studio-mail-activity-check'), findsNothing);
+          expect(_key('studio-mail-activity-reconnect'), findsNothing);
+          expect(_key('studio-mail-activity-checked-counts'), findsNothing);
+
+          await _tap(tester, 'studio-mail-bulk-details');
+          expect(find.text('Saved membership subject'), findsOneWidget);
+          expect(find.text('Uncertain'), findsOneWidget);
+          expect(
+            find.textContaining('will not be repeated automatically'),
+            findsOneWidget,
+          );
+          expect(
+            find.textContaining('Later status checks appear'),
+            findsNothing,
+          );
+          expect(_key('studio-mail-bulk-stop'), findsNothing);
+          await _tap(tester, 'studio-mail-bulk-details-close');
+          await _tap(tester, 'studio-mail-activity-back');
+          await _tap(tester, 'studio-mail-activity-refresh');
+          expect(checks, 0);
+          expect(store.binds, 0);
+          expect(fixture.dispatched, hasLength(1));
+        },
+      );
+    }
+  }
+
+  testWidgets(
+    'an inconsistent saved destination cannot be displayed as a receipt',
+    (tester) async {
+      final fixture = (await tester.runAsync(() async {
+        final fixture = await TestMailFlagJournal.create();
+        await _membership(fixture, MailBulkFlagAction.move);
+        return fixture;
+      }))!;
+      addTearDown(() => settleMailJournal(tester, fixture.dispose));
+      final saved = (await tester.runAsync(
+        () => fixture.store.load('membership-receipt'),
+      ))!;
+      final summary = saved.summary;
+      final store = _RecordingStore(fixture.store)
+        ..loadOverride = (_) async => MailStoredFlagBatch(
+          summary: MailStoredFlagBatchSummary(
+            id: summary.id,
+            mailbox: summary.mailbox,
+            provider: summary.provider,
+            action: summary.action,
+            destination: MailMailboxId(
+              'Archive/Other',
+              account: fixture.account,
+            ),
+            createdAt: summary.createdAt,
+            updatedAt: summary.updatedAt,
+            revision: summary.revision,
+            complete: summary.complete,
+            interrupted: summary.interrupted,
+            confirmedCount: summary.confirmedCount,
+            failedCount: summary.failedCount,
+            uncertainCount: summary.uncertainCount,
+            unattemptedCount: summary.unattemptedCount,
+            reconciledCount: summary.reconciledCount,
+            stopReason: summary.stopReason,
+            persistenceProblem: summary.persistenceProblem,
+          ),
+          report: saved.report,
+          subjects: saved.subjects,
+        );
+      await _show(tester, store);
+      await _tap(tester, 'studio-mail-activity-membership-receipt');
+      expect(_key('studio-mail-activity-error'), findsOneWidget);
+      expect(find.byType(StudioMailBulkStatus), findsNothing);
+      expect(find.textContaining('Archive/Other'), findsNothing);
+      expect(store.binds, 0);
+      expect(fixture.dispatched, hasLength(1));
+    },
+  );
+
+  for (final language in StudioLanguage.values) {
+    for (final action in [MailBulkFlagAction.move, MailBulkFlagAction.delete]) {
+      testWidgets(
+        '${language.name} ${action.name} activity fits narrow enlarged text and preserves controls',
+        (tester) async {
+          final fixture = (await tester.runAsync(() async {
+            final fixture = await TestMailFlagJournal.create();
+            await _membership(fixture, action);
+            await fixture.reopen();
+            return fixture;
+          }))!;
+          addTearDown(() => settleMailJournal(tester, fixture.dispose));
+          final store = _RecordingStore(fixture.store);
+          final strings = StudioStrings(language);
+          await _show(
+            tester,
+            store,
+            language: language,
+            size: const Size(360, 640),
+            scale: 1.4,
+          );
+          expect(find.text(strings.mailActivityAction(action)), findsOneWidget);
+          expect(
+            Directionality.of(
+              tester.element(_key('studio-mail-activity-dialog')),
+            ),
+            language == StudioLanguage.ar
+                ? TextDirection.rtl
+                : TextDirection.ltr,
+          );
+          expect(
+            _key('studio-mail-activity-close').hitTestable(),
+            findsOneWidget,
+          );
+          await _tap(tester, 'studio-mail-activity-membership-receipt');
+          expect(_key('studio-mail-activity-membership-scope'), findsOneWidget);
+          expect(_key('studio-mail-activity-check'), findsNothing);
+          if (action == MailBulkFlagAction.move) {
+            expect(
+              find.text(
+                strings.mailMutationDestination('Archive/Projects 2026'),
+              ),
+              findsOneWidget,
+            );
+          } else {
+            expect(find.text(strings.mailMarkDeleted), findsOneWidget);
+          }
+          await _capture(tester, '${language.name}-${action.name}-membership');
+          await _tap(tester, 'studio-mail-bulk-details');
+          expect(_key('studio-mail-bulk-result-0'), findsOneWidget);
+          expect(
+            _key('studio-mail-bulk-details-close').hitTestable(),
+            findsOneWidget,
+          );
+          await _capture(
+            tester,
+            '${language.name}-${action.name}-membership-details',
+          );
+          await _tap(tester, 'studio-mail-bulk-details-close');
+          expect(
+            _key('studio-mail-activity-back').hitTestable(),
+            findsOneWidget,
+          );
+          expect(
+            _key('studio-mail-activity-close').hitTestable(),
+            findsOneWidget,
+          );
+          expect(store.binds, 0);
+          expect(fixture.dispatched, hasLength(1));
+          expect(tester.takeException(), isNull);
+        },
+      );
+    }
+  }
 
   for (final variant in [
     (

@@ -16,6 +16,7 @@ The full implementation and validation record is preserved in
 | Insert/edit citations with Zotero's picker | **Insert → Zotero → Document** | Zotero desktop running on the same computer |
 | Insert a note or annotation | **Add Zotero note / annotation** | Zotero 9+ for direct annotations |
 | Refresh citations and build a bibliography | **Document** commands | Active citation fields in an editable DOCX |
+| Repair damaged citation or bibliography metadata | **Document → reference actions → Repair in Zotero…** | Running Zotero desktop and a complete, safely owned field |
 | Work from LibreOffice Writer | Open a supported native ODT, then save DOCX | Supported ODT subset |
 
 ## Native desktop formatting
@@ -61,6 +62,36 @@ chords remain reserved when customizing workspace shortcuts.
 
 Native desktop integration is available even before the catalog browser is
 connected. The Zotero windows may open behind the office app.
+
+## Repair damaged reference metadata
+
+An existing citation or bibliography can retain readable text even when its
+stored reference data is damaged. The Document tab identifies that condition
+and offers **Repair in Zotero…** when the field has a complete, safely owned
+structure. Native Refresh can also pass those fields to Zotero for recovery.
+This covers damaged citation JSON or citation metadata that fails validation,
+and bibliography JSON that cannot be decoded.
+
+When Zotero selects the damaged reference, its prompt shows the original text
+and location. The original code, text and formatting remain unchanged until
+the complete operation succeeds. An empty citation used temporarily by Zotero
+during repair is never saved as an active field. Cancellation, unfinished
+repair or a changed document leaves the staged result unapplied. Successful
+repair is one undoable change, and active fields survive DOCX save/reopen.
+
+To keep the visible wording without a live reference, choose Quds'
+**Convert to text…** or the reference menu's **Convert to text (undoable)**.
+For damaged metadata, Quds asks you to confirm. This keeps the text and
+formatting; undo restores the original damaged field. A reopened converted
+file contains ordinary text. Zotero controls its own repair choices and can
+request deletion, so its native **No** button is not a substitute for Quds'
+explicit conversion action.
+
+Locked, nested, opaque, incomplete or ambiguously owned fields remain
+protected. Quds does not infer missing field boundaries or repair a field
+shared across incompatible owners. See the
+[recovery scope and validation record](validation/zotero-field-recovery-20261122/README.md)
+for the supported structures and remaining installed-application acceptance.
 
 ## References workspace
 

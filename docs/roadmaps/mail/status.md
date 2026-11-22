@@ -24,7 +24,22 @@ interrupted work.
 | Account persistence | Native account store, schema migrations and reconnect |
 | Browser store | Implemented path; quota/reload/Web Locks acceptance remains open |
 
-## Latest increment: unified retained-folder navigation
+## Latest increment: durable foreground Move/Delete
+
+Connected single-message Move/Delete now commits intent and an applying marker
+before provider work, preserves exact destination identity, and keeps restart
+receipts in Mail activity. Native IMAP gains capability-checked Move and Mark
+deleted controls; EWS/Gmail/Microsoft 365 reuse their existing provider semantics.
+Confirmed membership changes require a folder refresh. Interrupted outcomes do
+not replay, and uncertain Move/Delete cannot be incorrectly resolved through a
+read/flag observation. Schema 13 preserves earlier data with additive migration.
+
+See the [workflow, boundaries and ordered continuation](durable-mutations.md)
+and [local qualification record](../../validation/mail-durable-mutations-20261122/README.md).
+Provider-specific membership reconciliation, bulk organization and connected
+multi-account navigation remain subsequent work.
+
+## Previous increment: unified retained-folder navigation
 
 Cached mail now lists saved browsing windows and synchronized folders together
 for the selected account. A folder appears once, keeps its two coverage sources
@@ -41,8 +56,8 @@ qualification are recorded separately with their exact source bounds.
 
 See the [workflow and ownership contract](retained-folder-navigation.md) and
 [fresh qualification record](../../validation/mail-retained-navigation-20261122/README.md).
-This is one account's local navigation. Connected multi-account navigation and
-durable move/delete remain subsequent work.
+This is one account's local navigation. Connected multi-account navigation
+remains subsequent work; durable single-message Move/Delete is continued above.
 
 ## Previous increment: saved-search folder sets
 
@@ -86,6 +101,8 @@ and [work record](../../validation/mail-keyboard-triage-20261121/README.md).
 - Navigate saved browse windows and synchronized folders in one local catalog,
   with explicit coverage sources and paged synchronized headers.
 - Mark read/unread and flagged state with recoverable foreground commands.
+- Move or delete one connected message with durable intent, receipts and
+  explicit refresh; IMAP marks deleted without expunging.
 - Use Conversations for explicitly loaded threaded headers. Subjects alone
   never create a thread.
 - Open attachments through the shared attachment workflow.
@@ -138,7 +155,7 @@ must distinguish loading from a genuinely absent account.
 - drafts and frozen Outbox payloads;
 - saved searches and exact account/folder scope;
 - local search indexes;
-- recovery journals for interrupted read/flag work.
+- recovery journals for interrupted read/flag/move/delete work.
 
 The current store is **not encrypted**. Process-kill tests do not establish
 power-loss durability. Browser persistence and quota behavior remain unqualified.

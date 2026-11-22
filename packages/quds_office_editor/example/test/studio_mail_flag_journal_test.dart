@@ -6,7 +6,294 @@ import 'package:quds_office_studio/studio_mail_flag_journal.dart';
 
 import 'support/mail_flag_journal.dart';
 
+MailBulkFlagPlan _membershipPlan(
+  TestMailFlagJournal fixture,
+  String id,
+  MailBulkFlagAction action, {
+  String destination = 'Archive/Projects 2026',
+}) {
+  final selected = fixture.plan(id, count: 2);
+  return MailBulkFlagPlan(
+    id: selected.id,
+    mailbox: selected.mailbox,
+    provider: selected.provider,
+    action: action,
+    messages: selected.messages,
+    destination: action == MailBulkFlagAction.move
+        ? MailMailboxId(destination, account: selected.mailbox.account)
+        : null,
+  );
+}
+
+Future<MailBulkFlagReport> _runMembership(
+  TestMailFlagJournal fixture,
+  MailBulkFlagPlan plan, {
+  List<String> subjects = const [
+    'Frozen first subject',
+    'Frozen second subject',
+  ],
+  MailBulkFlagAttempt outcome = const MailBulkFlagAttempt.confirmed(),
+}) async {
+  final session = MailAccountSession(plan.mailbox.account);
+  try {
+    return await MailBulkFlagCoordinator().run(
+      plan: plan,
+      lease: session.begin(),
+      isScopeCurrent: () => fixture.current,
+      journal: fixture.bind(plan, subjects: subjects),
+      apply: (operation, lease) async {
+        fixture.dispatched.add(operation);
+        return outcome;
+      },
+    );
+  } finally {
+    session.dispose();
+  }
+}
+
+final class _MembershipObserver implements MailFlagObserver {
+  _MembershipObserver(this.account);
+
+  @override
+  final MailAccountId account;
+  int calls = 0;
+
+  @override
+  Future<MailResult<MailFlagObservation>> observeFlags(
+    MailRemoteIdentity identity, {
+    required MailOperationLease lease,
+  }) async {
+    calls++;
+    return MailSuccess(
+      MailFlagObservation.present(
+        identity: identity,
+        flags: const MailMessageFlags(isRead: true, isFlagged: true),
+      ),
+    );
+  }
+}
+
 void main() {
+  for (final provider in [
+    MailProviderKind.imap,
+    MailProviderKind.ews,
+    MailProviderKind.gmail,
+    MailProviderKind.graph,
+  ]) {
+    for (final action in [MailBulkFlagAction.move, MailBulkFlagAction.delete]) {
+      test(
+        '${provider.name} ${action.name} receipts preserve commands in the stable account after restart',
+        () async {
+          final fixture = await TestMailFlagJournal.create(provider: provider);
+          addTearDown(fixture.dispose);
+          final plan = _membershipPlan(fixture, 'membership', action);
+          final originalDestination = plan.destination;
+          final subjects = ['Original subject', 'النص المحفوظ'];
+          final report = await _runMembership(
+            fixture,
+            plan,
+            subjects: subjects,
+          );
+          subjects[0] = 'Changed after dispatch';
+
+          expect(report.confirmedCount, 2);
+          expect(fixture.dispatched, hasLength(2));
+          expect(
+            fixture.dispatched.map((operation) => operation.message.account),
+            everyElement(plan.mailbox.account),
+          );
+          if (action == MailBulkFlagAction.move) {
+            expect(
+              fixture.dispatched.cast<MailMove>().map(
+                (operation) => operation.destination,
+              ),
+              everyElement(originalDestination),
+            );
+          } else {
+            expect(fixture.dispatched, everyElement(isA<MailDelete>()));
+          }
+
+          await fixture.reopen();
+          final saved = (await fixture.store.load(plan.id))!;
+          final destination = action == MailBulkFlagAction.move
+              ? MailMailboxId('Archive/Projects 2026', account: fixture.account)
+              : null;
+          expect(saved.summary.action, action);
+          expect(saved.summary.provider, provider);
+          expect(saved.summary.mailbox.account, fixture.account);
+          expect(saved.summary.destination, destination);
+          expect(saved.report.plan.destination, destination);
+          expect(saved.summary.canCheckFlags, isFalse);
+          expect(saved.report.confirmedCount, 2);
+          expect(saved.subjects, ['Original subject', 'النص المحفوظ']);
+          expect(
+            saved.report.items.map((item) => item.message.account),
+            everyElement(fixture.account),
+          );
+          if (action == MailBulkFlagAction.move) {
+            expect(
+              saved.report.items.map(
+                (item) => (item.operation as MailMove).destination,
+              ),
+              everyElement(destination),
+            );
+          } else {
+            expect(
+              saved.report.items.map((item) => item.operation),
+              everyElement(isA<MailDelete>()),
+            );
+          }
+          if (provider == MailProviderKind.imap) {
+            final message =
+                saved.report.items.first.message as MailImapIdentity;
+            expect(
+              (message.mailbox.value, message.uidValidity, message.uid),
+              ('INBOX', 71, 1),
+            );
+          } else {
+            expect(
+              (saved.report.items.first.message as MailOpaqueIdentity).value,
+              'remote-1',
+            );
+          }
+          expect(
+            (await fixture.store.list()).batches.single.destination,
+            destination,
+          );
+          expect(plan.destination, originalDestination);
+          expect(fixture.dispatched, hasLength(2));
+        },
+      );
+    }
+  }
+
+  test(
+    'a move receipt rejects a different exact destination before saving',
+    () async {
+      final fixture = await TestMailFlagJournal.create();
+      addTearDown(fixture.dispose);
+      final plan = _membershipPlan(
+        fixture,
+        'frozen-destination',
+        MailBulkFlagAction.move,
+      );
+      final journal = fixture.bind(plan);
+      TestMailFlagJournal.success(await journal.prepare(plan));
+      TestMailFlagJournal.success(await journal.beginAttempt(0));
+      final original = plan.operationAt(0) as MailMove;
+
+      for (final destination in ['archive/Projects 2026', 'Archive/Other']) {
+        final result = await journal.recordResult(
+          0,
+          MailBulkFlagItemResult.restore(
+            operation: MailMove(
+              id: original.id,
+              message: original.message,
+              destination: MailMailboxId(
+                destination,
+                account: original.message.account,
+              ),
+            ),
+            outcome: MailBulkFlagOutcome.confirmed,
+          ),
+        );
+        expect(result, isA<MailFailure<MailUnit>>());
+        final saved = (await fixture.store.load(plan.id))!;
+        expect(saved.report.confirmedCount, 0);
+        expect(saved.summary.destination?.value, 'Archive/Projects 2026');
+      }
+
+      TestMailFlagJournal.success(
+        await journal.recordResult(
+          0,
+          MailBulkFlagItemResult.restore(
+            operation: original,
+            outcome: MailBulkFlagOutcome.confirmed,
+          ),
+        ),
+      );
+      final saved = (await fixture.store.load(plan.id))!;
+      expect(saved.report.confirmedCount, 1);
+      expect(
+        (saved.report.items.first.operation as MailMove).destination,
+        MailMailboxId('Archive/Projects 2026', account: fixture.account),
+      );
+      expect(fixture.dispatched, isEmpty);
+    },
+  );
+
+  for (final provider in [MailProviderKind.imap, MailProviderKind.graph]) {
+    for (final action in [MailBulkFlagAction.move, MailBulkFlagAction.delete]) {
+      test(
+        '${provider.name} uncertain ${action.name} never invokes flag observation recovery',
+        () async {
+          final fixture = await TestMailFlagJournal.create(provider: provider);
+          addTearDown(fixture.dispose);
+          final plan = _membershipPlan(fixture, 'uncertain-membership', action);
+          await _runMembership(
+            fixture,
+            plan,
+            outcome: const MailBulkFlagAttempt.uncertain(
+              MailProblem(
+                MailProblemCode.providerFailure,
+                mutationMayHaveOccurred: true,
+              ),
+            ),
+          );
+          await fixture.reopen();
+          final original = (await fixture.store.load(plan.id))!;
+          final observer = _MembershipObserver(
+            fixture.source('new-connection'),
+          );
+          final cancellation = MailCancellationSource();
+          var checked = 0;
+          final recovery = studioMailFlagRecovery(
+            store: fixture.store,
+            observer: observer,
+            provider: provider,
+            isCurrent: () => true,
+            onChecked: () => checked++,
+          )!;
+          final unsupported = throwsA(
+            isA<StudioMailFlagJournalException>().having(
+              (error) => error.code,
+              'typed unsupported recovery',
+              MailProblemCode.unsupported,
+            ),
+          );
+          await expectLater(
+            recovery(original, cancellation.token, () => true),
+            unsupported,
+          );
+          await expectLater(
+            (fixture.store as StudioMailFlagReconciliationStore).reconcile(
+              id: plan.id,
+              expectedRevision: original.summary.revision,
+              sourceAccount: observer.account,
+              provider: provider,
+              observer: observer,
+              isCurrent: () => true,
+            ),
+            unsupported,
+          );
+
+          final unchanged = (await fixture.store.load(plan.id))!;
+          expect(observer.calls, 0);
+          expect(checked, 0);
+          expect(unchanged.summary.revision, original.summary.revision);
+          expect(unchanged.summary.unresolvedCount, 1);
+          expect(unchanged.resolutions, isEmpty);
+          expect(unchanged.report.unattemptedCount, 1);
+          expect(
+            unchanged.report.plan.destination,
+            original.report.plan.destination,
+          );
+          expect(fixture.dispatched, hasLength(1));
+        },
+      );
+    }
+  }
+
   for (final provider in [
     MailProviderKind.imap,
     MailProviderKind.ews,

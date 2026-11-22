@@ -274,6 +274,7 @@ final class NativeMailImapProvider
         (client, operation) async => MailCapabilities([
           MailCapability.mail,
           MailCapability.folders,
+          MailCapability.delete,
           if (client.serverInfo.supportsMove) MailCapability.move,
         ]),
       );
@@ -767,7 +768,11 @@ final class NativeMailImapProvider
         !_mailboxValid(identity.mailbox) ||
         command.id.isEmpty ||
         command.id.length > 1024 ||
-        command is MailMove && !_mailboxValid(command.destination)) {
+        command is MailMove &&
+            (!_mailboxValid(command.destination) ||
+                command.destination == identity.mailbox ||
+                identity.mailbox.value.toUpperCase() == 'INBOX' &&
+                    command.destination.value.toUpperCase() == 'INBOX')) {
       return _failure(MailProblemCode.invalidInput);
     }
     return _run(lease, (client, operation) async {

@@ -1,0 +1,216 @@
+{
+  "completed_at_utc": "2026-11-22T06:17:13.654263+00:00",
+  "repository": "CrispStrobe/quds_office_suite",
+  "baseline": "a5b4eb7d329b0700768b1fc72bb63cf58a9f5cd6",
+  "final_tips": {
+    "codex/mail-durable-mutations-20261122": "918e7dd12e66b79e75082a41c250887a92db0d4e",
+    "codex/word-vba-compatibility-20261122": "45a1c0846f3fb78a203f2967e5b80a79fdca2ca9",
+    "codex/zotero-field-recovery-20261122": "6ba219a03a9933eded77980f9d7cdbd118183ee1",
+    "main": "a5b4eb7d329b0700768b1fc72bb63cf58a9f5cd6"
+  },
+  "qualification_tree": {
+    "directory": "/workspace/scratch/a07ecb0743c3/incoming-office-review",
+    "detached_head": "45a1c0846f3fb78a203f2967e5b80a79fdca2ca9",
+    "no_commit_merge_head": "6ba219a03a9933eded77980f9d7cdbd118183ee1",
+    "merge_conflicts": [],
+    "root_worktree_writes": false,
+    "created_commits_or_remote_writes": false
+  },
+  "runtime": {
+    "flutter": "3.47.8",
+    "dart": "3.13.7",
+    "platform": "linux_x64",
+    "dependency_restore": {
+      "command": [
+        "/workspace/scratch/a07ecb0743c3/mail-runtime/bin/flutter",
+        "pub",
+        "get",
+        "--offline",
+        "--enforce-lockfile"
+      ],
+      "exit_code": 0,
+      "lockfile_changed": false
+    }
+  },
+  "tests": [
+    {
+      "name": "incoming-engine-focused",
+      "cwd": "/workspace/scratch/a07ecb0743c3/incoming-office-review/packages/quds_office_engine",
+      "command": [
+        "/workspace/scratch/a07ecb0743c3/mail-runtime/bin/flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--machine",
+        "test/office_vba_word_cell_paragraphs_test.dart",
+        "test/office_vba_word_cell_paragraphs_conformance_test.dart",
+        "test/office_vba_word_cell_paragraphs_integration_test.dart",
+        "test/word_table_cell_paragraph_formatting_test.dart",
+        "test/office_vba_word_cell_formatting_test.dart",
+        "test/word_zotero_field_recovery_test.dart"
+      ],
+      "exit_code": 0,
+      "actual_tests_passed": 307,
+      "failed": 0,
+      "skipped": 0,
+      "duration_ms": 41262,
+      "by_file": {
+        "office_vba_word_cell_paragraphs_test.dart": 66,
+        "office_vba_word_cell_paragraphs_conformance_test.dart": 33,
+        "office_vba_word_cell_paragraphs_integration_test.dart": 17,
+        "word_table_cell_paragraph_formatting_test.dart": 76,
+        "office_vba_word_cell_formatting_test.dart": 77,
+        "word_zotero_field_recovery_test.dart": 38
+      },
+      "stdout": "incoming-engine-focused.jsonl",
+      "stderr": "incoming-engine-focused.stderr.log"
+    },
+    {
+      "name": "incoming-engine-regression",
+      "cwd": "/workspace/scratch/a07ecb0743c3/incoming-office-review/packages/quds_office_engine",
+      "command": [
+        "/workspace/scratch/a07ecb0743c3/mail-runtime/bin/flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--machine",
+        "test/word_zotero_citing_test.dart",
+        "test/word_zotero_multiparagraph_test.dart",
+        "test/word_zotero_note_insertion_test.dart",
+        "test/word_zotero_bibliography_layout_test.dart",
+        "test/word_zotero_nested_table_test.dart",
+        "test/office_vba_word_cell_text_controls_test.dart",
+        "test/office_vba_word_cell_formatting_integration_test.dart"
+      ],
+      "exit_code": 0,
+      "actual_tests_passed": 254,
+      "failed": 0,
+      "skipped": 0,
+      "duration_ms": 19901,
+      "by_file": {
+        "word_zotero_citing_test.dart": 59,
+        "word_zotero_multiparagraph_test.dart": 59,
+        "word_zotero_note_insertion_test.dart": 42,
+        "word_zotero_bibliography_layout_test.dart": 14,
+        "word_zotero_nested_table_test.dart": 20,
+        "office_vba_word_cell_text_controls_test.dart": 36,
+        "office_vba_word_cell_formatting_integration_test.dart": 24
+      },
+      "stdout": "incoming-engine-regression.jsonl",
+      "stderr": "incoming-engine-regression.stderr.log"
+    },
+    {
+      "name": "incoming-editor-focused",
+      "cwd": "/workspace/scratch/a07ecb0743c3/incoming-office-review/packages/quds_office_editor",
+      "command": [
+        "/workspace/scratch/a07ecb0743c3/mail-runtime/bin/flutter",
+        "test",
+        "--no-pub",
+        "--concurrency=1",
+        "--machine",
+        "test/word_zotero_recovery_controller_test.dart",
+        "test/word_zotero_recovery_dialog_test.dart",
+        "test/word_zotero_citing_controller_test.dart",
+        "test/word_zotero_field_context_dialog_test.dart",
+        "test/word_zotero_unlink_all_test.dart"
+      ],
+      "exit_code": 0,
+      "actual_tests_passed": 84,
+      "failed": 0,
+      "skipped": 0,
+      "duration_ms": 67767,
+      "by_file": {
+        "word_zotero_recovery_controller_test.dart": 22,
+        "word_zotero_recovery_dialog_test.dart": 6,
+        "word_zotero_citing_controller_test.dart": 21,
+        "word_zotero_field_context_dialog_test.dart": 21,
+        "word_zotero_unlink_all_test.dart": 14
+      },
+      "stdout": "incoming-editor-focused.jsonl",
+      "stderr": "incoming-editor-focused.stderr.log"
+    }
+  ],
+  "totals": {
+    "engine_passed": 561,
+    "editor_passed": 84,
+    "passed": 645,
+    "failed": 0,
+    "skipped": 0
+  },
+  "analysis": {
+    "command": [
+      "/workspace/scratch/a07ecb0743c3/mail-runtime/bin/dart",
+      "analyze",
+      "--fatal-infos",
+      "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+      "packages/quds_office_engine/lib/src/automation/operations/word_steps.dart",
+      "packages/quds_office_engine/lib/src/word/model/word_zotero.dart",
+      "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+      "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "packages/quds_office_editor/lib/src/embed/word_zotero_field_context.dart",
+      "packages/quds_office_engine/test/office_vba_word_cell_paragraphs_test.dart",
+      "packages/quds_office_engine/test/office_vba_word_cell_paragraphs_conformance_test.dart",
+      "packages/quds_office_engine/test/office_vba_word_cell_paragraphs_integration_test.dart",
+      "packages/quds_office_engine/test/word_table_cell_paragraph_formatting_test.dart",
+      "packages/quds_office_engine/test/word_zotero_field_recovery_test.dart",
+      "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart",
+      "packages/quds_office_editor/test/word_zotero_recovery_controller_test.dart",
+      "packages/quds_office_editor/test/word_zotero_recovery_dialog_test.dart"
+    ],
+    "exit_code": 0,
+    "result": "No issues found!",
+    "stdout": "incoming-focused-analysis.log"
+  },
+  "source_identity": {
+    "changed_office_paths_manifest": "incoming-changed-source-sha256.json",
+    "changed_office_path_count": 21,
+    "unchanged_after_qualification": true,
+    "reviewed_production_manifest": "reviewed-production-sha256.json",
+    "reviewed_production_path_count": 7,
+    "initial_to_final_reviewed_production_unchanged": true,
+    "initial_combination": [
+      "45a1c0846f3fb78a203f2967e5b80a79fdca2ca9",
+      "35ef8f30d1de145bdf92d280e4aa54982d662f79"
+    ],
+    "incoming_zotero_advance": "6ba219a03a9933eded77980f9d7cdbd118183ee1 adds a note-insertion regression adjustment and preserved Mail/Word merge history; no further Zotero production change."
+  },
+  "review": {
+    "blocking_findings": [],
+    "reviewed_areas": [
+      "Word selector identity and conservative static guard with runtime/native allowlist",
+      "Paragraph style/shading exact target ownership, protection and atomic publication",
+      "Zotero invalid metadata separated from complete structural result ownership",
+      "Native repair placeholder cannot complete without valid metadata or explicit unlink/delete",
+      "Field owner and source revalidation, cached rich text preservation, single undo behavior",
+      "Existing native citing, note insertion, multipart bibliography, nested table and bulk unlink regressions"
+    ],
+    "nonblocking_findings": [
+      {
+        "kind": "whitespace",
+        "paths": [
+          "docs/validation/zotero-field-recovery-20261122/README.md",
+          "docs/validation/zotero-field-recovery-20261122/intake.json"
+        ],
+        "detail": "git diff --check reports an extra blank line at EOF inherited from incoming branch."
+      }
+    ]
+  },
+  "limits": [
+    "Focused local integration qualification; complete Office feature suites were not run.",
+    "Installed Microsoft Office, LibreOffice, OpenOffice and live Zotero acceptance were not performed.",
+    "No GitHub Actions result was queried or awaited."
+  ],
+  "artifact_sha256": {
+    "final-fork-tips.json": "4c6bb6dd7813a435f691b1bcce558a35c76b04400dd705abf655239d61b53912",
+    "incoming-changed-source-sha256.json": "e942872552fd290c60995297cbc301c6eb4f6266cb2636697496ace781965acc",
+    "incoming-editor-focused.jsonl": "01aa322ce14bbb3c0b51905252ad88fabba0de48cbbae90607a9995eb35c2b60",
+    "incoming-editor-focused.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "incoming-engine-focused.jsonl": "0852bc2fd8aa4962301e99375d1d01b8ecd1fc30a1e65e50871513e1b4047e0f",
+    "incoming-engine-focused.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "incoming-engine-regression.jsonl": "6b82049df46e999b6bd203f5e6e4e1cda4ca1deb844c7675ad24f31d368aac37",
+    "incoming-engine-regression.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "incoming-focused-analysis.log": "96011322985ca2a03db90ccc79137b1ee066fae7ce25192176064714de81658c",
+    "reviewed-production-sha256.json": "b058f9585d3be7f94dd7090cb4276a5face9d0a927bacde065599c704d4fd678"
+  }
+}

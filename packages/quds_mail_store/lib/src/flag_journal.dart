@@ -11,7 +11,7 @@ final class MailFlagBatchHandle {
   bool _complete = false;
 }
 
-/// Durable evidence for foreground bulk flags. There is deliberately no method
+/// Durable evidence for foreground commands. There is deliberately no method
 /// to resume a stored batch or turn an uncertain result back into queued work.
 extension MailFlagCommandJournal on SqliteMailRepository {
   static const maxRetainedCleanFlagBatches = 100;
@@ -70,7 +70,10 @@ extension MailFlagCommandJournal on SqliteMailRepository {
       "typeof(b.id)!='text' OR length(CAST(b.id AS BLOB))>1024 OR "
       "typeof(b.mailbox)!='text' OR length(CAST(b.mailbox AS BLOB))>4096 OR "
       "b.provider NOT IN ('imap','ews','gmail','graph') OR "
-      "b.action NOT IN ('markRead','markUnread','flag','unflag') OR "
+      "b.action NOT IN ('markRead','markUnread','flag','unflag','move','delete') OR "
+      "(b.action='move' AND (b.destination IS NULL OR typeof(b.destination)!='text' OR "
+      'length(CAST(b.destination AS BLOB)) NOT BETWEEN 1 AND 4096 OR b.destination=b.mailbox)) OR '
+      "(b.action!='move' AND b.destination IS NOT NULL) OR "
       "typeof(b.revision)!='integer' OR b.revision<1 OR b.revision>9007199254740991 OR "
       "typeof(b.created_at)!='integer' OR b.created_at<0 OR b.created_at>8640000000000000 OR "
       "typeof(b.updated_at)!='integer' OR b.updated_at<0 OR b.updated_at>8640000000000000 OR "
@@ -93,6 +96,14 @@ extension MailFlagCommandJournal on SqliteMailRepository {
     if (invalid != 0) {
       SqliteMailRepository._fail(MailProblemCode.storageFailure);
     }
+    // SQL bounds the text before transfer. Typed validation also rejects
+    // controls and oversized code-unit identities before cleanup or dispatch.
+    for (final row in await _rows(
+      'SELECT action,mailbox,destination FROM flag_batches WHERE account=?',
+      [account.value],
+    )) {
+      _flagDestination(row, account);
+    }
     final invalidResolutions = (await _rows(
       'SELECT count(*) AS n FROM flag_item_resolutions r '
       'LEFT JOIN flag_batches b ON b.account=r.account AND b.id=r.batch '
@@ -103,6 +114,7 @@ extension MailFlagCommandJournal on SqliteMailRepository {
       "typeof(r.kind)!='text' OR r.kind NOT IN ('matches','differs','missing','identityChanged') OR "
       "typeof(r.checked_at)!='integer' OR r.checked_at<0 OR r.checked_at>8640000000000000 OR "
       'b.id IS NULL OR i.position IS NULL OR b.complete!=1 OR '
+      "b.action NOT IN ('markRead','markUnread','flag','unflag') OR "
       "i.state!='uncertain' OR (r.kind='identityChanged' AND b.provider!='imap') OR "
       'r.checked_at<b.created_at OR r.checked_at>b.updated_at)',
       [account.value],
@@ -136,7 +148,12 @@ extension MailFlagCommandJournal on SqliteMailRepository {
         lease.checkCurrent();
         _id(plan.id);
         _id(plan.mailbox.value);
-        var units = plan.id.length + plan.mailbox.value.length;
+        final destination = plan.destination?.value;
+        if (destination != null) _id(destination);
+        var units =
+            plan.id.length +
+            plan.mailbox.value.length +
+            (destination?.length ?? 0);
         final remotes = <String>[];
         for (var i = 0; i < plan.messages.length; i++) {
           final remote = _remoteKey(plan.messages[i]);
@@ -160,14 +177,15 @@ extension MailFlagCommandJournal on SqliteMailRepository {
         await _pruneCleanFlagBatches(account);
         final now = _flagNow();
         await _db.customStatement(
-          'INSERT INTO flag_batches(account,id,mailbox,provider,action,created_at,updated_at,revision,complete,interrupted,item_count) '
-          'VALUES(?,?,?,?,?,?,?,1,0,0,?)',
+          'INSERT INTO flag_batches(account,id,mailbox,provider,action,destination,created_at,updated_at,revision,complete,interrupted,item_count) '
+          'VALUES(?,?,?,?,?,?,?,?,1,0,0,?)',
           [
             account.value,
             plan.id,
             plan.mailbox.value,
             plan.provider.name,
             plan.action.name,
+            destination,
             now,
             now,
             plan.messages.length,
@@ -205,6 +223,7 @@ extension MailFlagCommandJournal on SqliteMailRepository {
           SqliteMailRepository._fail(MailProblemCode.invalidInput);
         }
         lease?.checkCurrent();
+        await _checkFlagBatches(handle.account);
         final rows = await _rows(
           'SELECT * FROM flag_batches WHERE account=? AND id=?',
           [handle.account.value, handle.id],
@@ -215,6 +234,7 @@ extension MailFlagCommandJournal on SqliteMailRepository {
             expected >= _maxFlagRevision) {
           SqliteMailRepository._fail(MailProblemCode.conflict);
         }
+        _flagDestination(rows.single, handle.account);
         await body(rows.single);
         await _db.customStatement(
           'UPDATE flag_batches SET revision=?,updated_at=? WHERE account=? AND id=?',
@@ -287,6 +307,12 @@ extension MailFlagCommandJournal on SqliteMailRepository {
         message: remote,
         flagged: action == MailBulkFlagAction.flag,
       ),
+      MailBulkFlagAction.move => MailMove(
+        id: id,
+        message: remote,
+        destination: _flagDestination(batch, account)!,
+      ),
+      MailBulkFlagAction.delete => MailDelete(id: id, message: remote),
     };
   }
 
@@ -297,8 +323,27 @@ extension MailFlagCommandJournal on SqliteMailRepository {
         (final MailSetRead a, final MailSetRead b) => a.read == b.read,
         (final MailSetFlagged a, final MailSetFlagged b) =>
           a.flagged == b.flagged,
+        (final MailMove a, final MailMove b) => a.destination == b.destination,
+        (MailDelete(), MailDelete()) => true,
         _ => false,
       };
+
+  MailMailboxId? _flagDestination(QueryRow batch, MailAccountId account) {
+    final action = batch.read<String>('action');
+    final destination = batch.readNullable<String>('destination');
+    if (!MailBulkFlagAction.values.any((value) => value.name == action) ||
+        (action == MailBulkFlagAction.move.name) != (destination != null) ||
+        (destination != null &&
+            (destination.isEmpty ||
+                destination.length > 1024 ||
+                destination.contains(RegExp(r'[\x00-\x1f\x7f]')) ||
+                destination == batch.read<String>('mailbox')))) {
+      SqliteMailRepository._fail(MailProblemCode.storageFailure);
+    }
+    return destination == null
+        ? null
+        : MailMailboxId(destination, account: account);
+  }
 
   List<Object?> _flagProblem(MailProblem? problem) {
     final retry = problem?.retryAfter?.inMicroseconds;
@@ -383,7 +428,10 @@ extension MailFlagCommandJournal on SqliteMailRepository {
     }
   }
 
-  /// Atomically retains provider evidence and patches only the confirmed flag.
+  /// Atomically retains provider evidence and patches only confirmed flag bits.
+  /// Membership commands retain historical cache observations until an explicit
+  /// refresh: a unit acknowledgement supplies no destination identity or full
+  /// membership evidence and cannot safely remove or create cached headers.
   /// A retired view lease does not discard an already settled provider reply.
   Future<MailResult<MailUnit>> recordFlagResult(
     MailFlagBatchHandle handle,
@@ -399,6 +447,7 @@ extension MailFlagCommandJournal on SqliteMailRepository {
   });
 
   Future<void> _projectFlagConfirmation(MailOperation operation) async {
+    if (operation is MailMove || operation is MailDelete) return;
     final (bit, enabled) = switch (operation) {
       MailSetRead(:final read) => (1, read),
       MailSetFlagged(:final flagged) => (2, flagged),
@@ -463,6 +512,7 @@ extension MailFlagCommandJournal on SqliteMailRepository {
         report.plan.mailbox.value != batch.read<String>('mailbox') ||
         report.plan.provider.name != batch.read<String>('provider') ||
         report.plan.action.name != batch.read<String>('action') ||
+        report.plan.destination != _flagDestination(batch, handle.account) ||
         report.results.length != batch.read<int>('item_count')) {
       SqliteMailRepository._fail(MailProblemCode.conflict);
     }
@@ -505,6 +555,7 @@ extension MailFlagCommandJournal on SqliteMailRepository {
       mailbox: MailMailboxId(row.read<String>('mailbox'), account: account),
       provider: MailProviderKind.values.byName(row.read<String>('provider')),
       action: MailBulkFlagAction.values.byName(row.read<String>('action')),
+      destination: _flagDestination(row, account),
       createdAt: DateTime.fromMillisecondsSinceEpoch(
         row.read<int>('created_at'),
         isUtc: true,
@@ -605,7 +656,10 @@ extension MailFlagCommandJournal on SqliteMailRepository {
         [account.value, id],
       );
       final summary = _flagSummary(batch, account);
-      var units = id.length + summary.mailbox.value.length;
+      var units =
+          id.length +
+          summary.mailbox.value.length +
+          (summary.destination?.value.length ?? 0);
       for (final item in items) {
         units +=
             item.read<String>('remote').length +
@@ -622,6 +676,7 @@ extension MailFlagCommandJournal on SqliteMailRepository {
         mailbox: summary.mailbox,
         provider: summary.provider,
         action: summary.action,
+        destination: summary.destination,
         messages: [
           for (final item in items)
             MailStoreCodec.decodeRemote(

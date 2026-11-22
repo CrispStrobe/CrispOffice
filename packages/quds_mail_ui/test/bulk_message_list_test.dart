@@ -4,6 +4,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
 
+const _flagActions = [
+  MailBulkFlagAction.markRead,
+  MailBulkFlagAction.markUnread,
+  MailBulkFlagAction.flag,
+  MailBulkFlagAction.unflag,
+];
+
 String _count(int shown, int loaded) => '$shown of $loaded';
 
 const _strings = MailMessageListStrings(
@@ -118,7 +125,7 @@ void Function(MailBulkFlagAction) _freezeMenu(WidgetTester tester) {
   final menu = tester.widget<PopupMenuButton<Object>>(finder);
   final entries = menu.itemBuilder(tester.element(finder));
   final values = <MailBulkFlagAction, Object?>{
-    for (final action in MailBulkFlagAction.values)
+    for (final action in _flagActions)
       action: entries
           .whereType<PopupMenuItem<Object>>()
           .singleWhere(
@@ -162,7 +169,7 @@ void main() {
     },
   );
 
-  for (final action in MailBulkFlagAction.values) {
+  for (final action in _flagActions) {
     testWidgets('explicit ${action.name} requests are not inferred toggles', (
       tester,
     ) async {
@@ -179,6 +186,34 @@ void main() {
       expect(_items.last.isFlagged, isNull);
     });
   }
+
+  testWidgets('generic checkbox menu offers only the four flag assignments', (
+    tester,
+  ) async {
+    final commands = <_Command>[];
+    await _pump(
+      tester,
+      onAction: (action, ids) => commands.add((action: action, ids: ids)),
+    );
+    await _tap(tester, _check('one'));
+    await _tap(tester, _key('mail-list-bulk-actions'));
+    for (final action in _flagActions) {
+      expect(
+        _key('mail-list-bulk-${action.name}').hitTestable(),
+        findsOneWidget,
+      );
+    }
+    expect(_key('mail-list-bulk-move'), findsNothing);
+    expect(_key('mail-list-bulk-delete'), findsNothing);
+    expect(
+      find.byWidgetPredicate((widget) => widget is PopupMenuItem<Object>),
+      findsNWidgets(4),
+    );
+    expect(commands, isEmpty);
+    await tester.sendKeyEvent(LogicalKeyboardKey.escape);
+    await tester.pumpAndSettle();
+    expect(commands, isEmpty);
+  });
 
   testWidgets('Select shown respects filters and never adds hidden rows', (
     tester,
@@ -472,10 +507,7 @@ void main() {
       onOpen: opened.add,
       onAction: (action, ids) => commands.add((action: action, ids: ids)),
     );
-    await tester.enterText(
-      _key('mail-list-search'),
-      'from:alice OR from:bob',
-    );
+    await tester.enterText(_key('mail-list-search'), 'from:alice OR from:bob');
     await tester.pump();
     await _tap(tester, _key('mail-list-select-shown'));
     expect(find.text('3 selected'), findsOneWidget);
@@ -500,5 +532,4 @@ void main() {
     expect(_key('mail-list-search-error'), findsOneWidget);
     expect(commands, hasLength(1));
   });
-
 }

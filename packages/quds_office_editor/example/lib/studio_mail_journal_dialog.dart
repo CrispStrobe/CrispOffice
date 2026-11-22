@@ -5,6 +5,7 @@ import 'package:quds_mail_store/quds_mail_store.dart';
 import 'studio_mail_bulk_status.dart';
 import 'studio_mail_flag_journal.dart';
 import 'studio_mail_journal_strings.dart';
+import 'studio_mail_mutation_strings.dart';
 import 'studio_strings.dart';
 
 /// Durable receipts with an optional explicit, read-only server status check.
@@ -66,6 +67,9 @@ class _StudioMailJournalDialogState extends State<StudioMailJournalDialog> {
       receipt.summary.mailbox.account == widget.store.account &&
       receipt.report.plan.mailbox == receipt.summary.mailbox &&
       receipt.report.plan.provider == receipt.summary.provider &&
+      receipt.report.plan.action == receipt.summary.action &&
+      receipt.report.plan.destination == receipt.summary.destination &&
+      (receipt.summary.canCheckFlags || receipt.resolutions.isEmpty) &&
       receipt.subjects.length == receipt.report.items.length &&
       receipt.summary.reconciledCount == receipt.resolutions.length &&
       receipt.summary.unresolvedCount >= 0 &&
@@ -96,6 +100,7 @@ class _StudioMailJournalDialogState extends State<StudioMailJournalDialog> {
     if (_busy ||
         selected == null ||
         reconcile == null ||
+        !selected.summary.canCheckFlags ||
         !selected.summary.complete ||
         selected.summary.unresolvedCount == 0 ||
         !widget.isCurrent()) {
@@ -347,7 +352,18 @@ class _StudioMailJournalDialogState extends State<StudioMailJournalDialog> {
                                   selected.subjects[i],
                           },
                         ),
-                        if (selected.summary.complete &&
+                        if (!selected.summary.canCheckFlags)
+                          Padding(
+                            padding: const EdgeInsets.all(16),
+                            child: Text(
+                              widget.strings.mailMutationHistoryScope,
+                              key: const ValueKey(
+                                'studio-mail-activity-membership-scope',
+                              ),
+                            ),
+                          ),
+                        if (selected.summary.canCheckFlags &&
+                            selected.summary.complete &&
                             selected.summary.uncertainCount != 0)
                           Padding(
                             padding: const EdgeInsets.all(16),

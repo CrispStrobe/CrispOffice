@@ -33,10 +33,15 @@ final crashMailbox = MailMailboxId('inbox', account: crashAccount);
 final crashTime = DateTime.utc(2026, 11, 18, 12);
 const crashAttemptId = 'child-attempt';
 
-MailBulkFlagPlan crashFlagPlan() => MailBulkFlagPlan(
+MailBulkFlagPlan crashFlagPlan({
+  MailBulkFlagAction action = MailBulkFlagAction.markRead,
+}) => MailBulkFlagPlan(
   id: 'crash-flags',
   mailbox: crashMailbox,
-  action: MailBulkFlagAction.markRead,
+  action: action,
+  destination: action == MailBulkFlagAction.move
+      ? MailMailboxId('archive', account: crashAccount)
+      : null,
   messages: [for (var i = 1; i <= 3; i++) crashHeader(i).remote],
 );
 
@@ -97,14 +102,19 @@ Future<Never> _ready(TransactionCrashScenario scenario) async {
 }
 
 Future<void> main(List<String> arguments) async {
-  if (arguments.length != 2) {
-    stderr.writeln('Expected app-container path and crash scenario.');
+  if (arguments.length < 2 || arguments.length > 3) {
+    stderr.writeln(
+      'Expected app-container path, crash scenario and optional action.',
+    );
     exitCode = 2;
     return;
   }
   SqliteMailRepository? store;
   try {
     final scenario = TransactionCrashScenario.values.byName(arguments[1]);
+    final action = arguments.length == 3
+        ? MailBulkFlagAction.values.byName(arguments[2])
+        : MailBulkFlagAction.markRead;
     final target = switch (scenario) {
       TransactionCrashScenario.afterSyncRecords =>
         MailStoreCheckpoint.afterSyncRecords,
@@ -158,7 +168,7 @@ Future<void> main(List<String> arguments) async {
       case TransactionCrashScenario.beforeFlagReceiptCommit:
       case TransactionCrashScenario.committedFlagReceipt:
       case TransactionCrashScenario.committedFlagFinish:
-        final plan = crashFlagPlan();
+        final plan = crashFlagPlan(action: action);
         final lease = MailAccountSession(crashAccount).begin();
         final handle = _required(
           await opened.createFlagBatch(

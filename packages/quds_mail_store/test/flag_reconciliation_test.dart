@@ -208,7 +208,7 @@ void main() {
     await directory.delete(recursive: true);
   });
 
-  for (final action in MailBulkFlagAction.values) {
+  for (final action in MailBulkFlagAction.values.where((a) => a.isFlagAction)) {
     for (final matches in [true, false]) {
       test(
         '$action observed matches=$matches preserves history and other bits',
@@ -1043,7 +1043,10 @@ void main() {
               for (final row in database.select(
                 'SELECT * FROM $table ORDER BY rowid',
               ))
-                row.values.toList(),
+                row.entries
+                    .where((entry) => entry.key != 'destination')
+                    .map((entry) => entry.value)
+                    .toList(),
             ],
         };
         final original = snapshot(db);
@@ -1076,7 +1079,7 @@ void main() {
         expect(saved.summary.unresolvedCount, 1);
         expect(saved.resolutions, isEmpty);
         final check = sqlite.sqlite3.open(file.path);
-        expect(check.userVersion, 12);
+        expect(check.userVersion, 13);
         expect(snapshot(check), original);
         expect(check.select('PRAGMA foreign_key_check'), isEmpty);
         check.close();

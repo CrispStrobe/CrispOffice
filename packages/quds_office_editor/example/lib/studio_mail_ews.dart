@@ -1096,117 +1096,31 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         selected == null ||
         _blocked ||
         _needsRefresh ||
-        command.message != selected.remote ||
-        command is MailMove && !_capabilities.supports(MailCapability.move)) {
+        command.message != selected.remote) {
       return;
     }
-    if (command is MailSetRead || command is MailSetFlagged) {
-      await _applyBulkFlags(
-        switch (command) {
-          MailSetRead(:final read) =>
-            read ? MailBulkFlagAction.markRead : MailBulkFlagAction.markUnread,
-          MailSetFlagged(:final flagged) =>
-            flagged ? MailBulkFlagAction.flag : MailBulkFlagAction.unflag,
-          _ => throw StateError('Unsupported flag operation'),
-        },
-        ['ews-message-${selected.id.value}'],
-        mailboxGeneration: _mailboxGeneration,
-        singleMessage: true,
-      );
-      return;
-    }
-    final lease = session.begin();
-    setState(() {
-      _busy = true;
-      _error = null;
-      _notice = null;
-    });
-    try {
-      if (command is MailMove || command is MailDelete) {
-        // The saved window predates this membership-changing command. Stop
-        // following it before dispatch so later cache events cannot restore
-        // a row the server has accepted moving or deleting.
-        await _stopCachedView();
-        if (!_current(provider, lease)) return;
-      }
-      final result = await provider.apply(command, lease);
-      if (!_current(provider, lease)) return;
-      _value(result);
-      MailReaderController? old;
-      setState(() {
-        if (command is MailMove || command is MailDelete) {
-          _confirmedRead.remove(selected.remote);
-          _confirmedFlagged.remove(selected.remote);
-          _headers = _headers
-              .where((header) => header.remote != selected.remote)
-              .toList();
-          old = _reader;
-          _reader = null;
-          _selected = null;
-          _showMessage = false;
-          // Removing a row shifts FindItem offsets. The next page must start
-          // from a refreshed folder rather than reusing that earlier cursor.
-          _next = null;
-        } else {
-          if (command is MailSetRead) {
-            _confirmedRead[selected.remote] = command.read;
-          } else if (command is MailSetFlagged) {
-            _confirmedFlagged[selected.remote] = command.flagged;
-          }
-          final flags = selected.flags;
-          final updated = MailHeaderRecord(
-            id: selected.id,
-            remote: selected.remote,
-            envelope: selected.envelope,
-            flags: flags == null
-                ? null
-                : MailMessageFlags(
-                    isRead: command is MailSetRead
-                        ? command.read
-                        : flags.isRead,
-                    isFlagged: command is MailSetFlagged
-                        ? command.flagged
-                        : flags.isFlagged,
-                    isAnswered: flags.isAnswered,
-                    isDraft: flags.isDraft,
-                    isDeleted: flags.isDeleted,
-                  ),
-          );
-          _selected = updated;
-          _headers = [
-            for (final header in _headers)
-              header.remote == updated.remote ? updated : header,
-          ];
-        }
-        _busy = false;
-        _notice = command is MailMove || command is MailDelete
-            ? (_cloud
-                  ? widget.strings.mailCloudFolderChanged
-                  : widget.strings.ewsFolderChanged)
-            : (_cloud
-                  ? widget.strings.mailCloudActionConfirmed
-                  : widget.strings.ewsActionConfirmed);
-      });
-      _retire(old);
-    } on Object catch (error) {
-      if (!_current(provider, lease)) return;
-      setState(() {
-        _busy = false;
-        // Even a failed confirmation can follow an accepted write. Require a
-        // fresh mailbox observation before another mutation in this session.
-        _needsRefresh = true;
-        _error = error is _EwsUiFailure
-            ? _problem(error.problem, widget.strings.ewsMutationFailed)
-            : widget.strings.ewsMutationFailed;
-      });
-    }
+    await _applyCommands(
+      switch (command) {
+        MailSetRead(:final read) =>
+          read ? MailBulkFlagAction.markRead : MailBulkFlagAction.markUnread,
+        MailSetFlagged(:final flagged) =>
+          flagged ? MailBulkFlagAction.flag : MailBulkFlagAction.unflag,
+        MailMove() => MailBulkFlagAction.move,
+        MailDelete() => MailBulkFlagAction.delete,
+      },
+      ['ews-message-${selected.id.value}'],
+      mailboxGeneration: _mailboxGeneration,
+      singleMessage: true,
+      destination: command is MailMove ? command.destination : null,
+    );
   }
 
-  Future<void> _applyBulkFlags(
+  Future<void> _applyCommands(
     MailBulkFlagAction action,
     List<String> ids, {
     required int mailboxGeneration,
     bool singleMessage = false,
+    MailMailboxId? destination,
   }) async {
     final provider = _provider;
     final session = _session;
@@ -1220,7 +1134,16 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         mailboxGeneration != _mailboxGeneration ||
         ids.isEmpty ||
         ids.length > MailBulkFlagPlan.maxMessages ||
-        ids.toSet().length != ids.length) {
+        ids.toSet().length != ids.length ||
+        (!action.isFlagAction && (!singleMessage || ids.length != 1)) ||
+        (action == MailBulkFlagAction.move &&
+            (!_capabilities.supports(MailCapability.move) ||
+                destination == null ||
+                destination == mailbox.id ||
+                !_mailboxes.any((folder) => folder.id == destination))) ||
+        (action == MailBulkFlagAction.delete &&
+            !_capabilities.supports(MailCapability.delete)) ||
+        (action != MailBulkFlagAction.move && destination != null)) {
       return;
     }
     final selected = <MailHeaderRecord>[];
@@ -1238,6 +1161,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       provider: selected.first.remote.provider,
       messages: [for (final header in selected) header.remote],
       action: action,
+      destination: destination,
     );
     bool currentScope() {
       if (!_current(provider, lease) ||
@@ -1265,6 +1189,11 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       _notice = null;
     });
     try {
+      if (!action.isFlagAction) {
+        // Retire the saved observation before a membership change. Neither a
+        // late cache event nor a stale capture can restore a moved row.
+        await _stopCachedView();
+      }
       final report = await MailBulkFlagCoordinator().run(
         plan: plan,
         lease: lease,
@@ -1289,6 +1218,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
             ),
       );
       if (!currentScope()) return;
+      MailReaderController? retiredReader;
       setState(() {
         _bulkReport = report;
         final updates = <MailRemoteIdentity, MailHeaderRecord>{};
@@ -1297,6 +1227,21 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           if (result.outcome != MailBulkFlagOutcome.confirmed) continue;
           final header = selected[i];
           final operation = result.operation;
+          if (operation is MailMove || operation is MailDelete) {
+            _confirmedRead.remove(header.remote);
+            _confirmedFlagged.remove(header.remote);
+            _headers = _headers
+                .where((row) => row.remote != header.remote)
+                .toList();
+            if (_selected?.remote == header.remote) {
+              retiredReader = _reader;
+              _reader = null;
+              _selected = null;
+              _showMessage = false;
+            }
+            _next = null;
+            continue;
+          }
           if (operation is MailSetRead) {
             _confirmedRead[header.remote] = operation.read;
           } else if (operation is MailSetFlagged) {
@@ -1328,7 +1273,11 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         if (_selected case final opened?) {
           _selected = updates[opened.remote] ?? opened;
         }
-        _notice = singleMessage && report.confirmedCount == 1
+        _notice = !action.isFlagAction && report.confirmedCount == 1
+            ? (_cloud
+                  ? widget.strings.mailCloudFolderChanged
+                  : widget.strings.ewsFolderChanged)
+            : singleMessage && report.confirmedCount == 1
             ? (_cloud
                   ? widget.strings.mailCloudActionConfirmed
                   : widget.strings.ewsActionConfirmed)
@@ -1337,14 +1286,17 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           _needsRefresh = true;
           final problem =
               report.items.singleOrNull?.problem ?? report.stopProblem;
-          _error = singleMessage
+          _error = !action.isFlagAction && report.confirmedCount == 1
+              ? null
+              : singleMessage
               ? (problem == null
                     ? widget.strings.ewsMutationFailed
                     : _problem(problem, widget.strings.ewsMutationFailed))
               : widget.strings.mailWorkspaceRefreshRequired;
         }
       });
-      // These are per-flag confirmations. Persisting a synthetic full snapshot
+      _retire(retiredReader);
+      // These are per-command confirmations. Persisting a synthetic full snapshot
       // here would turn unknown flags into invented observations.
     } finally {
       settled.complete();
@@ -1369,9 +1321,11 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         session == null ||
         selected == null ||
         _blocked ||
-        _needsRefresh) {
+        _needsRefresh ||
+        !_capabilities.supports(MailCapability.delete)) {
       return;
     }
+    final mailboxGeneration = _mailboxGeneration;
     final lease = session.begin();
     setState(() => _dialogOpen = true);
     final confirmed = await showDialog<bool>(
@@ -1404,6 +1358,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     if (!_current(provider, lease)) return;
     setState(() => _dialogOpen = false);
     if (confirmed == true &&
+        mailboxGeneration == _mailboxGeneration &&
         _selected?.id == selected.id &&
         _selected?.remote == selected.remote) {
       await _apply(
@@ -2754,11 +2709,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                 : 'ews-message-${_selected!.id.value}',
             busy: _blocked,
             onBulkAction: (action, ids) => unawaited(
-              _applyBulkFlags(
-                action,
-                ids,
-                mailboxGeneration: mailboxGeneration,
-              ),
+              _applyCommands(action, ids, mailboxGeneration: mailboxGeneration),
             ),
             bulkActionsEnabled: !_needsRefresh,
             onCancelBulk: cancellation == null
@@ -2791,6 +2742,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   Widget _actions({required bool compact}) {
     final selected = _selected;
     final canChange = selected != null && !_blocked && !_needsRefresh;
+    final mailboxGeneration = _mailboxGeneration;
     return Align(
       alignment: AlignmentDirectional.centerEnd,
       child: Wrap(
@@ -2892,7 +2844,9 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                   PopupMenuItem(value: box, child: Text(box.displayName)),
             ],
             onSelected: (box) {
-              if (selected != null) {
+              if (selected != null &&
+                  mailboxGeneration == _mailboxGeneration &&
+                  identical(selected, _selected)) {
                 unawaited(
                   _apply(
                     MailMove(
@@ -2910,7 +2864,10 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
                 ? widget.strings.mailCloudDelete
                 : widget.strings.ewsDelete,
             icon: const Icon(Icons.delete_outline),
-            onPressed: canChange ? _delete : null,
+            onPressed:
+                canChange && _capabilities.supports(MailCapability.delete)
+                ? _delete
+                : null,
           ),
         ],
       ),
