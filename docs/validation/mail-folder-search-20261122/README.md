@@ -186,3 +186,20 @@ Richer composition, provider Sent reconciliation, persistent cross-folder
 conversations, indexed body/provider search and Calendar/People remain later
 milestones. Installed-platform, browser and live-provider acceptance are still
 separate work; these tests do not establish them.
+
+## Post-merge branch reconciliation
+
+PR #356 merged this increment into main at
+`82659acb0f617c57d4d241c91033338032b5caac`. The verification fetch then observed
+Zotero branch commits `067ca3a47` and `ad965773b`, which repair imports and
+guarded interface casts in the earlier dialog-owned Mail picker. The qualified
+implementation already replaces that method with the typed catalog session
+and its ownership/recovery checks. Reconciliation therefore preserves the
+qualified dialog byte for byte and records both incoming commits as merge
+ancestors. No production or test source changes are introduced.
+
+The [late integration record](late-integration.json) contains the exact incoming
+heads, resolved file hash, original delta and zero-diff verification. It extends
+the earlier intake snapshot without rewriting that snapshot or adding duplicate
+test counts. The prior 2,739-case gate and strict 45-file analysis/format gate
+remain applicable.
