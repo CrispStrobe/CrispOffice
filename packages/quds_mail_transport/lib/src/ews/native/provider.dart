@@ -54,7 +54,11 @@ final class _Operation {
 /// Native Exchange Server mail adapter. One active operation owns one HTTPS
 /// client and a fresh vault read. No operation, including send, is retried here.
 final class NativeMailEwsProvider
-    implements MailEwsProvider, MailFlagObserver, MailMembershipObserver {
+    implements
+        MailEwsProvider,
+        MailFlagObserver,
+        MailMembershipObserver,
+        MailMutationReceiptProvider {
   NativeMailEwsProvider({
     required this.configuration,
     required this.credentialStore,
@@ -605,6 +609,15 @@ final class NativeMailEwsProvider
   Future<MailResult<MailUnit>> apply(
     MailOperation command,
     MailOperationLease lease,
+  ) async => switch (await applyWithReceipt(command, lease)) {
+    MailSuccess<MailMutationReceipt>() => const MailSuccess(MailUnit.value),
+    MailFailure<MailMutationReceipt>(:final problem) => MailFailure(problem),
+  };
+
+  @override
+  Future<MailResult<MailMutationReceipt>> applyWithReceipt(
+    MailOperation command,
+    MailOperationLease lease,
   ) async {
     if (!_identityValid(command.message) ||
         !_validId(command.id) ||
@@ -615,19 +628,26 @@ final class NativeMailEwsProvider
     return _run(lease, (client, operation) async {
       // ChangeKey is a concurrency token, not stable message identity. Always
       // get the current key, then use NeverOverwrite for a conditional update.
-      final item = (await _items(client, operation, [remote.value])).single!;
+      final item = (await _items(client, operation, [
+        remote.value,
+      ], requireMembership: command is MailMove)).single!;
       String action;
       String envelope;
       switch (command) {
         case MailSetRead(:final read):
-          if (item.flags?.isRead == read) return MailUnit.value;
+          if (item.flags?.isRead == read) return const MailMutationReceipt();
           action = 'UpdateItem';
           envelope = _soap.updateRead(item.id, item.changeKey, read);
         case MailSetFlagged(:final flagged):
-          if (item.flags?.isFlagged == flagged) return MailUnit.value;
+          if (item.flags?.isFlagged == flagged) {
+            return const MailMutationReceipt();
+          }
           action = 'UpdateItem';
           envelope = _soap.updateFlagged(item.id, item.changeKey, flagged);
         case MailMove(:final destination):
+          if (item.parentFolderId == destination.value) {
+            throw const EwsException(MailProblemCode.invalidInput);
+          }
           action = 'MoveItem';
           envelope = _soap.moveItem(item.id, item.changeKey, destination.value);
         case MailDelete():
@@ -645,6 +665,42 @@ final class NativeMailEwsProvider
           (changed.length != 1 || changed.single.id != item.id)) {
         throw const EwsException(MailProblemCode.conflict);
       }
+      if (command is MailMove && changed.isNotEmpty) {
+        // The acknowledged replacement ID is the only admissible lookup key.
+        // Missing old IDs alone never establish a destination identity.
+        final replacement = changed.single;
+        if (replacement.id != item.id &&
+            (await _items(
+                  client,
+                  operation,
+                  [item.id],
+                  allowMissing: true,
+                  requireMembership: true,
+                )).single !=
+                null) {
+          throw const EwsException(MailProblemCode.conflict);
+        }
+        final destination = (await _items(client, operation, [
+          replacement.id,
+        ], requireMembership: true)).single!;
+        if (destination.parentFolderId != command.destination.value) {
+          throw const EwsException(MailProblemCode.conflict);
+        }
+        final identity = _identity(replacement.id);
+        return MailMutationReceipt(
+          identityTransition: MailMoveIdentityTransition(
+            operationId: command.id,
+            source: remote,
+            sourceMailbox: MailMailboxId(
+              item.parentFolderId!,
+              account: account,
+            ),
+            destination: identity,
+            destinationMailbox: command.destination,
+            destinationMessageId: ewsMessageId(identity),
+          ),
+        );
+      }
       final confirmed = (await _items(client, operation, [
         item.id,
       ], allowMissing: true)).single;
@@ -655,7 +711,7 @@ final class NativeMailEwsProvider
         MailMove() || MailDelete() => confirmed == null,
       };
       if (!correct) throw const EwsException(MailProblemCode.conflict);
-      return MailUnit.value;
+      return const MailMutationReceipt();
     });
   }
 

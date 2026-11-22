@@ -29,6 +29,23 @@ final class MailStoredMembershipObservation {
   final DateTime checkedAt;
 }
 
+/// An acknowledged move mapping and whether its exact retained cache could be
+/// updated in the same transaction. A skipped projection still preserves the
+/// provider acknowledgement; an explicit refresh obtains a current view.
+final class MailStoredMoveIdentityTransition {
+  const MailStoredMoveIdentityTransition({
+    required this.index,
+    required this.transition,
+    required this.recordedAt,
+    required this.cacheProjected,
+  });
+
+  final int index;
+  final MailMoveIdentityTransition transition;
+  final DateTime recordedAt;
+  final bool cacheProjected;
+}
+
 /// Content-light metadata for one retained foreground command receipt.
 /// Listing history never fetches message bodies, attachments or all item text.
 final class MailStoredFlagBatchSummary {
@@ -107,13 +124,16 @@ final class MailStoredFlagBatch {
     required List<String> subjects,
     List<MailStoredFlagResolution> resolutions = const [],
     List<MailStoredMembershipObservation> membershipObservations = const [],
+    List<MailStoredMoveIdentityTransition> identityTransitions = const [],
   }) : subjects = List.unmodifiable(subjects),
        resolutions = List.unmodifiable(resolutions),
-       membershipObservations = List.unmodifiable(membershipObservations);
+       membershipObservations = List.unmodifiable(membershipObservations),
+       identityTransitions = List.unmodifiable(identityTransitions);
 
   final MailStoredFlagBatchSummary summary;
   final MailBulkFlagReport report;
   final List<String> subjects;
   final List<MailStoredFlagResolution> resolutions;
   final List<MailStoredMembershipObservation> membershipObservations;
+  final List<MailStoredMoveIdentityTransition> identityTransitions;
 }

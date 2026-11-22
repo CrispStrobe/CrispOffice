@@ -19,9 +19,23 @@ final class MailMailbox {
 
 /// Opaque cursors are scoped to a mailbox and cannot be reused across accounts.
 final class MailCursor {
-  const MailCursor({required this.mailbox, required this.value});
+  const MailCursor({
+    required this.mailbox,
+    required this.value,
+    this.repositoryRevision,
+  }) : assert(
+         repositoryRevision == null ||
+             repositoryRevision >= 0 && repositoryRevision <= 0x1fffffffffffff,
+         'Repository cursor revisions must be bounded.',
+       );
   final MailMailboxId mailbox;
   final String value;
+
+  /// Repository-only compare-and-set metadata, independent of provider cursors.
+  /// Repositories attach it on reads and reject commits after a local membership
+  /// revision changes. Providers must ignore it and never encode it in [value].
+  /// Null retains compatibility with repositories without this local fence.
+  final int? repositoryRevision;
 }
 
 final class MailHeaderRecord {

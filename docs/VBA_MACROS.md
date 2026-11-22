@@ -76,11 +76,23 @@ The supported subset includes:
 - fixed and dynamic one-dimensional arrays, `ReDim`, `Erase`, `Option Base`;
 - `Variant` states including `Empty`, `Null` and `IsMissing`;
 - numeric and string intrinsics, including metered binary `StrComp` and `Join` over local String arrays;
+- integer division (`\`) and signed remainder (`Mod`) with ties-to-even Long operands and VBA operator precedence;
 - strict argument types, named arguments and optional scalar `ByVal` values;
 - bounded compilation and execution budgets.
 
 Unsupported constructs fail with a diagnostic. The compiler never silently
 drops a statement or applies a best-effort rewrite.
+
+## Grouping report data
+
+Use `ordinal \ columns + 1` for a one-based row and
+`ordinal Mod columns + 1` for a one-based column. Both operators evaluate
+source-known numbers, round operands to signed 32-bit integers with midpoint
+ties to even, and retain the existing strict conversion and Null rules.
+The [exact arithmetic contract](vba-macros-details.md#integer-division-and-remainder)
+documents precedence, signed remainder, overflow and the Office-host
+qualification boundary. The [complete Word example](../packages/quds_office_engine/example/macros/word_grouped_report.bas)
+fills a 2×2 table and alternates emphasis through the ordinary native plan.
 
 ## Comparing source text
 
