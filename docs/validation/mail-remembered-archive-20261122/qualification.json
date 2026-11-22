@@ -1,0 +1,32 @@
+{
+  "status": "FINAL_AFFECTED_COHORT_RUNNING",
+  "source_commit": "3dca1265f7abfc2cdca7eb0c6b0b582f85f4b015",
+  "generated_at_utc": "2026-11-22T13:45:47.943405+00:00",
+  "github_actions_used_as_gate": false,
+  "shared_mail": {
+    "status": "PASS",
+    "suites": 126,
+    "substantive_cases": 2761
+  },
+  "studio_baseline": {
+    "status": "FAIL",
+    "suites": 112,
+    "passed": 2484,
+    "failed": 7,
+    "source_commit": "46ec49f02026994dbadae41f2d139cf1d2544551",
+    "all_inputs_unchanged": true,
+    "acceptance_note": "The seven failing suites/cases are not accepted; final affected-suite results will replace their complete suites."
+  },
+  "final_studio_selection": {
+    "affected_suites": 28,
+    "unaffected_baseline_suites": 85,
+    "status": "RUNNING"
+  },
+  "incoming_engine_editor": {
+    "unique_cases": 386,
+    "original_unique_cases": 326,
+    "additional_outline_cases": 60,
+    "overlap_note": "Final helper-consumer and converter reruns replace overlapping cases; they are not added again."
+  },
+  "intake_all_captured_refs_included": true
+}
