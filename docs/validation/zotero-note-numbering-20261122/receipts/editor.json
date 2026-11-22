@@ -1,0 +1,58 @@
+{
+  "source_commit": "8e18fb2ee53e11d0b96a449ea7e698223423dca2",
+  "source_tree": "6a3124b14c76f52cd786fad7dabad971aee3c3ed",
+  "package": "packages/quds_office_editor",
+  "command": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--reporter=json",
+    "--concurrency=2",
+    "test/word_odt_note_numbering_test.dart",
+    "test/word_odt_load_test.dart",
+    "test/word_note_numbering_test.dart",
+    "test/word_zotero_note_target_test.dart",
+    "test/word_zotero_writing_position_test.dart"
+  ],
+  "tests": [
+    "test/word_odt_note_numbering_test.dart",
+    "test/word_odt_load_test.dart",
+    "test/word_note_numbering_test.dart",
+    "test/word_zotero_note_target_test.dart",
+    "test/word_zotero_writing_position_test.dart"
+  ],
+  "runtime_receipt": "/workspace/scratch/1bb837b7ac66/runtime/runtime.json",
+  "started_at_utc": "2026-11-22T06:56:53Z",
+  "status": "passed",
+  "runtime_receipt_sha256": "75caa1b71e20e8c983345720d6511a2879137d6c1a87c3cb29b5deb89b47c228",
+  "exit_code": 0,
+  "inputs_unchanged": true,
+  "input_count": 4447,
+  "changed_inputs": [],
+  "counts": {
+    "passed": 80,
+    "failed": 0,
+    "skipped": 0,
+    "unfinished": 0
+  },
+  "loaded_suites": 5,
+  "duplicate_identities": 0,
+  "error_event_count": 0,
+  "done_events": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 26644
+    }
+  ],
+  "non_json_lines": [],
+  "finished_at_utc": "2026-11-22T06:57:28Z",
+  "artifacts_sha256": {
+    "cases.json": "b68161c358461fe8bf6c4729a1525d17a12e81068f626dceb8f667c57519a2f7",
+    "errors.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "events.jsonl.gz": "ca12c1cb70f28a8c2aa8fff60a2f046a5e0e3f7df09d8ef160697cc9bf9c1033",
+    "inputs-after.json.gz": "34a50ef1901dc872a7b8b7f3130db3748e1826b3e84ff6fc5a27ce1adcea0742",
+    "inputs-before.json.gz": "a6eb9628dd4709434637d03b74c039ac9f120243f386d86879cf23cd0542d3f0",
+    "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

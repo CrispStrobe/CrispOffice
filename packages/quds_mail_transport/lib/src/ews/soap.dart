@@ -27,12 +27,14 @@ final class EwsItem {
     required this.envelope,
     required this.flags,
     this.mimeBytes,
+    this.parentFolderId,
   });
   final String id;
   final String changeKey;
   final MailEnvelope envelope;
   final MailMessageFlags? flags;
   final Uint8List? mimeBytes;
+  final String? parentFolderId;
 }
 
 final class EwsFolder {
@@ -284,6 +286,7 @@ final class EwsSoap {
     List<String> ids, {
     bool mime = false,
     bool flagsOnly = false,
+    bool membershipOnly = false,
   }) => _request('GetItem', (builder) {
     builder.element(
       'm:ItemShape',
@@ -294,7 +297,8 @@ final class EwsSoap {
           't:AdditionalProperties',
           nest: () {
             for (final field in [
-              if (!flagsOnly) ...const [
+              if (membershipOnly) 'item:ParentFolderId',
+              if (!flagsOnly && !membershipOnly) ...const [
                 'item:Subject',
                 'item:DateTimeSent',
                 'item:InReplyTo',
@@ -306,16 +310,23 @@ final class EwsSoap {
                 'message:InternetMessageId',
                 'message:References',
               ],
-              'item:IsDraft',
-              'item:Flag',
-              'message:IsRead',
+              if (!membershipOnly) ...const [
+                'item:IsDraft',
+                'item:Flag',
+                'message:IsRead',
+              ],
             ]) {
               builder.element('t:FieldURI', attributes: {'FieldURI': field});
             }
-            builder.element(
-              't:ExtendedFieldURI',
-              attributes: {'PropertyTag': '0x1081', 'PropertyType': 'Integer'},
-            );
+            if (!membershipOnly) {
+              builder.element(
+                't:ExtendedFieldURI',
+                attributes: {
+                  'PropertyTag': '0x1081',
+                  'PropertyType': 'Integer',
+                },
+              );
+            }
           },
         );
       },
@@ -609,6 +620,7 @@ final class EwsSoap {
     int? maxMimeBytes,
     bool allowMissing = false,
     bool requireFlags = false,
+    bool requireMembership = false,
   }) => _guard(() {
     final responses = _responses(xml, 'GetItem', allowMissing: allowMissing);
     final result = <EwsItem?>[];
@@ -628,6 +640,14 @@ final class EwsSoap {
       _mailItem(item);
       final id = _id(_one(item, 'ItemId', _types));
       if (!ids.add(id.id)) _invalid();
+      final parentElement = _optional(item, 'ParentFolderId', _types);
+      if (parentElement != null && parentElement.childElements.isNotEmpty) {
+        _invalid();
+      }
+      final parentFolderId = parentElement == null
+          ? null
+          : _identifier(parentElement.getAttribute('Id'));
+      if (requireMembership && parentFolderId == null) _invalid();
       final budget = _HeaderBudget(limits.maxHeaderBytes);
       final sent = _optionalText(item, 'DateTimeSent', budget);
       final date = sent == null ? null : DateTime.tryParse(sent);
@@ -713,6 +733,7 @@ final class EwsSoap {
           envelope: envelope,
           flags: flags,
           mimeBytes: bytes,
+          parentFolderId: parentFolderId,
         ),
       );
     }

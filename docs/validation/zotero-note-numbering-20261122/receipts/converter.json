@@ -1,0 +1,326 @@
+{
+  "sourceCommit": "52f53c99059b1521dd08b9f8f4f65133e87e980b",
+  "startedUtc": "2026-11-22T06:53:45.361795+00:00",
+  "commands": [
+    {
+      "name": "dart-version",
+      "argv": [
+        "/workspace/scratch/1bb837b7ac66/runtime/bin/dart",
+        "--version"
+      ],
+      "cwd": "/workspace/scratch/1bb837b7ac66/quds_office_suite",
+      "exitCode": 0,
+      "seconds": 0.008,
+      "stdout": "dart-version.stdout.log",
+      "stderr": "dart-version.stderr.log",
+      "stdoutSha256": "945e6a359e53647f8fd753347245ed78bc06c2808919b2d7749817181d010ff4",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "libreoffice-version",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/native/libreoffice-headless/libreoffice/program/soffice",
+        "-env:UserInstallation=file:///workspace/scratch/1bb837b7ac66/validation_work/roman-converter/accepted-52f53c99/version-profile",
+        "--version"
+      ],
+      "cwd": "/workspace/scratch/1bb837b7ac66/quds_office_suite",
+      "exitCode": 0,
+      "seconds": 0.315,
+      "stdout": "libreoffice-version.stdout.log",
+      "stderr": "libreoffice-version.stderr.log",
+      "stdoutSha256": "6d49d29516f9fb3b3f02bf33238f0beae9980c1743128ce831deddcfb69bce89",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "live-baseline-reproduction",
+      "argv": [
+        "/workspace/scratch/1bb837b7ac66/runtime/bin/dart",
+        "--packages=/workspace/scratch/1bb837b7ac66/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/1bb837b7ac66/validation_work/reproduce_endnote_export.dart",
+        "/workspace/scratch/1bb837b7ac66/validation_work/roman-converter/accepted-52f53c99/live-repro"
+      ],
+      "cwd": "/workspace/scratch/1bb837b7ac66/quds_office_suite",
+      "exitCode": 0,
+      "seconds": 14.886,
+      "stdout": "live-baseline-reproduction.stdout.log",
+      "stderr": "live-baseline-reproduction.stderr.log",
+      "stdoutSha256": "df1a0626abc7c6dbbe9517e3db74eac5d903e2560fae29f360e05784de32337e",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "create",
+      "argv": [
+        "/workspace/scratch/1bb837b7ac66/runtime/bin/dart",
+        "--packages=/workspace/scratch/1bb837b7ac66/validation_work/roman-converter/accepted-52f53c99/package_config.json",
+        "/workspace/scratch/1bb837b7ac66/validation_work/roman-converter/roman_fixtures.dart",
+        "create",
+        "/workspace/scratch/1bb837b7ac66/validation_work/roman-converter/accepted-52f53c99/original"
+      ],
+      "cwd": "/workspace/scratch/1bb837b7ac66/quds_office_suite",
+      "exitCode": 0,
+      "seconds": 14.628,
+      "stdout": "create.stdout.log",
+      "stderr": "create.stderr.log",
+      "stdoutSha256": "bacd5ff74ca310445b3d51c33baf8df63b5f9db63612412c395056fa33d7989a",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "verify-original",
+      "argv": [
+        "/workspace/scratch/1bb837b7ac66/runtime/bin/dart",
+        "--packages=/workspace/scratch/1bb837b7ac66/validation_work/roman-converter/accepted-52f53c99/package_config.json",
+        "/workspace/scratch/1bb837b7ac66/validation_work/roman-converter/roman_fixtures.dart",
+        "verify",
+        "/workspace/scratch/1bb837b7ac66/validation_work/roman-converter/accepted-52f53c99/original",
+        "/workspace/scratch/1bb837b7ac66/validation_work/roman-converter/accepted-52f53c99/original"
+      ],
+      "cwd": "/workspace/scratch/1bb837b7ac66/quds_office_suite",
+      "exitCode": 0,
+      "seconds": 15.217,
+      "stdout": "verify-original.stdout.log",
+      "stderr": "verify-original.stderr.log",
+      "stdoutSha256": "69932e6a5df91822bb47fdc5eb3ec78373ef3385b077108321ba32ca2885f0d9",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "libreoffice-save-1",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/native/libreoffice-headless/libreoffice/program/soffice",
+        "-env:UserInstallation=file:///workspace/scratch/1bb837b7ac66/validation_work/roman-converter/accepted-52f53c99/profile-1",
+        "--headless",
+        "--convert-to",
+        "odt:writer8",
+        "--outdir",
+        "/workspace/scratch/1bb837b7ac66/validation_work/roman-converter/accepted-52f53c99/lo-save-1",
+        "/workspace/scratch/1bb837b7ac66/validation_work/roman-converter/accepted-52f53c99/original/default-lower-endnotes.odt",
+        "/workspace/scratch/1bb837b7ac66/validation_work/roman-converter/accepted-52f53c99/original/mixed-upper-foot-lower-end.odt"
+      ],
+      "cwd": "/workspace/scratch/1bb837b7ac66/quds_office_suite",
+      "exitCode": 0,
+      "seconds": 1.283,
+      "stdout": "libreoffice-save-1.stdout.log",
+      "stderr": "libreoffice-save-1.stderr.log",
+      "stdoutSha256": "7d5f26dc5be86c77f5479884b1b5990dd37f7d5ac1232b30a9ec3473a9a75080",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "verify-save-1",
+      "argv": [
+        "/workspace/scratch/1bb837b7ac66/runtime/bin/dart",
+        "--packages=/workspace/scratch/1bb837b7ac66/validation_work/roman-converter/accepted-52f53c99/package_config.json",
+        "/workspace/scratch/1bb837b7ac66/validation_work/roman-converter/roman_fixtures.dart",
+        "verify",
+        "/workspace/scratch/1bb837b7ac66/validation_work/roman-converter/accepted-52f53c99/lo-save-1",
+        "/workspace/scratch/1bb837b7ac66/validation_work/roman-converter/accepted-52f53c99/original"
+      ],
+      "cwd": "/workspace/scratch/1bb837b7ac66/quds_office_suite",
+      "exitCode": 0,
+      "seconds": 16.808,
+      "stdout": "verify-save-1.stdout.log",
+      "stderr": "verify-save-1.stderr.log",
+      "stdoutSha256": "289096fb8ecf1d7820801ed6617c87d6e70d4ac615a19d8000b31cb3e4dda84d",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "libreoffice-save-2",
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/native/libreoffice-headless/libreoffice/program/soffice",
+        "-env:UserInstallation=file:///workspace/scratch/1bb837b7ac66/validation_work/roman-converter/accepted-52f53c99/profile-2",
+        "--headless",
+        "--convert-to",
+        "odt:writer8",
+        "--outdir",
+        "/workspace/scratch/1bb837b7ac66/validation_work/roman-converter/accepted-52f53c99/lo-save-2",
+        "/workspace/scratch/1bb837b7ac66/validation_work/roman-converter/accepted-52f53c99/lo-save-1/default-lower-endnotes.odt",
+        "/workspace/scratch/1bb837b7ac66/validation_work/roman-converter/accepted-52f53c99/lo-save-1/mixed-upper-foot-lower-end.odt"
+      ],
+      "cwd": "/workspace/scratch/1bb837b7ac66/quds_office_suite",
+      "exitCode": 0,
+      "seconds": 1.625,
+      "stdout": "libreoffice-save-2.stdout.log",
+      "stderr": "libreoffice-save-2.stderr.log",
+      "stdoutSha256": "1602f00ee6f38ef13271dd1f1f2d590111244ff6adc77cbbebbe4cdfde1e560d",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "verify-save-2",
+      "argv": [
+        "/workspace/scratch/1bb837b7ac66/runtime/bin/dart",
+        "--packages=/workspace/scratch/1bb837b7ac66/validation_work/roman-converter/accepted-52f53c99/package_config.json",
+        "/workspace/scratch/1bb837b7ac66/validation_work/roman-converter/roman_fixtures.dart",
+        "verify",
+        "/workspace/scratch/1bb837b7ac66/validation_work/roman-converter/accepted-52f53c99/lo-save-2",
+        "/workspace/scratch/1bb837b7ac66/validation_work/roman-converter/accepted-52f53c99/original"
+      ],
+      "cwd": "/workspace/scratch/1bb837b7ac66/quds_office_suite",
+      "exitCode": 0,
+      "seconds": 18.762,
+      "stdout": "verify-save-2.stdout.log",
+      "stderr": "verify-save-2.stderr.log",
+      "stdoutSha256": "439695b737fcb827a71f7df4f0b528802bb2224f4e98150e4fe536bc7e989819",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "scope": "Synthetic active Zotero ODT, actual LibreOffice open/save twice, Quds ODT import and DOCX save/reopen; no installed Zotero plugin or Microsoft Word execution.",
+  "sourceTree": "f8a367979b5beda4ed29a706a329b580637d7db4",
+  "workspacePackageConfigSha256": "35d8b2b944c5b60d38ffc524306ac5580c207fd6a6ea06a0d8b00a1546402636",
+  "scripts": {
+    "run_qualification.py": "176d94ab9a9f2843409aa85a7c31863edf44a1c91de851f30e46f7bdeae536ca",
+    "roman_fixtures.dart": "2085e8512c6f4fe321f1359fd1076f75e28718020a6eaaa2176ae1d5e55daeb1",
+    "reproduce_endnote_export.dart": "83e66211ab2206dfea2230cbe58fd24284cb37c86b96ff28820ade66eb96d6c9"
+  },
+  "runtime": {
+    "dartSha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "sofficeBinSha256": "d905a74dc92eaccb22481ba2de1345666a074a5f0d48322aaad1b6dc8a9e1e40"
+  },
+  "liveReproductionPassed": true,
+  "frozenInputsUnchanged": true,
+  "liveInputsUnchanged": true,
+  "liveChangedPaths": [],
+  "packageConfigUnchanged": true,
+  "fixtureCount": 2,
+  "distinctNotes": 30,
+  "distinctActiveCitations": 8,
+  "libreofficeSaveCycles": 2,
+  "odtImportAndDocxReopenStagesPerFixture": 3,
+  "artifactHashes": {
+    "live-repro/default-roman-endnote.docx": {
+      "sha256": "27f8e60c957caec0e746d92c44e1de0b0f50ee78d98ee8ee5a07888386d92758",
+      "bytes": 6322
+    },
+    "live-repro/default-roman-endnote.odt": {
+      "sha256": "e5c0411d2be23f96b20cfb9015598766a4ba260fb051bdd2f66fe3e63dad8b5e",
+      "bytes": 3655
+    },
+    "live-repro/explicit-decimal-control.docx": {
+      "sha256": "8d40132bdb1c1a507f28283b8d4a855acd1b71158c2e4263131b740f4e457fb2",
+      "bytes": 6357
+    },
+    "live-repro/explicit-decimal-control.odt": {
+      "sha256": "45b61f3db3b73bc314117398afacba59ce169eea341adf55d77ed8b970a4ff73",
+      "bytes": 3653
+    },
+    "live-repro/report.json": {
+      "sha256": "df1a0626abc7c6dbbe9517e3db74eac5d903e2560fae29f360e05784de32337e",
+      "bytes": 5224
+    },
+    "original/create-report.json": {
+      "sha256": "e974d57eeeae2fa2eaee3c88522d669744451489e36cb8d9a501715f45304d2c",
+      "bytes": 381
+    },
+    "original/default-lower-endnotes.docx": {
+      "sha256": "f9a02316d655eaa4dee269c359a124a28867d0936f478d6ec66d5435b03beb05",
+      "bytes": 7152
+    },
+    "original/default-lower-endnotes.expected.json": {
+      "sha256": "71f960ba4c3172a2b5381bd170c150c31df02a79760c5b46b9a1dff0dd5c9760",
+      "bytes": 18727
+    },
+    "original/default-lower-endnotes.observed.json": {
+      "sha256": "0fc66fac71f8a7f86ad637711daa882afdfb7b5b4305db3b32eef97a1c2e405a",
+      "bytes": 27365
+    },
+    "original/default-lower-endnotes.odt": {
+      "sha256": "725972e290ee6b57f0ed5926a44b902c0ffb8a49e161c42b6740d1a64c373800",
+      "bytes": 4347
+    },
+    "original/default-lower-endnotes.reopened.docx": {
+      "sha256": "b089c66d8e962c5d51971ae5e9816be5b20a3361cdc3401410df06a8dd2ddcb8",
+      "bytes": 9838
+    },
+    "original/independent-xml-inventory.json": {
+      "sha256": "2e1d4c9323fa015fe3bc073aeb7d14e3dbdd91f61b6b818022b88228589b9d32",
+      "bytes": 7353
+    },
+    "original/mixed-upper-foot-lower-end.docx": {
+      "sha256": "372d40f195f0d50c5f5498e6fa84cbadde88463042ee0e62aac140db7f77a814",
+      "bytes": 8598
+    },
+    "original/mixed-upper-foot-lower-end.expected.json": {
+      "sha256": "dd89327ba1090405793642c69c3b20ea6c299b37e3889c928232ce4d14427b04",
+      "bytes": 20879
+    },
+    "original/mixed-upper-foot-lower-end.observed.json": {
+      "sha256": "0e77c0c15f7549011eddc71ea694e6d3bb752360093f180d09a406cee90fb81c",
+      "bytes": 30849
+    },
+    "original/mixed-upper-foot-lower-end.odt": {
+      "sha256": "bd08c3ccb37901cd5362291af73689a6b661154f39f6eaeb20b821d9bb4b582b",
+      "bytes": 5022
+    },
+    "original/mixed-upper-foot-lower-end.reopened.docx": {
+      "sha256": "58ed83112fa0bb3aac99cc5a5c6ee9319c0fbb29723a07101a3310c8fda50ac0",
+      "bytes": 11347
+    },
+    "original/verify-report.json": {
+      "sha256": "b2ea22e05e051c2d10736c9df9ea63423e8cadf7c0918a50de0c6609c3d96a37",
+      "bytes": 553
+    },
+    "lo-save-1/default-lower-endnotes.observed.json": {
+      "sha256": "67e8b8e76f3a20ba8cd89e70f6f3edc86a3115a3e0c987ccc0c3f9313880a437",
+      "bytes": 27390
+    },
+    "lo-save-1/default-lower-endnotes.odt": {
+      "sha256": "31d0a94ea9bf028d4fbeddbc67fec22e4323af0fe38a3c28650989dd5bc4bc0c",
+      "bytes": 11619
+    },
+    "lo-save-1/default-lower-endnotes.reopened.docx": {
+      "sha256": "5b48cc0527a9287b20185d218f31b5db4304720461c54e73d1f4eaec7293b6da",
+      "bytes": 10521
+    },
+    "lo-save-1/independent-xml-inventory.json": {
+      "sha256": "026aa17d0223ce5faf48a35e65111faf42b400453dc4dcf778c53a1df93945c3",
+      "bytes": 8137
+    },
+    "lo-save-1/mixed-upper-foot-lower-end.observed.json": {
+      "sha256": "0e77c0c15f7549011eddc71ea694e6d3bb752360093f180d09a406cee90fb81c",
+      "bytes": 30849
+    },
+    "lo-save-1/mixed-upper-foot-lower-end.odt": {
+      "sha256": "3a82145d14582fd9dff2daca84c266c4dfc27e6e24e1f1ff58322cf3b86bea02",
+      "bytes": 15517
+    },
+    "lo-save-1/mixed-upper-foot-lower-end.reopened.docx": {
+      "sha256": "7e9f4addbbab0b2501476c8146fe7e0b087b57400f59bd0fa228180f2d968b23",
+      "bytes": 11974
+    },
+    "lo-save-1/verify-report.json": {
+      "sha256": "3a046b8c789f8877d5314f953b929349940d7fab2c48c9785eac8c53fb0b8e41",
+      "bytes": 553
+    },
+    "lo-save-2/default-lower-endnotes.observed.json": {
+      "sha256": "67e8b8e76f3a20ba8cd89e70f6f3edc86a3115a3e0c987ccc0c3f9313880a437",
+      "bytes": 27390
+    },
+    "lo-save-2/default-lower-endnotes.odt": {
+      "sha256": "9582777c8d8f2d4ad7216cc3af9b2924d5688f5576d881bf7ba41e6056f89daa",
+      "bytes": 11620
+    },
+    "lo-save-2/default-lower-endnotes.reopened.docx": {
+      "sha256": "f10a68acd8addc0d7505d3beb1230337eb7721316659723179b438513f3ae628",
+      "bytes": 10521
+    },
+    "lo-save-2/independent-xml-inventory.json": {
+      "sha256": "2050afe998903eeaf18ea268a1e6b086b4f1212dfff06dffef3b79a35ed7683e",
+      "bytes": 8137
+    },
+    "lo-save-2/mixed-upper-foot-lower-end.observed.json": {
+      "sha256": "0e77c0c15f7549011eddc71ea694e6d3bb752360093f180d09a406cee90fb81c",
+      "bytes": 30849
+    },
+    "lo-save-2/mixed-upper-foot-lower-end.odt": {
+      "sha256": "bce21b6964c32ec27b05354054a52833fbbf1916243610b37d43006829e3733c",
+      "bytes": 15519
+    },
+    "lo-save-2/mixed-upper-foot-lower-end.reopened.docx": {
+      "sha256": "d36f988280a1bdfdfc3da832b503eedf0ff14b3ae86bd3c6b1e1a9fe243b42cd",
+      "bytes": 11972
+    },
+    "lo-save-2/verify-report.json": {
+      "sha256": "df5ab87a7fa44a23044a69b66a7d02e27ed6d5da86b07e98d5fbf02b82265822",
+      "bytes": 553
+    }
+  },
+  "result": "PASS",
+  "finishedUtc": "2026-11-22T06:55:11.430963+00:00"
+}

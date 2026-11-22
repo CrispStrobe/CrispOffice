@@ -7,6 +7,7 @@ import 'package:quds_mail_store/quds_mail_store.dart';
 import 'studio_mail_mailbox_store.dart';
 
 part 'studio_mail_flag_reconciliation.dart';
+part 'studio_mail_membership_reconciliation.dart';
 
 /// The enclosing draft owner serializes and closes this shared repository.
 abstract interface class StudioMailFlagJournalOwner {
@@ -87,7 +88,10 @@ final class UnavailableStudioMailFlagJournal implements MailBulkFlagJournal {
 }
 
 final class SqliteStudioMailFlagJournalStore
-    implements StudioMailFlagJournalStore, StudioMailFlagReconciliationStore {
+    implements
+        StudioMailFlagJournalStore,
+        StudioMailFlagReconciliationStore,
+        StudioMailMembershipReconciliationStore {
   SqliteStudioMailFlagJournalStore({
     required this._repository,
     required this.account,
@@ -152,6 +156,26 @@ final class SqliteStudioMailFlagJournalStore
     required bool Function() isCurrent,
     MailCancellationToken? cancellation,
   }) => _reconcileFlagBatch(
+    this,
+    id: id,
+    expectedRevision: expectedRevision,
+    sourceAccount: sourceAccount,
+    provider: provider,
+    observer: observer,
+    isCurrent: isCurrent,
+    cancellation: cancellation,
+  );
+
+  @override
+  Future<MailStoredFlagBatch> reconcileMembership({
+    required String id,
+    required int expectedRevision,
+    required MailAccountId sourceAccount,
+    required MailProviderKind provider,
+    required MailMembershipObserver observer,
+    required bool Function() isCurrent,
+    MailCancellationToken? cancellation,
+  }) => _reconcileMembershipBatch(
     this,
     id: id,
     expectedRevision: expectedRevision,

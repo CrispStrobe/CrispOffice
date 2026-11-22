@@ -24,7 +24,26 @@ interrupted work.
 | Account persistence | Native account store, schema migrations and reconnect |
 | Browser store | Implemented path; quota/reload/Web Locks acceptance remains open |
 
-## Latest increment: durable foreground Move/Delete
+## Latest increment: current-location recovery for uncertain Move/Delete
+
+Connected Mail activity offers **Check current location** through a separate
+read-only membership observer. IMAP checks the original folder generation and
+deletion marker; Gmail records exact labels/Trash; Microsoft 365 and EWS inspect
+the original identity's current parent and resolved Deleted Items folder.
+Unavailable original IDs never establish a moved destination or historical
+success. Opening cached activity performs no provider work.
+
+Schema 14 stores a bounded, repeatable latest observation per uncertain item,
+with timestamp and owner/revision/epoch/lease guards. The original command and
+uncertainty remain unchanged and protected from cleanup; nothing is replayed.
+Cached mailbox observations stay dated until explicit refresh or sync.
+
+See the [workflow and ordered continuation](membership-recovery.md) and
+[local qualification record](../../validation/mail-membership-recovery-20261122/README.md).
+Authoritative identity-transition capture and cache reconciliation, then bulk
+organization and connected multi-account navigation, remain next.
+
+## Previous increment: durable foreground Move/Delete
 
 Connected single-message Move/Delete now commits intent and an applying marker
 before provider work, preserves exact destination identity, and keeps restart
@@ -36,8 +55,8 @@ read/flag observation. Schema 13 preserves earlier data with additive migration.
 
 See the [workflow, boundaries and ordered continuation](durable-mutations.md)
 and [local qualification record](../../validation/mail-durable-mutations-20261122/README.md).
-Provider-specific membership reconciliation, bulk organization and connected
-multi-account navigation remain subsequent work.
+Current-location evidence is continued above. Authoritative cache reconciliation,
+bulk organization and connected multi-account navigation remain subsequent work.
 
 ## Previous increment: unified retained-folder navigation
 

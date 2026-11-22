@@ -110,11 +110,22 @@ page or enclosing cell and refuses a final width exhausted by the margins.
 Ordinary `writeBytes` keeps its existing table-formatting and cached-result
 contract; uniform-padding output is specific to the explicit editable path.
 
-Cited notes require ordinary automatic decimal numbering. The exporter keeps
-their native note ownership, emits automatic ODF note labels, and refuses
-custom/Roman/restarted cases outside this initial contract. The native ODT reader
-now records admitted decimal endnote numbering explicitly in the Word model so
-DOCX reopening does not switch it to Word's Roman default.
+Cited note classes support continuous automatic decimal, lower-Roman or
+upper-Roman numbering starting at one, including Word's default Roman endnotes.
+All emitted notes in a cited class, including uncited notes, must have compatible
+effective native settings and exact ordinals. Footnotes and endnotes remain
+independent. The exporter writes one explicit ODF format per class and omits
+the start value so both normative start-one and LibreOffice's zero-offset
+convention agree. Roman ordinals are limited to 1–3,999. Custom labels, mixed
+formats, unsupported settings and section/page restarts refuse before bytes
+are returned. Alphabetic numbering remains deferred because ODF and
+LibreOffice disagree on letter synchronization.
+
+The reader stores the accepted formats explicitly in native section properties
+so DOCX reopening preserves them. This uses genuine automatic note numbering;
+the ordinary writer retains its existing fixed-label contract. See the
+[note-numbering work record](../../validation/zotero-note-numbering-20261122/README.md)
+for source-bound local and converter qualification.
 
 The ordinary ODT writer's document-formatting envelope still applies. Editable
 Zotero metadata does not establish arbitrary Word/ODF formatting fidelity.

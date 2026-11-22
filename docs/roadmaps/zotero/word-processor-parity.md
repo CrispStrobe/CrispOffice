@@ -56,11 +56,32 @@ results retain their original source and platform attribution.
 | Cross-word-processor transfer | Native export/import handshake, temporary metadata hyperlinks, DOCX import/save/reopen and ODT carrier export; complete native formatting before import publication | The qualified DOCX carrier route and native ODT conversion have separate envelopes; installed Zotero/Word/LibreOffice plugin acceptance remains open and actual converter findings are retained |
 | Native ODT inspection | Read-only inventory of citation ReferenceMarks, bibliography TextSections, exact story/paragraph/cell ownership, cached text and original preferences; JSON diagnostic CLI | Inspection reports eligibility and findings without publishing an editable document |
 | Native ODT import | Bounded rich paragraphs/styles, hyperlinks, authored notes, simple lists, supported merged/nested tables and embedded inline PNG/upright RGB JPEG pictures; canonical Zotero fields and preferences convert to an editable Word document; asynchronous editor/Studio opening and DOCX save/reopen | Used unsupported structure/formatting refuses atomically; content-sensitive guards limit dormant defaults; installed-plugin acceptance remains open |
-| Native editable ODT output | Explicit copy export with native citation ReferenceMarks, bibliography TextSections, preferences, bounded body/cell/decimal-note ownership and inline pictures with links/alternative text | General Word-to-ODT formatting limits remain; unsupported active-field or picture ownership refuses; release-host/plugin acceptance is separate from local and converter fixtures |
+| Native editable ODT output | Explicit copy export with native citation ReferenceMarks, bibliography TextSections, preferences, bounded body/cell and automatic decimal/Roman note ownership and inline pictures with links/alternative text | General Word-to-ODT formatting limits remain; unsupported active-field or picture ownership refuses; release-host/plugin acceptance is separate from local and converter fixtures |
 
 The native controls use Zotero's own CSL processor. The separate basic/offline
 citation and single-item preview/export paths retain their narrower formatting
 contract; they are not evidence of complete document-wide CSL parity.
+
+## Delivered increment: automatic Roman notes in editable ODT
+
+Editable ODT exchange now preserves continuous automatic decimal and
+lower/upper Roman notes starting at one, including Word's default endnotes.
+The exporter verifies effective native format, ordinal, start and restart
+settings for every note in a cited class, including uncited notes. It emits
+explicit per-class configurations while leaving footnote/endnote sequences
+independent. Import checks the cached labels against the declared sequence
+and stores native numbering settings for subsequent DOCX saves.
+
+Custom labels, format changes within one note class, restarts, malformed settings and Roman ordinals
+outside 1–3,999 remain guarded. Alphabetic numbering requires a separate
+producer-aware contract: current LibreOffice and the ODF prose disagree on
+letter synchronization. Omitted format/default behavior and the LibreOffice
+zero-offset convention are handled explicitly, without guessing from text.
+
+The [implementation and validation record](../../validation/zotero-note-numbering-20261122/README.md)
+tracks local engine/editor/Studio checks, actual converter fixtures and exact
+source attribution. Installed Zotero plugin and Microsoft Word acceptance
+remain separate from file conversion and controlled protocol tests.
 
 ## Delivered increments: pictures and structured research lists
 

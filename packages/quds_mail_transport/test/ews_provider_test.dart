@@ -98,6 +98,17 @@ String _folder(String id, {String kind = 'IPF.Note'}) =>
     '<t:DisplayName>$id</t:DisplayName><t:FolderClass>$kind</t:FolderClass>'
     '</t:Folder>';
 
+String _membershipItem(String id, {String parent = 'inbox-id'}) => _success(
+  'GetItem',
+  '<m:Items><t:Message><t:ItemId Id="$id" ChangeKey="current-key"/>'
+      '<t:ParentFolderId Id="$parent"/></t:Message></m:Items>',
+);
+
+String _deletedItems() => _response(
+  'GetFolder',
+  _success('GetFolder', '<m:Folders>${_folder('trash-id')}</m:Folders>'),
+);
+
 final class _Vault implements MailCredentialStore {
   int loads = 0;
   String password = 'first-password';
@@ -318,6 +329,337 @@ void main() {
       );
     }
   }
+
+  group('read-only membership observation', () {
+    for (final parent in ['inbox-id', 'Archive_CASE', 'trash-id']) {
+      test(
+        'observes original EWS identity currently in $parent without flags or MIME',
+        () async {
+          final fixture = _Fixture();
+          fixture.scripts.add([
+            (
+              'GetItem',
+              (request) {
+                expect(request, contains('FieldURI="item:ParentFolderId"'));
+                expect(request, isNot(contains('message:IsRead')));
+                expect(request, isNot(contains('item:Subject')));
+                expect(request, isNot(contains('ExtendedFieldURI')));
+                expect(request, isNot(contains('IncludeMimeContent')));
+                return _response(
+                  'GetItem',
+                  _membershipItem('one', parent: parent),
+                );
+              },
+            ),
+            (
+              'GetFolder',
+              (request) {
+                expect(
+                  request,
+                  contains('DistinguishedFolderId Id="deleteditems"'),
+                );
+                return _deletedItems();
+              },
+            ),
+          ]);
+          final observed = _value(
+            await fixture.provider().observeMembership(
+              _identity('one'),
+              lease: fixture.session.begin(),
+            ),
+          );
+          expect(observed.kind, MailMembershipObservationKind.present);
+          expect(observed.identity, _identity('one'));
+          expect(observed.mailboxes, [
+            MailMailboxId(parent, account: _account),
+          ]);
+          expect(
+            observed.deletionMailbox,
+            MailMailboxId('trash-id', account: _account),
+          );
+          expect(observed.isDeleted, parent == 'trash-id');
+          expect(
+            fixture.clients.single.requests.every((request) => !request.$3),
+            isTrue,
+          );
+          expect(fixture.clients.single.mutationStarted, isFalse);
+          expect(fixture.clients.single.aborted, isTrue);
+          expect(fixture.clients.single.steps, isEmpty);
+        },
+      );
+    }
+
+    test(
+      'original EWS item not found leaves replacement and destination unknown',
+      () async {
+        final fixture = _Fixture();
+        fixture.scripts.add([
+          (
+            'GetItem',
+            (_) => _response('GetItem', _error('GetItem', 'ErrorItemNotFound')),
+          ),
+        ]);
+        final observed = _value(
+          await fixture.provider().observeMembership(
+            _identity('one'),
+            lease: fixture.session.begin(),
+          ),
+        );
+        expect(observed.kind, MailMembershipObservationKind.missing);
+        expect(observed.identity, _identity('one'));
+        expect(observed.mailboxes, isEmpty);
+        expect(observed.isDeleted, isNull);
+        expect(fixture.clients.single.requests.map((request) => request.$1), [
+          'GetItem',
+        ]);
+        expect(fixture.clients.single.mutationStarted, isFalse);
+      },
+    );
+
+    for (final (name, fields) in [
+      ('omitted', ''),
+      ('no ID', '<t:ParentFolderId/>'),
+      ('empty ID', '<t:ParentFolderId Id=""/>'),
+      (
+        'duplicate parent',
+        '<t:ParentFolderId Id="a"/><t:ParentFolderId Id="b"/>',
+      ),
+      ('wrong namespace', '<m:ParentFolderId Id="a"/>'),
+      (
+        'nested content',
+        '<t:ParentFolderId Id="a"><t:Folder/></t:ParentFolderId>',
+      ),
+      ('oversized ID', '<t:ParentFolderId Id="${'x' * 1025}"/>'),
+    ]) {
+      test('$name parent is rejected before Deleted Items lookup', () async {
+        final fixture = _Fixture();
+        fixture.scripts.add([
+          (
+            'GetItem',
+            (_) => _response(
+              'GetItem',
+              _success(
+                'GetItem',
+                '<m:Items><t:Message><t:ItemId Id="one" ChangeKey="key"/>$fields</t:Message></m:Items>',
+              ),
+            ),
+          ),
+        ]);
+        final result = await fixture.provider().observeMembership(
+          _identity('one'),
+          lease: fixture.session.begin(),
+        );
+        _problem(result, MailProblemCode.providerFailure);
+        expect(
+          (result as MailFailure<MailMembershipObservation>)
+              .problem
+              .mutationMayHaveOccurred,
+          isFalse,
+        );
+        expect(fixture.clients.single.requests, hasLength(1));
+      });
+    }
+
+    test(
+      'a different returned EWS ID cannot be rebound to the request',
+      () async {
+        final fixture = _Fixture();
+        fixture.scripts.add([
+          ('GetItem', (_) => _response('GetItem', _membershipItem('other'))),
+        ]);
+        _problem(
+          await fixture.provider().observeMembership(
+            _identity('one'),
+            lease: fixture.session.begin(),
+          ),
+          MailProblemCode.providerFailure,
+        );
+        expect(fixture.clients.single.requests, hasLength(1));
+      },
+    );
+
+    test('permission failure is not an absence observation', () async {
+      final fixture = _Fixture();
+      fixture.scripts.add([
+        (
+          'GetItem',
+          (_) => _response('GetItem', _error('GetItem', 'ErrorAccessDenied')),
+        ),
+      ]);
+      _problem(
+        await fixture.provider().observeMembership(
+          _identity('one'),
+          lease: fixture.session.begin(),
+        ),
+        MailProblemCode.permissionDenied,
+      );
+      expect(fixture.clients.single.mutationStarted, isFalse);
+    });
+
+    test(
+      'unavailable Deleted Items cannot make a present original ID missing',
+      () async {
+        final fixture = _Fixture();
+        fixture.scripts.add([
+          ('GetItem', (_) => _response('GetItem', _membershipItem('one'))),
+          (
+            'GetFolder',
+            (_) => _response(
+              'GetFolder',
+              _error('GetFolder', 'ErrorAccessDenied'),
+            ),
+          ),
+        ]);
+        _problem(
+          await fixture.provider().observeMembership(
+            _identity('one'),
+            lease: fixture.session.begin(),
+          ),
+          MailProblemCode.permissionDenied,
+        );
+        expect(
+          fixture.clients.single.requests.every((request) => !request.$3),
+          isTrue,
+        );
+      },
+    );
+
+    for (final payload in [
+      '',
+      _folder('calendar', kind: 'IPF.Appointment'),
+      _folder('a') + _folder('b'),
+    ]) {
+      test(
+        'invalid Deleted Items collection (${payload.length}) fails the check',
+        () async {
+          final fixture = _Fixture();
+          fixture.scripts.add([
+            ('GetItem', (_) => _response('GetItem', _membershipItem('one'))),
+            (
+              'GetFolder',
+              (_) => _response(
+                'GetFolder',
+                _success('GetFolder', '<m:Folders>$payload</m:Folders>'),
+              ),
+            ),
+          ]);
+          _problem(
+            await fixture.provider().observeMembership(
+              _identity('one'),
+              lease: fixture.session.begin(),
+            ),
+            MailProblemCode.providerFailure,
+          );
+          expect(fixture.clients.single.mutationStarted, isFalse);
+        },
+      );
+    }
+
+    test(
+      'scope and stale leases are rejected without credentials or requests',
+      () async {
+        final fixture = _Fixture();
+        final provider = fixture.provider();
+        final other = MailAccountId('other', profile: _account.profile);
+        _problem(
+          await provider.observeMembership(
+            MailOpaqueIdentity(
+              account: other,
+              provider: MailProviderKind.ews,
+              value: 'one',
+            ),
+            lease: fixture.session.begin(),
+          ),
+          MailProblemCode.invalidInput,
+        );
+        _problem(
+          await provider.observeMembership(
+            MailOpaqueIdentity(
+              account: _account,
+              provider: MailProviderKind.graph,
+              value: 'one',
+            ),
+            lease: fixture.session.begin(),
+          ),
+          MailProblemCode.invalidInput,
+        );
+        _problem(
+          await provider.observeMembership(
+            _identity('one'),
+            lease: MailAccountSession(other).begin(),
+          ),
+          MailProblemCode.invalidInput,
+        );
+        final stale = fixture.session.begin();
+        fixture.session.invalidate();
+        _problem(
+          await provider.observeMembership(_identity('one'), lease: stale),
+          MailProblemCode.staleOperation,
+        );
+        final cancellation = MailCancellationSource();
+        final cancelled = fixture.session.begin(
+          cancellation: cancellation.token,
+        );
+        cancellation.cancel();
+        _problem(
+          await provider.observeMembership(_identity('one'), lease: cancelled),
+          MailProblemCode.cancelled,
+        );
+        expect(fixture.vault.loads, 0);
+        expect(fixture.clients, isEmpty);
+      },
+    );
+
+    for (final duringFolder in [false, true]) {
+      test(
+        'cancelling during ${duringFolder ? 'folder' : 'item'} read discards partial evidence',
+        () async {
+          final fixture = _Fixture();
+          final started = Completer<void>();
+          final release = Completer<String>();
+          fixture.scripts.add([
+            (
+              'GetItem',
+              (_) {
+                if (!duringFolder) {
+                  started.complete();
+                  return release.future;
+                }
+                return _response('GetItem', _membershipItem('one'));
+              },
+            ),
+            if (duringFolder)
+              (
+                'GetFolder',
+                (_) {
+                  started.complete();
+                  return release.future;
+                },
+              ),
+          ]);
+          final cancellation = MailCancellationSource();
+          final pending = fixture.provider().observeMembership(
+            _identity('one'),
+            lease: fixture.session.begin(cancellation: cancellation.token),
+          );
+          await started.future;
+          cancellation.cancel();
+          _problem(await pending, MailProblemCode.cancelled);
+          release.complete(
+            duringFolder
+                ? _deletedItems()
+                : _response('GetItem', _membershipItem('one')),
+          );
+          await Future<void>.delayed(Duration.zero);
+          expect(
+            fixture.clients.single.requests,
+            hasLength(duringFolder ? 2 : 1),
+          );
+          expect(fixture.clients.single.mutationStarted, isFalse);
+        },
+      );
+    }
+  });
 
   group('read-only flag observation', () {
     test(

@@ -124,7 +124,8 @@ final class _ImapBrowser
         StudioMailMessageActions,
         StudioMailBulkMessageActions,
         StudioMailMembershipActions,
-        MailFlagObserver {
+        MailFlagObserver,
+        MailMembershipObserver {
   _ImapBrowser(this.harness) {
     harness.liveAccount = account;
   }
@@ -241,6 +242,12 @@ final class _ImapBrowser
   void dispose() {}
 
   @override
+  Future<MailResult<MailMembershipObservation>> observeMembership(
+    MailRemoteIdentity identity, {
+    required MailOperationLease lease,
+  }) => harness.observeMembership(identity, lease);
+
+  @override
   Future<MailResult<MailFlagObservation>> observeFlags(
     MailRemoteIdentity identity, {
     required MailOperationLease lease,
@@ -248,7 +255,11 @@ final class _ImapBrowser
 }
 
 class _Provider extends Fake
-    implements MailProvider, MailFlagObserver, MailSubmissionProvider {
+    implements
+        MailProvider,
+        MailFlagObserver,
+        MailMembershipObserver,
+        MailSubmissionProvider {
   _Provider(this.harness, this.account) {
     harness.liveAccount = account;
   }
@@ -328,6 +339,12 @@ class _Provider extends Fake
   ) => harness.record(operation);
 
   @override
+  Future<MailResult<MailMembershipObservation>> observeMembership(
+    MailRemoteIdentity identity, {
+    required MailOperationLease lease,
+  }) => harness.observeMembership(identity, lease);
+
+  @override
   Future<MailResult<MailFlagObservation>> observeFlags(
     MailRemoteIdentity identity, {
     required MailOperationLease lease,
@@ -369,6 +386,7 @@ final class _Harness {
   final commands = <MailOperation>[];
   final atDispatch = <MailStoredFlagBatch>[];
   final flagObservations = <(MailRemoteIdentity, MailOperationLease)>[];
+  final membershipObservations = <(MailRemoteIdentity, MailOperationLease)>[];
   MailAccountId? liveAccount;
   int headerReads = 0;
   int bodyReads = 0;
@@ -423,6 +441,30 @@ final class _Harness {
             flags: const MailMessageFlags(isRead: true, isFlagged: true),
           ),
         );
+  }
+
+  Future<MailResult<MailMembershipObservation>> observeMembership(
+    MailRemoteIdentity identity,
+    MailOperationLease lease,
+  ) async {
+    expectSync(identity.account, liveAccount);
+    expectSync(lease.account, liveAccount);
+    lease.checkCurrent();
+    membershipObservations.add((identity, lease));
+    return MailSuccess(switch (identity) {
+      final MailImapIdentity imap => MailMembershipObservation.imap(
+        identity: imap,
+        isDeleted: true,
+      ),
+      final MailOpaqueIdentity opaque => MailMembershipObservation.folders(
+        identity: opaque,
+        mailboxes: [MailMailboxId('Archive', account: identity.account)],
+        deletionMailbox: MailMailboxId(
+          kind == MailProviderKind.gmail ? 'TRASH' : 'Deleted Items',
+          account: identity.account,
+        ),
+      ),
+    });
   }
 
   Widget dialog() {
@@ -541,8 +583,9 @@ void _bulk(WidgetTester tester) {
 
 Future<MailStoredFlagBatch> _historicalUncertainty(
   WidgetTester tester,
-  _Harness harness,
-) async {
+  _Harness harness, {
+  MailBulkFlagAction action = MailBulkFlagAction.flag,
+}) async {
   final fixture = harness.fixture;
   final source = fixture.source('retired-connection');
   final mailbox = MailMailboxId('Archive/2025', account: source);
@@ -550,7 +593,10 @@ Future<MailStoredFlagBatch> _historicalUncertainty(
     id: 'historical-${harness.kind.name}',
     mailbox: mailbox,
     provider: harness.kind,
-    action: MailBulkFlagAction.flag,
+    action: action,
+    destination: action == MailBulkFlagAction.move
+        ? MailMailboxId('Archive', account: source)
+        : null,
     messages: [
       for (var index = 0; index < 2; index++)
         if (harness.kind == MailProviderKind.imap)
@@ -618,10 +664,21 @@ Future<void> _openActivity(
   await _until(
     tester,
     () =>
-        _key('studio-mail-activity-check').evaluate().isNotEmpty &&
+        _key(
+          batch.summary.canCheckMembership
+              ? 'studio-mail-activity-check-location'
+              : 'studio-mail-activity-check',
+        ).evaluate().isNotEmpty &&
         find.byType(LinearProgressIndicator).evaluate().isEmpty,
   );
-  expect(find.text(_strings.mailActivityCheck), findsOneWidget);
+  expect(
+    find.text(
+      batch.summary.canCheckMembership
+          ? _strings.mailActivityLocationCheck
+          : _strings.mailActivityCheck,
+    ),
+    findsOneWidget,
+  );
 }
 
 Future<void> _checkActivity(WidgetTester tester) async {

@@ -1,5 +1,10 @@
 ## Unreleased
 
+- Add optional read-only membership observation with immutable exact identity,
+  IMAP generation/deletion semantics, complete Gmail labels and Graph/EWS parent
+  folders. Bound and validate provider evidence independently from command
+  outcomes; an unavailable original identity never proves a moved destination.
+
 - Extend the existing durable foreground runner to exact-destination move and
   recoverable delete commands. Retain legacy flag API names, strict frozen
   receipt restoration and no automatic replay. Expose flag-only action checks

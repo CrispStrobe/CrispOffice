@@ -1,0 +1,30 @@
+{
+  "recorded_at_utc": "2026-11-22T07:09:01.857394+00:00",
+  "qualified_source": "1896e11febd0d08159c85ddbbcd94743383f1e61",
+  "qualified_tree": "2f955065ec1ee94ea3db8e3cfbda7fcc94036fc1",
+  "observed_remote_main": "ffdf603cc71fbb9083c93db3d1b6fe47949f62e7",
+  "main_pr": 365,
+  "open_prs_at_premerge_check": 0,
+  "reconciliation_checkpoint": "dde9845f1783d61272acbba314603c4bb51d87fb",
+  "reconciliation_tree": "cfac7ab903d7a20e3d5c1c9b47411bf860c6c0c9",
+  "parents": [
+    "1896e11febd0d08159c85ddbbcd94743383f1e61",
+    "ffdf603cc71fbb9083c93db3d1b6fe47949f62e7"
+  ],
+  "changed_paths_from_qualified_source": [
+    "docs/VBA_PARITY_ROADMAP.md",
+    "docs/validation/word-vba-cell-prefix-20261122/README.md",
+    "docs/validation/word-vba-cell-prefix-20261122/final-intake.json",
+    "docs/validation/word-vba-cell-prefix-20261122/final/archive-manifest.json",
+    "docs/validation/word-vba-cell-prefix-20261122/final/artifacts.json",
+    "docs/validation/word-vba-cell-prefix-20261122/final/committed-source-index.json.gz",
+    "docs/validation/word-vba-cell-prefix-20261122/final/publication-premerge.json",
+    "docs/validation/word-vba-cell-prefix-20261122/final/qualification.json",
+    "docs/validation/word-vba-cell-prefix-20261122/final/raw-evidence.tar.xz",
+    "docs/validation/word-vba-cell-prefix-20261122/suites.txt"
+  ],
+  "product_test_dependency_and_gate_runner_changes": [],
+  "all_captured_work_remains_ancestral": true,
+  "evidence_applicability": "All package/application source, test/support/fixture files, root dependency manifests, analysis settings and local gate runner remain byte-identical to final tested source. Only Word documentation and immutable validation artifacts arrived with PR365. No rerun is needed to attribute the existing qualification to this descendant.",
+  "publication": "Expected-head forward-only checkpoint; GitHub Actions not queried or awaited. A final main check remains part of PR merge."
+}

@@ -69,7 +69,7 @@ final class _Operation {
 /// No mail submission or mutation is retried. Each operation verifies that the
 /// supplied credential still belongs to its configured mailbox before mail IO.
 final class ApiMailCloudProvider
-    implements MailCloudProvider, MailFlagObserver {
+    implements MailCloudProvider, MailFlagObserver, MailMembershipObserver {
   ApiMailCloudProvider({
     required this.configuration,
     required this.tokenSource,
@@ -1019,6 +1019,91 @@ final class ApiMailCloudProvider
         );
       }
       return MailFlagObservation.present(identity: identity, flags: flags);
+    });
+  }
+
+  @override
+  Future<MailResult<MailMembershipObservation>> observeMembership(
+    MailRemoteIdentity identity, {
+    required MailOperationLease lease,
+  }) async {
+    if (!_identityValid(identity)) {
+      return _failure(MailProblemCode.invalidInput);
+    }
+    final remote = identity as MailOpaqueIdentity;
+    return _run(lease, MailCloudOperation.observeMembership, (operation) async {
+      final _Json data;
+      try {
+        data = await _json(
+          operation,
+          'GET',
+          _gmail
+              ? _gmailUri(
+                  ['messages', remote.value],
+                  {'format': 'minimal', 'fields': 'id,labelIds'},
+                )
+              : _graphUri(
+                  ['messages', remote.value],
+                  {r'$select': 'id,parentFolderId'},
+                ),
+          responseLimit: limits.maxHeaderBytes,
+        );
+      } on _ResponseFailure catch (error) {
+        // Only the exact message GET, after account verification, can certify
+        // that this identity is currently unavailable. Graph also uses 404
+        // for mailbox-level failures; an unknown/malformed error cannot supply
+        // item-level evidence. Neither result establishes historical success.
+        final itemUnavailable = _gmail
+            ? error.code == 'notFound'
+            : const {'ErrorItemNotFound', 'itemNotFound'}.contains(error.code);
+        if (error.status == 404 && itemUnavailable) {
+          return MailMembershipObservation.missing(identity: identity);
+        }
+        rethrow;
+      }
+      if (_text(data['id']) != remote.value) {
+        _fail(MailProblemCode.providerFailure);
+      }
+      if (_gmail) {
+        final labels = _array(
+          data['labelIds'],
+        ).map((value) => _text(value)).toList();
+        if (labels.length >
+            math.min(
+              limits.maxMailboxes,
+              MailMembershipObservation.maxMailboxes,
+            )) {
+          _fail(MailProblemCode.quotaExceeded);
+        }
+        if (labels.toSet().length != labels.length) {
+          _fail(MailProblemCode.providerFailure);
+        }
+        return MailMembershipObservation.folders(
+          identity: remote,
+          mailboxes: [
+            for (final label in labels) MailMailboxId(label, account: account),
+          ],
+          deletionMailbox: MailMailboxId('TRASH', account: account),
+        );
+      }
+      final parent = _text(data['parentFolderId']);
+      // The transport includes Prefer: IdType="ImmutableId" on every Graph
+      // request. Resolve the actual Deleted Items ID; its well-known alias is
+      // not comparable with an opaque parentFolderId.
+      final deletedItems = await _json(
+        operation,
+        'GET',
+        _graphUri(['mailFolders', 'deleteditems'], {r'$select': 'id'}),
+        responseLimit: limits.maxHeaderBytes,
+      );
+      return MailMembershipObservation.folders(
+        identity: remote,
+        mailboxes: [MailMailboxId(parent, account: account)],
+        deletionMailbox: MailMailboxId(
+          _text(deletedItems['id']),
+          account: account,
+        ),
+      );
     });
   }
 

@@ -1,0 +1,19 @@
+{
+  "sealedUtc": "2026-11-22T07:10:51.063837+00:00",
+  "archive": "evidence.tar.xz",
+  "archive_bytes": 2371200,
+  "archive_sha256": "5bfcb640ed221ae37b4b72df949280ffc70ee65b7b8769b4640325f41db18d43",
+  "index": "evidence.index.json",
+  "index_sha256": "9419ab1f1e25bd494d4936b1be3b992db4164e1e8749f20ba993c3d24ac75c20",
+  "files_including_index": 318,
+  "all_archive_member_hashes_verified": true,
+  "receipt_bytes_preserved": true,
+  "script_sha256": "55c576784883923f27a2a368c529d562b9205e33a797e048cfe2389a295fbe84",
+  "omissions": [
+    "Reproducible committed source extracts: baseline-source, candidate-source, frozen-source. Exact commit identities and per-file hash manifests are retained.",
+    "LibreOffice profile directories: profile, profile-*, version-profile. Original/saved documents, exact commands, native converter identity and binary hash are retained.",
+    "Installed Flutter/Dart SDK and Pub package contents. Official archive, executable and package hashes, release metadata, extraction inventory, bootstrap script and logs are retained.",
+    "Transient package caches, Python bytecode and runtime-ready marker files. Compiled portability JavaScript, source maps and dependency files are included.",
+    "Unfinished final-readme-template.md is excluded. The completed human-readable README is published beside the evidence archive."
+  ]
+}

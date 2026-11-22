@@ -113,7 +113,13 @@ $_cell.Paragraphs(1).Range.InsertBefore Text:="second: "
       } else {
         expect(
           () => session.startRecording('Denied prefixes'),
-          throwsA(isA<OfficeMacroException>()),
+          throwsA(
+            isA<OfficeMacroException>().having(
+              (error) => error.code,
+              'code',
+              'permission_denied',
+            ),
+          ),
         );
       }
       await expectLater(
@@ -126,6 +132,8 @@ $_cell.Paragraphs(1).Range.InsertBefore Text:="second: "
       expect(session.revision, 0);
       if (policy.allowMutation) {
         expect(session.stopRecording().steps, isEmpty);
+      } else {
+        expect(session.isRecording, isFalse);
       }
     });
   }

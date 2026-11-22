@@ -1207,7 +1207,7 @@ document tools above use the separate HTTP Citing Protocol.
 | Native Zotero document preferences | Read and write Zotero's XML/JSON preferences in chunked `ZOTERO_PREF_*` custom properties; translate native `Field` and wire `Http` types | Unknown preferences and unrelated properties are retained; malformed, duplicate, incomplete or ambiguously owned data is refused |
 | Document transfer | Native export/import callbacks, temporary metadata hyperlinks, DOCX save/reopen and ODT carrier export; native reformatting before applying an import | The qualified incoming carrier route uses DOCX; direct native ODT conversion has the separate envelope below; installed-plugin acceptance remains open |
 | Native ODT import | Supported paragraphs/styles, external links, authored notes, simple lists and supported merged/nested tables become an editable Word document; independent script formatting in retained LibreOffice prose; canonical Zotero citations/bibliographies and preferences remain active through DOCX saves | All-or-nothing bounded conversion; unsupported used structure/formatting and active content-sensitive defaults refuse |
-| Editable Zotero ODT export | Explicit copy export writes citation ReferenceMarks, bibliography TextSections and ReferenceMark preferences with exact supported ownership; rich body/cell/decimal-note fields remain active | Ordinary ODT export still writes cached results; the explicit path refuses unsupported active fields, and installed-plugin acceptance remains separate |
+| Editable Zotero ODT export | Explicit copy export writes citation ReferenceMarks, bibliography TextSections and ReferenceMark preferences with exact supported ownership; rich body/cell and supported decimal/Roman note fields remain active | Ordinary ODT export still writes cached results; the explicit path refuses unsupported active fields, and installed-plugin acceptance remains separate |
 
 New citations use complex Word fields with `ADDIN ZOTERO_ITEM CSL_CITATION`
 codes, durable Zotero item URIs, and embedded CSL item snapshots. New linked
@@ -1594,8 +1594,11 @@ file keeps its normal DOCX save destination and remains dirty if it has unsaved
 changes. Cancelling the picker makes no document change.
 
 The export supports complete unlocked fields in body paragraphs, visible body
-table cells, and uniquely anchored authored footnotes/endnotes with ordinary
-decimal numbering. Unsupported fields refuse before the save picker opens,
+table cells, and uniquely anchored authored footnotes/endnotes with continuous
+automatic decimal or lower/upper Roman numbering starting at one. Each cited
+note class must use one compatible format; uncited notes in that class take part
+in the same sequence. Roman ordinals are limited to 1–3,999. Unsupported fields
+or numbering refuse before the save picker opens,
 with a reason. Examples include incomplete or locked packets, fields in
 headers/controls/note tables, partial bibliographies, and ambiguous note owners.
 Choose a document style with Zotero first if the document has active fields but
@@ -1667,11 +1670,12 @@ The importer accepts a bounded subset:
   different native identities.
   Ordinary single-column bibliography section styles written by LibreOffice
   are accepted after their inherited formatting and protection are checked.
-- Authored footnotes/endnotes with ordinary decimal numbering and live note
-  anchors, simple decimal/bullet lists with independent starts/restarts and
+- Authored footnotes/endnotes with continuous automatic decimal or lower/upper
+  Roman numbering starting at one and live note anchors, simple decimal/bullet
+  lists with independent starts/restarts and
   nested continuations, and rectangular tables with supported horizontal and
   vertical merges, nested up to eight levels. Citation ownership stays with its actual paragraph, note or cell.
-  Identified LibreOffice decimal notes may use its zero-based starting offset;
+  Identified LibreOffice notes may use its zero-based starting offset;
   their visible note labels must match the complete sequence exactly.
 - XML/JSON Zotero preferences, including unknown members. The explicit import
   converts `ReferenceMark` storage to Word `Field` only after reconstruction.
@@ -1709,7 +1713,12 @@ The original merged-table [work record](validation/zotero-odt-merged-tables-2026
 retains its earlier execution blocker. The subsequent
 [editable-output qualification](validation/zotero-editable-odt-20261121/README.md)
 executes those engine/editor regressions and preserves the actual results.
-Imported decimal endnotes now retain their numbering through DOCX reopening.
+Imported decimal and lower/upper Roman footnotes/endnotes retain their numbering
+through DOCX reopening. The [note-numbering record](validation/zotero-note-numbering-20261122/README.md)
+describes the exact configuration, label and ownership checks. Alphabetic
+numbering, custom labels, mixed formats within a cited note class and page/section
+restarts remain outside editable exchange. The ordinary ODT export keeps its
+existing cached-text/fixed-label behavior.
 
 Unsupported used formatting or structure rejects the whole import before it
 replaces the active document. Examples include floating or adjusted drawings, comments,

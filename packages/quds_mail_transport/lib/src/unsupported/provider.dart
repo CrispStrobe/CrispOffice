@@ -13,7 +13,8 @@ MailProvider createMailImapProvider({
   return _UnsupportedMailProvider(configuration.account);
 }
 
-final class _UnsupportedMailProvider implements MailProvider, MailFlagObserver {
+final class _UnsupportedMailProvider
+    implements MailProvider, MailFlagObserver, MailMembershipObserver {
   _UnsupportedMailProvider(this.account);
   @override
   final MailAccountId account;
@@ -28,6 +29,11 @@ final class _UnsupportedMailProvider implements MailProvider, MailFlagObserver {
   ) async => _unavailable();
   @override
   Future<MailResult<MailFlagObservation>> observeFlags(
+    MailRemoteIdentity identity, {
+    required MailOperationLease lease,
+  }) async => _unavailable();
+  @override
+  Future<MailResult<MailMembershipObservation>> observeMembership(
     MailRemoteIdentity identity, {
     required MailOperationLease lease,
   }) async => _unavailable();
