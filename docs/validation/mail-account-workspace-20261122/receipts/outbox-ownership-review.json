@@ -1,0 +1,34 @@
+{
+  "reviewed_at_utc": "2026-11-22T13:59:51.404408+00:00",
+  "review_kind": "bounded independent source review, no tests or analyzer executed",
+  "identified_at_checkpoint": "8bbe6bcb9d22681a765e85c8fc4a80859221b042",
+  "shared_ews_fix_checkpoint": "64a238c9ce6a72264d91dd8b22dcfc35d0cf5ce9",
+  "native_fix_checkpoint": "460c9050b2e0a23301061944324f301a69945388",
+  "reviewed_file_sha256": {
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart": "9220c1fb36d1c7fcd64cf6aee8b1e4c180559de4e1930f12f30ac47d9eaef3b5",
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart": "e4686b17bfaa13bde1f609cfe381385c39faea5de2350d2dc372acff6141beed",
+    "packages/quds_office_editor/example/lib/studio_mail_outbox.dart": "e945844b04a8849fdb30448d4181e3f1af9dd4c26006850aaaae394924882b9d",
+    "packages/quds_office_editor/example/lib/studio_mail_outbox_dialog.dart": "4ea46c4f63fa7c0d3e24d3279863547e8f64a732163b0a82f4664a5a1d8540df",
+    "packages/quds_office_editor/example/test/studio_mail_outbox_host_test.dart": "3be8e86390049d88f00eacdd09e433dec059fa2aba1190ffca98ed3a5dfb3e8a",
+    "packages/quds_office_editor/example/test/studio_mail_test.dart": "b14a798aa0825a8e447d4895dc67c37bd60347c7bc181bf0b37a8cd5e9eb00aa"
+  },
+  "original_gap": "Dialog sends invoked submitStudioMailOutbox without tracking the full operation. Owner close could begin after provider dispatch and before completeOutboxAttempt persisted its outcome. The durable submitting marker remains conservative uncertainty; no automatic replay is inferred.",
+  "invariants_reviewed": [
+    "The shared dialog freezes the exact store, submit callback and runner, and validates mounted/current/owner identity after confirmation.",
+    "The host runner registers owner lifetime before invoking the complete helper, including begin-attempt persistence, provider reply and final outcome persistence.",
+    "EWS marks the already-durable queued entry preserved and completes its tracker in finally after the full helper settles.",
+    "Native immediate Outbox and legacy submission register before initial storage work and complete after the final receipt or accepted-draft clear.",
+    "All native active-owner close paths drain pending operations for the exact owner; stale unadopted candidates remain a separate cleanup path.",
+    "Both hosts reject retained stale dialog runner invocation before calling its action.",
+    "Real SQLite regression cases use independent network and receipt gates, assert no early close/new owner, then verify receipt-before-close and exact attempt/payload on reopen.",
+    "Native legacy late success and accepted-follow-up-error retain storage through gated clear; uncertain failure retains the marker without false success UI."
+  ],
+  "actionable_findings_after_fix": [],
+  "runtime_qualification_status": "passed in fresh173-case four-suite gate at9ce; aggregateStudio2368 also qualified",
+  "no_product_files_edited_by_reviewer": true,
+  "final_fixture_fix_checkpoint": "e6487fc634ec45298f161432bb0396865190d5bb",
+  "fixture_fix": "The nullable variable was replaced by a nonnullable final queued entry for beginOutboxAttempt; existing assertions and scenario semantics are unchanged.",
+  "final_source_frozen": true,
+  "runtime_qualification_receipt": "studio-four-fresh-qualification.json",
+  "latest_fixture_checkpoint": "9ce2b057ed8fac6bf6746a1700a6b3ca84f7f405"
+}

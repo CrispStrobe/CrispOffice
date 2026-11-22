@@ -1,0 +1,28 @@
+{
+  "prior_attempt03_cases": 2351,
+  "accepted_studio_cases": 2368,
+  "case_delta": 17,
+  "per_suite_delta": {
+    "test/studio_mail_account_navigation_provider_test.dart": {
+      "prior_cases": 127,
+      "current_cases": 136,
+      "delta": 9
+    },
+    "test/studio_mail_account_navigation_router_test.dart": {
+      "prior_cases": 5,
+      "current_cases": 8,
+      "delta": 3
+    },
+    "test/studio_mail_ews_test.dart": {
+      "prior_cases": 77,
+      "current_cases": 78,
+      "delta": 1
+    },
+    "test/studio_mail_outbox_host_test.dart": {
+      "prior_cases": 11,
+      "current_cases": 15,
+      "delta": 4
+    }
+  },
+  "prediction_was_low_by_three": "Incoming router suite grew from5 to8 cases; actual reporters replace the2365 prediction."
+}

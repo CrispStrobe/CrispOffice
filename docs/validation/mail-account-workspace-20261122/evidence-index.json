@@ -1,9 +1,9 @@
 {
-  "created_at_utc": "2026-11-22T13:56:14.726410+00:00",
+  "created_at_utc": "2026-11-22T14:27:53.073677+00:00",
   "archive": "local-evidence.tar.xz",
-  "archive_bytes": 1556176,
-  "archive_sha256": "bb594cc0cd1b4b44ef66ef6f847dfd2e039ce9c3d5ba9d4fce2ac9ac8471dbcb",
-  "includes_final_studio_evidence": false,
+  "archive_bytes": 2142560,
+  "archive_sha256": "9a3f61b29d6f727e2916ead14e2685b4c359745770dd32c9964a5044441d7f71",
+  "includes_final_studio_evidence": true,
   "files": [
     {
       "path": "development/editor-zotero-attempt-01/cases.json",
@@ -1306,6 +1306,36 @@
       "sha256": "03c5eb1d01bfc3c4c2f0321e78921053a2646d899f89cff422d1a7a2d44b905d"
     },
     {
+      "path": "development/studio-mail-attempt-06/repaired/cases.json",
+      "bytes": 199836,
+      "sha256": "9eb1d7a2b4f083bfbbc9b558353caec90b5ebb29accd10da46292e9980c370a6"
+    },
+    {
+      "path": "development/studio-mail-attempt-06/repaired/inputs-after.json",
+      "bytes": 910949,
+      "sha256": "00c698a739e76398dca2423881ae0207986d26193cf57bdc333665c7f4f0d464"
+    },
+    {
+      "path": "development/studio-mail-attempt-06/repaired/inputs-before.json",
+      "bytes": 910949,
+      "sha256": "00c698a739e76398dca2423881ae0207986d26193cf57bdc333665c7f4f0d464"
+    },
+    {
+      "path": "development/studio-mail-attempt-06/repaired/qualification.json",
+      "bytes": 8198,
+      "sha256": "13d876bd1977aea0ee30e56ff7ff2c3fb5b144143cf1444f907ae81bc369de52"
+    },
+    {
+      "path": "development/studio-mail-attempt-06/repaired/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "development/studio-mail-attempt-06/repaired/tests.jsonl",
+      "bytes": 388212,
+      "sha256": "ba301556d0339f0450d54ae55cc71cd1ddcd93f1b7e4f4e5c6a0e920dccd4e96"
+    },
+    {
       "path": "development/studio-mail-static-attempt-01/analysis-stderr.log",
       "bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
@@ -1444,6 +1474,96 @@
       "path": "development/studio-mail-static-attempt-04/qualification.json",
       "bytes": 6042,
       "sha256": "aecc841c32bc196e23f682542f4d03df2998290a01afac2646b9e30cd66bc139"
+    },
+    {
+      "path": "development/studio-mail-static-attempt-05/analysis-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "development/studio-mail-static-attempt-05/analysis.log",
+      "bytes": 1158,
+      "sha256": "690eede2c0b276888e72aa49f8ce428e3a995b2f64291727cfc123dfc1c650d7"
+    },
+    {
+      "path": "development/studio-mail-static-attempt-05/inputs-after.json",
+      "bytes": 3700,
+      "sha256": "8d2ccefdf6607a8f04ea3f8525ba6cb995643afcc04fa9e9394c670e221f70dc"
+    },
+    {
+      "path": "development/studio-mail-static-attempt-05/inputs-before.json",
+      "bytes": 3700,
+      "sha256": "8d2ccefdf6607a8f04ea3f8525ba6cb995643afcc04fa9e9394c670e221f70dc"
+    },
+    {
+      "path": "development/studio-mail-static-attempt-05/qualification.json",
+      "bytes": 4656,
+      "sha256": "dc0afde3820520fba59cc839b7621940c2cac069cc31db0dc0d4963359eead46"
+    },
+    {
+      "path": "development/studio-mail-static-attempt-06/analysis-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "development/studio-mail-static-attempt-06/analysis.log",
+      "bytes": 936,
+      "sha256": "c5a6637e37c7fa1cc77c26c1ed919681db24235cbcacea85dd95046e7c65dcd6"
+    },
+    {
+      "path": "development/studio-mail-static-attempt-06/format-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "development/studio-mail-static-attempt-06/format.log",
+      "bytes": 48,
+      "sha256": "b09fdc5c69be57482696350ec1d9016615833a72611ed15a258f72cf7e6226f1"
+    },
+    {
+      "path": "development/studio-mail-static-attempt-06/inputs-after.json",
+      "bytes": 3700,
+      "sha256": "f6edb7261ce7573aa111434bb4f24e5cd97df6bd93581d3a0d7085e1f49d88e5"
+    },
+    {
+      "path": "development/studio-mail-static-attempt-06/inputs-before.json",
+      "bytes": 3700,
+      "sha256": "f6edb7261ce7573aa111434bb4f24e5cd97df6bd93581d3a0d7085e1f49d88e5"
+    },
+    {
+      "path": "development/studio-mail-static-attempt-06/qualification.json",
+      "bytes": 6977,
+      "sha256": "72065f3bf1ba2fb5dccee9affd1db541cb4032df7129fd2d85d0723b366ba660"
+    },
+    {
+      "path": "editor-zotero/cases.json",
+      "bytes": 16006,
+      "sha256": "b6b48ca00d69f71a18c1f68f476665c0f9db595a82956ee5d8f346479870dd17"
+    },
+    {
+      "path": "editor-zotero/inputs-after.json",
+      "bytes": 910949,
+      "sha256": "b06568e1cae4e65e83de3edf19df27be7e446ea1427be68077f6f3d3584bc5cb"
+    },
+    {
+      "path": "editor-zotero/inputs-before.json",
+      "bytes": 910949,
+      "sha256": "b06568e1cae4e65e83de3edf19df27be7e446ea1427be68077f6f3d3584bc5cb"
+    },
+    {
+      "path": "editor-zotero/qualification.json",
+      "bytes": 1952,
+      "sha256": "7bf801e1827bb0cc6c581fe88e5a71e390833129c1308ae743a19b74ec09114a"
+    },
+    {
+      "path": "editor-zotero/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "editor-zotero/tests.jsonl",
+      "bytes": 26281,
+      "sha256": "b14b04c09311643ac1a87485dcbf3907fccd8a2bab2af07f546516dfa01fa280"
     },
     {
       "path": "incoming-engine/SUMMARY.md",
@@ -1649,6 +1769,11 @@
       "path": "integration/final-captured-ancestry.json",
       "bytes": 57315,
       "sha256": "f16f2ed6dc6b9aa3d57be710bf121b553f133a930ce471d9855fbce2bf2fc310"
+    },
+    {
+      "path": "integration/final-frozen-source-proof.json",
+      "bytes": 7264,
+      "sha256": "b58dbdbfad575f36b0b788db5d2437c178ae6baa7f3b482717830ecfdc1b2f61"
     },
     {
       "path": "integration/final-integration-audit.json",
@@ -2141,14 +2266,24 @@
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
+      "path": "runners/aggregate_studio_mail_evidence.py",
+      "bytes": 9975,
+      "sha256": "f367c713362d612ddd0aa0bf084d39765050d2098f1111fcfe7fe9327896100b"
+    },
+    {
       "path": "runners/audit_latest_mail_evidence.py",
       "bytes": 13599,
       "sha256": "5b22842b8fad5100e65e75d8b6cebf26747fed8bc581543e8ae3c843d7d7d1f0"
     },
     {
       "path": "runners/package_mail_evidence.py",
-      "bytes": 5433,
-      "sha256": "9ee25f55f853107e00c2b4223e1238e89a228116c0acf47eec7f3bda8912e012"
+      "bytes": 5806,
+      "sha256": "7febdf35f3e9f47c5fef58f37610b3ff6d51742e639e24d8a18ea9b81558c74d"
+    },
+    {
+      "path": "runners/prove_studio_suite_carry_forward.py",
+      "bytes": 13749,
+      "sha256": "a56fc9796f9efa132215ae3ea247b92fd698241b3d2998f2d60f2938f2387794"
     },
     {
       "path": "runners/run_mail_static.py",
@@ -2324,6 +2459,126 @@
       "path": "shared-mail/shared-mail-summary.json",
       "bytes": 3571,
       "sha256": "e4801aec3e9d463866025d52b1fb30d62e36a135d43faeb3366a4afa9a330159"
+    },
+    {
+      "path": "studio-carry-forward/dependency-graph.json",
+      "bytes": 5642552,
+      "sha256": "57092c998775ee4d2dfb002656b0b88fde5874b00302aea25620a8947ba371a3"
+    },
+    {
+      "path": "studio-carry-forward/final-plan.json",
+      "bytes": 11404,
+      "sha256": "74f2b0e23fc285a8c80c78d75ae450621363c1eb9aec1fc575fd07389b4a09b7"
+    },
+    {
+      "path": "studio-carry-forward/qualification.json",
+      "bytes": 4861,
+      "sha256": "6857e34af5a3a1c8893751452266700875b6b9059456bf472de5fef0d97358c5"
+    },
+    {
+      "path": "studio-carry-forward/retained-cases.json",
+      "bytes": 137271,
+      "sha256": "2ce0e3dd969877e3793562ff8c24bf40422b1f6e37b15e917f26b88cd2ad6dd6"
+    },
+    {
+      "path": "studio-mail-static/analysis-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "studio-mail-static/analysis.log",
+      "bytes": 965,
+      "sha256": "13c34cdf46e757ae3bb4aa22c7ecf0448d9b542dce453e5148752da1a958b8fe"
+    },
+    {
+      "path": "studio-mail-static/format-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "studio-mail-static/format.log",
+      "bytes": 48,
+      "sha256": "2d9f5de2ad4ce29233ca36173c5137ce307464da8a672161b9af55d86f48cacd"
+    },
+    {
+      "path": "studio-mail-static/inputs-after.json",
+      "bytes": 3842,
+      "sha256": "302fc8264c0ac5349513b0d7729152da2968dc6e74df1261b4023af920c92a63"
+    },
+    {
+      "path": "studio-mail-static/inputs-before.json",
+      "bytes": 3842,
+      "sha256": "302fc8264c0ac5349513b0d7729152da2968dc6e74df1261b4023af920c92a63"
+    },
+    {
+      "path": "studio-mail-static/qualification.json",
+      "bytes": 7213,
+      "sha256": "9e556aec0717f8d929f4496cbffce41fc0df02b0d4c1077b8978e4c1f8845516"
+    },
+    {
+      "path": "studio-mail/aggregate-qualification.json",
+      "bytes": 45631,
+      "sha256": "eb28d7aee0d8e80b8da77d427c2e7af8c4b751ad7f25d70ab94bbf68c15354cb"
+    },
+    {
+      "path": "studio-mail/remaining/cases.json",
+      "bytes": 556483,
+      "sha256": "31e4460a4b531a2f77fbc6391e5a398b76f74c05f89a84af908acffaaff67b39"
+    },
+    {
+      "path": "studio-mail/remaining/inputs-after.json",
+      "bytes": 910949,
+      "sha256": "b06568e1cae4e65e83de3edf19df27be7e446ea1427be68077f6f3d3584bc5cb"
+    },
+    {
+      "path": "studio-mail/remaining/inputs-before.json",
+      "bytes": 910949,
+      "sha256": "b06568e1cae4e65e83de3edf19df27be7e446ea1427be68077f6f3d3584bc5cb"
+    },
+    {
+      "path": "studio-mail/remaining/qualification.json",
+      "bytes": 24234,
+      "sha256": "52d916f8b61b4fe9a654f9e98ebe0e58f9a3f76695932b55f9ec2bbdc46ecf60"
+    },
+    {
+      "path": "studio-mail/remaining/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "studio-mail/remaining/tests.jsonl",
+      "bytes": 1562805,
+      "sha256": "3a4bf23347424b70cee1b1d79f95d6500f57925aea917691a5572a4a5e6afdb4"
+    },
+    {
+      "path": "studio-mail/repaired/cases.json",
+      "bytes": 52846,
+      "sha256": "8947cc0655a49e71fde2b1bff212fd44787c263076b512e17a9cd2d935b65030"
+    },
+    {
+      "path": "studio-mail/repaired/inputs-after.json",
+      "bytes": 910949,
+      "sha256": "b06568e1cae4e65e83de3edf19df27be7e446ea1427be68077f6f3d3584bc5cb"
+    },
+    {
+      "path": "studio-mail/repaired/inputs-before.json",
+      "bytes": 910949,
+      "sha256": "b06568e1cae4e65e83de3edf19df27be7e446ea1427be68077f6f3d3584bc5cb"
+    },
+    {
+      "path": "studio-mail/repaired/qualification.json",
+      "bytes": 2139,
+      "sha256": "89eae79ed57fad2c13da22808156012dbdd184c53dfd0d08477ca92d849db3d5"
+    },
+    {
+      "path": "studio-mail/repaired/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "studio-mail/repaired/tests.jsonl",
+      "bytes": 96694,
+      "sha256": "8f1f7d2418f08e5f751c38afbcd662a3a13958c4930ff8b23884c5ae64b9c85a"
     }
   ]
 }

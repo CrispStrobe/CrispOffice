@@ -1,0 +1,61 @@
+{
+  "started_at_utc": "2026-11-22T14:16:17.767618+00:00",
+  "head_at_start": "9ce2b057ed8fac6bf6746a1700a6b3ca84f7f405",
+  "command": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/word_zotero_converter_controller_test.dart",
+    "test/word_zotero_field_context_controller_test.dart",
+    "test/word_zotero_rich_controller_test.dart"
+  ],
+  "cwd": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor",
+  "selected_suite_count": 3,
+  "captured_input_count": 6224,
+  "environment": {
+    "CI": "true",
+    "FLUTTER_ROOT": "/workspace/scratch/7fc035b3e3ba/.runtime/flutter",
+    "PUB_CACHE": "/workspace/scratch/7fc035b3e3ba/.runtime/pub-cache",
+    "TMPDIR": "/workspace/scratch/7fc035b3e3ba/.runtime/tmp",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true"
+  },
+  "status": "passed",
+  "exit_code": 0,
+  "finished_at_utc": "2026-11-22T14:16:31.784109+00:00",
+  "head_at_finish": "9ce2b057ed8fac6bf6746a1700a6b3ca84f7f405",
+  "source_unchanged": true,
+  "changed_inputs": [],
+  "suites": [
+    {
+      "id": 0,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/test/word_zotero_converter_controller_test.dart"
+    },
+    {
+      "id": 15,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart"
+    },
+    {
+      "id": 49,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/test/word_zotero_rich_controller_test.dart"
+    }
+  ],
+  "observed_suite_count": 3,
+  "missing_suites": [],
+  "unexpected_suites": [],
+  "unfinished_test_ids": [],
+  "passed": 51,
+  "failed": 0,
+  "skipped": 0,
+  "reporter_errors": [],
+  "reporter_done": {
+    "success": true,
+    "type": "done",
+    "time": 12711
+  }
+}

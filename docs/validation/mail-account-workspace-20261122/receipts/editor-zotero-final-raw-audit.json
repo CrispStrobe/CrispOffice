@@ -1,0 +1,50 @@
+{
+  "reporter_sha256": "b14b04c09311643ac1a87485dcbf3907fccd8a2bab2af07f546516dfa01fa280",
+  "jsonl_framing": "ASCII LF bytes only",
+  "passed": 51,
+  "failed": 0,
+  "skipped": 0,
+  "substantive_cases": 51,
+  "suites": 3,
+  "suite_paths": [
+    "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/test/word_zotero_converter_controller_test.dart",
+    "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart",
+    "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/test/word_zotero_rich_controller_test.dart"
+  ],
+  "missing_suites": [],
+  "unexpected_suites": [],
+  "excluded_loader_or_hook_events": 3,
+  "reporter_error_events": 0,
+  "reporter_done": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 12711
+    }
+  ],
+  "unfinished_test_ids": [],
+  "unmatched_visible_completions": [],
+  "duplicate_start_ids": [],
+  "duplicate_completion_ids": [],
+  "malformed_lf_records": [],
+  "per_suite_cases": {
+    "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/test/word_zotero_converter_controller_test.dart": 12,
+    "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart": 31,
+    "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/test/word_zotero_rich_controller_test.dart": 8
+  },
+  "qualified": true,
+  "source_checkpoint": "9ce2b057ed8fac6bf6746a1700a6b3ca84f7f405",
+  "input_invariance": {
+    "captured_inputs": 6224,
+    "before_manifest_sha256": "b06568e1cae4e65e83de3edf19df27be7e446ea1427be68077f6f3d3584bc5cb",
+    "after_manifest_sha256": "b06568e1cae4e65e83de3edf19df27be7e446ea1427be68077f6f3d3584bc5cb",
+    "before_after_equal": true,
+    "changed_current_inputs": [],
+    "removed_or_added_capture_paths": [],
+    "all_inputs_before_after_current_equal": true
+  },
+  "source_at_execution": "9ce2b057ed8fac6bf6746a1700a6b3ca84f7f405",
+  "source_at_finish": "9ce2b057ed8fac6bf6746a1700a6b3ca84f7f405",
+  "command_exit_code": 0,
+  "additional_test_executions_by_this_audit": 0
+}

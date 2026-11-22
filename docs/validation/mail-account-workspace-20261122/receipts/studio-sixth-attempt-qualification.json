@@ -1,0 +1,224 @@
+{
+  "started_at_utc": "2026-11-22T14:02:55.721750+00:00",
+  "head_at_start": "e6487fc634ec45298f161432bb0396865190d5bb",
+  "command": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=1",
+    "--reporter=json",
+    "test/studio_mail_account_navigation_native_release_test.dart",
+    "test/studio_mail_account_navigation_native_test.dart",
+    "test/studio_mail_account_navigation_provider_test.dart",
+    "test/studio_mail_account_navigation_router_test.dart",
+    "test/studio_mail_bulk_organization_provider_test.dart",
+    "test/studio_mail_bulk_provider_test.dart",
+    "test/studio_mail_cached_host_test.dart",
+    "test/studio_mail_cloud_test.dart",
+    "test/studio_mail_ews_test.dart",
+    "test/studio_mail_lifecycle_test.dart",
+    "test/studio_mail_local_accounts_dialog_test.dart",
+    "test/studio_mail_outbox_dialog_test.dart",
+    "test/studio_mail_outbox_host_test.dart",
+    "test/studio_mail_outbox_management_test.dart",
+    "test/studio_mail_outbox_schedule_dialog_test.dart",
+    "test/studio_mail_presets_test.dart",
+    "test/studio_mail_session_test.dart",
+    "test/studio_mail_test.dart"
+  ],
+  "cwd": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example",
+  "selected_suite_count": 18,
+  "captured_input_count": 6224,
+  "environment": {
+    "CI": "true",
+    "FLUTTER_ROOT": "/workspace/scratch/7fc035b3e3ba/.runtime/flutter",
+    "PUB_CACHE": "/workspace/scratch/7fc035b3e3ba/.runtime/pub-cache",
+    "TMPDIR": "/workspace/scratch/7fc035b3e3ba/.runtime/tmp",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true"
+  },
+  "status": "failed",
+  "exit_code": 1,
+  "finished_at_utc": "2026-11-22T14:08:31.113350+00:00",
+  "head_at_finish": "e6487fc634ec45298f161432bb0396865190d5bb",
+  "source_unchanged": true,
+  "changed_inputs": [],
+  "suites": [
+    {
+      "id": 0,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_account_navigation_native_release_test.dart"
+    },
+    {
+      "id": 13,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart"
+    },
+    {
+      "id": 56,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_account_navigation_provider_test.dart"
+    },
+    {
+      "id": 195,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_account_navigation_router_test.dart"
+    },
+    {
+      "id": 206,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_bulk_organization_provider_test.dart"
+    },
+    {
+      "id": 234,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart"
+    },
+    {
+      "id": 276,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "id": 339,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart"
+    },
+    {
+      "id": 401,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_ews_test.dart"
+    },
+    {
+      "id": 482,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart"
+    },
+    {
+      "id": 486,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_local_accounts_dialog_test.dart"
+    },
+    {
+      "id": 507,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_outbox_dialog_test.dart"
+    },
+    {
+      "id": 520,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_outbox_host_test.dart"
+    },
+    {
+      "id": 538,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_outbox_management_test.dart"
+    },
+    {
+      "id": 547,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_outbox_schedule_dialog_test.dart"
+    },
+    {
+      "id": 570,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_presets_test.dart"
+    },
+    {
+      "id": 580,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_session_test.dart"
+    },
+    {
+      "id": 604,
+      "platform": "vm",
+      "path": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_test.dart"
+    }
+  ],
+  "observed_suite_count": 18,
+  "missing_suites": [],
+  "unexpected_suites": [],
+  "unfinished_test_ids": [],
+  "passed": 623,
+  "failed": 9,
+  "skipped": 0,
+  "reporter_errors": [
+    {
+      "testID": 365,
+      "error": "Test failed. See exception logs above.\nThe test description was: Gmail closes late draft storage without adopting a retired session",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 195090
+    },
+    {
+      "testID": 448,
+      "error": "Test failed. See exception logs above.\nThe test description was: EWS retires a draft store opened after its host was closed",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 224609
+    },
+    {
+      "testID": 475,
+      "error": "Test failed. See exception logs above.\nThe test description was: disposing during send ignores a late acceptance",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 234215
+    },
+    {
+      "testID": 476,
+      "error": "Test failed. See exception logs above.\nThe test description was: Close drains accepted draft cleanup without recreating it",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 234775
+    },
+    {
+      "testID": 531,
+      "error": "Test failed. See exception logs above.\nThe test description was: native Disconnect during compose Send retains the owner through its receipt",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 261462
+    },
+    {
+      "testID": 532,
+      "error": "Test failed. See exception logs above.\nThe test description was: native Disconnect during Outbox Send retains the owner through its receipt",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 262137
+    },
+    {
+      "testID": 533,
+      "error": "Test failed. See exception logs above.\nThe test description was: native Disconnect during Outbox Retry retains the owner through its receipt",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 262737
+    },
+    {
+      "testID": 536,
+      "error": "Test failed. See exception logs above.\nThe test description was: EWS Disconnect during Outbox Send retains the owner through its receipt",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 265055
+    },
+    {
+      "testID": 599,
+      "error": "Test failed. See exception logs above.\nThe test description was: late send failure cannot alter a replacement session",
+      "stackTrace": "",
+      "isFailure": false,
+      "type": "error",
+      "time": 292879
+    }
+  ],
+  "reporter_done": {
+    "success": false,
+    "type": "done",
+    "time": 332843
+  }
+}
