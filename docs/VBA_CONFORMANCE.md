@@ -11,6 +11,7 @@ The canonical fixtures are:
 
 | Suite | Cases | Scope |
 | --- | ---: | --- |
+| [`word_cell_suffix_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_cell_suffix_v1.json) | 73 | Direct cell appends, named Text, aliases/helpers, evaluation order, Unicode and strict paragraph/story/argument refusals |
 | [`word_cell_prefix_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_cell_prefix_v1.json) | 78 | Direct/projected cell prefixes, named Text, captured aliases/helpers, portable text constants, strict argument/content/selector boundaries |
 | [`word_cell_paragraphs_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_cell_paragraphs_v1.json) | 32 | Explicit cell paragraph selection, Style/Shading, retained aliases/helpers, existing formatting, strict selectors and direct/projected range refusals |
 | [`word_join_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_join_v1.json) | 25 | Join of fixed/dynamic String arrays, lower bounds, array lifecycle, delimiters, Unicode, exact output limits and positioned refusals |
@@ -27,11 +28,23 @@ The canonical fixtures are:
 The same fixture bytes are consumed by each VM test and the portable
 JavaScript runner; there is no separately maintained copy of expected results.
 
+The cell suffix suite independently specifies 27 complete plans and 46
+positioned diagnostics. It distinguishes direct `Cell.Range.InsertAfter`
+from projected paragraph and whole-story ranges, checks inactive source,
+captures receiver-before-argument evaluation and verifies retained aliases and
+named helpers. Separate tests cover exact String, operation-count and encoded
+JSON limits. Microsoft examples support direct cell insertion; native
+preservation and formatting restrictions are explicit Quds contracts. No case
+claims installed Word execution. The VM and compiled JavaScript consume the
+same corpus bytes. See the [append contract](vba-word-macros-details.md#appending-existing-cell-text)
+and [local qualification](validation/word-vba-cell-suffix-20261122/README.md).
+
 The cell prefix suite specifies 34 complete plans and 44 positioned diagnostics.
 Its expectations come from Microsoft API/constant definitions and explicit Quds
 limits, with no installed Office-host claim. It covers receiver-before-argument
 order, named calls, retained selectors, typed helpers, portable text constants,
-normalization and publication refusals. The same fixture bytes run on VM and
+normalization and publication refusals. Its former direct `InsertAfter`
+refusal now checks the still-unsupported paragraph Range projection. The same fixture bytes run on VM and
 compiled JavaScript. Native document preservation and CLI/MCP tests separately
 qualify the actual complete BAS.
 

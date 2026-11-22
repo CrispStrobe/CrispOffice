@@ -57,6 +57,7 @@ document supplied to the macro session. They never search for another file.
 | --- | --- |
 | `Document.Paragraphs(i)` | Existing body paragraphs |
 | `Document.Tables(i)` / `Table.Cell(row, column)` | Existing main-story table cells |
+| `Cell.Range.InsertAfter` | Append to current cell text with retained run formatting |
 | `Cell.Range.InsertBefore` / `.Paragraphs(1).Range.InsertBefore` | Prefix current cell text with retained run formatting |
 | `Cell.Range.Font` / `.ParagraphFormat` | Current cell text and its one ordinary paragraph |
 | `Cell.Range.Paragraphs(1)` / `.Paragraphs.Item(1)` | The existing cell paragraph, including its Style and background Shading |
@@ -138,6 +139,47 @@ formatting can target an empty paragraph. Direct cell-range `Style`, `Shading`,
 `Range.Paragraphs(1)` to style or shade the existing cell paragraph.
 See the [exact cell-formatting contract](vba-word-macros-details.md#formatting-existing-table-cells)
 and [local qualification](validation/word-vba-cell-formatting-20261122/README.md).
+
+## Appending to existing table text
+
+```vb
+Sub AppendStatus(ByVal target As Range, ByVal label As String)
+    target.InsertAfter Text:=vbTab & label
+End Sub
+
+Sub Main()
+    Dim target As Range
+    Set target = ActiveDocument.Tables(1).Cell(1, 1).Range
+    AppendStatus label:="Ready", target:=target
+    Call target.InsertAfter(Text:=vbTab & "Reviewed")
+    target.Font.Bold = True
+End Sub
+```
+
+Direct `Cell.Range.InsertAfter` appends to the selected cell's current text.
+The retained range includes the appended labels, so later Font writes include
+them. Original text, distinct run formatting, table geometry and neighboring
+cells remain intact. Empty cells can be filled this way, and repeated runs
+append again. Bare, parenthesized, `Call`, case-insensitive `Text:=`, typed
+aliases, nested `With` and named `ByVal` helpers are supported.
+
+Appended text inherits the last existing text character's formatting. In an
+empty cell it uses the last retained empty run, or retained paragraph-mark
+formatting when there are no runs. Zero-width metadata remains preserved.
+These are explicit native formatting rules; installed Word differential
+qualification remains separate.
+
+Use a direct cell Range for this operation. A projected
+`Cell.Range.Paragraphs(1).Range`, body paragraph or header/footer paragraph has
+a structural paragraph-mark boundary, and its `InsertAfter` remains refused.
+The supported cell must still have one ordinary paragraph in an unmerged
+main-story table. Tabs and valid Unicode are accepted; structural line breaks,
+paragraph marks and invalid XML text are refused.
+
+See the [complete BAS](../packages/quds_office_engine/example/macros/word_table_suffix.bas),
+[exact append contract](vba-word-macros-details.md#appending-existing-cell-text),
+[independent conformance cases](../packages/quds_office_engine/test/fixtures/vba_conformance/word_cell_suffix_v1.json)
+and [local qualification](validation/word-vba-cell-suffix-20261122/README.md).
 
 ## Prefixing existing table text
 

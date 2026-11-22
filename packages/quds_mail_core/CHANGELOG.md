@@ -7,6 +7,9 @@
   Add optional repository-only cursor revisions and a null-safe atomic sync
   snapshot port for local membership fencing. Coordinator and bounded runner
   preserve that optional capability while retaining legacy repository support.
+  Retain local revisions before the first provider cursor; reject inconsistent
+  cursor stamps and stale pages while allowing a fresh first synchronization.
+  Preserve lease checks, cursor-cycle detection and acknowledged run progress.
 
 - Add optional read-only membership observation with immutable exact identity,
   IMAP generation/deletion semantics, complete Gmail labels and Graph/EWS parent

@@ -39,7 +39,9 @@ mapped normal-slot language setters through the same cell-aware native guards.
 Explicit `Cell.Range.Paragraphs(1)` / `.Paragraphs.Item(1)` selectors now apply
 existing paragraph styles and solid background shading, including on empty
 ordinary paragraphs, with retained cell identity. Cell prefix insertion now
-retains original text/runs through a separate guarded operation, and standard
+retains original text/runs through a separate guarded operation. Direct cell
+`InsertAfter` now appends through its own guarded operation, retaining current
+range identity and end formatting. Standard
 portable String constants support source cleanup before publication.
 The `vba-powerpoint` adapter adds explicit presentation,
 slide, shape and text-range bindings, one-based/index-or-name selection,
@@ -54,7 +56,32 @@ and [the native macro contract](MACROS.md).
 
 ## Ordered milestones and acceptance
 
-The current continuation adds `Cell.Range.InsertBefore` and selected cell
+The current continuation adds direct `Cell.Range.InsertAfter`, including
+required named `Text:=`, typed aliases, nested `With` and named `ByVal` helpers.
+The dedicated native append operation preserves original characters, run
+boundaries, kerning and zero-width metadata, while keeping cell and paragraph
+delimiters structural. It inherits last-character formatting; empty cells use
+the last retained empty run or paragraph-mark formatting. Subsequent formatting
+through the retained cell Range includes appended text. Empty suffixes still
+validate, and failed runs retain atomic publication and recording boundaries.
+
+Static direct-cell origin checks now follow complete local alias graphs,
+admitting rooted cell-only cycles while refusing any noncell origin and
+rootless cycles. Actual generic helper receivers remain checked during source
+evaluation. Projected cell paragraph ranges and body/header/footer paragraph
+`InsertAfter` remain explicitly unsupported because their paragraph-mark
+semantics differ from direct cell insertion.
+
+This advances the bounded Stage 4 adapter. The
+[complete BAS](../packages/quds_office_engine/example/macros/word_table_suffix.bas),
+[independent corpus](../packages/quds_office_engine/test/fixtures/vba_conformance/word_cell_suffix_v1.json),
+[append contract](vba-word-macros-details.md#appending-existing-cell-text) and
+[local qualification](validation/word-vba-cell-suffix-20261122/README.md)
+define the scope. Live reads, arbitrary ranges, structural insertion,
+broader table structures and installed Word differential acceptance remain
+separate milestones.
+
+The preceding continuation adds `Cell.Range.InsertBefore` and selected cell
 paragraph `Range.InsertBefore`, plus named `Text:=` on supported Word ranges.
 A dedicated native operation preserves all original runs and sparse metadata,
 including distinct kerning and zero-width properties, without changing table
