@@ -46,7 +46,7 @@ results retain their original source and platform attribution.
 | Unlink citations | Explicit individual and document-wide conversion with undo | Verify final target-application files separately |
 | Add Note | Rich paragraphs, headings, nested lists up to nine levels, multiparagraph items, links, pictures, rectangular tables nested up to eight levels with combined row/column spans and active citations; insertion in body or authored notes and replacement across consecutive ordinary paragraphs in one section, note or table cell | Table payloads require a main-flow destination; cross-cell/control ranges, selected protected/structural content, compact merged-row height distribution, header/footer row groups, custom table styling and custom/reversed list markers remain unsupported |
 | Add Annotation | Zotero 9+ native annotation picker, text/comments and supported PNG image/ink content with active citations | Uses the same bounded image/content envelope as Add Note |
-| Library/source discovery | Local/online catalogs, collections, saved searches, tags, source details, cited-source reuse and occurrence navigation | Local and online catalog APIs have different connection/version requirements |
+| Library/source discovery | Local/online catalogs, collections, saved searches, tags, source details, cited-source reuse and occurrence navigation, and validated local/group **Open in Zotero** navigation from reference details | Local and online catalog APIs have different connection/version requirements; desktop selection is unavailable for unverified personal-web or offline identities |
 | Research materials | Read-only direct-child note previews and attachment metadata | No separate attachment-file download or Zotero library write workflow |
 | DOCX persistence | Active fields/preferences, native notes, rich bibliography structure, tables and embedded pictures use supported save/reopen paths | Local tests are separate from actual Word/LibreOffice application round trips |
 | Table margins | Native measurement, wrapping, pagination, ruler insets and nested picture fitting use each table's modeled uniform margin; explicit editable ODT preserves bounded uniform padding through style inheritance and merged/nested ownership | Asymmetric/per-cell ODT padding and visible borders remain unsupported; ODT/DOCX geometry rounds to format precision, and exhausted final scaled widths refuse |
@@ -590,6 +590,15 @@ Installed Zotero/Word/LibreOffice acceptance remains a separate next step.
    Qualify any legacy Apache OpenOffice target separately with explicitly
    identified application, Zotero and plugin versions.
 
+7. **Qualify Zotero item navigation on installed desktop hosts.** The
+   [safe item selection increment](../../validation/zotero-selection-links-20261122/README.md)
+   adds explicit Zotero desktop selection from loaded local/group item details
+   and unambiguous stored citation identities, without changing the citation.
+   Exercise `zotero://select/…` on macOS, Windows and Linux with the active
+   Zotero installation; verify closed-app handler recovery, missing items,
+   different profiles, group permissions and return focus. A personal Web API
+   ID alone does not identify the active desktop profile; do not auto-select
+   such an item without a locally verified identity handshake.
 Each step should begin with a bounded remote-ref intake, preserve original
 incoming ancestry, save incremental remote checkpoints, run meaningful local
 checks, and merge the qualified result. GitHub Actions are not a required wait
