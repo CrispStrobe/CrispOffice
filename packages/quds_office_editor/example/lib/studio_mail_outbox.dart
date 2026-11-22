@@ -51,6 +51,12 @@ typedef StudioMailOutboxSubmit =
       required String attemptId,
     });
 
+/// Lets a host retain its exact storage owner for the complete attempt, including
+/// the final local receipt. Register ownership before invoking [action] and await
+/// its completion before releasing that owner.
+typedef StudioMailOutboxSubmissionRunner =
+    Future<MailOutboxEntry> Function(Future<MailOutboxEntry> Function() action);
+
 /// One explicit foreground attempt. Persist before the network boundary and
 /// retain ambiguous/malformed outcomes without guessing that delivery failed.
 Future<MailOutboxEntry> submitStudioMailOutbox({

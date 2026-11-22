@@ -23,6 +23,7 @@ class StudioMailOutboxDialog extends StatefulWidget {
     required this.store,
     required this.submit,
     required this.isCurrent,
+    this.runSubmission,
     this.exporter = exportStudioMailOutboxFile,
     this.clock,
     this.elapsed,
@@ -32,6 +33,7 @@ class StudioMailOutboxDialog extends StatefulWidget {
   final StudioMailOutboxStore store;
   final StudioMailOutboxSubmit submit;
   final bool Function() isCurrent;
+  final StudioMailOutboxSubmissionRunner? runSubmission;
   final StudioMailOutboxExporter exporter;
   final DateTime Function()? clock;
   final Duration Function()? elapsed;
@@ -256,6 +258,8 @@ class _StudioMailOutboxDialogState extends State<StudioMailOutboxDialog>
         final permissionGeneration = _permissionGeneration;
         final owner = widget.store;
         final isCurrentOwner = widget.isCurrent;
+        final submit = widget.submit;
+        final runSubmission = widget.runSubmission;
         var ready = entry;
         if (!fromSchedule && entry.canSchedule && entry.sendNotBefore != null) {
           final scheduling = _scheduling;
@@ -280,11 +284,13 @@ class _StudioMailOutboxDialogState extends State<StudioMailOutboxDialog>
             )) {
           return;
         }
-        if (!widget.isCurrent()) return;
-        await submitStudioMailOutbox(
-          store: widget.store,
+        if (!mounted || !identical(widget.store, owner) || !isCurrentOwner()) {
+          return;
+        }
+        Future<MailOutboxEntry> attempt() => submitStudioMailOutbox(
+          store: owner,
           entry: ready,
-          submit: widget.submit,
+          submit: submit,
           isCurrent: () =>
               mounted &&
               identical(widget.store, owner) &&
@@ -295,7 +301,7 @@ class _StudioMailOutboxDialogState extends State<StudioMailOutboxDialog>
                       ready.isDueAt(_now))),
           acknowledgeUncertain: acknowledge,
           onAttemptPersisted: (attempt) {
-            if (mounted && widget.isCurrent()) {
+            if (mounted && identical(widget.store, owner) && isCurrentOwner()) {
               setState(
                 () => _entries = [
                   for (final item in _entries)
@@ -305,6 +311,11 @@ class _StudioMailOutboxDialogState extends State<StudioMailOutboxDialog>
             }
           },
         );
+        if (runSubmission == null) {
+          await attempt();
+        } else {
+          await runSubmission(attempt);
+        }
       });
 
   Future<void> _schedule(

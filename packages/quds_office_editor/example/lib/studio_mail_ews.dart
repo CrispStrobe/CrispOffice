@@ -2057,6 +2057,26 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     );
   };
 
+  Future<MailOutboxEntry> _runOutboxSubmission(
+    StudioMailDraftStore owner,
+    bool Function() current,
+    Future<MailOutboxEntry> Function() action,
+  ) async {
+    if (!current() || _submissionStorage != null) {
+      throw const StudioMailDraftStoreException(MailProblemCode.unavailable);
+    }
+    // This queue entry is already durable. Retain its owner from the attempt
+    // marker through the final receipt, even if its modal session is retired.
+    final storage = _SubmissionStorage(owner)..markPreserved();
+    _submissionStorage = storage;
+    try {
+      return await action();
+    } finally {
+      storage.complete();
+      if (identical(_submissionStorage, storage)) _submissionStorage = null;
+    }
+  }
+
   Future<void> _openOutbox() => runStudioMailOperation(() async {
     final provider = _provider;
     final session = _session;
@@ -2108,6 +2128,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           store: store,
           submit: _outboxSubmit(provider, submission, lease, store, sender),
           isCurrent: current,
+          runSubmission: (action) =>
+              _runOutboxSubmission(draftOwner, current, action),
         ),
       );
       if (!current()) return;
