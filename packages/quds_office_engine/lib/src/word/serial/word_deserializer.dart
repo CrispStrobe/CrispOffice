@@ -1402,6 +1402,9 @@ class WordDeserializer {
         inlines.isNotEmpty &&
         inlines.every((inline) => inline is WmlFieldBoundary);
     if (formattingChange != null && !onlyFieldBoundaries) {
+      if (run.text.isEmpty && inlines.contains(run)) {
+        run.properties.hasEmptyFormattingRevision = true;
+      }
       final text = inlines.whereType<WmlRun>().map((r) => r.text).join();
       _recordFormatting(
         paragraph,

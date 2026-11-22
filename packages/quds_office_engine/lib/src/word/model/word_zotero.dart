@@ -2030,6 +2030,10 @@ final class _OpenField {
     }
     if (boundary.sourceXml != null) {
       try {
+        if (!_completeBoundaryElement(boundary.sourceXml!)) {
+          opaqueMetadata = true;
+          return;
+        }
         final source = XmlDocument.parse(boundary.sourceXml!).root;
         if (source == null ||
             boundary.kind == WmlFieldBoundaryKind.instruction ||
@@ -2064,6 +2068,9 @@ final class _OpenField {
         }
       } on XmlParseException {
         opaqueMetadata = true;
+      } on RangeError {
+        // A truncated attribute can exhaust the fragment reader at '='.
+        opaqueMetadata = true;
       }
     }
   }
@@ -2074,6 +2081,35 @@ const _boundaryBoolean = {'0', '1', 'false', 'true', 'off', 'on'};
 bool _namespaceDeclaration(XmlAttribute attribute) =>
     attribute.prefix == 'xmlns' || attribute.qualifiedName == 'xmlns';
 
+// XmlDocument accepts fragments for other preservation callers. Editing needs
+// one complete element, with no discarded prefix, second root, PI or DTD.
+bool _completeBoundaryElement(String xml) {
+  if (xml.length > 16384) return false;
+  final reader = XmlPullReader(xml);
+  var roots = 0;
+  var depth = 0;
+  while (reader.next()) {
+    switch (reader.eventType) {
+      case XmlEventType.startElement:
+        depth = reader.depth;
+        if (depth > 64 || (depth == 1 && ++roots > 1)) return false;
+        final attributes = <String>{};
+        for (var i = 0; i < reader.attributeCount; i++) {
+          if (!attributes.add(reader.attributeQualifiedName(i))) return false;
+        }
+      case XmlEventType.endElement:
+        depth = reader.depth;
+      case XmlEventType.characters:
+        if (!reader.isWhitespace) return false;
+      case XmlEventType.endDocument:
+        return roots == 1 && depth == 0;
+      default:
+        return false;
+    }
+  }
+  return false;
+}
+
 bool _benignEmptyCodeRun(WmlInline inline) =>
     inline is WmlRun &&
     inline.text.isEmpty &&
@@ -2082,6 +2118,8 @@ bool _benignEmptyCodeRun(WmlInline inline) =>
     inline.commentIds.isEmpty &&
     !inline.fieldLocked &&
     inline.fieldDirty == null &&
+    inline.properties.styleId == null &&
+    !inline.properties.hasEmptyFormattingRevision &&
     _benignBoundaryRunProperties(inline.properties.sourcePropertiesXml);
 
 // LibreOffice writes ordinary character formatting on instrText and fldChar
@@ -2092,6 +2130,7 @@ bool _benignBoundaryRunProperties(String? xml) {
   if (xml == null || xml.trim().isEmpty) return true;
   if (xml.length > 16384) return false;
   try {
+    if (!_completeBoundaryElement(xml)) return false;
     final root = XmlDocument.parse(xml).root;
     if (root == null ||
         root.localName != 'rPr' ||
@@ -2187,6 +2226,9 @@ bool _benignBoundaryRunProperties(String? xml) {
     }
     return true;
   } on XmlParseException {
+    return false;
+  } on RangeError {
+    // A truncated attribute can exhaust the fragment reader at '='.
     return false;
   }
 }

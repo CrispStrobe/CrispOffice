@@ -607,6 +607,26 @@ Zotero and plugin versions. Current LibreOffice acceptance cannot establish it.
 
 ## Continuing after bounded rich import
 
+The [converter continuation](../../validation/zotero-converter-parity-20261122/README.md)
+admits the exact inert Writer outline shape observed in the retained
+paragraph/color files: empty `style:num-format`, optional matching `%N%`
+`loext:num-list-format`, and a single label-alignment property block with
+`text:label-followed-by="nothing"` and no positioning. Affixes, numbered
+formats, nonmatching templates, unknown properties and authored style text
+remain refused. Paragraph heading level, direction and indentation continue
+to come from their existing native mappings.
+
+It also accepts exact `loext:char-shading-value="0"` only when the same
+text-property declaration has an explicit supported `fo:background-color`.
+This preserves a clear pattern's RGB background or transparent reset. The
+compound Writer brush may reset inherited color when shading is declared
+alone; this is an inference from the importer, and that wider form remains
+refused pending converter qualification.
+The original six saved ODTs are tested through native Refresh, DOCX and
+editable ODT reopening with their unchanged semantic expectations. General
+numbered outlines, patterned shading and installed-plugin parity are outside
+this bounded increment.
+
 1. Refresh current main and recent branch/PR heads, preserving incoming history.
    The earlier two pending heads and the subsequently discovered Word text
    branch are integrated by this continuation; keep their recorded cutoffs.

@@ -1263,8 +1263,8 @@ final class OdtReaderStyles {
     }
     // Writer stores its shading pattern separately from the background.
     // CharShadingValue 0 is CLEAR (no pattern), not a transparent background.
-    // Require the same declaration's color: Writer's compound brush property
-    // can otherwise reset an inherited background when only shading is set.
+    // Require the same declaration's color: compound brush inheritance when
+    // only shading is set has not been qualified against Writer output.
     // Solid/patterned/unknown values require a richer native brush model.
     final shading = take(_loext, 'char-shading-value');
     if (shading != null && (shading != '0' || background == null)) {

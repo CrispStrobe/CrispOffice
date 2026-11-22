@@ -558,6 +558,49 @@ void main() {
     MailProviderKind.gmail,
     MailProviderKind.graph,
   ]) {
+    for (final removed in [true, false]) {
+      testWidgets(
+        '${kind.name}: atomic selected refresh preserves a ${removed ? 'removed' : 'revised'} shortcut',
+        (tester) async {
+          final harness = _Harness(kind);
+          final gate = Completer<void>();
+          harness.directory.rememberGate = gate;
+          await _show(tester, harness);
+          await _connect(tester, harness);
+          // This fixture counts successful writes separately from selected
+          // attempts. Mutate the catalog while the atomic attempt is held.
+          await _until(tester, () => harness.directory.selectedRemembers == 1);
+          expect(harness.directory.remembers, 0);
+          if (removed) {
+            harness.directory.records.remove(harness.identity.account.value);
+          } else {
+            harness.directory.seed(harness.identity, revision: 2);
+          }
+          final replacement =
+              harness.directory.records[harness.identity.account.value];
+          gate.complete();
+          await _pump(tester);
+          expect(
+            harness.directory.records[harness.identity.account.value],
+            same(replacement),
+          );
+          expect(harness.directory.selectedRemembers, 1);
+          expect(harness.directory.remembers, 0);
+          await _until(tester, () => harness.owner.closed == 1);
+          expect(harness.providers.single.lease!.isCurrent, isFalse);
+          if (kind != MailProviderKind.ews) {
+            expect(harness.providers.single.disposals, 1);
+            expect(harness.tokens.disposals, 1);
+          }
+          expect(
+            find.text(_strings.mailAccountNavigationChanged),
+            findsOneWidget,
+          );
+          expect(tester.takeException(), isNull);
+        },
+      );
+    }
+
     testWidgets('${kind.name}: non-secret prefill waits for explicit sign-in', (
       tester,
     ) async {
