@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "comparedBase": "8f2e943bf5aa1dd157e72f7ec47d0f7c2ccd5dd4",
+  "incomingHead": "5bf13601caac2c08fe97de25fe853c9d642f0cb1",
+  "incomingRemoteMain": "4cc604810fb2f41ac7ba04cbed65cb76300bff59",
+  "reviewedPaths": [
+    "packages/quds_office_engine/lib/src/word/model/wml_run_edit.dart",
+    "packages/quds_office_engine/lib/src/word/model/word_revision.dart",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero.dart",
+    "packages/quds_office_engine/lib/src/word/properties/wml_properties.dart",
+    "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+    "packages/quds_office_engine/lib/src/word/serial/word_style_cascade.dart",
+    "packages/quds_office_engine/test/word_zotero_boundary_formatting_test.dart"
+  ],
+  "reviewedDiffSha256": "c1f9e062df57060af63ff2602085e3015f258ef23e02fc632e7c13904de37289",
+  "historicalGate": {
+    "cases": 1702,
+    "passed": 1695,
+    "failed": 7,
+    "sourceInputsChanged": false,
+    "owner": "split_contract",
+    "rawEvents": "/workspace/scratch/7c69340222d3/post-intake-engine-acceptance/tests.jsonl"
+  },
+  "diagnosis": [
+    {
+      "failures": 6,
+      "category": "test oracle",
+      "detail": "The refresh test required the original golden paragraph/cache metadata after deliberately supplying new citation text. Newmain moves unchanged golden validation into the nonmutating save/reopen test and removes the contradictory refresh call. Existing refreshed text, item metadata, note indices, boundary/code properties and italic/bold checks remain."
+    },
+    {
+      "failures": 1,
+      "category": "boundary revision representation",
+      "detail": "_readRPr removes rPrChange into document revision metadata. Previously the boundary retained only stripped rPr XML; the new native classifier could consider that local packet editable although document-wide revision guards still refused it. Boundary-only revision records also retain incomplete/ambiguous-target export refusal. Newmain reconstructs the boundary source rPr including rPrChange, so local field classification remains opaque and the source metadata survives import."
+    }
+  ],
+  "incomingSafeguardsReviewed": [
+    "Complete-element XML validation rejects multiple roots, nonwhitespace prefix/suffix text, PI/DTD, duplicate attributes and truncated fragments; existing XmlPullReader verifies matching end tags.",
+    "Empty code runs with modeled style references or pending imported empty-run revision provenance are refused.",
+    "hasEmptyFormattingRevision follows property copies, style resolution and coalescing comparisons. Acceptance clears the empty-run provenance; rejection restores ordinary source properties through the existing revision path.",
+    "New tests cover empty-run history retention, native/direct edit refusal, acceptance/rejection and copied undo restoration."
+  ],
+  "recommendation": {
+    "keepIncomingParserAndRevisionApproach": true,
+    "additionalParserRewriteNeeded": false,
+    "retainVerifiedEmptyCodeVisibleFormattingFix": true,
+    "reason": "The visible-result helper and its nine regressions address a separate code-style fallback leak. Incoming changes strengthen classification/revision ownership without changing that fix.",
+    "postRefreshOracleNote": "Adopted the shared helper with explicit constant FIRST1\u2192Refreshed first and SECOND2\u2192Refreshed second expected deltas. Original golden bytes, full layout/color/preferences/story/item metadata checks, boundary/code source checks and new-cache styling checks remain enforced after Refresh and across three save/reopen cycles."
+  },
+  "limits": [
+    "The complete reconciled boundary suite was run on the pinned Dart runtime. Broader selected engine/editor coverage remains separately owned by root.",
+    "Preserving boundary rPrChange does not claim editable or freely re-exportable unsupported boundary revisions; existing document revision save guards remain active.",
+    "Broader reconciled engine/editor qualification belongs to root."
+  ],
+  "trackedEditsMadeDuringReconciliation": [
+    "packages/quds_office_engine/test/word_zotero_boundary_formatting_test.dart: explicit post-Refresh snapshot call only; shared helper owned by split_contract."
+  ],
+  "gitMutationsMade": false,
+  "ciQueried": false,
+  "targetedRequalification": {
+    "cases": 89,
+    "passed": 89,
+    "failed": 0,
+    "skipped": 0,
+    "errors": 0,
+    "runtime": "Dart3.13.7",
+    "capturedReviewedInputs": 37,
+    "inputChanges": [],
+    "metadata": "metadata.json",
+    "fullCaseLedger": "case-ledger.json",
+    "rawEvents": "events.jsonl",
+    "sourceIdentification": "The recorded HEAD is context for a working merge plus test edits. Accepted input hashes identify the tested files; root will checkpoint and run the broader qualified source snapshot."
+  }
+}

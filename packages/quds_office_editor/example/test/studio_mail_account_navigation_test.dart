@@ -75,6 +75,48 @@ final class _Directory implements StudioMailLocalAccountStore {
       throw StateError('Navigation cannot remove an account');
 }
 
+final class _GuardedDirectory
+    implements
+        StudioMailLocalAccountStore,
+        StudioMailLocalAccountReconnectStore {
+  _GuardedDirectory(this.directory);
+  final _Directory directory;
+  Completer<void>? refreshGate;
+  MailLocalAccountRecord? expected;
+  int refreshes = 0;
+
+  @override
+  Future<List<MailLocalAccountRecord>> load() => directory.load();
+
+  @override
+  Future<void> remember(StudioMailDraftAccount identity) =>
+      throw StateError('Selected reconnect must use the atomic operation');
+
+  @override
+  Future<void> forget(MailLocalAccountRecord record) =>
+      directory.forget(record);
+
+  @override
+  Future<void> rememberSelected(
+    StudioMailDraftAccount identity, {
+    required MailLocalAccountRecord expectedRecord,
+  }) async {
+    expected = expectedRecord;
+    await refreshGate?.future;
+    final rows = directory.rows.where(
+      (row) => row.id == identity.account.value,
+    );
+    if (rows.length != 1 ||
+        !rows.single.hasSameIdentity(expectedRecord) ||
+        rows.single.revision != expectedRecord.revision ||
+        rows.single.lastConnectedAt.millisecondsSinceEpoch !=
+            expectedRecord.lastConnectedAt.millisecondsSinceEpoch) {
+      throw const StudioMailDraftStoreException(MailProblemCode.conflict);
+    }
+    refreshes++;
+  }
+}
+
 void main() {
   for (final provider in ['imap', 'ews', 'gmail', 'graph']) {
     test(
@@ -136,6 +178,7 @@ void main() {
 
   final invalidRoutes = <({String name, MailLocalAccountRecord record})>[
     (name: 'IMAP zero port', record: _record(endpoint: 'imap://host.test:0')),
+    (name: 'IMAP missing port', record: _record(endpoint: 'imaps://host.test')),
     (
       name: 'noncanonical IMAP port with leading zeroes',
       record: _record(endpoint: 'imaps://host.test:000993'),
@@ -390,6 +433,124 @@ void main() {
       directory.rows = [];
       directory.gate!.complete();
       await rejected;
+    },
+  );
+
+  test('same-revision timestamp replacement is rejected', () async {
+    final record = _record();
+    final changed = MailLocalAccountRecord(
+      id: record.id,
+      provider: record.provider,
+      endpoint: record.endpoint,
+      login: record.login,
+      sender: record.sender,
+      lastConnectedAt: record.lastConnectedAt.add(const Duration(seconds: 1)),
+      revision: record.revision,
+    );
+    await expectLater(
+      StudioMailAccountNavigationTarget.fromRecord(
+        record,
+      ).validateCurrent(_Directory([changed])),
+      throwsA(_problem(MailProblemCode.conflict)),
+    );
+  });
+
+  for (final provider in ['imap', 'ews', 'gmail', 'graph']) {
+    test(
+      '$provider selected refresh passes the exact expected snapshot',
+      () async {
+        final record = _record(provider: provider);
+        final target = StudioMailAccountNavigationTarget.fromRecord(record);
+        final directory = _GuardedDirectory(_Directory([record]));
+        await target.rememberConnection(
+          directory,
+          target.identity,
+          isCurrent: () => true,
+        );
+        expect(directory.expected, same(record));
+        expect(directory.refreshes, 1);
+      },
+    );
+
+    test(
+      '$provider legacy directory keeps selected metadata unchanged',
+      () async {
+        final record = _record(provider: provider);
+        final target = StudioMailAccountNavigationTarget.fromRecord(record);
+        final directory = _Directory([record]);
+        await target.rememberConnection(
+          directory,
+          target.identity,
+          isCurrent: () => true,
+        );
+        expect(directory.rows.single, same(record));
+        expect(directory.loads, 1);
+      },
+    );
+  }
+
+  test(
+    'removed shortcut cannot be recreated during selected refresh',
+    () async {
+      final record = _record();
+      final target = StudioMailAccountNavigationTarget.fromRecord(record);
+      final directory = _GuardedDirectory(_Directory([record]))
+        ..refreshGate = Completer<void>();
+      final rejected = expectLater(
+        target.rememberConnection(
+          directory,
+          target.identity,
+          isCurrent: () => true,
+        ),
+        throwsA(_problem(MailProblemCode.conflict)),
+      );
+      await Future<void>.delayed(Duration.zero);
+      expect(directory.expected, same(record));
+      directory.directory.rows = [];
+      directory.refreshGate!.complete();
+      await rejected;
+      expect(directory.refreshes, 0);
+      expect(directory.directory.rows, isEmpty);
+    },
+  );
+
+  test('retired host cannot refresh after pending validation', () async {
+    final record = _record();
+    final target = StudioMailAccountNavigationTarget.fromRecord(record);
+    final directory = _GuardedDirectory(
+      _Directory([record])..gate = Completer<void>(),
+    );
+    var current = true;
+    final rejected = expectLater(
+      target.rememberConnection(
+        directory,
+        target.identity,
+        isCurrent: () => current,
+      ),
+      throwsA(_problem(MailProblemCode.staleOperation)),
+    );
+    current = false;
+    directory.directory.gate!.complete();
+    await rejected;
+    expect(directory.expected, isNull);
+    expect(directory.refreshes, 0);
+  });
+
+  test(
+    'different connection identity is rejected before directory access',
+    () async {
+      final target = StudioMailAccountNavigationTarget.fromRecord(_record());
+      final directory = _GuardedDirectory(_Directory([target.record]));
+      await expectLater(
+        target.rememberConnection(
+          directory,
+          studioMailLocalAccountIdentity(_record(sender: 'other@example.test')),
+          isCurrent: () => true,
+        ),
+        throwsA(_problem(MailProblemCode.permissionDenied)),
+      );
+      expect(directory.directory.loads, 0);
+      expect(directory.refreshes, 0);
     },
   );
 }

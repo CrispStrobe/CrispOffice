@@ -1,0 +1,14 @@
+{
+  "archive": "mail-local-checks.tar.xz",
+  "sha256": "dfa95e92905b1b6b79cfab547b05b2a0367a5007ff23eb591ef735f77281b52a",
+  "member_count": 45,
+  "member_digests_verified": true,
+  "qualified_inputs_checked": 7423,
+  "qualified_inputs_unchanged": true,
+  "tested_local_head": "3e3a8fb037bc5c3972cbf9994003bc060ca68bb3",
+  "published_equivalent_source": "373b7fe9bcb9c282fb6fe0bfbc7832a87faf2baa",
+  "note": "GitHub publication retained the combined merge tree and added the already-tested Split regression files; all exact Mail qualification inputs were rechecked unchanged.",
+  "original_gzip_sha256": "6273f2b6132d29fda52271b301232dd40f30f661ca276441fd3a92f62b545abd",
+  "tar_stream_sha256": "b978e03f304ac144629c15d031b2dfa5408854dd3cf32d85426222690e7bbce7",
+  "recompression": "The original tar stream was recompressed losslessly from gzip to xz; every original member and its content digest is unchanged."
+}

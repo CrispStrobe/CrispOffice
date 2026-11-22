@@ -63,4 +63,9 @@ extension StudioMailAccountNavigationStrings on StudioStrings {
     'Das vorherige Konto konnte nicht vollständig geschlossen werden. Versuchen Sie es erneut, bevor Sie ein anderes Konto verbinden.',
     'تعذر إكمال إغلاق الحساب السابق. أعد المحاولة قبل الاتصال بحساب آخر.',
   );
+  String get mailAccountNavigationReleaseFailed => _text(
+    'The previous account could not finish closing. Try again before opening another account.',
+    'Das vorherige Konto konnte nicht vollständig geschlossen werden. Versuchen Sie es erneut, bevor Sie ein anderes Konto öffnen.',
+    'تعذر إكمال إغلاق الحساب السابق. حاول مجددًا قبل فتح حساب آخر.',
+  );
 }

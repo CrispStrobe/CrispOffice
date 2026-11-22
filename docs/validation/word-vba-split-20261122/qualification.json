@@ -1,0 +1,99 @@
+{
+  "recorded_at_utc": "2026-11-22T12:33:44.108155+00:00",
+  "qualified_source_commit": "8bbe17bc7d82964b67385aa796b7f43248c65149",
+  "qualified_source_tree": "f1b36d91a8fb6bc843bcbc9c448a911f47147566",
+  "latest_main_observed": "4cc604810fb2f41ac7ba04cbed65cb76300bff59",
+  "latest_main_retained_as_ancestor": true,
+  "pull_request": 383,
+  "source_changes_after_qualification": [],
+  "feature_source_sha256": {
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart": "930807027dcab5e3a16e0c6eda92702aaee64c714e2a9d452e193412ee438da2",
+    "packages/quds_office_engine/test/fixtures/vba_conformance/split_v1.json": "009e418986b9ea918135838346d87be628611ab3c1d290836c9051e032505f64",
+    "packages/quds_office_engine/example/macros/word_split_report.bas": "6dc12791b65923513bce5ce8ea12e978fb614d03c8e3376d6ffb7801ed176a10"
+  },
+  "broad_gate": {
+    "source_commit": "373b7fe9bcb9c282fb6fe0bfbc7832a87faf2baa",
+    "registered_cases": 9310,
+    "suites": 179,
+    "inputs": 3068,
+    "accepted": true,
+    "reporting_recovery_without_test_rerun": true
+  },
+  "pinned_split_suites": {
+    "cases": 373,
+    "suites": 3,
+    "dart": "3.13.7",
+    "accepted": true
+  },
+  "final_engine": {
+    "cases": 1798,
+    "suites": 61,
+    "inputs": 3223,
+    "accepted": true
+  },
+  "final_intake": {
+    "mail_cases": 220,
+    "mail_suites": 6,
+    "zotero_editor_cases": 296,
+    "zotero_editor_suites": 12,
+    "store_cases": 47,
+    "store_suites": 2,
+    "fresh_execution_inputs": 8980,
+    "store_continuity_inputs": 6381,
+    "qualified": true
+  },
+  "portable": {
+    "compiler_corpus_cases": 174,
+    "adapters": 3,
+    "compiler_receipts_byte_equal": true,
+    "word_receipts_parsed_equal": true,
+    "word_receipts_byte_equal": false,
+    "only_word_byte_differences": "58 integral JSON number spellings"
+  },
+  "counts_are_not_additive_across_repeated_suites": true,
+  "github_actions_queried_or_awaited": false,
+  "checkpoint_branch": "codex/word-vba-text-authoring-20261122",
+  "retained_checkpoints": [
+    {
+      "sha": "921a84a08395800445898eee4679ae74ee09d47e",
+      "ancestor_of_qualified_source": true
+    },
+    {
+      "sha": "41d388d895cebed2da21a8b3cdd288240ab868c0",
+      "ancestor_of_qualified_source": true
+    },
+    {
+      "sha": "373b7fe9bcb9c282fb6fe0bfbc7832a87faf2baa",
+      "ancestor_of_qualified_source": true
+    },
+    {
+      "sha": "ec0fb9acc9f890343b51139422625133789835d5",
+      "ancestor_of_qualified_source": true
+    },
+    {
+      "sha": "7a0d1f30d0d2cf077dfaed994aa0b20d2d358f7b",
+      "ancestor_of_qualified_source": true
+    },
+    {
+      "sha": "0e0994d7d3d4d07872322167f23ba0c0687377e8",
+      "ancestor_of_qualified_source": true
+    },
+    {
+      "sha": "cbb7ae3b26b17d0225ecd082d4a5226f8fcfc9d5",
+      "ancestor_of_qualified_source": true
+    },
+    {
+      "sha": "c971ad0e1515db8deed59b7d8360960c64e13059",
+      "ancestor_of_qualified_source": true
+    },
+    {
+      "sha": "8bbe17bc7d82964b67385aa796b7f43248c65149",
+      "ancestor_of_qualified_source": true
+    }
+  ],
+  "limits": [
+    "No installed Microsoft Office differential acceptance",
+    "No complete Flutter application/platform acceptance",
+    "VBA remains the documented bounded source-to-plan subset"
+  ]
+}

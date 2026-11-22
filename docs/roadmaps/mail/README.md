@@ -11,29 +11,32 @@ archive, Studio workflows and remaining MailStore parity work.
 
 ## Desktop mail parity: ordered increments
 
-The [account-navigation continuation](account-navigation.md) adds one verified
-account chooser across IMAP/SMTP, Exchange EWS, Gmail and Microsoft 365. Switching
-saves the retained draft, preserves uncertain submission status, drains the old
-owner and opens explicit sign-in for the exact selected identity. Stale
-destinations and delayed route callbacks cannot redirect another account. This
-uses one connected account at a time; retained simultaneous sessions and an
-account-aware unified workspace remain the next M04W boundary.
+The [account-navigation workflow](account-navigation.md) and
+[connected-account continuation](connected-account-navigation.md) provide one
+verified remembered-account chooser across IMAP/SMTP, Exchange EWS, Gmail and
+Microsoft 365. Exact non-secret routes lead to explicit sign-in. Switching saves
+the retained draft and uncertain-submission state, drains observers, journal
+writes and owners, and fences stale routes and late acquisitions. Atomic
+selected-record refresh cannot recreate a forgotten shortcut. One account stays
+connected at a time; retained simultaneous sessions and an account-aware unified
+workspace remain open. The linked work records identify actual qualification.
 
 The [explicit Archive continuation](provider-archive.md) adds reviewed single and
 checked-selection Archive to connected mail. Gmail removes only Inbox membership;
 IMAP and Microsoft 365 resolve an authoritative ordinary Archive destination,
 while EWS and unsupported discovery require explicit folder selection. All paths
 reuse durable command outcomes and restart recovery. Account navigation is
-continued above; retained multi-account sessions are next, followed by tags/categories and
-ordered rules. See the linked work record for current local qualification.
+continued above. Remembered custom Archive destinations, tags/categories and
+ordered rules remain organization boundaries; retained multi-account sessions
+and a unified workspace remain part of M04W.
 
 The [durable bulk organization continuation](bulk-organization.md) adds
 capability-scoped Move/Delete to checked visible selections. Confirmations show
 the count, account, source and exact destination; every selected identity is
 frozen before prompts and revalidated before dispatch. The existing journal
 preserves per-message outcomes, stop-after-current behavior and restart evidence
-across IMAP, EWS, Gmail and Microsoft 365. Explicit Archive is continued above;
-shared connected navigation and ordered rules remain subsequent boundaries.
+across IMAP, EWS, Gmail and Microsoft 365. Explicit Archive and connected account
+navigation are continued above; ordered rules remain subsequent work.
 
 The [authoritative move continuation](identity-transitions.md) preserves IMAP
 COPYUID and EWS replacement identities through the durable journal. Exact
@@ -49,8 +52,8 @@ IMAP UID generations/deletion markers, Gmail labels and Graph/EWS parent folders
 have separate exact-identity semantics. Latest observations persist with check
 times while original uncertainty, cleanup protection and dated cache views stay
 intact. IMAP/EWS identity transitions and guarded cache reconciliation are
-continued above, followed by visible-selection Move/Delete. Connected
-multi-account navigation remains the next workspace boundary.
+continued above, followed by visible-selection Move/Delete and connected
+account navigation.
 
 The [durable Move/Delete continuation](durable-mutations.md) journals connected
 single-message organization with exact destinations, pre-dispatch persistence,
@@ -58,7 +61,7 @@ restart evidence and explicit provider capabilities. IMAP gains Move and Mark
 deleted controls; EWS/cloud retain their distinct trash semantics. Membership
 uncertainty cannot use flag-only status checks and never replays. Current-location
 checks, guarded cache reconciliation and visible-selection Move/Delete are
-continued above; shared connected multi-account navigation is the next boundary.
+continued above, followed by the connected account-navigation increment.
 
 The [folder-set continuation](folder-saved-search.md) adds explicit saved-search
 folders across verified accounts, stable identity-based persistence, filtered
@@ -108,7 +111,7 @@ plan rather than treating provider connectivity as full product parity.
 | Order | Workflow | Current position | Next acceptance boundary |
 | --- | --- | --- | --- |
 | 1 | Recoverable composition | Multiple account-scoped local drafts, independent reply/forward drafts, attachment/reply recovery and interrupted-send warnings; offline draft entry for verified IMAP (including discovery), EWS, Gmail and Microsoft 365 accounts | Provider-side Drafts synchronization with explicit conflicts and repository-backed offline sessions |
-| 2 | Everyday mailbox workspace (M04W/M06) | Verified cross-provider account navigation with draft-safe explicit reconnection; repository-observed loaded/cached sessions, durable single/bulk flags, Move/Delete and Archive; membership recovery, resumable header sync and bounded offline downloads across IMAP, EWS, Gmail and Microsoft 365 | Account-owned retained multi-account sessions, complete shared synchronized workspace, unified inbox, durable retention/background scheduling, broader provider membership reconciliation and remembered custom Archive destinations |
+| 2 | Everyday mailbox workspace (M04W/M06) | Verified four-provider remembered-account chooser with exact routing, draft-safe explicit sign-in and guarded foreground handoff; repository-observed loaded/cached sessions, durable single/bulk flags, Move/Delete and Archive, membership recovery, resumable header sync and bounded offline downloads | Retained multi-account sessions, complete shared synchronized workspace and unified live Inbox, durable retention/background scheduling, broader provider membership reconciliation and remembered custom Archive destinations |
 | 3 | Sending and outbox (M07) | Native durable Outbox, atomic draft transfer/edit-copy, frozen MIME/envelopes, review/export, restart recovery, explicit send/retry/cancel, saved UTC schedules and a ten-second Undo window with explicit foreground resume across SMTP/EWS/Gmail/Microsoft 365 | Account-owned background execution, provider-specific Sent reconciliation and installed/live-provider qualification |
 | 4 | Efficient discovery and organization | Independent archive FTS, saved archive searches, Boolean header queries, bounded saved-header discovery, persistent named searches with exact account/folder scopes, missing-folder recovery and optional foreground refresh, expandable loaded conversations and observed counts, stable local sorting and journaled visible-selection read/flag/Move/Delete and provider Archive commands | Repository-event-driven shared saved views, indexed body/server search, persistent cross-folder conversations, tags/categories, remembered custom Archive destinations and ordered rule execution with preview/recovery |
 | 5 | Rich authoring and Office workflows (M07/M08) | Word-based plain text, To/Cc/Bcc, reply all, inert text quotes, attachments, locally qualified account signatures and reusable Quick Text | Identity routing/full-message templates, HTML alternatives, inline images, attach current document/PDF and edit a copy of a received attachment |
@@ -118,6 +121,12 @@ Each increment needs an actual user path, typed failure/recovery behavior,
 focused local tests and a remote source checkpoint before the next. Reconcile
 current main/branches/PRs before final publication. GitHub Actions queue time is
 not an acceptance dependency; record the actual local commands and scope.
+
+The next delivery sequence is remembered Archive destinations, categories/tags
+and ordered rules, indexed body/provider search, persistent conversations and
+provider Drafts/Sent reconciliation, then fuller background multi-account work.
+The [account-navigation guide](connected-account-navigation.md) defines these
+boundaries and maps them to official Outlook, Thunderbird and eM Client workflows.
 
 The [loaded-header search guide](header-search.md) describes the shared query
 language, sorting, loaded-only scope and ordered next steps for discovery and
@@ -192,9 +201,10 @@ implementation and qualification separately from earlier results.
 
 The [foreground mailbox guide](mailbox-workspace.md) describes the delivered
 first workspace slice, including the 50-message pages, 1,000-loaded-message
-ceiling and loaded-only search boundary. M04W remains open: this reusable list
-does not yet provide the repository-driven, multi-account workspace required
-by the milestone. The [local qualification](../../validation/mail-workspace-20261120/README.md)
+ceiling and loaded-only search boundary. Repository-observed sessions and the
+connected account chooser now extend that foundation. M04W remains open for the
+complete shared synchronized workspace and simultaneous multi-account lifecycle.
+The [local qualification](../../validation/mail-workspace-20261120/README.md)
 records the exact accepted source and incoming-work dispositions.
 
 Comparison references checked 20 November 2026: Thunderbird's

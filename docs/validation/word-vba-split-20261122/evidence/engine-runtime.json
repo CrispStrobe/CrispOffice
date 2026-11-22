@@ -1,0 +1,26 @@
+{
+  "dart_version": "3.14.1",
+  "repository_lock_sha256": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+  "resolved_lock_sha256": "0c3f527784e6f4a057d4fdf0a4e124e841a5ef0f521db06d7485c86cb0d6bf09",
+  "resolved_package_count": 59,
+  "hosted_versions_unchanged": 56,
+  "dependency_changes": {},
+  "package_config": "/workspace/scratch/7c69340222d3/quds_office_suite/.dart_tool/package_config.json",
+  "runner": "/workspace/scratch/7c69340222d3/.runtime/run-engine-tests.sh",
+  "environment": "/workspace/scratch/7c69340222d3/.runtime/env.sh",
+  "isolation": "Reduced two-package scratch workspace; original tracked manifests and lock unchanged. Package configuration maps to actual checkout sources and tests. Offline --enforce-lockfile verifies reduced closure; all hosted versions and archive hashes exactly match original lock.",
+  "engine_package_config": "/workspace/scratch/7c69340222d3/.runtime/engine-package-config.json",
+  "proof": {
+    "command": [
+      "/workspace/scratch/7c69340222d3/.runtime/run-engine-tests.sh",
+      "test/office_vba_mid_assignment_test.dart",
+      "-r",
+      "json"
+    ],
+    "passed": 80,
+    "failed": 0,
+    "success": true,
+    "log": "/workspace/scratch/7c69340222d3/.runtime/logs/engine-proof.jsonl",
+    "log_sha256": "b01abb0a45ac07c8cbf5b54510d63bf07b4978cf9f03498e56d66d98dda8ea1b"
+  }
+}
