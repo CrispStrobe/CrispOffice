@@ -90,6 +90,14 @@ class WordZoteroFieldContextView extends StatelessWidget {
                     key: const ValueKey('zotero-selected-field-location'),
                     style: Theme.of(context).textTheme.bodySmall,
                   ),
+                  if (source?.isValid == false)
+                    const Padding(
+                      padding: EdgeInsets.only(top: 6),
+                      child: Text(
+                        'The stored reference metadata is damaged. The original text below is kept until this Zotero operation finishes.',
+                        key: ValueKey('zotero-selected-field-damaged'),
+                      ),
+                    ),
                   const SizedBox(height: 8),
                   ConstrainedBox(
                     constraints: BoxConstraints(maxHeight: compact ? 112 : 220),
