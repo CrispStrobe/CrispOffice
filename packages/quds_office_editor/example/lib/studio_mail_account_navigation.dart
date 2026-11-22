@@ -142,7 +142,9 @@ final class StudioMailAccountNavigationTarget {
     requireMatches(actual);
     void checkCurrent() {
       if (!isCurrent()) {
-        throw const StudioMailDraftStoreException(MailProblemCode.staleOperation);
+        throw const StudioMailDraftStoreException(
+          MailProblemCode.staleOperation,
+        );
       }
     }
 
