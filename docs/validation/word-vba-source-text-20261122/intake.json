@@ -1,0 +1,562 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-22",
+  "repository": "CrispStrobe/quds_office_suite",
+  "taskBranch": "codex/word-vba-source-text-20261122",
+  "initialMain": "ea7ae724bea2f1e9052aa17f9926eb0659ae4262",
+  "initialMainTree": "8f4aa4c9c5f1c588e92c33db4fbc5a379e8a06d2",
+  "inventory": {
+    "remoteBranchesBeforeTaskBranchCreation": 48,
+    "nonMainBranchesCompared": 47,
+    "alreadyContainedHeads": 46,
+    "divergentHeads": 1,
+    "openPullRequests": 0,
+    "recentPullRequestsInspected": 100,
+    "recentPullRequestsAllMerged": true
+  },
+  "capturedBranches": [
+    {
+      "name": "codex/mail-durable-mutations-20261122",
+      "sha": "afdcb327c650383e269a3d32f7251f68a9d766c6",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 231
+    },
+    {
+      "name": "codex/mail-identity-reconciliation-20261122",
+      "sha": "b48fa00a3f4461ae10fdf95e444baf3983d051b4",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 162
+    },
+    {
+      "name": "codex/mail-membership-recovery-20261122",
+      "sha": "bb991a98b73fb2518b2999c37e42d7da4c821fae",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 191
+    },
+    {
+      "name": "codex/word-vba-array-data-20261122",
+      "sha": "5d79e934c5400594410bb6dfcb347d279fe0c335",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 98
+    },
+    {
+      "name": "codex/word-vba-authoring-20261121",
+      "sha": "cf06b018ec125ce3b5abfda41a7fbbdcf7d30a47",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 443
+    },
+    {
+      "name": "codex/word-vba-cell-formatting-20261122",
+      "sha": "49f43824196c4d373f991e442fac2e73e68c5f9f",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 307
+    },
+    {
+      "name": "codex/word-vba-cell-text-20261122",
+      "sha": "5f6e8686f1d6ddc1f3e523238808b78ccccc5b51",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 272
+    },
+    {
+      "name": "codex/word-vba-comparison-colors-20261121",
+      "sha": "e3c4550b34a9a07de2a97b84b67ab6aecaa5a377",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 352
+    },
+    {
+      "name": "codex/word-vba-compatibility-20261121",
+      "sha": "3058d36c5354d46bde418555d59282116cce1e26",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 400
+    },
+    {
+      "name": "codex/word-vba-compatibility-20261122",
+      "sha": "934c33a57f3bed934df59a4e925ffc35fe406ee2",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 248
+    },
+    {
+      "name": "codex/word-vba-continuation-20261122",
+      "sha": "dd844f4ae1d5d4dab897fd7e49f94e25be52581a",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 219
+    },
+    {
+      "name": "codex/word-vba-extended-20261122",
+      "sha": "43df8a9f6170109589f2f6885312d5cf15068a88",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 166
+    },
+    {
+      "name": "codex/word-vba-objects-20261122",
+      "sha": "26370962b40dc761f17f5f7038a628f06d5189f8",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 123
+    },
+    {
+      "name": "codex/word-vba-range-suffix-20261122",
+      "sha": "360673e0736e98d65d6c3cacef90bf842391288d",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 159
+    },
+    {
+      "name": "codex/word-vba-string-search-20261122",
+      "sha": "4dafb6f7e7fc844d11cb7219add5a82acfed5135",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 113
+    },
+    {
+      "name": "codex/word-vba-text-authoring-20261122",
+      "sha": "23a934cf49f64cd61f0df3ad3cdd7d9bd4a069dd",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 54
+    },
+    {
+      "name": "codex/word-vba-text-selectors-20261122",
+      "sha": "d40e1a2c3731eb303bcf82724432d9927d53a889",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 82
+    },
+    {
+      "name": "codex/zotero-converter-parity-20261122",
+      "sha": "5bf13601caac2c08fe97de25fe853c9d642f0cb1",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 65
+    },
+    {
+      "name": "codex/zotero-dispatch-recovery-20261121",
+      "sha": "32ef843db3a8192fe0add085e1ee173e18f4d462",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 397
+    },
+    {
+      "name": "codex/zotero-field-context-20261122",
+      "sha": "00ba542dc5b492040508a8137a80adbc9b13553d",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 254
+    },
+    {
+      "name": "codex/zotero-field-recovery-20261122",
+      "sha": "e78e98d3a07647794e4426f833782ccbddc04960",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 228
+    },
+    {
+      "name": "codex/zotero-footnote-separators-20261121",
+      "sha": "a70c0e7af251d737dc7639f44a48777bbea1bf51",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 388
+    },
+    {
+      "name": "codex/zotero-host-ownership-20261121",
+      "sha": "05cb866e6e5aaee95dae8b03da2892fcf633a84b",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 388
+    },
+    {
+      "name": "codex/zotero-main-qualification-20261121",
+      "sha": "e2a1ed6073556d24194004221c545166b17c2d4e",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 343
+    },
+    {
+      "name": "codex/zotero-native-parity-20261122",
+      "sha": "d300c76f0966d8f676b0fa38a7799f0e01cbc10d",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 200
+    },
+    {
+      "name": "codex/zotero-note-formatting-20261122",
+      "sha": "b91fba039e123d3db767bc5178de59922a163e74",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 91
+    },
+    {
+      "name": "codex/zotero-note-layout-20261121",
+      "sha": "2089e1e35a8ba81ea7f0a077b348f93ca70953c8",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 422
+    },
+    {
+      "name": "codex/zotero-odt-roundtrip-20261121",
+      "sha": "05072dc2d59d0fa4ea97de4d6a842700ef333fab",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 437
+    },
+    {
+      "name": "codex/zotero-parity-20261122",
+      "sha": "da36652cf1d2296b59285788035555d512b9fa31",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 277
+    },
+    {
+      "name": "codex/zotero-parity-next-20261122",
+      "sha": "98ac4254f04acdeff53ea28c9c184ecfb141e868",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 186
+    },
+    {
+      "name": "codex/zotero-parity-progress-20261122",
+      "sha": "96240d35f609aee05a1f81e7ce58036aea0c6296",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 38
+    },
+    {
+      "name": "codex/zotero-select-navigation-20261122",
+      "sha": "8c1b8da71bb910d4025aa179dc56290cf1a8e72a",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 334
+    },
+    {
+      "name": "codex/zotero-shortcut-host-recovery-20261121",
+      "sha": "2168011b6104f680100b87404bc1bd409f724939",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 397
+    },
+    {
+      "name": "codex/zotero-source-continuity-20261121-2135",
+      "sha": "c4c16d91d62ded0c341bee95e98de894de70483f",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 397
+    },
+    {
+      "name": "codex/zotero-workflow-parity-20261122",
+      "sha": "69e20b56a8c919fb5d9c1b9717f7688e5ff6c55d",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 118
+    },
+    {
+      "name": "main",
+      "sha": "ea7ae724bea2f1e9052aa17f9926eb0659ae4262",
+      "role": "base"
+    },
+    {
+      "name": "work/mail-account-workspace-20261122",
+      "sha": "ccb302f45edde33608f8918a489c959022ffefc9",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 1
+    },
+    {
+      "name": "work/mail-bulk-organization-20261122",
+      "sha": "a29742adf28c5779016ae939e5baf6ac3c4a302c",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 130
+    },
+    {
+      "name": "work/mail-client-progress-20261122",
+      "sha": "29cb02cec4344e85b0731dde8cd964fdd1aad9fa",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 11
+    },
+    {
+      "name": "work/mail-connected-navigation-20261122",
+      "sha": "a59e986a12d50c0d115b99c14cd8f746921c6f44",
+      "status": "diverged",
+      "aheadBy": 2,
+      "behindBy": 34
+    },
+    {
+      "name": "work/mail-connected-workspace-20261122",
+      "sha": "16e8a572c061f4eb7d2411bf7a28709896c63df6",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 95
+    },
+    {
+      "name": "work/mail-folder-scoped-search-20261122",
+      "sha": "ff30d1064a052abbfbcdc99745ff66f8bc980aea",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 314
+    },
+    {
+      "name": "work/mail-folder-search-20261122",
+      "sha": "24e4b5d8a2a4e3c996e15013c5324a534c2e444f",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 283
+    },
+    {
+      "name": "work/mail-keyboard-triage-20261121",
+      "sha": "08d034d876073e2afc881dbfc11ba791acde3d67",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 348
+    },
+    {
+      "name": "work/mail-live-search-20261121",
+      "sha": "c3d55be30d91694b1a427d261cddbe47b1dd5eec",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 422
+    },
+    {
+      "name": "work/mail-parity-20261122-next",
+      "sha": "a7006171630915bbf91b6ce2ab7c4699bb79f69b",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 259
+    },
+    {
+      "name": "work/mail-range-selection-tests-20261121",
+      "sha": "5c7a385c5de40394d9eed736c5a2d975535c3df3",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 396
+    },
+    {
+      "name": "work/mail-sync-address-search-20261121",
+      "sha": "33d8f956ec2ed1dfd748e1d7ccbc5add053ff565",
+      "status": "behind",
+      "aheadBy": 0,
+      "behindBy": 399
+    }
+  ],
+  "integration": {
+    "firstParent": "ea7ae724bea2f1e9052aa17f9926eb0659ae4262",
+    "secondParent": "a59e986a12d50c0d115b99c14cd8f746921c6f44",
+    "incomingBranch": "work/mail-connected-navigation-20261122",
+    "uniqueCommits": [
+      "051b20c774929f25f424c73a5ca14c3b611bb59e",
+      "a59e986a12d50c0d115b99c14cd8f746921c6f44"
+    ],
+    "treeBase": "current main",
+    "applicationSource": "Retained current main; no application source changed by this intake.",
+    "resolution": [
+      "Retained current main roadmaps and newer account ownership, delivery, Archive and observer-release implementation.",
+      "Kept current main bulk-provider reconnect ordering: this fixture owner has no durable mutation journal, so it can release before a late foreground reply.",
+      "Added the incoming fresh-callback assertion after stale-callback refusal.",
+      "Retained current main native session reconnect guards and added the incoming new-account submissionUncertain=false assertion.",
+      "Preserved missing historical evidence and the incoming narrative through the second-parent commit and exact blob references, without expanding the integrated checkout. Historical counts and unexecuted plans are not current acceptance evidence."
+    ],
+    "retainedHistoricalBlobs": [
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/SHA256SUMS.txt",
+        "sha": "1cf497fded3c3cdf343c2adb2da456c9d6f6d1ce"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/analysis-command.json",
+        "sha": "de693b71d54e19f2407d0c4bb4db8c85ce80827b"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/analysis-result.json",
+        "sha": "de693b71d54e19f2407d0c4bb4db8c85ce80827b"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/analysis.stderr.gz",
+        "sha": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/analysis.stdout.gz",
+        "sha": "ab45be3175565a86c17fa7181f644765ac5ccacb"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/format-command.json",
+        "sha": "90ec833c4525b363f2ee4b7046af66c3ed29fd4c"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/format-result.json",
+        "sha": "90ec833c4525b363f2ee4b7046af66c3ed29fd4c"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/format.stderr.gz",
+        "sha": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/format.stdout.gz",
+        "sha": "a9453ff2f2e387a0aa8744f4f26f502603c2576b"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/historical-ruler.json",
+        "sha": "606a731f0cc42a9cdd9c553f9422529f66c1396a"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/incoming_editor-command.json",
+        "sha": "8804aad7cda3faa008897d6ca5f007f6ec78b159"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/incoming_editor-result.json",
+        "sha": "da24e45ec58db1b1da33cbaa6b0908f768dde035"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/incoming_editor.jsonl.gz",
+        "sha": "e2b532d6f12292de9147f94873e74a421a13ede9"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/incoming_editor.stderr.gz",
+        "sha": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/incoming_engine-command.json",
+        "sha": "adf4ef9bc27b8466e7be95879fa7301825525ccd"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/incoming_engine-result.json",
+        "sha": "85db9d795d2c17b801f4a33ac439fe46679b0b33"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/incoming_engine.jsonl.gz",
+        "sha": "7bee19f73be4206e0eda9f9f8ef377c5c7e1ae3b"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/incoming_engine.stderr.gz",
+        "sha": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/inputs-after-analysis.json.gz",
+        "sha": "9807f3ea3360d726f82c32ebddc291545a396bfa"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/inputs-after-format.json.gz",
+        "sha": "7d277307521a08a327b24647865f245c43ab343c"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/inputs-after-incoming_editor.json.gz",
+        "sha": "d8cac82aa2f2ce36509c59508d60107655c6ef04"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/inputs-after-incoming_engine.json.gz",
+        "sha": "b4be34547a5e430e55d91396cebbf5c247685a12"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/inputs-after-studio_mail.json.gz",
+        "sha": "cc7994689e490bc18470a3ff67ae845d14265cf2"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/inputs-after-studio_zotero.json.gz",
+        "sha": "452ced9fbd34be3468950a5c1351d5e2743d508d"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/inputs-before.json.gz",
+        "sha": "eb276303a9464908b7c66a7a8291a4b65120b531"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/progress.json",
+        "sha": "d6e3bd8de16b1ab2395e5411aaa87e18a1eaa457"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/retained-continuity.json",
+        "sha": "39f209b600e2e923068b73449d36e7c5e51045d3"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/runtime.json",
+        "sha": "8595de2fa2434bda4fb4a456e2e5952eaec70cfc"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/selection.json",
+        "sha": "1a6a2e117d26d7e3dfdbcca7318f85c807f690a8"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/studio_mail-command.json",
+        "sha": "fb95f2a0c9eda05e0169546fa66a5c45a6c96c3c"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/studio_mail-result.json",
+        "sha": "83cb316876f370b8b10a26483daa0449eb199810"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/studio_mail.jsonl.gz",
+        "sha": "862bd3edfc26a9bb971ee135908a7c8c6fa8ef57"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/studio_mail.stderr.gz",
+        "sha": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/studio_zotero-command.json",
+        "sha": "a6d5391a47fae34d30407076a41714df5ebc5936"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/studio_zotero-result.json",
+        "sha": "61feb883bb0a25bb129a68d2fd6c51f78d7dc56c"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/studio_zotero.jsonl.gz",
+        "sha": "95427ed2423f202b423abbb3a60f6ec37fc1a872"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/studio_zotero.stderr.gz",
+        "sha": "d4b9926df0b7defceb6caf0b474c4a190c5ca8f0"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/reconciled-source-recovery/summary.json",
+        "sha": "5fa2ca0212f8c49534d26553984698746c2e7e32"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/selective-preflight-inputs.json.gz",
+        "sha": "fbb95a602003d246ed1dc66fc8798e70f29d19a0"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/selective-preflight.json",
+        "sha": "2159fd72df21ddd879d4703baa6be2f288f3e308"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/selective-recovery-plan.json",
+        "sha": "0c42b57a1d2f59b350703c98847945d0ba4c0d4b"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/final/selective_recovery.py",
+        "sha": "46c4469a8450d088af43616091d3c80e9c1e12a2"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/development/main-384-provider/analysis-final.log",
+        "sha": "99fdf27f53f64b56f6f0fab4274452970d5c028f"
+      },
+      {
+        "path": "docs/validation/mail-connected-navigation-20261122/pr384-intake.json",
+        "sha": "384c75921b0a880d0ee17e6c9bb76d4fd5025a60"
+      }
+    ],
+    "historicalEvidencePreservation": "The second-parent commit preserves these exact blobs at their original paths. They are not copied into the integrated tree. The incoming README is available unchanged at its original path in the same parent.",
+    "incomingReadmeBlob": "a0e7f3617dad7792799304037b22119fb63c321a"
+  },
+  "validation": {
+    "method": "GitHub source/Git-object inspection; exact content anchors and unchanged blob identities",
+    "dartTestsRun": false,
+    "flutterTestsRun": false,
+    "analysisRun": false,
+    "formatterRun": false,
+    "localExecutionBlock": "bwrap: Can't create file /workspace/scratch/f13177789685/.git: No space left on device",
+    "githubActionsQueried": false,
+    "githubActionsAwaited": false,
+    "acceptanceClaim": "Source-review checkpoint only; new assertions are authored but not executed."
+  }
+}

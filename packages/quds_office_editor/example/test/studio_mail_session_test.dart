@@ -750,6 +750,7 @@ void main() {
       await _saveAndCloseCompose(tester);
       expect(drafts.records[oldKey]!.draft.body, 'Old account body');
       expect(drafts.records[oldKey]!.submissionUncertain, isTrue);
+      expect(drafts.records[newKey]!.submissionUncertain, isFalse);
       expect(tester.takeException(), isNull);
     },
   );

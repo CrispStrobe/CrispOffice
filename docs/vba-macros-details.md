@@ -1024,6 +1024,58 @@ its parameter table. This implementation follows the VBA function reference's
 `-1` convention and documents the discrepancy; no installed Office differential
 qualification is claimed.
 
+### Reversing source strings
+
+`StrReverse(expression)` returns a String with its UTF-16 code units in
+reverse order. It is shared by Word, Excel and PowerPoint source compilation.
+The required argument is positional and is evaluated exactly once. Local
+Strings, String-valued Variants, array elements and scalar helper results are
+accepted. The source String itself is unchanged.
+
+| Input | Result |
+| --- | --- |
+| `StrReverse("Report 42")` | `"24 tropeR"` |
+| `StrReverse("")` or `StrReverse(Empty)` | `""` |
+| `StrReverse(CVar("ABC"))` | `"CBA"` |
+| `StrReverse(Null)` | `vba_invalid_use_of_null` |
+| Number/Boolean, including a Variant payload | `vba_type_error`; convert with `CStr` explicitly |
+
+This bounded dialect defines a character as one UTF-16 code unit. Combining
+marks are reversed separately from their base characters, and reversing a
+surrogate pair reverses its two units. This is deterministic source processing,
+not visual RTL layout or grapheme reversal. An intermediate malformed String
+may be inspected using `Len`, `AscW` and the existing substring functions,
+or reversed again to recover its original units. Native publication still
+refuses malformed UTF-16; Word and PowerPoint also retain their existing XML
+and paragraph-control restrictions.
+
+The output has exactly the input's length and retains the shared 32,767-unit
+String limit. Every copied unit is charged against the shared 100,000-unit
+compilation-work budget before result allocation. Empty input still incurs
+ordinary expression/call work. Local array storage, helper frames, output-size
+limits and the atomic native transaction are unchanged.
+
+`StrReverse$`, named/omitted arguments, implicit numeric/Boolean conversions,
+namespace qualification, whole-array values and document property reads are
+unsupported. Function calls are still unavailable in Const expressions and
+optional-parameter default expressions. The case-insensitive intrinsic name
+is reserved and cannot be declared as a local or helper name.
+
+The [complete Word import example](../packages/quds_office_engine/example/macros/word_reverse_import.bas)
+restores reversed source labels and fills an existing two-by-two table, using
+typed helpers, local arrays and computed cell selectors. It emits the same
+seven edits checked by the established delimited-report oracle.
+
+The [versioned corpus](../packages/quds_office_engine/test/fixtures/vba_conformance/strreverse_v1.json)
+has hand-authored complete Word plans and positioned refusals. The
+[validation record](validation/word-vba-source-text-20261122/README.md)
+distinguishes source review and authored tests from actual execution, which
+was unavailable for this increment. Microsoft documents ordinary reversal,
+empty input and Null failure in the
+[VBA StrReverse reference](https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/strreverse-function);
+the precise UTF-16 and strict-type behavior above is Quds's explicit contract.
+No installed Word or Visual Basic .NET grapheme-equivalence claim is made.
+
 ### Binary search, replacement, and trimming
 
 The shared language also accepts the following case-insensitive names. Optional

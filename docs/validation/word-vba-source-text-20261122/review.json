@@ -1,0 +1,294 @@
+{
+  "sourceCommit": "a713970fdab473b6fb74c34287fac91ff34153b1",
+  "runtimeBlob": "c25ed6226689a6533315410ace4fc3246350b7f3",
+  "remoteReadbacks": [
+    {
+      "path": "packages/quds_office_engine/test/office_vba_strreverse_test.dart",
+      "blob": "1382f054358a183a8b238cfd7cc099bcb56b3abc",
+      "contentMatched": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/office_vba_word_strreverse_integration_test.dart",
+      "blob": "70b2c732e9ed0eaed510e74fe16d3cbd2a73d1bd",
+      "contentMatched": true
+    },
+    {
+      "path": "packages/quds_office_engine/test/fixtures/vba_conformance/strreverse_v1.json",
+      "blob": "6c7ba8e9d7807ed4c144307e59894f8aa125e413",
+      "contentMatched": true
+    },
+    {
+      "path": "docs/vba-macros-details.md",
+      "blob": "092eef8ac4a77f63decbead9ad9de9a952a7b8a2",
+      "contentMatched": true
+    },
+    {
+      "path": "packages/quds_office_engine/example/macros/word_reverse_import.bas",
+      "blob": "971a5e401c1421974e6adf55f7e94fd637b5c325",
+      "contentMatched": true
+    }
+  ],
+  "corpus": {
+    "caseCount": 26,
+    "uniqueIds": true,
+    "diagnosticPositionsInRange": true,
+    "provenanceLabelsChecked": true
+  },
+  "javascriptExpectedValueSanity": {
+    "passed": 10,
+    "scope": "Independent UTF-16 expected strings only; does not execute the Dart compiler or tests."
+  },
+  "dartTestsExecuted": false,
+  "dartAnalyzeExecuted": false,
+  "dartFormatExecuted": false,
+  "officeHostExecuted": false,
+  "githubActionsQueried": false,
+  "reviewedRuntimeUnchanged": true,
+  "finalCorrections": [
+    {
+      "file": "packages/quds_office_engine/test/office_vba_strreverse_test.dart",
+      "reason": "Existing _count rejects omission markers before arity; expected code corrected to vba_unsupported."
+    },
+    {
+      "file": "packages/quds_office_engine/test/fixtures/vba_conformance/strreverse_v1.json",
+      "id": "omitted-arguments",
+      "diagnostic": {
+        "code": "vba_unsupported",
+        "line": 2,
+        "column": 61
+      }
+    }
+  ],
+  "independentReview": {
+    "runtime": "No concrete defect found in 18 added runtime lines.",
+    "bas": "Seven emitted edits traced to the established independent table-report oracle.",
+    "corpus": "All 26 fixtures reviewed; positioned omission refusal corrected.",
+    "integration": "Existing helper signatures, receipt keys, policy and CLI paths reviewed.",
+    "testDefault": "Unsupported Empty constant default changed to empty String; direct Empty and missing Variant retained."
+  },
+  "finalInventory": {
+    "main": "ea7ae724bea2f1e9052aa17f9926eb0659ae4262",
+    "branchCount": 51,
+    "initialBranchHeadsPreserved": 48,
+    "concurrentActiveBranches": [
+      {
+        "branch": "codex/zotero-continued-parity-20261122",
+        "sha": "6d00f68d1fc37bcad0a76546a02930b9bf21b787",
+        "disposition": "Preserved intact as active independent work created after initial intake; not merged or falsely marked contained."
+      },
+      {
+        "branch": "work/mail-local-tags-20261122",
+        "sha": "bb92051a07618b069f8fc03609d1af6863dc52a0",
+        "disposition": "Preserved intact as active independent work created after initial intake; not merged or falsely marked contained."
+      }
+    ],
+    "snapshot": [
+      {
+        "branch": "codex/mail-durable-mutations-20261122",
+        "sha": "afdcb327c650383e269a3d32f7251f68a9d766c6"
+      },
+      {
+        "branch": "codex/mail-identity-reconciliation-20261122",
+        "sha": "b48fa00a3f4461ae10fdf95e444baf3983d051b4"
+      },
+      {
+        "branch": "codex/mail-membership-recovery-20261122",
+        "sha": "bb991a98b73fb2518b2999c37e42d7da4c821fae"
+      },
+      {
+        "branch": "codex/word-vba-array-data-20261122",
+        "sha": "5d79e934c5400594410bb6dfcb347d279fe0c335"
+      },
+      {
+        "branch": "codex/word-vba-authoring-20261121",
+        "sha": "cf06b018ec125ce3b5abfda41a7fbbdcf7d30a47"
+      },
+      {
+        "branch": "codex/word-vba-cell-formatting-20261122",
+        "sha": "49f43824196c4d373f991e442fac2e73e68c5f9f"
+      },
+      {
+        "branch": "codex/word-vba-cell-text-20261122",
+        "sha": "5f6e8686f1d6ddc1f3e523238808b78ccccc5b51"
+      },
+      {
+        "branch": "codex/word-vba-comparison-colors-20261121",
+        "sha": "e3c4550b34a9a07de2a97b84b67ab6aecaa5a377"
+      },
+      {
+        "branch": "codex/word-vba-compatibility-20261121",
+        "sha": "3058d36c5354d46bde418555d59282116cce1e26"
+      },
+      {
+        "branch": "codex/word-vba-compatibility-20261122",
+        "sha": "934c33a57f3bed934df59a4e925ffc35fe406ee2"
+      },
+      {
+        "branch": "codex/word-vba-continuation-20261122",
+        "sha": "dd844f4ae1d5d4dab897fd7e49f94e25be52581a"
+      },
+      {
+        "branch": "codex/word-vba-extended-20261122",
+        "sha": "43df8a9f6170109589f2f6885312d5cf15068a88"
+      },
+      {
+        "branch": "codex/word-vba-objects-20261122",
+        "sha": "26370962b40dc761f17f5f7038a628f06d5189f8"
+      },
+      {
+        "branch": "codex/word-vba-range-suffix-20261122",
+        "sha": "360673e0736e98d65d6c3cacef90bf842391288d"
+      },
+      {
+        "branch": "codex/word-vba-source-text-20261122",
+        "sha": "a713970fdab473b6fb74c34287fac91ff34153b1"
+      },
+      {
+        "branch": "codex/word-vba-string-search-20261122",
+        "sha": "4dafb6f7e7fc844d11cb7219add5a82acfed5135"
+      },
+      {
+        "branch": "codex/word-vba-text-authoring-20261122",
+        "sha": "23a934cf49f64cd61f0df3ad3cdd7d9bd4a069dd"
+      },
+      {
+        "branch": "codex/word-vba-text-selectors-20261122",
+        "sha": "d40e1a2c3731eb303bcf82724432d9927d53a889"
+      },
+      {
+        "branch": "codex/zotero-continued-parity-20261122",
+        "sha": "6d00f68d1fc37bcad0a76546a02930b9bf21b787"
+      },
+      {
+        "branch": "codex/zotero-converter-parity-20261122",
+        "sha": "5bf13601caac2c08fe97de25fe853c9d642f0cb1"
+      },
+      {
+        "branch": "codex/zotero-dispatch-recovery-20261121",
+        "sha": "32ef843db3a8192fe0add085e1ee173e18f4d462"
+      },
+      {
+        "branch": "codex/zotero-field-context-20261122",
+        "sha": "00ba542dc5b492040508a8137a80adbc9b13553d"
+      },
+      {
+        "branch": "codex/zotero-field-recovery-20261122",
+        "sha": "e78e98d3a07647794e4426f833782ccbddc04960"
+      },
+      {
+        "branch": "codex/zotero-footnote-separators-20261121",
+        "sha": "a70c0e7af251d737dc7639f44a48777bbea1bf51"
+      },
+      {
+        "branch": "codex/zotero-host-ownership-20261121",
+        "sha": "05cb866e6e5aaee95dae8b03da2892fcf633a84b"
+      },
+      {
+        "branch": "codex/zotero-main-qualification-20261121",
+        "sha": "e2a1ed6073556d24194004221c545166b17c2d4e"
+      },
+      {
+        "branch": "codex/zotero-native-parity-20261122",
+        "sha": "d300c76f0966d8f676b0fa38a7799f0e01cbc10d"
+      },
+      {
+        "branch": "codex/zotero-note-formatting-20261122",
+        "sha": "b91fba039e123d3db767bc5178de59922a163e74"
+      },
+      {
+        "branch": "codex/zotero-note-layout-20261121",
+        "sha": "2089e1e35a8ba81ea7f0a077b348f93ca70953c8"
+      },
+      {
+        "branch": "codex/zotero-odt-roundtrip-20261121",
+        "sha": "05072dc2d59d0fa4ea97de4d6a842700ef333fab"
+      },
+      {
+        "branch": "codex/zotero-parity-20261122",
+        "sha": "da36652cf1d2296b59285788035555d512b9fa31"
+      },
+      {
+        "branch": "codex/zotero-parity-next-20261122",
+        "sha": "98ac4254f04acdeff53ea28c9c184ecfb141e868"
+      },
+      {
+        "branch": "codex/zotero-parity-progress-20261122",
+        "sha": "96240d35f609aee05a1f81e7ce58036aea0c6296"
+      },
+      {
+        "branch": "codex/zotero-select-navigation-20261122",
+        "sha": "8c1b8da71bb910d4025aa179dc56290cf1a8e72a"
+      },
+      {
+        "branch": "codex/zotero-shortcut-host-recovery-20261121",
+        "sha": "2168011b6104f680100b87404bc1bd409f724939"
+      },
+      {
+        "branch": "codex/zotero-source-continuity-20261121-2135",
+        "sha": "c4c16d91d62ded0c341bee95e98de894de70483f"
+      },
+      {
+        "branch": "codex/zotero-workflow-parity-20261122",
+        "sha": "69e20b56a8c919fb5d9c1b9717f7688e5ff6c55d"
+      },
+      {
+        "branch": "main",
+        "sha": "ea7ae724bea2f1e9052aa17f9926eb0659ae4262"
+      },
+      {
+        "branch": "work/mail-account-workspace-20261122",
+        "sha": "ccb302f45edde33608f8918a489c959022ffefc9"
+      },
+      {
+        "branch": "work/mail-bulk-organization-20261122",
+        "sha": "a29742adf28c5779016ae939e5baf6ac3c4a302c"
+      },
+      {
+        "branch": "work/mail-client-progress-20261122",
+        "sha": "29cb02cec4344e85b0731dde8cd964fdd1aad9fa"
+      },
+      {
+        "branch": "work/mail-connected-navigation-20261122",
+        "sha": "a59e986a12d50c0d115b99c14cd8f746921c6f44"
+      },
+      {
+        "branch": "work/mail-connected-workspace-20261122",
+        "sha": "16e8a572c061f4eb7d2411bf7a28709896c63df6"
+      },
+      {
+        "branch": "work/mail-folder-scoped-search-20261122",
+        "sha": "ff30d1064a052abbfbcdc99745ff66f8bc980aea"
+      },
+      {
+        "branch": "work/mail-folder-search-20261122",
+        "sha": "24e4b5d8a2a4e3c996e15013c5324a534c2e444f"
+      },
+      {
+        "branch": "work/mail-keyboard-triage-20261121",
+        "sha": "08d034d876073e2afc881dbfc11ba791acde3d67"
+      },
+      {
+        "branch": "work/mail-live-search-20261121",
+        "sha": "c3d55be30d91694b1a427d261cddbe47b1dd5eec"
+      },
+      {
+        "branch": "work/mail-local-tags-20261122",
+        "sha": "bb92051a07618b069f8fc03609d1af6863dc52a0"
+      },
+      {
+        "branch": "work/mail-parity-20261122-next",
+        "sha": "a7006171630915bbf91b6ce2ab7c4699bb79f69b"
+      },
+      {
+        "branch": "work/mail-range-selection-tests-20261121",
+        "sha": "5c7a385c5de40394d9eed736c5a2d975535c3df3"
+      },
+      {
+        "branch": "work/mail-sync-address-search-20261121",
+        "sha": "33d8f956ec2ed1dfd748e1d7ccbc5add053ff565"
+      }
+    ]
+  },
+  "pullRequest": 389,
+  "qualification": "Authored tests and source review only. No Dart/Flutter/compiler/analyzer/formatter/Office-host execution. GitHub Actions not queried or awaited."
+}
