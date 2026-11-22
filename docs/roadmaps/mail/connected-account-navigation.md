@@ -44,6 +44,10 @@ reusable `QudsMailWorkspace` milestone remains open.
   release retry must finish that work before a new target can acquire ownership.
   Hidden pointer/keyboard input and duplicate or late route callbacks remain
   blocked while a handoff is pending.
+- Apply that release boundary to ordinary Disconnect, Refresh and folder
+  changes as well as account switching. Disconnect starts observer cancellation
+  before waiting for draft restoration, so a pending initial saved-mail view
+  cannot prevent cleanup. Storage ownership ends only after both have drained.
 - Restore drafts, cached state, Outbox and historical uncertainty only through
   their owning account. Navigation never treats unknown delivery as success
   and never replays a send or mailbox command.

@@ -21,6 +21,9 @@ All notable changes to `quds_office_editor` are documented here.
   conditional refresh retain their existing metadata. Native Close hides the mounted Mail
   pane; failed observer or owner release blocks another sign-in until explicit
   native Retry closing account or provider Close/Back recovery succeeds.
+  Apply the same retained cleanup to Disconnect, Refresh and folder changes;
+  cancel observers waiting for an initial saved-mail snapshot before draining
+  restoration, and close their owner only after both have finished.
   Persistent release failure can require a host restart. One account remains
   connected at a time. See the [account-navigation workflow](../../docs/roadmaps/mail/account-navigation.md)
   and [connected-account guide](../../docs/roadmaps/mail/connected-account-navigation.md)

@@ -553,10 +553,6 @@ String _text(WidgetTester tester, String key) =>
     tester.widget<TextField>(_key(key)).controller!.text;
 
 Future<void> _pump(WidgetTester tester) async {
-  // Stream cancellation can await Dart's shared root-zone completed future.
-  // Give that future a real event turn; fake clock pumps alone leave cleanup
-  // pending until test teardown even after the explicit cancellation gate opens.
-  await tester.runAsync(() => Future<void>.delayed(Duration.zero));
   await tester.pump();
   // Broadcast cancellation awaits Dart's shared root-zone completed future.
   // Drain that real microtask without bypassing the owner/cancellation gates.
@@ -677,6 +673,8 @@ void main() {
           await _show(tester, harness);
           await _connect(tester, harness);
           await _until(tester, () => harness.directory.rememberAttempts == 1);
+          expect(harness.directory.selectedRemembers, 1);
+          expect(harness.directory.remembers, 0);
           if (removed) {
             harness.directory.records.remove(harness.identity.account.value);
           } else {
@@ -693,6 +691,7 @@ void main() {
           );
           expect(harness.directory.remembers, committedWrites);
           expect(harness.directory.selectedRemembers, 1);
+          expect(harness.directory.remembers, 0);
           await _until(tester, () => harness.owner.closed == 1);
           expect(harness.providers.single.lease!.isCurrent, isFalse);
           if (kind != MailProviderKind.ews) {
@@ -1057,6 +1056,308 @@ void main() {
         oldSwitch();
         await _pump(tester);
         expect(harness.navigations, hasLength(1));
+      },
+    );
+
+    for (final action in ['disconnect', 'refresh']) {
+      testWidgets(
+        '${kind.name}: $action retains failed observer and owner until explicit close',
+        (tester) async {
+          final harness = _Harness(kind);
+          harness.owner.snapshot = const StudioMailStoredDraft(
+            draft: _draft,
+            submissionUncertain: true,
+          );
+          await _show(tester, harness);
+          final oldConnect = tester
+              .widget<FilledButton>(
+                _key(
+                  kind == MailProviderKind.ews
+                      ? 'ews-connect'
+                      : 'cloud-connect',
+                ),
+              )
+              .onPressed!;
+          await _connect(tester, harness);
+          final oldSwitch = tester
+              .widget<IconButton>(_key('studio-mail-switch-account'))
+              .onPressed!;
+          final oldDisconnect = tester
+              .widget<IconButton>(_icon(_strings.disconnect))
+              .onPressed!;
+          final oldRefresh = tester
+              .widget<IconButton>(_icon(_strings.refresh))
+              .onPressed!;
+          final mailbox = harness.owner.mailboxStore;
+          expect(mailbox.watches, 1);
+          mailbox.cancelFailures = 1;
+          await _press(
+            tester,
+            _icon(
+              action == 'disconnect' ? _strings.disconnect : _strings.refresh,
+            ),
+          );
+          await _until(tester, () => mailbox.cancellations == 1);
+          await _pump(tester);
+          expect(mailbox.cancellationsFinished, 0);
+          expect(harness.owner.closeCalls, 0);
+          expect(harness.owner.closed, 0);
+          expect(harness.providers.single.headers, 1);
+          expect(
+            harness.providers.single.lease!.isCurrent,
+            action == 'refresh',
+          );
+          expect(mailbox.watches, 1);
+          expect(harness.navigations, isEmpty);
+          expect(
+            find.text(_strings.mailAccountNavigationReleaseFailed),
+            findsOneWidget,
+          );
+          expect(
+            tester
+                .widget<IconButton>(_key('studio-mail-switch-account'))
+                .onPressed,
+            isNull,
+          );
+          if (action == 'disconnect') {
+            expect(
+              tester
+                  .widget<FilledButton>(
+                    _key(
+                      kind == MailProviderKind.ews
+                          ? 'ews-connect'
+                          : 'cloud-connect',
+                    ),
+                  )
+                  .onPressed,
+              isNull,
+            );
+          } else {
+            expect(find.text('Current account message'), findsOneWidget);
+            expect(
+              tester.widget<IconButton>(_icon(_strings.refresh)).onPressed,
+              isNull,
+            );
+            expect(
+              tester.widget<IconButton>(_icon(_strings.disconnect)).onPressed,
+              isNull,
+            );
+          }
+          oldConnect();
+          oldSwitch();
+          oldDisconnect();
+          oldRefresh();
+          await _pump(tester);
+          expect(mailbox.cancellations, 1);
+          expect(mailbox.watches, 1);
+          expect(harness.owner.closeCalls, 0);
+          expect(harness.providers.single.headers, 1);
+          expect(harness.providers, hasLength(1));
+          expect(harness.authorizations, kind == MailProviderKind.ews ? 0 : 1);
+          expect(harness.storeOpens, 1);
+          expect(harness.navigations, isEmpty);
+
+          mailbox.cancelGate = Completer<void>();
+          harness.owner.closeGate = Completer<void>();
+          await _press(tester, _icon(_strings.close));
+          await _until(tester, () => mailbox.cancellations == 2);
+          expect(mailbox.cancellationsFinished, 0);
+          expect(harness.owner.closeCalls, 0);
+          expect(find.byType(StudioMailEwsDialog), findsOneWidget);
+          mailbox.cancelGate!.complete();
+          await _until(tester, () => harness.owner.closeCalls == 1);
+          expect(mailbox.cancellationsFinished, 1);
+          expect(harness.owner.closed, 0);
+          expect(harness.navigations, isEmpty);
+          expect(find.byType(StudioMailEwsDialog), findsOneWidget);
+          harness.owner.closeGate!.complete();
+          await _until(
+            tester,
+            () => find.byType(StudioMailEwsDialog).evaluate().isEmpty,
+          );
+          expect(harness.owner.closed, 1);
+          expect(harness.providers, hasLength(1));
+          expect(harness.storeOpens, 1);
+          expect(harness.navigations, isEmpty);
+          expect(harness.owner.snapshot!.submissionUncertain, isTrue);
+        },
+      );
+    }
+
+    for (final duringOpen in [true, false]) {
+      testWidgets(
+        '${kind.name}: disconnect cancels pending ${duringOpen ? 'factory' : 'load'} and drains its late owner',
+        (tester) async {
+          final harness = _Harness(kind);
+          final gate = Completer<void>();
+          if (duringOpen) {
+            harness.openGate = gate;
+          } else {
+            harness.owner.loadGate = gate;
+          }
+          harness.owner.closeGate = Completer<void>();
+          await _show(tester, harness);
+          await _connect(tester, harness);
+          expect(harness.storeOpens, 1);
+          expect(harness.owner.loads, duringOpen ? 0 : 1);
+          await _press(tester, _icon(_strings.disconnect));
+          expect(harness.providers.single.lease!.isCurrent, isFalse);
+          expect(harness.owner.closeCalls, 0);
+          expect(harness.directory.remembers, 0);
+          expect(
+            tester
+                .widget<FilledButton>(
+                  _key(
+                    kind == MailProviderKind.ews
+                        ? 'ews-connect'
+                        : 'cloud-connect',
+                  ),
+                )
+                .onPressed,
+            isNull,
+          );
+          gate.complete();
+          await _until(tester, () => harness.owner.closeCalls == 1);
+          expect(harness.owner.closed, 0);
+          expect(harness.owner.loads, duringOpen ? 0 : 1);
+          expect(harness.providers, hasLength(1));
+          expect(harness.storeOpens, 1);
+          expect(harness.navigations, isEmpty);
+          expect(
+            tester
+                .widget<FilledButton>(
+                  _key(
+                    kind == MailProviderKind.ews
+                        ? 'ews-connect'
+                        : 'cloud-connect',
+                  ),
+                )
+                .onPressed,
+            isNull,
+          );
+          harness.owner.closeGate!.complete();
+          await _until(
+            tester,
+            () =>
+                tester
+                    .widget<FilledButton>(
+                      _key(
+                        kind == MailProviderKind.ews
+                            ? 'ews-connect'
+                            : 'cloud-connect',
+                      ),
+                    )
+                    .onPressed !=
+                null,
+          );
+          expect(harness.owner.closed, 1);
+          await _connect(tester, harness);
+          await _until(tester, () => harness.directory.remembers == 1);
+          expect(harness.providers, hasLength(2));
+          expect(harness.providers.last.lease!.isCurrent, isTrue);
+          expect(harness.storeOpens, 2);
+          expect(harness.owner.loads, duringOpen ? 1 : 2);
+          expect(find.text('Current account message'), findsOneWidget);
+        },
+      );
+    }
+
+    testWidgets(
+      '${kind.name}: disconnect retires a pending first cache snapshot before owner release',
+      (tester) async {
+        final harness = _Harness(kind);
+        final mailbox = harness.owner.mailboxStore;
+        mailbox.watchGate = Completer<void>();
+        mailbox.cancelGate = Completer<void>();
+        harness.owner.closeGate = Completer<void>();
+        await _show(tester, harness);
+        await _connect(tester, harness);
+        await _until(tester, () => mailbox.watches == 1);
+        expect(harness.directory.selectedRemembers, 0);
+        await _press(tester, _icon(_strings.disconnect));
+        await _until(tester, () => mailbox.cancellations == 1);
+        expect(harness.providers.single.lease!.isCurrent, isFalse);
+        expect(mailbox.watchGate!.isCompleted, isFalse);
+        expect(mailbox.cancellationsFinished, 0);
+        expect(harness.owner.closeCalls, 0);
+        expect(harness.directory.remembers, 0);
+        expect(harness.navigations, isEmpty);
+        mailbox.cancelGate!.complete();
+        await _until(tester, () => harness.owner.closeCalls == 1);
+        expect(mailbox.watchGate!.isCompleted, isFalse);
+        expect(mailbox.cancellationsFinished, 1);
+        expect(harness.owner.closed, 0);
+        expect(harness.providers, hasLength(1));
+        expect(harness.storeOpens, 1);
+        harness.owner.closeGate!.complete();
+        await _until(
+          tester,
+          () =>
+              tester
+                  .widget<FilledButton>(
+                    _key(
+                      kind == MailProviderKind.ews
+                          ? 'ews-connect'
+                          : 'cloud-connect',
+                    ),
+                  )
+                  .onPressed !=
+              null,
+        );
+        expect(mailbox.watchGate!.isCompleted, isFalse);
+        expect(harness.owner.closed, 1);
+        expect(harness.owner.closeCalls, 1);
+        expect(harness.providers, hasLength(1));
+        expect(harness.storeOpens, 1);
+        expect(harness.navigations, isEmpty);
+      },
+    );
+
+    testWidgets(
+      '${kind.name}: disconnect during selected refresh releases an adopted owner only once',
+      (tester) async {
+        final harness = _Harness(kind);
+        harness.directory.rememberGate = Completer<void>();
+        await _show(tester, harness);
+        await _connect(tester, harness);
+        await _until(tester, () => harness.directory.selectedRemembers == 1);
+        final mailbox = harness.owner.mailboxStore;
+        expect(mailbox.watches, 1);
+        mailbox.cancelFailures = 1;
+        await _press(tester, _icon(_strings.disconnect));
+        expect(harness.providers.single.lease!.isCurrent, isFalse);
+        expect(mailbox.cancellations, 1);
+        expect(harness.owner.closeCalls, 0);
+        harness.directory.rememberGate!.complete();
+        await _until(tester, () => mailbox.cancellations == 1);
+        await _pump(tester);
+        expect(mailbox.cancellationsFinished, 0);
+        expect(harness.owner.closeCalls, 0);
+        expect(harness.owner.closed, 0);
+        expect(harness.providers, hasLength(1));
+        expect(harness.storeOpens, 1);
+        expect(harness.navigations, isEmpty);
+        expect(
+          find.text(_strings.mailAccountNavigationReleaseFailed),
+          findsOneWidget,
+        );
+        mailbox.cancelGate = Completer<void>();
+        harness.owner.closeGate = Completer<void>();
+        await _press(tester, _icon(_strings.close));
+        await _until(tester, () => mailbox.cancellations == 2);
+        expect(harness.owner.closeCalls, 0);
+        mailbox.cancelGate!.complete();
+        await _until(tester, () => harness.owner.closeCalls == 1);
+        expect(harness.owner.closed, 0);
+        harness.owner.closeGate!.complete();
+        await _until(
+          tester,
+          () => find.byType(StudioMailEwsDialog).evaluate().isEmpty,
+        );
+        expect(mailbox.cancellationsFinished, 1);
+        expect(harness.owner.closed, 1);
+        expect(harness.owner.closeCalls, 1);
+        expect(harness.navigations, isEmpty);
       },
     );
 

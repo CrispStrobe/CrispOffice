@@ -39,6 +39,15 @@ The final open-PR response at that capture was empty. Branches remain intact.
 Publication still uses a fresh expected-main check, so an advance cannot be
 silently overwritten.
 
+Before the corrected final freeze, main advanced again to
+`4cc604810fb2f41ac7ba04cbed65cb76300bff59` through PR #382. The normal merge
+incorporated its 12 previously unmerged commits and exactly matched the tree
+predicted by `git merge-tree`. This adds atomic selected-account refresh before
+owner adoption, VBA Split authoring, and Zotero/Word field, converter, style and
+ODT changes. Our newer Close/dispatch fences, native held-owner recovery and
+fixture corrections remain present. `late-main-intake.json` records the exact
+delta and merge receipt.
+
 ## Local qualification and correction
 
 The first combined source was frozen at remote commit
@@ -76,9 +85,11 @@ Delete, sync-capable empty-cache views were checked against the older label, and
 account-free lifecycle/preset tests entered controls before automatic catalog
 restoration completed. These are corrected at the fixture boundary. A separate
 cached-store teardown/open diagnostic is retained in `development/`. Corrected
-source and the final affected-gate results are recorded in the recovery report;
-accepted original engine/shared UI results are reusable only with exact unchanged
-input and dependency checks.
+source and final results are recorded in the recovery report. The later PR #382
+intake invalidates reuse of the original engine result and ruler continuity;
+those changed inputs require fresh qualification. Only the original shared Mail
+UI gate is eligible for reuse, through exact package/input, import/dependency,
+configuration and runtime checks.
 
 Focused corrections passed 64 provider-navigation cases (including nine new
 Close/marker/receipt regressions) and 79 cache/local-account/file-picker cases.
@@ -97,10 +108,17 @@ focused native/release/router batch passed 21 cases; the provider batch passed
 55. These development runs are not added to final fresh totals.
 
 The earlier integrated baseline passed 792 incoming engine cases and ten ruler
-cases. The combined engine gate reran the relevant closure after the later Word
-changes. The ruler evidence is retained only through exact unchanged hashes of
-its six captured test/source/model/helper inputs; its ten cases are not credited
-as fresh final results.
+cases. The first combined engine gate then passed 903 cases. Both earlier engine
+counts remain historical after the latest Word changes. The expanded final
+scope includes a fresh ruler run because its captured Word-properties input
+changed; the earlier ten ruler cases are not added to final totals.
+
+The revised final scope selects 92 incoming engine suites, 30 incoming editor
+suites (including the ruler), four Studio Zotero suites, two account-store suites,
+and all 110 Studio Mail suites. This is 238 fresh behavioral suites. The original
+18-suite shared UI gate is retained only if its independent package closure and
+all relevant inputs still match exactly. This is VM/widget qualification; new
+JavaScript/browser Split acceptance is not claimed.
 
 Initial failed test attempts and their corrections remain in `development/`.
 The first provider startup was rejected by automatic review because an
@@ -122,6 +140,7 @@ Working branch: `work/mail-connected-navigation-20261122`.
 | `0cb4057ae80162d754a2d5c3f145fc7f38bb0590` | Stale-admission and retained-owner fixes, incoming Word/Zotero continuation and local evidence |
 | `d53f30f1874b38d36a791d1d3881583e4e42a2d6` | First frozen combined source, complete captured intake, observer-release recovery and focused regression evidence |
 | `6d63c6e2a44848b4f2fb9d7177d2d605506f98cb` | Complete first combined run with its failures, restored cancellable Close and independent provider setup, and corrective regressions |
+| `4015d7544ec3aa392ce2f375a35f00a4c3d4c5a3` | Corrected fixtures, all focused recovery evidence and the source immediately before the final main advance |
 
 Each remote tree was checked against its local checkpoint before moving the
 branch with an expected-head lease and `force=false`. The qualification

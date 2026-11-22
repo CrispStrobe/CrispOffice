@@ -87,6 +87,15 @@ its expected saved record still matches inside the same transaction. Custom
 directories without conditional refresh keep their existing metadata. See the
 [current identity and recovery contract](connected-account-navigation.md#identity-ownership-and-recovery).
 
+The selected shortcut's successful-connection refresh compares its identity,
+revision and connection timestamp in the same repository transaction as the
+write. A shortcut forgotten or replaced while sign-in waits cannot be recreated
+by a late refresh. The selected connection intent is fulfilled only after that
+comparison succeeds; revoked setup retains and drains any already acquired
+owner and its observers. Custom directories without the optional atomic refresh
+capability retain their existing metadata instead of falling back to an
+unconditional write.
+
 While a transition is pending, the underlying native Mail pane accepts neither
 pointer nor keyboard edits. Each provider route can return a destination once,
 and only while that exact route is current. Delayed or duplicate callbacks from
