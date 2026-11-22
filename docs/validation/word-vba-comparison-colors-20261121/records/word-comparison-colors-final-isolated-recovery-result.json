@@ -1,0 +1,37 @@
+{
+  "command": [
+    "dart",
+    "test",
+    "--reporter=expanded",
+    "--concurrency=1",
+    "test/office_macro_mcp_test.dart",
+    "test/office_macro_word_line_spacing_test.dart",
+    "test/word_native_presentation_test.dart"
+  ],
+  "exitCode": 1,
+  "durationSeconds": 47.559,
+  "lastOutput": [
+    "  Expected: <null>",
+    "    Actual: 'http://schemas.openxmlformats.org/wordprocessingml/2006/main'",
+    "  ",
+    "  package:matcher                                 expect",
+    "  test/word_native_presentation_test.dart 500:13  main.<fn>",
+    "  ",
+    "00:44 +127 -2: test/word_native_presentation_test.dart: native frame line omissions and properties survive clone, color edit and three saves: <a:ln w=\"38100\" cap=\"rnd\" cmpd=\"sng\" algn=\"ctr\"><a:solidFill><a:srgbClr val=\"355C7D\"/></a:solidFill><a:prstDash val=\"dash\"/><a:round/></a:ln>",
+    "00:44 +128 -2: test/word_native_presentation_test.dart: new frame native insets match the eight-point editor default",
+    "00:44 +129 -2: test/word_native_presentation_test.dart: frame inset edit changes only its attribute and retains native host spacing",
+    "00:44 +130 -2: test/word_native_presentation_test.dart: absent native settings retain their distinction through three saves",
+    "00:44 +131 -2: test/word_native_presentation_test.dart: empty native settings retain their distinction through three saves",
+    "00:44 +132 -2: test/word_native_presentation_test.dart: owned settings parse their own flags and preserve native values and part ownership for three saves",
+    "00:44 +133 -2: test/word_native_presentation_test.dart: live settings edits preserve protection metadata and insert owned nodes in schema order",
+    "00:44 +134 -2: test/word_native_presentation_test.dart: requested live settings create an owned settings part when absent",
+    "00:44 +135 -2: Some tests failed.",
+    "",
+    "Failing tests:",
+    "  test/word_native_presentation_test.dart: native frame line omissions and properties survive clone, color edit and three saves: ",
+    "  test/word_native_presentation_test.dart: native frame line omissions and properties survive clone, color edit and three saves: <a:ln><a:solidFill><a:srgbClr val=\"355C7D\"/></a:solidFill></a:ln>",
+    "",
+    "Consider enabling the flag chain-stack-traces to receive more detailed exceptions.",
+    "For example, 'dart test --chain-stack-traces'."
+  ]
+}

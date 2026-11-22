@@ -1,0 +1,32 @@
+{
+  "started_at_utc": "2026-11-22T06:20:48.145246+00:00",
+  "head_at_start": "918e7dd12e66b79e75082a41c250887a92db0d4e",
+  "working_directory": "/workspace/scratch/fbb55a1db052/quds_office_suite",
+  "command": [
+    "dart",
+    "format",
+    "--output=none",
+    "--set-exit-if-changed",
+    "packages/quds_mail_ui/test/bulk_message_list_test.dart",
+    "packages/quds_mail_ui/test/message_list_bulk_test.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+    "packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_bulk_visual_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_flag_journal_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_journal_dialog_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_journal_host_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart",
+    "packages/quds_office_editor/example/test/support/mail_membership_host_cases.dart"
+  ],
+  "stdout_file": "format.stdout.log",
+  "stderr_file": "format.stderr.log",
+  "finished_at_utc": "2026-11-22T06:20:48.616450+00:00",
+  "duration_seconds": 0.469,
+  "exit_code": 0,
+  "head_at_end": "918e7dd12e66b79e75082a41c250887a92db0d4e",
+  "stdout_sha256": "4c98e3760c451496b6a20f2f52b938b7b1f9016dae2795bfc1389d7a73a4c05a",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

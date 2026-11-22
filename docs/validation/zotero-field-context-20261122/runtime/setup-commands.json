@@ -1,0 +1,64 @@
+[
+  {
+    "name": "workspace-pub-get",
+    "argv": [
+      "/workspace/scratch/2437eaf6f35d/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+      "pub",
+      "get",
+      "--enforce-lockfile"
+    ],
+    "cwd": "/workspace/scratch/2437eaf6f35d/quds_office_suite",
+    "started_utc": "2026-11-22T05:03:39.312426+00:00",
+    "finished_utc": "2026-11-22T05:05:17.507950+00:00",
+    "exit_code": 0,
+    "log_sha256": "4e724aed3be6a8a91abfb7f5db3649ef4b58b615e3130a17de18f446be17d201"
+  },
+  {
+    "name": "flutter-tools-pub-get",
+    "argv": [
+      "/workspace/scratch/2437eaf6f35d/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+      "pub",
+      "get",
+      "--enforce-lockfile"
+    ],
+    "cwd": "/workspace/scratch/2437eaf6f35d/toolchains/flutter/packages/flutter_tools",
+    "started_utc": "2026-11-22T05:05:17.510809+00:00",
+    "finished_utc": "2026-11-22T05:07:12.180631+00:00",
+    "exit_code": 0,
+    "log_sha256": "1a12284733a359894b49919ec97c3c89b8d2a4d86881b093e6b36e5b945aad81"
+  },
+  {
+    "name": "flutter-version-without-ci",
+    "argv": [
+      "/workspace/scratch/2437eaf6f35d/toolchains/flutter/bin/flutter",
+      "--no-version-check",
+      "--suppress-analytics",
+      "--version",
+      "--machine"
+    ],
+    "cwd": "/workspace/scratch/2437eaf6f35d/quds_office_suite",
+    "status": "blocked-by-automatic-review",
+    "exit_code": null,
+    "reason": "Official Flutter startup bot detection attempted cloud instance metadata access. No retry of the metadata request was made.",
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "flutter-version-ci",
+    "argv": [
+      "/workspace/scratch/2437eaf6f35d/toolchains/flutter/bin/flutter",
+      "--no-version-check",
+      "--suppress-analytics",
+      "--version",
+      "--machine"
+    ],
+    "cwd": "/workspace/scratch/2437eaf6f35d",
+    "environment_addition": {
+      "CI": "true"
+    },
+    "observed_utc": "2026-11-22T05:08:24.670083+00:00",
+    "exit_code": 0,
+    "log_sha256": "1bfdac017ac2acabecc6d8921979b763650f10ea183626bf63be71a63ef9f7ed",
+    "safety_basis": "The unmodified official BotDetector.isRunningOnBot short-circuits on CI before AzureDetector.isRunningOnAzure. This prevents the metadata request rather than permitting it.",
+    "bot_detector_source_sha256": "6efec4bbea6de44fac8d4f298bbd3961453bbd5e81fd464707b2e8def9ecbdd8"
+  }
+]

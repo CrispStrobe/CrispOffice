@@ -1,0 +1,33 @@
+00:00 +0: loading /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart
+00:00 +0: highlight preserves content, backwards writing selection and focus
+00:00 +1: body context resolves exact paragraph identity among equal texts
+00:00 +2: table context resolves exact paragraph identity among equal texts
+00:00 +3: footnote context resolves exact paragraph identity among equal texts
+00:00 +4: endnote context resolves exact paragraph identity among equal texts
+00:00 +5: multipart bibliography retains every original source range
+00:00 +6: selecting another story preserves the active Notes selection
+00:00 +7: Field.delete clears presentation and notifies already-built consumers
+00:00 +8: Field.removeCode clears presentation and notifies already-built consumers
+00:00 +9: Document.insertField clears presentation and notifies already-built consumers
+00:00 +10: Document.complete clears presentation and notifies already-built consumers
+00:00 +11: a failed callback clears context without committing staged data
+00:00 +12: temporary inserted field exposes no staged source text or ranges
+00:00 +13: clear restores the original viewport when the user did not move it
+00:00 +14: high zoom reveals a citation beyond the left edge
+00:00 +15: high zoom reveals a citation beyond the right edge
+00:00 +16: high zoom preserves a horizontal view containing the field
+00:00 +17: last page footnote clamps to the canvas bottom and restores after layout
+00:01 +18: overlay note reveal measures source text beyond its label
+00:01 +19: clear respects user scroll after revealing context
+00:01 +20: clear respects user zoom after revealing context
+00:01 +21: later selection restores the newer user scroll and zoom
+00:01 +22: older operation cannot adopt or clear a newer operation context
+00:01 +23: changed caret is not presented and stale cleanup leaves its view
+00:01 +24: changed source is not presented and stale cleanup leaves its view
+00:01 +25: changed document is not presented and stale cleanup leaves its view
+00:01 +26: changed host is not presented and stale cleanup leaves its view
+00:01 +27: changed Notes selection invalidates context without moving its caret
+00:01 +28: disposal cleanup does not notify a dead controller
+00:01 +29: silent lifecycle cleanup clears ownership without synchronous repaint
+00:01 +30: highlighted updates commit together as one undoable operation
+00:01 +31: All tests passed!

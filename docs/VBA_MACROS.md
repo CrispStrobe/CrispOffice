@@ -75,12 +75,35 @@ The supported subset includes:
 - `If`, `Select Case`, `Do`, `While`, `For` and `For Each`;
 - fixed and dynamic one-dimensional arrays, `ReDim`, `Erase`, `Option Base`;
 - `Variant` states including `Empty`, `Null` and `IsMissing`;
-- numeric and string intrinsics;
+- numeric and string intrinsics, including metered binary `StrComp` and `Join` over local String arrays;
 - strict argument types, named arguments and optional scalar `ByVal` values;
 - bounded compilation and execution budgets.
 
 Unsupported constructs fail with a diagnostic. The compiler never silently
 drops a statement or applies a best-effort rewrite.
+
+## Comparing source text
+
+`StrComp(left, right[, vbBinaryCompare])` returns `-1`, `0`, `1`, or Null
+under the bounded [binary String comparison contract](vba-macros-details.md#binary-string-comparison).
+It compares source-known UTF-16 values and shares the compilation work budget.
+The [Word report example](../packages/quds_office_engine/example/macros/word_comparison_colors.bas)
+uses the result to choose font colors and fill an existing table template.
+
+## Joining report labels
+
+`Join(parts[, delimiter])` joins every element of an allocated local array
+declared `As String`, in subscript order. It accepts fixed or dynamic arrays
+with any supported lower bound. The default separator is one space; `""`
+concatenates without separators. Empty elements retain their position.
+
+The compiler checks the 32,767 UTF-16-unit output limit and shared work budget
+before allocating the result. Numeric, Boolean and Variant arrays require
+explicit per-element conversion into a String array; whole-array assignment,
+array parameters and multidimensional arrays remain separate work. See the
+[complete contract](vba-macros-details.md#joining-source-string-arrays),
+[Word report example](../packages/quds_office_engine/example/macros/word_join_report.bas)
+and [versioned conformance corpus](VBA_CONFORMANCE.md).
 
 ## Source and safety
 

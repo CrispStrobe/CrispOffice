@@ -1,0 +1,163 @@
+{
+  "implementation_pr": 349,
+  "implementation_head": "1dd56df51f97dc86fbb1ebe22d9045aab7921d1c",
+  "implementation_merge_commit": "e3c4550b34a9a07de2a97b84b67ab6aecaa5a377",
+  "integrating_pr": 350,
+  "main_containing_implementation": "613c0ba130c538f18670be69dd6617b6560c0760",
+  "completed_qualification_source": "57618066f397c4856be8df4d75c1423ed4b33e1c",
+  "completed_evidence_branch": "797d5c122160fbb19bbd86a2d9d6a34bfd1dc453",
+  "post_implementation_product_paths_match_main": [
+    {
+      "path": "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart",
+      "blob": "86ccaf25a9724475f971cccb0a2eb72771db10dc",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_editor/test/word_footnote_separator_render_test.dart",
+      "blob": "593a98ba10fb33f56205dbb94dfe996daef7e058",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/layout/word_layout.dart",
+      "blob": "5d75acf90f82571709d3b3350af631da21c0d09d",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/layout/word_note_layout.dart",
+      "blob": "4fb883cf9d4714e75414236ac37807aeb459ab5a",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/wml_document.dart",
+      "blob": "8582a7628dc8b2b9e2307961a54cd0f9b53fac49",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_notes.dart",
+      "blob": "08d56cdf432560752c6eb053a849fc3e82e848a0",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/model/word_zotero_transfer.dart",
+      "blob": "1f4fd8050ff84bcb40d6123b2ff148ea0c5dab00",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_reader.dart",
+      "blob": "b020f97cea3c04faddb09b1b9025e480ed99ea8f",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+      "blob": "6c37858d38dd5601db47a33684dba2470e09f9d1",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/odt_reader_styles.dart",
+      "blob": "3b21f1ef8bc8efb1028c3b4e860a40223551f204",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+      "blob": "e4ca59dd5c9ec32227087db8f6b86cb966ec876f",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_footnote_separator_io.dart",
+      "blob": "9813e3539be8a7a71488e87cc705109a82d1f176",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_serializer.dart",
+      "blob": "39ffa77a0af44c6e4a23d02a4a3b80ae56d69c96",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/lib/src/word/serial/word_settings_io.dart",
+      "blob": "024d868accab8a8ebbe395d11ddcd740b41ed8a4",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/test/fixtures/zotero/separators/README.md",
+      "blob": "6ece98ac125463e917a88dfb66a6cc8d6463d787",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/test/fixtures/zotero/separators/custom-libreoffice-1.odt",
+      "blob": "956c89bccdda623399f5b7f94f71ff416bac79b7",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/test/fixtures/zotero/separators/custom-libreoffice-2.odt",
+      "blob": "f17e92a331f27ab4e5ea59db76e725249dfab301",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/test/fixtures/zotero/separators/hidden-libreoffice-1.odt",
+      "blob": "9dbf3cac1f75d9840cd2fff3eb312181d519c920",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/test/fixtures/zotero/separators/hidden-libreoffice-2.odt",
+      "blob": "9da88fcf0109322c23579443150638732f63a41b",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/test/fixtures/zotero/separators/manifest.json",
+      "blob": "78d060a3a3db74351e966526eafed40ce91ffd27",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/test/fixtures/zotero/separators/zero-libreoffice-1.odt",
+      "blob": "11740ec0f3f859430f49351d2c1f8bb4651725fb",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/test/fixtures/zotero/separators/zero-libreoffice-2.odt",
+      "blob": "ef6f7b339ecced7e5d5a73ac30d9927f4ea1c196",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_footnote_separator_libreoffice_test.dart",
+      "blob": "88b80dfe0dcb956ad26e2d7465d057877db13a7b",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_footnote_separator_test.dart",
+      "blob": "6919b65128d6419db64d933d242fd7d5f68cd0f0",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_libreoffice_fixture_test.dart",
+      "blob": "ae23157f4fc4127be21098127fcbeb566cdfcf3e",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/test/odt_reader_libreoffice_defaults_test.dart",
+      "blob": "9b92cb9f26a02f9b46dc2da7c4bbb3fa400a03f3",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_footnote_separator_docx_test.dart",
+      "blob": "bac864e0a69be19e63723366ff4dcbcb167ecfea",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_footnote_separator_layout_test.dart",
+      "blob": "038842186861bcfcbfcc2457db00c996008cb413",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/test/word_zotero_note_images_integration_test.dart",
+      "blob": "5cf5d3b5091216dc7bc7fcfc6cee75b28ae837e1",
+      "mode": "100644"
+    },
+    {
+      "path": "packages/quds_office_engine/tool/zotero/footnote_separator_acceptance.dart",
+      "blob": "a2c18232ef143d844c42531baffaa764870f1c0c",
+      "mode": "100644"
+    }
+  ],
+  "followup_scope": "Only docs/validation/mail-keyboard-triage-20261121; keep the newer main product tree exactly. Retain source-bound historical qualification without claiming a new run on later Word/shortcut work.",
+  "github_actions": "NOT USED"
+}

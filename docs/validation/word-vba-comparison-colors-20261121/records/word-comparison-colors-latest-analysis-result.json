@@ -1,0 +1,17 @@
+{
+  "checkpointAtStart": "ca2c7c2066771dda6c71eb8b2e70ce6bf18d56d4",
+  "sdk": "Dart SDK version: 3.14.1 (stable) (Tue Nov 17 00:01:24 2026 -0800) on \"linux_x64\"",
+  "command": [
+    "dart",
+    "analyze",
+    "--fatal-infos",
+    "lib",
+    "test",
+    "tool/macros",
+    "tool/zotero"
+  ],
+  "exitCode": 0,
+  "durationSeconds": 20.534,
+  "inputsUnchangedDuringAnalysis": true,
+  "output": "Analyzing lib, test, macros, zotero...\nNo issues found!\n"
+}

@@ -28,7 +28,7 @@ superscript/subscript, fixed-palette highlighting, explicit active-document
 aliases and `Paragraphs.Item`. Explicit `Tables`/`Table`/`Cell` selectors also
 fill existing supported table cells through `Cell.Range.Text`, with one-based
 VBA indexes and guarded native structure/formatting preservation. See the
-[table-cell contract](VBA_WORD_MACROS.md#filling-existing-table-cells).
+[table-cell contract](vba-word-macros-details.md#filling-existing-table-cells).
 The PowerPoint adapter targets explicit top-level
 slide shapes for text, font, alignment and geometry edits, with source-preserving
 formatting and a strict native collection identity guard. Its continuation adds
@@ -217,24 +217,26 @@ including automatic advance timing, retain their current values. Source-level
 integer milliseconds. Slide visibility uses the existing `pptx.slideHidden`.
 
 Native `docx.paragraphStyle` requires an explicit zero-based `paragraph`
-selector, optional ordinary story fields, and exactly one `name: String` or
+selector, optional ordinary story fields or the guarded `tableCell` selector
+below, and exactly one `name: String` or
 `builtin: int`. It selects an existing unique native paragraph style and
 preserves direct formatting while refreshing only that paragraph's inherited
 properties. Names use the document's primary style names, case-insensitively;
 the 13 supported numeric built-ins require their noncustom definitions.
 Missing/ambiguous styles, unresolved inheritance and effective numbering changes
-are refused atomically. See the [style contract](VBA_WORD_MACROS.md#existing-paragraph-styles)
+are refused atomically. See the [style contract](vba-word-macros-details.md#existing-paragraph-styles)
 and `example/macros/word_styles.bas` for the exact bounded behavior.
 
 Native `docx.paragraphShading` requires an explicit zero-based `paragraph`,
-optional ordinary story fields, and `color` as six uppercase RGB hex digits
+optional ordinary story fields or the guarded `tableCell` selector below,
+and `color` as six uppercase RGB hex digits
 or the exact String `auto`. Automatic is an explicit native background override
 and a no-fill value in the renderer; it does not remove direct ownership.
 The operation supports solid paragraph backgrounds, including empty paragraphs,
 while preserving unowned XML metadata and earlier plan edits. It checks native
 source/style ambiguity and unsupported shading before mutation and retains
 validation-only execution, recording/replay, policy and whole-run rollback.
-See the [shading contract](VBA_WORD_MACROS.md#paragraph-background-shading)
+See the [shading contract](vba-word-macros-details.md#paragraph-background-shading)
 and `example/macros/word_shading.bas`. The older `paragraphFormat.shading`
 field retains its existing independent contract.
 
@@ -247,10 +249,22 @@ Requesting both capitalization modes true in one operation is refused before
 mutation; consistent pairs are accepted. AllCaps displays full-size capitals
 without changing authored text or its source offsets. Sparse native ownership,
 style inheritance and ambiguity guards are described in the
-[Word capitalization contract](VBA_WORD_MACROS.md#all-capital-display-without-changing-source-text).
+[Word capitalization contract](vba-word-macros-details.md#all-capital-display-without-changing-source-text).
 Highlighting
 uses the existing `highlight` field with a palette RGB color or `null` to clear.
 These operations retain the ordinary nonempty text-range requirement.
+
+`docx.runFormat.color` accepts a six-digit RGB String or the exact String `auto`.
+Automatic foreground is retained as a native `w:color/@w:val` override, distinct
+from fixed black and from removing direct ownership. Explicit same-value writes
+override inherited colors. Native themeColor/themeShade/themeTint selectors are
+removed for the written foreground, while foreign attributes/children,
+namespace aliases and unrelated properties remain intact. Duplicate color
+ownership, ambiguous run-property containers and relevant markup-compatibility
+alternatives are refused before mutation; the package guard is intentionally
+conservative. This contract is specific to Word foreground and does not change
+the RGB-only inputs on other operation fields. See the
+[Word font-color contract](vba-word-macros-details.md#font-palette-and-automatic-foreground).
 
 `docx.runFormat.position` accepts signed point values in `-1584..1584`, exactly
 representable in half-points. Positive values raise text; negative values lower
@@ -260,7 +274,7 @@ superscript/subscript behavior, and sparsely owns `w:position/@w:val` while
 preserving unrelated native/foreign metadata. Unsupported or ambiguous selected
 source is refused before mutation. The `vba-word` setter requires integral
 points because Microsoft's `Font.Position` API is a Long; see the
-[complete contract](VBA_WORD_MACROS.md#baseline-position-without-resizing-text).
+[complete contract](vba-word-macros-details.md#baseline-position-without-resizing-text).
 
 `docx.runFormat` also accepts `language` for the normal proofing-language slot
 and `csFont` for the independent complex-script font. Both require nonempty
@@ -274,7 +288,7 @@ These writes preserve other language/font slots and foreign metadata, make
 same-value assignments direct, and reject ambiguous native source before
 mutation. An explicit complex font clears only its own `w:cstheme` theme
 selection. Existing `font` writes independently own ASCII/high-ANSI values
-and their themes. See the [Word language contract](VBA_WORD_MACROS.md#proofing-language-and-complex-script-font-controls)
+and their themes. See the [Word language contract](vba-word-macros-details.md#proofing-language-and-complex-script-font-controls)
 for the narrower source-level enum set, slot semantics and example.
 
 Generic native paragraph operations also accept `story: "header"`, `"footer"`,
@@ -287,7 +301,7 @@ story is refused; independent unselected opaque stories remain preserved.
 The separate native `headerFooterText` creation/replacement
 operation retains its existing contract. The source adapter uses the generic
 paragraph operations; it does not create stories. See the
-[Word header/footer contract](VBA_WORD_MACROS.md#existing-header-and-footer-paragraphs).
+[Word header/footer contract](vba-word-macros-details.md#existing-header-and-footer-paragraphs).
 
 Native `docx.tabStop` upserts one custom stop on an explicit `paragraph`, with
 required `position` in points and optional `alignment` (`left`, `center`,
@@ -302,7 +316,7 @@ paragraph selectors. Partial tab edits
 preserve unrelated source XML and inheritance. Table inheritance uses the
 existing whole-table, horizontal-band and first-row layers; other conditional
 table regions remain unmodeled. Ambiguous source definitions
-are rejected before mutation; see the [Word contract](VBA_WORD_MACROS.md#custom-paragraph-tab-stops).
+are rejected before mutation; see the [Word contract](vba-word-macros-details.md#custom-paragraph-tab-stops).
 
 Native `docx.pageSetup` sets one section measurement with three required fields:
 `section` is a zero-based index; `property` is exactly `width`, `height`, `top`,
@@ -316,7 +330,7 @@ The handler preserves unrelated sparse XML, namespace aliases and opaque macro
 parts. Width/height setters also clear native paper-size code, including on
 same-value writes. Unsupported native measurements, gutters, ambiguous geometry,
 custom columns, alternate section properties, `mc:ProcessContent` markup, and mirrored/book-fold settings
-are refused. See the [complete section contract](VBA_WORD_MACROS.md#section-page-setup)
+are refused. See the [complete section contract](vba-word-macros-details.md#section-page-setup)
 and [runnable example](../packages/quds_office_engine/example/macros/word_page_setup.bas).
 
 Native `docx.textColumns` requires a zero-based `section` and exactly one of
@@ -329,7 +343,7 @@ state rolls back the whole plan. Sparse `w:cols` ownership retains unrelated
 section metadata and opaque macro parts. Custom/unequal source columns,
 ambiguous native identity, unsupported page geometry and mirrored/book-fold
 settings are refused. See the
-[TextColumns contract](VBA_WORD_MACROS.md#uniform-section-text-columns) and
+[TextColumns contract](vba-word-macros-details.md#uniform-section-text-columns) and
 [runnable example](../packages/quds_office_engine/example/macros/word_text_columns.bas).
 
 Native `docx.pageOrientation` requires zero-based `section` and `orientation`
@@ -346,7 +360,7 @@ native section-start attribute, preserves unrelated source properties and
 history, and refuses duplicate native type/value or ambiguous section identity.
 New-column starts are unsupported. Both operations use the same allowlists,
 recording and atomic publication boundary as other mutations. See the
-[section-controls contract](VBA_WORD_MACROS.md#section-orientation-and-start-controls)
+[section-controls contract](vba-word-macros-details.md#section-orientation-and-start-controls)
 and [runnable example](../packages/quds_office_engine/example/macros/word_sections.bas).
 
 Native `docx.listDefault` takes `paragraph` and Boolean `numbered`. It toggles
@@ -358,7 +372,7 @@ supported field packets. Both operations refuse field boundaries that serializat
 would discard as unbalanced, including boundaries in unrelated stories. Both
 write persistent paragraph-numbering suppression when clearing and
 preserve unrelated native content. These operations address body paragraphs;
-the [ListFormat contract](VBA_WORD_MACROS.md#paragraph-list-formatting) documents
+the [ListFormat contract](vba-word-macros-details.md#paragraph-list-formatting) documents
 source arguments, default layout, inheritance, ambiguity guards and limits.
 
 The `example/macros/procedural_report.bas` example demonstrates shared heading
@@ -568,8 +582,59 @@ Word `Table.Cell(row, column).Range.Text` assignments emit
 `docx.tableCellRangeText` with zero-based `table`, `row`, `column` and `text`.
 This operation resolves main-story tables independently of recursive inspection
 indexes and refuses cells whose structure or metadata cannot be preserved.
-The [exact table-cell contract](VBA_WORD_MACROS.md#filling-existing-table-cells)
+The [exact table-cell contract](vba-word-macros-details.md#filling-existing-table-cells)
 defines its supported grid, content and native source envelope.
+
+`Cell.Range.Font` and `.ParagraphFormat` additionally reuse the native formatting
+operations below. Their cell selector is explicit and cannot be combined with
+body/header/note/comment selectors or text offsets:
+
+| Native operation | Cell selector and behavior |
+| --- | --- |
+| `docx.runFormat` | `story: "tableCell"`, zero-based `table`, `row`, `column`, and `paragraph: 0`; format current nonempty ordinary text runs |
+| `docx.paragraphFormat` | The same selector; edit the cell's one ordinary paragraph |
+| `docx.lineSpacing` / `docx.paragraphSpaceBefore` | The same selector; retain exact spacing pairs and native open/close/toggle behavior |
+| `docx.tabStop` / `docx.clearTabStops` | The same selector; use the existing guarded paragraph tab implementation |
+| `docx.paragraphStyle` | The same selector; apply an existing unique paragraph style by primary `name` or supported `builtin` |
+| `docx.paragraphShading` | The same selector; set a solid paragraph background with RGB `color` or explicit `auto` |
+
+All three coordinates and `paragraph: 0` are required. Coordinates without the
+`tableCell` story, a nonzero paragraph, `section`/`note`/`comment`, `start`/`end`
+and use of this story with another operation are refused. The same strict table
+structure, source, protection and graph checks as cell text edits apply. Font
+formatting uses detached copies before publishing selected inlines so aliased
+public-model run properties do not alter another cell. Paragraph/cell marks and
+future insertion formatting remain outside the Font contract; fill an empty
+template cell before formatting its text. Paragraph formatting can edit an empty
+ordinary paragraph.
+
+The source adapter retains `Range`, `Font`, `ParagraphFormat` and `TabStops`
+aliases and `ByVal` helpers, including named helper arguments. It permits the
+existing Font/ParagraphFormat members and paragraph-format methods. Direct
+`Cell.Range.HighlightColorIndex`, `.NoProofing`, `.LanguageID` and
+`.LanguageIDOther` also emit the guarded `docx.runFormat` cell selector, with
+the same current-text-only contract and sparse property ownership. Direct
+cell-range `Style`, `Shading`, `ListFormat`, insertion methods
+and reads remain unavailable. `Cell.Range.Text` keeps
+its existing operation and arguments. See the
+[full formatting contract](vba-word-macros-details.md#formatting-existing-table-cells),
+[table example](../packages/quds_office_engine/example/macros/word_table_formatting.bas)
+and [qualification record](validation/word-vba-cell-formatting-20261122/README.md).
+The [text-control continuation](vba-word-macros-details.md#cell-highlighting-and-proofing-controls)
+and source-only [Join](vba-macros-details.md#joining-source-string-arrays) support
+multilingual report assembly through the same transaction boundary; see the
+[combined qualification](validation/word-vba-cell-text-20261122/README.md).
+
+`Cell.Range.Paragraphs(1)` and `.Paragraphs.Item(1)` select the existing sole
+ordinary paragraph for Style/Shading and supported formatting. Their
+Paragraph/Range/Shading aliases and named `ByVal` helpers retain cell identity;
+empty paragraphs accept styles and backgrounds without introducing text.
+Paragraph styles/backgrounds are separate from cell fill and table styles.
+Known projected insertion/list operations are refused even in inactive source,
+and generic selectors retain evaluation-time checks. See the
+[cell paragraph contract](vba-word-macros-details.md#formatting-a-cell-paragraph),
+[example](../packages/quds_office_engine/example/macros/word_table_paragraphs.bas)
+and [qualification](validation/word-vba-cell-paragraphs-20261122/README.md).
 
 The Word adapter lowers explicit `ThisDocument.Paragraphs(i).Range` operations
 to `docx.replaceText`, `docx.runFormat` and `docx.paragraphFormat`, and custom-tab
@@ -580,13 +645,13 @@ selectors emit `docx.listDefault`, `docx.removeNumbers`,
 with both rule and point value; standard `Space1` / `Space15` / `Space2`
 methods use the guarded line-spacing preset path. The point/multiple
 conversion contract and paired-setter restrictions are documented in
-[the Word dialect](VBA_WORD_MACROS.md#exact-minimum-and-multiple-line-spacing).
+[the Word dialect](vba-word-macros-details.md#exact-minimum-and-multiple-line-spacing).
 `Paragraph` and `ParagraphFormat` spacing controls emit
 `docx.paragraphSpaceBefore` with `action: open`, `close` or `toggle`.
 The native toggle resolves current supported before spacing after earlier
 transaction steps; it remains an action when recorded and replayed. These
 methods own only before spacing and conservatively refuse automatic/line-based
-or ambiguous source definitions. See the [spacing-control contract](VBA_WORD_MACROS.md#opening-closing-and-toggling-paragraph-spacing).
+or ambiguous source definitions. See the [spacing-control contract](vba-word-macros-details.md#opening-closing-and-toggling-paragraph-spacing).
 Typed `Section` and `PageSetup` bindings select `Sections(i)` or
 `Sections.Item(i)`. Their eight geometry setters emit `docx.pageSetup`, with
 one explicit section, native property name and point value per operation.
@@ -594,7 +659,7 @@ They support aliases, `With` and required `ByVal` helpers. `Orientation` and
 `TogglePortrait` emit `docx.pageOrientation`; four supported `SectionStart`
 modes emit `docx.sectionStart`. Live reads, collection-wide page setup and
 `PaperSize` remain unsupported. The
-[section contract](VBA_WORD_MACROS.md#section-page-setup) states source numeric
+[section contract](vba-word-macros-details.md#section-page-setup) states source numeric
 bounds, sparse native ownership and the custom-paper side effect. The
 [geometry qualification](validation/word-vba-paragraph-pagination-20261121/README.md)
 and [section-controls qualification](validation/word-vba-sections-20261121/README.md)
@@ -630,6 +695,10 @@ Procedure, control-flow, and array suites add unit, boundary, and integration co
 Word source adds compiler, conformance and end-to-end native/CLI/MCP regressions,
 including document-kind preservation, immutable validation, policy denial and
 rollback after a later invalid paragraph.
+The cell-formatting suites add selector identity, typed aliases, formatting
+preservation, empty-cell behavior, malformed/aliased public models and late-cell
+rollback coverage. Its [local record](validation/word-vba-cell-formatting-20261122/README.md)
+lists the actual commands and results for the source under qualification.
 
 These tests cover shared handler parity, package admission,
 immutable/parameterized plans, publish-on-success, recording, bounded source

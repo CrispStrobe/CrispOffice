@@ -22,6 +22,9 @@ MailBulkFlagPlan _plan({
   id: 'batch',
   mailbox: _mailbox,
   action: action,
+  destination: action == MailBulkFlagAction.move
+      ? MailMailboxId('Archive', account: _account)
+      : null,
   messages: messages ?? [_imap(1), _imap(2), _imap(3)],
 );
 
@@ -153,7 +156,7 @@ void main() {
             ),
             isTrue,
           );
-        } else {
+        } else if (action.isFlagAction) {
           expect(
             commands.cast<MailSetFlagged>().every(
               (command) =>
@@ -162,12 +165,21 @@ void main() {
             isTrue,
           );
         }
+        if (action == MailBulkFlagAction.move) {
+          expect(commands, everyElement(isA<MailMove>()));
+          expect(
+            commands.cast<MailMove>().map((command) => command.destination),
+            everyElement(MailMailboxId('Archive', account: _account)),
+          );
+        } else if (action == MailBulkFlagAction.delete) {
+          expect(commands, everyElement(isA<MailDelete>()));
+        }
         expect(report.confirmedCount, 3);
         expect(report.failedCount, 0);
         expect(report.uncertainCount, 0);
         expect(report.unattemptedCount, 0);
         expect(report.stopProblem, isNull);
-        expect(report.requiresRefresh, isFalse);
+        expect(report.requiresRefresh, !action.isFlagAction);
       },
     );
   }

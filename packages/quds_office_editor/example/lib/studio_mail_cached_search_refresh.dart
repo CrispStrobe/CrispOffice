@@ -31,8 +31,12 @@ final class StudioMailCachedSearchRefreshBatch {
   bool get limited => resultLimitReached || pageLimitReached;
 
   /// Includes unfinished account coverage as well as explicit account errors.
-  bool get hasCoverageProblems =>
-      coverage.any((account) => !account.complete || account.problem != null);
+  bool get hasCoverageProblems => coverage.any(
+    (account) =>
+        !account.complete ||
+        account.problem != null ||
+        account.missingMailboxIds.isNotEmpty,
+  );
 
   /// Suitable for scheduling another automatic refresh only while the host
   /// still owns this query and account scope.
@@ -100,7 +104,8 @@ Future<StudioMailCachedSearchRefreshBatch> refreshStudioMailCachedSearch(
 
   checkCurrent();
   // Earlier accounts have already released their owners. Recheck the whole
-  // directory after later accounts finish before publishing any replacement.
+  // directory and explicitly selected local folders after later accounts finish
+  // before publishing any replacement.
   await session.validateAccountScope();
   checkCurrent();
   final invalidAccounts = <String>{

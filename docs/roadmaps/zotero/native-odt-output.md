@@ -194,10 +194,23 @@ records, preferences and structural ownership across both files. This is a real
 file conversion result, not an installed Zotero plugin session or stable-release
 compatibility claim.
 
-The next dedicated note-formatting increment needs a native footnote-separator
-model, matching pagination/rendering and interoperable DOCX/ODT mapping before
-the reader can admit active LibreOffice separators. Retained opaque DOCX
-separator definitions alone do not supply that geometry.
+The [active-separator increment](../../validation/zotero-footnote-separators-20261121/README.md)
+adds explicit `style:footnote-sep` output for modeled solid/hidden rules. Both
+gaps, nominal thickness, physical alignment, relative width and RGB color are
+emitted even when a value is zero. All native ODT writers preserve this modeled
+page geometry; ordinary output continues to export cached citation text.
+Lengths round to 0.01 points, relative width to six decimal places in percent.
+Active geometry is checked against the emitted page dimensions before bytes
+are returned, including exhaustion introduced by rounding. This is one uniform
+document-wide separator, including continuation pages, rather than arbitrary
+special-note content.
+
+Direct LibreOffice ODT saves and subsequent native refresh/save/reopen are
+qualified separately from native DOCX persistence. The actual converter
+normalizes custom DOCX separator paragraphs; that route remains a recorded
+failure, and installed Word rendering is unqualified. Keep the original ODT
+and use explicit editable ODT output when exchanging this supported geometry
+with the qualified LibreOffice route.
 
 Use installed Zotero with Word and supported LibreOffice release versions to
 refresh, change styles, edit citations/bibliographies and repeat saves on these
@@ -209,8 +222,8 @@ own identified versions and acceptance evidence.
 The native round-trip continuation also opens returned LibreOffice files through
 the Quds reader rather than checking their metadata inventory alone. Inert
 bibliography section styles and the qualified decimal note-offset convention
-are now represented, while used footnote separators retain their explicit
-reader limitation. Converter acceptance does not expand the ordinary writer's
+are now represented, and the later active-separator increment extends the
+supported note geometry. Converter acceptance does not expand the ordinary writer's
 general document-formatting contract.
 
 For native editable notes, the writer declares a 65-percent superscript style

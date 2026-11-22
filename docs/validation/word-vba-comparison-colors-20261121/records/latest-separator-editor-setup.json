@@ -1,0 +1,10 @@
+{
+  "source_head_reported_by_root": "38dce76f",
+  "started_utc": "2026-11-21T21:54:03.371796+00:00",
+  "input_scope": "All engine/editor library files, the four selected editor tests, and root/package manifests and root lockfile.",
+  "input_count": 484,
+  "input_manifest_sha256": "7508488f1e1a4c9a517a98cb340d5e1a3b3dad6ab4a0d2ad717a4e630b7cf343",
+  "flutter": "3.47.8",
+  "dart": "3.13.7",
+  "lockfile_identical": true
+}

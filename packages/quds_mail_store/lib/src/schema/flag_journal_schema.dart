@@ -58,3 +58,13 @@ final schemaV7 = List<String>.unmodifiable([
           'UPDATE store_profile SET flag_observation_epoch=flag_observation_epoch+1; '
           'END',
 ]);
+
+/// Keep membership commands in the existing durable journal without changing
+/// earlier receipts. A destination is an exact folder ID in the batch account.
+const schemaV13 = <String>[
+  '''ALTER TABLE flag_batches ADD COLUMN destination TEXT
+    CHECK((action='move' AND destination IS NOT NULL AND
+      typeof(destination)='text' AND length(CAST(destination AS BLOB)) BETWEEN 1 AND 4096 AND
+      destination!=mailbox) OR
+      (action!='move' AND destination IS NULL))''',
+];

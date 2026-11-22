@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "708bf4a6cf2651a2f08f900631119f357aef4611",
+  "completedAt": "2026-11-22T06:06:52.957839+00:00",
+  "success": false,
+  "inputsUnchanged": true,
+  "changedInputs": [],
+  "initialInputsSha256": "ba205f6abbefc3d277576b79cb87a347347720cafc3b75bbeea072eb02c5616f",
+  "finalInputsSha256": "ba205f6abbefc3d277576b79cb87a347347720cafc3b75bbeea072eb02c5616f",
+  "inputFileCount": 1205,
+  "selectedSuiteCount": 149,
+  "tests": {
+    "exitCode": 1,
+    "visibleTests": {
+      "passed": 7218,
+      "failed": 6,
+      "skipped": 0
+    },
+    "hiddenEvents": {
+      "passed": 213,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "corpus": null
+}

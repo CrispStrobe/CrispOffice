@@ -1,5 +1,14 @@
 ## Unreleased
 
+- Keep the generic checked-message menu limited to explicit flag assignments
+  when the shared journal adds Move/Delete; membership commands require their
+  host's separate destination or confirmation workflow.
+
+- Add visible range selection with Shift+Up/Down/Home/End, Shift+Space and
+  Shift+click on rows or checkboxes, preserving independent checks while ranges
+  contract. Reset range anchors after projection/host changes, reuse guarded
+  explicit bulk actions, and provide localizable selection help.
+
 - Let users collapse and expand loaded conversations with an accessible
   disclosure and direction-aware Left/Right keys. Keep groups expanded by
   default, preserve the choice by stable account/member identities, and prune

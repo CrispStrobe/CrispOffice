@@ -1,0 +1,11 @@
+00:00 +0: loading /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_render_test.dart
+00:00 +0: body prompt context paints without moving or focusing the caret
+00:00 +1: context coexists with the writing selection and Find
+00:00 +2: stale paragraph identity and invalid offsets paint nothing
+00:00 +3: multipart field highlights every owned paragraph only
+00:00 +4: context excludes the automatic footnote label
+00:01 +5: context excludes the automatic endnote label
+00:01 +6: mixed-direction RTL citation uses logical source bounds
+00:01 +7: compact table context respects the native cell clip
+00:01 +8: note table fields retain exact original paragraph ownership
+00:01 +9: All tests passed!

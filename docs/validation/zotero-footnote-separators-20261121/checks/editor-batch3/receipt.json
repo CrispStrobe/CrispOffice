@@ -1,0 +1,83 @@
+{
+  "started_utc": "2026-11-21T21:52:41.683725+00:00",
+  "source_head": "a1b555979b25c5586f27915cf219a95e886febd7",
+  "cwd": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor",
+  "command": [
+    "/workspace/scratch/12e9ca120c75/runtime/bin/flutter",
+    "test",
+    "--no-pub",
+    "--reporter=json",
+    "--concurrency=1",
+    "test/word_zotero_document_actions_test.dart",
+    "test/word_zotero_document_reuse_test.dart",
+    "test/word_zotero_document_source_picker_test.dart",
+    "test/word_zotero_document_sources_test.dart",
+    "test/word_zotero_field_at_caret_test.dart",
+    "test/word_zotero_format_test.dart",
+    "test/word_zotero_import_search_test.dart",
+    "test/word_zotero_library_details_test.dart",
+    "test/word_zotero_multiparagraph_controller_test.dart",
+    "test/word_zotero_navigation_dialog_test.dart",
+    "test/word_zotero_navigation_pane_test.dart"
+  ],
+  "input_scope": "All tracked files under .github/apps/packages/third_party/tool/tools, all tracked repository-root files, this runner, and generated package configurations beside tracked pubspec.yaml files. The after snapshot also retains every initial path so deletion or untracking cannot hide an input-content change.",
+  "input_count": 6319,
+  "input_manifest_sha256": "5c4d7dd437d3e09f5a2aef6c4b61076945343d67253f12662cf91bfb334e2cb8",
+  "exit_code": 0,
+  "duration_seconds": 53.544,
+  "inputs_unchanged": true,
+  "changed_inputs": [],
+  "tests": {
+    "passed": 227,
+    "failed": 0,
+    "skipped": 0,
+    "errors": 0,
+    "suites": 11,
+    "groups": 18,
+    "started": 240,
+    "completed": 240,
+    "hidden_passed": 11,
+    "hidden_failed": 0,
+    "hidden_skipped": 0,
+    "done": [
+      {
+        "success": true,
+        "type": "done",
+        "time": 52804
+      }
+    ],
+    "hooks_passed": 2,
+    "hooks_failed": 0,
+    "hooks_skipped": 0,
+    "hook_results": [
+      {
+        "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_multiparagraph_controller_test.dart",
+        "name": "(setUpAll)",
+        "result": "passed",
+        "hidden": true
+      },
+      {
+        "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_multiparagraph_controller_test.dart",
+        "name": "(tearDownAll)",
+        "result": "passed",
+        "hidden": true
+      }
+    ],
+    "failures": [],
+    "skips": [],
+    "hidden_failures": [],
+    "hidden_skips": [],
+    "unparsed_lines": [],
+    "lifecycle_errors": []
+  },
+  "stdout.log": {
+    "bytes": 124309,
+    "sha256": "73817802a381fe2206091c0a91d341b71f9fa65b63e516aa78e3f88878d2e9d6"
+  },
+  "stderr.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "accepted": true,
+  "finished_utc": "2026-11-21T21:53:35.569714+00:00"
+}

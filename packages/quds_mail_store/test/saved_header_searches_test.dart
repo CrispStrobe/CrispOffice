@@ -3,7 +3,7 @@ library;
 
 import 'dart:io';
 
-import 'package:drift/drift.dart';
+import 'package:drift/drift.dart' hide isNull;
 import 'package:drift/native.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_store/quds_mail_store.dart';
@@ -17,12 +17,14 @@ MailSavedHeaderSearch _search({
   String name = 'Work unread',
   String query = 'from:example.test AND is:unread',
   List<String> accountIds = const ['verified-account-a', 'verified-account-b'],
+  List<MailSavedHeaderSearchFolder>? folderScopes,
   int revision = 0,
 }) => MailSavedHeaderSearch(
   id: id,
   name: name,
   query: query,
   accountIds: accountIds,
+  folderScopes: folderScopes,
   revision: revision,
 );
 
@@ -91,6 +93,91 @@ void main() {
       expect(loaded.single.accountIds, saved.accountIds);
       expect(() => loaded.clear(), throwsUnsupportedError);
       expect(() => loaded.single.accountIds.clear(), throwsUnsupportedError);
+    },
+  );
+
+  test(
+    'exact folder sets are transactional and legacy searches stay broad',
+    () async {
+      final a = const MailSavedHeaderSearchFolder(
+        accountId: 'verified-account-a',
+        mailboxId: 'INBOX',
+      );
+      final b = const MailSavedHeaderSearchFolder(
+        accountId: 'verified-account-b',
+        mailboxId: 'Archive',
+      );
+      final legacy = _value(
+        await store.saveSavedHeaderSearch(
+          _search(id: 'legacy', name: 'Legacy'),
+        ),
+      );
+      expect(legacy.folderScopes, isNull);
+      final saved = _value(
+        await store.saveSavedHeaderSearch(_search(folderScopes: [a, b])),
+      );
+      expect(
+        _value(
+          await store.listSavedHeaderSearches(),
+        ).singleWhere((item) => item.id == saved.id).folderScopes,
+        [a, b],
+      );
+      failCommit = true;
+      _problem(
+        await store.saveSavedHeaderSearch(
+          saved.copyWith(folderScopes: [b, a]),
+          expectedRevision: saved.revision,
+        ),
+        MailProblemCode.storageFailure,
+      );
+      failCommit = false;
+      expect(
+        _value(
+          await store.listSavedHeaderSearches(),
+        ).singleWhere((item) => item.id == saved.id).folderScopes,
+        [a, b],
+      );
+      final updated = _value(
+        await store.saveSavedHeaderSearch(
+          saved.copyWith(
+            folderScopes: [
+              const MailSavedHeaderSearchFolder(
+                accountId: 'verified-account-a',
+                mailboxId: 'Sent',
+              ),
+              b,
+            ],
+          ),
+          expectedRevision: saved.revision,
+        ),
+      );
+      expect(updated.revision, greaterThan(saved.revision));
+      _problem(
+        await store.saveSavedHeaderSearch(
+          saved.copyWith(allFolders: true),
+          expectedRevision: saved.revision,
+        ),
+        MailProblemCode.conflict,
+      );
+      final broad = _value(
+        await store.saveSavedHeaderSearch(
+          updated.copyWith(allFolders: true),
+          expectedRevision: updated.revision,
+        ),
+      );
+      expect(broad.folderScopes, isNull);
+      expect(
+        _value(
+          await store.listSavedHeaderSearches(),
+        ).singleWhere((item) => item.id == saved.id).folderScopes,
+        isNull,
+      );
+      expect(
+        _value(
+          await store.listSavedHeaderSearches(),
+        ).singleWhere((item) => item.id == legacy.id).folderScopes,
+        isNull,
+      );
     },
   );
 

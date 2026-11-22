@@ -944,6 +944,10 @@ class WordLayoutEngine {
 
   /// Note definitions, their paragraphs and text.
   static List<Object> _noteContentSignature(WmlDocument document) => <Object>[
+    // Separator geometry affects every page's body reservation and must not be
+    // reused after a document preference change, even when no note text changed.
+    document.footnoteSeparator ??
+        'legacy-footnote-separator:${document.sourceFootnoteSeparatorsPresent}',
     for (final WmlNote note in <WmlNote>[
       ...document.footnotes,
       ...document.endnotes,
@@ -957,11 +961,18 @@ class WordLayoutEngine {
     ],
   ];
 
+  double get _footnoteSeparatorHeight {
+    final separator = _layoutDoc?.footnoteSeparator;
+    separator?.validate();
+    return separator?.reservedHeight ?? 8;
+  }
+
   double _noteReserve(int page) {
     final List<_NoteSlice> slices = _noteSlices[page] ?? <_NoteSlice>[];
     return slices.isEmpty
         ? 0
-        : 8 + slices.fold<double>(0, (double n, _NoteSlice s) => n + s.height);
+        : _footnoteSeparatorHeight +
+              slices.fold<double>(0, (double n, _NoteSlice s) => n + s.height);
   }
 
   double _bodyBottom(WmlSection section, int page) =>
@@ -981,7 +992,7 @@ class WordLayoutEngine {
   double _minimumNotes(Iterable<int> ids, WmlSection section, int page) {
     final List<WmlNote> notes = _newNotes(ids);
     if (notes.isEmpty) return 0;
-    return (_noteReserve(page) == 0 ? 8 : 0) +
+    return (_noteReserve(page) == 0 ? _footnoteSeparatorHeight : 0) +
         notes.fold<double>(
           0,
           (double h, WmlNote note) => h + _story(note, section).firstHeight,
@@ -1017,7 +1028,7 @@ class WordLayoutEngine {
             section.margins.bottom -
             top -
             _noteReserve(target) -
-            (_noteReserve(target) == 0 ? 8 : 0) -
+            (_noteReserve(target) == 0 ? _footnoteSeparatorHeight : 0) -
             minimumRemaining;
         final double end = story.cut(start, available);
         if (end <= start + 0.01) {
@@ -4161,8 +4172,36 @@ class WordLayoutEngine {
   void _attachNotes(LaidOutPage page, WmlSection section) {
     final List<_NoteSlice> slices = _noteSlices[page.index] ?? <_NoteSlice>[];
     if (slices.isEmpty) return;
-    var y = _bodyBottom(section, page.index) + 8;
-    if (_layoutDoc?.sourceFootnoteSeparatorsPresent != false) {
+    final separator = _layoutDoc?.footnoteSeparator;
+    final reservationTop = _bodyBottom(section, page.index);
+    var y = reservationTop + _footnoteSeparatorHeight;
+    if (separator != null) {
+      if (separator.visible) {
+        final width = section.contentWidth * separator.relativeWidth;
+        final remaining = section.contentWidth - width;
+        final x =
+            section.margins.left +
+            switch (separator.alignment) {
+              WmlFootnoteSeparatorAlignment.left => 0.0,
+              WmlFootnoteSeparatorAlignment.center => remaining / 2,
+              WmlFootnoteSeparatorAlignment.right => remaining,
+            };
+        page.frames.add(
+          LaidOutBox(
+            x: x,
+            y: reservationTop + separator.beforeSpacing,
+            width: width,
+            height: separator.thickness,
+            fillColor: separator.color.toRadixString(16).padLeft(6, '0'),
+            // A filled rectangle is the separator itself. Stroking its
+            // outline would paint outside the reserved thickness in PDF.
+            strokeColor: '',
+            kind: LaidOutBoxKind.footnote,
+            isNoteContent: true,
+          ),
+        );
+      }
+    } else if (_layoutDoc?.sourceFootnoteSeparatorsPresent != false) {
       page.frames.add(
         LaidOutBox(
           x: section.margins.left,

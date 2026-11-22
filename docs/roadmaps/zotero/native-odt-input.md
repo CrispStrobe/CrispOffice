@@ -326,7 +326,8 @@ properties still refuse. Content-sensitive paragraph rules require that the
 current text and resolved languages do not activate unrepresented Asian
 spacing, hanging punctuation or line-breaking behavior. Unknown break locales
 refuse conservatively. A nonstandard default tab interval with actual tabs,
-an active page grid or a custom separator with actual footnotes also refuses.
+an active page grid or an unsupported active separator also refuses. The later
+active-separator increment below admits explicitly modeled solid/hidden rules.
 
 The retained fixture checks exact text/style and native DOCX properties over
 repeated saves. A separately labeled synthetic extension adds canonical
@@ -463,8 +464,8 @@ converted their columns to unsupported relative-only widths. Historical files
 from that route remain explicit failures; regenerated output has its own
 retained qualification.
 
-An actual LibreOffice footnote separator has dimensions and styling absent from
-the current native note-layout model. It is still refused when footnotes use it.
+At this historical checkpoint, actual LibreOffice footnote separator geometry
+was outside the native model. The active-separator increment below extends it.
 Endnote-only and table-only files have separate acceptance scopes. The
 [work record](../../validation/zotero-odt-roundtrip-20261121/README.md) retains
 unmodified converter files, controlled native field updates, repeat-save
@@ -533,17 +534,44 @@ cached-result contract. Source ODT bytes remain unchanged on success or refusal.
 Primary semantics: [ODF 1.3 Part 3, table-cell styles and padding](https://docs.oasis-open.org/office/OpenDocument/v1.3/os/part3-schema/OpenDocument-v1.3-os-part3-schema.html)
 and [XSL 1.0 section 5.2, shorthand precedence](https://www.w3.org/TR/2001/REC-xsl-20011015/slice5.html#refine-shorthand).
 
-## Next dedicated milestone: active footnote separators
+## Increment 9: active footnote separators
 
-Add a native separator model, matching note reservation/pagination and rendering,
-ODT parsing/emission and an interoperable DOCX mapping before widening import to
-active LibreOffice separators. Existing opaque DOCX separator preservation does
-not supply editable geometry. Qualify the mapping with retained native files
-and actual application saves; admitting separator XML alone would lose layout.
+`WmlDocument.footnoteSeparator` represents independent before/after gaps, nominal
+line thickness, a fraction of body width, physical left/center/right alignment,
+RGB color and solid/hidden line style. The native layout reserves the complete
+sum of both gaps and nominal thickness on every page with footnote content,
+including continuation pages. Hidden and zero-width lines reserve their
+thickness while drawing no rule, matching the identified Writer behavior.
+Pages without footnotes reserve no space. Supported dormant geometry survives
+reopening so removing the final note does not erase its settings.
+
+The reader requires explicit dimensions, relative width, color and line style;
+only physical left alignment has an ODF default here. For an unambiguous stock
+LibreOffice/LibreOfficeDev generator declaration, omitted width/before/after
+lengths mean zero, following the retained converter outputs. Other omitted
+producer-dependent attributes refuse when active. Explicit malformed values
+always refuse. Active dashed/dotted rules, incompatible used master settings
+and geometry consuming the body area remain outside the envelope. Unsupported
+dormant presets keep the preceding validation-only behavior.
+
+Native ODT output writes all supported geometry explicitly. ODT lengths use
+two decimal places in points; relative width uses six decimal places in
+percent. DOCX native persistence uses twip gaps/indents and eighth-point border
+thickness, with uniform stored body widths and nonzero thickness from 0.25 to
+12 points (hidden zero-thickness rules are also represented). Native DOCX
+reopening accepts only the full canonical special-note shape and matching
+settings references. Unsupported imported separator XML remains opaque.
+
+The [work record](../../validation/zotero-footnote-separators-20261121/README.md)
+retains three actual Zotero-footnote converter routes, zero-gap/hidden-line
+probes, controlled native refresh, repeated saves and the failed custom-DOCX
+route. LibreOffice normalizes custom DOCX separator paragraphs; native DOCX
+persistence does not claim that route preserves their appearance. Installed
+Word and actual Zotero plugin sessions remain separate acceptance gates.
 
 <a id="increment-8-installed-host-acceptance"></a>
 
-## Increment 9: installed-host acceptance
+## Increment 10: installed-host acceptance
 
 Run an actual current Zotero session with identified Word and LibreOffice
 versions and synthetic library data. Exercise native-file input separately
@@ -569,8 +597,8 @@ Zotero and plugin versions. Current LibreOffice acceptance cannot establish it.
    branch are integrated by this continuation; keep their recorded cutoffs.
 2. Expand the documented rich-document envelope from additional retained real
    files. The exact prose fixture and supported script/default mapping above
-   provide a baseline. Complete the dedicated footnote-separator model/layout
-   and DOCX/ODT mapping above before accepting active separators. Extend active
+   provide a baseline. Complete the cross-application separator acceptance
+   above, preserving the known custom-DOCX converter limitation. Extend active
    Asian typography, additional drawings and further note/list configurations,
    and qualify the explicit native ODT output with matching ownership, rendering
    and persistence checks; keep remaining refusals visible.
@@ -581,7 +609,7 @@ Zotero and plugin versions. Current LibreOffice acceptance cannot establish it.
 5. Do not query or wait on GitHub Actions as the acceptance path. Preserve
    concrete local results and state any installed-host limits separately.
 
-Increment 1 remains a read-only capability. Increments 2 through 8 convert a bounded
+Increment 1 remains a read-only capability. Increments 2 through 9 convert a bounded
 native ODT subset into an editable Word document that saves as DOCX. These
 increments do not establish complete plugin parity or installed-host acceptance
 for Zotero, Word, LibreOffice or legacy Apache OpenOffice. Ordinary ODT export

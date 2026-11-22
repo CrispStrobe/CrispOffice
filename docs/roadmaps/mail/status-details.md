@@ -2,6 +2,34 @@
 > **Detailed reference.** See [status.md](status.md) for the current overview. This file preserves the pre-rewrite detail and historical qualification notes.
 
 
+## Range selection and synchronized address search — locally qualified
+
+Shared mailbox lists with checked actions now support Shift+Up/Down/Home/End,
+Shift+Space and Shift+click on rows or checkboxes. Ranges track the visible
+ordering, can contract or reverse around their anchor, and preserve separately
+checked messages. Filtering, sorting, folding and host updates reset the range;
+hidden/collapsed rows remain excluded from action snapshots. Generation guards,
+account/revision resets and explicit host-owned bulk dispatch remain in force.
+
+English, German and Arabic help explains the workflow. Synchronized mailbox
+projections now search the names and addresses of every visible From/To/Cc
+entry, with empty-name fallbacks and no Bcc/body inclusion. Connected and
+offline regression cases assert that searching triggers no synchronization,
+download or body reads.
+
+**Fresh native qualification passed.** After executor recovery, the full shared
+Mail UI suite passed 272 cases and the focused Studio cohort passed 176 cases,
+including the 43 new range, three help and two address-search cases. All 23
+changed Dart paths pass strict analysis and formatting. The original outage
+and incomplete first Studio run remain separate historical attempts; the final
+serialized Studio run passed unchanged. Installed keyboard/IME, visual and
+live-provider acceptance remain separate. See the [workflow](keyboard-triage.md) and
+[work record](../../validation/mail-keyboard-triage-20261121/README.md).
+GitHub Actions were neither queried nor awaited for this continuation.
+
+Word VBA integration independently reran the new range/help/address cases
+within its pinned UI gates; see the [combined qualification](../../validation/word-vba-comparison-colors-20261121/README.md).
+
 ## Scheduled Outbox and pre-submission Undo — locally qualified
 
 Native Outbox now saves fixed UTC deadlines and offers **Send later**, a

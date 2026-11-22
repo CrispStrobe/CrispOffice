@@ -1,0 +1,78 @@
+00:00 +0: loading test/office_vba_word_font_colors_test.dart
+00:00 +0: Font.ColorIndex wdAuto and numeric 0 preserve palette identity
+00:00 +1: Font.ColorIndex wdBlack and numeric 1 preserve palette identity
+00:00 +2: Font.ColorIndex wdBlue and numeric 2 preserve palette identity
+00:00 +3: Font.ColorIndex wdTurquoise and numeric 3 preserve palette identity
+00:00 +4: Font.ColorIndex wdBrightGreen and numeric 4 preserve palette identity
+00:00 +5: Font.ColorIndex wdPink and numeric 5 preserve palette identity
+00:00 +6: Font.ColorIndex wdRed and numeric 6 preserve palette identity
+00:00 +7: Font.ColorIndex wdYellow and numeric 7 preserve palette identity
+00:00 +8: Font.ColorIndex wdWhite and numeric 8 preserve palette identity
+00:00 +9: Font.ColorIndex wdDarkBlue and numeric 9 preserve palette identity
+00:00 +10: Font.ColorIndex wdTeal and numeric 10 preserve palette identity
+00:00 +11: Font.ColorIndex wdGreen and numeric 11 preserve palette identity
+00:00 +12: Font.ColorIndex wdViolet and numeric 12 preserve palette identity
+00:00 +13: Font.ColorIndex wdDarkRed and numeric 13 preserve palette identity
+00:00 +14: Font.ColorIndex wdDarkYellow and numeric 14 preserve palette identity
+00:00 +15: Font.ColorIndex wdGray50 and numeric 15 preserve palette identity
+00:00 +16: Font.ColorIndex wdGray25 and numeric 16 preserve palette identity
+00:00 +17: Font.Color preserves packed RGB and automatic identity: wdColorAutomatic
+00:00 +18: Font.Color preserves packed RGB and automatic identity: -16777216
+00:00 +19: Font.Color preserves packed RGB and automatic identity: wdColorBlack
+00:00 +20: Font.Color preserves packed RGB and automatic identity: wdAuto
+00:00 +21: Font.Color preserves packed RGB and automatic identity: 0
+00:00 +22: Font.Color preserves packed RGB and automatic identity: 16777215
+00:00 +23: Font.Color preserves packed RGB and automatic identity: wdColorBlue
+00:00 +24: Font.Color preserves packed RGB and automatic identity: RGB(18, 52, 86)
+00:00 +25: Font.Color preserves packed RGB and automatic identity: RGB(255, 0, 0)
+00:00 +26: Font.Color preserves packed RGB and automatic identity: RGB(0, 0, 255)
+00:00 +27: Font.Color preserves packed RGB and automatic identity: CLng(CVar(-16777216))
+00:00 +28: automatic is property-specific and does not become a palette RGB
+00:00 +29: typed aliases, named optional ByVal helpers and rebinding keep identity
+00:00 +30: both font color properties preserve the explicit header target
+00:00 +31: both font color properties preserve the explicit firstHeader target
+00:00 +32: both font color properties preserve the explicit evenHeader target
+00:00 +33: both font color properties preserve the explicit footer target
+00:00 +34: both font color properties preserve the explicit firstFooter target
+00:00 +35: both font color properties preserve the explicit evenFooter target
+00:00 +36: explicit scalar conversions retain exact palette values: CLng("6")
+00:00 +37: explicit scalar conversions retain exact palette values: CDbl("2")
+00:00 +38: explicit scalar conversions retain exact palette values: CVar(0)
+00:00 +39: explicit scalar conversions retain exact palette values: 16.0
+00:00 +40: ColorIndex refuses implicit type coercion from True
+00:00 +41: ColorIndex refuses implicit type coercion from False
+00:00 +42: ColorIndex refuses implicit type coercion from "6"
+00:00 +43: ColorIndex refuses implicit type coercion from Null
+00:00 +44: ColorIndex refuses implicit type coercion from Empty
+00:00 +45: ColorIndex refuses implicit type coercion from 0.5
+00:00 +46: Color refuses implicit type coercion from True
+00:00 +47: Color refuses implicit type coercion from False
+00:00 +48: Color refuses implicit type coercion from "6"
+00:00 +49: Color refuses implicit type coercion from Null
+00:00 +50: Color refuses implicit type coercion from Empty
+00:00 +51: Color refuses implicit type coercion from 0.5
+00:00 +52: ColorIndex refuses unsupported palette value -1
+00:00 +53: ColorIndex refuses unsupported palette value wdByAuthor
+00:00 +54: ColorIndex refuses unsupported palette value 17
+00:00 +55: ColorIndex refuses unsupported palette value wdColorAutomatic
+00:00 +56: Color refuses unsupported RGB value -1
+00:00 +57: Color refuses unsupported RGB value wdByAuthor
+00:00 +58: Color refuses unsupported RGB value -16777215
+00:00 +59: Color refuses unsupported RGB value 16777216
+00:00 +60: ColorIndex retains shared numeric bounds
+00:00 +61: Color retains shared numeric bounds
+00:00 +62: unsupported target/read is rejected even in inactive code: ActiveDocument.Paragraphs(1).Range.ColorIndex = wdRed
+00:00 +63: unsupported target/read is rejected even in inactive code: ActiveDocument.Paragraphs(1).Range.ParagraphFormat.ColorIndex = wdRed
+00:00 +64: unsupported target/read is rejected even in inactive code: ThisDocument.Sections(1).Headers(1).Range.Font.ColorIndex = wdRed
+00:00 +65: unsupported target/read is rejected even in inactive code: ThisDocument.Tables(1).Cell(1, 1).Range.Font.ColorIndex = wdRed
+00:00 +66: unsupported target/read is rejected even in inactive code: Dim value As Long
+value = ActiveDocument.Paragraphs(1).Range.Font.ColorIndex
+00:00 +67: unsupported target/read is rejected even in inactive code: Dim value As Long
+value = ActiveDocument.Paragraphs(1).Range.Font.Color
+00:00 +68: unsupported target/read is rejected even in inactive code: ActiveDocument.Paragraphs(1).Range.Font.ColorIndex(wdRed)
+00:00 +69: unused helpers still check ColorIndex assignment types
+00:00 +70: ColorIndex = wdAuto cannot split a custom line-spacing pair
+00:00 +71: Color = wdColorAutomatic cannot split a custom line-spacing pair
+00:00 +72: Word ColorIndex does not silently extend vba-excel
+00:00 +73: Word ColorIndex does not silently extend vba-powerpoint
+00:00 +74: All tests passed!

@@ -1,0 +1,53 @@
+{
+  "recorded_at_utc": "2026-11-22T05:42:03.784341+00:00",
+  "source_head": "67677aa7e16ea5e4eff3bcd06ffa6e27c5907246",
+  "format": {
+    "argv": [
+      "dart",
+      "format",
+      "--output=none",
+      "--set-exit-if-changed",
+      "packages/quds_office_editor/example/lib/studio_mail_cached_mail.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_cached_strings.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_mailbox_session.dart",
+      "packages/quds_office_editor/example/lib/studio_mail_retained_folders.dart",
+      "packages/quds_office_editor/example/test/studio_mail_mailbox_sync_session_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_retained_folders_test.dart",
+      "packages/quds_office_editor/example/test/studio_mail_retained_navigation_test.dart",
+      "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart",
+      "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+      "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "packages/quds_office_editor/lib/src/embed/word_zotero_field_context.dart",
+      "packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart",
+      "packages/quds_office_editor/test/word_zotero_field_context_dialog_test.dart",
+      "packages/quds_office_editor/test/word_zotero_field_context_render_test.dart",
+      "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+      "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+      "packages/quds_office_engine/test/office_vba_join_conformance_test.dart",
+      "packages/quds_office_engine/test/office_vba_join_test.dart",
+      "packages/quds_office_engine/test/office_vba_word_cell_formatting_test.dart",
+      "packages/quds_office_engine/test/office_vba_word_cell_text_controls_integration_test.dart",
+      "packages/quds_office_engine/test/office_vba_word_cell_text_controls_test.dart",
+      "packages/quds_office_engine/test/office_vba_word_join_report_integration_test.dart",
+      "packages/quds_office_engine/test/office_vba_word_table_cells_test.dart",
+      "packages/quds_office_engine/test/word_zotero_field_selection_test.dart",
+      "packages/quds_office_engine/tool/macros/web_vba_join_conformance.dart",
+      "packages/quds_office_engine/tool/macros/web_vba_word_cell_text_controls_smoke.dart"
+    ],
+    "exit_code": 1,
+    "file_count": 27,
+    "log": "format.txt"
+  },
+  "diff_check": {
+    "argv": [
+      "git",
+      "diff",
+      "--check",
+      "2eecf9aec2c7d1f979064448b911b516d3f56c73",
+      "HEAD"
+    ],
+    "exit_code": 2,
+    "log": "diff-check.txt"
+  }
+}

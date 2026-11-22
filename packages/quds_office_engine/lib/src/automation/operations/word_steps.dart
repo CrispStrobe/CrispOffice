@@ -14,20 +14,37 @@ import 'word_table_cell_text_steps.dart';
 import 'word_text_columns_steps.dart';
 
 const _storyFields = <String>['story', 'section', 'note', 'comment'];
+const _formatStoryFields = <String>[..._storyFields, 'table', 'row', 'column'];
+const _cellFormattingOperations = <String>{
+  'runFormat',
+  'paragraphFormat',
+  'paragraphStyle',
+  'paragraphShading',
+  'tabStop',
+  'clearTabStops',
+  'lineSpacing',
+  'paragraphSpaceBefore',
+};
 const wordOperations = <String, List<String>>{
   ...wordStructureOperations,
   'replaceText': ['paragraph', 'text', 'start', 'end', ..._storyFields],
   'heading': ['paragraph', 'level', ..._storyFields],
   'applyStyle': ['paragraph', 'style', ..._storyFields],
-  'paragraphStyle': ['paragraph', 'name', 'builtin', ..._storyFields],
-  'paragraphShading': ['paragraph', 'color', ..._storyFields],
+  'paragraphStyle': ['paragraph', 'name', 'builtin', ..._formatStoryFields],
+  'paragraphShading': ['paragraph', 'color', ..._formatStoryFields],
   'characterStyle': ['paragraph', 'run', 'style', ..._storyFields],
   'tableStyle': ['table', 'style'],
   'styleDefinition': ['style', 'type', 'rPr', 'pPr', 'tblPr', 'tcPr'],
-  'tabStop': ['paragraph', 'position', 'alignment', 'leader', ..._storyFields],
-  'clearTabStops': ['paragraph', ..._storyFields],
-  'lineSpacing': ['paragraph', 'rule', 'points', ..._storyFields],
-  'paragraphSpaceBefore': ['paragraph', 'action', ..._storyFields],
+  'tabStop': [
+    'paragraph',
+    'position',
+    'alignment',
+    'leader',
+    ..._formatStoryFields,
+  ],
+  'clearTabStops': ['paragraph', ..._formatStoryFields],
+  'lineSpacing': ['paragraph', 'rule', 'points', ..._formatStoryFields],
+  'paragraphSpaceBefore': ['paragraph', 'action', ..._formatStoryFields],
   'pageSetup': ['section', 'property', 'points'],
   'pageOrientation': ['section', 'orientation'],
   'sectionStart': ['section', 'kind'],
@@ -52,7 +69,7 @@ const wordOperations = <String, List<String>>{
     'dropCapLines',
     'shading',
     'border',
-    ..._storyFields,
+    ..._formatStoryFields,
   ],
   'runFormat': [
     'paragraph',
@@ -75,7 +92,7 @@ const wordOperations = <String, List<String>>{
     'smallCaps',
     'superscript',
     'subscript',
-    ..._storyFields,
+    ..._formatStoryFields,
   ],
   'addNote': ['paragraph', 'text', 'endnote', 'offset'],
   'editNote': ['id', 'text', 'endnote'],
@@ -128,6 +145,7 @@ void applyStep(
   final fields = wordOperations[op];
   if (fields == null) throw ArgumentError('Unknown DOCX operation: $op');
   s.fields(fields);
+  _validateCellFormattingSelector(s, op);
   WmlParagraph paragraph() => s.item('paragraph', _paragraphs(doc, s));
   WmlSection section() => s.item('section', doc.sections, fallback: 0);
   WmlTable table() => s.item('table', _tables(doc));
@@ -356,7 +374,13 @@ void applyStep(
         }
       }
     case 'runFormat':
-      final p = paragraph();
+      final target = paragraph();
+      // Public in-memory documents may share property objects or their import
+      // snapshots even when their runs are uniquely owned. Prepare cell edits
+      // on copied runs so formatting cannot leak into a neighboring paragraph.
+      final p = values['story'] == 'tableCell'
+          ? WmlClone.paragraph(target)
+          : target;
       final range = _range(p, s);
       if (range.$1 == range.$2) {
         throw ArgumentError('runFormat requires a non-empty text range');
@@ -385,7 +409,13 @@ void applyStep(
       final underline = s.has('underline')
           ? WmlUnderline.parse(s.string('underline'))
           : null;
-      final color = s.has('color') ? s.color('color') : null;
+      // Automatic foreground is a native value, not a fixed black color or
+      // an omitted property that could revive an inherited theme color.
+      final color = s.has('color')
+          ? s.string('color') == 'auto'
+                ? 'auto'
+                : s.color('color')
+          : null;
       final highlight = s.has('highlight') && values['highlight'] != null
           ? s.color('highlight')
           : null;
@@ -412,7 +442,8 @@ void applyStep(
         throw ArgumentError('position must use exact 0.5-point increments');
       }
       final noProof = s.has('noProof') ? s.boolean('noProof') : null;
-      if (kerning != null ||
+      if (color != null ||
+          kerning != null ||
           position != null ||
           noProof != null ||
           allCaps != null ||
@@ -421,6 +452,7 @@ void applyStep(
           csFont != null ||
           language != null) {
         _validateScalarPackageSource(doc, {
+          if (color != null) 'color',
           if (kerning != null) 'kern',
           if (position != null) ...{'position', 'noSpaceRaiseLower'},
           if (noProof != null) 'noProof',
@@ -436,6 +468,18 @@ void applyStep(
         for (final run in p.inlines.whereType<WmlRun>()) {
           final end = offset + run.text.length;
           if (offset < affected.end && end > affected.start) {
+            if (color != null) {
+              _validateScalarPropertySource(
+                run.properties.sourcePropertiesXml,
+                'color',
+                ownedAttributes: const {
+                  'val',
+                  'themeColor',
+                  'themeShade',
+                  'themeTint',
+                },
+              );
+            }
             if (kerning != null) {
               _validateScalarPropertySource(
                 run.properties.sourcePropertiesXml,
@@ -573,6 +617,7 @@ void applyStep(
         if (position != null) r.positionHalfPoints = position.toInt();
         if (noProof != null) r.noProof = noProof;
       });
+      if (!identical(p, target)) target.inlines = p.inlines;
     case 'addNote':
       final p = paragraph();
       final at = s.integer(
@@ -890,8 +935,9 @@ void _validateScalarPackageSource(WmlDocument document, Set<String> names) {
     // Inspect raw Word XML as well, so a projected value cannot conceal a
     // competing branch that another consumer would select on reopening.
     final source = package.getPart(part.uri)!.readText();
-    if (names.contains('position') && source.contains('rPr')) {
-      _validatePositionPropertyOwnership(source);
+    if ((names.contains('position') || names.contains('color')) &&
+        source.contains('rPr')) {
+      _validateRunPropertyOwnership(source);
     }
     if (!source.contains('AlternateContent') &&
         !source.contains('ProcessContent')) {
@@ -903,7 +949,7 @@ void _validateScalarPackageSource(WmlDocument document, Set<String> names) {
   }
 }
 
-void _validatePositionPropertyOwnership(String source) {
+void _validateRunPropertyOwnership(String source) {
   final root = XmlDocument.parse(source).root;
   if (root == null) return;
   bool word(XmlElement element, String name) =>
@@ -965,10 +1011,10 @@ void _validateScalarPropertySource(
   if (properties == null) return;
   bool nativeName(String namespace, String prefix) =>
       namespace == OfficeNamespaces.w || (namespace.isEmpty && prefix == 'w');
-  if (name == 'position' &&
+  if ((name == 'position' || name == 'color') &&
       properties.localName == 'rPr' &&
       !nativeName(properties.namespaceUri, properties.prefix)) {
-    throw UnsupportedError('Refuses position in a foreign run-property root');
+    throw UnsupportedError('Refuses $name in a foreign run-property root');
   }
   bool containsControl(XmlElement node) =>
       (node.localName == name && nativeName(node.namespaceUri, node.prefix)) ||
@@ -1028,11 +1074,12 @@ void _validateScalarPropertySource(
       if (value == null || value < -2147483648 || value > 2147483647) {
         throw UnsupportedError('Refuses an unsupported native position value');
       }
-      if (values.single.childElements.any(
-        (child) => nativeName(child.namespaceUri, child.prefix),
-      )) {
-        throw UnsupportedError('Refuses nested native position content');
-      }
+    }
+    if ((name == 'position' || name == 'color') &&
+        values.single.childElements.any(
+          (child) => nativeName(child.namespaceUri, child.prefix),
+        )) {
+      throw UnsupportedError('Refuses nested native $name content');
     }
   }
 }
@@ -1084,8 +1131,37 @@ String _complexScriptFont(String value) {
   return value;
 }
 
+void _validateCellFormattingSelector(StepInput s, String op) {
+  final cellStory = s.values['story'] == 'tableCell';
+  if (!cellStory) {
+    if (_cellFormattingOperations.contains(op) &&
+        const ['table', 'row', 'column'].any(s.has)) {
+      throw ArgumentError(
+        'Cell formatting coordinates require story: tableCell',
+      );
+    }
+    return;
+  }
+  if (!_cellFormattingOperations.contains(op)) {
+    throw UnsupportedError('The tableCell story supports only cell formatting');
+  }
+  if (const ['section', 'note', 'comment', 'start', 'end'].any(s.has)) {
+    throw ArgumentError(
+      'Cell formatting requires the whole cell paragraph without other story '
+      'selectors or text offsets',
+    );
+  }
+  s.integer('paragraph', max: 0);
+  for (final field in const ['table', 'row', 'column']) {
+    s.integer(field);
+  }
+}
+
 Iterable<WmlParagraph> _paragraphs(WmlDocument doc, StepInput s) {
   final story = s.string('story', fallback: 'body');
+  if (story == 'tableCell') {
+    return [editableWordTableCellRangeParagraph(doc, s)];
+  }
   if (story == 'body') return doc.paragraphs;
   if (story == 'comment') return _comment(doc, s).paragraphs;
   if (story == 'footnote' || story == 'endnote') {

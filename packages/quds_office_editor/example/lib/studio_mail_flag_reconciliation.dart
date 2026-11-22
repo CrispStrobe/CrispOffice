@@ -37,6 +37,9 @@ StudioMailReconcileFlagBatch? studioMailFlagRecovery({
   final recovery = store as StudioMailFlagReconciliationStore;
   final sourceAccount = observer.account;
   return (batch, cancellation, viewCurrent) async {
+    if (!batch.summary.canCheckFlags) {
+      throw const StudioMailFlagJournalException(MailProblemCode.unsupported);
+    }
     bool current() => isCurrent() && viewCurrent();
     try {
       return await recovery.reconcile(
@@ -161,6 +164,9 @@ Future<MailStoredFlagBatch> _reconcileFlagBatch(
   try {
     check();
     var batch = await load();
+    if (!batch.summary.canCheckFlags) {
+      throw const StudioMailFlagJournalException(MailProblemCode.unsupported);
+    }
     if (batch.summary.revision != expectedRevision ||
         batch.summary.unresolvedCount == 0) {
       throw const StudioMailFlagJournalException(MailProblemCode.conflict);

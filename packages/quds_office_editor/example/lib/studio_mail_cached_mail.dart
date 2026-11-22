@@ -13,6 +13,7 @@ import 'studio_mail_journal_strings.dart';
 import 'studio_mail_draft_store_native.dart';
 import 'studio_mail_mailbox_store.dart';
 import 'studio_mail_mailbox_session.dart';
+import 'studio_mail_retained_folders.dart';
 import 'studio_mail_workspace_strings.dart';
 import 'studio_mail_sync_dialog.dart';
 import 'studio_mail_sync_strings.dart';
@@ -50,11 +51,17 @@ class _StudioMailCachedMailDialogState
   StreamSubscription<StudioMailMailboxSnapshot>? _viewSubscription;
   StreamSubscription<MailResult<List<MailCachedMailboxSummary>>>?
   _folderSubscription;
+  StreamSubscription<MailResult<List<MailMailboxSyncSummary>>>?
+  _syncFolderSubscription;
   late final Future<void> _opening;
   Future<void>? _reading;
   Future<void>? _storeClosing;
-  List<MailCachedMailboxSummary> _folders = const [];
-  MailCachedMailboxView? _view;
+  List<MailCachedMailboxSummary> _browsingFolders = const [];
+  List<MailMailboxSyncSummary> _synchronizedFolders = const [];
+  List<StudioMailRetainedFolder> _folders = const [];
+  StudioMailMailboxSnapshot? _view;
+  MailMailboxId? _selectedMailbox;
+  StudioMailMailboxSource _source = StudioMailMailboxSource.browse;
   MailHeaderRecord? _selected;
   MailReaderController? _reader;
   final GlobalKey _listKey = GlobalKey();
@@ -71,10 +78,25 @@ class _StudioMailCachedMailDialogState
   String? _error;
   bool _viewReadFailed = false;
   bool _catalogReadFailed = false;
+  bool _browseCatalogReadFailed = false;
+  bool _syncCatalogReadFailed = false;
+  int _catalogEpoch = 0;
+  int _bodyEpoch = 0;
   MailCacheCleanupReport? _cleanupReport;
 
+  static const _pageSize = 100;
+  bool get _hasView => _view?.view != null || _view?.synchronizedView != null;
+  List<MailHeaderRecord> get _headers => _view?.headers ?? const [];
+  StudioMailRetainedFolder? get _folder => _folders
+      .where((folder) => folder.mailbox.id == _selectedMailbox)
+      .firstOrNull;
+
   String? get _displayError {
-    final streamError = _viewReadFailed || _catalogReadFailed
+    final streamError =
+        _viewReadFailed ||
+            _catalogReadFailed ||
+            _browseCatalogReadFailed ||
+            _syncCatalogReadFailed
         ? widget.strings.mailCacheReadFailed
         : null;
     final operationError = _error;
@@ -120,29 +142,186 @@ class _StudioMailCachedMailDialogState
   static Never _invalid() =>
       throw const StudioMailMailboxStoreException(MailProblemCode.conflict);
 
-  Future<List<MailCachedMailboxSummary>> _listFolders(
-    StudioMailMailboxStore store,
-  ) async {
-    final folders = await store.listViews();
-    return _validateFolders(store, folders);
+  void _replaceFolders({
+    List<MailCachedMailboxSummary>? browsing,
+    List<MailMailboxSyncSummary>? synchronized,
+  }) {
+    final browse = browsing ?? _browsingFolders;
+    final sync = synchronized ?? _synchronizedFolders;
+    final folders = studioMailRetainedFolders(
+      account: _store!.account,
+      browsing: browse,
+      synchronized: sync,
+    );
+    final selected = folders
+        .where((folder) => folder.mailbox.id == _selectedMailbox)
+        .firstOrNull;
+    final sourceMissing =
+        _selectedMailbox != null &&
+        (selected == null ||
+            (_source == StudioMailMailboxSource.browse
+                ? selected.browse == null
+                : selected.synchronized == null));
+    final previous = sourceMissing ? _reader : null;
+    setState(() {
+      _browsingFolders = List.unmodifiable(browse);
+      _synchronizedFolders = List.unmodifiable(sync);
+      _folders = folders;
+      _catalogReadFailed = false;
+      if (sourceMissing) {
+        _bodyEpoch++;
+        _view = null;
+        _selected = null;
+        _reader = null;
+        _missingBody = false;
+        _showMessage = false;
+        if (selected == null) _selectedMailbox = null;
+      }
+    });
+    if (sourceMissing) {
+      unawaited(
+        _mailboxSession?.clear().catchError((Object _) {
+          if (_current) setState(() => _viewReadFailed = true);
+        }),
+      );
+    }
+    _retire(previous);
+    _ensureSelection();
   }
 
-  List<MailCachedMailboxSummary> _validateFolders(
-    StudioMailMailboxStore store,
-    List<MailCachedMailboxSummary> folders,
-  ) {
-    final ids = <MailMailboxId>{};
-    if (folders.length > 1000) _invalid();
-    for (final folder in folders) {
-      if (folder.mailbox.id.account != store.account ||
-          !ids.add(folder.mailbox.id) ||
-          folder.revision < 1 ||
-          folder.headerCount < 0 ||
-          folder.headerCount > 1000) {
-        _invalid();
+  void _ensureSelection() {
+    if (_current && !_busy && _selectedMailbox == null && _folders.isNotEmpty) {
+      unawaited(_operate(() => _readFolder(_folders.first)));
+    }
+  }
+
+  Future<void> _readCatalogs(StudioMailMailboxStore store) async {
+    try {
+      final browsing = await store.listViews();
+      if (!_current || !identical(store, _store)) return;
+      _replaceFolders(browsing: browsing);
+      setState(() => _browseCatalogReadFailed = false);
+    } on Object {
+      if (_current) setState(() => _browseCatalogReadFailed = true);
+    }
+    if (!_current) return;
+    if (store is StudioMailSyncStore) {
+      try {
+        final result = await (store as StudioMailSyncStore).listSyncMailboxes();
+        if (!_current || !identical(store, _store)) return;
+        switch (result) {
+          case MailSuccess<List<MailMailboxSyncSummary>>(:final value):
+            _replaceFolders(synchronized: value);
+            setState(() => _syncCatalogReadFailed = false);
+          case MailFailure<List<MailMailboxSyncSummary>>():
+            _invalid();
+        }
+      } on Object {
+        if (_current) setState(() => _syncCatalogReadFailed = true);
       }
     }
-    return List.unmodifiable(folders);
+    if (_current) setState(() => _loaded = true);
+  }
+
+  Future<void> _stopCatalogs() async {
+    _catalogEpoch++;
+    final browsing = _folderSubscription;
+    final synchronized = _syncFolderSubscription;
+    await Future.wait<void>([
+      if (browsing != null)
+        Future<void>.sync(() async {
+          await browsing.cancel();
+          if (identical(_folderSubscription, browsing)) {
+            _folderSubscription = null;
+          }
+        }),
+      if (synchronized != null)
+        Future<void>.sync(() async {
+          await synchronized.cancel();
+          if (identical(_syncFolderSubscription, synchronized)) {
+            _syncFolderSubscription = null;
+          }
+        }),
+    ]);
+  }
+
+  void _watchCatalogs(StudioMailMailboxStore store) {
+    if (_folderSubscription != null || _syncFolderSubscription != null) {
+      // A failed cancellation still owns its subscription. Do not replace
+      // that handle with another observer or make a later Close skip it.
+      if (_current) setState(() => _catalogReadFailed = true);
+      return;
+    }
+    final epoch = ++_catalogEpoch;
+    bool current() =>
+        _current && epoch == _catalogEpoch && identical(store, _store);
+    void failed({required bool synchronized}) {
+      if (!current()) return;
+      setState(() {
+        if (synchronized) {
+          _syncCatalogReadFailed = true;
+        } else {
+          _browseCatalogReadFailed = true;
+        }
+      });
+    }
+
+    if (store is StudioMailMailboxWatchStore) {
+      try {
+        _folderSubscription = (store as StudioMailMailboxWatchStore)
+            .watchViews()
+            .listen(
+              (result) {
+                if (!current()) return;
+                try {
+                  switch (result) {
+                    case MailSuccess<List<MailCachedMailboxSummary>>(
+                      :final value,
+                    ):
+                      _replaceFolders(browsing: value);
+                      setState(() => _browseCatalogReadFailed = false);
+                    case MailFailure<List<MailCachedMailboxSummary>>():
+                      failed(synchronized: false);
+                  }
+                } on Object {
+                  failed(synchronized: false);
+                }
+              },
+              onError: (Object _) => failed(synchronized: false),
+              onDone: () => failed(synchronized: false),
+            );
+      } on Object {
+        failed(synchronized: false);
+      }
+    }
+    if (store is StudioMailSyncStore) {
+      try {
+        _syncFolderSubscription = (store as StudioMailSyncStore)
+            .watchSyncMailboxes()
+            .listen(
+              (result) {
+                if (!current()) return;
+                try {
+                  switch (result) {
+                    case MailSuccess<List<MailMailboxSyncSummary>>(
+                      :final value,
+                    ):
+                      _replaceFolders(synchronized: value);
+                      setState(() => _syncCatalogReadFailed = false);
+                    case MailFailure<List<MailMailboxSyncSummary>>():
+                      failed(synchronized: true);
+                  }
+                } on Object {
+                  failed(synchronized: true);
+                }
+              },
+              onError: (Object _) => failed(synchronized: true),
+              onDone: () => failed(synchronized: true),
+            );
+      } on Object {
+        failed(synchronized: true);
+      }
+    }
   }
 
   Future<void> _openStore() async {
@@ -163,37 +342,15 @@ class _StudioMailCachedMailDialogState
         await _releaseStore();
         return;
       }
-      final folders = await _listFolders(store);
-      if (!_current) {
-        await _releaseStore();
-        return;
-      }
-      setState(() {
-        _folders = folders;
-        _loaded = true;
-      });
       final session = StudioMailMailboxSession(
         store: store,
         provider: widget.identity.provider,
       );
       _mailboxSession = session;
       _viewSubscription = session.changes.listen(_viewChanged);
-      if (folders.isNotEmpty) await _readFolder(folders.first);
-      if (_current && store is StudioMailMailboxWatchStore) {
-        _folderSubscription = (store as StudioMailMailboxWatchStore)
-            .watchViews()
-            .listen(
-              (result) => _foldersChanged(store, result),
-              onError: (Object _) => _foldersChanged(
-                store,
-                const MailFailure(MailProblem(MailProblemCode.storageFailure)),
-              ),
-              onDone: () => _foldersChanged(
-                store,
-                const MailFailure(MailProblem(MailProblemCode.unavailable)),
-              ),
-            );
-      }
+      await _readCatalogs(store);
+      if (_current && _folders.isNotEmpty) await _readFolder(_folders.first);
+      if (_current) _watchCatalogs(store);
       if (!_current) await _releaseStore();
     } on Object {
       var closeFailed = false;
@@ -215,13 +372,41 @@ class _StudioMailCachedMailDialogState
       }
     } finally {
       if (mounted) setState(() => _busy = false);
+      _ensureSelection();
     }
   }
 
-  Future<void> _readFolder(MailCachedMailboxSummary summary) async {
+  Future<void> _readFolder(
+    StudioMailRetainedFolder folder, {
+    StudioMailMailboxSource? source,
+    int offset = 0,
+  }) async {
     final session = _mailboxSession;
     if (!_current || session == null) return;
-    await session.select(summary.mailbox.id);
+    final selectedSource =
+        source ??
+        (folder.synchronized != null
+            ? StudioMailMailboxSource.synchronized
+            : StudioMailMailboxSource.browse);
+    if (selectedSource == StudioMailMailboxSource.browse
+        ? folder.browse == null
+        : folder.synchronized == null) {
+      _invalid();
+    }
+    _bodyEpoch++;
+    setState(() {
+      _selectedMailbox = folder.mailbox.id;
+      _source = selectedSource;
+    });
+    if (selectedSource == StudioMailMailboxSource.synchronized) {
+      await session.selectSynchronized(
+        folder.mailbox.id,
+        offset: offset,
+        limit: _pageSize,
+      );
+    } else {
+      await session.select(folder.mailbox.id);
+    }
   }
 
   void _viewChanged(StudioMailMailboxSnapshot snapshot) {
@@ -230,14 +415,16 @@ class _StudioMailCachedMailDialogState
       setState(() => _viewReadFailed = true);
       return;
     }
-    if (snapshot.phase == StudioMailMailboxPhase.closed ||
-        snapshot.phase == StudioMailMailboxPhase.idle) {
+    if (snapshot.phase == StudioMailMailboxPhase.closed) {
       return;
     }
-    final view = snapshot.view;
     final selected = _selected;
-    final retained = view?.mailbox.id == _view?.mailbox.id && selected != null
-        ? view?.headers
+    final retained =
+        snapshot.mailbox == _view?.mailbox &&
+            snapshot.source == _view?.source &&
+            snapshot.offset == _view?.offset &&
+            selected != null
+        ? snapshot.headers
               .where(
                 (header) =>
                     header.id == selected.id &&
@@ -247,9 +434,10 @@ class _StudioMailCachedMailDialogState
         : null;
     final previous = retained == null ? _reader : null;
     setState(() {
-      _view = view;
+      _view = snapshot.phase == StudioMailMailboxPhase.idle ? null : snapshot;
       _selected = retained;
       if (retained == null) {
+        _bodyEpoch++;
         _reader = null;
         _missingBody = false;
         _showMessage = false;
@@ -257,41 +445,6 @@ class _StudioMailCachedMailDialogState
       _viewReadFailed = false;
     });
     _retire(previous);
-  }
-
-  void _foldersChanged(
-    StudioMailMailboxStore store,
-    MailResult<List<MailCachedMailboxSummary>> result,
-  ) {
-    if (!_current || !identical(store, _store)) return;
-    try {
-      final folders = switch (result) {
-        MailSuccess<List<MailCachedMailboxSummary>>(:final value) =>
-          _validateFolders(store, value),
-        MailFailure<List<MailCachedMailboxSummary>>() => _invalid(),
-      };
-      final removed =
-          _view != null &&
-          !folders.any((folder) => folder.mailbox.id == _view!.mailbox.id);
-      final previous = removed ? _reader : null;
-      setState(() {
-        _folders = folders;
-        _catalogReadFailed = false;
-        if (removed) {
-          _view = null;
-          _selected = null;
-          _reader = null;
-          _missingBody = false;
-          _showMessage = false;
-        }
-      });
-      _retire(previous);
-      if (_view == null && folders.isNotEmpty && !_busy) {
-        unawaited(_operate(() => _readFolder(folders.first)));
-      }
-    } on Object {
-      setState(() => _catalogReadFailed = true);
-    }
   }
 
   void _retire(MailReaderController? reader) {
@@ -322,8 +475,36 @@ class _StudioMailCachedMailDialogState
       }
     } finally {
       if (mounted) setState(() => _busy = false);
+      _ensureSelection();
     }
   }
+
+  Future<void> _refreshLocal() => _operate(() async {
+    final store = _store!;
+    await _stopCatalogs();
+    if (!_current) return;
+    try {
+      await _readCatalogs(store);
+      if (!_current) return;
+      final folder = _folder;
+      if (folder != null &&
+          (_source == StudioMailMailboxSource.browse
+              ? folder.browse != null
+              : folder.synchronized != null)) {
+        await _readFolder(folder, source: _source, offset: _view?.offset ?? 0);
+      }
+    } finally {
+      if (_current) _watchCatalogs(store);
+    }
+  });
+
+  Future<void> _changePage(int offset) => _operate(() async {
+    final folder = _folder;
+    if (folder == null || _source != StudioMailMailboxSource.synchronized) {
+      return;
+    }
+    await _readFolder(folder, source: _source, offset: offset);
+  });
 
   Future<void> _openMessage(String id) => _operate(() async {
     final view = _view;
@@ -333,6 +514,7 @@ class _StudioMailCachedMailDialogState
         .firstOrNull;
     if (header == null) _invalid();
     final previous = _reader;
+    final bodyEpoch = ++_bodyEpoch;
     setState(() {
       _selected = header;
       _reader = null;
@@ -342,7 +524,10 @@ class _StudioMailCachedMailDialogState
     _retire(previous);
     final message = await store.loadMessage(header);
     if (!_current ||
-        view?.mailbox.id != _view?.mailbox.id ||
+        bodyEpoch != _bodyEpoch ||
+        view?.mailbox != _view?.mailbox ||
+        view?.source != _view?.source ||
+        view?.offset != _view?.offset ||
         _selected?.id != header.id ||
         _selected?.remote != header.remote ||
         !identical(store, _store)) {
@@ -408,31 +593,41 @@ class _StudioMailCachedMailDialogState
       final previous = _reader;
       setState(() {
         _cleanupEpoch++;
+        _bodyEpoch++;
         _cleanupReport = report;
         _folders = const [];
+        _browsingFolders = const [];
+        _synchronizedFolders = const [];
+        _selectedMailbox = null;
         _view = null;
         _reader = null;
         _selected = null;
         _missingBody = false;
         _showMessage = false;
         _viewReadFailed = false;
+        _browseCatalogReadFailed = false;
+        _syncCatalogReadFailed = false;
         _loaded = true;
       });
       _retire(previous);
       // Cleanup is already committed. A subsequent read failure is reported
       // separately; it must not restore a stale view of removed local content.
       try {
-        final folders = await _listFolders(store);
+        // Revoke selected-view delivery before waiting on catalog shutdown.
+        // A slow catalog cancellation cannot resurrect the cleared snapshot.
+        await Future.wait<void>([
+          if (_mailboxSession case final session?) session.clear(),
+          _stopCatalogs(),
+        ]);
+        await _readCatalogs(store);
         if (!_current || !identical(store, _store)) return;
-        setState(() {
-          _folders = folders;
-          _catalogReadFailed = false;
-        });
-        if (folders.isNotEmpty) await _readFolder(folders.first);
+        if (_folders.isNotEmpty) await _readFolder(_folders.first);
       } on Object {
         if (_current) {
           setState(() => _error = widget.strings.mailCacheReadFailed);
         }
+      } finally {
+        if (_current) _watchCatalogs(store);
       }
     }, failureMessage: widget.strings.mailCacheClearFailed);
   }
@@ -444,12 +639,27 @@ class _StudioMailCachedMailDialogState
     final closing =
         Future<void>.sync(() async {
           final session = _mailboxSession;
-          _mailboxSession = null;
-          await _viewSubscription?.cancel();
-          _viewSubscription = null;
-          await _folderSubscription?.cancel();
-          _folderSubscription = null;
-          await session?.close();
+          final viewSubscription = _viewSubscription;
+          // Start every drain even if another cancellation fails. Keep each
+          // owner handle until its drain succeeds, so Close can never skip an
+          // unfinished observer on a later attempt.
+          await Future.wait<void>([
+            _stopCatalogs(),
+            if (viewSubscription != null)
+              Future<void>.sync(() async {
+                await viewSubscription.cancel();
+                if (identical(_viewSubscription, viewSubscription)) {
+                  _viewSubscription = null;
+                }
+              }),
+            if (session != null)
+              Future<void>.sync(() async {
+                await session.close();
+                if (identical(_mailboxSession, session)) {
+                  _mailboxSession = null;
+                }
+              }),
+          ]);
           await owner.close();
         }).then((_) {
           if (identical(owner, _owner)) {
@@ -486,12 +696,13 @@ class _StudioMailCachedMailDialogState
 
   Widget _messages() => MailMessageList(
     key: _listKey,
-    scopeId: '$_cleanupEpoch:${_view?.mailbox.id.value}',
+    scopeId:
+        '$_cleanupEpoch:${_selectedMailbox?.value}:${_source.name}:${_view?.offset ?? 0}',
     strings: widget.strings.mailMessageListStrings,
     selectedId: _selected?.id.value,
     busy: _busy || !_current,
     items: [
-      for (final header in _view?.headers ?? const <MailHeaderRecord>[])
+      for (final header in _headers)
         MailMessageListItem(
           id: header.id.value,
           subject: header.envelope.subject,
@@ -642,6 +853,96 @@ class _StudioMailCachedMailDialogState
     }
   }
 
+  Widget _sourceSelector(StudioMailRetainedFolder folder) {
+    final showBrowse =
+        folder.browse != null || _source == StudioMailMailboxSource.browse;
+    final showSync =
+        folder.synchronized != null ||
+        _source == StudioMailMailboxSource.synchronized;
+    String label(StudioMailMailboxSource source) =>
+        source == StudioMailMailboxSource.browse
+        ? widget.strings.mailCacheBrowseSource
+        : widget.strings.mailCacheSyncSource;
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      child: showBrowse && showSync
+          ? Wrap(
+              spacing: 8,
+              runSpacing: 4,
+              children: [
+                for (final source in StudioMailMailboxSource.values)
+                  ChoiceChip(
+                    key: ValueKey(
+                      source == StudioMailMailboxSource.browse
+                          ? 'studio-mail-cache-source-browse'
+                          : 'studio-mail-cache-source-sync',
+                    ),
+                    label: Text(label(source)),
+                    selected: _source == source,
+                    onSelected:
+                        _busy ||
+                            !_current ||
+                            (source == StudioMailMailboxSource.browse
+                                ? folder.browse == null
+                                : folder.synchronized == null)
+                        ? null
+                        : (selected) {
+                            if (selected && source != _source) {
+                              unawaited(
+                                _operate(
+                                  () => _readFolder(folder, source: source),
+                                ),
+                              );
+                            }
+                          },
+                  ),
+              ],
+            )
+          : Text(
+              label(_source),
+              key: const ValueKey('studio-mail-cache-source'),
+              style: Theme.of(context).textTheme.labelLarge,
+            ),
+    );
+  }
+
+  Widget _pageControls(StudioMailMailboxSnapshot view) => Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+    child: Wrap(
+      spacing: 12,
+      runSpacing: 4,
+      crossAxisAlignment: WrapCrossAlignment.center,
+      children: [
+        Text(
+          widget.strings.mailSyncPage(
+            view.headers.isEmpty ? 0 : view.offset + 1,
+            view.offset + view.headers.length,
+            view.headerCount,
+          ),
+          key: const ValueKey('studio-mail-cache-page'),
+        ),
+        TextButton.icon(
+          key: const ValueKey('studio-mail-cache-previous'),
+          onPressed: _busy || !_current || view.offset == 0
+              ? null
+              : () => _changePage(
+                  (view.offset - _pageSize).clamp(0, view.offset),
+                ),
+          icon: const Icon(Icons.navigate_before),
+          label: Text(widget.strings.mailSyncPrevious),
+        ),
+        TextButton.icon(
+          key: const ValueKey('studio-mail-cache-next'),
+          onPressed: _busy || !_current || view.nextOffset == null
+              ? null
+              : () => _changePage(view.nextOffset!),
+          icon: const Icon(Icons.navigate_next),
+          label: Text(widget.strings.mailSyncNext),
+        ),
+      ],
+    ),
+  );
+
   @override
   Widget build(BuildContext context) => PopScope<void>(
     canPop: _allowPop,
@@ -669,6 +970,19 @@ class _StudioMailCachedMailDialogState
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
                     ),
+                    if (_store != null)
+                      IconButton(
+                        key: const ValueKey('studio-mail-cache-refresh'),
+                        tooltip: widget.strings.mailCacheRefresh,
+                        icon: const Icon(Icons.refresh),
+                        onPressed:
+                            _busy ||
+                                _confirmingCleanup ||
+                                _historyOpen ||
+                                !_current
+                            ? null
+                            : _refreshLocal,
+                      ),
                     if (_store is StudioMailSyncStore)
                       IconButton(
                         key: const ValueKey('studio-mail-open-sync'),
@@ -743,7 +1057,11 @@ class _StudioMailCachedMailDialogState
                           horizontal: 16,
                           vertical: 4,
                         ),
-                        child: Text(widget.strings.mailCacheScope),
+                        child: Text(
+                          _store is StudioMailSyncStore
+                              ? widget.strings.mailCacheRetainedScope
+                              : widget.strings.mailCacheScope,
+                        ),
                       ),
                       if (_displayError case final error?)
                         Padding(
@@ -795,7 +1113,7 @@ class _StudioMailCachedMailDialogState
                           child: DropdownButton<MailMailboxId>(
                             key: const ValueKey('studio-mail-cache-folders'),
                             isExpanded: true,
-                            value: _view?.mailbox.id,
+                            value: _folder == null ? null : _selectedMailbox,
                             items: [
                               for (final folder in _folders)
                                 DropdownMenuItem(
@@ -823,17 +1141,23 @@ class _StudioMailCachedMailDialogState
                                   },
                           ),
                         ),
-                      if (_view case final view?) ...[
+                      if (_folder case final folder?) _sourceSelector(folder),
+                      if (_hasView && _view != null) ...[
                         Padding(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 16,
                             vertical: 4,
                           ),
                           child: Text(
-                            widget.strings.mailCacheSnapshot(
-                              view.capturedAt,
-                              view.headers.length,
-                            ),
+                            _source == StudioMailMailboxSource.synchronized
+                                ? widget.strings.mailSyncSaved(
+                                    _view!.capturedAt!,
+                                    _view!.headerCount,
+                                  )
+                                : widget.strings.mailCacheSnapshot(
+                                    _view!.capturedAt!,
+                                    _headers.length,
+                                  ),
                           ),
                         ),
                         Padding(
@@ -843,32 +1167,35 @@ class _StudioMailCachedMailDialogState
                           ),
                           child: Text(
                             widget.strings.mailCacheUnread(
-                              view.headers
-                                  .where(
-                                    (header) => header.flags?.isRead == false,
-                                  )
-                                  .length,
-                              view.headers
-                                  .where((header) => header.flags == null)
-                                  .length,
+                              _view!.unreadCount,
+                              _view!.unknownReadCount,
                             ),
                             key: const ValueKey('studio-mail-cache-unread'),
                           ),
                         ),
-                        if (view.hasMore)
+                        if (_view!.hasMore ||
+                            _source == StudioMailMailboxSource.synchronized)
                           Padding(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 16,
                               vertical: 4,
                             ),
-                            child: Text(widget.strings.mailCachePartial),
+                            child: Text(
+                              _source == StudioMailMailboxSource.synchronized
+                                  ? (_view!.hasMore
+                                        ? widget.strings.mailSyncPartial
+                                        : widget.strings.mailSyncComplete)
+                                  : widget.strings.mailCachePartial,
+                            ),
                           ),
                       ],
                     ],
                   ),
                 ),
               ),
-              if (_view != null)
+              if (_hasView && _source == StudioMailMailboxSource.synchronized)
+                _pageControls(_view!),
+              if (_hasView)
                 Expanded(child: _workspace(constraints.maxWidth < 760))
               else
                 Expanded(
@@ -876,10 +1203,20 @@ class _StudioMailCachedMailDialogState
                     child: Padding(
                       padding: const EdgeInsets.all(16),
                       child: Text(
-                        _loaded && _folders.isEmpty
-                            ? widget.strings.mailCacheEmpty
-                            : _displayError ??
-                                  widget.strings.mailMessageListStrings.loading,
+                        _displayError ??
+                            (_loaded && _folders.isEmpty
+                                ? (_store is StudioMailSyncStore
+                                      ? widget.strings.mailCacheRetainedEmpty
+                                      : widget.strings.mailCacheEmpty)
+                                : !_busy &&
+                                      _selectedMailbox != null &&
+                                      _view?.phase !=
+                                          StudioMailMailboxPhase.loading
+                                ? widget.strings.mailCacheSourceMissing
+                                : widget
+                                      .strings
+                                      .mailMessageListStrings
+                                      .loading),
                       ),
                     ),
                   ),

@@ -1,0 +1,26 @@
+{
+  "head": "d16649e94bc0106c000a9f2a00e70447e4a5ffa2",
+  "sources": {
+    "packages/quds_office_engine/lib/src/automation/office_vba_language.dart": "d271062b8e73089a4d087764bbd5cb8a359b209ac35ba458c3d906a32c28f053",
+    "packages/quds_office_engine/test/office_vba_join_test.dart": "467e73ebb2cf99e08e7f6dc7030649f7870eb6ec9ab88ae060b224a1abd8948a",
+    "packages/quds_office_engine/test/office_vba_join_conformance_test.dart": "03be5bf5f7da1cd3ea968e011e8d1cf55f1736ba27959b916e9bb118177d09b2",
+    "packages/quds_office_engine/test/office_vba_word_cell_text_controls_test.dart": "0aa175242dba0f5c6c070d9d7260f76094e6482be621961e65dd146a4855cebd",
+    "packages/quds_office_engine/test/office_vba_word_cell_text_controls_integration_test.dart": "41d3bbac5e26ec7a0d26b1058d5fac16d207c5f2878872b993d26eeaaba73dd3",
+    "packages/quds_office_engine/test/office_vba_word_join_report_integration_test.dart": "ceff63c7afdfbd5530f8bbf02c78059c76c849b6c01acfc78a2e54fe296787ec",
+    "packages/quds_office_engine/test/fixtures/vba_conformance/word_join_v1.json": "a25c54eca3fb488508ac8c62beecaead721afbe715bc82d2438593fb94d5c180",
+    "packages/quds_office_engine/example/macros/word_table_text_controls.bas": "5b7962e295045c1b688b84c484e96daa831d17b595c7605c2fc75414174d2882",
+    "packages/quds_office_engine/tool/macros/web_vba_join_conformance.dart": "6c9fd81484dcab3ec28d367fbde7753c42350e5f3c537b7f45add47e20e74b43",
+    "packages/quds_office_engine/tool/macros/web_vba_word_cell_text_controls_smoke.dart": "6a1321157fe6cea32478761f482f8fb83dcec691cf9f282f2fb0e0968683e488",
+    "pubspec.lock": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+    ".fvmrc": "90bf8f8884c05a407f51d6ef651ba033fef99a656010f8bfcb65951e921f4294"
+  },
+  "enginePackageEntry": {
+    "name": "quds_office_engine",
+    "rootUri": "../packages/quds_office_engine",
+    "packageUri": "lib/",
+    "languageVersion": "3.12"
+  },
+  "tree": "48754e17efddc322836ae2e81bca3a59b5a6154b",
+  "allSourceHashesMatchRootWorkspace": true,
+  "rootWorkspaceHeadObserved": "145498623ad7812e983d64e03d68f84286d5a0b2"
+}

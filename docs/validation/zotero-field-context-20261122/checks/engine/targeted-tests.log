@@ -1,0 +1,156 @@
+00:00 +0: loading test/word_zotero_field_selection_test.dart
+00:00 +0: test/word_zotero_field_selection_test.dart: implicit cursor and constructor selection do not request a highlight
+00:00 +1: test/word_zotero_field_selection_test.dart: explicit selection exposes original source despite staged updates
+00:00 +2: test/word_zotero_field_selection_test.dart: later select replaces context without moving any source text
+00:00 +3: test/word_zotero_field_selection_test.dart: selection identifies the original footnote
+00:00 +4: test/word_zotero_field_selection_test.dart: selection identifies the original endnote
+00:00 +5: test/word_zotero_field_selection_test.dart: multipart bibliography exposes every unchanged entry range
+00:00 +6: test/word_zotero_field_selection_test.dart: new field reports a staged insertion without a live source
+00:00 +7: test/word_zotero_field_selection_test.dart: detached research-note placeholder never resolves into source prose
+00:00 +8: test/word_zotero_field_selection_test.dart: transfer import exposes no detached clone as a live source
+00:00 +9: test/word_zotero_field_selection_test.dart: Field.delete clears only the explicitly selected field
+00:00 +10: test/word_zotero_field_selection_test.dart: Field.removeCode clears only the explicitly selected field
+00:00 +11: test/word_zotero_field_selection_test.dart: completion clears explicit context before application
+00:00 +12: test/word_zotero_field_selection_test.dart: source text and note anchor changes invalidate context
+00:00 +13: test/word_zotero_field_selection_test.dart: equivalent markup replacement returns the current live field handle
+00:00 +14: test/word_zotero_citing_test.dart: application and field objects expose the current HTTP contract
+00:00 +15: test/word_zotero_citing_test.dart: reading order follows body and note anchors including noncitation notes
+00:00 +16: test/word_zotero_citing_test.dart: body table fields retain reading order with surrounding paragraphs
+00:00 +17: test/word_zotero_citing_test.dart: codes results and preferences stay staged until complete and apply
+00:00 +18: test/word_zotero_citing_test.dart: refresh replaces changing field lengths from the end of the paragraph
+00:00 +19: test/word_zotero_citing_test.dart: native code and text refresh retires basic formatting
+00:01 +20: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +21: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +22: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +23: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +24: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +25: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +26: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +27: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +28: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +29: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +30: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +31: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +32: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +33: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +34: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +35: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +36: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +37: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +38: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +39: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +40: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +41: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +42: test/word_zotero_transfer_session_test.dart: export is detached, uses the real callback, and persists the marker
+00:01 +43: test/word_zotero_writing_position_test.dart: rich with identical text preserves positions inside a citation
+00:01 +44: test/word_zotero_citing_test.dart: a newly inserted note precedes existing notes in processor order
+00:01 +45: test/word_zotero_citing_test.dart: a newly inserted note precedes existing notes in processor order
+00:01 +46: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +47: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +48: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +49: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +50: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +51: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +52: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +53: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +54: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +55: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +56: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +57: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +58: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +59: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +60: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +61: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +62: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +63: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +64: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +65: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +66: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +67: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +68: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +69: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +70: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +71: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +72: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +73: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +74: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +75: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +76: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +77: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +78: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +79: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +80: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +81: test/word_zotero_transfer_session_test.dart: import waits for complete formatting and keeps all fields active on reopen
+00:01 +82: test/word_zotero_writing_position_test.dart: HTTP capability replay reaches native adapter, explicit=false
+00:01 +83: test/word_zotero_writing_position_test.dart: HTTP capability replay reaches native adapter, explicit=false
+00:01 +84: test/word_zotero_transfer_session_test.dart: transfer marker overrides damaged stale stored preferences
+00:01 +85: test/word_zotero_transfer_session_test.dart: transfer marker overrides damaged stale stored preferences
+00:01 +86: test/word_zotero_transfer_session_test.dart: transfer marker overrides damaged stale stored preferences
+00:01 +87: test/word_zotero_transfer_session_test.dart: transfer marker overrides damaged stale stored preferences
+00:01 +88: test/word_zotero_citing_test.dart: catalog seed respects JSON note type 0
+00:01 +89: test/word_zotero_add_note_test.dart: rich paragraphs, empty paragraphs, soft breaks, and hyperlinks survive
+00:01 +90: test/word_zotero_add_note_test.dart: rich paragraphs, empty paragraphs, soft breaks, and hyperlinks survive
+00:01 +91: test/word_zotero_add_note_test.dart: rich paragraphs, empty paragraphs, soft breaks, and hyperlinks survive
+00:01 +92: test/word_zotero_add_note_test.dart: rich paragraphs, empty paragraphs, soft breaks, and hyperlinks survive
+00:01 +93: test/word_zotero_add_note_test.dart: rich paragraphs, empty paragraphs, soft breaks, and hyperlinks survive
+00:01 +94: test/word_zotero_add_note_test.dart: rich paragraphs, empty paragraphs, soft breaks, and hyperlinks survive
+00:01 +95: test/word_zotero_add_note_test.dart: rich paragraphs, empty paragraphs, soft breaks, and hyperlinks survive
+00:01 +96: test/word_zotero_add_note_test.dart: rich paragraphs, empty paragraphs, soft breaks, and hyperlinks survive
+00:01 +97: test/word_zotero_add_note_test.dart: rich paragraphs, empty paragraphs, soft breaks, and hyperlinks survive
+00:01 +98: test/word_zotero_citing_test.dart: catalog seed respects XML note type 1
+00:01 +99: test/word_zotero_add_note_test.dart: default Zotero annotation export keeps heading quote comment and active citation
+00:01 +100: test/word_zotero_add_note_test.dart: default Zotero annotation export keeps heading quote comment and active citation
+00:01 +101: test/word_zotero_add_note_test.dart: default Zotero annotation export keeps heading quote comment and active citation
+00:01 +102: test/word_zotero_add_note_test.dart: default Zotero annotation export keeps heading quote comment and active citation
+00:01 +103: test/word_zotero_add_note_test.dart: default Zotero annotation export keeps heading quote comment and active citation
+00:01 +104: test/word_zotero_add_note_test.dart: default Zotero annotation export keeps heading quote comment and active citation
+00:01 +105: test/word_zotero_add_note_test.dart: default Zotero annotation export keeps heading quote comment and active citation
+00:01 +106: test/word_zotero_add_note_test.dart: default Zotero annotation export keeps heading quote comment and active citation
+00:01 +107: test/word_zotero_add_note_test.dart: default Zotero annotation export keeps heading quote comment and active citation
+00:01 +108: test/word_zotero_add_note_test.dart: default Zotero annotation export keeps heading quote comment and active citation
+00:01 +109: test/word_zotero_add_note_test.dart: default Zotero annotation export keeps heading quote comment and active citation
+00:01 +110: test/word_zotero_add_note_test.dart: default Zotero annotation export keeps heading quote comment and active citation
+00:01 +111: test/word_zotero_add_note_test.dart: default Zotero annotation export keeps heading quote comment and active citation
+00:01 +112: test/word_zotero_add_note_test.dart: default Zotero annotation export keeps heading quote comment and active citation
+00:01 +113: test/word_zotero_add_note_test.dart: default Zotero annotation export keeps heading quote comment and active citation
+00:01 +114: test/word_zotero_add_note_test.dart: default Zotero annotation export keeps heading quote comment and active citation
+00:01 +115: test/word_zotero_add_note_test.dart: default Zotero annotation export keeps heading quote comment and active citation
+00:01 +116: test/word_zotero_add_note_test.dart: default Zotero annotation export keeps heading quote comment and active citation
+00:01 +117: test/word_zotero_add_note_test.dart: default Zotero annotation export keeps heading quote comment and active citation
+00:01 +118: test/word_zotero_add_note_test.dart: default Zotero annotation export keeps heading quote comment and active citation
+00:01 +119: test/word_zotero_add_note_test.dart: default Zotero annotation export keeps heading quote comment and active citation
+00:01 +120: test/word_zotero_add_note_test.dart: default Zotero annotation export keeps heading quote comment and active citation
+00:02 +121: test/word_zotero_add_note_test.dart: custom heading styles retain structural level and explicit character resets
+00:02 +122: test/word_zotero_add_note_test.dart: existing ordinary notes count around inserted citation notes
+00:02 +123: test/word_zotero_add_note_test.dart: inserted notes precede converted type 1 note at the same anchor
+00:02 +124: test/word_zotero_add_note_test.dart: inserted notes precede converted type 2 note at the same anchor
+00:02 +125: test/word_zotero_add_note_test.dart: existing bibliography updates in same transaction as inserted note citations
+00:02 +126: test/word_zotero_add_note_test.dart: native note type 0 preserves citation order and DOCX fields
+00:02 +127: test/word_zotero_add_note_test.dart: native note type 1 preserves citation order and DOCX fields
+00:02 +128: test/word_zotero_add_note_test.dart: native note type 2 preserves citation order and DOCX fields
+00:02 +129: test/word_zotero_add_note_test.dart: plain note without citations is staged and inserted at the body caret
+00:02 +130: test/word_zotero_add_note_test.dart: cancelled TEMP field does not count as an inserted research note
+00:02 +131: test/word_zotero_add_note_test.dart: uncited heading note replaces an empty prefix without extra blank paragraph
+00:02 +132: test/word_zotero_add_note_test.dart: existing fields before and after insertion update without shifting note caret
+00:02 +133: test/word_zotero_add_note_test.dart: note citations can be explicitly unlinked or deleted before completion
+00:02 +134: test/word_zotero_add_note_test.dart: incomplete repeated or unknown placeholder request [] is atomic
+00:02 +135: test/word_zotero_add_note_test.dart: incomplete repeated or unknown placeholder request [ABC123] is atomic
+00:02 +136: test/word_zotero_add_note_test.dart: incomplete repeated or unknown placeholder request [ABC123, ABC123] is atomic
+00:02 +137: test/word_zotero_add_note_test.dart: incomplete repeated or unknown placeholder request [ABC123, UNKNOWN] is atomic
+00:02 +138: test/word_zotero_add_note_test.dart: unconverted and TEMP placeholders cannot complete
+00:02 +139: test/word_zotero_add_note_test.dart: repeat conversion and bibliography placeholder type are rejected
+00:02 +140: test/word_zotero_add_note_test.dart: stale body text refuses applying a complete research note
+00:02 +141: test/word_zotero_add_note_test.dart: authored footnote advertises text insertion but an existing citation does not
+00:02 +142: test/word_zotero_add_note_test.dart: unsupported or malformed note is refused before edits: <p><a href="https://www.zotero.org/?ABC123">(Old 1)</a> <a href="https://www.zotero.org/?ABC123">(Old 1)</a></p>
+00:02 +143: test/word_zotero_add_note_test.dart: unsupported or malformed note is refused before edits: <p><a href="https://www.zotero.org/?ABC123"></a></p>
+00:02 +144: test/word_zotero_add_note_test.dart: unsupported or malformed note is refused before edits: <a href="https://www.zotero.org/?ABC123"><p>Cross</p><p>paragraphs</p></a>
+00:02 +145: test/word_zotero_add_note_test.dart: unsupported or malformed note is refused before edits: <p><a href="https://www.zotero.org/?ABC123#bad">Bad</a></p>
+00:02 +146: test/word_zotero_add_note_test.dart: unsupported or malformed note is refused before edits: <p><a href="javascript:alert(1)">Bad</a></p>
+00:02 +147: test/word_zotero_add_note_test.dart: unsupported or malformed note is refused before edits: <p><img src="https://example.org/image.png"/></p>
+00:02 +148: test/word_zotero_add_note_test.dart: unsupported or malformed note is refused before edits: <p><span data-citation="broken">Unconverted</span></p>
+00:02 +149: test/word_zotero_add_note_test.dart: unsupported or malformed note is refused before edits: <table><tr><td rowspan="2">Layout</td></tr></table>
+00:02 +150: test/word_zotero_add_note_test.dart: unsupported or malformed note is refused before edits: <p><span style="color:red">Color</span></p>
+00:02 +151: test/word_zotero_add_note_test.dart: unsupported or malformed note is refused before edits: <p><a href="https://example.org" title="tooltip">Extra attributes</a></p>
+00:02 +152: test/word_zotero_add_note_test.dart: unsupported or malformed note is refused before edits: <p>0</p>
+00:02 +153: test/word_zotero_add_note_test.dart: unsupported or malformed note is refused before edits: <p>Unclosed
+00:02 +154: All tests passed!

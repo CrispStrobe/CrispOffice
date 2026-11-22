@@ -1,0 +1,366 @@
+{
+  "accepted": true,
+  "archives": [
+    {
+      "bytes": 282972,
+      "members": [
+        {
+          "bytes": 6333,
+          "path": "accepted/editor-word_zotero_children_dialog_test.jsonl",
+          "sha256": "facf27f8e17c4b7fc555d3fb203d00cf13adabe0ff42883a74694c03909417df"
+        },
+        {
+          "bytes": 13650,
+          "path": "accepted/editor-word_zotero_citing_dialog_test.jsonl",
+          "sha256": "cae1ed2f27acd62987668d5134352f64f0cd5f7ed1b46151abff9384826ec087"
+        },
+        {
+          "bytes": 1967,
+          "path": "accepted/editor-word_zotero_dialog_scaling_test.jsonl",
+          "sha256": "838eef9c6c8408bad90950019376508bf9c5c912942f44375f8f691372dbee55"
+        },
+        {
+          "bytes": 26839,
+          "path": "accepted/editor-word_zotero_dialog_test.jsonl",
+          "sha256": "33f94964126c54b82e7e1042d5d34746cff524573c5c722df0fff59a9f709d60"
+        },
+        {
+          "bytes": 3571,
+          "path": "accepted/editor-word_zotero_navigation_dialog_test.jsonl",
+          "sha256": "d7c1004c5b7ab5b1e409ff2ad52038a2f40927f620d1087f2efe5b5833a4166e"
+        },
+        {
+          "bytes": 11023,
+          "path": "accepted/editor-word_zotero_note_preview_test.jsonl",
+          "sha256": "841ef3cc434db3b828e313c19513e832cfec54b3a4e1e442596cad551c2576a4"
+        },
+        {
+          "bytes": 5285,
+          "path": "accepted/editor-word_zotero_source_occurrences_dialog_test.jsonl",
+          "sha256": "240df10405577ba78a005dcc62efadb34b583dd71fe9af838e29a9abbe9db562"
+        },
+        {
+          "bytes": 6948,
+          "path": "accepted/editor-word_zotero_stored_details_dialog_test.jsonl",
+          "sha256": "c0fbdac8a0bb484af63c7d9fbfd383f34c17b6a0b54ae83224736d3fd8f5cdc6"
+        },
+        {
+          "bytes": 4117,
+          "path": "accepted/editor-word_zotero_transfer_dialog_test.jsonl",
+          "sha256": "90a02f066a6621d90d6632af79dae265d28a50e1ccbbe9c3d2cd3f46d596f48e"
+        },
+        {
+          "bytes": 77192,
+          "path": "accepted/receipt.json",
+          "sha256": "4a4fbc8c7c4e8154f18b20742270f521675e44b91c38c7845f22a12146401c6a"
+        },
+        {
+          "bytes": 894860,
+          "path": "accepted/source-inputs.after.json",
+          "sha256": "f982a2b61167ba2730dbedf7400e76ad38325ee4975c3f7bc5703e750135254f"
+        },
+        {
+          "bytes": 894860,
+          "path": "accepted/source-inputs.before.json",
+          "sha256": "f982a2b61167ba2730dbedf7400e76ad38325ee4975c3f7bc5703e750135254f"
+        },
+        {
+          "bytes": 2472,
+          "path": "accepted/studio-studio_odt_open_test.jsonl",
+          "sha256": "21943c91a69e3ae885d7d9eadef945773a31ada72cc4ddd81735fa47043bdf75"
+        },
+        {
+          "bytes": 13047,
+          "path": "accepted/studio-studio_settings_test.jsonl",
+          "sha256": "187feb24adb76ff667384fd3371eddfbbd67d93589083f707699ba2b4d0e82ec"
+        },
+        {
+          "bytes": 9381,
+          "path": "accepted/studio-studio_shortcut_dispatch_test.jsonl",
+          "sha256": "5734fb27eefb4b32aedcdbf27a83df6441db9f6b0d689bf95206cf3bef42c2fa"
+        },
+        {
+          "bytes": 6649,
+          "path": "accepted/studio-studio_shortcuts_test.jsonl",
+          "sha256": "2bd5f34fb78c5fcbfdf592590d12429f1be9aeed0505f31d7e69986ce348fb54"
+        },
+        {
+          "bytes": 9125,
+          "path": "accepted/studio-studio_zotero_citing_transport_test.jsonl",
+          "sha256": "2e2f7028a97ac46908757ac598e28aa42a9e6435a2e5c55a0248ccf0f911238f"
+        },
+        {
+          "bytes": 3670,
+          "path": "accepted/studio-studio_zotero_odt_export_test.jsonl",
+          "sha256": "a6ab74c87a910f3dd3645286ac87c0ee384210df6ea76b0157a0005d665d3131"
+        },
+        {
+          "bytes": 9978,
+          "path": "accepted/studio-studio_zotero_shortcuts_test.jsonl",
+          "sha256": "d7a018c1a4673e9c4496f99a1c2549c31dc343f98bf458e0ade1568826758fcc"
+        },
+        {
+          "bytes": 1535,
+          "path": "accepted/studio-suite_workspace_mail_shortcuts_test.jsonl",
+          "sha256": "a28bade65ff05fb04720749b83e4bcf0a392565729bf4b669d43a58be636d886"
+        },
+        {
+          "bytes": 321,
+          "path": "attempt-1/interruption.json",
+          "sha256": "8031fadb41f1dd57df35f502ad76541556f588aac12435e528f8a9996d1598aa"
+        },
+        {
+          "bytes": 269,
+          "path": "attempt-1/receipt.json",
+          "sha256": "ffc57746bfbc8a15cac22167983224b3297745d02c59d77fe95d0e1ee91954f4"
+        },
+        {
+          "bytes": 894860,
+          "path": "attempt-1/source-inputs.after.json",
+          "sha256": "40dbf2e588132f4274074efec00b1119f60186bd7f1152f19a58861e285f04a7"
+        },
+        {
+          "bytes": 894860,
+          "path": "attempt-1/source-inputs.before.json",
+          "sha256": "40dbf2e588132f4274074efec00b1119f60186bd7f1152f19a58861e285f04a7"
+        },
+        {
+          "bytes": 34170,
+          "path": "attempt-1/studio.jsonl",
+          "sha256": "c382b3526185e11844e6023044a6d93a1ff37fc84e2585644014a5fd02eabe13"
+        },
+        {
+          "bytes": 78295,
+          "path": "attempt-2-compiler/receipt.json",
+          "sha256": "9a37b25c52b22c82f20c349957d4f1e3729f3d90546e5d6214c331a2ede7aa24"
+        },
+        {
+          "bytes": 3818,
+          "path": "attempt-2-compiler/studio-studio_odt_open_test.jsonl",
+          "sha256": "cf8a534e519c02218a07cda6d4f7cff8100847afe976b2282dd36f82161f99d0"
+        },
+        {
+          "bytes": 6250,
+          "path": "baseline/baseline-delayed-host.jsonl",
+          "sha256": "bdbf086fab4af842e5a4b7bee549ffcac117768d1afbf9eda3cc735a86da2027"
+        },
+        {
+          "bytes": 2542,
+          "path": "baseline/receipt.json",
+          "sha256": "a2a00bb4a9a225d45e801f3b90512b0b9962c401e903b98c84fef7bf2e837726"
+        },
+        {
+          "bytes": 894711,
+          "path": "baseline/source-inputs.after.json",
+          "sha256": "3ac1d240bf731acb19cd22d6214bafaf69ac44d2ec5ad14c3f90a94e313f6b2b"
+        },
+        {
+          "bytes": 894711,
+          "path": "baseline/source-inputs.before.json",
+          "sha256": "3ac1d240bf731acb19cd22d6214bafaf69ac44d2ec5ad14c3f90a94e313f6b2b"
+        },
+        {
+          "bytes": 225,
+          "path": "local/analyze.before-harness-fix.log",
+          "sha256": "c540c1742bcf55eda57e013f398ee0e1b0261d07a524966065f688884caa8484"
+        },
+        {
+          "bytes": 3204,
+          "path": "local/analyze.initial-failure.log",
+          "sha256": "d775217e557f6c6045d31991a9f94780857e9e7968d65fc444ebf24cdb74f0a7"
+        },
+        {
+          "bytes": 225,
+          "path": "local/analyze.log",
+          "sha256": "c540c1742bcf55eda57e013f398ee0e1b0261d07a524966065f688884caa8484"
+        },
+        {
+          "bytes": 203,
+          "path": "local/baseline-run.log",
+          "sha256": "8d4d043e132376d2334d900e65d22865cdb8884272b173cb6ab13ba41156fecc"
+        },
+        {
+          "bytes": 47,
+          "path": "local/format-check.log",
+          "sha256": "7ecbed725956df73825534d703b843624b22a85949639ea9bd2d573fddda4d74"
+        },
+        {
+          "bytes": 471,
+          "path": "local/format.log",
+          "sha256": "ae34575b42ebb0d0b65fed1682d7edc6d48a439cea66f05a17735c6e097d9088"
+        },
+        {
+          "bytes": 17013,
+          "path": "local/package_evidence.py",
+          "sha256": "9753301b98dc1bd128634fae5a2e3b210c6bd6446e77321bd7085ccc903bba4d"
+        },
+        {
+          "bytes": 2924,
+          "path": "local/qualification-isolated.log",
+          "sha256": "466600acc281e7598818bf6e4b2d712c6638fab3d0c9345aaf58d9feedfaf123"
+        },
+        {
+          "bytes": 13,
+          "path": "local/qualification-run.log",
+          "sha256": "68c8e9b35ba622aa4e32537533302c05d673549d4f52ded60432b40d05651e0b"
+        },
+        {
+          "bytes": 62,
+          "path": "local/retry-run.log",
+          "sha256": "876145e3ce41021690ea032d779002ba226ed8839d27aa8ebbb0e60fd9b3f530"
+        },
+        {
+          "bytes": 3292,
+          "path": "local/retry_single.py",
+          "sha256": "9872f3cbd68039609caa90f35232e9b22a5bd034258d4f50a29506545ee7361f"
+        },
+        {
+          "bytes": 7281,
+          "path": "local/run_local.py",
+          "sha256": "f224842164cac239baccdad308f436eeabc1a6de92ce1420a8a4b5596d667e40"
+        },
+        {
+          "bytes": 2802,
+          "path": "local/static-checks.before-harness-fix.json",
+          "sha256": "359d88c2b02e2cc88698753fb68fd596a727dc2b7e9450fd1c1580df518a9958"
+        },
+        {
+          "bytes": 2802,
+          "path": "local/static-checks.json",
+          "sha256": "68117d36c49784704f95545dfd7d008fdbaf48a2918290282dad8230f2f9d03e"
+        },
+        {
+          "bytes": 1950,
+          "path": "retry-odt-open/receipt.json",
+          "sha256": "6e7db3499745cd59eb3c3b04cd539d6985321595faa2900c3c4571924c17317e"
+        },
+        {
+          "bytes": 894860,
+          "path": "retry-odt-open/source-inputs.after.json",
+          "sha256": "f982a2b61167ba2730dbedf7400e76ad38325ee4975c3f7bc5703e750135254f"
+        },
+        {
+          "bytes": 894860,
+          "path": "retry-odt-open/source-inputs.before.json",
+          "sha256": "f982a2b61167ba2730dbedf7400e76ad38325ee4975c3f7bc5703e750135254f"
+        },
+        {
+          "bytes": 2472,
+          "path": "retry-odt-open/studio-studio_odt_open_test.jsonl",
+          "sha256": "21943c91a69e3ae885d7d9eadef945773a31ada72cc4ddd81735fa47043bdf75"
+        },
+        {
+          "bytes": 8951,
+          "path": "runtime/bootstrap_runtime.py",
+          "sha256": "f38d22189aed55613310a6371ac3f2c048bc0ffe6691bd7ca4a878d104405ab3"
+        },
+        {
+          "bytes": 609,
+          "path": "runtime/env.sh",
+          "sha256": "15073e0369971a6b8d80bd106e4b86822cf065e4ad3c05cdbf5539ca24cc3d64"
+        },
+        {
+          "bytes": 1228,
+          "path": "runtime/logs/flutter-tools-pub-get.log",
+          "sha256": "fcccf37d969787c76d4c55b19cba368cff68b1c3eb86b1f0f02274b9cc405829"
+        },
+        {
+          "bytes": 631,
+          "path": "runtime/logs/flutter-version.log",
+          "sha256": "d7298362287e5be8e78c62ccc11ce5bd0cffc44fb45633092e49784a60b90f18"
+        },
+        {
+          "bytes": 214,
+          "path": "runtime/logs/workspace-pub-get.log",
+          "sha256": "3640d48177b802767785e357f56651162d2250e124b566cffdc2cb88ce7e7f9c"
+        },
+        {
+          "bytes": 35398,
+          "path": "runtime/package_config.json",
+          "sha256": "76000ebb1ac5344c5fb74840f505a5c94bbe37da6324884f1ae1e6debf3f59cd"
+        },
+        {
+          "bytes": 51965,
+          "path": "runtime/pub-cache-receipt.json",
+          "sha256": "0e84bca6b67b267da3699af602ab2f826ebcfcf358ff5bebd970457bf6968931"
+        },
+        {
+          "bytes": 486,
+          "path": "runtime/reconstruction.log",
+          "sha256": "8878e6091715c68897926e490d5d7f4cc2e40793ea44c1af359c30c4330a18c0"
+        },
+        {
+          "bytes": 3453,
+          "path": "runtime/runtime.json",
+          "sha256": "dae0b1d4068913ae77328a15f0215dd1787befb232f9e1f6d238e3f46240450a"
+        }
+      ],
+      "path": "execution.tar.xz",
+      "sha256": "6f2bd1286d589f9bb8e1c7ec4395b9c1d9b95e09aeaa954672c0fccca7a46992"
+    }
+  ],
+  "distinct_cases": 232,
+  "distinct_suites": 17,
+  "editor_cases": 138,
+  "excluded_attempts": [
+    "baseline: two expected stale-publication failures on previous production source",
+    "attempt-1: incomplete grouped run with an invalid test null-anchor assertion",
+    "initial static preflight: test accessor/braces corrections",
+    "first isolated ODT-open run: compiler error despite three visible passes; replaced by a successful same-source single-suite retry"
+  ],
+  "not_executed": [
+    "GitHub Actions/check-status/workflow queues",
+    "Installed Zotero/Word or supported-release Writer plugin acceptance",
+    "External converter replay after the incoming Word deserializer change"
+  ],
+  "source_commit": "22dd2a4d474a59ad231f24a61dcb8046b029e993",
+  "source_tree": "c265e4d354d4d8af5a3dcbf55d2ae51fdee7a667",
+  "strict_static_checks": {
+    "analyze_command": [
+      "/workspace/scratch/1a4f82921a71/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+      "analyze",
+      "--fatal-infos",
+      "--fatal-warnings",
+      "packages/quds_office_editor/example/lib/studio_shortcuts.dart",
+      "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "packages/quds_office_editor/example/test/studio_shortcuts_test.dart",
+      "packages/quds_office_editor/example/test/studio_settings_test.dart",
+      "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "packages/quds_office_editor/example/test/studio_shortcut_dispatch_test.dart"
+    ],
+    "analyze_exit": 0,
+    "diff_check_exit": 0,
+    "format_command": [
+      "/workspace/scratch/1a4f82921a71/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+      "format",
+      "--output=none",
+      "--set-exit-if-changed",
+      "packages/quds_office_editor/example/lib/studio_shortcuts.dart",
+      "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "packages/quds_office_editor/example/test/studio_shortcuts_test.dart",
+      "packages/quds_office_editor/example/test/studio_settings_test.dart",
+      "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+      "packages/quds_office_editor/example/lib/suite_workspace.dart",
+      "packages/quds_office_editor/example/test/studio_shortcut_dispatch_test.dart"
+    ],
+    "format_exit": 0,
+    "inputs": {
+      "packages/quds_office_editor/example/lib/studio_shortcuts.dart": "3dd2af2b4e3461cae167fccc0943ce0164f7fbf1557d7eeba6fb95504d418b87",
+      "packages/quds_office_editor/example/lib/suite_workspace.dart": "bc61a03ccd65e98a9015f2c4fd91468af2afcdf106cff992b2ba95065c4898cd",
+      "packages/quds_office_editor/example/test/studio_settings_test.dart": "933e3cfda8941787d406bb0ab73ee85e2c30a3ee4148d48ebb42320959756570",
+      "packages/quds_office_editor/example/test/studio_shortcut_dispatch_test.dart": "3908958023fb9ec4e194e477cbab9a42945501ca67391c1e87a537805bf4d346",
+      "packages/quds_office_editor/example/test/studio_shortcuts_test.dart": "fb620f61d43d3e4007c70b167c6b33780036d837cb072aa9815cc108d0e51fd2",
+      "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart": "8004b37ee6361112e2c9fc9674e20d28cedc23f1861147d45772745e68c8b6db",
+      "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart": "89cc6e5b692ca05eae21e6f839e913ad4373593144286bb1626ae19cf9a4822a"
+    },
+    "logs": {
+      "analyze.log": "c540c1742bcf55eda57e013f398ee0e1b0261d07a524966065f688884caa8484",
+      "format-check.log": "7ecbed725956df73825534d703b843624b22a85949639ea9bd2d573fddda4d74"
+    },
+    "source_commit": "22dd2a4d474a59ad231f24a61dcb8046b029e993",
+    "source_tree": "c265e4d354d4d8af5a3dcbf55d2ae51fdee7a667"
+  },
+  "studio_cases": 94,
+  "tracked_inputs_unchanged": 6131
+}

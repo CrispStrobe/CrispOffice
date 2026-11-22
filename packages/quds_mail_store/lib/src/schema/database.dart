@@ -14,7 +14,7 @@ final class MailStoreDatabase extends GeneratedDatabase {
   final MailStoreFaultInjector? faultInjector;
 
   @override
-  int get schemaVersion => 10;
+  int get schemaVersion => 13;
 
   @override
   Iterable<TableInfo<Table, Object?>> get allTables => const [];
@@ -53,11 +53,20 @@ final class MailStoreDatabase extends GeneratedDatabase {
       for (final statement in schemaV10) {
         await customStatement(statement);
       }
+      for (final statement in schemaV11) {
+        await customStatement(statement);
+      }
+      for (final statement in schemaV12) {
+        await customStatement(statement);
+      }
+      for (final statement in schemaV13) {
+        await customStatement(statement);
+      }
       // Include the version in the same transaction as schema creation.
-      await customStatement('PRAGMA user_version = 10');
+      await customStatement('PRAGMA user_version = 13');
     }),
     onUpgrade: (_, from, to) async {
-      if (from < 1 || from > 9 || to != 10) {
+      if (from < 1 || from > 12 || to != 13) {
         throw const MailStoreStorageException(MailProblemCode.unsupported);
       }
       await transaction(() async {
@@ -101,11 +110,28 @@ final class MailStoreDatabase extends GeneratedDatabase {
             await customStatement(statement);
           }
         }
-        for (final statement in schemaV10) {
+        if (from < 10) {
+          for (final statement in schemaV10) {
+            await customStatement(statement);
+          }
+        }
+        if (from < 11) {
+          for (final statement in schemaV11) {
+            await customStatement(statement);
+          }
+        }
+        if (from < 12) {
+          await _validateFolderScopeUpgrade();
+          for (final statement in schemaV12) {
+            await customStatement(statement);
+          }
+        }
+        await _validateCommandJournalUpgrade();
+        for (final statement in schemaV13) {
           await customStatement(statement);
         }
         await faultInjector?.call(MailStoreCheckpoint.migrationCreated);
-        await customStatement('PRAGMA user_version = 10');
+        await customStatement('PRAGMA user_version = 13');
       });
     },
     beforeOpen: (_) async {
@@ -118,6 +144,42 @@ final class MailStoreDatabase extends GeneratedDatabase {
 
   Future<void> fault(MailStoreCheckpoint point) async {
     await faultInjector?.call(point);
+  }
+
+  // Earlier schemas admit only flag actions. Refuse an unexplained action
+  // rather than interpreting it as a new command with missing intent metadata.
+  Future<void> _validateCommandJournalUpgrade() async {
+    final invalid = await customSelect(
+      "SELECT 1 AS invalid FROM flag_batches WHERE "
+      "typeof(action)!='text' OR action NOT IN "
+      "('markRead','markUnread','flag','unflag') LIMIT 1",
+    ).get();
+    if (invalid.isNotEmpty) {
+      throw const MailStoreStorageException(MailProblemCode.storageFailure);
+    }
+  }
+
+  // Published v11 folders reference definitions but not their account rows.
+  // Refuse broken exact scopes before adding label metadata: an upgrade must
+  // neither erase a foreign identity nor turn an empty explicit set into all.
+  Future<void> _validateFolderScopeUpgrade() async {
+    final invalid = await customSelect(
+      'SELECT 1 AS invalid FROM saved_header_search_folders f '
+      'LEFT JOIN saved_header_searches s ON s.id=f.search '
+      'LEFT JOIN saved_header_search_accounts a '
+      'ON a.search=f.search AND a.account_id=f.account_id '
+      'WHERE s.id IS NULL OR a.account_id IS NULL OR s.has_folder_scope!=1 '
+      'UNION ALL SELECT 1 AS invalid FROM saved_header_searches s WHERE '
+      "typeof(s.has_folder_scope)!='integer' OR s.has_folder_scope NOT IN (0,1) OR "
+      '(s.has_folder_scope=1 AND ('
+      'NOT EXISTS(SELECT 1 FROM saved_header_search_folders f WHERE f.search=s.id) OR '
+      'EXISTS(SELECT 1 FROM saved_header_search_accounts a WHERE a.search=s.id '
+      'AND NOT EXISTS(SELECT 1 FROM saved_header_search_folders f '
+      'WHERE f.search=a.search AND f.account_id=a.account_id)))) LIMIT 1',
+    ).get();
+    if (invalid.isNotEmpty) {
+      throw const MailStoreStorageException(MailProblemCode.storageFailure);
+    }
   }
 }
 
@@ -336,4 +398,27 @@ const schemaV10 = <String>[
     text TEXT NOT NULL,
     PRIMARY KEY(account,id), UNIQUE(account,position), UNIQUE(account,name_key)
   )''',
+];
+
+/// Explicit saved-search folder sets live in the host directory profile.
+/// Existing definitions retain their original all-retained-folders semantics.
+/// Folder IDs are opaque local mailbox IDs, not display names or server paths.
+const schemaV11 = <String>[
+  '''ALTER TABLE saved_header_searches ADD COLUMN has_folder_scope INTEGER
+    NOT NULL DEFAULT 0 CHECK(typeof(has_folder_scope) = 'integer' AND
+    has_folder_scope IN (0,1))''',
+  '''CREATE TABLE saved_header_search_folders (
+    search TEXT NOT NULL REFERENCES saved_header_searches(id) ON DELETE CASCADE,
+    position INTEGER NOT NULL CHECK(typeof(position) = 'integer' AND
+      position BETWEEN 0 AND 199),
+    account_id TEXT NOT NULL, mailbox_id TEXT NOT NULL,
+    PRIMARY KEY(search,position), UNIQUE(search,account_id,mailbox_id)
+  )''',
+];
+
+/// Preserve the published v11 identities, ordering, discriminator and 200-row
+/// constraint. Labels are optional metadata; missing historical labels remain
+/// null and never substitute for an exact account/folder identity.
+const schemaV12 = <String>[
+  'ALTER TABLE saved_header_search_folders ADD COLUMN display_name TEXT',
 ];

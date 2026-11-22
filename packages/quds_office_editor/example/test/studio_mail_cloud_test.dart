@@ -1070,7 +1070,12 @@ void main() {
     await tester.binding.setSurfaceSize(const Size(1280, 900));
     addTearDown(() => tester.binding.setSurfaceSize(null));
     await tester.pumpWidget(
-      const MaterialApp(home: StudioMailDialog(strings: _strings)),
+      const MaterialApp(
+        home: StudioMailDialog(
+          strings: _strings,
+          autoConnectSavedAccount: false,
+        ),
+      ),
     );
     expect(_field('studio-mail-open-gmail'), findsOneWidget);
     expect(_field('studio-mail-open-microsoft365'), findsOneWidget);

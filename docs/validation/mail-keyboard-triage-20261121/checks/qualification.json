@@ -1,0 +1,74 @@
+{
+  "status": "PASS",
+  "scope": "Fresh native focused qualification; no installed/live-provider/browser acceptance claim",
+  "reconciled_main": "ad577ea82695231b5932d6b973f92b5156b1d2d6",
+  "cohorts": [
+    {
+      "name": "shared-mail-ui-tests-final",
+      "passed": 272,
+      "failed": 0,
+      "skipped": 0,
+      "files": 17,
+      "receipt": "shared-mail-ui-tests-final.json",
+      "log": "shared-mail-ui-tests-final.log",
+      "log_sha256": "0414dcac4bea945ad22e78289cf65e90830f14adcb85c7b63c6971146d07bc87"
+    },
+    {
+      "name": "studio-mail-tests-final",
+      "passed": 176,
+      "failed": 0,
+      "skipped": 0,
+      "files": 7,
+      "receipt": "studio-mail-tests-final.json",
+      "log": "studio-mail-tests-final.log",
+      "log_sha256": "cc250d272afa30b7ebad8f04ea1d915ce421ab40a8c12d2a1fecf359edfa82a2"
+    },
+    {
+      "name": "publication-word-integration",
+      "passed": 289,
+      "failed": 0,
+      "skipped": 0,
+      "files": 7,
+      "receipt": "publication-word-integration.json",
+      "log": "publication-word-integration.log",
+      "log_sha256": "75e01748b126cd2aa7032c45be495bb69599038b57d5299fcd50fed731094f5b",
+      "replaces_earlier_word_cases": 205,
+      "additional_separator_cases": 84
+    },
+    {
+      "name": "incoming-zotero-tests-final",
+      "passed": 52,
+      "failed": 0,
+      "skipped": 0,
+      "files": 3,
+      "receipt": "incoming-zotero-tests-final.json",
+      "log": "incoming-zotero-tests-final.log",
+      "log_sha256": "8b40f5b50f570ba6118d49b41f3439a9dce5043362b183ebb7ca343527a76b48"
+    },
+    {
+      "name": "incoming-dispatch-tests-final",
+      "passed": 15,
+      "failed": 0,
+      "skipped": 0,
+      "files": 1,
+      "receipt": "incoming-dispatch-tests-final.json",
+      "log": "incoming-dispatch-tests-final.log",
+      "log_sha256": "7acfa4ebfbda200e15e863ab83982ec84e7d5f72fa6d3bf0be75404ee6ad8ec4"
+    }
+  ],
+  "substantive_tests": 804,
+  "distinct_files": 35,
+  "mail_tests": 448,
+  "new_mail_cases": 48,
+  "dart_paths_analyzed_and_formatted": 24,
+  "word_vm_js_parity": "incoming-word-smoke-parity-final.json",
+  "initial_studio_attempt": "studio-mail-tests-interruption.json",
+  "github_actions": "NOT USED",
+  "prepublication_qualified_source": "0b38435e553d14cbea505477a473061b134e308e",
+  "publication_qualified_source": "57618066f397c4856be8df4d75c1423ed4b33e1c",
+  "original_source_inputs_unchanged_at_prepublication_checkpoint": true,
+  "publication_continuity": "publication-main-continuity.json",
+  "evidence_carry_forward": "evidence-carry-forward.json",
+  "main_already_containing_implementation": "613c0ba130c538f18670be69dd6617b6560c0760",
+  "followup_changes_product_code": false
+}

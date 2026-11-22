@@ -1,0 +1,23 @@
+{
+  "started_at_utc": "2026-11-22T05:36:03.304121+00:00",
+  "finished_at_utc": "2026-11-22T05:37:25.719217+00:00",
+  "working_directory": "packages/quds_office_editor/example",
+  "command": [
+    "flutter",
+    "--no-version-check",
+    "--suppress-analytics",
+    "test",
+    "--no-pub",
+    "--concurrency=2",
+    "--reporter",
+    "expanded",
+    "test/studio_zotero_shortcuts_test.dart",
+    "test/studio_shortcut_host_ownership_test.dart",
+    "test/studio_zotero_citing_transport_test.dart",
+    "test/studio_zotero_odt_export_test.dart"
+  ],
+  "exit_code": 0,
+  "tests_passed": 55,
+  "log": "studio.log",
+  "log_sha256": "6a1f7b2f079d4e702717b886ed82268913aafee6029bfa817def64041f38b25c"
+}

@@ -1,0 +1,14 @@
+{
+  "command": [
+    "dart",
+    "test",
+    "--reporter=expanded",
+    "--concurrency=1",
+    "test/word_native_presentation_test.dart",
+    "--name",
+    "native frame line omissions and properties survive clone, color edit and three saves"
+  ],
+  "exitCode": 1,
+  "durationSeconds": 36.899,
+  "correctedTestSha256": "2134e22645a2ac4490f55428f2523298af7c0c418f2f9a8c25eec528126da226"
+}

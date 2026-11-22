@@ -1,6 +1,6 @@
 # Mail implementation status
 
-Updated **21 November 2026**. This page is the current summary. The detailed
+Updated **22 November 2026**. This page is the current summary. The detailed
 change log and per-feature qualification record is preserved in
 [Mail status details](status-details.md).
 
@@ -18,11 +18,79 @@ interrupted work.
 | Gmail / Microsoft 365 | Implemented through provider presets; live-account acceptance open |
 | Offline store | Durable drafts, Outbox, cached headers/bodies, search journal |
 | Scheduled send | Foreground only; UTC deadlines and a short Undo window |
-| Search | Local cached headers and saved queries; no body/provider discovery |
+| Search | Local cached headers and saved queries with exact account/folder scope and missing-folder recovery; no body/provider discovery |
 | Conversations | Folding of explicitly loaded threaded headers |
 | Compose tools | Signatures, Quick Text, attachments and draft recovery |
 | Account persistence | Native account store, schema migrations and reconnect |
 | Browser store | Implemented path; quota/reload/Web Locks acceptance remains open |
+
+## Latest increment: durable foreground Move/Delete
+
+Connected single-message Move/Delete now commits intent and an applying marker
+before provider work, preserves exact destination identity, and keeps restart
+receipts in Mail activity. Native IMAP gains capability-checked Move and Mark
+deleted controls; EWS/Gmail/Microsoft 365 reuse their existing provider semantics.
+Confirmed membership changes require a folder refresh. Interrupted outcomes do
+not replay, and uncertain Move/Delete cannot be incorrectly resolved through a
+read/flag observation. Schema 13 preserves earlier data with additive migration.
+
+See the [workflow, boundaries and ordered continuation](durable-mutations.md)
+and [local qualification record](../../validation/mail-durable-mutations-20261122/README.md).
+Provider-specific membership reconciliation, bulk organization and connected
+multi-account navigation remain subsequent work.
+
+## Previous increment: unified retained-folder navigation
+
+Cached mail now lists saved browsing windows and synchronized folders together
+for the selected account. A folder appears once, keeps its two coverage sources
+separate, and offers explicit source switching. Synchronized headers have bounded
+100-row pages, local refresh and repair when membership changes remove the
+displayed last page. Repository updates preserve a matching reader and reject
+stale body results after folder, source, page or cleanup changes. EN/DE/AR
+controls retain browse-only host compatibility.
+
+**Locally qualified:** 115 cases pass in one run on the combined Mail/Word/Zotero
+source, including 64 new regressions. All seven changed Mail Dart files pass
+strict analysis and formatting. Earlier host checks and incoming Office
+qualification are recorded separately with their exact source bounds.
+
+See the [workflow and ownership contract](retained-folder-navigation.md) and
+[fresh qualification record](../../validation/mail-retained-navigation-20261122/README.md).
+This is one account's local navigation. Connected multi-account navigation
+remains subsequent work; durable single-message Move/Delete is continued above.
+
+## Previous increment: saved-search folder sets
+
+Studio can select exact local folders across accounts, persist/reopen the scope,
+and display each folder's retained-header coverage. Missing folders remain in
+the definition with explicit recovery; they never widen the query. Existing
+all-folder definitions and published schema-11 definitions migrate compatibly
+to schema 12. Scoped paging, refresh
+and reader ownership retain identity and stale-operation guards. EN/DE/AR
+controls include localized narrow-layout regressions.
+
+**Locally qualified:** 503 core, 970 storage, 89 host/session and 70 UI/dialog
+cases pass. The combined Word/Zotero integration and exact source evidence are
+recorded in the linked qualification record.
+
+See the [workflow and API contract](folder-saved-search.md) and the
+[fresh local qualification record](../../validation/mail-folder-search-20261122/README.md).
+Installed platforms, live providers and adoption of this new host UI in
+CrispCloud remain separate acceptance work.
+
+## Previous increment: keyboard triage and address search
+
+Loaded mailbox lists now support growing and shrinking checked ranges with
+Shift+Up/Down/Home/End, Shift+Space and Shift+click, with English, German and
+Arabic help. Synchronized-view header search retains names and addresses for
+every visible From/To/Cc entry.
+
+**Locally qualified.** Fresh native runs passed 272 shared Mail UI cases and
+176 Studio cases, including all 48 new regressions. All 23 changed Dart paths
+pass strict analysis and formatting. The original executor outage and incomplete
+Studio attempt remain in the record. See the [workflow](keyboard-triage.md),
+[detailed status](status-details.md#range-selection-and-synchronized-address-search--locally-qualified)
+and [work record](../../validation/mail-keyboard-triage-20261121/README.md).
 
 ## Mailbox
 
@@ -30,7 +98,11 @@ interrupted work.
 - Synchronize one or more folders explicitly and resume from durable
   checkpoints.
 - Read retained message bytes without contacting the provider again.
+- Navigate saved browse windows and synchronized folders in one local catalog,
+  with explicit coverage sources and paged synchronized headers.
 - Mark read/unread and flagged state with recoverable foreground commands.
+- Move or delete one connected message with durable intent, receipts and
+  explicit refresh; IMAP marks deleted without expunging.
 - Use Conversations for explicitly loaded threaded headers. Subjects alone
   never create a thread.
 - Open attachments through the shared attachment workflow.
@@ -38,7 +110,8 @@ interrupted work.
 Search covered by the current implementation:
 
 - local cached headers, including account/folder provenance;
-- saved, named header searches with fixed account scopes;
+- saved, named header searches with fixed account scopes and optional exact
+  folder sets, per-folder coverage and missing-folder recovery;
 - Boolean header expressions;
 - explicit selection of a cached result to open retained bytes.
 
@@ -80,9 +153,9 @@ must distinguish loading from a genuinely absent account.
 
 - mailbox pages and synchronization cursors;
 - drafts and frozen Outbox payloads;
-- saved searches and account scope;
+- saved searches and exact account/folder scope;
 - local search indexes;
-- recovery journals for interrupted read/flag work.
+- recovery journals for interrupted read/flag/move/delete work.
 
 The current store is **not encrypted**. Process-kill tests do not establish
 power-loss durability. Browser persistence and quota behavior remain unqualified.
@@ -130,7 +203,10 @@ Host-specific limits:
 - [Durable sync](durable-sync.md)
 - [Scheduled send](scheduled-send.md)
 - [Saved searches](saved-searches.md)
+- [Saved-search folder sets](folder-saved-search.md)
+- [Unified retained-folder navigation](retained-folder-navigation.md)
 - [Conversations](conversations.md)
+- [Keyboard triage](keyboard-triage.md)
 - [Compose tools](compose-tools.md)
 - [CrispCloud integration](crispcloud-integration.md)
 

@@ -1,0 +1,45 @@
+00:00 +0: loading /home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_mail_ui/test/message_list_range_selection_test.dart
+00:00 +0: LogicalKeyboardKey#df100(keyId: "0x200000102", keyLabel: "Shift Left", debugName: "Shift Left") ranges grow, shrink and reverse around the same anchor
+00:01 +1: LogicalKeyboardKey#d8251(keyId: "0x200000103", keyLabel: "Shift Right", debugName: "Shift Right") ranges grow, shrink and reverse around the same anchor
+00:02 +2: Shift Home and End include endpoints and cross the anchor
+00:02 +3: the initial cursor anchors a range and endpoints are bounded
+00:02 +4: range gestures are inert for an empty loaded view
+00:02 +5: separate checks survive contraction on both sides of a range
+00:03 +6: Shift Space selects the cursor without toggling or opening
+00:03 +7: Shift clicking a row extends and contracts without opening
+00:03 +8: Shift clicking a checkbox extends and contracts without opening
+00:03 +9: plain navigation starts a new range without losing old checks
+00:04 +10: plain Space unchecks the cursor and establishes a new anchor
+00:04 +11: ordinary row activation establishes the next pointer anchor
+00:04 +12: Escape clears the old range and its anchor
+00:04 +13: Enter opens only the cursor and never submits its checked range
+00:05 +14: query changes prune hidden rows and restart range ownership
+00:05 +15: invalid queries clear checks and cannot retain a hidden anchor
+00:06 +16: quick filters exclude hidden rows from keyboard ranges
+00:06 +17: sorting resets the anchor while preserving independent checks
+00:06 +18: folding removes hidden checks and re-expansion keeps them clear
+00:07 +19: refresh ends the previous keyboard range
+00:07 +20: revision ends the previous keyboard range
+00:07 +21: account ends the previous keyboard range
+00:07 +22: removed range members cannot reappear in a later extension
+00:07 +23: captured row and checkbox callbacks cannot extend after selection
+00:08 +24: captured row and checkbox callbacks cannot extend after query
+00:08 +25: captured row and checkbox callbacks cannot extend after sort
+00:08 +26: captured row and checkbox callbacks cannot extend after refresh
+00:08 +27: captured row and checkbox callbacks cannot extend after revision
+00:08 +28: captured row and checkbox callbacks cannot extend after account
+00:08 +29: captured row and checkbox callbacks cannot extend after dispose
+00:08 +30: collapsed-child callbacks cannot select or open hidden mail
+00:08 +31: busy hosts refuse every range gesture
+00:08 +32: disabled hosts refuse every range gesture
+00:09 +33: read-only hosts ignore range keys and retain ordinary opening
+00:09 +34: Shift plus LogicalKeyboardKey#d0ba2(keyId: "0x200000100", keyLabel: "Control Left", debugName: "Control Left") does not acquire a selection gesture
+00:09 +35: Shift plus LogicalKeyboardKey#e3a44(keyId: "0x200000106", keyLabel: "Meta Left", debugName: "Meta Left") does not acquire a selection gesture
+00:09 +36: Shift plus LogicalKeyboardKey#e5ce6(keyId: "0x200000104", keyLabel: "Alt Left", debugName: "Alt Left") does not acquire a selection gesture
+00:09 +37: held range arrows repeat but held Shift Space never toggles
+00:09 +38: search-field selection and IME editing never select messages
+00:09 +39: range commands produce an immutable snapshot in visible order
+00:09 +40: a pending bulk popup cannot outlive a new range selection
+00:10 +41: keyboard ranges include offscreen loaded rows without fetching
+00:10 +42: RTL preserves vertical range direction and row identities
+00:10 +43: All tests passed!

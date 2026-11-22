@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Interrupted supplemental sequential verification; not a complete149-suite run.",
+  "sourceCommit": "708bf4a6cf2651a2f08f900631119f357aef4611",
+  "interrupted": true,
+  "normalCompletion": false,
+  "execSessionExitCode": 130,
+  "dartTestExitCode": null,
+  "interruption": "Owned exec session interrupted using Ctrl-C after all six original failures had successful retained reruns. No source or timeout changes.",
+  "selectedSuiteCount": 149,
+  "loadedSuiteCount": 63,
+  "visibleTests": {
+    "passed": 3029,
+    "failed": 0,
+    "skipped": 0
+  },
+  "doneEvents": [],
+  "errorEventCount": 0,
+  "inputsUnchanged": true,
+  "initialInputsSha256": "e95f5d032dd2161fec666cf88d62d5720badf2a22d3b335b1da784c2f797a886",
+  "finalInputsSha256": "e95f5d032dd2161fec666cf88d62d5720badf2a22d3b335b1da784c2f797a886",
+  "stdoutRecovery": {
+    "originalArtifact": "tests.stdout.interrupted.jsonl.gz.partial",
+    "originalSha256": "7384b1967903f29b658bebd8708da5b52fcb951d583a90df863b69a5f3bec92b",
+    "originalBytes": 107216,
+    "originalGzipEndOfStreamPresent": false,
+    "readableArtifact": "tests.stdout.jsonl.gz",
+    "completeJsonlEventCount": 6445,
+    "discardedUnterminatedTailBytes": 73,
+    "synthesizedEvents": 0
+  },
+  "startedWithoutRecordedTestDone": []
+}

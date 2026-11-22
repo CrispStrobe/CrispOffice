@@ -606,6 +606,7 @@ void main() {
         await store.close();
         // Reconstruct the actual old schema, including removal of every
         // additive table/column introduced after v7.
+        database.execute('DROP TABLE saved_header_search_folders');
         database.execute('DROP TABLE account_quick_texts');
         database.execute('DROP TABLE account_compose_settings');
         database.execute('DROP TABLE saved_header_search_accounts');
@@ -614,6 +615,7 @@ void main() {
           'ALTER TABLE store_profile DROP COLUMN saved_header_search_revision',
         );
         database.execute('DROP TABLE mailbox_sync_state');
+        database.execute('ALTER TABLE flag_batches DROP COLUMN destination');
         database.userVersion = 7;
         if (interrupted) {
           failAt = MailStoreCheckpoint.migrationCreated;
@@ -622,14 +624,15 @@ void main() {
           expect(
             database.select(
               "SELECT name FROM sqlite_master WHERE name IN "
-              "('mailbox_sync_state','account_compose_settings','account_quick_texts')",
+              "('mailbox_sync_state','account_compose_settings','account_quick_texts',"
+              "'saved_header_search_folders')",
             ),
             isEmpty,
           );
           failAt = null;
         }
         store = _value(await open());
-        expect(database.userVersion, 10);
+        expect(database.userVersion, 13);
         expect(_value(await store.loadComposeSettings(_account)).revision, 0);
         expect(snapshot()..remove('mailbox_sync_state'), prior);
         expect(_value(await store.loadSyncMailbox(_mailbox)), isNull);

@@ -1,0 +1,23 @@
+{
+  "suite": "vba-word-cell-paragraphs",
+  "caseCount": 32,
+  "sameBytes": true,
+  "stages": [
+    {
+      "stage": "vm",
+      "exitCode": 0
+    },
+    {
+      "stage": "compile-js",
+      "exitCode": 0
+    },
+    {
+      "stage": "js",
+      "exitCode": 0
+    }
+  ],
+  "fixtureSha256": "46a8e790fd8f50a0394f78ded37b203b19593044ebc3948b6ce65e553fb81165",
+  "receiptSha256": "fda0c564cf9461dab37906b8e8d80788b9719b5e9b9eebd06271d37623bfd58c",
+  "nativePlans": 14,
+  "diagnostics": 18
+}

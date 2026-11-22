@@ -1,5 +1,5 @@
 # Word VBA macros: the `vba-word` dialect
-> **Detailed reference.** See [VBA_WORD_MACROS.md](VBA_WORD_MACROS.md) for the current overview. This file preserves the pre-rewrite detail and historical qualification notes.
+> **Detailed reference.** See [VBA_WORD_MACROS.md](VBA_WORD_MACROS.md) for the practical overview. This file contains the complete current contracts and historical qualification notes.
 
 
 `OfficeVbaWordMacroLanguage` compiles an explicitly selected `.bas` module into
@@ -140,10 +140,11 @@ invalid cell rolls back a multi-step run. Validation, tool allowlists, mutation
 grants, step budgets, recording, replay, CLI and MCP use the ordinary transaction
 boundary. Existing native `docx.tableCellText` behavior remains unchanged.
 
-Cell ranges expose the supported `Text` setter only. Text reads, `Count`,
-table/row/cell enumeration, `Rows`/`Columns`, table creation or merging, arbitrary
-range offsets and cell-range formatting remain unsupported. Paragraph or
-whole-story `Range.Text` assignment is still refused because those ranges have
+Cell ranges expose the supported `Text` setter and the `Font` and
+`ParagraphFormat` selectors described below. Text reads, `Count`, table/row/cell
+enumeration, `Rows`/`Columns`, table creation or merging and arbitrary range
+offsets remain unsupported. Paragraph or whole-story `Range.Text` assignment is
+still refused because those ranges have
 different structural delimiters. Embedded VBA projects remain inert and
 preserved.
 
@@ -163,6 +164,286 @@ and [Range.Text](https://learn.microsoft.com/en-us/office/vba/api/word.range.tex
 contracts. These restrictions describe the bounded Quds dialect, and do not
 claim that Microsoft Word rejects the same broader inputs. Installed Word
 differential qualification remains separate work.
+
+## Formatting existing table cells
+
+The same explicit cell selector exposes `Cell.Range.Font` and
+`Cell.Range.ParagraphFormat`. A macro can fill a template cell and then format
+its current text and its existing paragraph:
+
+```vb
+Sub Main()
+    Dim target As Range
+    Set target = ActiveDocument.Tables(1).Cell(2, 2).Range
+    target.Text = "Ready"
+    With target.Font
+        .Bold = True
+        .ColorIndex = wdGreen
+    End With
+    With target.ParagraphFormat
+        .Alignment = wdAlignParagraphRight
+        .SpaceAfter = 4
+        .LineSpacingRule = wdLineSpaceExactly
+        .LineSpacing = 14
+        .TabStops.Add Position:=72, Alignment:=wdAlignTabRight
+    End With
+End Sub
+```
+
+The existing property value, enum, unit and precision contracts apply:
+
+| Cell selector | Supported members |
+| --- | --- |
+| `Range` text controls | `HighlightColorIndex`, `NoProofing`, `LanguageID`, `LanguageIDOther` |
+| `Range.Font` | `Name`, `NameBi`, `Size`, `Bold`, `Italic`, `Underline`, `StrikeThrough`, `SmallCaps`, `AllCaps`, `Superscript`, `Subscript`, `Position`, `Kerning`, `Color`, `ColorIndex` |
+| `Range.ParagraphFormat` | `Alignment`, `SpaceBefore`, `SpaceAfter`, `LeftIndent`, `RightIndent`, `FirstLineIndent`, `KeepTogether`, `PageBreakBefore`, `Hyphenation`, `ReadingOrder`, `LineSpacingRule`, `LineSpacing` |
+| `Range.ParagraphFormat` methods | `Space1`, `Space15`, `Space2`, `OpenUp`, `CloseUp`, `OpenOrCloseUp` |
+| `Range.ParagraphFormat.TabStops` | `Add` and `ClearAll`, including the existing named/optional `Add` arguments |
+| `Range.Paragraphs(1)` / `Range.Paragraphs.Item(1)` | The cell's existing ordinary paragraph; Style, Shading, Format, TabStops and supported Range formatting |
+
+`Font`, `ParagraphFormat` and `TabStops` aliases capture the selected cell even
+when another `Table`, `Cell` or `Range` variable is rebound. Nested `With` and
+named required `ByVal` helpers work as they do for paragraph selectors. A generic
+formatting helper may receive a supported body, header/footer or cell range;
+rebinding a helper parameter does not retarget its caller. Custom line spacing
+still requires a rule/value pair with no intervening document mutation. Target
+comparison includes the table, row and column, so independently derived aliases
+for the same cell can complete the pair, while another cell or body paragraph
+cannot.
+
+The compiler emits existing native formatting operations with this additional
+selector. For example, the Bold write above becomes:
+
+```json
+{
+  "tool": "docx.runFormat",
+  "arguments": {
+    "story": "tableCell",
+    "table": 0,
+    "row": 1,
+    "column": 1,
+    "paragraph": 0,
+    "bold": true
+  }
+}
+```
+
+The `table`, `row` and `column` coordinates are zero-based; `paragraph` must be
+explicitly `0`. `story: "tableCell"` is accepted only by `docx.runFormat`,
+`docx.paragraphFormat`, `docx.lineSpacing`, `docx.paragraphSpaceBefore`,
+`docx.tabStop`, `docx.clearTabStops`, `docx.paragraphStyle` and
+`docx.paragraphShading`. Coordinates without that story are
+refused. Other story selectors (`section`, `note`, `comment`) and text offsets
+(`start`, `end`) cannot be combined with it. The selector resolves the same
+direct main-story table collection as `docx.tableCellRangeText`; it never falls
+back to the recursive body paragraph collection.
+
+Native formatting reuses the cell text operation's conservative ownership,
+structure, source-fidelity and protection checks. The selected cell must have
+one ordinary paragraph in an unmerged rectangular table with a complete grid.
+Fields, hyperlinks, bookmarks, comments, notes, tracked changes and unsupported
+source packets remain refused. Unsupported neighboring table packets can also
+prevent admission. The existing document-wide mutation, signature and protection
+guards and whole-run rollback remain in force.
+
+Font and direct Range text-control writes affect only current nonempty ordinary
+text runs. They do not format the paragraph mark, the end-of-cell marker or
+future insertion text. An empty cell therefore rejects these writes; assign
+`Range.Text` first when filling an empty template. ParagraphFormat writes,
+including tabs and spacing controls,
+can target an empty ordinary paragraph. The cell text setter keeps its prior
+replacement and formatting-preservation contract. Supported false/zero assignments,
+automatic colors and explicit theme overrides retain the existing sparse native
+serialization behavior. Cell run formatting uses detached copies before
+publication, preventing shared public-model run properties or imported-value
+maps from modifying an unrelated cell or body run.
+
+Direct cell-range `Style`, `Shading`, `ListFormat`, insertion
+methods and arbitrary subranges remain unavailable. Explicit `Paragraphs(1)`
+selection is described below. Property reads, `Duplicate` and
+whole-object Font/ParagraphFormat assignment remain unsupported. These are
+deliberate bounds on the Quds adapter, including its treatment of structural
+marks. Microsoft Word exposes a broader object model.
+
+The [runnable 2×2 table example](../packages/quds_office_engine/example/macros/word_table_formatting.bas)
+uses loops and a `ByVal Range` helper to fill and format a table. The
+[local qualification record](validation/word-vba-cell-formatting-20261122/README.md)
+records executed compiler/native/transaction and portable-runtime checks without
+claiming installed Microsoft Word differential parity. Microsoft's
+[Cell.Range](https://learn.microsoft.com/en-us/office/vba/api/word.cell.range),
+[Range.Font](https://learn.microsoft.com/en-us/office/vba/api/word.range.font) and
+[Range.ParagraphFormat](https://learn.microsoft.com/en-us/office/vba/api/word.range.paragraphformat)
+define the object vocabulary; the guarded selector and visible-text boundaries
+above define the supported implementation.
+
+### Formatting a cell paragraph
+
+`Cell.Range.Paragraphs(1)` and `Cell.Range.Paragraphs.Item(1)` bind the one
+existing ordinary paragraph in a supported cell. The VBA index is one-based;
+the native operation always carries `paragraph: 0` together with the zero-based
+table, row and column. An explicit `Paragraphs` collection in a nested `With`
+can use `.Item(1)`. The selectors do not enumerate document content while
+compiling, create a missing paragraph or silently select a prefix of a
+multi-paragraph cell. Only index `1` is admitted when evaluated; all existing
+strict numeric selector rules apply.
+
+```vb
+Sub Decorate(ByVal target As Paragraph, ByVal styleName As String)
+    target.Style = styleName
+    With target.Shading
+        .BackgroundPatternColor = RGB(31, 78, 121)
+    End With
+End Sub
+
+Sub Main()
+    Dim label As Paragraph
+    Set label = ActiveDocument.Tables(1).Cell(1, 1).Range.Paragraphs(1)
+    Decorate styleName:="Report Label", target:=label
+    label.Range.Font.ColorIndex = wdWhite
+    label.Format.SpaceAfter = 6
+End Sub
+```
+
+| Selected paragraph member | Contract |
+| --- | --- |
+| `Style` / `Range.Style` | Unique existing paragraph style by primary name, or one of the 13 supported built-in constants |
+| `Shading` / `Range.Shading` | `BackgroundPatternColor` and `BackgroundPatternColorIndex`; supported solid RGB/palette or explicit automatic background |
+| `Format`, `TabStops`, `Range.ParagraphFormat` | Existing bounded cell paragraph formatting, spacing pairs and tab methods |
+| `Range.Font` and direct range text controls | Existing current-text-only font, highlighting, proofing and normal-slot language setters |
+| `Range.Paragraphs(1)` / `.Paragraphs.Item(1)` | The same paragraph and cell identity, including after repeated projection |
+
+Typed `Paragraph`, `Range`, `Shading`, `Font`, `ParagraphFormat` and `TabStops`
+aliases capture the selected cell. Nested `With` and named required `ByVal`
+helpers preserve the captured selector after their parent or helper parameter
+is rebound. A shared helper can receive body, independent header/footer and
+explicit cell paragraphs. Matching line-spacing pairs recognize equivalent
+direct-cell and selected-paragraph bindings.
+
+Style and shading changes affect paragraph properties, not the table's style
+or cell fill. They accept an empty ordinary paragraph without adding a text
+run. Font and text-control writes retain their nonempty-current-text rule.
+Style assignment uses the [existing native style contract](#existing-paragraph-styles):
+it resolves existing native style definitions, preserves direct formatting and
+refreshes only the selected paragraph's inherited properties. Background
+writes retain the [solid shading contract](#paragraph-background-shading),
+including explicit same-value/automatic overrides and unsupported theme/pattern
+refusals. Source metadata, table geometry, unrelated paragraphs and opaque
+embedded VBA are preserved.
+
+Native `docx.paragraphStyle` and `docx.paragraphShading` accept the explicit
+`story: "tableCell"` selector above and reuse the complete ownership, grid,
+source-fidelity, protection and single-ordinary-paragraph guards. They prepare
+detached properties/runs before publication. Failed validation or a later
+operation rolls back the complete native macro; CLI output is published only
+after success. Recording/replay, policy, allowlists, budgets and cancellation
+use the existing runtime.
+
+Direct `Cell.Range.Style` and `.Shading` remain unsupported: select its
+paragraph explicitly. `InsertBefore`, text replacement, `ListFormat`, arbitrary
+subranges, `Duplicate`, property reads, `Paragraphs.Count` and collection
+enumeration remain unsupported through a selected cell paragraph. Known cell
+paragraph insertion/list operations are rejected in inactive source too when
+direct syntax or acyclic local bindings establish their origin. Generic
+parameters and mixed or cyclic alias origins are checked against the actual
+selector during source evaluation. No new native operation can escape the
+cell's formatting-only operation allowlist.
+
+The [complete table template](../packages/quds_office_engine/example/macros/word_table_paragraphs.bas)
+uses a 2×2 table, named and built-in styles, RGB/palette/automatic shading and an
+empty cell paragraph. Its first cell must contain nonempty ordinary text for
+the Font write. The template needs a paragraph style with primary name
+`Report Label` (which may be custom), plus noncustom native paragraph styles
+with primary names `Normal` and `heading 1` for the built-in selectors.
+The [versioned corpus](../packages/quds_office_engine/test/fixtures/vba_conformance/word_cell_paragraphs_v1.json)
+independently specifies successful plans and positioned refusals. The
+[local record](validation/word-vba-cell-paragraphs-20261122/README.md) separates
+executed checks from installed Microsoft Office differential qualification.
+Primary references are Microsoft's [Range.Paragraphs](https://learn.microsoft.com/en-us/office/vba/api/word.range.paragraphs),
+[Paragraphs.Item](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphs.item),
+[Paragraph.Style](https://learn.microsoft.com/en-us/office/vba/api/word.paragraph.style)
+and [Paragraph.Shading](https://learn.microsoft.com/en-us/office/vba/api/word.paragraph.shading).
+
+### Cell highlighting and proofing controls
+
+An explicit `Cell.Range` also accepts the existing text-control setters. This
+lets a report highlight a status, exclude a product identifier from proofing,
+and attach a normal-slot language to multilingual cell text:
+
+```vb
+Sub ReviewCell(ByVal target As Range, ByVal language As Long)
+    target.LanguageID = language
+    target.NoProofing = False
+    target.HighlightColorIndex = wdYellow
+End Sub
+
+Sub Main()
+    Dim target As Range
+    Set target = ActiveDocument.Tables(1).Cell(2, 1).Range
+    target.Text = "Artikel"
+    ReviewCell language:=wdGerman, target:=target
+    With ActiveDocument.Tables(1).Cell(2, 2).Range
+        .Text = "SKU-042"
+        .NoProofing = True
+        .HighlightColorIndex = wdNoHighlight
+    End With
+End Sub
+```
+
+| Setter | Accepted source value | Native field |
+| --- | --- | --- |
+| `Range.HighlightColorIndex` | `wdNoHighlight` (`0`) or a fixed `WdColorIndex` in `1..16` | `highlight`, with an explicit `null` for removal |
+| `Range.NoProofing` | Actual `True` or `False` | `noProof` |
+| `Range.LanguageID` | One of the 30 supported normal-slot `WdLanguageID` constants or its exact numeric value | `language` |
+| `Range.LanguageIDOther` | The same normal-slot language contract | `language` |
+
+Each assignment emits one `docx.runFormat` operation with the complete guarded
+`story: "tableCell"`, table, row and column selector above. Direct selectors,
+typed `Range` aliases, nested `With`, and required `ByVal Range` helper arguments
+keep their selected cell when another variable is rebound. The same helper can
+accept a supported body paragraph, independent header/footer paragraph or cell
+range. A text-control write remains a document mutation and cannot intervene
+between custom `LineSpacingRule` / `LineSpacing` setters.
+
+The [normal-slot language contract](#proofing-language-and-complex-script-font-controls)
+and [fixed highlight contract](#typography-and-highlighting) apply unchanged.
+Both language setters own only `w:lang/@w:val`; existing complex-script,
+East Asian and foreign native language metadata remain intact. Explicit false,
+highlight removal and same-value assignments preserve native overrides of
+inherited styles. Other rich run formatting and paragraph-mark properties are
+unchanged. Proofing eligibility and language metadata do not install or run a
+dictionary, grammar service or other provider.
+
+The cell must satisfy the existing single-paragraph, ordinary nonempty text,
+unmerged-grid, ownership and package-fidelity guards. Native formatting prepares
+detached copies of runs, preventing shared mutable properties from changing
+other cells. Detached preview, policy limits, cancellation, recording and
+whole-plan rollback remain the ordinary native macro behavior. Missing cells,
+unsupported structure or protection refuse the complete transaction, including
+earlier successful-looking writes.
+
+The [multilingual table example](../packages/quds_office_engine/example/macros/word_table_text_controls.bas)
+fills a 2×2 table, uses named helper arguments, and exercises all four setters.
+It runs through the existing `compile-word-vba`, `validate-word-vba`,
+`run-word-vba`, and MCP source entry points. The portable
+[example runner](../packages/quds_office_engine/tool/macros/web_vba_word_cell_text_controls_smoke.dart)
+uses that exact BAS source and checks saved controls, retained layout and opaque
+parts, repeated reopen, native recording/replay and late-failure rollback.
+The accompanying [source tests](../packages/quds_office_engine/test/office_vba_word_cell_text_controls_test.dart)
+and [transaction tests](../packages/quds_office_engine/test/office_vba_word_cell_text_controls_integration_test.dart)
+also cover alias identity, strict value diagnostics, direct/inherited formatting,
+paragraph marks, native metadata and public-model property sharing.
+
+This extends the bounded write-only adapter. It does not add document property
+reads, numeric Boolean coercions, mixed-value results, automatic language
+detection, arbitrary ranges, broader table structures or embedded VBA execution.
+Microsoft's [Cell.Range](https://learn.microsoft.com/en-us/office/vba/api/word.cell.range),
+[Range.HighlightColorIndex](https://learn.microsoft.com/en-us/office/vba/api/word.range.highlightcolorindex),
+[Range.NoProofing](https://learn.microsoft.com/en-us/office/vba/api/word.range.noproofing),
+[Range.LanguageID](https://learn.microsoft.com/en-us/office/vba/api/word.range.languageid)
+and [Range.LanguageIDOther](https://learn.microsoft.com/en-us/office/vba/api/word.range.languageidother)
+define the object vocabulary. These references are specification inputs;
+local Quds validation is separate from installed Microsoft Word differential
+qualification.
 
 ## Calculating Word layout values
 
@@ -200,7 +481,7 @@ and `run-word-vba` CLI commands or the source/MCP APIs.
 `Fix` propagate `Null`, so handle nullable results with `IsNull` before a write.
 `Sgn(Null)` is refused, and String/Boolean inputs require explicit `CDbl` or
 `CLng` conversion. These functions use source-known values and do not add Word
-property reads. See the [shared numeric contract](VBA_MACROS.md#numeric-intrinsics)
+property reads. See the [shared numeric contract](vba-macros-details.md#numeric-intrinsics)
 for bounds, argument shapes and the distinction from complete VBA subtype semantics.
 
 ## Preparing source text for Word
@@ -213,7 +494,7 @@ surrogate units to construct supplementary characters; isolated surrogates,
 XML-invalid controls and structural line breaks remain refused at Word
 publication. `String` accepts a nonempty String character argument; numeric
 code-page conversion is deliberately unsupported. Exact bounds and coercion
-rules are in the [shared construction contract](VBA_MACROS.md#text-construction-and-unicode-code-units).
+rules are in the [shared construction contract](vba-macros-details.md#text-construction-and-unicode-code-units).
 The [runnable construction module](../packages/quds_office_engine/example/macros/word_text_construction.bas)
 requires two body paragraphs and an independent primary header and emits five
 ordinary insertion/formatting operations.
@@ -223,7 +504,7 @@ Word macros can now use shared binary `InStr`, `InStrRev`, and `Replace`, plus
 local values, array elements and helper results known during compilation.
 They do not read text from a Word Range. The exact positional arguments,
 UTF-16 indexing, comparison modes and resource limits are in the
-[shared text contract](VBA_MACROS.md#binary-search-replacement-and-trimming).
+[shared text contract](vba-macros-details.md#binary-search-replacement-and-trimming).
 
 ```vb
 Sub Main()
@@ -261,7 +542,12 @@ In the following paragraph table, `i` is a one-based paragraph index and `p`
 is `i - 1`. Document paragraph selectors use the native default `body` story.
 Explicit header/footer paragraphs add the `story` and `section` fields described
 below. Notes and comments are not exposed by this source dialect. Section page
-geometry has its separate mapping below.
+geometry has its separate mapping below. Supported cell `Font`, text controls
+and `ParagraphFormat` members reuse their corresponding formatting rows with
+the explicit [table-cell selector](#formatting-existing-table-cells).
+An [explicitly selected cell paragraph](#formatting-a-cell-paragraph) also
+reuses Style and Shading rows. Insertion and list operations remain unavailable
+through these cell selectors.
 
 | Word source operation | Native operation | Arguments in addition to `paragraph: p` |
 | --- | --- | --- |
@@ -278,7 +564,8 @@ geometry has its separate mapping below.
 | `range.LanguageID = value` or `range.LanguageIDOther = value` | `docx.runFormat` | `language`: the supported normal-slot BCP47 tag below |
 | `range.Font.Name = value` | `docx.runFormat` | `font: value` |
 | `range.Font.NameBi = value` | `docx.runFormat` | `csFont: value`; owns the complex-script font independently |
-| `range.Font.Color = value` | `docx.runFormat` | `color` as six uppercase RGB hexadecimal digits |
+| `range.Font.Color = value` | `docx.runFormat` | `color` as six uppercase RGB hexadecimal digits, or `auto` for `wdColorAutomatic` |
+| `range.Font.ColorIndex = value` | `docx.runFormat` | Fixed palette RGB for indices `1..16`, or `auto` for `wdAuto = 0` |
 | `range.Font.Underline = value` | `docx.runFormat` | `underline`, one of the 18 documented `WdUnderline` styles |
 | `range.Font.StrikeThrough = value` | `docx.runFormat` | `strike: value` |
 | `range.Font.SmallCaps = value` | `docx.runFormat` | `smallCaps: value`; `True` also writes an explicit native AllCaps-off override |
@@ -350,7 +637,8 @@ End Sub
 Typed aliases, nested `With`, required `ByVal Paragraph` / `ByVal Range`
 helpers, named helper arguments, String expressions and scalar Variant values
 retain the selected paragraph. Independent header/footer paragraphs use the
-same existing story-ownership checks. Each assignment emits one
+same existing story-ownership checks. Explicit `Cell.Range.Paragraphs(1)`
+selection uses the guarded cell selector. Each assignment emits one
 `docx.paragraphStyle` operation with the ordinary zero-based paragraph/story
 selector and exactly one of `name: String` or `builtin: int`.
 
@@ -413,9 +701,9 @@ An explicitly selected `Paragraph.Shading` or paragraph-selected
 `Range.Shading` exposes two write-only background properties. `Dim shade As
 Shading`, `Set` aliases, nested `With`, and required `ByVal Shading` helper
 parameters retain the selected paragraph identity. Rebinding a helper's object
-parameter does not change its caller's binding. The existing body and
-independently owned header/footer paragraph selectors apply, including empty
-paragraphs; shading changes the paragraph background rather than its text.
+parameter does not change its caller's binding. Body, independently owned
+header/footer and explicitly selected cell paragraph selectors apply,
+including empty paragraphs; shading changes the paragraph background.
 
 ```vb
 Sub Paint(ByVal shade As Shading)
@@ -441,8 +729,8 @@ End Sub
 | `BackgroundPatternColorIndex` | `wdAuto = 0` | Explicit `w:fill="auto"` background |
 
 All 60 named `WdColor` constants are recognized in Word source. Their packed
-RGB values also work with the existing `Font.Color` setter; its previous RGB-only
-contract still refuses the automatic sentinel. ColorIndex is a separate numeric
+RGB values and the automatic sentinel also work with `Font.Color` under the
+[foreground contract](#font-palette-and-automatic-foreground). ColorIndex is a separate numeric
 space: for example `wdBlue = 2` and `wdColorBlue = 16711680`. `wdByAuthor`,
 mixed-state values, fractional values, implicit Boolean/String coercions and
 unknown indices are refused. Automatic shading is an explicit no-fill model
@@ -1405,7 +1693,8 @@ Paragraph-format operations can target an empty paragraph.
 | `Font.Underline` | Exact numeric member of `WdUnderline`, including all 18 named constants; `True` is not an underline enum |
 | `Font.Size` | Actual finite number from `0.5` through `1638`, in exact half-point increments |
 | `Font.Name`, `Font.NameBi` | Nonempty XML-safe String; control whitespace in font names is unsupported |
-| `Font.Color` | Exact integer from `0` through `16777215`, using VBA's packed RGB representation; `RGB(r, g, b)` is supported |
+| `Font.Color` | Exact integer from `0` through `16777215`, using VBA's packed RGB representation, or `wdColorAutomatic = -16777216`; `RGB(r, g, b)` is supported |
+| `Font.ColorIndex` | Exact integer `0..16`, including fixed `WdColorIndex` names; `wdAuto = 0` writes automatic foreground |
 | `ParagraphFormat.Alignment` | Exact integer `0`, `1`, `2`, or `3`, including the named constants below |
 | `Range.HighlightColorIndex` | Exact integer `0..16`, including the named `WdColorIndex` constants; `0` removes highlighting |
 | `SpaceBefore`, `SpaceAfter` | Nonnegative finite number in exact `0.05`-point increments; the resulting twentieth-point integer must not exceed `2147483647` |
@@ -1751,6 +2040,77 @@ Primary references: Microsoft Word's
 and [PointsToPicas](https://learn.microsoft.com/en-us/office/vba/api/word.application.pointstopicas),
 and [NIST's exact inch definition](https://www.nist.gov/pml/owm/si-units-length).
 
+### Font palette and automatic foreground
+
+`Font.ColorIndex` writes all 16 fixed colors in the palette below, plus automatic
+foreground. It supports the existing explicit paragraph/range selectors, typed
+`Font` aliases, nested `With`, named/optional `ByVal` helpers, independently
+owned header/footer paragraphs and supported cell ranges. Each assignment emits one `docx.runFormat`
+operation, so permission checks, detached validation, recording and all-run
+rollback apply through the ordinary macro runtime.
+
+| Source assignment | Native foreground |
+| --- | --- |
+| `.ColorIndex = wdAuto` (`0`) | Explicit `w:color w:val="auto"` |
+| `.ColorIndex = wdBlack` (`1`) | Fixed `000000` |
+| `.ColorIndex = wdBlue` (`2`) | Fixed `0000FF` |
+| `.ColorIndex = wdGray25` (`16`) | Fixed `C0C0C0` |
+| `.Color = wdColorAutomatic` (`-16777216`) | Explicit `auto` |
+| `.Color = wdColorBlack` (`0`) | Fixed `000000` |
+| `.Color = RGB(20, 30, 40)` | Fixed `141E28` |
+
+The remaining `ColorIndex` entries use the exact 1–16 palette in
+[Typography and highlighting](#typography-and-highlighting). ColorIndex and
+packed Color use different numeric spaces: `0` is automatic on ColorIndex and
+black on Color. `wdNoHighlight` is numerically the same as `wdAuto`, so it also
+means automatic when passed to ColorIndex. `wdByAuthor`, mixed-state values,
+unknown indices and the packed automatic sentinel passed to ColorIndex are
+refused. Fractional, Boolean, String, Empty and Null assignments do not receive
+implicit conversion; existing explicit conversions can prepare valid numbers.
+
+Automatic foreground remains a native `auto` value through save/reopen. A
+same-value RGB or automatic assignment establishes a direct override, including
+when the effective prior color came from a style. The write owns native
+`val`, `themeColor`, `themeShade` and `themeTint`: it sets the requested value and
+removes native theme selectors that would override it. Foreign attributes,
+extension children, namespace aliases and unrelated run properties survive.
+Import and style resolution do not project foreign or nested color lookalikes
+as native foreground.
+
+Duplicate native properties/owned attributes, ambiguous run-property ownership,
+and relevant markup-compatibility alternatives or processed content are refused
+before a run is split or formatted. The package-level ownership guard is
+conservative and can refuse ambiguity outside the selected paragraph. This
+slice formats current nonempty text; it does not introduce paragraph-mark
+insertion formatting, font color reads, theme color
+objects or a new automatic-contrast rendering policy.
+
+```vb
+Sub PaintStatus(ByVal target As Font, ByVal status As String)
+    If StrComp(status, "ready", vbBinaryCompare) = 0 Then
+        target.ColorIndex = wdGreen
+    Else
+        target.ColorIndex = wdDarkRed
+    End If
+End Sub
+
+Sub Main()
+    PaintStatus ActiveDocument.Paragraphs(1).Range.Font, "ready"
+    ActiveDocument.Paragraphs(2).Range.Font.Color = wdColorAutomatic
+End Sub
+```
+
+The complete [comparison/color BAS](../packages/quds_office_engine/example/macros/word_comparison_colors.bas)
+adds independent header/footer and existing table-cell writes. See the
+[shared StrComp contract](vba-macros-details.md#binary-string-comparison),
+[versioned corpus](../packages/quds_office_engine/test/fixtures/vba_conformance/word_comparison_colors_v1.json),
+and [local qualification](validation/word-vba-comparison-colors-20261121/README.md).
+Microsoft's [Font.ColorIndex](https://learn.microsoft.com/en-us/office/vba/api/word.font.colorindex),
+[WdColorIndex](https://learn.microsoft.com/en-us/office/vba/api/word.wdcolorindex)
+and [Font.Color](https://learn.microsoft.com/en-us/office/vba/api/word.font.color)
+references define the source vocabulary. Local VM/JavaScript agreement does
+not establish installed Microsoft Word differential qualification.
+
 ### Typography and highlighting
 
 `SmallCaps` changes native formatting without uppercasing the authored text.
@@ -1796,8 +2156,9 @@ when the previous color came from a style.
 
 The aliases `wdAuto` and `wdNoHighlight` have the same numeric value; on this
 specific property it means removal. `wdByAuthor = -1` is declared for a precise
-unsupported-value diagnostic and is not a highlight color. This does not add
-`Font.ColorIndex`, theme color resolution, or automatic foreground colors.
+unsupported-value diagnostic and is not a highlight color. Foreground colors
+use the separate [Font.ColorIndex/Color contract](#font-palette-and-automatic-foreground);
+clearing a highlight does not change text foreground.
 
 [`word_typography.bas`](../packages/quds_office_engine/example/macros/word_typography.bas)
 demonstrates the session document aliases, explicit collection `Item`, a typed
@@ -2261,7 +2622,8 @@ the explicit restrictions above. They do not certify this implementation:
 - [PageSetup.TopMargin](https://learn.microsoft.com/en-us/office/vba/api/word.pagesetup.topmargin), [BottomMargin](https://learn.microsoft.com/en-us/office/vba/api/word.pagesetup.bottommargin), [LeftMargin](https://learn.microsoft.com/en-us/office/vba/api/word.pagesetup.leftmargin), and [RightMargin](https://learn.microsoft.com/en-us/office/vba/api/word.pagesetup.rightmargin): page-to-body distances in points.
 - [PageSetup.HeaderDistance](https://learn.microsoft.com/en-us/office/vba/api/word.pagesetup.headerdistance) and [FooterDistance](https://learn.microsoft.com/en-us/office/vba/api/word.pagesetup.footerdistance): page-edge distances in points, separate from story content.
 - [Paragraphs.Item](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphs.item) and [Application.ActiveDocument](https://learn.microsoft.com/en-us/office/vba/api/word.application.activedocument): source vocabulary; the Quds session binding is explicitly scoped above.
-- [Paragraph.Format](https://learn.microsoft.com/en-us/office/vba/api/word.paragraph.format), [Font](https://learn.microsoft.com/en-us/office/vba/api/word.font), and [ParagraphFormat](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat): typed formatting objects; this dialect binds explicit paragraph selectors only.
+- [Paragraph.Format](https://learn.microsoft.com/en-us/office/vba/api/word.paragraph.format), [Font](https://learn.microsoft.com/en-us/office/vba/api/word.font), and [ParagraphFormat](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat): typed formatting objects bound to explicit paragraph or supported cell selectors.
+- [Cell.Range](https://learn.microsoft.com/en-us/office/vba/api/word.cell.range), [Range.Font](https://learn.microsoft.com/en-us/office/vba/api/word.range.font), and [Range.ParagraphFormat](https://learn.microsoft.com/en-us/office/vba/api/word.range.paragraphformat): cell range and formatting-object vocabulary. Single-paragraph admission, visible-text Font writes and excluded structural marks are the explicit Quds boundaries.
 - [ParagraphFormat.ReadingOrder](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat.readingorder) and [WdReadingOrder](https://learn.microsoft.com/en-us/office/vba/api/word.wdreadingorder): reading direction independently of alignment, with exact RTL/LTR numeric identities.
 - [ParagraphFormat.LineSpacingRule](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat.linespacingrule) and [WdLineSpacing](https://learn.microsoft.com/en-us/office/vba/api/word.wdlinespacing): line-spacing presets and the separate point-based spacing property required by the remaining rules.
 - [Range.InsertBefore](https://learn.microsoft.com/en-us/office/vba/api/word.range.insertbefore): insertion before a range and range expansion; full Word also supports structural characters excluded here.

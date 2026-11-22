@@ -1,0 +1,401 @@
+{
+  "schema_version": 1,
+  "generated_utc": "2026-11-22T05:27:30.977108+00:00",
+  "scope": "Bounded exact-head incoming intake. Source/ref review only in primary checkout; separate detached Mail worktree qualification is recorded under qualification/. No remote or CI actions.",
+  "refs": {
+    "initial_main": "2eecf9aec2c7d1f979064448b911b516d3f56c73",
+    "captured_main": "191ed89b23696c5634689bb90b87119c761f0c85",
+    "word_branch": "5f6e8686f1d6ddc1f3e523238808b78ccccc5b51",
+    "mail_branch": "29fc72a0a7cffa7cfed2abdac2a3f82d2ff17f95",
+    "zotero_checkpoint": "e8cc579563f9c2d9a8922ed47bc8fe310f1ed0af"
+  },
+  "remote_observation_provenance": "Heads and zero open PRs supplied by parent after its remote refresh. This audit did not independently fetch or query remote services.",
+  "word_already_in_captured_main": true,
+  "mail_already_in_captured_main": false,
+  "zotero_already_in_captured_main": false,
+  "main_mail_merge_base": "d16649e94bc0106c000a9f2a00e70447e4a5ffa2",
+  "word_implementation_in_mail": true,
+  "word_final_validation_in_mail": false,
+  "captured_main_new_commits": [
+    {
+      "sha": "3fd8197508ded7fb4de82ecf7264ab6b307e0cb9",
+      "parents": "2eecf9aec2c7d1f979064448b911b516d3f56c73",
+      "committed_at": "2026-11-22T06:03:49+01:00",
+      "subject": "docs(vba): record reconciled remote intake for cell text continuation [skip ci]"
+    },
+    {
+      "sha": "4b6eeacfc72902efd628e6f0ff5b943554344726",
+      "parents": "3fd8197508ded7fb4de82ecf7264ab6b307e0cb9",
+      "committed_at": "2026-11-22T06:07:58+01:00",
+      "subject": "feat(vba): join local String arrays and extend Word cell text controls [skip ci]"
+    },
+    {
+      "sha": "d16649e94bc0106c000a9f2a00e70447e4a5ffa2",
+      "parents": "4b6eeacfc72902efd628e6f0ff5b943554344726",
+      "committed_at": "2026-11-22T06:11:43+01:00",
+      "subject": "test(vba): cover joined multilingual cell reports and portable conformance [skip ci]"
+    },
+    {
+      "sha": "5f6e8686f1d6ddc1f3e523238808b78ccccc5b51",
+      "parents": "d16649e94bc0106c000a9f2a00e70447e4a5ffa2",
+      "committed_at": "2026-11-22T06:20:13+01:00",
+      "subject": "docs(vba): record 6753-case local qualification and final remote refresh [skip ci]"
+    },
+    {
+      "sha": "191ed89b23696c5634689bb90b87119c761f0c85",
+      "parents": "2eecf9aec2c7d1f979064448b911b516d3f56c73 5f6e8686f1d6ddc1f3e523238808b78ccccc5b51",
+      "committed_at": "2026-11-22T06:21:08+01:00",
+      "subject": "Merge Word VBA cell text controls and Join (#359) [skip ci]"
+    }
+  ],
+  "mail_unique_commits_against_captured_main": [
+    {
+      "sha": "0f6be0b59c64ab0b5be05fe005cd9a3015d7a715",
+      "parents": "2eecf9aec2c7d1f979064448b911b516d3f56c73",
+      "committed_at": "2026-11-22T06:05:11+01:00",
+      "subject": "docs(mail): record reconciled intake and retained-navigation milestone [skip ci]"
+    },
+    {
+      "sha": "72cb157f366e1c1c1391b1fc6b95c87bab86ed54",
+      "parents": "0f6be0b59c64ab0b5be05fe005cd9a3015d7a715",
+      "committed_at": "2026-11-22T06:09:55+01:00",
+      "subject": "feat(mail): unify retained folder catalogs and synchronized page sessions [skip ci]"
+    },
+    {
+      "sha": "e6ef31437b6eb130a2b3898416f9a6fdfd457af0",
+      "parents": "72cb157f366e1c1c1391b1fc6b95c87bab86ed54",
+      "committed_at": "2026-11-22T06:16:17+01:00",
+      "subject": "feat(studio): add unified local mail navigation with safe source paging [skip ci]"
+    },
+    {
+      "sha": "29fc72a0a7cffa7cfed2abdac2a3f82d2ff17f95",
+      "parents": "e6ef31437b6eb130a2b3898416f9a6fdfd457af0 d16649e94bc0106c000a9f2a00e70447e4a5ffa2",
+      "committed_at": "2026-11-22T06:19:52+01:00",
+      "subject": "merge: reconcile current Word VBA cell-text branch with Mail navigation [skip ci]"
+    }
+  ],
+  "left_right_commit_counts_against_captured_main": {
+    "initial_main": [
+      "5",
+      "0"
+    ],
+    "captured_main": [
+      "0",
+      "0"
+    ],
+    "word_branch": [
+      "1",
+      "0"
+    ],
+    "mail_branch": [
+      "2",
+      "4"
+    ],
+    "zotero_checkpoint": [
+      "5",
+      "4"
+    ]
+  },
+  "production_changes": {
+    "word": [
+      {
+        "path": "packages/quds_office_engine/lib/src/automation/office_vba_language.dart",
+        "git_blob": "648770375cbb668804cadb199cb58a95dbd850d5",
+        "sha256": "d271062b8e73089a4d087764bbd5cb8a359b209ac35ba458c3d906a32c28f053"
+      }
+    ],
+    "mail": [
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_cached_mail.dart",
+        "git_blob": "76e563da96210dd58afa09ddf7a55f00395e0021",
+        "sha256": "39f6288d940de7e1e3aba749d8048379a914acf13c9257c3a9961578d830ed37"
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_cached_strings.dart",
+        "git_blob": "beef52c983f58661031443bf1f39bbd084d78585",
+        "sha256": "3fb9ed48d6e28a931096763c104f906dc54ccc854f2ed3ac0a5cc72a9a7ba3b7"
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_mailbox_session.dart",
+        "git_blob": "8ce1b9ba955d169a64904103d5849824a43b4a07",
+        "sha256": "bb7eaf388795a4e5eddec0c4e9924f9f4853e637e510486afcb46065f2064b4a"
+      },
+      {
+        "path": "packages/quds_office_editor/example/lib/studio_mail_retained_folders.dart",
+        "git_blob": "b5200cf942b9abd5c78d001c1b3b45eb7f6834e2",
+        "sha256": "1291c21000e755f155a569530d9b9a32aeca0705f58e1c66d697adaa80a9d59b"
+      }
+    ]
+  },
+  "mail_unique_changed_paths": [
+    "docs/roadmaps/mail/implementation-plan.md",
+    "docs/roadmaps/mail/retained-folder-navigation.md",
+    "docs/roadmaps/mail/status.md",
+    "docs/validation/mail-retained-navigation-20261122/README.md",
+    "docs/validation/mail-retained-navigation-20261122/intake.json",
+    "packages/quds_office_editor/CHANGELOG.md",
+    "packages/quds_office_editor/example/lib/studio_mail_cached_mail.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_cached_strings.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_mailbox_session.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_retained_folders.dart",
+    "packages/quds_office_editor/example/test/studio_mail_mailbox_sync_session_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_retained_folders_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_retained_navigation_test.dart"
+  ],
+  "zotero_overlapping_paths": {
+    "captured_main": [
+      "packages/quds_office_engine/CHANGELOG.md"
+    ],
+    "mail_branch": [
+      "packages/quds_office_editor/CHANGELOG.md",
+      "packages/quds_office_engine/CHANGELOG.md"
+    ]
+  },
+  "read_only_merge_tree_conflicts": {
+    "zotero_vs_captured_main": [
+      "packages/quds_office_engine/CHANGELOG.md"
+    ],
+    "zotero_vs_mail_branch": [
+      "packages/quds_office_editor/CHANGELOG.md",
+      "packages/quds_office_engine/CHANGELOG.md"
+    ]
+  },
+  "conflict_method": "git merge-tree initial_main zotero_checkpoint captured_head; old three-argument read-only form, no index/worktree/ref mutation. Conflicts are simultaneous leading CHANGELOG additions; preserve both entries.",
+  "word_feature_scope": [
+    "Shared bounded Join over allocated local String arrays with default/explicit delimiter and resource checks before allocation.",
+    "Word Cell.Range HighlightColorIndex, NoProofing, LanguageID and LanguageIDOther through existing guarded docx.runFormat cell selectors."
+  ],
+  "mail_feature_scope": [
+    "Merge retained browsing-window and synchronized-membership folders into one exact account/folder catalog.",
+    "Explicit browse vs synchronized source, bounded local synchronized pages and safe shrink repair.",
+    "Reader ownership, stale callback guards and observer cleanup across folder/source/page changes.",
+    "Credential-free/provider-free local reading, missing-body honesty, EN/DE/AR controls and browse-only compatibility."
+  ],
+  "branch_status": {
+    "word": "Completed and merged as PR #359 at captured main. Final branch README records 6753 passing cases plus VM/JavaScript comparisons and clean strict analysis. These are imported historical receipts, not executions by this audit.",
+    "mail": "Active implementation checkpoint whose own README still has pending qualification text. Fresh detached exact-head qualification for this intake has now passed 191 cases across eight suites and clean analysis of seven changed/new Dart files; no source fixes were needed. See qualification/summary.json."
+  },
+  "integration_recommendation": "Merge captured main and the qualified exact Mail head into the Zotero branch, preserving both parents and both CHANGELOG entries. Do not replace the main tree with Mail or apply a reverse net diff: final Word validation files are absent from Mail only because it branched before that evidence commit.",
+  "validation_recommendations": {
+    "word_cwd": "packages/quds_office_engine",
+    "word_argv": [
+      "dart",
+      "test",
+      "--reporter",
+      "expanded",
+      "test/office_vba_join_test.dart",
+      "test/office_vba_join_conformance_test.dart",
+      "test/office_vba_word_cell_text_controls_test.dart",
+      "test/office_vba_word_cell_text_controls_integration_test.dart",
+      "test/office_vba_word_join_report_integration_test.dart",
+      "test/office_vba_word_cell_formatting_test.dart",
+      "test/office_vba_word_table_cells_test.dart",
+      "test/word_step_atomicity_test.dart",
+      "test/word_steps_vocabulary_test.dart",
+      "test/word_structure_steps_test.dart",
+      "test/table_grid_steps_test.dart",
+      "test/word_table_grid_addressing_test.dart"
+    ],
+    "mail": "Fresh detached exact-head execution passed eight suites and changed-file analysis; qualification/ contains commands and results. Rerun affected suites on final merge if source blobs differ or integration changes these paths.",
+    "zotero": "Run the planned Zotero engine/controller/dialog/canvas regression on the final integrated source.",
+    "limits": "No full native Word/LibreOffice/Zotero live host test or cross-platform provider network test is claimed by this intake."
+  },
+  "fresh_mail_qualification": {
+    "head": "29fc72a0a7cffa7cfed2abdac2a3f82d2ff17f95",
+    "test_cases_passed": 191,
+    "test_suites": 8,
+    "test_failures": 0,
+    "test_skips": 0,
+    "analyzed_files": 7,
+    "analyzer_issues": 0,
+    "receipt": "qualification/summary.json"
+  },
+  "follow_up_snapshots": [
+    {
+      "observed_at_utc": "2026-11-22T05:33:33.812890+00:00",
+      "snapshot_source": "Parent remote refresh; main unchanged, zero open PRs reported. Audit reads fetched objects only.",
+      "mail_head": "a7006171630915bbf91b6ce2ab7c4699bb79f69b",
+      "included_ancestors": {
+        "previous_mail": {
+          "head": "29fc72a0a7cffa7cfed2abdac2a3f82d2ff17f95",
+          "is_ancestor": true
+        },
+        "captured_main": {
+          "head": "191ed89b23696c5634689bb90b87119c761f0c85",
+          "is_ancestor": true
+        },
+        "word_branch": {
+          "head": "5f6e8686f1d6ddc1f3e523238808b78ccccc5b51",
+          "is_ancestor": true
+        },
+        "zotero_checkpoint": {
+          "head": "e8cc579563f9c2d9a8922ed47bc8fe310f1ed0af",
+          "is_ancestor": true
+        }
+      },
+      "new_first_parent_commits": [
+        {
+          "sha": "145498623ad7812e983d64e03d68f84286d5a0b2",
+          "parents": "29fc72a0a7cffa7cfed2abdac2a3f82d2ff17f95 a83700c69c2ec6d134b780a16a363839425101ae",
+          "committed_at": "2026-11-22T06:23:56+01:00",
+          "subject": "merge: reconcile Zotero field-context groundwork with Mail and Word updates [skip ci]"
+        },
+        {
+          "sha": "c8e09105a8e0d1d1e8d977b2bf017233f1fa8494",
+          "parents": "145498623ad7812e983d64e03d68f84286d5a0b2 191ed89b23696c5634689bb90b87119c761f0c85",
+          "committed_at": "2026-11-22T06:25:36+01:00",
+          "subject": "merge: retain current main and final Word qualification before Mail publication [skip ci]"
+        },
+        {
+          "sha": "83974fba4c3f7a09d66bd1a51df1062d60e777b0",
+          "parents": "c8e09105a8e0d1d1e8d977b2bf017233f1fa8494 e8cc579563f9c2d9a8922ed47bc8fe310f1ed0af",
+          "committed_at": "2026-11-22T06:26:16+01:00",
+          "subject": "merge: preserve latest native Zotero prompt integration before Mail qualification [skip ci]"
+        },
+        {
+          "sha": "a7006171630915bbf91b6ce2ab7c4699bb79f69b",
+          "parents": "83974fba4c3f7a09d66bd1a51df1062d60e777b0",
+          "committed_at": "2026-11-22T06:31:31+01:00",
+          "subject": "test(mail): qualify integrated retained navigation and preserve local review evidence [skip ci]"
+        }
+      ],
+      "qualified_path_comparison": [
+        {
+          "path": "pubspec.yaml",
+          "unchanged": true,
+          "git_blob": "ba34bf9e2c1b0eb583e5f9e2d9ba9f236a660f96",
+          "sha256": "453a1f8ab62db1c5577c424b058b50033a8d3b49b99c83862ab58a7e1108f74f"
+        },
+        {
+          "path": "pubspec.lock",
+          "unchanged": true,
+          "git_blob": "121a4f969c34933bd72f4ccce39bd08b30a4c147",
+          "sha256": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb"
+        },
+        {
+          "path": "analysis_options.yaml",
+          "unchanged": true,
+          "git_blob": "e40c961c5eda58a8470527fb768f093aa7dbbfff",
+          "sha256": "2605ddd3559825e867cab2f5c4536f4172d6ba3514cb10da19f17d7dbe7179e4"
+        },
+        {
+          "path": "packages/quds_office_editor/pubspec.yaml",
+          "unchanged": true,
+          "git_blob": "cecd56ff9e121d32d165c32d50b76310895058a0",
+          "sha256": "536da824dbe7ade3c70080fb6fd5d507186021ca7052869dc47a41fffd82b272"
+        },
+        {
+          "path": "packages/quds_office_editor/example/pubspec.yaml",
+          "unchanged": true,
+          "git_blob": "83ca72de098a4fccbcfd1ab7a40c0072961a465b",
+          "sha256": "97671571d22a1358d6be697cd5e63f39d693cd16e47bad9507afe3aa30b29bc9"
+        },
+        {
+          "path": "packages/quds_office_engine/pubspec.yaml",
+          "unchanged": true,
+          "git_blob": "2bdff7e5dcac2502253ab190b6e7104c21a3d024",
+          "sha256": "225773e48bab7333652a4098e5747f37eab2aac9fc6a14de1e814590ab03fb7a"
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_cached_mail.dart",
+          "unchanged": true,
+          "git_blob": "76e563da96210dd58afa09ddf7a55f00395e0021",
+          "sha256": "39f6288d940de7e1e3aba749d8048379a914acf13c9257c3a9961578d830ed37"
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_cached_strings.dart",
+          "unchanged": true,
+          "git_blob": "beef52c983f58661031443bf1f39bbd084d78585",
+          "sha256": "3fb9ed48d6e28a931096763c104f906dc54ccc854f2ed3ac0a5cc72a9a7ba3b7"
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_mailbox_session.dart",
+          "unchanged": true,
+          "git_blob": "8ce1b9ba955d169a64904103d5849824a43b4a07",
+          "sha256": "bb7eaf388795a4e5eddec0c4e9924f9f4853e637e510486afcb46065f2064b4a"
+        },
+        {
+          "path": "packages/quds_office_editor/example/lib/studio_mail_retained_folders.dart",
+          "unchanged": true,
+          "git_blob": "b5200cf942b9abd5c78d001c1b3b45eb7f6834e2",
+          "sha256": "1291c21000e755f155a569530d9b9a32aeca0705f58e1c66d697adaa80a9d59b"
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_retained_folders_test.dart",
+          "unchanged": true,
+          "git_blob": "8a092edc487780ce34c9d80343eaad4b7d7df5a6",
+          "sha256": "c1fa24456fcba02a9b2911c0f1d0ffab9e62c5db9f48fe4cb990e38a0a7549ac"
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_mailbox_sync_session_test.dart",
+          "unchanged": true,
+          "git_blob": "f93b1d0160beb31082b834fe07a004da3f099c20",
+          "sha256": "e3226658a4318c98821c40d07f7d0ae47dc05d1f7c27c3764f92d14a15d1e82a"
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_retained_navigation_test.dart",
+          "unchanged": true,
+          "git_blob": "411ddc1ed169901c9591103c9854853373977ad6",
+          "sha256": "16a6493dece7fc5e5f4e9ea4beb51bfaa7f6eb75c937f635df72bec54d8b27ee"
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_mailbox_session_test.dart",
+          "unchanged": true,
+          "git_blob": "9324a7723c2ff855385ca56418599971f1f0fcdb",
+          "sha256": "136e25a59dca6376a74ac5a01685dd874aef6155c8316c2611e7d26853ad7bfa"
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_cached_mail_test.dart",
+          "unchanged": true,
+          "git_blob": "63b79a2de097b71a69d0d6d1e6fbc1e19456ba33",
+          "sha256": "677c3d5474ebb45029e1fb11aa5d1ba7199dc5ade7459930439fe13bd9a3efd4"
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart",
+          "unchanged": true,
+          "git_blob": "3cc6fd15f43d6ee463d5d61cc7556f1698caa3cd",
+          "sha256": "1f11c87296d737a938c812408727727160301e0f759c2de7ac8b9d95395a198f"
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_shortcut_host_ownership_test.dart",
+          "unchanged": true,
+          "git_blob": "caea689dc3db6751b206aa7188649cf2a306ec27",
+          "sha256": "bb13230ee14cb2a32ca98a42f665bbb9d41606e351e15cd6e3369eea13ef74b6"
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/suite_workspace_mail_shortcuts_test.dart",
+          "unchanged": true,
+          "git_blob": "223e9115a5d7057d80c1dc088f7f1cad4ccdb9b0",
+          "sha256": "4a2439f6d8b6280ca7fccc970f422e4e7bd2b61458c51623108cdd8ced984ad7"
+        }
+      ],
+      "all_original_qualification_explicit_source_test_manifest_paths_unchanged": true,
+      "mail_production_and_new_test_files_unchanged": true,
+      "additional_product_delta_from_our_checkpoint": {
+        "path": "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+        "scope": "Two ternary-arm indentation lines in presentedFieldContext; whitespace-only",
+        "whitespace_ignored_diff_empty": true,
+        "all_other_zotero_production_and_test_blobs_unchanged": true
+      },
+      "new_imported_qualification": {
+        "record": "docs/validation/mail-retained-navigation-20261122/README.md",
+        "integrated_source_commit": "83974fba4c3f7a09d66bd1a51df1062d60e777b0",
+        "passed_cases": 115,
+        "test_suites": 5,
+        "failed": 0,
+        "skipped": 0,
+        "process_exit_code": 0,
+        "static_analysis": "Seven changed Mail Dart files clean with --fatal-infos; formatting zero changes.",
+        "review_findings": "Prior cleanup/cancellation findings resolved within already-qualified unchanged Mail implementation; no material open findings reported. Incoming Zotero review identifies only the two-line formatter correction applied at this head.",
+        "source_bounds": "Incoming qualification reports 115 final integrated Mail cases and earlier-source host evidence separately. Earlier incomplete/superseded runs and missing earlier exit code are retained honestly; final 115-case rerun captures exit 0.",
+        "counting": "Imported 115 cases overlap this audit's 191-case exact-29fc gate; do not add the totals. The original local 191-case receipt remains unchanged.",
+        "receipt_git_blob": "a55c0a9be8bb4dc9c2b5f4605daa0f51139450d0",
+        "receipt_sha256": "8d4011b26915f5041c758a5b6b5a173a280229e61e33b85c437a51caa4f41f8f"
+      },
+      "integration_recommendation": "Merge captured a7006171 into the final Zotero checkpoint, preserving parent history. This single incoming head already contains captured main, final Word evidence, earlier Mail and Zotero e8cc; it supersedes separate main and Mail29fc merges. Retain newer local Zotero fixes and run final combined-source regression.",
+      "qualification_applicability": "The original 191-case gate remains exact-head evidence for29fc. Its four Mail production files, three new tests, five companion tests and recorded manifests have identical blobs at a700. Newer Zotero fixes still require the planned integrated source regression."
+    }
+  ],
+  "latest_integration_target": "a7006171630915bbf91b6ce2ab7c4699bb79f69b",
+  "latest_integration_recommendation": "Merge captured a7006171 into the final Zotero checkpoint, preserving parent history. This single incoming head already contains captured main, final Word evidence, earlier Mail and Zotero e8cc; it supersedes separate main and Mail29fc merges. Retain newer local Zotero fixes and run final combined-source regression."
+}

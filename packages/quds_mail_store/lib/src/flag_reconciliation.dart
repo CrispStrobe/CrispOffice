@@ -73,11 +73,18 @@ extension MailFlagReconciliation on SqliteMailRepository {
         batch.resolutions.any((resolution) => resolution.index == index)) {
       SqliteMailRepository._fail(MailProblemCode.conflict);
     }
+    if (!batch.summary.canCheckFlags) {
+      // A flag read cannot establish a move's destination or the provider's
+      // delete semantics. Retain the original uncertainty until a dedicated
+      // membership-observation workflow is implemented.
+      SqliteMailRepository._fail(MailProblemCode.unsupported);
+    }
     return batch;
   }
 
   /// Captures authority before the host performs a fresh provider observation.
   /// No provider write, replay, draft, payload or cache eviction is performed.
+  /// Move/delete receipts are unsupported and remain unresolved.
   Future<MailResult<MailFlagReconciliationHandle>> beginFlagReconciliation(
     MailAccountId account,
     String id,

@@ -1,0 +1,18 @@
+{
+  "source_head": "67677aa7e16ea5e4eff3bcd06ffa6e27c5907246",
+  "source_tree": "9409113e6440e62f73c3db00ab84b4505bc3bcd2",
+  "argv": [
+    "/workspace/scratch/2437eaf6f35d/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+    "analyze",
+    "--fatal-infos",
+    "--fatal-warnings",
+    "test/word_zotero_field_context_dialog_test.dart"
+  ],
+  "cwd": "/workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor",
+  "started_utc": "2026-11-22T05:40:20.969230+00:00",
+  "finished_utc": "2026-11-22T05:40:40.511999+00:00",
+  "exit_code": 0,
+  "test_sha256": "1713f1485b8d05e10be4e9b68171b94402fcc386153ee0386a3a055c287e91a4",
+  "log_file": "analysis.txt",
+  "log_sha256": "64f78b1fa75c0e7092a7a5a2164f8831155916edd00523b302f1ce45011c0ae1"
+}

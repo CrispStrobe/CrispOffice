@@ -1,0 +1,14 @@
+{
+  "command": [
+    "dart",
+    "test",
+    "--reporter=expanded",
+    "--concurrency=1",
+    "test/word_native_presentation_test.dart"
+  ],
+  "exitCode": 0,
+  "durationSeconds": 4.299,
+  "currentHead": "fa53e8b87aa65c3a9b6b6515615950ba4164e312",
+  "testSha256": "61af68922c4badc680559d1f78d2c5f30c30726afe0e39373b4a9d809a5859b4",
+  "productionAndExampleSourcesUnchangedFromE1eeb3dc": true
+}

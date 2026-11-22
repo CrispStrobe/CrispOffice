@@ -7,26 +7,51 @@ import 'studio_mail_mailbox_store.dart';
 
 enum StudioMailMailboxPhase { idle, loading, ready, missing, failed, closed }
 
+/// Browsing windows and synchronized memberships have different coverage.
+/// Selecting one never silently substitutes data from the other.
+enum StudioMailMailboxSource { browse, synchronized }
+
 /// A bounded durable folder view. Counts describe saved headers only; they are
 /// never presented as authoritative server totals.
 final class StudioMailMailboxSnapshot {
   const StudioMailMailboxSnapshot({
     required this.phase,
     this.mailbox,
+    this.source = StudioMailMailboxSource.browse,
     this.view,
+    this.synchronizedView,
+    this.requestedOffset = 0,
+    this.pageSize = 100,
     this.problem,
   });
 
   final StudioMailMailboxPhase phase;
   final MailMailboxId? mailbox;
+  final StudioMailMailboxSource source;
   final MailCachedMailboxView? view;
+  final MailMailboxSyncSnapshot? synchronizedView;
+  final int requestedOffset;
+  final int pageSize;
   final MailProblem? problem;
 
+  List<MailHeaderRecord> get headers =>
+      synchronizedView?.headers ?? view?.headers ?? const [];
+  MailMailbox? get mailboxDetails => synchronizedView?.mailbox ?? view?.mailbox;
+  int get headerCount => synchronizedView?.headerCount ?? headers.length;
+  int get offset => synchronizedView?.offset ?? requestedOffset;
+  int? get nextOffset =>
+      synchronizedView?.hasMoreHeaders == true ? offset + headers.length : null;
+  DateTime? get capturedAt => synchronizedView?.updatedAt ?? view?.capturedAt;
+  int? get revision => synchronizedView?.revision ?? view?.revision;
+
+  /// Provider scan continuation for synchronized data; unvisited server rows
+  /// for a saved browsing window. Local paging is separately [nextOffset].
+  bool get hasMore => synchronizedView?.hasMore ?? view?.hasMore ?? false;
+
   int get unreadCount =>
-      view?.headers.where((header) => header.flags?.isRead == false).length ??
-      0;
+      headers.where((header) => header.flags?.isRead == false).length;
   int get unknownReadCount =>
-      view?.headers.where((header) => header.flags == null).length ?? 0;
+      headers.where((header) => header.flags == null).length;
 }
 
 /// One account's selected folder, independent of providers and Flutter. Every
@@ -38,7 +63,8 @@ final class StudioMailMailboxSession {
   final StudioMailMailboxStore store;
   final MailProviderKind provider;
   final _changes = StreamController<StudioMailMailboxSnapshot>.broadcast();
-  StreamSubscription<MailResult<MailCachedMailboxView?>>? _subscription;
+  StreamSubscription<Object?>? _subscription;
+  Future<void>? _pendingRead;
   Future<void> _transition = Future<void>.value();
   Future<void>? _closing;
   Completer<void>? _first;
@@ -75,11 +101,40 @@ final class StudioMailMailboxSession {
       StudioMailMailboxSnapshot(
         phase: StudioMailMailboxPhase.failed,
         mailbox: mailbox,
+        source: _snapshot.source,
         view: _snapshot.view,
+        synchronizedView: _snapshot.synchronizedView,
+        requestedOffset: _snapshot.requestedOffset,
+        pageSize: _snapshot.pageSize,
         problem: problem,
       ),
     );
     if (_current(generation)) _finishFirst();
+  }
+
+  bool _validHeaders(MailMailboxId mailbox, List<MailHeaderRecord> headers) {
+    final ids = <MailMessageId>{};
+    final remotes = <MailRemoteIdentity>{};
+    int? uidValidity;
+    for (final header in headers) {
+      if (header.remote.account != store.account ||
+          header.remote.provider != provider ||
+          !ids.add(header.id) ||
+          !remotes.add(header.remote)) {
+        return false;
+      }
+      if (header.remote case MailImapIdentity(
+        mailbox: final remoteMailbox,
+        uidValidity: final validity,
+      )) {
+        if (remoteMailbox != mailbox ||
+            (uidValidity != null && uidValidity != validity)) {
+          return false;
+        }
+        uidValidity = validity;
+      }
+    }
+    return true;
   }
 
   void _accept(
@@ -94,33 +149,13 @@ final class StudioMailMailboxSession {
     }
     final view = (result as MailSuccess<MailCachedMailboxView?>).value;
     if (view != null) {
-      final ids = <MailMessageId>{};
-      final remotes = <MailRemoteIdentity>{};
-      int? uidValidity;
-      var valid =
+      final valid =
           view.mailbox.id == mailbox &&
           view.revision > 0 &&
           view.revision <= 9007199254740991 &&
           view.headers.length <= 1000 &&
-          view.revision >= _highestRevision;
-      for (final header in view.headers) {
-        valid =
-            valid &&
-            header.remote.account == store.account &&
-            header.remote.provider == provider &&
-            ids.add(header.id) &&
-            remotes.add(header.remote);
-        if (header.remote case MailImapIdentity(
-          :final mailbox,
-          uidValidity: final validity,
-        )) {
-          valid =
-              valid &&
-              mailbox == view.mailbox.id &&
-              (uidValidity == null || uidValidity == validity);
-          uidValidity = validity;
-        }
-      }
+          view.revision >= _highestRevision &&
+          _validHeaders(mailbox, view.headers);
       if (!valid) {
         _fail(generation, mailbox, const MailProblem(MailProblemCode.conflict));
         return;
@@ -139,27 +174,139 @@ final class StudioMailMailboxSession {
     if (_current(generation)) _finishFirst();
   }
 
+  void _acceptSynchronized(
+    int generation,
+    MailMailboxId mailbox,
+    int limit,
+    int offset,
+    MailResult<MailMailboxSyncSnapshot?> result,
+  ) {
+    if (!_current(generation)) return;
+    if (result case MailFailure<MailMailboxSyncSnapshot?>(:final problem)) {
+      _fail(generation, mailbox, problem);
+      return;
+    }
+    final view = (result as MailSuccess<MailMailboxSyncSnapshot?>).value;
+    if (view != null) {
+      final remaining = view.headerCount - offset;
+      final expectedCount = remaining <= 0
+          ? 0
+          : remaining < limit
+          ? remaining
+          : limit;
+      if (view.mailbox.id != mailbox ||
+          view.mailbox.id.value.length > 1024 ||
+          view.mailbox.displayName.length > 4096 ||
+          view.updatedAt.millisecondsSinceEpoch < 0 ||
+          view.updatedAt.millisecondsSinceEpoch > 8640000000000000 ||
+          view.revision < 1 ||
+          view.revision > 9007199254740991 ||
+          view.revision < _highestRevision ||
+          view.headerCount < 0 ||
+          view.headerCount > 9007199254740991 ||
+          view.offset != offset ||
+          view.headers.length != expectedCount ||
+          view.hasMoreHeaders != (remaining > view.headers.length) ||
+          !_validHeaders(mailbox, view.headers)) {
+        _fail(generation, mailbox, const MailProblem(MailProblemCode.conflict));
+        return;
+      }
+      _highestRevision = view.revision;
+      if (offset > 0 && offset >= view.headerCount) {
+        // A later committed membership change can remove the current last
+        // page. Retire that observer before reading the new last page. Keep
+        // the first-result waiter and revision fence across this repair.
+        final repairedOffset = view.headerCount == 0
+            ? 0
+            : ((view.headerCount - 1) ~/ limit) * limit;
+        unawaited(
+          _selectMailbox(
+            mailbox,
+            source: StudioMailMailboxSource.synchronized,
+            limit: limit,
+            offset: repairedOffset,
+            carriedFirst: _first,
+            minimumRevision: _highestRevision,
+          ),
+        );
+        return;
+      }
+    }
+    _publish(
+      StudioMailMailboxSnapshot(
+        phase: view == null
+            ? StudioMailMailboxPhase.missing
+            : StudioMailMailboxPhase.ready,
+        mailbox: mailbox,
+        source: StudioMailMailboxSource.synchronized,
+        synchronizedView: view,
+        requestedOffset: offset,
+        pageSize: limit,
+      ),
+    );
+    if (_current(generation)) _finishFirst();
+  }
+
+  Future<void> _cancelObservation() async {
+    final old = _subscription;
+    final read = _pendingRead;
+    try {
+      await old?.cancel();
+      if (identical(_subscription, old)) _subscription = null;
+    } finally {
+      // A canceled Stream.fromFuture does not cancel the underlying local read.
+      // Drain it even if cancellation failed; retain each owner handle until
+      // its own drain succeeds so a later close cannot report false success.
+      await read;
+      if (identical(_pendingRead, read)) _pendingRead = null;
+    }
+  }
+
   /// Completes on the first result, or when another selection/close supersedes
   /// this one. A missing saved folder is distinct from a saved empty folder.
-  Future<void> select(MailMailboxId mailbox) {
+  Future<void> select(MailMailboxId mailbox) =>
+      _selectMailbox(mailbox, source: StudioMailMailboxSource.browse);
+
+  /// Reads only locally retained synchronized headers. Missing checkpoints,
+  /// unsupported storage and saved empty folders remain distinct outcomes.
+  Future<void> selectSynchronized(
+    MailMailboxId mailbox, {
+    int limit = 100,
+    int offset = 0,
+  }) => _selectMailbox(
+    mailbox,
+    source: StudioMailMailboxSource.synchronized,
+    limit: limit,
+    offset: offset,
+  );
+
+  Future<void> _selectMailbox(
+    MailMailboxId mailbox, {
+    required StudioMailMailboxSource source,
+    int limit = 100,
+    int offset = 0,
+    Completer<void>? carriedFirst,
+    int minimumRevision = 0,
+  }) {
     if (_closed) return Future<void>.value();
     final generation = ++_generation;
-    _highestRevision = 0;
-    _finishFirst();
-    final first = Completer<void>();
+    _highestRevision = minimumRevision;
+    if (!identical(_first, carriedFirst)) _finishFirst();
+    final first = carriedFirst ?? Completer<void>();
     _first = first;
     _publish(
       StudioMailMailboxSnapshot(
         phase: StudioMailMailboxPhase.loading,
         mailbox: mailbox,
+        source: source,
+        requestedOffset: offset,
+        pageSize: limit,
       ),
     );
     _transition = _transition
         .then((_) async {
           if (!_current(generation)) return;
-          final old = _subscription;
-          _subscription = null;
-          await old?.cancel();
+          await _cancelObservation();
           if (!_current(generation)) return;
           if (mailbox.account != store.account) {
             _fail(
@@ -169,12 +316,65 @@ final class StudioMailMailboxSession {
             );
             return;
           }
-          final source = store;
-          final stream = source is StudioMailMailboxWatchStore
-              ? (source as StudioMailMailboxWatchStore).watchView(mailbox)
-              : Stream<MailResult<MailCachedMailboxView?>>.fromFuture(
-                  source.loadView(mailbox).then(MailSuccess.new),
+          final storage = store;
+          if (source == StudioMailMailboxSource.synchronized) {
+            if (limit < 1 ||
+                limit > 1000 ||
+                offset < 0 ||
+                offset > 9007199254740991) {
+              _fail(
+                generation,
+                mailbox,
+                const MailProblem(MailProblemCode.invalidInput),
+              );
+              return;
+            }
+            if (storage is! StudioMailSyncStore) {
+              _fail(
+                generation,
+                mailbox,
+                const MailProblem(MailProblemCode.unsupported),
+              );
+              return;
+            }
+            _subscription = (storage as StudioMailSyncStore)
+                .watchSyncMailbox(mailbox, limit: limit, offset: offset)
+                .listen(
+                  (result) => _acceptSynchronized(
+                    generation,
+                    mailbox,
+                    limit,
+                    offset,
+                    result,
+                  ),
+                  onError: (Object _) => _fail(
+                    generation,
+                    mailbox,
+                    const MailProblem(MailProblemCode.storageFailure),
+                  ),
+                  onDone: () => _fail(
+                    generation,
+                    mailbox,
+                    const MailProblem(MailProblemCode.unavailable),
+                  ),
                 );
+            return;
+          }
+          final Stream<MailResult<MailCachedMailboxView?>> stream;
+          if (storage is StudioMailMailboxWatchStore) {
+            stream = (storage as StudioMailMailboxWatchStore).watchView(
+              mailbox,
+            );
+          } else {
+            final read = storage.loadView(mailbox).then(MailSuccess.new);
+            _pendingRead = read.then<void>(
+              (_) {},
+              onError: (Object _, StackTrace _) {},
+            );
+            stream = Stream<MailResult<MailCachedMailboxView?>>.fromFuture(
+              read,
+            );
+          }
           _subscription = stream.listen(
             (result) => _accept(generation, mailbox, result),
             onError: (Object _) => _fail(
@@ -185,7 +385,7 @@ final class StudioMailMailboxSession {
             onDone: () {
               // A one-shot adapter remains valid for hosts without live storage.
               // An unexpectedly closed live store must not look synchronized.
-              if (source is StudioMailMailboxWatchStore ||
+              if (storage is StudioMailMailboxWatchStore ||
                   _snapshot.phase == StudioMailMailboxPhase.loading) {
                 _fail(
                   generation,
@@ -206,6 +406,26 @@ final class StudioMailMailboxSession {
     return first.future;
   }
 
+  /// Retires the selection immediately and drains its read/observer. The
+  /// session stays reusable; a later selection cannot receive old callbacks.
+  Future<void> clear() {
+    if (_closed) return close();
+    _generation++;
+    _highestRevision = 0;
+    _finishFirst();
+    _publish(
+      const StudioMailMailboxSnapshot(phase: StudioMailMailboxPhase.idle),
+    );
+    final clearing = _transition.then((_) => _cancelObservation());
+    // The caller receives the drain failure. Future selections/close still
+    // reach the retained handles instead of inheriting a poisoned chain.
+    _transition = clearing.then<void>(
+      (_) {},
+      onError: (Object _, StackTrace _) {},
+    );
+    return clearing;
+  }
+
   /// Immediately clears selection and invalidates late work; cancellation is
   /// awaited before the storage owner may close or be acquired elsewhere.
   Future<void> close() {
@@ -216,11 +436,20 @@ final class StudioMailMailboxSession {
     _publish(
       const StudioMailMailboxSnapshot(phase: StudioMailMailboxPhase.closed),
     );
-    return _closing = _transition.then((_) async {
-      final subscription = _subscription;
-      _subscription = null;
-      await subscription?.cancel();
+    final closing = _transition.then((_) async {
+      await _cancelObservation();
       await _changes.close();
     });
+    late final Future<void> result;
+    result = closing.catchError((Object error, StackTrace stack) {
+      if (identical(_closing, result)) _closing = null;
+      Error.throwWithStackTrace(error, stack);
+    });
+    _closing = result;
+    _transition = result.then<void>(
+      (_) {},
+      onError: (Object _, StackTrace _) {},
+    );
+    return result;
   }
 }

@@ -1,0 +1,12 @@
+{
+  "captured_utc": "2026-11-21T22:00:53.096273+00:00",
+  "source_inputs_unchanged": true,
+  "changed_inputs": [],
+  "before_input_count": 461,
+  "after_input_count": 461,
+  "before_manifest_sha256": "2c3533039dbad8560250825463e2e26eee15979e50277778b4dc76b638028394",
+  "after_manifest_sha256": "2c3533039dbad8560250825463e2e26eee15979e50277778b4dc76b638028394",
+  "package_config_unchanged": true,
+  "lockfile_unchanged": true,
+  "dart_binary_unchanged": true
+}

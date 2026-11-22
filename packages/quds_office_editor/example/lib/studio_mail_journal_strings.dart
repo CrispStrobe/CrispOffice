@@ -13,9 +13,9 @@ extension StudioMailJournalStrings on StudioStrings {
   String get mailActivity =>
       _text('Mail activity', 'Mail-Aktivitäten', 'نشاط البريد');
   String get mailActivityScope => _text(
-    'Read and flag changes saved on this device. Interrupted changes are never sent again automatically.',
-    'Auf diesem Gerät gespeicherte Lese- und Kennzeichnungsänderungen. Unterbrochene Änderungen werden nie automatisch erneut gesendet.',
-    'تغييرات القراءة والعلامات المحفوظة على هذا الجهاز. لا تُرسل التغييرات المتوقفة مرة أخرى تلقائيًا.',
+    'Read, flag, move and delete actions saved on this device. Interrupted changes are never sent again automatically.',
+    'Auf diesem Gerät gespeicherte Aktionen zum Lesen, Kennzeichnen, Verschieben und Löschen. Unterbrochene Änderungen werden nie automatisch erneut gesendet.',
+    'إجراءات القراءة والعلامات والنقل والحذف المحفوظة على هذا الجهاز. لا تُرسل التغييرات المتوقفة مرة أخرى تلقائيًا.',
   );
   String get mailActivityEmpty => _text(
     'No saved mail activity yet.',
@@ -111,6 +111,9 @@ extension StudioMailJournalStrings on StudioStrings {
         observed
             ? _text('Flagged', 'Gekennzeichnet', 'معلّمة')
             : _text('Not flagged', 'Nicht gekennzeichnet', 'غير معلّمة'),
+      MailBulkFlagAction.move || MailBulkFlagAction.delete => throw StateError(
+        'A flag observation cannot resolve membership changes.',
+      ),
     };
     return kind == MailFlagResolutionKind.matches
         ? _text(
@@ -177,6 +180,16 @@ extension StudioMailJournalStrings on StudioStrings {
       'Unflag messages',
       'Kennzeichnung entfernen',
       'إزالة تعليم الرسائل',
+    ),
+    MailBulkFlagAction.move => _text(
+      'Move message',
+      'Nachricht verschieben',
+      'نقل الرسالة',
+    ),
+    MailBulkFlagAction.delete => _text(
+      'Delete action',
+      'Löschaktion',
+      'إجراء الحذف',
     ),
   };
   String mailActivityCounts(MailStoredFlagBatchSummary batch) {

@@ -43,6 +43,7 @@ final class _Provider extends Fake implements MailEwsProvider {
     MailCapability.folders,
     MailCapability.send,
     MailCapability.move,
+    MailCapability.delete,
   ]);
   MailProblem? mutationProblem;
   Future<MailResult<MailUnit>> Function(MailOperation, MailOperationLease)?
@@ -395,7 +396,9 @@ void main() {
         return provider;
       });
       await _connect(tester);
-      for (final action in MailBulkFlagAction.values) {
+      for (final action in MailBulkFlagAction.values.where(
+        (action) => action.isFlagAction,
+      )) {
         _bulkList(tester).onBulkAction!(action, [
           'ews-message-three',
           'ews-message-two',
@@ -1889,7 +1892,12 @@ void main() {
     await tester.binding.setSurfaceSize(const Size(1280, 900));
     addTearDown(() => tester.binding.setSurfaceSize(null));
     await tester.pumpWidget(
-      const MaterialApp(home: StudioMailDialog(strings: _strings)),
+      const MaterialApp(
+        home: StudioMailDialog(
+          strings: _strings,
+          autoConnectSavedAccount: false,
+        ),
+      ),
     );
     await tester.tap(find.byKey(const ValueKey('studio-mail-open-ews')));
     await _pump(tester);

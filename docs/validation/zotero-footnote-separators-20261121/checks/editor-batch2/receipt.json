@@ -1,0 +1,83 @@
+{
+  "started_utc": "2026-11-21T21:51:12.503989+00:00",
+  "source_head": "a1b555979b25c5586f27915cf219a95e886febd7",
+  "cwd": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor",
+  "command": [
+    "/workspace/scratch/12e9ca120c75/runtime/bin/flutter",
+    "test",
+    "--no-pub",
+    "--reporter=json",
+    "--concurrency=1",
+    "test/word_zotero_children_dialog_test.dart",
+    "test/word_zotero_children_test.dart",
+    "test/word_zotero_citing_controller_test.dart",
+    "test/word_zotero_citing_dialog_test.dart",
+    "test/word_zotero_collection_pagination_test.dart",
+    "test/word_zotero_composer_test.dart",
+    "test/word_zotero_connected_alias_test.dart",
+    "test/word_zotero_controller_test.dart",
+    "test/word_zotero_dialog_scaling_test.dart",
+    "test/word_zotero_dialog_test.dart",
+    "test/word_zotero_direct_command_test.dart"
+  ],
+  "input_scope": "All tracked files under .github/apps/packages/third_party/tool/tools, all tracked repository-root files, this runner, and generated package configurations beside tracked pubspec.yaml files. The after snapshot also retains every initial path so deletion or untracking cannot hide an input-content change.",
+  "input_count": 6319,
+  "input_manifest_sha256": "5c4d7dd437d3e09f5a2aef6c4b61076945343d67253f12662cf91bfb334e2cb8",
+  "exit_code": 0,
+  "duration_seconds": 88.358,
+  "inputs_unchanged": true,
+  "changed_inputs": [],
+  "tests": {
+    "passed": 204,
+    "failed": 0,
+    "skipped": 0,
+    "errors": 0,
+    "suites": 11,
+    "groups": 11,
+    "started": 217,
+    "completed": 217,
+    "hidden_passed": 11,
+    "hidden_failed": 0,
+    "hidden_skipped": 0,
+    "done": [
+      {
+        "success": true,
+        "type": "done",
+        "time": 87360
+      }
+    ],
+    "hooks_passed": 2,
+    "hooks_failed": 0,
+    "hooks_skipped": 0,
+    "hook_results": [
+      {
+        "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+        "name": "(setUpAll)",
+        "result": "passed",
+        "hidden": true
+      },
+      {
+        "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/test/word_zotero_direct_command_test.dart",
+        "name": "(tearDownAll)",
+        "result": "passed",
+        "hidden": true
+      }
+    ],
+    "failures": [],
+    "skips": [],
+    "hidden_failures": [],
+    "hidden_skips": [],
+    "unparsed_lines": [],
+    "lifecycle_errors": []
+  },
+  "stdout.log": {
+    "bytes": 115176,
+    "sha256": "33a2e0b2d4713c5389a3d8d070e4ce4b1687fb6870c1c3e588c0b72c2dbab8ee"
+  },
+  "stderr.log": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "accepted": true,
+  "finished_utc": "2026-11-21T21:52:41.236441+00:00"
+}

@@ -1,0 +1,9 @@
+test/studio_odt_open_test.dart
+test/studio_settings_test.dart
+test/studio_shortcut_dispatch_test.dart
+test/studio_shortcut_host_ownership_test.dart
+test/studio_shortcuts_test.dart
+test/studio_zotero_citing_transport_test.dart
+test/studio_zotero_odt_export_test.dart
+test/studio_zotero_shortcuts_test.dart
+test/suite_workspace_mail_shortcuts_test.dart

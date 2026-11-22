@@ -1,0 +1,102 @@
+00:00 +0: loading /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart
+00:00 +0: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart: highlight preserves content, backwards writing selection and focus
+00:00 +1: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart: body context resolves exact paragraph identity among equal texts
+00:00 +2: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart: table context resolves exact paragraph identity among equal texts
+00:00 +3: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart: footnote context resolves exact paragraph identity among equal texts
+00:00 +4: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart: endnote context resolves exact paragraph identity among equal texts
+00:00 +5: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart: multipart bibliography retains every original source range
+00:00 +6: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart: selecting another story preserves the active Notes selection
+00:00 +7: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart: Field.delete clears presentation and notifies already-built consumers
+00:00 +8: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart: Field.removeCode clears presentation and notifies already-built consumers
+00:00 +9: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: all processor calls remain detached until complete and explicit apply
+00:00 +10: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: all processor calls remain detached until complete and explicit apply
+00:00 +11: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: all processor calls remain detached until complete and explicit apply
+00:00 +12: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: all processor calls remain detached until complete and explicit apply
+00:00 +13: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: all processor calls remain detached until complete and explicit apply
+00:00 +14: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: all processor calls remain detached until complete and explicit apply
+00:00 +15: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: all processor calls remain detached until complete and explicit apply
+00:00 +16: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: all processor calls remain detached until complete and explicit apply
+00:00 +17: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: all processor calls remain detached until complete and explicit apply
+00:00 +18: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: all processor calls remain detached until complete and explicit apply
+00:00 +19: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: all processor calls remain detached until complete and explicit apply
+00:00 +20: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: all processor calls remain detached until complete and explicit apply
+00:00 +21: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: all processor calls remain detached until complete and explicit apply
+00:00 +22: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: all processor calls remain detached until complete and explicit apply
+00:00 +23: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: all processor calls remain detached until complete and explicit apply
+00:00 +24: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: all processor calls remain detached until complete and explicit apply
+00:00 +25: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: all processor calls remain detached until complete and explicit apply
+00:00 +26: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: all processor calls remain detached until complete and explicit apply
+00:00 +27: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: refresh undo restores the original noncollapsed text selection
+00:01 +28: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: an explicitly selected citation edits in place without a new field
+00:01 +29: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: new catalog citation, preferences and formatting form one undo step
+00:01 +30: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_writing_position_test.dart: bibliography growth preserves passive frame selection and history
+00:01 +31: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_writing_position_test.dart: bibliography growth preserves passive frame selection and history
+00:01 +32: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_writing_position_test.dart: bibliography growth preserves passive frame selection and history
+00:01 +33: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: two citations convert in descending order without losing surrounding text
+00:01 +34: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_writing_position_test.dart: bibliography growth preserves passive toc-title selection and history
+00:01 +35: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: citation conversion retains an unrelated note reference in the same paragraph
+00:01 +36: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_writing_position_test.dart: bibliography growth preserves passive toc-item selection and history
+00:01 +37: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: undo after DOCX save restores native preferences and note ownership
+00:02 +38: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_citing_controller_test.dart: undo after DOCX save restores native preferences and note ownership
+00:02 +39: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (false)
+00:02 +40: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (false)
+00:02 +41: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (false)
+00:02 +42: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (false)
+00:02 +43: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (false)
+00:02 +44: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (false)
+00:02 +45: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (false)
+00:02 +46: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (false)
+00:02 +47: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (false)
+00:02 +48: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (false)
+00:02 +49: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (false)
+00:02 +50: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (false)
+00:02 +51: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (false)
+00:02 +52: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (false)
+00:02 +53: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (false)
+00:02 +54: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (false)
+00:02 +55: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (false)
+00:02 +56: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (false)
+00:02 +57: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (false)
+00:02 +58: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (false)
+00:02 +59: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (false)
+00:02 +60: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (false)
+00:02 +61: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (false)
+00:02 +62: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (false)
+00:02 +63: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (false)
+00:02 +64: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (false)
+00:02 +65: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (false)
+00:02 +66: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (false)
+00:02 +67: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (false)
+00:02 +68: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (false)
+00:02 +69: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_writing_position_test.dart: endnote refresh preserves backward selection across note paragraphs
+00:02 +70: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (true)
+00:02 +71: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (true)
+00:02 +72: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo/redo retains covariant owners (true)
+00:02 +73: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export rejects fixed blocks before snapshot rollback can mutate
+00:02 +74: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export rejects immutable blocks before snapshot rollback can mutate
+00:02 +75: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export rejects fixed inlines before snapshot rollback can mutate
+00:02 +76: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export rejects immutable inlines before snapshot rollback can mutate
+00:02 +77: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export stays detached until complete and is one undoable change
+00:02 +78: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: export undo keeps paragraph identity for earlier text undo commands
+00:02 +79: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: Refresh imports formatted fields atomically with one undo and redo
+00:02 +80: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: incomplete import cannot replace the original transfer document
+00:02 +81: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: import undo retains earlier typing and its original paragraph target
+00:02 +82: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: saved transfer reopens for Refresh and saves active DOCX fields
+00:03 +83: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: discarding an incomplete export leaves a clean document
+00:03 +84: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: caret change refuses a pending export atomically
+00:03 +85: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: composition change refuses a pending export atomically
+00:03 +86: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: document change refuses a pending export atomically
+00:03 +87: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: revision change refuses a pending export atomically
+00:03 +88: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: discarding an incomplete import leaves a clean document
+00:03 +89: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: caret change refuses a pending import atomically
+00:03 +90: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: composition change refuses a pending import atomically
+00:03 +91: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: document change refuses a pending import atomically
+00:03 +92: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: revision change refuses a pending import atomically
+00:03 +93: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: transfer documents require Refresh before addEditCitation
+00:03 +94: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: transfer documents require Refresh before addEditBibliography
+00:03 +95: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: transfer documents require Refresh before addNote
+00:03 +96: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: transfer documents require Refresh before addAnnotation
+00:03 +97: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: transfer documents require Refresh before setDocPrefs
+00:03 +98: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: transfer documents require Refresh before exportDocument
+00:03 +99: /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart: transfer documents require Refresh before removeCodes
+00:03 +100: All tests passed!

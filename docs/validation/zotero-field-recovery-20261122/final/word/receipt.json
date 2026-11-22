@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "gate": "word",
+  "head_before": "6ba219a03a9933eded77980f9d7cdbd118183ee1",
+  "tree_before": "ebf0f4ee3c44c14f666b4057b53200c084a3dc02",
+  "started_utc": "2026-11-22T06:15:03.095950+00:00",
+  "argv": [
+    "/workspace/scratch/fbb55a1db052/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+    "test",
+    "--concurrency=4",
+    "--reporter=json",
+    "test/office_vba_word_cell_paragraphs_test.dart",
+    "test/office_vba_word_cell_paragraphs_conformance_test.dart",
+    "test/office_vba_word_cell_paragraphs_integration_test.dart",
+    "test/word_table_cell_paragraph_formatting_test.dart",
+    "test/office_vba_word_cell_formatting_test.dart",
+    "test/office_vba_word_table_cells_test.dart",
+    "test/office_vba_word_table_cells_conformance_test.dart",
+    "test/office_vba_word_table_cells_integration_test.dart"
+  ],
+  "cwd": "/workspace/scratch/fbb55a1db052/quds_office_suite/packages/quds_office_engine",
+  "environment_script": "/workspace/scratch/fbb55a1db052/toolchains/env.sh",
+  "environment_script_sha256": "2728b014890d467a20680a9d0d6b9ce2509c54b4bdf16436e58f347e1f00d88a",
+  "runner_sha256": "ca71859b495c48f7497296c51112a883860be21b75cd66655ce93ddf31279c53",
+  "suite_count": 8,
+  "suites": [
+    "office_vba_word_cell_paragraphs_test.dart",
+    "office_vba_word_cell_paragraphs_conformance_test.dart",
+    "office_vba_word_cell_paragraphs_integration_test.dart",
+    "word_table_cell_paragraph_formatting_test.dart",
+    "office_vba_word_cell_formatting_test.dart",
+    "office_vba_word_table_cells_test.dart",
+    "office_vba_word_table_cells_conformance_test.dart",
+    "office_vba_word_table_cells_integration_test.dart"
+  ],
+  "runtime": {
+    "frameworkVersion": "3.47.8",
+    "channel": "stable",
+    "repositoryUrl": "https://github.com/flutter/flutter.git",
+    "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+    "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+    "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+    "engineCommitDate": "2026-10-23 02:13:38.000Z",
+    "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+    "engineBuildDate": "2026-10-22 20:34:48.330",
+    "dartSdkVersion": "3.13.7",
+    "devToolsVersion": "2.60.0",
+    "flutterVersion": "3.47.8",
+    "flutterRoot": "/workspace/scratch/fbb55a1db052/toolchains/flutter"
+  },
+  "dart_binary_sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+  "dependency_archive_receipt_sha256": "0e84bca6b67b267da3699af602ab2f826ebcfcf358ff5bebd970457bf6968931",
+  "status": "passed",
+  "exit_code": 0,
+  "elapsed_seconds": 60.205,
+  "finished_utc": "2026-11-22T06:16:03.523850+00:00",
+  "source_changes": [],
+  "dependency_changes": [],
+  "head_after": "6ba219a03a9933eded77980f9d7cdbd118183ee1",
+  "tree_after": "ebf0f4ee3c44c14f666b4057b53200c084a3dc02",
+  "counts": {
+    "success": 397,
+    "failure": 0,
+    "error": 0,
+    "skipped": 0
+  },
+  "test_count": 397,
+  "loading_or_hidden_count": 12,
+  "done_events": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 33970
+    }
+  ],
+  "error_event_count": 0,
+  "unparsed_stdout_lines": 0,
+  "stdout.jsonl.gz": {
+    "sha256": "68ab209bc47d42cf56c1fb5bc9afe925d4f8abdfee3f12794ec55181a20adbc0",
+    "raw_sha256": "060e26a6f834837810cbcf445c8e8b5bb784ecaec08a786e629e98cda8ac6c43",
+    "raw_bytes": 202860,
+    "compressed_bytes": 14237
+  },
+  "stderr.log.gz": {
+    "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "raw_bytes": 0,
+    "compressed_bytes": 20
+  }
+}

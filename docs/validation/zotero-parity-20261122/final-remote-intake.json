@@ -1,0 +1,17 @@
+{
+  "observed_utc": "2026-11-22T03:02:27.156646+00:00",
+  "previous_main": "82659acb0f617c57d4d241c91033338032b5caac",
+  "incoming_main": "171be42cf92ce875b7d5f6f3df216ff04d0204c5",
+  "pull_request": 357,
+  "source_qualification_commit": "fce7a97f297181f3524b31e90e7a49ce061b0954",
+  "changed_paths": [
+    "docs/validation/mail-folder-search-20261122/README.md",
+    "docs/validation/mail-folder-search-20261122/SHA256SUMS",
+    "docs/validation/mail-folder-search-20261122/late-integration.json",
+    "docs/validation/mail-folder-search-20261122/late-legacy-picker-delta.patch.gz",
+    "docs/validation/mail-folder-search-20261122/qualification.json"
+  ],
+  "all_changes_documentation_only": true,
+  "non_documentation_paths_unchanged": true,
+  "effect": "Preserve late Mail reconciliation evidence and ancestry. No runtime, test, dependency, manifest or configuration input changes; accepted 2529-case source qualification carries unchanged."
+}

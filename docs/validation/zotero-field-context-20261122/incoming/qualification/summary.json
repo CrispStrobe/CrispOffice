@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "completed_utc": "2026-11-22T05:29:29.334237+00:00",
+  "head": "29fc72a0a7cffa7cfed2abdac2a3f82d2ff17f95",
+  "qualification": "passed",
+  "test_cases_passed": 191,
+  "test_suites": 8,
+  "test_failures": 0,
+  "test_skips": 0,
+  "changed_dart_files_analyzed": 7,
+  "analyzer_issues": 0,
+  "offline_lockfile_enforced": true,
+  "tracked_worktree_clean_after_execution": true,
+  "source_hashes_unchanged_after_execution": true,
+  "source_fixes": [],
+  "source_or_remote_mutations": "No product source edits, merges, ref fetches, remote publication or CI operations. Created only a detached sparse worktree, dependency/build artifacts there, and root evidence files.",
+  "acceptance": "The captured Mail head passed the bounded retained-folder navigation gate. Appropriate to merge exact-head ancestry. Qualification applies to unchanged source/test blobs; it does not claim full provider/network/platform validation.",
+  "logs": {
+    "analyze.log": "f9caaa9e2130396f12a3991e977b7cbbaee40b5697e621ed1a4feaf39bcb4b63",
+    "pub-get.log": "8f8eaec35c1eb26e37cc745f3fd799bdceace51af176465fd0709650a1b23f22",
+    "targeted-tests.log": "b7ebdecdf5bc61ce9cc979814618876e821563d716b2624042a7f1f5a33338c6"
+  }
+}

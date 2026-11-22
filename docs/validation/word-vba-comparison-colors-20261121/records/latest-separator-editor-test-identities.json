@@ -1,0 +1,322 @@
+[
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_footnote_separator_render_test.dart",
+    "name": "native WmlFootnoteSeparatorAlignment.left separator paints its color and thickness",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_footnote_separator_render_test.dart",
+    "name": "native WmlFootnoteSeparatorAlignment.center separator paints its color and thickness",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_footnote_separator_render_test.dart",
+    "name": "native WmlFootnoteSeparatorAlignment.right separator paints its color and thickness",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_footnote_separator_render_test.dart",
+    "name": "dark canvas redraws the new separator geometry and color",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_footnote_separator_render_test.dart",
+    "name": "explicit hidden separator reserves gaps without painted pixels",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_footnote_separator_render_test.dart",
+    "name": "footnote insertion undo and redo retain separator preferences",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_notes_editing_test.dart",
+    "name": "note edits keep formatting and undo as one step",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_notes_editing_test.dart",
+    "name": "undo commits a pending note edit before undoing it",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_notes_editing_test.dart",
+    "name": "deleting a note removes its mark and undo restores both",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_notes_editing_test.dart",
+    "name": "the notes pane edits, adds and deletes notes",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "ordinary note fractional image extents survive repeated DOCX saves",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addNote image and style 0 apply as one history step",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addNote image and style 1 apply as one history step",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addNote image and style 2 apply as one history step",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addNote stale completed image has no live package effects",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addNote invalid later image rejects the full research result",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addNote image flow keeps the cross-section selection guard",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addNote image flow keeps the cross-table selection guard",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addNote image flow keeps the cross-field selection guard",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addNote image flow keeps the viewing guard",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addNote image flow keeps the selecting guard",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addNote renders the imported PNG beside its citation",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addNote cancelled staged image leaves no media or preferences",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addAnnotation image and style 0 apply as one history step",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addAnnotation image and style 1 apply as one history step",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addAnnotation image and style 2 apply as one history step",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addAnnotation stale completed image has no live package effects",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addAnnotation invalid later image rejects the full research result",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addAnnotation image flow keeps the cross-section selection guard",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addAnnotation image flow keeps the cross-table selection guard",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addAnnotation image flow keeps the cross-field selection guard",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addAnnotation image flow keeps the viewing guard",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addAnnotation image flow keeps the selecting guard",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addAnnotation renders the imported PNG beside its citation",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart",
+    "name": "addAnnotation cancelled staged image leaves no media or preferences",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "export undo/redo retains covariant owners (false)",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "export undo/redo retains covariant owners (true)",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "export rejects fixed blocks before snapshot rollback can mutate",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "export rejects immutable blocks before snapshot rollback can mutate",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "export rejects fixed inlines before snapshot rollback can mutate",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "export rejects immutable inlines before snapshot rollback can mutate",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "export stays detached until complete and is one undoable change",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "export undo keeps paragraph identity for earlier text undo commands",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "Refresh imports formatted fields atomically with one undo and redo",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "incomplete import cannot replace the original transfer document",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "import undo retains earlier typing and its original paragraph target",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "saved transfer reopens for Refresh and saves active DOCX fields",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "discarding an incomplete export leaves a clean document",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "caret change refuses a pending export atomically",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "composition change refuses a pending export atomically",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "document change refuses a pending export atomically",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "revision change refuses a pending export atomically",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "discarding an incomplete import leaves a clean document",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "caret change refuses a pending import atomically",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "composition change refuses a pending import atomically",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "document change refuses a pending import atomically",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "revision change refuses a pending import atomically",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "transfer documents require Refresh before addEditCitation",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "transfer documents require Refresh before addEditBibliography",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "transfer documents require Refresh before addNote",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "transfer documents require Refresh before addAnnotation",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "transfer documents require Refresh before setDocPrefs",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "transfer documents require Refresh before exportDocument",
+    "result": "passed"
+  },
+  {
+    "path": "/home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart",
+    "name": "transfer documents require Refresh before removeCodes",
+    "result": "passed"
+  }
+]

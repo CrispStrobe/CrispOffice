@@ -1,0 +1,224 @@
+{
+  "captured_at_utc": "2026-11-22T05:28:36.790347+00:00",
+  "worktree": "/workspace/scratch/2437eaf6f35d/quds_mail_intake",
+  "head": "29fc72a0a7cffa7cfed2abdac2a3f82d2ff17f95",
+  "tree": "7fb37ce777d4cb41a34d302fee623b5c66d3e66b",
+  "tracked_worktree_status": "",
+  "sparse_paths": [
+    "packages",
+    "apps",
+    "third_party",
+    "root_files"
+  ],
+  "dependencies": {
+    "argv": [
+      "flutter",
+      "pub",
+      "get",
+      "--offline",
+      "--enforce-lockfile"
+    ],
+    "exit_code": 0,
+    "log_sha256": "8f8eaec35c1eb26e37cc745f3fd799bdceace51af176465fd0709650a1b23f22",
+    "package_config_sha256": "ec6ce99c6a45a428f19b78e335d0ac4d7aecbb2ab430e70affe197662b36862d",
+    "resolved_workspace_packages": [
+      {
+        "name": "enough_mail",
+        "resolved_root": "/workspace/scratch/2437eaf6f35d/quds_mail_intake/third_party/enough_mail"
+      },
+      {
+        "name": "quds_office_suite",
+        "resolved_root": "/workspace/scratch/2437eaf6f35d/quds_mail_intake"
+      },
+      {
+        "name": "quds_mail_core",
+        "resolved_root": "/workspace/scratch/2437eaf6f35d/quds_mail_intake/packages/quds_mail_core"
+      },
+      {
+        "name": "quds_mail_mime",
+        "resolved_root": "/workspace/scratch/2437eaf6f35d/quds_mail_intake/packages/quds_mail_mime"
+      },
+      {
+        "name": "quds_mail_store",
+        "resolved_root": "/workspace/scratch/2437eaf6f35d/quds_mail_intake/packages/quds_mail_store"
+      },
+      {
+        "name": "quds_mail_transport",
+        "resolved_root": "/workspace/scratch/2437eaf6f35d/quds_mail_intake/packages/quds_mail_transport"
+      },
+      {
+        "name": "quds_mail_ui",
+        "resolved_root": "/workspace/scratch/2437eaf6f35d/quds_mail_intake/packages/quds_mail_ui"
+      },
+      {
+        "name": "quds_mail_reader_example",
+        "resolved_root": "/workspace/scratch/2437eaf6f35d/quds_mail_intake/packages/quds_mail_ui/example"
+      },
+      {
+        "name": "legacy_doc_parser",
+        "resolved_root": "/workspace/scratch/2437eaf6f35d/quds_mail_intake/packages/legacy_doc_parser"
+      },
+      {
+        "name": "quds_office_engine",
+        "resolved_root": "/workspace/scratch/2437eaf6f35d/quds_mail_intake/packages/quds_office_engine"
+      },
+      {
+        "name": "quds_proofing_harper",
+        "resolved_root": "/workspace/scratch/2437eaf6f35d/quds_mail_intake/packages/quds_proofing_harper"
+      },
+      {
+        "name": "quds_proofing_gector",
+        "resolved_root": "/workspace/scratch/2437eaf6f35d/quds_mail_intake/packages/quds_proofing_gector"
+      },
+      {
+        "name": "quds_proofing_spacy",
+        "resolved_root": "/workspace/scratch/2437eaf6f35d/quds_mail_intake/packages/quds_proofing_spacy"
+      },
+      {
+        "name": "quds_proofing_hunspell",
+        "resolved_root": "/workspace/scratch/2437eaf6f35d/quds_mail_intake/packages/quds_proofing_hunspell"
+      },
+      {
+        "name": "quds_arabic_morph",
+        "resolved_root": "/workspace/scratch/2437eaf6f35d/quds_mail_intake/packages/quds_arabic_morph"
+      },
+      {
+        "name": "quds_language_id",
+        "resolved_root": "/workspace/scratch/2437eaf6f35d/quds_mail_intake/packages/quds_language_id"
+      },
+      {
+        "name": "quds_office_engine_example",
+        "resolved_root": "/workspace/scratch/2437eaf6f35d/quds_mail_intake/packages/quds_office_engine/example"
+      },
+      {
+        "name": "quds_reports",
+        "resolved_root": "/workspace/scratch/2437eaf6f35d/quds_mail_intake/packages/quds_reports"
+      },
+      {
+        "name": "quds_office_editor",
+        "resolved_root": "/workspace/scratch/2437eaf6f35d/quds_mail_intake/packages/quds_office_editor"
+      },
+      {
+        "name": "quds_office_studio",
+        "resolved_root": "/workspace/scratch/2437eaf6f35d/quds_mail_intake/packages/quds_office_editor/example"
+      },
+      {
+        "name": "quds_report_studio",
+        "resolved_root": "/workspace/scratch/2437eaf6f35d/quds_mail_intake/apps/quds_report_studio"
+      }
+    ]
+  },
+  "runtime": {
+    "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+    "flutter": {
+      "frameworkVersion": "3.47.8",
+      "channel": "stable",
+      "repositoryUrl": "https://github.com/flutter/flutter.git",
+      "frameworkRevision": "737ba8f885dc774b53b442759999a312c9461e4e",
+      "frameworkCommitDate": "2026-10-22 21:37:31 -0700",
+      "engineRevision": "cf636b1dfb818dd6a3ff16e390e93b1a036969c8",
+      "engineCommitDate": "2026-10-23 02:13:38.000Z",
+      "engineContentHash": "dfd2e6cb7d319db05e3bf1503f3e2ac60f6288a2",
+      "engineBuildDate": "2026-10-22 20:34:48.330",
+      "dartSdkVersion": "3.13.7",
+      "devToolsVersion": "2.60.0",
+      "flutterVersion": "3.47.8",
+      "flutterRoot": "/workspace/scratch/2437eaf6f35d/toolchains/flutter"
+    },
+    "dart_binary_sha256": "01e869e4af277734b02ab8898b870c6b00c9bec61bbcf9c923cd14de7ed85fbb",
+    "flutter_tester_sha256": "800f4ca182df7dd2fb46a42dea5d76277b9dbc5e8cd2915e02bcbc978681b45f"
+  },
+  "source_files": [
+    {
+      "path": "pubspec.yaml",
+      "sha256": "453a1f8ab62db1c5577c424b058b50033a8d3b49b99c83862ab58a7e1108f74f",
+      "git_blob": "ba34bf9e2c1b0eb583e5f9e2d9ba9f236a660f96"
+    },
+    {
+      "path": "pubspec.lock",
+      "sha256": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+      "git_blob": "121a4f969c34933bd72f4ccce39bd08b30a4c147"
+    },
+    {
+      "path": "analysis_options.yaml",
+      "sha256": "2605ddd3559825e867cab2f5c4536f4172d6ba3514cb10da19f17d7dbe7179e4",
+      "git_blob": "e40c961c5eda58a8470527fb768f093aa7dbbfff"
+    },
+    {
+      "path": "packages/quds_office_editor/pubspec.yaml",
+      "sha256": "536da824dbe7ade3c70080fb6fd5d507186021ca7052869dc47a41fffd82b272",
+      "git_blob": "cecd56ff9e121d32d165c32d50b76310895058a0"
+    },
+    {
+      "path": "packages/quds_office_editor/example/pubspec.yaml",
+      "sha256": "97671571d22a1358d6be697cd5e63f39d693cd16e47bad9507afe3aa30b29bc9",
+      "git_blob": "83ca72de098a4fccbcfd1ab7a40c0072961a465b"
+    },
+    {
+      "path": "packages/quds_office_engine/pubspec.yaml",
+      "sha256": "225773e48bab7333652a4098e5747f37eab2aac9fc6a14de1e814590ab03fb7a",
+      "git_blob": "2bdff7e5dcac2502253ab190b6e7104c21a3d024"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_cached_mail.dart",
+      "sha256": "39f6288d940de7e1e3aba749d8048379a914acf13c9257c3a9961578d830ed37",
+      "git_blob": "76e563da96210dd58afa09ddf7a55f00395e0021"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_cached_strings.dart",
+      "sha256": "3fb9ed48d6e28a931096763c104f906dc54ccc854f2ed3ac0a5cc72a9a7ba3b7",
+      "git_blob": "beef52c983f58661031443bf1f39bbd084d78585"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_mailbox_session.dart",
+      "sha256": "bb7eaf388795a4e5eddec0c4e9924f9f4853e637e510486afcb46065f2064b4a",
+      "git_blob": "8ce1b9ba955d169a64904103d5849824a43b4a07"
+    },
+    {
+      "path": "packages/quds_office_editor/example/lib/studio_mail_retained_folders.dart",
+      "sha256": "1291c21000e755f155a569530d9b9a32aeca0705f58e1c66d697adaa80a9d59b",
+      "git_blob": "b5200cf942b9abd5c78d001c1b3b45eb7f6834e2"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_retained_folders_test.dart",
+      "sha256": "c1fa24456fcba02a9b2911c0f1d0ffab9e62c5db9f48fe4cb990e38a0a7549ac",
+      "git_blob": "8a092edc487780ce34c9d80343eaad4b7d7df5a6"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_mailbox_sync_session_test.dart",
+      "sha256": "e3226658a4318c98821c40d07f7d0ae47dc05d1f7c27c3764f92d14a15d1e82a",
+      "git_blob": "f93b1d0160beb31082b834fe07a004da3f099c20"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_retained_navigation_test.dart",
+      "sha256": "16a6493dece7fc5e5f4e9ea4beb51bfaa7f6eb75c937f635df72bec54d8b27ee",
+      "git_blob": "411ddc1ed169901c9591103c9854853373977ad6"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_mailbox_session_test.dart",
+      "sha256": "136e25a59dca6376a74ac5a01685dd874aef6155c8316c2611e7d26853ad7bfa",
+      "git_blob": "9324a7723c2ff855385ca56418599971f1f0fcdb"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_cached_mail_test.dart",
+      "sha256": "677c3d5474ebb45029e1fb11aa5d1ba7199dc5ade7459930439fe13bd9a3efd4",
+      "git_blob": "63b79a2de097b71a69d0d6d1e6fbc1e19456ba33"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart",
+      "sha256": "1f11c87296d737a938c812408727727160301e0f759c2de7ac8b9d95395a198f",
+      "git_blob": "3cc6fd15f43d6ee463d5d61cc7556f1698caa3cd"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/studio_shortcut_host_ownership_test.dart",
+      "sha256": "bb13230ee14cb2a32ca98a42f665bbb9d41606e351e15cd6e3369eea13ef74b6",
+      "git_blob": "caea689dc3db6751b206aa7188649cf2a306ec27"
+    },
+    {
+      "path": "packages/quds_office_editor/example/test/suite_workspace_mail_shortcuts_test.dart",
+      "sha256": "4a2439f6d8b6280ca7fccc970f422e4e7bd2b61458c51623108cdd8ced984ad7",
+      "git_blob": "223e9115a5d7057d80c1dc088f7f1cad4ccdb9b0"
+    }
+  ],
+  "scope": "Complete tracked source identity is the recorded Git tree; listed manifests and changed production/executed tests were byte-checked against the exact head. No source edits or tests from the parent worktree."
+}

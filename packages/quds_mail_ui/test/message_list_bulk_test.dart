@@ -4,6 +4,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_mail_core/quds_mail_core.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
 
+const _flagActions = [
+  MailBulkFlagAction.markRead,
+  MailBulkFlagAction.markUnread,
+  MailBulkFlagAction.flag,
+  MailBulkFlagAction.unflag,
+];
+
 String _count(int shown, int loaded) => '$shown of $loaded loaded';
 String _selectedDe(int count) => '$count ausgewählt';
 String _selectedAr(int count) => '$count محددة';
@@ -162,7 +169,7 @@ void main() {
     expect(actions, 0);
   });
 
-  for (final action in MailBulkFlagAction.values) {
+  for (final action in _flagActions) {
     testWidgets('$action freezes visible order and clears before callback', (
       tester,
     ) async {
@@ -294,10 +301,7 @@ void main() {
         tester.widget<TextField>(_key('mail-list-search')).controller!.text,
         'project',
       );
-      expect(
-        find.byIcon(Icons.sort),
-        findsOneWidget,
-      );
+      expect(find.byIcon(Icons.sort), findsOneWidget);
       expect(_check('b'), findsNothing);
     },
   );

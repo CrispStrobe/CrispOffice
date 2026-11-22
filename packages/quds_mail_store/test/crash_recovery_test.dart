@@ -95,6 +95,7 @@ Future<void> _seed(Directory directory) async {
 Future<void> _killAtBarrier(
   Directory directory,
   fixture.TransactionCrashScenario scenario,
+  MailBulkFlagAction action,
 ) async {
   final library = await Isolate.resolvePackageUri(
     Uri.parse('package:quds_mail_store/quds_mail_store_native.dart'),
@@ -108,6 +109,7 @@ Future<void> _killAtBarrier(
     p.join(package.path, 'tool/transaction_crash_fixture.dart'),
     directory.path,
     scenario.name,
+    action.name,
   ], workingDirectory: package.path);
   final errors = StringBuffer();
   final output = <String>[];
@@ -235,16 +237,27 @@ Future<void> _checkBaseline(
 }
 
 void main() {
-  for (final scenario in fixture.TransactionCrashScenario.values) {
+  for (final (scenario, action) in [
+    for (final scenario in fixture.TransactionCrashScenario.values)
+      for (final action
+          in scenario.name.contains('Flag')
+              ? [
+                  MailBulkFlagAction.markRead,
+                  MailBulkFlagAction.move,
+                  MailBulkFlagAction.delete,
+                ]
+              : [MailBulkFlagAction.markRead])
+        (scenario, action),
+  ]) {
     test(
-      'SIGKILL ${scenario.name} preserves the correct durable transaction boundary',
+      'SIGKILL ${scenario.name} ${action.name} preserves the correct durable transaction boundary',
       () async {
         final directory = await Directory.systemTemp.createTemp(
           'mail-transaction-crash-',
         );
         try {
           await _seed(directory);
-          await _killAtBarrier(directory, scenario);
+          await _killAtBarrier(directory, scenario, action);
           var store = await _open(directory);
           try {
             await _checkBaseline(
@@ -253,10 +266,13 @@ void main() {
                   scenario ==
                   fixture.TransactionCrashScenario.committedMailboxView,
               confirmedFlag:
-                  scenario ==
-                      fixture.TransactionCrashScenario.committedFlagReceipt ||
-                  scenario ==
-                      fixture.TransactionCrashScenario.committedFlagFinish,
+                  action.isFlagAction &&
+                  (scenario ==
+                          fixture
+                              .TransactionCrashScenario
+                              .committedFlagReceipt ||
+                      scenario ==
+                          fixture.TransactionCrashScenario.committedFlagFinish),
             );
             if (scenario.name.contains('Flag')) {
               final batch = _value(
@@ -281,7 +297,16 @@ void main() {
                         fixture
                             .TransactionCrashScenario
                             .beforeFlagReceiptCommit;
-                expect(batch!.report.confirmedCount, acknowledged ? 1 : 0);
+                expect(batch!.report.plan.action, action);
+                expect(
+                  batch.report.plan.destination,
+                  fixture.crashFlagPlan(action: action).destination,
+                );
+                expect(
+                  batch.summary.destination,
+                  batch.report.plan.destination,
+                );
+                expect(batch.report.confirmedCount, acknowledged ? 1 : 0);
                 expect(batch.report.uncertainCount, dispatched ? 1 : 0);
                 expect(
                   batch.report.unattemptedCount,

@@ -252,12 +252,14 @@ void main() {
     String query = '',
     List<MailLocalAccountRecord>? accounts,
     StudioMailDraftStoreFactory? factory,
+    List<MailSavedHeaderSearchFolder>? folderScopes,
   }) async {
     final value = StudioMailCachedSearchSession(
       query: query,
       accounts: accounts ?? await directory.load(),
       directory: directory,
       openStore: factory ?? open,
+      folderScopes: folderScopes,
       isCurrent: () => current,
     );
     sessions.add(value);
@@ -329,6 +331,88 @@ void main() {
         expect(message!.body.plainText, contains(hit.account.sender));
         expect(message.remoteIdentity!.account.value, hit.account.id);
       }
+    },
+  );
+
+  test(
+    'native folder scope is exact and missing folders do not widen',
+    () async {
+      final identity = _identity('imap', 'folder-scope@example.test');
+      await seed(identity, [_header(identity, 1), _header(identity, 2)]);
+      final folders = [
+        MailSavedHeaderSearchFolder(
+          accountId: identity.account.value,
+          mailboxId: 'inbox',
+        ),
+      ];
+      final exact = await session(folderScopes: folders);
+      final hits = await exact.nextPage();
+      expect(hits, hasLength(2));
+      expect(
+        hits.map((hit) => (hit.result.header.remote as MailImapIdentity).uid),
+        [1, 2],
+      );
+      expect(exact.coverage.single.complete, isTrue);
+
+      final missing = await session(
+        folderScopes: [
+          MailSavedHeaderSearchFolder(
+            accountId: identity.account.value,
+            mailboxId: 'missing',
+          ),
+        ],
+      );
+      expect(await missing.nextPage(), isEmpty);
+      expect(missing.coverage.single.problem, MailProblemCode.unavailable);
+      expect(missing.coverage.single.complete, isFalse);
+      expect(missing.hasMore, isFalse);
+    },
+  );
+
+  test('old host adapter cannot silently broaden a folder search', () async {
+    final identity = _identity('imap', 'old-adapter@example.test');
+    await seed(identity, [_header(identity, 1)]);
+    final search = await session(
+      folderScopes: [
+        MailSavedHeaderSearchFolder(
+          accountId: identity.account.value,
+          mailboxId: 'inbox',
+        ),
+      ],
+      factory: (account) async {
+        final owner = await open(account) as _Owner;
+        owner.mailboxOverride = _SearchMailbox(
+          owner.mailboxStore,
+          (page, _) => page,
+        );
+        return owner;
+      },
+    );
+    expect(await search.nextPage(), isEmpty);
+    expect(search.coverage.single.problem, MailProblemCode.unsupported);
+    expect(search.coverage.single.complete, isFalse);
+  });
+
+  test(
+    'folder scopes require one exact mailbox per selected account',
+    () async {
+      final identity = _identity('imap', 'validation@example.test');
+      await seed(identity, [_header(identity, 1)]);
+      for (final invalid in [
+        <MailSavedHeaderSearchFolder>[],
+        [
+          MailSavedHeaderSearchFolder(
+            accountId: 'some-other-account',
+            mailboxId: 'inbox',
+          ),
+        ],
+      ]) {
+        await expectLater(
+          session(folderScopes: invalid),
+          throwsA(_problem(MailProblemCode.invalidInput)),
+        );
+      }
+      expect(owners, isEmpty);
     },
   );
 

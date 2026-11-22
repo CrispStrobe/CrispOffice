@@ -1,0 +1,33 @@
+{
+  "scope": "One regular workspace diagnostic case; not final integrated validation.",
+  "argv": [
+    "/workspace/scratch/2437eaf6f35d/toolchains/flutter/bin/flutter",
+    "--no-version-check",
+    "--suppress-analytics",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "json",
+    "--name",
+    "^regular references workspace supports native alert",
+    "test/word_zotero_field_context_dialog_test.dart"
+  ],
+  "started_utc": "2026-11-22T05:25:09.814185+00:00",
+  "finished_utc": "2026-11-22T05:25:18.863923+00:00",
+  "exit_code": 1,
+  "source_before": {
+    "packages/quds_office_editor/test/word_zotero_field_context_dialog_test.dart": "5e4d8b3203d3a216d74853733e016f7e8052b77b679acf2ad6888014800ca482",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_field_context.dart": "cf794597e59b4ea5447b3656deab56b2a1d2b03a69b7e12655d581106d5704f3",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart": "0e576b72d5f564c8114ef59ffc4035dccd6f3a3175c66a9f3ff287dc2debaaed",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "539f10782611a7bbc3f994727d6d75dbb58ed0dfb97a5af5c8ef6166ab12b47c",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart": "b509530d510f3b3c256e07d7ed16dc0a0a21864bcd56a50d65a43d6d765dab74"
+  },
+  "source_after": {
+    "packages/quds_office_editor/test/word_zotero_field_context_dialog_test.dart": "5e4d8b3203d3a216d74853733e016f7e8052b77b679acf2ad6888014800ca482",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_field_context.dart": "cf794597e59b4ea5447b3656deab56b2a1d2b03a69b7e12655d581106d5704f3",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart": "0e576b72d5f564c8114ef59ffc4035dccd6f3a3175c66a9f3ff287dc2debaaed",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "539f10782611a7bbc3f994727d6d75dbb58ed0dfb97a5af5c8ef6166ab12b47c",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart": "b509530d510f3b3c256e07d7ed16dc0a0a21864bcd56a50d65a43d6d765dab74"
+  },
+  "sources_unchanged": true
+}

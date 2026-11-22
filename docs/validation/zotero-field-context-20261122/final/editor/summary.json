@@ -1,0 +1,20 @@
+{
+  "finished_at_utc": "2026-11-22T05:41:08.862136+00:00",
+  "head_before": "67677aa7e16ea5e4eff3bcd06ffa6e27c5907246",
+  "head_after": "67677aa7e16ea5e4eff3bcd06ffa6e27c5907246",
+  "tree_before": "9409113e6440e62f73c3db00ab84b4505bc3bcd2",
+  "tree_after": "9409113e6440e62f73c3db00ab84b4505bc3bcd2",
+  "source_file_count": 1086,
+  "source_hashes_unchanged": true,
+  "source_changes_during_gate": [],
+  "editor_tests_passed": 309,
+  "studio_tests_passed": 55,
+  "strict_analysis_exit_code": 0,
+  "all_commands_succeeded": true,
+  "scope_note": "These counts are final integrated-source executions. Do not add checkpoint or rerun counts. The 21 new dialog tests and engine/Word gates are owned separately.",
+  "runs": {
+    "editor": "editor.run.json",
+    "studio": "studio.run.json",
+    "analyze": "analyze.run.json"
+  }
+}

@@ -1,0 +1,191 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "708bf4a6cf2651a2f08f900631119f357aef4611",
+  "startedAt": "2026-11-22T06:01:41.149393+00:00",
+  "completedAt": "2026-11-22T06:06:51.180809+00:00",
+  "durationSeconds": 310.032,
+  "exitCode": 1,
+  "selectedSuiteCount": 149,
+  "loadedSuiteCount": 149,
+  "visibleTests": {
+    "passed": 7218,
+    "failed": 6,
+    "skipped": 0
+  },
+  "hiddenEvents": {
+    "passed": 213,
+    "failed": 0,
+    "skipped": 0
+  },
+  "eventCounts": {
+    "start": 1,
+    "suite": 149,
+    "testStart": 7437,
+    "allSuites": 1,
+    "testDone": 7437,
+    "group": 282,
+    "error": 7,
+    "done": 1
+  },
+  "nonJsonLines": 0,
+  "doneEvents": [
+    {
+      "success": false,
+      "type": "done",
+      "time": 305779
+    }
+  ],
+  "failures": [
+    {
+      "event": {
+        "testID": 400,
+        "result": "error",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 20604
+      },
+      "test": {
+        "id": 400,
+        "name": "exact 18.0 points reaches saved native line-box layout",
+        "suiteID": 329,
+        "groupIDs": [
+          351
+        ],
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "line": 351,
+        "column": 5,
+        "url": "file:///workspace/scratch/485b85db20be/vba_test_workspace/packages/quds_office_engine/test/office_macro_word_line_spacing_test.dart"
+      }
+    },
+    {
+      "event": {
+        "testID": 401,
+        "result": "error",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 20607
+      },
+      "test": {
+        "id": 401,
+        "name": "atLeast 8.0 points reaches saved native line-box layout",
+        "suiteID": 329,
+        "groupIDs": [
+          351
+        ],
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "line": 351,
+        "column": 5,
+        "url": "file:///workspace/scratch/485b85db20be/vba_test_workspace/packages/quds_office_engine/test/office_macro_word_line_spacing_test.dart"
+      }
+    },
+    {
+      "event": {
+        "testID": 402,
+        "result": "error",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 20614
+      },
+      "test": {
+        "id": 402,
+        "name": "atLeast 20.0 points reaches saved native line-box layout",
+        "suiteID": 329,
+        "groupIDs": [
+          351
+        ],
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "line": 351,
+        "column": 5,
+        "url": "file:///workspace/scratch/485b85db20be/vba_test_workspace/packages/quds_office_engine/test/office_macro_word_line_spacing_test.dart"
+      }
+    },
+    {
+      "event": {
+        "testID": 403,
+        "result": "error",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 20618
+      },
+      "test": {
+        "id": 403,
+        "name": "multiple 18.0 points reaches saved native line-box layout",
+        "suiteID": 329,
+        "groupIDs": [
+          351
+        ],
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "line": 351,
+        "column": 5,
+        "url": "file:///workspace/scratch/485b85db20be/vba_test_workspace/packages/quds_office_engine/test/office_macro_word_line_spacing_test.dart"
+      }
+    },
+    {
+      "event": {
+        "testID": 6575,
+        "result": "error",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 237976
+      },
+      "test": {
+        "id": 6575,
+        "name": "native recording excludes failures and replays exact selectors",
+        "suiteID": 6325,
+        "groupIDs": [
+          6328
+        ],
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "line": 440,
+        "column": 3,
+        "url": "file:///workspace/scratch/485b85db20be/vba_test_workspace/packages/quds_office_engine/test/office_vba_word_sections_integration_test.dart"
+      }
+    },
+    {
+      "event": {
+        "testID": 6557,
+        "result": "failure",
+        "skipped": false,
+        "hidden": false,
+        "type": "testDone",
+        "time": 238076
+      },
+      "test": {
+        "id": 6557,
+        "name": "CLI validates and runs BAS while retaining its original DOCM",
+        "suiteID": 6258,
+        "groupIDs": [
+          6280
+        ],
+        "metadata": {
+          "skip": false,
+          "skipReason": null
+        },
+        "line": 183,
+        "column": 3,
+        "url": "file:///workspace/scratch/485b85db20be/vba_test_workspace/packages/quds_office_engine/test/office_vba_word_proofing_integration_test.dart"
+      }
+    }
+  ],
+  "errorEventCount": 7
+}

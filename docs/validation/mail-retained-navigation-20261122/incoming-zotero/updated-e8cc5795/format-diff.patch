@@ -1,0 +1,9 @@
+diff --git a/packages/quds_office_editor/lib/src/embed/office_controller.dart b/packages/quds_office_editor/lib/src/embed/office_controller.dart
+index aa4d2b74..65ad3f42 100644
+--- a/packages/quds_office_editor/lib/src/embed/office_controller.dart
++++ b/packages/quds_office_editor/lib/src/embed/office_controller.dart
+@@ -16578,2 +16578,2 @@ final class WordZoteroTransaction {
+-          ? _controller.zoteroFieldContext
+-          : null;
++      ? _controller.zoteroFieldContext
++      : null;

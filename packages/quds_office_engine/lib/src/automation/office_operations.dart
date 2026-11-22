@@ -500,10 +500,12 @@ abstract final class OfficeOperationCatalog {
     OfficeMacroAssetResolver? resolveAsset,
   }) {
     final values = _operationValues(document, tool, arguments);
-    // This new operation accepts public in-memory models as well as detached
+    // Cell operations accept public in-memory models as well as detached
     // package sessions. Reject shared/cyclic ownership before the ordinary
     // document admission walks the tree. Other tools keep their contracts.
-    if (document is WmlDocument && values['op'] == 'tableCellRangeText') {
+    if (document is WmlDocument &&
+        (values['op'] == 'tableCellRangeText' ||
+            values['story'] == 'tableCell')) {
       checkWordTableCellRangeOwnership(document);
     }
     assertEditable(document);

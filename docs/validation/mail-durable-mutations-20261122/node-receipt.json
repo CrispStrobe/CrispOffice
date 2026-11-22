@@ -1,0 +1,255 @@
+{
+  "status": "PASS",
+  "commit": "cd6aa8044a7c6fb0738758a4038cdbd626b5721d",
+  "started_utc": "2026-11-22T06:05:51.628392+00:00",
+  "finished_utc": "2026-11-22T06:09:18.409103+00:00",
+  "dart_version": "Dart SDK version: 3.13.7 (stable) (Thu Oct 22 14:28:57 2026 -0700) on \"linux_x64\"",
+  "node_version": "v24.22.3",
+  "node_path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+  "source_file_count": 146,
+  "source_unchanged": true,
+  "source_hashes_file": "source-hashes.json",
+  "source_hashes_file_sha256": "f9ac72a7d8835dbc56ea08fcaf0a7910d06f7cbaa7370df4b096cee52abc5721",
+  "source_manifest_sha256_without_newline": "565caffec3f12b37b23545bb41a494b3cc6eb39f6bab3b809c9fcabad6b5f9a7",
+  "total_node_tests_passed": 573,
+  "membership_node_tests": {
+    "passed": 14,
+    "suite": "test/membership_commands_test.dart",
+    "cases": [
+      {
+        "name": "move destination is required, account-owned and different from source",
+        "suite_id": 174,
+        "result": "success",
+        "skipped": false,
+        "hidden": false
+      },
+      {
+        "name": "restored move evidence cannot substitute destination or operation kind",
+        "suite_id": 174,
+        "result": "success",
+        "skipped": false,
+        "hidden": false
+      },
+      {
+        "name": "move journal failure=null preserves dispatch ordering",
+        "suite_id": 174,
+        "result": "success",
+        "skipped": false,
+        "hidden": false
+      },
+      {
+        "name": "move journal failure=prepare preserves dispatch ordering",
+        "suite_id": 174,
+        "result": "success",
+        "skipped": false,
+        "hidden": false
+      },
+      {
+        "name": "move journal failure=begin preserves dispatch ordering",
+        "suite_id": 174,
+        "result": "success",
+        "skipped": false,
+        "hidden": false
+      },
+      {
+        "name": "move journal failure=record preserves dispatch ordering",
+        "suite_id": 174,
+        "result": "success",
+        "skipped": false,
+        "hidden": false
+      },
+      {
+        "name": "move journal failure=finish preserves dispatch ordering",
+        "suite_id": 174,
+        "result": "success",
+        "skipped": false,
+        "hidden": false
+      },
+      {
+        "name": "move known rejection does not imply a membership change",
+        "suite_id": 174,
+        "result": "success",
+        "skipped": false,
+        "hidden": false
+      },
+      {
+        "name": "delete journal failure=null preserves dispatch ordering",
+        "suite_id": 174,
+        "result": "success",
+        "skipped": false,
+        "hidden": false
+      },
+      {
+        "name": "delete journal failure=prepare preserves dispatch ordering",
+        "suite_id": 174,
+        "result": "success",
+        "skipped": false,
+        "hidden": false
+      },
+      {
+        "name": "delete journal failure=begin preserves dispatch ordering",
+        "suite_id": 174,
+        "result": "success",
+        "skipped": false,
+        "hidden": false
+      },
+      {
+        "name": "delete journal failure=record preserves dispatch ordering",
+        "suite_id": 174,
+        "result": "success",
+        "skipped": false,
+        "hidden": false
+      },
+      {
+        "name": "delete journal failure=finish preserves dispatch ordering",
+        "suite_id": 174,
+        "result": "success",
+        "skipped": false,
+        "hidden": false
+      },
+      {
+        "name": "delete known rejection does not imply a membership change",
+        "suite_id": 174,
+        "result": "success",
+        "skipped": false,
+        "hidden": false
+      }
+    ]
+  },
+  "checks": [
+    {
+      "name": "core-node",
+      "status": "PASS",
+      "argv": [
+        "/workspace/scratch/a07ecb0743c3/mail-runtime/bin/dart",
+        "--disable-dart-dev",
+        "--packages=/workspace/scratch/a07ecb0743c3/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/a07ecb0743c3/mail-runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--platform=node",
+        "--compiler=dart2js",
+        "--concurrency=2",
+        "--reporter=json"
+      ],
+      "cwd": "/workspace/scratch/a07ecb0743c3/quds_office_suite/packages/quds_mail_core",
+      "exit_code": 0,
+      "log": "/workspace/scratch/a07ecb0743c3/mail-runtime/logs/membership-node/core-node.jsonl",
+      "stderr": "/workspace/scratch/a07ecb0743c3/mail-runtime/logs/membership-node/core-node.stderr",
+      "log_sha256": "14397e0fb4dfd3d5486e4098d6136c14dff40c5354e1b91daebfc2d233446f70",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests": {
+        "passed": 521,
+        "skipped": 0,
+        "failed": 0,
+        "errors": 0,
+        "all_failed": 0,
+        "all_skipped": 0,
+        "excluded_failed": 0,
+        "excluded_skipped": 0,
+        "terminal_success": true,
+        "start_events": 1,
+        "terminal_events": 1,
+        "incomplete": 0,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "valid": true
+      },
+      "suite_count": 23,
+      "platforms": [
+        "node"
+      ]
+    },
+    {
+      "name": "store-portable-node",
+      "status": "PASS",
+      "argv": [
+        "/workspace/scratch/a07ecb0743c3/mail-runtime/bin/dart",
+        "--disable-dart-dev",
+        "--packages=/workspace/scratch/a07ecb0743c3/quds_office_suite/.dart_tool/package_config.json",
+        "/workspace/scratch/a07ecb0743c3/mail-runtime/pub-cache/hosted/pub.dev/test-1.31.1/bin/test.dart",
+        "--platform=node",
+        "--compiler=dart2js",
+        "--concurrency=2",
+        "--reporter=json",
+        "test/codec_test.dart",
+        "test/platform_configuration_test.dart",
+        "test/browser_problem_test.dart",
+        "test/archive_export_manifest_test.dart"
+      ],
+      "cwd": "/workspace/scratch/a07ecb0743c3/quds_office_suite/packages/quds_mail_store",
+      "exit_code": 0,
+      "log": "/workspace/scratch/a07ecb0743c3/mail-runtime/logs/membership-node/store-portable-node.jsonl",
+      "stderr": "/workspace/scratch/a07ecb0743c3/mail-runtime/logs/membership-node/store-portable-node.stderr",
+      "log_sha256": "bd129b7cafb9b6e51630794a0826e0703ebb302cf0b5674f6288d29588bd4385",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "tests": {
+        "passed": 52,
+        "skipped": 0,
+        "failed": 0,
+        "errors": 0,
+        "all_failed": 0,
+        "all_skipped": 0,
+        "excluded_failed": 0,
+        "excluded_skipped": 0,
+        "terminal_success": true,
+        "start_events": 1,
+        "terminal_events": 1,
+        "incomplete": 0,
+        "protocol_errors": 0,
+        "protocol_issues": [],
+        "valid": true
+      },
+      "suite_count": 4,
+      "platforms": [
+        "node"
+      ]
+    },
+    {
+      "name": "store-browser-entry",
+      "status": "PASS",
+      "argv": [
+        "/workspace/scratch/a07ecb0743c3/mail-runtime/bin/dart",
+        "compile",
+        "js",
+        "tool/browser_compile_probe.dart",
+        "-o",
+        "/workspace/scratch/a07ecb0743c3/mail-runtime/logs/membership-node/store-browser-entry.js"
+      ],
+      "cwd": "/workspace/scratch/a07ecb0743c3/quds_office_suite/packages/quds_mail_store",
+      "exit_code": 0,
+      "log": "/workspace/scratch/a07ecb0743c3/mail-runtime/logs/membership-node/store-browser-entry.log",
+      "stderr": "/workspace/scratch/a07ecb0743c3/mail-runtime/logs/membership-node/store-browser-entry.stderr",
+      "log_sha256": "b367b817afebc5fcf6da70c4b715089b0ff99d45911908e7628385e403228504",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact": "/workspace/scratch/a07ecb0743c3/mail-runtime/logs/membership-node/store-browser-entry.js",
+      "artifact_sha256": "4c7a62b38a899c51f1146f722ce118673b3248fc6e4d84e8d1f7230c0ee78246"
+    },
+    {
+      "name": "store-browser-worker",
+      "status": "PASS",
+      "argv": [
+        "/workspace/scratch/a07ecb0743c3/mail-runtime/bin/dart",
+        "compile",
+        "js",
+        "tool/mail_store_worker.dart",
+        "-o",
+        "/workspace/scratch/a07ecb0743c3/mail-runtime/logs/membership-node/store-browser-worker.js"
+      ],
+      "cwd": "/workspace/scratch/a07ecb0743c3/quds_office_suite/packages/quds_mail_store",
+      "exit_code": 0,
+      "log": "/workspace/scratch/a07ecb0743c3/mail-runtime/logs/membership-node/store-browser-worker.log",
+      "stderr": "/workspace/scratch/a07ecb0743c3/mail-runtime/logs/membership-node/store-browser-worker.stderr",
+      "log_sha256": "c894867faa6692e74c5624cf8e0a9031a3eca8591b57cc52ffbc11f6e83cf88a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "artifact": "/workspace/scratch/a07ecb0743c3/mail-runtime/logs/membership-node/store-browser-worker.js",
+      "artifact_sha256": "9c06d15d9a5229db0cf88a503729b8868728d646d2ac47c35d5c638dcc8541d7"
+    }
+  ],
+  "browser_runtime": "NOT RUN; Node executes compiled portable logic, not browser storage persistence.",
+  "excluded_vm_only": [
+    "membership_journal_test.dart",
+    "membership_journal_migration_test.dart",
+    "flag_journal_test.dart",
+    "flag_reconciliation_test.dart"
+  ],
+  "github_actions": "NOT USED"
+}

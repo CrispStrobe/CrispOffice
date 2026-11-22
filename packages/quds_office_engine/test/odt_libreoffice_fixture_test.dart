@@ -485,24 +485,6 @@ void main() {
       ),
       reason: 'grid',
     ),
-    (
-      name: 'footnote activates the native separator layout',
-      bytes: () => _rewriteNative(
-        // The original LibreOffice producer and zero-based note offset are
-        // qualified together. Keep them intact so this synthetic control
-        // specifically reaches the unsupported active separator layout.
-        content: (xml) => _replaceOnce(
-          xml,
-          'Research ',
-          'Research <text:note text:id="synthetic-note" '
-              'text:note-class="footnote"><text:note-citation>1'
-              '</text:note-citation><text:note-body>'
-              '<text:p text:style-name="P1">Authored note.</text:p>'
-              '</text:note-body></text:note>',
-        ),
-      ),
-      reason: 'footnote|separator',
-    ),
   ];
   for (final control in refusals) {
     test(control.name, () async {

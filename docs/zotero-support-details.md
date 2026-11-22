@@ -570,6 +570,55 @@ The separate **Document → Zotero bibliography** API preview workflow retains
 its single-paragraph review contract, described below. Use the native controls
 above for document-wide bibliography paragraph layout.
 
+### Damaged native reference metadata
+
+Recognized Zotero fields with complete structural ownership can now enter a
+native transaction even when a citation's JSON or citation schema is invalid,
+or a bibliography's JSON cannot be decoded. Citation replacement remains
+limited to one supported paragraph of ordinary result runs. Multipart
+bibliographies must own complete, contiguous entry paragraphs in one actual
+block container. The relaxed metadata precondition does not relax the
+structural replacement contract.
+
+The native adapter passes the damaged payload to Zotero without inventing
+missing JSON, source identities or display text. Zotero can select the field
+and show its repair prompt; Quds supplies the validated original-source
+highlight, excerpt and location, identifying the damaged metadata. All native
+callbacks remain detached. The original instruction, rich cached text,
+document preferences and writing position stay intact until the operation
+completes and passes the current-target checks.
+
+Zotero's citation repair may temporarily set an empty citation containing
+`citationItems: []` and `properties: {}`. Quds accepts that bounded transient
+reset for the damaged citation, but never publishes it as an active field.
+Every remaining active field must have valid final metadata before completion;
+otherwise the operation refuses without applying its staged changes. A repaired
+citation or bibliography is committed as one undo step, with DOCX save/reopen
+and undo/redo retaining the corresponding active or original damaged field.
+
+The protocol callbacks have distinct meanings: `Field.removeCode` preserves
+the cached text, while `Field.delete` removes the field and its cached result.
+Quds does not reinterpret a native **No** response as an unlink request. Zotero
+versions can request deletion in corrupt-citation handling. To retain the
+wording deliberately, use Quds' per-field **Convert to text (undoable)** action
+or **Convert to text…** in the current-reference controls. Damaged metadata
+requires confirmation; Cancel adds no undo history. The conversion preserves
+visible text and character/paragraph formatting, and undo restores the exact
+original field. Saving and reopening the converted file leaves ordinary text.
+The document-wide **Unlink all citations…** action retains its existing
+all-or-nothing guard against malformed fields.
+
+Recovery requires an editable document and exclusive native ownership. Locked,
+nested or opaque packets, incomplete field boundaries, cross-paragraph
+citations, cross-owner bibliography ranges, shared paragraph/result objects,
+and unsupported stories remain refused. Structural damage is preserved rather
+than guessed into an editable range. Stale document, selection, protection or
+ownership changes invalidate the staged operation. The
+[recovery implementation and validation record](validation/zotero-field-recovery-20261122/README.md)
+documents local protocol, controller, widget and persistence coverage. It does
+not establish an installed Zotero/Word/LibreOffice round trip or complete plugin
+parity.
+
 ### Apply, cancel and undo
 
 Zotero commands work on a detached transaction. No document changes are applied
@@ -601,12 +650,13 @@ trying again. The desktop window can wait up to ten minutes for a native
 dialog; ordinary catalog requests retain their shorter timeout.
 
 Native processing refuses a protected document, active Track changes,
-unresolved revisions, locked/nested/malformed Zotero fields, cross-paragraph
-citations or incomplete bibliography ranges, and citations in unsupported
-stories such as headers, footers, comments and
-text boxes. Resolve those conditions first. This avoids processing an
-incomplete citation sequence. The session is bounded to 10,000 fields, 100,000
-body paragraphs, 20,000 commands and 8 MiB command payloads.
+unresolved revisions, locked/nested/opaque or structurally incomplete Zotero
+fields, cross-paragraph citations or incomplete bibliography ranges, and
+citations in unsupported stories such as headers, footers, comments and text
+boxes. Resolve those conditions first. This avoids processing an
+incomplete citation sequence. Damaged metadata in complete, safely owned fields
+uses the bounded native recovery path above. The session is bounded to 10,000
+fields, 100,000 body paragraphs, 20,000 commands and 8 MiB command payloads.
 
 The 16 November feature checkpoint passed local protocol, engine, controller,
 dialog, Studio transport and typography/PDF qualification. Running Zotero 10.0.8
@@ -1153,6 +1203,7 @@ document tools above use the separate HTTP Citing Protocol.
 | Basic bibliography | Sorted, deduplicated entries from embedded source snapshots | Useful offline, without complete CSL formatting |
 | Refresh | Fetch metadata for at most 1,000 distinct linked sources in verified batches of at most 50 per library, and atomically refresh Quds basic author–year citations | Local identities require the matching desktop connection; imported/custom style caches are not automatically replaced |
 | Existing DOCX fields | Preserve Zotero codes, unknown JSON members, source data and rich cached text, including multi-run simple fields | Nested, locked and opaque replacement is refused; multi-paragraph replacement is limited to complete native bibliography ranges |
+| Damaged native reference metadata | Native repair of complete citation packets and owned bibliography ranges; original-source prompt context; confirmed per-field conversion to ordinary text with undo and DOCX persistence | Final active metadata must validate; incomplete, nested, locked, opaque, shared or unsupported structural owners remain refused; actual installed-plugin acceptance remains separate |
 | Native Zotero document preferences | Read and write Zotero's XML/JSON preferences in chunked `ZOTERO_PREF_*` custom properties; translate native `Field` and wire `Http` types | Unknown preferences and unrelated properties are retained; malformed, duplicate, incomplete or ambiguously owned data is refused |
 | Document transfer | Native export/import callbacks, temporary metadata hyperlinks, DOCX save/reopen and ODT carrier export; native reformatting before applying an import | The qualified incoming carrier route uses DOCX; direct native ODT conversion has the separate envelope below; installed-plugin acceptance remains open |
 | Native ODT import | Supported paragraphs/styles, external links, authored notes, simple lists and supported merged/nested tables become an editable Word document; independent script formatting in retained LibreOffice prose; canonical Zotero citations/bibliographies and preferences remain active through DOCX saves | All-or-nothing bounded conversion; unsupported used structure/formatting and active content-sensitive defaults refuse |
@@ -1278,6 +1329,14 @@ for the active body/Notes caret or a selection confined to one paragraph. Hosts 
 commands) to begin that command immediately with their local transport.
 Live field handles must be
 re-inspected after a mutation or history operation.
+
+`canEditZoteroFieldNatively(field)` is a structural availability hint for native
+editing or damaged-metadata recovery. It is not a mutation authorization or a
+replacement for current document ownership checks. Native transactions
+revalidate their complete field inventory; direct `unlinkZoteroField` recovery
+also checks complete packets and exclusive supported ownership before using
+the engine's native unlink path. The basic editing APIs and
+`WmlZoteroField.canEdit` continue to require valid metadata.
 
 `ZoteroClient.itemChildren(library, parentKey)` returns a validated, paginated
 read-only list of direct child notes and attachments, without CSL rendering or
@@ -1672,17 +1731,20 @@ identifies its exact bytes and distinguishes it from the synthetic Zotero field
 extension. Supported default settings are resolved after inheritance; dormant
 Asian typography requires non-Asian current text and known supported break
 languages. Active Asian typography, nonstandard default tab spacing used by
-actual tabs, an active page grid and a used custom footnote separator still
-refuse explicitly.
+actual tabs, an active page grid and unsupported active footnote separator
+styles still refuse explicitly.
 
 Editable Zotero ODT export preserves fixed table widths with left, center or
 right alignment. This prevents LibreOffice from expanding those tables to fill
 page margins. Returned table-only, bibliography and endnote-only documents are
 checked independently through native reopening and further saves in the
 [round-trip work record](validation/zotero-odt-roundtrip-20261121/README.md).
-Actual footnotes using a LibreOffice separator remain outside the reader's
-current formatting subset; accepting the note-numbering metadata does not
-remove that layout restriction.
+The [active-separator continuation](validation/zotero-footnote-separators-20261121/README.md)
+also opens supported solid or hidden LibreOffice footnote separators. Their
+color, relative width, physical alignment, independent gaps and nominal
+thickness remain part of the document, with matching pagination and editor/PDF
+rendering on ordinary and continuation pages. Hidden rules still reserve their
+nominal thickness. Supported settings survive removal of the final footnote.
 
 Complete uniform DOCX table margins, including zero, survive intervening saves
 and supported table-style inheritance. Unsupported imported margin forms remain
@@ -1704,10 +1766,16 @@ file compatibility, a lossless native ODT editing round trip, full plugin parity
 and installed Zotero acceptance remain separate work. The original ODT bytes
 are unchanged by either successful or failed conversion.
 
-The next dedicated note-formatting milestone is a native footnote-separator
-model, matching pagination/rendering and interoperable DOCX/ODT mapping before
-admitting active LibreOffice separators. Actual installed Zotero workflows in
-Word and supported LibreOffice releases still require separate validation.
+Direct editable ODT saves preserve the tested separator geometry through the
+identified LibreOffice converter and subsequent Quds refresh/save/reopen.
+Quds also preserves a bounded canonical representation through its own DOCX
+saves. LibreOffice normalizes custom DOCX separator paragraphs, so that route
+does not yet preserve arbitrary separator appearance. Keep the source ODT and
+use **Export Zotero ODT** for the qualified direct ODT exchange. Native DOCX
+spacing/indents round to 0.05 points and line thickness to eighths of a point;
+the supported nonzero thickness is 0.25–12 points, with uniform body width.
+Installed Word rendering and actual Zotero workflows in Word and supported
+LibreOffice releases still require separate validation.
 
 Engine hosts can explicitly convert and save supported input:
 

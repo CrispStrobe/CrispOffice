@@ -1,0 +1,2 @@
+docs/validation/zotero-field-context-20261122/checks/controller/development-first-paint-geometry-failure.txt:45: trailing whitespace.
++  

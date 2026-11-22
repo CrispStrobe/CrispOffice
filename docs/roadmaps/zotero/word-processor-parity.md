@@ -42,14 +42,17 @@ results retain their original source and platform attribution.
 | Add/edit citation | Native Zotero picker, selected catalog sources, locators, prefixes/suffixes, multiple items, body and authored-note caret | Unsupported stories and structural ranges remain guarded |
 | Document preferences | Native style, locale and inline/footnote/endnote preferences stored in the document | Conversion refuses authored notes whose extra content would be lost |
 | Refresh | Complete supported document sequence sent to Zotero's processor, including note order, numeric renumbering, disambiguation, style-dependent ibid. and merging of directly touching citation packets | Merge hints require physical adjacency in the same paragraph/story/note; live acceptance must be repeated on the exact release/host |
+| Native selected-field context | Temporary original-source highlights and prompt excerpts for explicit `Field.select`, including body/table/note citations, damaged metadata and multipart bibliographies; independent writing selection, lifecycle cleanup and guarded viewport restoration | Pending insertions and transfer clones have no live source range; incomplete or ambiguous structural recovery and installed-host acceptance remain separate |
+| Damaged reference metadata | Native repair for structurally complete citation packets with invalid JSON/schema and owned bibliography ranges with invalid JSON; original-source retention until completion; confirmed individual conversion to ordinary text, undo and DOCX persistence | No inferred field boundaries or shared/cross-owner repairs; incomplete, nested, locked and opaque packets remain guarded; native delete and unlink callbacks retain distinct effects; installed-plugin acceptance remains open |
 | Bibliography | Native add/edit, entry paragraphs, rich runs, hanging indents, spacing and tab stops | Replacement requires a complete exclusively owned bibliography range |
 | Unlink citations | Explicit individual and document-wide conversion with undo | Verify final target-application files separately |
 | Add Note | Rich paragraphs, headings, nested lists up to nine levels, multiparagraph items, links, pictures, rectangular tables nested up to eight levels with combined row/column spans and active citations; insertion in body or authored notes and replacement across consecutive ordinary paragraphs in one section, note or table cell | Table payloads require a main-flow destination; cross-cell/control ranges, selected protected/structural content, compact merged-row height distribution, header/footer row groups, custom table styling and custom/reversed list markers remain unsupported |
 | Add Annotation | Zotero 9+ native annotation picker, text/comments and supported PNG image/ink content with active citations | Uses the same bounded image/content envelope as Add Note |
-| Library/source discovery | Local/online catalogs, collections, saved searches, tags, source details, cited-source reuse and occurrence navigation | Local and online catalog APIs have different connection/version requirements |
+| Library/source discovery | Local/online catalogs, collections, saved searches, tags, source details, cited-source reuse and occurrence navigation, and validated local/group **Open in Zotero** navigation from reference details | Local and online catalog APIs have different connection/version requirements; desktop selection is unavailable for unverified personal-web or offline identities |
 | Research materials | Read-only direct-child note previews and attachment metadata | No separate attachment-file download or Zotero library write workflow |
 | DOCX persistence | Active fields/preferences, native notes, rich bibliography structure, tables and embedded pictures use supported save/reopen paths | Local tests are separate from actual Word/LibreOffice application round trips |
 | Table margins | Native measurement, wrapping, pagination, ruler insets and nested picture fitting use each table's modeled uniform margin; explicit editable ODT preserves bounded uniform padding through style inheritance and merged/nested ownership | Asymmetric/per-cell ODT padding and visible borders remain unsupported; ODT/DOCX geometry rounds to format precision, and exhausted final scaled widths refuse |
+| Footnote separators | Explicit solid/hidden rules retain independent gaps, nominal thickness, relative width, physical alignment and color; matching native pagination, continuation-page layout, editor/PDF rendering, ODT persistence and bounded native DOCX persistence | One compatible document-wide geometry; dashed/dotted active rules and richer separator stories remain unsupported; LibreOffice normalizes custom DOCX separator paragraphs, so that converter route remains a recorded limitation |
 | Cross-word-processor transfer | Native export/import handshake, temporary metadata hyperlinks, DOCX import/save/reopen and ODT carrier export; complete native formatting before import publication | The qualified DOCX carrier route and native ODT conversion have separate envelopes; installed Zotero/Word/LibreOffice plugin acceptance remains open and actual converter findings are retained |
 | Native ODT inspection | Read-only inventory of citation ReferenceMarks, bibliography TextSections, exact story/paragraph/cell ownership, cached text and original preferences; JSON diagnostic CLI | Inspection reports eligibility and findings without publishing an editable document |
 | Native ODT import | Bounded rich paragraphs/styles, hyperlinks, authored notes, simple lists, supported merged/nested tables and embedded inline PNG/upright RGB JPEG pictures; canonical Zotero fields and preferences convert to an editable Word document; asynchronous editor/Studio opening and DOCX save/reopen | Used unsupported structure/formatting refuses atomically; content-sensitive guards limit dormant defaults; installed-plugin acceptance remains open |
@@ -462,14 +465,14 @@ endnote master; reopening validates their effective formatting and compatible
 page geometry. Optional soft-page hints are recomputed. Actual acceptance now
 follows three fixtures and eleven fields through two external LibreOffice saves
 with a native/DOCX/native cycle between them. The following increment replaces
-fixed table-screen padding with modeled margins. Active footnote separators and
-installed release-host/plugin acceptance remain open.
+fixed table-screen padding with modeled margins. At that checkpoint, active
+footnote separators and installed release-host/plugin acceptance remained open.
 
 The work record separates local native update/save regressions, actual converter
-cycles, and installed-plugin acceptance. In particular, active LibreOffice
-footnote separator geometry still needs a native model/layout/persistence
-implementation. Endnote-only and table-only acceptance cannot establish that
-footnote behavior or full Word/LibreOffice parity.
+cycles, and installed-plugin acceptance. The later active-separator increment
+below adds native model/layout/persistence support. Endnote-only and table-only
+acceptance does not establish that footnote behavior or full Word/LibreOffice
+parity.
 
 ## Delivered increment: uniform table margins and editable ODT padding
 
@@ -504,7 +507,116 @@ lifecycles and identified LibreOffice converter evidence. Installed Zotero
 workflows in Word and supported LibreOffice releases remain a separate gate;
 this increment does not establish complete plugin parity.
 
+## Delivered increment: active footnote separators
+
+Supported footnote documents now retain one explicit separator geometry across
+ordinary and continuation pages: independent before/after gaps, nominal line
+thickness, relative body width, physical left/center/right alignment, RGB color
+and solid/hidden line style. Native pagination reserves both gaps and thickness,
+even when the rule is hidden or has zero width. Editor and PDF rendering use
+the modeled rectangle; documents without an explicit model retain their legacy
+appearance. Continuation-page image fitting accounts for the same reservation.
+
+Native ODT import/export preserves supported geometry and known LibreOffice
+zero-length omissions. A compatible representable dormant definition survives
+deleting the last note and later reinserting one. Used unsupported or differing
+page definitions refuse without publishing a partial document. Native DOCX
+save/reopen uses a bounded canonical special-note/settings mapping with format
+precision checks; arbitrary imported separator XML remains preserved opaquely.
+
+The [separator work record](../../validation/zotero-footnote-separators-20261121/README.md)
+retains local regression evidence, fourteen direct ODT geometry cases and three
+active-citation fixtures through two real LibreOffice saves with controlled
+native refresh and DOCX/ODT cycles between them. The identified development
+converter preserves the tested direct ODT geometry but normalizes custom DOCX
+separator paragraphs. That failed route, installed Word rendering, supported
+release-host qualification and live Zotero plugin workflows remain separate
+acceptance work.
+
 ## Next implementation and acceptance steps
+
+### Writing-position continuation (22 November 2026)
+
+Native Refresh and style changes now track writing endpoints by paragraph
+identity and transform their offsets through supported citation replacements,
+deletions and note conversions. Bibliography growth or shrinkage no longer
+redirects subsequent typing into another paragraph. Both endpoints of body and
+Notes selections are retained, including direction; Notes affinity is retained.
+Metadata-only and identical-visible-text updates keep interior offsets.
+Positions inside changed citation results move to the replacement end, while
+exact starts remain before the field. Replaced bibliography-owned positions
+use its start/end boundary. Removed or converted sole-note positions return to
+the body anchor. New citation/research insertion retains its explicit caret
+destination; cross-processor transfer keeps its existing separate policy.
+
+The [continuation record](../../validation/zotero-parity-20261122/README.md)
+tracks incoming-ref reconciliation, remote checkpoints and local validation.
+Passive positions in unchanged frames and generated contents paragraphs do
+not make those stories eligible for native Zotero fields. That position
+increment left visible `Field.select` context and malformed-field recovery as
+separate gaps. The following increments add selected-field presentation and
+bounded recovery for damaged metadata with complete structural ownership.
+
+### Selected-field context continuation (22 November 2026)
+
+An explicit native `Field.select` now exposes freshly validated original
+source ranges and renders a temporary highlight beneath the document text.
+The prompt shows the current citation or bibliography, bounded surrounding
+prose and its body/footnote/endnote location. Multipart bibliographies retain
+each entry's ownership; note display offsets exclude generated labels. The
+writing caret, forward/backward selection, active Notes target, focus, dirty
+state and undo history remain independent of the presentation. Zotero's
+protocol-selected field still drives its own cursor-in-field responses.
+
+Source ranges never come from pending insertion or transfer-import clones.
+Those fields have an explicit pending status, with no unpublished text or
+detached model handle exposed as live content. Deletion, unlinking, insertion
+transitions, completion, cancellation, callback errors and stale host targets
+clear or suppress the presentation. Each prompt belongs to its own operation,
+so an older prompt cannot adopt a newer selection. Temporary scrolling is
+bounded by the canvas and returns to the prior view only when the user has
+not moved or changed the target. Context remains scrollable in compact
+commands and the full references workspace.
+
+The [source and validation record](../../validation/zotero-field-context-20261122/README.md)
+separates controlled HTTP/controller/widget/raster checks from installed
+Zotero, Word and LibreOffice acceptance. The metadata-recovery increment below
+builds on this original-source presentation.
+
+### Damaged-metadata recovery continuation (22 November 2026)
+
+Native transactions now admit recognized citation fields with malformed JSON
+or invalid citation schema, and bibliography fields with invalid JSON, when
+their complete result packets have exclusive supported owners. A citation
+still occupies one supported paragraph; a multipart bibliography must own
+complete, contiguous entry paragraphs in one actual block container. The
+native adapter sends the damaged payload to Zotero without manufacturing a
+repair. Explicit `Field.select` uses the original field's source highlight,
+excerpt and location while the prompt identifies its damaged metadata.
+
+All repair callbacks stay detached until completion. Zotero's temporary empty
+citation reset is accepted only as an intermediate recovery state and is never
+saved as an active citation. Every remaining active field must have valid final
+metadata. Cancellation, unfinished repair, changed source or stale host state
+keeps the staged result unapplied; a successful repair is one undoable change
+and persists through DOCX save/reopen.
+
+Quds also offers confirmed per-field **Convert to text** for eligible damaged
+metadata. This preserves the visible result and formatting; undo restores the
+original code, and a reopened converted file contains ordinary text. Native
+`Field.removeCode` likewise preserves cached text, while `Field.delete` removes
+it. The adapter follows the callback Zotero sends: a native corrupt-reference
+**No** choice must not be documented as invariably preserving the result.
+Document-wide unlinking retains its existing malformed-field refusal.
+
+Locked, nested, opaque or incomplete packets, cross-owner ranges, shared
+paragraph/result objects and unsupported stories remain guarded. This
+increment does not infer missing Word field boundaries or solve arbitrary
+structural corruption. The
+[recovery work record](../../validation/zotero-field-recovery-20261122/README.md)
+records the bounded contract and local qualification. Installed Zotero repair
+dialogs and Word/LibreOffice round trips still require acceptance against
+identified release versions; this is not a claim of complete plugin parity.
 
 The [combined round-trip completion](../../validation/zotero-roundtrip-complete-20261121/README.md)
 reconciles the latest accepted bibliography, image, note-style and Mail work.
@@ -514,11 +626,15 @@ annotation-picture formatting. Its qualification records four real converter
 fixture routes, separate PNG/JPEG cycles, bounded intake and the exact source.
 Installed Zotero/Word/LibreOffice acceptance remains a separate next step.
 
-1. **Model and preserve active footnote separators.** Add native separator
-   geometry, matching note reservation/pagination and rendering, ODT parsing and
-   emission, and an interoperable DOCX mapping. Qualify those together before
-   admitting active LibreOffice separators. Retaining opaque DOCX definitions
-   or accepting ODT attributes alone does not provide editable layout fidelity.
+1. **Complete cross-application separator acceptance.** The
+   [active-separator increment](../../validation/zotero-footnote-separators-20261121/README.md)
+   delivers the native model, note reservation/pagination, editor/PDF rendering,
+   explicit ODT import/export and bounded native DOCX persistence. Direct
+   LibreOffice ODT saves preserve the tested geometry and active references.
+   Its custom-DOCX separator normalization remains a retained failed route;
+   installed Word rendering and live Zotero plugin acceptance are still open.
+   A broader DOCX mapping or host-specific workaround requires separate
+   evidence before this route can be called interoperable.
 2. **Qualify release-host editable ODT workflows and production formatting.**
    Use the implemented carrier and retained synthetic fixtures with current
    Word/LibreOffice and their actual Zotero plugins. Resolve any converter findings
@@ -551,7 +667,8 @@ Installed Zotero/Word/LibreOffice acceptance remains a separate next step.
    authored-note, stale-selection, composition and undo guarantees already delivered.
 6. **Run release-host acceptance.** Exercise current native Zotero, Word and
    LibreOffice with a synthetic library on each supported desktop platform.
-   Check picker cancellation, metadata updates, note-style conversion,
+   Check picker cancellation, damaged-metadata repair choices and their exact
+   delete/unlink behavior, metadata updates, note-style conversion,
    image/ink annotation and horizontally/vertically merged table insertion, adjacent-citation
    refresh, bibliography refresh, saved-file
    reopening and return-to-writing focus. Record exact application versions,
@@ -559,6 +676,15 @@ Installed Zotero/Word/LibreOffice acceptance remains a separate next step.
    Qualify any legacy Apache OpenOffice target separately with explicitly
    identified application, Zotero and plugin versions.
 
+7. **Qualify Zotero item navigation on installed desktop hosts.** The
+   [safe item selection increment](../../validation/zotero-selection-links-20261122/README.md)
+   adds explicit Zotero desktop selection from loaded local/group item details
+   and unambiguous stored citation identities, without changing the citation.
+   Exercise `zotero://select/…` on macOS, Windows and Linux with the active
+   Zotero installation; verify closed-app handler recovery, missing items,
+   different profiles, group permissions and return focus. A personal Web API
+   ID alone does not identify the active desktop profile; do not auto-select
+   such an item without a locally verified identity handshake.
 Each step should begin with a bounded remote-ref intake, preserve original
 incoming ancestry, save incremental remote checkpoints, run meaningful local
 checks, and merge the qualified result. GitHub Actions are not a required wait

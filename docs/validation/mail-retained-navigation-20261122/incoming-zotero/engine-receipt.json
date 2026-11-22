@@ -1,0 +1,39 @@
+{
+  "branch": "origin/codex/zotero-field-context-20261122",
+  "commit": "a83700c69c2ec6d134b780a16a363839425101ae",
+  "command": "source /workspace/scratch/e171b31c21a6/runtime/env.sh\ndart --packages=/workspace/scratch/e171b31c21a6/incoming-zotero/.dart_tool/package_config.json /workspace/scratch/e171b31c21a6/runtime/test-runner/test-runner.dill --reporter=json test/word_zotero_field_selection_test.dart test/word_zotero_citing_test.dart test/word_zotero_transfer_session_test.dart test/word_zotero_multiparagraph_test.dart",
+  "working_directory": "/workspace/scratch/e171b31c21a6/incoming-zotero/packages/quds_office_engine",
+  "exit_code": 0,
+  "counts": {
+    "test/word_zotero_field_selection_test.dart": {
+      "passed": 14,
+      "failed": 0,
+      "skipped": 0
+    },
+    "test/word_zotero_citing_test.dart": {
+      "passed": 59,
+      "failed": 0,
+      "skipped": 0
+    },
+    "test/word_zotero_transfer_session_test.dart": {
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0
+    },
+    "test/word_zotero_multiparagraph_test.dart": {
+      "passed": 59,
+      "failed": 0,
+      "skipped": 0
+    }
+  },
+  "errors": [],
+  "done": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 11489
+    }
+  ],
+  "log": "/workspace/scratch/e171b31c21a6/runtime/logs/incoming-zotero-engine.jsonl",
+  "log_sha256": "ca8142f54b40e15fe9e306f6a1d65c507e2bee1a72fe99fdef5a7cc5a0ff3752"
+}

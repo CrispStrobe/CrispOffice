@@ -1,0 +1,1441 @@
+{
+  "passed": 176,
+  "skipped": 0,
+  "failed": 0,
+  "errors": 0,
+  "all_failed": 0,
+  "all_skipped": 0,
+  "excluded_failed": 0,
+  "excluded_skipped": 0,
+  "terminal_success": true,
+  "start_events": 1,
+  "terminal_events": 1,
+  "incomplete": 0,
+  "protocol_errors": 0,
+  "protocol_issues": [],
+  "cases": [
+    {
+      "name": "connected reader downloads only after explicit message action",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "page download freezes 100 rows and Stop waits for completion",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "closing cancels body downloads and drains them before owner release",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "membership replacement cancels a frozen body download",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "automatic offset repair cancels downloads before a delayed reload",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "download limits and recovery remain usable in en",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "download limits and recovery remain usable in de",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "download limits and recovery remain usable in ar",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "offline catalog reads only saved headers and reports scope",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "offline sync searches complete visible addresses",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "connected sync searches complete visible addresses",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "connected folder starts only explicitly and shows saved state",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "partial checkpoint offers continue and bounded pause",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "stop cancels once and waits for running work before resuming",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "close cancels and drains run before releasing the caller",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "close drains initial read and repository stream cancellation",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "missing body explains headers-only scope without downloading",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "saved message body uses reader and survives metadata updates",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "close drains a body read and suppresses its late reader",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "forced disposal cancels work and never calls stale host again",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "saved headers page in bounded windows without accumulating",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "shrinking mailbox returns an out-of-range page to saved start",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "repository failure retains view and successful update recovers",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "cross-account stores are rejected before subscribing",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "mismatched cached body is not displayed",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "typed authenticationRequired failure preserves resumable saved view",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "typed quotaExceeded failure preserves resumable saved view",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "typed conflict failure preserves resumable saved view",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "typed unsupported failure preserves resumable saved view",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "compact en missing-body download stays reachable",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "compact en layout keeps controls and reader",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "compact de missing-body download stays reachable",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "compact de layout keeps controls and reader",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "compact ar missing-body download stays reachable",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "compact ar layout keeps controls and reader",
+      "suite_id": 0,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart"
+    },
+    {
+      "name": "selection help is localized and readable at enlarged text for StudioLanguage.en",
+      "suite_id": 38,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_selection_help_test.dart"
+    },
+    {
+      "name": "selection help is localized and readable at enlarged text for StudioLanguage.de",
+      "suite_id": 38,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_selection_help_test.dart"
+    },
+    {
+      "name": "selection help is localized and readable at enlarged text for StudioLanguage.ar",
+      "suite_id": 38,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_selection_help_test.dart"
+    },
+    {
+      "name": "IMAP foreground bulk flags MailBulkFlagAction.markRead changes only the confirmed target flag",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP foreground bulk flags MailBulkFlagAction.markUnread changes only the confirmed target flag",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP foreground bulk flags MailBulkFlagAction.flag changes only the confirmed target flag",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP foreground bulk flags MailBulkFlagAction.unflag changes only the confirmed target flag",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP foreground bulk flags mixed results stop uncertainty and require explicit refresh",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP foreground bulk flags Stop waits for current confirmation and leaves the rest untouched",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP foreground bulk flags refresh invalidates saved callbacks even with repeated row IDs",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP foreground bulk flags mutable UIDVALIDITY retires the batch without wrong-scope flags",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP foreground bulk flags old status callbacks cannot stop or hide a later batch",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP foreground bulk flags disconnect prevents later dispatch and late UI resurrection",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "certified native quota stops the tail and keeps retry guidance without refresh",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP reconciled bulk scenarios legacy action capability does not imply safe bulk identity",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP reconciled bulk scenarios MailBulkFlagAction.markRead freezes reverse subset and keeps the opened reader",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP reconciled bulk scenarios MailBulkFlagAction.markUnread freezes reverse subset and keeps the opened reader",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP reconciled bulk scenarios MailBulkFlagAction.flag freezes reverse subset and keeps the opened reader",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP reconciled bulk scenarios MailBulkFlagAction.unflag freezes reverse subset and keeps the opened reader",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP reconciled bulk scenarios answered draft and deleted flags survive confirmed bulk edits",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP reconciled bulk scenarios a later selected UID change retires dispatch and projection",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP reconciled bulk scenarios folder A to B to A rejects an old host callback",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP reconciled bulk scenarios reconnect rejects old callback despite overlapping row IDs",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP reconciled bulk scenarios disposed bulk callback cannot dispatch or change state",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP reconciled bulk scenarios explicit no-mutation MailProblemCode.permissionDenied evidence stays definite",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP reconciled bulk scenarios explicit no-mutation MailProblemCode.cancelled evidence stays definite",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP reconciled bulk scenarios explicit no-mutation MailProblemCode.staleOperation evidence stays definite",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP reconciled bulk scenarios uncertified null failure remains uncertain",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP reconciled bulk scenarios uncertified true failure remains uncertain",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "remote images require the explicit action and resume keeps the reader",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "changing mailbox closes remote image work and ignores its late response",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP bulk commands require immutable record capability",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP bulk commands target checked identities and preserve the open message",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP bulk confirmations preserve unknown and unrelated flags",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP bulk stops on uncertain confirmation and requires explicit refresh",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP bulk distinguishes explicit no-mutation MailProblemCode.permissionDenied evidence",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP bulk distinguishes explicit no-mutation MailProblemCode.cancelled evidence",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP bulk distinguishes explicit no-mutation MailProblemCode.staleOperation evidence",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP typed failure with mutation certainty null remains uncertain",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP typed failure with mutation certainty true remains uncertain",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP bulk cancellation waits for the in-flight confirmation without cancelling transport",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP bulk rejects a mutated uid before the next dispatch and publication",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP bulk rejects a mutated uidValidity before the next dispatch and publication",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP legacy records cannot substitute another account",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP legacy account retirement stops an acknowledged batch",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP stale bulk callback cannot mutate a later visit to the same folder",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP refresh retains discovery but rejects the old bulk selection scope",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP stale bulk callback cannot reach a reconnected identical account adapter",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP disposed bulk callback never dispatches or changes state",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP late bulk confirmation after disposal has no view side effects",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP searches visible header fields without provider work",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP uses bounded pages and keeps no-match pagination visible",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP keyboard movement never reads until Enter",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP compact Back preserves query filters and selected row",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP folder change resets filters and continuation scope",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP read and flag filters update only on confirmed actions",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP confirmed target flags never invent the other unknown flag",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP read confirmation retains unknown flagged state",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP unconfirmed mutation requires refresh without retry or optimistic flags",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP rejects repeated continuation without losing loaded rows",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP rejects cross-folder continuation without losing loaded rows",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP rejects duplicate continuation without losing loaded rows",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP rejects oversized continuation without losing loaded rows",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP failed next page can be explicitly retried",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP discards a late page after disconnect",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "IMAP stops at 1000 loaded messages with an explicit limit",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "mailbox workspace feedback is supplied for all Studio languages",
+      "suite_id": 44,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+    },
+    {
+      "name": "imap repository observations supersede only changed confirmed bits",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "imap pagination retains repository flags and selected reader",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "imap unchanged repository revision preserves newer foreground flag",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "imap repository flags preserve live reader and provider identities",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "imap awaits repository cancellation before refresh and owner close",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "imap widget disposal drains repository cancellation before owner close",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "imap persists visited headers and explicitly opened bytes across native close/reopen",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "imap rejects conflicting body identities before reader or cache adoption",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "imap failed body cache keeps online reader and previous durable body",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "imap disconnect invalidates a body write held before SQLite commit",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "imap failed initial view save preserves uncertainty and online reader",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "imap view and body save warnings survive success in the other scope",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "imap connected composer recovers actual quota without losing live edits",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "imap rejects a foreign cache owner before loading any draft",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "ews repository observations supersede only changed confirmed bits",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "ews delete survives metadata updates and cannot resurrect cached rows",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "ews pagination retains repository flags and selected reader",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "ews unchanged repository revision preserves newer foreground flag",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "ews repository flags preserve live reader and provider identities",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "ews awaits repository cancellation before refresh and owner close",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "ews widget disposal drains repository cancellation before owner close",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "ews persists visited headers and explicitly opened bytes across native close/reopen",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "ews rejects conflicting body identities before reader or cache adoption",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "ews failed body cache keeps online reader and previous durable body",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "ews disconnect invalidates a body write held before SQLite commit",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "ews failed initial view save preserves uncertainty and online reader",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "ews view and body save warnings survive success in the other scope",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "ews connected composer recovers actual quota without losing live edits",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "ews rejects a foreign cache owner before loading any draft",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "gmail repository observations supersede only changed confirmed bits",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "gmail delete survives metadata updates and cannot resurrect cached rows",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "gmail pagination retains repository flags and selected reader",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "gmail unchanged repository revision preserves newer foreground flag",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "gmail repository flags preserve live reader and provider identities",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "gmail awaits repository cancellation before refresh and owner close",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "gmail widget disposal drains repository cancellation before owner close",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "gmail persists visited headers and explicitly opened bytes across native close/reopen",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "gmail rejects conflicting body identities before reader or cache adoption",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "gmail failed body cache keeps online reader and previous durable body",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "gmail disconnect invalidates a body write held before SQLite commit",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "gmail failed initial view save preserves uncertainty and online reader",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "gmail view and body save warnings survive success in the other scope",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "gmail connected composer recovers actual quota without losing live edits",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "gmail rejects a foreign cache owner before loading any draft",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "graph repository observations supersede only changed confirmed bits",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "graph delete survives metadata updates and cannot resurrect cached rows",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "graph pagination retains repository flags and selected reader",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "graph unchanged repository revision preserves newer foreground flag",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "graph repository flags preserve live reader and provider identities",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "graph awaits repository cancellation before refresh and owner close",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "graph widget disposal drains repository cancellation before owner close",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "graph persists visited headers and explicitly opened bytes across native close/reopen",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "graph rejects conflicting body identities before reader or cache adoption",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "graph failed body cache keeps online reader and previous durable body",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "graph disconnect invalidates a body write held before SQLite commit",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "graph failed initial view save preserves uncertainty and online reader",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "graph view and body save warnings survive success in the other scope",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "graph connected composer recovers actual quota without losing live edits",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "graph rejects a foreign cache owner before loading any draft",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "offline local composer recovers actual quota without reconnecting or losing edits",
+      "suite_id": 113,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart"
+    },
+    {
+      "name": "ews host downloads synchronized bodies explicitly and reopens them offline",
+      "suite_id": 176,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart"
+    },
+    {
+      "name": "ews host sync persists, resumes after reconnect and opens offline without a provider",
+      "suite_id": 176,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart"
+    },
+    {
+      "name": "gmail host downloads synchronized bodies explicitly and reopens them offline",
+      "suite_id": 176,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart"
+    },
+    {
+      "name": "gmail host sync persists, resumes after reconnect and opens offline without a provider",
+      "suite_id": 176,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart"
+    },
+    {
+      "name": "graph host downloads synchronized bodies explicitly and reopens them offline",
+      "suite_id": 176,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart"
+    },
+    {
+      "name": "graph host sync persists, resumes after reconnect and opens offline without a provider",
+      "suite_id": 176,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart"
+    },
+    {
+      "name": "host rejects a provider whose account changes before starting sync",
+      "suite_id": 176,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart"
+    },
+    {
+      "name": "disposed host session cannot commit a late provider sync page",
+      "suite_id": 176,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart"
+    },
+    {
+      "name": "Boolean search help and errors are available for StudioLanguage.en",
+      "suite_id": 187,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_boolean_search_strings_test.dart"
+    },
+    {
+      "name": "Boolean search help and errors are available for StudioLanguage.de",
+      "suite_id": 187,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_boolean_search_strings_test.dart"
+    },
+    {
+      "name": "Boolean search help and errors are available for StudioLanguage.ar",
+      "suite_id": 187,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_boolean_search_strings_test.dart"
+    },
+    {
+      "name": "conversation controls and observed counts are localized for StudioLanguage.en",
+      "suite_id": 193,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_conversation_strings_test.dart"
+    },
+    {
+      "name": "conversation controls and observed counts are localized for StudioLanguage.de",
+      "suite_id": 193,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_conversation_strings_test.dart"
+    },
+    {
+      "name": "conversation controls and observed counts are localized for StudioLanguage.ar",
+      "suite_id": 193,
+      "result": "success",
+      "skipped": false,
+      "hidden": false,
+      "source_path": "packages/quds_office_editor/example/test/studio_mail_conversation_strings_test.dart"
+    }
+  ],
+  "valid": true,
+  "raw_log": "studio-mail-tests-final.log",
+  "raw_log_sha256": "cc250d272afa30b7ebad8f04ea1d915ce421ab40a8c12d2a1fecf359edfa82a2",
+  "flutter_process_notifications": {
+    "test.startedProcess": 7
+  },
+  "per_suite": {
+    "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart": 35,
+    "packages/quds_office_editor/example/test/studio_mail_selection_help_test.dart": 3,
+    "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart": 64,
+    "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart": 60,
+    "packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart": 8,
+    "packages/quds_office_editor/example/test/studio_mail_boolean_search_strings_test.dart": 3,
+    "packages/quds_office_editor/example/test/studio_mail_conversation_strings_test.dart": 3
+  }
+}

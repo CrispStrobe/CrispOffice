@@ -1,0 +1,22 @@
+{
+  "source_commit": "ca4d7ea9d8e4850f3d5d451724c87e1e45cca3cd",
+  "command": [
+    "/workspace/scratch/9f1eb3b4a51a/dart-runtime/dart-sdk/bin/dart",
+    "analyze",
+    "--fatal-infos",
+    "lib/src/automation/office_operations.dart",
+    "lib/src/automation/office_vba_language.dart",
+    "lib/src/automation/operations/word_steps.dart",
+    "lib/src/automation/operations/word_table_cell_text_steps.dart",
+    "test/office_macro_word_cell_formatting_test.dart",
+    "test/office_vba_word_cell_formatting_integration_test.dart",
+    "test/office_vba_word_cell_formatting_test.dart",
+    "test/office_vba_word_font_colors_test.dart",
+    "test/office_vba_word_table_cells_test.dart",
+    "tool/macros/web_vba_word_cell_formatting_smoke.dart"
+  ],
+  "cwd": "/workspace/scratch/9f1eb3b4a51a/engine-validation-ca4d7ea9/packages/quds_office_engine",
+  "exit_code": 0,
+  "observed_stdout": "Analyzing office_operations.dart, office_vba_language.dart, word_steps.dart, word_table_cell_text_steps.dart, office_macro_word_cell_formatting_test.dart, office_vba_word_cell_formatting_integration_test.dart, office_vba_word_cell_formatting_test.dart, office_vba_word_font_colors_test.dart, office_vba_word_table_cells_test.dart, web_vba_word_cell_formatting_smoke.dart...\nNo issues found!\n",
+  "capture": "Exact successful output transcribed from exec tool receipts 724adc and 1055ce; original command output was not redirected to a filesystem log."
+}

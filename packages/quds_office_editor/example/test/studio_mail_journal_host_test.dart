@@ -18,12 +18,15 @@ import 'package:quds_office_studio/studio_mail_draft_store.dart';
 import 'package:quds_office_studio/studio_mail_ews.dart';
 import 'package:quds_office_studio/studio_mail_journal_strings.dart';
 import 'package:quds_office_studio/studio_mail_message_loader.dart';
+import 'package:quds_office_studio/studio_mail_mutation_strings.dart';
 import 'package:quds_office_studio/studio_mail_native.dart';
 import 'package:quds_office_studio/studio_mail_strings.dart';
 import 'package:quds_office_studio/studio_mail_workspace_strings.dart';
 import 'package:quds_office_studio/studio_strings.dart';
 
 import 'support/mail_flag_journal.dart';
+
+part 'support/mail_membership_host_cases.dart';
 
 const _strings = StudioStrings(StudioLanguage.en);
 const _success = MailSuccess<MailUnit>(MailUnit.value);
@@ -89,6 +92,12 @@ final class _ImapClient extends Fake implements mail.MailClient {
       pathSeparator: '/',
       flags: [mail.MailboxFlag.inbox],
     )..uidValidity = 71,
+    mail.Mailbox(
+      encodedName: 'Archive',
+      encodedPath: 'Archive',
+      pathSeparator: '/',
+      flags: [],
+    )..uidValidity = 72,
   ];
   @override
   Future<mail.Mailbox> selectMailbox(
@@ -114,6 +123,7 @@ final class _ImapBrowser
         StudioMailMailboxRecords,
         StudioMailMessageActions,
         StudioMailBulkMessageActions,
+        StudioMailMembershipActions,
         MailFlagObserver {
   _ImapBrowser(this.harness) {
     harness.liveAccount = account;
@@ -140,7 +150,7 @@ final class _ImapBrowser
             from: [mail.MailAddress('Writer', 'writer@example.test')],
           ),
           uid: uid,
-          flags: [mail.MessageFlags.seen],
+          flags: harness.nativeFlagsKnown ? [mail.MessageFlags.seen] : null,
         ),
     ];
     for (final message in messages) {
@@ -152,7 +162,7 @@ final class _ImapBrowser
           uid: message.uid!,
         ),
         envelope: MailEnvelope(subject: message.decodeSubject()!),
-        flags: const MailMessageFlags(isRead: true),
+        flags: harness.nativeObservedFlags,
       );
     }
     return StudioMailHeaderPage(messages: messages);
@@ -170,6 +180,17 @@ final class _ImapBrowser
   ) => observedHeader(mailbox, header).remote as MailImapIdentity;
   @override
   Future<MailResult<MailUnit>> applyBulkFlag(
+    MailOperation operation,
+    MailOperationLease lease,
+  ) => harness.record(operation);
+  @override
+  Future<MailCapabilities> membershipCapabilities() async {
+    harness.capabilityReads++;
+    return harness.capabilities;
+  }
+
+  @override
+  Future<MailResult<MailUnit>> applyMembership(
     MailOperation operation,
     MailOperationLease lease,
   ) => harness.record(operation);
@@ -250,9 +271,7 @@ class _Provider extends Fake
   @override
   Future<MailResult<MailCapabilities>> capabilities(
     MailOperationLease lease,
-  ) async => MailSuccess(
-    MailCapabilities(const [MailCapability.mail, MailCapability.folders]),
-  );
+  ) async => MailSuccess(harness.capabilities);
   @override
   Future<MailResult<List<MailMailbox>>> listMailboxes(
     MailOperationLease lease,
@@ -260,6 +279,10 @@ class _Provider extends Fake
     MailMailbox(
       id: MailMailboxId('inbox', account: account),
       displayName: 'Inbox',
+    ),
+    MailMailbox(
+      id: MailMailboxId('archive', account: account),
+      displayName: 'Archive',
     ),
   ]);
   @override
@@ -350,6 +373,17 @@ final class _Harness {
   int headerReads = 0;
   int bodyReads = 0;
   int sends = 0;
+  int capabilityReads = 0;
+  bool allowMembership = true;
+  bool nativeFlagsKnown = true;
+  bool membershipOnly = false;
+  MailMessageFlags? nativeObservedFlags = const MailMessageFlags(isRead: true);
+  MailCapabilities get capabilities => MailCapabilities([
+    MailCapability.mail,
+    MailCapability.folders,
+    if (allowMembership) MailCapability.delete,
+    if (allowMembership && kind != MailProviderKind.gmail) MailCapability.move,
+  ]);
   Future<MailResult<MailUnit>> Function(MailOperation)? respond;
   Future<MailResult<MailFlagObservation>> Function(
     MailRemoteIdentity,
@@ -399,7 +433,8 @@ final class _Harness {
         strings: _strings,
         credentialStore: _Credentials(),
         clientFactory: (_) => client,
-        messageLoaderFactory: (_) => browser,
+        messageLoaderFactory: (_) =>
+            membershipOnly ? _MembershipOnlyBrowser(browser) : browser,
         draftStoreFactory: openStore,
       );
     }
@@ -617,6 +652,7 @@ void _expectHistoricalTarget(_Harness harness) {
 }
 
 void main() {
+  membershipHostTests();
   for (final kind in [
     MailProviderKind.imap,
     MailProviderKind.ews,

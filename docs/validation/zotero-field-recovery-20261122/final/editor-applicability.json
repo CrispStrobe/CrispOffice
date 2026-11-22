@@ -1,0 +1,64 @@
+{
+  "applicable": true,
+  "applies_to": {
+    "executed_suites": 18,
+    "unique_tests_passed": 347
+  },
+  "broad_original_inventory_changes_outside_editor_gate": [
+    "packages/quds_mail_ui/test/bulk_message_list_test.dart",
+    "packages/quds_mail_ui/test/message_list_bulk_test.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+    "packages/quds_office_editor/example/lib/studio_mail_native.dart",
+    "packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_bulk_visual_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_flag_journal_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_journal_dialog_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_journal_host_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart"
+  ],
+  "changed_qualified_inputs": [],
+  "gate_receipt": "editor/receipt.json",
+  "gate_receipt_sha256": "4756108b65407643ea07de7ec327ab807de408433258ab7a6a10a9e427544d8a",
+  "input_manifest": {
+    "gzip_sha256": "27dc234e05ed7bf1e6f258a17b910bbceddfd67c5e63ec1ce2f03d411774a664",
+    "path": "editor-applicability-inputs.json.gz"
+  },
+  "integrated_target": "918e7dd12e66b79e75082a41c250887a92db0d4e",
+  "kind": "static_input_equivalence_not_a_test_rerun",
+  "recorded_utc": "2026-11-22T06:27:31.738301+00:00",
+  "repository_dependency_closure": {
+    "legacy_doc_parser": "packages/legacy_doc_parser",
+    "quds_office_editor": "packages/quds_office_editor",
+    "quds_office_engine": "packages/quds_office_engine",
+    "quds_reports": "packages/quds_reports"
+  },
+  "resolved_dependency_evidence": {
+    "after": "mail-store/dependencies-after.json",
+    "after_snapshot_finished_utc": "2026-11-22T06:19:22.055559+00:00",
+    "before": "word/dependencies-before.json",
+    "before_snapshot_started_utc": "2026-11-22T06:15:03.095950+00:00",
+    "dependency_archive_receipt_sha256": "0e84bca6b67b267da3699af602ab2f826ebcfcf358ff5bebd970457bf6968931",
+    "generated_configuration": [
+      {
+        "path": ".dart_tool/package_config.json",
+        "sha256": "60ab2a823143ea197b6719fd0e5daca86dc9cd2970fbbab89486901784e987cb"
+      },
+      {
+        "path": ".dart_tool/package_graph.json",
+        "sha256": "e5109a54fc62e65508ee3fcfcf5e95592a49d3d225b4eb4cfda2d5d822bf6b84"
+      }
+    ],
+    "inventories_equal_and_still_current": true,
+    "manifest_count": 167,
+    "note": "These shared runtime inventories bracket the editor run. They are not relabeled as editor-specific before/after captures. They verify manifest/config stability and the lock-linked archive receipt, not continuous hashing of every hosted source file."
+  },
+  "schema_version": 1,
+  "scope_limit": "The original Flutter snapshot conservatively included unrelated workspace and Studio example files. Their late changes do not enter the editor package dependency closure. This applicability does not accept the Studio Mail example or Mail UI changes; their own final Flutter gates are required.",
+  "selection": "All tracked lib/test/tool trees and fonts/assets/templates of the editor and its repository dependency closure; every tracked workspace pubspec.yaml/pubspec.lock/analysis_options.yaml and .fvmrc. Dependencies and devDependencies are followed conservatively from the unchanged resolved graph.",
+  "tested_source": "6ba219a03a9933eded77980f9d7cdbd118183ee1",
+  "tracked_equivalent_input_count": 3594,
+  "tracked_inputs_also_present_in_original_gate_snapshot": 1556,
+  "working_head_observed": "918e7dd12e66b79e75082a41c250887a92db0d4e"
+}

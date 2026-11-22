@@ -1,5 +1,20 @@
 ## Unreleased
 
+- Extend the existing durable foreground runner to exact-destination move and
+  recoverable delete commands. Retain legacy flag API names, strict frozen
+  receipt restoration and no automatic replay. Expose flag-only action checks
+  and a distinct recoverable-delete provider capability; confirmed membership
+  commands require a fresh view because a unit receipt does not establish
+  destination membership.
+
+- Add immutable exact folder sets to saved header searches. Keep null as the
+  legacy all-folders scope, preserve significant mailbox whitespace and retained
+  display labels, and require nonempty unique folder identities representing
+  every selected account. Bound folder counts and metadata, reject malformed
+  Unicode, and require an explicit reset when changing back to all folders.
+  Preserve the published `folderScopes` and `maxFolderScopes` names as aliases
+  and retain the existing 200-folder ceiling.
+
 - Add durable Outbox deadlines as canonical UTC instants, monotonic schedule
   revisions and exact due-time guards. Only never-attempted, certain queued
   entries can be scheduled; clearing a deadline retains its revision. Preserve

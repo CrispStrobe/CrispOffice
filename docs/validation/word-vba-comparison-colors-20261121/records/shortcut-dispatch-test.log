@@ -1,0 +1,11 @@
+00:00 +0: loading /home/agent/.codex/skills/remote-skills/.workspaces/quds-word-vba-20261121/validation-flutter/packages/quds_office_editor/example/test/studio_shortcut_dispatch_test.dart
+00:00 +0: the real Word caret retires both bold defaults and dispatches its remap once on TargetPlatform.linux (variant: TargetPlatform.linux)
+00:02 +1: the real Word caret retires both bold defaults and dispatches its remap once on TargetPlatform.macOS (variant: TargetPlatform.macOS)
+00:04 +2: an explicit remap wins over the focused editor default (variant: TargetPlatform.linux)
+00:05 +3: remapped redo retires Ctrl Y and both Shift Z defaults (variant: TargetPlatform.linux)
+00:06 +4: body composition defers configured and retired formatting keys (variant: TargetPlatform.linux)
+00:07 +5: native fields retain default editing and receive remapped edits (variant: TargetPlatform.linux)
+00:09 +6: reserved Zotero chords reject formatting overrides (variant: TargetPlatform.linux)
+00:10 +7: a configured Word chord stays inactive in another document app (variant: TargetPlatform.linux)
+00:11 +8: standalone Word keeps its built-in shortcuts without a host (variant: TargetPlatform.linux)
+00:11 +9: All tests passed!

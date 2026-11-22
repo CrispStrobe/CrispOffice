@@ -12,9 +12,11 @@ The full implementation and validation record is preserved in
 | You want to | Use | Requirement |
 | --- | --- | --- |
 | Browse and search references | **Insert → References** | Local catalog or Zotero Web API |
+| Open a library item in Zotero desktop | **Reference details → Open in Zotero** | Validated local or group identity and a desktop protocol handler |
 | Insert/edit citations with Zotero's picker | **Insert → Zotero → Document** | Zotero desktop running on the same computer |
 | Insert a note or annotation | **Add Zotero note / annotation** | Zotero 9+ for direct annotations |
 | Refresh citations and build a bibliography | **Document** commands | Active citation fields in an editable DOCX |
+| Repair damaged citation or bibliography metadata | **Document → reference actions → Repair in Zotero…** | Running Zotero desktop and a complete, safely owned field |
 | Work from LibreOffice Writer | Open a supported native ODT, then save DOCX | Supported ODT subset |
 
 ## Native desktop formatting
@@ -36,8 +38,60 @@ Changes are applied as one undo step. Cancelling the picker or declining a
 formatting review returns focus to the document without changing it. Finish IME
 composition before starting a command.
 
+Refresh and citation-style changes retain your writing position in surrounding
+prose, even when earlier citations grow or a bibliography changes its number
+of paragraphs. Body and Notes selections retain their direction. A caret
+inside changed citation text moves to that citation's new end; a caret exactly
+at its start stays before it. If a citation-only note is removed or converted,
+its writing position returns to the corresponding body anchor. Undo restores
+the original selection, and redo restores the updated position.
+
+When Zotero explicitly selects a citation or bibliography for a native prompt,
+Quds temporarily highlights that reference and shows its current document text with its body,
+footnote or endnote location. The prompt includes surrounding prose and a
+scrollable excerpt for long references. Your writing selection stays in place.
+The temporary view ends when Zotero finishes or the operation is cancelled;
+any scrolling or zooming you do while reviewing it is respected. A new or
+transferred reference whose position is still being prepared is identified
+as pending.
+
+Switching from Word to Mail or another app cancels the pending operation for
+that Word view, including when you return before Zotero responds. Close and
+reopen the Zotero workspace to start a new operation. The citation and refresh
+chords remain reserved when customizing workspace shortcuts.
+
 Native desktop integration is available even before the catalog browser is
 connected. The Zotero windows may open behind the office app.
+
+## Repair damaged reference metadata
+
+An existing citation or bibliography can retain readable text even when its
+stored reference data is damaged. The Document tab identifies that condition
+and offers **Repair in Zotero…** when the field has a complete, safely owned
+structure. Native Refresh can also pass those fields to Zotero for recovery.
+This covers damaged citation JSON or citation metadata that fails validation,
+and bibliography JSON that cannot be decoded.
+
+When Zotero selects the damaged reference, its prompt shows the original text
+and location. The original code, text and formatting remain unchanged until
+the complete operation succeeds. An empty citation used temporarily by Zotero
+during repair is never saved as an active field. Cancellation, unfinished
+repair or a changed document leaves the staged result unapplied. Successful
+repair is one undoable change, and active fields survive DOCX save/reopen.
+
+To keep the visible wording without a live reference, choose Quds'
+**Convert to text…** or the reference menu's **Convert to text (undoable)**.
+For damaged metadata, Quds asks you to confirm. This keeps the text and
+formatting; undo restores the original damaged field. A reopened converted
+file contains ordinary text. Zotero controls its own repair choices and can
+request deletion, so its native **No** button is not a substitute for Quds'
+explicit conversion action.
+
+Locked, nested, opaque, incomplete or ambiguously owned fields remain
+protected. Quds does not infer missing field boundaries or repair a field
+shared across incompatible owners. See the
+[recovery scope and validation record](validation/zotero-field-recovery-20261122/README.md)
+for the supported structures and remaining installed-application acceptance.
 
 ## References workspace
 
@@ -49,6 +103,7 @@ Use **Insert → References** in Quds Studio to:
 - insert research notes with supported lists, links and pictures;
 - change the sources in an existing citation;
 - navigate from a citation to its bibliography entry;
+- open a verified local or group-library item in Zotero desktop;
 - convert citations to ordinary text;
 - export an editable Zotero ODT copy.
 
@@ -68,6 +123,22 @@ Inserted pictures become native inline images. Unsupported content is refused
 rather than flattened into an unrelated style. Annotation placement follows the
 document's Zotero preferences for inline, footnote or endnote citations.
 
+## Open a reference in Zotero
+
+In a loaded reference's details, or the details of an embedded citation
+source, choose **Open in Zotero** to ask the operating system to select that
+item in the desktop Zotero application. This uses Zotero's
+`zotero://select/…` protocol; it does not edit or refresh the reference.
+
+The action is offered only for an item from the active local desktop catalog
+or an unambiguous stored local/group source identity. Group-library selection
+depends on having that group accessible in Zotero. A remote personal-library
+Web API ID does **not** establish which Zotero desktop profile is active, so
+Quds does not guess or offer a selection link for it. Offline records,
+malformed URIs and conflicting library identities also have no launch action.
+If Zotero or the protocol handler is unavailable, the details remain open;
+the citation is unchanged.
+
 ## ODT interoperability
 
 Open a supported native LibreOffice ODT containing Zotero fields to convert it
@@ -82,6 +153,14 @@ The bounded ODT path supports the documented Zotero field, citation, note and
 inline-picture subset. Unknown ODF XML, unsupported field structures and
 unreviewed page styles remain outside the conversion.
 
+Supported footnote separators retain their color, width, alignment and spacing,
+with matching pagination and editor/PDF rendering. Direct editable ODT exchange
+preserves the tested geometry through LibreOffice saves. Quds also retains a
+bounded native DOCX representation, but LibreOffice normalizes custom DOCX
+separator paragraphs. Use **Export Zotero ODT** for that qualified exchange;
+the [separator work record](validation/zotero-footnote-separators-20261121/README.md)
+documents the exact scope and remaining host limitations.
+
 ## Embedding in another host
 
 Hosts can call the same controller and command layer used by Studio. The public
@@ -92,6 +171,26 @@ contract covers:
 - research-note and annotation insertion;
 - native bibliography layout and style preferences;
 - undo transactions and source-bound saving.
+
+Hosts that keep a document mounted across view changes can pass an optional
+`isCurrent` predicate to `showWordZoteroDialog`. Tie it to the originating
+document view and navigation generation; it stays true while Zotero's own
+modal dialogs are open. A stale operation cannot publish changes or take
+editing focus after completion. See the
+[host-ownership qualification](validation/zotero-host-ownership-20261121/README.md).
+
+Custom native hosts should drive callbacks through
+`WordZoteroTransaction.handle`, retain their own `Document.displayAlert` UI,
+and call `clearFieldContext` in their finally/disposal path. The optional
+`isCurrent` predicate on `beginZoteroTransaction` also guards temporary
+presentation. `presentedFieldContext` belongs to one operation;
+`WordCanvas.zoteroFieldRanges` accepts its validated `sourceRanges`. Re-read
+`presentedFieldContext` on controller changes instead of caching live source
+ranges across document mutations. Use
+`clearFieldContext(notify: false)` during widget teardown and schedule any
+surviving editor repaint after unmount. The
+[selected-field context record](validation/zotero-field-context-20261122/README.md)
+documents this API and its local qualification.
 
 See the [details](zotero-support-details.md) for exact command names,
 async completion and cancellation behavior, and the native bibliography layout
@@ -109,3 +208,4 @@ contract.
   round-tripping.
 - No model, citation style or library data is downloaded automatically.
 - Live-provider and installed-platform acceptance is separate from local tests.
+- Opening a Zotero item requires an installed desktop protocol handler; an accepted launch does not guarantee the item exists in the active library.

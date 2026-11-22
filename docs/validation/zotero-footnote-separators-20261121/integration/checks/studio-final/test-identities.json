@@ -1,0 +1,378 @@
+[
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcuts_test.dart",
+    "name": "shortcut bindings round-trip and reject incomplete values"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcuts_test.dart",
+    "name": "bare function keys round-trip while ordinary letters need modifiers"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcuts_test.dart",
+    "name": "modifier-only triggers are refused before creating an activator"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcuts_test.dart",
+    "name": "defaults are unique and subscript leaves the zoom key available"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcuts_test.dart",
+    "name": "catalog defaults use Command on macOS and Ctrl elsewhere"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcuts_test.dart",
+    "name": "explicit overrides replace defaults"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcuts_test.dart",
+    "name": "default bold and undo dispatch once (mac: false)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcuts_test.dart",
+    "name": "default bold and undo dispatch once (mac: true)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcuts_test.dart",
+    "name": "remapping disables both old defaults and invokes the new key once"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcuts_test.dart",
+    "name": "an explicit override wins over a later action default"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcuts_test.dart",
+    "name": "unassigned subscript keeps zoom and its keypad alias"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcuts_test.dart",
+    "name": "colliding explicit overrides follow catalog order"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_settings_test.dart",
+    "name": "round trip function-key and modified shortcut overrides survive file saves"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_settings_test.dart",
+    "name": "round trip a fresh install loads defaults and writes nothing"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_settings_test.dart",
+    "name": "round trip every value survives save and load"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_settings_test.dart",
+    "name": "round trip writes are atomic: no temporary file remains, the last save wins and a failing write is reported, not thrown"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_settings_test.dart",
+    "name": "round trip an oversized dictionary preserves the last good document and a later valid save recovers"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_settings_test.dart",
+    "name": "round trip stores preferences only, never secrets"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_settings_test.dart",
+    "name": "corrupt or unknown values stored shortcut sanitization removes unsafe triggers and keeps valid overrides"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_settings_test.dart",
+    "name": "corrupt or unknown values not JSON: defaults, the file is set aside, saving works"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_settings_test.dart",
+    "name": "corrupt or unknown values not an object: defaults, the file is set aside, saving works"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_settings_test.dart",
+    "name": "corrupt or unknown values invalid UTF-8: defaults, the file is set aside, saving works"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_settings_test.dart",
+    "name": "corrupt or unknown values a foreign document: defaults, the file is set aside, saving works"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_settings_test.dart",
+    "name": "corrupt or unknown values settings that are not an object: defaults, the file is set aside, saving works"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_settings_test.dart",
+    "name": "corrupt or unknown values invalid values fall back one by one; valid ones stay"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_settings_test.dart",
+    "name": "corrupt or unknown values proofing schedule values are validated and map to the session"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_settings_test.dart",
+    "name": "corrupt or unknown values copyWith rejects invalid values"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_settings_test.dart",
+    "name": "corrupt or unknown values unknown keys from a newer app are kept across saves"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_settings_test.dart",
+    "name": "schema version and migration an unversioned (version 0) document is migrated and rewritten as the current version"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_settings_test.dart",
+    "name": "schema version and migration a newer version is read best effort and never overwritten"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_settings_test.dart",
+    "name": "schema version and migration an invalid version is corrupt"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_settings_test.dart",
+    "name": "web backend (Cache Storage layer) round trip, corrupt bytes and a refusing browser"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_settings_test.dart",
+    "name": "web backend (Cache Storage layer) ribbon preferences persist through a settings backend"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_settings_test.dart",
+    "name": "the workspace restores stored settings and saves changes"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_settings_test.dart",
+    "name": "proofing schedule settings are restored, applied at once from the Settings dialog and saved"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcut_dispatch_test.dart",
+    "name": "default chrome bold dispatches exactly once (variant: TargetPlatform.linux)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcut_dispatch_test.dart",
+    "name": "reassigned bold removes old keys and applies once (variant: TargetPlatform.linux)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcut_dispatch_test.dart",
+    "name": "reserved Zotero C survives a conflicting override (variant: TargetPlatform.linux)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcut_dispatch_test.dart",
+    "name": "reserved Zotero R survives a conflicting override (variant: TargetPlatform.linux)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcut_dispatch_test.dart",
+    "name": "reassigned redo removes Ctrl Y and both Shift Z defaults (variant: TargetPlatform.linux)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcut_dispatch_test.dart",
+    "name": "reassigned zoom removes old equals and keypad aliases (variant: TargetPlatform.linux)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcut_dispatch_test.dart",
+    "name": "reassigned save removes both platform defaults (variant: TargetPlatform.linux)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcut_dispatch_test.dart",
+    "name": "explicit configurable override keeps incoming precedence (variant: TargetPlatform.linux)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcut_dispatch_test.dart",
+    "name": "captured Word mutations refuse other app targets (variant: TargetPlatform.linux)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcut_dispatch_test.dart",
+    "name": "page break refuses preview-only document mutation (variant: TargetPlatform.linux)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcut_dispatch_test.dart",
+    "name": "captured Word mutation refuses a covering modal route (variant: TargetPlatform.linux)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcut_dispatch_test.dart",
+    "name": "custom text edit shortcut forwards to focused Find text (variant: TargetPlatform.linux)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcut_dispatch_test.dart",
+    "name": "Mail native editing stays active and saved callbacks avoid Word (variant: TargetPlatform.linux)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcut_dispatch_test.dart",
+    "name": "comment bold italic underline remain valid while paragraph formatting is limited (variant: TargetPlatform.linux)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_shortcut_dispatch_test.dart",
+    "name": "saved edit callback forwards to a modal native text input (variant: TargetPlatform.linux)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/suite_workspace_mail_shortcuts_test.dart",
+    "name": "Mail focus isolates hidden Word shortcuts and closing Mail restores one dispatch (variant: TargetPlatform.linux)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "Ctrl Alt C dispatches addEditCitation from the Word caret"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "Ctrl Alt R dispatches refresh from the Word caret"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "Cmd Alt C dispatches addEditCitation from the Word caret"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "Cmd Alt R dispatches refresh from the Word caret"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "body composition blocks shortcuts and saved ribbon callbacks"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "successive shortcuts return directly to the writing caret"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "Add Zotero note ribbon invokes its native picker"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "Add Zotero annotation ribbon invokes its native picker"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "Ctrl Alt C finds the citation in the focused Notes editor"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "citation shortcuts and saved ribbon callbacks respect viewing mode"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "Mail navigation invalidates a pending Zotero publication"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "Mail navigation and return invalidates a pending Zotero publication"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "citation commands stay inactive in other Studio applications"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "a covering modal blocks Zotero even when Word retains focus"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "rapid ribbon and shortcut activation opens one Zotero workspace"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "citation ribbon shows shortcuts for linux"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart",
+    "name": "citation ribbon shows shortcuts for macOS"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "Studio online catalog GET keeps the cloud client and key"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "Studio local catalog GET stays direct with validated API headers"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "saved-search reads stay on direct loopback with the pinned database"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "saved-search writes and encoded route injection are refused before sending"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "citing execCommand sends only local UTF-8 JSON without redirects"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "citing respond sends only local UTF-8 JSON without redirects"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "citing rejects other origins and protocol routes before sending"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "citing requires POST and rejects cloud or catalog request bodies"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "citing accepts case-insensitive names but no secrets or extra headers"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "citing request bodies are valid JSON with a UTF-8 byte bound"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "citing redirects return once without forwarding document data"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "citing responses reject declared and streamed excess bytes"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "native dialog uses its own longer timeout"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "request timeout can shorten but cannot extend host limit"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "dispose settles pending citing immediately and ignores late response"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "dispose cancels a response body already being read"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "citing network failures never expose document or credential data"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart",
+    "name": "citing and catalog limits must be positive before client creation"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart",
+    "name": "Zotero copy names select ODT without changing the source name"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart",
+    "name": "exports an active Zotero copy and keeps normal save as DOCX (variant: TargetPlatform.windows)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart",
+    "name": "picker cancellation preserves dirty edits and re-enables export (variant: TargetPlatform.windows)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart",
+    "name": "edits during picking do not change the detached exported copy (variant: TargetPlatform.windows)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart",
+    "name": "invalid active Zotero data refuses before choosing a destination (variant: TargetPlatform.windows)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_odt_open_test.dart",
+    "name": "file classification and converted names include native ODT"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_odt_open_test.dart",
+    "name": "imported research.odt saves separately with active citations (variant: TargetPlatform.windows)"
+  },
+  {
+    "path": "/workspace/scratch/12e9ca120c75/quds_office_suite/packages/quds_office_editor/example/test/studio_odt_open_test.dart",
+    "name": "imported misnamed.docx saves separately with active citations (variant: TargetPlatform.windows)"
+  }
+]

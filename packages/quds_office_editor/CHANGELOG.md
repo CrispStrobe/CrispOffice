@@ -4,6 +4,76 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Offer Repair in Zotero and confirmed, undoable Convert to text for damaged
+  reference metadata with safe native field ownership. Keep original-source
+  context visible during repair, preserve the document until completion, and
+  retain rich cached text when explicitly converting a field to ordinary text.
+  Guard incomplete/shared packets and stale host targets; qualify repaired and
+  converted fields through DOCX save/reopen.
+
+- Journal connected single-message Move/Delete with exact destination identity,
+  pre-dispatch persistence, conservative interruption recovery and localized
+  activity history. Add capability-checked native IMAP Move and Mark deleted
+  controls, preserve provider-specific trash behavior, and keep uncertain
+  actions protected without automatic replay or flag-only reconciliation.
+
+- Show saved browsing windows and synchronized folders in one local Mail
+  catalog. Keep their coverage distinct, switch sources explicitly, page
+  synchronized headers in batches of 100, and repair pages after membership
+  changes. Repository updates preserve matching readers and retire stale body
+  loads. EN/DE/AR controls include local refresh and guarded cleanup/close.
+
+- Show the citation or bibliography selected by native Zotero while handling
+  manual-edit and repair prompts. Temporary body/table/note highlights and
+  bounded source excerpts keep the writing selection, Notes target and undo
+  history intact; completion, cancellation, errors and stale targets discard
+  the context. Pending insertions and transfer imports are clearly identified
+  without exposing an uncommitted field as a live document range. Reveal
+  offscreen references safely at high zoom, restore the prior viewport when
+  appropriate, and keep cancellation reachable in a short, enlarged-text
+  workspace.
+
+- Let saved-mail searches keep an explicit folder set across verified local
+  accounts. Select folders locally, save/reopen the exact scope, inspect each
+  folder's retained-header coverage, and repair unavailable selections without
+  falling back to all folders. EN/DE/AR controls preserve legacy account-wide
+  searches, guarded refresh and offline reader ownership.
+
+- Preserve the writing caret and both selection endpoints through Zotero
+  Refresh and citation-style changes. Citation expansion/deletion, bibliography
+  reflow and supported note conversion retain unaffected prose positions;
+  Notes selections keep their direction and affinity. Undo restores the source
+  selection and redo restores the transformed selection.
+
+- Render the modeled footnote separator geometry consistently with native
+  note pagination, preserving hidden and zero-width rules. Qualify separator
+  rendering, note editing, note-image ownership and Zotero transfer together
+  with the current Word macro and workspace integration.
+
+- Scope Zotero dialogs to their originating host view through optional
+  `isCurrent` checks. Studio cancels delayed publication and focus restoration
+  after switching to Mail or another app, even if Word is reopened before the
+  response arrives.
+
+- Protect reserved Zotero shortcuts from conflicting overrides, retire old
+  redo/zoom aliases after reassignment, and reject modifier-only key settings.
+  Keep native text actions and comment emphasis available in their own views;
+  show subscript as unassigned while preserving the established zoom-in chord.
+
+- Give Studio's configured keyboard shortcuts priority at the focused Word,
+  Sheet and Slide surfaces through the optional
+  `OfficeController.onShortcutKeyEvent` host hook. Retire replaced defaults and
+  aliases, dispatch conflicting overrides once, and preserve native text-field
+  editing, composition guards, reserved Zotero commands and standalone editor
+  defaults. Qualify the combined incoming Mail/Zotero changes with focused
+  actual-editor tests; see
+  `docs/validation/word-vba-comparison-colors-20261121/README.md`.
+
+- Add English, German and Arabic help for shared Mail range selection. Search
+  synchronized loaded From/To/Cc headers by both display names and mailbox
+  addresses, retaining multiple-address and empty-name behavior without
+  including Bcc or triggering body reads or provider work.
+
 - Align Word's table-cell ruler fallback with the actual table margin, including
   zero and narrow cells. Native layout now honors persisted margins throughout
   research tables, merged/nested cells and authored-note tables.

@@ -14,7 +14,12 @@ GitHub Actions, checks and status queues were neither queried nor awaited.
 The complete tested source and references are retained at
 [`d1125df123c68ff4bedcc0d163e6d4fb06bb0e18`](https://github.com/CrispStrobe/quds_office_suite/commit/d1125df123c68ff4bedcc0d163e6d4fb06bb0e18),
 tree `eba5a73fb140a33425d1a3a6a5b45615cee39040`.
-Subsequent publication changes contain documentation and evidence.
+Later main integration includes separately qualified Mail, shortcut and Word
+VBA changes. Their exact applicability is recorded in
+[the incoming-source continuity audit](main-source-continuity-52e72ca0.json).
+[The host-ownership follow-up](../zotero-host-ownership-20261121/README.md)
+adds fresh focused dialog and Studio qualification on its own recorded source.
+The 4,635 cases and converter saves above remain attributed to D112.
 Publication: [PR #342](https://github.com/CrispStrobe/quds_office_suite/pull/342).
 
 ## Delivered behavior

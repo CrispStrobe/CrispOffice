@@ -1,5 +1,47 @@
 # Zotero validation
 
+## 21 November 2026 — active separators and combined-main qualification
+
+The [separator increment](validation/zotero-footnote-separators-20261121/README.md)
+delivers native active footnote separator geometry, consistent continuation-page
+reservation/rendering, bounded DOCX persistence and editable ODT interchange.
+Fourteen direct geometry probes and three active-citation routes retain their
+identified LibreOffice converter results; custom DOCX separator normalization
+remains a recorded failed route.
+
+The [latest-main record](validation/zotero-footnote-separators-20261121/latest-main/README.md)
+qualifies source `9ed8cc2667a0d441f193915417a5662ad2793d50`, preserving the
+separator, host-ownership and subsequent Word/Mail main integrations. All
+**3,861 cases across 190 suites execute freshly**: 2,732 engine, 1,022 editor,
+106 Studio and one continued-notes golden. There are zero failures, errors or
+skips. All 51 changed live Dart files pass strict analysis and formatting;
+all 6,333 captured inputs remain unchanged and match the qualified source.
+
+The original 3,738-case separator qualification, intermediate 3,794-case
+combined-source qualification and earlier host-ownership counts retain their
+own source attribution; overlapping runs are not added to the final total.
+Read-back and expected-base checks detected concurrent main updates and
+triggered the corresponding new qualification. Installed Word/live Zotero and
+supported-release LibreOffice acceptance remain separate. GitHub Actions were
+neither queried nor awaited.
+
+## 21 November 2026 — host ownership and shortcut continuity
+
+The [host-ownership follow-up](validation/zotero-host-ownership-20261121/README.md)
+qualifies 232 distinct passing cases across 17 suites on
+source `22dd2a4d474a59ad231f24a61dcb8046b029e993`, with no failures, errors or skips.
+It prevents delayed Zotero publication after leaving Word, protects reserved
+citation chords and preserves focused native text editing. Two pre-fix
+regressions reproduce the metadata mutation; both pass in the accepted source.
+Seven changed Dart files pass strict static checks. All 6,131 tracked
+package/application inputs remain unchanged during the accepted run.
+
+Earlier totals below retain their recorded source scopes and are not added to
+this follow-up. The new source-continuity audit separately verifies incoming
+Word/Mail evidence and identifies exactly which older inputs changed. No
+GitHub Actions queue or external converter replay is claimed by this increment.
+
+
 ## 21 November 2026 — table margins and complete captured intake
 
 The [table-layout qualification](validation/zotero-table-layout-20261121/README.md)

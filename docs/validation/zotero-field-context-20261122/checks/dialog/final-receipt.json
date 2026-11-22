@@ -1,0 +1,144 @@
+{
+  "scope": "Complete 21-case native field-context dialog suite after workspace and viewport fixes.",
+  "argv": [
+    "/workspace/scratch/2437eaf6f35d/toolchains/flutter/bin/flutter",
+    "--no-version-check",
+    "--suppress-analytics",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "json",
+    "test/word_zotero_field_context_dialog_test.dart"
+  ],
+  "cwd": "/workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor",
+  "started_utc": "2026-11-22T05:31:35.592364+00:00",
+  "finished_utc": "2026-11-22T05:31:47.852792+00:00",
+  "exit_code": 0,
+  "source_before": {
+    "packages/quds_office_editor/test/word_zotero_field_context_dialog_test.dart": "1713f1485b8d05e10be4e9b68171b94402fcc386153ee0386a3a055c287e91a4",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_field_context.dart": "cf794597e59b4ea5447b3656deab56b2a1d2b03a69b7e12655d581106d5704f3",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart": "f2e45493ef7b14ad96f8e7018e4a9e370455e15d442c758dda808d923ee2227b",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "d3b871e66093030953bb9b41132e9001faca30e1b20f04a4a3942749996d4413",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart": "b509530d510f3b3c256e07d7ed16dc0a0a21864bcd56a50d65a43d6d765dab74"
+  },
+  "source_after": {
+    "packages/quds_office_editor/test/word_zotero_field_context_dialog_test.dart": "1713f1485b8d05e10be4e9b68171b94402fcc386153ee0386a3a055c287e91a4",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_field_context.dart": "cf794597e59b4ea5447b3656deab56b2a1d2b03a69b7e12655d581106d5704f3",
+    "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart": "f2e45493ef7b14ad96f8e7018e4a9e370455e15d442c758dda808d923ee2227b",
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "d3b871e66093030953bb9b41132e9001faca30e1b20f04a4a3942749996d4413",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart": "b509530d510f3b3c256e07d7ed16dc0a0a21864bcd56a50d65a43d6d765dab74"
+  },
+  "sources_unchanged": true,
+  "CI": "true",
+  "cases": [
+    {
+      "name": "selected alert shows original source until the staged update completes",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "selected context preserves alert set 0 OK response 1",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "selected context preserves alert set 1 Cancel response 0",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "selected context preserves alert set 1 OK response 1",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "selected context preserves alert set 2 No response 0",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "selected context preserves alert set 2 Yes response 1",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "selected context preserves alert set 3 Cancel response 0",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "selected context preserves alert set 3 No response 1",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "selected context preserves alert set 3 Yes response 2",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "successive native prompts replace context with the newly selected field",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "cancelling a selected operation preserves writing selection and history",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "a stale writing target hides context and rejects the detached result",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "invalidated host hides selected context before the pending reply returns",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "disposing the host clears context before native completion",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "selected staged insertion explains its pending position without exposing staged text",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "selected footnote context preserves the active Notes selection",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "selected endnote context preserves the active Notes selection",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "multipart bibliography prompt shows complete original entries and location",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "compact progress and selected alert remain usable on a narrow scaled display",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "regular references workspace supports native alert cancellation in a short scaled window",
+      "result": "success",
+      "skipped": false
+    },
+    {
+      "name": "regular references workspace supports operation cancellation in a short scaled window",
+      "result": "success",
+      "skipped": false
+    }
+  ],
+  "case_count": 21,
+  "events_sha256": "a43b5fe211b7fabb717c966061744d4759f62a56207bcabaf503251b118fe9ce",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "terminal_success": true
+}

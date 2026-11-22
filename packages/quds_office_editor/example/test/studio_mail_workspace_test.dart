@@ -20,6 +20,13 @@ import 'package:quds_office_studio/studio_strings.dart';
 
 import 'support/mail_draft_store.dart';
 
+const _flagActions = [
+  MailBulkFlagAction.markRead,
+  MailBulkFlagAction.markUnread,
+  MailBulkFlagAction.flag,
+  MailBulkFlagAction.unflag,
+];
+
 const _strings = StudioStrings(StudioLanguage.en);
 
 mail.MimeMessage _header(
@@ -1512,7 +1519,7 @@ void _peerBulkWorkspaceTests() {
       expect(browser.changes, isEmpty);
     });
 
-    for (final action in MailBulkFlagAction.values) {
+    for (final action in _flagActions) {
       testWidgets(
         '$action freezes reverse subset and keeps the opened reader',
         (tester) async {
@@ -1821,7 +1828,7 @@ void _peerBulkWorkspaceTests() {
 
 void _bulkWorkspaceTests() {
   group('IMAP foreground bulk flags', () {
-    for (final action in MailBulkFlagAction.values) {
+    for (final action in _flagActions) {
       testWidgets('$action changes only the confirmed target flag', (
         tester,
       ) async {

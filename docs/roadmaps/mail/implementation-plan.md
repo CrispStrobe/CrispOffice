@@ -25,6 +25,18 @@ A fresh agent should use [status.md](status.md) to resume the remaining work wit
 
 UI and storage work may proceed in parallel after the typed core contract is agreed. A task may have an interface dependency without requiring every later provider to exist. Unimplemented capabilities must report unavailable/unsupported explicitly; no successful empty results or TODO method bodies.
 
+**Discovery continuation, 22 November 2026:** explicit
+[saved-search folder sets](folder-saved-search.md) now preserve exact identities,
+legacy definitions, bounded paging and missing-folder recovery. The next
+ordered workspace task now includes one account's
+[unified retained-folder navigation](retained-folder-navigation.md), with
+repository-observed browse/sync catalogs and bounded local pages. The next
+[durable single-message Move/Delete](durable-mutations.md) increment is also
+implemented, with explicit capabilities, persisted dispatch markers and
+uncertain-outcome handling. Provider-specific membership reconciliation and
+durable bulk organization now precede connected multi-account navigation.
+These increments do not close M04W or the complete desktop-client parity goal.
+
 ## 2. New package layout
 
 ~~~text
@@ -270,7 +282,18 @@ inspection receipt, not a complete dependency or runtime certification.
   unread counts and full account search in the shared workspace; keep loading,
   empty, offline, synchronizing, failed credentials and unsupported capabilities
   distinct. The separate foreground sync dialog does not complete this requirement.
-- [ ] Extend the durable read/unread/flag foundation to archive, move, delete and broader bulk actions; expose failure/reconciliation status without discarding local state.
+- [x] Extend the existing durable command journal to foreground single-message
+  Move/Delete with exact destinations, provider capabilities, confirmation,
+  restart uncertainty and dated-cache boundaries. Preserve read/flag observations
+  while retiring membership subscriptions. See [durable-mutations.md](durable-mutations.md).
+- [ ] Add provider-specific membership reconciliation, durable archive and broader
+  bulk organization with per-message outcomes and destination previews.
+- [x] Implement visible checked ranges in the shared list with Shift navigation,
+  Shift+click, preserved independent checks and generation/scope guards, plus
+  EN/DE/AR help. Correct synchronized header search to include visible names
+  and addresses. Fresh local qualification passes 272 shared UI and 176 Studio
+  cases, with strict analysis and formatting. See
+  [keyboard-triage.md](keyboard-triage.md).
 - [ ] Provide responsive single-pane mobile and multi-pane desktop layouts, keyboard actions and accessible focus movement. Lists/navigation are host chrome, not replacement document editors.
 - [ ] Switch accounts/profiles without retaining the previous account's selection, attachment handles, credentials or callbacks. Restore draft sessions under their owning identity.
 - [ ] Accept host navigation/attachment/composer services by injection; do not instantiate CrispCloud or standalone global services.

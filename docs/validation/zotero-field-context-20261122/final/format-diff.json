@@ -1,0 +1,54 @@
+{
+  "recorded_at_utc": "2026-11-22T05:43:01.326881+00:00",
+  "source_head": "67677aa7e16ea5e4eff3bcd06ffa6e27c5907246",
+  "format": {
+    "scope": "All ten Zotero implementation and new test files",
+    "argv": [
+      "dart",
+      "format",
+      "--output=none",
+      "--set-exit-if-changed",
+      "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+      "packages/quds_office_engine/test/word_zotero_field_selection_test.dart",
+      "packages/quds_office_editor/lib/src/editor_word/render_word_canvas.dart",
+      "packages/quds_office_editor/lib/src/embed/office_controller.dart",
+      "packages/quds_office_editor/lib/src/embed/office_editors.dart",
+      "packages/quds_office_editor/lib/src/embed/word_zotero_dialog.dart",
+      "packages/quds_office_editor/lib/src/embed/word_zotero_field_context.dart",
+      "packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart",
+      "packages/quds_office_editor/test/word_zotero_field_context_dialog_test.dart",
+      "packages/quds_office_editor/test/word_zotero_field_context_render_test.dart"
+    ],
+    "exit_code": 0,
+    "file_count": 10,
+    "log": "format.txt"
+  },
+  "diff_check": {
+    "scope": "Dart source/tests, Markdown documentation and JSON/YAML metadata; raw captured logs retained verbatim",
+    "argv": [
+      "git",
+      "diff",
+      "--check",
+      "2eecf9aec2c7d1f979064448b911b516d3f56c73",
+      "HEAD",
+      "--",
+      "*.dart",
+      "*.md",
+      "*.json",
+      "*.yaml"
+    ],
+    "exit_code": 0,
+    "log": "diff-check.txt"
+  },
+  "intake_diagnostics": {
+    "receipt": "intake-format-diff.json",
+    "inherited_formatter_differences": [
+      "packages/quds_office_engine/test/office_vba_word_cell_text_controls_integration_test.dart",
+      "packages/quds_office_engine/test/office_vba_word_join_report_integration_test.dart"
+    ],
+    "identical_to_remote_main": "89ad886f155cec05492241048c787bd9434ca4fa",
+    "sources_unchanged": true,
+    "reason": "The broader initial-main intake check also inspected already-merged Word tests. Their existing formatter differences are retained to preserve exact qualified input identity; they are not a Zotero source change.",
+    "raw_log_whitespace": "checks/controller/development-first-paint-geometry-failure.txt line45 is an original Flutter diagnostic blank line with spaces; retain raw evidence verbatim."
+  }
+}

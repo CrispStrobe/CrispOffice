@@ -1,0 +1,136 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "branch": "codex/zotero-parity-20261122",
+  "note": "GitHub Git Data publication creates canonical commit IDs with identical local trees and ordered parents. This maps source-bound local test receipt heads to their retained published snapshots. Branch ref updates used expected heads without force.",
+  "checkpoints": [
+    {
+      "local_commit": "0db7d5e97c9047f02f066ac876a4dfc88c8992a5",
+      "published_commit": "b12205e4235c7c56b14445031d1a0a4a09cac3c3",
+      "identical_tree": "f33b83e3f197669057c9380e6f17f8909f15d81d",
+      "parents": [
+        "c522851d165b395a7f60422a1be969dffc39c9ff"
+      ],
+      "message": "docs(zotero): capture reconciled parity baseline and remote refs [skip ci]"
+    },
+    {
+      "local_commit": "a9c714fc0266b3b66d58a25448a04674ba1e006b",
+      "published_commit": "2ea779693ff25f67fd76b658393244fe2188153a",
+      "identical_tree": "3a7cabe9191d42670114f7ecbe9f0b217bda5daa",
+      "parents": [
+        "b12205e4235c7c56b14445031d1a0a4a09cac3c3"
+      ],
+      "message": "docs(zotero): verify historical intake and define writing-position milestone [skip ci]"
+    },
+    {
+      "local_commit": "60f3b9a269f22885d10d9209455cbe3082220fd7",
+      "published_commit": "4d0b1ea1669b5509d27921ed16fc86dece11a260",
+      "identical_tree": "1300a930eb619d9089222832f76b8647954f4f9b",
+      "parents": [
+        "2ea779693ff25f67fd76b658393244fe2188153a"
+      ],
+      "message": "feat(zotero): track native writing positions through citation updates [skip ci]"
+    },
+    {
+      "local_commit": "e2382051f73ad9f11393c46806348b5c6a7a73ee",
+      "published_commit": "d2bf64462b43abc16543de3dedc3da76f6bc4b1d",
+      "identical_tree": "636e9d0d56f1a1e8026eefb97d5cdabb81a6b839",
+      "parents": [
+        "4d0b1ea1669b5509d27921ed16fc86dece11a260"
+      ],
+      "message": "fix(zotero): preserve writing selections after native refresh and style changes [skip ci]"
+    },
+    {
+      "local_commit": "399424885989812701053c55fb3785c5c4fc1e45",
+      "published_commit": "da52f5e9f89918f7e6a9f4c4abaf07bf65ab726a",
+      "identical_tree": "caa4970e2e3db9ba91885815f0b2601faa3ba515",
+      "parents": [
+        "d2bf64462b43abc16543de3dedc3da76f6bc4b1d"
+      ],
+      "message": "test(zotero): cover passive writing targets and document position behavior [skip ci]"
+    },
+    {
+      "local_commit": "42ac1c3a9d19089efb4e8acc6cbb6276098ef46b",
+      "published_commit": "d1c9673c7caa24a3dc41f9255d2916846d6cdbaf",
+      "identical_tree": "0377382e829ec9488f096cd1fb4d4bf943353a8e",
+      "parents": [
+        "da52f5e9f89918f7e6a9f4c4abaf07bf65ab726a",
+        "bcc55cb6e86e796056e2d75c3fdca50857dbf6e7"
+      ],
+      "message": "merge: retain completed Mail folder-search main during Zotero qualification [skip ci]"
+    },
+    {
+      "local_commit": "2272464838606fabd3258dd23bc5293c0d7c10ad",
+      "published_commit": "b7758d482a0381c5c3ad526675321de80989465e",
+      "identical_tree": "f2639764cf50fb150047414be10400ca8a6caa92",
+      "parents": [
+        "d1c9673c7caa24a3dc41f9255d2916846d6cdbaf"
+      ],
+      "message": "fix(zotero): preserve stale-target contract before capturing writing positions [skip ci]"
+    },
+    {
+      "local_commit": "b4d8deba5af2f71e58037e833cea5c02cde4ba14",
+      "published_commit": "d4b4392fe538473a3accd15294288347e8bc2b56",
+      "identical_tree": "5500767fb43f70c0e15b03ef46c5d4b600fbd453",
+      "parents": [
+        "b7758d482a0381c5c3ad526675321de80989465e",
+        "ceddcd888c37f64e37a8d8d1669daaea31384daf"
+      ],
+      "message": "merge: preserve completed Word VBA integration during Zotero qualification [skip ci]\n\n# Conflicts:\n#\tpackages/quds_office_engine/CHANGELOG.md"
+    },
+    {
+      "local_commit": "a08e25d0d417f90db3d328356bcf4b59cb71f2e0",
+      "published_commit": "3660a9d94e3100885e61b244f9dba7bdc5403cfb",
+      "identical_tree": "90a57a0cb4e77c2bede15d798fe02fdccc1bcbb2",
+      "parents": [
+        "d4b4392fe538473a3accd15294288347e8bc2b56"
+      ],
+      "message": "test(zotero): retain source-bound local qualification and failure evidence [skip ci]"
+    },
+    {
+      "local_commit": "6b21920e4556fe96fcf310ad20be24540c2c74e9",
+      "published_commit": "067ca3a472b57ffff86b6cfb3f54c7bfa60ee45c",
+      "identical_tree": "d3469fc8c7bd83ff5f0861b8c91b950ab006f55b",
+      "parents": [
+        "3660a9d94e3100885e61b244f9dba7bdc5403cfb"
+      ],
+      "message": "fix(studio): import Mail store types required by integrated host [skip ci]"
+    },
+    {
+      "local_commit": "d119b9d3f643b1cfefebf1d3fc06fe47698578a6",
+      "published_commit": "ad965773bd4e0b7b5cfd9237aafce3ca17bded63",
+      "identical_tree": "406292d750ac3892a0d8c9829ccba4c1ae130f5d",
+      "parents": [
+        "067ca3a472b57ffff86b6cfb3f54c7bfa60ee45c"
+      ],
+      "message": "fix(studio): access optional Mail interfaces through guarded typed views [skip ci]"
+    },
+    {
+      "local_commit": "f59aa76a6dadb7faa7780b2ab18b233867e963cd",
+      "published_commit": "99a285c07ad2c08999ae64a68785376123bed4f3",
+      "identical_tree": "4b15ae5ddb295275f248cb48984249d45e2da1fd",
+      "parents": [
+        "ad965773bd4e0b7b5cfd9237aafce3ca17bded63"
+      ],
+      "message": "fix(studio): make integrated Mail dialog lifecycle and labels analyzer-clean [skip ci]"
+    },
+    {
+      "local_commit": "ff45b281ca1d93c463d801ccf008d5a755e14cfb",
+      "published_commit": "fce7a97f297181f3524b31e90e7a49ce061b0954",
+      "identical_tree": "3a728f96ac95588e45c9ab0c7d12e0881f702783",
+      "parents": [
+        "99a285c07ad2c08999ae64a68785376123bed4f3",
+        "82659acb0f617c57d4d241c91033338032b5caac"
+      ],
+      "message": "merge: retain completed Mail reconciliation before Zotero final qualification [skip ci]\n\n# Conflicts:\n#\tpackages/quds_office_editor/example/lib/studio_mail_cached_search_dialog.dart"
+    },
+    {
+      "local_commit": "4c75661929f1960e68f03be2ff6f3d8fb08d8b2f",
+      "published_commit": "61536ae6c0fb4088e975bef6be8dc491fc21e1d9",
+      "identical_tree": "114cf2f320ea7dd266aebe9e5c5a3acae7024a7d",
+      "parents": [
+        "fce7a97f297181f3524b31e90e7a49ce061b0954"
+      ],
+      "message": "docs(zotero): publish final 2529-case qualification and reconciled intake [skip ci]"
+    }
+  ]
+}

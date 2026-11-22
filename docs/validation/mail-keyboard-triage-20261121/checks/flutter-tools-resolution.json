@@ -1,0 +1,19 @@
+{
+  "name": "flutter-tools-resolution",
+  "command": [
+    "/workspace/scratch/f433637a99a0/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+    "pub",
+    "get",
+    "--enforce-lockfile",
+    "--example"
+  ],
+  "cwd": "/workspace/scratch/f433637a99a0/toolchain/flutter/packages/flutter_tools",
+  "started_utc": "2026-11-21T21:38:43.927106+00:00",
+  "status": "PASS",
+  "log": "flutter-tools-resolution.log",
+  "github_actions": "NOT USED",
+  "exit_code": 0,
+  "elapsed_seconds": 243.872,
+  "finished_utc": "2026-11-21T21:42:47.799273+00:00",
+  "log_sha256": "1a12284733a359894b49919ec97c3c89b8d2a4d86881b093e6b36e5b945aad81"
+}

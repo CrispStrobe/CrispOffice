@@ -1,0 +1,18 @@
+{
+  "name": "workspace-resolution",
+  "command": [
+    "/workspace/scratch/f433637a99a0/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+    "pub",
+    "get",
+    "--enforce-lockfile"
+  ],
+  "cwd": "/workspace/scratch/f433637a99a0/quds_office_suite",
+  "started_utc": "2026-11-21T21:41:56.299634+00:00",
+  "status": "PASS",
+  "log": "workspace-resolution.log",
+  "github_actions": "NOT USED",
+  "exit_code": 0,
+  "elapsed_seconds": 154.344,
+  "finished_utc": "2026-11-21T21:44:30.644033+00:00",
+  "log_sha256": "4e724aed3be6a8a91abfb7f5db3649ef4b58b615e3130a17de18f446be17d201"
+}

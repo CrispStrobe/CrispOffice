@@ -11,6 +11,8 @@ The canonical fixtures are:
 
 | Suite | Cases | Scope |
 | --- | ---: | --- |
+| [`word_cell_paragraphs_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_cell_paragraphs_v1.json) | 32 | Explicit cell paragraph selection, Style/Shading, retained aliases/helpers, existing formatting, strict selectors and direct/projected range refusals |
+| [`word_join_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_join_v1.json) | 25 | Join of fixed/dynamic String arrays, lower bounds, array lifecycle, delimiters, Unicode, exact output limits and positioned refusals |
 | [`string_intrinsics_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/string_intrinsics_v1.json) | 69 | Strict String intrinsics, UTF-16 and publication boundaries |
 | [`text_intrinsics_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/text_intrinsics_v1.json) | 95 | Binary forward/reverse search, replacement, Trim families, UTF-16, strict argument shapes and shared work/output limits |
 | [`variant_conversions_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/variant_conversions_v1.json) | 120 | Empty/Null lifecycle, operators, explicit conversions and deliberate limits |
@@ -18,10 +20,43 @@ The canonical fixtures are:
 | [`word_paragraphs_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_paragraphs_v1.json) | 44 | Word object bindings, prefix insertion, font/paragraph formatting, shared language behavior and deliberate refusals |
 | [`word_font_position_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_font_position_v1.json) | 12 | Signed point displacement, explicit zero, typed/named helpers, header/footer identity, dialect bounds and positioned read/fraction refusals |
 | [`word_numeric_intrinsics_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_numeric_intrinsics_v1.json) | 58 | Abs/Int/Fix/Sgn arithmetic, Word plans, Empty/Null composition, strict conversions, negative zero, subnormals, numeric bounds and positioned refusals |
+| [`word_comparison_colors_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/word_comparison_colors_v1.json) | 30 | Binary StrComp, UTF-16 ordering, Empty/Null, strict arguments, every fixed font palette entry, automatic versus packed RGB, helpers and independent footer targeting |
 | [`powerpoint_shapes_v1.json`](../packages/quds_office_engine/test/fixtures/vba_conformance/powerpoint_shapes_v1.json) | 20 | PowerPoint selectors and typed bindings, text/font/alignment/geometry mappings, explicit collection guards and positioned refusals |
 
 The same fixture bytes are consumed by each VM test and the portable
 JavaScript runner; there is no separately maintained copy of expected results.
+
+The cell paragraph suite independently specifies 14 complete successful plans
+and 18 positioned diagnostics. It covers direct and Item selection, existing
+style names/constants, palette/RGB/automatic backgrounds, alias and helper
+identity, source-only loops, existing body/header behavior, and strict
+cell-paragraph boundaries. It includes a regression for unsupported insertion
+inside inactive source. The VM and portable JavaScript runner consume the same
+fixture bytes; no case claims observation from an installed Office host. Native
+document and transaction checks are separate. See the
+[contract](vba-word-macros-details.md#formatting-a-cell-paragraph) and
+[local qualification](validation/word-vba-cell-paragraphs-20261122/README.md).
+
+The Join suite independently specifies 16 complete successful Word plans and
+nine positioned diagnostics. It exercises allocated local String arrays,
+negative/nonzero bounds, fixed/dynamic lifecycle, default/empty/multicharacter
+delimiters, empty elements, Unicode, unchanged array contents and the exact
+String limit. Type/allocation restrictions, Empty/Null behavior and budgets
+are labeled `dialect-contract`; no case claims installed Office execution.
+The same bytes run in `office_vba_join_conformance_test.dart` and the portable
+`web_vba_join_conformance.dart` via `VBA_CONFORMANCE_BASE64`. See the
+[Join contract](vba-macros-details.md#joining-source-string-arrays) and
+[qualification](validation/word-vba-cell-text-20261122/README.md).
+
+The comparison/color suite checks complete Word plans and positioned refusals.
+Its expectations were independently authored from Microsoft contracts and
+explicit Quds restrictions, including source-only binary comparison, strict
+coercion, and automatic color identity. It uses the common portable runner;
+native document fidelity, CLI/MCP execution, policy and rollback are tested
+separately by `office_vba_word_comparison_colors_integration_test.dart` and the
+actual [BAS example](../packages/quds_office_engine/example/macros/word_comparison_colors.bas).
+See its [local qualification](validation/word-vba-comparison-colors-20261121/README.md)
+for the executed source and runtime evidence.
 
 The numeric suite uses the same portable runner, with its exact JSON bytes
 supplied through `VBA_CONFORMANCE_BASE64`. Arithmetic expectations come from

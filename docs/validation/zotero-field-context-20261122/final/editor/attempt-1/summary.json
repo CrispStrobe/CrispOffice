@@ -1,0 +1,13 @@
+{
+  "recorded_at_utc": "2026-11-22T05:39:19.319323+00:00",
+  "head": "c6941f9ae82c74bf0f8d8a2a15d2a7a2c47c9f4f",
+  "tree": "4b9bc320788c30daf5b17bd8868ad8a651c86fa3",
+  "editor_tests_passed": 308,
+  "editor_tests_failed": 1,
+  "studio_tests_passed": 55,
+  "strict_analysis_exit_code": 0,
+  "accepted": false,
+  "failure": "Existing regular-workspace Web API pagination test could not hit Next page; expected Second source was absent.",
+  "root_cause": "Flexible(loose) around the short message banner reserved a flex share which was not redistributed to TabBarView, leaving unused vertical space and clipping pagination.",
+  "recovery": "Parent restored the original natural-height bounded message box. Focused reproduction and full bounded final gates will be rerun on the frozen corrected source. This attempt remains immutable and is not final acceptance."
+}

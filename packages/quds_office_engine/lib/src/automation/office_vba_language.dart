@@ -135,11 +135,13 @@ const _comparisonOperators = <String>{'=', '<>', '<', '>', '<=', '>='};
 const _numericIntrinsics = <String>{'abs', 'int', 'fix', 'sgn'};
 const _stringIntrinsics = <String>{
   'len',
+  'join',
   r'left$',
   r'right$',
   r'mid$',
   'instr',
   'instrrev',
+  'strcomp',
   'replace',
   'trim',
   r'trim$',
@@ -2226,12 +2228,13 @@ class _Checker {
   Map<String, _Symbol> symbols = <String, _Symbol>{};
   final List<_Kind> withKinds = <_Kind>[];
   final List<_Expr> withTargets = <_Expr>[];
-  // Range is shared by paragraph, story and cell selectors. Keep known local
-  // bindings separate so enabling Cell.Range.Text does not admit paragraph
-  // mark replacement in statically checked, unexecuted source paths.
-  final Map<String, List<(_Expr, List<_Expr>)>> wordRangeBindings =
+  // Range and Paragraph are shared by body, story and cell selectors. Keep
+  // known local bindings so cell Text and projected paragraph formatting do
+  // not admit mark replacement/insertion in unexecuted source paths.
+  final Map<String, List<(_Expr, List<_Expr>)>> wordSelectorBindings =
       <String, List<(_Expr, List<_Expr>)>>{};
   final Map<String, bool> wordCellRangeBindings = <String, bool>{};
+  final Map<String, bool> wordCellSelectorBindings = <String, bool>{};
   final Set<String> counters = <String>{};
   final Set<String> eachCounters = <String>{};
   final Map<_Symbol, Object> constantValues = <_Symbol, Object>{};
@@ -2367,8 +2370,9 @@ class _Checker {
       symbols = <String, _Symbol>{...globals};
       withKinds.clear();
       withTargets.clear();
-      wordRangeBindings.clear();
+      wordSelectorBindings.clear();
       wordCellRangeBindings.clear();
+      wordCellSelectorBindings.clear();
       counters.clear();
       eachCounters.clear();
       doDepth = 0;
@@ -2669,8 +2673,9 @@ class _Checker {
     for (final statement in statements) {
       switch (statement) {
         case _Assignment(target: final _Name target, isSet: true):
-          if (symbols[target.token.lower]?.type == _Declared.range) {
-            (wordRangeBindings[target.token.lower] ??= []).add((
+          final type = symbols[target.token.lower]?.type;
+          if (type == _Declared.range || type == _Declared.paragraph) {
+            (wordSelectorBindings[target.token.lower] ??= []).add((
               statement.value,
               scopes,
             ));
@@ -2726,7 +2731,7 @@ class _Checker {
     final name = expression.token.lower;
     if (wordCellRangeBindings[name] case final cached?) return cached;
     if (!visiting.add(name)) return false;
-    final bindings = wordRangeBindings[name];
+    final bindings = wordSelectorBindings[name];
     // A generic ByVal Range helper is checked again against its actual selector
     // during source evaluation. Locals known to receive paragraph/story ranges
     // never gain the cell-only Text property, even in dead branches.
@@ -2740,6 +2745,56 @@ class _Checker {
           );
     visiting.remove(name);
     wordCellRangeBindings[name] = result;
+    return result;
+  }
+
+  // True only for selectors whose local origins are all explicitly cells.
+  // Generic helper parameters and mixed body/cell aliases are checked against
+  // their actual selector during evaluation, preserving shared helpers.
+  bool _knownWordCellSelector(
+    _Expr expression,
+    List<_Expr> scopes,
+    Set<String> visiting,
+  ) {
+    if (expression is _WithValue) {
+      return scopes.isNotEmpty &&
+          _knownWordCellSelector(
+            scopes.last,
+            scopes.sublist(0, scopes.length - 1),
+            visiting,
+          );
+    }
+    if (expression is _Member) {
+      if (expression.token.lower == 'range' &&
+          _isWordCellSource(expression.receiver, scopes)) {
+        return true;
+      }
+      return const {
+            'range',
+            'paragraphs',
+            'item',
+          }.contains(expression.token.lower) &&
+          _knownWordCellSelector(expression.receiver, scopes, visiting);
+    }
+    if (expression is! _Name) return false;
+    final name = expression.token.lower;
+    final type = symbols[name]?.type;
+    if (type != _Declared.range && type != _Declared.paragraph) return false;
+    if (currentProcedure.parameters.any(
+      (parameter) => parameter.name.lower == name,
+    )) {
+      return false;
+    }
+    if (wordCellSelectorBindings[name] case final cached?) return cached;
+    if (!visiting.add(name)) return false;
+    final bindings = wordSelectorBindings[name];
+    final result =
+        bindings != null &&
+        bindings.every(
+          (binding) => _knownWordCellSelector(binding.$1, binding.$2, visiting),
+        );
+    visiting.remove(name);
+    wordCellSelectorBindings[name] = result;
     return result;
   }
 
@@ -2868,6 +2923,16 @@ class _Checker {
             context.type(
               statement.target.token,
               'InsertBefore requires an explicit Word Range.',
+            );
+          }
+          if (_knownWordCellSelector(
+            statement.target.receiver,
+            withTargets,
+            {},
+          )) {
+            context.unsupported(
+              statement.target.token,
+              'An explicitly selected cell paragraph supports formatting only; text insertion is unsupported.',
             );
           }
           _compatible(
@@ -3380,13 +3445,15 @@ class _Checker {
               property == 'sectionstart')) {
         return _Kind.number;
       }
-      if (receiver == _Kind.range && property == 'highlightcolorindex') {
+      final textRange =
+          receiver == _Kind.range || receiver == _Kind.wordCellRange;
+      if (textRange && property == 'highlightcolorindex') {
         return _Kind.number;
       }
-      if (receiver == _Kind.range && property == 'noproofing') {
+      if (textRange && property == 'noproofing') {
         return _Kind.boolean;
       }
-      if (receiver == _Kind.range &&
+      if (textRange &&
           (property == 'languageid' || property == 'languageidother')) {
         return _Kind.number;
       }
@@ -3407,6 +3474,7 @@ class _Checker {
             property == 'kerning' ||
             property == 'position' ||
             property == 'color' ||
+            property == 'colorindex' ||
             property == 'underline') {
           return _Kind.number;
         }
@@ -3654,6 +3722,11 @@ class _Checker {
             _arguments(expression, 0, allowProperty: true);
             return _Kind.wordCellRange;
           }
+          if (receiver == _Kind.wordCellRange &&
+              (name == 'font' || name == 'paragraphformat')) {
+            _arguments(expression, 0, allowProperty: true);
+            return name == 'font' ? _Kind.font : _Kind.paragraphFormat;
+          }
           if (receiver == _Kind.document && name == 'sections') {
             if (expression.arguments == null) return _Kind.wordSections;
             final argument = _arguments(expression, 1).single;
@@ -3691,7 +3764,8 @@ class _Checker {
           }
           if ((receiver == _Kind.document ||
                   receiver == _Kind.wordStoryRange ||
-                  receiver == _Kind.range) &&
+                  receiver == _Kind.range ||
+                  receiver == _Kind.wordCellRange) &&
               name == 'paragraphs') {
             if (expression.arguments == null) return _Kind.paragraphs;
             final argument = _arguments(expression, 1).single;
@@ -3727,6 +3801,13 @@ class _Checker {
                   name == 'paragraphformat' ||
                   name == 'listformat')) {
             _arguments(expression, 0, allowProperty: true);
+            if (name == 'listformat' &&
+                _knownWordCellSelector(expression.receiver, withTargets, {})) {
+              context.unsupported(
+                expression.token,
+                'ListFormat is unsupported on explicitly selected cell paragraphs.',
+              );
+            }
             return switch (name) {
               'font' => _Kind.font,
               'listformat' => _Kind.wordListFormat,
@@ -3910,6 +3991,48 @@ class _Checker {
   _Kind _stringIntrinsic(_Call expression) {
     final name = expression.token.lower;
     final arguments = expression.arguments;
+    if (name == 'join') {
+      if (arguments.isEmpty || arguments.length > 2) {
+        context.type(
+          expression.token,
+          'Join requires a local String array and an optional string delimiter.',
+        );
+      }
+      // Only this intrinsic and the existing array consumers accept a bare
+      // local array. Whole-array values, assignment and parameters stay out of
+      // the scalar expression model.
+      final source = _arraySymbol(arguments.first);
+      if (source.type != _Declared.string) {
+        context.type(
+          arguments.first.token,
+          'Join requires an array declared As String; implicit element conversions are unsupported.',
+        );
+      }
+      if (arguments.length == 2) {
+        final delimiter = arguments[1];
+        _compatible(_Kind.string, _expression(delimiter), delimiter.token);
+      }
+      return _Kind.string;
+    }
+    if (name == 'strcomp') {
+      if (arguments.length < 2 || arguments.length > 3) {
+        context.type(
+          expression.token,
+          'StrComp requires two strings and an optional binary comparison mode.',
+        );
+      }
+      for (var index = 0; index < arguments.length; index++) {
+        final argument = arguments[index];
+        _compatible(
+          index < 2 ? _Kind.string : _Kind.number,
+          _expression(argument),
+          argument.token,
+        );
+      }
+      // String arguments may be Variants containing Empty or Null. A Null
+      // result must remain a Variant until its consumer handles it explicitly.
+      return _Kind.variant;
+    }
     if (name == 'space' ||
         name == r'space$' ||
         name == 'chrw' ||
@@ -4266,14 +4389,18 @@ class _WordParagraphs {
 }
 
 class _WordParagraph {
-  const _WordParagraph(this.index, {this.headerFooter});
+  const _WordParagraph(this.index, {this.headerFooter, this.cell});
   final int index;
   final _WordHeaderFooter? headerFooter;
+  final _WordCell? cell;
 
   bool sameTarget(_WordParagraph other) =>
       index == other.index &&
       headerFooter?.section.index == other.headerFooter?.section.index &&
-      headerFooter?.story == other.headerFooter?.story;
+      headerFooter?.story == other.headerFooter?.story &&
+      cell?.table.index == other.cell?.table.index &&
+      cell?.row == other.cell?.row &&
+      cell?.column == other.cell?.column;
 }
 
 class _WordRange {
@@ -5068,10 +5195,20 @@ class _Evaluator {
           }
           if (receiver is _WordCell) return _WordCellRange(receiver);
           if (receiver is _WordCellRange) {
-            context.unsupported(
-              expression.token,
-              'A cell Range supports only Text assignment; reads, subranges and formatting are unsupported.',
-            );
+            // A cell Range retains its own identity. Formatting objects and
+            // an explicit Paragraphs(1) selector project its guarded ordinary
+            // paragraph without treating cell or paragraph marks as text.
+            final range = _WordRange(_WordParagraph(0, cell: receiver.cell));
+            if (expression.token.lower == 'font') return _WordFont(range);
+            if (expression.token.lower == 'paragraphformat') {
+              return _WordParagraphFormat(range);
+            }
+            if (expression.token.lower != 'paragraphs') {
+              context.unsupported(
+                expression.token,
+                'A cell Range supports its explicit text controls, Font, ParagraphFormat and Paragraphs(1); reads and arbitrary subranges are unsupported.',
+              );
+            }
           }
           if (receiver is _WordDocument &&
               expression.token.lower == 'sections' &&
@@ -5129,6 +5266,10 @@ class _Evaluator {
               collection = _WordParagraphs(headerFooter: receiver.headerFooter);
             } else if (receiver is _WordRange) {
               collection = _WordParagraphs(singleParagraph: receiver.paragraph);
+            } else if (receiver is _WordCellRange) {
+              collection = _WordParagraphs(
+                singleParagraph: _WordParagraph(0, cell: receiver.cell),
+              );
             } else {
               collection = const _WordParagraphs();
             }
@@ -5144,7 +5285,7 @@ class _Evaluator {
               if (index != 1) {
                 context.unsupported(
                   expression.token,
-                  'Paragraphs on a selected paragraph Range supports only Item(1).',
+                  'Paragraphs on a selected paragraph or cell Range supports only Item(1).',
                 );
               }
               return paragraph;
@@ -5168,10 +5309,11 @@ class _Evaluator {
           }
           final range = _wordParagraphRange(receiver, expression.token);
           if (expression.token.lower == 'listformat' &&
-              range.paragraph.headerFooter != null) {
+              (range.paragraph.headerFooter != null ||
+                  range.paragraph.cell != null)) {
             context.unsupported(
               expression.token,
-              'ListFormat currently supports body paragraphs only.',
+              'ListFormat currently supports body paragraphs outside explicit cell and header/footer selectors only.',
             );
           }
           return switch (expression.token.lower) {
@@ -5303,7 +5445,7 @@ class _Evaluator {
     if (value is _WordCellRange) {
       context.unsupported(
         token,
-        'A cell Range supports only Text assignment; paragraph insertion and formatting are unsupported.',
+        'A cell Range supports its explicit text controls, Font, ParagraphFormat and Paragraphs(1); paragraph insertion is unsupported.',
       );
     }
     context.unsupported(
@@ -5963,6 +6105,8 @@ class _Evaluator {
 
   Object _stringIntrinsic(_Call expression, List<Object> arguments) {
     final name = expression.token.lower;
+    if (name == 'join') return _stringJoin(expression, arguments);
+    if (name == 'strcomp') return _stringCompare(expression, arguments);
     if (name == 'space' ||
         name == r'space$' ||
         name == 'string' ||
@@ -6080,6 +6224,81 @@ class _Evaluator {
     return text.substring(offset, offset + count);
   }
 
+  String _stringJoin(_Call expression, List<Object> arguments) {
+    // Arguments have already been evaluated exactly once in source order.
+    // Binding restricts the first argument to a declared local String array;
+    // its physical element order is independent of Option Base/lower bound.
+    final array = arguments.first as _Array;
+    _allocatedBounds(array, expression.arguments.first.token);
+    var delimiter = ' ';
+    if (arguments.length == 2) {
+      final value = arguments[1];
+      final token = expression.arguments[1].token;
+      if (value == _VariantState.nullValue) _invalidNull(token);
+      delimiter = value == _VariantState.empty ? '' : _string(value, token);
+    }
+    var length = 0;
+    for (var index = 0; index < array.elements.length; index++) {
+      _tick(expression.token);
+      final text = _string(
+        array.elements[index],
+        expression.arguments.first.token,
+      );
+      final added = text.length + (index == 0 ? 0 : delimiter.length);
+      if (added > _maxString - length) {
+        context.limit(
+          expression.token,
+          'Joined strings exceed $_maxString UTF-16 code units.',
+        );
+      }
+      length += added;
+    }
+    // Charge all copied text and delimiters before allocating the result,
+    // including single-element and empty-string arrays. Array visits above
+    // are metered even when joining creates an empty result.
+    _charge(length, expression.token);
+    final result = StringBuffer();
+    for (var index = 0; index < array.elements.length; index++) {
+      if (index != 0) result.write(delimiter);
+      result.write(array.elements[index] as String);
+    }
+    return result.toString();
+  }
+
+  Object _stringCompare(_Call expression, List<Object> arguments) {
+    // Every argument expression has already run once in source order. Even
+    // Null text must not bypass a supplied invalid comparison mode.
+    if (arguments.length == 3) {
+      final mode = arguments[2];
+      final token = expression.arguments[2].token;
+      if (mode == _VariantState.nullValue) _invalidNull(token);
+      _stringBinaryCompare(mode, token);
+    }
+    String? text(int index) {
+      final value = arguments[index];
+      if (value == _VariantState.empty) return '';
+      if (value == _VariantState.nullValue) return null;
+      return _string(value, expression.arguments[index].token);
+    }
+
+    // Validate both operands before propagating Null: String/Empty/Null are
+    // accepted, but numeric and Boolean-to-string coercion remains explicit.
+    final left = text(0);
+    final right = text(1);
+    if (left == null || right == null) return _VariantState.nullValue;
+    final length = left.length < right.length ? left.length : right.length;
+    for (var index = 0; index < length; index++) {
+      // Inspect UTF-16 units on both runtimes, including isolated surrogates
+      // in source values. Charge both reads before performing the comparison.
+      _charge(2, expression.token);
+      final a = left.codeUnitAt(index);
+      final b = right.codeUnitAt(index);
+      if (a != b) return a < b ? -1 : 1;
+    }
+    if (left.length == right.length) return 0;
+    return left.length < right.length ? -1 : 1;
+  }
+
   int _stringSearch(_Call expression, List<Object> arguments) {
     final reverse = expression.token.lower == 'instrrev';
     final withStart = !reverse && arguments.length >= 3;
@@ -6190,7 +6409,7 @@ class _Evaluator {
     if (_integer(value, token) != 0) {
       context.unsupported(
         token,
-        'String search and replacement require vbBinaryCompare (0); locale, database and Option Compare modes are unsupported.',
+        'String operations require vbBinaryCompare (0); locale, database and Option Compare modes are unsupported.',
       );
     }
   }
@@ -6863,10 +7082,22 @@ class _Evaluator {
       return;
     }
     if (receiver is _WordCellRange) {
-      context.unsupported(
-        token,
-        'A cell Range supports only Text assignment; formatting is unsupported.',
-      );
+      if (!const {
+        'highlightcolorindex',
+        'noproofing',
+        'languageid',
+        'languageidother',
+      }.contains(property)) {
+        context.unsupported(
+          token,
+          'A cell Range supports Text, Font, ParagraphFormat, highlighting and proofing controls only; other direct properties are unsupported.',
+        );
+      }
+      // Only these visible-text writes project the cell's guarded paragraph.
+      // Keep the cell Range identity for all other members so an alias cannot
+      // acquire direct insertion, style or shading. Paragraph styles/shading
+      // require an explicit Paragraphs(1) selector.
+      receiver = _WordRange(_WordParagraph(0, cell: receiver.cell));
     }
     if (receiver is _WordShading) {
       final number = _integer(value, token);
@@ -7095,9 +7326,21 @@ class _Evaluator {
           );
         }
         normalized = size;
+      } else if (property == 'colorindex') {
+        field = 'color';
+        final index = _integer(value, token);
+        if (index < 0 || index >= _wordHighlights.length) {
+          context.unsupported(
+            token,
+            'Font.ColorIndex requires wdAuto or a fixed WdColorIndex color from 1 through 16; wdByAuthor is not valid for fonts.',
+          );
+        }
+        normalized = _wordHighlights[index] ?? 'auto';
       } else {
         field = 'color';
-        normalized = _color(value, token);
+        normalized = _integer(value, token) == -16777216
+            ? 'auto'
+            : _color(value, token);
       }
       _emitWord(receiver.range, 'runFormat', <String, Object?>{
         field: normalized,
@@ -7336,6 +7579,22 @@ class _Evaluator {
     Map<String, Object?> fields,
     _Token token,
   ) {
+    if (range.paragraph.cell != null &&
+        !const <String>{
+          'runFormat',
+          'paragraphFormat',
+          'tabStop',
+          'clearTabStops',
+          'lineSpacing',
+          'paragraphSpaceBefore',
+          'paragraphStyle',
+          'paragraphShading',
+        }.contains(operation)) {
+      context.unsupported(
+        token,
+        'An explicitly selected cell paragraph supports formatting only; text insertion, replacement and list operations are unsupported.',
+      );
+    }
     if (steps.length >= _maxSteps) {
       context.limit(token, 'Word writes exceed $_maxSteps emitted operations.');
     }
@@ -7344,6 +7603,12 @@ class _Evaluator {
       if (range.paragraph.headerFooter case final story?) ...{
         'story': story.story,
         'section': story.section.index,
+      },
+      if (range.paragraph.cell case final cell?) ...{
+        'story': 'tableCell',
+        'table': cell.table.index,
+        'row': cell.row,
+        'column': cell.column,
       },
       ...fields,
     }, token);

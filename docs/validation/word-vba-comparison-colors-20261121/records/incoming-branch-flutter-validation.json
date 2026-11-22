@@ -1,0 +1,72 @@
+{
+  "flutter": "3.47.8",
+  "dart": "3.13.7",
+  "tests": [
+    {
+      "log": "mail-range-selection-tests.log",
+      "passed": 43,
+      "scopes": [
+        {
+          "file": "message_list_range_selection_test.dart",
+          "passed": 43
+        }
+      ],
+      "warnings": [],
+      "sha256": "94ed1fbeed93c752a7f7c8a546aec02907bfef6a4f6dd4502af96f7f7e64dc51"
+    },
+    {
+      "log": "studio-mail-zotero-existing-tests.log",
+      "passed": 90,
+      "scopes": [
+        {
+          "file": "studio_mail_selection_help_test.dart",
+          "passed": 3
+        },
+        {
+          "file": "studio_mail_sync_dialog_test.dart",
+          "passed": 35
+        },
+        {
+          "file": "studio_settings_test.dart",
+          "passed": 23
+        },
+        {
+          "file": "studio_shortcuts_test.dart",
+          "passed": 12
+        },
+        {
+          "file": "studio_zotero_shortcuts_test.dart",
+          "passed": 17
+        }
+      ],
+      "warnings": [],
+      "sha256": "8114ea64057d6836f9c14deff8fa9658851023d2e746b97be96674a9c34c4afe"
+    },
+    {
+      "log": "editor-zotero-incoming-regression-tests.log",
+      "passed": 107,
+      "scopes": [
+        {
+          "file": "word_zotero_dialog_test.dart",
+          "passed": 49
+        },
+        {
+          "file": "word_zotero_citing_dialog_test.dart",
+          "passed": 24
+        },
+        {
+          "file": "word_zotero_direct_command_test.dart",
+          "passed": 23
+        },
+        {
+          "file": "word_zotero_stored_details_dialog_test.dart",
+          "passed": 11
+        }
+      ],
+      "warnings": [],
+      "sha256": "ead9e1ee58843745a3dcb1f048c8187615906f5fc24c8bd137ef2b3f9a39a5bf"
+    }
+  ],
+  "total_passed": 240,
+  "lockfile_still_identical": true
+}

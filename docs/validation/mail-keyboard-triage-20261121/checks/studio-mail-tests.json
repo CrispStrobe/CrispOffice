@@ -1,0 +1,24 @@
+{
+  "name": "studio-mail-tests",
+  "command": [
+    "/workspace/scratch/f433637a99a0/toolchain/flutter/bin/cache/dart-sdk/bin/dart",
+    "/workspace/scratch/f433637a99a0/toolchain/flutter/bin/cache/flutter_tools.snapshot",
+    "--no-version-check",
+    "test",
+    "--no-pub",
+    "--machine",
+    "--concurrency=1",
+    "test/studio_mail_sync_dialog_test.dart",
+    "test/studio_mail_selection_help_test.dart",
+    "test/studio_mail_workspace_test.dart",
+    "test/studio_mail_cached_host_test.dart",
+    "test/studio_mail_sync_host_test.dart",
+    "test/studio_mail_boolean_search_strings_test.dart",
+    "test/studio_mail_conversation_strings_test.dart"
+  ],
+  "cwd": "/workspace/scratch/f433637a99a0/quds_office_suite/packages/quds_office_editor/example",
+  "started_utc": "2026-11-21T21:45:44.362776+00:00",
+  "status": "RUNNING",
+  "log": "studio-mail-tests.log",
+  "github_actions": "NOT USED"
+}

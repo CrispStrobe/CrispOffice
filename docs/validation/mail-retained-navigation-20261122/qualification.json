@@ -1,0 +1,1494 @@
+{
+  "schema_version": 1,
+  "milestone": "Unified retained-folder navigation",
+  "date": "2026-11-22",
+  "counting": {
+    "unit": "Substantive named cases with successful testDone events.",
+    "excluded": [
+      "Loading pseudo-tests",
+      "Hidden framework records",
+      "Flutter process notifications"
+    ],
+    "overlap": "Development reruns and focused cleanup checks are not added to accepted counts. The earlier host cohort is reported separately. No combined exact-final repository or host-suite total is claimed.",
+    "catalog_correction": "The earlier conversational count of 23 for the catalog helper included its loader. Its substantive count is 22."
+  },
+  "accepted_gates": [
+    {
+      "id": "retained_folder_catalog",
+      "status": "passed",
+      "exit_code": null,
+      "working_directory": "packages/quds_office_editor/example",
+      "command": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "--machine",
+        "test/studio_mail_retained_folders_test.dart"
+      ],
+      "environment": "runtime.json; pinned Flutter/Dart and locked dependencies",
+      "log": "logs/retained-folder-catalog.jsonl",
+      "source_bound": "Unchanged helper source rerun after the earlier unarchived helper execution. Before/after input hashes are recorded in source-hashes.json. Loader events do not count as tests.",
+      "counts": {
+        "passed": 22,
+        "failed": 0,
+        "skipped": 0,
+        "incomplete": 0,
+        "error_events": 0,
+        "excluded_loading_or_hidden_records": 1
+      },
+      "terminal_events": [
+        {
+          "success": true,
+          "elapsed_ms": 2875
+        }
+      ],
+      "known_flutter_process_notifications": 1,
+      "non_json_lines": [],
+      "suites": [
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_retained_folders_test.dart",
+          "passed": 22,
+          "failed": 0,
+          "skipped": 0,
+          "cases": [
+            {
+              "name": "empty catalogs remain empty without inventing folders",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "browse-only and sync-only folders retain their distinct coverage",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "overlapping folder keeps both observations and sync display metadata",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "activity ordering uses newer browse or sync time with stable ID ties",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "result is immutable and independent of later source list edits",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "duplicate browse identities fail instead of choosing an observation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "duplicate sync identities fail even when they also overlap browsing",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "foreign account cannot merge through matching folder text",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "foreign profile cannot merge through matching folder text",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "overlap may rename a folder but cannot change folder/label semantics",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "exactly 1000 distinct folders are retained without truncation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "individually bounded catalogs cannot silently overflow merged limit",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "each input catalog is bounded before merging",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "invalid revision -1 is rejected in both sources",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "invalid revision 0 is rejected in both sources",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "invalid revision 9007199254740992 is rejected in both sources",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "safe maximum revisions and epoch observations remain valid",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "pre-epoch observations fail instead of sorting as valid retained mail",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "browse counts stay bounded separately from synchronized totals",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "oversized folder identifiers and display metadata fail explicitly",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "aggregate metadata is bounded even when individual names are valid",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "valid Unicode names and maximum-sized individual metadata survive",
+              "result": "success",
+              "skipped": false
+            }
+          ]
+        }
+      ],
+      "raw_sha256": "0d84c8ccb604dd4ff698d7b5e65a4fce900df5dd32b98e372c7f717ee2d1c6de",
+      "raw_bytes": 10954,
+      "process_exit_status": "Child exit code was not retained because the outer receipt script failed while parsing a known Flutter daemon JSON array. The repaired parser confirms all 22 named cases and one successful terminal done event, with no failed/skipped/incomplete cases or error events. No process exit code is inferred."
+    },
+    {
+      "id": "mailbox_sessions",
+      "status": "passed",
+      "exit_code": 0,
+      "working_directory": "packages/quds_office_editor/example",
+      "command": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "--machine",
+        "test/studio_mail_mailbox_session_test.dart",
+        "test/studio_mail_mailbox_sync_session_test.dart"
+      ],
+      "environment": "runtime.json; pinned Flutter/Dart and locked dependencies",
+      "log": "logs/mailbox-sessions-final.jsonl",
+      "source_bound": "Final session source and its browse/sync regression files after the last summary-bound and cancellation guards. The session owner confirmed no later source changes; current hashes are recorded. No separate pre-execution hash manifest was captured for this run.",
+      "counts": {
+        "passed": 36,
+        "failed": 0,
+        "skipped": 0,
+        "incomplete": 0,
+        "error_events": 0,
+        "excluded_loading_or_hidden_records": 2
+      },
+      "terminal_events": [
+        {
+          "success": true,
+          "elapsed_ms": 5483
+        }
+      ],
+      "known_flutter_process_notifications": 2,
+      "non_json_lines": [],
+      "suites": [
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_mailbox_session_test.dart",
+          "passed": 14,
+          "failed": 0,
+          "skipped": 0,
+          "cases": [
+            {
+              "name": "initial load, bounded counts and same-revision flag updates",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "A to B to A cancels each previous observer and clears old state",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "superseding an unfinished selection completes it without stale subscription",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "cross-account selection fails without reading its repository",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "wrong mailbox, provider and duplicate identities cannot replace a good snapshot",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "typed and thrown failures retain saved content and recover on next event",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "missing, empty and retired then recreated views have distinct states",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "older revisions cannot roll back a selected folder",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "a listener can switch on ready without reentrant events or lost subscription",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "a listener can close on ready and drains its observer",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "an already queued snapshot cannot repopulate a switched or closed scope",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "close invalidates immediately and drains cancellation before releasing owner",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "unexpected live store closure is failure, with last good view retained",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "one-shot injected stores keep their ready snapshot after stream completion",
+              "result": "success",
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_mailbox_sync_session_test.dart",
+          "passed": 22,
+          "failed": 0,
+          "skipped": 0,
+          "cases": [
+            {
+              "name": "synchronized pages retain their own coverage and source identity",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "same revision flag changes remain observable without changing page",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "switching sources and A-B-A ignores retired and queued callbacks",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "same-account ID in a different profile is rejected before reading",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "invalid limits and offsets never subscribe to local storage",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "wrong identity, generation and duplicate records cannot replace data",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "malformed counts, paging and revisions retain the last valid page",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "missing checkpoints and empty synchronized folders remain distinct",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "typed, thrown and terminal failures preserve synchronized data",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "a removed last page repairs to the last retained page",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "initial out-of-range wait finishes only after empty page repair",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "page repair keeps revision fence and cannot roll membership back",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "a source switch supersedes a pending page repair waiter",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "clear immediately retires selected data and remains reusable",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "clear settles unfinished selection and drains cancellation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "close drains synchronized observer and prevents later selection",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "oversize synchronized mailbox identity is rejected",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "failed clear keeps its observer owned and permits a later selection",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "failed close retries retained cancellation before closing changes",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "close after failed clear drains the retained observer",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "an unsupported sync store fails without loading browse data",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "close drains a cancelled one-shot read before owner release",
+              "result": "success",
+              "skipped": false
+            }
+          ]
+        }
+      ],
+      "raw_sha256": "48e9f6aefa7d5295b9732031761b4ddb8b42dde21878fc8646fcaa09099cebfb",
+      "raw_bytes": 18340
+    },
+    {
+      "id": "cached_mail_widgets",
+      "status": "passed",
+      "exit_code": 0,
+      "working_directory": "packages/quds_office_editor/example",
+      "command": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "--machine",
+        "test/studio_mail_retained_navigation_test.dart",
+        "test/studio_mail_cached_mail_test.dart"
+      ],
+      "environment": "runtime.json; pinned Flutter/Dart and locked dependencies",
+      "log": "logs/cached-mail-widgets-final.jsonl",
+      "source_bound": "Four production inputs and both widget test files were hashed before execution and matched after execution and at evidence assembly. Includes the final cleanup race and failed-cancellation regressions. This is a focused UI gate, not an exhaustive repository run.",
+      "counts": {
+        "passed": 57,
+        "failed": 0,
+        "skipped": 0,
+        "incomplete": 0,
+        "error_events": 0,
+        "excluded_loading_or_hidden_records": 2
+      },
+      "terminal_events": [
+        {
+          "success": true,
+          "elapsed_ms": 26166
+        }
+      ],
+      "known_flutter_process_notifications": 2,
+      "non_json_lines": [],
+      "suites": [
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_retained_navigation_test.dart",
+          "passed": 20,
+          "failed": 0,
+          "skipped": 0,
+          "cases": [
+            {
+              "name": "sync-only retained folder is visible in the local mailbox reader",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "folder union contains one choice per folder across both catalogs",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "overlap defaults to sync and explicit source switches never mix rows",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "sync pages stay bounded and a shrinking last page repairs its offset",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "explicit refresh preserves selected sync page and discovers local changes",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "live flags preserve exact loaded reader while removal clears it",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "late body read cannot revive a removed synchronized membership",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "same local id with changed IMAP generation retires the previous reader",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "both catalog failures retain the reader and recover independently",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "selected page failure keeps prior rows until a successful page event",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "removed sync source never silently falls back to an older browse window",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "missing retained body explains offline availability without downloading",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "en retained sources and paging fit a narrow dialog",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "de retained sources and paging fit a narrow dialog",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ar retained sources and paging fit a narrow dialog",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "close waits for browse catalog cancellation before closing owner",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "close waits for sync catalog cancellation before closing owner",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "close waits for sync view cancellation before closing owner",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "successful cleanup revokes stale page delivery before catalog cancellation and failed reloads",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "failed catalog cancellation still drains the selected view and retains its owner",
+              "result": "success",
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_cached_mail_test.dart",
+          "passed": 37,
+          "failed": 0,
+          "skipped": 0,
+          "cases": [
+            {
+              "name": "live metadata updates preserve the selected reader and loaded query",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "live flag update during a delayed body load keeps the exact reader target",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "removed live view clears the reader, selection and counts",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "live failures recover independently and preserve operation errors",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "close drains live subscriptions before closing their owner",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "imap cached search needs no body or draft access",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "imap reads saved headers and body without draft access",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ews cached search needs no body or draft access",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ews reads saved headers and body without draft access",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "gmail cached search needs no body or draft access",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "gmail reads saved headers and body without draft access",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "graph cached search needs no body or draft access",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "graph reads saved headers and body without draft access",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "missing body keeps compact selection and search through Back",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "resize preserves the loaded list filter and selected reader",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "switching saved folders resets reader and filter scope",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "empty saved catalog is explicit and does not open drafts",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "close waits for pending open and releases a late owner once",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "disposal before open completion releases the late owner",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "close waits for pending message read before releasing owner",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "account invalidation refuses a delayed body",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "wrong-account storage owner is rejected and released",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "mismatching saved body identity is refused before rendering",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "read failure remains an error and keeps saved headers",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "failed catalog read is not reported as an empty catalog",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "failed close keeps ownership visible and offers close retry",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "narrow en saved workspace has no layout overflow",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "narrow de saved workspace has no layout overflow",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "narrow ar saved workspace has no layout overflow",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "real SQLite snapshot and cached body reopen through same owner",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "cache cleanup requires confirmation and cancel preserves the view",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "confirmed cleanup clears loaded state and releases reader",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "one confirmed cleanup reports more work without an automatic loop",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "cleanup failure retains the current view and reader",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "valid owner offers cleanup after a failed catalog read",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "close waits for a pending confirmed cleanup",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "confirmed native cleanup restores quota-blocked draft admission after reopen",
+              "result": "success",
+              "skipped": false
+            }
+          ]
+        }
+      ],
+      "raw_sha256": "4b6c73a1dc3514678fb2766dbc7617416542fc4a099c97d76739821b36b53a62",
+      "raw_bytes": 32614
+    }
+  ],
+  "supplemental_earlier_source_gates": [
+    {
+      "id": "host_and_sync_dialogs_before_final_guards",
+      "status": "passed",
+      "exit_code": 0,
+      "working_directory": "packages/quds_office_editor/example",
+      "command": [
+        "flutter",
+        "test",
+        "--no-pub",
+        "--machine",
+        "test/studio_mail_session_test.dart",
+        "test/studio_mail_cached_host_test.dart",
+        "test/studio_mail_sync_host_test.dart",
+        "test/studio_mail_sync_dialog_test.dart"
+      ],
+      "environment": "runtime.json; pinned Flutter/Dart and locked dependencies",
+      "log": "logs/host-regressions-earlier-source.jsonl",
+      "source_bound": "Supplemental earlier-source regression run. Completed before the final narrow session summary-bound and cancellation guards. Those final changes are covered by the 36-case session gate and focused widget regressions. The 124 host cases were not rerun afterward and must not be described as an exact-final full-host pass.",
+      "counts": {
+        "passed": 124,
+        "failed": 0,
+        "skipped": 0,
+        "incomplete": 0,
+        "error_events": 0,
+        "excluded_loading_or_hidden_records": 4
+      },
+      "terminal_events": [
+        {
+          "success": true,
+          "elapsed_ms": 183574
+        }
+      ],
+      "known_flutter_process_notifications": 4,
+      "non_json_lines": [],
+      "suites": [
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_session_test.dart",
+          "passed": 21,
+          "failed": 0,
+          "skipped": 0,
+          "cases": [
+            {
+              "name": "reopened native session restores raw unfinished draft with stable identity",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "native draft storage isolates a different connected account",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "native send waits for durable uncertainty and restart never resends",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "disconnect during durable send checkpoint cannot submit or auto-retry",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "native storage open failure prevents composition and submission",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "native composer save failure cannot send",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "native submission checkpoint failure cannot send",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "native acceptance clears the durable draft before another session",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "native accepted cleanup failure retains uncertain draft and do-not-resend notice",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "a delayed native draft open cannot install the previous account store",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "closing during connect aborts pending owned clients",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "discovery uses the credentials captured when connect starts",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "only nonselectable folders release both owned transports",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "old mailbox results cannot replace a new session",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "old mailbox failure cannot replace a new session",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "a draft from a disconnected session is not sent",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "late send failure cannot alter a replacement session",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "native attachment snapshots survive an uncertain send and acknowledged retry",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "native composition submits To Cc and Bcc only in the explicit envelope",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "native Reply all retains every recipient and thread through an uncertain retry",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "disconnect contains cleanup errors and aborts both transports",
+              "result": "success",
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart",
+          "passed": 60,
+          "failed": 0,
+          "skipped": 0,
+          "cases": [
+            {
+              "name": "imap repository observations supersede only changed confirmed bits",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "imap pagination retains repository flags and selected reader",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "imap unchanged repository revision preserves newer foreground flag",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "imap repository flags preserve live reader and provider identities",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "imap awaits repository cancellation before refresh and owner close",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "imap widget disposal drains repository cancellation before owner close",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "imap persists visited headers and explicitly opened bytes across native close/reopen",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "imap rejects conflicting body identities before reader or cache adoption",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "imap failed body cache keeps online reader and previous durable body",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "imap disconnect invalidates a body write held before SQLite commit",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "imap failed initial view save preserves uncertainty and online reader",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "imap view and body save warnings survive success in the other scope",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "imap connected composer recovers actual quota without losing live edits",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "imap rejects a foreign cache owner before loading any draft",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ews repository observations supersede only changed confirmed bits",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ews delete survives metadata updates and cannot resurrect cached rows",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ews pagination retains repository flags and selected reader",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ews unchanged repository revision preserves newer foreground flag",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ews repository flags preserve live reader and provider identities",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ews awaits repository cancellation before refresh and owner close",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ews widget disposal drains repository cancellation before owner close",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ews persists visited headers and explicitly opened bytes across native close/reopen",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ews rejects conflicting body identities before reader or cache adoption",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ews failed body cache keeps online reader and previous durable body",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ews disconnect invalidates a body write held before SQLite commit",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ews failed initial view save preserves uncertainty and online reader",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ews view and body save warnings survive success in the other scope",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ews connected composer recovers actual quota without losing live edits",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ews rejects a foreign cache owner before loading any draft",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "gmail repository observations supersede only changed confirmed bits",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "gmail delete survives metadata updates and cannot resurrect cached rows",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "gmail pagination retains repository flags and selected reader",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "gmail unchanged repository revision preserves newer foreground flag",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "gmail repository flags preserve live reader and provider identities",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "gmail awaits repository cancellation before refresh and owner close",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "gmail widget disposal drains repository cancellation before owner close",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "gmail persists visited headers and explicitly opened bytes across native close/reopen",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "gmail rejects conflicting body identities before reader or cache adoption",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "gmail failed body cache keeps online reader and previous durable body",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "gmail disconnect invalidates a body write held before SQLite commit",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "gmail failed initial view save preserves uncertainty and online reader",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "gmail view and body save warnings survive success in the other scope",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "gmail connected composer recovers actual quota without losing live edits",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "gmail rejects a foreign cache owner before loading any draft",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "graph repository observations supersede only changed confirmed bits",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "graph delete survives metadata updates and cannot resurrect cached rows",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "graph pagination retains repository flags and selected reader",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "graph unchanged repository revision preserves newer foreground flag",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "graph repository flags preserve live reader and provider identities",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "graph awaits repository cancellation before refresh and owner close",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "graph widget disposal drains repository cancellation before owner close",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "graph persists visited headers and explicitly opened bytes across native close/reopen",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "graph rejects conflicting body identities before reader or cache adoption",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "graph failed body cache keeps online reader and previous durable body",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "graph disconnect invalidates a body write held before SQLite commit",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "graph failed initial view save preserves uncertainty and online reader",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "graph view and body save warnings survive success in the other scope",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "graph connected composer recovers actual quota without losing live edits",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "graph rejects a foreign cache owner before loading any draft",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "offline local composer recovers actual quota without reconnecting or losing edits",
+              "result": "success",
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart",
+          "passed": 8,
+          "failed": 0,
+          "skipped": 0,
+          "cases": [
+            {
+              "name": "ews host downloads synchronized bodies explicitly and reopens them offline",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "ews host sync persists, resumes after reconnect and opens offline without a provider",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "gmail host downloads synchronized bodies explicitly and reopens them offline",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "gmail host sync persists, resumes after reconnect and opens offline without a provider",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "graph host downloads synchronized bodies explicitly and reopens them offline",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "graph host sync persists, resumes after reconnect and opens offline without a provider",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "host rejects a provider whose account changes before starting sync",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "disposed host session cannot commit a late provider sync page",
+              "result": "success",
+              "skipped": false
+            }
+          ]
+        },
+        {
+          "path": "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart",
+          "passed": 35,
+          "failed": 0,
+          "skipped": 0,
+          "cases": [
+            {
+              "name": "connected reader downloads only after explicit message action",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "page download freezes 100 rows and Stop waits for completion",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "closing cancels body downloads and drains them before owner release",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "membership replacement cancels a frozen body download",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "automatic offset repair cancels downloads before a delayed reload",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "download limits and recovery remain usable in en",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "download limits and recovery remain usable in de",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "download limits and recovery remain usable in ar",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "offline catalog reads only saved headers and reports scope",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "offline sync searches complete visible addresses",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "connected sync searches complete visible addresses",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "connected folder starts only explicitly and shows saved state",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "partial checkpoint offers continue and bounded pause",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "stop cancels once and waits for running work before resuming",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "close cancels and drains run before releasing the caller",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "close drains initial read and repository stream cancellation",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "missing body explains headers-only scope without downloading",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "saved message body uses reader and survives metadata updates",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "close drains a body read and suppresses its late reader",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "forced disposal cancels work and never calls stale host again",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "saved headers page in bounded windows without accumulating",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "shrinking mailbox returns an out-of-range page to saved start",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "repository failure retains view and successful update recovers",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "cross-account stores are rejected before subscribing",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "mismatched cached body is not displayed",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "typed authenticationRequired failure preserves resumable saved view",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "typed quotaExceeded failure preserves resumable saved view",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "typed conflict failure preserves resumable saved view",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "typed unsupported failure preserves resumable saved view",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "compact en missing-body download stays reachable",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "compact en layout keeps controls and reader",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "compact de missing-body download stays reachable",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "compact de layout keeps controls and reader",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "compact ar missing-body download stays reachable",
+              "result": "success",
+              "skipped": false
+            },
+            {
+              "name": "compact ar layout keeps controls and reader",
+              "result": "success",
+              "skipped": false
+            }
+          ]
+        }
+      ],
+      "raw_sha256": "d6666ca3e0d8f6e47699a14f40f605eb5aaf89f10552dafac7f78585c57c7afa",
+      "raw_bytes": 70865
+    }
+  ],
+  "static_checks": [
+    {
+      "id": "final_strict_analysis",
+      "status": "passed",
+      "exit_code": 0,
+      "working_directory": ".",
+      "command": [
+        "dart",
+        "analyze",
+        "--fatal-infos",
+        "packages/quds_office_editor/example/lib/studio_mail_cached_mail.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_cached_strings.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_mailbox_session.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_retained_folders.dart",
+        "packages/quds_office_editor/example/test/studio_mail_mailbox_sync_session_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_retained_folders_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_retained_navigation_test.dart"
+      ],
+      "log": "logs/final-analysis.txt",
+      "log_sha256": "f9caaa9e2130396f12a3991e977b7cbbaee40b5697e621ed1a4feaf39bcb4b63",
+      "result": "No issues found!",
+      "source_bound": "The seven named source/test files; no whole-workspace analysis is claimed."
+    },
+    {
+      "id": "final_changed_file_format",
+      "status": "passed",
+      "exit_code": 0,
+      "working_directory": ".",
+      "command": [
+        "dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "packages/quds_office_editor/example/lib/studio_mail_cached_mail.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_cached_strings.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_mailbox_session.dart",
+        "packages/quds_office_editor/example/lib/studio_mail_retained_folders.dart",
+        "packages/quds_office_editor/example/test/studio_mail_mailbox_sync_session_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_retained_folders_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_retained_navigation_test.dart"
+      ],
+      "result": {
+        "files": 7,
+        "changed": 0
+      },
+      "verification_basis": "Root execution transcript; no standalone formatter log was retained."
+    }
+  ],
+  "runtime": "runtime.json",
+  "source_hashes": "source-hashes.json",
+  "attempt_history": "attempts.json",
+  "limits": [
+    "All described runtime checks are local; GitHub Actions was not awaited.",
+    "No live mail account, OAuth sign-in, provider connection, send, move, or delete was exercised.",
+    "Local navigation tests deliberately make draft access and provider writes unavailable.",
+    "These gates qualify this bounded Mail increment, not full Outlook/Thunderbird/eM Client parity.",
+    "Unrelated incoming Office integrations require their own evidence and are not counted here."
+  ]
+}

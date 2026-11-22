@@ -522,6 +522,7 @@ final class ApiMailCloudProvider
           MailCapability.mail,
           MailCapability.folders,
           MailCapability.send,
+          MailCapability.delete,
           if (_gmail) MailCapability.labels else MailCapability.move,
         ]),
       );
