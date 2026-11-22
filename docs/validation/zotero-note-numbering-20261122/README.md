@@ -4,8 +4,7 @@
 
 This continuation closes a native interchange gap: editable Zotero ODT export
 rejects Word's default lower-Roman endnotes. The intended increment preserves
-continuous automatic decimal, lower/upper Roman and lower/upper alphabetic
-numbering, independently for footnotes and endnotes, through editable ODT
+continuous automatic decimal and lower/upper Roman numbering, independently for footnotes and endnotes, through editable ODT
 export/import and subsequent DOCX save/reopen.
 
 The implementation must use explicit note configuration and ordinal ownership,
@@ -13,6 +12,10 @@ not infer numbering from displayed labels. It must include uncited notes in
 the sequence and preserve active citation fields, Zotero preferences, surrounding
 prose and the source document. Custom marks, incompatible section settings,
 page/section restarts and unsupported active configurations remain guarded.
+Alphabetic numbering is deferred: independent official-source review and a
+real LibreOffice probe found incompatible `num-letter-sync` semantics between
+the ODF prose and the application. Roman ordinals stay within the native
+formatter's supported range of 1–3,999.
 
 Implementation and local qualification are in progress. This initial record
 is a scope and intake checkpoint, not a claim that tests or application
@@ -46,7 +49,7 @@ with an observed expected branch head.
 
 - Engine format/ordinal mapping, ODT configurations and cached-label validation.
 - Default Roman endnotes, independent foot/endnote formats, Roman and
-  alphabetic boundaries, and uncited/cited sequence accounting.
+  supported-range boundaries, and uncited/cited sequence accounting.
 - Active citation order and ownership after ODT import and DOCX reopening.
 - Editor/Studio import/export, source-bound save, unchanged dirty/undo state,
   cancellation and invalid-numbering refusal.

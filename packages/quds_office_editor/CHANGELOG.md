@@ -4,6 +4,13 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Support Roman-numbered Zotero notes through native ODT opening and Studio's
+  editable ODT copy export. Preserve active note ownership, normal DOCX save,
+  dirty state and undo; native Refresh after import retains Roman labels and
+  numeric citation order. Unsupported numbering refuses before destination
+  selection or replacement of the active document. See the
+  [numbering qualification](../../docs/validation/zotero-note-numbering-20261122/README.md).
+
 - Offer Repair in Zotero and confirmed, undoable Convert to text for damaged
   reference metadata with safe native field ownership. Keep original-source
   context visible during repair, preserve the document until completion, and

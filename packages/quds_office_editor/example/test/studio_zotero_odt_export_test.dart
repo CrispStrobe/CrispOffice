@@ -370,6 +370,7 @@ void main() {
         _action(tester, 'save').onSelected!();
         await _frames(tester);
         await _waitFor(tester, () => !word.isDirty);
+        await _waitFor(tester, () => _action(tester, 'save').onSelected != null);
         final reopened = WordDeserializer().readBytes(saved.readAsBytesSync());
         final reopenedNumbering = WordNoteNumbering(reopened);
         expect(reopened.endnotes.map(reopenedNumbering.labelFor), labels);
