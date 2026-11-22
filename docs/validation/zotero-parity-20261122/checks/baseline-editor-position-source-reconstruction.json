@@ -1,0 +1,21 @@
+{
+  "created_at": "2026-11-22T02:36:02.460750+00:00",
+  "kind": "verified_reconstruction_of_previously_executed_source",
+  "artifact": "baseline-editor-position-test.dart.txt",
+  "source_path": "packages/quds_office_editor/test/word_zotero_writing_position_test.dart",
+  "source_commit": "d2bf64462b43abc16543de3dedc3da76f6bc4b1d",
+  "source_commit_file_sha256": "54af07cfb10f60f540e55caa442a02732bd3e7b4a4b285acc1754b2ead95bdfa",
+  "method": "Read the committed original 21-case typed-cast version and reverse exactly the five cast-cleanup replacements made after baseline execution. No expectation or fixture changes.",
+  "reconstructed_sha256": "ed5d1de1f3715290f44db6cb6410c31ef3aa883bd7355bdff047f30c763714e4",
+  "expected_baseline_sha256": "ed5d1de1f3715290f44db6cb6410c31ef3aa883bd7355bdff047f30c763714e4",
+  "exact_hash_match": true,
+  "baseline_execution_receipt": "baseline-editor-position-receipt.json",
+  "new_execution": false,
+  "substantive_test_count": 21,
+  "result_at_original_execution": {
+    "passing": 5,
+    "failing": 16
+  },
+  "scope_note": "This text attachment preserves original baseline test bytes and is not live executable test source. The baseline predates three subsequently added passive frame/TOC tests. It is not an additional run and must not contribute to final passing totals.",
+  "working_tree_test_modified": false
+}

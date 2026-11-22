@@ -1,0 +1,10 @@
+{
+  "manifest_count": 22,
+  "all_manifests_unchanged": true,
+  "package_count": 166,
+  "lock_sha256": "2231cacd6ab548da8f0d94020201a29f07f54a20c1682c0e8ae0079967b720eb",
+  "packages_config_sha256": "a24f67b25ec81d20fe83253da21a5111dccde4ee65a83ee09ff5dc3b3c27bee8",
+  "command": "dart pub get --enforce-lockfile",
+  "runtime": "Flutter 3.47.8 / Dart 3.13.7",
+  "notes": "Workspace resolved with official Flutter SDK via FLUTTER_ROOT; TMPDIR set to task-local path because default /tmp absent."
+}

@@ -1,0 +1,15 @@
+{
+  "command": [
+    "/workspace/scratch/0bc03d5773e3/toolchains/flutter/bin/cache/dart-sdk/bin/dart",
+    "analyze",
+    "--fatal-infos",
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart",
+    "packages/quds_office_engine/test/word_zotero_writing_position_test.dart"
+  ],
+  "exitCode": 0,
+  "inputHashes": {
+    "packages/quds_office_engine/lib/src/word/model/word_zotero_citing.dart": "b5ddffec3204d795835fdcf50e23254dd75a5ca19c81e192a8aad22c36fb74f3",
+    "packages/quds_office_engine/test/word_zotero_writing_position_test.dart": "c398d061557736150eb4f1fe0e8da15d116f965e6ed3543ab8cdcf3c5bc28f36"
+  },
+  "unchangedInputs": true
+}

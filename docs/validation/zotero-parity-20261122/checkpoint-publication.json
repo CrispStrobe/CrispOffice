@@ -1,0 +1,81 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "branch": "codex/zotero-parity-20261122",
+  "note": "GitHub Git Data publication creates canonical commit IDs with identical local trees and ordered parents. This maps source-bound local test receipt heads to their retained published snapshots. Branch ref updates used expected heads without force.",
+  "checkpoints": [
+    {
+      "local_commit": "0db7d5e97c9047f02f066ac876a4dfc88c8992a5",
+      "published_commit": "b12205e4235c7c56b14445031d1a0a4a09cac3c3",
+      "identical_tree": "f33b83e3f197669057c9380e6f17f8909f15d81d",
+      "parents": [
+        "c522851d165b395a7f60422a1be969dffc39c9ff"
+      ],
+      "message": "docs(zotero): capture reconciled parity baseline and remote refs [skip ci]"
+    },
+    {
+      "local_commit": "a9c714fc0266b3b66d58a25448a04674ba1e006b",
+      "published_commit": "2ea779693ff25f67fd76b658393244fe2188153a",
+      "identical_tree": "3a7cabe9191d42670114f7ecbe9f0b217bda5daa",
+      "parents": [
+        "b12205e4235c7c56b14445031d1a0a4a09cac3c3"
+      ],
+      "message": "docs(zotero): verify historical intake and define writing-position milestone [skip ci]"
+    },
+    {
+      "local_commit": "60f3b9a269f22885d10d9209455cbe3082220fd7",
+      "published_commit": "4d0b1ea1669b5509d27921ed16fc86dece11a260",
+      "identical_tree": "1300a930eb619d9089222832f76b8647954f4f9b",
+      "parents": [
+        "2ea779693ff25f67fd76b658393244fe2188153a"
+      ],
+      "message": "feat(zotero): track native writing positions through citation updates [skip ci]"
+    },
+    {
+      "local_commit": "e2382051f73ad9f11393c46806348b5c6a7a73ee",
+      "published_commit": "d2bf64462b43abc16543de3dedc3da76f6bc4b1d",
+      "identical_tree": "636e9d0d56f1a1e8026eefb97d5cdabb81a6b839",
+      "parents": [
+        "4d0b1ea1669b5509d27921ed16fc86dece11a260"
+      ],
+      "message": "fix(zotero): preserve writing selections after native refresh and style changes [skip ci]"
+    },
+    {
+      "local_commit": "399424885989812701053c55fb3785c5c4fc1e45",
+      "published_commit": "da52f5e9f89918f7e6a9f4c4abaf07bf65ab726a",
+      "identical_tree": "caa4970e2e3db9ba91885815f0b2601faa3ba515",
+      "parents": [
+        "d2bf64462b43abc16543de3dedc3da76f6bc4b1d"
+      ],
+      "message": "test(zotero): cover passive writing targets and document position behavior [skip ci]"
+    },
+    {
+      "local_commit": "42ac1c3a9d19089efb4e8acc6cbb6276098ef46b",
+      "published_commit": "d1c9673c7caa24a3dc41f9255d2916846d6cdbaf",
+      "identical_tree": "0377382e829ec9488f096cd1fb4d4bf943353a8e",
+      "parents": [
+        "da52f5e9f89918f7e6a9f4c4abaf07bf65ab726a",
+        "bcc55cb6e86e796056e2d75c3fdca50857dbf6e7"
+      ],
+      "message": "merge: retain completed Mail folder-search main during Zotero qualification [skip ci]"
+    },
+    {
+      "local_commit": "2272464838606fabd3258dd23bc5293c0d7c10ad",
+      "published_commit": "b7758d482a0381c5c3ad526675321de80989465e",
+      "identical_tree": "f2639764cf50fb150047414be10400ca8a6caa92",
+      "parents": [
+        "d1c9673c7caa24a3dc41f9255d2916846d6cdbaf"
+      ],
+      "message": "fix(zotero): preserve stale-target contract before capturing writing positions [skip ci]"
+    },
+    {
+      "local_commit": "b4d8deba5af2f71e58037e833cea5c02cde4ba14",
+      "published_commit": "d4b4392fe538473a3accd15294288347e8bc2b56",
+      "identical_tree": "5500767fb43f70c0e15b03ef46c5d4b600fbd453",
+      "parents": [
+        "b7758d482a0381c5c3ad526675321de80989465e",
+        "ceddcd888c37f64e37a8d8d1669daaea31384daf"
+      ],
+      "message": "merge: preserve completed Word VBA integration during Zotero qualification [skip ci]\n\n# Conflicts:\n#\tpackages/quds_office_engine/CHANGELOG.md"
+    }
+  ]
+}
