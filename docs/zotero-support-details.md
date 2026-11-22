@@ -277,12 +277,14 @@ The [implementation record](validation/zotero-note-formatting-20261122/README.md
 tracks local checks, actual converter observations and the remaining installed
 Zotero/Word/LibreOffice plugin acceptance.
 
-The retained LibreOffice conversion fixtures expose separate reopening limits:
-formatted citation boundary runs can remain guarded as opaque metadata, and
-LibreOffice-added outline styles can exceed the native ODT reader's supported
-contract. Preserved text, formatting and citation payloads do not by themselves
-establish editable citation round trips. These routes remain explicit follow-up
-work in the parity roadmap.
+The earlier formatting increment retained LibreOffice files that exposed two
+reopening limits: ordinary field-boundary formatting blocked citation editing,
+and inert outline declarations blocked native ODT opening. The
+[converter continuation](validation/zotero-converter-parity-20261122/README.md)
+now qualifies the exact retained body, footnote and table-cell cases, including
+native Refresh and active metadata preservation. Unknown field semantics and
+numbered or positioned outlines remain guarded. These bounded results do not
+establish installed-plugin acceptance or unrestricted converter compatibility.
 
 ### Tables in notes and annotations
 
