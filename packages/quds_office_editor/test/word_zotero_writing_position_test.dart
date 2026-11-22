@@ -189,16 +189,24 @@ void main() {
       'bibliography growth preserves passive $kind selection and history',
       () {
         final document = _bibliographyDocument();
-        final target = WmlParagraph(
+        final paragraph = WmlParagraph(
           inlines: [WmlRun(text: 'Passive paragraph')],
         );
+        if (kind == 'toc-item') {
+          paragraph.properties.headingLevel = 1;
+          document.sections.single.blocks.add(paragraph);
+        }
         final WmlBlock owner = switch (kind) {
-          'frame' => WmlFrame(blocks: [target]),
-          'toc-title' => WmlToc(titleParagraph: target),
-          _ => WmlToc(itemParagraphs: [target]),
+          'frame' => WmlFrame(blocks: [paragraph]),
+          'toc-title' => WmlToc(titleParagraph: paragraph),
+          _ => WmlToc(),
         };
         document.sections.single.blocks.add(owner);
         final controller = _controller(document);
+        final target = kind == 'toc-item'
+            ? (owner as WmlToc).itemParagraphs.single
+            : paragraph;
+        final originalText = target.text;
         final originalIndex = document.paragraphs.toList().indexOf(target);
         expect(originalIndex, greaterThanOrEqualTo(0));
         controller.caret
@@ -217,12 +225,12 @@ void main() {
         final updatedIndex = document.paragraphs.toList().indexOf(target);
         expect(updatedIndex, originalIndex + 2);
         expect(_selection(controller), [updatedIndex, 3, updatedIndex, 10]);
-        expect(target.text, 'Passive paragraph');
+        expect(target.text, originalText);
         controller.undo();
         expect(_selection(controller), [originalIndex, 3, originalIndex, 10]);
         controller.redo();
         expect(_selection(controller), [updatedIndex, 3, updatedIndex, 10]);
-        expect(target.text, 'Passive paragraph');
+        expect(target.text, originalText);
       },
     );
   }
