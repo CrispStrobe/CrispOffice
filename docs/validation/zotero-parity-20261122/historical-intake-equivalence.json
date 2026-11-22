@@ -1,0 +1,377 @@
+{
+  "captured_at": "2026-11-22T02:22:35.974259+00:00",
+  "base_main": "c522851d165b395a7f60422a1be969dffc39c9ff",
+  "base_tree": "aa5cfb0172a7bd5d5c3cd37f354118f3258b231d",
+  "intake_file": "intake.json",
+  "intake_sha256": "20c699dbaf30de74b542cfe0fb0448d099a2332074ff0a23f9cc5eef9a953b65",
+  "mapping_source": "docs/validation/zotero-multiparagraph-20261121/intake/historical-equivalents.json",
+  "method": "Independent git tree-object, changed-path tree-entry, and ancestry verification. Historical candidate mapping read from committed source; every proof recomputed against frozen intake base. No merges, cherry-picks, resets, refs, or remote writes performed.",
+  "counts": {
+    "captured_refs": 380,
+    "direct_ancestors": 366,
+    "historical_replacements": 14,
+    "identical_full_trees": 13,
+    "identical_changed_paths": 1,
+    "uncovered_refs": 0
+  },
+  "historical_proofs": [
+    {
+      "ref": "pull/134",
+      "source_sha": "128a187d69555db80890c2a1945a442b951f9c74",
+      "source_subject": "docs: record AOT removal",
+      "replacement_sha": "d790bca444eef0e160a75ce3d8cb555af541004f",
+      "replacement_subject": "docs: record AOT removal (#134)",
+      "replacement_ancestor_of_base_main": true,
+      "proof_kind": "full_tree",
+      "source_tree": "cc9dd97799056d82ee604ca071c023cd4a7d63c1",
+      "replacement_tree": "cc9dd97799056d82ee604ca071c023cd4a7d63c1",
+      "equal_full_tree": true
+    },
+    {
+      "ref": "pull/135",
+      "source_sha": "74ce9ffb816c70c0d2ae50b91ec52a614f26d688",
+      "source_subject": "feat(sheet): support color-scale conditional formats",
+      "replacement_sha": "4584d5f319aab198f1d705f48b4d6647e6cbabea",
+      "replacement_subject": "feat(sheet): support color-scale conditional formats (#135)",
+      "replacement_ancestor_of_base_main": true,
+      "proof_kind": "full_tree",
+      "source_tree": "8eaa993960d6fb6b6b484326d825a550f969ea0a",
+      "replacement_tree": "8eaa993960d6fb6b6b484326d825a550f969ea0a",
+      "equal_full_tree": true
+    },
+    {
+      "ref": "pull/136",
+      "source_sha": "58fdddfbcf198a8c0e38e32f6fcc9d6604e95283",
+      "source_subject": "docs: record color scales",
+      "replacement_sha": "4eaca83b192897edad82658107dfeb5bcbed0920",
+      "replacement_subject": "docs: record color scales (#136)",
+      "replacement_ancestor_of_base_main": true,
+      "proof_kind": "full_tree",
+      "source_tree": "3d828f3e1779b08ae84dc526e0c7236882d69a26",
+      "replacement_tree": "3d828f3e1779b08ae84dc526e0c7236882d69a26",
+      "equal_full_tree": true
+    },
+    {
+      "ref": "pull/137",
+      "source_sha": "68a0db23408e4c95d6d283219504c79aea33a6fe",
+      "source_subject": "feat(sheet): preserve range-backed ODS list validations",
+      "replacement_sha": "d754bf15b07a24c8a86c8dce339ca749fecd9531",
+      "replacement_subject": "feat(sheet): preserve range-backed ODS list validations (#137)",
+      "replacement_ancestor_of_base_main": true,
+      "proof_kind": "full_tree",
+      "source_tree": "aea95c000855820c5ecf205d3833298539f01753",
+      "replacement_tree": "aea95c000855820c5ecf205d3833298539f01753",
+      "equal_full_tree": true
+    },
+    {
+      "ref": "pull/138",
+      "source_sha": "b8ddaaeb581e010467de304c828764d353149102",
+      "source_subject": "docs: record dynamic ODS validation links",
+      "replacement_sha": "d6010059644b34accd6f188e0e2a4863ab63e318",
+      "replacement_subject": "docs: record dynamic ODS validation links (#138)",
+      "replacement_ancestor_of_base_main": true,
+      "proof_kind": "full_tree",
+      "source_tree": "7654a8905c705a04136e37a5271eb95d8a9a4e21",
+      "replacement_tree": "7654a8905c705a04136e37a5271eb95d8a9a4e21",
+      "equal_full_tree": true
+    },
+    {
+      "ref": "pull/140",
+      "source_sha": "c34945761e7991f5fe49037d79529acdd260b31c",
+      "source_subject": "docs: publish recovered ODT field qualification and exact source audit [skip ci]",
+      "replacement_sha": "2c47165d01d01cc883135a434ac9f6591ce6e770",
+      "replacement_subject": "Preserve cached page fields through DOCX import and ODT export (#140)",
+      "replacement_ancestor_of_base_main": true,
+      "proof_kind": "changed_paths",
+      "source_tree": "ab5ed01d0693ddbb3121ea9ca45721eb2a09f1a6",
+      "replacement_tree": "01df63630b58d6a4c578b2f12f5e68204d37eb9b",
+      "comparison_base": "e3a38789359adaa33b2da1345c952fa1c2d8aebb",
+      "exact_changed_paths": true,
+      "changed_paths": [
+        {
+          "path": "docs/odf-export-fidelity.md",
+          "source": "100644 blob e0ec6e28f094f9be3101a165bb2f8aba52f10ce7\tdocs/odf-export-fidelity.md",
+          "replacement": "100644 blob e0ec6e28f094f9be3101a165bb2f8aba52f10ce7\tdocs/odf-export-fidelity.md"
+        },
+        {
+          "path": "docs/validation/german-proofing-recovery-20261117/README.md",
+          "source": "100644 blob c645d21a4fecd134bf6a24cd13fa703579846e1c\tdocs/validation/german-proofing-recovery-20261117/README.md",
+          "replacement": "100644 blob c645d21a4fecd134bf6a24cd13fa703579846e1c\tdocs/validation/german-proofing-recovery-20261117/README.md"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/README.md",
+          "source": "100644 blob 8146c83246daf3599e662b1dd683cb97300803d6\tdocs/validation/odt-field-continuation-20261117/README.md",
+          "replacement": "100644 blob 8146c83246daf3599e662b1dd683cb97300803d6\tdocs/validation/odt-field-continuation-20261117/README.md"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/audit-portability.json",
+          "source": "100644 blob ef170d72cf34c4b3687b5c1e419edb6fc38224c8\tdocs/validation/odt-field-continuation-20261117/audit-portability.json",
+          "replacement": "100644 blob ef170d72cf34c4b3687b5c1e419edb6fc38224c8\tdocs/validation/odt-field-continuation-20261117/audit-portability.json"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/audit_recovery.py",
+          "source": "100644 blob a94f21fd4168af21c1fa98032f8de3e22a69fcc6\tdocs/validation/odt-field-continuation-20261117/audit_recovery.py",
+          "replacement": "100644 blob a94f21fd4168af21c1fa98032f8de3e22a69fcc6\tdocs/validation/odt-field-continuation-20261117/audit_recovery.py"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence-index.json",
+          "source": "100644 blob acb5422a76561ecf87b900c2b6b5e544d2eb75ca\tdocs/validation/odt-field-continuation-20261117/evidence-index.json",
+          "replacement": "100644 blob acb5422a76561ecf87b900c2b6b5e544d2eb75ca\tdocs/validation/odt-field-continuation-20261117/evidence-index.json"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.inputs.json.gz",
+          "source": "100644 blob 33fbc0410ec5a7337be6caa033f949b1cd9267aa\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.inputs.json.gz",
+          "replacement": "100644 blob 33fbc0410ec5a7337be6caa033f949b1cd9267aa\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.inputs.json.gz"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.json",
+          "source": "100644 blob 689f4d104e14eaf48b8e2db6b8168a5966e8e3a5\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.json",
+          "replacement": "100644 blob 689f4d104e14eaf48b8e2db6b8168a5966e8e3a5\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.json"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stderr.gz",
+          "source": "100644 blob 86e43ea3218b5890302b754bbf8927f94e79f7ee\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stderr.gz",
+          "replacement": "100644 blob 86e43ea3218b5890302b754bbf8927f94e79f7ee\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stderr.gz"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stdout.gz",
+          "source": "100644 blob d3ebc28122aea1ac61bf9583af637de490436639\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stdout.gz",
+          "replacement": "100644 blob d3ebc28122aea1ac61bf9583af637de490436639\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-analysis.stdout.gz"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.inputs.json.gz",
+          "source": "100644 blob 7e230ee642d2775c8fedc35ebfacee2007174b8e\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.inputs.json.gz",
+          "replacement": "100644 blob 7e230ee642d2775c8fedc35ebfacee2007174b8e\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.inputs.json.gz"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.json",
+          "source": "100644 blob a8f70f98dfe30e6acc0b16f55430c3ac3e4aa12c\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.json",
+          "replacement": "100644 blob a8f70f98dfe30e6acc0b16f55430c3ac3e4aa12c\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.json"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stderr.gz",
+          "source": "100644 blob 86e43ea3218b5890302b754bbf8927f94e79f7ee\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stderr.gz",
+          "replacement": "100644 blob 86e43ea3218b5890302b754bbf8927f94e79f7ee\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stderr.gz"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stdout.gz",
+          "source": "100644 blob 532fe3f24fec0cdee150019cd8f9797ecc623b95\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stdout.gz",
+          "replacement": "100644 blob 532fe3f24fec0cdee150019cd8f9797ecc623b95\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-baseline.stdout.gz"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.inputs.json.gz",
+          "source": "100644 blob 8cc251232eada488fff92cd62468bb351f459a7a\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-node.inputs.json.gz",
+          "replacement": "100644 blob 8cc251232eada488fff92cd62468bb351f459a7a\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-node.inputs.json.gz"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.json",
+          "source": "100644 blob f121265eeb266c2305a6be1262071259a3091049\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-node.json",
+          "replacement": "100644 blob f121265eeb266c2305a6be1262071259a3091049\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-node.json"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stderr.gz",
+          "source": "100644 blob 86e43ea3218b5890302b754bbf8927f94e79f7ee\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-node.stderr.gz",
+          "replacement": "100644 blob 86e43ea3218b5890302b754bbf8927f94e79f7ee\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-node.stderr.gz"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-node.stdout.gz",
+          "source": "100644 blob f4280f38fe5539ca4d1696b199be3e000a000bea\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-node.stdout.gz",
+          "replacement": "100644 blob f4280f38fe5539ca4d1696b199be3e000a000bea\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-node.stdout.gz"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.inputs.json.gz",
+          "source": "100644 blob bbf6b28978a480d2503ce1b9262a1df67a7f6366\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-vm.inputs.json.gz",
+          "replacement": "100644 blob bbf6b28978a480d2503ce1b9262a1df67a7f6366\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-vm.inputs.json.gz"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.json",
+          "source": "100644 blob e9d41011c0f51400af3bb805c770bddb81593627\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-vm.json",
+          "replacement": "100644 blob e9d41011c0f51400af3bb805c770bddb81593627\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-vm.json"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stderr.gz",
+          "source": "100644 blob 86e43ea3218b5890302b754bbf8927f94e79f7ee\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stderr.gz",
+          "replacement": "100644 blob 86e43ea3218b5890302b754bbf8927f94e79f7ee\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stderr.gz"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stdout.gz",
+          "source": "100644 blob 9094d230bd90d63ae770fff1879b6a6396691a19\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stdout.gz",
+          "replacement": "100644 blob 9094d230bd90d63ae770fff1879b6a6396691a19\tdocs/validation/odt-field-continuation-20261117/evidence/recovered-vm.stdout.gz"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/package-config.json",
+          "source": "100644 blob 4cd8acc7a9b9090400d8ddb7e1d64dcd604a3235\tdocs/validation/odt-field-continuation-20261117/package-config.json",
+          "replacement": "100644 blob 4cd8acc7a9b9090400d8ddb7e1d64dcd604a3235\tdocs/validation/odt-field-continuation-20261117/package-config.json"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/pull-request-draft.md",
+          "source": "100644 blob 01acc165985da7b712c2698679483a74c1f1fd73\tdocs/validation/odt-field-continuation-20261117/pull-request-draft.md",
+          "replacement": "100644 blob 01acc165985da7b712c2698679483a74c1f1fd73\tdocs/validation/odt-field-continuation-20261117/pull-request-draft.md"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/recovered-original-source.commit",
+          "source": "100644 blob 416b76ae102bf364ac37e7dca4361e09f5ff008c\tdocs/validation/odt-field-continuation-20261117/recovered-original-source.commit",
+          "replacement": "100644 blob 416b76ae102bf364ac37e7dca4361e09f5ff008c\tdocs/validation/odt-field-continuation-20261117/recovered-original-source.commit"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/recovery-audit.json",
+          "source": "100644 blob e3b618b38616277085a71ba3ff11c787f2d1028c\tdocs/validation/odt-field-continuation-20261117/recovery-audit.json",
+          "replacement": "100644 blob e3b618b38616277085a71ba3ff11c787f2d1028c\tdocs/validation/odt-field-continuation-20261117/recovery-audit.json"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/resolved-pubspec.lock",
+          "source": "100644 blob 1d3ea1eada7ee8eecf7732a1fc2bcaedc03a76f7\tdocs/validation/odt-field-continuation-20261117/resolved-pubspec.lock",
+          "replacement": "100644 blob 1d3ea1eada7ee8eecf7732a1fc2bcaedc03a76f7\tdocs/validation/odt-field-continuation-20261117/resolved-pubspec.lock"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/run_logged.py",
+          "source": "100644 blob b762a1f0cd19c2dac856ec1a8736354492b7d12e\tdocs/validation/odt-field-continuation-20261117/run_logged.py",
+          "replacement": "100644 blob b762a1f0cd19c2dac856ec1a8736354492b7d12e\tdocs/validation/odt-field-continuation-20261117/run_logged.py"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/runtime.json",
+          "source": "100644 blob 6067874fc355b418f55b0ca05d7c9e4b5a1cf4cf\tdocs/validation/odt-field-continuation-20261117/runtime.json",
+          "replacement": "100644 blob 6067874fc355b418f55b0ca05d7c9e4b5a1cf4cf\tdocs/validation/odt-field-continuation-20261117/runtime.json"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/source-recovery.json",
+          "source": "100644 blob 745160d6bad6db04ee2dc13a8808e5109d0cde18\tdocs/validation/odt-field-continuation-20261117/source-recovery.json",
+          "replacement": "100644 blob 745160d6bad6db04ee2dc13a8808e5109d0cde18\tdocs/validation/odt-field-continuation-20261117/source-recovery.json"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/test-workspace-pubspec.yaml",
+          "source": "100644 blob b3237978f2f20b516ea19d47d418c2d9b8c39322\tdocs/validation/odt-field-continuation-20261117/test-workspace-pubspec.yaml",
+          "replacement": "100644 blob b3237978f2f20b516ea19d47d418c2d9b8c39322\tdocs/validation/odt-field-continuation-20261117/test-workspace-pubspec.yaml"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/verification.json",
+          "source": "100644 blob b2bed5a868f78d74bfb2ed171afc94da88e880ea\tdocs/validation/odt-field-continuation-20261117/verification.json",
+          "replacement": "100644 blob b2bed5a868f78d74bfb2ed171afc94da88e880ea\tdocs/validation/odt-field-continuation-20261117/verification.json"
+        },
+        {
+          "path": "docs/validation/odt-field-continuation-20261117/verify_evidence.py",
+          "source": "100644 blob 041838e2cf114134d270d427ae3bc2f7f34bcb5e\tdocs/validation/odt-field-continuation-20261117/verify_evidence.py",
+          "replacement": "100644 blob 041838e2cf114134d270d427ae3bc2f7f34bcb5e\tdocs/validation/odt-field-continuation-20261117/verify_evidence.py"
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+          "source": "100644 blob 06e7d40ce0758a7df17700b94a31e0d184534f18\tpackages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart",
+          "replacement": "100644 blob 06e7d40ce0758a7df17700b94a31e0d184534f18\tpackages/quds_office_engine/lib/src/word/serial/odt_document_writer.dart"
+        },
+        {
+          "path": "packages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+          "source": "100644 blob 4e30fa0fef45350b6d0ad53ebf6e6a75bded48d8\tpackages/quds_office_engine/lib/src/word/serial/word_deserializer.dart",
+          "replacement": "100644 blob 4e30fa0fef45350b6d0ad53ebf6e6a75bded48d8\tpackages/quds_office_engine/lib/src/word/serial/word_deserializer.dart"
+        },
+        {
+          "path": "packages/quds_office_engine/test/odt_imported_field_fidelity_test.dart",
+          "source": "100644 blob c1082c3340f375425d11a6b5944a46b8f1751484\tpackages/quds_office_engine/test/odt_imported_field_fidelity_test.dart",
+          "replacement": "100644 blob c1082c3340f375425d11a6b5944a46b8f1751484\tpackages/quds_office_engine/test/odt_imported_field_fidelity_test.dart"
+        },
+        {
+          "path": "packages/quds_office_engine/test/odt_page_field_fidelity_test.dart",
+          "source": "100644 blob 0a4331683f037aa8a23e70b043bc6a7b8af2de62\tpackages/quds_office_engine/test/odt_page_field_fidelity_test.dart",
+          "replacement": "100644 blob 0a4331683f037aa8a23e70b043bc6a7b8af2de62\tpackages/quds_office_engine/test/odt_page_field_fidelity_test.dart"
+        }
+      ]
+    },
+    {
+      "ref": "pull/141",
+      "source_sha": "0a53b8a70128870f3e1df6d18cdb177bb64290ee",
+      "source_subject": "feat(sheet): support data-bar conditional formats",
+      "replacement_sha": "b3f41eb4b4bca8ca13676b4114891ea6d9185043",
+      "replacement_subject": "Support data-bar conditional formats (#141)",
+      "replacement_ancestor_of_base_main": true,
+      "proof_kind": "full_tree",
+      "source_tree": "b3345f76c2e3cd8e1bad13b554f2d24555aea9ce",
+      "replacement_tree": "b3345f76c2e3cd8e1bad13b554f2d24555aea9ce",
+      "equal_full_tree": true
+    },
+    {
+      "ref": "pull/142",
+      "source_sha": "69d14f84cabd3931b7640c1654b401c89faba766",
+      "source_subject": "docs: record data bars",
+      "replacement_sha": "52c73ae4dbadf2ca00a5d619144350ccc353b31a",
+      "replacement_subject": "docs: record data bars (#142)",
+      "replacement_ancestor_of_base_main": true,
+      "proof_kind": "full_tree",
+      "source_tree": "fcceef2418d7463f2a566623f22f8f0862dd1d01",
+      "replacement_tree": "fcceef2418d7463f2a566623f22f8f0862dd1d01",
+      "equal_full_tree": true
+    },
+    {
+      "ref": "pull/145",
+      "source_sha": "005c708e9f747cb46cf02e12c869b0a2f85ac824",
+      "source_subject": "feat(sheet): support icon-set conditional formats",
+      "replacement_sha": "c84d5e16024c502f6c451fd04b9807b1e65f20d3",
+      "replacement_subject": "feat(sheet): support icon-set conditional formats (#145)",
+      "replacement_ancestor_of_base_main": true,
+      "proof_kind": "full_tree",
+      "source_tree": "097bb5511b2ddf2e00a398da7055b310693fe054",
+      "replacement_tree": "097bb5511b2ddf2e00a398da7055b310693fe054",
+      "equal_full_tree": true
+    },
+    {
+      "ref": "pull/146",
+      "source_sha": "a7f144cc983f2df7c16d88f8644ad67a9254c3d0",
+      "source_subject": "docs: record icon sets",
+      "replacement_sha": "0ff7d23929e4640af6c1d57f87c7ac71b73d2ed4",
+      "replacement_subject": "docs: record icon sets (#146)",
+      "replacement_ancestor_of_base_main": true,
+      "proof_kind": "full_tree",
+      "source_tree": "955a0d933240e0cc62eceff0ee11fd89e0f0caa2",
+      "replacement_tree": "955a0d933240e0cc62eceff0ee11fd89e0f0caa2",
+      "equal_full_tree": true
+    },
+    {
+      "ref": "pull/147",
+      "source_sha": "cee6e2632f891a3fe21c5c02d6bf508805973051",
+      "source_subject": "Merge remote-tracking branch 'origin/codex/odt-column-boundary-followup-20261117' into integrate/odt-column-boundary-144",
+      "replacement_sha": "bb5556e8cc4cb73e2c668b5319a2844a20c6c50c",
+      "replacement_subject": "Reconcile ODT field, bookmark and column-break fidelity (#147)",
+      "replacement_ancestor_of_base_main": true,
+      "proof_kind": "full_tree",
+      "source_tree": "a30201059a62b8034ac747367c1af8de054a2afb",
+      "replacement_tree": "a30201059a62b8034ac747367c1af8de054a2afb",
+      "equal_full_tree": true
+    },
+    {
+      "ref": "pull/149",
+      "source_sha": "3abf8f43b0e79c10271bbd046f391e462b8fe6b9",
+      "source_subject": "Merge Office union qualification containing ODT boundary fixes",
+      "replacement_sha": "4b2b4e78839d2997a583b7ab1346e2fa537a8ac4",
+      "replacement_subject": "Reconcile Office union and finish ODT boundary qualification (#149)",
+      "replacement_ancestor_of_base_main": true,
+      "proof_kind": "full_tree",
+      "source_tree": "e3adc9e259c6120b4b1e3e03177391f880243e13",
+      "replacement_tree": "e3adc9e259c6120b4b1e3e03177391f880243e13",
+      "equal_full_tree": true
+    },
+    {
+      "ref": "pull/151",
+      "source_sha": "7ef09f2408f467c65427700e65907531ecb26acb",
+      "source_subject": "feat(sheet): support calendar-relative conditional periods",
+      "replacement_sha": "34dc6b6806869570e9ec342e4d7ee0d6951c0ba6",
+      "replacement_subject": "feat(sheet): support calendar-relative conditional periods (#151)",
+      "replacement_ancestor_of_base_main": true,
+      "proof_kind": "full_tree",
+      "source_tree": "072bded0da30965ac975f9a8a3c08c7a46829460",
+      "replacement_tree": "072bded0da30965ac975f9a8a3c08c7a46829460",
+      "equal_full_tree": true
+    },
+    {
+      "ref": "pull/152",
+      "source_sha": "da9c956ec5d65c0e5a9f9ea84c2b0bca98e824a0",
+      "source_subject": "test(odt): remove unsupported header-frame fixture",
+      "replacement_sha": "23f3b4204fce45d38a103e3159bdc7f1e8d37c4e",
+      "replacement_subject": "Reconcile Office union qualification and frame bookmarks (#152)",
+      "replacement_ancestor_of_base_main": true,
+      "proof_kind": "full_tree",
+      "source_tree": "b73ebcc6f72c49a2883c5749f6450d497c647324",
+      "replacement_tree": "b73ebcc6f72c49a2883c5749f6450d497c647324",
+      "equal_full_tree": true
+    }
+  ],
+  "conclusion": "All captured refs are reachable from the frozen base main or have independently verified equivalent replacement commits reachable from it. No historical source delta requires replay. Later changes to replacement contents remain represented by normal main history; equivalence is not a claim that current main is byte-identical to every historic tree.",
+  "github_actions": "Neither queried nor awaited"
+}
