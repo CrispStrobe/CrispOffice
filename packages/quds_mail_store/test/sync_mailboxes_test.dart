@@ -618,6 +618,7 @@ void main() {
         database.execute('DROP TABLE saved_header_search_folders');
         database.execute('DROP TABLE account_quick_texts');
         database.execute('DROP TABLE account_compose_settings');
+        database.execute('DROP TABLE account_archive_settings');
         database.execute('DROP TABLE saved_header_search_accounts');
         database.execute('DROP TABLE saved_header_searches');
         database.execute(
@@ -641,7 +642,7 @@ void main() {
           failAt = null;
         }
         store = _value(await open());
-        expect(database.userVersion, 16);
+        expect(database.userVersion, 17);
         expect(_value(await store.loadComposeSettings(_account)).revision, 0);
         expect(snapshot()..remove('mailbox_sync_state'), prior);
         expect(_value(await store.loadSyncMailbox(_mailbox)), isNull);

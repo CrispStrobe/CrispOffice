@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Add schema v17 for account-owned Archive preferences with transactional
+  revision comparison, persisted resets, bounded strict metadata reads and
+  quota accounting. Retain preferences through logout and mailbox-cache
+  eviction; erase them on explicit account/profile removal. Migrate released
+  schema v16 without rejecting legitimate Archive receipts or changing earlier
+  drafts, Outbox bytes, journals and settings.
+
 - Add an optional exact selected-account snapshot to `rememberLocalAccount`.
   Compare identity, revision and connection time atomically before refreshing
   the directory row; reject removed, replaced or concurrently refreshed routes
