@@ -1,0 +1,15 @@
+{
+  "archive": "/workspace/scratch/7c69340222d3/latest-intake-evidence.tar.xz",
+  "sha256": "73d59f684609de77038414d8428e82c16c68458b7e3eec66691dc14c05283c07",
+  "bytes": 450916,
+  "member_count": 58,
+  "verified_all_members": true,
+  "qualified_source_commit": "c971ad0e1515db8deed59b7d8360960c64e13059",
+  "passed": 552,
+  "scope_counts": {
+    "mail": 209,
+    "zotero_editor": 296,
+    "mail_store": 47
+  },
+  "member_digest_manifest": "/workspace/scratch/7c69340222d3/latest-intake-acceptance/archive-members.json"
+}

@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "accepted": true,
+  "registeredCases": 9310,
+  "selectedSuites": 179,
+  "passed": 9310,
+  "failed": 0,
+  "skipped": 0,
+  "errorEvents": 0,
+  "hiddenLifecycleRecordsExcluded": 257,
+  "caseLedgerByteReconstructionEqual": true,
+  "escapedSurrogateNamedCases": 2,
+  "counting": {
+    "distinctSuitePlatformNameTuples": 9289,
+    "duplicateDisplayNameGroups": 14,
+    "additionalRegistrationsSharingDisplayNames": 21,
+    "sourceReview": "All 14 duplicate-name groups were independently read. They use distinct parameter variants: group-shape contents, duplicate element/attribute shapes, tab markup/numeric limits, allocation states, surrogate-producing expressions and mutation policies.",
+    "duplicateRuntimeExecutionsAddedToCount": 0,
+    "additionalPortabilityOrRuntimeProofCaseCredit": 0
+  },
+  "reportRecovery": {
+    "initialTestSubprocessExitCode": 0,
+    "initialDriverCompletedSuccessfully": false,
+    "initialDriverFailure": "UnicodeEncodeError while writing cases.json with ensure_ascii=False; a passing testcase name intentionally contains an isolated UTF-16 surrogate.",
+    "testsReexecutedForRecovery": false,
+    "testCommandRecords": 1,
+    "originalTestStreamsVerifiedAgainstRetainedDigests": true,
+    "sourceAndSuiteSelectionGuardsVerified": true,
+    "originalRunnerSha256": "a9c38b5371700b5681add8fce89ba0cde0b4d7432b1db9ece79de288d620d461",
+    "recoveredRunnerSha256": "07eadd46e0b334f37d316d1589138e95e05ad2d3a6f1bfc68cd35564551ca984",
+    "recoveredJsonEncoding": "ensure_ascii=True",
+    "remainingPostTestCommands": 9,
+    "remainingPostTestCommandFailures": 0
+  },
+  "runtime": {
+    "dart": "3.14.1",
+    "node": "v24.22.3",
+    "environment": "Reduced two-package scratch workspace; original tracked manifests and lock unchanged. Package configuration maps to actual checkout sources and tests. Offline --enforce-lockfile verifies reduced closure; all hosted versions and archive hashes exactly match original lock.",
+    "hostedVersionsUnchanged": 56,
+    "rootPackageConfigSha256": "f47809d48c1a3ab33b767695e961162f9a8b9805a8419df6d605d04da16f3c85",
+    "testRunnerPackageConfigSha256": "4705a94bffc60dbfc49a4962fbd7f5f838661a29547d00e37e18e22ac808cf3b",
+    "rootAndTestRunnerConfigurationsRetainedSeparately": true
+  },
+  "scope": "Original broad Word/VBA selected-engine gate at captured source373b7fe9, with report recovery at7a0d1f30. Later reconciled Mail/Zotero engine/editor gates are separate. This is not a whole-workspace or installed Microsoft Office acceptance claim.",
+  "capturedInputs": 3068,
+  "allCapturedInputsUnchanged": true,
+  "staticChecksPass": true,
+  "strictAnalyzedFormattedFiles": 9,
+  "allCommandOutputDigestsVerified": 20,
+  "compilerCorpusReceipts": 174,
+  "compilerAdapters": 3,
+  "compilerVmJsByteEqual": true,
+  "wordReportParsedVmJsEqual": true,
+  "wordReportByteEqual": false,
+  "wordReportIntegralNumberSpellingDifferences": 58,
+  "memberCount": 61,
+  "archive": {
+    "path": "word-split-broad-evidence.tar.xz",
+    "bytes": 466600,
+    "sha256": "12272ca1c60d1c73c436e4d85caa4f1c0b503fc4b7fcd28d9f6a7bc7b92b1b0b"
+  },
+  "outerManifest": {
+    "path": "word-split-broad-evidence.manifest.json",
+    "bytes": 10174,
+    "sha256": "6f69ba6c88effa4097167b119ed694c7100d1de6f5e64afbfe9fc13560eeb85e"
+  },
+  "everyMemberReopenedAndVerified": true,
+  "deterministicRebuildByteIdentical": true,
+  "sourceEvidenceUnchangedDuringPackaging": true,
+  "newTestsRun": false,
+  "repositoryOrGitEdits": false,
+  "ciQueried": false
+}

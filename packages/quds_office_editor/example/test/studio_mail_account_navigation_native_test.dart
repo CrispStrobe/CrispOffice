@@ -56,6 +56,8 @@ final class _Directory
         StudioMailLocalAccountReconnectStore {
   final records = <String, MailLocalAccountRecord>{};
   Completer<void>? rememberGate;
+  // Attempts include blocked CAS operations; remembers counts committed writes.
+  int rememberAttempts = 0;
   int remembers = 0;
   int selectedRemembers = 0;
 
@@ -65,8 +67,7 @@ final class _Directory
 
   @override
   Future<void> remember(StudioMailDraftAccount identity) async {
-    remembers++;
-    await rememberGate?.future;
+    rememberAttempts++;
     _remember(identity);
   }
 
@@ -75,20 +76,22 @@ final class _Directory
     StudioMailDraftAccount identity, {
     required MailLocalAccountRecord expectedRecord,
   }) async {
-    remembers++;
+    rememberAttempts++;
     selectedRemembers++;
     await rememberGate?.future;
     final current = records[identity.account.value];
     if (current == null ||
         !current.hasSameIdentity(expectedRecord) ||
         current.revision != expectedRecord.revision ||
-        current.lastConnectedAt != expectedRecord.lastConnectedAt) {
+        current.lastConnectedAt.millisecondsSinceEpoch !=
+            expectedRecord.lastConnectedAt.millisecondsSinceEpoch) {
       throw const StudioMailDraftStoreException(MailProblemCode.conflict);
     }
     _remember(identity);
   }
 
   void _remember(StudioMailDraftAccount identity) {
+    remembers++;
     final previous = records[identity.account.value];
     records[identity.account.value] = MailLocalAccountRecord(
       id: identity.account.value,
@@ -1231,16 +1234,18 @@ void main() {
           },
         );
         await _connect(tester);
-        expect(directory.remembers, 2);
+        expect(directory.rememberAttempts, 2);
         if (removed) {
           directory.records.remove(identity.account.value);
         } else {
           directory._remember(identity);
         }
         final replacement = directory.records[identity.account.value];
+        final committedWrites = directory.remembers;
         gate.complete();
         await _pump(tester);
         expect(directory.records[identity.account.value], same(replacement));
+        expect(directory.remembers, committedWrites);
         expect(directory.selectedRemembers, 1);
         expect(owners.single.closes, 1);
         expect(clients.single.disconnections, 1);

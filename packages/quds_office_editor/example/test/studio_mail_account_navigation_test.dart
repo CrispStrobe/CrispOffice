@@ -166,7 +166,7 @@ void main() {
     'imaps://imap.example.test',
     'imaps://[2001:db8::1]',
   ]) {
-    test('missing native socket port cannot select a route: $endpoint', () {
+    test('IMAP route requires its explicit socket port: $endpoint', () {
       expect(
         () => StudioMailAccountNavigationTarget.fromRecord(
           _record(endpoint: endpoint),

@@ -58,6 +58,8 @@ final class _Directory
   Completer<void>? loadGate;
   Completer<void>? rememberGate;
   int loads = 0;
+  // Attempts include blocked CAS operations; remembers counts committed writes.
+  int rememberAttempts = 0;
   int remembers = 0;
   int selectedRemembers = 0;
 
@@ -82,8 +84,7 @@ final class _Directory
 
   @override
   Future<void> remember(StudioMailDraftAccount identity) async {
-    remembers++;
-    await rememberGate?.future;
+    rememberAttempts++;
     _remember(identity);
   }
 
@@ -92,20 +93,22 @@ final class _Directory
     StudioMailDraftAccount identity, {
     required MailLocalAccountRecord expectedRecord,
   }) async {
-    remembers++;
+    rememberAttempts++;
     selectedRemembers++;
     await rememberGate?.future;
     final current = records[identity.account.value];
     if (current == null ||
         !current.hasSameIdentity(expectedRecord) ||
         current.revision != expectedRecord.revision ||
-        current.lastConnectedAt != expectedRecord.lastConnectedAt) {
+        current.lastConnectedAt.millisecondsSinceEpoch !=
+            expectedRecord.lastConnectedAt.millisecondsSinceEpoch) {
       throw const StudioMailDraftStoreException(MailProblemCode.conflict);
     }
     _remember(identity);
   }
 
   void _remember(StudioMailDraftAccount identity) {
+    remembers++;
     seed(
       identity,
       revision: (records[identity.account.value]?.revision ?? 0) + 1,
@@ -673,7 +676,7 @@ void main() {
           harness.directory.rememberGate = gate;
           await _show(tester, harness);
           await _connect(tester, harness);
-          await _until(tester, () => harness.directory.remembers == 1);
+          await _until(tester, () => harness.directory.rememberAttempts == 1);
           if (removed) {
             harness.directory.records.remove(harness.identity.account.value);
           } else {
@@ -681,12 +684,14 @@ void main() {
           }
           final replacement =
               harness.directory.records[harness.identity.account.value];
+          final committedWrites = harness.directory.remembers;
           gate.complete();
           await _pump(tester);
           expect(
             harness.directory.records[harness.identity.account.value],
             same(replacement),
           );
+          expect(harness.directory.remembers, committedWrites);
           expect(harness.directory.selectedRemembers, 1);
           await _until(tester, () => harness.owner.closed == 1);
           expect(harness.providers.single.lease!.isCurrent, isFalse);
@@ -1234,8 +1239,9 @@ void main() {
             gate.complete();
             await _pump(tester);
             expect(harness.providers.single.lease!.isCurrent, isFalse);
+            expect(harness.directory.remembers, 0);
             expect(
-              harness.directory.remembers,
+              harness.directory.rememberAttempts,
               boundary == 'atomic account refresh' ? 1 : 0,
             );
             expect(harness.owner.closed, 1);
