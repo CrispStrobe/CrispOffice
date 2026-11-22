@@ -12,6 +12,7 @@ import 'studio_mail_cached_search_refresh.dart';
 import 'studio_mail_cached_search_strings.dart';
 import 'studio_mail_draft_store.dart';
 import 'studio_mail_draft_store_native.dart';
+import 'studio_mail_folder_picker.dart';
 import 'studio_mail_local_accounts.dart';
 import 'studio_mail_reader_labels.dart';
 import 'studio_mail_saved_searches.dart';
@@ -438,6 +439,142 @@ class _StudioMailCachedSearchDialogState
         _savedNotice = widget.strings.mailSavedSearchSaved;
       });
     });
+  }
+
+
+  /// Read exact retained folder inventories only after user action. Owners are
+  /// closed before a choice is shown, and account identities are reverified
+  /// before and after opening the local stores.
+  Future<void> _chooseFolders() async {
+    if (!_current || _busy || _savedBusy || _loading) return;
+    final accounts = _scopeAccounts();
+    if (accounts == null) {
+      setState(() => _savedError = widget.strings.mailSavedSearchMissingAccounts);
+      return;
+    }
+    _invalidate();
+    final epoch = _epoch;
+    await _savedOperation(() async {
+      await _releaseRetired();
+      if (!_active(epoch)) return;
+      final options = <StudioMailFolderOption>[];
+      for (final expected in accounts) {
+        if (!_active(epoch)) return;
+        final directory = await widget.store.load();
+        if (!_active(epoch)) return;
+        final matches = directory.where((row) => row.id == expected.id).toList();
+        if (matches.length != 1 ||
+            !matches.single.hasSameIdentity(expected) ||
+            matches.single.revision != expected.revision) {
+          throw const StudioMailDraftStoreException(MailProblemCode.conflict);
+        }
+        final identity = studioMailLocalAccountIdentity(expected);
+        final factory = widget.draftStoreFactory ?? openStudioMailDraftStore;
+        final owner = await factory(identity);
+        try {
+          if (!_active(epoch)) return;
+          if (owner is! StudioMailMailboxStoreOwner) {
+            throw const StudioMailDraftStoreException(
+              MailProblemCode.unsupported,
+            );
+          }
+          final mailbox = owner.mailboxStore;
+          if (mailbox.account != identity.account) {
+            throw const StudioMailDraftStoreException(
+              MailProblemCode.permissionDenied,
+            );
+          }
+          final browsed = await mailbox.listViews();
+          final sync = mailbox is StudioMailSyncStore
+              ? switch (await mailbox.listSyncMailboxes()) {
+                  MailSuccess<List<MailMailboxSyncSummary>>(:final value) => value,
+                  MailFailure<List<MailMailboxSyncSummary>>(:final problem) =>
+                    throw StudioMailMailboxStoreException(problem.code),
+                }
+              : <MailMailboxSyncSummary>[];
+          final names = <String, String>{};
+          for (final view in browsed) {
+            if (view.mailbox.id.account != identity.account) {
+              throw const StudioMailDraftStoreException(
+                MailProblemCode.permissionDenied,
+              );
+            }
+            names[view.mailbox.id.value] = view.mailbox.displayName;
+          }
+          for (final row in sync) {
+            if (row.mailbox.id.account != identity.account) {
+              throw const StudioMailDraftStoreException(
+                MailProblemCode.permissionDenied,
+              );
+            }
+            names[row.mailbox.id.value] = row.mailbox.displayName;
+          }
+          if (names.isEmpty) {
+            throw const StudioMailDraftStoreException(
+              MailProblemCode.unavailable,
+            );
+          }
+          if (options.length + names.length >
+              MailSavedHeaderSearch.maxFolderScopes) {
+            throw const StudioMailDraftStoreException(
+              MailProblemCode.quotaExceeded,
+            );
+          }
+          for (final folderId in names.keys.toList()..sort()) {
+            options.add(StudioMailFolderOption(
+              folder: MailSavedHeaderSearchFolder(
+                accountId: expected.id,
+                mailboxId: folderId,
+              ),
+              accountLabel: _accountLabel(expected),
+              displayName: names[folderId]!,
+              available: true,
+            ));
+          }
+        } finally {
+          await owner.close();
+        }
+      }
+      if (!_active(epoch)) return;
+      if (_folderScopes case final saved?) {
+        for (final folder in saved) {
+          if (options.any((option) => option.folder == folder)) continue;
+          options.add(StudioMailFolderOption(
+            folder: folder,
+            accountLabel: accounts
+                .where((account) => account.id == folder.accountId)
+                .map(_accountLabel)
+                .firstOrNull ?? folder.accountId,
+            displayName: folder.mailboxId,
+            available: false,
+          ));
+        }
+      }
+      final chosen = await showDialog<StudioMailFolderChoice>(
+        context: context,
+        builder: (context) => StudioMailFolderPickerDialog(
+          strings: widget.strings,
+          accountIds: [for (final account in accounts) account.id],
+          options: options,
+          initialFolders: _folderScopes,
+        ),
+      );
+      if (chosen == null || !_active(epoch)) return;
+      final directory = await widget.store.load();
+      if (!_active(epoch)) return;
+      for (final expected in accounts) {
+        final matches = directory.where((row) => row.id == expected.id).toList();
+        if (matches.length != 1 ||
+            !matches.single.hasSameIdentity(expected) ||
+            matches.single.revision != expected.revision) {
+          throw const StudioMailDraftStoreException(MailProblemCode.conflict);
+        }
+      }
+      setState(() {
+        _folderScopes = chosen.allFolders ? null : chosen.folders;
+        _savedNotice = null;
+      });
+    }, defaultError: widget.strings.mailSavedSearchFolderReadFailed);
   }
 
   Future<void> _deleteSearch() async {
