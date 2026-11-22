@@ -4,6 +4,12 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Add session-owned writing-position capture and resolution for native Zotero
+  transactions. Track endpoints through citation replacement/deletion,
+  bibliography reflow and note conversion without changing document content.
+  Preserve offsets during metadata-only or identical-text updates, and accept
+  the HTTP protocol's optional field-type argument to `canInsertField`.
+
 - Retain document-wide footnote separator geometry through bounded native
   DOCX and editable ODT persistence, note pagination and Zotero transfer.
   Preserve supported gaps, thickness, relative width, physical alignment,
