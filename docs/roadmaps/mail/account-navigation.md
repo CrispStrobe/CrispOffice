@@ -27,6 +27,12 @@ from EWS to Gmail, Microsoft 365 or IMAP replaces the previous provider route;
 it does not accumulate connected dialogs. Close and Back on these hosts also
 preserve a retained draft and wait for the account owner to drain.
 
+Provider Close remains available while work is pending. It immediately stops
+the remaining bulk sequence, and later draft-marker completions cannot start
+a new send after that Close request, including when the retained-draft save
+fails. Submissions already dispatched keep their existing outcome and
+uncertainty handling.
+
 ## Sign-in data and routing
 
 | Provider | Reused non-secret settings | Still required |
@@ -41,6 +47,10 @@ refresh tokens, SMTP route, EWS authentication method or OAuth client registrati
 It is never treated as a substitute credential store. Existing provider setup
 paths remain available for new accounts. The native **New account** action
 explicitly clears a selected destination constraint.
+
+Opening new Gmail, Microsoft 365 or EWS setup does not depend on completion of
+the unrelated IMAP credential catalog. A late catalog result cannot overwrite
+the active provider setup or trigger an IMAP connection behind it.
 
 IMAP accounts that share an incoming draft identity but use different SMTP
 routes remain distinct entries in the remembered sign-in chooser. When more

@@ -1,23 +1,27 @@
 # Final local qualification plan
 
-**Prepared, not executed.** The task owner must freeze the integrated source and
-authorize the explicit `--run` invocation. `--plan` only inspects local files and
-Git metadata; it runs no Dart or Flutter gates.
+The original frozen run completed against
+`d53f30f1874b38d36a791d1d3881583e4e42a2d6`. Its incoming engine gate passed 903
+cases and shared Mail UI passed 294. Studio completed 2,221 cases with 2,203
+passing and 18 failing; the original run is therefore **not accepted**. All
+source/configuration inputs stayed unchanged. Its results and checksums remain
+intact in [qualified-source](qualified-source/summary.json).
 
-The current plan selects **110 Studio Mail suites**, **18 shared Mail UI suites**
+The full plan selects **110 Studio Mail suites**, **18 shared Mail UI suites**
 and **14 incoming engine suites**. Strict analysis and pinned formatting cover
-all 87 live Dart paths changed since initial main
+the live Dart paths changed since initial main
 `4621326a5a452da475f219353c298d0f9b12470e`, including incoming Archive/Word/Zotero
 changes and this navigation increment. The exact selection is recalculated and
-frozen at execution time.
+frozen at execution time. `--plan` executes no Dart or Flutter gates.
 
-## Invocation after source freeze
+## Scoped recovery after a new source freeze
 
 Source the prepared runtime environment, then invoke:
 
 ```sh
 python3 docs/validation/mail-connected-navigation-20261122/final/qualify_mail.py \
-  --run --expected-head FROZEN_FULL_COMMIT_SHA --run-id qualified-source
+  --run --expected-head FROZEN_FULL_COMMIT_SHA --run-id studio-recovery \
+  --gates analysis format studio_mail --retain-from qualified-source
 ```
 
 The runner requires the supplied exact commit to match current HEAD. It verifies
@@ -25,6 +29,23 @@ the repository-pinned Flutter version and explicitly sets `BOT=true`, `CI=true`
 and analytics suppression before any Dart/Flutter command. Those supported
 environment settings prevent Flutter's Azure metadata bot-detection fallback;
 SDK code and network controls remain unchanged.
+
+This scoped recovery runs analysis, formatting and the complete Studio Mail
+gate. It does not repeat the independent accepted engine and shared UI gates.
+Before any recovery command, the runner verifies the original evidence checksums
+and original runner hash, then compares every captured package/third-party input
+outside Studio, root configuration, generated package configuration/graph, and
+pinned runtime identity. The current comparison covers **5,561 source inputs**
+outside Studio. Declared dependencies and actual local import/export/part
+directives (including engine CLI entry points) must exclude Studio; the inspected
+closures contain 481 engine and 79 shared UI Dart files.
+
+Any continuity failure prevents recovery execution. The 903 engine and 294 UI
+cases are reported as retained accepted evidence, separately from fresh recovery
+cases. None of the failed original Studio gate's cases are carried forward. A
+combined accepted count is produced only after the new selected gates pass with
+unchanged inputs. The exact original runner is archived without modification in
+[runner_versions](runner_versions/index.json).
 
 ## Scope and evidence
 

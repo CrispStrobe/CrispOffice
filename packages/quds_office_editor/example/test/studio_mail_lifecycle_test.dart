@@ -7,8 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_mail_ui/quds_mail_ui.dart';
 import 'package:quds_office_studio/studio_chrome.dart';
-import 'package:quds_office_studio/studio_mail.dart';
+import 'package:quds_office_studio/studio_mail_native.dart';
 import 'package:quds_office_studio/studio_strings.dart';
+
+import 'support/mail_credentials.dart';
 
 void main() {
   testWidgets('closing Mail ignores a pending file picker result', (
@@ -25,8 +27,10 @@ void main() {
             body: TextButton(
               onPressed: () => showDialog<void>(
                 context: context,
-                builder: (BuildContext context) => const StudioMailDialog(
-                  strings: StudioStrings(StudioLanguage.en),
+                builder: (BuildContext context) => StudioMailDialog(
+                  strings: const StudioStrings(StudioLanguage.en),
+                  credentialStore: SessionMailCredentials(),
+                  autoConnectSavedAccount: false,
                 ),
               ),
               child: const Text('Show mail'),

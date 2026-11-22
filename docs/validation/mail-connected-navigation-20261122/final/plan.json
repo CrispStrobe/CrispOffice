@@ -1,4 +1,11 @@
 {
+  "available_gate_names": [
+    "analysis",
+    "format",
+    "incoming_engine",
+    "studio_mail",
+    "shared_mail_ui"
+  ],
   "changed_dart_paths": [
     "packages/quds_mail_core/lib/src/model/capabilities.dart",
     "packages/quds_mail_core/lib/src/ports/provider.dart",
@@ -47,9 +54,13 @@
     "packages/quds_office_editor/example/test/studio_mail_account_navigation_provider_test.dart",
     "packages/quds_office_editor/example/test/studio_mail_account_navigation_router_test.dart",
     "packages/quds_office_editor/example/test/studio_mail_account_navigation_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart",
     "packages/quds_office_editor/example/test/studio_mail_journal_host_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_local_accounts_dialog_test.dart",
     "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
     "packages/quds_office_editor/example/test/studio_mail_organization_dialog_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_presets_test.dart",
     "packages/quds_office_editor/example/test/support/mail_bulk_organization_host_cases.dart",
     "packages/quds_office_editor/example/test/support/mail_provider_archive_host_cases.dart",
     "packages/quds_office_editor/lib/src/editor_word/office_ruler.dart",
@@ -141,9 +152,13 @@
         "packages/quds_office_editor/example/test/studio_mail_account_navigation_provider_test.dart",
         "packages/quds_office_editor/example/test/studio_mail_account_navigation_router_test.dart",
         "packages/quds_office_editor/example/test/studio_mail_account_navigation_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart",
         "packages/quds_office_editor/example/test/studio_mail_journal_host_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_local_accounts_dialog_test.dart",
         "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
         "packages/quds_office_editor/example/test/studio_mail_organization_dialog_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_presets_test.dart",
         "packages/quds_office_editor/example/test/support/mail_bulk_organization_host_cases.dart",
         "packages/quds_office_editor/example/test/support/mail_provider_archive_host_cases.dart",
         "packages/quds_office_editor/lib/src/editor_word/office_ruler.dart",
@@ -239,9 +254,13 @@
         "packages/quds_office_editor/example/test/studio_mail_account_navigation_provider_test.dart",
         "packages/quds_office_editor/example/test/studio_mail_account_navigation_router_test.dart",
         "packages/quds_office_editor/example/test/studio_mail_account_navigation_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart",
         "packages/quds_office_editor/example/test/studio_mail_journal_host_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_local_accounts_dialog_test.dart",
         "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart",
         "packages/quds_office_editor/example/test/studio_mail_organization_dialog_test.dart",
+        "packages/quds_office_editor/example/test/studio_mail_presets_test.dart",
         "packages/quds_office_editor/example/test/support/mail_bulk_organization_host_cases.dart",
         "packages/quds_office_editor/example/test/support/mail_provider_archive_host_cases.dart",
         "packages/quds_office_editor/lib/src/editor_word/office_ruler.dart",
@@ -283,47 +302,6 @@
       "cwd": ".",
       "kind": "static",
       "name": "format"
-    },
-    {
-      "command": [
-        "/workspace/scratch/85a369f34dbb/runtime/flutter/bin/cache/dart-sdk/bin/dart",
-        "test",
-        "--concurrency=2",
-        "--reporter=json",
-        "test/word_directional_paragraph_io_test.dart",
-        "test/office_vba_string_intrinsics_test.dart",
-        "test/office_vba_variant_substrings_test.dart",
-        "test/office_vba_word_headers_footers_test.dart",
-        "test/office_vba_word_named_measurements_test.dart",
-        "test/office_vba_word_named_selectors_test.dart",
-        "test/office_vba_word_page_setup_test.dart",
-        "test/office_vba_word_text_selectors_conformance_test.dart",
-        "test/office_vba_word_cell_paragraphs_test.dart",
-        "test/office_vba_word_named_measurements_integration_test.dart",
-        "test/office_vba_word_text_selectors_cli_test.dart",
-        "test/office_vba_word_text_selectors_directional_test.dart",
-        "test/office_vba_word_text_selectors_integration_test.dart",
-        "test/word_zotero_paragraph_format_test.dart"
-      ],
-      "cwd": "packages/quds_office_engine",
-      "expected_suites": [
-        "packages/quds_office_engine/test/word_directional_paragraph_io_test.dart",
-        "packages/quds_office_engine/test/office_vba_string_intrinsics_test.dart",
-        "packages/quds_office_engine/test/office_vba_variant_substrings_test.dart",
-        "packages/quds_office_engine/test/office_vba_word_headers_footers_test.dart",
-        "packages/quds_office_engine/test/office_vba_word_named_measurements_test.dart",
-        "packages/quds_office_engine/test/office_vba_word_named_selectors_test.dart",
-        "packages/quds_office_engine/test/office_vba_word_page_setup_test.dart",
-        "packages/quds_office_engine/test/office_vba_word_text_selectors_conformance_test.dart",
-        "packages/quds_office_engine/test/office_vba_word_cell_paragraphs_test.dart",
-        "packages/quds_office_engine/test/office_vba_word_named_measurements_integration_test.dart",
-        "packages/quds_office_engine/test/office_vba_word_text_selectors_cli_test.dart",
-        "packages/quds_office_engine/test/office_vba_word_text_selectors_directional_test.dart",
-        "packages/quds_office_engine/test/office_vba_word_text_selectors_integration_test.dart",
-        "packages/quds_office_engine/test/word_zotero_paragraph_format_test.dart"
-      ],
-      "kind": "tests",
-      "name": "incoming_engine"
     },
     {
       "command": [
@@ -558,56 +536,6 @@
       ],
       "kind": "tests",
       "name": "studio_mail"
-    },
-    {
-      "command": [
-        "/workspace/scratch/85a369f34dbb/runtime/flutter/bin/flutter",
-        "test",
-        "--no-pub",
-        "--concurrency=2",
-        "--reporter=json",
-        "test/body_presentation_contract_test.dart",
-        "test/body_presentation_test.dart",
-        "test/bulk_api_aliases_test.dart",
-        "test/bulk_message_list_test.dart",
-        "test/controller_test.dart",
-        "test/example_test.dart",
-        "test/message_list_bulk_test.dart",
-        "test/message_list_conversations_test.dart",
-        "test/message_list_organization_test.dart",
-        "test/message_list_range_selection_test.dart",
-        "test/message_list_test.dart",
-        "test/message_view_test.dart",
-        "test/presentation_test.dart",
-        "test/presentation_whitespace_test.dart",
-        "test/reader_image_updates_test.dart",
-        "test/reader_labels_test.dart",
-        "test/reader_theme_scroll_test.dart",
-        "test/remote_images_test.dart"
-      ],
-      "cwd": "packages/quds_mail_ui",
-      "expected_suites": [
-        "packages/quds_mail_ui/test/body_presentation_contract_test.dart",
-        "packages/quds_mail_ui/test/body_presentation_test.dart",
-        "packages/quds_mail_ui/test/bulk_api_aliases_test.dart",
-        "packages/quds_mail_ui/test/bulk_message_list_test.dart",
-        "packages/quds_mail_ui/test/controller_test.dart",
-        "packages/quds_mail_ui/test/example_test.dart",
-        "packages/quds_mail_ui/test/message_list_bulk_test.dart",
-        "packages/quds_mail_ui/test/message_list_conversations_test.dart",
-        "packages/quds_mail_ui/test/message_list_organization_test.dart",
-        "packages/quds_mail_ui/test/message_list_range_selection_test.dart",
-        "packages/quds_mail_ui/test/message_list_test.dart",
-        "packages/quds_mail_ui/test/message_view_test.dart",
-        "packages/quds_mail_ui/test/presentation_test.dart",
-        "packages/quds_mail_ui/test/presentation_whitespace_test.dart",
-        "packages/quds_mail_ui/test/reader_image_updates_test.dart",
-        "packages/quds_mail_ui/test/reader_labels_test.dart",
-        "packages/quds_mail_ui/test/reader_theme_scroll_test.dart",
-        "packages/quds_mail_ui/test/remote_images_test.dart"
-      ],
-      "kind": "tests",
-      "name": "shared_mail_ui"
     }
   ],
   "comparison_base": "4621326a5a452da475f219353c298d0f9b12470e",
@@ -615,9 +543,10 @@
   "gate_execution_authorized_by_this_command": false,
   "manifest_policy": "Full local package/third_party sources/tests/fixtures/assets/examples/CLI helpers and manifests, excluding screenshots; root lock/config/pin and generated package config/graph. No old validation evidence is copied.",
   "missing_planned_suites": [],
-  "observed_head": "86a65b1d5c0cf252c7d58b66e8901a834fc97c70",
-  "planned_at_utc": "2026-11-22T11:49:05.761905+00:00",
+  "observed_head": "88e9c63d158eab7289463eafdcef645dca4c90e6",
+  "planned_at_utc": "2026-11-22T12:13:49.524230+00:00",
   "planned_source_input_count": 6116,
+  "retained_evidence_request": "qualified-source",
   "retained_ruler": {
     "counted_as_fresh": false,
     "inputs": {
@@ -657,7 +586,15 @@
     "scope": "Retained focused ruler arithmetic qualification by exact unchanged source/test/model/helper hashes; no claim that the entire Office dependency closure stayed unchanged.",
     "unchanged": true
   },
-  "static_path_count": 87,
+  "selected_gate_names": [
+    "analysis",
+    "format",
+    "studio_mail"
+  ],
+  "selected_suite_counts": {
+    "studio_mail": 110
+  },
+  "static_path_count": 91,
   "suite_counts": {
     "incoming_engine": 14,
     "shared_mail_ui": 18,

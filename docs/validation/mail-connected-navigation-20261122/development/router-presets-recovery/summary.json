@@ -1,0 +1,50 @@
+{
+  "accepted_development_check": true,
+  "driver_sha256_after": "ffb4fbf77be47911dbbdd20db430aa395fbc3ddb3ff7d52ac5d0cb658f892814",
+  "driver_sha256_before": "ffb4fbf77be47911dbbdd20db430aa395fbc3ddb3ff7d52ac5d0cb658f892814",
+  "failed_cases": 0,
+  "head_at_finish": "6d63c6e2a44848b4f2fb9d7177d2d605506f98cb",
+  "head_at_start": "6d63c6e2a44848b4f2fb9d7177d2d605506f98cb",
+  "incomplete_cases": 0,
+  "initial_inputs_differing_from_head": [
+    "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_local_accounts_dialog_test.dart"
+  ],
+  "manifests": {
+    "after": {
+      "gzip_sha256": "2360cc7f110beeccf4936e3e2efe9e35dd591249505cb6c422aa858a7857e24a",
+      "path": "inputs-after.json.gz",
+      "raw_bytes": 2219485,
+      "raw_sha256": "80ef4962c491a7c76f79a4d51fbfa6a7b94a109e4e071234c0f93bc0a397c8a8"
+    },
+    "before": {
+      "gzip_sha256": "224d384accf77086f1fe1fa2561a71233adb7f6f4ea37c43e523c7c85e7b3205",
+      "path": "inputs-before.json.gz",
+      "raw_bytes": 2219485,
+      "raw_sha256": "6305769b72e86611b1c0bbb00473912fdd4facc12948159bd938d6930bfc81bd"
+    }
+  },
+  "passed_cases": 15,
+  "per_file_counts": {
+    "packages/quds_office_editor/example/test/studio_mail_account_navigation_router_test.dart": {
+      "passed": 8
+    },
+    "packages/quds_office_editor/example/test/studio_mail_presets_test.dart": {
+      "passed": 7
+    }
+  },
+  "result": "router_presets-result.json",
+  "runner_sha256_after": "b300f152de49caa8da572db3eec45c6c2a5b6ac1497c35edf3f5004a4f4da906",
+  "runner_sha256_before": "b300f152de49caa8da572db3eec45c6c2a5b6ac1497c35edf3f5004a4f4da906",
+  "scope": "Focused development verification before final corrected-source freeze; not final qualification.",
+  "skipped_cases": 0,
+  "source_drift": {
+    "changed_source_inputs": [],
+    "generated_inputs_unchanged": true,
+    "stable": true
+  },
+  "source_input_count": 6116,
+  "unique_completed_cases": 15,
+  "unique_started_cases": 15
+}

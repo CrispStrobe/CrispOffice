@@ -80,6 +80,15 @@ source and the final affected-gate results are recorded in the recovery report;
 accepted original engine/shared UI results are reusable only with exact unchanged
 input and dependency checks.
 
+Focused corrections passed 64 provider-navigation cases (including nine new
+Close/marker/receipt regressions) and 79 cache/local-account/file-picker cases.
+The cache timeout did not recur in the exact case or full cached-host sequence
+when run from the Studio package directory, matching the original gate. Earlier
+repository-root probes failed before storage admission because they did not
+use the same native-asset package context; they receive no acceptance credit.
+No timeout was increased and no production cleanup change was made on that
+basis. Sanitized open/close-stage diagnostics remain in the fixture.
+
 Development checks exercise the real IMAP → EWS → IMAP host route, exact
 destination identity, ambiguous SMTP selection, draft-save failure, delayed
 observer/store release, retained uncertainty, target removal at asynchronous
@@ -112,6 +121,7 @@ Working branch: `work/mail-connected-navigation-20261122`.
 | `622d9fda2a6564638af153de887adea922bc26f8` | Shared chooser, native/provider routing and initial regressions |
 | `0cb4057ae80162d754a2d5c3f145fc7f38bb0590` | Stale-admission and retained-owner fixes, incoming Word/Zotero continuation and local evidence |
 | `d53f30f1874b38d36a791d1d3881583e4e42a2d6` | First frozen combined source, complete captured intake, observer-release recovery and focused regression evidence |
+| `6d63c6e2a44848b4f2fb9d7177d2d605506f98cb` | Complete first combined run with its failures, restored cancellable Close and independent provider setup, and corrective regressions |
 
 Each remote tree was checked against its local checkpoint before moving the
 branch with an expected-head lease and `force=false`. The qualification

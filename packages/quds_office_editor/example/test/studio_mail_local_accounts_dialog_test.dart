@@ -126,7 +126,8 @@ void main() {
       );
       for (
         var i = 0;
-        i < 100 && find.text(_strings.mailCacheEmpty).evaluate().isEmpty;
+        i < 100 &&
+            find.text(_strings.mailCacheRetainedEmpty).evaluate().isEmpty;
         i++
       ) {
         await tester.pump(const Duration(milliseconds: 10));
@@ -135,7 +136,7 @@ void main() {
         find.byType(StudioMailCachedMailDialog),
       );
       expect(dialog.identity.account, identity.account);
-      expect(find.text(_strings.mailCacheEmpty), findsOneWidget);
+      expect(find.text(_strings.mailCacheRetainedEmpty), findsOneWidget);
       expect(find.byType(StudioMailComposeDialog), findsNothing);
       expect(find.byType(StudioMailDraftsDialog), findsNothing);
       expect(fixture.adapters.single.selectionEpoch, 0);

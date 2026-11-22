@@ -1,0 +1,64 @@
+{
+  "purpose": "Scoped development qualification after correcting concrete cache/lifecycle fixture contracts. Final frozen broad rerun remains required.",
+  "command": "BOT=true CI=true flutter test --no-pub --concurrency=1 test/studio_mail_cached_host_test.dart test/studio_mail_local_accounts_dialog_test.dart test/studio_mail_lifecycle_test.dart --reporter json",
+  "cwd": "packages/quds_office_editor/example",
+  "runtime_environment_file": "/workspace/scratch/85a369f34dbb/runtime/env.sh",
+  "exit_code": 0,
+  "reporter_success": true,
+  "passed": 79,
+  "failed": 0,
+  "per_file": {
+    "studio_mail_cached_host_test.dart": {
+      "passed": 60,
+      "failed": 0
+    },
+    "studio_mail_local_accounts_dialog_test.dart": {
+      "passed": 18,
+      "failed": 0
+    },
+    "studio_mail_lifecycle_test.dart": {
+      "passed": 1,
+      "failed": 0
+    }
+  },
+  "raw_log": "cache-lifecycle-recovery.jsonl",
+  "stderr": "cache-lifecycle-recovery.stderr",
+  "source_before": "cache-lifecycle-recovery-before.json",
+  "source_after": "cache-lifecycle-recovery-after.json",
+  "changed_during_run": [
+    "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart"
+  ],
+  "source_change_note": "The lifecycle test conditional umbrella import was changed to its explicit native host import before that suite ran, because native-only credential injection parameters otherwise fail static analysis. No production behavior changed during this batch.",
+  "analysis": {
+    "log": "cache-lifecycle-analysis-final.txt",
+    "exit_code": 0,
+    "result": "No issues found!"
+  },
+  "corrections": [
+    "Only the three cached-delete fixtures advertise MailCapability.delete; they assert enabled action and visible enabled confirmation before metadata updates.",
+    "Sync-capable SQLite empty catalog fixtures expect mailCacheRetainedEmpty instead of browse-only mailCacheEmpty.",
+    "Pending-file-picker lifecycle fixture injects session credentials and disables automatic connection, reaching the intended picker and close behavior.",
+    "Native cache fixture reports sanitized open stages and owner close request/result state on failure, preserving delegate exceptions and the existing 15-second close bound."
+  ],
+  "imap_teardown_diagnosis": {
+    "original_failure": "Frozen broad run at d53f30f1 timed out during owner.whenClosed after all case body assertions.",
+    "unchanged_root_probe": {
+      "raw_log": "imap-cached-teardown-unchanged.jsonl",
+      "exit_code": 1,
+      "result": "Earlier owner list was empty; this probe used repo-root cwd rather than the Studio cwd of the original gate."
+    },
+    "instrumented_root_probe": {
+      "raw_log": "imap-cache-diagnostic.jsonl",
+      "exit_code": 1,
+      "result": "Fixture recorded started then failed:storageFailure before any owner was registered."
+    },
+    "matching_studio_cwd_probe": {
+      "raw_log": "imap-cache-studio-cwd.jsonl",
+      "exit_code": 0,
+      "passed": 1,
+      "result": "Original case and owner teardown completed under the unchanged 15-second close bound."
+    },
+    "scoped_full_file": "All 60 cached-host cases passed in the corrected Studio-cwd batch, including the original IMAP case.",
+    "limit": "The original broad teardown timeout was not reproduced in the valid sequential probes. No timeout increase or production cleanup change was made on this evidence; final broad qualification must still pass."
+  }
+}
