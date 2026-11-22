@@ -76,10 +76,14 @@ extension StudioMailWorkspaceStrings on StudioStrings {
           'require all. Use OR for alternatives, and NOT or a leading - '
           'to exclude matches. NOT applies before AND, then OR; parentheses '
           'group conditions. Use double quotes for a phrase or literal '
-          'operator text.\n\n'
+          'operator text. recipient: searches To or Cc; participant: '
+          'searches From, To or Cc. Both match names and addresses '
+          'and exclude Bcc.\n\n'
           '(from:alice OR from:bob) NOT subject:invoice\n'
           'from:alice -subject:"weekly digest"\n'
           'to:team@example.test cc:manager\n'
+          'recipient:"Review Team"\n'
+          'participant:alice@example.test\n'
           'State choices: is:read, is:unread, is:flagged, is:unflagged\n'
           'after:2026-10-01 before:2026-11-01 on:2026-10-15\n\n'
           'Dates use the displayed local calendar day. Before and after '
@@ -96,10 +100,14 @@ extension StudioMailWorkspaceStrings on StudioStrings {
           'ein vorangestelltes - schließt Treffer aus. NOT gilt vor AND, '
           'danach OR; Klammern gruppieren Bedingungen. Doppelte '
           'Anführungszeichen suchen eine Wortgruppe oder wörtliche '
-          'Operatornamen.\n\n'
+          'Operatornamen. recipient: durchsucht An oder Cc; participant: '
+          'durchsucht Absender, An oder Cc. Beide berücksichtigen Namen '
+          'und Adressen; Bcc bleibt ausgeschlossen.\n\n'
           '(from:alice OR from:bob) NOT subject:invoice\n'
           'from:alice -subject:"weekly digest"\n'
           'to:team@example.test cc:manager\n'
+          'recipient:"Review Team"\n'
+          'participant:alice@example.test\n'
           'Statusauswahl: is:read, is:unread, is:flagged, is:unflagged\n'
           'after:2026-10-01 before:2026-11-01 on:2026-10-15\n\n'
           'Datumsfilter verwenden den angezeigten lokalen Kalendertag. '
@@ -117,10 +125,14 @@ extension StudioMailWorkspaceStrings on StudioStrings {
           'المطلوب تطابقها جميعًا. استخدم OR للبدائل، وNOT أو - في البداية '
           'لاستبعاد التطابقات. تُطبّق NOT قبل AND ثم OR؛ وتجمع الأقواس '
           'الشروط. استخدم علامتي اقتباس مزدوجتين لعبارة أو لاسم عامل '
-          'بحث حرفي.\n\n'
+          'بحث حرفي. يبحث \u2066recipient:\u2069 في حقلي المستلم وCc، '
+          'ويبحث \u2066participant:\u2069 في المرسل والمستلم وCc. '
+          'يشمل كلاهما الأسماء والعناوين ويستثني Bcc.\n\n'
           '(from:alice OR from:bob) NOT subject:invoice\n'
           'from:alice -subject:"weekly digest"\n'
           'to:team@example.test cc:manager\n'
+          'recipient:"Review Team"\n'
+          'participant:alice@example.test\n'
           'خيارات الحالة: is:read، is:unread، is:flagged، is:unflagged\n'
           'after:2026-10-01 before:2026-11-01 on:2026-10-15\n\n'
           'تستخدم التواريخ اليوم المحلي المعروض. يستثني before وafter '
@@ -268,9 +280,9 @@ extension StudioMailWorkspaceStrings on StudioStrings {
       'أدخل قيمة بعد حقل البحث.',
     ),
     MailHeaderSearchError.unknownField => _text(
-      'Use from, subject, to, cc, before, after, on or is. See Search help.',
-      'Verwenden Sie from, subject, to, cc, before, after, on oder is. Siehe Suchhilfe.',
-      'استخدم from أو subject أو to أو cc أو before أو after أو on أو is. راجع مساعدة البحث.',
+      'Use from, subject, to, cc, recipient, participant, before, after, on or is. See Search help.',
+      'Verwenden Sie from, subject, to, cc, recipient, participant, before, after, on oder is. Siehe Suchhilfe.',
+      'استخدم from أو subject أو to أو cc أو recipient أو participant أو before أو after أو on أو is. راجع مساعدة البحث.',
     ),
     MailHeaderSearchError.invalidState => _text(
       'Use is:read, is:unread, is:flagged or is:unflagged.',

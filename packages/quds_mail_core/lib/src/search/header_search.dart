@@ -38,6 +38,9 @@ final class MailHeaderSearchDocument {
 /// `subject`, `to` and `cc` restrict that match to one header group. Field names
 /// are case-insensitive and require an adjacent value, for example
 /// `from:alice subject:"quarterly report"`.
+/// `recipient` matches To or Cc; `participant` matches From, To or Cc.
+/// Names and addresses use the same case-insensitive substring matching.
+/// A phrase must match within one header group; Bcc is never searched.
 ///
 /// `is:read`, `is:unread`, `is:flagged` and `is:unflagged` require an observed
 /// flag value. `before:YYYY-MM-DD` and `after:YYYY-MM-DD` are exclusive calendar
@@ -117,7 +120,7 @@ final class MailHeaderSearchException implements Exception {
       'MailHeaderSearchException(${code.name}, offset=$offset)';
 }
 
-enum _TextField { any, subject, sender, to, cc }
+enum _TextField { any, subject, sender, to, cc, recipient, participant }
 
 enum _DateRelation { before, after, on }
 
@@ -161,6 +164,12 @@ final class _TextTerm extends _HeaderSearchTerm {
     _TextField.sender => document.sender.contains(value),
     _TextField.to => document.to.contains(value),
     _TextField.cc => document.cc.contains(value),
+    _TextField.recipient =>
+      document.to.contains(value) || document.cc.contains(value),
+    _TextField.participant =>
+      document.sender.contains(value) ||
+          document.to.contains(value) ||
+          document.cc.contains(value),
   };
 }
 
@@ -367,6 +376,8 @@ final class _HeaderSearchParser {
       'subject',
       'to',
       'cc',
+      'recipient',
+      'participant',
       'is',
       'before',
       'after',
@@ -397,6 +408,8 @@ final class _HeaderSearchParser {
       'subject' => _TextTerm(_TextField.subject, normalized),
       'to' => _TextTerm(_TextField.to, normalized),
       'cc' => _TextTerm(_TextField.cc, normalized),
+      'recipient' => _TextTerm(_TextField.recipient, normalized),
+      'participant' => _TextTerm(_TextField.participant, normalized),
       'is' => switch (normalized) {
         'read' => const _FlagTerm(read: true, value: true),
         'unread' => const _FlagTerm(read: true, value: false),

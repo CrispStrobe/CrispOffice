@@ -1,5 +1,10 @@
 ## Unreleased
 
+- Add `recipient:` (To/Cc) and `participant:` (From/To/Cc) header-search
+  predicates for names and addresses. Preserve Boolean negation, phrase
+  boundaries, bounded queries and the existing public-header scope; bare text
+  still searches subject/sender. No provider work or schema change is required.
+
 - Add immutable account-owned ordinary Archive settings and an optional
   persistence port. Preserve exact mailbox values and Unicode, reject foreign
   ownership and invalid metadata, and retain reset revisions for stale-write
