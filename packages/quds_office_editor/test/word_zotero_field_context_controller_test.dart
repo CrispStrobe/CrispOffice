@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 
@@ -173,6 +173,74 @@ void _expectClean(WordEditorController controller) {
   expect(controller.isDirty, isFalse);
   expect(controller.contentRevision, 0);
 }
+
+const _viewportCanvasKey = ValueKey('zotero-context-viewport');
+
+Future<RenderWordCanvas> _mountViewport(
+  WidgetTester tester,
+  WordEditorController controller,
+) async {
+  await tester.pumpWidget(
+    Directionality(
+      textDirection: TextDirection.ltr,
+      child: Center(
+        child: SizedBox(
+          width: 600,
+          height: 400,
+          child: WordCanvas(
+            key: _viewportCanvasKey,
+            document: controller.document,
+            laidOut: controller.documentLaidOut,
+            caret: controller.caret,
+            viewport: controller.viewport,
+            config: const OfficeSurfaceConfig(showRulers: false),
+            zoteroFieldRanges:
+                controller.zoteroFieldContext?.sourceRanges ?? const [],
+          ),
+        ),
+      ),
+    ),
+  );
+  expect(tester.takeException(), isNull);
+  return tester.renderObject<RenderWordCanvas>(find.byKey(_viewportCanvasKey));
+}
+
+Rect _screenBounds(
+  RenderWordCanvas canvas,
+  LaidOutLine line,
+  int start,
+  int end,
+) {
+  final boxes = CaretEngine.rangeRectsOnLine(
+    line,
+    line.y,
+    line.height,
+    start,
+    end,
+  );
+  expect(boxes, isNotEmpty);
+  var bounds = boxes.first;
+  for (final box in boxes.skip(1)) {
+    bounds = bounds.expandToInclude(box);
+  }
+  return Rect.fromPoints(
+    canvas.windowForPagePoint(line.pageIndex, bounds.topLeft),
+    canvas.windowForPagePoint(line.pageIndex, bounds.bottomRight),
+  );
+}
+
+void _expectVisible(Rect bounds) {
+  expect(bounds.left, greaterThanOrEqualTo(-.01));
+  expect(bounds.right, lessThanOrEqualTo(600 - 14 + .01));
+  expect(bounds.top, greaterThanOrEqualTo(-.01));
+  expect(bounds.bottom, lessThanOrEqualTo(400 + .01));
+}
+
+List<double> _lineGeometry(LaidOutLine line) => [
+  line.x,
+  line.width,
+  for (final glyph in line.glyphs) ...[glyph.x, glyph.advance],
+];
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -382,6 +450,227 @@ void main() {
       _expectClean(controller);
     },
   );
+
+  for (final side in ['left', 'right']) {
+    testWidgets('high zoom reveals a citation beyond the $side edge', (
+      tester,
+    ) async {
+      final source = _paragraph('');
+      if (side == 'right') {
+        source.properties.justification = WmlJustification.right;
+      }
+      WordZotero.insertCitation(source, _citation('zoomed'));
+      final controller = _controller(
+        WmlDocument(
+          sections: [
+            WmlSection(blocks: [source]),
+          ],
+        ),
+      );
+      final original = Offset(side == 'left' ? 700 : 0, 29);
+      controller.viewport
+        ..setScale(2)
+        ..origin = original;
+      var canvas = await _mountViewport(tester, controller);
+      final line = controller.documentLaidOut.pages.single.lines.single;
+      final field = WordZotero.fields(controller.document).single;
+      final before = _screenBounds(canvas, line, field.start, field.end);
+      expect(
+        side == 'left' ? before.right < 0 : before.left > 600 - 14,
+        isTrue,
+        reason: 'the whole citation begins beyond the visible canvas',
+      );
+      expect(controller.viewport.origin, original);
+      final selection = _selection(controller);
+      final transaction = _begin(controller);
+      _call(transaction, 'Field.select', [_fieldId(transaction, 'zoomed')]);
+      expect(controller.viewport.origin.dx, isNot(original.dx));
+      final revealed = controller.viewport.origin;
+      canvas = await _mountViewport(tester, controller);
+      canvas.markNeedsLayout();
+      await tester.pump();
+      expect(controller.viewport.origin, revealed);
+      _expectVisible(_screenBounds(canvas, line, field.start, field.end));
+      expect(_selection(controller), selection);
+      transaction.clearFieldContext();
+      expect(controller.viewport.origin, original);
+      _expectClean(controller);
+    });
+  }
+
+  testWidgets('high zoom preserves a horizontal view containing the field', (
+    tester,
+  ) async {
+    final source = _paragraph('');
+    WordZotero.insertCitation(source, _citation('visible'));
+    final controller = _controller(
+      WmlDocument(
+        sections: [
+          WmlSection(blocks: [source]),
+        ],
+      ),
+    );
+    const original = Offset(200, 29);
+    controller.viewport
+      ..setScale(2)
+      ..origin = original;
+    final canvas = await _mountViewport(tester, controller);
+    final line = controller.documentLaidOut.pages.single.lines.single;
+    final field = WordZotero.fields(controller.document).single;
+    final before = _screenBounds(canvas, line, field.start, field.end);
+    expect(before.left, greaterThan(0));
+    expect(before.right, lessThan(600 - 14));
+    final transaction = _begin(controller);
+    _call(transaction, 'Field.select', [_fieldId(transaction, 'visible')]);
+    expect(controller.viewport.origin.dx, original.dx);
+    _expectVisible(_screenBounds(canvas, line, field.start, field.end));
+    transaction.clearFieldContext();
+    expect(controller.viewport.origin, original);
+  });
+
+  testWidgets(
+    'last page footnote clamps to the canvas bottom and restores after layout',
+    (tester) async {
+      final first = _paragraph('Keep writing here.');
+      final last = _paragraph('Last page anchor.', pageBreak: true);
+      final document = WmlDocument(
+        sections: [
+          WmlSection(blocks: [first, last]),
+        ],
+      );
+      final note = WordNotes.insert(
+        document,
+        last,
+        endnote: false,
+        text: 'Original source ',
+      );
+      final source = note.paragraphs.single;
+      WordZotero.insertCitation(source, _citation('last-note'));
+      final controller = _controller(document);
+      const original = Offset(13, 29);
+      controller.viewport.origin = original;
+      var canvas = await _mountViewport(tester, controller);
+      final layout = controller.documentLaidOut;
+      final page = layout.pages.last;
+      final line = page.notes.singleWhere(
+        (line) => identical(line.sourceParagraph, source),
+      );
+      final field = WordZotero.fields(document).single;
+      final scale = controller.viewport.scale * 96 / 72;
+      final maxY =
+          layout.pages.fold<double>(
+            24,
+            (height, page) => height + page.height * scale + 24,
+          ) -
+          400;
+      final unconstrained =
+          layout.pageStackTop(page.index, scale) + line.y * scale - 48;
+      expect(unconstrained, greaterThan(maxY));
+      final transaction = _begin(controller);
+      final originalGeometry = _lineGeometry(line);
+      final incremental = layout.supportsIncrementalReuse;
+      _call(transaction, 'Field.select', [_fieldId(transaction, 'last-note')]);
+      expect(controller.viewport.origin.dy, closeTo(maxY, .001));
+      expect(_lineGeometry(line), originalGeometry);
+      expect(layout.supportsIncrementalReuse, incremental);
+      final revealed = controller.viewport.origin;
+      canvas = await _mountViewport(tester, controller);
+      canvas.markNeedsLayout();
+      await tester.pump();
+      expect(controller.viewport.origin, revealed);
+      final displayStart = line.proofingOffsets!.indexOf(field.start);
+      final displayEnd = line.proofingOffsets!.indexOf(field.end);
+      expect(displayStart, greaterThan(field.start));
+      _expectVisible(_screenBounds(canvas, line, displayStart, displayEnd));
+      expect(controller.noteEditingTarget, isNull);
+      transaction.clearFieldContext();
+      expect(controller.viewport.origin, original);
+      _expectClean(controller);
+    },
+  );
+
+  testWidgets('overlay note reveal measures source text beyond its label', (
+    tester,
+  ) async {
+    final anchor = _paragraph('Writing beside a note anchor.');
+    final document = WmlDocument(
+      sections: [
+        WmlSection(blocks: [anchor]),
+      ],
+    );
+    final note = WordNotes.insert(document, anchor, endnote: false, text: '');
+    final source = note.paragraphs.single;
+    WordZotero.insertCitation(source, _citation('overlay-note'));
+    final controller = _controller(document);
+    final layout = controller.documentLaidOut;
+    final page = layout.pages.single;
+    final shaped = page.notes.singleWhere(
+      (line) => identical(line.sourceParagraph, source),
+    );
+    const label = '17 ';
+    final text = '$label${source.text}';
+    final overlay = LaidOutLine(
+      glyphs: [],
+      x: shaped.boxX,
+      y: shaped.y,
+      width: shaped.boxWidth,
+      height: shaped.height,
+      pageIndex: page.index,
+      paragraphIndex: -1,
+      justification: WmlJustification.right,
+      overlayText: text,
+      overlaySize: 11,
+      sourceParagraph: source,
+      sourceText: text,
+      proofingOffsets: [
+        for (var i = 0; i < label.length; i++) null,
+        for (var i = 0; i <= source.text.length; i++) i,
+      ],
+      boxX: shaped.boxX,
+      boxWidth: shaped.boxWidth,
+    );
+    page.notes[page.notes.indexOf(shaped)] = overlay;
+    const original = Offset(0, 29);
+    controller.viewport
+      ..setScale(2)
+      ..origin = original;
+    var canvas = await _mountViewport(tester, controller);
+    final field = WordZotero.fields(document).single;
+    final painter = PaintRunText.plain(
+      text: text,
+      fontSize: overlay.overlaySize,
+      color: controller.config.theme.documentText,
+      themeFamily: controller.config.theme.fontFamily,
+    )..layout();
+    addTearDown(painter.dispose);
+    final ink = painter
+        .getBoxesForSelection(
+          TextSelection(
+            baseOffset: label.length + field.start,
+            extentOffset: label.length + field.end,
+          ),
+        )
+        .single
+        .toRect()
+        .shift(Offset(overlay.x + overlay.width - painter.width, overlay.y));
+    Rect onScreen() => Rect.fromPoints(
+      canvas.windowForPagePoint(page.index, ink.topLeft),
+      canvas.windowForPagePoint(page.index, ink.bottomRight),
+    );
+    expect(onScreen().left, greaterThan(600 - 14));
+    final transaction = _begin(controller);
+    _call(transaction, 'Field.select', [_fieldId(transaction, 'overlay-note')]);
+    final revealed = controller.viewport.origin;
+    canvas = await _mountViewport(tester, controller);
+    canvas.markNeedsLayout();
+    await tester.pump();
+    expect(controller.viewport.origin, revealed);
+    _expectVisible(onScreen());
+    expect(controller.noteEditingTarget, isNull);
+    transaction.clearFieldContext();
+    expect(controller.viewport.origin, original);
+    _expectClean(controller);
+  });
 
   for (final action in ['scroll', 'zoom']) {
     test('clear respects user $action after revealing context', () {

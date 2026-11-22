@@ -1,0 +1,62 @@
+{
+  "recorded_at_utc": "2026-11-22T05:30:43.627163+00:00",
+  "checkout_head": "e8cc579563f9c2d9a8922ed47bc8fe310f1ed0af",
+  "scope": "Viewport reveal fixes for selected Zotero field context; product changes confined to WordZoteroTransaction reveal/bounds helpers and their imports.",
+  "changes": [
+    "Reveal the exact selected original source range horizontally and vertically; preserve X when already visible.",
+    "Match paged canvas content geometry: 64 pixel side gutters, 14 pixel scrollbar, 24 pixel page gaps, points-to-pixels and current zoom.",
+    "Clamp with actual viewport extent and remember the legal revealed origin for guarded restoration.",
+    "Map note display offsets to exclude generated labels; use TextPainter selection boxes for overlay note text.",
+    "Measure unpainted shaped lines with PaintRunText, restoring all fitted line/glyph values in a finally block so incremental layout and renderer fit caches remain unchanged."
+  ],
+  "commands": [
+    {
+      "cwd": "packages/quds_office_editor",
+      "command": "flutter --no-version-check --suppress-analytics test --no-pub --reporter expanded test/word_zotero_field_context_controller_test.dart test/word_zotero_citing_controller_test.dart test/word_zotero_writing_position_test.dart test/word_zotero_transfer_controller_test.dart",
+      "environment": "source /workspace/scratch/2437eaf6f35d/toolchains/env.sh (CI=true)",
+      "exit_code": 0,
+      "result": "105 tests passed, including all 31 selected-context controller tests and five new canvas-backed regressions.",
+      "log": "final-targeted-tests.txt"
+    },
+    {
+      "cwd": ".",
+      "command": "dart analyze packages/quds_office_editor/lib/src/embed/office_controller.dart packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart",
+      "exit_code": 0,
+      "result": "No issues found",
+      "log": "final-analyze.txt"
+    },
+    {
+      "cwd": ".",
+      "command": "dart format --output=none --set-exit-if-changed packages/quds_office_editor/lib/src/embed/office_controller.dart packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart",
+      "exit_code": 0,
+      "result": "2 files checked, 0 changed"
+    },
+    {
+      "cwd": ".",
+      "command": "git diff --check -- packages/quds_office_editor/lib/src/embed/office_controller.dart packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart",
+      "exit_code": 0,
+      "result": "Clean"
+    }
+  ],
+  "new_regressions": [
+    "High-zoom selected citation wholly beyond left canvas edge is revealed and original viewport restored.",
+    "High-zoom right-aligned citation wholly beyond right canvas edge is revealed and original viewport restored.",
+    "Already-visible selected citation preserves horizontal origin at high zoom.",
+    "Last-page footnote clamps at the canvas maximum Y, remains fully visible after actual layout/first paint, preserves original layout metrics, and restores original viewport.",
+    "Right-aligned overlay note reveals only source citation text beyond its generated label, remains visible after canvas layout, and restores original viewport."
+  ],
+  "development_findings": [
+    "First regression run: 29 passed and one new last-footnote test failed horizontal visibility after first paint. Its unpainted engine glyph metrics differed from the canvas metrics. Fixed by reversible PaintRunText measurement; both final runs passed.",
+    "An unnecessary services.dart test import was removed after analyzer informational output; final analyzer has no issues."
+  ],
+  "source_sha256": {
+    "packages/quds_office_editor/lib/src/embed/office_controller.dart": "d3b871e66093030953bb9b41132e9001faca30e1b20f04a4a3942749996d4413",
+    "packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart": "757cfba16ec398f563597ee03ebb30d52bc544eb7453e986cf53a79a4f942226"
+  },
+  "log_sha256": {
+    "final-context-tests.txt": "66a5d12ab067d2b00d100c4f710623c3f83028abb16cac24034bac8c7a881faf",
+    "final-targeted-tests.txt": "a1a33369caf991322f6849a83430f5437b7202abfb93ec9bdbc8fc278d81fa19",
+    "final-analyze.txt": "e5236e7c8e801b243040d5048a676d83fd59be6aee0c0ed902f645d8080aec74",
+    "development-first-paint-geometry-failure.txt": "f3f39eb7ae127b1af62bd7d7a4eeeca8bb184d312fc628930cc65c4f45c759b9"
+  }
+}

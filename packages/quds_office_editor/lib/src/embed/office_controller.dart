@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -14,6 +15,7 @@ import '../editor_sheet/sheet_scroll_extent.dart';
 import '../editor_word/caret_engine.dart';
 import '../editor_word/office_ruler.dart';
 import '../editor_word/paint_run_text.dart';
+import '../editor_word/proofing_geometry.dart';
 import '../editor_word/table_history.dart';
 import '../editor_word/word_run_metrics.dart';
 import '../proofing/word_proofing.dart';
@@ -16575,8 +16577,8 @@ final class WordZoteroTransaction {
   /// not adopt the selected field of a newer operation in the same editor.
   WordZoteroFieldSelectionContext? get presentedFieldContext =>
       identical(_controller._zoteroContextOwner, this)
-          ? _controller.zoteroFieldContext
-          : null;
+      ? _controller.zoteroFieldContext
+      : null;
 
   /// Drives a native callback and presents its selected source field without
   /// moving the user's caret, selection, Notes target, focus or undo history.
@@ -16613,8 +16615,41 @@ final class WordZoteroTransaction {
   void _revealFieldContext(WordZoteroFieldSelectionContext context) {
     final ranges = context.sourceRanges;
     if (ranges.isEmpty) return;
-    final range = ranges.first;
     final viewport = _controller.viewport;
+    final extent = viewport.extent;
+    final scale = viewport.scale * 96 / 72;
+    if (extent.isEmpty ||
+        !extent.width.isFinite ||
+        !extent.height.isFinite ||
+        !scale.isFinite ||
+        scale <= 0) {
+      return;
+    }
+    final layout = _controller.documentLaidOut;
+    if (layout.pages.isEmpty) return;
+    // Match RenderWordCanvas's paged content and page-left geometry. A reveal
+    // changes only the viewport; no layout pass is guaranteed to clamp it.
+    const sideGutter = 64.0;
+    const scrollBar = 14.0;
+    const pageGap = 24.0;
+    final pageWidth =
+        layout.pages.fold<double>(
+          layout.pageSize.width,
+          (width, page) => math.max(width, page.width),
+        ) *
+        scale;
+    final viewWidth = math.max(0.0, extent.width - scrollBar);
+    if (viewWidth <= 0) return;
+    final pageLeft = viewWidth > pageWidth + sideGutter * 2
+        ? (viewWidth - pageWidth) / 2
+        : sideGutter;
+    final content = Size(
+      pageWidth + sideGutter * 2 + scrollBar,
+      layout.pages.fold<double>(
+        pageGap,
+        (height, page) => height + page.height * scale + pageGap,
+      ),
+    );
     // A later select may follow deliberate scrolling or zooming while the
     // prompt was open. Return to that newer view, not the first reveal's view.
     if (_contextOrigin != null &&
@@ -16623,46 +16658,172 @@ final class WordZoteroTransaction {
       _contextOrigin = viewport.origin;
       _contextScale = viewport.scale;
     }
-    final scale = viewport.scale * 96 / 72;
-    for (final page in _controller.documentLaidOut.pages) {
-      for (final line in [...page.lines, ...page.notes]) {
-        if (!identical(line.sourceParagraph, range.paragraph)) continue;
-        final offsets = line.proofingOffsets;
-        final containsStart = line.glyphs.any((glyph) {
-          for (
-            var index = glyph.glyph.logicalIndex;
-            index < glyph.logicalEnd;
-            index++
-          ) {
-            final source = offsets == null
-                ? index
-                : index >= 0 && index < offsets.length
-                ? offsets[index]
-                : null;
-            if (source != null &&
-                source >= range.start &&
-                (source < range.end || range.start == range.end)) {
-              return true;
-            }
+    for (final range in ranges) {
+      for (final page in layout.pages) {
+        for (final line in [...page.lines, ...page.notes]) {
+          if (!identical(line.sourceParagraph, range.paragraph)) continue;
+          final bounds = _fieldContextBounds(page, line, range);
+          if (bounds == null) continue;
+          final left = pageLeft + bounds.left * scale;
+          final right = pageLeft + bounds.right * scale;
+          final top =
+              layout.pageStackTop(page.index, scale) + bounds.top * scale;
+          final padding = math.min(24.0, viewWidth / 4);
+          var nextX = viewport.origin.dx;
+          if (right - left > viewWidth) {
+            // An oversized result cannot fit at this zoom. Show its leading
+            // edge, respecting the original paragraph's writing direction.
+            nextX = range.paragraph.properties.bidiBaseLevel == 1
+                ? right - viewWidth + padding
+                : left - padding;
+          } else if (left < nextX) {
+            nextX = left - padding;
+          } else if (right > nextX + viewWidth) {
+            nextX = right - viewWidth + padding;
           }
-          return false;
-        });
-        // Overlay note lines carry their own source mapping and have no
-        // shaped glyphs. The source paragraph still pins their exact story.
-        if (!containsStart && line.glyphs.isNotEmpty) continue;
-        _contextOrigin ??= viewport.origin;
-        _contextScale ??= viewport.scale;
-        final top =
-            _controller.documentLaidOut.pageStackTop(page.index, scale) +
-            line.y * scale;
-        _revealedOrigin = Offset(
-          viewport.origin.dx,
-          (top - 48).clamp(0, double.infinity),
-        );
-        viewport.origin = _revealedOrigin!;
-        return;
+          _contextOrigin ??= viewport.origin;
+          _contextScale ??= viewport.scale;
+          viewport.origin = Offset(nextX, top - 48);
+          viewport.clampTo(content: content, view: extent);
+          // Remember the actual legal origin so a later layout clamp cannot
+          // be mistaken for deliberate user scrolling during cleanup.
+          _revealedOrigin = viewport.origin;
+          return;
+        }
       }
     }
+  }
+
+  Rect? _fieldContextBounds(
+    LaidOutPage page,
+    LaidOutLine line,
+    WordZoteroFieldSelectionRange range,
+  ) {
+    final displayRanges = WordProofingGeometry.displayRanges(
+      line,
+      range.start,
+      range.end,
+    );
+    if (displayRanges.isEmpty) return null;
+    final boxes = <Rect>[];
+    if (line.glyphs.isNotEmpty) {
+      // Offscreen pages may not have their Flutter metrics yet. Measure as
+      // the canvas will paint, then restore every fitted value so the reveal
+      // cannot alter incremental layout or an existing renderer fit cache.
+      final originalX = line.x;
+      final originalWidth = line.width;
+      final positions = [
+        for (final glyph in line.glyphs) (x: glyph.x, advance: glyph.advance),
+      ];
+      try {
+        PaintRunText.fitLine(
+          line,
+          line.sourceText ?? range.paragraph.text,
+          themeFamily: _controller.config.theme.fontFamily,
+        );
+        for (final display in displayRanges) {
+          if (display.isCollapsed) {
+            final span = CaretEngine.logicalSpan(line);
+            if (display.start < span.min || display.start > span.max) continue;
+            final x = PaintRunText.caretXOnLine(
+              line,
+              display.start,
+              paragraph: line.sourceText ?? range.paragraph.text,
+              themeFamily: _controller.config.theme.fontFamily,
+              paragraphRtl: range.paragraph.properties.bidiBaseLevel == 1,
+            );
+            boxes.add(Rect.fromLTWH(x, line.y, 1, line.height));
+          } else {
+            boxes.addAll(
+              CaretEngine.rangeRectsOnLine(
+                line,
+                line.y,
+                line.height,
+                display.start,
+                display.end,
+              ),
+            );
+          }
+        }
+      } finally {
+        line
+          ..x = originalX
+          ..width = originalWidth;
+        for (var i = 0; i < line.glyphs.length; i++) {
+          line.glyphs[i]
+            ..x = positions[i].x
+            ..advance = positions[i].advance;
+        }
+      }
+    } else if (line.overlayText?.isNotEmpty == true) {
+      final text = line.overlayText!;
+      final painter = PaintRunText.plain(
+        text: text,
+        fontSize: line.overlaySize,
+        color: _controller.config.theme.documentText,
+        themeFamily: _controller.config.theme.fontFamily,
+        bold: line.overlayBold,
+      )..layout();
+      try {
+        var x = line.x;
+        if (line.tocLeader) {
+          final sections = _controller.document.sections;
+          final marginRight =
+              page.sectionIndex >= 0 && page.sectionIndex < sections.length
+              ? sections[page.sectionIndex].margins.right
+              : 72.0;
+          x = line.boxWidth > 0
+              ? line.boxX + line.boxWidth - painter.width
+              : WordToc.pageNumberX(
+                  pageWidth: page.width,
+                  marginRight: marginRight,
+                  numberWidth: painter.width,
+                );
+        } else if (line.justification == WmlJustification.right) {
+          x =
+              (line.width > 1 ? line.x + line.width : page.width) -
+              painter.width;
+        } else if (line.justification == WmlJustification.center) {
+          x += (line.width - painter.width) / 2;
+        }
+        for (final display in displayRanges) {
+          if (display.start > text.length) continue;
+          if (display.isCollapsed) {
+            final caret = painter.getOffsetForCaret(
+              TextPosition(offset: display.start),
+              Rect.zero,
+            );
+            boxes.add(Rect.fromLTWH(x + caret.dx, line.y, 1, painter.height));
+          } else {
+            boxes.addAll(
+              painter
+                  .getBoxesForSelection(
+                    TextSelection(
+                      baseOffset: display.start,
+                      extentOffset: display.end.clamp(0, text.length),
+                    ),
+                  )
+                  .map((box) => box.toRect().shift(Offset(x, line.y))),
+            );
+          }
+        }
+      } finally {
+        painter.dispose();
+      }
+    } else if (range.start == range.end && range.paragraph.text.isEmpty) {
+      boxes.add(Rect.fromLTWH(line.x, line.y, 1, line.height));
+    }
+    if (boxes.isEmpty) return null;
+    var bounds = boxes.first;
+    for (final box in boxes.skip(1)) {
+      bounds = bounds.expandToInclude(box);
+    }
+    if (line.paragraphIndex < 0 && line.boxWidth > 0) {
+      bounds = bounds.intersect(
+        Rect.fromLTWH(line.boxX, line.y, line.boxWidth, line.height),
+      );
+    }
+    return bounds.isEmpty ? null : bounds;
   }
 
   void _restoreContextViewport() {

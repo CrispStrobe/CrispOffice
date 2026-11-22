@@ -1,0 +1,61 @@
+00:00 +0: loading /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart
+00:00 +0: highlight preserves content, backwards writing selection and focus
+00:00 +1: body context resolves exact paragraph identity among equal texts
+00:00 +2: table context resolves exact paragraph identity among equal texts
+00:00 +3: footnote context resolves exact paragraph identity among equal texts
+00:00 +4: endnote context resolves exact paragraph identity among equal texts
+00:00 +5: multipart bibliography retains every original source range
+00:00 +6: selecting another story preserves the active Notes selection
+00:00 +7: Field.delete clears presentation and notifies already-built consumers
+00:00 +8: Field.removeCode clears presentation and notifies already-built consumers
+00:00 +9: Document.insertField clears presentation and notifies already-built consumers
+00:00 +10: Document.complete clears presentation and notifies already-built consumers
+00:00 +11: a failed callback clears context without committing staged data
+00:00 +12: temporary inserted field exposes no staged source text or ranges
+00:00 +13: clear restores the original viewport when the user did not move it
+00:00 +14: high zoom reveals a citation beyond the left edge
+00:00 +15: high zoom reveals a citation beyond the right edge
+00:01 +16: high zoom preserves a horizontal view containing the field
+00:01 +17: last page footnote clamps to the canvas bottom and restores after layout
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: a value less than or equal to <586.01>
+  Actual: <625.8541666666666>
+   Which: is not a value less than or equal to <586.01>
+
+When the exception was thrown, this was the stack:
+#4      _expectVisible (file:///workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart:235:3)
+#5      main.<anonymous closure> (file:///workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart:575:7)
+<asynchronous suspension>
+#6      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#7      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart line 235
+The test description was:
+  last page footnote clamps to the canvas bottom and restores after layout
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +17 -1: last page footnote clamps to the canvas bottom and restores after layout [E]
+  Test failed. See exception logs above.
+  The test description was: last page footnote clamps to the canvas bottom and restores after layout
+  
+00:01 +17 -1: clear respects user scroll after revealing context
+00:01 +18 -1: clear respects user zoom after revealing context
+00:01 +19 -1: later selection restores the newer user scroll and zoom
+00:01 +20 -1: older operation cannot adopt or clear a newer operation context
+00:01 +21 -1: changed caret is not presented and stale cleanup leaves its view
+00:01 +22 -1: changed source is not presented and stale cleanup leaves its view
+00:01 +23 -1: changed document is not presented and stale cleanup leaves its view
+00:01 +24 -1: changed host is not presented and stale cleanup leaves its view
+00:01 +25 -1: changed Notes selection invalidates context without moving its caret
+00:01 +26 -1: disposal cleanup does not notify a dead controller
+00:01 +27 -1: silent lifecycle cleanup clears ownership without synchronous repaint
+00:01 +28 -1: highlighted updates commit together as one undoable operation
+00:01 +29 -1: Some tests failed.
+
+Failing tests:
+  /workspace/scratch/2437eaf6f35d/quds_office_suite/packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart: last page footnote clamps to the canvas bottom and restores after layout

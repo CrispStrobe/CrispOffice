@@ -42,6 +42,7 @@ results retain their original source and platform attribution.
 | Add/edit citation | Native Zotero picker, selected catalog sources, locators, prefixes/suffixes, multiple items, body and authored-note caret | Unsupported stories and structural ranges remain guarded |
 | Document preferences | Native style, locale and inline/footnote/endnote preferences stored in the document | Conversion refuses authored notes whose extra content would be lost |
 | Refresh | Complete supported document sequence sent to Zotero's processor, including note order, numeric renumbering, disambiguation, style-dependent ibid. and merging of directly touching citation packets | Merge hints require physical adjacency in the same paragraph/story/note; live acceptance must be repeated on the exact release/host |
+| Native selected-field context | Temporary original-source highlights and prompt excerpts for explicit `Field.select`, including body/table/note citations and multipart bibliographies; independent writing selection, lifecycle cleanup and guarded viewport restoration | Pending insertions and transfer clones have no live source range; malformed structural field recovery and installed-host acceptance remain separate |
 | Bibliography | Native add/edit, entry paragraphs, rich runs, hanging indents, spacing and tab stops | Replacement requires a complete exclusively owned bibliography range |
 | Unlink citations | Explicit individual and document-wide conversion with undo | Verify final target-application files separately |
 | Add Note | Rich paragraphs, headings, nested lists up to nine levels, multiparagraph items, links, pictures, rectangular tables nested up to eight levels with combined row/column spans and active citations; insertion in body or authored notes and replacement across consecutive ordinary paragraphs in one section, note or table cell | Table payloads require a main-flow destination; cross-cell/control ranges, selected protected/structural content, compact merged-row height distribution, header/footer row groups, custom table styling and custom/reversed list markers remain unsupported |
@@ -550,10 +551,39 @@ destination; cross-processor transfer keeps its existing separate policy.
 The [continuation record](../../validation/zotero-parity-20261122/README.md)
 tracks incoming-ref reconciliation, remote checkpoints and local validation.
 Passive positions in unchanged frames and generated contents paragraphs do
-not make those stories eligible for native Zotero fields. Visible
-`Field.select` context during Zotero repair/manual-edit prompts remains a
-separate native-host gap; malformed-field recovery also needs a dedicated
-structural repair contract. Neither is claimed by this position increment.
+not make those stories eligible for native Zotero fields. That position
+increment left visible `Field.select` context and malformed-field recovery as
+separate gaps. The following increment adds selected-field presentation;
+malformed-field recovery still needs a dedicated structural repair contract.
+
+### Selected-field context continuation (22 November 2026)
+
+An explicit native `Field.select` now exposes freshly validated original
+source ranges and renders a temporary highlight beneath the document text.
+The prompt shows the current citation or bibliography, bounded surrounding
+prose and its body/footnote/endnote location. Multipart bibliographies retain
+each entry's ownership; note display offsets exclude generated labels. The
+writing caret, forward/backward selection, active Notes target, focus, dirty
+state and undo history remain independent of the presentation. Zotero's
+protocol-selected field still drives its own cursor-in-field responses.
+
+Source ranges never come from pending insertion or transfer-import clones.
+Those fields have an explicit pending status, with no unpublished text or
+detached model handle exposed as live content. Deletion, unlinking, insertion
+transitions, completion, cancellation, callback errors and stale host targets
+clear or suppress the presentation. Each prompt belongs to its own operation,
+so an older prompt cannot adopt a newer selection. Temporary scrolling is
+bounded by the canvas and returns to the prior view only when the user has
+not moved or changed the target. Context remains scrollable in compact
+commands and the full references workspace.
+
+The [source and validation record](../../validation/zotero-field-context-20261122/README.md)
+separates controlled HTTP/controller/widget/raster checks from installed
+Zotero, Word and LibreOffice acceptance. Native malformed-field recovery is
+the next focused implementation milestone: define explicit structural owners
+and repair/unlink choices, retain the original source until the full operation
+completes, and qualify cancellation, undo and saved-file reopening before
+relaxing the current guards.
 
 The [combined round-trip completion](../../validation/zotero-roundtrip-complete-20261121/README.md)
 reconciles the latest accepted bibliography, image, note-style and Mail work.

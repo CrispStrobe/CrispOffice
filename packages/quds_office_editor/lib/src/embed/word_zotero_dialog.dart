@@ -1838,9 +1838,17 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                     padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
                     child: Row(
                       children: [
-                        const Expanded(
-                          child: Text(
-                            'Finish or cancel the citation/style dialog in Zotero to continue. Changes are staged until the operation finishes.',
+                        Expanded(
+                          child: ConstrainedBox(
+                            constraints: BoxConstraints(
+                              maxHeight: min(96, size.height * 0.18),
+                            ),
+                            child: const SingleChildScrollView(
+                              key: ValueKey('zotero-workspace-instructions'),
+                              child: Text(
+                                'Finish or cancel the citation/style dialog in Zotero to continue. Changes are staged until the operation finishes.',
+                              ),
+                            ),
                           ),
                         ),
                         TextButton(
@@ -1870,31 +1878,45 @@ class _WordZoteroDialogState extends State<_WordZoteroDialog> {
                 if (_busy && !_reviewing)
                   const LinearProgressIndicator(minHeight: 2),
                 if (_busy && !_reviewing && _citingTransaction != null)
-                  WordZoteroFieldContextView(
-                    controller: _controller,
-                    transaction: _citingTransaction!,
-                    isCurrent: widget.isCurrent,
-                    compact: true,
+                  Flexible(
+                    fit: FlexFit.loose,
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(
+                        maxHeight: min(180, size.height * 0.25),
+                      ),
+                      child: SingleChildScrollView(
+                        key: const ValueKey('zotero-workspace-context'),
+                        child: WordZoteroFieldContextView(
+                          controller: _controller,
+                          transaction: _citingTransaction!,
+                          isCurrent: widget.isCurrent,
+                          compact: true,
+                        ),
+                      ),
+                    ),
                   ),
                 if (!_canEdit || _error != null || _notice != null)
-                  ConstrainedBox(
-                    constraints: BoxConstraints(
-                      maxHeight: min(160, size.height * 0.25),
-                    ),
-                    child: SingleChildScrollView(
-                      key: const ValueKey('zotero-workspace-messages'),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          if (!_canEdit)
-                            _banner(
-                              _controller.document.trackRevisions
-                                  ? 'Turn off Track changes to insert or edit citations. Existing fields remain preserved.'
-                                  : 'This document is read-only. You can browse and export reference data.',
-                            ),
-                          if (_error != null) _banner(_error!, error: true),
-                          if (_notice != null) _banner(_notice!),
-                        ],
+                  Flexible(
+                    fit: FlexFit.loose,
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(
+                        maxHeight: min(160, size.height * 0.25),
+                      ),
+                      child: SingleChildScrollView(
+                        key: const ValueKey('zotero-workspace-messages'),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            if (!_canEdit)
+                              _banner(
+                                _controller.document.trackRevisions
+                                    ? 'Turn off Track changes to insert or edit citations. Existing fields remain preserved.'
+                                    : 'This document is read-only. You can browse and export reference data.',
+                              ),
+                            if (_error != null) _banner(_error!, error: true),
+                            if (_notice != null) _banner(_notice!),
+                          ],
+                        ),
                       ),
                     ),
                   ),
