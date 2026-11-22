@@ -4,6 +4,12 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Let saved-mail searches keep an explicit folder set across verified local
+  accounts. Select folders locally, save/reopen the exact scope, inspect each
+  folder's retained-header coverage, and repair unavailable selections without
+  falling back to all folders. EN/DE/AR controls preserve legacy account-wide
+  searches, guarded refresh and offline reader ownership.
+
 - Render the modeled footnote separator geometry consistently with native
   note pagination, preserving hidden and zero-width rules. Qualify separator
   rendering, note editing, note-image ownership and Zotero transfer together

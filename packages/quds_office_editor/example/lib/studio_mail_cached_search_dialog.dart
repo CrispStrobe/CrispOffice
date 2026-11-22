@@ -16,6 +16,8 @@ import 'studio_mail_local_accounts.dart';
 import 'studio_mail_reader_labels.dart';
 import 'studio_mail_saved_searches.dart';
 import 'studio_mail_saved_search_strings.dart';
+import 'studio_mail_search_folder_picker.dart';
+import 'studio_mail_search_folder_strings.dart';
 import 'studio_strings.dart';
 
 /// Explicit, read-only discovery across saved account/folder headers.
@@ -62,6 +64,7 @@ class _StudioMailCachedSearchDialogState
   List<StudioMailCachedSearchCoverage> _coverage = const [];
   String? _scope;
   List<String>? _fixedAccountIds;
+  List<MailSavedHeaderSearchFolder>? _folders;
   List<MailSavedHeaderSearch> _savedSearches = const [];
   MailSavedHeaderSearch? _savedSearch;
   String? _savedError;
@@ -99,7 +102,12 @@ class _StudioMailCachedSearchDialogState
       !_hasMore &&
       _coverage.isNotEmpty &&
       _coverage.length == _scopeAccounts()?.length &&
-      _coverage.every((entry) => entry.complete && entry.problem == null);
+      _coverage.every(
+        (entry) =>
+            entry.complete &&
+            entry.problem == null &&
+            entry.missingMailboxIds.isEmpty,
+      );
 
   bool get _canAutoRefresh =>
       _current &&
@@ -341,6 +349,7 @@ class _StudioMailCachedSearchDialogState
       _savedSearch = search;
       _query.text = search.query;
       _fixedAccountIds = search.accountIds;
+      _folders = search.folders;
       _scope = '@saved';
       _savedNotice = null;
       _savedError = null;
@@ -406,6 +415,7 @@ class _StudioMailCachedSearchDialogState
       name: name,
       query: query,
       accountIds: [for (final account in accounts) account.id],
+      folders: _folders,
       revision: selected?.revision ?? 0,
     );
     await _savedOperation(() async {
@@ -420,7 +430,8 @@ class _StudioMailCachedSearchDialogState
           saved.name != search.name ||
           saved.query != search.query ||
           saved.accountIds.length != search.accountIds.length ||
-          !saved.accountIds.every(search.accountIds.contains)) {
+          !saved.accountIds.every(search.accountIds.contains) ||
+          !_sameFolders(saved.folders, search.folders)) {
         throw const StudioMailDraftStoreException(MailProblemCode.conflict);
       }
       setState(() {
@@ -431,6 +442,84 @@ class _StudioMailCachedSearchDialogState
         _savedSearch = saved;
         _savedNotice = widget.strings.mailSavedSearchSaved;
       });
+    });
+  }
+
+  static bool _sameFolders(
+    List<MailSavedHeaderSearchFolder>? left,
+    List<MailSavedHeaderSearchFolder>? right,
+  ) => left == null || right == null
+      ? left == null && right == null
+      : left.length == right.length && left.every(right.contains);
+
+  Future<void> _chooseFolders() async {
+    if (!_current || _busy || _loading || _savedBusy || _savedLoading) return;
+    final accounts = _scopeAccounts();
+    if (accounts == null) {
+      setState(() => _error = widget.strings.mailSavedSearchMissingAccounts);
+      return;
+    }
+    // A catalog read must release any unfinished search's exclusive owner.
+    // The query and chosen scope remain intact if the picker is cancelled.
+    _invalidate();
+    final epoch = _epoch;
+    List<StudioMailCachedSearchFolderCatalog>? catalog;
+    await _operate(epoch, () async {
+      await _releaseRetired();
+      if (!_active(epoch)) return;
+      final session = StudioMailCachedSearchSession(
+        query: '',
+        accounts: accounts,
+        directory: widget.store,
+        openStore: widget.draftStoreFactory ?? openStudioMailDraftStore,
+        isCurrent: () => _active(epoch),
+      );
+      try {
+        catalog = await session.loadFolderCatalog();
+      } finally {
+        _retired.add(session);
+        await _releaseRetired();
+      }
+    });
+    if (!mounted || !_active(epoch) || _error != null || catalog == null) {
+      return;
+    }
+    final selection = await showDialog<StudioMailSearchFolderSelection>(
+      context: context,
+      builder: (context) => Directionality(
+        textDirection: Directionality.of(this.context),
+        child: StudioMailSearchFolderPicker(
+          strings: widget.strings,
+          catalog: catalog!,
+          selectedFolders: _folders,
+        ),
+      ),
+    );
+    if (selection == null || !_active(epoch)) return;
+    final folders = selection.folders;
+    final accountIds = folders == null
+        ? [for (final account in accounts) account.id]
+        : folders.map((folder) => folder.accountId).toSet().toList();
+    final allowed = accounts.map((account) => account.id).toSet();
+    if (accountIds.any((id) => !allowed.contains(id)) ||
+        !MailSavedHeaderSearch(
+          id: 'selection',
+          name: 'selection',
+          query: '',
+          accountIds: accountIds,
+          folders: folders,
+        ).isValid) {
+      setState(() => _error = widget.strings.mailCachedSearchFailed);
+      return;
+    }
+    _invalidate();
+    setState(() {
+      _folders = folders;
+      _fixedAccountIds = List.unmodifiable(accountIds);
+      _scope = '@saved';
+      _savedNotice = _savedSearch == null
+          ? null
+          : widget.strings.mailSearchFolderChanged;
     });
   }
 
@@ -657,6 +746,7 @@ class _StudioMailCachedSearchDialogState
           final session = StudioMailCachedSearchSession(
             query: query,
             accounts: accounts,
+            folders: _folders,
             directory: widget.store,
             openStore: widget.draftStoreFactory ?? openStudioMailDraftStore,
             isCurrent: () => _active(epoch),
@@ -696,7 +786,11 @@ class _StudioMailCachedSearchDialogState
             }
             if (!batch.complete) _autoRefresh = false;
             _refreshNotice =
-                batch.coverage.any((entry) => entry.problem != null)
+                batch.coverage.any(
+                  (entry) => entry.missingMailboxIds.isNotEmpty,
+                )
+                ? widget.strings.mailSearchFolderRefreshMissing
+                : batch.coverage.any((entry) => entry.problem != null)
                 ? widget.strings.mailCachedSearchRefreshPartial
                 : !batch.complete
                 ? widget.strings.mailCachedSearchRefreshLimited
@@ -756,6 +850,7 @@ class _StudioMailCachedSearchDialogState
       final session = StudioMailCachedSearchSession(
         query: query,
         accounts: accounts,
+        folders: _folders,
         directory: widget.store,
         openStore: widget.draftStoreFactory ?? openStudioMailDraftStore,
         isCurrent: () => _active(epoch),
@@ -774,18 +869,33 @@ class _StudioMailCachedSearchDialogState
   ) async {
     final limit = (1000 - _hits.length).clamp(1, 100);
     final page = await session.nextPage(limit: limit, scanLimit: 500);
+    if (_active(epoch) &&
+        identical(_session, session) &&
+        _folders != null &&
+        !session.hasMore) {
+      await session.validateAccountScope();
+    }
     if (!_active(epoch) || !identical(_session, session)) return;
     if (page.length > limit) {
       throw const StudioMailDraftStoreException(MailProblemCode.conflict);
     }
-    final seen = _hits.map((hit) => hit.key).toSet();
+    final coverage = session.coverage;
+    final failed = <String>{
+      for (final entry in coverage)
+        if (entry.problem != null) entry.account.id,
+    };
+    final retained = [
+      for (final hit in _hits)
+        if (!failed.contains(hit.account.id)) hit,
+    ];
+    final seen = retained.map((hit) => hit.key).toSet();
     setState(() {
       _hits = [
-        ..._hits,
+        ...retained,
         for (final hit in page)
-          if (seen.add(hit.key)) hit,
+          if (!failed.contains(hit.account.id) && seen.add(hit.key)) hit,
       ];
-      _coverage = List.unmodifiable(session.coverage);
+      _coverage = List.unmodifiable(coverage);
     });
   }
 
@@ -992,7 +1102,7 @@ class _StudioMailCachedSearchDialogState
             DropdownMenuItem(
               value: '@saved',
               child: Text(
-                widget.strings.mailSavedSearchAccountCount(ids.length),
+                widget.strings.mailSearchFolderAccounts(ids.length),
                 overflow: TextOverflow.ellipsis,
               ),
             ),
@@ -1015,9 +1125,34 @@ class _StudioMailCachedSearchDialogState
                 if (next == _scope) return;
                 _scope = next;
                 _fixedAccountIds = null;
+                _folders = null;
                 _savedNotice = null;
                 _invalidate();
               },
+      ),
+      const SizedBox(height: 8),
+      Text(
+        _folders == null
+            ? widget.strings.mailSearchFolderAll
+            : widget.strings.mailSearchFolderCount(_folders!.length),
+        key: const ValueKey('studio-mail-cached-search-folder-scope'),
+      ),
+      Align(
+        alignment: AlignmentDirectional.centerStart,
+        child: OutlinedButton.icon(
+          key: const ValueKey('studio-mail-cached-search-choose-folders'),
+          onPressed:
+              !_current ||
+                  _busy ||
+                  _loading ||
+                  _savedBusy ||
+                  _savedLoading ||
+                  _accounts.isEmpty
+              ? null
+              : _chooseFolders,
+          icon: const Icon(Icons.folder_open),
+          label: Text(widget.strings.mailSearchChooseFolders),
+        ),
       ),
       const SizedBox(height: 12),
       TextField(
@@ -1133,6 +1268,15 @@ class _StudioMailCachedSearchDialogState
           Text(
             '${entry.account.sender}: ${widget.strings.mailCachedSearchAccountFailed}',
           ),
+        for (final entry in _coverage.where(
+          (value) => value.missingMailboxIds.isNotEmpty,
+        ))
+          Text(
+            '${entry.account.sender}: ${widget.strings.mailSearchFolderMissing}',
+            key: ValueKey(
+              'studio-mail-cached-search-missing-folders-${entry.account.id}',
+            ),
+          ),
         if (_hits.isEmpty && !_busy)
           Text(
             _hasMore
@@ -1150,6 +1294,65 @@ class _StudioMailCachedSearchDialogState
     title: Text(widget.strings.mailCachedSearchCoverage),
     children: [for (final entry in _coverage) _accountCoverage(entry)],
   );
+
+  Widget _folderCoverage(
+    StudioMailCachedSearchCoverage entry,
+    MailSavedHeaderSearchFolder folder,
+  ) {
+    final browsed = entry.browsed
+        .where((item) => item.mailbox.id.value == folder.mailboxId)
+        .firstOrNull;
+    final synchronized = entry.synchronized
+        .where((item) => item.mailbox.id.value == folder.mailboxId)
+        .firstOrNull;
+    final missing = entry.missingMailboxIds.any(
+      (id) => id.value == folder.mailboxId,
+    );
+    final name =
+        synchronized?.mailbox.displayName ??
+        browsed?.mailbox.displayName ??
+        folder.displayName ??
+        folder.mailboxId;
+    final labels = StudioMailReaderLabels(widget.strings.language);
+    return Padding(
+      key: ValueKey(
+        'studio-mail-folder-coverage-${jsonEncode([folder.accountId, folder.mailboxId])}',
+      ),
+      padding: const EdgeInsetsDirectional.only(start: 16, top: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(name.isEmpty ? folder.mailboxId : name),
+          if (name != folder.mailboxId)
+            Text(folder.mailboxId, textDirection: TextDirection.ltr),
+          if (missing)
+            Text(widget.strings.mailSearchFolderUnavailable)
+          else if (entry.problem != null)
+            Text(widget.strings.mailSearchFolderUnchecked)
+          else ...[
+            if (browsed != null)
+              Text(
+                widget.strings.mailSearchFolderBrowseCoverage(
+                  browsed.headerCount,
+                  labels.formatDate(browsed.capturedAt),
+                ),
+              ),
+            if (synchronized != null)
+              Text(
+                widget.strings.mailSearchFolderSyncCoverage(
+                  synchronized.headerCount,
+                  labels.formatDate(synchronized.updatedAt),
+                ),
+              ),
+            if (browsed == null && synchronized == null)
+              Text(widget.strings.mailSearchFolderNoCheckpoint),
+            if ((browsed?.hasMore ?? false) || (synchronized?.hasMore ?? false))
+              Text(widget.strings.mailCachedSearchPartialFolders),
+          ],
+        ],
+      ),
+    );
+  }
 
   Widget _accountCoverage(StudioMailCachedSearchCoverage entry) {
     final dates = [
@@ -1196,6 +1399,9 @@ class _StudioMailCachedSearchDialogState
                 labels.formatDate(dates.last),
               ),
             ),
+          for (final folder
+              in entry.selectedFolders ?? const <MailSavedHeaderSearchFolder>[])
+            _folderCoverage(entry, folder),
         ],
       ),
     );

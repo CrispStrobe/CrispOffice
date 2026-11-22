@@ -1,6 +1,6 @@
 # Mail implementation status
 
-Updated **21 November 2026**. This page is the current summary. The detailed
+Updated **22 November 2026**. This page is the current summary. The detailed
 change log and per-feature qualification record is preserved in
 [Mail status details](status-details.md).
 
@@ -18,13 +18,27 @@ interrupted work.
 | Gmail / Microsoft 365 | Implemented through provider presets; live-account acceptance open |
 | Offline store | Durable drafts, Outbox, cached headers/bodies, search journal |
 | Scheduled send | Foreground only; UTC deadlines and a short Undo window |
-| Search | Local cached headers and saved queries; no body/provider discovery |
+| Search | Local cached headers and saved queries with exact account/folder scope and missing-folder recovery; no body/provider discovery |
 | Conversations | Folding of explicitly loaded threaded headers |
 | Compose tools | Signatures, Quick Text, attachments and draft recovery |
 | Account persistence | Native account store, schema migrations and reconnect |
 | Browser store | Implemented path; quota/reload/Web Locks acceptance remains open |
 
-## Latest increment: keyboard triage and address search
+## Latest increment: saved-search folder sets
+
+Studio can select exact local folders across accounts, persist/reopen the scope,
+and display each folder's retained-header coverage. Missing folders remain in
+the definition with explicit recovery; they never widen the query. Existing
+all-folder definitions migrate compatibly to schema 11. Scoped paging, refresh
+and reader ownership retain identity and stale-operation guards. EN/DE/AR
+controls include localized narrow-layout regressions.
+
+See the [workflow and API contract](folder-saved-search.md) and the
+[fresh local qualification record](../../validation/mail-folder-search-20261122/README.md).
+Installed platforms, live providers and adoption of this new host UI in
+CrispCloud remain separate acceptance work.
+
+## Previous increment: keyboard triage and address search
 
 Loaded mailbox lists now support growing and shrinking checked ranges with
 Shift+Up/Down/Home/End, Shift+Space and Shift+click, with English, German and
@@ -52,7 +66,8 @@ and [work record](../../validation/mail-keyboard-triage-20261121/README.md).
 Search covered by the current implementation:
 
 - local cached headers, including account/folder provenance;
-- saved, named header searches with fixed account scopes;
+- saved, named header searches with fixed account scopes and optional exact
+  folder sets, per-folder coverage and missing-folder recovery;
 - Boolean header expressions;
 - explicit selection of a cached result to open retained bytes.
 
@@ -94,7 +109,7 @@ must distinguish loading from a genuinely absent account.
 
 - mailbox pages and synchronization cursors;
 - drafts and frozen Outbox payloads;
-- saved searches and account scope;
+- saved searches and exact account/folder scope;
 - local search indexes;
 - recovery journals for interrupted read/flag work.
 
@@ -144,6 +159,7 @@ Host-specific limits:
 - [Durable sync](durable-sync.md)
 - [Scheduled send](scheduled-send.md)
 - [Saved searches](saved-searches.md)
+- [Saved-search folder sets](folder-saved-search.md)
 - [Conversations](conversations.md)
 - [Keyboard triage](keyboard-triage.md)
 - [Compose tools](compose-tools.md)
