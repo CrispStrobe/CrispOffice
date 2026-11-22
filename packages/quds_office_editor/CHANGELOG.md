@@ -4,6 +4,18 @@ All notable changes to `quds_office_editor` are documented here.
 
 ## Unreleased
 
+- Add a shared remembered-account chooser for connected IMAP/SMTP, EWS, Gmail
+  and Microsoft 365 in English, German and Arabic. Preserve exact non-secret
+  routes and require explicit sign-in; save account-owned drafts and uncertain
+  delivery state before switching. Drain observers, journal writes and owners,
+  fence late acquisitions/retired callbacks, and atomically refresh selected
+  native directory records without recreating forgotten shortcuts. Custom
+  directories without conditional refresh retain their existing metadata.
+  Native Close continues to hide the mounted Mail pane; failed owner release
+  blocks another account and can require a host restart. See the
+  [connected account guide](../../docs/roadmaps/mail/connected-account-navigation.md)
+  for scope, qualification and the remaining multi-account workspace work.
+
 - Add explicit connected-mail Archive for a selected message or checked visible
   rows, with English/German/Arabic confirmation. Gmail removes only Inbox
   membership; IMAP/Microsoft 365 resolve an ordinary Archive destination, and

@@ -168,6 +168,8 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   StreamSubscription<StudioMailMailboxSnapshot>? _mailboxViewSubscription;
   Future<void> _mailboxViewClosing = Future<void>.value();
   Future<void> _draftStoreClosing = Future<void>.value();
+  Future<void> _draftRestoration = Future<void>.value();
+  final _unreleasedDraftStores = <StudioMailDraftStore>[];
   StudioMailDraftAccount? _draftIdentity;
   bool _submissionUncertain = false;
   bool _connected = false;
@@ -177,7 +179,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   bool _routeRetired = false;
   bool _allowPop = false;
   int _accountEpoch = 0;
-  late final StudioMailAccountNavigationTarget? _initialAccountSource;
+  StudioMailAccountNavigationTarget? _initialAccountSource;
   StudioMailAccountNavigationTarget? _expectedAccount;
   StudioMailAccountNavigationTarget? _connectionTarget;
   StudioMailLocalAccountStore? _connectionDirectory;
@@ -212,19 +214,11 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
   @override
   void initState() {
     super.initState();
-    final target = widget.initialAccount;
-    _initialAccountSource = target;
-    _expectedAccount = target;
-    if (target != null && target.provider == _providerKind) {
-      _email.text = target.identity.sender;
-      if (target.provider == MailProviderKind.ews) {
-        _endpoint.text = target.identity.endpoint;
-        _domain.text = target.ewsDomain ?? '';
-        _login.text = target.ewsLogin ?? '';
-      } else if (target.provider == MailProviderKind.graph) {
-        _tenant.text = target.graphTenant ?? 'common';
-      }
-    }
+    _prefillAccount();
+    _prefillClientId();
+  }
+
+  void _prefillClientId() {
     _clientId.text =
         widget.initialClientId ??
         switch (widget.cloudService) {
@@ -236,6 +230,50 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
           ),
           null => '',
         };
+  }
+
+  void _prefillAccount() {
+    final target = widget.initialAccount;
+    _initialAccountSource = target;
+    _expectedAccount = target;
+    _email.clear();
+    _endpoint.clear();
+    _domain.clear();
+    _login.clear();
+    _tenant.text = 'common';
+    if (target != null && target.provider == _providerKind) {
+      _email.text = target.identity.sender;
+      if (target.provider == MailProviderKind.ews) {
+        _endpoint.text = target.identity.endpoint;
+        _domain.text = target.ewsDomain ?? '';
+        _login.text = target.ewsLogin ?? '';
+      } else if (target.provider == MailProviderKind.graph) {
+        _tenant.text = target.graphTenant ?? 'common';
+      }
+    }
+  }
+
+  @override
+  void didUpdateWidget(covariant StudioMailEwsDialog oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (!identical(oldWidget.initialAccount, widget.initialAccount) ||
+        !identical(oldWidget.localAccountStore, widget.localAccountStore) ||
+        !identical(oldWidget.draftStoreFactory, widget.draftStoreFactory) ||
+        oldWidget.cloudService != widget.cloudService ||
+        oldWidget.initialClientId != widget.initialClientId) {
+      // The host replaced a routing or storage dependency. Retire pending
+      // callbacks and keep a late owner in the release queue before allowing
+      // explicit sign-in with the new settings.
+      _accountEpoch++;
+      _disconnect(forNavigation: true);
+      _navigating = false;
+      _routeRetired = false;
+      _prefillAccount();
+      if (oldWidget.cloudService != widget.cloudService ||
+          oldWidget.initialClientId != widget.initialClientId) {
+        _prefillClientId();
+      }
+    }
   }
 
   void _closeCloud() {
@@ -310,6 +348,10 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       return false;
     }
     try {
+      await _draftRestoration;
+      if (!current()) return false;
+      await _requireReleasedDraftStores();
+      if (!current()) return false;
       if (target != null) {
         if (directory == null || target.provider != _providerKind) {
           throw const StudioMailDraftStoreException(
@@ -319,11 +361,13 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         await target.validateCurrent(directory);
       }
       return current();
-    } on Object {
+    } on Object catch (error) {
       if (current()) {
         setState(() {
           _busy = false;
-          _error = widget.strings.mailAccountNavigationChanged;
+          _error = error is _AccountOwnerReleaseFailure
+              ? widget.strings.mailAccountNavigationReleaseFailed
+              : widget.strings.mailAccountNavigationChanged;
         });
       }
       return false;
@@ -335,16 +379,24 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     if (target == null) return;
     final directory = _connectionDirectory;
     final identity = _draftIdentity;
-    if (directory == null ||
-        identity == null ||
-        !identical(target, _expectedAccount) ||
-        !identical(_initialAccountSource, widget.initialAccount) ||
-        !identical(directory, _localAccounts) ||
-        target.provider != _providerKind) {
-      throw const StudioMailDraftStoreException(MailProblemCode.staleOperation);
+    bool current() =>
+        directory != null &&
+        identity != null &&
+        identical(target, _expectedAccount) &&
+        identical(target, _connectionTarget) &&
+        identical(_initialAccountSource, widget.initialAccount) &&
+        identical(directory, _localAccounts) &&
+        target.provider == _providerKind;
+    if (directory == null || identity == null || !current()) {
+      throw const _AccountNavigationExpired();
     }
-    target.requireMatches(identity);
-    await target.validateCurrent(directory);
+    try {
+      target.requireMatches(identity);
+      await target.validateCurrent(directory);
+    } on Object {
+      throw const _AccountNavigationExpired();
+    }
+    if (!current()) throw const _AccountNavigationExpired();
   }
 
   T _value<T>(MailResult<T> result) => switch (result) {
@@ -550,7 +602,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         _confirmedFlagged.clear();
         _connected = true;
         _capabilities = supported;
-        _busy = false;
+        _busy = true;
         _sender = sender;
         _mailboxes = boxes;
         _mailbox = inbox;
@@ -560,6 +612,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         _clientSecret.clear();
       });
       await _restoreDraftStore(provider, session, lease);
+      await _validateActiveAccount();
       if (_current(provider, lease)) {
         // The selected sign-in intent is fulfilled. Remembering this successful
         // connection may advance its directory revision; later explicit
@@ -567,20 +620,15 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         _expectedAccount = null;
         _connectionTarget = null;
         _connectionDirectory = null;
+        setState(() => _busy = false);
       }
     } on Object catch (error) {
       if (!_current(provider, lease)) return;
-      session.dispose();
-      _credentials?.clear();
-      _closeCloud();
+      _disconnect();
       setState(() {
-        _provider = null;
-        _submission = null;
-        _session = null;
-        _credentials = null;
-        _busy = false;
-        _clientSecret.clear();
-        _error = error is _EwsUiFailure
+        _error = error is _AccountNavigationExpired
+            ? widget.strings.mailAccountNavigationChanged
+            : error is _EwsUiFailure
             ? _problem(error.problem, widget.strings.mailConnectionFailed)
             : widget.strings.mailConnectionFailed;
       });
@@ -688,7 +736,9 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         _submission = null;
         _busy = false;
         _clientSecret.clear();
-        _error = error is _EwsUiFailure
+        _error = error is _AccountNavigationExpired
+            ? widget.strings.mailAccountNavigationChanged
+            : error is _EwsUiFailure
             ? _problem(error.problem, widget.strings.mailCloudSignInFailed)
             : widget.strings.mailCloudSignInFailed;
       });
@@ -760,25 +810,62 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       StudioMailMailboxStoreOwner owner => owner.mailboxStore,
       _ => null,
     };
-    if (mailboxStore != null &&
-        identical(_mailboxViewSession?.store, mailboxStore)) {
-      await _stopCachedView();
-    }
-    await _mailboxViewClosing;
-    await _pendingFlagWrite;
-    if (mailboxStore != null &&
-        identical(_mailboxCapture?.store, mailboxStore)) {
-      _mailboxCapture?.dispose();
-      _mailboxCapture = null;
-    }
     try {
+      if (mailboxStore != null &&
+          identical(_mailboxViewSession?.store, mailboxStore)) {
+        await _stopCachedView();
+      }
+      await _mailboxViewClosing;
+      await _pendingFlagWrite;
+      if (mailboxStore != null &&
+          identical(_mailboxCapture?.store, mailboxStore)) {
+        _mailboxCapture?.dispose();
+        _mailboxCapture = null;
+      }
       await store?.close();
+      _unreleasedDraftStores.removeWhere((owner) => identical(owner, store));
     } on Object {
-      // Local draft content survives releasing the database owner.
+      // A custom owner may still hold an exclusive lease after failure. Keep
+      // the reference and require an explicit retry before another sign-in.
+      if (store != null &&
+          !_unreleasedDraftStores.any((owner) => identical(owner, store))) {
+        _unreleasedDraftStores.add(store);
+      }
+    }
+  }
+
+  Future<void> _requireReleasedDraftStores() async {
+    await _draftStoreClosing;
+    for (final store in List<StudioMailDraftStore>.of(_unreleasedDraftStores)) {
+      await _closeDraftStore(store);
+    }
+    _checkDraftStoresReleased();
+  }
+
+  void _checkDraftStoresReleased() {
+    if (_unreleasedDraftStores.isNotEmpty) {
+      throw const _AccountOwnerReleaseFailure();
     }
   }
 
   Future<bool> _restoreDraftStore(
+    MailProvider provider,
+    MailAccountSession session,
+    MailOperationLease lease,
+  ) {
+    final restoring = _restoreDraftStoreForConnection(provider, session, lease);
+    _draftRestoration = () async {
+      try {
+        await restoring;
+      } on Object {
+        // The connection caller reports failures. A new sign-in still waits
+        // for this attempt to finish releasing any late acquired owner.
+      }
+    }();
+    return restoring;
+  }
+
+  Future<bool> _restoreDraftStoreForConnection(
     MailProvider provider,
     MailAccountSession session,
     MailOperationLease lease,
@@ -793,13 +880,18 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       _localAccountWarning = null;
     });
     try {
-      await _draftStoreClosing;
+      await _requireReleasedDraftStores();
       if (!_current(provider, lease)) return false;
       await _validateActiveAccount();
       if (!_current(provider, lease)) return false;
       candidate = await (widget.draftStoreFactory ?? openStudioMailDraftStore)(
         identity,
       );
+      await _validateActiveAccount();
+      if (!_current(provider, lease)) {
+        await _closeDraftStore(candidate);
+        return false;
+      }
       if (candidate case StudioMailOutboxStore(
         :final account,
       ) when account != identity.account) {
@@ -857,6 +949,7 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       if (mailboxOwner != null) {
         final owner = candidate;
         await _stopCachedView();
+        await _validateActiveAccount();
         if (!_current(provider, lease) || !identical(owner, _draftStore)) {
           return false;
         }
@@ -869,9 +962,30 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
               _current(provider, lease) && identical(owner, _draftStore),
         );
         await _saveCachedView(provider, lease);
+        await _validateActiveAccount();
+        if (!_current(provider, lease)) return false;
       }
       final directory = _localAccounts;
       if (directory != null && candidate is StudioMailDraftCatalog) {
+        final target = _connectionTarget;
+        if (target != null) {
+          try {
+            await target.rememberConnection(
+              directory,
+              identity,
+              isCurrent: () => _current(provider, lease),
+            );
+          } on Object {
+            throw const _AccountNavigationExpired();
+          }
+          if (!_current(provider, lease)) return false;
+          // An atomic refresh advances the selected revision. Fulfill the
+          // intent here so the final validation does not reject our own write.
+          _expectedAccount = null;
+          _connectionTarget = null;
+          _connectionDirectory = null;
+          return true;
+        }
         try {
           await _validateActiveAccount();
           if (!_current(provider, lease)) return false;
@@ -886,8 +1000,14 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
         }
       }
       return _current(provider, lease);
-    } on Object {
+    } on Object catch (error) {
+      if (identical(candidate, _draftStore)) {
+        _draftStore = null;
+        _draft = null;
+        _submissionUncertain = false;
+      }
       await _closeDraftStore(candidate);
+      if (error is _AccountNavigationExpired) rethrow;
       if (_current(provider, lease)) {
         setState(() => _error = widget.strings.mailDraftStorageFailed);
       }
@@ -2421,6 +2541,10 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     var saving = false;
     setState(() => _dialogOpen = true);
     try {
+      await _draftRestoration;
+      if (!current()) return;
+      await _requireReleasedDraftStores();
+      if (!mounted || !current()) return;
       final target = await showStudioMailAccountNavigation(
         context: context,
         strings: widget.strings,
@@ -2443,16 +2567,19 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
       _disconnect(forNavigation: true);
       retired = true;
       await _draftStoreClosing;
+      _checkDraftStoresReleased();
       if (!active()) return;
       await target.validateCurrent(directory);
       if (!active()) return;
       setState(() => _routeRetired = true);
       navigate(target);
-    } on Object {
+    } on Object catch (error) {
       if (active()) {
         setState(() {
           _routeRetired = false;
-          _error = saving
+          _error = error is _AccountOwnerReleaseFailure
+              ? widget.strings.mailAccountNavigationReleaseFailed
+              : saving
               ? widget.strings.mailDraftSaveFailed
               : widget.strings.mailAccountNavigationChanged;
         });
@@ -2475,18 +2602,25 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
     bool current() => mounted && epoch == _accountEpoch;
     setState(() => _navigating = true);
     try {
+      await _draftRestoration;
+      if (!current()) return;
+      await _requireReleasedDraftStores();
+      if (!current()) return;
       await _saveRetainedDraft();
       if (!current()) return;
       _disconnect(forNavigation: true);
       await _draftStoreClosing;
+      _checkDraftStoresReleased();
       if (!mounted || !current()) return;
       setState(() => _allowPop = true);
       Navigator.pop(context);
-    } on Object {
+    } on Object catch (error) {
       if (current()) {
         setState(() {
           _navigating = false;
-          _error = widget.strings.mailDraftSaveFailed;
+          _error = error is _AccountOwnerReleaseFailure
+              ? widget.strings.mailAccountNavigationReleaseFailed
+              : widget.strings.mailDraftSaveFailed;
         });
       }
     }
@@ -3403,6 +3537,14 @@ class _StudioMailEwsDialogState extends State<StudioMailEwsDialog> {
 final class _EwsUiFailure implements Exception {
   const _EwsUiFailure(this.problem);
   final MailProblem problem;
+}
+
+final class _AccountNavigationExpired implements Exception {
+  const _AccountNavigationExpired();
+}
+
+final class _AccountOwnerReleaseFailure implements Exception {
+  const _AccountOwnerReleaseFailure();
 }
 
 /// Session-scoped vault implementation. No preferences, files or logs are used.

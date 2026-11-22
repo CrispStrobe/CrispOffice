@@ -25,7 +25,12 @@ final class StudioMailAccountNavigationTarget {
     switch (identity.provider) {
       case MailProviderKind.imap:
         if ((endpoint.scheme != 'imap' && endpoint.scheme != 'imaps') ||
-            endpoint.path.isNotEmpty) {
+            endpoint.path.isNotEmpty ||
+            !endpoint.hasPort ||
+            endpoint.port <= 0) {
+          // Native account fingerprints include the exact server port. Dart
+          // canonicalizes port zero away for these non-HTTP schemes; a missing
+          // port must not silently turn that invalid route into a default.
           _invalid();
         }
       case MailProviderKind.ews:
@@ -120,7 +125,9 @@ final class StudioMailAccountNavigationTarget {
     final current = targets.where((target) => target.record.id == record.id);
     if (current.length != 1 ||
         !current.single.record.hasSameIdentity(record) ||
-        current.single.record.revision != record.revision) {
+        current.single.record.revision != record.revision ||
+        current.single.record.lastConnectedAt.millisecondsSinceEpoch !=
+            record.lastConnectedAt.millisecondsSinceEpoch) {
       throw const StudioMailDraftStoreException(MailProblemCode.conflict);
     }
   }
@@ -137,7 +144,9 @@ final class StudioMailAccountNavigationTarget {
     requireMatches(actual);
     void checkCurrent() {
       if (!isCurrent()) {
-        throw const StudioMailDraftStoreException(MailProblemCode.staleOperation);
+        throw const StudioMailDraftStoreException(
+          MailProblemCode.staleOperation,
+        );
       }
     }
 

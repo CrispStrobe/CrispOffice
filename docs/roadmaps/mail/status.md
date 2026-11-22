@@ -22,9 +22,37 @@ interrupted work.
 | Conversations | Folding of explicitly loaded threaded headers |
 | Compose tools | Signatures, Quick Text, attachments and draft recovery |
 | Account persistence | Native account store, schema migrations and reconnect |
+| Connected account navigation | Four-provider remembered-account chooser; exact non-secret routes, explicit sign-in and guarded foreground handoff |
 | Browser store | Implemented path; quota/reload/Web Locks acceptance remains open |
 
-## Latest increment: explicit provider Archive
+## Latest increment: connected account navigation
+
+Studio now offers one remembered-account chooser across IMAP/SMTP, Exchange
+EWS, Gmail and Microsoft 365. It shows exact non-secret routes and opens the
+selected provider's explicit sign-in flow. Selecting or refreshing an account
+does not perform provider work. Current drafts and uncertain-submission state
+remain under their owning account, and a failed draft save prevents the switch.
+
+The foreground handoff drains cached observers, pending journal writes and
+owners before opening the destination. Late owner acquisitions and retired
+callbacks cannot restore the previous account. Native directory refresh compares
+the selected record atomically, so a successful sign-in cannot recreate a
+concurrently forgotten or replaced shortcut. Custom directories without that
+conditional capability retain their existing metadata.
+
+Native Close continues to hide the mounted Mail pane. Failed owner release
+blocks another sign-in; a failed native close may require a host restart.
+Simultaneous background accounts, a unified live Inbox and new secret persistence
+are outside this increment.
+
+See the [workflow and continuation](connected-account-navigation.md) and
+[current work and qualification record](../../validation/mail-account-workspace-20261122/README.md)
+for actual source boundaries and executed acceptance gates. The next sequence is
+remembered Archive destinations, categories/rules, body/provider search,
+persistent conversations and provider Drafts/Sent reconciliation, then fuller
+background multi-account work. M04W and complete desktop-client parity remain open.
+
+## Previous increment: explicit provider Archive
 
 Connected mailbox readers and checked selections now offer a reviewed Archive
 action. Gmail removes only the exact message's Inbox label and requires an
@@ -50,8 +78,8 @@ cases passed. The qualification record separately retains an existing Word
 visual-golden mismatch, reproduced on the pre-integration source with exactly
 the same failing pixels.
 
-Connected multi-account navigation remains the next M04W boundary; full desktop
-parity and live-provider/platform acceptance remain open.
+Connected account navigation is continued above; full desktop parity and
+live-provider/platform acceptance remain open.
 
 ## Previous increment: durable visible-selection Move/Delete
 
@@ -113,7 +141,7 @@ Cached mailbox observations stay dated until explicit refresh or sync.
 See the [workflow and ordered continuation](membership-recovery.md) and
 [local qualification record](../../validation/mail-membership-recovery-20261122/README.md).
 IMAP/EWS identity-transition capture and guarded cache reconciliation are now
-continued above. Bulk organization and connected multi-account navigation remain next.
+continued above, followed by bulk organization and connected account navigation.
 
 ## Previous increment: durable foreground Move/Delete
 
@@ -128,7 +156,7 @@ read/flag observation. Schema 13 preserves earlier data with additive migration.
 See the [workflow, boundaries and ordered continuation](durable-mutations.md)
 and [local qualification record](../../validation/mail-durable-mutations-20261122/README.md).
 Current-location evidence is continued above. Authoritative cache reconciliation,
-bulk organization and connected multi-account navigation remain subsequent work.
+bulk organization and connected account navigation are continued above.
 
 ## Previous increment: unified retained-folder navigation
 
@@ -225,6 +253,11 @@ never retry automatically.
 
 ## Accounts and credentials
 
+The four-provider navigation directory retains verified non-secret identity
+shortcuts. It requires a fresh selection when the chosen record changes during
+sign-in and refreshes native records through an atomic expected-record check.
+Opening that directory grants no connection authority and stores no new secrets.
+
 The native account store retains provider settings, server identity and
 credential references. Saved accounts can reconnect after relaunch when the
 selected credential store is available. Manual edits during asynchronous
@@ -273,6 +306,8 @@ Host-specific limits:
 - Persistent account-wide conversation indexes and cross-folder discovery.
 - Indexed body search and server-side discovery.
 - Continuous refresh of shared saved views.
+- Simultaneous background accounts and a live cross-account unified Inbox.
+- Remembered custom Archive destinations and provider-aware categories/rules.
 - A complete unified Mail workspace across every host.
 - Live-provider, installed-platform and browser acceptance for new features.
 - Full MailStore parity and encrypted local storage.
@@ -292,6 +327,7 @@ Host-specific limits:
 
 - [Mail roadmap](README.md)
 - [Implementation plan](implementation-plan.md)
+- [Connected account navigation](connected-account-navigation.md)
 - [Durable sync](durable-sync.md)
 - [Scheduled send](scheduled-send.md)
 - [Saved searches](saved-searches.md)

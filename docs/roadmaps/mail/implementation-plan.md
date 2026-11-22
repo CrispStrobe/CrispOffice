@@ -40,7 +40,11 @@ implemented. [Visible-selection Move/Delete](bulk-organization.md) now adds
 confirmed destinations, frozen identities and per-message outcomes through that
 same journal. [Explicit provider Archive](provider-archive.md) now adds Gmail
 Inbox-label removal and reviewed exact folder moves through the same durable
-pipeline. Connected multi-account navigation is the next workspace boundary.
+pipeline. [Connected account navigation](connected-account-navigation.md) now
+adds the four-provider remembered-account chooser, exact routes, explicit
+sign-in and guarded foreground handoff. Remembered Archive destinations,
+categories/rules, body/provider search, persistent conversations and provider
+Drafts/Sent reconciliation precede fuller background multi-account work.
 These increments do not close M04W or the complete desktop-client parity goal.
 
 ## 2. New package layout
@@ -259,7 +263,7 @@ inspection receipt, not a complete dependency or runtime certification.
   from the original uncertain outcome; no command is replayed.
 
 - [x] Deliver the bounded foreground-list foundation: shared virtualized loaded-message list, stable identities, local subject/sender search, conjunctive unread/flagged filters, keyboard activation, compact reader/Back state and explicit 50-message pagination across native Studio hosts. Native IMAP browsing has its own scoped descending-UID cursor and a 1,000-loaded-message host ceiling; confirmed flag actions preserve nullable observations. See the [contract](mailbox-workspace.md) and [local evidence](../../validation/mail-workspace-20261120/README.md). This is a prerequisite slice and does not close the broader items below.
-- [x] Qualify the native [remembered IMAP/SMTP account chooser](remembered-accounts.md) with deterministic storage/provider fixtures: bounded selected-backend catalog, verified legacy migration, explicit selection/connection, selected-only Forget and unchanged per-account draft recovery. See the [local qualification and source-bound evidence](../../validation/mail-accounts-20261120/README.md). The provider-neutral repository-driven switching item below remains open.
+- [x] Qualify the native [remembered IMAP/SMTP account chooser](remembered-accounts.md) with deterministic storage/provider fixtures: bounded selected-backend catalog, verified legacy migration, explicit selection/connection, selected-only Forget and unchanged per-account draft recovery. See the [local qualification and source-bound evidence](../../validation/mail-accounts-20261120/README.md). The four-provider connected continuation is recorded below.
 - [x] Persist dated ordered views of visited folders and explicitly opened body/attachment snapshots for credential-free cached reading across native IMAP, EWS, Gmail and Microsoft 365. Preserve stable identities, exclusive draft/cache ownership, transactional revision/lease checks and separate sync cursors. See [cached-mailboxes.md](cached-mailboxes.md). Loaded windows do not imply complete or currently synchronized folders.
 - [x] Observe bounded saved folder/catalog streams in native connected and
   cached sessions. Preserve selected readers on metadata changes, display
@@ -302,6 +306,15 @@ inspection receipt, not a complete dependency or runtime certification.
   or EWS requires an explicit same-account folder. Preserve frozen identities,
   exact Move receipts, uncertainty and restart recovery. See
   [provider-archive.md](provider-archive.md).
+- [x] Add a bounded remembered-account chooser for IMAP/SMTP, EWS, Gmail and
+  Microsoft 365 in Studio. Preserve exact non-secret routes, explicit sign-in,
+  account-owned drafts/uncertainty and one foreground connection. Drain cached
+  observers, journal writes and owners before handoff; fence late acquisitions
+  and retired callbacks. Refresh selected native directory records atomically
+  against the expected record; custom directories without conditional refresh
+  retain their existing metadata. See
+  [connected-account-navigation.md](connected-account-navigation.md) and its
+  source-bound qualification record. This does not complete the shared workspace.
 - [ ] Broaden provider-specific membership reconciliation and special-folder
   discovery, remember custom Archive destinations, and add tags/categories with
   preview and recovery.
@@ -312,7 +325,10 @@ inspection receipt, not a complete dependency or runtime certification.
   cases, with strict analysis and formatting. See
   [keyboard-triage.md](keyboard-triage.md).
 - [ ] Provide responsive single-pane mobile and multi-pane desktop layouts, keyboard actions and accessible focus movement. Lists/navigation are host chrome, not replacement document editors.
-- [ ] Switch accounts/profiles without retaining the previous account's selection, attachment handles, credentials or callbacks. Restore draft sessions under their owning identity.
+- [ ] Extend the delivered Studio foreground handoff into the shared workspace
+  and both hosts, with simultaneous account/profile lifecycle ownership,
+  background scheduling and unified live folders. Preserve the existing
+  selection/attachment/credential/callback fences and account-owned draft recovery.
 - [ ] Accept host navigation/attachment/composer services by injection; do not instantiate CrispCloud or standalone global services.
 
 **Acceptance:** the same workspace package runs in both hosts; account switching, pagination, search, action recovery and compose/read coordination pass with deterministic provider fixtures and the qualified native adapter. Reader-only and composer-only demos do not satisfy this task.
