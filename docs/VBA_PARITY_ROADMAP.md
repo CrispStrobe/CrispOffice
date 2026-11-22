@@ -7,7 +7,7 @@ Passing one layer does not establish parity in the others.
 
 ## Current baseline
 
-As of 21 November 2026, native JSON macros and the shared operation catalog
+As of 22 November 2026, native JSON macros and the shared operation catalog
 cover all three document families. The `vba-excel` source compiler supports a
 bounded, document-independent subset: scalar expressions, typed locals,
 explicit worksheet/range bindings, reusable `ByVal` procedures and scalar
@@ -30,7 +30,10 @@ orientation, toggling and four section-start modes. It emits native Word
 operations and keeps paragraph marks structural. This is a bounded write-only
 Word object-model slice. Explicit independent header/footer paragraphs now reuse
 its insertion and formatting operations; linked stories, arbitrary text
-ranges and live reads remain separate work. The `vba-powerpoint` adapter adds explicit presentation,
+ranges and live reads remain separate work. Existing plain, single-paragraph
+table cells support `Range.Text`, `Range.Font` and `Range.ParagraphFormat`,
+including paragraph spacing and tabs, through guarded main-story selectors.
+The `vba-powerpoint` adapter adds explicit presentation,
 slide, shape and text-range bindings, one-based/index-or-name selection,
 whole-shape text, font/alignment writes and geometry. Native collection guards
 refuse grouped or incompletely modeled slide collections. Rich text formatting
@@ -43,7 +46,29 @@ and [the native macro contract](MACROS.md).
 
 ## Ordered milestones and acceptance
 
-The latest source-language continuation adds binary `StrComp` with exact
+The current Word continuation adds `Cell.Range.Font` and
+`Cell.Range.ParagraphFormat` to the existing guarded table text workflow. It
+reuses the bounded font and paragraph member contracts, line-spacing pairs,
+spacing-control methods and paragraph tab operations. Typed aliases and named
+`ByVal` helpers retain table/row/column identity; native plans carry an explicit
+`tableCell` selector and preserve the ordinary atomic transaction.
+
+Font writes affect current nonempty ordinary text and exclude paragraph/cell
+marks and future insertion formatting. Paragraph formatting can target an empty
+cell paragraph. Detached run formatting prevents shared public-model properties
+from affecting unrelated cells. The existing unmerged-grid, single-paragraph,
+source-fidelity and protection restrictions stay in force. Direct cell-range
+style/shading/list/proofing/language members, insertion, subranges, collection
+reads and embedded execution remain outside this increment.
+
+This advances the bounded Stage 4 application adapter. See the
+[cell-formatting contract](vba-word-macros-details.md#formatting-existing-table-cells),
+[runnable 2×2 report](../packages/quds_office_engine/example/macros/word_table_formatting.bas)
+and [local qualification](validation/word-vba-cell-formatting-20261122/README.md).
+The record separates executed local checks from installed Word differential
+qualification; Stage 3 document-aware execution remains separate work.
+
+The preceding source-language continuation adds binary `StrComp` with exact
 comparison results, explicit Empty/Null semantics and metered UTF-16 scans in
 all three adapters. Word gains the fixed `Font.ColorIndex` palette and both
 automatic foreground setters, retaining native automatic identity, explicit
@@ -56,7 +81,7 @@ The [comparison contract](vba-macros-details.md#binary-string-comparison),
 [foreground contract](vba-word-macros-details.md#font-palette-and-automatic-foreground)
 and [local qualification](validation/word-vba-comparison-colors-20261121/README.md)
 record supported cases and refusals. Locale comparison, implicit coercion,
-live document reads, cell formatting and installed Office differential runs
+live document reads and installed Office differential runs
 remain separate milestones. No new rendering policy or embedded VBA host is
 introduced.
 

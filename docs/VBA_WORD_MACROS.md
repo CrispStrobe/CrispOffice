@@ -57,6 +57,7 @@ document supplied to the macro session. They never search for another file.
 | --- | --- |
 | `Document.Paragraphs(i)` | Existing body paragraphs |
 | `Document.Tables(i)` / `Table.Cell(row, column)` | Existing main-story table cells |
+| `Cell.Range.Font` / `.ParagraphFormat` | Current cell text and its one ordinary paragraph |
 | `Document.Sections(i)` | Existing sections |
 | `Section.PageSetup` | Page geometry, orientation and section start |
 | `Section.PageSetup.TextColumns` | Uniform text columns |
@@ -78,7 +79,7 @@ The native plan can apply the documented subset of:
 - section page size, margins, orientation and start controls;
 - uniform section columns;
 - existing header/footer paragraph edits;
-- table-cell text;
+- table-cell text, font formatting, paragraph spacing/alignment and custom tabs;
 - proofing language, kerning and complex-script font controls.
 
 Unsupported whole-object assignment, `Duplicate`, runtime type discovery and
@@ -90,28 +91,48 @@ to it; rebinding the helper parameter does not retarget the caller.
 `Font.ColorIndex` accepts all 16 fixed `WdColorIndex` colors plus `wdAuto`.
 `Font.Color` accepts packed RGB or `wdColorAutomatic`. Automatic remains a
 native value, and explicit writes override inherited/theme colors while
-preserving unrelated XML metadata. These writes use existing paragraph and
-independent header/footer selectors.
+preserving unrelated XML metadata. These writes use existing paragraph,
+independent header/footer and supported table-cell selectors.
 
 Source-only `StrComp` can choose a status color using binary comparisons; it
 does not read document text. See the [exact foreground contract](vba-word-macros-details.md#font-palette-and-automatic-foreground),
 [shared comparison contract](vba-macros-details.md#binary-string-comparison),
 and [complete runnable BAS](../packages/quds_office_engine/example/macros/word_comparison_colors.bas).
 
-## Filling a table template
+## Filling and formatting a table template
 
 ```vb
 Sub Main()
     Dim report As Table
     Set report = ActiveDocument.Tables(1)
     report.Cell(2, 1).Range.Text = "Total: 42"
-    report.Cell(2, 2).Range.Text = "Ready"
+    With report.Cell(2, 2).Range
+        .Text = "Ready"
+        .Font.Bold = True
+        .Font.ColorIndex = wdGreen
+        .ParagraphFormat.Alignment = wdAlignParagraphRight
+    End With
 End Sub
 ```
 
 Each text assignment becomes one explicit native table-cell operation. Source
 indexes are checked during validation/execution, not by opening the document
 while compiling.
+
+`Cell.Range.Font` and `.ParagraphFormat` reuse the documented font properties,
+paragraph alignment/spacing, line-spacing controls and `ParagraphFormat.TabStops`.
+Typed aliases, nested `With` and named `ByVal` helpers retain the selected cell.
+The [complete 2×2 table example](../packages/quds_office_engine/example/macros/word_table_formatting.bas)
+fills and formats cells through a reusable helper.
+
+Each selected cell must contain one ordinary paragraph in a supported unmerged
+main-story table. Font writes affect its current nonempty text and leave
+paragraph/cell marks and future insertion formatting outside the contract.
+Fill an empty template cell before applying its Font; paragraph formatting can
+target an empty paragraph. Direct cell-range `Style`, `Shading`, `ListFormat`,
+`LanguageID`, `NoProofing`, subranges and document reads remain unsupported.
+See the [exact cell-formatting contract](vba-word-macros-details.md#formatting-existing-table-cells)
+and [local qualification](validation/word-vba-cell-formatting-20261122/README.md).
 
 ## Shared language
 
@@ -123,11 +144,13 @@ conversion rules as the other dialects. See the
 ## Run
 
 ```bash
-dart run tool/macros/office_macro.dart compile-vba \
-  example/macros/report.bas report.qudsmacro.json
+cd packages/quds_office_engine
 
-dart run tool/macros/office_macro.dart run-vba \
-  input.docx example/macros/report.bas output.docx
+dart run tool/macros/office_macro.dart compile-word-vba \
+  example/macros/word_table_formatting.bas report.qudsmacro.json
+
+dart run tool/macros/office_macro.dart run-word-vba \
+  input.docx example/macros/word_table_formatting.bas output.docx
 ```
 
 A compile or execution failure leaves an existing output untouched. Source is

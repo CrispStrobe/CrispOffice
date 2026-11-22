@@ -140,10 +140,11 @@ invalid cell rolls back a multi-step run. Validation, tool allowlists, mutation
 grants, step budgets, recording, replay, CLI and MCP use the ordinary transaction
 boundary. Existing native `docx.tableCellText` behavior remains unchanged.
 
-Cell ranges expose the supported `Text` setter only. Text reads, `Count`,
-table/row/cell enumeration, `Rows`/`Columns`, table creation or merging, arbitrary
-range offsets and cell-range formatting remain unsupported. Paragraph or
-whole-story `Range.Text` assignment is still refused because those ranges have
+Cell ranges expose the supported `Text` setter and the `Font` and
+`ParagraphFormat` selectors described below. Text reads, `Count`, table/row/cell
+enumeration, `Rows`/`Columns`, table creation or merging and arbitrary range
+offsets remain unsupported. Paragraph or whole-story `Range.Text` assignment is
+still refused because those ranges have
 different structural delimiters. Embedded VBA projects remain inert and
 preserved.
 
@@ -163,6 +164,113 @@ and [Range.Text](https://learn.microsoft.com/en-us/office/vba/api/word.range.tex
 contracts. These restrictions describe the bounded Quds dialect, and do not
 claim that Microsoft Word rejects the same broader inputs. Installed Word
 differential qualification remains separate work.
+
+## Formatting existing table cells
+
+The same explicit cell selector exposes `Cell.Range.Font` and
+`Cell.Range.ParagraphFormat`. A macro can fill a template cell and then format
+its current text and its existing paragraph:
+
+```vb
+Sub Main()
+    Dim target As Range
+    Set target = ActiveDocument.Tables(1).Cell(2, 2).Range
+    target.Text = "Ready"
+    With target.Font
+        .Bold = True
+        .ColorIndex = wdGreen
+    End With
+    With target.ParagraphFormat
+        .Alignment = wdAlignParagraphRight
+        .SpaceAfter = 4
+        .LineSpacingRule = wdLineSpaceExactly
+        .LineSpacing = 14
+        .TabStops.Add Position:=72, Alignment:=wdAlignTabRight
+    End With
+End Sub
+```
+
+The existing property value, enum, unit and precision contracts apply:
+
+| Cell selector | Supported members |
+| --- | --- |
+| `Range.Font` | `Name`, `NameBi`, `Size`, `Bold`, `Italic`, `Underline`, `StrikeThrough`, `SmallCaps`, `AllCaps`, `Superscript`, `Subscript`, `Position`, `Kerning`, `Color`, `ColorIndex` |
+| `Range.ParagraphFormat` | `Alignment`, `SpaceBefore`, `SpaceAfter`, `LeftIndent`, `RightIndent`, `FirstLineIndent`, `KeepTogether`, `PageBreakBefore`, `Hyphenation`, `ReadingOrder`, `LineSpacingRule`, `LineSpacing` |
+| `Range.ParagraphFormat` methods | `Space1`, `Space15`, `Space2`, `OpenUp`, `CloseUp`, `OpenOrCloseUp` |
+| `Range.ParagraphFormat.TabStops` | `Add` and `ClearAll`, including the existing named/optional `Add` arguments |
+
+`Font`, `ParagraphFormat` and `TabStops` aliases capture the selected cell even
+when another `Table`, `Cell` or `Range` variable is rebound. Nested `With` and
+named required `ByVal` helpers work as they do for paragraph selectors. A generic
+formatting helper may receive a supported body, header/footer or cell range;
+rebinding a helper parameter does not retarget its caller. Custom line spacing
+still requires a rule/value pair with no intervening document mutation. Target
+comparison includes the table, row and column, so independently derived aliases
+for the same cell can complete the pair, while another cell or body paragraph
+cannot.
+
+The compiler emits existing native formatting operations with this additional
+selector. For example, the Bold write above becomes:
+
+```json
+{
+  "tool": "docx.runFormat",
+  "arguments": {
+    "story": "tableCell",
+    "table": 0,
+    "row": 1,
+    "column": 1,
+    "paragraph": 0,
+    "bold": true
+  }
+}
+```
+
+The `table`, `row` and `column` coordinates are zero-based; `paragraph` must be
+explicitly `0`. `story: "tableCell"` is accepted only by `docx.runFormat`,
+`docx.paragraphFormat`, `docx.lineSpacing`, `docx.paragraphSpaceBefore`,
+`docx.tabStop` and `docx.clearTabStops`. Coordinates without that story are
+refused. Other story selectors (`section`, `note`, `comment`) and text offsets
+(`start`, `end`) cannot be combined with it. The selector resolves the same
+direct main-story table collection as `docx.tableCellRangeText`; it never falls
+back to the recursive body paragraph collection.
+
+Native formatting reuses the cell text operation's conservative ownership,
+structure, source-fidelity and protection checks. The selected cell must have
+one ordinary paragraph in an unmerged rectangular table with a complete grid.
+Fields, hyperlinks, bookmarks, comments, notes, tracked changes and unsupported
+source packets remain refused. Unsupported neighboring table packets can also
+prevent admission. The existing document-wide mutation, signature and protection
+guards and whole-run rollback remain in force.
+
+Font writes affect only current nonempty ordinary text runs. They do not format
+the paragraph mark, the end-of-cell marker or future insertion text. An empty
+cell therefore rejects a Font write; assign `Range.Text` first when filling an
+empty template. ParagraphFormat writes, including tabs and spacing controls,
+can target an empty ordinary paragraph. The cell text setter keeps its prior
+replacement and formatting-preservation contract. Supported false/zero assignments,
+automatic colors and explicit theme overrides retain the existing sparse native
+serialization behavior. Cell run formatting uses detached copies before
+publication, preventing shared public-model run properties or imported-value
+maps from modifying an unrelated cell or body run.
+
+Direct cell-range `Style`, `Shading`, `ListFormat`, `HighlightColorIndex`,
+`LanguageID`, `LanguageIDOther`, `NoProofing`, `Paragraphs`, insertion methods and
+arbitrary subranges remain unavailable. Property reads, `Duplicate` and
+whole-object Font/ParagraphFormat assignment remain unsupported. These are
+deliberate bounds on the Quds adapter, including its treatment of structural
+marks. Microsoft Word exposes a broader object model.
+
+The [runnable 2×2 table example](../packages/quds_office_engine/example/macros/word_table_formatting.bas)
+uses loops and a `ByVal Range` helper to fill and format a table. The
+[local qualification record](validation/word-vba-cell-formatting-20261122/README.md)
+records executed compiler/native/transaction and portable-runtime checks without
+claiming installed Microsoft Word differential parity. Microsoft's
+[Cell.Range](https://learn.microsoft.com/en-us/office/vba/api/word.cell.range),
+[Range.Font](https://learn.microsoft.com/en-us/office/vba/api/word.range.font) and
+[Range.ParagraphFormat](https://learn.microsoft.com/en-us/office/vba/api/word.range.paragraphformat)
+define the object vocabulary; the guarded selector and visible-text boundaries
+above define the supported implementation.
 
 ## Calculating Word layout values
 
@@ -261,7 +369,10 @@ In the following paragraph table, `i` is a one-based paragraph index and `p`
 is `i - 1`. Document paragraph selectors use the native default `body` story.
 Explicit header/footer paragraphs add the `story` and `section` fields described
 below. Notes and comments are not exposed by this source dialect. Section page
-geometry has its separate mapping below.
+geometry has its separate mapping below. Supported cell `Font` and
+`ParagraphFormat` members reuse their corresponding formatting rows with the
+explicit [table-cell selector](#formatting-existing-table-cells); the other Range
+members in this paragraph table do not become cell members.
 
 | Word source operation | Native operation | Arguments in addition to `paragraph: p` |
 | --- | --- | --- |
@@ -1757,8 +1868,8 @@ and [NIST's exact inch definition](https://www.nist.gov/pml/owm/si-units-length)
 
 `Font.ColorIndex` writes all 16 fixed colors in the palette below, plus automatic
 foreground. It supports the existing explicit paragraph/range selectors, typed
-`Font` aliases, nested `With`, named/optional `ByVal` helpers, and independently
-owned header/footer paragraphs. Each assignment emits one `docx.runFormat`
+`Font` aliases, nested `With`, named/optional `ByVal` helpers, independently
+owned header/footer paragraphs and supported cell ranges. Each assignment emits one `docx.runFormat`
 operation, so permission checks, detached validation, recording and all-run
 rollback apply through the ordinary macro runtime.
 
@@ -1795,7 +1906,7 @@ and relevant markup-compatibility alternatives or processed content are refused
 before a run is split or formatted. The package-level ownership guard is
 conservative and can refuse ambiguity outside the selected paragraph. This
 slice formats current nonempty text; it does not introduce paragraph-mark
-insertion formatting, cell-range formatting, font color reads, theme color
+insertion formatting, font color reads, theme color
 objects or a new automatic-contrast rendering policy.
 
 ```vb
@@ -2335,7 +2446,8 @@ the explicit restrictions above. They do not certify this implementation:
 - [PageSetup.TopMargin](https://learn.microsoft.com/en-us/office/vba/api/word.pagesetup.topmargin), [BottomMargin](https://learn.microsoft.com/en-us/office/vba/api/word.pagesetup.bottommargin), [LeftMargin](https://learn.microsoft.com/en-us/office/vba/api/word.pagesetup.leftmargin), and [RightMargin](https://learn.microsoft.com/en-us/office/vba/api/word.pagesetup.rightmargin): page-to-body distances in points.
 - [PageSetup.HeaderDistance](https://learn.microsoft.com/en-us/office/vba/api/word.pagesetup.headerdistance) and [FooterDistance](https://learn.microsoft.com/en-us/office/vba/api/word.pagesetup.footerdistance): page-edge distances in points, separate from story content.
 - [Paragraphs.Item](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphs.item) and [Application.ActiveDocument](https://learn.microsoft.com/en-us/office/vba/api/word.application.activedocument): source vocabulary; the Quds session binding is explicitly scoped above.
-- [Paragraph.Format](https://learn.microsoft.com/en-us/office/vba/api/word.paragraph.format), [Font](https://learn.microsoft.com/en-us/office/vba/api/word.font), and [ParagraphFormat](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat): typed formatting objects; this dialect binds explicit paragraph selectors only.
+- [Paragraph.Format](https://learn.microsoft.com/en-us/office/vba/api/word.paragraph.format), [Font](https://learn.microsoft.com/en-us/office/vba/api/word.font), and [ParagraphFormat](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat): typed formatting objects bound to explicit paragraph or supported cell selectors.
+- [Cell.Range](https://learn.microsoft.com/en-us/office/vba/api/word.cell.range), [Range.Font](https://learn.microsoft.com/en-us/office/vba/api/word.range.font), and [Range.ParagraphFormat](https://learn.microsoft.com/en-us/office/vba/api/word.range.paragraphformat): cell range and formatting-object vocabulary. Single-paragraph admission, visible-text Font writes and excluded structural marks are the explicit Quds boundaries.
 - [ParagraphFormat.ReadingOrder](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat.readingorder) and [WdReadingOrder](https://learn.microsoft.com/en-us/office/vba/api/word.wdreadingorder): reading direction independently of alignment, with exact RTL/LTR numeric identities.
 - [ParagraphFormat.LineSpacingRule](https://learn.microsoft.com/en-us/office/vba/api/word.paragraphformat.linespacingrule) and [WdLineSpacing](https://learn.microsoft.com/en-us/office/vba/api/word.wdlinespacing): line-spacing presets and the separate point-based spacing property required by the remaining rules.
 - [Range.InsertBefore](https://learn.microsoft.com/en-us/office/vba/api/word.range.insertbefore): insertion before a range and range expansion; full Word also supports structural characters excluded here.
