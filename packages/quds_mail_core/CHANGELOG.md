@@ -1,5 +1,11 @@
 ## Unreleased
 
+- Add an optional atomic sync snapshot port that retains local membership
+  revisions even before a mailbox has a provider cursor. Negotiate it through
+  single-page coordination and bounded runs, preserving legacy repositories,
+  lease checks, cursor-cycle detection and acknowledged progress. Stale pages
+  cannot erase a confirmed move; fresh first-page sync can resume afterward.
+
 - Add optional read-only membership observation with immutable exact identity,
   IMAP generation/deletion semantics, complete Gmail labels and Graph/EWS parent
   folders. Bound and validate provider evidence independently from command

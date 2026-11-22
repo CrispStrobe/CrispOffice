@@ -360,8 +360,9 @@ extension MailMoveIdentityTransitions on SqliteMailRepository {
     final counter = (await _rows(
       'SELECT mailbox_view_revision FROM store_profile',
     )).single.read<int>('mailbox_view_revision');
-    if (counter < 0 || counter >= MailFlagCommandJournal._maxFlagRevision)
+    if (counter < 0 || counter >= MailFlagCommandJournal._maxFlagRevision) {
       return false;
+    }
     final envelope = MailStoreCodec.decodeEnvelope(
       source.read<String>('envelope'),
     );

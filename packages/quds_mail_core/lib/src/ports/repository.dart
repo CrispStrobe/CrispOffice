@@ -22,6 +22,47 @@ abstract interface class MailSyncRepository {
   });
 }
 
+/// One atomic repository observation, including a mailbox without a cursor.
+///
+/// [revision] fences local membership changes independently of opaque provider
+/// cursor bytes. It must be retained even when [cursor] is null, so an in-flight
+/// first page cannot overwrite a move acknowledged after the read.
+final class MailSyncRepositorySnapshot {
+  MailSyncRepositorySnapshot({
+    required this.mailbox,
+    required this.cursor,
+    required this.revision,
+  }) {
+    if (revision < 0 ||
+        revision > 0x1fffffffffffff ||
+        cursor != null && cursor!.mailbox != mailbox ||
+        cursor?.repositoryRevision != null &&
+            cursor!.repositoryRevision != revision) {
+      throw ArgumentError('Sync snapshots require one mailbox and revision.');
+    }
+  }
+
+  final MailMailboxId mailbox;
+  final MailCursor? cursor;
+  final int revision;
+}
+
+/// Optional atomic cursor/membership fence, preserving the legacy sync port.
+abstract interface class MailSyncSnapshotRepository
+    implements MailSyncRepository {
+  Future<MailResult<MailSyncRepositorySnapshot>> readSyncSnapshot(
+    MailMailboxId mailbox,
+  );
+
+  /// Compare both cursor and local revision in the same transaction as the
+  /// page writes. A missing cursor still carries the snapshot's revision.
+  Future<MailResult<MailUnit>> commitSyncPageWithSnapshot(
+    MailSyncPage page, {
+    required MailSyncRepositorySnapshot expectedSnapshot,
+    required MailOperationLease lease,
+  });
+}
+
 /// Product/profile-scoped durable domain storage. No implementation is implied.
 abstract interface class MailRepository implements MailSyncRepository {
   MailProfileId get profile;

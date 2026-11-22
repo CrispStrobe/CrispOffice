@@ -25,12 +25,32 @@ final class MailSyncCoordinator {
     }
     try {
       final lease = session.begin(cancellation: cancellation);
-      final cursorResult = await repository.readCursor(mailbox);
-      lease.checkCurrent();
-      if (cursorResult case MailFailure<MailCursor?>(:final problem)) {
-        return MailFailure(problem);
+      final snapshots = repository is MailSyncSnapshotRepository
+          ? repository
+          : null;
+      MailSyncRepositorySnapshot? snapshot;
+      final MailCursor? cursor;
+      if (snapshots != null) {
+        final result = await snapshots.readSyncSnapshot(mailbox);
+        lease.checkCurrent();
+        if (result case MailFailure<MailSyncRepositorySnapshot>(
+          :final problem,
+        )) {
+          return MailFailure(problem);
+        }
+        snapshot = (result as MailSuccess<MailSyncRepositorySnapshot>).value;
+        if (snapshot.mailbox != mailbox) {
+          return const MailFailure(MailProblem(MailProblemCode.storageFailure));
+        }
+        cursor = snapshot.cursor;
+      } else {
+        final cursorResult = await repository.readCursor(mailbox);
+        lease.checkCurrent();
+        if (cursorResult case MailFailure<MailCursor?>(:final problem)) {
+          return MailFailure(problem);
+        }
+        cursor = (cursorResult as MailSuccess<MailCursor?>).value;
       }
-      final cursor = (cursorResult as MailSuccess<MailCursor?>).value;
       if (cursor != null && cursor.mailbox != mailbox) {
         return const MailFailure(MailProblem(MailProblemCode.storageFailure));
       }
@@ -49,11 +69,17 @@ final class MailSyncCoordinator {
           page.upserts.length + page.tombstones.length > limit) {
         return const MailFailure(MailProblem(MailProblemCode.providerFailure));
       }
-      final committed = await repository.commitSyncPage(
-        page,
-        expectedCursor: cursor,
-        lease: lease,
-      );
+      final committed = snapshots != null
+          ? await snapshots.commitSyncPageWithSnapshot(
+              page,
+              expectedSnapshot: snapshot!,
+              lease: lease,
+            )
+          : await repository.commitSyncPage(
+              page,
+              expectedCursor: cursor,
+              lease: lease,
+            );
       lease.checkCurrent();
       if (committed case MailFailure<MailUnit>(:final problem)) {
         return MailFailure(problem);
