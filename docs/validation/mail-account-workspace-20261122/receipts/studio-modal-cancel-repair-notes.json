@@ -1,0 +1,32 @@
+{
+  "recorded_at_utc": "2026-11-22T13:07:39.519593+00:00",
+  "failed_source": "8403ddfd202637e1ebe7c4350d5e765347ef7023",
+  "failed_local_baseline": "e034ae75d31063d06eabfbc3fe62b39d53d8c3b4",
+  "diagnostic_receipt": "studio-second-attempt-qualification.json",
+  "diagnostic_receipt_sha256": "4ba09c401008a4beb0efe4b0dfb021046eaf928438a6edc7b62ba792ba3a1a6a",
+  "identified_passes": 564,
+  "identified_substantive_errors": 1,
+  "skipped": 0,
+  "child_exit_code": null,
+  "receipt_process_exit_code": 1,
+  "parser_failure": "The original parser used str.splitlines(), which split three valid LF-delimited JSON testStart records at U+0085, U+2028 and U+2029 inside unsafe-filename test names, then raised KeyError 569. Correct LF framing identifies all three successful cases. The child exit code was not persisted before the original parser exception.",
+  "captured_inputs": 6220,
+  "source_unchanged": true,
+  "failed_case": "ews: an old confirmation cannot enter a new session",
+  "observed_failure": "The previously captured Disconnect callback was rejected during an ordinary modal bulk-action review. Confirmation then dispatched three MailMove commands on the previous provider. The assertion failed on previous.commands before any reconnect occurred; this is not evidence of dispatch into a new session.",
+  "fix": "A captured Disconnect retains provider/session/account identity checks but is allowed during ordinary modal review. The account chooser raises its navigation-in-progress fence at entry, preventing cancellation from bypassing account-handoff ownership. Visible modal UI still disables the Disconnect control.",
+  "fixed_source_path": "packages/quds_office_editor/example/lib/studio_mail_ews.dart",
+  "fixed_source_sha256": "0bfc1196299d2bee2b51daf21ae260b30392c29defda3bf58b822386f238d30d",
+  "local_merged_fix_baseline": "b63245a4851f4efd79cf85802cb27ee252d140cd",
+  "canonical_merged_fix_checkpoint": "415265e46c7679531adbe97211d064146a26561a",
+  "existing_regression_assertions_changed": false,
+  "new_cases_added": false,
+  "runner_correction": "Persist the child exit code before parsing, split only on ASCII LF, exclude hidden events before lookup, report genuinely unmatched visible completions as errors, and run the complete cohort without fail-fast. No SDK or test-framework source changes.",
+  "final_disposition": "Pending the complete corrected-source Studio gate. Neither prior attempt contributes final passing credit.",
+  "unicode_line_separator_tests_recovered": [
+    569,
+    570,
+    571
+  ],
+  "reporter_framing_audit": "studio-reporter-lf-framing-audit.json"
+}

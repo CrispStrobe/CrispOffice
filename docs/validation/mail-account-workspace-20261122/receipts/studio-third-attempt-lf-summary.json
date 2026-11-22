@@ -1,0 +1,184 @@
+{
+  "recounted_at_utc": "2026-11-22T13:42:52.164342+00:00",
+  "source_commit": "7c2f6e744b3489460035bbbb358d46e22e58ce20",
+  "source_commit_at_finish": "7c2f6e744b3489460035bbbb358d46e22e58ce20",
+  "child_exit_code": 1,
+  "reporter_done_success": false,
+  "selected_suites": 110,
+  "observed_suites": 110,
+  "missing_suites": [],
+  "unexpected_suites": [],
+  "case_count": 2351,
+  "passed": 2329,
+  "failed": 22,
+  "skipped": 0,
+  "raw_reporter_error_events": 22,
+  "all_started_test_ids_completed": true,
+  "unmatched_visible_completions": [],
+  "malformed_lf_records": [],
+  "inputs": 6220,
+  "inputs_before_after_identical": true,
+  "manifest_before_sha256": "99517017dc09edad010c95adf5e662280dc6dbace23d05c1fc8ecc62c6f7ed36",
+  "manifest_after_sha256": "99517017dc09edad010c95adf5e662280dc6dbace23d05c1fc8ecc62c6f7ed36",
+  "raw_reporter_sha256": "7f3dceb5a6f1133d51c967e87ea531976137d4f7d3c66abb560c8e2b2eefeae3",
+  "original_automated_receipt": "qualification-original-unicode-splitlines.json",
+  "original_automated_receipt_sha256": "4418a1e7cfd978498eb8ba376f9a6fb937c850c5abb8b74d97e06f75ba8ad9a6",
+  "original_automated_pass_count": 2326,
+  "corrected_receipt_sha256": "2b47484e08fc047d65cd8c28d42bb78ed49d8c6f1a8d25c04d1383e757dc6cee",
+  "final_passing_credit": 0,
+  "incoming_fix_classification_is_not_acceptance": true,
+  "failure_groups": [
+    {
+      "file": "studio_mail_bulk_provider_test.dart",
+      "failed_cases": 6,
+      "cases": [
+        {
+          "id": 676,
+          "name": "ews: disconnect and reconnect cannot project late results into overlapping row IDs"
+        },
+        {
+          "id": 677,
+          "name": "ews: invalid selections are refused atomically and closed dialogs stop further dispatch"
+        },
+        {
+          "id": 688,
+          "name": "gmail: disconnect and reconnect cannot project late results into overlapping row IDs"
+        },
+        {
+          "id": 689,
+          "name": "gmail: invalid selections are refused atomically and closed dialogs stop further dispatch"
+        },
+        {
+          "id": 700,
+          "name": "graph: disconnect and reconnect cannot project late results into overlapping row IDs"
+        },
+        {
+          "id": 701,
+          "name": "graph: invalid selections are refused atomically and closed dialogs stop further dispatch"
+        }
+      ],
+      "classification": "source_or_fixture_reconciliation_required",
+      "description": "Assigned lifecycle/owner/cancellation or setup-contract repair; no success claim until the final affected-suite gate passes."
+    },
+    {
+      "file": "studio_mail_cached_host_test.dart",
+      "failed_cases": 3,
+      "cases": [
+        {
+          "id": 741,
+          "name": "ews delete survives metadata updates and cannot resurrect cached rows"
+        },
+        {
+          "id": 756,
+          "name": "gmail delete survives metadata updates and cannot resurrect cached rows"
+        },
+        {
+          "id": 771,
+          "name": "graph delete survives metadata updates and cannot resurrect cached rows"
+        }
+      ],
+      "classification": "incoming_fixture_delete_capability",
+      "description": "Incoming main enables Delete capability only for the three delete scenarios, explicitly checks enabled action/confirmation, and retains cache non-resurrection assertions. Not a proved production cache defect."
+    },
+    {
+      "file": "studio_mail_cloud_test.dart",
+      "failed_cases": 2,
+      "cases": [
+        {
+          "id": 986,
+          "name": "Gmail closes late draft storage without adopting a retired session"
+        },
+        {
+          "id": 987,
+          "name": "native setup offers Gmail, Microsoft 365 and Exchange"
+        }
+      ],
+      "classification": "source_or_fixture_reconciliation_required",
+      "description": "Assigned lifecycle/owner/cancellation or setup-contract repair; no success claim until the final affected-suite gate passes."
+    },
+    {
+      "file": "studio_mail_ews_test.dart",
+      "failed_cases": 4,
+      "cases": [
+        {
+          "id": 1274,
+          "name": "EWS bulk confirmation cannot enter a reconnected account or dispatch its tail"
+        },
+        {
+          "id": 1304,
+          "name": "EWS retires a draft store opened after its host was closed"
+        },
+        {
+          "id": 1305,
+          "name": "native account setup exposes the Exchange Server entry"
+        },
+        {
+          "id": 1331,
+          "name": "disposing during send ignores a late acceptance"
+        }
+      ],
+      "classification": "source_or_fixture_reconciliation_required",
+      "description": "Assigned lifecycle/owner/cancellation or setup-contract repair; no success claim until the final affected-suite gate passes."
+    },
+    {
+      "file": "studio_mail_lifecycle_test.dart",
+      "failed_cases": 1,
+      "cases": [
+        {
+          "id": 1631,
+          "name": "closing Mail ignores a pending file picker result"
+        }
+      ],
+      "classification": "incoming_deterministic_manual_setup_fixture",
+      "description": "Incoming main uses the native Mail implementation, in-memory SessionMailCredentials and autoConnectSavedAccount=false; the pending-file-picker assertions are retained."
+    },
+    {
+      "file": "studio_mail_local_accounts_dialog_test.dart",
+      "failed_cases": 4,
+      "cases": [
+        {
+          "id": 1635,
+          "name": "imap cached-mail button opens only the local mailbox"
+        },
+        {
+          "id": 1636,
+          "name": "ews cached-mail button opens only the local mailbox"
+        },
+        {
+          "id": 1637,
+          "name": "gmail cached-mail button opens only the local mailbox"
+        },
+        {
+          "id": 1638,
+          "name": "graph cached-mail button opens only the local mailbox"
+        }
+      ],
+      "classification": "incoming_empty_state_text_alignment",
+      "description": "Incoming main expects the retained-cache empty-state string while preserving exact local identity, no compose/drafts view and no remote selection checks."
+    },
+    {
+      "file": "studio_mail_presets_test.dart",
+      "failed_cases": 1,
+      "cases": [
+        {
+          "id": 2154,
+          "name": "choosing a preset clears old credentials and exposes app-password guidance"
+        }
+      ],
+      "classification": "incoming_manual_preset_fixture",
+      "description": "Incoming main disables automatic saved-account connection for the explicit preset test; credential-clearing/app-password assertions are unchanged."
+    },
+    {
+      "file": "studio_mail_session_test.dart",
+      "failed_cases": 1,
+      "cases": [
+        {
+          "id": 2429,
+          "name": "a delayed native draft open cannot install the previous account store"
+        }
+      ],
+      "classification": "source_or_fixture_reconciliation_required",
+      "description": "Assigned lifecycle/owner/cancellation or setup-contract repair; no success claim until the final affected-suite gate passes."
+    }
+  ]
+}

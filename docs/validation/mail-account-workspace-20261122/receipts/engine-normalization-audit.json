@@ -1,0 +1,48 @@
+{
+  "checked_at_utc": "2026-11-22T13:16:18.872102+00:00",
+  "canonical_final_source": "7c2f6e744b3489460035bbbb358d46e22e58ce20",
+  "local_final_baseline": "128a49df722662c904335f6dbbc2e8990a1266db",
+  "test_and_analysis_canonical_source": "415265e46c7679531adbe97211d064146a26561a",
+  "original_local_baseline": "b63245a4851f4efd79cf85802cb27ee252d140cd",
+  "original_inputs_unchanged_before_after": true,
+  "normalized_inputs_unchanged_before_after_current": true,
+  "inputs_per_stage": 1415,
+  "byte_identical_inputs_across_stages": 1414,
+  "changed_path": "packages/quds_office_engine/test/word_zotero_boundary_formatting_test.dart",
+  "before_sha256": "2cc714acf52507067c2fccd465dc07a89dc3d5c85a264e6056ccfd941fbddda1",
+  "after_sha256": "4c2f3551bfacf153f582a3f31dc654ee2916b53e191cfd5600af6320891108a9",
+  "canonical_ast_bytes_equal": true,
+  "canonical_ast_sha256": "29892720cf23902188176e9ac86c93addb1541e57cbcc3a647d03be1f4e1a8c9",
+  "canonical_ast_rendered_source_bytes_equal": true,
+  "canonical_ast_rendered_source_sha256": "5663996c88702b5b6a558fdb2da916e89d7ca396d606d1326923f7109deb4761",
+  "parser_diagnostics": [
+    [],
+    []
+  ],
+  "token_inventories_equal": false,
+  "only_lexical_difference": {
+    "qualified": true,
+    "removed_token_index": 1686,
+    "removed_token": {
+      "token": {
+        "type": "COMMA",
+        "lexeme": ",",
+        "synthetic": false
+      },
+      "precedingComments": []
+    },
+    "following_token": {
+      "token": {
+        "type": "CLOSE_CURLY_BRACKET",
+        "lexeme": "}",
+        "synthetic": false
+      },
+      "precedingComments": []
+    },
+    "description": "The only lexical difference is removal of the optional map trailing comma before its closing brace; all remaining tokens and comments are identical."
+  },
+  "all_other_tokens_and_comments_equal": true,
+  "production_source_identical": true,
+  "new_vm_executions_for_normalization": 0,
+  "new_analysis_executions_for_normalization": 0
+}

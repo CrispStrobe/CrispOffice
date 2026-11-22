@@ -46,7 +46,10 @@ verified four-provider chooser, exact routes, draft-safe ownership transfer and
 explicit sign-in with guarded foreground handoff. The
 [remembered Archive continuation](remembered-archive.md) now adds revision-checked
 account preferences, standalone repair controls and fresh exact-folder validation
-through the existing durable commands. Categories/rules, body/provider search, persistent conversations and provider
+through the existing durable commands. Compose and Outbox operations retain
+their exact storage owner through the final receipt; Close shares the original
+preservation, and replacement accounts wait for pending admission and release.
+Categories/rules, body/provider search, persistent conversations and provider
 Drafts/Sent reconciliation remain organization and discovery boundaries.
 Retained simultaneous account sessions and the shared unified workspace remain
 open within M04W.

@@ -1,0 +1,61 @@
+{
+  "qualified": true,
+  "original_baseline": "b63245a4851f4efd79cf85802cb27ee252d140cd",
+  "normalized_baseline": "128a49df722662c904335f6dbbc2e8990a1266db",
+  "changed_path": "packages/quds_office_engine/test/word_zotero_boundary_formatting_test.dart",
+  "before_sha256": "2cc714acf52507067c2fccd465dc07a89dc3d5c85a264e6056ccfd941fbddda1",
+  "after_sha256": "4c2f3551bfacf153f582a3f31dc654ee2916b53e191cfd5600af6320891108a9",
+  "all_other_scoped_inputs_identical": true,
+  "production_source_identical": true,
+  "description": "The pinned formatter folds refreshedCitations map layout from three lines to one and removes its optional trailing comma. The recursive parsed AST and AST-rendered source are identical, with zero parser diagnostics. Every other token and comment is identical.",
+  "only_lexical_difference": {
+    "qualified": true,
+    "removed_token_index": 1686,
+    "removed_token": {
+      "token": {
+        "type": "COMMA",
+        "lexeme": ",",
+        "synthetic": false
+      },
+      "precedingComments": []
+    },
+    "following_token": {
+      "token": {
+        "type": "CLOSE_CURLY_BRACKET",
+        "lexeme": "}",
+        "synthetic": false
+      },
+      "precedingComments": []
+    },
+    "description": "The only lexical difference is removal of the optional map trailing comma before its closing brace; all remaining tokens and comments are identical."
+  },
+  "parser_package": "analyzer 13.3.0 from the unchanged workspace lock",
+  "parser_diagnostics": [
+    [],
+    []
+  ],
+  "proof": "ast-normalization.json",
+  "proof_sha256": "f6cd37eed346fd5d7901a56461ec8ad58314b59056fc845700320c640b42cb85",
+  "proof_script": "compare_normalized_ast.dart",
+  "proof_script_sha256": "2bd93ff917c6c6912145b070ba2d6da9e447f0b944f78a9fd5bc17d4d833791d",
+  "canonical_outputs": {
+    "canonical-ast.json": {
+      "before_sha256": "29892720cf23902188176e9ac86c93addb1541e57cbcc3a647d03be1f4e1a8c9",
+      "after_sha256": "29892720cf23902188176e9ac86c93addb1541e57cbcc3a647d03be1f4e1a8c9",
+      "bytes_equal": true
+    },
+    "canonical-tokens.json": {
+      "before_sha256": "046a7c3f22c3a43e0a31d64e512aa9a61acba14a8c820504f1738a96d78e9a79",
+      "after_sha256": "5a15ea0afb9cd166fbd49fb4e8f1850baac80c6f04a73efd31f6eedae84109bd",
+      "bytes_equal": false
+    },
+    "canonical-source.dart": {
+      "before_sha256": "5663996c88702b5b6a558fdb2da916e89d7ca396d606d1326923f7109deb4761",
+      "after_sha256": "5663996c88702b5b6a558fdb2da916e89d7ca396d606d1326923f7109deb4761",
+      "bytes_equal": true
+    }
+  },
+  "original_input_manifest_sha256": "92b0e9e0be6590bd2e66f225f750318c9eaa6ae28dd2abdb42d63872d13f5da8",
+  "original_reporters_and_manifests_preserved": true,
+  "counting": "Retain the original 2594 VM cases once; no repeat VM or analysis execution and no count from diagnostics."
+}

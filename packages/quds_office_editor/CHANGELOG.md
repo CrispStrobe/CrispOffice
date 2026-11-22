@@ -23,32 +23,36 @@ All notable changes to `quds_office_editor` are documented here.
   and the existing detached Refresh/undo transaction across DOCX/ODT saves.
   Unsupported border structures keep their explicit import/export refusal.
 
-- Add a verified remembered-account chooser across IMAP/SMTP, Exchange EWS,
-  Gmail and Microsoft 365 in English, German and Arabic. Preserve exact
-  non-secret routes and require explicit sign-in; save account-owned drafts and
-  uncertain-submission state before switching. Drain observers, journal writes
-  and owners, fence stale routes, hidden keyboard input, late acquisitions and
-  retired callbacks, and atomically refresh selected local directory records
-  without recreating forgotten shortcuts. Removed or replaced destinations
-  invalidate late refresh completion before the connection handoff. Fresh
-  connections register their account normally. Custom directories without
-  conditional refresh retain their existing metadata. Retain failed observer/owner
-  release for explicit native Retry closing account and provider Close/Back
-  recovery; another account stays blocked until release succeeds. Apply the same
-  retained cleanup to Disconnect, Refresh and folder changes, cancelling
-  observers waiting for an initial snapshot before draining admission.
+- Add a shared remembered-account chooser for connected IMAP/SMTP, EWS, Gmail
+  and Microsoft 365 in English, German and Arabic. Preserve exact non-secret
+  routes and require explicit sign-in; save account-owned drafts and uncertain
+  delivery state before switching. Drain observers, journal writes and owners,
+  fence late acquisitions/retired callbacks, and atomically refresh selected
+  native directory records without recreating forgotten shortcuts. Removed or
+  replaced destinations invalidate late refresh completion before handoff.
+  Custom directories without conditional refresh retain their existing metadata.
+  Block hidden keyboard edits and ambiguous SMTP-route selection. Retain failed
+  observer/owner release for explicit native Retry closing account and provider
+  Close/Back recovery; another account stays blocked until release succeeds.
+  Apply the same retained cleanup to Disconnect, Refresh and folder changes;
+  cancel observers waiting for an initial saved-mail snapshot before draining
+  restoration, and close their owner only after both have finished.
   Publish restored drafts only after cache setup and selected-record refresh;
   keep late acquisition and failed cleanup owned by the pending admission.
   Bind toolbar callbacks to their original session and mailbox. Preserve
-  same-session cancellation during ordinary modal reviews while fencing
-  the full account-chooser handoff.
-  Native Close hides the mounted Mail pane after pending ownership settles;
-  retained owner failures keep an explicit retry path. Provider Close/Back
-  preserves draft recovery, cancels remaining dispatch and waits for late store
-  admission and cleanup before returning to the root pane. One account remains
-  connected at a time. See the [account-navigation workflow](../../docs/roadmaps/mail/account-navigation.md)
-  and [connected-account guide](../../docs/roadmaps/mail/connected-account-navigation.md)
-  for scope, qualification and remaining multi-account workspace work.
+  same-session host cancellation during ordinary modal reviews while fencing
+  the full account-chooser handoff. Fresh connections register normally.
+  Retain exact storage owners through compose and Outbox delivery receipts,
+  including manual sends, acknowledged retries and foreground schedules. Close
+  shares an in-flight submission's preservation instead of issuing a duplicate
+  save that could recreate an accepted or queued draft. Initial save failure
+  retains the original session; final outcome persistence precedes owner close.
+  Native Close hides the mounted Mail pane after pending account admission and
+  ownership settle; persistent release failures can require a host restart. See the
+  [connected account guide](../../docs/roadmaps/mail/connected-account-navigation.md)
+  for the current contract, qualification and remaining multi-account work; the
+  [initial navigation guide](../../docs/roadmaps/mail/account-navigation.md)
+  retains its development lineage.
 
 - Add explicit connected-mail Archive for a selected message or checked visible
   rows, with English/German/Arabic confirmation. Gmail removes only Inbox

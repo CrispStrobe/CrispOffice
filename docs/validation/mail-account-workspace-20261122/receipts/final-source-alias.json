@@ -1,6 +1,7 @@
 {
-  "local_baseline_commit": "e034ae75d31063d06eabfbc3fe62b39d53d8c3b4",
-  "canonical_remote_commit": "8403ddfd202637e1ebe7c4350d5e765347ef7023",
-  "identical_tree": "60b95ca8b52e5059a05dc1bce079db2751598b1e",
-  "explanation": "Only the EWS toolbar callback guard changed after the preceding integrated source; final editor/Studio/static reruns use this exact source, and engine/shared/store inputs remain byte-identical to their recorded executions."
+  "local_baseline_commit": "128a49df722662c904335f6dbbc2e8990a1266db",
+  "canonical_remote_commit": "7c2f6e744b3489460035bbbb358d46e22e58ce20",
+  "identical_tree": "fe9761f081cf89038ed69fbcddfbf3de08d1daca",
+  "original_vm_analysis_canonical_commit": "415265e46c7679531adbe97211d064146a26561a",
+  "normalization_bridge": "engine-normalization-bridge.json"
 }

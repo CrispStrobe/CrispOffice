@@ -1,12 +1,11 @@
 {
-  "started_at_utc": "2026-11-22T12:45:56.419112+00:00",
-  "head_at_start": "e034ae75d31063d06eabfbc3fe62b39d53d8c3b4",
+  "started_at_utc": "2026-11-22T13:14:36.864304+00:00",
+  "head_at_start": "7c2f6e744b3489460035bbbb358d46e22e58ce20",
   "command": [
     "flutter",
     "test",
     "--no-pub",
     "--concurrency=1",
-    "--fail-fast",
     "--reporter=json",
     "test/word_zotero_converter_controller_test.dart",
     "test/word_zotero_field_context_controller_test.dart",
@@ -24,9 +23,9 @@
     "FLUTTER_SUPPRESS_ANALYTICS": "true"
   },
   "status": "passed",
-  "finished_at_utc": "2026-11-22T12:46:07.530045+00:00",
-  "head_at_finish": "e034ae75d31063d06eabfbc3fe62b39d53d8c3b4",
   "exit_code": 0,
+  "finished_at_utc": "2026-11-22T13:14:50.180605+00:00",
+  "head_at_finish": "7c2f6e744b3489460035bbbb358d46e22e58ce20",
   "source_unchanged": true,
   "changed_inputs": [],
   "suites": [
@@ -57,6 +56,6 @@
   "reporter_done": {
     "success": true,
     "type": "done",
-    "time": 10065
+    "time": 12093
   }
 }

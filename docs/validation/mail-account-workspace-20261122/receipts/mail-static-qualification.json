@@ -1,5 +1,5 @@
 {
-  "source_commit": "e034ae75d31063d06eabfbc3fe62b39d53d8c3b4",
+  "source_commit": "7c2f6e744b3489460035bbbb358d46e22e58ce20",
   "paths": [
     "packages/quds_mail_store/lib/src/local_accounts.dart",
     "packages/quds_mail_store/test/local_accounts_expected_record_test.dart",
@@ -17,7 +17,7 @@
     "packages/quds_office_editor/example/test/studio_mail_account_navigation_test.dart",
     "packages/quds_office_editor/test/word_zotero_converter_controller_test.dart"
   ],
-  "started_at_utc": "2026-11-22T12:45:33.600276+00:00",
+  "started_at_utc": "2026-11-22T13:14:12.032977+00:00",
   "commands": [
     {
       "name": "analysis",
@@ -71,7 +71,7 @@
     }
   ],
   "status": "passed",
-  "finished_at_utc": "2026-11-22T12:45:55.603646+00:00",
+  "finished_at_utc": "2026-11-22T13:14:35.203175+00:00",
   "source_unchanged": true,
   "changed_inputs": []
 }

@@ -1,0 +1,203 @@
+{
+  "cohort": "mail-shared-ui",
+  "started_at_utc": "2026-11-22T14:42:53.886378+00:00",
+  "expected_head": "df8571cb70e8677660ce6843c26de017f5524c52",
+  "head_at_start": "df8571cb70e8677660ce6843c26de017f5524c52",
+  "command": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--reporter=json",
+    "--concurrency=2",
+    "test/body_presentation_contract_test.dart",
+    "test/body_presentation_test.dart",
+    "test/bulk_api_aliases_test.dart",
+    "test/bulk_message_list_test.dart",
+    "test/controller_test.dart",
+    "test/example_test.dart",
+    "test/message_list_bulk_test.dart",
+    "test/message_list_conversations_test.dart",
+    "test/message_list_organization_test.dart",
+    "test/message_list_range_selection_test.dart",
+    "test/message_list_test.dart",
+    "test/message_view_test.dart",
+    "test/presentation_test.dart",
+    "test/presentation_whitespace_test.dart",
+    "test/reader_image_updates_test.dart",
+    "test/reader_labels_test.dart",
+    "test/reader_theme_scroll_test.dart",
+    "test/remote_images_test.dart"
+  ],
+  "cwd": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_mail_ui",
+  "expected_suites": [
+    "test/body_presentation_contract_test.dart",
+    "test/body_presentation_test.dart",
+    "test/bulk_api_aliases_test.dart",
+    "test/bulk_message_list_test.dart",
+    "test/controller_test.dart",
+    "test/example_test.dart",
+    "test/message_list_bulk_test.dart",
+    "test/message_list_conversations_test.dart",
+    "test/message_list_organization_test.dart",
+    "test/message_list_range_selection_test.dart",
+    "test/message_list_test.dart",
+    "test/message_view_test.dart",
+    "test/presentation_test.dart",
+    "test/presentation_whitespace_test.dart",
+    "test/reader_image_updates_test.dart",
+    "test/reader_labels_test.dart",
+    "test/reader_theme_scroll_test.dart",
+    "test/remote_images_test.dart"
+  ],
+  "expected_passes": 294,
+  "input_counts": {
+    "workspace": 6342,
+    "resolved_packages": 6200,
+    "runtime": 4
+  },
+  "capture_scope": {
+    "workspace": "All tracked packages, third_party, tools/tool and root manifests/config; package-root publication README/CHANGELOG/LICENSE and docs directories excluded; include generated package_config/package_graph when present. Snapshot inventory is recomputed before and after.",
+    "resolved_packages": "All resolved non-workspace package lib/bin/hook files plus pubspec; package roots derived from active package_config.",
+    "runtime": "Dart executables and SDK/Flutter version metadata. Pinned unmodified official runtime qualification remains separate evidence.",
+    "qualification": "Strict process exit, one successful done, no duplicate/orphan/incomplete lifecycle events, exact suite inventory, zero errors/failures/skips, planned count and input invariance; LF byte framing; only recorded exact build-hook prefixes tolerated."
+  },
+  "runner_sha256": "cf0441aa0a67648bc85c7986b33b44e7a035bcf14a33e1ff0b2abaa8ac9ceb2e",
+  "plan_sha256": "5c44c8292cdeb5afca2dea6f94975070d61ba7d6738cc64f32c391db51029daa",
+  "environment": {
+    "CI": "true",
+    "FLUTTER_ROOT": "/workspace/scratch/7fc035b3e3ba/.runtime/flutter",
+    "PUB_CACHE": "/workspace/scratch/7fc035b3e3ba/.runtime/pub-cache",
+    "TMPDIR": "/workspace/scratch/7fc035b3e3ba/.runtime/tmp",
+    "DART_SUPPRESS_ANALYTICS": "true",
+    "FLUTTER_SUPPRESS_ANALYTICS": "true"
+  },
+  "executables": {
+    "dart": "/workspace/scratch/7fc035b3e3ba/.runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "flutter": "/workspace/scratch/7fc035b3e3ba/.runtime/flutter/bin/flutter",
+    "node": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node"
+  },
+  "github_actions_queried": false,
+  "github_actions_waited": false,
+  "finished_at_utc": "2026-11-22T14:43:28.918488+00:00",
+  "head_at_end": "df8571cb70e8677660ce6843c26de017f5524c52",
+  "exit_code": 0,
+  "interrupted": false,
+  "changed_inputs": {
+    "workspace": [],
+    "resolved_packages": [],
+    "runtime": []
+  },
+  "source_unchanged": true,
+  "results": {
+    "passed": 294,
+    "failed": 0,
+    "skipped": 0,
+    "suite_count": 18,
+    "observed_suites": [
+      "test/body_presentation_contract_test.dart",
+      "test/body_presentation_test.dart",
+      "test/bulk_api_aliases_test.dart",
+      "test/bulk_message_list_test.dart",
+      "test/controller_test.dart",
+      "test/example_test.dart",
+      "test/message_list_bulk_test.dart",
+      "test/message_list_conversations_test.dart",
+      "test/message_list_organization_test.dart",
+      "test/message_list_range_selection_test.dart",
+      "test/message_list_test.dart",
+      "test/message_view_test.dart",
+      "test/presentation_test.dart",
+      "test/presentation_whitespace_test.dart",
+      "test/reader_image_updates_test.dart",
+      "test/reader_labels_test.dart",
+      "test/reader_theme_scroll_test.dart",
+      "test/remote_images_test.dart"
+    ],
+    "per_suite": {
+      "test/body_presentation_contract_test.dart": {
+        "passed": 11
+      },
+      "test/body_presentation_test.dart": {
+        "passed": 31
+      },
+      "test/bulk_api_aliases_test.dart": {
+        "passed": 6
+      },
+      "test/bulk_message_list_test.dart": {
+        "passed": 22
+      },
+      "test/controller_test.dart": {
+        "passed": 13
+      },
+      "test/example_test.dart": {
+        "passed": 1
+      },
+      "test/message_list_bulk_test.dart": {
+        "passed": 32
+      },
+      "test/message_list_conversations_test.dart": {
+        "passed": 18
+      },
+      "test/message_list_organization_test.dart": {
+        "passed": 21
+      },
+      "test/message_list_range_selection_test.dart": {
+        "passed": 43
+      },
+      "test/message_list_test.dart": {
+        "passed": 37
+      },
+      "test/message_view_test.dart": {
+        "passed": 11
+      },
+      "test/presentation_test.dart": {
+        "passed": 23
+      },
+      "test/presentation_whitespace_test.dart": {
+        "passed": 5
+      },
+      "test/reader_image_updates_test.dart": {
+        "passed": 8
+      },
+      "test/reader_labels_test.dart": {
+        "passed": 3
+      },
+      "test/reader_theme_scroll_test.dart": {
+        "passed": 2
+      },
+      "test/remote_images_test.dart": {
+        "passed": 7
+      }
+    },
+    "missing_suites": [],
+    "unexpected_suites": [],
+    "incomplete_test_ids": [],
+    "orphan_completion_ids": [],
+    "duplicate_start_ids": [],
+    "duplicate_completion_ids": [],
+    "unknown_suite_ids": [],
+    "reporter_errors": [],
+    "reporter_done": [
+      {
+        "success": true,
+        "type": "done",
+        "time": 32864
+      }
+    ],
+    "recorded_build_hook_prefixes": [],
+    "invalid_json_lines": [],
+    "protocol_complete": true
+  },
+  "expected_case_count_matches": true,
+  "runner_unchanged": true,
+  "plan_unchanged": true,
+  "artifact_sha256": {
+    "tests.jsonl": "1f23c3823f0a35e06fa1477c5c70282c59bba01801ecf15f9190d916c8ba45ca",
+    "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "test-cases.json": "854fcfa0d8f1e35b792dd863f85d180b53ad512bba436f6039e08158a9516e31",
+    "inputs-before.json": "098c56301d1417b52011201f2cfee4270bbfee954b6dc9bea71a6408cc49b0cd",
+    "inputs-after.json": "098c56301d1417b52011201f2cfee4270bbfee954b6dc9bea71a6408cc49b0cd",
+    "command.json": "075c8a328a96bf87d73d58fb66dfd1fac7da63f192917047913bf448d742f34e"
+  },
+  "qualified": true
+}

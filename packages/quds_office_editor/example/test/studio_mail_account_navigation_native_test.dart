@@ -58,7 +58,8 @@ final class _Directory
         StudioMailLocalAccountStore,
         StudioMailLocalAccountReconnectStore {
   final records = <String, MailLocalAccountRecord>{};
-  // Gate the selected CAS while independent catalog writes remain possible.
+  // Only the selected compare-and-update waits; independent catalog writes
+  // must remain able to remove or revise that shortcut while it is pending.
   Completer<void>? rememberGate;
   // Attempts include blocked CAS operations; remembers counts committed writes.
   int rememberAttempts = 0;
@@ -1116,7 +1117,7 @@ void main() {
 
   for (final destination in ['connect', 'provider setup']) {
     testWidgets(
-      'late owner acquisition drains before a subsequent $destination',
+      'late unselected owner acquisition drains before a subsequent $destination',
       (tester) async {
         final directory = _Directory();
         final identity = _identity(_first);
@@ -1149,6 +1150,9 @@ void main() {
         await _connect(tester);
         expect(acquisitions, 1);
         expect(owners, isEmpty);
+        // Selected-account acquisition is fenced by native_release_test.
+        // An ordinary connection may disconnect; its late owner must still
+        // drain before another connection or provider setup can start.
         expect(
           tester
               .widget<IconButton>(

@@ -2160,7 +2160,7 @@ void main() {
     );
 
     testWidgets(
-      '${kind.name}: failed owner release blocks handoff and can be retried',
+      '${kind.name}: failed owner release blocks handoff until explicit Close retry',
       (tester) async {
         final harness = _Harness(kind);
         await _show(tester, harness);
@@ -2378,9 +2378,9 @@ void main() {
       },
     );
 
-    for (final failCloseSave in [false, true]) {
+    for (final failPreservation in [false, true]) {
       testWidgets(
-        '${kind.name}: close intent prevents first send after a pending marker${failCloseSave ? ' even when close save fails' : ''}',
+        '${kind.name}: close awaits the original marker${failPreservation ? ' and preserves the session when it fails' : ' without a duplicate save'}',
         (tester) async {
           final harness = _Harness(kind);
           harness.owner.snapshot = const StudioMailStoredDraft(
@@ -2404,34 +2404,33 @@ void main() {
           expect(find.byType(StudioMailComposeDialog), findsNothing);
           expect(provider.submissions, isEmpty);
           final beforeClose = harness.owner.saves;
-          harness.owner.saveGate = Completer<void>();
           await _press(tester, _icon(_strings.close));
-          expect(harness.owner.saves, beforeClose + 1);
+          // Close must share the submission's first preservation. A separate
+          // save could recreate an accepted or already-enqueued draft.
+          expect(harness.owner.saves, beforeClose);
           expect(harness.owner.closeCalls, 0);
+          expect(provider.lease!.isCurrent, isTrue);
+          expect(provider.submissions, isEmpty);
 
-          if (failCloseSave) {
-            harness.owner.failSave = true;
-            harness.owner.saveGate!.complete();
-            await _pump(tester);
-            expect(find.text(_strings.mailDraftSaveFailed), findsOneWidget);
-            expect(provider.lease!.isCurrent, isTrue);
-            harness.owner.failSave = false;
-          }
+          harness.owner.failSave = failPreservation;
           harness.owner.markerGate!.complete();
           await _pump(tester);
           expect(provider.submissions, isEmpty);
-          expect(harness.owner.closeCalls, 0);
-          expect(harness.owner.snapshot!.submissionUncertain, isTrue);
+          expect(harness.owner.saves, beforeClose);
           expect(find.text(_strings.sending), findsNothing);
-          if (failCloseSave) {
+          if (failPreservation) {
+            expect(find.text(_strings.mailDraftSaveFailed), findsOneWidget);
+            expect(provider.lease!.isCurrent, isTrue);
+            expect(harness.owner.closeCalls, 0);
+            expect(harness.owner.snapshot!.submissionUncertain, isFalse);
+            expect(harness.owner.snapshot!.draft.subject, _draft.subject);
+            expect(find.byType(StudioMailEwsDialog), findsOneWidget);
             expect(
               tester.widget<IconButton>(_icon(_strings.compose)).onPressed,
               isNotNull,
             );
+            harness.owner.failSave = false;
             await _press(tester, _icon(_strings.close));
-          } else {
-            expect(provider.lease!.isCurrent, isTrue);
-            harness.owner.saveGate!.complete();
           }
           await _until(
             tester,
@@ -2439,8 +2438,13 @@ void main() {
           );
           expect(provider.submissions, isEmpty);
           expect(provider.lease!.isCurrent, isFalse);
+          expect(harness.owner.closeCalls, 1);
           expect(harness.owner.closed, 1);
-          expect(harness.owner.snapshot!.submissionUncertain, isTrue);
+          expect(harness.owner.saves, beforeClose + (failPreservation ? 1 : 0));
+          expect(
+            harness.owner.snapshot!.submissionUncertain,
+            !failPreservation,
+          );
           expect(tester.takeException(), isNull);
         },
       );

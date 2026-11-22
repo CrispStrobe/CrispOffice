@@ -199,6 +199,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   bool _needsRefresh = false;
   int _mailboxGeneration = 0;
   Future<void>? _pendingFlagWrite;
+  final _submissionStorage = <_NativeSubmissionStorage>{};
   MailCancellationSource? _bulkCancellation;
   MailBulkFlagReport? _bulkReport;
   Map<MailRemoteIdentity, String> _bulkSubjects = const {};
@@ -818,6 +819,40 @@ class _StudioMailDialogState extends State<StudioMailDialog>
   bool _currentSession(mail.MailClient client, int generation) =>
       _currentAttempt(generation) && identical(client, _client);
 
+  _NativeSubmissionStorage _beginSubmissionStorage(StudioMailDraftStore owner) {
+    final pending = _NativeSubmissionStorage(owner);
+    _submissionStorage.add(pending);
+    return pending;
+  }
+
+  void _completeSubmissionStorage(_NativeSubmissionStorage pending) {
+    _submissionStorage.remove(pending);
+    pending.completed.complete();
+  }
+
+  Future<MailOutboxEntry> _runOutboxSubmission(
+    StudioMailDraftStore owner,
+    bool Function() current,
+    Future<MailOutboxEntry> Function() action,
+  ) async {
+    if (!current() || !identical(owner, _draftStore)) {
+      throw const StudioMailDraftStoreException(MailProblemCode.unavailable);
+    }
+    final pending = _beginSubmissionStorage(owner);
+    try {
+      return await action();
+    } finally {
+      _completeSubmissionStorage(pending);
+    }
+  }
+
+  Future<void> _drainSubmissionStorage(StudioMailDraftStore? owner) async {
+    await Future.wait<void>([
+      for (final pending in _submissionStorage)
+        if (identical(pending.owner, owner)) pending.completed.future,
+    ]);
+  }
+
   Future<void> _closeDraftStore(StudioMailDraftStore? store) async {
     // Keep the owner alive until an in-flight server reply has a durable receipt.
     // Cancelling the connection still prevents every subsequent dispatch.
@@ -839,6 +874,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         );
       }
       await _pendingFlagWrite;
+      await _drainSubmissionStorage(store);
       if (mailboxStore != null &&
           identical(_mailboxCapture?.store, mailboxStore)) {
         _mailboxCapture?.dispose();
@@ -2028,6 +2064,8 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           strings: widget.strings,
           store: store,
           submit: _outboxSubmit(client, account, store, generation),
+          runSubmission: (action) =>
+              _runOutboxSubmission(draftOwner, current, action),
           isCurrent: current,
         ),
       );
@@ -2074,6 +2112,13 @@ class _StudioMailDialogState extends State<StudioMailDialog>
     mail.MailAccount account,
     int generation,
   ) async {
+    final owner = _draftStore;
+    if (owner == null ||
+        !identical(owner, store) ||
+        !_currentSession(client, generation)) {
+      return;
+    }
+    final pending = _beginSubmissionStorage(owner);
     final priorUncertainty = _submissionUncertain;
     setState(() {
       _draft = draft;
@@ -2121,6 +2166,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         });
       }
     } finally {
+      _completeSubmissionStorage(pending);
       if (_currentSession(client, generation)) setState(() => _busy = false);
     }
   }
@@ -2278,6 +2324,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
       _notice = widget.strings.sending;
     });
     var attempted = false;
+    final pending = _beginSubmissionStorage(store);
     try {
       final message = buildStudioMailMessage(draft, account.email);
       await store.save(draft, submissionUncertain: true);
@@ -2340,6 +2387,8 @@ class _StudioMailDialogState extends State<StudioMailDialog>
               : widget.strings.mailInvalidSender;
         });
       }
+    } finally {
+      _completeSubmissionStorage(pending);
     }
   });
 
@@ -3738,7 +3787,10 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         await _pendingFlagWrite;
         await _draftStoreClosing;
         if (!current()) return;
-        await _draftStore?.close();
+        final owner = _draftStore;
+        await _drainSubmissionStorage(owner);
+        if (!current() || !identical(owner, _draftStore)) return;
+        await owner?.close();
       } on Object {
         if (current()) _holdNavigationAccount();
         rethrow;
@@ -3911,6 +3963,7 @@ class _StudioMailDialogState extends State<StudioMailDialog>
           await _transportClosing;
           await _pendingFlagWrite;
           await _draftStoreClosing;
+          await _drainSubmissionStorage(owner);
           await owner?.close();
           _unreleasedDraftStores.removeWhere(
             (store) => identical(store, owner),
@@ -5915,4 +5968,13 @@ class _StudioMailDialogState extends State<StudioMailDialog>
         ),
     ],
   );
+}
+
+/// A transport can finish after its foreground session is retired. The exact
+/// owner stays open until the accepted or uncertain result is durably recorded.
+final class _NativeSubmissionStorage {
+  _NativeSubmissionStorage(this.owner);
+
+  final StudioMailDraftStore owner;
+  final completed = Completer<void>();
 }

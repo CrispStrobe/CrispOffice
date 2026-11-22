@@ -627,23 +627,19 @@ void main() {
         final connect = _key(
           kind == MailProviderKind.ews ? 'ews-connect' : 'cloud-connect',
         );
-        // A new connection cannot acquire an owner until the old in-flight
-        // result and owner release settle. Retired callbacks have no authority
-        // during this drain or after a new view reuses the same row IDs.
+        // This injected owner has no durable mutation journal. Its release
+        // does not depend on a late foreground reply; the retired lease must
+        // still exclude that reply from a replacement with overlapping IDs.
         expect(oldProvider.leases.single.isCurrent, isFalse);
-        expect(tester.widget<FilledButton>(connect).onPressed, isNull);
         expect(harness.providers, hasLength(1));
         expect(harness.drafts.identities, hasLength(1));
-        expect(harness.drafts.closes, 0);
         expect(find.byType(MailMessageList), findsNothing);
-        await tester.tap(connect);
         oldCallback(MailBulkFlagAction.flag, ids);
         await _pump(tester);
         expect(harness.providers, hasLength(1));
         expect(harness.drafts.identities, hasLength(1));
         expect(oldProvider.commands, hasLength(1));
 
-        gate.complete(_success);
         for (
           var turn = 0;
           turn < 100 && tester.widget<FilledButton>(connect).onPressed == null;
@@ -657,6 +653,7 @@ void main() {
         expect(harness.providers, hasLength(1));
         expect(harness.drafts.identities, hasLength(1));
         expect(find.byType(MailMessageList), findsNothing);
+        expect(gate.isCompleted, isFalse);
 
         harness.configure = null;
         await _connect(tester, kind);
@@ -671,6 +668,8 @@ void main() {
         expect(harness.drafts.identities, hasLength(2));
         expect(_ids(tester), ids);
         expect(_list(tester).selectedId, isNull);
+        gate.complete(_success);
+        await _pump(tester);
         oldCallback(MailBulkFlagAction.flag, ids);
         await _pump(tester);
         expect(oldProvider.commands, hasLength(1));

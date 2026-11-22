@@ -29,9 +29,9 @@ final class StudioMailAccountNavigationTarget {
             !endpoint.hasPort ||
             endpoint.port <= 0 ||
             endpoint.port > 65535) {
-          // Native account fingerprints include the exact socket port. Uri
-          // canonicalizes :0 away for these non-default schemes; a missing
-          // port must not silently turn an invalid route into a default.
+          // Native account fingerprints include the exact server port. Dart
+          // canonicalizes port zero away for these non-HTTP schemes; a missing
+          // port must not silently turn that invalid route into a default.
           _invalid();
         }
       case MailProviderKind.ews:

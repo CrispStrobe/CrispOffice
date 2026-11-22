@@ -1,0 +1,58 @@
+{
+  "reporter_sha256": "03c5eb1d01bfc3c4c2f0321e78921053a2646d899f89cff422d1a7a2d44b905d",
+  "jsonl_framing": "ASCII LF bytes only",
+  "passed": 318,
+  "failed": 0,
+  "skipped": 0,
+  "substantive_cases": 318,
+  "suites": 8,
+  "suite_paths": [
+    "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_account_navigation_native_release_test.dart",
+    "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart",
+    "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_account_navigation_provider_test.dart",
+    "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_account_navigation_router_test.dart",
+    "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_bulk_organization_provider_test.dart",
+    "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart",
+    "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart",
+    "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_cloud_test.dart"
+  ],
+  "missing_suites": [
+    "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+    "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart",
+    "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_local_accounts_dialog_test.dart",
+    "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_presets_test.dart",
+    "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_session_test.dart"
+  ],
+  "unexpected_suites": [],
+  "excluded_loader_or_hook_events": 8,
+  "reporter_error_events": 0,
+  "reporter_done": [],
+  "unfinished_test_ids": [
+    342
+  ],
+  "unmatched_visible_completions": [],
+  "duplicate_start_ids": [],
+  "duplicate_completion_ids": [],
+  "malformed_lf_records": [],
+  "per_suite_cases": {
+    "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_account_navigation_native_release_test.dart": 10,
+    "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart": 40,
+    "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_account_navigation_provider_test.dart": 136,
+    "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_account_navigation_router_test.dart": 8,
+    "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_bulk_organization_provider_test.dart": 25,
+    "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart": 39,
+    "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart": 60
+  },
+  "qualified": false,
+  "checked_at_utc": "2026-11-22T13:53:54.401825+00:00",
+  "source_commit": "8bbe6bcb9d22681a765e85c8fc4a80859221b042",
+  "status": "intentionally_interrupted_for_outbox_owner_review_fix",
+  "selected_suites": 13,
+  "exec_session_exit_code": 130,
+  "flutter_child_exit_code": null,
+  "captured_inputs": 6224,
+  "inputs_before_after_identical": true,
+  "manifest_before_sha256": "7ee01ab4c9ac90fcbbf162b4693737a2dd4a71f0d8494cf4ec69b52d2e3a8b49",
+  "manifest_after_sha256": "7ee01ab4c9ac90fcbbf162b4693737a2dd4a71f0d8494cf4ec69b52d2e3a8b49",
+  "passing_credit": 0
+}

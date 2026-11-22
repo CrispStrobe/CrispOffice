@@ -1,0 +1,22 @@
+{
+  "prior_receipt": "../final-integrated-engine/qualification.json",
+  "prior_source_baseline": "e6b5c23e3d0dfee29fb86fe1a5f6132b3f34de3d",
+  "source_baseline": "b63245a4851f4efd79cf85802cb27ee252d140cd",
+  "prior_input_count": 1415,
+  "new_input_count": 1415,
+  "changed": {
+    "packages/quds_office_engine/lib/src/word/model/word_zotero.dart": {
+      "before": "f3e116ed0962ea30527d763c3eb3b23b37d1907c9a087601dd49261f35890222",
+      "after": "3e301de230dc55825a13b1102b8631efa32afed53f53db7d92675c8a3cf1d7e9"
+    },
+    "packages/quds_office_engine/test/support/zotero_converter_fixtures.dart": {
+      "before": "afa7ef3f7cbb44410940724ad17dee87487429dffef8ba394d65bfacc4b820cb",
+      "after": "dbf3e202314d4efcf30bb5642cfbc1f3a0d0912cc574610f696b1d12a9af40ba"
+    },
+    "packages/quds_office_engine/test/word_zotero_boundary_formatting_test.dart": {
+      "before": "3d152b53af124c93d99c8800538fec86ceadece3292ea969f23cb728666e7487",
+      "after": "2cc714acf52507067c2fccd465dc07a89dc3d5c85a264e6056ccfd941fbddda1"
+    }
+  },
+  "interpretation": "The previous 2585-test receipt remains prior-source evidence. This full replacement gate counts every substantive case once."
+}

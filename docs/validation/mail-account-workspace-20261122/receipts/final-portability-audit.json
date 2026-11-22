@@ -1,5 +1,6 @@
 {
-  "checked_at_utc": "2026-11-22T12:40:17.170913+00:00",
+  "checked_at_utc": "2026-11-22T13:16:18.875263+00:00",
+  "canonical_source_commit": "7c2f6e744b3489460035bbbb358d46e22e58ce20",
   "split_raw_bytes_equal": true,
   "split_raw_sha256": "7836c5c824b9585d17b7818f1dc7271e061340ec0202acda8f30121d9ced9e8b",
   "split_adapter_cases": 174,
@@ -9,7 +10,7 @@
   "smoke_other_difference_count": 0,
   "smoke_canonical_bytes_equal": true,
   "smoke_canonical_sha256": "0bbdfe5579a2604573d57f2c20727b1bd986d5c2c76b190572be633079bc4480",
-  "normalization": "Only finite integral numeric representations differ. All object keys, array order/length, strings, booleans, other values and numeric values are compared.",
+  "normalization": "Only finite integral numeric representations differ. Object keys, array order/length, strings, booleans, other values and numeric values are compared.",
   "smoke_numeric_encoding_difference_paths": [
     "$.docm.state.body[0].after",
     "$.docm.state.body[0].before",
@@ -70,5 +71,5 @@
     "$.docx.state.tables[1].rows[0].cells[0].paragraph.before",
     "$.docx.state.tables[1].rows[0].cells[0].width"
   ],
-  "no_test_executions": true
+  "no_test_executions_by_this_audit": true
 }

@@ -1,0 +1,14 @@
+{
+  "previous_source": "e6487fc634ec45298f161432bb0396865190d5bb",
+  "local_source": "229d6f78c2b6f25e5d8304658c131659978fe63d",
+  "tree": "0abc1d252dbbff5d70bc717c3740ee24673723ee",
+  "captured_inputs": 6224,
+  "changed_inputs": [
+    "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_ews_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_outbox_host_test.dart",
+    "packages/quds_office_editor/example/test/studio_mail_session_test.dart"
+  ],
+  "all_other_captured_inputs_unchanged": true,
+  "production_changed": false
+}

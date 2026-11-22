@@ -11,6 +11,13 @@ archive, Studio workflows and remaining MailStore parity work.
 
 ## Desktop mail parity: ordered increments
 
+The connected-account and Archive work is reconciled with complete compose
+and Outbox storage ownership. Manual sends, acknowledged retries and foreground
+schedules retain their original storage owner through final receipt persistence.
+Close shares the original draft preservation, and a replacement account waits
+for pending admission and release. The [current integration qualification](../../validation/mail-account-workspace-20261122/README.md)
+records this combined source and its executed acceptance gates.
+
 The [remembered Archive continuation](remembered-archive.md) adds account-owned
 custom destinations for connected IMAP, EWS and Microsoft 365. A standalone
 localized setting supports save, change, clear and missing-folder repair even

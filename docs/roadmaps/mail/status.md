@@ -25,7 +25,17 @@ interrupted work.
 | Account persistence/navigation | Native account store, schema migrations and a verified four-provider chooser with exact non-secret routes, draft-safe explicit sign-in and guarded foreground handoff; one connected account at a time |
 | Browser store | Implemented path; quota/reload/Web Locks acceptance remains open |
 
-## Latest increment: remembered Archive destinations
+## Latest integration: account ownership and remembered Archive
+
+The [current integration record](../../validation/mail-account-workspace-20261122/README.md)
+records qualification for the combined connected-account and Archive source. Compose, manual
+Outbox Send, acknowledged retries and foreground schedules keep the exact old
+storage owner until the delivery outcome is persisted. Close shares initial
+preservation instead of creating a second draft; pending account admission,
+observer cancellation and owner release finish before another account proceeds.
+Failed saves or cleanup preserve explicit recovery.
+
+### Remembered Archive destinations
 
 Connected IMAP, Exchange EWS and Microsoft 365 accounts with Move support now
 offer **Archive destination** without requiring a selected message. Save, change
@@ -48,10 +58,11 @@ The [workflow guide](remembered-archive.md) and
 [local qualification record](../../validation/mail-remembered-archive-20261122/README.md)
 describe source reconciliation, executed tests and remaining acceptance limits.
 
-Local qualification accepts **5,685 distinct cases**, including 2,538 Studio
-cases with the final affected workflows rerun. All 43 changed Mail Dart paths
-pass strict analysis and formatting. The linked work record preserves the
-original failures, corrections, exact source bindings and count deduplication.
+The incoming Archive checkpoint independently records **5,685 distinct cases**,
+including 2,538 Studio cases, and strict checks on 43 changed Mail Dart paths.
+Those historical results retain their original source boundary. Acceptance for
+the combined source is recorded in the current integration record above, which
+preserves failures, corrections, exact source bindings and count deduplication.
 
 Categories/tags and previewable ordered rules are next, followed by body/provider
 search, persistent conversations, provider Drafts/Sent reconciliation and fuller
@@ -350,7 +361,7 @@ Host-specific limits:
 - Indexed body search and server-side discovery.
 - Continuous refresh of shared saved views.
 - Simultaneous background accounts and a live cross-account unified Inbox.
-- Remembered custom Archive destinations and provider-aware categories/rules.
+- Provider-aware categories/tags and ordered rules with preview and recovery.
 - A complete unified Mail workspace across every host.
 - Live-provider, installed-platform and browser acceptance for new features.
 - Full MailStore parity and encrypted local storage.

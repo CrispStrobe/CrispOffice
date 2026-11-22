@@ -1,0 +1,12 @@
+{
+  "recorded_at_utc": "2026-11-22T13:41:24.815471+00:00",
+  "baseline": "800c3dfd56b169831222d53a02e2b7b83f4f1857",
+  "baseline_tree": "7c2a4a5a898c4c0ca8c1075e85c22e2b1468767f",
+  "input_count": 1421,
+  "input_manifest_sha256": "7efde2fa97ad094c16cc8f76df6ad9cdd4670133992cdcedeed9ee5dd4e7543f",
+  "local_path_dependency": "legacy_doc_parser",
+  "captured_scope": "Complete engine and legacy-parser library source; engine test/helper/fixture/tool/macro source; both package manifests and analysis configs; root workspace manifest/lock/pin/analysis config; generated package configuration",
+  "host_editor_inputs_excluded": true,
+  "external_packages": "Unmodified locked package cache from runtime-provenance.json verified archives; no dependency restoration or SDK/cache edits during this gate",
+  "concurrency_boundary": "Other agents may edit only Mail host/editor test files outside this input scope; no engine/config changes permitted"
+}

@@ -276,6 +276,17 @@ Future<void> _pump(WidgetTester tester) async {
   await tester.pump();
 }
 
+Future<void> _waitForHostDismissal(WidgetTester tester) async {
+  final route = find.byType(StudioMailCloudDialog);
+  // A gated release can finish after the ordinary pump starts its last frame.
+  // Drain real microtasks and allow the subsequent route animation to finish.
+  for (var frame = 0; frame < 40 && route.evaluate().isNotEmpty; frame++) {
+    await tester.pump();
+    await tester.runAsync(() => Future<void>.delayed(Duration.zero));
+    await tester.pump(const Duration(milliseconds: 25));
+  }
+}
+
 Future<void> _show(
   WidgetTester tester,
   _Harness harness, {
@@ -1057,14 +1068,7 @@ void main() {
       expect(drafts.closes, 0);
       expect(find.byType(StudioMailCloudDialog), findsOneWidget);
       gate.complete();
-      for (
-        var turn = 0;
-        turn < 100 && find.byType(StudioMailCloudDialog).evaluate().isNotEmpty;
-        turn++
-      ) {
-        await tester.pump(const Duration(milliseconds: 10));
-        await tester.runAsync(() => Future<void>.delayed(Duration.zero));
-      }
+      await _waitForHostDismissal(tester);
       expect(drafts.closes, 1);
       expect(drafts.records, isEmpty);
       expect(provider.disposals, 1);

@@ -48,6 +48,18 @@ reusable `QudsMailWorkspace` milestone remains open.
   changes as well as account switching. Disconnect starts observer cancellation
   before waiting for draft restoration, so a pending initial saved-mail view
   cannot prevent cleanup. Storage ownership ends only after both have drained.
+- Keep Exchange/cloud Close available while a request or draft restoration is
+  in progress. Stop further batch dispatch before awaiting a save, retire the
+  connection after the draft or Outbox transfer is preserved, and drain observers
+  before waiting for restoration. A submission shares its original preservation
+  with Close; a second save must not recreate an accepted or queued draft. Keep
+  its owner open until a known provider outcome finishes local persistence.
+  Failed preservation leaves the session and retained draft available for retry.
+- Retain native and provider storage owners through complete foreground Outbox
+  attempts, including Send, acknowledged Check and retry, and scheduled sends.
+  Disconnect retires the live session immediately; the old owner's final receipt
+  must finish before the next account opens its storage. Reopening shows
+  the persisted outcome and the original frozen message contents.
 - Restore drafts, cached state, Outbox and historical uncertainty only through
   their owning account. Navigation never treats unknown delivery as success
   and never replays a send or mailbox command.
@@ -76,11 +88,10 @@ reuses the host's existing credential boundary. It does not add simultaneous
 background accounts, a unified live Inbox, automatic account reconnection,
 cross-account message mutation or a new background sending permission.
 
-The [reconciled qualification record](../../validation/mail-connected-navigation-20261122/README.md)
+The [current integration qualification](../../validation/mail-account-workspace-20261122/README.md)
 records exact source checkpoints, executed tests, runtime provenance and
-remaining acceptance gates; the incoming
-[account-workspace record](../../validation/mail-account-workspace-20261122/README.md)
-remains intact as historical evidence. The focused coverage includes provider routing,
+remaining acceptance gates for the combined navigation, Archive and submission
+ownership work. The focused coverage includes provider routing,
 catalog conflicts, account replacement during sign-in, draft/uncertainty
 preservation, observer cancellation, late owner acquisition and conditional
 SQLite refresh. Shared Mail regressions and incoming Word work have separate
@@ -89,8 +100,10 @@ receipts. No final Studio test count is inferred from those other cohorts.
 The [initial account-navigation guide](account-navigation.md) and
 [development work record](../../validation/mail-connected-navigation-20261122/README.md)
 are retained for provenance, including the incoming owner/observer release
-continuation. Its final qualification plan was prepared without execution;
-it is not a passing result for the current combined source.
+continuation and its independently executed source-bound gates. The
+[Archive qualification](../../validation/mail-remembered-archive-20261122/README.md)
+also retains its original boundary. The current record explicitly reconciles
+those sources; earlier passing counts are not automatically credited again.
 
 Live-provider, installed-platform and full desktop-client acceptance remain
 separate from deterministic local fixtures. GitHub Actions queue completion is

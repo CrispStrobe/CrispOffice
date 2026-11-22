@@ -1,0 +1,67 @@
+{
+  "checked_at_utc": "2026-11-22T13:28:35.982827+00:00",
+  "raw_reporter_framing": "LF-delimited JSONL. Python str.splitlines() is not valid framing when JSON string values contain literal U+0085, U+2028 or U+2029.",
+  "attempt01": {
+    "passed": 132,
+    "failed": 1,
+    "unmatched_visible_completions": 0,
+    "malformed_lf_records": 0,
+    "count_unchanged": true
+  },
+  "attempt02": {
+    "passed": 564,
+    "failed": 1,
+    "skipped": 0,
+    "unmatched_visible_completions": 0,
+    "malformed_lf_records": 0,
+    "child_exit_code": null,
+    "old_unicode_splitlines_subtotal": 561,
+    "restored_identified_cases": [
+      {
+        "id": 569,
+        "suite_id": 549,
+        "suite": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_attachment_test.dart",
+        "name": "rejects unsafe filename \"next\u0085line.txt\" before snapshotting",
+        "result": "success",
+        "skipped": false,
+        "unicode_line_separator_codepoints": [
+          "U+0085"
+        ]
+      },
+      {
+        "id": 570,
+        "suite_id": 549,
+        "suite": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_attachment_test.dart",
+        "name": "rejects unsafe filename \"separator\u2028.txt\" before snapshotting",
+        "result": "success",
+        "skipped": false,
+        "unicode_line_separator_codepoints": [
+          "U+2028"
+        ]
+      },
+      {
+        "id": 571,
+        "suite_id": 549,
+        "suite": "/workspace/scratch/7fc035b3e3ba/quds_office_suite/packages/quds_office_editor/example/test/studio_mail_attachment_test.dart",
+        "name": "rejects unsafe filename \"paragraph\u2029.txt\" before snapshotting",
+        "result": "success",
+        "skipped": false,
+        "unicode_line_separator_codepoints": [
+          "U+2029"
+        ]
+      }
+    ],
+    "superseded_receipt": "studio-second-attempt-unicode-splitlines-diagnostic.json",
+    "corrected_receipt": "studio-second-attempt-qualification.json",
+    "original_raw_hashes_preserved": {
+      "tests.jsonl": "454b91b79303b8e262dbdda698c93a7cb80637172f8b84ba7b98dcbe40665a41",
+      "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "inputs-before.json": "dee7b3e8224c49f12868b60563c2ed5e83b81f46fa622ba66e6abcc295c4f3ed",
+      "inputs-after.json": "dee7b3e8224c49f12868b60563c2ed5e83b81f46fa622ba66e6abcc295c4f3ed"
+    }
+  },
+  "archived_pre_fix_runner": "studio-runner-before-lf-framing-fix.py",
+  "archived_pre_fix_runner_sha256": "eddf0af9171cc137e51ae4aa96edfccdcdb3d2638c5b3b24080c9bf1657142c6",
+  "sdk_or_test_source_modified": false,
+  "new_test_executions": 0
+}

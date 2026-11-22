@@ -73,7 +73,10 @@ This closes a locally reproduced wait cycle without replaying mail operations.
 ## Qualification and next milestones
 
 The [work and local qualification record](../../validation/mail-remembered-archive-20261122/README.md)
-records exact source checkpoints, commands, observed results and intake coverage.
+records the original Archive source checkpoints, commands, observed results and
+intake coverage. The [current integration record](../../validation/mail-account-workspace-20261122/README.md)
+adds complete compose/Outbox receipt ownership and reconciles delayed account
+admission without changing the saved-destination contract.
 Deterministic local tests do not establish live-provider or installed-platform
 release acceptance. GitHub Actions queue completion is not a dependency.
 

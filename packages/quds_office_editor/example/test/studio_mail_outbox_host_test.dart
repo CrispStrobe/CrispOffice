@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
 
@@ -17,6 +18,7 @@ import 'package:quds_office_studio/studio_mail_drafts_strings.dart';
 import 'package:quds_office_studio/studio_mail_ews.dart';
 import 'package:quds_office_studio/studio_mail_message_loader.dart';
 import 'package:quds_office_studio/studio_mail_native.dart';
+import 'package:quds_office_studio/studio_mail_outbox.dart';
 import 'package:quds_office_studio/studio_mail_outbox_dialog.dart';
 import 'package:quds_office_studio/studio_mail_outbox_strings.dart';
 import 'package:quds_office_studio/studio_mail_strings.dart';
@@ -34,6 +36,91 @@ StudioMailDraftAccount _identity({bool ews = false}) => StudioMailDraftAccount(
   login: ews ? jsonEncode(['', _sender]) : _sender,
   sender: _sender,
 );
+
+/// Real SQLite writes with independent gates for the remote reply and its
+/// receipt. Closing the delegate early makes its final write fail normally.
+final class _GatedOutboxOwner
+    implements StudioMailDraftStore, StudioMailOutboxStore {
+  _GatedOutboxOwner(this.delegate);
+
+  final SqliteStudioMailDraftStore delegate;
+  final receiptGate = Completer<void>();
+  final receiptStarted = Completer<void>();
+  final released = Completer<void>();
+  final events = <String>[];
+  int closeCalls = 0;
+  int receiptCalls = 0;
+
+  @override
+  MailAccountId get account => delegate.account;
+
+  @override
+  Future<StudioMailStoredDraft?> load() => delegate.load();
+
+  @override
+  Future<void> save(
+    StudioMailDraft draft, {
+    required bool submissionUncertain,
+  }) => delegate.save(draft, submissionUncertain: submissionUncertain);
+
+  @override
+  Future<void> saveRejectedDraft(
+    StudioMailDraft draft, {
+    required bool wasPreviouslyUncertain,
+  }) => delegate.saveRejectedDraft(
+    draft,
+    wasPreviouslyUncertain: wasPreviouslyUncertain,
+  );
+
+  @override
+  Future<void> clear() => delegate.clear();
+
+  @override
+  Future<List<MailOutboxEntry>> loadOutbox() => delegate.loadOutbox();
+
+  @override
+  Future<MailOutboxEntry> enqueueOutbox(StudioMailDraft draft, String sender) =>
+      delegate.enqueueOutbox(draft, sender);
+
+  @override
+  Future<MailOutboxEntry> beginOutboxAttempt(
+    MailOutboxEntry entry, {
+    bool acknowledgeUncertain = false,
+  }) => delegate.beginOutboxAttempt(
+    entry,
+    acknowledgeUncertain: acknowledgeUncertain,
+  );
+
+  @override
+  Future<MailOutboxEntry> completeOutboxAttempt(
+    MailOutboxEntry entry,
+    MailSubmissionResult result,
+  ) async {
+    receiptCalls++;
+    events.add('receipt started');
+    if (!receiptStarted.isCompleted) receiptStarted.complete();
+    await receiptGate.future;
+    final completed = await delegate.completeOutboxAttempt(entry, result);
+    events.add('receipt persisted');
+    return completed;
+  }
+
+  @override
+  Future<MailOutboxEntry> cancelOutbox(MailOutboxEntry entry) =>
+      delegate.cancelOutbox(entry);
+
+  @override
+  Future<void> removeOutbox(MailOutboxEntry entry) =>
+      delegate.removeOutbox(entry);
+
+  @override
+  Future<void> close() async {
+    closeCalls++;
+    events.add('owner closed');
+    await delegate.close();
+    if (!released.isCompleted) released.complete();
+  }
+}
 
 final class _Credentials implements StudioMailCredentialStore {
   @override
@@ -69,6 +156,7 @@ final class _Client extends Fake implements mail.MailClient {
   final senders = <String?>[];
   final appendRequests = <bool>[];
   Future<void> Function()? onSend;
+  int disconnects = 0;
 
   @override
   mail.Mailbox get selectedMailbox => inbox;
@@ -77,7 +165,10 @@ final class _Client extends Fake implements mail.MailClient {
     Duration timeout = const Duration(seconds: 20),
   }) async {}
   @override
-  Future<void> disconnect() async {}
+  Future<void> disconnect() async {
+    disconnects++;
+  }
+
   @override
   Future<List<mail.Mailbox>> listMailboxes({
     List<mail.MailboxFlag>? order,
@@ -121,6 +212,7 @@ final class _EwsProvider extends Fake implements MailEwsProvider {
   final MailEwsConfiguration configuration;
   final submissions = <MailPreparedMessage>[];
   final attempts = <String>[];
+  final leases = <MailOperationLease>[];
   Future<void> Function()? onSubmit;
 
   @override
@@ -158,6 +250,7 @@ final class _EwsProvider extends Fake implements MailEwsProvider {
     expectSync(lease.isCurrent, isTrue);
     submissions.add(message);
     attempts.add(attemptId);
+    leases.add(lease);
     await onSubmit?.call();
     return MailSubmissionResult(
       attemptId: attemptId,
@@ -168,6 +261,10 @@ final class _EwsProvider extends Fake implements MailEwsProvider {
 
 Finder _field(String label) => find.byWidgetPredicate(
   (widget) => widget is TextField && widget.decoration?.labelText == label,
+);
+Finder _iconButton(String tooltip) => find.byWidgetPredicate(
+  (widget) => widget is IconButton && widget.tooltip == tooltip,
+  skipOffstage: false,
 );
 Finder _action(String action, MailOutboxEntry entry) =>
     find.byKey(ValueKey('studio-mail-outbox-$action-${entry.id}'));
@@ -224,8 +321,9 @@ Future<void> _mountHost(WidgetTester tester, Widget host) async {
 Future<void> _native(
   WidgetTester tester,
   SqliteOutboxFixture fixture,
-  _Client client,
-) async {
+  _Client client, {
+  StudioMailDraftStoreFactory? draftStoreFactory,
+}) async {
   await _mountHost(
     tester,
     StudioMailDialog(
@@ -233,7 +331,7 @@ Future<void> _native(
       clientFactory: (_) => client,
       messageLoaderFactory: (_) => _Loader(),
       credentialStore: _Credentials(),
-      draftStoreFactory: fixture.open,
+      draftStoreFactory: draftStoreFactory ?? fixture.open,
     ),
   );
   await tester.enterText(_field(_strings.emailAddress), _sender);
@@ -252,8 +350,9 @@ Future<void> _native(
 
 Future<_EwsProvider> _ews(
   WidgetTester tester,
-  SqliteOutboxFixture fixture,
-) async {
+  SqliteOutboxFixture fixture, {
+  StudioMailDraftStoreFactory? draftStoreFactory,
+}) async {
   late _EwsProvider provider;
   await _mountHost(
     tester,
@@ -261,7 +360,7 @@ Future<_EwsProvider> _ews(
       strings: _strings,
       providerFactory: (configuration, credentials) =>
           provider = _EwsProvider(configuration),
-      draftStoreFactory: fixture.open,
+      draftStoreFactory: draftStoreFactory ?? fixture.open,
     ),
   );
   await tester.enterText(
@@ -756,6 +855,212 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
+  for (final mode in ['compose Send', 'Outbox Send', 'Outbox Retry']) {
+    testWidgets(
+      'native Disconnect during $mode retains the owner through its receipt',
+      (tester) async {
+        final fixture = await _fixture(tester);
+        final fromOutbox = mode != 'compose Send';
+        final retry = mode == 'Outbox Retry';
+        MailOutboxEntry? frozen;
+        if (fromOutbox) {
+          final seed = await awaitOutboxOperation(tester, fixture.openLoaded());
+          final queued = await awaitOutboxOperation(
+            tester,
+            seed.enqueueOutbox(
+              outboxFixtureDraft(subject: 'Retain the native receipt'),
+              _sender,
+            ),
+          );
+          frozen = queued;
+          if (retry) {
+            final attempt = await awaitOutboxOperation(
+              tester,
+              seed.beginOutboxAttempt(queued),
+            );
+            frozen = await awaitOutboxOperation(
+              tester,
+              seed.completeOutboxAttempt(
+                attempt,
+                MailSubmissionResult(
+                  attemptId: attempt.attemptId!,
+                  outcome: MailSubmissionOutcome.uncertain,
+                ),
+              ),
+            );
+          }
+          await awaitOutboxOperation(tester, seed.close());
+        }
+        final owners = <_GatedOutboxOwner>[];
+        final replyGate = Completer<void>();
+        final replyStarted = Completer<void>();
+        addTearDown(() {
+          if (!replyGate.isCompleted) replyGate.complete();
+          for (final owner in owners) {
+            if (!owner.receiptGate.isCompleted) owner.receiptGate.complete();
+          }
+        });
+        final client = _Client()
+          ..onSend = () {
+            replyStarted.complete();
+            return replyGate.future;
+          };
+        await _native(
+          tester,
+          fixture,
+          client,
+          draftStoreFactory: (identity) async {
+            final delegate =
+                await fixture.open(identity) as SqliteStudioMailDraftStore;
+            final owner = _GatedOutboxOwner(delegate);
+            owners.add(owner);
+            return owner;
+          },
+        );
+        expect(owners, hasLength(1));
+        final owner = owners.single;
+        expect(owner.delegate, same(fixture.adapters.last));
+        final disconnect = tester
+            .widget<IconButton>(_iconButton(_strings.disconnect))
+            .onPressed!;
+        VoidCallback? retainedSend;
+        StudioMailOutboxSubmissionRunner? retainedRunner;
+        bool Function()? isCurrentOutbox;
+        if (fromOutbox) {
+          await _press(tester, _openOutbox);
+          final dialog = tester.widget<StudioMailOutboxDialog>(
+            find.byType(StudioMailOutboxDialog),
+          );
+          isCurrentOutbox = dialog.isCurrent;
+          retainedRunner = dialog.runSubmission!;
+          retainedSend = tester
+              .widget<FilledButton>(_action('send', frozen!))
+              .onPressed!;
+          retainedSend();
+          await _pump(tester);
+          if (retry) {
+            final confirm = find.byKey(
+              const ValueKey('studio-mail-outbox-confirm'),
+            );
+            expect(tester.widget<FilledButton>(confirm).onPressed, isNull);
+            await tester.tap(
+              find.byKey(const ValueKey('studio-mail-outbox-acknowledge')),
+            );
+            await tester.pump();
+            await tester.tap(confirm);
+          }
+        } else {
+          await _compose(tester, subject: 'Retain the native receipt');
+          await _press(
+            tester,
+            find.widgetWithText(FilledButton, _strings.send),
+          );
+        }
+        await awaitOutboxOperation(tester, replyStarted.future);
+        await _pump(tester);
+        expect(client.sent, hasLength(1));
+        if (fromOutbox) expect(isCurrentOutbox!(), isTrue);
+        final pending = (await awaitOutboxOperation(
+          tester,
+          owner.loadOutbox(),
+        )).single;
+        final original = frozen ?? pending;
+        expect(pending.state, MailOutboxState.submitting);
+        expect(pending.attemptNumber, retry ? 2 : 1);
+        expect(
+          client.sent.single.renderMessage(),
+          ascii.decode(original.prepared.wire.bytes),
+        );
+
+        // Native transport shutdown does not complete the still-pending SMTP
+        // future or its SQLite receipt. A retained modal hook can cancel it now.
+        disconnect();
+        await _pump(tester);
+        expect(client.disconnects, 1);
+        if (fromOutbox) expect(isCurrentOutbox!(), isFalse);
+        expect(owner.closeCalls, 0);
+        expect(owner.receiptCalls, 0);
+        expect(
+          tester
+              .widget<FilledButton>(
+                find.widgetWithText(
+                  FilledButton,
+                  _strings.connect,
+                  skipOffstage: false,
+                ),
+              )
+              .onPressed,
+          isNull,
+        );
+        retainedSend?.call();
+        if (retainedRunner case final runner?) {
+          var retiredInvocations = 0;
+          await expectLater(
+            runner(() async {
+              retiredInvocations++;
+              return pending;
+            }),
+            throwsA(
+              isA<StudioMailDraftStoreException>().having(
+                (failure) => failure.code,
+                'code',
+                MailProblemCode.unavailable,
+              ),
+            ),
+          );
+          expect(retiredInvocations, 0);
+        }
+        await _pump(tester);
+        expect(client.sent, hasLength(1));
+        expect(owners, hasLength(1));
+
+        replyGate.complete();
+        await awaitOutboxOperation(tester, owner.receiptStarted.future);
+        expect(owner.closeCalls, 0);
+        expect(owner.receiptCalls, 1);
+        expect(owner.events, ['receipt started']);
+        expect(
+          (await awaitOutboxOperation(tester, owner.loadOutbox())).single.state,
+          MailOutboxState.submitting,
+        );
+        owner.receiptGate.complete();
+        await awaitOutboxOperation(tester, owner.released.future);
+        await _pump(tester);
+        expect(owner.closeCalls, 1);
+        expect(owner.events, [
+          'receipt started',
+          'receipt persisted',
+          'owner closed',
+        ]);
+
+        final reopened = await awaitOutboxOperation(
+          tester,
+          fixture.openLoaded(),
+        );
+        final committed = (await awaitOutboxOperation(
+          tester,
+          reopened.loadOutbox(),
+        )).single;
+        expect(committed.id, original.id);
+        expect(committed.state, MailOutboxState.submitted);
+        expect(committed.attemptId, pending.attemptId);
+        expect(committed.attemptNumber, retry ? 2 : 1);
+        expect(committed.prepared.wire.bytes, original.prepared.wire.bytes);
+        expect(
+          committed.prepared.envelope.recipients,
+          original.prepared.envelope.recipients,
+        );
+        expect(await awaitOutboxOperation(tester, reopened.load()), isNull);
+        retainedSend?.call();
+        await _pump(tester);
+        expect(client.sent, hasLength(1));
+        expect(owner.receiptCalls, 1);
+        expect(owner.closeCalls, 1);
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
+
   testWidgets(
     'queue storage failure retains the editable and saved native draft',
     (tester) async {
@@ -854,6 +1159,125 @@ void main() {
         )).single.state,
         MailOutboxState.submitted,
       );
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'EWS Disconnect during Outbox Send retains the owner through its receipt',
+    (tester) async {
+      final fixture = await _fixture(tester, ews: true);
+      final seed = await awaitOutboxOperation(tester, fixture.openLoaded());
+      final frozen = await awaitOutboxOperation(
+        tester,
+        seed.enqueueOutbox(
+          outboxFixtureDraft(subject: 'Preserve the accepted receipt'),
+          _sender,
+        ),
+      );
+      await awaitOutboxOperation(tester, seed.close());
+      final owners = <_GatedOutboxOwner>[];
+      final replyGate = Completer<void>();
+      final replyStarted = Completer<void>();
+      addTearDown(() {
+        if (!replyGate.isCompleted) replyGate.complete();
+        for (final owner in owners) {
+          if (!owner.receiptGate.isCompleted) owner.receiptGate.complete();
+        }
+      });
+      final provider = await _ews(
+        tester,
+        fixture,
+        draftStoreFactory: (identity) async {
+          final delegate =
+              await fixture.open(identity) as SqliteStudioMailDraftStore;
+          final owner = _GatedOutboxOwner(delegate);
+          owners.add(owner);
+          return owner;
+        },
+      );
+      expect(owners, hasLength(1));
+      final owner = owners.single;
+      expect(owner.delegate, same(fixture.adapters.last));
+      final disconnect = tester
+          .widget<IconButton>(_iconButton(_strings.disconnect))
+          .onPressed!;
+      provider.onSubmit = () {
+        replyStarted.complete();
+        return replyGate.future;
+      };
+      await _press(tester, _openOutbox);
+      final send = tester
+          .widget<FilledButton>(_action('send', frozen))
+          .onPressed!;
+      send();
+      await awaitOutboxOperation(tester, replyStarted.future);
+      await _pump(tester);
+      expect(provider.submissions, hasLength(1));
+      expect(provider.leases.single.isCurrent, isTrue);
+
+      // This captured host hook intentionally remains a same-session cancel
+      // during modal review. It must retire transport without losing the owner.
+      disconnect();
+      await _pump(tester);
+      expect(provider.leases.single.isCurrent, isFalse);
+      expect(owner.closeCalls, 0);
+      expect(owner.receiptCalls, 0);
+      expect(
+        tester
+            .widget<FilledButton>(
+              find.byKey(const ValueKey('ews-connect'), skipOffstage: false),
+            )
+            .onPressed,
+        isNull,
+      );
+      send();
+      await _pump(tester);
+      expect(provider.submissions, hasLength(1));
+      expect(owners, hasLength(1));
+      expect(
+        (await awaitOutboxOperation(tester, owner.loadOutbox())).single.state,
+        MailOutboxState.submitting,
+      );
+
+      replyGate.complete();
+      await awaitOutboxOperation(tester, owner.receiptStarted.future);
+      expect(owner.receiptCalls, 1);
+      expect(owner.closeCalls, 0);
+      expect(owner.events, ['receipt started']);
+      expect(
+        (await awaitOutboxOperation(tester, owner.loadOutbox())).single.state,
+        MailOutboxState.submitting,
+      );
+      owner.receiptGate.complete();
+      await awaitOutboxOperation(tester, owner.released.future);
+      await _pump(tester);
+      expect(owner.closeCalls, 1);
+      expect(owner.events, [
+        'receipt started',
+        'receipt persisted',
+        'owner closed',
+      ]);
+
+      final reopened = await awaitOutboxOperation(tester, fixture.openLoaded());
+      final committed = (await awaitOutboxOperation(
+        tester,
+        reopened.loadOutbox(),
+      )).single;
+      expect(committed.id, frozen.id);
+      expect(committed.state, MailOutboxState.submitted);
+      expect(committed.attemptId, provider.attempts.single);
+      expect(committed.attemptNumber, 1);
+      expect(committed.prepared.wire.bytes, frozen.prepared.wire.bytes);
+      expect(
+        committed.prepared.envelope.recipients,
+        frozen.prepared.envelope.recipients,
+      );
+      send();
+      await _pump(tester);
+      expect(provider.submissions, hasLength(1));
+      expect(owner.receiptCalls, 1);
+      expect(owner.closeCalls, 1);
       expect(tester.takeException(), isNull);
     },
   );

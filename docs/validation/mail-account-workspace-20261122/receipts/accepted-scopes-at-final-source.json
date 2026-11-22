@@ -1,0 +1,44 @@
+{
+  "checked_at_utc": "2026-11-22T14:21:11.995012+00:00",
+  "canonical_source_checkpoint": "9ce2b057ed8fac6bf6746a1700a6b3ca84f7f405",
+  "canonical_source_tree": "0abc1d252dbbff5d70bc717c3740ee24673723ee",
+  "scopes": [
+    {
+      "scope": "engine",
+      "input_count": 1421,
+      "before_after_current_identical": true,
+      "original_manifest_sha256": "7efde2fa97ad094c16cc8f76df6ad9cdd4670133992cdcedeed9ee5dd4e7543f",
+      "final_manifest_sha256": "7efde2fa97ad094c16cc8f76df6ad9cdd4670133992cdcedeed9ee5dd4e7543f",
+      "source_manifest": ".runtime/validation/final-ab-engine/inputs-before.json",
+      "missing_current_inputs": [],
+      "changed_current_inputs": []
+    },
+    {
+      "scope": "shared_mail",
+      "input_count": 571,
+      "before_after_current_identical": true,
+      "original_manifest_sha256": "470afd0aec2f5d36a4a2c9611ac96bcada9dbdde2740eedb32d2bb09be67869a",
+      "final_manifest_sha256": "470afd0aec2f5d36a4a2c9611ac96bcada9dbdde2740eedb32d2bb09be67869a",
+      "source_manifest": ".runtime/validation/mail-core-source-before.json",
+      "missing_current_inputs": [],
+      "changed_current_inputs": []
+    },
+    {
+      "scope": "mail_store",
+      "input_count": 170,
+      "before_after_current_identical": true,
+      "original_manifest_sha256": "788810a5012bf87e17c286e3e9784fa8b9b38eee8d47acf0e12621042e6486ee",
+      "final_manifest_sha256": "b5399573bed0519f677ab01146b928258d8938eaaca087e3ba53a5ac0064b25b",
+      "source_manifest": "store-full-validation/inputs-before.json",
+      "missing_current_inputs": [],
+      "changed_current_inputs": []
+    }
+  ],
+  "all_scoped_inputs_match": true,
+  "engine_cases_retained_from_fresh_ab_gate": 2899,
+  "engine_suites": 65,
+  "mail_cases_retained_from_earlier_exact_inputs": 2722,
+  "mail_suites": 124,
+  "fresh_test_executions_by_this_check": 0,
+  "meaning": "Binds previously accepted scoped evidence to the final host checkpoint by exact captured input equality; does not qualify Mail host/editor code."
+}

@@ -14,6 +14,7 @@ import 'package:quds_mail_store/quds_mail_store.dart';
 import 'package:quds_office_editor/quds_office_editor.dart';
 import 'package:quds_office_studio/studio_mail_compose.dart';
 import 'package:quds_office_studio/studio_mail_bulk_status.dart';
+import 'package:quds_office_studio/studio_mail_draft_store.dart';
 import 'package:quds_office_studio/studio_mail_ews.dart';
 import 'package:quds_office_studio/studio_mail_native.dart';
 import 'package:quds_office_studio/studio_mail_strings.dart';
@@ -27,6 +28,46 @@ import 'support/mail_attachment_picker.dart';
 import 'support/mail_draft_store.dart';
 
 const _strings = StudioStrings(StudioLanguage.en);
+
+final class _GatedDraftCleanup implements StudioMailDraftStore {
+  _GatedDraftCleanup(this.delegate);
+
+  final StudioMailDraftStore delegate;
+  final clearGate = Completer<void>();
+  int clearCalls = 0;
+  int closeCalls = 0;
+
+  @override
+  Future<StudioMailStoredDraft?> load() => delegate.load();
+
+  @override
+  Future<void> save(
+    StudioMailDraft draft, {
+    required bool submissionUncertain,
+  }) => delegate.save(draft, submissionUncertain: submissionUncertain);
+
+  @override
+  Future<void> saveRejectedDraft(
+    StudioMailDraft draft, {
+    required bool wasPreviouslyUncertain,
+  }) => delegate.saveRejectedDraft(
+    draft,
+    wasPreviouslyUncertain: wasPreviouslyUncertain,
+  );
+
+  @override
+  Future<void> clear() async {
+    clearCalls++;
+    await clearGate.future;
+    await delegate.clear();
+  }
+
+  @override
+  Future<void> close() async {
+    closeCalls++;
+    await delegate.close();
+  }
+}
 
 final class _Provider extends Fake implements MailEwsProvider {
   _Provider(this.configuration, this.credentials);
@@ -221,6 +262,17 @@ Future<void> _pump(WidgetTester tester) async {
   await tester.pump();
 }
 
+Future<void> _waitForHostDismissal(WidgetTester tester) async {
+  final route = find.byType(StudioMailEwsDialog);
+  // A gated release can finish after the ordinary pump starts its last frame.
+  // Drain real microtasks and allow the subsequent route animation to finish.
+  for (var frame = 0; frame < 40 && route.evaluate().isNotEmpty; frame++) {
+    await tester.pump();
+    await tester.runAsync(() => Future<void>.delayed(Duration.zero));
+    await tester.pump(const Duration(milliseconds: 25));
+  }
+}
+
 Finder _field(String key) => find.byKey(ValueKey(key));
 Finder _iconButton(String tooltip) => find.byWidgetPredicate(
   (widget) => widget is IconButton && widget.tooltip == tooltip,
@@ -233,6 +285,7 @@ Future<void> _show(
   StudioMailArchiveWriter? archiveWriter,
   StudioMailArchiveFolderWriter? archiveFolderWriter,
   MemoryStudioMailDrafts? drafts,
+  StudioMailDraftStoreFactory? draftStoreFactory,
 }) async {
   final draftStorage = drafts ?? MemoryStudioMailDrafts();
   tester.view
@@ -248,7 +301,7 @@ Future<void> _show(
             onPressed: () => showDialog<void>(
               context: context,
               builder: (_) => StudioMailEwsDialog(
-                draftStoreFactory: draftStorage.open,
+                draftStoreFactory: draftStoreFactory ?? draftStorage.open,
                 strings: _strings,
                 providerFactory: factory,
                 archiveWriter: archiveWriter,
@@ -778,19 +831,18 @@ void main() {
       await _pump(tester);
       final connect = _field('ews-connect');
       expect(previous.lastLease!.isCurrent, isFalse);
-      expect(tester.widget<FilledButton>(connect).onPressed, isNull);
       expect(providers, hasLength(1));
       expect(drafts.identities, hasLength(1));
-      expect(drafts.closes, 0);
       expect(find.byType(MailMessageList), findsNothing);
-      await tester.tap(connect);
       oldCallback(MailBulkFlagAction.flag, ['ews-message-one']);
       await _pump(tester);
       expect(providers, hasLength(1));
       expect(drafts.identities, hasLength(1));
       expect(previous.commands, hasLength(1));
 
-      gate.complete(const MailSuccess(MailUnit.value));
+      // This custom owner has no durable mutation journal to finish. Retire
+      // its lease and owner now; the late foreground reply cannot enter the
+      // replacement session, even when its provider and row IDs overlap.
       for (
         var turn = 0;
         turn < 100 && tester.widget<FilledButton>(connect).onPressed == null;
@@ -804,6 +856,7 @@ void main() {
       expect(providers, hasLength(1));
       expect(drafts.identities, hasLength(1));
       expect(find.byType(MailMessageList), findsNothing);
+      expect(gate.isCompleted, isFalse);
 
       await _connect(tester);
       expect(provider, isNot(same(previous)));
@@ -812,6 +865,8 @@ void main() {
       expect(drafts.identities, hasLength(2));
       expect(_bulkList(tester).items.map((item) => item.id), oldIds);
       expect(_bulkList(tester).selectedId, isNull);
+      gate.complete(const MailSuccess(MailUnit.value));
+      await _pump(tester);
       oldCallback(MailBulkFlagAction.flag, ['ews-message-one']);
       await _pump(tester);
       expect(previous.commands, hasLength(1));
@@ -1924,14 +1979,7 @@ void main() {
     expect(drafts.closes, 0);
     expect(find.byType(StudioMailEwsDialog), findsOneWidget);
     gate.complete();
-    for (
-      var turn = 0;
-      turn < 100 && find.byType(StudioMailEwsDialog).evaluate().isNotEmpty;
-      turn++
-    ) {
-      await tester.pump(const Duration(milliseconds: 10));
-      await tester.runAsync(() => Future<void>.delayed(Duration.zero));
-    }
+    await _waitForHostDismissal(tester);
     expect(drafts.closes, 1);
     expect(drafts.records, isEmpty);
     expect(provider.submissions, isEmpty);
@@ -2934,19 +2982,25 @@ void main() {
     tester,
   ) async {
     late _Provider provider;
+    final drafts = MemoryStudioMailDrafts();
     final gate = Completer<MailSubmissionResult>();
     await _show(
       tester,
       (configuration, credentials) =>
           provider = _Provider(configuration, credentials)..sendGate = gate,
+      drafts: drafts,
     );
     await _connect(tester);
     await _compose(tester);
     expect(provider.submissions, hasLength(1));
     final attempt = provider.attempts.single;
+    final preservedSaves = drafts.saved.length;
     await tester.tap(find.byTooltip(_strings.close));
     await _pump(tester);
     expect(provider.lastLease!.isCurrent, isFalse);
+    expect(drafts.closes, 0);
+    expect(drafts.saved, hasLength(preservedSaves));
+    expect(drafts.records.values.single.submissionUncertain, isTrue);
     gate.complete(
       MailSubmissionResult(
         attemptId: attempt,
@@ -2954,7 +3008,57 @@ void main() {
       ),
     );
     await _pump(tester);
+    await _waitForHostDismissal(tester);
     expect(find.byType(StudioMailEwsDialog), findsNothing);
+    expect(drafts.closes, 1);
+    expect(drafts.clears, 1);
+    expect(drafts.records, isEmpty);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('Close drains accepted draft cleanup without recreating it', (
+    tester,
+  ) async {
+    final drafts = MemoryStudioMailDrafts();
+    late _GatedDraftCleanup owner;
+    late _Provider provider;
+    await _show(
+      tester,
+      (configuration, credentials) =>
+          provider = _Provider(configuration, credentials),
+      draftStoreFactory: (identity) async =>
+          owner = _GatedDraftCleanup(await drafts.open(identity)),
+    );
+    addTearDown(() {
+      if (!owner.clearGate.isCompleted) owner.clearGate.complete();
+    });
+    await _connect(tester);
+    await _compose(tester);
+    expect(provider.submissions, hasLength(1));
+    expect(owner.clearCalls, 1);
+    expect(drafts.clears, 0);
+    final preservedSaves = drafts.saved.length;
+
+    await tester.tap(find.byTooltip(_strings.close));
+    await _pump(tester);
+    expect(provider.lastLease!.isCurrent, isFalse);
+    expect(find.byType(StudioMailEwsDialog), findsOneWidget);
+    expect(owner.closeCalls, 0);
+    expect(drafts.closes, 0);
+    expect(drafts.saved, hasLength(preservedSaves));
+    expect(drafts.records.values.single.submissionUncertain, isTrue);
+
+    owner.clearGate.complete();
+    await _pump(tester);
+    await _waitForHostDismissal(tester);
+    expect(find.byType(StudioMailEwsDialog), findsNothing);
+    expect(owner.clearCalls, 1);
+    expect(owner.closeCalls, 1);
+    expect(drafts.closes, 1);
+    expect(drafts.clears, 1);
+    expect(drafts.records, isEmpty);
+    expect(drafts.saved, hasLength(preservedSaves));
+    expect(provider.submissions, hasLength(1));
     expect(tester.takeException(), isNull);
   });
 
