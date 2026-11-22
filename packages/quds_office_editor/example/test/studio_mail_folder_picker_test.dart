@@ -34,7 +34,7 @@ final _options = [
 ];
 
 Finder _folder(MailSavedHeaderSearchFolder folder) => find.byKey(
-  ValueKey('studio-mail-folder-' + folder.accountId + '-' + folder.mailboxId),
+  ValueKey('studio-mail-folder-${folder.accountId}-${folder.mailboxId}'),
 );
 
 Future<void> _press(WidgetTester tester, Finder target) async {

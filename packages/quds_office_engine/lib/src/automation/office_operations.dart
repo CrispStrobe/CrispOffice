@@ -299,8 +299,9 @@ final class _OfficeFormulaPreflight {
           // Ambiguous and unmodeled names follow native cache preservation.
         }
       case CallNode(:final name, :final args):
-        final function = FormulaFunctions.stripFutureFunctionPrefix(name)
-            .toUpperCase();
+        final function = FormulaFunctions.stripFutureFunctionPrefix(
+          name,
+        ).toUpperCase();
         _call(function, args, bindings);
         if (function == 'LET' && args.length >= 3 && args.length.isOdd) {
           final locals = Set<String>.of(bindings);

@@ -336,13 +336,15 @@ End With
     },
   );
 
-  test('cell selector remains distinct from body and other cells during spacing pairing', () async {
-    final session = OfficeMacroSession(
-      _input(),
-      format: OfficeMacroFormat.docx,
-    );
-    await session.run(
-      _source('''
+  test(
+    'cell selector remains distinct from body and other cells during spacing pairing',
+    () async {
+      final session = OfficeMacroSession(
+        _input(),
+        format: OfficeMacroFormat.docx,
+      );
+      await session.run(
+        _source('''
 Sub Finish(ByVal target As ParagraphFormat, ByVal amount As Double)
   target.LineSpacing = amount
 End Sub
@@ -358,29 +360,32 @@ Sub Main()
   ActiveDocument.Tables(2).Cell(1, 1).Range.Font.ColorIndex = wdBlue
 End Sub
 '''),
-    );
-    final document = WordDeserializer().readBytes(session.bytes);
-    final first = _paragraph(document).properties;
-    expect(first.lineSpacingRule, WmlLineSpacingRule.exact);
-    expect(first.lineSpacing, 19.5);
-    final neighbor = _paragraph(document, column: 1).properties;
-    expect(neighbor.lineSpacingRule, WmlLineSpacingRule.auto);
-    expect(neighbor.lineSpacing, 2);
-    final body = document.sections.first.blocks.first as WmlParagraph;
-    expect(body.properties.lineSpacingRule, WmlLineSpacingRule.auto);
-    expect(body.properties.lineSpacing, 1.5);
-    expect(
-      _paragraph(
-        document,
-        table: 1,
-      ).inlines.whereType<WmlRun>().single.properties.color,
-      '0000FF',
-    );
-    expect(
-      _paragraph(document).inlines.whereType<WmlRun>().single.properties.color,
-      '1F4E79',
-    );
-  });
+      );
+      final document = WordDeserializer().readBytes(session.bytes);
+      final first = _paragraph(document).properties;
+      expect(first.lineSpacingRule, WmlLineSpacingRule.exact);
+      expect(first.lineSpacing, 19.5);
+      final neighbor = _paragraph(document, column: 1).properties;
+      expect(neighbor.lineSpacingRule, WmlLineSpacingRule.auto);
+      expect(neighbor.lineSpacing, 2);
+      final body = document.sections.first.blocks.first as WmlParagraph;
+      expect(body.properties.lineSpacingRule, WmlLineSpacingRule.auto);
+      expect(body.properties.lineSpacing, 1.5);
+      expect(
+        _paragraph(
+          document,
+          table: 1,
+        ).inlines.whereType<WmlRun>().single.properties.color,
+        '0000FF',
+      );
+      expect(
+        _paragraph(
+          document,
+        ).inlines.whereType<WmlRun>().single.properties.color,
+        '1F4E79',
+      );
+    },
+  );
 
   test(
     'recorded native cell formatting replays to the same saved document',
@@ -461,9 +466,9 @@ $_cell.ParagraphFormat.SpaceAfter = 9.5
     () async {
       final input = _inheritedTableStyleInput();
       final original = WordDeserializer().readBytes(input);
-      final initialRun = _paragraph(original).inlines
-          .whereType<WmlRun>()
-          .single;
+      final initialRun = _paragraph(
+        original,
+      ).inlines.whereType<WmlRun>().single;
       expect(initialRun.properties.bold, isTrue);
       expect(initialRun.properties.allCaps, isTrue);
       expect(initialRun.properties.color, 'AABBCC');
@@ -506,9 +511,9 @@ End With
         expect(
           _xml(
             XmlDocument.parse(
-              OpcPackage.openBytes(saved)
-                  .getPart('/word/styles.xml')!
-                  .readText(),
+              OpcPackage.openBytes(
+                saved,
+              ).getPart('/word/styles.xml')!.readText(),
             ).root!,
           ),
           styles,
@@ -582,9 +587,9 @@ End With
     ),
     (
       'multiple cell paragraphs',
-      (document) =>
-          _tables(document).first.rows.first.cells.first.blocks
-              .add(WmlParagraph(inlines: [WmlRun(text: 'Second')])),
+      (document) => _tables(document).first.rows.first.cells.first.blocks.add(
+        WmlParagraph(inlines: [WmlRun(text: 'Second')]),
+      ),
     ),
     (
       'hyperlinked run',
@@ -657,17 +662,20 @@ w:formatting="1" w:enforcement="1" w:edit="readOnly"/></w:settings>
     }
   });
 
-  test('late missing cell rolls back text, font, paragraph and recorded operations', () async {
-    await _assertRefused(
-      _input(),
-      _compile('''
+  test(
+    'late missing cell rolls back text, font, paragraph and recorded operations',
+    () async {
+      await _assertRefused(
+        _input(),
+        _compile('''
 $_cell.Text = "Do not publish"
 $_cell.Font.Bold = False
 $_cell.ParagraphFormat.Alignment = wdAlignParagraphRight
 ActiveDocument.Tables(2).Cell(2, 1).Range.Font.Italic = True
 '''),
-    );
-  });
+      );
+    },
+  );
 
   test(
     'paragraph formatting admits empty cells while Font requires existing text',
@@ -719,22 +727,24 @@ $_cell.ParagraphFormat.Alignment = wdAlignParagraphRight
     () async {
       final input = _input();
       final session = OfficeMacroSession(input, format: OfficeMacroFormat.docx);
-      final result = await OfficeMacroMcp(session)
-          .callTool('office_macro_compile', {
-            'source': {
-              'language': 'vba-word',
-              'format': 'docx',
-              'moduleName': 'CellFormatting',
-              'source':
-                  '''
+      final result = await OfficeMacroMcp(session).callTool(
+        'office_macro_compile',
+        {
+          'source': {
+            'language': 'vba-word',
+            'format': 'docx',
+            'moduleName': 'CellFormatting',
+            'source':
+                '''
 Sub Main()
   $_cell.Font.Bold = False
   Dim value As Boolean
   value = $_cell.Font.Bold
 End Sub
 ''',
-            },
-          });
+          },
+        },
+      );
       expect(result['isError'], isTrue);
       expect(session.bytes, input);
       expect(session.revision, 0);
