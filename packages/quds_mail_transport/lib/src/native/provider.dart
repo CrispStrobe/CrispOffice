@@ -56,7 +56,8 @@ final class NativeMailImapProvider
         MailImapHeaderBrowser,
         MailFlagObserver,
         MailMembershipObserver,
-        MailMutationReceiptProvider {
+        MailMutationReceiptProvider,
+        MailArchiveDestinationResolver {
   NativeMailImapProvider({
     required this.configuration,
     required this.credentialStore,
@@ -315,6 +316,46 @@ final class NativeMailImapProvider
       );
     }
     return List.unmodifiable(result);
+  });
+
+  @override
+  Future<MailResult<MailMailbox>> resolveArchiveDestination(
+    MailOperationLease lease,
+  ) => _run(lease, (client, operation) async {
+    if (!client.serverInfo.supportsMove) {
+      throw const _Failure(MailProblemCode.unsupported);
+    }
+    final boxes = await client.listMailboxes();
+    operation.check();
+    if (boxes.length > limits.maxMailboxes) {
+      throw const _Failure(MailProblemCode.quotaExceeded);
+    }
+    final ids = <String>{};
+    MailMailbox? destination;
+    for (final box in boxes) {
+      if (box.flags.contains(imap.MailboxFlag.noSelect) ||
+          box.flags.contains(imap.MailboxFlag.nonExistent)) {
+        continue;
+      }
+      if (box.path.isEmpty ||
+          box.path.length > 1024 ||
+          box.path.contains(RegExp(r'[\x00-\x1f\x7f]')) ||
+          !ids.add(box.path)) {
+        throw const _Failure(MailProblemCode.providerFailure);
+      }
+      if (!box.flags.contains(imap.MailboxFlag.archive)) continue;
+      if (destination != null) {
+        throw const _Failure(MailProblemCode.unsupported);
+      }
+      destination = MailMailbox(
+        id: MailMailboxId(box.path, account: account),
+        displayName: box.name,
+      );
+    }
+    if (destination == null) {
+      throw const _Failure(MailProblemCode.unsupported);
+    }
+    return destination;
   });
 
   Future<imap.Mailbox> _select(
@@ -821,6 +862,7 @@ final class NativeMailImapProvider
                     command.destination.value.toUpperCase() == 'INBOX')) {
       return _failure(MailProblemCode.invalidInput);
     }
+    if (command is MailArchive) return _failure(MailProblemCode.unsupported);
     return _run(lease, (client, operation) async {
       final selected = await _select(client, operation, identity.mailbox);
       if (selected.uidValidity != identity.uidValidity) {
@@ -899,6 +941,8 @@ final class NativeMailImapProvider
             imap.MessageFlags.deleted,
             true,
           );
+        case MailArchive():
+          throw const _Failure(MailProblemCode.unsupported);
       }
       operation.check();
       return MailMutationReceipt(identityTransition: transition);

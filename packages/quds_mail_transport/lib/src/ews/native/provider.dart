@@ -624,6 +624,7 @@ final class NativeMailEwsProvider
         (command is MailMove && !_mailboxValid(command.destination))) {
       return _failure(MailProblemCode.invalidInput);
     }
+    if (command is MailArchive) return _failure(MailProblemCode.unsupported);
     final remote = command.message as MailOpaqueIdentity;
     return _run(lease, (client, operation) async {
       // ChangeKey is a concurrency token, not stable message identity. Always
@@ -653,6 +654,8 @@ final class NativeMailEwsProvider
         case MailDelete():
           action = 'DeleteItem';
           envelope = _soap.deleteItem(item.id, item.changeKey);
+        case MailArchive():
+          throw const EwsException(MailProblemCode.unsupported);
       }
       final xml = await operation.post(
         client,
@@ -709,6 +712,7 @@ final class NativeMailEwsProvider
         MailSetRead(:final read) => observed?.isRead == read,
         MailSetFlagged(:final flagged) => observed?.isFlagged == flagged,
         MailMove() || MailDelete() => confirmed == null,
+        MailArchive() => false,
       };
       if (!correct) throw const EwsException(MailProblemCode.conflict);
       return const MailMutationReceipt();

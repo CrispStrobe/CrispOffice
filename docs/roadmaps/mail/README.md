@@ -11,13 +11,21 @@ archive, Studio workflows and remaining MailStore parity work.
 
 ## Desktop mail parity: ordered increments
 
+The [explicit Archive continuation](provider-archive.md) adds reviewed single and
+checked-selection Archive to connected mail. Gmail removes only Inbox membership;
+IMAP and Microsoft 365 resolve an authoritative ordinary Archive destination,
+while EWS and unsupported discovery require explicit folder selection. All paths
+reuse durable command outcomes and restart recovery. Connected multi-account
+navigation remains the next workspace boundary, followed by tags/categories and
+ordered rules. See the linked work record for current local qualification.
+
 The [durable bulk organization continuation](bulk-organization.md) adds
 capability-scoped Move/Delete to checked visible selections. Confirmations show
 the count, account, source and exact destination; every selected identity is
 frozen before prompts and revalidated before dispatch. The existing journal
 preserves per-message outcomes, stop-after-current behavior and restart evidence
-across IMAP, EWS, Gmail and Microsoft 365. Shared connected navigation, explicit
-Archive and ordered rules are the next workspace boundaries.
+across IMAP, EWS, Gmail and Microsoft 365. Explicit Archive is continued above;
+shared connected navigation and ordered rules remain subsequent boundaries.
 
 The [authoritative move continuation](identity-transitions.md) preserves IMAP
 COPYUID and EWS replacement identities through the durable journal. Exact

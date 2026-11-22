@@ -274,6 +274,233 @@ final class _Harness {
 }
 
 void main() {
+  group('provider Archive', () {
+    test(
+      'Gmail removes only INBOX and preserves all other label intent',
+      () async {
+        final h = _Harness(MailCloudService.gmail);
+        h.transport.handler = (request) {
+          expect(request.method, 'POST');
+          expect(
+            request.uri.path,
+            '/gmail/v1/users/me/messages/message-1/modify',
+          );
+          expect(jsonDecode(utf8.decode(request.body)), {
+            'removeLabelIds': ['INBOX'],
+          });
+          return _json({
+            'id': 'message-1',
+            'labelIds': ['UNREAD', 'STARRED', 'IMPORTANT', 'Label_Project'],
+          });
+        };
+        _value(
+          await h.provider.apply(
+            MailArchive(id: 'archive-one', message: h.identity()),
+            h.lease,
+          ),
+        );
+        expect(h.transport.mailRequests, hasLength(1));
+      },
+    );
+
+    for (final body in <Map<String, Object?>>[
+      {
+        'id': 'message-1',
+        'labelIds': ['INBOX', 'UNREAD'],
+      },
+      {
+        'id': 'another-message',
+        'labelIds': ['UNREAD'],
+      },
+      {'id': 'message-1'},
+      {
+        'id': 'message-1',
+        'labelIds': ['UNREAD', 'UNREAD'],
+      },
+      {
+        'id': 'message-1',
+        'labelIds': ['UNREAD', 7],
+      },
+    ]) {
+      test('Gmail keeps unconfirmed Archive uncertain: $body', () async {
+        final h = _Harness(MailCloudService.gmail);
+        h.transport.handler = (_) => _json(body);
+        final report = await const MailBulkFlagRunner().run(
+          plan: MailBulkFlagPlan(
+            id: 'archive-selection',
+            mailbox: _mailbox,
+            action: MailBulkFlagAction.archive,
+            messages: [h.identity(), h.identity('message-2')],
+          ),
+          lease: h.lease,
+          apply: h.provider.apply,
+          isScopeCurrent: () => true,
+        );
+        expect(report.uncertainCount, 1);
+        expect(report.unattemptedCount, 1);
+        expect(report.items.first.problem?.mutationMayHaveOccurred, isTrue);
+        expect(h.transport.mailRequests, hasLength(1));
+      });
+    }
+
+    for (final status in [400, 429, 503]) {
+      test(
+        'Gmail Archive HTTP $status retains no-write versus uncertain evidence',
+        () async {
+          final h = _Harness(MailCloudService.gmail);
+          h.transport.handler = (_) => _error(status, retry: '13');
+          final result = await h.provider.apply(
+            MailArchive(id: 'archive-one', message: h.identity()),
+            h.lease,
+          );
+          final problem = (result as MailFailure<MailUnit>).problem;
+          expect(problem.mutationMayHaveOccurred, status == 503);
+          expect(h.transport.mailRequests, hasLength(1));
+          if (status == 429) {
+            expect(problem.retryAfter, const Duration(seconds: 13));
+          }
+        },
+      );
+    }
+
+    test('Gmail explicit empty labels confirm Inbox removal', () async {
+      final h = _Harness(MailCloudService.gmail);
+      h.transport.handler = (_) =>
+          _json({'id': 'message-1', 'labelIds': <String>[]});
+      _value(
+        await h.provider.apply(
+          MailArchive(id: 'archive-one', message: h.identity()),
+          h.lease,
+        ),
+      );
+    });
+
+    test('Gmail cancelled archive never acquires a token or submits', () async {
+      final h = _Harness(MailCloudService.gmail);
+      final lease = h.lease;
+      h.session.dispose();
+      _problem(
+        await h.provider.apply(
+          MailArchive(id: 'archive-one', message: h.identity()),
+          lease,
+        ),
+        MailProblemCode.staleOperation,
+      );
+      expect(h.tokens.calls, isEmpty);
+      expect(h.transport.requests, isEmpty);
+    });
+
+    test(
+      'Graph resolves the ordinary well-known Archive before a separate move',
+      () async {
+        final h = _Harness(MailCloudService.microsoft365);
+        h.transport.handler = (request) {
+          expect(request.method, 'GET');
+          expect(request.uri.path, '/v1.0/me/mailFolders/archive');
+          expect(request.uri.queryParameters, {r'$select': 'id,displayName'});
+          expect(request.headers['Prefer'], contains('ImmutableId'));
+          return _json({'id': 'exact-archive-id', 'displayName': 'Archiv'});
+        };
+        final folder = _value(
+          await h.provider.resolveArchiveDestination(h.lease),
+        );
+        expect(folder.id, MailMailboxId('exact-archive-id', account: _account));
+        expect(folder.displayName, 'Archiv');
+        expect(h.transport.mailRequests, hasLength(1));
+      },
+    );
+
+    for (final status in [404, 403, 503]) {
+      test(
+        'Graph archive lookup HTTP $status preserves discovery failures',
+        () async {
+          final h = _Harness(MailCloudService.microsoft365);
+          h.transport.handler = (_) => _error(status);
+          final result = await h.provider.resolveArchiveDestination(h.lease);
+          final problem = (result as MailFailure<MailMailbox>).problem;
+          expect(problem.code == MailProblemCode.unsupported, status == 404);
+          expect(problem.mutationMayHaveOccurred, isFalse);
+          expect(h.transport.mailRequests, hasLength(1));
+        },
+      );
+    }
+
+    for (final body in <Map<String, Object?>>[
+      {'id': '', 'displayName': 'Archive'},
+      {'id': 'some-id'},
+      {'id': 'bad\nidentity', 'displayName': 'Archive'},
+    ]) {
+      test(
+        'Graph rejects malformed ordinary Archive metadata: $body',
+        () async {
+          final h = _Harness(MailCloudService.microsoft365);
+          h.transport.handler = (_) => _json(body);
+          _problem(
+            await h.provider.resolveArchiveDestination(h.lease),
+            MailProblemCode.providerFailure,
+          );
+        },
+      );
+    }
+
+    test(
+      'Graph archive lookup rejects cross-account ownership before tokens',
+      () async {
+        final h = _Harness(MailCloudService.microsoft365);
+        _problem(
+          await h.provider.resolveArchiveDestination(
+            MailAccountSession(_other).begin(),
+          ),
+          MailProblemCode.invalidInput,
+        );
+        expect(h.tokens.calls, isEmpty);
+        expect(h.transport.requests, isEmpty);
+      },
+    );
+
+    test(
+      'Graph cannot publish a late Archive identity after session retirement',
+      () async {
+        final h = _Harness(MailCloudService.microsoft365);
+        final started = Completer<void>();
+        final gate = Completer<MailCloudHttpResponse>();
+        h.transport.handler = (_) {
+          started.complete();
+          return gate.future;
+        };
+        final pending = h.provider.resolveArchiveDestination(h.lease);
+        await started.future;
+        h.session.dispose();
+        gate.complete(_json({'id': 'archive-id', 'displayName': 'Archive'}));
+        _problem(await pending, MailProblemCode.staleOperation);
+      },
+    );
+
+    test('Gmail never invents a folder destination', () async {
+      final h = _Harness(MailCloudService.gmail);
+      _problem(
+        await h.provider.resolveArchiveDestination(h.lease),
+        MailProblemCode.unsupported,
+      );
+      expect(h.tokens.calls, isEmpty);
+      expect(h.transport.requests, isEmpty);
+    });
+
+    test('Graph rejects Gmail Archive before credentials or network', () async {
+      final h = _Harness(MailCloudService.microsoft365);
+      final problem = _problem(
+        await h.provider.apply(
+          MailArchive(id: 'archive-one', message: h.identity()),
+          h.lease,
+        ),
+        MailProblemCode.unsupported,
+      );
+      expect(problem.mutationMayHaveOccurred, isFalse);
+      expect(h.tokens.calls, isEmpty);
+      expect(h.transport.requests, isEmpty);
+    });
+  });
+
   group('foreground move/delete evidence', () {
     for (final service in MailCloudService.values) {
       for (final action in [
@@ -1255,6 +1482,10 @@ void main() {
           expect(capabilities.supports(MailCapability.mail), isTrue);
           expect(capabilities.supports(MailCapability.send), isTrue);
           expect(capabilities.supports(MailCapability.delete), isTrue);
+          expect(
+            capabilities.supports(MailCapability.archive),
+            service == MailCloudService.gmail,
+          );
           expect(
             capabilities.supports(MailCapability.move),
             service == MailCloudService.microsoft365,

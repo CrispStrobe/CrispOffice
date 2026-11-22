@@ -222,7 +222,8 @@ final class MailBulkFlagItemResult {
     if (operation is! MailSetRead &&
             operation is! MailSetFlagged &&
             operation is! MailMove &&
-            operation is! MailDelete ||
+            operation is! MailDelete &&
+            operation is! MailArchive ||
         ((outcome == MailBulkFlagOutcome.confirmed ||
                 outcome == MailBulkFlagOutcome.unattempted) &&
             problem != null) ||
@@ -296,6 +297,7 @@ final class MailBulkFlagReport {
             (final MailMove a, final MailMove b) =>
               a.destination != b.destination,
             (MailDelete(), MailDelete()) => false,
+            (MailArchive(), MailArchive()) => false,
             _ => true,
           }) {
         throw ArgumentError('A receipt must retain its frozen commands.');

@@ -1079,7 +1079,7 @@ void main() {
         expect(saved.summary.unresolvedCount, 1);
         expect(saved.resolutions, isEmpty);
         final check = sqlite.sqlite3.open(file.path);
-        expect(check.userVersion, 15);
+        expect(check.userVersion, 16);
         expect(snapshot(check), original);
         expect(check.select('PRAGMA foreign_key_check'), isEmpty);
         check.close();

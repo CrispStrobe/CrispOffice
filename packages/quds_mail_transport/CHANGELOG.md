@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- Add Gmail Archive through removal of only the Inbox label. Require an explicit,
+  complete response label set and matching message identity before confirmation;
+  malformed or lost acknowledgements remain uncertain without replay. Resolve
+  a unique selectable IMAP `\Archive` special-use folder or Microsoft Graph's
+  ordinary well-known Archive folder before a separate exact-destination move.
+  Missing/ambiguous destinations remain explicit and never fall back to guessed
+  display names or online archive mailboxes. EWS retains explicit folder moves.
+
 - Return authoritative move identities through an optional receipt port while
   preserving generic `apply`. Validate single-UID IMAP COPYUID without expanding
   UID sets; reject malformed/ambiguous evidence and retain generic confirmation
