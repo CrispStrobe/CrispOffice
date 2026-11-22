@@ -15,6 +15,13 @@ saved incrementally with verified Git trees and non-forced expected-head
 updates. The final target is main. GitHub Actions are not queried or awaited;
 local tests and analysis qualify the implementation.
 
+The feature and evidence merged through
+[PR #365](https://github.com/CrispStrobe/quds_office_suite/pull/365) at
+`ffdf603cc71fbb9083c93db3d1b6fe47949f62e7`. Its Git tree exactly matches the
+published branch head `6fbd992393ce94df87b095197c088c11799c391d`, and its history
+contains both the prior main and all Word checkpoints. The remote work branch
+is retained.
+
 | Remote checkpoint | Purpose |
 | --- | --- |
 | `ee3ba4f6a7d5f2a9d73926d95d41e16580bf97c0` | Reconcile the initial outstanding Zotero evidence history before implementation. |
@@ -110,8 +117,9 @@ The strengthened harness serializes synchronization/execution with an exclusive
 lock. It hashes source, copied target, package configuration, root manifests,
 SDK executables/snapshots and harness inputs before and after each final run.
 All final runs, including the broad timeout, pass input-integrity checks with
-no source, target or toolchain drift. Node receipts separately bind the runtime,
-compiled JavaScript, output and error streams before and after execution.
+no source, target or toolchain drift. Node receipts separately hash the runtime
+and compiled JavaScript before and after execution, and record output/error
+stream hashes.
 
 The broad run and portable gates execute checkpoint `806525fd` inputs. The only
 later engine changes are six formatter-generated wrapping edits in two new test
