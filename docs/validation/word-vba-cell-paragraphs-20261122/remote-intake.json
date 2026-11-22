@@ -1,0 +1,148 @@
+{
+  "repository": "CrispStrobe/quds_office_suite",
+  "intake_main": "a5b4eb7d329b0700768b1fc72bb63cf58a9f5cd6",
+  "open_pull_requests_at_intake": 0,
+  "branch_count_at_intake_including_main": 24,
+  "other_branches": [
+    {
+      "branch": "codex/word-vba-authoring-20261121",
+      "head": "cf06b018ec125ce3b5abfda41a7fbbdcf7d30a47",
+      "ancestor_of_intake_main": true
+    },
+    {
+      "branch": "codex/word-vba-cell-formatting-20261122",
+      "head": "49f43824196c4d373f991e442fac2e73e68c5f9f",
+      "ancestor_of_intake_main": true
+    },
+    {
+      "branch": "codex/word-vba-cell-text-20261122",
+      "head": "5f6e8686f1d6ddc1f3e523238808b78ccccc5b51",
+      "ancestor_of_intake_main": true
+    },
+    {
+      "branch": "codex/word-vba-comparison-colors-20261121",
+      "head": "e3c4550b34a9a07de2a97b84b67ab6aecaa5a377",
+      "ancestor_of_intake_main": true
+    },
+    {
+      "branch": "codex/word-vba-compatibility-20261121",
+      "head": "3058d36c5354d46bde418555d59282116cce1e26",
+      "ancestor_of_intake_main": true
+    },
+    {
+      "branch": "codex/zotero-dispatch-recovery-20261121",
+      "head": "32ef843db3a8192fe0add085e1ee173e18f4d462",
+      "ancestor_of_intake_main": true
+    },
+    {
+      "branch": "codex/zotero-field-context-20261122",
+      "head": "00ba542dc5b492040508a8137a80adbc9b13553d",
+      "ancestor_of_intake_main": true
+    },
+    {
+      "branch": "codex/zotero-footnote-separators-20261121",
+      "head": "a70c0e7af251d737dc7639f44a48777bbea1bf51",
+      "ancestor_of_intake_main": true
+    },
+    {
+      "branch": "codex/zotero-host-ownership-20261121",
+      "head": "05cb866e6e5aaee95dae8b03da2892fcf633a84b",
+      "ancestor_of_intake_main": true
+    },
+    {
+      "branch": "codex/zotero-main-qualification-20261121",
+      "head": "e2a1ed6073556d24194004221c545166b17c2d4e",
+      "ancestor_of_intake_main": true
+    },
+    {
+      "branch": "codex/zotero-note-layout-20261121",
+      "head": "2089e1e35a8ba81ea7f0a077b348f93ca70953c8",
+      "ancestor_of_intake_main": true
+    },
+    {
+      "branch": "codex/zotero-odt-roundtrip-20261121",
+      "head": "05072dc2d59d0fa4ea97de4d6a842700ef333fab",
+      "ancestor_of_intake_main": true
+    },
+    {
+      "branch": "codex/zotero-parity-20261122",
+      "head": "da36652cf1d2296b59285788035555d512b9fa31",
+      "ancestor_of_intake_main": true
+    },
+    {
+      "branch": "codex/zotero-select-navigation-20261122",
+      "head": "8c1b8da71bb910d4025aa179dc56290cf1a8e72a",
+      "ancestor_of_intake_main": true
+    },
+    {
+      "branch": "codex/zotero-shortcut-host-recovery-20261121",
+      "head": "2168011b6104f680100b87404bc1bd409f724939",
+      "ancestor_of_intake_main": true
+    },
+    {
+      "branch": "codex/zotero-source-continuity-20261121-2135",
+      "head": "c4c16d91d62ded0c341bee95e98de894de70483f",
+      "ancestor_of_intake_main": true
+    },
+    {
+      "branch": "work/mail-folder-scoped-search-20261122",
+      "head": "ff30d1064a052abbfbcdc99745ff66f8bc980aea",
+      "ancestor_of_intake_main": true
+    },
+    {
+      "branch": "work/mail-folder-search-20261122",
+      "head": "24e4b5d8a2a4e3c996e15013c5324a534c2e444f",
+      "ancestor_of_intake_main": true
+    },
+    {
+      "branch": "work/mail-keyboard-triage-20261121",
+      "head": "08d034d876073e2afc881dbfc11ba791acde3d67",
+      "ancestor_of_intake_main": true
+    },
+    {
+      "branch": "work/mail-live-search-20261121",
+      "head": "c3d55be30d91694b1a427d261cddbe47b1dd5eec",
+      "ancestor_of_intake_main": true
+    },
+    {
+      "branch": "work/mail-parity-20261122-next",
+      "head": "a7006171630915bbf91b6ce2ab7c4699bb79f69b",
+      "ancestor_of_intake_main": true
+    },
+    {
+      "branch": "work/mail-range-selection-tests-20261121",
+      "head": "5c7a385c5de40394d9eed736c5a2d975535c3df3",
+      "ancestor_of_intake_main": true
+    },
+    {
+      "branch": "work/mail-sync-address-search-20261121",
+      "head": "33d8f956ec2ed1dfd748e1d7ccbc5add053ff565",
+      "ancestor_of_intake_main": true
+    }
+  ],
+  "integration_required_at_intake": false,
+  "checkpoint_branch": "codex/word-vba-compatibility-20261122",
+  "ci_policy": "Local qualification; no GitHub Actions wait; incremental commits carry [skip ci].",
+  "concurrent_branches_first_seen_after_intake": [
+    "codex/mail-durable-mutations-20261122",
+    "codex/zotero-field-recovery-20261122"
+  ],
+  "concurrent_branch_review": [
+    {
+      "branch": "codex/mail-durable-mutations-20261122",
+      "head": "cd6aa8044a7c6fb0738758a4038cdbd626b5721d",
+      "state": "Checkpoint saved before completing host qualification; no open PR; left intact."
+    },
+    {
+      "branch": "codex/zotero-field-recovery-20261122",
+      "head": "3786a8a86786fc0d76fbf648e1debe3af4f309f3",
+      "state": "Intake documentation only; implementation and local qualification in progress; no open PR; left intact."
+    }
+  ],
+  "upstream": {
+    "repository": "MohammedAsaadAsaad/quds_office_suite",
+    "main": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba",
+    "ancestor_of_intake_main": true,
+    "integration_required": false
+  }
+}

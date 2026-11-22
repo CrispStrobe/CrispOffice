@@ -36,6 +36,9 @@ table cells support `Range.Text`, `Range.Font` and `Range.ParagraphFormat`,
 including paragraph spacing and tabs, through guarded main-story selectors.
 Their current text also accepts direct highlighting, proofing exclusion and
 mapped normal-slot language setters through the same cell-aware native guards.
+Explicit `Cell.Range.Paragraphs(1)` / `.Paragraphs.Item(1)` selectors now apply
+existing paragraph styles and solid background shading, including on empty
+ordinary paragraphs, with retained cell identity and formatting-only boundaries.
 The `vba-powerpoint` adapter adds explicit presentation,
 slide, shape and text-range bindings, one-based/index-or-name selection,
 whole-shape text, font/alignment writes and geometry. Native collection guards
@@ -49,7 +52,24 @@ and [the native macro contract](MACROS.md).
 
 ## Ordered milestones and acceptance
 
-The current continuation adds direct `Cell.Range.HighlightColorIndex`,
+The current continuation adds explicit `Cell.Range.Paragraphs(1)` and
+`.Paragraphs.Item(1)` selection with paragraph Style and background Shading.
+It reuses existing guarded native operations rather than broadening the table
+grid or content envelope. Paragraph/Range/Shading aliases and named `ByVal`
+helpers retain the original cell; empty paragraphs accept style/background
+writes without new text. Sparse XML ownership, direct formatting, unrelated
+cells and opaque VBA parts survive save/reopen. Known cell-paragraph insertion
+and list operations are rejected in inactive source as well as executed paths.
+
+This advances the bounded Stage 4 adapter. The independently authored corpus,
+complete BAS example, native serialization and CLI/MCP transaction checks are
+recorded in the [cell paragraph contract](vba-word-macros-details.md#formatting-a-cell-paragraph)
+and [local qualification](validation/word-vba-cell-paragraphs-20261122/README.md).
+Multiple cell paragraphs, merged/nested table support, live collection reads,
+arbitrary subranges and installed Office differential qualification remain
+separate work.
+
+The preceding continuation adds direct `Cell.Range.HighlightColorIndex`,
 `NoProofing`, `LanguageID` and `LanguageIDOther` writes, plus shared source-only
 `Join` for allocated local String arrays. The Word writes reuse guarded native
 run formatting with retained table/row/column identity, detached property
@@ -85,7 +105,7 @@ from affecting unrelated cells. The existing unmerged-grid, single-paragraph,
 source-fidelity and protection restrictions stay in force. Direct cell-range
 style/shading/list members, insertion, subranges, collection reads and embedded
 execution remain outside that formatting increment. Direct proofing/language
-and highlighting setters are added by the current continuation above.
+and highlighting setters are added by the preceding continuation above.
 
 This advances the bounded Stage 4 application adapter. See the
 [cell-formatting contract](vba-word-macros-details.md#formatting-existing-table-cells),

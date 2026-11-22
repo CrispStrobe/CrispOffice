@@ -4,6 +4,20 @@ All notable changes to `quds_office_engine` are documented here.
 
 ## Unreleased
 
+- Add bounded Word VBA `Cell.Range.Paragraphs(1)` and `.Paragraphs.Item(1)`
+  selection for the existing ordinary cell paragraph. Preserve cell identity
+  through Paragraph/Range/Shading aliases, nested `With` and named `ByVal`
+  helpers. Apply existing paragraph styles by primary name or supported
+  built-in constant, and solid RGB/palette/automatic paragraph backgrounds,
+  including on empty paragraphs. Reuse guarded native style/shading operations,
+  sparse XML ownership, detached mutation and whole-run rollback. Reject known
+  cell-paragraph insertion/list operations even in inactive source, while
+  generic helpers retain actual-selector validation. Include a complete table
+  template BAS, independent conformance fixtures, native DOCX/DOCM and CLI/MCP
+  checks, and VM/JavaScript agreement. See the
+  [contract](../../docs/vba-word-macros-details.md#formatting-a-cell-paragraph)
+  and [local qualification](../../docs/validation/word-vba-cell-paragraphs-20261122/README.md).
+
 - Extend bounded Word VBA with direct `Cell.Range.HighlightColorIndex`,
   `NoProofing`, `LanguageID` and `LanguageIDOther` writes. Preserve table/cell
   identity through aliases and helpers, reuse guarded detached run formatting,

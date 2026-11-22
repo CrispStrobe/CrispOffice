@@ -58,6 +58,7 @@ document supplied to the macro session. They never search for another file.
 | `Document.Paragraphs(i)` | Existing body paragraphs |
 | `Document.Tables(i)` / `Table.Cell(row, column)` | Existing main-story table cells |
 | `Cell.Range.Font` / `.ParagraphFormat` | Current cell text and its one ordinary paragraph |
+| `Cell.Range.Paragraphs(1)` / `.Paragraphs.Item(1)` | The existing cell paragraph, including its Style and background Shading |
 | `Cell.Range.HighlightColorIndex` / `.NoProofing` / `.LanguageID` / `.LanguageIDOther` | Highlight and proofing metadata on current cell text |
 | `Document.Sections(i)` | Existing sections |
 | `Section.PageSetup` | Page geometry, orientation and section start |
@@ -81,6 +82,7 @@ The native plan can apply the documented subset of:
 - uniform section columns;
 - existing header/footer paragraph edits;
 - table-cell text, font formatting, paragraph spacing/alignment, custom tabs, highlighting and proofing metadata;
+- styles and background shading on explicitly selected cell paragraphs, including empty paragraphs;
 - proofing language, kerning and complex-script font controls.
 
 Unsupported whole-object assignment, `Duplicate`, runtime type discovery and
@@ -131,7 +133,8 @@ main-story table. Font writes affect its current nonempty text and leave
 paragraph/cell marks and future insertion formatting outside the contract.
 Fill an empty template cell before applying its Font or text controls; paragraph
 formatting can target an empty paragraph. Direct cell-range `Style`, `Shading`,
-`ListFormat`, subranges and document reads remain unsupported.
+`ListFormat`, arbitrary subranges and document reads remain unsupported. Select
+`Range.Paragraphs(1)` to style or shade the existing cell paragraph.
 See the [exact cell-formatting contract](vba-word-macros-details.md#formatting-existing-table-cells)
 and [local qualification](validation/word-vba-cell-formatting-20261122/README.md).
 
@@ -166,6 +169,35 @@ atomic-publication checks. They do not install dictionaries or run a proofing
 provider. See the [cell text contract](vba-word-macros-details.md#cell-highlighting-and-proofing-controls),
 [combined report](../packages/quds_office_engine/example/macros/word_join_report.bas),
 and [local qualification](validation/word-vba-cell-text-20261122/README.md).
+
+## Styling a table's paragraphs
+
+```vb
+Sub Main()
+    Dim label As Paragraph
+    Set label = ActiveDocument.Tables(1).Cell(1, 1).Range.Paragraphs(1)
+    label.Style = "Report Label"
+    With label.Shading
+        .BackgroundPatternColor = RGB(31, 78, 121)
+    End With
+    label.Range.Font.ColorIndex = wdWhite
+End Sub
+```
+
+The template must already contain the named paragraph style. The selected
+paragraph also accepts supported built-in style constants, palette backgrounds
+and explicit automatic shading. `Paragraph`, `Range` and `Shading` aliases,
+nested `With`, and named `ByVal` helpers retain the selected cell. Style and
+shading can target an empty ordinary paragraph; text formatting still requires
+nonempty current text.
+
+These operations change paragraph properties. They do not set cell fill or
+table styles. Only the first and sole ordinary paragraph is supported;
+multi-paragraph, merged and nested cells retain the existing admission guards.
+Insertion, list operations and live document reads remain unsupported through
+this selector. See the [exact contract](vba-word-macros-details.md#formatting-a-cell-paragraph),
+[complete BAS example](../packages/quds_office_engine/example/macros/word_table_paragraphs.bas)
+and [local qualification](validation/word-vba-cell-paragraphs-20261122/README.md).
 
 ## Shared language
 

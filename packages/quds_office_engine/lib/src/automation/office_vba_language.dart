@@ -2228,12 +2228,13 @@ class _Checker {
   Map<String, _Symbol> symbols = <String, _Symbol>{};
   final List<_Kind> withKinds = <_Kind>[];
   final List<_Expr> withTargets = <_Expr>[];
-  // Range is shared by paragraph, story and cell selectors. Keep known local
-  // bindings separate so enabling Cell.Range.Text does not admit paragraph
-  // mark replacement in statically checked, unexecuted source paths.
-  final Map<String, List<(_Expr, List<_Expr>)>> wordRangeBindings =
+  // Range and Paragraph are shared by body, story and cell selectors. Keep
+  // known local bindings so cell Text and projected paragraph formatting do
+  // not admit mark replacement/insertion in unexecuted source paths.
+  final Map<String, List<(_Expr, List<_Expr>)>> wordSelectorBindings =
       <String, List<(_Expr, List<_Expr>)>>{};
   final Map<String, bool> wordCellRangeBindings = <String, bool>{};
+  final Map<String, bool> wordCellSelectorBindings = <String, bool>{};
   final Set<String> counters = <String>{};
   final Set<String> eachCounters = <String>{};
   final Map<_Symbol, Object> constantValues = <_Symbol, Object>{};
@@ -2369,8 +2370,9 @@ class _Checker {
       symbols = <String, _Symbol>{...globals};
       withKinds.clear();
       withTargets.clear();
-      wordRangeBindings.clear();
+      wordSelectorBindings.clear();
       wordCellRangeBindings.clear();
+      wordCellSelectorBindings.clear();
       counters.clear();
       eachCounters.clear();
       doDepth = 0;
@@ -2671,8 +2673,9 @@ class _Checker {
     for (final statement in statements) {
       switch (statement) {
         case _Assignment(target: final _Name target, isSet: true):
-          if (symbols[target.token.lower]?.type == _Declared.range) {
-            (wordRangeBindings[target.token.lower] ??= []).add((
+          final type = symbols[target.token.lower]?.type;
+          if (type == _Declared.range || type == _Declared.paragraph) {
+            (wordSelectorBindings[target.token.lower] ??= []).add((
               statement.value,
               scopes,
             ));
@@ -2728,7 +2731,7 @@ class _Checker {
     final name = expression.token.lower;
     if (wordCellRangeBindings[name] case final cached?) return cached;
     if (!visiting.add(name)) return false;
-    final bindings = wordRangeBindings[name];
+    final bindings = wordSelectorBindings[name];
     // A generic ByVal Range helper is checked again against its actual selector
     // during source evaluation. Locals known to receive paragraph/story ranges
     // never gain the cell-only Text property, even in dead branches.
@@ -2742,6 +2745,56 @@ class _Checker {
           );
     visiting.remove(name);
     wordCellRangeBindings[name] = result;
+    return result;
+  }
+
+  // True only for selectors whose local origins are all explicitly cells.
+  // Generic helper parameters and mixed body/cell aliases are checked against
+  // their actual selector during evaluation, preserving shared helpers.
+  bool _knownWordCellSelector(
+    _Expr expression,
+    List<_Expr> scopes,
+    Set<String> visiting,
+  ) {
+    if (expression is _WithValue) {
+      return scopes.isNotEmpty &&
+          _knownWordCellSelector(
+            scopes.last,
+            scopes.sublist(0, scopes.length - 1),
+            visiting,
+          );
+    }
+    if (expression is _Member) {
+      if (expression.token.lower == 'range' &&
+          _isWordCellSource(expression.receiver, scopes)) {
+        return true;
+      }
+      return const {
+            'range',
+            'paragraphs',
+            'item',
+          }.contains(expression.token.lower) &&
+          _knownWordCellSelector(expression.receiver, scopes, visiting);
+    }
+    if (expression is! _Name) return false;
+    final name = expression.token.lower;
+    final type = symbols[name]?.type;
+    if (type != _Declared.range && type != _Declared.paragraph) return false;
+    if (currentProcedure.parameters.any(
+      (parameter) => parameter.name.lower == name,
+    )) {
+      return false;
+    }
+    if (wordCellSelectorBindings[name] case final cached?) return cached;
+    if (!visiting.add(name)) return false;
+    final bindings = wordSelectorBindings[name];
+    final result =
+        bindings != null &&
+        bindings.every(
+          (binding) => _knownWordCellSelector(binding.$1, binding.$2, visiting),
+        );
+    visiting.remove(name);
+    wordCellSelectorBindings[name] = result;
     return result;
   }
 
@@ -2870,6 +2923,16 @@ class _Checker {
             context.type(
               statement.target.token,
               'InsertBefore requires an explicit Word Range.',
+            );
+          }
+          if (_knownWordCellSelector(
+            statement.target.receiver,
+            withTargets,
+            {},
+          )) {
+            context.unsupported(
+              statement.target.token,
+              'An explicitly selected cell paragraph supports formatting only; text insertion is unsupported.',
             );
           }
           _compatible(
@@ -3701,7 +3764,8 @@ class _Checker {
           }
           if ((receiver == _Kind.document ||
                   receiver == _Kind.wordStoryRange ||
-                  receiver == _Kind.range) &&
+                  receiver == _Kind.range ||
+                  receiver == _Kind.wordCellRange) &&
               name == 'paragraphs') {
             if (expression.arguments == null) return _Kind.paragraphs;
             final argument = _arguments(expression, 1).single;
@@ -3737,6 +3801,13 @@ class _Checker {
                   name == 'paragraphformat' ||
                   name == 'listformat')) {
             _arguments(expression, 0, allowProperty: true);
+            if (name == 'listformat' &&
+                _knownWordCellSelector(expression.receiver, withTargets, {})) {
+              context.unsupported(
+                expression.token,
+                'ListFormat is unsupported on explicitly selected cell paragraphs.',
+              );
+            }
             return switch (name) {
               'font' => _Kind.font,
               'listformat' => _Kind.wordListFormat,
@@ -5124,18 +5195,20 @@ class _Evaluator {
           }
           if (receiver is _WordCell) return _WordCellRange(receiver);
           if (receiver is _WordCellRange) {
-            // A cell Range retains its own identity. Only these formatting
-            // objects project its guarded, single ordinary paragraph; the
-            // Range itself never gains paragraph insertion or subranges.
+            // A cell Range retains its own identity. Formatting objects and
+            // an explicit Paragraphs(1) selector project its guarded ordinary
+            // paragraph without treating cell or paragraph marks as text.
             final range = _WordRange(_WordParagraph(0, cell: receiver.cell));
             if (expression.token.lower == 'font') return _WordFont(range);
             if (expression.token.lower == 'paragraphformat') {
               return _WordParagraphFormat(range);
             }
-            context.unsupported(
-              expression.token,
-              'A cell Range supports its explicit text controls, Font and ParagraphFormat; reads and subranges are unsupported.',
-            );
+            if (expression.token.lower != 'paragraphs') {
+              context.unsupported(
+                expression.token,
+                'A cell Range supports its explicit text controls, Font, ParagraphFormat and Paragraphs(1); reads and arbitrary subranges are unsupported.',
+              );
+            }
           }
           if (receiver is _WordDocument &&
               expression.token.lower == 'sections' &&
@@ -5193,6 +5266,10 @@ class _Evaluator {
               collection = _WordParagraphs(headerFooter: receiver.headerFooter);
             } else if (receiver is _WordRange) {
               collection = _WordParagraphs(singleParagraph: receiver.paragraph);
+            } else if (receiver is _WordCellRange) {
+              collection = _WordParagraphs(
+                singleParagraph: _WordParagraph(0, cell: receiver.cell),
+              );
             } else {
               collection = const _WordParagraphs();
             }
@@ -5208,7 +5285,7 @@ class _Evaluator {
               if (index != 1) {
                 context.unsupported(
                   expression.token,
-                  'Paragraphs on a selected paragraph Range supports only Item(1).',
+                  'Paragraphs on a selected paragraph or cell Range supports only Item(1).',
                 );
               }
               return paragraph;
@@ -5232,10 +5309,11 @@ class _Evaluator {
           }
           final range = _wordParagraphRange(receiver, expression.token);
           if (expression.token.lower == 'listformat' &&
-              range.paragraph.headerFooter != null) {
+              (range.paragraph.headerFooter != null ||
+                  range.paragraph.cell != null)) {
             context.unsupported(
               expression.token,
-              'ListFormat currently supports body paragraphs only.',
+              'ListFormat currently supports body paragraphs outside explicit cell and header/footer selectors only.',
             );
           }
           return switch (expression.token.lower) {
@@ -5367,7 +5445,7 @@ class _Evaluator {
     if (value is _WordCellRange) {
       context.unsupported(
         token,
-        'A cell Range supports its explicit text controls, Font and ParagraphFormat; paragraph insertion is unsupported.',
+        'A cell Range supports its explicit text controls, Font, ParagraphFormat and Paragraphs(1); paragraph insertion is unsupported.',
       );
     }
     context.unsupported(
@@ -7017,7 +7095,8 @@ class _Evaluator {
       }
       // Only these visible-text writes project the cell's guarded paragraph.
       // Keep the cell Range identity for all other members so an alias cannot
-      // acquire insertion, style, shading or arbitrary paragraph operations.
+      // acquire direct insertion, style or shading. Paragraph styles/shading
+      // require an explicit Paragraphs(1) selector.
       receiver = _WordRange(_WordParagraph(0, cell: receiver.cell));
     }
     if (receiver is _WordShading) {
@@ -7500,6 +7579,22 @@ class _Evaluator {
     Map<String, Object?> fields,
     _Token token,
   ) {
+    if (range.paragraph.cell != null &&
+        !const <String>{
+          'runFormat',
+          'paragraphFormat',
+          'tabStop',
+          'clearTabStops',
+          'lineSpacing',
+          'paragraphSpaceBefore',
+          'paragraphStyle',
+          'paragraphShading',
+        }.contains(operation)) {
+      context.unsupported(
+        token,
+        'An explicitly selected cell paragraph supports formatting only; text insertion, replacement and list operations are unsupported.',
+      );
+    }
     if (steps.length >= _maxSteps) {
       context.limit(token, 'Word writes exceed $_maxSteps emitted operations.');
     }

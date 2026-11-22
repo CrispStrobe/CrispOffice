@@ -217,7 +217,8 @@ including automatic advance timing, retain their current values. Source-level
 integer milliseconds. Slide visibility uses the existing `pptx.slideHidden`.
 
 Native `docx.paragraphStyle` requires an explicit zero-based `paragraph`
-selector, optional ordinary story fields, and exactly one `name: String` or
+selector, optional ordinary story fields or the guarded `tableCell` selector
+below, and exactly one `name: String` or
 `builtin: int`. It selects an existing unique native paragraph style and
 preserves direct formatting while refreshing only that paragraph's inherited
 properties. Names use the document's primary style names, case-insensitively;
@@ -227,7 +228,8 @@ are refused atomically. See the [style contract](vba-word-macros-details.md#exis
 and `example/macros/word_styles.bas` for the exact bounded behavior.
 
 Native `docx.paragraphShading` requires an explicit zero-based `paragraph`,
-optional ordinary story fields, and `color` as six uppercase RGB hex digits
+optional ordinary story fields or the guarded `tableCell` selector below,
+and `color` as six uppercase RGB hex digits
 or the exact String `auto`. Automatic is an explicit native background override
 and a no-fill value in the renderer; it does not remove direct ownership.
 The operation supports solid paragraph backgrounds, including empty paragraphs,
@@ -593,6 +595,8 @@ body/header/note/comment selectors or text offsets:
 | `docx.paragraphFormat` | The same selector; edit the cell's one ordinary paragraph |
 | `docx.lineSpacing` / `docx.paragraphSpaceBefore` | The same selector; retain exact spacing pairs and native open/close/toggle behavior |
 | `docx.tabStop` / `docx.clearTabStops` | The same selector; use the existing guarded paragraph tab implementation |
+| `docx.paragraphStyle` | The same selector; apply an existing unique paragraph style by primary `name` or supported `builtin` |
+| `docx.paragraphShading` | The same selector; set a solid paragraph background with RGB `color` or explicit `auto` |
 
 All three coordinates and `paragraph: 0` are required. Coordinates without the
 `tableCell` story, a nonzero paragraph, `section`/`note`/`comment`, `start`/`end`
@@ -610,7 +614,7 @@ existing Font/ParagraphFormat members and paragraph-format methods. Direct
 `Cell.Range.HighlightColorIndex`, `.NoProofing`, `.LanguageID` and
 `.LanguageIDOther` also emit the guarded `docx.runFormat` cell selector, with
 the same current-text-only contract and sparse property ownership. Direct
-cell-range `Style`, `Shading`, `ListFormat`, `Paragraphs`, insertion methods
+cell-range `Style`, `Shading`, `ListFormat`, insertion methods
 and reads remain unavailable. `Cell.Range.Text` keeps
 its existing operation and arguments. See the
 [full formatting contract](vba-word-macros-details.md#formatting-existing-table-cells),
@@ -620,6 +624,17 @@ The [text-control continuation](vba-word-macros-details.md#cell-highlighting-and
 and source-only [Join](vba-macros-details.md#joining-source-string-arrays) support
 multilingual report assembly through the same transaction boundary; see the
 [combined qualification](validation/word-vba-cell-text-20261122/README.md).
+
+`Cell.Range.Paragraphs(1)` and `.Paragraphs.Item(1)` select the existing sole
+ordinary paragraph for Style/Shading and supported formatting. Their
+Paragraph/Range/Shading aliases and named `ByVal` helpers retain cell identity;
+empty paragraphs accept styles and backgrounds without introducing text.
+Paragraph styles/backgrounds are separate from cell fill and table styles.
+Known projected insertion/list operations are refused even in inactive source,
+and generic selectors retain evaluation-time checks. See the
+[cell paragraph contract](vba-word-macros-details.md#formatting-a-cell-paragraph),
+[example](../packages/quds_office_engine/example/macros/word_table_paragraphs.bas)
+and [qualification](validation/word-vba-cell-paragraphs-20261122/README.md).
 
 The Word adapter lowers explicit `ThisDocument.Paragraphs(i).Range` operations
 to `docx.replaceText`, `docx.runFormat` and `docx.paragraphFormat`, and custom-tab
