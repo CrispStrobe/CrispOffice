@@ -1,0 +1,35 @@
+{
+  "command": [
+    "/workspace/scratch/85a369f34dbb/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "test",
+    "--concurrency=2",
+    "--reporter=json",
+    "test/local_accounts_test.dart",
+    "test/local_accounts_expected_record_test.dart"
+  ],
+  "cwd": "packages/quds_mail_store",
+  "exit_code": 0,
+  "expected_suites": [
+    "packages/quds_mail_store/test/local_accounts_test.dart",
+    "packages/quds_mail_store/test/local_accounts_expected_record_test.dart"
+  ],
+  "finished_at_utc": "2026-11-22T12:34:05.539191+00:00",
+  "interrupted": false,
+  "kind": "tests",
+  "name": "incoming_store",
+  "observed_head": "9a371b616ae0fa0dbbecaed04708837125694d7c",
+  "started_at_utc": "2026-11-22T12:33:38.185807+00:00",
+  "status": "completed",
+  "stderr": {
+    "gzip_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "path": "incoming_store.stderr.gz",
+    "raw_bytes": 0,
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "gzip_sha256": "5bcd7b9ac54db0824518d032f27e1d527fc5c76fec9c924f98fc0c512fb1535e",
+    "path": "incoming_store.jsonl.gz",
+    "raw_bytes": 73131,
+    "raw_sha256": "c133b2883d77f4e464a7664d29e8fd7720224e1f7fd29fce5be4391fc846aef1"
+  }
+}

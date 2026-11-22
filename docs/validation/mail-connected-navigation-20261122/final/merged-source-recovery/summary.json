@@ -1,0 +1,904 @@
+{
+  "accepted": false,
+  "all_commands_exit_zero": true,
+  "all_planned_gates_completed": true,
+  "all_reporters_complete": false,
+  "captured_source_inputs": 6151,
+  "combined_accepted_case_count": null,
+  "expected_source_head": "9a371b616ae0fa0dbbecaed04708837125694d7c",
+  "finished_head": "9a371b616ae0fa0dbbecaed04708837125694d7c",
+  "fresh_unique_failed_cases": 0,
+  "fresh_unique_incomplete_cases": 0,
+  "fresh_unique_passed_cases": 6890,
+  "fresh_unique_skipped_cases": 0,
+  "gate_summaries": [
+    {
+      "exit_code": 0,
+      "finished_at_utc": "2026-11-22T12:29:23.674546+00:00",
+      "name": "analysis",
+      "started_at_utc": "2026-11-22T12:28:56.525831+00:00"
+    },
+    {
+      "exit_code": 0,
+      "finished_at_utc": "2026-11-22T12:29:26.873644+00:00",
+      "name": "format",
+      "started_at_utc": "2026-11-22T12:29:24.338778+00:00"
+    },
+    {
+      "exit_code": 0,
+      "failed_cases": 0,
+      "finished_at_utc": "2026-11-22T12:32:36.244075+00:00",
+      "name": "incoming_engine",
+      "passed_cases": 3892,
+      "per_file_counts": {
+        "packages/quds_office_engine/test/odf_zotero_ownership_test.dart": {
+          "passed": 38
+        },
+        "packages/quds_office_engine/test/odf_zotero_preferences_test.dart": {
+          "passed": 60
+        },
+        "packages/quds_office_engine/test/odf_zotero_reference_marks_test.dart": {
+          "passed": 38
+        },
+        "packages/quds_office_engine/test/odf_zotero_resource_test.dart": {
+          "passed": 13
+        },
+        "packages/quds_office_engine/test/odt_document_reader_test.dart": {
+          "passed": 45
+        },
+        "packages/quds_office_engine/test/odt_image_style_review_test.dart": {
+          "passed": 40
+        },
+        "packages/quds_office_engine/test/odt_libreoffice_bibliography_test.dart": {
+          "passed": 35
+        },
+        "packages/quds_office_engine/test/odt_libreoffice_fixture_test.dart": {
+          "passed": 5
+        },
+        "packages/quds_office_engine/test/odt_libreoffice_note_offsets_test.dart": {
+          "passed": 38
+        },
+        "packages/quds_office_engine/test/odt_merged_table_zotero_test.dart": {
+          "passed": 40
+        },
+        "packages/quds_office_engine/test/odt_outline_compatibility_test.dart": {
+          "passed": 60
+        },
+        "packages/quds_office_engine/test/odt_reader_guards_test.dart": {
+          "passed": 12
+        },
+        "packages/quds_office_engine/test/odt_reader_images_test.dart": {
+          "passed": 52
+        },
+        "packages/quds_office_engine/test/odt_reader_libreoffice_defaults_test.dart": {
+          "passed": 31
+        },
+        "packages/quds_office_engine/test/odt_reader_script_styles_test.dart": {
+          "passed": 11
+        },
+        "packages/quds_office_engine/test/odt_reader_styles_test.dart": {
+          "passed": 51
+        },
+        "packages/quds_office_engine/test/odt_reader_table_preservation_test.dart": {
+          "passed": 23
+        },
+        "packages/quds_office_engine/test/odt_zotero_export_lifecycle_test.dart": {
+          "passed": 21
+        },
+        "packages/quds_office_engine/test/odt_zotero_image_lifecycle_test.dart": {
+          "passed": 9
+        },
+        "packages/quds_office_engine/test/odt_zotero_note_numbering_test.dart": {
+          "passed": 141
+        },
+        "packages/quds_office_engine/test/odt_zotero_position_guard_test.dart": {
+          "passed": 11
+        },
+        "packages/quds_office_engine/test/odt_zotero_table_geometry_test.dart": {
+          "passed": 19
+        },
+        "packages/quds_office_engine/test/odt_zotero_writer_test.dart": {
+          "passed": 11
+        },
+        "packages/quds_office_engine/test/office_vba_arrays_boundaries_test.dart": {
+          "passed": 144
+        },
+        "packages/quds_office_engine/test/office_vba_arrays_integration_test.dart": {
+          "passed": 11
+        },
+        "packages/quds_office_engine/test/office_vba_arrays_test.dart": {
+          "passed": 32
+        },
+        "packages/quds_office_engine/test/office_vba_conformance_test.dart": {
+          "passed": 115
+        },
+        "packages/quds_office_engine/test/office_vba_dynamic_arrays_integration_test.dart": {
+          "passed": 11
+        },
+        "packages/quds_office_engine/test/office_vba_dynamic_arrays_test.dart": {
+          "passed": 50
+        },
+        "packages/quds_office_engine/test/office_vba_join_conformance_test.dart": {
+          "passed": 26
+        },
+        "packages/quds_office_engine/test/office_vba_split_test.dart": {
+          "passed": 364
+        },
+        "packages/quds_office_engine/test/office_vba_string_constants_test.dart": {
+          "passed": 73
+        },
+        "packages/quds_office_engine/test/office_vba_string_intrinsics_integration_test.dart": {
+          "passed": 11
+        },
+        "packages/quds_office_engine/test/office_vba_string_intrinsics_test.dart": {
+          "passed": 102
+        },
+        "packages/quds_office_engine/test/office_vba_text_intrinsics_test.dart": {
+          "passed": 156
+        },
+        "packages/quds_office_engine/test/office_vba_variant_substrings_test.dart": {
+          "passed": 108
+        },
+        "packages/quds_office_engine/test/office_vba_word_cell_paragraphs_test.dart": {
+          "passed": 66
+        },
+        "packages/quds_office_engine/test/office_vba_word_headers_footers_test.dart": {
+          "passed": 94
+        },
+        "packages/quds_office_engine/test/office_vba_word_named_measurements_integration_test.dart": {
+          "passed": 11
+        },
+        "packages/quds_office_engine/test/office_vba_word_named_measurements_test.dart": {
+          "passed": 160
+        },
+        "packages/quds_office_engine/test/office_vba_word_named_selectors_test.dart": {
+          "passed": 133
+        },
+        "packages/quds_office_engine/test/office_vba_word_page_setup_test.dart": {
+          "passed": 88
+        },
+        "packages/quds_office_engine/test/office_vba_word_split_cli_test.dart": {
+          "passed": 1
+        },
+        "packages/quds_office_engine/test/office_vba_word_split_integration_test.dart": {
+          "passed": 8
+        },
+        "packages/quds_office_engine/test/office_vba_word_text_selectors_cli_test.dart": {
+          "passed": 1
+        },
+        "packages/quds_office_engine/test/office_vba_word_text_selectors_conformance_test.dart": {
+          "passed": 65
+        },
+        "packages/quds_office_engine/test/office_vba_word_text_selectors_directional_test.dart": {
+          "passed": 2
+        },
+        "packages/quds_office_engine/test/office_vba_word_text_selectors_integration_test.dart": {
+          "passed": 4
+        },
+        "packages/quds_office_engine/test/word_directional_paragraph_io_test.dart": {
+          "passed": 43
+        },
+        "packages/quds_office_engine/test/word_empty_formatted_run_test.dart": {
+          "passed": 17
+        },
+        "packages/quds_office_engine/test/word_extended_revision_test.dart": {
+          "passed": 23
+        },
+        "packages/quds_office_engine/test/word_field_span_test.dart": {
+          "passed": 7
+        },
+        "packages/quds_office_engine/test/word_package_preservation_test.dart": {
+          "passed": 32
+        },
+        "packages/quds_office_engine/test/word_revision_scaling_test.dart": {
+          "passed": 2
+        },
+        "packages/quds_office_engine/test/word_revision_story_test.dart": {
+          "passed": 11
+        },
+        "packages/quds_office_engine/test/word_revision_validation_test.dart": {
+          "passed": 7
+        },
+        "packages/quds_office_engine/test/word_table_grid_addressing_test.dart": {
+          "passed": 22
+        },
+        "packages/quds_office_engine/test/word_zotero_add_note_test.dart": {
+          "passed": 35
+        },
+        "packages/quds_office_engine/test/word_zotero_adjacent_citations_test.dart": {
+          "passed": 23
+        },
+        "packages/quds_office_engine/test/word_zotero_bibliography_layout_test.dart": {
+          "passed": 14
+        },
+        "packages/quds_office_engine/test/word_zotero_bibliography_style_fidelity_test.dart": {
+          "passed": 6
+        },
+        "packages/quds_office_engine/test/word_zotero_blockquote_test.dart": {
+          "passed": 19
+        },
+        "packages/quds_office_engine/test/word_zotero_boundary_formatting_test.dart": {
+          "passed": 80
+        },
+        "packages/quds_office_engine/test/word_zotero_caret_test.dart": {
+          "passed": 9
+        },
+        "packages/quds_office_engine/test/word_zotero_citing_test.dart": {
+          "passed": 59
+        },
+        "packages/quds_office_engine/test/word_zotero_document_data_test.dart": {
+          "passed": 49
+        },
+        "packages/quds_office_engine/test/word_zotero_field_recovery_test.dart": {
+          "passed": 38
+        },
+        "packages/quds_office_engine/test/word_zotero_field_selection_test.dart": {
+          "passed": 14
+        },
+        "packages/quds_office_engine/test/word_zotero_formatted_bibliography_test.dart": {
+          "passed": 11
+        },
+        "packages/quds_office_engine/test/word_zotero_multiparagraph_test.dart": {
+          "passed": 59
+        },
+        "packages/quds_office_engine/test/word_zotero_nested_note_tables_test.dart": {
+          "passed": 11
+        },
+        "packages/quds_office_engine/test/word_zotero_nested_table_test.dart": {
+          "passed": 20
+        },
+        "packages/quds_office_engine/test/word_zotero_nested_tables_integration_test.dart": {
+          "passed": 6
+        },
+        "packages/quds_office_engine/test/word_zotero_note_image_test.dart": {
+          "passed": 30
+        },
+        "packages/quds_office_engine/test/word_zotero_note_images_integration_test.dart": {
+          "passed": 10
+        },
+        "packages/quds_office_engine/test/word_zotero_note_insertion_test.dart": {
+          "passed": 42
+        },
+        "packages/quds_office_engine/test/word_zotero_note_list_test.dart": {
+          "passed": 38
+        },
+        "packages/quds_office_engine/test/word_zotero_note_table_test.dart": {
+          "passed": 118
+        },
+        "packages/quds_office_engine/test/word_zotero_note_tables_integration_test.dart": {
+          "passed": 32
+        },
+        "packages/quds_office_engine/test/word_zotero_paragraph_format_test.dart": {
+          "passed": 26
+        },
+        "packages/quds_office_engine/test/word_zotero_preference_flow_test.dart": {
+          "passed": 11
+        },
+        "packages/quds_office_engine/test/word_zotero_research_target_test.dart": {
+          "passed": 35
+        },
+        "packages/quds_office_engine/test/word_zotero_rich_edit_test.dart": {
+          "passed": 30
+        },
+        "packages/quds_office_engine/test/word_zotero_scaling_test.dart": {
+          "passed": 5
+        },
+        "packages/quds_office_engine/test/word_zotero_simple_field_test.dart": {
+          "passed": 19
+        },
+        "packages/quds_office_engine/test/word_zotero_source_identity_test.dart": {
+          "passed": 14
+        },
+        "packages/quds_office_engine/test/word_zotero_style_preferences_review_test.dart": {
+          "passed": 20
+        },
+        "packages/quds_office_engine/test/word_zotero_table_cell_replacement_test.dart": {
+          "passed": 62
+        },
+        "packages/quds_office_engine/test/word_zotero_test.dart": {
+          "passed": 16
+        },
+        "packages/quds_office_engine/test/word_zotero_transfer_session_test.dart": {
+          "passed": 8
+        },
+        "packages/quds_office_engine/test/word_zotero_transfer_test.dart": {
+          "passed": 81
+        },
+        "packages/quds_office_engine/test/word_zotero_writing_position_test.dart": {
+          "passed": 38
+        }
+      },
+      "skipped_cases": 0,
+      "started_at_utc": "2026-11-22T12:29:27.541055+00:00",
+      "suite_count": 92
+    },
+    {
+      "exit_code": 0,
+      "failed_cases": 0,
+      "finished_at_utc": "2026-11-22T12:33:37.485811+00:00",
+      "name": "incoming_editor",
+      "passed_cases": 653,
+      "per_file_counts": {
+        "packages/quds_office_editor/test/word_odt_image_load_test.dart": {
+          "passed": 7
+        },
+        "packages/quds_office_editor/test/word_odt_load_test.dart": {
+          "passed": 9
+        },
+        "packages/quds_office_editor/test/word_odt_merged_table_load_test.dart": {
+          "passed": 3
+        },
+        "packages/quds_office_editor/test/word_odt_note_numbering_test.dart": {
+          "passed": 12
+        },
+        "packages/quds_office_editor/test/word_ruler_directional_indent_test.dart": {
+          "passed": 10
+        },
+        "packages/quds_office_editor/test/word_zotero_add_note_controller_test.dart": {
+          "passed": 108
+        },
+        "packages/quds_office_editor/test/word_zotero_adjacent_citations_controller_test.dart": {
+          "passed": 6
+        },
+        "packages/quds_office_editor/test/word_zotero_bibliography_controller_test.dart": {
+          "passed": 13
+        },
+        "packages/quds_office_editor/test/word_zotero_blockquote_controller_test.dart": {
+          "passed": 16
+        },
+        "packages/quds_office_editor/test/word_zotero_citing_controller_test.dart": {
+          "passed": 21
+        },
+        "packages/quds_office_editor/test/word_zotero_controller_test.dart": {
+          "passed": 17
+        },
+        "packages/quds_office_editor/test/word_zotero_converter_controller_test.dart": {
+          "passed": 12
+        },
+        "packages/quds_office_editor/test/word_zotero_document_actions_test.dart": {
+          "passed": 12
+        },
+        "packages/quds_office_editor/test/word_zotero_field_at_caret_test.dart": {
+          "passed": 4
+        },
+        "packages/quds_office_editor/test/word_zotero_field_context_controller_test.dart": {
+          "passed": 31
+        },
+        "packages/quds_office_editor/test/word_zotero_field_context_dialog_test.dart": {
+          "passed": 21
+        },
+        "packages/quds_office_editor/test/word_zotero_field_context_render_test.dart": {
+          "passed": 9
+        },
+        "packages/quds_office_editor/test/word_zotero_multiparagraph_controller_test.dart": {
+          "passed": 109
+        },
+        "packages/quds_office_editor/test/word_zotero_nested_table_controller_test.dart": {
+          "passed": 15
+        },
+        "packages/quds_office_editor/test/word_zotero_note_color_controller_test.dart": {
+          "passed": 2
+        },
+        "packages/quds_office_editor/test/word_zotero_note_image_controller_test.dart": {
+          "passed": 25
+        },
+        "packages/quds_office_editor/test/word_zotero_paragraph_format_controller_test.dart": {
+          "passed": 13
+        },
+        "packages/quds_office_editor/test/word_zotero_recovery_controller_test.dart": {
+          "passed": 22
+        },
+        "packages/quds_office_editor/test/word_zotero_recovery_dialog_test.dart": {
+          "passed": 6
+        },
+        "packages/quds_office_editor/test/word_zotero_rich_controller_test.dart": {
+          "passed": 8
+        },
+        "packages/quds_office_editor/test/word_zotero_transfer_controller_test.dart": {
+          "passed": 29
+        },
+        "packages/quds_office_editor/test/word_zotero_unlink_all_test.dart": {
+          "passed": 13
+        },
+        "packages/quds_office_editor/test/word_zotero_unlink_recovery_test.dart": {
+          "passed": 16
+        },
+        "packages/quds_office_editor/test/word_zotero_vertical_table_controller_test.dart": {
+          "passed": 60
+        },
+        "packages/quds_office_editor/test/word_zotero_writing_position_test.dart": {
+          "passed": 24
+        }
+      },
+      "skipped_cases": 0,
+      "started_at_utc": "2026-11-22T12:32:39.384245+00:00",
+      "suite_count": 30
+    },
+    {
+      "exit_code": 0,
+      "failed_cases": 0,
+      "finished_at_utc": "2026-11-22T12:34:05.539191+00:00",
+      "name": "incoming_store",
+      "passed_cases": 47,
+      "per_file_counts": {
+        "packages/quds_mail_store/test/local_accounts_expected_record_test.dart": {
+          "passed": 21
+        },
+        "packages/quds_mail_store/test/local_accounts_test.dart": {
+          "passed": 26
+        }
+      },
+      "skipped_cases": 0,
+      "started_at_utc": "2026-11-22T12:33:38.185807+00:00",
+      "suite_count": 2
+    },
+    {
+      "exit_code": 0,
+      "failed_cases": 0,
+      "finished_at_utc": "2026-11-22T12:34:58.492152+00:00",
+      "name": "studio_zotero",
+      "passed_cases": 48,
+      "per_file_counts": {
+        "packages/quds_office_editor/example/test/studio_odt_open_test.dart": {
+          "passed": 3
+        },
+        "packages/quds_office_editor/example/test/studio_zotero_citing_transport_test.dart": {
+          "passed": 18
+        },
+        "packages/quds_office_editor/example/test/studio_zotero_odt_export_test.dart": {
+          "passed": 10
+        },
+        "packages/quds_office_editor/example/test/studio_zotero_shortcuts_test.dart": {
+          "passed": 17
+        }
+      },
+      "skipped_cases": 0,
+      "started_at_utc": "2026-11-22T12:34:06.261938+00:00",
+      "suite_count": 4
+    },
+    {
+      "exit_code": 0,
+      "failed_cases": 0,
+      "finished_at_utc": "2026-11-22T12:42:52.781601+00:00",
+      "name": "studio_mail",
+      "passed_cases": 2250,
+      "per_file_counts": {
+        "packages/quds_office_editor/example/test/studio_mail_account_catalog_test.dart": {
+          "passed": 51
+        },
+        "packages/quds_office_editor/example/test/studio_mail_account_navigation_dialog_test.dart": {
+          "passed": 13
+        },
+        "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_release_test.dart": {
+          "passed": 4
+        },
+        "packages/quds_office_editor/example/test/studio_mail_account_navigation_native_test.dart": {
+          "passed": 15
+        },
+        "packages/quds_office_editor/example/test/studio_mail_account_navigation_provider_test.dart": {
+          "passed": 70
+        },
+        "packages/quds_office_editor/example/test/studio_mail_account_navigation_router_test.dart": {
+          "passed": 8
+        },
+        "packages/quds_office_editor/example/test/studio_mail_account_navigation_test.dart": {
+          "passed": 39
+        },
+        "packages/quds_office_editor/example/test/studio_mail_account_stores_test.dart": {
+          "passed": 3
+        },
+        "packages/quds_office_editor/example/test/studio_mail_accounts_test.dart": {
+          "passed": 24
+        },
+        "packages/quds_office_editor/example/test/studio_mail_archive_action_test.dart": {
+          "passed": 10
+        },
+        "packages/quds_office_editor/example/test/studio_mail_archive_directory_import_test.dart": {
+          "passed": 30
+        },
+        "packages/quds_office_editor/example/test/studio_mail_archive_folder_action_test.dart": {
+          "passed": 21
+        },
+        "packages/quds_office_editor/example/test/studio_mail_archive_host_test.dart": {
+          "passed": 17
+        },
+        "packages/quds_office_editor/example/test/studio_mail_archive_portability_visual_test.dart": {
+          "passed": 8
+        },
+        "packages/quds_office_editor/example/test/studio_mail_archive_restore_native_test.dart": {
+          "passed": 1
+        },
+        "packages/quds_office_editor/example/test/studio_mail_archive_restore_test.dart": {
+          "passed": 22
+        },
+        "packages/quds_office_editor/example/test/studio_mail_archive_test.dart": {
+          "passed": 27
+        },
+        "packages/quds_office_editor/example/test/studio_mail_attachment_compose_test.dart": {
+          "passed": 11
+        },
+        "packages/quds_office_editor/example/test/studio_mail_attachment_loader_test.dart": {
+          "passed": 13
+        },
+        "packages/quds_office_editor/example/test/studio_mail_attachment_test.dart": {
+          "passed": 46
+        },
+        "packages/quds_office_editor/example/test/studio_mail_autoconnect_test.dart": {
+          "passed": 14
+        },
+        "packages/quds_office_editor/example/test/studio_mail_body_download_store_test.dart": {
+          "passed": 8
+        },
+        "packages/quds_office_editor/example/test/studio_mail_boolean_search_strings_test.dart": {
+          "passed": 3
+        },
+        "packages/quds_office_editor/example/test/studio_mail_bulk_organization_provider_test.dart": {
+          "passed": 25
+        },
+        "packages/quds_office_editor/example/test/studio_mail_bulk_provider_test.dart": {
+          "passed": 39
+        },
+        "packages/quds_office_editor/example/test/studio_mail_bulk_visual_test.dart": {
+          "passed": 13
+        },
+        "packages/quds_office_editor/example/test/studio_mail_cached_host_test.dart": {
+          "passed": 60
+        },
+        "packages/quds_office_editor/example/test/studio_mail_cached_mail_test.dart": {
+          "passed": 37
+        },
+        "packages/quds_office_editor/example/test/studio_mail_cached_search_dialog_test.dart": {
+          "passed": 23
+        },
+        "packages/quds_office_editor/example/test/studio_mail_cached_search_refresh_dialog_test.dart": {
+          "passed": 14
+        },
+        "packages/quds_office_editor/example/test/studio_mail_cached_search_refresh_test.dart": {
+          "passed": 19
+        },
+        "packages/quds_office_editor/example/test/studio_mail_cached_search_test.dart": {
+          "passed": 24
+        },
+        "packages/quds_office_editor/example/test/studio_mail_calendar_date_test.dart": {
+          "passed": 10
+        },
+        "packages/quds_office_editor/example/test/studio_mail_capture_projection_test.dart": {
+          "passed": 21
+        },
+        "packages/quds_office_editor/example/test/studio_mail_cloud_test.dart": {
+          "passed": 59
+        },
+        "packages/quds_office_editor/example/test/studio_mail_compose_cache_recovery_test.dart": {
+          "passed": 16
+        },
+        "packages/quds_office_editor/example/test/studio_mail_compose_test.dart": {
+          "passed": 24
+        },
+        "packages/quds_office_editor/example/test/studio_mail_compose_tools_dialog_test.dart": {
+          "passed": 15
+        },
+        "packages/quds_office_editor/example/test/studio_mail_compose_tools_store_test.dart": {
+          "passed": 10
+        },
+        "packages/quds_office_editor/example/test/studio_mail_compose_tools_test.dart": {
+          "passed": 12
+        },
+        "packages/quds_office_editor/example/test/studio_mail_conversation_strings_test.dart": {
+          "passed": 3
+        },
+        "packages/quds_office_editor/example/test/studio_mail_credential_backend_switch_test.dart": {
+          "passed": 7
+        },
+        "packages/quds_office_editor/example/test/studio_mail_credentials_test.dart": {
+          "passed": 28
+        },
+        "packages/quds_office_editor/example/test/studio_mail_discovery_test.dart": {
+          "passed": 9
+        },
+        "packages/quds_office_editor/example/test/studio_mail_draft_autosave_test.dart": {
+          "passed": 10
+        },
+        "packages/quds_office_editor/example/test/studio_mail_draft_catalog_test.dart": {
+          "passed": 14
+        },
+        "packages/quds_office_editor/example/test/studio_mail_draft_host_recovery_test.dart": {
+          "passed": 20
+        },
+        "packages/quds_office_editor/example/test/studio_mail_draft_store_test.dart": {
+          "passed": 16
+        },
+        "packages/quds_office_editor/example/test/studio_mail_drafts_dialog_test.dart": {
+          "passed": 7
+        },
+        "packages/quds_office_editor/example/test/studio_mail_ews_test.dart": {
+          "passed": 77
+        },
+        "packages/quds_office_editor/example/test/studio_mail_flag_journal_test.dart": {
+          "passed": 28
+        },
+        "packages/quds_office_editor/example/test/studio_mail_flag_reconciliation_test.dart": {
+          "passed": 24
+        },
+        "packages/quds_office_editor/example/test/studio_mail_flag_recovery_dialog_test.dart": {
+          "passed": 25
+        },
+        "packages/quds_office_editor/example/test/studio_mail_folder_picker_test.dart": {
+          "passed": 3
+        },
+        "packages/quds_office_editor/example/test/studio_mail_folder_search_dialog_test.dart": {
+          "passed": 4
+        },
+        "packages/quds_office_editor/example/test/studio_mail_folder_search_lifecycle_test.dart": {
+          "passed": 3
+        },
+        "packages/quds_office_editor/example/test/studio_mail_folder_search_test.dart": {
+          "passed": 23
+        },
+        "packages/quds_office_editor/example/test/studio_mail_forward_test.dart": {
+          "passed": 10
+        },
+        "packages/quds_office_editor/example/test/studio_mail_journal_dialog_test.dart": {
+          "passed": 26
+        },
+        "packages/quds_office_editor/example/test/studio_mail_journal_host_test.dart": {
+          "passed": 111
+        },
+        "packages/quds_office_editor/example/test/studio_mail_lifecycle_test.dart": {
+          "passed": 1
+        },
+        "packages/quds_office_editor/example/test/studio_mail_local_accounts_dialog_test.dart": {
+          "passed": 18
+        },
+        "packages/quds_office_editor/example/test/studio_mail_local_accounts_test.dart": {
+          "passed": 8
+        },
+        "packages/quds_office_editor/example/test/studio_mail_local_drafts_test.dart": {
+          "passed": 13
+        },
+        "packages/quds_office_editor/example/test/studio_mail_mailbox_session_test.dart": {
+          "passed": 14
+        },
+        "packages/quds_office_editor/example/test/studio_mail_mailbox_store_test.dart": {
+          "passed": 23
+        },
+        "packages/quds_office_editor/example/test/studio_mail_mailbox_sync_session_test.dart": {
+          "passed": 22
+        },
+        "packages/quds_office_editor/example/test/studio_mail_membership_reconciliation_test.dart": {
+          "passed": 13
+        },
+        "packages/quds_office_editor/example/test/studio_mail_message_loader_test.dart": {
+          "passed": 145
+        },
+        "packages/quds_office_editor/example/test/studio_mail_move_identity_test.dart": {
+          "passed": 11
+        },
+        "packages/quds_office_editor/example/test/studio_mail_operation_test.dart": {
+          "passed": 7
+        },
+        "packages/quds_office_editor/example/test/studio_mail_organization_dialog_test.dart": {
+          "passed": 20
+        },
+        "packages/quds_office_editor/example/test/studio_mail_outbox_cloud_test.dart": {
+          "passed": 8
+        },
+        "packages/quds_office_editor/example/test/studio_mail_outbox_content_test.dart": {
+          "passed": 28
+        },
+        "packages/quds_office_editor/example/test/studio_mail_outbox_dialog_test.dart": {
+          "passed": 10
+        },
+        "packages/quds_office_editor/example/test/studio_mail_outbox_export_test.dart": {
+          "passed": 3
+        },
+        "packages/quds_office_editor/example/test/studio_mail_outbox_host_test.dart": {
+          "passed": 11
+        },
+        "packages/quds_office_editor/example/test/studio_mail_outbox_management_test.dart": {
+          "passed": 6
+        },
+        "packages/quds_office_editor/example/test/studio_mail_outbox_review_visual_test.dart": {
+          "passed": 6
+        },
+        "packages/quds_office_editor/example/test/studio_mail_outbox_schedule_dialog_test.dart": {
+          "passed": 18
+        },
+        "packages/quds_office_editor/example/test/studio_mail_outbox_schedule_session_test.dart": {
+          "passed": 9
+        },
+        "packages/quds_office_editor/example/test/studio_mail_outbox_scheduling_store_test.dart": {
+          "passed": 7
+        },
+        "packages/quds_office_editor/example/test/studio_mail_outbox_store_test.dart": {
+          "passed": 18
+        },
+        "packages/quds_office_editor/example/test/studio_mail_outbox_submission_test.dart": {
+          "passed": 18
+        },
+        "packages/quds_office_editor/example/test/studio_mail_presets_test.dart": {
+          "passed": 7
+        },
+        "packages/quds_office_editor/example/test/studio_mail_quit_test.dart": {
+          "passed": 5
+        },
+        "packages/quds_office_editor/example/test/studio_mail_recipients_test.dart": {
+          "passed": 31
+        },
+        "packages/quds_office_editor/example/test/studio_mail_remote_images_host_test.dart": {
+          "passed": 1
+        },
+        "packages/quds_office_editor/example/test/studio_mail_remote_images_incoming_test.dart": {
+          "passed": 18
+        },
+        "packages/quds_office_editor/example/test/studio_mail_remote_images_test.dart": {
+          "passed": 11
+        },
+        "packages/quds_office_editor/example/test/studio_mail_reply_test.dart": {
+          "passed": 43
+        },
+        "packages/quds_office_editor/example/test/studio_mail_retained_folders_test.dart": {
+          "passed": 22
+        },
+        "packages/quds_office_editor/example/test/studio_mail_retained_navigation_test.dart": {
+          "passed": 20
+        },
+        "packages/quds_office_editor/example/test/studio_mail_saved_search_dialog_test.dart": {
+          "passed": 14
+        },
+        "packages/quds_office_editor/example/test/studio_mail_saved_search_store_test.dart": {
+          "passed": 19
+        },
+        "packages/quds_office_editor/example/test/studio_mail_schedule_picker_test.dart": {
+          "passed": 6
+        },
+        "packages/quds_office_editor/example/test/studio_mail_search_folder_picker_test.dart": {
+          "passed": 9
+        },
+        "packages/quds_office_editor/example/test/studio_mail_selected_store_integration_test.dart": {
+          "passed": 14
+        },
+        "packages/quds_office_editor/example/test/studio_mail_selection_help_test.dart": {
+          "passed": 3
+        },
+        "packages/quds_office_editor/example/test/studio_mail_session_test.dart": {
+          "passed": 21
+        },
+        "packages/quds_office_editor/example/test/studio_mail_sync_dialog_test.dart": {
+          "passed": 35
+        },
+        "packages/quds_office_editor/example/test/studio_mail_sync_host_test.dart": {
+          "passed": 8
+        },
+        "packages/quds_office_editor/example/test/studio_mail_sync_native_test.dart": {
+          "passed": 5
+        },
+        "packages/quds_office_editor/example/test/studio_mail_sync_store_test.dart": {
+          "passed": 6
+        },
+        "packages/quds_office_editor/example/test/studio_mail_test.dart": {
+          "passed": 81
+        },
+        "packages/quds_office_editor/example/test/studio_mail_threading_test.dart": {
+          "passed": 24
+        },
+        "packages/quds_office_editor/example/test/studio_mail_web_test.dart": {
+          "passed": 2
+        },
+        "packages/quds_office_editor/example/test/studio_mail_workspace_test.dart": {
+          "passed": 64
+        },
+        "packages/quds_office_editor/example/test/studio_saved_mail_test.dart": {
+          "passed": 16
+        },
+        "packages/quds_office_editor/example/test/suite_workspace_mail_shortcuts_test.dart": {
+          "passed": 1
+        }
+      },
+      "skipped_cases": 0,
+      "started_at_utc": "2026-11-22T12:35:00.754743+00:00",
+      "suite_count": 110
+    }
+  ],
+  "historical_results_added_to_fresh_total": false,
+  "input_manifests": [
+    {
+      "gzip_sha256": "5d5b506085073e7a860c89a755c2a361e948c8497f6633be2761018a5a46fdb0",
+      "path": "inputs-before.json.gz",
+      "raw_bytes": 2232324,
+      "raw_sha256": "2f38a5ebc7ef74e0b3c9c8fccda12239ed794cec947b198b196d40fa8ca044c0"
+    },
+    {
+      "gzip_sha256": "52b4aadadec7258586954ee77407681e4e33d38337084889ebe8762de38e726c",
+      "path": "inputs-after-analysis.json.gz",
+      "raw_bytes": 2232324,
+      "raw_sha256": "5f5b8ef446a7d1e3d1638b4f8ded063aa0a166b8eaccf3b2202a1320d0a906d8"
+    },
+    {
+      "gzip_sha256": "d12201e69e32e9b0d79b79ec9cb379a0aae91b519e24b21a90bae2a1dcb8a24b",
+      "path": "inputs-after-format.json.gz",
+      "raw_bytes": 2232324,
+      "raw_sha256": "b225dea374df9585f181d7a5882c62012c45e70de1850de0010b1fea63471f54"
+    },
+    {
+      "gzip_sha256": "c3b9a07362edd1e0b64837e4a4840eaecc4d2f86d528e7aa81dc2eaeb332007d",
+      "path": "inputs-after-incoming_engine.json.gz",
+      "raw_bytes": 2232324,
+      "raw_sha256": "678d6d37c5891465881a20d7541f5587508ed9d8004ce3cf56fbea0c688679b1"
+    },
+    {
+      "gzip_sha256": "47eb9474fc71fd96a3675b30dc295db0dfac12f830ecd18a98cdc664f16d43b2",
+      "path": "inputs-after-incoming_editor.json.gz",
+      "raw_bytes": 2232324,
+      "raw_sha256": "07b451216f9fa2166f0c496c06991e085614ffa74fc812b2abc23caf58faada1"
+    },
+    {
+      "gzip_sha256": "54ed7680e573979c732209699fcdf3520aff98c6d2652c2d883cc0178da9f713",
+      "path": "inputs-after-incoming_store.json.gz",
+      "raw_bytes": 2232324,
+      "raw_sha256": "26eb88d557a6491123fd70e888d6e81947199247b1843a28f0c8c70e3f4ca113"
+    },
+    {
+      "gzip_sha256": "f44eb22aaf931669778fba6fb956f1f709839a53e8adac388f11f1f48619a00a",
+      "path": "inputs-after-studio_zotero.json.gz",
+      "raw_bytes": 2232324,
+      "raw_sha256": "b2cd7a18b0a2bcbbfaa0bce4666b74078353dd9cbfc0fd02b9897add145c42c8"
+    },
+    {
+      "gzip_sha256": "30a6dfe14728af8181a2fb5085186db9457f1c979c305e48fa66386558eb5c23",
+      "path": "inputs-after-studio_mail.json.gz",
+      "raw_bytes": 2232324,
+      "raw_sha256": "b4189aa759954b6ea72b5e360ca6554b45c52adc26b1535f64a7a0a3e8e9cd27"
+    }
+  ],
+  "inputs_not_matching_source_commit": [],
+  "retained_accepted_cases": 294,
+  "retained_continuity": "retained-continuity.json",
+  "retained_evidence_accepted": true,
+  "runner_sha256_after": "e0e1d208beae75dba5de37b4d0ce1f4a9c24ab72864ce5435b1c6e234bd04e85",
+  "runner_sha256_before": "e0e1d208beae75dba5de37b4d0ce1f4a9c24ab72864ce5435b1c6e234bd04e85",
+  "scope": "Local pinned VM/widget regression only; no new JavaScript/browser Split, live-provider, installed-platform or complete product-parity claim. GitHub Actions not queried or awaited.",
+  "source_checks": [
+    {
+      "after_gate": "analysis",
+      "changed_source_inputs": [],
+      "generated_inputs_unchanged": true,
+      "stable": true
+    },
+    {
+      "after_gate": "format",
+      "changed_source_inputs": [],
+      "generated_inputs_unchanged": true,
+      "stable": true
+    },
+    {
+      "after_gate": "incoming_engine",
+      "changed_source_inputs": [],
+      "generated_inputs_unchanged": true,
+      "stable": true
+    },
+    {
+      "after_gate": "incoming_editor",
+      "changed_source_inputs": [],
+      "generated_inputs_unchanged": true,
+      "stable": true
+    },
+    {
+      "after_gate": "incoming_store",
+      "changed_source_inputs": [],
+      "generated_inputs_unchanged": true,
+      "stable": true
+    },
+    {
+      "after_gate": "studio_zotero",
+      "changed_source_inputs": [],
+      "generated_inputs_unchanged": true,
+      "stable": true
+    },
+    {
+      "after_gate": "studio_mail",
+      "changed_source_inputs": [],
+      "generated_inputs_unchanged": true,
+      "stable": true
+    }
+  ]
+}

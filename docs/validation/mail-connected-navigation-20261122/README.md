@@ -120,6 +120,15 @@ and all 110 Studio Mail suites. This is 238 fresh behavioral suites. The origina
 all relevant inputs still match exactly. This is VM/widget qualification; new
 JavaScript/browser Split acceptance is not claimed.
 
+The expanded run is frozen at remote source
+`9a371b616ae0fa0dbbecaed04708837125694d7c`, tree
+`491fbf5892a6999629a0fdf887d631cc7bb8acb5`. It captures 6,151 source/configuration
+inputs and checks 109 changed Dart paths. Shared UI retention was independently
+reviewed: all 393 relevant package/root inputs, 79 actual local Dart imports,
+the unchanged 18-suite selection, generated resolution, runtime identity and
+original evidence checksums match. Only its 294 cases may enter the retained
+total. Fresh results are recorded under `final/merged-source-recovery/`.
+
 Initial failed test attempts and their corrections remain in `development/`.
 The first provider startup was rejected by automatic review because an
 unsourced Flutter invocation attempted its Azure metadata bot-detection probe.
@@ -141,6 +150,7 @@ Working branch: `work/mail-connected-navigation-20261122`.
 | `d53f30f1874b38d36a791d1d3881583e4e42a2d6` | First frozen combined source, complete captured intake, observer-release recovery and focused regression evidence |
 | `6d63c6e2a44848b4f2fb9d7177d2d605506f98cb` | Complete first combined run with its failures, restored cancellable Close and independent provider setup, and corrective regressions |
 | `4015d7544ec3aa392ce2f375a35f00a4c3d4c5a3` | Corrected fixtures, all focused recovery evidence and the source immediately before the final main advance |
+| `9a371b616ae0fa0dbbecaed04708837125694d7c` | Latest main reconciled, atomic reconnect retained with the corrected lifecycle, and expanded final qualification frozen |
 
 Each remote tree was checked against its local checkpoint before moving the
 branch with an expected-head lease and `force=false`. The qualification

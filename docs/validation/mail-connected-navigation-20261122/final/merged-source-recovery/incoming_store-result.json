@@ -1,0 +1,427 @@
+{
+  "command": [
+    "/workspace/scratch/85a369f34dbb/runtime/flutter/bin/cache/dart-sdk/bin/dart",
+    "test",
+    "--concurrency=2",
+    "--reporter=json",
+    "test/local_accounts_test.dart",
+    "test/local_accounts_expected_record_test.dart"
+  ],
+  "cwd": "packages/quds_mail_store",
+  "exit_code": 0,
+  "expected_suites": [
+    "packages/quds_mail_store/test/local_accounts_test.dart",
+    "packages/quds_mail_store/test/local_accounts_expected_record_test.dart"
+  ],
+  "finished_at_utc": "2026-11-22T12:34:05.539191+00:00",
+  "interrupted": false,
+  "kind": "tests",
+  "name": "incoming_store",
+  "observed_head": "9a371b616ae0fa0dbbecaed04708837125694d7c",
+  "reporter": {
+    "case_attempts": 47,
+    "cases": [
+      {
+        "id": 5,
+        "name": "four providers retain exact routes with deterministic recent ordering",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_test.dart"
+      },
+      {
+        "id": 7,
+        "name": "null expectation retains fresh registration and refresh behavior",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_expected_record_test.dart"
+      },
+      {
+        "id": 8,
+        "name": "older confirmations cannot reorder an account backwards",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_test.dart"
+      },
+      {
+        "id": 9,
+        "name": "the same id cannot be redirected to another account",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_test.dart"
+      },
+      {
+        "id": 10,
+        "name": "exact snapshot refreshes once with a new connection time and revision",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_expected_record_test.dart"
+      },
+      {
+        "id": 11,
+        "name": "same-clock and older reconnects invalidate removal snapshots",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_test.dart"
+      },
+      {
+        "id": 12,
+        "name": "guarded completion preserves a newer stored connection time",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_expected_record_test.dart"
+      },
+      {
+        "id": 13,
+        "name": "host metadata budget rejects admission without a partial row",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_test.dart"
+      },
+      {
+        "id": 14,
+        "name": "missing expected account never creates a shortcut or consumes a revision",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_expected_record_test.dart"
+      },
+      {
+        "id": 15,
+        "name": "directory admission is bounded but existing rows remain refreshable",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_test.dart"
+      },
+      {
+        "id": 16,
+        "name": "late selected completion does not recreate a removed shortcut",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_expected_record_test.dart"
+      },
+      {
+        "id": 17,
+        "name": "same-clock removal and re-add cannot revive an earlier selected snapshot",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_expected_record_test.dart"
+      },
+      {
+        "id": 18,
+        "name": "replacement identity under the same id cannot be overwritten",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_expected_record_test.dart"
+      },
+      {
+        "id": 19,
+        "name": "an intervening ordinary refresh invalidates a same-clock selection",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_expected_record_test.dart"
+      },
+      {
+        "id": 20,
+        "name": "stale removal refuses a more recent connection",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_test.dart"
+      },
+      {
+        "id": 21,
+        "name": "expected revision offset -1 is rejected without metadata changes",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_expected_record_test.dart"
+      },
+      {
+        "id": 22,
+        "name": "failed registration and removal roll back atomically",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_test.dart"
+      },
+      {
+        "id": 23,
+        "name": "expected timestamp offset -1 ms is rejected without metadata changes",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_expected_record_test.dart"
+      },
+      {
+        "id": 24,
+        "name": "forgetting a shortcut preserves account, credentials reference, draft and Outbox",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_test.dart"
+      },
+      {
+        "id": 25,
+        "name": "expected revision offset 1 is rejected without metadata changes",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_expected_record_test.dart"
+      },
+      {
+        "id": 26,
+        "name": "expected timestamp offset 1 ms is rejected without metadata changes",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_expected_record_test.dart"
+      },
+      {
+        "id": 27,
+        "name": "expected foreign id cannot authorize the requested identity",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_expected_record_test.dart"
+      },
+      {
+        "id": 28,
+        "name": "expected foreign login cannot authorize the requested identity",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_expected_record_test.dart"
+      },
+      {
+        "id": 29,
+        "name": "profile removal erases directory and prevents registration",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_test.dart"
+      },
+      {
+        "id": 30,
+        "name": "expected foreign sender cannot authorize the requested identity",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_expected_record_test.dart"
+      },
+      {
+        "id": 31,
+        "name": "rejects password in endpoint without writing metadata",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_test.dart"
+      },
+      {
+        "id": 32,
+        "name": "expected foreign endpoint cannot authorize the requested identity",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_expected_record_test.dart"
+      },
+      {
+        "id": 33,
+        "name": "rejects query without writing metadata",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_test.dart"
+      },
+      {
+        "id": 34,
+        "name": "expected foreign provider cannot authorize the requested identity",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_expected_record_test.dart"
+      },
+      {
+        "id": 35,
+        "name": "rejects fragment without writing metadata",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_test.dart"
+      },
+      {
+        "id": 36,
+        "name": "malformed expected snapshot is refused before any directory mutation",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_expected_record_test.dart"
+      },
+      {
+        "id": 37,
+        "name": "rejects cleartext EWS without writing metadata",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_test.dart"
+      },
+      {
+        "id": 38,
+        "name": "concurrent completions of one selection admit exactly one refresh",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_expected_record_test.dart"
+      },
+      {
+        "id": 39,
+        "name": "rejects local provider without writing metadata",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_test.dart"
+      },
+      {
+        "id": 40,
+        "name": "rejects missing host without writing metadata",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_test.dart"
+      },
+      {
+        "id": 41,
+        "name": "failed transaction rolls back metadata and leaves the selection retryable",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_expected_record_test.dart"
+      },
+      {
+        "id": 42,
+        "name": "rejects control without writing metadata",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_test.dart"
+      },
+      {
+        "id": 43,
+        "name": "removed selection remains rejected after a file-backed reopen",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_expected_record_test.dart"
+      },
+      {
+        "id": 44,
+        "name": "rejects invalid sender without writing metadata",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_test.dart"
+      },
+      {
+        "id": 45,
+        "name": "rejects oversized login without writing metadata",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_test.dart"
+      },
+      {
+        "id": 46,
+        "name": "rejects negative date without writing metadata",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_test.dart"
+      },
+      {
+        "id": 47,
+        "name": "file reopen retains metadata and corrupt rows fail closed",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_test.dart"
+      },
+      {
+        "id": 48,
+        "name": "oversized stored metadata fails before copying or overwriting it",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_test.dart"
+      },
+      {
+        "id": 49,
+        "name": "remove, reopen and re-add cannot revive an old removal snapshot",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_test.dart"
+      },
+      {
+        "id": 50,
+        "name": "corrupt login is rejected before oversized text reaches Dart rows",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_test.dart"
+      },
+      {
+        "id": 51,
+        "name": "corrupt provider is rejected before oversized text reaches Dart rows",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_test.dart"
+      },
+      {
+        "id": 52,
+        "name": "reopening under a lowered UTF-16 budget retains but refuses Unicode metadata",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_test.dart"
+      }
+    ],
+    "completed_lifecycles": 49,
+    "done_events": [
+      {
+        "success": true,
+        "time": 3660,
+        "type": "done"
+      }
+    ],
+    "duplicate_case_names": [],
+    "duplicate_completion_ids": [],
+    "duplicate_start_ids": [],
+    "errors": [],
+    "excluded_lifecycles": [
+      {
+        "id": 1,
+        "name": "loading test/local_accounts_test.dart",
+        "reason": "hidden",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_test.dart"
+      },
+      {
+        "id": 3,
+        "name": "loading test/local_accounts_expected_record_test.dart",
+        "reason": "hidden",
+        "result": "success",
+        "skipped": false,
+        "suite": "packages/quds_mail_store/test/local_accounts_expected_record_test.dart"
+      }
+    ],
+    "expected_suite_count": 2,
+    "failed_cases": 0,
+    "incomplete_cases": 0,
+    "incomplete_lifecycle_ids": [],
+    "missing_suites": [],
+    "non_json_output": [
+      {
+        "line": 1,
+        "text": "Running build hooks...Running build hooks...{\"protocolVersion\":\"0.1.1\",\"runnerVersion\":\"1.31.1\",\"pid\":1177,\"type\":\"start\",\"time\":0}"
+      }
+    ],
+    "orphan_completion_ids": [],
+    "passed_cases": 47,
+    "per_file_counts": {
+      "packages/quds_mail_store/test/local_accounts_expected_record_test.dart": {
+        "passed": 21
+      },
+      "packages/quds_mail_store/test/local_accounts_test.dart": {
+        "passed": 26
+      }
+    },
+    "reporter_success": true,
+    "skipped_cases": 0,
+    "started_lifecycles": 49,
+    "suite_count": 2,
+    "unexpected_suites": [],
+    "unique_completed_cases": 47,
+    "unique_started_cases": 47
+  },
+  "started_at_utc": "2026-11-22T12:33:38.185807+00:00",
+  "status": "completed",
+  "stderr": {
+    "gzip_sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "path": "incoming_store.stderr.gz",
+    "raw_bytes": 0,
+    "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "gzip_sha256": "5bcd7b9ac54db0824518d032f27e1d527fc5c76fec9c924f98fc0c512fb1535e",
+    "path": "incoming_store.jsonl.gz",
+    "raw_bytes": 73131,
+    "raw_sha256": "c133b2883d77f4e464a7664d29e8fd7720224e1f7fd29fce5be4391fc846aef1"
+  }
+}
