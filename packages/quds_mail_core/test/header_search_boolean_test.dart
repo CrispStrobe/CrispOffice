@@ -38,7 +38,7 @@ void main() {
       for (final input in [
         'from:alice subject:report to:team cc:finance is:unread',
         'from:alice AND subject:report AND to:team '
-        'AND cc:finance AND is:unread',
+            'AND cc:finance AND is:unread',
       ]) {
         expect(_matches(input, _header()), isTrue);
         expect(_matches(input, _header(read: true)), isFalse);
@@ -54,10 +54,7 @@ void main() {
       expect(_matches(grouped, readAlice), isFalse);
       expect(_matches(ungrouped, _header(sender: 'Bob')), isTrue);
       expect(_matches(grouped, _header(sender: 'Bob')), isTrue);
-      expect(
-        _matches(ungrouped, _header(sender: 'Bob', read: true)),
-        isFalse,
-      );
+      expect(_matches(ungrouped, _header(sender: 'Bob', read: true)), isFalse);
     });
 
     test('implicit AND has the same precedence as explicit AND', () {
@@ -72,10 +69,7 @@ void main() {
       expect(_matches(input, _header()), isFalse);
       expect(_matches(input, _header(sender: 'Bob')), isTrue);
       expect(_matches(input, _header(sender: 'Bob', read: true)), isFalse);
-      expect(
-        _matches(input, _header(subject: 'Urgent', read: true)),
-        isTrue,
-      );
+      expect(_matches(input, _header(subject: 'Urgent', read: true)), isTrue);
     });
 
     test('negation applies to a complete group and nests predictably', () {
@@ -184,10 +178,7 @@ void main() {
       }
       expect(_matches('is:read OR subject:report', document), isTrue);
       expect(_matches('subject:report OR is:read', document), isTrue);
-      expect(
-        _matches('NOT (is:read AND subject:absent)', document),
-        isTrue,
-      );
+      expect(_matches('NOT (is:read AND subject:absent)', document), isTrue);
     });
 
     test('missing date remains unknown through either negation spelling', () {
@@ -198,14 +189,8 @@ void main() {
           expect(_matches(input, document), isFalse, reason: input);
         }
       }
-      expect(
-        _matches('is:unread OR NOT on:2026-11-20', document),
-        isTrue,
-      );
-      expect(
-        _matches('is:read OR NOT on:2026-11-20', document),
-        isFalse,
-      );
+      expect(_matches('is:unread OR NOT on:2026-11-20', document), isTrue);
+      expect(_matches('is:read OR NOT on:2026-11-20', document), isFalse);
       expect(
         _matches('NOT (on:2026-11-20 AND subject:absent)', document),
         isTrue,
@@ -323,7 +308,7 @@ void main() {
 
     test('matching OR branches cannot hide errors or unknown fields', () {
       expect(
-        () => MailHeaderSearchQuery.parse('subject:report OR body:secret'),
+        () => MailHeaderSearchQuery.parse('subject:report OR bcc:secret'),
         throwsA(_error(MailHeaderSearchError.unknownField, 18)),
       );
       expect(
@@ -378,8 +363,7 @@ void main() {
 
     test('unary chains are bounded independently of parenthesis nesting', () {
       for (final operator in ['NOT ', '-']) {
-        final maximum =
-            '${operator * MailHeaderSearchQuery.maxOperators}x';
+        final maximum = '${operator * MailHeaderSearchQuery.maxOperators}x';
         expect(_matches(maximum, _header(subject: 'x')), isTrue);
         final oversized = '$operator$maximum';
         expect(

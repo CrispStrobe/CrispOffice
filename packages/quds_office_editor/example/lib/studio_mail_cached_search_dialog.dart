@@ -1245,6 +1245,7 @@ class _StudioMailCachedSearchDialogState
           for (final example in const [
             '(from:alice OR from:bob) is:unread',
             'NOT(subject:alerts OR from:newsletter)',
+            'body:"delivery address"',
           ])
             Directionality(
               textDirection: TextDirection.ltr,

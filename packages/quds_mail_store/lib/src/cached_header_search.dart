@@ -398,7 +398,12 @@ extension MailCachedHeaderSearch on SqliteMailRepository {
         }
         scanned++;
         last = header.id.value;
-        if (!parsed.matches(_cachedSearchDocument(header))) continue;
+        final body = parsed.searchesBody
+            ? (await _cachedPlain(account, header.id) ?? '')
+            : '';
+        if (!parsed.matches(_cachedSearchDocument(header, body: body))) {
+          continue;
+        }
         final folders = await _cachedSearchFolders(
           account,
           header,
@@ -454,8 +459,9 @@ extension MailCachedHeaderSearch on SqliteMailRepository {
   });
 
   static MailHeaderSearchDocument _cachedSearchDocument(
-    MailHeaderRecord header,
-  ) {
+    MailHeaderRecord header, {
+    String body = '',
+  }) {
     String addresses(List<MailAddress> values) => values
         .map((value) => '${value.displayName ?? ''} ${value.address}')
         .join(' ');
@@ -464,6 +470,7 @@ extension MailCachedHeaderSearch on SqliteMailRepository {
       sender: addresses(header.envelope.from),
       to: addresses(header.envelope.to),
       cc: addresses(header.envelope.cc),
+      body: body,
       date: header.envelope.sentAt,
       isRead: header.flags?.isRead,
       isFlagged: header.flags?.isFlagged,

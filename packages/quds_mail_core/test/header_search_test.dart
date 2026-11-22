@@ -25,6 +25,62 @@ Matcher _error(MailHeaderSearchError code, {int? offset}) {
 }
 
 void main() {
+  group('retained body matching', () {
+    const withBody = MailHeaderSearchDocument(
+      subject: 'Delivery',
+      sender: 'Alice <alice@example.test>',
+      body: 'Your parcel is at the delivery address.',
+    );
+
+    test('body: searches only retained plain text', () {
+      final query = MailHeaderSearchQuery.parse('body:parcel');
+      expect(query.searchesBody, isTrue);
+      expect(query.matches(withBody), isTrue);
+      expect(
+        query.matches(
+          const MailHeaderSearchDocument(
+            subject: 'Parcel subject',
+            sender: 'parcel@example.test',
+          ),
+        ),
+        isFalse,
+      );
+    });
+
+    test('an unqualified term does not search the body', () {
+      final query = MailHeaderSearchQuery.parse('parcel');
+      expect(query.searchesBody, isFalse);
+      expect(query.matches(withBody), isFalse);
+      expect(
+        query.matches(
+          const MailHeaderSearchDocument(
+            subject: 'Parcel subject',
+            sender: 'alice@example.test',
+          ),
+        ),
+        isTrue,
+      );
+    });
+
+    test('body phrases and Boolean expressions stay bounded', () {
+      final query = MailHeaderSearchQuery.parse(
+        'body:"delivery address" AND NOT body:returned',
+      );
+      expect(query.searchesBody, isTrue);
+      expect(query.matches(withBody), isTrue);
+      expect(
+        query.matches(
+          const MailHeaderSearchDocument(
+            subject: '',
+            sender: '',
+            body: 'Delivery address: returned to sender.',
+          ),
+        ),
+        isFalse,
+      );
+    });
+  });
+
   group('loaded header matching', () {
     test(
       'empty and whitespace queries match without inventing observations',
@@ -263,14 +319,7 @@ void main() {
     });
 
     test('unknown fields cannot become silent literal searches', () {
-      for (final field in [
-        'body',
-        'bcc',
-        'has',
-        'attachment',
-        'sender',
-        'wat',
-      ]) {
+      for (final field in ['bcc', 'has', 'attachment', 'sender', 'wat']) {
         expect(
           () => MailHeaderSearchQuery.parse('$field:value'),
           throwsA(_error(MailHeaderSearchError.unknownField, offset: 0)),
@@ -295,24 +344,21 @@ void main() {
       }
     });
 
-    test(
-      'unsupported symbolic operators and wildcards are explicit',
-      () {
-        for (final query in [
-          '[one two]',
-          'from:ali*',
-          'subject:r?port',
-          'one || two',
-          'one&&two',
-        ]) {
-          expect(
-            () => MailHeaderSearchQuery.parse(query),
-            throwsA(_error(MailHeaderSearchError.unsupportedOperator)),
-            reason: query,
-          );
-        }
-      },
-    );
+    test('unsupported symbolic operators and wildcards are explicit', () {
+      for (final query in [
+        '[one two]',
+        'from:ali*',
+        'subject:r?port',
+        'one || two',
+        'one&&two',
+      ]) {
+        expect(
+          () => MailHeaderSearchQuery.parse(query),
+          throwsA(_error(MailHeaderSearchError.unsupportedOperator)),
+          reason: query,
+        );
+      }
+    });
 
     test('invalid states have a typed failure at the value offset', () {
       for (final state in ['unknown', 'true', 'false', 'notread', '']) {

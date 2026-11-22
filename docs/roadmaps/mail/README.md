@@ -151,9 +151,10 @@ focused local tests and a remote source checkpoint before the next. Reconcile
 current main/branches/PRs before final publication. GitHub Actions queue time is
 not an acceptance dependency; record the actual local commands and scope.
 
-The next delivery sequence is categories/tags and ordered rules, indexed
-body/provider search, persistent conversations and
-provider Drafts/Sent reconciliation, then fuller background multi-account work.
+The next delivery sequence is categories/tags and ordered rules, broader
+indexed/provider search beyond the delivered local retained-plain-text `body:`
+mode, persistent conversations and provider Drafts/Sent reconciliation, then
+fuller background multi-account work.
 The [account-navigation guide](connected-account-navigation.md) defines these
 boundaries and maps them to official Outlook, Thunderbird and eM Client workflows.
 

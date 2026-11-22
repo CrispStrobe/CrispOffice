@@ -1,16 +1,19 @@
 /// The visible header metadata searched in one loaded mailbox row.
 ///
 /// Address fields contain the displayed names and addresses for their respective
-/// header groups. Hosts must not put private envelope recipients or body content
-/// into these fields. [date] is the message date as an instant; date predicates
-/// compare its [DateTime.toLocal] calendar day, as shown by the mailbox UI.
-/// Nullable observations remain unknown rather than becoming false.
+/// header groups. Hosts must not put private envelope recipients into these
+/// fields. [body] is optional retained plain text, supplied only for an explicit
+/// `body:` query; it is never part of an unqualified term. [date] is the message
+/// date as an instant; date predicates compare its [DateTime.toLocal] calendar
+/// day, as shown by the mailbox UI. Nullable observations remain unknown rather
+/// than becoming false.
 final class MailHeaderSearchDocument {
   const MailHeaderSearchDocument({
     required this.subject,
     required this.sender,
     this.to = '',
     this.cc = '',
+    this.body = '',
     this.date,
     this.isRead,
     this.isFlagged,
@@ -20,6 +23,7 @@ final class MailHeaderSearchDocument {
   final String sender;
   final String to;
   final String cc;
+  final String body;
   final DateTime? date;
   final bool? isRead;
   final bool? isFlagged;
@@ -33,12 +37,13 @@ final class MailHeaderSearchDocument {
 /// valid but `a(b)`, `(a)b` and `(a)(b)` are rejected. Parentheses may touch
 /// their contents and follow an operator directly, as in `NOT(a OR b)`.
 ///
-/// Bare text and quoted phrases match
-/// case-insensitive substrings of the subject or sender. The fields `from`,
-/// `subject`, `to` and `cc` restrict that match to one header group. Field names
-/// are case-insensitive and require an adjacent value, for example
-/// `from:alice subject:"quarterly report"`.
+/// Bare text and quoted phrases match case-insensitive substrings of the
+/// subject or sender. The fields `from`, `subject`, `to` and `cc` restrict that
+/// match to one header group. Field names are case-insensitive and require an
+/// adjacent value, for example `from:alice subject:"quarterly report"`.
 /// `recipient` matches To or Cc; `participant` matches From, To or Cc.
+/// `body` searches only [MailHeaderSearchDocument.body] and is never implied by
+/// an unqualified term.
 /// Names and addresses use the same case-insensitive substring matching.
 /// A phrase must match within one header group; Bcc is never searched.
 ///
@@ -54,7 +59,11 @@ final class MailHeaderSearchDocument {
 /// literal text. Wildcards, brackets, `&&` and `||` remain unsupported.
 /// No provider, repository or body is consulted.
 final class MailHeaderSearchQuery {
-  MailHeaderSearchQuery._(this._expression, this._termCount);
+  MailHeaderSearchQuery._(
+    this._expression,
+    this._termCount, {
+    required this.searchesBody,
+  });
 
   factory MailHeaderSearchQuery.parse(String input) {
     if (input.length > maxCodeUnits) {
@@ -78,6 +87,10 @@ final class MailHeaderSearchQuery {
 
   final _HeaderSearchTerm? _expression;
   final int _termCount;
+
+  /// True when the expression contains a `body:` term. Hosts use this to decide
+  /// whether retained body text must be supplied to [matches].
+  final bool searchesBody;
 
   int get termCount => _termCount;
   bool get isEmpty => _expression == null;
@@ -120,7 +133,7 @@ final class MailHeaderSearchException implements Exception {
       'MailHeaderSearchException(${code.name}, offset=$offset)';
 }
 
-enum _TextField { any, subject, sender, to, cc, recipient, participant }
+enum _TextField { any, subject, sender, to, cc, recipient, participant, body }
 
 enum _DateRelation { before, after, on }
 
@@ -133,6 +146,7 @@ final class _SearchDocumentView {
   late final String sender = source.sender.toLowerCase();
   late final String to = source.to.toLowerCase();
   late final String cc = source.cc.toLowerCase();
+  late final String body = source.body.toLowerCase();
   late final int? day = _localDay();
 
   int? _localDay() {
@@ -170,6 +184,7 @@ final class _TextTerm extends _HeaderSearchTerm {
       document.sender.contains(value) ||
           document.to.contains(value) ||
           document.cc.contains(value),
+    _TextField.body => document.body.contains(value),
   };
 }
 
@@ -243,14 +258,21 @@ final class _HeaderSearchParser {
   int offset = 0;
   int _termCount = 0;
   int _operatorCount = 0;
+  bool _searchesBody = false;
 
   MailHeaderSearchQuery parse() {
     _skipWhitespace();
-    if (offset == input.length) return MailHeaderSearchQuery._(null, 0);
+    if (offset == input.length) {
+      return MailHeaderSearchQuery._(null, 0, searchesBody: false);
+    }
     final expression = _or(0);
     _skipWhitespace();
     if (offset != input.length) _invalidExpression();
-    return MailHeaderSearchQuery._(expression, _termCount);
+    return MailHeaderSearchQuery._(
+      expression,
+      _termCount,
+      searchesBody: _searchesBody,
+    );
   }
 
   _HeaderSearchTerm _or(int depth) {
@@ -378,6 +400,7 @@ final class _HeaderSearchParser {
       'cc',
       'recipient',
       'participant',
+      'body',
       'is',
       'before',
       'after',
@@ -410,6 +433,7 @@ final class _HeaderSearchParser {
       'cc' => _TextTerm(_TextField.cc, normalized),
       'recipient' => _TextTerm(_TextField.recipient, normalized),
       'participant' => _TextTerm(_TextField.participant, normalized),
+      'body' => _bodyTerm(normalized),
       'is' => switch (normalized) {
         'read' => const _FlagTerm(read: true, value: true),
         'unread' => const _FlagTerm(read: true, value: false),
@@ -425,6 +449,11 @@ final class _HeaderSearchParser {
       'on' => _DateTerm(_DateRelation.on, _day(value, valueStart)),
       _ => throw StateError('Validated header-search field was not handled.'),
     };
+  }
+
+  _HeaderSearchTerm _bodyTerm(String value) {
+    _searchesBody = true;
+    return _TextTerm(_TextField.body, value);
   }
 
   String _bare({required bool stopAtColon}) {

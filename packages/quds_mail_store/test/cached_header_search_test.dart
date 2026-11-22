@@ -503,6 +503,48 @@ void main() {
   );
 
   test(
+    'body: searches only retained plain text and bare terms stay header-only',
+    () async {
+      final first = _header(1);
+      await saveView([first, _header(2)]);
+      _value(
+        await store.cacheMessage(
+          _account,
+          first.id,
+          MailMessage(
+            raw: MailBytes(Uint8List.fromList([1, 2, 3])),
+            envelope: first.envelope,
+            body: const MailBody(plainText: 'Your parcel is ready'),
+            localId: first.id,
+            remoteIdentity: first.remote,
+          ),
+        ),
+      );
+      probe.reset();
+      final page = _value(
+        await store.searchCachedHeaders(_account, 'body:parcel'),
+      );
+      expect(page.hits.single.header.id, first.id);
+      expect(probe.bodyRead, isTrue);
+      probe.reset();
+      expect(
+        _value(await store.searchCachedHeaders(_account, 'parcel')).hits,
+        isEmpty,
+      );
+      expect(probe.bodyRead, isFalse);
+      expect(
+        _value(
+          await store.searchCachedHeaders(
+            _account,
+            'subject:report AND NOT body:parcel',
+          ),
+        ).hits.map((hit) => hit.header.id.value),
+        ['id-0002'],
+      );
+    },
+  );
+
+  test(
     'searches public address fields and local dates without Bcc or bodies',
     () async {
       final date = DateTime(2026, 11, 21, 0, 30);
@@ -531,11 +573,7 @@ void main() {
       );
       expect(page.hits.single.header.id, first.id);
       expect(page.hits.single.hasCachedBody, isTrue);
-      for (final query in [
-        'private@example.test',
-        'bodyneedle',
-        'NOT on:2026-11-21',
-      ]) {
+      for (final query in ['private@example.test', 'NOT on:2026-11-21']) {
         expect(
           _value(await store.searchCachedHeaders(_account, query)).hits,
           isEmpty,
@@ -574,11 +612,10 @@ void main() {
         'participant:manager',
       ]) {
         final page = _value(await store.searchCachedHeaders(_account, query));
-        expect(
-          page.hits.map((hit) => hit.header.id.value),
-          ['id-0001', 'id-0002'],
-          reason: query,
-        );
+        expect(page.hits.map((hit) => hit.header.id.value), [
+          'id-0001',
+          'id-0002',
+        ], reason: query);
       }
       for (final query in [
         'recipient:älice',
