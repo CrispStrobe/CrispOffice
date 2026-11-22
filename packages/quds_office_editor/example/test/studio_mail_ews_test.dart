@@ -1877,8 +1877,18 @@ void main() {
     expect(drafts.identities, hasLength(1));
     await tester.tap(find.byTooltip(_strings.close));
     await _pump(tester);
+    expect(provider.lastLease!.isCurrent, isFalse);
+    expect(drafts.closes, 0);
+    expect(find.byType(StudioMailEwsDialog), findsOneWidget);
     gate.complete();
-    await _pump(tester);
+    for (
+      var turn = 0;
+      turn < 100 && find.byType(StudioMailEwsDialog).evaluate().isNotEmpty;
+      turn++
+    ) {
+      await tester.pump(const Duration(milliseconds: 10));
+      await tester.runAsync(() => Future<void>.delayed(Duration.zero));
+    }
     expect(drafts.closes, 1);
     expect(drafts.records, isEmpty);
     expect(provider.submissions, isEmpty);

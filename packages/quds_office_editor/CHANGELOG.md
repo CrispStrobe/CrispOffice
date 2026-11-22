@@ -9,13 +9,15 @@ All notable changes to `quds_office_editor` are documented here.
   non-secret routes and require explicit sign-in; save account-owned drafts and
   uncertain-submission state before switching. Drain observers, journal writes
   and owners, fence stale routes, hidden keyboard input, late acquisitions and
-  retired callbacks, and atomically refresh selected native directory records
+  retired callbacks, and atomically refresh selected local directory records
   without recreating forgotten shortcuts. Removed or replaced destinations
   invalidate late refresh completion before the connection handoff. Fresh
   connections register their account normally. Custom directories without
-  conditional refresh retain their existing metadata. Native Close hides the mounted Mail
-  pane; failed owner release blocks another sign-in and can require a host
-  restart. Provider Close/Back preserves draft recovery. One account remains
+  conditional refresh retain their existing metadata. Native Close retains its
+  mounted-pane behavior after pending ownership settles; failed owner release
+  keeps an explicit retry path and blocks another owner. Provider Close/Back
+  preserves draft recovery, cancels remaining dispatch and waits for late store
+  admission and cleanup before returning to the root pane. One account remains
   connected at a time. See the [account-navigation workflow](../../docs/roadmaps/mail/account-navigation.md)
   and [connected-account guide](../../docs/roadmaps/mail/connected-account-navigation.md)
   for scope, qualification and remaining multi-account workspace work.

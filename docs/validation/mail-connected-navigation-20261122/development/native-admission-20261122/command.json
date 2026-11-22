@@ -1,0 +1,21 @@
+{
+  "cwd": "/workspace/scratch/85a369f34dbb/quds_office_suite/packages/quds_office_editor/example",
+  "command": [
+    "/workspace/scratch/85a369f34dbb/runtime/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--concurrency=2",
+    "--reporter=json",
+    "test/studio_mail_account_navigation_native_test.dart",
+    "test/studio_mail_account_navigation_native_release_test.dart",
+    "test/studio_mail_account_navigation_router_test.dart"
+  ],
+  "environment": {
+    "BOT": "true",
+    "CI": "true",
+    "FLUTTER_ROOT": "/workspace/scratch/85a369f34dbb/runtime/flutter",
+    "PUB_CACHE": "/workspace/scratch/85a369f34dbb/runtime/pub-cache",
+    "TMPDIR": "/workspace/scratch/85a369f34dbb/runtime/tmp"
+  },
+  "scope": "Focused development validation; sampled hashes are not a full frozen-source qualification."
+}

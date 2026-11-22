@@ -2,6 +2,7 @@
   "merged-source-recovery": {
     "path": "qualify_mail_9a371b61.py",
     "reason": "Exact unmodified qualification runner archived before standalone newline-only reporter re-analysis.",
+    "reporter_reanalysis": "merged-source-recovery-reanalysis",
     "sha256": "e0e1d208beae75dba5de37b4d0ce1f4a9c24ab72864ce5435b1c6e234bd04e85",
     "source_commit": "9a371b616ae0fa0dbbecaed04708837125694d7c"
   },
