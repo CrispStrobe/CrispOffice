@@ -15,4 +15,3 @@ Retain the original document until the complete operation succeeds. Explicit con
 Implementation and local qualification are in progress. The engine, editor and regression evidence will be saved as separate remote checkpoints on `codex/zotero-field-recovery-20261122`. GitHub Actions are not a wait path for this work. Before merge, refresh incoming refs and reconcile any concurrent work.
 
 This milestone will qualify bounded metadata recovery. Installed Zotero, Word and LibreOffice acceptance and legacy Apache OpenOffice compatibility remain separate from controlled protocol and local document tests.
-
