@@ -171,7 +171,7 @@ void main() {
     expect(paragraph.properties.explicitJustification, isTrue);
     expect(paragraph.properties.bidiBaseLevel, isNull);
     List<int> glyphs() => [
-          for (final page in WordLayoutEngine(font: null).layout(document).pages)
+      for (final page in WordLayoutEngine(font: null).layout(document).pages)
         for (final line in page.lines)
           for (final glyph in line.glyphs) glyph.glyph.codePoint,
     ];

@@ -1,0 +1,13 @@
+{
+  "repository": "MohammedAsaadAsaad/quds_office_suite",
+  "fork": "CrispStrobe/quds_office_suite",
+  "fork_main": "3f3cb8508663dde917e913867908dbfd6c3efcf0",
+  "method": "GitHub REST compare each observed upstream branch SHA against fork main",
+  "branches": [
+    {"name": "main", "sha": "15c5d29b63fb17a93c7fb3426a8fd4d95a32f1ba", "fork_ahead_by": 3692, "fork_behind_by": 0},
+    {"name": "ci/flutter-workspace", "sha": "aca2f66941832bd0b19b436baeab1656a1b7de98", "fork_ahead_by": 3705, "fork_behind_by": 0, "commit_date": "2026-10-10T19:19:21Z"},
+    {"name": "cursor/class-certificates-2db8", "sha": "f45099688e7a3f67a1302efdb442830d052f2240", "fork_ahead_by": 3698, "fork_behind_by": 0, "commit_date": "2026-10-12T17:56:21Z"},
+    {"name": "cursor/cloud-agent-1790580069020-0rk1h", "sha": "9930be8df44ffe117fb22778c514eea0ee73ce21", "fork_ahead_by": 3708, "fork_behind_by": 0, "commit_date": "2026-10-10T19:12:10Z"}
+  ],
+  "disposition": "All observed upstream branch tips are ancestors of fork main; no upstream branch source remains to integrate."
+}

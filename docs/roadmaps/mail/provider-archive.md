@@ -11,7 +11,7 @@ in the [local mail archive](archive-search.md).
 | Provider | Archive behavior | Destination review |
 | --- | --- | --- |
 | Gmail | Remove only the message's `INBOX` label. Preserve other labels, read/flag state and message content. Available for the exact connected Inbox view. | Confirm the selected count, account, source and label-removal semantics. There is no invented Archive label and no folder-style Move. |
-| IMAP | Move to the unique selectable folder advertised with the RFC 6154 `\\Archive` attribute. Requires the existing MOVE capability. | Show the exact returned folder ID. If authoritative discovery is unavailable or ambiguous, require an explicitly selected same-account destination. Never infer a folder from its display name or `\\All`. |
+| IMAP | Move to the unique selectable folder advertised with the RFC 6154 `\Archive` attribute. Requires the existing MOVE capability. | Show the exact returned folder ID. If authoritative discovery is unavailable or ambiguous, require an explicitly selected same-account destination. Never infer a folder from its display name or `\All`. |
 | Microsoft 365 | Resolve the ordinary well-known `archive` folder, then move to its exact ID. | Review the resolved folder before durable intent. A missing ordinary Archive folder permits explicit folder selection. This does not target an Exchange Online archive mailbox. |
 | Exchange EWS | Move to an explicitly selected folder from the connected same-account catalog. | Always require folder selection. EWS online-archive distinguished IDs are not substituted for an ordinary Archive destination. |
 

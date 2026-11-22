@@ -1,0 +1,26 @@
+[
+  {
+    "file": "office_fidelity_word_isolatedDiff.png",
+    "sha256": "259667dd068dc3b6fcd46d2c3f264b3bca75b8ba17319dbb8518f9b0e5a9dd06",
+    "cohort_sha256": "259667dd068dc3b6fcd46d2c3f264b3bca75b8ba17319dbb8518f9b0e5a9dd06",
+    "byte_identical_to_cohort": true
+  },
+  {
+    "file": "office_fidelity_word_maskedDiff.png",
+    "sha256": "8c945b685eee5689e6365a400b607020964e7b179d5fd52115cbf6e261d1968e",
+    "cohort_sha256": "8c945b685eee5689e6365a400b607020964e7b179d5fd52115cbf6e261d1968e",
+    "byte_identical_to_cohort": true
+  },
+  {
+    "file": "office_fidelity_word_masterImage.png",
+    "sha256": "4accb654706501e21b72272fe9e6978a4c282f4dbcc345b7a15da028404b80cd",
+    "cohort_sha256": "4accb654706501e21b72272fe9e6978a4c282f4dbcc345b7a15da028404b80cd",
+    "byte_identical_to_cohort": true
+  },
+  {
+    "file": "office_fidelity_word_testImage.png",
+    "sha256": "9dce69e87fbf8baf2ba4281761e0c0b27caf4e9c2f96a2160e003b86442d7d9b",
+    "cohort_sha256": "9dce69e87fbf8baf2ba4281761e0c0b27caf4e9c2f96a2160e003b86442d7d9b",
+    "byte_identical_to_cohort": true
+  }
+]

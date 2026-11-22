@@ -1,0 +1,43 @@
+{
+  "gate": "studio",
+  "cwd": "/workspace/scratch/a4918868bf38/quds_office_suite/packages/quds_office_editor/example",
+  "argv": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "json",
+    "test/studio_mail_compose_test.dart",
+    "test/studio_mail_organization_dialog_test.dart",
+    "test/studio_mail_journal_host_test.dart",
+    "test/studio_mail_message_loader_test.dart",
+    "test/studio_mail_bulk_organization_provider_test.dart"
+  ],
+  "shell_command": "source /workspace/scratch/a4918868bf38/toolchains/env.sh\nexec flutter test --no-pub --reporter json test/studio_mail_compose_test.dart test/studio_mail_organization_dialog_test.dart test/studio_mail_journal_host_test.dart test/studio_mail_message_loader_test.dart test/studio_mail_bulk_organization_provider_test.dart",
+  "started_at_utc": "2026-11-22T10:52:18.967028+00:00",
+  "ended_at_utc": "2026-11-22T10:53:19.630348+00:00",
+  "elapsed_seconds": 60.66332,
+  "exit_code": 0,
+  "visible_cases": 325,
+  "visible_passed": 325,
+  "skipped": 0,
+  "error_events": 0,
+  "done_events": [
+    {
+      "success": true,
+      "type": "done",
+      "time": 59144
+    }
+  ],
+  "working_inputs_unchanged": true,
+  "head_before": "8280277cd27bcc276d66b61f8073eddf37ca6e5e",
+  "head_after": "8280277cd27bcc276d66b61f8073eddf37ca6e5e",
+  "tree_before": "7587dec4e385c015f81c62df7992af378642cfed",
+  "tree_after": "7587dec4e385c015f81c62df7992af378642cfed",
+  "logs": {
+    "reporter": "/workspace/scratch/a4918868bf38/runtime-evidence/archive-integration-studio.jsonl",
+    "stderr": "/workspace/scratch/a4918868bf38/runtime-evidence/archive-integration-studio.stderr.log",
+    "source_before": "/workspace/scratch/a4918868bf38/runtime-evidence/archive-integration-studio.source-before.json",
+    "source_after": "/workspace/scratch/a4918868bf38/runtime-evidence/archive-integration-studio.source-after.json"
+  }
+}

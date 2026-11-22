@@ -1,0 +1,708 @@
+{
+  "format_version": 1,
+  "compression": "gzip level 9, empty original filename, mtime 0",
+  "artifacts": [
+    {
+      "path": "attempts/dart-wrapper-initial.log.gz",
+      "source_name": "core-smoke.jsonl",
+      "purpose": "preserved earlier failure or bootstrap attempt",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 126,
+      "raw_sha256": "e5aea9488afefd714f160dec41aa3e8c64ce33f3669bd9c25719204ba4b0237b",
+      "stored_bytes": 127,
+      "stored_sha256": "cacb7921af9783e87b354e86af0b5a6da847fdd718e0b4f98125bf82be06fcc0"
+    },
+    {
+      "path": "attempts/flutter-sdk-pub-timeout.log.gz",
+      "source_name": "ui-smoke-retry.log",
+      "purpose": "preserved earlier failure or bootstrap attempt",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 3690,
+      "raw_sha256": "3bd64de05eb0686ad623017c0d7b241b2de3c4a8c57ee44225e666251c8cf424",
+      "stored_bytes": 580,
+      "stored_sha256": "8467cb4a8fd2b81640b357b0a62afb24d5760caca31ac7ac03e85eac4d785aa5"
+    },
+    {
+      "path": "attempts/store-focused-initial.jsonl.gz",
+      "source_name": "archive-store-first.jsonl",
+      "purpose": "preserved earlier failure or bootstrap attempt",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 15167,
+      "raw_sha256": "4ea9ce9961d6e31644bd251c66702d18c9b87d4615d90b94b116511276e89ea6",
+      "stored_bytes": 2056,
+      "stored_sha256": "ea06ccfbe4bcf7b4fbd3c0047423a5e73e9af1e56deda888e46e90b93d5ea2a0"
+    },
+    {
+      "path": "attempts/store-full-initial.jsonl.gz",
+      "source_name": "store-full.jsonl",
+      "purpose": "preserved earlier failure or bootstrap attempt",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 621010,
+      "raw_sha256": "14cb1361a1c8397c15ddd2ea3b652e47a3c2f0a295d87f0f499193d8bb96f170",
+      "stored_bytes": 56721,
+      "stored_sha256": "6ebbef82fe5e263afad7b77179c4d8e4bd96f330774321748440b805b7b5ed1d"
+    },
+    {
+      "path": "attempts/studio-initial.jsonl.gz",
+      "source_name": "archive-ui-studio-first.jsonl",
+      "purpose": "preserved earlier failure or bootstrap attempt",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 166798,
+      "raw_sha256": "8cc9c220ebb9f63332ae50c1f07849cfdfb588da82b714cfea47759b71b673bc",
+      "stored_bytes": 13104,
+      "stored_sha256": "743d9f0c97e6817c0bd9dbee96cc18dbafde4d2ce2d0dc98a450c59290c41d3e"
+    },
+    {
+      "path": "diagnostics/golden-alone-receipt.json",
+      "source_name": "archive-integration-golden-alone.metadata.json",
+      "purpose": "original subprocess receipt",
+      "encoding": "utf-8",
+      "bytes": 1515,
+      "sha256": "2fcfda870c60b631ed527fd0f26433e22a2876646a2163f7113a94f8a408be29"
+    },
+    {
+      "path": "diagnostics/golden-alone-source-after.json.gz",
+      "source_name": "archive-integration-golden-alone.source-after.json",
+      "purpose": "original contemporaneous package/root input SHA-256 snapshot",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 879308,
+      "raw_sha256": "dbd4779013854c7d19d5a12df87cbdaf1f80c2cbeb867df4402bf3e9cf212684",
+      "stored_bytes": 274381,
+      "stored_sha256": "946f2da7ed71c72cd51fdc1681625eb0c2b5a07b8393f19f653f6075675bee0f"
+    },
+    {
+      "path": "diagnostics/golden-alone-source-before.json.gz",
+      "source_name": "archive-integration-golden-alone.source-before.json",
+      "purpose": "original contemporaneous package/root input SHA-256 snapshot",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 879308,
+      "raw_sha256": "38c9e9518fac382eee33944030c2cb54201c2fcde38f5e98bf4cc62fb86a6650",
+      "stored_bytes": 274381,
+      "stored_sha256": "5103a757abd1c9b53f252ca6b0ab7759fa0afddfa3e590e6279df8302425fea7"
+    },
+    {
+      "path": "diagnostics/golden-alone-stderr.log.gz",
+      "source_name": "archive-integration-golden-alone.stderr.log",
+      "purpose": "complete integrated normal Flutter stderr stream",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_bytes": 20,
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "path": "diagnostics/golden-alone-tests.jsonl.gz",
+      "source_name": "archive-integration-golden-alone.jsonl",
+      "purpose": "integrated normal Flutter reporter stream",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 7151,
+      "raw_sha256": "320730b8382fce55172a9af21bda34f3ab7c3faa2b5c63a871402fceb493b0dd",
+      "stored_bytes": 1310,
+      "stored_sha256": "662a2e32ff9c5c94cbaade63d739a224c3557cd172ba7dba8768113aa06daffe"
+    },
+    {
+      "path": "diagnostics/golden-baseline-comparison.json",
+      "source_name": "pre-zotero-golden-comparison.json",
+      "purpose": "controlled comparison proving identical inherited failed pixels",
+      "encoding": "utf-8",
+      "bytes": 2270,
+      "sha256": "34a70e62bc73a226667b3c2e2006c9fe7647feaff72af12d2c6926bdd2c0b1e3"
+    },
+    {
+      "path": "diagnostics/golden-cohort-comparison.json",
+      "source_name": "archive-integration-golden-alone-failure/cohort-comparison.json",
+      "purpose": "isolated integrated run produces byte-identical failure PNGs",
+      "encoding": "utf-8",
+      "bytes": 1077,
+      "sha256": "6cbbc9b3dd3e4a122352e992a78b08e104be0f93f0adc66123c0e1f0df0c2e8c"
+    },
+    {
+      "path": "diagnostics/golden-incoming-comparison.json",
+      "source_name": "archive-integration-editor-golden-failure/comparison.json",
+      "purpose": "initial incoming golden change comparison; baseline diagnosis completed separately",
+      "encoding": "utf-8",
+      "bytes": 2098,
+      "sha256": "fac801bbd89724400e70d945429d2c5851b86d03dab96af55e71c8607be1bdc2"
+    },
+    {
+      "path": "diagnostics/image-index.json",
+      "purpose": "original PNG names mapped to deduplicated binary artifacts",
+      "encoding": "utf-8",
+      "bytes": 4596,
+      "sha256": "e6abd11c1c58b231ee46fd93dcd62a861f95394ac1384be4f21b8d034eb20bbf"
+    },
+    {
+      "path": "diagnostics/images/259667dd068dc3b6fcd46d2c3f264b3bca75b8ba17319dbb8518f9b0e5a9dd06.png",
+      "source_name": "archive-integration-editor-golden-failure/office_fidelity_word_isolatedDiff.png",
+      "purpose": "deduplicated original golden comparison PNG",
+      "encoding": "binary",
+      "bytes": 11724,
+      "sha256": "259667dd068dc3b6fcd46d2c3f264b3bca75b8ba17319dbb8518f9b0e5a9dd06"
+    },
+    {
+      "path": "diagnostics/images/4accb654706501e21b72272fe9e6978a4c282f4dbcc345b7a15da028404b80cd.png",
+      "source_name": "archive-integration-editor-golden-failure/office_fidelity_word_masterImage.png",
+      "purpose": "deduplicated original golden comparison PNG",
+      "encoding": "binary",
+      "bytes": 36335,
+      "sha256": "4accb654706501e21b72272fe9e6978a4c282f4dbcc345b7a15da028404b80cd"
+    },
+    {
+      "path": "diagnostics/images/8c945b685eee5689e6365a400b607020964e7b179d5fd52115cbf6e261d1968e.png",
+      "source_name": "archive-integration-editor-golden-failure/office_fidelity_word_maskedDiff.png",
+      "purpose": "deduplicated original golden comparison PNG",
+      "encoding": "binary",
+      "bytes": 37742,
+      "sha256": "8c945b685eee5689e6365a400b607020964e7b179d5fd52115cbf6e261d1968e"
+    },
+    {
+      "path": "diagnostics/images/8d3cb6f2a8e82f6fc15e62c2c53ba9907cbf33ff9e213dbe1f4dfc46cfd74ace.png",
+      "source_name": "archive-integration-editor-golden-failure/incoming-parent.png",
+      "purpose": "deduplicated original golden comparison PNG",
+      "encoding": "binary",
+      "bytes": 36654,
+      "sha256": "8d3cb6f2a8e82f6fc15e62c2c53ba9907cbf33ff9e213dbe1f4dfc46cfd74ace"
+    },
+    {
+      "path": "diagnostics/images/9dce69e87fbf8baf2ba4281761e0c0b27caf4e9c2f96a2160e003b86442d7d9b.png",
+      "source_name": "archive-integration-editor-golden-failure/office_fidelity_word_testImage.png",
+      "purpose": "deduplicated original golden comparison PNG",
+      "encoding": "binary",
+      "bytes": 36414,
+      "sha256": "9dce69e87fbf8baf2ba4281761e0c0b27caf4e9c2f96a2160e003b86442d7d9b"
+    },
+    {
+      "path": "diagnostics/images/a77032bf57dc7cbd0381490560cab27585083e52bf105226c82f9357477f92c6.png",
+      "source_name": "pre-zotero-golden-failure/office_fidelity_word_testImage.png",
+      "purpose": "deduplicated original golden comparison PNG",
+      "encoding": "binary",
+      "bytes": 36739,
+      "sha256": "a77032bf57dc7cbd0381490560cab27585083e52bf105226c82f9357477f92c6"
+    },
+    {
+      "path": "diagnostics/images/aca6252626eb18b5db0b700ce1074fbd1f2515defef0a424bee83d1a9a965add.png",
+      "source_name": "pre-zotero-golden-failure/office_fidelity_word_maskedDiff.png",
+      "purpose": "deduplicated original golden comparison PNG",
+      "encoding": "binary",
+      "bytes": 38147,
+      "sha256": "aca6252626eb18b5db0b700ce1074fbd1f2515defef0a424bee83d1a9a965add"
+    },
+    {
+      "path": "diagnostics/images/f351f30eb401d03d1f59c5c6a6c4fcde2dd410f8367b7467e2c3909fb8493a5f.png",
+      "source_name": "archive-integration-editor-golden-failure/incoming-aac3.png",
+      "purpose": "deduplicated original golden comparison PNG",
+      "encoding": "binary",
+      "bytes": 36667,
+      "sha256": "f351f30eb401d03d1f59c5c6a6c4fcde2dd410f8367b7467e2c3909fb8493a5f"
+    },
+    {
+      "path": "diagnostics/pre-intake-dependency-restore.log.gz",
+      "source_name": "pre-zotero-golden-dependency-restore.log",
+      "purpose": "controlled pre-intake golden diagnostic",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 217,
+      "raw_sha256": "8f8eaec35c1eb26e37cc745f3fd799bdceace51af176465fd0709650a1b23f22",
+      "stored_bytes": 174,
+      "stored_sha256": "b3c7ad55e7051ced75d8563ed91a6423761121d3aa1582d8a88e67825994e5eb"
+    },
+    {
+      "path": "diagnostics/pre-intake-golden-receipt.json",
+      "source_name": "pre-zotero-golden-qualification.json",
+      "purpose": "controlled detached pre-intake baseline receipt, exit 1",
+      "encoding": "utf-8",
+      "bytes": 6758,
+      "sha256": "d383800e343c251ccb15c5dbaff4f235c51cf37a3415374ddad2d568effcf775"
+    },
+    {
+      "path": "diagnostics/pre-intake-golden-stderr.log.gz",
+      "source_name": "pre-zotero-golden-tests.stderr.log",
+      "purpose": "controlled pre-intake golden diagnostic",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_bytes": 20,
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "path": "diagnostics/pre-intake-golden-tests.jsonl.gz",
+      "source_name": "pre-zotero-golden-tests.jsonl",
+      "purpose": "controlled pre-intake golden diagnostic",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 7205,
+      "raw_sha256": "2368a502f562cd57adac387ea1e3f76f95dd5c4409949bb07a9dae4fab52ba30",
+      "stored_bytes": 1317,
+      "stored_sha256": "01ce501c64b645b3f0a9198f2b75409a58bfcdcab784d8c31f5c060a52b30cf7"
+    },
+    {
+      "path": "integration/editor-receipt.json",
+      "source_name": "archive-integration-editor.metadata.json",
+      "purpose": "original subprocess receipt",
+      "encoding": "utf-8",
+      "bytes": 1906,
+      "sha256": "daa0485a97a77e1815acc2f7b60560e9e9c4ee0d44ef199b49c83ca34ae27ef4"
+    },
+    {
+      "path": "integration/editor-source-after.json.gz",
+      "source_name": "archive-integration-editor.source-after.json",
+      "purpose": "original contemporaneous package/root input SHA-256 snapshot",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 878603,
+      "raw_sha256": "24d8b86bd60e5b124c4bb7f20973013c1b0dd3fd6bda545f302c90cc41ea33ac",
+      "stored_bytes": 274267,
+      "stored_sha256": "6d1695f1de9c2a7f608af271185074ee8cdbb94aaa1d233e0ceafdbf89a50296"
+    },
+    {
+      "path": "integration/editor-source-before.json.gz",
+      "source_name": "archive-integration-editor.source-before.json",
+      "purpose": "original contemporaneous package/root input SHA-256 snapshot",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 878527,
+      "raw_sha256": "cb2c8e4fc4d36e4952e7cfc9a16a7e9d0bca52388c9ac334c68b1a80a4fe421a",
+      "stored_bytes": 274219,
+      "stored_sha256": "7fe004ee430636a12a2a7c974c885bcc76e2193cbfa5ef9ac099cc13ba3d2680"
+    },
+    {
+      "path": "integration/editor-stderr.log.gz",
+      "source_name": "archive-integration-editor.stderr.log",
+      "purpose": "complete integrated normal Flutter stderr stream",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_bytes": 20,
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "path": "integration/editor-tests.jsonl.gz",
+      "source_name": "archive-integration-editor.jsonl",
+      "purpose": "integrated normal Flutter reporter stream",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 22968,
+      "raw_sha256": "300e5800ee4f68d83cbe65bc7750a12ae664b0f960b1e67ae362e52ebc2827c1",
+      "stored_bytes": 2689,
+      "stored_sha256": "be7ef2562117be5db1ea4bc2e38524c3697badea4c85c83302cadbf448ba04a3"
+    },
+    {
+      "path": "integration/engine-receipt.json.gz",
+      "source_name": "integrated-engine-qualification.json",
+      "purpose": "original engine execution receipt and 1383 before/after input hashes",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 407424,
+      "raw_sha256": "9802092e363729a0810a6cacb3e19eab991e0bab71299c5a9d31eb0ac36d6213",
+      "stored_bytes": 135998,
+      "stored_sha256": "9e76961b6c839e2bd45fb6ddf1cae1bedf4d7e828f68dedaa9bbab52b848fc82"
+    },
+    {
+      "path": "integration/engine-tests.jsonl.gz",
+      "source_name": "integrated-engine-tests.jsonl",
+      "purpose": "accepted integrated eight-suite engine reporter stream",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 249052,
+      "raw_sha256": "0e215826fef3d077b496a80fadc76e930782414de16df1df7551acf5820348fd",
+      "stored_bytes": 16486,
+      "stored_sha256": "147049fe5bf3662648dcd221b393d2d312e5358cc1d9bd51254e16824b59754a"
+    },
+    {
+      "path": "integration/incoming-format-normalization.diff.gz",
+      "source_name": "incoming-format-normalization.diff",
+      "purpose": "only post-test code differences: formatter normalization and optional trailing comma in two incoming Zotero files",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 1654,
+      "raw_sha256": "7c2a8b7f1d14e3c5714fb30cb827ddf4acdb8b93aa124ab88e4ce495792d8a4c",
+      "stored_bytes": 610,
+      "stored_sha256": "18f394238a135d585cafa8e55892f3a6802fd098037a98e08ef8bd1f0d54d545"
+    },
+    {
+      "path": "integration/shared-receipt.json",
+      "source_name": "archive-integration-shared.metadata.json",
+      "purpose": "original subprocess receipt",
+      "encoding": "utf-8",
+      "bytes": 1956,
+      "sha256": "5b6687fe309d84bdc80c3a6b512913fbf22062d45834de98142f1b317ddaa0b4"
+    },
+    {
+      "path": "integration/shared-source-after.json.gz",
+      "source_name": "archive-integration-shared.source-after.json",
+      "purpose": "original contemporaneous package/root input SHA-256 snapshot",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 879247,
+      "raw_sha256": "cccc8f80b5985860edd87c758d3547ea7f0c2014c3cdbd0232ed4821826179d1",
+      "stored_bytes": 274376,
+      "stored_sha256": "907c4bd84e6b70841220807152b5c2df4f561a48ce5cfe5fb3bd9c1338864d47"
+    },
+    {
+      "path": "integration/shared-source-before.json.gz",
+      "source_name": "archive-integration-shared.source-before.json",
+      "purpose": "original contemporaneous package/root input SHA-256 snapshot",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 879247,
+      "raw_sha256": "f2d32e1b5dac7ddc74fcb313f62c6b37326aaa4942a5ac3d0c325e77c127e224",
+      "stored_bytes": 274376,
+      "stored_sha256": "363df26d849728b850c2e21c24e2cbb5b182c5f3a330bd13b19bdb484ca9360c"
+    },
+    {
+      "path": "integration/shared-stderr.log.gz",
+      "source_name": "archive-integration-shared.stderr.log",
+      "purpose": "complete integrated normal Flutter stderr stream",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_bytes": 20,
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "path": "integration/shared-tests.jsonl.gz",
+      "source_name": "archive-integration-shared.jsonl",
+      "purpose": "integrated normal Flutter reporter stream",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 98767,
+      "raw_sha256": "639503051838a07d28e1430743cabf0f9465c01ea8ebf2dd1dbe83921c612f72",
+      "stored_bytes": 8775,
+      "stored_sha256": "c6c23db9b09c3f3538486b3c478ff36aa35c8f150d9431f71487f69035845278"
+    },
+    {
+      "path": "integration/static-final-analyze.log.gz",
+      "source_name": "archive-integrated-final-analyze.log",
+      "purpose": "final integrated analyze result",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 2065,
+      "raw_sha256": "84c628890e5c403fc60afc4505db1fef7b1efc7c85a129e8adf3a69ae12660bd",
+      "stored_bytes": 581,
+      "stored_sha256": "c69beb78c4627c413e11a28fb4594f6c4fde5f88e346cc015065c8f7f7abf5e0"
+    },
+    {
+      "path": "integration/static-final-format.log.gz",
+      "source_name": "archive-integrated-final-format.log",
+      "purpose": "final integrated format result",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 48,
+      "raw_sha256": "ff5284956073b1c414992eb7f8eec0825b01ff16903a24c0babe740dc596357e",
+      "stored_bytes": 68,
+      "stored_sha256": "40bc9fa8be91996d39a8c9939cbd63f5d0264cf97ae11e55daaea7f7e802f0bf"
+    },
+    {
+      "path": "integration/static-final-receipt.json.gz",
+      "source_name": "archive-integrated-final-static-receipt.json",
+      "purpose": "original final strict-analysis and format receipt over 67 changed Dart files",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 35426,
+      "raw_sha256": "c6b43bb7abc5eb96fbb6c5e9505357b34ed4b128e35af710a0cfb0b316d05e99",
+      "stored_bytes": 4727,
+      "stored_sha256": "b46dec8e9e5b011660fa3f179b21e3494aa081d87cac5eed28b5e6656008d2d8"
+    },
+    {
+      "path": "integration/static-initial-analyze.log.gz",
+      "source_name": "archive-integrated-analyze.log",
+      "purpose": "initial integrated analyze result",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 2065,
+      "raw_sha256": "84c628890e5c403fc60afc4505db1fef7b1efc7c85a129e8adf3a69ae12660bd",
+      "stored_bytes": 581,
+      "stored_sha256": "c69beb78c4627c413e11a28fb4594f6c4fde5f88e346cc015065c8f7f7abf5e0"
+    },
+    {
+      "path": "integration/static-initial-format.log.gz",
+      "source_name": "archive-integrated-format.log",
+      "purpose": "initial integrated format result",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 202,
+      "raw_sha256": "9f19d77cd8f206b9d3abb5742df88f337ea0b49931f54512d088b053b149e940",
+      "stored_bytes": 155,
+      "stored_sha256": "484cd8f04e457123907fb598fde634206d409319004604f7dce41ba0ee77ed3f"
+    },
+    {
+      "path": "integration/static-initial-receipt.json.gz",
+      "source_name": "archive-integrated-static-receipt.json",
+      "purpose": "original initial strict-analysis and format receipt over 67 changed Dart files",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 35241,
+      "raw_sha256": "079961a10e7ae69d817b293d8af34cad763ade6ca2d8be4de0240023068eba0b",
+      "stored_bytes": 4600,
+      "stored_sha256": "992058ebef0be9709976ee6d6fc952290b32635b154921a4bd9a9b3f7c0d297e"
+    },
+    {
+      "path": "integration/studio-receipt.json",
+      "source_name": "archive-integration-studio.metadata.json",
+      "purpose": "original subprocess receipt",
+      "encoding": "utf-8",
+      "bytes": 1885,
+      "sha256": "6d124553f00bfbe426f1284c123b4b186bc7da15ceb2cd2cdbc3a4ebb391b46c"
+    },
+    {
+      "path": "integration/studio-source-after.json.gz",
+      "source_name": "archive-integration-studio.source-after.json",
+      "purpose": "original contemporaneous package/root input SHA-256 snapshot",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 879247,
+      "raw_sha256": "f5a0c46c8f7a91f55267280338f0def9bbe3dc61954c5399e33ecc397352f95e",
+      "stored_bytes": 274376,
+      "stored_sha256": "ee5c8c5b114bdc7eacafc6be2c5996fdbb071c8c42cb912f2f38a69daa30d0ee"
+    },
+    {
+      "path": "integration/studio-source-before.json.gz",
+      "source_name": "archive-integration-studio.source-before.json",
+      "purpose": "original contemporaneous package/root input SHA-256 snapshot",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 878671,
+      "raw_sha256": "d2ca9c3c9e7a7849998f6afc35b69284947160eb8306544342dbee53735d1327",
+      "stored_bytes": 274300,
+      "stored_sha256": "9c53c0a7b08896541a8359bd0f2ac1340c2b2f7639d2d80472c00cc881dfe90e"
+    },
+    {
+      "path": "integration/studio-stderr.log.gz",
+      "source_name": "archive-integration-studio.stderr.log",
+      "purpose": "complete integrated normal Flutter stderr stream",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stored_bytes": 20,
+      "stored_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64"
+    },
+    {
+      "path": "integration/studio-tests.jsonl.gz",
+      "source_name": "archive-integration-studio.jsonl",
+      "purpose": "integrated normal Flutter reporter stream",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 173835,
+      "raw_sha256": "77c686a4cad0d53f3735434d438eedd3a9aa86fec4cf5eb43d14b0c170ce2d41",
+      "stored_bytes": 12455,
+      "stored_sha256": "f39a3f3c3b44199b47c0647e074062d0b93c873e56ce33daf8081e081b424562"
+    },
+    {
+      "path": "logs/core-tests.log.gz",
+      "source_name": "archive-core-tests.log",
+      "purpose": "accepted pre-intake cohort",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 70229,
+      "raw_sha256": "a2cf9524e3bb1f3ec6f2a03924fa4ef66c18b82f1fd761e16924d212c2e57cc2",
+      "stored_bytes": 8697,
+      "stored_sha256": "951bf1d66b9aedaf58eb12f4e2e43c134413995ed8aaa4caaf321cbf5870179c"
+    },
+    {
+      "path": "logs/core-transport-analysis.log.gz",
+      "source_name": "archive-core-transport-analyze.log",
+      "purpose": "strict analysis before final transport alias refinement",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 66,
+      "raw_sha256": "54131fe8ed53c9d9c0c3d915f81ae8a72f77c06175cbca5ffb0589224b08a7da",
+      "stored_bytes": 77,
+      "stored_sha256": "45d4234e7bed734bd93b734ab1732f5867f852bf5a0d8ce33d2ee515c3a37ce7"
+    },
+    {
+      "path": "logs/shared-ui-tests.jsonl.gz",
+      "source_name": "archive-ui-shared-message-lists.jsonl",
+      "purpose": "accepted pre-intake cohort",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 98746,
+      "raw_sha256": "7ed77104059a9521174a92f8bea1bf6d66af117546706b886ad8be4c316f4e0b",
+      "stored_bytes": 8787,
+      "stored_sha256": "6efa31895babd22775e5e9f690206ab02f89790634dda07413bbca82f72aae68"
+    },
+    {
+      "path": "logs/store-format.log.gz",
+      "source_name": "archive-store-format.log",
+      "purpose": "accepted store formatting",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 47,
+      "raw_sha256": "40dda0d6720d5d81c116c7d712e568c462af50b3eb2133b082b66cd05745759b",
+      "stored_bytes": 67,
+      "stored_sha256": "6e579a54f6cb62ec5df0610a5cac0aa4315b31fbf9fba56ca1834734a16237f3"
+    },
+    {
+      "path": "logs/store-new-tests-analysis.log.gz",
+      "source_name": "archive-store-analysis.log",
+      "purpose": "strict analysis of 20 new store cases",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 93,
+      "raw_sha256": "d841f89fc4b83171dde8885d46d7a43c13c0a6cd997d2ac68514640883aef913",
+      "stored_bytes": 89,
+      "stored_sha256": "27f752ae70fc63507f8963283c7bb9febe16b54f2769207fa42bebd99472c2d2"
+    },
+    {
+      "path": "logs/store-tests.jsonl.gz",
+      "source_name": "store-full-final.jsonl",
+      "purpose": "accepted pre-intake cohort",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 620329,
+      "raw_sha256": "edf168be614e5ce1d5e700e437b96dff6989c2d9801d1324be9e80a6e0198d52",
+      "stored_bytes": 56580,
+      "stored_sha256": "b99959db3122c038baff85a512c0acf3d90d9b634d9828bef7b0648500d2ac42"
+    },
+    {
+      "path": "logs/studio-tests.jsonl.gz",
+      "source_name": "archive-ui-studio-final.jsonl",
+      "purpose": "accepted pre-intake cohort",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 161479,
+      "raw_sha256": "5e619956c575ca8827abd3c2f00f37f9fc26297e13535c5277568441b4f32729",
+      "stored_bytes": 11545,
+      "stored_sha256": "a8b0a4927615bfc7b7688dad03f767a6ce2c6dd9db5931024c73679be09d3066"
+    },
+    {
+      "path": "logs/transport-analysis.log.gz",
+      "source_name": "archive-transport-final-analyze.log",
+      "purpose": "accepted final transport strict analysis",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 50,
+      "raw_sha256": "51fcea49aced5237de361329d4715e6b12fa54512664be8f13a58865f5c50e1f",
+      "stored_bytes": 70,
+      "stored_sha256": "8c8decfe0726009c80e7d2bd8eb272bc180bd491e10a1cc9a4508554ed871a82"
+    },
+    {
+      "path": "logs/transport-format.log.gz",
+      "source_name": "archive-transport-final-format.log",
+      "purpose": "accepted final transport formatting",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 47,
+      "raw_sha256": "48119b7f93f88ac166398c1576d4686ff2163286c1e198494980483fef718e84",
+      "stored_bytes": 67,
+      "stored_sha256": "a66cab2cab58c485c2453af6e2a4857e21e55a15278c8fe5d758c96e249431ff"
+    },
+    {
+      "path": "logs/transport-tests.log.gz",
+      "source_name": "archive-transport-final-full-tests.log",
+      "purpose": "accepted pre-intake cohort",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 75926,
+      "raw_sha256": "28c65b9718d655c537e51c6d70950e5ee6323a4807df48fbf6b363b7960c00dd",
+      "stored_bytes": 3823,
+      "stored_sha256": "60409ff51065ac615a91dd567a1b20e31b624e56f80fb0b32b38917b33c84aaa"
+    },
+    {
+      "path": "receipts/final-source-continuity.json",
+      "purpose": "Post-execution check of 5891 captured inputs; only two formatter-normalized files differ",
+      "encoding": "utf-8",
+      "bytes": 1316,
+      "sha256": "e491d6a0955a0974311cda18d1755fa01c41637e87d542b921d7039fdaea4f3c"
+    },
+    {
+      "path": "receipts/store-final.json",
+      "source_name": "store-full-final-receipt.json",
+      "purpose": "accepted store execution receipt with before/after hashes",
+      "encoding": "utf-8",
+      "bytes": 32228,
+      "sha256": "335dca8226c1d2ab64eba787a2dc52a49d0eb9f2d34a0fcd938f51d46266853c"
+    },
+    {
+      "path": "receipts/store-initial.json",
+      "source_name": "store-full-receipt.json",
+      "purpose": "earlier store failure execution receipt",
+      "encoding": "utf-8",
+      "bytes": 32575,
+      "sha256": "a8c5716219f7f7a1d349715013a58ff6558fd155e90eace37443db72ef1eb958"
+    },
+    {
+      "path": "runtime/flutter-tools-resolution.log.gz",
+      "source_name": "flutter-tools-offline-resolution.log",
+      "purpose": "locked Flutter tool resolution",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 1281,
+      "raw_sha256": "02fa75724402b24471acf377d84b742c9eae00d6816deeec2ba75b57ac24117e",
+      "stored_bytes": 558,
+      "stored_sha256": "13c2f262f2cc61220309575f9bb0281b739d45a5a0b47287824af41c6afb5dae"
+    },
+    {
+      "path": "runtime/sdk-package-archives.json",
+      "source_name": "flutter-tool-package-restoration.json",
+      "purpose": "verified exact SDK tool package restoration",
+      "encoding": "utf-8",
+      "bytes": 13888,
+      "sha256": "f5ae3550a0e7639b5df80d58bef0c8c3e6a08fc09b73910addab9a7ca1760afb"
+    },
+    {
+      "path": "runtime/workspace-resolution.log.gz",
+      "source_name": "dependency-resolution.log",
+      "purpose": "locked workspace resolution",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 1315,
+      "raw_sha256": "4e724aed3be6a8a91abfb7f5db3649ef4b58b615e3130a17de18f446be17d201",
+      "stored_bytes": 533,
+      "stored_sha256": "ae082763b4eaf04b5d00b3bdd360f1c66b11d01c6ffe879a3ffd820998ef55bd"
+    },
+    {
+      "path": "supplemental/imap-alias-tests.log.gz",
+      "source_name": "archive-imap-alias-tests.log",
+      "purpose": "overlapping 95-case native transport run; not additive",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 11058,
+      "raw_sha256": "fc6eda84e9ac3c79952c35aee1bd405c177dcbff7faf748dc773d72fd98ed752",
+      "stored_bytes": 2404,
+      "stored_sha256": "0cd00e9db653213d64ede1e1f0247fe559cc93e8fa389eafe49cff0115f9555a"
+    },
+    {
+      "path": "supplemental/store-focused.jsonl.gz",
+      "source_name": "archive-store-corrected.jsonl",
+      "purpose": "overlapping 20-case focused run; not additive",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 10108,
+      "raw_sha256": "0b14de0b1972e1f47a2d2cbcc8a689355e37c61dce4ef1dc08ad017886925c22",
+      "stored_bytes": 1339,
+      "stored_sha256": "518f406140ec155bf4efda45aaea0c17755fd4a03b2787691aa2fcd311af055a"
+    },
+    {
+      "path": "supplemental/studio-dialog-correction.jsonl.gz",
+      "source_name": "archive-ui-studio-dialog-rerun.jsonl",
+      "purpose": "overlapping 20-case dialog repair run; not additive",
+      "encoding": "gzip",
+      "gzip_mtime": 0,
+      "raw_bytes": 11632,
+      "raw_sha256": "5371bc9f8081634ec0f6bed00512bd2b8b1ecb6c873f334e5b190fa604be1ef2",
+      "stored_bytes": 1121,
+      "stored_sha256": "b22a466588194e8f86f8ecfe1292617cb6ef9d559d741074d81605e6943e8358"
+    },
+    {
+      "path": "upstream-intake.json",
+      "source_name": "upstream-intake.json",
+      "purpose": "initial upstream branch ancestry",
+      "encoding": "utf-8",
+      "bytes": 1059,
+      "sha256": "0ca6d39bac2ad19ca713ab3e7bc048d55c9b46c21a826b8fc2684eae6fa3b3e6"
+    }
+  ]
+}

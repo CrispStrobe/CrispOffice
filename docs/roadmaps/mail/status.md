@@ -28,7 +28,7 @@ interrupted work.
 
 Connected mailbox readers and checked selections now offer a reviewed Archive
 action. Gmail removes only the exact message's Inbox label and requires an
-explicit valid acknowledgement. IMAP resolves a unique selectable `\\Archive`
+explicit valid acknowledgement. IMAP resolves a unique selectable `\Archive`
 folder; Microsoft 365 resolves the ordinary well-known Archive folder. EWS and
 unavailable discovery require an explicit same-account destination. Folder-based
 Archive reuses exact Move intent and identity receipts; Gmail uses a distinct
@@ -42,6 +42,14 @@ archive-copy workflow remains available.
 
 See the [provider behavior and continuation](provider-archive.md) and
 [local qualification record](../../validation/mail-provider-archive-20261122/README.md).
+Local acceptance passed 2,902 distinct Mail cases: 648 core, 612 transport,
+1,138 storage, 325 Studio and 179 shared UI. The Studio and shared UI gates ran
+again after the incoming Word/Zotero integration; Mail-owned core, transport and
+store source remained unchanged. Another 510 incoming engine/editor behavior
+cases passed. The qualification record separately retains an existing Word
+visual-golden mismatch, reproduced on the pre-integration source with exactly
+the same failing pixels.
+
 Connected multi-account navigation remains the next M04W boundary; full desktop
 parity and live-provider/platform acceptance remain open.
 
